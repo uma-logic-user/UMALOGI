@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+/* ─── カラー変数 ─────────────────────────────────────── */
+:root {
+  --bg-base:      #02060e;
+  --bg-surface:   #060f1e;
+  --bg-card:      #081526;
+  --neon-cyan:    #00c8ff;
+  --neon-blue:    #0066ff;
+  --neon-green:   #00ff88;
+  --neon-red:     #ff3366;
+  --neon-gold:    #ffd700;
+  --text-primary: #e0f4ff;
+  --text-muted:   #4a7a96;
+  --border:       rgba(0, 200, 255, 0.18);
+}
+
+/* ─── ベース ─────────────────────────────────────────── */
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+}
+
+/* グリッドパターン背景 */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(0, 200, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 200, 255, 0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  z-index: 0;
+}
+
+/* ─── ネオン系ユーティリティ ─────────────────────────── */
+.neon-text {
+  color: var(--neon-cyan);
+  text-shadow:
+    0 0 6px  rgba(0, 200, 255, 0.9),
+    0 0 14px rgba(0, 200, 255, 0.5),
+    0 0 32px rgba(0, 200, 255, 0.25);
+}
+
+.neon-text-gold {
+  color: var(--neon-gold);
+  text-shadow:
+    0 0 6px  rgba(255, 215, 0, 0.9),
+    0 0 14px rgba(255, 215, 0, 0.4);
+}
+
+.neon-text-green {
+  color: var(--neon-green);
+  text-shadow: 0 0 8px rgba(0, 255, 136, 0.7);
+}
+
+.neon-text-red {
+  color: var(--neon-red);
+  text-shadow: 0 0 8px rgba(255, 51, 102, 0.7);
+}
+
+.neon-border {
+  border: 1px solid var(--border);
+  box-shadow:
+    0 0 12px rgba(0, 200, 255, 0.07),
+    inset 0 0 12px rgba(0, 200, 255, 0.04);
+}
+
+.neon-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  box-shadow:
+    0 0 20px rgba(0, 200, 255, 0.07),
+    0 4px 24px rgba(0, 0, 0, 0.5),
+    inset 0 0 20px rgba(0, 200, 255, 0.03);
+  border-radius: 8px;
+}
+
+.neon-card-bright {
+  background: linear-gradient(135deg, #081e38 0%, #04111f 100%);
+  border: 1px solid rgba(0, 200, 255, 0.35);
+  box-shadow:
+    0 0 30px rgba(0, 200, 255, 0.12),
+    0 0 60px rgba(0, 100, 255, 0.06),
+    0 4px 32px rgba(0, 0, 0, 0.6),
+    inset 0 0 30px rgba(0, 200, 255, 0.05);
+  border-radius: 10px;
+}
+
+/* ─── ロゴ用スキャンライン ────────────────────────────── */
+.scanlines {
+  position: relative;
+  overflow: hidden;
+}
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 3px,
+    rgba(0, 0, 0, 0.12) 3px,
+    rgba(0, 0, 0, 0.12) 4px
+  );
+  pointer-events: none;
+}
+
+/* ─── テーブル ───────────────────────────────────────── */
+.race-table th {
+  color: var(--neon-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.7rem;
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(0, 200, 255, 0.2);
+  white-space: nowrap;
+}
+
+.race-table td {
+  padding: 11px 12px;
+  border-bottom: 1px solid rgba(0, 200, 255, 0.06);
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+.race-table tr:hover td {
+  background: rgba(0, 200, 255, 0.04);
+}
+
+/* 上位3着の行強調 */
+.row-rank-1 td { background: rgba(255, 215, 0,  0.05); }
+.row-rank-2 td { background: rgba(180, 180, 255, 0.04); }
+.row-rank-3 td { background: rgba(200, 140, 100, 0.04); }
+
+/* ─── アニメーション ─────────────────────────────────── */
+@keyframes pulse-neon {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.7; }
+}
+
+.pulse-neon { animation: pulse-neon 3s ease-in-out infinite; }
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.slide-in { animation: slide-in 0.4s ease-out both; }
