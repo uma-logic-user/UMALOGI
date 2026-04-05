@@ -1,0 +1,244 @@
+name: UMALOGI 自動予想パイプライン
+
+# ============================================================
+# スケジュール（JST = UTC+9）
+#
+#  金曜 20:00 JST = UTC 11:00 → データ取得バッチ
+#  土曜 11:45 JST = UTC 02:45 → 土曜レース直前予想
+#  土曜 12:45 JST = UTC 03:45 → 〃
+#  日曜 11:45 JST = UTC 02:45 → 日曜レース直前予想
+#  日曜 12:45 JST = UTC 03:45 → 〃
+# ============================================================
+
+on:
+  schedule:
+    # 金曜 20:00 JST — 翌日レース出馬表取得
+    - cron: "0 11 * * 5"
+    # 土曜 11:45 JST — 午前レース直前予想
+    - cron: "45 2 * * 6"
+    # 土曜 14:45 JST — 午後レース直前予想
+    - cron: "45 5 * * 6"
+    # 日曜 11:45 JST — 午前レース直前予想
+    - cron: "45 2 * * 0"
+    # 日曜 14:45 JST — 午後レース直前予想
+    - cron: "45 5 * * 0"
+
+  # 手動実行（GitHub UI から起動可能）
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "実行モード"
+        required: true
+        default: "friday"
+        type: choice
+        options:
+          - friday
+          - prerace
+          - train
+      race_id:
+        description: "レース ID（prerace モード時）"
+        required: false
+        default: ""
+      target_date:
+        description: "対象日 YYYYMMDD（friday モード時）"
+        required: false
+        default: ""
+
+env:
+  PYTHON_VERSION: "3.12"
+  DB_PATH: "data/umalogi.db"
+  TZ: "Asia/Tokyo"
+
+# ============================================================
+# Jobs
+# ============================================================
+
+jobs:
+  # ----------------------------------------------------------
+  # 金曜バッチ: 翌日の出馬表取得
+  # ----------------------------------------------------------
+  friday-batch:
+    name: 金曜バッチ（出馬表取得）
+    runs-on: ubuntu-latest
+    # 金曜スケジュール、または手動 friday モード
+    if: |
+      (github.event_name == 'schedule' && github.event.schedule == '0 11 * * 5') ||
+      (github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'friday')
+
+    steps:
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v4
+
+      - name: Python セットアップ
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+
+      - name: 依存パッケージインストール
+        run: pip install -r requirements.txt
+
+      - name: DB をキャッシュから復元
+        uses: actions/cache@v4
+        with:
+          path: data/umalogi.db
+          key: umalogi-db-${{ github.run_id }}
+          restore-keys: umalogi-db-
+
+      - name: DB 初期化
+        run: python -c "from src.database.init_db import init_db; init_db()"
+
+      - name: 出馬表取得
+        run: |
+          DATE="${{ github.event.inputs.target_date }}"
+          if [ -z "$DATE" ]; then
+            python -m src.main_pipeline friday
+          else
+            python -m src.main_pipeline friday --date "$DATE"
+          fi
+
+      - name: Next.js 用 JSON 生成
+        run: python web/generate_data.py
+
+      - name: JSON をアーティファクトとして保存
+        uses: actions/upload-artifact@v4
+        with:
+          name: race-data-${{ github.run_id }}
+          path: web/src/data/
+          retention-days: 7
+
+      - name: DB をキャッシュに保存
+        uses: actions/cache/save@v4
+        with:
+          path: data/umalogi.db
+          key: umalogi-db-${{ github.run_id }}
+
+  # ----------------------------------------------------------
+  # レース直前予想
+  # ----------------------------------------------------------
+  prerace-predict:
+    name: レース直前予想
+    runs-on: ubuntu-latest
+    # 土日のスケジュール、または手動 prerace モード
+    if: |
+      (github.event_name == 'schedule' && github.event.schedule != '0 11 * * 5') ||
+      (github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'prerace')
+
+    steps:
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v4
+
+      - name: Python セットアップ
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+
+      - name: 依存パッケージインストール
+        run: pip install -r requirements.txt
+
+      - name: DB をキャッシュから復元
+        uses: actions/cache@v4
+        with:
+          path: data/umalogi.db
+          key: umalogi-db-
+          restore-keys: umalogi-db-
+
+      - name: DB 初期化（キャッシュなしの場合）
+        run: python -c "from src.database.init_db import init_db; init_db()"
+
+      - name: モデルファイルを復元
+        uses: actions/cache@v4
+        with:
+          path: data/models/
+          key: umalogi-models-
+          restore-keys: umalogi-models-
+
+      - name: レース直前予想
+        run: |
+          RACE_ID="${{ github.event.inputs.race_id }}"
+          if [ -n "$RACE_ID" ]; then
+            # 手動指定
+            python -m src.main_pipeline prerace "$RACE_ID"
+          else
+            # スケジュール実行: 当日のレースを自動検出して予想
+            python -c "
+import datetime, subprocess, sys
+from src.scraper.fetch_historical import fetch_race_ids_for_date
+today = datetime.date.today().strftime('%Y%m%d')
+race_ids = fetch_race_ids_for_date(today)
+print(f'本日のレース: {len(race_ids)} 件')
+for rid in race_ids[:5]:  # 上位5レースを処理（超過負荷防止）
+    print(f'  予想中: {rid}')
+    result = subprocess.run(
+        [sys.executable, '-m', 'src.main_pipeline', 'prerace', rid],
+        capture_output=True, text=True
+    )
+    print(result.stdout[-200:] if result.stdout else '')
+"
+          fi
+
+      - name: 予想 JSON をアーティファクトとして保存
+        uses: actions/upload-artifact@v4
+        with:
+          name: predictions-${{ github.run_id }}
+          path: data/predictions/
+          retention-days: 30
+
+      - name: Next.js 用 JSON を更新
+        run: python web/generate_data.py
+
+      - name: 予想 JSON をアーティファクトとして保存（UI用）
+        uses: actions/upload-artifact@v4
+        with:
+          name: ui-data-${{ github.run_id }}
+          path: web/src/data/
+          retention-days: 7
+
+  # ----------------------------------------------------------
+  # モデル再学習（手動実行のみ）
+  # ----------------------------------------------------------
+  train-models:
+    name: モデル再学習
+    runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'train'
+
+    steps:
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v4
+
+      - name: Python セットアップ
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+
+      - name: 依存パッケージインストール
+        run: pip install -r requirements.txt
+
+      - name: DB をキャッシュから復元
+        uses: actions/cache@v4
+        with:
+          path: data/umalogi.db
+          key: umalogi-db-
+          restore-keys: umalogi-db-
+
+      - name: DB 初期化
+        run: python -c "from src.database.init_db import init_db; init_db()"
+
+      - name: モデル学習
+        run: python -m src.main_pipeline train
+
+      - name: 学習済みモデルをアーティファクトとして保存
+        uses: actions/upload-artifact@v4
+        with:
+          name: models-${{ github.run_id }}
+          path: data/models/
+          retention-days: 90
+
+      - name: モデルをキャッシュに保存
+        uses: actions/cache/save@v4
+        with:
+          path: data/models/
+          key: umalogi-models-${{ github.run_id }}
