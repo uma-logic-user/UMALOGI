@@ -74,6 +74,96 @@ class FeatureBuilder:
 
     # ── パブリック API ──────────────────────────────────────────
 
+    def build_race_features_for_simulate(self, race_id: str) -> pd.DataFrame:
+        """
+        過去レース（race_results）から擬似出馬表を構築して特徴量 DataFrame を返す。
+
+        **リーク防止の原則**
+        race_results から以下の「レース終了後にしか判明しない情報」を除外する:
+          - rank        (着順)
+          - finish_time (タイム)
+          - margin      (着差)
+
+        horse_stats の計算では exclude_race_id=race_id を渡し、
+        シミュレーション対象レース自身の rank が過去成績に混入しないようにする。
+
+        horse_number は popularity 昇順（1番人気→馬番1）で付与する。
+        """
+        race_row = self._conn.execute(
+            "SELECT distance, surface, venue FROM races WHERE race_id = ?",
+            (race_id,),
+        ).fetchone()
+
+        if race_row is None:
+            raise ValueError(f"race_id が DB に存在しません: {race_id!r}")
+
+        distance, surface, venue = race_row
+        dist_band = _distance_band(distance)
+
+        # race_results から安全なフィールドのみ取得（rank/finish_time/margin は取らない）
+        rows = self._conn.execute(
+            """
+            SELECT
+                rr.horse_id,
+                rr.horse_name,
+                rr.sex_age,
+                rr.weight_carried,
+                rr.jockey,
+                rr.horse_weight,
+                rr.win_odds,
+                rr.popularity
+            FROM race_results rr
+            WHERE rr.race_id = ?
+            ORDER BY
+                CASE WHEN rr.popularity IS NULL THEN 1 ELSE 0 END,
+                rr.popularity
+            """,
+            (race_id,),
+        ).fetchall()
+
+        if not rows:
+            logger.warning("race_results が 0 件: race_id=%s", race_id)
+            return pd.DataFrame()
+
+        records = []
+        for horse_number, (horse_id, horse_name, sex_age,
+                            weight_carried, jockey, horse_weight,
+                            win_odds, popularity) in enumerate(rows, start=1):
+            # リーク防止: 統計からシミュレーション対象レース自身を除外
+            stats = self._get_horse_stats(
+                horse_id, surface, distance, exclude_race_id=race_id
+            )
+
+            records.append({
+                "horse_number":   horse_number,
+                "horse_id":       horse_id,
+                "horse_name":     horse_name,
+                "weight_carried": weight_carried,
+                "horse_weight":   horse_weight,
+                "win_odds":       win_odds,
+                "popularity":     popularity,
+                "win_rate_all":                  stats["win_rate_all"],
+                "win_rate_surface":              stats["win_rate_surface"],
+                "win_rate_distance_band":        stats["win_rate_distance_band"],
+                "recent_rank_mean":              stats["recent_rank_mean"],
+                "surface_code":   _SURFACE_CODE.get(surface, -1),
+                "sex_code":       _SEX_CODE.get(_parse_sex(sex_age or ""), -1),
+                "venue_encoded":  _VENUE_CODE.get(venue, len(_VENUE_CODE)),
+                "sire_encoded":   self._encode_sire(self._get_sire(horse_id)),
+                "distance":       distance,
+                "dist_band":      dist_band,
+                # 識別子（モデル学習には使わない）
+                "sex_age":        sex_age,
+                "jockey":         jockey,
+            })
+
+        df = pd.DataFrame(records)
+        logger.info(
+            "[SIMULATE] 特徴量生成 race_id=%s: %d 頭 × %d 特徴量 (リーク除外済み)",
+            race_id, len(df), df.shape[1],
+        )
+        return df
+
     def build_race_features(self, race_id: str) -> pd.DataFrame:
         """
         指定レースの出馬表を基に特徴量 DataFrame を生成して返す。
@@ -156,9 +246,15 @@ class FeatureBuilder:
         horse_id: str | None,
         surface: str,
         distance: int,
+        *,
+        exclude_race_id: str | None = None,
     ) -> dict[str, float | None]:
         """
         horses / race_results テーブルから馬の過去成績指標を算出する。
+
+        Args:
+            exclude_race_id: このレース ID を統計から除外する（シミュレーション時に
+                             対象レース自身の着順がリークしないよう指定する）。
 
         Returns:
             {
@@ -179,29 +275,35 @@ class FeatureBuilder:
 
         dist_band = _distance_band(distance)
 
+        # exclude_race_id が指定された場合、そのレースを除外する句を追加
+        excl_clause = "AND rr.race_id != ?" if exclude_race_id else ""
+        excl_param  = (exclude_race_id,) if exclude_race_id else ()
+
         # 全成績
         row = self._conn.execute(
-            """
+            f"""
             SELECT COUNT(*) AS total,
                    SUM(CASE WHEN rr.rank = 1 THEN 1 ELSE 0 END) AS wins
             FROM race_results rr
             WHERE rr.horse_id = ? AND rr.rank IS NOT NULL
+            {excl_clause}
             """,
-            (horse_id,),
+            (horse_id, *excl_param),
         ).fetchone()
         total, wins = row if row else (0, 0)
         win_rate_all = (wins / total) if total else None
 
         # 同馬場
         row_sf = self._conn.execute(
-            """
+            f"""
             SELECT COUNT(*) AS total,
                    SUM(CASE WHEN rr.rank = 1 THEN 1 ELSE 0 END) AS wins
             FROM race_results rr
             JOIN  races r ON rr.race_id = r.race_id
             WHERE rr.horse_id = ? AND r.surface = ? AND rr.rank IS NOT NULL
+            {excl_clause}
             """,
-            (horse_id, surface),
+            (horse_id, surface, *excl_param),
         ).fetchone()
         total_sf, wins_sf = row_sf if row_sf else (0, 0)
         win_rate_surface = (wins_sf / total_sf) if total_sf else None
@@ -211,7 +313,7 @@ class FeatureBuilder:
             (lo, hi) for lo, hi, label in _DISTANCE_BANDS if label == dist_band
         )
         row_db = self._conn.execute(
-            """
+            f"""
             SELECT COUNT(*) AS total,
                    SUM(CASE WHEN rr.rank = 1 THEN 1 ELSE 0 END) AS wins
             FROM race_results rr
@@ -219,23 +321,25 @@ class FeatureBuilder:
             WHERE rr.horse_id = ?
               AND r.distance >= ? AND r.distance < ?
               AND rr.rank IS NOT NULL
+            {excl_clause}
             """,
-            (horse_id, lo, hi),
+            (horse_id, lo, hi, *excl_param),
         ).fetchone()
         total_db, wins_db = row_db if row_db else (0, 0)
         win_rate_distance_band = (wins_db / total_db) if total_db else None
 
         # 直近5走の平均着順
         rows_recent = self._conn.execute(
-            """
+            f"""
             SELECT rr.rank
             FROM race_results rr
             JOIN  races r ON rr.race_id = r.race_id
             WHERE rr.horse_id = ? AND rr.rank IS NOT NULL
+            {excl_clause}
             ORDER BY r.date DESC
             LIMIT 5
             """,
-            (horse_id,),
+            (horse_id, *excl_param),
         ).fetchall()
         recent_rank_mean: float | None = (
             sum(r[0] for r in rows_recent) / len(rows_recent)

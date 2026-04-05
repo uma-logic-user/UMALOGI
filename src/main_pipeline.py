@@ -284,6 +284,120 @@ def _save_json(race_id: str, payload: dict) -> Path:
 
 
 # ================================================================
+# 過去レースシミュレーション
+# ================================================================
+
+def simulate_pipeline(race_id: str) -> dict:
+    """
+    過去レースの AI 予想を再現するシミュレーションパイプライン。
+
+    prerace_pipeline との違い:
+      - ネットワークアクセスなし（全データを DB から取得）
+      - リーク防止: rank / finish_time / margin を特徴量から除外
+      - 統計計算で対象レース自身を除外 (exclude_race_id)
+      - predictions.notes に "[SIMULATE]" を付与して実予想と区別
+
+    Args:
+        race_id: シミュレーション対象の過去レース ID
+
+    Returns:
+        UI 用 JSON データ（dict）
+    """
+    logger.info("[SIMULATE] パイプライン開始: race_id=%s", race_id)
+
+    conn = init_db()
+
+    # ── Step 1: レースが DB に存在するか確認 ──────────────────────
+    race_row = conn.execute(
+        "SELECT race_name, date, venue FROM races WHERE race_id = ?",
+        (race_id,),
+    ).fetchone()
+    if race_row is None:
+        conn.close()
+        return {"error": f"race_id が DB に存在しません: {race_id}", "race_id": race_id}
+
+    race_name, race_date, venue = race_row
+    logger.info("[SIMULATE] 対象レース: %s %s %s", race_date, venue, race_name)
+
+    # ── Step 2: 特徴量生成（リーク防止済み） ─────────────────────
+    # race_results から rank/finish_time/margin を除いた安全な特徴量を構築。
+    # _get_horse_stats は exclude_race_id=race_id により対象レース自身を統計から除外。
+    try:
+        fb = FeatureBuilder(conn)
+        df = fb.build_race_features_for_simulate(race_id)
+    except ValueError as exc:
+        logger.error("[SIMULATE] 特徴量生成失敗: %s", exc)
+        conn.close()
+        return {"error": str(exc), "race_id": race_id}
+
+    if df.empty:
+        conn.close()
+        return {"error": "race_results が 0 件です", "race_id": race_id}
+
+    # ── Step 3: モデル予測 ─────────────────────────────────────────
+    honmei_model, manji_model = load_models()
+    honmei_scores = honmei_model.predict(df)
+    ev_scores     = manji_model.ev_score(df)
+
+    # ── Step 4: 買い目生成 ─────────────────────────────────────────
+    gen = BetGenerator()
+    honmei_bets = gen.generate_honmei(race_id, df, honmei_scores)
+    manji_bets  = gen.generate_manji(race_id, df, ev_scores)
+
+    # ── Step 5: DB 保存（notes に [SIMULATE] を付与） ──────────────
+    sim_note = f"[SIMULATE] {race_date} {venue} {race_name}"
+    prediction_ids: dict[str, list[int]] = {"本命": [], "卍": []}
+
+    for race_bets in (honmei_bets, manji_bets):
+        for bet in race_bets.bets:
+            horses_payload = [
+                {
+                    "horse_number": c[0] if len(c) == 1 else None,
+                    "horse_name":   race_bets.model_type,
+                    "predicted_rank": i + 1,
+                    "model_score":  bet.model_score,
+                    "ev_score":     bet.expected_value,
+                }
+                for i, c in enumerate(bet.combinations[:5])
+            ]
+            try:
+                pid = insert_prediction(
+                    conn,
+                    race_id=race_id,
+                    model_type=race_bets.model_type,
+                    bet_type=bet.bet_type,
+                    horses=horses_payload,
+                    confidence=bet.confidence,
+                    expected_value=bet.expected_value,
+                    recommended_bet=bet.recommended_bet,
+                    notes=sim_note + (f" / {bet.notes}" if bet.notes else ""),
+                )
+                prediction_ids[race_bets.model_type].append(pid)
+            except Exception as exc:
+                logger.error("[SIMULATE] 予想保存失敗 %s %s: %s",
+                             race_bets.model_type, bet.bet_type, exc)
+
+    conn.close()
+
+    # ── Step 6: JSON 出力 ──────────────────────────────────────────
+    payload = _build_output_json(
+        race_id, df, honmei_scores, ev_scores, honmei_bets, manji_bets
+    )
+    payload["simulate"] = True
+    payload["race_name"] = race_name
+    payload["race_date"] = race_date
+    _save_json(race_id, payload)
+
+    logger.info(
+        "[SIMULATE] 完了: race_id=%s 本命%d件 卍%d件",
+        race_id,
+        len(prediction_ids["本命"]),
+        len(prediction_ids["卍"]),
+    )
+    return payload
+
+
+# ================================================================
 # モデル学習エントリポイント
 # ================================================================
 
@@ -317,6 +431,7 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
   python -m src.main_pipeline friday                  # 翌日の出馬表取得
   python -m src.main_pipeline friday --date 20250628  # 指定日の出馬表取得
   python -m src.main_pipeline prerace 202506050811    # 指定レースの直前予想
+  python -m src.main_pipeline simulate 202506050811   # 過去レースのシミュレーション
   python -m src.main_pipeline train                   # モデル再学習
 """,
     )
@@ -329,6 +444,13 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     # prerace サブコマンド
     p_pre = sub.add_parser("prerace", help="レース直前予想パイプライン")
     p_pre.add_argument("race_id", help="対象レース ID")
+
+    # simulate サブコマンド
+    p_sim = sub.add_parser(
+        "simulate",
+        help="過去レースのシミュレーション（リーク防止済み）",
+    )
+    p_sim.add_argument("race_id", help="対象過去レース ID")
 
     # train サブコマンド
     sub.add_parser("train", help="モデル再学習")
@@ -353,6 +475,10 @@ def main(argv: list[str] | None = None) -> None:
 
     elif args.command == "prerace":
         result = prerace_pipeline(args.race_id)
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+
+    elif args.command == "simulate":
+        result = simulate_pipeline(args.race_id)
         print(json.dumps(result, ensure_ascii=False, indent=2))
 
     elif args.command == "train":
