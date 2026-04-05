@@ -317,6 +317,15 @@ def fetch_and_save_date(
             time.sleep(delay * 2)
 
     conn.close()
+
+    # 1日分の取得完了後にバックアップを作成
+    if stats["saved"] > 0:
+        try:
+            from utils.backup import make_backup
+            make_backup()
+        except Exception as exc:
+            logger.warning("バックアップ失敗（処理は継続）: %s", exc)
+
     return stats
 
 

@@ -289,6 +289,14 @@ def _save_json(race_id: str, payload: dict) -> Path:
 
 def train_pipeline() -> None:
     """DB の全データでモデルを学習・保存する。"""
+    # 学習前にDBをバックアップ
+    try:
+        from utils.backup import make_backup
+        make_backup()
+        logger.info("学習前バックアップ完了")
+    except Exception as exc:
+        logger.warning("バックアップ失敗（学習は継続）: %s", exc)
+
     conn = init_db()
     result = train_all(conn)
     conn.close()
