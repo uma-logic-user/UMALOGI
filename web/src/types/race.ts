@@ -27,6 +27,12 @@ export interface RaceResult {
   dam_sire: string | null
 }
 
+/** races.json の各エントリ（レース情報 + 結果リスト） */
+export interface RaceEntry extends Race {
+  results: RaceResult[]
+}
+
+/** 後方互換用（単一レース表示） */
 export interface RaceData {
   race: Race
   results: RaceResult[]
