@@ -1,10 +1,35 @@
 {
-  "annual_performance": [],
+  "annual_performance": [
+    {
+      "model_type": "卍",
+      "year": 2024,
+      "bet_type": "ALL",
+      "total_bets": 1796,
+      "hits": 218,
+      "hit_rate": 12.138084632516703,
+      "total_invested": 939000.0,
+      "total_payout": 361660.0,
+      "roi": 38.515441959531415,
+      "updated_at": "2026-04-06 03:12:36"
+    },
+    {
+      "model_type": "本命",
+      "year": 2024,
+      "bet_type": "ALL",
+      "total_bets": 861,
+      "hits": 166,
+      "hit_rate": 19.279907084785133,
+      "total_invested": 1575300.0,
+      "total_payout": 144620.0,
+      "roi": 9.180473560591633,
+      "updated_at": "2026-04-06 03:12:36"
+    }
+  ],
   "overall": {
-    "total_bets": 0,
-    "total_hits": null,
-    "total_invested": 2500600.0,
-    "total_payout": null
+    "total_bets": 2657,
+    "total_hits": 384,
+    "total_invested": 2514300.0,
+    "total_payout": 506280.0
   },
-  "total_races_in_db": 822
+  "total_races_in_db": 834
 }

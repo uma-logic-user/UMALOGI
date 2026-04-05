@@ -190,7 +190,8 @@ def prerace_pipeline(race_id: str) -> dict:
             horses_payload = [
                 {
                     "horse_number": c[0] if len(c) == 1 else None,
-                    "horse_name":   race_bets.model_type,
+                    "horse_name":   bet.horse_names[i] if i < len(bet.horse_names)
+                                    else race_bets.model_type,
                     "predicted_rank": i + 1,
                     "model_score":  bet.model_score,
                     "ev_score":     bet.expected_value,
@@ -361,7 +362,9 @@ def simulate_pipeline(race_id: str) -> dict:
             horses_payload = [
                 {
                     "horse_number": c[0] if len(c) == 1 else None,
-                    "horse_name":   race_bets.model_type,
+                    # horse_names[i] に実際の馬名が入っている
+                    "horse_name":   bet.horse_names[i] if i < len(bet.horse_names)
+                                    else race_bets.model_type,
                     "predicted_rank": i + 1,
                     "model_score":  bet.model_score,
                     "ev_score":     bet.expected_value,
