@@ -247,20 +247,28 @@ def _build_output_json(
     manji_bets,
 ) -> dict:
     """UI 用の JSON ペイロードを組み立てる。"""
+    import pandas as pd
+
+    def _int_or_none(v) -> int | None:
+        return int(v) if (v is not None and pd.notna(v) and v != 0) else None
+
+    def _float_or_none(v) -> float | None:
+        return float(v) if (v is not None and pd.notna(v)) else None
+
     horses = []
     for i, row in df.iterrows():
         num = int(row["horse_number"])
         horses.append({
-            "horse_number": num,
-            "horse_name":   str(row.get("horse_name", "")),
-            "horse_id":     str(row.get("horse_id", "") or ""),
-            "sex_age":      str(row.get("sex_age", "") or ""),
+            "horse_number":   num,
+            "horse_name":     str(row.get("horse_name", "")),
+            "horse_id":       str(row.get("horse_id", "") or ""),
+            "sex_age":        str(row.get("sex_age", "") or ""),
             "weight_carried": float(row.get("weight_carried") or 0),
-            "horse_weight": int(row["horse_weight"]) if row.get("horse_weight") else None,
-            "win_odds":     float(row["win_odds"]) if row.get("win_odds") else None,
-            "popularity":   int(row["popularity"]) if row.get("popularity") else None,
-            "honmei_score": round(float(honmei_scores.iloc[i]) if i < len(honmei_scores) else 0, 4),
-            "ev_score":     round(float(ev_scores.iloc[i]) if i < len(ev_scores) else 0, 4),
+            "horse_weight":   _int_or_none(row.get("horse_weight")),
+            "win_odds":       _float_or_none(row.get("win_odds")),
+            "popularity":     _int_or_none(row.get("popularity")),
+            "honmei_score":   round(float(honmei_scores.iloc[i]) if i < len(honmei_scores) else 0, 4),
+            "ev_score":       round(float(ev_scores.iloc[i]) if i < len(ev_scores) else 0, 4),
         })
 
     return {
