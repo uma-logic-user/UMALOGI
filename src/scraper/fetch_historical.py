@@ -36,8 +36,10 @@ if str(_ROOT) not in sys.path:
 
 # ── URL テンプレート ──────────────────────────────────────────────
 
-# 開催日のレース一覧（date=YYYYMMDD）
-_RACE_LIST_URL = "https://race.netkeiba.com/top/race_list.html"
+# 開催日のレース一覧（kaisai_date=YYYYMMDD）
+# NOTE: race_list.html は JS で動的ロードするため race_id を取得できない。
+#       実データは race_list_sub.html から取得する。
+_RACE_LIST_URL = "https://race.netkeiba.com/top/race_list_sub.html"
 # DB サイトのレース一覧（kaisai_date=YYYYMMDD）
 _DB_RACE_LIST_URL = "https://db.netkeiba.com/?pid=race_list&word=&track%5B%5D=1&track%5B%5D=2&start_year={year}&start_mon={month}&end_year={year}&end_mon={month}&grade%5B%5D={grade}&kyori_min=&kyori_max=&sort=date&list=100"
 
@@ -98,8 +100,8 @@ def fetch_race_ids_for_date(
     race_ids: list[str] = []
     seen: set[str] = set()
 
-    # race_list ページのリンクから race_id を抽出
-    for a in soup.select("a[href*='race_id='], a[href*='/race/']"):
+    # race_id=XXXXXXXXXXXX を含む全リンクから抽出
+    for a in soup.find_all("a", href=True):
         href = a.get("href", "")
         rid = _extract_race_id(href)
         if rid and rid not in seen:
@@ -343,7 +345,13 @@ def _fetch(
                 url, params=params, headers=_HEADERS, timeout=timeout
             )
             resp.raise_for_status()
-            resp.encoding = resp.apparent_encoding or "utf-8"
+            # netkeiba は EUC-JP を返す。apparent_encoding が誤検知する場合があるため
+            # Content-Type ヘッダまたは HTML の charset 宣言を優先する。
+            ct = resp.headers.get("Content-Type", "")
+            if "euc" in ct.lower() or "euc" in (resp.apparent_encoding or "").lower():
+                resp.encoding = "euc-jp"
+            else:
+                resp.encoding = resp.apparent_encoding or "utf-8"
             return resp.text
         except requests.RequestException as exc:
             if attempt == max_retries - 1:
