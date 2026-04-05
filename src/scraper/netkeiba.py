@@ -2,14 +2,14 @@
 netkeiba.com スクレイパー
 
 レースIDを指定してレース結果（馬名・着順・血統・タイム・オッズ）を取得する。
-レースID形式: YYYYVVDDNN（例: 202306050811 = 2023年阪神6日目5R 8レース目 … 実際は10桁）
+レースID形式: YYYYVVDDNN（例: 202506050811 = 2025年中山5回8日目11R）
 """
 
 import logging
+import re
 import time
 from dataclasses import dataclass, field
 from typing import Optional
-from urllib.parse import urljoin
 
 import requests
 from bs4 import BeautifulSoup
@@ -19,9 +19,8 @@ logger = logging.getLogger(__name__)
 # ---------------------------------------------------------------------------
 # 定数
 # ---------------------------------------------------------------------------
-BASE_URL = "https://db.netkeiba.com"
-RACE_URL_TEMPLATE = "https://db.netkeiba.com/race/{race_id}/"
-HORSE_URL_TEMPLATE = "https://db.netkeiba.com/horse/{horse_id}/"
+RACE_URL_TEMPLATE  = "https://db.netkeiba.com/race/{race_id}/"
+PED_URL_TEMPLATE   = "https://db.netkeiba.com/horse/ped/{horse_id}/"
 
 DEFAULT_HEADERS: dict[str, str] = {
     "User-Agent": (
@@ -32,6 +31,18 @@ DEFAULT_HEADERS: dict[str, str] = {
     "Accept-Language": "ja,en-US;q=0.9",
 }
 
+# netkeiba 結果テーブルの列インデックス（実測値）
+_COL_RANK          = 0
+_COL_HORSE_NAME    = 3
+_COL_SEX_AGE       = 4
+_COL_WEIGHT        = 5
+_COL_JOCKEY        = 6
+_COL_TIME          = 7
+_COL_MARGIN        = 8
+_COL_WIN_ODDS      = 16
+_COL_POPULARITY    = 17
+_COL_HORSE_WEIGHT  = 18
+
 
 # ---------------------------------------------------------------------------
 # データモデル
@@ -39,43 +50,40 @@ DEFAULT_HEADERS: dict[str, str] = {
 @dataclass
 class PedigreeInfo:
     """血統情報（父・母・母父）"""
-
-    sire: Optional[str] = None       # 父
-    dam: Optional[str] = None        # 母
+    sire:     Optional[str] = None   # 父
+    dam:      Optional[str] = None   # 母
     dam_sire: Optional[str] = None   # 母父
 
 
 @dataclass
 class HorseResult:
     """1頭分のレース結果"""
-
-    rank: Optional[int]          # 着順（失格・除外は None）
-    horse_name: str              # 馬名
-    horse_id: Optional[str]      # netkeiba 馬ID
-    sex_age: str                 # 性齢（例: "牡3"）
-    weight_carried: float        # 斤量 (kg)
-    jockey: str                  # 騎手名
-    finish_time: Optional[str]   # タイム（例: "1:33.5"）
-    margin: Optional[str]        # 着差（例: "クビ"）
-    popularity: Optional[int]    # 人気順位
-    win_odds: Optional[float]    # 単勝オッズ
-    horse_weight: Optional[int]  # 馬体重 (kg)
+    rank:           Optional[int]    # 着順（失格・除外は None）
+    horse_name:     str              # 馬名
+    horse_id:       Optional[str]    # netkeiba 馬ID
+    sex_age:        str              # 性齢（例: "牡3"）
+    weight_carried: float            # 斤量 (kg)
+    jockey:         str              # 騎手名
+    finish_time:    Optional[str]    # タイム（例: "2:31.5"）
+    margin:         Optional[str]    # 着差（例: "クビ"）
+    popularity:     Optional[int]    # 人気順位
+    win_odds:       Optional[float]  # 単勝オッズ
+    horse_weight:   Optional[int]    # 馬体重 (kg)
     pedigree: PedigreeInfo = field(default_factory=PedigreeInfo)
 
 
 @dataclass
 class RaceInfo:
-    """レース基本情報"""
-
-    race_id: str
-    race_name: str
-    date: str          # "YYYY/MM/DD"
-    venue: str         # 開催場所（例: "東京"）
-    race_number: int   # 第N競走
-    distance: int      # 距離 (m)
-    surface: str       # "芝" / "ダート"
-    weather: str       # 天候
-    condition: str     # 馬場状態（例: "良"）
+    """レース基本情報 + 出走結果"""
+    race_id:     str
+    race_name:   str
+    date:        str          # "YYYY/MM/DD"
+    venue:       str          # 開催場所（例: "中山"）
+    race_number: int          # 第N競走
+    distance:    int          # 距離 (m)
+    surface:     str          # "芝" / "ダート"
+    weather:     str          # 天候
+    condition:   str          # 馬場状態（例: "良"）
     results: list[HorseResult] = field(default_factory=list)
 
 
@@ -94,29 +102,15 @@ def _fetch_html(
 
     失敗時はエクスポネンシャルバックオフでリトライする。
 
-    Args:
-        url: 取得対象 URL
-        max_retries: 最大リトライ回数
-        delay: 初回リクエスト前の待機秒数（サーバー負荷軽減）
-        timeout: 接続タイムアウト秒数
-
-    Returns:
-        レスポンス HTML 文字列
-
     Raises:
-        requests.HTTPError: HTTP エラーが max_retries 回連続した場合
-        requests.Timeout: タイムアウトが max_retries 回連続した場合
+        requests.RequestException: max_retries 回失敗した場合
     """
     time.sleep(delay)
 
     last_exc: Optional[Exception] = None
     for attempt in range(1, max_retries + 1):
         try:
-            resp = requests.get(
-                url,
-                headers=DEFAULT_HEADERS,
-                timeout=timeout,
-            )
+            resp = requests.get(url, headers=DEFAULT_HEADERS, timeout=timeout)
             resp.raise_for_status()
             resp.encoding = resp.apparent_encoding
             return resp.text
@@ -124,11 +118,8 @@ def _fetch_html(
             last_exc = exc
             wait = delay * (2 ** (attempt - 1))
             logger.warning(
-                "リクエスト失敗 (試行 %d/%d): %s — %ds 後にリトライ",
-                attempt,
-                max_retries,
-                url,
-                wait,
+                "リクエスト失敗 (試行 %d/%d): %s — %.1f秒後にリトライ",
+                attempt, max_retries, url, wait,
             )
             if attempt < max_retries:
                 time.sleep(wait)
@@ -139,14 +130,12 @@ def _fetch_html(
 
 
 # ---------------------------------------------------------------------------
-# パーサー
+# パーサー共通ユーティリティ
 # ---------------------------------------------------------------------------
 def _parse_rank(raw: str) -> Optional[int]:
     """着順文字列を int に変換。失格・除外等は None を返す。"""
     raw = raw.strip()
-    if raw.isdigit():
-        return int(raw)
-    return None
+    return int(raw) if raw.isdigit() else None
 
 
 def _parse_float(raw: str) -> Optional[float]:
@@ -158,47 +147,78 @@ def _parse_float(raw: str) -> Optional[float]:
 
 
 def _parse_int(raw: str) -> Optional[int]:
-    """数値文字列（馬体重等）を int に変換。"""
+    """数値文字列（馬体重等）を int に変換。"480(+2)" → 480"""
     try:
-        # "480(+2)" → 480
         return int(raw.strip().split("(")[0])
     except (ValueError, IndexError):
         return None
 
 
+# ---------------------------------------------------------------------------
+# レース基本情報パーサー
+# ---------------------------------------------------------------------------
 def _parse_race_info(soup: BeautifulSoup, race_id: str) -> RaceInfo:
-    """レース基本情報を解析する。"""
+    """
+    レースページから基本情報（名称・距離・天候・馬場・日付・開催場所）を解析する。
+
+    実際のHTML構造（2025年時点）:
+      - dl.racedata / div.mainrace_data: "11 R第70回有馬記念(GI)芝右2500m / 天候:晴 / 芝:良"
+      - p.smalltxt: "2025年12月28日 5回中山8日目 3歳以上オープン"
+    """
     race_name = ""
-    name_tag = soup.select_one("h1.RaceName, div.race_name h1")
-    if name_tag:
-        race_name = name_tag.get_text(strip=True)
+    distance  = 0
+    surface   = ""
+    weather   = ""
+    condition = ""
+    date      = ""
+    venue     = ""
+    race_number = 0
 
-    # レース詳細テキスト（距離・馬場・天候・馬場状態）
-    date, venue, race_number = "", "", 0
-    distance, surface, weather, condition = 0, "", "", ""
-
-    data_tag = soup.select_one("div.RaceData01, p.smalltxt")
+    # --- レース名・距離・天候・馬場 ---
+    data_tag = soup.select_one("dl.racedata, div.mainrace_data")
     if data_tag:
         text = data_tag.get_text(" ", strip=True)
-        # 距離・芝ダート
-        import re
-        m = re.search(r"(芝|ダート)(\d+)m", text)
+
+        # レース名: "第70回有馬記念(GI)" のような形式
+        m = re.search(r"R\s*(.+?)\s*(?:芝|ダート)", text)
         if m:
-            surface = m.group(1)
+            race_name = m.group(1).strip()
+
+        # 距離・馬場種別: "芝右2500m" or "ダート2000m"
+        m = re.search(r"(芝|ダート)[左右]?\s*(\d+)m", text)
+        if m:
+            surface  = m.group(1)
             distance = int(m.group(2))
-        m = re.search(r"天候\s*[:：]\s*(\S+)", text)
+
+        # 天候
+        m = re.search(r"天候\s*[：:]\s*(\S+?)\s*[/\xa0]", text + "/")
         if m:
             weather = m.group(1)
-        m = re.search(r"馬場\s*[:：]\s*(\S+)", text)
+
+        # 馬場状態: "芝 : 良" or "ダート : 稍重"
+        m = re.search(r"(?:芝|ダート)\s*[：:]\s*(\S+?)\s*[/\xa0]", text + "/")
         if m:
             condition = m.group(1)
 
-    date_tag = soup.select_one("div.RaceData02 span, dd.smalltxt")
-    if date_tag:
-        import re
-        m = re.search(r"\d{4}年\d{1,2}月\d{1,2}日", date_tag.get_text())
+    # --- 日付・開催場所・回次 ---
+    small_tag = soup.select_one("p.smalltxt")
+    if small_tag:
+        text = small_tag.get_text(" ", strip=True)
+
+        # 日付: "2025年12月28日"
+        m = re.search(r"(\d{4})年(\d{1,2})月(\d{1,2})日", text)
         if m:
-            date = m.group(0).replace("年", "/").replace("月", "/").replace("日", "")
+            date = f"{m.group(1)}/{int(m.group(2)):02d}/{int(m.group(3)):02d}"
+
+        # 開催場所: "5回中山8日目" → "中山"
+        m = re.search(r"\d+回(\S+?)\d+日目", text)
+        if m:
+            venue = m.group(1)
+
+        # 回次: "5回" → 5
+        m = re.search(r"(\d+)回", text)
+        if m:
+            race_number = int(m.group(1))
 
     return RaceInfo(
         race_id=race_id,
@@ -213,67 +233,85 @@ def _parse_race_info(soup: BeautifulSoup, race_id: str) -> RaceInfo:
     )
 
 
-def _parse_results_table(soup: BeautifulSoup) -> list[tuple[str, str, str]]:
+# ---------------------------------------------------------------------------
+# 結果テーブルパーサー
+# ---------------------------------------------------------------------------
+def _parse_results_table(
+    soup: BeautifulSoup,
+) -> list[tuple[str, str, list[str]]]:
     """
-    結果テーブルから (horse_name, horse_id, row_cells_raw) を抽出する。
+    結果テーブルから (horse_name, horse_id, cells) を抽出する。
 
-    Returns:
-        (horse_name, horse_id, cells) のリスト。cells は td テキストのリスト。
+    netkeiba の結果テーブルは 25 列構成（2025年時点）。
+    重要列: [0]着順 [4]性齢 [5]斤量 [6]騎手 [7]タイム [8]着差
+            [16]単勝 [17]人気 [18]馬体重
     """
-    table = soup.select_one("table.race_table_01, table.nk_tb_common")
+    table = soup.select_one("table.race_table_01")
     if table is None:
         return []
 
-    rows = table.select("tr")[1:]  # ヘッダー行をスキップ
-    parsed: list[tuple[str, str, list[str]]] = []
-    for tr in rows:
+    result: list[tuple[str, str, list[str]]] = []
+    for tr in table.select("tr")[1:]:   # ヘッダー行をスキップ
         cells = [td.get_text(strip=True) for td in tr.select("td")]
         if len(cells) < 10:
             continue
+
         horse_link = tr.select_one("td a[href*='/horse/']")
-        horse_name = horse_link.get_text(strip=True) if horse_link else cells[3]
-        horse_id = ""
+        horse_name = horse_link.get_text(strip=True) if horse_link else cells[_COL_HORSE_NAME]
+        horse_id   = ""
         if horse_link and horse_link.get("href"):
-            parts = str(horse_link["href"]).rstrip("/").split("/")
+            parts    = str(horse_link["href"]).rstrip("/").split("/")
             horse_id = parts[-1]
-        parsed.append((horse_name, horse_id, cells))
 
-    return parsed  # type: ignore[return-value]
+        result.append((horse_name, horse_id, cells))
+
+    return result
 
 
+# ---------------------------------------------------------------------------
+# 血統情報パーサー
+# ---------------------------------------------------------------------------
 def _fetch_pedigree(horse_id: str, delay: float = 1.5) -> PedigreeInfo:
     """
-    馬 ID から血統情報（父・母・母父）を取得する。
+    血統専用ページ（/horse/ped/{id}/）から父・母・母父を取得する。
 
-    Args:
-        horse_id: netkeiba 馬 ID
-        delay: リクエスト前の待機秒数
-
-    Returns:
-        PedigreeInfo。取得失敗時は空フィールドで返す。
+    blood_table の構造:
+      row[ 0].td[0] rowspan=16 → 父 (sire)
+      row[16].td[0] rowspan=16 → 母 (dam)
+      row[16].td[1] rowspan=8  → 母父 (dam's sire)
+    各セルは <a> タグで馬名を保持している。
     """
     if not horse_id:
         return PedigreeInfo()
 
-    url = HORSE_URL_TEMPLATE.format(horse_id=horse_id)
+    url = PED_URL_TEMPLATE.format(horse_id=horse_id)
     try:
         html = _fetch_html(url, delay=delay)
     except requests.RequestException as exc:
         logger.warning("血統取得失敗 horse_id=%s: %s", horse_id, exc)
         return PedigreeInfo()
 
-    soup = BeautifulSoup(html, "lxml")
-    table = soup.select_one("table.blood_table, table.db_prof_table")
+    soup  = BeautifulSoup(html, "lxml")
+    table = soup.select_one("table.blood_table")
     if table is None:
         return PedigreeInfo()
 
-    cells = [td.get_text(strip=True) for td in table.select("td")]
-    # blood_table の構造: [父, 父父, 父母, 母, 母父, 母母, ...]
-    sire = cells[0] if len(cells) > 0 else None
-    dam = cells[3] if len(cells) > 3 else None
-    dam_sire = cells[4] if len(cells) > 4 else None
+    rows = table.select("tr")
+    if len(rows) < 17:
+        return PedigreeInfo()
 
-    return PedigreeInfo(sire=sire, dam=dam, dam_sire=dam_sire)
+    def _link_text(row_idx: int, td_idx: int) -> Optional[str]:
+        tds  = rows[row_idx].select("td")
+        if td_idx >= len(tds):
+            return None
+        link = tds[td_idx].select_one("a")
+        return link.get_text(strip=True) if link else None
+
+    return PedigreeInfo(
+        sire     = _link_text(0,  0),   # row[0].td[0]  → 父
+        dam      = _link_text(16, 0),   # row[16].td[0] → 母
+        dam_sire = _link_text(16, 1),   # row[16].td[1] → 母父
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -290,57 +328,48 @@ def fetch_race_results(
     レース ID を指定してレース結果を取得する。
 
     Args:
-        race_id: netkeiba レース ID（例: "202306050811"）
-        fetch_pedigree: True の場合、各馬の血統情報も取得する（追加リクエスト発生）
-        delay: 各リクエスト前の待機秒数
+        race_id: netkeiba レース ID（例: "202506050811"）
+        fetch_pedigree: True の場合、各馬の血統情報も取得する
+        delay: 各リクエスト前の待機秒数（サーバー負荷軽減）
         max_retries: HTTP リトライ上限
 
     Returns:
         RaceInfo（レース基本情報 + 各馬結果リスト）
 
     Raises:
-        requests.RequestException: レースページの取得に失敗した場合
         ValueError: レース ID が不正な場合
+        requests.RequestException: レースページの取得に失敗した場合
     """
     if not race_id or not race_id.isdigit():
         raise ValueError(f"不正なレース ID: {race_id!r}")
 
-    url = RACE_URL_TEMPLATE.format(race_id=race_id)
     logger.info("レース結果取得開始: race_id=%s", race_id)
-
+    url  = RACE_URL_TEMPLATE.format(race_id=race_id)
     html = _fetch_html(url, max_retries=max_retries, delay=delay)
     soup = BeautifulSoup(html, "lxml")
 
     race_info = _parse_race_info(soup, race_id)
-    raw_rows = _parse_results_table(soup)
+    raw_rows  = _parse_results_table(soup)
 
     results: list[HorseResult] = []
     for horse_name, horse_id, cells in raw_rows:
-        # 列インデックスは netkeiba の標準レイアウトに準拠
-        # [0]着順 [1]枠 [2]馬番 [3]馬名 [4]性齢 [5]斤量 [6]騎手
-        # [7]タイム [8]着差 [9]人気 [10]単勝 [11]馬体重 ...
-        pedigree = PedigreeInfo()
-        if fetch_pedigree and horse_id:
-            pedigree = _fetch_pedigree(horse_id, delay=delay)
+        ped = _fetch_pedigree(horse_id, delay=delay) if fetch_pedigree and horse_id else PedigreeInfo()
 
-        result = HorseResult(
-            rank=_parse_rank(cells[0]) if len(cells) > 0 else None,
-            horse_name=horse_name,
-            horse_id=horse_id or None,
-            sex_age=cells[4] if len(cells) > 4 else "",
-            weight_carried=_parse_float(cells[5]) or 0.0 if len(cells) > 5 else 0.0,
-            jockey=cells[6] if len(cells) > 6 else "",
-            finish_time=cells[7] if len(cells) > 7 else None,
-            margin=cells[8] if len(cells) > 8 else None,
-            popularity=_parse_int(cells[9]) if len(cells) > 9 else None,
-            win_odds=_parse_float(cells[10]) if len(cells) > 10 else None,
-            horse_weight=_parse_int(cells[11]) if len(cells) > 11 else None,
-            pedigree=pedigree,
-        )
-        results.append(result)
+        results.append(HorseResult(
+            rank           = _parse_rank(cells[_COL_RANK])             if len(cells) > _COL_RANK          else None,
+            horse_name     = horse_name,
+            horse_id       = horse_id or None,
+            sex_age        = cells[_COL_SEX_AGE]                       if len(cells) > _COL_SEX_AGE        else "",
+            weight_carried = _parse_float(cells[_COL_WEIGHT]) or 0.0   if len(cells) > _COL_WEIGHT         else 0.0,
+            jockey         = cells[_COL_JOCKEY]                        if len(cells) > _COL_JOCKEY         else "",
+            finish_time    = cells[_COL_TIME]   or None                if len(cells) > _COL_TIME           else None,
+            margin         = cells[_COL_MARGIN] or None                if len(cells) > _COL_MARGIN         else None,
+            win_odds       = _parse_float(cells[_COL_WIN_ODDS])        if len(cells) > _COL_WIN_ODDS       else None,
+            popularity     = _parse_int(cells[_COL_POPULARITY])        if len(cells) > _COL_POPULARITY     else None,
+            horse_weight   = _parse_int(cells[_COL_HORSE_WEIGHT])      if len(cells) > _COL_HORSE_WEIGHT   else None,
+            pedigree       = ped,
+        ))
 
     race_info.results = results
-    logger.info(
-        "取得完了: race_id=%s, 出走頭数=%d", race_id, len(results)
-    )
+    logger.info("取得完了: race_id=%s, 出走頭数=%d", race_id, len(results))
     return race_info

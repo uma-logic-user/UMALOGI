@@ -29,40 +29,73 @@ from src.database.init_db import init_db, insert_race
 # ---------------------------------------------------------------------------
 SAMPLE_RACE_HTML = """
 <html><body>
-<h1 class="RaceName">東京優駿（日本ダービー）</h1>
-<div class="RaceData01">芝2400m 天候：晴 馬場：良</div>
-<div class="RaceData02"><span>2023年5月28日</span></div>
+<dl class="racedata fc">
+  11 R 東京優駿（日本ダービー）(GI) 芝左2400m&nbsp;/&nbsp;
+  天候 : 晴&nbsp;/&nbsp;
+  芝 : 良&nbsp;/&nbsp;
+  発走 : 15:40
+</dl>
+<p class="smalltxt">2023年5月28日 5回東京8日目 3歳オープン(国際)(指)(定量)</p>
 <table class="race_table_01">
-  <tr><th>着順</th><th>枠</th><th>馬番</th><th>馬名</th><th>性齢</th>
-      <th>斤量</th><th>騎手</th><th>タイム</th><th>着差</th>
-      <th>人気</th><th>単勝</th><th>馬体重</th></tr>
+  <tr>
+    <th>着順</th><th>枠</th><th>馬番</th><th>馬名</th><th>性齢</th>
+    <th>斤量</th><th>騎手</th><th>タイム</th><th>着差</th>
+    <th>x</th><th>x</th><th>x</th><th>x</th><th>x</th><th>x</th><th>x</th>
+    <th>単勝</th><th>人気</th><th>馬体重</th><th>x</th><th>x</th>
+    <th>x</th><th>x</th><th>x</th><th>x</th>
+  </tr>
   <tr>
     <td>1</td><td>5</td><td>9</td>
     <td><a href="/horse/2020104451/">タスティエーラ</a></td>
     <td>牡3</td><td>57</td><td>松山弘平</td>
-    <td>2:25.2</td><td></td><td>3</td><td>6.1</td><td>476(+2)</td>
+    <td>2:25.2</td><td></td>
+    <td>**</td><td>**</td><td>**</td><td>**</td><td>**</td><td>**</td><td>**</td>
+    <td>6.1</td><td>3</td><td>476(+2)</td><td></td><td></td>
+    <td></td><td></td><td></td><td></td>
   </tr>
   <tr>
     <td>2</td><td>7</td><td>14</td>
     <td><a href="/horse/2020104785/">ソールオリエンス</a></td>
     <td>牡3</td><td>57</td><td>横山武史</td>
-    <td>2:25.3</td><td>クビ</td><td>1</td><td>2.7</td><td>488(0)</td>
+    <td>2:25.3</td><td>クビ</td>
+    <td>**</td><td>**</td><td>**</td><td>**</td><td>**</td><td>**</td><td>**</td>
+    <td>2.7</td><td>1</td><td>488(0)</td><td></td><td></td>
+    <td></td><td></td><td></td><td></td>
   </tr>
   <tr>
     <td>除外</td><td>1</td><td>1</td>
     <td><a href="/horse/2020104999/">テストウマ</a></td>
     <td>牡3</td><td>57</td><td>福永祐一</td>
+    <td></td><td></td>
+    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
     <td></td><td></td><td></td><td></td><td></td>
+    <td></td><td></td><td></td><td></td>
   </tr>
 </table>
 </body></html>
 """
 
-SAMPLE_PEDIGREE_HTML = """
+# blood_table: 32行の実構造を模倣
+# row[0].td[0] rowspan=16 → 父、row[16].td[0] rowspan=16 → 母、row[16].td[1] rowspan=8 → 母父
+_EMPTY_ROWS = "\n".join(f"  <tr><td>pad{i}</td></tr>" for i in range(1, 16))
+SAMPLE_PEDIGREE_HTML = f"""
 <html><body>
-<table class="blood_table">
-  <tr><td>キタサンブラック</td><td>ブラックタイド</td><td>シュガーハート</td>
-      <td>ラヴズオンリーミー</td><td>Storm Cat</td><td>Soaring Softly</td></tr>
+<table class="blood_table detail">
+  <tr>
+    <td rowspan="16"><a href="/horse/xxx/">キタサンブラック</a> 2012 黒鹿毛</td>
+    <td rowspan="8"><a href="/horse/yyy/">ブラックタイド</a></td>
+    <td rowspan="4"><a href="/horse/aaa/">サンデーサイレンス</a></td>
+    <td rowspan="2"><a href="/horse/bbb/">Halo</a></td>
+    <td><a href="/horse/ccc/">Hail to Reason</a></td>
+  </tr>
+  {_EMPTY_ROWS}
+  <tr>
+    <td rowspan="16"><a href="/horse/zzz/">ラヴズオンリーミー</a> 2008 栗毛</td>
+    <td rowspan="8"><a href="/horse/www/">Storm Cat</a> 1983 黒鹿毛</td>
+    <td rowspan="4"><a href="/horse/vvv/">Storm Bird</a></td>
+    <td rowspan="2"><a href="/horse/uuu/">Northern Dancer</a></td>
+    <td><a href="/horse/ttt/">Nearctic</a></td>
+  </tr>
 </table>
 </body></html>
 """
