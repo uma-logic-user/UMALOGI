@@ -6,6 +6,8 @@ SQLite データベース初期化スクリプト
   races              - レース基本情報
   horses             - 馬マスタ（血統情報含む）
   race_results       - レースごとの出走・着順結果
+  entries            - 出馬表（レース前の出走登録情報）
+  realtime_odds      - リアルタイムオッズ履歴
 
   ── 予想層 ────────────────────────────────────────────────────
   predictions        - 卍/本命モデルの予想バッチ（1レース×1馬券種）
@@ -81,6 +83,53 @@ DDL_STATEMENTS: list[str] = [
         UNIQUE(race_id, horse_name)
     )
     """,
+
+    # ================================================================
+    # ── 出馬表・オッズ層 ─────────────────────────────────────────
+    # ================================================================
+
+    # entries: レース前の出走登録情報（出馬表）
+    """
+    CREATE TABLE IF NOT EXISTS entries (
+        id                 INTEGER PRIMARY KEY AUTOINCREMENT,
+        race_id            TEXT    NOT NULL REFERENCES races(race_id) ON DELETE CASCADE,
+        horse_number       INTEGER NOT NULL,  -- 馬番
+        gate_number        INTEGER NOT NULL DEFAULT 0,  -- 枠番
+        horse_id           TEXT    REFERENCES horses(horse_id),
+        horse_name         TEXT    NOT NULL,
+        sex_age            TEXT    NOT NULL DEFAULT '',
+        weight_carried     REAL    NOT NULL DEFAULT 0,
+        jockey             TEXT    NOT NULL DEFAULT '',
+        trainer            TEXT    NOT NULL DEFAULT '',
+        horse_weight       INTEGER,           -- 馬体重（kg）
+        horse_weight_diff  INTEGER,           -- 前走比
+        scraped_at         TEXT    NOT NULL DEFAULT (datetime('now', 'localtime')),
+        UNIQUE(race_id, horse_number)
+    )
+    """,
+
+    # realtime_odds: 単勝・複勝オッズの時系列スナップショット
+    """
+    CREATE TABLE IF NOT EXISTS realtime_odds (
+        id               INTEGER PRIMARY KEY AUTOINCREMENT,
+        race_id          TEXT    NOT NULL REFERENCES races(race_id) ON DELETE CASCADE,
+        horse_number     INTEGER NOT NULL,
+        horse_name       TEXT    NOT NULL DEFAULT '',
+        win_odds         REAL,               -- 単勝オッズ
+        place_odds_min   REAL,               -- 複勝オッズ（下限）
+        place_odds_max   REAL,               -- 複勝オッズ（上限）
+        popularity       INTEGER,            -- 人気順
+        recorded_at      TEXT    NOT NULL DEFAULT (datetime('now', 'localtime'))
+    )
+    """,
+
+    # entries インデックス
+    "CREATE INDEX IF NOT EXISTS idx_entries_race_id      ON entries(race_id)",
+    "CREATE INDEX IF NOT EXISTS idx_entries_horse_id     ON entries(horse_id)",
+
+    # realtime_odds インデックス
+    "CREATE INDEX IF NOT EXISTS idx_odds_race_id         ON realtime_odds(race_id)",
+    "CREATE INDEX IF NOT EXISTS idx_odds_recorded_at     ON realtime_odds(race_id, recorded_at)",
 
     # ================================================================
     # ── 予想層 ────────────────────────────────────────────────────
@@ -530,6 +579,111 @@ def refresh_model_performance(
         model_type, year, month, venue,
         hit_rate or 0, roi or 0,
     )
+
+
+def insert_entries(
+    conn: sqlite3.Connection,
+    race_id: str,
+    entries: list["EntryHorse"],  # type: ignore[name-defined]
+) -> int:
+    """
+    出馬表データを entries テーブルに保存する（UPSERT）。
+
+    Args:
+        conn:    DB コネクション
+        race_id: 対象レース ID
+        entries: EntryHorse のリスト
+
+    Returns:
+        保存した件数
+    """
+    count = 0
+    with conn:
+        for e in entries:
+            conn.execute(
+                """
+                INSERT INTO entries
+                    (race_id, horse_number, gate_number, horse_id, horse_name,
+                     sex_age, weight_carried, jockey, trainer,
+                     horse_weight, horse_weight_diff)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ON CONFLICT(race_id, horse_number) DO UPDATE SET
+                    gate_number       = excluded.gate_number,
+                    horse_id          = COALESCE(excluded.horse_id, horse_id),
+                    horse_name        = excluded.horse_name,
+                    sex_age           = excluded.sex_age,
+                    weight_carried    = excluded.weight_carried,
+                    jockey            = excluded.jockey,
+                    trainer           = excluded.trainer,
+                    horse_weight      = excluded.horse_weight,
+                    horse_weight_diff = excluded.horse_weight_diff,
+                    scraped_at        = datetime('now', 'localtime')
+                """,
+                (
+                    race_id,
+                    e.horse_number,
+                    e.gate_number,
+                    e.horse_id,
+                    e.horse_name,
+                    e.sex_age,
+                    e.weight_carried,
+                    e.jockey,
+                    e.trainer,
+                    e.horse_weight,
+                    e.horse_weight_diff,
+                ),
+            )
+            count += 1
+
+    logger.info("出馬表保存: race_id=%s, %d 頭", race_id, count)
+    return count
+
+
+def insert_realtime_odds(
+    conn: sqlite3.Connection,
+    race_id: str,
+    odds_list: list["HorseOdds"],  # type: ignore[name-defined]
+    horse_name_map: dict[int, str] | None = None,
+) -> int:
+    """
+    リアルタイムオッズのスナップショットを realtime_odds テーブルに追記する。
+
+    各呼び出しごとに新規行を追加する（上書きではなく履歴保持）。
+
+    Args:
+        conn:           DB コネクション
+        race_id:        対象レース ID
+        odds_list:      HorseOdds のリスト
+        horse_name_map: {馬番: 馬名} の辞書（entries テーブルから引いておくと確実）
+
+    Returns:
+        保存した件数
+    """
+    horse_name_map = horse_name_map or {}
+    count = 0
+    with conn:
+        for o in odds_list:
+            conn.execute(
+                """
+                INSERT INTO realtime_odds
+                    (race_id, horse_number, horse_name,
+                     win_odds, place_odds_min, place_odds_max, popularity)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    race_id,
+                    o.horse_number,
+                    horse_name_map.get(o.horse_number, ""),
+                    o.win_odds,
+                    o.place_odds_min,
+                    o.place_odds_max,
+                    o.popularity,
+                ),
+            )
+            count += 1
+
+    logger.info("オッズ保存: race_id=%s, %d 頭", race_id, count)
+    return count
 
 
 if __name__ == "__main__":

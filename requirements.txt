@@ -4,6 +4,13 @@ requests>=2.31.0
 lxml>=5.1.0
 python-dotenv>=1.0.0
 
+# 機械学習
+lightgbm>=4.3.0
+scikit-learn>=1.4.0
+optuna>=3.6.0
+joblib>=1.4.0
+numpy>=1.26.0
+
 # 開発・テスト
 pytest>=8.0.0
 pytest-mock>=3.12.0
