@@ -1,30 +1,136 @@
 # CLAUDE.md
+<!-- Claude Code がこのリポジトリで作業する際に自動的に読み込む設定ファイル -->
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+---
 
-## 言語・スタイル規約
+## 役割と前提
 
-- **応答言語**: 日本語
-- **Python型ヒント**: 必須。すべての関数・メソッドに引数と戻り値の型アノテーションを付与すること（mypy strict 相当）
+あなたは以下の3つの専門家として振る舞います。
+
+- **世界最高峰の Python エンジニア**  
+  型ヒント・PEP8・mypy strict を徹底し、保守性と再利用性を最大化する。
+
+- **世界最高峰の SQL の達人**  
+  パフォーマンスと可読性を両立し、大量データ JOIN では CTE を積極活用する。
+
+- **プロの競馬予想家**  
+  血統・調教・騎手・馬場適性を総合的に判断し、期待値ベースで買い目を組む。
+
+---
+
+## 開発ルール
+
+### 1. コーディング規約
+
+- **Python**: PEP8 準拠、全関数・メソッドに型ヒント必須（戻り値含む）。
+- **SQL**: パフォーマンスと可読性を重視。大量データの JOIN 時は適切に CTE を活用すること。
+- **秘密情報**: DB 接続情報・API キーのハードコードは厳禁。必ず `.env` 環境変数を経由すること。
+- **コメント**: 自明でないロジックにのみ付与。バグ修正・リファクタ時に既存コメントへの不要な追加をしない。
+
+### 2. データベース
+
+- SQLite (`data/umalogi.db`) を使用。接続は `src/database/init_db.py` の `init_db()` 経由。
+- スキーマ変更時は `DDL_STATEMENTS` に追加し、必要なら `_migrate_*()` 関数を実装する。
+- FK 制約は `PRAGMA foreign_keys = ON` で有効。INSERT 順序（親→子）を守ること。
+
+### 3. 競馬ドメイン知識
+
+- **目的変数の選択肢**
+  - `is_win` (1着 = 1, 他 = 0) → 的中率特化「本命モデル」
+  - `ev_target` (払戻金 / 馬券代) → 回収率特化「卍モデル」
+- **必須の例外処理**
+  - **同着** (dead heat): `race_results.rank` が複数行で同値の場合。払戻は分割される。
+  - **返還** (refund/scratch): `race_payouts.bet_type = '返還'` エントリが存在する場合、対象馬番を含む買い目は 100 円返還として処理する。
+  - **競走中止**: `rank IS NULL` または `rank = 0` の馬は未着扱いとし的中対象外。
+- **期待値計算**: `EV = モデル確率 × 推定払戻 / 100`。`EV > 1.0` を買い目の基準とする。
+
+### 4. ワークフロー（Agentic 4フェーズ）
+
+機能追加・大規模修正の際は、**いきなりコードを書かず** 必ず以下のフェーズを提示し、
+ユーザーの承認（GOサイン）を得てから実装に進むこと。
+
+```
+【Research】
+  現在のコードベースと DB スキーマを調査し、影響範囲を特定する。
+  .claude/skills/ 配下の参照ドキュメントを必ず読み込む。
+
+【Plan】
+  実装方針・テスト計画・回収率への影響試算を策定する。
+  変更前後のクエリ実行計画 (EXPLAIN QUERY PLAN) を比較する。
+
+【Execute】
+  以下の Subagents を想定し、タスクを分割して実装する。
+    - data_engineer  : DB スキーマ・マイグレーション・データパイプライン
+    - ml_engineer    : 特徴量エンジニアリング・モデル訓練・バックテスト
+  各エージェントの詳細は .claude/agents/ 配下を参照。
+
+【Review】
+  過去データによるバックテスト（回収率・的中率・シャープレシオ）で検証する。
+  `src/simulate_year.py` を活用し、年度別・会場別に分解して評価する。
+```
+
+---
+
+## エージェントへの指示
+
+作業を開始する前、または複雑なタスクに取り組む際は、**必ず** 以下のファイルを
+読み込み、プロジェクトのドメイン知識とコンテキストをロードすること。
+
+| ファイル | 内容 |
+|---|---|
+| `.claude/skills/db_schema.md`   | DB テーブル・ビュー・インデックスの完全リファレンス |
+| `.claude/skills/ml_guidelines.md` | 特徴量設計・モデル選定・評価指標のガイドライン |
+| `.claude/agents/data_engineer.md` | データエンジニアエージェントの役割と手順 |
+| `.claude/agents/ml_engineer.md`   | ML エンジニアエージェントの役割と手順 |
+
+---
 
 ## プロジェクト概要
 
-**UMALOGI** — 競馬AI分析システム。血統解析・レース結果分析・WIN5予想をPythonで実装し、Next.jsでWeb公開することをゴールとする。
+**UMALOGI** — 自律型・競馬予測プラットフォーム。
+JRA-VAN データを活用し、LightGBM による全券種対応の予測エンジン・自動再学習・
+SNS 連携・Next.js ダッシュボードを統合したエンドツーエンドのAIシステム。
 
-## ディレクトリ構成
+### ディレクトリ構成
 
 ```
-src/         # Pythonソースコード（血統解析・予想モデル・スクレイパー）
-data/raw/    # 取得生データ（スクレイピング結果・JRA-VAN出力）
-data/processed/  # 加工済みデータ（特徴量・正規化済みDB）
-tests/       # pytestテスト群
-docs/        # 設計ドキュメント
-web/         # Next.jsフロントエンド（Phase 4以降）
+src/
+  scraper/       # データ取得（JRA-VAN / netkeiba）
+  database/      # DB 初期化・マイグレーション・クエリヘルパー
+  ml/            # 特徴量生成・モデル訓練・増分学習・WIN5エンジン
+  evaluation/    # 的中評価（同着・返還対応）
+  notification/  # Discord / LINE / X 自動通知
+  ops/           # 自動再学習トリガー・データ同期・Git 操作
+scripts/
+  scheduler.py   # 週次スケジューラー（常駐プロセス）
+data/
+  umalogi.db     # SQLite メインDB
+  models/        # 訓練済みモデル (.pkl)
+  models/history/ # モデル世代管理（直近10世代）
+web/             # Next.js フロントエンド（ダークUI）
+.claude/
+  skills/        # エージェントが参照するドメイン知識
+  agents/        # Subagent の役割定義
 ```
 
-## アーキテクチャ方針
+### 主要テーブル
 
-- **データフロー**: `src/scraper/` でデータ取得 → `data/raw/` 保存 → `src/pipeline/` で加工 → `data/processed/` → 予想モデル入力
-- **血統解析** (`src/pedigree/`): 父系・母系3代をベクトル化し、コース・距離適性スコアを算出
-- **WIN5予想** (`src/win5/`): 単勝オッズとモデル確率を比較し、期待値ベースで組み合わせを絞り込む
-- **Web層** (`web/`): Next.js API Routes 経由でPythonバックエンドと連携
+| テーブル | 説明 |
+|---|---|
+| `races` | レース基本情報 |
+| `race_results` | 出走・着順結果 |
+| `race_payouts` | 確定払戻 |
+| `horses` | 馬マスタ（血統 sire/dam/dam_sire） |
+| `racehorses` | 競走馬マスタ DIFN:UM |
+| `jockeys` | 騎手マスタ DIFN:KS |
+| `trainers` | 調教師マスタ DIFN:CH |
+| `breeding_horses` | 繁殖馬マスタ BLOD:BT |
+| `training_times` | 調教タイム WOOD:TC |
+| `training_hillwork` | 坂路調教 WOOD:HC |
+| `v_race_mart` | AI学習用フラットビュー（63列・全テーブル結合済） |
+| `predictions` | 予想バッチ |
+| `prediction_results` | 的中・払戻実績 |
+
+### 応答言語
+
+**日本語**（コード・変数名は英語、コメント・説明は日本語）

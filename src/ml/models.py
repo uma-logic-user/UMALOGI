@@ -17,30 +17,74 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
+import lightgbm as lgb
 import numpy as np
 import pandas as pd
 from lightgbm import LGBMClassifier, LGBMRegressor
+from sklearn.metrics import roc_auc_score
 from sklearn.model_selection import GroupKFold
 from sklearn.preprocessing import LabelEncoder
 
 logger = logging.getLogger(__name__)
 
 # ── 特徴量列定義 ───────────────────────────────────────────────────
-# features.py の build_race_features() と一致させること
+# features.py の build_race_features_for_simulate() と一致させること
 FEATURE_COLS: list[str] = [
-    "weight_carried",
-    "horse_weight",
-    "win_odds",
-    "popularity",
-    "win_rate_all",
-    "win_rate_surface",
-    "win_rate_distance_band",
-    "recent_rank_mean",
-    "surface_code",
-    "sex_code",
-    "venue_encoded",
-    "sire_encoded",
-    "distance",
+    # ── 馬能力・レース条件特徴量 ──────────────────────────────────
+    # オッズ系 (win_odds / market_prob / popularity) は除外:
+    #   「市場の予想を覚える」だけになり真の予測力が測れないため。
+    "weight_carried",           # 斤量
+    "horse_weight",             # 馬体重
+    "win_rate_all",             # 通算勝率
+    "win_rate_surface",         # 馬場別勝率
+    "win_rate_distance_band",   # 距離帯別勝率
+    "recent_rank_mean",         # 直近5走平均着順
+    "surface_code",             # 馬場コード (芝=0, ダート=1, 障害=2)
+    "sex_code",                 # 性別コード (牡=0, 牝=1, セ=2)
+    "venue_encoded",            # 開催場コード
+    "sire_encoded",             # 父馬エンコード
+    "distance",                 # 距離
+    "horse_weight_diff",        # 前走比体重増減
+    "gate_number",              # 枠番
+    "condition_code",           # 馬場状態コード (良=0, 稍重=1, 重=2, 不良=3)
+    "race_number",              # レース番号（新馬戦 vs 条件戦の識別）
+    # ── 人的要素特徴量（真の予測力） ────────────────────────────
+    "jockey_code_encoded",      # 騎手コードエンコード（jockeys マスタ）
+    "trainer_code_encoded",     # 調教師コードエンコード（trainers マスタ）
+    # ── 調教特徴量（WOOD:TC ウッド調教） ────────────────────────
+    # データ未取得時は fillna(-1) で -1 に統一されるため学習は正常続行。
+    # WOOD データ取得後に再学習すると有効化される。
+    "tc_4f",            # ウッド直近4Fタイム（秒）— 小さいほど好時計
+    "tc_lap",           # ウッド直近ラスト1Fタイム（秒）
+    "tc_accel_flag",    # ウッド加速ラップ (1=ラスト加速=好調サイン, 0=失速)
+    "tc_4f_diff",       # ウッド前回比4Fタイム差（秒, 負=好転=状態上向き）
+    # ── 調教特徴量（WOOD:HC 坂路調教） ──────────────────────────
+    "hc_4f",            # 坂路直近4Fタイム（秒）
+    "hc_lap",           # 坂路直近ラスト1Fタイム（秒）
+    "hc_accel_flag",    # 坂路加速ラップフラグ
+    "hc_4f_diff",       # 坂路前回比4Fタイム差（秒, 負=好転）
+    # ── レース内相対特徴量（groupby 的中率・調教強度の相対比較） ─
+    # 1 = レース内最良。全馬 NaN の場合は欠損扱い（LightGBM がハンドル）。
+    "win_rate_all_rank",         # レース内通算勝率ランク (1=最高勝率)
+    "win_rate_all_zscore",       # レース内通算勝率偏差 (高=良)
+    "win_rate_surface_rank",     # レース内馬場別勝率ランク
+    "win_rate_distance_band_rank",  # レース内距離帯別勝率ランク
+    "recent_rank_mean_rank",     # レース内直近着順ランク (1=最好調)
+    "recent_rank_mean_zscore",   # レース内直近着順偏差 (高=良)
+    "tc_4f_rank",                # レース内調教4Fタイムランク (1=最速)
+    "tc_4f_zscore",              # レース内調教4F偏差 (高=良)
+    # ── 当日バイアス特徴量 ──────────────────────────────────────
+    # レース当日の確定済み結果から算出（リーク防止: 当日レース番号より前のみ）。
+    # 1Rは全て None → LightGBM の欠損扱い。完了レース数が増えるほど信頼度向上。
+    "today_inner_bias",   # 内枠(1-4)勝率 - 外枠(5-8)勝率（正=内枠有利）
+    "today_front_bias",   # 当日の人気1-3馬勝率（高=展開安定=先行バイアス代理変数）
+    "today_race_count",   # 集計対象レース数（モデルへの信頼度シグナル）
+    "today_gate_match",   # today_inner_bias × (内枠:+1 / 外枠:-1) = この馬の枠番との相性
+    # ── オッズ時系列特徴量（大口投票シグナル） ──────────────────
+    # realtime_odds に複数スナップショットが記録されている場合のみ有効。
+    # 訓練データ（シミュレーション）では常に NaN → 実際の prerace データで再学習後に有効化。
+    "odds_vs_morning",    # 直前オッズ / 朝一オッズ（1未満=短縮=大口流入の疑い）
+    "odds_velocity",      # 直近1時間のオッズ下落速度（オッズ/分、正値=資金流入中）
 ]
 
 # 訓練に最低限必要なレース数
@@ -52,94 +96,114 @@ _MODEL_DIR = Path(__file__).resolve().parents[2] / "data" / "models"
 
 # ── 学習データ構築 ─────────────────────────────────────────────────
 
-def _build_train_df(conn: sqlite3.Connection) -> pd.DataFrame:
+def _build_train_df(
+    conn: sqlite3.Connection,
+    train_until: int | None = None,
+) -> pd.DataFrame:
     """
-    race_results × races × horses を結合して学習用 DataFrame を生成。
+    FeatureBuilder を使ってリーク排除済みの学習 DataFrame を生成する。
 
-    entries テーブルがなくても race_results から直接特徴量を組み立てる。
-    (entries ベースの FeatureBuilder はリアルタイム予測用)
+    **リーク排除の仕組み**
+    FeatureBuilder.build_race_features_for_simulate() 内で
+    _get_horse_stats(exclude_race_id=race_id) を呼ぶため、
+    各馬の通算勝率・直近着順は「そのレース自身を除いた過去成績」に基づく。
+    これにより将来の着順が特徴量に混入するデータリークを完全に防ぐ。
+
+    Args:
+        conn:        DB 接続
+        train_until: 学習に使う最終年（例: 2023 → 2023年以前のみ）。
+                     None の場合は全期間を使用。
+
+    **目的変数**
+    - is_winner  : 1着 = 1 (本命モデル)
+    - is_placed  : 3着以内 = 1 (複勝モデル: サンプルが3倍になり学習安定)
+    - ev_target  : 実単勝払戻 (卍モデル)。payout_tansho が取得済みならその値を、
+                   未取得 (NULL) かつ 1着の場合は win_odds × 100 で近似する。
     """
-    rows = conn.execute(
-        """
-        SELECT
-            rr.race_id,
-            rr.horse_id,
-            rr.horse_name,
-            rr.rank,
-            rr.weight_carried,
-            rr.horse_weight,
-            rr.win_odds,
-            rr.popularity,
-            rr.sex_age,
-            r.distance,
-            r.surface,
-            r.venue,
-            r.date,
-            h.sire
-        FROM race_results rr
-        JOIN  races r  ON rr.race_id  = r.race_id
-        LEFT JOIN horses h ON rr.horse_id = h.horse_id
-        WHERE rr.rank IS NOT NULL
-        ORDER BY r.date, rr.race_id, rr.rank
-        """,
-    ).fetchall()
+    from src.ml.features import FeatureBuilder
 
-    if not rows:
+    # 着順が確定しているレース ID を日付昇順で取得
+    # train_until 指定時はその年以前のみに絞る（時系列分割・アウト・オブ・サンプル評価用）
+    if train_until is not None:
+        race_rows = conn.execute(
+            """
+            SELECT DISTINCT r.race_id
+            FROM   races r
+            JOIN   race_results rr ON rr.race_id = r.race_id
+            WHERE  rr.rank IS NOT NULL
+            AND    CAST(substr(r.date, 1, 4) AS INTEGER) <= ?
+            ORDER  BY r.date
+            """,
+            (train_until,),
+        ).fetchall()
+    else:
+        race_rows = conn.execute(
+            """
+            SELECT DISTINCT r.race_id
+            FROM   races r
+            JOIN   race_results rr ON rr.race_id = r.race_id
+            WHERE  rr.rank IS NOT NULL
+            ORDER  BY r.date
+            """
+        ).fetchall()
+
+    if not race_rows:
         return pd.DataFrame()
 
-    df = pd.DataFrame(rows, columns=[
-        "race_id", "horse_id", "horse_name", "rank",
-        "weight_carried", "horse_weight", "win_odds", "popularity",
-        "sex_age", "distance", "surface", "venue", "date", "sire",
-    ])
+    fb = FeatureBuilder(conn)
+    frames: list[pd.DataFrame] = []
 
-    # ── カテゴリエンコード ─────────────────────────────
-    from src.ml.features import _SURFACE_CODE, _SEX_CODE, _VENUE_CODE, _parse_sex
+    for (race_id,) in race_rows:
+        df_feat = fb.build_race_features_for_simulate(race_id)
+        if df_feat.empty:
+            continue
 
-    df["surface_code"]   = df["surface"].map(_SURFACE_CODE).fillna(-1).astype(int)
-    df["sex_code"]       = df["sex_age"].map(lambda s: _SEX_CODE.get(_parse_sex(s), -1))
-    df["venue_encoded"]  = df["venue"].map(_VENUE_CODE).fillna(len(_VENUE_CODE)).astype(int)
+        # 着順・実払戻を horse_name キーで結合
+        # rr.horse_number (実際の馬番) で race_payouts と照合する
+        actual_rows = conn.execute(
+            """
+            SELECT
+                rr.horse_name,
+                rr.rank,
+                rp.payout AS payout_tansho
+            FROM   race_results rr
+            LEFT JOIN race_payouts rp
+                   ON  rp.race_id     = rr.race_id
+                   AND rp.bet_type    = '単勝'
+                   AND rp.combination = CAST(rr.horse_number AS TEXT)
+            WHERE  rr.race_id = ?
+            AND    rr.rank    IS NOT NULL
+            """,
+            (race_id,),
+        ).fetchall()
 
-    le = LabelEncoder()
-    df["sire_encoded"] = le.fit_transform(df["sire"].fillna("unknown"))
+        if not actual_rows:
+            continue
 
-    # ── 馬成績特徴量（各行＝そのレース時点の過去成績）─
-    # 簡略版: 全期間の集計（リーク防止は後続バージョンで対応）
-    stats = (
-        df.groupby("horse_id")["rank"]
-        .agg(
-            win_rate_all=lambda x: (x == 1).mean(),
-            recent_rank_mean="mean",
-        )
-        .reset_index()
-    )
-    df = df.merge(stats, on="horse_id", how="left")
+        actuals = pd.DataFrame(actual_rows, columns=["horse_name", "rank", "payout_tansho"])
+        df_feat = df_feat.merge(actuals, on="horse_name", how="inner")
+        df_feat["race_id"] = race_id
+        frames.append(df_feat)
 
-    # 馬場・距離帯成績（簡略: 馬場×horse_id）
-    sf_stats = (
-        df.groupby(["horse_id", "surface"])["rank"]
-        .agg(win_rate_surface=lambda x: (x == 1).mean())
-        .reset_index()
-    )
-    df = df.merge(sf_stats, on=["horse_id", "surface"], how="left")
+    if not frames:
+        return pd.DataFrame()
 
-    from src.ml.features import _distance_band
-    df["dist_band"] = df["distance"].apply(_distance_band)
-    db_stats = (
-        df.groupby(["horse_id", "dist_band"])["rank"]
-        .agg(win_rate_distance_band=lambda x: (x == 1).mean())
-        .reset_index()
-    )
-    df = df.merge(db_stats, on=["horse_id", "dist_band"], how="left")
+    df = pd.concat(frames, ignore_index=True)
 
-    # ── ターゲット ──────────────────────────────────────
+    # ── 目的変数 ──────────────────────────────────────────────────
     df["is_winner"] = (df["rank"] == 1).astype(int)
-    # 卍ターゲット: 1着なら win_odds、外れなら 0（期待回収率の代理指標）
+    df["is_placed"]  = (df["rank"] <= 3).astype(int)
+    # ev_target: 実払戻が利用可能ならそれを優先し、未取得(NULL)かつ1着なら win_odds×100 で近似
+    # np.where は mixed-type で object になるため明示的に float へキャスト
     df["ev_target"] = np.where(
-        df["rank"] == 1,
-        df["win_odds"].fillna(0) * 100,  # 100円ベットの払戻
-        0.0,
-    )
+        df["payout_tansho"].notna(),
+        df["payout_tansho"].astype(float),
+        np.where(
+            df["rank"] == 1,
+            df["win_odds"].fillna(0).astype(float) * 100.0,
+            0.0,
+        ),
+    ).astype(float)
 
     return df
 
@@ -178,10 +242,10 @@ class _BaseModel:
     def _fallback_predict(self, df: pd.DataFrame) -> pd.Series:
         """
         訓練済みモデルがない場合のフォールバック。
-        人気順を反転して確率風スコアを返す（人気1位 → 最高スコア）。
+        win_odds を反転して確率風スコアを返す（低オッズ馬 → 最高スコア）。
         """
-        pop = df["popularity"].fillna(df["popularity"].max() + 1)
-        score = 1.0 / pop
+        odds = df["win_odds"].fillna(100.0).clip(lower=1.0)
+        score = 1.0 / odds
         return score / score.sum() if score.sum() > 0 else score
 
 
@@ -210,35 +274,92 @@ class HonmeiModel(_BaseModel):
         )
         self._trained = False
 
-    def train(self, conn: sqlite3.Connection) -> dict[str, float]:
+    def train(
+        self,
+        conn: sqlite3.Connection,
+        train_until: int | None = None,
+    ) -> dict[str, float]:
         """
         DB の race_results から学習データを構築して訓練する。
 
+        GroupKFold(5分割) で CV ROC-AUC を計算してから全データで本訓練を行う。
+        グループは race_id 単位なので、同一レース内の馬が train/val に分かれない。
+
+        Args:
+            conn:        DB 接続
+            train_until: 学習に使う最終年（例: 2023 → 2023年以前のみ）。
+                         None の場合は全期間を使用。
+
         Returns:
-            {"n_races": 学習レース数, "n_samples": 学習サンプル数}
+            {
+              "n_races":      学習レース数,
+              "n_samples":    学習サンプル数,
+              "cv_auc_mean":  5-fold CV の平均 ROC-AUC,
+              "cv_auc_std":   同 標準偏差,
+              "train_until":  使用した最終年（None なら全期間）,
+            }
         """
-        df = _build_train_df(conn)
+        df = _build_train_df(conn, train_until=train_until)
         if df.empty:
             logger.warning("学習データが0件のため訓練をスキップします")
-            return {"n_races": 0, "n_samples": 0}
+            return {"n_races": 0, "n_samples": 0, "cv_auc_mean": float("nan"), "cv_auc_std": float("nan")}
 
         n_races = df["race_id"].nunique()
         if n_races < _MIN_TRAIN_RACES:
             logger.warning(
-                "学習レース数が少ないです (%d 件、推奨 %d 件以上)。"
-                "精度が低い可能性があります。",
+                "学習レース数が少ないです (%d 件、推奨 %d 件以上)。精度が低い可能性があります。",
                 n_races, _MIN_TRAIN_RACES,
             )
 
-        X = df[FEATURE_COLS].fillna(-1)
-        y = df["is_winner"]
+        X      = df[FEATURE_COLS].fillna(-1).infer_objects(copy=False)
+        y      = df["is_winner"]
         groups = df["race_id"]
 
+        # ── GroupKFold クロスバリデーション ──────────────────────
+        # race_id でグループを切るため同一レースの馬が train/val に分かれない（リーク防止）
+        n_splits = min(5, n_races)
+        aucs: list[float] = []
+        if n_splits >= 2:
+            gkf = GroupKFold(n_splits=n_splits)
+            for train_idx, val_idx in gkf.split(X, y, groups=groups):
+                clone = LGBMClassifier(**self._model.get_params())
+                clone.fit(X.iloc[train_idx], y.iloc[train_idx])
+                proba = clone.predict_proba(X.iloc[val_idx])[:, 1]
+                try:
+                    aucs.append(roc_auc_score(y.iloc[val_idx], proba))
+                except ValueError:
+                    # fold に正例（1着馬）がない稀なケースをスキップ
+                    pass
+
+        cv_auc_mean = float(np.mean(aucs)) if aucs else float("nan")
+        cv_auc_std  = float(np.std(aucs))  if aucs else float("nan")
+
+        # ── 全データで本訓練 ─────────────────────────────────────
         self._model.fit(X, y)
         self._trained = True
 
-        logger.info("本命モデル訓練完了: %d レース / %d サンプル", n_races, len(df))
-        return {"n_races": n_races, "n_samples": len(df)}
+        # ── 特徴量重要度 Top10 ───────────────────────────────────
+        importances: np.ndarray = self._model.feature_importances_
+        feat_imp_pairs = sorted(
+            zip(FEATURE_COLS, importances.tolist()),
+            key=lambda t: t[1],
+            reverse=True,
+        )
+        logger.info("【特徴量重要度 Top10 — 本命モデル】")
+        for rank_i, (feat, imp) in enumerate(feat_imp_pairs[:10], 1):
+            logger.info("  %2d. %-30s  gain=%d", rank_i, feat, int(imp))
+
+        logger.info(
+            "本命モデル訓練完了: %d レース / %d サンプル / CV AUC %.4f ±%.4f",
+            n_races, len(df), cv_auc_mean, cv_auc_std,
+        )
+        return {
+            "n_races":     n_races,
+            "n_samples":   len(df),
+            "cv_auc_mean": cv_auc_mean,
+            "cv_auc_std":  cv_auc_std,
+            "train_until": train_until,
+        }
 
     def predict(self, df: pd.DataFrame) -> pd.Series:
         """
@@ -254,9 +375,23 @@ class HonmeiModel(_BaseModel):
             logger.debug("未訓練モデル — フォールバック予測を使用")
             return self._fallback_predict(df)
 
-        X = df[FEATURE_COLS].fillna(-1)
+        X = df[FEATURE_COLS].fillna(-1).infer_objects(copy=False)
         proba = self._model.predict_proba(X)[:, 1]
         return pd.Series(proba, index=df.index, name="honmei_score")
+
+    def ev_predict(self, df: pd.DataFrame) -> pd.Series:
+        """
+        EV = P(win) × win_odds を算出して返す。
+
+        EV >= 1.0 → 期待値プラス（購入推奨）。
+        win_odds が欠損の馬は EV = 0.0 を返す。
+
+        Returns:
+            pd.Series (index=df.index, values=EV 値)
+        """
+        p_win = self.predict(df)
+        odds  = df["win_odds"].fillna(0.0).astype(float)
+        return (p_win * odds).rename("ev_score")
 
 
 # ── 卍モデル ──────────────────────────────────────────────────────
@@ -284,27 +419,36 @@ class ManjiModel(_BaseModel):
         )
         self._trained = False
 
-    def train(self, conn: sqlite3.Connection) -> dict[str, float]:
+    def train(
+        self,
+        conn: sqlite3.Connection,
+        train_until: int | None = None,
+    ) -> dict[str, float]:
         """
         DB の race_results から学習データを構築して訓練する。
+
+        Args:
+            conn:        DB 接続
+            train_until: 学習に使う最終年（例: 2023 → 2023年以前のみ）。
+                         None の場合は全期間を使用。
 
         Returns:
             {"n_races": 学習レース数, "n_samples": 学習サンプル数}
         """
-        df = _build_train_df(conn)
+        df = _build_train_df(conn, train_until=train_until)
         if df.empty:
             logger.warning("学習データが0件のため訓練をスキップします")
             return {"n_races": 0, "n_samples": 0}
 
         n_races = df["race_id"].nunique()
-        X = df[FEATURE_COLS].fillna(-1)
+        X = df[FEATURE_COLS].fillna(-1).infer_objects(copy=False)
         y = df["ev_target"]
 
         self._model.fit(X, y)
         self._trained = True
 
         logger.info("卍モデル訓練完了: %d レース / %d サンプル", n_races, len(df))
-        return {"n_races": n_races, "n_samples": len(df)}
+        return {"n_races": n_races, "n_samples": len(df), "train_until": train_until}
 
     def predict(self, df: pd.DataFrame) -> pd.Series:
         """
@@ -316,13 +460,11 @@ class ManjiModel(_BaseModel):
         """
         if not self._trained:
             logger.debug("未訓練モデル — フォールバック予測を使用")
-            # フォールバック: win_odds が高い（穴馬）×人気が低い ほどスコア高
+            # フォールバック: win_odds が高い（穴馬）ほど期待回収率が高いと仮定
             odds = df["win_odds"].fillna(1.0)
-            pop  = df["popularity"].fillna(df["popularity"].max() + 1)
-            score = odds / pop
-            return pd.Series(score, index=df.index, name="manji_score")
+            return pd.Series(odds, index=df.index, name="manji_score")
 
-        X = df[FEATURE_COLS].fillna(-1)
+        X = df[FEATURE_COLS].fillna(-1).infer_objects(copy=False)
         pred = self._model.predict(X)
         return pd.Series(pred.clip(min=0), index=df.index, name="manji_score")
 
@@ -333,19 +475,26 @@ class ManjiModel(_BaseModel):
 
 # ── 学習エントリポイント ──────────────────────────────────────────
 
-def train_all(conn: sqlite3.Connection) -> dict[str, dict]:
+def train_all(
+    conn: sqlite3.Connection,
+    train_until: int | None = None,
+) -> dict[str, dict]:
     """
     本命・卍モデルを両方訓練して data/models/ に保存する。
 
+    Args:
+        conn:        DB 接続
+        train_until: 学習に使う最終年（None なら全期間）
+
     Usage:
         conn = init_db()
-        result = train_all(conn)
+        result = train_all(conn, train_until=2023)
     """
     honmei = HonmeiModel()
     manji  = ManjiModel()
 
-    h_result = honmei.train(conn)
-    m_result = manji.train(conn)
+    h_result = honmei.train(conn, train_until=train_until)
+    m_result = manji.train(conn, train_until=train_until)
 
     if honmei.is_trained:
         honmei.save()

@@ -6,8 +6,18 @@ SQLite データベース初期化スクリプト
   races              - レース基本情報
   horses             - 馬マスタ（血統情報含む）
   race_results       - レースごとの出走・着順結果
+  race_payouts       - レース確定払戻
   entries            - 出馬表（レース前の出走登録情報）
   realtime_odds      - リアルタイムオッズ履歴
+
+  ── JRA-VAN マスタ層 ───────────────────────────────────────
+  training_times     - 調教タイム (TC / WOOD dataspec)
+  training_hillwork  - 坂路調教  (HC / WOOD dataspec)
+  breeding_horses    - 繁殖馬マスタ (BT / BLOD dataspec)
+  foals              - 産駒マスタ   (HN / BLOD dataspec)
+  racehorses         - 競走馬マスタ (UM / DIFN dataspec)
+  jockeys            - 騎手マスタ   (KS / DIFN dataspec)
+  trainers           - 調教師マスタ (CH / DIFN dataspec)
 
   ── 予想層 ────────────────────────────────────────────────────
   predictions        - 卍/本命モデルの予想バッチ（1レース×1馬券種）
@@ -19,6 +29,7 @@ SQLite データベース初期化スクリプト
 
   ── ビュー ────────────────────────────────────────────────────
   v_prediction_summary - 予想 × レース × 結果の結合ビュー
+  v_race_mart          - AI学習用フラットビュー（レース×馬×マスタ JOIN）
 """
 
 import logging
@@ -39,16 +50,17 @@ DDL_STATEMENTS: list[str] = [
 
     """
     CREATE TABLE IF NOT EXISTS races (
-        race_id     TEXT    PRIMARY KEY,
-        race_name   TEXT    NOT NULL,
-        date        TEXT    NOT NULL,       -- YYYY/MM/DD
-        venue       TEXT    NOT NULL,
-        race_number INTEGER NOT NULL,
-        distance    INTEGER NOT NULL,
-        surface     TEXT    NOT NULL,       -- 芝 / ダート
-        weather     TEXT    NOT NULL DEFAULT '',
-        condition   TEXT    NOT NULL DEFAULT '',
-        created_at  TEXT    NOT NULL DEFAULT (datetime('now', 'localtime'))
+        race_id         TEXT    PRIMARY KEY,
+        race_name       TEXT    NOT NULL,
+        date            TEXT    NOT NULL,       -- YYYY/MM/DD
+        venue           TEXT    NOT NULL,
+        race_number     INTEGER NOT NULL,
+        distance        INTEGER NOT NULL,
+        surface         TEXT    NOT NULL,       -- 芝 / ダート
+        track_direction TEXT    NOT NULL DEFAULT '',  -- 右 / 左 / 右外 / 左外 / 直線
+        weather         TEXT    NOT NULL DEFAULT '',
+        condition       TEXT    NOT NULL DEFAULT '',
+        created_at      TEXT    NOT NULL DEFAULT (datetime('now', 'localtime'))
     )
     """,
 
@@ -66,20 +78,24 @@ DDL_STATEMENTS: list[str] = [
 
     """
     CREATE TABLE IF NOT EXISTS race_results (
-        id             INTEGER PRIMARY KEY AUTOINCREMENT,
-        race_id        TEXT    NOT NULL REFERENCES races(race_id),
-        horse_id       TEXT    REFERENCES horses(horse_id),
-        horse_name     TEXT    NOT NULL,
-        rank           INTEGER,
-        sex_age        TEXT    NOT NULL DEFAULT '',
-        weight_carried REAL    NOT NULL DEFAULT 0,
-        jockey         TEXT    NOT NULL DEFAULT '',
-        finish_time    TEXT,
-        margin         TEXT,
-        popularity     INTEGER,
-        win_odds       REAL,
-        horse_weight   INTEGER,
-        created_at     TEXT    NOT NULL DEFAULT (datetime('now', 'localtime')),
+        id                INTEGER PRIMARY KEY AUTOINCREMENT,
+        race_id           TEXT    NOT NULL REFERENCES races(race_id),
+        horse_id          TEXT    REFERENCES horses(horse_id),
+        horse_name        TEXT    NOT NULL,
+        rank              INTEGER,
+        gate_number       INTEGER,                        -- 枠番
+        horse_number      INTEGER,                        -- 馬番
+        sex_age           TEXT    NOT NULL DEFAULT '',
+        weight_carried    REAL    NOT NULL DEFAULT 0,
+        jockey            TEXT    NOT NULL DEFAULT '',
+        trainer           TEXT    NOT NULL DEFAULT '',    -- 調教師
+        finish_time       TEXT,
+        margin            TEXT,
+        popularity        INTEGER,
+        win_odds          REAL,
+        horse_weight      INTEGER,
+        horse_weight_diff INTEGER,                        -- 馬体重増減（例: +2, -4）
+        created_at        TEXT    NOT NULL DEFAULT (datetime('now', 'localtime')),
         UNIQUE(race_id, horse_name)
     )
     """,
@@ -235,6 +251,26 @@ DDL_STATEMENTS: list[str] = [
     "CREATE INDEX IF NOT EXISTS idx_mperf_venue       ON model_performance(model_type, venue)",
 
     # ================================================================
+    # ── 払戻層 ────────────────────────────────────────────────────────
+    # ================================================================
+
+    # race_payouts: レース確定払戻（netkeiba pay_table_01 から取得）
+    """
+    CREATE TABLE IF NOT EXISTS race_payouts (
+        id          INTEGER PRIMARY KEY AUTOINCREMENT,
+        race_id     TEXT    NOT NULL REFERENCES races(race_id),
+        bet_type    TEXT    NOT NULL,
+        combination TEXT    NOT NULL,  -- "14" / "7-14" / "14→7→16"
+        payout      INTEGER NOT NULL,  -- 払戻金額（100円あたり）
+        popularity  INTEGER,           -- 人気（複勝/ワイドは複数行あり）
+        UNIQUE(race_id, bet_type, combination)
+    )
+    """,
+
+    "CREATE INDEX IF NOT EXISTS idx_payouts_race_id  ON race_payouts(race_id)",
+    "CREATE INDEX IF NOT EXISTS idx_payouts_bet_type ON race_payouts(race_id, bet_type)",
+
+    # ================================================================
     # ── ビュー ───────────────────────────────────────────────────────
     # ================================================================
 
@@ -283,6 +319,384 @@ DDL_STATEMENTS: list[str] = [
     FROM model_performance mp
     ORDER BY mp.year DESC, mp.model_type, mp.venue
     """,
+
+    # ================================================================
+    # ── JRA-VAN マスタ層 (WOOD / BLOD / DIFN dataspec) ─────────────
+    # ================================================================
+    # jravan_client.py の extend_db_schema() も同じ DDL を持つが、
+    # CREATE TABLE IF NOT EXISTS は冪等なので二重実行しても安全。
+
+    """
+    CREATE TABLE IF NOT EXISTS training_times (
+        id             INTEGER PRIMARY KEY AUTOINCREMENT,
+        horse_id       TEXT    NOT NULL,
+        horse_name     TEXT    NOT NULL DEFAULT '',
+        training_date  TEXT    NOT NULL,
+        venue_code     TEXT    NOT NULL DEFAULT '',
+        course_type    TEXT    NOT NULL DEFAULT '',
+        direction      TEXT    NOT NULL DEFAULT '',
+        time_4f        REAL,
+        time_3f        REAL,
+        time_2f        REAL,
+        time_1f        REAL,
+        lap_time       REAL,
+        gear           TEXT    NOT NULL DEFAULT '',
+        jockey_code    TEXT    NOT NULL DEFAULT '',
+        jockey_name    TEXT    NOT NULL DEFAULT '',
+        data_date      TEXT    NOT NULL DEFAULT '',
+        created_at     TEXT    NOT NULL DEFAULT (datetime('now', 'localtime')),
+        UNIQUE(horse_id, training_date, course_type, direction)
+    )
+    """,
+
+    """
+    CREATE TABLE IF NOT EXISTS training_hillwork (
+        id             INTEGER PRIMARY KEY AUTOINCREMENT,
+        horse_id       TEXT    NOT NULL,
+        horse_name     TEXT    NOT NULL DEFAULT '',
+        training_date  TEXT    NOT NULL,
+        time_4f        REAL,
+        time_3f        REAL,
+        time_2f        REAL,
+        time_1f        REAL,
+        lap_time       REAL,
+        gear           TEXT    NOT NULL DEFAULT '',
+        jockey_code    TEXT    NOT NULL DEFAULT '',
+        jockey_name    TEXT    NOT NULL DEFAULT '',
+        data_date      TEXT    NOT NULL DEFAULT '',
+        created_at     TEXT    NOT NULL DEFAULT (datetime('now', 'localtime')),
+        UNIQUE(horse_id, training_date)
+    )
+    """,
+
+    """
+    CREATE TABLE IF NOT EXISTS breeding_horses (
+        horse_id        TEXT    PRIMARY KEY,
+        horse_name      TEXT    NOT NULL DEFAULT '',
+        horse_name_kana TEXT    NOT NULL DEFAULT '',
+        country         TEXT    NOT NULL DEFAULT '',
+        sex             TEXT    NOT NULL DEFAULT '',
+        birth_year      INTEGER,
+        birth_month     INTEGER,
+        coat_color      TEXT    NOT NULL DEFAULT '',
+        father_id       TEXT    NOT NULL DEFAULT '',
+        father_name     TEXT    NOT NULL DEFAULT '',
+        mother_id       TEXT    NOT NULL DEFAULT '',
+        mother_name     TEXT    NOT NULL DEFAULT '',
+        data_date       TEXT    NOT NULL DEFAULT '',
+        created_at      TEXT    NOT NULL DEFAULT (datetime('now', 'localtime')),
+        updated_at      TEXT    NOT NULL DEFAULT (datetime('now', 'localtime'))
+    )
+    """,
+
+    """
+    CREATE TABLE IF NOT EXISTS foals (
+        horse_id        TEXT    PRIMARY KEY,
+        horse_name      TEXT    NOT NULL DEFAULT '',
+        horse_name_kana TEXT    NOT NULL DEFAULT '',
+        country         TEXT    NOT NULL DEFAULT '',
+        sex             TEXT    NOT NULL DEFAULT '',
+        birth_year      INTEGER,
+        birth_month     INTEGER,
+        coat_color      TEXT    NOT NULL DEFAULT '',
+        father_id       TEXT    NOT NULL DEFAULT '',
+        mother_id       TEXT    NOT NULL DEFAULT '',
+        data_date       TEXT    NOT NULL DEFAULT '',
+        created_at      TEXT    NOT NULL DEFAULT (datetime('now', 'localtime')),
+        updated_at      TEXT    NOT NULL DEFAULT (datetime('now', 'localtime'))
+    )
+    """,
+
+    """
+    CREATE TABLE IF NOT EXISTS racehorses (
+        horse_id        TEXT    PRIMARY KEY,
+        horse_name      TEXT    NOT NULL DEFAULT '',
+        horse_name_kana TEXT    NOT NULL DEFAULT '',
+        country         TEXT    NOT NULL DEFAULT '',
+        sex             TEXT    NOT NULL DEFAULT '',
+        birth_year      INTEGER,
+        birth_month     INTEGER,
+        coat_color      TEXT    NOT NULL DEFAULT '',
+        father_id       TEXT    NOT NULL DEFAULT '',
+        father_name     TEXT    NOT NULL DEFAULT '',
+        mother_id       TEXT    NOT NULL DEFAULT '',
+        mother_name     TEXT    NOT NULL DEFAULT '',
+        grandsire_id    TEXT    NOT NULL DEFAULT '',
+        grandsire_name  TEXT    NOT NULL DEFAULT '',
+        trainer_code    TEXT    NOT NULL DEFAULT '',
+        trainer_name    TEXT    NOT NULL DEFAULT '',
+        owner_code      TEXT    NOT NULL DEFAULT '',
+        owner_name      TEXT    NOT NULL DEFAULT '',
+        east_west       TEXT    NOT NULL DEFAULT '',
+        data_date       TEXT    NOT NULL DEFAULT '',
+        created_at      TEXT    NOT NULL DEFAULT (datetime('now', 'localtime')),
+        updated_at      TEXT    NOT NULL DEFAULT (datetime('now', 'localtime'))
+    )
+    """,
+
+    """
+    CREATE TABLE IF NOT EXISTS jockeys (
+        jockey_code      TEXT    PRIMARY KEY,
+        jockey_name      TEXT    NOT NULL DEFAULT '',
+        jockey_name_kana TEXT    NOT NULL DEFAULT '',
+        east_west        TEXT    NOT NULL DEFAULT '',
+        birth_date       TEXT    NOT NULL DEFAULT '',
+        license_year     INTEGER,
+        data_date        TEXT    NOT NULL DEFAULT '',
+        created_at       TEXT    NOT NULL DEFAULT (datetime('now', 'localtime')),
+        updated_at       TEXT    NOT NULL DEFAULT (datetime('now', 'localtime'))
+    )
+    """,
+
+    """
+    CREATE TABLE IF NOT EXISTS trainers (
+        trainer_code      TEXT    PRIMARY KEY,
+        trainer_name      TEXT    NOT NULL DEFAULT '',
+        trainer_name_kana TEXT    NOT NULL DEFAULT '',
+        east_west         TEXT    NOT NULL DEFAULT '',
+        birth_date        TEXT    NOT NULL DEFAULT '',
+        license_year      INTEGER,
+        stable_name       TEXT    NOT NULL DEFAULT '',
+        data_date         TEXT    NOT NULL DEFAULT '',
+        created_at        TEXT    NOT NULL DEFAULT (datetime('now', 'localtime')),
+        updated_at        TEXT    NOT NULL DEFAULT (datetime('now', 'localtime'))
+    )
+    """,
+
+    # ================================================================
+    # ── PERFORMANCE_INDEXES（AI特徴量生成クエリ最適化）──────────────
+    # ================================================================
+
+    # ── races ──────────────────────────────────────────────────────
+    # 特徴量生成では期間×会場絞り込みが最頻出
+    "CREATE INDEX IF NOT EXISTS idx_races_date_venue    ON races(date, venue)",
+    "CREATE INDEX IF NOT EXISTS idx_races_surface_dist  ON races(surface, distance)",
+
+    # ── race_results ───────────────────────────────────────────────
+    # 馬の直近N走取得: horse_id で絞り race_id 降順ソート
+    "CREATE INDEX IF NOT EXISTS idx_rr_horse_raceid     ON race_results(horse_id, race_id DESC)",
+    # 騎手・調教師の近走成績集計
+    "CREATE INDEX IF NOT EXISTS idx_rr_jockey_raceid    ON race_results(jockey, race_id DESC)",
+    "CREATE INDEX IF NOT EXISTS idx_rr_trainer_raceid   ON race_results(trainer, race_id DESC)",
+    # 着順フィルタ（的中評価・上位馬抽出）
+    "CREATE INDEX IF NOT EXISTS idx_rr_race_rank        ON race_results(race_id, rank)",
+
+    # ── race_payouts ───────────────────────────────────────────────
+    # 単勝・複勝払戻の個別取得（v_race_mart の LEFT JOIN で使用）
+    "CREATE INDEX IF NOT EXISTS idx_rp_race_bet         ON race_payouts(race_id, bet_type)",
+
+    # ── マスタ層 ───────────────────────────────────────────────────
+    "CREATE INDEX IF NOT EXISTS idx_racehorses_father   ON racehorses(father_id)",
+    "CREATE INDEX IF NOT EXISTS idx_racehorses_name     ON racehorses(horse_name)",
+    "CREATE INDEX IF NOT EXISTS idx_jockeys_name        ON jockeys(jockey_name)",
+    "CREATE INDEX IF NOT EXISTS idx_trainers_name       ON trainers(trainer_name)",
+    "CREATE INDEX IF NOT EXISTS idx_tc_horse_date       ON training_times(horse_id, training_date DESC)",
+    "CREATE INDEX IF NOT EXISTS idx_hc_horse_date       ON training_hillwork(horse_id, training_date DESC)",
+    # 正規化キー（先頭1桁プレフィックスを除いた9桁）による調教結合用
+    # race_results.horse_id (YYYY+SSSSSS) → substr(tc.horse_id,2,9) = YYYY+SSSSS で結合
+    "CREATE INDEX IF NOT EXISTS idx_tc_norm  ON training_times(substr(horse_id,2,9), training_date DESC)",
+    "CREATE INDEX IF NOT EXISTS idx_hc_norm  ON training_hillwork(substr(horse_id,2,9), training_date DESC)",
+    "CREATE INDEX IF NOT EXISTS idx_foals_father        ON foals(father_id)",
+
+    # ================================================================
+    # ── v_race_mart: AI学習用フラットビュー ─────────────────────────
+    # ================================================================
+    # races × race_results × 払戻 × horses × 競走馬マスタ × 騎手 ×
+    # 調教師 × 繁殖馬マスタ(父) × 直近調教 を 1行=1頭 に展開した
+    # 平坦ビュー。LightGBM 特徴量生成の起点として使う。
+    #
+    # ┌─ JOIN キー設計 ───────────────────────────────────────────┐
+    # │ テーブル          結合キー             補足               │
+    # │ races             race_id (PK)                            │
+    # │ race_results      race_id → races.race_id                 │
+    # │ race_payouts      race_id + bet_type + 馬番(CAST TEXT)    │
+    # │ horses            horse_id → race_results.horse_id        │
+    # │ racehorses (um)   horse_id → race_results.horse_id        │
+    # │ jockeys (ks)      jockey_name → race_results.jockey       │
+    # │                   ※ race_results に jockey_code 列なし   │
+    # │                   ※ jockey_code は SELECT で露出          │
+    # │ trainers (ch)     trainer_name → race_results.trainer     │
+    # │                   ※ trainer_code は SELECT で露出         │
+    # │ breeding_horses   horse_id → racehorses.father_id         │
+    # │   (bt)            父の繁殖情報(産地/生年/祖父/BMS)を取得  │
+    # │ training_times    substr(horse_id,2,9) = YYYY+seq5で結合   │
+    # │ training_hillwork 同上                                    │
+    # └───────────────────────────────────────────────────────────┘
+    #
+    # 定義変更時は _migrate_recreate_mart_view() を呼ぶこと（init_db内で自動実行）。
+    """
+    CREATE VIEW IF NOT EXISTS v_race_mart AS
+    SELECT
+        -- ── レース情報 (races) ──────────────────────────────────
+        r.race_id,
+        r.date,
+        substr(r.date, 1, 4)    AS year,
+        substr(r.date, 6, 2)    AS month,
+        r.venue,
+        r.race_number,
+        r.distance,
+        r.surface,              -- 芝 / ダート / 障害
+        r.track_direction,      -- 右 / 左 / 直線 etc.
+        r.condition,            -- 良 / 稍重 / 重 / 不良
+        r.weather,
+
+        -- ── 出走馬情報 (race_results) ──────────────────────────
+        rr.id                   AS result_id,   -- 行を一意に識別するキー
+        rr.horse_id,
+        rr.horse_number,
+        rr.gate_number,
+        rr.horse_name,
+        rr.sex_age,
+        rr.rank,
+        rr.win_odds,
+        rr.popularity,
+        rr.finish_time,
+        rr.horse_weight,
+        rr.horse_weight_diff,
+        rr.weight_carried,
+        rr.jockey,
+        rr.trainer,
+
+        -- ── 払戻 (race_payouts) ────────────────────────────────
+        -- 馬番(horse_number)を TEXT にキャストして combination と照合
+        rp_tan.payout           AS payout_tansho,
+        rp_fuk.payout           AS payout_fukusho,
+
+        -- ── 血統情報 (horses / netkeiba scraper) ─────────────
+        -- horse_id で結合。DIFN 未取得の馬もここで父/母/母父名を保持する
+        h.sire,                 -- 父名（文字列）
+        h.dam,                  -- 母名（文字列）
+        h.dam_sire,             -- 母父名（文字列）
+
+        -- ── 競走馬マスタ (racehorses / DIFN:UM) ───────────────
+        -- horse_id で結合。DIFN 取得後に充填される
+        um.birth_year,
+        um.sex                  AS um_sex,
+        um.coat_color,
+        um.country,
+        um.father_id,           -- 父の blood_id（breeding_horses との JOIN キー）
+        um.father_name,         -- 父名（マスタ由来）
+        um.grandsire_id,        -- 母父 ID (maternal grandsire)
+        um.grandsire_name,      -- 母父名
+        um.east_west            AS horse_east_west,  -- 美浦 / 栗東
+
+        -- ── 騎手マスタ (jockeys / DIFN:KS) ──────────────────
+        -- race_results.jockey(名前) → jockeys.jockey_name で結合
+        -- jockey_code は ML の label encoding に利用
+        ks.jockey_code,
+        ks.east_west            AS jockey_east_west,
+        ks.license_year         AS jockey_license_year,
+
+        -- ── 調教師マスタ (trainers / DIFN:CH) ────────────────
+        -- race_results.trainer(名前) → trainers.trainer_name で結合
+        -- trainer_code は ML の label encoding に利用
+        ch.trainer_code,
+        ch.east_west            AS trainer_east_west,
+        ch.stable_name,
+
+        -- ── 繁殖馬マスタ・父 (breeding_horses / BLOD:BT) ──────
+        -- racehorses.father_id → breeding_horses.horse_id で結合
+        -- BLOD 取得前は全列 NULL（LEFT JOIN のため影響なし）
+        bt.country              AS father_country,   -- 父の産地（国産/外国産）
+        bt.birth_year           AS father_birth_year,-- 父の生年（種牡馬年齢推算）
+        bt.father_id            AS father_sire_id,   -- 父の父 ID（3代血統）
+        bt.father_name          AS father_sire_name, -- 父の父名
+        bt.mother_id            AS father_dam_id,    -- 父の母 ID (BMS 系統)
+        bt.mother_name          AS father_dam_name,  -- 父の母名 (BMS)
+
+        -- ── 直近調教タイム (training_times / WOOD:TC) ─────────
+        -- レース日 (r.date) より前の最新 training_date を相関サブクエリで特定
+        -- idx_tc_norm(substr(horse_id,2,9), training_date DESC) でカバリングスキャン
+        -- JOINキー: race_results.horse_id(YYYY+SSSSSS) の先頭9桁
+        --          = training_times.horse_id(D+YYYY+SSSSS) の2文字目以降9桁
+        tc.training_date        AS last_tc_date,
+        tc.time_4f              AS last_tc_4f,
+        tc.time_3f              AS last_tc_3f,
+        tc.lap_time             AS last_tc_lap,
+        tc.course_type          AS last_tc_course,
+        tc.gear                 AS last_tc_gear,
+
+        -- ── 直近坂路調教 (training_hillwork / WOOD:HC) ────────
+        -- idx_hc_horse_date(horse_id, training_date DESC) でカバリングスキャン
+        hc.training_date        AS last_hc_date,
+        hc.time_4f              AS last_hc_4f,
+        hc.time_3f              AS last_hc_3f,
+        hc.lap_time             AS last_hc_lap,
+        hc.gear                 AS last_hc_gear
+
+    FROM races r
+
+    -- ── 必須 JOIN: 1レース × N頭 に展開 ───────────────────────
+    JOIN  race_results rr
+          ON  rr.race_id = r.race_id
+
+    -- ── 単勝払戻: horse_number を TEXT 変換して combination と照合 ──
+    LEFT JOIN race_payouts rp_tan
+          ON  rp_tan.race_id    = r.race_id
+          AND rp_tan.bet_type   = '単勝'
+          AND rp_tan.combination = CAST(rr.horse_number AS TEXT)
+
+    -- ── 複勝払戻: 同上 ────────────────────────────────────────
+    LEFT JOIN race_payouts rp_fuk
+          ON  rp_fuk.race_id    = r.race_id
+          AND rp_fuk.bet_type   = '複勝'
+          AND rp_fuk.combination = CAST(rr.horse_number AS TEXT)
+
+    -- ── 血統マスタ (horses): horse_id で結合 ─────────────────
+    LEFT JOIN horses h
+          ON  h.horse_id = rr.horse_id
+
+    -- ── 競走馬マスタ (racehorses): horse_id で結合 ───────────
+    LEFT JOIN racehorses um
+          ON  um.horse_id = rr.horse_id
+
+    -- ── 騎手マスタ (jockeys): 騎手名で結合 ──────────────────
+    -- ※ race_results に jockey_code 列はなく名前のみのため名前結合
+    --   DIFN 取得後は idx_jockeys_name が効く
+    LEFT JOIN jockeys ks
+          ON  ks.jockey_name = rr.jockey
+
+    -- ── 調教師マスタ (trainers): 調教師名で結合 ──────────────
+    -- ※ 同上。DIFN 取得後は idx_trainers_name が効く
+    LEFT JOIN trainers ch
+          ON  ch.trainer_name = rr.trainer
+
+    -- ── 繁殖馬マスタ・父 (breeding_horses): father_id で結合 ─
+    -- racehorses.father_id が埋まった後（BLOD 取得後）に有効になる
+    -- 父の産地・生年・3代目血統(父の父/父の母)を取得
+    LEFT JOIN breeding_horses bt
+          ON  bt.horse_id = um.father_id
+          AND um.father_id != ''
+
+    -- ── 直近調教タイム: horse_id の年+連番5桁キーで結合 ─────────
+    -- race_results.horse_id = YYYY+SSSSSS (4桁年 + 6桁連番)
+    -- training_times.horse_id = D+YYYY+SSSSS (1桁プレフィックス + 4桁年 + 5桁連番)
+    -- 共通キー(9桁): substr(rr.horse_id,1,4)||substr(rr.horse_id,5,5)
+    --              = substr(tc.horse_id,2,9)
+    -- GLOB フィルタで文字化けIDを除外し、クリーンな10桁数値IDのみ対象にする
+    LEFT JOIN training_times tc
+          ON  rr.horse_id GLOB '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'
+          AND substr(tc.horse_id,2,9) = substr(rr.horse_id,1,4)||substr(rr.horse_id,5,5)
+          AND tc.training_date = (
+              SELECT MAX(t2.training_date)
+              FROM   training_times t2
+              WHERE  substr(t2.horse_id,2,9) = substr(rr.horse_id,1,4)||substr(rr.horse_id,5,5)
+              AND    t2.training_date < r.date
+              AND    t2.training_date != ''
+          )
+
+    -- ── 直近坂路調教: 同上 ────────────────────────────────────
+    LEFT JOIN training_hillwork hc
+          ON  rr.horse_id GLOB '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'
+          AND substr(hc.horse_id,2,9) = substr(rr.horse_id,1,4)||substr(rr.horse_id,5,5)
+          AND hc.training_date = (
+              SELECT MAX(h2.training_date)
+              FROM   training_hillwork h2
+              WHERE  substr(h2.horse_id,2,9) = substr(rr.horse_id,1,4)||substr(rr.horse_id,5,5)
+              AND    h2.training_date < r.date
+              AND    h2.training_date != ''
+          )
+    """,
 ]
 
 
@@ -312,15 +726,89 @@ def init_db(db_path: Path | None = None) -> sqlite3.Connection:
     path.parent.mkdir(parents=True, exist_ok=True)
 
     conn = sqlite3.connect(str(path))
-    conn.execute("PRAGMA journal_mode=WAL")
-    conn.execute("PRAGMA foreign_keys=ON")
+
+    # ── パフォーマンス PRAGMA ─────────────────────────────────────
+    # journal_mode=WAL : 書き込みと並行読み取りを両立（必須）
+    conn.execute("PRAGMA journal_mode = WAL")
+    # synchronous=NORMAL : WAL 使用時は NORMAL で十分安全かつ高速
+    conn.execute("PRAGMA synchronous  = NORMAL")
+    # cache_size=-65536  : 64 MB ページキャッシュ（負値=KB単位）
+    conn.execute("PRAGMA cache_size   = -65536")
+    # temp_store=MEMORY  : ソート・集計の一時領域をメモリに置く
+    conn.execute("PRAGMA temp_store   = MEMORY")
+    # mmap_size=256MB    : メモリマップ I/O で大規模 SELECT を高速化
+    conn.execute("PRAGMA mmap_size    = 268435456")
+    # foreign_keys=ON    : FK 制約を有効化
+    conn.execute("PRAGMA foreign_keys = ON")
 
     with conn:
         for ddl in DDL_STATEMENTS:
             conn.execute(ddl)
 
+    # 既存 DB への列追加マイグレーション
+    _migrate_add_combination_json(conn)
+    _migrate_races_new_columns(conn)
+    _migrate_race_results_new_columns(conn)
+    # ビュー定義を常に最新に保つ（DDL 変更時に自動反映）
+    _migrate_recreate_mart_view(conn)
+
     logger.info("DB 初期化完了: %s", path)
     return conn
+
+
+def _migrate_add_combination_json(conn: sqlite3.Connection) -> None:
+    """predictions に combination_json 列を追加する（既存 DB マイグレーション）。"""
+    cols = [row[1] for row in conn.execute("PRAGMA table_info(predictions)").fetchall()]
+    if "combination_json" not in cols:
+        with conn:
+            conn.execute("ALTER TABLE predictions ADD COLUMN combination_json TEXT")
+        logger.info("マイグレーション: predictions.combination_json 列を追加しました")
+
+
+def _migrate_races_new_columns(conn: sqlite3.Connection) -> None:
+    """races に track_direction 列を追加する（既存 DB マイグレーション）。"""
+    cols = [row[1] for row in conn.execute("PRAGMA table_info(races)").fetchall()]
+    if "track_direction" not in cols:
+        with conn:
+            conn.execute(
+                "ALTER TABLE races ADD COLUMN track_direction TEXT NOT NULL DEFAULT ''"
+            )
+        logger.info("マイグレーション: races.track_direction 列を追加しました")
+
+
+def _migrate_recreate_mart_view(conn: sqlite3.Connection) -> None:
+    """v_race_mart ビューを DROP → CREATE で最新定義に再構築する。
+
+    DDL_STATEMENTS 内の v_race_mart CREATE 文を正として、既存ビューを
+    無条件に上書きする。init_db() から毎回呼ばれるため、DDL を変更した
+    だけで既存 DB に自動反映される。
+    """
+    mart_ddl = next(
+        ddl for ddl in DDL_STATEMENTS
+        if "v_race_mart" in ddl and "CREATE VIEW" in ddl
+    )
+    with conn:
+        conn.execute("DROP VIEW IF EXISTS v_race_mart")
+        conn.execute(mart_ddl)
+    logger.info("マイグレーション: v_race_mart ビューを再作成しました")
+
+
+def _migrate_race_results_new_columns(conn: sqlite3.Connection) -> None:
+    """race_results に gate_number / horse_number / trainer / horse_weight_diff / blood_id を追加する。"""
+    cols = [row[1] for row in conn.execute("PRAGMA table_info(race_results)").fetchall()]
+    additions = [
+        ("gate_number",       "ALTER TABLE race_results ADD COLUMN gate_number       INTEGER"),
+        ("horse_number",      "ALTER TABLE race_results ADD COLUMN horse_number      INTEGER"),
+        ("trainer",           "ALTER TABLE race_results ADD COLUMN trainer           TEXT NOT NULL DEFAULT ''"),
+        ("horse_weight_diff", "ALTER TABLE race_results ADD COLUMN horse_weight_diff INTEGER"),
+        # JRA-VAN 血統登録番号（10桁）。training_times.horse_id との JOIN キー
+        ("blood_id",          "ALTER TABLE race_results ADD COLUMN blood_id          TEXT"),
+    ]
+    with conn:
+        for col_name, sql in additions:
+            if col_name not in cols:
+                conn.execute(sql)
+                logger.info("マイグレーション: race_results.%s 列を追加しました", col_name)
 
 
 def insert_race(conn: sqlite3.Connection, race: "RaceInfo") -> None:  # type: ignore[name-defined]
@@ -332,12 +820,13 @@ def insert_race(conn: sqlite3.Connection, race: "RaceInfo") -> None:  # type: ig
             """
             INSERT OR REPLACE INTO races
                 (race_id, race_name, date, venue, race_number,
-                 distance, surface, weather, condition)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                 distance, surface, track_direction, weather, condition)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
             (
                 race.race_id, race.race_name, race.date, race.venue,
                 race.race_number, race.distance, race.surface,
+                getattr(race, "track_direction", ""),
                 race.weather, race.condition,
             ),
         )
@@ -362,16 +851,22 @@ def insert_race(conn: sqlite3.Connection, race: "RaceInfo") -> None:  # type: ig
             conn.execute(
                 """
                 INSERT OR IGNORE INTO race_results
-                    (race_id, horse_id, horse_name, rank, sex_age,
-                     weight_carried, jockey, finish_time, margin,
-                     popularity, win_odds, horse_weight)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    (race_id, horse_id, horse_name, rank,
+                     gate_number, horse_number,
+                     sex_age, weight_carried, jockey, trainer,
+                     finish_time, margin, popularity, win_odds,
+                     horse_weight, horse_weight_diff)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """,
                 (
                     race.race_id, r.horse_id, r.horse_name, r.rank,
+                    getattr(r, "gate_number", None),
+                    getattr(r, "horse_number", None),
                     r.sex_age, r.weight_carried, r.jockey,
+                    getattr(r, "trainer", ""),
                     r.finish_time, r.margin, r.popularity,
                     r.win_odds, r.horse_weight,
+                    getattr(r, "horse_weight_diff", None),
                 ),
             )
 
@@ -389,6 +884,7 @@ def insert_prediction(
     expected_value: float | None = None,
     recommended_bet: float | None = None,
     notes: str | None = None,
+    combination_json: str | None = None,
 ) -> int:
     """
     予想を predictions + prediction_horses に保存して prediction_id を返す。
@@ -416,11 +912,11 @@ def insert_prediction(
             """
             INSERT INTO predictions
                 (race_id, model_type, bet_type, confidence,
-                 expected_value, recommended_bet, notes)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
+                 expected_value, recommended_bet, notes, combination_json)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
             """,
             (race_id, model_type, bet_type, confidence,
-             expected_value, recommended_bet, notes),
+             expected_value, recommended_bet, notes, combination_json),
         )
         prediction_id = cur.lastrowid
 
@@ -598,7 +1094,11 @@ def insert_entries(
         保存した件数
     """
     count = 0
+    # entries.horse_id は netkeiba 形式（例: 2021103333）で、
+    # horses テーブルの JRA-VAN 形式（例: 00000000AB）と一致しないため
+    # FK 制約を一時的に無効化してバルク挿入する。
     with conn:
+        conn.execute("PRAGMA foreign_keys = OFF")
         for e in entries:
             conn.execute(
                 """
@@ -634,6 +1134,7 @@ def insert_entries(
                 ),
             )
             count += 1
+        conn.execute("PRAGMA foreign_keys = ON")
 
     logger.info("出馬表保存: race_id=%s, %d 頭", race_id, count)
     return count
@@ -684,6 +1185,98 @@ def insert_realtime_odds(
 
     logger.info("オッズ保存: race_id=%s, %d 頭", race_id, count)
     return count
+
+
+def insert_race_payouts(
+    conn: sqlite3.Connection,
+    race_id: str,
+    payouts: list[dict],
+) -> int:
+    """
+    レース払戻データを race_payouts テーブルに保存する（UPSERT）。
+
+    Args:
+        conn:    DB コネクション
+        race_id: 対象レース ID
+        payouts: [{"bet_type": "単勝", "combination": "14",
+                   "payout": 380, "popularity": 1}, ...]
+
+    Returns:
+        保存した件数
+    """
+    count = 0
+    with conn:
+        for p in payouts:
+            conn.execute(
+                """
+                INSERT INTO race_payouts (race_id, bet_type, combination, payout, popularity)
+                VALUES (?, ?, ?, ?, ?)
+                ON CONFLICT(race_id, bet_type, combination) DO UPDATE SET
+                    payout     = excluded.payout,
+                    popularity = excluded.popularity
+                """,
+                (race_id, p["bet_type"], p["combination"], p["payout"], p.get("popularity")),
+            )
+            count += 1
+    logger.info("払戻保存: race_id=%s, %d 件", race_id, count)
+    return count
+
+
+def query_mart(
+    conn: sqlite3.Connection,
+    *,
+    race_id:   str | None = None,
+    year:      str | None = None,
+    venue:     str | None = None,
+    surface:   str | None = None,
+    date_from: str | None = None,
+    date_to:   str | None = None,
+) -> list[sqlite3.Row]:
+    """
+    v_race_mart から条件に合う行を返す。
+
+    すべての引数はキーワード専用。フィルタを指定しない場合は全行を返す。
+    SQL はパラメータバインドのみで構築するため SQL インジェクションは発生しない。
+
+    Args:
+        conn:      init_db() が返した sqlite3.Connection
+        race_id:   特定レース ID (完全一致)
+        year:      開催年 (例: "2024")
+        venue:     開催場所 (例: "東京")
+        surface:   馬場種別 (例: "芝" / "ダート")
+        date_from: 開催日の下限 (YYYY/MM/DD, 含む)
+        date_to:   開催日の上限 (YYYY/MM/DD, 含む)
+
+    Returns:
+        list[sqlite3.Row] — 辞書ライクアクセス可 (row["horse_name"] 等)
+    """
+    conn.row_factory = sqlite3.Row
+
+    clauses: list[str] = []
+    params:  list[str] = []
+
+    if race_id is not None:
+        clauses.append("race_id = ?")
+        params.append(race_id)
+    if year is not None:
+        clauses.append("year = ?")
+        params.append(year)
+    if venue is not None:
+        clauses.append("venue = ?")
+        params.append(venue)
+    if surface is not None:
+        clauses.append("surface = ?")
+        params.append(surface)
+    if date_from is not None:
+        clauses.append("date >= ?")
+        params.append(date_from)
+    if date_to is not None:
+        clauses.append("date <= ?")
+        params.append(date_to)
+
+    where = ("WHERE " + " AND ".join(clauses)) if clauses else ""
+    sql = f"SELECT * FROM v_race_mart {where} ORDER BY date, race_id, horse_number"
+    return conn.execute(sql, params).fetchall()
 
 
 if __name__ == "__main__":

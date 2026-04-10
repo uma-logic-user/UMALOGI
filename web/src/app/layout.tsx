@@ -13,7 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className="min-h-screen antialiased">{children}</body>
+      <body className="antialiased" style={{ overflow: 'hidden' }}>{children}</body>
     </html>
   )
 }

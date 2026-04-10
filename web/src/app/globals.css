@@ -108,21 +108,33 @@ body::before {
   pointer-events: none;
 }
 
+/* ─── テーブルスクロールコンテナ ──────────────────────── */
+.table-scroll {
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 72vh;
+}
+
 /* ─── テーブル ───────────────────────────────────────── */
 .race-table th {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg-card);
   color: var(--neon-cyan);
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  font-size: 0.7rem;
-  padding: 10px 12px;
-  border-bottom: 1px solid rgba(0, 200, 255, 0.2);
+  font-size: 0.8rem;
+  padding: 11px 14px;
+  border-bottom: 1px solid rgba(0, 200, 255, 0.25);
   white-space: nowrap;
+  box-shadow: 0 1px 0 rgba(0, 200, 255, 0.15);
 }
 
 .race-table td {
-  padding: 11px 12px;
+  padding: 12px 14px;
   border-bottom: 1px solid rgba(0, 200, 255, 0.06);
-  font-size: 0.82rem;
+  font-size: 0.9rem;
   white-space: nowrap;
 }
 
@@ -149,3 +161,383 @@ body::before {
 }
 
 .slide-in { animation: slide-in 0.4s ease-out both; }
+
+/* ─── 予想的中ハイライト ─────────────────────────────── */
+
+/* 基本的中: 緑のグロー */
+.hit-normal {
+  background: rgba(0, 255, 136, 0.06) !important;
+  border-left: 2px solid var(--neon-green);
+}
+
+/* 高配当的中 (ROI 200%超): 金色ハイライト */
+.hit-big {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 215, 0, 0.10) 0%,
+    rgba(255, 215, 0, 0.04) 100%
+  ) !important;
+  border-left: 2px solid var(--neon-gold);
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.15);
+}
+
+/* 爆発的高配当 (ROI 500%超): 爆裂ゴールドアニメーション */
+.hit-explosion {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 215, 0, 0.18) 0%,
+    rgba(255, 140, 0, 0.10) 50%,
+    rgba(255, 215, 0, 0.08) 100%
+  ) !important;
+  border-left: 3px solid #ffaa00;
+  box-shadow:
+    0 0 20px rgba(255, 200, 0, 0.30),
+    inset 0 0 20px rgba(255, 200, 0, 0.05);
+  animation: explosion-pulse 2s ease-in-out infinite;
+}
+
+@keyframes explosion-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 20px rgba(255, 200, 0, 0.30),
+      inset 0 0 20px rgba(255, 200, 0, 0.05);
+  }
+  50% {
+    box-shadow:
+      0 0 35px rgba(255, 200, 0, 0.55),
+      inset 0 0 30px rgba(255, 200, 0, 0.10);
+  }
+}
+
+/* 外れ: 薄い赤 */
+.hit-miss {
+  opacity: 0.55;
+}
+
+/* 払戻額バッジ */
+.payout-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.payout-badge-normal {
+  background: rgba(0, 255, 136, 0.15);
+  color: var(--neon-green);
+  border: 1px solid rgba(0, 255, 136, 0.3);
+}
+
+.payout-badge-big {
+  background: rgba(255, 215, 0, 0.15);
+  color: var(--neon-gold);
+  border: 1px solid rgba(255, 215, 0, 0.4);
+}
+
+.payout-badge-explosion {
+  background: rgba(255, 140, 0, 0.20);
+  color: #ffcc00;
+  border: 1px solid rgba(255, 200, 0, 0.6);
+  animation: explosion-pulse 2s ease-in-out infinite;
+}
+
+/* ─── アプリシェル（2ペインレイアウト） ────────────────── */
+.app-shell {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 260px 1fr;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+}
+.app-navbar {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  z-index: 50;
+}
+.app-sidebar {
+  grid-column: 1;
+  grid-row: 2;
+  overflow-y: auto;
+  border-right: 1px solid var(--border);
+  background: var(--bg-surface);
+}
+.app-main {
+  grid-column: 2;
+  grid-row: 2;
+  overflow-y: auto;
+  background: var(--bg-base);
+}
+
+/* ─── サイドバーツリー ─────────────────────────────────── */
+.tree-section-btn {
+  width: 100%;
+  text-align: left;
+  padding: 8px 12px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--neon-cyan);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s;
+}
+.tree-section-btn:hover { background: rgba(0,200,255,0.05); }
+
+.tree-year-btn {
+  width: 100%;
+  text-align: left;
+  padding: 7px 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--neon-cyan);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: background 0.15s;
+}
+.tree-year-btn:hover { background: rgba(0,200,255,0.06); }
+
+.tree-date-btn {
+  width: 100%;
+  text-align: left;
+  padding: 5px 22px;
+  font-size: 0.78rem;
+  color: var(--text-primary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: background 0.15s;
+}
+.tree-date-btn:hover { background: rgba(0,200,255,0.05); }
+
+.tree-venue-label {
+  padding: 4px 32px;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.tree-race-btn {
+  width: 100%;
+  text-align: left;
+  padding: 5px 40px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.15s, background 0.15s;
+}
+.tree-race-btn:hover { color: var(--text-primary); background: rgba(0,200,255,0.04); }
+.tree-race-btn.active {
+  color: var(--neon-cyan);
+  background: rgba(0,200,255,0.08);
+  border-left: 2px solid var(--neon-cyan);
+  padding-left: 38px;
+}
+
+/* ─── サイドバー特別ボタン ───────────────────────────────── */
+.sidebar-special-btn {
+  width: 100%;
+  text-align: left;
+  padding: 10px 16px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.15s;
+  border-bottom: 1px solid rgba(0,200,255,0.08);
+}
+.sidebar-special-btn:hover { background: rgba(0,200,255,0.06); }
+.sidebar-special-btn.active { background: rgba(0,200,255,0.10); }
+
+/* ─── 的中実績 / HitHistory ──────────────────────────────── */
+@keyframes gold-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 12px rgba(255,215,0,0.4),
+      inset 0 0 12px rgba(255,215,0,0.06);
+  }
+  50% {
+    box-shadow:
+      0 0 28px rgba(255,215,0,0.7),
+      inset 0 0 20px rgba(255,215,0,0.12);
+  }
+}
+@keyframes rainbow-shift {
+  0%   { background-position: 0% 50%;   }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%;   }
+}
+
+.hit-row-normal {
+  background: rgba(0, 255, 136, 0.04);
+  border-left: 3px solid var(--neon-green);
+}
+.hit-row-big {
+  background: linear-gradient(90deg, rgba(255,215,0,0.10) 0%, rgba(255,215,0,0.03) 100%);
+  border-left: 3px solid var(--neon-gold);
+  animation: gold-pulse 3s ease-in-out infinite;
+}
+.hit-row-jackpot {
+  background: linear-gradient(
+    270deg,
+    rgba(255,50,50,0.12),
+    rgba(255,165,0,0.15),
+    rgba(255,215,0,0.18),
+    rgba(255,165,0,0.15),
+    rgba(255,50,50,0.12)
+  );
+  background-size: 400% 400%;
+  border-left: 4px solid #ffaa00;
+  animation:
+    rainbow-shift 3s ease infinite,
+    explosion-pulse 2s ease-in-out infinite;
+}
+
+.roi-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+.roi-badge-normal {
+  background: rgba(0,255,136,0.15);
+  color: var(--neon-green);
+  border: 1px solid rgba(0,255,136,0.35);
+}
+.roi-badge-big {
+  background: rgba(255,215,0,0.18);
+  color: var(--neon-gold);
+  border: 1px solid rgba(255,215,0,0.5);
+}
+.roi-badge-jackpot {
+  background: linear-gradient(135deg, #ff8c00, #ffd700, #ff8c00);
+  background-size: 200% 200%;
+  color: #000;
+  border: none;
+  animation: rainbow-shift 2s ease infinite;
+  text-shadow: none;
+}
+
+/* 払戻金テーブル */
+.payout-table td {
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  border-bottom: 1px solid rgba(0,200,255,0.05);
+}
+.payout-table th {
+  padding: 9px 12px;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--neon-cyan);
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(0,200,255,0.2);
+  white-space: nowrap;
+}
+
+/* ─── 激アツ推奨馬（EV >= 1.0）ハイライト行 ─────────────────── */
+.row-hot td {
+  background: rgba(255, 51, 102, 0.06) !important;
+}
+.row-hot:hover td {
+  background: rgba(255, 51, 102, 0.10) !important;
+}
+
+@keyframes hot-pulse {
+  0%, 100% { box-shadow: 0 0 0 rgba(255,51,102,0); }
+  50%       { box-shadow: 0 0 16px rgba(255,51,102,0.4); }
+}
+.badge-hot {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  background: rgba(255, 51, 102, 0.18);
+  color: var(--neon-red);
+  border: 1px solid rgba(255, 51, 102, 0.45);
+  animation: hot-pulse 2s ease-in-out infinite;
+}
+
+/* ─── 調教グレードバッジ ─────────────────────────────────────── */
+.eval-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0;
+  cursor: default;
+  position: relative;
+}
+.eval-badge-A {
+  background: rgba(255, 105, 180, 0.25);
+  color: #ff69b4;
+  border: 1px solid rgba(255, 105, 180, 0.5);
+}
+.eval-badge-B {
+  background: rgba(255, 140, 0, 0.2);
+  color: #ff8c00;
+  border: 1px solid rgba(255, 140, 0, 0.4);
+}
+.eval-badge-C {
+  background: rgba(0, 200, 255, 0.12);
+  color: var(--neon-cyan);
+  border: 1px solid rgba(0, 200, 255, 0.3);
+}
+.eval-badge-D {
+  background: rgba(74, 122, 150, 0.15);
+  color: var(--text-muted);
+  border: 1px solid rgba(74, 122, 150, 0.25);
+}
+
+/* ─── バイアスパネル ─────────────────────────────────────────── */
+.bias-meter-bar {
+  height: 6px;
+  border-radius: 3px;
+  transition: width 0.6s ease;
+}
+
+/* ─── 大口シグナル（odds_velocity が高い馬）────────────────── */
+@keyframes fire-flicker {
+  0%, 100% { opacity: 1;   transform: scale(1); }
+  50%       { opacity: 0.8; transform: scale(1.15); }
+}
+.signal-fire {
+  display: inline-block;
+  animation: fire-flicker 0.8s ease-in-out infinite;
+  font-size: 0.9rem;
+  line-height: 1;
+}

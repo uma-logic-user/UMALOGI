@@ -18,3 +18,31 @@ __pycache__/
 # OS
 .DS_Store
 Thumbs.db
+
+# ── データ（大容量・秘匿・ローカル専用）───────────────────────────
+# SQLite DB（本番データ・個人情報を含む可能性あり）
+data/umalogi.db
+database.db
+
+# 訓練済みモデル（数百MB になる場合がある）
+data/models/
+data/backups/
+
+# 予想 JSON（毎回生成・大量ファイル）
+data/predictions/
+
+# スケジューラーログ
+data/scheduler.log
+
+# ── Next.js ──────────────────────────────────────────────────────
+web/.next/
+web/node_modules/
+web/tsconfig.tsbuildinfo
+
+# ── テスト一時ファイル ────────────────────────────────────────────
+.pytest_cache/
+htmlcov/
+.coverage
+
+# ── その他 ────────────────────────────────────────────────────────
+py

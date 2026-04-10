@@ -16,6 +16,13 @@ from dataclasses import dataclass, field
 
 import requests
 from bs4 import BeautifulSoup
+from tenacity import (
+    retry,
+    retry_if_exception_type,
+    stop_after_attempt,
+    wait_exponential,
+    before_sleep_log,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -65,28 +72,54 @@ class HorseOdds:
 
 # ── 内部ユーティリティ ────────────────────────────────────────────
 
+@retry(
+    stop=stop_after_attempt(3),
+    wait=wait_exponential(multiplier=2, min=2, max=30),
+    retry=retry_if_exception_type(requests.RequestException),
+    before_sleep=before_sleep_log(logger, logging.WARNING),
+    reraise=True,
+)
+def _http_get(url: str, params: dict | None, timeout: int) -> requests.Response:
+    """
+    tenacity リトライ付き HTTP GET。
+    最大3回、指数バックオフ（2秒 → 4秒 → 8秒 → 上限30秒）でリトライする。
+    3回失敗した場合は最後の requests.RequestException を再送出する。
+    """
+    resp = requests.get(url, params=params, headers=_HEADERS, timeout=timeout)
+    resp.raise_for_status()
+    return resp
+
+
 def _fetch(
     url: str,
     params: dict | None = None,
     *,
-    max_retries: int = 3,
     delay: float = 1.5,
     timeout: int = 20,
 ) -> str:
-    """HTTP GET を指数バックオフ付きで取得。"""
-    for attempt in range(max_retries):
-        try:
-            resp = requests.get(url, params=params, headers=_HEADERS, timeout=timeout)
-            resp.raise_for_status()
-            resp.encoding = resp.apparent_encoding or "utf-8"
-            return resp.text
-        except requests.RequestException as exc:
-            if attempt == max_retries - 1:
-                raise
-            wait = delay * (2 ** attempt)
-            logger.warning("リトライ %d/%d (%s) — %.1f 秒後", attempt + 1, max_retries, exc, wait)
-            time.sleep(wait)
-    raise RuntimeError("到達不能コード")  # pragma: no cover
+    """
+    レート制限付き HTTP GET。
+
+    delay 秒のスリープ（レート制限）後に _http_get を呼び出す。
+    ネットワークエラー時は tenacity が最大3回リトライする。
+    3回失敗した場合は requests.RequestException を送出する。
+
+    Args:
+        url:     取得先 URL
+        params:  クエリパラメータ
+        delay:   呼び出し前のスリープ秒数（サーバー負荷対策）
+        timeout: HTTP タイムアウト秒数
+
+    Returns:
+        レスポンス本文（文字列）
+
+    Raises:
+        requests.RequestException: 3回リトライ後も失敗した場合
+    """
+    time.sleep(delay)  # レート制限: 連続リクエストを抑制
+    resp = _http_get(url, params, timeout)
+    resp.encoding = resp.apparent_encoding or "utf-8"
+    return resp.text
 
 
 def _parse_weight(text: str) -> tuple[int | None, int | None]:
@@ -120,6 +153,86 @@ def _safe_int(text: str) -> int | None:
 
 # ── 出馬表スクレイパー ───────────────────────────────────────────
 
+def _parse_race_condition(soup: BeautifulSoup) -> str | None:
+    """
+    出馬表ページ（shutuba.html）から馬場状態を抽出する。
+
+    netkeiba shutuba ページの実 HTML 構造（2025年時点）:
+      div.RaceData01 内テキストに "馬場 : 良" や "芝 : 稍重" が含まれる。
+      または div.RaceData02 の span.turf_state 等でも確認できる。
+
+    Returns:
+        "良" / "稍重" / "重" / "不良" / None（未発表・取得不可）
+    """
+    # 優先順に複数セレクタを試みる
+    for selector in ("div.RaceData01", "div.RaceData02", "dl.racedata", "div.mainrace_data"):
+        tag = soup.select_one(selector)
+        if not tag:
+            continue
+        text = tag.get_text(" ", strip=True)
+        # "馬場 : 良", "芝 : 稍重", "ダート : 重", "不良"
+        m = re.search(r"(?:馬場|芝|ダート)\s*[：:]\s*([良稍重不]+)", text)
+        if m:
+            return m.group(1)
+    return None
+
+
+def _parse_entry_rows(soup: BeautifulSoup) -> list[EntryHorse]:
+    """
+    出馬表 HTML（BeautifulSoup 解析済み）から EntryHorse のリストを返す。
+
+    列マッピング（Shutuba_Table の td インデックス）:
+      [0] 枠番  [1] 馬番  [3] 馬名 / horse_id  [4] 性齢
+      [5] 斤量  [6] 騎手  [7] 調教師  [8] 馬体重
+    """
+    entries: list[EntryHorse] = []
+    rows = soup.select("table.Shutuba_Table tr.HorseList")
+
+    for row in rows:
+        cells = row.find_all("td")
+        if len(cells) < 9:
+            continue
+
+        gate_number  = _safe_int(cells[0].get_text(strip=True)) or 0
+        horse_number = _safe_int(cells[1].get_text(strip=True)) or 0
+
+        # 馬名・horse_id: <td class="HorseInfo"> の <a> リンク
+        horse_info_td = cells[3]
+        horse_link = horse_info_td.find("a", href=re.compile(r"/horse/"))
+        if horse_link:
+            horse_name = horse_link.get_text(strip=True)
+            m = re.search(r"/horse/(\w+)/?", horse_link.get("href", ""))
+            horse_id = m.group(1) if m else None
+        else:
+            horse_name = horse_info_td.get_text(strip=True)
+            horse_id = None
+
+        sex_age        = cells[4].get_text(strip=True)
+        weight_carried = _safe_float(cells[5].get_text(strip=True)) or 0.0
+        jockey         = cells[6].get_text(strip=True)
+        trainer        = cells[7].get_text(strip=True)
+
+        weight_text = cells[8].get_text(" ", strip=True)
+        horse_weight, horse_weight_diff = _parse_weight(weight_text)
+
+        entries.append(
+            EntryHorse(
+                horse_number=horse_number,
+                gate_number=gate_number,
+                horse_id=horse_id,
+                horse_name=horse_name,
+                sex_age=sex_age,
+                weight_carried=weight_carried,
+                jockey=jockey,
+                trainer=trainer,
+                horse_weight=horse_weight,
+                horse_weight_diff=horse_weight_diff,
+            )
+        )
+
+    return entries
+
+
 def fetch_entry_table(
     race_id: str,
     *,
@@ -128,10 +241,6 @@ def fetch_entry_table(
 ) -> EntryTable:
     """
     race.netkeiba.com から出馬表を取得して EntryTable を返す。
-
-    列マッピング（Shutuba_Table の td インデックス）:
-      [0] 枠番  [1] 馬番  [3] 馬名 / horse_id  [4] 性齢
-      [5] 斤量  [6] 騎手  [7] 調教師  [8] 馬体重
 
     Args:
         race_id:     netkeiba の race_id（例: "202506050811"）
@@ -149,53 +258,50 @@ def fetch_entry_table(
     )
     soup = BeautifulSoup(html, "lxml")
     table = EntryTable(race_id=race_id)
-
-    rows = soup.select("table.Shutuba_Table tr.HorseList")
-    logger.info("出馬表 race_id=%s: %d 頭取得", race_id, len(rows))
-
-    for row in rows:
-        cells = row.find_all("td")
-        if len(cells) < 9:
-            continue
-
-        gate_number = _safe_int(cells[0].get_text(strip=True)) or 0
-        horse_number = _safe_int(cells[1].get_text(strip=True)) or 0
-
-        # 馬名・horse_id: <td class="HorseInfo"> の <a> リンク
-        horse_info_td = cells[3]
-        horse_link = horse_info_td.find("a", href=re.compile(r"/horse/"))
-        if horse_link:
-            horse_name = horse_link.get_text(strip=True)
-            m = re.search(r"/horse/(\w+)/?", horse_link.get("href", ""))
-            horse_id = m.group(1) if m else None
-        else:
-            horse_name = horse_info_td.get_text(strip=True)
-            horse_id = None
-
-        sex_age = cells[4].get_text(strip=True)
-        weight_carried = _safe_float(cells[5].get_text(strip=True)) or 0.0
-        jockey = cells[6].get_text(strip=True)
-        trainer = cells[7].get_text(strip=True)
-
-        weight_text = cells[8].get_text(" ", strip=True)
-        horse_weight, horse_weight_diff = _parse_weight(weight_text)
-
-        table.entries.append(
-            EntryHorse(
-                horse_number=horse_number,
-                gate_number=gate_number,
-                horse_id=horse_id,
-                horse_name=horse_name,
-                sex_age=sex_age,
-                weight_carried=weight_carried,
-                jockey=jockey,
-                trainer=trainer,
-                horse_weight=horse_weight,
-                horse_weight_diff=horse_weight_diff,
-            )
-        )
-
+    table.entries = _parse_entry_rows(soup)
+    logger.info("出馬表 race_id=%s: %d 頭取得", race_id, len(table.entries))
     return table
+
+
+def fetch_live_race_info(
+    race_id: str,
+    *,
+    delay: float = 1.5,
+    max_retries: int = 3,
+) -> tuple[str | None, list[EntryHorse]]:
+    """
+    出馬表ページから「馬場状態」と「最新の馬体重」を1リクエストで取得する。
+
+    prerace_pipeline での使用を想定。金曜バッチで entries を保存済みでも、
+    当日発表された馬体重・馬場状態でDBを更新するために再取得する。
+
+    馬体重が取得できない場合（発表前）は horse_weight=None の EntryHorse を返す。
+    馬場状態が取得できない場合は None を返す（レース後の確定前など）。
+
+    Args:
+        race_id:     netkeiba の race_id
+        delay:       リクエスト間隔（秒）
+        max_retries: 最大リトライ回数
+
+    Returns:
+        (condition, entries)
+        - condition: "良" / "稍重" / "重" / "不良" / None
+        - entries:   最新馬体重を含む EntryHorse リスト（空リストの場合あり）
+    """
+    html = _fetch(
+        SHUTUBA_URL,
+        params={"race_id": race_id},
+        delay=delay,
+        max_retries=max_retries,
+    )
+    soup      = BeautifulSoup(html, "lxml")
+    condition = _parse_race_condition(soup)
+    entries   = _parse_entry_rows(soup)
+    logger.info(
+        "ライブ情報取得 race_id=%s: 馬場=%s 馬体重=%d頭",
+        race_id, condition or "未発表", len(entries),
+    )
+    return condition, entries
 
 
 # ── オッズ API クライアント ──────────────────────────────────────

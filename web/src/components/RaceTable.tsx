@@ -10,8 +10,8 @@ type SortKey = 'rank' | 'win_odds' | 'popularity' | 'horse_weight'
 const MEDAL: Record<number, string> = { 1: '🥇', 2: '🥈', 3: '🥉' }
 
 export default function RaceTable({ results }: Props) {
-  const [sortKey, setSortKey]   = useState<SortKey>('rank')
-  const [sortAsc, setSortAsc]   = useState(true)
+  const [sortKey, setSortKey]     = useState<SortKey>('rank')
+  const [sortAsc, setSortAsc]     = useState(true)
   const [highlight, setHighlight] = useState<string | null>(null)
 
   function handleSort(key: SortKey) {
@@ -35,7 +35,7 @@ export default function RaceTable({ results }: Props) {
       >
         <span className="flex items-center gap-1">
           {label}
-          {active && <span className="text-[10px]">{sortAsc ? '▲' : '▼'}</span>}
+          {active && <span className="text-xs">{sortAsc ? '▲' : '▼'}</span>}
         </span>
       </th>
     )
@@ -43,15 +43,14 @@ export default function RaceTable({ results }: Props) {
 
   return (
     <div className="neon-card overflow-hidden slide-in" style={{ animationDelay: '0.25s' }}>
-      {/* テーブルヘッダー */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-[rgba(0,200,255,0.12)]">
-        <span className="text-xs neon-text tracking-[0.2em] font-semibold">RACE RESULTS</span>
-        <span className="text-xs text-[var(--text-muted)]">
+        <span className="text-sm neon-text tracking-[0.2em] font-semibold">RACE RESULTS</span>
+        <span className="text-sm text-[var(--text-muted)]">
           {results.length} runners &nbsp;·&nbsp; click header to sort
         </span>
       </div>
 
-      <div className="overflow-x-auto">
+      <div className="table-scroll">
         <table className="w-full race-table">
           <thead>
             <tr>
@@ -86,7 +85,7 @@ export default function RaceTable({ results }: Props) {
                     ? MEDAL[r.rank]
                       ? <span title={`${r.rank}着`}>{MEDAL[r.rank]}</span>
                       : <span className="text-[var(--text-muted)]">{r.rank}</span>
-                    : <span className="text-xs text-[var(--text-muted)]">—</span>}
+                    : <span className="text-[var(--text-muted)]">—</span>}
                 </td>
 
                 {/* 馬名 */}
@@ -104,18 +103,18 @@ export default function RaceTable({ results }: Props) {
 
                 {/* 父 / 母父 */}
                 <td>
-                  <div className="text-[var(--text-primary)] text-xs leading-tight">
+                  <div className="text-[var(--text-primary)] leading-tight">
                     {r.sire ?? <span className="text-[var(--text-muted)]">—</span>}
                   </div>
                   {r.dam_sire && (
-                    <div className="text-[var(--text-muted)] text-[10px] mt-0.5">
+                    <div className="text-[var(--text-muted)] text-xs mt-0.5">
                       母父 {r.dam_sire}
                     </div>
                   )}
                 </td>
 
                 {/* 性齢 */}
-                <td className="text-[var(--text-muted)] text-xs">{r.sex_age}</td>
+                <td className="text-[var(--text-muted)]">{r.sex_age}</td>
 
                 {/* 騎手 */}
                 <td className="text-[var(--text-primary)]">{r.jockey}</td>
@@ -126,8 +125,8 @@ export default function RaceTable({ results }: Props) {
                 </td>
 
                 {/* 着差 */}
-                <td className="text-[var(--text-muted)] text-xs">
-                  {r.margin || (r.rank === 1 ? <span className="neon-text text-xs">◎</span> : '—')}
+                <td className="text-[var(--text-muted)]">
+                  {r.margin || (r.rank === 1 ? <span className="neon-text">◎</span> : '—')}
                 </td>
 
                 {/* 単勝 */}
@@ -153,7 +152,6 @@ export default function RaceTable({ results }: Props) {
   )
 }
 
-/* 単勝オッズ → カラー可変 */
 function OddsCell({ odds }: { odds: number | null }) {
   if (odds == null) return <span className="text-[var(--text-muted)]">—</span>
   const color =
@@ -167,7 +165,6 @@ function OddsCell({ odds }: { odds: number | null }) {
   )
 }
 
-/* 人気バッジ */
 function PopularityBadge({ pop }: { pop: number | null }) {
   if (pop == null) return <span className="text-[var(--text-muted)]">—</span>
   const bg =
@@ -180,8 +177,8 @@ function PopularityBadge({ pop }: { pop: number | null }) {
     pop <= 6  ? 'var(--neon-blue)'  : 'var(--text-muted)'
   return (
     <span
-      className="inline-flex items-center justify-center w-6 h-6 rounded text-xs font-bold"
-      style={{ background: bg, color: col, border: `1px solid ${col}44` }}
+      className="inline-flex items-center justify-center w-7 h-7 rounded font-bold"
+      style={{ background: bg, color: col, border: `1px solid ${col}44`, fontSize: '0.85rem' }}
     >
       {pop}
     </span>
