@@ -156,9 +156,8 @@ DDL_STATEMENTS: list[str] = [
     CREATE TABLE IF NOT EXISTS predictions (
         id              INTEGER PRIMARY KEY AUTOINCREMENT,
         race_id         TEXT    NOT NULL REFERENCES races(race_id),
-        model_type      TEXT    NOT NULL
-                            CHECK(model_type IN ('卍', '本命')),
-                                             -- 卍=回収率特化 / 本命=的中率特化
+        model_type      TEXT    NOT NULL,
+                                             -- 卍/本命 + オプション suffix (暫定)/(直前)
         bet_type        TEXT    NOT NULL,    -- 単勝/複勝/馬連/馬単/三連複/三連単/WIN5
         confidence      REAL,               -- モデル信頼度 0.0〜1.0
         expected_value  REAL,               -- 期待値（卍モデルの主指標）
@@ -203,7 +202,7 @@ DDL_STATEMENTS: list[str] = [
     """
     CREATE TABLE IF NOT EXISTS model_performance (
         id             INTEGER PRIMARY KEY AUTOINCREMENT,
-        model_type     TEXT    NOT NULL CHECK(model_type IN ('卍', '本命')),
+        model_type     TEXT    NOT NULL,  -- 卍/本命 + オプション suffix (暫定)/(直前)
         bet_type       TEXT    NOT NULL DEFAULT 'ALL',
         year           INTEGER NOT NULL,
         month          INTEGER NOT NULL DEFAULT 0,  -- 0 = 年間集計
@@ -749,6 +748,8 @@ def init_db(db_path: Path | None = None) -> sqlite3.Connection:
     _migrate_add_combination_json(conn)
     _migrate_races_new_columns(conn)
     _migrate_race_results_new_columns(conn)
+    # model_type CHECK 制約を除去（(暫定)/(直前) suffix 対応）
+    _migrate_relax_model_type_check(conn)
     # ビュー定義を常に最新に保つ（DDL 変更時に自動反映）
     _migrate_recreate_mart_view(conn)
 
@@ -791,6 +792,67 @@ def _migrate_recreate_mart_view(conn: sqlite3.Connection) -> None:
         conn.execute("DROP VIEW IF EXISTS v_race_mart")
         conn.execute(mart_ddl)
     logger.info("マイグレーション: v_race_mart ビューを再作成しました")
+
+
+def _migrate_relax_model_type_check(conn: sqlite3.Connection) -> None:
+    """predictions / model_performance テーブルの model_type CHECK 制約を除去する。
+
+    CHECK(model_type IN ('卍', '本命')) が残っていると (暫定)/(直前) suffix を
+    持つ値を INSERT できないため、PRAGMA writable_schema でスキーマを直接書き換える。
+    ALTER TABLE RENAME TO を使うと prediction_horses の FK 参照が壊れるため採用しない。
+    """
+    needs_fix = False
+    for table in ("predictions", "model_performance"):
+        schema = conn.execute(
+            "SELECT sql FROM sqlite_master WHERE type='table' AND name=?", (table,)
+        ).fetchone()
+        if schema and "CHECK(model_type IN" in schema[0]:
+            needs_fix = True
+            break
+
+    # prediction_horses が壊れた FK を参照しているかも確認
+    ph_schema = conn.execute(
+        "SELECT sql FROM sqlite_master WHERE type='table' AND name='prediction_horses'"
+    ).fetchone()
+    if ph_schema and "_predictions_old" in ph_schema[0]:
+        needs_fix = True
+
+    if not needs_fix:
+        return
+
+    logger.info("マイグレーション: model_type CHECK 制約 / FK 参照を writable_schema で修正します")
+    conn.execute("PRAGMA writable_schema = ON")
+    try:
+        with conn:
+            # 1. predictions / model_performance の CHECK 除去
+            for table in ("predictions", "model_performance"):
+                row = conn.execute(
+                    "SELECT sql FROM sqlite_master WHERE type='table' AND name=?", (table,)
+                ).fetchone()
+                if row and "CHECK(model_type IN" in row[0]:
+                    new_sql = row[0].replace(
+                        "CHECK(model_type IN ('卍', '本命'))", ""
+                    ).replace(
+                        " CHECK(model_type IN ('卍', '本命'))", ""
+                    )
+                    conn.execute(
+                        "UPDATE sqlite_master SET sql = ? WHERE type='table' AND name=?",
+                        (new_sql, table),
+                    )
+                    logger.info("マイグレーション: %s の CHECK 制約を除去しました", table)
+
+            # 2. prediction_horses の壊れた FK 参照を修正
+            if ph_schema and "_predictions_old" in ph_schema[0]:
+                fixed_sql = ph_schema[0].replace(
+                    'REFERENCES "_predictions_old"(id)', "REFERENCES predictions(id)"
+                )
+                conn.execute(
+                    "UPDATE sqlite_master SET sql = ? WHERE type='table' AND name='prediction_horses'",
+                    (fixed_sql,),
+                )
+                logger.info("マイグレーション: prediction_horses の FK 参照を修正しました")
+    finally:
+        conn.execute("PRAGMA writable_schema = OFF")
 
 
 def _migrate_race_results_new_columns(conn: sqlite3.Connection) -> None:
@@ -904,8 +966,10 @@ def insert_prediction(
     Returns:
         新規 prediction.id
     """
-    if model_type not in ("卍", "本命"):
-        raise ValueError(f"model_type は '卍' または '本命' を指定してください: {model_type!r}")
+    _VALID_BASE_TYPES = {"卍", "本命"}
+    base = model_type.split("(")[0]
+    if base not in _VALID_BASE_TYPES:
+        raise ValueError(f"model_type のベースは '卍' または '本命' を指定してください: {model_type!r}")
 
     with conn:
         cur = conn.execute(
@@ -921,6 +985,13 @@ def insert_prediction(
         prediction_id = cur.lastrowid
 
         for h in horses:
+            # horse_id が horses テーブルに未登録の場合（暫定予想など）は先に登録
+            hid = h.get("horse_id")
+            if hid:
+                conn.execute(
+                    "INSERT OR IGNORE INTO horses (horse_id, horse_name) VALUES (?, ?)",
+                    (hid, h.get("horse_name", "")),
+                )
             conn.execute(
                 """
                 INSERT INTO prediction_horses
@@ -930,7 +1001,7 @@ def insert_prediction(
                 """,
                 (
                     prediction_id,
-                    h.get("horse_id"),
+                    hid,
                     h["horse_name"],
                     h.get("predicted_rank"),
                     h.get("model_score"),

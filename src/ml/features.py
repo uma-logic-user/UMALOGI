@@ -210,8 +210,8 @@ class FeatureBuilder:
                 # ── オッズ時系列特徴量（大口投票シグナル） ───────────
                 # シミュレーション時は realtime_odds が未記録のため全 None。
                 # prerace 時に複数スナップショットが記録されていれば有効。
-                "odds_vs_morning": odds_trend.get(horse_number, {}).get("odds_vs_morning"),
-                "odds_velocity":   odds_trend.get(horse_number, {}).get("odds_velocity"),
+                "odds_vs_morning": odds_trend.get(sim_num, {}).get("odds_vs_morning"),
+                "odds_velocity":   odds_trend.get(sim_num, {}).get("odds_velocity"),
                 # 識別子（モデル学習には使わない）
                 "sex_age":                sex_age,
                 "jockey":                 jockey,

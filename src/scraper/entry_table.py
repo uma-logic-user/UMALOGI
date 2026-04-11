@@ -96,6 +96,7 @@ def _fetch(
     *,
     delay: float = 1.5,
     timeout: int = 20,
+    max_retries: int = 3,  # tenacity の stop_after_attempt は固定3回だが引数として受け取る
 ) -> str:
     """
     レート制限付き HTTP GET。
@@ -105,10 +106,11 @@ def _fetch(
     3回失敗した場合は requests.RequestException を送出する。
 
     Args:
-        url:     取得先 URL
-        params:  クエリパラメータ
-        delay:   呼び出し前のスリープ秒数（サーバー負荷対策）
-        timeout: HTTP タイムアウト秒数
+        url:         取得先 URL
+        params:      クエリパラメータ
+        delay:       呼び出し前のスリープ秒数（サーバー負荷対策）
+        timeout:     HTTP タイムアウト秒数
+        max_retries: 互換性のために受け取るが tenacity のリトライ設定を使用
 
     Returns:
         レスポンス本文（文字列）

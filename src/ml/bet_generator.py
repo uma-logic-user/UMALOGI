@@ -2,7 +2,14 @@
 全券種買い目ジェネレーター
 
 モデルの予測スコアを元に、以下の券種の推奨買い目を生成する。
-  単勝 / 複勝 / 馬連 / ワイド / 三連複 / 三連単 / WIN5
+  単勝 / 複勝 / 馬連 / ワイド / 馬単 / 三連複 / 三連単 / WIN5
+
+確率計算:
+  Harville公式を用いて組み合わせ馬券の確率を推定する。
+  P(A 1着) = p_A
+  P(A 1着, B 2着) = p_A * p_B / (1 - p_A)      ... Harville exacta
+  P(A-B 馬連) = P(A→B) + P(B→A)                 ... Harville quinella
+  P(A 1着, B 2着, C 3着) = p_A * p_B/(1-p_A) * p_C/(1-p_A-p_B)
 
 卍モデル  : EV_score > 1.0 の馬（期待値プラス）を優先
 本命モデル: 勝率スコア上位を優先、フォーメーション軸に使用
@@ -19,22 +26,28 @@ import pandas as pd
 
 logger = logging.getLogger(__name__)
 
-BetType = Literal["単勝", "複勝", "馬連", "ワイド", "三連複", "三連単", "WIN5"]
+BetType = Literal["単勝", "複勝", "馬連", "ワイド", "馬単", "三連複", "三連単", "WIN5"]
 
 # Kelly Criterion 上限（過剰賭けリスク抑制）
 _KELLY_CAP = 0.25
 # デフォルト賭け単位（円）
 _BASE_BET = 100
+# JRA 控除率（券種別）
+_TRACK_TAKE: dict[str, float] = {
+    "単勝": 0.200, "複勝": 0.200,
+    "馬連": 0.225, "ワイド": 0.225, "馬単": 0.250,
+    "三連複": 0.250, "三連単": 0.275,
+}
 
 
 @dataclass
 class BetRecommendation:
     """1つの買い目推奨。"""
     bet_type: BetType
-    combinations: list[tuple[int, ...]]   # 馬番の組み合わせ（昇順）
-    horse_names: list[str]                # 馬名（表示用）
+    combinations: list[tuple[int, ...]]   # 馬番の組み合わせ（馬連は昇順、馬単は着順）
+    horse_names: list[str]                # 馬名（表示用、組み合わせ順）
     expected_value: float                 # 期待値（1.0 超 = プラス収支見込み）
-    model_score: float                    # モデルスコア（0〜1）
+    model_score: float                    # モデルスコア（0〜1、Harville確率）
     recommended_bet: float                # 推奨購入金額（円）
     confidence: float                     # 信頼度（0〜1）
     notes: str = ""                       # 根拠メモ
@@ -88,6 +101,83 @@ def _kelly_bet(
     return round(base_bet * (1 + f * 10), -2)  # 100円単位に丸め
 
 
+# ── Harville 確率計算 ────────────────────────────────────────────
+
+def _normalize(probs: list[float]) -> list[float]:
+    """win_probs を合計=1 に正規化する。0以下は 1e-9 に丸め。"""
+    probs = [max(p, 1e-9) for p in probs]
+    total = sum(probs)
+    return [p / total for p in probs]
+
+
+def _harville_exacta(probs: list[float], i: int, j: int) -> float:
+    """
+    Harville公式: 馬番インデックス i が1着、j が2着になる確率。
+
+    P(i 1st, j 2nd) = p_i * p_j / (1 - p_i)
+    """
+    p = _normalize(probs)
+    if i == j or i >= len(p) or j >= len(p):
+        return 0.0
+    denom = 1.0 - p[i]
+    if denom <= 0:
+        return 0.0
+    return p[i] * p[j] / denom
+
+
+def _harville_quinella(probs: list[float], i: int, j: int) -> float:
+    """
+    Harville公式: i・j が1着2着（順不問）になる確率。
+    馬連・ワイドの確率推定に使用。
+    """
+    return _harville_exacta(probs, i, j) + _harville_exacta(probs, j, i)
+
+
+def _harville_trifecta(probs: list[float], i: int, j: int, k: int) -> float:
+    """
+    Harville公式: i が1着、j が2着、k が3着になる確率。
+
+    P = p_i * (p_j/(1-p_i)) * (p_k/(1-p_i-p_j))
+    """
+    p = _normalize(probs)
+    if len({i, j, k}) < 3 or max(i, j, k) >= len(p):
+        return 0.0
+    d1 = 1.0 - p[i]
+    d2 = 1.0 - p[i] - p[j]
+    if d1 <= 0 or d2 <= 0:
+        return 0.0
+    return p[i] * (p[j] / d1) * (p[k] / d2)
+
+
+def _harville_trio(probs: list[float], i: int, j: int, k: int) -> float:
+    """
+    Harville公式: i・j・k が1〜3着（順不問）に入る確率。
+    三連複の確率推定に使用。
+    """
+    return sum(
+        _harville_trifecta(probs, a, b, c)
+        for a, b, c in itertools.permutations([i, j, k])
+    )
+
+
+def _ev_estimate(harville_prob: float, win_odds: float, bet_type: str) -> float:
+    """
+    単勝オッズを使って多馬券の期待値を推定する。
+
+    単勝EV = P(win) * win_odds / 100
+    多馬券EV ≈ harville_prob * (win_odds_axis * scale_factor) / 100
+    scale_factor: 券種ごとの一般的オッズ倍率（経験則）
+    """
+    _SCALE: dict[str, float] = {
+        "単勝": 1.0, "複勝": 0.33,
+        "馬連": 8.0, "ワイド": 3.5,
+        "馬単": 15.0, "三連複": 40.0, "三連単": 200.0,
+    }
+    scale = _SCALE.get(bet_type, 1.0)
+    estimated_odds = win_odds * scale
+    return harville_prob * estimated_odds / 100.0
+
+
 # ── 馬名マップ取得ユーティリティ ──────────────────────────────────
 
 def _name_map(df: pd.DataFrame) -> dict[int, str]:
@@ -104,13 +194,13 @@ class ManjiStrategy:
     卍モデル（回収率特化）の買い目戦略。
 
     - EV_score > 1.0 の馬のみを対象に単勝・複勝を推奨
-    - EV 上位 2 頭で馬連・ワイドを推奨
+    - EV 上位 2 頭で馬連・ワイド・馬単を推奨
     - EV 上位 3 頭で三連複を推奨（EV >= 1.2 の場合のみ）
     """
 
-    EV_THRESHOLD     = 1.0   # 単勝・複勝 推奨の最低 EV
-    EV_COMBO_MIN     = 1.1   # 組み合わせ馬券の最低 EV（平均）
-    EV_SANREN_MIN    = 1.2   # 三連複推奨の最低 EV
+    EV_THRESHOLD  = 1.0   # 単勝・複勝 推奨の最低 EV
+    EV_COMBO_MIN  = 1.1   # 組み合わせ馬券の最低 EV（平均）
+    EV_SANREN_MIN = 1.2   # 三連複推奨の最低 EV
 
     def generate(
         self,
@@ -119,7 +209,7 @@ class ManjiStrategy:
         manji_scores: pd.Series,
     ) -> RaceBets:
         """
-        卍モデルのスコアと出馬表 DataFrame から買い目を生成する。
+        卍モデルのスコアと出馬表 DataFrame から全券種の買い目を生成する。
 
         Args:
             race_id:      レース ID
@@ -132,11 +222,17 @@ class ManjiStrategy:
         result = RaceBets(race_id=race_id, model_type="卍")
         names = _name_map(df)
 
-        # EV スコアを DataFrame に付加
         ev = manji_scores.rename("ev_score")
         scored = df.copy()
-        scored["ev_score"] = ev.values if len(ev) == len(scored) else ev.reindex(scored.index).values
+        scored["ev_score"] = (
+            ev.values if len(ev) == len(scored)
+            else ev.reindex(scored.index).values
+        )
         scored = scored.sort_values("ev_score", ascending=False)
+
+        # 全馬スコアリスト（Harville 計算用）
+        all_nums   = [int(r["horse_number"]) for _, r in scored.iterrows()]
+        all_scores = [float(r["ev_score"]) for _, r in scored.iterrows()]
 
         # EV > 1.0 の馬を抽出
         pos_ev = scored[scored["ev_score"] >= self.EV_THRESHOLD]
@@ -168,54 +264,89 @@ class ManjiStrategy:
 
         # ── 複勝（単勝候補全馬）────────────────────────────────────
         top_nums = [int(r["horse_number"]) for _, r in pos_ev.iterrows()]
-        if top_nums:
-            result.bets.append(BetRecommendation(
-                bet_type="複勝",
-                combinations=[(n,) for n in top_nums],
-                horse_names=[names.get(n, str(n)) for n in top_nums],
-                expected_value=float(pos_ev["ev_score"].mean()),
-                model_score=float(pos_ev["ev_score"].mean()),
-                recommended_bet=_BASE_BET * len(top_nums),
-                confidence=0.6,
-                notes=f"EV>{self.EV_THRESHOLD} の{len(top_nums)}頭を複勝",
-            ))
+        result.bets.append(BetRecommendation(
+            bet_type="複勝",
+            combinations=[(n,) for n in top_nums],
+            horse_names=[names.get(n, str(n)) for n in top_nums],
+            expected_value=float(pos_ev["ev_score"].mean()),
+            model_score=float(pos_ev["ev_score"].mean()),
+            recommended_bet=_BASE_BET * len(top_nums),
+            confidence=0.6,
+            notes=f"EV>{self.EV_THRESHOLD} の{len(top_nums)}頭を複勝",
+        ))
 
-        # ── 馬連・ワイド（EV上位2頭）─────────────────────────────
+        # ── 馬連・ワイド・馬単（EV上位2頭）───────────────────────
         if len(pos_ev) >= 2:
-            top2 = pos_ev.head(2)
-            nums2 = [int(r["horse_number"]) for _, r in top2.iterrows()]
+            top2    = pos_ev.head(2)
+            n0      = int(top2.iloc[0]["horse_number"])
+            n1      = int(top2.iloc[1]["horse_number"])
             ev_mean2 = float(top2["ev_score"].mean())
 
             if ev_mean2 >= self.EV_COMBO_MIN:
-                combo = tuple(sorted(nums2))
-                for btype in ("馬連", "ワイド"):
-                    result.bets.append(BetRecommendation(
-                        bet_type=btype,  # type: ignore[arg-type]
-                        combinations=[combo],
-                        horse_names=[names.get(n, str(n)) for n in combo],
-                        expected_value=ev_mean2,
-                        model_score=ev_mean2,
-                        recommended_bet=_BASE_BET * 2,
-                        confidence=0.5,
-                        notes=f"EV上位2頭 平均EV={ev_mean2:.2f}",
-                    ))
+                i0 = all_nums.index(n0) if n0 in all_nums else 0
+                i1 = all_nums.index(n1) if n1 in all_nums else 1
+                q_prob  = _harville_quinella(all_scores, i0, i1)
+                ex01    = _harville_exacta(all_scores, i0, i1)
+                ex10    = _harville_exacta(all_scores, i1, i0)
+                ex_prob = max(ex01, ex10)
+                combo   = tuple(sorted([n0, n1]))
+                axis_odds = float(top2.iloc[0].get("win_odds") or 10.0)
+
+                result.bets.append(BetRecommendation(
+                    bet_type="馬連",
+                    combinations=[combo],
+                    horse_names=[names.get(n, str(n)) for n in combo],
+                    expected_value=_ev_estimate(q_prob, axis_odds, "馬連"),
+                    model_score=q_prob,
+                    recommended_bet=_BASE_BET * 2,
+                    confidence=min(q_prob * 5, 1.0),
+                    notes=f"EV上位2頭 Harville={q_prob:.3f} 平均EV={ev_mean2:.2f}",
+                ))
+
+                result.bets.append(BetRecommendation(
+                    bet_type="ワイド",
+                    combinations=[combo],
+                    horse_names=[names.get(n, str(n)) for n in combo],
+                    expected_value=_ev_estimate(q_prob, axis_odds, "ワイド"),
+                    model_score=q_prob,
+                    recommended_bet=_BASE_BET * 2,
+                    confidence=min(q_prob * 6, 1.0),
+                    notes=f"EV上位2頭 ワイド Harville={q_prob:.3f}",
+                ))
+
+                # 馬単（EV大きい方を軸1着）
+                exacta_combo = (n0, n1)
+                result.bets.append(BetRecommendation(
+                    bet_type="馬単",
+                    combinations=[exacta_combo],
+                    horse_names=[names.get(n, str(n)) for n in exacta_combo],
+                    expected_value=_ev_estimate(ex_prob, axis_odds, "馬単"),
+                    model_score=ex_prob,
+                    recommended_bet=_BASE_BET * 2,
+                    confidence=min(ex_prob * 8, 1.0),
+                    notes=f"EV軸{n0}→{n1} Harville={ex_prob:.3f}",
+                ))
 
         # ── 三連複（EV上位3頭）────────────────────────────────────
         if len(pos_ev) >= 3:
-            top3 = pos_ev.head(3)
+            top3    = pos_ev.head(3)
             ev_mean3 = float(top3["ev_score"].mean())
             if ev_mean3 >= self.EV_SANREN_MIN:
                 nums3 = [int(r["horse_number"]) for _, r in top3.iterrows()]
-                combo3 = tuple(sorted(nums3))
+                idxs3 = [all_nums.index(n) if n in all_nums else j for j, n in enumerate(nums3)]
+                trio_prob  = _harville_trio(all_scores, *idxs3)
+                combo3     = tuple(sorted(nums3))
+                axis_odds3 = float(top3.iloc[0].get("win_odds") or 10.0)
+
                 result.bets.append(BetRecommendation(
                     bet_type="三連複",
                     combinations=[combo3],
                     horse_names=[names.get(n, str(n)) for n in combo3],
-                    expected_value=ev_mean3,
-                    model_score=ev_mean3,
+                    expected_value=_ev_estimate(trio_prob, axis_odds3, "三連複"),
+                    model_score=trio_prob,
                     recommended_bet=_BASE_BET * 3,
-                    confidence=0.4,
-                    notes=f"EV上位3頭 平均EV={ev_mean3:.2f}",
+                    confidence=min(trio_prob * 15, 1.0),
+                    notes=f"EV上位3頭 Harville={trio_prob:.3f} 平均EV={ev_mean3:.2f}",
                 ))
 
         logger.info(
@@ -232,9 +363,8 @@ class HonmeiStrategy:
     本命モデル（的中率特化）の買い目戦略。
 
     - 勝率上位 1 頭を本命として単勝・複勝を推奨
-    - 上位 2 頭で馬連・ワイドをフォーメーション
-    - 上位 3 頭で三連複
-    - 上位 1→2→3 で三連単（1着軸流し）
+    - 上位 2 頭で馬連・ワイド・馬単をフォーメーション
+    - 上位 3 頭で三連複・三連単
     """
 
     TOP_N_COMBO = 3   # 組み合わせに使う上位頭数
@@ -246,7 +376,7 @@ class HonmeiStrategy:
         honmei_scores: pd.Series,
     ) -> RaceBets:
         """
-        本命モデルのスコアから買い目を生成する。
+        本命モデルのスコアから全券種の買い目を生成する。
 
         Args:
             race_id:        レース ID
@@ -260,20 +390,27 @@ class HonmeiStrategy:
         names = _name_map(df)
 
         scored = df.copy()
-        scored["honmei_score"] = honmei_scores.values if len(honmei_scores) == len(scored) \
+        scored["honmei_score"] = (
+            honmei_scores.values if len(honmei_scores) == len(scored)
             else honmei_scores.reindex(scored.index).values
+        )
         scored = scored.sort_values("honmei_score", ascending=False)
 
         n = min(self.TOP_N_COMBO, len(scored))
         top = scored.head(n)
-        top_nums = [int(r["horse_number"]) for _, r in top.iterrows()]
+        top_nums   = [int(r["horse_number"]) for _, r in top.iterrows()]
+        top_scores = [float(r["honmei_score"]) for _, r in top.iterrows()]
+
+        # 全馬スコアリスト（Harville 計算用）
+        all_nums   = [int(r["horse_number"]) for _, r in scored.iterrows()]
+        all_scores = [float(r["honmei_score"]) for _, r in scored.iterrows()]
 
         if not top_nums:
             return result
 
         # ── 単勝（1位本命）────────────────────────────────────────
-        num1 = top_nums[0]
-        sc1  = float(scored.iloc[0]["honmei_score"])
+        num1  = top_nums[0]
+        sc1   = top_scores[0]
         odds1 = float(scored.iloc[0].get("win_odds") or 1.0)
         bet1  = _kelly_bet(sc1, odds1)
         result.bets.append(BetRecommendation(
@@ -290,8 +427,8 @@ class HonmeiStrategy:
         # ── 複勝（上位3頭）───────────────────────────────────────
         result.bets.append(BetRecommendation(
             bet_type="複勝",
-            combinations=[(n,) for n in top_nums],
-            horse_names=[names.get(n, str(n)) for n in top_nums],
+            combinations=[(num,) for num in top_nums],
+            horse_names=[names.get(num, str(num)) for num in top_nums],
             expected_value=float(top["honmei_score"].sum()),
             model_score=float(top["honmei_score"].mean()),
             recommended_bet=_BASE_BET * n,
@@ -299,48 +436,86 @@ class HonmeiStrategy:
             notes=f"上位{n}頭を複勝",
         ))
 
-        # ── 馬連・ワイド（上位2頭）────────────────────────────────
+        # ── 馬連・ワイド・馬単（上位2頭）──────────────────────────
         if len(top_nums) >= 2:
-            combo2 = tuple(sorted(top_nums[:2]))
-            sc2 = float(scored.head(2)["honmei_score"].mean())
-            for btype in ("馬連", "ワイド"):
-                result.bets.append(BetRecommendation(
-                    bet_type=btype,  # type: ignore[arg-type]
-                    combinations=[combo2],
-                    horse_names=[names.get(n, str(n)) for n in combo2],
-                    expected_value=sc2 * 2,
-                    model_score=sc2,
-                    recommended_bet=_BASE_BET * 2,
-                    confidence=sc2,
-                    notes="本命・対抗フォーメーション",
-                ))
+            n0, n1  = top_nums[0], top_nums[1]
+            i0 = all_nums.index(n0) if n0 in all_nums else 0
+            i1 = all_nums.index(n1) if n1 in all_nums else 1
+            q_prob     = _harville_quinella(all_scores, i0, i1)
+            ex01       = _harville_exacta(all_scores, i0, i1)
+            ex10       = _harville_exacta(all_scores, i1, i0)
+            ex_prob    = max(ex01, ex10)
+            combo2     = tuple(sorted([n0, n1]))
+            axis_odds2 = float(scored.iloc[0].get("win_odds") or 10.0)
+
+            result.bets.append(BetRecommendation(
+                bet_type="馬連",
+                combinations=[combo2],
+                horse_names=[names.get(c, str(c)) for c in combo2],
+                expected_value=_ev_estimate(q_prob, axis_odds2, "馬連"),
+                model_score=q_prob,
+                recommended_bet=_BASE_BET * 2,
+                confidence=q_prob,
+                notes=f"本命・対抗 Harville={q_prob:.3f}",
+            ))
+
+            result.bets.append(BetRecommendation(
+                bet_type="ワイド",
+                combinations=[combo2],
+                horse_names=[names.get(c, str(c)) for c in combo2],
+                expected_value=_ev_estimate(q_prob, axis_odds2, "ワイド"),
+                model_score=q_prob,
+                recommended_bet=_BASE_BET * 2,
+                confidence=min(q_prob * 1.3, 1.0),
+                notes=f"本命・対抗 ワイド Harville={q_prob:.3f}",
+            ))
+
+            # 馬単（本命→対抗 + 対抗→本命 の2点）
+            exacta_combos = [(n0, n1), (n1, n0)]
+            result.bets.append(BetRecommendation(
+                bet_type="馬単",
+                combinations=exacta_combos,
+                horse_names=[names.get(n0, str(n0)), names.get(n1, str(n1))],
+                expected_value=_ev_estimate(ex_prob, axis_odds2, "馬単"),
+                model_score=ex_prob,
+                recommended_bet=_BASE_BET * 2,
+                confidence=ex_prob,
+                notes=f"本命↔対抗 馬単 Harville={ex_prob:.3f}",
+            ))
 
         # ── 三連複（上位3頭 ボックス）────────────────────────────
         if len(top_nums) >= 3:
-            combo3 = tuple(sorted(top_nums[:3]))
-            sc3 = float(scored.head(3)["honmei_score"].mean())
+            n0, n1, n2 = top_nums[0], top_nums[1], top_nums[2]
+            i0 = all_nums.index(n0) if n0 in all_nums else 0
+            i1 = all_nums.index(n1) if n1 in all_nums else 1
+            i2 = all_nums.index(n2) if n2 in all_nums else 2
+            trio_prob     = _harville_trio(all_scores, i0, i1, i2)
+            trifecta_prob = _harville_trifecta(all_scores, i0, i1, i2)
+            combo3        = tuple(sorted([n0, n1, n2]))
+            axis_odds3    = float(scored.iloc[0].get("win_odds") or 10.0)
+
             result.bets.append(BetRecommendation(
                 bet_type="三連複",
                 combinations=[combo3],
-                horse_names=[names.get(n, str(n)) for n in combo3],
-                expected_value=sc3 * 3,
-                model_score=sc3,
+                horse_names=[names.get(c, str(c)) for c in combo3],
+                expected_value=_ev_estimate(trio_prob, axis_odds3, "三連複"),
+                model_score=trio_prob,
                 recommended_bet=_BASE_BET * 3,
-                confidence=sc3,
-                notes="本命・対抗・単穴 三連複",
+                confidence=trio_prob,
+                notes=f"本命・対抗・単穴 Harville={trio_prob:.3f}",
             ))
 
-            # ── 三連単（1着軸→2・3着流し）────────────────────────
-            permutations = list(itertools.permutations(top_nums[:3]))
+            # 三連単（6点ボックス）
+            trifecta_combos = list(itertools.permutations([n0, n1, n2]))
             result.bets.append(BetRecommendation(
                 bet_type="三連単",
-                combinations=[tuple(p) for p in permutations],
-                horse_names=[names.get(n, str(n)) for n in top_nums[:3]],
-                expected_value=sc3 * 4,
-                model_score=sc3,
-                recommended_bet=_BASE_BET * len(permutations),
-                confidence=sc3 * 0.8,
-                notes=f"上位3頭 {len(permutations)} 点ボックス",
+                combinations=[tuple(p) for p in trifecta_combos],
+                horse_names=[names.get(n, str(n)) for n in [n0, n1, n2]],
+                expected_value=_ev_estimate(trifecta_prob, axis_odds3, "三連単"),
+                model_score=trifecta_prob,
+                recommended_bet=_BASE_BET * len(trifecta_combos),
+                confidence=trifecta_prob * 0.8,
+                notes=f"上位3頭 {len(trifecta_combos)}点ボックス Harville={trifecta_prob:.3f}",
             ))
 
         logger.info(
@@ -404,7 +579,10 @@ def generate_win5(
             continue
         names = _name_map(df)
         scored = df.copy()
-        scored["score"] = sc.values if len(sc) == len(scored) else sc.reindex(scored.index).values
+        scored["score"] = (
+            sc.values if len(sc) == len(scored)
+            else sc.reindex(scored.index).values
+        )
         top = scored.nlargest(top_n, "score")
         nums = [int(r["horse_number"]) for _, r in top.iterrows()]
         selections[race_id] = nums

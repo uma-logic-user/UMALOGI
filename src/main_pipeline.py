@@ -220,6 +220,76 @@ def _kelly_fraction(p_win: float, odds: float, multiplier: float = 0.1) -> float
 
 
 # ================================================================
+# 暫定予想バッチ: 指定日（省略時=翌日）の全レースを暫定予想
+# ================================================================
+
+def provisional_batch(target_date: str | None = None) -> list[str]:
+    """
+    指定日（省略時=翌日）の全レースに対して暫定予想を生成する。
+
+    金曜バッチ（friday_batch）の直後に実行し、週末分の暫定予想を
+    ダッシュボードに先行表示するために使う。
+
+    暫定予想の特徴:
+      - オッズ・馬体重が未発表でも欠損 NaN のまま LightGBM で推論
+      - model_type は "本命(暫定)" / "卍(暫定)" で保存
+      - 直前予想（本命(直前)）が生成されると UI 上で並べて比較可能
+
+    Args:
+        target_date: "YYYYMMDD" 形式の日付。None なら翌日。
+
+    Returns:
+        暫定予想を完了したレース ID のリスト
+    """
+    if target_date is None:
+        tomorrow    = date.today() + timedelta(days=1)
+        target_date = tomorrow.strftime("%Y%m%d")
+
+    formatted = f"{target_date[:4]}/{target_date[4:6]}/{target_date[6:8]}"
+    logger.info("暫定予想バッチ開始: 対象日=%s (%s)", target_date, formatted)
+
+    conn = init_db()
+    race_ids: list[str] = [
+        r[0] for r in conn.execute(
+            "SELECT race_id FROM races WHERE date = ? ORDER BY race_id",
+            (formatted,),
+        ).fetchall()
+    ]
+
+    # 既存の暫定予想を削除（再実行時の重複防止）
+    if race_ids:
+        placeholders = ",".join("?" * len(race_ids))
+        deleted = conn.execute(
+            f"DELETE FROM predictions WHERE model_type LIKE '%暫定%'"
+            f" AND race_id IN ({placeholders})",
+            race_ids,
+        )
+        conn.commit()
+        if deleted.rowcount:
+            logger.info("既存の暫定予想を削除: %d 件（再生成前クリーン）", deleted.rowcount)
+    conn.close()
+
+    if not race_ids:
+        logger.warning("対象日 %s のレースが races テーブルに見つかりません", target_date)
+        return []
+
+    succeeded: list[str] = []
+    for race_id in race_ids:
+        try:
+            result = prerace_pipeline(race_id, provisional=True)
+            if result.get("skipped") or result.get("error"):
+                logger.warning("暫定予想スキップ %s: %s",
+                               race_id, result.get("reason") or result.get("error"))
+            else:
+                succeeded.append(race_id)
+        except Exception as exc:
+            logger.error("暫定予想失敗 %s: %s", race_id, exc)
+
+    logger.info("暫定予想バッチ完了: %d / %d レース", len(succeeded), len(race_ids))
+    return succeeded
+
+
+# ================================================================
 # 金曜夜バッチ: 翌日のレース情報を取得・保存
 # ================================================================
 
@@ -305,88 +375,95 @@ def _ensure_race_record(conn, race_id: str, date_str: str) -> None:
 # レース直前パイプライン
 # ================================================================
 
-def prerace_pipeline(race_id: str) -> dict:
+def prerace_pipeline(race_id: str, provisional: bool = False) -> dict:
     """
-    レース直前の自動予想パイプライン。
+    レース直前（または前日暫定）の自動予想パイプライン。
 
     処理フロー:
-      1. リアルタイムオッズ取得 → DB 保存
+      0. 締め切り時刻チェック（直前モードのみ）
+      1. リアルタイムオッズ取得 → DB 保存（直前モードのみ）
+      1b. ライブデータ更新（馬体重・馬場状態）（直前モードのみ）
       2. 特徴量生成
+      2b. データ品質チェック（直前モードのみ）
       3. 本命・卍モデルで予測
       4. 買い目生成
       5. predictions / prediction_horses へ保存
+         - model_type は "本命(暫定)" / "本命(直前)" の形式で保存
       6. UI 用 JSON 出力
 
     Args:
-        race_id: 対象レース ID
+        race_id:     対象レース ID
+        provisional: True = 暫定予想モード
+                       - オッズ・馬体重の欠損を許容（LightGBM の NaN 処理に委ねる）
+                       - リアルタイムデータ取得をスキップ
+                       - model_type に "(暫定)" サフィックスを付与
+                     False = 直前予想モード（従来の動作）
+                       - model_type に "(直前)" サフィックスを付与
 
     Returns:
         UI 用 JSON データ（dict）
     """
-    logger.info("直前パイプライン開始: race_id=%s", race_id)
+    mode_label = "暫定" if provisional else "直前"
+    logger.info("%sパイプライン開始: race_id=%s", mode_label, race_id)
 
     conn = init_db()
 
-    # ── Step 0: 締め切り時刻チェック ──────────────────────────
-    # 推定発走 15 分前を過ぎて実行された場合 Discord に遅延警告を送信する。
-    _check_race_deadline(conn, race_id)
+    # ── Step 0: 締め切り時刻チェック（直前モードのみ） ────────
+    if not provisional:
+        _check_race_deadline(conn, race_id)
 
-    # ── Step 1: リアルタイムオッズ取得 ────────────────────────
-    # fetch_realtime_odds は tenacity により最大3回リトライ（指数バックオフ）。
-    # 3回失敗した場合は realtime_odds テーブルの最終スナップショットが自動使用される
-    # (build_race_features → _latest_odds_map がDBから直接読み込むため)。
-    try:
-        odds_list = fetch_realtime_odds(race_id, delay=1.0)
-        if odds_list:
-            name_map = _get_entry_name_map(conn, race_id)
-            insert_realtime_odds(conn, race_id, odds_list, name_map)
-            logger.info("オッズ保存完了: %d 頭", len(odds_list))
-    except Exception as exc:
-        # tenacity が3回リトライ後も失敗 → DB の最終スナップショットで代替
-        cached = conn.execute(
-            "SELECT COUNT(*) FROM realtime_odds WHERE race_id = ?", (race_id,)
-        ).fetchone()[0]
-        if cached > 0:
-            logger.warning(
-                "オッズ取得失敗（tenacity 3回リトライ上限）: %s — "
-                "DB の最終スナップショット %d 件を使用します",
-                exc, cached,
-            )
-        else:
-            logger.warning(
-                "オッズ取得失敗（tenacity 3回リトライ上限）: %s — "
-                "フォールバックなし（オッズ未取得のまま続行）",
-                exc,
-            )
+    # ── Step 1: リアルタイムオッズ取得（直前モードのみ） ──────
+    # 暫定モードではオッズ未発売のためスキップ。NaN のまま LightGBM に推論させる。
+    if not provisional:
+        try:
+            odds_list = fetch_realtime_odds(race_id, delay=1.0)
+            if odds_list:
+                name_map = _get_entry_name_map(conn, race_id)
+                insert_realtime_odds(conn, race_id, odds_list, name_map)
+                logger.info("オッズ保存完了: %d 頭", len(odds_list))
+        except Exception as exc:
+            cached = conn.execute(
+                "SELECT COUNT(*) FROM realtime_odds WHERE race_id = ?", (race_id,)
+            ).fetchone()[0]
+            if cached > 0:
+                logger.warning(
+                    "オッズ取得失敗（tenacity 3回リトライ上限）: %s — "
+                    "DB の最終スナップショット %d 件を使用します",
+                    exc, cached,
+                )
+            else:
+                logger.warning(
+                    "オッズ取得失敗（tenacity 3回リトライ上限）: %s — "
+                    "フォールバックなし（オッズ未取得のまま続行）",
+                    exc,
+                )
 
-    # ── Step 1b: ライブデータ取得（馬体重・馬場状態をリアルタイム上書き） ──
-    # 金曜バッチで保存済みの entries を最新値で上書きする。
-    # - 馬体重は当日発表（発走2時間前頃）に確定するため再取得が必要。
-    # - 馬場状態は天候変化で変わるため金曜固定値は使わない。
-    # 取得失敗時は既存 DB の値をそのまま使用（フェイルセーフ）。
-    try:
-        condition, live_entries = fetch_live_race_info(race_id, delay=1.5)
+    # ── Step 1b: ライブデータ取得（直前モードのみ） ──────────
+    # 暫定モードでは馬体重・馬場状態は当日未発表のためスキップ。
+    if not provisional:
+        try:
+            condition, live_entries = fetch_live_race_info(race_id, delay=1.5)
 
-        if live_entries:
-            insert_entries(conn, race_id, live_entries)
-            weight_known = sum(1 for e in live_entries if e.horse_weight is not None)
-            logger.info(
-                "馬体重更新: %d 頭中 %d 頭の体重を取得",
-                len(live_entries), weight_known,
-            )
+            if live_entries:
+                insert_entries(conn, race_id, live_entries)
+                weight_known = sum(1 for e in live_entries if e.horse_weight is not None)
+                logger.info(
+                    "馬体重更新: %d 頭中 %d 頭の体重を取得",
+                    len(live_entries), weight_known,
+                )
 
-        if condition:
-            conn.execute(
-                "UPDATE races SET condition = ? WHERE race_id = ?",
-                (condition, race_id),
-            )
-            conn.commit()
-            logger.info("馬場状態を更新: %s", condition)
-        else:
-            logger.info("馬場状態: 未発表のため既存値を維持")
+            if condition:
+                conn.execute(
+                    "UPDATE races SET condition = ? WHERE race_id = ?",
+                    (condition, race_id),
+                )
+                conn.commit()
+                logger.info("馬場状態を更新: %s", condition)
+            else:
+                logger.info("馬場状態: 未発表のため既存値を維持")
 
-    except Exception as exc:
-        logger.warning("ライブデータ取得失敗（既存DB値で続行）: %s", exc)
+        except Exception as exc:
+            logger.warning("ライブデータ取得失敗（既存DB値で続行）: %s", exc)
 
     # ── Step 2: 特徴量生成 ─────────────────────────────────────
     try:
@@ -402,12 +479,22 @@ def prerace_pipeline(race_id: str) -> dict:
         conn.close()
         return {"error": "出馬表が空です", "race_id": race_id}
 
-    # ── Step 2b: データ品質チェック ────────────────────────────
-    ok, reason = _check_data_quality(df)
-    if not ok:
-        conn.close()
-        _notify_skip(race_id, reason)
-        return {"skipped": True, "reason": reason, "race_id": race_id}
+    # ── Step 2b: データ品質チェック（直前モードのみ） ─────────
+    # 暫定モードでは馬体重/オッズ欠損を許容し、NaN のまま LightGBM に推論させる。
+    if not provisional:
+        ok, reason = _check_data_quality(df)
+        if not ok:
+            conn.close()
+            _notify_skip(race_id, reason)
+            return {"skipped": True, "reason": reason, "race_id": race_id}
+    else:
+        n = len(df)
+        missing_w = int(df["horse_weight"].isna().sum()) if "horse_weight" in df.columns else n
+        missing_o = int(df["win_odds"].isna().sum()) if "win_odds" in df.columns else n
+        logger.info(
+            "暫定モード: 馬体重欠損=%d/%d 単勝オッズ欠損=%d/%d — NaN のまま推論",
+            missing_w, n, missing_o, n,
+        )
 
     # ── Step 3: モデル予測 ─────────────────────────────────────
     honmei_model, manji_model = load_models()
@@ -421,9 +508,12 @@ def prerace_pipeline(race_id: str) -> dict:
     manji_bets  = gen.generate_manji(race_id, df, ev_scores)
 
     # ── Step 5: DB 保存 ────────────────────────────────────────
+    # model_type に "(暫定)" / "(直前)" サフィックスを付与して区別する
+    suffix     = "(暫定)" if provisional else "(直前)"
     prediction_ids: dict[str, list[int]] = {"本命": [], "卍": []}
 
     for race_bets in (honmei_bets, manji_bets):
+        mt_tagged = f"{race_bets.model_type}{suffix}"   # 例: "本命(暫定)"
         for bet in race_bets.bets:
             horses_payload = [
                 {
@@ -441,7 +531,7 @@ def prerace_pipeline(race_id: str) -> dict:
                 pid = insert_prediction(
                     conn,
                     race_id=race_id,
-                    model_type=race_bets.model_type,
+                    model_type=mt_tagged,       # "(暫定)" / "(直前)" 付きで保存
                     bet_type=bet.bet_type,
                     horses=horses_payload,
                     confidence=bet.confidence,
@@ -453,7 +543,7 @@ def prerace_pipeline(race_id: str) -> dict:
                 prediction_ids[race_bets.model_type].append(pid)
             except Exception as exc:
                 logger.error("予想保存失敗 %s %s: %s",
-                             race_bets.model_type, bet.bet_type, exc)
+                             mt_tagged, bet.bet_type, exc)
 
     conn.close()
 
@@ -461,11 +551,12 @@ def prerace_pipeline(race_id: str) -> dict:
     payload = _build_output_json(
         race_id, df, honmei_scores, honmei_ev_scores, ev_scores, honmei_bets, manji_bets
     )
+    payload["provisional"] = provisional
     _save_json(race_id, payload)
 
     logger.info(
-        "直前パイプライン完了: race_id=%s 本命%d件 卍%d件",
-        race_id,
+        "%sパイプライン完了: race_id=%s 本命%d件 卍%d件",
+        mode_label, race_id,
         len(prediction_ids["本命"]),
         len(prediction_ids["卍"]),
     )
@@ -763,11 +854,14 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 使用例:
-  python -m src.main_pipeline friday                  # 翌日の出馬表取得
-  python -m src.main_pipeline friday --date 20250628  # 指定日の出馬表取得
-  python -m src.main_pipeline prerace 202506050811    # 指定レースの直前予想
-  python -m src.main_pipeline simulate 202506050811   # 過去レースのシミュレーション
-  python -m src.main_pipeline train                   # モデル再学習
+  python -m src.main_pipeline friday                           # 翌日の出馬表取得
+  python -m src.main_pipeline friday --date 20250628           # 指定日の出馬表取得
+  python -m src.main_pipeline provisional                      # 翌日の全レース暫定予想
+  python -m src.main_pipeline provisional --date 20260411      # 指定日の全レース暫定予想
+  python -m src.main_pipeline prerace 202506050811             # 指定レースの直前予想（本番）
+  python -m src.main_pipeline prerace 202506050811 --provisional  # 指定レースの暫定予想
+  python -m src.main_pipeline simulate 202506050811            # 過去レースのシミュレーション
+  python -m src.main_pipeline train                            # モデル再学習
 """,
     )
     sub = parser.add_subparsers(dest="command", required=True)
@@ -776,9 +870,17 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     p_fri = sub.add_parser("friday", help="金曜バッチ: 翌日の出馬表取得")
     p_fri.add_argument("--date", metavar="YYYYMMDD", help="対象日（省略時=翌日）")
 
+    # provisional サブコマンド（日次暫定予想バッチ）
+    p_prov = sub.add_parser("provisional", help="暫定予想バッチ: 指定日の全レースを暫定予想")
+    p_prov.add_argument("--date", metavar="YYYYMMDD", help="対象日（省略時=翌日）")
+
     # prerace サブコマンド
     p_pre = sub.add_parser("prerace", help="レース直前予想パイプライン")
     p_pre.add_argument("race_id", help="対象レース ID")
+    p_pre.add_argument(
+        "--provisional", action="store_true",
+        help="暫定予想モード: 馬体重・オッズ欠損を許容し model_type に '(暫定)' を付与",
+    )
 
     # simulate サブコマンド
     p_sim = sub.add_parser(
@@ -808,8 +910,15 @@ def main(argv: list[str] | None = None) -> None:
         for r in saved:
             print(f"  {r}")
 
+    elif args.command == "provisional":
+        race_ids = provisional_batch(target_date=getattr(args, "date", None))
+        print(f"暫定予想完了: {len(race_ids)} レース")
+        for r in race_ids:
+            print(f"  {r}")
+
     elif args.command == "prerace":
-        result = prerace_pipeline(args.race_id)
+        prov = getattr(args, "provisional", False)
+        result = prerace_pipeline(args.race_id, provisional=prov)
         print(json.dumps(result, ensure_ascii=False, indent=2))
 
     elif args.command == "simulate":

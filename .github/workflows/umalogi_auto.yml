@@ -27,6 +27,10 @@ on:
     - cron: "45 2 * * 0"
     # 日曜 14:45 JST — 午後レース直前予想
     - cron: "45 5 * * 0"
+    # 月曜 09:00 JST — 週末レース払戻同期 + 的中評価
+    - cron: "0 0 * * 1"
+    # 水曜 02:00 JST — モデル週次再学習
+    - cron: "0 17 * * 2"
 
   # 手動実行（GitHub UI から起動可能）
   workflow_dispatch:
@@ -94,6 +98,31 @@ jobs:
             python -m src.main_pipeline friday
           )
 
+      - name: 土曜 暫定予想バッチ（出馬表取得の翌日=土曜）
+        shell: cmd
+        run: |
+          if "${{ github.event.inputs.target_date }}" NEQ "" (
+            python -m src.main_pipeline provisional --date ${{ github.event.inputs.target_date }}
+          ) else (
+            python -m src.main_pipeline provisional
+          )
+        continue-on-error: true
+
+      - name: 日曜 暫定予想バッチ（土曜の翌日=日曜）
+        shell: python
+        run: |
+          import subprocess, sys, datetime
+          saturday = datetime.date.today() + datetime.timedelta(days=1)
+          sunday   = saturday + datetime.timedelta(days=1)
+          result = subprocess.run(
+              [sys.executable, '-m', 'src.main_pipeline', 'provisional',
+               '--date', sunday.strftime('%Y%m%d')],
+              capture_output=False,
+          )
+          # 日曜分はエラーでもワークフロー継続
+          sys.exit(0)
+        continue-on-error: true
+
       - name: Next.js 用 JSON 生成
         shell: cmd
         run: python web/generate_data.py
@@ -153,25 +182,7 @@ jobs:
           if "${{ github.event.inputs.race_id }}" NEQ "" (
             python -m src.main_pipeline prerace ${{ github.event.inputs.race_id }}
           ) else (
-            python -c "
-import datetime, subprocess, sys
-from src.scraper.fetch_historical import fetch_race_ids_for_date
-today = datetime.date.today().strftime('%Y%m%d')
-race_ids = fetch_race_ids_for_date(today)
-print(f'本日のレース: {len(race_ids)} 件')
-failed = 0
-for rid in race_ids:
-    print(f'  予想中: {rid}')
-    result = subprocess.run(
-        [sys.executable, '-m', 'src.main_pipeline', 'prerace', rid],
-        capture_output=False
-    )
-    if result.returncode != 0:
-        failed += 1
-        print(f'  [ERROR] {rid} 失敗')
-print(f'完了: 成功={len(race_ids)-failed} 失敗={failed}')
-sys.exit(1 if failed == len(race_ids) else 0)
-"
+            python scripts/run_prerace_auto.py
           )
 
       - name: 予想 JSON をアーティファクトとして保存
@@ -187,14 +198,15 @@ sys.exit(1 if failed == len(race_ids) else 0)
         run: python web/generate_data.py
 
   # ----------------------------------------------------------
-  # レース後処理: 払戻同期 + 評価 + 通知
+  # レース後処理: 払戻同期 + 評価 + 通知（月曜自動 or 手動）
   # ----------------------------------------------------------
   post-race:
     name: レース後処理（払戻・評価・通知）
     runs-on: [self-hosted, Windows, umalogi]
 
     if: |
-      github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'post_race'
+      (github.event_name == 'schedule' && github.event.schedule == '0 0 * * 1') ||
+      (github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'post_race')
 
     steps:
       - name: リポジトリをチェックアウト
@@ -208,28 +220,42 @@ sys.exit(1 if failed == len(race_ids) else 0)
         shell: cmd
         run: python -c "from src.database.init_db import init_db; init_db()"
 
-      - name: 払戻同期 + 評価 + Discord通知
+      - name: 払戻データ同期（netkeiba）
         shell: cmd
         run: |
           if "${{ github.event.inputs.target_date }}" NEQ "" (
-            python -m src.ops.data_sync post_race --date ${{ github.event.inputs.target_date }}
+            python -m src.ops.data_sync payouts --date ${{ github.event.inputs.target_date }}
           ) else (
-            python -m src.ops.data_sync post_race
+            python -m src.ops.data_sync payouts
           )
 
-      - name: Discord EV推奨通知
+      - name: 着順結果同期
+        shell: cmd
+        run: |
+          if "${{ github.event.inputs.target_date }}" NEQ "" (
+            python -m src.ops.data_sync race_results --date ${{ github.event.inputs.target_date }}
+          ) else (
+            python -m src.ops.data_sync race_results
+          )
+
+      - name: 予想照合バッチ（的中判定）
+        shell: cmd
+        run: python -m src.ml.reconcile
+
+      - name: Discord 的中通知
         shell: cmd
         run: python scripts/notify_discord.py
 
   # ----------------------------------------------------------
-  # モデル再学習（手動実行のみ）
+  # モデル再学習（水曜自動 or 手動）
   # ----------------------------------------------------------
   train-models:
     name: モデル再学習
     runs-on: [self-hosted, Windows, umalogi]
 
     if: |
-      github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'train'
+      (github.event_name == 'schedule' && github.event.schedule == '0 17 * * 2') ||
+      (github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'train')
 
     steps:
       - name: リポジトリをチェックアウト
