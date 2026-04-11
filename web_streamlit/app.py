@@ -161,26 +161,27 @@ def fetch_race_predictions(race_id: str, kind: str = "any") -> pd.DataFrame:
         # 直前・暫定どちらも OR で取得し、直前を優先（EV・model_score 最大）
         mt_filter = ""
 
+    # bet_type='馬分析' に全頭スコアが保存されている（Step 5b で生成）。
+    # entries を基点に LEFT JOIN することで、スコア未登録馬も含む全頭を表示する。
     return _df(f"""
-        WITH best_pred AS (
+        WITH horse_scores AS (
+            -- bet_type='馬分析' のレコードから全馬のモデルスコアを取得
             SELECT
                 ph.horse_name,
                 ph.horse_id,
-                MAX(ph.predicted_rank)    AS predicted_rank,
-                MAX(ph.ev_score)          AS ev_score,
-                MAX(ph.model_score)       AS model_score,
-                MAX(p.recommended_bet)    AS recommended_bet,
-                MAX(p.expected_value)     AS expected_value,
-                MAX(p.confidence)         AS confidence,
-                MAX(p.model_type)         AS model_type
+                ph.predicted_rank,
+                ph.ev_score,
+                ph.model_score,
+                p.recommended_bet,
+                p.expected_value,
+                p.confidence,
+                p.model_type
             FROM prediction_horses ph
             JOIN predictions p ON p.id = ph.prediction_id
-            WHERE p.race_id     = ?
-              AND p.model_type  LIKE '%本命%'
-              AND p.bet_type    = '単勝'
-              AND p.expected_value > 0
+            WHERE p.race_id  = ?
+              AND p.bet_type = '馬分析'
+              AND p.model_type LIKE '%本命%'
               {mt_filter}
-            GROUP BY ph.horse_name
         ),
         best_entry AS (
             SELECT horse_number, gate_number, horse_name, horse_id,
@@ -204,34 +205,34 @@ def fetch_race_predictions(race_id: str, kind: str = "any") -> pd.DataFrame:
             WHERE race_id = ?
         )
         SELECT
-            bp.horse_name,
-            bp.horse_id,
-            bp.predicted_rank,
-            bp.ev_score,
-            bp.model_score,
-            bp.recommended_bet,
-            bp.expected_value,
-            bp.confidence,
-            bp.model_type,
-            COALESCE(be.horse_number, bp.predicted_rank) AS horse_number,
+            be.horse_number,
             be.gate_number,
+            COALESCE(hs.horse_name, be.horse_name)  AS horse_name,
+            COALESCE(hs.horse_id,   be.horse_id)    AS horse_id,
             be.sex_age,
             be.weight_carried,
             be.jockey,
             be.trainer,
             be.horse_weight,
             be.horse_weight_diff,
+            hs.predicted_rank,
+            hs.ev_score,
+            hs.model_score,
+            hs.recommended_bet,
+            hs.expected_value,
+            hs.confidence,
+            hs.model_type,
             r.rank,
             r.win_odds,
             r.popularity,
             r.finish_time,
             t.eval_grade,
             t.eval_text
-        FROM best_pred bp
-        LEFT JOIN best_entry  be ON be.horse_name = bp.horse_name
-        LEFT JOIN best_result r  ON r.horse_name  = bp.horse_name
-        LEFT JOIN training    t  ON t.horse_name  = bp.horse_name
-        ORDER BY bp.predicted_rank, bp.ev_score DESC
+        FROM best_entry be
+        LEFT JOIN horse_scores hs ON hs.horse_name = be.horse_name
+        LEFT JOIN best_result  r  ON r.horse_name  = be.horse_name
+        LEFT JOIN training     t  ON t.horse_name  = be.horse_name
+        ORDER BY COALESCE(hs.predicted_rank, 999), be.horse_number
     """, (race_id, race_id, race_id, race_id))
 
 

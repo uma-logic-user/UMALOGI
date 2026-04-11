@@ -16,8 +16,12 @@ import os
 from pathlib import Path
 
 import requests
+from dotenv import load_dotenv
 
 from .base import BaseNotifier, NotifyMessage
+
+# プロジェクトルートの .env を読み込む
+load_dotenv(Path(__file__).resolve().parents[3] / ".env", override=False)
 
 logger = logging.getLogger(__name__)
 

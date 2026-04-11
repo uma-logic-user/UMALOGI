@@ -29,6 +29,10 @@ import os
 
 import pandas as pd
 import requests
+from dotenv import load_dotenv
+
+# プロジェクトルートの .env を読み込む（既に環境変数がセットされている場合は上書きしない）
+load_dotenv(_ROOT / ".env", override=False)
 
 from src.database.init_db import (
     init_db,
@@ -654,7 +658,41 @@ def prerace_pipeline(race_id: str, provisional: bool = False) -> dict:
                 logger.error("予想保存失敗 %s %s: %s",
                              mt_tagged, bet.bet_type, exc)
 
-    # ── Step 5b: WIN5 予測（直前モードのみ）──────────────────────
+    # ── Step 5b: 全馬スコア保存（馬分析表示用）────────────────────
+    # Streamlit の「馬分析」で全出走馬のモデルスコアを表示するため、
+    # 全頭分のスコアを bet_type='馬分析' として保存する。
+    # prediction_horses は買い目馬しか格納しないため、このレコードが
+    # 全馬表示の唯一のソースとなる。
+    df_sorted = df.reset_index(drop=True)
+    # honmei_scores の降順でランク付け
+    rank_order = honmei_scores.argsort()[::-1].reset_index(drop=True)
+    all_horse_payload: list[dict] = []
+    for rank_pos, orig_idx in enumerate(rank_order):
+        row = df_sorted.iloc[int(orig_idx)]
+        all_horse_payload.append({
+            "horse_id":      str(row.get("horse_id") or ""),
+            "horse_name":    str(row.get("horse_name", "")),
+            "predicted_rank": rank_pos + 1,
+            "model_score":   float(honmei_scores.iloc[int(orig_idx)]),
+            "ev_score":      float(honmei_ev_scores.iloc[int(orig_idx)]),
+        })
+    try:
+        insert_prediction(
+            conn,
+            race_id=race_id,
+            model_type=f"本命{suffix}",
+            bet_type="馬分析",
+            horses=all_horse_payload,
+            confidence=None,
+            expected_value=None,
+            recommended_bet=None,
+            notes="全馬モデルスコア（馬分析タブ用）",
+            combination_json="[]",
+        )
+    except Exception as exc:
+        logger.warning("全馬スコア保存失敗（続行）: %s", exc)
+
+    # ── Step 5c: WIN5 予測（直前モードのみ）──────────────────────
     # 同日5レース以上存在する場合に先頭5レースで WIN5 予想を生成・保存する。
     if not provisional:
         _try_win5(conn, race_id)
