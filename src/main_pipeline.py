@@ -128,6 +128,22 @@ def _notify_skip(race_id: str, reason: str) -> None:
     _send_discord(text)
 
 
+def _send_scraping_health_alert(race_id: str, detail: str) -> None:
+    """スクレイピング異常を Discord Webhook で緊急通知する。
+
+    0頭取得・全オッズ NaN などスクレイパーの構造的破綻が疑われる場合に使用。
+    """
+    label = _format_race_label(race_id)
+    text = (
+        f"🚨【緊急】スクレイピング仕様変更の可能性\n"
+        f"対象: {label} (`{race_id}`)\n"
+        f"詳細: {detail}\n"
+        f"→ netkeiba / JRA-VAN の HTML 構造変更を確認してください"
+    )
+    logger.error("[スクレイピング異常] %s: %s", race_id, detail)
+    _send_discord(text)
+
+
 def _estimate_race_start_jst(race_number: int, race_date: str) -> datetime:
     """
     レース発走時刻を推定して返す（JST）。
@@ -171,8 +187,8 @@ def _check_race_deadline(conn, race_id: str) -> None:
             race_date   = race_id[:8]
             race_number = int(race_id[10:12]) if len(race_id) >= 12 else 1
         else:
-            # date は "YYYY/MM/DD" 形式
-            race_date_raw = row[0].replace("/", "")
+            # date は "YYYY-MM-DD" 形式（ISO 8601）
+            race_date_raw = row[0].replace("-", "")
             race_date   = race_date_raw[:8]
             race_number = int(row[1])
 
@@ -245,7 +261,7 @@ def provisional_batch(target_date: str | None = None) -> list[str]:
         tomorrow    = date.today() + timedelta(days=1)
         target_date = tomorrow.strftime("%Y%m%d")
 
-    formatted = f"{target_date[:4]}/{target_date[4:6]}/{target_date[6:8]}"
+    formatted = f"{target_date[:4]}-{target_date[4:6]}-{target_date[6:8]}"
     logger.info("暫定予想バッチ開始: 対象日=%s (%s)", target_date, formatted)
 
     conn = init_db()
@@ -324,7 +340,10 @@ def friday_batch(target_date: str | None = None) -> list[str]:
         try:
             table = fetch_entry_table(race_id, delay=2.0)
             if not table.entries:
-                logger.warning("出馬表が空 race_id=%s", race_id)
+                _send_scraping_health_alert(
+                    race_id,
+                    "出馬表が 0 頭（fetch_entry_table が空リストを返しました）",
+                )
                 continue
 
             # races テーブルへのダミー挿入（出馬表のみの段階ではレース情報が不完全）
@@ -357,7 +376,7 @@ def _ensure_race_record(conn, race_id: str, date_str: str) -> None:
             race_num = int(race_id[-2:])
         except ValueError:
             race_num = 0
-        formatted = f"{date_str[:4]}/{date_str[4:6]}/{date_str[6:8]}"
+        formatted = f"{date_str[:4]}-{date_str[4:6]}-{date_str[6:8]}"
         with conn:
             conn.execute(
                 """
@@ -369,6 +388,90 @@ def _ensure_race_record(conn, race_id: str, date_str: str) -> None:
                 (race_id, f"レース{race_num}", formatted, "未定",
                  race_num, 0, "未定", "", ""),
             )
+
+
+# ================================================================
+# WIN5 予測ヘルパー
+# ================================================================
+
+def _try_win5(conn, race_id: str) -> None:
+    """同日に5レース以上存在する場合に WIN5 予測を実行して DB に保存する。
+
+    Win5Engine を honmei モデルで初期化し、当日レース先頭5件で予測。
+    既に WIN5 予想が保存済みの場合はスキップ（重複防止）。
+    """
+    date_str = race_id[:8]
+    formatted = f"{date_str[:4]}-{date_str[4:6]}-{date_str[6:8]}"
+
+    rows = conn.execute(
+        "SELECT race_id FROM races WHERE date = ? ORDER BY race_id",
+        (formatted,),
+    ).fetchall()
+    race_ids_today = [r[0] for r in rows]
+
+    if len(race_ids_today) < 5:
+        logger.debug("WIN5 スキップ: 同日レース %d 件（5件必要）", len(race_ids_today))
+        return
+
+    win5_race_ids = race_ids_today[:5]
+
+    # 重複防止: 既に同じ先頭レースで WIN5 予想が存在するか確認
+    existing = conn.execute(
+        "SELECT COUNT(*) FROM predictions WHERE race_id = ? AND model_type = 'WIN5'",
+        (win5_race_ids[0],),
+    ).fetchone()[0]
+    if existing > 0:
+        logger.debug("WIN5 予測済みのためスキップ: %s", win5_race_ids[0])
+        return
+
+    try:
+        from src.ml.win5 import Win5Engine
+        honmei_model, _ = load_models()
+        engine = Win5Engine(model=honmei_model)
+        combinations = engine.predict_top_n(conn, win5_race_ids)
+
+        if not combinations:
+            logger.info("WIN5: EV >= 1.0 の組み合わせなし（当日レース: %s）", win5_race_ids)
+            return
+
+        best = combinations[0]
+        horses_payload = [
+            {
+                "horse_name":     p.horse_name,
+                "horse_number":   p.horse_number,
+                "predicted_rank": idx + 1,
+                "model_score":    p.blend_prob,
+                "ev_score":       best.expected_value,
+            }
+            for idx, p in enumerate(best.picks)
+        ]
+        combo_json = json.dumps([[p.horse_number] for p in best.picks])
+        horse_names_str = " / ".join(p.horse_name for p in best.picks)
+
+        insert_prediction(
+            conn,
+            race_id=win5_race_ids[0],
+            model_type="WIN5",
+            bet_type="WIN5",
+            horses=horses_payload,
+            confidence=best.combined_prob,
+            expected_value=best.expected_value,
+            recommended_bet=best.recommended_bet,
+            notes=f"WIN5: {horse_names_str}",
+            combination_json=combo_json,
+        )
+        logger.info(
+            "WIN5 予測保存: EV=%.3f 推定払戻=¥%,.0f [%s]",
+            best.expected_value, best.estimated_payout, horse_names_str,
+        )
+
+        _send_discord(
+            f"[WIN5] 推奨買い目 EV={best.expected_value:.3f} "
+            f"推定払戻 ¥{best.estimated_payout:,.0f}\n"
+            f"{horse_names_str}"
+        )
+    except Exception as exc:
+        logger.warning("WIN5 予測失敗（続行）: %s", exc)
 
 
 # ================================================================
@@ -475,13 +578,19 @@ def prerace_pipeline(race_id: str, provisional: bool = False) -> dict:
         return {"error": str(exc), "race_id": race_id}
 
     if df.empty:
-        logger.error("出馬表が空です race_id=%s", race_id)
+        _send_scraping_health_alert(race_id, "出馬表が 0 頭（features DataFrame が空）")
         conn.close()
         return {"error": "出馬表が空です", "race_id": race_id}
 
     # ── Step 2b: データ品質チェック（直前モードのみ） ─────────
     # 暫定モードでは馬体重/オッズ欠損を許容し、NaN のまま LightGBM に推論させる。
     if not provisional:
+        # 全馬のオッズが NaN → スクレイピング構造的破綻の可能性
+        if "win_odds" in df.columns and df["win_odds"].isna().all():
+            _send_scraping_health_alert(
+                race_id,
+                f"全馬の単勝オッズが NaN ({len(df)} 頭) — オッズ取得先の HTML 構造変更を確認してください",
+            )
         ok, reason = _check_data_quality(df)
         if not ok:
             conn.close()
@@ -544,6 +653,11 @@ def prerace_pipeline(race_id: str, provisional: bool = False) -> dict:
             except Exception as exc:
                 logger.error("予想保存失敗 %s %s: %s",
                              mt_tagged, bet.bet_type, exc)
+
+    # ── Step 5b: WIN5 予測（直前モードのみ）──────────────────────
+    # 同日5レース以上存在する場合に先頭5レースで WIN5 予想を生成・保存する。
+    if not provisional:
+        _try_win5(conn, race_id)
 
     conn.close()
 

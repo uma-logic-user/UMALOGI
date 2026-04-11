@@ -445,9 +445,9 @@ def _make_race_id(raw: bytes) -> str:
 
 
 def _kaisai_date_to_db(raw: bytes) -> str:
-    """YYYYMMDD → YYYY/MM/DD"""
+    """YYYYMMDD → YYYY-MM-DD (ISO 8601)"""
     d = _str(raw, _RK_KAISAI_DT)
-    return f"{d[:4]}/{d[4:6]}/{d[6:8]}" if len(d) == 8 else ''
+    return f"{d[:4]}-{d[4:6]}-{d[6:8]}" if len(d) == 8 else ''
 
 
 def _format_combo(raw_combo: bytes, combo_bytes: int) -> str:
@@ -885,7 +885,7 @@ def _parse_wc(raw: bytes) -> Optional[dict]:
 
     training_dt = _str(raw, _WC_TRAINING_DT)
     training_date = (
-        f"{training_dt[:4]}/{training_dt[4:6]}/{training_dt[6:8]}"
+        f"{training_dt[:4]}-{training_dt[4:6]}-{training_dt[6:8]}"
         if len(training_dt) == 8 else ''
     )
     if not training_date:
@@ -925,7 +925,7 @@ def _parse_wh(raw: bytes) -> Optional[dict]:
 
     training_dt = _str(raw, _WH_TRAINING_DT)
     training_date = (
-        f"{training_dt[:4]}/{training_dt[4:6]}/{training_dt[6:8]}"
+        f"{training_dt[:4]}-{training_dt[4:6]}-{training_dt[6:8]}"
         if len(training_dt) == 8 else ''
     )
     if not training_date:
@@ -959,7 +959,7 @@ def _parse_tc(raw: bytes) -> Optional[dict]:
         return None
     training_dt = _str(raw, _TC_TRAINING_DT)
     training_date = (
-        f"{training_dt[:4]}/{training_dt[4:6]}/{training_dt[6:8]}"
+        f"{training_dt[:4]}-{training_dt[4:6]}-{training_dt[6:8]}"
         if len(training_dt) == 8 else ''
     )
     return {
@@ -992,7 +992,7 @@ def _parse_hc(raw: bytes) -> Optional[dict]:
         return None
     training_dt = _str(raw, _HC_TRAINING_DT)
     training_date = (
-        f"{training_dt[:4]}/{training_dt[4:6]}/{training_dt[6:8]}"
+        f"{training_dt[:4]}-{training_dt[4:6]}-{training_dt[6:8]}"
         if len(training_dt) == 8 else ''
     )
     return {
@@ -1514,7 +1514,7 @@ _TRAINING_DDL = [
         id             INTEGER PRIMARY KEY AUTOINCREMENT,
         horse_id       TEXT    NOT NULL,
         horse_name     TEXT    NOT NULL DEFAULT '',
-        training_date  TEXT    NOT NULL,           -- YYYY/MM/DD
+        training_date  TEXT    NOT NULL,           -- YYYY-MM-DD (ISO 8601)
         venue_code     TEXT    NOT NULL DEFAULT '', -- 調教場コード
         course_type    TEXT    NOT NULL DEFAULT '', -- W=ウッド, P=ポリ 等
         direction      TEXT    NOT NULL DEFAULT '', -- 左/右
@@ -1538,7 +1538,7 @@ _TRAINING_DDL = [
         id             INTEGER PRIMARY KEY AUTOINCREMENT,
         horse_id       TEXT    NOT NULL,
         horse_name     TEXT    NOT NULL DEFAULT '',
-        training_date  TEXT    NOT NULL,           -- YYYY/MM/DD
+        training_date  TEXT    NOT NULL,           -- YYYY-MM-DD (ISO 8601)
         time_4f        REAL,
         time_3f        REAL,
         time_2f        REAL,

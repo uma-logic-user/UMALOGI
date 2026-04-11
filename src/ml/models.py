@@ -21,6 +21,7 @@ import lightgbm as lgb
 import numpy as np
 import pandas as pd
 from lightgbm import LGBMClassifier, LGBMRegressor
+from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import roc_auc_score
 from sklearn.model_selection import GroupKFold
 from sklearn.preprocessing import LabelEncoder
@@ -208,6 +209,30 @@ def _build_train_df(
     return df
 
 
+@dataclass
+class _PlattModel:
+    """
+    LGBMClassifier + Platt Scaling (LogisticRegression) の複合モデル。
+
+    base の predict_proba スコアを入力として Platt 回帰を適用し、
+    より信頼度の高い確率値（キャリブレーション済み）を返す。
+    pickle 可能なデータクラスとして実装し、save/load と完全互換。
+    """
+
+    base: LGBMClassifier
+    platt: LogisticRegression
+
+    def predict_proba(self, X: Any) -> np.ndarray:
+        """calibrated P(win) を返す。shape=(n,2) — [:, 1] が P(win)。"""
+        scores = self.base.predict_proba(X)[:, 1].reshape(-1, 1)
+        return self.platt.predict_proba(scores)
+
+    @property
+    def feature_importances_(self) -> np.ndarray:
+        """LightGBM の特徴量重要度（base モデルから取得）。"""
+        return self.base.feature_importances_
+
+
 # ── ベースクラス ──────────────────────────────────────────────────
 
 class _BaseModel:
@@ -255,35 +280,53 @@ class HonmeiModel(_BaseModel):
     """
     本命モデル（的中率特化）。
 
-    LightGBM 2値分類で各馬の 1着確率 P(rank=1) を推定する。
-    出力 predict() は各馬のスコア（高いほど有力）を pd.Series で返す。
+    LightGBM 2値分類 + Platt Scaling（OOF LogisticRegression）で
+    各馬の 1着確率 P(rank=1) を推定する。
+
+    学習フロー:
+      1. GroupKFold(5分割) CV を実施し ROC-AUC 計算 + OOF 予測を収集
+      2. OOF 予測を使った LogisticRegression で Platt Scaling 適用（追加 LGBM 訓練不要）
+      3. 全データで LGBMClassifier を本訓練（推論・特徴量重要度算出用）
+      4. Champion/Challenger: 末尾 20% ホールドアウトで既存保存モデルと AUC を比較し、
+         新モデルが champion_auc - 0.005 以上のときのみ train_all() がモデルを保存する
     """
 
     _filename = "honmei_model"
 
+    # LGBMClassifier に渡すパラメータ（clone で再利用するため定数として保持）
+    _LGBM_PARAMS: dict[str, Any] = dict(
+        n_estimators=300,
+        learning_rate=0.05,
+        num_leaves=31,
+        min_child_samples=10,
+        subsample=0.8,
+        colsample_bytree=0.8,
+        random_state=42,
+        verbose=-1,
+    )
+
     def __init__(self) -> None:
-        self._model = LGBMClassifier(
-            n_estimators=300,
-            learning_rate=0.05,
-            num_leaves=31,
-            min_child_samples=10,
-            subsample=0.8,
-            colsample_bytree=0.8,
-            random_state=42,
-            verbose=-1,
-        )
+        # _model: 推論で使う _PlattModel（None = 未訓練）
+        self._model: Any = None
+        # _base_lgbm: 特徴量重要度取得用の raw LGBMClassifier
+        self._base_lgbm: LGBMClassifier = LGBMClassifier(**self._LGBM_PARAMS)
         self._trained = False
 
     def train(
         self,
         conn: sqlite3.Connection,
         train_until: int | None = None,
-    ) -> dict[str, float]:
+    ) -> dict[str, Any]:
         """
         DB の race_results から学習データを構築して訓練する。
 
-        GroupKFold(5分割) で CV ROC-AUC を計算してから全データで本訓練を行う。
-        グループは race_id 単位なので、同一レース内の馬が train/val に分かれない。
+        学習フロー:
+          1. 全データを race_id でソートし末尾 20% を Champion 比較用ホールドアウトに分割
+          2. 全データで GroupKFold(5分割) CV を実施し ROC-AUC を計算
+          3. GroupKFold の OOF 予測を使って Platt Scaling (LogisticRegression) を適用
+             → 追加 LGBM 訓練なしにキャリブレーション済み確率を取得
+          4. 全データで base LGBMClassifier を本訓練（推論用）
+          5. Champion/Challenger 比較: ホールドアウトセットで既存保存モデルと AUC を比較
 
         Args:
             conn:        DB 接続
@@ -292,17 +335,23 @@ class HonmeiModel(_BaseModel):
 
         Returns:
             {
-              "n_races":      学習レース数,
-              "n_samples":    学習サンプル数,
-              "cv_auc_mean":  5-fold CV の平均 ROC-AUC,
-              "cv_auc_std":   同 標準偏差,
-              "train_until":  使用した最終年（None なら全期間）,
+              "n_races":        学習レース数,
+              "n_samples":      学習サンプル数,
+              "cv_auc_mean":    5-fold CV の平均 ROC-AUC,
+              "cv_auc_std":     同 標準偏差,
+              "challenger_auc": ホールドアウトセット上の新モデル AUC,
+              "champion_auc":   同セット上の既存保存モデル AUC（なければ NaN）,
+              "train_until":    使用した最終年（None なら全期間）,
             }
         """
         df = _build_train_df(conn, train_until=train_until)
         if df.empty:
             logger.warning("学習データが0件のため訓練をスキップします")
-            return {"n_races": 0, "n_samples": 0, "cv_auc_mean": float("nan"), "cv_auc_std": float("nan")}
+            return {
+                "n_races": 0, "n_samples": 0,
+                "cv_auc_mean": float("nan"), "cv_auc_std": float("nan"),
+                "challenger_auc": float("nan"), "champion_auc": float("nan"),
+            }
 
         n_races = df["race_id"].nunique()
         if n_races < _MIN_TRAIN_RACES:
@@ -311,22 +360,36 @@ class HonmeiModel(_BaseModel):
                 n_races, _MIN_TRAIN_RACES,
             )
 
-        X      = df[FEATURE_COLS].fillna(-1).infer_objects(copy=False)
-        y      = df["is_winner"]
-        groups = df["race_id"]
+        # ── データ準備 ──────────────────────────────────────────
+        # 時系列順にソートし末尾 20% を Champion 比較用ホールドアウトとして確保
+        df_sorted = df.sort_values("race_id").reset_index(drop=True)
+        n = len(df_sorted)
+        cal_n = max(1, int(n * 0.2))
+        df_cal = df_sorted.iloc[n - cal_n :]          # ホールドアウト (20%)
 
-        # ── GroupKFold クロスバリデーション ──────────────────────
+        X_cal  = df_cal[FEATURE_COLS].astype(float).fillna(-1)
+        y_cal  = df_cal["is_winner"]
+        X_all  = df_sorted[FEATURE_COLS].astype(float).fillna(-1)
+        y_all  = df_sorted["is_winner"]
+        groups = df_sorted["race_id"]
+
+        # ── GroupKFold CV + OOF 予測収集 ────────────────────────
         # race_id でグループを切るため同一レースの馬が train/val に分かれない（リーク防止）
+        # OOF 予測は Platt Scaling のキャリブレーションデータとして再利用する
+        # → 追加 LGBM 訓練なしに信頼性の高い確率補正が可能
         n_splits = min(5, n_races)
         aucs: list[float] = []
+        oof_preds = np.zeros(len(X_all), dtype=float)
+
         if n_splits >= 2:
             gkf = GroupKFold(n_splits=n_splits)
-            for train_idx, val_idx in gkf.split(X, y, groups=groups):
-                clone = LGBMClassifier(**self._model.get_params())
-                clone.fit(X.iloc[train_idx], y.iloc[train_idx])
-                proba = clone.predict_proba(X.iloc[val_idx])[:, 1]
+            for tr_idx, val_idx in gkf.split(X_all, y_all, groups=groups):
+                clone = LGBMClassifier(**self._LGBM_PARAMS)
+                clone.fit(X_all.iloc[tr_idx], y_all.iloc[tr_idx])
+                proba = clone.predict_proba(X_all.iloc[val_idx])[:, 1]
+                oof_preds[val_idx] = proba
                 try:
-                    aucs.append(roc_auc_score(y.iloc[val_idx], proba))
+                    aucs.append(roc_auc_score(y_all.iloc[val_idx], proba))
                 except ValueError:
                     # fold に正例（1着馬）がない稀なケースをスキップ
                     pass
@@ -334,12 +397,23 @@ class HonmeiModel(_BaseModel):
         cv_auc_mean = float(np.mean(aucs)) if aucs else float("nan")
         cv_auc_std  = float(np.std(aucs))  if aucs else float("nan")
 
-        # ── 全データで本訓練 ─────────────────────────────────────
-        self._model.fit(X, y)
+        # ── Platt Scaling: OOF 予測 → LogisticRegression で確率補正 ──
+        # scikit-learn の Platt Scaling と同等だが追加 LGBM 訓練なしで実現
+        platt = LogisticRegression(C=1.0, max_iter=1000, random_state=42)
+        if np.any(oof_preds != 0):
+            platt.fit(oof_preds.reshape(-1, 1), y_all)
+        else:
+            # OOF 収集不可（n_splits < 2）: 定数 0.0 を入力としてフォールバック
+            platt.fit(np.zeros((len(y_all), 1)), y_all)
+
+        # ── 全データで base LGBMClassifier を本訓練 ─────────────
+        self._base_lgbm = LGBMClassifier(**self._LGBM_PARAMS)
+        self._base_lgbm.fit(X_all, y_all)
+        self._model = _PlattModel(base=self._base_lgbm, platt=platt)
         self._trained = True
 
         # ── 特徴量重要度 Top10 ───────────────────────────────────
-        importances: np.ndarray = self._model.feature_importances_
+        importances: np.ndarray = self._base_lgbm.feature_importances_
         feat_imp_pairs = sorted(
             zip(FEATURE_COLS, importances.tolist()),
             key=lambda t: t[1],
@@ -349,33 +423,59 @@ class HonmeiModel(_BaseModel):
         for rank_i, (feat, imp) in enumerate(feat_imp_pairs[:10], 1):
             logger.info("  %2d. %-30s  gain=%d", rank_i, feat, int(imp))
 
+        # ── Challenger AUC（ホールドアウトセットでの新モデル AUC） ─
+        challenger_auc = float("nan")
+        try:
+            chal_proba = self._model.predict_proba(X_cal)[:, 1]
+            challenger_auc = float(roc_auc_score(y_cal, chal_proba))
+        except ValueError:
+            pass
+
+        # ── Champion AUC（既存保存モデルの同セット上の AUC） ─────
+        champion_auc = float("nan")
+        champion_path = _MODEL_DIR / f"{self._filename}.pkl"
+        if champion_path.exists():
+            try:
+                with open(champion_path, "rb") as f:
+                    champion_model = pickle.load(f)
+                champ_proba = champion_model.predict_proba(X_cal)[:, 1]
+                champion_auc = float(roc_auc_score(y_cal, champ_proba))
+                logger.info(
+                    "Champion/Challenger: champion AUC=%.4f / challenger AUC=%.4f",
+                    champion_auc, challenger_auc,
+                )
+            except Exception as e:
+                logger.warning("チャンピオンモデルの評価に失敗（スキップ）: %s", e)
+
         logger.info(
             "本命モデル訓練完了: %d レース / %d サンプル / CV AUC %.4f ±%.4f",
             n_races, len(df), cv_auc_mean, cv_auc_std,
         )
         return {
-            "n_races":     n_races,
-            "n_samples":   len(df),
-            "cv_auc_mean": cv_auc_mean,
-            "cv_auc_std":  cv_auc_std,
-            "train_until": train_until,
+            "n_races":        n_races,
+            "n_samples":      len(df),
+            "cv_auc_mean":    cv_auc_mean,
+            "cv_auc_std":     cv_auc_std,
+            "challenger_auc": challenger_auc,
+            "champion_auc":   champion_auc,
+            "train_until":    train_until,
         }
 
     def predict(self, df: pd.DataFrame) -> pd.Series:
         """
-        特徴量 DataFrame を受け取り、各馬の 1着確率スコアを返す。
+        特徴量 DataFrame を受け取り、各馬の Platt-calibrated 1着確率スコアを返す。
 
         Args:
             df: FeatureBuilder.build_race_features() の出力（horse_number インデックス）
 
         Returns:
-            pd.Series (index=df.index, values=P(win) 0〜1)
+            pd.Series (index=df.index, values=P(win) 0〜1, Platt Scaling 補正済み)
         """
         if not self._trained:
             logger.debug("未訓練モデル — フォールバック予測を使用")
             return self._fallback_predict(df)
 
-        X = df[FEATURE_COLS].fillna(-1).infer_objects(copy=False)
+        X = df[FEATURE_COLS].astype(float).fillna(-1)
         proba = self._model.predict_proba(X)[:, 1]
         return pd.Series(proba, index=df.index, name="honmei_score")
 
@@ -441,7 +541,7 @@ class ManjiModel(_BaseModel):
             return {"n_races": 0, "n_samples": 0}
 
         n_races = df["race_id"].nunique()
-        X = df[FEATURE_COLS].fillna(-1).infer_objects(copy=False)
+        X = df[FEATURE_COLS].astype(float).fillna(-1)
         y = df["ev_target"]
 
         self._model.fit(X, y)
@@ -464,7 +564,7 @@ class ManjiModel(_BaseModel):
             odds = df["win_odds"].fillna(1.0)
             return pd.Series(odds, index=df.index, name="manji_score")
 
-        X = df[FEATURE_COLS].fillna(-1).infer_objects(copy=False)
+        X = df[FEATURE_COLS].astype(float).fillna(-1)
         pred = self._model.predict(X)
         return pd.Series(pred.clip(min=0), index=df.index, name="manji_score")
 
@@ -482,6 +582,10 @@ def train_all(
     """
     本命・卍モデルを両方訓練して data/models/ に保存する。
 
+    本命モデルは Champion/Challenger 比較を行い、
+    challenger_auc >= champion_auc - 0.005 の場合のみ保存（世代交代）。
+    champion が存在しない場合・AUC 比較不能の場合は無条件で保存する。
+
     Args:
         conn:        DB 接続
         train_until: 学習に使う最終年（None なら全期間）
@@ -496,8 +600,31 @@ def train_all(
     h_result = honmei.train(conn, train_until=train_until)
     m_result = manji.train(conn, train_until=train_until)
 
+    # ── 本命モデル: Champion/Challenger 判定 ─────────────────────
     if honmei.is_trained:
-        honmei.save()
+        challenger_auc: float = h_result.get("challenger_auc", float("nan"))
+        champion_auc:   float = h_result.get("champion_auc",   float("nan"))
+
+        # champion が存在しないか AUC 比較不能 → 無条件保存
+        if np.isnan(champion_auc) or np.isnan(challenger_auc):
+            honmei.save()
+            h_result["promoted"] = True
+        # challenger が champion を下回る場合（許容誤差 0.005）は却下
+        elif challenger_auc >= champion_auc - 0.005:
+            honmei.save()
+            h_result["promoted"] = True
+            logger.info(
+                "世代交代: challenger AUC=%.4f >= champion AUC=%.4f",
+                challenger_auc, champion_auc,
+            )
+        else:
+            h_result["promoted"] = False
+            logger.warning(
+                "世代交代却下: challenger AUC=%.4f < champion AUC=%.4f (差=%.4f) — 既存モデルを維持",
+                challenger_auc, champion_auc, champion_auc - challenger_auc,
+            )
+
+    # ── 卍モデル: 無条件保存 ──────────────────────────────────────
     if manji.is_trained:
         manji.save()
 

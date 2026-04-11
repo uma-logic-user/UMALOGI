@@ -52,7 +52,7 @@ DDL_STATEMENTS: list[str] = [
     CREATE TABLE IF NOT EXISTS races (
         race_id         TEXT    PRIMARY KEY,
         race_name       TEXT    NOT NULL,
-        date            TEXT    NOT NULL,       -- YYYY/MM/DD
+        date            TEXT    NOT NULL,       -- YYYY-MM-DD (ISO 8601)
         venue           TEXT    NOT NULL,
         race_number     INTEGER NOT NULL,
         distance        INTEGER NOT NULL,
@@ -163,7 +163,9 @@ DDL_STATEMENTS: list[str] = [
         expected_value  REAL,               -- 期待値（卍モデルの主指標）
         recommended_bet REAL,               -- 推奨購入金額（Kelly最適化後）
         notes           TEXT,               -- 根拠メモ（血統・オッズ歪み等）
-        created_at      TEXT    NOT NULL DEFAULT (datetime('now', 'localtime'))
+        combination_json TEXT,              -- 買い目組合せ JSON [[1,5],[1,7],...]
+        created_at      TEXT    NOT NULL DEFAULT (datetime('now', 'localtime')),
+        UNIQUE(race_id, model_type, bet_type)
     )
     """,
 
@@ -700,6 +702,51 @@ DDL_STATEMENTS: list[str] = [
 
 
 # ================================================================
+# ── 日付ユーティリティ ────────────────────────────────────────────
+# ================================================================
+
+def normalize_race_date(date_str: str) -> str:
+    """任意の日付文字列を YYYY-MM-DD (ISO 8601) 形式に正規化する。
+
+    対応フォーマット:
+      - ``YYYYMMDD``    (コンパクト形式、スクレイパー引数など)
+      - ``YYYY/MM/DD``  (旧 DB 格納形式)
+      - ``YYYY-MM-DD``  (ISO 8601、パススルー)
+
+    腐敗データの判定:
+      - 年が ``'20'`` 以外で始まる (2001〜2099 年以外)
+      - 月が 1〜12 の範囲外
+      - 日が 1〜31 の範囲外
+
+    Raises:
+        ValueError: 認識できないフォーマットまたは腐敗データの場合
+
+    Returns:
+        ``YYYY-MM-DD`` 形式の文字列
+    """
+    s = (date_str or "").strip()
+    if len(s) == 10 and s[4] == '-' and s[7] == '-':
+        y, mo, d = s[0:4], s[5:7], s[8:10]
+    elif len(s) == 10 and s[4] == '/' and s[7] == '/':
+        y, mo, d = s[0:4], s[5:7], s[8:10]
+    elif len(s) == 8 and s.isdigit():
+        y, mo, d = s[0:4], s[4:6], s[6:8]
+    else:
+        raise ValueError(f"未知の日付フォーマット: {date_str!r}")
+
+    if not y.startswith('20'):
+        raise ValueError(f"腐敗データ（2000年以前または3000年以降）: {date_str!r}")
+    try:
+        mo_i, d_i = int(mo), int(d)
+    except ValueError:
+        raise ValueError(f"腐敗データ（月日が数値でない）: {date_str!r}")
+    if not (1 <= mo_i <= 12 and 1 <= d_i <= 31):
+        raise ValueError(f"腐敗データ（月日が範囲外）: {date_str!r}")
+
+    return f"{y}-{mo}-{d}"
+
+
+# ================================================================
 # ── DB 操作関数 ──────────────────────────────────────────────────
 # ================================================================
 
@@ -744,14 +791,19 @@ def init_db(db_path: Path | None = None) -> sqlite3.Connection:
         for ddl in DDL_STATEMENTS:
             conn.execute(ddl)
 
-    # 既存 DB への列追加マイグレーション
-    _migrate_add_combination_json(conn)
-    _migrate_races_new_columns(conn)
-    _migrate_race_results_new_columns(conn)
+    # 既存 DB への列追加マイグレーション（順序厳守）
+    _migrate_add_combination_json(conn)          # 1. combination_json 列追加
+    _migrate_races_new_columns(conn)             # 2. races 新列追加
+    _migrate_race_results_new_columns(conn)      # 3. race_results 新列追加
     # model_type CHECK 制約を除去（(暫定)/(直前) suffix 対応）
-    _migrate_relax_model_type_check(conn)
+    _migrate_relax_model_type_check(conn)        # 4. CHECK 制約除去
+    # predictions UNIQUE 制約追加（Create-Insert-Drop）
+    _migrate_predictions_unique_constraint(conn) # 5. UNIQUE 制約
+    # races.date / training_date を YYYY-MM-DD に標準化
+    _migrate_standardize_race_dates(conn)        # 6. 日付フォーマット統一
+    _migrate_standardize_training_dates(conn)    # 7. 調教日付フォーマット統一
     # ビュー定義を常に最新に保つ（DDL 変更時に自動反映）
-    _migrate_recreate_mart_view(conn)
+    _migrate_recreate_mart_view(conn)            # 8. v_race_mart 再作成
 
     logger.info("DB 初期化完了: %s", path)
     return conn
@@ -873,10 +925,212 @@ def _migrate_race_results_new_columns(conn: sqlite3.Connection) -> None:
                 logger.info("マイグレーション: race_results.%s 列を追加しました", col_name)
 
 
+def _migrate_predictions_unique_constraint(conn: sqlite3.Connection) -> None:
+    """predictions テーブルに UNIQUE(race_id, model_type, bet_type) 制約を追加する。
+
+    SQLite は既存テーブルへの UNIQUE 制約追加が不可のため Create-Insert-Drop で対応。
+    重複行は id が最大（最新）のものを残し、孤立した prediction_horses /
+    prediction_results 行も合わせて削除する。prediction_id は保持されるため
+    FK 参照は維持される。
+    """
+    schema = conn.execute(
+        "SELECT sql FROM sqlite_master WHERE type='table' AND name='predictions'"
+    ).fetchone()
+    if not schema or "UNIQUE(race_id, model_type, bet_type)" in schema[0]:
+        return
+
+    # 残留テーブルのクリーンアップ（前回の失敗マイグレーション対策）
+    conn.execute("DROP TABLE IF EXISTS predictions_new")
+
+    # 現在のカラム一覧（combination_json が追加済みであることを前提）
+    cols = [row[1] for row in conn.execute("PRAGMA table_info(predictions)").fetchall()]
+    cols_str = ", ".join(cols)
+
+    logger.info("マイグレーション: predictions UNIQUE(race_id, model_type, bet_type) 制約追加開始")
+
+    conn.execute("PRAGMA foreign_keys = OFF")
+    try:
+        with conn:
+            # 0. RENAME 時に SQLite がビュー定義を検証するため、壊れた参照を持つ
+            #    ビューは事前に DROP して migration 後に再作成する。
+            #    v_race_mart は _migrate_recreate_mart_view() が再作成するため省略。
+            for _view in ("v_prediction_summary", "v_model_annual_summary"):
+                conn.execute(f"DROP VIEW IF EXISTS {_view}")
+
+            # 1. UNIQUE 制約つき新テーブルを作成
+            conn.execute("""
+                CREATE TABLE predictions_new (
+                    id              INTEGER PRIMARY KEY AUTOINCREMENT,
+                    race_id         TEXT    NOT NULL REFERENCES races(race_id),
+                    model_type      TEXT    NOT NULL,
+                    bet_type        TEXT    NOT NULL,
+                    confidence      REAL,
+                    expected_value  REAL,
+                    recommended_bet REAL,
+                    notes           TEXT,
+                    combination_json TEXT,
+                    created_at      TEXT    NOT NULL DEFAULT (datetime('now', 'localtime')),
+                    UNIQUE(race_id, model_type, bet_type)
+                )
+            """)
+
+            # 2. 重複排除: (race_id, model_type, bet_type) ごとに最新 id のみ残す
+            conn.execute(f"""
+                INSERT INTO predictions_new ({cols_str})
+                SELECT {cols_str}
+                FROM predictions
+                WHERE id IN (
+                    SELECT MAX(id)
+                    FROM   predictions
+                    GROUP BY race_id, model_type, bet_type
+                )
+            """)
+
+            # 3. 孤立した子テーブル行を削除
+            conn.execute("""
+                DELETE FROM prediction_horses
+                WHERE prediction_id NOT IN (SELECT id FROM predictions_new)
+            """)
+            conn.execute("""
+                DELETE FROM prediction_results
+                WHERE prediction_id NOT IN (SELECT id FROM predictions_new)
+            """)
+
+            # 4. 旧テーブル削除・新テーブルをリネーム
+            conn.execute("DROP TABLE predictions")
+            conn.execute("ALTER TABLE predictions_new RENAME TO predictions")
+
+            # 5. インデックスを再作成
+            for idx_sql in (
+                "CREATE INDEX IF NOT EXISTS idx_pred_race_id    ON predictions(race_id)",
+                "CREATE INDEX IF NOT EXISTS idx_pred_model_type ON predictions(model_type)",
+                "CREATE INDEX IF NOT EXISTS idx_pred_created_at ON predictions(created_at)",
+                "CREATE INDEX IF NOT EXISTS idx_pred_bet_type   ON predictions(bet_type)",
+            ):
+                conn.execute(idx_sql)
+
+            # 6. ビューを再作成（DDL_STATEMENTS から定義を取り出して実行）
+            for _ddl in DDL_STATEMENTS:
+                if "CREATE VIEW" in _ddl and (
+                    "v_prediction_summary" in _ddl or "v_model_annual_summary" in _ddl
+                ):
+                    # DROP して CREATE（IF NOT EXISTS でも既にないので安全）
+                    conn.execute(_ddl)
+
+        logger.info("マイグレーション: predictions UNIQUE 制約追加完了")
+    finally:
+        conn.execute("PRAGMA foreign_keys = ON")
+
+
+def _migrate_standardize_race_dates(conn: sqlite3.Connection) -> None:
+    """races.date を YYYY-MM-DD (ISO 8601) に統一し、腐敗レコードを削除する。
+
+    腐敗データの定義:
+      - race_id が ``'20__________'`` (12 桁) パターンに合わない
+      - date が ``'20??-??-??'`` でも ``'20??/??/??'`` でもない
+      - 会場コード (race_id[4:6]) が ``'01'`` 〜 ``'10'`` の範囲外
+
+    変換ロジック:
+      YYYY/MM/DD → YYYY-MM-DD (SQLite の SUBSTR + 連結で変換)
+    """
+    slash_count: int = conn.execute(
+        "SELECT COUNT(*) FROM races WHERE date LIKE '____/__/__'"
+    ).fetchone()[0]
+    corrupt_count: int = conn.execute(
+        """
+        SELECT COUNT(*) FROM races
+        WHERE race_id NOT LIKE '20__________'
+           OR (date NOT LIKE '20__/__/__' AND date NOT LIKE '20__-__-__')
+           OR CAST(SUBSTR(race_id, 5, 2) AS INTEGER) NOT BETWEEN 1 AND 10
+        """
+    ).fetchone()[0]
+
+    if slash_count == 0 and corrupt_count == 0:
+        return
+
+    logger.info(
+        "マイグレーション: races.date 標準化 (スラッシュ形式: %d件, 腐敗データ: %d件)",
+        slash_count, corrupt_count,
+    )
+
+    conn.execute("PRAGMA foreign_keys = OFF")
+    try:
+        with conn:
+            # 1. 腐敗レコードの特定
+            corrupt_ids: list[str] = [
+                r[0] for r in conn.execute(
+                    """
+                    SELECT race_id FROM races
+                    WHERE race_id NOT LIKE '20__________'
+                       OR (date NOT LIKE '20__/__/__' AND date NOT LIKE '20__-__-__')
+                       OR CAST(SUBSTR(race_id, 5, 2) AS INTEGER) NOT BETWEEN 1 AND 10
+                    """
+                ).fetchall()
+            ]
+            if corrupt_ids:
+                ph = ",".join("?" * len(corrupt_ids))
+                # FK=OFF のため手動で子テーブルを先に削除
+                for child in ("race_results", "race_payouts", "entries",
+                               "realtime_odds", "predictions"):
+                    conn.execute(f"DELETE FROM {child} WHERE race_id IN ({ph})", corrupt_ids)
+                conn.execute(f"DELETE FROM races WHERE race_id IN ({ph})", corrupt_ids)
+                logger.info("腐敗レコード削除: %d 件", len(corrupt_ids))
+
+            # 2. YYYY/MM/DD → YYYY-MM-DD に変換
+            if slash_count > 0:
+                conn.execute(
+                    """
+                    UPDATE races
+                    SET date =
+                        SUBSTR(date, 1, 4) || '-' ||
+                        SUBSTR(date, 6, 2) || '-' ||
+                        SUBSTR(date, 9, 2)
+                    WHERE date LIKE '____/__/__'
+                    """
+                )
+                logger.info("races.date 変換完了: %d 件", slash_count)
+    finally:
+        conn.execute("PRAGMA foreign_keys = ON")
+
+
+def _migrate_standardize_training_dates(conn: sqlite3.Connection) -> None:
+    """training_times / training_hillwork の training_date を YYYY-MM-DD に統一する。
+
+    UNIQUE 制約 (horse_id, training_date, ...) は同一論理日の変換では衝突しないため
+    DROP/RENAME 不要。UPDATE のみで完結する。
+    """
+    for table in ("training_times", "training_hillwork"):
+        count: int = conn.execute(
+            f"SELECT COUNT(*) FROM {table} WHERE training_date LIKE '____/__/__'"
+        ).fetchone()[0]
+        if count > 0:
+            with conn:
+                conn.execute(
+                    f"""
+                    UPDATE {table}
+                    SET training_date =
+                        SUBSTR(training_date, 1, 4) || '-' ||
+                        SUBSTR(training_date, 6, 2) || '-' ||
+                        SUBSTR(training_date, 9, 2)
+                    WHERE training_date LIKE '____/__/__'
+                    """
+                )
+            logger.info("マイグレーション: %s.training_date 変換完了 %d 件", table, count)
+
+
 def insert_race(conn: sqlite3.Connection, race: "RaceInfo") -> None:  # type: ignore[name-defined]
     """
     RaceInfo をトランザクション内で races / horses / race_results に保存する。
     """
+    try:
+        normalized_date = normalize_race_date(race.date)
+    except ValueError:
+        logger.warning(
+            "不正な日付のため races INSERT をスキップ: race_id=%s date=%r",
+            race.race_id, race.date,
+        )
+        return
+
     with conn:
         conn.execute(
             """
@@ -886,7 +1140,7 @@ def insert_race(conn: sqlite3.Connection, race: "RaceInfo") -> None:  # type: ig
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
             (
-                race.race_id, race.race_name, race.date, race.venue,
+                race.race_id, race.race_name, normalized_date, race.venue,
                 race.race_number, race.distance, race.surface,
                 getattr(race, "track_direction", ""),
                 race.weather, race.condition,
@@ -966,15 +1220,15 @@ def insert_prediction(
     Returns:
         新規 prediction.id
     """
-    _VALID_BASE_TYPES = {"卍", "本命"}
+    _VALID_BASE_TYPES = {"卍", "本命", "WIN5"}
     base = model_type.split("(")[0]
     if base not in _VALID_BASE_TYPES:
-        raise ValueError(f"model_type のベースは '卍' または '本命' を指定してください: {model_type!r}")
+        raise ValueError(f"model_type のベースは '卍' / '本命' / 'WIN5' を指定してください: {model_type!r}")
 
     with conn:
         cur = conn.execute(
             """
-            INSERT INTO predictions
+            INSERT OR REPLACE INTO predictions
                 (race_id, model_type, bet_type, confidence,
                  expected_value, recommended_bet, notes, combination_json)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)
@@ -1315,8 +1569,8 @@ def query_mart(
         year:      開催年 (例: "2024")
         venue:     開催場所 (例: "東京")
         surface:   馬場種別 (例: "芝" / "ダート")
-        date_from: 開催日の下限 (YYYY/MM/DD, 含む)
-        date_to:   開催日の上限 (YYYY/MM/DD, 含む)
+        date_from: 開催日の下限 (YYYY-MM-DD, 含む)
+        date_to:   開催日の上限 (YYYY-MM-DD, 含む)
 
     Returns:
         list[sqlite3.Row] — 辞書ライクアクセス可 (row["horse_name"] 等)

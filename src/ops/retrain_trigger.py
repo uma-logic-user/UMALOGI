@@ -126,7 +126,7 @@ def batch_evaluate_date(
     指定日の全確定レースを一括評価・通知する。
 
     Args:
-        date: "YYYY/MM/DD" 形式
+        date: "YYYY-MM-DD" 形式 (ISO 8601)
     """
     race_ids = [
         r[0] for r in conn.execute(

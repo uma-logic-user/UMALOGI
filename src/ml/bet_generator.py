@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import itertools
 import logging
+import sqlite3
 from dataclasses import dataclass, field
 from typing import Literal
 
@@ -38,6 +39,109 @@ _TRACK_TAKE: dict[str, float] = {
     "馬連": 0.225, "ワイド": 0.225, "馬単": 0.250,
     "三連複": 0.250, "三連単": 0.275,
 }
+
+
+@dataclass
+class BetConfig:
+    """
+    ケリー基準のハードキャップ設定。
+
+    Attributes:
+        bankroll:          総資金（円）
+        max_bet_fraction:  1レースあたりの最大投資比率（0.0〜1.0）
+        max_bet_per_combo: 1点あたりの最大購入額（円）
+    """
+    bankroll: float = 100_000.0
+    max_bet_fraction: float = 0.05
+    max_bet_per_combo: float = 1_000.0
+
+    @property
+    def max_race_bet(self) -> float:
+        """1レースあたりの最大投資額（円）。"""
+        return self.bankroll * self.max_bet_fraction
+
+
+class OddsEstimator:
+    """
+    各券種の推定払戻オッズを過去実績から統計的に学習する。
+
+    学習式:
+        scale = median( race_payouts.payout / 100 / axis_win_odds )
+        axis_win_odds = 当該レースの1着馬の単勝オッズ
+    データ不足（< MIN_SAMPLES 件）の場合は固定スケールにフォールバックする。
+
+    EV 算出式:
+        EV = harville_prob × axis_win_odds × scale
+        EV > 1.0 が期待値プラスの基準
+    """
+
+    _MIN_SAMPLES: int = 50
+
+    # フォールバック: 単勝オッズに掛ける経験則スケール
+    _DEFAULT_SCALE: dict[str, float] = {
+        "単勝": 1.0, "複勝": 0.33,
+        "馬連": 6.0, "ワイド": 2.5,
+        "馬単": 12.0, "三連複": 30.0, "三連単": 150.0,
+    }
+
+    def __init__(self, conn: sqlite3.Connection | None = None) -> None:
+        self._scales: dict[str, float] = dict(self._DEFAULT_SCALE)
+        if conn is not None:
+            self._fit(conn)
+
+    def _fit(self, conn: sqlite3.Connection) -> None:
+        """過去の race_payouts から券種別スケールを推定する。"""
+        for bet_type in self._DEFAULT_SCALE:
+            try:
+                rows = conn.execute(
+                    """
+                    SELECT CAST(rp.payout AS REAL) / 100.0 / rr.win_odds
+                    FROM race_payouts rp
+                    JOIN race_results rr
+                      ON rr.race_id = rp.race_id
+                     AND rr.rank    = 1
+                     AND rr.win_odds >= 1.2
+                    WHERE rp.bet_type = ?
+                      AND rp.payout   > 0
+                    """,
+                    (bet_type,),
+                ).fetchall()
+
+                ratios = sorted(r[0] for r in rows if r[0] is not None and r[0] > 0)
+                n = len(ratios)
+                if n >= self._MIN_SAMPLES:
+                    mid = n // 2
+                    median = (
+                        ratios[mid] if n % 2
+                        else (ratios[mid - 1] + ratios[mid]) / 2
+                    )
+                    self._scales[bet_type] = round(median, 3)
+                    logger.debug(
+                        "OddsEstimator %s: n=%d median_scale=%.3f (default=%.3f)",
+                        bet_type, n, median, self._DEFAULT_SCALE[bet_type],
+                    )
+                else:
+                    logger.debug(
+                        "OddsEstimator %s: データ不足(%d件) デフォルトスケール使用",
+                        bet_type, n,
+                    )
+            except Exception as exc:
+                logger.warning("OddsEstimator._fit %s 失敗: %s", bet_type, exc)
+
+    def ev(self, harville_prob: float, bet_type: str, axis_odds: float) -> float:
+        """
+        Harville確率と軸馬単勝オッズから期待値を推定する。
+
+        Returns:
+            EV = harville_prob × axis_win_odds × learned_scale
+            (1.0 超 = 期待値プラス)
+        """
+        scale = self._scales.get(bet_type, 1.0)
+        return harville_prob * axis_odds * scale
+
+    def scale(self, bet_type: str) -> float:
+        """券種のスケール係数を返す（デバッグ・テスト用）。"""
+        return self._scales.get(bet_type, 1.0)
 
 
 @dataclass
@@ -162,20 +266,13 @@ def _harville_trio(probs: list[float], i: int, j: int, k: int) -> float:
 
 def _ev_estimate(harville_prob: float, win_odds: float, bet_type: str) -> float:
     """
-    単勝オッズを使って多馬券の期待値を推定する。
+    単勝オッズを使って多馬券の期待値を推定する（後方互換ラッパー）。
 
-    単勝EV = P(win) * win_odds / 100
-    多馬券EV ≈ harville_prob * (win_odds_axis * scale_factor) / 100
-    scale_factor: 券種ごとの一般的オッズ倍率（経験則）
+    EV = harville_prob × axis_win_odds × scale
+    scale: OddsEstimator._DEFAULT_SCALE に基づく固定値
     """
-    _SCALE: dict[str, float] = {
-        "単勝": 1.0, "複勝": 0.33,
-        "馬連": 8.0, "ワイド": 3.5,
-        "馬単": 15.0, "三連複": 40.0, "三連単": 200.0,
-    }
-    scale = _SCALE.get(bet_type, 1.0)
-    estimated_odds = win_odds * scale
-    return harville_prob * estimated_odds / 100.0
+    scale = OddsEstimator._DEFAULT_SCALE.get(bet_type, 1.0)
+    return harville_prob * win_odds * scale
 
 
 # ── 馬名マップ取得ユーティリティ ──────────────────────────────────
@@ -201,6 +298,9 @@ class ManjiStrategy:
     EV_THRESHOLD  = 1.0   # 単勝・複勝 推奨の最低 EV
     EV_COMBO_MIN  = 1.1   # 組み合わせ馬券の最低 EV（平均）
     EV_SANREN_MIN = 1.2   # 三連複推奨の最低 EV
+
+    def __init__(self, estimator: OddsEstimator | None = None) -> None:
+        self._estimator = estimator or OddsEstimator()
 
     def generate(
         self,
@@ -296,7 +396,7 @@ class ManjiStrategy:
                     bet_type="馬連",
                     combinations=[combo],
                     horse_names=[names.get(n, str(n)) for n in combo],
-                    expected_value=_ev_estimate(q_prob, axis_odds, "馬連"),
+                    expected_value=self._estimator.ev(q_prob, "馬連", axis_odds),
                     model_score=q_prob,
                     recommended_bet=_BASE_BET * 2,
                     confidence=min(q_prob * 5, 1.0),
@@ -307,7 +407,7 @@ class ManjiStrategy:
                     bet_type="ワイド",
                     combinations=[combo],
                     horse_names=[names.get(n, str(n)) for n in combo],
-                    expected_value=_ev_estimate(q_prob, axis_odds, "ワイド"),
+                    expected_value=self._estimator.ev(q_prob, "ワイド", axis_odds),
                     model_score=q_prob,
                     recommended_bet=_BASE_BET * 2,
                     confidence=min(q_prob * 6, 1.0),
@@ -320,7 +420,7 @@ class ManjiStrategy:
                     bet_type="馬単",
                     combinations=[exacta_combo],
                     horse_names=[names.get(n, str(n)) for n in exacta_combo],
-                    expected_value=_ev_estimate(ex_prob, axis_odds, "馬単"),
+                    expected_value=self._estimator.ev(ex_prob, "馬単", axis_odds),
                     model_score=ex_prob,
                     recommended_bet=_BASE_BET * 2,
                     confidence=min(ex_prob * 8, 1.0),
@@ -342,7 +442,7 @@ class ManjiStrategy:
                     bet_type="三連複",
                     combinations=[combo3],
                     horse_names=[names.get(n, str(n)) for n in combo3],
-                    expected_value=_ev_estimate(trio_prob, axis_odds3, "三連複"),
+                    expected_value=self._estimator.ev(trio_prob, "三連複", axis_odds3),
                     model_score=trio_prob,
                     recommended_bet=_BASE_BET * 3,
                     confidence=min(trio_prob * 15, 1.0),
@@ -368,6 +468,9 @@ class HonmeiStrategy:
     """
 
     TOP_N_COMBO = 3   # 組み合わせに使う上位頭数
+
+    def __init__(self, estimator: OddsEstimator | None = None) -> None:
+        self._estimator = estimator or OddsEstimator()
 
     def generate(
         self,
@@ -452,7 +555,7 @@ class HonmeiStrategy:
                 bet_type="馬連",
                 combinations=[combo2],
                 horse_names=[names.get(c, str(c)) for c in combo2],
-                expected_value=_ev_estimate(q_prob, axis_odds2, "馬連"),
+                expected_value=self._estimator.ev(q_prob, "馬連", axis_odds2),
                 model_score=q_prob,
                 recommended_bet=_BASE_BET * 2,
                 confidence=q_prob,
@@ -463,7 +566,7 @@ class HonmeiStrategy:
                 bet_type="ワイド",
                 combinations=[combo2],
                 horse_names=[names.get(c, str(c)) for c in combo2],
-                expected_value=_ev_estimate(q_prob, axis_odds2, "ワイド"),
+                expected_value=self._estimator.ev(q_prob, "ワイド", axis_odds2),
                 model_score=q_prob,
                 recommended_bet=_BASE_BET * 2,
                 confidence=min(q_prob * 1.3, 1.0),
@@ -476,7 +579,7 @@ class HonmeiStrategy:
                 bet_type="馬単",
                 combinations=exacta_combos,
                 horse_names=[names.get(n0, str(n0)), names.get(n1, str(n1))],
-                expected_value=_ev_estimate(ex_prob, axis_odds2, "馬単"),
+                expected_value=self._estimator.ev(ex_prob, "馬単", axis_odds2),
                 model_score=ex_prob,
                 recommended_bet=_BASE_BET * 2,
                 confidence=ex_prob,
@@ -498,7 +601,7 @@ class HonmeiStrategy:
                 bet_type="三連複",
                 combinations=[combo3],
                 horse_names=[names.get(c, str(c)) for c in combo3],
-                expected_value=_ev_estimate(trio_prob, axis_odds3, "三連複"),
+                expected_value=self._estimator.ev(trio_prob, "三連複", axis_odds3),
                 model_score=trio_prob,
                 recommended_bet=_BASE_BET * 3,
                 confidence=trio_prob,
@@ -511,7 +614,7 @@ class HonmeiStrategy:
                 bet_type="三連単",
                 combinations=[tuple(p) for p in trifecta_combos],
                 horse_names=[names.get(n, str(n)) for n in [n0, n1, n2]],
-                expected_value=_ev_estimate(trifecta_prob, axis_odds3, "三連単"),
+                expected_value=self._estimator.ev(trifecta_prob, "三連単", axis_odds3),
                 model_score=trifecta_prob,
                 recommended_bet=_BASE_BET * len(trifecta_combos),
                 confidence=trifecta_prob * 0.8,
@@ -619,14 +722,47 @@ class BetGenerator:
     HonmeiStrategy / ManjiStrategy のファサード。
 
     Usage:
-        gen = BetGenerator()
+        gen = BetGenerator(conn=conn, config=BetConfig(bankroll=200_000))
         honmei_bets = gen.generate_honmei(race_id, df, honmei_scores)
         manji_bets  = gen.generate_manji(race_id, df, ev_scores)
     """
 
-    def __init__(self) -> None:
-        self._honmei = HonmeiStrategy()
-        self._manji  = ManjiStrategy()
+    def __init__(
+        self,
+        conn: sqlite3.Connection | None = None,
+        config: BetConfig | None = None,
+    ) -> None:
+        estimator = OddsEstimator(conn)
+        self._config = config or BetConfig()
+        self._honmei = HonmeiStrategy(estimator=estimator)
+        self._manji  = ManjiStrategy(estimator=estimator)
+
+    def _apply_caps(self, bets: RaceBets) -> None:
+        """
+        in-place で recommended_bet にハードキャップを適用する。
+
+        Step 1: 1点あたりキャップ（max_bet_per_combo）
+        Step 2: レース合計キャップ（bankroll × max_bet_fraction）
+                合計超過時は比例縮小し 100円単位に丸める。
+        """
+        if not bets.bets:
+            return
+
+        max_per_combo = self._config.max_bet_per_combo
+        max_total = self._config.max_race_bet
+
+        for b in bets.bets:
+            b.recommended_bet = max(
+                min(b.recommended_bet, max_per_combo),
+                float(_BASE_BET),
+            )
+
+        total = sum(b.recommended_bet for b in bets.bets)
+        if total > max_total and total > 0:
+            ratio = max_total / total
+            for b in bets.bets:
+                raw = b.recommended_bet * ratio
+                b.recommended_bet = float(max(round(raw / 100) * 100, _BASE_BET))
 
     def generate_honmei(
         self,
@@ -634,7 +770,9 @@ class BetGenerator:
         df: pd.DataFrame,
         honmei_scores: pd.Series,
     ) -> RaceBets:
-        return self._honmei.generate(race_id, df, honmei_scores)
+        bets = self._honmei.generate(race_id, df, honmei_scores)
+        self._apply_caps(bets)
+        return bets
 
     def generate_manji(
         self,
@@ -642,7 +780,9 @@ class BetGenerator:
         df: pd.DataFrame,
         ev_scores: pd.Series,
     ) -> RaceBets:
-        return self._manji.generate(race_id, df, ev_scores)
+        bets = self._manji.generate(race_id, df, ev_scores)
+        self._apply_caps(bets)
+        return bets
 
     def generate_win5(
         self,

@@ -267,11 +267,17 @@ def _is_hit(
         return bool(pset & set(top3))
 
     elif bet_type == "馬連":
-        # 1着・2着の2頭がセットで予想に含まれているか
+        # 1着・2着の2頭がセットで予想に含まれているか（同着対応）
+        # 同着1着（rank=1が2頭）: 両方rank=1 → 的中
+        # 同着2着（rank=2が2頭）: rank=1 + rank=2 の組み合わせのみ的中（rank=2同士は不可）
         if len(predicted_names) < 2:
             return False
-        top2 = {n for n, r in ranked if r in {1, 2}}
-        return pset >= top2 and len(top2) == 2
+        rank_lookup = {n: r for n, r in ranked}
+        r0 = rank_lookup.get(predicted_names[0])
+        r1 = rank_lookup.get(predicted_names[1])
+        if r0 not in {1, 2} or r1 not in {1, 2}:
+            return False
+        return not (r0 == 2 and r1 == 2)  # 両方rank=2は不可
 
     elif bet_type == "ワイド":
         # 予想2頭が両方とも3着以内に入っているか
@@ -290,10 +296,11 @@ def _is_hit(
         return r1 == 1 and r2 == 2
 
     elif bet_type == "三連複":
+        # 同着対応: 3着同着（rank=3が2頭）でも予想3頭がいずれかtop3に入れば的中
         if len(predicted_names) < 3:
             return False
         top3 = {n for n, r in ranked if r in {1, 2, 3}}
-        return pset >= top3 and len(top3) == 3
+        return len(pset) == 3 and pset.issubset(top3)
 
     elif bet_type == "三連単":
         if len(predicted_names) < 3:
@@ -531,7 +538,7 @@ class Evaluator:
         指定日の全レースを評価する。
 
         Args:
-            date: "YYYY/MM/DD" 形式
+            date: "YYYY-MM-DD" 形式 (ISO 8601)
         """
         race_ids = [
             r[0] for r in conn.execute(

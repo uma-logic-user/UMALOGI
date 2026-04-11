@@ -1,5 +1,9 @@
 """
 src/ml/features.py の FeatureBuilder ユニットテスト
+
+リークテストも含む:
+  build_race_features_for_simulate() が rank / finish_time / margin を
+  出力 DataFrame に含めないことを検証する。
 """
 
 from __future__ import annotations
@@ -12,6 +16,129 @@ import pytest
 from src.database.init_db import init_db, insert_race
 from src.ml.features import FeatureBuilder, _distance_band, _parse_sex
 from src.scraper.netkeiba import HorseResult, PedigreeInfo, RaceInfo
+
+# レース確定後にしか判明しない「リーク禁止列」
+_LEAK_COLS: frozenset[str] = frozenset({"rank", "finish_time", "margin"})
+
+
+# ── リークテスト用ヘルパー ─────────────────────────────────────────
+
+
+def _make_leak_test_race(race_id: str, n_horses: int = 6) -> RaceInfo:
+    """リークテスト用のシンプルなレースデータを生成する（YYYY-MM-DD 形式の日付）。"""
+    results = [
+        HorseResult(
+            rank=i,
+            horse_name=f"馬{i:02d}",
+            horse_id=f"h{race_id}{i:02d}",
+            gate_number=((i - 1) // 2) + 1,
+            horse_number=i,
+            sex_age="牡3",
+            weight_carried=56.0,
+            jockey="テスト騎手",
+            trainer="テスト調教師",
+            finish_time="2:00.0",
+            margin=None if i == 1 else "0.1",
+            popularity=i,
+            win_odds=float(i * 2),
+            horse_weight=500,
+            horse_weight_diff=0,
+            pedigree=PedigreeInfo(sire=f"父{i}", dam="母A", dam_sire="母父A"),
+        )
+        for i in range(1, n_horses + 1)
+    ]
+    return RaceInfo(
+        race_id=race_id,
+        race_name=f"テストレース{race_id}",
+        date="2024-05-01",
+        venue="東京",
+        race_number=1,
+        distance=1600,
+        surface="芝",
+        track_direction="左",
+        weather="晴",
+        condition="良",
+        results=results,
+    )
+
+
+@pytest.fixture()
+def db_single_leak() -> sqlite3.Connection:
+    """1レース分の race_results が入った in-memory DB（リークテスト専用）。"""
+    conn = init_db(db_path=Path(":memory:"))
+    insert_race(conn, _make_leak_test_race("2024010101"))
+    yield conn
+    conn.close()
+
+
+# ── リーク防止テスト ──────────────────────────────────────────────
+
+
+class TestLeakPrevention:
+    """
+    build_race_features_for_simulate() がレース確定後情報を含まないことを検証する。
+
+    以下の列はレース終了後にしか判明しない「未来データ」であり、
+    特徴量 DataFrame に絶対に混入してはならない:
+      - rank        (着順)
+      - finish_time (タイム)
+      - margin      (着差)
+    """
+
+    def test_rank列が含まれない(self, db_single_leak: sqlite3.Connection) -> None:
+        fb = FeatureBuilder(db_single_leak)
+        df = fb.build_race_features_for_simulate("2024010101")
+        assert not df.empty, "特徴量 DataFrame が空です"
+        assert "rank" not in df.columns, "'rank' 列がリークしています"
+
+    def test_finish_time列が含まれない(self, db_single_leak: sqlite3.Connection) -> None:
+        fb = FeatureBuilder(db_single_leak)
+        df = fb.build_race_features_for_simulate("2024010101")
+        assert "finish_time" not in df.columns, "'finish_time' 列がリークしています"
+
+    def test_margin列が含まれない(self, db_single_leak: sqlite3.Connection) -> None:
+        fb = FeatureBuilder(db_single_leak)
+        df = fb.build_race_features_for_simulate("2024010101")
+        assert "margin" not in df.columns, "'margin' 列がリークしています"
+
+    def test_リーク列が一切含まれない(self, db_single_leak: sqlite3.Connection) -> None:
+        """_LEAK_COLS のいずれも含まれないことを一括検証する。"""
+        fb = FeatureBuilder(db_single_leak)
+        df = fb.build_race_features_for_simulate("2024010101")
+        leaked = _LEAK_COLS & set(df.columns)
+        assert not leaked, f"リーク列が検出されました: {leaked}"
+
+    def test_必須特徴量列が存在する(self, db_single_leak: sqlite3.Connection) -> None:
+        """リーク除外後も非リーク列が揃っていることを確認。"""
+        fb = FeatureBuilder(db_single_leak)
+        df = fb.build_race_features_for_simulate("2024010101")
+        required: frozenset[str] = frozenset(
+            {"horse_name", "horse_number", "win_odds", "weight_carried"}
+        )
+        missing = required - set(df.columns)
+        assert not missing, f"必須列が欠落しています: {missing}"
+
+    def test_行数が出走頭数と一致する(self, db_single_leak: sqlite3.Connection) -> None:
+        """6頭立てレースなら 6 行の DataFrame が返ること。"""
+        fb = FeatureBuilder(db_single_leak)
+        df = fb.build_race_features_for_simulate("2024010101")
+        assert len(df) == 6
+
+    def test_複数レース全てリーク無し(self) -> None:
+        """複数レースを投入した DB でも全レース分リーク無しを検証する。"""
+        conn = init_db(db_path=Path(":memory:"))
+        race_ids: list[str] = []
+        for i in range(1, 6):
+            rid = f"20240101{i:02d}"
+            insert_race(conn, _make_leak_test_race(rid))
+            race_ids.append(rid)
+
+        fb = FeatureBuilder(conn)
+        for rid in race_ids:
+            df = fb.build_race_features_for_simulate(rid)
+            leaked = _LEAK_COLS & set(df.columns)
+            assert not leaked, f"レース {rid} でリーク列が検出されました: {leaked}"
+        conn.close()
 
 
 # ── フィクスチャ ──────────────────────────────────────────────────
@@ -29,30 +156,39 @@ def seeded_db(db: sqlite3.Connection) -> sqlite3.Connection:
     race = RaceInfo(
         race_id="202506050811",
         race_name="第70回有馬記念(GI)",
-        date="2025/12/28",
+        date="2025-12-28",
         venue="中山",
         race_number=5,
         distance=2500,
         surface="芝",
+        track_direction="右",
         weather="晴",
         condition="良",
         results=[
             HorseResult(
                 rank=1, horse_name="ミュージアムマイル",
-                horse_id="2022105081", sex_age="牡3",
+                horse_id="2022105081",
+                gate_number=1, horse_number=1,
+                sex_age="牡3",
                 weight_carried=56.0, jockey="Ｃ．デム",
+                trainer="国枝栄",
                 finish_time="2:31.5", margin=None,
                 popularity=3, win_odds=3.8, horse_weight=502,
+                horse_weight_diff=2,
                 pedigree=PedigreeInfo(sire="リオンディーズ",
                                       dam="ミュージアムヒル",
                                       dam_sire="ハーツクライ"),
             ),
             HorseResult(
                 rank=2, horse_name="レガレイラ",
-                horse_id="2021105898", sex_age="牝4",
+                horse_id="2021105898",
+                gate_number=2, horse_number=2,
+                sex_age="牝4",
                 weight_carried=55.0, jockey="横山武史",
+                trainer="木村哲也",
                 finish_time="2:31.7", margin="0.2",
                 popularity=1, win_odds=3.3, horse_weight=482,
+                horse_weight_diff=-4,
                 pedigree=PedigreeInfo(sire="スワーヴリチャード",
                                       dam="ロカ", dam_sire="ハービンジャー"),
             ),

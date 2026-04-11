@@ -76,8 +76,11 @@ class FeatureBuilder:
     def __init__(self, conn: sqlite3.Connection) -> None:
         self._conn = conn
         self._sire_map: dict[str, int] = {}
-        self._jockey_map: dict[str, int] = {}
-        self._trainer_map: dict[str, int] = {}
+        # 騎手・調教師は jockeys/trainers マスタから固定コードマップを生成する。
+        # マスタが空（未投入）の場合は空 dict → fallback=0 で全馬同一値になる。
+        # セッション間でコードが変わらないため、学習・推論の一貫性が保たれる。
+        self._jockey_code_map: dict[str, int] = self._load_jockey_codes()
+        self._trainer_code_map: dict[str, int] = self._load_trainer_codes()
 
     # ── パブリック API ──────────────────────────────────────────
 
@@ -376,7 +379,7 @@ class FeatureBuilder:
           - 低い → 波乱続出 → ペース乱調・差し・追い込み台頭傾向
 
         Args:
-            race_date:            "YYYY/MM/DD" 形式の日付
+            race_date:            "YYYY-MM-DD" 形式の日付 (ISO 8601)
             venue:                開催場（例: "東京"）
             current_race_number:  この特徴量を生成するレースの番号
 
@@ -733,29 +736,53 @@ class FeatureBuilder:
             self._sire_map[sire] = len(self._sire_map)
         return self._sire_map[sire]
 
+    def _load_jockey_codes(self) -> dict[str, int]:
+        """
+        jockeys マスタから {jockey_name: int(jockey_code)} のマップを生成する。
+        テーブルが空または存在しない場合は空 dict を返す。
+        """
+        try:
+            rows = self._conn.execute(
+                "SELECT jockey_name, CAST(jockey_code AS INTEGER) "
+                "FROM jockeys WHERE jockey_name IS NOT NULL"
+            ).fetchall()
+            return {name: code for name, code in rows if name}
+        except Exception:
+            return {}
+
+    def _load_trainer_codes(self) -> dict[str, int]:
+        """
+        trainers マスタから {trainer_name: int(trainer_code)} のマップを生成する。
+        テーブルが空または存在しない場合は空 dict を返す。
+        """
+        try:
+            rows = self._conn.execute(
+                "SELECT trainer_name, CAST(trainer_code AS INTEGER) "
+                "FROM trainers WHERE trainer_name IS NOT NULL"
+            ).fetchall()
+            return {name: code for name, code in rows if name}
+        except Exception:
+            return {}
+
     def _encode_jockey(self, jockey_key: str | None) -> int:
         """
-        騎手名（または騎手コード）をラベルエンコードする。
-        jockeys マスタが未投入の場合は名前を直接使用する。
+        jockeys マスタの固定コードで騎手をエンコードする。
+        マスタに存在しない騎手（名前の揺れ・マスタ未投入）は 0 を返す。
         空文字・None は -1 を返す。
         """
         if not jockey_key:
             return -1
-        if jockey_key not in self._jockey_map:
-            self._jockey_map[jockey_key] = len(self._jockey_map)
-        return self._jockey_map[jockey_key]
+        return self._jockey_code_map.get(jockey_key, 0)
 
     def _encode_trainer(self, trainer_key: str | None) -> int:
         """
-        調教師名（または調教師コード）をラベルエンコードする。
-        trainers マスタが未投入の場合は名前を直接使用する。
+        trainers マスタの固定コードで調教師をエンコードする。
+        マスタに存在しない調教師は 0 を返す。
         空文字・None は -1 を返す。
         """
         if not trainer_key:
             return -1
-        if trainer_key not in self._trainer_map:
-            self._trainer_map[trainer_key] = len(self._trainer_map)
-        return self._trainer_map[trainer_key]
+        return self._trainer_code_map.get(trainer_key, 0)
 
     def _get_odds_trend(
         self,

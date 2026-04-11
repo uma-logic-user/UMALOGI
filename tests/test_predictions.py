@@ -33,20 +33,24 @@ def seeded_db(db: sqlite3.Connection) -> sqlite3.Connection:
     race = RaceInfo(
         race_id="202506050811",
         race_name="第70回有馬記念(GI)",
-        date="2025/12/28",
+        date="2025-12-28",
         venue="中山",
         race_number=5,
         distance=2500,
         surface="芝",
+        track_direction="右",
         weather="晴",
         condition="良",
         results=[
             HorseResult(
                 rank=1, horse_name="ミュージアムマイル",
                 horse_id="2022105081", sex_age="牡3",
+                gate_number=3, horse_number=5,
                 weight_carried=56.0, jockey="Ｃ．デム",
+                trainer="国枝栄",
                 finish_time="2:31.5", margin=None,
                 popularity=3, win_odds=3.8, horse_weight=502,
+                horse_weight_diff=2,
                 pedigree=PedigreeInfo(sire="リオンディーズ",
                                       dam="ミュージアムヒル",
                                       dam_sire="ハーツクライ"),
@@ -54,9 +58,12 @@ def seeded_db(db: sqlite3.Connection) -> sqlite3.Connection:
             HorseResult(
                 rank=4, horse_name="レガレイラ",
                 horse_id="2021105898", sex_age="牝4",
+                gate_number=7, horse_number=13,
                 weight_carried=55.0, jockey="横山武史",
+                trainer="木村哲也",
                 finish_time="2:31.7", margin="2",
                 popularity=1, win_odds=3.3, horse_weight=482,
+                horse_weight_diff=-4,
                 pedigree=PedigreeInfo(sire="スワーヴリチャード",
                                       dam="ロカ", dam_sire="ハービンジャー"),
             ),
@@ -205,13 +212,15 @@ class TestPredictionSummaryView:
 
 class TestRefreshModelPerformance:
     def _seed_results(self, db: sqlite3.Connection) -> None:
-        """的中1件・外れ1件のデータを投入する。"""
-        for model, horse, hit, payout in [
-            ("卍",  "ミュージアムマイル", True,  3800.0),
-            ("卍",  "レガレイラ",        False, 0.0),
+        """的中1件・外れ1件のデータを投入する。
+        bet_type を別々にする（同 race_id+model_type+bet_type は UNIQUE 制約で1件に絞られるため）。
+        """
+        for model, horse, bet_type, hit, payout in [
+            ("卍", "ミュージアムマイル", "単勝", True,  3800.0),
+            ("卍", "レガレイラ",        "複勝", False, 0.0),
         ]:
             pid = insert_prediction(
-                db, "202506050811", model, "単勝",
+                db, "202506050811", model, bet_type,
                 horses=[{"horse_name": horse}],
                 recommended_bet=1000.0,
             )

@@ -141,6 +141,43 @@ def _get_payout_map(
     return {r[0]: r[1] for r in rows}
 
 
+def _get_refund_set(conn: sqlite3.Connection, race_id: str) -> set[str]:
+    """
+    返還対象の馬名セットを返す。
+
+    race_payouts の bet_type='返還' エントリから馬番を取得し、
+    race_results で馬名に変換する。
+    返還なしの場合は空セットを返す（クラッシュしない）。
+    """
+    try:
+        refund_rows = conn.execute(
+            "SELECT combination FROM race_payouts WHERE race_id = ? AND bet_type = '返還'",
+            (race_id,),
+        ).fetchall()
+    except Exception:
+        return set()
+
+    if not refund_rows:
+        return set()
+
+    refund_nums: set[int] = set()
+    for (comb,) in refund_rows:
+        try:
+            refund_nums.add(int(comb))
+        except (ValueError, TypeError):
+            pass
+
+    if not refund_nums:
+        return set()
+
+    # 馬番 → 馬名
+    result_rows = conn.execute(
+        "SELECT horse_name, horse_number FROM race_results WHERE race_id = ?",
+        (race_id,),
+    ).fetchall()
+    return {name for name, num in result_rows if num is not None and int(num) in refund_nums}
+
+
 def _find_winner(conn: sqlite3.Connection, race_id: str) -> dict | None:
     """race_results から rank=1 の馬情報を返す。"""
     row = conn.execute(
@@ -309,10 +346,16 @@ def _reconcile_by_names(
             total_payout = (_payout_for_hit(payout_map, placed_count) / 100.0) * bet_per_combo
 
     elif bet_type in ("馬連", "枠連"):
-        # 予想2頭が rank 1,2 を占めるか（順不同）
+        # 予想2頭が rank 1,2 を占めるか（順不同・同着対応）
+        # 同着1着（両方rank=1）も的中扱い。同着2着（rank=1+rank=2の組合せ）も的中。
+        # rank=2 同士の組み合わせは不可。
         if len(horse_names) >= 2:
-            pred_ranks = {rank_map.get(n) for n in horse_names[:2]}
-            is_hit = pred_ranks == {1, 2}
+            r0 = rank_map.get(horse_names[0])
+            r1 = rank_map.get(horse_names[1])
+            is_hit = (
+                r0 in {1, 2} and r1 in {1, 2}
+                and not (r0 == 2 and r1 == 2)
+            )
             if is_hit:
                 total_payout = (_payout_for_hit(payout_map) / 100.0) * recommended_bet
 
@@ -432,8 +475,26 @@ def _reconcile_prediction(
     1 つの予想レコードを照合して prediction_results に保存する。
 
     Returns:
-        "hit" | "miss" | "skip" | "no_result" | "no_payout"
+        "hit" | "miss" | "skip" | "no_result" | "no_payout" | "refund"
     """
+    # ── 返還チェック（出走取消・競走除外） ────────────────────────
+    # 予想馬が返還対象の場合は払戻 100% として記録し即座にリターン
+    refund_names = _get_refund_set(conn, race_id)
+    if refund_names:
+        horse_names_for_refund = _get_predicted_horse_names(
+            conn, prediction_id, race_id, bet_type, notes, ph_horse_name
+        )
+        if horse_names_for_refund and any(n in refund_names for n in horse_names_for_refund):
+            if not dry_run:
+                record_prediction_result(
+                    conn,
+                    prediction_id=prediction_id,
+                    is_hit=False,
+                    payout=recommended_bet,
+                    recommended_bet=recommended_bet,
+                )
+            return "refund"
+
     # ── 払戻マップ取得 ─────────────────────────────────────────────
     payout_map = _get_payout_map(conn, race_id, bet_type)
 
@@ -541,6 +602,7 @@ def reconcile(
         "skip":      0,
         "no_result": 0,
         "no_payout": 0,
+        "refund":    0,
     }
 
     for row in rows:
@@ -630,6 +692,7 @@ def main() -> None:
     print(f"  照合対象          : {stats['total']:6d} 件")
     print(f"  的中              : {stats['hit']:6d} 件")
     print(f"  外れ              : {stats['miss']:6d} 件")
+    print(f"  返還              : {stats['refund']:6d} 件")
     print(f"  馬名特定不能(skip): {stats['skip']:6d} 件")
     print(f"  結果データなし    : {stats['no_result']:6d} 件")
     print(f"  払戻データなし    : {stats['no_payout']:6d} 件")

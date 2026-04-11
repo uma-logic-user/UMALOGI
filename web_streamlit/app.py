@@ -88,14 +88,19 @@ def _safe_race_name(name: Any) -> str:
 
 @st.cache_data(ttl=300)
 def fetch_available_dates() -> list[str]:
-    """テストデータを除外した予想生成日（YYYY-MM-DD）を降順で返す。"""
-    rows = _q(f"""
-        SELECT DISTINCT DATE(p.created_at) AS d
-        FROM predictions p
-        WHERE p.created_at IS NOT NULL
-          AND {_DATE_FILTER}
-          AND {_EV_FILTER}
-          AND {_VENUE_FILTER}
+    """races テーブルから開催日（YYYY-MM-DD）を降順で返す。
+
+    2025年以降かつ JRA 正規会場（01〜10）のみ。
+    AI予想の有無に関わらず過去レース全件を選択できる。
+    race_id LIKE '20__________' で文字化けレコードを除外する。
+    """
+    rows = _q("""
+        SELECT DISTINCT r.date AS d
+        FROM races r
+        WHERE r.race_id LIKE '20__________'
+          AND r.date    LIKE '20__-__-__'
+          AND r.date    >= '2025-01-01'
+          AND SUBSTR(r.race_id, 5, 2) BETWEEN '01' AND '10'
         ORDER BY d DESC
     """)
     return [r["d"] for r in rows if r["d"]]
@@ -103,13 +108,13 @@ def fetch_available_dates() -> list[str]:
 
 @st.cache_data(ttl=300)
 def fetch_venues_for_date(date_str: str) -> list[tuple[str, str]]:
-    """指定日の会場コードと名前リスト (code, name) を返す。"""
+    """指定日（YYYY-MM-DD）の会場コードと名前リスト (code, name) を返す。"""
     rows = _q("""
-        SELECT DISTINCT SUBSTR(p.race_id,5,2) AS vc
-        FROM predictions p
-        WHERE DATE(p.created_at) = ?
-          AND SUBSTR(p.race_id,5,2) BETWEEN '01' AND '10'
-          AND p.expected_value > 0
+        SELECT DISTINCT SUBSTR(r.race_id, 5, 2) AS vc
+        FROM races r
+        WHERE r.race_id LIKE '20__________'
+          AND r.date = ?
+          AND SUBSTR(r.race_id, 5, 2) BETWEEN '01' AND '10'
         ORDER BY vc
     """, (date_str,))
     return [(r["vc"], _JYO.get(r["vc"], r["vc"])) for r in rows]
@@ -119,15 +124,14 @@ def fetch_venues_for_date(date_str: str) -> list[tuple[str, str]]:
 def fetch_races_for_venue(date_str: str, venue_code: str) -> pd.DataFrame:
     """指定日・会場のレース一覧（race_id, race_number, race_name）を返す。"""
     return _df("""
-        SELECT DISTINCT
-            p.race_id,
-            CAST(SUBSTR(p.race_id,11,2) AS INTEGER) AS race_number,
+        SELECT
+            r.race_id,
+            CAST(SUBSTR(r.race_id, 11, 2) AS INTEGER) AS race_number,
             r.race_name
-        FROM predictions p
-        LEFT JOIN races r ON r.race_id = p.race_id
-        WHERE DATE(p.created_at) = ?
-          AND SUBSTR(p.race_id,5,2) = ?
-          AND p.expected_value > 0
+        FROM races r
+        WHERE r.race_id LIKE '20__________'
+          AND r.date = ?
+          AND SUBSTR(r.race_id, 5, 2) = ?
         ORDER BY race_number
     """, (date_str, venue_code))
 
@@ -322,6 +326,46 @@ def fetch_today_bias(race_id: str) -> dict[str, Any]:
     front_bias = fav_wins / total_races
 
     return {"inner_bias": inner_bias, "front_bias": front_bias, "race_count": total_races}
+
+
+@st.cache_data(ttl=300)
+def fetch_past_race_results(race_id: str) -> pd.DataFrame:
+    """
+    race_results テーブルからレース結果を取得する。
+
+    AI予想が存在しない過去レースでも完全な着順表を返す。
+    馬名・騎手・性齢・斤量・体重が race_results に欠けている場合は
+    entries テーブルから補完する。
+    """
+    return _df("""
+        SELECT
+            rr.rank,
+            COALESCE(rr.gate_number,  e.gate_number)  AS gate_number,
+            COALESCE(rr.horse_number, e.horse_number)  AS horse_number,
+            COALESCE(rr.horse_name,   e.horse_name)    AS horse_name,
+            COALESCE(e.sex_age,       '')               AS sex_age,
+            COALESCE(rr.weight_carried, e.weight_carried) AS weight_carried,
+            COALESCE(rr.jockey,       e.jockey)         AS jockey,
+            rr.finish_time,
+            rr.win_odds,
+            rr.popularity,
+            COALESCE(rr.horse_weight, e.horse_weight)   AS horse_weight,
+            COALESCE(rr.horse_weight_diff, e.horse_weight_diff) AS horse_weight_diff
+        FROM race_results rr
+        LEFT JOIN (
+            SELECT horse_name, horse_number, gate_number,
+                   sex_age, weight_carried, jockey,
+                   horse_weight, horse_weight_diff
+            FROM entries
+            WHERE race_id = ?
+            GROUP BY horse_number
+            HAVING id = MAX(id)
+        ) e ON e.horse_name = rr.horse_name
+        WHERE rr.race_id = ?
+          AND rr.rank IS NOT NULL
+          AND rr.rank > 0
+        ORDER BY rr.rank
+    """, (race_id, race_id))
 
 
 @st.cache_data(ttl=300)
@@ -703,38 +747,52 @@ def render_odds_alert(race_id: str) -> None:
     st.plotly_chart(fig, use_container_width=True)
 
 
-def render_result_with_payouts(race_id: str, prerace_df: pd.DataFrame) -> None:
-    """レース結果と払戻を統合表示する。"""
-    # 着順結果テーブル
-    st.markdown("#### 🏁 着順結果")
-    if prerace_df.empty:
-        st.info("出走データなし")
-    else:
-        result_df = prerace_df[prerace_df["rank"].notna()].copy()
-        if result_df.empty:
-            st.info("レース結果未確定")
-        else:
-            result_df = result_df.sort_values("rank")
-            col_rename = {
-                "rank":              "着順",
-                "gate_number":       "枠",
-                "horse_number":      "馬番",
-                "horse_name":        "馬名",
-                "sex_age":           "性齢",
-                "weight_carried":    "斤量",
-                "jockey":            "騎手",
-                "finish_time":       "タイム",
-                "win_odds":          "単勝",
-                "popularity":        "人気",
-                "horse_weight":      "体重",
-                "horse_weight_diff": "増減",
-            }
-            avail = {k: v for k, v in col_rename.items() if k in result_df.columns}
-            disp  = result_df[list(avail.keys())].copy()
-            disp.columns = list(avail.values())
-            st.dataframe(disp, use_container_width=True, hide_index=True)
+def render_result_with_payouts(race_id: str, prerace_df: pd.DataFrame | None = None) -> None:
+    """レース結果と払戻を統合表示する。
 
-    # 払戻テーブル
+    AI予想（prerace_df）の有無に関わらず race_results テーブルから
+    着順・払戻を直接取得して表示する。
+    """
+    # ── 着順結果 ──────────────────────────────────────────────
+    st.markdown("#### 🏁 着順結果")
+    result_df = fetch_past_race_results(race_id)
+
+    if result_df.empty:
+        st.info("レース結果データなし（race_results 未登録またはレース未確定）")
+    else:
+        col_rename = {
+            "rank":              "着順",
+            "gate_number":       "枠",
+            "horse_number":      "馬番",
+            "horse_name":        "馬名",
+            "sex_age":           "性齢",
+            "weight_carried":    "斤量",
+            "jockey":            "騎手",
+            "finish_time":       "タイム",
+            "win_odds":          "単勝",
+            "popularity":        "人気",
+            "horse_weight":      "体重",
+            "horse_weight_diff": "増減",
+        }
+        avail = {k: v for k, v in col_rename.items() if k in result_df.columns}
+        disp  = result_df[list(avail.keys())].copy()
+        disp.columns = list(avail.values())
+
+        # 数値列を整形
+        for col in ["着順", "枠", "馬番", "人気"]:
+            if col in disp.columns:
+                disp[col] = pd.to_numeric(disp[col], errors="coerce").apply(
+                    lambda x: int(x) if pd.notna(x) else "—"
+                )
+        for col in ["単勝"]:
+            if col in disp.columns:
+                disp[col] = pd.to_numeric(disp[col], errors="coerce").apply(
+                    lambda x: f"{x:.1f}" if pd.notna(x) else "—"
+                )
+
+        st.dataframe(disp, use_container_width=True, hide_index=True)
+
+    # ── 払戻テーブル ──────────────────────────────────────────
     st.markdown("#### 💴 払戻金")
     payouts = fetch_payouts(race_id)
     if payouts.empty:
@@ -1316,11 +1374,7 @@ def main() -> None:
                         render_odds_alert(selected_race_id)
 
                     with stab_result:
-                        # レース結果タブでは直前予想→暫定予想の順で fallback
-                        result_base = fetch_race_predictions(selected_race_id, kind="直前")
-                        if result_base.empty:
-                            result_base = fetch_race_predictions(selected_race_id, kind="暫定")
-                        render_result_with_payouts(selected_race_id, result_base)
+                        render_result_with_payouts(selected_race_id)
 
                     with stab_arch:
                         render_race_archive(selected_race_id)

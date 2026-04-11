@@ -52,7 +52,7 @@ def _make_race(race_id: str, n_horses: int = 6) -> RaceInfo:
     return RaceInfo(
         race_id=race_id,
         race_name=f"テストレース{race_id}",
-        date=f"2024/0{(int(race_id[-2:]) % 9) + 1}/01",
+        date=f"2024-0{(int(race_id[-2:]) % 9) + 1}-01",
         venue="東京",
         race_number=int(race_id[-2:]),
         distance=1600,
@@ -124,8 +124,8 @@ def dummy_df() -> pd.DataFrame:
 # ── FEATURE_COLS の整合性 ─────────────────────────────────────────
 
 class TestFeatureCols:
-    def test_列数が16(self) -> None:
-        assert len(FEATURE_COLS) == 16
+    def test_列数が39(self) -> None:
+        assert len(FEATURE_COLS) == 39
 
     def test_追加3列が含まれる(self) -> None:
         # win_odds / market_prob は過学習防止のため除外済み
@@ -288,10 +288,11 @@ class TestHonmeiModel:
     def test_特徴量重要度の長さがFEATURE_COLS一致(
         self, db_many: sqlite3.Connection
     ) -> None:
-        """訓練後の feature_importances_ の長さが FEATURE_COLS と同じであること。"""
+        """訓練後の feature_importances_ の長さが FEATURE_COLS と同じであること。
+        _model は CalibratedClassifierCV のため _base_lgbm から取得する。"""
         m = HonmeiModel()
         m.train(db_many)
-        assert len(m._model.feature_importances_) == len(FEATURE_COLS)
+        assert len(m._base_lgbm.feature_importances_) == len(FEATURE_COLS)
 
 
 # ── ManjiModel ────────────────────────────────────────────────────

@@ -85,7 +85,7 @@ class RaceInfo:
     """レース基本情報 + 出走結果"""
     race_id:         str
     race_name:       str
-    date:            str    # "YYYY/MM/DD"
+    date:            str    # "YYYY-MM-DD" (ISO 8601)
     venue:           str    # 開催場所（例: "中山"）
     race_number:     int    # 第N競走
     distance:        int    # 距離 (m)
@@ -231,7 +231,7 @@ def _parse_race_info(soup: BeautifulSoup, race_id: str) -> RaceInfo:
         # 日付: "2025年12月28日"
         m = re.search(r"(\d{4})年(\d{1,2})月(\d{1,2})日", text)
         if m:
-            date = f"{m.group(1)}/{int(m.group(2)):02d}/{int(m.group(3)):02d}"
+            date = f"{m.group(1)}-{int(m.group(2)):02d}-{int(m.group(3)):02d}"
 
         # 開催場所: "5回中山8日目" → "中山"
         m = re.search(r"\d+回(\S+?)\d+日目", text)
