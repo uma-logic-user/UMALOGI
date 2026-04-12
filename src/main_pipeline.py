@@ -240,6 +240,113 @@ def _kelly_fraction(p_win: float, odds: float, multiplier: float = 0.1) -> float
 
 
 # ================================================================
+# Discord 全券種まとめ通知
+# ================================================================
+
+def _notify_prerace_result(
+    race_id: str,
+    honmei_bets: object,
+    manji_bets: object,
+) -> None:
+    """
+    直前予想の全券種買い目を 1 つの Discord Embed にまとめて送信する。
+
+    同一レースの券種ごとにメッセージが分散するのを防ぐため、
+    本命モデル・卍モデルの全買い目を EV 降順に並べて 1 embed に集約する。
+
+    EV >= 1.0 の買い目には 🔥、それ以外は空白で区別する。
+    推奨買い目がない場合（全 EV <= 0）は見送り扱いとして通知しない。
+    """
+    label = _format_race_label(race_id)
+
+    def _combo_str(bet: object) -> str:
+        """組み合わせを読みやすい文字列にする。"""
+        bt = bet.bet_type  # type: ignore[attr-defined]
+        combos = bet.combinations  # type: ignore[attr-defined]
+        names  = bet.horse_names   # type: ignore[attr-defined]
+        if not combos:
+            return "—"
+        first = combos[0]
+        if bt in ("馬単", "三連単"):
+            # 着順あり: → で繋ぐ
+            nums = " → ".join(str(n) for n in first)
+        else:
+            nums = " - ".join(str(n) for n in sorted(first))
+        # 馬名（先頭3頭まで）
+        name_str = " / ".join(names[:3]) if names else ""
+        suffix = f"（+{len(combos)-1}組）" if len(combos) > 1 else ""
+        return f"{nums}{suffix}  ({name_str})"
+
+    def _build_section(race_bets: object) -> str:
+        """1モデル分の買い目行リストを文字列で返す。"""
+        bets = sorted(
+            race_bets.bets,  # type: ignore[attr-defined]
+            key=lambda b: b.expected_value,
+            reverse=True,
+        )
+        if not bets:
+            return "  (推奨なし)\n"
+        lines = []
+        for b in bets:
+            ev    = b.expected_value
+            flag  = "🔥" if ev >= 1.0 else "  "
+            bet_y = f"¥{int(b.recommended_bet):,}" if b.recommended_bet else "—"
+            combo = _combo_str(b)
+            lines.append(f"{flag} **{b.bet_type}** EV={ev:.2f}  {bet_y}\n    └ {combo}")
+        return "\n".join(lines)
+
+    honmei_section = _build_section(honmei_bets)
+    manji_section  = _build_section(manji_bets)
+
+    # 全 EV <= 0 なら通知スキップ
+    all_bets = list(honmei_bets.bets) + list(manji_bets.bets)  # type: ignore[attr-defined]
+    if not any(b.expected_value > 0 for b in all_bets):
+        logger.info("全 EV <= 0 のため Discord 通知をスキップ: %s", race_id)
+        return
+
+    # 推奨合計購入金額
+    total_bet = sum(
+        b.recommended_bet for b in all_bets
+        if b.expected_value >= 1.0 and b.recommended_bet
+    )
+    total_str = f"¥{int(total_bet):,}" if total_bet > 0 else "なし"
+
+    # EV の最大値でカラーを決定
+    max_ev = max((b.expected_value for b in all_bets), default=0.0)
+    color  = 0xFF4500 if max_ev >= 3.0 else (0xFFD700 if max_ev >= 1.5 else 0x00FF88)
+
+    description = (
+        f"**本命モデル**\n{honmei_section}\n\n"
+        f"**卍モデル**\n{manji_section}\n\n"
+        f"━━━━━━━━━━━━━━━━━━━━\n"
+        f"EV >= 1.0 推奨合計: {total_str}"
+    )
+
+    # Discord Embed (2048 文字超は切り捨て)
+    if len(description) > 4000:
+        description = description[:3997] + "..."
+
+    url = os.environ.get("DISCORD_WEBHOOK_URL", "")
+    if not url:
+        logger.warning("DISCORD_WEBHOOK_URL 未設定のため通知スキップ: %s", race_id)
+        return
+
+    payload = {
+        "embeds": [{
+            "title": f"🏇 {label}  直前予想  (`{race_id}`)",
+            "description": description,
+            "color": color,
+        }]
+    }
+    try:
+        resp = requests.post(url, json=payload, timeout=10)
+        resp.raise_for_status()
+        logger.info("Discord 直前予想通知 送信完了: %s HTTP %d", race_id, resp.status_code)
+    except Exception as exc:
+        logger.warning("Discord 直前予想通知 送信失敗: %s", exc)
+
+
+# ================================================================
 # 暫定予想バッチ: 指定日（省略時=翌日）の全レースを暫定予想
 # ================================================================
 
@@ -705,6 +812,11 @@ def prerace_pipeline(race_id: str, provisional: bool = False) -> dict:
     )
     payload["provisional"] = provisional
     _save_json(race_id, payload)
+
+    # ── Step 7: Discord 全券種まとめ通知（直前モードのみ）────────
+    # 暫定モードは見送り。直前モードの本気予想のみ通知する。
+    if not provisional:
+        _notify_prerace_result(race_id, honmei_bets, manji_bets)
 
     logger.info(
         "%sパイプライン完了: race_id=%s 本命%d件 卍%d件",
