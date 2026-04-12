@@ -345,8 +345,12 @@ def fetch_realtime_odds(
         except json.JSONDecodeError:
             logger.warning("オッズ JSON パース失敗 type=%d", odds_type)
             return {}
-        # レスポンスは {"1": {"01": [...], ...}} 形式
-        return data.get("1", {}) or data.get("odds", {}) or {}
+        # 新形式: {"status":..., "data": {"odds": {"1": {...}, "2": {...}}}}
+        # 旧形式: {"1": {"01": [...]}} （フォールバック）
+        nested = data.get("data", {}).get("odds", {})
+        if nested:
+            return nested.get(str(odds_type), {})
+        return data.get(str(odds_type), {}) or {}
 
     win_data = _get(1)
     time.sleep(delay)
