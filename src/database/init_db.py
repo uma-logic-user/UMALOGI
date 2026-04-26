@@ -804,6 +804,7 @@ def init_db(db_path: Path | None = None) -> sqlite3.Connection:
     _migrate_standardize_training_dates(conn)    # 7. 調教日付フォーマット統一
     # ビュー定義を常に最新に保つ（DDL 変更時に自動反映）
     _migrate_recreate_mart_view(conn)            # 8. v_race_mart 再作成
+    _migrate_fix_prediction_results_fk(conn)     # 9. prediction_results FK 修正
 
     logger.info("DB 初期化完了: %s", path)
     return conn
@@ -1023,60 +1024,42 @@ def _migrate_predictions_unique_constraint(conn: sqlite3.Connection) -> None:
 
 
 def _migrate_standardize_race_dates(conn: sqlite3.Connection) -> None:
-    """races.date を YYYY-MM-DD (ISO 8601) に統一し、腐敗レコードを削除する。
+    """races.date を YYYY-MM-DD (ISO 8601) に統一し、真の腐敗レコードを削除する。
 
-    腐敗データの定義:
+    変換ロジック（削除前に変換して救済する）:
+      1. YYYYMMDD (8桁数字)  → YYYY-MM-DD
+      2. YYYY/MM/DD          → YYYY-MM-DD
+
+    削除する腐敗データの定義（変換不能なもののみ）:
       - race_id が ``'20__________'`` (12 桁) パターンに合わない
-      - date が ``'20??-??-??'`` でも ``'20??/??/??'`` でもない
+      - date が YYYY-MM-DD 形式にならない（変換後も不正）
       - 会場コード (race_id[4:6]) が ``'01'`` 〜 ``'10'`` の範囲外
-
-    変換ロジック:
-      YYYY/MM/DD → YYYY-MM-DD (SQLite の SUBSTR + 連結で変換)
+        ※ 地方競馬(NAR)の会場コード32/62/72/82等を除外する
     """
-    slash_count: int = conn.execute(
-        "SELECT COUNT(*) FROM races WHERE date LIKE '____/__/__'"
-    ).fetchone()[0]
-    corrupt_count: int = conn.execute(
-        """
-        SELECT COUNT(*) FROM races
-        WHERE race_id NOT LIKE '20__________'
-           OR (date NOT LIKE '20__/__/__' AND date NOT LIKE '20__-__-__')
-           OR CAST(SUBSTR(race_id, 5, 2) AS INTEGER) NOT BETWEEN 1 AND 10
-        """
-    ).fetchone()[0]
-
-    if slash_count == 0 and corrupt_count == 0:
-        return
-
-    logger.info(
-        "マイグレーション: races.date 標準化 (スラッシュ形式: %d件, 腐敗データ: %d件)",
-        slash_count, corrupt_count,
-    )
-
     conn.execute("PRAGMA foreign_keys = OFF")
     try:
         with conn:
-            # 1. 腐敗レコードの特定
-            corrupt_ids: list[str] = [
-                r[0] for r in conn.execute(
+            # ── Step 1: YYYYMMDD (8桁数字) → YYYY-MM-DD ──────────────
+            compact_count: int = conn.execute(
+                "SELECT COUNT(*) FROM races WHERE date GLOB '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'"
+            ).fetchone()[0]
+            if compact_count > 0:
+                conn.execute(
                     """
-                    SELECT race_id FROM races
-                    WHERE race_id NOT LIKE '20__________'
-                       OR (date NOT LIKE '20__/__/__' AND date NOT LIKE '20__-__-__')
-                       OR CAST(SUBSTR(race_id, 5, 2) AS INTEGER) NOT BETWEEN 1 AND 10
+                    UPDATE races
+                    SET date =
+                        SUBSTR(date, 1, 4) || '-' ||
+                        SUBSTR(date, 5, 2) || '-' ||
+                        SUBSTR(date, 7, 2)
+                    WHERE date GLOB '[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'
                     """
-                ).fetchall()
-            ]
-            if corrupt_ids:
-                ph = ",".join("?" * len(corrupt_ids))
-                # FK=OFF のため手動で子テーブルを先に削除
-                for child in ("race_results", "race_payouts", "entries",
-                               "realtime_odds", "predictions"):
-                    conn.execute(f"DELETE FROM {child} WHERE race_id IN ({ph})", corrupt_ids)
-                conn.execute(f"DELETE FROM races WHERE race_id IN ({ph})", corrupt_ids)
-                logger.info("腐敗レコード削除: %d 件", len(corrupt_ids))
+                )
+                logger.info("races.date 変換 (YYYYMMDD→ISO): %d 件", compact_count)
 
-            # 2. YYYY/MM/DD → YYYY-MM-DD に変換
+            # ── Step 2: YYYY/MM/DD → YYYY-MM-DD ─────────────────────
+            slash_count: int = conn.execute(
+                "SELECT COUNT(*) FROM races WHERE date LIKE '____/__/__'"
+            ).fetchone()[0]
             if slash_count > 0:
                 conn.execute(
                     """
@@ -1088,7 +1071,33 @@ def _migrate_standardize_race_dates(conn: sqlite3.Connection) -> None:
                     WHERE date LIKE '____/__/__'
                     """
                 )
-                logger.info("races.date 変換完了: %d 件", slash_count)
+                logger.info("races.date 変換 (YYYY/MM/DD→ISO): %d 件", slash_count)
+
+            # ── Step 3: 変換後も不正なレコードを削除 ─────────────────
+            # 削除対象:
+            #   a) race_id が 12桁の "20" 始まりでない
+            #   b) date が YYYY-MM-DD 形式でない（変換しても救えないもの）
+            #   c) 会場コード (race_id[4:6]) が JRA 範囲 01-10 外 (NAR 地方競馬等)
+            corrupt_rows = conn.execute(
+                """
+                SELECT race_id, date FROM races
+                WHERE race_id NOT LIKE '20__________'
+                   OR date NOT LIKE '20__-__-__'
+                   OR CAST(SUBSTR(race_id, 5, 2) AS INTEGER) NOT BETWEEN 1 AND 10
+                """
+            ).fetchall()
+
+            if corrupt_rows:
+                corrupt_ids = [r[0] for r in corrupt_rows]
+                for r in corrupt_rows:
+                    logger.debug("腐敗レコード: race_id=%s date=%r", r[0], r[1])
+                ph = ",".join("?" * len(corrupt_ids))
+                for child in ("race_results", "race_payouts", "entries",
+                               "realtime_odds", "predictions"):
+                    conn.execute(f"DELETE FROM {child} WHERE race_id IN ({ph})", corrupt_ids)
+                conn.execute(f"DELETE FROM races WHERE race_id IN ({ph})", corrupt_ids)
+                logger.info("腐敗レコード削除: %d 件 (NAR地方競馬・不正ID・不正日付)",
+                            len(corrupt_ids))
     finally:
         conn.execute("PRAGMA foreign_keys = ON")
 
@@ -1116,6 +1125,65 @@ def _migrate_standardize_training_dates(conn: sqlite3.Connection) -> None:
                     """
                 )
             logger.info("マイグレーション: %s.training_date 変換完了 %d 件", table, count)
+
+
+def _migrate_fix_prediction_results_fk(conn: sqlite3.Connection) -> None:
+    """
+    prediction_results の FOREIGN KEY が _predictions_old を参照している場合に
+    predictions を参照するよう再作成する。
+
+    _migrate_predictions_unique_constraint() で predictions が
+    Drop-and-Rename された際、prediction_results の FK 参照先が
+    旧テーブル名 (_predictions_old) に追従してしまう SQLite の挙動を修正する。
+    """
+    fk_rows = conn.execute("PRAGMA foreign_key_list(prediction_results)").fetchall()
+    # fk_rows[i] = (id, seq, table, from, to, on_update, on_delete, match)
+    refs_old = any(row[2] == "_predictions_old" for row in fk_rows)
+    if not refs_old:
+        return
+
+    logger.info("マイグレーション: prediction_results FK を predictions に修正します")
+    conn.execute("PRAGMA foreign_keys = OFF")
+    try:
+        with conn:
+            # 既存データを一時テーブルへ退避
+            conn.execute("DROP TABLE IF EXISTS _prediction_results_bak")
+            conn.execute(
+                "CREATE TABLE _prediction_results_bak AS SELECT * FROM prediction_results"
+            )
+            # 旧テーブル削除
+            conn.execute("DROP TABLE prediction_results")
+            # 正しい FK で再作成
+            conn.execute("""
+                CREATE TABLE prediction_results (
+                    id            INTEGER PRIMARY KEY AUTOINCREMENT,
+                    prediction_id INTEGER NOT NULL REFERENCES predictions(id) ON DELETE CASCADE,
+                    is_hit        INTEGER NOT NULL DEFAULT 0,
+                    payout        REAL    DEFAULT 0,
+                    profit        REAL    DEFAULT 0,
+                    roi           REAL,
+                    recorded_at   TEXT    NOT NULL DEFAULT (datetime('now', 'localtime'))
+                )
+            """)
+            # データを戻す（元データがある場合）
+            conn.execute("""
+                INSERT INTO prediction_results
+                    (id, prediction_id, is_hit, payout, profit, roi, recorded_at)
+                SELECT id, prediction_id, is_hit, payout, profit, roi, recorded_at
+                FROM _prediction_results_bak
+                WHERE prediction_id IN (SELECT id FROM predictions)
+            """)
+            conn.execute("DROP TABLE _prediction_results_bak")
+            # インデックス再作成
+            conn.execute(
+                "CREATE INDEX IF NOT EXISTS idx_pred_r_pred_id ON prediction_results(prediction_id)"
+            )
+            conn.execute(
+                "CREATE INDEX IF NOT EXISTS idx_pred_r_is_hit ON prediction_results(is_hit)"
+            )
+        logger.info("マイグレーション: prediction_results FK 修正完了")
+    finally:
+        conn.execute("PRAGMA foreign_keys = ON")
 
 
 def insert_race(conn: sqlite3.Connection, race: "RaceInfo") -> None:  # type: ignore[name-defined]
@@ -1220,10 +1288,10 @@ def insert_prediction(
     Returns:
         新規 prediction.id
     """
-    _VALID_BASE_TYPES = {"卍", "本命", "WIN5"}
+    _VALID_BASE_TYPES = {"卍", "本命", "WIN5", "Oracle"}
     base = model_type.split("(")[0]
     if base not in _VALID_BASE_TYPES:
-        raise ValueError(f"model_type のベースは '卍' / '本命' / 'WIN5' を指定してください: {model_type!r}")
+        raise ValueError(f"model_type のベースは '卍' / '本命' / 'WIN5' / 'Oracle' を指定してください: {model_type!r}")
 
     with conn:
         cur = conn.execute(
@@ -1336,8 +1404,9 @@ def refresh_model_performance(
     month_key = month if month is not None else 0
     venue_key = venue if venue is not None else ""
 
-    where_clauses = ["p.model_type = ?", "substr(r.date,1,4) = ?"]
-    params: list = [model_type, str(year)]
+    # model_type は完全一致 OR プレフィックス一致（例: '卍' で '卍(暫定)' / '卍(直前)' を含む）
+    where_clauses = ["(p.model_type = ? OR p.model_type LIKE ?)", "substr(r.date,1,4) = ?"]
+    params: list = [model_type, model_type + "(%", str(year)]
 
     if month_key:
         where_clauses.append("CAST(substr(r.date,6,2) AS INTEGER) = ?")

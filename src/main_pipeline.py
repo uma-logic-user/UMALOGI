@@ -36,18 +36,13 @@ load_dotenv(_ROOT / ".env", override=False)
 
 from src.database.init_db import (
     init_db,
-    insert_entries,
-    insert_realtime_odds,
     insert_prediction,
-    insert_race_payouts,
     get_db_path,
 )
 from src.ml.features import FeatureBuilder
 from src.ml.models import load_models, train_all
 from src.ml.bet_generator import BetGenerator
 from src.ml.reconcile import reconcile as _reconcile
-from src.scraper.entry_table import fetch_entry_table, fetch_realtime_odds, fetch_live_race_info
-from src.scraper.netkeiba import fetch_race_payouts
 
 # UI 用 JSON 出力先
 _JSON_OUT_DIR = _ROOT / "data" / "predictions"
@@ -57,9 +52,13 @@ def _check_data_quality(df: pd.DataFrame) -> tuple[bool, str]:
     """
     出馬表の特徴量 DataFrame に対してデータ品質チェックを行う。
 
-    以下の条件を満たさない場合は False と理由を返し、予想を見送る:
-      - 馬体重 (horse_weight) の欠損率が 50% 超
-      - 単勝オッズ (win_odds) の欠損率が 30% 超
+    【見送り条件】LightGBM が NaN を処理できないケースのみ Abort する:
+      - 出馬表が 0 頭（entries 取得失敗）
+      - 単勝オッズの欠損率が 80% 超（オッズ未発売 or API 完全障害）
+
+    【警告のみ・続行】当日未公開データは NaN のまま推論を強行する:
+      - 馬体重 (horse_weight): 発走当日の公表前は常に 100% 欠損。見送り対象外。
+      - 単勝オッズ 30〜80% 欠損: 一部未集計。NaN のまま推論。
 
     Args:
         df: FeatureBuilder.build_race_features() の出力 DataFrame
@@ -71,22 +70,26 @@ def _check_data_quality(df: pd.DataFrame) -> tuple[bool, str]:
     if n == 0:
         return False, "出馬表が 0 頭"
 
-    missing_weight = int(df["horse_weight"].isna().sum()) if "horse_weight" in df.columns else n
+    missing_weight = int(df["horse_weight"].isna().sum()) if "horse_weight" in df.columns else 0
     missing_odds   = int(df["win_odds"].isna().sum())     if "win_odds"   in df.columns else n
 
     weight_rate = missing_weight / n
     odds_rate   = missing_odds   / n
 
-    if weight_rate > 0.5:
-        return False, (
-            f"馬体重の欠損率が高すぎます ({missing_weight}/{n}頭={weight_rate:.0%})"
-            " 当日馬体重の公開前または取得失敗の可能性があります"
+    # 馬体重は発走当日公表前に 100% 欠損するため見送り対象外（警告のみ）
+    if weight_rate > 0:
+        logger.warning(
+            "⚠️ 馬体重欠損 %d/%d頭 (%.0f%%) — NaN のまま推論を強行します (race_id に対応)",
+            missing_weight, n, weight_rate * 100,
         )
-    if odds_rate > 0.3:
+
+    # オッズが 80% 超欠損 → オッズ未発売 or API 完全障害。EV 計算が無意味になるため見送り
+    if odds_rate > 0.8:
         return False, (
             f"単勝オッズの欠損率が高すぎます ({missing_odds}/{n}頭={odds_rate:.0%})"
-            " オッズ未発売または取得失敗の可能性があります"
+            " オッズ未発売または取得完全失敗の可能性があります"
         )
+
     return True, "OK"
 
 
@@ -95,6 +98,11 @@ _JYO = {
     "05": "東京", "06": "中山", "07": "中京", "08": "京都",
     "09": "阪神", "10": "小倉",
 }
+
+
+def _sanitize_for_discord(s: str) -> str:
+    """Discord送信前にnullバイト・制御文字を除去する。"""
+    return s.replace('\x00', '').strip()
 
 
 def _send_discord(text: str) -> None:
@@ -109,7 +117,7 @@ def _send_discord(text: str) -> None:
         logger.warning("DISCORD_WEBHOOK_URL が未設定のため Discord 通知をスキップします")
         return
     try:
-        resp = requests.post(url, json={"content": text}, timeout=10)
+        resp = requests.post(url, json={"content": _sanitize_for_discord(text)}, timeout=10)
         resp.raise_for_status()
         logger.info("Discord 送信完了: HTTP %d", resp.status_code)
     except Exception as exc:
@@ -333,8 +341,8 @@ def _notify_prerace_result(
 
     payload = {
         "embeds": [{
-            "title": f"🏇 {label}  直前予想  (`{race_id}`)",
-            "description": description,
+            "title":       _sanitize_for_discord(f"🏇 {label}  直前予想  (`{race_id}`)"),
+            "description": _sanitize_for_discord(description),
             "color": color,
         }]
     }
@@ -422,7 +430,10 @@ def provisional_batch(target_date: str | None = None) -> list[str]:
 
 def friday_batch(target_date: str | None = None) -> list[str]:
     """
-    翌日（または指定日）の全レース出馬表を取得して DB に保存する。
+    翌日（または指定日）の全レース出馬表を JRA-VAN RACE dataspec から取得して DB に保存する。
+
+    JVLink SE レコードを entries / race_results に保存する。
+    netkeiba スクレイピングは一切行わない。
 
     Args:
         target_date: 対象日 "YYYYMMDD"。None なら翌日。
@@ -430,46 +441,38 @@ def friday_batch(target_date: str | None = None) -> list[str]:
     Returns:
         保存したレース ID のリスト
     """
+    from src.scraper.jravan_client import JVDataLoader, DATASPEC_RACE
+
     if target_date is None:
         tomorrow = date.today() + timedelta(days=1)
         target_date = tomorrow.strftime("%Y%m%d")
 
-    logger.info("金曜バッチ開始: 対象日=%s", target_date)
+    logger.info("金曜バッチ開始: 対象日=%s (JRA-VAN RACE)", target_date)
 
-    # netkeiba からレース ID リストを取得
-    from src.scraper.fetch_historical import fetch_race_ids_for_date
-    race_ids = fetch_race_ids_for_date(target_date)
+    from_dt = f"{target_date}000000"
+    sid = os.environ.get("JRAVAN_SID", "")
 
-    if not race_ids:
-        logger.warning("対象日 %s のレースが見つかりませんでした", target_date)
-        return []
+    try:
+        loader = JVDataLoader(sid=sid)
+        stats  = loader.load(dataspec=DATASPEC_RACE, fromtime=from_dt)
+        logger.info("金曜バッチ JVLink 完了: %s", stats)
+    except Exception as exc:
+        logger.error("JVLink 接続失敗 (JRAVAN_SID=%r): %s", sid[:4] + "..." if sid else "", exc)
+        raise
 
+    # 対象日に保存されたレース ID を返す（JVDataLoader が独立して DB を操作済み）
+    formatted = f"{target_date[:4]}-{target_date[4:6]}-{target_date[6:8]}"
     conn = init_db()
-    saved: list[str] = []
-
-    for race_id in race_ids:
-        try:
-            table = fetch_entry_table(race_id, delay=2.0)
-            if not table.entries:
-                _send_scraping_health_alert(
-                    race_id,
-                    "出馬表が 0 頭（fetch_entry_table が空リストを返しました）",
-                )
-                continue
-
-            # races テーブルへのダミー挿入（出馬表のみの段階ではレース情報が不完全）
-            _ensure_race_record(conn, race_id, target_date)
-            insert_entries(conn, race_id, table.entries)
-            saved.append(race_id)
-            logger.info("出馬表保存: race_id=%s (%d頭)", race_id, len(table.entries))
-            time.sleep(2.0)
-        except Exception as exc:
-            logger.error("出馬表取得失敗 race_id=%s: %s", race_id, exc)
-            continue
-
+    race_ids: list[str] = [
+        r[0] for r in conn.execute(
+            "SELECT race_id FROM races WHERE date = ? ORDER BY race_id",
+            (formatted,),
+        ).fetchall()
+    ]
     conn.close()
-    logger.info("金曜バッチ完了: %d / %d レース保存", len(saved), len(race_ids))
-    return saved
+
+    logger.info("金曜バッチ完了: %d レース保存 (対象日=%s)", len(race_ids), target_date)
+    return race_ids
 
 
 def _ensure_race_record(conn, race_id: str, date_str: str) -> None:
@@ -626,58 +629,53 @@ def prerace_pipeline(race_id: str, provisional: bool = False) -> dict:
     if not provisional:
         _check_race_deadline(conn, race_id)
 
-    # ── Step 1: リアルタイムオッズ取得（直前モードのみ） ──────
-    # 暫定モードではオッズ未発売のためスキップ。NaN のまま LightGBM に推論させる。
-    if not provisional:
-        try:
-            odds_list = fetch_realtime_odds(race_id, delay=1.0)
-            if odds_list:
-                name_map = _get_entry_name_map(conn, race_id)
-                insert_realtime_odds(conn, race_id, odds_list, name_map)
-                logger.info("オッズ保存完了: %d 頭", len(odds_list))
-        except Exception as exc:
-            cached = conn.execute(
-                "SELECT COUNT(*) FROM realtime_odds WHERE race_id = ?", (race_id,)
-            ).fetchone()[0]
-            if cached > 0:
-                logger.warning(
-                    "オッズ取得失敗（tenacity 3回リトライ上限）: %s — "
-                    "DB の最終スナップショット %d 件を使用します",
-                    exc, cached,
-                )
-            else:
-                logger.warning(
-                    "オッズ取得失敗（tenacity 3回リトライ上限）: %s — "
-                    "フォールバックなし（オッズ未取得のまま続行）",
-                    exc,
-                )
+    # ── Step 1: リアルタイムオッズ / ライブデータ ─────────────
+    # entries / realtime_odds が DB にある場合はそれを使用する。
+    # 空の場合は netkeiba → RTD の順でフォールバックして自己修復する。
+    cached_entries = conn.execute(
+        "SELECT COUNT(*) FROM entries WHERE race_id = ?", (race_id,)
+    ).fetchone()[0]
+    cached_odds = conn.execute(
+        "SELECT COUNT(*) FROM realtime_odds WHERE race_id = ?", (race_id,)
+    ).fetchone()[0]
 
-    # ── Step 1b: ライブデータ取得（直前モードのみ） ──────────
-    # 暫定モードでは馬体重・馬場状態は当日未発表のためスキップ。
-    if not provisional:
-        try:
-            condition, live_entries = fetch_live_race_info(race_id, delay=1.5)
+    logger.info(
+        "DB キャッシュ: オッズ=%d件 エントリ=%d頭 (race_id=%s)",
+        cached_odds, cached_entries, race_id,
+    )
 
-            if live_entries:
-                insert_entries(conn, race_id, live_entries)
-                weight_known = sum(1 for e in live_entries if e.horse_weight is not None)
+    # ── Step 1b: entries が空なら netkeiba から自動フォールバック ──
+    if cached_entries == 0:
+        logger.warning(
+            "⚠️ entries テーブルが空 (race_id=%s) → netkeiba から出馬表を自動取得します",
+            race_id,
+        )
+        try:
+            from src.scraper.entry_table import fetch_entry_table
+            tbl = fetch_entry_table(race_id, delay=1.5)
+            if tbl.entries:
+                n_saved = _save_entries_to_db(conn, tbl)
                 logger.info(
-                    "馬体重更新: %d 頭中 %d 頭の体重を取得",
-                    len(live_entries), weight_known,
+                    "netkeiba フォールバック成功: %d 頭を entries に保存 (race_id=%s)",
+                    n_saved, race_id,
                 )
-
-            if condition:
-                conn.execute(
-                    "UPDATE races SET condition = ? WHERE race_id = ?",
-                    (condition, race_id),
-                )
-                conn.commit()
-                logger.info("馬場状態を更新: %s", condition)
+                cached_entries = n_saved
             else:
-                logger.info("馬場状態: 未発表のため既存値を維持")
-
+                logger.error(
+                    "🚨 netkeiba からも出馬表が 0 頭 (race_id=%s) — "
+                    "HTML 構造変更またはページ未公開の可能性があります",
+                    race_id,
+                )
+                _send_scraping_health_alert(
+                    race_id,
+                    "JRA-VAN entries も netkeiba 出馬表も 0 頭 — HTML 構造変更を確認してください",
+                )
         except Exception as exc:
-            logger.warning("ライブデータ取得失敗（既存DB値で続行）: %s", exc)
+            logger.error("netkeiba 出馬表フォールバック失敗 (race_id=%s): %s", race_id, exc)
+
+    # ── Step 1c: realtime_odds が空なら netkeiba オッズ API → RTD の順で取得 ──
+    if cached_odds == 0 and not provisional:
+        _fetch_and_save_odds(conn, race_id)
 
     # ── Step 2: 特徴量生成 ─────────────────────────────────────
     try:
@@ -696,12 +694,32 @@ def prerace_pipeline(race_id: str, provisional: bool = False) -> dict:
     # ── Step 2b: データ品質チェック（直前モードのみ） ─────────
     # 暫定モードでは馬体重/オッズ欠損を許容し、NaN のまま LightGBM に推論させる。
     if not provisional:
-        # 全馬のオッズが NaN → スクレイピング構造的破綻の可能性
+        # 全馬のオッズが NaN → Step1c でオッズ取得を試みたが失敗した可能性
+        # もしくは FeatureBuilder が realtime_odds を参照できていない場合
         if "win_odds" in df.columns and df["win_odds"].isna().all():
-            _send_scraping_health_alert(
-                race_id,
-                f"全馬の単勝オッズが NaN ({len(df)} 頭) — オッズ取得先の HTML 構造変更を確認してください",
-            )
+            # realtime_odds を再確認して再ビルドを試みる
+            new_odds_count = conn.execute(
+                "SELECT COUNT(*) FROM realtime_odds WHERE race_id = ?", (race_id,)
+            ).fetchone()[0]
+            if new_odds_count > 0:
+                # オッズは保存済みだが FeatureBuilder が古い df を返した → 再ビルド
+                logger.info("オッズ保存済み(%d件) → DataFrame を再ビルドします", new_odds_count)
+                try:
+                    fb2 = FeatureBuilder(conn)
+                    df2 = fb2.build_race_features(race_id)
+                    if not df2.empty and "win_odds" in df2.columns and not df2["win_odds"].isna().all():
+                        df = df2
+                        logger.info("DataFrame 再ビルド成功: オッズ欠損率 %.0f%%",
+                                    df["win_odds"].isna().mean() * 100)
+                except Exception as rebuild_exc:
+                    logger.warning("DataFrame 再ビルド失敗（続行）: %s", rebuild_exc)
+
+            if "win_odds" in df.columns and df["win_odds"].isna().all():
+                logger.warning(
+                    "⚠️ 全馬の単勝オッズが NaN (%d 頭) — "
+                    "オッズ未取得のまま推論します (race_id=%s)",
+                    len(df), race_id,
+                )
         ok, reason = _check_data_quality(df)
         if not ok:
             conn.close()
@@ -726,6 +744,7 @@ def prerace_pipeline(race_id: str, provisional: bool = False) -> dict:
     gen = BetGenerator()
     honmei_bets = gen.generate_honmei(race_id, df, honmei_scores)
     manji_bets  = gen.generate_manji(race_id, df, ev_scores)
+    oracle_bets = gen.generate_oracle(race_id, df, honmei_scores)
 
     # ── Step 5: DB 保存 ────────────────────────────────────────
     # model_type に "(暫定)" / "(直前)" サフィックスを付与して区別する
@@ -735,17 +754,29 @@ def prerace_pipeline(race_id: str, provisional: bool = False) -> dict:
     for race_bets in (honmei_bets, manji_bets):
         mt_tagged = f"{race_bets.model_type}{suffix}"   # 例: "本命(暫定)"
         for bet in race_bets.bets:
-            horses_payload = [
-                {
-                    "horse_number": c[0] if len(c) == 1 else None,
-                    "horse_name":   bet.horse_names[i] if i < len(bet.horse_names)
-                                    else race_bets.model_type,
-                    "predicted_rank": i + 1,
-                    "model_score":  bet.model_score,
-                    "ev_score":     bet.expected_value,
-                }
-                for i, c in enumerate(bet.combinations[:5])  # 最大5頭
-            ]
+            horses_payload: list[dict] = []
+            for i, c in enumerate(bet.combinations[:5]):
+                if len(c) == 1:
+                    # 単勝・複勝: 1組み合わせ = 1頭
+                    horses_payload.append({
+                        "horse_number": c[0],
+                        "horse_name":   bet.horse_names[i] if i < len(bet.horse_names)
+                                        else race_bets.model_type,
+                        "predicted_rank": i + 1,
+                        "model_score":  bet.model_score,
+                        "ev_score":     bet.expected_value,
+                    })
+                else:
+                    # 馬連・ワイド・馬単・三連複・三連単: 1組み合わせ = 複数頭
+                    for j, horse_num in enumerate(c):
+                        horses_payload.append({
+                            "horse_number": horse_num,
+                            "horse_name":   bet.horse_names[j] if j < len(bet.horse_names)
+                                            else str(horse_num),
+                            "predicted_rank": j + 1,
+                            "model_score":  bet.model_score,
+                            "ev_score":     bet.expected_value,
+                        })
             combo_json = _json.dumps([list(c) for c in bet.combinations])
             try:
                 pid = insert_prediction(
@@ -765,6 +796,36 @@ def prerace_pipeline(race_id: str, provisional: bool = False) -> dict:
                 logger.error("予想保存失敗 %s %s: %s",
                              mt_tagged, bet.bet_type, exc)
 
+    # ── Step 5a-2: Oracle 買い目保存（的中実績記録用・実戦Kelly対象外）──
+    oracle_suffix = f"Oracle{suffix}"
+    for bet in oracle_bets.bets:
+        horses_payload_o: list[dict] = []
+        for j, horse_num in enumerate(bet.combinations[0] if bet.combinations else []):
+            horses_payload_o.append({
+                "horse_number": horse_num,
+                "horse_name":   bet.horse_names[j] if j < len(bet.horse_names)
+                                else str(horse_num),
+                "predicted_rank": j + 1,
+                "model_score":  bet.model_score,
+                "ev_score":     bet.expected_value,
+            })
+        combo_json_o = _json.dumps([list(c) for c in bet.combinations])
+        try:
+            insert_prediction(
+                conn,
+                race_id=race_id,
+                model_type=oracle_suffix,
+                bet_type=bet.bet_type,
+                horses=horses_payload_o,
+                confidence=bet.confidence,
+                expected_value=bet.expected_value,
+                recommended_bet=bet.recommended_bet,
+                notes=bet.notes,
+                combination_json=combo_json_o,
+            )
+        except Exception as exc:
+            logger.warning("Oracle予想保存失敗 %s: %s", bet.bet_type, exc)
+
     # ── Step 5b: 全馬スコア保存（馬分析表示用）────────────────────
     # Streamlit の「馬分析」で全出走馬のモデルスコアを表示するため、
     # 全頭分のスコアを bet_type='馬分析' として保存する。
@@ -777,7 +838,7 @@ def prerace_pipeline(race_id: str, provisional: bool = False) -> dict:
     for rank_pos, orig_idx in enumerate(rank_order):
         row = df_sorted.iloc[int(orig_idx)]
         all_horse_payload.append({
-            "horse_id":      str(row.get("horse_id") or ""),
+            "horse_id":      row.get("horse_id") or None,
             "horse_name":    str(row.get("horse_name", "")),
             "predicted_rank": rank_pos + 1,
             "model_score":   float(honmei_scores.iloc[int(orig_idx)]),
@@ -825,6 +886,107 @@ def prerace_pipeline(race_id: str, provisional: bool = False) -> dict:
         len(prediction_ids["卍"]),
     )
     return payload
+
+
+def _save_entries_to_db(conn, tbl) -> int:
+    """
+    EntryTable を entries テーブルに保存して保存件数を返す。
+
+    horse_id は JVLink と netkeiba で形式が異なるため NULL で保存し、
+    後続の JVLink 同期で上書きされることを想定する。
+    """
+    saved = 0
+    for h in tbl.entries:
+        try:
+            with conn:
+                conn.execute(
+                    """
+                    INSERT OR REPLACE INTO entries
+                        (race_id, horse_number, gate_number, horse_id,
+                         horse_name, sex_age, weight_carried,
+                         jockey, trainer, horse_weight, horse_weight_diff)
+                    VALUES (?, ?, ?, NULL, ?, ?, ?, ?, ?, ?, ?)
+                    """,
+                    (
+                        tbl.race_id,
+                        h.horse_number,
+                        h.gate_number,
+                        h.horse_name,
+                        h.sex_age,
+                        h.weight_carried,
+                        h.jockey,
+                        h.trainer,
+                        h.horse_weight,
+                        h.horse_weight_diff,
+                    ),
+                )
+            saved += 1
+        except Exception as exc:
+            logger.warning("entries 保存失敗 %s #%d: %s", tbl.race_id, h.horse_number, exc)
+    return saved
+
+
+def _fetch_and_save_odds(conn, race_id: str) -> int:
+    """
+    realtime_odds が空のとき、netkeiba API → RTD の順でオッズを取得して DB に保存する。
+
+    フォールバック戦略（2段階）:
+      1. netkeiba オッズ API (fetch_realtime_odds) — 最新オッズ（推奨）
+      2. JRA-VAN ローカル RTD キャッシュ (.rtd) — API 失敗時の予備
+
+    Returns:
+        保存した頭数（0 なら全段失敗）
+    """
+    from src.database.init_db import insert_realtime_odds
+
+    # 馬名マップを entries から構築（オッズ保存時の参照用）
+    name_map: dict[int, str] = {
+        r[0]: r[1]
+        for r in conn.execute(
+            "SELECT horse_number, horse_name FROM entries WHERE race_id=?", (race_id,)
+        ).fetchall()
+    }
+
+    # ── Stage 1: netkeiba オッズ API ──────────────────────────
+    try:
+        from src.scraper.entry_table import fetch_realtime_odds
+        odds_list = fetch_realtime_odds(race_id, delay=1.0)
+        if odds_list and any(o.win_odds for o in odds_list):
+            n = insert_realtime_odds(conn, race_id, odds_list, name_map)
+            logger.info(
+                "オッズ取得 [netkeiba API]: %d 頭保存 (race_id=%s)", n, race_id
+            )
+            return n
+        logger.warning(
+            "netkeiba API: オッズ取得なし or 全 NaN (race_id=%s) → RTD にフォールバック",
+            race_id,
+        )
+    except Exception as exc:
+        logger.warning("netkeiba オッズ API 失敗 (race_id=%s): %s — RTD にフォールバック", race_id, exc)
+
+    # ── Stage 2: JRA-VAN ローカル RTD キャッシュ ─────────────
+    try:
+        from src.scraper.rtd_reader import read_rtd_for_race, rtd_odds_to_horse_odds
+        rtd_info = read_rtd_for_race(race_id)
+        if rtd_info and rtd_info.odds:
+            odds_list = rtd_odds_to_horse_odds(rtd_info)
+            if odds_list and any(o.win_odds for o in odds_list):
+                n = insert_realtime_odds(conn, race_id, odds_list, name_map)
+                logger.info(
+                    "オッズ取得 [RTD キャッシュ]: %d 頭保存 (race_id=%s)", n, race_id
+                )
+                return n
+        logger.warning("RTD: オッズ取得なし or ファイル未存在 (race_id=%s)", race_id)
+    except Exception as exc:
+        logger.warning("RTD 読み込み失敗 (race_id=%s): %s", race_id, exc)
+
+    # 全段失敗
+    logger.error(
+        "🚨 オッズ全段取得失敗 (race_id=%s) — netkeiba API / RTD 両方が使用不可です。"
+        "暫定モードに切り替えて NaN のまま推論します。",
+        race_id,
+    )
+    return 0
 
 
 def _get_entry_name_map(conn, race_id: str) -> dict[int, str]:
@@ -1030,7 +1192,9 @@ def simulate_pipeline(race_id: str) -> dict:
                 logger.error("[SIMULATE] 予想保存失敗 %s %s: %s",
                              race_bets.model_type, bet.bet_type, exc)
 
-    # ── Step 6: 払戻データ取得（未取得の場合のみ） ─────────────────
+    # ── Step 6: 払戻データ確認 ────────────────────────────────────────
+    # 払戻は JRA-VAN RACE dataspec (HR レコード) から sync_race_results で取得済みのはず。
+    # 未取得の場合は data_sync race_results を先に実行すること。
     payout_count = conn.execute(
         "SELECT COUNT(*) FROM race_payouts WHERE race_id = ?", (race_id,)
     ).fetchone()[0]
@@ -1038,18 +1202,13 @@ def simulate_pipeline(race_id: str) -> dict:
     reconcile_stats: dict | None = None
 
     if payout_count == 0:
-        logger.info("[SIMULATE] 払戻データなし → netkeiba から取得: race_id=%s", race_id)
-        try:
-            payouts = fetch_race_payouts(race_id, delay=1.5)
-            if payouts:
-                saved_count = insert_race_payouts(conn, race_id, payouts)
-                logger.info("[SIMULATE] 払戻保存完了: %d 件", saved_count)
-            else:
-                logger.warning("[SIMULATE] 払戻データが取得できませんでした: race_id=%s", race_id)
-        except Exception as exc:
-            logger.error("[SIMULATE] 払戻取得失敗: %s", exc)
+        logger.warning(
+            "[SIMULATE] 払戻データ未取得: race_id=%s — "
+            "py -m src.ops.data_sync race_results を先に実行してください",
+            race_id,
+        )
     else:
-        logger.info("[SIMULATE] 払戻データは取得済み (%d 件): race_id=%s", payout_count, race_id)
+        logger.info("[SIMULATE] 払戻データ取得済み (%d 件): race_id=%s", payout_count, race_id)
 
     # ── Step 7: 照合（このレースの予想のみ） ──────────────────────
     try:
@@ -1085,6 +1244,123 @@ def simulate_pipeline(race_id: str) -> dict:
         len(prediction_ids["卍"]),
     )
     return payload
+
+
+# ================================================================
+# WIN5 バッチ予測
+# ================================================================
+
+def win5_batch(target_date: str | None = None) -> dict:
+    """
+    指定日（省略時=当日）の全レースから WIN5 予測を実行して DB に保存する。
+
+    土日朝（9:00頃）にスケジューラーから独立して呼ばれる。
+    prerace_pipeline 内の _try_win5() とは別に、金曜バッチで races が
+    揃った直後に確実に実行できるよう独立バッチ化したもの。
+
+    Args:
+        target_date: "YYYYMMDD" 形式。None なら当日。
+
+    Returns:
+        {"date": ..., "win5_races": [...], "ev": ..., "bet": ..., "skipped": bool}
+    """
+    if target_date is None:
+        target_date = date.today().strftime("%Y%m%d")
+
+    formatted = f"{target_date[:4]}-{target_date[4:6]}-{target_date[6:8]}"
+    logger.info("WIN5 バッチ開始: 対象日=%s", formatted)
+
+    conn = init_db()
+    rows = conn.execute(
+        "SELECT race_id FROM races WHERE date = ? ORDER BY race_id",
+        (formatted,),
+    ).fetchall()
+    race_ids_today = [r[0] for r in rows]
+
+    if len(race_ids_today) < 5:
+        msg = f"WIN5 スキップ: 当日レース {len(race_ids_today)} 件（5件必要）"
+        logger.warning(msg)
+        conn.close()
+        return {"date": target_date, "skipped": True, "reason": msg}
+
+    # 重複防止
+    existing = conn.execute(
+        "SELECT COUNT(*) FROM predictions WHERE race_id = ? AND model_type = 'WIN5'",
+        (race_ids_today[0],),
+    ).fetchone()[0]
+    if existing > 0:
+        logger.info("WIN5 予測済みのためスキップ: %s", race_ids_today[0])
+        conn.close()
+        return {"date": target_date, "skipped": True, "reason": "already predicted"}
+
+    win5_race_ids = race_ids_today[:5]
+    logger.info("WIN5 対象レース: %s", win5_race_ids)
+
+    try:
+        from src.ml.win5 import Win5Engine
+        honmei_model, _ = load_models()
+        engine = Win5Engine(model=honmei_model)
+        combinations = engine.predict_top_n(conn, win5_race_ids)
+
+        if not combinations:
+            msg = f"WIN5: EV >= 1.0 の組み合わせなし（対象: {win5_race_ids}）"
+            logger.info(msg)
+            _send_discord(f"[WIN5] 本日は推奨買い目なし（全組み合わせ EV < 1.0）")
+            conn.close()
+            return {"date": target_date, "win5_races": win5_race_ids, "skipped": False, "combinations": 0}
+
+        best = combinations[0]
+        horses_payload = [
+            {
+                "horse_name":     p.horse_name,
+                "horse_number":   p.horse_number,
+                "predicted_rank": idx + 1,
+                "model_score":    p.blend_prob,
+                "ev_score":       best.expected_value,
+            }
+            for idx, p in enumerate(best.picks)
+        ]
+        combo_json = json.dumps([[p.horse_number] for p in best.picks])
+        horse_names_str = " / ".join(p.horse_name for p in best.picks)
+
+        insert_prediction(
+            conn,
+            race_id=win5_race_ids[0],
+            model_type="WIN5",
+            bet_type="WIN5",
+            horses=horses_payload,
+            confidence=best.combined_prob,
+            expected_value=best.expected_value,
+            recommended_bet=best.recommended_bet,
+            notes=f"WIN5: {horse_names_str}",
+            combination_json=combo_json,
+        )
+        logger.info(
+            "WIN5 予測保存: EV=%.3f 推定払戻=¥%,.0f [%s]",
+            best.expected_value, best.estimated_payout, horse_names_str,
+        )
+
+        _send_discord(
+            f"🎯 **[WIN5] 本日推奨買い目**\n"
+            f"EV={best.expected_value:.3f}  推定払戻 ¥{best.estimated_payout:,.0f}\n"
+            f"```\n{horse_names_str}\n```\n"
+            f"対象レース: {' → '.join(win5_race_ids)}"
+        )
+        conn.close()
+        return {
+            "date": target_date,
+            "win5_races": win5_race_ids,
+            "ev": best.expected_value,
+            "bet": best.recommended_bet,
+            "horses": horse_names_str,
+            "skipped": False,
+        }
+
+    except Exception as exc:
+        logger.error("WIN5 バッチ失敗: %s", exc, exc_info=True)
+        _send_discord(f"🚨 [WIN5] 予測失敗: {exc}")
+        conn.close()
+        return {"date": target_date, "error": str(exc), "skipped": False}
 
 
 # ================================================================
@@ -1153,6 +1429,10 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     )
     p_sim.add_argument("race_id", help="対象過去レース ID")
 
+    # win5 サブコマンド
+    p_win5 = sub.add_parser("win5", help="WIN5 バッチ予測")
+    p_win5.add_argument("--date", metavar="YYYYMMDD", help="対象日（省略時=当日）")
+
     # train サブコマンド
     sub.add_parser("train", help="モデル再学習")
 
@@ -1187,6 +1467,10 @@ def main(argv: list[str] | None = None) -> None:
 
     elif args.command == "simulate":
         result = simulate_pipeline(args.race_id)
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+
+    elif args.command == "win5":
+        result = win5_batch(target_date=getattr(args, "date", None))
         print(json.dumps(result, ensure_ascii=False, indent=2))
 
     elif args.command == "train":

@@ -45,6 +45,11 @@ class DiscordNotifier(BaseNotifier):
         if enabled and not self._url:
             logger.warning("DISCORD_WEBHOOK_URL が設定されていません")
 
+    @staticmethod
+    def _sanitize(s: str) -> str:
+        """nullバイト・制御文字を除去してDiscord送信安全な文字列に変換する。"""
+        return s.replace('\x00', '').strip()
+
     def _send(self, message: NotifyMessage) -> bool:
         if not self._url:
             return False
@@ -54,8 +59,8 @@ class DiscordNotifier(BaseNotifier):
                 else _COLOR_NORMAL
 
         embed = {
-            "title": message.title,
-            "description": message.body,
+            "title":       self._sanitize(message.title),
+            "description": self._sanitize(message.body),
             "color": color,
         }
         if message.url:

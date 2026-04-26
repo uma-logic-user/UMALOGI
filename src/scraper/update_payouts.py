@@ -54,6 +54,53 @@ def _get_races_without_payouts(conn, year: int | None) -> list[str]:
     return [r[0] for r in rows]
 
 
+def update_payouts_for_date(
+    conn: "sqlite3.Connection",
+    target_date: str,
+    delay: float = 2.0,
+) -> int:
+    """
+    指定日のレースの払戻を netkeiba から取得して DB に保存する。
+
+    data_sync.sync_payouts_from_netkeiba() から呼び出される。
+
+    Args:
+        conn:        DB コネクション
+        target_date: 対象日 YYYYMMDD 形式
+        delay:       リクエスト間隔（秒）
+
+    Returns:
+        保存したレース数
+    """
+    import sqlite3 as _sqlite3
+    formatted = f"{target_date[:4]}-{target_date[4:6]}-{target_date[6:8]}"
+    rows = conn.execute(
+        """
+        SELECT DISTINCT r.race_id
+        FROM races r
+        WHERE r.date = ?
+        ORDER BY r.race_id
+        """,
+        (formatted,),
+    ).fetchall()
+    race_ids = [r[0] for r in rows]
+
+    saved = 0
+    for race_id in race_ids:
+        try:
+            payouts = fetch_race_payouts(race_id, delay=delay)
+            if payouts:
+                insert_race_payouts(conn, race_id, payouts)
+                saved += 1
+                logger.info("払戻保存: race_id=%s (%d 件)", race_id, len(payouts))
+            else:
+                logger.warning("払戻なし: race_id=%s", race_id)
+        except Exception as exc:
+            logger.warning("払戻取得失敗 race_id=%s: %s", race_id, exc)
+
+    return saved
+
+
 def update_payouts(
     *,
     year: int | None = None,

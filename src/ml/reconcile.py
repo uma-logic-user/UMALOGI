@@ -577,15 +577,17 @@ def reconcile(
             p.recommended_bet,
             p.notes,
             p.combination_json,
-            ph.horse_name    AS ph_horse_name
+            (
+                SELECT horse_name FROM prediction_horses
+                WHERE prediction_id = p.id AND predicted_rank = 1
+                ORDER BY id LIMIT 1
+            )                AS ph_horse_name
         FROM predictions p
-        LEFT JOIN prediction_horses ph
-               ON ph.prediction_id = p.id
-              AND ph.predicted_rank = 1
         WHERE NOT EXISTS (
             SELECT 1 FROM prediction_results pr
             WHERE pr.prediction_id = p.id
         )
+        AND p.bet_type NOT IN ('馬分析', 'WIN5')
         {year_filter}
         {race_filter}
         ORDER BY p.race_id, p.id

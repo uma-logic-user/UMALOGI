@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 # ---------------------------------------------------------------------------
 # 定数
 # ---------------------------------------------------------------------------
-RACE_URL_TEMPLATE  = "https://db.netkeiba.com/race/{race_id}/"
+RACE_URL_TEMPLATE  = "https://race.netkeiba.com/race/result.html?race_id={race_id}"
 PED_URL_TEMPLATE   = "https://db.netkeiba.com/horse/ped/{horse_id}/"
 
 DEFAULT_HEADERS: dict[str, str] = {
@@ -31,8 +31,9 @@ DEFAULT_HEADERS: dict[str, str] = {
     "Accept-Language": "ja,en-US;q=0.9",
 }
 
-# netkeiba 結果テーブルの列インデックス（実測値）
-# 着順 枠 馬番 馬名 性齢 斤量 騎手 タイム 着差 ... 単勝 人気 馬体重 調教師
+# netkeiba 結果テーブルの列インデックス（race.netkeiba.com/race/result.html 実測・2025年時点）
+# [0]着順 [1]枠番 [2]馬番 [3]馬名 [4]性齢 [5]斤量 [6]騎手 [7]タイム [8]着差
+# [9]人気 [10]単勝 [11]上がり [12]通過 [13]調教師 [14]馬体重
 _COL_RANK          = 0
 _COL_GATE_NUMBER   = 1   # 枠番
 _COL_HORSE_NUMBER  = 2   # 馬番
@@ -42,10 +43,10 @@ _COL_WEIGHT        = 5
 _COL_JOCKEY        = 6
 _COL_TIME          = 7
 _COL_MARGIN        = 8
-_COL_WIN_ODDS      = 16
-_COL_POPULARITY    = 17
-_COL_HORSE_WEIGHT  = 18
-_COL_TRAINER       = 19  # 調教師
+_COL_POPULARITY    = 9
+_COL_WIN_ODDS      = 10
+_COL_TRAINER       = 13
+_COL_HORSE_WEIGHT  = 14
 
 
 # ---------------------------------------------------------------------------
@@ -127,7 +128,8 @@ def _fetch_html(
         try:
             resp = requester(url, headers=DEFAULT_HEADERS, timeout=timeout)
             resp.raise_for_status()
-            resp.encoding = resp.apparent_encoding
+            # netkeiba は EUC-JP 固定（chardet の誤検知を防ぐ）
+            resp.encoding = "euc-jp"
             return resp.text
         except (requests.HTTPError, requests.Timeout, requests.ConnectionError) as exc:
             last_exc = exc
@@ -196,52 +198,70 @@ def _parse_race_info(soup: BeautifulSoup, race_id: str) -> RaceInfo:
     venue           = ""
     race_number     = 0
 
-    # --- レース名・距離・天候・馬場 ---
-    data_tag = soup.select_one("dl.racedata, div.mainrace_data")
-    if data_tag:
-        text = data_tag.get_text(" ", strip=True)
+    # --- レース名 ---
+    # div.RaceList_Item02 に "3歳未勝利 09:45発走 / ダ1700m ..." のような形式
+    name_tag = soup.select_one("div.RaceList_Item02, div.RaceName, h1.RaceName")
+    if name_tag:
+        race_name = name_tag.get_text(" ", strip=True).split("発走")[0].strip().split()
+        race_name = race_name[0] if race_name else race_name
 
-        # レース名: "第70回有馬記念(GI)" のような形式
-        m = re.search(r"R\s*(.+?)\s*(?:芝|ダート)", text)
-        if m:
-            race_name = m.group(1).strip()
+    # --- 距離・天候・馬場（RaceData01）---
+    # 例: "09:45発走 / ダ1700m (右) / 天候:晴 / 馬場:良"
+    data01 = soup.select_one("div.RaceData01")
+    if data01:
+        text = data01.get_text(" ", strip=True)
 
-        # 距離・馬場種別・コース方向: "芝右2500m" / "芝左外1600m" / "ダート左1800m"
-        m = re.search(r"(芝|ダート)(右外|左外|右|左|直線?)?\s*(\d+)m", text)
+        # 距離・馬場種別: "ダ1700m" / "芝2500m" / "芝1600m (右)" / "障2970m (右 ダート)"
+        # ※ 障害レースは "障" プレフィックス、外回りは "右 外" のようにスペース入り
+        m = re.search(
+            r"(芝|ダート|ダ|障害|障)\s*"
+            r"(右\s*外|左\s*外|右|左|直線?)?\s*"
+            r"(\d+)m",
+            text,
+        )
         if m:
-            surface         = m.group(1)
-            track_direction = m.group(2) or ""
+            raw_surf = m.group(1)
+            if raw_surf in ("芝",):
+                surface = "芝"
+            elif raw_surf in ("障", "障害"):
+                surface = "障害"
+            else:
+                surface = "ダート"
+            track_direction = (m.group(2) or "").replace(" ", "")
             distance        = int(m.group(3))
 
         # 天候
-        m = re.search(r"天候\s*[：:]\s*(\S+?)\s*[/\xa0]", text + "/")
+        m = re.search(r"天候\s*[：:]\s*(\S+?)(?:\s|/|$)", text)
         if m:
             weather = m.group(1)
 
-        # 馬場状態: "芝 : 良" or "ダート : 稍重"
-        m = re.search(r"(?:芝|ダート)\s*[：:]\s*(\S+?)\s*[/\xa0]", text + "/")
+        # 馬場状態
+        m = re.search(r"馬場\s*[：:]\s*(\S+?)(?:\s|/|$)", text)
         if m:
             condition = m.group(1)
 
-    # --- 日付・開催場所・回次 ---
-    small_tag = soup.select_one("p.smalltxt")
-    if small_tag:
-        text = small_tag.get_text(" ", strip=True)
+    # --- 日付・開催場所・回次（RaceData02）---
+    # 例: "1回 福島 2日目 サラ系３歳 未勝利 牝[指] 馬齢 15頭 ..."
+    data02 = soup.select_one("div.RaceData02")
+    if data02:
+        text = data02.get_text(" ", strip=True)
 
-        # 日付: "2025年12月28日"
-        m = re.search(r"(\d{4})年(\d{1,2})月(\d{1,2})日", text)
-        if m:
-            date = f"{m.group(1)}-{int(m.group(2)):02d}-{int(m.group(3)):02d}"
-
-        # 開催場所: "5回中山8日目" → "中山"
-        m = re.search(r"\d+回(\S+?)\d+日目", text)
+        # 開催場所: "1回 福島 2日目" → venue="福島"
+        m = re.search(r"\d+回\s*(\S+?)\s*\d+日目", text)
         if m:
             venue = m.group(1)
 
-        # 回次: "5回" → 5
+        # 回次: "1回" → 1
         m = re.search(r"(\d+)回", text)
         if m:
             race_number = int(m.group(1))
+
+    # race_id から日付を確定（YYYYMMDD → YYYY-MM-DD）
+    if not date and len(race_id) >= 8:
+        ymd = race_id[:8]
+        # races テーブルに既存データがある場合は優先するため、ここでは race_id ベースで補完のみ
+        # ただし race_id 先頭8文字が年月日ではなくプレフィックスの場合があるため DB 照会を優先
+        # ここでは空のまま返し、呼び出し元で races テーブルの既存日付を利用する
 
     return RaceInfo(
         race_id=race_id,
@@ -270,12 +290,12 @@ def _parse_results_table(
     重要列: [0]着順 [4]性齢 [5]斤量 [6]騎手 [7]タイム [8]着差
             [16]単勝 [17]人気 [18]馬体重
     """
-    table = soup.select_one("table.race_table_01")
+    table = soup.select_one("table.RaceTable01")
     if table is None:
         return []
 
     result: list[tuple[str, str, list[str]]] = []
-    for tr in table.select("tr")[1:]:   # ヘッダー行をスキップ
+    for tr in table.select("tr.HorseList"):
         cells = [td.get_text(strip=True) for td in tr.select("td")]
         if len(cells) < 10:
             continue
@@ -348,6 +368,7 @@ def _fetch_pedigree(
 def fetch_race_results(
     race_id: str,
     *,
+    race_date: Optional[str] = None,
     fetch_pedigree: bool = True,
     delay: float = 1.5,
     max_retries: int = 3,
@@ -357,11 +378,13 @@ def fetch_race_results(
     レース ID を指定してレース結果を取得する。
 
     Args:
-        race_id: netkeiba レース ID（例: "202506050811"）
+        race_id:      netkeiba レース ID（例: "202506050811"）
+        race_date:    日付文字列（"YYYYMMDD" または "YYYY-MM-DD"）。HTML から
+                      日付が取得できない場合のフォールバックに使用する。
         fetch_pedigree: True の場合、各馬の血統情報も取得する
-        delay: 各リクエスト前の待機秒数（サーバー負荷軽減）
-        max_retries: HTTP リトライ上限
-        session: 再利用する requests.Session（スレッド並列時に渡す）
+        delay:        各リクエスト前の待機秒数（サーバー負荷軽減）
+        max_retries:  HTTP リトライ上限
+        session:      再利用する requests.Session（スレッド並列時に渡す）
 
     Returns:
         RaceInfo（レース基本情報 + 各馬結果リスト）
@@ -379,6 +402,11 @@ def fetch_race_results(
     soup = BeautifulSoup(html, "lxml")
 
     race_info = _parse_race_info(soup, race_id)
+
+    # HTML から日付が取得できなかった場合、引数 race_date でフォールバック
+    if not race_info.date and race_date:
+        d = race_date.replace("-", "")   # "YYYYMMDD" に正規化
+        race_info.date = f"{d[:4]}-{d[4:6]}-{d[6:8]}"
     raw_rows  = _parse_results_table(soup)
 
     results: list[HorseResult] = []
@@ -415,6 +443,21 @@ def fetch_race_results(
 # ---------------------------------------------------------------------------
 
 # netkeiba の th クラス → 馬券種の対応
+# race.netkeiba.com 払戻テーブルの th テキスト → 内部 bet_type マッピング
+_TH_TEXT_TO_BET_TYPE: dict[str, str] = {
+    "単勝":  "単勝",
+    "複勝":  "複勝",
+    "枠連":  "枠連",
+    "馬連":  "馬連",
+    "ワイド": "ワイド",
+    "馬単":  "馬単",
+    "3連複": "三連複",
+    "3連単": "三連単",
+    "三連複": "三連複",
+    "三連単": "三連単",
+}
+
+# th class → bet_type（旧 db.netkeiba.com 形式・後方互換）
 _TH_CLASS_TO_BET_TYPE: dict[str, str] = {
     "tan":     "単勝",
     "fuku":    "複勝",
@@ -450,11 +493,110 @@ def _normalize_combination(raw: str) -> str:
 
 
 def _parse_payout_int(raw: str) -> Optional[int]:
-    """"1,380" → 1380"""
+    """"1,380" / "250円" / "1,450円" → 1380 / 250 / 1450"""
+    # 数字とカンマのみ抽出（"円" や HTML 残渣を無視）
+    numeric = re.sub(r"[^\d,]", "", raw.strip())
+    if not numeric:
+        return None
     try:
-        return int(raw.strip().replace(",", ""))
+        return int(numeric.replace(",", ""))
     except ValueError:
         return None
+
+
+def _parse_payout_table_new(soup: BeautifulSoup) -> list[dict]:
+    """
+    race.netkeiba.com/race/result.html の Payout_Detail_Table を解析する。
+
+    構造:
+        table.Payout_Detail_Table > tr
+            th: 馬券種テキスト（"単勝" / "3連複" 等）
+            td[0]: 馬番 <span> / <li> 要素の数字
+            td[1]: 払戻 <span> に <br> 区切りで複数ある場合あり
+            td[2]: 人気 <span> が複数ある場合あり
+
+    組み合わせ区切り:
+        馬単・三連単 → "→"  / その他 → "-"  / 単勝・複勝 → 単一数字
+    """
+    results: list[dict] = []
+
+    for table in soup.select("table.Payout_Detail_Table"):
+        for tr in table.find_all("tr"):
+            th = tr.find("th")
+            tds = tr.find_all("td")
+            if not th or len(tds) < 2:
+                continue
+
+            bet_type = _TH_TEXT_TO_BET_TYPE.get(th.get_text(strip=True))
+            if bet_type is None:
+                continue
+
+            # --- 馬番を取得 ---
+            nums: list[str] = [
+                sp.get_text(strip=True)
+                for sp in tds[0].find_all("span")
+                if sp.get_text(strip=True).isdigit()
+            ]
+            if not nums:
+                nums = [
+                    li.get_text(strip=True)
+                    for li in tds[0].find_all("li")
+                    if li.get_text(strip=True).isdigit()
+                ]
+
+            # --- 払戻を取得 (<br> 区切り) ---
+            pay_html = tds[1].decode_contents()
+            pays: list[Optional[int]] = [
+                _parse_payout_int(re.sub(r"<[^>]+>", "", p))
+                for p in re.split(r"<br\s*/?>", pay_html)
+                if re.search(r"\d", p)
+            ]
+
+            # --- 人気を取得 ---
+            pops: list[Optional[int]] = [
+                _parse_payout_int(re.sub(r"人気|<[^>]+>", "", sp.decode_contents()))
+                for sp in (tds[2].find_all("span") if len(tds) > 2 else [])
+            ]
+
+            # --- 組み合わせ文字列を構築 ---
+            sep = "→" if bet_type in _ORDERED_BET_TYPES else "-"
+            n_pays = len(pays)
+            n_nums = len(nums)
+
+            if bet_type in ("単勝", "複勝"):
+                # 1馬番ずつ独立したレコード
+                for i, num in enumerate(nums):
+                    pay = pays[i] if i < n_pays else None
+                    pop = pops[i] if i < len(pops) else None
+                    if pay is None:
+                        continue
+                    results.append({"bet_type": bet_type, "combination": num,
+                                    "payout": pay, "popularity": pop})
+
+            elif bet_type == "ワイド":
+                # ワイドは n_pays 組のペア。馬番は 2×n_pays 個
+                for i in range(n_pays):
+                    a, b = nums[i * 2] if i * 2 < n_nums else "?", \
+                           nums[i * 2 + 1] if i * 2 + 1 < n_nums else "?"
+                    pay = pays[i]
+                    pop = pops[i] if i < len(pops) else None
+                    if pay is None:
+                        continue
+                    combo = f"{a}{sep}{b}"
+                    results.append({"bet_type": bet_type, "combination": combo,
+                                    "payout": pay, "popularity": pop})
+
+            else:
+                # 馬連・枠連・馬単・三連複・三連単
+                combo = sep.join(nums)
+                pay = pays[0] if pays else None
+                pop = pops[0] if pops else None
+                if pay is None:
+                    continue
+                results.append({"bet_type": bet_type, "combination": combo,
+                                "payout": pay, "popularity": pop})
+
+    return results
 
 
 def fetch_race_payouts(
@@ -464,7 +606,7 @@ def fetch_race_payouts(
     max_retries: int = 3,
 ) -> list[dict]:
     """
-    レースページの払戻テーブル（pay_table_01）を取得・解析する。
+    レースページの払戻テーブルを取得・解析する。
 
     Args:
         race_id: netkeiba レース ID
@@ -482,20 +624,24 @@ def fetch_race_payouts(
     html = _fetch_html(url, max_retries=max_retries, delay=delay)
     soup = BeautifulSoup(html, "lxml")
 
+    # race.netkeiba.com: Payout_Detail_Table
+    if soup.select("table.Payout_Detail_Table"):
+        results = _parse_payout_table_new(soup)
+        logger.info("払戻取得 (新形式): race_id=%s, %d 件", race_id, len(results))
+        return results
+
+    # フォールバック: 旧 db.netkeiba.com 形式 pay_table_01
     tables = soup.select("table.pay_table_01")
     if not tables:
         logger.debug("払戻テーブルなし: race_id=%s", race_id)
         return []
 
-    results: list[dict] = []
-
+    results_old: list[dict] = []
     for table in tables:
         for tr in table.select("tr"):
             th = tr.select_one("th")
             if th is None:
                 continue
-
-            # th の class から馬券種を判定
             th_classes = th.get("class") or []
             bet_type = None
             for cls in th_classes:
@@ -504,36 +650,25 @@ def fetch_race_payouts(
                     break
             if bet_type is None:
                 continue
-
             tds = tr.select("td")
             if len(tds) < 2:
                 continue
-
-            # 組み合わせ・払戻・人気はそれぞれ <br> で複数行になる場合がある
             combo_html = tds[0].decode_contents()
-            pay_html   = tds[1].decode_contents() if len(tds) > 1 else ""
+            pay_html   = tds[1].decode_contents()
             pop_html   = tds[2].decode_contents() if len(tds) > 2 else ""
-
-            combos     = [_normalize_combination(s) for s in re.split(r"<br\s*/?>", combo_html) if s.strip()]
-            payouts    = [_parse_payout_int(s) for s in re.split(r"<br\s*/?>", pay_html)   if s.strip()]
-            pops       = [_parse_payout_int(s) for s in re.split(r"<br\s*/?>", pop_html)   if s.strip()]
-
+            combos  = [_normalize_combination(s) for s in re.split(r"<br\s*/?>", combo_html) if s.strip()]
+            payouts = [_parse_payout_int(s)       for s in re.split(r"<br\s*/?>", pay_html)  if s.strip()]
+            pops    = [_parse_payout_int(s)        for s in re.split(r"<br\s*/?>", pop_html)  if s.strip()]
             for i, combo in enumerate(combos):
-                combo_clean = _normalize_combination(
-                    BeautifulSoup(combo, "lxml").get_text()
-                )
+                combo_clean = _normalize_combination(BeautifulSoup(combo, "lxml").get_text())
                 if not combo_clean:
                     continue
-                payout_val  = payouts[i] if i < len(payouts) else None
-                pop_val     = pops[i]    if i < len(pops)    else None
+                payout_val = payouts[i] if i < len(payouts) else None
+                pop_val    = pops[i]    if i < len(pops)    else None
                 if payout_val is None:
                     continue
-                results.append({
-                    "bet_type":   bet_type,
-                    "combination": combo_clean,
-                    "payout":      payout_val,
-                    "popularity":  pop_val,
-                })
+                results_old.append({"bet_type": bet_type, "combination": combo_clean,
+                                    "payout": payout_val, "popularity": pop_val})
 
-    logger.info("払戻取得: race_id=%s, %d 件", race_id, len(results))
-    return results
+    logger.info("払戻取得 (旧形式): race_id=%s, %d 件", race_id, len(results_old))
+    return results_old

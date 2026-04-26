@@ -26,7 +26,7 @@ from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
-_ROOT   = Path(__file__).resolve().parents[3]
+_ROOT   = Path(__file__).resolve().parents[2]
 _BRANCH = os.environ.get("GIT_BRANCH", "master")
 
 

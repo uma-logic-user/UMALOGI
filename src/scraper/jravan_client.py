@@ -176,48 +176,46 @@ _PAYOUT_POP_BYTES     = 2  # 人気 2桁
 
 # ── 共通ヘッダー (全レコード共通) ──────────────────────────────
 _H_REC_TYPE   = slice(0, 2)     # レコード種別 "RA"/"SE" etc.  [確定]
-_H_DATA_DATE  = slice(2, 10)    # データ作成年月日 YYYYMMDD      [確定]
+_H_DATA_CAT   = slice(2, 3)     # データ区分 "1"=通常等         [確定: 実データ検証済み]
+_H_DATA_DATE  = slice(3, 11)    # データ作成年月日 YYYYMMDD      [確定: 実データ検証済み]
 
-# ── レースキー (RA/SE/WH/WF/WE/WQ/WM/WT/WS 共通) ──────────────
-_RK_JYO       = slice(10, 12)   # 場コード 01-10               [確定]
-_RK_YEAR      = slice(12, 16)   # 開催年 YYYY                  [確定]
-_RK_KAI       = slice(16, 17)   # 開催回 1-9                   [確定]
-_RK_NICHI     = slice(17, 19)   # 開催日 01-08                 [確定]
-_RK_RACE_NO   = slice(19, 21)   # レース番号 01-12             [確定]
-_RK_KAISAI_DT = slice(21, 29)   # 開催年月日 YYYYMMDD          [確定]
+# ── レースキー (RA/SE/HR/WH/WF/WE/WQ/WM/WT/WS 共通) ────────────
+# 実データ検証済み: bytes[0:27] = type(2)+cat(1)+data_date(8)+kaisai_dt(8)+JYO(2)+KAI(2)+NICHI(2)+RACE_NO(2)
+_RK_KAISAI_DT = slice(11, 19)   # 開催年月日 YYYYMMDD (場コードより前) [確定]
+_RK_JYO       = slice(19, 21)   # 場コード 01-10               [確定]
+_RK_KAI       = slice(21, 23)   # 開催回 "01"-"06" (2桁)       [確定]
+_RK_NICHI     = slice(23, 25)   # 開催日 "01"-"08"             [確定]
+_RK_RACE_NO   = slice(25, 27)   # レース番号 "01"-"12"         [確定]
 
 # ── RA: レース詳細 ──────────────────────────────────────────────
-# race_name 以降は仕様書から逆算した推定値。実データで確認してください。
-_RA_RACE_NAME  = slice(29, 89)  # 競走名(漢字) 60バイト SJIS   [確定]
-_RA_GRADE      = slice(192, 194) # グレードコード "A3"/"A2"    [推定]
-_RA_DISTANCE   = slice(244, 248) # 距離 "2000"                 [推定]
-_RA_TRACK      = slice(248, 249) # 芝ダート 1=芝,2=ダート,3=障害[推定]
-_RA_COURSE     = slice(249, 250) # 内外 1=右,2=左,3=直,4=右外,5=左外[推定]
-_RA_WEATHER    = slice(313, 314) # 天候コード                   [推定 ※要検証]
-_RA_CONDITION  = slice(314, 315) # 芝馬場状態コード             [推定 ※要検証]
-_RA_COND_DIRT  = slice(315, 316) # ダート馬場状態コード         [推定 ※要検証]
+_RA_RACE_NAME  = slice(27, 87)  # 競走名(漢字) 60バイト SJIS   [確定]
+_RA_GRADE      = slice(190, 192) # グレードコード "A3"/"A2"    [推定]
+_RA_DISTANCE   = slice(242, 246) # 距離 "2000"                 [推定]
+_RA_TRACK      = slice(246, 247) # 芝ダート 1=芝,2=ダート,3=障害[推定]
+_RA_COURSE     = slice(247, 248) # 内外 1=右,2=左,3=直,4=右外,5=左外[推定]
+_RA_WEATHER    = slice(311, 312) # 天候コード                   [推定 ※要検証]
+_RA_CONDITION  = slice(312, 313) # 芝馬場状態コード             [推定 ※要検証]
+_RA_COND_DIRT  = slice(313, 314) # ダート馬場状態コード         [推定 ※要検証]
 
 # ── SE: 馬毎レース情報 ─────────────────────────────────────────
-_SE_WAKU_BAN   = slice(29, 30)   # 枠番 "1"-"8"               [確定]
-_SE_UMA_BAN    = slice(30, 32)   # 馬番 "01"-"18"              [確定] offset 31-33 (1-based)
-_SE_HORSE_ID   = slice(32, 42)   # 血統登録番号 10桁           [確定]
-_SE_HORSE_NM   = slice(42, 78)   # 馬名(漢字) 36バイト SJIS   [確定]
-_SE_SEX        = slice(78, 79)   # 性別 1=牡,2=牝,3=騸        [確定]
-_SE_AGE        = slice(79, 81)   # 馬齢 "03"-"16"              [確定]
-_SE_JOCKEY_CD  = slice(81, 86)   # 騎手コード 5桁              [確定]
-_SE_JOCKEY_NM  = slice(86, 106)  # 騎手名 20バイト SJIS        [確定]
-_SE_LOAD       = slice(107, 110) # 斤量 ×10 "580"=58.0kg      [推定]
-_SE_TRAINER_CD = slice(110, 115) # 調教師コード 5桁             [推定]
-_SE_TRAINER_NM = slice(115, 135) # 調教師名 20バイト SJIS       [推定]
-# 以下は推定値。実データと照合して src/scraper/jravan_client.py の
-# スライス定数を修正してください。
-_SE_RANK       = slice(213, 215) # 着順 "01"-"18" (0=除外/取消) [推定]
-_SE_WIN_ODDS   = slice(215, 220) # 単勝オッズ ×10 "01500"=1.5倍 [推定]
-_SE_POPULARITY = slice(220, 222) # 人気 "01"-"18"               [推定]
-_SE_FINISH_T   = slice(222, 226) # タイム ×10秒 "0915"=91.5秒   [推定]
-_SE_MARGIN     = slice(226, 231) # 着差 SJIS                    [推定]
-_SE_HORSE_WT   = slice(231, 234) # 馬体重 "480"                 [推定]
-_SE_HORSE_DIFF = slice(234, 237) # 増減 "+4 " or "-12"          [推定]
+_SE_WAKU_BAN   = slice(27, 28)   # 枠番 "1"-"8"               [確定]
+_SE_UMA_BAN    = slice(28, 30)   # 馬番 "01"-"18"              [確定]
+_SE_HORSE_ID   = slice(30, 40)   # 血統登録番号 10桁           [確定]
+_SE_HORSE_NM   = slice(40, 76)   # 馬名(漢字) 36バイト SJIS   [確定]
+_SE_SEX        = slice(76, 77)   # 性別 1=牡,2=牝,3=騸        [確定]
+_SE_AGE        = slice(77, 79)   # 馬齢 "03"-"16"              [確定]
+_SE_JOCKEY_CD  = slice(79, 84)   # 騎手コード 5桁              [確定]
+_SE_JOCKEY_NM  = slice(84, 104)  # 騎手名 20バイト SJIS        [確定]
+_SE_LOAD       = slice(105, 108) # 斤量 ×10 "580"=58.0kg      [推定]
+_SE_TRAINER_CD = slice(108, 113) # 調教師コード 5桁             [推定]
+_SE_TRAINER_NM = slice(113, 133) # 調教師名 20バイト SJIS       [推定]
+_SE_RANK       = slice(211, 213) # 着順 "01"-"18" (0=除外/取消) [推定]
+_SE_WIN_ODDS   = slice(213, 218) # 単勝オッズ ×10 "01500"=1.5倍 [推定]
+_SE_POPULARITY = slice(218, 220) # 人気 "01"-"18"               [推定]
+_SE_FINISH_T   = slice(220, 224) # タイム ×10秒 "0915"=91.5秒   [推定]
+_SE_MARGIN     = slice(224, 229) # 着差 SJIS                    [推定]
+_SE_HORSE_WT   = slice(229, 232) # 馬体重 "480"                 [推定]
+_SE_HORSE_DIFF = slice(232, 235) # 増減 "+4 " or "-12"          [推定]
 
 # ── WC: 調教タイム（WOOD dataspec の実レコードタイプは WC） ──────
 # 実データから確認済みのオフセット（103バイト + CRLF）
@@ -350,17 +348,28 @@ def _to_bytes(com_str: str) -> bytes:
     win32com が返す COM 文字列をバイト列に変換する。
     JV-Link は Shift-JIS データを COM BSTR として返すため、
     各文字が 1バイト値に対応する。
+
+    win32com は Shift-JIS バイト列を Unicode として渡してくる。
+    U+00FF 以下はそのまま latin-1 で戻せるが、
+    U+0100 以上（日本語文字など）が混在する場合は cp932 でエンコードする。
     """
+    if not isinstance(com_str, str):
+        return b''
     try:
         return com_str.encode('latin-1')
     except (UnicodeEncodeError, AttributeError):
-        return bytes(ord(c) & 0xFF for c in com_str)
+        try:
+            return com_str.encode('cp932', errors='replace')
+        except Exception:
+            return bytes(ord(c) & 0xFF for c in com_str)
 
 
 def _str(raw: bytes, sl: slice, encoding: str = 'ascii') -> str:
     """指定スライスをデコードして空白トリムして返す。"""
     try:
-        return raw[sl].decode(encoding, errors='replace').strip()
+        # 🔻ここを書き換えます🔻
+        # 修正前: return raw[sl].decode(encoding, errors='replace').strip()
+        return raw[sl].decode(encoding, errors='replace').replace('\x00', '').strip()
     except Exception:
         return ''
 
@@ -431,14 +440,16 @@ def _make_race_id(raw: bytes) -> str:
     """
     レースキーから DB 用 race_id (12桁) を生成する。
 
-    JV-Data: JYO(2) + YEAR(4) + KAI(1) + NICHI(2) + RACE_NO(2) = offset 10-21
-    DB形式:  YEAR(4) + JYO(2) + KAI(02d) + NICHI(2) + RACE_NO(2) = 12桁
+    JV-Data 実測構造: type(2)+cat(1)+date(8)+kaisai_dt(8)+JYO(2)+KAI(2)+NICHI(2)+RACE_NO(2)
+    DB形式: YEAR(4) + JYO(2) + KAI(2) + NICHI(2) + RACE_NO(2) = 12桁
+    YEARは開催年月日(kaisai_dt)の先頭4桁から取得。
 
     例: 中山2025年5回8日目11R → "202506050811"
     """
-    year    = _str(raw, _RK_YEAR)
+    kaisai  = _str(raw, _RK_KAISAI_DT)  # "YYYYMMDD"
+    year    = kaisai[:4]
     jyo     = _str(raw, _RK_JYO)
-    kai     = _str(raw, _RK_KAI).zfill(2)
+    kai     = _str(raw, _RK_KAI)
     nichi   = _str(raw, _RK_NICHI)
     race_no = _str(raw, _RK_RACE_NO)
     return f"{year}{jyo}{kai}{nichi}{race_no}"
@@ -568,20 +579,42 @@ class JVLinkClient:
         if len(fromtime) == 8:
             fromtime += "000000"   # YYYYMMDD → YYYYMMDDhhmmss
 
-        try:
-            result = self._jvl.JVOpen(dataspec, fromtime, option)
-        except Exception:
-            # JVOpen の引数形式が異なる場合のフォールバック
+        # COM [in,out] パラメータ形式に対応するため 5引数形式を優先して試みる
+        result = None
+        for call_args in [
+            (dataspec, fromtime, option, 0, ""),   # 5引数 ([in,out] 形式)
+            (dataspec, fromtime, option),           # 3引数 ([out] 形式フォールバック)
+        ]:
             try:
-                result = self._jvl.JVOpen(dataspec, fromtime, option, 0, "")
+                result = self._jvl.JVOpen(*call_args)
+                _code = result[0] if isinstance(result, (tuple, list)) else _safe_int_val(result, default=-1)
+                if isinstance(_code, str):
+                    _code = _safe_int_val(_code, default=-1)
+                if _code >= 0 or len(call_args) == 3:
+                    # 成功 or 最後のフォールバック → ループ終了
+                    break
+                # -1 だった場合は次の形式を試す
+                logger.debug("JVOpen %d引数で%d → 次の形式を試みます", len(call_args), _code)
             except Exception as e:
-                raise RuntimeError(f"JVOpen 失敗: {e}") from e
+                if len(call_args) == 3:
+                    raise RuntimeError(f"JVOpen 失敗: {e}") from e
+                logger.debug("JVOpen %d引数で例外 → 次の形式を試みます: %s", len(call_args), e)
 
         code = result[0] if isinstance(result, (tuple, list)) else _safe_int_val(result, default=-1)
         if isinstance(code, str):
             code = _safe_int_val(code, default=-1)
+
+        # -2: JVInit 未呼び出し, -3: ストリーム多重オープン → 致命的エラー
+        if code in (-2, -3):
+            raise RuntimeError(f"JVOpen 致命的エラーコード: {code}")
+
+        # その他の負値 (-1=パラメータエラー/-303=データなし等) はデータ取得不可として扱う
         if code < 0:
-            raise RuntimeError(f"JVOpen エラーコード: {code}")
+            logger.warning(
+                "JVOpen: dataspec=%s fromtime=%s → code=%d (データなし/取得不可, スキップ)",
+                dataspec, fromtime, code,
+            )
+            return code  # 呼び出し元で負値チェックして処理をスキップさせる
 
         dl_count = result[1] if isinstance(result, (tuple, list)) and len(result) > 1 else 0
         logger.info(
@@ -689,6 +722,8 @@ def parse_record(raw: bytes, debug: bool = False) -> Optional[dict]:
         return _parse_ra(raw)
     if rec_type == 'SE':
         return _parse_se(raw)
+    if rec_type == 'JG':
+        return _parse_jg(raw)
     if rec_type in _PAYOUT_SPECS:
         return _parse_payout(raw, rec_type)
     if rec_type == 'WC':
@@ -819,6 +854,89 @@ def _parse_se(raw: bytes) -> Optional[dict]:
     }
 
 
+# ── JG: 出馬投票（暫定出馬表）──────────────────────────────────
+# JGレコードは RA/SE と異なる独自レイアウト (実データで確認済み):
+#   [0:2]  = "JG"
+#   [2:3]  = データ区分 "1"=正常 "2"=取消 等 (RA/SEにはないフィールド)
+#   [3:11] = データ作成年月日 YYYYMMDD
+#   [11:19] = 開催年月日 YYYYMMDD (kaisai_date = レース日)
+#   [19:21] = 場コード (JYO)
+#   [21:23] = 開催回 (KAI, 2バイト・ゼロパディング)
+#   [23:25] = 開催日次 (NICHI, 2バイト)
+#   [25:27] = レース番号 (RACE_NO, 2バイト; "00"は未確定→スキップ)
+#   [27:37] = 血統登録番号 (blood_id, 10バイト)
+#   [37:]   = 馬名 (SJIS) 以降
+_JG_KAISAI_DT  = slice(11, 19)
+_JG_JYO        = slice(19, 21)
+_JG_KAI        = slice(21, 23)
+_JG_NICHI      = slice(23, 25)
+_JG_RACE_NO    = slice(25, 27)
+_JG_BLOOD_ID   = slice(27, 37)
+
+
+def _make_race_id_jg(raw: bytes) -> str:
+    """JGレコード専用の race_id 生成 (YEAR+JYO+KAI+NICHI+RACE_NO)。"""
+    d8      = _str(raw, _JG_KAISAI_DT)   # YYYYMMDD
+    year    = d8[:4]
+    jyo     = _str(raw, _JG_JYO)
+    kai     = _str(raw, _JG_KAI)
+    nichi   = _str(raw, _JG_NICHI)
+    race_no = _str(raw, _JG_RACE_NO)
+    return f"{year}{jyo}{kai}{nichi}{race_no}"
+
+
+def _parse_jg(raw: bytes) -> Optional[dict]:
+    """JG 出馬投票レコード → races(placeholder)用 dict を返す。
+
+    JGはレース番号の確定前(race_no="00")レコードが存在するため、
+    race_no が"00"のものはスキップする。
+    horse_number(馬番)はJGに含まれないため entries は populateしない。
+    """
+    if len(raw) < 37:
+        return None
+
+    # データ区分 "3"=削除はスキップ
+    data_type = _str(raw, slice(2, 3))
+    if data_type == '3':
+        return None
+
+    kaisai_d8 = _str(raw, _JG_KAISAI_DT)
+    if len(kaisai_d8) != 8 or not kaisai_d8.isdigit():
+        return None
+    kaisai_dt = f"{kaisai_d8[:4]}-{kaisai_d8[4:6]}-{kaisai_d8[6:8]}"
+
+    jyo_code = _str(raw, _JG_JYO)
+    # JRA 会場コードのみ (01-10); NAR は 11以上
+    try:
+        if not (1 <= int(jyo_code) <= 10):
+            return None
+    except ValueError:
+        return None
+
+    race_no_str = _str(raw, _JG_RACE_NO)
+    if race_no_str == '00' or not race_no_str.isdigit():
+        return None
+
+    race_id = _make_race_id_jg(raw)
+    if not race_id or '0' * 12 == race_id:
+        return None
+
+    venue    = _JYO_NAMES.get(jyo_code, jyo_code)
+    race_no  = int(race_no_str)
+    blood_id = _str(raw, _JG_BLOOD_ID).strip()
+    if not blood_id or not blood_id.isdigit() or blood_id.lstrip('0') == '':
+        blood_id = None
+
+    return {
+        '_record_type': 'JG',
+        'race_id':      race_id,
+        'date':         kaisai_dt,
+        'venue':        venue,
+        'race_number':  race_no,
+        'blood_id':     blood_id,
+    }
+
+
 # ── W*: 払戻レコード ───────────────────────────────────────────
 
 def _parse_payout(raw: bytes, rec_type: str) -> Optional[dict]:
@@ -830,7 +948,7 @@ def _parse_payout(raw: bytes, rec_type: str) -> Optional[dict]:
     specs   = _PAYOUT_SPECS.get(rec_type, [])
     payouts: list[dict] = []
 
-    offset = 29   # レースキー直後からデータ開始
+    offset = 27   # レースキー直後からデータ開始 (type2+cat1+date8+kaisai8+JYO2+KAI2+NICHI2+RACE_NO2=27)
     for bet_type, max_entries, combo_bytes in specs:
         entry_len = combo_bytes + _PAYOUT_AMOUNT_BYTES + _PAYOUT_POP_BYTES
         for _ in range(max_entries):
@@ -1172,11 +1290,11 @@ def save_records_to_db(
         {"ra": 保存RA数, "se": 保存SE数, "payout": 保存払戻数,
          "tc": 保存TC数, "hc": 保存HC数, "skipped": スキップ数}
     """
-    stats = {"ra": 0, "se": 0, "payout": 0, "tc": 0, "hc": 0,
+    stats = {"ra": 0, "jg": 0, "se": 0, "payout": 0, "tc": 0, "hc": 0,
              "bt": 0, "hn": 0, "um": 0, "ks": 0, "ch": 0, "skipped": 0}
 
-    # RA → SE → その他 の順に保存して race_payouts の FK 制約を確実に満たす
-    _ORDER = {'RA': 0, 'SE': 1}
+    # RA/JG(races作成) → SE → その他 の順に保存して FK 制約を確実に満たす
+    _ORDER = {'RA': 0, 'JG': 0, 'SE': 1}
     records = sorted(records, key=lambda r: _ORDER.get(r.get('_record_type', ''), 9))
 
     for rec in records:
@@ -1185,6 +1303,9 @@ def save_records_to_db(
             if rt == 'RA':
                 _save_ra(conn, rec)
                 stats['ra'] += 1
+            elif rt == 'JG':
+                _save_jg(conn, rec)
+                stats['jg'] += 1
             elif rt == 'SE':
                 _save_se(conn, rec)
                 stats['se'] += 1
@@ -1272,6 +1393,12 @@ def _save_se(conn: sqlite3.Connection, r: dict) -> None:
             ON CONFLICT(race_id, horse_name) DO UPDATE SET
                 gate_number       = excluded.gate_number,
                 horse_number      = excluded.horse_number,
+                rank              = COALESCE(excluded.rank, race_results.rank),
+                finish_time       = COALESCE(excluded.finish_time, race_results.finish_time),
+                margin            = COALESCE(excluded.margin, race_results.margin),
+                popularity        = COALESCE(excluded.popularity, race_results.popularity),
+                win_odds          = COALESCE(excluded.win_odds, race_results.win_odds),
+                horse_weight      = COALESCE(excluded.horse_weight, race_results.horse_weight),
                 horse_weight_diff = COALESCE(excluded.horse_weight_diff, race_results.horse_weight_diff),
                 blood_id          = COALESCE(excluded.blood_id, race_results.blood_id)
             """,
@@ -1282,6 +1409,54 @@ def _save_se(conn: sqlite3.Connection, r: dict) -> None:
              r.get('finish_time'), r.get('margin'),
              r.get('popularity'), r.get('win_odds'),
              r.get('horse_weight'), r.get('horse_weight_diff'), blood_id),
+        )
+
+        # entries テーブル: FeatureBuilder が出馬表データとして参照する
+        # JVLink SE レコードから直接書き込むことで netkeiba スクレイピングを不要にする
+        horse_number = r.get('horse_number')
+        if horse_number and horse_number > 0:
+            conn.execute(
+                """
+                INSERT INTO entries
+                    (race_id, horse_number, gate_number, horse_id, horse_name,
+                     sex_age, weight_carried, jockey, trainer,
+                     horse_weight, horse_weight_diff)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ON CONFLICT(race_id, horse_number) DO UPDATE SET
+                    gate_number       = excluded.gate_number,
+                    horse_id          = COALESCE(excluded.horse_id,         entries.horse_id),
+                    horse_name        = excluded.horse_name,
+                    sex_age           = excluded.sex_age,
+                    weight_carried    = excluded.weight_carried,
+                    jockey            = excluded.jockey,
+                    trainer           = excluded.trainer,
+                    horse_weight      = COALESCE(excluded.horse_weight,      entries.horse_weight),
+                    horse_weight_diff = COALESCE(excluded.horse_weight_diff, entries.horse_weight_diff)
+                """,
+                (r['race_id'], horse_number, r.get('gate_number') or 0,
+                 r.get('horse_id'), r['horse_name'],
+                 r.get('sex_age', ''), r.get('weight_carried', 0),
+                 r.get('jockey', ''), r.get('trainer', ''),
+                 r.get('horse_weight'), r.get('horse_weight_diff')),
+            )
+
+
+def _save_jg(conn: sqlite3.Connection, r: dict) -> None:
+    """JG → races テーブルにプレースホルダー行を作成する (INSERT OR IGNORE)。
+
+    JGレコードには馬番・騎手・調教師が含まれないため entries は書かない。
+    race_name/distance/surface は RA レコード上書き時に補完される。
+    """
+    with conn:
+        conn.execute(
+            """
+            INSERT OR IGNORE INTO races
+                (race_id, race_name, date, venue, race_number,
+                 distance, surface, track_direction, weather, condition)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """,
+            (r['race_id'], '', r['date'], r['venue'], r['race_number'],
+             0, '', '', '', ''),
         )
 
 
@@ -1734,7 +1909,8 @@ class JVDataLoader:
             option:   OPT_NORMAL / OPT_SETUP / OPT_TODAY / OPT_STORED
 
         Returns:
-            保存件数統計 dict
+            保存件数統計 dict。``open_code`` キーで JVOpen の戻り値を確認できる。
+            open_code < 0 の場合はデータなし/-303 等でスキップ済み。
         """
         import time
 
@@ -1743,30 +1919,37 @@ class JVDataLoader:
         read_count = 0
 
         with JVLinkClient(self._sid) as client:
-            client.open(dataspec, fromtime, option)
+            open_code = client.open(dataspec, fromtime, option)
+            if open_code < 0:
+                # -303 = データなし / その他負値 = 取得不可 → 空statsを返してスキップ
+                conn.close()
+                logger.info(
+                    "JVOpen %s fromtime=%s option=%d → code=%d のためスキップ",
+                    dataspec, fromtime, option, open_code,
+                )
+                return {
+                    "ra": 0, "se": 0, "payout": 0, "tc": 0, "hc": 0,
+                    "bt": 0, "hn": 0, "um": 0, "ks": 0, "ch": 0,
+                    "skipped": 0, "total_read": 0, "open_code": open_code,
+                }
 
             while True:
                 code, data = client.read_record()
 
                 if code == JVREAD_EOF:
-                    # 全ファイルの読み取り完了
                     break
 
                 if code == JVREAD_FILECHANGE:
-                    # ファイル切り替わり: データなし、次の JVRead へ
                     continue
 
                 if code == JVREAD_DOWNLOADING:
-                    # バックグラウンドダウンロード中: 1秒待機して再試行
                     logger.debug("ダウンロード待機中 (code=-3)…")
                     time.sleep(1)
                     continue
 
                 if code < 0:
-                    # その他の負値はエラー
                     raise RuntimeError(f"JVRead エラー: code={code}")
 
-                # code > 0: 正常読み取り（バイト数）
                 if data:
                     rec = parse_record(data, debug=self._debug)
                     if rec:
@@ -1779,12 +1962,13 @@ class JVDataLoader:
         conn.close()
 
         stats['total_read'] = read_count
+        stats['open_code']  = open_code
         logger.info(
             "JV-Data 取得完了: read=%d "
-            "RA=%d SE=%d payout=%d TC=%d HC=%d "
+            "RA=%d JG=%d SE=%d payout=%d TC=%d HC=%d "
             "BT=%d HN=%d UM=%d KS=%d CH=%d skip=%d",
             read_count,
-            stats['ra'], stats['se'], stats['payout'],
+            stats['ra'], stats['jg'], stats['se'], stats['payout'],
             stats['tc'], stats['hc'],
             stats['bt'], stats['hn'], stats['um'],
             stats['ks'], stats['ch'], stats['skipped'],

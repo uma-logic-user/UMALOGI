@@ -21,6 +21,7 @@ import lightgbm as lgb
 import numpy as np
 import pandas as pd
 from lightgbm import LGBMClassifier, LGBMRegressor
+from sklearn.isotonic import IsotonicRegression
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import roc_auc_score
 from sklearn.model_selection import GroupKFold
@@ -210,13 +211,41 @@ def _build_train_df(
 
 
 @dataclass
+class _IsotonicModel:
+    """
+    LGBMClassifier + Isotonic Regression（OOF キャリブレーション）の複合モデル。
+
+    Phase 2.5 実験 (scripts/experiments/test_calibration.py) で
+    Platt Scaling より Brier Score が +3.49% 改善することを確認済み。
+    OOF 予測に対して IsotonicRegression(out_of_bounds="clip") を適用し
+    確率を実際の勝率に近づける。
+    pickle 可能なデータクラスとして実装し、save/load と完全互換。
+    """
+
+    base: LGBMClassifier
+    iso: IsotonicRegression
+
+    def predict_proba(self, X: Any) -> np.ndarray:
+        """Isotonic calibrated P(win) を返す。shape=(n,2) — [:, 1] が P(win)。"""
+        raw = self.base.predict_proba(X)[:, 1]
+        calibrated = self.iso.predict(raw).astype(float)
+        calibrated = np.clip(calibrated, 0.0, 1.0)
+        return np.column_stack([1.0 - calibrated, calibrated])
+
+    @property
+    def feature_importances_(self) -> np.ndarray:
+        """LightGBM の特徴量重要度（base モデルから取得）。"""
+        return self.base.feature_importances_
+
+
+@dataclass
 class _PlattModel:
     """
     LGBMClassifier + Platt Scaling (LogisticRegression) の複合モデル。
 
-    base の predict_proba スコアを入力として Platt 回帰を適用し、
-    より信頼度の高い確率値（キャリブレーション済み）を返す。
-    pickle 可能なデータクラスとして実装し、save/load と完全互換。
+    後方互換のために保持。新規訓練は _IsotonicModel を使用。
+    既存の pkl ファイルが _PlattModel 型のまま読み込まれた場合でも
+    predict_proba インターフェイスは同一のため predict() は正常動作する。
     """
 
     base: LGBMClassifier
@@ -229,7 +258,6 @@ class _PlattModel:
 
     @property
     def feature_importances_(self) -> np.ndarray:
-        """LightGBM の特徴量重要度（base モデルから取得）。"""
         return self.base.feature_importances_
 
 
@@ -280,15 +308,17 @@ class HonmeiModel(_BaseModel):
     """
     本命モデル（的中率特化）。
 
-    LightGBM 2値分類 + Platt Scaling（OOF LogisticRegression）で
+    LightGBM 2値分類 + Isotonic Regression（OOF キャリブレーション）で
     各馬の 1着確率 P(rank=1) を推定する。
+
+    Phase 2.5 実験でキャリブレーション手法を比較した結果、
+    Isotonic Regression が Platt Scaling より Brier Score +3.49% 優位なため採用。
 
     学習フロー:
       1. GroupKFold(5分割) CV を実施し ROC-AUC 計算 + OOF 予測を収集
-      2. OOF 予測を使った LogisticRegression で Platt Scaling 適用（追加 LGBM 訓練不要）
+      2. OOF 予測を使った IsotonicRegression でキャリブレーション適用
       3. 全データで LGBMClassifier を本訓練（推論・特徴量重要度算出用）
-      4. Champion/Challenger: 末尾 20% ホールドアウトで既存保存モデルと AUC を比較し、
-         新モデルが champion_auc - 0.005 以上のときのみ train_all() がモデルを保存する
+      4. Champion/Challenger: 末尾 20% ホールドアウトで既存保存モデルと AUC を比較
     """
 
     _filename = "honmei_model"
@@ -397,19 +427,21 @@ class HonmeiModel(_BaseModel):
         cv_auc_mean = float(np.mean(aucs)) if aucs else float("nan")
         cv_auc_std  = float(np.std(aucs))  if aucs else float("nan")
 
-        # ── Platt Scaling: OOF 予測 → LogisticRegression で確率補正 ──
-        # scikit-learn の Platt Scaling と同等だが追加 LGBM 訓練なしで実現
-        platt = LogisticRegression(C=1.0, max_iter=1000, random_state=42)
+        # ── Isotonic Regression: OOF 予測 → 確率キャリブレーション ──
+        # Phase 2.5 実験で Platt Scaling より Brier Score +3.49% 改善を確認。
+        # CalibratedClassifierCV + GroupKFold は新 sklearn で groups 受け渡し不可のため
+        # 手動 OOF 実装（Platt と同じ oof_preds を再利用）。
+        iso = IsotonicRegression(out_of_bounds="clip")
         if np.any(oof_preds != 0):
-            platt.fit(oof_preds.reshape(-1, 1), y_all)
+            iso.fit(oof_preds, y_all)
         else:
-            # OOF 収集不可（n_splits < 2）: 定数 0.0 を入力としてフォールバック
-            platt.fit(np.zeros((len(y_all), 1)), y_all)
+            # OOF 収集不可（n_splits < 2）: 全サンプルで単純 fit
+            iso.fit(np.zeros(len(y_all)), y_all)
 
         # ── 全データで base LGBMClassifier を本訓練 ─────────────
         self._base_lgbm = LGBMClassifier(**self._LGBM_PARAMS)
         self._base_lgbm.fit(X_all, y_all)
-        self._model = _PlattModel(base=self._base_lgbm, platt=platt)
+        self._model = _IsotonicModel(base=self._base_lgbm, iso=iso)
         self._trained = True
 
         # ── 特徴量重要度 Top10 ───────────────────────────────────
@@ -463,13 +495,13 @@ class HonmeiModel(_BaseModel):
 
     def predict(self, df: pd.DataFrame) -> pd.Series:
         """
-        特徴量 DataFrame を受け取り、各馬の Platt-calibrated 1着確率スコアを返す。
+        特徴量 DataFrame を受け取り、各馬の Isotonic-calibrated 1着確率スコアを返す。
 
         Args:
             df: FeatureBuilder.build_race_features() の出力（horse_number インデックス）
 
         Returns:
-            pd.Series (index=df.index, values=P(win) 0〜1, Platt Scaling 補正済み)
+            pd.Series (index=df.index, values=P(win) 0〜1, Isotonic Regression 補正済み)
         """
         if not self._trained:
             logger.debug("未訓練モデル — フォールバック予測を使用")

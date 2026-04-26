@@ -510,20 +510,24 @@ class Evaluator:
         """prediction_results に結果を upsert する。"""
         try:
             with conn:
-                conn.execute(
+                updated = conn.execute(
                     """
-                    INSERT INTO prediction_results
-                        (prediction_id, is_hit, payout, profit, roi)
-                    VALUES (?, ?, ?, ?, ?)
-                    ON CONFLICT(prediction_id) DO UPDATE SET
-                        is_hit = excluded.is_hit,
-                        payout = excluded.payout,
-                        profit = excluded.profit,
-                        roi    = excluded.roi,
+                    UPDATE prediction_results
+                    SET is_hit = ?, payout = ?, profit = ?, roi = ?,
                         recorded_at = datetime('now', 'localtime')
+                    WHERE prediction_id = ?
                     """,
-                    (prediction_id, int(is_hit), payout, profit, roi),
-                )
+                    (int(is_hit), payout, profit, roi, prediction_id),
+                ).rowcount
+                if updated == 0:
+                    conn.execute(
+                        """
+                        INSERT INTO prediction_results
+                            (prediction_id, is_hit, payout, profit, roi)
+                        VALUES (?, ?, ?, ?, ?)
+                        """,
+                        (prediction_id, int(is_hit), payout, profit, roi),
+                    )
         except sqlite3.IntegrityError as e:
             logger.warning("prediction_results 保存失敗 pid=%d: %s", prediction_id, e)
 

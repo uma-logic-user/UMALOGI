@@ -182,7 +182,7 @@ class IncrementalTrainer:
             return None
 
         is_honmei = name == "honmei"
-        target_col = "is_win" if is_honmei else "ev_target"
+        target_col = "is_winner" if is_honmei else "ev_target"
         X_new = df_new[FEATURE_COLS].fillna(-1)
         y_new = df_new[target_col] if target_col in df_new.columns else pd.Series(dtype=float)
 
@@ -257,7 +257,7 @@ class IncrementalTrainer:
         # ── 本命モデル ────────────────────────────────────────────
         honmei = HonmeiModel()
         X = df_all[FEATURE_COLS].fillna(-1)
-        y = df_all["is_win"]
+        y = df_all["is_winner"]
         groups = df_all["race_id"]
 
         cv_auc: float | None = None

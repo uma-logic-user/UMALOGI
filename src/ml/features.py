@@ -266,6 +266,7 @@ class FeatureBuilder:
                    horse_weight_diff, jockey, trainer
             FROM entries
             WHERE race_id = ?
+              AND horse_number > 0
             ORDER BY horse_number
             """,
             (race_id,),

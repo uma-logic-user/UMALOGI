@@ -20,7 +20,10 @@ import logging
 import subprocess
 import sys
 import time
+from logging.handlers import RotatingFileHandler
 from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
 
 # ────────────────────────────────────────────────────────────────────────────
 # 設定
@@ -37,12 +40,15 @@ logging.basicConfig(
     format=LOG_FORMAT,
     handlers=[
         logging.StreamHandler(sys.stdout),
-        logging.FileHandler("data/fetch_wood_history.log", encoding="utf-8"),
+        RotatingFileHandler(
+            ROOT / "data" / "fetch_wood_history.log",
+            maxBytes=50 * 1024 * 1024,
+            backupCount=5,
+            encoding="utf-8",
+        ),
     ],
 )
 logger = logging.getLogger(__name__)
-
-ROOT = Path(__file__).resolve().parent.parent
 
 
 def fetch_with_retry(fromtime: str) -> bool:

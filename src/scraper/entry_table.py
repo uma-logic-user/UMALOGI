@@ -199,6 +199,7 @@ def _parse_entry_rows(soup: BeautifulSoup) -> list[EntryHorse]:
         horse_number = _safe_int(cells[1].get_text(strip=True)) or 0
 
         # 馬名・horse_id: <td class="HorseInfo"> の <a> リンク
+        # セル[2]は CheckMark (フィルタ用チェックボックス) のため [3] を参照する
         horse_info_td = cells[3]
         horse_link = horse_info_td.find("a", href=re.compile(r"/horse/"))
         if horse_link:
@@ -217,6 +218,10 @@ def _parse_entry_rows(soup: BeautifulSoup) -> list[EntryHorse]:
         weight_text = cells[8].get_text(" ", strip=True)
         horse_weight, horse_weight_diff = _parse_weight(weight_text)
 
+        if horse_number < 1:
+            logger.debug("horse_number < 1 の行をスキップ (gate=%d, name=%r)", gate_number, horse_name)
+            continue
+
         entries.append(
             EntryHorse(
                 horse_number=horse_number,
@@ -230,6 +235,17 @@ def _parse_entry_rows(soup: BeautifulSoup) -> list[EntryHorse]:
                 horse_weight=horse_weight,
                 horse_weight_diff=horse_weight_diff,
             )
+        )
+
+    if not entries:
+        # 0頭はHTML構造変更の可能性が高いため診断情報を出力する
+        tables_found  = soup.find_all("table", class_="Shutuba_Table")
+        all_horse_rows = soup.find_all("tr", class_="HorseList")
+        logger.warning(
+            "⚠️ 出馬表の取得結果が 0 頭です。HTML 構造変更の可能性があります。"
+            " Shutuba_Table=%d件 tr.HorseList(全テーブル合計)=%d件 "
+            "tr.HorseList(対象rows)=%d件",
+            len(tables_found), len(all_horse_rows), len(rows),
         )
 
     return entries
@@ -261,7 +277,13 @@ def fetch_entry_table(
     soup = BeautifulSoup(html, "lxml")
     table = EntryTable(race_id=race_id)
     table.entries = _parse_entry_rows(soup)
-    logger.info("出馬表 race_id=%s: %d 頭取得", race_id, len(table.entries))
+    if len(table.entries) == 0:
+        logger.error(
+            "🚨 出馬表が 0 頭 (race_id=%s) — netkeiba HTML 構造変更またはページ未公開の可能性",
+            race_id,
+        )
+    else:
+        logger.info("出馬表 race_id=%s: %d 頭取得", race_id, len(table.entries))
     return table
 
 
