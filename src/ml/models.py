@@ -11,6 +11,7 @@ ManjiModel:  卍モデル  （LightGBM 回帰     — 期待回収率）
 from __future__ import annotations
 
 import logging
+import math
 import pickle
 import sqlite3
 from dataclasses import dataclass, field
@@ -30,7 +31,7 @@ from sklearn.preprocessing import LabelEncoder
 logger = logging.getLogger(__name__)
 
 # プロセス内モデルキャッシュ（pkl を1回だけ読む）
-_MODEL_CACHE: dict[str, "tuple[HonmeiModel, ManjiModel]"] = {}
+_MODEL_CACHE: dict[str, "tuple[HonmeiModel, PlaceModel, ManjiModel]"] = {}
 
 # ── 特徴量列定義 ───────────────────────────────────────────────────
 # features.py の build_race_features_for_simulate() と一致させること
@@ -110,9 +111,9 @@ def _build_train_df(
 
     **リーク排除の仕組み**
     FeatureBuilder.build_race_features_for_simulate() 内で
-    _get_horse_stats(exclude_race_id=race_id) を呼ぶため、
-    各馬の通算勝率・直近着順は「そのレース自身を除いた過去成績」に基づく。
-    これにより将来の着順が特徴量に混入するデータリークを完全に防ぐ。
+    _get_horse_stats_bulk(exclude_race_id=race_id, race_date=race_date) を呼ぶため、
+    各馬の通算勝率・直近着順は「そのレース自身と、そのレース日以降のレースを除外した
+    過去成績」に基づく。これにより同年内の未来レースが学習時に混入するデータリークを防ぐ。
 
     Args:
         conn:        DB 接続
@@ -177,7 +178,6 @@ def _build_train_df(
                    AND rp.bet_type    = '単勝'
                    AND rp.combination = CAST(rr.horse_number AS TEXT)
             WHERE  rr.race_id = ?
-            AND    rr.rank    IS NOT NULL
             """,
             (race_id,),
         ).fetchall()
@@ -186,7 +186,8 @@ def _build_train_df(
             continue
 
         actuals = pd.DataFrame(actual_rows, columns=["horse_name", "rank", "payout_tansho"])
-        df_feat = df_feat.merge(actuals, on="horse_name", how="inner")
+        # inner → left: rank=NULL の馬（復元データで上位3頭以外）も is_winner=0 として学習に含める
+        df_feat = df_feat.merge(actuals, on="horse_name", how="left")
         df_feat["race_id"] = race_id
         frames.append(df_feat)
 
@@ -194,6 +195,18 @@ def _build_train_df(
         return pd.DataFrame()
 
     df = pd.concat(frames, ignore_index=True)
+
+    # ── EV外れ値フィルタリング ───────────────────────────────────────
+    # rank corruption バグ（HR払戻レコードの誤挿入）や scraper 誤パースによる
+    # 異常払戻（単勝500倍=50,000円超）を除外してManjiModel汚染を防ぐ。
+    # ※ 払戻 NULL の馬（2着以下）は ev_target=0 として残すため除外しない。
+    _MAX_TANSHO_PAYOUT = 50_000   # 500倍上限（rank corruption 由来の異常払戻を除外）
+    before_filter = len(df)
+    payout_ok = df["payout_tansho"].isna() | (df["payout_tansho"].astype(float) <= _MAX_TANSHO_PAYOUT)
+    df = df[payout_ok].copy()
+    removed = before_filter - len(df)
+    if removed > 0:
+        logger.warning("EV外れ値フィルタ: %d行を除外 (payout_tansho > %d)", removed, _MAX_TANSHO_PAYOUT)
 
     # ── 目的変数 ──────────────────────────────────────────────────
     df["is_winner"] = (df["rank"] == 1).astype(int)
@@ -430,6 +443,22 @@ class HonmeiModel(_BaseModel):
         cv_auc_mean = float(np.mean(aucs)) if aucs else float("nan")
         cv_auc_std  = float(np.std(aucs))  if aucs else float("nan")
 
+        # ── AUC サニティチェック ──────────────────────────────────────
+        # AUC 0.85 超はターゲットリークの疑い。相互情報量 Top5 を出力して原因特定を促す。
+        _AUC_SUSPICIOUS = 0.85
+        if not math.isnan(cv_auc_mean) and cv_auc_mean > _AUC_SUSPICIOUS:
+            logger.warning(
+                "⚠️ CV AUC=%.4f > %.2f — ターゲットリークの可能性。特徴量相互情報量を確認します",
+                cv_auc_mean, _AUC_SUSPICIOUS,
+            )
+            try:
+                from sklearn.feature_selection import mutual_info_classif
+                mi = mutual_info_classif(X_all, y_all, random_state=42, n_neighbors=3)
+                top5 = sorted(zip(FEATURE_COLS, mi.tolist()), key=lambda t: t[1], reverse=True)[:5]
+                logger.warning("【相互情報量 Top5】%s", top5)
+            except Exception as _mi_err:
+                logger.debug("相互情報量計算スキップ: %s", _mi_err)
+
         # ── Isotonic Regression: OOF 予測 → 確率キャリブレーション ──
         # Phase 2.5 実験で Platt Scaling より Brier Score +3.49% 改善を確認。
         # CalibratedClassifierCV + GroupKFold は新 sklearn で groups 受け渡し不可のため
@@ -529,6 +558,108 @@ class HonmeiModel(_BaseModel):
         return (p_win * odds).rename("ev_score")
 
 
+# ── 複勝モデル ────────────────────────────────────────────────────
+
+class PlaceModel(_BaseModel):
+    """
+    複勝モデル（3着以内確率特化）。
+
+    HonmeiModel と同一アーキテクチャ（LightGBM + Isotonic Regression）で
+    `is_placed`（rank ≤ 3 = 1）を目的変数として訓練する。
+    GroupKFold CV で AUC を計算し、全データで本訓練する。
+    """
+
+    _filename = "place_model"
+
+    _LGBM_PARAMS: dict[str, Any] = dict(
+        n_estimators=300,
+        learning_rate=0.05,
+        num_leaves=31,
+        min_child_samples=10,
+        subsample=0.8,
+        colsample_bytree=0.8,
+        random_state=42,
+        verbose=-1,
+    )
+
+    def __init__(self) -> None:
+        self._model: Any = None
+        self._base_lgbm: LGBMClassifier = LGBMClassifier(**self._LGBM_PARAMS)
+        self._trained = False
+
+    def train(
+        self,
+        conn: sqlite3.Connection,
+        train_until: int | None = None,
+    ) -> dict[str, Any]:
+        """`is_placed`（rank ≤ 3 = 1）を目的変数として訓練する。"""
+        df = _build_train_df(conn, train_until=train_until)
+        if df.empty:
+            logger.warning("学習データが0件のため複勝モデル訓練をスキップします")
+            return {"n_races": 0, "n_samples": 0}
+
+        n_races = df["race_id"].nunique()
+        if n_races < _MIN_TRAIN_RACES:
+            logger.warning("複勝モデル: 学習レース数が少ない (%d 件)", n_races)
+
+        df_sorted = df.sort_values("race_id").reset_index(drop=True)
+        X_all  = df_sorted[FEATURE_COLS].astype(float).fillna(-1)
+        y_all  = df_sorted["is_placed"]
+        groups = df_sorted["race_id"]
+
+        n_splits = min(5, n_races)
+        aucs: list[float] = []
+        oof_preds = np.zeros(len(X_all), dtype=float)
+
+        if n_splits >= 2:
+            gkf = GroupKFold(n_splits=n_splits)
+            for tr_idx, val_idx in gkf.split(X_all, y_all, groups=groups):
+                clone = LGBMClassifier(**self._LGBM_PARAMS)
+                clone.fit(X_all.iloc[tr_idx], y_all.iloc[tr_idx])
+                proba = clone.predict_proba(X_all.iloc[val_idx])[:, 1]
+                oof_preds[val_idx] = proba
+                try:
+                    aucs.append(roc_auc_score(y_all.iloc[val_idx], proba))
+                except ValueError:
+                    pass
+
+        cv_auc_mean = float(np.mean(aucs)) if aucs else float("nan")
+        cv_auc_std  = float(np.std(aucs))  if aucs else float("nan")
+
+        iso = IsotonicRegression(out_of_bounds="clip")
+        if np.any(oof_preds != 0):
+            iso.fit(oof_preds, y_all)
+        else:
+            iso.fit(np.zeros(len(y_all)), y_all)
+
+        self._base_lgbm = LGBMClassifier(**self._LGBM_PARAMS)
+        self._base_lgbm.fit(X_all, y_all)
+        self._model = _IsotonicModel(base=self._base_lgbm, iso=iso)
+        self._trained = True
+
+        logger.info(
+            "複勝モデル訓練完了: %d レース / %d サンプル / CV AUC %.4f ±%.4f",
+            n_races, len(df), cv_auc_mean, cv_auc_std,
+        )
+        return {
+            "n_races": n_races,
+            "n_samples": len(df),
+            "cv_auc_mean": cv_auc_mean,
+            "cv_auc_std": cv_auc_std,
+            "train_until": train_until,
+        }
+
+    def predict(self, df: pd.DataFrame) -> pd.Series:
+        """各馬の複勝確率（rank ≤ 3 確率）を返す。"""
+        if not self._trained:
+            logger.debug("未訓練複勝モデル — フォールバック（オッズ逆数）使用")
+            return self._fallback_predict(df)
+
+        X = df[FEATURE_COLS].astype(float).fillna(-1)
+        proba = self._model.predict_proba(X)[:, 1]
+        return pd.Series(proba, index=df.index, name="place_score")
+
+
 # ── 卍モデル ──────────────────────────────────────────────────────
 
 class ManjiModel(_BaseModel):
@@ -599,9 +730,10 @@ class ManjiModel(_BaseModel):
             odds = df["win_odds"].fillna(1.0)
             return pd.Series(odds, index=df.index, name="manji_score")
 
+        _MAX_EV_PRED = 50_000.0  # 単勝500倍 × 100円 = 50,000円が理論上限
         X = df[FEATURE_COLS].astype(float).fillna(-1)
         pred = self._model.predict(X)
-        return pd.Series(pred.clip(min=0), index=df.index, name="manji_score")
+        return pd.Series(pred.clip(min=0, max=_MAX_EV_PRED), index=df.index, name="manji_score")
 
     def ev_score(self, df: pd.DataFrame) -> pd.Series:
         """predict() の値を 100 で割って EV 比率（1.0 基準）に変換する。"""
@@ -614,25 +746,13 @@ def train_all(
     conn: sqlite3.Connection,
     train_until: int | None = None,
 ) -> dict[str, dict]:
-    """
-    本命・卍モデルを両方訓練して data/models/ に保存する。
-
-    本命モデルは Champion/Challenger 比較を行い、
-    challenger_auc >= champion_auc - 0.005 の場合のみ保存（世代交代）。
-    champion が存在しない場合・AUC 比較不能の場合は無条件で保存する。
-
-    Args:
-        conn:        DB 接続
-        train_until: 学習に使う最終年（None なら全期間）
-
-    Usage:
-        conn = init_db()
-        result = train_all(conn, train_until=2023)
-    """
+    """本命・複勝・卍モデルを訓練して data/models/ に保存する。"""
     honmei = HonmeiModel()
+    place  = PlaceModel()
     manji  = ManjiModel()
 
     h_result = honmei.train(conn, train_until=train_until)
+    p_result = place.train(conn, train_until=train_until)
     m_result = manji.train(conn, train_until=train_until)
 
     # ── 本命モデル: Champion/Challenger 判定 ─────────────────────
@@ -640,11 +760,9 @@ def train_all(
         challenger_auc: float = h_result.get("challenger_auc", float("nan"))
         champion_auc:   float = h_result.get("champion_auc",   float("nan"))
 
-        # champion が存在しないか AUC 比較不能 → 無条件保存
         if np.isnan(champion_auc) or np.isnan(challenger_auc):
             honmei.save()
             h_result["promoted"] = True
-        # challenger が champion を下回る場合（許容誤差 0.005）は却下
         elif challenger_auc >= champion_auc - 0.005:
             honmei.save()
             h_result["promoted"] = True
@@ -659,21 +777,25 @@ def train_all(
                 challenger_auc, champion_auc, champion_auc - challenger_auc,
             )
 
-    # ── 卍モデル: 無条件保存 ──────────────────────────────────────
+    if place.is_trained:
+        place.save()
+
     if manji.is_trained:
         manji.save()
 
-    # pkl 更新後はキャッシュを無効化して次回呼び出し時に再ロードさせる
     clear_model_cache()
 
-    return {"honmei": h_result, "manji": m_result}
+    return {"honmei": h_result, "place": p_result, "manji": m_result}
 
 
-def load_models() -> tuple[HonmeiModel, ManjiModel]:
+def load_models() -> tuple[HonmeiModel, PlaceModel, ManjiModel]:
     """
     保存済みモデルを読み込んで返す（プロセス内でキャッシュ）。
     同一プロセスで2回目以降の呼び出しはディスク読み込みをスキップする。
     再学習後は clear_model_cache() を呼んでキャッシュを無効化すること。
+
+    Returns:
+        (HonmeiModel, PlaceModel, ManjiModel) の 3-tuple
     """
     cache_key = str(_MODEL_DIR)
     if cache_key in _MODEL_CACHE:
@@ -681,6 +803,7 @@ def load_models() -> tuple[HonmeiModel, ManjiModel]:
         return _MODEL_CACHE[cache_key]
 
     honmei = HonmeiModel()
+    place  = PlaceModel()
     manji  = ManjiModel()
 
     try:
@@ -689,12 +812,17 @@ def load_models() -> tuple[HonmeiModel, ManjiModel]:
         logger.info("本命モデルが見つかりません — フォールバックモードで動作します")
 
     try:
+        place.load()
+    except FileNotFoundError:
+        logger.info("複勝モデルが見つかりません — フォールバックモードで動作します")
+
+    try:
         manji.load()
     except FileNotFoundError:
         logger.info("卍モデルが見つかりません — フォールバックモードで動作します")
 
-    _MODEL_CACHE[cache_key] = (honmei, manji)
-    return honmei, manji
+    _MODEL_CACHE[cache_key] = (honmei, place, manji)
+    return honmei, place, manji
 
 
 def clear_model_cache() -> None:

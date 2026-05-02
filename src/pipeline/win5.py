@@ -50,7 +50,7 @@ def try_win5(conn: sqlite3.Connection, race_id: str) -> None:
 
     try:
         from src.ml.win5 import Win5Engine
-        honmei_model, _ = load_models()
+        honmei_model, _place, _manji = load_models()
         engine       = Win5Engine(model=honmei_model)
         combinations = engine.predict_top_n(conn, win5_race_ids)
 
@@ -139,7 +139,7 @@ def win5_batch(target_date: str | None = None) -> dict:
 
     try:
         from src.ml.win5 import Win5Engine
-        honmei_model, _ = load_models()
+        honmei_model, _place, _manji = load_models()
         engine       = Win5Engine(model=honmei_model)
         combinations = engine.predict_top_n(conn, win5_race_ids)
 

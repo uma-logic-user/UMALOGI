@@ -360,7 +360,7 @@ def prerace_pipeline(race_id: str, provisional: bool = False) -> dict:
         )
 
     # Step 3: モデル予測
-    honmei_model, manji_model = load_models()
+    honmei_model, _place_model, manji_model = load_models()
     honmei_scores = honmei_model.predict(df)
     honmei_ev_scores = honmei_model.ev_predict(df)
     ev_scores = manji_model.ev_score(df)

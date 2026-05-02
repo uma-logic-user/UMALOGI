@@ -61,7 +61,7 @@ def simulate_pipeline(race_id: str) -> dict:
         conn.close()
         return {"error": "race_results が 0 件です", "race_id": race_id}
 
-    honmei_model, manji_model = load_models()
+    honmei_model, _place_model, manji_model = load_models()
     honmei_scores    = honmei_model.predict(df)
     honmei_ev_scores = honmei_model.ev_predict(df)
     ev_scores        = manji_model.ev_score(df)
