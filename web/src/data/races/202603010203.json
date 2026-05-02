@@ -1,0 +1,410 @@
+{
+  "race_id": "202603010203",
+  "race_name": "",
+  "date": "2026-04-12",
+  "venue": "福島",
+  "race_number": 3,
+  "distance": 0,
+  "surface": "",
+  "track_direction": "",
+  "weather": "",
+  "condition": "",
+  "year": "2026",
+  "results": [
+    {
+      "rank": 1,
+      "gate_number": 4,
+      "horse_number": 6,
+      "horse_name": "イサチルシーキング",
+      "horse_id": "2023107394",
+      "sex_age": "牡4",
+      "weight_carried": 54.0,
+      "jockey": "小林美駒",
+      "trainer": "辻哲英",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "ジョーカー",
+      "horse_id": "2023105348",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "西塚洸二",
+      "trainer": "友道康夫",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 6,
+      "horse_number": 10,
+      "horse_name": "エイシンキーンラン",
+      "horse_id": "2023105530",
+      "sex_age": "牝7",
+      "weight_carried": 53.0,
+      "jockey": "永島まな",
+      "trainer": "田中剛",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    }
+  ],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "6",
+      "payout": 720,
+      "popularity": 2
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "15",
+      "payout": 15000,
+      "popularity": null
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "11",
+      "payout": 100,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "6",
+      "payout": 180,
+      "popularity": 3
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "10",
+      "payout": 440,
+      "popularity": 7
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "20",
+      "payout": 2,
+      "popularity": null
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "4-6",
+      "payout": 450,
+      "popularity": 3
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "72",
+      "payout": 2,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "6-11",
+      "payout": 410,
+      "popularity": 1
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1-10",
+      "payout": 44,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "11",
+      "payout": 1,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1-80",
+      "payout": 3110,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "6-11",
+      "payout": 220,
+      "popularity": 2
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "10-11",
+      "payout": 690,
+      "popularity": 8
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "6-10",
+      "payout": 1930,
+      "popularity": 18
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "60",
+      "payout": 45003,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 11,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4",
+      "payout": 60000,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "45",
+      "payout": 3,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 6100000,
+      "popularity": 1
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "6→11",
+      "payout": 1370,
+      "popularity": 6
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "11",
+      "payout": 4,
+      "popularity": 10
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "69",
+      "payout": 7,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "41",
+      "payout": 1,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "6",
+      "payout": 11000,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-81-1",
+      "payout": 10000,
+      "popularity": 6
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "6-10-11",
+      "payout": 2690,
+      "popularity": 10
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "19-30",
+      "payout": 1810,
+      "popularity": 110
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "10-61",
+      "payout": 1,
+      "popularity": 930
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "18-10",
+      "payout": 11000,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "6-90",
+      "payout": 7,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2-20",
+      "payout": 10610,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "6",
+      "payout": 90007,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "6-11",
+      "payout": 13700,
+      "popularity": 6
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "6→11→10",
+      "payout": 19250,
+      "popularity": 64
+    }
+  ],
+  "predictions": [
+    {
+      "prediction_id": 2106,
+      "model_type": "本命(暫定)",
+      "bet_type": "単勝",
+      "confidence": 5.066006897791666e-05,
+      "expected_value": 5.066006897791666e-05,
+      "recommended_bet": 100.0,
+      "combination_json": "[[0]]",
+      "notes": "本命 P(win)=0.00 odds=1.0",
+      "created_at": "2026-04-12 08:03:35",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ワンダーサイファー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 5.066006897791666e-05,
+          "ev_score": 5.066006897791666e-05
+        }
+      ]
+    },
+    {
+      "prediction_id": 2107,
+      "model_type": "本命(暫定)",
+      "bet_type": "複勝",
+      "confidence": 5.066006897791666e-05,
+      "expected_value": 5.066006897791666e-05,
+      "recommended_bet": 100.0,
+      "combination_json": "[[0]]",
+      "notes": "上位1頭を複勝",
+      "created_at": "2026-04-12 08:03:35",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ワンダーサイファー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 5.066006897791666e-05,
+          "ev_score": 5.066006897791666e-05
+        }
+      ]
+    },
+    {
+      "prediction_id": 2108,
+      "model_type": "卍(暫定)",
+      "bet_type": "単勝",
+      "confidence": 0.5721828131277888,
+      "expected_value": 1.1443656262555777,
+      "recommended_bet": 100.0,
+      "combination_json": "[[0]]",
+      "notes": "EV=1.14 odds=1.0",
+      "created_at": "2026-04-12 08:03:35",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ワンダーサイファー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 1.1443656262555777,
+          "ev_score": 1.1443656262555777
+        }
+      ]
+    },
+    {
+      "prediction_id": 2109,
+      "model_type": "卍(暫定)",
+      "bet_type": "複勝",
+      "confidence": 0.6,
+      "expected_value": 1.1443656262555777,
+      "recommended_bet": 100.0,
+      "combination_json": "[[0]]",
+      "notes": "EV>1.0 の1頭を複勝",
+      "created_at": "2026-04-12 08:03:35",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ワンダーサイファー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 1.1443656262555777,
+          "ev_score": 1.1443656262555777
+        }
+      ]
+    },
+    {
+      "prediction_id": 2203,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-04-12 08:15:22",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "ワンダーサイファー",
+          "horse_id": "2023100456",
+          "predicted_rank": 1,
+          "model_score": 5.066006897791666e-05,
+          "ev_score": 0.0
+        }
+      ]
+    }
+  ],
+  "training_evals": {}
+}

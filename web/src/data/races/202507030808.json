@@ -1,0 +1,199 @@
+{
+  "race_id": "202507030808",
+  "race_name": "常滑特別",
+  "date": "2025-08-17",
+  "venue": "中京",
+  "race_number": 8,
+  "distance": 0,
+  "surface": "",
+  "track_direction": "",
+  "weather": "",
+  "condition": "",
+  "year": "2025",
+  "results": [
+    {
+      "rank": 1,
+      "gate_number": 6,
+      "horse_number": 6,
+      "horse_name": "ダノンジョーカー",
+      "horse_id": "2022100658",
+      "sex_age": "牡4",
+      "weight_carried": 55.0,
+      "jockey": "川田将雅",
+      "trainer": "中内田充",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "ピースヒロフェイス",
+      "horse_id": "2021105769",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "吉村誠之",
+      "trainer": "牧光二",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "サトノダイヤモンド",
+      "dam": "ペルヴィアンリリー",
+      "dam_sire": "フレンチデピュティFrench Deputy(米)"
+    },
+    {
+      "rank": 3,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "タマモランプ",
+      "horse_id": "2021101557",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "高杉吏麒",
+      "trainer": "池添学",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "サトノアラジン",
+      "dam": "タマモピアス",
+      "dam_sire": "キングカメハメハ"
+    },
+    {
+      "rank": null,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "メアヴィア",
+      "horse_id": "2021104820",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "小沢大仁",
+      "trainer": "金成貴史",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ミッキーロケット",
+      "dam": "スイートシャイン",
+      "dam_sire": "ディープブリランテ"
+    },
+    {
+      "rank": null,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "ジャスティンガルフ",
+      "horse_id": "2021103255",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "横山武史",
+      "trainer": "茶木太樹",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "エピファネイア",
+      "dam": "ポールポジションIIPole Position(英)",
+      "dam_sire": "Pivotal"
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "バヤシーフェイス",
+      "horse_id": "2022101059",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "国分恭介",
+      "trainer": "西園翔太",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    }
+  ],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "6",
+      "payout": 110,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "6",
+      "payout": 110,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "5",
+      "payout": 190,
+      "popularity": 2
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "5-6",
+      "payout": 340,
+      "popularity": 2
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "5-6",
+      "payout": 150,
+      "popularity": 2
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4-6",
+      "payout": 170,
+      "popularity": 3
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4-5",
+      "payout": 340,
+      "popularity": 5
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "6→5",
+      "payout": 470,
+      "popularity": 3
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4-5-6",
+      "payout": 450,
+      "popularity": 2
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "6→5→4",
+      "payout": 1250,
+      "popularity": 6
+    }
+  ],
+  "predictions": [],
+  "training_evals": {}
+}

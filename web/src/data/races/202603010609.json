@@ -1,0 +1,908 @@
+{
+  "race_id": "202603010609",
+  "race_name": "飯盛山特別",
+  "date": "2026-04-26",
+  "venue": "福島",
+  "race_number": 9,
+  "distance": 0,
+  "surface": "",
+  "track_direction": "",
+  "weather": "",
+  "condition": "",
+  "year": "2026",
+  "results": [
+    {
+      "rank": 1,
+      "gate_number": 7,
+      "horse_number": 10,
+      "horse_name": "アリスメティーク",
+      "horse_id": "2022105796",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "杉原誠人",
+      "trainer": "大竹正博",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0539,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.6782,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
+      "rank": 2,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "ゼンノインヴォーク",
+      "horse_id": "2019100915",
+      "sex_age": "騸3",
+      "weight_carried": 58.0,
+      "jockey": "小沢大仁",
+      "trainer": "緒方努",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "シルバーステート",
+      "dam": "ヴォワルドール",
+      "dam_sire": "ハービンジャーHarbinger(英)",
+      "honmei_score": 0.0539,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.5836,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 8,
+      "horse_number": 12,
+      "horse_name": "マイネルアズーロ",
+      "horse_id": "2022100274",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "斎藤新",
+      "trainer": "鹿戸雄一",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0968,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.7461,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    }
+  ],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "10",
+      "payout": 620,
+      "popularity": 4
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "13",
+      "payout": 13000,
+      "popularity": null
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "12",
+      "payout": 140,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "10",
+      "payout": 170,
+      "popularity": 2
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "2",
+      "payout": 210,
+      "popularity": 5
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "2-7",
+      "payout": 1730,
+      "popularity": 8
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "62",
+      "payout": 4,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "2",
+      "payout": 2,
+      "popularity": 10
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "2-10",
+      "payout": 2120,
+      "popularity": 11
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1-70",
+      "payout": 2020,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "10-12",
+      "payout": 380,
+      "popularity": 1
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 70000,
+      "popularity": 1
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2-12",
+      "payout": 580,
+      "popularity": 6
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2-10",
+      "payout": 670,
+      "popularity": 10
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "73",
+      "payout": 8,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "10→2",
+      "payout": 4010,
+      "popularity": 18
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "10",
+      "payout": 21,
+      "popularity": 20
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "2",
+      "payout": 10000,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "2-12",
+      "payout": 11,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2-10-12",
+      "payout": 2660,
+      "popularity": 3
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "10-21",
+      "payout": 20000,
+      "popularity": 5
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3-80",
+      "payout": 102,
+      "popularity": 120
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "6-70-1",
+      "payout": 1012,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5",
+      "payout": 80006,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "10→2→12",
+      "payout": 15980,
+      "popularity": 37
+    }
+  ],
+  "predictions": [
+    {
+      "prediction_id": 12608,
+      "model_type": "本命(暫定)",
+      "bet_type": "単勝",
+      "confidence": 0.15099009900990099,
+      "expected_value": 0.15099009900990099,
+      "recommended_bet": 100.0,
+      "combination_json": "[[8]]",
+      "notes": "確率1位 P(win)=0.15 odds=1.0 EV=0.15",
+      "created_at": "2026-04-26 15:13:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "オールデュスヴラン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.15099009900990099,
+          "ev_score": 0.15099009900990099
+        }
+      ]
+    },
+    {
+      "prediction_id": 12609,
+      "model_type": "本命(暫定)",
+      "bet_type": "複勝",
+      "confidence": 0.34453848610667515,
+      "expected_value": 0.34453848610667515,
+      "recommended_bet": 300.0,
+      "combination_json": "[[8], [11], [12]]",
+      "notes": "上位3頭を複勝",
+      "created_at": "2026-04-26 15:13:09",
+      "is_hit": 1,
+      "payout": 519.0,
+      "profit": 219.0,
+      "roi": 173.0,
+      "horses": [
+        {
+          "horse_name": "オールデュスヴラン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11484616203555838,
+          "ev_score": 0.34453848610667515
+        },
+        {
+          "horse_name": "ミッドセンチュリー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11484616203555838,
+          "ev_score": 0.34453848610667515
+        },
+        {
+          "horse_name": "マイネルアズーロ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.11484616203555838,
+          "ev_score": 0.34453848610667515
+        }
+      ]
+    },
+    {
+      "prediction_id": 12610,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.012820512820512822,
+      "expected_value": 0.7692307692307694,
+      "recommended_bet": 200.0,
+      "combination_json": "[[8, 11]]",
+      "notes": "本命・対抗 Harville=0.013",
+      "created_at": "2026-04-26 15:13:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "オールデュスヴラン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.012820512820512822,
+          "ev_score": 0.7692307692307694
+        },
+        {
+          "horse_name": "ミッドセンチュリー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.012820512820512822,
+          "ev_score": 0.7692307692307694
+        }
+      ]
+    },
+    {
+      "prediction_id": 12611,
+      "model_type": "本命(暫定)",
+      "bet_type": "ワイド",
+      "confidence": 0.01666666666666667,
+      "expected_value": 0.32051282051282054,
+      "recommended_bet": 200.0,
+      "combination_json": "[[8, 11]]",
+      "notes": "本命・対抗 ワイド Harville=0.013",
+      "created_at": "2026-04-26 15:13:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "オールデュスヴラン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.012820512820512822,
+          "ev_score": 0.32051282051282054
+        },
+        {
+          "horse_name": "ミッドセンチュリー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.012820512820512822,
+          "ev_score": 0.32051282051282054
+        }
+      ]
+    },
+    {
+      "prediction_id": 12612,
+      "model_type": "本命(暫定)",
+      "bet_type": "三連複",
+      "confidence": 0.04195804195804195,
+      "expected_value": 1.0489510489510487,
+      "recommended_bet": 600.0,
+      "combination_json": "[[8, 11, 12], [4, 8, 11]]",
+      "notes": "合成EV最大=1.05 2点 馬番=[(8, 11, 12), (4, 8, 11)]",
+      "created_at": "2026-04-26 15:13:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "オールデュスヴラン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.003496503496503496,
+          "ev_score": 1.0489510489510487
+        },
+        {
+          "horse_name": "オールデュスヴラン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.003496503496503496,
+          "ev_score": 1.0489510489510487
+        },
+        {
+          "horse_name": "ミッドセンチュリー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.003496503496503496,
+          "ev_score": 1.0489510489510487
+        },
+        {
+          "horse_name": "ミッドセンチュリー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.003496503496503496,
+          "ev_score": 1.0489510489510487
+        },
+        {
+          "horse_name": "マイネルアズーロ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.003496503496503496,
+          "ev_score": 1.0489510489510487
+        },
+        {
+          "horse_name": "マイネルアズーロ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.003496503496503496,
+          "ev_score": 1.0489510489510487
+        }
+      ]
+    },
+    {
+      "prediction_id": 12613,
+      "model_type": "本命(暫定)",
+      "bet_type": "三連単",
+      "confidence": 0.10489510489510488,
+      "expected_value": 5.244755244755244,
+      "recommended_bet": 600.0,
+      "combination_json": "[[8, 11, 12], [8, 11, 4], [8, 11, 3], [8, 12, 11], [8, 12, 4], [8, 12, 3]]",
+      "notes": "1着固定フォーメーション 軸=8番 6点 相手=[11, 12, 4, 3] Harville最大=0.0035",
+      "created_at": "2026-04-26 15:13:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "オールデュスヴラン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.003496503496503496,
+          "ev_score": 5.244755244755244
+        },
+        {
+          "horse_name": "オールデュスヴラン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.003496503496503496,
+          "ev_score": 5.244755244755244
+        },
+        {
+          "horse_name": "オールデュスヴラン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.003496503496503496,
+          "ev_score": 5.244755244755244
+        },
+        {
+          "horse_name": "オールデュスヴラン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.003496503496503496,
+          "ev_score": 5.244755244755244
+        },
+        {
+          "horse_name": "オールデュスヴラン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.003496503496503496,
+          "ev_score": 5.244755244755244
+        },
+        {
+          "horse_name": "ミッドセンチュリー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.003496503496503496,
+          "ev_score": 5.244755244755244
+        },
+        {
+          "horse_name": "ミッドセンチュリー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.003496503496503496,
+          "ev_score": 5.244755244755244
+        },
+        {
+          "horse_name": "ミッドセンチュリー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.003496503496503496,
+          "ev_score": 5.244755244755244
+        },
+        {
+          "horse_name": "ミッドセンチュリー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.003496503496503496,
+          "ev_score": 5.244755244755244
+        },
+        {
+          "horse_name": "ミッドセンチュリー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.003496503496503496,
+          "ev_score": 5.244755244755244
+        },
+        {
+          "horse_name": "マイネルアズーロ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.003496503496503496,
+          "ev_score": 5.244755244755244
+        },
+        {
+          "horse_name": "マイネルアズーロ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.003496503496503496,
+          "ev_score": 5.244755244755244
+        },
+        {
+          "horse_name": "マイネルアズーロ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.003496503496503496,
+          "ev_score": 5.244755244755244
+        },
+        {
+          "horse_name": "マイネルアズーロ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.003496503496503496,
+          "ev_score": 5.244755244755244
+        },
+        {
+          "horse_name": "マイネルアズーロ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.003496503496503496,
+          "ev_score": 5.244755244755244
+        }
+      ]
+    },
+    {
+      "prediction_id": 12614,
+      "model_type": "卍(暫定)",
+      "bet_type": "単勝",
+      "confidence": 0.4003651832962312,
+      "expected_value": 0.8007303665924624,
+      "recommended_bet": 100.0,
+      "combination_json": "[[9]]",
+      "notes": "確率1位(卍) EV=0.80 odds=1.0",
+      "created_at": "2026-04-26 15:13:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ヴォラヴィア",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.8007303665924624,
+          "ev_score": 0.8007303665924624
+        }
+      ]
+    },
+    {
+      "prediction_id": 12615,
+      "model_type": "卍(暫定)",
+      "bet_type": "複勝",
+      "confidence": 0.6,
+      "expected_value": 0.7710931456065994,
+      "recommended_bet": 300.0,
+      "combination_json": "[[9], [3], [4]]",
+      "notes": "確率上位3頭を複勝",
+      "created_at": "2026-04-26 15:13:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ヴォラヴィア",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.7710931456065994,
+          "ev_score": 0.7710931456065994
+        },
+        {
+          "horse_name": "アドミラルシップ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.7710931456065994,
+          "ev_score": 0.7710931456065994
+        },
+        {
+          "horse_name": "ポッポノフェスタ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.7710931456065994,
+          "ev_score": 0.7710931456065994
+        }
+      ]
+    },
+    {
+      "prediction_id": 12616,
+      "model_type": "卍(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.08775500584584463,
+      "expected_value": 1.0530600701501356,
+      "recommended_bet": 200.0,
+      "combination_json": "[[3, 9]]",
+      "notes": "EV上位2頭 Harville=0.018 平均EV=0.78",
+      "created_at": "2026-04-26 15:13:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "アドミラルシップ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.017551001169168925,
+          "ev_score": 1.0530600701501356
+        },
+        {
+          "horse_name": "ヴォラヴィア",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.017551001169168925,
+          "ev_score": 1.0530600701501356
+        }
+      ]
+    },
+    {
+      "prediction_id": 12617,
+      "model_type": "卍(暫定)",
+      "bet_type": "ワイド",
+      "confidence": 0.10530600701501355,
+      "expected_value": 0.4387750292292231,
+      "recommended_bet": 200.0,
+      "combination_json": "[[3, 9]]",
+      "notes": "EV上位2頭 ワイド Harville=0.018",
+      "created_at": "2026-04-26 15:13:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "アドミラルシップ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.017551001169168925,
+          "ev_score": 0.4387750292292231
+        },
+        {
+          "horse_name": "ヴォラヴィア",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.017551001169168925,
+          "ev_score": 0.4387750292292231
+        }
+      ]
+    },
+    {
+      "prediction_id": 12620,
+      "model_type": "卍(暫定)",
+      "bet_type": "三連複",
+      "confidence": 0.08164398989670893,
+      "expected_value": 1.6328797979341787,
+      "recommended_bet": 300.0,
+      "combination_json": "[[3, 9, 12]]",
+      "notes": "合成EV=1.63 Harville=0.0054 馬番=(3, 9, 12)",
+      "created_at": "2026-04-26 15:13:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "アドミラルシップ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.005442932659780596,
+          "ev_score": 1.6328797979341787
+        },
+        {
+          "horse_name": "ヴォラヴィア",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.005442932659780596,
+          "ev_score": 1.6328797979341787
+        },
+        {
+          "horse_name": "マイネルアズーロ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.005442932659780596,
+          "ev_score": 1.6328797979341787
+        }
+      ]
+    },
+    {
+      "prediction_id": 12621,
+      "model_type": "Oracle(暫定)",
+      "bet_type": "三連複",
+      "confidence": 0.05755833822189924,
+      "expected_value": 1.7267501466569772,
+      "recommended_bet": 300.0,
+      "combination_json": "[[8, 11, 12], [4, 8, 11], [3, 8, 11]]",
+      "notes": "[Oracle] 的中確率最大 3点 P最大=0.0576 馬番=[(8, 11, 12), (4, 8, 11), (3, 8, 11)]",
+      "created_at": "2026-04-26 15:13:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "オールデュスヴラン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05755833822189924,
+          "ev_score": 1.7267501466569772
+        },
+        {
+          "horse_name": "ミッドセンチュリー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05755833822189924,
+          "ev_score": 1.7267501466569772
+        },
+        {
+          "horse_name": "マイネルアズーロ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.05755833822189924,
+          "ev_score": 1.7267501466569772
+        }
+      ]
+    },
+    {
+      "prediction_id": 12622,
+      "model_type": "Oracle(暫定)",
+      "bet_type": "三連単",
+      "confidence": 0.00959305637031654,
+      "expected_value": 1.438958455547481,
+      "recommended_bet": 300.0,
+      "combination_json": "[[8, 11, 12], [8, 12, 11], [11, 8, 12]]",
+      "notes": "[Oracle] 的中確率最大 3点 P最大=0.0096 馬番=[(8, 11, 12), (8, 12, 11), (11, 8, 12)]",
+      "created_at": "2026-04-26 15:13:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "オールデュスヴラン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.00959305637031654,
+          "ev_score": 1.438958455547481
+        },
+        {
+          "horse_name": "ミッドセンチュリー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.00959305637031654,
+          "ev_score": 1.438958455547481
+        },
+        {
+          "horse_name": "マイネルアズーロ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.00959305637031654,
+          "ev_score": 1.438958455547481
+        }
+      ]
+    },
+    {
+      "prediction_id": 12623,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-04-26 15:13:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "オールデュスヴラン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.15099009900990099,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ミッドセンチュリー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0967741935483871,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "マイネルアズーロ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0967741935483871,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ゲンジ",
+          "horse_id": null,
+          "predicted_rank": 4,
+          "model_score": 0.09324758842443731,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ヴォラヴィア",
+          "horse_id": null,
+          "predicted_rank": 5,
+          "model_score": 0.09324758842443731,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "アドミラルシップ",
+          "horse_id": null,
+          "predicted_rank": 6,
+          "model_score": 0.09324758842443731,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ポッポノフェスタ",
+          "horse_id": null,
+          "predicted_rank": 7,
+          "model_score": 0.09324758842443731,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ピティロディア",
+          "horse_id": null,
+          "predicted_rank": 8,
+          "model_score": 0.09183673469387756,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ウインボレロ",
+          "horse_id": null,
+          "predicted_rank": 9,
+          "model_score": 0.07551669316375198,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ゴールドジェスター",
+          "horse_id": null,
+          "predicted_rank": 10,
+          "model_score": 0.053862089375554895,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "アリスメティーク",
+          "horse_id": null,
+          "predicted_rank": 11,
+          "model_score": 0.053862089375554895,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ゼンノインヴォーク",
+          "horse_id": null,
+          "predicted_rank": 12,
+          "model_score": 0.053862089375554895,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "マイネルゼウス",
+          "horse_id": null,
+          "predicted_rank": 13,
+          "model_score": 0.03348214285714286,
+          "ev_score": 0.0
+        }
+      ]
+    }
+  ],
+  "training_evals": {},
+  "prerace": {
+    "bias": {
+      "today_inner_bias": null,
+      "today_front_bias": null,
+      "today_race_count": null
+    },
+    "ev_recommend": [],
+    "generated_at": "2026-04-26T15:13:09.889896"
+  }
+}

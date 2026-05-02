@@ -1,0 +1,179 @@
+{
+  "race_id": "202504020406",
+  "race_name": "月岡温泉特別",
+  "date": "2025-08-03",
+  "venue": "新潟",
+  "race_number": 6,
+  "distance": 0,
+  "surface": "",
+  "track_direction": "",
+  "weather": "",
+  "condition": "",
+  "year": "2025",
+  "results": [
+    {
+      "rank": 1,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "サダムオプシス",
+      "horse_id": "2021105474",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "藤懸貴志",
+      "trainer": "平田修",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "フナデ",
+      "horse_id": "2021103790",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "津村明秀",
+      "trainer": "嘉藤貴行",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "ナイトスラッガー",
+      "horse_id": "2021101603",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "戸崎圭太",
+      "trainer": "小栗実",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ルーラーシップ",
+      "dam": "トーホウアマポーラ",
+      "dam_sire": "フジキセキ"
+    },
+    {
+      "rank": null,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "マーシャルポイント",
+      "horse_id": "2021105675",
+      "sex_age": "騸4",
+      "weight_carried": 58.0,
+      "jockey": "杉原誠人",
+      "trainer": "矢嶋大樹",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "エピファネイア",
+      "dam": "トリプライト",
+      "dam_sire": "ワイルドラッシュWild Rush(米)"
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "カフェアローロ",
+      "horse_id": "2021100469",
+      "sex_age": "牝7",
+      "weight_carried": 56.0,
+      "jockey": "菅原明良",
+      "trainer": "古賀慎明",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ダンカークDunkirk(米)",
+      "dam": "カフェローレル",
+      "dam_sire": "マンハッタンカフェ"
+    }
+  ],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "1",
+      "payout": 200,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "1",
+      "payout": 130,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "4",
+      "payout": 180,
+      "popularity": 3
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1-4",
+      "payout": 520,
+      "popularity": 3
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1-3",
+      "payout": 110,
+      "popularity": 1
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3-4",
+      "payout": 120,
+      "popularity": 2
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1-4",
+      "payout": 130,
+      "popularity": 3
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "1→4",
+      "payout": 860,
+      "popularity": 4
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-3-4",
+      "payout": 130,
+      "popularity": 1
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "1→4→3",
+      "payout": 1010,
+      "popularity": 4
+    }
+  ],
+  "predictions": [],
+  "training_evals": {}
+}

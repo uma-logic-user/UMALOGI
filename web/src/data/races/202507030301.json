@@ -1,0 +1,179 @@
+{
+  "race_id": "202507030301",
+  "race_name": "",
+  "date": "2025-08-02",
+  "venue": "中京",
+  "race_number": 1,
+  "distance": 0,
+  "surface": "",
+  "track_direction": "",
+  "weather": "",
+  "condition": "",
+  "year": "2025",
+  "results": [
+    {
+      "rank": 1,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "タマモイカロス",
+      "horse_id": "2023103162",
+      "sex_age": "牡3",
+      "weight_carried": 54.0,
+      "jockey": "高杉吏麒",
+      "trainer": "藤岡健一",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "ゴールドヴィーナス",
+      "horse_id": "2023105672",
+      "sex_age": "牝1",
+      "weight_carried": 55.0,
+      "jockey": "川田将雅",
+      "trainer": "森秀行",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "リトゥリア",
+      "horse_id": "2023103981",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "坂井瑠星",
+      "trainer": "河嶋宏樹",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "ジューンマロン",
+      "horse_id": "2023105278",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "バデル",
+      "trainer": "武英智",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "アダマント",
+      "horse_id": "2023107442",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "川須栄彦",
+      "trainer": "高橋一哉",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    }
+  ],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "5",
+      "payout": 130,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "5",
+      "payout": 110,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "2",
+      "payout": 180,
+      "popularity": 4
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "2-5",
+      "payout": 300,
+      "popularity": 2
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3-5",
+      "payout": 120,
+      "popularity": 1
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2-5",
+      "payout": 130,
+      "popularity": 2
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2-3",
+      "payout": 220,
+      "popularity": 4
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "5→2",
+      "payout": 360,
+      "popularity": 1
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2-3-5",
+      "payout": 250,
+      "popularity": 1
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "5→2→3",
+      "payout": 590,
+      "popularity": 1
+    }
+  ],
+  "predictions": [],
+  "training_evals": {}
+}

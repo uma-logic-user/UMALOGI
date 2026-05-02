@@ -1,0 +1,922 @@
+{
+  "race_id": "202609020505",
+  "race_name": "",
+  "date": "2026-04-11",
+  "venue": "阪神",
+  "race_number": 5,
+  "distance": 0,
+  "surface": "",
+  "track_direction": "",
+  "weather": "",
+  "condition": "",
+  "year": "2026",
+  "results": [
+    {
+      "rank": 1,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "チュウワカーネギー",
+      "horse_id": null,
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "西村淳",
+      "trainer": "栗東大久保",
+      "finish_time": "1:50.0",
+      "margin": "@",
+      "win_odds": 5.2,
+      "popularity": 3,
+      "horse_weight": 518,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0001,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.7337,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "元気一杯"
+      }
+    },
+    {
+      "rank": 2,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "タガノエルー",
+      "horse_id": null,
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "菱田",
+      "trainer": "栗東宮",
+      "finish_time": "1:50.0",
+      "margin": "@",
+      "win_odds": 2.4,
+      "popularity": 1,
+      "horse_weight": 458,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.6388,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "反応平凡"
+      }
+    },
+    {
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "アスクドゥチャンプ",
+      "horse_id": null,
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "西塚",
+      "trainer": "栗東藤原",
+      "finish_time": "1:51.0",
+      "margin": "@",
+      "win_odds": 26.3,
+      "popularity": 8,
+      "horse_weight": 490,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.3381,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "元気一杯"
+      }
+    },
+    {
+      "rank": 4,
+      "gate_number": 8,
+      "horse_number": 12,
+      "horse_name": "メイショウペイト",
+      "horse_id": null,
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "加藤",
+      "trainer": "栗東梅田",
+      "finish_time": "1:51.2",
+      "margin": "@",
+      "win_odds": 63.2,
+      "popularity": 11,
+      "horse_weight": 518,
+      "horse_weight_diff": -10,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0001,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.4586,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "動き軽快"
+      }
+    },
+    {
+      "rank": 5,
+      "gate_number": 8,
+      "horse_number": 11,
+      "horse_name": "キタノシャカール",
+      "horse_id": null,
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "団野",
+      "trainer": "栗東吉田",
+      "finish_time": "1:51.4",
+      "margin": "@",
+      "win_odds": 25.2,
+      "popularity": 7,
+      "horse_weight": 432,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0001,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.4586,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "好調持続"
+      }
+    },
+    {
+      "rank": 6,
+      "gate_number": 5,
+      "horse_number": 6,
+      "horse_name": "ヴィエントデコラ",
+      "horse_id": null,
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "岩田望",
+      "trainer": "栗東寺島",
+      "finish_time": "1:51.8",
+      "margin": "@",
+      "win_odds": 9.3,
+      "popularity": 5,
+      "horse_weight": 446,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0001,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.7337,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "手応劣る"
+      }
+    },
+    {
+      "rank": 7,
+      "gate_number": 6,
+      "horse_number": 7,
+      "horse_name": "サイモンゼスト",
+      "horse_id": null,
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "酒井",
+      "trainer": "栗東谷",
+      "finish_time": "1:52.0",
+      "margin": "@",
+      "win_odds": 102.6,
+      "popularity": 12,
+      "horse_weight": 494,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0001,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.7337,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "気配上々"
+      }
+    },
+    {
+      "rank": 8,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "テスタヴェローチェ",
+      "horse_id": null,
+      "sex_age": "牡3",
+      "weight_carried": 54.0,
+      "jockey": "▲田山",
+      "trainer": "栗東須貝",
+      "finish_time": "1:52.1",
+      "margin": "@",
+      "win_odds": 7.5,
+      "popularity": 4,
+      "horse_weight": 492,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0001,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.5895,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "好気配"
+      }
+    },
+    {
+      "rank": 9,
+      "gate_number": 7,
+      "horse_number": 9,
+      "horse_name": "ワンダフルデイズ",
+      "horse_id": null,
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "幸",
+      "trainer": "栗東高橋忠",
+      "finish_time": "1:52.2",
+      "margin": "@",
+      "win_odds": 15.2,
+      "popularity": 6,
+      "horse_weight": 500,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0001,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.5639,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "キビキビ"
+      }
+    },
+    {
+      "rank": 10,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "ジュンプリメーロ",
+      "horse_id": null,
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "武豊",
+      "trainer": "栗東友道",
+      "finish_time": "1:52.8",
+      "margin": "@",
+      "win_odds": 38.5,
+      "popularity": 10,
+      "horse_weight": 482,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0001,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.5606,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "脚色良好"
+      }
+    },
+    {
+      "rank": 11,
+      "gate_number": 6,
+      "horse_number": 8,
+      "horse_name": "キリオス",
+      "horse_id": null,
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "松山",
+      "trainer": "栗東庄野",
+      "finish_time": "1:52.9",
+      "margin": "@",
+      "win_odds": 5.1,
+      "popularity": 2,
+      "horse_weight": 514,
+      "horse_weight_diff": 6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0001,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.7337,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "好気配"
+      }
+    },
+    {
+      "rank": 12,
+      "gate_number": 7,
+      "horse_number": 10,
+      "horse_name": "クラッチスラッガー",
+      "horse_id": null,
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "池添",
+      "trainer": "栗東池添",
+      "finish_time": "2:05.0",
+      "margin": "@",
+      "win_odds": 33.1,
+      "popularity": 9,
+      "horse_weight": 510,
+      "horse_weight_diff": 6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0001,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.5639,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "反応平凡"
+      }
+    }
+  ],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "5",
+      "payout": 520,
+      "popularity": 3
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "12",
+      "payout": 12000,
+      "popularity": null
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "4",
+      "payout": 130,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "5",
+      "payout": 200,
+      "popularity": 3
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "1",
+      "payout": 500,
+      "popularity": 8
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "20",
+      "payout": 3,
+      "popularity": null
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "4-5",
+      "payout": 450,
+      "popularity": 1
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "52",
+      "payout": 3,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "4-5",
+      "payout": 790,
+      "popularity": 2
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "4",
+      "payout": 1,
+      "popularity": 30
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1-1",
+      "payout": 50,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "2",
+      "payout": 3040,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4-5",
+      "payout": 390,
+      "popularity": 4
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 30010,
+      "popularity": 10
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1-4",
+      "payout": 910,
+      "popularity": 12
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1-5",
+      "payout": 2630,
+      "popularity": 32
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "50",
+      "payout": 45001,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4",
+      "payout": 50000,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "45",
+      "payout": 1,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "5→4",
+      "payout": 1560,
+      "popularity": 5
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "5",
+      "payout": 7,
+      "popularity": 90
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "4",
+      "payout": 5000,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "91",
+      "payout": 11,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "79",
+      "payout": 2,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3-30-10",
+      "payout": 40000,
+      "popularity": 9
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-4-5",
+      "payout": 5610,
+      "popularity": 18
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "26-30",
+      "payout": 3301,
+      "popularity": 40
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "40-10-50",
+      "payout": 2,
+      "popularity": 630
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "33-1",
+      "payout": 4000,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "9-10-1",
+      "payout": 1,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3-90",
+      "payout": 40105,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "9",
+      "payout": 10011,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "5-4",
+      "payout": 15600,
+      "popularity": 4
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "5→4→1",
+      "payout": 20300,
+      "popularity": 65
+    }
+  ],
+  "predictions": [
+    {
+      "prediction_id": 2008,
+      "model_type": "本命(暫定)",
+      "bet_type": "単勝",
+      "confidence": 0.00011096929388294538,
+      "expected_value": 0.00011096929388294538,
+      "recommended_bet": 100.0,
+      "combination_json": "[[12]]",
+      "notes": "本命 P(win)=0.00 odds=1.0",
+      "created_at": "2026-04-11 12:25:29",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "卍",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 1.4887545375650064,
+          "ev_score": 1.4887545375650064
+        },
+        {
+          "horse_name": "メイショウペイト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.00011096929388294538,
+          "ev_score": 0.00011096929388294538
+        }
+      ]
+    },
+    {
+      "prediction_id": 2009,
+      "model_type": "本命(暫定)",
+      "bet_type": "複勝",
+      "confidence": 0.0002773050068711027,
+      "expected_value": 0.0002773050068711027,
+      "recommended_bet": 300.0,
+      "combination_json": "[[12], [3], [5]]",
+      "notes": "上位3頭を複勝",
+      "created_at": "2026-04-11 12:25:29",
+      "is_hit": 1,
+      "payout": 276.6666666666667,
+      "profit": -23.333333333333314,
+      "roi": 92.22222222222223,
+      "horses": [
+        {
+          "horse_name": "卍",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 1.4887545375650064,
+          "ev_score": 1.4887545375650064
+        },
+        {
+          "horse_name": "メイショウペイト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 9.243500229036757e-05,
+          "ev_score": 0.0002773050068711027
+        },
+        {
+          "horse_name": "テスタヴェローチェ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 9.243500229036757e-05,
+          "ev_score": 0.0002773050068711027
+        },
+        {
+          "horse_name": "チュウワカーネギー",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 9.243500229036757e-05,
+          "ev_score": 0.0002773050068711027
+        }
+      ]
+    },
+    {
+      "prediction_id": 2010,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.03196319081955869,
+      "expected_value": 0.025570552655646946,
+      "recommended_bet": 200.0,
+      "combination_json": "[[3, 12]]",
+      "notes": "本命・対抗 Harville=0.032",
+      "created_at": "2026-04-11 12:25:29",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "本命",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.28313321318027806,
+          "ev_score": 0.9909662461309732
+        },
+        {
+          "horse_name": "テスタヴェローチェ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03196319081955869,
+          "ev_score": 0.025570552655646946
+        }
+      ]
+    },
+    {
+      "prediction_id": 2011,
+      "model_type": "本命(暫定)",
+      "bet_type": "ワイド",
+      "confidence": 0.04155214806542629,
+      "expected_value": 0.01118711678684554,
+      "recommended_bet": 200.0,
+      "combination_json": "[[3, 12]]",
+      "notes": "本命・対抗 ワイド Harville=0.032",
+      "created_at": "2026-04-11 12:25:29",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "本命",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.09438281726730563,
+          "ev_score": 0.2831484518019169
+        },
+        {
+          "horse_name": "テスタヴェローチェ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03196319081955869,
+          "ev_score": 0.01118711678684554
+        },
+        {
+          "horse_name": "本命",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.09438281726730563,
+          "ev_score": 0.2831484518019169
+        },
+        {
+          "horse_name": "本命",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.09438281726730563,
+          "ev_score": 0.2831484518019169
+        }
+      ]
+    },
+    {
+      "prediction_id": 2012,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬単",
+      "confidence": 0.01627642391374499,
+      "expected_value": 0.02441463587061749,
+      "recommended_bet": 200.0,
+      "combination_json": "[[12, 3], [3, 12]]",
+      "notes": "本命↔対抗 馬単 Harville=0.016",
+      "created_at": "2026-04-11 12:25:29",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "本命",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.14157052311073776,
+          "ev_score": 0.2831410462214755
+        },
+        {
+          "horse_name": "メイショウペイト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.01627642391374499,
+          "ev_score": 0.02441463587061749
+        },
+        {
+          "horse_name": "テスタヴェローチェ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.01627642391374499,
+          "ev_score": 0.02441463587061749
+        }
+      ]
+    },
+    {
+      "prediction_id": 2013,
+      "model_type": "本命(暫定)",
+      "bet_type": "三連複",
+      "confidence": 0.01235082592374557,
+      "expected_value": 0.049403303694982276,
+      "recommended_bet": 300.0,
+      "combination_json": "[[3, 5, 12]]",
+      "notes": "本命・対抗・単穴 Harville=0.012",
+      "created_at": "2026-04-11 12:25:29",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "本命",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.14157052311073776,
+          "ev_score": 0.2831410462214755
+        },
+        {
+          "horse_name": "テスタヴェローチェ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.01235082592374557,
+          "ev_score": 0.049403303694982276
+        }
+      ]
+    },
+    {
+      "prediction_id": 2014,
+      "model_type": "本命(暫定)",
+      "bet_type": "三連単",
+      "confidence": 0.0017171446847331216,
+      "expected_value": 0.04292861711832804,
+      "recommended_bet": 600.0,
+      "combination_json": "[[12, 3, 5], [12, 5, 3], [3, 12, 5], [3, 5, 12], [5, 12, 3], [5, 3, 12]]",
+      "notes": "上位3頭 6点ボックス Harville=0.002",
+      "created_at": "2026-04-11 12:25:29",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "本命",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.09438281726730563,
+          "ev_score": 0.2831484518019169
+        },
+        {
+          "horse_name": "メイショウペイト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.002146430855916402,
+          "ev_score": 0.04292861711832804
+        },
+        {
+          "horse_name": "テスタヴェローチェ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.002146430855916402,
+          "ev_score": 0.04292861711832804
+        },
+        {
+          "horse_name": "チュウワカーネギー",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.002146430855916402,
+          "ev_score": 0.04292861711832804
+        },
+        {
+          "horse_name": "本命",
+          "horse_id": null,
+          "predicted_rank": 4,
+          "model_score": 0.002146430855916402,
+          "ev_score": 0.04292861711832804
+        },
+        {
+          "horse_name": "本命",
+          "horse_id": null,
+          "predicted_rank": 5,
+          "model_score": 0.002146430855916402,
+          "ev_score": 0.04292861711832804
+        }
+      ]
+    }
+  ],
+  "training_evals": {
+    "1": {
+      "eval_grade": "B",
+      "eval_text": "元気一杯"
+    },
+    "2": {
+      "eval_grade": "B",
+      "eval_text": "脚色良好"
+    },
+    "3": {
+      "eval_grade": "B",
+      "eval_text": "好気配"
+    },
+    "4": {
+      "eval_grade": "C",
+      "eval_text": "反応平凡"
+    },
+    "5": {
+      "eval_grade": "B",
+      "eval_text": "元気一杯"
+    },
+    "6": {
+      "eval_grade": "C",
+      "eval_text": "手応劣る"
+    },
+    "7": {
+      "eval_grade": "B",
+      "eval_text": "気配上々"
+    },
+    "8": {
+      "eval_grade": "B",
+      "eval_text": "好気配"
+    },
+    "9": {
+      "eval_grade": "B",
+      "eval_text": "キビキビ"
+    },
+    "10": {
+      "eval_grade": "C",
+      "eval_text": "反応平凡"
+    },
+    "11": {
+      "eval_grade": "B",
+      "eval_text": "好調持続"
+    },
+    "12": {
+      "eval_grade": "B",
+      "eval_text": "動き軽快"
+    }
+  },
+  "prerace": {
+    "bias": {
+      "today_inner_bias": null,
+      "today_front_bias": null,
+      "today_race_count": null
+    },
+    "ev_recommend": [],
+    "generated_at": "2026-04-11T12:25:29.328111"
+  }
+}

@@ -1,0 +1,807 @@
+{
+  "race_id": "202603010402",
+  "race_name": "",
+  "date": "2026-04-19",
+  "venue": "福島",
+  "race_number": 2,
+  "distance": 0,
+  "surface": "",
+  "track_direction": "",
+  "weather": "",
+  "condition": "",
+  "year": "2026",
+  "results": [
+    {
+      "rank": 1,
+      "gate_number": 7,
+      "horse_number": 13,
+      "horse_name": "ベルソテイラ",
+      "horse_id": "2023102641",
+      "sex_age": "牝3",
+      "weight_carried": 52.0,
+      "jockey": "小林美駒",
+      "trainer": "西村真幸",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "ダノンプレサージュ",
+      "horse_id": "2023105295",
+      "sex_age": "牝5",
+      "weight_carried": 55.0,
+      "jockey": "横山典弘",
+      "trainer": "大竹正博",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "ブリスフルイヤー",
+      "horse_id": "2023103570",
+      "sex_age": "牝4",
+      "weight_carried": 52.0,
+      "jockey": "石田拓郎",
+      "trainer": "新開幸一",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    }
+  ],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "13",
+      "payout": 330,
+      "popularity": 2
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "15",
+      "payout": 15000,
+      "popularity": null
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "9",
+      "payout": 130,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "13",
+      "payout": 140,
+      "popularity": 2
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "5",
+      "payout": 1550,
+      "popularity": 12
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "30",
+      "payout": 2,
+      "popularity": null
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "5-7",
+      "payout": 300,
+      "popularity": 1
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "1",
+      "payout": 30000,
+      "popularity": null
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "33",
+      "payout": 2,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "9-13",
+      "payout": 440,
+      "popularity": 1
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1-5",
+      "payout": 155,
+      "popularity": 1
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "9",
+      "payout": 1,
+      "popularity": 30
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1-40",
+      "payout": 2090,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "9-13",
+      "payout": 250,
+      "popularity": 1
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "5-13",
+      "payout": 3900,
+      "popularity": 38
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "5-9",
+      "payout": 4790,
+      "popularity": 43
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 30010,
+      "popularity": 50
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "70",
+      "payout": 30001,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "5",
+      "payout": 70000,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "30",
+      "payout": 1,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "13→9",
+      "payout": 1090,
+      "popularity": 3
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 5130000,
+      "popularity": 3
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "13",
+      "payout": 4,
+      "popularity": 40
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "4-79",
+      "payout": 43,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "44",
+      "payout": 1,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "9",
+      "payout": 13000,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5-9-13",
+      "payout": 10810,
+      "popularity": 35
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3-90-50",
+      "payout": 90000,
+      "popularity": 47
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "39",
+      "payout": 3905,
+      "popularity": 90
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "10-51-30",
+      "payout": 3,
+      "popularity": 900
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "39-5",
+      "payout": 9000,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "47-90-4",
+      "payout": 3,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2-50",
+      "payout": 10513,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "47",
+      "payout": 90043,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "13-9",
+      "payout": 10900,
+      "popularity": 3
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "13→9→5",
+      "payout": 29630,
+      "popularity": 87
+    }
+  ],
+  "predictions": [
+    {
+      "prediction_id": 3214,
+      "model_type": "本命(直前)",
+      "bet_type": "単勝",
+      "confidence": 0.0923524832225405,
+      "expected_value": 2.1333423624406858,
+      "recommended_bet": 200.0,
+      "combination_json": "[[10]]",
+      "notes": "本命 P(win)=0.09 odds=23.1",
+      "created_at": "2026-04-19 10:13:06",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "フィーユレアル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0923524832225405,
+          "ev_score": 2.1333423624406858
+        }
+      ]
+    },
+    {
+      "prediction_id": 3215,
+      "model_type": "本命(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.2582322408439364,
+      "expected_value": 0.2582322408439364,
+      "recommended_bet": 300.0,
+      "combination_json": "[[10], [7], [1]]",
+      "notes": "上位3頭を複勝",
+      "created_at": "2026-04-19 10:13:06",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "フィーユレアル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.08607741361464548,
+          "ev_score": 0.2582322408439364
+        },
+        {
+          "horse_name": "プラトニックガール",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.08607741361464548,
+          "ev_score": 0.2582322408439364
+        },
+        {
+          "horse_name": "ビッグノエルルーフ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.08607741361464548,
+          "ev_score": 0.2582322408439364
+        }
+      ]
+    },
+    {
+      "prediction_id": 3216,
+      "model_type": "本命(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.005489535387726617,
+      "expected_value": 0.7608496047389091,
+      "recommended_bet": 200.0,
+      "combination_json": "[[7, 10]]",
+      "notes": "本命・対抗 Harville=0.005",
+      "created_at": "2026-04-19 10:13:06",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "プラトニックガール",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.005489535387726617,
+          "ev_score": 0.7608496047389091
+        }
+      ]
+    },
+    {
+      "prediction_id": 3217,
+      "model_type": "本命(直前)",
+      "bet_type": "ワイド",
+      "confidence": 0.007136396004044602,
+      "expected_value": 0.31702066864121214,
+      "recommended_bet": 200.0,
+      "combination_json": "[[7, 10]]",
+      "notes": "本命・対抗 ワイド Harville=0.005",
+      "created_at": "2026-04-19 10:13:06",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "プラトニックガール",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.005489535387726617,
+          "ev_score": 0.31702066864121214
+        }
+      ]
+    },
+    {
+      "prediction_id": 3218,
+      "model_type": "本命(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.0028994175603475705,
+      "expected_value": 0.8037185477283466,
+      "recommended_bet": 200.0,
+      "combination_json": "[[10, 7], [7, 10]]",
+      "notes": "本命↔対抗 馬単 Harville=0.003",
+      "created_at": "2026-04-19 10:13:06",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "フィーユレアル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0028994175603475705,
+          "ev_score": 0.8037185477283466
+        },
+        {
+          "horse_name": "プラトニックガール",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0028994175603475705,
+          "ev_score": 0.8037185477283466
+        }
+      ]
+    },
+    {
+      "prediction_id": 3219,
+      "model_type": "本命(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.0006818173728697429,
+      "expected_value": 0.4724994393987319,
+      "recommended_bet": 300.0,
+      "combination_json": "[[1, 7, 10]]",
+      "notes": "本命・対抗・単穴 Harville=0.001",
+      "created_at": "2026-04-19 10:13:06",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ビッグノエルルーフ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0006818173728697429,
+          "ev_score": 0.4724994393987319
+        }
+      ]
+    },
+    {
+      "prediction_id": 3220,
+      "model_type": "本命(直前)",
+      "bet_type": "三連単",
+      "confidence": 9.96680009529782e-05,
+      "expected_value": 0.4316870291275868,
+      "recommended_bet": 600.0,
+      "combination_json": "[[10, 7, 1], [10, 1, 7], [7, 10, 1], [7, 1, 10], [1, 10, 7], [1, 7, 10]]",
+      "notes": "上位3頭 6点ボックス Harville=0.000",
+      "created_at": "2026-04-19 10:13:06",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "フィーユレアル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.00012458500119122274,
+          "ev_score": 0.4316870291275868
+        },
+        {
+          "horse_name": "プラトニックガール",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.00012458500119122274,
+          "ev_score": 0.4316870291275868
+        },
+        {
+          "horse_name": "ビッグノエルルーフ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.00012458500119122274,
+          "ev_score": 0.4316870291275868
+        },
+        {
+          "horse_name": "本命",
+          "horse_id": null,
+          "predicted_rank": 4,
+          "model_score": 0.00012458500119122274,
+          "ev_score": 0.4316870291275868
+        },
+        {
+          "horse_name": "本命",
+          "horse_id": null,
+          "predicted_rank": 5,
+          "model_score": 0.00012458500119122274,
+          "ev_score": 0.4316870291275868
+        }
+      ]
+    },
+    {
+      "prediction_id": 3228,
+      "model_type": "卍(直前)",
+      "bet_type": "単勝",
+      "confidence": 0.5294106575717857,
+      "expected_value": 1.0588213151435715,
+      "recommended_bet": 100.0,
+      "combination_json": "[[12]]",
+      "notes": "EV=1.06 odds=11.3",
+      "created_at": "2026-04-19 10:13:06",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ブエノスオプティマ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 1.0588213151435715,
+          "ev_score": 1.0588213151435715
+        }
+      ]
+    },
+    {
+      "prediction_id": 3229,
+      "model_type": "卍(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.6,
+      "expected_value": 1.589547297365384,
+      "recommended_bet": 800.0,
+      "combination_json": "[[15], [5], [10], [11], [7], [9], [13], [12]]",
+      "notes": "EV>1.0 の8頭を複勝",
+      "created_at": "2026-04-19 10:13:06",
+      "is_hit": 1,
+      "payout": 606.6666666666666,
+      "profit": -193.33333333333337,
+      "roi": 75.83333333333333,
+      "horses": [
+        {
+          "horse_name": "メジロピオラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 1.589547297365384,
+          "ev_score": 1.589547297365384
+        },
+        {
+          "horse_name": "ブリスフルイヤー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 1.589547297365384,
+          "ev_score": 1.589547297365384
+        },
+        {
+          "horse_name": "フィーユレアル",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 1.589547297365384,
+          "ev_score": 1.589547297365384
+        },
+        {
+          "horse_name": "ノーブルトレジャー",
+          "horse_id": null,
+          "predicted_rank": 4,
+          "model_score": 1.589547297365384,
+          "ev_score": 1.589547297365384
+        },
+        {
+          "horse_name": "プラトニックガール",
+          "horse_id": null,
+          "predicted_rank": 5,
+          "model_score": 1.589547297365384,
+          "ev_score": 1.589547297365384
+        }
+      ]
+    },
+    {
+      "prediction_id": 3230,
+      "model_type": "卍(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.2309807246646708,
+      "expected_value": 1.6630612175856294,
+      "recommended_bet": 200.0,
+      "combination_json": "[[5, 15]]",
+      "notes": "EV上位2頭 Harville=0.046 平均EV=2.07",
+      "created_at": "2026-04-19 10:13:06",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ブリスフルイヤー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.046196144932934155,
+          "ev_score": 1.6630612175856294
+        }
+      ]
+    },
+    {
+      "prediction_id": 3231,
+      "model_type": "卍(直前)",
+      "bet_type": "ワイド",
+      "confidence": 0.2771768695976049,
+      "expected_value": 0.6929421739940123,
+      "recommended_bet": 200.0,
+      "combination_json": "[[5, 15]]",
+      "notes": "EV上位2頭 ワイド Harville=0.046",
+      "created_at": "2026-04-19 10:13:06",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ブリスフルイヤー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.046196144932934155,
+          "ev_score": 0.6929421739940123
+        }
+      ]
+    },
+    {
+      "prediction_id": 3232,
+      "model_type": "卍(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.1865873067957864,
+      "expected_value": 1.6792857611620775,
+      "recommended_bet": 200.0,
+      "combination_json": "[[15, 5]]",
+      "notes": "EV軸15→5 Harville=0.023",
+      "created_at": "2026-04-19 10:13:06",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "メジロピオラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0233234133494733,
+          "ev_score": 1.6792857611620775
+        }
+      ]
+    },
+    {
+      "prediction_id": 3233,
+      "model_type": "卍(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.366394261517838,
+      "expected_value": 4.396731138214055,
+      "recommended_bet": 300.0,
+      "combination_json": "[[5, 10, 15]]",
+      "notes": "EV上位3頭 Harville=0.024 平均EV=2.01",
+      "created_at": "2026-04-19 10:13:06",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ブリスフルイヤー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0244262841011892,
+          "ev_score": 4.396731138214055
+        }
+      ]
+    },
+    {
+      "prediction_id": 3234,
+      "model_type": "本命(直前)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-04-19 10:13:06",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "フィーユレアル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0923524832225405,
+          "ev_score": 2.1333423624406858
+        },
+        {
+          "horse_name": "プラトニックガール",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.08558051532296256,
+          "ev_score": 22.76441707590804
+        },
+        {
+          "horse_name": "ビッグノエルルーフ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0802992422984334,
+          "ev_score": 11.820048466329395
+        },
+        {
+          "horse_name": "ダノンプレサージュ",
+          "horse_id": null,
+          "predicted_rank": 4,
+          "model_score": 0.07029721572970271,
+          "ev_score": 0.16168359617831624
+        },
+        {
+          "horse_name": "ペールデュクラン",
+          "horse_id": null,
+          "predicted_rank": 5,
+          "model_score": 0.06636944217457921,
+          "ev_score": 1.3273888434915841
+        },
+        {
+          "horse_name": "マスカルポーネ",
+          "horse_id": null,
+          "predicted_rank": 6,
+          "model_score": 0.06048933213574666,
+          "ev_score": 2.135273424391857
+        },
+        {
+          "horse_name": "ブエノスオプティマ",
+          "horse_id": null,
+          "predicted_rank": 7,
+          "model_score": 0.0561471489975577,
+          "ev_score": 0.634462783672402
+        },
+        {
+          "horse_name": "メジロピオラ",
+          "horse_id": null,
+          "predicted_rank": 8,
+          "model_score": 0.05594308102759359,
+          "ev_score": 0.33565848616556154
+        },
+        {
+          "horse_name": "ノーブルトレジャー",
+          "horse_id": null,
+          "predicted_rank": 9,
+          "model_score": 0.05441503795378354,
+          "ev_score": 1.246104369141643
+        },
+        {
+          "horse_name": "スズノボンライミー",
+          "horse_id": null,
+          "predicted_rank": 10,
+          "model_score": 0.051994538783221966,
+          "ev_score": 2.032986466423979
+        },
+        {
+          "horse_name": "ブリスフルイヤー",
+          "horse_id": null,
+          "predicted_rank": 11,
+          "model_score": 0.051988749811933396,
+          "ev_score": 6.675355475852248
+        },
+        {
+          "horse_name": "アルティソナンテ",
+          "horse_id": null,
+          "predicted_rank": 12,
+          "model_score": 0.050871733594387285,
+          "ev_score": 2.7928581743318617
+        },
+        {
+          "horse_name": "ブルームザスマイル",
+          "horse_id": null,
+          "predicted_rank": 13,
+          "model_score": 0.05034476265548915,
+          "ev_score": 2.577651847961045
+        },
+        {
+          "horse_name": "ベルソテイラ",
+          "horse_id": null,
+          "predicted_rank": 14,
+          "model_score": 0.04363577372352459,
+          "ev_score": 0.13090732117057377
+        },
+        {
+          "horse_name": "シューペルブリアン",
+          "horse_id": null,
+          "predicted_rank": 15,
+          "model_score": 0.04298540557645565,
+          "ev_score": 12.66779902338148
+        }
+      ]
+    }
+  ],
+  "training_evals": {}
+}

@@ -1,0 +1,297 @@
+{
+  "race_id": "202610010102",
+  "race_name": "",
+  "date": "2026-01-24",
+  "venue": "小倉",
+  "race_number": 2,
+  "distance": 0,
+  "surface": "",
+  "track_direction": "",
+  "weather": "",
+  "condition": "",
+  "year": "2026",
+  "results": [
+    {
+      "rank": 1,
+      "gate_number": 2,
+      "horse_number": 4,
+      "horse_name": "アルヴァンドルード",
+      "horse_id": "2023107113",
+      "sex_age": "1",
+      "weight_carried": 0.0,
+      "jockey": "201144池添学　226800",
+      "trainer": "戟[シング　　　　　�",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 16,
+      "horse_name": "アイムスティルミー",
+      "horse_id": "2023106595",
+      "sex_age": "3",
+      "weight_carried": 0.0,
+      "jockey": "101038手塚貴久629800",
+      "trainer": "[ム　　　　　　　　�",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
+      "gate_number": 7,
+      "horse_number": 14,
+      "horse_name": "ベンティガオルサ",
+      "horse_id": "2023101582",
+      "sex_age": "1",
+      "weight_carried": 0.0,
+      "jockey": "201110清水久詞791031",
+      "trainer": "@　　　　　　　　�",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "サトノアグード",
+      "horse_id": "2023105247",
+      "sex_age": "1",
+      "weight_carried": 0.0,
+      "jockey": "201055藤原英昭790031",
+      "trainer": "@　　　　　　　　　�",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    }
+  ],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "4",
+      "payout": 210,
+      "popularity": 1
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "16",
+      "payout": 16000,
+      "popularity": null
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "6",
+      "payout": 110,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "4",
+      "payout": 110,
+      "popularity": 2
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "14",
+      "payout": 190,
+      "popularity": 4
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "10",
+      "payout": 1,
+      "popularity": null
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "2-7",
+      "payout": 1020,
+      "popularity": 3
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "21",
+      "payout": 1,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "4-14",
+      "payout": 1410,
+      "popularity": 5
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "14",
+      "payout": 1,
+      "popularity": 90
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "4-6",
+      "payout": 11,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1-10",
+      "payout": 1140,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 70000,
+      "popularity": 1
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4-6",
+      "payout": 150,
+      "popularity": 1
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4-14",
+      "payout": 380,
+      "popularity": 4
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "6-14",
+      "payout": 440,
+      "popularity": 5
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 90040,
+      "popularity": 60
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "70",
+      "payout": 102003,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "4→14",
+      "payout": 2270,
+      "popularity": 7
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "14",
+      "payout": 14,
+      "popularity": 10
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "4",
+      "payout": 14000,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "15",
+      "payout": 1061400,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "44",
+      "payout": 6,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "1-41",
+      "payout": 5,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4-6-14",
+      "payout": 710,
+      "popularity": 2
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "10-61",
+      "payout": 40000,
+      "popularity": 4
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-50",
+      "payout": 106,
+      "popularity": 140
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-6",
+      "payout": 14000,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4-40",
+      "payout": 6,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3-80",
+      "payout": 40406,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4",
+      "payout": 40006,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "4-14",
+      "payout": 22700,
+      "popularity": 7
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "4→14→6",
+      "payout": 5750,
+      "popularity": 15
+    }
+  ],
+  "predictions": [],
+  "training_evals": {}
+}

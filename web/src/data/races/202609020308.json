@@ -1,0 +1,297 @@
+{
+  "race_id": "202609020308",
+  "race_name": "",
+  "date": "2026-04-04",
+  "venue": "阪神",
+  "race_number": 8,
+  "distance": 0,
+  "surface": "",
+  "track_direction": "",
+  "weather": "",
+  "condition": "",
+  "year": "2026",
+  "results": [
+    {
+      "rank": 1,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "ディアドコス",
+      "horse_id": "2020105409",
+      "sex_age": "1",
+      "weight_carried": 0.0,
+      "jockey": "201091羽月友彦851009",
+      "trainer": "Y　　　　　　　　　�",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ネロ",
+      "dam": "チェインブラッド",
+      "dam_sire": "マンハッタンカフェ"
+    },
+    {
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 9,
+      "horse_name": "サンドロナイト",
+      "horse_id": "2021110119",
+      "sex_age": "62",
+      "weight_carried": 0.0,
+      "jockey": "201181茶木太樹138007",
+      "trainer": "�　　　　　　　　　�",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "Capitalist",
+      "dam": "Catwalk",
+      "dam_sire": "Foxwedge"
+    },
+    {
+      "rank": 2,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "タガノアンファン",
+      "horse_id": "2022106555",
+      "sex_age": "1",
+      "weight_carried": 0.0,
+      "jockey": "201166石坂公一859002",
+      "trainer": "i　　　　　　　　　�",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 7,
+      "horse_number": 7,
+      "horse_name": "リリーフィールド",
+      "horse_id": "2022105718",
+      "sex_age": "2",
+      "weight_carried": 0.0,
+      "jockey": "201085小崎憲　231033",
+      "trainer": "ﾆ　　　　　　　　　�",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "モズアスコット",
+      "dam": "ハイリリー",
+      "dam_sire": "アグネスタキオン"
+    }
+  ],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "2",
+      "payout": 270,
+      "popularity": 1
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "9",
+      "payout": 9000,
+      "popularity": null
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "2",
+      "payout": 110,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "1",
+      "payout": 130,
+      "popularity": 2
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "7",
+      "payout": 140,
+      "popularity": 3
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "70",
+      "payout": 1,
+      "popularity": null
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "1-2",
+      "payout": 410,
+      "popularity": 1
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "27",
+      "payout": 1,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1-2",
+      "payout": 470,
+      "popularity": 1
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1",
+      "payout": 1,
+      "popularity": 30
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "2-7",
+      "payout": 14,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1-10",
+      "payout": 1010,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1-2",
+      "payout": 200,
+      "popularity": 1
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2-7",
+      "payout": 240,
+      "popularity": 2
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1-7",
+      "payout": 340,
+      "popularity": 4
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "20",
+      "payout": 41001,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 20000,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "41",
+      "payout": 1,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "2→1",
+      "payout": 820,
+      "popularity": 1
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "2",
+      "payout": 4,
+      "popularity": 70
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 2000,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "24",
+      "payout": 2010700,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "34",
+      "payout": 4,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "47",
+      "payout": 1,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-2-7",
+      "payout": 630,
+      "popularity": 1
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "20-10",
+      "payout": 70000,
+      "popularity": 3
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2-40",
+      "payout": 201,
+      "popularity": 70
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2-1",
+      "payout": 7000,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3-40",
+      "payout": 4,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2",
+      "payout": 10207,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3",
+      "payout": 40004,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "2-1",
+      "payout": 8200,
+      "popularity": 1
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "2→1→7",
+      "payout": 2480,
+      "popularity": 2
+    }
+  ],
+  "predictions": [],
+  "training_evals": {}
+}

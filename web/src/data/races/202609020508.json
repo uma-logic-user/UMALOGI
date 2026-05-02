@@ -1,0 +1,974 @@
+{
+  "race_id": "202609020508",
+  "race_name": "",
+  "date": "2026-04-11",
+  "venue": "阪神",
+  "race_number": 8,
+  "distance": 0,
+  "surface": "",
+  "track_direction": "",
+  "weather": "",
+  "condition": "",
+  "year": "2026",
+  "results": [
+    {
+      "rank": 2,
+      "gate_number": 2,
+      "horse_number": 4,
+      "horse_name": "モーニングコート",
+      "horse_id": "2021103224",
+      "sex_age": "牡5",
+      "weight_carried": 58.0,
+      "jockey": "川田",
+      "trainer": "栗東中内田",
+      "finish_time": "1:24.0",
+      "margin": "@",
+      "win_odds": 6.1,
+      "popularity": 2,
+      "horse_weight": 518,
+      "horse_weight_diff": -9,
+      "sire": "ジャスタウェイ",
+      "dam": "オペラグローブ",
+      "dam_sire": "Speightstown(米)",
+      "honmei_score": 0.0001,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.5581,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "末脚良し"
+      }
+    },
+    {
+      "rank": 11,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "ゴッドカインド",
+      "horse_id": "2021106150",
+      "sex_age": "牝5",
+      "weight_carried": 56.0,
+      "jockey": "角田和",
+      "trainer": "栗東飯田",
+      "finish_time": "1:25.3",
+      "margin": "@",
+      "win_odds": 199.7,
+      "popularity": 14,
+      "horse_weight": 408,
+      "horse_weight_diff": 0,
+      "sire": "ドレフォンDrefong(米)",
+      "dam": "ネオグラティア",
+      "dam_sire": "ネオユニヴァース",
+      "honmei_score": 0.0,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 2.0886,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "状態良好"
+      }
+    },
+    {
+      "rank": 12,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "ポルトドール",
+      "horse_id": "2020102728",
+      "sex_age": "牡6",
+      "weight_carried": 58.0,
+      "jockey": "松山",
+      "trainer": "栗東小栗",
+      "finish_time": "1:25.4",
+      "margin": "@",
+      "win_odds": 25.8,
+      "popularity": 8,
+      "horse_weight": 472,
+      "horse_weight_diff": 2,
+      "sire": "モーリス",
+      "dam": "レクレドール",
+      "dam_sire": "サンデーサイレンスSunday Silence(米)",
+      "honmei_score": 0.0001,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "動き軽快"
+      }
+    },
+    {
+      "rank": 13,
+      "gate_number": 7,
+      "horse_number": 14,
+      "horse_name": "リュクスドレフォン",
+      "horse_id": "2020106927",
+      "sex_age": "牡6",
+      "weight_carried": 58.0,
+      "jockey": "荻野琢",
+      "trainer": "栗東平田",
+      "finish_time": "1:25.8",
+      "margin": "@",
+      "win_odds": 203.7,
+      "popularity": 15,
+      "horse_weight": 524,
+      "horse_weight_diff": -10,
+      "sire": "ドレフォンDrefong(米)",
+      "dam": "リュクスメジャー",
+      "dam_sire": "ダイワメジャー",
+      "honmei_score": 0.0001,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.3947,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "目立たず"
+      }
+    }
+  ],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "9",
+      "payout": 210,
+      "popularity": 1
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "16",
+      "payout": 16000,
+      "popularity": null
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "9",
+      "payout": 110,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "4",
+      "payout": 180,
+      "popularity": 3
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "8",
+      "payout": 220,
+      "popularity": 5
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "10",
+      "payout": 1,
+      "popularity": null
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "2-5",
+      "payout": 350,
+      "popularity": 1
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "21",
+      "payout": 1,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "4-9",
+      "payout": 650,
+      "popularity": 2
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "4",
+      "payout": 1,
+      "popularity": 80
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "3-8",
+      "payout": 22,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1-10",
+      "payout": 1040,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "8-9",
+      "payout": 290,
+      "popularity": 2
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4-9",
+      "payout": 330,
+      "popularity": 4
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4-8",
+      "payout": 1060,
+      "popularity": 12
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4",
+      "payout": 9000000,
+      "popularity": 33
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 80030,
+      "popularity": 80
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "50",
+      "payout": 35001,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 50000,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "35",
+      "payout": 1,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "9→4",
+      "payout": 1290,
+      "popularity": 4
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "9",
+      "payout": 6,
+      "popularity": 50
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "4",
+      "payout": 9000,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "29",
+      "payout": 2040800,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "1-6",
+      "payout": 12,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "65",
+      "payout": 2,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4-8-9",
+      "payout": 2020,
+      "popularity": 6
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "20-40",
+      "payout": 80000,
+      "popularity": 10
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2-90",
+      "payout": 204,
+      "popularity": 80
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2-4",
+      "payout": 8000,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "10-60-1",
+      "payout": 2,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3-30",
+      "payout": 40809,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "10",
+      "payout": 60012,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "9-4",
+      "payout": 12900,
+      "popularity": 4
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "9→4→8",
+      "payout": 8700,
+      "popularity": 19
+    }
+  ],
+  "predictions": [
+    {
+      "prediction_id": 2040,
+      "model_type": "本命(暫定)",
+      "bet_type": "単勝",
+      "confidence": 0.00019838555986304113,
+      "expected_value": 0.00019838555986304113,
+      "recommended_bet": 100.0,
+      "combination_json": "[[16]]",
+      "notes": "本命 P(win)=0.00 odds=1.0",
+      "created_at": "2026-04-11 12:25:30",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "本命",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 3.5737123158107255e-05,
+          "ev_score": 0.00014294849263242902
+        },
+        {
+          "horse_name": "プロクレイア",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.00019838555986304113,
+          "ev_score": 0.00019838555986304113
+        },
+        {
+          "horse_name": "本命",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 3.5737123158107255e-05,
+          "ev_score": 0.00014294849263242902
+        },
+        {
+          "horse_name": "本命",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 3.5737123158107255e-05,
+          "ev_score": 0.00014294849263242902
+        },
+        {
+          "horse_name": "本命",
+          "horse_id": null,
+          "predicted_rank": 4,
+          "model_score": 3.5737123158107255e-05,
+          "ev_score": 0.00014294849263242902
+        },
+        {
+          "horse_name": "本命",
+          "horse_id": null,
+          "predicted_rank": 5,
+          "model_score": 3.5737123158107255e-05,
+          "ev_score": 0.00014294849263242902
+        }
+      ]
+    },
+    {
+      "prediction_id": 2041,
+      "model_type": "本命(暫定)",
+      "bet_type": "複勝",
+      "confidence": 0.0005721700588354495,
+      "expected_value": 0.0005721700588354495,
+      "recommended_bet": 300.0,
+      "combination_json": "[[16], [9], [12]]",
+      "notes": "上位3頭を複勝",
+      "created_at": "2026-04-11 12:25:30",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "卍",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 1.825766465939499,
+          "ev_score": 1.825766465939499
+        },
+        {
+          "horse_name": "プロクレイア",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.00019072335294514984,
+          "ev_score": 0.0005721700588354495
+        },
+        {
+          "horse_name": "モズケイスター",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.00019072335294514984,
+          "ev_score": 0.0005721700588354495
+        },
+        {
+          "horse_name": "リュキア",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.00019072335294514984,
+          "ev_score": 0.0005721700588354495
+        }
+      ]
+    },
+    {
+      "prediction_id": 2042,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.030979157546094496,
+      "expected_value": 0.024783326036875594,
+      "recommended_bet": 200.0,
+      "combination_json": "[[9, 16]]",
+      "notes": "本命・対抗 Harville=0.031",
+      "created_at": "2026-04-11 12:25:30",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "卍",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 1.825766465939499,
+          "ev_score": 1.825766465939499
+        },
+        {
+          "horse_name": "モズケイスター",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.030979157546094496,
+          "ev_score": 0.024783326036875594
+        }
+      ]
+    },
+    {
+      "prediction_id": 2043,
+      "model_type": "本命(暫定)",
+      "bet_type": "ワイド",
+      "confidence": 0.04027290480992285,
+      "expected_value": 0.010842705141133073,
+      "recommended_bet": 200.0,
+      "combination_json": "[[9, 16]]",
+      "notes": "本命・対抗 ワイド Harville=0.031",
+      "created_at": "2026-04-11 12:25:30",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "本命",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 8.062437663305552e-06,
+          "ev_score": 7.659315780140274e-05
+        },
+        {
+          "horse_name": "モズケイスター",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.030979157546094496,
+          "ev_score": 0.010842705141133073
+        }
+      ]
+    },
+    {
+      "prediction_id": 2044,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬単",
+      "confidence": 0.015524999536258424,
+      "expected_value": 0.023287499304387636,
+      "recommended_bet": 200.0,
+      "combination_json": "[[16, 9], [9, 16]]",
+      "notes": "本命↔対抗 馬単 Harville=0.016",
+      "created_at": "2026-04-11 12:25:30",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "本命",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 7.3745412771691194e-06,
+          "ev_score": 2.2123623831507357e-05
+        },
+        {
+          "horse_name": "プロクレイア",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.015524999536258424,
+          "ev_score": 0.023287499304387636
+        },
+        {
+          "horse_name": "本命",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 7.3745412771691194e-06,
+          "ev_score": 2.2123623831507357e-05
+        },
+        {
+          "horse_name": "モズケイスター",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.015524999536258424,
+          "ev_score": 0.023287499304387636
+        },
+        {
+          "horse_name": "本命",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 7.3745412771691194e-06,
+          "ev_score": 2.2123623831507357e-05
+        }
+      ]
+    },
+    {
+      "prediction_id": 2045,
+      "model_type": "本命(暫定)",
+      "bet_type": "三連複",
+      "confidence": 0.013126690973602008,
+      "expected_value": 0.05250676389440803,
+      "recommended_bet": 300.0,
+      "combination_json": "[[9, 12, 16]]",
+      "notes": "本命・対抗・単穴 Harville=0.013",
+      "created_at": "2026-04-11 12:25:30",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "本命",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 7.636126044102455e-06,
+          "ev_score": 1.527225208820491e-05
+        },
+        {
+          "horse_name": "モズケイスター",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.013126690973602008,
+          "ev_score": 0.05250676389440803
+        }
+      ]
+    },
+    {
+      "prediction_id": 2046,
+      "model_type": "本命(暫定)",
+      "bet_type": "三連単",
+      "confidence": 0.0017710847794430917,
+      "expected_value": 0.044277119486077286,
+      "recommended_bet": 600.0,
+      "combination_json": "[[16, 9, 12], [16, 12, 9], [9, 16, 12], [9, 12, 16], [12, 16, 9], [12, 9, 16]]",
+      "notes": "上位3頭 6点ボックス Harville=0.002",
+      "created_at": "2026-04-11 12:25:30",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "本命",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 7.636126044102455e-06,
+          "ev_score": 1.527225208820491e-05
+        },
+        {
+          "horse_name": "プロクレイア",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0022138559743038644,
+          "ev_score": 0.044277119486077286
+        },
+        {
+          "horse_name": "モズケイスター",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0022138559743038644,
+          "ev_score": 0.044277119486077286
+        },
+        {
+          "horse_name": "リュキア",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0022138559743038644,
+          "ev_score": 0.044277119486077286
+        },
+        {
+          "horse_name": "本命",
+          "horse_id": null,
+          "predicted_rank": 4,
+          "model_score": 0.0022138559743038644,
+          "ev_score": 0.044277119486077286
+        },
+        {
+          "horse_name": "本命",
+          "horse_id": null,
+          "predicted_rank": 5,
+          "model_score": 0.0022138559743038644,
+          "ev_score": 0.044277119486077286
+        }
+      ]
+    },
+    {
+      "prediction_id": 2056,
+      "model_type": "卍(暫定)",
+      "bet_type": "単勝",
+      "confidence": 0.5092363657702168,
+      "expected_value": 1.0184727315404336,
+      "recommended_bet": 100.0,
+      "combination_json": "[[10]]",
+      "notes": "EV=1.02 odds=1.0",
+      "created_at": "2026-04-11 12:25:30",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "本命",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.999910713139835,
+          "ev_score": 1.99982142627967
+        },
+        {
+          "horse_name": "ハイクライテリア",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 1.0184727315404336,
+          "ev_score": 1.0184727315404336
+        }
+      ]
+    },
+    {
+      "prediction_id": 2057,
+      "model_type": "卍(暫定)",
+      "bet_type": "複勝",
+      "confidence": 0.6,
+      "expected_value": 1.3451814218797313,
+      "recommended_bet": 1000.0,
+      "combination_json": "[[1], [11], [7], [8], [9], [2], [13], [6], [5], [10]]",
+      "notes": "EV>1.0 の10頭を複勝",
+      "created_at": "2026-04-11 12:25:30",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1000.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "本命",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.999910713139835,
+          "ev_score": 1.99982142627967
+        },
+        {
+          "horse_name": "ゴッドカインド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 1.3451814218797313,
+          "ev_score": 1.3451814218797313
+        },
+        {
+          "horse_name": "ダディーズグーグー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 1.3451814218797313,
+          "ev_score": 1.3451814218797313
+        },
+        {
+          "horse_name": "アメリカンビヨンド",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 1.3451814218797313,
+          "ev_score": 1.3451814218797313
+        },
+        {
+          "horse_name": "ザングウィル",
+          "horse_id": null,
+          "predicted_rank": 4,
+          "model_score": 1.3451814218797313,
+          "ev_score": 1.3451814218797313
+        },
+        {
+          "horse_name": "モズケイスター",
+          "horse_id": null,
+          "predicted_rank": 5,
+          "model_score": 1.3451814218797313,
+          "ev_score": 1.3451814218797313
+        }
+      ]
+    },
+    {
+      "prediction_id": 2058,
+      "model_type": "卍(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.16702402472522415,
+      "expected_value": 0.026723843956035866,
+      "recommended_bet": 200.0,
+      "combination_json": "[[1, 11]]",
+      "notes": "EV上位2頭 Harville=0.033 平均EV=1.80",
+      "created_at": "2026-04-11 12:25:30",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "本命",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.6666125479361881,
+          "ev_score": 1.999837643808564
+        },
+        {
+          "horse_name": "ゴッドカインド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03340480494504483,
+          "ev_score": 0.026723843956035866
+        }
+      ]
+    },
+    {
+      "prediction_id": 2059,
+      "model_type": "卍(暫定)",
+      "bet_type": "ワイド",
+      "confidence": 0.20042882967026898,
+      "expected_value": 0.01169168173076569,
+      "recommended_bet": 200.0,
+      "combination_json": "[[1, 11]]",
+      "notes": "EV上位2頭 ワイド Harville=0.033",
+      "created_at": "2026-04-11 12:25:30",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "本命",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.6666125479361881,
+          "ev_score": 2.6664501917447523
+        },
+        {
+          "horse_name": "ゴッドカインド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03340480494504483,
+          "ev_score": 0.01169168173076569
+        },
+        {
+          "horse_name": "本命",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.6666125479361881,
+          "ev_score": 2.6664501917447523
+        },
+        {
+          "horse_name": "本命",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.6666125479361881,
+          "ev_score": 2.6664501917447523
+        },
+        {
+          "horse_name": "本命",
+          "horse_id": null,
+          "predicted_rank": 4,
+          "model_score": 0.6666125479361881,
+          "ev_score": 2.6664501917447523
+        },
+        {
+          "horse_name": "本命",
+          "horse_id": null,
+          "predicted_rank": 5,
+          "model_score": 0.6666125479361881,
+          "ev_score": 2.6664501917447523
+        }
+      ]
+    },
+    {
+      "prediction_id": 2060,
+      "model_type": "卍(暫定)",
+      "bet_type": "馬単",
+      "confidence": 0.13662225923879615,
+      "expected_value": 0.02561667360727428,
+      "recommended_bet": 200.0,
+      "combination_json": "[[1, 11]]",
+      "notes": "EV軸1→11 Harville=0.017",
+      "created_at": "2026-04-11 12:25:30",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "卍",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 9.961142329099243,
+          "ev_score": 9.961142329099243
+        },
+        {
+          "horse_name": "ゴッドカインド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.017077782404849518,
+          "ev_score": 0.02561667360727428
+        }
+      ]
+    },
+    {
+      "prediction_id": 2061,
+      "model_type": "卍(暫定)",
+      "bet_type": "三連複",
+      "confidence": 0.18690317324116085,
+      "expected_value": 0.049840846197642896,
+      "recommended_bet": 300.0,
+      "combination_json": "[[1, 7, 11]]",
+      "notes": "EV上位3頭 Harville=0.012 平均EV=1.67",
+      "created_at": "2026-04-11 12:25:30",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "卍",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 5.687019894136946,
+          "ev_score": 5.687019894136946
+        },
+        {
+          "horse_name": "ゴッドカインド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.012460211549410724,
+          "ev_score": 0.049840846197642896
+        }
+      ]
+    }
+  ],
+  "training_evals": {
+    "1": {
+      "eval_grade": "B",
+      "eval_text": "状態良好"
+    },
+    "2": {
+      "eval_grade": "B",
+      "eval_text": "攻め熱心"
+    },
+    "3": {
+      "eval_grade": "B",
+      "eval_text": "動き軽快"
+    },
+    "4": {
+      "eval_grade": "B",
+      "eval_text": "末脚良し"
+    },
+    "5": {
+      "eval_grade": "B",
+      "eval_text": "元気一杯"
+    },
+    "6": {
+      "eval_grade": "B",
+      "eval_text": "力強い"
+    },
+    "7": {
+      "eval_grade": "A",
+      "eval_text": "気配抜群"
+    },
+    "8": {
+      "eval_grade": "B",
+      "eval_text": "好調子"
+    },
+    "9": {
+      "eval_grade": "B",
+      "eval_text": "出来安定"
+    },
+    "10": {
+      "eval_grade": "B",
+      "eval_text": "仕上良好"
+    },
+    "11": {
+      "eval_grade": "B",
+      "eval_text": "好調子"
+    },
+    "12": {
+      "eval_grade": "C",
+      "eval_text": "良化遅い"
+    },
+    "13": {
+      "eval_grade": "B",
+      "eval_text": "余力十分"
+    },
+    "14": {
+      "eval_grade": "C",
+      "eval_text": "目立たず"
+    },
+    "15": {
+      "eval_grade": "B",
+      "eval_text": "動き軽快"
+    },
+    "16": {
+      "eval_grade": "C",
+      "eval_text": "気配平凡"
+    }
+  },
+  "prerace": {
+    "bias": {
+      "today_inner_bias": null,
+      "today_front_bias": null,
+      "today_race_count": null
+    },
+    "ev_recommend": [],
+    "generated_at": "2026-04-11T12:25:30.039046"
+  }
+}

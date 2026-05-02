@@ -1,0 +1,179 @@
+{
+  "race_id": "202505041108",
+  "race_name": "百日草特別",
+  "date": "2025-11-02",
+  "venue": "東京",
+  "race_number": 8,
+  "distance": 0,
+  "surface": "",
+  "track_direction": "",
+  "weather": "",
+  "condition": "",
+  "year": "2025",
+  "results": [
+    {
+      "rank": 1,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "アッカン",
+      "horse_id": "2023106288",
+      "sex_age": "牡3",
+      "weight_carried": 56.0,
+      "jockey": "池添謙一",
+      "trainer": "奥村武",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "フォルテアンジェロ",
+      "horse_id": "2023107345",
+      "sex_age": "牡3",
+      "weight_carried": 56.0,
+      "jockey": "戸崎圭太",
+      "trainer": "上原佑紀",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "フィエールマン",
+      "dam": "レディアンジェラLady Angela(愛)",
+      "dam_sire": "Dark Angel"
+    },
+    {
+      "rank": 3,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "コスモエルヴァル",
+      "horse_id": "2023106426",
+      "sex_age": "牡3",
+      "weight_carried": 56.0,
+      "jockey": "丹内祐次",
+      "trainer": "黒岩陽一",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "ガローファノ",
+      "horse_id": "2023107107",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "ルメール",
+      "trainer": "黒岩陽一",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "エリプティクカーブ",
+      "horse_id": "2023103908",
+      "sex_age": "牡7",
+      "weight_carried": 56.0,
+      "jockey": "横山武史",
+      "trainer": "萩原清",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    }
+  ],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "3",
+      "payout": 1180,
+      "popularity": 4
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "2",
+      "payout": 140,
+      "popularity": 2
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "3",
+      "payout": 270,
+      "popularity": 4
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "2-3",
+      "payout": 900,
+      "popularity": 3
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2-3",
+      "payout": 390,
+      "popularity": 4
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2-4",
+      "payout": 860,
+      "popularity": 6
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3-4",
+      "payout": 1580,
+      "popularity": 9
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "3→2",
+      "payout": 3210,
+      "popularity": 10
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2-3-4",
+      "payout": 2900,
+      "popularity": 9
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "3→2→4",
+      "payout": 25420,
+      "popularity": 42
+    }
+  ],
+  "predictions": [],
+  "training_evals": {}
+}

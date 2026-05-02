@@ -1,0 +1,888 @@
+{
+  "race_id": "202605020207",
+  "race_name": "",
+  "date": "2026-04-26",
+  "venue": "東京",
+  "race_number": 7,
+  "distance": 0,
+  "surface": "",
+  "track_direction": "",
+  "weather": "",
+  "condition": "",
+  "year": "2026",
+  "results": [
+    {
+      "rank": 1,
+      "gate_number": 7,
+      "horse_number": 14,
+      "horse_name": "セブンマイスター",
+      "horse_id": "2021105688",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "佐々木大",
+      "trainer": "千葉直人",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ドレフォンDrefong(米)",
+      "dam": "ハピネスダンサー",
+      "dam_sire": "メイショウサムソン",
+      "honmei_score": 0.1076,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.8631,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
+      "rank": 2,
+      "gate_number": 6,
+      "horse_number": 12,
+      "horse_name": "ノアヴィヴァーチェ",
+      "horse_id": "2022102446",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "木幡巧也",
+      "trainer": "鈴木慎太",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1076,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.0165,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "ハクシンブライアン",
+      "horse_id": "2022106975",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "大野拓弥",
+      "trainer": "松山将樹",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.151,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.8345,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    }
+  ],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "14",
+      "payout": 190,
+      "popularity": 1
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "16",
+      "payout": 16000,
+      "popularity": null
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "14",
+      "payout": 110,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "15",
+      "payout": 140,
+      "popularity": 2
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "12",
+      "payout": 170,
+      "popularity": 4
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "6-7",
+      "payout": 730,
+      "popularity": 3
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "1",
+      "payout": 40000,
+      "popularity": null
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "19",
+      "payout": 1,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "12-14",
+      "payout": 770,
+      "popularity": 3
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "12",
+      "payout": 1,
+      "popularity": 70
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1-10",
+      "payout": 1120,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "14-15",
+      "payout": 180,
+      "popularity": 1
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "12-14",
+      "payout": 280,
+      "popularity": 3
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "12-15",
+      "payout": 420,
+      "popularity": 4
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 70041,
+      "popularity": 50
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "6",
+      "payout": 70000,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "73",
+      "payout": 3,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "14→12",
+      "payout": 1080,
+      "popularity": 4
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "14",
+      "payout": 7,
+      "popularity": 70
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "12",
+      "payout": 14000,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 21400,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "77",
+      "payout": 3,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "12-14-15",
+      "payout": 620,
+      "popularity": 1
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "11-21",
+      "payout": 50000,
+      "popularity": 4
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-80",
+      "payout": 112,
+      "popularity": 150
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2-80",
+      "payout": 31415,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4",
+      "payout": 20004,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "14→12→15",
+      "payout": 2620,
+      "popularity": 4
+    }
+  ],
+  "predictions": [
+    {
+      "prediction_id": 12753,
+      "model_type": "本命(暫定)",
+      "bet_type": "単勝",
+      "confidence": 0.15594541910331383,
+      "expected_value": 0.15594541910331383,
+      "recommended_bet": 100.0,
+      "combination_json": "[[7]]",
+      "notes": "確率1位 P(win)=0.16 odds=1.0 EV=0.16",
+      "created_at": "2026-04-26 15:13:13",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ライヴドライバー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.15594541910331383,
+          "ev_score": 0.15594541910331383
+        }
+      ]
+    },
+    {
+      "prediction_id": 12754,
+      "model_type": "本命(暫定)",
+      "bet_type": "複勝",
+      "confidence": 0.45792561712311586,
+      "expected_value": 0.45792561712311586,
+      "recommended_bet": 300.0,
+      "combination_json": "[[7], [15], [16]]",
+      "notes": "上位3頭を複勝",
+      "created_at": "2026-04-26 15:13:13",
+      "is_hit": 1,
+      "payout": 420.0,
+      "profit": 120.0,
+      "roi": 140.0,
+      "horses": [
+        {
+          "horse_name": "ライヴドライバー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.15264187237437196,
+          "ev_score": 0.45792561712311586
+        },
+        {
+          "horse_name": "ハクシンブライアン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.15264187237437196,
+          "ev_score": 0.45792561712311586
+        },
+        {
+          "horse_name": "ヴェーヌドール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.15264187237437196,
+          "ev_score": 0.45792561712311586
+        }
+      ]
+    },
+    {
+      "prediction_id": 12755,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.008333333333333333,
+      "expected_value": 0.5,
+      "recommended_bet": 200.0,
+      "combination_json": "[[7, 15]]",
+      "notes": "本命・対抗 Harville=0.008",
+      "created_at": "2026-04-26 15:13:13",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ライヴドライバー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.008333333333333333,
+          "ev_score": 0.5
+        },
+        {
+          "horse_name": "ハクシンブライアン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.008333333333333333,
+          "ev_score": 0.5
+        }
+      ]
+    },
+    {
+      "prediction_id": 12756,
+      "model_type": "本命(暫定)",
+      "bet_type": "ワイド",
+      "confidence": 0.010833333333333334,
+      "expected_value": 0.20833333333333331,
+      "recommended_bet": 200.0,
+      "combination_json": "[[7, 15]]",
+      "notes": "本命・対抗 ワイド Harville=0.008",
+      "created_at": "2026-04-26 15:13:13",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ライヴドライバー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.008333333333333333,
+          "ev_score": 0.20833333333333331
+        },
+        {
+          "horse_name": "ハクシンブライアン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.008333333333333333,
+          "ev_score": 0.20833333333333331
+        }
+      ]
+    },
+    {
+      "prediction_id": 12757,
+      "model_type": "本命(暫定)",
+      "bet_type": "三連単",
+      "confidence": 0.05357142857142856,
+      "expected_value": 2.6785714285714284,
+      "recommended_bet": 600.0,
+      "combination_json": "[[7, 15, 16], [7, 15, 1], [7, 15, 12], [7, 16, 15], [7, 16, 1], [7, 16, 12]]",
+      "notes": "1着固定フォーメーション 軸=7番 6点 相手=[15, 16, 1, 12] Harville最大=0.0018",
+      "created_at": "2026-04-26 15:13:13",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ライヴドライバー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0017857142857142854,
+          "ev_score": 2.6785714285714284
+        },
+        {
+          "horse_name": "ライヴドライバー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0017857142857142854,
+          "ev_score": 2.6785714285714284
+        },
+        {
+          "horse_name": "ライヴドライバー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0017857142857142854,
+          "ev_score": 2.6785714285714284
+        },
+        {
+          "horse_name": "ライヴドライバー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0017857142857142854,
+          "ev_score": 2.6785714285714284
+        },
+        {
+          "horse_name": "ライヴドライバー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0017857142857142854,
+          "ev_score": 2.6785714285714284
+        },
+        {
+          "horse_name": "ハクシンブライアン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0017857142857142854,
+          "ev_score": 2.6785714285714284
+        },
+        {
+          "horse_name": "ハクシンブライアン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0017857142857142854,
+          "ev_score": 2.6785714285714284
+        },
+        {
+          "horse_name": "ハクシンブライアン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0017857142857142854,
+          "ev_score": 2.6785714285714284
+        },
+        {
+          "horse_name": "ハクシンブライアン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0017857142857142854,
+          "ev_score": 2.6785714285714284
+        },
+        {
+          "horse_name": "ハクシンブライアン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0017857142857142854,
+          "ev_score": 2.6785714285714284
+        },
+        {
+          "horse_name": "ヴェーヌドール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0017857142857142854,
+          "ev_score": 2.6785714285714284
+        },
+        {
+          "horse_name": "ヴェーヌドール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0017857142857142854,
+          "ev_score": 2.6785714285714284
+        },
+        {
+          "horse_name": "ヴェーヌドール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0017857142857142854,
+          "ev_score": 2.6785714285714284
+        },
+        {
+          "horse_name": "ヴェーヌドール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0017857142857142854,
+          "ev_score": 2.6785714285714284
+        },
+        {
+          "horse_name": "ヴェーヌドール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0017857142857142854,
+          "ev_score": 2.6785714285714284
+        }
+      ]
+    },
+    {
+      "prediction_id": 12758,
+      "model_type": "卍(暫定)",
+      "bet_type": "単勝",
+      "confidence": 0.5082428304921232,
+      "expected_value": 1.0164856609842463,
+      "recommended_bet": 100.0,
+      "combination_json": "[[12]]",
+      "notes": "確率1位(卍) EV=1.02 odds=1.0",
+      "created_at": "2026-04-26 15:13:13",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ノアヴィヴァーチェ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 1.0164856609842463,
+          "ev_score": 1.0164856609842463
+        }
+      ]
+    },
+    {
+      "prediction_id": 12759,
+      "model_type": "卍(暫定)",
+      "bet_type": "複勝",
+      "confidence": 0.6,
+      "expected_value": 0.9083957120520413,
+      "recommended_bet": 300.0,
+      "combination_json": "[[12], [14], [16]]",
+      "notes": "確率上位3頭を複勝",
+      "created_at": "2026-04-26 15:13:13",
+      "is_hit": 1,
+      "payout": 510.0,
+      "profit": 210.0,
+      "roi": 170.0,
+      "horses": [
+        {
+          "horse_name": "ノアヴィヴァーチェ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.9083957120520413,
+          "ev_score": 0.9083957120520413
+        },
+        {
+          "horse_name": "セブンマイスター",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.9083957120520413,
+          "ev_score": 0.9083957120520413
+        },
+        {
+          "horse_name": "ヴェーヌドール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.9083957120520413,
+          "ev_score": 0.9083957120520413
+        }
+      ]
+    },
+    {
+      "prediction_id": 12760,
+      "model_type": "卍(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.06729012419656308,
+      "expected_value": 0.8074814903587569,
+      "recommended_bet": 200.0,
+      "combination_json": "[[12, 14]]",
+      "notes": "EV上位2頭 Harville=0.013 平均EV=0.94",
+      "created_at": "2026-04-26 15:13:13",
+      "is_hit": 1,
+      "payout": 1540.0,
+      "profit": 1340.0,
+      "roi": 770.0,
+      "horses": [
+        {
+          "horse_name": "ノアヴィヴァーチェ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.013458024839312615,
+          "ev_score": 0.8074814903587569
+        },
+        {
+          "horse_name": "セブンマイスター",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.013458024839312615,
+          "ev_score": 0.8074814903587569
+        }
+      ]
+    },
+    {
+      "prediction_id": 12761,
+      "model_type": "卍(暫定)",
+      "bet_type": "ワイド",
+      "confidence": 0.08074814903587568,
+      "expected_value": 0.3364506209828154,
+      "recommended_bet": 200.0,
+      "combination_json": "[[12, 14]]",
+      "notes": "EV上位2頭 ワイド Harville=0.013",
+      "created_at": "2026-04-26 15:13:13",
+      "is_hit": 1,
+      "payout": 560.0,
+      "profit": 360.0,
+      "roi": 280.0,
+      "horses": [
+        {
+          "horse_name": "ノアヴィヴァーチェ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.013458024839312615,
+          "ev_score": 0.3364506209828154
+        },
+        {
+          "horse_name": "セブンマイスター",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.013458024839312615,
+          "ev_score": 0.3364506209828154
+        }
+      ]
+    },
+    {
+      "prediction_id": 12764,
+      "model_type": "卍(暫定)",
+      "bet_type": "三連複",
+      "confidence": 0.04884517476308646,
+      "expected_value": 0.9769034952617293,
+      "recommended_bet": 300.0,
+      "combination_json": "[[12, 15, 16]]",
+      "notes": "合成EV=0.98 Harville=0.0033 馬番=(12, 15, 16)",
+      "created_at": "2026-04-26 15:13:13",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ノアヴィヴァーチェ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.003256344984205764,
+          "ev_score": 0.9769034952617293
+        },
+        {
+          "horse_name": "ハクシンブライアン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.003256344984205764,
+          "ev_score": 0.9769034952617293
+        },
+        {
+          "horse_name": "ヴェーヌドール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.003256344984205764,
+          "ev_score": 0.9769034952617293
+        }
+      ]
+    },
+    {
+      "prediction_id": 12765,
+      "model_type": "Oracle(暫定)",
+      "bet_type": "三連複",
+      "confidence": 0.06821034870740728,
+      "expected_value": 2.0463104612222183,
+      "recommended_bet": 300.0,
+      "combination_json": "[[7, 15, 16], [1, 7, 15], [7, 12, 15]]",
+      "notes": "[Oracle] 的中確率最大 3点 P最大=0.0682 馬番=[(7, 15, 16), (1, 7, 15), (7, 12, 15)]",
+      "created_at": "2026-04-26 15:13:13",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ライヴドライバー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06821034870740728,
+          "ev_score": 2.0463104612222183
+        },
+        {
+          "horse_name": "ハクシンブライアン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06821034870740728,
+          "ev_score": 2.0463104612222183
+        },
+        {
+          "horse_name": "ヴェーヌドール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.06821034870740728,
+          "ev_score": 2.0463104612222183
+        }
+      ]
+    },
+    {
+      "prediction_id": 12766,
+      "model_type": "Oracle(暫定)",
+      "bet_type": "三連単",
+      "confidence": 0.011368391451234547,
+      "expected_value": 1.705258717685182,
+      "recommended_bet": 300.0,
+      "combination_json": "[[7, 15, 16], [7, 16, 15], [15, 7, 16]]",
+      "notes": "[Oracle] 的中確率最大 3点 P最大=0.0114 馬番=[(7, 15, 16), (7, 16, 15), (15, 7, 16)]",
+      "created_at": "2026-04-26 15:13:13",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ライヴドライバー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.011368391451234547,
+          "ev_score": 1.705258717685182
+        },
+        {
+          "horse_name": "ハクシンブライアン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.011368391451234547,
+          "ev_score": 1.705258717685182
+        },
+        {
+          "horse_name": "ヴェーヌドール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.011368391451234547,
+          "ev_score": 1.705258717685182
+        }
+      ]
+    },
+    {
+      "prediction_id": 12767,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-04-26 15:13:13",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ライヴドライバー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.15594541910331383,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ヴェーヌドール",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.15099009900990099,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ハクシンブライアン",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.15099009900990099,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "セブンマイスター",
+          "horse_id": null,
+          "predicted_rank": 4,
+          "model_score": 0.10761154855643044,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ウフドゥウフ",
+          "horse_id": null,
+          "predicted_rank": 5,
+          "model_score": 0.10761154855643044,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ノアヴィヴァーチェ",
+          "horse_id": null,
+          "predicted_rank": 6,
+          "model_score": 0.10761154855643044,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "サムワンライクユー",
+          "horse_id": null,
+          "predicted_rank": 7,
+          "model_score": 0.10761154855643044,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "フォートポータル",
+          "horse_id": null,
+          "predicted_rank": 8,
+          "model_score": 0.07551669316375198,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ベルメサイア",
+          "horse_id": null,
+          "predicted_rank": 9,
+          "model_score": 0.07551669316375198,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ヴァイオパイシーズ",
+          "horse_id": null,
+          "predicted_rank": 10,
+          "model_score": 0.07551669316375198,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ツインクルステージ",
+          "horse_id": null,
+          "predicted_rank": 11,
+          "model_score": 0.07551669316375198,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ユーウェイン",
+          "horse_id": null,
+          "predicted_rank": 12,
+          "model_score": 0.053862089375554895,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "カーマンライン",
+          "horse_id": null,
+          "predicted_rank": 13,
+          "model_score": 0.053862089375554895,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "サトノシャムロック",
+          "horse_id": null,
+          "predicted_rank": 14,
+          "model_score": 0.04339502233567326,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ワンダービジブル",
+          "horse_id": null,
+          "predicted_rank": 15,
+          "model_score": 0.02801358234295416,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "アイファーシャドー",
+          "horse_id": null,
+          "predicted_rank": 16,
+          "model_score": 0.022780832678711706,
+          "ev_score": 0.0
+        }
+      ]
+    }
+  ],
+  "training_evals": {},
+  "prerace": {
+    "bias": {
+      "today_inner_bias": null,
+      "today_front_bias": null,
+      "today_race_count": null
+    },
+    "ev_recommend": [],
+    "generated_at": "2026-04-26T15:13:13.825838"
+  }
+}

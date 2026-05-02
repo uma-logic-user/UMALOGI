@@ -1,0 +1,900 @@
+{
+  "race_id": "202605020208",
+  "race_name": "",
+  "date": "2026-04-26",
+  "venue": "東京",
+  "race_number": 8,
+  "distance": 0,
+  "surface": "",
+  "track_direction": "",
+  "weather": "",
+  "condition": "",
+  "year": "2026",
+  "results": [
+    {
+      "rank": 1,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "ボンヌソワレ",
+      "horse_id": "2022105435",
+      "sex_age": "牝1",
+      "weight_carried": 56.0,
+      "jockey": "津村明秀",
+      "trainer": "宮田敬介",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "レイデオロ",
+      "dam": "ノッテビアンカNotte Bianca(仏)",
+      "dam_sire": "Kendargent",
+      "honmei_score": 0.0755,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.7052,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
+      "rank": 2,
+      "gate_number": 8,
+      "horse_number": 11,
+      "horse_name": "ホウオウシェリー",
+      "horse_id": "2021103486",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "荻野極",
+      "trainer": "池上昌和",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ブリックスアンドモルタルBricks and Mortar(米)",
+      "dam": "オヒア",
+      "dam_sire": "ブラックタイド",
+      "honmei_score": 0.0596,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 8,
+      "horse_number": 10,
+      "horse_name": "サクセスカラー",
+      "horse_id": "2021104200",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "田辺裕信",
+      "trainer": "久保田貴",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ロジャーバローズ",
+      "dam": "レインオンザデューンRain On The Dune(英)",
+      "dam_sire": "Frankel",
+      "honmei_score": 0.0755,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    }
+  ],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "3",
+      "payout": 310,
+      "popularity": 1
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "11",
+      "payout": 11000,
+      "popularity": null
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "3",
+      "payout": 130,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "10",
+      "payout": 170,
+      "popularity": 3
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "11",
+      "payout": 220,
+      "popularity": 5
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "3-8",
+      "payout": 440,
+      "popularity": 1
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "31",
+      "payout": 1,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "3-11",
+      "payout": 1220,
+      "popularity": 4
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "11",
+      "payout": 2,
+      "popularity": 20
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1-30",
+      "payout": 1110,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3-10",
+      "payout": 310,
+      "popularity": 3
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3-11",
+      "payout": 450,
+      "popularity": 5
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "10-11",
+      "payout": 640,
+      "popularity": 10
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 20051,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3",
+      "payout": 80000,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "44",
+      "payout": 1,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "3→11",
+      "payout": 2110,
+      "popularity": 7
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "11",
+      "payout": 12,
+      "popularity": 20
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "3",
+      "payout": 11000,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "1-22",
+      "payout": 4,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "31-1",
+      "payout": 10000,
+      "popularity": 6
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3-10-11",
+      "payout": 1930,
+      "popularity": 7
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3-10",
+      "payout": 310,
+      "popularity": 110
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4-50",
+      "payout": 50310,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "6",
+      "payout": 40009,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "3→11→10",
+      "payout": 9840,
+      "popularity": 28
+    }
+  ],
+  "predictions": [
+    {
+      "prediction_id": 12768,
+      "model_type": "本命(暫定)",
+      "bet_type": "単勝",
+      "confidence": 0.08547008547008547,
+      "expected_value": 0.08547008547008547,
+      "recommended_bet": 100.0,
+      "combination_json": "[[5]]",
+      "notes": "確率1位 P(win)=0.09 odds=1.0 EV=0.09",
+      "created_at": "2026-04-26 15:13:14",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "フェデルミエール",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.08547008547008547,
+          "ev_score": 0.08547008547008547
+        }
+      ]
+    },
+    {
+      "prediction_id": 12769,
+      "model_type": "本命(暫定)",
+      "bet_type": "複勝",
+      "confidence": 0.23650347179758943,
+      "expected_value": 0.23650347179758943,
+      "recommended_bet": 300.0,
+      "combination_json": "[[5], [3], [1]]",
+      "notes": "上位3頭を複勝",
+      "created_at": "2026-04-26 15:13:14",
+      "is_hit": 1,
+      "payout": 519.0,
+      "profit": 219.0,
+      "roi": 173.0,
+      "horses": [
+        {
+          "horse_name": "フェデルミエール",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07883449059919648,
+          "ev_score": 0.23650347179758943
+        },
+        {
+          "horse_name": "ボンヌソワレ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07883449059919648,
+          "ev_score": 0.23650347179758943
+        },
+        {
+          "horse_name": "キャッスルレイク",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.07883449059919648,
+          "ev_score": 0.23650347179758943
+        }
+      ]
+    },
+    {
+      "prediction_id": 12770,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.018181818181818184,
+      "expected_value": 1.090909090909091,
+      "recommended_bet": 200.0,
+      "combination_json": "[[3, 5]]",
+      "notes": "本命・対抗 Harville=0.018",
+      "created_at": "2026-04-26 15:13:14",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ボンヌソワレ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.018181818181818184,
+          "ev_score": 1.090909090909091
+        },
+        {
+          "horse_name": "フェデルミエール",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.018181818181818184,
+          "ev_score": 1.090909090909091
+        }
+      ]
+    },
+    {
+      "prediction_id": 12771,
+      "model_type": "本命(暫定)",
+      "bet_type": "ワイド",
+      "confidence": 0.02363636363636364,
+      "expected_value": 0.45454545454545464,
+      "recommended_bet": 200.0,
+      "combination_json": "[[3, 5]]",
+      "notes": "本命・対抗 ワイド Harville=0.018",
+      "created_at": "2026-04-26 15:13:14",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ボンヌソワレ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.018181818181818184,
+          "ev_score": 0.45454545454545464
+        },
+        {
+          "horse_name": "フェデルミエール",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.018181818181818184,
+          "ev_score": 0.45454545454545464
+        }
+      ]
+    },
+    {
+      "prediction_id": 12772,
+      "model_type": "本命(暫定)",
+      "bet_type": "三連複",
+      "confidence": 0.07272727272727274,
+      "expected_value": 1.8181818181818183,
+      "recommended_bet": 600.0,
+      "combination_json": "[[1, 3, 5], [3, 5, 10]]",
+      "notes": "合成EV最大=1.82 2点 馬番=[(1, 3, 5), (3, 5, 10)]",
+      "created_at": "2026-04-26 15:13:14",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "キャッスルレイク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0060606060606060615,
+          "ev_score": 1.8181818181818183
+        },
+        {
+          "horse_name": "キャッスルレイク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0060606060606060615,
+          "ev_score": 1.8181818181818183
+        },
+        {
+          "horse_name": "ボンヌソワレ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0060606060606060615,
+          "ev_score": 1.8181818181818183
+        },
+        {
+          "horse_name": "ボンヌソワレ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0060606060606060615,
+          "ev_score": 1.8181818181818183
+        },
+        {
+          "horse_name": "フェデルミエール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0060606060606060615,
+          "ev_score": 1.8181818181818183
+        },
+        {
+          "horse_name": "フェデルミエール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0060606060606060615,
+          "ev_score": 1.8181818181818183
+        }
+      ]
+    },
+    {
+      "prediction_id": 12773,
+      "model_type": "本命(暫定)",
+      "bet_type": "三連単",
+      "confidence": 0.18181818181818185,
+      "expected_value": 6.0,
+      "recommended_bet": 600.0,
+      "combination_json": "[[5, 3, 1], [5, 3, 10], [5, 3, 9], [5, 1, 3], [5, 1, 10], [5, 1, 9]]",
+      "notes": "1着固定フォーメーション 軸=5番 6点 相手=[3, 1, 10, 9] Harville最大=0.0061",
+      "created_at": "2026-04-26 15:13:14",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "フェデルミエール",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0060606060606060615,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "フェデルミエール",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0060606060606060615,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "フェデルミエール",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0060606060606060615,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "フェデルミエール",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0060606060606060615,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "フェデルミエール",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0060606060606060615,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ボンヌソワレ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0060606060606060615,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ボンヌソワレ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0060606060606060615,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ボンヌソワレ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0060606060606060615,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ボンヌソワレ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0060606060606060615,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ボンヌソワレ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0060606060606060615,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "キャッスルレイク",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0060606060606060615,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "キャッスルレイク",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0060606060606060615,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "キャッスルレイク",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0060606060606060615,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "キャッスルレイク",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0060606060606060615,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "キャッスルレイク",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0060606060606060615,
+          "ev_score": 6.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 12774,
+      "model_type": "卍(暫定)",
+      "bet_type": "単勝",
+      "confidence": 0.39408918931938147,
+      "expected_value": 0.7881783786387629,
+      "recommended_bet": 100.0,
+      "combination_json": "[[5]]",
+      "notes": "確率1位(卍) EV=0.79 odds=1.0",
+      "created_at": "2026-04-26 15:13:14",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "フェデルミエール",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.7881783786387629,
+          "ev_score": 0.7881783786387629
+        }
+      ]
+    },
+    {
+      "prediction_id": 12775,
+      "model_type": "卍(暫定)",
+      "bet_type": "複勝",
+      "confidence": 0.6,
+      "expected_value": 0.7498454344229636,
+      "recommended_bet": 300.0,
+      "combination_json": "[[5], [1], [6]]",
+      "notes": "確率上位3頭を複勝",
+      "created_at": "2026-04-26 15:13:14",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "フェデルミエール",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.7498454344229636,
+          "ev_score": 0.7498454344229636
+        },
+        {
+          "horse_name": "キャッスルレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.7498454344229636,
+          "ev_score": 0.7498454344229636
+        },
+        {
+          "horse_name": "リュウノタブーク",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.7498454344229636,
+          "ev_score": 0.7498454344229636
+        }
+      ]
+    },
+    {
+      "prediction_id": 12776,
+      "model_type": "卍(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.15731664766858044,
+      "expected_value": 1.8877997720229653,
+      "recommended_bet": 200.0,
+      "combination_json": "[[1, 5]]",
+      "notes": "EV上位2頭 Harville=0.031 平均EV=0.76",
+      "created_at": "2026-04-26 15:13:14",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "キャッスルレイク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03146332953371609,
+          "ev_score": 1.8877997720229653
+        },
+        {
+          "horse_name": "フェデルミエール",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03146332953371609,
+          "ev_score": 1.8877997720229653
+        }
+      ]
+    },
+    {
+      "prediction_id": 12777,
+      "model_type": "卍(暫定)",
+      "bet_type": "ワイド",
+      "confidence": 0.18877997720229656,
+      "expected_value": 0.7865832383429022,
+      "recommended_bet": 200.0,
+      "combination_json": "[[1, 5]]",
+      "notes": "EV上位2頭 ワイド Harville=0.031",
+      "created_at": "2026-04-26 15:13:14",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "キャッスルレイク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03146332953371609,
+          "ev_score": 0.7865832383429022
+        },
+        {
+          "horse_name": "フェデルミエール",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03146332953371609,
+          "ev_score": 0.7865832383429022
+        }
+      ]
+    },
+    {
+      "prediction_id": 12780,
+      "model_type": "卍(暫定)",
+      "bet_type": "三連複",
+      "confidence": 0.20811810427978805,
+      "expected_value": 4.1623620855957615,
+      "recommended_bet": 300.0,
+      "combination_json": "[[5, 6, 7]]",
+      "notes": "合成EV=4.16 Harville=0.0139 馬番=(5, 6, 7)",
+      "created_at": "2026-04-26 15:13:14",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "フェデルミエール",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.013874540285319203,
+          "ev_score": 4.1623620855957615
+        },
+        {
+          "horse_name": "リュウノタブーク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.013874540285319203,
+          "ev_score": 4.1623620855957615
+        },
+        {
+          "horse_name": "エイヨーアメジスト",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.013874540285319203,
+          "ev_score": 4.1623620855957615
+        }
+      ]
+    },
+    {
+      "prediction_id": 12781,
+      "model_type": "Oracle(暫定)",
+      "bet_type": "三連複",
+      "confidence": 0.0657372102961797,
+      "expected_value": 1.9721163088853908,
+      "recommended_bet": 300.0,
+      "combination_json": "[[1, 3, 5], [3, 5, 10], [3, 5, 9]]",
+      "notes": "[Oracle] 的中確率最大 3点 P最大=0.0657 馬番=[(1, 3, 5), (3, 5, 10), (3, 5, 9)]",
+      "created_at": "2026-04-26 15:13:14",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "キャッスルレイク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0657372102961797,
+          "ev_score": 1.9721163088853908
+        },
+        {
+          "horse_name": "ボンヌソワレ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0657372102961797,
+          "ev_score": 1.9721163088853908
+        },
+        {
+          "horse_name": "フェデルミエール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0657372102961797,
+          "ev_score": 1.9721163088853908
+        }
+      ]
+    },
+    {
+      "prediction_id": 12782,
+      "model_type": "Oracle(暫定)",
+      "bet_type": "三連単",
+      "confidence": 0.01095620171602995,
+      "expected_value": 1.6434302574044923,
+      "recommended_bet": 300.0,
+      "combination_json": "[[5, 3, 1], [5, 3, 10], [5, 3, 9]]",
+      "notes": "[Oracle] 的中確率最大 3点 P最大=0.0110 馬番=[(5, 3, 1), (5, 3, 10), (5, 3, 9)]",
+      "created_at": "2026-04-26 15:13:14",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "フェデルミエール",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.01095620171602995,
+          "ev_score": 1.6434302574044923
+        },
+        {
+          "horse_name": "ボンヌソワレ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.01095620171602995,
+          "ev_score": 1.6434302574044923
+        },
+        {
+          "horse_name": "キャッスルレイク",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.01095620171602995,
+          "ev_score": 1.6434302574044923
+        }
+      ]
+    },
+    {
+      "prediction_id": 12783,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-04-26 15:13:14",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "フェデルミエール",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.08547008547008547,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ルージュスエルテ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07551669316375198,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "サクセスカラー",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.07551669316375198,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "キャッスルレイク",
+          "horse_id": null,
+          "predicted_rank": 4,
+          "model_score": 0.07551669316375198,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ボンヌソワレ",
+          "horse_id": null,
+          "predicted_rank": 5,
+          "model_score": 0.07551669316375198,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ホウオウシェリー",
+          "horse_id": null,
+          "predicted_rank": 6,
+          "model_score": 0.05959031657355678,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "スカイビート",
+          "horse_id": null,
+          "predicted_rank": 7,
+          "model_score": 0.05959031657355678,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "エイヨーアメジスト",
+          "horse_id": null,
+          "predicted_rank": 8,
+          "model_score": 0.05575539568345324,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "リュウノタブーク",
+          "horse_id": null,
+          "predicted_rank": 9,
+          "model_score": 0.05575539568345324,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ライツユーアップ",
+          "horse_id": null,
+          "predicted_rank": 10,
+          "model_score": 0.053862089375554895,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "レイククレセント",
+          "horse_id": null,
+          "predicted_rank": 11,
+          "model_score": 0.053862089375554895,
+          "ev_score": 0.0
+        }
+      ]
+    }
+  ],
+  "training_evals": {},
+  "prerace": {
+    "bias": {
+      "today_inner_bias": null,
+      "today_front_bias": null,
+      "today_race_count": null
+    },
+    "ev_recommend": [],
+    "generated_at": "2026-04-26T15:13:14.042784"
+  }
+}

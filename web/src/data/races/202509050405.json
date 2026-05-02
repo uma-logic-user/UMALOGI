@@ -1,0 +1,199 @@
+{
+  "race_id": "202509050405",
+  "race_name": "",
+  "date": "2025-12-14",
+  "venue": "阪神",
+  "race_number": 5,
+  "distance": 0,
+  "surface": "",
+  "track_direction": "",
+  "weather": "",
+  "condition": "",
+  "year": "2025",
+  "results": [
+    {
+      "rank": 1,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "ページターナー",
+      "horse_id": "2023105287",
+      "sex_age": "牡3",
+      "weight_carried": 56.0,
+      "jockey": "川田将雅",
+      "trainer": "中内田充",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "エドウィンナルコ",
+      "horse_id": "2023107201",
+      "sex_age": "牡3",
+      "weight_carried": 56.0,
+      "jockey": "松山弘平",
+      "trainer": "西村真幸",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "ブラックシャリマー",
+      "horse_id": "2023103246",
+      "sex_age": "牡3",
+      "weight_carried": 56.0,
+      "jockey": "西村淳也",
+      "trainer": "杉山晴紀",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "ジェラルリスト",
+      "horse_id": "2023101904",
+      "sex_age": "牡3",
+      "weight_carried": 56.0,
+      "jockey": "坂井瑠星",
+      "trainer": "井上智史",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "ダノンステート",
+      "horse_id": "2023105024",
+      "sex_age": "牡3",
+      "weight_carried": 56.0,
+      "jockey": "高杉吏麒",
+      "trainer": "千田輝彦",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 6,
+      "horse_name": "レグラヴィエール",
+      "horse_id": "2023100774",
+      "sex_age": "牡3",
+      "weight_carried": 56.0,
+      "jockey": "和田竜二",
+      "trainer": "浜田多実",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    }
+  ],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "3",
+      "payout": 130,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "3",
+      "payout": 110,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "2",
+      "payout": 230,
+      "popularity": 4
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "2-3",
+      "payout": 550,
+      "popularity": 3
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3-4",
+      "payout": 120,
+      "popularity": 1
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2-3",
+      "payout": 180,
+      "popularity": 3
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2-4",
+      "payout": 260,
+      "popularity": 5
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "3→2",
+      "payout": 630,
+      "popularity": 3
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2-3-4",
+      "payout": 340,
+      "popularity": 2
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "3→2→4",
+      "payout": 1310,
+      "popularity": 4
+    }
+  ],
+  "predictions": [],
+  "training_evals": {}
+}

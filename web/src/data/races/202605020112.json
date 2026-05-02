@@ -1,0 +1,1116 @@
+{
+  "race_id": "202605020112",
+  "race_name": "",
+  "date": "2026-04-25",
+  "venue": "東京",
+  "race_number": 12,
+  "distance": 0,
+  "surface": "",
+  "track_direction": "",
+  "weather": "",
+  "condition": "",
+  "year": "2026",
+  "results": [
+    {
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 13,
+      "horse_name": "コーカサスゴールド",
+      "horse_id": "2021102676",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "武豊",
+      "trainer": "加藤和宏",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ドレフォンDrefong(米)",
+      "dam": "マリスレーン",
+      "dam_sire": "ストリートセンスStreet Sense(米)"
+    },
+    {
+      "rank": 2,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "キョウエイフロイデ",
+      "horse_id": "2021101053",
+      "sex_age": "牝4",
+      "weight_carried": 56.0,
+      "jockey": "川田将雅",
+      "trainer": "中川公成",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "サトノクラウン",
+      "dam": "ケイティバローズ",
+      "dam_sire": "マンハッタンカフェ"
+    },
+    {
+      "rank": 3,
+      "gate_number": 5,
+      "horse_number": 7,
+      "horse_name": "バロンドール",
+      "horse_id": "2021105276",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "横山典弘",
+      "trainer": "松永幹夫",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ニューイヤーズデイ",
+      "dam": "リュミエールドール",
+      "dam_sire": "ルーラーシップ"
+    }
+  ],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "13",
+      "payout": 13000,
+      "popularity": null
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "13",
+      "payout": 150,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "4",
+      "payout": 190,
+      "popularity": 3
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "7",
+      "payout": 700,
+      "popularity": 9
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "4-8",
+      "payout": 700,
+      "popularity": 3
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "1",
+      "payout": 30000,
+      "popularity": null
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "26",
+      "payout": 1,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "4-13",
+      "payout": 1180,
+      "popularity": 4
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "4",
+      "payout": 1,
+      "popularity": 90
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1-50",
+      "payout": 1040,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4-13",
+      "payout": 380,
+      "popularity": 3
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "7-13",
+      "payout": 1580,
+      "popularity": 18
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4-7",
+      "payout": 3510,
+      "popularity": 29
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 90030,
+      "popularity": 70
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4",
+      "payout": 80000,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "70",
+      "payout": 3,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "13→4",
+      "payout": 1970,
+      "popularity": 7
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "13",
+      "payout": 11,
+      "popularity": 80
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "4",
+      "payout": 13000,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "1-18",
+      "payout": 4,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4-7-13",
+      "payout": 11280,
+      "popularity": 33
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-80-40",
+      "payout": 70000,
+      "popularity": 35
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "15-80",
+      "payout": 1804,
+      "popularity": 70
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "30-71-30",
+      "payout": 1,
+      "popularity": 580
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3-80",
+      "payout": 30713,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "35",
+      "payout": 10029,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "13→4→7",
+      "payout": 41770,
+      "popularity": 141
+    }
+  ],
+  "predictions": [
+    {
+      "prediction_id": 6259,
+      "model_type": "本命(暫定)",
+      "bet_type": "単勝",
+      "confidence": 0.012030075187969926,
+      "expected_value": 0.012030075187969926,
+      "recommended_bet": 100.0,
+      "combination_json": "[[3]]",
+      "notes": "本命 P(win)=0.01 odds=1.0",
+      "created_at": "2026-04-25 10:45:12",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ディーズゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.012030075187969926,
+          "ev_score": 0.012030075187969926
+        }
+      ]
+    },
+    {
+      "prediction_id": 6260,
+      "model_type": "本命(暫定)",
+      "bet_type": "複勝",
+      "confidence": 0.03609022556390978,
+      "expected_value": 0.03609022556390978,
+      "recommended_bet": 300.0,
+      "combination_json": "[[3], [10], [9]]",
+      "notes": "上位3頭を複勝",
+      "created_at": "2026-04-25 10:45:12",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ディーズゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.012030075187969926,
+          "ev_score": 0.03609022556390978
+        },
+        {
+          "horse_name": "テンクウジョー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.012030075187969926,
+          "ev_score": 0.03609022556390978
+        },
+        {
+          "horse_name": "スーパージョック",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.012030075187969926,
+          "ev_score": 0.03609022556390978
+        }
+      ]
+    },
+    {
+      "prediction_id": 6261,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.012820512820512822,
+      "expected_value": 0.7692307692307694,
+      "recommended_bet": 200.0,
+      "combination_json": "[[3, 10]]",
+      "notes": "本命・対抗 Harville=0.013",
+      "created_at": "2026-04-25 10:45:12",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ディーズゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.012820512820512822,
+          "ev_score": 0.7692307692307694
+        },
+        {
+          "horse_name": "テンクウジョー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.012820512820512822,
+          "ev_score": 0.7692307692307694
+        }
+      ]
+    },
+    {
+      "prediction_id": 6262,
+      "model_type": "本命(暫定)",
+      "bet_type": "ワイド",
+      "confidence": 0.01666666666666667,
+      "expected_value": 0.32051282051282054,
+      "recommended_bet": 200.0,
+      "combination_json": "[[3, 10]]",
+      "notes": "本命・対抗 ワイド Harville=0.013",
+      "created_at": "2026-04-25 10:45:12",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ディーズゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.012820512820512822,
+          "ev_score": 0.32051282051282054
+        },
+        {
+          "horse_name": "テンクウジョー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.012820512820512822,
+          "ev_score": 0.32051282051282054
+        }
+      ]
+    },
+    {
+      "prediction_id": 6263,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬単",
+      "confidence": 0.006410256410256411,
+      "expected_value": 0.7692307692307694,
+      "recommended_bet": 200.0,
+      "combination_json": "[[3, 10], [10, 3]]",
+      "notes": "本命↔対抗 馬単 Harville=0.006",
+      "created_at": "2026-04-25 10:45:12",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ディーズゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.006410256410256411,
+          "ev_score": 0.7692307692307694
+        },
+        {
+          "horse_name": "ディーズゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.006410256410256411,
+          "ev_score": 0.7692307692307694
+        },
+        {
+          "horse_name": "テンクウジョー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.006410256410256411,
+          "ev_score": 0.7692307692307694
+        },
+        {
+          "horse_name": "テンクウジョー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.006410256410256411,
+          "ev_score": 0.7692307692307694
+        }
+      ]
+    },
+    {
+      "prediction_id": 6265,
+      "model_type": "本命(暫定)",
+      "bet_type": "三連複",
+      "confidence": 0.04195804195804195,
+      "expected_value": 1.0489510489510487,
+      "recommended_bet": 300.0,
+      "combination_json": "[[3, 7, 10]]",
+      "notes": "合成EV=1.05 Harville=0.0035 馬番=(3, 7, 10)",
+      "created_at": "2026-04-25 10:45:12",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ディーズゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.003496503496503496,
+          "ev_score": 1.0489510489510487
+        },
+        {
+          "horse_name": "バロンドール",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.003496503496503496,
+          "ev_score": 1.0489510489510487
+        },
+        {
+          "horse_name": "テンクウジョー",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.003496503496503496,
+          "ev_score": 1.0489510489510487
+        }
+      ]
+    },
+    {
+      "prediction_id": 6266,
+      "model_type": "本命(暫定)",
+      "bet_type": "三連単",
+      "confidence": 0.005827505827505826,
+      "expected_value": 0.874125874125874,
+      "recommended_bet": 600.0,
+      "combination_json": "[[3, 10, 9], [3, 10, 7], [3, 10, 6], [3, 9, 10], [3, 9, 7], [3, 9, 6]]",
+      "notes": "軸3→ヒモフォーメーション 6点 合成EV=0.87 Harville=0.0006",
+      "created_at": "2026-04-25 10:45:12",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ディーズゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0005827505827505826,
+          "ev_score": 0.874125874125874
+        },
+        {
+          "horse_name": "ディーズゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0005827505827505826,
+          "ev_score": 0.874125874125874
+        },
+        {
+          "horse_name": "ディーズゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0005827505827505826,
+          "ev_score": 0.874125874125874
+        },
+        {
+          "horse_name": "ディーズゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0005827505827505826,
+          "ev_score": 0.874125874125874
+        },
+        {
+          "horse_name": "ディーズゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0005827505827505826,
+          "ev_score": 0.874125874125874
+        },
+        {
+          "horse_name": "アースイオス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0005827505827505826,
+          "ev_score": 0.874125874125874
+        },
+        {
+          "horse_name": "アースイオス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0005827505827505826,
+          "ev_score": 0.874125874125874
+        },
+        {
+          "horse_name": "アースイオス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0005827505827505826,
+          "ev_score": 0.874125874125874
+        },
+        {
+          "horse_name": "アースイオス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0005827505827505826,
+          "ev_score": 0.874125874125874
+        },
+        {
+          "horse_name": "アースイオス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0005827505827505826,
+          "ev_score": 0.874125874125874
+        },
+        {
+          "horse_name": "バロンドール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0005827505827505826,
+          "ev_score": 0.874125874125874
+        },
+        {
+          "horse_name": "バロンドール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0005827505827505826,
+          "ev_score": 0.874125874125874
+        },
+        {
+          "horse_name": "バロンドール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0005827505827505826,
+          "ev_score": 0.874125874125874
+        },
+        {
+          "horse_name": "バロンドール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0005827505827505826,
+          "ev_score": 0.874125874125874
+        },
+        {
+          "horse_name": "バロンドール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0005827505827505826,
+          "ev_score": 0.874125874125874
+        }
+      ]
+    },
+    {
+      "prediction_id": 6267,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-04-25 10:45:12",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "コーカサスゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.012030075187969926,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "クレイヴィンオナー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.012030075187969926,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ピコニ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.012030075187969926,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "テンクウジョー",
+          "horse_id": null,
+          "predicted_rank": 4,
+          "model_score": 0.012030075187969926,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "スーパージョック",
+          "horse_id": null,
+          "predicted_rank": 5,
+          "model_score": 0.012030075187969926,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "バロンドール",
+          "horse_id": null,
+          "predicted_rank": 6,
+          "model_score": 0.012030075187969926,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "アースイオス",
+          "horse_id": null,
+          "predicted_rank": 7,
+          "model_score": 0.012030075187969926,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ディーズゴールド",
+          "horse_id": null,
+          "predicted_rank": 8,
+          "model_score": 0.012030075187969926,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "バルダンツァ",
+          "horse_id": null,
+          "predicted_rank": 9,
+          "model_score": 0.010452961672473868,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "タマモカンパネラ",
+          "horse_id": null,
+          "predicted_rank": 10,
+          "model_score": 0.010452961672473868,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "キョウエイフロイデ",
+          "horse_id": null,
+          "predicted_rank": 11,
+          "model_score": 0.010452961672473868,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ホウキボシ",
+          "horse_id": null,
+          "predicted_rank": 12,
+          "model_score": 0.010452961672473868,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "エーデル",
+          "horse_id": null,
+          "predicted_rank": 13,
+          "model_score": 0.010452961672473868,
+          "ev_score": 0.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 7103,
+      "model_type": "本命(直前)",
+      "bet_type": "単勝",
+      "confidence": 0.012030075187969926,
+      "expected_value": 0.040902255639097745,
+      "recommended_bet": 100.0,
+      "combination_json": "[[3]]",
+      "notes": "本命 P(win)=0.01 odds=3.4",
+      "created_at": "2026-04-25 15:10:31",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ディーズゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.012030075187969926,
+          "ev_score": 0.040902255639097745
+        }
+      ]
+    },
+    {
+      "prediction_id": 7104,
+      "model_type": "本命(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.03609022556390978,
+      "expected_value": 0.03609022556390978,
+      "recommended_bet": 300.0,
+      "combination_json": "[[3], [10], [9]]",
+      "notes": "上位3頭を複勝",
+      "created_at": "2026-04-25 15:10:31",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ディーズゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.012030075187969926,
+          "ev_score": 0.03609022556390978
+        },
+        {
+          "horse_name": "テンクウジョー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.012030075187969926,
+          "ev_score": 0.03609022556390978
+        },
+        {
+          "horse_name": "スーパージョック",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.012030075187969926,
+          "ev_score": 0.03609022556390978
+        }
+      ]
+    },
+    {
+      "prediction_id": 7105,
+      "model_type": "本命(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.014603434706558973,
+      "expected_value": 0.29791006801380304,
+      "recommended_bet": 200.0,
+      "combination_json": "[[3, 10]]",
+      "notes": "本命・対抗 Harville=0.015",
+      "created_at": "2026-04-25 15:10:31",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ディーズゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.014603434706558973,
+          "ev_score": 0.29791006801380304
+        },
+        {
+          "horse_name": "テンクウジョー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.014603434706558973,
+          "ev_score": 0.29791006801380304
+        }
+      ]
+    },
+    {
+      "prediction_id": 7106,
+      "model_type": "本命(直前)",
+      "bet_type": "ワイド",
+      "confidence": 0.018984465118526667,
+      "expected_value": 0.12412919500575126,
+      "recommended_bet": 200.0,
+      "combination_json": "[[3, 10]]",
+      "notes": "本命・対抗 ワイド Harville=0.015",
+      "created_at": "2026-04-25 15:10:31",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ディーズゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.014603434706558973,
+          "ev_score": 0.12412919500575126
+        },
+        {
+          "horse_name": "テンクウジョー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.014603434706558973,
+          "ev_score": 0.12412919500575126
+        }
+      ]
+    },
+    {
+      "prediction_id": 7107,
+      "model_type": "本命(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.0073017173532794865,
+      "expected_value": 0.29791006801380304,
+      "recommended_bet": 200.0,
+      "combination_json": "[[3, 10], [10, 3]]",
+      "notes": "本命↔対抗 馬単 Harville=0.007",
+      "created_at": "2026-04-25 15:10:31",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ディーズゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0073017173532794865,
+          "ev_score": 0.29791006801380304
+        },
+        {
+          "horse_name": "ディーズゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0073017173532794865,
+          "ev_score": 0.29791006801380304
+        },
+        {
+          "horse_name": "テンクウジョー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0073017173532794865,
+          "ev_score": 0.29791006801380304
+        },
+        {
+          "horse_name": "テンクウジョー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0073017173532794865,
+          "ev_score": 0.29791006801380304
+        }
+      ]
+    },
+    {
+      "prediction_id": 7109,
+      "model_type": "本命(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.0514738379149398,
+      "expected_value": 0.4375276222769883,
+      "recommended_bet": 300.0,
+      "combination_json": "[[3, 7, 10]]",
+      "notes": "合成EV=0.44 Harville=0.0043 馬番=(3, 7, 10)",
+      "created_at": "2026-04-25 15:10:31",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ディーズゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.00428948649291165,
+          "ev_score": 0.4375276222769883
+        },
+        {
+          "horse_name": "バロンドール",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.00428948649291165,
+          "ev_score": 0.4375276222769883
+        },
+        {
+          "horse_name": "テンクウジョー",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.00428948649291165,
+          "ev_score": 0.4375276222769883
+        }
+      ]
+    },
+    {
+      "prediction_id": 7110,
+      "model_type": "本命(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.007149144154852751,
+      "expected_value": 0.36460635189749024,
+      "recommended_bet": 600.0,
+      "combination_json": "[[3, 10, 9], [3, 10, 7], [3, 10, 6], [3, 9, 10], [3, 9, 7], [3, 9, 6]]",
+      "notes": "軸3→ヒモフォーメーション 6点 合成EV=0.36 Harville=0.0007",
+      "created_at": "2026-04-25 15:10:31",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ディーズゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0007149144154852751,
+          "ev_score": 0.36460635189749024
+        },
+        {
+          "horse_name": "ディーズゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0007149144154852751,
+          "ev_score": 0.36460635189749024
+        },
+        {
+          "horse_name": "ディーズゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0007149144154852751,
+          "ev_score": 0.36460635189749024
+        },
+        {
+          "horse_name": "ディーズゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0007149144154852751,
+          "ev_score": 0.36460635189749024
+        },
+        {
+          "horse_name": "ディーズゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0007149144154852751,
+          "ev_score": 0.36460635189749024
+        },
+        {
+          "horse_name": "アースイオス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0007149144154852751,
+          "ev_score": 0.36460635189749024
+        },
+        {
+          "horse_name": "アースイオス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0007149144154852751,
+          "ev_score": 0.36460635189749024
+        },
+        {
+          "horse_name": "アースイオス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0007149144154852751,
+          "ev_score": 0.36460635189749024
+        },
+        {
+          "horse_name": "アースイオス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0007149144154852751,
+          "ev_score": 0.36460635189749024
+        },
+        {
+          "horse_name": "アースイオス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0007149144154852751,
+          "ev_score": 0.36460635189749024
+        },
+        {
+          "horse_name": "バロンドール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0007149144154852751,
+          "ev_score": 0.36460635189749024
+        },
+        {
+          "horse_name": "バロンドール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0007149144154852751,
+          "ev_score": 0.36460635189749024
+        },
+        {
+          "horse_name": "バロンドール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0007149144154852751,
+          "ev_score": 0.36460635189749024
+        },
+        {
+          "horse_name": "バロンドール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0007149144154852751,
+          "ev_score": 0.36460635189749024
+        },
+        {
+          "horse_name": "バロンドール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0007149144154852751,
+          "ev_score": 0.36460635189749024
+        }
+      ]
+    },
+    {
+      "prediction_id": 7111,
+      "model_type": "本命(直前)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-04-25 15:10:31",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "コーカサスゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.012030075187969926,
+          "ev_score": 0.04330827067669173
+        },
+        {
+          "horse_name": "ピコニ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.012030075187969926,
+          "ev_score": 0.42827067669172936
+        },
+        {
+          "horse_name": "テンクウジョー",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.012030075187969926,
+          "ev_score": 0.9311278195488724
+        },
+        {
+          "horse_name": "スーパージョック",
+          "horse_id": null,
+          "predicted_rank": 4,
+          "model_score": 0.012030075187969926,
+          "ev_score": 0.24180451127819552
+        },
+        {
+          "horse_name": "バロンドール",
+          "horse_id": null,
+          "predicted_rank": 5,
+          "model_score": 0.012030075187969926,
+          "ev_score": 0.18526315789473685
+        },
+        {
+          "horse_name": "ディーズゴールド",
+          "horse_id": null,
+          "predicted_rank": 6,
+          "model_score": 0.012030075187969926,
+          "ev_score": 0.040902255639097745
+        },
+        {
+          "horse_name": "アースイオス",
+          "horse_id": null,
+          "predicted_rank": 7,
+          "model_score": 0.012030075187969926,
+          "ev_score": 1.2222556390977444
+        },
+        {
+          "horse_name": "クレイヴィンオナー",
+          "horse_id": null,
+          "predicted_rank": 8,
+          "model_score": 0.010452961672473868,
+          "ev_score": 0.6104529616724739
+        },
+        {
+          "horse_name": "バルダンツァ",
+          "horse_id": null,
+          "predicted_rank": 9,
+          "model_score": 0.010452961672473868,
+          "ev_score": 0.11080139372822301
+        },
+        {
+          "horse_name": "タマモカンパネラ",
+          "horse_id": null,
+          "predicted_rank": 10,
+          "model_score": 0.010452961672473868,
+          "ev_score": 0.14006968641114984
+        },
+        {
+          "horse_name": "キョウエイフロイデ",
+          "horse_id": null,
+          "predicted_rank": 11,
+          "model_score": 0.010452961672473868,
+          "ev_score": 0.09198606271777005
+        },
+        {
+          "horse_name": "ホウキボシ",
+          "horse_id": null,
+          "predicted_rank": 12,
+          "model_score": 0.010452961672473868,
+          "ev_score": 0.05121951219512196
+        },
+        {
+          "horse_name": "エーデル",
+          "horse_id": null,
+          "predicted_rank": 13,
+          "model_score": 0.010452961672473868,
+          "ev_score": 0.4317073170731707
+        }
+      ]
+    }
+  ],
+  "training_evals": {}
+}

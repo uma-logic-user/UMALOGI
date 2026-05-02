@@ -1,0 +1,309 @@
+{
+  "race_id": "202607010610",
+  "race_name": "伊勢ステークス",
+  "date": "2026-03-29",
+  "venue": "中京",
+  "race_number": 10,
+  "distance": 0,
+  "surface": "",
+  "track_direction": "",
+  "weather": "",
+  "condition": "",
+  "year": "2026",
+  "results": [
+    {
+      "rank": 1,
+      "gate_number": 5,
+      "horse_number": 8,
+      "horse_name": "ゴールデンクラウド",
+      "horse_id": "2022110121",
+      "sex_age": "61",
+      "weight_carried": 0.0,
+      "jockey": "201185小林真也506800",
+      "trainer": "[シング　　　　　　�",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "ミライヘノカギ",
+      "horse_id": "2022102062",
+      "sex_age": "1",
+      "weight_carried": 0.0,
+      "jockey": "101192上原佑紀232031",
+      "trainer": "@　　　　　　　　　�",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
+      "gate_number": 8,
+      "horse_number": 14,
+      "horse_name": "テーオーマルコーニ",
+      "horse_id": "2022102228",
+      "sex_age": "1",
+      "weight_carried": 0.0,
+      "jockey": "201146奥村豊　304008",
+      "trainer": "轣@　　　　　　　　�",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 7,
+      "horse_number": 13,
+      "horse_name": "マイノワール",
+      "horse_id": "2021104411",
+      "sex_age": "1",
+      "weight_carried": 0.0,
+      "jockey": "201104笹田和秀543031",
+      "trainer": "W　　　　　　　　　�",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "マインドユアビスケッツMind Your Biscuits(米)",
+      "dam": "チカノワール",
+      "dam_sire": "ハービンジャーHarbinger(英)"
+    }
+  ],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "8",
+      "payout": 210,
+      "popularity": 1
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "15",
+      "payout": 15000,
+      "popularity": null
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "8",
+      "payout": 110,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "14",
+      "payout": 190,
+      "popularity": 3
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "13",
+      "payout": 250,
+      "popularity": 5
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "10",
+      "payout": 1,
+      "popularity": null
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "5-8",
+      "payout": 420,
+      "popularity": 1
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "21",
+      "payout": 1,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "8-14",
+      "payout": 760,
+      "popularity": 1
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "14",
+      "payout": 1,
+      "popularity": 90
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "3-13",
+      "payout": 25,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1-10",
+      "payout": 1140,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "8-14",
+      "payout": 330,
+      "popularity": 1
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "8-13",
+      "payout": 510,
+      "popularity": 5
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "13-14",
+      "payout": 920,
+      "popularity": 11
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 90031,
+      "popularity": 30
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "80",
+      "payout": 42001,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "5",
+      "payout": 80000,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "42",
+      "payout": 1,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "8→14",
+      "payout": 1060,
+      "popularity": 1
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "14",
+      "payout": 7,
+      "popularity": 60
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 8130000,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "51",
+      "payout": 5131400,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "92",
+      "payout": 11,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "76",
+      "payout": 1,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "8",
+      "payout": 14000,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "8-13-14",
+      "payout": 2110,
+      "popularity": 6
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "51-31",
+      "payout": 40000,
+      "popularity": 9
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5-10",
+      "payout": 513,
+      "popularity": 140
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5-13",
+      "payout": 14000,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "9-20-1",
+      "payout": 1,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3-30",
+      "payout": 10813,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "9",
+      "payout": 20011,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "8-14",
+      "payout": 10600,
+      "popularity": 1
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "8→14→13",
+      "payout": 6520,
+      "popularity": 9
+    }
+  ],
+  "predictions": [],
+  "training_evals": {}
+}

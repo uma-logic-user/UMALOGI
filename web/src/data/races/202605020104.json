@@ -1,0 +1,1476 @@
+{
+  "race_id": "202605020104",
+  "race_name": "",
+  "date": "2026-04-25",
+  "venue": "東京",
+  "race_number": 4,
+  "distance": 0,
+  "surface": "",
+  "track_direction": "",
+  "weather": "",
+  "condition": "",
+  "year": "2026",
+  "results": [
+    {
+      "rank": 1,
+      "gate_number": 7,
+      "horse_number": 12,
+      "horse_name": "シニャンガ",
+      "horse_id": "2023107024",
+      "sex_age": "牝7",
+      "weight_carried": 55.0,
+      "jockey": "ルメール",
+      "trainer": "鹿戸雄一",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "カンティーナ",
+      "horse_id": "2023104576",
+      "sex_age": "牝5",
+      "weight_carried": 55.0,
+      "jockey": "大野拓弥",
+      "trainer": "堀内岳志",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "ペカリーナ",
+      "horse_id": "2023106578",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "田辺裕信",
+      "trainer": "竹内正洋",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    }
+  ],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "12",
+      "payout": 150,
+      "popularity": 1
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "15",
+      "payout": 15000,
+      "popularity": null
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "12",
+      "payout": 110,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "1",
+      "payout": 170,
+      "popularity": 3
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "2",
+      "payout": 300,
+      "popularity": 6
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "1-7",
+      "payout": 430,
+      "popularity": 2
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "1",
+      "payout": 20000,
+      "popularity": null
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "15",
+      "payout": 1,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1-12",
+      "payout": 540,
+      "popularity": 2
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1",
+      "payout": 1,
+      "popularity": 70
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1-10",
+      "payout": 1010,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1-12",
+      "payout": 260,
+      "popularity": 2
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2-12",
+      "payout": 480,
+      "popularity": 6
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1-2",
+      "payout": 1480,
+      "popularity": 15
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 70000,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "43",
+      "payout": 2,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "12→1",
+      "payout": 680,
+      "popularity": 2
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "12",
+      "payout": 5,
+      "popularity": 40
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 12000,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "54",
+      "payout": 2,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-2-12",
+      "payout": 2730,
+      "popularity": 9
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "50-10",
+      "payout": 20000,
+      "popularity": 14
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4-80",
+      "payout": 501,
+      "popularity": 20
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2-60",
+      "payout": 20212,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "14",
+      "payout": 80014,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "12→1→2",
+      "payout": 5840,
+      "popularity": 14
+    }
+  ],
+  "predictions": [
+    {
+      "prediction_id": 6114,
+      "model_type": "本命(暫定)",
+      "bet_type": "単勝",
+      "confidence": 0.021660649819494584,
+      "expected_value": 0.021660649819494584,
+      "recommended_bet": 100.0,
+      "combination_json": "[[1]]",
+      "notes": "本命 P(win)=0.02 odds=1.0",
+      "created_at": "2026-04-25 10:45:10",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "カンティーナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.021660649819494584,
+          "ev_score": 0.021660649819494584
+        }
+      ]
+    },
+    {
+      "prediction_id": 6115,
+      "model_type": "本命(暫定)",
+      "bet_type": "複勝",
+      "confidence": 0.06498194945848375,
+      "expected_value": 0.06498194945848375,
+      "recommended_bet": 300.0,
+      "combination_json": "[[1], [2], [3]]",
+      "notes": "上位3頭を複勝",
+      "created_at": "2026-04-25 10:45:10",
+      "is_hit": 1,
+      "payout": 510.0,
+      "profit": 210.0,
+      "roi": 170.0,
+      "horses": [
+        {
+          "horse_name": "カンティーナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.021660649819494584,
+          "ev_score": 0.06498194945848375
+        },
+        {
+          "horse_name": "ペカリーナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.021660649819494584,
+          "ev_score": 0.06498194945848375
+        },
+        {
+          "horse_name": "ビオトープ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.021660649819494584,
+          "ev_score": 0.06498194945848375
+        }
+      ]
+    },
+    {
+      "prediction_id": 6116,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.009523809523809523,
+      "expected_value": 0.5714285714285714,
+      "recommended_bet": 200.0,
+      "combination_json": "[[1, 2]]",
+      "notes": "本命・対抗 Harville=0.010",
+      "created_at": "2026-04-25 10:45:10",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "カンティーナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.5714285714285714
+        },
+        {
+          "horse_name": "ペカリーナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.5714285714285714
+        }
+      ]
+    },
+    {
+      "prediction_id": 6117,
+      "model_type": "本命(暫定)",
+      "bet_type": "ワイド",
+      "confidence": 0.01238095238095238,
+      "expected_value": 0.23809523809523808,
+      "recommended_bet": 200.0,
+      "combination_json": "[[1, 2]]",
+      "notes": "本命・対抗 ワイド Harville=0.010",
+      "created_at": "2026-04-25 10:45:10",
+      "is_hit": 1,
+      "payout": 2960.0,
+      "profit": 2760.0,
+      "roi": 1480.0,
+      "horses": [
+        {
+          "horse_name": "カンティーナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.23809523809523808
+        },
+        {
+          "horse_name": "ペカリーナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.23809523809523808
+        }
+      ]
+    },
+    {
+      "prediction_id": 6118,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬単",
+      "confidence": 0.0047619047619047615,
+      "expected_value": 0.5714285714285714,
+      "recommended_bet": 200.0,
+      "combination_json": "[[1, 2], [2, 1]]",
+      "notes": "本命↔対抗 馬単 Harville=0.005",
+      "created_at": "2026-04-25 10:45:10",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "カンティーナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0047619047619047615,
+          "ev_score": 0.5714285714285714
+        },
+        {
+          "horse_name": "カンティーナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0047619047619047615,
+          "ev_score": 0.5714285714285714
+        },
+        {
+          "horse_name": "ペカリーナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0047619047619047615,
+          "ev_score": 0.5714285714285714
+        },
+        {
+          "horse_name": "ペカリーナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0047619047619047615,
+          "ev_score": 0.5714285714285714
+        }
+      ]
+    },
+    {
+      "prediction_id": 6119,
+      "model_type": "本命(暫定)",
+      "bet_type": "三連単",
+      "confidence": 0.0036630036630036626,
+      "expected_value": 0.5494505494505494,
+      "recommended_bet": 600.0,
+      "combination_json": "[[1, 2, 3], [1, 2, 5], [1, 2, 6], [1, 3, 2], [1, 3, 5], [1, 3, 6]]",
+      "notes": "軸1→ヒモフォーメーション 6点 合成EV=0.55 Harville=0.0004",
+      "created_at": "2026-04-25 10:45:10",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "カンティーナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.00036630036630036625,
+          "ev_score": 0.5494505494505494
+        },
+        {
+          "horse_name": "カンティーナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.00036630036630036625,
+          "ev_score": 0.5494505494505494
+        },
+        {
+          "horse_name": "カンティーナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.00036630036630036625,
+          "ev_score": 0.5494505494505494
+        },
+        {
+          "horse_name": "カンティーナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.00036630036630036625,
+          "ev_score": 0.5494505494505494
+        },
+        {
+          "horse_name": "カンティーナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.00036630036630036625,
+          "ev_score": 0.5494505494505494
+        },
+        {
+          "horse_name": "ペカリーナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.00036630036630036625,
+          "ev_score": 0.5494505494505494
+        },
+        {
+          "horse_name": "ペカリーナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.00036630036630036625,
+          "ev_score": 0.5494505494505494
+        },
+        {
+          "horse_name": "ペカリーナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.00036630036630036625,
+          "ev_score": 0.5494505494505494
+        },
+        {
+          "horse_name": "ペカリーナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.00036630036630036625,
+          "ev_score": 0.5494505494505494
+        },
+        {
+          "horse_name": "ペカリーナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.00036630036630036625,
+          "ev_score": 0.5494505494505494
+        },
+        {
+          "horse_name": "ビオトープ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.00036630036630036625,
+          "ev_score": 0.5494505494505494
+        },
+        {
+          "horse_name": "ビオトープ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.00036630036630036625,
+          "ev_score": 0.5494505494505494
+        },
+        {
+          "horse_name": "ビオトープ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.00036630036630036625,
+          "ev_score": 0.5494505494505494
+        },
+        {
+          "horse_name": "ビオトープ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.00036630036630036625,
+          "ev_score": 0.5494505494505494
+        },
+        {
+          "horse_name": "ビオトープ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.00036630036630036625,
+          "ev_score": 0.5494505494505494
+        }
+      ]
+    },
+    {
+      "prediction_id": 6134,
+      "model_type": "卍(暫定)",
+      "bet_type": "単勝",
+      "confidence": 0.9546144391908982,
+      "expected_value": 1.9092288783817963,
+      "recommended_bet": 100.0,
+      "combination_json": "[[1]]",
+      "notes": "EV=1.91 odds=1.0",
+      "created_at": "2026-04-25 10:45:10",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "カンティーナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 1.9092288783817963,
+          "ev_score": 1.9092288783817963
+        }
+      ]
+    },
+    {
+      "prediction_id": 6135,
+      "model_type": "卍(暫定)",
+      "bet_type": "複勝",
+      "confidence": 0.6,
+      "expected_value": 3.7990068499356107,
+      "recommended_bet": 1000.0,
+      "combination_json": "[[11], [10], [9], [8], [15], [13], [12], [14], [5], [6], [3], [2], [7], [4], [1]]",
+      "notes": "EV>1.1 の15頭を複勝",
+      "created_at": "2026-04-25 10:45:10",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1000.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "シラカワゴウ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 3.7990068499356107,
+          "ev_score": 3.7990068499356107
+        },
+        {
+          "horse_name": "ビップジョワ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 3.7990068499356107,
+          "ev_score": 3.7990068499356107
+        },
+        {
+          "horse_name": "アルケミラモリス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 3.7990068499356107,
+          "ev_score": 3.7990068499356107
+        },
+        {
+          "horse_name": "インサラータ",
+          "horse_id": null,
+          "predicted_rank": 4,
+          "model_score": 3.7990068499356107,
+          "ev_score": 3.7990068499356107
+        },
+        {
+          "horse_name": "ルージュラベル",
+          "horse_id": null,
+          "predicted_rank": 5,
+          "model_score": 3.7990068499356107,
+          "ev_score": 3.7990068499356107
+        }
+      ]
+    },
+    {
+      "prediction_id": 6136,
+      "model_type": "卍(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.09098115303004328,
+      "expected_value": 1.0917738363605194,
+      "recommended_bet": 200.0,
+      "combination_json": "[[10, 11]]",
+      "notes": "EV上位2頭 Harville=0.018 平均EV=5.18",
+      "created_at": "2026-04-25 10:45:10",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ビップジョワ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.018196230606008657,
+          "ev_score": 1.0917738363605194
+        },
+        {
+          "horse_name": "シラカワゴウ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.018196230606008657,
+          "ev_score": 1.0917738363605194
+        }
+      ]
+    },
+    {
+      "prediction_id": 6137,
+      "model_type": "卍(暫定)",
+      "bet_type": "ワイド",
+      "confidence": 0.10917738363605195,
+      "expected_value": 0.4549057651502164,
+      "recommended_bet": 200.0,
+      "combination_json": "[[10, 11]]",
+      "notes": "EV上位2頭 ワイド Harville=0.018",
+      "created_at": "2026-04-25 10:45:10",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ビップジョワ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.018196230606008657,
+          "ev_score": 0.4549057651502164
+        },
+        {
+          "horse_name": "シラカワゴウ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.018196230606008657,
+          "ev_score": 0.4549057651502164
+        }
+      ]
+    },
+    {
+      "prediction_id": 6138,
+      "model_type": "卍(暫定)",
+      "bet_type": "馬単",
+      "confidence": 0.07278492242403463,
+      "expected_value": 1.0917738363605194,
+      "recommended_bet": 200.0,
+      "combination_json": "[[11, 10]]",
+      "notes": "EV軸11→10 Harville=0.009",
+      "created_at": "2026-04-25 10:45:10",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "シラカワゴウ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.009098115303004329,
+          "ev_score": 1.0917738363605194
+        },
+        {
+          "horse_name": "ビップジョワ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.009098115303004329,
+          "ev_score": 1.0917738363605194
+        }
+      ]
+    },
+    {
+      "prediction_id": 6141,
+      "model_type": "卍(暫定)",
+      "bet_type": "三連複",
+      "confidence": 0.09098569040912177,
+      "expected_value": 1.8197138081824353,
+      "recommended_bet": 300.0,
+      "combination_json": "[[8, 9, 11]]",
+      "notes": "合成EV=1.82 Harville=0.0061 軸EV=5.18 馬番=(8, 9, 11)",
+      "created_at": "2026-04-25 10:45:10",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "インサラータ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.006065712693941451,
+          "ev_score": 1.8197138081824353
+        },
+        {
+          "horse_name": "アルケミラモリス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.006065712693941451,
+          "ev_score": 1.8197138081824353
+        },
+        {
+          "horse_name": "シラカワゴウ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.006065712693941451,
+          "ev_score": 1.8197138081824353
+        }
+      ]
+    },
+    {
+      "prediction_id": 6142,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-04-25 10:45:10",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ルージュラベル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.021660649819494584,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ミスデルマー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.021660649819494584,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ピースフルマインド",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.021660649819494584,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "シニャンガ",
+          "horse_id": null,
+          "predicted_rank": 4,
+          "model_score": 0.021660649819494584,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "シラカワゴウ",
+          "horse_id": null,
+          "predicted_rank": 5,
+          "model_score": 0.021660649819494584,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ビップジョワ",
+          "horse_id": null,
+          "predicted_rank": 6,
+          "model_score": 0.021660649819494584,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "アルケミラモリス",
+          "horse_id": null,
+          "predicted_rank": 7,
+          "model_score": 0.021660649819494584,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "インサラータ",
+          "horse_id": null,
+          "predicted_rank": 8,
+          "model_score": 0.021660649819494584,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "アンジェラス",
+          "horse_id": null,
+          "predicted_rank": 9,
+          "model_score": 0.021660649819494584,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ミライヘノティアラ",
+          "horse_id": null,
+          "predicted_rank": 10,
+          "model_score": 0.021660649819494584,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "フレキシブル",
+          "horse_id": null,
+          "predicted_rank": 11,
+          "model_score": 0.021660649819494584,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ビオトープ",
+          "horse_id": null,
+          "predicted_rank": 12,
+          "model_score": 0.021660649819494584,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ペカリーナ",
+          "horse_id": null,
+          "predicted_rank": 13,
+          "model_score": 0.021660649819494584,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "カンティーナ",
+          "horse_id": null,
+          "predicted_rank": 14,
+          "model_score": 0.021660649819494584,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "カフェオリーブ",
+          "horse_id": null,
+          "predicted_rank": 15,
+          "model_score": 0.012030075187969926,
+          "ev_score": 0.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 6564,
+      "model_type": "本命(直前)",
+      "bet_type": "単勝",
+      "confidence": 0.021660649819494584,
+      "expected_value": 0.36389891696750903,
+      "recommended_bet": 100.0,
+      "combination_json": "[[1]]",
+      "notes": "本命 P(win)=0.02 odds=16.8",
+      "created_at": "2026-04-25 11:10:22",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "カンティーナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.021660649819494584,
+          "ev_score": 0.36389891696750903
+        }
+      ]
+    },
+    {
+      "prediction_id": 6565,
+      "model_type": "本命(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.06498194945848375,
+      "expected_value": 0.06498194945848375,
+      "recommended_bet": 300.0,
+      "combination_json": "[[1], [2], [3]]",
+      "notes": "上位3頭を複勝",
+      "created_at": "2026-04-25 11:10:23",
+      "is_hit": 1,
+      "payout": 510.0,
+      "profit": 210.0,
+      "roi": 170.0,
+      "horses": [
+        {
+          "horse_name": "カンティーナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.021660649819494584,
+          "ev_score": 0.06498194945848375
+        },
+        {
+          "horse_name": "ペカリーナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.021660649819494584,
+          "ev_score": 0.06498194945848375
+        },
+        {
+          "horse_name": "ビオトープ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.021660649819494584,
+          "ev_score": 0.06498194945848375
+        }
+      ]
+    },
+    {
+      "prediction_id": 6566,
+      "model_type": "本命(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.010136644755037382,
+      "expected_value": 1.021773791307768,
+      "recommended_bet": 200.0,
+      "combination_json": "[[1, 2]]",
+      "notes": "本命・対抗 Harville=0.010",
+      "created_at": "2026-04-25 11:10:23",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "カンティーナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.010136644755037382,
+          "ev_score": 1.021773791307768
+        },
+        {
+          "horse_name": "ペカリーナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.010136644755037382,
+          "ev_score": 1.021773791307768
+        }
+      ]
+    },
+    {
+      "prediction_id": 6567,
+      "model_type": "本命(直前)",
+      "bet_type": "ワイド",
+      "confidence": 0.013177638181548598,
+      "expected_value": 0.42573907971157005,
+      "recommended_bet": 200.0,
+      "combination_json": "[[1, 2]]",
+      "notes": "本命・対抗 ワイド Harville=0.010",
+      "created_at": "2026-04-25 11:10:23",
+      "is_hit": 1,
+      "payout": 2960.0,
+      "profit": 2760.0,
+      "roi": 1480.0,
+      "horses": [
+        {
+          "horse_name": "カンティーナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.010136644755037382,
+          "ev_score": 0.42573907971157005
+        },
+        {
+          "horse_name": "ペカリーナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.010136644755037382,
+          "ev_score": 0.42573907971157005
+        }
+      ]
+    },
+    {
+      "prediction_id": 6568,
+      "model_type": "本命(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.005068322377518691,
+      "expected_value": 1.021773791307768,
+      "recommended_bet": 200.0,
+      "combination_json": "[[1, 2], [2, 1]]",
+      "notes": "本命↔対抗 馬単 Harville=0.005",
+      "created_at": "2026-04-25 11:10:23",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "カンティーナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.005068322377518691,
+          "ev_score": 1.021773791307768
+        },
+        {
+          "horse_name": "カンティーナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.005068322377518691,
+          "ev_score": 1.021773791307768
+        },
+        {
+          "horse_name": "ペカリーナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.005068322377518691,
+          "ev_score": 1.021773791307768
+        },
+        {
+          "horse_name": "ペカリーナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.005068322377518691,
+          "ev_score": 1.021773791307768
+        }
+      ]
+    },
+    {
+      "prediction_id": 6569,
+      "model_type": "本命(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.004036770657597329,
+      "expected_value": 1.0172662057145272,
+      "recommended_bet": 600.0,
+      "combination_json": "[[1, 2, 3], [1, 2, 5], [1, 2, 6], [1, 3, 2], [1, 3, 5], [1, 3, 6]]",
+      "notes": "軸1→ヒモフォーメーション 6点 合成EV=1.02 Harville=0.0004",
+      "created_at": "2026-04-25 11:10:23",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "カンティーナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.00040367706575973296,
+          "ev_score": 1.0172662057145272
+        },
+        {
+          "horse_name": "カンティーナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.00040367706575973296,
+          "ev_score": 1.0172662057145272
+        },
+        {
+          "horse_name": "カンティーナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.00040367706575973296,
+          "ev_score": 1.0172662057145272
+        },
+        {
+          "horse_name": "カンティーナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.00040367706575973296,
+          "ev_score": 1.0172662057145272
+        },
+        {
+          "horse_name": "カンティーナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.00040367706575973296,
+          "ev_score": 1.0172662057145272
+        },
+        {
+          "horse_name": "ペカリーナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.00040367706575973296,
+          "ev_score": 1.0172662057145272
+        },
+        {
+          "horse_name": "ペカリーナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.00040367706575973296,
+          "ev_score": 1.0172662057145272
+        },
+        {
+          "horse_name": "ペカリーナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.00040367706575973296,
+          "ev_score": 1.0172662057145272
+        },
+        {
+          "horse_name": "ペカリーナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.00040367706575973296,
+          "ev_score": 1.0172662057145272
+        },
+        {
+          "horse_name": "ペカリーナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.00040367706575973296,
+          "ev_score": 1.0172662057145272
+        },
+        {
+          "horse_name": "ビオトープ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.00040367706575973296,
+          "ev_score": 1.0172662057145272
+        },
+        {
+          "horse_name": "ビオトープ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.00040367706575973296,
+          "ev_score": 1.0172662057145272
+        },
+        {
+          "horse_name": "ビオトープ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.00040367706575973296,
+          "ev_score": 1.0172662057145272
+        },
+        {
+          "horse_name": "ビオトープ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.00040367706575973296,
+          "ev_score": 1.0172662057145272
+        },
+        {
+          "horse_name": "ビオトープ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.00040367706575973296,
+          "ev_score": 1.0172662057145272
+        }
+      ]
+    },
+    {
+      "prediction_id": 6584,
+      "model_type": "卍(直前)",
+      "bet_type": "単勝",
+      "confidence": 0.9546144391908982,
+      "expected_value": 1.9092288783817963,
+      "recommended_bet": 200.0,
+      "combination_json": "[[1]]",
+      "notes": "EV=1.91 odds=16.8",
+      "created_at": "2026-04-25 11:10:23",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "カンティーナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 1.9092288783817963,
+          "ev_score": 1.9092288783817963
+        }
+      ]
+    },
+    {
+      "prediction_id": 6585,
+      "model_type": "卍(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.6,
+      "expected_value": 3.7990068499356107,
+      "recommended_bet": 1000.0,
+      "combination_json": "[[11], [10], [9], [8], [15], [13], [12], [14], [5], [6], [3], [2], [7], [4], [1]]",
+      "notes": "EV>1.1 の15頭を複勝",
+      "created_at": "2026-04-25 11:10:23",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1000.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "シラカワゴウ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 3.7990068499356107,
+          "ev_score": 3.7990068499356107
+        },
+        {
+          "horse_name": "ビップジョワ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 3.7990068499356107,
+          "ev_score": 3.7990068499356107
+        },
+        {
+          "horse_name": "アルケミラモリス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 3.7990068499356107,
+          "ev_score": 3.7990068499356107
+        },
+        {
+          "horse_name": "インサラータ",
+          "horse_id": null,
+          "predicted_rank": 4,
+          "model_score": 3.7990068499356107,
+          "ev_score": 3.7990068499356107
+        },
+        {
+          "horse_name": "ルージュラベル",
+          "horse_id": null,
+          "predicted_rank": 5,
+          "model_score": 3.7990068499356107,
+          "ev_score": 3.7990068499356107
+        }
+      ]
+    },
+    {
+      "prediction_id": 6586,
+      "model_type": "卍(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.09098115303004328,
+      "expected_value": 4.0,
+      "recommended_bet": 200.0,
+      "combination_json": "[[10, 11]]",
+      "notes": "EV上位2頭 Harville=0.018 平均EV=5.18",
+      "created_at": "2026-04-25 11:10:23",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ビップジョワ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.018196230606008657,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "シラカワゴウ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.018196230606008657,
+          "ev_score": 4.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 6587,
+      "model_type": "卍(直前)",
+      "bet_type": "ワイド",
+      "confidence": 0.10917738363605195,
+      "expected_value": 3.0,
+      "recommended_bet": 200.0,
+      "combination_json": "[[10, 11]]",
+      "notes": "EV上位2頭 ワイド Harville=0.018",
+      "created_at": "2026-04-25 11:10:23",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ビップジョワ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.018196230606008657,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "シラカワゴウ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.018196230606008657,
+          "ev_score": 3.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 6588,
+      "model_type": "卍(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.07278492242403463,
+      "expected_value": 5.0,
+      "recommended_bet": 200.0,
+      "combination_json": "[[11, 10]]",
+      "notes": "EV軸11→10 Harville=0.009",
+      "created_at": "2026-04-25 11:10:23",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "シラカワゴウ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.009098115303004329,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ビップジョワ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.009098115303004329,
+          "ev_score": 5.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 6591,
+      "model_type": "卍(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.0906867833227305,
+      "expected_value": 5.0,
+      "recommended_bet": 300.0,
+      "combination_json": "[[10, 11, 15]]",
+      "notes": "合成EV=5.00 Harville=0.0060 軸EV=5.18 馬番=(10, 11, 15)",
+      "created_at": "2026-04-25 11:10:23",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ビップジョワ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0060457855548487005,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "シラカワゴウ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0060457855548487005,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ルージュラベル",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0060457855548487005,
+          "ev_score": 5.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 6592,
+      "model_type": "本命(直前)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-04-25 11:10:23",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ルージュラベル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.021660649819494584,
+          "ev_score": 0.25342960288808664
+        },
+        {
+          "horse_name": "ミスデルマー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.021660649819494584,
+          "ev_score": 2.9306859205776172
+        },
+        {
+          "horse_name": "ピースフルマインド",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.021660649819494584,
+          "ev_score": 0.24043321299638987
+        },
+        {
+          "horse_name": "シニャンガ",
+          "horse_id": null,
+          "predicted_rank": 4,
+          "model_score": 0.021660649819494584,
+          "ev_score": 0.0259927797833935
+        },
+        {
+          "horse_name": "シラカワゴウ",
+          "horse_id": null,
+          "predicted_rank": 5,
+          "model_score": 0.021660649819494584,
+          "ev_score": 2.272202166064982
+        },
+        {
+          "horse_name": "ビップジョワ",
+          "horse_id": null,
+          "predicted_rank": 6,
+          "model_score": 0.021660649819494584,
+          "ev_score": 0.6714801444043321
+        },
+        {
+          "horse_name": "アルケミラモリス",
+          "horse_id": null,
+          "predicted_rank": 7,
+          "model_score": 0.021660649819494584,
+          "ev_score": 1.8606498194945849
+        },
+        {
+          "horse_name": "インサラータ",
+          "horse_id": null,
+          "predicted_rank": 8,
+          "model_score": 0.021660649819494584,
+          "ev_score": 2.4736462093862817
+        },
+        {
+          "horse_name": "アンジェラス",
+          "horse_id": null,
+          "predicted_rank": 9,
+          "model_score": 0.021660649819494584,
+          "ev_score": 1.0310469314079422
+        },
+        {
+          "horse_name": "ミライヘノティアラ",
+          "horse_id": null,
+          "predicted_rank": 10,
+          "model_score": 0.021660649819494584,
+          "ev_score": 0.6844765342960288
+        },
+        {
+          "horse_name": "フレキシブル",
+          "horse_id": null,
+          "predicted_rank": 11,
+          "model_score": 0.021660649819494584,
+          "ev_score": 0.6346570397111914
+        },
+        {
+          "horse_name": "ビオトープ",
+          "horse_id": null,
+          "predicted_rank": 12,
+          "model_score": 0.021660649819494584,
+          "ev_score": 3.186281588447653
+        },
+        {
+          "horse_name": "ペカリーナ",
+          "horse_id": null,
+          "predicted_rank": 13,
+          "model_score": 0.021660649819494584,
+          "ev_score": 0.6498194945848376
+        },
+        {
+          "horse_name": "カンティーナ",
+          "horse_id": null,
+          "predicted_rank": 14,
+          "model_score": 0.021660649819494584,
+          "ev_score": 0.36389891696750903
+        },
+        {
+          "horse_name": "カフェオリーブ",
+          "horse_id": null,
+          "predicted_rank": 15,
+          "model_score": 0.012030075187969926,
+          "ev_score": 1.3738345864661656
+        }
+      ]
+    }
+  ],
+  "training_evals": {}
+}
