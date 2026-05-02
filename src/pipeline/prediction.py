@@ -22,6 +22,7 @@ from src.ml.features import FeatureBuilder
 from src.ml.models import load_models
 from src.ml.bet_generator import BetGenerator
 from src.notification.discord_notifier import DiscordNotifier
+from src.pipeline.scraping import fetch_and_save_odds
 from ._common import build_output_json, save_json
 
 logger = logging.getLogger(__name__)
@@ -41,13 +42,17 @@ def _check_data_quality(df: pd.DataFrame) -> tuple[bool, str]:
         return False, "出馬表が 0 頭"
 
     missing_odds = int(df["win_odds"].isna().sum()) if "win_odds" in df.columns else n
-    odds_rate    = missing_odds / n
+    odds_rate = missing_odds / n
 
-    missing_weight = int(df["horse_weight"].isna().sum()) if "horse_weight" in df.columns else 0
+    missing_weight = (
+        int(df["horse_weight"].isna().sum()) if "horse_weight" in df.columns else 0
+    )
     if missing_weight > 0:
         logger.warning(
             "⚠️ 馬体重欠損 %d/%d頭 (%.0f%%) — NaN のまま推論します",
-            missing_weight, n, missing_weight / n * 100,
+            missing_weight,
+            n,
+            missing_weight / n * 100,
         )
 
     if odds_rate > 0.8:
@@ -72,10 +77,10 @@ def _check_race_deadline(conn: sqlite3.Connection, race_id: str) -> None:
         ).fetchone()
 
         if row is None:
-            race_date   = race_id[:8]
+            race_date = race_id[:8]
             race_number = int(race_id[10:12]) if len(race_id) >= 12 else 1
         else:
-            race_date   = row[0].replace("-", "")[:8]
+            race_date = row[0].replace("-", "")[:8]
             race_number = int(row[1])
 
         estimated_start = _estimate_race_start_jst(race_number, race_date)
@@ -84,7 +89,8 @@ def _check_race_deadline(conn: sqlite3.Connection, race_id: str) -> None:
 
         if now >= deadline:
             from ._common import format_race_label
-            label   = format_race_label(race_id)
+
+            label = format_race_label(race_id)
             elapsed = int((now - deadline).total_seconds() / 60)
             text = (
                 f"[遅延警告] {label} (`{race_id}`) 予測処理が遅れています\n"
@@ -122,24 +128,30 @@ def _save_predictions(
             horses_payload: list[dict] = []
             for i, c in enumerate(bet.combinations[:5]):
                 if len(c) == 1:
-                    horses_payload.append({
-                        "horse_number":  c[0],
-                        "horse_name":    bet.horse_names[i] if i < len(bet.horse_names)
-                                         else race_bets.model_type,  # type: ignore[attr-defined]
-                        "predicted_rank": i + 1,
-                        "model_score":   bet.model_score,
-                        "ev_score":      bet.expected_value,
-                    })
+                    horses_payload.append(
+                        {
+                            "horse_number": c[0],
+                            "horse_name": bet.horse_names[i]
+                            if i < len(bet.horse_names)
+                            else race_bets.model_type,  # type: ignore[attr-defined]
+                            "predicted_rank": i + 1,
+                            "model_score": bet.model_score,
+                            "ev_score": bet.expected_value,
+                        }
+                    )
                 else:
                     for j, horse_num in enumerate(c):
-                        horses_payload.append({
-                            "horse_number":  horse_num,
-                            "horse_name":    bet.horse_names[j] if j < len(bet.horse_names)
-                                             else str(horse_num),
-                            "predicted_rank": j + 1,
-                            "model_score":   bet.model_score,
-                            "ev_score":      bet.expected_value,
-                        })
+                        horses_payload.append(
+                            {
+                                "horse_number": horse_num,
+                                "horse_name": bet.horse_names[j]
+                                if j < len(bet.horse_names)
+                                else str(horse_num),
+                                "predicted_rank": j + 1,
+                                "model_score": bet.model_score,
+                                "ev_score": bet.expected_value,
+                            }
+                        )
             combo_json = _json.dumps([list(c) for c in bet.combinations])
             try:
                 pid = insert_prediction(
@@ -163,13 +175,17 @@ def _save_predictions(
     for bet in oracle_bets.bets:  # type: ignore[attr-defined]
         horses_payload_o: list[dict] = []
         for j, horse_num in enumerate(bet.combinations[0] if bet.combinations else []):
-            horses_payload_o.append({
-                "horse_number":  horse_num,
-                "horse_name":    bet.horse_names[j] if j < len(bet.horse_names) else str(horse_num),
-                "predicted_rank": j + 1,
-                "model_score":   bet.model_score,
-                "ev_score":      bet.expected_value,
-            })
+            horses_payload_o.append(
+                {
+                    "horse_number": horse_num,
+                    "horse_name": bet.horse_names[j]
+                    if j < len(bet.horse_names)
+                    else str(horse_num),
+                    "predicted_rank": j + 1,
+                    "model_score": bet.model_score,
+                    "ev_score": bet.expected_value,
+                }
+            )
         combo_json_o = _json.dumps([list(c) for c in bet.combinations])
         try:
             insert_prediction(
@@ -188,18 +204,20 @@ def _save_predictions(
             logger.warning("Oracle予想保存失敗 %s: %s", bet.bet_type, exc)
 
     # 全馬スコア（馬分析タブ用）
-    df_sorted  = df.reset_index(drop=True)
+    df_sorted = df.reset_index(drop=True)
     rank_order = honmei_scores.argsort()[::-1].reset_index(drop=True)
     all_horse_payload: list[dict] = []
     for rank_pos, orig_idx in enumerate(rank_order):
         row = df_sorted.iloc[int(orig_idx)]
-        all_horse_payload.append({
-            "horse_id":       row.get("horse_id") or None,
-            "horse_name":     str(row.get("horse_name", "")),
-            "predicted_rank": rank_pos + 1,
-            "model_score":    float(honmei_scores.iloc[int(orig_idx)]),
-            "ev_score":       float(honmei_ev_scores.iloc[int(orig_idx)]),
-        })
+        all_horse_payload.append(
+            {
+                "horse_id": row.get("horse_id") or None,
+                "horse_name": str(row.get("horse_name", "")),
+                "predicted_rank": rank_pos + 1,
+                "model_score": float(honmei_scores.iloc[int(orig_idx)]),
+                "ev_score": float(honmei_ev_scores.iloc[int(orig_idx)]),
+            }
+        )
     try:
         insert_prediction(
             conn,
@@ -229,7 +247,7 @@ def prerace_pipeline(race_id: str, provisional: bool = False) -> dict:
     Returns:
         UI 用 JSON データ（dict）
     """
-    from src.pipeline.scraping import save_entries_to_db, fetch_and_save_odds
+    from src.pipeline.scraping import save_entries_to_db
     from src.pipeline.win5 import try_win5
 
     mode_label = "暫定" if provisional else "直前"
@@ -250,7 +268,9 @@ def prerace_pipeline(race_id: str, provisional: bool = False) -> dict:
     ).fetchone()[0]
     logger.info(
         "DB キャッシュ: オッズ=%d件 エントリ=%d頭 (race_id=%s)",
-        cached_odds, cached_entries, race_id,
+        cached_odds,
+        cached_entries,
+        race_id,
     )
 
     # Step 1b: entries が空なら netkeiba フォールバック
@@ -258,6 +278,7 @@ def prerace_pipeline(race_id: str, provisional: bool = False) -> dict:
         logger.warning("⚠️ entries が空 → netkeiba から出馬表を自動取得: %s", race_id)
         try:
             from src.scraper.entry_table import fetch_entry_table
+
             tbl = fetch_entry_table(race_id, delay=1.5)
             if tbl.entries:
                 cached_entries = save_entries_to_db(conn, tbl)
@@ -285,7 +306,9 @@ def prerace_pipeline(race_id: str, provisional: bool = False) -> dict:
         return {"error": str(exc), "race_id": race_id}
 
     if df.empty:
-        _discord.notify_scraping_alert(race_id, "出馬表が 0 頭（features DataFrame が空）")
+        _discord.notify_scraping_alert(
+            race_id, "出馬表が 0 頭（features DataFrame が空）"
+        )
         conn.close()
         return {"error": "出馬表が空です", "race_id": race_id}
 
@@ -305,13 +328,27 @@ def prerace_pipeline(race_id: str, provisional: bool = False) -> dict:
                     logger.warning("DataFrame 再ビルド失敗（続行）: %s", e)
 
             if "win_odds" in df.columns and df["win_odds"].isna().all():
-                logger.warning("⚠️ 全馬の単勝オッズが NaN — オッズ未取得のまま推論: %s", race_id)
+                logger.warning(
+                    "⚠️ 全馬の単勝オッズが NaN — オッズ未取得のまま推論: %s", race_id
+                )
 
         ok, reason = _check_data_quality(df)
         if not ok:
-            conn.close()
-            _discord.notify_skip(race_id, reason)
-            return {"skipped": True, "reason": reason, "race_id": race_id}
+            # 出馬表が 0 頭（真の失敗）のみ中断する。オッズ欠損は暫定モードで続行。
+            if "0 頭" in reason or df.empty:
+                conn.close()
+                _discord.notify_skip(race_id, reason)
+                return {"skipped": True, "reason": reason, "race_id": race_id}
+            logger.warning(
+                "⚠️ データ品質チェック警告: %s → 暫定モードで強制続行 (race_id=%s)",
+                reason,
+                race_id,
+            )
+            _discord.send_text(
+                f"⚠️ [オッズ欠損フォールバック] `{race_id}` — {reason}\n"
+                f"暫定モードで予測を強制続行します。"
+            )
+            provisional = True
     else:
         n = len(df)
         logger.info(
@@ -324,22 +361,28 @@ def prerace_pipeline(race_id: str, provisional: bool = False) -> dict:
 
     # Step 3: モデル予測
     honmei_model, manji_model = load_models()
-    honmei_scores    = honmei_model.predict(df)
+    honmei_scores = honmei_model.predict(df)
     honmei_ev_scores = honmei_model.ev_predict(df)
-    ev_scores        = manji_model.ev_score(df)
+    ev_scores = manji_model.ev_score(df)
 
     # Step 4: 買い目生成
-    gen         = BetGenerator()
+    gen = BetGenerator()
     honmei_bets = gen.generate_honmei(race_id, df, honmei_scores)
-    manji_bets  = gen.generate_manji(race_id, df, ev_scores)
+    manji_bets = gen.generate_manji(race_id, df, ev_scores)
     oracle_bets = gen.generate_oracle(race_id, df, honmei_scores)
 
     # Step 5: DB 保存
     suffix = "(暫定)" if provisional else "(直前)"
     prediction_ids = _save_predictions(
-        conn, race_id, df,
-        honmei_scores, honmei_ev_scores, ev_scores,
-        honmei_bets, manji_bets, oracle_bets,
+        conn,
+        race_id,
+        df,
+        honmei_scores,
+        honmei_ev_scores,
+        ev_scores,
+        honmei_bets,
+        manji_bets,
+        oracle_bets,
         suffix,
     )
 
@@ -362,7 +405,8 @@ def prerace_pipeline(race_id: str, provisional: bool = False) -> dict:
 
     logger.info(
         "%sパイプライン完了: race_id=%s 本命%d件 卍%d件",
-        mode_label, race_id,
+        mode_label,
+        race_id,
         len(prediction_ids["本命"]),
         len(prediction_ids["卍"]),
     )
@@ -386,7 +430,8 @@ def provisional_batch(target_date: str | None = None) -> list[str]:
 
     conn = init_db()
     race_ids: list[str] = [
-        r[0] for r in conn.execute(
+        r[0]
+        for r in conn.execute(
             "SELECT race_id FROM races WHERE date = ? ORDER BY race_id",
             (formatted,),
         ).fetchall()
@@ -405,7 +450,9 @@ def provisional_batch(target_date: str | None = None) -> list[str]:
     conn.close()
 
     if not race_ids:
-        logger.warning("対象日 %s のレースが races テーブルに見つかりません", target_date)
+        logger.warning(
+            "対象日 %s のレースが races テーブルに見つかりません", target_date
+        )
         return []
 
     succeeded: list[str] = []
@@ -413,7 +460,11 @@ def provisional_batch(target_date: str | None = None) -> list[str]:
         try:
             result = prerace_pipeline(rid, provisional=True)
             if result.get("skipped") or result.get("error"):
-                logger.warning("暫定予想スキップ %s: %s", rid, result.get("reason") or result.get("error"))
+                logger.warning(
+                    "暫定予想スキップ %s: %s",
+                    rid,
+                    result.get("reason") or result.get("error"),
+                )
             else:
                 succeeded.append(rid)
         except Exception as exc:

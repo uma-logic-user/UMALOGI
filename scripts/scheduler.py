@@ -56,6 +56,7 @@ if str(_ROOT) not in sys.path:
 
 try:
     from dotenv import load_dotenv
+
     load_dotenv(_ROOT / ".env", override=False)
 except ImportError:
     pass
@@ -65,8 +66,13 @@ logging.basicConfig(
     format="%(asctime)s %(levelname)s [%(name)s] %(message)s",
     handlers=[
         logging.StreamHandler(
-            open(sys.stdout.fileno(), mode="w", encoding="utf-8",
-                 errors="replace", closefd=False)
+            open(
+                sys.stdout.fileno(),
+                mode="w",
+                encoding="utf-8",
+                errors="replace",
+                closefd=False,
+            )
         ),
         RotatingFileHandler(
             _ROOT / "data" / "scheduler.log",
@@ -80,6 +86,7 @@ logger = logging.getLogger("scheduler")
 
 try:
     import schedule  # type: ignore[import-untyped]
+
     _SCHEDULE_AVAILABLE = True
 except ImportError:
     logger.warning("schedule がインストールされていません: pip install schedule")
@@ -91,7 +98,8 @@ except ImportError:
 # ================================================================
 
 # JVLink は 32bit COM のため専用インタープリタを使用する
-_PY32 = ["py", "-3.14-32"]
+# PY32_CMD 環境変数で上書き可能（例: "py -3.11-32"）
+_PY32 = os.environ.get("PY32_CMD", "py -3.14-32").split()
 _PY64 = ["py"]
 
 
@@ -131,6 +139,50 @@ def _run(cmd: list[str], label: str, timeout: int = 3600) -> int:
     except Exception as exc:
         logger.error("[%s] 実行エラー: %s", label, exc)
         return -1
+
+
+def _run_with_retry(
+    cmd: list[str],
+    label: str,
+    timeout: int = 3600,
+    max_retries: int = 3,
+    base_delay: float = 60.0,
+) -> int:
+    """
+    _run() を Exponential Backoff で最大 max_retries 回リトライするラッパー。
+
+    成功（rc==0）した時点で即座にリターン。全試行失敗時は最後の rc を返す。
+    base_delay=0 はテスト用（実運用は 60 以上を推奨）。
+
+    Backoff schedule (base_delay=60):
+      試行1: 即時
+      試行2: 60s 後
+      試行3: 180s 後
+      試行4: 600s 後（上限 cap=600）
+    """
+    rc = _run(cmd, label, timeout=timeout)
+    if rc == 0:
+        return 0
+
+    for attempt in range(1, max_retries + 1):
+        delay = min(base_delay * (3 ** (attempt - 1)), 600.0)
+        logger.warning(
+            "[%s] 失敗(rc=%d) — %d秒後に再試行 (%d/%d)",
+            label,
+            rc,
+            int(delay),
+            attempt,
+            max_retries,
+        )
+        if delay > 0:
+            time.sleep(delay)
+        rc = _run(cmd, label, timeout=timeout)
+        if rc == 0:
+            logger.info("[%s] リトライ %d 回目で成功", label, attempt)
+            return 0
+
+    logger.error("[%s] 全リトライ失敗（%d 回試行）rc=%d", label, max_retries + 1, rc)
+    return rc
 
 
 def _send_discord(text: str) -> None:
@@ -236,13 +288,11 @@ def _notify_provisional_summary(target_date: str) -> None:
         conn.close()
 
         now_str = _dt.now().strftime("%Y-%m-%d %H:%M")
-        color_ok   = 0x00C8FF   # シアン（正常）
-        color_warn = 0xFFD700   # ゴールド（推奨なし）
+        color_ok = 0x00C8FF  # シアン（正常）
+        color_warn = 0xFFD700  # ゴールド（推奨なし）
 
         # ── 会場別レース数フィールド ─────────────────────────────
-        venue_text = "\n".join(
-            f"**{v}** {c}R" for v, c in venue_rows
-        ) or "—"
+        venue_text = "\n".join(f"**{v}** {c}R" for v, c in venue_rows) or "—"
 
         # ── 推奨買い目フィールド（上位 10 件） ───────────────────
         if ev_rows:
@@ -264,9 +314,9 @@ def _notify_provisional_summary(target_date: str) -> None:
             )
             embed_color = color_ok
         else:
-            picks_text   = "EV ≥ 1.0 の買い目なし — 全レース見送り推奨"
+            picks_text = "EV ≥ 1.0 の買い目なし — 全レース見送り推奨"
             summary_text = f"対象 {race_count} レース"
-            embed_color  = color_warn
+            embed_color = color_warn
 
         embed: dict = {
             "title": f"📋 暫定予想バッチ完了 — {target_date}",
@@ -299,6 +349,7 @@ def _notify_provisional_summary(target_date: str) -> None:
 # 各ジョブ定義
 # ================================================================
 
+
 def job_friday_sync() -> None:
     """
     金曜夜バッチ（完全自動版）
@@ -323,17 +374,19 @@ def job_friday_sync() -> None:
     errors: list[str] = []
 
     # ── Step 1: JVLink RACE 同期（32bit 必須）───────────────────
-    rc = _run(_PY32 + ["-m", "src.ops.data_sync", "friday"], "JVLink-RACE")
+    rc = _run_with_retry(_PY32 + ["-m", "src.ops.data_sync", "friday"], "JVLink-RACE")
     if rc != 0:
         errors.append(f"JVLink RACE 同期失敗(rc={rc})")
 
     # ── Step 2: JVLink WOOD 同期（32bit 必須）───────────────────
-    rc = _run(_PY32 + ["-m", "src.ops.data_sync", "wood"], "JVLink-WOOD")
+    rc = _run_with_retry(_PY32 + ["-m", "src.ops.data_sync", "wood"], "JVLink-WOOD")
     if rc != 0:
         errors.append(f"JVLink WOOD 同期失敗(rc={rc})")
 
     # ── Step 3: JVLink マスタ差分更新（32bit 必須）──────────────
-    rc = _run(_PY32 + ["-m", "src.ops.data_sync", "masters"], "JVLink-Masters")
+    rc = _run_with_retry(
+        _PY32 + ["-m", "src.ops.data_sync", "masters"], "JVLink-Masters"
+    )
     if rc != 0:
         errors.append(f"JVLink マスタ更新失敗(rc={rc})")
 
@@ -356,6 +409,7 @@ def job_friday_sync() -> None:
     # ── Step 6: DB バックアップ（64bit）─────────────────────────
     try:
         from src.ops.backup import backup_db
+
         backup_db()
         logger.info("[金曜バッチ] バックアップ完了")
     except Exception as bk_exc:
@@ -370,7 +424,7 @@ def job_friday_sync() -> None:
 def job_morning_wood() -> None:
     """土日朝: 調教タイム同期（32bit subprocess）"""
     logger.info("=== [朝調教同期] 開始 ===")
-    rc = _run(_PY32 + ["-m", "src.ops.data_sync", "wood"], "JVLink-WOOD朝")
+    rc = _run_with_retry(_PY32 + ["-m", "src.ops.data_sync", "wood"], "JVLink-WOOD朝")
     if rc != 0:
         logger.error("[朝調教同期] 失敗: rc=%d", rc)
     else:
@@ -422,7 +476,10 @@ def job_today_auto_runner() -> None:
         daemon=True,
     )
     thread.start()
-    logger.info("[直前予想ループ] バックグラウンドスレッドを起動しました (thread=%s)", thread.name)
+    logger.info(
+        "[直前予想ループ] バックグラウンドスレッドを起動しました (thread=%s)",
+        thread.name,
+    )
 
 
 def job_win5_prediction() -> None:
@@ -437,17 +494,16 @@ def job_win5_prediction() -> None:
     logger.info("=== [WIN5予測] 開始 ===")
     try:
         from src.main_pipeline import win5_batch
+
         result = win5_batch()
         if result.get("skipped"):
             logger.info("[WIN5予測] スキップ: %s", result.get("reason", ""))
         elif result.get("error"):
             logger.error("[WIN5予測] エラー: %s", result["error"])
         else:
-            logger.info(
-                "[WIN5予測] 完了: EV=%.3f 推定払戻=¥%,.0f",
-                result.get("ev", 0),
-                result.get("bet", 0) or 0,
-            )
+            ev = result.get("ev", 0) or 0
+            bet = result.get("bet", 0) or 0
+            logger.info("[WIN5予測] 完了: EV=%.3f 推定払戻=¥%.0f", ev, bet)
     except Exception as e:
         logger.error("[WIN5予測] 例外: %s", e, exc_info=True)
     logger.info("=== [WIN5予測] 終了 ===")
@@ -464,6 +520,7 @@ def job_umanity_upload() -> None:
     UMANITY_EMAIL / UMANITY_PASSWORD が未設定の場合はスキップ。
     """
     import os
+
     if not os.environ.get("UMANITY_EMAIL") or not os.environ.get("UMANITY_PASSWORD"):
         logger.info("[Umanity投稿] UMANITY_EMAIL/PASSWORD 未設定のためスキップ")
         return
@@ -471,18 +528,23 @@ def job_umanity_upload() -> None:
     logger.info("=== [Umanity投稿] 開始 ===")
     try:
         from src.ops.umanity_uploader import run_upload
+
         target_date = date.today().strftime("%Y%m%d")
         stats = run_upload(target_date=target_date, dry_run=False, headless=True)
         logger.info(
             "[Umanity投稿] 完了: 成功=%d スキップ=%d エラー=%d",
-            stats["success"], stats["skip"], stats["error"],
+            stats["success"],
+            stats["skip"],
+            stats["error"],
         )
         _send_discord(
             f"🐴 **[Umanity] 本日の予想投稿完了**\n"
             f"成功: {stats['success']} 件 / スキップ: {stats['skip']} 件 / エラー: {stats['error']} 件"
         )
     except ImportError:
-        logger.warning("[Umanity投稿] playwright 未インストール — pip install playwright && playwright install chromium")
+        logger.warning(
+            "[Umanity投稿] playwright 未インストール — pip install playwright && playwright install chromium"
+        )
     except Exception as e:
         logger.error("[Umanity投稿] 例外: %s", e, exc_info=True)
         _send_discord(f"🚨 [Umanity] 投稿失敗: {e}")
@@ -500,7 +562,7 @@ def job_intraday_sync(target_date: str | None = None) -> None:
         target_date = date.today().strftime("%Y/%m/%d")
     date_yyyymmdd = target_date.replace("/", "")
     logger.info("=== [中間結果同期] %s 開始 ===", target_date)
-    rc = _run(
+    rc = _run_with_retry(
         _PY32 + ["-m", "src.ops.data_sync", "race_results", "--date", date_yyyymmdd],
         "JVLink-中間結果同期",
     )
@@ -508,6 +570,23 @@ def job_intraday_sync(target_date: str | None = None) -> None:
         logger.info("=== [中間結果同期] %s 完了 ===", target_date)
     else:
         logger.warning("[中間結果同期] 失敗: rc=%d", rc)
+
+    # 中間同期後: 払戻データから着順自動補完（SEレコード未着対策）
+    try:
+        from src.database.init_db import init_db as _init_db
+        from scripts.infer_ranks_from_payouts import infer_ranks as _infer_ranks
+
+        _conn_infer = _init_db()
+        _stats = _infer_ranks(_conn_infer, year_filter=None, dry_run=False)
+        _conn_infer.close()
+        logger.info(
+            "[中間結果同期] 払戻補完: rank1=%d rank2=%d rank3=%d",
+            _stats["rank1_set"],
+            _stats["rank2_set"],
+            _stats["rank3_set"],
+        )
+    except Exception as _infer_exc:
+        logger.warning("[中間結果同期] 払戻補完失敗（続行）: %s", _infer_exc)
 
 
 def job_post_race(target_date: str | None = None) -> None:
@@ -521,12 +600,34 @@ def job_post_race(target_date: str | None = None) -> None:
     # Step 1: JVLink RACE 払戻同期（32bit）
     # OPT_NORMAL → OPT_STORED → OPT_SETUP の3段階フォールバックを data_sync が自動実施
     date_yyyymmdd = target_date.replace("/", "")
-    rc = _run(
+    rc = _run_with_retry(
         _PY32 + ["-m", "src.ops.data_sync", "race_results", "--date", date_yyyymmdd],
         "JVLink-払戻同期",
     )
     if rc != 0:
-        logger.warning("[レース後処理] JVLink 払戻同期失敗（netkeiba フォールバックへ）: rc=%d", rc)
+        logger.warning(
+            "[レース後処理] JVLink 払戻同期リトライ全滅: rc=%d — 払戻推論フォールバックへ",
+            rc,
+        )
+
+    # Step 1.5: 払戻データから着順自動補完（SEレコード未達対策）
+    try:
+        from src.database.init_db import init_db as _init_db
+        from scripts.infer_ranks_from_payouts import infer_ranks as _infer_ranks
+
+        _conn_infer = _init_db()
+        _stats = _infer_ranks(_conn_infer, year_filter=None, dry_run=False)
+        _conn_infer.close()
+        if _stats["rank1_set"] > 0:
+            logger.info(
+                "[レース後処理] 払戻補完: rank1=%d rank2=%d rank3=%d (スキップ=%d)",
+                _stats["rank1_set"],
+                _stats["rank2_set"],
+                _stats["rank3_set"],
+                _stats["skipped"],
+            )
+    except Exception as _infer_exc:
+        logger.warning("[レース後処理] 払戻補完失敗（続行）: %s", _infer_exc)
 
     # Step 2: 評価 + 通知 + 増分学習（64bit）
     try:
@@ -535,13 +636,16 @@ def job_post_race(target_date: str | None = None) -> None:
 
         conn = init_db()
         try:
-            results = batch_evaluate_date(conn, target_date, notify=True)
+            # batch_evaluate_date は 'YYYY-MM-DD' 形式を期待するが
+            # target_date は 'YYYY/MM/DD' 形式のため変換する
+            iso_date = target_date.replace("/", "-")
+            results = batch_evaluate_date(conn, iso_date, notify=True)
             hit_count = sum(
-                r["evaluation"].hit_count
-                for r in results
-                if "evaluation" in r
+                r["evaluation"].hit_count for r in results if "evaluation" in r
             )
-            logger.info("[レース後処理] 完了: %d レース 合計的中=%d", len(results), hit_count)
+            logger.info(
+                "[レース後処理] 完了: %d レース 合計的中=%d", len(results), hit_count
+            )
         finally:
             conn.close()
     except Exception as e:
@@ -550,6 +654,7 @@ def job_post_race(target_date: str | None = None) -> None:
     # Step 3: DB バックアップ（エラーでも実行）
     try:
         from src.ops.backup import backup_db
+
         backup_db()
         logger.info("[バックアップ] 完了")
     except Exception as bk_exc:
@@ -558,6 +663,7 @@ def job_post_race(target_date: str | None = None) -> None:
     # Step 4: ダッシュボード JSON 再生成（エラーでも実行）
     try:
         import subprocess as _sp, sys as _sys
+
         _web_gen = str(Path(__file__).resolve().parents[1] / "web" / "generate_data.py")
         _sp.run([_sys.executable, _web_gen], check=True, timeout=120)
         logger.info("[ダッシュボード] JSON 再生成完了")
@@ -570,7 +676,9 @@ def job_post_race(target_date: str | None = None) -> None:
 def job_monday_masters() -> None:
     """月曜: マスタデータ差分更新（32bit subprocess）"""
     logger.info("=== [マスタ更新] 開始 ===")
-    rc = _run(_PY32 + ["-m", "src.ops.data_sync", "masters"], "JVLink-Masters月曜")
+    rc = _run_with_retry(
+        _PY32 + ["-m", "src.ops.data_sync", "masters"], "JVLink-Masters月曜"
+    )
     if rc != 0:
         logger.error("[マスタ更新] 失敗: rc=%d", rc)
     else:
@@ -583,6 +691,7 @@ def job_weekly_retrain() -> None:
     try:
         from src.database.init_db import init_db
         from src.ops.retrain_trigger import weekly_retrain
+
         conn = init_db()
         try:
             result = weekly_retrain(conn)
@@ -595,6 +704,7 @@ def job_weekly_retrain() -> None:
     # 再学習後に summary / financial.json を更新
     try:
         import subprocess as _sp, sys as _sys
+
         _web_gen = str(Path(__file__).resolve().parents[1] / "web" / "generate_data.py")
         _sp.run([_sys.executable, _web_gen, "--no-detail"], check=True, timeout=120)
         logger.info("[週次再学習] ダッシュボード JSON 更新完了")
@@ -607,6 +717,7 @@ def job_git_push() -> None:
     logger.info("=== [Git プッシュ] 開始 ===")
     try:
         from src.ops.git_ops import weekly_auto_commit
+
         success = weekly_auto_commit()
         logger.info("[Git プッシュ] %s", "成功" if success else "失敗")
     except Exception as e:
@@ -616,6 +727,7 @@ def job_git_push() -> None:
 def job_heartbeat() -> None:
     """毎時0分: Discord にハートビートを送信する（死活監視）"""
     from datetime import datetime
+
     now = datetime.now().strftime("%Y-%m-%d %H:%M")
     _send_discord(f"✅ UMALOGI alive ({now})")
 
@@ -624,6 +736,7 @@ def job_daily_backup() -> None:
     """毎日23:00: DB を data/backups/ に日付付きでバックアップ（5世代ローテーション）"""
     try:
         from src.ops.backup import backup_db
+
         path = backup_db()
         logger.info("DB バックアップ完了: %s", path)
     except Exception as exc:
@@ -633,6 +746,7 @@ def job_daily_backup() -> None:
 # ================================================================
 # スケジューラー本体
 # ================================================================
+
 
 def register_schedules() -> None:
     """全ジョブをスケジュールに登録する。"""
@@ -710,16 +824,16 @@ def run_daemon() -> None:
 # ================================================================
 
 _JOB_MAP: dict[str, object] = {
-    "friday":        job_friday_sync,
-    "wood":          job_morning_wood,
-    "win5":          job_win5_prediction,
-    "umanity":       job_umanity_upload,
-    "auto_runner":   job_today_auto_runner,
+    "friday": job_friday_sync,
+    "wood": job_morning_wood,
+    "win5": job_win5_prediction,
+    "umanity": job_umanity_upload,
+    "auto_runner": job_today_auto_runner,
     "intraday_sync": job_intraday_sync,
-    "post_race":     job_post_race,
-    "masters":       job_monday_masters,
-    "retrain":       job_weekly_retrain,
-    "git":           job_git_push,
+    "post_race": job_post_race,
+    "masters": job_monday_masters,
+    "retrain": job_weekly_retrain,
+    "git": job_git_push,
 }
 
 
@@ -731,7 +845,9 @@ def main() -> None:
         choices=list(_JOB_MAP.keys()),
         help=f"即時実行するジョブ: {list(_JOB_MAP.keys())}",
     )
-    parser.add_argument("--date", help="post_race / intraday_sync ジョブの対象日 YYYY/MM/DD")
+    parser.add_argument(
+        "--date", help="post_race / intraday_sync ジョブの対象日 YYYY/MM/DD"
+    )
     args = parser.parse_args()
 
     if args.run_now:

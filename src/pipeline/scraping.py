@@ -3,8 +3,7 @@
 
 責務:
   - 金曜バッチ（JRA-VAN RACE dataspec → DB 保存）
-  - 出馬表フォールバック取得（netkeiba）
-  - リアルタイムオッズ取得（netkeiba API → RTD キャッシュ）
+  - リアルタイムオッズ取得（RTD キャッシュ → DB 既存値フォールバック）
   - races テーブル仮登録
 """
 
@@ -43,16 +42,19 @@ def friday_batch(target_date: str | None = None) -> list[str]:
 
     try:
         loader = JVDataLoader(sid=sid)
-        stats  = loader.load(dataspec=DATASPEC_RACE, fromtime=from_dt)
+        stats = loader.load(dataspec=DATASPEC_RACE, fromtime=from_dt)
         logger.info("金曜バッチ JVLink 完了: %s", stats)
     except Exception as exc:
-        logger.error("JVLink 接続失敗 (JRAVAN_SID=%r): %s", sid[:4] + "..." if sid else "", exc)
+        logger.error(
+            "JVLink 接続失敗 (JRAVAN_SID=%r): %s", sid[:4] + "..." if sid else "", exc
+        )
         raise
 
     formatted = f"{target_date[:4]}-{target_date[4:6]}-{target_date[6:8]}"
     conn = init_db()
     race_ids: list[str] = [
-        r[0] for r in conn.execute(
+        r[0]
+        for r in conn.execute(
             "SELECT race_id FROM races WHERE date = ? ORDER BY race_id",
             (formatted,),
         ).fetchall()
@@ -65,9 +67,7 @@ def friday_batch(target_date: str | None = None) -> list[str]:
 
 def ensure_race_record(conn: sqlite3.Connection, race_id: str, date_str: str) -> None:
     """races テーブルにレコードがなければ仮登録する。"""
-    exists = conn.execute(
-        "SELECT 1 FROM races WHERE race_id=?", (race_id,)
-    ).fetchone()
+    exists = conn.execute("SELECT 1 FROM races WHERE race_id=?", (race_id,)).fetchone()
     if not exists:
         try:
             race_num = int(race_id[-2:])
@@ -82,8 +82,17 @@ def ensure_race_record(conn: sqlite3.Connection, race_id: str, date_str: str) ->
                      distance, surface, weather, condition)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """,
-                (race_id, f"レース{race_num}", formatted, "未定",
-                 race_num, 0, "未定", "", ""),
+                (
+                    race_id,
+                    f"レース{race_num}",
+                    formatted,
+                    "未定",
+                    race_num,
+                    0,
+                    "未定",
+                    "",
+                    "",
+                ),
             )
 
 
@@ -106,7 +115,7 @@ def save_entries_to_db(conn: sqlite3.Connection, tbl: object) -> int:
                     VALUES (?, ?, ?, NULL, ?, ?, ?, ?, ?, ?, ?)
                     """,
                     (
-                        tbl.race_id,           # type: ignore[attr-defined]
+                        tbl.race_id,  # type: ignore[attr-defined]
                         h.horse_number,
                         h.gate_number,
                         h.horse_name,
@@ -122,20 +131,23 @@ def save_entries_to_db(conn: sqlite3.Connection, tbl: object) -> int:
         except Exception as exc:
             logger.warning(
                 "entries 保存失敗 %s #%d: %s",
-                tbl.race_id, h.horse_number, exc,  # type: ignore[attr-defined]
+                tbl.race_id,
+                h.horse_number,
+                exc,  # type: ignore[attr-defined]
             )
     return saved
 
 
 def fetch_and_save_odds(conn: sqlite3.Connection, race_id: str) -> int:
-    """realtime_odds が空のとき、netkeiba API → RTD の順でオッズを取得して DB に保存する。
+    """realtime_odds が空のとき、RTD キャッシュ → DB 既存値 の順でオッズを確保する。
 
     フォールバック戦略（2段階）:
-      1. netkeiba オッズ API — 最新オッズ（推奨）
-      2. JRA-VAN ローカル RTD キャッシュ — API 失敗時の予備
+      Stage 1: JRA-VAN ローカル RTD キャッシュ — リアルタイムオッズ
+      Stage 2: DB 内の既存 realtime_odds を確認して件数を返す（再取得なし）
+               → 既存値が 0 でも予測パイプラインは暫定モードで続行する
 
     Returns:
-        保存した頭数（0 なら全段失敗）
+        確保済みの頭数（0 の場合は暫定モードで続行）
     """
     from src.database.init_db import insert_realtime_odds
 
@@ -146,40 +158,43 @@ def fetch_and_save_odds(conn: sqlite3.Connection, race_id: str) -> int:
         ).fetchall()
     }
 
-    # Stage 1: netkeiba オッズ API
-    try:
-        from src.scraper.entry_table import fetch_realtime_odds
-        odds_list = fetch_realtime_odds(race_id, delay=1.0)
-        if odds_list and any(o.win_odds for o in odds_list):
-            n = insert_realtime_odds(conn, race_id, odds_list, name_map)
-            logger.info("オッズ取得 [netkeiba API]: %d 頭保存 (race_id=%s)", n, race_id)
-            return n
-        logger.warning(
-            "netkeiba API: オッズ取得なし or 全 NaN (race_id=%s) → RTD にフォールバック",
+    # Stage 1: JRA-VAN ローカル RTD キャッシュ
+    odds_list = _fetch_odds_rtd(race_id)
+    if odds_list and any(o.win_odds for o in odds_list):
+        n = insert_realtime_odds(conn, race_id, odds_list, name_map)
+        logger.info("オッズ取得 [RTD キャッシュ]: %d 頭保存 (race_id=%s)", n, race_id)
+        return n
+    if odds_list is not None:
+        logger.warning("RTD: オッズ取得なし or 全 NaN (race_id=%s)", race_id)
+
+    # Stage 2: DB 内の既存 realtime_odds を確認（再フェッチなし）
+    existing: int = conn.execute(
+        "SELECT COUNT(*) FROM realtime_odds WHERE race_id=?", (race_id,)
+    ).fetchone()[0]
+    if existing > 0:
+        logger.info(
+            "オッズ確保 [DB 既存]: %d 頭分 の realtime_odds を流用 (race_id=%s)",
+            existing,
             race_id,
         )
-    except Exception as exc:
-        logger.warning(
-            "netkeiba オッズ API 失敗 (race_id=%s): %s — RTD にフォールバック",
-            race_id, exc,
-        )
+        return existing
 
-    # Stage 2: JRA-VAN ローカル RTD キャッシュ
-    try:
-        from src.scraper.rtd_reader import read_rtd_for_race, rtd_odds_to_horse_odds
-        rtd_info = read_rtd_for_race(race_id)
-        if rtd_info and rtd_info.odds:
-            odds_list = rtd_odds_to_horse_odds(rtd_info)
-            if odds_list and any(o.win_odds for o in odds_list):
-                n = insert_realtime_odds(conn, race_id, odds_list, name_map)
-                logger.info("オッズ取得 [RTD キャッシュ]: %d 頭保存 (race_id=%s)", n, race_id)
-                return n
-        logger.warning("RTD: オッズ取得なし or ファイル未存在 (race_id=%s)", race_id)
-    except Exception as exc:
-        logger.warning("RTD 読み込み失敗 (race_id=%s): %s", race_id, exc)
-
-    logger.error(
-        "🚨 オッズ全段取得失敗 (race_id=%s) — netkeiba API / RTD 両方が使用不可です。",
+    logger.warning(
+        "⚠️ オッズ全段取得失敗 (race_id=%s) — RTD/DB ともに 0。暫定モードで予測を続行します。",
         race_id,
     )
     return 0
+
+
+def _fetch_odds_rtd(race_id: str) -> list | None:
+    """JRA-VAN RTD キャッシュからオッズリストを返す。失敗時は None。"""
+    try:
+        from src.scraper.rtd_reader import read_rtd_for_race, rtd_odds_to_horse_odds
+
+        rtd_info = read_rtd_for_race(race_id)
+        if rtd_info and rtd_info.odds:
+            return rtd_odds_to_horse_odds(rtd_info)
+        return []
+    except Exception as exc:
+        logger.warning("RTD 読み込み失敗 (race_id=%s): %s", race_id, exc)
+        return None

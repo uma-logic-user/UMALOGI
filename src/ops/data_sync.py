@@ -39,6 +39,7 @@ if str(_ROOT) not in sys.path:
 _PROJECT_ROOT = Path(__file__).resolve().parents[2]
 try:
     from dotenv import load_dotenv as _load_dotenv
+
     _load_dotenv(_PROJECT_ROOT / ".env", override=True)
 except ImportError:
     pass
@@ -46,6 +47,7 @@ except ImportError:
 
 def _get_conn() -> sqlite3.Connection:
     from src.database.init_db import init_db
+
     return init_db()
 
 
@@ -95,7 +97,11 @@ def sync_friday(target_date: str | None = None) -> int:
     """
     from datetime import date
     from src.scraper.jravan_client import (
-        JVDataLoader, DATASPEC_RACE, OPT_NORMAL, OPT_STORED, OPT_SETUP,
+        JVDataLoader,
+        DATASPEC_RACE,
+        OPT_NORMAL,
+        OPT_STORED,
+        OPT_SETUP,
     )
 
     if target_date is None:
@@ -103,12 +109,14 @@ def sync_friday(target_date: str | None = None) -> int:
 
     # JVLink の fromtime はデータ更新日時。出馬表は木曜〜金曜に配信されるが、
     # 配信タイミングのズレを吸収するため 14 日前に巻き戻す（7日だと取りこぼし事例あり）。
-    target_dt   = datetime.strptime(target_date, "%Y%m%d")
-    from_dt     = (target_dt - timedelta(days=14)).strftime("%Y%m%d000000")
-    sid         = os.getenv("JRAVAN_SID", "")
-    target_iso  = f"{target_date[:4]}-{target_date[4:6]}-{target_date[6:8]}"
+    target_dt = datetime.strptime(target_date, "%Y%m%d")
+    from_dt = (target_dt - timedelta(days=14)).strftime("%Y%m%d000000")
+    sid = os.getenv("JRAVAN_SID", "")
+    target_iso = f"{target_date[:4]}-{target_date[4:6]}-{target_date[6:8]}"
 
-    logger.info("金曜バッチ開始: 対象日=%s fromtime=%s (JRA-VAN RACE)", target_date, from_dt)
+    logger.info(
+        "金曜バッチ開始: 対象日=%s fromtime=%s (JRA-VAN RACE)", target_date, from_dt
+    )
     loader = JVDataLoader(sid=sid)
 
     # ── Stage 1: OPT_NORMAL (差分ダウンロード) ──────────────────────
@@ -120,7 +128,9 @@ def sync_friday(target_date: str | None = None) -> int:
         logger.info(
             "Stage1 OPT_NORMAL 後も対象日 %s のレースが DB にない "
             "(total_read=%d, open_code=%d) → Stage2 OPT_STORED にフォールバック",
-            target_iso, stats.get("total_read", 0), stats.get("open_code", 0),
+            target_iso,
+            stats.get("total_read", 0),
+            stats.get("open_code", 0),
         )
         stats = loader.load(dataspec=DATASPEC_RACE, fromtime=from_dt, option=OPT_STORED)
 
@@ -134,13 +144,16 @@ def sync_friday(target_date: str | None = None) -> int:
                 "JRA-VANサーバーから RACE データを強制取得します。時間がかかります。",
                 target_iso,
             )
-            stats = loader.load(dataspec=DATASPEC_RACE, fromtime=from_dt, option=OPT_SETUP)
+            stats = loader.load(
+                dataspec=DATASPEC_RACE, fromtime=from_dt, option=OPT_SETUP
+            )
 
             final_count = _count_races_for_date(target_date)
             if final_count > 0:
                 logger.info(
                     "Stage3 OPT_SETUP で対象日 %s のレース %d 件取得成功",
-                    target_iso, final_count,
+                    target_iso,
+                    final_count,
                 )
             else:
                 logger.error(
@@ -155,8 +168,12 @@ def sync_friday(target_date: str | None = None) -> int:
     target_in_db = _count_races_for_date(target_date)
     logger.info(
         "金曜バッチ完了: %d レコード保存 (RA=%d JG=%d SE=%d) 対象日=%s DBレース数=%d件",
-        saved, stats.get("ra", 0), stats.get("jg", 0), stats.get("se", 0),
-        target_date, target_in_db,
+        saved,
+        stats.get("ra", 0),
+        stats.get("jg", 0),
+        stats.get("se", 0),
+        target_date,
+        target_in_db,
     )
     return target_in_db  # 対象日のレース数を返す（0なら取得失敗と明確に分かる）
 
@@ -179,7 +196,11 @@ def sync_race_results(from_date: str | None = None, stored: bool = False) -> int
         保存したレコード数
     """
     from src.scraper.jravan_client import (
-        JVDataLoader, DATASPEC_RACE, OPT_NORMAL, OPT_STORED, OPT_SETUP,
+        JVDataLoader,
+        DATASPEC_RACE,
+        OPT_NORMAL,
+        OPT_STORED,
+        OPT_SETUP,
     )
 
     sid = os.getenv("JRAVAN_SID", "")
@@ -203,12 +224,18 @@ def sync_race_results(from_date: str | None = None, stored: bool = False) -> int
         logger.info("OPT_STORED モードで取得: fromtime=%s", from_dt)
         stats = loader.load(dataspec=DATASPEC_RACE, fromtime=from_dt, option=OPT_STORED)
         # OPT_STORED でも対象日結果が空 → OPT_SETUP で JRA-VAN サーバーから強制取得
-        if from_date and len(from_date) == 8 and _count_race_results_for_date(from_date) == 0:
+        if (
+            from_date
+            and len(from_date) == 8
+            and _count_race_results_for_date(from_date) == 0
+        ):
             logger.warning(
                 "OPT_STORED でも対象日 %s の race_results が 0 → OPT_SETUP で強制再ダウンロード",
                 from_date,
             )
-            stats = loader.load(dataspec=DATASPEC_RACE, fromtime=from_dt, option=OPT_SETUP)
+            stats = loader.load(
+                dataspec=DATASPEC_RACE, fromtime=from_dt, option=OPT_SETUP
+            )
     else:
         # ── Stage 1: OPT_NORMAL (差分ダウンロード) ──────────────────
         stats = loader.load(dataspec=DATASPEC_RACE, fromtime=from_dt, option=OPT_NORMAL)
@@ -251,7 +278,9 @@ def sync_race_results(from_date: str | None = None, stored: bool = False) -> int
                 dataspec=DATASPEC_RACE, fromtime=from_dt, option=OPT_SETUP
             )
             if stats.get("total_read", 0) > 0:
-                logger.info("Stage3 OPT_SETUP で %d レコード取得成功", stats["total_read"])
+                logger.info(
+                    "Stage3 OPT_SETUP で %d レコード取得成功", stats["total_read"]
+                )
             else:
                 logger.error(
                     "Stage3 OPT_SETUP でも取得できませんでした (open_code=%d)。"
@@ -261,22 +290,53 @@ def sync_race_results(from_date: str | None = None, stored: bool = False) -> int
 
     # save_records_to_db は "saved" キーを返さない。ra + se の合計を保存件数とする。
     saved = stats.get("ra", 0) + stats.get("se", 0)
-    logger.info("RACE 同期完了 (JV-Link): RA=%d SE=%d 払戻=%d (合計%d件)",
-                stats.get("ra", 0), stats.get("se", 0), stats.get("payout", 0), saved)
+    logger.info(
+        "RACE 同期完了 (JV-Link): RA=%d SE=%d 払戻=%d (合計%d件)",
+        stats.get("ra", 0),
+        stats.get("se", 0),
+        stats.get("payout", 0),
+        saved,
+    )
 
-    # ── Stage 4: netkeiba フォールバック ─────────────────────────────
-    # OPT_SETUP でも対象日の結果が取得できない場合（JVLink 未配信等）
-    if from_date and len(from_date) == 8 and _count_race_results_for_date(from_date) == 0:
-        logger.warning(
-            "JVLink 全段階失敗: 対象日 %s の race_results が 0 → netkeiba からフォールバック取得",
-            from_date,
+    # ── Stage 4: 払戻データから着順を逆引き補完（netkeiba 禁止のため代替） ─────────────
+    # JVLink 全段階でも race_results.rank が埋まらない場合（HR払戻レコードは先に取得済みが多い）
+    if from_date and len(from_date) == 8:
+        from_iso = f"{from_date[:4]}-{from_date[4:6]}-{from_date[6:8]}"
+        null_rank_count: int = (
+            _get_conn()
+            .execute(
+                """
+            SELECT COUNT(*) FROM race_results rr
+            JOIN races r ON rr.race_id = r.race_id
+            WHERE r.date = ? AND rr.rank IS NULL
+            """,
+                (from_iso,),
+            )
+            .fetchone()[0]
         )
-        try:
-            nb_saved = sync_results_from_netkeiba(from_date)
-            logger.info("netkeiba フォールバック: %d レース保存 (date=%s)", nb_saved, from_date)
-            saved += nb_saved
-        except Exception as nb_exc:
-            logger.error("netkeiba フォールバック失敗: %s", nb_exc)
+        if null_rank_count > 0:
+            logger.info(
+                "Stage4 払戻補完: rank=NULL が %d 件 → infer_ranks_from_payouts を実行",
+                null_rank_count,
+            )
+            try:
+                from scripts.infer_ranks_from_payouts import infer_ranks as _infer_ranks
+
+                _infer_conn = _get_conn()
+                _infer_stats = _infer_ranks(
+                    _infer_conn, year_filter=from_date[:4], dry_run=False
+                )
+                _infer_conn.close()
+                logger.info(
+                    "Stage4 払戻補完完了: rank1=%d rank2=%d rank3=%d skipped=%d",
+                    _infer_stats["rank1_set"],
+                    _infer_stats["rank2_set"],
+                    _infer_stats["rank3_set"],
+                    _infer_stats["skipped"],
+                )
+                saved += _infer_stats["rank1_set"]
+            except Exception as _infer_exc:
+                logger.error("Stage4 払戻補完失敗: %s", _infer_exc)
 
     return saved
 
@@ -287,12 +347,12 @@ def sync_wood() -> int:
     """
     from src.scraper.jravan_client import JVDataLoader, DATASPEC_WOOD
 
-    sid    = os.getenv("JRAVAN_SID", "")
+    sid = os.getenv("JRAVAN_SID", "")
     from_dt = (datetime.now() - timedelta(days=7)).strftime("%Y%m%d000000")
     if len(from_dt) == 8:
         from_dt += "000000"
     loader = JVDataLoader(sid=sid)
-    stats  = loader.load(dataspec=DATASPEC_WOOD, fromtime=from_dt)
+    stats = loader.load(dataspec=DATASPEC_WOOD, fromtime=from_dt)
     logger.info("WOOD 同期完了: %s", stats)
     return stats.get("saved", 0)
 
@@ -333,7 +393,9 @@ def sync_results_from_netkeiba(target_date: str, delay: float = 1.5) -> int:
         conn.close()
         return 0
 
-    logger.info("netkeiba フォールバック開始: %s 対象 %d レース", formatted, len(race_ids))
+    logger.info(
+        "netkeiba フォールバック開始: %s 対象 %d レース", formatted, len(race_ids)
+    )
     saved = 0
 
     for race_id in race_ids:
@@ -347,7 +409,8 @@ def sync_results_from_netkeiba(target_date: str, delay: float = 1.5) -> int:
             if len(race_info.results) < 4:
                 logger.error(
                     "バリデーション失敗: 頭数不足 race_id=%s (%d頭) — スキップ",
-                    race_id, len(race_info.results),
+                    race_id,
+                    len(race_info.results),
                 )
                 continue
             if not any(h.rank == 1 for h in race_info.results):
@@ -403,11 +466,14 @@ def sync_results_from_netkeiba(target_date: str, delay: float = 1.5) -> int:
                             ),
                         )
                 except sqlite3.IntegrityError as e:
-                    logger.debug("race_results FK スキップ %s %s: %s", race_id, h.horse_name, e)
+                    logger.debug(
+                        "race_results FK スキップ %s %s: %s", race_id, h.horse_name, e
+                    )
 
             # race_payouts も取得
             try:
                 import time as _time
+
                 _time.sleep(delay)
                 payouts = fetch_race_payouts(race_id, delay=delay)
                 if payouts:
@@ -417,7 +483,9 @@ def sync_results_from_netkeiba(target_date: str, delay: float = 1.5) -> int:
                 logger.warning("払戻取得失敗 race_id=%s: %s", race_id, pe)
 
             saved += 1
-            logger.info("netkeiba 結果保存: race_id=%s (%d 頭)", race_id, len(race_info.results))
+            logger.info(
+                "netkeiba 結果保存: race_id=%s (%d 頭)", race_id, len(race_info.results)
+            )
 
         except Exception as exc:
             logger.warning("netkeiba 結果取得失敗 race_id=%s: %s", race_id, exc)
@@ -441,7 +509,7 @@ def sync_masters(full: bool = False) -> int:
         DATASPEC_SETUP,
     )
 
-    sid   = os.getenv("JRAVAN_SID", "")
+    sid = os.getenv("JRAVAN_SID", "")
     total = 0
     loader = JVDataLoader(sid=sid)
 
@@ -463,6 +531,7 @@ def sync_masters(full: bool = False) -> int:
 
 # ── CLI ──────────────────────────────────────────────────────────
 
+
 def main() -> None:
     logging.basicConfig(
         level=logging.INFO,
@@ -471,12 +540,21 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="JRA-VAN データ同期 (JVLink 専用)")
     parser.add_argument(
         "command",
-        choices=["friday", "race_results", "payouts", "wood", "masters", "masters_full", "netkeiba_results"],
+        choices=[
+            "friday",
+            "race_results",
+            "payouts",
+            "wood",
+            "masters",
+            "masters_full",
+            "netkeiba_results",
+        ],
         help="実行するデータ同期コマンド (payouts は race_results の別名)",
     )
     parser.add_argument("--date", help="対象日 YYYYMMDD", default=None)
     parser.add_argument(
-        "--stored", action="store_true",
+        "--stored",
+        action="store_true",
         help="OPT_STORED(4) でローカルキャッシュから強制取得（-303 フォールバック用）",
     )
     args = parser.parse_args()
