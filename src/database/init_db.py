@@ -497,6 +497,10 @@ DDL_STATEMENTS: list[str] = [
     # race_results.horse_id (YYYY+SSSSSS) → substr(tc.horse_id,2,9) = YYYY+SSSSS で結合
     "CREATE INDEX IF NOT EXISTS idx_tc_norm  ON training_times(substr(horse_id,2,9), training_date DESC)",
     "CREATE INDEX IF NOT EXISTS idx_hc_norm  ON training_hillwork(substr(horse_id,2,9), training_date DESC)",
+    # v_race_mart の相関サブクエリ用部分インデックス（training_date != '' を除外して小型化）
+    # フルスキャン時に idx_tc_norm よりも小さい索引を優先使用させ応答を改善する
+    "CREATE INDEX IF NOT EXISTS idx_tc_mart ON training_times(substr(horse_id,2,9), training_date DESC) WHERE training_date != ''",
+    "CREATE INDEX IF NOT EXISTS idx_hc_mart ON training_hillwork(substr(horse_id,2,9), training_date DESC) WHERE training_date != ''",
     "CREATE INDEX IF NOT EXISTS idx_foals_father        ON foals(father_id)",
 
     # ================================================================
@@ -805,6 +809,8 @@ def init_db(db_path: Path | None = None) -> sqlite3.Connection:
     # ビュー定義を常に最新に保つ（DDL 変更時に自動反映）
     _migrate_recreate_mart_view(conn)            # 8. v_race_mart 再作成
     _migrate_fix_prediction_results_fk(conn)     # 9. prediction_results FK 修正
+    _migrate_add_rank_guard_triggers(conn)       # 10. rank > 18 防止トリガー
+    _migrate_purge_binary_horse_names(conn)      # 11. バイナリゴミ馬名レコード削除
 
     logger.info("DB 初期化完了: %s", path)
     return conn
@@ -851,8 +857,7 @@ def _migrate_relax_model_type_check(conn: sqlite3.Connection) -> None:
     """predictions / model_performance テーブルの model_type CHECK 制約を除去する。
 
     CHECK(model_type IN ('卍', '本命')) が残っていると (暫定)/(直前) suffix を
-    持つ値を INSERT できないため、PRAGMA writable_schema でスキーマを直接書き換える。
-    ALTER TABLE RENAME TO を使うと prediction_horses の FK 参照が壊れるため採用しない。
+    持つ値を INSERT できないため、RENAME/CREATE で安全にスキーマを再構築する。
     """
     needs_fix = False
     for table in ("predictions", "model_performance"):
@@ -873,39 +878,85 @@ def _migrate_relax_model_type_check(conn: sqlite3.Connection) -> None:
     if not needs_fix:
         return
 
-    logger.info("マイグレーション: model_type CHECK 制約 / FK 参照を writable_schema で修正します")
-    conn.execute("PRAGMA writable_schema = ON")
+    logger.info("マイグレーション: model_type CHECK 制約を RENAME/CREATE で安全に除去します")
+    conn.execute("PRAGMA foreign_keys = OFF")
     try:
         with conn:
-            # 1. predictions / model_performance の CHECK 除去
+            # ビュー（predictions / model_performance を参照）を事前に DROP
+            for _view in ("v_prediction_summary", "v_model_annual_summary"):
+                conn.execute(f"DROP VIEW IF EXISTS {_view}")
+
+            # 1. predictions / model_performance の CHECK 除去（RENAME/CREATE で再構築）
             for table in ("predictions", "model_performance"):
                 row = conn.execute(
                     "SELECT sql FROM sqlite_master WHERE type='table' AND name=?", (table,)
                 ).fetchone()
-                if row and "CHECK(model_type IN" in row[0]:
-                    new_sql = row[0].replace(
-                        "CHECK(model_type IN ('卍', '本命'))", ""
-                    ).replace(
-                        " CHECK(model_type IN ('卍', '本命'))", ""
-                    )
-                    conn.execute(
-                        "UPDATE sqlite_master SET sql = ? WHERE type='table' AND name=?",
-                        (new_sql, table),
-                    )
-                    logger.info("マイグレーション: %s の CHECK 制約を除去しました", table)
+                if not row or "CHECK(model_type IN" not in row[0]:
+                    continue
+                new_sql = (
+                    row[0]
+                    .replace(" CHECK(model_type IN ('卍', '本命'))", "")
+                    .replace("CHECK(model_type IN ('卍', '本命'))", "")
+                    .replace(f"CREATE TABLE {table}", f"CREATE TABLE {table}_migrate_new", 1)
+                )
+                conn.execute(new_sql)
+                conn.execute(f"INSERT INTO {table}_migrate_new SELECT * FROM {table}")
+                conn.execute(f"DROP TABLE {table}")
+                conn.execute(f"ALTER TABLE {table}_migrate_new RENAME TO {table}")
+                logger.info("マイグレーション: %s の CHECK 制約を除去しました", table)
 
-            # 2. prediction_horses の壊れた FK 参照を修正
+            # インデックスを再作成（DROP TABLE で削除されるため）
+            for idx_sql in (
+                "CREATE INDEX IF NOT EXISTS idx_pred_race_id    ON predictions(race_id)",
+                "CREATE INDEX IF NOT EXISTS idx_pred_model_type ON predictions(model_type)",
+                "CREATE INDEX IF NOT EXISTS idx_pred_created_at ON predictions(created_at)",
+                "CREATE INDEX IF NOT EXISTS idx_pred_bet_type   ON predictions(bet_type)",
+                "CREATE INDEX IF NOT EXISTS idx_mperf_type_year ON model_performance(model_type, year, month)",
+                "CREATE INDEX IF NOT EXISTS idx_mperf_venue     ON model_performance(model_type, venue)",
+            ):
+                conn.execute(idx_sql)
+
+            # 2. prediction_horses の壊れた FK 参照を修正（テーブル再構築）
             if ph_schema and "_predictions_old" in ph_schema[0]:
-                fixed_sql = ph_schema[0].replace(
-                    'REFERENCES "_predictions_old"(id)', "REFERENCES predictions(id)"
+                ph_data = conn.execute("SELECT * FROM prediction_horses").fetchall()
+                ph_col_count = len(
+                    conn.execute("PRAGMA table_info(prediction_horses)").fetchall()
                 )
+                fixed_sql = (
+                    ph_schema[0]
+                    .replace('REFERENCES "_predictions_old"(id)', "REFERENCES predictions(id)")
+                    .replace(
+                        "CREATE TABLE prediction_horses",
+                        "CREATE TABLE prediction_horses_migrate_new",
+                        1,
+                    )
+                )
+                conn.execute(fixed_sql)
+                if ph_data:
+                    placeholders = ", ".join("?" * ph_col_count)
+                    conn.executemany(
+                        f"INSERT INTO prediction_horses_migrate_new VALUES ({placeholders})",
+                        ph_data,
+                    )
+                conn.execute("DROP TABLE prediction_horses")
                 conn.execute(
-                    "UPDATE sqlite_master SET sql = ? WHERE type='table' AND name='prediction_horses'",
-                    (fixed_sql,),
+                    "ALTER TABLE prediction_horses_migrate_new RENAME TO prediction_horses"
                 )
+                for idx_sql in (
+                    "CREATE INDEX IF NOT EXISTS idx_pred_h_pred_id ON prediction_horses(prediction_id)",
+                    "CREATE INDEX IF NOT EXISTS idx_pred_h_horse_id ON prediction_horses(horse_id)",
+                ):
+                    conn.execute(idx_sql)
                 logger.info("マイグレーション: prediction_horses の FK 参照を修正しました")
+
+            # ビューを再作成
+            for _ddl in DDL_STATEMENTS:
+                if "CREATE VIEW" in _ddl and (
+                    "v_prediction_summary" in _ddl or "v_model_annual_summary" in _ddl
+                ):
+                    conn.execute(_ddl)
     finally:
-        conn.execute("PRAGMA writable_schema = OFF")
+        conn.execute("PRAGMA foreign_keys = ON")
 
 
 def _migrate_race_results_new_columns(conn: sqlite3.Connection) -> None:
@@ -1184,6 +1235,87 @@ def _migrate_fix_prediction_results_fk(conn: sqlite3.Connection) -> None:
         logger.info("マイグレーション: prediction_results FK 修正完了")
     finally:
         conn.execute("PRAGMA foreign_keys = ON")
+
+
+def _migrate_add_rank_guard_triggers(conn: sqlite3.Connection) -> None:
+    """race_results.rank > 18 を INSERT/UPDATE 時に拒否するトリガーを追加する。
+
+    JV-Link の HR（払戻）レコードを SE（馬毎レース）として誤認識した場合、
+    rank が払戻券種コード（10/20/30/.../90）になる。このトリガーでそれを防ぐ。
+    """
+    existing = {
+        row[0]
+        for row in conn.execute(
+            "SELECT name FROM sqlite_master WHERE type='trigger' AND tbl_name='race_results'"
+        )
+    }
+    created = []
+    if "trg_race_results_rank_ins" not in existing:
+        with conn:
+            conn.execute("""
+                CREATE TRIGGER trg_race_results_rank_ins
+                BEFORE INSERT ON race_results
+                BEGIN
+                    SELECT CASE WHEN NEW.rank IS NOT NULL AND NEW.rank > 18
+                        THEN RAISE(ABORT,
+                            'race_results.rank > 18 は不正値。HR払戻レコードをSEと誤認識している可能性があります。')
+                    END;
+                END
+            """)
+        created.append("INSERT")
+    if "trg_race_results_rank_upd" not in existing:
+        with conn:
+            conn.execute("""
+                CREATE TRIGGER trg_race_results_rank_upd
+                BEFORE UPDATE OF rank ON race_results
+                BEGIN
+                    SELECT CASE WHEN NEW.rank IS NOT NULL AND NEW.rank > 18
+                        THEN RAISE(ABORT,
+                            'race_results.rank > 18 は不正値。HR払戻レコードをSEと誤認識している可能性があります。')
+                    END;
+                END
+            """)
+        created.append("UPDATE")
+    if created:
+        logger.info("マイグレーション: race_results rank ガードトリガーを追加しました (%s)", ", ".join(created))
+
+
+def _migrate_purge_binary_horse_names(conn: sqlite3.Connection) -> None:
+    """horse_name にバイナリ/制御文字を含む race_results 行を削除する。
+
+    JV-Link の HR（払戻）レコードを SE（馬毎レース）として誤認識した結果、
+    SJIS デコード失敗により horse_name に NUL (\x00) や DEL (\x7f) などの
+    制御文字が混入したレコードを一掃する。
+
+    SQLite の LIKE/GLOB は NUL 文字を正しく扱えないため Python 側で判定する。
+    """
+    rows = conn.execute("SELECT id, horse_name FROM race_results").fetchall()
+    bad_ids: list[int] = []
+    for row_id, name in rows:
+        if name is None:
+            continue
+        try:
+            encoded = name.encode("utf-8")
+        except Exception:
+            bad_ids.append(row_id)
+            continue
+        if any(b < 0x20 or b == 0x7F for b in encoded):
+            bad_ids.append(row_id)
+
+    if not bad_ids:
+        return
+
+    logger.info("マイグレーション: バイナリゴミ馬名レコード削除対象 %d 件", len(bad_ids))
+    with conn:
+        # 1000件ずつ分割して DELETE（SQLite のパラメータ上限対策）
+        chunk = 999
+        for i in range(0, len(bad_ids), chunk):
+            placeholders = ",".join("?" * len(bad_ids[i : i + chunk]))
+            conn.execute(
+                f"DELETE FROM race_results WHERE id IN ({placeholders})",
+                bad_ids[i : i + chunk],
+            )
+    logger.info("マイグレーション: バイナリゴミ馬名レコード %d 件を削除しました", len(bad_ids))
 
 
 def insert_race(conn: sqlite3.Connection, race: "RaceInfo") -> None:  # type: ignore[name-defined]
@@ -1491,43 +1623,45 @@ def insert_entries(
     # entries.horse_id は netkeiba 形式（例: 2021103333）で、
     # horses テーブルの JRA-VAN 形式（例: 00000000AB）と一致しないため
     # FK 制約を一時的に無効化してバルク挿入する。
-    with conn:
-        conn.execute("PRAGMA foreign_keys = OFF")
-        for e in entries:
-            conn.execute(
-                """
-                INSERT INTO entries
-                    (race_id, horse_number, gate_number, horse_id, horse_name,
-                     sex_age, weight_carried, jockey, trainer,
-                     horse_weight, horse_weight_diff)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                ON CONFLICT(race_id, horse_number) DO UPDATE SET
-                    gate_number       = excluded.gate_number,
-                    horse_id          = COALESCE(excluded.horse_id, horse_id),
-                    horse_name        = excluded.horse_name,
-                    sex_age           = excluded.sex_age,
-                    weight_carried    = excluded.weight_carried,
-                    jockey            = excluded.jockey,
-                    trainer           = excluded.trainer,
-                    horse_weight      = excluded.horse_weight,
-                    horse_weight_diff = excluded.horse_weight_diff,
-                    scraped_at        = datetime('now', 'localtime')
-                """,
-                (
-                    race_id,
-                    e.horse_number,
-                    e.gate_number,
-                    e.horse_id,
-                    e.horse_name,
-                    e.sex_age,
-                    e.weight_carried,
-                    e.jockey,
-                    e.trainer,
-                    e.horse_weight,
-                    e.horse_weight_diff,
-                ),
-            )
-            count += 1
+    conn.execute("PRAGMA foreign_keys = OFF")
+    try:
+        with conn:
+            for e in entries:
+                conn.execute(
+                    """
+                    INSERT INTO entries
+                        (race_id, horse_number, gate_number, horse_id, horse_name,
+                         sex_age, weight_carried, jockey, trainer,
+                         horse_weight, horse_weight_diff)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    ON CONFLICT(race_id, horse_number) DO UPDATE SET
+                        gate_number       = excluded.gate_number,
+                        horse_id          = COALESCE(excluded.horse_id, horse_id),
+                        horse_name        = excluded.horse_name,
+                        sex_age           = excluded.sex_age,
+                        weight_carried    = excluded.weight_carried,
+                        jockey            = excluded.jockey,
+                        trainer           = excluded.trainer,
+                        horse_weight      = excluded.horse_weight,
+                        horse_weight_diff = excluded.horse_weight_diff,
+                        scraped_at        = datetime('now', 'localtime')
+                    """,
+                    (
+                        race_id,
+                        e.horse_number,
+                        e.gate_number,
+                        e.horse_id,
+                        e.horse_name,
+                        e.sex_age,
+                        e.weight_carried,
+                        e.jockey,
+                        e.trainer,
+                        e.horse_weight,
+                        e.horse_weight_diff,
+                    ),
+                )
+                count += 1
+    finally:
         conn.execute("PRAGMA foreign_keys = ON")
 
     logger.info("出馬表保存: race_id=%s, %d 頭", race_id, count)

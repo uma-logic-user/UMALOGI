@@ -184,8 +184,12 @@ def _run_prerace(race_id: str, dry_run: bool) -> int:
     if dry_run:
         logger.info("[DRY-RUN] 実行コマンド: %s", " ".join(cmd))
         return 0
-    result = subprocess.run(cmd, cwd=str(_ROOT))
-    return result.returncode
+    try:
+        result = subprocess.run(cmd, cwd=str(_ROOT), timeout=300)
+        return result.returncode
+    except subprocess.TimeoutExpired:
+        logger.error("prerace パイプラインがタイムアウトしました (300s): %s", race_id)
+        return -1
 
 
 def _run_fetch_result(race_id: str, dry_run: bool) -> int:
@@ -195,8 +199,12 @@ def _run_fetch_result(race_id: str, dry_run: bool) -> int:
     if dry_run:
         logger.info("[DRY-RUN] 実行コマンド: %s", " ".join(cmd))
         return 0
-    result = subprocess.run(cmd, cwd=str(_ROOT))
-    return result.returncode
+    try:
+        result = subprocess.run(cmd, cwd=str(_ROOT), timeout=300)
+        return result.returncode
+    except subprocess.TimeoutExpired:
+        logger.error("結果速報取得がタイムアウトしました (300s): %s", race_id)
+        return -1
 
 
 def _run_jvlink_sync(dry_run: bool) -> None:

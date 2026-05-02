@@ -13,11 +13,13 @@ FeatureBuilder は SQLite DB から出馬表・過去成績・オッズを読み
 from __future__ import annotations
 
 import logging
+import pickle
 import re
 import sqlite3
 from collections import defaultdict
 from datetime import datetime, timedelta
 from functools import lru_cache
+from pathlib import Path
 from typing import TYPE_CHECKING
 
 import pandas as pd
@@ -26,6 +28,12 @@ if TYPE_CHECKING:
     pass
 
 logger = logging.getLogger(__name__)
+
+# 学習時に保存した sire_map を推論時に自動ロードするためのパス
+_SIRE_MAP_PKL = (
+    Path(__file__).resolve().parent.parent.parent
+    / "data" / "models" / "cascade" / "label_encoders.pkl"
+)
 
 # 距離バンドの境界（m）
 _DISTANCE_BANDS = [
@@ -75,12 +83,26 @@ class FeatureBuilder:
 
     def __init__(self, conn: sqlite3.Connection) -> None:
         self._conn = conn
-        self._sire_map: dict[str, int] = {}
+        # 学習済み sire_map を復元して推論時のエンコーディング一貫性を保証する。
+        # pkl が存在しない場合（初回学習前）は空 dict で始め、動的に割り当てる。
+        self._sire_map: dict[str, int] = self._load_sire_map()
         # 騎手・調教師は jockeys/trainers マスタから固定コードマップを生成する。
         # マスタが空（未投入）の場合は空 dict → fallback=0 で全馬同一値になる。
         # セッション間でコードが変わらないため、学習・推論の一貫性が保たれる。
         self._jockey_code_map: dict[str, int] = self._load_jockey_codes()
         self._trainer_code_map: dict[str, int] = self._load_trainer_codes()
+
+    @staticmethod
+    def _load_sire_map() -> dict[str, int]:
+        """label_encoders.pkl から sire_map を読み込む。ファイルがなければ空 dict。"""
+        try:
+            if _SIRE_MAP_PKL.exists():
+                with open(_SIRE_MAP_PKL, "rb") as f:
+                    data = pickle.load(f)
+                return data.get("sire_map", {}) if isinstance(data, dict) else {}
+        except Exception as e:
+            logger.warning("label_encoders.pkl の読み込みに失敗しました: %s", e)
+        return {}
 
     # ── パブリック API ──────────────────────────────────────────
 
@@ -148,18 +170,23 @@ class FeatureBuilder:
             logger.warning("race_results が 0 件: race_id=%s", race_id)
             return pd.DataFrame()
 
+        # バルク取得: 1レースあたり N×6クエリ → 7クエリに圧縮
+        horse_ids = [r[0] for r in rows]
+        stats_bulk    = self._get_horse_stats_bulk(horse_ids, surface, distance, exclude_race_id=race_id)
+        training_bulk = self._get_training_stats_bulk(horse_ids, race_date)
+        sire_bulk     = self._get_sire_bulk(horse_ids)
+
         records = []
         for sim_num, (horse_id, horse_name, sex_age,
                        weight_carried, jockey, horse_weight,
                        win_odds, popularity,
                        gate_number, horse_weight_diff,
                        jockey_key, trainer_key) in enumerate(rows, start=1):
-            # リーク防止: 統計からシミュレーション対象レース自身を除外
-            stats = self._get_horse_stats(
-                horse_id, surface, distance, exclude_race_id=race_id
-            )
-            # 調教特徴量: レース当日より前の最新調教データを参照（リーク排除済み）
-            training = self._get_training_stats(horse_id, race_date)
+            stats    = stats_bulk.get(horse_id, {"win_rate_all": None, "win_rate_surface": None,
+                                                  "win_rate_distance_band": None, "recent_rank_mean": None})
+            training = training_bulk.get(horse_id, {"tc_4f": None, "tc_lap": None, "tc_accel_flag": None,
+                                                      "tc_4f_diff": None, "hc_4f": None, "hc_lap": None,
+                                                      "hc_accel_flag": None, "hc_4f_diff": None})
 
             # オッズ→市場確率変換（アンチパターン: 生オッズ直接使用禁止）
             raw_odds = float(win_odds) if win_odds else None
@@ -180,7 +207,7 @@ class FeatureBuilder:
                 "surface_code":           _SURFACE_CODE.get(surface, -1),
                 "sex_code":               _SEX_CODE.get(_parse_sex(sex_age or ""), -1),
                 "venue_encoded":          _VENUE_CODE.get(venue, len(_VENUE_CODE)),
-                "sire_encoded":           self._encode_sire(self._get_sire(horse_id)),
+                "sire_encoded":           self._encode_sire(sire_bulk.get(horse_id)),
                 "distance":               distance,
                 "dist_band":              dist_band,
                 # ── 追加特徴量 ────────────────────────────────────
@@ -275,13 +302,22 @@ class FeatureBuilder:
         # 最新オッズを馬番で引く
         odds_map = self._latest_odds_map(race_id)
 
+        # バルク取得: 1レースあたり N×6クエリ → 7クエリに圧縮
+        horse_ids     = [r[1] for r in entries]   # index 1 = horse_id
+        stats_bulk    = self._get_horse_stats_bulk(horse_ids, surface or "", distance or 0)
+        training_bulk = self._get_training_stats_bulk(horse_ids, race_date or "")
+        sire_bulk     = self._get_sire_bulk(horse_ids)
+
         records = []
         for (horse_number, horse_id, horse_name, sex_age,
              weight_carried, horse_weight, gate_number,
              horse_weight_diff, jockey, trainer) in entries:
 
-            stats = self._get_horse_stats(horse_id, surface or "", distance or 0)
-            training = self._get_training_stats(horse_id, race_date or "")
+            stats    = stats_bulk.get(horse_id, {"win_rate_all": None, "win_rate_surface": None,
+                                                  "win_rate_distance_band": None, "recent_rank_mean": None})
+            training = training_bulk.get(horse_id, {"tc_4f": None, "tc_lap": None, "tc_accel_flag": None,
+                                                      "tc_4f_diff": None, "hc_4f": None, "hc_lap": None,
+                                                      "hc_accel_flag": None, "hc_4f_diff": None})
             odds = odds_map.get(horse_number, {})
 
             jockey_key  = jockey  or ""
@@ -306,7 +342,7 @@ class FeatureBuilder:
                 "surface_code":   _SURFACE_CODE.get(surface or "", -1),
                 "sex_code":       _SEX_CODE.get(_parse_sex(sex_age or ""), -1),
                 "venue_encoded":  _VENUE_CODE.get(venue or "", len(_VENUE_CODE)),
-                "sire_encoded":   self._encode_sire(self._get_sire(horse_id)),
+                "sire_encoded":   self._encode_sire(sire_bulk.get(horse_id)),
                 # レース情報
                 "distance":         distance or 0,
                 "dist_band":        dist_band,
@@ -725,6 +761,219 @@ class FeatureBuilder:
             "SELECT sire FROM horses WHERE horse_id = ?", (horse_id,)
         ).fetchone()
         return row[0] if row else None
+
+    def _get_sire_bulk(self, horse_ids: list[str | None]) -> dict[str | None, str | None]:
+        """複数馬の父名を1クエリで一括取得する。"""
+        valid = [h for h in horse_ids if h]
+        if not valid:
+            return {h: None for h in horse_ids}
+        ph = ", ".join("?" * len(valid))
+        rows = self._conn.execute(
+            f"SELECT horse_id, sire FROM horses WHERE horse_id IN ({ph})", valid
+        ).fetchall()
+        sire_db = {r[0]: r[1] for r in rows}
+        return {h: (sire_db.get(h) if h else None) for h in horse_ids}
+
+    def _get_horse_stats_bulk(
+        self,
+        horse_ids: list[str | None],
+        surface: str,
+        distance: int,
+        *,
+        exclude_race_id: str | None = None,
+    ) -> dict[str | None, dict[str, float | None]]:
+        """
+        複数馬の過去成績指標を4クエリで一括取得する（_get_horse_stats の N+1 解消版）。
+
+        バックテスト・シミュレーション時は exclude_race_id を指定して対象レース自身の
+        着順がリークしないよう除外する。
+        """
+        _null: dict[str, float | None] = {
+            "win_rate_all": None,
+            "win_rate_surface": None,
+            "win_rate_distance_band": None,
+            "recent_rank_mean": None,
+        }
+        valid = [h for h in horse_ids if h]
+        if not valid:
+            return {h: dict(_null) for h in horse_ids}
+
+        ph   = ", ".join("?" * len(valid))
+        excl = "AND rr.race_id != ?" if exclude_race_id else ""
+        ep   = [exclude_race_id] if exclude_race_id else []
+
+        dist_band = _distance_band(distance)
+        lo, hi = next((l, hh) for l, hh, lab in _DISTANCE_BANDS if lab == dist_band)
+
+        # ── 全成績 ──────────────────────────────────────────────
+        all_rows = self._conn.execute(
+            f"""
+            SELECT rr.horse_id,
+                   COUNT(*) AS total,
+                   SUM(CASE WHEN rr.rank = 1 THEN 1 ELSE 0 END) AS wins
+            FROM race_results rr
+            WHERE rr.horse_id IN ({ph}) AND rr.rank IS NOT NULL {excl}
+            GROUP BY rr.horse_id
+            """,
+            [*valid, *ep],
+        ).fetchall()
+        all_map = {r[0]: (r[1], r[2]) for r in all_rows}
+
+        # ── 馬場別成績 ──────────────────────────────────────────
+        sf_rows = self._conn.execute(
+            f"""
+            SELECT rr.horse_id,
+                   COUNT(*) AS total,
+                   SUM(CASE WHEN rr.rank = 1 THEN 1 ELSE 0 END) AS wins
+            FROM race_results rr
+            JOIN races r ON rr.race_id = r.race_id
+            WHERE rr.horse_id IN ({ph}) AND r.surface = ? AND rr.rank IS NOT NULL {excl}
+            GROUP BY rr.horse_id
+            """,
+            [*valid, surface, *ep],
+        ).fetchall()
+        sf_map = {r[0]: (r[1], r[2]) for r in sf_rows}
+
+        # ── 距離帯別成績 ────────────────────────────────────────
+        db_rows = self._conn.execute(
+            f"""
+            SELECT rr.horse_id,
+                   COUNT(*) AS total,
+                   SUM(CASE WHEN rr.rank = 1 THEN 1 ELSE 0 END) AS wins
+            FROM race_results rr
+            JOIN races r ON rr.race_id = r.race_id
+            WHERE rr.horse_id IN ({ph})
+              AND r.distance >= ? AND r.distance < ?
+              AND rr.rank IS NOT NULL {excl}
+            GROUP BY rr.horse_id
+            """,
+            [*valid, lo, hi, *ep],
+        ).fetchall()
+        db_map = {r[0]: (r[1], r[2]) for r in db_rows}
+
+        # ── 直近5走平均着順（ウィンドウ関数で最新5行を馬単位で取得） ──
+        recent_rows = self._conn.execute(
+            f"""
+            SELECT horse_id, rank FROM (
+                SELECT rr.horse_id, rr.rank,
+                       ROW_NUMBER() OVER (
+                           PARTITION BY rr.horse_id ORDER BY r.date DESC, rr.race_id DESC
+                       ) AS rn
+                FROM race_results rr
+                JOIN races r ON rr.race_id = r.race_id
+                WHERE rr.horse_id IN ({ph}) AND rr.rank IS NOT NULL {excl}
+            ) WHERE rn <= 5
+            """,
+            [*valid, *ep],
+        ).fetchall()
+        recent_map: dict[str, list[int]] = {}
+        for horse_id, rank in recent_rows:
+            recent_map.setdefault(horse_id, []).append(rank)
+
+        result: dict[str | None, dict[str, float | None]] = {}
+        for h in horse_ids:
+            if not h:
+                result[h] = dict(_null)
+                continue
+            at, aw = all_map.get(h, (0, 0))
+            st, sw = sf_map.get(h, (0, 0))
+            dt, dw = db_map.get(h, (0, 0))
+            rec    = recent_map.get(h, [])
+            result[h] = {
+                "win_rate_all":           (aw / at) if at else None,
+                "win_rate_surface":       (sw / st) if st else None,
+                "win_rate_distance_band": (dw / dt) if dt else None,
+                "recent_rank_mean":       (sum(rec) / len(rec)) if rec else None,
+            }
+        return result
+
+    def _get_training_stats_bulk(
+        self,
+        horse_ids: list[str | None],
+        race_date: str,
+    ) -> dict[str | None, dict[str, float | None]]:
+        """
+        複数馬の調教特徴量を2クエリで一括取得する（_get_training_stats の N+1 解消版）。
+
+        ウィンドウ関数で馬別に直近2回分の調教記録を取得し、加速ラップ・タイム差を計算する。
+        """
+        _null: dict[str, float | None] = {
+            "tc_4f": None, "tc_lap": None, "tc_accel_flag": None, "tc_4f_diff": None,
+            "hc_4f": None, "hc_lap": None, "hc_accel_flag": None, "hc_4f_diff": None,
+        }
+        result: dict[str | None, dict[str, float | None]] = {h: dict(_null) for h in horse_ids}
+
+        # 10桁数値 horse_id のみ対象（training_times の JOIN キー変換が可能なもの）
+        valid: dict[str, str] = {
+            h: h[:4] + h[4:9]
+            for h in horse_ids
+            if h and len(h) == 10 and h.isdigit()
+        }
+        if not valid:
+            return result
+
+        tc_keys = list(valid.values())
+        ph = ", ".join("?" * len(tc_keys))
+
+        def _fetch_recs(table: str) -> dict[str, list[tuple[float, float | None]]]:
+            rows = self._conn.execute(
+                f"""
+                SELECT tc_key, time_4f, lap_time FROM (
+                    SELECT substr(horse_id,2,9) AS tc_key,
+                           time_4f, lap_time,
+                           ROW_NUMBER() OVER (
+                               PARTITION BY substr(horse_id,2,9)
+                               ORDER BY training_date DESC
+                           ) AS rn
+                    FROM {table}
+                    WHERE substr(horse_id,2,9) IN ({ph})
+                      AND training_date < ?
+                      AND training_date != ''
+                      AND time_4f IS NOT NULL
+                ) WHERE rn <= 2
+                """,
+                [*tc_keys, race_date],
+            ).fetchall()
+            rec_map: dict[str, list[tuple[float, float | None]]] = {}
+            for tc_key, t4f, lap in rows:
+                rec_map.setdefault(tc_key, []).append((t4f, lap))
+            return rec_map
+
+        tc_map = _fetch_recs("training_times")
+        hc_map = _fetch_recs("training_hillwork")
+
+        # horse_id → tc_key の逆引き
+        key_to_horses: dict[str, list[str]] = {}
+        for horse_id, tc_key in valid.items():
+            key_to_horses.setdefault(tc_key, []).append(horse_id)
+
+        for tc_key, horse_list in key_to_horses.items():
+            tc_recs = tc_map.get(tc_key, [])
+            hc_recs = hc_map.get(tc_key, [])
+            stats: dict[str, float | None] = dict(_null)
+
+            if tc_recs:
+                tc_4f, tc_lap = tc_recs[0]
+                stats["tc_4f"] = tc_4f
+                stats["tc_lap"] = tc_lap
+                if tc_4f and tc_lap:
+                    stats["tc_accel_flag"] = float(tc_lap < tc_4f / 4.0)
+                if len(tc_recs) >= 2 and tc_recs[1][0] is not None:
+                    stats["tc_4f_diff"] = tc_4f - tc_recs[1][0]
+
+            if hc_recs:
+                hc_4f, hc_lap = hc_recs[0]
+                stats["hc_4f"] = hc_4f
+                stats["hc_lap"] = hc_lap
+                if hc_4f and hc_lap:
+                    stats["hc_accel_flag"] = float(hc_lap < hc_4f / 4.0)
+                if len(hc_recs) >= 2 and hc_recs[1][0] is not None:
+                    stats["hc_4f_diff"] = hc_4f - hc_recs[1][0]
+
+            for horse_id in horse_list:
+                result[horse_id] = stats
+
+        return result
 
     def _encode_sire(self, sire: str | None) -> int:
         """

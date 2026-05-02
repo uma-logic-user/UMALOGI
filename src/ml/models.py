@@ -29,6 +29,9 @@ from sklearn.preprocessing import LabelEncoder
 
 logger = logging.getLogger(__name__)
 
+# プロセス内モデルキャッシュ（pkl を1回だけ読む）
+_MODEL_CACHE: dict[str, "tuple[HonmeiModel, ManjiModel]"] = {}
+
 # ── 特徴量列定義 ───────────────────────────────────────────────────
 # features.py の build_race_features_for_simulate() と一致させること
 FEATURE_COLS: list[str] = [
@@ -660,14 +663,23 @@ def train_all(
     if manji.is_trained:
         manji.save()
 
+    # pkl 更新後はキャッシュを無効化して次回呼び出し時に再ロードさせる
+    clear_model_cache()
+
     return {"honmei": h_result, "manji": m_result}
 
 
 def load_models() -> tuple[HonmeiModel, ManjiModel]:
     """
-    保存済みモデルを読み込んで返す。
-    存在しない場合は未訓練の新規インスタンスを返す（フォールバック動作）。
+    保存済みモデルを読み込んで返す（プロセス内でキャッシュ）。
+    同一プロセスで2回目以降の呼び出しはディスク読み込みをスキップする。
+    再学習後は clear_model_cache() を呼んでキャッシュを無効化すること。
     """
+    cache_key = str(_MODEL_DIR)
+    if cache_key in _MODEL_CACHE:
+        logger.debug("モデルキャッシュヒット: %s", cache_key)
+        return _MODEL_CACHE[cache_key]
+
     honmei = HonmeiModel()
     manji  = ManjiModel()
 
@@ -681,4 +693,11 @@ def load_models() -> tuple[HonmeiModel, ManjiModel]:
     except FileNotFoundError:
         logger.info("卍モデルが見つかりません — フォールバックモードで動作します")
 
+    _MODEL_CACHE[cache_key] = (honmei, manji)
     return honmei, manji
+
+
+def clear_model_cache() -> None:
+    """モデルキャッシュをクリアする（再学習・pkl 更新後に呼ぶ）。"""
+    _MODEL_CACHE.clear()
+    logger.info("モデルキャッシュをクリアしました")
