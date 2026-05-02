@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getDb } from '@/lib/db'
 import { validateResponse } from '@/lib/validateResponse'
 
+export const dynamic = 'force-dynamic'
+
 function sanitize(v: unknown): unknown {
   return typeof v === 'string' ? v.replace(/[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\x9f]/g, '').trim() : v
 }

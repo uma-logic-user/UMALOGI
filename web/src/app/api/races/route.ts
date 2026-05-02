@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getDb } from '@/lib/db'
 import { validateResponse } from '@/lib/validateResponse'
 
+export const dynamic = 'force-dynamic'
+
 const BET_ORDER: Record<string, number> = {
   '単勝': 1, '複勝': 2, '枠連': 3, '馬連': 4,
   'ワイド': 5, '馬単': 6, '三連複': 7, '三連単': 8,
