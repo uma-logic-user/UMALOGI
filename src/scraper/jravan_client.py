@@ -48,6 +48,7 @@ from __future__ import annotations
 
 import argparse
 import logging
+import re
 import sqlite3
 import sys
 from pathlib import Path
@@ -139,36 +140,42 @@ _COAT_CODES = {
     "09": "栃栗毛", "10": "パロミノ", "11": "クリーム毛", "00": "",
 }
 
-# 払戻レコード種別 → (馬券種名, 最大組合せ数, 組合せバイト長)
-# combo_bytes: 単・複=2, 2頭組み合わせ=4, 3頭組み合わせ=6
+# 払戻レコード種別 → (馬券種名, 最大組合せ数, 組合せバイト長, 人気バイト長, 1数字あたりバイト数)
+# JV-Data 4.5.2 公式仕様に基づく値:
+#   combo_bytes: 単/複=2(馬番2桁), 枠連=2(枠番1桁×2), 馬連/ワイド/馬単=4(馬番2桁×2),
+#                三連複/三連単=6(馬番2桁×3)
+#   pop_bytes:   通常=2桁, 三連複/三連単=3桁 (最大999通り)
+#   chunk_size:  馬番=2(ASCII 2桁 "01"-"18"), 枠番=1(ASCII 1桁 "1"-"8")
 #
-# HR : 払戻金（RACEデータスペックのメイン払戻レコード）
-#       全馬券種の払戻を1レコードに順番に収録。offset 29 から以下の順に並ぶ:
+# HR : 全馬券種の払戻を1レコードに順番に収録。offset 27 から以下の順に並ぶ:
 #       単勝(3)→複勝(5)→枠連(3)→馬連(3)→ワイド(7)→馬単(6)→三連複(3)→三連単(6)
-# WH/WF/… : 個別払戻レコード（旧仕様または別データスペック）
-_PAYOUT_SPECS: dict[str, list[tuple[str, int, int]]] = {
+#
+# 【2025/04/28 確定】枠連 combo_bytes=2 が正しい。JV-Data 4.5.2公式: 枠番1桁×2=2bytes。
+#   combo_bytes=4 にすると枠連以降のオフセットが+6ずれ、馬連以降の組合せが
+#   "3-91-11" "21-21-50" などの異常値になることをDBデータで確認。
+_PAYOUT_SPECS: dict[str, list[tuple[str, int, int, int, int]]] = {
     "HR": [
-        ("単勝",   3, 2),
-        ("複勝",   5, 2),
-        ("枠連",   3, 4),
-        ("馬連",   3, 4),
-        ("ワイド", 7, 4),
-        ("馬単",   6, 4),
-        ("三連複", 3, 6),
-        ("三連単", 6, 6),
+        ("単勝",   3, 2, 2, 2),  # combo=2(馬番2桁×1), pop=2, chunk=2
+        ("複勝",   5, 2, 2, 2),
+        ("枠連",   3, 2, 2, 1),  # combo=2(枠番1桁×2), pop=2, chunk=1 [JV-Data 4.5.2 公式]
+        ("馬連",   3, 4, 2, 2),  # combo=4(馬番2桁×2), pop=2, chunk=2
+        ("ワイド", 7, 4, 2, 2),
+        ("馬単",   6, 4, 2, 2),
+        ("三連複", 3, 6, 3, 2),  # pop=3桁 (最大999通り) [JV-Data 4.5.2 公式仕様]
+        ("三連単", 6, 6, 3, 2),  # pop=3桁 [JV-Data 4.5.2 公式仕様]
     ],
-    "WH": [("単勝", 3, 2), ("複勝", 5, 2)],
-    "WF": [("枠連", 3, 4)],
-    "WE": [("ワイド", 7, 4)],
-    "WQ": [("馬連", 3, 4)],
-    "WM": [("馬単", 6, 4)],
-    "WT": [("三連複", 3, 6)],
-    "WS": [("三連単", 6, 6)],
+    "WH": [("単勝", 3, 2, 2, 2), ("複勝", 5, 2, 2, 2)],
+    "WF": [("枠連", 3, 2, 2, 1)],
+    "WE": [("ワイド", 7, 4, 2, 2)],
+    "WQ": [("馬連", 3, 4, 2, 2)],
+    "WM": [("馬単", 6, 4, 2, 2)],
+    "WT": [("三連複", 3, 6, 3, 2)],
+    "WS": [("三連単", 6, 6, 3, 2)],
 }
 
 # 1エントリあたりの払戻金バイト数
-_PAYOUT_AMOUNT_BYTES  = 8  # "00001500" = ¥1500
-_PAYOUT_POP_BYTES     = 2  # 人気 2桁
+# JV-Data実測確定: 払戻金額は5桁ASCII (例: "16000" = ¥16,000)
+_PAYOUT_AMOUNT_BYTES  = 5  # "16000" = ¥16,000 [実データ hexdump 2025/04/28 確定]
 
 # ────────────────────────────────────────────────────────────────────────────
 # バイトスライス定義 (JV-Data 仕様書 Ver.4.5.2)
@@ -202,20 +209,20 @@ _SE_WAKU_BAN   = slice(27, 28)   # 枠番 "1"-"8"               [確定]
 _SE_UMA_BAN    = slice(28, 30)   # 馬番 "01"-"18"              [確定]
 _SE_HORSE_ID   = slice(30, 40)   # 血統登録番号 10桁           [確定]
 _SE_HORSE_NM   = slice(40, 76)   # 馬名(漢字) 36バイト SJIS   [確定]
-_SE_SEX        = slice(76, 77)   # 性別 1=牡,2=牝,3=騸        [確定]
-_SE_AGE        = slice(77, 79)   # 馬齢 "03"-"16"              [確定]
-_SE_JOCKEY_CD  = slice(79, 84)   # 騎手コード 5桁              [確定]
-_SE_JOCKEY_NM  = slice(84, 104)  # 騎手名 20バイト SJIS        [確定]
-_SE_LOAD       = slice(105, 108) # 斤量 ×10 "580"=58.0kg      [推定]
-_SE_TRAINER_CD = slice(108, 113) # 調教師コード 5桁             [推定]
-_SE_TRAINER_NM = slice(113, 133) # 調教師名 20バイト SJIS       [推定]
-_SE_RANK       = slice(211, 213) # 着順 "01"-"18" (0=除外/取消) [推定]
-_SE_WIN_ODDS   = slice(213, 218) # 単勝オッズ ×10 "01500"=1.5倍 [推定]
-_SE_POPULARITY = slice(218, 220) # 人気 "01"-"18"               [推定]
-_SE_FINISH_T   = slice(220, 224) # タイム ×10秒 "0915"=91.5秒   [推定]
-_SE_MARGIN     = slice(224, 229) # 着差 SJIS                    [推定]
-_SE_HORSE_WT   = slice(229, 232) # 馬体重 "480"                 [推定]
-_SE_HORSE_DIFF = slice(232, 235) # 増減 "+4 " or "-12"          [推定]
+_SE_SEX        = slice(78, 79)   # 性別 1=牡,2=牝,3=騸        [実測確定]
+_SE_AGE        = slice(80, 82)   # 馬齢 "03"-"16"              [実測確定]
+_SE_JOCKEY_CD  = slice(84, 90)   # 騎手コード 6桁              [実測確定]
+_SE_JOCKEY_NM  = slice(90, 98)   # 騎手名 8バイト SJIS (4文字) [実測確定]
+_SE_TRAINER_CD = slice(98, 104)  # 調教師コード 6桁             [実測確定]
+_SE_TRAINER_NM = slice(104, 124) # 調教師名 20バイト SJIS       [実測確定]
+_SE_LOAD       = slice(82, 84)   # 斤量 kg-50形式 "05"→55kg    [実測確定: int(val)+50]
+_SE_RANK       = slice(202, 204) # 着順 "01"-"18" (0=除外/取消) [推定: 旧211-9ずれ補正]
+_SE_WIN_ODDS   = slice(204, 209) # 単勝オッズ ×10 "01500"=1.5倍 [推定]
+_SE_POPULARITY = slice(209, 211) # 人気 "01"-"18"               [推定]
+_SE_FINISH_T   = slice(211, 215) # タイム ×10秒 "0915"=91.5秒   [推定]
+_SE_MARGIN     = slice(215, 220) # 着差 SJIS                    [推定]
+_SE_HORSE_WT   = slice(220, 223) # 馬体重 "480"                 [推定]
+_SE_HORSE_DIFF = slice(223, 226) # 増減 "+4 " or "-12"          [推定]
 
 # ── WC: 調教タイム（WOOD dataspec の実レコードタイプは WC） ──────
 # 実データから確認済みのオフセット（103バイト + CRLF）
@@ -346,12 +353,12 @@ _CH_STABLE_NM   = slice(69, 109)  # 厩舎名 SJIS 40バイト
 def _to_bytes(com_str: str) -> bytes:
     """
     win32com が返す COM 文字列をバイト列に変換する。
-    JV-Link は Shift-JIS データを COM BSTR として返すため、
-    各文字が 1バイト値に対応する。
+    JV-Link は Shift-JIS データを COM BSTR として返す。
 
-    win32com は Shift-JIS バイト列を Unicode として渡してくる。
-    U+00FF 以下はそのまま latin-1 で戻せるが、
-    U+0100 以上（日本語文字など）が混在する場合は cp932 でエンコードする。
+    パターン1: BSTRが生SJISバイト列を保持 (各バイトをU+0000-U+00FF として格納)
+               → encode('latin-1') でそのまま復元可能
+    パターン2: JV-Linkが正規Unicodeを返す (U+3000以上の日本語文字)
+               → encode('cp932') でSJIS変換可能
     """
     if not isinstance(com_str, str):
         return b''
@@ -365,17 +372,16 @@ def _to_bytes(com_str: str) -> bytes:
 
 
 def _str(raw: bytes, sl: slice, encoding: str = 'ascii') -> str:
-    """指定スライスをデコードして空白トリムして返す。"""
+    """指定スライスをデコードして空白トリムして返す。制御文字は全除去。"""
     try:
-        # 🔻ここを書き換えます🔻
-        # 修正前: return raw[sl].decode(encoding, errors='replace').strip()
-        return raw[sl].decode(encoding, errors='replace').replace('\x00', '').strip()
+        from src.utils.text import sanitize_str
+        return sanitize_str(raw[sl].decode(encoding, errors='replace'))
     except Exception:
         return ''
 
 
 def _sjis(raw: bytes, sl: slice) -> str:
-    """Shift-JIS (cp932) フィールド用デコード。"""
+    """Shift-JIS (cp932) フィールド用デコード。制御文字は全除去。"""
     return _str(raw, sl, 'cp932')
 
 
@@ -461,14 +467,16 @@ def _kaisai_date_to_db(raw: bytes) -> str:
     return f"{d[:4]}-{d[4:6]}-{d[6:8]}" if len(d) == 8 else ''
 
 
-def _format_combo(raw_combo: bytes, combo_bytes: int) -> str:
+def _format_combo(raw_combo: bytes, combo_bytes: int, chunk_size: int = 2) -> str:
     """
     組み合わせバイト列 → "3-7" / "1-3-7" 形式。
-    2バイトごとに 1頭の番号として解釈する。
+
+    chunk_size=2: 馬番 "01"-"18" (2桁ASCII × n頭)
+    chunk_size=1: 枠番 "1"-"8"  (1桁ASCII × 2枠, 枠連専用)
     """
     nums = []
-    for i in range(0, combo_bytes, 2):
-        chunk = raw_combo[i:i+2]
+    for i in range(0, combo_bytes, chunk_size):
+        chunk = raw_combo[i:i+chunk_size]
         try:
             n = int(chunk.decode('ascii', errors='replace').strip())
             if n > 0:
@@ -706,17 +714,30 @@ def parse_record(raw: bytes, debug: bool = False) -> Optional[dict]:
     """
     レコード種別を判定して適切なパーサーに振り分ける。
 
+    data_cat フィルタリング:
+      '1' = 確定データ → 通常処理
+      '2' = 速報/暫定データ → 払戻レコード(HR/WH等)はスキップ。
+            速報払戻には 16,000 等のプレースホルダー値が格納されており
+            DB を汚染する。RA/SE は速報でも出走・着順情報として使用可。
+      '3' = 削除レコード → RA/SE/払戻をスキップ
+
     Returns:
-        パース結果 dict。不明種別・パース失敗は None。
+        パース結果 dict。不明種別・パース失敗・フィルタ済みは None。
         dict の "_record_type" キーで種別を判定できる。
     """
-    if len(raw) < 2:
+    if len(raw) < 3:
         return None
 
     rec_type = raw[:2].decode('ascii', errors='replace')
+    data_cat = chr(raw[2])
 
     if debug:
-        dump_record(raw[:80], f"[{rec_type}]")
+        dump_record(raw[:80], f"[{rec_type}] cat={data_cat}")
+
+    # cat='3' = 削除レコード → RA/SE/払戻はスキップ
+    if data_cat == '3' and rec_type in (*_PAYOUT_SPECS, 'RA', 'SE'):
+        logger.debug("削除レコードスキップ: %s cat=%s", rec_type, data_cat)
+        return None
 
     if rec_type == 'RA':
         return _parse_ra(raw)
@@ -725,6 +746,12 @@ def parse_record(raw: bytes, debug: bool = False) -> Optional[dict]:
     if rec_type == 'JG':
         return _parse_jg(raw)
     if rec_type in _PAYOUT_SPECS:
+        # 払戻は cat='1'(確定) のみ受け入れる。
+        # cat='2' 速報払戻は JRA が仮置きした 16,000 等のプレースホルダーで
+        # DB を汚染するため必ずスキップする。
+        if data_cat != '1':
+            logger.debug("速報払戻スキップ (cat=%s): %s", data_cat, rec_type)
+            return None
         return _parse_payout(raw, rec_type)
     if rec_type == 'WC':
         return _parse_wc(raw)
@@ -760,7 +787,9 @@ def _parse_ra(raw: bytes) -> Optional[dict]:
     if not race_id or race_id == '000000000000':
         return None
 
-    race_name  = _sjis(raw, _RA_RACE_NAME)
+    # 先頭5文字は賞金等級コード（"10000" 等）なので除去し、末尾の全角スペース・置換文字を除去
+    _rn_raw = _sjis(raw, _RA_RACE_NAME)
+    race_name = re.sub(r"^\d{5}", "", _rn_raw).replace("�", "").strip("　 　").strip()
     kaisai_dt  = _kaisai_date_to_db(raw)
     jyo_code   = _str(raw, _RK_JYO)
     venue      = _JYO_NAMES.get(jyo_code, jyo_code)
@@ -818,11 +847,13 @@ def _parse_se(raw: bytes) -> Optional[dict]:
     age_raw    = _str(raw, _SE_AGE)
     sex_age    = _SEX_CODES.get(sex_raw, '') + age_raw.lstrip('0')
 
-    jockey_nm  = _sjis(raw, _SE_JOCKEY_NM)
-    trainer_nm = _sjis(raw, _SE_TRAINER_NM)
+    jockey_nm  = _sjis(raw, _SE_JOCKEY_NM).strip("　 ")
+    trainer_nm = _sjis(raw, _SE_TRAINER_NM).strip("　 ")
 
     load_raw   = _str(raw, _SE_LOAD)
-    weight_car = _safe_int_val(load_raw) / 10.0
+    load_int   = _safe_int_val(load_raw)
+    # 斤量はkg-50の2桁ASCII: "05"→55.0kg, "07"→57.0kg (実測確定)
+    weight_car = float(load_int + 50) if load_int > 0 else 0.0
 
     # 推定フィールド（実データで要検証）
     rank       = _int(raw, _SE_RANK) or None
@@ -941,7 +972,7 @@ def _parse_jg(raw: bytes) -> Optional[dict]:
 
 def _parse_payout(raw: bytes, rec_type: str) -> Optional[dict]:
     """
-    払戻レコード (WH/WF/WE/WQ/WM/WT/WS) をパースして
+    払戻レコード (HR/WH/WF/WE/WQ/WM/WT/WS) をパースして
     race_payouts テーブル用リストを含む dict を返す。
     """
     race_id = _make_race_id(raw)
@@ -949,8 +980,8 @@ def _parse_payout(raw: bytes, rec_type: str) -> Optional[dict]:
     payouts: list[dict] = []
 
     offset = 27   # レースキー直後からデータ開始 (type2+cat1+date8+kaisai8+JYO2+KAI2+NICHI2+RACE_NO2=27)
-    for bet_type, max_entries, combo_bytes in specs:
-        entry_len = combo_bytes + _PAYOUT_AMOUNT_BYTES + _PAYOUT_POP_BYTES
+    for bet_type, max_entries, combo_bytes, pop_bytes, chunk_size in specs:
+        entry_len = combo_bytes + _PAYOUT_AMOUNT_BYTES + pop_bytes
         for _ in range(max_entries):
             if offset + entry_len > len(raw):
                 break
@@ -958,7 +989,7 @@ def _parse_payout(raw: bytes, rec_type: str) -> Optional[dict]:
             amount_raw = raw[offset + combo_bytes : offset + combo_bytes + _PAYOUT_AMOUNT_BYTES]
             pop_raw    = raw[offset + combo_bytes + _PAYOUT_AMOUNT_BYTES : offset + entry_len]
 
-            combo  = _format_combo(combo_raw, combo_bytes)
+            combo  = _format_combo(combo_raw, combo_bytes, chunk_size)
             amount = _int(raw, slice(
                 offset + combo_bytes,
                 offset + combo_bytes + _PAYOUT_AMOUNT_BYTES
@@ -968,7 +999,7 @@ def _parse_payout(raw: bytes, rec_type: str) -> Optional[dict]:
                 offset + entry_len
             )) or None
 
-            if combo and amount > 0:
+            if combo and amount >= 100:  # ¥100未満は無効エントリ (JRA最小払戻=¥100)
                 payouts.append({
                     'bet_type':    bet_type,
                     'combination': combo,

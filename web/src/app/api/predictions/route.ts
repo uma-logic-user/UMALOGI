@@ -10,6 +10,24 @@ function rowToObj(row: Record<string, unknown>): Record<string, unknown> {
   return Object.fromEntries(Object.entries(row).map(([k, v]) => [k, sanitize(v)]))
 }
 
+function sortedCombinations(json: unknown): string {
+  if (!json || typeof json !== 'string') return '[]'
+  try {
+    const raw: number[][] = JSON.parse(json)
+    const sorted = raw
+      .map(c => [...c].sort((a, b) => a - b))
+      .sort((a, b) => {
+        for (let i = 0; i < Math.min(a.length, b.length); i++) {
+          if (a[i] !== b[i]) return a[i] - b[i]
+        }
+        return a.length - b.length
+      })
+    return JSON.stringify(sorted)
+  } catch {
+    return String(json)
+  }
+}
+
 // SQLite の VARIABLE_NUMBER 制限 (999) に収まるよう分割する
 function chunkArray<T>(arr: T[], size: number): T[][] {
   const out: T[][] = []
@@ -82,8 +100,12 @@ export async function GET(req: NextRequest) {
 
     const output = preds.map(rowToObj).map((pd) => {
       const dateStr = pd.date as string | null
+      if (!pd.race_name) {
+        pd.race_name = pd.race_number != null ? `第${pd.race_number}レース` : 'レース'
+      }
       return {
         ...pd,
+        combination_json: sortedCombinations(pd.combination_json),
         year:   dateStr ? dateStr.slice(0, 4) : null,
         horses: horsesByPred.get(pd.prediction_id as number) ?? [],
       }
