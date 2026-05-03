@@ -31,6 +31,7 @@ from src.ml.models import (
     FEATURE_COLS,
     HonmeiModel,
     ManjiModel,
+    PlaceModel,
     _MODEL_DIR,
 )
 
@@ -206,6 +207,40 @@ def _train_manji(
     return manji, result
 
 
+def _train_place(
+    conn,
+    model_dir: Path,
+    train_until: int | None = None,
+) -> tuple[PlaceModel, dict]:
+    """複勝モデルを学習・保存し、結果 dict を返す。"""
+    print(f"\n[3/3] 複勝モデル (PlaceModel) を学習中 ...")
+    t0 = time.perf_counter()
+
+    place  = PlaceModel()
+    result = place.train(conn, train_until=train_until)
+    elapsed = time.perf_counter() - t0
+
+    if result["n_races"] == 0:
+        print("  [!] 学習データが 0 件のためスキップしました。")
+        return place, result
+
+    cv_mean = result.get("cv_auc_mean", float("nan"))
+    until_str_p = str(result.get("train_until")) if result.get("train_until") is not None else "全期間"
+    _kv_table(
+        [
+            ("学習期間",       until_str_p + "年以前" if until_str_p != "全期間" else until_str_p),
+            ("学習レース数",   f"{result['n_races']:,}"),
+            ("学習サンプル数", f"{result['n_samples']:,}"),
+            ("CV AUC (mean)", f"{cv_mean:.4f}" if not math.isnan(cv_mean) else "N/A"),
+        ],
+        title="複勝モデル学習結果",
+    )
+
+    save_path = place.save(model_dir / "place_model.pkl")
+    print(f"\n  [OK] 保存完了: {save_path}  ({elapsed:.1f}s)")
+    return place, result
+
+
 # ════════════════════════════════════════════════════════════════
 #  エントリポイント
 # ════════════════════════════════════════════════════════════════
@@ -321,6 +356,14 @@ def main() -> int:
         _, m_result = _train_manji(conn, model_dir, train_until=args.train_until)
     except Exception as exc:
         logger.exception("卍モデルの学習中にエラーが発生しました: %s", exc)
+        conn.close()
+        return 1
+
+    # ── 複勝モデル ───────────────────────────────────────
+    try:
+        _, p_result = _train_place(conn, model_dir, train_until=args.train_until)
+    except Exception as exc:
+        logger.exception("複勝モデルの学習中にエラーが発生しました: %s", exc)
         conn.close()
         return 1
 

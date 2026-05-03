@@ -200,7 +200,7 @@ def _build_train_df(
     # rank corruption バグ（HR払戻レコードの誤挿入）や scraper 誤パースによる
     # 異常払戻（単勝500倍=50,000円超）を除外してManjiModel汚染を防ぐ。
     # ※ 払戻 NULL の馬（2着以下）は ev_target=0 として残すため除外しない。
-    _MAX_TANSHO_PAYOUT = 50_000   # 500倍上限（rank corruption 由来の異常払戻を除外）
+    _MAX_TANSHO_PAYOUT = 10_000   # 100倍上限（EV外れ値排除 — 旧: 500倍）
     before_filter = len(df)
     payout_ok = df["payout_tansho"].isna() | (df["payout_tansho"].astype(float) <= _MAX_TANSHO_PAYOUT)
     df = df[payout_ok].copy()
