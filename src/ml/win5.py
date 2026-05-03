@@ -182,11 +182,11 @@ class Win5Engine:
         race_id: str,
     ) -> list[Win5HorsePick]:
         """エントリ or レース結果から出走馬リストと確率を生成する。"""
-        # エントリから取得（レース前）。なければ race_results を使用（バックテスト用）
-        rows = conn.execute(
+        # realtime_odds → race_results の順でフォールバック
+        rows: list = conn.execute(
             """
             SELECT horse_name, horse_number, win_odds
-            FROM entries
+            FROM realtime_odds
             WHERE race_id = ? AND win_odds IS NOT NULL AND win_odds > 0
             ORDER BY horse_number
             """,

@@ -118,6 +118,7 @@ def _save_predictions(
     manji_bets: object,
     oracle_bets: object,
     suffix: str,
+    hit_focus_bets: object = None,
 ) -> dict[str, list[int]]:
     """本命・卍・Oracle 買い目と全馬スコアを DB に保存する。"""
     prediction_ids: dict[str, list[int]] = {"本命": [], "卍": []}
@@ -233,6 +234,40 @@ def _save_predictions(
         )
     except Exception as exc:
         logger.warning("全馬スコア保存失敗（続行）: %s", exc)
+
+    # HitFocus 買い目
+    if hit_focus_bets is not None:
+        hit_focus_suffix = f"HitFocus{suffix}"
+        for bet in hit_focus_bets.bets:  # type: ignore[attr-defined]
+            hf_payload: list[dict] = []
+            for j, horse_num in enumerate(bet.combinations[0] if bet.combinations else []):
+                hf_payload.append(
+                    {
+                        "horse_number": horse_num,
+                        "horse_name": bet.horse_names[j]
+                        if j < len(bet.horse_names)
+                        else str(horse_num),
+                        "predicted_rank": j + 1,
+                        "model_score": bet.model_score,
+                        "ev_score": bet.expected_value,
+                    }
+                )
+            combo_json_hf = _json.dumps([list(c) for c in bet.combinations])
+            try:
+                insert_prediction(
+                    conn,
+                    race_id=race_id,
+                    model_type=hit_focus_suffix,
+                    bet_type=bet.bet_type,
+                    horses=hf_payload,
+                    confidence=bet.confidence,
+                    expected_value=bet.expected_value,
+                    recommended_bet=bet.recommended_bet,
+                    notes=bet.notes,
+                    combination_json=combo_json_hf,
+                )
+            except Exception as exc:
+                logger.warning("HitFocus予想保存失敗 %s: %s", bet.bet_type, exc)
 
     return prediction_ids
 
@@ -370,6 +405,7 @@ def prerace_pipeline(race_id: str, provisional: bool = False) -> dict:
     honmei_bets = gen.generate_honmei(race_id, df, honmei_scores)
     manji_bets = gen.generate_manji(race_id, df, ev_scores)
     oracle_bets = gen.generate_oracle(race_id, df, honmei_scores)
+    hit_focus_bets = gen.generate_hit_focus(race_id, df, honmei_scores)
 
     # Step 5: DB 保存
     suffix = "(暫定)" if provisional else "(直前)"
@@ -384,6 +420,7 @@ def prerace_pipeline(race_id: str, provisional: bool = False) -> dict:
         manji_bets,
         oracle_bets,
         suffix,
+        hit_focus_bets=hit_focus_bets,
     )
 
     # Step 5c: WIN5（直前のみ）
@@ -403,12 +440,14 @@ def prerace_pipeline(race_id: str, provisional: bool = False) -> dict:
     if not provisional:
         _discord.notify_prerace_result(race_id, honmei_bets, manji_bets)
 
+    hf_bets_count = len(hit_focus_bets.bets) if hit_focus_bets is not None else 0
     logger.info(
-        "%sパイプライン完了: race_id=%s 本命%d件 卍%d件",
+        "%sパイプライン完了: race_id=%s 本命%d件 卍%d件 HitFocus%d件",
         mode_label,
         race_id,
         len(prediction_ids["本命"]),
         len(prediction_ids["卍"]),
+        hf_bets_count,
     )
     return payload
 

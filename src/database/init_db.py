@@ -761,10 +761,10 @@ def insert_prediction(
     Returns:
         新規 prediction.id
     """
-    _VALID_BASE_TYPES = {"卍", "本命", "WIN5", "Oracle"}
+    _VALID_BASE_TYPES = {"卍", "本命", "WIN5", "Oracle", "HitFocus"}
     base = model_type.split("(")[0]
     if base not in _VALID_BASE_TYPES:
-        raise ValueError(f"model_type のベースは '卍' / '本命' / 'WIN5' / 'Oracle' を指定してください: {model_type!r}")
+        raise ValueError(f"model_type のベースは '卍' / '本命' / 'WIN5' / 'Oracle' / 'HitFocus' を指定してください: {model_type!r}")
 
     with conn:
         cur = conn.execute(
