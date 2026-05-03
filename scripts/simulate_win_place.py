@@ -244,15 +244,16 @@ def simulate_win_place(
             place_horse_num = _get_horse_num(place_horse_name)
 
             # ── 単勝 ─────────────────────────────────────────────
+            # race_payouts.payout は ¥100 ベース払戻なので bet_amount/100 倍してスケール
             win_invested = 0
             win_payout   = 0
             win_hit      = False
             win_odds_val = 0.0
             if balance >= bet_amount:
                 win_key = f"{race_id}:{win_horse_num}"
-                p = win_cache.get(win_key, 0)
-                win_hit      = p > 0
-                win_payout   = p if win_hit else 0
+                raw_p = win_cache.get(win_key, 0)
+                win_hit      = raw_p > 0
+                win_payout   = int(raw_p * bet_amount / 100) if win_hit else 0
                 win_invested = bet_amount
                 win_odds_val = float(df.loc[win_top_idx, "win_odds"] or 0.0)
                 balance      = balance - bet_amount + win_payout
@@ -265,9 +266,9 @@ def simulate_win_place(
             place_odds_high = 0.0
             if balance >= bet_amount:
                 place_pays = place_cache.get(race_id, {})
-                p = place_pays.get(str(place_horse_num), 0)
-                place_hit      = p > 0
-                place_payout   = p if place_hit else 0
+                raw_p = place_pays.get(str(place_horse_num), 0)
+                place_hit      = raw_p > 0
+                place_payout   = int(raw_p * bet_amount / 100) if place_hit else 0
                 place_invested = bet_amount
                 balance        = balance - bet_amount + place_payout
                 if place_pays:

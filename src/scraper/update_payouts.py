@@ -19,6 +19,7 @@ import sys
 import time
 from pathlib import Path
 
+from tenacity import retry, retry_if_exception_type, stop_after_attempt, wait_exponential
 from tqdm import tqdm
 
 logger = logging.getLogger(__name__)
@@ -31,26 +32,59 @@ from src.database.init_db import init_db, insert_race_payouts
 from src.scraper.netkeiba import fetch_race_payouts
 
 
-def _get_races_without_payouts(conn, year: int | None) -> list[str]:
+@retry(
+    stop=stop_after_attempt(3),
+    wait=wait_exponential(multiplier=1, min=2, max=30),
+    retry=retry_if_exception_type(Exception),
+    reraise=True,
+)
+def _fetch_with_retry(race_id: str, delay: float) -> list:
+    """fetch_race_payouts を最大3回・指数バックオフでリトライする。"""
+    return fetch_race_payouts(race_id, delay=delay)
+
+
+def _get_races_without_payouts(conn, year: int | None, refetch: bool = False) -> list[str]:
     """
     race_results は存在するが race_payouts が未取得のレース ID を返す。
+
+    refetch=True の場合は、払戻データが存在しても有効な三連単（X→Y→Z 形式）が
+    ないレースも対象に含める。JV-Link corrupt データしか入っていない場合に使う。
     """
     year_filter = "AND substr(r.date,1,4) = ?" if year else ""
     params = [str(year)] if year else []
 
-    rows = conn.execute(
-        f"""
-        SELECT DISTINCT r.race_id
-        FROM races r
-        JOIN race_results rr ON r.race_id = rr.race_id
-        WHERE NOT EXISTS (
-            SELECT 1 FROM race_payouts rp WHERE rp.race_id = r.race_id
-        )
-        {year_filter}
-        ORDER BY r.date, r.race_id
-        """,
-        params,
-    ).fetchall()
+    if refetch:
+        # 有効な 三連単 (combination に → が含まれる) がないレースを対象にする
+        rows = conn.execute(
+            f"""
+            SELECT DISTINCT r.race_id
+            FROM races r
+            JOIN race_results rr ON r.race_id = rr.race_id
+            WHERE NOT EXISTS (
+                SELECT 1 FROM race_payouts rp
+                WHERE rp.race_id = r.race_id
+                  AND rp.bet_type = '三連単'
+                  AND instr(rp.combination, '→') > 0
+            )
+            {year_filter}
+            ORDER BY r.date, r.race_id
+            """,
+            params,
+        ).fetchall()
+    else:
+        rows = conn.execute(
+            f"""
+            SELECT DISTINCT r.race_id
+            FROM races r
+            JOIN race_results rr ON r.race_id = rr.race_id
+            WHERE NOT EXISTS (
+                SELECT 1 FROM race_payouts rp WHERE rp.race_id = r.race_id
+            )
+            {year_filter}
+            ORDER BY r.date, r.race_id
+            """,
+            params,
+        ).fetchall()
     return [r[0] for r in rows]
 
 
@@ -88,7 +122,7 @@ def update_payouts_for_date(
     saved = 0
     for race_id in race_ids:
         try:
-            payouts = fetch_race_payouts(race_id, delay=delay)
+            payouts = _fetch_with_retry(race_id, delay=delay)
             if payouts:
                 insert_race_payouts(conn, race_id, payouts)
                 saved += 1
@@ -107,15 +141,18 @@ def update_payouts(
     limit: int | None = None,
     dry_run: bool = False,
     delay: float = 2.0,
+    refetch: bool = False,
 ) -> dict[str, int]:
     """
     未取得レースの払戻を一括取得して保存する。
+
+    refetch=True のとき、有効な三連単（X→Y→Z 形式）がないレースを再取得する。
 
     Returns:
         {"total": 対象レース数, "saved": 保存数, "empty": 払戻なし数, "errors": エラー数}
     """
     conn = init_db()
-    race_ids = _get_races_without_payouts(conn, year)
+    race_ids = _get_races_without_payouts(conn, year, refetch=refetch)
 
     if limit:
         race_ids = race_ids[:limit]
@@ -127,7 +164,7 @@ def update_payouts(
 
     for race_id in bar:
         try:
-            payouts = fetch_race_payouts(race_id, delay=delay)
+            payouts = _fetch_with_retry(race_id, delay=delay)
             if not payouts:
                 stats["empty"] += 1
             else:
@@ -165,6 +202,8 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument("--limit",   type=int, help="最大処理レース数")
     parser.add_argument("--delay",   type=float, default=2.0, help="リクエスト間隔（秒）")
     parser.add_argument("--dry-run", action="store_true", help="DB 書き込みなし")
+    parser.add_argument("--refetch", action="store_true",
+                        help="有効な三連単(→形式)がないレースも再取得（JV-Link corrupt データ対策）")
     return parser.parse_args()
 
 
@@ -182,6 +221,7 @@ def main() -> None:
         limit=args.limit,
         dry_run=args.dry_run,
         delay=args.delay,
+        refetch=args.refetch,
     )
 
     mode = "[DRY-RUN]" if args.dry_run else ""

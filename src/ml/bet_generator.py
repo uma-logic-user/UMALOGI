@@ -182,7 +182,7 @@ class BetRecommendation:
 class RaceBets:
     """1レースの全推奨買い目。"""
     race_id: str
-    model_type: Literal["卍", "本命"]
+    model_type: Literal["卍", "本命", "HitFocus"]
     bets: list[BetRecommendation] = field(default_factory=list)
 
     def to_dict(self) -> dict:
@@ -404,45 +404,93 @@ class ManjiStrategy:
             notes=f"確率上位{len(top_nums)}頭を複勝",
         ))
 
-        # ── 馬連・ワイド（確率上位2頭）───────────────────────────
+        # ── 馬連・ワイド・馬単（軸1頭 × 相手最大5頭 フォーメーション）──────
+        _MANJI_AITE_N = 5   # 相手頭数（的中率向上のため3→5に拡大）
+        _MANJI_UMATAN_N = 3  # 馬単相手頭数
         if len(pos_ev) >= 2:
-            top2    = pos_ev.head(2)
-            n0      = int(top2.iloc[0]["horse_number"])
-            n1      = int(top2.iloc[1]["horse_number"])
-            ev_mean2 = float(top2["ev_score"].mean())
+            axis_row  = pos_ev.iloc[0]
+            n_axis    = int(axis_row["horse_number"])
+            axis_odds = float(axis_row.get("win_odds") or 10.0)
+            i_axis    = all_nums.index(n_axis) if n_axis in all_nums else 0
 
-            if True:  # EVゲート撤廃: 常に推奨
-                i0 = all_nums.index(n0) if n0 in all_nums else 0
-                i1 = all_nums.index(n1) if n1 in all_nums else 1
-                q_prob  = _harville_quinella(all_scores, i0, i1)
-                ex01    = _harville_exacta(all_scores, i0, i1)
-                ex10    = _harville_exacta(all_scores, i1, i0)
-                ex_prob = max(ex01, ex10)
-                combo   = tuple(sorted([n0, n1]))
-                axis_odds = float(top2.iloc[0].get("win_odds") or 10.0)
+            # 軸以外の上位5頭を相手に
+            aite_rows = scored[scored["horse_number"] != n_axis].head(_MANJI_AITE_N)
+            aite_nums = [int(r["horse_number"]) for _, r in aite_rows.iterrows()]
 
+            umaren_combos: list[tuple] = []
+            umaren_probs:  list[float] = []
+            for na in aite_nums:
+                ia = all_nums.index(na) if na in all_nums else -1
+                if ia < 0:
+                    continue
+                qp = _harville_quinella(all_scores, i_axis, ia)
+                combo = tuple(sorted([n_axis, na]))
+                umaren_combos.append(combo)
+                umaren_probs.append(qp)
+
+            if umaren_combos:
+                best_q  = max(umaren_probs)
+                ev_mean = self._estimator.ev(best_q, "馬連", axis_odds)
                 result.bets.append(BetRecommendation(
                     bet_type="馬連",
-                    combinations=[combo],
-                    horse_names=[names.get(n, str(n)) for n in combo],
-                    expected_value=self._estimator.ev(q_prob, "馬連", axis_odds),
-                    model_score=q_prob,
-                    recommended_bet=_BASE_BET * 2,
-                    confidence=min(q_prob * 5, 1.0),
-                    notes=f"EV上位2頭 Harville={q_prob:.3f} 平均EV={ev_mean2:.2f}",
+                    combinations=umaren_combos,
+                    horse_names=[names.get(n, str(n))
+                                 for combo in umaren_combos for n in combo],
+                    expected_value=ev_mean,
+                    model_score=best_q,
+                    recommended_bet=_BASE_BET * len(umaren_combos),
+                    confidence=min(best_q * 5, 1.0),
+                    notes=(
+                        f"軸{n_axis}番×相手{len(umaren_combos)}頭フォーメーション "
+                        f"Harville最大={best_q:.3f}"
+                    ),
                 ))
 
+                # ワイドも同じフォーメーション
+                wide_best_q = self._estimator.ev(best_q, "ワイド", axis_odds)
                 result.bets.append(BetRecommendation(
                     bet_type="ワイド",
-                    combinations=[combo],
-                    horse_names=[names.get(n, str(n)) for n in combo],
-                    expected_value=self._estimator.ev(q_prob, "ワイド", axis_odds),
-                    model_score=q_prob,
-                    recommended_bet=_BASE_BET * 2,
-                    confidence=min(q_prob * 6, 1.0),
-                    notes=f"EV上位2頭 ワイド Harville={q_prob:.3f}",
+                    combinations=umaren_combos,
+                    horse_names=[names.get(n, str(n))
+                                 for combo in umaren_combos for n in combo],
+                    expected_value=wide_best_q,
+                    model_score=best_q,
+                    recommended_bet=_BASE_BET * len(umaren_combos),
+                    confidence=min(best_q * 6, 1.0),
+                    notes=(
+                        f"軸{n_axis}番×相手{len(umaren_combos)}頭ワイド "
+                        f"Harville最大={best_q:.3f}"
+                    ),
                 ))
-                # 馬単・三連単は ROI=0% のため生成しない（2024バックテスト実証済み）
+
+                # 馬単（軸1着固定 → 相手上位N頭フォーメーション）
+                umatan_aite = aite_nums[:_MANJI_UMATAN_N]
+                umatan_combos: list[tuple] = []
+                umatan_probs:  list[float] = []
+                for na in umatan_aite:
+                    ia = all_nums.index(na) if na in all_nums else -1
+                    if ia < 0:
+                        continue
+                    ep = _harville_exacta(all_scores, i_axis, ia)
+                    umatan_combos.append((n_axis, na))
+                    umatan_probs.append(ep)
+                if umatan_combos:
+                    best_ep  = max(umatan_probs)
+                    umatan_ev = self._estimator.ev(best_ep, "馬単", axis_odds)
+                    result.bets.append(BetRecommendation(
+                        bet_type="馬単",
+                        combinations=umatan_combos,
+                        horse_names=[names.get(n, str(n))
+                                     for combo in umatan_combos for n in combo],
+                        expected_value=umatan_ev,
+                        model_score=best_ep,
+                        recommended_bet=_BASE_BET * len(umatan_combos),
+                        confidence=min(best_ep * 8, 1.0),
+                        notes=(
+                            f"軸{n_axis}番→相手{len(umatan_combos)}頭フォーメーション "
+                            f"Harville最大={best_ep:.3f}"
+                        ),
+                    ))
 
         # ── 三連複（合成EV上位3点まで）──────────────────────────
         # 候補: EV > 0.8 の全馬を対象に全3頭組み合わせを列挙し
@@ -589,40 +637,88 @@ class HonmeiStrategy:
             notes=f"上位{n}頭を複勝",
         ))
 
-        # ── 馬連・ワイド・馬単（上位2頭）──────────────────────────
+        # ── 馬連・ワイド・馬単（軸1頭 × 相手最大5頭 フォーメーション）──────
+        _HONMEI_AITE_N = 5   # 的中率向上のため3→5に拡大
+        _HONMEI_UMATAN_N = 3  # 馬単相手頭数
         if len(top_nums) >= 2:
-            n0, n1  = top_nums[0], top_nums[1]
-            i0 = all_nums.index(n0) if n0 in all_nums else 0
-            i1 = all_nums.index(n1) if n1 in all_nums else 1
-            q_prob     = _harville_quinella(all_scores, i0, i1)
-            ex01       = _harville_exacta(all_scores, i0, i1)
-            ex10       = _harville_exacta(all_scores, i1, i0)
-            ex_prob    = max(ex01, ex10)
-            combo2     = tuple(sorted([n0, n1]))
+            n_axis2    = top_nums[0]
+            i_axis2    = all_nums.index(n_axis2) if n_axis2 in all_nums else 0
             axis_odds2 = float(scored.iloc[0].get("win_odds") or 10.0)
 
-            result.bets.append(BetRecommendation(
-                bet_type="馬連",
-                combinations=[combo2],
-                horse_names=[names.get(c, str(c)) for c in combo2],
-                expected_value=self._estimator.ev(q_prob, "馬連", axis_odds2),
-                model_score=q_prob,
-                recommended_bet=_BASE_BET * 2,
-                confidence=q_prob,
-                notes=f"本命・対抗 Harville={q_prob:.3f}",
-            ))
+            # 軸以外の上位5頭を相手に（スコア順）
+            aite_nums2 = [n for n in all_nums[1:_HONMEI_AITE_N + 1] if n != n_axis2][:_HONMEI_AITE_N]
 
-            result.bets.append(BetRecommendation(
-                bet_type="ワイド",
-                combinations=[combo2],
-                horse_names=[names.get(c, str(c)) for c in combo2],
-                expected_value=self._estimator.ev(q_prob, "ワイド", axis_odds2),
-                model_score=q_prob,
-                recommended_bet=_BASE_BET * 2,
-                confidence=min(q_prob * 1.3, 1.0),
-                notes=f"本命・対抗 ワイド Harville={q_prob:.3f}",
-            ))
-            # 馬単・三連単は ROI=0% のため生成しない（2024バックテスト実証済み）
+            umaren2_combos: list[tuple] = []
+            umaren2_probs:  list[float] = []
+            for na2 in aite_nums2:
+                ia2 = all_nums.index(na2) if na2 in all_nums else -1
+                if ia2 < 0:
+                    continue
+                qp2 = _harville_quinella(all_scores, i_axis2, ia2)
+                umaren2_combos.append(tuple(sorted([n_axis2, na2])))
+                umaren2_probs.append(qp2)
+
+            if umaren2_combos:
+                best_q2 = max(umaren2_probs)
+                ev2     = self._estimator.ev(best_q2, "馬連", axis_odds2)
+                result.bets.append(BetRecommendation(
+                    bet_type="馬連",
+                    combinations=umaren2_combos,
+                    horse_names=[names.get(n, str(n))
+                                 for combo in umaren2_combos for n in combo],
+                    expected_value=ev2,
+                    model_score=best_q2,
+                    recommended_bet=_BASE_BET * len(umaren2_combos),
+                    confidence=best_q2,
+                    notes=(
+                        f"軸{n_axis2}番×相手{len(umaren2_combos)}頭フォーメーション "
+                        f"Harville最大={best_q2:.3f}"
+                    ),
+                ))
+
+                wide2_ev = self._estimator.ev(best_q2, "ワイド", axis_odds2)
+                result.bets.append(BetRecommendation(
+                    bet_type="ワイド",
+                    combinations=umaren2_combos,
+                    horse_names=[names.get(n, str(n))
+                                 for combo in umaren2_combos for n in combo],
+                    expected_value=wide2_ev,
+                    model_score=best_q2,
+                    recommended_bet=_BASE_BET * len(umaren2_combos),
+                    confidence=min(best_q2 * 1.3, 1.0),
+                    notes=(
+                        f"軸{n_axis2}番×相手{len(umaren2_combos)}頭ワイド "
+                        f"Harville最大={best_q2:.3f}"
+                    ),
+                ))
+                # 馬単（軸1着固定 → 相手上位N頭フォーメーション）
+                umatan2_aite = aite_nums2[:_HONMEI_UMATAN_N]
+                umatan2_combos: list[tuple] = []
+                umatan2_probs:  list[float] = []
+                for na2u in umatan2_aite:
+                    ia2u = all_nums.index(na2u) if na2u in all_nums else -1
+                    if ia2u < 0:
+                        continue
+                    ep2 = _harville_exacta(all_scores, i_axis2, ia2u)
+                    umatan2_combos.append((n_axis2, na2u))
+                    umatan2_probs.append(ep2)
+                if umatan2_combos:
+                    best_ep2  = max(umatan2_probs)
+                    umatan2_ev = self._estimator.ev(best_ep2, "馬単", axis_odds2)
+                    result.bets.append(BetRecommendation(
+                        bet_type="馬単",
+                        combinations=umatan2_combos,
+                        horse_names=[names.get(n, str(n))
+                                     for combo in umatan2_combos for n in combo],
+                        expected_value=umatan2_ev,
+                        model_score=best_ep2,
+                        recommended_bet=_BASE_BET * len(umatan2_combos),
+                        confidence=min(best_ep2 * 8, 1.0),
+                        notes=(
+                            f"軸{n_axis2}番→相手{len(umatan2_combos)}頭フォーメーション "
+                            f"Harville最大={best_ep2:.3f}"
+                        ),
+                    ))
 
         # ── 三連複（上位5頭から合成EV上位2点）─────────────────
         # 固定3頭ではなく上位5頭の全組み合わせを探索し
@@ -683,10 +779,10 @@ class HonmeiStrategy:
 
         # ── 三連単フォーメーション（1着固定マルチ）─────────────────
         # 軸: スコア最上位1頭（1着固定）
-        # 相手: 上位4頭（軸除く）から2・3着候補（全順列）
-        # Harville確率上位6点を1レコードに集約（UNIQUE制約対応）
-        _ST_AITE_N   = min(4, len(scored) - 1)   # 相手候補数（軸除く）
-        _ST_MAX_BETS = 6                          # 最大点数
+        # 相手: 上位6頭（軸除く）から2・3着候補（全順列）
+        # Harville確率上位12点を1レコードに集約（UNIQUE制約対応）
+        _ST_AITE_N   = min(6, len(scored) - 1)   # 相手候補数（4→6に拡大）
+        _ST_MAX_BETS = 12                         # 最大点数（6→12に拡大）
 
         if len(top_nums) >= 3 and _ST_AITE_N >= 2:
             axis_num  = top_nums[0]
@@ -911,8 +1007,8 @@ class VirtualOracleStrategy:
               → 上位 TOP_N_SANRENTAN 点を推奨
     """
 
-    TOP_N_SANRENPUKU = 3   # 三連複 最大推奨点数
-    TOP_N_SANRENTAN  = 3   # 三連単 最大推奨点数
+    TOP_N_SANRENPUKU = 5   # 三連複 最大推奨点数（的中率向上のため3→5点に拡大）
+    TOP_N_SANRENTAN  = 12  # 三連単 最大推奨点数（的中率向上のため6→12点に拡大）
 
     def generate(
         self,
@@ -1045,6 +1141,312 @@ class VirtualOracleStrategy:
         return result
 
 
+# ── HitFocusStrategy ─────────────────────────────────────────────
+
+class HitFocusStrategy:
+    """
+    的中特化（2軸マルチ）の買い目戦略 — 第4の独立クラス。
+
+    設計思想:
+      本命モデルスコア上位2頭を「2軸」、次 AITE_N 頭を「相手」として
+      馬連・馬単・三連単の2軸マルチフォーメーションを生成する。
+      均等 100 円買い（Kelly 基準不使用）とトリガミ防止フィルターを搭載。
+
+    フォーメーション定義（axis1=1位, axis2=2位, aite=[3〜5位]）:
+      馬連: {axis1,axis2} ∪ axis1×aite ∪ axis2×aite
+            → 1 + 2×AITE_N 点
+
+      馬単: axis1→axis2, axis2→axis1      (軸間両方向)
+            axis1→aite[i], axis2→aite[i]  (各軸→相手)
+            → 2 + 2×AITE_N 点
+
+      三連単（2軸マルチ）:
+            axis1→axis2→aite[i]  axis2→axis1→aite[i]  (軸間→相手)
+            axis1→aite[i]→axis2  axis2→aite[i]→axis1  (軸→相手→残軸)
+            → 4×AITE_N 点
+
+    トリガミ防止フィルター:
+      各券種で最良 Harville 確率が (1 - 控除率) / n_combos 以下の場合、
+      その券種は必ずトリガミとなるためスキップする。
+    """
+
+    AITE_N: int = 3  # 相手頭数
+
+    # 券種別トリガミ防止マージン（推定払戻ベースフィルター用）
+    # scale × axis_odds > n_combos × margin を満たさない場合はスキップ
+    _ANTI_GAMI_MARGIN: dict[str, float] = {
+        "馬連": 1.5,
+        "馬単": 1.2,
+        "三連単": 1.0,
+    }
+
+    def __init__(self, estimator: OddsEstimator | None = None) -> None:
+        self._estimator = estimator or OddsEstimator()
+
+    # ── public ────────────────────────────────────────────────────
+
+    def generate(
+        self,
+        race_id: str,
+        df: pd.DataFrame,
+        honmei_scores: pd.Series,
+    ) -> RaceBets:
+        """
+        本命モデルスコアから2軸マルチフォーメーションの買い目を生成する。
+
+        Args:
+            race_id:       対象レース ID
+            df:            特徴量 DataFrame（horse_number・win_odds 列を使用）
+            honmei_scores: HonmeiModel.predict() の出力（勝率確率）
+
+        Returns:
+            RaceBets (model_type = "HitFocus")
+        """
+        result = RaceBets(race_id=race_id, model_type="HitFocus")
+        names = _name_map(df)
+
+        scored = df.copy()
+        scored["honmei_score"] = (
+            honmei_scores.values if len(honmei_scores) == len(scored)
+            else honmei_scores.reindex(scored.index).values
+        )
+        scored = scored.sort_values("honmei_score", ascending=False)
+        scored = scored[scored["horse_number"] >= 1].copy()
+
+        if len(scored) < 2:
+            return result
+
+        # 全馬 Harville スコアリスト
+        all_nums: list[int]   = [int(r["horse_number"])   for _, r in scored.iterrows()]
+        all_scores: list[float] = [float(r["honmei_score"]) for _, r in scored.iterrows()]
+
+        # 2軸選出
+        axis1 = int(scored.iloc[0]["horse_number"])
+        axis2 = int(scored.iloc[1]["horse_number"])
+        axis_odds1 = float(scored.iloc[0].get("win_odds") or 10.0)
+        i1 = all_nums.index(axis1)
+        i2 = all_nums.index(axis2)
+
+        # 相手選出（軸除く上位 AITE_N 頭）
+        aite_rows = scored.iloc[2: 2 + self.AITE_N]
+        aite: list[int] = [int(r["horse_number"]) for _, r in aite_rows.iterrows()]
+
+        self._add_umaren(result, all_nums, all_scores, axis1, axis2, i1, i2,
+                         aite, axis_odds1, names)
+        self._add_umatan(result, all_nums, all_scores, axis1, axis2, i1, i2,
+                         aite, axis_odds1, names)
+        if len(scored) >= 3 and len(aite) >= 1:
+            self._add_sanrentan(result, all_nums, all_scores, axis1, axis2, i1, i2,
+                                aite, axis_odds1, names)
+
+        logger.info(
+            "HitFocus買い目生成: race_id=%s %d 件 (軸=%d,%d 相手=%s)",
+            race_id, len(result.bets), axis1, axis2, aite,
+        )
+        return result
+
+    # ── private helpers ───────────────────────────────────────────
+
+    def _is_torikomi(
+        self,
+        bet_type: str,
+        n_combos: int,
+        axis_odds: float,
+    ) -> bool:
+        """
+        推定払戻ベースのトリガミ判定。
+
+        条件: scale × axis_odds ≤ n_combos × margin
+          scale    = OddsEstimator が学習した券種別スケール係数
+          margin   = 券種別安全バッファ（馬連1.5、馬単1.2、三連単1.0）
+
+        scale × axis_odds はその券種における「最良期待払戻 / 100円」の推定値。
+        これが総投資点数 × margin を下回る場合は構造的トリガミと判定してスキップ。
+        """
+        scale  = self._estimator.scale(bet_type)
+        margin = self._ANTI_GAMI_MARGIN.get(bet_type, 1.0)
+        return scale * axis_odds <= n_combos * margin
+
+    def _add_umaren(
+        self,
+        result: RaceBets,
+        all_nums: list[int],
+        all_scores: list[float],
+        axis1: int,
+        axis2: int,
+        i1: int,
+        i2: int,
+        aite: list[int],
+        axis_odds1: float,
+        names: dict[int, str],
+    ) -> None:
+        """馬連: {axis1,axis2} ∪ axis1×aite ∪ axis2×aite。"""
+        combos: list[tuple[int, ...]] = []
+        probs:  list[float]           = []
+
+        # 軸間
+        p = _harville_quinella(all_scores, i1, i2)
+        combos.append(tuple(sorted([axis1, axis2])))
+        probs.append(p)
+
+        for na in aite:
+            if na not in all_nums:
+                continue
+            ia = all_nums.index(na)
+            p1 = _harville_quinella(all_scores, i1, ia)
+            p2 = _harville_quinella(all_scores, i2, ia)
+            combos.append(tuple(sorted([axis1, na])))
+            probs.append(p1)
+            combos.append(tuple(sorted([axis2, na])))
+            probs.append(p2)
+
+        best_prob = max(probs) if probs else 0.0
+        if self._is_torikomi("馬連", len(combos), axis_odds1):
+            logger.debug(
+                "HitFocus 馬連 トリガミ防止スキップ: scale×odds=%.1f threshold=%.1f n=%d",
+                self._estimator.scale("馬連") * axis_odds1,
+                len(combos) * self._ANTI_GAMI_MARGIN["馬連"],
+                len(combos),
+            )
+            return
+
+        ev = self._estimator.ev(best_prob, "馬連", axis_odds1)
+        result.bets.append(BetRecommendation(
+            bet_type="馬連",
+            combinations=combos,
+            horse_names=[names.get(n, str(n)) for combo in combos for n in combo],
+            expected_value=ev,
+            model_score=best_prob,
+            recommended_bet=float(_BASE_BET * len(combos)),
+            confidence=min(best_prob * 5, 1.0),
+            notes=(
+                f"2軸マルチ 軸={axis1},{axis2} 相手={aite} "
+                f"Harville最大={best_prob:.4f}"
+            ),
+        ))
+
+    def _add_umatan(
+        self,
+        result: RaceBets,
+        all_nums: list[int],
+        all_scores: list[float],
+        axis1: int,
+        axis2: int,
+        i1: int,
+        i2: int,
+        aite: list[int],
+        axis_odds1: float,
+        names: dict[int, str],
+    ) -> None:
+        """馬単: axis1→axis2, axis2→axis1, 各軸→相手。"""
+        combos: list[tuple[int, ...]] = []
+        probs:  list[float]           = []
+
+        # 軸間両方向
+        p12 = _harville_exacta(all_scores, i1, i2)
+        p21 = _harville_exacta(all_scores, i2, i1)
+        combos.extend([(axis1, axis2), (axis2, axis1)])
+        probs.extend([p12, p21])
+
+        for na in aite:
+            if na not in all_nums:
+                continue
+            ia = all_nums.index(na)
+            p1 = _harville_exacta(all_scores, i1, ia)
+            p2 = _harville_exacta(all_scores, i2, ia)
+            combos.extend([(axis1, na), (axis2, na)])
+            probs.extend([p1, p2])
+
+        best_prob = max(probs) if probs else 0.0
+        if self._is_torikomi("馬単", len(combos), axis_odds1):
+            logger.debug(
+                "HitFocus 馬単 トリガミ防止スキップ: scale×odds=%.1f threshold=%.1f n=%d",
+                self._estimator.scale("馬単") * axis_odds1,
+                len(combos) * self._ANTI_GAMI_MARGIN["馬単"],
+                len(combos),
+            )
+            return
+
+        ev = self._estimator.ev(best_prob, "馬単", axis_odds1)
+        result.bets.append(BetRecommendation(
+            bet_type="馬単",
+            combinations=combos,
+            horse_names=[names.get(n, str(n)) for combo in combos for n in combo],
+            expected_value=ev,
+            model_score=best_prob,
+            recommended_bet=float(_BASE_BET * len(combos)),
+            confidence=min(best_prob * 8, 1.0),
+            notes=(
+                f"2軸マルチ 軸={axis1},{axis2} 相手={aite} "
+                f"Harville最大={best_prob:.4f}"
+            ),
+        ))
+
+    def _add_sanrentan(
+        self,
+        result: RaceBets,
+        all_nums: list[int],
+        all_scores: list[float],
+        axis1: int,
+        axis2: int,
+        i1: int,
+        i2: int,
+        aite: list[int],
+        axis_odds1: float,
+        names: dict[int, str],
+    ) -> None:
+        """
+        三連単 2軸マルチ。
+
+        4パターン × AITE_N:
+          P1: axis1→axis2→aite[i]
+          P2: axis2→axis1→aite[i]
+          P3: axis1→aite[i]→axis2
+          P4: axis2→aite[i]→axis1
+        """
+        combos: list[tuple[int, ...]] = []
+        probs:  list[float]           = []
+
+        for na in aite:
+            if na not in all_nums:
+                continue
+            ia = all_nums.index(na)
+            for (a, b, c) in [
+                (i1, i2, ia),   # P1
+                (i2, i1, ia),   # P2
+                (i1, ia, i2),   # P3
+                (i2, ia, i1),   # P4
+            ]:
+                p = _harville_trifecta(all_scores, a, b, c)
+                combos.append((all_nums[a], all_nums[b], all_nums[c]))
+                probs.append(p)
+
+        best_prob = max(probs) if probs else 0.0
+        if self._is_torikomi("三連単", len(combos), axis_odds1):
+            logger.debug(
+                "HitFocus 三連単 トリガミ防止スキップ: scale×odds=%.1f threshold=%.1f n=%d",
+                self._estimator.scale("三連単") * axis_odds1,
+                len(combos) * self._ANTI_GAMI_MARGIN["三連単"],
+                len(combos),
+            )
+            return
+
+        ev = self._estimator.ev(best_prob, "三連単", axis_odds1)
+        result.bets.append(BetRecommendation(
+            bet_type="三連単",
+            combinations=combos,
+            horse_names=[names.get(n, str(n)) for combo in combos for n in combo],
+            expected_value=ev,
+            model_score=best_prob,
+            recommended_bet=float(_BASE_BET * len(combos)),
+            confidence=min(best_prob * 30, 1.0),
+            notes=(
+                f"2軸マルチ 軸={axis1},{axis2} 相手={aite} "
+                f"{len(combos)}点 Harville最大={best_prob:.4f}"
+            ),
+        ))
+
+
 # ── ファサード ────────────────────────────────────────────────────
 
 class BetGenerator:
@@ -1063,10 +1465,11 @@ class BetGenerator:
         config: BetConfig | None = None,
     ) -> None:
         estimator = OddsEstimator(conn)
-        self._config  = config or BetConfig()
-        self._honmei  = HonmeiStrategy(estimator=estimator)
-        self._manji   = ManjiStrategy(estimator=estimator)
-        self._oracle  = VirtualOracleStrategy()
+        self._config     = config or BetConfig()
+        self._honmei     = HonmeiStrategy(estimator=estimator)
+        self._manji      = ManjiStrategy(estimator=estimator)
+        self._oracle     = VirtualOracleStrategy()
+        self._hit_focus  = HitFocusStrategy(estimator=estimator)
 
     def _apply_caps(self, bets: RaceBets) -> None:
         """
@@ -1130,6 +1533,15 @@ class BetGenerator:
         bets = self._oracle.generate(race_id, df, honmei_scores)
         bets.model_type = "本命"   # 型互換のため本命を維持（保存時に "Oracle" を付加）
         return bets
+
+    def generate_hit_focus(
+        self,
+        race_id: str,
+        df: pd.DataFrame,
+        honmei_scores: pd.Series,
+    ) -> RaceBets:
+        """HitFocusStrategy で2軸マルチフォーメーションの買い目を生成する。"""
+        return self._hit_focus.generate(race_id, df, honmei_scores)
 
     def generate_win5(
         self,

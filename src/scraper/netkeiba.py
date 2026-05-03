@@ -106,7 +106,7 @@ def _fetch_html(
     session: Optional[requests.Session] = None,
     max_retries: int = 3,
     delay: float = 1.5,
-    timeout: int = 10,
+    timeout: tuple[int, int] = (8, 20),
 ) -> str:
     """
     URL を取得して HTML 文字列を返す。

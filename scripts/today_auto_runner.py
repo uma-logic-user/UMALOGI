@@ -71,7 +71,7 @@ logging.basicConfig(
             open(sys.stdout.fileno(), mode="w", encoding="utf-8", errors="replace", closefd=False)
         ),
         RotatingFileHandler(
-            _ROOT / "data" / "scheduler.log",
+            _ROOT / "data" / "auto_runner.log",
             maxBytes=50 * 1024 * 1024,
             backupCount=5,
             encoding="utf-8",

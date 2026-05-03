@@ -171,8 +171,12 @@ class FeatureBuilder:
             return pd.DataFrame()
 
         # バルク取得: 1レースあたり N×6クエリ → 7クエリに圧縮
+        # race_date を渡して時系列リーク（未来レースの着順混入）を完全排除する
         horse_ids = [r[0] for r in rows]
-        stats_bulk    = self._get_horse_stats_bulk(horse_ids, surface, distance, exclude_race_id=race_id)
+        stats_bulk    = self._get_horse_stats_bulk(
+            horse_ids, surface, distance,
+            exclude_race_id=race_id, race_date=race_date,
+        )
         training_bulk = self._get_training_stats_bulk(horse_ids, race_date)
         sire_bulk     = self._get_sire_bulk(horse_ids)
 
@@ -542,6 +546,7 @@ class FeatureBuilder:
         distance: int,
         *,
         exclude_race_id: str | None = None,
+        race_date: str | None = None,
     ) -> dict[str, float | None]:
         """
         horses / race_results テーブルから馬の過去成績指標を算出する。
@@ -549,6 +554,7 @@ class FeatureBuilder:
         Args:
             exclude_race_id: このレース ID を統計から除外する（シミュレーション時に
                              対象レース自身の着順がリークしないよう指定する）。
+            race_date:       この日付より前のレースのみ参照する（時系列リーク防止）。
 
         Returns:
             {
@@ -572,17 +578,21 @@ class FeatureBuilder:
         # exclude_race_id が指定された場合、そのレースを除外する句を追加
         excl_clause = "AND rr.race_id != ?" if exclude_race_id else ""
         excl_param  = (exclude_race_id,) if exclude_race_id else ()
+        # 時系列リーク防止: race_date より後のレースを除外する
+        date_clause = "AND r.date < ?" if race_date else ""
+        date_param  = (race_date,) if race_date else ()
 
-        # 全成績
+        # 全成績（races テーブルを JOIN して日付フィルタを適用）
         row = self._conn.execute(
             f"""
             SELECT COUNT(*) AS total,
                    SUM(CASE WHEN rr.rank = 1 THEN 1 ELSE 0 END) AS wins
             FROM race_results rr
+            JOIN races r ON rr.race_id = r.race_id
             WHERE rr.horse_id = ? AND rr.rank IS NOT NULL
-            {excl_clause}
+            {excl_clause} {date_clause}
             """,
-            (horse_id, *excl_param),
+            (horse_id, *excl_param, *date_param),
         ).fetchone()
         total, wins = row if row else (0, 0)
         win_rate_all = (wins / total) if total else None
@@ -595,9 +605,9 @@ class FeatureBuilder:
             FROM race_results rr
             JOIN  races r ON rr.race_id = r.race_id
             WHERE rr.horse_id = ? AND r.surface = ? AND rr.rank IS NOT NULL
-            {excl_clause}
+            {excl_clause} {date_clause}
             """,
-            (horse_id, surface, *excl_param),
+            (horse_id, surface, *excl_param, *date_param),
         ).fetchone()
         total_sf, wins_sf = row_sf if row_sf else (0, 0)
         win_rate_surface = (wins_sf / total_sf) if total_sf else None
@@ -615,9 +625,9 @@ class FeatureBuilder:
             WHERE rr.horse_id = ?
               AND r.distance >= ? AND r.distance < ?
               AND rr.rank IS NOT NULL
-            {excl_clause}
+            {excl_clause} {date_clause}
             """,
-            (horse_id, lo, hi, *excl_param),
+            (horse_id, lo, hi, *excl_param, *date_param),
         ).fetchone()
         total_db, wins_db = row_db if row_db else (0, 0)
         win_rate_distance_band = (wins_db / total_db) if total_db else None
@@ -629,11 +639,11 @@ class FeatureBuilder:
             FROM race_results rr
             JOIN  races r ON rr.race_id = r.race_id
             WHERE rr.horse_id = ? AND rr.rank IS NOT NULL
-            {excl_clause}
+            {excl_clause} {date_clause}
             ORDER BY r.date DESC
             LIMIT 5
             """,
-            (horse_id, *excl_param),
+            (horse_id, *excl_param, *date_param),
         ).fetchall()
         recent_rank_mean: float | None = (
             sum(r[0] for r in rows_recent) / len(rows_recent)
@@ -781,12 +791,15 @@ class FeatureBuilder:
         distance: int,
         *,
         exclude_race_id: str | None = None,
+        race_date: str | None = None,
     ) -> dict[str | None, dict[str, float | None]]:
         """
         複数馬の過去成績指標を4クエリで一括取得する（_get_horse_stats の N+1 解消版）。
 
-        バックテスト・シミュレーション時は exclude_race_id を指定して対象レース自身の
-        着順がリークしないよう除外する。
+        バックテスト・シミュレーション時は以下を指定してリークを完全排除する:
+          - exclude_race_id: 対象レース自身の着順が混入しないよう除外
+          - race_date:       これより後の日付（未来レース）の着順が混入しないよう除外
+                             実予想（build_race_features）では None のまま使用してよい。
         """
         _null: dict[str, float | None] = {
             "win_rate_all": None,
@@ -801,21 +814,26 @@ class FeatureBuilder:
         ph   = ", ".join("?" * len(valid))
         excl = "AND rr.race_id != ?" if exclude_race_id else ""
         ep   = [exclude_race_id] if exclude_race_id else []
+        # 時系列リーク防止: race_date 以降のレースを除外（同日レースも含め除外）
+        dfilt = "AND r.date < ?" if race_date else ""
+        dep   = [race_date] if race_date else []
 
         dist_band = _distance_band(distance)
         lo, hi = next((l, hh) for l, hh, lab in _DISTANCE_BANDS if lab == dist_band)
 
         # ── 全成績 ──────────────────────────────────────────────
+        # 時系列リーク防止のため races テーブルを JOIN して日付フィルタを適用する
         all_rows = self._conn.execute(
             f"""
             SELECT rr.horse_id,
                    COUNT(*) AS total,
                    SUM(CASE WHEN rr.rank = 1 THEN 1 ELSE 0 END) AS wins
             FROM race_results rr
-            WHERE rr.horse_id IN ({ph}) AND rr.rank IS NOT NULL {excl}
+            JOIN races r ON rr.race_id = r.race_id
+            WHERE rr.horse_id IN ({ph}) AND rr.rank IS NOT NULL {excl} {dfilt}
             GROUP BY rr.horse_id
             """,
-            [*valid, *ep],
+            [*valid, *ep, *dep],
         ).fetchall()
         all_map = {r[0]: (r[1], r[2]) for r in all_rows}
 
@@ -827,10 +845,10 @@ class FeatureBuilder:
                    SUM(CASE WHEN rr.rank = 1 THEN 1 ELSE 0 END) AS wins
             FROM race_results rr
             JOIN races r ON rr.race_id = r.race_id
-            WHERE rr.horse_id IN ({ph}) AND r.surface = ? AND rr.rank IS NOT NULL {excl}
+            WHERE rr.horse_id IN ({ph}) AND r.surface = ? AND rr.rank IS NOT NULL {excl} {dfilt}
             GROUP BY rr.horse_id
             """,
-            [*valid, surface, *ep],
+            [*valid, surface, *ep, *dep],
         ).fetchall()
         sf_map = {r[0]: (r[1], r[2]) for r in sf_rows}
 
@@ -844,10 +862,10 @@ class FeatureBuilder:
             JOIN races r ON rr.race_id = r.race_id
             WHERE rr.horse_id IN ({ph})
               AND r.distance >= ? AND r.distance < ?
-              AND rr.rank IS NOT NULL {excl}
+              AND rr.rank IS NOT NULL {excl} {dfilt}
             GROUP BY rr.horse_id
             """,
-            [*valid, lo, hi, *ep],
+            [*valid, lo, hi, *ep, *dep],
         ).fetchall()
         db_map = {r[0]: (r[1], r[2]) for r in db_rows}
 
@@ -861,10 +879,10 @@ class FeatureBuilder:
                        ) AS rn
                 FROM race_results rr
                 JOIN races r ON rr.race_id = r.race_id
-                WHERE rr.horse_id IN ({ph}) AND rr.rank IS NOT NULL {excl}
+                WHERE rr.horse_id IN ({ph}) AND rr.rank IS NOT NULL {excl} {dfilt}
             ) WHERE rn <= 5
             """,
-            [*valid, *ep],
+            [*valid, *ep, *dep],
         ).fetchall()
         recent_map: dict[str, list[int]] = {}
         for horse_id, rank in recent_rows:

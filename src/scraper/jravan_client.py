@@ -209,13 +209,13 @@ _SE_WAKU_BAN   = slice(27, 28)   # 枠番 "1"-"8"               [確定]
 _SE_UMA_BAN    = slice(28, 30)   # 馬番 "01"-"18"              [確定]
 _SE_HORSE_ID   = slice(30, 40)   # 血統登録番号 10桁           [確定]
 _SE_HORSE_NM   = slice(40, 76)   # 馬名(漢字) 36バイト SJIS   [確定]
-_SE_SEX        = slice(78, 79)   # 性別 1=牡,2=牝,3=騸        [実測確定]
-_SE_AGE        = slice(80, 82)   # 馬齢 "03"-"16"              [実測確定]
-_SE_JOCKEY_CD  = slice(84, 90)   # 騎手コード 6桁              [実測確定]
-_SE_JOCKEY_NM  = slice(90, 98)   # 騎手名 8バイト SJIS (4文字) [実測確定]
-_SE_TRAINER_CD = slice(98, 104)  # 調教師コード 6桁             [実測確定]
-_SE_TRAINER_NM = slice(104, 124) # 調教師名 20バイト SJIS       [実測確定]
-_SE_LOAD       = slice(82, 84)   # 斤量 kg-50形式 "05"→55kg    [実測確定: int(val)+50]
+_SE_SEX        = slice(78, 79)   # 性別 1=牡,2=牝,3=騸        [暫定 - 牝馬レースでのみ検証]
+_SE_AGE        = slice(80, 82)   # 馬齢                        [未確定 - 要調査]
+_SE_TRAINER_CD = slice(84, 90)   # 調教師コード 6桁             [実測確定]
+_SE_TRAINER_NM = slice(90, 98)   # 調教師名 8バイト SJIS (4文字)[実測確定]
+_SE_JOCKEY_CD  = slice(296, 301) # 騎手コード 5桁              [実測確定]
+_SE_JOCKEY_NM  = slice(306, 314) # 騎手名 8バイト SJIS (4文字) [実測確定]
+_SE_LOAD       = slice(288, 291) # 斤量 ×0.1kg: "550"→55.0kg  [実測確定]
 _SE_RANK       = slice(202, 204) # 着順 "01"-"18" (0=除外/取消) [推定: 旧211-9ずれ補正]
 _SE_WIN_ODDS   = slice(204, 209) # 単勝オッズ ×10 "01500"=1.5倍 [推定]
 _SE_POPULARITY = slice(209, 211) # 人気 "01"-"18"               [推定]
@@ -376,7 +376,8 @@ def _str(raw: bytes, sl: slice, encoding: str = 'ascii') -> str:
     try:
         from src.utils.text import sanitize_str
         return sanitize_str(raw[sl].decode(encoding, errors='replace'))
-    except Exception:
+    except Exception as _exc:
+        logger.debug("_str decode error sl=%s enc=%s len=%d: %s", sl, encoding, len(raw), _exc)
         return ''
 
 
@@ -852,8 +853,8 @@ def _parse_se(raw: bytes) -> Optional[dict]:
 
     load_raw   = _str(raw, _SE_LOAD)
     load_int   = _safe_int_val(load_raw)
-    # 斤量はkg-50の2桁ASCII: "05"→55.0kg, "07"→57.0kg (実測確定)
-    weight_car = float(load_int + 50) if load_int > 0 else 0.0
+    # 斤量は3桁ASCII×0.1kg: "550"→55.0kg, "520"→52.0kg (実測確定)
+    weight_car = load_int / 10.0 if load_int > 0 else 0.0
 
     # 推定フィールド（実データで要検証）
     rank       = _int(raw, _SE_RANK) or None
@@ -1511,10 +1512,10 @@ def _save_tc(conn: sqlite3.Connection, r: dict) -> None:
         conn.execute(
             """
             INSERT INTO training_times
-                (horse_id, horse_name, training_date, venue_code, course_type,
+                (horse_id, horse_name, training_date, venue_code, course_type, direction,
                  time_4f, time_3f, time_2f, time_1f, lap_time,
                  gear, jockey_code, jockey_name, data_date)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             ON CONFLICT(horse_id, training_date, course_type, direction) DO UPDATE SET
                 time_4f   = excluded.time_4f,
                 time_3f   = excluded.time_3f,
@@ -1524,7 +1525,7 @@ def _save_tc(conn: sqlite3.Connection, r: dict) -> None:
                 gear      = excluded.gear
             """,
             (r['horse_id'], r['horse_name'], r['training_date'],
-             r.get('venue_code', ''), r.get('course_type', ''),
+             r.get('venue_code', ''), r.get('course_type', ''), r.get('direction', ''),
              r.get('time_4f'), r.get('time_3f'), r.get('time_2f'),
              r.get('time_1f'), r.get('lap_time'), r.get('gear', ''),
              r.get('jockey_code', ''), r.get('jockey_name', ''), r.get('data_date', '')),
@@ -1945,8 +1946,14 @@ class JVDataLoader:
         """
         import time
 
-        conn    = self._get_conn()
-        records = []
+        _BATCH_SIZE = 500
+
+        conn       = self._get_conn()
+        batch: list[dict] = []
+        stats: dict[str, int] = {
+            "ra": 0, "jg": 0, "se": 0, "payout": 0, "tc": 0, "hc": 0,
+            "bt": 0, "hn": 0, "um": 0, "ks": 0, "ch": 0, "skipped": 0,
+        }
         read_count = 0
 
         with JVLinkClient(self._sid) as client:
@@ -1984,12 +1991,21 @@ class JVDataLoader:
                 if data:
                     rec = parse_record(data, debug=self._debug)
                     if rec:
-                        records.append(rec)
+                        batch.append(rec)
                 read_count += 1
-                if read_count % 500 == 0:
-                    logger.info("読み込み中: %d レコード処理済み", read_count)
 
-        stats = save_records_to_db(records, conn)
+                if len(batch) >= _BATCH_SIZE:
+                    partial = save_records_to_db(batch, conn)
+                    for k in stats:
+                        stats[k] += partial.get(k, 0)
+                    batch = []
+                    logger.info("バッチ保存完了: 累計 %d レコード読み込み済み", read_count)
+
+            if batch:
+                partial = save_records_to_db(batch, conn)
+                for k in stats:
+                    stats[k] += partial.get(k, 0)
+
         conn.close()
 
         stats['total_read'] = read_count

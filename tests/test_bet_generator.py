@@ -9,8 +9,10 @@ import pytest
 
 from src.ml.bet_generator import (
     BetGenerator,
+    HitFocusStrategy,
     HonmeiStrategy,
     ManjiStrategy,
+    RaceBets,
     Win5Recommendation,
     _kelly_bet,
     generate_win5,
@@ -97,11 +99,12 @@ class TestManjiStrategy:
         bet_types = [b.bet_type for b in bets.bets]
         assert "単勝" in bet_types
 
-    def test_EV低い場合は買い目なし(self) -> None:
+    def test_EVゲート廃止後も買い目が生成される(self) -> None:
+        # 確率至上主義: EVゲート撤廃により低EVでも無条件で上位馬を推奨する
         df = _make_df()
         ev = _make_low_ev_scores(df)
         bets = ManjiStrategy().generate("test001", df, ev)
-        assert len(bets.bets) == 0
+        assert len(bets.bets) > 0
 
     def test_馬連とワイドが含まれる(self) -> None:
         df = _make_df()
@@ -226,3 +229,141 @@ class TestWin5:
         rec = generate_win5(races, scores)
         assert rec is not None
         json.dumps(rec.to_dict())
+
+
+# ── HitFocusStrategy ──────────────────────────────────────────────
+
+class TestHitFocusStrategy:
+    """
+    HitFocusStrategy の TDD テスト。
+
+    仕様:
+      - 馬連・馬単・三連単の2軸マルチフォーメーション
+      - 均等 100 円買い（Kelly 不使用）
+      - トリガミ防止フィルター（最良組み合わせ推定払戻 < 総投資額 → スキップ）
+      - 第4の独立クラス（model_type = "HitFocus"）
+    """
+
+    def test_model_typeがHitFocus(self) -> None:
+        df = _make_df()
+        scores = _make_honmei_scores(df)
+        bets = HitFocusStrategy().generate("hf001", df, scores)
+        assert bets.model_type == "HitFocus"
+
+    def test_戻り値がRaceBets型(self) -> None:
+        df = _make_df()
+        scores = _make_honmei_scores(df)
+        bets = HitFocusStrategy().generate("hf001", df, scores)
+        assert isinstance(bets, RaceBets)
+
+    def test_馬連が含まれる(self) -> None:
+        df = _make_df()
+        scores = _make_honmei_scores(df)
+        bets = HitFocusStrategy().generate("hf001", df, scores)
+        bet_types = {b.bet_type for b in bets.bets}
+        assert "馬連" in bet_types
+
+    def test_馬単が含まれる(self) -> None:
+        df = _make_df()
+        scores = _make_honmei_scores(df)
+        bets = HitFocusStrategy().generate("hf001", df, scores)
+        bet_types = {b.bet_type for b in bets.bets}
+        assert "馬単" in bet_types
+
+    def test_三連単が含まれる(self) -> None:
+        # 軸馬が圧倒的に強いスコア → トリガミ防止フィルターを通過させる
+        df = _make_df(n=6)
+        scores = pd.Series([0.70, 0.15, 0.06, 0.04, 0.03, 0.02], index=df.index)
+        bets = HitFocusStrategy().generate("hf001", df, scores)
+        bet_types = {b.bet_type for b in bets.bets}
+        assert "三連単" in bet_types
+
+    def test_単勝と複勝とワイドと三連複は生成しない(self) -> None:
+        df = _make_df()
+        scores = _make_honmei_scores(df)
+        bets = HitFocusStrategy().generate("hf001", df, scores)
+        bet_types = {b.bet_type for b in bets.bets}
+        assert "単勝" not in bet_types
+        assert "複勝" not in bet_types
+        assert "ワイド" not in bet_types
+        assert "三連複" not in bet_types
+
+    def test_馬連に2軸間組み合わせが含まれる(self) -> None:
+        """スコア1位・2位の馬が馬連に含まれること（2軸フォーメーションの核心）。"""
+        df = _make_df(n=6)
+        # horse_number 1 が最高スコア、horse_number 2 が次点
+        scores = pd.Series(
+            [1.0, 0.8, 0.6, 0.4, 0.2, 0.1],
+            index=df.index,
+        )
+        bets = HitFocusStrategy().generate("hf002", df, scores)
+        umaren = next(b for b in bets.bets if b.bet_type == "馬連")
+        axis_combo = tuple(sorted([1, 2]))
+        assert axis_combo in umaren.combinations
+
+    def test_馬単に2軸の両方向が含まれる(self) -> None:
+        """axis1→axis2 と axis2→axis1 の両方が馬単に含まれること。"""
+        df = _make_df(n=6)
+        scores = pd.Series(
+            [1.0, 0.8, 0.6, 0.4, 0.2, 0.1],
+            index=df.index,
+        )
+        bets = HitFocusStrategy().generate("hf002", df, scores)
+        umatan = next(b for b in bets.bets if b.bet_type == "馬単")
+        combos = umatan.combinations
+        assert (1, 2) in combos
+        assert (2, 1) in combos
+
+    def test_均等100円買い_馬連(self) -> None:
+        """馬連の recommended_bet = 100 × 組み合わせ数 であること。"""
+        df = _make_df(n=8)
+        scores = _make_honmei_scores(df)
+        bets = HitFocusStrategy().generate("hf001", df, scores)
+        umaren = next(b for b in bets.bets if b.bet_type == "馬連")
+        assert umaren.recommended_bet == 100 * len(umaren.combinations)
+
+    def test_均等100円買い_馬単(self) -> None:
+        df = _make_df(n=8)
+        scores = _make_honmei_scores(df)
+        bets = HitFocusStrategy().generate("hf001", df, scores)
+        umatan = next(b for b in bets.bets if b.bet_type == "馬単")
+        assert umatan.recommended_bet == 100 * len(umatan.combinations)
+
+    def test_均等100円買い_三連単(self) -> None:
+        df = _make_df(n=6)
+        scores = pd.Series([0.70, 0.15, 0.06, 0.04, 0.03, 0.02], index=df.index)
+        bets = HitFocusStrategy().generate("hf001", df, scores)
+        sanrentan = next(b for b in bets.bets if b.bet_type == "三連単")
+        assert sanrentan.recommended_bet == 100 * len(sanrentan.combinations)
+
+    def test_2頭以下では買い目なしでも例外なし(self) -> None:
+        df = _make_df(n=2)
+        scores = _make_honmei_scores(df)
+        bets = HitFocusStrategy().generate("hf003", df, scores)
+        assert isinstance(bets, RaceBets)
+        # 三連単は生成されない（馬連・馬単はあってもなくても例外なし）
+        bet_types = {b.bet_type for b in bets.bets}
+        assert "三連単" not in bet_types
+
+    def test_1頭以下では空の買い目(self) -> None:
+        df = _make_df(n=1)
+        scores = _make_honmei_scores(df)
+        bets = HitFocusStrategy().generate("hf004", df, scores)
+        assert len(bets.bets) == 0
+
+    def test_トリガミ防止フィルター_低オッズ軸馬はスキップされる(self) -> None:
+        """推定払戻ベースフィルター: scale × axis_odds ≤ n_combos × margin → スキップ。
+        _make_df の win_odds=horse_number×3 → axis1(馬番1)=3.0。
+        scale=6.0, odds=3.0, margin=1.5 → 18.0 > 10.5 → 通常はPASS。
+        例外なく RaceBets が返ることを確認するスモークテスト。"""
+        df = _make_df(n=16)
+        scores = pd.Series([1.0] * 16, index=df.index)
+        bets = HitFocusStrategy().generate("hf005", df, scores)
+        assert isinstance(bets, RaceBets)
+
+    def test_BetGeneratorのgenerate_hit_focusが動作する(self) -> None:
+        gen = BetGenerator()
+        df = _make_df()
+        scores = _make_honmei_scores(df)
+        bets = gen.generate_hit_focus("r_hf001", df, scores)
+        assert bets.model_type == "HitFocus"

@@ -326,6 +326,50 @@ def _has_refund(
     return False
 
 
+
+
+def _parse_combination_json(combo_json: str) -> list[tuple[int, ...]]:
+    """combination_json を [(馬番, ...), ...] に変換する。"""
+    if not combo_json:
+        return []
+    try:
+        parsed = json.loads(combo_json)
+        if not parsed:
+            return []
+        if isinstance(parsed[0], list):
+            return [tuple(int(x) for x in c) for c in parsed if c]
+        if isinstance(parsed[0], (int, float)):
+            return [tuple(int(x) for x in parsed)]
+        return []
+    except Exception:
+        return []
+
+
+def _combo_to_payout_key(bet_type: str, combo: tuple[int, ...]) -> str | None:
+    """馬番タプル → race_payouts.combination 文字列に変換。"""
+    if not combo:
+        return None
+    arrow = "→"
+    if bet_type in ("単勝", "複勝"):
+        return str(combo[0])
+    elif bet_type in ("馬連", "ワイド"):
+        if len(combo) < 2:
+            return None
+        return "-".join(str(n) for n in sorted(combo[:2]))
+    elif bet_type == "馬単":
+        if len(combo) < 2:
+            return None
+        return arrow.join(str(n) for n in combo[:2])
+    elif bet_type == "三連複":
+        if len(combo) < 3:
+            return None
+        return "-".join(str(n) for n in sorted(combo[:3]))
+    elif bet_type == "三連単":
+        if len(combo) < 3:
+            return None
+        return arrow.join(str(n) for n in combo[:3])
+    return None
+
 # ================================================================
 # Evaluator 本体
 # ================================================================
@@ -428,24 +472,31 @@ class Evaluator:
                     self._save_result(conn, pid, False, invested, 0.0, 100.0)
                 continue
 
-            # 的中判定
-            hit = _is_hit(bet_type, horse_names, result_map)
-
-            # 払戻取得
+            # 的中判定・払戻取得（combination_json 馬番ベース優先）
+            parsed_combos = _parse_combination_json(pred.get("combination_json") or "")
+            hit = False
             payout_per_100 = 0
-            if hit:
-                combo_key = _build_combination_key(bet_type, horse_names, horse_numbers)
-                payout_per_100 = _lookup_payout(bet_type, combo_key, payouts)
-                if payout_per_100 == 0 and hit:
-                    # combination_key が解決できなかった場合、bet_type だけで検索
-                    matching = [
-                        v for (bt, _), v in payouts.items() if bt == bet_type
-                    ]
-                    if matching:
-                        payout_per_100 = int(sum(matching) / len(matching))
-                        errors.append(
-                            f"pid={pid} {bet_type}: combination 解決不可、"
-                            f"払戻平均 {payout_per_100} を使用"
+
+            if parsed_combos:
+                for combo in parsed_combos:
+                    key = _combo_to_payout_key(bet_type, combo)
+                    if key is not None:
+                        p = payouts.get((bet_type, key), 0)
+                        if p > 0:
+                            hit = True
+                            payout_per_100 = max(payout_per_100, p)
+            else:
+                hit = _is_hit(bet_type, horse_names, result_map)
+                if hit:
+                    combo_key = _build_combination_key(bet_type, horse_names, horse_numbers)
+                    payout_per_100 = _lookup_payout(bet_type, combo_key, payouts)
+                    if payout_per_100 == 0:
+                        matching = [v for (bt, _), v in payouts.items() if bt == bet_type]
+                        if matching:
+                            payout_per_100 = int(sum(matching) / len(matching))
+                            errors.append(
+                                f"pid={pid} {bet_type}: combination 解決不可、"
+                                f"払戻平均 {payout_per_100} を使用"
                         )
 
             actual_payout = (payout_per_100 / 100.0) * invested if hit else 0.0

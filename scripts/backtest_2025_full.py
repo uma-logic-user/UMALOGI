@@ -220,7 +220,17 @@ def _get_winner_nums(conn: sqlite3.Connection, race_id: str) -> tuple[list[int],
 def _check_sanrenpuku_hit(
     combo: tuple[int, ...],
     r1: list[int], r2: list[int], r3: list[int],
+    payout_map: dict[str, int] | None = None,
 ) -> bool:
+    """三連複的中判定。
+
+    payout_map（{combination_str: payout}）が与えられた場合は払戻テーブルに
+    当該組み合わせが存在するかを正としてダブルチェックする。
+    rank データにゴミレコードが残存していても false-hit を防げる。
+    """
+    combo_str = "-".join(map(str, combo))  # already sorted
+    if payout_map is not None:
+        return payout_map.get(combo_str, 0) > 0
     if not (r1 and r2 and r3):
         return False
     top3 = set(r1[:1] + r2[:1] + r3[:1])
@@ -230,7 +240,16 @@ def _check_sanrenpuku_hit(
 def _check_sanrentan_hit(
     combo: tuple[int, ...],
     r1: list[int], r2: list[int], r3: list[int],
+    payout_map: dict[str, int] | None = None,
 ) -> bool:
+    """三連単的中判定。
+
+    payout_map（{combination_str: payout}）が与えられた場合は払戻テーブルに
+    当該組み合わせが存在するかを正としてダブルチェックする。
+    """
+    combo_str = "→".join(map(str, combo))
+    if payout_map is not None:
+        return payout_map.get(combo_str, 0) > 0
     if not (r1 and r2 and r3 and len(combo) == 3):
         return False
     return (combo[0] in r1) and (combo[1] in r2) and (combo[2] in r3)
@@ -322,10 +341,11 @@ def simulate_oracle(
                 trio_probs.append((prob_sum, tuple(sorted([nums[ia], nums[ib], nums[ic]]))))
             trio_probs.sort(reverse=True)
 
+            trio_pay_map = payout_cache[race_id].get("三連複", {})
             for rank_i, (prob, combo) in enumerate(trio_probs[:top_n]):
-                is_hit = _check_sanrenpuku_hit(combo, r1, r2, r3)
                 combo_str = "-".join(map(str, combo))
-                payout = payout_cache[race_id]["三連複"].get(combo_str, 0) if is_hit else 0
+                is_hit = _check_sanrenpuku_hit(combo, r1, r2, r3, payout_map=trio_pay_map)
+                payout = trio_pay_map.get(combo_str, 0) if is_hit else 0
                 trio_results.append({
                     "race_id": race_id, "date": race_date,
                     "rank": rank_i + 1, "prob": round(prob, 5),
@@ -341,10 +361,11 @@ def simulate_oracle(
                 tan_probs.append((prob, (nums[ia], nums[ib], nums[ic])))
             tan_probs.sort(reverse=True)
 
+            tan_pay_map = payout_cache[race_id].get("三連単", {})
             for rank_i, (prob, combo) in enumerate(tan_probs[:top_n]):
-                is_hit = _check_sanrentan_hit(combo, r1, r2, r3)
+                is_hit = _check_sanrentan_hit(combo, r1, r2, r3, payout_map=tan_pay_map)
                 combo_str = "→".join(map(str, combo))
-                payout = payout_cache[race_id]["三連単"].get(combo_str, 0) if is_hit else 0
+                payout = tan_pay_map.get(combo_str, 0) if is_hit else 0
                 trifecta_results.append({
                     "race_id": race_id, "date": race_date,
                     "rank": rank_i + 1, "prob": round(prob, 5),
@@ -363,6 +384,191 @@ def simulate_oracle(
 
     logger.info("Oracle シミュレーション完了: %d レース処理", processed)
     return trio_results, trifecta_results
+
+
+# ─────────────────────────────────────────────────────────────────
+# HitFocus 再シミュレーション（2軸マルチフォーメーション）
+# ─────────────────────────────────────────────────────────────────
+
+def simulate_hit_focus(
+    conn: sqlite3.Connection,
+    date_from: str,
+    date_to: str,
+) -> dict[str, list[dict]]:
+    """
+    全対象レースに HitFocusStrategy を適用して遡及シミュレーション。
+
+    Returns:
+        {"馬連": [...], "馬単": [...], "三連単": [...]}
+        各リストの要素: {race_id, date, bet_type, combinations, n_combos,
+                         is_hit, payout, bet, combo_hit}
+    """
+    from src.ml.models import HonmeiModel
+    from src.ml.features import FeatureBuilder
+    from src.ml.bet_generator import HitFocusStrategy
+
+    logger.info("HitFocus シミュレーション開始: %s ~ %s", date_from, date_to)
+
+    honmei = HonmeiModel()
+    honmei.load()
+    fb = FeatureBuilder(conn)
+    strategy = HitFocusStrategy()
+
+    races = conn.execute(
+        """
+        SELECT DISTINCT r.race_id, r.date
+        FROM races r
+        WHERE r.date >= ? AND r.date <= ?
+          AND EXISTS (SELECT 1 FROM race_results rr WHERE rr.race_id=r.race_id AND rr.rank=1)
+          AND EXISTS (SELECT 1 FROM race_results rr WHERE rr.race_id=r.race_id AND rr.rank=2)
+          AND EXISTS (SELECT 1 FROM race_results rr WHERE rr.race_id=r.race_id AND rr.rank=3)
+        ORDER BY r.date, r.race_id
+        """,
+        (date_from, date_to),
+    ).fetchall()
+    logger.info("対象レース: %d 件", len(races))
+
+    # 払戻キャッシュ
+    payout_rows = conn.execute(
+        """
+        SELECT rp.race_id, rp.bet_type, rp.combination, rp.payout
+        FROM race_payouts rp
+        JOIN races r ON rp.race_id=r.race_id
+        WHERE r.date >= ? AND r.date <= ?
+          AND rp.bet_type IN ('馬連','馬単','三連単')
+        """,
+        (date_from, date_to),
+    ).fetchall()
+    payout_cache: dict[str, dict[str, dict[str, int]]] = defaultdict(lambda: defaultdict(dict))
+    for race_id, bt, combo, payout in payout_rows:
+        payout_cache[race_id][bt][combo] = payout
+
+    results: dict[str, list[dict]] = {"馬連": [], "馬単": [], "三連単": []}
+    processed = 0
+
+    for race_id, race_date in races:
+        try:
+            df = fb.build_race_features_for_simulate(race_id)
+            if df is None or len(df) < 2:
+                continue
+            scores = honmei.predict(df)
+            race_bets = strategy.generate(race_id, df, scores)
+
+            for bet_rec in race_bets.bets:
+                bt = bet_rec.bet_type
+                if bt not in results:
+                    continue
+
+                pay_map = payout_cache[race_id].get(bt, {})
+                n = len(bet_rec.combinations)
+                invested = 100 * n
+                hit_payout = 0
+                combo_hit: str = ""
+
+                for combo in bet_rec.combinations:
+                    # 組み合わせ文字列をDB形式に変換
+                    if bt == "馬連":
+                        key = "-".join(map(str, sorted(combo)))
+                        sep = "-"
+                    else:  # 馬単・三連単
+                        key = "→".join(map(str, combo))
+                        sep = "→"
+                    p = pay_map.get(key, 0)
+                    if p > 0:
+                        hit_payout = max(hit_payout, p)
+                        combo_hit = key
+
+                is_hit = hit_payout > 0
+                results[bt].append({
+                    "race_id": race_id,
+                    "date": race_date,
+                    "bet_type": bt,
+                    "n_combos": n,
+                    "is_hit": is_hit,
+                    "payout": hit_payout if is_hit else 0,
+                    "bet": invested,
+                    "combo_hit": combo_hit,
+                })
+
+            processed += 1
+            if processed % 200 == 0:
+                logger.info("  処理済み: %d / %d レース", processed, len(races))
+
+        except Exception as e:
+            logger.debug("HitFocus race %s スキップ: %s", race_id, e)
+            continue
+
+    logger.info("HitFocus シミュレーション完了: %d レース処理", processed)
+    return results
+
+
+def report_hit_focus_sim(
+    results: dict[str, list[dict]],
+    label: str,
+) -> None:
+    print_section(f"HitFocus シミュレーション結果 ({label})")
+
+    grand_invested = 0
+    grand_payout   = 0
+    grand_bets     = 0
+    grand_hits     = 0
+
+    for bt in ["馬連", "馬単", "三連単"]:
+        rows = results.get(bt, [])
+        if not rows:
+            print(f"  {bt}: データなし")
+            continue
+
+        n_bets    = len(rows)
+        n_hits    = sum(1 for r in rows if r["is_hit"])
+        invested  = sum(r["bet"] for r in rows)
+        payout    = sum(r["payout"] for r in rows)
+        roi       = payout / invested * 100 if invested > 0 else 0.0
+        hit_rate  = n_hits / n_bets * 100 if n_bets > 0 else 0.0
+        max_pay   = max((r["payout"] for r in rows), default=0)
+        profit    = payout - invested
+        sign      = "+" if profit >= 0 else ""
+        flag      = "🟢" if roi >= 100 else ("🟡" if roi >= 75 else "🔴")
+
+        avg_combos = sum(r["n_combos"] for r in rows) / n_bets if n_bets > 0 else 0
+
+        print(
+            f"  {flag} HitFocus {bt:<5s} "
+            f"{n_bets:>5}件 {n_hits:>4}的中 "
+            f"({hit_rate:>5.1f}%) "
+            f"avg{avg_combos:.1f}点  "
+            f"ROI={roi:>6.1f}%  "
+            f"損益={sign}{profit:>+10,.0f}円  "
+            f"最大払戻=¥{max_pay:>8,.0f}"
+        )
+
+        grand_invested += invested
+        grand_payout   += payout
+        grand_bets     += n_bets
+        grand_hits     += n_hits
+
+        # 的中明細 TOP5
+        hits_sorted = sorted([r for r in rows if r["is_hit"]], key=lambda x: x["payout"], reverse=True)
+        if hits_sorted:
+            print(f"    的中明細 (上位5件):")
+            for h in hits_sorted[:5]:
+                print(
+                    f"      🎯 {h['date']}  {h['race_id']}  "
+                    f"組合={h['combo_hit']}  "
+                    f"払戻=¥{h['payout']:>8,}"
+                )
+
+    if grand_invested > 0:
+        grand_roi    = grand_payout / grand_invested * 100
+        grand_profit = grand_payout - grand_invested
+        sign = "+" if grand_profit >= 0 else ""
+        flag = "🟢" if grand_roi >= 100 else ("🟡" if grand_roi >= 75 else "🔴")
+        print(
+            f"\n  {flag} HitFocus 合計  "
+            f"{grand_bets:>5}件 {grand_hits:>4}的中  "
+            f"ROI={grand_roi:.1f}%  "
+            f"損益={sign}{grand_profit:>+,.0f}円"
+        )
 
 
 # ─────────────────────────────────────────────────────────────────
@@ -663,8 +869,9 @@ def main() -> None:
     parser.add_argument("--year",      type=int,   default=None, help="対象年 (例: 2026)")
     parser.add_argument("--date-from", default=None, help="開始日 YYYY-MM-DD")
     parser.add_argument("--date-to",   default=None, help="終了日 YYYY-MM-DD")
-    parser.add_argument("--oracle-sim", action="store_true", help="Oracle 再シミュレーションを実行")
-    parser.add_argument("--win5-sim",   action="store_true", help="WIN5 シミュレーションを実行")
+    parser.add_argument("--oracle-sim",     action="store_true", help="Oracle 再シミュレーションを実行")
+    parser.add_argument("--win5-sim",       action="store_true", help="WIN5 シミュレーションを実行")
+    parser.add_argument("--hit-focus-sim",  action="store_true", help="HitFocus 再シミュレーションを実行")
     parser.add_argument("--json-out",   default=None, help="JSON 出力ファイルパス")
     args = parser.parse_args()
 
@@ -687,8 +894,9 @@ def main() -> None:
 
     print_section("UMALOGI 完全バックテスト")
     print(f"  対象期間: {date_label}")
-    print(f"  Oracle再シミュレーション: {'ON' if args.oracle_sim else 'OFF (--oracle-sim で有効化)'}")
-    print(f"  WIN5再シミュレーション:   {'ON' if args.win5_sim   else 'OFF (--win5-sim で有効化)'}")
+    print(f"  Oracle再シミュレーション:    {'ON' if args.oracle_sim    else 'OFF (--oracle-sim で有効化)'}")
+    print(f"  HitFocus再シミュレーション: {'ON' if args.hit_focus_sim else 'OFF (--hit-focus-sim で有効化)'}")
+    print(f"  WIN5再シミュレーション:     {'ON' if args.win5_sim      else 'OFF (--win5-sim で有効化)'}")
 
     # データ品質確認
     quality = load_data_quality(conn)
@@ -701,6 +909,14 @@ def main() -> None:
         print("  main_pipeline.py を実行してレース予想を生成してください。")
     else:
         report_existing_predictions(df, date_label)
+
+    # HitFocus 再シミュレーション
+    hit_focus_results: dict[str, list[dict]] = {}
+    if args.hit_focus_sim:
+        hit_focus_results = simulate_hit_focus(conn, date_from, date_to)
+        report_hit_focus_sim(hit_focus_results, date_label)
+    else:
+        print(f"\n  [HitFocus 再シミュレーション] --hit-focus-sim オプションで実行可能")
 
     # Oracle 再シミュレーション
     trio_results: list[dict] = []

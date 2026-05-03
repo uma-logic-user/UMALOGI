@@ -20,6 +20,7 @@ import requests
 from dotenv import load_dotenv
 
 from .base import BaseNotifier, NotifyMessage
+from src.utils.text import sanitize_str
 
 # プロジェクトルートの .env を読み込む
 load_dotenv(Path(__file__).resolve().parents[3] / ".env", override=False)
@@ -69,8 +70,8 @@ class DiscordNotifier(BaseNotifier):
 
     @staticmethod
     def _sanitize(s: str) -> str:
-        """nullバイト・制御文字を除去してDiscord送信安全な文字列に変換する。"""
-        return s.replace('\x00', '').strip()
+        """制御文字を全除去してDiscord送信安全な文字列に変換する。"""
+        return sanitize_str(s)
 
     # ------------------------------------------------------------------ #
     # BaseNotifier 実装

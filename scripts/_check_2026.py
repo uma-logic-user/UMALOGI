@@ -1,0 +1,12 @@
+import sqlite3, sys
+sys.stdout.reconfigure(encoding="utf-8")
+conn = sqlite3.connect("data/umalogi.db")
+print("2026 race_results:", conn.execute("SELECT COUNT(*) FROM race_results WHERE race_id LIKE '2026%'").fetchone()[0])
+print("汚染rank件数(20,30..90):", conn.execute("SELECT COUNT(*) FROM race_results WHERE rank IN (20,30,40,50,60,70,80,90)").fetchone()[0])
+print("2026汚染rank件数:", conn.execute("SELECT COUNT(*) FROM race_results WHERE race_id LIKE '2026%' AND rank IN (20,30,40,50,60,70,80,90)").fetchone()[0])
+print("2026 races:", conn.execute("SELECT COUNT(*) FROM races WHERE race_id LIKE '2026%'").fetchone()[0])
+print("2026 race_payouts:", conn.execute("SELECT COUNT(*) FROM race_payouts WHERE race_id LIKE '2026%'").fetchone()[0])
+print("2026 predictions:", conn.execute("SELECT COUNT(*) FROM predictions WHERE race_id LIKE '2026%'").fetchone()[0])
+sample = conn.execute("SELECT rank, COUNT(*) FROM race_results WHERE race_id LIKE '2026%' GROUP BY rank ORDER BY CAST(rank AS INTEGER) LIMIT 25").fetchall()
+print("2026 rank分布:", sample)
+conn.close()
