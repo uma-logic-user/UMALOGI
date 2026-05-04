@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import argparse
 import io
+import os
 import sqlite3
 import sys
 import time
@@ -32,6 +33,13 @@ if hasattr(sys.stdout, "buffer") and sys.stdout.encoding.lower() not in ("utf-8"
 _ROOT = Path(__file__).resolve().parent.parent
 if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
+
+# .env から JRAVAN_SID を読み込む（TARGET frontier 不要）
+try:
+    from dotenv import load_dotenv
+    load_dotenv(_ROOT / ".env", override=False)
+except ImportError:
+    pass
 
 from src.scraper.jravan_client import (
     JVREAD_DOWNLOADING,
@@ -52,7 +60,7 @@ from src.database.init_db import init_db
 # 設定
 # ────────────────────────────────────────────────────────────────────────────
 
-DEFAULT_SID        = "UMALOGI00"
+DEFAULT_SID        = os.getenv("JRAVAN_SID", "UMALOGI00")
 DEFAULT_BATCH_SIZE = 5000   # この件数を超えたら強制コミット（安全ネット）
 
 

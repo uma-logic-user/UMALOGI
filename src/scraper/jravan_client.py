@@ -51,6 +51,7 @@ import logging
 import re
 import sqlite3
 import sys
+import time
 from pathlib import Path
 from typing import Optional
 
@@ -525,6 +526,8 @@ class JVLinkClient:
     # JVRead のバッファサイズ（最大レコード長より十分大きく確保）
     _BUFF_SIZE = 1_000_000
 
+    _MAX_RECONNECT = 3   # JVInit 失敗時の最大再試行回数
+
     def __init__(self, sid: str) -> None:
         self._sid   = sid
         self._jvl   = None              # COM オブジェクト
@@ -547,7 +550,7 @@ class JVLinkClient:
     # ── 接続・初期化 ────────────────────────────────────────────
 
     def _connect(self) -> None:
-        """COM オブジェクトを生成して JVInit を実行する。"""
+        """COM オブジェクトを生成して JVInit を実行する（失敗時は自動再試行）。"""
         try:
             import win32com.client  # type: ignore[import]
         except ImportError:
@@ -565,10 +568,29 @@ class JVLinkClient:
                 "また 32bit Python で実行しているか確認してください。"
             ) from e
 
-        ret = self._jvl.JVInit(self._sid)
-        if ret != 0:
-            raise RuntimeError(f"JVInit 失敗 (code={ret}): SID を確認してください。")
-        logger.info("JVInit 完了 sid=%s", self._sid)
+        for attempt in range(1, self._MAX_RECONNECT + 1):
+            ret = self._jvl.JVInit(self._sid)
+            if ret == 0:
+                logger.info("JVInit 完了 sid=%s (attempt=%d)", self._sid, attempt)
+                return
+            logger.warning("JVInit 失敗 code=%d sid=%s (attempt=%d/%d)", ret, self._sid, attempt, self._MAX_RECONNECT)
+            if attempt < self._MAX_RECONNECT:
+                time.sleep(3)
+
+        raise RuntimeError(
+            f"JVInit 失敗 (全{self._MAX_RECONNECT}回): SID={self._sid!r} を確認してください。\n"
+            "TARGET frontier を起動してログイン後に再実行、もしくは .env の JRAVAN_SID を確認してください。"
+        )
+
+    def _reconnect(self) -> None:
+        """セッション切れ時に JVClose → JVInit を再実行して接続を回復する。"""
+        logger.info("JVLink 再接続を試みます...")
+        try:
+            if self._jvl is not None:
+                self._jvl.JVClose()
+        except Exception:
+            pass
+        self._connect()
 
     # ── JVOpen ──────────────────────────────────────────────────
 
@@ -613,9 +635,32 @@ class JVLinkClient:
         if isinstance(code, str):
             code = _safe_int_val(code, default=-1)
 
-        # -2: JVInit 未呼び出し, -3: ストリーム多重オープン → 致命的エラー
-        if code in (-2, -3):
-            raise RuntimeError(f"JVOpen 致命的エラーコード: {code}")
+        # -2: JVInit 未呼び出し（セッション切れ）→ 自動再接続して1回だけリトライ
+        if code == -2:
+            logger.warning("JVOpen code=-2: セッション切れ → 自動再接続します")
+            self._reconnect()
+            result = None
+            for call_args in [
+                (dataspec, fromtime, option, 0, ""),
+                (dataspec, fromtime, option),
+            ]:
+                try:
+                    result = self._jvl.JVOpen(*call_args)
+                    _code = result[0] if isinstance(result, (tuple, list)) else _safe_int_val(result, default=-1)
+                    if isinstance(_code, str):
+                        _code = _safe_int_val(_code, default=-1)
+                    if _code >= 0 or len(call_args) == 3:
+                        break
+                except Exception as e:
+                    if len(call_args) == 3:
+                        raise RuntimeError(f"JVOpen 再接続後に失敗: {e}") from e
+            code = result[0] if isinstance(result, (tuple, list)) else _safe_int_val(result, default=-1)
+            if isinstance(code, str):
+                code = _safe_int_val(code, default=-1)
+
+        # -3: ストリーム多重オープン → 致命的エラー
+        if code == -3:
+            raise RuntimeError(f"JVOpen 致命的エラーコード: {code} (ストリーム多重オープン)")
 
         # その他の負値 (-1=パラメータエラー/-303=データなし等) はデータ取得不可として扱う
         if code < 0:
