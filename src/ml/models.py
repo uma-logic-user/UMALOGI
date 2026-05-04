@@ -25,7 +25,6 @@ from lightgbm import LGBMClassifier, LGBMRegressor
 from sklearn.isotonic import IsotonicRegression
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import roc_auc_score
-from sklearn.model_selection import GroupKFold
 from sklearn.preprocessing import LabelEncoder
 
 logger = logging.getLogger(__name__)
@@ -226,6 +225,43 @@ def _build_train_df(
     return df
 
 
+def _temporal_cv_split(
+    df_sorted: pd.DataFrame,
+    n_splits: int = 5,
+) -> list[tuple[np.ndarray, np.ndarray]]:
+    """
+    時系列順に race_id を均等分割した CV スプリットを返す。
+
+    GroupKFold と異なり「val fold のデータが train に混入しない（未来情報リークなし）」
+    ことを保証する。df_sorted は race_id 昇順ソート済みを前提とする。
+
+    先頭 1 fold は常に最初の train 専用（先頭データのみでの val は学習サンプル不足）。
+    有効な (train_indices, val_indices) ペアを最大 n_splits-1 個返す。
+    """
+    unique_races: np.ndarray = pd.unique(df_sorted["race_id"])
+    n_races = len(unique_races)
+    if n_races < n_splits:
+        return []
+
+    fold_size = n_races // n_splits
+    race_to_fold: dict[str, int] = {}
+    for fold_i in range(n_splits):
+        start = fold_i * fold_size
+        end = (fold_i + 1) * fold_size if fold_i < n_splits - 1 else n_races
+        for rid in unique_races[start:end]:
+            race_to_fold[rid] = fold_i
+
+    fold_arr: np.ndarray = df_sorted["race_id"].map(race_to_fold).to_numpy(dtype=int)
+
+    splits: list[tuple[np.ndarray, np.ndarray]] = []
+    for val_fold in range(1, n_splits):
+        tr_idx = np.where(fold_arr < val_fold)[0]
+        va_idx = np.where(fold_arr == val_fold)[0]
+        if len(tr_idx) > 0 and len(va_idx) > 0:
+            splits.append((tr_idx, va_idx))
+    return splits
+
+
 @dataclass
 class _IsotonicModel:
     """
@@ -331,7 +367,8 @@ class HonmeiModel(_BaseModel):
     Isotonic Regression が Platt Scaling より Brier Score +3.49% 優位なため採用。
 
     学習フロー:
-      1. GroupKFold(5分割) CV を実施し ROC-AUC 計算 + OOF 予測を収集
+      1. 時系列 CV（_temporal_cv_split）で ROC-AUC 計算 + OOF 予測を収集
+         ※ GroupKFold を廃止。未来データが train に混入しないことを保証する。
       2. OOF 予測を使った IsotonicRegression でキャリブレーション適用
       3. 全データで LGBMClassifier を本訓練（推論・特徴量重要度算出用）
       4. Champion/Challenger: 末尾 20% ホールドアウトで既存保存モデルと AUC を比較
@@ -368,9 +405,9 @@ class HonmeiModel(_BaseModel):
 
         学習フロー:
           1. 全データを race_id でソートし末尾 20% を Champion 比較用ホールドアウトに分割
-          2. 全データで GroupKFold(5分割) CV を実施し ROC-AUC を計算
-          3. GroupKFold の OOF 予測を使って Platt Scaling (LogisticRegression) を適用
-             → 追加 LGBM 訓練なしにキャリブレーション済み確率を取得
+          2. _temporal_cv_split で時系列 CV を実施し ROC-AUC を計算
+             ※ GroupKFold 廃止: 未来レースが train に混入しないことを厳密に保証する
+          3. 時系列 CV の OOF 予測を使って IsotonicRegression を適用
           4. 全データで base LGBMClassifier を本訓練（推論用）
           5. Champion/Challenger 比較: ホールドアウトセットで既存保存モデルと AUC を比較
 
@@ -419,26 +456,25 @@ class HonmeiModel(_BaseModel):
         y_all  = df_sorted["is_winner"]
         groups = df_sorted["race_id"]
 
-        # ── GroupKFold CV + OOF 予測収集 ────────────────────────
-        # race_id でグループを切るため同一レースの馬が train/val に分かれない（リーク防止）
-        # OOF 予測は Platt Scaling のキャリブレーションデータとして再利用する
-        # → 追加 LGBM 訓練なしに信頼性の高い確率補正が可能
+        # ── 時系列 CV + OOF 予測収集 ─────────────────────────────
+        # _temporal_cv_split: fold k の val は fold 0..k-1 の train より必ず未来になる。
+        # GroupKFold と異なり「未来レースが train に混入する時系列リーク」を排除する。
+        # OOF 予測は IsotonicRegression のキャリブレーションデータとして再利用する。
         n_splits = min(5, n_races)
         aucs: list[float] = []
         oof_preds = np.zeros(len(X_all), dtype=float)
 
-        if n_splits >= 2:
-            gkf = GroupKFold(n_splits=n_splits)
-            for tr_idx, val_idx in gkf.split(X_all, y_all, groups=groups):
-                clone = LGBMClassifier(**self._LGBM_PARAMS)
-                clone.fit(X_all.iloc[tr_idx], y_all.iloc[tr_idx])
-                proba = clone.predict_proba(X_all.iloc[val_idx])[:, 1]
-                oof_preds[val_idx] = proba
-                try:
-                    aucs.append(roc_auc_score(y_all.iloc[val_idx], proba))
-                except ValueError:
-                    # fold に正例（1着馬）がない稀なケースをスキップ
-                    pass
+        ts_splits = _temporal_cv_split(df_sorted, n_splits=n_splits)
+        for tr_idx, val_idx in ts_splits:
+            clone = LGBMClassifier(**self._LGBM_PARAMS)
+            clone.fit(X_all.iloc[tr_idx], y_all.iloc[tr_idx])
+            proba = clone.predict_proba(X_all.iloc[val_idx])[:, 1]
+            oof_preds[val_idx] = proba
+            try:
+                aucs.append(roc_auc_score(y_all.iloc[val_idx], proba))
+            except ValueError:
+                # fold に正例（1着馬）がない稀なケースをスキップ
+                pass
 
         cv_auc_mean = float(np.mean(aucs)) if aucs else float("nan")
         cv_auc_std  = float(np.std(aucs))  if aucs else float("nan")
@@ -611,17 +647,16 @@ class PlaceModel(_BaseModel):
         aucs: list[float] = []
         oof_preds = np.zeros(len(X_all), dtype=float)
 
-        if n_splits >= 2:
-            gkf = GroupKFold(n_splits=n_splits)
-            for tr_idx, val_idx in gkf.split(X_all, y_all, groups=groups):
-                clone = LGBMClassifier(**self._LGBM_PARAMS)
-                clone.fit(X_all.iloc[tr_idx], y_all.iloc[tr_idx])
-                proba = clone.predict_proba(X_all.iloc[val_idx])[:, 1]
-                oof_preds[val_idx] = proba
-                try:
-                    aucs.append(roc_auc_score(y_all.iloc[val_idx], proba))
-                except ValueError:
-                    pass
+        ts_splits = _temporal_cv_split(df_sorted, n_splits=n_splits)
+        for tr_idx, val_idx in ts_splits:
+            clone = LGBMClassifier(**self._LGBM_PARAMS)
+            clone.fit(X_all.iloc[tr_idx], y_all.iloc[tr_idx])
+            proba = clone.predict_proba(X_all.iloc[val_idx])[:, 1]
+            oof_preds[val_idx] = proba
+            try:
+                aucs.append(roc_auc_score(y_all.iloc[val_idx], proba))
+            except ValueError:
+                pass
 
         cv_auc_mean = float(np.mean(aucs)) if aucs else float("nan")
         cv_auc_std  = float(np.std(aucs))  if aucs else float("nan")

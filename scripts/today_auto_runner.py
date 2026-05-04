@@ -237,6 +237,135 @@ def _run_fetch_result(race_id: str, dry_run: bool) -> int:
     return 1
 
 
+def _is_notable_race(race_id: str) -> bool:
+    """
+    note 記事生成対象かどうかを判定する。
+
+    条件（いずれかに該当）:
+      - レース名に重賞グレード記号または重賞ワードが含まれる
+      - モデルの最大 EV が 5.0 以上
+    """
+    import re
+    from src.database.init_db import init_db
+
+    try:
+        conn = init_db()
+        row = conn.execute(
+            "SELECT race_name FROM races WHERE race_id = ?", (race_id,)
+        ).fetchone()
+        race_name = (row[0] or "") if row else ""
+
+        # G1〜G3・国内重賞の主要パターン + EV閾値で重要度を判定
+        is_graded = bool(re.search(
+            r"[ＧGⅠⅡⅢ]|重賞|ステークス|カップ|記念|天皇賞|有馬|菊花賞|桜花賞|"
+            r"ダービー|オークス|皐月賞|宝塚|スプリンターズ|マイルＣＳ|ジャパンＣ|"
+            r"秋華賞|エリザベス|ヴィクトリア|高松宮|フェブラリー|チャンピオンズ",
+            race_name,
+        ))
+
+        max_ev_row = conn.execute(
+            "SELECT MAX(expected_value) FROM predictions WHERE race_id = ?", (race_id,)
+        ).fetchone()
+        max_ev = float(max_ev_row[0] or 0) if max_ev_row else 0.0
+
+        conn.close()
+        return is_graded or max_ev >= 5.0
+    except Exception as e:
+        logger.warning("notable_race 判定失敗 (race_id=%s): %s", race_id, e)
+        return False
+
+
+def _run_note_article(race_id: str, dry_run: bool) -> None:
+    """prerace 完了後に note 用記事を非同期で生成・保存する。"""
+    if dry_run:
+        logger.info("[DRY-RUN] note 記事生成スキップ: %s", race_id)
+        return
+    try:
+        cmd = [
+            sys.executable,
+            str(_ROOT / "scripts" / "generate_note_article.py"),
+            "--race-id", race_id,
+        ]
+        logger.info("[NOTE] 記事生成開始: %s", race_id)
+        result = subprocess.run(cmd, cwd=str(_ROOT), timeout=120)
+        if result.returncode == 0:
+            logger.info("[NOTE] 記事生成完了: %s", race_id)
+        else:
+            logger.warning("[NOTE] 記事生成失敗 (rc=%d): %s", result.returncode, race_id)
+    except subprocess.TimeoutExpired:
+        logger.warning("[NOTE] 記事生成タイムアウト (120s): %s", race_id)
+    except Exception as e:
+        logger.warning("[NOTE] 記事生成エラー: %s — %s", race_id, e)
+
+
+def _has_hit(race_id: str) -> bool:
+    """postrace 完了後にそのレースで的中があったかを確認する。"""
+    from src.database.init_db import init_db
+    try:
+        conn = init_db()
+        row = conn.execute(
+            """
+            SELECT COUNT(*) FROM prediction_results pr
+            JOIN predictions p ON p.id = pr.prediction_id
+            WHERE p.race_id = ? AND pr.is_hit = 1
+            """,
+            (race_id,),
+        ).fetchone()
+        conn.close()
+        return bool(row and row[0] > 0)
+    except Exception as e:
+        logger.warning("的中判定失敗 (race_id=%s): %s", race_id, e)
+        return False
+
+
+def _run_result_card(race_id: str, dry_run: bool) -> None:
+    """postrace 完了・的中確認後に的中実績カード画像を生成・保存する。"""
+    if dry_run:
+        logger.info("[DRY-RUN] 的中カード生成スキップ: %s", race_id)
+        return
+    try:
+        cmd = [
+            sys.executable,
+            str(_ROOT / "scripts" / "generate_result_card.py"),
+            "--race-id", race_id,
+            "--min-payout", "0",
+        ]
+        logger.info("[CARD] 的中カード生成開始: %s", race_id)
+        result = subprocess.run(cmd, cwd=str(_ROOT), timeout=60)
+        if result.returncode == 0:
+            logger.info("[CARD] 的中カード生成完了: %s", race_id)
+        else:
+            logger.warning("[CARD] 的中カード生成失敗 (rc=%d): %s", result.returncode, race_id)
+    except subprocess.TimeoutExpired:
+        logger.warning("[CARD] 的中カード生成タイムアウト (60s): %s", race_id)
+    except Exception as e:
+        logger.warning("[CARD] 的中カード生成エラー: %s — %s", race_id, e)
+
+
+def _run_sns_post(race_id: str, dry_run: bool, pattern: str = "ab") -> None:
+    """SNS 投稿テキスト（パターンA/B）を生成・保存する。"""
+    if dry_run:
+        logger.info("[DRY-RUN] SNS ポスト生成スキップ: %s (pattern=%s)", race_id, pattern)
+        return
+    try:
+        cmd = [
+            sys.executable,
+            str(_ROOT / "scripts" / "generate_sns_post.py"),
+            "--race-id", race_id,
+            "--pattern", pattern,
+        ]
+        logger.info("[SNS] ポスト生成開始: %s (pattern=%s)", race_id, pattern)
+        result = subprocess.run(cmd, cwd=str(_ROOT), timeout=30)
+        if result.returncode == 0:
+            logger.info("[SNS] ポスト生成完了: %s", race_id)
+        else:
+            logger.warning("[SNS] ポスト生成失敗 (rc=%d): %s", result.returncode, race_id)
+    except subprocess.TimeoutExpired:
+        logger.warning("[SNS] ポスト生成タイムアウト: %s", race_id)
+    except Exception as e:
+        logger.warning("[SNS] ポスト生成エラー: %s — %s", race_id, e)
+
+
 def _run_jvlink_sync(dry_run: bool) -> None:
     """JVLink RACE + WOOD の STORED 同期を実行する（32bit 専用プロセス）。"""
     if dry_run:
@@ -300,6 +429,23 @@ def _run_friday_batch(saturday_date: str, dry_run: bool) -> None:
     _run_jvlink_sync(dry_run)
     _run_provisional(saturday_date, dry_run)
     _run_provisional(sunday_date, dry_run)
+
+    # 注目レース（重賞・高EV）の note 記事を暫定予想ベースで先行生成
+    for date_str in (saturday_date, sunday_date):
+        from src.database.init_db import init_db as _idb
+        try:
+            formatted = f"{date_str[:4]}-{date_str[4:6]}-{date_str[6:8]}"
+            _conn = _idb()
+            rows = _conn.execute(
+                "SELECT race_id FROM races WHERE date = ? ORDER BY race_id", (formatted,)
+            ).fetchall()
+            _conn.close()
+            for (rid,) in rows:
+                if _is_notable_race(rid):
+                    logger.info("[NOTE] 暫定予想完了後 → 注目レース note 記事生成: %s", rid)
+                    _run_note_article(rid, dry_run)
+        except Exception as e:
+            logger.warning("[NOTE] 金曜バッチ note 記事生成エラー: %s", e)
 
     logger.info("金曜夜間バッチ完了")
     _send_discord(
@@ -496,6 +642,11 @@ def _run_one_day(
                     if rc == 0:
                         prerace_success += 1
                         logger.info("[OK] R%02d %s  [prerace] 完了", race_number, race_id)
+                        # 重賞または高EV レースは note 記事 + SNS パターンA を自動生成
+                        if _is_notable_race(race_id):
+                            logger.info("[NOTE] 注目レース検知 → note 記事生成: %s", race_id)
+                            _run_note_article(race_id, dry_run)
+                            _run_sns_post(race_id, dry_run, pattern="a")
                     else:
                         prerace_fail += 1
                         logger.error(
@@ -511,6 +662,13 @@ def _run_one_day(
                     if rc == 0:
                         postrace_success += 1
                         logger.info("[OK] R%02d %s  [postrace] 完了", race_number, race_id)
+                        # 的中があればカード画像 + SNS パターンB を自動生成
+                        if _has_hit(race_id):
+                            logger.info("[CARD] 的中検知 → カード＋SNS生成: %s", race_id)
+                            _run_result_card(race_id, dry_run)
+                            _run_sns_post(race_id, dry_run, pattern="b")
+                        else:
+                            logger.debug("[CARD] 的中なし → スキップ: %s", race_id)
                     else:
                         postrace_fail += 1
                         logger.warning(

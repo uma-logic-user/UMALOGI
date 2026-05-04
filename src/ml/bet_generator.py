@@ -29,11 +29,13 @@ logger = logging.getLogger(__name__)
 
 BetType = Literal["単勝", "複勝", "馬連", "ワイド", "馬単", "三連複", "三連単", "WIN5"]
 
-# Kelly Criterion 上限（過剰賭けリスク抑制）
+# Kelly Criterion 上限（最大ベット比率。過剰賭けリスク抑制）
 _KELLY_CAP = 0.25
+# フラクション Kelly（1/4 Kelly: リスクを 1/4 に抑えて破産確率を最小化）
+KELLY_FRACTION: float = 0.25
 # 卍モデル 単勝・複勝推奨の最低EV閾値（backtest_ev_threshold.py で最適化: 4/12-4/19 ROI=118%）
 _MANJI_EV_THRESHOLD: float = 1.1
-# デフォルト賭け単位（円）
+# デフォルト賭け単位（円）。Kelly 未計算時のフォールバック。
 _BASE_BET = 100
 # JRA 控除率（券種別）
 _TRACK_TAKE: dict[str, float] = {
@@ -46,10 +48,11 @@ _TRACK_TAKE: dict[str, float] = {
 @dataclass
 class BetConfig:
     """
-    ケリー基準のハードキャップ設定。
+    ケリー基準のバンクロール設定。
 
     Attributes:
-        bankroll:          総資金（円）
+        bankroll:          現在の総資金（円）。動的に計算するには
+                           get_current_bankroll(conn) を使うこと。
         max_bet_fraction:  1レースあたりの最大投資比率（0.0〜1.0）
         max_bet_per_combo: 1点あたりの最大購入額（円）
     """
@@ -61,6 +64,49 @@ class BetConfig:
     def max_race_bet(self) -> float:
         """1レースあたりの最大投資額（円）。"""
         return self.bankroll * self.max_bet_fraction
+
+
+def get_current_bankroll(
+    conn: sqlite3.Connection,
+    initial_bankroll: float | None = None,
+) -> float:
+    """
+    prediction_results テーブルの累積 profit を集計し、現在の実効バンクロールを返す。
+
+    bankroll = initial_bankroll + Σprofit（全履歴）
+    prediction_results が空・profit が全 NULL の場合は initial_bankroll を返す。
+    最低限 initial_bankroll の 10% を下限として保持（完全破産防止）。
+
+    初期資金は環境変数 INITIAL_BANKROLL → 引数 initial_bankroll の優先順で解決する。
+
+    Args:
+        conn:              DB 接続
+        initial_bankroll:  初期資金（円）。None の場合は env INITIAL_BANKROLL（デフォルト 10万）。
+
+    Returns:
+        現在のバンクロール（円、100円未満は切り捨て）。
+    """
+    import os
+
+    if initial_bankroll is None:
+        initial_bankroll = float(os.environ.get("INITIAL_BANKROLL", "100000"))
+
+    try:
+        row = conn.execute(
+            "SELECT COALESCE(SUM(profit), 0.0) FROM prediction_results WHERE profit IS NOT NULL"
+        ).fetchone()
+        net_pnl: float = float(row[0]) if row else 0.0
+    except Exception as exc:
+        logger.warning("バンクロール計算失敗（初期値を使用）: %s", exc)
+        net_pnl = 0.0
+
+    floor = initial_bankroll * 0.1  # 破産防止下限（初期資金の 10%）
+    current = max(initial_bankroll + net_pnl, floor)
+    # 100円単位に切り捨て
+    result = float(int(current // 100) * 100)
+    logger.info("現在のバンクロール: ¥%,.0f（初期資金 ¥%,.0f + 累積P&L ¥%+,.0f）",
+                result, initial_bankroll, net_pnl)
+    return result
 
 
 class OddsEstimator:
@@ -210,20 +256,38 @@ class RaceBets:
 def _kelly_bet(
     win_prob: float,
     odds: float,
-    base_bet: float = _BASE_BET,
-    cap: float = _KELLY_CAP,
+    bankroll: float = 100_000.0,
+    kelly_fraction: float = KELLY_FRACTION,
+    min_bet: float = _BASE_BET,
+    max_bet: float = 10_000.0,
 ) -> float:
     """
-    Kelly Criterion で最適賭け比率を算出し、ベット額を返す。
+    Kelly Criterion でバンクロールに対する最適賭け金を算出する。
 
-    f* = (p*(b+1) - 1) / b   ただし b = odds - 1
+    f* = (p*(b+1) - 1) / b  (b = odds - 1)
+    bet = bankroll × f* × kelly_fraction  (1/4 Kelly でリスク抑制)
+
+    Args:
+        win_prob:       モデルが推定する勝利確率 (0〜1)
+        odds:           単勝オッズ（例: 5.5）
+        bankroll:       現在のバンクロール（円）。get_current_bankroll() で動的に取得すること。
+        kelly_fraction: フラクション Kelly（デフォルト 1/4 Kelly = 0.25）
+        min_bet:        最低賭け金（円）。Kelly が 0 でもここまでは賭けない（0 を返す）。
+        max_bet:        1点あたりの最大賭け金（円）
+
+    Returns:
+        推奨賭け金（100円単位、0 = 見送り推奨）
     """
-    if odds <= 1.0 or win_prob <= 0:
+    if odds <= 1.0 or win_prob <= 0.0:
         return 0.0
     b = odds - 1.0
-    f = (win_prob * (b + 1) - 1) / b
-    f = max(0.0, min(f, cap))
-    return round(base_bet * (1 + f * 10), -2)  # 100円単位に丸め
+    f_star = (win_prob * (b + 1.0) - 1.0) / b
+    if f_star <= 0.0:
+        return 0.0
+    f_capped = min(f_star, _KELLY_CAP)
+    raw_bet = bankroll * f_capped * kelly_fraction
+    bet = max(min_bet, min(raw_bet, max_bet))
+    return float(round(bet, -2))  # 100円単位
 
 
 # ── Harville 確率計算 ────────────────────────────────────────────
@@ -329,6 +393,7 @@ class ManjiStrategy:
         race_id: str,
         df: pd.DataFrame,
         manji_scores: pd.Series,
+        bankroll: float = 100_000.0,
     ) -> RaceBets:
         """
         卍モデルのスコアと出馬表 DataFrame から全券種の買い目を生成する。
@@ -337,6 +402,7 @@ class ManjiStrategy:
             race_id:      レース ID
             df:           FeatureBuilder.build_race_features() の出力
             manji_scores: ManjiModel.ev_score() の出力（EV 比率）
+            bankroll:     現在のバンクロール（円）。get_current_bankroll() で動的取得推奨。
 
         Returns:
             RaceBets
@@ -379,7 +445,7 @@ class ManjiStrategy:
         ev_top   = float(top_row["ev_score"])
         odds_top = float(top_row.get("win_odds") or 1.0)
         prob_top = min(ev_top / max(odds_top, 1.0), 1.0)
-        bet_top  = _kelly_bet(prob_top, odds_top) or _BASE_BET
+        bet_top  = _kelly_bet(prob_top, odds_top, bankroll=bankroll) or _BASE_BET
         result.bets.append(BetRecommendation(
             bet_type="単勝",
             combinations=[(num_top,)],
@@ -566,6 +632,7 @@ class HonmeiStrategy:
         race_id: str,
         df: pd.DataFrame,
         honmei_scores: pd.Series,
+        bankroll: float = 100_000.0,
     ) -> RaceBets:
         """
         本命モデルのスコアから全券種の買い目を生成する。
@@ -574,6 +641,7 @@ class HonmeiStrategy:
             race_id:        レース ID
             df:             特徴量 DataFrame
             honmei_scores:  HonmeiModel.predict() の出力
+            bankroll:       現在のバンクロール（円）。get_current_bankroll() で動的取得推奨。
 
         Returns:
             RaceBets
@@ -613,7 +681,7 @@ class HonmeiStrategy:
         sc1   = top_scores[0]
         odds1 = float(scored.iloc[0].get("win_odds") or 1.0)
         ev1   = min(sc1 * odds1, OddsEstimator._EV_MAX["単勝"])
-        bet1  = _kelly_bet(sc1, odds1)
+        bet1  = _kelly_bet(sc1, odds1, bankroll=bankroll)
         result.bets.append(BetRecommendation(
             bet_type="単勝",
             combinations=[(num1,)],
@@ -1504,7 +1572,7 @@ class BetGenerator:
         df: pd.DataFrame,
         honmei_scores: pd.Series,
     ) -> RaceBets:
-        bets = self._honmei.generate(race_id, df, honmei_scores)
+        bets = self._honmei.generate(race_id, df, honmei_scores, bankroll=self._config.bankroll)
         self._apply_caps(bets)
         return bets
 
@@ -1514,7 +1582,7 @@ class BetGenerator:
         df: pd.DataFrame,
         ev_scores: pd.Series,
     ) -> RaceBets:
-        bets = self._manji.generate(race_id, df, ev_scores)
+        bets = self._manji.generate(race_id, df, ev_scores, bankroll=self._config.bankroll)
         self._apply_caps(bets)
         return bets
 

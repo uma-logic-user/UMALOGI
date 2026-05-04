@@ -20,7 +20,7 @@ import pandas as pd
 from src.database.init_db import init_db, insert_prediction
 from src.ml.features import FeatureBuilder
 from src.ml.models import load_models
-from src.ml.bet_generator import BetGenerator
+from src.ml.bet_generator import BetGenerator, BetConfig, get_current_bankroll
 from src.notification.discord_notifier import DiscordNotifier
 from src.pipeline.scraping import fetch_and_save_odds
 from ._common import build_output_json, save_json
@@ -400,8 +400,9 @@ def prerace_pipeline(race_id: str, provisional: bool = False) -> dict:
     honmei_ev_scores = honmei_model.ev_predict(df)
     ev_scores = manji_model.ev_score(df)
 
-    # Step 4: 買い目生成
-    gen = BetGenerator()
+    # Step 4: 買い目生成（動的バンクロールで Kelly 計算）
+    current_bankroll = get_current_bankroll(conn)
+    gen = BetGenerator(conn=conn, config=BetConfig(bankroll=current_bankroll))
     honmei_bets = gen.generate_honmei(race_id, df, honmei_scores)
     manji_bets = gen.generate_manji(race_id, df, ev_scores)
     oracle_bets = gen.generate_oracle(race_id, df, honmei_scores)
