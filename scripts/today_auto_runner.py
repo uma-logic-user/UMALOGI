@@ -96,6 +96,10 @@ _MORNING_START_MINUTE = 30
 # 再起動待機時間（秒）
 _RESTART_WAIT_SEC = 60
 
+# postrace 再試行設定
+_POSTRACE_MAX_RETRY      = 3
+_POSTRACE_RETRY_WAIT_SEC = 60
+
 # 曜日定数
 _MON, _TUE, _WED, _THU, _FRI, _SAT, _SUN = range(7)
 
@@ -193,18 +197,44 @@ def _run_prerace(race_id: str, dry_run: bool) -> int:
 
 
 def _run_fetch_result(race_id: str, dry_run: bool) -> int:
-    """レース結果速報取得スクリプトを実行して returncode を返す。"""
+    """
+    レース結果速報取得スクリプトを実行して returncode を返す。
+
+    失敗時は _POSTRACE_MAX_RETRY 回まで _POSTRACE_RETRY_WAIT_SEC 秒待機して再試行する。
+    全試行失敗時は Discord にアラートを送信する。
+    """
     cmd = [sys.executable, str(_ROOT / "scripts" / "fetch_race_result.py"),
-           "--race-id", race_id]
+           "--race-id", race_id, "--no-dashboard"]
     if dry_run:
         logger.info("[DRY-RUN] 実行コマンド: %s", " ".join(cmd))
         return 0
-    try:
-        result = subprocess.run(cmd, cwd=str(_ROOT), timeout=300)
-        return result.returncode
-    except subprocess.TimeoutExpired:
-        logger.error("結果速報取得がタイムアウトしました (300s): %s", race_id)
-        return -1
+
+    for attempt in range(1, _POSTRACE_MAX_RETRY + 1):
+        try:
+            result = subprocess.run(cmd, cwd=str(_ROOT), timeout=300)
+            if result.returncode == 0:
+                return 0
+            logger.warning(
+                "[NG] 結果取得 rc=%d (試行 %d/%d): %s",
+                result.returncode, attempt, _POSTRACE_MAX_RETRY, race_id,
+            )
+        except subprocess.TimeoutExpired:
+            logger.error(
+                "結果速報取得 タイムアウト (300s) 試行 %d/%d: %s",
+                attempt, _POSTRACE_MAX_RETRY, race_id,
+            )
+
+        if attempt < _POSTRACE_MAX_RETRY:
+            logger.info("再試行まで %d 秒待機 (race_id=%s)...", _POSTRACE_RETRY_WAIT_SEC, race_id)
+            time.sleep(_POSTRACE_RETRY_WAIT_SEC)
+
+    # 全試行失敗 → Discord 警告
+    _send_discord(
+        f"🚨 **[UMALOGI] 結果取得 全試行失敗** `{race_id}`\n"
+        f"{_POSTRACE_MAX_RETRY} 回試行後も失敗。手動での確認が必要です。\n"
+        f"手動実行: `py scripts/fetch_race_result.py --race-id {race_id}`"
+    )
+    return 1
 
 
 def _run_jvlink_sync(dry_run: bool) -> None:
