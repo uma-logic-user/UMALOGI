@@ -12,6 +12,32 @@
   "year": "2026",
   "results": [
     {
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 18,
+      "horse_name": "モズロックンロール",
+      "horse_id": "2020106535",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "西塚洸二",
+      "trainer": "藤岡健一",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ビーチパトロールBeach Patrol(米)",
+      "dam": "モズソフィ",
+      "dam_sire": "マンハッタンカフェ",
+      "honmei_score": 0.0437,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 3.6467,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -452,35 +478,58 @@
       "manji_ev": 2.7718,
       "odds_vs_morning": null,
       "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 18,
-      "horse_name": "モズロックンロール",
-      "horse_id": "2020106535",
-      "sex_age": "牡4",
-      "weight_carried": 58.0,
-      "jockey": "西塚洸二",
-      "trainer": "藤岡健一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ビーチパトロールBeach Patrol(米)",
-      "dam": "モズソフィ",
-      "dam_sire": "マンハッタンカフェ",
-      "honmei_score": 0.0437,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 3.6467,
-      "odds_vs_morning": null,
-      "odds_velocity": null
     }
   ],
-  "payouts": [],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "18",
+      "payout": 18000,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "2-20",
+      "payout": 1170,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3",
+      "payout": 80000,
+      "popularity": 1
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 90050,
+      "popularity": 70
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "5",
+      "payout": 17000,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "38-30",
+      "payout": 4207,
+      "popularity": 170
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "10-30-1",
+      "payout": 507,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "69",
+      "payout": 30068,
+      "popularity": null
+    }
+  ],
   "predictions": [
     {
       "prediction_id": 21585,
@@ -492,10 +541,10 @@
       "combination_json": "[[3, 4, 5], [4, 5, 10]]",
       "notes": "合成EV最大=2.72 2点 馬番=[(3, 4, 5), (4, 5, 10)]",
       "created_at": "2026-05-03 08:12:01",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "マイネルトルファン",
@@ -551,10 +600,10 @@
       "combination_json": "[[12]]",
       "notes": "確率1位 P(win)=0.13 odds=1.0 EV=0.13",
       "created_at": "2026-05-03 13:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ホウオウアートマン",
@@ -575,10 +624,10 @@
       "combination_json": "[[12], [10], [15]]",
       "notes": "上位3頭を複勝",
       "created_at": "2026-05-03 13:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ホウオウアートマン",
@@ -613,10 +662,10 @@
       "combination_json": "[[10, 12], [12, 15], [3, 12], [5, 12], [12, 17]]",
       "notes": "軸12番×相手5頭フォーメーション Harville最大=0.007",
       "created_at": "2026-05-03 13:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "キングノジョー",
@@ -700,10 +749,10 @@
       "combination_json": "[[10, 12], [12, 15], [3, 12], [5, 12], [12, 17]]",
       "notes": "軸12番×相手5頭ワイド Harville最大=0.007",
       "created_at": "2026-05-03 13:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "キングノジョー",
@@ -787,10 +836,10 @@
       "combination_json": "[[12, 10], [12, 15], [12, 3]]",
       "notes": "軸12番→相手3頭フォーメーション Harville最大=0.003",
       "created_at": "2026-05-03 13:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ホウオウアートマン",
@@ -846,10 +895,10 @@
       "combination_json": "[[12, 10, 15], [12, 10, 3], [12, 10, 5], [12, 10, 17], [12, 10, 13], [12, 15, 10], [12, 15, 3], [12, 15, 5], [12, 15, 17], [12, 15, 13], [12, 3, 10], [12, 3, 15]]",
       "notes": "1着固定フォーメーション 軸=12番 12点 相手=[10, 15, 3, 5, 17, 13] Harville最大=0.0012",
       "created_at": "2026-05-03 13:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1000.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ホウオウアートマン",
@@ -968,10 +1017,10 @@
       "combination_json": "[[16]]",
       "notes": "確率1位(卍) EV=6.87 odds=1.0",
       "created_at": "2026-05-03 13:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "チルカーノ",
@@ -992,10 +1041,10 @@
       "combination_json": "[[16], [4], [2]]",
       "notes": "確率上位3頭を複勝",
       "created_at": "2026-05-03 13:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "チルカーノ",
@@ -1030,10 +1079,10 @@
       "combination_json": "[[4, 16], [2, 16], [16, 18], [5, 16], [16, 17]]",
       "notes": "軸16番×相手5頭フォーメーション Harville最大=0.056",
       "created_at": "2026-05-03 13:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "フクノブルーレイク",
@@ -1117,10 +1166,10 @@
       "combination_json": "[[4, 16], [2, 16], [16, 18], [5, 16], [16, 17]]",
       "notes": "軸16番×相手5頭ワイド Harville最大=0.056",
       "created_at": "2026-05-03 13:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "フクノブルーレイク",
@@ -1204,10 +1253,10 @@
       "combination_json": "[[16, 4], [16, 2], [16, 18]]",
       "notes": "軸16番→相手3頭フォーメーション Harville最大=0.029",
       "created_at": "2026-05-03 13:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "チルカーノ",
@@ -1263,10 +1312,10 @@
       "combination_json": "[[4, 5, 16]]",
       "notes": "合成EV=5.00 Harville=0.0176 馬番=(4, 5, 16)",
       "created_at": "2026-05-03 13:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "フクノブルーレイク",
@@ -1301,10 +1350,10 @@
       "combination_json": "[[10, 12, 15], [3, 10, 12], [5, 10, 12], [3, 12, 15], [5, 12, 15]]",
       "notes": "[Oracle] 的中確率最大 5点 P最大=0.0407 馬番=[(10, 12, 15), (3, 10, 12), (5, 10, 12), (3, 12, 15), (5, 12, 15)]",
       "created_at": "2026-05-03 13:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "キングノジョー",
@@ -1339,10 +1388,10 @@
       "combination_json": "[[12, 10, 15], [12, 15, 10], [10, 12, 15], [10, 15, 12], [15, 12, 10], [15, 10, 12], [12, 10, 3], [12, 10, 5], [12, 3, 10], [12, 5, 10], [10, 12, 3], [10, 12, 5]]",
       "notes": "[Oracle] 的中確率最大 12点 P最大=0.0068 馬番=[(12, 10, 15), (12, 15, 10), (10, 12, 15), (10, 15, 12), (15, 12, 10), (15, 10, 12), (12, 10, 3), (12, 10, 5), (12, 3, 10), (12, 5, 10), (10, 12, 3), (10, 12, 5)]",
       "created_at": "2026-05-03 13:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ホウオウアートマン",
@@ -1377,10 +1426,10 @@
       "combination_json": "[]",
       "notes": "全馬モデルスコア（馬分析タブ用）",
       "created_at": "2026-05-03 13:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ホウオウアートマン",
@@ -1520,10 +1569,10 @@
       "combination_json": "[[10, 12], [12, 15], [10, 15], [3, 12], [3, 10], [5, 12], [5, 10]]",
       "notes": "2軸マルチ 軸=12,10 相手=[15, 3, 5] Harville最大=0.0216",
       "created_at": "2026-05-03 13:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -700.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "キングノジョー",
@@ -1551,10 +1600,10 @@
       "combination_json": "[[12, 10], [10, 12], [12, 15], [10, 15], [12, 3], [10, 3], [12, 5], [10, 5]]",
       "notes": "2軸マルチ 軸=12,10 相手=[15, 3, 5] Harville最大=0.0110",
       "created_at": "2026-05-03 13:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -800.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ホウオウアートマン",
@@ -1582,10 +1631,10 @@
       "combination_json": "[[12, 10, 15], [10, 12, 15], [12, 15, 10], [10, 15, 12], [12, 10, 3], [10, 12, 3], [12, 3, 10], [10, 3, 12], [12, 10, 5], [10, 12, 5], [12, 5, 10], [10, 5, 12]]",
       "notes": "2軸マルチ 軸=12,10 相手=[15, 3, 5] 12点 Harville最大=0.0012",
       "created_at": "2026-05-03 13:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ホウオウアートマン",

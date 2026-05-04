@@ -12,6 +12,32 @@
   "year": "2026",
   "results": [
     {
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "ショウグンマサムネ",
+      "horse_id": "2023103897",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "荻野極",
+      "trainer": "佐藤悠太",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0891,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 3.2816,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -374,35 +400,70 @@
       "manji_ev": 0.9355,
       "odds_vs_morning": null,
       "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 15,
-      "horse_name": "ショウグンマサムネ",
-      "horse_id": "2023103897",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "荻野極",
-      "trainer": "佐藤悠太",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0891,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 3.2816,
-      "odds_vs_morning": null,
-      "odds_velocity": null
     }
   ],
-  "payouts": [],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "15",
+      "payout": 15000,
+      "popularity": null
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "2",
+      "payout": 63010,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "7-50",
+      "payout": 10130,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "7",
+      "payout": 70000,
+      "popularity": 11
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3",
+      "payout": 60051,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "13",
+      "payout": 139,
+      "popularity": 50
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "12",
+      "payout": 13000,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "29",
+      "payout": 3310,
+      "popularity": 130
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "40-70-4",
+      "payout": 51012,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "14",
+      "payout": 10013,
+      "popularity": null
+    }
+  ],
   "predictions": [
     {
       "prediction_id": 21621,
@@ -414,10 +475,10 @@
       "combination_json": "[[1, 13, 15], [1, 10, 13]]",
       "notes": "合成EV最大=5.00 2点 馬番=[(1, 13, 15), (1, 10, 13)]",
       "created_at": "2026-05-03 08:12:03",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ベルウッドクレド",
@@ -473,10 +534,10 @@
       "combination_json": "[[9]]",
       "notes": "確率1位 P(win)=0.15 odds=1.0 EV=0.15",
       "created_at": "2026-05-03 14:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "マテンロウゼロ",
@@ -497,10 +558,10 @@
       "combination_json": "[[9], [1], [10]]",
       "notes": "上位3頭を複勝",
       "created_at": "2026-05-03 14:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "マテンロウゼロ",
@@ -535,10 +596,10 @@
       "combination_json": "[[1, 9], [9, 10], [9, 14], [8, 9], [7, 9]]",
       "notes": "軸9番×相手5頭フォーメーション Harville最大=0.010",
       "created_at": "2026-05-03 14:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ベルウッドクレド",
@@ -622,10 +683,10 @@
       "combination_json": "[[1, 9], [9, 10], [9, 14], [8, 9], [7, 9]]",
       "notes": "軸9番×相手5頭ワイド Harville最大=0.010",
       "created_at": "2026-05-03 14:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ベルウッドクレド",
@@ -709,10 +770,10 @@
       "combination_json": "[[9, 1], [9, 10], [9, 14]]",
       "notes": "軸9番→相手3頭フォーメーション Harville最大=0.005",
       "created_at": "2026-05-03 14:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "マテンロウゼロ",
@@ -768,10 +829,10 @@
       "combination_json": "[[9, 1, 10], [9, 1, 14], [9, 1, 8], [9, 1, 7], [9, 1, 15], [9, 10, 1], [9, 10, 14], [9, 10, 8], [9, 10, 7], [9, 10, 15], [9, 14, 1], [9, 14, 10]]",
       "notes": "1着固定フォーメーション 軸=9番 12点 相手=[1, 10, 14, 8, 7, 15] Harville最大=0.0022",
       "created_at": "2026-05-03 14:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1000.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "マテンロウゼロ",
@@ -890,10 +951,10 @@
       "combination_json": "[[9]]",
       "notes": "確率1位(卍) EV=5.24 odds=1.0",
       "created_at": "2026-05-03 14:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "マテンロウゼロ",
@@ -914,10 +975,10 @@
       "combination_json": "[[9], [15], [6]]",
       "notes": "確率上位3頭を複勝",
       "created_at": "2026-05-03 14:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "マテンロウゼロ",
@@ -952,10 +1013,10 @@
       "combination_json": "[[9, 15], [6, 9], [4, 9], [9, 13], [9, 14]]",
       "notes": "軸9番×相手5頭フォーメーション Harville最大=0.155",
       "created_at": "2026-05-03 14:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "マテンロウゼロ",
@@ -1039,10 +1100,10 @@
       "combination_json": "[[9, 15], [6, 9], [4, 9], [9, 13], [9, 14]]",
       "notes": "軸9番×相手5頭ワイド Harville最大=0.155",
       "created_at": "2026-05-03 14:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "マテンロウゼロ",
@@ -1126,10 +1187,10 @@
       "combination_json": "[[9, 15], [9, 6], [9, 4]]",
       "notes": "軸9番→相手3頭フォーメーション Harville最大=0.083",
       "created_at": "2026-05-03 14:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "マテンロウゼロ",
@@ -1185,10 +1246,10 @@
       "combination_json": "[[9, 13, 15]]",
       "notes": "合成EV=5.00 Harville=0.0433 馬番=(9, 13, 15)",
       "created_at": "2026-05-03 14:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "マテンロウゼロ",
@@ -1223,10 +1284,10 @@
       "combination_json": "[[1, 9, 10], [1, 9, 14], [9, 10, 14], [1, 8, 9], [1, 7, 9]]",
       "notes": "[Oracle] 的中確率最大 5点 P最大=0.0398 馬番=[(1, 9, 10), (1, 9, 14), (9, 10, 14), (1, 8, 9), (1, 7, 9)]",
       "created_at": "2026-05-03 14:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ベルウッドクレド",
@@ -1261,10 +1322,10 @@
       "combination_json": "[[9, 1, 10], [9, 1, 14], [9, 10, 1], [9, 14, 1], [1, 9, 10], [1, 9, 14], [1, 10, 9], [1, 14, 9], [10, 9, 1], [10, 1, 9], [14, 9, 1], [14, 1, 9]]",
       "notes": "[Oracle] 的中確率最大 12点 P最大=0.0066 馬番=[(9, 1, 10), (9, 1, 14), (9, 10, 1), (9, 14, 1), (1, 9, 10), (1, 9, 14), (1, 10, 9), (1, 14, 9), (10, 9, 1), (10, 1, 9), (14, 9, 1), (14, 1, 9)]",
       "created_at": "2026-05-03 14:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "マテンロウゼロ",
@@ -1299,10 +1360,10 @@
       "combination_json": "[]",
       "notes": "全馬モデルスコア（馬分析タブ用）",
       "created_at": "2026-05-03 14:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "マテンロウゼロ",
@@ -1421,10 +1482,10 @@
       "combination_json": "[[1, 9], [9, 10], [1, 10], [9, 14], [1, 14], [8, 9], [1, 8]]",
       "notes": "2軸マルチ 軸=9,1 相手=[10, 14, 8] Harville最大=0.0223",
       "created_at": "2026-05-03 14:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -700.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ベルウッドクレド",
@@ -1452,10 +1513,10 @@
       "combination_json": "[[9, 1], [1, 9], [9, 10], [1, 10], [9, 14], [1, 14], [9, 8], [1, 8]]",
       "notes": "2軸マルチ 軸=9,1 相手=[10, 14, 8] Harville最大=0.0114",
       "created_at": "2026-05-03 14:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -800.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "マテンロウゼロ",
@@ -1483,10 +1544,10 @@
       "combination_json": "[[9, 1, 10], [1, 9, 10], [9, 10, 1], [1, 10, 9], [9, 1, 14], [1, 9, 14], [9, 14, 1], [1, 14, 9], [9, 1, 8], [1, 9, 8], [9, 8, 1], [1, 8, 9]]",
       "notes": "2軸マルチ 軸=9,1 相手=[10, 14, 8] 12点 Harville最大=0.0012",
       "created_at": "2026-05-03 14:40:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "マテンロウゼロ",

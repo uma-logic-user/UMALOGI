@@ -12,6 +12,32 @@
   "year": "2026",
   "results": [
     {
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "ライズトゥザトップ",
+      "horse_id": "2022107284",
+      "sex_age": "牝7",
+      "weight_carried": 56.0,
+      "jockey": "木幡巧也",
+      "trainer": "牧光二",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0479,
+      "ev_score": 1.058,
+      "kelly_fraction": 0.0003,
+      "manji_ev": 1.4815,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -374,35 +400,58 @@
       "manji_ev": 9.5593,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 15,
-      "horse_name": "ライズトゥザトップ",
-      "horse_id": "2022107284",
-      "sex_age": "牝7",
-      "weight_carried": 56.0,
-      "jockey": "木幡巧也",
-      "trainer": "牧光二",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0479,
-      "ev_score": 1.058,
-      "kelly_fraction": 0.0003,
-      "manji_ev": 1.4815,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
     }
   ],
-  "payouts": [],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "15",
+      "payout": 15000,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "2-40",
+      "payout": 5120,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "6",
+      "payout": 70000,
+      "popularity": 1
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3",
+      "payout": 40060,
+      "popularity": 70
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "10",
+      "payout": 12000,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "7-60",
+      "payout": 1007,
+      "popularity": 120
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "13-90-1",
+      "payout": 80710,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "16",
+      "payout": 50022,
+      "popularity": null
+    }
+  ],
   "predictions": [
     {
       "prediction_id": 21544,
@@ -414,10 +463,10 @@
       "combination_json": "[[12]]",
       "notes": "確率1位 P(win)=0.20 odds=18.3 EV=3.60",
       "created_at": "2026-05-03 08:12:00",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ミスティマウンテン",
@@ -438,10 +487,10 @@
       "combination_json": "[[12], [9], [13]]",
       "notes": "上位3頭を複勝",
       "created_at": "2026-05-03 08:12:00",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ミスティマウンテン",
@@ -476,10 +525,10 @@
       "combination_json": "[[9, 12], [12, 13], [12, 14], [10, 12], [2, 12]]",
       "notes": "軸12番×相手5頭フォーメーション Harville最大=0.043",
       "created_at": "2026-05-03 08:12:00",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "コーシューパンジャ",
@@ -563,10 +612,10 @@
       "combination_json": "[[9, 12], [12, 13], [12, 14], [10, 12], [2, 12]]",
       "notes": "軸12番×相手5頭ワイド Harville最大=0.043",
       "created_at": "2026-05-03 08:12:00",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "コーシューパンジャ",
@@ -650,10 +699,10 @@
       "combination_json": "[[12, 9], [12, 13], [12, 14]]",
       "notes": "軸12番→相手3頭フォーメーション Harville最大=0.022",
       "created_at": "2026-05-03 08:12:00",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ミスティマウンテン",
@@ -709,10 +758,10 @@
       "combination_json": "[[9, 12, 13], [9, 12, 14]]",
       "notes": "合成EV最大=5.00 2点 馬番=[(9, 12, 13), (9, 12, 14)]",
       "created_at": "2026-05-03 08:12:00",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "コーシューパンジャ",
@@ -768,10 +817,10 @@
       "combination_json": "[[12, 9, 14], [12, 14, 9], [12, 9, 10], [12, 14, 10], [12, 10, 9], [12, 10, 14], [12, 9, 2], [12, 14, 2], [12, 2, 9], [12, 2, 14], [12, 9, 11], [12, 14, 11]]",
       "notes": "1着固定フォーメーション 軸=12番 12点 相手=[9, 13, 14, 10, 2, 11] Harville最大=0.0195",
       "created_at": "2026-05-03 08:12:00",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1000.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ミスティマウンテン",
@@ -890,10 +939,10 @@
       "combination_json": "[[9]]",
       "notes": "確率1位(卍) EV=2.00 odds=7.4",
       "created_at": "2026-05-03 08:12:00",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "コーシューパンジャ",
@@ -914,10 +963,10 @@
       "combination_json": "[[9], [14], [13]]",
       "notes": "確率上位3頭を複勝",
       "created_at": "2026-05-03 08:12:00",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "コーシューパンジャ",
@@ -952,10 +1001,10 @@
       "combination_json": "[[9, 14], [9, 13], [9, 12], [1, 9], [9, 11]]",
       "notes": "軸9番×相手5頭フォーメーション Harville最大=0.057",
       "created_at": "2026-05-03 08:12:00",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "コーシューパンジャ",
@@ -1039,10 +1088,10 @@
       "combination_json": "[[9, 14], [9, 13], [9, 12], [1, 9], [9, 11]]",
       "notes": "軸9番×相手5頭ワイド Harville最大=0.057",
       "created_at": "2026-05-03 08:12:00",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "コーシューパンジャ",
@@ -1126,10 +1175,10 @@
       "combination_json": "[[9, 14], [9, 13], [9, 12]]",
       "notes": "軸9番→相手3頭フォーメーション Harville最大=0.030",
       "created_at": "2026-05-03 08:12:00",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "コーシューパンジャ",
@@ -1185,10 +1234,10 @@
       "combination_json": "[[9, 12, 13]]",
       "notes": "合成EV=3.91 Harville=0.0176 馬番=(9, 12, 13)",
       "created_at": "2026-05-03 08:12:00",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "コーシューパンジャ",
@@ -1223,10 +1272,10 @@
       "combination_json": "[[9, 12, 13], [9, 12, 14], [12, 13, 14], [9, 10, 12], [10, 12, 13]]",
       "notes": "[Oracle] 的中確率最大 5点 P最大=0.0981 馬番=[(9, 12, 13), (9, 12, 14), (12, 13, 14), (9, 10, 12), (10, 12, 13)]",
       "created_at": "2026-05-03 08:12:00",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "コーシューパンジャ",
@@ -1261,10 +1310,10 @@
       "combination_json": "[[12, 9, 13], [12, 9, 14], [12, 13, 9], [12, 13, 14], [12, 14, 9], [12, 14, 13], [9, 12, 13], [9, 12, 14], [9, 13, 12], [9, 14, 12], [13, 12, 9], [13, 12, 14]]",
       "notes": "[Oracle] 的中確率最大 12点 P最大=0.0164 馬番=[(12, 9, 13), (12, 9, 14), (12, 13, 9), (12, 13, 14), (12, 14, 9), (12, 14, 13), (9, 12, 13), (9, 12, 14), (9, 13, 12), (9, 14, 12), (13, 12, 9), (13, 12, 14)]",
       "created_at": "2026-05-03 08:12:00",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ミスティマウンテン",
@@ -1299,10 +1348,10 @@
       "combination_json": "[]",
       "notes": "全馬モデルスコア（馬分析タブ用）",
       "created_at": "2026-05-03 08:12:00",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ミスティマウンテン",
@@ -1421,10 +1470,10 @@
       "combination_json": "[[2]]",
       "notes": "確率1位 P(win)=0.17 odds=39.2 EV=5.00",
       "created_at": "2026-05-03 12:40:17",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "スマートブル",
@@ -1445,10 +1494,10 @@
       "combination_json": "[[2], [12], [14]]",
       "notes": "上位3頭を複勝",
       "created_at": "2026-05-03 12:40:17",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "スマートブル",
@@ -1483,10 +1532,10 @@
       "combination_json": "[[2, 12], [2, 14], [2, 13], [2, 9], [2, 11]]",
       "notes": "軸2番×相手5頭フォーメーション Harville最大=0.029",
       "created_at": "2026-05-03 12:40:17",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "スマートブル",
@@ -1570,10 +1619,10 @@
       "combination_json": "[[2, 12], [2, 14], [2, 13], [2, 9], [2, 11]]",
       "notes": "軸2番×相手5頭ワイド Harville最大=0.029",
       "created_at": "2026-05-03 12:40:17",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "スマートブル",
@@ -1657,10 +1706,10 @@
       "combination_json": "[[2, 12], [2, 14], [2, 13]]",
       "notes": "軸2番→相手3頭フォーメーション Harville最大=0.014",
       "created_at": "2026-05-03 12:40:17",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "スマートブル",
@@ -1716,10 +1765,10 @@
       "combination_json": "[[2, 12, 14], [2, 12, 13]]",
       "notes": "合成EV最大=5.00 2点 馬番=[(2, 12, 14), (2, 12, 13)]",
       "created_at": "2026-05-03 12:40:17",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "スマートブル",
@@ -1775,10 +1824,10 @@
       "combination_json": "[[2, 12, 14], [2, 14, 12], [2, 12, 9], [2, 9, 12], [2, 12, 11], [2, 11, 12], [2, 12, 10], [2, 10, 12], [2, 14, 9], [2, 9, 14], [2, 14, 11], [2, 11, 14]]",
       "notes": "1着固定フォーメーション 軸=2番 12点 相手=[12, 14, 13, 9, 11, 10] Harville最大=0.0137",
       "created_at": "2026-05-03 12:40:17",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1000.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "スマートブル",
@@ -1897,10 +1946,10 @@
       "combination_json": "[[14]]",
       "notes": "確率1位(卍) EV=9.56 odds=4.0",
       "created_at": "2026-05-03 12:40:17",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -400.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ビービーバザーク",
@@ -1921,10 +1970,10 @@
       "combination_json": "[[14], [10], [2]]",
       "notes": "確率上位3頭を複勝",
       "created_at": "2026-05-03 12:40:17",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ビービーバザーク",
@@ -1959,10 +2008,10 @@
       "combination_json": "[[10, 14], [2, 14], [14, 15], [11, 14], [12, 14]]",
       "notes": "軸14番×相手5頭フォーメーション Harville最大=0.097",
       "created_at": "2026-05-03 12:40:17",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "レッドベルダンス",
@@ -2046,10 +2095,10 @@
       "combination_json": "[[10, 14], [2, 14], [14, 15], [11, 14], [12, 14]]",
       "notes": "軸14番×相手5頭ワイド Harville最大=0.097",
       "created_at": "2026-05-03 12:40:17",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "レッドベルダンス",
@@ -2133,10 +2182,10 @@
       "combination_json": "[[14, 10], [14, 2], [14, 15]]",
       "notes": "軸14番→相手3頭フォーメーション Harville最大=0.060",
       "created_at": "2026-05-03 12:40:17",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ビービーバザーク",
@@ -2192,10 +2241,10 @@
       "combination_json": "[[2, 14, 15]]",
       "notes": "合成EV=3.54 Harville=0.0295 馬番=(2, 14, 15)",
       "created_at": "2026-05-03 12:40:17",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "スマートブル",
@@ -2230,10 +2279,10 @@
       "combination_json": "[[2, 12, 14], [2, 12, 13], [2, 9, 12], [2, 11, 12], [2, 10, 12]]",
       "notes": "[Oracle] 的中確率最大 5点 P最大=0.1124 馬番=[(2, 12, 14), (2, 12, 13), (2, 9, 12), (2, 11, 12), (2, 10, 12)]",
       "created_at": "2026-05-03 12:40:17",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "スマートブル",
@@ -2268,10 +2317,10 @@
       "combination_json": "[[2, 12, 14], [2, 14, 12], [12, 2, 14], [12, 14, 2], [14, 2, 12], [14, 12, 2], [2, 12, 13], [2, 12, 9], [2, 13, 12], [2, 9, 12], [12, 2, 13], [12, 2, 9]]",
       "notes": "[Oracle] 的中確率最大 12点 P最大=0.0187 馬番=[(2, 12, 14), (2, 14, 12), (12, 2, 14), (12, 14, 2), (14, 2, 12), (14, 12, 2), (2, 12, 13), (2, 12, 9), (2, 13, 12), (2, 9, 12), (12, 2, 13), (12, 2, 9)]",
       "created_at": "2026-05-03 12:40:17",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "スマートブル",
@@ -2306,10 +2355,10 @@
       "combination_json": "[]",
       "notes": "全馬モデルスコア（馬分析タブ用）",
       "created_at": "2026-05-03 12:40:17",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ミスティマウンテン",
@@ -2428,10 +2477,10 @@
       "combination_json": "[[2, 12], [2, 14], [12, 14], [2, 13], [12, 13], [2, 9], [9, 12]]",
       "notes": "2軸マルチ 軸=2,12 相手=[14, 13, 9] Harville最大=0.0431",
       "created_at": "2026-05-03 12:40:17",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -700.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "スマートブル",
@@ -2459,10 +2508,10 @@
       "combination_json": "[[2, 12], [12, 2], [2, 14], [12, 14], [2, 13], [12, 13], [2, 9], [12, 9]]",
       "notes": "2軸マルチ 軸=2,12 相手=[14, 13, 9] Harville最大=0.0216",
       "created_at": "2026-05-03 12:40:17",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -800.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "スマートブル",
@@ -2490,10 +2539,10 @@
       "combination_json": "[[2, 12, 14], [12, 2, 14], [2, 14, 12], [12, 14, 2], [2, 12, 13], [12, 2, 13], [2, 13, 12], [12, 13, 2], [2, 12, 9], [12, 2, 9], [2, 9, 12], [12, 9, 2]]",
       "notes": "2軸マルチ 軸=2,12 相手=[14, 13, 9] 12点 Harville最大=0.0032",
       "created_at": "2026-05-03 12:40:17",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "スマートブル",

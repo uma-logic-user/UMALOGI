@@ -12,6 +12,32 @@
   "year": "2026",
   "results": [
     {
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "ヴェルテンベルク",
+      "horse_id": "2020103060",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "松若風馬",
+      "trainer": "宮本博",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "キタサンブラック",
+      "dam": "マルカアイチャン",
+      "dam_sire": "フレンチデピュティFrench Deputy(米)",
+      "honmei_score": 0.07,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 2.395,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -374,35 +400,64 @@
       "manji_ev": 9.6471,
       "odds_vs_morning": null,
       "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 15,
-      "horse_name": "ヴェルテンベルク",
-      "horse_id": "2020103060",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "松若風馬",
-      "trainer": "宮本博",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "キタサンブラック",
-      "dam": "マルカアイチャン",
-      "dam_sire": "フレンチデピュティFrench Deputy(米)",
-      "honmei_score": 0.07,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 2.395,
-      "odds_vs_morning": null,
-      "odds_velocity": null
     }
   ],
-  "payouts": [],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "15",
+      "payout": 15000,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1-10",
+      "payout": 1150,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4",
+      "payout": 80000,
+      "popularity": 2
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "9",
+      "payout": 40120,
+      "popularity": 30
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "15",
+      "payout": 182,
+      "popularity": 40
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "7",
+      "payout": 15000,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-70",
+      "payout": 103,
+      "popularity": 150
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "36-40-3",
+      "payout": 20307,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "34",
+      "payout": 90030,
+      "popularity": null
+    }
+  ],
   "predictions": [
     {
       "prediction_id": 21837,
@@ -414,10 +469,10 @@
       "combination_json": "[[7, 11, 12], [7, 10, 12]]",
       "notes": "合成EV最大=0.69 2点 馬番=[(7, 11, 12), (7, 10, 12)]",
       "created_at": "2026-05-03 08:12:09",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "クロワデュノール",
@@ -473,10 +528,10 @@
       "combination_json": "[[7]]",
       "notes": "確率1位 P(win)=0.10 odds=1.9 EV=0.19",
       "created_at": "2026-05-03 08:25:07",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "クロワデュノール",
@@ -497,10 +552,10 @@
       "combination_json": "[[7], [10], [11]]",
       "notes": "上位3頭を複勝",
       "created_at": "2026-05-03 08:25:07",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "クロワデュノール",
@@ -535,10 +590,10 @@
       "combination_json": "[[7, 10], [7, 11], [7, 12], [7, 15], [6, 7]]",
       "notes": "軸7番×相手5頭フォーメーション Harville最大=0.030",
       "created_at": "2026-05-03 08:25:07",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "クロワデュノール",
@@ -622,10 +677,10 @@
       "combination_json": "[[7, 10], [7, 11], [7, 12], [7, 15], [6, 7]]",
       "notes": "軸7番×相手5頭ワイド Harville最大=0.030",
       "created_at": "2026-05-03 08:25:07",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "クロワデュノール",
@@ -709,10 +764,10 @@
       "combination_json": "[[7, 10], [7, 11], [7, 12]]",
       "notes": "軸7番→相手3頭フォーメーション Harville最大=0.015",
       "created_at": "2026-05-03 08:25:07",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "クロワデュノール",
@@ -768,10 +823,10 @@
       "combination_json": "[[7, 11, 12], [7, 10, 12]]",
       "notes": "合成EV最大=0.69 2点 馬番=[(7, 11, 12), (7, 10, 12)]",
       "created_at": "2026-05-03 08:25:07",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "クロワデュノール",
@@ -827,10 +882,10 @@
       "combination_json": "[[7, 11, 12], [7, 12, 11], [7, 12, 3], [7, 3, 12], [7, 11, 3], [7, 3, 11], [7, 10, 12], [7, 12, 10], [7, 12, 6], [7, 6, 12], [7, 10, 11], [7, 11, 10]]",
       "notes": "1着固定フォーメーション 軸=7番 12点 相手=[10, 11, 12, 15, 6, 3] Harville最大=0.0121",
       "created_at": "2026-05-03 08:25:07",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1000.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "クロワデュノール",
@@ -949,10 +1004,10 @@
       "combination_json": "[[11]]",
       "notes": "確率1位(卍) EV=1.83 odds=43.6",
       "created_at": "2026-05-03 08:25:07",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "タガノデュード",
@@ -973,10 +1028,10 @@
       "combination_json": "[[11], [6], [1]]",
       "notes": "確率上位3頭を複勝",
       "created_at": "2026-05-03 08:25:07",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "タガノデュード",
@@ -1011,10 +1066,10 @@
       "combination_json": "[[6, 11], [1, 11], [11, 15], [5, 11], [9, 11]]",
       "notes": "軸11番×相手5頭フォーメーション Harville最大=0.050",
       "created_at": "2026-05-03 08:25:07",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "エヒト",
@@ -1098,10 +1153,10 @@
       "combination_json": "[[6, 11], [1, 11], [11, 15], [5, 11], [9, 11]]",
       "notes": "軸11番×相手5頭ワイド Harville最大=0.050",
       "created_at": "2026-05-03 08:25:07",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "エヒト",
@@ -1185,10 +1240,10 @@
       "combination_json": "[[11, 6], [11, 1], [11, 15]]",
       "notes": "軸11番→相手3頭フォーメーション Harville最大=0.026",
       "created_at": "2026-05-03 08:25:07",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "タガノデュード",
@@ -1244,10 +1299,10 @@
       "combination_json": "[[5, 6, 11]]",
       "notes": "合成EV=5.00 Harville=0.0149 馬番=(5, 6, 11)",
       "created_at": "2026-05-03 08:25:07",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ケイアイサンデラ",
@@ -1282,10 +1337,10 @@
       "combination_json": "[[7, 10, 11], [7, 10, 12], [7, 11, 12], [10, 11, 12], [7, 10, 15]]",
       "notes": "[Oracle] 的中確率最大 5点 P最大=0.0318 馬番=[(7, 10, 11), (7, 10, 12), (7, 11, 12), (10, 11, 12), (7, 10, 15)]",
       "created_at": "2026-05-03 08:25:07",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "クロワデュノール",
@@ -1320,10 +1375,10 @@
       "combination_json": "[[7, 10, 11], [7, 10, 12], [7, 11, 10], [7, 11, 12], [7, 12, 10], [7, 12, 11], [10, 7, 11], [10, 7, 12], [10, 11, 7], [10, 11, 12], [10, 12, 7], [10, 12, 11]]",
       "notes": "[Oracle] 的中確率最大 12点 P最大=0.0053 馬番=[(7, 10, 11), (7, 10, 12), (7, 11, 10), (7, 11, 12), (7, 12, 10), (7, 12, 11), (10, 7, 11), (10, 7, 12), (10, 11, 7), (10, 11, 12), (10, 12, 7), (10, 12, 11)]",
       "created_at": "2026-05-03 08:25:07",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "クロワデュノール",
@@ -1358,10 +1413,10 @@
       "combination_json": "[]",
       "notes": "全馬モデルスコア（馬分析タブ用）",
       "created_at": "2026-05-03 08:25:07",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "マイネルカンパーナ",
@@ -1480,10 +1535,10 @@
       "combination_json": "[[7, 10], [7, 11], [10, 11], [7, 12], [10, 12], [7, 15], [10, 15]]",
       "notes": "2軸マルチ 軸=7,10 相手=[11, 12, 15] Harville最大=0.0167",
       "created_at": "2026-05-03 08:25:07",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -700.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "クロワデュノール",
@@ -1511,10 +1566,10 @@
       "combination_json": "[[7, 10], [10, 7], [7, 11], [10, 11], [7, 12], [10, 12], [7, 15], [10, 15]]",
       "notes": "2軸マルチ 軸=7,10 相手=[11, 12, 15] Harville最大=0.0084",
       "created_at": "2026-05-03 08:25:07",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -800.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "クロワデュノール",
@@ -1542,10 +1597,10 @@
       "combination_json": "[[7, 10, 11], [10, 7, 11], [7, 11, 10], [10, 11, 7], [7, 10, 12], [10, 7, 12], [7, 12, 10], [10, 12, 7], [7, 10, 15], [10, 7, 15], [7, 15, 10], [10, 15, 7]]",
       "notes": "2軸マルチ 軸=7,10 相手=[11, 12, 15] 12点 Harville最大=0.0009",
       "created_at": "2026-05-03 08:25:07",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "クロワデュノール",
@@ -1580,10 +1635,10 @@
       "combination_json": "[[10]]",
       "notes": "確率1位 P(win)=0.10 odds=1.0 EV=0.10",
       "created_at": "2026-05-03 14:40:25",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "マイネルカンパーナ",
@@ -1604,10 +1659,10 @@
       "combination_json": "[[10], [12], [15]]",
       "notes": "上位3頭を複勝",
       "created_at": "2026-05-03 14:40:25",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "マイネルカンパーナ",
@@ -1642,10 +1697,10 @@
       "combination_json": "[[10, 12], [10, 15], [9, 10], [1, 10], [3, 10]]",
       "notes": "軸10番×相手5頭フォーメーション Harville最大=0.010",
       "created_at": "2026-05-03 14:40:25",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 1,
+      "payout": 5750.0,
+      "profit": 5250.0,
+      "roi": 1150.0,
       "horses": [
         {
           "horse_name": "マイネルカンパーナ",
@@ -1729,10 +1784,10 @@
       "combination_json": "[[10, 12], [10, 15], [9, 10], [1, 10], [3, 10]]",
       "notes": "軸10番×相手5頭ワイド Harville最大=0.010",
       "created_at": "2026-05-03 14:40:25",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "マイネルカンパーナ",
@@ -1816,10 +1871,10 @@
       "combination_json": "[[10, 12], [10, 15], [10, 9]]",
       "notes": "軸10番→相手3頭フォーメーション Harville最大=0.005",
       "created_at": "2026-05-03 14:40:25",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "マイネルカンパーナ",
@@ -1875,10 +1930,10 @@
       "combination_json": "[[10, 12, 15], [10, 12, 9], [10, 12, 1], [10, 12, 3], [10, 12, 13], [10, 15, 12], [10, 15, 9], [10, 15, 1], [10, 15, 3], [10, 15, 13], [10, 9, 12], [10, 9, 15]]",
       "notes": "1着固定フォーメーション 軸=10番 12点 相手=[12, 15, 9, 1, 3, 13] Harville最大=0.0022",
       "created_at": "2026-05-03 14:40:25",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1000.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "マイネルカンパーナ",
@@ -1997,10 +2052,10 @@
       "combination_json": "[[14]]",
       "notes": "確率1位(卍) EV=9.65 odds=1.0",
       "created_at": "2026-05-03 14:40:25",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ホーエリート",
@@ -2021,10 +2076,10 @@
       "combination_json": "[[14], [6], [13]]",
       "notes": "確率上位3頭を複勝",
       "created_at": "2026-05-03 14:40:25",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ホーエリート",
@@ -2059,10 +2114,10 @@
       "combination_json": "[[6, 14], [13, 14], [12, 14], [14, 15], [2, 14]]",
       "notes": "軸14番×相手5頭フォーメーション Harville最大=0.063",
       "created_at": "2026-05-03 14:40:25",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "エヒト",
@@ -2146,10 +2201,10 @@
       "combination_json": "[[6, 14], [13, 14], [12, 14], [14, 15], [2, 14]]",
       "notes": "軸14番×相手5頭ワイド Harville最大=0.063",
       "created_at": "2026-05-03 14:40:25",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "エヒト",
@@ -2233,10 +2288,10 @@
       "combination_json": "[[14, 6], [14, 13], [14, 12]]",
       "notes": "軸14番→相手3頭フォーメーション Harville最大=0.034",
       "created_at": "2026-05-03 14:40:25",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ホーエリート",
@@ -2292,10 +2347,10 @@
       "combination_json": "[[12, 13, 14]]",
       "notes": "合成EV=5.00 Harville=0.0177 馬番=(12, 13, 14)",
       "created_at": "2026-05-03 14:40:25",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ヘデントール",
@@ -2330,10 +2385,10 @@
       "combination_json": "[[10, 12, 15], [9, 10, 12], [1, 10, 12], [3, 10, 12], [10, 12, 13]]",
       "notes": "[Oracle] 的中確率最大 5点 P最大=0.0501 馬番=[(10, 12, 15), (9, 10, 12), (1, 10, 12), (3, 10, 12), (10, 12, 13)]",
       "created_at": "2026-05-03 14:40:25",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "マイネルカンパーナ",
@@ -2368,10 +2423,10 @@
       "combination_json": "[[10, 12, 15], [10, 15, 12], [12, 10, 15], [12, 15, 10], [15, 10, 12], [15, 12, 10], [10, 12, 9], [10, 12, 1], [10, 12, 3], [10, 9, 12], [10, 1, 12], [10, 3, 12]]",
       "notes": "[Oracle] 的中確率最大 12点 P最大=0.0084 馬番=[(10, 12, 15), (10, 15, 12), (12, 10, 15), (12, 15, 10), (15, 10, 12), (15, 12, 10), (10, 12, 9), (10, 12, 1), (10, 12, 3), (10, 9, 12), (10, 1, 12), (10, 3, 12)]",
       "created_at": "2026-05-03 14:40:25",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "マイネルカンパーナ",
@@ -2406,10 +2461,10 @@
       "combination_json": "[]",
       "notes": "全馬モデルスコア（馬分析タブ用）",
       "created_at": "2026-05-03 14:40:25",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "マイネルカンパーナ",
@@ -2528,10 +2583,10 @@
       "combination_json": "[[10, 12], [10, 15], [12, 15], [9, 10], [9, 12], [1, 10], [1, 12]]",
       "notes": "2軸マルチ 軸=10,12 相手=[15, 9, 1] Harville最大=0.0274",
       "created_at": "2026-05-03 14:40:25",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 1,
+      "payout": 8050.0,
+      "profit": 7350.0,
+      "roi": 1150.0,
       "horses": [
         {
           "horse_name": "マイネルカンパーナ",
@@ -2559,10 +2614,10 @@
       "combination_json": "[[10, 12], [12, 10], [10, 15], [12, 15], [10, 9], [12, 9], [10, 1], [12, 1]]",
       "notes": "2軸マルチ 軸=10,12 相手=[15, 9, 1] Harville最大=0.0138",
       "created_at": "2026-05-03 14:40:25",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -800.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "マイネルカンパーナ",
@@ -2590,10 +2645,10 @@
       "combination_json": "[[10, 12, 15], [12, 10, 15], [10, 15, 12], [12, 15, 10], [10, 12, 9], [12, 10, 9], [10, 9, 12], [12, 9, 10], [10, 12, 1], [12, 10, 1], [10, 1, 12], [12, 1, 10]]",
       "notes": "2軸マルチ 軸=10,12 相手=[15, 9, 1] 12点 Harville最大=0.0015",
       "created_at": "2026-05-03 14:40:25",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "マイネルカンパーナ",

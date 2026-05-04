@@ -1253,10 +1253,10 @@
     "combination_json": "[[11]]",
     "notes": "確率1位 P(win)=0.13 odds=1.0 EV=0.13",
     "created_at": "2026-05-03 15:10:27",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -1287,10 +1287,10 @@
     "combination_json": "[[11], [12], [9]]",
     "notes": "上位3頭を複勝",
     "created_at": "2026-05-03 15:10:27",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -1335,10 +1335,10 @@
     "combination_json": "[[11, 12], [9, 11], [4, 11], [7, 11], [6, 11]]",
     "notes": "軸11番×相手5頭フォーメーション Harville最大=0.013",
     "created_at": "2026-05-03 15:10:27",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -1432,10 +1432,10 @@
     "combination_json": "[[11, 12], [9, 11], [4, 11], [7, 11], [6, 11]]",
     "notes": "軸11番×相手5頭ワイド Harville最大=0.013",
     "created_at": "2026-05-03 15:10:27",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -1529,10 +1529,10 @@
     "combination_json": "[[11, 12], [11, 9], [11, 4]]",
     "notes": "軸11番→相手3頭フォーメーション Harville最大=0.006",
     "created_at": "2026-05-03 15:10:27",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -1598,10 +1598,10 @@
     "combination_json": "[[9, 11, 12], [4, 11, 12]]",
     "notes": "合成EV最大=1.05 2点 馬番=[(9, 11, 12), (4, 11, 12)]",
     "created_at": "2026-05-03 15:10:27",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -600.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -1667,10 +1667,10 @@
     "combination_json": "[[11, 12, 9], [11, 12, 4], [11, 12, 7], [11, 12, 6], [11, 12, 10], [11, 9, 12], [11, 9, 4], [11, 9, 7], [11, 9, 6], [11, 9, 10], [11, 4, 12], [11, 4, 9]]",
     "notes": "1着固定フォーメーション 軸=11番 12点 相手=[12, 9, 4, 7, 6, 10] Harville最大=0.0035",
     "created_at": "2026-05-03 15:10:27",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1000.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -1799,10 +1799,10 @@
     "combination_json": "[[12]]",
     "notes": "確率1位(卍) EV=8.29 odds=1.0",
     "created_at": "2026-05-03 15:10:27",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -1833,10 +1833,10 @@
     "combination_json": "[[12], [6], [13]]",
     "notes": "確率上位3頭を複勝",
     "created_at": "2026-05-03 15:10:27",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -1881,10 +1881,10 @@
     "combination_json": "[[6, 12], [12, 13], [10, 12], [2, 12], [1, 12]]",
     "notes": "軸12番×相手5頭フォーメーション Harville最大=0.234",
     "created_at": "2026-05-03 15:10:27",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -1978,10 +1978,10 @@
     "combination_json": "[[6, 12], [12, 13], [10, 12], [2, 12], [1, 12]]",
     "notes": "軸12番×相手5頭ワイド Harville最大=0.234",
     "created_at": "2026-05-03 15:10:27",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -2075,10 +2075,10 @@
     "combination_json": "[[12, 6], [12, 13], [12, 10]]",
     "notes": "軸12番→相手3頭フォーメーション Harville最大=0.143",
     "created_at": "2026-05-03 15:10:27",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -2144,10 +2144,10 @@
     "combination_json": "[[2, 6, 12]]",
     "notes": "合成EV=5.00 Harville=0.0851 馬番=(2, 6, 12)",
     "created_at": "2026-05-03 15:10:27",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -2192,10 +2192,10 @@
     "combination_json": "[[9, 11, 12], [4, 11, 12], [7, 11, 12], [6, 11, 12], [4, 9, 11]]",
     "notes": "[Oracle] 的中確率最大 5点 P最大=0.0833 馬番=[(9, 11, 12), (4, 11, 12), (7, 11, 12), (6, 11, 12), (4, 9, 11)]",
     "created_at": "2026-05-03 15:10:27",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -2240,10 +2240,10 @@
     "combination_json": "[[11, 12, 9], [11, 12, 4], [11, 9, 12], [11, 4, 12], [12, 11, 9], [12, 11, 4], [12, 9, 11], [12, 4, 11], [9, 11, 12], [9, 12, 11], [4, 11, 12], [4, 12, 11]]",
     "notes": "[Oracle] 的中確率最大 12点 P最大=0.0139 馬番=[(11, 12, 9), (11, 12, 4), (11, 9, 12), (11, 4, 12), (12, 11, 9), (12, 11, 4), (12, 9, 11), (12, 4, 11), (9, 11, 12), (9, 12, 11), (4, 11, 12), (4, 12, 11)]",
     "created_at": "2026-05-03 15:10:27",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -2288,10 +2288,10 @@
     "combination_json": "[]",
     "notes": "全馬モデルスコア（馬分析タブ用）",
     "created_at": "2026-05-03 15:10:27",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -2406,10 +2406,10 @@
     "combination_json": "[[11, 12], [9, 11], [9, 12], [4, 11], [4, 12], [7, 11], [7, 12]]",
     "notes": "2軸マルチ 軸=11,12 相手=[9, 4, 7] Harville最大=0.0371",
     "created_at": "2026-05-03 15:10:27",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -700.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -2447,10 +2447,10 @@
     "combination_json": "[[11, 12], [12, 11], [11, 9], [12, 9], [11, 4], [12, 4], [11, 7], [12, 7]]",
     "notes": "2軸マルチ 軸=11,12 相手=[9, 4, 7] Harville最大=0.0188",
     "created_at": "2026-05-03 15:10:27",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -800.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -2488,10 +2488,10 @@
     "combination_json": "[[11, 12, 9], [12, 11, 9], [11, 9, 12], [12, 9, 11], [11, 12, 4], [12, 11, 4], [11, 4, 12], [12, 4, 11], [11, 12, 7], [12, 11, 7], [11, 7, 12], [12, 7, 11]]",
     "notes": "2軸マルチ 軸=11,12 相手=[9, 4, 7] 12点 Harville最大=0.0024",
     "created_at": "2026-05-03 15:10:27",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -2536,10 +2536,10 @@
     "combination_json": "[[10], [13], [3]]",
     "notes": "上位3頭を複勝",
     "created_at": "2026-05-03 15:10:21",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -2584,10 +2584,10 @@
     "combination_json": "[[10, 13], [3, 10], [8, 10], [10, 12], [6, 10]]",
     "notes": "軸10番×相手5頭フォーメーション Harville最大=0.010",
     "created_at": "2026-05-03 15:10:21",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -2681,10 +2681,10 @@
     "combination_json": "[[10, 13], [3, 10], [8, 10], [10, 12], [6, 10]]",
     "notes": "軸10番×相手5頭ワイド Harville最大=0.010",
     "created_at": "2026-05-03 15:10:21",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -2778,10 +2778,10 @@
     "combination_json": "[[10, 13], [10, 3], [10, 8]]",
     "notes": "軸10番→相手3頭フォーメーション Harville最大=0.005",
     "created_at": "2026-05-03 15:10:21",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -2847,10 +2847,10 @@
     "combination_json": "[[10, 13, 3], [10, 13, 8], [10, 13, 12], [10, 13, 6], [10, 13, 7], [10, 3, 13], [10, 3, 8], [10, 3, 12], [10, 3, 6], [10, 3, 7], [10, 8, 13], [10, 8, 3]]",
     "notes": "1着固定フォーメーション 軸=10番 12点 相手=[13, 3, 8, 12, 6, 7] Harville最大=0.0022",
     "created_at": "2026-05-03 15:10:21",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1000.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -2979,10 +2979,10 @@
     "combination_json": "[[14]]",
     "notes": "確率1位(卍) EV=3.23 odds=1.0",
     "created_at": "2026-05-03 15:10:21",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -3013,10 +3013,10 @@
     "combination_json": "[[14], [8], [13]]",
     "notes": "確率上位3頭を複勝",
     "created_at": "2026-05-03 15:10:21",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -3061,10 +3061,10 @@
     "combination_json": "[[8, 14], [13, 14], [11, 14], [14, 15], [12, 14]]",
     "notes": "軸14番×相手5頭フォーメーション Harville最大=0.053",
     "created_at": "2026-05-03 15:10:21",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -3158,10 +3158,10 @@
     "combination_json": "[[8, 14], [13, 14], [11, 14], [14, 15], [12, 14]]",
     "notes": "軸14番×相手5頭ワイド Harville最大=0.053",
     "created_at": "2026-05-03 15:10:21",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -3255,10 +3255,10 @@
     "combination_json": "[[14, 8], [14, 13], [14, 11]]",
     "notes": "軸14番→相手3頭フォーメーション Harville最大=0.028",
     "created_at": "2026-05-03 15:10:21",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -3324,10 +3324,10 @@
     "combination_json": "[[8, 14, 15]]",
     "notes": "合成EV=5.00 Harville=0.0168 馬番=(8, 14, 15)",
     "created_at": "2026-05-03 15:10:21",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -3372,10 +3372,10 @@
     "combination_json": "[[3, 10, 13], [8, 10, 13], [10, 12, 13], [6, 10, 13], [7, 10, 13]]",
     "notes": "[Oracle] 的中確率最大 5点 P最大=0.0653 馬番=[(3, 10, 13), (8, 10, 13), (10, 12, 13), (6, 10, 13), (7, 10, 13)]",
     "created_at": "2026-05-03 15:10:21",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -3420,10 +3420,10 @@
     "combination_json": "[[10, 13, 3], [10, 3, 13], [13, 10, 3], [13, 3, 10], [3, 10, 13], [3, 13, 10], [10, 13, 8], [10, 13, 12], [10, 8, 13], [10, 12, 13], [13, 10, 8], [13, 10, 12]]",
     "notes": "[Oracle] 的中確率最大 12点 P最大=0.0109 馬番=[(10, 13, 3), (10, 3, 13), (13, 10, 3), (13, 3, 10), (3, 10, 13), (3, 13, 10), (10, 13, 8), (10, 13, 12), (10, 8, 13), (10, 12, 13), (13, 10, 8), (13, 10, 12)]",
     "created_at": "2026-05-03 15:10:21",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -3468,10 +3468,10 @@
     "combination_json": "[]",
     "notes": "全馬モデルスコア（馬分析タブ用）",
     "created_at": "2026-05-03 15:10:21",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -3600,10 +3600,10 @@
     "combination_json": "[[10, 13], [3, 10], [3, 13], [8, 10], [8, 13], [10, 12], [12, 13]]",
     "notes": "2軸マルチ 軸=10,13 相手=[3, 8, 12] Harville最大=0.0311",
     "created_at": "2026-05-03 15:10:21",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -700.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -3641,10 +3641,10 @@
     "combination_json": "[[10, 13], [13, 10], [10, 3], [13, 3], [10, 8], [13, 8], [10, 12], [13, 12]]",
     "notes": "2軸マルチ 軸=10,13 相手=[3, 8, 12] Harville最大=0.0155",
     "created_at": "2026-05-03 15:10:21",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -800.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -3682,10 +3682,10 @@
     "combination_json": "[[10, 13, 3], [13, 10, 3], [10, 3, 13], [13, 3, 10], [10, 13, 8], [13, 10, 8], [10, 8, 13], [13, 8, 10], [10, 13, 12], [13, 10, 12], [10, 12, 13], [13, 12, 10]]",
     "notes": "2軸マルチ 軸=10,13 相手=[3, 8, 12] 12点 Harville最大=0.0019",
     "created_at": "2026-05-03 15:10:21",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -3730,10 +3730,10 @@
     "combination_json": "[[10]]",
     "notes": "確率1位 P(win)=0.13 odds=1.0 EV=0.13",
     "created_at": "2026-05-03 15:10:20",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -3764,10 +3764,10 @@
     "combination_json": "[[10]]",
     "notes": "確率1位 P(win)=0.10 odds=1.0 EV=0.10",
     "created_at": "2026-05-03 14:40:25",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -3798,10 +3798,10 @@
     "combination_json": "[[10], [12], [15]]",
     "notes": "上位3頭を複勝",
     "created_at": "2026-05-03 14:40:25",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -3846,10 +3846,10 @@
     "combination_json": "[[10, 12], [10, 15], [9, 10], [1, 10], [3, 10]]",
     "notes": "軸10番×相手5頭フォーメーション Harville最大=0.010",
     "created_at": "2026-05-03 14:40:25",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 1,
+    "payout": 5750.0,
+    "profit": 5250.0,
+    "roi": 1150.0,
     "year": "2026",
     "horses": [
       {
@@ -3943,10 +3943,10 @@
     "combination_json": "[[10, 12], [10, 15], [9, 10], [1, 10], [3, 10]]",
     "notes": "軸10番×相手5頭ワイド Harville最大=0.010",
     "created_at": "2026-05-03 14:40:25",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -4040,10 +4040,10 @@
     "combination_json": "[[10, 12], [10, 15], [10, 9]]",
     "notes": "軸10番→相手3頭フォーメーション Harville最大=0.005",
     "created_at": "2026-05-03 14:40:25",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -4109,10 +4109,10 @@
     "combination_json": "[[10, 12, 15], [10, 12, 9], [10, 12, 1], [10, 12, 3], [10, 12, 13], [10, 15, 12], [10, 15, 9], [10, 15, 1], [10, 15, 3], [10, 15, 13], [10, 9, 12], [10, 9, 15]]",
     "notes": "1着固定フォーメーション 軸=10番 12点 相手=[12, 15, 9, 1, 3, 13] Harville最大=0.0022",
     "created_at": "2026-05-03 14:40:25",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1000.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -4241,10 +4241,10 @@
     "combination_json": "[[14]]",
     "notes": "確率1位(卍) EV=9.65 odds=1.0",
     "created_at": "2026-05-03 14:40:25",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -4275,10 +4275,10 @@
     "combination_json": "[[14], [6], [13]]",
     "notes": "確率上位3頭を複勝",
     "created_at": "2026-05-03 14:40:25",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -4323,10 +4323,10 @@
     "combination_json": "[[6, 14], [13, 14], [12, 14], [14, 15], [2, 14]]",
     "notes": "軸14番×相手5頭フォーメーション Harville最大=0.063",
     "created_at": "2026-05-03 14:40:25",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -4420,10 +4420,10 @@
     "combination_json": "[[6, 14], [13, 14], [12, 14], [14, 15], [2, 14]]",
     "notes": "軸14番×相手5頭ワイド Harville最大=0.063",
     "created_at": "2026-05-03 14:40:25",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -4517,10 +4517,10 @@
     "combination_json": "[[14, 6], [14, 13], [14, 12]]",
     "notes": "軸14番→相手3頭フォーメーション Harville最大=0.034",
     "created_at": "2026-05-03 14:40:25",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -4586,10 +4586,10 @@
     "combination_json": "[[12, 13, 14]]",
     "notes": "合成EV=5.00 Harville=0.0177 馬番=(12, 13, 14)",
     "created_at": "2026-05-03 14:40:25",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -4634,10 +4634,10 @@
     "combination_json": "[[10, 12, 15], [9, 10, 12], [1, 10, 12], [3, 10, 12], [10, 12, 13]]",
     "notes": "[Oracle] 的中確率最大 5点 P最大=0.0501 馬番=[(10, 12, 15), (9, 10, 12), (1, 10, 12), (3, 10, 12), (10, 12, 13)]",
     "created_at": "2026-05-03 14:40:25",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -4682,10 +4682,10 @@
     "combination_json": "[[10, 12, 15], [10, 15, 12], [12, 10, 15], [12, 15, 10], [15, 10, 12], [15, 12, 10], [10, 12, 9], [10, 12, 1], [10, 12, 3], [10, 9, 12], [10, 1, 12], [10, 3, 12]]",
     "notes": "[Oracle] 的中確率最大 12点 P最大=0.0084 馬番=[(10, 12, 15), (10, 15, 12), (12, 10, 15), (12, 15, 10), (15, 10, 12), (15, 12, 10), (10, 12, 9), (10, 12, 1), (10, 12, 3), (10, 9, 12), (10, 1, 12), (10, 3, 12)]",
     "created_at": "2026-05-03 14:40:25",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -4730,10 +4730,10 @@
     "combination_json": "[]",
     "notes": "全馬モデルスコア（馬分析タブ用）",
     "created_at": "2026-05-03 14:40:25",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -4862,10 +4862,10 @@
     "combination_json": "[[10, 12], [10, 15], [12, 15], [9, 10], [9, 12], [1, 10], [1, 12]]",
     "notes": "2軸マルチ 軸=10,12 相手=[15, 9, 1] Harville最大=0.0274",
     "created_at": "2026-05-03 14:40:25",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 1,
+    "payout": 8050.0,
+    "profit": 7350.0,
+    "roi": 1150.0,
     "year": "2026",
     "horses": [
       {
@@ -4903,10 +4903,10 @@
     "combination_json": "[[10, 12], [12, 10], [10, 15], [12, 15], [10, 9], [12, 9], [10, 1], [12, 1]]",
     "notes": "2軸マルチ 軸=10,12 相手=[15, 9, 1] Harville最大=0.0138",
     "created_at": "2026-05-03 14:40:25",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -800.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -4944,10 +4944,10 @@
     "combination_json": "[[10, 12, 15], [12, 10, 15], [10, 15, 12], [12, 15, 10], [10, 12, 9], [12, 10, 9], [10, 9, 12], [12, 9, 10], [10, 12, 1], [12, 10, 1], [10, 1, 12], [12, 1, 10]]",
     "notes": "2軸マルチ 軸=10,12 相手=[15, 9, 1] 12点 Harville最大=0.0015",
     "created_at": "2026-05-03 14:40:25",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -4992,10 +4992,10 @@
     "combination_json": "[[9]]",
     "notes": "確率1位 P(win)=0.15 odds=1.0 EV=0.15",
     "created_at": "2026-05-03 14:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -5026,10 +5026,10 @@
     "combination_json": "[[9], [1], [10]]",
     "notes": "上位3頭を複勝",
     "created_at": "2026-05-03 14:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -5074,10 +5074,10 @@
     "combination_json": "[[1, 9], [9, 10], [9, 14], [8, 9], [7, 9]]",
     "notes": "軸9番×相手5頭フォーメーション Harville最大=0.010",
     "created_at": "2026-05-03 14:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -5171,10 +5171,10 @@
     "combination_json": "[[1, 9], [9, 10], [9, 14], [8, 9], [7, 9]]",
     "notes": "軸9番×相手5頭ワイド Harville最大=0.010",
     "created_at": "2026-05-03 14:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -5268,10 +5268,10 @@
     "combination_json": "[[9, 1], [9, 10], [9, 14]]",
     "notes": "軸9番→相手3頭フォーメーション Harville最大=0.005",
     "created_at": "2026-05-03 14:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -5337,10 +5337,10 @@
     "combination_json": "[[9, 1, 10], [9, 1, 14], [9, 1, 8], [9, 1, 7], [9, 1, 15], [9, 10, 1], [9, 10, 14], [9, 10, 8], [9, 10, 7], [9, 10, 15], [9, 14, 1], [9, 14, 10]]",
     "notes": "1着固定フォーメーション 軸=9番 12点 相手=[1, 10, 14, 8, 7, 15] Harville最大=0.0022",
     "created_at": "2026-05-03 14:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1000.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -5469,10 +5469,10 @@
     "combination_json": "[[9]]",
     "notes": "確率1位(卍) EV=5.24 odds=1.0",
     "created_at": "2026-05-03 14:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -5503,10 +5503,10 @@
     "combination_json": "[[9], [15], [6]]",
     "notes": "確率上位3頭を複勝",
     "created_at": "2026-05-03 14:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -5551,10 +5551,10 @@
     "combination_json": "[[9, 15], [6, 9], [4, 9], [9, 13], [9, 14]]",
     "notes": "軸9番×相手5頭フォーメーション Harville最大=0.155",
     "created_at": "2026-05-03 14:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -5648,10 +5648,10 @@
     "combination_json": "[[9, 15], [6, 9], [4, 9], [9, 13], [9, 14]]",
     "notes": "軸9番×相手5頭ワイド Harville最大=0.155",
     "created_at": "2026-05-03 14:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -5745,10 +5745,10 @@
     "combination_json": "[[9, 15], [9, 6], [9, 4]]",
     "notes": "軸9番→相手3頭フォーメーション Harville最大=0.083",
     "created_at": "2026-05-03 14:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -5814,10 +5814,10 @@
     "combination_json": "[[9, 13, 15]]",
     "notes": "合成EV=5.00 Harville=0.0433 馬番=(9, 13, 15)",
     "created_at": "2026-05-03 14:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -5862,10 +5862,10 @@
     "combination_json": "[[1, 9, 10], [1, 9, 14], [9, 10, 14], [1, 8, 9], [1, 7, 9]]",
     "notes": "[Oracle] 的中確率最大 5点 P最大=0.0398 馬番=[(1, 9, 10), (1, 9, 14), (9, 10, 14), (1, 8, 9), (1, 7, 9)]",
     "created_at": "2026-05-03 14:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -5910,10 +5910,10 @@
     "combination_json": "[[9, 1, 10], [9, 1, 14], [9, 10, 1], [9, 14, 1], [1, 9, 10], [1, 9, 14], [1, 10, 9], [1, 14, 9], [10, 9, 1], [10, 1, 9], [14, 9, 1], [14, 1, 9]]",
     "notes": "[Oracle] 的中確率最大 12点 P最大=0.0066 馬番=[(9, 1, 10), (9, 1, 14), (9, 10, 1), (9, 14, 1), (1, 9, 10), (1, 9, 14), (1, 10, 9), (1, 14, 9), (10, 9, 1), (10, 1, 9), (14, 9, 1), (14, 1, 9)]",
     "created_at": "2026-05-03 14:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -5958,10 +5958,10 @@
     "combination_json": "[]",
     "notes": "全馬モデルスコア（馬分析タブ用）",
     "created_at": "2026-05-03 14:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -6090,10 +6090,10 @@
     "combination_json": "[[1, 9], [9, 10], [1, 10], [9, 14], [1, 14], [8, 9], [1, 8]]",
     "notes": "2軸マルチ 軸=9,1 相手=[10, 14, 8] Harville最大=0.0223",
     "created_at": "2026-05-03 14:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -700.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -6131,10 +6131,10 @@
     "combination_json": "[[9, 1], [1, 9], [9, 10], [1, 10], [9, 14], [1, 14], [9, 8], [1, 8]]",
     "notes": "2軸マルチ 軸=9,1 相手=[10, 14, 8] Harville最大=0.0114",
     "created_at": "2026-05-03 14:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -800.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -6172,10 +6172,10 @@
     "combination_json": "[[9, 1, 10], [1, 9, 10], [9, 10, 1], [1, 10, 9], [9, 1, 14], [1, 9, 14], [9, 14, 1], [1, 14, 9], [9, 1, 8], [1, 9, 8], [9, 8, 1], [1, 8, 9]]",
     "notes": "2軸マルチ 軸=9,1 相手=[10, 14, 8] 12点 Harville最大=0.0012",
     "created_at": "2026-05-03 14:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -6220,10 +6220,10 @@
     "combination_json": "[[1]]",
     "notes": "確率1位 P(win)=0.13 odds=1.0 EV=0.13",
     "created_at": "2026-05-03 14:40:11",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -6254,10 +6254,10 @@
     "combination_json": "[[1], [12], [9]]",
     "notes": "上位3頭を複勝",
     "created_at": "2026-05-03 14:40:11",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -6302,10 +6302,10 @@
     "combination_json": "[[1, 12], [1, 9], [1, 6], [1, 5], [1, 10]]",
     "notes": "軸1番×相手5頭フォーメーション Harville最大=0.010",
     "created_at": "2026-05-03 14:40:11",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -6399,10 +6399,10 @@
     "combination_json": "[[1, 12], [1, 9], [1, 6], [1, 5], [1, 10]]",
     "notes": "軸1番×相手5頭ワイド Harville最大=0.010",
     "created_at": "2026-05-03 14:40:11",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -6496,10 +6496,10 @@
     "combination_json": "[[1, 12], [1, 9], [1, 6]]",
     "notes": "軸1番→相手3頭フォーメーション Harville最大=0.005",
     "created_at": "2026-05-03 14:40:11",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -6565,10 +6565,10 @@
     "combination_json": "[[1, 12, 9], [1, 12, 6], [1, 12, 5], [1, 12, 10], [1, 12, 2], [1, 9, 12], [1, 9, 6], [1, 9, 5], [1, 9, 10], [1, 9, 2], [1, 6, 12], [1, 6, 9]]",
     "notes": "1着固定フォーメーション 軸=1番 12点 相手=[12, 9, 6, 5, 10, 2] Harville最大=0.0022",
     "created_at": "2026-05-03 14:40:11",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1000.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -6697,10 +6697,10 @@
     "combination_json": "[[15]]",
     "notes": "確率1位(卍) EV=4.44 odds=1.0",
     "created_at": "2026-05-03 14:40:11",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 1,
+    "payout": 15000.0,
+    "profit": 14900.0,
+    "roi": 15000.0,
     "year": "2026",
     "horses": [
       {
@@ -6731,10 +6731,10 @@
     "combination_json": "[[15], [13], [5]]",
     "notes": "確率上位3頭を複勝",
     "created_at": "2026-05-03 14:40:11",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -6779,10 +6779,10 @@
     "combination_json": "[[13, 15], [5, 15], [6, 15], [12, 15], [1, 15]]",
     "notes": "軸15番×相手5頭フォーメーション Harville最大=0.078",
     "created_at": "2026-05-03 14:40:11",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -6876,10 +6876,10 @@
     "combination_json": "[[13, 15], [5, 15], [6, 15], [12, 15], [1, 15]]",
     "notes": "軸15番×相手5頭ワイド Harville最大=0.078",
     "created_at": "2026-05-03 14:40:11",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -6973,10 +6973,10 @@
     "combination_json": "[[15, 13], [15, 5], [15, 6]]",
     "notes": "軸15番→相手3頭フォーメーション Harville最大=0.039",
     "created_at": "2026-05-03 14:40:11",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -7042,10 +7042,10 @@
     "combination_json": "[[12, 13, 15]]",
     "notes": "合成EV=5.00 Harville=0.0261 馬番=(12, 13, 15)",
     "created_at": "2026-05-03 14:40:11",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -7090,10 +7090,10 @@
     "combination_json": "[[1, 9, 12], [1, 6, 12], [1, 5, 12], [1, 6, 9], [1, 5, 9]]",
     "notes": "[Oracle] 的中確率最大 5点 P最大=0.0699 馬番=[(1, 9, 12), (1, 6, 12), (1, 5, 12), (1, 6, 9), (1, 5, 9)]",
     "created_at": "2026-05-03 14:40:11",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -7138,10 +7138,10 @@
     "combination_json": "[[1, 12, 9], [1, 9, 12], [12, 1, 9], [12, 9, 1], [9, 1, 12], [9, 12, 1], [1, 12, 6], [1, 12, 5], [1, 9, 6], [1, 9, 5], [1, 6, 12], [1, 6, 9]]",
     "notes": "[Oracle] 的中確率最大 12点 P最大=0.0117 馬番=[(1, 12, 9), (1, 9, 12), (12, 1, 9), (12, 9, 1), (9, 1, 12), (9, 12, 1), (1, 12, 6), (1, 12, 5), (1, 9, 6), (1, 9, 5), (1, 6, 12), (1, 6, 9)]",
     "created_at": "2026-05-03 14:40:11",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -7186,10 +7186,10 @@
     "combination_json": "[]",
     "notes": "全馬モデルスコア（馬分析タブ用）",
     "created_at": "2026-05-03 14:40:11",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -7318,10 +7318,10 @@
     "combination_json": "[[1, 12], [1, 9], [9, 12], [1, 6], [6, 12], [1, 5], [5, 12]]",
     "notes": "2軸マルチ 軸=1,12 相手=[9, 6, 5] Harville最大=0.0274",
     "created_at": "2026-05-03 14:40:11",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -700.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -7359,10 +7359,10 @@
     "combination_json": "[[1, 12], [12, 1], [1, 9], [12, 9], [1, 6], [12, 6], [1, 5], [12, 5]]",
     "notes": "2軸マルチ 軸=1,12 相手=[9, 6, 5] Harville最大=0.0137",
     "created_at": "2026-05-03 14:40:11",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -800.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -7400,10 +7400,10 @@
     "combination_json": "[[1, 12, 9], [12, 1, 9], [1, 9, 12], [12, 9, 1], [1, 12, 6], [12, 1, 6], [1, 6, 12], [12, 6, 1], [1, 12, 5], [12, 1, 5], [1, 5, 12], [12, 5, 1]]",
     "notes": "2軸マルチ 軸=1,12 相手=[9, 6, 5] 12点 Harville最大=0.0019",
     "created_at": "2026-05-03 14:40:11",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -7448,10 +7448,10 @@
     "combination_json": "[[8]]",
     "notes": "確率1位 P(win)=0.10 odds=1.0 EV=0.10",
     "created_at": "2026-05-03 14:10:24",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -7482,10 +7482,10 @@
     "combination_json": "[[8], [17], [18]]",
     "notes": "上位3頭を複勝",
     "created_at": "2026-05-03 14:10:24",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -7530,10 +7530,10 @@
     "combination_json": "[[8, 17], [8, 18], [3, 8], [8, 15], [2, 8]]",
     "notes": "軸8番×相手5頭フォーメーション Harville最大=0.007",
     "created_at": "2026-05-03 14:10:24",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -7627,10 +7627,10 @@
     "combination_json": "[[8, 17], [8, 18], [3, 8], [8, 15], [2, 8]]",
     "notes": "軸8番×相手5頭ワイド Harville最大=0.007",
     "created_at": "2026-05-03 14:10:24",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -7724,10 +7724,10 @@
     "combination_json": "[[8, 17], [8, 18], [8, 3]]",
     "notes": "軸8番→相手3頭フォーメーション Harville最大=0.003",
     "created_at": "2026-05-03 14:10:24",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -7793,10 +7793,10 @@
     "combination_json": "[[8, 17, 18], [8, 17, 3], [8, 17, 15], [8, 17, 2], [8, 17, 11], [8, 18, 17], [8, 18, 3], [8, 18, 15], [8, 18, 2], [8, 18, 11], [8, 3, 17], [8, 3, 18]]",
     "notes": "1着固定フォーメーション 軸=8番 12点 相手=[17, 18, 3, 15, 2, 11] Harville最大=0.0012",
     "created_at": "2026-05-03 14:10:24",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1000.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -7925,10 +7925,10 @@
     "combination_json": "[[17]]",
     "notes": "確率1位(卍) EV=8.89 odds=1.0",
     "created_at": "2026-05-03 14:10:24",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -7959,10 +7959,10 @@
     "combination_json": "[[17], [16], [18]]",
     "notes": "確率上位3頭を複勝",
     "created_at": "2026-05-03 14:10:24",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -8007,10 +8007,10 @@
     "combination_json": "[[16, 17], [17, 18], [4, 17], [3, 17], [11, 17]]",
     "notes": "軸17番×相手5頭フォーメーション Harville最大=0.050",
     "created_at": "2026-05-03 14:10:24",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -8104,10 +8104,10 @@
     "combination_json": "[[16, 17], [17, 18], [4, 17], [3, 17], [11, 17]]",
     "notes": "軸17番×相手5頭ワイド Harville最大=0.050",
     "created_at": "2026-05-03 14:10:24",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -8201,10 +8201,10 @@
     "combination_json": "[[17, 16], [17, 18], [17, 4]]",
     "notes": "軸17番→相手3頭フォーメーション Harville最大=0.026",
     "created_at": "2026-05-03 14:10:24",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -8270,10 +8270,10 @@
     "combination_json": "[[3, 16, 17]]",
     "notes": "合成EV=3.84 Harville=0.0128 馬番=(3, 16, 17)",
     "created_at": "2026-05-03 14:10:24",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -8318,10 +8318,10 @@
     "combination_json": "[[8, 17, 18], [3, 8, 17], [8, 15, 17], [2, 8, 17], [8, 11, 17]]",
     "notes": "[Oracle] 的中確率最大 5点 P最大=0.0270 馬番=[(8, 17, 18), (3, 8, 17), (8, 15, 17), (2, 8, 17), (8, 11, 17)]",
     "created_at": "2026-05-03 14:10:24",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -8366,10 +8366,10 @@
     "combination_json": "[[8, 17, 18], [8, 17, 3], [8, 18, 17], [8, 3, 17], [17, 8, 18], [17, 8, 3], [17, 18, 8], [17, 3, 8], [18, 8, 17], [18, 17, 8], [3, 8, 17], [3, 17, 8]]",
     "notes": "[Oracle] 的中確率最大 12点 P最大=0.0045 馬番=[(8, 17, 18), (8, 17, 3), (8, 18, 17), (8, 3, 17), (17, 8, 18), (17, 8, 3), (17, 18, 8), (17, 3, 8), (18, 8, 17), (18, 17, 8), (3, 8, 17), (3, 17, 8)]",
     "created_at": "2026-05-03 14:10:24",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -8414,10 +8414,10 @@
     "combination_json": "[]",
     "notes": "全馬モデルスコア（馬分析タブ用）",
     "created_at": "2026-05-03 14:10:24",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -8567,10 +8567,10 @@
     "combination_json": "[[8, 17], [8, 18], [17, 18], [3, 8], [3, 17], [8, 15], [15, 17]]",
     "notes": "2軸マルチ 軸=8,17 相手=[18, 3, 15] Harville最大=0.0166",
     "created_at": "2026-05-03 14:10:24",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -700.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -8608,10 +8608,10 @@
     "combination_json": "[[8, 17], [17, 8], [8, 18], [17, 18], [8, 3], [17, 3], [8, 15], [17, 15]]",
     "notes": "2軸マルチ 軸=8,17 相手=[18, 3, 15] Harville最大=0.0083",
     "created_at": "2026-05-03 14:10:24",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -800.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -8649,10 +8649,10 @@
     "combination_json": "[[8, 17, 18], [17, 8, 18], [8, 18, 17], [17, 18, 8], [8, 17, 3], [17, 8, 3], [8, 3, 17], [17, 3, 8], [8, 17, 15], [17, 8, 15], [8, 15, 17], [17, 15, 8]]",
     "notes": "2軸マルチ 軸=8,17 相手=[18, 3, 15] 12点 Harville最大=0.0008",
     "created_at": "2026-05-03 14:10:24",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -11167,10 +11167,10 @@
     "combination_json": "[[1], [8], [2]]",
     "notes": "上位3頭を複勝",
     "created_at": "2026-05-03 13:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -11215,10 +11215,10 @@
     "combination_json": "[[1, 8], [1, 2], [1, 9], [1, 5], [1, 4]]",
     "notes": "軸1番×相手5頭フォーメーション Harville最大=0.028",
     "created_at": "2026-05-03 13:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -11312,10 +11312,10 @@
     "combination_json": "[[1, 8], [1, 2], [1, 9], [1, 5], [1, 4]]",
     "notes": "軸1番×相手5頭ワイド Harville最大=0.028",
     "created_at": "2026-05-03 13:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -11409,10 +11409,10 @@
     "combination_json": "[[1, 8], [1, 2], [1, 9]]",
     "notes": "軸1番→相手3頭フォーメーション Harville最大=0.014",
     "created_at": "2026-05-03 13:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -11478,10 +11478,10 @@
     "combination_json": "[[1, 2, 8], [1, 8, 9]]",
     "notes": "合成EV最大=3.57 2点 馬番=[(1, 2, 8), (1, 8, 9)]",
     "created_at": "2026-05-03 13:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -600.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -11547,10 +11547,10 @@
     "combination_json": "[[1, 8, 2], [1, 8, 9], [1, 8, 5], [1, 8, 4], [1, 8, 3], [1, 2, 8], [1, 2, 9], [1, 2, 5], [1, 2, 4], [1, 2, 3], [1, 9, 8], [1, 9, 2]]",
     "notes": "1着固定フォーメーション 軸=1番 12点 相手=[8, 2, 9, 5, 4, 3] Harville最大=0.0119",
     "created_at": "2026-05-03 13:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1000.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -11679,10 +11679,10 @@
     "combination_json": "[[1]]",
     "notes": "確率1位(卍) EV=4.08 odds=1.0",
     "created_at": "2026-05-03 13:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -11713,10 +11713,10 @@
     "combination_json": "[[1], [8], [9]]",
     "notes": "確率上位3頭を複勝",
     "created_at": "2026-05-03 13:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -11761,10 +11761,10 @@
     "combination_json": "[[1, 8], [1, 9], [1, 5], [1, 2], [1, 6]]",
     "notes": "軸1番×相手5頭フォーメーション Harville最大=0.051",
     "created_at": "2026-05-03 13:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -11858,10 +11858,10 @@
     "combination_json": "[[1, 8], [1, 9], [1, 5], [1, 2], [1, 6]]",
     "notes": "軸1番×相手5頭ワイド Harville最大=0.051",
     "created_at": "2026-05-03 13:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -11955,10 +11955,10 @@
     "combination_json": "[[1, 8], [1, 9], [1, 5]]",
     "notes": "軸1番→相手3頭フォーメーション Harville最大=0.025",
     "created_at": "2026-05-03 13:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -12024,10 +12024,10 @@
     "combination_json": "[[1, 2, 8]]",
     "notes": "合成EV=5.00 Harville=0.0226 馬番=(1, 2, 8)",
     "created_at": "2026-05-03 13:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -12072,10 +12072,10 @@
     "combination_json": "[[1, 2, 8], [1, 8, 9], [1, 5, 8], [1, 4, 8], [1, 3, 8]]",
     "notes": "[Oracle] 的中確率最大 5点 P最大=0.2752 馬番=[(1, 2, 8), (1, 8, 9), (1, 5, 8), (1, 4, 8), (1, 3, 8)]",
     "created_at": "2026-05-03 13:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -12120,10 +12120,10 @@
     "combination_json": "[[1, 8, 2], [1, 2, 8], [8, 1, 2], [8, 2, 1], [2, 1, 8], [2, 8, 1], [1, 8, 9], [1, 8, 5], [1, 9, 8], [1, 5, 8], [8, 1, 9], [8, 1, 5]]",
     "notes": "[Oracle] 的中確率最大 12点 P最大=0.0459 馬番=[(1, 8, 2), (1, 2, 8), (8, 1, 2), (8, 2, 1), (2, 1, 8), (2, 8, 1), (1, 8, 9), (1, 8, 5), (1, 9, 8), (1, 5, 8), (8, 1, 9), (8, 1, 5)]",
     "created_at": "2026-05-03 13:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -12168,10 +12168,10 @@
     "combination_json": "[]",
     "notes": "全馬モデルスコア（馬分析タブ用）",
     "created_at": "2026-05-03 13:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -12258,10 +12258,10 @@
     "combination_json": "[[1, 8], [1, 2], [2, 8], [1, 9], [8, 9], [1, 5], [5, 8]]",
     "notes": "2軸マルチ 軸=1,8 相手=[2, 9, 5] Harville最大=0.0879",
     "created_at": "2026-05-03 13:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -700.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -12299,10 +12299,10 @@
     "combination_json": "[[1, 8], [8, 1], [1, 2], [8, 2], [1, 9], [8, 9], [1, 5], [8, 5]]",
     "notes": "2軸マルチ 軸=1,8 相手=[2, 9, 5] Harville最大=0.0447",
     "created_at": "2026-05-03 13:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -800.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -12340,10 +12340,10 @@
     "combination_json": "[[1, 8, 2], [8, 1, 2], [1, 2, 8], [8, 2, 1], [1, 8, 9], [8, 1, 9], [1, 9, 8], [8, 9, 1], [1, 8, 5], [8, 1, 5], [1, 5, 8], [8, 5, 1]]",
     "notes": "2軸マルチ 軸=1,8 相手=[2, 9, 5] 12点 Harville最大=0.0085",
     "created_at": "2026-05-03 13:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -12388,10 +12388,10 @@
     "combination_json": "[[1]]",
     "notes": "確率1位 P(win)=0.17 odds=1.0 EV=0.17",
     "created_at": "2026-05-03 13:40:25",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -12422,10 +12422,10 @@
     "combination_json": "[[12]]",
     "notes": "確率1位 P(win)=0.13 odds=1.0 EV=0.13",
     "created_at": "2026-05-03 13:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -12456,10 +12456,10 @@
     "combination_json": "[[12], [10], [15]]",
     "notes": "上位3頭を複勝",
     "created_at": "2026-05-03 13:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -12504,10 +12504,10 @@
     "combination_json": "[[10, 12], [12, 15], [3, 12], [5, 12], [12, 17]]",
     "notes": "軸12番×相手5頭フォーメーション Harville最大=0.007",
     "created_at": "2026-05-03 13:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -12601,10 +12601,10 @@
     "combination_json": "[[10, 12], [12, 15], [3, 12], [5, 12], [12, 17]]",
     "notes": "軸12番×相手5頭ワイド Harville最大=0.007",
     "created_at": "2026-05-03 13:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -12698,10 +12698,10 @@
     "combination_json": "[[12, 10], [12, 15], [12, 3]]",
     "notes": "軸12番→相手3頭フォーメーション Harville最大=0.003",
     "created_at": "2026-05-03 13:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -12767,10 +12767,10 @@
     "combination_json": "[[12, 10, 15], [12, 10, 3], [12, 10, 5], [12, 10, 17], [12, 10, 13], [12, 15, 10], [12, 15, 3], [12, 15, 5], [12, 15, 17], [12, 15, 13], [12, 3, 10], [12, 3, 15]]",
     "notes": "1着固定フォーメーション 軸=12番 12点 相手=[10, 15, 3, 5, 17, 13] Harville最大=0.0012",
     "created_at": "2026-05-03 13:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1000.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -12899,10 +12899,10 @@
     "combination_json": "[[16]]",
     "notes": "確率1位(卍) EV=6.87 odds=1.0",
     "created_at": "2026-05-03 13:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -12933,10 +12933,10 @@
     "combination_json": "[[16], [4], [2]]",
     "notes": "確率上位3頭を複勝",
     "created_at": "2026-05-03 13:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -12981,10 +12981,10 @@
     "combination_json": "[[4, 16], [2, 16], [16, 18], [5, 16], [16, 17]]",
     "notes": "軸16番×相手5頭フォーメーション Harville最大=0.056",
     "created_at": "2026-05-03 13:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -13078,10 +13078,10 @@
     "combination_json": "[[4, 16], [2, 16], [16, 18], [5, 16], [16, 17]]",
     "notes": "軸16番×相手5頭ワイド Harville最大=0.056",
     "created_at": "2026-05-03 13:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -13175,10 +13175,10 @@
     "combination_json": "[[16, 4], [16, 2], [16, 18]]",
     "notes": "軸16番→相手3頭フォーメーション Harville最大=0.029",
     "created_at": "2026-05-03 13:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -13244,10 +13244,10 @@
     "combination_json": "[[4, 5, 16]]",
     "notes": "合成EV=5.00 Harville=0.0176 馬番=(4, 5, 16)",
     "created_at": "2026-05-03 13:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -13292,10 +13292,10 @@
     "combination_json": "[[10, 12, 15], [3, 10, 12], [5, 10, 12], [3, 12, 15], [5, 12, 15]]",
     "notes": "[Oracle] 的中確率最大 5点 P最大=0.0407 馬番=[(10, 12, 15), (3, 10, 12), (5, 10, 12), (3, 12, 15), (5, 12, 15)]",
     "created_at": "2026-05-03 13:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -13340,10 +13340,10 @@
     "combination_json": "[[12, 10, 15], [12, 15, 10], [10, 12, 15], [10, 15, 12], [15, 12, 10], [15, 10, 12], [12, 10, 3], [12, 10, 5], [12, 3, 10], [12, 5, 10], [10, 12, 3], [10, 12, 5]]",
     "notes": "[Oracle] 的中確率最大 12点 P最大=0.0068 馬番=[(12, 10, 15), (12, 15, 10), (10, 12, 15), (10, 15, 12), (15, 12, 10), (15, 10, 12), (12, 10, 3), (12, 10, 5), (12, 3, 10), (12, 5, 10), (10, 12, 3), (10, 12, 5)]",
     "created_at": "2026-05-03 13:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -13388,10 +13388,10 @@
     "combination_json": "[]",
     "notes": "全馬モデルスコア（馬分析タブ用）",
     "created_at": "2026-05-03 13:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -13541,10 +13541,10 @@
     "combination_json": "[[10, 12], [12, 15], [10, 15], [3, 12], [3, 10], [5, 12], [5, 10]]",
     "notes": "2軸マルチ 軸=12,10 相手=[15, 3, 5] Harville最大=0.0216",
     "created_at": "2026-05-03 13:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -700.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -13582,10 +13582,10 @@
     "combination_json": "[[12, 10], [10, 12], [12, 15], [10, 15], [12, 3], [10, 3], [12, 5], [10, 5]]",
     "notes": "2軸マルチ 軸=12,10 相手=[15, 3, 5] Harville最大=0.0110",
     "created_at": "2026-05-03 13:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -800.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -13623,10 +13623,10 @@
     "combination_json": "[[12, 10, 15], [10, 12, 15], [12, 15, 10], [10, 15, 12], [12, 10, 3], [10, 12, 3], [12, 3, 10], [10, 3, 12], [12, 10, 5], [10, 12, 5], [12, 5, 10], [10, 5, 12]]",
     "notes": "2軸マルチ 軸=12,10 相手=[15, 3, 5] 12点 Harville最大=0.0012",
     "created_at": "2026-05-03 13:40:18",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -14947,10 +14947,10 @@
     "combination_json": "[[1]]",
     "notes": "確率1位 P(win)=0.10 odds=1.0 EV=0.10",
     "created_at": "2026-05-03 13:10:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -14981,10 +14981,10 @@
     "combination_json": "[[1], [14], [9]]",
     "notes": "上位3頭を複勝",
     "created_at": "2026-05-03 13:10:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -15029,10 +15029,10 @@
     "combination_json": "[[1, 14], [1, 9], [1, 8], [1, 7], [1, 15]]",
     "notes": "軸1番×相手5頭フォーメーション Harville最大=0.010",
     "created_at": "2026-05-03 13:10:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -15126,10 +15126,10 @@
     "combination_json": "[[1, 14], [1, 9], [1, 8], [1, 7], [1, 15]]",
     "notes": "軸1番×相手5頭ワイド Harville最大=0.010",
     "created_at": "2026-05-03 13:10:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -15223,10 +15223,10 @@
     "combination_json": "[[1, 14], [1, 9], [1, 8]]",
     "notes": "軸1番→相手3頭フォーメーション Harville最大=0.005",
     "created_at": "2026-05-03 13:10:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -15292,10 +15292,10 @@
     "combination_json": "[[1, 14, 9], [1, 14, 8], [1, 14, 7], [1, 14, 15], [1, 14, 6], [1, 9, 14], [1, 9, 8], [1, 9, 7], [1, 9, 15], [1, 9, 6], [1, 8, 14], [1, 8, 9]]",
     "notes": "1着固定フォーメーション 軸=1番 12点 相手=[14, 9, 8, 7, 15, 6] Harville最大=0.0022",
     "created_at": "2026-05-03 13:10:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1000.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -15424,10 +15424,10 @@
     "combination_json": "[[14]]",
     "notes": "確率1位(卍) EV=7.78 odds=1.0",
     "created_at": "2026-05-03 13:10:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -15458,10 +15458,10 @@
     "combination_json": "[[14], [15], [13]]",
     "notes": "確率上位3頭を複勝",
     "created_at": "2026-05-03 13:10:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -15506,10 +15506,10 @@
     "combination_json": "[[14, 15], [13, 14], [2, 14], [11, 14], [8, 14]]",
     "notes": "軸14番×相手5頭フォーメーション Harville最大=0.069",
     "created_at": "2026-05-03 13:10:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -15603,10 +15603,10 @@
     "combination_json": "[[14, 15], [13, 14], [2, 14], [11, 14], [8, 14]]",
     "notes": "軸14番×相手5頭ワイド Harville最大=0.069",
     "created_at": "2026-05-03 13:10:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -15700,10 +15700,10 @@
     "combination_json": "[[14, 15], [14, 13], [14, 2]]",
     "notes": "軸14番→相手3頭フォーメーション Harville最大=0.036",
     "created_at": "2026-05-03 13:10:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -15769,10 +15769,10 @@
     "combination_json": "[[11, 14, 15]]",
     "notes": "合成EV=5.00 Harville=0.0168 馬番=(11, 14, 15)",
     "created_at": "2026-05-03 13:10:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -15817,10 +15817,10 @@
     "combination_json": "[[1, 9, 14], [1, 8, 14], [1, 8, 9], [8, 9, 14], [1, 7, 14]]",
     "notes": "[Oracle] 的中確率最大 5点 P最大=0.0735 馬番=[(1, 9, 14), (1, 8, 14), (1, 8, 9), (8, 9, 14), (1, 7, 14)]",
     "created_at": "2026-05-03 13:10:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -15865,10 +15865,10 @@
     "combination_json": "[[1, 14, 9], [1, 9, 14], [14, 1, 9], [14, 9, 1], [9, 1, 14], [9, 14, 1], [1, 14, 8], [1, 9, 8], [1, 8, 14], [1, 8, 9], [14, 1, 8], [14, 9, 8]]",
     "notes": "[Oracle] 的中確率最大 12点 P最大=0.0122 馬番=[(1, 14, 9), (1, 9, 14), (14, 1, 9), (14, 9, 1), (9, 1, 14), (9, 14, 1), (1, 14, 8), (1, 9, 8), (1, 8, 14), (1, 8, 9), (14, 1, 8), (14, 9, 8)]",
     "created_at": "2026-05-03 13:10:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -15913,10 +15913,10 @@
     "combination_json": "[]",
     "notes": "全馬モデルスコア（馬分析タブ用）",
     "created_at": "2026-05-03 13:10:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -16045,10 +16045,10 @@
     "combination_json": "[[1, 14], [1, 9], [9, 14], [1, 8], [8, 14], [1, 7], [7, 14]]",
     "notes": "2軸マルチ 軸=1,14 相手=[9, 8, 7] Harville最大=0.0283",
     "created_at": "2026-05-03 13:10:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -700.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -16086,10 +16086,10 @@
     "combination_json": "[[1, 14], [14, 1], [1, 9], [14, 9], [1, 8], [14, 8], [1, 7], [14, 7]]",
     "notes": "2軸マルチ 軸=1,14 相手=[9, 8, 7] Harville最大=0.0141",
     "created_at": "2026-05-03 13:10:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -800.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -16127,10 +16127,10 @@
     "combination_json": "[[1, 14, 9], [14, 1, 9], [1, 9, 14], [14, 9, 1], [1, 14, 8], [14, 1, 8], [1, 8, 14], [14, 8, 1], [1, 14, 7], [14, 1, 7], [1, 7, 14], [14, 7, 1]]",
     "notes": "2軸マルチ 軸=1,14 相手=[9, 8, 7] 12点 Harville最大=0.0020",
     "created_at": "2026-05-03 13:10:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -16175,10 +16175,10 @@
     "combination_json": "[[8]]",
     "notes": "確率1位 P(win)=0.15 odds=1.0 EV=0.15",
     "created_at": "2026-05-03 13:10:19",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -16209,10 +16209,10 @@
     "combination_json": "[[8], [2], [1]]",
     "notes": "上位3頭を複勝",
     "created_at": "2026-05-03 13:10:19",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -16257,10 +16257,10 @@
     "combination_json": "[[2, 8], [1, 8], [8, 9], [4, 8], [7, 8]]",
     "notes": "軸8番×相手5頭フォーメーション Harville最大=0.028",
     "created_at": "2026-05-03 13:10:19",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -16354,10 +16354,10 @@
     "combination_json": "[[2, 8], [1, 8], [8, 9], [4, 8], [7, 8]]",
     "notes": "軸8番×相手5頭ワイド Harville最大=0.028",
     "created_at": "2026-05-03 13:10:19",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -16451,10 +16451,10 @@
     "combination_json": "[[8, 2], [8, 1], [8, 9]]",
     "notes": "軸8番→相手3頭フォーメーション Harville最大=0.014",
     "created_at": "2026-05-03 13:10:19",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -16520,10 +16520,10 @@
     "combination_json": "[[1, 2, 8], [2, 8, 9]]",
     "notes": "合成EV最大=3.57 2点 馬番=[(1, 2, 8), (2, 8, 9)]",
     "created_at": "2026-05-03 13:10:19",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -600.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -16589,10 +16589,10 @@
     "combination_json": "[[8, 2, 1], [8, 2, 9], [8, 2, 4], [8, 2, 7], [8, 2, 3], [8, 1, 2], [8, 1, 9], [8, 1, 4], [8, 1, 7], [8, 1, 3], [8, 9, 2], [8, 9, 1]]",
     "notes": "1着固定フォーメーション 軸=8番 12点 相手=[2, 1, 9, 4, 7, 3] Harville最大=0.0119",
     "created_at": "2026-05-03 13:10:19",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1000.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -16721,10 +16721,10 @@
     "combination_json": "[[8]]",
     "notes": "確率1位(卍) EV=5.52 odds=1.0",
     "created_at": "2026-05-03 13:10:19",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -16755,10 +16755,10 @@
     "combination_json": "[[8], [7], [3]]",
     "notes": "確率上位3頭を複勝",
     "created_at": "2026-05-03 13:10:19",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -16803,10 +16803,10 @@
     "combination_json": "[[7, 8], [3, 8], [8, 9], [5, 8], [1, 8]]",
     "notes": "軸8番×相手5頭フォーメーション Harville最大=0.136",
     "created_at": "2026-05-03 13:10:19",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -16900,10 +16900,10 @@
     "combination_json": "[[7, 8], [3, 8], [8, 9], [5, 8], [1, 8]]",
     "notes": "軸8番×相手5頭ワイド Harville最大=0.136",
     "created_at": "2026-05-03 13:10:19",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -16997,10 +16997,10 @@
     "combination_json": "[[8, 7], [8, 3], [8, 9]]",
     "notes": "軸8番→相手3頭フォーメーション Harville最大=0.069",
     "created_at": "2026-05-03 13:10:19",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -17066,10 +17066,10 @@
     "combination_json": "[[5, 7, 8]]",
     "notes": "合成EV=5.00 Harville=0.0347 馬番=(5, 7, 8)",
     "created_at": "2026-05-03 13:10:19",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -17114,10 +17114,10 @@
     "combination_json": "[[1, 2, 8], [2, 8, 9], [2, 4, 8], [1, 8, 9], [1, 4, 8]]",
     "notes": "[Oracle] 的中確率最大 5点 P最大=0.1736 馬番=[(1, 2, 8), (2, 8, 9), (2, 4, 8), (1, 8, 9), (1, 4, 8)]",
     "created_at": "2026-05-03 13:10:19",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -17162,10 +17162,10 @@
     "combination_json": "[[8, 2, 1], [8, 2, 9], [8, 2, 4], [8, 1, 2], [8, 9, 2], [8, 4, 2], [2, 8, 1], [2, 8, 9], [2, 8, 4], [2, 1, 8], [2, 9, 8], [2, 4, 8]]",
     "notes": "[Oracle] 的中確率最大 12点 P最大=0.0289 馬番=[(8, 2, 1), (8, 2, 9), (8, 2, 4), (8, 1, 2), (8, 9, 2), (8, 4, 2), (2, 8, 1), (2, 8, 9), (2, 8, 4), (2, 1, 8), (2, 9, 8), (2, 4, 8)]",
     "created_at": "2026-05-03 13:10:19",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -17210,10 +17210,10 @@
     "combination_json": "[]",
     "notes": "全馬モデルスコア（馬分析タブ用）",
     "created_at": "2026-05-03 13:10:19",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -17300,10 +17300,10 @@
     "combination_json": "[[2, 8], [1, 8], [1, 2], [8, 9], [2, 9], [4, 8], [2, 4]]",
     "notes": "2軸マルチ 軸=8,2 相手=[1, 9, 4] Harville最大=0.0586",
     "created_at": "2026-05-03 13:10:19",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -700.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -17341,10 +17341,10 @@
     "combination_json": "[[8, 2], [2, 8], [8, 1], [2, 1], [8, 9], [2, 9], [8, 4], [2, 4]]",
     "notes": "2軸マルチ 軸=8,2 相手=[1, 9, 4] Harville最大=0.0307",
     "created_at": "2026-05-03 13:10:19",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -800.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -17382,10 +17382,10 @@
     "combination_json": "[[8, 2, 1], [2, 8, 1], [8, 1, 2], [2, 1, 8], [8, 2, 9], [2, 8, 9], [8, 9, 2], [2, 9, 8], [8, 2, 4], [2, 8, 4], [8, 4, 2], [2, 4, 8]]",
     "notes": "2軸マルチ 軸=8,2 相手=[1, 9, 4] 12点 Harville最大=0.0054",
     "created_at": "2026-05-03 13:10:19",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -18706,10 +18706,10 @@
     "combination_json": "[[6]]",
     "notes": "確率1位 P(win)=0.14 odds=9.0 EV=1.24",
     "created_at": "2026-05-03 12:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -18740,10 +18740,10 @@
     "combination_json": "[[6], [3], [1]]",
     "notes": "上位3頭を複勝",
     "created_at": "2026-05-03 12:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -18788,10 +18788,10 @@
     "combination_json": "[[3, 6], [1, 6], [6, 7], [5, 6], [2, 6]]",
     "notes": "軸6番×相手5頭フォーメーション Harville最大=0.078",
     "created_at": "2026-05-03 12:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -18885,10 +18885,10 @@
     "combination_json": "[[3, 6], [1, 6], [6, 7], [5, 6], [2, 6]]",
     "notes": "軸6番×相手5頭ワイド Harville最大=0.078",
     "created_at": "2026-05-03 12:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -18982,10 +18982,10 @@
     "combination_json": "[[6, 3], [6, 1], [6, 7]]",
     "notes": "軸6番→相手3頭フォーメーション Harville最大=0.039",
     "created_at": "2026-05-03 12:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -19051,10 +19051,10 @@
     "combination_json": "[[1, 3, 6], [3, 6, 7]]",
     "notes": "合成EV最大=5.00 2点 馬番=[(1, 3, 6), (3, 6, 7)]",
     "created_at": "2026-05-03 12:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -600.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -19120,10 +19120,10 @@
     "combination_json": "[[6, 3, 1], [6, 1, 3], [6, 3, 7], [6, 7, 3], [6, 3, 5], [6, 5, 3], [6, 1, 7], [6, 7, 1], [6, 1, 5], [6, 5, 1], [6, 3, 2], [6, 3, 8]]",
     "notes": "1着固定フォーメーション 軸=6番 12点 相手=[3, 1, 7, 5, 2, 8] Harville最大=0.0506",
     "created_at": "2026-05-03 12:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1000.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -19252,10 +19252,10 @@
     "combination_json": "[[1]]",
     "notes": "確率1位(卍) EV=5.58 odds=27.2",
     "created_at": "2026-05-03 12:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -19286,10 +19286,10 @@
     "combination_json": "[[1], [5], [7]]",
     "notes": "確率上位3頭を複勝",
     "created_at": "2026-05-03 12:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -19334,10 +19334,10 @@
     "combination_json": "[[1, 5], [1, 7], [1, 8], [1, 6], [1, 2]]",
     "notes": "軸1番×相手5頭フォーメーション Harville最大=0.117",
     "created_at": "2026-05-03 12:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -19431,10 +19431,10 @@
     "combination_json": "[[1, 5], [1, 7], [1, 8], [1, 6], [1, 2]]",
     "notes": "軸1番×相手5頭ワイド Harville最大=0.117",
     "created_at": "2026-05-03 12:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -19528,10 +19528,10 @@
     "combination_json": "[[1, 5], [1, 7], [1, 8]]",
     "notes": "軸1番→相手3頭フォーメーション Harville最大=0.061",
     "created_at": "2026-05-03 12:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -19597,10 +19597,10 @@
     "combination_json": "[[1, 5, 6]]",
     "notes": "合成EV=5.00 Harville=0.0652 馬番=(1, 5, 6)",
     "created_at": "2026-05-03 12:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -19645,10 +19645,10 @@
     "combination_json": "[[1, 3, 6], [3, 6, 7], [3, 5, 6], [1, 6, 7], [1, 3, 7]]",
     "notes": "[Oracle] 的中確率最大 5点 P最大=0.3034 馬番=[(1, 3, 6), (3, 6, 7), (3, 5, 6), (1, 6, 7), (1, 3, 7)]",
     "created_at": "2026-05-03 12:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -19693,10 +19693,10 @@
     "combination_json": "[[6, 3, 1], [6, 1, 3], [3, 6, 1], [3, 1, 6], [1, 6, 3], [1, 3, 6], [6, 3, 7], [6, 7, 3], [3, 6, 7], [3, 7, 6], [7, 6, 3], [7, 3, 6]]",
     "notes": "[Oracle] 的中確率最大 12点 P最大=0.0506 馬番=[(6, 3, 1), (6, 1, 3), (3, 6, 1), (3, 1, 6), (1, 6, 3), (1, 3, 6), (6, 3, 7), (6, 7, 3), (3, 6, 7), (3, 7, 6), (7, 6, 3), (7, 3, 6)]",
     "created_at": "2026-05-03 12:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -19741,10 +19741,10 @@
     "combination_json": "[]",
     "notes": "全馬モデルスコア（馬分析タブ用）",
     "created_at": "2026-05-03 12:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -19824,10 +19824,10 @@
     "combination_json": "[[3, 6], [1, 6], [1, 3], [6, 7], [3, 7], [5, 6], [3, 5]]",
     "notes": "2軸マルチ 軸=6,3 相手=[1, 7, 5] Harville最大=0.0779",
     "created_at": "2026-05-03 12:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -700.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -19865,10 +19865,10 @@
     "combination_json": "[[6, 3], [3, 6], [6, 1], [3, 1], [6, 7], [3, 7], [6, 5], [3, 5]]",
     "notes": "2軸マルチ 軸=6,3 相手=[1, 7, 5] Harville最大=0.0391",
     "created_at": "2026-05-03 12:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -800.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -19906,10 +19906,10 @@
     "combination_json": "[[6, 3, 1], [3, 6, 1], [6, 1, 3], [3, 1, 6], [6, 3, 7], [3, 6, 7], [6, 7, 3], [3, 7, 6], [6, 3, 5], [3, 6, 5], [6, 5, 3], [3, 5, 6]]",
     "notes": "2軸マルチ 軸=6,3 相手=[1, 7, 5] 12点 Harville最大=0.0089",
     "created_at": "2026-05-03 12:40:26",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -19954,10 +19954,10 @@
     "combination_json": "[[2]]",
     "notes": "確率1位 P(win)=0.17 odds=39.2 EV=5.00",
     "created_at": "2026-05-03 12:40:17",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -19988,10 +19988,10 @@
     "combination_json": "[[2], [12], [14]]",
     "notes": "上位3頭を複勝",
     "created_at": "2026-05-03 12:40:17",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -20036,10 +20036,10 @@
     "combination_json": "[[2, 12], [2, 14], [2, 13], [2, 9], [2, 11]]",
     "notes": "軸2番×相手5頭フォーメーション Harville最大=0.029",
     "created_at": "2026-05-03 12:40:17",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -20133,10 +20133,10 @@
     "combination_json": "[[2, 12], [2, 14], [2, 13], [2, 9], [2, 11]]",
     "notes": "軸2番×相手5頭ワイド Harville最大=0.029",
     "created_at": "2026-05-03 12:40:17",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -20230,10 +20230,10 @@
     "combination_json": "[[2, 12], [2, 14], [2, 13]]",
     "notes": "軸2番→相手3頭フォーメーション Harville最大=0.014",
     "created_at": "2026-05-03 12:40:17",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -20299,10 +20299,10 @@
     "combination_json": "[[2, 12, 14], [2, 12, 13]]",
     "notes": "合成EV最大=5.00 2点 馬番=[(2, 12, 14), (2, 12, 13)]",
     "created_at": "2026-05-03 12:40:17",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -600.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -20368,10 +20368,10 @@
     "combination_json": "[[2, 12, 14], [2, 14, 12], [2, 12, 9], [2, 9, 12], [2, 12, 11], [2, 11, 12], [2, 12, 10], [2, 10, 12], [2, 14, 9], [2, 9, 14], [2, 14, 11], [2, 11, 14]]",
     "notes": "1着固定フォーメーション 軸=2番 12点 相手=[12, 14, 13, 9, 11, 10] Harville最大=0.0137",
     "created_at": "2026-05-03 12:40:17",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1000.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -20500,10 +20500,10 @@
     "combination_json": "[[14]]",
     "notes": "確率1位(卍) EV=9.56 odds=4.0",
     "created_at": "2026-05-03 12:40:17",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -400.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -20534,10 +20534,10 @@
     "combination_json": "[[14], [10], [2]]",
     "notes": "確率上位3頭を複勝",
     "created_at": "2026-05-03 12:40:17",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -20582,10 +20582,10 @@
     "combination_json": "[[10, 14], [2, 14], [14, 15], [11, 14], [12, 14]]",
     "notes": "軸14番×相手5頭フォーメーション Harville最大=0.097",
     "created_at": "2026-05-03 12:40:17",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -20679,10 +20679,10 @@
     "combination_json": "[[10, 14], [2, 14], [14, 15], [11, 14], [12, 14]]",
     "notes": "軸14番×相手5頭ワイド Harville最大=0.097",
     "created_at": "2026-05-03 12:40:17",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -20776,10 +20776,10 @@
     "combination_json": "[[14, 10], [14, 2], [14, 15]]",
     "notes": "軸14番→相手3頭フォーメーション Harville最大=0.060",
     "created_at": "2026-05-03 12:40:17",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -20845,10 +20845,10 @@
     "combination_json": "[[2, 14, 15]]",
     "notes": "合成EV=3.54 Harville=0.0295 馬番=(2, 14, 15)",
     "created_at": "2026-05-03 12:40:17",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -20893,10 +20893,10 @@
     "combination_json": "[[2, 12, 14], [2, 12, 13], [2, 9, 12], [2, 11, 12], [2, 10, 12]]",
     "notes": "[Oracle] 的中確率最大 5点 P最大=0.1124 馬番=[(2, 12, 14), (2, 12, 13), (2, 9, 12), (2, 11, 12), (2, 10, 12)]",
     "created_at": "2026-05-03 12:40:17",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -20941,10 +20941,10 @@
     "combination_json": "[[2, 12, 14], [2, 14, 12], [12, 2, 14], [12, 14, 2], [14, 2, 12], [14, 12, 2], [2, 12, 13], [2, 12, 9], [2, 13, 12], [2, 9, 12], [12, 2, 13], [12, 2, 9]]",
     "notes": "[Oracle] 的中確率最大 12点 P最大=0.0187 馬番=[(2, 12, 14), (2, 14, 12), (12, 2, 14), (12, 14, 2), (14, 2, 12), (14, 12, 2), (2, 12, 13), (2, 12, 9), (2, 13, 12), (2, 9, 12), (12, 2, 13), (12, 2, 9)]",
     "created_at": "2026-05-03 12:40:17",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -20989,10 +20989,10 @@
     "combination_json": "[]",
     "notes": "全馬モデルスコア（馬分析タブ用）",
     "created_at": "2026-05-03 12:40:17",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -21121,10 +21121,10 @@
     "combination_json": "[[2, 12], [2, 14], [12, 14], [2, 13], [12, 13], [2, 9], [9, 12]]",
     "notes": "2軸マルチ 軸=2,12 相手=[14, 13, 9] Harville最大=0.0431",
     "created_at": "2026-05-03 12:40:17",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -700.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -21162,10 +21162,10 @@
     "combination_json": "[[2, 12], [12, 2], [2, 14], [12, 14], [2, 13], [12, 13], [2, 9], [12, 9]]",
     "notes": "2軸マルチ 軸=2,12 相手=[14, 13, 9] Harville最大=0.0216",
     "created_at": "2026-05-03 12:40:17",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -800.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -21203,10 +21203,10 @@
     "combination_json": "[[2, 12, 14], [12, 2, 14], [2, 14, 12], [12, 14, 2], [2, 12, 13], [12, 2, 13], [2, 13, 12], [12, 13, 2], [2, 12, 9], [12, 2, 9], [2, 9, 12], [12, 9, 2]]",
     "notes": "2軸マルチ 軸=2,12 相手=[14, 13, 9] 12点 Harville最大=0.0032",
     "created_at": "2026-05-03 12:40:17",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -26446,10 +26446,10 @@
     "combination_json": "[[10]]",
     "notes": "確率1位 P(win)=0.17 odds=5.0 EV=0.87",
     "created_at": "2026-05-03 11:40:23",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -26480,10 +26480,10 @@
     "combination_json": "[[10], [7], [9]]",
     "notes": "上位3頭を複勝",
     "created_at": "2026-05-03 11:40:23",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -26528,10 +26528,10 @@
     "combination_json": "[[7, 10], [9, 10], [8, 10], [4, 10], [6, 10]]",
     "notes": "軸10番×相手5頭フォーメーション Harville最大=0.083",
     "created_at": "2026-05-03 11:40:23",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -26625,10 +26625,10 @@
     "combination_json": "[[7, 10], [9, 10], [8, 10], [4, 10], [6, 10]]",
     "notes": "軸10番×相手5頭ワイド Harville最大=0.083",
     "created_at": "2026-05-03 11:40:23",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -26722,10 +26722,10 @@
     "combination_json": "[[10, 7], [10, 9], [10, 8]]",
     "notes": "軸10番→相手3頭フォーメーション Harville最大=0.043",
     "created_at": "2026-05-03 11:40:23",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -26791,10 +26791,10 @@
     "combination_json": "[[7, 9, 10], [7, 8, 10]]",
     "notes": "合成EV最大=5.00 2点 馬番=[(7, 9, 10), (7, 8, 10)]",
     "created_at": "2026-05-03 11:40:23",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -600.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -26860,10 +26860,10 @@
     "combination_json": "[[10, 7, 9], [10, 9, 7], [10, 7, 8], [10, 8, 7], [10, 9, 8], [10, 8, 9], [10, 7, 6], [10, 6, 7], [10, 7, 3], [10, 3, 7], [10, 9, 6], [10, 6, 9]]",
     "notes": "1着固定フォーメーション 軸=10番 12点 相手=[7, 9, 8, 4, 6, 3] Harville最大=0.0503",
     "created_at": "2026-05-03 11:40:23",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1000.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -26992,10 +26992,10 @@
     "combination_json": "[[10]]",
     "notes": "確率1位(卍) EV=2.14 odds=5.0",
     "created_at": "2026-05-03 11:40:23",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -400.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -27026,10 +27026,10 @@
     "combination_json": "[[10], [9], [4]]",
     "notes": "確率上位3頭を複勝",
     "created_at": "2026-05-03 11:40:23",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -27074,10 +27074,10 @@
     "combination_json": "[[9, 10], [4, 10], [7, 10], [10, 11], [8, 10]]",
     "notes": "軸10番×相手5頭フォーメーション Harville最大=0.086",
     "created_at": "2026-05-03 11:40:23",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -27171,10 +27171,10 @@
     "combination_json": "[[9, 10], [4, 10], [7, 10], [10, 11], [8, 10]]",
     "notes": "軸10番×相手5頭ワイド Harville最大=0.086",
     "created_at": "2026-05-03 11:40:23",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -27268,10 +27268,10 @@
     "combination_json": "[[10, 9], [10, 4], [10, 7]]",
     "notes": "軸10番→相手3頭フォーメーション Harville最大=0.045",
     "created_at": "2026-05-03 11:40:23",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -27337,10 +27337,10 @@
     "combination_json": "[[4, 7, 10]]",
     "notes": "合成EV=5.00 Harville=0.0342 馬番=(4, 7, 10)",
     "created_at": "2026-05-03 11:40:23",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -27385,10 +27385,10 @@
     "combination_json": "[[7, 9, 10], [7, 8, 10], [8, 9, 10], [4, 7, 10], [4, 9, 10]]",
     "notes": "[Oracle] 的中確率最大 5点 P最大=0.2610 馬番=[(7, 9, 10), (7, 8, 10), (8, 9, 10), (4, 7, 10), (4, 9, 10)]",
     "created_at": "2026-05-03 11:40:23",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -27433,10 +27433,10 @@
     "combination_json": "[[10, 7, 9], [10, 9, 7], [7, 10, 9], [7, 9, 10], [9, 10, 7], [9, 7, 10], [10, 7, 8], [10, 8, 7], [7, 10, 8], [7, 8, 10], [8, 10, 7], [8, 7, 10]]",
     "notes": "[Oracle] 的中確率最大 12点 P最大=0.0435 馬番=[(10, 7, 9), (10, 9, 7), (7, 10, 9), (7, 9, 10), (9, 10, 7), (9, 7, 10), (10, 7, 8), (10, 8, 7), (7, 10, 8), (7, 8, 10), (8, 10, 7), (8, 7, 10)]",
     "created_at": "2026-05-03 11:40:23",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -27481,10 +27481,10 @@
     "combination_json": "[]",
     "notes": "全馬モデルスコア（馬分析タブ用）",
     "created_at": "2026-05-03 11:40:23",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -27585,10 +27585,10 @@
     "combination_json": "[[7, 10], [9, 10], [7, 9], [8, 10], [7, 8], [4, 10], [4, 7]]",
     "notes": "2軸マルチ 軸=10,7 相手=[9, 8, 4] Harville最大=0.0684",
     "created_at": "2026-05-03 11:40:23",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -700.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -27626,10 +27626,10 @@
     "combination_json": "[[10, 7], [7, 10], [10, 9], [7, 9], [10, 8], [7, 8], [10, 4], [7, 4]]",
     "notes": "2軸マルチ 軸=10,7 相手=[9, 8, 4] Harville最大=0.0352",
     "created_at": "2026-05-03 11:40:23",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -800.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -27667,10 +27667,10 @@
     "combination_json": "[[10, 7, 9], [7, 10, 9], [10, 9, 7], [7, 9, 10], [10, 7, 8], [7, 10, 8], [10, 8, 7], [7, 8, 10], [10, 7, 4], [7, 10, 4], [10, 4, 7], [7, 4, 10]]",
     "notes": "2軸マルチ 軸=10,7 相手=[9, 8, 4] 12点 Harville最大=0.0077",
     "created_at": "2026-05-03 11:40:23",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -27715,10 +27715,10 @@
     "combination_json": "[[1]]",
     "notes": "確率1位 P(win)=0.25 odds=21.4 EV=5.00",
     "created_at": "2026-05-03 11:40:16",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -27749,10 +27749,10 @@
     "combination_json": "[[1], [4], [2]]",
     "notes": "上位3頭を複勝",
     "created_at": "2026-05-03 11:40:16",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -27797,10 +27797,10 @@
     "combination_json": "[[1, 4], [1, 2], [1, 13], [1, 11], [1, 14]]",
     "notes": "軸1番×相手5頭フォーメーション Harville最大=0.074",
     "created_at": "2026-05-03 11:40:16",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -27894,10 +27894,10 @@
     "combination_json": "[[1, 4], [1, 2], [1, 13], [1, 11], [1, 14]]",
     "notes": "軸1番×相手5頭ワイド Harville最大=0.074",
     "created_at": "2026-05-03 11:40:16",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -27991,10 +27991,10 @@
     "combination_json": "[[1, 4], [1, 2], [1, 13]]",
     "notes": "軸1番→相手3頭フォーメーション Harville最大=0.038",
     "created_at": "2026-05-03 11:40:16",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -28060,10 +28060,10 @@
     "combination_json": "[[1, 2, 4], [1, 4, 13]]",
     "notes": "合成EV最大=5.00 2点 馬番=[(1, 2, 4), (1, 4, 13)]",
     "created_at": "2026-05-03 11:40:16",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -600.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -28129,10 +28129,10 @@
     "combination_json": "[[1, 4, 2], [1, 2, 4], [1, 4, 11], [1, 11, 4], [1, 2, 11], [1, 11, 2], [1, 4, 14], [1, 14, 4], [1, 2, 14], [1, 14, 2], [1, 4, 15], [1, 15, 4]]",
     "notes": "1着固定フォーメーション 軸=1番 12点 相手=[4, 2, 13, 11, 14, 15] Harville最大=0.0470",
     "created_at": "2026-05-03 11:40:16",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1000.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -28261,10 +28261,10 @@
     "combination_json": "[[8]]",
     "notes": "確率1位(卍) EV=0.81 odds=86.1",
     "created_at": "2026-05-03 11:40:16",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -28295,10 +28295,10 @@
     "combination_json": "[[8], [13], [11]]",
     "notes": "確率上位3頭を複勝",
     "created_at": "2026-05-03 11:40:16",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -28343,10 +28343,10 @@
     "combination_json": "[[8, 13], [8, 11], [2, 8], [4, 8], [3, 8]]",
     "notes": "軸8番×相手5頭フォーメーション Harville最大=0.278",
     "created_at": "2026-05-03 11:40:16",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -28440,10 +28440,10 @@
     "combination_json": "[[8, 13], [8, 11], [2, 8], [4, 8], [3, 8]]",
     "notes": "軸8番×相手5頭ワイド Harville最大=0.278",
     "created_at": "2026-05-03 11:40:16",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -28537,10 +28537,10 @@
     "combination_json": "[[8, 13], [8, 11], [8, 2]]",
     "notes": "軸8番→相手3頭フォーメーション Harville最大=0.150",
     "created_at": "2026-05-03 11:40:16",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -28606,10 +28606,10 @@
     "combination_json": "[[4, 8, 13]]",
     "notes": "合成EV=5.00 Harville=0.0538 馬番=(4, 8, 13)",
     "created_at": "2026-05-03 11:40:16",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -28654,10 +28654,10 @@
     "combination_json": "[[1, 2, 4], [1, 4, 13], [1, 4, 11], [1, 2, 13], [1, 2, 11]]",
     "notes": "[Oracle] 的中確率最大 5点 P最大=0.2338 馬番=[(1, 2, 4), (1, 4, 13), (1, 4, 11), (1, 2, 13), (1, 2, 11)]",
     "created_at": "2026-05-03 11:40:16",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -28702,10 +28702,10 @@
     "combination_json": "[[1, 4, 2], [1, 2, 4], [4, 1, 2], [4, 2, 1], [2, 1, 4], [2, 4, 1], [1, 4, 13], [1, 4, 11], [1, 13, 4], [1, 11, 4], [4, 1, 13], [4, 1, 11]]",
     "notes": "[Oracle] 的中確率最大 12点 P最大=0.0390 馬番=[(1, 4, 2), (1, 2, 4), (4, 1, 2), (4, 2, 1), (2, 1, 4), (2, 4, 1), (1, 4, 13), (1, 4, 11), (1, 13, 4), (1, 11, 4), (4, 1, 13), (4, 1, 11)]",
     "created_at": "2026-05-03 11:40:16",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -28750,10 +28750,10 @@
     "combination_json": "[]",
     "notes": "全馬モデルスコア（馬分析タブ用）",
     "created_at": "2026-05-03 11:40:16",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -28882,10 +28882,10 @@
     "combination_json": "[[1, 4], [1, 2], [2, 4], [1, 13], [4, 13], [1, 11], [4, 11]]",
     "notes": "2軸マルチ 軸=1,4 相手=[2, 13, 11] Harville最大=0.0736",
     "created_at": "2026-05-03 11:40:16",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -700.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -28923,10 +28923,10 @@
     "combination_json": "[[1, 4], [4, 1], [1, 2], [4, 2], [1, 13], [4, 13], [1, 11], [4, 11]]",
     "notes": "2軸マルチ 軸=1,4 相手=[2, 13, 11] Harville最大=0.0388",
     "created_at": "2026-05-03 11:40:16",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -800.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -28964,10 +28964,10 @@
     "combination_json": "[[1, 4, 2], [4, 1, 2], [1, 2, 4], [4, 2, 1], [1, 4, 13], [4, 1, 13], [1, 13, 4], [4, 13, 1], [1, 4, 11], [4, 1, 11], [1, 11, 4], [4, 11, 1]]",
     "notes": "2軸マルチ 軸=1,4 相手=[2, 13, 11] 12点 Harville最大=0.0074",
     "created_at": "2026-05-03 11:40:16",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -45886,10 +45886,10 @@
     "combination_json": "[[7]]",
     "notes": "確率1位 P(win)=0.10 odds=1.9 EV=0.19",
     "created_at": "2026-05-03 08:25:07",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -45920,10 +45920,10 @@
     "combination_json": "[[7], [10], [11]]",
     "notes": "上位3頭を複勝",
     "created_at": "2026-05-03 08:25:07",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -45968,10 +45968,10 @@
     "combination_json": "[[7, 10], [7, 11], [7, 12], [7, 15], [6, 7]]",
     "notes": "軸7番×相手5頭フォーメーション Harville最大=0.030",
     "created_at": "2026-05-03 08:25:07",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -46065,10 +46065,10 @@
     "combination_json": "[[7, 10], [7, 11], [7, 12], [7, 15], [6, 7]]",
     "notes": "軸7番×相手5頭ワイド Harville最大=0.030",
     "created_at": "2026-05-03 08:25:07",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -46162,10 +46162,10 @@
     "combination_json": "[[7, 10], [7, 11], [7, 12]]",
     "notes": "軸7番→相手3頭フォーメーション Harville最大=0.015",
     "created_at": "2026-05-03 08:25:07",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -46231,10 +46231,10 @@
     "combination_json": "[[7, 11, 12], [7, 10, 12]]",
     "notes": "合成EV最大=0.69 2点 馬番=[(7, 11, 12), (7, 10, 12)]",
     "created_at": "2026-05-03 08:25:07",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -600.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -46300,10 +46300,10 @@
     "combination_json": "[[7, 11, 12], [7, 12, 11], [7, 12, 3], [7, 3, 12], [7, 11, 3], [7, 3, 11], [7, 10, 12], [7, 12, 10], [7, 12, 6], [7, 6, 12], [7, 10, 11], [7, 11, 10]]",
     "notes": "1着固定フォーメーション 軸=7番 12点 相手=[10, 11, 12, 15, 6, 3] Harville最大=0.0121",
     "created_at": "2026-05-03 08:25:07",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1000.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -46432,10 +46432,10 @@
     "combination_json": "[[11]]",
     "notes": "確率1位(卍) EV=1.83 odds=43.6",
     "created_at": "2026-05-03 08:25:07",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -46466,10 +46466,10 @@
     "combination_json": "[[11], [6], [1]]",
     "notes": "確率上位3頭を複勝",
     "created_at": "2026-05-03 08:25:07",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -46514,10 +46514,10 @@
     "combination_json": "[[6, 11], [1, 11], [11, 15], [5, 11], [9, 11]]",
     "notes": "軸11番×相手5頭フォーメーション Harville最大=0.050",
     "created_at": "2026-05-03 08:25:07",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -46611,10 +46611,10 @@
     "combination_json": "[[6, 11], [1, 11], [11, 15], [5, 11], [9, 11]]",
     "notes": "軸11番×相手5頭ワイド Harville最大=0.050",
     "created_at": "2026-05-03 08:25:07",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -46708,10 +46708,10 @@
     "combination_json": "[[11, 6], [11, 1], [11, 15]]",
     "notes": "軸11番→相手3頭フォーメーション Harville最大=0.026",
     "created_at": "2026-05-03 08:25:07",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -46777,10 +46777,10 @@
     "combination_json": "[[5, 6, 11]]",
     "notes": "合成EV=5.00 Harville=0.0149 馬番=(5, 6, 11)",
     "created_at": "2026-05-03 08:25:07",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -46825,10 +46825,10 @@
     "combination_json": "[[7, 10, 11], [7, 10, 12], [7, 11, 12], [10, 11, 12], [7, 10, 15]]",
     "notes": "[Oracle] 的中確率最大 5点 P最大=0.0318 馬番=[(7, 10, 11), (7, 10, 12), (7, 11, 12), (10, 11, 12), (7, 10, 15)]",
     "created_at": "2026-05-03 08:25:07",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -46873,10 +46873,10 @@
     "combination_json": "[[7, 10, 11], [7, 10, 12], [7, 11, 10], [7, 11, 12], [7, 12, 10], [7, 12, 11], [10, 7, 11], [10, 7, 12], [10, 11, 7], [10, 11, 12], [10, 12, 7], [10, 12, 11]]",
     "notes": "[Oracle] 的中確率最大 12点 P最大=0.0053 馬番=[(7, 10, 11), (7, 10, 12), (7, 11, 10), (7, 11, 12), (7, 12, 10), (7, 12, 11), (10, 7, 11), (10, 7, 12), (10, 11, 7), (10, 11, 12), (10, 12, 7), (10, 12, 11)]",
     "created_at": "2026-05-03 08:25:07",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -46921,10 +46921,10 @@
     "combination_json": "[]",
     "notes": "全馬モデルスコア（馬分析タブ用）",
     "created_at": "2026-05-03 08:25:07",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -47053,10 +47053,10 @@
     "combination_json": "[[7, 10], [7, 11], [10, 11], [7, 12], [10, 12], [7, 15], [10, 15]]",
     "notes": "2軸マルチ 軸=7,10 相手=[11, 12, 15] Harville最大=0.0167",
     "created_at": "2026-05-03 08:25:07",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -700.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -47094,10 +47094,10 @@
     "combination_json": "[[7, 10], [10, 7], [7, 11], [10, 11], [7, 12], [10, 12], [7, 15], [10, 15]]",
     "notes": "2軸マルチ 軸=7,10 相手=[11, 12, 15] Harville最大=0.0084",
     "created_at": "2026-05-03 08:25:07",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -800.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -47135,10 +47135,10 @@
     "combination_json": "[[7, 10, 11], [10, 7, 11], [7, 11, 10], [10, 11, 7], [7, 10, 12], [10, 7, 12], [7, 12, 10], [10, 12, 7], [7, 10, 15], [10, 7, 15], [7, 15, 10], [10, 15, 7]]",
     "notes": "2軸マルチ 軸=7,10 相手=[11, 12, 15] 12点 Harville最大=0.0009",
     "created_at": "2026-05-03 08:25:07",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -47183,10 +47183,10 @@
     "combination_json": "[[7, 11, 12], [7, 10, 12]]",
     "notes": "合成EV最大=0.69 2点 馬番=[(7, 11, 12), (7, 10, 12)]",
     "created_at": "2026-05-03 08:12:09",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -600.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -47321,10 +47321,10 @@
     "combination_json": "[[7, 15, 17], [7, 8, 15]]",
     "notes": "合成EV最大=2.56 2点 馬番=[(7, 15, 17), (7, 8, 15)]",
     "created_at": "2026-05-03 08:12:08",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -600.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -47390,10 +47390,10 @@
     "combination_json": "[[1, 8, 9], [1, 9, 14]]",
     "notes": "合成EV最大=5.00 2点 馬番=[(1, 8, 9), (1, 9, 14)]",
     "created_at": "2026-05-03 08:12:07",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -600.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -48633,10 +48633,10 @@
     "combination_json": "[[3]]",
     "notes": "確率1位 P(win)=0.13 odds=24.5 EV=3.22",
     "created_at": "2026-05-03 08:12:06",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -48667,10 +48667,10 @@
     "combination_json": "[[3], [7], [6]]",
     "notes": "上位3頭を複勝",
     "created_at": "2026-05-03 08:12:06",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -48715,10 +48715,10 @@
     "combination_json": "[[3, 7], [3, 6], [1, 3], [2, 3], [3, 5]]",
     "notes": "軸3番×相手5頭フォーメーション Harville最大=0.066",
     "created_at": "2026-05-03 08:12:06",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -48812,10 +48812,10 @@
     "combination_json": "[[3, 7], [3, 6], [1, 3], [2, 3], [3, 5]]",
     "notes": "軸3番×相手5頭ワイド Harville最大=0.066",
     "created_at": "2026-05-03 08:12:06",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -48909,10 +48909,10 @@
     "combination_json": "[[3, 7], [3, 6], [3, 1]]",
     "notes": "軸3番→相手3頭フォーメーション Harville最大=0.033",
     "created_at": "2026-05-03 08:12:06",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -48978,10 +48978,10 @@
     "combination_json": "[[3, 6, 7], [1, 3, 7]]",
     "notes": "合成EV最大=5.00 2点 馬番=[(3, 6, 7), (1, 3, 7)]",
     "created_at": "2026-05-03 08:12:06",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -600.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -49047,10 +49047,10 @@
     "combination_json": "[[3, 7, 6], [3, 7, 1], [3, 6, 7], [3, 1, 7], [3, 7, 2], [3, 2, 7], [3, 7, 5], [3, 5, 7], [3, 6, 1], [3, 1, 6], [3, 6, 2], [3, 1, 2]]",
     "notes": "1着固定フォーメーション 軸=3番 12点 相手=[7, 6, 1, 2, 5, 4] Harville最大=0.0359",
     "created_at": "2026-05-03 08:12:06",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1000.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -49179,10 +49179,10 @@
     "combination_json": "[[1]]",
     "notes": "確率1位(卍) EV=3.87 odds=27.2",
     "created_at": "2026-05-03 08:12:06",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -49213,10 +49213,10 @@
     "combination_json": "[[1], [8], [5]]",
     "notes": "確率上位3頭を複勝",
     "created_at": "2026-05-03 08:12:06",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -49261,10 +49261,10 @@
     "combination_json": "[[1, 8], [1, 5], [1, 3], [1, 7], [1, 6]]",
     "notes": "軸1番×相手5頭フォーメーション Harville最大=0.250",
     "created_at": "2026-05-03 08:12:06",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -49358,10 +49358,10 @@
     "combination_json": "[[1, 8], [1, 5], [1, 3], [1, 7], [1, 6]]",
     "notes": "軸1番×相手5頭ワイド Harville最大=0.250",
     "created_at": "2026-05-03 08:12:06",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -49455,10 +49455,10 @@
     "combination_json": "[[1, 8], [1, 5], [1, 3]]",
     "notes": "軸1番→相手3頭フォーメーション Harville最大=0.146",
     "created_at": "2026-05-03 08:12:06",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -49524,10 +49524,10 @@
     "combination_json": "[[1, 7, 8]]",
     "notes": "合成EV=5.00 Harville=0.0803 馬番=(1, 7, 8)",
     "created_at": "2026-05-03 08:12:06",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -49572,10 +49572,10 @@
     "combination_json": "[[3, 6, 7], [1, 3, 7], [2, 3, 7], [3, 5, 7], [1, 3, 6]]",
     "notes": "[Oracle] 的中確率最大 5点 P最大=0.2156 馬番=[(3, 6, 7), (1, 3, 7), (2, 3, 7), (3, 5, 7), (1, 3, 6)]",
     "created_at": "2026-05-03 08:12:06",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -49620,10 +49620,10 @@
     "combination_json": "[[3, 7, 6], [3, 7, 1], [3, 6, 7], [3, 1, 7], [7, 3, 6], [7, 3, 1], [7, 6, 3], [7, 1, 3], [6, 3, 7], [6, 7, 3], [1, 3, 7], [1, 7, 3]]",
     "notes": "[Oracle] 的中確率最大 12点 P最大=0.0359 馬番=[(3, 7, 6), (3, 7, 1), (3, 6, 7), (3, 1, 7), (7, 3, 6), (7, 3, 1), (7, 6, 3), (7, 1, 3), (6, 3, 7), (6, 7, 3), (1, 3, 7), (1, 7, 3)]",
     "created_at": "2026-05-03 08:12:06",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -49668,10 +49668,10 @@
     "combination_json": "[]",
     "notes": "全馬モデルスコア（馬分析タブ用）",
     "created_at": "2026-05-03 08:12:06",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -52057,10 +52057,10 @@
     "combination_json": "[[10]]",
     "notes": "確率1位 P(win)=0.20 odds=5.0 EV=0.98",
     "created_at": "2026-05-03 08:12:05",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -52091,10 +52091,10 @@
     "combination_json": "[[10], [7], [9]]",
     "notes": "上位3頭を複勝",
     "created_at": "2026-05-03 08:12:05",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -52139,10 +52139,10 @@
     "combination_json": "[[7, 10], [9, 10], [8, 10], [4, 10], [10, 11]]",
     "notes": "軸10番×相手5頭フォーメーション Harville最大=0.079",
     "created_at": "2026-05-03 08:12:05",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -52236,10 +52236,10 @@
     "combination_json": "[[7, 10], [9, 10], [8, 10], [4, 10], [10, 11]]",
     "notes": "軸10番×相手5頭ワイド Harville最大=0.079",
     "created_at": "2026-05-03 08:12:05",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -52333,10 +52333,10 @@
     "combination_json": "[[10, 7], [10, 9], [10, 8]]",
     "notes": "軸10番→相手3頭フォーメーション Harville最大=0.041",
     "created_at": "2026-05-03 08:12:05",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -52402,10 +52402,10 @@
     "combination_json": "[[7, 9, 10], [7, 8, 10]]",
     "notes": "合成EV最大=5.00 2点 馬番=[(7, 9, 10), (7, 8, 10)]",
     "created_at": "2026-05-03 08:12:05",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -600.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -52471,10 +52471,10 @@
     "combination_json": "[[10, 7, 9], [10, 9, 7], [10, 7, 8], [10, 8, 7], [10, 7, 11], [10, 11, 7], [10, 9, 8], [10, 8, 9], [10, 9, 11], [10, 11, 9], [10, 8, 11], [10, 11, 8]]",
     "notes": "1着固定フォーメーション 軸=10番 12点 相手=[7, 9, 8, 4, 11, 3] Harville最大=0.0432",
     "created_at": "2026-05-03 08:12:05",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1000.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -52603,10 +52603,10 @@
     "combination_json": "[[8]]",
     "notes": "確率1位(卍) EV=0.88 odds=8.6",
     "created_at": "2026-05-03 08:12:05",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -52637,10 +52637,10 @@
     "combination_json": "[[8], [7], [9]]",
     "notes": "確率上位3頭を複勝",
     "created_at": "2026-05-03 08:12:05",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -52685,10 +52685,10 @@
     "combination_json": "[[7, 8], [8, 9], [8, 10], [5, 8], [6, 8]]",
     "notes": "軸8番×相手5頭フォーメーション Harville最大=0.060",
     "created_at": "2026-05-03 08:12:05",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -52782,10 +52782,10 @@
     "combination_json": "[[7, 8], [8, 9], [8, 10], [5, 8], [6, 8]]",
     "notes": "軸8番×相手5頭ワイド Harville最大=0.060",
     "created_at": "2026-05-03 08:12:05",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -52879,10 +52879,10 @@
     "combination_json": "[[8, 7], [8, 9], [8, 10]]",
     "notes": "軸8番→相手3頭フォーメーション Harville最大=0.030",
     "created_at": "2026-05-03 08:12:05",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -52948,10 +52948,10 @@
     "combination_json": "[[5, 7, 8]]",
     "notes": "合成EV=5.00 Harville=0.0210 馬番=(5, 7, 8)",
     "created_at": "2026-05-03 08:12:05",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -52996,10 +52996,10 @@
     "combination_json": "[[7, 9, 10], [7, 8, 10], [4, 7, 10], [8, 9, 10], [4, 9, 10]]",
     "notes": "[Oracle] 的中確率最大 5点 P最大=0.2204 馬番=[(7, 9, 10), (7, 8, 10), (4, 7, 10), (8, 9, 10), (4, 9, 10)]",
     "created_at": "2026-05-03 08:12:05",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -53044,10 +53044,10 @@
     "combination_json": "[[10, 7, 9], [10, 9, 7], [7, 10, 9], [7, 9, 10], [9, 10, 7], [9, 7, 10], [10, 7, 8], [10, 7, 4], [10, 9, 8], [10, 9, 4], [10, 8, 7], [10, 8, 9]]",
     "notes": "[Oracle] 的中確率最大 12点 P最大=0.0367 馬番=[(10, 7, 9), (10, 9, 7), (7, 10, 9), (7, 9, 10), (9, 10, 7), (9, 7, 10), (10, 7, 8), (10, 7, 4), (10, 9, 8), (10, 9, 4), (10, 8, 7), (10, 8, 9)]",
     "created_at": "2026-05-03 08:12:05",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -53092,10 +53092,10 @@
     "combination_json": "[]",
     "notes": "全馬モデルスコア（馬分析タブ用）",
     "created_at": "2026-05-03 08:12:05",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -55516,10 +55516,10 @@
     "combination_json": "[[1, 13, 15], [1, 10, 13]]",
     "notes": "合成EV最大=5.00 2点 馬番=[(1, 13, 15), (1, 10, 13)]",
     "created_at": "2026-05-03 08:12:03",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -600.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -55654,10 +55654,10 @@
     "combination_json": "[[3, 4, 5], [4, 5, 10]]",
     "notes": "合成EV最大=2.72 2点 馬番=[(3, 4, 5), (4, 5, 10)]",
     "created_at": "2026-05-03 08:12:01",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -600.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -56897,10 +56897,10 @@
     "combination_json": "[[12]]",
     "notes": "確率1位 P(win)=0.20 odds=18.3 EV=3.60",
     "created_at": "2026-05-03 08:12:00",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -56931,10 +56931,10 @@
     "combination_json": "[[12], [9], [13]]",
     "notes": "上位3頭を複勝",
     "created_at": "2026-05-03 08:12:00",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -56979,10 +56979,10 @@
     "combination_json": "[[9, 12], [12, 13], [12, 14], [10, 12], [2, 12]]",
     "notes": "軸12番×相手5頭フォーメーション Harville最大=0.043",
     "created_at": "2026-05-03 08:12:00",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -57076,10 +57076,10 @@
     "combination_json": "[[9, 12], [12, 13], [12, 14], [10, 12], [2, 12]]",
     "notes": "軸12番×相手5頭ワイド Harville最大=0.043",
     "created_at": "2026-05-03 08:12:00",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -57173,10 +57173,10 @@
     "combination_json": "[[12, 9], [12, 13], [12, 14]]",
     "notes": "軸12番→相手3頭フォーメーション Harville最大=0.022",
     "created_at": "2026-05-03 08:12:00",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -57242,10 +57242,10 @@
     "combination_json": "[[9, 12, 13], [9, 12, 14]]",
     "notes": "合成EV最大=5.00 2点 馬番=[(9, 12, 13), (9, 12, 14)]",
     "created_at": "2026-05-03 08:12:00",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -600.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -57311,10 +57311,10 @@
     "combination_json": "[[12, 9, 14], [12, 14, 9], [12, 9, 10], [12, 14, 10], [12, 10, 9], [12, 10, 14], [12, 9, 2], [12, 14, 2], [12, 2, 9], [12, 2, 14], [12, 9, 11], [12, 14, 11]]",
     "notes": "1着固定フォーメーション 軸=12番 12点 相手=[9, 13, 14, 10, 2, 11] Harville最大=0.0195",
     "created_at": "2026-05-03 08:12:00",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1000.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -57443,10 +57443,10 @@
     "combination_json": "[[9]]",
     "notes": "確率1位(卍) EV=2.00 odds=7.4",
     "created_at": "2026-05-03 08:12:00",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -57477,10 +57477,10 @@
     "combination_json": "[[9], [14], [13]]",
     "notes": "確率上位3頭を複勝",
     "created_at": "2026-05-03 08:12:00",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -57525,10 +57525,10 @@
     "combination_json": "[[9, 14], [9, 13], [9, 12], [1, 9], [9, 11]]",
     "notes": "軸9番×相手5頭フォーメーション Harville最大=0.057",
     "created_at": "2026-05-03 08:12:00",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -57622,10 +57622,10 @@
     "combination_json": "[[9, 14], [9, 13], [9, 12], [1, 9], [9, 11]]",
     "notes": "軸9番×相手5頭ワイド Harville最大=0.057",
     "created_at": "2026-05-03 08:12:00",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -57719,10 +57719,10 @@
     "combination_json": "[[9, 14], [9, 13], [9, 12]]",
     "notes": "軸9番→相手3頭フォーメーション Harville最大=0.030",
     "created_at": "2026-05-03 08:12:00",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -57788,10 +57788,10 @@
     "combination_json": "[[9, 12, 13]]",
     "notes": "合成EV=3.91 Harville=0.0176 馬番=(9, 12, 13)",
     "created_at": "2026-05-03 08:12:00",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -57836,10 +57836,10 @@
     "combination_json": "[[9, 12, 13], [9, 12, 14], [12, 13, 14], [9, 10, 12], [10, 12, 13]]",
     "notes": "[Oracle] 的中確率最大 5点 P最大=0.0981 馬番=[(9, 12, 13), (9, 12, 14), (12, 13, 14), (9, 10, 12), (10, 12, 13)]",
     "created_at": "2026-05-03 08:12:00",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -57884,10 +57884,10 @@
     "combination_json": "[[12, 9, 13], [12, 9, 14], [12, 13, 9], [12, 13, 14], [12, 14, 9], [12, 14, 13], [9, 12, 13], [9, 12, 14], [9, 13, 12], [9, 14, 12], [13, 12, 9], [13, 12, 14]]",
     "notes": "[Oracle] 的中確率最大 12点 P最大=0.0164 馬番=[(12, 9, 13), (12, 9, 14), (12, 13, 9), (12, 13, 14), (12, 14, 9), (12, 14, 13), (9, 12, 13), (9, 12, 14), (9, 13, 12), (9, 14, 12), (13, 12, 9), (13, 12, 14)]",
     "created_at": "2026-05-03 08:12:00",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -57932,10 +57932,10 @@
     "combination_json": "[]",
     "notes": "全馬モデルスコア（馬分析タブ用）",
     "created_at": "2026-05-03 08:12:00",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -59252,10 +59252,10 @@
     "combination_json": "[[4]]",
     "notes": "確率1位 P(win)=0.13 odds=18.1 EV=2.42",
     "created_at": "2026-05-03 08:11:59",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -59286,10 +59286,10 @@
     "combination_json": "[[4], [13], [2]]",
     "notes": "上位3頭を複勝",
     "created_at": "2026-05-03 08:11:59",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -59334,10 +59334,10 @@
     "combination_json": "[[4, 13], [2, 4], [1, 4], [4, 11], [4, 8]]",
     "notes": "軸4番×相手5頭フォーメーション Harville最大=0.051",
     "created_at": "2026-05-03 08:11:59",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -59431,10 +59431,10 @@
     "combination_json": "[[4, 13], [2, 4], [1, 4], [4, 11], [4, 8]]",
     "notes": "軸4番×相手5頭ワイド Harville最大=0.051",
     "created_at": "2026-05-03 08:11:59",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -59528,10 +59528,10 @@
     "combination_json": "[[4, 13], [4, 2], [4, 1]]",
     "notes": "軸4番→相手3頭フォーメーション Harville最大=0.026",
     "created_at": "2026-05-03 08:11:59",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -59597,10 +59597,10 @@
     "combination_json": "[[1, 2, 4], [2, 4, 11]]",
     "notes": "合成EV最大=5.00 2点 馬番=[(1, 2, 4), (2, 4, 11)]",
     "created_at": "2026-05-03 08:11:59",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -600.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -59666,10 +59666,10 @@
     "combination_json": "[[4, 2, 1], [4, 1, 2], [4, 2, 11], [4, 11, 2], [4, 1, 11], [4, 11, 1], [4, 2, 8], [4, 8, 2], [4, 1, 8], [4, 8, 1], [4, 11, 8], [4, 8, 11]]",
     "notes": "1着固定フォーメーション 軸=4番 12点 相手=[13, 2, 1, 11, 8, 5] Harville最大=0.0273",
     "created_at": "2026-05-03 08:11:59",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1000.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -59798,10 +59798,10 @@
     "combination_json": "[[8]]",
     "notes": "確率1位(卍) EV=1.55 odds=86.1",
     "created_at": "2026-05-03 08:11:59",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -59832,10 +59832,10 @@
     "combination_json": "[[8], [2], [13]]",
     "notes": "確率上位3頭を複勝",
     "created_at": "2026-05-03 08:11:59",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -59880,10 +59880,10 @@
     "combination_json": "[[2, 8], [8, 13], [8, 11], [4, 8], [8, 14]]",
     "notes": "軸8番×相手5頭フォーメーション Harville最大=0.046",
     "created_at": "2026-05-03 08:11:59",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -59977,10 +59977,10 @@
     "combination_json": "[[2, 8], [8, 13], [8, 11], [4, 8], [8, 14]]",
     "notes": "軸8番×相手5頭ワイド Harville最大=0.046",
     "created_at": "2026-05-03 08:11:59",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -60074,10 +60074,10 @@
     "combination_json": "[[8, 2], [8, 13], [8, 11]]",
     "notes": "軸8番→相手3頭フォーメーション Harville最大=0.024",
     "created_at": "2026-05-03 08:11:59",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -60143,10 +60143,10 @@
     "combination_json": "[[2, 4, 8]]",
     "notes": "合成EV=5.00 Harville=0.0141 馬番=(2, 4, 8)",
     "created_at": "2026-05-03 08:11:59",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -300.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -60191,10 +60191,10 @@
     "combination_json": "[[2, 4, 13], [1, 4, 13], [4, 11, 13], [1, 2, 4], [1, 2, 13]]",
     "notes": "[Oracle] 的中確率最大 5点 P最大=0.1322 馬番=[(2, 4, 13), (1, 4, 13), (4, 11, 13), (1, 2, 4), (1, 2, 13)]",
     "created_at": "2026-05-03 08:11:59",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -500.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -60239,10 +60239,10 @@
     "combination_json": "[[4, 13, 2], [4, 2, 13], [13, 4, 2], [13, 2, 4], [2, 4, 13], [2, 13, 4], [4, 13, 1], [4, 1, 13], [13, 4, 1], [13, 1, 4], [1, 4, 13], [1, 13, 4]]",
     "notes": "[Oracle] 的中確率最大 12点 P最大=0.0220 馬番=[(4, 13, 2), (4, 2, 13), (13, 4, 2), (13, 2, 4), (2, 4, 13), (2, 13, 4), (4, 13, 1), (4, 1, 13), (13, 4, 1), (13, 1, 4), (1, 4, 13), (1, 13, 4)]",
     "created_at": "2026-05-03 08:11:59",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -1200.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -60287,10 +60287,10 @@
     "combination_json": "[]",
     "notes": "全馬モデルスコア（馬分析タブ用）",
     "created_at": "2026-05-03 08:11:59",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -100.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -62739,10 +62739,10 @@
     "combination_json": "[[8, 9, 10], [3, 8, 10]]",
     "notes": "合成EV最大=2.96 2点 馬番=[(8, 9, 10), (3, 8, 10)]",
     "created_at": "2026-05-03 08:11:57",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -600.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {
@@ -64044,10 +64044,10 @@
     "combination_json": "[[1, 7, 8], [1, 7, 9]]",
     "notes": "合成EV最大=2.35 2点 馬番=[(1, 7, 8), (1, 7, 9)]",
     "created_at": "2026-05-03 08:11:56",
-    "is_hit": null,
-    "payout": null,
-    "profit": null,
-    "roi": null,
+    "is_hit": 0,
+    "payout": 0.0,
+    "profit": -600.0,
+    "roi": 0.0,
     "year": "2026",
     "horses": [
       {

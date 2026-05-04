@@ -12,6 +12,32 @@
   "year": "2026",
   "results": [
     {
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "カリーシ",
+      "horse_id": "2021105833",
+      "sex_age": "牝4",
+      "weight_carried": 56.0,
+      "jockey": "戸崎圭太",
+      "trainer": "武井亮",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "モーリス",
+      "dam": "ラクアミ",
+      "dam_sire": "ダイワメジャー",
+      "honmei_score": 0.057,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 4.2652,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -374,35 +400,70 @@
       "manji_ev": 7.7779,
       "odds_vs_morning": null,
       "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 15,
-      "horse_name": "カリーシ",
-      "horse_id": "2021105833",
-      "sex_age": "牝4",
-      "weight_carried": 56.0,
-      "jockey": "戸崎圭太",
-      "trainer": "武井亮",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "モーリス",
-      "dam": "ラクアミ",
-      "dam_sire": "ダイワメジャー",
-      "honmei_score": 0.057,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 4.2652,
-      "odds_vs_morning": null,
-      "odds_velocity": null
     }
   ],
-  "payouts": [],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "15",
+      "payout": 15000,
+      "popularity": null
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "5",
+      "payout": 99012,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "11-20",
+      "payout": 12080,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "5",
+      "payout": 60000,
+      "popularity": 5
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 10020,
+      "popularity": 50
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "11",
+      "payout": 147,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "8",
+      "payout": 11000,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-83-60",
+      "payout": 8205,
+      "popularity": 80
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "39-30-4",
+      "payout": 20511,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "24",
+      "payout": 60033,
+      "popularity": null
+    }
+  ],
   "predictions": [
     {
       "prediction_id": 21783,
@@ -414,10 +475,10 @@
       "combination_json": "[[1, 8, 9], [1, 9, 14]]",
       "notes": "合成EV最大=5.00 2点 馬番=[(1, 8, 9), (1, 9, 14)]",
       "created_at": "2026-05-03 08:12:07",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ペイドラロワール",
@@ -473,10 +534,10 @@
       "combination_json": "[[1]]",
       "notes": "確率1位 P(win)=0.10 odds=1.0 EV=0.10",
       "created_at": "2026-05-03 13:10:26",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ペイドラロワール",
@@ -497,10 +558,10 @@
       "combination_json": "[[1], [14], [9]]",
       "notes": "上位3頭を複勝",
       "created_at": "2026-05-03 13:10:26",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ペイドラロワール",
@@ -535,10 +596,10 @@
       "combination_json": "[[1, 14], [1, 9], [1, 8], [1, 7], [1, 15]]",
       "notes": "軸1番×相手5頭フォーメーション Harville最大=0.010",
       "created_at": "2026-05-03 13:10:26",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ペイドラロワール",
@@ -622,10 +683,10 @@
       "combination_json": "[[1, 14], [1, 9], [1, 8], [1, 7], [1, 15]]",
       "notes": "軸1番×相手5頭ワイド Harville最大=0.010",
       "created_at": "2026-05-03 13:10:26",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ペイドラロワール",
@@ -709,10 +770,10 @@
       "combination_json": "[[1, 14], [1, 9], [1, 8]]",
       "notes": "軸1番→相手3頭フォーメーション Harville最大=0.005",
       "created_at": "2026-05-03 13:10:26",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ペイドラロワール",
@@ -768,10 +829,10 @@
       "combination_json": "[[1, 14, 9], [1, 14, 8], [1, 14, 7], [1, 14, 15], [1, 14, 6], [1, 9, 14], [1, 9, 8], [1, 9, 7], [1, 9, 15], [1, 9, 6], [1, 8, 14], [1, 8, 9]]",
       "notes": "1着固定フォーメーション 軸=1番 12点 相手=[14, 9, 8, 7, 15, 6] Harville最大=0.0022",
       "created_at": "2026-05-03 13:10:26",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1000.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ペイドラロワール",
@@ -890,10 +951,10 @@
       "combination_json": "[[14]]",
       "notes": "確率1位(卍) EV=7.78 odds=1.0",
       "created_at": "2026-05-03 13:10:26",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "タガノアンファン",
@@ -914,10 +975,10 @@
       "combination_json": "[[14], [15], [13]]",
       "notes": "確率上位3頭を複勝",
       "created_at": "2026-05-03 13:10:26",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "タガノアンファン",
@@ -952,10 +1013,10 @@
       "combination_json": "[[14, 15], [13, 14], [2, 14], [11, 14], [8, 14]]",
       "notes": "軸14番×相手5頭フォーメーション Harville最大=0.069",
       "created_at": "2026-05-03 13:10:26",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "タガノアンファン",
@@ -1039,10 +1100,10 @@
       "combination_json": "[[14, 15], [13, 14], [2, 14], [11, 14], [8, 14]]",
       "notes": "軸14番×相手5頭ワイド Harville最大=0.069",
       "created_at": "2026-05-03 13:10:26",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "タガノアンファン",
@@ -1126,10 +1187,10 @@
       "combination_json": "[[14, 15], [14, 13], [14, 2]]",
       "notes": "軸14番→相手3頭フォーメーション Harville最大=0.036",
       "created_at": "2026-05-03 13:10:26",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "タガノアンファン",
@@ -1185,10 +1246,10 @@
       "combination_json": "[[11, 14, 15]]",
       "notes": "合成EV=5.00 Harville=0.0168 馬番=(11, 14, 15)",
       "created_at": "2026-05-03 13:10:26",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "アタリダイキチ",
@@ -1223,10 +1284,10 @@
       "combination_json": "[[1, 9, 14], [1, 8, 14], [1, 8, 9], [8, 9, 14], [1, 7, 14]]",
       "notes": "[Oracle] 的中確率最大 5点 P最大=0.0735 馬番=[(1, 9, 14), (1, 8, 14), (1, 8, 9), (8, 9, 14), (1, 7, 14)]",
       "created_at": "2026-05-03 13:10:26",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ペイドラロワール",
@@ -1261,10 +1322,10 @@
       "combination_json": "[[1, 14, 9], [1, 9, 14], [14, 1, 9], [14, 9, 1], [9, 1, 14], [9, 14, 1], [1, 14, 8], [1, 9, 8], [1, 8, 14], [1, 8, 9], [14, 1, 8], [14, 9, 8]]",
       "notes": "[Oracle] 的中確率最大 12点 P最大=0.0122 馬番=[(1, 14, 9), (1, 9, 14), (14, 1, 9), (14, 9, 1), (9, 1, 14), (9, 14, 1), (1, 14, 8), (1, 9, 8), (1, 8, 14), (1, 8, 9), (14, 1, 8), (14, 9, 8)]",
       "created_at": "2026-05-03 13:10:26",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ペイドラロワール",
@@ -1299,10 +1360,10 @@
       "combination_json": "[]",
       "notes": "全馬モデルスコア（馬分析タブ用）",
       "created_at": "2026-05-03 13:10:26",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "タガノアンファン",
@@ -1421,10 +1482,10 @@
       "combination_json": "[[1, 14], [1, 9], [9, 14], [1, 8], [8, 14], [1, 7], [7, 14]]",
       "notes": "2軸マルチ 軸=1,14 相手=[9, 8, 7] Harville最大=0.0283",
       "created_at": "2026-05-03 13:10:26",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -700.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ペイドラロワール",
@@ -1452,10 +1513,10 @@
       "combination_json": "[[1, 14], [14, 1], [1, 9], [14, 9], [1, 8], [14, 8], [1, 7], [14, 7]]",
       "notes": "2軸マルチ 軸=1,14 相手=[9, 8, 7] Harville最大=0.0141",
       "created_at": "2026-05-03 13:10:26",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -800.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ペイドラロワール",
@@ -1483,10 +1544,10 @@
       "combination_json": "[[1, 14, 9], [14, 1, 9], [1, 9, 14], [14, 9, 1], [1, 14, 8], [14, 1, 8], [1, 8, 14], [14, 8, 1], [1, 14, 7], [14, 1, 7], [1, 7, 14], [14, 7, 1]]",
       "notes": "2軸マルチ 軸=1,14 相手=[9, 8, 7] 12点 Harville最大=0.0020",
       "created_at": "2026-05-03 13:10:26",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ペイドラロワール",

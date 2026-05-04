@@ -428,7 +428,68 @@
       "odds_velocity": null
     }
   ],
-  "payouts": [],
+  "payouts": [
+    {
+      "bet_type": "馬連",
+      "combination": "3",
+      "payout": 4070,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "22",
+      "payout": 10141,
+      "popularity": 50
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4",
+      "payout": 70000,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "89-1",
+      "payout": 7800,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "7",
+      "payout": 14000,
+      "popularity": 1
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "14",
+      "payout": 207,
+      "popularity": 90
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "7-21",
+      "payout": 41500,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "14",
+      "payout": 1507,
+      "popularity": 150
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "29-90-8",
+      "payout": 11415,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-80",
+      "payout": 70091,
+      "popularity": null
+    }
+  ],
   "predictions": [
     {
       "prediction_id": 21603,

@@ -12,6 +12,32 @@
   "year": "2026",
   "results": [
     {
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 18,
+      "horse_name": "トーセントラム",
+      "horse_id": "2020102535",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "秋山稔樹",
+      "trainer": "佐藤吉勝",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ヴァンキッシュラン",
+      "dam": "ローザデルドバイ",
+      "dam_sire": "Dubai Destination",
+      "honmei_score": 0.0891,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 4.522,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -452,35 +478,58 @@
       "manji_ev": 8.8853,
       "odds_vs_morning": null,
       "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 18,
-      "horse_name": "トーセントラム",
-      "horse_id": "2020102535",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "秋山稔樹",
-      "trainer": "佐藤吉勝",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ヴァンキッシュラン",
-      "dam": "ローザデルドバイ",
-      "dam_sire": "Dubai Destination",
-      "honmei_score": 0.0891,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 4.522,
-      "odds_vs_morning": null,
-      "odds_velocity": null
     }
   ],
-  "payouts": [],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "18",
+      "payout": 18000,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1-50",
+      "payout": 1020,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 40040,
+      "popularity": 40
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 20000,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "2",
+      "payout": 3000,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3-50",
+      "payout": 202,
+      "popularity": 40
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5-90",
+      "payout": 40304,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "10",
+      "payout": 40011,
+      "popularity": null
+    }
+  ],
   "predictions": [
     {
       "prediction_id": 21819,
@@ -492,10 +541,10 @@
       "combination_json": "[[7, 15, 17], [7, 8, 15]]",
       "notes": "合成EV最大=2.56 2点 馬番=[(7, 15, 17), (7, 8, 15)]",
       "created_at": "2026-05-03 08:12:08",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "アンビバレント",
@@ -551,10 +600,10 @@
       "combination_json": "[[8]]",
       "notes": "確率1位 P(win)=0.10 odds=1.0 EV=0.10",
       "created_at": "2026-05-03 14:10:24",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ドゥアムール",
@@ -575,10 +624,10 @@
       "combination_json": "[[8], [17], [18]]",
       "notes": "上位3頭を複勝",
       "created_at": "2026-05-03 14:10:24",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ドゥアムール",
@@ -613,10 +662,10 @@
       "combination_json": "[[8, 17], [8, 18], [3, 8], [8, 15], [2, 8]]",
       "notes": "軸8番×相手5頭フォーメーション Harville最大=0.007",
       "created_at": "2026-05-03 14:10:24",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ドゥアムール",
@@ -700,10 +749,10 @@
       "combination_json": "[[8, 17], [8, 18], [3, 8], [8, 15], [2, 8]]",
       "notes": "軸8番×相手5頭ワイド Harville最大=0.007",
       "created_at": "2026-05-03 14:10:24",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ドゥアムール",
@@ -787,10 +836,10 @@
       "combination_json": "[[8, 17], [8, 18], [8, 3]]",
       "notes": "軸8番→相手3頭フォーメーション Harville最大=0.003",
       "created_at": "2026-05-03 14:10:24",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ドゥアムール",
@@ -846,10 +895,10 @@
       "combination_json": "[[8, 17, 18], [8, 17, 3], [8, 17, 15], [8, 17, 2], [8, 17, 11], [8, 18, 17], [8, 18, 3], [8, 18, 15], [8, 18, 2], [8, 18, 11], [8, 3, 17], [8, 3, 18]]",
       "notes": "1着固定フォーメーション 軸=8番 12点 相手=[17, 18, 3, 15, 2, 11] Harville最大=0.0012",
       "created_at": "2026-05-03 14:10:24",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1000.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ドゥアムール",
@@ -968,10 +1017,10 @@
       "combination_json": "[[17]]",
       "notes": "確率1位(卍) EV=8.89 odds=1.0",
       "created_at": "2026-05-03 14:10:24",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "アスティスプマンテ",
@@ -992,10 +1041,10 @@
       "combination_json": "[[17], [16], [18]]",
       "notes": "確率上位3頭を複勝",
       "created_at": "2026-05-03 14:10:24",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "アスティスプマンテ",
@@ -1030,10 +1079,10 @@
       "combination_json": "[[16, 17], [17, 18], [4, 17], [3, 17], [11, 17]]",
       "notes": "軸17番×相手5頭フォーメーション Harville最大=0.050",
       "created_at": "2026-05-03 14:10:24",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ディアドコス",
@@ -1117,10 +1166,10 @@
       "combination_json": "[[16, 17], [17, 18], [4, 17], [3, 17], [11, 17]]",
       "notes": "軸17番×相手5頭ワイド Harville最大=0.050",
       "created_at": "2026-05-03 14:10:24",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ディアドコス",
@@ -1204,10 +1253,10 @@
       "combination_json": "[[17, 16], [17, 18], [17, 4]]",
       "notes": "軸17番→相手3頭フォーメーション Harville最大=0.026",
       "created_at": "2026-05-03 14:10:24",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "アスティスプマンテ",
@@ -1263,10 +1312,10 @@
       "combination_json": "[[3, 16, 17]]",
       "notes": "合成EV=3.84 Harville=0.0128 馬番=(3, 16, 17)",
       "created_at": "2026-05-03 14:10:24",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ルシード",
@@ -1301,10 +1350,10 @@
       "combination_json": "[[8, 17, 18], [3, 8, 17], [8, 15, 17], [2, 8, 17], [8, 11, 17]]",
       "notes": "[Oracle] 的中確率最大 5点 P最大=0.0270 馬番=[(8, 17, 18), (3, 8, 17), (8, 15, 17), (2, 8, 17), (8, 11, 17)]",
       "created_at": "2026-05-03 14:10:24",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ドゥアムール",
@@ -1339,10 +1388,10 @@
       "combination_json": "[[8, 17, 18], [8, 17, 3], [8, 18, 17], [8, 3, 17], [17, 8, 18], [17, 8, 3], [17, 18, 8], [17, 3, 8], [18, 8, 17], [18, 17, 8], [3, 8, 17], [3, 17, 8]]",
       "notes": "[Oracle] 的中確率最大 12点 P最大=0.0045 馬番=[(8, 17, 18), (8, 17, 3), (8, 18, 17), (8, 3, 17), (17, 8, 18), (17, 8, 3), (17, 18, 8), (17, 3, 8), (18, 8, 17), (18, 17, 8), (3, 8, 17), (3, 17, 8)]",
       "created_at": "2026-05-03 14:10:24",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ドゥアムール",
@@ -1377,10 +1426,10 @@
       "combination_json": "[]",
       "notes": "全馬モデルスコア（馬分析タブ用）",
       "created_at": "2026-05-03 14:10:24",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ドゥアムール",
@@ -1520,10 +1569,10 @@
       "combination_json": "[[8, 17], [8, 18], [17, 18], [3, 8], [3, 17], [8, 15], [15, 17]]",
       "notes": "2軸マルチ 軸=8,17 相手=[18, 3, 15] Harville最大=0.0166",
       "created_at": "2026-05-03 14:10:24",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -700.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ドゥアムール",
@@ -1551,10 +1600,10 @@
       "combination_json": "[[8, 17], [17, 8], [8, 18], [17, 18], [8, 3], [17, 3], [8, 15], [17, 15]]",
       "notes": "2軸マルチ 軸=8,17 相手=[18, 3, 15] Harville最大=0.0083",
       "created_at": "2026-05-03 14:10:24",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -800.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ドゥアムール",
@@ -1582,10 +1631,10 @@
       "combination_json": "[[8, 17, 18], [17, 8, 18], [8, 18, 17], [17, 18, 8], [8, 17, 3], [17, 8, 3], [8, 3, 17], [17, 3, 8], [8, 17, 15], [17, 8, 15], [8, 15, 17], [17, 15, 8]]",
       "notes": "2軸マルチ 軸=8,17 相手=[18, 3, 15] 12点 Harville最大=0.0008",
       "created_at": "2026-05-03 14:10:24",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ドゥアムール",

@@ -3,21 +3,21 @@
     "daily": [
       {
         "date": "2026-05-03",
-        "invested": 5400.0,
-        "payout": 10500.0,
-        "profit": 5100.0,
-        "roi": 194.44,
-        "total_bets": 6,
-        "hits": 2,
+        "invested": 32400.0,
+        "payout": 18550.0,
+        "profit": -13850.0,
+        "roi": 57.25,
+        "total_bets": 36,
+        "hits": 3,
         "by_bet_type": [
           {
             "bet_type": "馬連",
-            "invested": 1400.0,
-            "payout": 10500.0,
-            "profit": 9100.0,
-            "roi": 750.0,
-            "total_bets": 2,
-            "hits": 2,
+            "invested": 8400.0,
+            "payout": 18550.0,
+            "profit": 10150.0,
+            "roi": 220.83,
+            "total_bets": 12,
+            "hits": 3,
             "races": [
               {
                 "race_id": "202604010208",
@@ -36,16 +36,106 @@
                 "invested": 700.0,
                 "payout": 3150.0,
                 "is_hit": 1
+              },
+              {
+                "race_id": "202604010211",
+                "race_name": "越後ステークス",
+                "venue": "新潟",
+                "race_number": 11,
+                "invested": 700.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202604010212",
+                "race_name": "",
+                "venue": "新潟",
+                "race_number": 12,
+                "invested": 700.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020408",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 8,
+                "invested": 700.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020409",
+                "race_name": "府中ステークス",
+                "venue": "東京",
+                "race_number": 9,
+                "invested": 700.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020411",
+                "race_name": "プリンシパルステークス",
+                "venue": "東京",
+                "race_number": 11,
+                "invested": 700.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020412",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 12,
+                "invested": 700.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030408",
+                "race_name": "御池特別",
+                "venue": "京都",
+                "race_number": 8,
+                "invested": 700.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030409",
+                "race_name": "六波羅特別",
+                "venue": "京都",
+                "race_number": 9,
+                "invested": 700.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030410",
+                "race_name": "朱雀ステークス",
+                "venue": "京都",
+                "race_number": 10,
+                "invested": 700.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 700.0,
+                "payout": 8050.0,
+                "is_hit": 1
               }
             ]
           },
           {
             "bet_type": "馬単",
-            "invested": 1600.0,
+            "invested": 9600.0,
             "payout": 0.0,
-            "profit": -1600.0,
+            "profit": -9600.0,
             "roi": 0.0,
-            "total_bets": 2,
+            "total_bets": 12,
             "hits": 0,
             "races": [
               {
@@ -62,6 +152,96 @@
                 "race_name": "咲花特別",
                 "venue": "新潟",
                 "race_number": 9,
+                "invested": 800.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202604010211",
+                "race_name": "越後ステークス",
+                "venue": "新潟",
+                "race_number": 11,
+                "invested": 800.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202604010212",
+                "race_name": "",
+                "venue": "新潟",
+                "race_number": 12,
+                "invested": 800.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020408",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 8,
+                "invested": 800.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020409",
+                "race_name": "府中ステークス",
+                "venue": "東京",
+                "race_number": 9,
+                "invested": 800.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020411",
+                "race_name": "プリンシパルステークス",
+                "venue": "東京",
+                "race_number": 11,
+                "invested": 800.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020412",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 12,
+                "invested": 800.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030408",
+                "race_name": "御池特別",
+                "venue": "京都",
+                "race_number": 8,
+                "invested": 800.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030409",
+                "race_name": "六波羅特別",
+                "venue": "京都",
+                "race_number": 9,
+                "invested": 800.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030410",
+                "race_name": "朱雀ステークス",
+                "venue": "京都",
+                "race_number": 10,
+                "invested": 800.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
                 "invested": 800.0,
                 "payout": 0.0,
                 "is_hit": 0
@@ -70,11 +250,11 @@
           },
           {
             "bet_type": "三連単",
-            "invested": 2400.0,
+            "invested": 14400.0,
             "payout": 0.0,
-            "profit": -2400.0,
+            "profit": -14400.0,
             "roi": 0.0,
-            "total_bets": 2,
+            "total_bets": 12,
             "hits": 0,
             "races": [
               {
@@ -94,95 +274,185 @@
                 "invested": 1200.0,
                 "payout": 0.0,
                 "is_hit": 0
+              },
+              {
+                "race_id": "202604010211",
+                "race_name": "越後ステークス",
+                "venue": "新潟",
+                "race_number": 11,
+                "invested": 1200.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202604010212",
+                "race_name": "",
+                "venue": "新潟",
+                "race_number": 12,
+                "invested": 1200.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020408",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 8,
+                "invested": 1200.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020409",
+                "race_name": "府中ステークス",
+                "venue": "東京",
+                "race_number": 9,
+                "invested": 1200.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020411",
+                "race_name": "プリンシパルステークス",
+                "venue": "東京",
+                "race_number": 11,
+                "invested": 1200.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020412",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 12,
+                "invested": 1200.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030408",
+                "race_name": "御池特別",
+                "venue": "京都",
+                "race_number": 8,
+                "invested": 1200.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030409",
+                "race_name": "六波羅特別",
+                "venue": "京都",
+                "race_number": 9,
+                "invested": 1200.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030410",
+                "race_name": "朱雀ステークス",
+                "venue": "京都",
+                "race_number": 10,
+                "invested": 1200.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 1200.0,
+                "payout": 0.0,
+                "is_hit": 0
               }
             ]
           }
         ],
-        "cumulative_profit": 5100.0
+        "cumulative_profit": -13850.0
       }
     ],
     "monthly": [
       {
         "period": "2026-05",
         "label": "2026年5月",
-        "invested": 5400.0,
-        "payout": 10500.0,
-        "profit": 5100.0,
-        "roi": 194.44,
-        "total_bets": 6,
-        "hits": 2,
+        "invested": 32400.0,
+        "payout": 18550.0,
+        "profit": -13850.0,
+        "roi": 57.25,
+        "total_bets": 36,
+        "hits": 3,
         "by_bet_type": [
           {
             "bet_type": "馬連",
-            "invested": 1400.0,
-            "payout": 10500.0,
-            "profit": 9100.0,
-            "roi": 750.0,
-            "total_bets": 2,
-            "hits": 2
+            "invested": 8400.0,
+            "payout": 18550.0,
+            "profit": 10150.0,
+            "roi": 220.83,
+            "total_bets": 12,
+            "hits": 3
           },
           {
             "bet_type": "馬単",
-            "invested": 1600.0,
+            "invested": 9600.0,
             "payout": 0.0,
-            "profit": -1600.0,
+            "profit": -9600.0,
             "roi": 0.0,
-            "total_bets": 2,
+            "total_bets": 12,
             "hits": 0
           },
           {
             "bet_type": "三連単",
-            "invested": 2400.0,
+            "invested": 14400.0,
             "payout": 0.0,
-            "profit": -2400.0,
+            "profit": -14400.0,
             "roi": 0.0,
-            "total_bets": 2,
+            "total_bets": 12,
             "hits": 0
           }
         ],
-        "cumulative_profit": 5100.0
+        "cumulative_profit": -13850.0
       }
     ],
     "yearly": [
       {
         "period": "2026",
         "label": "2026年",
-        "invested": 5400.0,
-        "payout": 10500.0,
-        "profit": 5100.0,
-        "roi": 194.44,
-        "total_bets": 6,
-        "hits": 2,
+        "invested": 32400.0,
+        "payout": 18550.0,
+        "profit": -13850.0,
+        "roi": 57.25,
+        "total_bets": 36,
+        "hits": 3,
         "by_bet_type": [
           {
             "bet_type": "馬連",
-            "invested": 1400.0,
-            "payout": 10500.0,
-            "profit": 9100.0,
-            "roi": 750.0,
-            "total_bets": 2,
-            "hits": 2
+            "invested": 8400.0,
+            "payout": 18550.0,
+            "profit": 10150.0,
+            "roi": 220.83,
+            "total_bets": 12,
+            "hits": 3
           },
           {
             "bet_type": "馬単",
-            "invested": 1600.0,
+            "invested": 9600.0,
             "payout": 0.0,
-            "profit": -1600.0,
+            "profit": -9600.0,
             "roi": 0.0,
-            "total_bets": 2,
+            "total_bets": 12,
             "hits": 0
           },
           {
             "bet_type": "三連単",
-            "invested": 2400.0,
+            "invested": 14400.0,
             "payout": 0.0,
-            "profit": -2400.0,
+            "profit": -14400.0,
             "roi": 0.0,
-            "total_bets": 2,
+            "total_bets": 12,
             "hits": 0
           }
         ],
-        "cumulative_profit": 5100.0
+        "cumulative_profit": -13850.0
       }
     ]
   },
@@ -190,20 +460,20 @@
     "daily": [
       {
         "date": "2026-05-03",
-        "invested": 40500.0,
+        "invested": 54000.0,
         "payout": 673750.0,
-        "profit": 633250.0,
-        "roi": 1663.58,
-        "total_bets": 45,
+        "profit": 619750.0,
+        "roi": 1247.69,
+        "total_bets": 60,
         "hits": 10,
         "by_bet_type": [
           {
             "bet_type": "馬連",
-            "invested": 10500.0,
+            "invested": 14000.0,
             "payout": 47950.0,
-            "profit": 37450.0,
-            "roi": 456.67,
-            "total_bets": 15,
+            "profit": 33950.0,
+            "roi": 342.5,
+            "total_bets": 20,
             "hits": 5,
             "races": [
               {
@@ -306,6 +576,24 @@
                 "is_hit": 0
               },
               {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 700.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 700.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202608030401",
                 "race_name": "",
                 "venue": "京都",
@@ -340,16 +628,43 @@
                 "invested": 700.0,
                 "payout": 0.0,
                 "is_hit": 0
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 700.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 700.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 700.0,
+                "payout": 0.0,
+                "is_hit": 0
               }
             ]
           },
           {
             "bet_type": "馬単",
-            "invested": 12000.0,
+            "invested": 16000.0,
             "payout": 98640.0,
-            "profit": 86640.0,
-            "roi": 822.0,
-            "total_bets": 15,
+            "profit": 82640.0,
+            "roi": 616.5,
+            "total_bets": 20,
             "hits": 3,
             "races": [
               {
@@ -452,6 +767,24 @@
                 "is_hit": 0
               },
               {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 800.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 800.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202608030401",
                 "race_name": "",
                 "venue": "京都",
@@ -486,16 +819,43 @@
                 "invested": 800.0,
                 "payout": 0.0,
                 "is_hit": 0
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 800.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 800.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 800.0,
+                "payout": 0.0,
+                "is_hit": 0
               }
             ]
           },
           {
             "bet_type": "三連単",
-            "invested": 18000.0,
+            "invested": 24000.0,
             "payout": 527160.0,
-            "profit": 509160.0,
-            "roi": 2928.67,
-            "total_bets": 15,
+            "profit": 503160.0,
+            "roi": 2196.5,
+            "total_bets": 20,
             "hits": 2,
             "races": [
               {
@@ -598,6 +958,24 @@
                 "is_hit": 0
               },
               {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 1200.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 1200.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202608030401",
                 "race_name": "",
                 "venue": "京都",
@@ -632,95 +1010,122 @@
                 "invested": 1200.0,
                 "payout": 0.0,
                 "is_hit": 0
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 1200.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 1200.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 1200.0,
+                "payout": 0.0,
+                "is_hit": 0
               }
             ]
           }
         ],
-        "cumulative_profit": 633250.0
+        "cumulative_profit": 619750.0
       }
     ],
     "monthly": [
       {
         "period": "2026-05",
         "label": "2026年5月",
-        "invested": 40500.0,
+        "invested": 54000.0,
         "payout": 673750.0,
-        "profit": 633250.0,
-        "roi": 1663.58,
-        "total_bets": 45,
+        "profit": 619750.0,
+        "roi": 1247.69,
+        "total_bets": 60,
         "hits": 10,
         "by_bet_type": [
           {
             "bet_type": "馬連",
-            "invested": 10500.0,
+            "invested": 14000.0,
             "payout": 47950.0,
-            "profit": 37450.0,
-            "roi": 456.67,
-            "total_bets": 15,
+            "profit": 33950.0,
+            "roi": 342.5,
+            "total_bets": 20,
             "hits": 5
           },
           {
             "bet_type": "馬単",
-            "invested": 12000.0,
+            "invested": 16000.0,
             "payout": 98640.0,
-            "profit": 86640.0,
-            "roi": 822.0,
-            "total_bets": 15,
+            "profit": 82640.0,
+            "roi": 616.5,
+            "total_bets": 20,
             "hits": 3
           },
           {
             "bet_type": "三連単",
-            "invested": 18000.0,
+            "invested": 24000.0,
             "payout": 527160.0,
-            "profit": 509160.0,
-            "roi": 2928.67,
-            "total_bets": 15,
+            "profit": 503160.0,
+            "roi": 2196.5,
+            "total_bets": 20,
             "hits": 2
           }
         ],
-        "cumulative_profit": 633250.0
+        "cumulative_profit": 619750.0
       }
     ],
     "yearly": [
       {
         "period": "2026",
         "label": "2026年",
-        "invested": 40500.0,
+        "invested": 54000.0,
         "payout": 673750.0,
-        "profit": 633250.0,
-        "roi": 1663.58,
-        "total_bets": 45,
+        "profit": 619750.0,
+        "roi": 1247.69,
+        "total_bets": 60,
         "hits": 10,
         "by_bet_type": [
           {
             "bet_type": "馬連",
-            "invested": 10500.0,
+            "invested": 14000.0,
             "payout": 47950.0,
-            "profit": 37450.0,
-            "roi": 456.67,
-            "total_bets": 15,
+            "profit": 33950.0,
+            "roi": 342.5,
+            "total_bets": 20,
             "hits": 5
           },
           {
             "bet_type": "馬単",
-            "invested": 12000.0,
+            "invested": 16000.0,
             "payout": 98640.0,
-            "profit": 86640.0,
-            "roi": 822.0,
-            "total_bets": 15,
+            "profit": 82640.0,
+            "roi": 616.5,
+            "total_bets": 20,
             "hits": 3
           },
           {
             "bet_type": "三連単",
-            "invested": 18000.0,
+            "invested": 24000.0,
             "payout": 527160.0,
-            "profit": 509160.0,
-            "roi": 2928.67,
-            "total_bets": 15,
+            "profit": 503160.0,
+            "roi": 2196.5,
+            "total_bets": 20,
             "hits": 2
           }
         ],
-        "cumulative_profit": 633250.0
+        "cumulative_profit": 619750.0
       }
     ]
   },
@@ -2092,20 +2497,20 @@
       },
       {
         "date": "2026-05-03",
-        "invested": 28900.0,
+        "invested": 52700.0,
         "payout": 43390.0,
-        "profit": 14490.0,
-        "roi": 150.14,
-        "total_bets": 34,
+        "profit": -9310.0,
+        "roi": 82.33,
+        "total_bets": 62,
         "hits": 4,
         "by_bet_type": [
           {
             "bet_type": "三連複",
-            "invested": 8500.0,
+            "invested": 15500.0,
             "payout": 22150.0,
-            "profit": 13650.0,
-            "roi": 260.59,
-            "total_bets": 17,
+            "profit": 6650.0,
+            "roi": 142.9,
+            "total_bets": 31,
             "hits": 3,
             "races": [
               {
@@ -2190,6 +2595,24 @@
                 "is_hit": 1
               },
               {
+                "race_id": "202604010211",
+                "race_name": "越後ステークス",
+                "venue": "新潟",
+                "race_number": 11,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202604010212",
+                "race_name": "",
+                "venue": "新潟",
+                "race_number": 12,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202605020401",
                 "race_name": "",
                 "venue": "東京",
@@ -2221,6 +2644,60 @@
                 "race_name": "",
                 "venue": "東京",
                 "race_number": 4,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020408",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 8,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020409",
+                "race_name": "府中ステークス",
+                "venue": "東京",
+                "race_number": 9,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020411",
+                "race_name": "プリンシパルステークス",
+                "venue": "東京",
+                "race_number": 11,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020412",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 12,
                 "invested": 500.0,
                 "payout": 0.0,
                 "is_hit": 0
@@ -2260,16 +2737,70 @@
                 "invested": 500.0,
                 "payout": 0.0,
                 "is_hit": 0
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030408",
+                "race_name": "御池特別",
+                "venue": "京都",
+                "race_number": 8,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030409",
+                "race_name": "六波羅特別",
+                "venue": "京都",
+                "race_number": 9,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030410",
+                "race_name": "朱雀ステークス",
+                "venue": "京都",
+                "race_number": 10,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
               }
             ]
           },
           {
             "bet_type": "三連単",
-            "invested": 20400.0,
+            "invested": 37200.0,
             "payout": 21240.0,
-            "profit": 840.0,
-            "roi": 104.12,
-            "total_bets": 17,
+            "profit": -15960.0,
+            "roi": 57.1,
+            "total_bets": 31,
             "hits": 1,
             "races": [
               {
@@ -2354,6 +2885,24 @@
                 "is_hit": 0
               },
               {
+                "race_id": "202604010211",
+                "race_name": "越後ステークス",
+                "venue": "新潟",
+                "race_number": 11,
+                "invested": 1200.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202604010212",
+                "race_name": "",
+                "venue": "新潟",
+                "race_number": 12,
+                "invested": 1200.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202605020401",
                 "race_name": "",
                 "venue": "東京",
@@ -2385,6 +2934,60 @@
                 "race_name": "",
                 "venue": "東京",
                 "race_number": 4,
+                "invested": 1200.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 1200.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 1200.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020408",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 8,
+                "invested": 1200.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020409",
+                "race_name": "府中ステークス",
+                "venue": "東京",
+                "race_number": 9,
+                "invested": 1200.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020411",
+                "race_name": "プリンシパルステークス",
+                "venue": "東京",
+                "race_number": 11,
+                "invested": 1200.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020412",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 12,
                 "invested": 1200.0,
                 "payout": 0.0,
                 "is_hit": 0
@@ -2424,11 +3027,65 @@
                 "invested": 1200.0,
                 "payout": 0.0,
                 "is_hit": 0
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 1200.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 1200.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030408",
+                "race_name": "御池特別",
+                "venue": "京都",
+                "race_number": 8,
+                "invested": 1200.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030409",
+                "race_name": "六波羅特別",
+                "venue": "京都",
+                "race_number": 9,
+                "invested": 1200.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030410",
+                "race_name": "朱雀ステークス",
+                "venue": "京都",
+                "race_number": 10,
+                "invested": 1200.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 1200.0,
+                "payout": 0.0,
+                "is_hit": 0
               }
             ]
           }
         ],
-        "cumulative_profit": 17850.0
+        "cumulative_profit": -5950.0
       }
     ],
     "monthly": [
@@ -2466,66 +3123,66 @@
       {
         "period": "2026-05",
         "label": "2026年5月",
-        "invested": 50500.0,
+        "invested": 74300.0,
         "payout": 43390.0,
-        "profit": -7110.0,
-        "roi": 85.92,
-        "total_bets": 106,
+        "profit": -30910.0,
+        "roi": 58.4,
+        "total_bets": 134,
         "hits": 4,
         "by_bet_type": [
           {
             "bet_type": "三連複",
-            "invested": 19300.0,
+            "invested": 26300.0,
             "payout": 22150.0,
-            "profit": 2850.0,
-            "roi": 114.77,
-            "total_bets": 53,
+            "profit": -4150.0,
+            "roi": 84.22,
+            "total_bets": 67,
             "hits": 3
           },
           {
             "bet_type": "三連単",
-            "invested": 31200.0,
+            "invested": 48000.0,
             "payout": 21240.0,
-            "profit": -9960.0,
-            "roi": 68.08,
-            "total_bets": 53,
+            "profit": -26760.0,
+            "roi": 44.25,
+            "total_bets": 67,
             "hits": 1
           }
         ],
-        "cumulative_profit": 17850.0
+        "cumulative_profit": -5950.0
       }
     ],
     "yearly": [
       {
         "period": "2026",
         "label": "2026年",
-        "invested": 72100.0,
+        "invested": 95900.0,
         "payout": 89950.0,
-        "profit": 17850.0,
-        "roi": 124.76,
-        "total_bets": 178,
+        "profit": -5950.0,
+        "roi": 93.8,
+        "total_bets": 206,
         "hits": 5,
         "by_bet_type": [
           {
             "bet_type": "三連複",
-            "invested": 30100.0,
+            "invested": 37100.0,
             "payout": 68710.0,
-            "profit": 38610.0,
-            "roi": 228.27,
-            "total_bets": 89,
+            "profit": 31610.0,
+            "roi": 185.2,
+            "total_bets": 103,
             "hits": 4
           },
           {
             "bet_type": "三連単",
-            "invested": 42000.0,
+            "invested": 58800.0,
             "payout": 21240.0,
-            "profit": -20760.0,
-            "roi": 50.57,
-            "total_bets": 89,
+            "profit": -37560.0,
+            "roi": 36.12,
+            "total_bets": 103,
             "hits": 1
           }
         ],
-        "cumulative_profit": 17850.0
+        "cumulative_profit": -5950.0
       }
     ]
   },
@@ -3357,20 +4014,20 @@
       },
       {
         "date": "2026-05-03",
-        "invested": 25500.0,
+        "invested": 34000.0,
         "payout": 40040.0,
-        "profit": 14540.0,
-        "roi": 157.02,
-        "total_bets": 30,
+        "profit": 6040.0,
+        "roi": 117.76,
+        "total_bets": 40,
         "hits": 3,
         "by_bet_type": [
           {
             "bet_type": "三連複",
-            "invested": 7500.0,
+            "invested": 10000.0,
             "payout": 18800.0,
-            "profit": 11300.0,
-            "roi": 250.67,
-            "total_bets": 15,
+            "profit": 8800.0,
+            "roi": 188.0,
+            "total_bets": 20,
             "hits": 2,
             "races": [
               {
@@ -3473,6 +4130,24 @@
                 "is_hit": 0
               },
               {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202608030401",
                 "race_name": "",
                 "venue": "京都",
@@ -3507,16 +4182,43 @@
                 "invested": 500.0,
                 "payout": 0.0,
                 "is_hit": 0
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
               }
             ]
           },
           {
             "bet_type": "三連単",
-            "invested": 18000.0,
+            "invested": 24000.0,
             "payout": 21240.0,
-            "profit": 3240.0,
-            "roi": 118.0,
-            "total_bets": 15,
+            "profit": -2760.0,
+            "roi": 88.5,
+            "total_bets": 20,
             "hits": 1,
             "races": [
               {
@@ -3619,6 +4321,24 @@
                 "is_hit": 0
               },
               {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 1200.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 1200.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202608030401",
                 "race_name": "",
                 "venue": "京都",
@@ -3653,11 +4373,38 @@
                 "invested": 1200.0,
                 "payout": 0.0,
                 "is_hit": 0
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 1200.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 1200.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 1200.0,
+                "payout": 0.0,
+                "is_hit": 0
               }
             ]
           }
         ],
-        "cumulative_profit": -10660.0
+        "cumulative_profit": -19160.0
       }
     ],
     "monthly": [
@@ -3695,66 +4442,66 @@
       {
         "period": "2026-05",
         "label": "2026年5月",
-        "invested": 47100.0,
+        "invested": 55600.0,
         "payout": 40040.0,
-        "profit": -7060.0,
-        "roi": 85.01,
-        "total_bets": 102,
+        "profit": -15560.0,
+        "roi": 72.01,
+        "total_bets": 112,
         "hits": 3,
         "by_bet_type": [
           {
             "bet_type": "三連複",
-            "invested": 18300.0,
+            "invested": 20800.0,
             "payout": 18800.0,
-            "profit": 500.0,
-            "roi": 102.73,
-            "total_bets": 51,
+            "profit": -2000.0,
+            "roi": 90.38,
+            "total_bets": 56,
             "hits": 2
           },
           {
             "bet_type": "三連単",
-            "invested": 28800.0,
+            "invested": 34800.0,
             "payout": 21240.0,
-            "profit": -7560.0,
-            "roi": 73.75,
-            "total_bets": 51,
+            "profit": -13560.0,
+            "roi": 61.03,
+            "total_bets": 56,
             "hits": 1
           }
         ],
-        "cumulative_profit": -10660.0
+        "cumulative_profit": -19160.0
       }
     ],
     "yearly": [
       {
         "period": "2026",
         "label": "2026年",
-        "invested": 50700.0,
+        "invested": 59200.0,
         "payout": 40040.0,
-        "profit": -10660.0,
-        "roi": 78.97,
-        "total_bets": 114,
+        "profit": -19160.0,
+        "roi": 67.64,
+        "total_bets": 124,
         "hits": 3,
         "by_bet_type": [
           {
             "bet_type": "三連複",
-            "invested": 20100.0,
+            "invested": 22600.0,
             "payout": 18800.0,
-            "profit": -1300.0,
-            "roi": 93.53,
-            "total_bets": 57,
+            "profit": -3800.0,
+            "roi": 83.19,
+            "total_bets": 62,
             "hits": 2
           },
           {
             "bet_type": "三連単",
-            "invested": 30600.0,
+            "invested": 36600.0,
             "payout": 21240.0,
-            "profit": -9360.0,
-            "roi": 69.41,
-            "total_bets": 57,
+            "profit": -15360.0,
+            "roi": 58.03,
+            "total_bets": 62,
             "hits": 1
           }
         ],
-        "cumulative_profit": -10660.0
+        "cumulative_profit": -19160.0
       }
     ]
   },
@@ -11309,21 +12056,21 @@
       },
       {
         "date": "2026-05-03",
-        "invested": 34600.0,
-        "payout": 23010.0,
-        "profit": -11590.0,
-        "roi": 66.5,
-        "total_bets": 102,
-        "hits": 13,
+        "invested": 62900.0,
+        "payout": 38010.0,
+        "profit": -24890.0,
+        "roi": 60.43,
+        "total_bets": 186,
+        "hits": 14,
         "by_bet_type": [
           {
             "bet_type": "単勝",
-            "invested": 2300.0,
-            "payout": 0.0,
-            "profit": -2300.0,
-            "roi": 0.0,
-            "total_bets": 17,
-            "hits": 0,
+            "invested": 4000.0,
+            "payout": 15000.0,
+            "profit": 11000.0,
+            "roi": 375.0,
+            "total_bets": 31,
+            "hits": 1,
             "races": [
               {
                 "race_id": "202604010201",
@@ -11407,6 +12154,24 @@
                 "is_hit": 0
               },
               {
+                "race_id": "202604010211",
+                "race_name": "越後ステークス",
+                "venue": "新潟",
+                "race_number": 11,
+                "invested": 100.0,
+                "payout": 15000.0,
+                "is_hit": 1
+              },
+              {
+                "race_id": "202604010212",
+                "race_name": "",
+                "venue": "新潟",
+                "race_number": 12,
+                "invested": 100.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202605020401",
                 "race_name": "",
                 "venue": "東京",
@@ -11438,6 +12203,60 @@
                 "race_name": "",
                 "venue": "東京",
                 "race_number": 4,
+                "invested": 100.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 100.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020408",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 8,
+                "invested": 100.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020409",
+                "race_name": "府中ステークス",
+                "venue": "東京",
+                "race_number": 9,
+                "invested": 100.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020411",
+                "race_name": "プリンシパルステークス",
+                "venue": "東京",
+                "race_number": 11,
+                "invested": 100.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020412",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 12,
                 "invested": 100.0,
                 "payout": 0.0,
                 "is_hit": 0
@@ -11477,16 +12296,70 @@
                 "invested": 100.0,
                 "payout": 0.0,
                 "is_hit": 0
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 100.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 200.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030408",
+                "race_name": "御池特別",
+                "venue": "京都",
+                "race_number": 8,
+                "invested": 100.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030409",
+                "race_name": "六波羅特別",
+                "venue": "京都",
+                "race_number": 9,
+                "invested": 100.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030410",
+                "race_name": "朱雀ステークス",
+                "venue": "京都",
+                "race_number": 10,
+                "invested": 100.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 100.0,
+                "payout": 0.0,
+                "is_hit": 0
               }
             ]
           },
           {
             "bet_type": "複勝",
-            "invested": 5100.0,
+            "invested": 9300.0,
             "payout": 7830.0,
-            "profit": 2730.0,
-            "roi": 153.53,
-            "total_bets": 17,
+            "profit": -1470.0,
+            "roi": 84.19,
+            "total_bets": 31,
             "hits": 8,
             "races": [
               {
@@ -11571,6 +12444,24 @@
                 "is_hit": 0
               },
               {
+                "race_id": "202604010211",
+                "race_name": "越後ステークス",
+                "venue": "新潟",
+                "race_number": 11,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202604010212",
+                "race_name": "",
+                "venue": "新潟",
+                "race_number": 12,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202605020401",
                 "race_name": "",
                 "venue": "東京",
@@ -11602,6 +12493,60 @@
                 "race_name": "",
                 "venue": "東京",
                 "race_number": 4,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020408",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 8,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020409",
+                "race_name": "府中ステークス",
+                "venue": "東京",
+                "race_number": 9,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020411",
+                "race_name": "プリンシパルステークス",
+                "venue": "東京",
+                "race_number": 11,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020412",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 12,
                 "invested": 300.0,
                 "payout": 0.0,
                 "is_hit": 0
@@ -11641,16 +12586,70 @@
                 "invested": 300.0,
                 "payout": 840.0,
                 "is_hit": 1
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030408",
+                "race_name": "御池特別",
+                "venue": "京都",
+                "race_number": 8,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030409",
+                "race_name": "六波羅特別",
+                "venue": "京都",
+                "race_number": 9,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030410",
+                "race_name": "朱雀ステークス",
+                "venue": "京都",
+                "race_number": 10,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
               }
             ]
           },
           {
             "bet_type": "馬連",
-            "invested": 8500.0,
+            "invested": 15500.0,
             "payout": 4800.0,
-            "profit": -3700.0,
-            "roi": 56.47,
-            "total_bets": 17,
+            "profit": -10700.0,
+            "roi": 30.97,
+            "total_bets": 31,
             "hits": 1,
             "races": [
               {
@@ -11735,6 +12734,24 @@
                 "is_hit": 0
               },
               {
+                "race_id": "202604010211",
+                "race_name": "越後ステークス",
+                "venue": "新潟",
+                "race_number": 11,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202604010212",
+                "race_name": "",
+                "venue": "新潟",
+                "race_number": 12,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202605020401",
                 "race_name": "",
                 "venue": "東京",
@@ -11766,6 +12783,60 @@
                 "race_name": "",
                 "venue": "東京",
                 "race_number": 4,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020408",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 8,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020409",
+                "race_name": "府中ステークス",
+                "venue": "東京",
+                "race_number": 9,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020411",
+                "race_name": "プリンシパルステークス",
+                "venue": "東京",
+                "race_number": 11,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020412",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 12,
                 "invested": 500.0,
                 "payout": 0.0,
                 "is_hit": 0
@@ -11805,16 +12876,70 @@
                 "invested": 500.0,
                 "payout": 0.0,
                 "is_hit": 0
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030408",
+                "race_name": "御池特別",
+                "venue": "京都",
+                "race_number": 8,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030409",
+                "race_name": "六波羅特別",
+                "venue": "京都",
+                "race_number": 9,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030410",
+                "race_name": "朱雀ステークス",
+                "venue": "京都",
+                "race_number": 10,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
               }
             ]
           },
           {
             "bet_type": "ワイド",
-            "invested": 8500.0,
+            "invested": 15500.0,
             "payout": 8700.0,
-            "profit": 200.0,
-            "roi": 102.35,
-            "total_bets": 17,
+            "profit": -6800.0,
+            "roi": 56.13,
+            "total_bets": 31,
             "hits": 3,
             "races": [
               {
@@ -11899,6 +13024,24 @@
                 "is_hit": 0
               },
               {
+                "race_id": "202604010211",
+                "race_name": "越後ステークス",
+                "venue": "新潟",
+                "race_number": 11,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202604010212",
+                "race_name": "",
+                "venue": "新潟",
+                "race_number": 12,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202605020401",
                 "race_name": "",
                 "venue": "東京",
@@ -11930,6 +13073,60 @@
                 "race_name": "",
                 "venue": "東京",
                 "race_number": 4,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020408",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 8,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020409",
+                "race_name": "府中ステークス",
+                "venue": "東京",
+                "race_number": 9,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020411",
+                "race_name": "プリンシパルステークス",
+                "venue": "東京",
+                "race_number": 11,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020412",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 12,
                 "invested": 500.0,
                 "payout": 0.0,
                 "is_hit": 0
@@ -11969,16 +13166,70 @@
                 "invested": 500.0,
                 "payout": 0.0,
                 "is_hit": 0
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030408",
+                "race_name": "御池特別",
+                "venue": "京都",
+                "race_number": 8,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030409",
+                "race_name": "六波羅特別",
+                "venue": "京都",
+                "race_number": 9,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030410",
+                "race_name": "朱雀ステークス",
+                "venue": "京都",
+                "race_number": 10,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
               }
             ]
           },
           {
             "bet_type": "馬単",
-            "invested": 5100.0,
+            "invested": 9300.0,
             "payout": 0.0,
-            "profit": -5100.0,
+            "profit": -9300.0,
             "roi": 0.0,
-            "total_bets": 17,
+            "total_bets": 31,
             "hits": 0,
             "races": [
               {
@@ -12063,6 +13314,24 @@
                 "is_hit": 0
               },
               {
+                "race_id": "202604010211",
+                "race_name": "越後ステークス",
+                "venue": "新潟",
+                "race_number": 11,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202604010212",
+                "race_name": "",
+                "venue": "新潟",
+                "race_number": 12,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202605020401",
                 "race_name": "",
                 "venue": "東京",
@@ -12094,6 +13363,60 @@
                 "race_name": "",
                 "venue": "東京",
                 "race_number": 4,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020408",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 8,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020409",
+                "race_name": "府中ステークス",
+                "venue": "東京",
+                "race_number": 9,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020411",
+                "race_name": "プリンシパルステークス",
+                "venue": "東京",
+                "race_number": 11,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020412",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 12,
                 "invested": 300.0,
                 "payout": 0.0,
                 "is_hit": 0
@@ -12133,16 +13456,70 @@
                 "invested": 300.0,
                 "payout": 0.0,
                 "is_hit": 0
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030408",
+                "race_name": "御池特別",
+                "venue": "京都",
+                "race_number": 8,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030409",
+                "race_name": "六波羅特別",
+                "venue": "京都",
+                "race_number": 9,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030410",
+                "race_name": "朱雀ステークス",
+                "venue": "京都",
+                "race_number": 10,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
               }
             ]
           },
           {
             "bet_type": "三連複",
-            "invested": 5100.0,
+            "invested": 9300.0,
             "payout": 1680.0,
-            "profit": -3420.0,
-            "roi": 32.94,
-            "total_bets": 17,
+            "profit": -7620.0,
+            "roi": 18.06,
+            "total_bets": 31,
             "hits": 1,
             "races": [
               {
@@ -12227,6 +13604,24 @@
                 "is_hit": 0
               },
               {
+                "race_id": "202604010211",
+                "race_name": "越後ステークス",
+                "venue": "新潟",
+                "race_number": 11,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202604010212",
+                "race_name": "",
+                "venue": "新潟",
+                "race_number": 12,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202605020401",
                 "race_name": "",
                 "venue": "東京",
@@ -12258,6 +13653,60 @@
                 "race_name": "",
                 "venue": "東京",
                 "race_number": 4,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020408",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 8,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020409",
+                "race_name": "府中ステークス",
+                "venue": "東京",
+                "race_number": 9,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020411",
+                "race_name": "プリンシパルステークス",
+                "venue": "東京",
+                "race_number": 11,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020412",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 12,
                 "invested": 300.0,
                 "payout": 0.0,
                 "is_hit": 0
@@ -12297,11 +13746,65 @@
                 "invested": 300.0,
                 "payout": 0.0,
                 "is_hit": 0
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030408",
+                "race_name": "御池特別",
+                "venue": "京都",
+                "race_number": 8,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030409",
+                "race_name": "六波羅特別",
+                "venue": "京都",
+                "race_number": 9,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030410",
+                "race_name": "朱雀ステークス",
+                "venue": "京都",
+                "race_number": 10,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
               }
             ]
           }
         ],
-        "cumulative_profit": -34076.7
+        "cumulative_profit": -47376.7
       }
     ],
     "monthly": [
@@ -12375,138 +13878,138 @@
       {
         "period": "2026-05",
         "label": "2026年5月",
-        "invested": 75100.0,
-        "payout": 106019.0,
-        "profit": 30919.0,
-        "roi": 141.17,
-        "total_bets": 282,
-        "hits": 41,
+        "invested": 103400.0,
+        "payout": 121019.0,
+        "profit": 17619.0,
+        "roi": 117.04,
+        "total_bets": 366,
+        "hits": 42,
         "by_bet_type": [
           {
             "bet_type": "単勝",
-            "invested": 6800.0,
-            "payout": 38770.0,
-            "profit": 31970.0,
-            "roi": 570.15,
-            "total_bets": 53,
-            "hits": 2
+            "invested": 8500.0,
+            "payout": 53770.0,
+            "profit": 45270.0,
+            "roi": 632.59,
+            "total_bets": 67,
+            "hits": 3
           },
           {
             "bet_type": "複勝",
-            "invested": 15900.0,
+            "invested": 20100.0,
             "payout": 48249.0,
-            "profit": 32349.0,
-            "roi": 303.45,
-            "total_bets": 53,
+            "profit": 28149.0,
+            "roi": 240.04,
+            "total_bets": 67,
             "hits": 30
           },
           {
             "bet_type": "馬連",
-            "invested": 15700.0,
+            "invested": 22700.0,
             "payout": 5040.0,
-            "profit": -10660.0,
-            "roi": 32.1,
-            "total_bets": 53,
+            "profit": -17660.0,
+            "roi": 22.2,
+            "total_bets": 67,
             "hits": 2
           },
           {
             "bet_type": "ワイド",
-            "invested": 15700.0,
+            "invested": 22700.0,
             "payout": 12280.0,
-            "profit": -3420.0,
-            "roi": 78.22,
-            "total_bets": 53,
+            "profit": -10420.0,
+            "roi": 54.1,
+            "total_bets": 67,
             "hits": 6
           },
           {
             "bet_type": "馬単",
-            "invested": 5100.0,
+            "invested": 9300.0,
             "payout": 0.0,
-            "profit": -5100.0,
+            "profit": -9300.0,
             "roi": 0.0,
-            "total_bets": 17,
+            "total_bets": 31,
             "hits": 0
           },
           {
             "bet_type": "三連複",
-            "invested": 15900.0,
+            "invested": 20100.0,
             "payout": 1680.0,
-            "profit": -14220.0,
-            "roi": 10.57,
-            "total_bets": 53,
+            "profit": -18420.0,
+            "roi": 8.36,
+            "total_bets": 67,
             "hits": 1
           }
         ],
-        "cumulative_profit": -34076.7
+        "cumulative_profit": -47376.7
       }
     ],
     "yearly": [
       {
         "period": "2026",
         "label": "2026年",
-        "invested": 230000.0,
-        "payout": 195923.3,
-        "profit": -34076.7,
-        "roi": 85.18,
-        "total_bets": 883,
-        "hits": 128,
+        "invested": 258300.0,
+        "payout": 210923.3,
+        "profit": -47376.7,
+        "roi": 81.66,
+        "total_bets": 967,
+        "hits": 129,
         "by_bet_type": [
           {
             "bet_type": "単勝",
-            "invested": 20900.0,
-            "payout": 46060.0,
-            "profit": 25160.0,
-            "roi": 220.38,
-            "total_bets": 174,
-            "hits": 13
+            "invested": 22600.0,
+            "payout": 61060.0,
+            "profit": 38460.0,
+            "roi": 270.18,
+            "total_bets": 188,
+            "hits": 14
           },
           {
             "bet_type": "複勝",
-            "invested": 77300.0,
+            "invested": 81500.0,
             "payout": 120763.3,
-            "profit": 43463.3,
-            "roi": 156.23,
-            "total_bets": 174,
+            "profit": 39263.3,
+            "roi": 148.18,
+            "total_bets": 188,
             "hits": 100
           },
           {
             "bet_type": "馬連",
-            "invested": 36100.0,
+            "invested": 43100.0,
             "payout": 12560.0,
-            "profit": -23540.0,
-            "roi": 34.79,
-            "total_bets": 156,
+            "profit": -30540.0,
+            "roi": 29.14,
+            "total_bets": 170,
             "hits": 5
           },
           {
             "bet_type": "ワイド",
-            "invested": 36100.0,
+            "invested": 43100.0,
             "payout": 14860.0,
-            "profit": -21240.0,
-            "roi": 41.16,
-            "total_bets": 156,
+            "profit": -28240.0,
+            "roi": 34.48,
+            "total_bets": 170,
             "hits": 9
           },
           {
             "bet_type": "馬単",
-            "invested": 18300.0,
+            "invested": 22500.0,
             "payout": 0.0,
-            "profit": -18300.0,
+            "profit": -22500.0,
             "roi": 0.0,
-            "total_bets": 84,
+            "total_bets": 98,
             "hits": 0
           },
           {
             "bet_type": "三連複",
-            "invested": 41300.0,
+            "invested": 45500.0,
             "payout": 1680.0,
-            "profit": -39620.0,
-            "roi": 4.07,
-            "total_bets": 139,
+            "profit": -43820.0,
+            "roi": 3.69,
+            "total_bets": 153,
             "hits": 1
           }
         ],
-        "cumulative_profit": -34076.7
+        "cumulative_profit": -47376.7
       }
     ]
   },
@@ -17686,20 +19189,20 @@
       },
       {
         "date": "2026-05-03",
-        "invested": 31800.0,
+        "invested": 42600.0,
         "payout": 10400.0,
-        "profit": -21400.0,
-        "roi": 32.7,
-        "total_bets": 90,
+        "profit": -32200.0,
+        "roi": 24.41,
+        "total_bets": 120,
         "hits": 8,
         "by_bet_type": [
           {
             "bet_type": "単勝",
-            "invested": 3300.0,
+            "invested": 4600.0,
             "payout": 0.0,
-            "profit": -3300.0,
+            "profit": -4600.0,
             "roi": 0.0,
-            "total_bets": 15,
+            "total_bets": 20,
             "hits": 0,
             "races": [
               {
@@ -17802,6 +19305,24 @@
                 "is_hit": 0
               },
               {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 100.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 400.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202608030401",
                 "race_name": "",
                 "venue": "京都",
@@ -17836,16 +19357,43 @@
                 "invested": 400.0,
                 "payout": 0.0,
                 "is_hit": 0
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 400.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 100.0,
+                "payout": 0.0,
+                "is_hit": 0
               }
             ]
           },
           {
             "bet_type": "複勝",
-            "invested": 4500.0,
+            "invested": 6000.0,
             "payout": 3600.0,
-            "profit": -900.0,
-            "roi": 80.0,
-            "total_bets": 15,
+            "profit": -2400.0,
+            "roi": 60.0,
+            "total_bets": 20,
             "hits": 6,
             "races": [
               {
@@ -17948,6 +19496,24 @@
                 "is_hit": 1
               },
               {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202608030401",
                 "race_name": "",
                 "venue": "京都",
@@ -17982,16 +19548,43 @@
                 "invested": 300.0,
                 "payout": 0.0,
                 "is_hit": 0
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
               }
             ]
           },
           {
             "bet_type": "馬連",
-            "invested": 7500.0,
+            "invested": 10000.0,
             "payout": 4800.0,
-            "profit": -2700.0,
-            "roi": 64.0,
-            "total_bets": 15,
+            "profit": -5200.0,
+            "roi": 48.0,
+            "total_bets": 20,
             "hits": 1,
             "races": [
               {
@@ -18094,6 +19687,24 @@
                 "is_hit": 0
               },
               {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202608030401",
                 "race_name": "",
                 "venue": "京都",
@@ -18128,16 +19739,43 @@
                 "invested": 500.0,
                 "payout": 0.0,
                 "is_hit": 0
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
               }
             ]
           },
           {
             "bet_type": "ワイド",
-            "invested": 7500.0,
+            "invested": 10000.0,
             "payout": 2000.0,
-            "profit": -5500.0,
-            "roi": 26.67,
-            "total_bets": 15,
+            "profit": -8000.0,
+            "roi": 20.0,
+            "total_bets": 20,
             "hits": 1,
             "races": [
               {
@@ -18240,6 +19878,24 @@
                 "is_hit": 0
               },
               {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202608030401",
                 "race_name": "",
                 "venue": "京都",
@@ -18271,6 +19927,33 @@
                 "race_name": "",
                 "venue": "京都",
                 "race_number": 4,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
                 "invested": 500.0,
                 "payout": 0.0,
                 "is_hit": 0
@@ -18279,11 +19962,11 @@
           },
           {
             "bet_type": "馬単",
-            "invested": 4500.0,
+            "invested": 6000.0,
             "payout": 0.0,
-            "profit": -4500.0,
+            "profit": -6000.0,
             "roi": 0.0,
-            "total_bets": 15,
+            "total_bets": 20,
             "hits": 0,
             "races": [
               {
@@ -18386,6 +20069,24 @@
                 "is_hit": 0
               },
               {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202608030401",
                 "race_name": "",
                 "venue": "京都",
@@ -18417,6 +20118,33 @@
                 "race_name": "",
                 "venue": "京都",
                 "race_number": 4,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
                 "invested": 300.0,
                 "payout": 0.0,
                 "is_hit": 0
@@ -18425,11 +20153,11 @@
           },
           {
             "bet_type": "三連複",
-            "invested": 4500.0,
+            "invested": 6000.0,
             "payout": 0.0,
-            "profit": -4500.0,
+            "profit": -6000.0,
             "roi": 0.0,
-            "total_bets": 15,
+            "total_bets": 20,
             "hits": 0,
             "races": [
               {
@@ -18532,6 +20260,24 @@
                 "is_hit": 0
               },
               {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202608030401",
                 "race_name": "",
                 "venue": "京都",
@@ -18566,11 +20312,38 @@
                 "invested": 300.0,
                 "payout": 0.0,
                 "is_hit": 0
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
               }
             ]
           }
         ],
-        "cumulative_profit": -64016.0
+        "cumulative_profit": -74816.0
       }
     ],
     "monthly": [
@@ -18644,138 +20417,138 @@
       {
         "period": "2026-05",
         "label": "2026年5月",
-        "invested": 82200.0,
+        "invested": 93000.0,
         "payout": 47303.0,
-        "profit": -34897.0,
-        "roi": 57.55,
-        "total_bets": 270,
+        "profit": -45697.0,
+        "roi": 50.86,
+        "total_bets": 300,
         "hits": 34,
         "by_bet_type": [
           {
             "bet_type": "単勝",
-            "invested": 17700.0,
+            "invested": 19000.0,
             "payout": 2160.0,
-            "profit": -15540.0,
-            "roi": 12.2,
-            "total_bets": 51,
+            "profit": -16840.0,
+            "roi": 11.37,
+            "total_bets": 56,
             "hits": 1
           },
           {
             "bet_type": "複勝",
-            "invested": 15300.0,
+            "invested": 16800.0,
             "payout": 34983.0,
-            "profit": 19683.0,
-            "roi": 228.65,
-            "total_bets": 51,
+            "profit": 18183.0,
+            "roi": 208.23,
+            "total_bets": 56,
             "hits": 29
           },
           {
             "bet_type": "馬連",
-            "invested": 14700.0,
+            "invested": 17200.0,
             "payout": 4800.0,
-            "profit": -9900.0,
-            "roi": 32.65,
-            "total_bets": 51,
+            "profit": -12400.0,
+            "roi": 27.91,
+            "total_bets": 56,
             "hits": 1
           },
           {
             "bet_type": "ワイド",
-            "invested": 14700.0,
+            "invested": 17200.0,
             "payout": 5360.0,
-            "profit": -9340.0,
-            "roi": 36.46,
-            "total_bets": 51,
+            "profit": -11840.0,
+            "roi": 31.16,
+            "total_bets": 56,
             "hits": 3
           },
           {
             "bet_type": "馬単",
-            "invested": 4500.0,
+            "invested": 6000.0,
             "payout": 0.0,
-            "profit": -4500.0,
+            "profit": -6000.0,
             "roi": 0.0,
-            "total_bets": 15,
+            "total_bets": 20,
             "hits": 0
           },
           {
             "bet_type": "三連複",
-            "invested": 15300.0,
+            "invested": 16800.0,
             "payout": 0.0,
-            "profit": -15300.0,
+            "profit": -16800.0,
             "roi": 0.0,
-            "total_bets": 51,
+            "total_bets": 56,
             "hits": 0
           }
         ],
-        "cumulative_profit": -64016.0
+        "cumulative_profit": -74816.0
       }
     ],
     "yearly": [
       {
         "period": "2026",
         "label": "2026年",
-        "invested": 182700.0,
+        "invested": 193500.0,
         "payout": 118684.0,
-        "profit": -64016.0,
-        "roi": 64.96,
-        "total_bets": 625,
+        "profit": -74816.0,
+        "roi": 61.34,
+        "total_bets": 655,
         "hits": 83,
         "by_bet_type": [
           {
             "bet_type": "単勝",
-            "invested": 26800.0,
+            "invested": 28100.0,
             "payout": 7120.0,
-            "profit": -19680.0,
-            "roi": 26.57,
-            "total_bets": 116,
+            "profit": -20980.0,
+            "roi": 25.34,
+            "total_bets": 121,
             "hits": 5
           },
           {
             "bet_type": "複勝",
-            "invested": 58200.0,
+            "invested": 59700.0,
             "payout": 98744.0,
-            "profit": 40544.0,
-            "roi": 169.66,
-            "total_bets": 116,
+            "profit": 39044.0,
+            "roi": 165.4,
+            "total_bets": 121,
             "hits": 72
           },
           {
             "bet_type": "馬連",
-            "invested": 26400.0,
+            "invested": 28900.0,
             "payout": 6740.0,
-            "profit": -19660.0,
-            "roi": 25.53,
-            "total_bets": 111,
+            "profit": -22160.0,
+            "roi": 23.32,
+            "total_bets": 116,
             "hits": 2
           },
           {
             "bet_type": "ワイド",
-            "invested": 26400.0,
+            "invested": 28900.0,
             "payout": 6080.0,
-            "profit": -20320.0,
-            "roi": 23.03,
-            "total_bets": 111,
+            "profit": -22820.0,
+            "roi": 21.04,
+            "total_bets": 116,
             "hits": 4
           },
           {
             "bet_type": "馬単",
-            "invested": 15000.0,
+            "invested": 16500.0,
             "payout": 0.0,
-            "profit": -15000.0,
+            "profit": -16500.0,
             "roi": 0.0,
-            "total_bets": 69,
+            "total_bets": 74,
             "hits": 0
           },
           {
             "bet_type": "三連複",
-            "invested": 29900.0,
+            "invested": 31400.0,
             "payout": 0.0,
-            "profit": -29900.0,
+            "profit": -31400.0,
             "roi": 0.0,
-            "total_bets": 102,
+            "total_bets": 107,
             "hits": 0
           }
         ],
-        "cumulative_profit": -64016.0
+        "cumulative_profit": -74816.0
       }
     ]
   },
@@ -30740,20 +32513,20 @@
       },
       {
         "date": "2026-05-03",
-        "invested": 57300.0,
-        "payout": 56360.0,
-        "profit": -940.0,
-        "roi": 98.36,
-        "total_bets": 136,
-        "hits": 26,
+        "invested": 103900.0,
+        "payout": 62110.0,
+        "profit": -41790.0,
+        "roi": 59.78,
+        "total_bets": 248,
+        "hits": 27,
         "by_bet_type": [
           {
             "bet_type": "単勝",
-            "invested": 2900.0,
+            "invested": 4700.0,
             "payout": 480.0,
-            "profit": -2420.0,
-            "roi": 16.55,
-            "total_bets": 17,
+            "profit": -4220.0,
+            "roi": 10.21,
+            "total_bets": 31,
             "hits": 2,
             "races": [
               {
@@ -30838,6 +32611,24 @@
                 "is_hit": 0
               },
               {
+                "race_id": "202604010211",
+                "race_name": "越後ステークス",
+                "venue": "新潟",
+                "race_number": 11,
+                "invested": 100.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202604010212",
+                "race_name": "",
+                "venue": "新潟",
+                "race_number": 12,
+                "invested": 100.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202605020401",
                 "race_name": "",
                 "venue": "東京",
@@ -30869,6 +32660,60 @@
                 "race_name": "",
                 "venue": "東京",
                 "race_number": 4,
+                "invested": 100.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 200.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020408",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 8,
+                "invested": 100.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020409",
+                "race_name": "府中ステークス",
+                "venue": "東京",
+                "race_number": 9,
+                "invested": 100.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020411",
+                "race_name": "プリンシパルステークス",
+                "venue": "東京",
+                "race_number": 11,
+                "invested": 100.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020412",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 12,
                 "invested": 100.0,
                 "payout": 0.0,
                 "is_hit": 0
@@ -30908,16 +32753,70 @@
                 "invested": 300.0,
                 "payout": 0.0,
                 "is_hit": 0
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 100.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 200.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030408",
+                "race_name": "御池特別",
+                "venue": "京都",
+                "race_number": 8,
+                "invested": 100.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030409",
+                "race_name": "六波羅特別",
+                "venue": "京都",
+                "race_number": 9,
+                "invested": 100.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030410",
+                "race_name": "朱雀ステークス",
+                "venue": "京都",
+                "race_number": 10,
+                "invested": 100.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 100.0,
+                "payout": 0.0,
+                "is_hit": 0
               }
             ]
           },
           {
             "bet_type": "複勝",
-            "invested": 5100.0,
+            "invested": 9300.0,
             "payout": 10440.0,
-            "profit": 5340.0,
-            "roi": 204.71,
-            "total_bets": 17,
+            "profit": 1140.0,
+            "roi": 112.26,
+            "total_bets": 31,
             "hits": 12,
             "races": [
               {
@@ -31002,6 +32901,24 @@
                 "is_hit": 1
               },
               {
+                "race_id": "202604010211",
+                "race_name": "越後ステークス",
+                "venue": "新潟",
+                "race_number": 11,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202604010212",
+                "race_name": "",
+                "venue": "新潟",
+                "race_number": 12,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202605020401",
                 "race_name": "",
                 "venue": "東京",
@@ -31033,6 +32950,60 @@
                 "race_name": "",
                 "venue": "東京",
                 "race_number": 4,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020408",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 8,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020409",
+                "race_name": "府中ステークス",
+                "venue": "東京",
+                "race_number": 9,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020411",
+                "race_name": "プリンシパルステークス",
+                "venue": "東京",
+                "race_number": 11,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020412",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 12,
                 "invested": 300.0,
                 "payout": 0.0,
                 "is_hit": 0
@@ -31072,17 +33043,71 @@
                 "invested": 300.0,
                 "payout": 330.0,
                 "is_hit": 1
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030408",
+                "race_name": "御池特別",
+                "venue": "京都",
+                "race_number": 8,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030409",
+                "race_name": "六波羅特別",
+                "venue": "京都",
+                "race_number": 9,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030410",
+                "race_name": "朱雀ステークス",
+                "venue": "京都",
+                "race_number": 10,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
               }
             ]
           },
           {
             "bet_type": "馬連",
-            "invested": 8500.0,
-            "payout": 10950.0,
-            "profit": 2450.0,
-            "roi": 128.82,
-            "total_bets": 17,
-            "hits": 4,
+            "invested": 15500.0,
+            "payout": 16700.0,
+            "profit": 1200.0,
+            "roi": 107.74,
+            "total_bets": 31,
+            "hits": 5,
             "races": [
               {
                 "race_id": "202604010201",
@@ -31166,6 +33191,24 @@
                 "is_hit": 1
               },
               {
+                "race_id": "202604010211",
+                "race_name": "越後ステークス",
+                "venue": "新潟",
+                "race_number": 11,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202604010212",
+                "race_name": "",
+                "venue": "新潟",
+                "race_number": 12,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202605020401",
                 "race_name": "",
                 "venue": "東京",
@@ -31197,6 +33240,60 @@
                 "race_name": "",
                 "venue": "東京",
                 "race_number": 4,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020408",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 8,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020409",
+                "race_name": "府中ステークス",
+                "venue": "東京",
+                "race_number": 9,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020411",
+                "race_name": "プリンシパルステークス",
+                "venue": "東京",
+                "race_number": 11,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020412",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 12,
                 "invested": 500.0,
                 "payout": 0.0,
                 "is_hit": 0
@@ -31236,16 +33333,70 @@
                 "invested": 500.0,
                 "payout": 0.0,
                 "is_hit": 0
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030408",
+                "race_name": "御池特別",
+                "venue": "京都",
+                "race_number": 8,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030409",
+                "race_name": "六波羅特別",
+                "venue": "京都",
+                "race_number": 9,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030410",
+                "race_name": "朱雀ステークス",
+                "venue": "京都",
+                "race_number": 10,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 500.0,
+                "payout": 5750.0,
+                "is_hit": 1
               }
             ]
           },
           {
             "bet_type": "ワイド",
-            "invested": 8500.0,
+            "invested": 15500.0,
             "payout": 12050.0,
-            "profit": 3550.0,
-            "roi": 141.76,
-            "total_bets": 17,
+            "profit": -3450.0,
+            "roi": 77.74,
+            "total_bets": 31,
             "hits": 5,
             "races": [
               {
@@ -31330,6 +33481,24 @@
                 "is_hit": 1
               },
               {
+                "race_id": "202604010211",
+                "race_name": "越後ステークス",
+                "venue": "新潟",
+                "race_number": 11,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202604010212",
+                "race_name": "",
+                "venue": "新潟",
+                "race_number": 12,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202605020401",
                 "race_name": "",
                 "venue": "東京",
@@ -31361,6 +33530,60 @@
                 "race_name": "",
                 "venue": "東京",
                 "race_number": 4,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020408",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 8,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020409",
+                "race_name": "府中ステークス",
+                "venue": "東京",
+                "race_number": 9,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020411",
+                "race_name": "プリンシパルステークス",
+                "venue": "東京",
+                "race_number": 11,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020412",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 12,
                 "invested": 500.0,
                 "payout": 0.0,
                 "is_hit": 0
@@ -31400,16 +33623,70 @@
                 "invested": 500.0,
                 "payout": 0.0,
                 "is_hit": 0
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030408",
+                "race_name": "御池特別",
+                "venue": "京都",
+                "race_number": 8,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030409",
+                "race_name": "六波羅特別",
+                "venue": "京都",
+                "race_number": 9,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030410",
+                "race_name": "朱雀ステークス",
+                "venue": "京都",
+                "race_number": 10,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
               }
             ]
           },
           {
             "bet_type": "馬単",
-            "invested": 5100.0,
+            "invested": 9300.0,
             "payout": 1380.0,
-            "profit": -3720.0,
-            "roi": 27.06,
-            "total_bets": 17,
+            "profit": -7920.0,
+            "roi": 14.84,
+            "total_bets": 31,
             "hits": 1,
             "races": [
               {
@@ -31489,6 +33766,24 @@
                 "race_name": "咲花特別",
                 "venue": "新潟",
                 "race_number": 9,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202604010211",
+                "race_name": "越後ステークス",
+                "venue": "新潟",
+                "race_number": 11,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202604010212",
+                "race_name": "",
+                "venue": "新潟",
+                "race_number": 12,
                 "invested": 300.0,
                 "payout": 0.0,
                 "is_hit": 0
@@ -31530,6 +33825,60 @@
                 "is_hit": 0
               },
               {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020408",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 8,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020409",
+                "race_name": "府中ステークス",
+                "venue": "東京",
+                "race_number": 9,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020411",
+                "race_name": "プリンシパルステークス",
+                "venue": "東京",
+                "race_number": 11,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020412",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 12,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202608030401",
                 "race_name": "",
                 "venue": "京都",
@@ -31564,16 +33913,70 @@
                 "invested": 300.0,
                 "payout": 0.0,
                 "is_hit": 0
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030408",
+                "race_name": "御池特別",
+                "venue": "京都",
+                "race_number": 8,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030409",
+                "race_name": "六波羅特別",
+                "venue": "京都",
+                "race_number": 9,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030410",
+                "race_name": "朱雀ステークス",
+                "venue": "京都",
+                "race_number": 10,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
               }
             ]
           },
           {
             "bet_type": "三連複",
-            "invested": 10200.0,
+            "invested": 18600.0,
             "payout": 3360.0,
-            "profit": -6840.0,
-            "roi": 32.94,
-            "total_bets": 17,
+            "profit": -15240.0,
+            "roi": 18.06,
+            "total_bets": 31,
             "hits": 1,
             "races": [
               {
@@ -31653,6 +34056,24 @@
                 "race_name": "咲花特別",
                 "venue": "新潟",
                 "race_number": 9,
+                "invested": 600.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202604010211",
+                "race_name": "越後ステークス",
+                "venue": "新潟",
+                "race_number": 11,
+                "invested": 600.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202604010212",
+                "race_name": "",
+                "venue": "新潟",
+                "race_number": 12,
                 "invested": 600.0,
                 "payout": 0.0,
                 "is_hit": 0
@@ -31694,6 +34115,60 @@
                 "is_hit": 0
               },
               {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 600.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 600.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020408",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 8,
+                "invested": 600.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020409",
+                "race_name": "府中ステークス",
+                "venue": "東京",
+                "race_number": 9,
+                "invested": 600.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020411",
+                "race_name": "プリンシパルステークス",
+                "venue": "東京",
+                "race_number": 11,
+                "invested": 600.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020412",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 12,
+                "invested": 600.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202608030401",
                 "race_name": "",
                 "venue": "京都",
@@ -31728,16 +34203,70 @@
                 "invested": 600.0,
                 "payout": 0.0,
                 "is_hit": 0
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 600.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 600.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030408",
+                "race_name": "御池特別",
+                "venue": "京都",
+                "race_number": 8,
+                "invested": 600.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030409",
+                "race_name": "六波羅特別",
+                "venue": "京都",
+                "race_number": 9,
+                "invested": 600.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030410",
+                "race_name": "朱雀ステークス",
+                "venue": "京都",
+                "race_number": 10,
+                "invested": 600.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 600.0,
+                "payout": 0.0,
+                "is_hit": 0
               }
             ]
           },
           {
             "bet_type": "三連単",
-            "invested": 17000.0,
+            "invested": 31000.0,
             "payout": 17700.0,
-            "profit": 700.0,
-            "roi": 104.12,
-            "total_bets": 17,
+            "profit": -13300.0,
+            "roi": 57.1,
+            "total_bets": 31,
             "hits": 1,
             "races": [
               {
@@ -31822,6 +34351,24 @@
                 "is_hit": 0
               },
               {
+                "race_id": "202604010211",
+                "race_name": "越後ステークス",
+                "venue": "新潟",
+                "race_number": 11,
+                "invested": 1000.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202604010212",
+                "race_name": "",
+                "venue": "新潟",
+                "race_number": 12,
+                "invested": 1000.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202605020401",
                 "race_name": "",
                 "venue": "東京",
@@ -31853,6 +34400,60 @@
                 "race_name": "",
                 "venue": "東京",
                 "race_number": 4,
+                "invested": 1000.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 1000.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 1000.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020408",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 8,
+                "invested": 1000.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020409",
+                "race_name": "府中ステークス",
+                "venue": "東京",
+                "race_number": 9,
+                "invested": 1000.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020411",
+                "race_name": "プリンシパルステークス",
+                "venue": "東京",
+                "race_number": 11,
+                "invested": 1000.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020412",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 12,
                 "invested": 1000.0,
                 "payout": 0.0,
                 "is_hit": 0
@@ -31892,6 +34493,60 @@
                 "invested": 1000.0,
                 "payout": 0.0,
                 "is_hit": 0
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 1000.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 1000.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030408",
+                "race_name": "御池特別",
+                "venue": "京都",
+                "race_number": 8,
+                "invested": 1000.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030409",
+                "race_name": "六波羅特別",
+                "venue": "京都",
+                "race_number": 9,
+                "invested": 1000.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030410",
+                "race_name": "朱雀ステークス",
+                "venue": "京都",
+                "race_number": 10,
+                "invested": 1000.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 1000.0,
+                "payout": 0.0,
+                "is_hit": 0
               }
             ]
           },
@@ -31901,7 +34556,7 @@
             "payout": 0.0,
             "profit": 0.0,
             "roi": 0.0,
-            "total_bets": 17,
+            "total_bets": 31,
             "hits": 0,
             "races": [
               {
@@ -31986,6 +34641,24 @@
                 "is_hit": 0
               },
               {
+                "race_id": "202604010211",
+                "race_name": "越後ステークス",
+                "venue": "新潟",
+                "race_number": 11,
+                "invested": 0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202604010212",
+                "race_name": "",
+                "venue": "新潟",
+                "race_number": 12,
+                "invested": 0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202605020401",
                 "race_name": "",
                 "venue": "東京",
@@ -32017,6 +34690,60 @@
                 "race_name": "",
                 "venue": "東京",
                 "race_number": 4,
+                "invested": 0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020408",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 8,
+                "invested": 0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020409",
+                "race_name": "府中ステークス",
+                "venue": "東京",
+                "race_number": 9,
+                "invested": 0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020411",
+                "race_name": "プリンシパルステークス",
+                "venue": "東京",
+                "race_number": 11,
+                "invested": 0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020412",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 12,
                 "invested": 0,
                 "payout": 0.0,
                 "is_hit": 0
@@ -32056,11 +34783,65 @@
                 "invested": 0,
                 "payout": 0.0,
                 "is_hit": 0
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030408",
+                "race_name": "御池特別",
+                "venue": "京都",
+                "race_number": 8,
+                "invested": 0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030409",
+                "race_name": "六波羅特別",
+                "venue": "京都",
+                "race_number": 9,
+                "invested": 0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030410",
+                "race_name": "朱雀ステークス",
+                "venue": "京都",
+                "race_number": 10,
+                "invested": 0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 0,
+                "payout": 0.0,
+                "is_hit": 0
               }
             ]
           }
         ],
-        "cumulative_profit": -212620.0
+        "cumulative_profit": -253470.0
       }
     ],
     "monthly": [
@@ -32152,74 +34933,74 @@
       {
         "period": "2026-05",
         "label": "2026年5月",
-        "invested": 116900.0,
-        "payout": 84181.0,
-        "profit": -32719.0,
-        "roi": 72.01,
-        "total_bets": 367,
-        "hits": 47,
+        "invested": 163500.0,
+        "payout": 89931.0,
+        "profit": -73569.0,
+        "roi": 55.0,
+        "total_bets": 479,
+        "hits": 48,
         "by_bet_type": [
           {
             "bet_type": "単勝",
-            "invested": 6700.0,
+            "invested": 8500.0,
             "payout": 2090.0,
-            "profit": -4610.0,
-            "roi": 31.19,
-            "total_bets": 53,
+            "profit": -6410.0,
+            "roi": 24.59,
+            "total_bets": 67,
             "hits": 5
           },
           {
             "bet_type": "複勝",
-            "invested": 15900.0,
+            "invested": 20100.0,
             "payout": 24051.0,
-            "profit": 8151.0,
-            "roi": 151.26,
-            "total_bets": 53,
+            "profit": 3951.0,
+            "roi": 119.66,
+            "total_bets": 67,
             "hits": 28
           },
           {
             "bet_type": "馬連",
-            "invested": 15700.0,
-            "payout": 21130.0,
-            "profit": 5430.0,
-            "roi": 134.59,
-            "total_bets": 53,
-            "hits": 5
+            "invested": 22700.0,
+            "payout": 26880.0,
+            "profit": 4180.0,
+            "roi": 118.41,
+            "total_bets": 67,
+            "hits": 6
           },
           {
             "bet_type": "ワイド",
-            "invested": 15700.0,
+            "invested": 22700.0,
             "payout": 14470.0,
-            "profit": -1230.0,
-            "roi": 92.17,
-            "total_bets": 53,
+            "profit": -8230.0,
+            "roi": 63.74,
+            "total_bets": 67,
             "hits": 6
           },
           {
             "bet_type": "馬単",
-            "invested": 5100.0,
+            "invested": 9300.0,
             "payout": 1380.0,
-            "profit": -3720.0,
-            "roi": 27.06,
-            "total_bets": 17,
+            "profit": -7920.0,
+            "roi": 14.84,
+            "total_bets": 31,
             "hits": 1
           },
           {
             "bet_type": "三連複",
-            "invested": 19200.0,
+            "invested": 27600.0,
             "payout": 3360.0,
-            "profit": -15840.0,
-            "roi": 17.5,
-            "total_bets": 32,
+            "profit": -24240.0,
+            "roi": 12.17,
+            "total_bets": 46,
             "hits": 1
           },
           {
             "bet_type": "三連単",
-            "invested": 38600.0,
+            "invested": 52600.0,
             "payout": 17700.0,
-            "profit": -20900.0,
-            "roi": 45.85,
-            "total_bets": 53,
+            "profit": -34900.0,
+            "roi": 33.65,
+            "total_bets": 67,
             "hits": 1
           },
           {
@@ -32228,85 +35009,85 @@
             "payout": 0.0,
             "profit": 0.0,
             "roi": 0.0,
-            "total_bets": 53,
+            "total_bets": 67,
             "hits": 0
           }
         ],
-        "cumulative_profit": -212620.0
+        "cumulative_profit": -253470.0
       }
     ],
     "yearly": [
       {
         "period": "2026",
         "label": "2026年",
-        "invested": 371600.0,
-        "payout": 158980.0,
-        "profit": -212620.0,
-        "roi": 42.78,
-        "total_bets": 1404,
-        "hits": 159,
+        "invested": 418200.0,
+        "payout": 164730.0,
+        "profit": -253470.0,
+        "roi": 39.39,
+        "total_bets": 1516,
+        "hits": 160,
         "by_bet_type": [
           {
             "bet_type": "単勝",
-            "invested": 24200.0,
+            "invested": 26000.0,
             "payout": 9160.0,
-            "profit": -15040.0,
-            "roi": 37.85,
-            "total_bets": 228,
+            "profit": -16840.0,
+            "roi": 35.23,
+            "total_bets": 242,
             "hits": 17
           },
           {
             "bet_type": "複勝",
-            "invested": 61400.0,
+            "invested": 65600.0,
             "payout": 80210.0,
-            "profit": 18810.0,
-            "roi": 130.64,
-            "total_bets": 228,
+            "profit": 14610.0,
+            "roi": 122.27,
+            "total_bets": 242,
             "hits": 122
           },
           {
             "bet_type": "馬連",
-            "invested": 43700.0,
-            "payout": 23010.0,
-            "profit": -20690.0,
-            "roi": 52.65,
-            "total_bets": 193,
-            "hits": 6
+            "invested": 50700.0,
+            "payout": 28760.0,
+            "profit": -21940.0,
+            "roi": 56.73,
+            "total_bets": 207,
+            "hits": 7
           },
           {
             "bet_type": "ワイド",
-            "invested": 43700.0,
+            "invested": 50700.0,
             "payout": 20410.0,
-            "profit": -23290.0,
-            "roi": 46.7,
-            "total_bets": 193,
+            "profit": -30290.0,
+            "roi": 40.26,
+            "total_bets": 207,
             "hits": 10
           },
           {
             "bet_type": "馬単",
-            "invested": 25900.0,
+            "invested": 30100.0,
             "payout": 1380.0,
-            "profit": -24520.0,
-            "roi": 5.33,
-            "total_bets": 121,
+            "profit": -28720.0,
+            "roi": 4.58,
+            "total_bets": 135,
             "hits": 1
           },
           {
             "bet_type": "三連複",
-            "invested": 50100.0,
+            "invested": 58500.0,
             "payout": 7110.0,
-            "profit": -42990.0,
-            "roi": 14.19,
-            "total_bets": 126,
+            "profit": -51390.0,
+            "roi": 12.15,
+            "total_bets": 140,
             "hits": 2
           },
           {
             "bet_type": "三連単",
-            "invested": 122600.0,
+            "invested": 136600.0,
             "payout": 17700.0,
-            "profit": -104900.0,
-            "roi": 14.44,
-            "total_bets": 193,
+            "profit": -118900.0,
+            "roi": 12.96,
+            "total_bets": 207,
             "hits": 1
           },
           {
@@ -32315,11 +35096,11 @@
             "payout": 0.0,
             "profit": 0.0,
             "roi": 0.0,
-            "total_bets": 122,
+            "total_bets": 136,
             "hits": 0
           }
         ],
-        "cumulative_profit": -212620.0
+        "cumulative_profit": -253470.0
       }
     ]
   },
@@ -41153,20 +43934,20 @@
       },
       {
         "date": "2026-05-03",
-        "invested": 50900.0,
+        "invested": 67800.0,
         "payout": 511600.0,
-        "profit": 460700.0,
-        "roi": 1005.11,
-        "total_bets": 120,
+        "profit": 443800.0,
+        "roi": 754.57,
+        "total_bets": 160,
         "hits": 29,
         "by_bet_type": [
           {
             "bet_type": "単勝",
-            "invested": 2900.0,
+            "invested": 3800.0,
             "payout": 6810.0,
-            "profit": 3910.0,
-            "roi": 234.83,
-            "total_bets": 15,
+            "profit": 3010.0,
+            "roi": 179.21,
+            "total_bets": 20,
             "hits": 3,
             "races": [
               {
@@ -41269,6 +44050,24 @@
                 "is_hit": 0
               },
               {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202608030401",
                 "race_name": "",
                 "venue": "京都",
@@ -41303,16 +44102,43 @@
                 "invested": 300.0,
                 "payout": 0.0,
                 "is_hit": 0
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 100.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 100.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 100.0,
+                "payout": 0.0,
+                "is_hit": 0
               }
             ]
           },
           {
             "bet_type": "複勝",
-            "invested": 4500.0,
+            "invested": 6000.0,
             "payout": 10050.0,
-            "profit": 5550.0,
-            "roi": 223.33,
-            "total_bets": 15,
+            "profit": 4050.0,
+            "roi": 167.5,
+            "total_bets": 20,
             "hits": 11,
             "races": [
               {
@@ -41415,6 +44241,24 @@
                 "is_hit": 0
               },
               {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202608030401",
                 "race_name": "",
                 "venue": "京都",
@@ -41449,16 +44293,43 @@
                 "invested": 300.0,
                 "payout": 330.0,
                 "is_hit": 1
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
               }
             ]
           },
           {
             "bet_type": "馬連",
-            "invested": 7500.0,
+            "invested": 10000.0,
             "payout": 34250.0,
-            "profit": 26750.0,
-            "roi": 456.67,
-            "total_bets": 15,
+            "profit": 24250.0,
+            "roi": 342.5,
+            "total_bets": 20,
             "hits": 5,
             "races": [
               {
@@ -41561,6 +44432,24 @@
                 "is_hit": 0
               },
               {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202608030401",
                 "race_name": "",
                 "venue": "京都",
@@ -41595,16 +44484,43 @@
                 "invested": 500.0,
                 "payout": 0.0,
                 "is_hit": 0
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
               }
             ]
           },
           {
             "bet_type": "ワイド",
-            "invested": 7500.0,
+            "invested": 10000.0,
             "payout": 16450.0,
-            "profit": 8950.0,
-            "roi": 219.33,
-            "total_bets": 15,
+            "profit": 6450.0,
+            "roi": 164.5,
+            "total_bets": 20,
             "hits": 6,
             "races": [
               {
@@ -41707,6 +44623,24 @@
                 "is_hit": 0
               },
               {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202608030401",
                 "race_name": "",
                 "venue": "京都",
@@ -41741,16 +44675,43 @@
                 "invested": 500.0,
                 "payout": 0.0,
                 "is_hit": 0
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 500.0,
+                "payout": 0.0,
+                "is_hit": 0
               }
             ]
           },
           {
             "bet_type": "馬単",
-            "invested": 4500.0,
+            "invested": 6000.0,
             "payout": 1380.0,
-            "profit": -3120.0,
-            "roi": 30.67,
-            "total_bets": 15,
+            "profit": -4620.0,
+            "roi": 23.0,
+            "total_bets": 20,
             "hits": 1,
             "races": [
               {
@@ -41853,6 +44814,24 @@
                 "is_hit": 0
               },
               {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202608030401",
                 "race_name": "",
                 "venue": "京都",
@@ -41887,16 +44866,43 @@
                 "invested": 300.0,
                 "payout": 0.0,
                 "is_hit": 0
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 300.0,
+                "payout": 0.0,
+                "is_hit": 0
               }
             ]
           },
           {
             "bet_type": "三連複",
-            "invested": 9000.0,
+            "invested": 12000.0,
             "payout": 3360.0,
-            "profit": -5640.0,
-            "roi": 37.33,
-            "total_bets": 15,
+            "profit": -8640.0,
+            "roi": 28.0,
+            "total_bets": 20,
             "hits": 1,
             "races": [
               {
@@ -41999,6 +45005,24 @@
                 "is_hit": 0
               },
               {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 600.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 600.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202608030401",
                 "race_name": "",
                 "venue": "京都",
@@ -42033,16 +45057,43 @@
                 "invested": 600.0,
                 "payout": 0.0,
                 "is_hit": 0
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 600.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 600.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 600.0,
+                "payout": 0.0,
+                "is_hit": 0
               }
             ]
           },
           {
             "bet_type": "三連単",
-            "invested": 15000.0,
+            "invested": 20000.0,
             "payout": 439300.0,
-            "profit": 424300.0,
-            "roi": 2928.67,
-            "total_bets": 15,
+            "profit": 419300.0,
+            "roi": 2196.5,
+            "total_bets": 20,
             "hits": 2,
             "races": [
               {
@@ -42145,6 +45196,24 @@
                 "is_hit": 0
               },
               {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 1000.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 1000.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202608030401",
                 "race_name": "",
                 "venue": "京都",
@@ -42179,6 +45248,33 @@
                 "invested": 1000.0,
                 "payout": 0.0,
                 "is_hit": 0
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 1000.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 1000.0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 1000.0,
+                "payout": 0.0,
+                "is_hit": 0
               }
             ]
           },
@@ -42188,7 +45284,7 @@
             "payout": 0.0,
             "profit": 0.0,
             "roi": 0.0,
-            "total_bets": 15,
+            "total_bets": 20,
             "hits": 0,
             "races": [
               {
@@ -42291,6 +45387,24 @@
                 "is_hit": 0
               },
               {
+                "race_id": "202605020405",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 5,
+                "invested": 0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202605020407",
+                "race_name": "",
+                "venue": "東京",
+                "race_number": 7,
+                "invested": 0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
                 "race_id": "202608030401",
                 "race_name": "",
                 "venue": "京都",
@@ -42325,11 +45439,38 @@
                 "invested": 0,
                 "payout": 0.0,
                 "is_hit": 0
+              },
+              {
+                "race_id": "202608030405",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 5,
+                "invested": 0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030407",
+                "race_name": "",
+                "venue": "京都",
+                "race_number": 7,
+                "invested": 0,
+                "payout": 0.0,
+                "is_hit": 0
+              },
+              {
+                "race_id": "202608030411",
+                "race_name": "天皇賞（春）",
+                "venue": "京都",
+                "race_number": 11,
+                "invested": 0,
+                "payout": 0.0,
+                "is_hit": 0
               }
             ]
           }
         ],
-        "cumulative_profit": 283089.0
+        "cumulative_profit": 266189.0
       }
     ],
     "monthly": [
@@ -42421,74 +45562,74 @@
       {
         "period": "2026-05",
         "label": "2026年5月",
-        "invested": 122000.0,
+        "invested": 138900.0,
         "payout": 530379.0,
-        "profit": 408379.0,
-        "roi": 434.74,
-        "total_bets": 368,
+        "profit": 391479.0,
+        "roi": 381.84,
+        "total_bets": 408,
         "hits": 52,
         "by_bet_type": [
           {
             "bet_type": "単勝",
-            "invested": 8600.0,
+            "invested": 9500.0,
             "payout": 8450.0,
-            "profit": -150.0,
-            "roi": 98.26,
-            "total_bets": 51,
+            "profit": -1050.0,
+            "roi": 88.95,
+            "total_bets": 56,
             "hits": 7
           },
           {
             "bet_type": "複勝",
-            "invested": 15300.0,
+            "invested": 16800.0,
             "payout": 27189.0,
-            "profit": 11889.0,
-            "roi": 177.71,
-            "total_bets": 51,
+            "profit": 10389.0,
+            "roi": 161.84,
+            "total_bets": 56,
             "hits": 30
           },
           {
             "bet_type": "馬連",
-            "invested": 14700.0,
+            "invested": 17200.0,
             "payout": 34250.0,
-            "profit": 19550.0,
-            "roi": 232.99,
-            "total_bets": 51,
+            "profit": 17050.0,
+            "roi": 199.13,
+            "total_bets": 56,
             "hits": 5
           },
           {
             "bet_type": "ワイド",
-            "invested": 14700.0,
+            "invested": 17200.0,
             "payout": 16450.0,
-            "profit": 1750.0,
-            "roi": 111.9,
-            "total_bets": 51,
+            "profit": -750.0,
+            "roi": 95.64,
+            "total_bets": 56,
             "hits": 6
           },
           {
             "bet_type": "馬単",
-            "invested": 4500.0,
+            "invested": 6000.0,
             "payout": 1380.0,
-            "profit": -3120.0,
-            "roi": 30.67,
-            "total_bets": 15,
+            "profit": -4620.0,
+            "roi": 23.0,
+            "total_bets": 20,
             "hits": 1
           },
           {
             "bet_type": "三連複",
-            "invested": 27600.0,
+            "invested": 30600.0,
             "payout": 3360.0,
-            "profit": -24240.0,
-            "roi": 12.17,
-            "total_bets": 47,
+            "profit": -27240.0,
+            "roi": 10.98,
+            "total_bets": 52,
             "hits": 1
           },
           {
             "bet_type": "三連単",
-            "invested": 36600.0,
+            "invested": 41600.0,
             "payout": 439300.0,
-            "profit": 402700.0,
-            "roi": 1200.27,
-            "total_bets": 51,
+            "profit": 397700.0,
+            "roi": 1056.01,
+            "total_bets": 56,
             "hits": 2
           },
           {
@@ -42497,85 +45638,85 @@
             "payout": 0.0,
             "profit": 0.0,
             "roi": 0.0,
-            "total_bets": 51,
+            "total_bets": 56,
             "hits": 0
           }
         ],
-        "cumulative_profit": 283089.0
+        "cumulative_profit": 266189.0
       }
     ],
     "yearly": [
       {
         "period": "2026",
         "label": "2026年",
-        "invested": 296600.0,
+        "invested": 313500.0,
         "payout": 579689.0,
-        "profit": 283089.0,
-        "roi": 195.44,
-        "total_bets": 1050,
+        "profit": 266189.0,
+        "roi": 184.91,
+        "total_bets": 1090,
         "hits": 115,
         "by_bet_type": [
           {
             "bet_type": "単勝",
-            "invested": 18800.0,
+            "invested": 19700.0,
             "payout": 15220.0,
-            "profit": -3580.0,
-            "roi": 80.96,
-            "total_bets": 147,
+            "profit": -4480.0,
+            "roi": 77.26,
+            "total_bets": 152,
             "hits": 13
           },
           {
             "bet_type": "複勝",
-            "invested": 44100.0,
+            "invested": 45600.0,
             "payout": 60479.0,
-            "profit": 16379.0,
-            "roi": 137.14,
-            "total_bets": 147,
+            "profit": 14879.0,
+            "roi": 132.63,
+            "total_bets": 152,
             "hits": 83
           },
           {
             "bet_type": "馬連",
-            "invested": 33900.0,
+            "invested": 36400.0,
             "payout": 36130.0,
-            "profit": 2230.0,
-            "roi": 106.58,
-            "total_bets": 147,
+            "profit": -270.0,
+            "roi": 99.26,
+            "total_bets": 152,
             "hits": 6
           },
           {
             "bet_type": "ワイド",
-            "invested": 33900.0,
+            "invested": 36400.0,
             "payout": 20070.0,
-            "profit": -13830.0,
-            "roi": 59.2,
-            "total_bets": 147,
+            "profit": -16330.0,
+            "roi": 55.14,
+            "total_bets": 152,
             "hits": 8
           },
           {
             "bet_type": "馬単",
-            "invested": 22500.0,
+            "invested": 24000.0,
             "payout": 1380.0,
-            "profit": -21120.0,
-            "roi": 6.13,
-            "total_bets": 105,
+            "profit": -22620.0,
+            "roi": 5.75,
+            "total_bets": 110,
             "hits": 1
           },
           {
             "bet_type": "三連複",
-            "invested": 49200.0,
+            "invested": 52200.0,
             "payout": 7110.0,
-            "profit": -42090.0,
-            "roi": 14.45,
-            "total_bets": 117,
+            "profit": -45090.0,
+            "roi": 13.62,
+            "total_bets": 122,
             "hits": 2
           },
           {
             "bet_type": "三連単",
-            "invested": 94200.0,
+            "invested": 99200.0,
             "payout": 439300.0,
-            "profit": 345100.0,
-            "roi": 466.35,
-            "total_bets": 147,
+            "profit": 340100.0,
+            "roi": 442.84,
+            "total_bets": 152,
             "hits": 2
           },
           {
@@ -42584,11 +45725,11 @@
             "payout": 0.0,
             "profit": 0.0,
             "roi": 0.0,
-            "total_bets": 93,
+            "total_bets": 98,
             "hits": 0
           }
         ],
-        "cumulative_profit": 283089.0
+        "cumulative_profit": 266189.0
       }
     ]
   }

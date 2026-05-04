@@ -12,6 +12,32 @@
   "year": "2026",
   "results": [
     {
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "ルディック",
+      "horse_id": "2021110008",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "小沢大仁",
+      "trainer": "高野友和",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "Into Mischief",
+      "dam": "ミスベジルMiss Besilu(米)",
+      "dam_sire": "Medaglia d'Oro",
+      "honmei_score": 0.0673,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 4.436,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -374,35 +400,58 @@
       "manji_ev": 1.1936,
       "odds_vs_morning": null,
       "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 15,
-      "horse_name": "ルディック",
-      "horse_id": "2021110008",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "小沢大仁",
-      "trainer": "高野友和",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "Into Mischief",
-      "dam": "ミスベジルMiss Besilu(米)",
-      "dam_sire": "Medaglia d'Oro",
-      "honmei_score": 0.0673,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 4.436,
-      "odds_vs_morning": null,
-      "odds_velocity": null
     }
   ],
-  "payouts": [],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "15",
+      "payout": 15000,
+      "popularity": null
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "1",
+      "payout": 43008,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "4",
+      "payout": 8100,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3",
+      "payout": 60000,
+      "popularity": 1
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "4",
+      "payout": 10000,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "18-60",
+      "payout": 2503,
+      "popularity": 100
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "9-90",
+      "payout": 80304,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "10",
+      "payout": 50009,
+      "popularity": null
+    }
+  ],
   "predictions": [
     {
       "prediction_id": 21405,
@@ -414,10 +463,10 @@
       "combination_json": "[[1, 7, 8], [1, 7, 9]]",
       "notes": "合成EV最大=2.35 2点 馬番=[(1, 7, 8), (1, 7, 9)]",
       "created_at": "2026-05-03 08:11:56",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "エコロガイア",
@@ -473,10 +522,10 @@
       "combination_json": "[[1]]",
       "notes": "確率1位 P(win)=0.13 odds=1.0 EV=0.13",
       "created_at": "2026-05-03 14:40:11",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "エコロガイア",
@@ -497,10 +546,10 @@
       "combination_json": "[[1], [12], [9]]",
       "notes": "上位3頭を複勝",
       "created_at": "2026-05-03 14:40:11",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "エコロガイア",
@@ -535,10 +584,10 @@
       "combination_json": "[[1, 12], [1, 9], [1, 6], [1, 5], [1, 10]]",
       "notes": "軸1番×相手5頭フォーメーション Harville最大=0.010",
       "created_at": "2026-05-03 14:40:11",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "エコロガイア",
@@ -622,10 +671,10 @@
       "combination_json": "[[1, 12], [1, 9], [1, 6], [1, 5], [1, 10]]",
       "notes": "軸1番×相手5頭ワイド Harville最大=0.010",
       "created_at": "2026-05-03 14:40:11",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "エコロガイア",
@@ -709,10 +758,10 @@
       "combination_json": "[[1, 12], [1, 9], [1, 6]]",
       "notes": "軸1番→相手3頭フォーメーション Harville最大=0.005",
       "created_at": "2026-05-03 14:40:11",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "エコロガイア",
@@ -768,10 +817,10 @@
       "combination_json": "[[1, 12, 9], [1, 12, 6], [1, 12, 5], [1, 12, 10], [1, 12, 2], [1, 9, 12], [1, 9, 6], [1, 9, 5], [1, 9, 10], [1, 9, 2], [1, 6, 12], [1, 6, 9]]",
       "notes": "1着固定フォーメーション 軸=1番 12点 相手=[12, 9, 6, 5, 10, 2] Harville最大=0.0022",
       "created_at": "2026-05-03 14:40:11",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1000.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "エコロガイア",
@@ -890,10 +939,10 @@
       "combination_json": "[[15]]",
       "notes": "確率1位(卍) EV=4.44 odds=1.0",
       "created_at": "2026-05-03 14:40:11",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 1,
+      "payout": 15000.0,
+      "profit": 14900.0,
+      "roi": 15000.0,
       "horses": [
         {
           "horse_name": "ルディック",
@@ -914,10 +963,10 @@
       "combination_json": "[[15], [13], [5]]",
       "notes": "確率上位3頭を複勝",
       "created_at": "2026-05-03 14:40:11",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ルディック",
@@ -952,10 +1001,10 @@
       "combination_json": "[[13, 15], [5, 15], [6, 15], [12, 15], [1, 15]]",
       "notes": "軸15番×相手5頭フォーメーション Harville最大=0.078",
       "created_at": "2026-05-03 14:40:11",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "エティエンヌ",
@@ -1039,10 +1088,10 @@
       "combination_json": "[[13, 15], [5, 15], [6, 15], [12, 15], [1, 15]]",
       "notes": "軸15番×相手5頭ワイド Harville最大=0.078",
       "created_at": "2026-05-03 14:40:11",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "エティエンヌ",
@@ -1126,10 +1175,10 @@
       "combination_json": "[[15, 13], [15, 5], [15, 6]]",
       "notes": "軸15番→相手3頭フォーメーション Harville最大=0.039",
       "created_at": "2026-05-03 14:40:11",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ルディック",
@@ -1185,10 +1234,10 @@
       "combination_json": "[[12, 13, 15]]",
       "notes": "合成EV=5.00 Harville=0.0261 馬番=(12, 13, 15)",
       "created_at": "2026-05-03 14:40:11",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "スリーピース",
@@ -1223,10 +1272,10 @@
       "combination_json": "[[1, 9, 12], [1, 6, 12], [1, 5, 12], [1, 6, 9], [1, 5, 9]]",
       "notes": "[Oracle] 的中確率最大 5点 P最大=0.0699 馬番=[(1, 9, 12), (1, 6, 12), (1, 5, 12), (1, 6, 9), (1, 5, 9)]",
       "created_at": "2026-05-03 14:40:11",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "エコロガイア",
@@ -1261,10 +1310,10 @@
       "combination_json": "[[1, 12, 9], [1, 9, 12], [12, 1, 9], [12, 9, 1], [9, 1, 12], [9, 12, 1], [1, 12, 6], [1, 12, 5], [1, 9, 6], [1, 9, 5], [1, 6, 12], [1, 6, 9]]",
       "notes": "[Oracle] 的中確率最大 12点 P最大=0.0117 馬番=[(1, 12, 9), (1, 9, 12), (12, 1, 9), (12, 9, 1), (9, 1, 12), (9, 12, 1), (1, 12, 6), (1, 12, 5), (1, 9, 6), (1, 9, 5), (1, 6, 12), (1, 6, 9)]",
       "created_at": "2026-05-03 14:40:11",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "エコロガイア",
@@ -1299,10 +1348,10 @@
       "combination_json": "[]",
       "notes": "全馬モデルスコア（馬分析タブ用）",
       "created_at": "2026-05-03 14:40:11",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "スリーピース",
@@ -1421,10 +1470,10 @@
       "combination_json": "[[1, 12], [1, 9], [9, 12], [1, 6], [6, 12], [1, 5], [5, 12]]",
       "notes": "2軸マルチ 軸=1,12 相手=[9, 6, 5] Harville最大=0.0274",
       "created_at": "2026-05-03 14:40:11",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -700.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "エコロガイア",
@@ -1452,10 +1501,10 @@
       "combination_json": "[[1, 12], [12, 1], [1, 9], [12, 9], [1, 6], [12, 6], [1, 5], [12, 5]]",
       "notes": "2軸マルチ 軸=1,12 相手=[9, 6, 5] Harville最大=0.0137",
       "created_at": "2026-05-03 14:40:11",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -800.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "エコロガイア",
@@ -1483,10 +1532,10 @@
       "combination_json": "[[1, 12, 9], [12, 1, 9], [1, 9, 12], [12, 9, 1], [1, 12, 6], [12, 1, 6], [1, 6, 12], [12, 6, 1], [1, 12, 5], [12, 1, 5], [1, 5, 12], [12, 5, 1]]",
       "notes": "2軸マルチ 軸=1,12 相手=[9, 6, 5] 12点 Harville最大=0.0019",
       "created_at": "2026-05-03 14:40:11",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "エコロガイア",
