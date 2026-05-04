@@ -812,7 +812,16 @@ def run_daemon() -> None:
     logger.info("UMA-LOGI AI スケジューラー起動 — Ctrl+C で終了")
     try:
         while True:
-            schedule.run_pending()
+            try:
+                schedule.run_pending()
+            except Exception as e:
+                logger.critical(
+                    "スケジューラー未処理例外: %s", e, exc_info=True
+                )
+                _send_discord(
+                    f"🚨 [UMALOGI] スケジューラー例外 — デーモンは継続中\n"
+                    f"`{type(e).__name__}: {e}`"
+                )
             time.sleep(30)
     except KeyboardInterrupt:
         logger.info("スケジューラー停止")

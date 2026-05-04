@@ -313,6 +313,58 @@ def _is_hit(
     return False
 
 
+def _is_hit_by_numbers(
+    bet_type: str,
+    predicted_numbers: list[int],
+    rank_by_number: dict[int, int],
+) -> bool:
+    """馬番整数のみによる厳格な的中判定（文字列比較なし）。"""
+    pnums = [n for n in predicted_numbers if n > 0]
+    if not pnums:
+        return False
+
+    if bet_type == "単勝":
+        return any(rank_by_number.get(n) == 1 for n in pnums)
+
+    elif bet_type == "複勝":
+        return any(rank_by_number.get(n) in _PLACE_RANKS for n in pnums)
+
+    elif bet_type == "馬連":
+        if len(pnums) < 2:
+            return False
+        r0 = rank_by_number.get(pnums[0])
+        r1 = rank_by_number.get(pnums[1])
+        if r0 not in {1, 2} or r1 not in {1, 2}:
+            return False
+        return not (r0 == 2 and r1 == 2)
+
+    elif bet_type == "ワイド":
+        if len(pnums) < 2:
+            return False
+        place_nums = {n for n, r in rank_by_number.items() if r in _PLACE_RANKS}
+        return len(set(pnums) & place_nums) >= 2
+
+    elif bet_type == "馬単":
+        if len(pnums) < 2:
+            return False
+        return rank_by_number.get(pnums[0]) == 1 and rank_by_number.get(pnums[1]) == 2
+
+    elif bet_type == "三連複":
+        if len(pnums) < 3:
+            return False
+        top3_nums = {n for n, r in rank_by_number.items() if r in {1, 2, 3}}
+        return len(set(pnums[:3])) == 3 and set(pnums[:3]).issubset(top3_nums)
+
+    elif bet_type == "三連単":
+        if len(pnums) < 3:
+            return False
+        return (rank_by_number.get(pnums[0]) == 1 and
+                rank_by_number.get(pnums[1]) == 2 and
+                rank_by_number.get(pnums[2]) == 3)
+
+    return False
+
+
 def _has_refund(
     horse_names: list[str],
     horse_numbers: dict[str, int],
@@ -486,7 +538,14 @@ class Evaluator:
                             hit = True
                             payout_per_100 = max(payout_per_100, p)
             else:
-                hit = _is_hit(bet_type, horse_names, result_map)
+                # combination_json なし: 馬番整数で厳格判定（文字列比較禁止）
+                predicted_nums = [horse_numbers[n] for n in horse_names if n in horse_numbers]
+                rank_by_num: dict[int, int] = {
+                    horse_numbers[n]: r
+                    for n, r in result_map.items()
+                    if n in horse_numbers and r is not None
+                }
+                hit = _is_hit_by_numbers(bet_type, predicted_nums, rank_by_num)
                 if hit:
                     combo_key = _build_combination_key(bet_type, horse_names, horse_numbers)
                     payout_per_100 = _lookup_payout(bet_type, combo_key, payouts)
@@ -497,7 +556,7 @@ class Evaluator:
                             errors.append(
                                 f"pid={pid} {bet_type}: combination 解決不可、"
                                 f"払戻平均 {payout_per_100} を使用"
-                        )
+                            )
 
             actual_payout = (payout_per_100 / 100.0) * invested if hit else 0.0
             profit        = actual_payout - invested

@@ -1926,6 +1926,11 @@ class JVDataLoader:
         extend_db_schema(conn)
         return conn
 
+    # JVREAD_DOWNLOADING が続く最大秒数（この時間を超えたらセッション再起動）
+    _MAX_DOWNLOAD_WAIT_SEC: int = 300
+    # セッション再起動の最大リトライ回数
+    _MAX_RETRIES: int = 3
+
     def load(
         self,
         dataspec: str,
@@ -1948,77 +1953,117 @@ class JVDataLoader:
 
         _BATCH_SIZE = 500
 
-        conn       = self._get_conn()
-        batch: list[dict] = []
-        stats: dict[str, int] = {
+        conn = self._get_conn()
+
+        _EMPTY_STATS: dict[str, int] = {
             "ra": 0, "jg": 0, "se": 0, "payout": 0, "tc": 0, "hc": 0,
             "bt": 0, "hn": 0, "um": 0, "ks": 0, "ch": 0, "skipped": 0,
         }
-        read_count = 0
 
-        with JVLinkClient(self._sid) as client:
-            open_code = client.open(dataspec, fromtime, option)
-            if open_code < 0:
-                # -303 = データなし / その他負値 = 取得不可 → 空statsを返してスキップ
-                conn.close()
-                logger.info(
-                    "JVOpen %s fromtime=%s option=%d → code=%d のためスキップ",
-                    dataspec, fromtime, option, open_code,
+        last_error: Exception | None = None
+
+        for attempt in range(self._MAX_RETRIES):
+            batch: list[dict] = []
+            stats: dict[str, int] = dict(_EMPTY_STATS)
+            read_count = 0
+            open_code  = -1
+
+            try:
+                with JVLinkClient(self._sid) as client:
+                    open_code = client.open(dataspec, fromtime, option)
+                    if open_code < 0:
+                        conn.close()
+                        logger.info(
+                            "JVOpen %s fromtime=%s option=%d → code=%d のためスキップ",
+                            dataspec, fromtime, option, open_code,
+                        )
+                        return {
+                            **_EMPTY_STATS,
+                            "total_read": 0,
+                            "open_code": open_code,
+                        }
+
+                    download_wait_sec = 0
+
+                    while True:
+                        code, data = client.read_record()
+
+                        if code == JVREAD_EOF:
+                            break
+
+                        if code == JVREAD_FILECHANGE:
+                            download_wait_sec = 0
+                            continue
+
+                        if code == JVREAD_DOWNLOADING:
+                            download_wait_sec += 1
+                            if download_wait_sec >= self._MAX_DOWNLOAD_WAIT_SEC:
+                                raise TimeoutError(
+                                    f"JVLink ダウンロード待機 {download_wait_sec}s 超過 "
+                                    f"(dataspec={dataspec})"
+                                )
+                            logger.debug(
+                                "ダウンロード待機中 (code=-3) … %ds/%ds",
+                                download_wait_sec, self._MAX_DOWNLOAD_WAIT_SEC,
+                            )
+                            time.sleep(1)
+                            continue
+
+                        download_wait_sec = 0
+
+                        if code < 0:
+                            raise RuntimeError(f"JVRead エラー: code={code}")
+
+                        if data:
+                            rec = parse_record(data, debug=self._debug)
+                            if rec:
+                                batch.append(rec)
+                        read_count += 1
+
+                        if len(batch) >= _BATCH_SIZE:
+                            partial = save_records_to_db(batch, conn)
+                            for k in stats:
+                                stats[k] += partial.get(k, 0)
+                            batch = []
+                            logger.info(
+                                "バッチ保存完了: 累計 %d レコード読み込み済み", read_count
+                            )
+
+                    if batch:
+                        partial = save_records_to_db(batch, conn)
+                        for k in stats:
+                            stats[k] += partial.get(k, 0)
+
+                # with 正常終了 → リトライ不要
+                break
+
+            except TimeoutError as e:
+                last_error = e
+                logger.warning(
+                    "JVLink タイムアウト (attempt %d/%d): %s",
+                    attempt + 1, self._MAX_RETRIES, e,
                 )
-                return {
-                    "ra": 0, "se": 0, "payout": 0, "tc": 0, "hc": 0,
-                    "bt": 0, "hn": 0, "um": 0, "ks": 0, "ch": 0,
-                    "skipped": 0, "total_read": 0, "open_code": open_code,
-                }
-
-            while True:
-                code, data = client.read_record()
-
-                if code == JVREAD_EOF:
-                    break
-
-                if code == JVREAD_FILECHANGE:
-                    continue
-
-                if code == JVREAD_DOWNLOADING:
-                    logger.debug("ダウンロード待機中 (code=-3)…")
-                    time.sleep(1)
-                    continue
-
-                if code < 0:
-                    raise RuntimeError(f"JVRead エラー: code={code}")
-
-                if data:
-                    rec = parse_record(data, debug=self._debug)
-                    if rec:
-                        batch.append(rec)
-                read_count += 1
-
-                if len(batch) >= _BATCH_SIZE:
-                    partial = save_records_to_db(batch, conn)
-                    for k in stats:
-                        stats[k] += partial.get(k, 0)
-                    batch = []
-                    logger.info("バッチ保存完了: 累計 %d レコード読み込み済み", read_count)
-
-            if batch:
-                partial = save_records_to_db(batch, conn)
-                for k in stats:
-                    stats[k] += partial.get(k, 0)
+                if attempt < self._MAX_RETRIES - 1:
+                    logger.info("JVLink セッションを再起動して再試行します … 10秒待機")
+                    time.sleep(10)
+                else:
+                    logger.error("JVLink リトライ上限到達。処理を中断します: %s", e)
+                    conn.close()
+                    raise
 
         conn.close()
 
-        stats['total_read'] = read_count
-        stats['open_code']  = open_code
+        stats["total_read"] = read_count
+        stats["open_code"]  = open_code
         logger.info(
             "JV-Data 取得完了: read=%d "
             "RA=%d JG=%d SE=%d payout=%d TC=%d HC=%d "
             "BT=%d HN=%d UM=%d KS=%d CH=%d skip=%d",
             read_count,
-            stats['ra'], stats['jg'], stats['se'], stats['payout'],
-            stats['tc'], stats['hc'],
-            stats['bt'], stats['hn'], stats['um'],
-            stats['ks'], stats['ch'], stats['skipped'],
+            stats["ra"], stats["jg"], stats["se"], stats["payout"],
+            stats["tc"], stats["hc"],
+            stats["bt"], stats["hn"], stats["um"],
+            stats["ks"], stats["ch"], stats["skipped"],
         )
         return stats
 
