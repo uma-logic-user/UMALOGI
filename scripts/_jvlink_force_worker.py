@@ -40,6 +40,7 @@ from src.scraper.jravan_client import (
     JVLinkClient,
     OPT_NORMAL,
     OPT_SETUP,
+    OPT_TODAY,
     OPT_STORED,
     parse_record,
     save_records_to_db,
