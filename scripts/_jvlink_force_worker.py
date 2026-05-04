@@ -198,8 +198,8 @@ def _parse_args() -> argparse.Namespace:
                    metavar="YYYYMMDD",
                    help="取得開始日 (例: 20210101)")
     p.add_argument("--option",     type=int, default=OPT_NORMAL,
-                   choices=[OPT_NORMAL, OPT_SETUP, OPT_STORED],
-                   help="1=NORMAL(サーバー直取得) 2=SETUP 4=STORED(キャッシュ) (デフォルト: 1)")
+                   choices=[OPT_NORMAL, OPT_SETUP, OPT_TODAY, OPT_STORED],
+                   help="1=NORMAL(サーバー直取得) 2=SETUP 3=TODAY(当日) 4=STORED(キャッシュ) (デフォルト: 1)")
     p.add_argument("--batch-size", type=int, default=DEFAULT_BATCH_SIZE,
                    help=f"強制コミット件数 (デフォルト: {DEFAULT_BATCH_SIZE})")
     return p.parse_args()
