@@ -12,21 +12,47 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 16,
+      "horse_name": "オモイヲノセテ",
+      "horse_id": null,
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "横山琉",
+      "trainer": "栗東高橋忠",
+      "finish_time": "2:02.4",
+      "margin": "@",
+      "win_odds": 8.4,
+      "popularity": 5,
+      "horse_weight": 460,
+      "horse_weight_diff": 8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.043,
+      "ev_score": 0.6065,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.2765,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 2,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "オートカリテ",
-      "horse_id": "2023103555",
+      "horse_id": null,
       "sex_age": "牝3",
       "weight_carried": 55.0,
-      "jockey": "富田暁",
-      "trainer": "牧光二",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "jockey": "富田",
+      "trainer": "美浦牧",
+      "finish_time": "2:02.5",
+      "margin": "@",
+      "win_odds": 3.0,
+      "popularity": 1,
+      "horse_weight": 516,
+      "horse_weight_diff": 6,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -38,229 +64,21 @@
       "odds_velocity": null
     },
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 2,
-      "horse_name": "トレンドラド",
-      "horse_id": "2023106087",
-      "sex_age": "牝1",
-      "weight_carried": 52.0,
-      "jockey": "石田拓郎",
-      "trainer": "伊藤大士",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0279,
-      "ev_score": 1.2692,
-      "kelly_fraction": 0.0006,
-      "manji_ev": 1.1472,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "サウンドファミリエ",
-      "horse_id": "2023104254",
-      "sex_age": "牝4",
-      "weight_carried": 55.0,
-      "jockey": "石川裕紀",
-      "trainer": "和田正一",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.043,
-      "ev_score": 2.8645,
-      "kelly_fraction": 0.0028,
-      "manji_ev": 0.4444,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 4,
-      "horse_name": "フィールライクユー",
-      "horse_id": "2023106157",
-      "sex_age": "牝1",
-      "weight_carried": 53.0,
-      "jockey": "舟山瑠泉",
-      "trainer": "森田直行",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0279,
-      "ev_score": 0.7364,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.2252,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 5,
-      "horse_name": "ティンブロポップ",
-      "horse_id": "2023102065",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "ゴンサル",
-      "trainer": "和田勇介",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0387,
-      "ev_score": 1.7116,
-      "kelly_fraction": 0.0016,
-      "manji_ev": 0.3146,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 6,
-      "horse_name": "ピアス",
-      "horse_id": "2023105443",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "丸山元気",
-      "trainer": "森一誠",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.1448,
-      "ev_score": 0.7966,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.8724,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 7,
-      "horse_name": "リベルタアーラ",
-      "horse_id": "2023107126",
-      "sex_age": "牝4",
-      "weight_carried": 52.0,
-      "jockey": "石神深道",
-      "trainer": "深山雅史",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0279,
-      "ev_score": 0.8675,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.3655,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 8,
-      "horse_name": "ワイドバヴァール",
-      "horse_id": "2023103910",
-      "sex_age": "牝1",
-      "weight_carried": 55.0,
-      "jockey": "亀田温心",
-      "trainer": "奥村豊",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.1021,
-      "ev_score": 4.1029,
-      "kelly_fraction": 0.0079,
-      "manji_ev": 0.8176,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 9,
-      "horse_name": "コスモエーヴィヒ",
-      "horse_id": "2023106481",
-      "sex_age": "牝7",
-      "weight_carried": 55.0,
-      "jockey": "菊沢一樹",
-      "trainer": "伊藤大士",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0673,
-      "ev_score": 1.3937,
-      "kelly_fraction": 0.002,
-      "manji_ev": 0.3287,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
+      "rank": 3,
       "gate_number": 5,
       "horse_number": 10,
       "horse_name": "マサハヤルージュ",
-      "horse_id": "2023103357",
+      "horse_id": null,
       "sex_age": "牝3",
       "weight_carried": 52.0,
-      "jockey": "和田陽希",
-      "trainer": "千田輝彦",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "jockey": "▲和田陽",
+      "trainer": "栗東千田",
+      "finish_time": "2:02.5",
+      "margin": "@",
+      "win_odds": 63.9,
+      "popularity": 12,
+      "horse_weight": 424,
+      "horse_weight_diff": 0,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -272,47 +90,21 @@
       "odds_velocity": null
     },
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 11,
-      "horse_name": "チョコスコーン",
-      "horse_id": "2023107263",
-      "sex_age": "牝3",
-      "weight_carried": 53.0,
-      "jockey": "田山旺佑",
-      "trainer": "林徹",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.03,
-      "ev_score": 0.8271,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.3399,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
+      "rank": 4,
       "gate_number": 6,
       "horse_number": 12,
       "horse_name": "キコリータ",
-      "horse_id": "2023103321",
-      "sex_age": "牝4",
+      "horse_id": null,
+      "sex_age": "牝3",
       "weight_carried": 55.0,
-      "jockey": "小沢大仁",
-      "trainer": "田中勝春",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "jockey": "小沢",
+      "trainer": "美浦田中勝",
+      "finish_time": "2:02.6",
+      "margin": "@",
+      "win_odds": 5.5,
+      "popularity": 3,
+      "horse_weight": 412,
+      "horse_weight_diff": -4,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -324,47 +116,73 @@
       "odds_velocity": null
     },
     {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 13,
-      "horse_name": "ソフィア",
-      "horse_id": "2023107088",
+      "rank": 5,
+      "gate_number": 2,
+      "horse_number": 4,
+      "horse_name": "フィールライクユー",
+      "horse_id": null,
       "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "丹内祐次",
-      "trainer": "鹿戸雄一",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "weight_carried": 53.0,
+      "jockey": "△舟山",
+      "trainer": "栗東森田",
+      "finish_time": "2:02.6",
+      "margin": "@",
+      "win_odds": 65.2,
+      "popularity": 13,
+      "horse_weight": 396,
+      "horse_weight_diff": 0,
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.0387,
-      "ev_score": 0.426,
+      "honmei_score": 0.0279,
+      "ev_score": 0.7364,
       "kelly_fraction": 0.0,
-      "manji_ev": 0.2987,
+      "manji_ev": 0.2252,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
     {
-      "rank": null,
+      "rank": 6,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "サウンドファミリエ",
+      "horse_id": null,
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "石川",
+      "trainer": "美浦和田郎",
+      "finish_time": "2:02.7",
+      "margin": "@",
+      "win_odds": 159.0,
+      "popularity": 16,
+      "horse_weight": 408,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.043,
+      "ev_score": 2.8645,
+      "kelly_fraction": 0.0028,
+      "manji_ev": 0.4444,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 7,
       "gate_number": 7,
       "horse_number": 14,
       "horse_name": "フロンテアムーン",
-      "horse_id": "2023102172",
+      "horse_id": null,
       "sex_age": "牝3",
       "weight_carried": 52.0,
-      "jockey": "上里直汰",
-      "trainer": "奥村武",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "jockey": "▲上里",
+      "trainer": "美浦奥村武",
+      "finish_time": "2:02.7",
+      "margin": "@",
+      "win_odds": 14.4,
+      "popularity": 6,
+      "horse_weight": 408,
+      "horse_weight_diff": 8,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -376,21 +194,177 @@
       "odds_velocity": null
     },
     {
-      "rank": null,
+      "rank": 8,
+      "gate_number": 7,
+      "horse_number": 13,
+      "horse_name": "ソフィア",
+      "horse_id": null,
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "丹内",
+      "trainer": "美浦鹿戸",
+      "finish_time": "2:03.0",
+      "margin": "@",
+      "win_odds": 7.9,
+      "popularity": 4,
+      "horse_weight": 448,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0387,
+      "ev_score": 0.426,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.2987,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 9,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "ピアス",
+      "horse_id": null,
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "丸山",
+      "trainer": "美浦森一",
+      "finish_time": "2:03.1",
+      "margin": "@",
+      "win_odds": 4.0,
+      "popularity": 2,
+      "horse_weight": 462,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1448,
+      "ev_score": 0.7966,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.8724,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 10,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "リベルタアーラ",
+      "horse_id": null,
+      "sex_age": "牝3",
+      "weight_carried": 52.0,
+      "jockey": "▲石神道",
+      "trainer": "美浦深山",
+      "finish_time": "2:03.1",
+      "margin": "@",
+      "win_odds": 109.8,
+      "popularity": 14,
+      "horse_weight": 408,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0279,
+      "ev_score": 0.8675,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.3655,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 11,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "ティンブロポップ",
+      "horse_id": null,
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "ゴンサ",
+      "trainer": "美浦和田勇",
+      "finish_time": "2:03.1",
+      "margin": "@",
+      "win_odds": 119.1,
+      "popularity": 15,
+      "horse_weight": 426,
+      "horse_weight_diff": -14,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0387,
+      "ev_score": 1.7116,
+      "kelly_fraction": 0.0016,
+      "manji_ev": 0.3146,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 12,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "チョコスコーン",
+      "horse_id": null,
+      "sex_age": "牝3",
+      "weight_carried": 53.0,
+      "jockey": "△田山",
+      "trainer": "美浦林",
+      "finish_time": "2:03.4",
+      "margin": "@",
+      "win_odds": 29.5,
+      "popularity": 7,
+      "horse_weight": 404,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.03,
+      "ev_score": 0.8271,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.3399,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 13,
+      "gate_number": 4,
+      "horse_number": 8,
+      "horse_name": "ワイドバヴァール",
+      "horse_id": null,
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "亀田",
+      "trainer": "栗東奥村豊",
+      "finish_time": "2:03.4",
+      "margin": "@",
+      "win_odds": 46.6,
+      "popularity": 10,
+      "horse_weight": 460,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1021,
+      "ev_score": 4.1029,
+      "kelly_fraction": 0.0079,
+      "manji_ev": 0.8176,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 14,
       "gate_number": 8,
       "horse_number": 15,
       "horse_name": "ミズノミヤコ",
-      "horse_id": "2023103051",
-      "sex_age": "牝4",
+      "horse_id": null,
+      "sex_age": "牝3",
       "weight_carried": 51.0,
-      "jockey": "河原田菜",
-      "trainer": "青木孝文",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "jockey": "★河原田",
+      "trainer": "美浦青木",
+      "finish_time": "2:03.5",
+      "margin": "@",
+      "win_odds": 39.4,
+      "popularity": 8,
+      "horse_weight": 410,
+      "horse_weight_diff": -6,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -402,33 +376,132 @@
       "odds_velocity": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 16,
-      "horse_name": "オモイヲノセテ",
-      "horse_id": "2023103996",
+      "rank": 15,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "コスモエーヴィヒ",
+      "horse_id": null,
       "sex_age": "牝3",
       "weight_carried": 55.0,
-      "jockey": "横山琉人",
-      "trainer": "高橋義忠",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "jockey": "菊沢",
+      "trainer": "美浦伊藤大",
+      "finish_time": "2:03.7",
+      "margin": "@",
+      "win_odds": 48.2,
+      "popularity": 11,
+      "horse_weight": 448,
+      "horse_weight_diff": -2,
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.043,
-      "ev_score": 0.6065,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.2765,
+      "honmei_score": 0.0673,
+      "ev_score": 1.3937,
+      "kelly_fraction": 0.002,
+      "manji_ev": 0.3287,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 16,
+      "gate_number": 1,
+      "horse_number": 2,
+      "horse_name": "トレンドラド",
+      "horse_id": null,
+      "sex_age": "牝3",
+      "weight_carried": 52.0,
+      "jockey": "▲石田",
+      "trainer": "美浦伊藤大",
+      "finish_time": "2:03.8",
+      "margin": "@",
+      "win_odds": 41.1,
+      "popularity": 9,
+      "horse_weight": 444,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0279,
+      "ev_score": 1.2692,
+      "kelly_fraction": 0.0006,
+      "manji_ev": 1.1472,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     }
   ],
-  "payouts": [],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "16",
+      "payout": 840,
+      "popularity": 5
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "1",
+      "payout": 150,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "16",
+      "payout": 230,
+      "popularity": 4
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "10",
+      "payout": 1250,
+      "popularity": 12
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "1-8",
+      "payout": 1110,
+      "popularity": 5
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1-16",
+      "payout": 1340,
+      "popularity": 2
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1-16",
+      "payout": 480,
+      "popularity": 2
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1-10",
+      "payout": 3380,
+      "popularity": 35
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "10-16",
+      "payout": 7280,
+      "popularity": 56
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "16→1",
+      "payout": 3710,
+      "popularity": 13
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-10-16",
+      "payout": 27990,
+      "popularity": 81
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "16→1→10",
+      "payout": 167150,
+      "popularity": 468
+    }
+  ],
   "predictions": [
     {
       "prediction_id": 21220,
@@ -440,10 +513,10 @@
       "combination_json": "[[15]]",
       "notes": "確率1位 P(win)=0.32 odds=24.8 EV=5.00",
       "created_at": "2026-05-03 08:11:51",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -400.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ミズノミヤコ",
@@ -464,10 +537,10 @@
       "combination_json": "[[15], [6], [10]]",
       "notes": "上位3頭を複勝",
       "created_at": "2026-05-03 08:11:51",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 1,
+      "payout": 3750.0,
+      "profit": 3450.0,
+      "roi": 1250.0,
       "horses": [
         {
           "horse_name": "ミズノミヤコ",
@@ -502,10 +575,10 @@
       "combination_json": "[[6, 15], [10, 15], [8, 15], [9, 15], [14, 15]]",
       "notes": "軸15番×相手5頭フォーメーション Harville最大=0.059",
       "created_at": "2026-05-03 08:11:51",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ピアス",
@@ -589,10 +662,10 @@
       "combination_json": "[[6, 15], [10, 15], [8, 15], [9, 15], [14, 15]]",
       "notes": "軸15番×相手5頭ワイド Harville最大=0.059",
       "created_at": "2026-05-03 08:11:51",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ピアス",
@@ -676,10 +749,10 @@
       "combination_json": "[[15, 6], [15, 10], [15, 8]]",
       "notes": "軸15番→相手3頭フォーメーション Harville最大=0.030",
       "created_at": "2026-05-03 08:11:51",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ミズノミヤコ",
@@ -735,10 +808,10 @@
       "combination_json": "[[6, 10, 15], [6, 8, 15]]",
       "notes": "合成EV最大=5.00 2点 馬番=[(6, 10, 15), (6, 8, 15)]",
       "created_at": "2026-05-03 08:11:51",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ピアス",
@@ -794,10 +867,10 @@
       "combination_json": "[[15, 6, 8], [15, 8, 6], [15, 6, 10], [15, 10, 6], [15, 6, 9], [15, 9, 6], [15, 10, 8], [15, 8, 10], [15, 6, 14], [15, 14, 6], [15, 8, 9], [15, 9, 8]]",
       "notes": "1着固定フォーメーション 軸=15番 12点 相手=[6, 10, 8, 9, 14, 1] Harville最大=0.0247",
       "created_at": "2026-05-03 08:11:51",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1000.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ミズノミヤコ",
@@ -916,10 +989,10 @@
       "combination_json": "[[15]]",
       "notes": "確率1位(卍) EV=1.27 odds=24.8",
       "created_at": "2026-05-03 08:11:51",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ミズノミヤコ",
@@ -940,10 +1013,10 @@
       "combination_json": "[[15], [2], [6]]",
       "notes": "確率上位3頭を複勝",
       "created_at": "2026-05-03 08:11:51",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ミズノミヤコ",
@@ -978,10 +1051,10 @@
       "combination_json": "[[2, 15], [6, 15], [8, 15], [10, 15], [3, 15]]",
       "notes": "軸15番×相手5頭フォーメーション Harville最大=0.052",
       "created_at": "2026-05-03 08:11:51",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "トレンドラド",
@@ -1065,10 +1138,10 @@
       "combination_json": "[[2, 15], [6, 15], [8, 15], [10, 15], [3, 15]]",
       "notes": "軸15番×相手5頭ワイド Harville最大=0.052",
       "created_at": "2026-05-03 08:11:51",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "トレンドラド",
@@ -1152,10 +1225,10 @@
       "combination_json": "[[15, 2], [15, 6], [15, 8]]",
       "notes": "軸15番→相手3頭フォーメーション Harville最大=0.026",
       "created_at": "2026-05-03 08:11:51",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ミズノミヤコ",
@@ -1211,10 +1284,10 @@
       "combination_json": "[[2, 10, 15]]",
       "notes": "合成EV=5.00 Harville=0.0155 馬番=(2, 10, 15)",
       "created_at": "2026-05-03 08:11:51",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "トレンドラド",
@@ -1249,10 +1322,10 @@
       "combination_json": "[[6, 10, 15], [6, 8, 15], [8, 10, 15], [6, 9, 15], [9, 10, 15]]",
       "notes": "[Oracle] 的中確率最大 5点 P最大=0.2595 馬番=[(6, 10, 15), (6, 8, 15), (8, 10, 15), (6, 9, 15), (9, 10, 15)]",
       "created_at": "2026-05-03 08:11:51",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ピアス",
@@ -1287,10 +1360,10 @@
       "combination_json": "[[15, 6, 10], [15, 10, 6], [6, 15, 10], [6, 10, 15], [10, 15, 6], [10, 6, 15], [15, 6, 8], [15, 8, 6], [6, 15, 8], [6, 8, 15], [8, 15, 6], [8, 6, 15]]",
       "notes": "[Oracle] 的中確率最大 12点 P最大=0.0433 馬番=[(15, 6, 10), (15, 10, 6), (6, 15, 10), (6, 10, 15), (10, 15, 6), (10, 6, 15), (15, 6, 8), (15, 8, 6), (6, 15, 8), (6, 8, 15), (8, 15, 6), (8, 6, 15)]",
       "created_at": "2026-05-03 08:11:51",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ミズノミヤコ",
@@ -1325,1024 +1398,10 @@
       "combination_json": "[]",
       "notes": "全馬モデルスコア（馬分析タブ用）",
       "created_at": "2026-05-03 08:11:51",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
-      "horses": [
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": "2023103051",
-          "predicted_rank": 1,
-          "model_score": 0.31529850746268656,
-          "ev_score": 7.819402985074627
-        },
-        {
-          "horse_name": "ピアス",
-          "horse_id": "2023105443",
-          "predicted_rank": 2,
-          "model_score": 0.14482758620689656,
-          "ev_score": 0.7965517241379311
-        },
-        {
-          "horse_name": "マサハヤルージュ",
-          "horse_id": "2023103357",
-          "predicted_rank": 3,
-          "model_score": 0.13127413127413126,
-          "ev_score": 5.3034749034749025
-        },
-        {
-          "horse_name": "ワイドバヴァール",
-          "horse_id": "2023103910",
-          "predicted_rank": 4,
-          "model_score": 0.10206297502714441,
-          "ev_score": 4.102931596091206
-        },
-        {
-          "horse_name": "コスモエーヴィヒ",
-          "horse_id": "2023106481",
-          "predicted_rank": 5,
-          "model_score": 0.06732673267326732,
-          "ev_score": 1.3936633663366333
-        },
-        {
-          "horse_name": "フロンテアムーン",
-          "horse_id": "2023102172",
-          "predicted_rank": 6,
-          "model_score": 0.04924971142747211,
-          "ev_score": 0.26102347056560216
-        },
-        {
-          "horse_name": "オートカリテ",
-          "horse_id": "2023103555",
-          "predicted_rank": 7,
-          "model_score": 0.043684710351377026,
-          "ev_score": 0.1354226020892688
-        },
-        {
-          "horse_name": "オモイヲノセテ",
-          "horse_id": "2023103996",
-          "predicted_rank": 8,
-          "model_score": 0.043010752688172046,
-          "ev_score": 0.6064516129032258
-        },
-        {
-          "horse_name": "サウンドファミリエ",
-          "horse_id": "2023104254",
-          "predicted_rank": 9,
-          "model_score": 0.043010752688172046,
-          "ev_score": 2.864516129032258
-        },
-        {
-          "horse_name": "ティンブロポップ",
-          "horse_id": "2023102065",
-          "predicted_rank": 10,
-          "model_score": 0.0387243735763098,
-          "ev_score": 1.7116173120728932
-        },
-        {
-          "horse_name": "ソフィア",
-          "horse_id": "2023107088",
-          "predicted_rank": 11,
-          "model_score": 0.0387243735763098,
-          "ev_score": 0.42596810933940776
-        },
-        {
-          "horse_name": "チョコスコーン",
-          "horse_id": "2023107263",
-          "predicted_rank": 12,
-          "model_score": 0.02996845425867508,
-          "ev_score": 0.8271293375394323
-        },
-        {
-          "horse_name": "キコリータ",
-          "horse_id": "2023103321",
-          "predicted_rank": 13,
-          "model_score": 0.02789400278940028,
-          "ev_score": 0.2705718270571827
-        },
-        {
-          "horse_name": "リベルタアーラ",
-          "horse_id": "2023107126",
-          "predicted_rank": 14,
-          "model_score": 0.02789400278940028,
-          "ev_score": 0.8675034867503487
-        },
-        {
-          "horse_name": "フィールライクユー",
-          "horse_id": "2023106157",
-          "predicted_rank": 15,
-          "model_score": 0.02789400278940028,
-          "ev_score": 0.7364016736401673
-        },
-        {
-          "horse_name": "トレンドラド",
-          "horse_id": "2023106087",
-          "predicted_rank": 16,
-          "model_score": 0.02789400278940028,
-          "ev_score": 1.2691771269177128
-        }
-      ]
-    },
-    {
-      "prediction_id": 21868,
-      "model_type": "本命(直前)",
-      "bet_type": "単勝",
-      "confidence": 0.31529850746268656,
-      "expected_value": 5.0,
-      "recommended_bet": 400.0,
-      "combination_json": "[[15]]",
-      "notes": "確率1位 P(win)=0.32 odds=24.8 EV=5.00",
-      "created_at": "2026-05-03 08:12:47",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
-      "horses": [
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.31529850746268656,
-          "ev_score": 5.0
-        }
-      ]
-    },
-    {
-      "prediction_id": 21869,
-      "model_type": "本命(直前)",
-      "bet_type": "複勝",
-      "confidence": 0.5914002249437144,
-      "expected_value": 0.5914002249437144,
-      "recommended_bet": 300.0,
-      "combination_json": "[[15], [6], [10]]",
-      "notes": "上位3頭を複勝",
-      "created_at": "2026-05-03 08:12:47",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
-      "horses": [
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.19713340831457146,
-          "ev_score": 0.5914002249437144
-        },
-        {
-          "horse_name": "ピアス",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.19713340831457146,
-          "ev_score": 0.5914002249437144
-        },
-        {
-          "horse_name": "マサハヤルージュ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.19713340831457146,
-          "ev_score": 0.5914002249437144
-        }
-      ]
-    },
-    {
-      "prediction_id": 21870,
-      "model_type": "本命(直前)",
-      "bet_type": "馬連",
-      "confidence": 0.05897434782754302,
-      "expected_value": 4.0,
-      "recommended_bet": 500.0,
-      "combination_json": "[[6, 15], [10, 15], [8, 15], [9, 15], [14, 15]]",
-      "notes": "軸15番×相手5頭フォーメーション Harville最大=0.059",
-      "created_at": "2026-05-03 08:12:47",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
-      "horses": [
-        {
-          "horse_name": "ピアス",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.05897434782754302,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "ピアス",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.05897434782754302,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "ピアス",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.05897434782754302,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "ピアス",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.05897434782754302,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "ピアス",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.05897434782754302,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.05897434782754302,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.05897434782754302,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.05897434782754302,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.05897434782754302,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.05897434782754302,
-          "ev_score": 4.0
-        }
-      ]
-    },
-    {
-      "prediction_id": 21871,
-      "model_type": "本命(直前)",
-      "bet_type": "ワイド",
-      "confidence": 0.07666665217580593,
-      "expected_value": 3.0,
-      "recommended_bet": 500.0,
-      "combination_json": "[[6, 15], [10, 15], [8, 15], [9, 15], [14, 15]]",
-      "notes": "軸15番×相手5頭ワイド Harville最大=0.059",
-      "created_at": "2026-05-03 08:12:47",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
-      "horses": [
-        {
-          "horse_name": "ピアス",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.05897434782754302,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "ピアス",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.05897434782754302,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "ピアス",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.05897434782754302,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "ピアス",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.05897434782754302,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "ピアス",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.05897434782754302,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.05897434782754302,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.05897434782754302,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.05897434782754302,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.05897434782754302,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.05897434782754302,
-          "ev_score": 3.0
-        }
-      ]
-    },
-    {
-      "prediction_id": 21872,
-      "model_type": "本命(直前)",
-      "bet_type": "馬単",
-      "confidence": 0.23827452897523818,
-      "expected_value": 5.0,
-      "recommended_bet": 300.0,
-      "combination_json": "[[15, 6], [15, 10], [15, 8]]",
-      "notes": "軸15番→相手3頭フォーメーション Harville最大=0.030",
-      "created_at": "2026-05-03 08:12:47",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
-      "horses": [
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.029784316121904773,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.029784316121904773,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.029784316121904773,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "ピアス",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.029784316121904773,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "ピアス",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.029784316121904773,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "ピアス",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.029784316121904773,
-          "ev_score": 5.0
-        }
-      ]
-    },
-    {
-      "prediction_id": 21873,
-      "model_type": "本命(直前)",
-      "bet_type": "三連複",
-      "confidence": 0.2947487687215685,
-      "expected_value": 5.0,
-      "recommended_bet": 600.0,
-      "combination_json": "[[6, 10, 15], [6, 8, 15]]",
-      "notes": "合成EV最大=5.00 2点 馬番=[(6, 10, 15), (6, 8, 15)]",
-      "created_at": "2026-05-03 08:12:47",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
-      "horses": [
-        {
-          "horse_name": "ピアス",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.024562397393464046,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "ピアス",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.024562397393464046,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "マサハヤルージュ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.024562397393464046,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "マサハヤルージュ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.024562397393464046,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.024562397393464046,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.024562397393464046,
-          "ev_score": 5.0
-        }
-      ]
-    },
-    {
-      "prediction_id": 21874,
-      "model_type": "本命(直前)",
-      "bet_type": "三連単",
-      "confidence": 0.740994724146398,
-      "expected_value": 6.0,
-      "recommended_bet": 1000.0,
-      "combination_json": "[[15, 6, 8], [15, 8, 6], [15, 6, 10], [15, 10, 6], [15, 6, 9], [15, 9, 6], [15, 10, 8], [15, 8, 10], [15, 6, 14], [15, 14, 6], [15, 8, 9], [15, 9, 8]]",
-      "notes": "1着固定フォーメーション 軸=15番 12点 相手=[6, 10, 8, 9, 14, 1] Harville最大=0.0247",
-      "created_at": "2026-05-03 08:12:47",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
-      "horses": [
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.024699824138213266,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.024699824138213266,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.024699824138213266,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.024699824138213266,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.024699824138213266,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "ピアス",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.024699824138213266,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "ピアス",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.024699824138213266,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "ピアス",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.024699824138213266,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "ピアス",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.024699824138213266,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "ピアス",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.024699824138213266,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "ワイドバヴァール",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.024699824138213266,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "ワイドバヴァール",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.024699824138213266,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "ワイドバヴァール",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.024699824138213266,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "ワイドバヴァール",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.024699824138213266,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "ワイドバヴァール",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.024699824138213266,
-          "ev_score": 6.0
-        }
-      ]
-    },
-    {
-      "prediction_id": 21875,
-      "model_type": "卍(直前)",
-      "bet_type": "単勝",
-      "confidence": 0.6354813851947853,
-      "expected_value": 1.2709627703895705,
-      "recommended_bet": 100.0,
-      "combination_json": "[[15]]",
-      "notes": "確率1位(卍) EV=1.27 odds=24.8",
-      "created_at": "2026-05-03 08:12:47",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
-      "horses": [
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 1.2709627703895705,
-          "ev_score": 1.2709627703895705
-        }
-      ]
-    },
-    {
-      "prediction_id": 21876,
-      "model_type": "卍(直前)",
-      "bet_type": "複勝",
-      "confidence": 0.6,
-      "expected_value": 1.0968626532476113,
-      "recommended_bet": 300.0,
-      "combination_json": "[[15], [2], [6]]",
-      "notes": "確率上位3頭を複勝",
-      "created_at": "2026-05-03 08:12:47",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
-      "horses": [
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 1.0968626532476113,
-          "ev_score": 1.0968626532476113
-        },
-        {
-          "horse_name": "トレンドラド",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 1.0968626532476113,
-          "ev_score": 1.0968626532476113
-        },
-        {
-          "horse_name": "ピアス",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 1.0968626532476113,
-          "ev_score": 1.0968626532476113
-        }
-      ]
-    },
-    {
-      "prediction_id": 21877,
-      "model_type": "卍(直前)",
-      "bet_type": "馬連",
-      "confidence": 0.258372585556142,
-      "expected_value": 4.0,
-      "recommended_bet": 500.0,
-      "combination_json": "[[2, 15], [6, 15], [8, 15], [10, 15], [3, 15]]",
-      "notes": "軸15番×相手5頭フォーメーション Harville最大=0.052",
-      "created_at": "2026-05-03 08:12:47",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
-      "horses": [
-        {
-          "horse_name": "トレンドラド",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.051674517111228405,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "トレンドラド",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.051674517111228405,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "トレンドラド",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.051674517111228405,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "トレンドラド",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.051674517111228405,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "トレンドラド",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.051674517111228405,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.051674517111228405,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.051674517111228405,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.051674517111228405,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.051674517111228405,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.051674517111228405,
-          "ev_score": 4.0
-        }
-      ]
-    },
-    {
-      "prediction_id": 21878,
-      "model_type": "卍(直前)",
-      "bet_type": "ワイド",
-      "confidence": 0.31004710266737046,
-      "expected_value": 3.0,
-      "recommended_bet": 500.0,
-      "combination_json": "[[2, 15], [6, 15], [8, 15], [10, 15], [3, 15]]",
-      "notes": "軸15番×相手5頭ワイド Harville最大=0.052",
-      "created_at": "2026-05-03 08:12:47",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
-      "horses": [
-        {
-          "horse_name": "トレンドラド",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.051674517111228405,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "トレンドラド",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.051674517111228405,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "トレンドラド",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.051674517111228405,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "トレンドラド",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.051674517111228405,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "トレンドラド",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.051674517111228405,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.051674517111228405,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.051674517111228405,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.051674517111228405,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.051674517111228405,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.051674517111228405,
-          "ev_score": 3.0
-        }
-      ]
-    },
-    {
-      "prediction_id": 21879,
-      "model_type": "卍(直前)",
-      "bet_type": "馬単",
-      "confidence": 0.20854355007381706,
-      "expected_value": 5.0,
-      "recommended_bet": 300.0,
-      "combination_json": "[[15, 2], [15, 6], [15, 8]]",
-      "notes": "軸15番→相手3頭フォーメーション Harville最大=0.026",
-      "created_at": "2026-05-03 08:12:47",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
-      "horses": [
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.026067943759227132,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.026067943759227132,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.026067943759227132,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "トレンドラド",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.026067943759227132,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "トレンドラド",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.026067943759227132,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "トレンドラド",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.026067943759227132,
-          "ev_score": 5.0
-        }
-      ]
-    },
-    {
-      "prediction_id": 21882,
-      "model_type": "卍(直前)",
-      "bet_type": "三連複",
-      "confidence": 0.23300438260203563,
-      "expected_value": 5.0,
-      "recommended_bet": 300.0,
-      "combination_json": "[[2, 10, 15]]",
-      "notes": "合成EV=5.00 Harville=0.0155 馬番=(2, 10, 15)",
-      "created_at": "2026-05-03 08:12:47",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
-      "horses": [
-        {
-          "horse_name": "トレンドラド",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.015533625506802375,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "マサハヤルージュ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.015533625506802375,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.015533625506802375,
-          "ev_score": 5.0
-        }
-      ]
-    },
-    {
-      "prediction_id": 21883,
-      "model_type": "Oracle(直前)",
-      "bet_type": "三連複",
-      "confidence": 0.25950515701859905,
-      "expected_value": 7.785154710557972,
-      "recommended_bet": 500.0,
-      "combination_json": "[[6, 10, 15], [6, 8, 15], [8, 10, 15], [6, 9, 15], [9, 10, 15]]",
-      "notes": "[Oracle] 的中確率最大 5点 P最大=0.2595 馬番=[(6, 10, 15), (6, 8, 15), (8, 10, 15), (6, 9, 15), (9, 10, 15)]",
-      "created_at": "2026-05-03 08:12:47",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
-      "horses": [
-        {
-          "horse_name": "ピアス",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.25950515701859905,
-          "ev_score": 7.785154710557972
-        },
-        {
-          "horse_name": "マサハヤルージュ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.25950515701859905,
-          "ev_score": 7.785154710557972
-        },
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.25950515701859905,
-          "ev_score": 7.785154710557972
-        }
-      ]
-    },
-    {
-      "prediction_id": 21884,
-      "model_type": "Oracle(直前)",
-      "bet_type": "三連単",
-      "confidence": 0.04325085950309984,
-      "expected_value": 6.487628925464977,
-      "recommended_bet": 1200.0,
-      "combination_json": "[[15, 6, 10], [15, 10, 6], [6, 15, 10], [6, 10, 15], [10, 15, 6], [10, 6, 15], [15, 6, 8], [15, 8, 6], [6, 15, 8], [6, 8, 15], [8, 15, 6], [8, 6, 15]]",
-      "notes": "[Oracle] 的中確率最大 12点 P最大=0.0433 馬番=[(15, 6, 10), (15, 10, 6), (6, 15, 10), (6, 10, 15), (10, 15, 6), (10, 6, 15), (15, 6, 8), (15, 8, 6), (6, 15, 8), (6, 8, 15), (8, 15, 6), (8, 6, 15)]",
-      "created_at": "2026-05-03 08:12:47",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
-      "horses": [
-        {
-          "horse_name": "ミズノミヤコ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.04325085950309984,
-          "ev_score": 6.487628925464977
-        },
-        {
-          "horse_name": "ピアス",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.04325085950309984,
-          "ev_score": 6.487628925464977
-        },
-        {
-          "horse_name": "マサハヤルージュ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.04325085950309984,
-          "ev_score": 6.487628925464977
-        }
-      ]
-    },
-    {
-      "prediction_id": 21885,
-      "model_type": "本命(直前)",
-      "bet_type": "馬分析",
-      "confidence": null,
-      "expected_value": null,
-      "recommended_bet": null,
-      "combination_json": "[]",
-      "notes": "全馬モデルスコア（馬分析タブ用）",
-      "created_at": "2026-05-03 08:12:47",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ミズノミヤコ",
@@ -2468,10 +1527,10 @@
       "combination_json": "[[1], [7], [6], [7], [1]]",
       "notes": "WIN5:  /  /  /  / ",
       "created_at": "2026-05-03 08:25:22",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "",
@@ -2507,6 +1566,1120 @@
           "predicted_rank": 5,
           "model_score": 0.09129409224808652,
           "ev_score": 0.7250000000000001
+        }
+      ]
+    },
+    {
+      "prediction_id": 21947,
+      "model_type": "本命(直前)",
+      "bet_type": "単勝",
+      "confidence": 0.31529850746268656,
+      "expected_value": 5.0,
+      "recommended_bet": 400.0,
+      "combination_json": "[[15]]",
+      "notes": "確率1位 P(win)=0.32 odds=24.8 EV=5.00",
+      "created_at": "2026-05-03 09:40:15",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -400.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.31529850746268656,
+          "ev_score": 5.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 21948,
+      "model_type": "本命(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.5914002249437144,
+      "expected_value": 0.5914002249437144,
+      "recommended_bet": 300.0,
+      "combination_json": "[[15], [6], [10]]",
+      "notes": "上位3頭を複勝",
+      "created_at": "2026-05-03 09:40:15",
+      "is_hit": 1,
+      "payout": 3750.0,
+      "profit": 3450.0,
+      "roi": 1250.0,
+      "horses": [
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.19713340831457146,
+          "ev_score": 0.5914002249437144
+        },
+        {
+          "horse_name": "ピアス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.19713340831457146,
+          "ev_score": 0.5914002249437144
+        },
+        {
+          "horse_name": "マサハヤルージュ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.19713340831457146,
+          "ev_score": 0.5914002249437144
+        }
+      ]
+    },
+    {
+      "prediction_id": 21949,
+      "model_type": "本命(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.05897434782754302,
+      "expected_value": 4.0,
+      "recommended_bet": 500.0,
+      "combination_json": "[[6, 15], [10, 15], [8, 15], [9, 15], [14, 15]]",
+      "notes": "軸15番×相手5頭フォーメーション Harville最大=0.059",
+      "created_at": "2026-05-03 09:40:15",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ピアス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05897434782754302,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ピアス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05897434782754302,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ピアス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05897434782754302,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ピアス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05897434782754302,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ピアス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05897434782754302,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05897434782754302,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05897434782754302,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05897434782754302,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05897434782754302,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05897434782754302,
+          "ev_score": 4.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 21950,
+      "model_type": "本命(直前)",
+      "bet_type": "ワイド",
+      "confidence": 0.07666665217580593,
+      "expected_value": 3.0,
+      "recommended_bet": 500.0,
+      "combination_json": "[[6, 15], [10, 15], [8, 15], [9, 15], [14, 15]]",
+      "notes": "軸15番×相手5頭ワイド Harville最大=0.059",
+      "created_at": "2026-05-03 09:40:15",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ピアス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05897434782754302,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ピアス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05897434782754302,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ピアス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05897434782754302,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ピアス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05897434782754302,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ピアス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05897434782754302,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05897434782754302,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05897434782754302,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05897434782754302,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05897434782754302,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05897434782754302,
+          "ev_score": 3.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 21951,
+      "model_type": "本命(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.23827452897523818,
+      "expected_value": 5.0,
+      "recommended_bet": 300.0,
+      "combination_json": "[[15, 6], [15, 10], [15, 8]]",
+      "notes": "軸15番→相手3頭フォーメーション Harville最大=0.030",
+      "created_at": "2026-05-03 09:40:15",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.029784316121904773,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.029784316121904773,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.029784316121904773,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ピアス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.029784316121904773,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ピアス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.029784316121904773,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ピアス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.029784316121904773,
+          "ev_score": 5.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 21952,
+      "model_type": "本命(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.2947487687215685,
+      "expected_value": 5.0,
+      "recommended_bet": 600.0,
+      "combination_json": "[[6, 10, 15], [6, 8, 15]]",
+      "notes": "合成EV最大=5.00 2点 馬番=[(6, 10, 15), (6, 8, 15)]",
+      "created_at": "2026-05-03 09:40:15",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ピアス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.024562397393464046,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ピアス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.024562397393464046,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "マサハヤルージュ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.024562397393464046,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "マサハヤルージュ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.024562397393464046,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.024562397393464046,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.024562397393464046,
+          "ev_score": 5.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 21953,
+      "model_type": "本命(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.740994724146398,
+      "expected_value": 6.0,
+      "recommended_bet": 1000.0,
+      "combination_json": "[[15, 6, 8], [15, 8, 6], [15, 6, 10], [15, 10, 6], [15, 6, 9], [15, 9, 6], [15, 10, 8], [15, 8, 10], [15, 6, 14], [15, 14, 6], [15, 8, 9], [15, 9, 8]]",
+      "notes": "1着固定フォーメーション 軸=15番 12点 相手=[6, 10, 8, 9, 14, 1] Harville最大=0.0247",
+      "created_at": "2026-05-03 09:40:15",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1000.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.024699824138213266,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.024699824138213266,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.024699824138213266,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.024699824138213266,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.024699824138213266,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ピアス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.024699824138213266,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ピアス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.024699824138213266,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ピアス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.024699824138213266,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ピアス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.024699824138213266,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ピアス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.024699824138213266,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ワイドバヴァール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.024699824138213266,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ワイドバヴァール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.024699824138213266,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ワイドバヴァール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.024699824138213266,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ワイドバヴァール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.024699824138213266,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ワイドバヴァール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.024699824138213266,
+          "ev_score": 6.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 21954,
+      "model_type": "卍(直前)",
+      "bet_type": "単勝",
+      "confidence": 0.6354813851947853,
+      "expected_value": 1.2709627703895705,
+      "recommended_bet": 100.0,
+      "combination_json": "[[15]]",
+      "notes": "確率1位(卍) EV=1.27 odds=24.8",
+      "created_at": "2026-05-03 09:40:15",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 1.2709627703895705,
+          "ev_score": 1.2709627703895705
+        }
+      ]
+    },
+    {
+      "prediction_id": 21955,
+      "model_type": "卍(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.6,
+      "expected_value": 1.0968626532476113,
+      "recommended_bet": 300.0,
+      "combination_json": "[[15], [2], [6]]",
+      "notes": "確率上位3頭を複勝",
+      "created_at": "2026-05-03 09:40:15",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 1.0968626532476113,
+          "ev_score": 1.0968626532476113
+        },
+        {
+          "horse_name": "トレンドラド",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 1.0968626532476113,
+          "ev_score": 1.0968626532476113
+        },
+        {
+          "horse_name": "ピアス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 1.0968626532476113,
+          "ev_score": 1.0968626532476113
+        }
+      ]
+    },
+    {
+      "prediction_id": 21956,
+      "model_type": "卍(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.258372585556142,
+      "expected_value": 4.0,
+      "recommended_bet": 500.0,
+      "combination_json": "[[2, 15], [6, 15], [8, 15], [10, 15], [3, 15]]",
+      "notes": "軸15番×相手5頭フォーメーション Harville最大=0.052",
+      "created_at": "2026-05-03 09:40:15",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "トレンドラド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.051674517111228405,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "トレンドラド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.051674517111228405,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "トレンドラド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.051674517111228405,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "トレンドラド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.051674517111228405,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "トレンドラド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.051674517111228405,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.051674517111228405,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.051674517111228405,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.051674517111228405,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.051674517111228405,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.051674517111228405,
+          "ev_score": 4.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 21957,
+      "model_type": "卍(直前)",
+      "bet_type": "ワイド",
+      "confidence": 0.31004710266737046,
+      "expected_value": 3.0,
+      "recommended_bet": 500.0,
+      "combination_json": "[[2, 15], [6, 15], [8, 15], [10, 15], [3, 15]]",
+      "notes": "軸15番×相手5頭ワイド Harville最大=0.052",
+      "created_at": "2026-05-03 09:40:15",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "トレンドラド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.051674517111228405,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "トレンドラド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.051674517111228405,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "トレンドラド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.051674517111228405,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "トレンドラド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.051674517111228405,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "トレンドラド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.051674517111228405,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.051674517111228405,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.051674517111228405,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.051674517111228405,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.051674517111228405,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.051674517111228405,
+          "ev_score": 3.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 21958,
+      "model_type": "卍(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.20854355007381706,
+      "expected_value": 5.0,
+      "recommended_bet": 300.0,
+      "combination_json": "[[15, 2], [15, 6], [15, 8]]",
+      "notes": "軸15番→相手3頭フォーメーション Harville最大=0.026",
+      "created_at": "2026-05-03 09:40:15",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.026067943759227132,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.026067943759227132,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.026067943759227132,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "トレンドラド",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.026067943759227132,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "トレンドラド",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.026067943759227132,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "トレンドラド",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.026067943759227132,
+          "ev_score": 5.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 21961,
+      "model_type": "卍(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.23300438260203563,
+      "expected_value": 5.0,
+      "recommended_bet": 300.0,
+      "combination_json": "[[2, 10, 15]]",
+      "notes": "合成EV=5.00 Harville=0.0155 馬番=(2, 10, 15)",
+      "created_at": "2026-05-03 09:40:15",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "トレンドラド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.015533625506802375,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "マサハヤルージュ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.015533625506802375,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.015533625506802375,
+          "ev_score": 5.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 21962,
+      "model_type": "Oracle(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.25950515701859905,
+      "expected_value": 7.785154710557972,
+      "recommended_bet": 500.0,
+      "combination_json": "[[6, 10, 15], [6, 8, 15], [8, 10, 15], [6, 9, 15], [9, 10, 15]]",
+      "notes": "[Oracle] 的中確率最大 5点 P最大=0.2595 馬番=[(6, 10, 15), (6, 8, 15), (8, 10, 15), (6, 9, 15), (9, 10, 15)]",
+      "created_at": "2026-05-03 09:40:15",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ピアス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.25950515701859905,
+          "ev_score": 7.785154710557972
+        },
+        {
+          "horse_name": "マサハヤルージュ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.25950515701859905,
+          "ev_score": 7.785154710557972
+        },
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.25950515701859905,
+          "ev_score": 7.785154710557972
+        }
+      ]
+    },
+    {
+      "prediction_id": 21963,
+      "model_type": "Oracle(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.04325085950309984,
+      "expected_value": 6.487628925464977,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[15, 6, 10], [15, 10, 6], [6, 15, 10], [6, 10, 15], [10, 15, 6], [10, 6, 15], [15, 6, 8], [15, 8, 6], [6, 15, 8], [6, 8, 15], [8, 15, 6], [8, 6, 15]]",
+      "notes": "[Oracle] 的中確率最大 12点 P最大=0.0433 馬番=[(15, 6, 10), (15, 10, 6), (6, 15, 10), (6, 10, 15), (10, 15, 6), (10, 6, 15), (15, 6, 8), (15, 8, 6), (6, 15, 8), (6, 8, 15), (8, 15, 6), (8, 6, 15)]",
+      "created_at": "2026-05-03 09:40:15",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.04325085950309984,
+          "ev_score": 6.487628925464977
+        },
+        {
+          "horse_name": "ピアス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.04325085950309984,
+          "ev_score": 6.487628925464977
+        },
+        {
+          "horse_name": "マサハヤルージュ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.04325085950309984,
+          "ev_score": 6.487628925464977
+        }
+      ]
+    },
+    {
+      "prediction_id": 21964,
+      "model_type": "本命(直前)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-05-03 09:40:15",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": "2023103051",
+          "predicted_rank": 1,
+          "model_score": 0.31529850746268656,
+          "ev_score": 7.819402985074627
+        },
+        {
+          "horse_name": "ピアス",
+          "horse_id": "2023105443",
+          "predicted_rank": 2,
+          "model_score": 0.14482758620689656,
+          "ev_score": 0.7965517241379311
+        },
+        {
+          "horse_name": "マサハヤルージュ",
+          "horse_id": "2023103357",
+          "predicted_rank": 3,
+          "model_score": 0.13127413127413126,
+          "ev_score": 5.3034749034749025
+        },
+        {
+          "horse_name": "ワイドバヴァール",
+          "horse_id": "2023103910",
+          "predicted_rank": 4,
+          "model_score": 0.10206297502714441,
+          "ev_score": 4.102931596091206
+        },
+        {
+          "horse_name": "コスモエーヴィヒ",
+          "horse_id": "2023106481",
+          "predicted_rank": 5,
+          "model_score": 0.06732673267326732,
+          "ev_score": 1.3936633663366333
+        },
+        {
+          "horse_name": "フロンテアムーン",
+          "horse_id": "2023102172",
+          "predicted_rank": 6,
+          "model_score": 0.04924971142747211,
+          "ev_score": 0.26102347056560216
+        },
+        {
+          "horse_name": "オートカリテ",
+          "horse_id": "2023103555",
+          "predicted_rank": 7,
+          "model_score": 0.043684710351377026,
+          "ev_score": 0.1354226020892688
+        },
+        {
+          "horse_name": "オモイヲノセテ",
+          "horse_id": "2023103996",
+          "predicted_rank": 8,
+          "model_score": 0.043010752688172046,
+          "ev_score": 0.6064516129032258
+        },
+        {
+          "horse_name": "サウンドファミリエ",
+          "horse_id": "2023104254",
+          "predicted_rank": 9,
+          "model_score": 0.043010752688172046,
+          "ev_score": 2.864516129032258
+        },
+        {
+          "horse_name": "ティンブロポップ",
+          "horse_id": "2023102065",
+          "predicted_rank": 10,
+          "model_score": 0.0387243735763098,
+          "ev_score": 1.7116173120728932
+        },
+        {
+          "horse_name": "ソフィア",
+          "horse_id": "2023107088",
+          "predicted_rank": 11,
+          "model_score": 0.0387243735763098,
+          "ev_score": 0.42596810933940776
+        },
+        {
+          "horse_name": "チョコスコーン",
+          "horse_id": "2023107263",
+          "predicted_rank": 12,
+          "model_score": 0.02996845425867508,
+          "ev_score": 0.8271293375394323
+        },
+        {
+          "horse_name": "キコリータ",
+          "horse_id": "2023103321",
+          "predicted_rank": 13,
+          "model_score": 0.02789400278940028,
+          "ev_score": 0.2705718270571827
+        },
+        {
+          "horse_name": "リベルタアーラ",
+          "horse_id": "2023107126",
+          "predicted_rank": 14,
+          "model_score": 0.02789400278940028,
+          "ev_score": 0.8675034867503487
+        },
+        {
+          "horse_name": "フィールライクユー",
+          "horse_id": "2023106157",
+          "predicted_rank": 15,
+          "model_score": 0.02789400278940028,
+          "ev_score": 0.7364016736401673
+        },
+        {
+          "horse_name": "トレンドラド",
+          "horse_id": "2023106087",
+          "predicted_rank": 16,
+          "model_score": 0.02789400278940028,
+          "ev_score": 1.2691771269177128
+        }
+      ]
+    },
+    {
+      "prediction_id": 21965,
+      "model_type": "HitFocus(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.4279541700569406,
+      "expected_value": 4.0,
+      "recommended_bet": 700.0,
+      "combination_json": "[[6, 15], [10, 15], [6, 10], [8, 15], [6, 8], [9, 15], [6, 9]]",
+      "notes": "2軸マルチ 軸=15,6 相手=[10, 8, 9] Harville最大=0.0856",
+      "created_at": "2026-05-03 09:40:15",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -700.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ピアス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.08559083401138812,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.08559083401138812,
+          "ev_score": 4.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 21966,
+      "model_type": "HitFocus(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.3737860236649339,
+      "expected_value": 5.0,
+      "recommended_bet": 800.0,
+      "combination_json": "[[15, 6], [6, 15], [15, 10], [6, 10], [15, 8], [6, 8], [15, 9], [6, 9]]",
+      "notes": "2軸マルチ 軸=15,6 相手=[10, 8, 9] Harville最大=0.0467",
+      "created_at": "2026-05-03 09:40:15",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -800.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.04672325295811674,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ピアス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.04672325295811674,
+          "ev_score": 5.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 21967,
+      "model_type": "HitFocus(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.26338851249816914,
+      "expected_value": 6.0,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[15, 6, 10], [6, 15, 10], [15, 10, 6], [6, 10, 15], [15, 6, 8], [6, 15, 8], [15, 8, 6], [6, 8, 15], [15, 6, 9], [6, 15, 9], [15, 9, 6], [6, 9, 15]]",
+      "notes": "2軸マルチ 軸=15,6 相手=[10, 8, 9] 12点 Harville最大=0.0088",
+      "created_at": "2026-05-03 09:40:15",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ミズノミヤコ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.008779617083272304,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ピアス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.008779617083272304,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "マサハヤルージュ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.008779617083272304,
+          "ev_score": 6.0
         }
       ]
     }
@@ -2569,6 +2742,6 @@
         "kelly_fraction": 0.0006
       }
     ],
-    "generated_at": "2026-05-03T08:12:47.302308"
+    "generated_at": "2026-05-03T09:40:15.071897"
   }
 }

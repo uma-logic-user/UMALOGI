@@ -12,293 +12,366 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "ルクスユアン",
-      "horse_id": "2023102765",
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 11,
+      "horse_name": "マジョレルブルー",
+      "horse_id": null,
       "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "幸英明",
-      "trainer": "清水久詞",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "jockey": "レーン",
+      "trainer": "栗東友道",
+      "finish_time": "2:25.4",
+      "margin": "@",
+      "win_odds": 2.2,
+      "popularity": 1,
+      "horse_weight": 478,
+      "horse_weight_diff": 0,
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.043,
-      "ev_score": 1.5871,
-      "kelly_fraction": 0.0016,
-      "manji_ev": 0.9737,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "アルディメント",
-      "horse_id": "2023103192",
-      "sex_age": "牡5",
-      "weight_carried": 57.0,
-      "jockey": "岩田望来",
-      "trainer": "上村洋行",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0412,
-      "ev_score": 0.8693,
+      "honmei_score": 0.1386,
+      "ev_score": 0.4019,
       "kelly_fraction": 0.0,
-      "manji_ev": 0.1935,
+      "manji_ev": 2.3314,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 3,
       "horse_number": 3,
       "horse_name": "シートゥサミット",
-      "horse_id": "2023101200",
-      "sex_age": "牡4",
+      "horse_id": null,
+      "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "酒井学",
-      "trainer": "吉岡辰弥",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "jockey": "酒井",
+      "trainer": "栗東吉岡",
+      "finish_time": "2:25.6",
+      "margin": "@",
+      "win_odds": 14.0,
+      "popularity": 6,
+      "horse_weight": 518,
+      "horse_weight_diff": 2,
       "sire": null,
       "dam": null,
       "dam_sire": null,
       "honmei_score": 0.1313,
       "ev_score": 1.9297,
       "kelly_fraction": 0.0068,
-      "manji_ev": 0.8314,
+      "manji_ev": 1.8724,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
     {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "エアアルチーナ",
-      "horse_id": "2023110084",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "松山弘平",
-      "trainer": "池添学",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.043,
-      "ev_score": 0.3484,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.4276,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "ヴィスメンティス",
-      "horse_id": "2023103758",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "松本大輝",
-      "trainer": "池江泰寿",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.056,
-      "ev_score": 1.7259,
-      "kelly_fraction": 0.0024,
-      "manji_ev": 1.0434,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 6,
-      "horse_name": "スクランプシャス",
-      "horse_id": "2023103411",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "鮫島克駿",
-      "trainer": "橋口慎介",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0891,
-      "ev_score": 1.0519,
-      "kelly_fraction": 0.0005,
-      "manji_ev": 0.2534,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
+      "rank": 3,
       "gate_number": 6,
       "horse_number": 7,
       "horse_name": "ダノンミッドナイト",
-      "horse_id": "2023105335",
-      "sex_age": "牡5",
+      "horse_id": null,
+      "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "川田将雅",
-      "trainer": "中内田充",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "jockey": "川田",
+      "trainer": "栗東中内田",
+      "finish_time": "2:26.1",
+      "margin": "@",
+      "win_odds": 5.0,
+      "popularity": 3,
+      "horse_weight": 486,
+      "horse_weight_diff": 2,
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.0492,
-      "ev_score": 0.2364,
+      "honmei_score": 0.057,
+      "ev_score": 0.2734,
       "kelly_fraction": 0.0,
-      "manji_ev": 0.4378,
+      "manji_ev": 1.9451,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
     {
-      "rank": null,
+      "rank": 4,
       "gate_number": 7,
       "horse_number": 8,
       "horse_name": "パーヴォ",
-      "horse_id": "2023106440",
-      "sex_age": "牡7",
+      "horse_id": null,
+      "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "津村明秀",
-      "trainer": "吉田直弘",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "jockey": "津村",
+      "trainer": "栗東吉田",
+      "finish_time": "2:26.3",
+      "margin": "@",
+      "win_odds": 4.5,
+      "popularity": 2,
+      "horse_weight": 440,
+      "horse_weight_diff": -4,
       "sire": null,
       "dam": null,
       "dam_sire": null,
       "honmei_score": 0.2823,
       "ev_score": 2.2585,
       "kelly_fraction": 0.018,
-      "manji_ev": 0.7562,
+      "manji_ev": 2.6133,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
     {
-      "rank": null,
+      "rank": 5,
+      "gate_number": 8,
+      "horse_number": 10,
+      "horse_name": "ヴィラジョヴィス",
+      "horse_id": null,
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "北村友",
+      "trainer": "栗東小栗",
+      "finish_time": "2:26.4",
+      "margin": "@",
+      "win_odds": 10.0,
+      "popularity": 5,
+      "horse_weight": 488,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1966,
+      "ev_score": 1.0616,
+      "kelly_fraction": 0.0014,
+      "manji_ev": 3.6561,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 6,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "ヴィスメンティス",
+      "horse_id": null,
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "松本",
+      "trainer": "栗東池江",
+      "finish_time": "2:26.4",
+      "margin": "@",
+      "win_odds": 86.1,
+      "popularity": 9,
+      "horse_weight": 430,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0673,
+      "ev_score": 2.0737,
+      "kelly_fraction": 0.0036,
+      "manji_ev": 1.2492,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 7,
+      "gate_number": 6,
+      "horse_number": 6,
+      "horse_name": "スクランプシャス",
+      "horse_id": null,
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "鮫島駿",
+      "trainer": "栗東橋口",
+      "finish_time": "2:26.6",
+      "margin": "@",
+      "win_odds": 38.9,
+      "popularity": 8,
+      "horse_weight": 458,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0891,
+      "ev_score": 1.0519,
+      "kelly_fraction": 0.0005,
+      "manji_ev": 2.9799,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 8,
       "gate_number": 7,
       "horse_number": 9,
       "horse_name": "グロートカイザー",
-      "horse_id": "2023105397",
-      "sex_age": "牡4",
+      "horse_id": null,
+      "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "国分優作",
-      "trainer": "辻野泰之",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "jockey": "国分優",
+      "trainer": "栗東辻野",
+      "finish_time": "2:26.8",
+      "margin": "@",
+      "win_odds": 228.9,
+      "popularity": 11,
+      "horse_weight": 436,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.043,
+      "ev_score": 2.7914,
+      "kelly_fraction": 0.0028,
+      "manji_ev": 1.0991,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 9,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "エアアルチーナ",
+      "horse_id": null,
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "松山",
+      "trainer": "栗東池添",
+      "finish_time": "2:27.0",
+      "margin": "@",
+      "win_odds": 7.9,
+      "popularity": 4,
+      "horse_weight": 464,
+      "horse_weight_diff": -2,
       "sire": null,
       "dam": null,
       "dam_sire": null,
       "honmei_score": 0.0412,
-      "ev_score": 2.6739,
-      "kelly_fraction": 0.0026,
-      "manji_ev": 0.2096,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 10,
-      "horse_name": "ヴィラジョヴィス",
-      "horse_id": "2023103901",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "北村友一",
-      "trainer": "小栗実",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.2526,
-      "ev_score": 1.3643,
-      "kelly_fraction": 0.0083,
-      "manji_ev": 0.7801,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 11,
-      "horse_name": "マジョレルブルー",
-      "horse_id": "2023103531",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "レーン",
-      "trainer": "友道康夫",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.1514,
-      "ev_score": 0.439,
+      "ev_score": 0.3337,
       "kelly_fraction": 0.0,
-      "manji_ev": 0.5665,
+      "manji_ev": 1.1761,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 10,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "ルクスユアン",
+      "horse_id": null,
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "幸",
+      "trainer": "栗東清水久",
+      "finish_time": "2:27.0",
+      "margin": "@",
+      "win_odds": 35.0,
+      "popularity": 7,
+      "horse_weight": 446,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0437,
+      "ev_score": 1.612,
+      "kelly_fraction": 0.0017,
+      "manji_ev": 1.1721,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 11,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "アルディメント",
+      "horse_id": null,
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "岩田望",
+      "trainer": "栗東上村",
+      "finish_time": "2:27.5",
+      "margin": "@",
+      "win_odds": 92.5,
+      "popularity": 10,
+      "horse_weight": 550,
+      "horse_weight_diff": -10,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0437,
+      "ev_score": 0.9217,
+      "kelly_fraction": 0.0,
+      "manji_ev": 2.8089,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     }
   ],
-  "payouts": [],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "11",
+      "payout": 220,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "11",
+      "payout": 110,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "7",
+      "payout": 160,
+      "popularity": 3
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "3",
+      "payout": 280,
+      "popularity": 6
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "3-8",
+      "payout": 1440,
+      "popularity": 6
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "3-11",
+      "payout": 1740,
+      "popularity": 6
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "7-11",
+      "payout": 250,
+      "popularity": 2
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3-11",
+      "payout": 570,
+      "popularity": 7
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3-7",
+      "payout": 960,
+      "popularity": 14
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "11→3",
+      "payout": 2320,
+      "popularity": 9
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3-7-11",
+      "payout": 1840,
+      "popularity": 8
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "11→3→7",
+      "payout": 8780,
+      "popularity": 24
+    }
+  ],
   "predictions": [
     {
       "prediction_id": 21706,
@@ -310,10 +383,10 @@
       "combination_json": "[[8]]",
       "notes": "確率1位 P(win)=0.28 odds=8.0 EV=2.26",
       "created_at": "2026-05-03 08:12:05",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "パーヴォ",
@@ -334,10 +407,10 @@
       "combination_json": "[[8], [10], [11]]",
       "notes": "上位3頭を複勝",
       "created_at": "2026-05-03 08:12:05",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 1,
+      "payout": 330.0,
+      "profit": 30.0,
+      "roi": 110.00000000000001,
       "horses": [
         {
           "horse_name": "パーヴォ",
@@ -372,10 +445,10 @@
       "combination_json": "[[8, 10], [8, 11], [3, 8], [6, 8], [5, 8]]",
       "notes": "軸8番×相手5頭フォーメーション Harville最大=0.132",
       "created_at": "2026-05-03 08:12:05",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "パーヴォ",
@@ -459,10 +532,10 @@
       "combination_json": "[[8, 10], [8, 11], [3, 8], [6, 8], [5, 8]]",
       "notes": "軸8番×相手5頭ワイド Harville最大=0.132",
       "created_at": "2026-05-03 08:12:05",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "パーヴォ",
@@ -546,10 +619,10 @@
       "combination_json": "[[8, 10], [8, 11], [8, 3]]",
       "notes": "軸8番→相手3頭フォーメーション Harville最大=0.067",
       "created_at": "2026-05-03 08:12:05",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "パーヴォ",
@@ -605,10 +678,10 @@
       "combination_json": "[[8, 10, 11], [3, 8, 10]]",
       "notes": "合成EV最大=5.00 2点 馬番=[(8, 10, 11), (3, 8, 10)]",
       "created_at": "2026-05-03 08:12:05",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "パーヴォ",
@@ -664,10 +737,10 @@
       "combination_json": "[[8, 10, 11], [8, 11, 10], [8, 10, 3], [8, 3, 10], [8, 10, 6], [8, 6, 10], [8, 11, 3], [8, 3, 11], [8, 10, 5], [8, 5, 10], [8, 10, 7], [8, 7, 10]]",
       "notes": "1着固定フォーメーション 軸=8番 12点 相手=[10, 11, 3, 6, 5, 7] Harville最大=0.0807",
       "created_at": "2026-05-03 08:12:05",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1000.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "パーヴォ",
@@ -786,10 +859,10 @@
       "combination_json": "[[5]]",
       "notes": "確率1位(卍) EV=1.04 odds=30.8",
       "created_at": "2026-05-03 08:12:05",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ヴィスメンティス",
@@ -810,10 +883,10 @@
       "combination_json": "[[5], [1], [3]]",
       "notes": "確率上位3頭を複勝",
       "created_at": "2026-05-03 08:12:05",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 1,
+      "payout": 840.0,
+      "profit": 540.0,
+      "roi": 280.0,
       "horses": [
         {
           "horse_name": "ヴィスメンティス",
@@ -848,10 +921,10 @@
       "combination_json": "[[1, 5], [3, 5], [5, 10], [5, 8], [5, 11]]",
       "notes": "軸5番×相手5頭フォーメーション Harville最大=0.057",
       "created_at": "2026-05-03 08:12:05",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ルクスユアン",
@@ -935,10 +1008,10 @@
       "combination_json": "[[1, 5], [3, 5], [5, 10], [5, 8], [5, 11]]",
       "notes": "軸5番×相手5頭ワイド Harville最大=0.057",
       "created_at": "2026-05-03 08:12:05",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ルクスユアン",
@@ -1022,10 +1095,10 @@
       "combination_json": "[[5, 1], [5, 3], [5, 10]]",
       "notes": "軸5番→相手3頭フォーメーション Harville最大=0.029",
       "created_at": "2026-05-03 08:12:05",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ヴィスメンティス",
@@ -1081,10 +1154,10 @@
       "combination_json": "[[1, 5, 8]]",
       "notes": "合成EV=5.00 Harville=0.0278 馬番=(1, 5, 8)",
       "created_at": "2026-05-03 08:12:05",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ルクスユアン",
@@ -1119,10 +1192,10 @@
       "combination_json": "[[8, 10, 11], [3, 8, 10], [6, 8, 10], [3, 8, 11], [3, 10, 11]]",
       "notes": "[Oracle] 的中確率最大 5点 P最大=0.4844 馬番=[(8, 10, 11), (3, 8, 10), (6, 8, 10), (3, 8, 11), (3, 10, 11)]",
       "created_at": "2026-05-03 08:12:05",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "パーヴォ",
@@ -1157,10 +1230,10 @@
       "combination_json": "[[8, 10, 11], [8, 11, 10], [10, 8, 11], [10, 11, 8], [11, 8, 10], [11, 10, 8], [8, 10, 3], [8, 3, 10], [10, 8, 3], [10, 3, 8], [3, 8, 10], [3, 10, 8]]",
       "notes": "[Oracle] 的中確率最大 12点 P最大=0.0807 馬番=[(8, 10, 11), (8, 11, 10), (10, 8, 11), (10, 11, 8), (11, 8, 10), (11, 10, 8), (8, 10, 3), (8, 3, 10), (10, 8, 3), (10, 3, 8), (3, 8, 10), (3, 10, 8)]",
       "created_at": "2026-05-03 08:12:05",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "パーヴォ",
@@ -1195,10 +1268,10 @@
       "combination_json": "[]",
       "notes": "全馬モデルスコア（馬分析タブ用）",
       "created_at": "2026-05-03 08:12:05",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "パーヴォ",
@@ -1278,22 +1351,1101 @@
           "ev_score": 0.8693349028840496
         }
       ]
+    },
+    {
+      "prediction_id": 22178,
+      "model_type": "本命(直前)",
+      "bet_type": "単勝",
+      "confidence": 0.28231292517006806,
+      "expected_value": 2.2585034013605445,
+      "recommended_bet": 300.0,
+      "combination_json": "[[8]]",
+      "notes": "確率1位 P(win)=0.28 odds=8.0 EV=2.26",
+      "created_at": "2026-05-03 11:10:34",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "パーヴォ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.28231292517006806,
+          "ev_score": 2.2585034013605445
+        }
+      ]
+    },
+    {
+      "prediction_id": 22179,
+      "model_type": "本命(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.6174806132871944,
+      "expected_value": 0.6174806132871944,
+      "recommended_bet": 300.0,
+      "combination_json": "[[8], [10], [11]]",
+      "notes": "上位3頭を複勝",
+      "created_at": "2026-05-03 11:10:34",
+      "is_hit": 1,
+      "payout": 330.0,
+      "profit": 30.0,
+      "roi": 110.00000000000001,
+      "horses": [
+        {
+          "horse_name": "パーヴォ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.20582687109573147,
+          "ev_score": 0.6174806132871944
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.20582687109573147,
+          "ev_score": 0.6174806132871944
+        },
+        {
+          "horse_name": "マジョレルブルー",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.20582687109573147,
+          "ev_score": 0.6174806132871944
+        }
+      ]
+    },
+    {
+      "prediction_id": 22180,
+      "model_type": "本命(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.10972660748285248,
+      "expected_value": 4.0,
+      "recommended_bet": 500.0,
+      "combination_json": "[[8, 10], [8, 11], [3, 8], [6, 8], [5, 8]]",
+      "notes": "軸8番×相手5頭フォーメーション Harville最大=0.110",
+      "created_at": "2026-05-03 11:10:34",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "パーヴォ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.10972660748285248,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "パーヴォ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.10972660748285248,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "パーヴォ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.10972660748285248,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "パーヴォ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.10972660748285248,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "パーヴォ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.10972660748285248,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.10972660748285248,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.10972660748285248,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.10972660748285248,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.10972660748285248,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.10972660748285248,
+          "ev_score": 4.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 22181,
+      "model_type": "本命(直前)",
+      "bet_type": "ワイド",
+      "confidence": 0.14264458972770824,
+      "expected_value": 2.1945321496570496,
+      "recommended_bet": 500.0,
+      "combination_json": "[[8, 10], [8, 11], [3, 8], [6, 8], [5, 8]]",
+      "notes": "軸8番×相手5頭ワイド Harville最大=0.110",
+      "created_at": "2026-05-03 11:10:34",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "パーヴォ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.10972660748285248,
+          "ev_score": 2.1945321496570496
+        },
+        {
+          "horse_name": "パーヴォ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.10972660748285248,
+          "ev_score": 2.1945321496570496
+        },
+        {
+          "horse_name": "パーヴォ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.10972660748285248,
+          "ev_score": 2.1945321496570496
+        },
+        {
+          "horse_name": "パーヴォ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.10972660748285248,
+          "ev_score": 2.1945321496570496
+        },
+        {
+          "horse_name": "パーヴォ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.10972660748285248,
+          "ev_score": 2.1945321496570496
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.10972660748285248,
+          "ev_score": 2.1945321496570496
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.10972660748285248,
+          "ev_score": 2.1945321496570496
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.10972660748285248,
+          "ev_score": 2.1945321496570496
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.10972660748285248,
+          "ev_score": 2.1945321496570496
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.10972660748285248,
+          "ev_score": 2.1945321496570496
+        }
+      ]
+    },
+    {
+      "prediction_id": 22182,
+      "model_type": "本命(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.4599415837371404,
+      "expected_value": 5.0,
+      "recommended_bet": 300.0,
+      "combination_json": "[[8, 10], [8, 11], [8, 3]]",
+      "notes": "軸8番→相手3頭フォーメーション Harville最大=0.057",
+      "created_at": "2026-05-03 11:10:34",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "パーヴォ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05749269796714255,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "パーヴォ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05749269796714255,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "パーヴォ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05749269796714255,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05749269796714255,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05749269796714255,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05749269796714255,
+          "ev_score": 5.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 22183,
+      "model_type": "本命(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.7386851734172246,
+      "expected_value": 5.0,
+      "recommended_bet": 600.0,
+      "combination_json": "[[8, 10, 11], [3, 8, 10]]",
+      "notes": "合成EV最大=5.00 2点 馬番=[(8, 10, 11), (3, 8, 10)]",
+      "created_at": "2026-05-03 11:10:34",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "パーヴォ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06155709778476871,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "パーヴォ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06155709778476871,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06155709778476871,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06155709778476871,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "マジョレルブルー",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.06155709778476871,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "マジョレルブルー",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.06155709778476871,
+          "ev_score": 5.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 22184,
+      "model_type": "本命(直前)",
+      "bet_type": "三連単",
+      "confidence": 1.0,
+      "expected_value": 6.0,
+      "recommended_bet": 1000.0,
+      "combination_json": "[[8, 10, 11], [8, 11, 10], [8, 10, 3], [8, 3, 10], [8, 11, 3], [8, 3, 11], [8, 10, 6], [8, 6, 10], [8, 10, 5], [8, 5, 10], [8, 11, 6], [8, 6, 11]]",
+      "notes": "1着固定フォーメーション 軸=8番 12点 相手=[10, 11, 3, 6, 5, 7] Harville最大=0.0616",
+      "created_at": "2026-05-03 11:10:34",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1000.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "パーヴォ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06155709778476871,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "パーヴォ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06155709778476871,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "パーヴォ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06155709778476871,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "パーヴォ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06155709778476871,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "パーヴォ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06155709778476871,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06155709778476871,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06155709778476871,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06155709778476871,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06155709778476871,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06155709778476871,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "マジョレルブルー",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.06155709778476871,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "マジョレルブルー",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.06155709778476871,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "マジョレルブルー",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.06155709778476871,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "マジョレルブルー",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.06155709778476871,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "マジョレルブルー",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.06155709778476871,
+          "ev_score": 6.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 22185,
+      "model_type": "卍(直前)",
+      "bet_type": "単勝",
+      "confidence": 1.0,
+      "expected_value": 3.6560579489087552,
+      "recommended_bet": 400.0,
+      "combination_json": "[[10]]",
+      "notes": "確率1位(卍) EV=3.66 odds=5.4",
+      "created_at": "2026-05-03 11:10:34",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -400.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 3.6560579489087552,
+          "ev_score": 3.6560579489087552
+        }
+      ]
+    },
+    {
+      "prediction_id": 22186,
+      "model_type": "卍(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.6,
+      "expected_value": 3.148259519327576,
+      "recommended_bet": 300.0,
+      "combination_json": "[[10], [6], [2]]",
+      "notes": "確率上位3頭を複勝",
+      "created_at": "2026-05-03 11:10:34",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 3.148259519327576,
+          "ev_score": 3.148259519327576
+        },
+        {
+          "horse_name": "スクランプシャス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 3.148259519327576,
+          "ev_score": 3.148259519327576
+        },
+        {
+          "horse_name": "アルディメント",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 3.148259519327576,
+          "ev_score": 3.148259519327576
+        }
+      ]
+    },
+    {
+      "prediction_id": 22187,
+      "model_type": "卍(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.24294021531282778,
+      "expected_value": 1.574252595227124,
+      "recommended_bet": 500.0,
+      "combination_json": "[[6, 10], [2, 10], [8, 10], [10, 11], [7, 10]]",
+      "notes": "軸10番×相手5頭フォーメーション Harville最大=0.049",
+      "created_at": "2026-05-03 11:10:34",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "スクランプシャス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.048588043062565554,
+          "ev_score": 1.574252595227124
+        },
+        {
+          "horse_name": "スクランプシャス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.048588043062565554,
+          "ev_score": 1.574252595227124
+        },
+        {
+          "horse_name": "スクランプシャス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.048588043062565554,
+          "ev_score": 1.574252595227124
+        },
+        {
+          "horse_name": "スクランプシャス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.048588043062565554,
+          "ev_score": 1.574252595227124
+        },
+        {
+          "horse_name": "スクランプシャス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.048588043062565554,
+          "ev_score": 1.574252595227124
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.048588043062565554,
+          "ev_score": 1.574252595227124
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.048588043062565554,
+          "ev_score": 1.574252595227124
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.048588043062565554,
+          "ev_score": 1.574252595227124
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.048588043062565554,
+          "ev_score": 1.574252595227124
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.048588043062565554,
+          "ev_score": 1.574252595227124
+        }
+      ]
+    },
+    {
+      "prediction_id": 22188,
+      "model_type": "卍(直前)",
+      "bet_type": "ワイド",
+      "confidence": 0.2915282583753933,
+      "expected_value": 0.655938581344635,
+      "recommended_bet": 500.0,
+      "combination_json": "[[6, 10], [2, 10], [8, 10], [10, 11], [7, 10]]",
+      "notes": "軸10番×相手5頭ワイド Harville最大=0.049",
+      "created_at": "2026-05-03 11:10:34",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "スクランプシャス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.048588043062565554,
+          "ev_score": 0.655938581344635
+        },
+        {
+          "horse_name": "スクランプシャス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.048588043062565554,
+          "ev_score": 0.655938581344635
+        },
+        {
+          "horse_name": "スクランプシャス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.048588043062565554,
+          "ev_score": 0.655938581344635
+        },
+        {
+          "horse_name": "スクランプシャス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.048588043062565554,
+          "ev_score": 0.655938581344635
+        },
+        {
+          "horse_name": "スクランプシャス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.048588043062565554,
+          "ev_score": 0.655938581344635
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.048588043062565554,
+          "ev_score": 0.655938581344635
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.048588043062565554,
+          "ev_score": 0.655938581344635
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.048588043062565554,
+          "ev_score": 0.655938581344635
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.048588043062565554,
+          "ev_score": 0.655938581344635
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.048588043062565554,
+          "ev_score": 0.655938581344635
+        }
+      ]
+    },
+    {
+      "prediction_id": 22189,
+      "model_type": "卍(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.19770717965514814,
+      "expected_value": 1.6014281552066998,
+      "recommended_bet": 300.0,
+      "combination_json": "[[10, 6], [10, 2], [10, 8]]",
+      "notes": "軸10番→相手3頭フォーメーション Harville最大=0.025",
+      "created_at": "2026-05-03 11:10:34",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.024713397456893518,
+          "ev_score": 1.6014281552066998
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.024713397456893518,
+          "ev_score": 1.6014281552066998
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.024713397456893518,
+          "ev_score": 1.6014281552066998
+        },
+        {
+          "horse_name": "スクランプシャス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.024713397456893518,
+          "ev_score": 1.6014281552066998
+        },
+        {
+          "horse_name": "スクランプシャス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.024713397456893518,
+          "ev_score": 1.6014281552066998
+        },
+        {
+          "horse_name": "スクランプシャス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.024713397456893518,
+          "ev_score": 1.6014281552066998
+        }
+      ]
+    },
+    {
+      "prediction_id": 22192,
+      "model_type": "卍(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.31531736076644923,
+      "expected_value": 3.405427496277652,
+      "recommended_bet": 300.0,
+      "combination_json": "[[2, 8, 10]]",
+      "notes": "合成EV=3.41 Harville=0.0210 馬番=(2, 8, 10)",
+      "created_at": "2026-05-03 11:10:34",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "アルディメント",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02102115738442995,
+          "ev_score": 3.405427496277652
+        },
+        {
+          "horse_name": "パーヴォ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02102115738442995,
+          "ev_score": 3.405427496277652
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.02102115738442995,
+          "ev_score": 3.405427496277652
+        }
+      ]
+    },
+    {
+      "prediction_id": 22193,
+      "model_type": "Oracle(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.3693425867086123,
+      "expected_value": 11.08027760125837,
+      "recommended_bet": 500.0,
+      "combination_json": "[[8, 10, 11], [3, 8, 10], [3, 8, 11], [6, 8, 10], [5, 8, 10]]",
+      "notes": "[Oracle] 的中確率最大 5点 P最大=0.3693 馬番=[(8, 10, 11), (3, 8, 10), (3, 8, 11), (6, 8, 10), (5, 8, 10)]",
+      "created_at": "2026-05-03 11:10:34",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "パーヴォ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.3693425867086123,
+          "ev_score": 11.08027760125837
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.3693425867086123,
+          "ev_score": 11.08027760125837
+        },
+        {
+          "horse_name": "マジョレルブルー",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.3693425867086123,
+          "ev_score": 11.08027760125837
+        }
+      ]
+    },
+    {
+      "prediction_id": 22194,
+      "model_type": "Oracle(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.06155709778476871,
+      "expected_value": 9.233564667715306,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[8, 10, 11], [8, 11, 10], [10, 8, 11], [10, 11, 8], [11, 8, 10], [11, 10, 8], [8, 10, 3], [8, 3, 10], [10, 8, 3], [10, 3, 8], [3, 8, 10], [3, 10, 8]]",
+      "notes": "[Oracle] 的中確率最大 12点 P最大=0.0616 馬番=[(8, 10, 11), (8, 11, 10), (10, 8, 11), (10, 11, 8), (11, 8, 10), (11, 10, 8), (8, 10, 3), (8, 3, 10), (10, 8, 3), (10, 3, 8), (3, 8, 10), (3, 10, 8)]",
+      "created_at": "2026-05-03 11:10:34",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "パーヴォ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06155709778476871,
+          "ev_score": 9.233564667715306
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06155709778476871,
+          "ev_score": 9.233564667715306
+        },
+        {
+          "horse_name": "マジョレルブルー",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.06155709778476871,
+          "ev_score": 9.233564667715306
+        }
+      ]
+    },
+    {
+      "prediction_id": 22195,
+      "model_type": "本命(直前)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-05-03 11:10:34",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "パーヴォ",
+          "horse_id": "2023106440",
+          "predicted_rank": 1,
+          "model_score": 0.28231292517006806,
+          "ev_score": 2.2585034013605445
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": "2023103901",
+          "predicted_rank": 2,
+          "model_score": 0.1965909090909091,
+          "ev_score": 1.0615909090909093
+        },
+        {
+          "horse_name": "マジョレルブルー",
+          "horse_id": "2023103531",
+          "predicted_rank": 3,
+          "model_score": 0.13857677902621723,
+          "ev_score": 0.40187265917603
+        },
+        {
+          "horse_name": "シートゥサミット",
+          "horse_id": "2023101200",
+          "predicted_rank": 4,
+          "model_score": 0.13127413127413126,
+          "ev_score": 1.9297297297297296
+        },
+        {
+          "horse_name": "スクランプシャス",
+          "horse_id": "2023103411",
+          "predicted_rank": 5,
+          "model_score": 0.08914237431347699,
+          "ev_score": 1.0518800168990285
+        },
+        {
+          "horse_name": "ヴィスメンティス",
+          "horse_id": "2023103758",
+          "predicted_rank": 6,
+          "model_score": 0.06732673267326732,
+          "ev_score": 2.0736633663366333
+        },
+        {
+          "horse_name": "ダノンミッドナイト",
+          "horse_id": "2023105335",
+          "predicted_rank": 7,
+          "model_score": 0.05695830886670581,
+          "ev_score": 0.2733998825601879
+        },
+        {
+          "horse_name": "ルクスユアン",
+          "horse_id": "2023102765",
+          "predicted_rank": 8,
+          "model_score": 0.043684710351377026,
+          "ev_score": 1.6119658119658122
+        },
+        {
+          "horse_name": "アルディメント",
+          "horse_id": "2023103192",
+          "predicted_rank": 9,
+          "model_score": 0.043684710351377026,
+          "ev_score": 0.9217473884140553
+        },
+        {
+          "horse_name": "グロートカイザー",
+          "horse_id": "2023105397",
+          "predicted_rank": 10,
+          "model_score": 0.043010752688172046,
+          "ev_score": 2.791397849462366
+        },
+        {
+          "horse_name": "エアアルチーナ",
+          "horse_id": "2023110084",
+          "predicted_rank": 11,
+          "model_score": 0.04120070629782225,
+          "ev_score": 0.3337257210123602
+        }
+      ]
+    },
+    {
+      "prediction_id": 22196,
+      "model_type": "HitFocus(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.5486330374142624,
+      "expected_value": 4.0,
+      "recommended_bet": 700.0,
+      "combination_json": "[[8, 10], [8, 11], [10, 11], [3, 8], [3, 10], [6, 8], [6, 10]]",
+      "notes": "2軸マルチ 軸=8,10 相手=[11, 3, 6] Harville最大=0.1097",
+      "created_at": "2026-05-03 11:10:34",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -700.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "パーヴォ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.10972660748285248,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.10972660748285248,
+          "ev_score": 4.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 22197,
+      "model_type": "HitFocus(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.4599415837371404,
+      "expected_value": 5.0,
+      "recommended_bet": 800.0,
+      "combination_json": "[[8, 10], [10, 8], [8, 11], [10, 11], [8, 3], [10, 3], [8, 6], [10, 6]]",
+      "notes": "2軸マルチ 軸=8,10 相手=[11, 3, 6] Harville最大=0.0575",
+      "created_at": "2026-05-03 11:10:34",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -800.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "パーヴォ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05749269796714255,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05749269796714255,
+          "ev_score": 5.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 22198,
+      "model_type": "HitFocus(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.364986221346457,
+      "expected_value": 6.0,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[8, 10, 11], [10, 8, 11], [8, 11, 10], [10, 11, 8], [8, 10, 3], [10, 8, 3], [8, 3, 10], [10, 3, 8], [8, 10, 6], [10, 8, 6], [8, 6, 10], [10, 6, 8]]",
+      "notes": "2軸マルチ 軸=8,10 相手=[11, 3, 6] 12点 Harville最大=0.0122",
+      "created_at": "2026-05-03 11:10:34",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "パーヴォ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.012166207378215232,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ヴィラジョヴィス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.012166207378215232,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "マジョレルブルー",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.012166207378215232,
+          "ev_score": 6.0
+        }
+      ]
     }
   ],
   "training_evals": {},
   "prerace": {
     "bias": {
-      "today_inner_bias": null,
-      "today_front_bias": null,
-      "today_race_count": null
+      "today_inner_bias": -0.125,
+      "today_front_bias": 0.5,
+      "today_race_count": 2
     },
     "ev_recommend": [
       {
         "horse_number": 9,
         "horse_name": "グロートカイザー",
         "win_odds": 64.9,
-        "ev_score": 2.6739,
-        "kelly_fraction": 0.0026
+        "ev_score": 2.7914,
+        "kelly_fraction": 0.0028
       },
       {
         "horse_number": 8,
@@ -1303,6 +2455,13 @@
         "kelly_fraction": 0.018
       },
       {
+        "horse_number": 5,
+        "horse_name": "ヴィスメンティス",
+        "win_odds": 30.8,
+        "ev_score": 2.0737,
+        "kelly_fraction": 0.0036
+      },
+      {
         "horse_number": 3,
         "horse_name": "シートゥサミット",
         "win_odds": 14.7,
@@ -1310,25 +2469,18 @@
         "kelly_fraction": 0.0068
       },
       {
-        "horse_number": 5,
-        "horse_name": "ヴィスメンティス",
-        "win_odds": 30.8,
-        "ev_score": 1.7259,
-        "kelly_fraction": 0.0024
-      },
-      {
         "horse_number": 1,
         "horse_name": "ルクスユアン",
         "win_odds": 36.9,
-        "ev_score": 1.5871,
-        "kelly_fraction": 0.0016
+        "ev_score": 1.612,
+        "kelly_fraction": 0.0017
       },
       {
         "horse_number": 10,
         "horse_name": "ヴィラジョヴィス",
         "win_odds": 5.4,
-        "ev_score": 1.3643,
-        "kelly_fraction": 0.0083
+        "ev_score": 1.0616,
+        "kelly_fraction": 0.0014
       },
       {
         "horse_number": 6,
@@ -1338,6 +2490,6 @@
         "kelly_fraction": 0.0005
       }
     ],
-    "generated_at": "2026-05-03T08:12:05.584332"
+    "generated_at": "2026-05-03T11:10:34.597949"
   }
 }

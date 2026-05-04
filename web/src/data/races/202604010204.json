@@ -12,54 +12,314 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "メイショウソウセキ",
-      "horse_id": "2022103255",
-      "sex_age": "牡3",
-      "weight_carried": 59.0,
-      "jockey": "難波剛健",
-      "trainer": "松永幹夫",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "rank": 1,
+      "gate_number": 4,
+      "horse_number": 5,
+      "horse_name": "コレペティトール",
+      "horse_id": null,
+      "sex_age": "セ6",
+      "weight_carried": 57.0,
+      "jockey": "▲井上",
+      "trainer": "栗東中竹",
+      "finish_time": "3:09.0",
+      "margin": "@",
+      "win_odds": 3.1,
+      "popularity": 1,
+      "horse_weight": 476,
+      "horse_weight_diff": -2,
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.0673,
-      "ev_score": 0.8887,
+      "honmei_score": 0.0874,
+      "ev_score": 0.3672,
       "kelly_fraction": 0.0,
-      "manji_ev": 0.5575,
+      "manji_ev": 1.5222,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "クレプスクルム",
-      "horse_id": "2022102784",
-      "sex_age": "牡3",
-      "weight_carried": 59.0,
-      "jockey": "五十嵐雄",
-      "trainer": "上原博之",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "rank": 2,
+      "gate_number": 7,
+      "horse_number": 11,
+      "horse_name": "キャネル",
+      "horse_id": null,
+      "sex_age": "牡5",
+      "weight_carried": 57.0,
+      "jockey": "▲坂口",
+      "trainer": "美浦手塚久",
+      "finish_time": "3:11.3",
+      "margin": "@",
+      "win_odds": 12.0,
+      "popularity": 6,
+      "horse_weight": 498,
+      "horse_weight_diff": -6,
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.0296,
-      "ev_score": 0.8289,
+      "honmei_score": 0.1021,
+      "ev_score": 1.7861,
+      "kelly_fraction": 0.0048,
+      "manji_ev": 2.7768,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 6,
+      "horse_number": 10,
+      "horse_name": "サングラデーション",
+      "horse_id": null,
+      "sex_age": "セ6",
+      "weight_carried": 60.0,
+      "jockey": "上野",
+      "trainer": "美浦千葉",
+      "finish_time": "3:11.8",
+      "margin": "@",
+      "win_odds": 16.3,
+      "popularity": 7,
+      "horse_weight": 418,
+      "horse_weight_diff": -10,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0412,
+      "ev_score": 0.445,
       "kelly_fraction": 0.0,
-      "manji_ev": 0.5584,
+      "manji_ev": 1.1503,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 4,
+      "gate_number": 6,
+      "horse_number": 9,
+      "horse_name": "フォルガイル",
+      "horse_id": null,
+      "sex_age": "牡5",
+      "weight_carried": 57.0,
+      "jockey": "▲水沼",
+      "trainer": "美浦加藤和",
+      "finish_time": "3:11.8",
+      "margin": "@",
+      "win_odds": 4.6,
+      "popularity": 2,
+      "horse_weight": 444,
+      "horse_weight_diff": -8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.056,
+      "ev_score": 0.3922,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.5429,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 5,
+      "gate_number": 8,
+      "horse_number": 13,
+      "horse_name": "ランフォースマイル",
+      "horse_id": null,
+      "sex_age": "牝4",
+      "weight_carried": 57.0,
+      "jockey": "中村",
+      "trainer": "美浦秋本",
+      "finish_time": "3:12.4",
+      "margin": "@",
+      "win_odds": 30.3,
+      "popularity": 8,
+      "horse_weight": 464,
+      "horse_weight_diff": 12,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0998,
+      "ev_score": 2.596,
+      "kelly_fraction": 0.0064,
+      "manji_ev": 3.4745,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 6,
+      "gate_number": 5,
+      "horse_number": 8,
+      "horse_name": "メイショウカゼマチ",
+      "horse_id": null,
+      "sex_age": "牡6",
+      "weight_carried": 60.0,
+      "jockey": "黒岩",
+      "trainer": "栗東角田",
+      "finish_time": "3:12.9",
+      "margin": "@",
+      "win_odds": 38.5,
+      "popularity": 10,
+      "horse_weight": 468,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0412,
+      "ev_score": 1.1866,
+      "kelly_fraction": 0.0007,
+      "manji_ev": 3.4224,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 7,
+      "gate_number": 7,
+      "horse_number": 12,
+      "horse_name": "グランジョルノ",
+      "horse_id": null,
+      "sex_age": "牡4",
+      "weight_carried": 59.0,
+      "jockey": "伴",
+      "trainer": "美浦高柳瑞",
+      "finish_time": "3:13.3",
+      "margin": "@",
+      "win_odds": 9.1,
+      "popularity": 5,
+      "horse_weight": 492,
+      "horse_weight_diff": 8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0279,
+      "ev_score": 0.2594,
+      "kelly_fraction": 0.0,
+      "manji_ev": 2.0663,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 8,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "メイショウソウセキ",
+      "horse_id": null,
+      "sex_age": "牡4",
+      "weight_carried": 59.0,
+      "jockey": "難波",
+      "trainer": "栗東松永幹",
+      "finish_time": "3:13.4",
+      "margin": "@",
+      "win_odds": 7.8,
+      "popularity": 4,
+      "horse_weight": 518,
+      "horse_weight_diff": 8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.057,
+      "ev_score": 0.7518,
+      "kelly_fraction": 0.0,
+      "manji_ev": 2.8846,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 9,
+      "gate_number": 5,
+      "horse_number": 7,
+      "horse_name": "モズナイスバディー",
+      "horse_id": null,
+      "sex_age": "牡5",
+      "weight_carried": 60.0,
+      "jockey": "森一",
+      "trainer": "栗東飯田",
+      "finish_time": "3:14.1",
+      "margin": "@",
+      "win_odds": 5.2,
+      "popularity": 3,
+      "horse_weight": 498,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0412,
+      "ev_score": 0.1566,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.3585,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 10,
+      "gate_number": 4,
+      "horse_number": 6,
+      "horse_name": "イーサンバーニング",
+      "horse_id": null,
+      "sex_age": "牡7",
+      "weight_carried": 60.0,
+      "jockey": "田村",
+      "trainer": "栗東藤野",
+      "finish_time": "3:14.5",
+      "margin": "@",
+      "win_odds": 53.3,
+      "popularity": 12,
+      "horse_weight": 522,
+      "horse_weight_diff": -4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0226,
+      "ev_score": 0.5066,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.8632,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 11,
+      "gate_number": 3,
+      "horse_number": 4,
+      "horse_name": "ヴェルトラウム",
+      "horse_id": null,
+      "sex_age": "セ5",
+      "weight_carried": 60.0,
+      "jockey": "大江圭",
+      "trainer": "美浦西田",
+      "finish_time": "3:15.3",
+      "margin": "@",
+      "win_odds": 35.0,
+      "popularity": 9,
+      "horse_weight": 450,
+      "horse_weight_diff": -4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0437,
+      "ev_score": 0.6727,
+      "kelly_fraction": 0.0,
+      "manji_ev": 3.6386,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 12,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "クレプスクルム",
+      "horse_id": null,
+      "sex_age": "牡4",
+      "weight_carried": 59.0,
+      "jockey": "五十嵐",
+      "trainer": "美浦上原博",
+      "finish_time": "3:23.3",
+      "margin": "@",
+      "win_odds": 81.4,
+      "popularity": 14,
+      "horse_weight": 462,
+      "horse_weight_diff": 8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0279,
+      "ev_score": 0.781,
+      "kelly_fraction": 0.0,
+      "manji_ev": 2.0423,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
@@ -68,284 +328,24 @@
       "gate_number": 3,
       "horse_number": 3,
       "horse_name": "ピスタ",
-      "horse_id": "2022105488",
-      "sex_age": "騸1",
+      "horse_id": null,
+      "sex_age": "セ4",
       "weight_carried": 59.0,
-      "jockey": "小坂忠士",
-      "trainer": "藤原英昭",
+      "jockey": "小坂",
+      "trainer": "栗東藤原",
       "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "margin": "@",
+      "win_odds": 79.4,
+      "popularity": 13,
+      "horse_weight": 528,
+      "horse_weight_diff": -8,
       "sire": null,
       "dam": null,
       "dam_sire": null,
       "honmei_score": 0.0226,
       "ev_score": 0.6989,
       "kelly_fraction": 0.0,
-      "manji_ev": 0.619,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 4,
-      "horse_name": "ヴェルトラウム",
-      "horse_id": "2021104903",
-      "sex_age": "騸3",
-      "weight_carried": 60.0,
-      "jockey": "大江原圭",
-      "trainer": "西田雄一",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ミッキーロケット",
-      "dam": "ヒルダ",
-      "dam_sire": "ダイワメジャー",
-      "honmei_score": 0.0437,
-      "ev_score": 0.6727,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.5458,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 5,
-      "horse_name": "コレペティトール",
-      "horse_id": "2020103043",
-      "sex_age": "騸1",
-      "weight_carried": 57.0,
-      "jockey": "井上敏樹",
-      "trainer": "中竹和也",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ジャスタウェイ",
-      "dam": "ベガスナイト",
-      "dam_sire": "コロナドズクエストCoronado's Quest(米)",
-      "honmei_score": 0.0796,
-      "ev_score": 0.3343,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.4705,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 6,
-      "horse_name": "イーサンバーニング",
-      "horse_id": "2019104192",
-      "sex_age": "牡3",
-      "weight_carried": 60.0,
-      "jockey": "田村太雅",
-      "trainer": "藤野健太",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ホッコータルマエ",
-      "dam": "ターキッシュブルー",
-      "dam_sire": "カリズマティックCharismatic(米)",
-      "honmei_score": 0.0279,
-      "ev_score": 0.6248,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.6373,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 7,
-      "horse_name": "モズナイスバディー",
-      "horse_id": "2021102845",
-      "sex_age": "牡1",
-      "weight_carried": 60.0,
-      "jockey": "森一馬",
-      "trainer": "飯田祐史",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "マジェスティックウォリアーMajestic Warrior(米)",
-      "dam": "モズラコルタ",
-      "dam_sire": "ヴィクトワールピサ",
-      "honmei_score": 0.043,
-      "ev_score": 0.1634,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.5259,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 8,
-      "horse_name": "メイショウカゼマチ",
-      "horse_id": "2020106534",
-      "sex_age": "牡3",
-      "weight_carried": 60.0,
-      "jockey": "黒岩悠",
-      "trainer": "角田晃一",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ミッキーアイル",
-      "dam": "メイショウマイカゼ",
-      "dam_sire": "メイショウボーラー",
-      "honmei_score": 0.0412,
-      "ev_score": 1.1866,
-      "kelly_fraction": 0.0007,
-      "manji_ev": 1.0951,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 9,
-      "horse_name": "フォルガイル",
-      "horse_id": "2021101164",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "水沼元輝",
-      "trainer": "加藤和宏",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "レイデオロ",
-      "dam": "アディクション",
-      "dam_sire": "ハーツクライ",
-      "honmei_score": 0.0437,
-      "ev_score": 0.3058,
-      "kelly_fraction": 0.0,
-      "manji_ev": 1.3976,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 10,
-      "horse_name": "サングラデーション",
-      "horse_id": "2020102864",
-      "sex_age": "騸4",
-      "weight_carried": 60.0,
-      "jockey": "上野翔",
-      "trainer": "千葉直人",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0387,
-      "ev_score": 0.4182,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.5597,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 11,
-      "horse_name": "キャネル",
-      "horse_id": "2021105885",
-      "sex_age": "牡1",
-      "weight_carried": 57.0,
-      "jockey": "坂口智康",
-      "trainer": "手塚貴久",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ブリックスアンドモルタルBricks and Mortar(米)",
-      "dam": "レッドラヴィータ",
-      "dam_sire": "スペシャルウィーク",
-      "honmei_score": 0.0874,
-      "ev_score": 1.5299,
-      "kelly_fraction": 0.0032,
-      "manji_ev": 0.0984,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 12,
-      "horse_name": "グランジョルノ",
-      "horse_id": "2022104673",
-      "sex_age": "牡1",
-      "weight_carried": 59.0,
-      "jockey": "伴啓太",
-      "trainer": "高柳瑞樹",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ゴールドドリーム",
-      "dam": "ヴィータアレグリア",
-      "dam_sire": "ネオユニヴァース",
-      "honmei_score": 0.0492,
-      "ev_score": 0.458,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.6144,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 13,
-      "horse_name": "ランフォースマイル",
-      "horse_id": "2022104130",
-      "sex_age": "牝3",
-      "weight_carried": 57.0,
-      "jockey": "中村将之",
-      "trainer": "秋本大介",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.1021,
-      "ev_score": 2.6536,
-      "kelly_fraction": 0.0066,
-      "manji_ev": 1.3273,
+      "manji_ev": 1.0372,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
@@ -354,29 +354,102 @@
       "gate_number": 8,
       "horse_number": 14,
       "horse_name": "イデアユウシン",
-      "horse_id": "2020106549",
-      "sex_age": "牡4",
+      "horse_id": null,
+      "sex_age": "牡6",
       "weight_carried": 60.0,
-      "jockey": "草野太郎",
-      "trainer": "松永康利",
+      "jockey": "草野",
+      "trainer": "美浦松永康",
       "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ドレフォンDrefong(米)",
-      "dam": "コウヨウマリア",
-      "dam_sire": "ダンスインザダーク",
-      "honmei_score": 0.056,
-      "ev_score": 1.7931,
-      "kelly_fraction": 0.0026,
-      "manji_ev": 0.4136,
+      "margin": "@",
+      "win_odds": 49.6,
+      "popularity": 11,
+      "horse_weight": 538,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.07,
+      "ev_score": 2.2393,
+      "kelly_fraction": 0.004,
+      "manji_ev": 13.5596,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     }
   ],
-  "payouts": [],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "5",
+      "payout": 310,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "5",
+      "payout": 160,
+      "popularity": 2
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "11",
+      "payout": 310,
+      "popularity": 6
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "10",
+      "payout": 400,
+      "popularity": 7
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "4-7",
+      "payout": 870,
+      "popularity": 4
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "5-11",
+      "payout": 1600,
+      "popularity": 4
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "5-11",
+      "payout": 700,
+      "popularity": 5
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "5-10",
+      "payout": 860,
+      "popularity": 10
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "10-11",
+      "payout": 2180,
+      "popularity": 27
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "5→11",
+      "payout": 2650,
+      "popularity": 7
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5-10-11",
+      "payout": 6570,
+      "popularity": 17
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "5→11→10",
+      "payout": 23460,
+      "popularity": 67
+    }
+  ],
   "predictions": [
     {
       "prediction_id": 21274,
@@ -388,10 +461,10 @@
       "combination_json": "[[13]]",
       "notes": "確率1位 P(win)=0.10 odds=26.0 EV=2.65",
       "created_at": "2026-05-03 08:11:53",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ランフォースマイル",
@@ -412,10 +485,10 @@
       "combination_json": "[[13], [11], [5]]",
       "notes": "上位3頭を複勝",
       "created_at": "2026-05-03 08:11:53",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 1,
+      "payout": 930.0,
+      "profit": 630.0,
+      "roi": 310.0,
       "horses": [
         {
           "horse_name": "ランフォースマイル",
@@ -450,10 +523,10 @@
       "combination_json": "[[11, 13], [5, 13], [1, 13], [13, 14], [12, 13]]",
       "notes": "軸13番×相手5頭フォーメーション Harville最大=0.038",
       "created_at": "2026-05-03 08:11:53",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "キャネル",
@@ -537,10 +610,10 @@
       "combination_json": "[[11, 13], [5, 13], [1, 13], [13, 14], [12, 13]]",
       "notes": "軸13番×相手5頭ワイド Harville最大=0.038",
       "created_at": "2026-05-03 08:11:53",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "キャネル",
@@ -624,10 +697,10 @@
       "combination_json": "[[13, 11], [13, 5], [13, 1]]",
       "notes": "軸13番→相手3頭フォーメーション Harville最大=0.019",
       "created_at": "2026-05-03 08:11:53",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ランフォースマイル",
@@ -683,10 +756,10 @@
       "combination_json": "[[5, 11, 13], [1, 11, 13]]",
       "notes": "合成EV最大=5.00 2点 馬番=[(5, 11, 13), (1, 11, 13)]",
       "created_at": "2026-05-03 08:11:53",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "コレペティトール",
@@ -742,10 +815,10 @@
       "combination_json": "[[13, 11, 5], [13, 5, 11], [13, 11, 1], [13, 1, 11], [13, 5, 1], [13, 1, 5], [13, 11, 14], [13, 14, 11], [13, 5, 14], [13, 14, 5], [13, 11, 12], [13, 12, 11]]",
       "notes": "1着固定フォーメーション 軸=13番 12点 相手=[11, 5, 1, 14, 12, 9] Harville最大=0.0164",
       "created_at": "2026-05-03 08:11:53",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1000.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ランフォースマイル",
@@ -864,10 +937,10 @@
       "combination_json": "[[9]]",
       "notes": "確率1位(卍) EV=1.40 odds=7.0",
       "created_at": "2026-05-03 08:11:53",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "フォルガイル",
@@ -888,10 +961,10 @@
       "combination_json": "[[9], [13], [8]]",
       "notes": "確率上位3頭を複勝",
       "created_at": "2026-05-03 08:11:53",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "フォルガイル",
@@ -926,10 +999,10 @@
       "combination_json": "[[9, 13], [8, 9], [6, 9], [3, 9], [9, 12]]",
       "notes": "軸9番×相手5頭フォーメーション Harville最大=0.049",
       "created_at": "2026-05-03 08:11:53",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "フォルガイル",
@@ -1013,10 +1086,10 @@
       "combination_json": "[[9, 13], [8, 9], [6, 9], [3, 9], [9, 12]]",
       "notes": "軸9番×相手5頭ワイド Harville最大=0.049",
       "created_at": "2026-05-03 08:11:53",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "フォルガイル",
@@ -1100,10 +1173,10 @@
       "combination_json": "[[9, 13], [9, 8], [9, 6]]",
       "notes": "軸9番→相手3頭フォーメーション Harville最大=0.025",
       "created_at": "2026-05-03 08:11:53",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "フォルガイル",
@@ -1159,10 +1232,10 @@
       "combination_json": "[[3, 9, 13]]",
       "notes": "合成EV=2.58 Harville=0.0123 馬番=(3, 9, 13)",
       "created_at": "2026-05-03 08:11:53",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ピスタ",
@@ -1197,10 +1270,10 @@
       "combination_json": "[[5, 11, 13], [1, 11, 13], [1, 5, 13], [11, 13, 14], [1, 5, 11]]",
       "notes": "[Oracle] 的中確率最大 5点 P最大=0.0984 馬番=[(5, 11, 13), (1, 11, 13), (1, 5, 13), (11, 13, 14), (1, 5, 11)]",
       "created_at": "2026-05-03 08:11:53",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "コレペティトール",
@@ -1235,10 +1308,10 @@
       "combination_json": "[[13, 11, 5], [13, 5, 11], [11, 13, 5], [11, 5, 13], [5, 13, 11], [5, 11, 13], [13, 11, 1], [13, 1, 11], [11, 13, 1], [11, 1, 13], [1, 13, 11], [1, 11, 13]]",
       "notes": "[Oracle] 的中確率最大 12点 P最大=0.0164 馬番=[(13, 11, 5), (13, 5, 11), (11, 13, 5), (11, 5, 13), (5, 13, 11), (5, 11, 13), (13, 11, 1), (13, 1, 11), (11, 13, 1), (11, 1, 13), (1, 13, 11), (1, 11, 13)]",
       "created_at": "2026-05-03 08:11:53",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ランフォースマイル",
@@ -1273,10 +1346,10 @@
       "combination_json": "[]",
       "notes": "全馬モデルスコア（馬分析タブ用）",
       "created_at": "2026-05-03 08:11:53",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ランフォースマイル",
@@ -1377,36 +1450,1136 @@
           "ev_score": 0.6988691437802907
         }
       ]
+    },
+    {
+      "prediction_id": 22136,
+      "model_type": "本命(直前)",
+      "bet_type": "単勝",
+      "confidence": 0.10206297502714441,
+      "expected_value": 1.7861020629750273,
+      "recommended_bet": 100.0,
+      "combination_json": "[[11]]",
+      "notes": "確率1位 P(win)=0.10 odds=17.5 EV=1.79",
+      "created_at": "2026-05-03 11:10:20",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "キャネル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.10206297502714441,
+          "ev_score": 1.7861020629750273
+        }
+      ]
+    },
+    {
+      "prediction_id": 22137,
+      "model_type": "本命(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.2893329993783987,
+      "expected_value": 0.2893329993783987,
+      "recommended_bet": 300.0,
+      "combination_json": "[[11], [13], [5]]",
+      "notes": "上位3頭を複勝",
+      "created_at": "2026-05-03 11:10:20",
+      "is_hit": 1,
+      "payout": 930.0,
+      "profit": 630.0,
+      "roi": 310.0,
+      "horses": [
+        {
+          "horse_name": "キャネル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.09644433312613289,
+          "ev_score": 0.2893329993783987
+        },
+        {
+          "horse_name": "ランフォースマイル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.09644433312613289,
+          "ev_score": 0.2893329993783987
+        },
+        {
+          "horse_name": "コレペティトール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.09644433312613289,
+          "ev_score": 0.2893329993783987
+        }
+      ]
+    },
+    {
+      "prediction_id": 22138,
+      "model_type": "本命(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.04302144563861761,
+      "expected_value": 4.0,
+      "recommended_bet": 500.0,
+      "combination_json": "[[11, 13], [5, 11], [11, 14], [1, 11], [9, 11]]",
+      "notes": "軸11番×相手5頭フォーメーション Harville最大=0.043",
+      "created_at": "2026-05-03 11:10:20",
+      "is_hit": 1,
+      "payout": 8000.0,
+      "profit": 7500.0,
+      "roi": 1600.0,
+      "horses": [
+        {
+          "horse_name": "キャネル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.04302144563861761,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "キャネル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.04302144563861761,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "キャネル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.04302144563861761,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "キャネル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.04302144563861761,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "キャネル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.04302144563861761,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ランフォースマイル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.04302144563861761,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ランフォースマイル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.04302144563861761,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ランフォースマイル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.04302144563861761,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ランフォースマイル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.04302144563861761,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ランフォースマイル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.04302144563861761,
+          "ev_score": 4.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 22139,
+      "model_type": "本命(直前)",
+      "bet_type": "ワイド",
+      "confidence": 0.05592787933020289,
+      "expected_value": 1.8821882466895203,
+      "recommended_bet": 500.0,
+      "combination_json": "[[11, 13], [5, 11], [11, 14], [1, 11], [9, 11]]",
+      "notes": "軸11番×相手5頭ワイド Harville最大=0.043",
+      "created_at": "2026-05-03 11:10:20",
+      "is_hit": 1,
+      "payout": 3500.0,
+      "profit": 3000.0,
+      "roi": 700.0,
+      "horses": [
+        {
+          "horse_name": "キャネル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.04302144563861761,
+          "ev_score": 1.8821882466895203
+        },
+        {
+          "horse_name": "キャネル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.04302144563861761,
+          "ev_score": 1.8821882466895203
+        },
+        {
+          "horse_name": "キャネル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.04302144563861761,
+          "ev_score": 1.8821882466895203
+        },
+        {
+          "horse_name": "キャネル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.04302144563861761,
+          "ev_score": 1.8821882466895203
+        },
+        {
+          "horse_name": "キャネル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.04302144563861761,
+          "ev_score": 1.8821882466895203
+        },
+        {
+          "horse_name": "ランフォースマイル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.04302144563861761,
+          "ev_score": 1.8821882466895203
+        },
+        {
+          "horse_name": "ランフォースマイル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.04302144563861761,
+          "ev_score": 1.8821882466895203
+        },
+        {
+          "horse_name": "ランフォースマイル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.04302144563861761,
+          "ev_score": 1.8821882466895203
+        },
+        {
+          "horse_name": "ランフォースマイル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.04302144563861761,
+          "ev_score": 1.8821882466895203
+        },
+        {
+          "horse_name": "ランフォースマイル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.04302144563861761,
+          "ev_score": 1.8821882466895203
+        }
+      ]
+    },
+    {
+      "prediction_id": 22140,
+      "model_type": "本命(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.17238418460888064,
+      "expected_value": 4.525084845983116,
+      "recommended_bet": 300.0,
+      "combination_json": "[[11, 13], [11, 5], [11, 14]]",
+      "notes": "軸11番→相手3頭フォーメーション Harville最大=0.022",
+      "created_at": "2026-05-03 11:10:20",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "キャネル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02154802307611008,
+          "ev_score": 4.525084845983116
+        },
+        {
+          "horse_name": "キャネル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02154802307611008,
+          "ev_score": 4.525084845983116
+        },
+        {
+          "horse_name": "キャネル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02154802307611008,
+          "ev_score": 4.525084845983116
+        },
+        {
+          "horse_name": "ランフォースマイル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02154802307611008,
+          "ev_score": 4.525084845983116
+        },
+        {
+          "horse_name": "ランフォースマイル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02154802307611008,
+          "ev_score": 4.525084845983116
+        },
+        {
+          "horse_name": "ランフォースマイル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02154802307611008,
+          "ev_score": 4.525084845983116
+        }
+      ]
+    },
+    {
+      "prediction_id": 22141,
+      "model_type": "本命(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.2455504664808015,
+      "expected_value": 5.0,
+      "recommended_bet": 600.0,
+      "combination_json": "[[5, 11, 13], [11, 13, 14]]",
+      "notes": "合成EV最大=5.00 2点 馬番=[(5, 11, 13), (11, 13, 14)]",
+      "created_at": "2026-05-03 11:10:20",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "コレペティトール",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.020462538873400125,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "コレペティトール",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.020462538873400125,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "キャネル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.020462538873400125,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "キャネル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.020462538873400125,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ランフォースマイル",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.020462538873400125,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ランフォースマイル",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.020462538873400125,
+          "ev_score": 5.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 22142,
+      "model_type": "本命(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.6138761662020038,
+      "expected_value": 6.0,
+      "recommended_bet": 1000.0,
+      "combination_json": "[[11, 13, 5], [11, 5, 13], [11, 13, 14], [11, 14, 13], [11, 5, 14], [11, 14, 5], [11, 13, 1], [11, 1, 13], [11, 13, 9], [11, 9, 13], [11, 5, 1], [11, 1, 5]]",
+      "notes": "1着固定フォーメーション 軸=11番 12点 相手=[13, 5, 14, 1, 9, 4] Harville最大=0.0205",
+      "created_at": "2026-05-03 11:10:20",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1000.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "キャネル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.020462538873400125,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "キャネル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.020462538873400125,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "キャネル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.020462538873400125,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "キャネル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.020462538873400125,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "キャネル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.020462538873400125,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ランフォースマイル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.020462538873400125,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ランフォースマイル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.020462538873400125,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ランフォースマイル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.020462538873400125,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ランフォースマイル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.020462538873400125,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ランフォースマイル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.020462538873400125,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "コレペティトール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.020462538873400125,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "コレペティトール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.020462538873400125,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "コレペティトール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.020462538873400125,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "コレペティトール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.020462538873400125,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "コレペティトール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.020462538873400125,
+          "ev_score": 6.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 22143,
+      "model_type": "卍(直前)",
+      "bet_type": "単勝",
+      "confidence": 1.0,
+      "expected_value": 13.559606297957139,
+      "recommended_bet": 400.0,
+      "combination_json": "[[14]]",
+      "notes": "確率1位(卍) EV=13.56 odds=32.0",
+      "created_at": "2026-05-03 11:10:20",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -400.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "イデアユウシン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 13.559606297957139,
+          "ev_score": 13.559606297957139
+        }
+      ]
+    },
+    {
+      "prediction_id": 22144,
+      "model_type": "卍(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.6,
+      "expected_value": 6.890886373452986,
+      "recommended_bet": 300.0,
+      "combination_json": "[[14], [4], [13]]",
+      "notes": "確率上位3頭を複勝",
+      "created_at": "2026-05-03 11:10:20",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "イデアユウシン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 6.890886373452986,
+          "ev_score": 6.890886373452986
+        },
+        {
+          "horse_name": "ヴェルトラウム",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 6.890886373452986,
+          "ev_score": 6.890886373452986
+        },
+        {
+          "horse_name": "ランフォースマイル",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 6.890886373452986,
+          "ev_score": 6.890886373452986
+        }
+      ]
+    },
+    {
+      "prediction_id": 22145,
+      "model_type": "卍(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.35300315143128863,
+      "expected_value": 4.0,
+      "recommended_bet": 500.0,
+      "combination_json": "[[4, 14], [13, 14], [8, 14], [1, 14], [11, 14]]",
+      "notes": "軸14番×相手5頭フォーメーション Harville最大=0.071",
+      "created_at": "2026-05-03 11:10:20",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ヴェルトラウム",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07060063028625772,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ヴェルトラウム",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07060063028625772,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ヴェルトラウム",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07060063028625772,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ヴェルトラウム",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07060063028625772,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ヴェルトラウム",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07060063028625772,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "イデアユウシン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07060063028625772,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "イデアユウシン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07060063028625772,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "イデアユウシン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07060063028625772,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "イデアユウシン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07060063028625772,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "イデアユウシン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07060063028625772,
+          "ev_score": 4.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 22146,
+      "model_type": "卍(直前)",
+      "bet_type": "ワイド",
+      "confidence": 0.4236037817175463,
+      "expected_value": 3.0,
+      "recommended_bet": 500.0,
+      "combination_json": "[[4, 14], [13, 14], [8, 14], [1, 14], [11, 14]]",
+      "notes": "軸14番×相手5頭ワイド Harville最大=0.071",
+      "created_at": "2026-05-03 11:10:20",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ヴェルトラウム",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07060063028625772,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ヴェルトラウム",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07060063028625772,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ヴェルトラウム",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07060063028625772,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ヴェルトラウム",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07060063028625772,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ヴェルトラウム",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07060063028625772,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "イデアユウシン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07060063028625772,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "イデアユウシン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07060063028625772,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "イデアユウシン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07060063028625772,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "イデアユウシン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07060063028625772,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "イデアユウシン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07060063028625772,
+          "ev_score": 3.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 22147,
+      "model_type": "卍(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.32392146779059006,
+      "expected_value": 5.0,
+      "recommended_bet": 300.0,
+      "combination_json": "[[14, 4], [14, 13], [14, 8]]",
+      "notes": "軸14番→相手3頭フォーメーション Harville最大=0.040",
+      "created_at": "2026-05-03 11:10:20",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "イデアユウシン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.04049018347382376,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "イデアユウシン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.04049018347382376,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "イデアユウシン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.04049018347382376,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ヴェルトラウム",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.04049018347382376,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ヴェルトラウム",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.04049018347382376,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ヴェルトラウム",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.04049018347382376,
+          "ev_score": 5.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 22150,
+      "model_type": "卍(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.3105731127912143,
+      "expected_value": 5.0,
+      "recommended_bet": 300.0,
+      "combination_json": "[[1, 4, 14]]",
+      "notes": "合成EV=5.00 Harville=0.0207 馬番=(1, 4, 14)",
+      "created_at": "2026-05-03 11:10:20",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "メイショウソウセキ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.020704874186080954,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ヴェルトラウム",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.020704874186080954,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "イデアユウシン",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.020704874186080954,
+          "ev_score": 5.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 22151,
+      "model_type": "Oracle(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.12277523324040075,
+      "expected_value": 3.6832569972120224,
+      "recommended_bet": 500.0,
+      "combination_json": "[[5, 11, 13], [11, 13, 14], [5, 11, 14], [5, 13, 14], [1, 11, 13]]",
+      "notes": "[Oracle] 的中確率最大 5点 P最大=0.1228 馬番=[(5, 11, 13), (11, 13, 14), (5, 11, 14), (5, 13, 14), (1, 11, 13)]",
+      "created_at": "2026-05-03 11:10:20",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "コレペティトール",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.12277523324040075,
+          "ev_score": 3.6832569972120224
+        },
+        {
+          "horse_name": "キャネル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.12277523324040075,
+          "ev_score": 3.6832569972120224
+        },
+        {
+          "horse_name": "ランフォースマイル",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.12277523324040075,
+          "ev_score": 3.6832569972120224
+        }
+      ]
+    },
+    {
+      "prediction_id": 22152,
+      "model_type": "Oracle(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.020462538873400125,
+      "expected_value": 3.069380831010019,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[11, 13, 5], [11, 5, 13], [13, 11, 5], [13, 5, 11], [5, 11, 13], [5, 13, 11], [11, 13, 14], [11, 14, 13], [13, 11, 14], [13, 14, 11], [14, 11, 13], [14, 13, 11]]",
+      "notes": "[Oracle] 的中確率最大 12点 P最大=0.0205 馬番=[(11, 13, 5), (11, 5, 13), (13, 11, 5), (13, 5, 11), (5, 11, 13), (5, 13, 11), (11, 13, 14), (11, 14, 13), (13, 11, 14), (13, 14, 11), (14, 11, 13), (14, 13, 11)]",
+      "created_at": "2026-05-03 11:10:20",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "キャネル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.020462538873400125,
+          "ev_score": 3.069380831010019
+        },
+        {
+          "horse_name": "ランフォースマイル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.020462538873400125,
+          "ev_score": 3.069380831010019
+        },
+        {
+          "horse_name": "コレペティトール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.020462538873400125,
+          "ev_score": 3.069380831010019
+        }
+      ]
+    },
+    {
+      "prediction_id": 22153,
+      "model_type": "本命(直前)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-05-03 11:10:20",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "キャネル",
+          "horse_id": "2021105885",
+          "predicted_rank": 1,
+          "model_score": 0.10206297502714441,
+          "ev_score": 1.7861020629750273
+        },
+        {
+          "horse_name": "ランフォースマイル",
+          "horse_id": "2022104130",
+          "predicted_rank": 2,
+          "model_score": 0.09984459984459984,
+          "ev_score": 2.595959595959596
+        },
+        {
+          "horse_name": "コレペティトール",
+          "horse_id": "2020103043",
+          "predicted_rank": 3,
+          "model_score": 0.08742542450665443,
+          "ev_score": 0.3671867829279486
+        },
+        {
+          "horse_name": "イデアユウシン",
+          "horse_id": "2020106549",
+          "predicted_rank": 4,
+          "model_score": 0.06997742663656885,
+          "ev_score": 2.239277652370203
+        },
+        {
+          "horse_name": "メイショウソウセキ",
+          "horse_id": "2022103255",
+          "predicted_rank": 5,
+          "model_score": 0.05695830886670581,
+          "ev_score": 0.7518496770405166
+        },
+        {
+          "horse_name": "フォルガイル",
+          "horse_id": "2021101164",
+          "predicted_rank": 6,
+          "model_score": 0.05603448275862069,
+          "ev_score": 0.39224137931034486
+        },
+        {
+          "horse_name": "ヴェルトラウム",
+          "horse_id": "2021104903",
+          "predicted_rank": 7,
+          "model_score": 0.043684710351377026,
+          "ev_score": 0.6727445394112063
+        },
+        {
+          "horse_name": "サングラデーション",
+          "horse_id": "2020102864",
+          "predicted_rank": 8,
+          "model_score": 0.04120070629782225,
+          "ev_score": 0.4449676280164803
+        },
+        {
+          "horse_name": "モズナイスバディー",
+          "horse_id": "2021102845",
+          "predicted_rank": 9,
+          "model_score": 0.04120070629782225,
+          "ev_score": 0.15656268393172454
+        },
+        {
+          "horse_name": "メイショウカゼマチ",
+          "horse_id": "2020106534",
+          "predicted_rank": 10,
+          "model_score": 0.04120070629782225,
+          "ev_score": 1.1865803413772809
+        },
+        {
+          "horse_name": "グランジョルノ",
+          "horse_id": "2022104673",
+          "predicted_rank": 11,
+          "model_score": 0.02789400278940028,
+          "ev_score": 0.2594142259414226
+        },
+        {
+          "horse_name": "クレプスクルム",
+          "horse_id": "2022102784",
+          "predicted_rank": 12,
+          "model_score": 0.02789400278940028,
+          "ev_score": 0.7810320781032078
+        },
+        {
+          "horse_name": "イーサンバーニング",
+          "horse_id": "2019104192",
+          "predicted_rank": 13,
+          "model_score": 0.022617124394184167,
+          "ev_score": 0.5066235864297253
+        },
+        {
+          "horse_name": "ピスタ",
+          "horse_id": "2022105488",
+          "predicted_rank": 14,
+          "model_score": 0.022617124394184167,
+          "ev_score": 0.6988691437802907
+        }
+      ]
+    },
+    {
+      "prediction_id": 22154,
+      "model_type": "HitFocus(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.21510722819308803,
+      "expected_value": 4.0,
+      "recommended_bet": 700.0,
+      "combination_json": "[[11, 13], [5, 11], [5, 13], [11, 14], [13, 14], [1, 11], [1, 13]]",
+      "notes": "2軸マルチ 軸=11,13 相手=[5, 14, 1] Harville最大=0.0430",
+      "created_at": "2026-05-03 11:10:20",
+      "is_hit": 1,
+      "payout": 11200.0,
+      "profit": 10500.0,
+      "roi": 1600.0,
+      "horses": [
+        {
+          "horse_name": "キャネル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.04302144563861761,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ランフォースマイル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.04302144563861761,
+          "ev_score": 4.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 22155,
+      "model_type": "HitFocus(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.17238418460888064,
+      "expected_value": 4.525084845983116,
+      "recommended_bet": 800.0,
+      "combination_json": "[[11, 13], [13, 11], [11, 5], [13, 5], [11, 14], [13, 14], [11, 1], [13, 1]]",
+      "notes": "2軸マルチ 軸=11,13 相手=[5, 14, 1] Harville最大=0.0215",
+      "created_at": "2026-05-03 11:10:20",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -800.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "キャネル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02154802307611008,
+          "ev_score": 4.525084845983116
+        },
+        {
+          "horse_name": "ランフォースマイル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02154802307611008,
+          "ev_score": 4.525084845983116
+        }
+      ]
+    },
+    {
+      "prediction_id": 22156,
+      "model_type": "HitFocus(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.10490970131440536,
+      "expected_value": 6.0,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[11, 13, 5], [13, 11, 5], [11, 5, 13], [13, 5, 11], [11, 13, 14], [13, 11, 14], [11, 14, 13], [13, 14, 11], [11, 13, 1], [13, 11, 1], [11, 1, 13], [13, 1, 11]]",
+      "notes": "2軸マルチ 軸=11,13 相手=[5, 14, 1] 12点 Harville最大=0.0035",
+      "created_at": "2026-05-03 11:10:20",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "キャネル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.003496990043813512,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ランフォースマイル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.003496990043813512,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "コレペティトール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.003496990043813512,
+          "ev_score": 6.0
+        }
+      ]
     }
   ],
   "training_evals": {},
   "prerace": {
     "bias": {
-      "today_inner_bias": null,
-      "today_front_bias": null,
-      "today_race_count": null
+      "today_inner_bias": -0.13333333333333333,
+      "today_front_bias": 0.5,
+      "today_race_count": 2
     },
     "ev_recommend": [
       {
         "horse_number": 13,
         "horse_name": "ランフォースマイル",
         "win_odds": 26.0,
-        "ev_score": 2.6536,
-        "kelly_fraction": 0.0066
+        "ev_score": 2.596,
+        "kelly_fraction": 0.0064
       },
       {
         "horse_number": 14,
         "horse_name": "イデアユウシン",
         "win_odds": 32.0,
-        "ev_score": 1.7931,
-        "kelly_fraction": 0.0026
+        "ev_score": 2.2393,
+        "kelly_fraction": 0.004
       },
       {
         "horse_number": 11,
         "horse_name": "キャネル",
         "win_odds": 17.5,
-        "ev_score": 1.5299,
-        "kelly_fraction": 0.0032
+        "ev_score": 1.7861,
+        "kelly_fraction": 0.0048
       },
       {
         "horse_number": 8,
@@ -1416,6 +2589,6 @@
         "kelly_fraction": 0.0007
       }
     ],
-    "generated_at": "2026-05-03T08:11:53.056863"
+    "generated_at": "2026-05-03T11:10:20.664832"
   }
 }

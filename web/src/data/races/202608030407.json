@@ -22,7 +22,7 @@
       "jockey": "川須栄彦",
       "trainer": "梅田智之",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -30,10 +30,10 @@
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.1021,
-      "ev_score": 2.7761,
-      "kelly_fraction": 0.0068,
-      "manji_ev": 3.875,
+      "honmei_score": 0.1094,
+      "ev_score": 2.975,
+      "kelly_fraction": 0.0075,
+      "manji_ev": 5.5818,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
@@ -48,7 +48,7 @@
       "jockey": "太宰啓介",
       "trainer": "本田優",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -56,10 +56,10 @@
       "sire": "レインボーライン",
       "dam": "アテナブルー",
       "dam_sire": "ジャングルポケット",
-      "honmei_score": 0.0998,
-      "ev_score": 3.4446,
-      "kelly_fraction": 0.0073,
-      "manji_ev": 0.3675,
+      "honmei_score": 0.07,
+      "ev_score": 2.4142,
+      "kelly_fraction": 0.0042,
+      "manji_ev": 2.4189,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
@@ -74,7 +74,7 @@
       "jockey": "国分優作",
       "trainer": "坂口智康",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -85,7 +85,7 @@
       "honmei_score": 0.1313,
       "ev_score": 3.2162,
       "kelly_fraction": 0.0094,
-      "manji_ev": 0.6183,
+      "manji_ev": 0.6812,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
@@ -100,7 +100,7 @@
       "jockey": "レーン",
       "trainer": "池添学",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -108,10 +108,10 @@
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.07,
-      "ev_score": 0.3639,
+      "honmei_score": 0.0437,
+      "ev_score": 0.2272,
       "kelly_fraction": 0.0,
-      "manji_ev": 0.2568,
+      "manji_ev": 1.0014,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
@@ -126,7 +126,7 @@
       "jockey": "松若風馬",
       "trainer": "小崎憲",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -137,7 +137,7 @@
       "honmei_score": 0.0874,
       "ev_score": 1.9671,
       "kelly_fraction": 0.0045,
-      "manji_ev": 1.1767,
+      "manji_ev": 4.134,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
@@ -152,7 +152,7 @@
       "jockey": "岩田望来",
       "trainer": "中村直也",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -160,10 +160,10 @@
       "sire": "ルーラーシップ",
       "dam": "アズレージョ",
       "dam_sire": "タートルボウルTurtle Bowl(愛)",
-      "honmei_score": 0.1021,
-      "ev_score": 0.9186,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.4535,
+      "honmei_score": 0.1374,
+      "ev_score": 1.2366,
+      "kelly_fraction": 0.003,
+      "manji_ev": 2.6983,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
@@ -178,7 +178,7 @@
       "jockey": "ルメール",
       "trainer": "斉藤崇史",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -186,10 +186,10 @@
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.1313,
-      "ev_score": 0.1707,
+      "honmei_score": 0.1021,
+      "ev_score": 0.1327,
       "kelly_fraction": 0.0,
-      "manji_ev": 0.5259,
+      "manji_ev": 3.1777,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
@@ -204,7 +204,7 @@
       "jockey": "吉村誠之",
       "trainer": "清水久詞",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -215,7 +215,7 @@
       "honmei_score": 0.07,
       "ev_score": 1.0427,
       "kelly_fraction": 0.0003,
-      "manji_ev": 1.7557,
+      "manji_ev": 2.7363,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     }
@@ -1179,23 +1179,1074 @@
           "ev_score": 0.363882618510158
         }
       ]
+    },
+    {
+      "prediction_id": 22367,
+      "model_type": "本命(直前)",
+      "bet_type": "単勝",
+      "confidence": 0.13740458015267176,
+      "expected_value": 1.2366412213740459,
+      "recommended_bet": 100.0,
+      "combination_json": "[[6]]",
+      "notes": "確率1位 P(win)=0.14 odds=9.0 EV=1.24",
+      "created_at": "2026-05-03 12:40:26",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "ジェロニモス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.13740458015267176,
+          "ev_score": 1.2366412213740459
+        }
+      ]
+    },
+    {
+      "prediction_id": 22368,
+      "model_type": "本命(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.378053711426803,
+      "expected_value": 0.378053711426803,
+      "recommended_bet": 300.0,
+      "combination_json": "[[6], [3], [1]]",
+      "notes": "上位3頭を複勝",
+      "created_at": "2026-05-03 12:40:26",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "ジェロニモス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.12601790380893432,
+          "ev_score": 0.378053711426803
+        },
+        {
+          "horse_name": "テレプシコーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.12601790380893432,
+          "ev_score": 0.378053711426803
+        },
+        {
+          "horse_name": "ボナペティアスク",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.12601790380893432,
+          "ev_score": 0.378053711426803
+        }
+      ]
+    },
+    {
+      "prediction_id": 22369,
+      "model_type": "本命(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.07785776571290778,
+      "expected_value": 4.0,
+      "recommended_bet": 500.0,
+      "combination_json": "[[3, 6], [1, 6], [6, 7], [5, 6], [2, 6]]",
+      "notes": "軸6番×相手5頭フォーメーション Harville最大=0.078",
+      "created_at": "2026-05-03 12:40:26",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "テレプシコーラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07785776571290778,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "テレプシコーラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07785776571290778,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "テレプシコーラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07785776571290778,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "テレプシコーラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07785776571290778,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "テレプシコーラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07785776571290778,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ジェロニモス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07785776571290778,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ジェロニモス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07785776571290778,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ジェロニモス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07785776571290778,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ジェロニモス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07785776571290778,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ジェロニモス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07785776571290778,
+          "ev_score": 4.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 22370,
+      "model_type": "本命(直前)",
+      "bet_type": "ワイド",
+      "confidence": 0.10121509542678012,
+      "expected_value": 1.7517997285404252,
+      "recommended_bet": 500.0,
+      "combination_json": "[[3, 6], [1, 6], [6, 7], [5, 6], [2, 6]]",
+      "notes": "軸6番×相手5頭ワイド Harville最大=0.078",
+      "created_at": "2026-05-03 12:40:26",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "テレプシコーラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07785776571290778,
+          "ev_score": 1.7517997285404252
+        },
+        {
+          "horse_name": "テレプシコーラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07785776571290778,
+          "ev_score": 1.7517997285404252
+        },
+        {
+          "horse_name": "テレプシコーラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07785776571290778,
+          "ev_score": 1.7517997285404252
+        },
+        {
+          "horse_name": "テレプシコーラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07785776571290778,
+          "ev_score": 1.7517997285404252
+        },
+        {
+          "horse_name": "テレプシコーラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07785776571290778,
+          "ev_score": 1.7517997285404252
+        },
+        {
+          "horse_name": "ジェロニモス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07785776571290778,
+          "ev_score": 1.7517997285404252
+        },
+        {
+          "horse_name": "ジェロニモス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07785776571290778,
+          "ev_score": 1.7517997285404252
+        },
+        {
+          "horse_name": "ジェロニモス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07785776571290778,
+          "ev_score": 1.7517997285404252
+        },
+        {
+          "horse_name": "ジェロニモス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07785776571290778,
+          "ev_score": 1.7517997285404252
+        },
+        {
+          "horse_name": "ジェロニモス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07785776571290778,
+          "ev_score": 1.7517997285404252
+        }
+      ]
+    },
+    {
+      "prediction_id": 22371,
+      "model_type": "本命(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.31297863193986564,
+      "expected_value": 4.225211531188186,
+      "recommended_bet": 300.0,
+      "combination_json": "[[6, 3], [6, 1], [6, 7]]",
+      "notes": "軸6番→相手3頭フォーメーション Harville最大=0.039",
+      "created_at": "2026-05-03 12:40:26",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "ジェロニモス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.039122328992483205,
+          "ev_score": 4.225211531188186
+        },
+        {
+          "horse_name": "ジェロニモス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.039122328992483205,
+          "ev_score": 4.225211531188186
+        },
+        {
+          "horse_name": "ジェロニモス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.039122328992483205,
+          "ev_score": 4.225211531188186
+        },
+        {
+          "horse_name": "テレプシコーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.039122328992483205,
+          "ev_score": 4.225211531188186
+        },
+        {
+          "horse_name": "テレプシコーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.039122328992483205,
+          "ev_score": 4.225211531188186
+        },
+        {
+          "horse_name": "テレプシコーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.039122328992483205,
+          "ev_score": 4.225211531188186
+        }
+      ]
+    },
+    {
+      "prediction_id": 22372,
+      "model_type": "本命(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.6067094877106141,
+      "expected_value": 5.0,
+      "recommended_bet": 600.0,
+      "combination_json": "[[1, 3, 6], [3, 6, 7]]",
+      "notes": "合成EV最大=5.00 2点 馬番=[(1, 3, 6), (3, 6, 7)]",
+      "created_at": "2026-05-03 12:40:26",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "ボナペティアスク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05055912397588451,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ボナペティアスク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05055912397588451,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "テレプシコーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05055912397588451,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "テレプシコーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05055912397588451,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ジェロニモス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.05055912397588451,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ジェロニモス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.05055912397588451,
+          "ev_score": 5.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 22373,
+      "model_type": "本命(直前)",
+      "bet_type": "三連単",
+      "confidence": 1.0,
+      "expected_value": 6.0,
+      "recommended_bet": 1000.0,
+      "combination_json": "[[6, 3, 1], [6, 1, 3], [6, 3, 7], [6, 7, 3], [6, 3, 5], [6, 5, 3], [6, 1, 7], [6, 7, 1], [6, 1, 5], [6, 5, 1], [6, 3, 2], [6, 3, 8]]",
+      "notes": "1着固定フォーメーション 軸=6番 12点 相手=[3, 1, 7, 5, 2, 8] Harville最大=0.0506",
+      "created_at": "2026-05-03 12:40:26",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "ジェロニモス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05055912397588451,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ジェロニモス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05055912397588451,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ジェロニモス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05055912397588451,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ジェロニモス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05055912397588451,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ジェロニモス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05055912397588451,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "テレプシコーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05055912397588451,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "テレプシコーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05055912397588451,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "テレプシコーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05055912397588451,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "テレプシコーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05055912397588451,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "テレプシコーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05055912397588451,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ボナペティアスク",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.05055912397588451,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ボナペティアスク",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.05055912397588451,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ボナペティアスク",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.05055912397588451,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ボナペティアスク",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.05055912397588451,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ボナペティアスク",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.05055912397588451,
+          "ev_score": 6.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 22374,
+      "model_type": "卍(直前)",
+      "bet_type": "単勝",
+      "confidence": 1.0,
+      "expected_value": 5.581841478701529,
+      "recommended_bet": 300.0,
+      "combination_json": "[[1]]",
+      "notes": "確率1位(卍) EV=5.58 odds=27.2",
+      "created_at": "2026-05-03 12:40:26",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "ボナペティアスク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 5.581841478701529,
+          "ev_score": 5.581841478701529
+        }
+      ]
+    },
+    {
+      "prediction_id": 22375,
+      "model_type": "卍(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.6,
+      "expected_value": 4.297841161231657,
+      "recommended_bet": 300.0,
+      "combination_json": "[[1], [5], [7]]",
+      "notes": "確率上位3頭を複勝",
+      "created_at": "2026-05-03 12:40:26",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "ボナペティアスク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 4.297841161231657,
+          "ev_score": 4.297841161231657
+        },
+        {
+          "horse_name": "レイデラティエラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 4.297841161231657,
+          "ev_score": 4.297841161231657
+        },
+        {
+          "horse_name": "タンテドヴィーヴル",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 4.297841161231657,
+          "ev_score": 4.297841161231657
+        }
+      ]
+    },
+    {
+      "prediction_id": 22376,
+      "model_type": "卍(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.586475885058338,
+      "expected_value": 4.0,
+      "recommended_bet": 500.0,
+      "combination_json": "[[1, 5], [1, 7], [1, 8], [1, 6], [1, 2]]",
+      "notes": "軸1番×相手5頭フォーメーション Harville最大=0.117",
+      "created_at": "2026-05-03 12:40:26",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "ボナペティアスク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11729517701166761,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ボナペティアスク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11729517701166761,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ボナペティアスク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11729517701166761,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ボナペティアスク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11729517701166761,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ボナペティアスク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11729517701166761,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "レイデラティエラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11729517701166761,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "レイデラティエラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11729517701166761,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "レイデラティエラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11729517701166761,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "レイデラティエラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11729517701166761,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "レイデラティエラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11729517701166761,
+          "ev_score": 4.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 22377,
+      "model_type": "卍(直前)",
+      "bet_type": "ワイド",
+      "confidence": 0.7037710620700057,
+      "expected_value": 3.0,
+      "recommended_bet": 500.0,
+      "combination_json": "[[1, 5], [1, 7], [1, 8], [1, 6], [1, 2]]",
+      "notes": "軸1番×相手5頭ワイド Harville最大=0.117",
+      "created_at": "2026-05-03 12:40:26",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "ボナペティアスク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11729517701166761,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ボナペティアスク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11729517701166761,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ボナペティアスク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11729517701166761,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ボナペティアスク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11729517701166761,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ボナペティアスク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11729517701166761,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "レイデラティエラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11729517701166761,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "レイデラティエラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11729517701166761,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "レイデラティエラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11729517701166761,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "レイデラティエラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11729517701166761,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "レイデラティエラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11729517701166761,
+          "ev_score": 3.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 22378,
+      "model_type": "卍(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.4885103693091883,
+      "expected_value": 5.0,
+      "recommended_bet": 300.0,
+      "combination_json": "[[1, 5], [1, 7], [1, 8]]",
+      "notes": "軸1番→相手3頭フォーメーション Harville最大=0.061",
+      "created_at": "2026-05-03 12:40:26",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "ボナペティアスク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.061063796163648536,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ボナペティアスク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.061063796163648536,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ボナペティアスク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.061063796163648536,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "レイデラティエラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.061063796163648536,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "レイデラティエラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.061063796163648536,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "レイデラティエラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.061063796163648536,
+          "ev_score": 5.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 22381,
+      "model_type": "卍(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.9784320053959086,
+      "expected_value": 5.0,
+      "recommended_bet": 300.0,
+      "combination_json": "[[1, 5, 6]]",
+      "notes": "合成EV=5.00 Harville=0.0652 馬番=(1, 5, 6)",
+      "created_at": "2026-05-03 12:40:26",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "ボナペティアスク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06522880035972724,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "レイデラティエラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06522880035972724,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ジェロニモス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.06522880035972724,
+          "ev_score": 5.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 22382,
+      "model_type": "Oracle(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.30335474385530703,
+      "expected_value": 9.100642315659211,
+      "recommended_bet": 500.0,
+      "combination_json": "[[1, 3, 6], [3, 6, 7], [3, 5, 6], [1, 6, 7], [1, 3, 7]]",
+      "notes": "[Oracle] 的中確率最大 5点 P最大=0.3034 馬番=[(1, 3, 6), (3, 6, 7), (3, 5, 6), (1, 6, 7), (1, 3, 7)]",
+      "created_at": "2026-05-03 12:40:26",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "ボナペティアスク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.30335474385530703,
+          "ev_score": 9.100642315659211
+        },
+        {
+          "horse_name": "テレプシコーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.30335474385530703,
+          "ev_score": 9.100642315659211
+        },
+        {
+          "horse_name": "ジェロニモス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.30335474385530703,
+          "ev_score": 9.100642315659211
+        }
+      ]
+    },
+    {
+      "prediction_id": 22383,
+      "model_type": "Oracle(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.05055912397588451,
+      "expected_value": 7.583868596382676,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[6, 3, 1], [6, 1, 3], [3, 6, 1], [3, 1, 6], [1, 6, 3], [1, 3, 6], [6, 3, 7], [6, 7, 3], [3, 6, 7], [3, 7, 6], [7, 6, 3], [7, 3, 6]]",
+      "notes": "[Oracle] 的中確率最大 12点 P最大=0.0506 馬番=[(6, 3, 1), (6, 1, 3), (3, 6, 1), (3, 1, 6), (1, 6, 3), (1, 3, 6), (6, 3, 7), (6, 7, 3), (3, 6, 7), (3, 7, 6), (7, 6, 3), (7, 3, 6)]",
+      "created_at": "2026-05-03 12:40:26",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "ジェロニモス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05055912397588451,
+          "ev_score": 7.583868596382676
+        },
+        {
+          "horse_name": "テレプシコーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05055912397588451,
+          "ev_score": 7.583868596382676
+        },
+        {
+          "horse_name": "ボナペティアスク",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.05055912397588451,
+          "ev_score": 7.583868596382676
+        }
+      ]
+    },
+    {
+      "prediction_id": 22384,
+      "model_type": "本命(直前)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-05-03 12:40:26",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "ジェロニモス",
+          "horse_id": "2021101280",
+          "predicted_rank": 1,
+          "model_score": 0.13740458015267176,
+          "ev_score": 1.2366412213740459
+        },
+        {
+          "horse_name": "テレプシコーラ",
+          "horse_id": "2022100457",
+          "predicted_rank": 2,
+          "model_score": 0.13127413127413126,
+          "ev_score": 3.216216216216216
+        },
+        {
+          "horse_name": "ボナペティアスク",
+          "horse_id": "2022102294",
+          "predicted_rank": 3,
+          "model_score": 0.109375,
+          "ev_score": 2.975
+        },
+        {
+          "horse_name": "タンテドヴィーヴル",
+          "horse_id": "2022105171",
+          "predicted_rank": 4,
+          "model_score": 0.10206297502714441,
+          "ev_score": 0.13268186753528774
+        },
+        {
+          "horse_name": "レイデラティエラ",
+          "horse_id": "2022103070",
+          "predicted_rank": 5,
+          "model_score": 0.08742542450665443,
+          "ev_score": 1.9670720513997246
+        },
+        {
+          "horse_name": "アンビアンス",
+          "horse_id": "2022106634",
+          "predicted_rank": 6,
+          "model_score": 0.06997742663656885,
+          "ev_score": 1.042663656884876
+        },
+        {
+          "horse_name": "ヴェストラン",
+          "horse_id": "2021100695",
+          "predicted_rank": 7,
+          "model_score": 0.06997742663656885,
+          "ev_score": 2.4142212189616252
+        },
+        {
+          "horse_name": "サラコスティ",
+          "horse_id": "2022104793",
+          "predicted_rank": 8,
+          "model_score": 0.043684710351377026,
+          "ev_score": 0.22716049382716055
+        }
+      ]
+    },
+    {
+      "prediction_id": 22385,
+      "model_type": "HitFocus(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.38928882856453895,
+      "expected_value": 4.0,
+      "recommended_bet": 700.0,
+      "combination_json": "[[3, 6], [1, 6], [1, 3], [6, 7], [3, 7], [5, 6], [3, 5]]",
+      "notes": "2軸マルチ 軸=6,3 相手=[1, 7, 5] Harville最大=0.0779",
+      "created_at": "2026-05-03 12:40:26",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "テレプシコーラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07785776571290778,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ジェロニモス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07785776571290778,
+          "ev_score": 4.0
+        }
+      ]
+    },
+    {
+      "prediction_id": 22386,
+      "model_type": "HitFocus(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.31297863193986564,
+      "expected_value": 4.225211531188186,
+      "recommended_bet": 800.0,
+      "combination_json": "[[6, 3], [3, 6], [6, 1], [3, 1], [6, 7], [3, 7], [6, 5], [3, 5]]",
+      "notes": "2軸マルチ 軸=6,3 相手=[1, 7, 5] Harville最大=0.0391",
+      "created_at": "2026-05-03 12:40:26",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "ジェロニモス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.039122328992483205,
+          "ev_score": 4.225211531188186
+        },
+        {
+          "horse_name": "テレプシコーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.039122328992483205,
+          "ev_score": 4.225211531188186
+        }
+      ]
+    },
+    {
+      "prediction_id": 22387,
+      "model_type": "HitFocus(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.2660504739003356,
+      "expected_value": 6.0,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[6, 3, 1], [3, 6, 1], [6, 1, 3], [3, 1, 6], [6, 3, 7], [3, 6, 7], [6, 7, 3], [3, 7, 6], [6, 3, 5], [3, 6, 5], [6, 5, 3], [3, 5, 6]]",
+      "notes": "2軸マルチ 軸=6,3 相手=[1, 7, 5] 12点 Harville最大=0.0089",
+      "created_at": "2026-05-03 12:40:26",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "ジェロニモス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.008868349130011187,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "テレプシコーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.008868349130011187,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ボナペティアスク",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.008868349130011187,
+          "ev_score": 6.0
+        }
+      ]
     }
   ],
   "training_evals": {},
   "prerace": {
     "bias": {
-      "today_inner_bias": null,
-      "today_front_bias": null,
-      "today_race_count": null
+      "today_inner_bias": -0.12903225806451613,
+      "today_front_bias": 0.5,
+      "today_race_count": 4
     },
     "ev_recommend": [
-      {
-        "horse_number": 2,
-        "horse_name": "ヴェストラン",
-        "win_odds": 34.5,
-        "ev_score": 3.4446,
-        "kelly_fraction": 0.0073
-      },
       {
         "horse_number": 3,
         "horse_name": "テレプシコーラ",
@@ -1207,8 +2258,15 @@
         "horse_number": 1,
         "horse_name": "ボナペティアスク",
         "win_odds": 27.2,
-        "ev_score": 2.7761,
-        "kelly_fraction": 0.0068
+        "ev_score": 2.975,
+        "kelly_fraction": 0.0075
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "ヴェストラン",
+        "win_odds": 34.5,
+        "ev_score": 2.4142,
+        "kelly_fraction": 0.0042
       },
       {
         "horse_number": 5,
@@ -1218,6 +2276,13 @@
         "kelly_fraction": 0.0045
       },
       {
+        "horse_number": 6,
+        "horse_name": "ジェロニモス",
+        "win_odds": 9.0,
+        "ev_score": 1.2366,
+        "kelly_fraction": 0.003
+      },
+      {
         "horse_number": 8,
         "horse_name": "アンビアンス",
         "win_odds": 14.9,
@@ -1225,6 +2290,6 @@
         "kelly_fraction": 0.0003
       }
     ],
-    "generated_at": "2026-05-03T08:12:06.998931"
+    "generated_at": "2026-05-03T12:40:26.763403"
   }
 }
