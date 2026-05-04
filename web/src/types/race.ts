@@ -93,6 +93,7 @@ export interface RaceData {
 export interface PredictionHorse {
   horse_name:    string
   horse_id:      string | null
+  horse_number:  number | null
   predicted_rank: number | null
   model_score:   number | null
   ev_score:      number | null

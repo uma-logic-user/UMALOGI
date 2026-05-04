@@ -53,9 +53,13 @@ function hitLabelClass(pred: Prediction): string {
   return 'neon-text-green font-bold'
 }
 
-function horseNames(pred: Prediction): string {
+function horseNums(pred: Prediction): string {
   if (!pred.horses || pred.horses.length === 0) return '—'
-  return pred.horses.map(h => h.horse_name).join(' / ')
+  return pred.horses
+    .slice()
+    .sort((a, b) => (a.horse_number ?? 0) - (b.horse_number ?? 0))
+    .map(h => h.horse_number != null ? `${h.horse_number}(${h.horse_name})` : `?(${h.horse_name})`)
+    .join(' - ')
 }
 
 export default function PredictionsPanel({ predictions, raceId, modelType, limit = 50 }: Props) {
@@ -105,8 +109,8 @@ export default function PredictionsPanel({ predictions, raceId, modelType, limit
                   </span>
                 </td>
                 <td>{pred.bet_type}</td>
-                <td className="max-w-[200px] truncate" title={horseNames(pred)}>
-                  {horseNames(pred)}
+                <td className="max-w-[300px] truncate text-sm" title={horseNums(pred)}>
+                  {horseNums(pred)}
                 </td>
                 <td className="text-right text-[var(--text-muted)] font-mono">
                   {formatBet(pred.recommended_bet)}

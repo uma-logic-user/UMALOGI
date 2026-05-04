@@ -1,21 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getDb } from '@/lib/db'
 import { validateResponse } from '@/lib/validateResponse'
+import { BET_ORDER, sanitize, rowToObj } from '@/lib/dbHelpers'
 
 export const dynamic = 'force-dynamic'
-
-const BET_ORDER: Record<string, number> = {
-  '単勝': 1, '複勝': 2, '枠連': 3, '馬連': 4,
-  'ワイド': 5, '馬単': 6, '三連複': 7, '三連単': 8,
-}
-
-function sanitize(v: unknown): unknown {
-  return typeof v === 'string' ? v.replace(/[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\x9f]/g, '').trim() : v
-}
-
-function rowToObj(row: Record<string, unknown>): Record<string, unknown> {
-  return Object.fromEntries(Object.entries(row).map(([k, v]) => [k, sanitize(v)]))
-}
 
 export async function GET(req: NextRequest) {
   try {

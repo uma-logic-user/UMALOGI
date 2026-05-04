@@ -27,9 +27,13 @@ function formatPayout(p: number | null): string {
   return `¥${Math.round(p).toLocaleString()}`
 }
 
-function horseNames(pred: Prediction): string {
+function horseNums(pred: Prediction): string {
   if (!pred.horses?.length) return '—'
-  return pred.horses.map(h => h.horse_name).join(' / ')
+  return pred.horses
+    .slice()
+    .sort((a, b) => (a.horse_number ?? 0) - (b.horse_number ?? 0))
+    .map(h => h.horse_number != null ? `${h.horse_number}(${h.horse_name})` : `?(${h.horse_name})`)
+    .join(' - ')
 }
 
 export default function HitHistory({ predictions }: Props) {
@@ -242,10 +246,10 @@ export default function HitHistory({ predictions }: Props) {
                     </td>
                     <td className="text-[var(--text-muted)]">{pred.bet_type}</td>
                     <td
-                      className="max-w-[200px] truncate font-semibold text-[var(--text-primary)]"
-                      title={horseNames(pred)}
+                      className="max-w-[200px] truncate font-mono font-semibold text-[var(--text-primary)]"
+                      title={horseNums(pred)}
                     >
-                      {horseNames(pred)}
+                      {horseNums(pred)}
                     </td>
                     <td className="text-right font-mono text-[var(--text-muted)]">
                       {pred.recommended_bet != null

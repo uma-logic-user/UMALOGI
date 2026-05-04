@@ -6,6 +6,7 @@ DB データを Next.js 用 JSON にエクスポートするスクリプト。
   web/src/data/races/{race_id}.json    — 個別レース詳細（結果 + 払戻 + 予想）
   web/src/data/predictions.json        — 全予想一覧（買い目・成績付き）
   web/src/data/summary.json            — モデル別年間成績サマリー
+  web/src/data/financial.json          — 日次×モデル別収支（収支管理ページ用）
 
 【出力フィールド一覧】
 
@@ -76,8 +77,15 @@ def _connect() -> sqlite3.Connection:
     return conn
 
 
+def _sanitize(v: object) -> object:
+    """文字列中のnullバイト・制御文字を除去して返す。"""
+    if isinstance(v, str):
+        return v.replace('\x00', '').strip()
+    return v
+
+
 def _rows(rows: list[sqlite3.Row]) -> list[dict]:
-    return [dict(r) for r in rows]
+    return [{k: _sanitize(v) for k, v in dict(r).items()} for r in rows]
 
 
 def _year_from_date(date_str: str | None) -> str | None:
@@ -155,10 +163,7 @@ def _fetch_prerace_snapshot(race_id: str) -> dict | None:
 def _fetch_results(conn: sqlite3.Connection, race_id: str) -> list[dict]:
     """
     race_results から出走・着順データを返す。
-
-    gate_number / horse_number / trainer / horse_weight_diff は
-    Step 1 の scraper 改修以降に再スクレイプしたデータに格納される。
-    旧データは NULL のまま（entries テーブルとの JOIN は不要）。
+    未開催レース（race_results が空）の場合は entries テーブルにフォールバック。
     """
     rows = conn.execute(
         """
@@ -185,6 +190,39 @@ def _fetch_results(conn: sqlite3.Connection, race_id: str) -> list[dict]:
         LEFT JOIN horses h ON rr.horse_id = h.horse_id
         WHERE rr.race_id = ?
         ORDER BY rr.rank NULLS LAST, rr.id
+        """,
+        (race_id,),
+    ).fetchall()
+
+    if rows:
+        return _rows(rows)
+
+    # 未開催レース: entries テーブルから出走馬情報を返す（rank等は NULL）
+    rows = conn.execute(
+        """
+        SELECT
+            NULL        AS rank,
+            e.gate_number,
+            e.horse_number,
+            e.horse_name,
+            e.horse_id,
+            e.sex_age,
+            e.weight_carried,
+            e.jockey,
+            e.trainer,
+            NULL        AS finish_time,
+            NULL        AS margin,
+            NULL        AS win_odds,
+            NULL        AS popularity,
+            e.horse_weight,
+            e.horse_weight_diff,
+            h.sire,
+            h.dam,
+            h.dam_sire
+        FROM entries e
+        LEFT JOIN horses h ON e.horse_id = h.horse_id
+        WHERE e.race_id = ?
+        ORDER BY e.horse_number
         """,
         (race_id,),
     ).fetchall()
@@ -516,6 +554,428 @@ def export_summary(conn: sqlite3.Connection) -> dict:
     }
 
 
+# ── financial.json ────────────────────────────────────────────────
+
+_BET_ORDER = {
+    "単勝": 1, "複勝": 2, "枠連": 3, "馬連": 4,
+    "ワイド": 5, "馬単": 6, "三連複": 7, "三連単": 8,
+}
+
+
+def _build_period_aggregates(
+    conn: sqlite3.Connection,
+    period_expr: str,
+    label_fn: "Callable[[str], str]",
+) -> "dict[str, list[dict]]":
+    """
+    指定の period_expr（SQLのSUBSTR式）で集計した月別/年別データを返す。
+
+    Returns:
+        { model_type: [ PeriodStats ] }
+
+    PeriodStats:
+        period, label, invested, payout, profit, roi,
+        total_bets, hits, cumulative_profit,
+        by_bet_type: [ BetTypeStatsLight ]
+    """
+    rows = conn.execute(
+        f"""
+        SELECT
+            {period_expr}                            AS period,
+            p.model_type,
+            p.bet_type,
+            COALESCE(SUM(p.recommended_bet), 0)      AS invested,
+            COALESCE(SUM(pr.payout), 0)              AS payout,
+            COUNT(pr.id)                             AS total_bets,
+            COALESCE(SUM(pr.is_hit), 0)              AS hits
+        FROM predictions p
+        JOIN  races r              ON p.race_id = r.race_id
+        LEFT JOIN prediction_results pr ON p.id = pr.prediction_id
+        WHERE pr.id IS NOT NULL
+        GROUP BY {period_expr}, p.model_type, p.bet_type
+        ORDER BY period, p.model_type, p.bet_type
+        """,
+    ).fetchall()
+
+    from collections import defaultdict
+    # (period, model) → aggregated dict
+    period_map: dict[tuple, dict] = {}
+    for r in _rows(rows):
+        key = (r["period"], r["model_type"])
+        if key not in period_map:
+            period_map[key] = {
+                "period": r["period"],
+                "label":  label_fn(r["period"]),
+                "model_type": r["model_type"],
+                "invested": 0.0, "payout": 0.0,
+                "total_bets": 0, "hits": 0,
+                "by_bet_type": [],
+            }
+        inv = r["invested"] or 0.0
+        pay = r["payout"]   or 0.0
+        period_map[key]["invested"]   += inv
+        period_map[key]["payout"]     += pay
+        period_map[key]["total_bets"] += r["total_bets"]
+        period_map[key]["hits"]       += r["hits"]
+        period_map[key]["by_bet_type"].append({
+            "bet_type":   r["bet_type"],
+            "invested":   round(inv, 1),
+            "payout":     round(pay, 1),
+            "profit":     round(pay - inv, 1),
+            "roi":        round(pay / inv * 100, 2) if inv > 0 else 0.0,
+            "total_bets": r["total_bets"],
+            "hits":       r["hits"],
+        })
+
+    for v in period_map.values():
+        v["by_bet_type"].sort(key=lambda b: _BET_ORDER.get(b["bet_type"], 99))
+
+    result: dict[str, list[dict]] = {}
+    for (period, model), v in sorted(period_map.items()):
+        inv  = v["invested"];  pay = v["payout"]
+        profit = pay - inv
+        roi    = round(pay / inv * 100, 2) if inv > 0 else 0.0
+        if model not in result:
+            result[model] = []
+        result[model].append({
+            "period":     v["period"],
+            "label":      v["label"],
+            "invested":   round(inv,    1),
+            "payout":     round(pay,    1),
+            "profit":     round(profit, 1),
+            "roi":        roi,
+            "total_bets": v["total_bets"],
+            "hits":       v["hits"],
+            "by_bet_type": v["by_bet_type"],
+        })
+
+    # 累計損益
+    for model_data in result.values():
+        cum = 0.0
+        for p in model_data:
+            cum += p["profit"]
+            p["cumulative_profit"] = round(cum, 1)
+
+    return result
+
+
+from typing import Callable
+
+
+# ── gachi_hits.json（ガチ予想的中実績）──────────────────────────────
+
+def export_gachi_hits(conn: sqlite3.Connection, limit: int = 200) -> list[dict]:
+    """
+    Oracle モデル（Harville確率最大化ガチ予想）の的中実績を返す。
+
+    出力:
+      [
+        {
+          "race_id", "race_name", "date", "venue", "surface", "distance",
+          "model_type",        # "Oracle(直前)" / "Oracle(暫定)"
+          "bet_type",          # "三連複" / "三連単"
+          "combination_json",  # 買い目
+          "payout",            # 払戻金額
+          "is_hit",            # 1 = 的中
+          "rank",              # "Oracle" 的中ランク S/A/B/C（払戻額ベース）
+        },
+        ...
+      ]
+    """
+    rows = conn.execute(
+        """
+        SELECT
+            r.race_id,
+            r.race_name,
+            r.date,
+            r.venue,
+            r.surface,
+            r.distance,
+            p.model_type,
+            p.bet_type,
+            p.combination_json,
+            COALESCE(pr.payout, 0)  AS payout,
+            COALESCE(pr.is_hit, 0)  AS is_hit,
+            p.recommended_bet,
+            p.notes
+        FROM predictions p
+        JOIN races r ON r.race_id = p.race_id
+        LEFT JOIN prediction_results pr ON pr.prediction_id = p.id
+        WHERE p.model_type LIKE 'Oracle%'
+          AND p.bet_type IN ('三連複', '三連単')
+        ORDER BY r.date DESC, payout DESC
+        LIMIT ?
+        """,
+        (limit,),
+    ).fetchall()
+
+    result = []
+    for row in rows:
+        payout = row[9] or 0
+        rank = (
+            "S" if payout >= 100_000 else
+            "A" if payout >= 30_000 else
+            "B" if payout >= 10_000 else
+            "C"
+        )
+        result.append({
+            "race_id":         _sanitize(row[0]),
+            "race_name":       _sanitize(row[1]),
+            "date":            _sanitize(row[2]),
+            "venue":           _sanitize(row[3]),
+            "surface":         _sanitize(row[4]),
+            "distance":        row[5],
+            "model_type":      _sanitize(row[6]),
+            "bet_type":        _sanitize(row[7]),
+            "combination_json": _sanitize(row[8]),
+            "payout":          payout,
+            "is_hit":          row[10],
+            "rank":            rank if row[10] else None,
+            "recommended_bet": row[11],
+            "notes":           _sanitize(row[12] or ""),
+        })
+    return result
+
+
+# ── win5.json（WIN5 SBCランク）──────────────────────────────────────
+
+def export_win5_data(conn: sqlite3.Connection) -> list[dict]:
+    """
+    WIN5 予想データをUIエクスポート用に整形する。
+
+    出力:
+      [
+        {
+          "date",          # "2026-04-27"
+          "race_ids",      # [r1, r2, r3, r4, r5]
+          "races",         # [{race_id, race_name, venue, distance, surface}, ...]
+          "selections",    # {race_id: [{horse_number, horse_name, rank}, ...]}
+          "total_combinations",
+          "is_hit",        # 1 = 的中
+          "payout",        # 払戻金額
+        },
+        ...
+      ]
+    """
+    # WIN5 予想を取得（最新30件）
+    rows = conn.execute(
+        """
+        SELECT
+            p.race_id, p.combination_json, p.notes,
+            COALESCE(pr.payout, 0) AS payout,
+            COALESCE(pr.is_hit, 0) AS is_hit,
+            r.date
+        FROM predictions p
+        JOIN races r ON r.race_id = p.race_id
+        LEFT JOIN prediction_results pr ON pr.prediction_id = p.id
+        WHERE p.model_type = 'WIN5' AND p.bet_type = 'WIN5'
+        ORDER BY r.date DESC
+        LIMIT 30
+        """,
+    ).fetchall()
+
+    result: list[dict] = []
+    for row in rows:
+        race_id, combo_json, notes, payout, is_hit, date = row
+        combo: dict = {}
+        try:
+            parsed = json.loads(combo_json or "{}")
+            if isinstance(parsed, dict):
+                combo = parsed
+        except Exception:
+            pass
+
+        race_ids = combo.get("race_ids", [race_id])
+        selections_raw = combo.get("selections", {})
+        horse_ranks_raw = combo.get("horse_ranks", {})
+
+        # レース基本情報を取得
+        ph = ",".join("?" * len(race_ids))
+        race_rows = conn.execute(
+            f"SELECT race_id, race_name, venue, distance, surface FROM races WHERE race_id IN ({ph})",
+            race_ids,
+        ).fetchall() if race_ids else []
+        race_info = {r[0]: {"race_id": r[0], "race_name": _sanitize(r[1]),
+                             "venue": _sanitize(r[2]), "distance": r[3],
+                             "surface": _sanitize(r[4])} for r in race_rows}
+
+        result.append({
+            "date":               _sanitize(date),
+            "race_ids":           race_ids,
+            "races":              [race_info.get(rid, {"race_id": rid}) for rid in race_ids],
+            "selections":         selections_raw,
+            "horse_ranks":        horse_ranks_raw,
+            "total_combinations": combo.get("total_combinations", 1),
+            "is_hit":             is_hit,
+            "payout":             payout,
+            "notes":              _sanitize(notes or ""),
+        })
+    return result
+
+
+def export_financial(conn: sqlite3.Connection) -> dict:
+    """
+    日次×モデル別の収支データをエクスポートする。
+
+    出力構造:
+      {
+        model_type: {
+          "daily":   [ DailyStats ],    # 日次（by_bet_type + races 付き）
+          "monthly": [ PeriodStats ],   # 月別（by_bet_type のみ）
+          "yearly":  [ PeriodStats ],   # 年別（by_bet_type のみ）
+        }
+      }
+    """
+    # ── 日次×券種 集計 ────────────────────────────────────────
+    bet_rows = conn.execute(
+        """
+        SELECT
+            substr(r.date, 1, 10)                AS date,
+            p.model_type,
+            p.bet_type,
+            COALESCE(SUM(p.recommended_bet), 0)  AS invested,
+            COALESCE(SUM(pr.payout), 0)          AS payout,
+            COUNT(pr.id)                         AS total_bets,
+            COALESCE(SUM(pr.is_hit), 0)          AS hits
+        FROM predictions p
+        JOIN  races r              ON p.race_id = r.race_id
+        LEFT JOIN prediction_results pr ON p.id = pr.prediction_id
+        WHERE pr.id IS NOT NULL
+        GROUP BY substr(r.date, 1, 10), p.model_type, p.bet_type
+        ORDER BY date, p.model_type, p.bet_type
+        """,
+    ).fetchall()
+
+    # ── レース粒度 ─────────────────────────────────────────────
+    race_rows = conn.execute(
+        """
+        SELECT
+            substr(r.date, 1, 10) AS date,
+            p.model_type,
+            p.bet_type,
+            p.race_id,
+            r.race_name,
+            r.venue,
+            r.race_number,
+            COALESCE(p.recommended_bet, 0) AS invested,
+            COALESCE(pr.payout, 0)         AS payout,
+            pr.is_hit
+        FROM predictions p
+        JOIN  races r              ON p.race_id = r.race_id
+        LEFT JOIN prediction_results pr ON p.id = pr.prediction_id
+        WHERE pr.id IS NOT NULL
+        ORDER BY date, p.model_type, p.bet_type, p.race_id
+        """,
+    ).fetchall()
+
+    # race lookup: (date, model, bet_type) → [RaceHit]
+    from collections import defaultdict
+    race_map: dict[tuple, list[dict]] = defaultdict(list)
+    for r in _rows(race_rows):
+        key = (r["date"], r["model_type"], r["bet_type"])
+        race_map[key].append({
+            "race_id":     r["race_id"],
+            "race_name":   r["race_name"],
+            "venue":       r["venue"],
+            "race_number": r["race_number"],
+            "invested":    round(r["invested"], 1),
+            "payout":      round(r["payout"],   1),
+            "is_hit":      r["is_hit"] or 0,
+        })
+
+    # ── 日次サマリー構築 ────────────────────────────────────────
+    # (date, model) → { invested, payout, hits, total_bets, by_bet_type }
+    day_map: dict[tuple, dict] = {}
+    for r in _rows(bet_rows):
+        key = (r["date"], r["model_type"])
+        if key not in day_map:
+            day_map[key] = {
+                "date": r["date"], "model_type": r["model_type"],
+                "invested": 0.0, "payout": 0.0,
+                "total_bets": 0, "hits": 0,
+                "by_bet_type": [],
+            }
+        invested = r["invested"] or 0.0
+        payout   = r["payout"]   or 0.0
+        day_map[key]["invested"]   += invested
+        day_map[key]["payout"]     += payout
+        day_map[key]["total_bets"] += r["total_bets"]
+        day_map[key]["hits"]       += r["hits"]
+
+        bt_roi = round(payout / invested * 100, 2) if invested > 0 else 0.0
+        day_map[key]["by_bet_type"].append({
+            "bet_type":   r["bet_type"],
+            "invested":   round(invested, 1),
+            "payout":     round(payout,   1),
+            "profit":     round(payout - invested, 1),
+            "roi":        bt_roi,
+            "total_bets": r["total_bets"],
+            "hits":       r["hits"],
+            "races":      race_map.get((r["date"], r["model_type"], r["bet_type"]), []),
+        })
+
+    # bet_type の表示順でソート
+    for v in day_map.values():
+        v["by_bet_type"].sort(key=lambda b: _BET_ORDER.get(b["bet_type"], 99))
+
+    # ── model別にリスト化 + 累計損益付与 ───────────────────────
+    result: dict[str, list[dict]] = {}
+    for (date, model), v in sorted(day_map.items()):
+        invested = v["invested"]
+        payout   = v["payout"]
+        profit   = payout - invested
+        roi      = round(payout / invested * 100, 2) if invested > 0 else 0.0
+        if model not in result:
+            result[model] = []
+        result[model].append({
+            "date":       date,
+            "invested":   round(invested, 1),
+            "payout":     round(payout,   1),
+            "profit":     round(profit,   1),
+            "roi":        roi,
+            "total_bets": v["total_bets"],
+            "hits":       v["hits"],
+            "by_bet_type": v["by_bet_type"],
+        })
+
+    # 累計損益
+    for model_data in result.values():
+        cumulative = 0.0
+        for day in model_data:
+            cumulative += day["profit"]
+            day["cumulative_profit"] = round(cumulative, 1)
+
+    # ── 月別・年別集計 ─────────────────────────────────────────
+    def _month_label(period: str) -> str:
+        y, m = period.split("-")
+        return f"{y}年{int(m)}月"
+
+    def _year_label(period: str) -> str:
+        return f"{period}年"
+
+    monthly = _build_period_aggregates(
+        conn,
+        period_expr="substr(r.date, 1, 7)",
+        label_fn=_month_label,
+    )
+    yearly = _build_period_aggregates(
+        conn,
+        period_expr="substr(r.date, 1, 4)",
+        label_fn=_year_label,
+    )
+
+    # ── 全モデルを統合して返す ──────────────────────────────────
+    all_models = set(result) | set(monthly) | set(yearly)
+    output: dict[str, dict] = {}
+    for model in sorted(all_models):
+        output[model] = {
+            "daily":   result.get(model, []),
+            "monthly": monthly.get(model, []),
+            "yearly":  yearly.get(model, []),
+        }
+    return output
+
+
 # ── メイン ────────────────────────────────────────────────────────
 
 def main() -> None:
@@ -576,6 +1036,31 @@ def main() -> None:
     n_annual = len(summary["annual_performance"])
     print(f"summary.json:     {n_annual:5d} モデル×年レコード"
           f"  (総レース {summary['total_races_in_db']:,})")
+
+    # ── financial.json ─────────────────────────────────────────────
+    financial = export_financial(conn)
+    (OUT_DIR / "financial.json").write_text(
+        json.dumps(financial, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    n_models = sum(len(v) for v in financial.values())
+    print(f"financial.json:   {n_models:5d} 日×モデルレコード")
+
+    # ── gachi_hits.json（ガチ予想・Oracle的中実績）──────────────────
+    gachi = export_gachi_hits(conn)
+    (OUT_DIR / "gachi_hits.json").write_text(
+        json.dumps(gachi, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    print(f"gachi_hits.json:  {len(gachi):5d} 件")
+
+    # ── win5.json（WIN5 SBCランク）──────────────────────────────────
+    win5 = export_win5_data(conn)
+    (OUT_DIR / "win5.json").write_text(
+        json.dumps(win5, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    print(f"win5.json:        {len(win5):5d} 日付分")
 
     conn.close()
     print(f"\nエクスポート先: {OUT_DIR.resolve()}")

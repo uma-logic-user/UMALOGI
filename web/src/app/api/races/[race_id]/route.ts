@@ -1,39 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getDb } from '@/lib/db'
 import { validateResponse } from '@/lib/validateResponse'
+import { BET_ORDER, sanitize, rowToObj, sortedCombinations } from '@/lib/dbHelpers'
 
 export const dynamic = 'force-dynamic'
-
-const BET_ORDER: Record<string, number> = {
-  '単勝': 1, '複勝': 2, '枠連': 3, '馬連': 4,
-  'ワイド': 5, '馬単': 6, '三連複': 7, '三連単': 8,
-}
-
-function sanitize(v: unknown): unknown {
-  return typeof v === 'string' ? v.replace(/[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\x9f]/g, '').trim() : v
-}
-
-function rowToObj(row: Record<string, unknown>): Record<string, unknown> {
-  return Object.fromEntries(Object.entries(row).map(([k, v]) => [k, sanitize(v)]))
-}
-
-function sortedCombinations(json: unknown): string {
-  if (!json || typeof json !== 'string') return '[]'
-  try {
-    const raw: number[][] = JSON.parse(json)
-    const sorted = raw
-      .map(c => [...c].sort((a, b) => a - b))
-      .sort((a, b) => {
-        for (let i = 0; i < Math.min(a.length, b.length); i++) {
-          if (a[i] !== b[i]) return a[i] - b[i]
-        }
-        return a.length - b.length
-      })
-    return JSON.stringify(sorted)
-  } catch {
-    return String(json)
-  }
-}
 
 export async function GET(
   _req: NextRequest,
@@ -99,15 +69,19 @@ export async function GET(
     `).all(race_id) as Record<string, unknown>[]
 
     const getHorses = db.prepare(`
-      SELECT horse_name, horse_id, predicted_rank, model_score, ev_score
-      FROM prediction_horses WHERE prediction_id = ?
-      ORDER BY predicted_rank NULLS LAST, id
+      SELECT ph.horse_name, ph.horse_id, ph.predicted_rank, ph.model_score, ph.ev_score,
+             COALESCE(rr.horse_number, en.horse_number) AS horse_number
+      FROM prediction_horses ph
+      LEFT JOIN race_results rr ON rr.horse_name = ph.horse_name AND rr.race_id = ?
+      LEFT JOIN entries     en ON en.horse_name = ph.horse_name AND en.race_id = ?
+      WHERE ph.prediction_id = ?
+      ORDER BY ph.predicted_rank NULLS LAST, ph.id
     `)
 
     const predictions = predRows.map(rowToObj).map((pd) => ({
       ...pd,
       combination_json: sortedCombinations(pd.combination_json),
-      horses: (getHorses.all(pd.prediction_id) as Record<string, unknown>[]).map(rowToObj),
+      horses: (getHorses.all(race_id, race_id, pd.prediction_id) as Record<string, unknown>[]).map(rowToObj),
     }))
 
     d.results     = results

@@ -4,23 +4,28 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "NODE_OPTIONS=--max-old-space-size=8192 next build",
+    "build": "next build",
     "start": "next start",
     "type-check": "tsc --noEmit",
-    "gen": "python ../web/generate_data.py"
+    "gen": "python ../web/generate_data.py",
+    "tunnel": "cloudflared tunnel run umalogi",
+    "dev:mobile": "next dev --port 3000",
+    "public": "npm run build && npm start"
   },
   "dependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "better-sqlite3": "^12.9.0",
     "next": "^15.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.0",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "tailwindcss": "^4.1.0",
-    "@tailwindcss/postcss": "^4.1.0",
     "postcss": "^8.5.0",
+    "tailwindcss": "^4.1.0",
     "typescript": "^5.7.0"
   }
 }

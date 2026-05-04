@@ -1,30 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getDb } from '@/lib/db'
 import { validateResponse } from '@/lib/validateResponse'
+import { sanitize, sortedCombinations } from '@/lib/dbHelpers'
 
 export const dynamic = 'force-dynamic'
-
-function sanitize(v: unknown): unknown {
-  return typeof v === 'string' ? v.replace(/[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\x9f]/g, '').trim() : v
-}
-
-function sortedCombinations(json: unknown): string {
-  if (!json || typeof json !== 'string') return '[]'
-  try {
-    const raw: number[][] = JSON.parse(json)
-    const sorted = raw
-      .map(c => [...c].sort((a, b) => a - b))
-      .sort((a, b) => {
-        for (let i = 0; i < Math.min(a.length, b.length); i++) {
-          if (a[i] !== b[i]) return a[i] - b[i]
-        }
-        return a.length - b.length
-      })
-    return JSON.stringify(sorted)
-  } catch {
-    return String(json)
-  }
-}
 
 export async function GET(req: NextRequest) {
   try {

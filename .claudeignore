@@ -1,2 +1,12 @@
-node_modules/ 
-.git/ 
+node_modules/
+.git/
+data/**/*.db
+data/**/*.sqlite
+data/**/*.csv
+logs/
+*.log
+models/*.pkl
+models/*.joblib
+**/__pycache__/
+web/.next/
+web/node_modules/

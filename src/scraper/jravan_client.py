@@ -792,10 +792,12 @@ def parse_record(raw: bytes, debug: bool = False) -> Optional[dict]:
     if rec_type == 'JG':
         return _parse_jg(raw)
     if rec_type in _PAYOUT_SPECS:
-        # 払戻は cat='1'(確定) のみ受け入れる。
-        # cat='2' 速報払戻は JRA が仮置きした 16,000 等のプレースホルダーで
-        # DB を汚染するため必ずスキップする。
-        if data_cat != '1':
+        # cat='1'(確定) および cat='2'(速報) を受け入れる。
+        # レース終了後に JRA-VAN が cat='2' で配信するケースがあるため。
+        # _parse_payout 内で amount >= 100 の検証を行うため
+        # プレースホルダー値 (0, 負値) は自動除外される。
+        # cat='3'(削除) は上位の削除レコードチェックで既にスキップ済み。
+        if data_cat not in ('1', '2'):
             logger.debug("速報払戻スキップ (cat=%s): %s", data_cat, rec_type)
             return None
         return _parse_payout(raw, rec_type)

@@ -16,6 +16,10 @@
 }
 
 /* ─── ベース ─────────────────────────────────────────── */
+html {
+  font-size: 110%;
+}
+
 body {
   background-color: var(--bg-base);
   color: var(--text-primary);
@@ -124,7 +128,7 @@ body::before {
   color: var(--neon-cyan);
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   padding: 11px 14px;
   border-bottom: 1px solid rgba(0, 200, 255, 0.25);
   white-space: nowrap;
@@ -134,7 +138,7 @@ body::before {
 .race-table td {
   padding: 12px 14px;
   border-bottom: 1px solid rgba(0, 200, 255, 0.06);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   white-space: nowrap;
 }
 
@@ -540,4 +544,77 @@ body::before {
   animation: fire-flicker 0.8s ease-in-out infinite;
   font-size: 0.9rem;
   line-height: 1;
+}
+
+/* ─── モバイル対応（スマホ縦向き）─────────────────────────────── */
+@media (max-width: 768px) {
+  html { font-size: 100%; }
+
+  /* アプリシェル: 縦積みレイアウトに変更 */
+  .app-shell {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+    height: 100dvh;
+    max-height: 100dvh;
+  }
+  .app-navbar  { grid-column: 1; grid-row: 1; }
+  .app-sidebar {
+    grid-column: 1;
+    grid-row: 2;
+    /* 横スクロール可能な水平ナビバーに変換 */
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-surface);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    min-height: 52px;
+    max-height: 52px;
+    padding: 0 4px;
+    gap: 0;
+  }
+  .app-sidebar::-webkit-scrollbar { display: none; }
+  .app-main    { grid-column: 1; grid-row: 3; overflow-y: auto; }
+
+  /* サイドバー内のレースツリーはモバイルで非表示 */
+  .app-sidebar .py-1:last-child { display: none; }
+
+  /* 特別ボタンを横並びコンパクト表示 */
+  .app-sidebar .border-b {
+    display: flex;
+    flex-direction: row;
+    border: none;
+    flex-shrink: 0;
+    padding: 0;
+  }
+  .sidebar-special-btn {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 10px;
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    border-bottom: none;
+    border-right: 1px solid rgba(0,200,255,0.08);
+    min-width: 64px;
+    gap: 2px;
+  }
+  .sidebar-special-btn .ml-auto { display: none; }
+
+  /* テーブルスクロール */
+  .table-scroll { max-height: 60vh; }
+
+  /* WIN5パネル: 馬タグを小さく */
+  @media (max-width: 480px) {
+    .app-sidebar { max-height: 48px; min-height: 48px; }
+    .sidebar-special-btn {
+      min-width: 56px;
+      font-size: 0.62rem;
+      padding: 4px 6px;
+    }
+  }
 }

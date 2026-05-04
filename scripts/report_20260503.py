@@ -47,8 +47,18 @@ def get_5_3_races(conn: sqlite3.Connection) -> list[str]:
     return [r[0] for r in rows]
 
 
+def get_races_with_payouts(conn: sqlite3.Connection, race_ids: list[str]) -> set[str]:
+    """払戻データが存在するレースIDのセットを返す。"""
+    placeholders = ",".join("?" * len(race_ids))
+    rows = conn.execute(
+        f"SELECT DISTINCT race_id FROM race_payouts WHERE race_id IN ({placeholders})",
+        race_ids,
+    ).fetchall()
+    return {r[0] for r in rows}
+
+
 def run_evaluator_for_missing(conn: sqlite3.Connection, race_ids: list[str]) -> None:
-    """prediction_results が未評価のレースに評価を実行する。"""
+    """prediction_results が未評価のレースに評価を実行する。払戻があるレースのみ対象。"""
     evaluated = {
         r[0]
         for r in conn.execute(
@@ -62,7 +72,8 @@ def run_evaluator_for_missing(conn: sqlite3.Connection, race_ids: list[str]) -> 
             """
         ).fetchall()
     }
-    to_eval = [r for r in race_ids if r not in evaluated and r not in MISSING_RACES]
+    has_payouts = get_races_with_payouts(conn, race_ids)
+    to_eval = [r for r in race_ids if r not in evaluated and r in has_payouts]
     if to_eval:
         print(f"未評価レース {len(to_eval)} 件を評価中...", flush=True)
         ev = Evaluator()
@@ -164,12 +175,21 @@ def main() -> None:
         hr  = h / n * 100 if n else 0
         print(f"  {venue:<6} {n:>6,} {h:>5,} {hr:>6.1f}% {inv:>10,.0f} {pay:>10,.0f} {roi:>6.1f}% {pay-inv:>+10,.0f}")
 
-    print(f"\n【払戻未取得レース (JVLink未配信) : {len(MISSING_RACES)}件】")
-    for rid in sorted(MISSING_RACES):
-        vn = VENUE_MAP.get(rid[:6], rid[:6])
-        r_no = rid[-2:]
-        print(f"  {rid}  {vn} R{r_no}")
-    print("  ※ JRA-VAN が払戻データを配信次第、再実行すれば自動反映されます。")
+    # 払戻が取得できていないレースを動的に特定
+    conn2 = init_db()
+    all_races = get_5_3_races(conn2)
+    races_with_pay = get_races_with_payouts(conn2, all_races)
+    conn2.close()
+    no_payout = sorted(r for r in all_races if r not in races_with_pay)
+    if no_payout:
+        print(f"\n【払戻未取得レース (JVLink未配信) : {len(no_payout)}件】")
+        for rid in no_payout:
+            vn = VENUE_MAP.get(rid[:6], rid[:6])
+            r_no = rid[-2:]
+            print(f"  {rid}  {vn} R{r_no}")
+        print("  ※ JRA-VAN が払戻データを配信次第、再実行すれば自動反映されます。")
+    else:
+        print("\n【払戻未取得レース】なし — 全レース払戻取得済み ✓")
     print()
 
 

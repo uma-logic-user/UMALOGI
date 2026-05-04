@@ -1,41 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getDb } from '@/lib/db'
 import { validateResponse } from '@/lib/validateResponse'
+import { sanitize, rowToObj, sortedCombinations, chunkArray } from '@/lib/dbHelpers'
 
 export const dynamic = 'force-dynamic'
-
-function sanitize(v: unknown): unknown {
-  return typeof v === 'string' ? v.replace(/[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\x9f]/g, '').trim() : v
-}
-
-function rowToObj(row: Record<string, unknown>): Record<string, unknown> {
-  return Object.fromEntries(Object.entries(row).map(([k, v]) => [k, sanitize(v)]))
-}
-
-function sortedCombinations(json: unknown): string {
-  if (!json || typeof json !== 'string') return '[]'
-  try {
-    const raw: number[][] = JSON.parse(json)
-    const sorted = raw
-      .map(c => [...c].sort((a, b) => a - b))
-      .sort((a, b) => {
-        for (let i = 0; i < Math.min(a.length, b.length); i++) {
-          if (a[i] !== b[i]) return a[i] - b[i]
-        }
-        return a.length - b.length
-      })
-    return JSON.stringify(sorted)
-  } catch {
-    return String(json)
-  }
-}
-
-// SQLite の VARIABLE_NUMBER 制限 (999) に収まるよう分割する
-function chunkArray<T>(arr: T[], size: number): T[][] {
-  const out: T[][] = []
-  for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size))
-  return out
-}
 
 export async function GET(req: NextRequest) {
   try {
@@ -82,12 +50,13 @@ export async function GET(req: NextRequest) {
       const rows = (db.prepare(`
         SELECT ph.prediction_id,
                ph.horse_name, ph.horse_id, ph.predicted_rank, ph.model_score, ph.ev_score,
-               COALESCE(e.horse_number, 99) AS horse_number
+               COALESCE(rr.horse_number, en.horse_number) AS horse_number
         FROM prediction_horses ph
         LEFT JOIN predictions p2 ON ph.prediction_id = p2.id
-        LEFT JOIN entries e ON e.horse_id = ph.horse_id AND e.race_id = p2.race_id
+        LEFT JOIN race_results rr ON rr.horse_name = ph.horse_name AND rr.race_id = p2.race_id
+        LEFT JOIN entries     en ON en.horse_name = ph.horse_name AND en.race_id = p2.race_id
         WHERE ph.prediction_id IN (${chunk.map(() => '?').join(',')})
-        ORDER BY ph.prediction_id, COALESCE(e.horse_number, 99), ph.id
+        ORDER BY ph.prediction_id, COALESCE(rr.horse_number, en.horse_number, 99), ph.id
       `).all(...chunk) as Record<string, unknown>[]).map(rowToObj)
       allHorses.push(...rows)
     }

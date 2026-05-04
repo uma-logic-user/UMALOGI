@@ -148,13 +148,13 @@ export default function RaceTree({ races, selectedRaceId, onSelectRace }: Props)
                             key={race.race_id}
                             className={`tree-race-btn ${isActive ? 'active' : ''}`}
                             onClick={() => onSelectRace(race.race_id)}
-                            title={`${race.race_number}R ${race.race_name} ${race.surface}${race.distance}m`}
+                            title={`${race.race_number}R ${race.race_name || `第${race.race_number}R`} ${race.surface}${race.distance}m`}
                           >
                             <span className="text-[var(--text-muted)] mr-1.5 font-mono text-[10px]">
                               {String(race.race_number).padStart(2, ' ')}R
                             </span>
                             {surfaceIcon(race.surface)}
-                            <span className="ml-1">{race.race_name}</span>
+                            <span className="ml-1">{race.race_name || `第${race.race_number}R`}</span>
                           </button>
                         )
                       })}

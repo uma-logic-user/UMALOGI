@@ -63,7 +63,7 @@ export default function RaceDetail({ race, predictions }: Props) {
               {race.race_number != null && <>&nbsp;·&nbsp;第 {race.race_number} R</>}
             </div>
             <h1 className="text-2xl font-bold neon-text tracking-wider leading-tight">
-              {race.race_name}
+              {race.race_name || `第 ${race.race_number} レース`}
             </h1>
           </div>
           <div className="text-right shrink-0">

@@ -1,25 +1,87 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect, useCallback } from 'react'
 import type { RaceEntry, Prediction } from '@/types/race'
-import NavBar     from './NavBar'
-import RaceTree   from './RaceTree'
-import RaceDetail from './RaceDetail'
-import HitHistory from './HitHistory'
-import TabView    from './TabView'
+import NavBar              from './NavBar'
+import RaceTree            from './RaceTree'
+import RaceDetail          from './RaceDetail'
+import HitHistory          from './HitHistory'
+import TabView             from './TabView'
+import FinancialDashboard  from './FinancialDashboard'
+import Win5Panel           from './Win5Panel'
+import GachiHits           from './GachiHits'
 
-type View = 'race' | 'hits' | 'dashboard'
+type View = 'race' | 'hits' | 'dashboard' | 'financial' | 'win5' | 'gachi'
 
-interface Props {
-  races:       RaceEntry[]
-  predictions: Prediction[]
-  summary:     { total_races_in_db: number; overall: Record<string, unknown> }
+interface Summary {
+  total_races_in_db: number
+  overall: Record<string, unknown>
 }
 
-export default function AppShell({ races, predictions, summary }: Props) {
+export default function AppShell() {
   const [view, setView]                     = useState<View>('dashboard')
   const [selectedRaceId, setSelectedRaceId] = useState<string | null>(null)
 
+  // ── データ状態 ────────────────────────────────────────────────────
+  const [races,         setRaces]         = useState<RaceEntry[]>([])
+  const [predictions,   setPredictions]   = useState<Prediction[]>([])
+  const [summary,       setSummary]       = useState<Summary>({ total_races_in_db: 0, overall: {} })
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [financialData, setFinancialData] = useState<Record<string, { daily: any[]; monthly: any[]; yearly: any[] }>>({})
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [win5Data,      setWin5Data]      = useState<any[]>([])
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [gachiHits,     setGachiHits]     = useState<any[]>([])
+  const [loading,       setLoading]       = useState(true)
+  const [error,         setError]         = useState<string | null>(null)
+
+  // ── 初回データ取得 ──────────────────────────────────────────────
+  useEffect(() => {
+    let cancelled = false
+
+    async function fetchAll() {
+      try {
+        const [racesRes, predsRes, summaryRes, finRes, gachiRes, win5Res] = await Promise.all([
+          fetch('/api/races'),
+          fetch('/api/predictions'),
+          fetch('/api/summary'),
+          fetch('/api/financial'),
+          fetch('/api/gachi'),
+          fetch('/api/win5'),
+        ])
+
+        if (cancelled) return
+
+        const [racesData, predsData, summaryData, finData, gachiData, win5RawData] =
+          await Promise.all([
+            racesRes.json(),
+            predsRes.json(),
+            summaryRes.json(),
+            finRes.json(),
+            gachiRes.json(),
+            win5Res.json(),
+          ])
+
+        if (cancelled) return
+
+        setRaces(racesData)
+        setPredictions(predsData)
+        setSummary(summaryData)
+        setFinancialData(finData)
+        setGachiHits(gachiData)
+        setWin5Data(win5RawData)
+      } catch (e) {
+        if (!cancelled) setError(String(e))
+      } finally {
+        if (!cancelled) setLoading(false)
+      }
+    }
+
+    fetchAll()
+    return () => { cancelled = true }
+  }, [])
+
+  // ── 選択レース ───────────────────────────────────────────────────
   const selectedRace = useMemo(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     () => races.find(r => r.race_id === selectedRaceId) as any ?? null,
@@ -27,18 +89,39 @@ export default function AppShell({ races, predictions, summary }: Props) {
   )
 
   const racePredictions = useMemo(
-    () => selectedRaceId
-      ? predictions.filter(p => p.race_id === selectedRaceId)
-      : [],
+    () => selectedRaceId ? predictions.filter(p => p.race_id === selectedRaceId) : [],
     [predictions, selectedRaceId],
   )
 
-  function handleSelectRace(raceId: string) {
+  const handleSelectRace = useCallback((raceId: string) => {
     setSelectedRaceId(raceId)
     setView('race')
-  }
+  }, [])
 
   const hits = predictions.filter(p => p.is_hit === 1)
+
+  // ── ローディング / エラー ────────────────────────────────────────
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="text-center">
+          <div className="neon-text text-xl tracking-[0.3em] animate-pulse">UMALOGI</div>
+          <div className="text-sm text-[var(--text-muted)] mt-3 tracking-widest">Loading...</div>
+        </div>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="text-center text-red-400">
+          <div className="text-lg mb-2">データ取得エラー</div>
+          <div className="text-sm opacity-70">{error}</div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="app-shell">
@@ -85,6 +168,39 @@ export default function AppShell({ races, predictions, summary }: Props) {
               ダッシュボード
             </span>
           </button>
+          <button
+            className={`sidebar-special-btn ${view === 'financial' ? 'active' : ''}`}
+            onClick={() => setView('financial')}
+          >
+            <span style={{ color: 'var(--neon-gold)', fontSize: '0.9rem' }}>¥</span>
+            <span style={{ color: view === 'financial' ? 'var(--neon-gold)' : 'var(--text-primary)' }}>
+              収支管理
+            </span>
+          </button>
+          <button
+            className={`sidebar-special-btn ${view === 'win5' ? 'active' : ''}`}
+            onClick={() => setView('win5')}
+          >
+            <span style={{ color: '#a855f7', fontSize: '0.9rem' }}>W5</span>
+            <span style={{ color: view === 'win5' ? '#a855f7' : 'var(--text-primary)' }}>
+              WIN5 ガチ予想
+            </span>
+          </button>
+          <button
+            className={`sidebar-special-btn ${view === 'gachi' ? 'active' : ''}`}
+            onClick={() => setView('gachi')}
+          >
+            <span style={{ color: '#ff4757', fontSize: '0.9rem', textShadow: '0 0 8px rgba(255,71,87,0.8)' }}>🎯</span>
+            <span style={{ color: view === 'gachi' ? '#ff4757' : 'var(--text-primary)' }}>
+              ガチ予想実績
+            </span>
+            {gachiHits.filter((h: { is_hit: number }) => h.is_hit === 1).length > 0 && (
+              <span className="ml-auto text-xs font-bold px-1.5 py-0.5 rounded"
+                    style={{ background: 'rgba(255,71,87,0.15)', color: '#ff4757', border: '1px solid rgba(255,71,87,0.3)' }}>
+                {gachiHits.filter((h: { is_hit: number }) => h.is_hit === 1).length}
+              </span>
+            )}
+          </button>
         </div>
 
         {/* レースツリー */}
@@ -110,6 +226,14 @@ export default function AppShell({ races, predictions, summary }: Props) {
             <TabView races={races} predictions={predictions} summary={summary} />
           </div>
         )}
+        {view === 'financial' && (
+          <div className="p-4">
+            <FinancialDashboard
+              data={financialData}
+              onSelectRace={(raceId) => handleSelectRace(raceId)}
+            />
+          </div>
+        )}
         {view === 'race' && selectedRace && (
           <RaceDetail race={selectedRace} predictions={racePredictions} />
         )}
@@ -123,6 +247,12 @@ export default function AppShell({ races, predictions, summary }: Props) {
               </div>
             </div>
           </div>
+        )}
+        {view === 'win5' && (
+          <Win5Panel data={win5Data} />
+        )}
+        {view === 'gachi' && (
+          <GachiHits data={gachiHits} />
         )}
       </main>
     </div>
