@@ -66,14 +66,22 @@ def _race_id_from_filename(stem: str) -> str:
     """
     ファイルのステム名から race_id を導出する。
 
-    "0B302026041903010401" → "202603010401"
-    (YEAR(4) + JYO(2) + KAI(2) + NICHI(2) + RACE(2))
+    旧フォーマット (20文字): "0B30{YYYYMMDD}{JYO}{KAI}{NICHI}{RACE}"
+      → "{YYYY}{JYO}{KAI}{NICHI}{RACE}"
+    新フォーマット (16文字): "0B12{YYYYMMDD}{JYO}{RACE}"
+      → KAI/NICHI 不明のため "{YYYY}{JYO}0000{RACE}" (DB 突合で補完)
     """
-    date8 = stem[4:12]   # YYYYMMDD
-    venue  = stem[12:14]  # JYO
-    kai    = stem[14:16]  # KAI
-    nichi  = stem[16:18]  # NICHI
-    race   = stem[18:20]  # RACE
+    if len(stem) == 16:  # 新フォーマット: 0BXX + YYYYMMDD(8) + JYO(2) + RACE(2)
+        year = stem[4:8]
+        jyo  = stem[12:14]
+        race = stem[14:16]
+        return f"{year}{jyo}0000{race}"
+    # 旧フォーマット (20文字)
+    date8 = stem[4:12]
+    venue = stem[12:14]
+    kai   = stem[14:16]
+    nichi = stem[16:18]
+    race  = stem[18:20]
     return date8[:4] + venue + kai + nichi + race
 
 
@@ -130,30 +138,32 @@ def read_rtd_for_race(race_id: str) -> RtdRaceInfo | None:
     """
     指定 race_id に対応する .rtd ファイルを読み込んで RtdRaceInfo を返す。
 
+    2つのファイルフォーマットに対応:
+      新: 0B12{YYYYMMDD}{JYO(2)}{RACE(2)}.rtd  (16文字 stem) ← JRA-VAN 現行
+      旧: 0B30{YYYYMMDD}{JYO(2)}{KAI(2)}{NICHI(2)}{RACE(2)}.rtd  (20文字 stem)
+
     ファイルが存在しない（レース開始後は削除される）場合は None を返す。
-
-    Args:
-        race_id: 12 桁の race_id (例: "202603010401")
-
-    Returns:
-        RtdRaceInfo、またはファイル未存在の場合 None
     """
-    # race_id → ファイル名へ変換
-    # race_id = YYYY(4)+JYO(2)+KAI(2)+NICHI(2)+RACE(2)
-    year  = race_id[0:4]
     jyo   = race_id[4:6]
     kai   = race_id[6:8]
     nichi = race_id[8:10]
     race  = race_id[10:12]
-    date8 = race_id[0:8]   # YYYYMMDD ではない！ race_id の先頭8文字
 
-    # race_id 先頭4文字は YEAR のみ。日付は外部から取得できないため
-    # ファイル名パターン検索で代替する
-    pattern = f"0B30*{jyo}{kai}{nichi}{race}.rtd"
-    candidates = list(_RTD_DIR.glob(pattern))
+    candidates: list[Path] = []
+
+    # 新フォーマット: 0B12*{jyo}{race}.rtd (KAI/NICHIなし — 任意のプレフィックスにも対応)
+    for p in _RTD_DIR.glob(f"0B??*{jyo}{race}.rtd"):
+        stem = p.stem
+        if len(stem) == 16:  # 新フォーマット長のみ受け入れ
+            candidates.append(p)
+
+    # 旧フォーマット: 0B30*{jyo}{kai}{nichi}{race}.rtd (20文字)
+    for p in _RTD_DIR.glob(f"0B30*{jyo}{kai}{nichi}{race}.rtd"):
+        if len(p.stem) == 20 and p not in candidates:
+            candidates.append(p)
 
     if not candidates:
-        logger.debug("RTD ファイル未存在 (race_id=%s, pattern=%s)", race_id, pattern)
+        logger.debug("RTD ファイル未存在 (race_id=%s)", race_id)
         return None
 
     # 最も新しいファイルを使用
@@ -173,8 +183,8 @@ def read_rtd_for_race(race_id: str) -> RtdRaceInfo | None:
 
     info = _parse_o1(text, race_id)
     logger.info(
-        "RTD 読み込み完了: race_id=%s 出走頭数=%d オッズ取得=%d頭",
-        race_id, info.head_count, len(info.odds),
+        "RTD 読み込み完了: race_id=%s file=%s 出走頭数=%d オッズ取得=%d頭",
+        race_id, rtd_path.name, info.head_count, len(info.odds),
     )
     return info
 
@@ -183,14 +193,19 @@ def read_all_rtd_for_date(target_date: str) -> dict[str, RtdRaceInfo]:
     """
     指定日の全 .rtd ファイルを読み込んで {race_id: RtdRaceInfo} を返す。
 
+    新フォーマット (0B12...) と旧フォーマット (0B30...) の両方を走査する。
+
     Args:
         target_date: "YYYYMMDD" 形式
 
     Returns:
         race_id → RtdRaceInfo のマッピング（ファイルが存在するレースのみ）
     """
-    pattern = f"0B30{target_date}*.rtd"
-    files   = sorted(_RTD_DIR.glob(pattern))
+    # 両フォーマットを検索 (0B?? = 任意のプレフィックス)
+    files = sorted(
+        set(_RTD_DIR.glob(f"0B12{target_date}*.rtd"))
+        | set(_RTD_DIR.glob(f"0B30{target_date}*.rtd"))
+    )
 
     if not files:
         logger.info("RTD ファイルなし (date=%s)", target_date)
