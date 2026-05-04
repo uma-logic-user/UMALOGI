@@ -1460,39 +1460,77 @@ def _save_se(conn: sqlite3.Connection, r: dict) -> None:
         # blood_id: JRA-VAN の血統登録番号（SE レコードの horse_id フィールド）
         # training_times.horse_id と同形式のため、調教データとの JOIN キーに使う
         blood_id = r.get('horse_id') if r.get('horse_id') and r.get('horse_id', '').strip('0') else None
-        conn.execute(
-            """
-            INSERT INTO race_results
-                (race_id, horse_id, horse_name, rank,
-                 gate_number, horse_number,
-                 sex_age, weight_carried, jockey, trainer,
-                 finish_time, margin, popularity, win_odds,
-                 horse_weight, horse_weight_diff, blood_id)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            ON CONFLICT(race_id, horse_name) DO UPDATE SET
-                gate_number       = excluded.gate_number,
-                horse_number      = excluded.horse_number,
-                rank              = COALESCE(excluded.rank, race_results.rank),
-                finish_time       = COALESCE(excluded.finish_time, race_results.finish_time),
-                margin            = COALESCE(excluded.margin, race_results.margin),
-                popularity        = COALESCE(excluded.popularity, race_results.popularity),
-                win_odds          = COALESCE(excluded.win_odds, race_results.win_odds),
-                horse_weight      = COALESCE(excluded.horse_weight, race_results.horse_weight),
-                horse_weight_diff = COALESCE(excluded.horse_weight_diff, race_results.horse_weight_diff),
-                blood_id          = COALESCE(excluded.blood_id, race_results.blood_id)
-            """,
-            (r['race_id'], r.get('horse_id'), r['horse_name'], r.get('rank'),
-             r.get('gate_number'), r.get('horse_number'),
-             r.get('sex_age', ''), r.get('weight_carried', 0),
-             r.get('jockey', ''), r.get('trainer', ''),
-             r.get('finish_time'), r.get('margin'),
-             r.get('popularity'), r.get('win_odds'),
-             r.get('horse_weight'), r.get('horse_weight_diff'), blood_id),
-        )
+        horse_number = r.get('horse_number')
+
+        # 【2段 UPSERT】
+        # Step1: horse_number で既存行を探してUPDATE（cat='2'→cat='1'の上書きに対応）
+        #        rank は確定データ(cat='1')で常に上書き。COALESCE を使わない。
+        updated = 0
+        if horse_number and horse_number > 0:
+            updated = conn.execute(
+                """
+                UPDATE race_results SET
+                    horse_name        = ?,
+                    horse_id          = COALESCE(?, horse_id),
+                    blood_id          = COALESCE(?, blood_id),
+                    gate_number       = ?,
+                    rank              = ?,
+                    sex_age           = ?,
+                    weight_carried    = ?,
+                    jockey            = ?,
+                    trainer           = ?,
+                    finish_time       = ?,
+                    margin            = ?,
+                    popularity        = ?,
+                    win_odds          = ?,
+                    horse_weight      = COALESCE(?, horse_weight),
+                    horse_weight_diff = COALESCE(?, horse_weight_diff)
+                WHERE race_id = ? AND horse_number = ?
+                """,
+                (r['horse_name'], r.get('horse_id'), blood_id,
+                 r.get('gate_number'), r.get('rank'),
+                 r.get('sex_age', ''), r.get('weight_carried', 0),
+                 r.get('jockey', ''), r.get('trainer', ''),
+                 r.get('finish_time'), r.get('margin'),
+                 r.get('popularity'), r.get('win_odds'),
+                 r.get('horse_weight'), r.get('horse_weight_diff'),
+                 r['race_id'], horse_number),
+            ).rowcount
+
+        # Step2: 既存行がなければ INSERT（ON CONFLICT で horse_name 重複も吸収）
+        if updated == 0:
+            conn.execute(
+                """
+                INSERT INTO race_results
+                    (race_id, horse_id, horse_name, rank,
+                     gate_number, horse_number,
+                     sex_age, weight_carried, jockey, trainer,
+                     finish_time, margin, popularity, win_odds,
+                     horse_weight, horse_weight_diff, blood_id)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ON CONFLICT(race_id, horse_name) DO UPDATE SET
+                    gate_number       = excluded.gate_number,
+                    horse_number      = excluded.horse_number,
+                    rank              = excluded.rank,
+                    finish_time       = excluded.finish_time,
+                    margin            = excluded.margin,
+                    popularity        = excluded.popularity,
+                    win_odds          = excluded.win_odds,
+                    horse_weight      = COALESCE(excluded.horse_weight, race_results.horse_weight),
+                    horse_weight_diff = COALESCE(excluded.horse_weight_diff, race_results.horse_weight_diff),
+                    blood_id          = COALESCE(excluded.blood_id, race_results.blood_id)
+                """,
+                (r['race_id'], r.get('horse_id'), r['horse_name'], r.get('rank'),
+                 r.get('gate_number'), horse_number,
+                 r.get('sex_age', ''), r.get('weight_carried', 0),
+                 r.get('jockey', ''), r.get('trainer', ''),
+                 r.get('finish_time'), r.get('margin'),
+                 r.get('popularity'), r.get('win_odds'),
+                 r.get('horse_weight'), r.get('horse_weight_diff'), blood_id),
+            )
 
         # entries テーブル: FeatureBuilder が出馬表データとして参照する
         # JVLink SE レコードから直接書き込むことで netkeiba スクレイピングを不要にする
-        horse_number = r.get('horse_number')
         if horse_number and horse_number > 0:
             conn.execute(
                 """
