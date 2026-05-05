@@ -30,9 +30,10 @@ function formatPayout(payout: number | null): string {
   return `¥${Math.round(payout).toLocaleString()}`
 }
 
-function formatBet(bet: number | null): string {
-  if (bet == null) return '—'
-  return `¥${Math.round(bet).toLocaleString()}`
+function formatBet(nTickets: number, perTicket: number = 100): string {
+  if (nTickets <= 0) return '—'
+  const total = nTickets * perTicket
+  return `¥${total.toLocaleString()}（${perTicket}円×${nTickets}点）`
 }
 
 function formatRoi(roi: number | null): string {
@@ -110,7 +111,7 @@ export default function PredictionsPanel({ predictions, raceId, modelType, limit
               <th className="text-left">モデル</th>
               <th className="text-left">券種</th>
               <th className="text-left">予想馬</th>
-              <th className="text-right">賭金</th>
+              <th className="text-right">投資金額</th>
               <th className="text-center">結果</th>
               <th className="text-right">払戻</th>
               <th className="text-right">ROI</th>
@@ -152,8 +153,8 @@ export default function PredictionsPanel({ predictions, raceId, modelType, limit
                     )
                   })()}
                 </td>
-                <td className="text-right text-[var(--text-muted)] font-mono">
-                  {formatBet(pred.recommended_bet)}
+                <td className="text-right text-[var(--text-muted)] font-mono text-xs">
+                  {formatBet(pred.n_tickets)}
                 </td>
                 <td className="text-center">
                   <span className={hitLabelClass(pred)}>

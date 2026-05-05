@@ -476,12 +476,14 @@ def _format_combo(raw_combo: bytes, combo_bytes: int, chunk_size: int = 2) -> st
     chunk_size=2: 馬番 "01"-"18" (2桁ASCII × n頭)
     chunk_size=1: 枠番 "1"-"8"  (1桁ASCII × 2枠, 枠連専用)
     """
+    # chunk_size=1 → 枠番(1-8), chunk_size=2 → 馬番(1-18)
+    max_num = 8 if chunk_size == 1 else 18
     nums = []
     for i in range(0, combo_bytes, chunk_size):
         chunk = raw_combo[i:i+chunk_size]
         try:
             n = int(chunk.decode('ascii', errors='replace').strip())
-            if n > 0:
+            if 0 < n <= max_num:
                 nums.append(str(n))
         except ValueError:
             pass
@@ -1470,29 +1472,30 @@ def _save_se(conn: sqlite3.Connection, r: dict) -> None:
             updated = conn.execute(
                 """
                 UPDATE race_results SET
-                    horse_name        = ?,
                     horse_id          = COALESCE(?, horse_id),
                     blood_id          = COALESCE(?, blood_id),
                     gate_number       = ?,
-                    rank              = ?,
+                    rank              = CASE WHEN ? IS NOT NULL THEN ? ELSE rank END,
                     sex_age           = ?,
                     weight_carried    = ?,
                     jockey            = ?,
                     trainer           = ?,
-                    finish_time       = ?,
-                    margin            = ?,
-                    popularity        = ?,
-                    win_odds          = ?,
+                    finish_time       = COALESCE(?, finish_time),
+                    margin            = COALESCE(?, margin),
+                    popularity        = COALESCE(?, popularity),
+                    win_odds          = CASE WHEN ? > 0 THEN ? ELSE win_odds END,
                     horse_weight      = COALESCE(?, horse_weight),
                     horse_weight_diff = COALESCE(?, horse_weight_diff)
                 WHERE race_id = ? AND horse_number = ?
                 """,
-                (r['horse_name'], r.get('horse_id'), blood_id,
-                 r.get('gate_number'), r.get('rank'),
+                (r.get('horse_id'), blood_id,
+                 r.get('gate_number'),
+                 r.get('rank'), r.get('rank'),
                  r.get('sex_age', ''), r.get('weight_carried', 0),
                  r.get('jockey', ''), r.get('trainer', ''),
                  r.get('finish_time'), r.get('margin'),
-                 r.get('popularity'), r.get('win_odds'),
+                 r.get('popularity'),
+                 r.get('win_odds'), r.get('win_odds'),
                  r.get('horse_weight'), r.get('horse_weight_diff'),
                  r['race_id'], horse_number),
             ).rowcount
@@ -1511,11 +1514,11 @@ def _save_se(conn: sqlite3.Connection, r: dict) -> None:
                 ON CONFLICT(race_id, horse_name) DO UPDATE SET
                     gate_number       = excluded.gate_number,
                     horse_number      = excluded.horse_number,
-                    rank              = excluded.rank,
-                    finish_time       = excluded.finish_time,
-                    margin            = excluded.margin,
-                    popularity        = excluded.popularity,
-                    win_odds          = excluded.win_odds,
+                    rank              = CASE WHEN excluded.rank IS NOT NULL THEN excluded.rank ELSE race_results.rank END,
+                    finish_time       = COALESCE(excluded.finish_time, race_results.finish_time),
+                    margin            = COALESCE(excluded.margin, race_results.margin),
+                    popularity        = COALESCE(excluded.popularity, race_results.popularity),
+                    win_odds          = CASE WHEN excluded.win_odds > 0 THEN excluded.win_odds ELSE race_results.win_odds END,
                     horse_weight      = COALESCE(excluded.horse_weight, race_results.horse_weight),
                     horse_weight_diff = COALESCE(excluded.horse_weight_diff, race_results.horse_weight_diff),
                     blood_id          = COALESCE(excluded.blood_id, race_results.blood_id)

@@ -140,13 +140,21 @@ export default function GachiHits({ data }: Props) {
                   ¥{h.payout.toLocaleString()}
                 </div>
                 <div className="text-xs text-[var(--text-secondary)] mt-1">払戻</div>
-                {h.recommended_bet != null && h.recommended_bet > 0 && (
+                {h.n_tickets > 0 && (
                   <div className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>
-                    投資 ¥{h.recommended_bet.toLocaleString()}
-                    {' / ROI '}
-                    {h.payout > 0
-                      ? `${Math.round(h.payout / h.recommended_bet * 100).toLocaleString()}%`
-                      : '—'}
+                    {(() => {
+                      const invested = h.n_tickets * 100
+                      const roi = h.payout > 0 ? Math.round(h.payout / invested * 100) : 0
+                      return (
+                        <>
+                          投資 ¥{invested.toLocaleString()}（100円×{h.n_tickets}点）
+                          {' / ROI '}
+                          <span style={{ color: roi >= 200 ? 'var(--neon-gold)' : 'var(--neon-green)' }}>
+                            {roi.toLocaleString()}%
+                          </span>
+                        </>
+                      )
+                    })()}
                   </div>
                 )}
               </div>
