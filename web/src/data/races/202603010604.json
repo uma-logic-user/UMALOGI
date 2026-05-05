@@ -534,6 +534,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "7": "カレンデュラ",
         "10": "メイショウピュルテ",
@@ -564,9 +565,9 @@
       "notes": "上位3頭を複勝",
       "created_at": "2026-04-26 15:13:07",
       "is_hit": 1,
-      "payout": 450.0,
-      "profit": 150.0,
-      "roi": 150.0,
+      "payout": 5970.0,
+      "profit": 5670.0,
+      "roi": 1989.9999999999998,
       "horses": [
         {
           "horse_name": "カレンデュラ",
@@ -592,6 +593,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "7": "カレンデュラ",
         "10": "メイショウピュルテ",
@@ -623,7 +625,7 @@
       "created_at": "2026-04-26 15:13:07",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -643,6 +645,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "7": "カレンデュラ",
         "10": "メイショウピュルテ",
@@ -674,8 +677,8 @@
       "created_at": "2026-04-26 15:13:07",
       "is_hit": 1,
       "payout": 540.0,
-      "profit": 340.0,
-      "roi": 270.0,
+      "profit": 440.0,
+      "roi": 540.0,
       "horses": [
         {
           "horse_name": "ブルーエ",
@@ -694,6 +697,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "7": "カレンデュラ",
         "10": "メイショウピュルテ",
@@ -723,10 +727,10 @@
       "combination_json": "[[7, 4, 10], [7, 4, 6], [7, 4, 9], [7, 10, 4], [7, 10, 6], [7, 10, 9]]",
       "notes": "1着固定フォーメーション 軸=7番 6点 相手=[4, 10, 6, 9] Harville最大=0.0018",
       "created_at": "2026-04-26 15:13:07",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -600.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 729120.0,
+      "profit": 728520.0,
+      "roi": 121520.0,
       "horses": [
         {
           "horse_name": "カレンデュラ",
@@ -836,6 +840,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "7": "カレンデュラ",
         "10": "メイショウピュルテ",
@@ -865,10 +870,10 @@
       "combination_json": "[[16]]",
       "notes": "確率1位(卍) EV=1.97 odds=1.0",
       "created_at": "2026-04-26 15:13:07",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -100.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 16000.0,
+      "profit": 15900.0,
+      "roi": 16000.0,
       "horses": [
         {
           "horse_name": "ケイツーキップ",
@@ -880,6 +885,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "7": "カレンデュラ",
         "10": "メイショウピュルテ",
@@ -938,6 +944,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "7": "カレンデュラ",
         "10": "メイショウピュルテ",
@@ -969,7 +976,7 @@
       "created_at": "2026-04-26 15:13:07",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -989,6 +996,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "7": "カレンデュラ",
         "10": "メイショウピュルテ",
@@ -1020,7 +1028,7 @@
       "created_at": "2026-04-26 15:13:07",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1040,6 +1048,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "7": "カレンデュラ",
         "10": "メイショウピュルテ",
@@ -1071,7 +1080,7 @@
       "created_at": "2026-04-26 15:13:07",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1098,6 +1107,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "7": "カレンデュラ",
         "10": "メイショウピュルテ",
@@ -1156,6 +1166,7 @@
       ],
       "bet_form": "軸1頭ながし",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "7": "カレンデュラ",
         "10": "メイショウピュルテ",
@@ -1185,10 +1196,10 @@
       "combination_json": "[[7, 4, 10], [7, 10, 4], [4, 7, 10]]",
       "notes": "[Oracle] 的中確率最大 3点 P最大=0.0144 馬番=[(7, 4, 10), (7, 10, 4), (4, 7, 10)]",
       "created_at": "2026-04-26 15:13:07",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -300.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 364560.0,
+      "profit": 364260.0,
+      "roi": 121520.0,
       "horses": [
         {
           "horse_name": "カレンデュラ",
@@ -1214,6 +1225,7 @@
       ],
       "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "7": "カレンデュラ",
         "10": "メイショウピュルテ",
@@ -1363,6 +1375,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "7": "カレンデュラ",
         "10": "メイショウピュルテ",

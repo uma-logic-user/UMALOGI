@@ -476,6 +476,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "14": "ジュウリョクピエロ",
         "9": "ピカキウイ",
@@ -503,10 +504,10 @@
       "combination_json": "[[0]]",
       "notes": "上位1頭を複勝",
       "created_at": "2026-04-12 08:03:44",
-      "is_hit": 1,
-      "payout": 713.3333333333334,
-      "profit": 613.3333333333334,
-      "roi": 713.3333333333334,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "レダアトミカ",
@@ -518,6 +519,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "14": "ジュウリョクピエロ",
         "9": "ピカキウイ",
@@ -545,10 +547,10 @@
       "combination_json": "[]",
       "notes": "全馬モデルスコア（馬分析タブ用）",
       "created_at": "2026-04-12 08:15:25",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "レダアトミカ",
@@ -560,6 +562,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "14": "ジュウリョクピエロ",
         "9": "ピカキウイ",
@@ -602,6 +605,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "14": "ジュウリョクピエロ",
         "9": "ピカキウイ",
@@ -658,6 +662,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "14": "ジュウリョクピエロ",
         "9": "ピカキウイ",
@@ -687,7 +692,7 @@
       "created_at": "2026-04-12 13:40:48",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -700,6 +705,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "14": "ジュウリョクピエロ",
         "9": "ピカキウイ",
@@ -729,7 +735,7 @@
       "created_at": "2026-04-12 13:40:48",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -742,6 +748,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "14": "ジュウリョクピエロ",
         "9": "ピカキウイ",
@@ -791,6 +798,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "14": "ジュウリョクピエロ",
         "9": "ピカキウイ",
@@ -820,7 +828,7 @@
       "created_at": "2026-04-12 13:40:48",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -833,6 +841,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "14": "ジュウリョクピエロ",
         "9": "ピカキウイ",
@@ -903,6 +912,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "14": "ジュウリョクピエロ",
         "9": "ピカキウイ",
@@ -930,10 +940,10 @@
       "combination_json": "[]",
       "notes": "全馬モデルスコア（馬分析タブ用）",
       "created_at": "2026-04-12 13:40:48",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "メイプルハッピー",
@@ -1036,6 +1046,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "14": "ジュウリョクピエロ",
         "9": "ピカキウイ",

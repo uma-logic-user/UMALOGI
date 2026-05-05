@@ -515,7 +515,7 @@
       "created_at": "2026-05-03 08:11:56",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -600.0,
+      "profit": -200.0,
       "roi": 0.0,
       "horses": [
         {
@@ -563,6 +563,7 @@
       ],
       "bet_form": "軸2頭ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "16": "カウンターセブン",
         "8": "ハニーローリエ",
@@ -607,6 +608,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "16": "カウンターセブン",
         "8": "ハニーローリエ",
@@ -636,10 +638,10 @@
       "combination_json": "[[11], [16], [2]]",
       "notes": "上位3頭を複勝",
       "created_at": "2026-05-03 14:10:10",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -300.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 390.0,
+      "profit": 90.0,
+      "roi": 130.0,
       "horses": [
         {
           "horse_name": "ララアヴリル",
@@ -665,6 +667,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "16": "カウンターセブン",
         "8": "ハニーローリエ",
@@ -772,6 +775,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "16": "カウンターセブン",
         "8": "ハニーローリエ",
@@ -879,6 +883,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "16": "カウンターセブン",
         "8": "ハニーローリエ",
@@ -958,6 +963,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "16": "カウンターセブン",
         "8": "ハニーローリエ",
@@ -989,7 +995,7 @@
       "created_at": "2026-05-03 14:10:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -1000.0,
+      "profit": -1200.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1100,6 +1106,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 12,
+      "invested": 1200,
       "horse_num_to_name": {
         "16": "カウンターセブン",
         "8": "ハニーローリエ",
@@ -1129,10 +1136,10 @@
       "combination_json": "[[16]]",
       "notes": "確率1位(卍) EV=7.89 odds=1.0",
       "created_at": "2026-05-03 14:10:10",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -100.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 300.0,
+      "profit": 200.0,
+      "roi": 300.0,
       "horses": [
         {
           "horse_name": "カウンターセブン",
@@ -1144,6 +1151,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "16": "カウンターセブン",
         "8": "ハニーローリエ",
@@ -1173,10 +1181,10 @@
       "combination_json": "[[16], [2], [12]]",
       "notes": "確率上位3頭を複勝",
       "created_at": "2026-05-03 14:10:10",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -300.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 390.0,
+      "profit": 90.0,
+      "roi": 130.0,
       "horses": [
         {
           "horse_name": "カウンターセブン",
@@ -1202,6 +1210,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "16": "カウンターセブン",
         "8": "ハニーローリエ",
@@ -1309,6 +1318,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "16": "カウンターセブン",
         "8": "ハニーローリエ",
@@ -1416,6 +1426,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "16": "カウンターセブン",
         "8": "ハニーローリエ",
@@ -1495,6 +1506,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "16": "カウンターセブン",
         "8": "ハニーローリエ",
@@ -1526,7 +1538,7 @@
       "created_at": "2026-05-03 14:10:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1553,6 +1565,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "16": "カウンターセブン",
         "8": "ハニーローリエ",
@@ -1611,6 +1624,7 @@
       ],
       "bet_form": "軸1頭ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "16": "カウンターセブン",
         "8": "ハニーローリエ",
@@ -1669,6 +1683,7 @@
       ],
       "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
+      "invested": 1200,
       "horse_num_to_name": {
         "16": "カウンターセブン",
         "8": "ハニーローリエ",
@@ -1818,6 +1833,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "16": "カウンターセブン",
         "8": "ハニーローリエ",
@@ -1847,10 +1863,10 @@
       "combination_json": "[[11, 16], [2, 11], [2, 16], [8, 11], [8, 16], [9, 11], [9, 16]]",
       "notes": "2軸マルチ 軸=11,16 相手=[2, 8, 9] Harville最大=0.0398",
       "created_at": "2026-05-03 14:10:10",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -700.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 5250.0,
+      "profit": 4550.0,
+      "roi": 750.0,
       "horses": [
         {
           "horse_name": "ララアヴリル",
@@ -1869,6 +1885,7 @@
       ],
       "bet_form": "フォーメーション",
       "n_tickets": 7,
+      "invested": 700,
       "horse_num_to_name": {
         "16": "カウンターセブン",
         "8": "ハニーローリエ",
@@ -1898,10 +1915,10 @@
       "combination_json": "[[11, 16], [16, 11], [11, 2], [16, 2], [11, 8], [16, 8], [11, 9], [16, 9]]",
       "notes": "2軸マルチ 軸=11,16 相手=[2, 8, 9] Harville最大=0.0213",
       "created_at": "2026-05-03 14:10:10",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -800.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 9360.0,
+      "profit": 8560.0,
+      "roi": 1170.0,
       "horses": [
         {
           "horse_name": "ララアヴリル",
@@ -1920,6 +1937,7 @@
       ],
       "bet_form": "フォーメーション",
       "n_tickets": 8,
+      "invested": 800,
       "horse_num_to_name": {
         "16": "カウンターセブン",
         "8": "ハニーローリエ",
@@ -1978,6 +1996,7 @@
       ],
       "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
+      "invested": 1200,
       "horse_num_to_name": {
         "16": "カウンターセブン",
         "8": "ハニーローリエ",

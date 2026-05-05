@@ -438,6 +438,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "フィラーエ",
         "16": "シルバーアックス",
@@ -496,6 +497,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "11": "フィラーエ",
         "16": "シルバーアックス",
@@ -527,7 +529,7 @@
       "created_at": "2026-04-25 10:10:12",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -540,6 +542,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "フィラーエ",
         "16": "シルバーアックス",
@@ -571,7 +574,7 @@
       "created_at": "2026-04-25 10:10:12",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -584,6 +587,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "フィラーエ",
         "16": "シルバーアックス",
@@ -635,6 +639,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "11": "フィラーエ",
         "16": "シルバーアックス",
@@ -707,6 +712,7 @@
       ],
       "bet_form": "2頭軸マルチ",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "11": "フィラーエ",
         "16": "シルバーアックス",
@@ -738,7 +744,7 @@
       "created_at": "2026-04-25 10:10:12",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -751,6 +757,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "フィラーエ",
         "16": "シルバーアックス",
@@ -781,9 +788,9 @@
       "notes": "EV>1.1 の8頭を複勝",
       "created_at": "2026-04-25 10:10:12",
       "is_hit": 1,
-      "payout": 5888.0,
-      "profit": 5088.0,
-      "roi": 736.0,
+      "payout": 17680.0,
+      "profit": 16880.0,
+      "roi": 2210.0,
       "horses": [
         {
           "horse_name": "ジューンスマッシュ",
@@ -823,6 +830,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 8,
+      "invested": 800,
       "horse_num_to_name": {
         "11": "フィラーエ",
         "16": "シルバーアックス",
@@ -854,7 +862,7 @@
       "created_at": "2026-04-25 10:10:12",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -867,6 +875,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "フィラーエ",
         "16": "シルバーアックス",
@@ -898,7 +907,7 @@
       "created_at": "2026-04-25 10:10:12",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -911,6 +920,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "フィラーエ",
         "16": "シルバーアックス",
@@ -942,7 +952,7 @@
       "created_at": "2026-04-25 10:10:12",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -955,6 +965,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "フィラーエ",
         "16": "シルバーアックス",
@@ -986,7 +997,7 @@
       "created_at": "2026-04-25 10:10:12",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -999,6 +1010,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "フィラーエ",
         "16": "シルバーアックス",
@@ -1148,6 +1160,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "11": "フィラーエ",
         "16": "シルバーアックス",
@@ -1192,6 +1205,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "フィラーエ",
         "16": "シルバーアックス",
@@ -1250,6 +1264,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "11": "フィラーエ",
         "16": "シルバーアックス",
@@ -1281,7 +1296,7 @@
       "created_at": "2026-04-25 10:45:08",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1301,6 +1316,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "フィラーエ",
         "16": "シルバーアックス",
@@ -1332,7 +1348,7 @@
       "created_at": "2026-04-25 10:45:08",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1352,6 +1368,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "フィラーエ",
         "16": "シルバーアックス",
@@ -1417,6 +1434,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "11": "フィラーエ",
         "16": "シルバーアックス",
@@ -1448,7 +1466,7 @@
       "created_at": "2026-04-25 10:45:08",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1475,6 +1493,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "フィラーエ",
         "16": "シルバーアックス",
@@ -1617,6 +1636,7 @@
       ],
       "bet_form": "2頭軸マルチ",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "11": "フィラーエ",
         "16": "シルバーアックス",
@@ -1661,6 +1681,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "フィラーエ",
         "16": "シルバーアックス",
@@ -1691,9 +1712,9 @@
       "notes": "EV>1.1 の16頭を複勝",
       "created_at": "2026-04-25 10:45:08",
       "is_hit": 1,
-      "payout": 5152.0,
-      "profit": 4452.0,
-      "roi": 736.0,
+      "payout": 15470.000000000002,
+      "profit": 13870.000000000002,
+      "roi": 966.8750000000001,
       "horses": [
         {
           "horse_name": "ジューンスマッシュ",
@@ -1733,6 +1754,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 16,
+      "invested": 1600,
       "horse_num_to_name": {
         "11": "フィラーエ",
         "16": "シルバーアックス",
@@ -1784,6 +1806,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "フィラーエ",
         "16": "シルバーアックス",
@@ -1835,6 +1858,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "フィラーエ",
         "16": "シルバーアックス",
@@ -1886,6 +1910,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "フィラーエ",
         "16": "シルバーアックス",
@@ -1917,7 +1942,7 @@
       "created_at": "2026-04-25 10:45:08",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1944,6 +1969,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "フィラーエ",
         "16": "シルバーアックス",
@@ -2093,6 +2119,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "11": "フィラーエ",
         "16": "シルバーアックス",

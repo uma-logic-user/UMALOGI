@@ -515,6 +515,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "10": "アチーヴァー",
         "4": "サルサブラヴァ",
@@ -542,9 +543,9 @@
       "notes": "上位3頭を複勝",
       "created_at": "2026-04-11 12:25:25",
       "is_hit": 1,
-      "payout": 543.3333333333334,
-      "profit": 243.33333333333337,
-      "roi": 181.11111111111114,
+      "payout": 1260.0,
+      "profit": 960.0,
+      "roi": 420.0,
       "horses": [
         {
           "horse_name": "卍",
@@ -577,6 +578,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "10": "アチーヴァー",
         "4": "サルサブラヴァ",
@@ -605,7 +607,7 @@
       "created_at": "2026-04-11 12:25:25",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -625,6 +627,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "10": "アチーヴァー",
         "4": "サルサブラヴァ",
@@ -653,7 +656,7 @@
       "created_at": "2026-04-11 12:25:25",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -687,6 +690,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "10": "アチーヴァー",
         "4": "サルサブラヴァ",
@@ -742,6 +746,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "10": "アチーヴァー",
         "4": "サルサブラヴァ",
@@ -770,7 +775,7 @@
       "created_at": "2026-04-11 12:25:25",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -790,6 +795,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "10": "アチーヴァー",
         "4": "サルサブラヴァ",
@@ -866,6 +872,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "10": "アチーヴァー",
         "4": "サルサブラヴァ",

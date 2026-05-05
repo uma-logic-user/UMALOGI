@@ -95,6 +95,58 @@ def _year_from_date(date_str: str | None) -> str | None:
     return date_str[:4]
 
 
+# 払戻キー生成（evaluator.py の _combo_to_payout_key と同じロジック）
+def _combo_to_payout_key(bet_type: str, combo: list[int]) -> str | None:
+    if not combo:
+        return None
+    if bet_type in ("単勝", "複勝"):
+        return str(combo[0])
+    elif bet_type in ("馬連", "ワイド", "枠連"):
+        if len(combo) < 2:
+            return None
+        return "-".join(str(n) for n in sorted(combo[:2]))
+    elif bet_type == "馬単":
+        if len(combo) < 2:
+            return None
+        return "→".join(str(n) for n in combo[:2])
+    elif bet_type == "三連複":
+        if len(combo) < 3:
+            return None
+        return "-".join(str(n) for n in sorted(combo[:3]))
+    elif bet_type == "三連単":
+        if len(combo) < 3:
+            return None
+        return "→".join(str(n) for n in combo[:3])
+    return None
+
+
+def _dedup_combination_json(combination_json: str | None, bet_type: str) -> str:
+    """
+    combination_json から払戻キー重複コンボを除去して JSON 文字列を返す。
+
+    三連複・馬連・ワイドでは [3,14,11] と [14,3,11] が同一キーになるため
+    先着を残して除去。これにより n_tickets 表示と投資額が完全一致する。
+    """
+    if not combination_json:
+        return combination_json or "[]"
+    try:
+        combos: list = json.loads(combination_json)
+    except Exception:
+        return combination_json or "[]"
+    if not combos or not isinstance(combos[0], list):
+        return combination_json or "[]"
+
+    seen: set[str] = set()
+    result: list[list[int]] = []
+    for combo in combos:
+        key = _combo_to_payout_key(bet_type, combo)
+        if key is None or key not in seen:
+            if key is not None:
+                seen.add(key)
+            result.append(combo)
+    return json.dumps(result, ensure_ascii=False)
+
+
 def _identify_bet_form(combination_json: str | None, bet_type: str) -> tuple[str, int]:
     """
     combination_json から「買い方ラベル」と「点数」を返す。
@@ -427,9 +479,14 @@ def _fetch_race_predictions(
             (pd["prediction_id"],),
         ).fetchall()
         pd["horses"] = _rows(horses)
-        bet_form, n_tickets = _identify_bet_form(pd.get("combination_json"), pd.get("bet_type", ""))
+        bet_type = pd.get("bet_type", "")
+        # combination_json の払戻キー重複を排除してから点数を算出
+        pd["combination_json"] = _dedup_combination_json(pd.get("combination_json"), bet_type)
+        bet_form, n_tickets = _identify_bet_form(pd["combination_json"], bet_type)
         pd["bet_form"]  = bet_form
         pd["n_tickets"] = n_tickets
+        # 投資額 = n_tickets × 100 で統一（rec_bet は参考値として保持）
+        pd["invested"]  = n_tickets * 100
         pd["horse_num_to_name"] = horse_num_to_name
         output.append(pd)
 
@@ -550,10 +607,14 @@ def export_predictions(
             (pd["prediction_id"],),
         ).fetchall()
         pd["horses"] = _rows(horses)
-        # bet_form / n_tickets を付与
-        bet_form, n_tickets = _identify_bet_form(pd.get("combination_json"), pd.get("bet_type", ""))
+        # combination_json の払戻キー重複を排除してから点数を算出
+        bet_type = pd.get("bet_type", "")
+        pd["combination_json"] = _dedup_combination_json(pd.get("combination_json"), bet_type)
+        bet_form, n_tickets = _identify_bet_form(pd["combination_json"], bet_type)
         pd["bet_form"]   = bet_form
         pd["n_tickets"]  = n_tickets
+        # 投資額 = n_tickets × 100 で統一（UI で一貫した表示のため）
+        pd["invested"]   = n_tickets * 100
         # combination_json の馬番から馬名を引くためのマップ
         pd["horse_num_to_name"] = horse_name_map.get(str(pd.get("race_id", "")), {})
         output.append(pd)

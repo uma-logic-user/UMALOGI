@@ -418,6 +418,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "10": "アラクラン",
         "11": "アイビーチーキー",
@@ -475,6 +476,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "10": "アラクラン",
         "11": "アイビーチーキー",
@@ -505,7 +507,7 @@
       "created_at": "2026-04-19 09:05:55",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -518,6 +520,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "10": "アラクラン",
         "11": "アイビーチーキー",
@@ -548,7 +551,7 @@
       "created_at": "2026-04-19 09:05:55",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -561,6 +564,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "10": "アラクラン",
         "11": "アイビーチーキー",
@@ -611,6 +615,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "10": "アラクラン",
         "11": "アイビーチーキー",
@@ -641,7 +646,7 @@
       "created_at": "2026-04-19 09:05:55",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -654,6 +659,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "10": "アラクラン",
         "11": "アイビーチーキー",
@@ -725,6 +731,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "10": "アラクラン",
         "11": "アイビーチーキー",
@@ -753,10 +760,10 @@
       "combination_json": "[[15]]",
       "notes": "EV=1.04 odds=1.0",
       "created_at": "2026-04-19 09:05:55",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -100.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 15000.0,
+      "profit": 14900.0,
+      "roi": 15000.0,
       "horses": [
         {
           "horse_name": "ストリートクイーン",
@@ -768,6 +775,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "10": "アラクラン",
         "11": "アイビーチーキー",
@@ -797,9 +805,9 @@
       "notes": "EV>1.0 の14頭を複勝",
       "created_at": "2026-04-19 09:05:55",
       "is_hit": 1,
-      "payout": 190.4761904761905,
-      "profit": -809.5238095238095,
-      "roi": 19.04761904761905,
+      "payout": 8000.0,
+      "profit": 6600.0,
+      "roi": 571.4285714285714,
       "horses": [
         {
           "horse_name": "ジーゲスツーク",
@@ -839,6 +847,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 14,
+      "invested": 1400,
       "horse_num_to_name": {
         "10": "アラクラン",
         "11": "アイビーチーキー",
@@ -869,7 +878,7 @@
       "created_at": "2026-04-19 09:05:55",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -882,6 +891,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "10": "アラクラン",
         "11": "アイビーチーキー",
@@ -912,7 +922,7 @@
       "created_at": "2026-04-19 09:05:55",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -925,6 +935,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "10": "アラクラン",
         "11": "アイビーチーキー",
@@ -955,7 +966,7 @@
       "created_at": "2026-04-19 09:05:55",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -968,6 +979,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "10": "アラクラン",
         "11": "アイビーチーキー",
@@ -998,7 +1010,7 @@
       "created_at": "2026-04-19 09:05:55",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1011,6 +1023,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "10": "アラクラン",
         "11": "アイビーチーキー",
@@ -1039,10 +1052,10 @@
       "combination_json": "[]",
       "notes": "全馬モデルスコア（馬分析タブ用）",
       "created_at": "2026-04-19 09:05:55",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ゴールデンボート",
@@ -1152,6 +1165,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "10": "アラクラン",
         "11": "アイビーチーキー",
@@ -1195,6 +1209,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "10": "アラクラン",
         "11": "アイビーチーキー",
@@ -1252,6 +1267,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "10": "アラクラン",
         "11": "アイビーチーキー",
@@ -1282,7 +1298,7 @@
       "created_at": "2026-04-19 11:10:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1295,6 +1311,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "10": "アラクラン",
         "11": "アイビーチーキー",
@@ -1325,7 +1342,7 @@
       "created_at": "2026-04-19 11:10:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1338,6 +1355,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "10": "アラクラン",
         "11": "アイビーチーキー",
@@ -1388,6 +1406,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "10": "アラクラン",
         "11": "アイビーチーキー",
@@ -1418,7 +1437,7 @@
       "created_at": "2026-04-19 11:10:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1431,6 +1450,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "10": "アラクラン",
         "11": "アイビーチーキー",
@@ -1502,6 +1522,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "10": "アラクラン",
         "11": "アイビーチーキー",
@@ -1530,10 +1551,10 @@
       "combination_json": "[[15]]",
       "notes": "EV=1.04 odds=5.8",
       "created_at": "2026-04-19 11:10:10",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -100.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 15000.0,
+      "profit": 14900.0,
+      "roi": 15000.0,
       "horses": [
         {
           "horse_name": "ストリートクイーン",
@@ -1545,6 +1566,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "10": "アラクラン",
         "11": "アイビーチーキー",
@@ -1574,9 +1596,9 @@
       "notes": "EV>1.0 の14頭を複勝",
       "created_at": "2026-04-19 11:10:10",
       "is_hit": 1,
-      "payout": 190.4761904761905,
-      "profit": -809.5238095238095,
-      "roi": 19.04761904761905,
+      "payout": 8000.0,
+      "profit": 6600.0,
+      "roi": 571.4285714285714,
       "horses": [
         {
           "horse_name": "ジーゲスツーク",
@@ -1616,6 +1638,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 14,
+      "invested": 1400,
       "horse_num_to_name": {
         "10": "アラクラン",
         "11": "アイビーチーキー",
@@ -1646,7 +1669,7 @@
       "created_at": "2026-04-19 11:10:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1659,6 +1682,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "10": "アラクラン",
         "11": "アイビーチーキー",
@@ -1689,7 +1713,7 @@
       "created_at": "2026-04-19 11:10:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1702,6 +1726,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "10": "アラクラン",
         "11": "アイビーチーキー",
@@ -1732,7 +1757,7 @@
       "created_at": "2026-04-19 11:10:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1745,6 +1770,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "10": "アラクラン",
         "11": "アイビーチーキー",
@@ -1775,7 +1801,7 @@
       "created_at": "2026-04-19 11:10:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1788,6 +1814,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "10": "アラクラン",
         "11": "アイビーチーキー",
@@ -1816,10 +1843,10 @@
       "combination_json": "[]",
       "notes": "全馬モデルスコア（馬分析タブ用）",
       "created_at": "2026-04-19 11:10:10",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ゴールデンボート",
@@ -1929,6 +1956,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "10": "アラクラン",
         "11": "アイビーチーキー",

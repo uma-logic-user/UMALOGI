@@ -438,6 +438,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "8": "ミエノストロング",
         "11": "ブランニューホーム",
@@ -496,6 +497,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "8": "ミエノストロング",
         "11": "ブランニューホーム",
@@ -527,7 +529,7 @@
       "created_at": "2026-04-25 10:45:08",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -547,6 +549,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "8": "ミエノストロング",
         "11": "ブランニューホーム",
@@ -578,7 +581,7 @@
       "created_at": "2026-04-25 10:45:08",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -598,6 +601,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "8": "ミエノストロング",
         "11": "ブランニューホーム",
@@ -663,6 +667,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "8": "ミエノストロング",
         "11": "ブランニューホーム",
@@ -805,6 +810,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "8": "ミエノストロング",
         "11": "ブランニューホーム",
@@ -849,6 +855,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "8": "ミエノストロング",
         "11": "ブランニューホーム",
@@ -878,10 +885,10 @@
       "combination_json": "[[10], [12], [13], [14], [15], [16], [9], [11], [6], [1], [3], [4], [5], [2], [8], [7]]",
       "notes": "EV>1.1 の16頭を複勝",
       "created_at": "2026-04-25 10:45:08",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -1000.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 7300.0,
+      "profit": 5700.0,
+      "roi": 456.25,
       "horses": [
         {
           "horse_name": "タイキアロハ",
@@ -921,6 +928,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 16,
+      "invested": 1600,
       "horse_num_to_name": {
         "8": "ミエノストロング",
         "11": "ブランニューホーム",
@@ -952,7 +960,7 @@
       "created_at": "2026-04-25 10:45:08",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -972,6 +980,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "8": "ミエノストロング",
         "11": "ブランニューホーム",
@@ -1003,7 +1012,7 @@
       "created_at": "2026-04-25 10:45:08",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1023,6 +1032,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "8": "ミエノストロング",
         "11": "ブランニューホーム",
@@ -1054,7 +1064,7 @@
       "created_at": "2026-04-25 10:45:08",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1074,6 +1084,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "8": "ミエノストロング",
         "11": "ブランニューホーム",
@@ -1105,7 +1116,7 @@
       "created_at": "2026-04-25 10:45:08",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1132,6 +1143,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "8": "ミエノストロング",
         "11": "ブランニューホーム",
@@ -1281,6 +1293,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "8": "ミエノストロング",
         "11": "ブランニューホーム",
@@ -1325,6 +1338,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "8": "ミエノストロング",
         "11": "ブランニューホーム",
@@ -1383,6 +1397,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "8": "ミエノストロング",
         "11": "ブランニューホーム",
@@ -1414,7 +1429,7 @@
       "created_at": "2026-04-25 11:40:08",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1434,6 +1449,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "8": "ミエノストロング",
         "11": "ブランニューホーム",
@@ -1465,7 +1481,7 @@
       "created_at": "2026-04-25 11:40:08",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1485,6 +1501,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "8": "ミエノストロング",
         "11": "ブランニューホーム",
@@ -1550,6 +1567,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "8": "ミエノストロング",
         "11": "ブランニューホーム",
@@ -1692,6 +1710,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "8": "ミエノストロング",
         "11": "ブランニューホーム",
@@ -1736,6 +1755,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "8": "ミエノストロング",
         "11": "ブランニューホーム",
@@ -1765,10 +1785,10 @@
       "combination_json": "[[10], [12], [13], [14], [15], [16], [9], [11], [6], [1], [3], [4], [5], [2], [8], [7]]",
       "notes": "EV>1.1 の16頭を複勝",
       "created_at": "2026-04-25 11:40:08",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -700.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 5110.0,
+      "profit": 3510.0,
+      "roi": 319.375,
       "horses": [
         {
           "horse_name": "タイキアロハ",
@@ -1808,6 +1828,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 16,
+      "invested": 1600,
       "horse_num_to_name": {
         "8": "ミエノストロング",
         "11": "ブランニューホーム",
@@ -1859,6 +1880,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "8": "ミエノストロング",
         "11": "ブランニューホーム",
@@ -1910,6 +1932,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "8": "ミエノストロング",
         "11": "ブランニューホーム",
@@ -1961,6 +1984,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "8": "ミエノストロング",
         "11": "ブランニューホーム",
@@ -1992,7 +2016,7 @@
       "created_at": "2026-04-25 11:40:08",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -2019,6 +2043,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "8": "ミエノストロング",
         "11": "ブランニューホーム",
@@ -2168,6 +2193,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "8": "ミエノストロング",
         "11": "ブランニューホーム",

@@ -514,6 +514,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "マイネルフルムーン",
         "15": "コンフォルツァ",
@@ -571,6 +572,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "4": "マイネルフルムーン",
         "15": "コンフォルツァ",
@@ -601,7 +603,7 @@
       "created_at": "2026-05-02 13:24:20",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -621,6 +623,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "マイネルフルムーン",
         "15": "コンフォルツァ",
@@ -651,7 +654,7 @@
       "created_at": "2026-05-02 13:24:20",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -671,6 +674,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "マイネルフルムーン",
         "15": "コンフォルツァ",
@@ -812,6 +816,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "4": "マイネルフルムーン",
         "15": "コンフォルツァ",
@@ -840,10 +845,10 @@
       "combination_json": "[[15]]",
       "notes": "確率1位(卍) EV=104951.16 odds=1.0",
       "created_at": "2026-05-02 13:24:20",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -100.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 15000.0,
+      "profit": 14900.0,
+      "roi": 15000.0,
       "horses": [
         {
           "horse_name": "コンフォルツァ",
@@ -855,6 +860,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "マイネルフルムーン",
         "15": "コンフォルツァ",
@@ -912,6 +918,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "4": "マイネルフルムーン",
         "15": "コンフォルツァ",
@@ -942,7 +949,7 @@
       "created_at": "2026-05-02 13:24:20",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -962,6 +969,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "マイネルフルムーン",
         "15": "コンフォルツァ",
@@ -992,7 +1000,7 @@
       "created_at": "2026-05-02 13:24:20",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1012,6 +1020,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "マイネルフルムーン",
         "15": "コンフォルツァ",
@@ -1042,7 +1051,7 @@
       "created_at": "2026-05-02 13:24:20",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1069,6 +1078,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "マイネルフルムーン",
         "15": "コンフォルツァ",
@@ -1126,6 +1136,7 @@
       ],
       "bet_form": "軸2頭ながし",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "4": "マイネルフルムーン",
         "15": "コンフォルツァ",
@@ -1183,6 +1194,7 @@
       ],
       "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "4": "マイネルフルムーン",
         "15": "コンフォルツァ",
@@ -1324,6 +1336,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "4": "マイネルフルムーン",
         "15": "コンフォルツァ",
@@ -1354,7 +1367,7 @@
       "created_at": "2026-05-02 14:10:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1367,6 +1380,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "マイネルフルムーン",
         "15": "コンフォルツァ",
@@ -1396,9 +1410,9 @@
       "notes": "上位3頭を複勝",
       "created_at": "2026-05-02 14:10:10",
       "is_hit": 1,
-      "payout": 660.0,
-      "profit": 360.0,
-      "roi": 220.00000000000003,
+      "payout": 600.0,
+      "profit": 300.0,
+      "roi": 200.0,
       "horses": [
         {
           "horse_name": "ジャルディニエ",
@@ -1424,6 +1438,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "4": "マイネルフルムーン",
         "15": "コンフォルツァ",
@@ -1454,7 +1469,7 @@
       "created_at": "2026-05-02 14:10:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1474,6 +1489,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "マイネルフルムーン",
         "15": "コンフォルツァ",
@@ -1504,7 +1520,7 @@
       "created_at": "2026-05-02 14:10:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1524,6 +1540,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "マイネルフルムーン",
         "15": "コンフォルツァ",
@@ -1554,7 +1571,7 @@
       "created_at": "2026-05-02 14:10:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -600.0,
+      "profit": -200.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1602,6 +1619,7 @@
       ],
       "bet_form": "軸2頭ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "4": "マイネルフルムーン",
         "15": "コンフォルツァ",
@@ -1743,6 +1761,7 @@
       ],
       "bet_form": "2頭軸マルチ",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "4": "マイネルフルムーン",
         "15": "コンフォルツァ",
@@ -1771,10 +1790,10 @@
       "combination_json": "[[15]]",
       "notes": "確率1位(卍) EV=97112.69 odds=3.8",
       "created_at": "2026-05-02 14:10:10",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -400.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 60000.0,
+      "profit": 59900.0,
+      "roi": 60000.0,
       "horses": [
         {
           "horse_name": "コンフォルツァ",
@@ -1786,6 +1805,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "マイネルフルムーン",
         "15": "コンフォルツァ",
@@ -1843,6 +1863,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "4": "マイネルフルムーン",
         "15": "コンフォルツァ",
@@ -1873,7 +1894,7 @@
       "created_at": "2026-05-02 14:10:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1893,6 +1914,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "マイネルフルムーン",
         "15": "コンフォルツァ",
@@ -1923,7 +1945,7 @@
       "created_at": "2026-05-02 14:10:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1943,6 +1965,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "マイネルフルムーン",
         "15": "コンフォルツァ",
@@ -1973,7 +1996,7 @@
       "created_at": "2026-05-02 14:10:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -2000,6 +2023,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "マイネルフルムーン",
         "15": "コンフォルツァ",
@@ -2057,6 +2081,7 @@
       ],
       "bet_form": "軸2頭ながし",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "4": "マイネルフルムーン",
         "15": "コンフォルツァ",
@@ -2114,6 +2139,7 @@
       ],
       "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "4": "マイネルフルムーン",
         "15": "コンフォルツァ",
@@ -2255,6 +2281,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "4": "マイネルフルムーン",
         "15": "コンフォルツァ",

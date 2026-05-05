@@ -418,6 +418,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "キーガッツ",
         "3": "ジーティームッシュ",
@@ -447,9 +448,9 @@
       "notes": "上位3頭を複勝",
       "created_at": "2026-04-19 09:06:15",
       "is_hit": 1,
-      "payout": 190.0,
-      "profit": -110.0,
-      "roi": 63.33333333333333,
+      "payout": 510.0,
+      "profit": 210.0,
+      "roi": 170.0,
       "horses": [
         {
           "horse_name": "ウインドファルクス",
@@ -475,6 +476,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "6": "キーガッツ",
         "3": "ジーティームッシュ",
@@ -505,7 +507,7 @@
       "created_at": "2026-04-19 09:06:15",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -518,6 +520,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "キーガッツ",
         "3": "ジーティームッシュ",
@@ -548,7 +551,7 @@
       "created_at": "2026-04-19 09:06:15",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -561,6 +564,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "キーガッツ",
         "3": "ジーティームッシュ",
@@ -611,6 +615,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "6": "キーガッツ",
         "3": "ジーティームッシュ",
@@ -641,7 +646,7 @@
       "created_at": "2026-04-19 09:06:15",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -654,6 +659,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "キーガッツ",
         "3": "ジーティームッシュ",
@@ -725,6 +731,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "6": "キーガッツ",
         "3": "ジーティームッシュ",
@@ -768,6 +775,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "キーガッツ",
         "3": "ジーティームッシュ",
@@ -797,9 +805,9 @@
       "notes": "EV>1.0 の15頭を複勝",
       "created_at": "2026-04-19 09:06:15",
       "is_hit": 1,
-      "payout": 253.33333333333334,
-      "profit": -746.6666666666666,
-      "roi": 25.333333333333336,
+      "payout": 5700.0,
+      "profit": 4200.0,
+      "roi": 380.0,
       "horses": [
         {
           "horse_name": "キーガッツ",
@@ -839,6 +847,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 15,
+      "invested": 1500,
       "horse_num_to_name": {
         "6": "キーガッツ",
         "3": "ジーティームッシュ",
@@ -869,7 +878,7 @@
       "created_at": "2026-04-19 09:06:15",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -882,6 +891,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "キーガッツ",
         "3": "ジーティームッシュ",
@@ -912,7 +922,7 @@
       "created_at": "2026-04-19 09:06:15",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -925,6 +935,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "キーガッツ",
         "3": "ジーティームッシュ",
@@ -955,7 +966,7 @@
       "created_at": "2026-04-19 09:06:15",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -968,6 +979,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "キーガッツ",
         "3": "ジーティームッシュ",
@@ -998,7 +1010,7 @@
       "created_at": "2026-04-19 09:06:15",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1011,6 +1023,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "キーガッツ",
         "3": "ジーティームッシュ",
@@ -1039,10 +1052,10 @@
       "combination_json": "[]",
       "notes": "全馬モデルスコア（馬分析タブ用）",
       "created_at": "2026-04-19 09:06:15",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ウインドファルクス",
@@ -1152,6 +1165,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "6": "キーガッツ",
         "3": "ジーティームッシュ",
@@ -1195,6 +1209,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "キーガッツ",
         "3": "ジーティームッシュ",
@@ -1224,9 +1239,9 @@
       "notes": "上位3頭を複勝",
       "created_at": "2026-04-19 15:10:18",
       "is_hit": 1,
-      "payout": 190.0,
-      "profit": -110.0,
-      "roi": 63.33333333333333,
+      "payout": 510.0,
+      "profit": 210.0,
+      "roi": 170.0,
       "horses": [
         {
           "horse_name": "ウインドファルクス",
@@ -1252,6 +1267,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "6": "キーガッツ",
         "3": "ジーティームッシュ",
@@ -1282,7 +1298,7 @@
       "created_at": "2026-04-19 15:10:18",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1295,6 +1311,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "キーガッツ",
         "3": "ジーティームッシュ",
@@ -1325,7 +1342,7 @@
       "created_at": "2026-04-19 15:10:18",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1338,6 +1355,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "キーガッツ",
         "3": "ジーティームッシュ",
@@ -1388,6 +1406,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "6": "キーガッツ",
         "3": "ジーティームッシュ",
@@ -1418,7 +1437,7 @@
       "created_at": "2026-04-19 15:10:18",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1431,6 +1450,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "キーガッツ",
         "3": "ジーティームッシュ",
@@ -1502,6 +1522,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "6": "キーガッツ",
         "3": "ジーティームッシュ",
@@ -1545,6 +1566,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "キーガッツ",
         "3": "ジーティームッシュ",
@@ -1574,9 +1596,9 @@
       "notes": "EV>1.0 の15頭を複勝",
       "created_at": "2026-04-19 15:10:18",
       "is_hit": 1,
-      "payout": 253.33333333333334,
-      "profit": -746.6666666666666,
-      "roi": 25.333333333333336,
+      "payout": 5700.0,
+      "profit": 4200.0,
+      "roi": 380.0,
       "horses": [
         {
           "horse_name": "キーガッツ",
@@ -1616,6 +1638,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 15,
+      "invested": 1500,
       "horse_num_to_name": {
         "6": "キーガッツ",
         "3": "ジーティームッシュ",
@@ -1646,7 +1669,7 @@
       "created_at": "2026-04-19 15:10:18",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1659,6 +1682,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "キーガッツ",
         "3": "ジーティームッシュ",
@@ -1689,7 +1713,7 @@
       "created_at": "2026-04-19 15:10:18",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1702,6 +1726,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "キーガッツ",
         "3": "ジーティームッシュ",
@@ -1732,7 +1757,7 @@
       "created_at": "2026-04-19 15:10:18",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1745,6 +1770,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "キーガッツ",
         "3": "ジーティームッシュ",
@@ -1775,7 +1801,7 @@
       "created_at": "2026-04-19 15:10:18",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1788,6 +1814,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "キーガッツ",
         "3": "ジーティームッシュ",
@@ -1816,10 +1843,10 @@
       "combination_json": "[]",
       "notes": "全馬モデルスコア（馬分析タブ用）",
       "created_at": "2026-04-19 15:10:18",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ウインドファルクス",
@@ -1929,6 +1956,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "6": "キーガッツ",
         "3": "ジーティームッシュ",

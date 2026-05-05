@@ -364,6 +364,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "スノーサイレンス",
         "8": "プレゼンティーア",
@@ -390,9 +391,9 @@
       "notes": "上位3頭を複勝",
       "created_at": "2026-04-25 10:45:09",
       "is_hit": 1,
-      "payout": 729.0,
-      "profit": 429.0,
-      "roi": 243.00000000000003,
+      "payout": 33600.0,
+      "profit": 33300.0,
+      "roi": 11200.0,
       "horses": [
         {
           "horse_name": "ジェネラーレ",
@@ -418,6 +419,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "4": "スノーサイレンス",
         "8": "プレゼンティーア",
@@ -445,7 +447,7 @@
       "created_at": "2026-04-25 10:45:09",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -465,6 +467,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "スノーサイレンス",
         "8": "プレゼンティーア",
@@ -492,7 +495,7 @@
       "created_at": "2026-04-25 10:45:09",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -512,6 +515,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "スノーサイレンス",
         "8": "プレゼンティーア",
@@ -573,6 +577,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "4": "スノーサイレンス",
         "8": "プレゼンティーア",
@@ -600,7 +605,7 @@
       "created_at": "2026-04-25 10:45:09",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -627,6 +632,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "スノーサイレンス",
         "8": "プレゼンティーア",
@@ -765,6 +771,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "4": "スノーサイレンス",
         "8": "プレゼンティーア",
@@ -805,6 +812,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "スノーサイレンス",
         "8": "プレゼンティーア",
@@ -830,10 +838,10 @@
       "combination_json": "[[3], [1], [2]]",
       "notes": "EV>1.1 の3頭を複勝",
       "created_at": "2026-04-25 10:45:09",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -300.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 33000.0,
+      "profit": 32700.0,
+      "roi": 11000.0,
       "horses": [
         {
           "horse_name": "キタノソワレ",
@@ -859,6 +867,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "4": "スノーサイレンス",
         "8": "プレゼンティーア",
@@ -886,7 +895,7 @@
       "created_at": "2026-04-25 10:45:09",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -906,6 +915,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "スノーサイレンス",
         "8": "プレゼンティーア",
@@ -933,7 +943,7 @@
       "created_at": "2026-04-25 10:45:09",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -953,6 +963,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "スノーサイレンス",
         "8": "プレゼンティーア",
@@ -980,7 +991,7 @@
       "created_at": "2026-04-25 10:45:09",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1000,6 +1011,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "スノーサイレンス",
         "8": "プレゼンティーア",
@@ -1027,7 +1039,7 @@
       "created_at": "2026-04-25 10:45:09",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1054,6 +1066,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "スノーサイレンス",
         "8": "プレゼンティーア",
@@ -1171,6 +1184,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "4": "スノーサイレンス",
         "8": "プレゼンティーア",
@@ -1211,6 +1225,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "スノーサイレンス",
         "8": "プレゼンティーア",
@@ -1237,9 +1252,9 @@
       "notes": "上位3頭を複勝",
       "created_at": "2026-04-25 14:40:09",
       "is_hit": 1,
-      "payout": 729.0,
-      "profit": 429.0,
-      "roi": 243.00000000000003,
+      "payout": 33600.0,
+      "profit": 33300.0,
+      "roi": 11200.0,
       "horses": [
         {
           "horse_name": "ジェネラーレ",
@@ -1265,6 +1280,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "4": "スノーサイレンス",
         "8": "プレゼンティーア",
@@ -1292,7 +1308,7 @@
       "created_at": "2026-04-25 14:40:09",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1312,6 +1328,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "スノーサイレンス",
         "8": "プレゼンティーア",
@@ -1339,7 +1356,7 @@
       "created_at": "2026-04-25 14:40:09",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1359,6 +1376,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "スノーサイレンス",
         "8": "プレゼンティーア",
@@ -1420,6 +1438,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "4": "スノーサイレンス",
         "8": "プレゼンティーア",
@@ -1447,7 +1466,7 @@
       "created_at": "2026-04-25 14:40:09",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1474,6 +1493,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "スノーサイレンス",
         "8": "プレゼンティーア",
@@ -1612,6 +1632,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "4": "スノーサイレンス",
         "8": "プレゼンティーア",
@@ -1652,6 +1673,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "スノーサイレンス",
         "8": "プレゼンティーア",
@@ -1677,10 +1699,10 @@
       "combination_json": "[[3], [1], [2]]",
       "notes": "EV>1.1 の3頭を複勝",
       "created_at": "2026-04-25 14:40:09",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -300.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 33000.0,
+      "profit": 32700.0,
+      "roi": 11000.0,
       "horses": [
         {
           "horse_name": "キタノソワレ",
@@ -1706,6 +1728,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "4": "スノーサイレンス",
         "8": "プレゼンティーア",
@@ -1733,7 +1756,7 @@
       "created_at": "2026-04-25 14:40:09",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1753,6 +1776,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "スノーサイレンス",
         "8": "プレゼンティーア",
@@ -1780,7 +1804,7 @@
       "created_at": "2026-04-25 14:40:09",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1800,6 +1824,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "スノーサイレンス",
         "8": "プレゼンティーア",
@@ -1827,7 +1852,7 @@
       "created_at": "2026-04-25 14:40:09",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1847,6 +1872,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "スノーサイレンス",
         "8": "プレゼンティーア",
@@ -1874,7 +1900,7 @@
       "created_at": "2026-04-25 14:40:09",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1901,6 +1927,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "スノーサイレンス",
         "8": "プレゼンティーア",
@@ -2018,6 +2045,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "4": "スノーサイレンス",
         "8": "プレゼンティーア",

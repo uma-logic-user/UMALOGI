@@ -508,6 +508,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "5": "クインズショコラ",
         "12": "エルフストラック",
@@ -537,9 +538,9 @@
       "notes": "上位3頭を複勝",
       "created_at": "2026-05-02 13:24:20",
       "is_hit": 1,
-      "payout": 858.0,
-      "profit": 558.0,
-      "roi": 286.0,
+      "payout": 480.0,
+      "profit": 180.0,
+      "roi": 160.0,
       "horses": [
         {
           "horse_name": "サイモンブーケ",
@@ -565,6 +566,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "5": "クインズショコラ",
         "12": "エルフストラック",
@@ -595,7 +597,7 @@
       "created_at": "2026-05-02 13:24:20",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -615,6 +617,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "5": "クインズショコラ",
         "12": "エルフストラック",
@@ -645,7 +648,7 @@
       "created_at": "2026-05-02 13:24:20",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -665,6 +668,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "5": "クインズショコラ",
         "12": "エルフストラック",
@@ -806,6 +810,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "5": "クインズショコラ",
         "12": "エルフストラック",
@@ -834,10 +839,10 @@
       "combination_json": "[[15]]",
       "notes": "確率1位(卍) EV=83851.71 odds=1.0",
       "created_at": "2026-05-02 13:24:20",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -100.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 15000.0,
+      "profit": 14900.0,
+      "roi": 15000.0,
       "horses": [
         {
           "horse_name": "カフェニクス",
@@ -849,6 +854,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "5": "クインズショコラ",
         "12": "エルフストラック",
@@ -878,9 +884,9 @@
       "notes": "確率上位3頭を複勝",
       "created_at": "2026-05-02 13:24:20",
       "is_hit": 1,
-      "payout": 858.0,
-      "profit": 558.0,
-      "roi": 286.0,
+      "payout": 1170.0,
+      "profit": 870.0,
+      "roi": 390.0,
       "horses": [
         {
           "horse_name": "カフェニクス",
@@ -906,6 +912,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "5": "クインズショコラ",
         "12": "エルフストラック",
@@ -936,7 +943,7 @@
       "created_at": "2026-05-02 13:24:20",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -956,6 +963,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "5": "クインズショコラ",
         "12": "エルフストラック",
@@ -986,7 +994,7 @@
       "created_at": "2026-05-02 13:24:20",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1006,6 +1014,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "5": "クインズショコラ",
         "12": "エルフストラック",
@@ -1036,7 +1045,7 @@
       "created_at": "2026-05-02 13:24:20",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1063,6 +1072,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "5": "クインズショコラ",
         "12": "エルフストラック",
@@ -1120,6 +1130,7 @@
       ],
       "bet_form": "軸1頭ながし",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "5": "クインズショコラ",
         "12": "エルフストラック",
@@ -1177,6 +1188,7 @@
       ],
       "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "5": "クインズショコラ",
         "12": "エルフストラック",
@@ -1318,6 +1330,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "5": "クインズショコラ",
         "12": "エルフストラック",
@@ -1348,7 +1361,7 @@
       "created_at": "2026-05-02 14:40:09",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1361,6 +1374,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "5": "クインズショコラ",
         "12": "エルフストラック",
@@ -1390,9 +1404,9 @@
       "notes": "上位3頭を複勝",
       "created_at": "2026-05-02 14:40:09",
       "is_hit": 1,
-      "payout": 858.0,
-      "profit": 558.0,
-      "roi": 286.0,
+      "payout": 1170.0,
+      "profit": 870.0,
+      "roi": 390.0,
       "horses": [
         {
           "horse_name": "サイモンブーケ",
@@ -1418,6 +1432,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "5": "クインズショコラ",
         "12": "エルフストラック",
@@ -1448,7 +1463,7 @@
       "created_at": "2026-05-02 14:40:09",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1468,6 +1483,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "5": "クインズショコラ",
         "12": "エルフストラック",
@@ -1498,7 +1514,7 @@
       "created_at": "2026-05-02 14:40:09",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1518,6 +1534,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "5": "クインズショコラ",
         "12": "エルフストラック",
@@ -1548,7 +1565,7 @@
       "created_at": "2026-05-02 14:40:09",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -600.0,
+      "profit": -200.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1596,6 +1613,7 @@
       ],
       "bet_form": "軸2頭ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "5": "クインズショコラ",
         "12": "エルフストラック",
@@ -1737,6 +1755,7 @@
       ],
       "bet_form": "2頭軸マルチ",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "5": "クインズショコラ",
         "12": "エルフストラック",
@@ -1765,10 +1784,10 @@
       "combination_json": "[[15]]",
       "notes": "確率1位(卍) EV=85337.73 odds=36.9",
       "created_at": "2026-05-02 14:40:09",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -400.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 60000.0,
+      "profit": 59900.0,
+      "roi": 60000.0,
       "horses": [
         {
           "horse_name": "カフェニクス",
@@ -1780,6 +1799,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "5": "クインズショコラ",
         "12": "エルフストラック",
@@ -1809,9 +1829,9 @@
       "notes": "確率上位3頭を複勝",
       "created_at": "2026-05-02 14:40:09",
       "is_hit": 1,
-      "payout": 858.0,
-      "profit": 558.0,
-      "roi": 286.0,
+      "payout": 1170.0,
+      "profit": 870.0,
+      "roi": 390.0,
       "horses": [
         {
           "horse_name": "カフェニクス",
@@ -1837,6 +1857,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "5": "クインズショコラ",
         "12": "エルフストラック",
@@ -1867,7 +1888,7 @@
       "created_at": "2026-05-02 14:40:09",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1887,6 +1908,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "5": "クインズショコラ",
         "12": "エルフストラック",
@@ -1917,7 +1939,7 @@
       "created_at": "2026-05-02 14:40:09",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1937,6 +1959,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "5": "クインズショコラ",
         "12": "エルフストラック",
@@ -1967,7 +1990,7 @@
       "created_at": "2026-05-02 14:40:09",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1994,6 +2017,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "5": "クインズショコラ",
         "12": "エルフストラック",
@@ -2051,6 +2075,7 @@
       ],
       "bet_form": "軸2頭ながし",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "5": "クインズショコラ",
         "12": "エルフストラック",
@@ -2108,6 +2133,7 @@
       ],
       "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "5": "クインズショコラ",
         "12": "エルフストラック",
@@ -2249,6 +2275,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "5": "クインズショコラ",
         "12": "エルフストラック",

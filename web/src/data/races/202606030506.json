@@ -671,6 +671,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "17": "ピエスユニーク",
         "13": "サトノスターライト",
@@ -703,9 +704,9 @@
       "notes": "上位3頭を複勝",
       "created_at": "2026-04-11 12:25:26",
       "is_hit": 1,
-      "payout": 1653.333333333333,
-      "profit": 1353.333333333333,
-      "roi": 551.111111111111,
+      "payout": 450.0,
+      "profit": 150.0,
+      "roi": 150.0,
       "horses": [
         {
           "horse_name": "卍",
@@ -738,6 +739,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "17": "ピエスユニーク",
         "13": "サトノスターライト",
@@ -771,7 +773,7 @@
       "created_at": "2026-04-11 12:25:26",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -805,6 +807,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "17": "ピエスユニーク",
         "13": "サトノスターライト",
@@ -838,7 +841,7 @@
       "created_at": "2026-04-11 12:25:26",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -858,6 +861,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "17": "ピエスユニーク",
         "13": "サトノスターライト",
@@ -918,6 +922,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "17": "ピエスユニーク",
         "13": "サトノスターライト",
@@ -951,7 +956,7 @@
       "created_at": "2026-04-11 12:25:26",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -971,6 +976,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "17": "ピエスユニーク",
         "13": "サトノスターライト",
@@ -1052,6 +1058,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "17": "ピエスユニーク",
         "13": "サトノスターライト",

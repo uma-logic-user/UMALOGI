@@ -438,6 +438,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "7": "ブレイヴソルジャー",
         "2": "セイウンヤオヨロズ",
@@ -468,9 +469,9 @@
       "notes": "上位3頭を複勝",
       "created_at": "2026-04-25 10:45:08",
       "is_hit": 1,
-      "payout": 579.0,
-      "profit": 279.0,
-      "roi": 193.0,
+      "payout": 660.0,
+      "profit": 360.0,
+      "roi": 220.00000000000003,
       "horses": [
         {
           "horse_name": "ガクエンテンゴク",
@@ -496,6 +497,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "7": "ブレイヴソルジャー",
         "2": "セイウンヤオヨロズ",
@@ -527,7 +529,7 @@
       "created_at": "2026-04-25 10:45:08",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -547,6 +549,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "7": "ブレイヴソルジャー",
         "2": "セイウンヤオヨロズ",
@@ -578,7 +581,7 @@
       "created_at": "2026-04-25 10:45:08",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -598,6 +601,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "7": "ブレイヴソルジャー",
         "2": "セイウンヤオヨロズ",
@@ -663,6 +667,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "7": "ブレイヴソルジャー",
         "2": "セイウンヤオヨロズ",
@@ -805,6 +810,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "7": "ブレイヴソルジャー",
         "2": "セイウンヤオヨロズ",
@@ -849,6 +855,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "7": "ブレイヴソルジャー",
         "2": "セイウンヤオヨロズ",
@@ -878,10 +885,10 @@
       "combination_json": "[[11], [10], [16], [13], [12], [9], [15], [14], [6], [4], [1], [2], [3], [5], [8], [7]]",
       "notes": "EV>1.1 の16頭を複勝",
       "created_at": "2026-04-25 10:45:08",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -1000.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 5800.0,
+      "profit": 4200.0,
+      "roi": 362.5,
       "horses": [
         {
           "horse_name": "ルヴレアール",
@@ -921,6 +928,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 16,
+      "invested": 1600,
       "horse_num_to_name": {
         "7": "ブレイヴソルジャー",
         "2": "セイウンヤオヨロズ",
@@ -952,7 +960,7 @@
       "created_at": "2026-04-25 10:45:08",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -972,6 +980,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "7": "ブレイヴソルジャー",
         "2": "セイウンヤオヨロズ",
@@ -1003,7 +1012,7 @@
       "created_at": "2026-04-25 10:45:08",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1023,6 +1032,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "7": "ブレイヴソルジャー",
         "2": "セイウンヤオヨロズ",
@@ -1054,7 +1064,7 @@
       "created_at": "2026-04-25 10:45:08",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1074,6 +1084,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "7": "ブレイヴソルジャー",
         "2": "セイウンヤオヨロズ",
@@ -1105,7 +1116,7 @@
       "created_at": "2026-04-25 10:45:08",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1132,6 +1143,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "7": "ブレイヴソルジャー",
         "2": "セイウンヤオヨロズ",
@@ -1281,6 +1293,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "7": "ブレイヴソルジャー",
         "2": "セイウンヤオヨロズ",
@@ -1325,6 +1338,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "7": "ブレイヴソルジャー",
         "2": "セイウンヤオヨロズ",
@@ -1355,9 +1369,9 @@
       "notes": "上位3頭を複勝",
       "created_at": "2026-04-25 11:10:12",
       "is_hit": 1,
-      "payout": 579.0,
-      "profit": 279.0,
-      "roi": 193.0,
+      "payout": 660.0,
+      "profit": 360.0,
+      "roi": 220.00000000000003,
       "horses": [
         {
           "horse_name": "ガクエンテンゴク",
@@ -1383,6 +1397,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "7": "ブレイヴソルジャー",
         "2": "セイウンヤオヨロズ",
@@ -1414,7 +1429,7 @@
       "created_at": "2026-04-25 11:10:12",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1434,6 +1449,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "7": "ブレイヴソルジャー",
         "2": "セイウンヤオヨロズ",
@@ -1465,7 +1481,7 @@
       "created_at": "2026-04-25 11:10:12",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1485,6 +1501,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "7": "ブレイヴソルジャー",
         "2": "セイウンヤオヨロズ",
@@ -1550,6 +1567,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "7": "ブレイヴソルジャー",
         "2": "セイウンヤオヨロズ",
@@ -1692,6 +1710,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "7": "ブレイヴソルジャー",
         "2": "セイウンヤオヨロズ",
@@ -1723,8 +1742,8 @@
       "created_at": "2026-04-25 11:10:12",
       "is_hit": 1,
       "payout": 2550.0,
-      "profit": 2250.0,
-      "roi": 850.0,
+      "profit": 2450.0,
+      "roi": 2550.0,
       "horses": [
         {
           "horse_name": "ブレイヴソルジャー",
@@ -1736,6 +1755,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "7": "ブレイヴソルジャー",
         "2": "セイウンヤオヨロズ",
@@ -1765,10 +1785,10 @@
       "combination_json": "[[11], [10], [16], [13], [12], [9], [15], [14], [6], [4], [1], [2], [3], [5], [8], [7]]",
       "notes": "EV>1.1 の16頭を複勝",
       "created_at": "2026-04-25 11:10:12",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -800.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 4640.0,
+      "profit": 3040.0,
+      "roi": 290.0,
       "horses": [
         {
           "horse_name": "ルヴレアール",
@@ -1808,6 +1828,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 16,
+      "invested": 1600,
       "horse_num_to_name": {
         "7": "ブレイヴソルジャー",
         "2": "セイウンヤオヨロズ",
@@ -1839,7 +1860,7 @@
       "created_at": "2026-04-25 11:10:12",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1859,6 +1880,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "7": "ブレイヴソルジャー",
         "2": "セイウンヤオヨロズ",
@@ -1890,7 +1912,7 @@
       "created_at": "2026-04-25 11:10:12",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1910,6 +1932,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "7": "ブレイヴソルジャー",
         "2": "セイウンヤオヨロズ",
@@ -1941,7 +1964,7 @@
       "created_at": "2026-04-25 11:10:12",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1961,6 +1984,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "7": "ブレイヴソルジャー",
         "2": "セイウンヤオヨロズ",
@@ -1992,7 +2016,7 @@
       "created_at": "2026-04-25 11:10:12",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -2019,6 +2043,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "7": "ブレイヴソルジャー",
         "2": "セイウンヤオヨロズ",
@@ -2168,6 +2193,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "7": "ブレイヴソルジャー",
         "2": "セイウンヤオヨロズ",

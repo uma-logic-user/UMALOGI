@@ -384,6 +384,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "アイアムジャイアン",
         "11": "モデレートゲイル",
@@ -439,6 +440,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "6": "アイアムジャイアン",
         "11": "モデレートゲイル",
@@ -467,7 +469,7 @@
       "created_at": "2026-04-25 10:40:20",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -480,6 +482,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "アイアムジャイアン",
         "11": "モデレートゲイル",
@@ -508,7 +511,7 @@
       "created_at": "2026-04-25 10:40:20",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -521,6 +524,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "アイアムジャイアン",
         "11": "モデレートゲイル",
@@ -569,6 +573,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "6": "アイアムジャイアン",
         "11": "モデレートゲイル",
@@ -597,7 +602,7 @@
       "created_at": "2026-04-25 10:40:20",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -610,6 +615,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "アイアムジャイアン",
         "11": "モデレートゲイル",
@@ -679,6 +685,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "6": "アイアムジャイアン",
         "11": "モデレートゲイル",
@@ -720,6 +727,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "アイアムジャイアン",
         "11": "モデレートゲイル",
@@ -747,9 +755,9 @@
       "notes": "EV>1.1 の13頭を複勝",
       "created_at": "2026-04-25 10:40:20",
       "is_hit": 1,
-      "payout": 2574.0,
-      "profit": 1674.0,
-      "roi": 286.0,
+      "payout": 7740.0,
+      "profit": 6440.0,
+      "roi": 595.3846153846154,
       "horses": [
         {
           "horse_name": "テンレディーゴー",
@@ -789,6 +797,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 13,
+      "invested": 1300,
       "horse_num_to_name": {
         "6": "アイアムジャイアン",
         "11": "モデレートゲイル",
@@ -817,7 +826,7 @@
       "created_at": "2026-04-25 10:40:20",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -830,6 +839,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "アイアムジャイアン",
         "11": "モデレートゲイル",
@@ -858,7 +868,7 @@
       "created_at": "2026-04-25 10:40:20",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -871,6 +881,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "アイアムジャイアン",
         "11": "モデレートゲイル",
@@ -899,7 +910,7 @@
       "created_at": "2026-04-25 10:40:20",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -912,6 +923,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "アイアムジャイアン",
         "11": "モデレートゲイル",
@@ -940,7 +952,7 @@
       "created_at": "2026-04-25 10:40:20",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -953,6 +965,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "アイアムジャイアン",
         "11": "モデレートゲイル",
@@ -1078,6 +1091,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "6": "アイアムジャイアン",
         "11": "モデレートゲイル",
@@ -1119,6 +1133,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "アイアムジャイアン",
         "11": "モデレートゲイル",
@@ -1174,6 +1189,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "6": "アイアムジャイアン",
         "11": "モデレートゲイル",
@@ -1202,7 +1218,7 @@
       "created_at": "2026-04-25 10:45:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1222,6 +1238,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "アイアムジャイアン",
         "11": "モデレートゲイル",
@@ -1250,7 +1267,7 @@
       "created_at": "2026-04-25 10:45:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1270,6 +1287,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "アイアムジャイアン",
         "11": "モデレートゲイル",
@@ -1332,6 +1350,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "6": "アイアムジャイアン",
         "11": "モデレートゲイル",
@@ -1360,7 +1379,7 @@
       "created_at": "2026-04-25 10:45:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1387,6 +1406,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "アイアムジャイアン",
         "11": "モデレートゲイル",
@@ -1526,6 +1546,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "6": "アイアムジャイアン",
         "11": "モデレートゲイル",
@@ -1567,6 +1588,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "アイアムジャイアン",
         "11": "モデレートゲイル",
@@ -1594,9 +1616,9 @@
       "notes": "EV>1.1 の13頭を複勝",
       "created_at": "2026-04-25 10:45:10",
       "is_hit": 1,
-      "payout": 2574.0,
-      "profit": 1674.0,
-      "roi": 286.0,
+      "payout": 7740.0,
+      "profit": 6440.0,
+      "roi": 595.3846153846154,
       "horses": [
         {
           "horse_name": "テンレディーゴー",
@@ -1636,6 +1658,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 13,
+      "invested": 1300,
       "horse_num_to_name": {
         "6": "アイアムジャイアン",
         "11": "モデレートゲイル",
@@ -1664,7 +1687,7 @@
       "created_at": "2026-04-25 10:45:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1684,6 +1707,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "アイアムジャイアン",
         "11": "モデレートゲイル",
@@ -1712,7 +1736,7 @@
       "created_at": "2026-04-25 10:45:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1732,6 +1756,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "アイアムジャイアン",
         "11": "モデレートゲイル",
@@ -1760,7 +1785,7 @@
       "created_at": "2026-04-25 10:45:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1780,6 +1805,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "アイアムジャイアン",
         "11": "モデレートゲイル",
@@ -1808,7 +1834,7 @@
       "created_at": "2026-04-25 10:45:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1835,6 +1861,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "アイアムジャイアン",
         "11": "モデレートゲイル",
@@ -1960,6 +1987,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "6": "アイアムジャイアン",
         "11": "モデレートゲイル",

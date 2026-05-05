@@ -515,7 +515,7 @@
       "created_at": "2026-05-03 08:12:09",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -600.0,
+      "profit": -200.0,
       "roi": 0.0,
       "horses": [
         {
@@ -563,6 +563,7 @@
       ],
       "bet_form": "軸2頭ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "13": "ハワイアンタイム",
         "10": "スニーカースキル",
@@ -607,6 +608,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "13": "ハワイアンタイム",
         "10": "スニーカースキル",
@@ -665,6 +667,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "13": "ハワイアンタイム",
         "10": "スニーカースキル",
@@ -772,6 +775,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "13": "ハワイアンタイム",
         "10": "スニーカースキル",
@@ -879,6 +883,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "13": "ハワイアンタイム",
         "10": "スニーカースキル",
@@ -958,6 +963,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "13": "ハワイアンタイム",
         "10": "スニーカースキル",
@@ -989,7 +995,7 @@
       "created_at": "2026-05-03 15:10:33",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -1000.0,
+      "profit": -1200.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1100,6 +1106,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 12,
+      "invested": 1200,
       "horse_num_to_name": {
         "13": "ハワイアンタイム",
         "10": "スニーカースキル",
@@ -1144,6 +1151,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "13": "ハワイアンタイム",
         "10": "スニーカースキル",
@@ -1173,10 +1181,10 @@
       "combination_json": "[[16], [14], [15]]",
       "notes": "確率上位3頭を複勝",
       "created_at": "2026-05-03 15:10:33",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -300.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 660.0,
+      "profit": 360.0,
+      "roi": 220.00000000000003,
       "horses": [
         {
           "horse_name": "ヤマニンアストロン",
@@ -1202,6 +1210,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "13": "ハワイアンタイム",
         "10": "スニーカースキル",
@@ -1309,6 +1318,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "13": "ハワイアンタイム",
         "10": "スニーカースキル",
@@ -1338,10 +1348,10 @@
       "combination_json": "[[14, 16], [15, 16], [9, 16], [8, 16], [10, 16]]",
       "notes": "軸16番×相手5頭ワイド Harville最大=0.034",
       "created_at": "2026-05-03 15:10:33",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -500.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 9600.0,
+      "profit": 9100.0,
+      "roi": 1920.0,
       "horses": [
         {
           "horse_name": "マッシャーブルム",
@@ -1416,6 +1426,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "13": "ハワイアンタイム",
         "10": "スニーカースキル",
@@ -1495,6 +1506,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "13": "ハワイアンタイム",
         "10": "スニーカースキル",
@@ -1526,7 +1538,7 @@
       "created_at": "2026-05-03 15:10:33",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1553,6 +1565,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "13": "ハワイアンタイム",
         "10": "スニーカースキル",
@@ -1611,6 +1624,7 @@
       ],
       "bet_form": "軸2頭ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "13": "ハワイアンタイム",
         "10": "スニーカースキル",
@@ -1669,6 +1683,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 12,
+      "invested": 1200,
       "horse_num_to_name": {
         "13": "ハワイアンタイム",
         "10": "スニーカースキル",
@@ -1818,6 +1833,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "13": "ハワイアンタイム",
         "10": "スニーカースキル",
@@ -1869,6 +1885,7 @@
       ],
       "bet_form": "フォーメーション",
       "n_tickets": 7,
+      "invested": 700,
       "horse_num_to_name": {
         "13": "ハワイアンタイム",
         "10": "スニーカースキル",
@@ -1920,6 +1937,7 @@
       ],
       "bet_form": "フォーメーション",
       "n_tickets": 8,
+      "invested": 800,
       "horse_num_to_name": {
         "13": "ハワイアンタイム",
         "10": "スニーカースキル",
@@ -1978,6 +1996,7 @@
       ],
       "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
+      "invested": 1200,
       "horse_num_to_name": {
         "13": "ハワイアンタイム",
         "10": "スニーカースキル",

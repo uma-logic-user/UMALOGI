@@ -519,10 +519,10 @@
       "combination_json": "[[16]]",
       "notes": "確率1位 P(win)=0.09 odds=1.0 EV=0.09",
       "created_at": "2026-04-26 15:13:06",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -100.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 16000.0,
+      "profit": 15900.0,
+      "roi": 16000.0,
       "horses": [
         {
           "horse_name": "ハミングディスト",
@@ -534,6 +534,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "12": "モズオウンゴール",
         "7": "ドリームガッサン",
@@ -592,6 +593,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "12": "モズオウンゴール",
         "7": "ドリームガッサン",
@@ -623,7 +625,7 @@
       "created_at": "2026-04-26 15:13:06",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -643,6 +645,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "12": "モズオウンゴール",
         "7": "ドリームガッサン",
@@ -674,7 +677,7 @@
       "created_at": "2026-04-26 15:13:06",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -694,6 +697,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "12": "モズオウンゴール",
         "7": "ドリームガッサン",
@@ -836,6 +840,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "12": "モズオウンゴール",
         "7": "ドリームガッサン",
@@ -880,6 +885,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "12": "モズオウンゴール",
         "7": "ドリームガッサン",
@@ -910,9 +916,9 @@
       "notes": "確率上位3頭を複勝",
       "created_at": "2026-04-26 15:13:06",
       "is_hit": 1,
-      "payout": 908.9999999999999,
-      "profit": 608.9999999999999,
-      "roi": 303.0,
+      "payout": 420.0,
+      "profit": 120.0,
+      "roi": 140.0,
       "horses": [
         {
           "horse_name": "ラブデウザ",
@@ -938,6 +944,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "12": "モズオウンゴール",
         "7": "ドリームガッサン",
@@ -969,7 +976,7 @@
       "created_at": "2026-04-26 15:13:06",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -989,6 +996,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "12": "モズオウンゴール",
         "7": "ドリームガッサン",
@@ -1020,7 +1028,7 @@
       "created_at": "2026-04-26 15:13:06",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1040,6 +1048,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "12": "モズオウンゴール",
         "7": "ドリームガッサン",
@@ -1071,7 +1080,7 @@
       "created_at": "2026-04-26 15:13:06",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1098,6 +1107,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "12": "モズオウンゴール",
         "7": "ドリームガッサン",
@@ -1156,6 +1166,7 @@
       ],
       "bet_form": "軸2頭ながし",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "12": "モズオウンゴール",
         "7": "ドリームガッサン",
@@ -1214,6 +1225,7 @@
       ],
       "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "12": "モズオウンゴール",
         "7": "ドリームガッサン",
@@ -1363,6 +1375,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "12": "モズオウンゴール",
         "7": "ドリームガッサン",

@@ -398,6 +398,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "13": "リケアマカロニ",
         "12": "エリカビアリッツ",
@@ -454,6 +455,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "13": "リケアマカロニ",
         "12": "エリカビアリッツ",
@@ -483,7 +485,7 @@
       "created_at": "2026-04-25 09:40:22",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -496,6 +498,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "13": "リケアマカロニ",
         "12": "エリカビアリッツ",
@@ -525,7 +528,7 @@
       "created_at": "2026-04-25 09:40:22",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -538,6 +541,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "13": "リケアマカロニ",
         "12": "エリカビアリッツ",
@@ -587,6 +591,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "13": "リケアマカロニ",
         "12": "エリカビアリッツ",
@@ -657,6 +662,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "13": "リケアマカロニ",
         "12": "エリカビアリッツ",
@@ -684,10 +690,10 @@
       "combination_json": "[[14]]",
       "notes": "EV=2.82 odds=82.6",
       "created_at": "2026-04-25 09:40:22",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -100.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 14000.0,
+      "profit": 13900.0,
+      "roi": 14000.0,
       "horses": [
         {
           "horse_name": "ダイユウアドバンス",
@@ -699,6 +705,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "13": "リケアマカロニ",
         "12": "エリカビアリッツ",
@@ -727,9 +734,9 @@
       "notes": "EV>1.1 の8頭を複勝",
       "created_at": "2026-04-25 09:40:22",
       "is_hit": 1,
-      "payout": 1920.0,
-      "profit": 1120.0,
-      "roi": 240.0,
+      "payout": 5760.0,
+      "profit": 4960.0,
+      "roi": 720.0,
       "horses": [
         {
           "horse_name": "ロット",
@@ -769,6 +776,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 8,
+      "invested": 800,
       "horse_num_to_name": {
         "13": "リケアマカロニ",
         "12": "エリカビアリッツ",
@@ -798,7 +806,7 @@
       "created_at": "2026-04-25 09:40:22",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -811,6 +819,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "13": "リケアマカロニ",
         "12": "エリカビアリッツ",
@@ -840,7 +849,7 @@
       "created_at": "2026-04-25 09:40:22",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -853,6 +862,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "13": "リケアマカロニ",
         "12": "エリカビアリッツ",
@@ -882,7 +892,7 @@
       "created_at": "2026-04-25 09:40:22",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -895,6 +905,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "13": "リケアマカロニ",
         "12": "エリカビアリッツ",
@@ -924,7 +935,7 @@
       "created_at": "2026-04-25 09:40:22",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -937,6 +948,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "13": "リケアマカロニ",
         "12": "エリカビアリッツ",
@@ -1070,6 +1082,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "13": "リケアマカロニ",
         "12": "エリカビアリッツ",
@@ -1097,10 +1110,10 @@
       "combination_json": "[[1]]",
       "notes": "本命 P(win)=0.01 odds=21.5",
       "created_at": "2026-04-25 10:45:10",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "アルペンローゼ",
@@ -1112,6 +1125,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "13": "リケアマカロニ",
         "12": "エリカビアリッツ",
@@ -1139,10 +1153,10 @@
       "combination_json": "[[1], [2], [3]]",
       "notes": "上位3頭を複勝",
       "created_at": "2026-04-25 10:45:10",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "アルペンローゼ",
@@ -1168,6 +1182,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "13": "リケアマカロニ",
         "12": "エリカビアリッツ",
@@ -1195,10 +1210,10 @@
       "combination_json": "[[1, 2]]",
       "notes": "本命・対抗 Harville=0.011",
       "created_at": "2026-04-25 10:45:10",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "アルペンローゼ",
@@ -1217,6 +1232,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "13": "リケアマカロニ",
         "12": "エリカビアリッツ",
@@ -1244,10 +1260,10 @@
       "combination_json": "[[1, 2]]",
       "notes": "本命・対抗 ワイド Harville=0.011",
       "created_at": "2026-04-25 10:45:10",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "アルペンローゼ",
@@ -1266,6 +1282,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "13": "リケアマカロニ",
         "12": "エリカビアリッツ",
@@ -1293,10 +1310,10 @@
       "combination_json": "[[1, 2], [2, 1]]",
       "notes": "本命↔対抗 馬単 Harville=0.005",
       "created_at": "2026-04-25 10:45:10",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "アルペンローゼ",
@@ -1329,6 +1346,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "13": "リケアマカロニ",
         "12": "エリカビアリッツ",
@@ -1356,10 +1374,10 @@
       "combination_json": "[[1, 2, 3], [1, 2, 4], [1, 2, 5], [1, 3, 2], [1, 3, 4], [1, 3, 5]]",
       "notes": "軸1→ヒモフォーメーション 6点 合成EV=1.48 Harville=0.0005",
       "created_at": "2026-04-25 10:45:10",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "アルペンローゼ",
@@ -1469,6 +1487,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "13": "リケアマカロニ",
         "12": "エリカビアリッツ",
@@ -1496,10 +1515,10 @@
       "combination_json": "[[14]]",
       "notes": "EV=3.31 odds=82.6",
       "created_at": "2026-04-25 10:45:10",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 1,
+      "payout": 14000.0,
+      "profit": 13900.0,
+      "roi": 14000.0,
       "horses": [
         {
           "horse_name": "ダイユウアドバンス",
@@ -1511,6 +1530,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "13": "リケアマカロニ",
         "12": "エリカビアリッツ",
@@ -1538,10 +1558,10 @@
       "combination_json": "[[9], [10], [7], [8], [12], [11], [13], [14]]",
       "notes": "EV>1.1 の8頭を複勝",
       "created_at": "2026-04-25 10:45:10",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 1,
+      "payout": 5760.0,
+      "profit": 4960.0,
+      "roi": 720.0,
       "horses": [
         {
           "horse_name": "ロット",
@@ -1581,6 +1601,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 8,
+      "invested": 800,
       "horse_num_to_name": {
         "13": "リケアマカロニ",
         "12": "エリカビアリッツ",
@@ -1608,10 +1629,10 @@
       "combination_json": "[[9, 10]]",
       "notes": "EV上位2頭 Harville=0.029 平均EV=3.32",
       "created_at": "2026-04-25 10:45:10",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ロット",
@@ -1630,6 +1651,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "13": "リケアマカロニ",
         "12": "エリカビアリッツ",
@@ -1657,10 +1679,10 @@
       "combination_json": "[[9, 10]]",
       "notes": "EV上位2頭 ワイド Harville=0.029",
       "created_at": "2026-04-25 10:45:10",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ロット",
@@ -1679,6 +1701,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "13": "リケアマカロニ",
         "12": "エリカビアリッツ",
@@ -1706,10 +1729,10 @@
       "combination_json": "[[9, 10]]",
       "notes": "EV軸9→10 Harville=0.014",
       "created_at": "2026-04-25 10:45:10",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ロット",
@@ -1728,6 +1751,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "13": "リケアマカロニ",
         "12": "エリカビアリッツ",
@@ -1755,10 +1779,10 @@
       "combination_json": "[[9, 10, 12]]",
       "notes": "合成EV=5.00 Harville=0.0126 軸EV=3.32 馬番=(9, 10, 12)",
       "created_at": "2026-04-25 10:45:10",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ロット",
@@ -1784,6 +1808,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "13": "リケアマカロニ",
         "12": "エリカビアリッツ",
@@ -1811,10 +1836,10 @@
       "combination_json": "[]",
       "notes": "全馬モデルスコア（馬分析タブ用）",
       "created_at": "2026-04-25 10:45:10",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ダイユウアドバンス",
@@ -1917,6 +1942,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "13": "リケアマカロニ",
         "12": "エリカビアリッツ",

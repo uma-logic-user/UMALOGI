@@ -424,6 +424,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "12": "シニャンガ",
         "1": "カンティーナ",
@@ -453,9 +454,9 @@
       "notes": "上位3頭を複勝",
       "created_at": "2026-04-25 10:45:10",
       "is_hit": 1,
-      "payout": 510.0,
-      "profit": 210.0,
-      "roi": 170.0,
+      "payout": 1410.0,
+      "profit": 1110.0,
+      "roi": 470.0,
       "horses": [
         {
           "horse_name": "カンティーナ",
@@ -481,6 +482,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "12": "シニャンガ",
         "1": "カンティーナ",
@@ -511,7 +513,7 @@
       "created_at": "2026-04-25 10:45:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -531,6 +533,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "12": "シニャンガ",
         "1": "カンティーナ",
@@ -561,8 +564,8 @@
       "created_at": "2026-04-25 10:45:10",
       "is_hit": 1,
       "payout": 2960.0,
-      "profit": 2760.0,
-      "roi": 1480.0,
+      "profit": 2860.0,
+      "roi": 2960.0,
       "horses": [
         {
           "horse_name": "カンティーナ",
@@ -581,6 +584,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "12": "シニャンガ",
         "1": "カンティーナ",
@@ -645,6 +649,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "12": "シニャンガ",
         "1": "カンティーナ",
@@ -786,6 +791,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "12": "シニャンガ",
         "1": "カンティーナ",
@@ -829,6 +835,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "12": "シニャンガ",
         "1": "カンティーナ",
@@ -857,10 +864,10 @@
       "combination_json": "[[11], [10], [9], [8], [15], [13], [12], [14], [5], [6], [3], [2], [7], [4], [1]]",
       "notes": "EV>1.1 の15頭を複勝",
       "created_at": "2026-04-25 10:45:10",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -1000.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 5800.0,
+      "profit": 4300.0,
+      "roi": 386.6666666666667,
       "horses": [
         {
           "horse_name": "シラカワゴウ",
@@ -900,6 +907,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 15,
+      "invested": 1500,
       "horse_num_to_name": {
         "12": "シニャンガ",
         "1": "カンティーナ",
@@ -930,7 +938,7 @@
       "created_at": "2026-04-25 10:45:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -950,6 +958,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "12": "シニャンガ",
         "1": "カンティーナ",
@@ -980,7 +989,7 @@
       "created_at": "2026-04-25 10:45:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1000,6 +1009,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "12": "シニャンガ",
         "1": "カンティーナ",
@@ -1030,7 +1040,7 @@
       "created_at": "2026-04-25 10:45:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1050,6 +1060,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "12": "シニャンガ",
         "1": "カンティーナ",
@@ -1080,7 +1091,7 @@
       "created_at": "2026-04-25 10:45:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1107,6 +1118,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "12": "シニャンガ",
         "1": "カンティーナ",
@@ -1248,6 +1260,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "12": "シニャンガ",
         "1": "カンティーナ",
@@ -1291,6 +1304,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "12": "シニャンガ",
         "1": "カンティーナ",
@@ -1320,9 +1334,9 @@
       "notes": "上位3頭を複勝",
       "created_at": "2026-04-25 11:10:23",
       "is_hit": 1,
-      "payout": 510.0,
-      "profit": 210.0,
-      "roi": 170.0,
+      "payout": 1410.0,
+      "profit": 1110.0,
+      "roi": 470.0,
       "horses": [
         {
           "horse_name": "カンティーナ",
@@ -1348,6 +1362,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "12": "シニャンガ",
         "1": "カンティーナ",
@@ -1378,7 +1393,7 @@
       "created_at": "2026-04-25 11:10:23",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1398,6 +1413,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "12": "シニャンガ",
         "1": "カンティーナ",
@@ -1428,8 +1444,8 @@
       "created_at": "2026-04-25 11:10:23",
       "is_hit": 1,
       "payout": 2960.0,
-      "profit": 2760.0,
-      "roi": 1480.0,
+      "profit": 2860.0,
+      "roi": 2960.0,
       "horses": [
         {
           "horse_name": "カンティーナ",
@@ -1448,6 +1464,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "12": "シニャンガ",
         "1": "カンティーナ",
@@ -1512,6 +1529,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "12": "シニャンガ",
         "1": "カンティーナ",
@@ -1653,6 +1671,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "12": "シニャンガ",
         "1": "カンティーナ",
@@ -1683,7 +1702,7 @@
       "created_at": "2026-04-25 11:10:23",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1696,6 +1715,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "12": "シニャンガ",
         "1": "カンティーナ",
@@ -1724,10 +1744,10 @@
       "combination_json": "[[11], [10], [9], [8], [15], [13], [12], [14], [5], [6], [3], [2], [7], [4], [1]]",
       "notes": "EV>1.1 の15頭を複勝",
       "created_at": "2026-04-25 11:10:23",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -1000.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 5800.0,
+      "profit": 4300.0,
+      "roi": 386.6666666666667,
       "horses": [
         {
           "horse_name": "シラカワゴウ",
@@ -1767,6 +1787,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 15,
+      "invested": 1500,
       "horse_num_to_name": {
         "12": "シニャンガ",
         "1": "カンティーナ",
@@ -1797,7 +1818,7 @@
       "created_at": "2026-04-25 11:10:23",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1817,6 +1838,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "12": "シニャンガ",
         "1": "カンティーナ",
@@ -1847,7 +1869,7 @@
       "created_at": "2026-04-25 11:10:23",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1867,6 +1889,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "12": "シニャンガ",
         "1": "カンティーナ",
@@ -1897,7 +1920,7 @@
       "created_at": "2026-04-25 11:10:23",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1917,6 +1940,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "12": "シニャンガ",
         "1": "カンティーナ",
@@ -1947,7 +1971,7 @@
       "created_at": "2026-04-25 11:10:23",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1974,6 +1998,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "12": "シニャンガ",
         "1": "カンティーナ",
@@ -2115,6 +2140,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "12": "シニャンガ",
         "1": "カンティーナ",

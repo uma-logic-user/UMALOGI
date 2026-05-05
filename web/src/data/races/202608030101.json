@@ -498,6 +498,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "??????????????????00110303201198????",
         "12": "ダイナソーコー",
@@ -556,6 +557,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "11": "??????????????????00110303201198????",
         "12": "ダイナソーコー",
@@ -587,7 +589,7 @@
       "created_at": "2026-04-25 09:40:33",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -600,6 +602,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "??????????????????00110303201198????",
         "12": "ダイナソーコー",
@@ -631,7 +634,7 @@
       "created_at": "2026-04-25 09:40:33",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -644,6 +647,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "??????????????????00110303201198????",
         "12": "ダイナソーコー",
@@ -695,6 +699,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "11": "??????????????????00110303201198????",
         "12": "ダイナソーコー",
@@ -767,6 +772,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "11": "??????????????????00110303201198????",
         "12": "ダイナソーコー",
@@ -811,6 +817,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "??????????????????00110303201198????",
         "12": "ダイナソーコー",
@@ -841,9 +848,9 @@
       "notes": "EV>1.1 の8頭を複勝",
       "created_at": "2026-04-25 09:40:33",
       "is_hit": 1,
-      "payout": 3120.0,
-      "profit": 2320.0,
-      "roi": 390.0,
+      "payout": 7840.000000000001,
+      "profit": 7040.000000000001,
+      "roi": 980.0000000000001,
       "horses": [
         {
           "horse_name": "バケラッタ",
@@ -883,6 +890,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 8,
+      "invested": 800,
       "horse_num_to_name": {
         "11": "??????????????????00110303201198????",
         "12": "ダイナソーコー",
@@ -914,7 +922,7 @@
       "created_at": "2026-04-25 09:40:33",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -927,6 +935,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "??????????????????00110303201198????",
         "12": "ダイナソーコー",
@@ -958,7 +967,7 @@
       "created_at": "2026-04-25 09:40:33",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -971,6 +980,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "??????????????????00110303201198????",
         "12": "ダイナソーコー",
@@ -1002,7 +1012,7 @@
       "created_at": "2026-04-25 09:40:33",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1015,6 +1025,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "??????????????????00110303201198????",
         "12": "ダイナソーコー",
@@ -1046,7 +1057,7 @@
       "created_at": "2026-04-25 09:40:33",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1059,6 +1070,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "??????????????????00110303201198????",
         "12": "ダイナソーコー",
@@ -1208,6 +1220,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "11": "??????????????????00110303201198????",
         "12": "ダイナソーコー",
@@ -1237,10 +1250,10 @@
       "combination_json": "[[8]]",
       "notes": "本命 P(win)=0.02 odds=181.7",
       "created_at": "2026-04-25 10:45:12",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "カフジマリボー",
@@ -1252,6 +1265,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "??????????????????00110303201198????",
         "12": "ダイナソーコー",
@@ -1281,10 +1295,10 @@
       "combination_json": "[[8], [5], [10]]",
       "notes": "上位3頭を複勝",
       "created_at": "2026-04-25 10:45:12",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 1,
+      "payout": 1020.0,
+      "profit": 720.0,
+      "roi": 340.0,
       "horses": [
         {
           "horse_name": "カフジマリボー",
@@ -1310,6 +1324,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "11": "??????????????????00110303201198????",
         "12": "ダイナソーコー",
@@ -1339,10 +1354,10 @@
       "combination_json": "[[5, 8]]",
       "notes": "本命・対抗 Harville=0.021",
       "created_at": "2026-04-25 10:45:12",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "セスティーナ",
@@ -1361,6 +1376,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "??????????????????00110303201198????",
         "12": "ダイナソーコー",
@@ -1390,10 +1406,10 @@
       "combination_json": "[[5, 8]]",
       "notes": "本命・対抗 ワイド Harville=0.021",
       "created_at": "2026-04-25 10:45:12",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "セスティーナ",
@@ -1412,6 +1428,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "??????????????????00110303201198????",
         "12": "ダイナソーコー",
@@ -1441,10 +1458,10 @@
       "combination_json": "[[8, 5], [5, 8]]",
       "notes": "本命↔対抗 馬単 Harville=0.011",
       "created_at": "2026-04-25 10:45:12",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "カフジマリボー",
@@ -1477,6 +1494,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "11": "??????????????????00110303201198????",
         "12": "ダイナソーコー",
@@ -1506,10 +1524,10 @@
       "combination_json": "[[1, 5, 8]]",
       "notes": "合成EV=5.00 Harville=0.0041 馬番=(1, 5, 8)",
       "created_at": "2026-04-25 10:45:12",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "チュウワヘネシー",
@@ -1535,6 +1553,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "??????????????????00110303201198????",
         "12": "ダイナソーコー",
@@ -1564,10 +1583,10 @@
       "combination_json": "[[8, 5, 10], [8, 5, 1], [8, 5, 4], [8, 10, 5], [8, 10, 1], [8, 10, 4]]",
       "notes": "軸8→ヒモフォーメーション 6点 合成EV=6.00 Harville=0.0013",
       "created_at": "2026-04-25 10:45:12",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "カフジマリボー",
@@ -1677,6 +1696,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "11": "??????????????????00110303201198????",
         "12": "ダイナソーコー",
@@ -1706,10 +1726,10 @@
       "combination_json": "[[14]]",
       "notes": "EV=3.65 odds=45.7",
       "created_at": "2026-04-25 10:45:12",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ブーケ",
@@ -1721,6 +1741,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "??????????????????00110303201198????",
         "12": "ダイナソーコー",
@@ -1750,10 +1771,10 @@
       "combination_json": "[[11], [12], [9], [13], [15], [16], [10], [14]]",
       "notes": "EV>1.1 の8頭を複勝",
       "created_at": "2026-04-25 10:45:12",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 1,
+      "payout": 7840.000000000001,
+      "profit": 7040.000000000001,
+      "roi": 980.0000000000001,
       "horses": [
         {
           "horse_name": "バケラッタ",
@@ -1793,6 +1814,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 8,
+      "invested": 800,
       "horse_num_to_name": {
         "11": "??????????????????00110303201198????",
         "12": "ダイナソーコー",
@@ -1822,10 +1844,10 @@
       "combination_json": "[[11, 12]]",
       "notes": "EV上位2頭 Harville=0.024 平均EV=3.74",
       "created_at": "2026-04-25 10:45:12",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "バケラッタ",
@@ -1844,6 +1866,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "??????????????????00110303201198????",
         "12": "ダイナソーコー",
@@ -1873,10 +1896,10 @@
       "combination_json": "[[11, 12]]",
       "notes": "EV上位2頭 ワイド Harville=0.024",
       "created_at": "2026-04-25 10:45:12",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "バケラッタ",
@@ -1895,6 +1918,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "??????????????????00110303201198????",
         "12": "ダイナソーコー",
@@ -1924,10 +1948,10 @@
       "combination_json": "[[11, 12]]",
       "notes": "EV軸11→12 Harville=0.012",
       "created_at": "2026-04-25 10:45:12",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "バケラッタ",
@@ -1946,6 +1970,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "??????????????????00110303201198????",
         "12": "ダイナソーコー",
@@ -1975,10 +2000,10 @@
       "combination_json": "[[11, 12, 15]]",
       "notes": "合成EV=1.76 Harville=0.0090 軸EV=3.73 馬番=(11, 12, 15)",
       "created_at": "2026-04-25 10:45:12",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "バケラッタ",
@@ -2004,6 +2029,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "??????????????????00110303201198????",
         "12": "ダイナソーコー",
@@ -2033,10 +2059,10 @@
       "combination_json": "[]",
       "notes": "全馬モデルスコア（馬分析タブ用）",
       "created_at": "2026-04-25 10:45:12",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "リアルフォルツァ",
@@ -2153,6 +2179,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "11": "??????????????????00110303201198????",
         "12": "ダイナソーコー",

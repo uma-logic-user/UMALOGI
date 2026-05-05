@@ -553,10 +553,10 @@
       "combination_json": "[[15]]",
       "notes": "本命 P(win)=0.00 odds=1.0",
       "created_at": "2026-04-11 12:25:29",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -100.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 15000.0,
+      "profit": 14900.0,
+      "roi": 15000.0,
       "horses": [
         {
           "horse_name": "本命",
@@ -603,6 +603,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "14": "デアヴェローチェ",
         "3": "デルマリシリ",
@@ -667,6 +668,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "14": "デアヴェローチェ",
         "3": "デルマリシリ",
@@ -697,7 +699,7 @@
       "created_at": "2026-04-11 12:25:29",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -717,6 +719,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "14": "デアヴェローチェ",
         "3": "デルマリシリ",
@@ -747,7 +750,7 @@
       "created_at": "2026-04-11 12:25:29",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -774,6 +777,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "14": "デアヴェローチェ",
         "3": "デルマリシリ",
@@ -831,6 +835,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "14": "デアヴェローチェ",
         "3": "デルマリシリ",
@@ -861,7 +866,7 @@
       "created_at": "2026-04-11 12:25:29",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -881,6 +886,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "14": "デアヴェローチェ",
         "3": "デルマリシリ",
@@ -959,6 +965,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "14": "デアヴェローチェ",
         "3": "デルマリシリ",
@@ -987,10 +994,10 @@
       "combination_json": "[[15]]",
       "notes": "EV=1.18 odds=1.0",
       "created_at": "2026-04-11 12:25:29",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -100.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 15000.0,
+      "profit": 14900.0,
+      "roi": 15000.0,
       "horses": [
         {
           "horse_name": "本命",
@@ -1009,6 +1016,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "14": "デアヴェローチェ",
         "3": "デルマリシリ",
@@ -1101,6 +1109,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "14": "デアヴェローチェ",
         "3": "デルマリシリ",
@@ -1131,7 +1140,7 @@
       "created_at": "2026-04-11 12:25:29",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1151,6 +1160,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "14": "デアヴェローチェ",
         "3": "デルマリシリ",
@@ -1181,7 +1191,7 @@
       "created_at": "2026-04-11 12:25:29",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1201,6 +1211,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "14": "デアヴェローチェ",
         "3": "デルマリシリ",
@@ -1231,7 +1242,7 @@
       "created_at": "2026-04-11 12:25:29",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1251,6 +1262,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "14": "デアヴェローチェ",
         "3": "デルマリシリ",
@@ -1281,7 +1293,7 @@
       "created_at": "2026-04-11 12:25:29",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1329,6 +1341,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "14": "デアヴェローチェ",
         "3": "デルマリシリ",

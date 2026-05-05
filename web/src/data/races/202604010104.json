@@ -404,6 +404,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "2": "パープルアドミラル",
         "3": "ハイウェイスター",
@@ -429,9 +430,9 @@
       "notes": "上位3頭を複勝",
       "created_at": "2026-05-02 13:24:16",
       "is_hit": 1,
-      "payout": 1830.0,
-      "profit": 1530.0,
-      "roi": 610.0,
+      "payout": 4380.0,
+      "profit": 4080.0,
+      "roi": 1460.0,
       "horses": [
         {
           "horse_name": "レッドラマンシュ",
@@ -457,6 +458,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "2": "パープルアドミラル",
         "3": "ハイウェイスター",
@@ -483,7 +485,7 @@
       "created_at": "2026-05-02 13:24:16",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -503,6 +505,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "2": "パープルアドミラル",
         "3": "ハイウェイスター",
@@ -529,7 +532,7 @@
       "created_at": "2026-05-02 13:24:16",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -549,6 +552,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "2": "パープルアドミラル",
         "3": "ハイウェイスター",
@@ -575,7 +579,7 @@
       "created_at": "2026-05-02 13:24:16",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -600.0,
+      "profit": -200.0,
       "roi": 0.0,
       "horses": [
         {
@@ -623,6 +627,7 @@
       ],
       "bet_form": "軸2頭ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "2": "パープルアドミラル",
         "3": "ハイウェイスター",
@@ -760,6 +765,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "2": "パープルアドミラル",
         "3": "ハイウェイスター",
@@ -784,10 +790,10 @@
       "combination_json": "[[11]]",
       "notes": "確率1位(卍) EV=83184.69 odds=1.0",
       "created_at": "2026-05-02 13:24:16",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -100.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 11000.0,
+      "profit": 10900.0,
+      "roi": 11000.0,
       "horses": [
         {
           "horse_name": "ウォーターリーダー",
@@ -799,6 +805,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "2": "パープルアドミラル",
         "3": "ハイウェイスター",
@@ -852,6 +859,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "2": "パープルアドミラル",
         "3": "ハイウェイスター",
@@ -878,7 +886,7 @@
       "created_at": "2026-05-02 13:24:16",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -898,6 +906,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "2": "パープルアドミラル",
         "3": "ハイウェイスター",
@@ -924,7 +933,7 @@
       "created_at": "2026-05-02 13:24:16",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -944,6 +953,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "2": "パープルアドミラル",
         "3": "ハイウェイスター",
@@ -970,7 +980,7 @@
       "created_at": "2026-05-02 13:24:16",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -997,6 +1007,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "2": "パープルアドミラル",
         "3": "ハイウェイスター",
@@ -1050,6 +1061,7 @@
       ],
       "bet_form": "軸2頭ながし",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "2": "パープルアドミラル",
         "3": "ハイウェイスター",
@@ -1103,6 +1115,7 @@
       ],
       "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "2": "パープルアドミラル",
         "3": "ハイウェイスター",
@@ -1212,6 +1225,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "2": "パープルアドミラル",
         "3": "ハイウェイスター",
@@ -1251,6 +1265,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "2": "パープルアドミラル",
         "3": "ハイウェイスター",
@@ -1276,9 +1291,9 @@
       "notes": "上位3頭を複勝",
       "created_at": "2026-05-02 13:35:03",
       "is_hit": 1,
-      "payout": 1830.0,
-      "profit": 1530.0,
-      "roi": 610.0,
+      "payout": 4380.0,
+      "profit": 4080.0,
+      "roi": 1460.0,
       "horses": [
         {
           "horse_name": "レッドラマンシュ",
@@ -1304,6 +1319,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "2": "パープルアドミラル",
         "3": "ハイウェイスター",
@@ -1330,7 +1346,7 @@
       "created_at": "2026-05-02 13:35:03",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1350,6 +1366,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "2": "パープルアドミラル",
         "3": "ハイウェイスター",
@@ -1376,7 +1393,7 @@
       "created_at": "2026-05-02 13:35:03",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1396,6 +1413,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "2": "パープルアドミラル",
         "3": "ハイウェイスター",
@@ -1422,7 +1440,7 @@
       "created_at": "2026-05-02 13:35:03",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -600.0,
+      "profit": -200.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1470,6 +1488,7 @@
       ],
       "bet_form": "軸2頭ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "2": "パープルアドミラル",
         "3": "ハイウェイスター",
@@ -1607,6 +1626,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "2": "パープルアドミラル",
         "3": "ハイウェイスター",
@@ -1631,10 +1651,10 @@
       "combination_json": "[[11]]",
       "notes": "確率1位(卍) EV=83184.69 odds=6.0",
       "created_at": "2026-05-02 13:35:03",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -400.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 44000.0,
+      "profit": 43900.0,
+      "roi": 44000.0,
       "horses": [
         {
           "horse_name": "ウォーターリーダー",
@@ -1646,6 +1666,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "2": "パープルアドミラル",
         "3": "ハイウェイスター",
@@ -1699,6 +1720,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "2": "パープルアドミラル",
         "3": "ハイウェイスター",
@@ -1725,7 +1747,7 @@
       "created_at": "2026-05-02 13:35:03",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1745,6 +1767,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "2": "パープルアドミラル",
         "3": "ハイウェイスター",
@@ -1771,7 +1794,7 @@
       "created_at": "2026-05-02 13:35:03",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1791,6 +1814,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "2": "パープルアドミラル",
         "3": "ハイウェイスター",
@@ -1817,7 +1841,7 @@
       "created_at": "2026-05-02 13:35:03",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1844,6 +1868,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "2": "パープルアドミラル",
         "3": "ハイウェイスター",
@@ -1897,6 +1922,7 @@
       ],
       "bet_form": "軸2頭ながし",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "2": "パープルアドミラル",
         "3": "ハイウェイスター",
@@ -1950,6 +1976,7 @@
       ],
       "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "2": "パープルアドミラル",
         "3": "ハイウェイスター",
@@ -2059,6 +2086,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "2": "パープルアドミラル",
         "3": "ハイウェイスター",

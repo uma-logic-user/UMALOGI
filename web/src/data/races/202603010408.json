@@ -424,6 +424,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "ジェシーテソーロ",
         "13": "オウケンシルヴァー",
@@ -453,9 +454,9 @@
       "notes": "上位3頭を複勝",
       "created_at": "2026-04-19 09:06:05",
       "is_hit": 1,
-      "payout": 366.6666666666667,
-      "profit": 66.66666666666669,
-      "roi": 122.22222222222223,
+      "payout": 1620.0,
+      "profit": 1320.0,
+      "roi": 540.0,
       "horses": [
         {
           "horse_name": "ジェシーテソーロ",
@@ -481,6 +482,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "11": "ジェシーテソーロ",
         "13": "オウケンシルヴァー",
@@ -511,7 +513,7 @@
       "created_at": "2026-04-19 09:06:05",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -524,6 +526,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "ジェシーテソーロ",
         "13": "オウケンシルヴァー",
@@ -554,7 +557,7 @@
       "created_at": "2026-04-19 09:06:05",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -567,6 +570,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "ジェシーテソーロ",
         "13": "オウケンシルヴァー",
@@ -617,6 +621,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "11": "ジェシーテソーロ",
         "13": "オウケンシルヴァー",
@@ -647,7 +652,7 @@
       "created_at": "2026-04-19 09:06:05",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -660,6 +665,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "ジェシーテソーロ",
         "13": "オウケンシルヴァー",
@@ -731,6 +737,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "11": "ジェシーテソーロ",
         "13": "オウケンシルヴァー",
@@ -774,6 +781,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "ジェシーテソーロ",
         "13": "オウケンシルヴァー",
@@ -803,9 +811,9 @@
       "notes": "EV>1.0 の13頭を複勝",
       "created_at": "2026-04-19 09:06:05",
       "is_hit": 1,
-      "payout": 282.05128205128204,
-      "profit": -717.948717948718,
-      "roi": 28.205128205128204,
+      "payout": 11000.0,
+      "profit": 9700.0,
+      "roi": 846.1538461538462,
       "horses": [
         {
           "horse_name": "ミスティマウンテン",
@@ -845,6 +853,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 13,
+      "invested": 1300,
       "horse_num_to_name": {
         "11": "ジェシーテソーロ",
         "13": "オウケンシルヴァー",
@@ -875,7 +884,7 @@
       "created_at": "2026-04-19 09:06:05",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -888,6 +897,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "ジェシーテソーロ",
         "13": "オウケンシルヴァー",
@@ -918,7 +928,7 @@
       "created_at": "2026-04-19 09:06:05",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -931,6 +941,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "ジェシーテソーロ",
         "13": "オウケンシルヴァー",
@@ -961,7 +972,7 @@
       "created_at": "2026-04-19 09:06:05",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -974,6 +985,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "ジェシーテソーロ",
         "13": "オウケンシルヴァー",
@@ -1004,7 +1016,7 @@
       "created_at": "2026-04-19 09:06:05",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1017,6 +1029,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "ジェシーテソーロ",
         "13": "オウケンシルヴァー",
@@ -1045,10 +1058,10 @@
       "combination_json": "[]",
       "notes": "全馬モデルスコア（馬分析タブ用）",
       "created_at": "2026-04-19 09:06:05",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ジェシーテソーロ",
@@ -1158,6 +1171,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "11": "ジェシーテソーロ",
         "13": "オウケンシルヴァー",
@@ -1201,6 +1215,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "ジェシーテソーロ",
         "13": "オウケンシルヴァー",
@@ -1230,9 +1245,9 @@
       "notes": "上位3頭を複勝",
       "created_at": "2026-04-19 13:10:10",
       "is_hit": 1,
-      "payout": 366.6666666666667,
-      "profit": 66.66666666666669,
-      "roi": 122.22222222222223,
+      "payout": 1620.0,
+      "profit": 1320.0,
+      "roi": 540.0,
       "horses": [
         {
           "horse_name": "ジェシーテソーロ",
@@ -1258,6 +1273,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "11": "ジェシーテソーロ",
         "13": "オウケンシルヴァー",
@@ -1288,7 +1304,7 @@
       "created_at": "2026-04-19 13:10:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1301,6 +1317,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "ジェシーテソーロ",
         "13": "オウケンシルヴァー",
@@ -1331,7 +1348,7 @@
       "created_at": "2026-04-19 13:10:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1344,6 +1361,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "ジェシーテソーロ",
         "13": "オウケンシルヴァー",
@@ -1394,6 +1412,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "11": "ジェシーテソーロ",
         "13": "オウケンシルヴァー",
@@ -1424,7 +1443,7 @@
       "created_at": "2026-04-19 13:10:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1437,6 +1456,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "ジェシーテソーロ",
         "13": "オウケンシルヴァー",
@@ -1508,6 +1528,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "11": "ジェシーテソーロ",
         "13": "オウケンシルヴァー",
@@ -1551,6 +1572,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "ジェシーテソーロ",
         "13": "オウケンシルヴァー",
@@ -1580,9 +1602,9 @@
       "notes": "EV>1.0 の13頭を複勝",
       "created_at": "2026-04-19 13:10:10",
       "is_hit": 1,
-      "payout": 282.05128205128204,
-      "profit": -717.948717948718,
-      "roi": 28.205128205128204,
+      "payout": 11000.0,
+      "profit": 9700.0,
+      "roi": 846.1538461538462,
       "horses": [
         {
           "horse_name": "ミスティマウンテン",
@@ -1622,6 +1644,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 13,
+      "invested": 1300,
       "horse_num_to_name": {
         "11": "ジェシーテソーロ",
         "13": "オウケンシルヴァー",
@@ -1652,7 +1675,7 @@
       "created_at": "2026-04-19 13:10:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1665,6 +1688,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "ジェシーテソーロ",
         "13": "オウケンシルヴァー",
@@ -1695,7 +1719,7 @@
       "created_at": "2026-04-19 13:10:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1708,6 +1732,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "ジェシーテソーロ",
         "13": "オウケンシルヴァー",
@@ -1738,7 +1763,7 @@
       "created_at": "2026-04-19 13:10:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1751,6 +1776,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "ジェシーテソーロ",
         "13": "オウケンシルヴァー",
@@ -1781,7 +1807,7 @@
       "created_at": "2026-04-19 13:10:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1794,6 +1820,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "ジェシーテソーロ",
         "13": "オウケンシルヴァー",
@@ -1822,10 +1849,10 @@
       "combination_json": "[]",
       "notes": "全馬モデルスコア（馬分析タブ用）",
       "created_at": "2026-04-19 13:10:10",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ジェシーテソーロ",
@@ -1935,6 +1962,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "11": "ジェシーテソーロ",
         "13": "オウケンシルヴァー",

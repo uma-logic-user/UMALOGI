@@ -352,6 +352,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "3": "リオンサーガ",
         "8": "クアッドフォルツァ",
@@ -403,6 +404,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "3": "リオンサーガ",
         "8": "クアッドフォルツァ",
@@ -427,7 +429,7 @@
       "created_at": "2026-05-02 13:24:22",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -447,6 +449,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "3": "リオンサーガ",
         "8": "クアッドフォルツァ",
@@ -471,7 +474,7 @@
       "created_at": "2026-05-02 13:24:22",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -491,6 +494,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "3": "リオンサーガ",
         "8": "クアッドフォルツァ",
@@ -515,7 +519,7 @@
       "created_at": "2026-05-02 13:24:22",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -600.0,
+      "profit": -200.0,
       "roi": 0.0,
       "horses": [
         {
@@ -563,6 +567,7 @@
       ],
       "bet_form": "軸2頭ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "3": "リオンサーガ",
         "8": "クアッドフォルツァ",
@@ -698,6 +703,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "3": "リオンサーガ",
         "8": "クアッドフォルツァ",
@@ -720,10 +726,10 @@
       "combination_json": "[[9]]",
       "notes": "確率1位(卍) EV=90694.05 odds=1.0",
       "created_at": "2026-05-02 13:24:22",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -100.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 9000.0,
+      "profit": 8900.0,
+      "roi": 9000.0,
       "horses": [
         {
           "horse_name": "ブルーフレア",
@@ -735,6 +741,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "3": "リオンサーガ",
         "8": "クアッドフォルツァ",
@@ -758,9 +765,9 @@
       "notes": "確率上位3頭を複勝",
       "created_at": "2026-05-02 13:24:22",
       "is_hit": 1,
-      "payout": 1500.0,
-      "profit": 1200.0,
-      "roi": 500.0,
+      "payout": 2100.0,
+      "profit": 1800.0,
+      "roi": 700.0,
       "horses": [
         {
           "horse_name": "ブルーフレア",
@@ -786,6 +793,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "3": "リオンサーガ",
         "8": "クアッドフォルツァ",
@@ -810,7 +818,7 @@
       "created_at": "2026-05-02 13:24:22",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -830,6 +838,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "3": "リオンサーガ",
         "8": "クアッドフォルツァ",
@@ -854,8 +863,8 @@
       "created_at": "2026-05-02 13:24:22",
       "is_hit": 1,
       "payout": 2700.0,
-      "profit": 2500.0,
-      "roi": 1350.0,
+      "profit": 2600.0,
+      "roi": 2700.0,
       "horses": [
         {
           "horse_name": "クアッドフォルツァ",
@@ -874,6 +883,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "3": "リオンサーガ",
         "8": "クアッドフォルツァ",
@@ -898,7 +908,7 @@
       "created_at": "2026-05-02 13:24:22",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -925,6 +935,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "3": "リオンサーガ",
         "8": "クアッドフォルツァ",
@@ -976,6 +987,7 @@
       ],
       "bet_form": "軸2頭ながし",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "3": "リオンサーガ",
         "8": "クアッドフォルツァ",
@@ -1027,6 +1039,7 @@
       ],
       "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "3": "リオンサーガ",
         "8": "クアッドフォルツァ",
@@ -1120,6 +1133,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "3": "リオンサーガ",
         "8": "クアッドフォルツァ",
@@ -1144,7 +1158,7 @@
       "created_at": "2026-05-02 13:37:05",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1157,6 +1171,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "3": "リオンサーガ",
         "8": "クアッドフォルツァ",
@@ -1180,9 +1195,9 @@
       "notes": "上位3頭を複勝",
       "created_at": "2026-05-02 13:37:05",
       "is_hit": 1,
-      "payout": 1020.0,
-      "profit": 720.0,
-      "roi": 340.0,
+      "payout": 960.0,
+      "profit": 660.0,
+      "roi": 320.0,
       "horses": [
         {
           "horse_name": "キングオブストーム",
@@ -1208,6 +1223,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "3": "リオンサーガ",
         "8": "クアッドフォルツァ",
@@ -1232,7 +1248,7 @@
       "created_at": "2026-05-02 13:37:05",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1252,6 +1268,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "3": "リオンサーガ",
         "8": "クアッドフォルツァ",
@@ -1276,7 +1293,7 @@
       "created_at": "2026-05-02 13:37:05",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1296,6 +1313,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "3": "リオンサーガ",
         "8": "クアッドフォルツァ",
@@ -1320,7 +1338,7 @@
       "created_at": "2026-05-02 13:37:06",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -600.0,
+      "profit": -200.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1368,6 +1386,7 @@
       ],
       "bet_form": "軸2頭ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "3": "リオンサーガ",
         "8": "クアッドフォルツァ",
@@ -1503,6 +1522,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "3": "リオンサーガ",
         "8": "クアッドフォルツァ",
@@ -1527,7 +1547,7 @@
       "created_at": "2026-05-02 13:37:06",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -400.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1540,6 +1560,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "3": "リオンサーガ",
         "8": "クアッドフォルツァ",
@@ -1563,9 +1584,9 @@
       "notes": "確率上位3頭を複勝",
       "created_at": "2026-05-02 13:37:06",
       "is_hit": 1,
-      "payout": 600.0,
-      "profit": 300.0,
-      "roi": 200.0,
+      "payout": 2100.0,
+      "profit": 1800.0,
+      "roi": 700.0,
       "horses": [
         {
           "horse_name": "クアッドフォルツァ",
@@ -1591,6 +1612,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "3": "リオンサーガ",
         "8": "クアッドフォルツァ",
@@ -1615,7 +1637,7 @@
       "created_at": "2026-05-02 13:37:06",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1635,6 +1657,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "3": "リオンサーガ",
         "8": "クアッドフォルツァ",
@@ -1659,8 +1682,8 @@
       "created_at": "2026-05-02 13:37:06",
       "is_hit": 1,
       "payout": 2700.0,
-      "profit": 2500.0,
-      "roi": 1350.0,
+      "profit": 2600.0,
+      "roi": 2700.0,
       "horses": [
         {
           "horse_name": "クアッドフォルツァ",
@@ -1679,6 +1702,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "3": "リオンサーガ",
         "8": "クアッドフォルツァ",
@@ -1703,7 +1727,7 @@
       "created_at": "2026-05-02 13:37:06",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1730,6 +1754,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "3": "リオンサーガ",
         "8": "クアッドフォルツァ",
@@ -1781,6 +1806,7 @@
       ],
       "bet_form": "軸1頭ながし",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "3": "リオンサーガ",
         "8": "クアッドフォルツァ",
@@ -1832,6 +1858,7 @@
       ],
       "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "3": "リオンサーガ",
         "8": "クアッドフォルツァ",
@@ -1925,6 +1952,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "3": "リオンサーガ",
         "8": "クアッドフォルツァ",

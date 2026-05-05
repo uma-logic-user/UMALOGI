@@ -418,6 +418,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "5": "ゴールドドレッサ",
         "15": "シュヴェスター",
@@ -475,6 +476,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "5": "ゴールドドレッサ",
         "15": "シュヴェスター",
@@ -505,7 +507,7 @@
       "created_at": "2026-04-25 09:40:12",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -518,6 +520,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "5": "ゴールドドレッサ",
         "15": "シュヴェスター",
@@ -548,7 +551,7 @@
       "created_at": "2026-04-25 09:40:12",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -561,6 +564,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "5": "ゴールドドレッサ",
         "15": "シュヴェスター",
@@ -611,6 +615,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "5": "ゴールドドレッサ",
         "15": "シュヴェスター",
@@ -682,6 +687,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "5": "ゴールドドレッサ",
         "15": "シュヴェスター",
@@ -710,10 +716,10 @@
       "combination_json": "[[15]]",
       "notes": "EV=2.82 odds=13.9",
       "created_at": "2026-04-25 09:40:12",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -200.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 30000.0,
+      "profit": 29900.0,
+      "roi": 30000.0,
       "horses": [
         {
           "horse_name": "シュヴェスター",
@@ -725,6 +731,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "5": "ゴールドドレッサ",
         "15": "シュヴェスター",
@@ -754,9 +761,9 @@
       "notes": "EV>1.1 の8頭を複勝",
       "created_at": "2026-04-25 09:40:12",
       "is_hit": 1,
-      "payout": 1888.0,
-      "profit": 1088.0,
-      "roi": 236.0,
+      "payout": 4400.0,
+      "profit": 3600.0,
+      "roi": 550.0,
       "horses": [
         {
           "horse_name": "メイショウサザナミ",
@@ -796,6 +803,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 8,
+      "invested": 800,
       "horse_num_to_name": {
         "5": "ゴールドドレッサ",
         "15": "シュヴェスター",
@@ -826,7 +834,7 @@
       "created_at": "2026-04-25 09:40:12",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -839,6 +847,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "5": "ゴールドドレッサ",
         "15": "シュヴェスター",
@@ -869,7 +878,7 @@
       "created_at": "2026-04-25 09:40:12",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -882,6 +891,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "5": "ゴールドドレッサ",
         "15": "シュヴェスター",
@@ -912,7 +922,7 @@
       "created_at": "2026-04-25 09:40:12",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -925,6 +935,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "5": "ゴールドドレッサ",
         "15": "シュヴェスター",
@@ -955,7 +966,7 @@
       "created_at": "2026-04-25 09:40:12",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -968,6 +979,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "5": "ゴールドドレッサ",
         "15": "シュヴェスター",
@@ -1109,6 +1121,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "5": "ゴールドドレッサ",
         "15": "シュヴェスター",
@@ -1137,10 +1150,10 @@
       "combination_json": "[[2]]",
       "notes": "本命 P(win)=0.02 odds=8.2",
       "created_at": "2026-04-25 10:45:07",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "エイユーサクラ",
@@ -1152,6 +1165,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "5": "ゴールドドレッサ",
         "15": "シュヴェスター",
@@ -1180,10 +1194,10 @@
       "combination_json": "[[2], [6], [4]]",
       "notes": "上位3頭を複勝",
       "created_at": "2026-04-25 10:45:07",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "エイユーサクラ",
@@ -1209,6 +1223,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "5": "ゴールドドレッサ",
         "15": "シュヴェスター",
@@ -1237,10 +1252,10 @@
       "combination_json": "[[2, 6]]",
       "notes": "本命・対抗 Harville=0.013",
       "created_at": "2026-04-25 10:45:07",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "エイユーサクラ",
@@ -1259,6 +1274,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "5": "ゴールドドレッサ",
         "15": "シュヴェスター",
@@ -1287,10 +1303,10 @@
       "combination_json": "[[2, 6]]",
       "notes": "本命・対抗 ワイド Harville=0.013",
       "created_at": "2026-04-25 10:45:07",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "エイユーサクラ",
@@ -1309,6 +1325,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "5": "ゴールドドレッサ",
         "15": "シュヴェスター",
@@ -1337,10 +1354,10 @@
       "combination_json": "[[2, 6], [6, 2]]",
       "notes": "本命↔対抗 馬単 Harville=0.007",
       "created_at": "2026-04-25 10:45:07",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "エイユーサクラ",
@@ -1373,6 +1390,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "5": "ゴールドドレッサ",
         "15": "シュヴェスター",
@@ -1401,10 +1419,10 @@
       "combination_json": "[[2, 6, 12]]",
       "notes": "合成EV=0.91 Harville=0.0037 馬番=(2, 6, 12)",
       "created_at": "2026-04-25 10:45:07",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "エイユーサクラ",
@@ -1430,6 +1448,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "5": "ゴールドドレッサ",
         "15": "シュヴェスター",
@@ -1458,10 +1477,10 @@
       "combination_json": "[[2, 6, 4], [2, 6, 12], [2, 6, 10], [2, 4, 6], [2, 4, 12], [2, 4, 10]]",
       "notes": "軸2→ヒモフォーメーション 6点 合成EV=0.76 Harville=0.0006",
       "created_at": "2026-04-25 10:45:07",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "エイユーサクラ",
@@ -1571,6 +1590,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "5": "ゴールドドレッサ",
         "15": "シュヴェスター",
@@ -1599,10 +1619,10 @@
       "combination_json": "[[15]]",
       "notes": "EV=3.31 odds=13.9",
       "created_at": "2026-04-25 10:45:07",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 1,
+      "payout": 45000.0,
+      "profit": 44900.0,
+      "roi": 45000.0,
       "horses": [
         {
           "horse_name": "シュヴェスター",
@@ -1614,6 +1634,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "5": "ゴールドドレッサ",
         "15": "シュヴェスター",
@@ -1642,10 +1663,10 @@
       "combination_json": "[[11], [10], [9], [8], [14], [13], [12], [15]]",
       "notes": "EV>1.1 の8頭を複勝",
       "created_at": "2026-04-25 10:45:07",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 1,
+      "payout": 4400.0,
+      "profit": 3600.0,
+      "roi": 550.0,
       "horses": [
         {
           "horse_name": "メイショウサザナミ",
@@ -1685,6 +1706,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 8,
+      "invested": 800,
       "horse_num_to_name": {
         "5": "ゴールドドレッサ",
         "15": "シュヴェスター",
@@ -1713,10 +1735,10 @@
       "combination_json": "[[10, 11]]",
       "notes": "EV上位2頭 Harville=0.028 平均EV=3.33",
       "created_at": "2026-04-25 10:45:07",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ホテルストリート",
@@ -1735,6 +1757,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "5": "ゴールドドレッサ",
         "15": "シュヴェスター",
@@ -1763,10 +1786,10 @@
       "combination_json": "[[10, 11]]",
       "notes": "EV上位2頭 ワイド Harville=0.028",
       "created_at": "2026-04-25 10:45:07",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ホテルストリート",
@@ -1785,6 +1808,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "5": "ゴールドドレッサ",
         "15": "シュヴェスター",
@@ -1813,10 +1837,10 @@
       "combination_json": "[[11, 10]]",
       "notes": "EV軸11→10 Harville=0.014",
       "created_at": "2026-04-25 10:45:07",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "メイショウサザナミ",
@@ -1835,6 +1859,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "5": "ゴールドドレッサ",
         "15": "シュヴェスター",
@@ -1863,10 +1888,10 @@
       "combination_json": "[[10, 11, 14]]",
       "notes": "合成EV=5.00 Harville=0.0118 軸EV=3.32 馬番=(10, 11, 14)",
       "created_at": "2026-04-25 10:45:07",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ホテルストリート",
@@ -1892,6 +1917,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "5": "ゴールドドレッサ",
         "15": "シュヴェスター",
@@ -1920,10 +1946,10 @@
       "combination_json": "[]",
       "notes": "全馬モデルスコア（馬分析タブ用）",
       "created_at": "2026-04-25 10:45:08",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "シュヴェスター",
@@ -2033,6 +2059,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "5": "ゴールドドレッサ",
         "15": "シュヴェスター",

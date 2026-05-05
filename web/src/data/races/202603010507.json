@@ -358,6 +358,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "カーヌスティ",
         "1": "グランテレーズ",
@@ -412,6 +413,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "6": "カーヌスティ",
         "1": "グランテレーズ",
@@ -439,7 +441,7 @@
       "created_at": "2026-04-25 10:45:09",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -459,6 +461,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "カーヌスティ",
         "1": "グランテレーズ",
@@ -486,7 +489,7 @@
       "created_at": "2026-04-25 10:45:09",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -506,6 +509,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "カーヌスティ",
         "1": "グランテレーズ",
@@ -567,6 +571,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "6": "カーヌスティ",
         "1": "グランテレーズ",
@@ -594,7 +599,7 @@
       "created_at": "2026-04-25 10:45:09",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -621,6 +626,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "カーヌスティ",
         "1": "グランテレーズ",
@@ -759,6 +765,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "6": "カーヌスティ",
         "1": "グランテレーズ",
@@ -799,6 +806,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "カーヌスティ",
         "1": "グランテレーズ",
@@ -825,9 +833,9 @@
       "notes": "EV>1.1 の10頭を複勝",
       "created_at": "2026-04-25 10:45:09",
       "is_hit": 1,
-      "payout": 1960.0,
-      "profit": 960.0,
-      "roi": 196.0,
+      "payout": 3700.0,
+      "profit": 2700.0,
+      "roi": 370.0,
       "horses": [
         {
           "horse_name": "キョラムン",
@@ -867,6 +875,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 10,
+      "invested": 1000,
       "horse_num_to_name": {
         "6": "カーヌスティ",
         "1": "グランテレーズ",
@@ -894,7 +903,7 @@
       "created_at": "2026-04-25 10:45:09",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -914,6 +923,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "カーヌスティ",
         "1": "グランテレーズ",
@@ -941,7 +951,7 @@
       "created_at": "2026-04-25 10:45:09",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -961,6 +971,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "カーヌスティ",
         "1": "グランテレーズ",
@@ -988,7 +999,7 @@
       "created_at": "2026-04-25 10:45:09",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1008,6 +1019,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "カーヌスティ",
         "1": "グランテレーズ",
@@ -1035,7 +1047,7 @@
       "created_at": "2026-04-25 10:45:09",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1062,6 +1074,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "カーヌスティ",
         "1": "グランテレーズ",
@@ -1179,6 +1192,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "6": "カーヌスティ",
         "1": "グランテレーズ",
@@ -1219,6 +1233,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "カーヌスティ",
         "1": "グランテレーズ",
@@ -1273,6 +1288,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "6": "カーヌスティ",
         "1": "グランテレーズ",
@@ -1300,7 +1316,7 @@
       "created_at": "2026-04-25 12:40:08",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1320,6 +1336,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "カーヌスティ",
         "1": "グランテレーズ",
@@ -1347,7 +1364,7 @@
       "created_at": "2026-04-25 12:40:08",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1367,6 +1384,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "カーヌスティ",
         "1": "グランテレーズ",
@@ -1428,6 +1446,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "6": "カーヌスティ",
         "1": "グランテレーズ",
@@ -1455,7 +1474,7 @@
       "created_at": "2026-04-25 12:40:08",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1482,6 +1501,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "カーヌスティ",
         "1": "グランテレーズ",
@@ -1620,6 +1640,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "6": "カーヌスティ",
         "1": "グランテレーズ",
@@ -1660,6 +1681,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "カーヌスティ",
         "1": "グランテレーズ",
@@ -1686,9 +1708,9 @@
       "notes": "EV>1.1 の10頭を複勝",
       "created_at": "2026-04-25 12:40:08",
       "is_hit": 1,
-      "payout": 1960.0,
-      "profit": 960.0,
-      "roi": 196.0,
+      "payout": 3700.0,
+      "profit": 2700.0,
+      "roi": 370.0,
       "horses": [
         {
           "horse_name": "キョラムン",
@@ -1728,6 +1750,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 10,
+      "invested": 1000,
       "horse_num_to_name": {
         "6": "カーヌスティ",
         "1": "グランテレーズ",
@@ -1755,7 +1778,7 @@
       "created_at": "2026-04-25 12:40:08",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1775,6 +1798,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "カーヌスティ",
         "1": "グランテレーズ",
@@ -1802,7 +1826,7 @@
       "created_at": "2026-04-25 12:40:08",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1822,6 +1846,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "カーヌスティ",
         "1": "グランテレーズ",
@@ -1849,7 +1874,7 @@
       "created_at": "2026-04-25 12:40:08",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1869,6 +1894,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "カーヌスティ",
         "1": "グランテレーズ",
@@ -1896,7 +1922,7 @@
       "created_at": "2026-04-25 12:40:08",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1923,6 +1949,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "6": "カーヌスティ",
         "1": "グランテレーズ",
@@ -2040,6 +2067,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "6": "カーヌスティ",
         "1": "グランテレーズ",

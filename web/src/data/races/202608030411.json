@@ -489,7 +489,7 @@
       "created_at": "2026-05-03 08:12:09",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -600.0,
+      "profit": -200.0,
       "roi": 0.0,
       "horses": [
         {
@@ -537,6 +537,7 @@
       ],
       "bet_form": "軸2頭ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -565,10 +566,10 @@
       "combination_json": "[[7]]",
       "notes": "確率1位 P(win)=0.10 odds=1.9 EV=0.19",
       "created_at": "2026-05-03 08:25:07",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -100.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 180.0,
+      "profit": 80.0,
+      "roi": 180.0,
       "horses": [
         {
           "horse_name": "クロワデュノール",
@@ -580,6 +581,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -608,10 +610,10 @@
       "combination_json": "[[7], [10], [11]]",
       "notes": "上位3頭を複勝",
       "created_at": "2026-05-03 08:25:07",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -300.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 330.0,
+      "profit": 30.0,
+      "roi": 110.00000000000001,
       "horses": [
         {
           "horse_name": "クロワデュノール",
@@ -637,6 +639,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -665,10 +668,10 @@
       "combination_json": "[[7, 10], [7, 11], [7, 12], [7, 15], [6, 7]]",
       "notes": "軸7番×相手5頭フォーメーション Harville最大=0.030",
       "created_at": "2026-05-03 08:25:07",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -500.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 91200.0,
+      "profit": 90700.0,
+      "roi": 18240.0,
       "horses": [
         {
           "horse_name": "クロワデュノール",
@@ -743,6 +746,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -771,10 +775,10 @@
       "combination_json": "[[7, 10], [7, 11], [7, 12], [7, 15], [6, 7]]",
       "notes": "軸7番×相手5頭ワイド Harville最大=0.030",
       "created_at": "2026-05-03 08:25:07",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -500.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 18200.0,
+      "profit": 17700.0,
+      "roi": 3640.0,
       "horses": [
         {
           "horse_name": "クロワデュノール",
@@ -849,6 +853,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -927,6 +932,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -957,7 +963,7 @@
       "created_at": "2026-05-03 08:25:07",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -600.0,
+      "profit": -200.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1005,6 +1011,7 @@
       ],
       "bet_form": "軸2頭ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -1035,7 +1042,7 @@
       "created_at": "2026-05-03 08:25:07",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -1000.0,
+      "profit": -1200.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1146,6 +1153,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 12,
+      "invested": 1200,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -1189,6 +1197,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -1246,6 +1255,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -1352,6 +1362,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -1458,6 +1469,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -1536,6 +1548,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -1566,7 +1579,7 @@
       "created_at": "2026-05-03 08:25:07",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1593,6 +1606,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -1650,6 +1664,7 @@
       ],
       "bet_form": "フォーメーション",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -1707,6 +1722,7 @@
       ],
       "bet_form": "2頭軸（1着固定）",
       "n_tickets": 12,
+      "invested": 1200,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -1848,6 +1864,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -1876,10 +1893,10 @@
       "combination_json": "[[7, 10], [7, 11], [10, 11], [7, 12], [10, 12], [7, 15], [10, 15]]",
       "notes": "2軸マルチ 軸=7,10 相手=[11, 12, 15] Harville最大=0.0167",
       "created_at": "2026-05-03 08:25:07",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -700.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 127680.0,
+      "profit": 126980.0,
+      "roi": 18240.0,
       "horses": [
         {
           "horse_name": "クロワデュノール",
@@ -1898,6 +1915,7 @@
       ],
       "bet_form": "フォーメーション",
       "n_tickets": 7,
+      "invested": 700,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -1926,10 +1944,10 @@
       "combination_json": "[[7, 10], [10, 7], [7, 11], [10, 11], [7, 12], [10, 12], [7, 15], [10, 15]]",
       "notes": "2軸マルチ 軸=7,10 相手=[11, 12, 15] Harville最大=0.0084",
       "created_at": "2026-05-03 08:25:07",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -800.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 160000.0,
+      "profit": 159200.0,
+      "roi": 20000.0,
       "horses": [
         {
           "horse_name": "クロワデュノール",
@@ -1948,6 +1966,7 @@
       ],
       "bet_form": "フォーメーション",
       "n_tickets": 8,
+      "invested": 800,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -2005,6 +2024,7 @@
       ],
       "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
+      "invested": 1200,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -2048,6 +2068,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -2076,10 +2097,10 @@
       "combination_json": "[[10], [12], [15]]",
       "notes": "上位3頭を複勝",
       "created_at": "2026-05-03 14:40:25",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -300.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 2820.0,
+      "profit": 2520.0,
+      "roi": 940.0,
       "horses": [
         {
           "horse_name": "マイネルカンパーナ",
@@ -2105,6 +2126,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -2133,10 +2155,10 @@
       "combination_json": "[[10, 12], [10, 15], [9, 10], [1, 10], [3, 10]]",
       "notes": "軸10番×相手5頭フォーメーション Harville最大=0.010",
       "created_at": "2026-05-03 14:40:25",
-      "is_hit": 1,
-      "payout": 5750.0,
-      "profit": 5250.0,
-      "roi": 1150.0,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "マイネルカンパーナ",
@@ -2211,6 +2233,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -2317,6 +2340,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -2395,6 +2419,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -2425,7 +2450,7 @@
       "created_at": "2026-05-03 14:40:25",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -1000.0,
+      "profit": -1200.0,
       "roi": 0.0,
       "horses": [
         {
@@ -2536,6 +2561,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 12,
+      "invested": 1200,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -2579,6 +2605,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -2636,6 +2663,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -2742,6 +2770,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -2848,6 +2877,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -2926,6 +2956,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -2956,7 +2987,7 @@
       "created_at": "2026-05-03 14:40:25",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -2983,6 +3014,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -3040,6 +3072,7 @@
       ],
       "bet_form": "軸2頭ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -3097,6 +3130,7 @@
       ],
       "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
+      "invested": 1200,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -3238,6 +3272,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -3266,10 +3301,10 @@
       "combination_json": "[[10, 12], [10, 15], [12, 15], [9, 10], [9, 12], [1, 10], [1, 12]]",
       "notes": "2軸マルチ 軸=10,12 相手=[15, 9, 1] Harville最大=0.0274",
       "created_at": "2026-05-03 14:40:25",
-      "is_hit": 1,
-      "payout": 8050.0,
-      "profit": 7350.0,
-      "roi": 1150.0,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -700.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "マイネルカンパーナ",
@@ -3288,6 +3323,7 @@
       ],
       "bet_form": "フォーメーション",
       "n_tickets": 7,
+      "invested": 700,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -3338,6 +3374,7 @@
       ],
       "bet_form": "フォーメーション",
       "n_tickets": 8,
+      "invested": 800,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",
@@ -3395,6 +3432,7 @@
       ],
       "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
+      "invested": 1200,
       "horse_num_to_name": {
         "7": "クロワデュノール",
         "15": "ヴェルテンベルク",

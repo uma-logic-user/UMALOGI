@@ -372,6 +372,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "10": "ソルトブリーズ",
         "4": "ヤマニンガラッシア",
@@ -410,6 +411,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "10": "ソルトブリーズ",
         "4": "ヤマニンガラッシア",
@@ -433,10 +435,10 @@
       "combination_json": "[]",
       "notes": "全馬モデルスコア（馬分析タブ用）",
       "created_at": "2026-04-12 08:15:24",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ロードマンハイム",
@@ -448,6 +450,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "10": "ソルトブリーズ",
         "4": "ヤマニンガラッシア",
@@ -486,6 +489,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "10": "ソルトブリーズ",
         "4": "ヤマニンガラッシア",
@@ -510,9 +514,9 @@
       "notes": "上位3頭を複勝",
       "created_at": "2026-04-12 13:10:27",
       "is_hit": 1,
-      "payout": 706.6666666666666,
-      "profit": 406.66666666666663,
-      "roi": 235.55555555555557,
+      "payout": 1950.0,
+      "profit": 1650.0,
+      "roi": 650.0,
       "horses": [
         {
           "horse_name": "ヤマニンガラッシア",
@@ -538,6 +542,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "10": "ソルトブリーズ",
         "4": "ヤマニンガラッシア",
@@ -563,7 +568,7 @@
       "created_at": "2026-04-12 13:10:27",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -576,6 +581,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "10": "ソルトブリーズ",
         "4": "ヤマニンガラッシア",
@@ -601,7 +607,7 @@
       "created_at": "2026-04-12 13:10:27",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -614,6 +620,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "10": "ソルトブリーズ",
         "4": "ヤマニンガラッシア",
@@ -659,6 +666,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "10": "ソルトブリーズ",
         "4": "ヤマニンガラッシア",
@@ -684,7 +692,7 @@
       "created_at": "2026-04-12 13:10:27",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -697,6 +705,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "10": "ソルトブリーズ",
         "4": "ヤマニンガラッシア",
@@ -763,6 +772,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "10": "ソルトブリーズ",
         "4": "ヤマニンガラッシア",
@@ -786,10 +796,10 @@
       "combination_json": "[]",
       "notes": "全馬モデルスコア（馬分析タブ用）",
       "created_at": "2026-04-12 13:10:27",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ヤマニンガラッシア",
@@ -864,6 +874,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "10": "ソルトブリーズ",
         "4": "ヤマニンガラッシア",

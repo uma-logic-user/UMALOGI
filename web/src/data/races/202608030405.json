@@ -398,6 +398,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",
@@ -422,10 +423,10 @@
       "combination_json": "[[10], [7], [9]]",
       "notes": "上位3頭を複勝",
       "created_at": "2026-05-03 08:12:05",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -300.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 1110.0,
+      "profit": 810.0,
+      "roi": 370.0,
       "horses": [
         {
           "horse_name": "ビロングトゥミー",
@@ -451,6 +452,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",
@@ -553,6 +555,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",
@@ -655,6 +658,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",
@@ -729,6 +733,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",
@@ -755,7 +760,7 @@
       "created_at": "2026-05-03 08:12:05",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -600.0,
+      "profit": -200.0,
       "roi": 0.0,
       "horses": [
         {
@@ -803,6 +808,7 @@
       ],
       "bet_form": "軸2頭ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",
@@ -829,7 +835,7 @@
       "created_at": "2026-05-03 08:12:05",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -1000.0,
+      "profit": -1200.0,
       "roi": 0.0,
       "horses": [
         {
@@ -940,6 +946,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 12,
+      "invested": 1200,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",
@@ -979,6 +986,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",
@@ -1003,10 +1011,10 @@
       "combination_json": "[[8], [7], [9]]",
       "notes": "確率上位3頭を複勝",
       "created_at": "2026-05-03 08:12:05",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -300.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 1950.0,
+      "profit": 1650.0,
+      "roi": 650.0,
       "horses": [
         {
           "horse_name": "メイショウショカツ",
@@ -1032,6 +1040,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",
@@ -1056,10 +1065,10 @@
       "combination_json": "[[7, 8], [8, 9], [8, 10], [5, 8], [6, 8]]",
       "notes": "軸8番×相手5頭フォーメーション Harville最大=0.060",
       "created_at": "2026-05-03 08:12:05",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -500.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 34300.0,
+      "profit": 33800.0,
+      "roi": 6859.999999999999,
       "horses": [
         {
           "horse_name": "ラミエルノムスコ",
@@ -1134,6 +1143,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",
@@ -1158,10 +1168,10 @@
       "combination_json": "[[7, 8], [8, 9], [8, 10], [5, 8], [6, 8]]",
       "notes": "軸8番×相手5頭ワイド Harville最大=0.060",
       "created_at": "2026-05-03 08:12:05",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -500.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 14100.0,
+      "profit": 13600.0,
+      "roi": 2820.0,
       "horses": [
         {
           "horse_name": "ラミエルノムスコ",
@@ -1236,6 +1246,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",
@@ -1310,6 +1321,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",
@@ -1336,7 +1348,7 @@
       "created_at": "2026-05-03 08:12:05",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1363,6 +1375,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",
@@ -1416,6 +1429,7 @@
       ],
       "bet_form": "軸1頭ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",
@@ -1469,6 +1483,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 12,
+      "invested": 1200,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",
@@ -1578,6 +1593,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",
@@ -1617,6 +1633,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",
@@ -1641,10 +1658,10 @@
       "combination_json": "[[10], [7], [9]]",
       "notes": "上位3頭を複勝",
       "created_at": "2026-05-03 11:40:23",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -300.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 1110.0,
+      "profit": 810.0,
+      "roi": 370.0,
       "horses": [
         {
           "horse_name": "ビロングトゥミー",
@@ -1670,6 +1687,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",
@@ -1772,6 +1790,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",
@@ -1874,6 +1893,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",
@@ -1948,6 +1968,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",
@@ -1974,7 +1995,7 @@
       "created_at": "2026-05-03 11:40:23",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -600.0,
+      "profit": -200.0,
       "roi": 0.0,
       "horses": [
         {
@@ -2022,6 +2043,7 @@
       ],
       "bet_form": "軸2頭ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",
@@ -2048,7 +2070,7 @@
       "created_at": "2026-05-03 11:40:23",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -1000.0,
+      "profit": -1200.0,
       "roi": 0.0,
       "horses": [
         {
@@ -2159,6 +2181,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 12,
+      "invested": 1200,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",
@@ -2185,7 +2208,7 @@
       "created_at": "2026-05-03 11:40:23",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -400.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -2198,6 +2221,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",
@@ -2222,10 +2246,10 @@
       "combination_json": "[[10], [9], [4]]",
       "notes": "確率上位3頭を複勝",
       "created_at": "2026-05-03 11:40:23",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -300.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 1110.0,
+      "profit": 810.0,
+      "roi": 370.0,
       "horses": [
         {
           "horse_name": "ビロングトゥミー",
@@ -2251,6 +2275,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",
@@ -2353,6 +2378,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",
@@ -2455,6 +2481,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",
@@ -2529,6 +2556,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",
@@ -2555,7 +2583,7 @@
       "created_at": "2026-05-03 11:40:23",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -2582,6 +2610,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",
@@ -2635,6 +2664,7 @@
       ],
       "bet_form": "軸1頭ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",
@@ -2688,6 +2718,7 @@
       ],
       "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
+      "invested": 1200,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",
@@ -2797,6 +2828,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",
@@ -2843,6 +2875,7 @@
       ],
       "bet_form": "フォーメーション",
       "n_tickets": 7,
+      "invested": 700,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",
@@ -2889,6 +2922,7 @@
       ],
       "bet_form": "フォーメーション",
       "n_tickets": 8,
+      "invested": 800,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",
@@ -2942,6 +2976,7 @@
       ],
       "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
+      "invested": 1200,
       "horse_num_to_name": {
         "9": "オックスアイ",
         "8": "メイショウショカツ",

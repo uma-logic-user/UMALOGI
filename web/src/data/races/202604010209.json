@@ -424,6 +424,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "レイバックスピン",
         "3": "コンアフェット",
@@ -450,9 +451,9 @@
       "notes": "上位3頭を複勝",
       "created_at": "2026-05-03 13:40:10",
       "is_hit": 1,
-      "payout": 390.0,
-      "profit": 90.0,
-      "roi": 130.0,
+      "payout": 720.0,
+      "profit": 420.0,
+      "roi": 240.0,
       "horses": [
         {
           "horse_name": "コンアフェット",
@@ -478,6 +479,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "4": "レイバックスピン",
         "3": "コンアフェット",
@@ -581,6 +583,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "4": "レイバックスピン",
         "3": "コンアフェット",
@@ -607,9 +610,9 @@
       "notes": "軸3番×相手5頭ワイド Harville最大=0.015",
       "created_at": "2026-05-03 13:40:10",
       "is_hit": 1,
-      "payout": 2200.0,
-      "profit": 1700.0,
-      "roi": 440.00000000000006,
+      "payout": 3100.0,
+      "profit": 2600.0,
+      "roi": 620.0,
       "horses": [
         {
           "horse_name": "ルージュマローネ",
@@ -684,6 +687,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "4": "レイバックスピン",
         "3": "コンアフェット",
@@ -759,6 +763,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "4": "レイバックスピン",
         "3": "コンアフェット",
@@ -786,7 +791,7 @@
       "created_at": "2026-05-03 13:40:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -600.0,
+      "profit": -200.0,
       "roi": 0.0,
       "horses": [
         {
@@ -834,6 +839,7 @@
       ],
       "bet_form": "軸2頭ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "4": "レイバックスピン",
         "3": "コンアフェット",
@@ -861,7 +867,7 @@
       "created_at": "2026-05-03 13:40:10",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -1000.0,
+      "profit": -1200.0,
       "roi": 0.0,
       "horses": [
         {
@@ -972,6 +978,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 12,
+      "invested": 1200,
       "horse_num_to_name": {
         "4": "レイバックスピン",
         "3": "コンアフェット",
@@ -1012,6 +1019,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "レイバックスピン",
         "3": "コンアフェット",
@@ -1066,6 +1074,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "4": "レイバックスピン",
         "3": "コンアフェット",
@@ -1169,6 +1178,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "4": "レイバックスピン",
         "3": "コンアフェット",
@@ -1272,6 +1282,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "4": "レイバックスピン",
         "3": "コンアフェット",
@@ -1347,6 +1358,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "4": "レイバックスピン",
         "3": "コンアフェット",
@@ -1374,7 +1386,7 @@
       "created_at": "2026-05-03 13:40:11",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1401,6 +1413,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "4": "レイバックスピン",
         "3": "コンアフェット",
@@ -1455,6 +1468,7 @@
       ],
       "bet_form": "フォーメーション",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "4": "レイバックスピン",
         "3": "コンアフェット",
@@ -1509,6 +1523,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 12,
+      "invested": 1200,
       "horse_num_to_name": {
         "4": "レイバックスピン",
         "3": "コンアフェット",
@@ -1626,6 +1641,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "4": "レイバックスピン",
         "3": "コンアフェット",
@@ -1673,6 +1689,7 @@
       ],
       "bet_form": "フォーメーション",
       "n_tickets": 7,
+      "invested": 700,
       "horse_num_to_name": {
         "4": "レイバックスピン",
         "3": "コンアフェット",
@@ -1720,6 +1737,7 @@
       ],
       "bet_form": "フォーメーション",
       "n_tickets": 8,
+      "invested": 800,
       "horse_num_to_name": {
         "4": "レイバックスピン",
         "3": "コンアフェット",
@@ -1774,6 +1792,7 @@
       ],
       "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
+      "invested": 1200,
       "horse_num_to_name": {
         "4": "レイバックスピン",
         "3": "コンアフェット",

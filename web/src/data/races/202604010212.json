@@ -489,7 +489,7 @@
       "created_at": "2026-05-03 08:11:57",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -600.0,
+      "profit": -200.0,
       "roi": 0.0,
       "horses": [
         {
@@ -537,6 +537,7 @@
       ],
       "bet_form": "軸2頭ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "3": "タケルハーロック",
         "10": "リッキースタイル",
@@ -580,6 +581,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "3": "タケルハーロック",
         "10": "リッキースタイル",
@@ -608,10 +610,10 @@
       "combination_json": "[[10], [13], [3]]",
       "notes": "上位3頭を複勝",
       "created_at": "2026-05-03 15:10:21",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -300.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 990.0,
+      "profit": 690.0,
+      "roi": 330.0,
       "horses": [
         {
           "horse_name": "リッキースタイル",
@@ -637,6 +639,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "3": "タケルハーロック",
         "10": "リッキースタイル",
@@ -665,10 +668,10 @@
       "combination_json": "[[10, 13], [3, 10], [8, 10], [10, 12], [6, 10]]",
       "notes": "軸10番×相手5頭フォーメーション Harville最大=0.010",
       "created_at": "2026-05-03 15:10:21",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -500.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 4150.0,
+      "profit": 3650.0,
+      "roi": 830.0000000000001,
       "horses": [
         {
           "horse_name": "リッキースタイル",
@@ -743,6 +746,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "3": "タケルハーロック",
         "10": "リッキースタイル",
@@ -771,10 +775,10 @@
       "combination_json": "[[10, 13], [3, 10], [8, 10], [10, 12], [6, 10]]",
       "notes": "軸10番×相手5頭ワイド Harville最大=0.010",
       "created_at": "2026-05-03 15:10:21",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -500.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 1850.0,
+      "profit": 1350.0,
+      "roi": 370.0,
       "horses": [
         {
           "horse_name": "リッキースタイル",
@@ -849,6 +853,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "3": "タケルハーロック",
         "10": "リッキースタイル",
@@ -927,6 +932,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "3": "タケルハーロック",
         "10": "リッキースタイル",
@@ -957,7 +963,7 @@
       "created_at": "2026-05-03 15:10:21",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -1000.0,
+      "profit": -1200.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1068,6 +1074,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 12,
+      "invested": 1200,
       "horse_num_to_name": {
         "3": "タケルハーロック",
         "10": "リッキースタイル",
@@ -1111,6 +1118,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "3": "タケルハーロック",
         "10": "リッキースタイル",
@@ -1168,6 +1176,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "3": "タケルハーロック",
         "10": "リッキースタイル",
@@ -1274,6 +1283,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "3": "タケルハーロック",
         "10": "リッキースタイル",
@@ -1380,6 +1390,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "3": "タケルハーロック",
         "10": "リッキースタイル",
@@ -1458,6 +1469,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "3": "タケルハーロック",
         "10": "リッキースタイル",
@@ -1488,7 +1500,7 @@
       "created_at": "2026-05-03 15:10:21",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1515,6 +1527,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "3": "タケルハーロック",
         "10": "リッキースタイル",
@@ -1572,6 +1585,7 @@
       ],
       "bet_form": "軸2頭ながし",
       "n_tickets": 5,
+      "invested": 500,
       "horse_num_to_name": {
         "3": "タケルハーロック",
         "10": "リッキースタイル",
@@ -1629,6 +1643,7 @@
       ],
       "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
+      "invested": 1200,
       "horse_num_to_name": {
         "3": "タケルハーロック",
         "10": "リッキースタイル",
@@ -1770,6 +1785,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "3": "タケルハーロック",
         "10": "リッキースタイル",
@@ -1798,10 +1814,10 @@
       "combination_json": "[[10, 13], [3, 10], [3, 13], [8, 10], [8, 13], [10, 12], [12, 13]]",
       "notes": "2軸マルチ 軸=10,13 相手=[3, 8, 12] Harville最大=0.0311",
       "created_at": "2026-05-03 15:10:21",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -700.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 5810.000000000001,
+      "profit": 5110.000000000001,
+      "roi": 830.0000000000001,
       "horses": [
         {
           "horse_name": "リッキースタイル",
@@ -1820,6 +1836,7 @@
       ],
       "bet_form": "フォーメーション",
       "n_tickets": 7,
+      "invested": 700,
       "horse_num_to_name": {
         "3": "タケルハーロック",
         "10": "リッキースタイル",
@@ -1870,6 +1887,7 @@
       ],
       "bet_form": "フォーメーション",
       "n_tickets": 8,
+      "invested": 800,
       "horse_num_to_name": {
         "3": "タケルハーロック",
         "10": "リッキースタイル",
@@ -1927,6 +1945,7 @@
       ],
       "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
+      "invested": 1200,
       "horse_num_to_name": {
         "3": "タケルハーロック",
         "10": "リッキースタイル",

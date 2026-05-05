@@ -463,10 +463,10 @@
       "combination_json": "[[0]]",
       "notes": "本命 P(win)=0.00 odds=1.0",
       "created_at": "2026-04-12 08:03:43",
-      "is_hit": 1,
-      "payout": 220.00000000000003,
-      "profit": 120.00000000000003,
-      "roi": 220.00000000000003,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ララファキュルテ",
@@ -478,6 +478,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "ララファキュルテ",
         "3": "セコンドトゥベスト",
@@ -509,10 +510,10 @@
       "combination_json": "[[0]]",
       "notes": "上位1頭を複勝",
       "created_at": "2026-04-12 08:03:43",
-      "is_hit": 1,
-      "payout": 190.0,
-      "profit": 90.0,
-      "roi": 190.0,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ララファキュルテ",
@@ -524,6 +525,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "11": "ララファキュルテ",
         "3": "セコンドトゥベスト",
@@ -555,10 +557,10 @@
       "combination_json": "[]",
       "notes": "全馬モデルスコア（馬分析タブ用）",
       "created_at": "2026-04-12 08:15:24",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ララファキュルテ",
@@ -570,6 +572,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "11": "ララファキュルテ",
         "3": "セコンドトゥベスト",

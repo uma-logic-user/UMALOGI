@@ -407,6 +407,42 @@ def _parse_combination_json(combo_json: str) -> list[tuple[int, ...]]:
         return []
 
 
+def _deduplicate_combos(
+    combos: list[tuple[int, ...]], bet_type: str
+) -> list[tuple[int, ...]]:
+    """
+    払戻キーが重複するコンボを先着順で除去する。
+
+    三連複・馬連・ワイドでは [3,14,11] と [14,3,11] が同一キー "3-11-14" に
+    なるため重複計上を防ぐ。三連単・馬単は順序が異なれば別キーなので重複なし。
+    """
+    seen: set[str] = set()
+    result: list[tuple[int, ...]] = []
+    for combo in combos:
+        key = _combo_to_payout_key(bet_type, combo)
+        if key is None:
+            result.append(combo)
+            continue
+        if key not in seen:
+            seen.add(key)
+            result.append(combo)
+    return result
+
+
+def _validate_investment(bet_type: str, n_tickets: int, invested: float) -> None:
+    """
+    投資額の妥当性チェック。
+
+    Raises:
+        ValueError: n_tickets=0 または invested<=0 の場合
+    """
+    if n_tickets <= 0 or invested <= 0:
+        raise ValueError(
+            f"[Evaluator] {bet_type}: 無効な投資額 invested={invested} "
+            f"(n_tickets={n_tickets}). combination_json を確認してください。"
+        )
+
+
 def _combo_to_payout_key(bet_type: str, combo: tuple[int, ...]) -> str | None:
     """馬番タプル → race_payouts.combination 文字列に変換。"""
     if not combo:
@@ -517,11 +553,20 @@ class Evaluator:
             horse_names = [h[0] for h in horses]
 
             # combination_json を早期解析（返還チェックにも使用）
-            parsed_combos = _parse_combination_json(pred.get("combination_json") or "")
+            raw_combos    = _parse_combination_json(pred.get("combination_json") or "")
+            # 払戻キー重複を排除（三連複・馬連・ワイドで発生しうる）
+            parsed_combos = _deduplicate_combos(raw_combos, bet_type)
 
-            # n_tickets を combination_json から導出 — recommended_bet は使わない
+            # n_tickets を重複排除済みコンボ数から導出
+            # ROI = payout / (n_tickets × 100) × 100 の分母を正確にするため
             n_tickets = len(parsed_combos) if parsed_combos else max(1, round(rec_bet / 100))
-            invested  = float(n_tickets * 100)  # 1コンボ = 100円
+            invested  = float(n_tickets * 100)  # 1コンボ = ¥100
+
+            try:
+                _validate_investment(bet_type, n_tickets, invested)
+            except ValueError as ve:
+                logger.warning("%s", ve)
+                errors.append(str(ve))
 
             # 返還チェック（CLAUDE.md: 馬番整数ベース優先）
             if parsed_combos:
@@ -555,13 +600,16 @@ class Evaluator:
             payout_per_100 = 0
 
             if parsed_combos:
+                # _deduplicate_combos 済みのため各 key は一意だが念のため再チェック
+                seen_keys: set[str] = set()
                 for combo in parsed_combos:
                     key = _combo_to_payout_key(bet_type, combo)
-                    if key is not None:
+                    if key is not None and key not in seen_keys:
+                        seen_keys.add(key)
                         p = payouts.get((bet_type, key), 0)
                         if p > 0:
                             hit = True
-                            payout_per_100 += p  # 複数combo的中時は合算（max→sum）
+                            payout_per_100 += p  # 複数combo的中時は合算
             else:
                 # combination_json なし: 馬番整数で厳格判定（文字列比較禁止）
                 predicted_nums = [horse_numbers[n] for n in horse_names if n in horse_numbers]

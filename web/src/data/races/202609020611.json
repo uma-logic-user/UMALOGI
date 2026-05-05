@@ -664,6 +664,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "15": "スターアニス",
         "5": "ギャラボーグ",
@@ -696,9 +697,9 @@
       "notes": "上位3頭を複勝",
       "created_at": "2026-04-12 08:14:11",
       "is_hit": 1,
-      "payout": 513.3333333333334,
-      "profit": 213.33333333333337,
-      "roi": 171.11111111111111,
+      "payout": 3180.0,
+      "profit": 2880.0,
+      "roi": 1060.0,
       "horses": [
         {
           "horse_name": "ジッピーチューン",
@@ -724,6 +725,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "15": "スターアニス",
         "5": "ギャラボーグ",
@@ -757,7 +759,7 @@
       "created_at": "2026-04-12 08:14:11",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -770,6 +772,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "15": "スターアニス",
         "5": "ギャラボーグ",
@@ -803,7 +806,7 @@
       "created_at": "2026-04-12 08:14:11",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -816,6 +819,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "15": "スターアニス",
         "5": "ギャラボーグ",
@@ -869,6 +873,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "15": "スターアニス",
         "5": "ギャラボーグ",
@@ -902,7 +907,7 @@
       "created_at": "2026-04-12 08:14:11",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -915,6 +920,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "15": "スターアニス",
         "5": "ギャラボーグ",
@@ -989,6 +995,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "15": "スターアニス",
         "5": "ギャラボーグ",
@@ -1020,10 +1027,10 @@
       "combination_json": "[]",
       "notes": "全馬モデルスコア（馬分析タブ用）",
       "created_at": "2026-04-12 08:14:11",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ジッピーチューン",
@@ -1154,6 +1161,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "15": "スターアニス",
         "5": "ギャラボーグ",
@@ -1187,7 +1195,7 @@
       "created_at": "2026-04-12 14:40:38",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1200,6 +1208,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "15": "スターアニス",
         "5": "ギャラボーグ",
@@ -1232,9 +1241,9 @@
       "notes": "上位3頭を複勝",
       "created_at": "2026-04-12 14:40:38",
       "is_hit": 1,
-      "payout": 1026.6666666666667,
-      "profit": 726.6666666666667,
-      "roi": 342.22222222222223,
+      "payout": 1440.0,
+      "profit": 1140.0,
+      "roi": 480.0,
       "horses": [
         {
           "horse_name": "ギャラボーグ",
@@ -1260,6 +1269,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "15": "スターアニス",
         "5": "ギャラボーグ",
@@ -1293,7 +1303,7 @@
       "created_at": "2026-04-12 14:40:38",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1306,6 +1316,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "15": "スターアニス",
         "5": "ギャラボーグ",
@@ -1339,7 +1350,7 @@
       "created_at": "2026-04-12 14:40:38",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1352,6 +1363,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "15": "スターアニス",
         "5": "ギャラボーグ",
@@ -1405,6 +1417,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "15": "スターアニス",
         "5": "ギャラボーグ",
@@ -1438,7 +1451,7 @@
       "created_at": "2026-04-12 14:40:38",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1451,6 +1464,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "15": "スターアニス",
         "5": "ギャラボーグ",
@@ -1525,6 +1539,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "15": "スターアニス",
         "5": "ギャラボーグ",
@@ -1556,10 +1571,10 @@
       "combination_json": "[]",
       "notes": "全馬モデルスコア（馬分析タブ用）",
       "created_at": "2026-04-12 14:40:38",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ギャラボーグ",
@@ -1690,6 +1705,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "15": "スターアニス",
         "5": "ギャラボーグ",

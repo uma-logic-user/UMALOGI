@@ -509,6 +509,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "1": "メイショウハンター",
         "3": "アラムシャピラス",
@@ -539,9 +540,9 @@
       "notes": "上位3頭を複勝",
       "created_at": "2026-04-11 12:25:23",
       "is_hit": 1,
-      "payout": 246.66666666666669,
-      "profit": -53.333333333333314,
-      "roi": 82.22222222222223,
+      "payout": 1410.0,
+      "profit": 1110.0,
+      "roi": 470.0,
       "horses": [
         {
           "horse_name": "卍",
@@ -574,6 +575,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "1": "メイショウハンター",
         "3": "アラムシャピラス",
@@ -605,7 +607,7 @@
       "created_at": "2026-04-11 12:25:23",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -625,6 +627,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "1": "メイショウハンター",
         "3": "アラムシャピラス",
@@ -656,7 +659,7 @@
       "created_at": "2026-04-11 12:25:23",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -690,6 +693,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "1": "メイショウハンター",
         "3": "アラムシャピラス",
@@ -748,6 +752,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "1": "メイショウハンター",
         "3": "アラムシャピラス",
@@ -779,7 +784,7 @@
       "created_at": "2026-04-11 12:25:23",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -799,6 +804,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "1": "メイショウハンター",
         "3": "アラムシャピラス",
@@ -878,6 +884,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "1": "メイショウハンター",
         "3": "アラムシャピラス",
@@ -957,6 +964,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "1": "メイショウハンター",
         "3": "アラムシャピラス",
@@ -987,9 +995,9 @@
       "notes": "EV>1.0 の9頭を複勝",
       "created_at": "2026-04-11 12:25:23",
       "is_hit": 1,
-      "payout": 246.66666666666669,
-      "profit": -653.3333333333333,
-      "roi": 27.40740740740741,
+      "payout": 6660.0,
+      "profit": 5760.0,
+      "roi": 740.0,
       "horses": [
         {
           "horse_name": "卍",
@@ -1036,6 +1044,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 9,
+      "invested": 900,
       "horse_num_to_name": {
         "1": "メイショウハンター",
         "3": "アラムシャピラス",
@@ -1067,7 +1076,7 @@
       "created_at": "2026-04-11 12:25:23",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1087,6 +1096,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "1": "メイショウハンター",
         "3": "アラムシャピラス",
@@ -1118,7 +1128,7 @@
       "created_at": "2026-04-11 12:25:23",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1138,6 +1148,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "1": "メイショウハンター",
         "3": "アラムシャピラス",
@@ -1169,7 +1180,7 @@
       "created_at": "2026-04-11 12:25:23",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1203,6 +1214,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "1": "メイショウハンター",
         "3": "アラムシャピラス",
@@ -1234,7 +1246,7 @@
       "created_at": "2026-04-11 12:25:23",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1254,6 +1266,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "1": "メイショウハンター",
         "3": "アラムシャピラス",

@@ -478,6 +478,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "3": "リラ",
         "6": "グランマエストロ",
@@ -510,9 +511,9 @@
       "notes": "上位3頭を複勝",
       "created_at": "2026-04-25 10:45:11",
       "is_hit": 1,
-      "payout": 519.0,
-      "profit": 219.0,
-      "roi": 173.0,
+      "payout": 1230.0,
+      "profit": 930.0,
+      "roi": 409.99999999999994,
       "horses": [
         {
           "horse_name": "シエラモレーナ",
@@ -538,6 +539,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "3": "リラ",
         "6": "グランマエストロ",
@@ -571,7 +573,7 @@
       "created_at": "2026-04-25 10:45:11",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -591,6 +593,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "3": "リラ",
         "6": "グランマエストロ",
@@ -624,7 +627,7 @@
       "created_at": "2026-04-25 10:45:11",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -644,6 +647,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "3": "リラ",
         "6": "グランマエストロ",
@@ -711,6 +715,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "3": "リラ",
         "6": "グランマエストロ",
@@ -855,6 +860,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "3": "リラ",
         "6": "グランマエストロ",
@@ -901,6 +907,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "3": "リラ",
         "6": "グランマエストロ",
@@ -932,10 +939,10 @@
       "combination_json": "[[10], [11], [9], [13], [15], [14], [17], [12], [16], [18], [6], [8], [3], [7], [4], [5], [2], [1]]",
       "notes": "EV>1.1 の18頭を複勝",
       "created_at": "2026-04-25 10:45:11",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -1000.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 5200.0,
+      "profit": 3400.0,
+      "roi": 288.88888888888886,
       "horses": [
         {
           "horse_name": "ノブピースオブラブ",
@@ -975,6 +982,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 18,
+      "invested": 1800,
       "horse_num_to_name": {
         "3": "リラ",
         "6": "グランマエストロ",
@@ -1008,7 +1016,7 @@
       "created_at": "2026-04-25 10:45:11",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1028,6 +1036,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "3": "リラ",
         "6": "グランマエストロ",
@@ -1061,7 +1070,7 @@
       "created_at": "2026-04-25 10:45:11",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1081,6 +1090,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "3": "リラ",
         "6": "グランマエストロ",
@@ -1114,7 +1124,7 @@
       "created_at": "2026-04-25 10:45:11",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1134,6 +1144,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "3": "リラ",
         "6": "グランマエストロ",
@@ -1167,7 +1178,7 @@
       "created_at": "2026-04-25 10:45:11",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -300.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1194,6 +1205,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "3": "リラ",
         "6": "グランマエストロ",
@@ -1359,6 +1371,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "3": "リラ",
         "6": "グランマエストロ",
@@ -1405,6 +1418,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "3": "リラ",
         "6": "グランマエストロ",
@@ -1437,9 +1451,9 @@
       "notes": "上位3頭を複勝",
       "created_at": "2026-04-25 11:40:19",
       "is_hit": 1,
-      "payout": 519.0,
-      "profit": 219.0,
-      "roi": 173.0,
+      "payout": 1230.0,
+      "profit": 930.0,
+      "roi": 409.99999999999994,
       "horses": [
         {
           "horse_name": "シエラモレーナ",
@@ -1465,6 +1479,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
+      "invested": 300,
       "horse_num_to_name": {
         "3": "リラ",
         "6": "グランマエストロ",
@@ -1498,7 +1513,7 @@
       "created_at": "2026-04-25 11:40:19",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1518,6 +1533,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "3": "リラ",
         "6": "グランマエストロ",
@@ -1551,7 +1567,7 @@
       "created_at": "2026-04-25 11:40:19",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1571,6 +1587,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "3": "リラ",
         "6": "グランマエストロ",
@@ -1638,6 +1655,7 @@
       ],
       "bet_form": "軸ながし",
       "n_tickets": 2,
+      "invested": 200,
       "horse_num_to_name": {
         "3": "リラ",
         "6": "グランマエストロ",
@@ -1782,6 +1800,7 @@
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 6,
+      "invested": 600,
       "horse_num_to_name": {
         "3": "リラ",
         "6": "グランマエストロ",
@@ -1828,6 +1847,7 @@
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "3": "リラ",
         "6": "グランマエストロ",
@@ -1859,10 +1879,10 @@
       "combination_json": "[[10], [11], [9], [13], [15], [14], [17], [12], [16], [18], [6], [8], [3], [7], [4], [5], [2], [1]]",
       "notes": "EV>1.1 の18頭を複勝",
       "created_at": "2026-04-25 11:40:19",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -800.0,
-      "roi": 0.0,
+      "is_hit": 1,
+      "payout": 4160.0,
+      "profit": 2360.0,
+      "roi": 231.1111111111111,
       "horses": [
         {
           "horse_name": "ノブピースオブラブ",
@@ -1902,6 +1922,7 @@
       ],
       "bet_form": "複勝",
       "n_tickets": 18,
+      "invested": 1800,
       "horse_num_to_name": {
         "3": "リラ",
         "6": "グランマエストロ",
@@ -1935,7 +1956,7 @@
       "created_at": "2026-04-25 11:40:19",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -1955,6 +1976,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "3": "リラ",
         "6": "グランマエストロ",
@@ -1988,7 +2010,7 @@
       "created_at": "2026-04-25 11:40:19",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -2008,6 +2030,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "3": "リラ",
         "6": "グランマエストロ",
@@ -2041,7 +2064,7 @@
       "created_at": "2026-04-25 11:40:19",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -2061,6 +2084,7 @@
       ],
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "3": "リラ",
         "6": "グランマエストロ",
@@ -2094,7 +2118,7 @@
       "created_at": "2026-04-25 11:40:19",
       "is_hit": 0,
       "payout": 0.0,
-      "profit": -200.0,
+      "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
@@ -2121,6 +2145,7 @@
       ],
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "3": "リラ",
         "6": "グランマエストロ",
@@ -2286,6 +2311,7 @@
       ],
       "bet_form": "馬分析",
       "n_tickets": 0,
+      "invested": 0,
       "horse_num_to_name": {
         "3": "リラ",
         "6": "グランマエストロ",
