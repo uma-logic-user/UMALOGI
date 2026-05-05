@@ -8,15 +8,68 @@ X (Twitter) ノーティファイア
   X_ACCESS_TOKEN_SECRET : Access Token Secret
 
 tweepy v4 を使用。画像は media_upload → media_id で添付。
+
+レート制限:
+  X Free Plan: 1,500 ツイート/月。RateLimiter で月次カウントを管理する。
+  カウントは data/x_rate_count.json に永続化。
 """
 
 from __future__ import annotations
 
+import json
 import logging
 import os
+from calendar import monthrange
+from datetime import date
 from pathlib import Path
 
 logger = logging.getLogger(__name__)
+
+_ROOT = Path(__file__).resolve().parents[2]
+_RATE_FILE = _ROOT / "data" / "x_rate_count.json"
+_MONTHLY_LIMIT = 1500
+
+
+class _RateLimiter:
+    """月次ツイート数を管理し、Free Plan の 1,500 件/月 制限を超えないようにする。"""
+
+    def __init__(self) -> None:
+        self._data: dict[str, int] = self._load()
+
+    def _load(self) -> dict[str, int]:
+        try:
+            if _RATE_FILE.exists():
+                with open(_RATE_FILE, encoding="utf-8") as f:
+                    return json.load(f)
+        except Exception:
+            pass
+        return {}
+
+    def _save(self) -> None:
+        try:
+            _RATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+            with open(_RATE_FILE, "w", encoding="utf-8") as f:
+                json.dump(self._data, f)
+        except Exception as e:
+            logger.warning("[Twitter] レートカウント保存失敗: %s", e)
+
+    def _key(self) -> str:
+        d = date.today()
+        return f"{d.year}-{d.month:02d}"
+
+    def remaining(self) -> int:
+        return _MONTHLY_LIMIT - self._data.get(self._key(), 0)
+
+    def can_post(self) -> bool:
+        return self.remaining() > 0
+
+    def increment(self) -> None:
+        key = self._key()
+        self._data[key] = self._data.get(key, 0) + 1
+        self._save()
+
+    def current_count(self) -> int:
+        return self._data.get(self._key(), 0)
 
 try:
     import tweepy  # type: ignore[import-untyped]
@@ -51,6 +104,7 @@ class TwitterNotifier(BaseNotifier):
 
         self._client:  "tweepy.Client | None"  = None
         self._api_v1:  "tweepy.API | None"     = None  # 画像アップロード用
+        self._rate_limiter = _RateLimiter()
 
         if enabled:
             self._init_clients()
@@ -84,6 +138,13 @@ class TwitterNotifier(BaseNotifier):
         if not _TWEEPY_AVAILABLE or self._client is None:
             return False
 
+        if not self._rate_limiter.can_post():
+            logger.warning(
+                "[Twitter] 月次制限到達 (%d/%d)。投稿をスキップします。",
+                self._rate_limiter.current_count(), _MONTHLY_LIMIT,
+            )
+            return False
+
         # ツイート本文を組み立て（280文字以内に収める）
         text = f"{message.title}\n\n{message.body}"
         if message.url:
@@ -106,8 +167,49 @@ class TwitterNotifier(BaseNotifier):
                 text=text,
                 media_ids=media_ids,
             )
-            logger.info("[Twitter] 投稿成功: tweet_id=%s", resp.data.get("id"))
+            self._rate_limiter.increment()
+            logger.info(
+                "[Twitter] 投稿成功: tweet_id=%s  月次残り %d/%d",
+                resp.data.get("id"),
+                self._rate_limiter.remaining(),
+                _MONTHLY_LIMIT,
+            )
             return True
         except Exception as e:
             logger.error("[Twitter] 投稿失敗: %s", e)
             return False
+
+    def post_text(self, text: str, image_path: str | None = None) -> bool:
+        """プレーンテキストを X に投稿する（weekend_batch から直接呼ぶ用）。"""
+        from .base import NotifyMessage
+        msg = NotifyMessage(title="", body=text, image_path=image_path or "")
+        # title+body で重複改行が入るため text を直接使う
+        if not _TWEEPY_AVAILABLE or self._client is None:
+            return False
+        if not self._rate_limiter.can_post():
+            logger.warning("[Twitter] 月次制限到達。投稿スキップ。")
+            return False
+        if len(text) > _MAX_CHARS:
+            text = text[: _MAX_CHARS - 3] + "..."
+
+        media_ids: list[int] | None = None
+        if image_path and Path(image_path).exists() and self._api_v1:
+            try:
+                media = self._api_v1.media_upload(image_path)
+                media_ids = [media.media_id]
+            except Exception as e:
+                logger.warning("[Twitter] 画像アップロード失敗: %s", e)
+
+        try:
+            resp = self._client.create_tweet(text=text, media_ids=media_ids)
+            self._rate_limiter.increment()
+            logger.info("[Twitter] post_text 成功: tweet_id=%s", resp.data.get("id"))
+            return True
+        except Exception as e:
+            logger.error("[Twitter] post_text 失敗: %s", e)
+            return False
+
+    @property
+    def rate_remaining(self) -> int:
+        """今月の残り投稿可能件数を返す。"""
+        return self._rate_limiter.remaining()

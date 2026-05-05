@@ -587,4 +587,27 @@ DDL_STATEMENTS: list[str] = [
               AND    h2.training_date != ''
           )
     """,
+
+    # ================================================================
+    # ── 運用層 ────────────────────────────────────────────────────
+    # ================================================================
+
+    # batch_runs: 週末バッチの実行ログ（Pre/Post 両フェーズ）
+    """
+    CREATE TABLE IF NOT EXISTS batch_runs (
+        id          INTEGER PRIMARY KEY AUTOINCREMENT,
+        run_date    TEXT    NOT NULL,               -- YYYY-MM-DD
+        phase       TEXT    NOT NULL,               -- 'pre' | 'post'
+        status      TEXT    NOT NULL DEFAULT 'running',  -- 'running'|'success'|'partial'|'failed'
+        note_ok     INTEGER NOT NULL DEFAULT 0,     -- note 下書き保存成功
+        umanity_ok  INTEGER NOT NULL DEFAULT 0,     -- ウマニティ投稿成功件数
+        x_ok        INTEGER NOT NULL DEFAULT 0,     -- X 投稿成功件数
+        error_msg   TEXT,
+        started_at  TEXT    NOT NULL DEFAULT (datetime('now','localtime')),
+        finished_at TEXT,
+        UNIQUE (run_date, phase)
+    )
+    """,
+
+    "CREATE INDEX IF NOT EXISTS idx_batch_runs_date ON batch_runs(run_date)",
 ]
