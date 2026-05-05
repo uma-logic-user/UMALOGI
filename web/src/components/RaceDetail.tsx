@@ -202,7 +202,7 @@ export default function RaceDetail({ race, predictions }: Props) {
       {/* ── AI予想タブ ────────────────────────────── */}
       {tab === 'predictions' && (
         hasPredictions
-          ? <PredictionsPanel predictions={predictions} limit={200} />
+          ? <PredictionsPanel predictions={predictions} limit={200} payouts={race.payouts ?? []} />
           : (
             <div className="neon-card p-12 text-center">
               <div className="text-[var(--text-muted)] text-base tracking-widest">
