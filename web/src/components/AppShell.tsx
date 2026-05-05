@@ -10,8 +10,9 @@ import TabView             from './TabView'
 import FinancialDashboard  from './FinancialDashboard'
 import Win5Panel           from './Win5Panel'
 import GachiHits           from './GachiHits'
+import ConditionAnalysis   from './ConditionAnalysis'
 
-type View = 'race' | 'hits' | 'dashboard' | 'financial' | 'win5' | 'gachi'
+type View = 'race' | 'hits' | 'dashboard' | 'financial' | 'win5' | 'gachi' | 'condition'
 
 interface Summary {
   total_races_in_db: number
@@ -32,6 +33,8 @@ export default function AppShell() {
   const [win5Data,      setWin5Data]      = useState<any[]>([])
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [gachiHits,     setGachiHits]     = useState<any[]>([])
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [conditionData, setConditionData] = useState<any>(null)
   const [loading,       setLoading]       = useState(true)
   const [error,         setError]         = useState<string | null>(null)
 
@@ -41,18 +44,19 @@ export default function AppShell() {
 
     async function fetchAll() {
       try {
-        const [racesRes, predsRes, summaryRes, finRes, gachiRes, win5Res] = await Promise.all([
+        const [racesRes, predsRes, summaryRes, finRes, gachiRes, win5Res, condRes] = await Promise.all([
           fetch('/api/races'),
           fetch('/api/predictions'),
           fetch('/api/summary'),
           fetch('/api/financial'),
           fetch('/api/gachi'),
           fetch('/api/win5'),
+          fetch('/api/condition'),
         ])
 
         if (cancelled) return
 
-        const [racesData, predsData, summaryData, finData, gachiData, win5RawData] =
+        const [racesData, predsData, summaryData, finData, gachiData, win5RawData, condData] =
           await Promise.all([
             racesRes.json(),
             predsRes.json(),
@@ -60,6 +64,7 @@ export default function AppShell() {
             finRes.json(),
             gachiRes.json(),
             win5Res.json(),
+            condRes.json(),
           ])
 
         if (cancelled) return
@@ -70,6 +75,7 @@ export default function AppShell() {
         setFinancialData(finData)
         setGachiHits(gachiData)
         setWin5Data(win5RawData)
+        setConditionData(condData)
       } catch (e) {
         if (!cancelled) setError(String(e))
       } finally {
@@ -201,6 +207,15 @@ export default function AppShell() {
               </span>
             )}
           </button>
+          <button
+            className={`sidebar-special-btn ${view === 'condition' ? 'active' : ''}`}
+            onClick={() => setView('condition')}
+          >
+            <span style={{ color: '#38bdf8', fontSize: '0.9rem' }}>📊</span>
+            <span style={{ color: view === 'condition' ? '#38bdf8' : 'var(--text-primary)' }}>
+              得意条件分析
+            </span>
+          </button>
         </div>
 
         {/* レースツリー */}
@@ -253,6 +268,9 @@ export default function AppShell() {
         )}
         {view === 'gachi' && (
           <GachiHits data={gachiHits} />
+        )}
+        {view === 'condition' && (
+          <ConditionAnalysis data={conditionData} />
         )}
       </main>
     </div>

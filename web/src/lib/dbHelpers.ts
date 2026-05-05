@@ -25,22 +25,26 @@ export function rowToObj(row: Record<string, unknown>): Record<string, unknown> 
 }
 
 /**
- * combination_json を昇順ソートして再シリアライズする。
+ * combination_json を正規化してシリアライズする。
+ * 無順券種(馬連/ワイド/三連複): 各コンボ内部を昇順ソート → 外側をソート
+ * 有順券種(馬単/三連単): 各コンボ内部の順序を保持 → 外側のみソート
  * パース失敗時は元の文字列をそのまま返す。
  */
-export function sortedCombinations(json: unknown): string {
+export function sortedCombinations(json: unknown, betType?: string): string {
   if (!json || typeof json !== 'string') return '[]'
   try {
     const raw: number[][] = JSON.parse(json)
-    const sorted = raw
-      .map(c => [...c].sort((a, b) => a - b))
+    if (!Array.isArray(raw)) return String(json)
+    const isOrdered = betType === '馬単' || betType === '三連単'
+    const normalized = raw
+      .map(c => isOrdered ? [...c] : [...c].sort((a, b) => a - b))
       .sort((a, b) => {
         for (let i = 0; i < Math.min(a.length, b.length); i++) {
           if (a[i] !== b[i]) return a[i] - b[i]
         }
         return a.length - b.length
       })
-    return JSON.stringify(sorted)
+    return JSON.stringify(normalized)
   } catch {
     return String(json)
   }
@@ -77,10 +81,16 @@ export function identifyBetForm(combinationJson: unknown, betType: string): [str
 
   if (betType === '三連単') {
     const firsts = new Set(combos.map(c => c[0]))
+    // ボックス: N頭の全順列 N*(N-1)*(N-2)
     if (firsts.size === num && num >= 3 && n === num * (num - 1) * (num - 2))
       return [`${num}頭ボックス`, n]
-    if (firsts.size === 2) return ['2頭軸マルチ', n]
-    if (firsts.size === 1) return ['1頭軸マルチ', n]
+    // 軸馬判定: 全コンボに必ず含まれる馬の数で判定（マルチ = 位置不問）
+    const alwaysIn = [...allHorses].filter(h => combos.every(c => c.includes(h)))
+    if (alwaysIn.length >= 2) return ['2頭軸マルチ', n]
+    if (alwaysIn.length === 1) return ['1頭軸マルチ', n]
+    // 1着固定パターン（マルチ不使用）
+    if (firsts.size === 2) return ['2頭軸（1着固定）', n]
+    if (firsts.size === 1) return ['1頭軸（1着固定）', n]
     return ['フォーメーション', n]
   }
   if (betType === '三連複') {

@@ -94,7 +94,7 @@ export async function GET(
       const [betForm, nTickets] = identifyBetForm(comboJson, betType)
       return {
         ...pd,
-        combination_json:  sortedCombinations(comboJson),
+        combination_json:  sortedCombinations(comboJson, betType),
         bet_form:          betForm,
         n_tickets:         nTickets,
         horses:            (getHorses.all(race_id, race_id, pd.prediction_id) as Record<string, unknown>[]).map(rowToObj),

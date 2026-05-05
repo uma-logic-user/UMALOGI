@@ -123,12 +123,17 @@ def _identify_bet_form(combination_json: str | None, bet_type: str) -> tuple[str
         # ボックス: N頭の全順列 N*(N-1)*(N-2)
         if len(firsts) == num and num >= 3 and n == num * (num - 1) * (num - 2):
             return f"{num}頭ボックス", n
-        # 2頭軸マルチ: 1着が常に同じ2頭
-        if len(firsts) == 2:
+        # 軸馬判定: 全コンボに必ず含まれる馬の数で判定（マルチ = 位置不問）
+        always_in = [h for h in all_horses if all(h in c for c in combos)]
+        if len(always_in) >= 2:
             return "2頭軸マルチ", n
-        # 1頭軸マルチ: 1着が常に同じ1頭
-        if len(firsts) == 1:
+        if len(always_in) == 1:
             return "1頭軸マルチ", n
+        # 1着固定パターン（マルチ不使用）
+        if len(firsts) == 2:
+            return "2頭軸（1着固定）", n
+        if len(firsts) == 1:
+            return "1頭軸（1着固定）", n
         return "フォーメーション", n
 
     if bet_type == "三連複":
@@ -1092,6 +1097,93 @@ def export_financial(conn: sqlite3.Connection) -> dict:
     return output
 
 
+def export_condition_analysis(conn: sqlite3.Connection) -> dict:
+    """
+    過去2年分のバックテスト結果から「競馬場×距離×馬場状態×モデル」ごとの
+    ROI・的中率を集計して返す。最低3件以上のデータがある条件のみ出力。
+    """
+    import datetime
+
+    base_from = """
+        FROM predictions p
+        JOIN races r ON p.race_id = r.race_id
+        JOIN prediction_results pr ON p.id = pr.prediction_id
+        WHERE r.date >= date('now', '-2 years')
+          AND pr.id IS NOT NULL
+    """
+
+    dist_case = """
+        CASE
+            WHEN r.distance IS NULL OR r.distance = 0 THEN '不明'
+            WHEN r.distance < 1400  THEN '短距離(<1400m)'
+            WHEN r.distance <= 1800 THEN 'マイル(1400-1800m)'
+            WHEN r.distance <= 2200 THEN '中距離(1801-2200m)'
+            ELSE '長距離(>2200m)'
+        END
+    """
+
+    def _agg(group_expr: str, group_alias: str) -> list[dict]:
+        sql = f"""
+        SELECT
+            ({group_expr}) AS {group_alias},
+            p.model_type,
+            COUNT(pr.id)  AS total_bets,
+            COALESCE(SUM(pr.is_hit), 0) AS hits,
+            ROUND(CAST(SUM(pr.is_hit) AS REAL)
+                  / NULLIF(COUNT(pr.id), 0) * 100, 1) AS hit_rate,
+            COALESCE(SUM(p.recommended_bet), 0)  AS total_invested,
+            COALESCE(SUM(pr.payout), 0)          AS total_payout,
+            ROUND(COALESCE(SUM(pr.payout), 0)
+                  / NULLIF(SUM(p.recommended_bet), 0) * 100, 1) AS roi
+        {base_from}
+        GROUP BY ({group_expr}), p.model_type
+        HAVING COUNT(pr.id) >= 3
+        ORDER BY roi DESC
+        """
+        cur = conn.execute(sql)
+        cols = [d[0] for d in cur.description]
+        return [dict(zip(cols, row)) for row in cur.fetchall()]
+
+    by_venue     = _agg("r.venue",                           "venue")
+    by_distance  = _agg(dist_case,                            "distance_cat")
+    by_surface   = _agg("COALESCE(r.surface, '不明')",       "surface")
+    by_condition = _agg("COALESCE(r.condition, '不明')",     "track_condition")
+
+    combined_sql = f"""
+    SELECT
+        r.venue,
+        ({dist_case})                        AS distance_cat,
+        COALESCE(r.surface, '不明')          AS surface,
+        COALESCE(r.condition, '不明')        AS track_condition,
+        p.model_type,
+        COUNT(pr.id)                         AS total_bets,
+        COALESCE(SUM(pr.is_hit), 0)          AS hits,
+        ROUND(CAST(SUM(pr.is_hit) AS REAL)
+              / NULLIF(COUNT(pr.id), 0) * 100, 1) AS hit_rate,
+        COALESCE(SUM(p.recommended_bet), 0)  AS total_invested,
+        COALESCE(SUM(pr.payout), 0)          AS total_payout,
+        ROUND(COALESCE(SUM(pr.payout), 0)
+              / NULLIF(SUM(p.recommended_bet), 0) * 100, 1) AS roi
+    {base_from}
+    GROUP BY r.venue, distance_cat, r.surface, r.condition, p.model_type
+    HAVING COUNT(pr.id) >= 3
+    ORDER BY roi DESC
+    LIMIT 200
+    """
+    cur = conn.execute(combined_sql)
+    cols = [d[0] for d in cur.description]
+    combined = [dict(zip(cols, row)) for row in cur.fetchall()]
+
+    return {
+        "generated_at": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "by_venue":      by_venue,
+        "by_distance":   by_distance,
+        "by_surface":    by_surface,
+        "by_condition":  by_condition,
+        "combined":      combined,
+    }
+
+
 # ── メイン ────────────────────────────────────────────────────────
 
 def main() -> None:
@@ -1177,6 +1269,14 @@ def main() -> None:
         encoding="utf-8",
     )
     print(f"win5.json:        {len(win5):5d} 日付分")
+
+    # ── condition_analysis.json（得意条件分析）─────────────────────
+    condition = export_condition_analysis(conn)
+    (OUT_DIR / "condition_analysis.json").write_text(
+        json.dumps(condition, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    print(f"condition_analysis.json: {len(condition['combined']):3d} 条件")
 
     conn.close()
     print(f"\nエクスポート先: {OUT_DIR.resolve()}")

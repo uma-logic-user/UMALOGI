@@ -80,11 +80,20 @@ class EvaluationResult:
 
 def _fetch_race_meta(conn: sqlite3.Connection, race_id: str) -> dict:
     row = conn.execute(
-        "SELECT race_name, date FROM races WHERE race_id = ?", (race_id,)
+        """
+        SELECT r.race_name, r.date,
+               COUNT(rr.id) AS n_horses
+        FROM races r
+        LEFT JOIN race_results rr
+            ON rr.race_id = r.race_id AND rr.rank IS NOT NULL AND rr.rank > 0
+        WHERE r.race_id = ?
+        GROUP BY r.race_id
+        """,
+        (race_id,),
     ).fetchone()
     if row is None:
         raise ValueError(f"race_id={race_id} が races テーブルに存在しません")
-    return {"race_name": row[0], "date": row[1]}
+    return {"race_name": row[0], "date": row[1], "n_horses": row[2] or 8}
 
 
 def _fetch_results(conn: sqlite3.Connection, race_id: str) -> dict[str, int | None]:
@@ -317,6 +326,7 @@ def _is_hit_by_numbers(
     bet_type: str,
     predicted_numbers: list[int],
     rank_by_number: dict[int, int],
+    place_ranks: set[int] = _PLACE_RANKS,
 ) -> bool:
     """馬番整数のみによる厳格な的中判定（文字列比較なし）。"""
     pnums = [n for n in predicted_numbers if n > 0]
@@ -327,7 +337,7 @@ def _is_hit_by_numbers(
         return any(rank_by_number.get(n) == 1 for n in pnums)
 
     elif bet_type == "複勝":
-        return any(rank_by_number.get(n) in _PLACE_RANKS for n in pnums)
+        return any(rank_by_number.get(n) in place_ranks for n in pnums)
 
     elif bet_type == "馬連":
         if len(pnums) < 2:
@@ -341,7 +351,7 @@ def _is_hit_by_numbers(
     elif bet_type == "ワイド":
         if len(pnums) < 2:
             return False
-        place_nums = {n for n, r in rank_by_number.items() if r in _PLACE_RANKS}
+        place_nums = {n for n, r in rank_by_number.items() if r in place_ranks}
         return len(set(pnums) & place_nums) >= 2
 
     elif bet_type == "馬単":
@@ -479,6 +489,10 @@ class Evaluator:
         predictions    = _fetch_predictions(conn, race_id)
         is_refund_race = bool(refund_numbers)
 
+        # 複勝・ワイドの着順圏: JRAルール（7頭以下は2着まで、8頭以上は3着まで）
+        n_horses = meta.get("n_horses", 8)
+        place_ranks_effective: set[int] = {1, 2} if n_horses <= 7 else {1, 2, 3}
+
         if not result_map:
             errors.append(f"race_id={race_id}: race_results にデータがありません")
         if not payouts:
@@ -496,14 +510,26 @@ class Evaluator:
         max_single_roi = 0.0
 
         for pred in predictions:
-            pid       = pred["prediction_id"]
-            bet_type  = pred["bet_type"]
-            invested  = float(pred["recommended_bet"] or 100.0)
-            horses    = pred["horses"]            # [(name, pred_rank, score)]
+            pid         = pred["prediction_id"]
+            bet_type    = pred["bet_type"]
+            rec_bet     = float(pred["recommended_bet"] or 100.0)
+            horses      = pred["horses"]            # [(name, pred_rank, score)]
             horse_names = [h[0] for h in horses]
 
-            # 返還チェック
-            refund = _has_refund(horse_names, horse_numbers, refund_numbers)
+            # combination_json を早期解析（返還チェックにも使用）
+            parsed_combos = _parse_combination_json(pred.get("combination_json") or "")
+
+            # n_tickets を combination_json から導出 — recommended_bet は使わない
+            n_tickets = len(parsed_combos) if parsed_combos else max(1, round(rec_bet / 100))
+            invested  = float(n_tickets * 100)  # 1コンボ = 100円
+
+            # 返還チェック（CLAUDE.md: 馬番整数ベース優先）
+            if parsed_combos:
+                all_nums_in_combos = {n for combo in parsed_combos for n in combo}
+                refund = bool(all_nums_in_combos & refund_numbers)
+            else:
+                refund = _has_refund(horse_names, horse_numbers, refund_numbers)
+
             if refund:
                 detail = BetHitDetail(
                     prediction_id=pid,
@@ -525,7 +551,6 @@ class Evaluator:
                 continue
 
             # 的中判定・払戻取得（combination_json 馬番ベース優先）
-            parsed_combos = _parse_combination_json(pred.get("combination_json") or "")
             hit = False
             payout_per_100 = 0
 
@@ -536,7 +561,7 @@ class Evaluator:
                         p = payouts.get((bet_type, key), 0)
                         if p > 0:
                             hit = True
-                            payout_per_100 = max(payout_per_100, p)
+                            payout_per_100 += p  # 複数combo的中時は合算（max→sum）
             else:
                 # combination_json なし: 馬番整数で厳格判定（文字列比較禁止）
                 predicted_nums = [horse_numbers[n] for n in horse_names if n in horse_numbers]
@@ -545,7 +570,9 @@ class Evaluator:
                     for n, r in result_map.items()
                     if n in horse_numbers and r is not None
                 }
-                hit = _is_hit_by_numbers(bet_type, predicted_nums, rank_by_num)
+                hit = _is_hit_by_numbers(
+                    bet_type, predicted_nums, rank_by_num, place_ranks_effective
+                )
                 if hit:
                     combo_key = _build_combination_key(bet_type, horse_names, horse_numbers)
                     payout_per_100 = _lookup_payout(bet_type, combo_key, payouts)
@@ -558,8 +585,9 @@ class Evaluator:
                                 f"払戻平均 {payout_per_100} を使用"
                             )
 
-            actual_payout = (payout_per_100 / 100.0) * invested if hit else 0.0
-            profit        = actual_payout - invested
+            # ROI = payout / (n_tickets × 100) × 100
+            actual_payout = (payout_per_100 / 100.0) * rec_bet if hit else 0.0
+            profit        = actual_payout - invested            # 正しい投資額で計算
             roi           = (actual_payout / invested * 100.0) if invested > 0 else 0.0
 
             detail = BetHitDetail(

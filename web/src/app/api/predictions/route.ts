@@ -98,7 +98,7 @@ export async function GET(req: NextRequest) {
       const [betForm, nTickets] = identifyBetForm(comboJson, betType)
       return {
         ...pd,
-        combination_json:  sortedCombinations(comboJson),
+        combination_json:  sortedCombinations(comboJson, betType),
         bet_form:          betForm,
         n_tickets:         nTickets,
         year:              dateStr ? dateStr.slice(0, 4) : null,

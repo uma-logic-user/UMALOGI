@@ -162,7 +162,7 @@ export default function TabView({ races, predictions, summary }: Props) {
 
       {/* ── フッター ────────────────────────────────────────── */}
       <footer className="text-center text-sm text-[var(--text-muted)] tracking-widest pt-4 pb-2 border-t border-[rgba(0,200,255,0.08)]">
-        UMALOGI &nbsp;·&nbsp; データソース: netkeiba.com
+        UMALOGI &nbsp;·&nbsp; データソース: JRA-VAN
         {featured && <>&nbsp;·&nbsp; 最終更新: {featured.date}</>}
       </footer>
     </div>
