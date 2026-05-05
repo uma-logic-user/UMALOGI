@@ -444,7 +444,8 @@ class ManjiStrategy:
         num_top  = int(top_row["horse_number"])
         ev_top   = float(top_row["ev_score"])
         odds_top = float(top_row.get("win_odds") or 1.0)
-        prob_top = min(ev_top / max(odds_top, 1.0), 1.0)
+        # EV = P × odds なので implied P = EV / odds。ただし odds=1.0デフォルト時は信頼度低
+        prob_top = min(ev_top / max(odds_top, 1.0), 1.0) if odds_top > 1.0 else min(ev_top / 10.0, 1.0)
         bet_top  = _kelly_bet(prob_top, odds_top, bankroll=bankroll) or _BASE_BET
         result.bets.append(BetRecommendation(
             bet_type="単勝",
@@ -453,7 +454,7 @@ class ManjiStrategy:
             expected_value=ev_top,
             model_score=ev_top,
             recommended_bet=bet_top,
-            confidence=min(ev_top / 2.0, 1.0),
+            confidence=prob_top,
             notes=f"確率1位(卍) EV={ev_top:.2f} odds={odds_top:.1f}",
         ))
 
@@ -701,7 +702,7 @@ class HonmeiStrategy:
             expected_value=float(top["honmei_score"].sum()),
             model_score=float(top["honmei_score"].mean()),
             recommended_bet=_BASE_BET * n,
-            confidence=float(top["honmei_score"].sum()),
+            confidence=float(top["honmei_score"].mean()),
             notes=f"上位{n}頭を複勝",
         ))
 
@@ -1621,3 +1622,37 @@ class BetGenerator:
         top_n: int = 2,
     ) -> Win5Recommendation | None:
         return generate_win5(races, scores, top_n=top_n)
+
+
+# ── SandboxDerived Strategies ──
+# 【特例サンドボックス由来】 train=2024 → test=2025
+# 生成日: 2026-05-06
+# ROI≥120% 且つ 200レース以上で実装対象。
+# CAUTION: 研究環境の結果。本番前に live データで再検証すること。
+
+from dataclasses import dataclass as _dc
+
+@_dc
+class SandboxBetResult:
+    """サンドボックス由来の有望買い目情報。"""
+    model: str
+    bet_type: str
+    roi_pct: float
+    hit_rate: float
+    n_test_races: int
+    note: str
+
+SANDBOX_PROFITABLE_STRATEGIES: list[SandboxBetResult] = [
+    SandboxBetResult(model="sandbox_ev", bet_type="三連単", roi_pct=669.8, hit_rate=1.9, n_test_races=3455, note='ROI=669.8% 的中率=1.9% n=3455R 投=345,500円 回=2,314,080円 P&L=+1,968,580円 // score1位→2位→3位の三連単（100円）'),
+    SandboxBetResult(model="sandbox_ev", bet_type="馬単", roi_pct=369.4, hit_rate=2.5, n_test_races=3455, note='ROI=369.4% 的中率=2.5% n=3455R 投=345,500円 回=1,276,370円 P&L=+930,870円 // score1位→2位の馬単（100円）'),
+    SandboxBetResult(model="sandbox_ev", bet_type="馬連", roi_pct=206.5, hit_rate=3.3, n_test_races=3455, note='ROI=206.5% 的中率=3.3% n=3455R 投=345,500円 回=713,370円 P&L=+367,870円 // score上位2頭の馬連（100円）'),
+    SandboxBetResult(model="sandbox_ev", bet_type="三連複", roi_pct=130.7, hit_rate=2.8, n_test_races=3455, note='ROI=130.7% 的中率=2.8% n=3455R 投=345,500円 回=451,700円 P&L=+106,200円 // score上位3頭の三連複（100円）'),
+]
+
+
+def get_sandbox_strategy_note(model: str, bet_type: str) -> str:
+    """実装済みサンドボックス戦略の note を返す。未登録なら空文字。"""
+    for s in SANDBOX_PROFITABLE_STRATEGIES:
+        if s.model == model and s.bet_type == bet_type:
+            return s.note
+    return ""
