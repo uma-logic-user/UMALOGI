@@ -4,11 +4,11 @@
   "date": "2026-04-11",
   "venue": "福島",
   "race_number": 3,
-  "distance": 0,
-  "surface": "",
+  "distance": 1800,
+  "surface": "芝",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "晴",
+  "condition": "良",
   "year": "2026",
   "results": [
     {
@@ -21,12 +21,12 @@
       "weight_carried": 55.0,
       "jockey": "野中悠太",
       "trainer": "室井潔",
-      "finish_time": null,
+      "finish_time": "1:47.6",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 113.2,
+      "popularity": 14,
+      "horse_weight": 400,
+      "horse_weight_diff": 0,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -45,12 +45,12 @@
       "weight_carried": 53.0,
       "jockey": "長浜鴻緒",
       "trainer": "矢嶋大樹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:47.7",
+      "margin": "3/4",
+      "win_odds": 9.0,
+      "popularity": 5,
+      "horse_weight": 426,
+      "horse_weight_diff": 8,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -69,18 +69,330 @@
       "weight_carried": 55.0,
       "jockey": "斎藤新",
       "trainer": "牧浦充徳",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:47.8",
+      "margin": "1/2",
+      "win_odds": 5.7,
+      "popularity": 3,
+      "horse_weight": 442,
+      "horse_weight_diff": 0,
       "sire": null,
       "dam": null,
       "dam_sire": null,
       "training_eval": {
         "eval_grade": "B",
         "eval_text": "仕上良好"
+      }
+    },
+    {
+      "rank": 4,
+      "gate_number": 5,
+      "horse_number": 10,
+      "horse_name": "ファストフォワード",
+      "horse_id": "2023106362",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "小崎綾也",
+      "trainer": "小林真也",
+      "finish_time": "1:47.9",
+      "margin": "クビ",
+      "win_odds": 6.8,
+      "popularity": 4,
+      "horse_weight": 506,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "伸び上々"
+      }
+    },
+    {
+      "rank": 5,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "ピアス",
+      "horse_id": "2023105443",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "丸山元気",
+      "trainer": "森一誠",
+      "finish_time": "1:47.9",
+      "margin": "アタマ",
+      "win_odds": 3.6,
+      "popularity": 1,
+      "horse_weight": 464,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "動き軽快"
+      }
+    },
+    {
+      "rank": 6,
+      "gate_number": 2,
+      "horse_number": 4,
+      "horse_name": "ゴールドアベニュー",
+      "horse_id": "2023101197",
+      "sex_age": "牝1",
+      "weight_carried": 55.0,
+      "jockey": "富田暁",
+      "trainer": "宮地貴稔",
+      "finish_time": "1:48.0",
+      "margin": "1/2",
+      "win_odds": 88.0,
+      "popularity": 12,
+      "horse_weight": 422,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "仕上上々"
+      }
+    },
+    {
+      "rank": 7,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "スワトウ",
+      "horse_id": "2023103333",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "松若風馬",
+      "trainer": "牧田和弥",
+      "finish_time": "1:48.1",
+      "margin": "1/2",
+      "win_odds": 12.9,
+      "popularity": 6,
+      "horse_weight": 438,
+      "horse_weight_diff": -8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "攻め十分"
+      }
+    },
+    {
+      "rank": 8,
+      "gate_number": 8,
+      "horse_number": 16,
+      "horse_name": "オーマイラッキーン",
+      "horse_id": "2023102060",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "国分恭介",
+      "trainer": "高橋康之",
+      "finish_time": "1:48.2",
+      "margin": "3/4",
+      "win_odds": 104.6,
+      "popularity": 13,
+      "horse_weight": 482,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "仕上十分"
+      }
+    },
+    {
+      "rank": 9,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "ハヤブサブロー",
+      "horse_id": "2023104338",
+      "sex_age": "牝1",
+      "weight_carried": 55.0,
+      "jockey": "吉田隼人",
+      "trainer": "高橋義忠",
+      "finish_time": "1:48.3",
+      "margin": "クビ",
+      "win_odds": 4.3,
+      "popularity": 2,
+      "horse_weight": 426,
+      "horse_weight_diff": -10,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "上積十分"
+      }
+    },
+    {
+      "rank": 10,
+      "gate_number": 6,
+      "horse_number": 12,
+      "horse_name": "ヴィーラー",
+      "horse_id": "2023103081",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "黛弘人",
+      "trainer": "矢作芳人",
+      "finish_time": "1:48.3",
+      "margin": "ハナ",
+      "win_odds": 30.2,
+      "popularity": 10,
+      "horse_weight": 424,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "追毎良化"
+      }
+    },
+    {
+      "rank": 11,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "レーザーキック",
+      "horse_id": "2023105231",
+      "sex_age": "牝4",
+      "weight_carried": 52.0,
+      "jockey": "小林美駒",
+      "trainer": "竹内正洋",
+      "finish_time": "1:48.3",
+      "margin": "クビ",
+      "win_odds": 18.2,
+      "popularity": 8,
+      "horse_weight": 384,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "仕上十分"
+      }
+    },
+    {
+      "rank": 12,
+      "gate_number": 7,
+      "horse_number": 13,
+      "horse_name": "ノクスカンパーナ",
+      "horse_id": "2023105168",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "田口貫太",
+      "trainer": "吉岡辰弥",
+      "finish_time": "1:48.7",
+      "margin": "2",
+      "win_odds": 67.7,
+      "popularity": 11,
+      "horse_weight": 472,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "仕上良好"
+      }
+    },
+    {
+      "rank": 13,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "ディアデムドール",
+      "horse_id": "2023103285",
+      "sex_age": "牝1",
+      "weight_carried": 51.0,
+      "jockey": "河原田菜",
+      "trainer": "今野貞一",
+      "finish_time": "1:49.3",
+      "margin": "3.1/2",
+      "win_odds": 18.0,
+      "popularity": 7,
+      "horse_weight": 492,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "仕上良好"
+      }
+    },
+    {
+      "rank": 14,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "ヴェロシオン",
+      "horse_id": "2023105121",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "高倉稜",
+      "trainer": "武英智",
+      "finish_time": "1:49.7",
+      "margin": "2.1/2",
+      "win_odds": 29.2,
+      "popularity": 9,
+      "horse_weight": 416,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "仕上上々"
+      }
+    },
+    {
+      "rank": 15,
+      "gate_number": 7,
+      "horse_number": 14,
+      "horse_name": "ノヴェルピアーチェ",
+      "horse_id": "2023105150",
+      "sex_age": "牝1",
+      "weight_carried": 53.0,
+      "jockey": "舟山瑠泉",
+      "trainer": "古賀慎明",
+      "finish_time": "1:49.9",
+      "margin": "1.1/4",
+      "win_odds": 150.0,
+      "popularity": 15,
+      "horse_weight": 406,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "目立たず"
+      }
+    },
+    {
+      "rank": 16,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "グレープレモネード",
+      "horse_id": "2023105428",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "松岡正海",
+      "trainer": "本間忍",
+      "finish_time": "1:50.5",
+      "margin": "3.1/2",
+      "win_odds": 164.4,
+      "popularity": 16,
+      "horse_weight": 430,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "D",
+        "eval_text": "動き平凡"
       }
     }
   ],
@@ -338,7 +650,27 @@
           "model_score": 9.669616766220953e-05,
           "ev_score": 9.669616766220953e-05
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "5": "サフランルージュ",
+        "8": "クシマトゥルー",
+        "2": "エコロディアン",
+        "10": "ファストフォワード",
+        "7": "ピアス",
+        "4": "ゴールドアベニュー",
+        "9": "スワトウ",
+        "16": "オーマイラッキーン",
+        "11": "ハヤブサブロー",
+        "12": "ヴィーラー",
+        "1": "レーザーキック",
+        "13": "ノクスカンパーナ",
+        "15": "ディアデムドール",
+        "6": "ヴェロシオン",
+        "14": "ノヴェルピアーチェ",
+        "3": "グレープレモネード"
+      }
     },
     {
       "prediction_id": 1706,
@@ -411,7 +743,27 @@
           "model_score": 0.8493114646454242,
           "ev_score": 3.3972458585816967
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "5": "サフランルージュ",
+        "8": "クシマトゥルー",
+        "2": "エコロディアン",
+        "10": "ファストフォワード",
+        "7": "ピアス",
+        "4": "ゴールドアベニュー",
+        "9": "スワトウ",
+        "16": "オーマイラッキーン",
+        "11": "ハヤブサブロー",
+        "12": "ヴィーラー",
+        "1": "レーザーキック",
+        "13": "ノクスカンパーナ",
+        "15": "ディアデムドール",
+        "6": "ヴェロシオン",
+        "14": "ノヴェルピアーチェ",
+        "3": "グレープレモネード"
+      }
     },
     {
       "prediction_id": 1707,
@@ -442,7 +794,27 @@
           "model_score": 0.01652915659341615,
           "ev_score": 0.01322332527473292
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "5": "サフランルージュ",
+        "8": "クシマトゥルー",
+        "2": "エコロディアン",
+        "10": "ファストフォワード",
+        "7": "ピアス",
+        "4": "ゴールドアベニュー",
+        "9": "スワトウ",
+        "16": "オーマイラッキーン",
+        "11": "ハヤブサブロー",
+        "12": "ヴィーラー",
+        "1": "レーザーキック",
+        "13": "ノクスカンパーナ",
+        "15": "ディアデムドール",
+        "6": "ヴェロシオン",
+        "14": "ノヴェルピアーチェ",
+        "3": "グレープレモネード"
+      }
     },
     {
       "prediction_id": 1708,
@@ -473,7 +845,27 @@
           "model_score": 0.01652915659341615,
           "ev_score": 0.005785204807695652
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "5": "サフランルージュ",
+        "8": "クシマトゥルー",
+        "2": "エコロディアン",
+        "10": "ファストフォワード",
+        "7": "ピアス",
+        "4": "ゴールドアベニュー",
+        "9": "スワトウ",
+        "16": "オーマイラッキーン",
+        "11": "ハヤブサブロー",
+        "12": "ヴィーラー",
+        "1": "レーザーキック",
+        "13": "ノクスカンパーナ",
+        "15": "ディアデムドール",
+        "6": "ヴェロシオン",
+        "14": "ノヴェルピアーチェ",
+        "3": "グレープレモネード"
+      }
     },
     {
       "prediction_id": 1709,
@@ -511,7 +903,27 @@
           "model_score": 0.008298952713446696,
           "ev_score": 0.012448429070170044
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "5": "サフランルージュ",
+        "8": "クシマトゥルー",
+        "2": "エコロディアン",
+        "10": "ファストフォワード",
+        "7": "ピアス",
+        "4": "ゴールドアベニュー",
+        "9": "スワトウ",
+        "16": "オーマイラッキーン",
+        "11": "ハヤブサブロー",
+        "12": "ヴィーラー",
+        "1": "レーザーキック",
+        "13": "ノクスカンパーナ",
+        "15": "ディアデムドール",
+        "6": "ヴェロシオン",
+        "14": "ノヴェルピアーチェ",
+        "3": "グレープレモネード"
+      }
     },
     {
       "prediction_id": 1710,
@@ -556,7 +968,27 @@
           "model_score": 4.988393454276551,
           "ev_score": 4.988393454276551
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "5": "サフランルージュ",
+        "8": "クシマトゥルー",
+        "2": "エコロディアン",
+        "10": "ファストフォワード",
+        "7": "ピアス",
+        "4": "ゴールドアベニュー",
+        "9": "スワトウ",
+        "16": "オーマイラッキーン",
+        "11": "ハヤブサブロー",
+        "12": "ヴィーラー",
+        "1": "レーザーキック",
+        "13": "ノクスカンパーナ",
+        "15": "ディアデムドール",
+        "6": "ヴェロシオン",
+        "14": "ノヴェルピアーチェ",
+        "3": "グレープレモネード"
+      }
     },
     {
       "prediction_id": 1711,
@@ -615,7 +1047,27 @@
           "model_score": 0.0008092310780879741,
           "ev_score": 0.016184621561759482
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "5": "サフランルージュ",
+        "8": "クシマトゥルー",
+        "2": "エコロディアン",
+        "10": "ファストフォワード",
+        "7": "ピアス",
+        "4": "ゴールドアベニュー",
+        "9": "スワトウ",
+        "16": "オーマイラッキーン",
+        "11": "ハヤブサブロー",
+        "12": "ヴィーラー",
+        "1": "レーザーキック",
+        "13": "ノクスカンパーナ",
+        "15": "ディアデムドール",
+        "6": "ヴェロシオン",
+        "14": "ノヴェルピアーチェ",
+        "3": "グレープレモネード"
+      }
     },
     {
       "prediction_id": 1712,
@@ -646,7 +1098,27 @@
           "model_score": 3.131371607468038,
           "ev_score": 3.131371607468038
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "5": "サフランルージュ",
+        "8": "クシマトゥルー",
+        "2": "エコロディアン",
+        "10": "ファストフォワード",
+        "7": "ピアス",
+        "4": "ゴールドアベニュー",
+        "9": "スワトウ",
+        "16": "オーマイラッキーン",
+        "11": "ハヤブサブロー",
+        "12": "ヴィーラー",
+        "1": "レーザーキック",
+        "13": "ノクスカンパーナ",
+        "15": "ディアデムドール",
+        "6": "ヴェロシオン",
+        "14": "ノヴェルピアーチェ",
+        "3": "グレープレモネード"
+      }
     },
     {
       "prediction_id": 1713,
@@ -677,7 +1149,27 @@
           "model_score": 3.131371607468038,
           "ev_score": 3.131371607468038
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "5": "サフランルージュ",
+        "8": "クシマトゥルー",
+        "2": "エコロディアン",
+        "10": "ファストフォワード",
+        "7": "ピアス",
+        "4": "ゴールドアベニュー",
+        "9": "スワトウ",
+        "16": "オーマイラッキーン",
+        "11": "ハヤブサブロー",
+        "12": "ヴィーラー",
+        "1": "レーザーキック",
+        "13": "ノクスカンパーナ",
+        "15": "ディアデムドール",
+        "6": "ヴェロシオン",
+        "14": "ノヴェルピアーチェ",
+        "3": "グレープレモネード"
+      }
     }
   ],
   "training_evals": {

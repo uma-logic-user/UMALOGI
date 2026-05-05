@@ -12,27 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 7,
-      "horse_number": 12,
-      "horse_name": "タイキラフター",
-      "horse_id": "2020106811",
-      "sex_age": "牡4",
-      "weight_carried": 58.0,
-      "jockey": "佐々木大",
-      "trainer": "大竹正博",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ハーツクライ",
-      "dam": "アッシュベリー",
-      "dam_sire": "Any Given Saturday"
-    },
-    {
-      "rank": 2,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "コスモアンソロジー",
@@ -42,7 +22,7 @@
       "jockey": "丹内祐次",
       "trainer": "嘉藤貴行",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -50,26 +30,6 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
-    },
-    {
-      "rank": 3,
-      "gate_number": 5,
-      "horse_number": 8,
-      "horse_name": "ウインアクトゥール",
-      "horse_id": "2021107085",
-      "sex_age": "牡7",
-      "weight_carried": 58.0,
-      "jockey": "黛弘人",
-      "trainer": "栗田徹",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ゴールドアクター",
-      "dam": "ポートドラルーン",
-      "dam_sire": "チチカステナンゴChichicastenango(仏)"
     },
     {
       "rank": null,
@@ -82,7 +42,7 @@
       "jockey": "古川奈穂",
       "trainer": "奥平雅士",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +62,7 @@
       "jockey": "斎藤新",
       "trainer": "宮田敬介",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +82,7 @@
       "jockey": "浜中俊",
       "trainer": "平田修",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +102,7 @@
       "jockey": "荻野琢真",
       "trainer": "須貝尚介",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +122,7 @@
       "jockey": "古川吉洋",
       "trainer": "田中克典",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +142,7 @@
       "jockey": "舟山瑠泉",
       "trainer": "水野貴広",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -190,6 +150,26 @@
       "sire": "エピファネイア",
       "dam": "マイネレーツェル",
       "dam_sire": "ステイゴールド"
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 8,
+      "horse_name": "ウインアクトゥール",
+      "horse_id": "2021107085",
+      "sex_age": "牡7",
+      "weight_carried": 58.0,
+      "jockey": "黛弘人",
+      "trainer": "栗田徹",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ゴールドアクター",
+      "dam": "ポートドラルーン",
+      "dam_sire": "チチカステナンゴChichicastenango(仏)"
     },
     {
       "rank": null,
@@ -202,7 +182,7 @@
       "jockey": "泉谷楓真",
       "trainer": "清水英克",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -222,7 +202,7 @@
       "jockey": "小林美駒",
       "trainer": "武井亮",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -242,7 +222,7 @@
       "jockey": "鷲頭虎太",
       "trainer": "堀内岳志",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -250,6 +230,26 @@
       "sire": "ハーツクライ",
       "dam": "スマートアストリア",
       "dam_sire": "ストラヴィンスキー"
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 12,
+      "horse_name": "タイキラフター",
+      "horse_id": "2020106811",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "佐々木大",
+      "trainer": "大竹正博",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ハーツクライ",
+      "dam": "アッシュベリー",
+      "dam_sire": "Any Given Saturday"
     },
     {
       "rank": null,
@@ -262,7 +262,7 @@
       "jockey": "松本大輝",
       "trainer": "和田勇介",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -282,7 +282,7 @@
       "jockey": "川又賢治",
       "trainer": "高橋亮",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -298,6 +298,12 @@
       "combination": "12",
       "payout": 1020,
       "popularity": 5
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "14",
+      "payout": 14000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -324,10 +330,28 @@
       "popularity": 16
     },
     {
+      "bet_type": "枠連",
+      "combination": "1",
+      "payout": 2005,
+      "popularity": null
+    },
+    {
       "bet_type": "馬連",
       "combination": "1-12",
       "payout": 4180,
       "popularity": 15
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "3",
+      "payout": 5010,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 70000,
+      "popularity": 4
     },
     {
       "bet_type": "ワイド",
@@ -348,16 +372,40 @@
       "popularity": 20
     },
     {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 60040,
+      "popularity": 80
+    },
+    {
       "bet_type": "馬単",
       "combination": "12→1",
       "payout": 9890,
       "popularity": 39
     },
     {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 12000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-8-12",
       "payout": 15670,
       "popularity": 53
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "12-30-1",
+      "payout": 50812,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "15",
+      "payout": 70019,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

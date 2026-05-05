@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 6,
-      "horse_number": 10,
-      "horse_name": "ワイドブリザード",
-      "horse_id": "2021104416",
-      "sex_age": "騸3",
-      "weight_carried": 58.0,
-      "jockey": "浜中俊",
-      "trainer": "佐藤悠太",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "カリフォルニアクロームCalifornia Chrome(米)",
-      "dam": "ハナフブキ",
-      "dam_sire": "ディープインパクト"
-    },
-    {
-      "rank": 2,
-      "gate_number": 3,
-      "horse_number": 4,
-      "horse_name": "ウインアルドーレ",
-      "horse_id": "2021106192",
-      "sex_age": "牡4",
-      "weight_carried": 58.0,
-      "jockey": "松岡正海",
-      "trainer": "西園翔太",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ビーチパトロールBeach Patrol(米)",
-      "dam": "アルデュール",
-      "dam_sire": "フレンチデピュティFrench Deputy(米)"
-    },
-    {
-      "rank": 3,
-      "gate_number": 8,
-      "horse_number": 14,
-      "horse_name": "マイノワール",
-      "horse_id": "2021104411",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "武豊",
-      "trainer": "笹田和秀",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "マインドユアビスケッツMind Your Biscuits(米)",
-      "dam": "チカノワール",
-      "dam_sire": "ハービンジャーHarbinger(英)"
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "佐々木大",
       "trainer": "高木登",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +42,7 @@
       "jockey": "黛弘人",
       "trainer": "秋山真一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +62,7 @@
       "jockey": "丹内祐次",
       "trainer": "黒岩陽一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -130,6 +70,26 @@
       "sire": "ダノンバラード",
       "dam": "オピニオン",
       "dam_sire": "アイルハヴアナザーI'll Have Another(米)"
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 4,
+      "horse_name": "ウインアルドーレ",
+      "horse_id": "2021106192",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "松岡正海",
+      "trainer": "西園翔太",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ビーチパトロールBeach Patrol(米)",
+      "dam": "アルデュール",
+      "dam_sire": "フレンチデピュティFrench Deputy(米)"
     },
     {
       "rank": null,
@@ -142,7 +102,7 @@
       "jockey": "横山典弘",
       "trainer": "松永幹夫",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +122,7 @@
       "jockey": "鮫島克駿",
       "trainer": "浜田多実",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +142,7 @@
       "jockey": "斎藤新",
       "trainer": "東田明士",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -202,7 +162,7 @@
       "jockey": "古川吉洋",
       "trainer": "古賀慎明",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -222,7 +182,7 @@
       "jockey": "松本大輝",
       "trainer": "北出成人",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -230,6 +190,26 @@
       "sire": "サトノアラジン",
       "dam": "アラピンタAlapinta(英)",
       "dam_sire": "Medicean"
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 10,
+      "horse_name": "ワイドブリザード",
+      "horse_id": "2021104416",
+      "sex_age": "騸3",
+      "weight_carried": 58.0,
+      "jockey": "浜中俊",
+      "trainer": "佐藤悠太",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "カリフォルニアクロームCalifornia Chrome(米)",
+      "dam": "ハナフブキ",
+      "dam_sire": "ディープインパクト"
     },
     {
       "rank": null,
@@ -242,7 +222,7 @@
       "jockey": "吉田隼人",
       "trainer": "斎藤誠",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -262,7 +242,7 @@
       "jockey": "藤岡佑介",
       "trainer": "牧浦充徳",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -282,7 +262,7 @@
       "jockey": "北村友一",
       "trainer": "藤原英昭",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -290,6 +270,26 @@
       "sire": "ハーツクライ",
       "dam": "シーヴSheave(米)",
       "dam_sire": "Mineshaft(米)"
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 14,
+      "horse_name": "マイノワール",
+      "horse_id": "2021104411",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "武豊",
+      "trainer": "笹田和秀",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "マインドユアビスケッツMind Your Biscuits(米)",
+      "dam": "チカノワール",
+      "dam_sire": "ハービンジャーHarbinger(英)"
     }
   ],
   "payouts": [
@@ -298,6 +298,12 @@
       "combination": "10",
       "payout": 200,
       "popularity": 1
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "14",
+      "payout": 14000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -330,6 +336,18 @@
       "popularity": 9
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-20",
+      "payout": 1040,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3",
+      "payout": 60000,
+      "popularity": 1
+    },
+    {
       "bet_type": "ワイド",
       "combination": "10-14",
       "payout": 560,
@@ -340,6 +358,12 @@
       "combination": "4-10",
       "payout": 1390,
       "popularity": 13
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "6",
+      "payout": 90101,
+      "popularity": 40
     },
     {
       "bet_type": "ワイド",
@@ -354,10 +378,34 @@
       "popularity": 14
     },
     {
+      "bet_type": "馬単",
+      "combination": "4",
+      "payout": 10000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "4-10-14",
       "payout": 13770,
       "popularity": 46
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5-60",
+      "payout": 604,
+      "popularity": 140
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "13-90-1",
+      "payout": 21014,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "58",
+      "payout": 10052,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

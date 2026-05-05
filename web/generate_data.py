@@ -95,6 +95,76 @@ def _year_from_date(date_str: str | None) -> str | None:
     return date_str[:4]
 
 
+def _identify_bet_form(combination_json: str | None, bet_type: str) -> tuple[str, int]:
+    """
+    combination_json から「買い方ラベル」と「点数」を返す。
+
+    Returns:
+        (bet_form, n_tickets)
+        例: ("2頭軸マルチ", 12), ("ボックス", 6), ("1頭軸マルチ", 6)
+    """
+    if not combination_json:
+        return bet_type, 0
+    try:
+        combos: list = json.loads(combination_json)
+    except Exception:
+        return bet_type, 0
+    if not combos:
+        return bet_type, 0
+
+    n = len(combos)
+
+    if bet_type == "三連単":
+        if not isinstance(combos[0], list):
+            return bet_type, n
+        all_horses: set = set(h for c in combos for h in c)
+        firsts: set = set(c[0] for c in combos)
+        num = len(all_horses)
+        # ボックス: N頭の全順列 N*(N-1)*(N-2)
+        if len(firsts) == num and num >= 3 and n == num * (num - 1) * (num - 2):
+            return f"{num}頭ボックス", n
+        # 2頭軸マルチ: 1着が常に同じ2頭
+        if len(firsts) == 2:
+            return "2頭軸マルチ", n
+        # 1頭軸マルチ: 1着が常に同じ1頭
+        if len(firsts) == 1:
+            return "1頭軸マルチ", n
+        return "フォーメーション", n
+
+    if bet_type == "三連複":
+        if not isinstance(combos[0], list):
+            return bet_type, n
+        all_horses = set(h for c in combos for h in c)
+        num = len(all_horses)
+        # ボックス: C(N,3)
+        if num >= 3 and n == num * (num - 1) * (num - 2) // 6:
+            return f"{num}頭ボックス", n
+        # 軸馬: 全組み合わせに含まれる馬
+        axes = [h for h in all_horses if all(h in c for c in combos)]
+        if len(axes) >= 2:
+            return "軸2頭ながし", n
+        if len(axes) == 1:
+            return "軸1頭ながし", n
+        return "フォーメーション", n
+
+    if bet_type in ("馬連", "ワイド", "馬単"):
+        if not isinstance(combos[0], list):
+            return bet_type, n
+        all_horses = set(h for c in combos for h in c)
+        num = len(all_horses)
+        if num >= 2 and n == num * (num - 1) // 2:
+            return f"{num}頭ボックス", n
+        axes = [h for h in all_horses if all(h in c for c in combos)]
+        if axes:
+            return "軸ながし", n
+        return "フォーメーション", n
+
+    if bet_type in ("単勝", "複勝"):
+        return bet_type, n
+
+    return bet_type, n
+
+
 # ── 調教評価の取得 ────────────────────────────────────────────────
 
 def _fetch_training_evals(conn: sqlite3.Connection, race_id: str) -> dict[int, dict]:
@@ -329,6 +399,15 @@ def _fetch_race_predictions(
         (race_id,),
     ).fetchall()
 
+    # 馬番→馬名マップ（このレースのみ）
+    horse_num_to_name: dict[str, str] = {
+        str(r[0]): r[1]
+        for r in conn.execute(
+            "SELECT horse_number, horse_name FROM race_results WHERE race_id = ? AND horse_number IS NOT NULL",
+            (race_id,),
+        ).fetchall()
+    }
+
     output: list[dict] = []
     for pred in preds:
         pd = dict(pred)
@@ -343,6 +422,10 @@ def _fetch_race_predictions(
             (pd["prediction_id"],),
         ).fetchall()
         pd["horses"] = _rows(horses)
+        bet_form, n_tickets = _identify_bet_form(pd.get("combination_json"), pd.get("bet_type", ""))
+        pd["bet_form"]  = bet_form
+        pd["n_tickets"] = n_tickets
+        pd["horse_num_to_name"] = horse_num_to_name
         output.append(pd)
 
     return output
@@ -439,6 +522,14 @@ def export_predictions(
         params,
     ).fetchall()
 
+    # 馬番→馬名マップを全レース一括取得（N+1 回避）
+    horse_name_map: dict[str, dict[str, str]] = {}
+    for row in conn.execute(
+        "SELECT race_id, horse_number, horse_name FROM race_results WHERE horse_number IS NOT NULL"
+    ).fetchall():
+        rid, hnum, hname = row
+        horse_name_map.setdefault(str(rid), {})[str(hnum)] = hname
+
     output: list[dict] = []
     for pred in predictions:
         pd = dict(pred)
@@ -454,6 +545,12 @@ def export_predictions(
             (pd["prediction_id"],),
         ).fetchall()
         pd["horses"] = _rows(horses)
+        # bet_form / n_tickets を付与
+        bet_form, n_tickets = _identify_bet_form(pd.get("combination_json"), pd.get("bet_type", ""))
+        pd["bet_form"]   = bet_form
+        pd["n_tickets"]  = n_tickets
+        # combination_json の馬番から馬名を引くためのマップ
+        pd["horse_num_to_name"] = horse_name_map.get(str(pd.get("race_id", "")), {})
         output.append(pd)
 
     return output
@@ -709,6 +806,19 @@ def export_gachi_hits(conn: sqlite3.Connection, limit: int = 200) -> list[dict]:
         (limit,),
     ).fetchall()
 
+    # 馬番→馬名マップを race_id 単位で一括構築
+    unique_race_ids = list(dict.fromkeys(row[0] for row in rows))
+    horse_name_maps: dict[str, dict[str, str]] = {}
+    for rid in unique_race_ids:
+        horse_name_maps[rid] = {
+            str(r[0]): r[1]
+            for r in conn.execute(
+                "SELECT horse_number, horse_name FROM race_results"
+                " WHERE race_id = ? AND horse_number IS NOT NULL",
+                (rid,),
+            ).fetchall()
+        }
+
     result = []
     for row in rows:
         payout = row[9] or 0
@@ -718,21 +828,27 @@ def export_gachi_hits(conn: sqlite3.Connection, limit: int = 200) -> list[dict]:
             "B" if payout >= 10_000 else
             "C"
         )
+        combo_json = _sanitize(row[8])
+        bet_type_raw = _sanitize(row[7])
+        bet_form, n_tickets = _identify_bet_form(combo_json, bet_type_raw)
         result.append({
-            "race_id":         _sanitize(row[0]),
-            "race_name":       _sanitize(row[1]),
-            "date":            _sanitize(row[2]),
-            "venue":           _sanitize(row[3]),
-            "surface":         _sanitize(row[4]),
-            "distance":        row[5],
-            "model_type":      _sanitize(row[6]),
-            "bet_type":        _sanitize(row[7]),
-            "combination_json": _sanitize(row[8]),
-            "payout":          payout,
-            "is_hit":          row[10],
-            "rank":            rank if row[10] else None,
-            "recommended_bet": row[11],
-            "notes":           _sanitize(row[12] or ""),
+            "race_id":           _sanitize(row[0]),
+            "race_name":         _sanitize(row[1]),
+            "date":              _sanitize(row[2]),
+            "venue":             _sanitize(row[3]),
+            "surface":           _sanitize(row[4]),
+            "distance":          row[5],
+            "model_type":        _sanitize(row[6]),
+            "bet_type":          bet_type_raw,
+            "bet_form":          bet_form,
+            "n_tickets":         n_tickets,
+            "combination_json":  combo_json,
+            "payout":            payout,
+            "is_hit":            row[10],
+            "rank":              rank if row[10] else None,
+            "recommended_bet":   row[11],
+            "notes":             _sanitize(row[12] or ""),
+            "horse_num_to_name": horse_name_maps.get(row[0], {}),
         })
     return result
 

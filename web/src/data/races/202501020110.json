@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 8,
-      "horse_number": 14,
-      "horse_name": "ハートホイップ",
-      "horse_id": "2019106179",
-      "sex_age": "牝7",
-      "weight_carried": 56.0,
-      "jockey": "坂井瑠星",
-      "trainer": "蛯名利弘",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ジョーカプチーノ",
-      "dam": "ドキドキマドンナ",
-      "dam_sire": "クロフネ"
-    },
-    {
-      "rank": 2,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "マルプリ",
-      "horse_id": "2020104983",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "ゴンサル",
-      "trainer": "青木孝文",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ミッキーアイル",
-      "dam": "マジックポーションIIMagic Potion(愛)",
-      "dam_sire": "Danehill Dancer(愛)"
-    },
-    {
-      "rank": 3,
-      "gate_number": 3,
-      "horse_number": 4,
-      "horse_name": "ルシード",
-      "horse_id": "2022103592",
-      "sex_age": "牡1",
-      "weight_carried": 56.0,
-      "jockey": "横山典弘",
-      "trainer": "田島俊明",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "ハマーハ",
       "trainer": "矢作芳人",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -90,6 +30,26 @@
       "sire": "モーリス",
       "dam": "ステラリード",
       "dam_sire": "スペシャルウィーク"
+    },
+    {
+      "rank": null,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "マルプリ",
+      "horse_id": "2020104983",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "ゴンサル",
+      "trainer": "青木孝文",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ミッキーアイル",
+      "dam": "マジックポーションIIMagic Potion(愛)",
+      "dam_sire": "Danehill Dancer(愛)"
     },
     {
       "rank": null,
@@ -102,7 +62,7 @@
       "jockey": "本田正重",
       "trainer": "宮本博",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -110,6 +70,26 @@
       "sire": "ミッキーアイル",
       "dam": "マウントフジ",
       "dam_sire": "Orientate"
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 4,
+      "horse_name": "ルシード",
+      "horse_id": "2022103592",
+      "sex_age": "牡1",
+      "weight_carried": 56.0,
+      "jockey": "横山典弘",
+      "trainer": "田島俊明",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -122,7 +102,7 @@
       "jockey": "横山武史",
       "trainer": "奥村武",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +122,7 @@
       "jockey": "武豊",
       "trainer": "和田雄二",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +142,7 @@
       "jockey": "バデル",
       "trainer": "谷潔",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +162,7 @@
       "jockey": "戸崎圭太",
       "trainer": "杉浦宏昭",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -202,7 +182,7 @@
       "jockey": "北村友一",
       "trainer": "加藤征弘",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -222,7 +202,7 @@
       "jockey": "ルメール",
       "trainer": "奥村武",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -242,7 +222,7 @@
       "jockey": "ウィリア",
       "trainer": "藤野健太",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -262,7 +242,7 @@
       "jockey": "ティータ",
       "trainer": "松下武士",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -282,7 +262,7 @@
       "jockey": "トーレス",
       "trainer": "佐藤吉勝",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -290,14 +270,34 @@
       "sire": "ヴァンキッシュラン",
       "dam": "ローザデルドバイ",
       "dam_sire": "Dubai Destination"
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 14,
+      "horse_name": "ハートホイップ",
+      "horse_id": "2019106179",
+      "sex_age": "牝7",
+      "weight_carried": 56.0,
+      "jockey": "坂井瑠星",
+      "trainer": "蛯名利弘",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ジョーカプチーノ",
+      "dam": "ドキドキマドンナ",
+      "dam_sire": "クロフネ"
     }
   ],
   "payouts": [
     {
       "bet_type": "単勝",
       "combination": "14",
-      "payout": 780,
-      "popularity": 3
+      "payout": 14000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -330,6 +330,12 @@
       "popularity": 29
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-80",
+      "payout": 2020,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "4-14",
       "payout": 380,
@@ -343,9 +349,21 @@
     },
     {
       "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 80000,
+      "popularity": 7
+    },
+    {
+      "bet_type": "ワイド",
       "combination": "2-14",
       "payout": 2020,
       "popularity": 24
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3",
+      "payout": 30060,
+      "popularity": 40
     },
     {
       "bet_type": "馬単",
@@ -354,10 +372,34 @@
       "popularity": 46
     },
     {
+      "bet_type": "馬単",
+      "combination": "2",
+      "payout": 14000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "2-4-14",
       "payout": 4930,
       "popularity": 13
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3-80",
+      "payout": 202,
+      "popularity": 40
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "20-20-2",
+      "payout": 50414,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "7",
+      "payout": 10004,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

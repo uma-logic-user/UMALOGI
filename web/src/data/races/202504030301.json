@@ -12,47 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 7,
-      "horse_number": 10,
-      "horse_name": "スズカハービン",
-      "horse_id": "2020106654",
-      "sex_age": "牡1",
-      "weight_carried": 60.0,
-      "jockey": "難波剛健",
-      "trainer": "高橋義忠",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ハービンジャーHarbinger(英)",
-      "dam": "スズカローラン",
-      "dam_sire": "サンデーサイレンスSunday Silence(米)"
-    },
-    {
-      "rank": 2,
-      "gate_number": 8,
-      "horse_number": 12,
-      "horse_name": "プラチナドリーム",
-      "horse_id": "2019106330",
-      "sex_age": "牡3",
-      "weight_carried": 61.0,
-      "jockey": "石神深一",
-      "trainer": "菊川正達",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ホッコータルマエ",
-      "dam": "サティーヌアロム",
-      "dam_sire": "シンボリクリスエス"
-    },
-    {
-      "rank": 3,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "ニシノパプルブリリ",
@@ -62,7 +22,7 @@
       "jockey": "伴啓太",
       "trainer": "加藤和宏",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -82,7 +42,7 @@
       "jockey": "黒岩悠",
       "trainer": "清水久詞",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +62,7 @@
       "jockey": "坂口智康",
       "trainer": "尾形和幸",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +82,7 @@
       "jockey": "森一馬",
       "trainer": "安達昭夫",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +102,7 @@
       "jockey": "土田真翔",
       "trainer": "石栗龍彦",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +122,7 @@
       "jockey": "大江原圭",
       "trainer": "国枝栄",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +142,7 @@
       "jockey": "草野太郎",
       "trainer": "松永康利",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -202,7 +162,7 @@
       "jockey": "江田勇亮",
       "trainer": "新開幸一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -222,7 +182,7 @@
       "jockey": "金子光希",
       "trainer": "矢野英一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -230,6 +190,26 @@
       "sire": "オルフェーヴル",
       "dam": "アルフィルク",
       "dam_sire": "アグネスタキオン"
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 10,
+      "horse_name": "スズカハービン",
+      "horse_id": "2020106654",
+      "sex_age": "牡1",
+      "weight_carried": 60.0,
+      "jockey": "難波剛健",
+      "trainer": "高橋義忠",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ハービンジャーHarbinger(英)",
+      "dam": "スズカローラン",
+      "dam_sire": "サンデーサイレンスSunday Silence(米)"
     },
     {
       "rank": null,
@@ -242,7 +222,7 @@
       "jockey": "井上敏樹",
       "trainer": "高柳瑞樹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -250,6 +230,26 @@
       "sire": "エスケンデレヤ",
       "dam": "ノバラ",
       "dam_sire": "マンハッタンカフェ"
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 12,
+      "horse_name": "プラチナドリーム",
+      "horse_id": "2019106330",
+      "sex_age": "牡3",
+      "weight_carried": 61.0,
+      "jockey": "石神深一",
+      "trainer": "菊川正達",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ホッコータルマエ",
+      "dam": "サティーヌアロム",
+      "dam_sire": "シンボリクリスエス"
     },
     {
       "rank": null,
@@ -262,7 +262,7 @@
       "jockey": "小牧加矢",
       "trainer": "久保田貴",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -278,6 +278,12 @@
       "combination": "10",
       "payout": 1000,
       "popularity": 4
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "13",
+      "payout": 13000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -310,9 +316,21 @@
       "popularity": 11
     },
     {
+      "bet_type": "馬連",
+      "combination": "2-80",
+      "payout": 4120,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "10-12",
       "payout": 990,
+      "popularity": 10
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 30030,
       "popularity": 10
     },
     {
@@ -328,16 +346,46 @@
       "popularity": 25
     },
     {
+      "bet_type": "ワイド",
+      "combination": "7",
+      "payout": 80000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "10→12",
       "payout": 6600,
       "popularity": 26
     },
     {
+      "bet_type": "馬単",
+      "combination": "10",
+      "payout": 12000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-10-12",
       "payout": 10460,
       "popularity": 33
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "19-40",
+      "payout": 2401,
+      "popularity": 120
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "9-90-1",
+      "payout": 110,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "11",
+      "payout": 60014,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

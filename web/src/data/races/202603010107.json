@@ -4,11 +4,11 @@
   "date": "2026-04-11",
   "venue": "福島",
   "race_number": 7,
-  "distance": 0,
-  "surface": "",
+  "distance": 1700,
+  "surface": "ダート",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "晴",
+  "condition": "良",
   "year": "2026",
   "results": [
     {
@@ -21,12 +21,12 @@
       "weight_carried": 53.0,
       "jockey": "小林美駒",
       "trainer": "栗田徹",
-      "finish_time": null,
+      "finish_time": "1:45.7",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 29.2,
+      "popularity": 9,
+      "horse_weight": 480,
+      "horse_weight_diff": 2,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -45,12 +45,12 @@
       "weight_carried": 56.0,
       "jockey": "舟山瑠泉",
       "trainer": "手塚貴久",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:45.8",
+      "margin": "1/2",
+      "win_odds": 5.8,
+      "popularity": 4,
+      "horse_weight": 482,
+      "horse_weight_diff": -12,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -69,18 +69,306 @@
       "weight_carried": 55.0,
       "jockey": "石神深道",
       "trainer": "高柳瑞樹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:45.8",
+      "margin": "ハナ",
+      "win_odds": 4.9,
+      "popularity": 2,
+      "horse_weight": 514,
+      "horse_weight_diff": 4,
       "sire": null,
       "dam": null,
       "dam_sire": null,
       "training_eval": {
         "eval_grade": "B",
         "eval_text": "出来は良"
+      }
+    },
+    {
+      "rank": 4,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "ホウオウバローロ",
+      "horse_id": "2021105772",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "森田誠也",
+      "trainer": "前川恭子",
+      "finish_time": "1:46.1",
+      "margin": "2",
+      "win_odds": 3.3,
+      "popularity": 1,
+      "horse_weight": 472,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "脚色良好"
+      }
+    },
+    {
+      "rank": 5,
+      "gate_number": 8,
+      "horse_number": 14,
+      "horse_name": "チャチャピンク",
+      "horse_id": "2022104176",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "秋山稔樹",
+      "trainer": "北出成人",
+      "finish_time": "1:46.2",
+      "margin": "クビ",
+      "win_odds": 5.6,
+      "popularity": 3,
+      "horse_weight": 472,
+      "horse_weight_diff": -8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "元気一杯"
+      }
+    },
+    {
+      "rank": 6,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "ハイケンス",
+      "horse_id": "2021102813",
+      "sex_age": "牡3",
+      "weight_carried": 54.0,
+      "jockey": "河原田菜",
+      "trainer": "今野貞一",
+      "finish_time": "1:46.2",
+      "margin": "クビ",
+      "win_odds": 41.9,
+      "popularity": 10,
+      "horse_weight": 460,
+      "horse_weight_diff": 0,
+      "sire": "アジアエクスプレス",
+      "dam": "パリーナチャン",
+      "dam_sire": "メイショウオウドウ",
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "やや良化"
+      }
+    },
+    {
+      "rank": 7,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "ワンダーウィルク",
+      "horse_id": "2019103092",
+      "sex_age": "牡7",
+      "weight_carried": 55.0,
+      "jockey": "和田陽希",
+      "trainer": "今野貞一",
+      "finish_time": "1:46.3",
+      "margin": "1/2",
+      "win_odds": 47.3,
+      "popularity": 11,
+      "horse_weight": 514,
+      "horse_weight_diff": -4,
+      "sire": "ザファクター",
+      "dam": "ワンダービーナス",
+      "dam_sire": "バゴBago(仏)",
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "やや良化"
+      }
+    },
+    {
+      "rank": 8,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "キングプロフィット",
+      "horse_id": "2021107012",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "大久保友",
+      "trainer": "天間昭一",
+      "finish_time": "1:46.4",
+      "margin": "1/2",
+      "win_odds": 243.3,
+      "popularity": 15,
+      "horse_weight": 486,
+      "horse_weight_diff": -4,
+      "sire": "キンシャサノキセキ",
+      "dam": "サパスSapas(米)",
+      "dam_sire": "Kingmambo(米)",
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "変わらず"
+      }
+    },
+    {
+      "rank": 9,
+      "gate_number": 7,
+      "horse_number": 12,
+      "horse_name": "スコーピオンイメル",
+      "horse_id": "2022104496",
+      "sex_age": "牡3",
+      "weight_carried": 54.0,
+      "jockey": "谷原柚希",
+      "trainer": "武英智",
+      "finish_time": "1:47.3",
+      "margin": "5",
+      "win_odds": 10.0,
+      "popularity": 6,
+      "horse_weight": 494,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "伸び一息"
+      }
+    },
+    {
+      "rank": 10,
+      "gate_number": 3,
+      "horse_number": 4,
+      "horse_name": "スラーヴァ",
+      "horse_id": "2021103916",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "石田拓郎",
+      "trainer": "高橋文雅",
+      "finish_time": "1:47.8",
+      "margin": "3",
+      "win_odds": 95.9,
+      "popularity": 12,
+      "horse_weight": 480,
+      "horse_weight_diff": -4,
+      "sire": "シャンハイボビーShanghai Bobby(米)",
+      "dam": "ポリアフ",
+      "dam_sire": "キングカメハメハ",
+      "training_eval": {
+        "eval_grade": "D",
+        "eval_text": "動き平凡"
+      }
+    },
+    {
+      "rank": 11,
+      "gate_number": 7,
+      "horse_number": 13,
+      "horse_name": "アイファーファイト",
+      "horse_id": "2019101233",
+      "sex_age": "牡5",
+      "weight_carried": 55.0,
+      "jockey": "土田真翔",
+      "trainer": "的場均",
+      "finish_time": "1:47.9",
+      "margin": "3/4",
+      "win_odds": 148.0,
+      "popularity": 13,
+      "horse_weight": 438,
+      "horse_weight_diff": -10,
+      "sire": "バトルプランBattle Plan(米)",
+      "dam": "エアリーチューン",
+      "dam_sire": "ステイゴールド",
+      "training_eval": {
+        "eval_grade": "D",
+        "eval_text": "いま一息"
+      }
+    },
+    {
+      "rank": 12,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "ナインオブレター",
+      "horse_id": "2022106926",
+      "sex_age": "牡1",
+      "weight_carried": 56.0,
+      "jockey": "長浜鴻緒",
+      "trainer": "佐藤吉勝",
+      "finish_time": "1:48.4",
+      "margin": "3",
+      "win_odds": 21.5,
+      "popularity": 7,
+      "horse_weight": 476,
+      "horse_weight_diff": -4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "D",
+        "eval_text": "動き平凡"
+      }
+    },
+    {
+      "rank": 13,
+      "gate_number": 5,
+      "horse_number": 8,
+      "horse_name": "リトルスカーレット",
+      "horse_id": "2022104779",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "小沢大仁",
+      "trainer": "柴田卓",
+      "finish_time": "1:48.5",
+      "margin": "クビ",
+      "win_odds": 22.9,
+      "popularity": 8,
+      "horse_weight": 494,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "変わらず"
+      }
+    },
+    {
+      "rank": 14,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "プロスペクト",
+      "horse_id": "2021101430",
+      "sex_age": "牡4",
+      "weight_carried": 56.0,
+      "jockey": "鷲頭虎太",
+      "trainer": "小栗実",
+      "finish_time": "1:50.5",
+      "margin": "大",
+      "win_odds": 9.2,
+      "popularity": 5,
+      "horse_weight": 514,
+      "horse_weight_diff": -2,
+      "sire": "リオンディーズ",
+      "dam": "ピサノプリヴェ",
+      "dam_sire": "Hold That Tiger",
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "実戦向き"
+      }
+    },
+    {
+      "rank": 15,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "バーニングフレーム",
+      "horse_id": "2022106409",
+      "sex_age": "牝1",
+      "weight_carried": 54.0,
+      "jockey": "永島まな",
+      "trainer": "伊藤伸一",
+      "finish_time": "1:51.0",
+      "margin": "3",
+      "win_odds": 164.3,
+      "popularity": 14,
+      "horse_weight": 466,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "変わらず"
       }
     }
   ],
@@ -326,7 +614,26 @@
           "model_score": 7.963264406960779e-05,
           "ev_score": 7.963264406960779e-05
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "2": "ルージュマローネ",
+        "10": "ラストレガシー",
+        "6": "プロスペクトパーク",
+        "7": "ホウオウバローロ",
+        "14": "チャチャピンク",
+        "11": "ハイケンス",
+        "15": "ワンダーウィルク",
+        "3": "キングプロフィット",
+        "12": "スコーピオンイメル",
+        "4": "スラーヴァ",
+        "13": "アイファーファイト",
+        "5": "ナインオブレター",
+        "8": "リトルスカーレット",
+        "1": "プロスペクト",
+        "9": "バーニングフレーム"
+      }
     },
     {
       "prediction_id": 1783,
@@ -371,7 +678,26 @@
           "model_score": 7.82091942174271e-05,
           "ev_score": 0.00023462758265228132
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "2": "ルージュマローネ",
+        "10": "ラストレガシー",
+        "6": "プロスペクトパーク",
+        "7": "ホウオウバローロ",
+        "14": "チャチャピンク",
+        "11": "ハイケンス",
+        "15": "ワンダーウィルク",
+        "3": "キングプロフィット",
+        "12": "スコーピオンイメル",
+        "4": "スラーヴァ",
+        "13": "アイファーファイト",
+        "5": "ナインオブレター",
+        "8": "リトルスカーレット",
+        "1": "プロスペクト",
+        "9": "バーニングフレーム"
+      }
     },
     {
       "prediction_id": 1784,
@@ -430,7 +756,26 @@
           "model_score": 0.18549898802956577,
           "ev_score": 0.7419959521182631
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "2": "ルージュマローネ",
+        "10": "ラストレガシー",
+        "6": "プロスペクトパーク",
+        "7": "ホウオウバローロ",
+        "14": "チャチャピンク",
+        "11": "ハイケンス",
+        "15": "ワンダーウィルク",
+        "3": "キングプロフィット",
+        "12": "スコーピオンイメル",
+        "4": "スラーヴァ",
+        "13": "アイファーファイト",
+        "5": "ナインオブレター",
+        "8": "リトルスカーレット",
+        "1": "プロスペクト",
+        "9": "バーニングフレーム"
+      }
     },
     {
       "prediction_id": 1785,
@@ -461,7 +806,26 @@
           "model_score": 0.023370286065837204,
           "ev_score": 0.008179600123043022
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "2": "ルージュマローネ",
+        "10": "ラストレガシー",
+        "6": "プロスペクトパーク",
+        "7": "ホウオウバローロ",
+        "14": "チャチャピンク",
+        "11": "ハイケンス",
+        "15": "ワンダーウィルク",
+        "3": "キングプロフィット",
+        "12": "スコーピオンイメル",
+        "4": "スラーヴァ",
+        "13": "アイファーファイト",
+        "5": "ナインオブレター",
+        "8": "リトルスカーレット",
+        "1": "プロスペクト",
+        "9": "バーニングフレーム"
+      }
     },
     {
       "prediction_id": 1786,
@@ -499,7 +863,26 @@
           "model_score": 0.011695765445586839,
           "ev_score": 0.017543648168380256
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "2": "ルージュマローネ",
+        "10": "ラストレガシー",
+        "6": "プロスペクトパーク",
+        "7": "ホウオウバローロ",
+        "14": "チャチャピンク",
+        "11": "ハイケンス",
+        "15": "ワンダーウィルク",
+        "3": "キングプロフィット",
+        "12": "スコーピオンイメル",
+        "4": "スラーヴァ",
+        "13": "アイファーファイト",
+        "5": "ナインオブレター",
+        "8": "リトルスカーレット",
+        "1": "プロスペクト",
+        "9": "バーニングフレーム"
+      }
     },
     {
       "prediction_id": 1787,
@@ -537,7 +920,26 @@
           "model_score": 1.8532790411343774,
           "ev_score": 1.8532790411343774
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "2": "ルージュマローネ",
+        "10": "ラストレガシー",
+        "6": "プロスペクトパーク",
+        "7": "ホウオウバローロ",
+        "14": "チャチャピンク",
+        "11": "ハイケンス",
+        "15": "ワンダーウィルク",
+        "3": "キングプロフィット",
+        "12": "スコーピオンイメル",
+        "4": "スラーヴァ",
+        "13": "アイファーファイト",
+        "5": "ナインオブレター",
+        "8": "リトルスカーレット",
+        "1": "プロスペクト",
+        "9": "バーニングフレーム"
+      }
     },
     {
       "prediction_id": 1788,
@@ -596,7 +998,26 @@
           "model_score": 0.0014609715777943774,
           "ev_score": 0.02921943155588755
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "2": "ルージュマローネ",
+        "10": "ラストレガシー",
+        "6": "プロスペクトパーク",
+        "7": "ホウオウバローロ",
+        "14": "チャチャピンク",
+        "11": "ハイケンス",
+        "15": "ワンダーウィルク",
+        "3": "キングプロフィット",
+        "12": "スコーピオンイメル",
+        "4": "スラーヴァ",
+        "13": "アイファーファイト",
+        "5": "ナインオブレター",
+        "8": "リトルスカーレット",
+        "1": "プロスペクト",
+        "9": "バーニングフレーム"
+      }
     },
     {
       "prediction_id": 1790,
@@ -627,7 +1048,26 @@
           "model_score": 1.3637800378812082,
           "ev_score": 1.3637800378812082
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "2": "ルージュマローネ",
+        "10": "ラストレガシー",
+        "6": "プロスペクトパーク",
+        "7": "ホウオウバローロ",
+        "14": "チャチャピンク",
+        "11": "ハイケンス",
+        "15": "ワンダーウィルク",
+        "3": "キングプロフィット",
+        "12": "スコーピオンイメル",
+        "4": "スラーヴァ",
+        "13": "アイファーファイト",
+        "5": "ナインオブレター",
+        "8": "リトルスカーレット",
+        "1": "プロスペクト",
+        "9": "バーニングフレーム"
+      }
     },
     {
       "prediction_id": 1791,
@@ -679,7 +1119,26 @@
           "model_score": 8.787025907935608e-06,
           "ev_score": 2.6361077723806822e-05
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "2": "ルージュマローネ",
+        "10": "ラストレガシー",
+        "6": "プロスペクトパーク",
+        "7": "ホウオウバローロ",
+        "14": "チャチャピンク",
+        "11": "ハイケンス",
+        "15": "ワンダーウィルク",
+        "3": "キングプロフィット",
+        "12": "スコーピオンイメル",
+        "4": "スラーヴァ",
+        "13": "アイファーファイト",
+        "5": "ナインオブレター",
+        "8": "リトルスカーレット",
+        "1": "プロスペクト",
+        "9": "バーニングフレーム"
+      }
     },
     {
       "prediction_id": 1792,
@@ -710,7 +1169,26 @@
           "model_score": 0.21358395837595368,
           "ev_score": 0.17086716670076293
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "2": "ルージュマローネ",
+        "10": "ラストレガシー",
+        "6": "プロスペクトパーク",
+        "7": "ホウオウバローロ",
+        "14": "チャチャピンク",
+        "11": "ハイケンス",
+        "15": "ワンダーウィルク",
+        "3": "キングプロフィット",
+        "12": "スコーピオンイメル",
+        "4": "スラーヴァ",
+        "13": "アイファーファイト",
+        "5": "ナインオブレター",
+        "8": "リトルスカーレット",
+        "1": "プロスペクト",
+        "9": "バーニングフレーム"
+      }
     },
     {
       "prediction_id": 1793,
@@ -741,7 +1219,26 @@
           "model_score": 0.21358395837595368,
           "ev_score": 0.07475438543158379
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "2": "ルージュマローネ",
+        "10": "ラストレガシー",
+        "6": "プロスペクトパーク",
+        "7": "ホウオウバローロ",
+        "14": "チャチャピンク",
+        "11": "ハイケンス",
+        "15": "ワンダーウィルク",
+        "3": "キングプロフィット",
+        "12": "スコーピオンイメル",
+        "4": "スラーヴァ",
+        "13": "アイファーファイト",
+        "5": "ナインオブレター",
+        "8": "リトルスカーレット",
+        "1": "プロスペクト",
+        "9": "バーニングフレーム"
+      }
     },
     {
       "prediction_id": 1794,
@@ -772,7 +1269,26 @@
           "model_score": 0.11379632949480574,
           "ev_score": 0.1706944942422086
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "2": "ルージュマローネ",
+        "10": "ラストレガシー",
+        "6": "プロスペクトパーク",
+        "7": "ホウオウバローロ",
+        "14": "チャチャピンク",
+        "11": "ハイケンス",
+        "15": "ワンダーウィルク",
+        "3": "キングプロフィット",
+        "12": "スコーピオンイメル",
+        "4": "スラーヴァ",
+        "13": "アイファーファイト",
+        "5": "ナインオブレター",
+        "8": "リトルスカーレット",
+        "1": "プロスペクト",
+        "9": "バーニングフレーム"
+      }
     }
   ],
   "training_evals": {

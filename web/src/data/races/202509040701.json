@@ -12,47 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "コパノニコルソン",
-      "horse_id": "2019104116",
-      "sex_age": "牡1",
-      "weight_carried": 60.0,
-      "jockey": "小牧加矢",
-      "trainer": "宮徹",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "コパノリッキー",
-      "dam": "ソフィアルージュ",
-      "dam_sire": "クロフネ"
-    },
-    {
-      "rank": 2,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "ゴールデンスロープ",
-      "horse_id": "2021102482",
-      "sex_age": "騸7",
-      "weight_carried": 60.0,
-      "jockey": "大江原圭",
-      "trainer": "小笠倫弘",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ゴールドシップ",
-      "dam": "ブリュメール",
-      "dam_sire": "ティンバーカントリーTimber Country(米)"
-    },
-    {
-      "rank": 3,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "セイフウサツキ",
@@ -62,7 +22,7 @@
       "jockey": "難波剛健",
       "trainer": "松永幹夫",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -82,7 +42,7 @@
       "jockey": "上野翔",
       "trainer": "金成貴史",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -90,6 +50,46 @@
       "sire": "ジャスタウェイ",
       "dam": "サーキットレディ",
       "dam_sire": "Grand Slam"
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "コパノニコルソン",
+      "horse_id": "2019104116",
+      "sex_age": "牡1",
+      "weight_carried": 60.0,
+      "jockey": "小牧加矢",
+      "trainer": "宮徹",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "コパノリッキー",
+      "dam": "ソフィアルージュ",
+      "dam_sire": "クロフネ"
+    },
+    {
+      "rank": null,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "ゴールデンスロープ",
+      "horse_id": "2021102482",
+      "sex_age": "騸7",
+      "weight_carried": 60.0,
+      "jockey": "大江原圭",
+      "trainer": "小笠倫弘",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ゴールドシップ",
+      "dam": "ブリュメール",
+      "dam_sire": "ティンバーカントリーTimber Country(米)"
     },
     {
       "rank": null,
@@ -102,7 +102,7 @@
       "jockey": "坂口智康",
       "trainer": "土田稔",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +122,7 @@
       "jockey": "小野寺祐",
       "trainer": "安達昭夫",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +142,7 @@
       "jockey": "黒岩悠",
       "trainer": "牧田和弥",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +162,7 @@
       "jockey": "高田潤",
       "trainer": "宮本博",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -178,6 +178,12 @@
       "combination": "3",
       "payout": 430,
       "popularity": 2
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "8",
+      "payout": 8000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -204,6 +210,12 @@
       "popularity": 3
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-30",
+      "payout": 2040,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "3-4",
       "payout": 200,
@@ -222,16 +234,40 @@
       "popularity": 8
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 10010,
+      "popularity": 10
+    },
+    {
       "bet_type": "馬単",
       "combination": "3→4",
       "payout": 1180,
       "popularity": 4
     },
     {
+      "bet_type": "馬単",
+      "combination": "3",
+      "payout": 4000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-3-4",
       "payout": 1120,
       "popularity": 5
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5-80",
+      "payout": 801,
+      "popularity": 40
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2",
+      "payout": 90004,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

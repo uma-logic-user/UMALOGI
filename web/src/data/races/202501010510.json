@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 7,
-      "horse_number": 9,
-      "horse_name": "サクラファレル",
-      "horse_id": "2022104094",
-      "sex_age": "牡3",
-      "weight_carried": 55.0,
-      "jockey": "キング",
-      "trainer": "堀宣行",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 2,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "カテリーナ",
-      "horse_id": "2021101485",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "浜中俊",
-      "trainer": "田中克典",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ホークビルHawkbill(米)",
-      "dam": "フェリーチェレガロ",
-      "dam_sire": "マンハッタンカフェ"
-    },
-    {
-      "rank": 3,
-      "gate_number": 8,
-      "horse_number": 11,
-      "horse_name": "スピーディブレイク",
-      "horse_id": "2020106677",
-      "sex_age": "牡1",
-      "weight_carried": 58.0,
-      "jockey": "ルメール",
-      "trainer": "村田一誠",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "マクフィMakfi(英)",
-      "dam": "ブレイクマイハート",
-      "dam_sire": "ディープインパクト"
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "佐々木大",
       "trainer": "相沢郁",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +42,7 @@
       "jockey": "吉田隼人",
       "trainer": "羽月友彦",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +62,7 @@
       "jockey": "藤岡佑介",
       "trainer": "西村真幸",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +82,7 @@
       "jockey": "丹内祐次",
       "trainer": "鹿戸雄一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -150,6 +90,26 @@
       "sire": "ゴールドシップ",
       "dam": "アメリオラシオン",
       "dam_sire": "ルーラーシップ"
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "カテリーナ",
+      "horse_id": "2021101485",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "浜中俊",
+      "trainer": "田中克典",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ホークビルHawkbill(米)",
+      "dam": "フェリーチェレガロ",
+      "dam_sire": "マンハッタンカフェ"
     },
     {
       "rank": null,
@@ -162,7 +122,7 @@
       "jockey": "鮫島克駿",
       "trainer": "森田直行",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +142,7 @@
       "jockey": "松本大輝",
       "trainer": "野中賢二",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -202,7 +162,7 @@
       "jockey": "丸山元気",
       "trainer": "西園翔太",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -210,6 +170,26 @@
       "sire": "ダノンバラード",
       "dam": "マイネリベルタス",
       "dam_sire": "コンデュイットConduit(愛)"
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 9,
+      "horse_name": "サクラファレル",
+      "horse_id": "2022104094",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "キング",
+      "trainer": "堀宣行",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -222,13 +202,33 @@
       "jockey": "武豊",
       "trainer": "蛯名正義",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
       "horse_weight_diff": null,
       "sire": "ラブリーデイ",
       "dam": "オーキッドレイ",
+      "dam_sire": "ディープインパクト"
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 11,
+      "horse_name": "スピーディブレイク",
+      "horse_id": "2020106677",
+      "sex_age": "牡1",
+      "weight_carried": 58.0,
+      "jockey": "ルメール",
+      "trainer": "村田一誠",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "マクフィMakfi(英)",
+      "dam": "ブレイクマイハート",
       "dam_sire": "ディープインパクト"
     }
   ],
@@ -238,6 +238,12 @@
       "combination": "9",
       "payout": 130,
       "popularity": 1
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "11",
+      "payout": 11000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -270,6 +276,12 @@
       "popularity": 3
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-10",
+      "payout": 1050,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "5-9",
       "payout": 260,
@@ -288,16 +300,52 @@
       "popularity": 9
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 50031,
+      "popularity": 10
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "5",
+      "payout": 70000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "9→5",
       "payout": 800,
       "popularity": 3
     },
     {
+      "bet_type": "馬単",
+      "combination": "5",
+      "payout": 9000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "5-9-11",
       "payout": 1090,
       "popularity": 6
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3-10",
+      "payout": 405,
+      "popularity": 110
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2-60",
+      "payout": 30911,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "6",
+      "payout": 20007,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

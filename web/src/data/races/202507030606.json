@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 8,
-      "horse_number": 8,
-      "horse_name": "シャハザマーン",
-      "horse_id": "2021105680",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "バデル",
-      "trainer": "藤原英昭",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ドゥラメンテ",
-      "dam": "ドバイマジェスティDubai Majesty(米)",
-      "dam_sire": "Essence of Dubai"
-    },
-    {
-      "rank": 2,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "サンライズエース",
-      "horse_id": "2019103907",
-      "sex_age": "牡4",
-      "weight_carried": 58.0,
-      "jockey": "横山典弘",
-      "trainer": "秋山真一",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 3,
-      "gate_number": 7,
-      "horse_number": 7,
-      "horse_name": "バンフィエルド",
-      "horse_id": "2019104531",
-      "sex_age": "牡1",
-      "weight_carried": 58.0,
-      "jockey": "長岡禎仁",
-      "trainer": "緒方努",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "オルフェーヴル",
-      "dam": "エヴィータアルゼンティーナEvita Argentina(米)",
-      "dam_sire": "Candy Ride"
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "佐々木大",
       "trainer": "橋口慎介",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -90,6 +30,26 @@
       "sire": "エピファネイア",
       "dam": "ピースオブラヴ",
       "dam_sire": "マイネルラヴ"
+    },
+    {
+      "rank": null,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "サンライズエース",
+      "horse_id": "2019103907",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "横山典弘",
+      "trainer": "秋山真一",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -102,7 +62,7 @@
       "jockey": "鮫島良太",
       "trainer": "河嶋宏樹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +82,7 @@
       "jockey": "川須栄彦",
       "trainer": "宮徹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +102,7 @@
       "jockey": "秋山稔樹",
       "trainer": "高橋義忠",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +122,7 @@
       "jockey": "田口貫太",
       "trainer": "大橋勇樹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -170,6 +130,46 @@
       "sire": "Al Wukair(愛)",
       "dam": "サクラゼンセンSakura Zensen(仏)",
       "dam_sire": "Planteur(愛)"
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 7,
+      "horse_name": "バンフィエルド",
+      "horse_id": "2019104531",
+      "sex_age": "牡1",
+      "weight_carried": 58.0,
+      "jockey": "長岡禎仁",
+      "trainer": "緒方努",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "オルフェーヴル",
+      "dam": "エヴィータアルゼンティーナEvita Argentina(米)",
+      "dam_sire": "Candy Ride"
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 8,
+      "horse_name": "シャハザマーン",
+      "horse_id": "2021105680",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "バデル",
+      "trainer": "藤原英昭",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ドゥラメンテ",
+      "dam": "ドバイマジェスティDubai Majesty(米)",
+      "dam_sire": "Essence of Dubai"
     },
     {
       "rank": null,
@@ -182,7 +182,7 @@
       "jockey": "杉原誠人",
       "trainer": "松山将樹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -198,6 +198,12 @@
       "combination": "8",
       "payout": 180,
       "popularity": 1
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "9",
+      "payout": 9000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -230,6 +236,18 @@
       "popularity": 6
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-10",
+      "payout": 1020,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 80000,
+      "popularity": 1
+    },
+    {
       "bet_type": "ワイド",
       "combination": "2-8",
       "payout": 480,
@@ -254,10 +272,34 @@
       "popularity": 7
     },
     {
+      "bet_type": "馬単",
+      "combination": "2",
+      "payout": 8000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "2-7-8",
       "payout": 5890,
       "popularity": 23
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "7-70",
+      "payout": 1102,
+      "popularity": 70
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4-80",
+      "payout": 60708,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "22",
+      "payout": 40021,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

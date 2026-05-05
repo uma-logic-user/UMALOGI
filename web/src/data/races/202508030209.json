@@ -12,7 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "レディーヴァリュー",
@@ -22,7 +22,7 @@
       "jockey": "団野大成",
       "trainer": "小林真也",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -30,46 +30,6 @@
       "sire": "ジャスタウェイ",
       "dam": "ベガスナイト",
       "dam_sire": "コロナドズクエストCoronado's Quest(米)"
-    },
-    {
-      "rank": 2,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "アイスグリーン",
-      "horse_id": "2020103354",
-      "sex_age": "牡5",
-      "weight_carried": 58.0,
-      "jockey": "吉村誠之",
-      "trainer": "池添学",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "モーリス",
-      "dam": "グリューネワルト",
-      "dam_sire": "スペシャルウィーク"
-    },
-    {
-      "rank": 3,
-      "gate_number": 8,
-      "horse_number": 9,
-      "horse_name": "キャントウェイト",
-      "horse_id": "2021102800",
-      "sex_age": "牡7",
-      "weight_carried": 58.0,
-      "jockey": "和田竜二",
-      "trainer": "萱野浩二",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ゴールドシップ",
-      "dam": "マイネランデブー",
-      "dam_sire": "アグネスデジタル"
     },
     {
       "rank": null,
@@ -82,7 +42,7 @@
       "jockey": "横山武史",
       "trainer": "大竹正博",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -90,6 +50,26 @@
       "sire": "ハーツクライ",
       "dam": "アッシュベリー",
       "dam_sire": "Any Given Saturday"
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "アイスグリーン",
+      "horse_id": "2020103354",
+      "sex_age": "牡5",
+      "weight_carried": 58.0,
+      "jockey": "吉村誠之",
+      "trainer": "池添学",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "モーリス",
+      "dam": "グリューネワルト",
+      "dam_sire": "スペシャルウィーク"
     },
     {
       "rank": null,
@@ -102,7 +82,7 @@
       "jockey": "鮫島克駿",
       "trainer": "橋口慎介",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +102,7 @@
       "jockey": "松若風馬",
       "trainer": "小崎憲",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +122,7 @@
       "jockey": "松山弘平",
       "trainer": "池江泰寿",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +142,7 @@
       "jockey": "斎藤新",
       "trainer": "畠山吉宏",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +162,7 @@
       "jockey": "川田将雅",
       "trainer": "上村洋行",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -190,6 +170,26 @@
       "sire": "サトノダイヤモンド",
       "dam": "ビーウインド",
       "dam_sire": "スピニングワールドSpinning World(米)"
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 9,
+      "horse_name": "キャントウェイト",
+      "horse_id": "2021102800",
+      "sex_age": "牡7",
+      "weight_carried": 58.0,
+      "jockey": "和田竜二",
+      "trainer": "萱野浩二",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ゴールドシップ",
+      "dam": "マイネランデブー",
+      "dam_sire": "アグネスデジタル"
     }
   ],
   "payouts": [
@@ -198,6 +198,12 @@
       "combination": "1",
       "payout": 290,
       "popularity": 2
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "9",
+      "payout": 9000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -230,6 +236,18 @@
       "popularity": 6
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-70",
+      "payout": 2030,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 30000,
+      "popularity": 1
+    },
+    {
       "bet_type": "ワイド",
       "combination": "1-3",
       "payout": 500,
@@ -248,16 +266,46 @@
       "popularity": 15
     },
     {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 70040,
+      "popularity": 90
+    },
+    {
       "bet_type": "馬単",
       "combination": "1→3",
       "payout": 2280,
       "popularity": 9
     },
     {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 3000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-3-9",
       "payout": 4720,
       "popularity": 19
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5-90",
+      "payout": 703,
+      "popularity": 90
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5",
+      "payout": 60109,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "11",
+      "payout": 10015,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

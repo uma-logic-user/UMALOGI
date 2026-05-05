@@ -4,11 +4,11 @@
   "date": "2026-04-25",
   "venue": "東京",
   "race_number": 8,
-  "distance": 0,
-  "surface": "",
+  "distance": 1600,
+  "surface": "芝",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "晴",
+  "condition": "良",
   "year": "2026",
   "results": [
     {
@@ -21,12 +21,12 @@
       "weight_carried": 53.0,
       "jockey": "佐藤翔馬",
       "trainer": "金成貴史",
-      "finish_time": null,
+      "finish_time": "1:37.2",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 40.5,
+      "popularity": 7,
+      "horse_weight": 470,
+      "horse_weight_diff": 6,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -41,12 +41,12 @@
       "weight_carried": 56.0,
       "jockey": "津村明秀",
       "trainer": "林徹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:37.2",
+      "margin": "ハナ",
+      "win_odds": 6.5,
+      "popularity": 4,
+      "horse_weight": 452,
+      "horse_weight_diff": -2,
       "sire": "リアルスティール",
       "dam": "キラモサKirramosa(新)",
       "dam_sire": "Alamosa"
@@ -61,58 +61,18 @@
       "weight_carried": 58.0,
       "jockey": "岩田康誠",
       "trainer": "浅利英明",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:37.3",
+      "margin": "1/2",
+      "win_odds": 4.3,
+      "popularity": 2,
+      "horse_weight": 490,
+      "horse_weight_diff": -6,
       "sire": "リアルインパクト",
       "dam": "ルミナスパレード",
       "dam_sire": "シンボリクリスエス"
     },
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "アセンブリールーム",
-      "horse_id": "2022104811",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "戸崎圭太",
-      "trainer": "中川公成",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "チャイボーグ",
-      "horse_id": "2020104778",
-      "sex_age": "牝4",
-      "weight_carried": 54.0,
-      "jockey": "長浜鴻緒",
-      "trainer": "的場均",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "シャンハイボビーShanghai Bobby(米)",
-      "dam": "アンスタンフィール",
-      "dam_sire": "スタチューオブリバティStatue of Liberty(米)"
-    },
-    {
-      "rank": null,
+      "rank": 4,
       "gate_number": 5,
       "horse_number": 5,
       "horse_name": "アトリウムチャペル",
@@ -121,18 +81,38 @@
       "weight_carried": 56.0,
       "jockey": "横山典弘",
       "trainer": "浅利英明",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:37.3",
+      "margin": "ハナ",
+      "win_odds": 11.2,
+      "popularity": 5,
+      "horse_weight": 434,
+      "horse_weight_diff": 2,
       "sire": "ドレフォンDrefong(米)",
       "dam": "ジュリエットベール",
       "dam_sire": "ヴィクトワールピサ"
     },
     {
-      "rank": null,
+      "rank": 5,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "アセンブリールーム",
+      "horse_id": "2022104811",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "戸崎圭太",
+      "trainer": "中川公成",
+      "finish_time": "1:37.4",
+      "margin": "1/2",
+      "win_odds": 2.0,
+      "popularity": 1,
+      "horse_weight": 466,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 6,
       "gate_number": 6,
       "horse_number": 6,
       "horse_name": "ツインピークス",
@@ -141,18 +121,38 @@
       "weight_carried": 56.0,
       "jockey": "佐々木大",
       "trainer": "千葉直人",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:37.5",
+      "margin": "クビ",
+      "win_odds": 22.1,
+      "popularity": 6,
+      "horse_weight": 496,
+      "horse_weight_diff": -2,
       "sire": null,
       "dam": null,
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 7,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "チャイボーグ",
+      "horse_id": "2020104778",
+      "sex_age": "牝4",
+      "weight_carried": 54.0,
+      "jockey": "長浜鴻緒",
+      "trainer": "的場均",
+      "finish_time": "1:37.9",
+      "margin": "2.1/2",
+      "win_odds": 150.9,
+      "popularity": 8,
+      "horse_weight": 500,
+      "horse_weight_diff": 4,
+      "sire": "シャンハイボビーShanghai Bobby(米)",
+      "dam": "アンスタンフィール",
+      "dam_sire": "スタチューオブリバティStatue of Liberty(米)"
+    },
+    {
+      "rank": 8,
       "gate_number": 8,
       "horse_number": 8,
       "horse_name": "ナクライト",
@@ -161,12 +161,12 @@
       "weight_carried": 58.0,
       "jockey": "横山和生",
       "trainer": "手塚貴徳",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:38.0",
+      "margin": "クビ",
+      "win_odds": 4.6,
+      "popularity": 3,
+      "horse_weight": 500,
+      "horse_weight_diff": 0,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -347,7 +347,19 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.012030075187969926
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "スタニングヴュー",
+        "4": "トロピカルティー",
+        "7": "ソニックライン",
+        "5": "アトリウムチャペル",
+        "1": "アセンブリールーム",
+        "6": "ツインピークス",
+        "2": "チャイボーグ",
+        "8": "ナクライト"
+      }
     },
     {
       "prediction_id": 6213,
@@ -385,7 +397,19 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.03609022556390978
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "3": "スタニングヴュー",
+        "4": "トロピカルティー",
+        "7": "ソニックライン",
+        "5": "アトリウムチャペル",
+        "1": "アセンブリールーム",
+        "6": "ツインピークス",
+        "2": "チャイボーグ",
+        "8": "ナクライト"
+      }
     },
     {
       "prediction_id": 6214,
@@ -416,7 +440,19 @@
           "model_score": 0.03571428571428571,
           "ev_score": 2.1428571428571423
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "スタニングヴュー",
+        "4": "トロピカルティー",
+        "7": "ソニックライン",
+        "5": "アトリウムチャペル",
+        "1": "アセンブリールーム",
+        "6": "ツインピークス",
+        "2": "チャイボーグ",
+        "8": "ナクライト"
+      }
     },
     {
       "prediction_id": 6215,
@@ -447,7 +483,19 @@
           "model_score": 0.03571428571428571,
           "ev_score": 0.8928571428571428
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "スタニングヴュー",
+        "4": "トロピカルティー",
+        "7": "ソニックライン",
+        "5": "アトリウムチャペル",
+        "1": "アセンブリールーム",
+        "6": "ツインピークス",
+        "2": "チャイボーグ",
+        "8": "ナクライト"
+      }
     },
     {
       "prediction_id": 6216,
@@ -492,7 +540,19 @@
           "model_score": 0.017857142857142856,
           "ev_score": 2.1428571428571423
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "3": "スタニングヴュー",
+        "4": "トロピカルティー",
+        "7": "ソニックライン",
+        "5": "アトリウムチャペル",
+        "1": "アセンブリールーム",
+        "6": "ツインピークス",
+        "2": "チャイボーグ",
+        "8": "ナクライト"
+      }
     },
     {
       "prediction_id": 6218,
@@ -530,7 +590,19 @@
           "model_score": 0.017857142857142856,
           "ev_score": 5.0
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "スタニングヴュー",
+        "4": "トロピカルティー",
+        "7": "ソニックライン",
+        "5": "アトリウムチャペル",
+        "1": "アセンブリールーム",
+        "6": "ツインピークス",
+        "2": "チャイボーグ",
+        "8": "ナクライト"
+      }
     },
     {
       "prediction_id": 6219,
@@ -652,7 +724,19 @@
           "model_score": 0.002976190476190476,
           "ev_score": 4.464285714285714
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "3": "スタニングヴュー",
+        "4": "トロピカルティー",
+        "7": "ソニックライン",
+        "5": "アトリウムチャペル",
+        "1": "アセンブリールーム",
+        "6": "ツインピークス",
+        "2": "チャイボーグ",
+        "8": "ナクライト"
+      }
     },
     {
       "prediction_id": 6220,
@@ -725,7 +809,19 @@
           "model_score": 0.010452961672473868,
           "ev_score": 0.0
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "3": "スタニングヴュー",
+        "4": "トロピカルティー",
+        "7": "ソニックライン",
+        "5": "アトリウムチャペル",
+        "1": "アセンブリールーム",
+        "6": "ツインピークス",
+        "2": "チャイボーグ",
+        "8": "ナクライト"
+      }
     },
     {
       "prediction_id": 6886,
@@ -749,7 +845,19 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.027669172932330826
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "スタニングヴュー",
+        "4": "トロピカルティー",
+        "7": "ソニックライン",
+        "5": "アトリウムチャペル",
+        "1": "アセンブリールーム",
+        "6": "ツインピークス",
+        "2": "チャイボーグ",
+        "8": "ナクライト"
+      }
     },
     {
       "prediction_id": 6887,
@@ -787,7 +895,19 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.03609022556390978
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "3": "スタニングヴュー",
+        "4": "トロピカルティー",
+        "7": "ソニックライン",
+        "5": "アトリウムチャペル",
+        "1": "アセンブリールーム",
+        "6": "ツインピークス",
+        "2": "チャイボーグ",
+        "8": "ナクライト"
+      }
     },
     {
       "prediction_id": 6888,
@@ -818,7 +938,19 @@
           "model_score": 0.04131451937462941,
           "ev_score": 0.5701403673698858
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "スタニングヴュー",
+        "4": "トロピカルティー",
+        "7": "ソニックライン",
+        "5": "アトリウムチャペル",
+        "1": "アセンブリールーム",
+        "6": "ツインピークス",
+        "2": "チャイボーグ",
+        "8": "ナクライト"
+      }
     },
     {
       "prediction_id": 6889,
@@ -849,7 +981,19 @@
           "model_score": 0.04131451937462941,
           "ev_score": 0.2375584864041191
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "スタニングヴュー",
+        "4": "トロピカルティー",
+        "7": "ソニックライン",
+        "5": "アトリウムチャペル",
+        "1": "アセンブリールーム",
+        "6": "ツインピークス",
+        "2": "チャイボーグ",
+        "8": "ナクライト"
+      }
     },
     {
       "prediction_id": 6890,
@@ -894,7 +1038,19 @@
           "model_score": 0.020657259687314706,
           "ev_score": 0.5701403673698858
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "3": "スタニングヴュー",
+        "4": "トロピカルティー",
+        "7": "ソニックライン",
+        "5": "アトリウムチャペル",
+        "1": "アセンブリールーム",
+        "6": "ツインピークス",
+        "2": "チャイボーグ",
+        "8": "ナクライト"
+      }
     },
     {
       "prediction_id": 6892,
@@ -932,7 +1088,19 @@
           "model_score": 0.02263557186226912,
           "ev_score": 1.5618544584965692
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "スタニングヴュー",
+        "4": "トロピカルティー",
+        "7": "ソニックライン",
+        "5": "アトリウムチャペル",
+        "1": "アセンブリールーム",
+        "6": "ツインピークス",
+        "2": "チャイボーグ",
+        "8": "ナクライト"
+      }
     },
     {
       "prediction_id": 6893,
@@ -1054,7 +1222,19 @@
           "model_score": 0.003772595310378187,
           "ev_score": 1.3015453820804743
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "3": "スタニングヴュー",
+        "4": "トロピカルティー",
+        "7": "ソニックライン",
+        "5": "アトリウムチャペル",
+        "1": "アセンブリールーム",
+        "6": "ツインピークス",
+        "2": "チャイボーグ",
+        "8": "ナクライト"
+      }
     },
     {
       "prediction_id": 6894,
@@ -1127,7 +1307,19 @@
           "model_score": 0.010452961672473868,
           "ev_score": 0.5770034843205576
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "3": "スタニングヴュー",
+        "4": "トロピカルティー",
+        "7": "ソニックライン",
+        "5": "アトリウムチャペル",
+        "1": "アセンブリールーム",
+        "6": "ツインピークス",
+        "2": "チャイボーグ",
+        "8": "ナクライト"
+      }
     }
   ],
   "training_evals": {}

@@ -4,25 +4,55 @@
   "date": "2026-04-11",
   "venue": "阪神",
   "race_number": 8,
-  "distance": 0,
-  "surface": "",
+  "distance": 1400,
+  "surface": "ダート",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "晴",
+  "condition": "重",
   "year": "2026",
   "results": [
+    {
+      "rank": 1,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "モズケイスター",
+      "horse_id": "2022102127",
+      "sex_age": "牡1",
+      "weight_carried": 58.0,
+      "jockey": "坂井瑠星",
+      "trainer": "高柳大輔",
+      "finish_time": "1:24.0",
+      "margin": "@",
+      "win_odds": 2.1,
+      "popularity": 1,
+      "horse_weight": 480,
+      "horse_weight_diff": 6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0002,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.3055,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "出来安定"
+      }
+    },
     {
       "rank": 2,
       "gate_number": 2,
       "horse_number": 4,
       "horse_name": "モーニングコート",
       "horse_id": "2021103224",
-      "sex_age": "牡5",
+      "sex_age": "牡1",
       "weight_carried": 58.0,
-      "jockey": "川田",
-      "trainer": "栗東中内田",
+      "jockey": "川田将雅",
+      "trainer": "中内田充",
       "finish_time": "1:24.0",
-      "margin": "@",
+      "margin": "ハナ",
       "win_odds": 6.1,
       "popularity": 2,
       "horse_weight": 518,
@@ -42,17 +72,257 @@
       }
     },
     {
+      "rank": 3,
+      "gate_number": 4,
+      "horse_number": 8,
+      "horse_name": "ザングウィル",
+      "horse_id": "2020110051",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "岩田望来",
+      "trainer": "佐藤悠太",
+      "finish_time": "1:24.2",
+      "margin": "1.1/2",
+      "win_odds": 10.5,
+      "popularity": 6,
+      "horse_weight": 512,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0001,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.4207,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "好調子"
+      }
+    },
+    {
+      "rank": 4,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "パヴィーア",
+      "horse_id": "2022110082",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "ルメール",
+      "trainer": "田中克典",
+      "finish_time": "1:24.4",
+      "margin": "1.1/4",
+      "win_odds": 7.4,
+      "popularity": 3,
+      "horse_weight": 468,
+      "horse_weight_diff": -8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0001,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "動き軽快"
+      }
+    },
+    {
+      "rank": 5,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "エンダードラゴン",
+      "horse_id": "2022104890",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "武豊",
+      "trainer": "友道康夫",
+      "finish_time": "1:24.5",
+      "margin": "1/2",
+      "win_odds": 7.8,
+      "popularity": 4,
+      "horse_weight": 514,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0001,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.1359,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "力強い"
+      }
+    },
+    {
+      "rank": 6,
+      "gate_number": 5,
+      "horse_number": 10,
+      "horse_name": "ハイクライテリア",
+      "horse_id": "2020102910",
+      "sex_age": "騸3",
+      "weight_carried": 58.0,
+      "jockey": "国分優作",
+      "trainer": "羽月友彦",
+      "finish_time": "1:24.6",
+      "margin": "1/2",
+      "win_odds": 182.1,
+      "popularity": 13,
+      "horse_weight": 474,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0001,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.0185,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "仕上良好"
+      }
+    },
+    {
+      "rank": 7,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "アメリカンビヨンド",
+      "horse_id": "2022110104",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "西塚洸二",
+      "trainer": "藤原英昭",
+      "finish_time": "1:24.8",
+      "margin": "3/4",
+      "win_odds": 13.9,
+      "popularity": 7,
+      "horse_weight": 532,
+      "horse_weight_diff": -4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0001,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.4207,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "A",
+        "eval_text": "気配抜群"
+      }
+    },
+    {
+      "rank": 8,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "ダディーズグーグー",
+      "horse_id": "2022105619",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "浜中俊",
+      "trainer": "畑端省吾",
+      "finish_time": "1:24.9",
+      "margin": "3/4",
+      "win_odds": 10.4,
+      "popularity": 5,
+      "horse_weight": 474,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0001,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.5099,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "好調子"
+      }
+    },
+    {
+      "rank": 9,
+      "gate_number": 1,
+      "horse_number": 2,
+      "horse_name": "ワイドデコラシオン",
+      "horse_id": "2022103306",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "鮫島克駿",
+      "trainer": "辻野泰之",
+      "finish_time": "1:24.9",
+      "margin": "クビ",
+      "win_odds": 59.0,
+      "popularity": 9,
+      "horse_weight": 506,
+      "horse_weight_diff": -5,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0001,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.2551,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "攻め熱心"
+      }
+    },
+    {
+      "rank": 10,
+      "gate_number": 6,
+      "horse_number": 12,
+      "horse_name": "リュキア",
+      "horse_id": "2022107167",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "田山旺佑",
+      "trainer": "小椋研介",
+      "finish_time": "1:25.0",
+      "margin": "クビ",
+      "win_odds": 147.6,
+      "popularity": 11,
+      "horse_weight": 468,
+      "horse_weight_diff": 6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0002,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.2685,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "良化遅い"
+      }
+    },
+    {
       "rank": 11,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "ゴッドカインド",
       "horse_id": "2021106150",
-      "sex_age": "牝5",
+      "sex_age": "牝1",
       "weight_carried": 56.0,
-      "jockey": "角田和",
-      "trainer": "栗東飯田",
+      "jockey": "角田大和",
+      "trainer": "飯田祐史",
       "finish_time": "1:25.3",
-      "margin": "@",
+      "margin": "1.1/2",
       "win_odds": 199.7,
       "popularity": 14,
       "horse_weight": 408,
@@ -77,12 +347,12 @@
       "horse_number": 15,
       "horse_name": "ポルトドール",
       "horse_id": "2020102728",
-      "sex_age": "牡6",
+      "sex_age": "牡1",
       "weight_carried": 58.0,
-      "jockey": "松山",
-      "trainer": "栗東小栗",
+      "jockey": "松山弘平",
+      "trainer": "小栗実",
       "finish_time": "1:25.4",
-      "margin": "@",
+      "margin": "3/4",
       "win_odds": 25.8,
       "popularity": 8,
       "horse_weight": 472,
@@ -107,12 +377,12 @@
       "horse_number": 14,
       "horse_name": "リュクスドレフォン",
       "horse_id": "2020106927",
-      "sex_age": "牡6",
+      "sex_age": "牡3",
       "weight_carried": 58.0,
-      "jockey": "荻野琢",
-      "trainer": "栗東平田",
+      "jockey": "荻野琢真",
+      "trainer": "平田修",
       "finish_time": "1:25.8",
-      "margin": "@",
+      "margin": "2.1/2",
       "win_odds": 203.7,
       "popularity": 15,
       "horse_weight": 524,
@@ -129,6 +399,96 @@
       "training_eval": {
         "eval_grade": "C",
         "eval_text": "目立たず"
+      }
+    },
+    {
+      "rank": 14,
+      "gate_number": 7,
+      "horse_number": 13,
+      "horse_name": "スターペスショウマ",
+      "horse_id": "2022106997",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "太宰啓介",
+      "trainer": "石橋守",
+      "finish_time": "1:25.9",
+      "margin": "3/4",
+      "win_odds": 431.2,
+      "popularity": 16,
+      "horse_weight": 472,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0001,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.2279,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "余力十分"
+      }
+    },
+    {
+      "rank": 15,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "ケイアイブイスリー",
+      "horse_id": "2022106583",
+      "sex_age": "牡1",
+      "weight_carried": 58.0,
+      "jockey": "幸英明",
+      "trainer": "平田修",
+      "finish_time": "1:26.1",
+      "margin": "1.1/4",
+      "win_odds": 116.7,
+      "popularity": 10,
+      "horse_weight": 442,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0001,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.069,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "元気一杯"
+      }
+    },
+    {
+      "rank": 16,
+      "gate_number": 8,
+      "horse_number": 16,
+      "horse_name": "プロクレイア",
+      "horse_id": "2022105027",
+      "sex_age": "牝1",
+      "weight_carried": 53.0,
+      "jockey": "川端海翼",
+      "trainer": "小林真也",
+      "finish_time": "1:26.8",
+      "margin": "4",
+      "win_odds": 175.5,
+      "popularity": 12,
+      "horse_weight": 472,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0002,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "気配平凡"
       }
     }
   ],
@@ -402,7 +762,27 @@
           "model_score": 3.5737123158107255e-05,
           "ev_score": 0.00014294849263242902
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "9": "モズケイスター",
+        "4": "モーニングコート",
+        "8": "ザングウィル",
+        "3": "パヴィーア",
+        "6": "エンダードラゴン",
+        "10": "ハイクライテリア",
+        "7": "アメリカンビヨンド",
+        "11": "ダディーズグーグー",
+        "2": "ワイドデコラシオン",
+        "12": "リュキア",
+        "1": "ゴッドカインド",
+        "15": "ポルトドール",
+        "14": "リュクスドレフォン",
+        "13": "スターペスショウマ",
+        "5": "ケイアイブイスリー",
+        "16": "プロクレイア"
+      }
     },
     {
       "prediction_id": 2041,
@@ -447,7 +827,27 @@
           "model_score": 0.00019072335294514984,
           "ev_score": 0.0005721700588354495
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "9": "モズケイスター",
+        "4": "モーニングコート",
+        "8": "ザングウィル",
+        "3": "パヴィーア",
+        "6": "エンダードラゴン",
+        "10": "ハイクライテリア",
+        "7": "アメリカンビヨンド",
+        "11": "ダディーズグーグー",
+        "2": "ワイドデコラシオン",
+        "12": "リュキア",
+        "1": "ゴッドカインド",
+        "15": "ポルトドール",
+        "14": "リュクスドレフォン",
+        "13": "スターペスショウマ",
+        "5": "ケイアイブイスリー",
+        "16": "プロクレイア"
+      }
     },
     {
       "prediction_id": 2042,
@@ -478,7 +878,27 @@
           "model_score": 0.030979157546094496,
           "ev_score": 0.024783326036875594
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "9": "モズケイスター",
+        "4": "モーニングコート",
+        "8": "ザングウィル",
+        "3": "パヴィーア",
+        "6": "エンダードラゴン",
+        "10": "ハイクライテリア",
+        "7": "アメリカンビヨンド",
+        "11": "ダディーズグーグー",
+        "2": "ワイドデコラシオン",
+        "12": "リュキア",
+        "1": "ゴッドカインド",
+        "15": "ポルトドール",
+        "14": "リュクスドレフォン",
+        "13": "スターペスショウマ",
+        "5": "ケイアイブイスリー",
+        "16": "プロクレイア"
+      }
     },
     {
       "prediction_id": 2043,
@@ -509,7 +929,27 @@
           "model_score": 0.030979157546094496,
           "ev_score": 0.010842705141133073
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "9": "モズケイスター",
+        "4": "モーニングコート",
+        "8": "ザングウィル",
+        "3": "パヴィーア",
+        "6": "エンダードラゴン",
+        "10": "ハイクライテリア",
+        "7": "アメリカンビヨンド",
+        "11": "ダディーズグーグー",
+        "2": "ワイドデコラシオン",
+        "12": "リュキア",
+        "1": "ゴッドカインド",
+        "15": "ポルトドール",
+        "14": "リュクスドレフォン",
+        "13": "スターペスショウマ",
+        "5": "ケイアイブイスリー",
+        "16": "プロクレイア"
+      }
     },
     {
       "prediction_id": 2044,
@@ -561,7 +1001,27 @@
           "model_score": 7.3745412771691194e-06,
           "ev_score": 2.2123623831507357e-05
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "9": "モズケイスター",
+        "4": "モーニングコート",
+        "8": "ザングウィル",
+        "3": "パヴィーア",
+        "6": "エンダードラゴン",
+        "10": "ハイクライテリア",
+        "7": "アメリカンビヨンド",
+        "11": "ダディーズグーグー",
+        "2": "ワイドデコラシオン",
+        "12": "リュキア",
+        "1": "ゴッドカインド",
+        "15": "ポルトドール",
+        "14": "リュクスドレフォン",
+        "13": "スターペスショウマ",
+        "5": "ケイアイブイスリー",
+        "16": "プロクレイア"
+      }
     },
     {
       "prediction_id": 2045,
@@ -592,7 +1052,27 @@
           "model_score": 0.013126690973602008,
           "ev_score": 0.05250676389440803
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "9": "モズケイスター",
+        "4": "モーニングコート",
+        "8": "ザングウィル",
+        "3": "パヴィーア",
+        "6": "エンダードラゴン",
+        "10": "ハイクライテリア",
+        "7": "アメリカンビヨンド",
+        "11": "ダディーズグーグー",
+        "2": "ワイドデコラシオン",
+        "12": "リュキア",
+        "1": "ゴッドカインド",
+        "15": "ポルトドール",
+        "14": "リュクスドレフォン",
+        "13": "スターペスショウマ",
+        "5": "ケイアイブイスリー",
+        "16": "プロクレイア"
+      }
     },
     {
       "prediction_id": 2046,
@@ -651,7 +1131,27 @@
           "model_score": 0.0022138559743038644,
           "ev_score": 0.044277119486077286
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "9": "モズケイスター",
+        "4": "モーニングコート",
+        "8": "ザングウィル",
+        "3": "パヴィーア",
+        "6": "エンダードラゴン",
+        "10": "ハイクライテリア",
+        "7": "アメリカンビヨンド",
+        "11": "ダディーズグーグー",
+        "2": "ワイドデコラシオン",
+        "12": "リュキア",
+        "1": "ゴッドカインド",
+        "15": "ポルトドール",
+        "14": "リュクスドレフォン",
+        "13": "スターペスショウマ",
+        "5": "ケイアイブイスリー",
+        "16": "プロクレイア"
+      }
     },
     {
       "prediction_id": 2056,
@@ -682,7 +1182,27 @@
           "model_score": 1.0184727315404336,
           "ev_score": 1.0184727315404336
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "9": "モズケイスター",
+        "4": "モーニングコート",
+        "8": "ザングウィル",
+        "3": "パヴィーア",
+        "6": "エンダードラゴン",
+        "10": "ハイクライテリア",
+        "7": "アメリカンビヨンド",
+        "11": "ダディーズグーグー",
+        "2": "ワイドデコラシオン",
+        "12": "リュキア",
+        "1": "ゴッドカインド",
+        "15": "ポルトドール",
+        "14": "リュクスドレフォン",
+        "13": "スターペスショウマ",
+        "5": "ケイアイブイスリー",
+        "16": "プロクレイア"
+      }
     },
     {
       "prediction_id": 2057,
@@ -741,7 +1261,27 @@
           "model_score": 1.3451814218797313,
           "ev_score": 1.3451814218797313
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 10,
+      "horse_num_to_name": {
+        "9": "モズケイスター",
+        "4": "モーニングコート",
+        "8": "ザングウィル",
+        "3": "パヴィーア",
+        "6": "エンダードラゴン",
+        "10": "ハイクライテリア",
+        "7": "アメリカンビヨンド",
+        "11": "ダディーズグーグー",
+        "2": "ワイドデコラシオン",
+        "12": "リュキア",
+        "1": "ゴッドカインド",
+        "15": "ポルトドール",
+        "14": "リュクスドレフォン",
+        "13": "スターペスショウマ",
+        "5": "ケイアイブイスリー",
+        "16": "プロクレイア"
+      }
     },
     {
       "prediction_id": 2058,
@@ -772,7 +1312,27 @@
           "model_score": 0.03340480494504483,
           "ev_score": 0.026723843956035866
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "9": "モズケイスター",
+        "4": "モーニングコート",
+        "8": "ザングウィル",
+        "3": "パヴィーア",
+        "6": "エンダードラゴン",
+        "10": "ハイクライテリア",
+        "7": "アメリカンビヨンド",
+        "11": "ダディーズグーグー",
+        "2": "ワイドデコラシオン",
+        "12": "リュキア",
+        "1": "ゴッドカインド",
+        "15": "ポルトドール",
+        "14": "リュクスドレフォン",
+        "13": "スターペスショウマ",
+        "5": "ケイアイブイスリー",
+        "16": "プロクレイア"
+      }
     },
     {
       "prediction_id": 2059,
@@ -831,7 +1391,27 @@
           "model_score": 0.6666125479361881,
           "ev_score": 2.6664501917447523
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "9": "モズケイスター",
+        "4": "モーニングコート",
+        "8": "ザングウィル",
+        "3": "パヴィーア",
+        "6": "エンダードラゴン",
+        "10": "ハイクライテリア",
+        "7": "アメリカンビヨンド",
+        "11": "ダディーズグーグー",
+        "2": "ワイドデコラシオン",
+        "12": "リュキア",
+        "1": "ゴッドカインド",
+        "15": "ポルトドール",
+        "14": "リュクスドレフォン",
+        "13": "スターペスショウマ",
+        "5": "ケイアイブイスリー",
+        "16": "プロクレイア"
+      }
     },
     {
       "prediction_id": 2060,
@@ -862,7 +1442,27 @@
           "model_score": 0.017077782404849518,
           "ev_score": 0.02561667360727428
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "9": "モズケイスター",
+        "4": "モーニングコート",
+        "8": "ザングウィル",
+        "3": "パヴィーア",
+        "6": "エンダードラゴン",
+        "10": "ハイクライテリア",
+        "7": "アメリカンビヨンド",
+        "11": "ダディーズグーグー",
+        "2": "ワイドデコラシオン",
+        "12": "リュキア",
+        "1": "ゴッドカインド",
+        "15": "ポルトドール",
+        "14": "リュクスドレフォン",
+        "13": "スターペスショウマ",
+        "5": "ケイアイブイスリー",
+        "16": "プロクレイア"
+      }
     },
     {
       "prediction_id": 2061,
@@ -893,7 +1493,27 @@
           "model_score": 0.012460211549410724,
           "ev_score": 0.049840846197642896
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "9": "モズケイスター",
+        "4": "モーニングコート",
+        "8": "ザングウィル",
+        "3": "パヴィーア",
+        "6": "エンダードラゴン",
+        "10": "ハイクライテリア",
+        "7": "アメリカンビヨンド",
+        "11": "ダディーズグーグー",
+        "2": "ワイドデコラシオン",
+        "12": "リュキア",
+        "1": "ゴッドカインド",
+        "15": "ポルトドール",
+        "14": "リュクスドレフォン",
+        "13": "スターペスショウマ",
+        "5": "ケイアイブイスリー",
+        "16": "プロクレイア"
+      }
     }
   ],
   "training_evals": {

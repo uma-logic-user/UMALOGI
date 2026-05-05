@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "パッションリッチ",
-      "horse_id": "2022105390",
-      "sex_age": "牡1",
-      "weight_carried": 55.0,
-      "jockey": "菅原明良",
-      "trainer": "久保田貴",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 2,
-      "gate_number": 8,
-      "horse_number": 10,
-      "horse_name": "ボナーテソーロ",
-      "horse_id": "2021106361",
-      "sex_age": "牡1",
-      "weight_carried": 58.0,
-      "jockey": "木幡巧也",
-      "trainer": "牧光二",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "Nathaniel(愛)",
-      "dam": "エブリナイスガール",
-      "dam_sire": "Mizzen Mast"
-    },
-    {
-      "rank": 3,
-      "gate_number": 7,
-      "horse_number": 9,
-      "horse_name": "レヴーズマン",
-      "horse_id": "2022104782",
-      "sex_age": "牡3",
-      "weight_carried": 55.0,
-      "jockey": "ルメール",
-      "trainer": "手塚貴久",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "菊沢一樹",
       "trainer": "青木孝文",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +42,7 @@
       "jockey": "江田照男",
       "trainer": "柄崎将寿",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -110,6 +50,26 @@
       "sire": "エピファネイア",
       "dam": "テンイムホウ",
       "dam_sire": "ラムタラLammtarra(米)"
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "パッションリッチ",
+      "horse_id": "2022105390",
+      "sex_age": "牡1",
+      "weight_carried": 55.0,
+      "jockey": "菅原明良",
+      "trainer": "久保田貴",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -122,7 +82,7 @@
       "jockey": "水沼元輝",
       "trainer": "松山将樹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +102,7 @@
       "jockey": "大野拓弥",
       "trainer": "武市康男",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +122,7 @@
       "jockey": "三浦皇成",
       "trainer": "吉田直弘",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +142,7 @@
       "jockey": "戸崎圭太",
       "trainer": "斎藤誠",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -202,7 +162,7 @@
       "jockey": "高杉吏麒",
       "trainer": "北出成人",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -210,6 +170,46 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 9,
+      "horse_name": "レヴーズマン",
+      "horse_id": "2022104782",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "ルメール",
+      "trainer": "手塚貴久",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 10,
+      "horse_name": "ボナーテソーロ",
+      "horse_id": "2021106361",
+      "sex_age": "牡1",
+      "weight_carried": 58.0,
+      "jockey": "木幡巧也",
+      "trainer": "牧光二",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "Nathaniel(愛)",
+      "dam": "エブリナイスガール",
+      "dam_sire": "Mizzen Mast"
     },
     {
       "rank": null,
@@ -222,7 +222,7 @@
       "jockey": "内田博幸",
       "trainer": "和田勇介",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -238,6 +238,12 @@
       "combination": "3",
       "payout": 330,
       "popularity": 2
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "11",
+      "payout": 11000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -270,10 +276,22 @@
       "popularity": 16
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-50",
+      "payout": 2100,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "3-9",
       "payout": 250,
       "popularity": 2
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3",
+      "payout": 80000,
+      "popularity": 4
     },
     {
       "bet_type": "ワイド",
@@ -288,16 +306,46 @@
       "popularity": 18
     },
     {
+      "bet_type": "ワイド",
+      "combination": "5",
+      "payout": 60070,
+      "popularity": 90
+    },
+    {
       "bet_type": "馬単",
       "combination": "3→10",
       "payout": 6980,
       "popularity": 24
     },
     {
+      "bet_type": "馬単",
+      "combination": "3",
+      "payout": 10000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "3-9-10",
       "payout": 3630,
       "popularity": 13
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2-50",
+      "payout": 209,
+      "popularity": 100
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "17-1",
+      "payout": 70309,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "10",
+      "payout": 60014,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

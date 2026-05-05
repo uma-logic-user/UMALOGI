@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 4,
-      "horse_number": 6,
-      "horse_name": "ビーンスターク",
-      "horse_id": "2021103578",
-      "sex_age": "牡3",
-      "weight_carried": 60.0,
-      "jockey": "田村太雅",
-      "trainer": "森田直行",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ロジャーバローズ",
-      "dam": "アートオブビーン",
-      "dam_sire": "アグネスデジタル"
-    },
-    {
-      "rank": 2,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "サラフィエル",
-      "horse_id": "2019101464",
-      "sex_age": "騸1",
-      "weight_carried": 60.0,
-      "jockey": "伴啓太",
-      "trainer": "鈴木慎太",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ヤマニンセラフィム",
-      "dam": "ティフィン",
-      "dam_sire": "トワイニングTwining(米)"
-    },
-    {
-      "rank": 3,
-      "gate_number": 6,
-      "horse_number": 9,
-      "horse_name": "ウィズユアドリーム",
-      "horse_id": "2020101918",
-      "sex_age": "牡3",
-      "weight_carried": 60.0,
-      "jockey": "高田潤",
-      "trainer": "宮地貴稔",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "サトノダイヤモンド",
-      "dam": "フラワーバレイFlower Valley(米)",
-      "dam_sire": "ディスクリートキャットDiscreet Cat(米)"
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "水沼元輝",
       "trainer": "杉浦宏昭",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -90,6 +30,26 @@
       "sire": "ゼンノロブロイ",
       "dam": "ヨドノグレイス",
       "dam_sire": "バゴBago(仏)"
+    },
+    {
+      "rank": null,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "サラフィエル",
+      "horse_id": "2019101464",
+      "sex_age": "騸1",
+      "weight_carried": 60.0,
+      "jockey": "伴啓太",
+      "trainer": "鈴木慎太",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ヤマニンセラフィム",
+      "dam": "ティフィン",
+      "dam_sire": "トワイニングTwining(米)"
     },
     {
       "rank": null,
@@ -102,7 +62,7 @@
       "jockey": "小野寺祐",
       "trainer": "岩戸孝樹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +82,7 @@
       "jockey": "五十嵐雄",
       "trainer": "栗田徹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +102,7 @@
       "jockey": "井上敏樹",
       "trainer": "蛯名利弘",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -150,6 +110,26 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 4,
+      "horse_number": 6,
+      "horse_name": "ビーンスターク",
+      "horse_id": "2021103578",
+      "sex_age": "牡3",
+      "weight_carried": 60.0,
+      "jockey": "田村太雅",
+      "trainer": "森田直行",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ロジャーバローズ",
+      "dam": "アートオブビーン",
+      "dam_sire": "アグネスデジタル"
     },
     {
       "rank": null,
@@ -162,7 +142,7 @@
       "jockey": "草野太郎",
       "trainer": "稲垣幸雄",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +162,7 @@
       "jockey": "小牧加矢",
       "trainer": "井上智史",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -190,6 +170,26 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 9,
+      "horse_name": "ウィズユアドリーム",
+      "horse_id": "2020101918",
+      "sex_age": "牡3",
+      "weight_carried": 60.0,
+      "jockey": "高田潤",
+      "trainer": "宮地貴稔",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "サトノダイヤモンド",
+      "dam": "フラワーバレイFlower Valley(米)",
+      "dam_sire": "ディスクリートキャットDiscreet Cat(米)"
     },
     {
       "rank": null,
@@ -202,7 +202,7 @@
       "jockey": "森一馬",
       "trainer": "竹内正洋",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -222,7 +222,7 @@
       "jockey": "石神深一",
       "trainer": "久保田貴",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -242,7 +242,7 @@
       "jockey": "黒岩悠",
       "trainer": "牧田和弥",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -262,7 +262,7 @@
       "jockey": "難波剛健",
       "trainer": "戸田博文",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -282,7 +282,7 @@
       "jockey": "上野翔",
       "trainer": "国枝栄",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -298,6 +298,12 @@
       "combination": "6",
       "payout": 2150,
       "popularity": 8
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "14",
+      "payout": 14000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -324,16 +330,34 @@
       "popularity": 19
     },
     {
+      "bet_type": "枠連",
+      "combination": "2",
+      "payout": 15008,
+      "popularity": null
+    },
+    {
       "bet_type": "馬連",
       "combination": "2-6",
       "payout": 4380,
       "popularity": 20
     },
     {
+      "bet_type": "馬連",
+      "combination": "4-80",
+      "payout": 9020,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "2-9",
       "payout": 360,
       "popularity": 1
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 40000,
+      "popularity": 4
     },
     {
       "bet_type": "ワイド",
@@ -348,16 +372,46 @@
       "popularity": 19
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 60020,
+      "popularity": 90
+    },
+    {
       "bet_type": "馬単",
       "combination": "6→2",
       "payout": 13130,
       "popularity": 50
     },
     {
+      "bet_type": "馬単",
+      "combination": "2",
+      "payout": 6000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "2-6-9",
       "payout": 5040,
       "popularity": 18
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "11-90",
+      "payout": 1602,
+      "popularity": 90
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "14-50-1",
+      "payout": 90609,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3",
+      "payout": 60001,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 8,
-      "horse_number": 8,
-      "horse_name": "バガン",
-      "horse_id": "2018106354",
-      "sex_age": "牡6",
-      "weight_carried": 58.0,
-      "jockey": "岩田望来",
-      "trainer": "宮地貴稔",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "バゴBago(仏)",
-      "dam": "トーコーユズキ",
-      "dam_sire": "ディープインパクト"
-    },
-    {
-      "rank": 2,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "サンライズグラシア",
-      "horse_id": "2022105588",
-      "sex_age": "牡3",
-      "weight_carried": 56.0,
-      "jockey": "西村淳也",
-      "trainer": "矢作芳人",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 3,
-      "gate_number": 7,
-      "horse_number": 7,
-      "horse_name": "ルージュスティーズ",
-      "horse_id": "2022103063",
-      "sex_age": "牝4",
-      "weight_carried": 51.0,
-      "jockey": "森田誠也",
-      "trainer": "斉藤崇史",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "鮫島克駿",
       "trainer": "藤岡健一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +42,7 @@
       "jockey": "田口貫太",
       "trainer": "藤原英昭",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +62,7 @@
       "jockey": "吉村誠之",
       "trainer": "清水久詞",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +82,27 @@
       "jockey": "菱田裕二",
       "trainer": "谷潔",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "サンライズグラシア",
+      "horse_id": "2022105588",
+      "sex_age": "牡3",
+      "weight_carried": 56.0,
+      "jockey": "西村淳也",
+      "trainer": "矢作芳人",
+      "finish_time": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +122,7 @@
       "jockey": "高杉吏麒",
       "trainer": "緒方努",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -170,14 +130,54 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 7,
+      "horse_name": "ルージュスティーズ",
+      "horse_id": "2022103063",
+      "sex_age": "牝4",
+      "weight_carried": 51.0,
+      "jockey": "森田誠也",
+      "trainer": "斉藤崇史",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 8,
+      "horse_name": "バガン",
+      "horse_id": "2018106354",
+      "sex_age": "牡6",
+      "weight_carried": 58.0,
+      "jockey": "岩田望来",
+      "trainer": "宮地貴稔",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "バゴBago(仏)",
+      "dam": "トーコーユズキ",
+      "dam_sire": "ディープインパクト"
     }
   ],
   "payouts": [
     {
       "bet_type": "単勝",
       "combination": "8",
-      "payout": 330,
-      "popularity": 2
+      "payout": 8000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -204,6 +204,12 @@
       "popularity": 3
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-20",
+      "payout": 2050,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "7-8",
       "payout": 180,
@@ -222,16 +228,46 @@
       "popularity": 3
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 40030,
+      "popularity": 70
+    },
+    {
       "bet_type": "馬単",
       "combination": "8→5",
       "payout": 1400,
       "popularity": 5
     },
     {
+      "bet_type": "馬単",
+      "combination": "5",
+      "payout": 8000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "5-7-8",
       "payout": 460,
       "popularity": 1
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-80",
+      "payout": 105,
+      "popularity": 70
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2-30",
+      "payout": 30708,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2",
+      "payout": 10002,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

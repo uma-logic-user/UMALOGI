@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "ジーティームソウ",
-      "horse_id": "2021105883",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "団野大成",
-      "trainer": "西村真幸",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "エピファネイア",
-      "dam": "レッドジゼル",
-      "dam_sire": "アグネスタキオン"
-    },
-    {
-      "rank": 2,
-      "gate_number": 7,
-      "horse_number": 7,
-      "horse_name": "チェルノボーグ",
-      "horse_id": "2019104732",
-      "sex_age": "騸5",
-      "weight_carried": 57.0,
-      "jockey": "西塚洸二",
-      "trainer": "藤原英昭",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ディープインパクト",
-      "dam": "コンテスティッドContested(米)",
-      "dam_sire": "Ghostzapper"
-    },
-    {
-      "rank": 3,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "ダンツエスプリ",
-      "horse_id": "2019106399",
-      "sex_age": "牡1",
-      "weight_carried": 58.0,
-      "jockey": "藤懸貴志",
-      "trainer": "本田優",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ゴールドシップ",
-      "dam": "ワスレナグサ",
-      "dam_sire": "アグネスデジタル"
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "小崎綾也",
       "trainer": "井上智史",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +42,7 @@
       "jockey": "田口貫太",
       "trainer": "須貝尚介",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +62,7 @@
       "jockey": "和田竜二",
       "trainer": "嘉藤貴行",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -130,6 +70,46 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "ジーティームソウ",
+      "horse_id": "2021105883",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "団野大成",
+      "trainer": "西村真幸",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "エピファネイア",
+      "dam": "レッドジゼル",
+      "dam_sire": "アグネスタキオン"
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "ダンツエスプリ",
+      "horse_id": "2019106399",
+      "sex_age": "牡1",
+      "weight_carried": 58.0,
+      "jockey": "藤懸貴志",
+      "trainer": "本田優",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ゴールドシップ",
+      "dam": "ワスレナグサ",
+      "dam_sire": "アグネスデジタル"
     },
     {
       "rank": null,
@@ -142,7 +122,7 @@
       "jockey": "横山典弘",
       "trainer": "松永幹夫",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -150,6 +130,26 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 7,
+      "horse_name": "チェルノボーグ",
+      "horse_id": "2019104732",
+      "sex_age": "騸5",
+      "weight_carried": 57.0,
+      "jockey": "西塚洸二",
+      "trainer": "藤原英昭",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ディープインパクト",
+      "dam": "コンテスティッドContested(米)",
+      "dam_sire": "Ghostzapper"
     },
     {
       "rank": null,
@@ -162,7 +162,7 @@
       "jockey": "田山旺佑",
       "trainer": "新開幸一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -178,6 +178,12 @@
       "combination": "4",
       "payout": 800,
       "popularity": 4
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "8",
+      "payout": 8000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -204,6 +210,12 @@
       "popularity": 5
     },
     {
+      "bet_type": "馬連",
+      "combination": "2",
+      "payout": 3070,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "4-7",
       "payout": 410,
@@ -222,16 +234,46 @@
       "popularity": 14
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 60020,
+      "popularity": 50
+    },
+    {
       "bet_type": "馬単",
       "combination": "4→7",
       "payout": 3500,
       "popularity": 13
     },
     {
+      "bet_type": "馬単",
+      "combination": "4",
+      "payout": 7000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "4-5-7",
       "payout": 4420,
       "popularity": 13
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "14-40",
+      "payout": 1405,
+      "popularity": 70
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4-10",
+      "payout": 50405,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5",
+      "payout": 60009,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

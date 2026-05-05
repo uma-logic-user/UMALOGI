@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "ラヴァブル",
-      "horse_id": "2022104687",
-      "sex_age": "牝1",
-      "weight_carried": 53.0,
-      "jockey": "鮫島克駿",
-      "trainer": "松下武士",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 2,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "ジュルナール",
-      "horse_id": "2022104788",
-      "sex_age": "牝3",
-      "weight_carried": 53.0,
-      "jockey": "松山弘平",
-      "trainer": "池添学",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 3,
-      "gate_number": 6,
-      "horse_number": 6,
-      "horse_name": "ヴァンアグレアブル",
-      "horse_id": "2022105058",
-      "sex_age": "牝1",
-      "weight_carried": 53.0,
-      "jockey": "北村友一",
-      "trainer": "橋口慎介",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,27 @@
       "jockey": "国分優作",
       "trainer": "大橋勇樹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "ジュルナール",
+      "horse_id": "2022104788",
+      "sex_age": "牝3",
+      "weight_carried": 53.0,
+      "jockey": "松山弘平",
+      "trainer": "池添学",
+      "finish_time": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +62,7 @@
       "jockey": "鮫島良太",
       "trainer": "河嶋宏樹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +82,47 @@
       "jockey": "吉村誠之",
       "trainer": "佐藤悠太",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "ラヴァブル",
+      "horse_id": "2022104687",
+      "sex_age": "牝1",
+      "weight_carried": 53.0,
+      "jockey": "鮫島克駿",
+      "trainer": "松下武士",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 6,
+      "horse_name": "ヴァンアグレアブル",
+      "horse_id": "2022105058",
+      "sex_age": "牝1",
+      "weight_carried": 53.0,
+      "jockey": "北村友一",
+      "trainer": "橋口慎介",
+      "finish_time": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +142,7 @@
       "jockey": "国分恭介",
       "trainer": "牧浦充徳",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +162,7 @@
       "jockey": "小沢大仁",
       "trainer": "今野貞一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +182,7 @@
       "jockey": "川田将雅",
       "trainer": "宮本博",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -198,6 +198,12 @@
       "combination": "5",
       "payout": 2410,
       "popularity": 6
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "9",
+      "payout": 9000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -224,10 +230,28 @@
       "popularity": 7
     },
     {
+      "bet_type": "枠連",
+      "combination": "2",
+      "payout": 41006,
+      "popularity": null
+    },
+    {
       "bet_type": "馬連",
       "combination": "2-5",
       "payout": 1820,
       "popularity": 6
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "2-80",
+      "payout": 6020,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 50000,
+      "popularity": 1
     },
     {
       "bet_type": "ワイド",
@@ -248,16 +272,46 @@
       "popularity": 11
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 10010,
+      "popularity": 60
+    },
+    {
       "bet_type": "馬単",
       "combination": "5→2",
       "payout": 5770,
       "popularity": 19
     },
     {
+      "bet_type": "馬単",
+      "combination": "2",
+      "payout": 5000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "2-5-6",
       "payout": 1830,
       "popularity": 8
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "7-40",
+      "payout": 1102,
+      "popularity": 60
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5-80",
+      "payout": 80506,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1",
+      "payout": 90002,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

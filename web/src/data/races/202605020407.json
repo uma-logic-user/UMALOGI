@@ -4,275 +4,15 @@
   "date": "2026-05-03",
   "venue": "東京",
   "race_number": 7,
-  "distance": 0,
-  "surface": "",
+  "distance": 1600,
+  "surface": "ダート",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "晴",
+  "condition": "稍",
   "year": "2026",
   "results": [
     {
       "rank": 1,
-      "gate_number": 8,
-      "horse_number": 15,
-      "horse_name": "ライズトゥザトップ",
-      "horse_id": "2022107284",
-      "sex_age": "牝7",
-      "weight_carried": 56.0,
-      "jockey": "木幡巧也",
-      "trainer": "牧光二",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0479,
-      "ev_score": 1.058,
-      "kelly_fraction": 0.0003,
-      "manji_ev": 1.4815,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "リーゼントジェイド",
-      "horse_id": "2021104285",
-      "sex_age": "騸5",
-      "weight_carried": 58.0,
-      "jockey": "松岡正海",
-      "trainer": "矢嶋大樹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0412,
-      "ev_score": 3.5185,
-      "kelly_fraction": 0.003,
-      "manji_ev": 1.1144,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "スマートブル",
-      "horse_id": "2022100497",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "木幡初也",
-      "trainer": "室井潔",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.1734,
-      "ev_score": 6.7977,
-      "kelly_fraction": 0.0152,
-      "manji_ev": 1.6612,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "ディープキング",
-      "horse_id": "2017104815",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "西塚洸二",
-      "trainer": "田村康仁",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0387,
-      "ev_score": 2.2034,
-      "kelly_fraction": 0.0022,
-      "manji_ev": 0.7753,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 4,
-      "horse_name": "レッドルイナール",
-      "horse_id": "2022101438",
-      "sex_age": "騸3",
-      "weight_carried": 55.0,
-      "jockey": "佐藤翔馬",
-      "trainer": "平岩大典",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0437,
-      "ev_score": 1.0484,
-      "kelly_fraction": 0.0002,
-      "manji_ev": 0.2178,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 5,
-      "horse_name": "カンレイスキー",
-      "horse_id": "2022106545",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "江田照男",
-      "trainer": "竹内正洋",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.043,
-      "ev_score": 1.0624,
-      "kelly_fraction": 0.0003,
-      "manji_ev": 0.0,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 6,
-      "horse_name": "カルフ",
-      "horse_id": "2021103342",
-      "sex_age": "騸1",
-      "weight_carried": 58.0,
-      "jockey": "原優介",
-      "trainer": "大和田成",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "カリフォルニアクロームCalifornia Chrome(米)",
-      "dam": "ミナレット",
-      "dam_sire": "スズカマンボ",
-      "honmei_score": 0.0874,
-      "ev_score": 1.1453,
-      "kelly_fraction": 0.0012,
-      "manji_ev": 0.581,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 7,
-      "horse_name": "スクレイピング",
-      "horse_id": "2022105076",
-      "sex_age": "騸3",
-      "weight_carried": 58.0,
-      "jockey": "岩田康誠",
-      "trainer": "尾関知人",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.043,
-      "ev_score": 0.228,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.3817,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 8,
-      "horse_name": "ヴォラーレ",
-      "horse_id": "2022102880",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "木幡育也",
-      "trainer": "松永康利",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0437,
-      "ev_score": 2.8963,
-      "kelly_fraction": 0.0029,
-      "manji_ev": 0.0,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 9,
-      "horse_name": "コーシューパンジャ",
-      "horse_id": "2022102769",
-      "sex_age": "牡4",
-      "weight_carried": 56.0,
-      "jockey": "長浜鴻緒",
-      "trainer": "相沢郁",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.1021,
-      "ev_score": 0.7553,
-      "kelly_fraction": 0.0,
-      "manji_ev": 1.1287,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
       "gate_number": 6,
       "horse_number": 10,
       "horse_name": "レッドベルダンス",
@@ -281,12 +21,12 @@
       "weight_carried": 58.0,
       "jockey": "嶋田純次",
       "trainer": "手塚貴久",
-      "finish_time": null,
+      "finish_time": "1:38.0",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 7.5,
+      "popularity": 5,
+      "horse_weight": 480,
+      "horse_weight_diff": 0,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -298,33 +38,7 @@
       "odds_velocity": null
     },
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 11,
-      "horse_name": "マテンロウノカゼ",
-      "horse_id": "2021107052",
-      "sex_age": "牡5",
-      "weight_carried": 58.0,
-      "jockey": "横山典弘",
-      "trainer": "昆貢",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ドゥラメンテ",
-      "dam": "ゼフィランサス",
-      "dam_sire": "キングヘイロー",
-      "honmei_score": 0.0998,
-      "ev_score": 0.4493,
-      "kelly_fraction": 0.0,
-      "manji_ev": 1.3675,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
+      "rank": 2,
       "gate_number": 7,
       "horse_number": 12,
       "horse_name": "ミスティマウンテン",
@@ -333,12 +47,12 @@
       "weight_carried": 58.0,
       "jockey": "荻野極",
       "trainer": "池上昌和",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:38.4",
+      "margin": "2.1/2",
+      "win_odds": 18.0,
+      "popularity": 8,
+      "horse_weight": 456,
+      "horse_weight_diff": 2,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -350,7 +64,215 @@
       "odds_velocity": null
     },
     {
-      "rank": null,
+      "rank": 3,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "スクレイピング",
+      "horse_id": "2022105076",
+      "sex_age": "騸3",
+      "weight_carried": 58.0,
+      "jockey": "岩田康誠",
+      "trainer": "尾関知人",
+      "finish_time": "1:38.5",
+      "margin": "1/2",
+      "win_odds": 4.5,
+      "popularity": 2,
+      "horse_weight": 494,
+      "horse_weight_diff": -14,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.043,
+      "ev_score": 0.228,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.3817,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 4,
+      "gate_number": 8,
+      "horse_number": 14,
+      "horse_name": "ビービーバザーク",
+      "horse_id": "2022102397",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "浜中俊",
+      "trainer": "武幸四郎",
+      "finish_time": "1:38.5",
+      "margin": "アタマ",
+      "win_odds": 5.4,
+      "popularity": 3,
+      "horse_weight": 484,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1386,
+      "ev_score": 0.5543,
+      "kelly_fraction": 0.0,
+      "manji_ev": 9.5593,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 5,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "コーシューパンジャ",
+      "horse_id": "2022102769",
+      "sex_age": "牡4",
+      "weight_carried": 56.0,
+      "jockey": "長浜鴻緒",
+      "trainer": "相沢郁",
+      "finish_time": "1:38.5",
+      "margin": "ハナ",
+      "win_odds": 6.5,
+      "popularity": 4,
+      "horse_weight": 506,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1021,
+      "ev_score": 0.7553,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.1287,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 6,
+      "gate_number": 4,
+      "horse_number": 6,
+      "horse_name": "カルフ",
+      "horse_id": "2021103342",
+      "sex_age": "騸1",
+      "weight_carried": 58.0,
+      "jockey": "原優介",
+      "trainer": "大和田成",
+      "finish_time": "1:38.5",
+      "margin": "アタマ",
+      "win_odds": 17.0,
+      "popularity": 6,
+      "horse_weight": 480,
+      "horse_weight_diff": 4,
+      "sire": "カリフォルニアクロームCalifornia Chrome(米)",
+      "dam": "ミナレット",
+      "dam_sire": "スズカマンボ",
+      "honmei_score": 0.0874,
+      "ev_score": 1.1453,
+      "kelly_fraction": 0.0012,
+      "manji_ev": 0.581,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 7,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "マテンロウノカゼ",
+      "horse_id": "2021107052",
+      "sex_age": "牡5",
+      "weight_carried": 58.0,
+      "jockey": "横山典弘",
+      "trainer": "昆貢",
+      "finish_time": "1:38.5",
+      "margin": "アタマ",
+      "win_odds": 3.4,
+      "popularity": 1,
+      "horse_weight": 484,
+      "horse_weight_diff": 0,
+      "sire": "ドゥラメンテ",
+      "dam": "ゼフィランサス",
+      "dam_sire": "キングヘイロー",
+      "honmei_score": 0.0998,
+      "ev_score": 0.4493,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.3675,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 8,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "リーゼントジェイド",
+      "horse_id": "2021104285",
+      "sex_age": "騸5",
+      "weight_carried": 58.0,
+      "jockey": "松岡正海",
+      "trainer": "矢嶋大樹",
+      "finish_time": "1:38.6",
+      "margin": "クビ",
+      "win_odds": 223.6,
+      "popularity": 14,
+      "horse_weight": 476,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0412,
+      "ev_score": 3.5185,
+      "kelly_fraction": 0.003,
+      "manji_ev": 1.1144,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 9,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "カンレイスキー",
+      "horse_id": "2022106545",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "江田照男",
+      "trainer": "竹内正洋",
+      "finish_time": "1:38.9",
+      "margin": "2",
+      "win_odds": 17.6,
+      "popularity": 7,
+      "horse_weight": 482,
+      "horse_weight_diff": -16,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.043,
+      "ev_score": 1.0624,
+      "kelly_fraction": 0.0003,
+      "manji_ev": 0.0,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 10,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "スマートブル",
+      "horse_id": "2022100497",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "木幡初也",
+      "trainer": "室井潔",
+      "finish_time": "1:39.2",
+      "margin": "2",
+      "win_odds": 27.2,
+      "popularity": 9,
+      "horse_weight": 504,
+      "horse_weight_diff": 10,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1734,
+      "ev_score": 6.7977,
+      "kelly_fraction": 0.0152,
+      "manji_ev": 1.6612,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 11,
       "gate_number": 7,
       "horse_number": 13,
       "horse_name": "ボーヌロマネ",
@@ -359,12 +281,12 @@
       "weight_carried": 58.0,
       "jockey": "北村宏司",
       "trainer": "奥村武",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:39.4",
+      "margin": "1",
+      "win_odds": 116.3,
+      "popularity": 13,
+      "horse_weight": 466,
+      "horse_weight_diff": 0,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -376,28 +298,106 @@
       "odds_velocity": null
     },
     {
-      "rank": null,
+      "rank": 12,
       "gate_number": 8,
-      "horse_number": 14,
-      "horse_name": "ビービーバザーク",
-      "horse_id": "2022102397",
-      "sex_age": "牡4",
-      "weight_carried": 58.0,
-      "jockey": "浜中俊",
-      "trainer": "武幸四郎",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "horse_number": 15,
+      "horse_name": "ライズトゥザトップ",
+      "horse_id": "2022107284",
+      "sex_age": "牝7",
+      "weight_carried": 56.0,
+      "jockey": "木幡巧也",
+      "trainer": "牧光二",
+      "finish_time": "1:39.9",
+      "margin": "3",
+      "win_odds": 53.9,
+      "popularity": 10,
+      "horse_weight": 502,
+      "horse_weight_diff": 2,
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.1386,
-      "ev_score": 0.5543,
-      "kelly_fraction": 0.0,
-      "manji_ev": 9.5593,
+      "honmei_score": 0.0479,
+      "ev_score": 1.058,
+      "kelly_fraction": 0.0003,
+      "manji_ev": 1.4815,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 13,
+      "gate_number": 3,
+      "horse_number": 4,
+      "horse_name": "レッドルイナール",
+      "horse_id": "2022101438",
+      "sex_age": "騸3",
+      "weight_carried": 55.0,
+      "jockey": "佐藤翔馬",
+      "trainer": "平岩大典",
+      "finish_time": "1:40.0",
+      "margin": "1/2",
+      "win_odds": 59.1,
+      "popularity": 11,
+      "horse_weight": 468,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0437,
+      "ev_score": 1.0484,
+      "kelly_fraction": 0.0002,
+      "manji_ev": 0.2178,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 14,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "ディープキング",
+      "horse_id": "2017104815",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "西塚洸二",
+      "trainer": "田村康仁",
+      "finish_time": "1:40.4",
+      "margin": "2.1/2",
+      "win_odds": 68.0,
+      "popularity": 12,
+      "horse_weight": 476,
+      "horse_weight_diff": -10,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0387,
+      "ev_score": 2.2034,
+      "kelly_fraction": 0.0022,
+      "manji_ev": 0.7753,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 15,
+      "gate_number": 5,
+      "horse_number": 8,
+      "horse_name": "ヴォラーレ",
+      "horse_id": "2022102880",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "木幡育也",
+      "trainer": "松永康利",
+      "finish_time": "1:41.1",
+      "margin": "4",
+      "win_odds": 399.4,
+      "popularity": 15,
+      "horse_weight": 418,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0437,
+      "ev_score": 2.8963,
+      "kelly_fraction": 0.0029,
+      "manji_ev": 0.0,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     }
@@ -475,7 +475,26 @@
           "model_score": 0.1965909090909091,
           "ev_score": 3.5976136363636364
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     },
     {
       "prediction_id": 21545,
@@ -513,7 +532,26 @@
           "model_score": 0.15304639054639055,
           "ev_score": 0.4591391716391716
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     },
     {
       "prediction_id": 21546,
@@ -600,7 +638,26 @@
           "model_score": 0.04346074482988201,
           "ev_score": 4.0
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     },
     {
       "prediction_id": 21547,
@@ -687,7 +744,26 @@
           "model_score": 0.04346074482988201,
           "ev_score": 1.9883290759671022
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     },
     {
       "prediction_id": 21548,
@@ -746,7 +822,26 @@
           "model_score": 0.022432013384036775,
           "ev_score": 4.926070139134476
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     },
     {
       "prediction_id": 21549,
@@ -805,7 +900,26 @@
           "model_score": 0.009830392718028312,
           "ev_score": 5.0
         }
-      ]
+      ],
+      "bet_form": "軸2頭ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     },
     {
       "prediction_id": 21550,
@@ -927,7 +1041,26 @@
           "model_score": 0.01951161310100993,
           "ev_score": 6.0
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 12,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     },
     {
       "prediction_id": 21551,
@@ -951,7 +1084,26 @@
           "model_score": 1.9952502240483156,
           "ev_score": 1.9952502240483156
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     },
     {
       "prediction_id": 21552,
@@ -989,7 +1141,26 @@
           "model_score": 1.4310055465413747,
           "ev_score": 1.4310055465413747
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     },
     {
       "prediction_id": 21553,
@@ -1076,7 +1247,26 @@
           "model_score": 0.05730928014741174,
           "ev_score": 2.5445320385450816
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     },
     {
       "prediction_id": 21554,
@@ -1163,7 +1353,26 @@
           "model_score": 0.05730928014741174,
           "ev_score": 1.0602216827271174
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     },
     {
       "prediction_id": 21555,
@@ -1222,7 +1431,26 @@
           "model_score": 0.030096711142130503,
           "ev_score": 2.672587949421189
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     },
     {
       "prediction_id": 21558,
@@ -1260,7 +1488,26 @@
           "model_score": 0.017626934186471988,
           "ev_score": 3.913179389396782
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     },
     {
       "prediction_id": 21559,
@@ -1298,7 +1545,26 @@
           "model_score": 0.09811595866240895,
           "ev_score": 2.9434787598722685
         }
-      ]
+      ],
+      "bet_form": "軸1頭ながし",
+      "n_tickets": 5,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     },
     {
       "prediction_id": 21560,
@@ -1336,7 +1602,26 @@
           "model_score": 0.01635265977706816,
           "ev_score": 2.4528989665602237
         }
-      ]
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 12,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     },
     {
       "prediction_id": 21561,
@@ -1458,7 +1743,26 @@
           "model_score": 0.02789400278940028,
           "ev_score": 1.587168758716876
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     },
     {
       "prediction_id": 22346,
@@ -1482,7 +1786,26 @@
           "model_score": 0.17341040462427745,
           "ev_score": 5.0
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     },
     {
       "prediction_id": 22347,
@@ -1520,7 +1843,26 @@
           "model_score": 0.1617991960915907,
           "ev_score": 0.48539758827477214
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     },
     {
       "prediction_id": 22348,
@@ -1607,7 +1949,26 @@
           "model_score": 0.02944874833843736,
           "ev_score": 4.0
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     },
     {
       "prediction_id": 22349,
@@ -1694,7 +2055,26 @@
           "model_score": 0.02944874833843736,
           "ev_score": 2.885977337166861
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     },
     {
       "prediction_id": 22350,
@@ -1753,7 +2133,26 @@
           "model_score": 0.01421433898061077,
           "ev_score": 5.0
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     },
     {
       "prediction_id": 22351,
@@ -1812,7 +2211,26 @@
           "model_score": 0.01374586489338997,
           "ev_score": 5.0
         }
-      ]
+      ],
+      "bet_form": "軸2頭ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     },
     {
       "prediction_id": 22352,
@@ -1934,7 +2352,26 @@
           "model_score": 0.01374586489338997,
           "ev_score": 6.0
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 12,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     },
     {
       "prediction_id": 22353,
@@ -1958,7 +2395,26 @@
           "model_score": 9.559349106790497,
           "ev_score": 9.559349106790497
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     },
     {
       "prediction_id": 22354,
@@ -1996,7 +2452,26 @@
           "model_score": 4.32770359043222,
           "ev_score": 4.32770359043222
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     },
     {
       "prediction_id": 22355,
@@ -2083,7 +2558,26 @@
           "model_score": 0.09659646195334867,
           "ev_score": 2.318315086880368
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     },
     {
       "prediction_id": 22356,
@@ -2170,7 +2664,26 @@
           "model_score": 0.09659646195334867,
           "ev_score": 0.9659646195334868
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     },
     {
       "prediction_id": 22357,
@@ -2229,7 +2742,26 @@
           "model_score": 0.05964605196068872,
           "ev_score": 2.8630104941130585
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     },
     {
       "prediction_id": 22360,
@@ -2267,7 +2799,26 @@
           "model_score": 0.029518873901795147,
           "ev_score": 3.5422648682154176
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     },
     {
       "prediction_id": 22361,
@@ -2305,7 +2856,26 @@
           "model_score": 0.1123749178619664,
           "ev_score": 3.371247535858992
         }
-      ]
+      ],
+      "bet_form": "軸2頭ながし",
+      "n_tickets": 5,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     },
     {
       "prediction_id": 22362,
@@ -2343,7 +2913,26 @@
           "model_score": 0.0187291529769944,
           "ev_score": 2.80937294654916
         }
-      ]
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 12,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     },
     {
       "prediction_id": 22363,
@@ -2465,7 +3054,26 @@
           "model_score": 0.0387243735763098,
           "ev_score": 2.2034168564920273
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     },
     {
       "prediction_id": 22364,
@@ -2496,7 +3104,26 @@
           "model_score": 0.04310759975591068,
           "ev_score": 4.0
         }
-      ]
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 7,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     },
     {
       "prediction_id": 22365,
@@ -2527,7 +3154,26 @@
           "model_score": 0.02155379987795534,
           "ev_score": 5.0
         }
-      ]
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 8,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     },
     {
       "prediction_id": 22366,
@@ -2565,7 +3211,26 @@
           "model_score": 0.0032317074719864797,
           "ev_score": 6.0
         }
-      ]
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 12,
+      "horse_num_to_name": {
+        "10": "レッドベルダンス",
+        "12": "ミスティマウンテン",
+        "7": "スクレイピング",
+        "14": "ビービーバザーク",
+        "9": "コーシューパンジャ",
+        "6": "カルフ",
+        "11": "マテンロウノカゼ",
+        "1": "リーゼントジェイド",
+        "5": "カンレイスキー",
+        "2": "スマートブル",
+        "13": "ボーヌロマネ",
+        "15": "ライズトゥザトップ",
+        "4": "レッドルイナール",
+        "3": "ディープキング",
+        "8": "ヴォラーレ"
+      }
     }
   ],
   "training_evals": {},

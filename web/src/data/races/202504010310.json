@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 6,
-      "horse_number": 10,
-      "horse_name": "マイネルシーマー",
-      "horse_id": "2019100774",
-      "sex_age": "牡4",
-      "weight_carried": 58.0,
-      "jockey": "菊沢一樹",
-      "trainer": "青木孝文",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ゴールドシップ",
-      "dam": "マイネアルナイル",
-      "dam_sire": "ロージズインメイRoses in May(米)"
-    },
-    {
-      "rank": 2,
-      "gate_number": 5,
-      "horse_number": 8,
-      "horse_name": "ゼンノインヴォーク",
-      "horse_id": "2019100915",
-      "sex_age": "騸3",
-      "weight_carried": 58.0,
-      "jockey": "小沢大仁",
-      "trainer": "緒方努",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "シルバーステート",
-      "dam": "ヴォワルドール",
-      "dam_sire": "ハービンジャーHarbinger(英)"
-    },
-    {
-      "rank": 3,
-      "gate_number": 6,
-      "horse_number": 11,
-      "horse_name": "マイファミリー",
-      "horse_id": "2021103345",
-      "sex_age": "牡5",
-      "weight_carried": 58.0,
-      "jockey": "丸田恭介",
-      "trainer": "深山雅史",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ダノンバラード",
-      "dam": "ユメノマイホーム",
-      "dam_sire": "ストーミングホームStorming Home(英)"
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "国分恭介",
       "trainer": "西園翔太",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +42,7 @@
       "jockey": "亀田温心",
       "trainer": "高柳大輔",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +62,7 @@
       "jockey": "佐々木大",
       "trainer": "萩原清",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +82,7 @@
       "jockey": "吉田隼人",
       "trainer": "金成貴史",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +102,7 @@
       "jockey": "鮫島良太",
       "trainer": "畑端省吾",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +122,7 @@
       "jockey": "斎藤新",
       "trainer": "清水英克",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -202,7 +142,7 @@
       "jockey": "丹内祐次",
       "trainer": "吉田直弘",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -210,6 +150,26 @@
       "sire": "ハービンジャーHarbinger(英)",
       "dam": "ウインプリメーラ",
       "dam_sire": "ステイゴールド"
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 8,
+      "horse_name": "ゼンノインヴォーク",
+      "horse_id": "2019100915",
+      "sex_age": "騸3",
+      "weight_carried": 58.0,
+      "jockey": "小沢大仁",
+      "trainer": "緒方努",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "シルバーステート",
+      "dam": "ヴォワルドール",
+      "dam_sire": "ハービンジャーHarbinger(英)"
     },
     {
       "rank": null,
@@ -222,7 +182,7 @@
       "jockey": "横山琉人",
       "trainer": "和田勇介",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -230,6 +190,46 @@
       "sire": "ブリックスアンドモルタルBricks and Mortar(米)",
       "dam": "ルミナスレッド",
       "dam_sire": "トーセンダンス"
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 10,
+      "horse_name": "マイネルシーマー",
+      "horse_id": "2019100774",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "菊沢一樹",
+      "trainer": "青木孝文",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ゴールドシップ",
+      "dam": "マイネアルナイル",
+      "dam_sire": "ロージズインメイRoses in May(米)"
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "マイファミリー",
+      "horse_id": "2021103345",
+      "sex_age": "牡5",
+      "weight_carried": 58.0,
+      "jockey": "丸田恭介",
+      "trainer": "深山雅史",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ダノンバラード",
+      "dam": "ユメノマイホーム",
+      "dam_sire": "ストーミングホームStorming Home(英)"
     },
     {
       "rank": null,
@@ -242,7 +242,7 @@
       "jockey": "秋山稔樹",
       "trainer": "勢司和浩",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -262,7 +262,7 @@
       "jockey": "菱田裕二",
       "trainer": "佐藤悠太",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -282,7 +282,7 @@
       "jockey": "武藤雅",
       "trainer": "高柳瑞樹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -302,7 +302,7 @@
       "jockey": "酒井学",
       "trainer": "長谷川浩",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -318,6 +318,12 @@
       "combination": "10",
       "payout": 3490,
       "popularity": 12
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "15",
+      "payout": 15000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -344,16 +350,40 @@
       "popularity": 8
     },
     {
+      "bet_type": "枠連",
+      "combination": "3",
+      "payout": 49012,
+      "popularity": null
+    },
+    {
       "bet_type": "馬連",
       "combination": "8-10",
       "payout": 12220,
       "popularity": 46
     },
     {
+      "bet_type": "馬連",
+      "combination": "6-30",
+      "payout": 11080,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "5",
+      "payout": 60000,
+      "popularity": 1
+    },
+    {
       "bet_type": "ワイド",
       "combination": "8-11",
       "payout": 670,
       "popularity": 2
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 80011,
+      "popularity": 10
     },
     {
       "bet_type": "ワイド",
@@ -369,15 +399,45 @@
     },
     {
       "bet_type": "馬単",
+      "combination": "10",
+      "payout": 122,
+      "popularity": 20
+    },
+    {
+      "bet_type": "馬単",
       "combination": "10→8",
       "payout": 32250,
       "popularity": 111
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "8",
+      "payout": 10000,
+      "popularity": null
     },
     {
       "bet_type": "三連複",
       "combination": "8-10-11",
       "payout": 16040,
       "popularity": 62
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "20-80",
+      "payout": 3008,
+      "popularity": 110
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "32-80-4",
+      "payout": 21011,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "6",
+      "payout": 70002,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

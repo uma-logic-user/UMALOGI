@@ -4,11 +4,11 @@
   "date": "2026-04-11",
   "venue": "阪神",
   "race_number": 9,
-  "distance": 0,
-  "surface": "",
+  "distance": 2400,
+  "surface": "芝",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "晴",
+  "condition": "良",
   "year": "2026",
   "results": [
     {
@@ -17,10 +17,10 @@
       "horse_number": 1,
       "horse_name": "ファームツエンティ",
       "horse_id": "2020104491",
-      "sex_age": "セ6",
+      "sex_age": "騸5",
       "weight_carried": 58.0,
-      "jockey": "松山",
-      "trainer": "栗東北出",
+      "jockey": "松山弘平",
+      "trainer": "北出成人",
       "finish_time": "2:27.4",
       "margin": "@",
       "win_odds": 4.1,
@@ -47,16 +47,16 @@
       "horse_number": 4,
       "horse_name": "アロンズロッド",
       "horse_id": "2022104635",
-      "sex_age": "1",
-      "weight_carried": 0.0,
-      "jockey": "101175宮田敬介506800",
-      "trainer": "[シング　　　　　　�",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "ルメール",
+      "trainer": "宮田敬介",
+      "finish_time": "2:27.4",
+      "margin": "1/2",
+      "win_odds": 1.7,
+      "popularity": 1,
+      "horse_weight": 484,
+      "horse_weight_diff": -12,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -77,16 +77,16 @@
       "horse_number": 2,
       "horse_name": "アルマデオロ",
       "horse_id": "2022102199",
-      "sex_age": "1",
-      "weight_carried": 0.0,
-      "jockey": "201110清水久詞547800",
-      "trainer": "uリーダーズ・ユニオ�",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "武豊",
+      "trainer": "清水久詞",
+      "finish_time": "2:27.7",
+      "margin": "1.3/4",
+      "win_odds": 3.2,
+      "popularity": 2,
+      "horse_weight": 494,
+      "horse_weight_diff": 2,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -107,12 +107,12 @@
       "horse_number": 7,
       "horse_name": "サトノスカイターフ",
       "horse_id": "2018105073",
-      "sex_age": "牡8",
+      "sex_age": "牡3",
       "weight_carried": 58.0,
-      "jockey": "高杉",
-      "trainer": "栗東池江",
+      "jockey": "高杉吏麒",
+      "trainer": "池江泰寿",
       "finish_time": "2:27.7",
-      "margin": "@",
+      "margin": "ハナ",
       "win_odds": 40.6,
       "popularity": 5,
       "horse_weight": 504,
@@ -137,12 +137,12 @@
       "horse_number": 3,
       "horse_name": "アルベリック",
       "horse_id": "2021101554",
-      "sex_age": "牡5",
+      "sex_age": "牡1",
       "weight_carried": 58.0,
-      "jockey": "柴田裕",
-      "trainer": "栗東中竹",
+      "jockey": "柴田裕一",
+      "trainer": "中竹和也",
       "finish_time": "2:28.1",
-      "margin": "@",
+      "margin": "2.1/2",
       "win_odds": 108.4,
       "popularity": 7,
       "horse_weight": 486,
@@ -167,12 +167,12 @@
       "horse_number": 5,
       "horse_name": "パンデアスカル",
       "horse_id": "2020103369",
-      "sex_age": "牡6",
+      "sex_age": "牡3",
       "weight_carried": 58.0,
-      "jockey": "幸",
-      "trainer": "栗東小椋",
+      "jockey": "幸英明",
+      "trainer": "小椋研介",
       "finish_time": "2:28.2",
-      "margin": "@",
+      "margin": "1/2",
       "win_odds": 15.0,
       "popularity": 4,
       "horse_weight": 494,
@@ -197,12 +197,12 @@
       "horse_number": 8,
       "horse_name": "リッチブラック",
       "horse_id": "2019103816",
-      "sex_age": "牡7",
+      "sex_age": "牡6",
       "weight_carried": 58.0,
-      "jockey": "吉村",
-      "trainer": "栗東西村",
+      "jockey": "吉村誠之",
+      "trainer": "西村真幸",
       "finish_time": "2:29.0",
-      "margin": "@",
+      "margin": "5",
       "win_odds": 75.9,
       "popularity": 6,
       "horse_weight": 466,
@@ -219,6 +219,36 @@
       "training_eval": {
         "eval_grade": "C",
         "eval_text": "反応平凡"
+      }
+    },
+    {
+      "rank": 8,
+      "gate_number": 6,
+      "horse_number": 6,
+      "horse_name": "プレイリードリーム",
+      "horse_id": "2016102767",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "浜中俊",
+      "trainer": "安達昭夫",
+      "finish_time": "2:30.6",
+      "margin": "10",
+      "win_odds": 139.5,
+      "popularity": 8,
+      "horse_weight": 468,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "変わらず"
       }
     }
   ],
@@ -435,7 +465,19 @@
           "model_score": 7.824081111618094,
           "ev_score": 7.824081111618094
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "1": "ファームツエンティ",
+        "4": "アロンズロッド",
+        "2": "アルマデオロ",
+        "7": "サトノスカイターフ",
+        "3": "アルベリック",
+        "5": "パンデアスカル",
+        "8": "リッチブラック",
+        "6": "プレイリードリーム"
+      }
     },
     {
       "prediction_id": 2063,
@@ -480,7 +522,19 @@
           "model_score": 6.415055043738095e-05,
           "ev_score": 0.00019245165131214284
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "1": "ファームツエンティ",
+        "4": "アロンズロッド",
+        "2": "アルマデオロ",
+        "7": "サトノスカイターフ",
+        "3": "アルベリック",
+        "5": "パンデアスカル",
+        "8": "リッチブラック",
+        "6": "プレイリードリーム"
+      }
     },
     {
       "prediction_id": 2064,
@@ -511,7 +565,19 @@
           "model_score": 0.09468377939071485,
           "ev_score": 0.07574702351257187
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "1": "ファームツエンティ",
+        "4": "アロンズロッド",
+        "2": "アルマデオロ",
+        "7": "サトノスカイターフ",
+        "3": "アルベリック",
+        "5": "パンデアスカル",
+        "8": "リッチブラック",
+        "6": "プレイリードリーム"
+      }
     },
     {
       "prediction_id": 2065,
@@ -542,7 +608,19 @@
           "model_score": 0.09468377939071485,
           "ev_score": 0.03313932278675019
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "1": "ファームツエンティ",
+        "4": "アロンズロッド",
+        "2": "アルマデオロ",
+        "7": "サトノスカイターフ",
+        "3": "アルベリック",
+        "5": "パンデアスカル",
+        "8": "リッチブラック",
+        "6": "プレイリードリーム"
+      }
     },
     {
       "prediction_id": 2066,
@@ -594,7 +672,19 @@
           "model_score": 0.000973226340797185,
           "ev_score": 0.002919679022391555
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "1": "ファームツエンティ",
+        "4": "アロンズロッド",
+        "2": "アルマデオロ",
+        "7": "サトノスカイターフ",
+        "3": "アルベリック",
+        "5": "パンデアスカル",
+        "8": "リッチブラック",
+        "6": "プレイリードリーム"
+      }
     },
     {
       "prediction_id": 2067,
@@ -625,7 +715,19 @@
           "model_score": 0.06306679574247247,
           "ev_score": 0.25226718296988987
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "1": "ファームツエンティ",
+        "4": "アロンズロッド",
+        "2": "アルマデオロ",
+        "7": "サトノスカイターフ",
+        "3": "アルベリック",
+        "5": "パンデアスカル",
+        "8": "リッチブラック",
+        "6": "プレイリードリーム"
+      }
     },
     {
       "prediction_id": 2068,
@@ -684,7 +786,19 @@
           "model_score": 0.01204347996185233,
           "ev_score": 0.24086959923704657
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "1": "ファームツエンティ",
+        "4": "アロンズロッド",
+        "2": "アルマデオロ",
+        "7": "サトノスカイターフ",
+        "3": "アルベリック",
+        "5": "パンデアスカル",
+        "8": "リッチブラック",
+        "6": "プレイリードリーム"
+      }
     }
   ],
   "training_evals": {

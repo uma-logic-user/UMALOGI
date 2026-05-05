@@ -12,7 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "カニキュル",
@@ -22,7 +22,7 @@
       "jockey": "戸崎圭太",
       "trainer": "菊沢隆徳",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -30,46 +30,6 @@
       "sire": "エピファネイア",
       "dam": "シャルール",
       "dam_sire": "ゼンノロブロイ"
-    },
-    {
-      "rank": 2,
-      "gate_number": 8,
-      "horse_number": 8,
-      "horse_name": "エイムフォーエース",
-      "horse_id": "2021104167",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "佐々木大",
-      "trainer": "武井亮",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "サトノアラジン",
-      "dam": "ラストメッセージ",
-      "dam_sire": "ジャングルポケット"
-    },
-    {
-      "rank": 3,
-      "gate_number": 7,
-      "horse_number": 7,
-      "horse_name": "タイキラフター",
-      "horse_id": "2020106811",
-      "sex_age": "牡4",
-      "weight_carried": 58.0,
-      "jockey": "横山武史",
-      "trainer": "大竹正博",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ハーツクライ",
-      "dam": "アッシュベリー",
-      "dam_sire": "Any Given Saturday"
     },
     {
       "rank": null,
@@ -82,7 +42,7 @@
       "jockey": "木幡巧也",
       "trainer": "的場均",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +62,7 @@
       "jockey": "木幡初也",
       "trainer": "粕谷昌央",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +82,7 @@
       "jockey": "遠藤汰月",
       "trainer": "尾形和幸",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +102,7 @@
       "jockey": "三浦皇成",
       "trainer": "鹿戸雄一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +122,7 @@
       "jockey": "原田和真",
       "trainer": "蛯名利弘",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -170,6 +130,46 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 7,
+      "horse_name": "タイキラフター",
+      "horse_id": "2020106811",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "横山武史",
+      "trainer": "大竹正博",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ハーツクライ",
+      "dam": "アッシュベリー",
+      "dam_sire": "Any Given Saturday"
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 8,
+      "horse_name": "エイムフォーエース",
+      "horse_id": "2021104167",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "佐々木大",
+      "trainer": "武井亮",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "サトノアラジン",
+      "dam": "ラストメッセージ",
+      "dam_sire": "ジャングルポケット"
     },
     {
       "rank": null,
@@ -182,7 +182,7 @@
       "jockey": "丸田恭介",
       "trainer": "南田美知",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -198,6 +198,12 @@
       "combination": "1",
       "payout": 140,
       "popularity": 1
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "9",
+      "payout": 9000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -230,6 +236,12 @@
       "popularity": 3
     },
     {
+      "bet_type": "馬連",
+      "combination": "1",
+      "payout": 1080,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "1-7",
       "payout": 130,
@@ -248,16 +260,52 @@
       "popularity": 5
     },
     {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 10040,
+      "popularity": 70
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 80000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "1→8",
       "payout": 1190,
       "popularity": 4
     },
     {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 8000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-7-8",
       "payout": 490,
       "popularity": 2
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-30",
+      "payout": 107,
+      "popularity": 80
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2-80",
+      "payout": 40107,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3",
+      "payout": 60005,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

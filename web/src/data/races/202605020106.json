@@ -4,11 +4,11 @@
   "date": "2026-04-25",
   "venue": "東京",
   "race_number": 6,
-  "distance": 0,
-  "surface": "",
+  "distance": 1600,
+  "surface": "ダート",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "晴",
+  "condition": "稍",
   "year": "2026",
   "results": [
     {
@@ -21,12 +21,12 @@
       "weight_carried": 57.0,
       "jockey": "坂井瑠星",
       "trainer": "野中賢二",
-      "finish_time": null,
+      "finish_time": "1:36.8",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 1.8,
+      "popularity": 1,
+      "horse_weight": 458,
+      "horse_weight_diff": -6,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -41,12 +41,12 @@
       "weight_carried": 57.0,
       "jockey": "レーン",
       "trainer": "林徹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:36.9",
+      "margin": "3/4",
+      "win_odds": 2.9,
+      "popularity": 2,
+      "horse_weight": 554,
+      "horse_weight_diff": -8,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -61,218 +61,18 @@
       "weight_carried": 57.0,
       "jockey": "佐々木大",
       "trainer": "斎藤誠",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:37.5",
+      "margin": "3.1/2",
+      "win_odds": 64.0,
+      "popularity": 10,
+      "horse_weight": 488,
+      "horse_weight_diff": 4,
       "sire": null,
       "dam": null,
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "セントゴーデンス",
-      "horse_id": "2023107296",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "木幡巧也",
-      "trainer": "黒岩陽一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 2,
-      "horse_name": "ホウオウルクソール",
-      "horse_id": "2023104174",
-      "sex_age": "牡7",
-      "weight_carried": 57.0,
-      "jockey": "横山和生",
-      "trainer": "栗田徹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "ヴォーカライズ",
-      "horse_id": "2023103783",
-      "sex_age": "牡5",
-      "weight_carried": 57.0,
-      "jockey": "矢野貴之",
-      "trainer": "高野友和",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 4,
-      "horse_name": "タイセイエキサイト",
-      "horse_id": "2023103968",
-      "sex_age": "牡3",
-      "weight_carried": 55.0,
-      "jockey": "長浜鴻緒",
-      "trainer": "青木孝文",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 5,
-      "horse_name": "ステラデルークス",
-      "horse_id": "2023102263",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "横山武史",
-      "trainer": "鈴木伸尋",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 6,
-      "horse_name": "キーンセンス",
-      "horse_id": "2023110036",
-      "sex_age": "牡1",
-      "weight_carried": 57.0,
-      "jockey": "北村友一",
-      "trainer": "松永幹夫",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 7,
-      "horse_name": "ジーティーブラック",
-      "horse_id": "2023106052",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "三浦皇成",
-      "trainer": "菊沢隆徳",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 9,
-      "horse_name": "フクシマブリルハム",
-      "horse_id": "2023105405",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "田辺裕信",
-      "trainer": "小島茂之",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 12,
-      "horse_name": "シビックアスコット",
-      "horse_id": "2023101481",
-      "sex_age": "牡1",
-      "weight_carried": 57.0,
-      "jockey": "岩田康誠",
-      "trainer": "高橋義忠",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 13,
-      "horse_name": "リアライズタキオン",
-      "horse_id": "2023105224",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "ディー",
-      "trainer": "手塚貴久",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 4,
       "gate_number": 7,
       "horse_number": 14,
       "horse_name": "サマーマッドネス",
@@ -281,38 +81,18 @@
       "weight_carried": 57.0,
       "jockey": "武豊",
       "trainer": "森秀行",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:37.6",
+      "margin": "1/2",
+      "win_odds": 46.0,
+      "popularity": 8,
+      "horse_weight": 526,
+      "horse_weight_diff": -4,
       "sire": null,
       "dam": null,
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 15,
-      "horse_name": "ヴェネチアンキング",
-      "horse_id": "2023103320",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "大野拓弥",
-      "trainer": "伊藤圭三",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 5,
       "gate_number": 8,
       "horse_number": 16,
       "horse_name": "テイクオンミー",
@@ -321,12 +101,232 @@
       "weight_carried": 57.0,
       "jockey": "津村明秀",
       "trainer": "水野貴広",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:37.8",
+      "margin": "1.1/2",
+      "win_odds": 65.2,
+      "popularity": 11,
+      "horse_weight": 512,
+      "horse_weight_diff": 8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 6,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "ヴォーカライズ",
+      "horse_id": "2023103783",
+      "sex_age": "牡5",
+      "weight_carried": 57.0,
+      "jockey": "矢野貴之",
+      "trainer": "高野友和",
+      "finish_time": "1:37.8",
+      "margin": "ハナ",
+      "win_odds": 10.2,
+      "popularity": 3,
+      "horse_weight": 486,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 7,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "ステラデルークス",
+      "horse_id": "2023102263",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "横山武史",
+      "trainer": "鈴木伸尋",
+      "finish_time": "1:37.8",
+      "margin": "クビ",
+      "win_odds": 21.3,
+      "popularity": 6,
+      "horse_weight": 506,
+      "horse_weight_diff": -4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 8,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "キーンセンス",
+      "horse_id": "2023110036",
+      "sex_age": "牡1",
+      "weight_carried": 57.0,
+      "jockey": "北村友一",
+      "trainer": "松永幹夫",
+      "finish_time": "1:38.4",
+      "margin": "3.1/2",
+      "win_odds": 59.7,
+      "popularity": 9,
+      "horse_weight": 516,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 9,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "フクシマブリルハム",
+      "horse_id": "2023105405",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "田辺裕信",
+      "trainer": "小島茂之",
+      "finish_time": "1:38.6",
+      "margin": "1",
+      "win_odds": 123.6,
+      "popularity": 12,
+      "horse_weight": 538,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 10,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "ジーティーブラック",
+      "horse_id": "2023106052",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "三浦皇成",
+      "trainer": "菊沢隆徳",
+      "finish_time": "1:38.8",
+      "margin": "1.1/2",
+      "win_odds": 41.9,
+      "popularity": 7,
+      "horse_weight": 516,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 11,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "セントゴーデンス",
+      "horse_id": "2023107296",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "木幡巧也",
+      "trainer": "黒岩陽一",
+      "finish_time": "1:39.1",
+      "margin": "1.3/4",
+      "win_odds": 160.8,
+      "popularity": 14,
+      "horse_weight": 516,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 12,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "ヴェネチアンキング",
+      "horse_id": "2023103320",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "大野拓弥",
+      "trainer": "伊藤圭三",
+      "finish_time": "1:39.4",
+      "margin": "1.3/4",
+      "win_odds": 162.4,
+      "popularity": 15,
+      "horse_weight": 522,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 13,
+      "gate_number": 6,
+      "horse_number": 12,
+      "horse_name": "シビックアスコット",
+      "horse_id": "2023101481",
+      "sex_age": "牡1",
+      "weight_carried": 57.0,
+      "jockey": "岩田康誠",
+      "trainer": "高橋義忠",
+      "finish_time": "1:39.4",
+      "margin": "ハナ",
+      "win_odds": 155.7,
+      "popularity": 13,
+      "horse_weight": 486,
+      "horse_weight_diff": -9,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 14,
+      "gate_number": 1,
+      "horse_number": 2,
+      "horse_name": "ホウオウルクソール",
+      "horse_id": "2023104174",
+      "sex_age": "牡7",
+      "weight_carried": 57.0,
+      "jockey": "横山和生",
+      "trainer": "栗田徹",
+      "finish_time": "1:40.4",
+      "margin": "6",
+      "win_odds": 16.9,
+      "popularity": 4,
+      "horse_weight": 480,
+      "horse_weight_diff": 16,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 15,
+      "gate_number": 7,
+      "horse_number": 13,
+      "horse_name": "リアライズタキオン",
+      "horse_id": "2023105224",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "ディー",
+      "trainer": "手塚貴久",
+      "finish_time": "1:40.6",
+      "margin": "1",
+      "win_odds": 18.3,
+      "popularity": 5,
+      "horse_weight": 476,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 16,
+      "gate_number": 2,
+      "horse_number": 4,
+      "horse_name": "タイセイエキサイト",
+      "horse_id": "2023103968",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "長浜鴻緒",
+      "trainer": "青木孝文",
+      "finish_time": "1:40.7",
+      "margin": "アタマ",
+      "win_odds": 541.5,
+      "popularity": 16,
+      "horse_weight": 502,
+      "horse_weight_diff": -10,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -519,7 +519,27 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.012030075187969926
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "10": "ビービークローサー",
+        "8": "ザーフィル",
+        "11": "タケルムサシ",
+        "14": "サマーマッドネス",
+        "16": "テイクオンミー",
+        "3": "ヴォーカライズ",
+        "5": "ステラデルークス",
+        "6": "キーンセンス",
+        "9": "フクシマブリルハム",
+        "7": "ジーティーブラック",
+        "1": "セントゴーデンス",
+        "15": "ヴェネチアンキング",
+        "12": "シビックアスコット",
+        "2": "ホウオウルクソール",
+        "13": "リアライズタキオン",
+        "4": "タイセイエキサイト"
+      }
     },
     {
       "prediction_id": 6176,
@@ -557,7 +577,27 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.03609022556390978
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "10": "ビービークローサー",
+        "8": "ザーフィル",
+        "11": "タケルムサシ",
+        "14": "サマーマッドネス",
+        "16": "テイクオンミー",
+        "3": "ヴォーカライズ",
+        "5": "ステラデルークス",
+        "6": "キーンセンス",
+        "9": "フクシマブリルハム",
+        "7": "ジーティーブラック",
+        "1": "セントゴーデンス",
+        "15": "ヴェネチアンキング",
+        "12": "シビックアスコット",
+        "2": "ホウオウルクソール",
+        "13": "リアライズタキオン",
+        "4": "タイセイエキサイト"
+      }
     },
     {
       "prediction_id": 6177,
@@ -588,7 +628,27 @@
           "model_score": 0.008333333333333333,
           "ev_score": 0.5
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "10": "ビービークローサー",
+        "8": "ザーフィル",
+        "11": "タケルムサシ",
+        "14": "サマーマッドネス",
+        "16": "テイクオンミー",
+        "3": "ヴォーカライズ",
+        "5": "ステラデルークス",
+        "6": "キーンセンス",
+        "9": "フクシマブリルハム",
+        "7": "ジーティーブラック",
+        "1": "セントゴーデンス",
+        "15": "ヴェネチアンキング",
+        "12": "シビックアスコット",
+        "2": "ホウオウルクソール",
+        "13": "リアライズタキオン",
+        "4": "タイセイエキサイト"
+      }
     },
     {
       "prediction_id": 6178,
@@ -619,7 +679,27 @@
           "model_score": 0.008333333333333333,
           "ev_score": 0.20833333333333331
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "10": "ビービークローサー",
+        "8": "ザーフィル",
+        "11": "タケルムサシ",
+        "14": "サマーマッドネス",
+        "16": "テイクオンミー",
+        "3": "ヴォーカライズ",
+        "5": "ステラデルークス",
+        "6": "キーンセンス",
+        "9": "フクシマブリルハム",
+        "7": "ジーティーブラック",
+        "1": "セントゴーデンス",
+        "15": "ヴェネチアンキング",
+        "12": "シビックアスコット",
+        "2": "ホウオウルクソール",
+        "13": "リアライズタキオン",
+        "4": "タイセイエキサイト"
+      }
     },
     {
       "prediction_id": 6179,
@@ -664,7 +744,27 @@
           "model_score": 0.004166666666666667,
           "ev_score": 0.5
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "10": "ビービークローサー",
+        "8": "ザーフィル",
+        "11": "タケルムサシ",
+        "14": "サマーマッドネス",
+        "16": "テイクオンミー",
+        "3": "ヴォーカライズ",
+        "5": "ステラデルークス",
+        "6": "キーンセンス",
+        "9": "フクシマブリルハム",
+        "7": "ジーティーブラック",
+        "1": "セントゴーデンス",
+        "15": "ヴェネチアンキング",
+        "12": "シビックアスコット",
+        "2": "ホウオウルクソール",
+        "13": "リアライズタキオン",
+        "4": "タイセイエキサイト"
+      }
     },
     {
       "prediction_id": 6180,
@@ -786,7 +886,27 @@
           "model_score": 0.0002976190476190476,
           "ev_score": 0.4464285714285714
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "10": "ビービークローサー",
+        "8": "ザーフィル",
+        "11": "タケルムサシ",
+        "14": "サマーマッドネス",
+        "16": "テイクオンミー",
+        "3": "ヴォーカライズ",
+        "5": "ステラデルークス",
+        "6": "キーンセンス",
+        "9": "フクシマブリルハム",
+        "7": "ジーティーブラック",
+        "1": "セントゴーデンス",
+        "15": "ヴェネチアンキング",
+        "12": "シビックアスコット",
+        "2": "ホウオウルクソール",
+        "13": "リアライズタキオン",
+        "4": "タイセイエキサイト"
+      }
     },
     {
       "prediction_id": 6196,
@@ -810,7 +930,27 @@
           "model_score": 1.2387711027462112,
           "ev_score": 1.2387711027462112
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "10": "ビービークローサー",
+        "8": "ザーフィル",
+        "11": "タケルムサシ",
+        "14": "サマーマッドネス",
+        "16": "テイクオンミー",
+        "3": "ヴォーカライズ",
+        "5": "ステラデルークス",
+        "6": "キーンセンス",
+        "9": "フクシマブリルハム",
+        "7": "ジーティーブラック",
+        "1": "セントゴーデンス",
+        "15": "ヴェネチアンキング",
+        "12": "シビックアスコット",
+        "2": "ホウオウルクソール",
+        "13": "リアライズタキオン",
+        "4": "タイセイエキサイト"
+      }
     },
     {
       "prediction_id": 6197,
@@ -862,7 +1002,27 @@
           "model_score": 3.1534449193373715,
           "ev_score": 3.1534449193373715
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 16,
+      "horse_num_to_name": {
+        "10": "ビービークローサー",
+        "8": "ザーフィル",
+        "11": "タケルムサシ",
+        "14": "サマーマッドネス",
+        "16": "テイクオンミー",
+        "3": "ヴォーカライズ",
+        "5": "ステラデルークス",
+        "6": "キーンセンス",
+        "9": "フクシマブリルハム",
+        "7": "ジーティーブラック",
+        "1": "セントゴーデンス",
+        "15": "ヴェネチアンキング",
+        "12": "シビックアスコット",
+        "2": "ホウオウルクソール",
+        "13": "リアライズタキオン",
+        "4": "タイセイエキサイト"
+      }
     },
     {
       "prediction_id": 6198,
@@ -893,7 +1053,27 @@
           "model_score": 0.018541195647297098,
           "ev_score": 1.1124717388378258
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "10": "ビービークローサー",
+        "8": "ザーフィル",
+        "11": "タケルムサシ",
+        "14": "サマーマッドネス",
+        "16": "テイクオンミー",
+        "3": "ヴォーカライズ",
+        "5": "ステラデルークス",
+        "6": "キーンセンス",
+        "9": "フクシマブリルハム",
+        "7": "ジーティーブラック",
+        "1": "セントゴーデンス",
+        "15": "ヴェネチアンキング",
+        "12": "シビックアスコット",
+        "2": "ホウオウルクソール",
+        "13": "リアライズタキオン",
+        "4": "タイセイエキサイト"
+      }
     },
     {
       "prediction_id": 6199,
@@ -924,7 +1104,27 @@
           "model_score": 0.018541195647297098,
           "ev_score": 0.4635298911824275
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "10": "ビービークローサー",
+        "8": "ザーフィル",
+        "11": "タケルムサシ",
+        "14": "サマーマッドネス",
+        "16": "テイクオンミー",
+        "3": "ヴォーカライズ",
+        "5": "ステラデルークス",
+        "6": "キーンセンス",
+        "9": "フクシマブリルハム",
+        "7": "ジーティーブラック",
+        "1": "セントゴーデンス",
+        "15": "ヴェネチアンキング",
+        "12": "シビックアスコット",
+        "2": "ホウオウルクソール",
+        "13": "リアライズタキオン",
+        "4": "タイセイエキサイト"
+      }
     },
     {
       "prediction_id": 6200,
@@ -955,7 +1155,27 @@
           "model_score": 0.009270597823648549,
           "ev_score": 1.1124717388378258
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "10": "ビービークローサー",
+        "8": "ザーフィル",
+        "11": "タケルムサシ",
+        "14": "サマーマッドネス",
+        "16": "テイクオンミー",
+        "3": "ヴォーカライズ",
+        "5": "ステラデルークス",
+        "6": "キーンセンス",
+        "9": "フクシマブリルハム",
+        "7": "ジーティーブラック",
+        "1": "セントゴーデンス",
+        "15": "ヴェネチアンキング",
+        "12": "シビックアスコット",
+        "2": "ホウオウルクソール",
+        "13": "リアライズタキオン",
+        "4": "タイセイエキサイト"
+      }
     },
     {
       "prediction_id": 6203,
@@ -993,7 +1213,27 @@
           "model_score": 0.006248382255224172,
           "ev_score": 1.8745146765672516
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "10": "ビービークローサー",
+        "8": "ザーフィル",
+        "11": "タケルムサシ",
+        "14": "サマーマッドネス",
+        "16": "テイクオンミー",
+        "3": "ヴォーカライズ",
+        "5": "ステラデルークス",
+        "6": "キーンセンス",
+        "9": "フクシマブリルハム",
+        "7": "ジーティーブラック",
+        "1": "セントゴーデンス",
+        "15": "ヴェネチアンキング",
+        "12": "シビックアスコット",
+        "2": "ホウオウルクソール",
+        "13": "リアライズタキオン",
+        "4": "タイセイエキサイト"
+      }
     },
     {
       "prediction_id": 6204,
@@ -1122,7 +1362,27 @@
           "model_score": 0.010452961672473868,
           "ev_score": 0.0
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "10": "ビービークローサー",
+        "8": "ザーフィル",
+        "11": "タケルムサシ",
+        "14": "サマーマッドネス",
+        "16": "テイクオンミー",
+        "3": "ヴォーカライズ",
+        "5": "ステラデルークス",
+        "6": "キーンセンス",
+        "9": "フクシマブリルハム",
+        "7": "ジーティーブラック",
+        "1": "セントゴーデンス",
+        "15": "ヴェネチアンキング",
+        "12": "シビックアスコット",
+        "2": "ホウオウルクソール",
+        "13": "リアライズタキオン",
+        "4": "タイセイエキサイト"
+      }
     },
     {
       "prediction_id": 6735,
@@ -1146,7 +1406,27 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.5461654135338346
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "10": "ビービークローサー",
+        "8": "ザーフィル",
+        "11": "タケルムサシ",
+        "14": "サマーマッドネス",
+        "16": "テイクオンミー",
+        "3": "ヴォーカライズ",
+        "5": "ステラデルークス",
+        "6": "キーンセンス",
+        "9": "フクシマブリルハム",
+        "7": "ジーティーブラック",
+        "1": "セントゴーデンス",
+        "15": "ヴェネチアンキング",
+        "12": "シビックアスコット",
+        "2": "ホウオウルクソール",
+        "13": "リアライズタキオン",
+        "4": "タイセイエキサイト"
+      }
     },
     {
       "prediction_id": 6736,
@@ -1184,7 +1464,27 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.03609022556390978
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "10": "ビービークローサー",
+        "8": "ザーフィル",
+        "11": "タケルムサシ",
+        "14": "サマーマッドネス",
+        "16": "テイクオンミー",
+        "3": "ヴォーカライズ",
+        "5": "ステラデルークス",
+        "6": "キーンセンス",
+        "9": "フクシマブリルハム",
+        "7": "ジーティーブラック",
+        "1": "セントゴーデンス",
+        "15": "ヴェネチアンキング",
+        "12": "シビックアスコット",
+        "2": "ホウオウルクソール",
+        "13": "リアライズタキオン",
+        "4": "タイセイエキサイト"
+      }
     },
     {
       "prediction_id": 6737,
@@ -1215,7 +1515,27 @@
           "model_score": 0.008476258514696893,
           "ev_score": 2.3089328194034335
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "10": "ビービークローサー",
+        "8": "ザーフィル",
+        "11": "タケルムサシ",
+        "14": "サマーマッドネス",
+        "16": "テイクオンミー",
+        "3": "ヴォーカライズ",
+        "5": "ステラデルークス",
+        "6": "キーンセンス",
+        "9": "フクシマブリルハム",
+        "7": "ジーティーブラック",
+        "1": "セントゴーデンス",
+        "15": "ヴェネチアンキング",
+        "12": "シビックアスコット",
+        "2": "ホウオウルクソール",
+        "13": "リアライズタキオン",
+        "4": "タイセイエキサイト"
+      }
     },
     {
       "prediction_id": 6738,
@@ -1246,7 +1566,27 @@
           "model_score": 0.008476258514696893,
           "ev_score": 0.9620553414180975
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "10": "ビービークローサー",
+        "8": "ザーフィル",
+        "11": "タケルムサシ",
+        "14": "サマーマッドネス",
+        "16": "テイクオンミー",
+        "3": "ヴォーカライズ",
+        "5": "ステラデルークス",
+        "6": "キーンセンス",
+        "9": "フクシマブリルハム",
+        "7": "ジーティーブラック",
+        "1": "セントゴーデンス",
+        "15": "ヴェネチアンキング",
+        "12": "シビックアスコット",
+        "2": "ホウオウルクソール",
+        "13": "リアライズタキオン",
+        "4": "タイセイエキサイト"
+      }
     },
     {
       "prediction_id": 6739,
@@ -1291,7 +1631,27 @@
           "model_score": 0.004238129257348447,
           "ev_score": 2.3089328194034335
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "10": "ビービークローサー",
+        "8": "ザーフィル",
+        "11": "タケルムサシ",
+        "14": "サマーマッドネス",
+        "16": "テイクオンミー",
+        "3": "ヴォーカライズ",
+        "5": "ステラデルークス",
+        "6": "キーンセンス",
+        "9": "フクシマブリルハム",
+        "7": "ジーティーブラック",
+        "1": "セントゴーデンス",
+        "15": "ヴェネチアンキング",
+        "12": "シビックアスコット",
+        "2": "ホウオウルクソール",
+        "13": "リアライズタキオン",
+        "4": "タイセイエキサイト"
+      }
     },
     {
       "prediction_id": 6740,
@@ -1413,7 +1773,27 @@
           "model_score": 0.00030558505087058485,
           "ev_score": 2.081034196428683
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "10": "ビービークローサー",
+        "8": "ザーフィル",
+        "11": "タケルムサシ",
+        "14": "サマーマッドネス",
+        "16": "テイクオンミー",
+        "3": "ヴォーカライズ",
+        "5": "ステラデルークス",
+        "6": "キーンセンス",
+        "9": "フクシマブリルハム",
+        "7": "ジーティーブラック",
+        "1": "セントゴーデンス",
+        "15": "ヴェネチアンキング",
+        "12": "シビックアスコット",
+        "2": "ホウオウルクソール",
+        "13": "リアライズタキオン",
+        "4": "タイセイエキサイト"
+      }
     },
     {
       "prediction_id": 6756,
@@ -1437,7 +1817,27 @@
           "model_score": 1.2387711027462112,
           "ev_score": 1.2387711027462112
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "10": "ビービークローサー",
+        "8": "ザーフィル",
+        "11": "タケルムサシ",
+        "14": "サマーマッドネス",
+        "16": "テイクオンミー",
+        "3": "ヴォーカライズ",
+        "5": "ステラデルークス",
+        "6": "キーンセンス",
+        "9": "フクシマブリルハム",
+        "7": "ジーティーブラック",
+        "1": "セントゴーデンス",
+        "15": "ヴェネチアンキング",
+        "12": "シビックアスコット",
+        "2": "ホウオウルクソール",
+        "13": "リアライズタキオン",
+        "4": "タイセイエキサイト"
+      }
     },
     {
       "prediction_id": 6757,
@@ -1489,7 +1889,27 @@
           "model_score": 3.1534449193373715,
           "ev_score": 3.1534449193373715
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 16,
+      "horse_num_to_name": {
+        "10": "ビービークローサー",
+        "8": "ザーフィル",
+        "11": "タケルムサシ",
+        "14": "サマーマッドネス",
+        "16": "テイクオンミー",
+        "3": "ヴォーカライズ",
+        "5": "ステラデルークス",
+        "6": "キーンセンス",
+        "9": "フクシマブリルハム",
+        "7": "ジーティーブラック",
+        "1": "セントゴーデンス",
+        "15": "ヴェネチアンキング",
+        "12": "シビックアスコット",
+        "2": "ホウオウルクソール",
+        "13": "リアライズタキオン",
+        "4": "タイセイエキサイト"
+      }
     },
     {
       "prediction_id": 6758,
@@ -1520,7 +1940,27 @@
           "model_score": 0.018541195647297098,
           "ev_score": 4.0
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "10": "ビービークローサー",
+        "8": "ザーフィル",
+        "11": "タケルムサシ",
+        "14": "サマーマッドネス",
+        "16": "テイクオンミー",
+        "3": "ヴォーカライズ",
+        "5": "ステラデルークス",
+        "6": "キーンセンス",
+        "9": "フクシマブリルハム",
+        "7": "ジーティーブラック",
+        "1": "セントゴーデンス",
+        "15": "ヴェネチアンキング",
+        "12": "シビックアスコット",
+        "2": "ホウオウルクソール",
+        "13": "リアライズタキオン",
+        "4": "タイセイエキサイト"
+      }
     },
     {
       "prediction_id": 6759,
@@ -1551,7 +1991,27 @@
           "model_score": 0.018541195647297098,
           "ev_score": 1.9978138309962623
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "10": "ビービークローサー",
+        "8": "ザーフィル",
+        "11": "タケルムサシ",
+        "14": "サマーマッドネス",
+        "16": "テイクオンミー",
+        "3": "ヴォーカライズ",
+        "5": "ステラデルークス",
+        "6": "キーンセンス",
+        "9": "フクシマブリルハム",
+        "7": "ジーティーブラック",
+        "1": "セントゴーデンス",
+        "15": "ヴェネチアンキング",
+        "12": "シビックアスコット",
+        "2": "ホウオウルクソール",
+        "13": "リアライズタキオン",
+        "4": "タイセイエキサイト"
+      }
     },
     {
       "prediction_id": 6760,
@@ -1582,7 +2042,27 @@
           "model_score": 0.009270597823648549,
           "ev_score": 4.7947531943910295
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "10": "ビービークローサー",
+        "8": "ザーフィル",
+        "11": "タケルムサシ",
+        "14": "サマーマッドネス",
+        "16": "テイクオンミー",
+        "3": "ヴォーカライズ",
+        "5": "ステラデルークス",
+        "6": "キーンセンス",
+        "9": "フクシマブリルハム",
+        "7": "ジーティーブラック",
+        "1": "セントゴーデンス",
+        "15": "ヴェネチアンキング",
+        "12": "シビックアスコット",
+        "2": "ホウオウルクソール",
+        "13": "リアライズタキオン",
+        "4": "タイセイエキサイト"
+      }
     },
     {
       "prediction_id": 6763,
@@ -1620,7 +2100,27 @@
           "model_score": 0.006225381019449884,
           "ev_score": 5.0
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "10": "ビービークローサー",
+        "8": "ザーフィル",
+        "11": "タケルムサシ",
+        "14": "サマーマッドネス",
+        "16": "テイクオンミー",
+        "3": "ヴォーカライズ",
+        "5": "ステラデルークス",
+        "6": "キーンセンス",
+        "9": "フクシマブリルハム",
+        "7": "ジーティーブラック",
+        "1": "セントゴーデンス",
+        "15": "ヴェネチアンキング",
+        "12": "シビックアスコット",
+        "2": "ホウオウルクソール",
+        "13": "リアライズタキオン",
+        "4": "タイセイエキサイト"
+      }
     },
     {
       "prediction_id": 6764,
@@ -1749,7 +2249,27 @@
           "model_score": 0.010452961672473868,
           "ev_score": 1.648432055749129
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "10": "ビービークローサー",
+        "8": "ザーフィル",
+        "11": "タケルムサシ",
+        "14": "サマーマッドネス",
+        "16": "テイクオンミー",
+        "3": "ヴォーカライズ",
+        "5": "ステラデルークス",
+        "6": "キーンセンス",
+        "9": "フクシマブリルハム",
+        "7": "ジーティーブラック",
+        "1": "セントゴーデンス",
+        "15": "ヴェネチアンキング",
+        "12": "シビックアスコット",
+        "2": "ホウオウルクソール",
+        "13": "リアライズタキオン",
+        "4": "タイセイエキサイト"
+      }
     }
   ],
   "training_evals": {}

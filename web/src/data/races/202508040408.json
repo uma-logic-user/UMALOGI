@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 5,
-      "horse_number": 8,
-      "horse_name": "アンダースコア",
-      "horse_id": "2022106470",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "田口貫太",
-      "trainer": "庄野靖志",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 2,
-      "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "オンザブルースカイ",
-      "horse_id": "2022104163",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "菱田裕二",
-      "trainer": "谷潔",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 3,
-      "gate_number": 6,
-      "horse_number": 10,
-      "horse_name": "ダノンキラウェア",
-      "horse_id": "2021100171",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "川田将雅",
-      "trainer": "中内田充",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ロードカナロア",
-      "dam": "レキシールーLexie Lou(加)",
-      "dam_sire": "Sligo Bay"
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "和田竜二",
       "trainer": "飯田祐史",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +42,7 @@
       "jockey": "ルメール",
       "trainer": "戸田博文",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -110,6 +50,26 @@
       "sire": "ロードカナロア",
       "dam": "キストゥヘヴン",
       "dam_sire": "アドマイヤベガ"
+    },
+    {
+      "rank": null,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "オンザブルースカイ",
+      "horse_id": "2022104163",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "菱田裕二",
+      "trainer": "谷潔",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -122,7 +82,7 @@
       "jockey": "Ｃ．デム",
       "trainer": "長谷川浩",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +102,7 @@
       "jockey": "岩田康誠",
       "trainer": "奥村武",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +122,7 @@
       "jockey": "鮫島克駿",
       "trainer": "庄野靖志",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +142,7 @@
       "jockey": "北村友一",
       "trainer": "斉藤崇史",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -190,6 +150,26 @@
       "sire": "Dark Angel",
       "dam": "Soul of Houdini",
       "dam_sire": "Perfect Soul"
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 8,
+      "horse_name": "アンダースコア",
+      "horse_id": "2022106470",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "田口貫太",
+      "trainer": "庄野靖志",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -202,7 +182,7 @@
       "jockey": "武豊",
       "trainer": "荒川義之",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -210,6 +190,26 @@
       "sire": "ラブリーデイ",
       "dam": "デンコウデア",
       "dam_sire": "スペシャルウィーク"
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 10,
+      "horse_name": "ダノンキラウェア",
+      "horse_id": "2021100171",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "川田将雅",
+      "trainer": "中内田充",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ロードカナロア",
+      "dam": "レキシールーLexie Lou(加)",
+      "dam_sire": "Sligo Bay"
     },
     {
       "rank": null,
@@ -222,7 +222,7 @@
       "jockey": "レーン",
       "trainer": "斉藤崇史",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -242,7 +242,7 @@
       "jockey": "西村淳也",
       "trainer": "松下武士",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -262,7 +262,7 @@
       "jockey": "津村明秀",
       "trainer": "武市康男",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -282,7 +282,7 @@
       "jockey": "幸英明",
       "trainer": "西園正都",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -302,7 +302,7 @@
       "jockey": "松山弘平",
       "trainer": "藤原英昭",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -318,6 +318,12 @@
       "combination": "8",
       "payout": 2440,
       "popularity": 7
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "15",
+      "payout": 15000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -344,10 +350,28 @@
       "popularity": 12
     },
     {
+      "bet_type": "枠連",
+      "combination": "2",
+      "payout": 44007,
+      "popularity": null
+    },
+    {
       "bet_type": "馬連",
       "combination": "3-8",
       "payout": 73040,
       "popularity": 74
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "6-50",
+      "payout": 7030,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 50000,
+      "popularity": 3
     },
     {
       "bet_type": "ワイド",
@@ -368,6 +392,24 @@
       "popularity": 73
     },
     {
+      "bet_type": "ワイド",
+      "combination": "18",
+      "payout": 40121,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "3",
+      "payout": 8000,
+      "popularity": 1
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "8",
+      "payout": 730,
+      "popularity": 40
+    },
+    {
       "bet_type": "馬単",
       "combination": "8→3",
       "payout": 134280,
@@ -375,9 +417,27 @@
     },
     {
       "bet_type": "三連複",
+      "combination": "23-50",
+      "payout": 2403,
+      "popularity": 100
+    },
+    {
+      "bet_type": "三連複",
       "combination": "3-8-10",
       "payout": 141780,
       "popularity": 200
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "52-60-7",
+      "payout": 30810,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "59",
+      "payout": 80045,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

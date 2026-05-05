@@ -12,7 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "ハニーコム",
@@ -22,7 +22,7 @@
       "jockey": "シュタル",
       "trainer": "蛯名正義",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -32,7 +32,7 @@
       "dam_sire": "ホワイトマズルWhite Muzzle(英)"
     },
     {
-      "rank": 2,
+      "rank": null,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "タケトンボ",
@@ -42,7 +42,7 @@
       "jockey": "丹内祐次",
       "trainer": "宮徹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -50,26 +50,6 @@
       "sire": "エイシンフラッシュ",
       "dam": "エアルシアン",
       "dam_sire": "ジャングルポケット"
-    },
-    {
-      "rank": 3,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "エコテーラー",
-      "horse_id": "2021101116",
-      "sex_age": "牝1",
-      "weight_carried": 56.0,
-      "jockey": "池添謙一",
-      "trainer": "石橋守",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "スワーヴリチャード",
-      "dam": "ジョウノカーラ",
-      "dam_sire": "Dylan Thomas(愛)"
     },
     {
       "rank": null,
@@ -82,7 +62,7 @@
       "jockey": "岩田康誠",
       "trainer": "上村洋行",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +82,7 @@
       "jockey": "武豊",
       "trainer": "河嶋宏樹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -110,6 +90,26 @@
       "sire": "ワンアンドオンリー",
       "dam": "ハーモニー",
       "dam_sire": "Street Cry(愛)"
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "エコテーラー",
+      "horse_id": "2021101116",
+      "sex_age": "牝1",
+      "weight_carried": 56.0,
+      "jockey": "池添謙一",
+      "trainer": "石橋守",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "スワーヴリチャード",
+      "dam": "ジョウノカーラ",
+      "dam_sire": "Dylan Thomas(愛)"
     },
     {
       "rank": null,
@@ -122,7 +122,7 @@
       "jockey": "黒岩悠",
       "trainer": "牧田和弥",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -138,6 +138,12 @@
       "combination": "1",
       "payout": 500,
       "popularity": 4
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "6",
+      "payout": 6000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -158,6 +164,12 @@
       "popularity": 6
     },
     {
+      "bet_type": "馬連",
+      "combination": "2-50",
+      "payout": 4020,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "1-2",
       "payout": 360,
@@ -176,16 +188,46 @@
       "popularity": 10
     },
     {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 40020,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "1→2",
       "payout": 2340,
       "popularity": 13
     },
     {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 2000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-2-5",
       "payout": 2660,
       "popularity": 10
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "7",
+      "payout": 1002,
+      "popularity": 50
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3-60",
+      "payout": 60105,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5",
+      "payout": 60008,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

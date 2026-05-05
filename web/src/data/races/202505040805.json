@@ -12,7 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "ウップヘリーア",
@@ -22,7 +22,7 @@
       "jockey": "ルメール",
       "trainer": "黒岩陽一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -30,46 +30,6 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
-    },
-    {
-      "rank": 2,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "ブラックオリンピア",
-      "horse_id": "2023107168",
-      "sex_age": "牡5",
-      "weight_carried": 56.0,
-      "jockey": "川田将雅",
-      "trainer": "友道康夫",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 3,
-      "gate_number": 8,
-      "horse_number": 8,
-      "horse_name": "オルフセン",
-      "horse_id": "2023105642",
-      "sex_age": "牡3",
-      "weight_carried": 56.0,
-      "jockey": "戸崎圭太",
-      "trainer": "斎藤誠",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "キズナ",
-      "dam": "スターズアラインド",
-      "dam_sire": "Sea The StarsSea the Stars(愛)"
     },
     {
       "rank": null,
@@ -82,7 +42,7 @@
       "jockey": "石川裕紀",
       "trainer": "中舘英二",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +62,7 @@
       "jockey": "津村明秀",
       "trainer": "小林真也",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +82,27 @@
       "jockey": "横山武史",
       "trainer": "四位洋文",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "ブラックオリンピア",
+      "horse_id": "2023107168",
+      "sex_age": "牡5",
+      "weight_carried": 56.0,
+      "jockey": "川田将雅",
+      "trainer": "友道康夫",
+      "finish_time": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +122,7 @@
       "jockey": "横山典弘",
       "trainer": "松永幹夫",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +142,7 @@
       "jockey": "内田博幸",
       "trainer": "松永康利",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -170,6 +150,26 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 8,
+      "horse_name": "オルフセン",
+      "horse_id": "2023105642",
+      "sex_age": "牡3",
+      "weight_carried": 56.0,
+      "jockey": "戸崎圭太",
+      "trainer": "斎藤誠",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "キズナ",
+      "dam": "スターズアラインド",
+      "dam_sire": "Sea The StarsSea the Stars(愛)"
     },
     {
       "rank": null,
@@ -182,7 +182,7 @@
       "jockey": "木幡巧也",
       "trainer": "大竹正博",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -198,6 +198,12 @@
       "combination": "1",
       "payout": 380,
       "popularity": 3
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "9",
+      "payout": 9000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -230,6 +236,12 @@
       "popularity": 2
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-10",
+      "payout": 3050,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "5-8",
       "payout": 170,
@@ -248,16 +260,46 @@
       "popularity": 3
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 50000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "1→5",
       "payout": 1070,
       "popularity": 5
     },
     {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 5000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-5-8",
       "payout": 410,
       "popularity": 1
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2-40",
+      "payout": 305,
+      "popularity": 80
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2",
+      "payout": 20108,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1",
+      "payout": 70001,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

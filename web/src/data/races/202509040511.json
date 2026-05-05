@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 3,
-      "horse_number": 4,
-      "horse_name": "バスタードサフラン",
-      "horse_id": "2021106610",
-      "sex_age": "牝1",
-      "weight_carried": 54.0,
-      "jockey": "酒井学",
-      "trainer": "渡辺薫彦",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "マジェスティックウォリアーMajestic Warrior(米)",
-      "dam": "ウィッシュハピネス",
-      "dam_sire": "ゴールドアリュール"
-    },
-    {
-      "rank": 2,
-      "gate_number": 4,
-      "horse_number": 6,
-      "horse_name": "ワイドブリザード",
-      "horse_id": "2021104416",
-      "sex_age": "騸3",
-      "weight_carried": 56.0,
-      "jockey": "浜中俊",
-      "trainer": "佐藤悠太",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "カリフォルニアクロームCalifornia Chrome(米)",
-      "dam": "ハナフブキ",
-      "dam_sire": "ディープインパクト"
-    },
-    {
-      "rank": 3,
-      "gate_number": 8,
-      "horse_number": 14,
-      "horse_name": "ペンナヴェローチェ",
-      "horse_id": "2021104092",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "川田将雅",
-      "trainer": "須貝尚介",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "キズナ",
-      "dam": "エンパイアブレイク",
-      "dam_sire": "エンパイアメーカーEmpire Maker(米)"
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "田口貫太",
       "trainer": "安達昭夫",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +42,7 @@
       "jockey": "国分恭介",
       "trainer": "西園翔太",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +62,7 @@
       "jockey": "富田暁",
       "trainer": "井上智史",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -130,6 +70,26 @@
       "sire": "ドレフォンDrefong(米)",
       "dam": "キープシークレット",
       "dam_sire": "ダイワメジャー"
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 4,
+      "horse_name": "バスタードサフラン",
+      "horse_id": "2021106610",
+      "sex_age": "牝1",
+      "weight_carried": 54.0,
+      "jockey": "酒井学",
+      "trainer": "渡辺薫彦",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "マジェスティックウォリアーMajestic Warrior(米)",
+      "dam": "ウィッシュハピネス",
+      "dam_sire": "ゴールドアリュール"
     },
     {
       "rank": null,
@@ -142,7 +102,7 @@
       "jockey": "古川吉洋",
       "trainer": "大橋勇樹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -150,6 +110,26 @@
       "sire": "カリフォルニアクロームCalifornia Chrome(米)",
       "dam": "タマモエルドラド",
       "dam_sire": "ゴールドアリュール"
+    },
+    {
+      "rank": null,
+      "gate_number": 4,
+      "horse_number": 6,
+      "horse_name": "ワイドブリザード",
+      "horse_id": "2021104416",
+      "sex_age": "騸3",
+      "weight_carried": 56.0,
+      "jockey": "浜中俊",
+      "trainer": "佐藤悠太",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "カリフォルニアクロームCalifornia Chrome(米)",
+      "dam": "ハナフブキ",
+      "dam_sire": "ディープインパクト"
     },
     {
       "rank": null,
@@ -162,7 +142,7 @@
       "jockey": "松山弘平",
       "trainer": "鈴木孝志",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +162,7 @@
       "jockey": "高杉吏麒",
       "trainer": "鹿戸雄一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -202,7 +182,7 @@
       "jockey": "長岡禎仁",
       "trainer": "小林真也",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -222,7 +202,7 @@
       "jockey": "松若風馬",
       "trainer": "角田晃一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -242,7 +222,7 @@
       "jockey": "団野大成",
       "trainer": "森秀行",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -262,7 +242,7 @@
       "jockey": "鮫島克駿",
       "trainer": "矢作芳人",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -282,7 +262,7 @@
       "jockey": "和田竜二",
       "trainer": "加藤公太",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -290,6 +270,26 @@
       "sire": "キンシャサノキセキ",
       "dam": "スマートノエル",
       "dam_sire": "ヴァーミリアン"
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 14,
+      "horse_name": "ペンナヴェローチェ",
+      "horse_id": "2021104092",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "川田将雅",
+      "trainer": "須貝尚介",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "キズナ",
+      "dam": "エンパイアブレイク",
+      "dam_sire": "エンパイアメーカーEmpire Maker(米)"
     }
   ],
   "payouts": [
@@ -298,6 +298,12 @@
       "combination": "4",
       "payout": 1110,
       "popularity": 5
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "14",
+      "payout": 14000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -324,16 +330,34 @@
       "popularity": 10
     },
     {
+      "bet_type": "枠連",
+      "combination": "1",
+      "payout": 11005,
+      "popularity": null
+    },
+    {
       "bet_type": "馬連",
       "combination": "4-6",
       "payout": 2780,
       "popularity": 9
     },
     {
+      "bet_type": "馬連",
+      "combination": "3-50",
+      "payout": 6060,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "6-14",
       "payout": 330,
       "popularity": 1
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3",
+      "payout": 40000,
+      "popularity": 2
     },
     {
       "bet_type": "ワイド",
@@ -348,16 +372,46 @@
       "popularity": 11
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 60021,
+      "popularity": 40
+    },
+    {
       "bet_type": "馬単",
       "combination": "4→6",
       "payout": 5220,
       "popularity": 15
     },
     {
+      "bet_type": "馬単",
+      "combination": "4",
+      "payout": 6000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "4-6-14",
       "payout": 2790,
       "popularity": 4
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "8-30",
+      "payout": 706,
+      "popularity": 140
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "9-80-1",
+      "payout": 10414,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3",
+      "payout": 30001,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

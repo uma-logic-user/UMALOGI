@@ -12,27 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 6,
-      "horse_number": 6,
-      "horse_name": "クリニクラウン",
-      "horse_id": "2020100934",
-      "sex_age": "牝1",
-      "weight_carried": 56.0,
-      "jockey": "大野拓弥",
-      "trainer": "小手川準",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "トビーズコーナーToby's Corner(米)",
-      "dam": "ルナフォース",
-      "dam_sire": "ディープブリランテ"
-    },
-    {
-      "rank": 2,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "イトカワサクラ",
@@ -42,7 +22,7 @@
       "jockey": "菅原明良",
       "trainer": "牧田和弥",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -50,26 +30,6 @@
       "sire": "ゴールドシップ",
       "dam": "カワカミサクラKawakami Sakura(愛)",
       "dam_sire": "Danehill Dancer(愛)"
-    },
-    {
-      "rank": 3,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "ミーントゥビー",
-      "horse_id": "2022105317",
-      "sex_age": "牝3",
-      "weight_carried": 54.0,
-      "jockey": "松岡正海",
-      "trainer": "堀内岳志",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "リアルインパクト",
-      "dam": "コマンドゥールキイ",
-      "dam_sire": "フジキセキ"
     },
     {
       "rank": null,
@@ -82,7 +42,7 @@
       "jockey": "横山武史",
       "trainer": "加藤征弘",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -90,6 +50,26 @@
       "sire": "エピファネイア",
       "dam": "カゼルタ",
       "dam_sire": "ハービンジャーHarbinger(英)"
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "ミーントゥビー",
+      "horse_id": "2022105317",
+      "sex_age": "牝3",
+      "weight_carried": 54.0,
+      "jockey": "松岡正海",
+      "trainer": "堀内岳志",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "リアルインパクト",
+      "dam": "コマンドゥールキイ",
+      "dam_sire": "フジキセキ"
     },
     {
       "rank": null,
@@ -102,7 +82,7 @@
       "jockey": "浜中俊",
       "trainer": "戸田博文",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +102,7 @@
       "jockey": "吉田豊",
       "trainer": "戸田博文",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -130,6 +110,26 @@
       "sire": "エピファネイア",
       "dam": "パセンジャーシップ",
       "dam_sire": "ダイワメジャー"
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 6,
+      "horse_name": "クリニクラウン",
+      "horse_id": "2020100934",
+      "sex_age": "牝1",
+      "weight_carried": 56.0,
+      "jockey": "大野拓弥",
+      "trainer": "小手川準",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "トビーズコーナーToby's Corner(米)",
+      "dam": "ルナフォース",
+      "dam_sire": "ディープブリランテ"
     },
     {
       "rank": null,
@@ -142,7 +142,7 @@
       "jockey": "津村明秀",
       "trainer": "斎藤誠",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +162,7 @@
       "jockey": "石川裕紀",
       "trainer": "小崎憲",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +182,7 @@
       "jockey": "北村宏司",
       "trainer": "堀内岳志",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -202,7 +202,7 @@
       "jockey": "内田博幸",
       "trainer": "木村哲也",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -222,7 +222,7 @@
       "jockey": "柴田大知",
       "trainer": "松山将樹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -238,6 +238,12 @@
       "combination": "6",
       "payout": 290,
       "popularity": 1
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "11",
+      "payout": 11000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -270,6 +276,18 @@
       "popularity": 5
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-50",
+      "payout": 1010,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 60000,
+      "popularity": 1
+    },
+    {
       "bet_type": "ワイド",
       "combination": "3-6",
       "payout": 480,
@@ -288,16 +306,46 @@
       "popularity": 19
     },
     {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 30060,
+      "popularity": 30
+    },
+    {
       "bet_type": "馬単",
       "combination": "6→1",
       "payout": 2690,
       "popularity": 6
     },
     {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 6000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-3-6",
       "payout": 3650,
       "popularity": 13
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4-80",
+      "payout": 401,
+      "popularity": 30
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5-10",
+      "payout": 50306,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "11",
+      "payout": 10019,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

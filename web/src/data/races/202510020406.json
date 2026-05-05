@@ -12,47 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "ロードヴィゴラス",
-      "horse_id": "2023105806",
-      "sex_age": "牡3",
-      "weight_carried": 54.0,
-      "jockey": "高杉吏麒",
-      "trainer": "四位洋文",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 2,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "オトコノロマン",
-      "horse_id": "2023105093",
-      "sex_age": "牡3",
-      "weight_carried": 55.0,
-      "jockey": "坂井瑠星",
-      "trainer": "新谷功一",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 3,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "コパノロケット",
@@ -62,7 +22,27 @@
       "jockey": "小崎綾也",
       "trainer": "福永祐一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "オトコノロマン",
+      "horse_id": "2023105093",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "坂井瑠星",
+      "trainer": "新谷功一",
+      "finish_time": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -82,7 +62,27 @@
       "jockey": "小沢大仁",
       "trainer": "吉田直弘",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "ロードヴィゴラス",
+      "horse_id": "2023105806",
+      "sex_age": "牡3",
+      "weight_carried": 54.0,
+      "jockey": "高杉吏麒",
+      "trainer": "四位洋文",
+      "finish_time": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +102,7 @@
       "jockey": "松山弘平",
       "trainer": "高柳大輔",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -118,6 +118,12 @@
       "combination": "4",
       "payout": 500,
       "popularity": 3
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "5",
+      "payout": 5000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -138,6 +144,12 @@
       "popularity": 2
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-70",
+      "payout": 3020,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "2-4",
       "payout": 180,
@@ -156,16 +168,46 @@
       "popularity": 9
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 10010,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "4→2",
       "payout": 890,
       "popularity": 4
     },
     {
+      "bet_type": "馬単",
+      "combination": "2",
+      "payout": 4000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-2-4",
       "payout": 880,
       "popularity": 5
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4-40",
+      "payout": 901,
+      "popularity": 20
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-80",
+      "payout": 20104,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2",
+      "payout": 90005,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

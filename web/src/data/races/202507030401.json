@@ -12,47 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "ユヴァスキュラ",
-      "horse_id": "2023100220",
-      "sex_age": "牡4",
-      "weight_carried": 55.0,
-      "jockey": "松山弘平",
-      "trainer": "小椋研介",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 2,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "メイショウナルカミ",
-      "horse_id": "2023106560",
-      "sex_age": "牡7",
-      "weight_carried": 55.0,
-      "jockey": "幸英明",
-      "trainer": "安達昭夫",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 3,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "モンドシュピーゲル",
@@ -62,7 +22,7 @@
       "jockey": "国分優作",
       "trainer": "天間昭一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -82,7 +42,27 @@
       "jockey": "小崎綾也",
       "trainer": "宮地貴稔",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "メイショウナルカミ",
+      "horse_id": "2023106560",
+      "sex_age": "牡7",
+      "weight_carried": 55.0,
+      "jockey": "幸英明",
+      "trainer": "安達昭夫",
+      "finish_time": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +82,27 @@
       "jockey": "松若風馬",
       "trainer": "宮徹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "ユヴァスキュラ",
+      "horse_id": "2023100220",
+      "sex_age": "牡4",
+      "weight_carried": 55.0,
+      "jockey": "松山弘平",
+      "trainer": "小椋研介",
+      "finish_time": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -116,8 +116,8 @@
     {
       "bet_type": "単勝",
       "combination": "5",
-      "payout": 130,
-      "popularity": 1
+      "payout": 5000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -136,6 +136,12 @@
       "combination": "3-5",
       "payout": 150,
       "popularity": 1
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1",
+      "payout": 1030,
+      "popularity": null
     },
     {
       "bet_type": "ワイド",
@@ -162,10 +168,34 @@
       "popularity": 1
     },
     {
+      "bet_type": "馬単",
+      "combination": "3",
+      "payout": 5000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-3-5",
       "payout": 260,
       "popularity": 2
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-30",
+      "payout": 201,
+      "popularity": 30
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-10",
+      "payout": 10105,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1",
+      "payout": 80005,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

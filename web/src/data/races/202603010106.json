@@ -4,11 +4,11 @@
   "date": "2026-04-11",
   "venue": "福島",
   "race_number": 6,
-  "distance": 0,
-  "surface": "",
+  "distance": 2600,
+  "surface": "芝",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "晴",
+  "condition": "良",
   "year": "2026",
   "results": [
     {
@@ -21,12 +21,12 @@
       "weight_carried": 57.0,
       "jockey": "富田暁",
       "trainer": "矢作芳人",
-      "finish_time": null,
+      "finish_time": "2:40.3",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 10.3,
+      "popularity": 4,
+      "horse_weight": 506,
+      "horse_weight_diff": -2,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -45,12 +45,12 @@
       "weight_carried": 55.0,
       "jockey": "荻野極",
       "trainer": "上原佑紀",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "2:40.4",
+      "margin": "1",
+      "win_odds": 3.1,
+      "popularity": 2,
+      "horse_weight": 460,
+      "horse_weight_diff": -2,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -69,18 +69,306 @@
       "weight_carried": 57.0,
       "jockey": "松若風馬",
       "trainer": "井上智史",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "2:40.8",
+      "margin": "2.1/2",
+      "win_odds": 7.6,
+      "popularity": 3,
+      "horse_weight": 456,
+      "horse_weight_diff": -4,
       "sire": null,
       "dam": null,
       "dam_sire": null,
       "training_eval": {
         "eval_grade": "C",
         "eval_text": "目立たず"
+      }
+    },
+    {
+      "rank": 4,
+      "gate_number": 3,
+      "horse_number": 4,
+      "horse_name": "フレアオブセンス",
+      "horse_id": "2023107022",
+      "sex_age": "牡1",
+      "weight_carried": 57.0,
+      "jockey": "斎藤新",
+      "trainer": "高野友和",
+      "finish_time": "2:40.9",
+      "margin": "クビ",
+      "win_odds": 2.5,
+      "popularity": 1,
+      "horse_weight": 474,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "状態良好"
+      }
+    },
+    {
+      "rank": 5,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "アルタティール",
+      "horse_id": "2023104926",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "長浜鴻緒",
+      "trainer": "手塚貴久",
+      "finish_time": "2:41.2",
+      "margin": "2",
+      "win_odds": 110.8,
+      "popularity": 14,
+      "horse_weight": 422,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "D",
+        "eval_text": "動き平凡"
+      }
+    },
+    {
+      "rank": 6,
+      "gate_number": 4,
+      "horse_number": 6,
+      "horse_name": "テンバコウクウ",
+      "horse_id": "2023104932",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "松岡正海",
+      "trainer": "柄崎将寿",
+      "finish_time": "2:41.4",
+      "margin": "1",
+      "win_odds": 185.5,
+      "popularity": 15,
+      "horse_weight": 460,
+      "horse_weight_diff": -10,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "まずまず"
+      }
+    },
+    {
+      "rank": 7,
+      "gate_number": 8,
+      "horse_number": 14,
+      "horse_name": "ロスニーニョス",
+      "horse_id": "2023103280",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "古川吉洋",
+      "trainer": "大根田裕",
+      "finish_time": "2:41.8",
+      "margin": "2.1/2",
+      "win_odds": 87.5,
+      "popularity": 13,
+      "horse_weight": 464,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "手応劣る"
+      }
+    },
+    {
+      "rank": 8,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "グロートカイザー",
+      "horse_id": "2023105397",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "吉田隼人",
+      "trainer": "辻野泰之",
+      "finish_time": "2:41.8",
+      "margin": "ハナ",
+      "win_odds": 17.7,
+      "popularity": 6,
+      "horse_weight": 438,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "手応劣る"
+      }
+    },
+    {
+      "rank": 9,
+      "gate_number": 7,
+      "horse_number": 12,
+      "horse_name": "ローレルエース",
+      "horse_id": "2023104559",
+      "sex_age": "牡1",
+      "weight_carried": 57.0,
+      "jockey": "田口貫太",
+      "trainer": "松永康利",
+      "finish_time": "2:41.8",
+      "margin": "アタマ",
+      "win_odds": 58.8,
+      "popularity": 11,
+      "horse_weight": 472,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "目立たず"
+      }
+    },
+    {
+      "rank": 10,
+      "gate_number": 6,
+      "horse_number": 10,
+      "horse_name": "グランドフィナーレ",
+      "horse_id": "2023102028",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "小沢大仁",
+      "trainer": "橋口慎介",
+      "finish_time": "2:42.1",
+      "margin": "1.1/2",
+      "win_odds": 34.5,
+      "popularity": 9,
+      "horse_weight": 460,
+      "horse_weight_diff": 12,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "出来は良"
+      }
+    },
+    {
+      "rank": 11,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "バチラ",
+      "horse_id": "2023104937",
+      "sex_age": "牡3",
+      "weight_carried": 54.0,
+      "jockey": "小林美駒",
+      "trainer": "須貝尚介",
+      "finish_time": "2:42.1",
+      "margin": "クビ",
+      "win_odds": 23.7,
+      "popularity": 8,
+      "horse_weight": 472,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "元気一杯"
+      }
+    },
+    {
+      "rank": 12,
+      "gate_number": 5,
+      "horse_number": 8,
+      "horse_name": "スノーエルヴァ",
+      "horse_id": "2023106145",
+      "sex_age": "牝11",
+      "weight_carried": 55.0,
+      "jockey": "菊沢一樹",
+      "trainer": "田村康仁",
+      "finish_time": "2:42.3",
+      "margin": "1",
+      "win_odds": 20.7,
+      "popularity": 7,
+      "horse_weight": 450,
+      "horse_weight_diff": -8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "まずまず"
+      }
+    },
+    {
+      "rank": 13,
+      "gate_number": 7,
+      "horse_number": 13,
+      "horse_name": "ブルージェネシス",
+      "horse_id": "2023101798",
+      "sex_age": "牡3",
+      "weight_carried": 54.0,
+      "jockey": "遠藤汰月",
+      "trainer": "菊川正達",
+      "finish_time": "2:43.0",
+      "margin": "4",
+      "win_odds": 82.2,
+      "popularity": 12,
+      "horse_weight": 446,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "多少良化"
+      }
+    },
+    {
+      "rank": 14,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "メイショウシュハリ",
+      "horse_id": "2023100983",
+      "sex_age": "牝7",
+      "weight_carried": 53.0,
+      "jockey": "永島まな",
+      "trainer": "庄野靖志",
+      "finish_time": "2:44.3",
+      "margin": "8",
+      "win_odds": 37.7,
+      "popularity": 10,
+      "horse_weight": 450,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "一歩前進"
+      }
+    },
+    {
+      "rank": 15,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "マイネルパーロル",
+      "horse_id": "2023106467",
+      "sex_age": "牡7",
+      "weight_carried": 55.0,
+      "jockey": "舟山瑠泉",
+      "trainer": "嘉藤貴行",
+      "finish_time": "2:45.3",
+      "margin": "6",
+      "win_odds": 16.4,
+      "popularity": 5,
+      "horse_weight": 444,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "反応平凡"
       }
     }
   ],
@@ -326,7 +614,26 @@
           "model_score": 9.03893632982334e-05,
           "ev_score": 9.03893632982334e-05
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "11": "アスクファイアモア",
+        "2": "フォーチュンローズ",
+        "5": "ジェラルリスト",
+        "4": "フレアオブセンス",
+        "15": "アルタティール",
+        "6": "テンバコウクウ",
+        "14": "ロスニーニョス",
+        "3": "グロートカイザー",
+        "12": "ローレルエース",
+        "10": "グランドフィナーレ",
+        "9": "バチラ",
+        "8": "スノーエルヴァ",
+        "13": "ブルージェネシス",
+        "1": "メイショウシュハリ",
+        "7": "マイネルパーロル"
+      }
     },
     {
       "prediction_id": 1759,
@@ -371,7 +678,26 @@
           "model_score": 7.446112463445266e-05,
           "ev_score": 0.000223383373903358
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "11": "アスクファイアモア",
+        "2": "フォーチュンローズ",
+        "5": "ジェラルリスト",
+        "4": "フレアオブセンス",
+        "15": "アルタティール",
+        "6": "テンバコウクウ",
+        "14": "ロスニーニョス",
+        "3": "グロートカイザー",
+        "12": "ローレルエース",
+        "10": "グランドフィナーレ",
+        "9": "バチラ",
+        "8": "スノーエルヴァ",
+        "13": "ブルージェネシス",
+        "1": "メイショウシュハリ",
+        "7": "マイネルパーロル"
+      }
     },
     {
       "prediction_id": 1760,
@@ -402,7 +728,26 @@
           "model_score": 0.02298405680672376,
           "ev_score": 0.018387245445379008
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "11": "アスクファイアモア",
+        "2": "フォーチュンローズ",
+        "5": "ジェラルリスト",
+        "4": "フレアオブセンス",
+        "15": "アルタティール",
+        "6": "テンバコウクウ",
+        "14": "ロスニーニョス",
+        "3": "グロートカイザー",
+        "12": "ローレルエース",
+        "10": "グランドフィナーレ",
+        "9": "バチラ",
+        "8": "スノーエルヴァ",
+        "13": "ブルージェネシス",
+        "1": "メイショウシュハリ",
+        "7": "マイネルパーロル"
+      }
     },
     {
       "prediction_id": 1761,
@@ -447,7 +792,26 @@
           "model_score": 0.22715369613843742,
           "ev_score": 0.6814610884153123
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "11": "アスクファイアモア",
+        "2": "フォーチュンローズ",
+        "5": "ジェラルリスト",
+        "4": "フレアオブセンス",
+        "15": "アルタティール",
+        "6": "テンバコウクウ",
+        "14": "ロスニーニョス",
+        "3": "グロートカイザー",
+        "12": "ローレルエース",
+        "10": "グランドフィナーレ",
+        "9": "バチラ",
+        "8": "スノーエルヴァ",
+        "13": "ブルージェネシス",
+        "1": "メイショウシュハリ",
+        "7": "マイネルパーロル"
+      }
     },
     {
       "prediction_id": 1762,
@@ -485,7 +849,26 @@
           "model_score": 0.011671055186744102,
           "ev_score": 0.017506582780116152
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "11": "アスクファイアモア",
+        "2": "フォーチュンローズ",
+        "5": "ジェラルリスト",
+        "4": "フレアオブセンス",
+        "15": "アルタティール",
+        "6": "テンバコウクウ",
+        "14": "ロスニーニョス",
+        "3": "グロートカイザー",
+        "12": "ローレルエース",
+        "10": "グランドフィナーレ",
+        "9": "バチラ",
+        "8": "スノーエルヴァ",
+        "13": "ブルージェネシス",
+        "1": "メイショウシュハリ",
+        "7": "マイネルパーロル"
+      }
     },
     {
       "prediction_id": 1763,
@@ -516,7 +899,26 @@
           "model_score": 0.007023267185621771,
           "ev_score": 0.028093068742487085
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "11": "アスクファイアモア",
+        "2": "フォーチュンローズ",
+        "5": "ジェラルリスト",
+        "4": "フレアオブセンス",
+        "15": "アルタティール",
+        "6": "テンバコウクウ",
+        "14": "ロスニーニョス",
+        "3": "グロートカイザー",
+        "12": "ローレルエース",
+        "10": "グランドフィナーレ",
+        "9": "バチラ",
+        "8": "スノーエルヴァ",
+        "13": "ブルージェネシス",
+        "1": "メイショウシュハリ",
+        "7": "マイネルパーロル"
+      }
     },
     {
       "prediction_id": 1764,
@@ -575,7 +977,26 @@
           "model_score": 0.0012165595219423408,
           "ev_score": 0.024331190438846816
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "11": "アスクファイアモア",
+        "2": "フォーチュンローズ",
+        "5": "ジェラルリスト",
+        "4": "フレアオブセンス",
+        "15": "アルタティール",
+        "6": "テンバコウクウ",
+        "14": "ロスニーニョス",
+        "3": "グロートカイザー",
+        "12": "ローレルエース",
+        "10": "グランドフィナーレ",
+        "9": "バチラ",
+        "8": "スノーエルヴァ",
+        "13": "ブルージェネシス",
+        "1": "メイショウシュハリ",
+        "7": "マイネルパーロル"
+      }
     },
     {
       "prediction_id": 1776,
@@ -634,7 +1055,26 @@
           "model_score": 0.0025813050521579354,
           "ev_score": 0.010325220208631742
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "11": "アスクファイアモア",
+        "2": "フォーチュンローズ",
+        "5": "ジェラルリスト",
+        "4": "フレアオブセンス",
+        "15": "アルタティール",
+        "6": "テンバコウクウ",
+        "14": "ロスニーニョス",
+        "3": "グロートカイザー",
+        "12": "ローレルエース",
+        "10": "グランドフィナーレ",
+        "9": "バチラ",
+        "8": "スノーエルヴァ",
+        "13": "ブルージェネシス",
+        "1": "メイショウシュハリ",
+        "7": "マイネルパーロル"
+      }
     },
     {
       "prediction_id": 1777,
@@ -693,7 +1133,26 @@
           "model_score": 1.2977895279599887,
           "ev_score": 1.2977895279599887
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 12,
+      "horse_num_to_name": {
+        "11": "アスクファイアモア",
+        "2": "フォーチュンローズ",
+        "5": "ジェラルリスト",
+        "4": "フレアオブセンス",
+        "15": "アルタティール",
+        "6": "テンバコウクウ",
+        "14": "ロスニーニョス",
+        "3": "グロートカイザー",
+        "12": "ローレルエース",
+        "10": "グランドフィナーレ",
+        "9": "バチラ",
+        "8": "スノーエルヴァ",
+        "13": "ブルージェネシス",
+        "1": "メイショウシュハリ",
+        "7": "マイネルパーロル"
+      }
     },
     {
       "prediction_id": 1778,
@@ -724,7 +1183,26 @@
           "model_score": 0.014485158289391913,
           "ev_score": 0.011588126631513531
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "11": "アスクファイアモア",
+        "2": "フォーチュンローズ",
+        "5": "ジェラルリスト",
+        "4": "フレアオブセンス",
+        "15": "アルタティール",
+        "6": "テンバコウクウ",
+        "14": "ロスニーニョス",
+        "3": "グロートカイザー",
+        "12": "ローレルエース",
+        "10": "グランドフィナーレ",
+        "9": "バチラ",
+        "8": "スノーエルヴァ",
+        "13": "ブルージェネシス",
+        "1": "メイショウシュハリ",
+        "7": "マイネルパーロル"
+      }
     },
     {
       "prediction_id": 1779,
@@ -755,7 +1233,26 @@
           "model_score": 0.014485158289391913,
           "ev_score": 0.0050698054012871694
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "11": "アスクファイアモア",
+        "2": "フォーチュンローズ",
+        "5": "ジェラルリスト",
+        "4": "フレアオブセンス",
+        "15": "アルタティール",
+        "6": "テンバコウクウ",
+        "14": "ロスニーニョス",
+        "3": "グロートカイザー",
+        "12": "ローレルエース",
+        "10": "グランドフィナーレ",
+        "9": "バチラ",
+        "8": "スノーエルヴァ",
+        "13": "ブルージェネシス",
+        "1": "メイショウシュハリ",
+        "7": "マイネルパーロル"
+      }
     },
     {
       "prediction_id": 1780,
@@ -800,7 +1297,26 @@
           "model_score": 0.18549898802956577,
           "ev_score": 0.5564969640886973
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "11": "アスクファイアモア",
+        "2": "フォーチュンローズ",
+        "5": "ジェラルリスト",
+        "4": "フレアオブセンス",
+        "15": "アルタティール",
+        "6": "テンバコウクウ",
+        "14": "ロスニーニョス",
+        "3": "グロートカイザー",
+        "12": "ローレルエース",
+        "10": "グランドフィナーレ",
+        "9": "バチラ",
+        "8": "スノーエルヴァ",
+        "13": "ブルージェネシス",
+        "1": "メイショウシュハリ",
+        "7": "マイネルパーロル"
+      }
     },
     {
       "prediction_id": 1781,
@@ -831,7 +1347,26 @@
           "model_score": 0.004051273632245454,
           "ev_score": 0.016205094528981816
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "11": "アスクファイアモア",
+        "2": "フォーチュンローズ",
+        "5": "ジェラルリスト",
+        "4": "フレアオブセンス",
+        "15": "アルタティール",
+        "6": "テンバコウクウ",
+        "14": "ロスニーニョス",
+        "3": "グロートカイザー",
+        "12": "ローレルエース",
+        "10": "グランドフィナーレ",
+        "9": "バチラ",
+        "8": "スノーエルヴァ",
+        "13": "ブルージェネシス",
+        "1": "メイショウシュハリ",
+        "7": "マイネルパーロル"
+      }
     }
   ],
   "training_evals": {

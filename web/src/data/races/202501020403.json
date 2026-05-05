@@ -12,7 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "タイセイアビリティ",
@@ -22,47 +22,7 @@
       "jockey": "斎藤新",
       "trainer": "小林真也",
       "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 2,
-      "gate_number": 5,
-      "horse_number": 6,
-      "horse_name": "セイルロケット",
-      "horse_id": "2022104858",
-      "sex_age": "牡1",
-      "weight_carried": 55.0,
-      "jockey": "鷲頭虎太",
-      "trainer": "橋口慎介",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 3,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "ステラノヴァ",
-      "horse_id": "2022103482",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "武豊",
-      "trainer": "千田輝彦",
-      "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -82,7 +42,27 @@
       "jockey": "舟山瑠泉",
       "trainer": "伊坂重信",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "ステラノヴァ",
+      "horse_id": "2022103482",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "武豊",
+      "trainer": "千田輝彦",
+      "finish_time": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +82,7 @@
       "jockey": "松本大輝",
       "trainer": "矢嶋大樹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +102,27 @@
       "jockey": "松岡正海",
       "trainer": "堀内岳志",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 6,
+      "horse_name": "セイルロケット",
+      "horse_id": "2022104858",
+      "sex_age": "牡1",
+      "weight_carried": 55.0,
+      "jockey": "鷲頭虎太",
+      "trainer": "橋口慎介",
+      "finish_time": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +142,7 @@
       "jockey": "丹内祐次",
       "trainer": "新開幸一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +162,7 @@
       "jockey": "池添謙一",
       "trainer": "野中賢二",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +182,7 @@
       "jockey": "古川奈穂",
       "trainer": "小林真也",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -202,7 +202,7 @@
       "jockey": "和田陽希",
       "trainer": "鈴木孝志",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -222,7 +222,7 @@
       "jockey": "柴田裕一",
       "trainer": "牧光二",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -242,7 +242,7 @@
       "jockey": "荻野琢真",
       "trainer": "松永康利",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -258,6 +258,12 @@
       "combination": "1",
       "payout": 570,
       "popularity": 2
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "12",
+      "payout": 12000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -290,10 +296,22 @@
       "popularity": 21
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-50",
+      "payout": 2060,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "1-3",
       "payout": 180,
       "popularity": 1
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 50000,
+      "popularity": 6
     },
     {
       "bet_type": "ワイド",
@@ -308,16 +326,46 @@
       "popularity": 19
     },
     {
+      "bet_type": "ワイド",
+      "combination": "4",
+      "payout": 30090,
+      "popularity": 30
+    },
+    {
       "bet_type": "馬単",
       "combination": "1→6",
       "payout": 14660,
       "popularity": 41
     },
     {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 6000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-3-6",
       "payout": 3850,
       "popularity": 10
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-80",
+      "payout": 103,
+      "popularity": 60
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "14-90-2",
+      "payout": 103,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "9",
+      "payout": 60012,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

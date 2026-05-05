@@ -4,11 +4,11 @@
   "date": "2026-04-25",
   "venue": "福島",
   "race_number": 12,
-  "distance": 0,
-  "surface": "",
+  "distance": 1800,
+  "surface": "芝",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "晴",
+  "condition": "良",
   "year": "2026",
   "results": [
     {
@@ -21,12 +21,12 @@
       "weight_carried": 56.0,
       "jockey": "丸山元気",
       "trainer": "高橋康之",
-      "finish_time": null,
+      "finish_time": "1:46.9",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 12.0,
+      "popularity": 7,
+      "horse_weight": 464,
+      "horse_weight_diff": -10,
       "sire": "ジャスタウェイ",
       "dam": "ポートキャンベル",
       "dam_sire": "ルーラーシップ"
@@ -41,12 +41,12 @@
       "weight_carried": 56.0,
       "jockey": "斎藤新",
       "trainer": "栗田徹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:47.1",
+      "margin": "1",
+      "win_odds": 5.2,
+      "popularity": 2,
+      "horse_weight": 468,
+      "horse_weight_diff": 4,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -61,258 +61,18 @@
       "weight_carried": 52.0,
       "jockey": "河原田菜",
       "trainer": "青木孝文",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:47.2",
+      "margin": "3/4",
+      "win_odds": 8.6,
+      "popularity": 5,
+      "horse_weight": 442,
+      "horse_weight_diff": -10,
       "sire": "アルアイン",
       "dam": "バーミーブリーズ",
       "dam_sire": "キンシャサノキセキ"
     },
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 2,
-      "horse_name": "ニシノコマチムスメ",
-      "horse_id": "2021107253",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "小沢大仁",
-      "trainer": "松山将樹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ルーラーシップ",
-      "dam": "ニシノハナムスメ",
-      "dam_sire": "ディープインパクト"
-    },
-    {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "アルシャンティ",
-      "horse_id": "2022102978",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "嶋田純次",
-      "trainer": "室井潔",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 5,
-      "horse_name": "ウインアリス",
-      "horse_id": "2021106224",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "黛弘人",
-      "trainer": "柄崎将寿",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "サンダースノーThunder Snow(愛)",
-      "dam": "マリアヴェロニカ",
-      "dam_sire": "ジャングルポケット"
-    },
-    {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 6,
-      "horse_name": "カポレイラ",
-      "horse_id": "2022106593",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "横山琉人",
-      "trainer": "中舘英二",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 7,
-      "horse_name": "ラッキーダンス",
-      "horse_id": "2022106116",
-      "sex_age": "牝3",
-      "weight_carried": 53.0,
-      "jockey": "石田拓郎",
-      "trainer": "新開幸一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 8,
-      "horse_name": "ビスケットマリー",
-      "horse_id": "2022102984",
-      "sex_age": "牝1",
-      "weight_carried": 53.0,
-      "jockey": "遠藤汰月",
-      "trainer": "和田雄二",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 9,
-      "horse_name": "キューティリップ",
-      "horse_id": "2022105131",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "武藤雅",
-      "trainer": "戸田博文",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 10,
-      "horse_name": "ペプロス",
-      "horse_id": "2022100106",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "菊沢一樹",
-      "trainer": "矢野英一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 11,
-      "horse_name": "エナジーショット",
-      "horse_id": "2022101425",
-      "sex_age": "牝1",
-      "weight_carried": 56.0,
-      "jockey": "丹内祐次",
-      "trainer": "矢嶋大樹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 12,
-      "horse_name": "レモンバーム",
-      "horse_id": "2022106796",
-      "sex_age": "牝4",
-      "weight_carried": 53.0,
-      "jockey": "石神深道",
-      "trainer": "嘉藤貴行",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 14,
-      "horse_name": "ハレアカラフラ",
-      "horse_id": "2020103292",
-      "sex_age": "牝1",
-      "weight_carried": 56.0,
-      "jockey": "松本大輝",
-      "trainer": "吉田直弘",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ラブリーデイ",
-      "dam": "オーキッドレイ",
-      "dam_sire": "ディープインパクト"
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 15,
-      "horse_name": "リアルセンター",
-      "horse_id": "2021103518",
-      "sex_age": "牝7",
-      "weight_carried": 54.0,
-      "jockey": "舟山瑠泉",
-      "trainer": "千葉直人",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ゴールドシップ",
-      "dam": "ヌーナ",
-      "dam_sire": "Congrats(米)"
-    },
-    {
-      "rank": null,
+      "rank": 4,
       "gate_number": 8,
       "horse_number": 16,
       "horse_name": "オリーボーレン",
@@ -321,15 +81,255 @@
       "weight_carried": 56.0,
       "jockey": "西塚洸二",
       "trainer": "藤岡健一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:47.5",
+      "margin": "1.3/4",
+      "win_odds": 5.6,
+      "popularity": 3,
+      "horse_weight": 486,
+      "horse_weight_diff": 18,
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": 5,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "キューティリップ",
+      "horse_id": "2022105131",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "武藤雅",
+      "trainer": "戸田博文",
+      "finish_time": "1:47.5",
+      "margin": "クビ",
+      "win_odds": 4.2,
+      "popularity": 1,
+      "horse_weight": 448,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 6,
+      "gate_number": 5,
+      "horse_number": 10,
+      "horse_name": "ペプロス",
+      "horse_id": "2022100106",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "菊沢一樹",
+      "trainer": "矢野英一",
+      "finish_time": "1:47.6",
+      "margin": "クビ",
+      "win_odds": 11.0,
+      "popularity": 6,
+      "horse_weight": 470,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 7,
+      "gate_number": 6,
+      "horse_number": 12,
+      "horse_name": "レモンバーム",
+      "horse_id": "2022106796",
+      "sex_age": "牝4",
+      "weight_carried": 53.0,
+      "jockey": "石神深道",
+      "trainer": "嘉藤貴行",
+      "finish_time": "1:47.8",
+      "margin": "1",
+      "win_odds": 6.0,
+      "popularity": 4,
+      "horse_weight": 452,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 8,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "カポレイラ",
+      "horse_id": "2022106593",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "横山琉人",
+      "trainer": "中舘英二",
+      "finish_time": "1:47.9",
+      "margin": "1/2",
+      "win_odds": 67.4,
+      "popularity": 13,
+      "horse_weight": 444,
+      "horse_weight_diff": -14,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 9,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "リアルセンター",
+      "horse_id": "2021103518",
+      "sex_age": "牝7",
+      "weight_carried": 54.0,
+      "jockey": "舟山瑠泉",
+      "trainer": "千葉直人",
+      "finish_time": "1:48.0",
+      "margin": "1/2",
+      "win_odds": 51.3,
+      "popularity": 11,
+      "horse_weight": 510,
+      "horse_weight_diff": 0,
+      "sire": "ゴールドシップ",
+      "dam": "ヌーナ",
+      "dam_sire": "Congrats(米)"
+    },
+    {
+      "rank": 10,
+      "gate_number": 1,
+      "horse_number": 2,
+      "horse_name": "ニシノコマチムスメ",
+      "horse_id": "2021107253",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "小沢大仁",
+      "trainer": "松山将樹",
+      "finish_time": "1:48.0",
+      "margin": "ハナ",
+      "win_odds": 22.4,
+      "popularity": 9,
+      "horse_weight": 438,
+      "horse_weight_diff": -10,
+      "sire": "ルーラーシップ",
+      "dam": "ニシノハナムスメ",
+      "dam_sire": "ディープインパクト"
+    },
+    {
+      "rank": 11,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "ラッキーダンス",
+      "horse_id": "2022106116",
+      "sex_age": "牝3",
+      "weight_carried": 53.0,
+      "jockey": "石田拓郎",
+      "trainer": "新開幸一",
+      "finish_time": "1:48.1",
+      "margin": "3/4",
+      "win_odds": 41.6,
+      "popularity": 10,
+      "horse_weight": 438,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 12,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "アルシャンティ",
+      "horse_id": "2022102978",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "嶋田純次",
+      "trainer": "室井潔",
+      "finish_time": "1:48.3",
+      "margin": "1.1/2",
+      "win_odds": 116.3,
+      "popularity": 14,
+      "horse_weight": 426,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 13,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "エナジーショット",
+      "horse_id": "2022101425",
+      "sex_age": "牝1",
+      "weight_carried": 56.0,
+      "jockey": "丹内祐次",
+      "trainer": "矢嶋大樹",
+      "finish_time": "1:48.4",
+      "margin": "1/2",
+      "win_odds": 17.7,
+      "popularity": 8,
+      "horse_weight": 420,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 14,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "ウインアリス",
+      "horse_id": "2021106224",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "黛弘人",
+      "trainer": "柄崎将寿",
+      "finish_time": "1:49.1",
+      "margin": "4",
+      "win_odds": 236.9,
+      "popularity": 16,
+      "horse_weight": 472,
+      "horse_weight_diff": -6,
+      "sire": "サンダースノーThunder Snow(愛)",
+      "dam": "マリアヴェロニカ",
+      "dam_sire": "ジャングルポケット"
+    },
+    {
+      "rank": 15,
+      "gate_number": 4,
+      "horse_number": 8,
+      "horse_name": "ビスケットマリー",
+      "horse_id": "2022102984",
+      "sex_age": "牝1",
+      "weight_carried": 53.0,
+      "jockey": "遠藤汰月",
+      "trainer": "和田雄二",
+      "finish_time": "1:49.6",
+      "margin": "3",
+      "win_odds": 190.1,
+      "popularity": 15,
+      "horse_weight": 414,
+      "horse_weight_diff": -18,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 16,
+      "gate_number": 7,
+      "horse_number": 14,
+      "horse_name": "ハレアカラフラ",
+      "horse_id": "2020103292",
+      "sex_age": "牝1",
+      "weight_carried": 56.0,
+      "jockey": "松本大輝",
+      "trainer": "吉田直弘",
+      "finish_time": "1:50.3",
+      "margin": "4",
+      "win_odds": 55.0,
+      "popularity": 12,
+      "horse_weight": 452,
+      "horse_weight_diff": -10,
+      "sire": "ラブリーデイ",
+      "dam": "オーキッドレイ",
+      "dam_sire": "ディープインパクト"
     }
   ],
   "payouts": [
@@ -525,7 +525,27 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.012030075187969926
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "モアニ",
+        "1": "グランセゾン",
+        "13": "クイーンズワーフ",
+        "16": "オリーボーレン",
+        "9": "キューティリップ",
+        "10": "ペプロス",
+        "12": "レモンバーム",
+        "6": "カポレイラ",
+        "15": "リアルセンター",
+        "2": "ニシノコマチムスメ",
+        "7": "ラッキーダンス",
+        "3": "アルシャンティ",
+        "11": "エナジーショット",
+        "5": "ウインアリス",
+        "8": "ビスケットマリー",
+        "14": "ハレアカラフラ"
+      }
     },
     {
       "prediction_id": 6004,
@@ -563,7 +583,27 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.03609022556390978
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "4": "モアニ",
+        "1": "グランセゾン",
+        "13": "クイーンズワーフ",
+        "16": "オリーボーレン",
+        "9": "キューティリップ",
+        "10": "ペプロス",
+        "12": "レモンバーム",
+        "6": "カポレイラ",
+        "15": "リアルセンター",
+        "2": "ニシノコマチムスメ",
+        "7": "ラッキーダンス",
+        "3": "アルシャンティ",
+        "11": "エナジーショット",
+        "5": "ウインアリス",
+        "8": "ビスケットマリー",
+        "14": "ハレアカラフラ"
+      }
     },
     {
       "prediction_id": 6005,
@@ -594,7 +634,27 @@
           "model_score": 0.008333333333333333,
           "ev_score": 0.5
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "モアニ",
+        "1": "グランセゾン",
+        "13": "クイーンズワーフ",
+        "16": "オリーボーレン",
+        "9": "キューティリップ",
+        "10": "ペプロス",
+        "12": "レモンバーム",
+        "6": "カポレイラ",
+        "15": "リアルセンター",
+        "2": "ニシノコマチムスメ",
+        "7": "ラッキーダンス",
+        "3": "アルシャンティ",
+        "11": "エナジーショット",
+        "5": "ウインアリス",
+        "8": "ビスケットマリー",
+        "14": "ハレアカラフラ"
+      }
     },
     {
       "prediction_id": 6006,
@@ -625,7 +685,27 @@
           "model_score": 0.008333333333333333,
           "ev_score": 0.20833333333333331
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "モアニ",
+        "1": "グランセゾン",
+        "13": "クイーンズワーフ",
+        "16": "オリーボーレン",
+        "9": "キューティリップ",
+        "10": "ペプロス",
+        "12": "レモンバーム",
+        "6": "カポレイラ",
+        "15": "リアルセンター",
+        "2": "ニシノコマチムスメ",
+        "7": "ラッキーダンス",
+        "3": "アルシャンティ",
+        "11": "エナジーショット",
+        "5": "ウインアリス",
+        "8": "ビスケットマリー",
+        "14": "ハレアカラフラ"
+      }
     },
     {
       "prediction_id": 6007,
@@ -670,7 +750,27 @@
           "model_score": 0.004166666666666667,
           "ev_score": 0.5
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "4": "モアニ",
+        "1": "グランセゾン",
+        "13": "クイーンズワーフ",
+        "16": "オリーボーレン",
+        "9": "キューティリップ",
+        "10": "ペプロス",
+        "12": "レモンバーム",
+        "6": "カポレイラ",
+        "15": "リアルセンター",
+        "2": "ニシノコマチムスメ",
+        "7": "ラッキーダンス",
+        "3": "アルシャンティ",
+        "11": "エナジーショット",
+        "5": "ウインアリス",
+        "8": "ビスケットマリー",
+        "14": "ハレアカラフラ"
+      }
     },
     {
       "prediction_id": 6008,
@@ -792,7 +892,27 @@
           "model_score": 0.0002976190476190476,
           "ev_score": 0.4464285714285714
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "4": "モアニ",
+        "1": "グランセゾン",
+        "13": "クイーンズワーフ",
+        "16": "オリーボーレン",
+        "9": "キューティリップ",
+        "10": "ペプロス",
+        "12": "レモンバーム",
+        "6": "カポレイラ",
+        "15": "リアルセンター",
+        "2": "ニシノコマチムスメ",
+        "7": "ラッキーダンス",
+        "3": "アルシャンティ",
+        "11": "エナジーショット",
+        "5": "ウインアリス",
+        "8": "ビスケットマリー",
+        "14": "ハレアカラフラ"
+      }
     },
     {
       "prediction_id": 6024,
@@ -816,7 +936,27 @@
           "model_score": 1.3291557376993084,
           "ev_score": 1.3291557376993084
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "モアニ",
+        "1": "グランセゾン",
+        "13": "クイーンズワーフ",
+        "16": "オリーボーレン",
+        "9": "キューティリップ",
+        "10": "ペプロス",
+        "12": "レモンバーム",
+        "6": "カポレイラ",
+        "15": "リアルセンター",
+        "2": "ニシノコマチムスメ",
+        "7": "ラッキーダンス",
+        "3": "アルシャンティ",
+        "11": "エナジーショット",
+        "5": "ウインアリス",
+        "8": "ビスケットマリー",
+        "14": "ハレアカラフラ"
+      }
     },
     {
       "prediction_id": 6025,
@@ -868,7 +1008,27 @@
           "model_score": 1.7696143400495719,
           "ev_score": 1.7696143400495719
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 16,
+      "horse_num_to_name": {
+        "4": "モアニ",
+        "1": "グランセゾン",
+        "13": "クイーンズワーフ",
+        "16": "オリーボーレン",
+        "9": "キューティリップ",
+        "10": "ペプロス",
+        "12": "レモンバーム",
+        "6": "カポレイラ",
+        "15": "リアルセンター",
+        "2": "ニシノコマチムスメ",
+        "7": "ラッキーダンス",
+        "3": "アルシャンティ",
+        "11": "エナジーショット",
+        "5": "ウインアリス",
+        "8": "ビスケットマリー",
+        "14": "ハレアカラフラ"
+      }
     },
     {
       "prediction_id": 6026,
@@ -899,7 +1059,27 @@
           "model_score": 0.014923692512981751,
           "ev_score": 0.8954215507789051
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "モアニ",
+        "1": "グランセゾン",
+        "13": "クイーンズワーフ",
+        "16": "オリーボーレン",
+        "9": "キューティリップ",
+        "10": "ペプロス",
+        "12": "レモンバーム",
+        "6": "カポレイラ",
+        "15": "リアルセンター",
+        "2": "ニシノコマチムスメ",
+        "7": "ラッキーダンス",
+        "3": "アルシャンティ",
+        "11": "エナジーショット",
+        "5": "ウインアリス",
+        "8": "ビスケットマリー",
+        "14": "ハレアカラフラ"
+      }
     },
     {
       "prediction_id": 6027,
@@ -930,7 +1110,27 @@
           "model_score": 0.014923692512981751,
           "ev_score": 0.3730923128245438
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "モアニ",
+        "1": "グランセゾン",
+        "13": "クイーンズワーフ",
+        "16": "オリーボーレン",
+        "9": "キューティリップ",
+        "10": "ペプロス",
+        "12": "レモンバーム",
+        "6": "カポレイラ",
+        "15": "リアルセンター",
+        "2": "ニシノコマチムスメ",
+        "7": "ラッキーダンス",
+        "3": "アルシャンティ",
+        "11": "エナジーショット",
+        "5": "ウインアリス",
+        "8": "ビスケットマリー",
+        "14": "ハレアカラフラ"
+      }
     },
     {
       "prediction_id": 6028,
@@ -961,7 +1161,27 @@
           "model_score": 0.007461846256490876,
           "ev_score": 0.8954215507789051
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "モアニ",
+        "1": "グランセゾン",
+        "13": "クイーンズワーフ",
+        "16": "オリーボーレン",
+        "9": "キューティリップ",
+        "10": "ペプロス",
+        "12": "レモンバーム",
+        "6": "カポレイラ",
+        "15": "リアルセンター",
+        "2": "ニシノコマチムスメ",
+        "7": "ラッキーダンス",
+        "3": "アルシャンティ",
+        "11": "エナジーショット",
+        "5": "ウインアリス",
+        "8": "ビスケットマリー",
+        "14": "ハレアカラフラ"
+      }
     },
     {
       "prediction_id": 6031,
@@ -999,7 +1219,27 @@
           "model_score": 0.0040841328213373105,
           "ev_score": 1.2252398464011933
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "モアニ",
+        "1": "グランセゾン",
+        "13": "クイーンズワーフ",
+        "16": "オリーボーレン",
+        "9": "キューティリップ",
+        "10": "ペプロス",
+        "12": "レモンバーム",
+        "6": "カポレイラ",
+        "15": "リアルセンター",
+        "2": "ニシノコマチムスメ",
+        "7": "ラッキーダンス",
+        "3": "アルシャンティ",
+        "11": "エナジーショット",
+        "5": "ウインアリス",
+        "8": "ビスケットマリー",
+        "14": "ハレアカラフラ"
+      }
     },
     {
       "prediction_id": 6032,
@@ -1128,7 +1368,27 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.0
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "4": "モアニ",
+        "1": "グランセゾン",
+        "13": "クイーンズワーフ",
+        "16": "オリーボーレン",
+        "9": "キューティリップ",
+        "10": "ペプロス",
+        "12": "レモンバーム",
+        "6": "カポレイラ",
+        "15": "リアルセンター",
+        "2": "ニシノコマチムスメ",
+        "7": "ラッキーダンス",
+        "3": "アルシャンティ",
+        "11": "エナジーショット",
+        "5": "ウインアリス",
+        "8": "ビスケットマリー",
+        "14": "ハレアカラフラ"
+      }
     },
     {
       "prediction_id": 7073,
@@ -1152,7 +1412,27 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.07819548872180451
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "モアニ",
+        "1": "グランセゾン",
+        "13": "クイーンズワーフ",
+        "16": "オリーボーレン",
+        "9": "キューティリップ",
+        "10": "ペプロス",
+        "12": "レモンバーム",
+        "6": "カポレイラ",
+        "15": "リアルセンター",
+        "2": "ニシノコマチムスメ",
+        "7": "ラッキーダンス",
+        "3": "アルシャンティ",
+        "11": "エナジーショット",
+        "5": "ウインアリス",
+        "8": "ビスケットマリー",
+        "14": "ハレアカラフラ"
+      }
     },
     {
       "prediction_id": 7074,
@@ -1190,7 +1470,27 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.03609022556390978
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "4": "モアニ",
+        "1": "グランセゾン",
+        "13": "クイーンズワーフ",
+        "16": "オリーボーレン",
+        "9": "キューティリップ",
+        "10": "ペプロス",
+        "12": "レモンバーム",
+        "6": "カポレイラ",
+        "15": "リアルセンター",
+        "2": "ニシノコマチムスメ",
+        "7": "ラッキーダンス",
+        "3": "アルシャンティ",
+        "11": "エナジーショット",
+        "5": "ウインアリス",
+        "8": "ビスケットマリー",
+        "14": "ハレアカラフラ"
+      }
     },
     {
       "prediction_id": 7075,
@@ -1221,7 +1521,27 @@
           "model_score": 0.008333333333333333,
           "ev_score": 0.325
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "モアニ",
+        "1": "グランセゾン",
+        "13": "クイーンズワーフ",
+        "16": "オリーボーレン",
+        "9": "キューティリップ",
+        "10": "ペプロス",
+        "12": "レモンバーム",
+        "6": "カポレイラ",
+        "15": "リアルセンター",
+        "2": "ニシノコマチムスメ",
+        "7": "ラッキーダンス",
+        "3": "アルシャンティ",
+        "11": "エナジーショット",
+        "5": "ウインアリス",
+        "8": "ビスケットマリー",
+        "14": "ハレアカラフラ"
+      }
     },
     {
       "prediction_id": 7076,
@@ -1252,7 +1572,27 @@
           "model_score": 0.008333333333333333,
           "ev_score": 0.13541666666666669
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "モアニ",
+        "1": "グランセゾン",
+        "13": "クイーンズワーフ",
+        "16": "オリーボーレン",
+        "9": "キューティリップ",
+        "10": "ペプロス",
+        "12": "レモンバーム",
+        "6": "カポレイラ",
+        "15": "リアルセンター",
+        "2": "ニシノコマチムスメ",
+        "7": "ラッキーダンス",
+        "3": "アルシャンティ",
+        "11": "エナジーショット",
+        "5": "ウインアリス",
+        "8": "ビスケットマリー",
+        "14": "ハレアカラフラ"
+      }
     },
     {
       "prediction_id": 7077,
@@ -1297,7 +1637,27 @@
           "model_score": 0.004166666666666667,
           "ev_score": 0.325
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "4": "モアニ",
+        "1": "グランセゾン",
+        "13": "クイーンズワーフ",
+        "16": "オリーボーレン",
+        "9": "キューティリップ",
+        "10": "ペプロス",
+        "12": "レモンバーム",
+        "6": "カポレイラ",
+        "15": "リアルセンター",
+        "2": "ニシノコマチムスメ",
+        "7": "ラッキーダンス",
+        "3": "アルシャンティ",
+        "11": "エナジーショット",
+        "5": "ウインアリス",
+        "8": "ビスケットマリー",
+        "14": "ハレアカラフラ"
+      }
     },
     {
       "prediction_id": 7078,
@@ -1419,7 +1779,27 @@
           "model_score": 0.0002976190476190476,
           "ev_score": 0.2901785714285714
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "4": "モアニ",
+        "1": "グランセゾン",
+        "13": "クイーンズワーフ",
+        "16": "オリーボーレン",
+        "9": "キューティリップ",
+        "10": "ペプロス",
+        "12": "レモンバーム",
+        "6": "カポレイラ",
+        "15": "リアルセンター",
+        "2": "ニシノコマチムスメ",
+        "7": "ラッキーダンス",
+        "3": "アルシャンティ",
+        "11": "エナジーショット",
+        "5": "ウインアリス",
+        "8": "ビスケットマリー",
+        "14": "ハレアカラフラ"
+      }
     },
     {
       "prediction_id": 7094,
@@ -1443,7 +1823,27 @@
           "model_score": 1.3291557376993084,
           "ev_score": 1.3291557376993084
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "モアニ",
+        "1": "グランセゾン",
+        "13": "クイーンズワーフ",
+        "16": "オリーボーレン",
+        "9": "キューティリップ",
+        "10": "ペプロス",
+        "12": "レモンバーム",
+        "6": "カポレイラ",
+        "15": "リアルセンター",
+        "2": "ニシノコマチムスメ",
+        "7": "ラッキーダンス",
+        "3": "アルシャンティ",
+        "11": "エナジーショット",
+        "5": "ウインアリス",
+        "8": "ビスケットマリー",
+        "14": "ハレアカラフラ"
+      }
     },
     {
       "prediction_id": 7095,
@@ -1495,7 +1895,27 @@
           "model_score": 1.7696143400495719,
           "ev_score": 1.7696143400495719
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 16,
+      "horse_num_to_name": {
+        "4": "モアニ",
+        "1": "グランセゾン",
+        "13": "クイーンズワーフ",
+        "16": "オリーボーレン",
+        "9": "キューティリップ",
+        "10": "ペプロス",
+        "12": "レモンバーム",
+        "6": "カポレイラ",
+        "15": "リアルセンター",
+        "2": "ニシノコマチムスメ",
+        "7": "ラッキーダンス",
+        "3": "アルシャンティ",
+        "11": "エナジーショット",
+        "5": "ウインアリス",
+        "8": "ビスケットマリー",
+        "14": "ハレアカラフラ"
+      }
     },
     {
       "prediction_id": 7096,
@@ -1526,7 +1946,27 @@
           "model_score": 0.014923692512981751,
           "ev_score": 3.5369151255766753
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "モアニ",
+        "1": "グランセゾン",
+        "13": "クイーンズワーフ",
+        "16": "オリーボーレン",
+        "9": "キューティリップ",
+        "10": "ペプロス",
+        "12": "レモンバーム",
+        "6": "カポレイラ",
+        "15": "リアルセンター",
+        "2": "ニシノコマチムスメ",
+        "7": "ラッキーダンス",
+        "3": "アルシャンティ",
+        "11": "エナジーショット",
+        "5": "ウインアリス",
+        "8": "ビスケットマリー",
+        "14": "ハレアカラフラ"
+      }
     },
     {
       "prediction_id": 7097,
@@ -1557,7 +1997,27 @@
           "model_score": 0.014923692512981751,
           "ev_score": 1.4737146356569482
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "モアニ",
+        "1": "グランセゾン",
+        "13": "クイーンズワーフ",
+        "16": "オリーボーレン",
+        "9": "キューティリップ",
+        "10": "ペプロス",
+        "12": "レモンバーム",
+        "6": "カポレイラ",
+        "15": "リアルセンター",
+        "2": "ニシノコマチムスメ",
+        "7": "ラッキーダンス",
+        "3": "アルシャンティ",
+        "11": "エナジーショット",
+        "5": "ウインアリス",
+        "8": "ビスケットマリー",
+        "14": "ハレアカラフラ"
+      }
     },
     {
       "prediction_id": 7098,
@@ -1588,7 +2048,27 @@
           "model_score": 0.007461846256490876,
           "ev_score": 3.5369151255766753
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "モアニ",
+        "1": "グランセゾン",
+        "13": "クイーンズワーフ",
+        "16": "オリーボーレン",
+        "9": "キューティリップ",
+        "10": "ペプロス",
+        "12": "レモンバーム",
+        "6": "カポレイラ",
+        "15": "リアルセンター",
+        "2": "ニシノコマチムスメ",
+        "7": "ラッキーダンス",
+        "3": "アルシャンティ",
+        "11": "エナジーショット",
+        "5": "ウインアリス",
+        "8": "ビスケットマリー",
+        "14": "ハレアカラフラ"
+      }
     },
     {
       "prediction_id": 7101,
@@ -1626,7 +2106,27 @@
           "model_score": 0.0040841328213373105,
           "ev_score": 4.8396973932847125
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "モアニ",
+        "1": "グランセゾン",
+        "13": "クイーンズワーフ",
+        "16": "オリーボーレン",
+        "9": "キューティリップ",
+        "10": "ペプロス",
+        "12": "レモンバーム",
+        "6": "カポレイラ",
+        "15": "リアルセンター",
+        "2": "ニシノコマチムスメ",
+        "7": "ラッキーダンス",
+        "3": "アルシャンティ",
+        "11": "エナジーショット",
+        "5": "ウインアリス",
+        "8": "ビスケットマリー",
+        "14": "ハレアカラフラ"
+      }
     },
     {
       "prediction_id": 7102,
@@ -1755,7 +2255,27 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.07819548872180451
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "4": "モアニ",
+        "1": "グランセゾン",
+        "13": "クイーンズワーフ",
+        "16": "オリーボーレン",
+        "9": "キューティリップ",
+        "10": "ペプロス",
+        "12": "レモンバーム",
+        "6": "カポレイラ",
+        "15": "リアルセンター",
+        "2": "ニシノコマチムスメ",
+        "7": "ラッキーダンス",
+        "3": "アルシャンティ",
+        "11": "エナジーショット",
+        "5": "ウインアリス",
+        "8": "ビスケットマリー",
+        "14": "ハレアカラフラ"
+      }
     }
   ],
   "training_evals": {}

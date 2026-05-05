@@ -4,11 +4,11 @@
   "date": "2026-04-25",
   "venue": "東京",
   "race_number": 9,
-  "distance": 0,
-  "surface": "",
+  "distance": 1800,
+  "surface": "芝",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "晴",
+  "condition": "良",
   "year": "2026",
   "results": [
     {
@@ -21,12 +21,12 @@
       "weight_carried": 58.0,
       "jockey": "レーン",
       "trainer": "堀宣行",
-      "finish_time": null,
+      "finish_time": "1:45.1",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 1.7,
+      "popularity": 1,
+      "horse_weight": 490,
+      "horse_weight_diff": 2,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -41,12 +41,12 @@
       "weight_carried": 56.0,
       "jockey": "ルメール",
       "trainer": "青木孝文",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:45.1",
+      "margin": "クビ",
+      "win_odds": 4.8,
+      "popularity": 3,
+      "horse_weight": 500,
+      "horse_weight_diff": 0,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -61,98 +61,18 @@
       "weight_carried": 58.0,
       "jockey": "戸崎圭太",
       "trainer": "伊藤圭三",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:45.3",
+      "margin": "1.1/4",
+      "win_odds": 4.5,
+      "popularity": 2,
+      "horse_weight": 482,
+      "horse_weight_diff": 4,
       "sire": null,
       "dam": null,
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "ヤコブセン",
-      "horse_id": "2022103288",
-      "sex_age": "牡1",
-      "weight_carried": 58.0,
-      "jockey": "岩田康誠",
-      "trainer": "斎藤誠",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "アルゲンテウス",
-      "horse_id": "2019105497",
-      "sex_age": "騸7",
-      "weight_carried": 58.0,
-      "jockey": "横山和生",
-      "trainer": "小島茂之",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "シルバーステート",
-      "dam": "ラダームブランシェ",
-      "dam_sire": "チチカステナンゴChichicastenango(仏)"
-    },
-    {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "マイネルフォルツァ",
-      "horse_id": "2020105809",
-      "sex_age": "牡1",
-      "weight_carried": 58.0,
-      "jockey": "矢野貴之",
-      "trainer": "金成貴史",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ゴールドシップ",
-      "dam": "ラッフォルツァート",
-      "dam_sire": "グラスワンダー"
-    },
-    {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "レベルスルール",
-      "horse_id": "2022105868",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "横山武史",
-      "trainer": "池江泰寿",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 4,
       "gate_number": 5,
       "horse_number": 5,
       "horse_name": "オメガインペリアル",
@@ -161,18 +81,98 @@
       "weight_carried": 58.0,
       "jockey": "坂井瑠星",
       "trainer": "安田翔伍",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:45.5",
+      "margin": "1.1/4",
+      "win_odds": 20.8,
+      "popularity": 5,
+      "horse_weight": 474,
+      "horse_weight_diff": 0,
       "sire": "Kingman(英)",
       "dam": "ヌーヴォレコルト",
       "dam_sire": "ハーツクライ"
     },
     {
-      "rank": null,
+      "rank": 5,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "アルゲンテウス",
+      "horse_id": "2019105497",
+      "sex_age": "騸7",
+      "weight_carried": 58.0,
+      "jockey": "横山和生",
+      "trainer": "小島茂之",
+      "finish_time": "1:45.6",
+      "margin": "3/4",
+      "win_odds": 22.3,
+      "popularity": 6,
+      "horse_weight": 466,
+      "horse_weight_diff": -8,
+      "sire": "シルバーステート",
+      "dam": "ラダームブランシェ",
+      "dam_sire": "チチカステナンゴChichicastenango(仏)"
+    },
+    {
+      "rank": 6,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "マイネルフォルツァ",
+      "horse_id": "2020105809",
+      "sex_age": "牡1",
+      "weight_carried": 58.0,
+      "jockey": "矢野貴之",
+      "trainer": "金成貴史",
+      "finish_time": "1:45.7",
+      "margin": "1/2",
+      "win_odds": 110.3,
+      "popularity": 8,
+      "horse_weight": 520,
+      "horse_weight_diff": 0,
+      "sire": "ゴールドシップ",
+      "dam": "ラッフォルツァート",
+      "dam_sire": "グラスワンダー"
+    },
+    {
+      "rank": 7,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "レベルスルール",
+      "horse_id": "2022105868",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "横山武史",
+      "trainer": "池江泰寿",
+      "finish_time": "1:45.8",
+      "margin": "クビ",
+      "win_odds": 7.5,
+      "popularity": 4,
+      "horse_weight": 498,
+      "horse_weight_diff": -8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 8,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "ヤコブセン",
+      "horse_id": "2022103288",
+      "sex_age": "牡1",
+      "weight_carried": 58.0,
+      "jockey": "岩田康誠",
+      "trainer": "斎藤誠",
+      "finish_time": "1:46.2",
+      "margin": "2.1/2",
+      "win_odds": 92.0,
+      "popularity": 7,
+      "horse_weight": 508,
+      "horse_weight_diff": -10,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 9,
       "gate_number": 8,
       "horse_number": 8,
       "horse_name": "コスモスプモーニ",
@@ -181,12 +181,12 @@
       "weight_carried": 58.0,
       "jockey": "木幡巧也",
       "trainer": "松山将樹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:47.6",
+      "margin": "8",
+      "win_odds": 224.1,
+      "popularity": 9,
+      "horse_weight": 488,
+      "horse_weight_diff": 4,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -373,7 +373,20 @@
           "model_score": 0.021660649819494584,
           "ev_score": 0.021660649819494584
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "ダノンミッション",
+        "9": "ノビリシマビジョン",
+        "7": "ビーオンザカバー",
+        "5": "オメガインペリアル",
+        "2": "アルゲンテウス",
+        "3": "マイネルフォルツァ",
+        "4": "レベルスルール",
+        "1": "ヤコブセン",
+        "8": "コスモスプモーニ"
+      }
     },
     {
       "prediction_id": 6222,
@@ -411,7 +424,20 @@
           "model_score": 0.021660649819494584,
           "ev_score": 0.06498194945848375
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "6": "ダノンミッション",
+        "9": "ノビリシマビジョン",
+        "7": "ビーオンザカバー",
+        "5": "オメガインペリアル",
+        "2": "アルゲンテウス",
+        "3": "マイネルフォルツァ",
+        "4": "レベルスルール",
+        "1": "ヤコブセン",
+        "8": "コスモスプモーニ"
+      }
     },
     {
       "prediction_id": 6223,
@@ -442,7 +468,20 @@
           "model_score": 0.027777777777777776,
           "ev_score": 1.6666666666666667
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "ダノンミッション",
+        "9": "ノビリシマビジョン",
+        "7": "ビーオンザカバー",
+        "5": "オメガインペリアル",
+        "2": "アルゲンテウス",
+        "3": "マイネルフォルツァ",
+        "4": "レベルスルール",
+        "1": "ヤコブセン",
+        "8": "コスモスプモーニ"
+      }
     },
     {
       "prediction_id": 6224,
@@ -473,7 +512,20 @@
           "model_score": 0.027777777777777776,
           "ev_score": 0.6944444444444444
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "ダノンミッション",
+        "9": "ノビリシマビジョン",
+        "7": "ビーオンザカバー",
+        "5": "オメガインペリアル",
+        "2": "アルゲンテウス",
+        "3": "マイネルフォルツァ",
+        "4": "レベルスルール",
+        "1": "ヤコブセン",
+        "8": "コスモスプモーニ"
+      }
     },
     {
       "prediction_id": 6225,
@@ -518,7 +570,20 @@
           "model_score": 0.013888888888888888,
           "ev_score": 1.6666666666666667
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "6": "ダノンミッション",
+        "9": "ノビリシマビジョン",
+        "7": "ビーオンザカバー",
+        "5": "オメガインペリアル",
+        "2": "アルゲンテウス",
+        "3": "マイネルフォルツァ",
+        "4": "レベルスルール",
+        "1": "ヤコブセン",
+        "8": "コスモスプモーニ"
+      }
     },
     {
       "prediction_id": 6227,
@@ -556,7 +621,20 @@
           "model_score": 0.011904761904761908,
           "ev_score": 3.571428571428572
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "ダノンミッション",
+        "9": "ノビリシマビジョン",
+        "7": "ビーオンザカバー",
+        "5": "オメガインペリアル",
+        "2": "アルゲンテウス",
+        "3": "マイネルフォルツァ",
+        "4": "レベルスルール",
+        "1": "ヤコブセン",
+        "8": "コスモスプモーニ"
+      }
     },
     {
       "prediction_id": 6228,
@@ -678,7 +756,20 @@
           "model_score": 0.0019841269841269845,
           "ev_score": 2.9761904761904767
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "6": "ダノンミッション",
+        "9": "ノビリシマビジョン",
+        "7": "ビーオンザカバー",
+        "5": "オメガインペリアル",
+        "2": "アルゲンテウス",
+        "3": "マイネルフォルツァ",
+        "4": "レベルスルール",
+        "1": "ヤコブセン",
+        "8": "コスモスプモーニ"
+      }
     },
     {
       "prediction_id": 6236,
@@ -702,7 +793,20 @@
           "model_score": 1.3678013321166227,
           "ev_score": 1.3678013321166227
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "ダノンミッション",
+        "9": "ノビリシマビジョン",
+        "7": "ビーオンザカバー",
+        "5": "オメガインペリアル",
+        "2": "アルゲンテウス",
+        "3": "マイネルフォルツァ",
+        "4": "レベルスルール",
+        "1": "ヤコブセン",
+        "8": "コスモスプモーニ"
+      }
     },
     {
       "prediction_id": 6237,
@@ -754,7 +858,20 @@
           "model_score": 1.382233378447234,
           "ev_score": 1.382233378447234
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 8,
+      "horse_num_to_name": {
+        "6": "ダノンミッション",
+        "9": "ノビリシマビジョン",
+        "7": "ビーオンザカバー",
+        "5": "オメガインペリアル",
+        "2": "アルゲンテウス",
+        "3": "マイネルフォルツァ",
+        "4": "レベルスルール",
+        "1": "ヤコブセン",
+        "8": "コスモスプモーニ"
+      }
     },
     {
       "prediction_id": 6238,
@@ -785,7 +902,20 @@
           "model_score": 0.03150810748423793,
           "ev_score": 1.8904864490542757
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "ダノンミッション",
+        "9": "ノビリシマビジョン",
+        "7": "ビーオンザカバー",
+        "5": "オメガインペリアル",
+        "2": "アルゲンテウス",
+        "3": "マイネルフォルツァ",
+        "4": "レベルスルール",
+        "1": "ヤコブセン",
+        "8": "コスモスプモーニ"
+      }
     },
     {
       "prediction_id": 6239,
@@ -816,7 +946,20 @@
           "model_score": 0.03150810748423793,
           "ev_score": 0.7877026871059483
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "ダノンミッション",
+        "9": "ノビリシマビジョン",
+        "7": "ビーオンザカバー",
+        "5": "オメガインペリアル",
+        "2": "アルゲンテウス",
+        "3": "マイネルフォルツァ",
+        "4": "レベルスルール",
+        "1": "ヤコブセン",
+        "8": "コスモスプモーニ"
+      }
     },
     {
       "prediction_id": 6240,
@@ -847,7 +990,20 @@
           "model_score": 0.015754781942526438,
           "ev_score": 1.8905738331031725
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "ダノンミッション",
+        "9": "ノビリシマビジョン",
+        "7": "ビーオンザカバー",
+        "5": "オメガインペリアル",
+        "2": "アルゲンテウス",
+        "3": "マイネルフォルツァ",
+        "4": "レベルスルール",
+        "1": "ヤコブセン",
+        "8": "コスモスプモーニ"
+      }
     },
     {
       "prediction_id": 6243,
@@ -885,7 +1041,20 @@
           "model_score": 0.014509531896509003,
           "ev_score": 4.352859568952701
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "ダノンミッション",
+        "9": "ノビリシマビジョン",
+        "7": "ビーオンザカバー",
+        "5": "オメガインペリアル",
+        "2": "アルゲンテウス",
+        "3": "マイネルフォルツァ",
+        "4": "レベルスルール",
+        "1": "ヤコブセン",
+        "8": "コスモスプモーニ"
+      }
     },
     {
       "prediction_id": 6244,
@@ -965,7 +1134,20 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.0
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "6": "ダノンミッション",
+        "9": "ノビリシマビジョン",
+        "7": "ビーオンザカバー",
+        "5": "オメガインペリアル",
+        "2": "アルゲンテウス",
+        "3": "マイネルフォルツァ",
+        "4": "レベルスルール",
+        "1": "ヤコブセン",
+        "8": "コスモスプモーニ"
+      }
     },
     {
       "prediction_id": 6946,
@@ -989,7 +1171,20 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.6183458646616542
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "ダノンミッション",
+        "9": "ノビリシマビジョン",
+        "7": "ビーオンザカバー",
+        "5": "オメガインペリアル",
+        "2": "アルゲンテウス",
+        "3": "マイネルフォルツァ",
+        "4": "レベルスルール",
+        "1": "ヤコブセン",
+        "8": "コスモスプモーニ"
+      }
     },
     {
       "prediction_id": 6947,
@@ -1027,7 +1222,20 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.03609022556390978
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "6": "ダノンミッション",
+        "9": "ノビリシマビジョン",
+        "7": "ビーオンザカバー",
+        "5": "オメガインペリアル",
+        "2": "アルゲンテウス",
+        "3": "マイネルフォルツァ",
+        "4": "レベルスルール",
+        "1": "ヤコブセン",
+        "8": "コスモスプモーニ"
+      }
     },
     {
       "prediction_id": 6948,
@@ -1058,7 +1266,20 @@
           "model_score": 0.027777777777777783,
           "ev_score": 4.0
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "ダノンミッション",
+        "9": "ノビリシマビジョン",
+        "7": "ビーオンザカバー",
+        "5": "オメガインペリアル",
+        "2": "アルゲンテウス",
+        "3": "マイネルフォルツァ",
+        "4": "レベルスルール",
+        "1": "ヤコブセン",
+        "8": "コスモスプモーニ"
+      }
     },
     {
       "prediction_id": 6949,
@@ -1089,7 +1310,20 @@
           "model_score": 0.027777777777777783,
           "ev_score": 3.0
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "ダノンミッション",
+        "9": "ノビリシマビジョン",
+        "7": "ビーオンザカバー",
+        "5": "オメガインペリアル",
+        "2": "アルゲンテウス",
+        "3": "マイネルフォルツァ",
+        "4": "レベルスルール",
+        "1": "ヤコブセン",
+        "8": "コスモスプモーニ"
+      }
     },
     {
       "prediction_id": 6950,
@@ -1134,7 +1368,20 @@
           "model_score": 0.013888888888888892,
           "ev_score": 5.0
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "6": "ダノンミッション",
+        "9": "ノビリシマビジョン",
+        "7": "ビーオンザカバー",
+        "5": "オメガインペリアル",
+        "2": "アルゲンテウス",
+        "3": "マイネルフォルツァ",
+        "4": "レベルスルール",
+        "1": "ヤコブセン",
+        "8": "コスモスプモーニ"
+      }
     },
     {
       "prediction_id": 6952,
@@ -1172,7 +1419,20 @@
           "model_score": 0.01190476190476191,
           "ev_score": 5.0
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "ダノンミッション",
+        "9": "ノビリシマビジョン",
+        "7": "ビーオンザカバー",
+        "5": "オメガインペリアル",
+        "2": "アルゲンテウス",
+        "3": "マイネルフォルツァ",
+        "4": "レベルスルール",
+        "1": "ヤコブセン",
+        "8": "コスモスプモーニ"
+      }
     },
     {
       "prediction_id": 6953,
@@ -1294,7 +1554,20 @@
           "model_score": 0.001984126984126985,
           "ev_score": 6.0
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "6": "ダノンミッション",
+        "9": "ノビリシマビジョン",
+        "7": "ビーオンザカバー",
+        "5": "オメガインペリアル",
+        "2": "アルゲンテウス",
+        "3": "マイネルフォルツァ",
+        "4": "レベルスルール",
+        "1": "ヤコブセン",
+        "8": "コスモスプモーニ"
+      }
     },
     {
       "prediction_id": 6961,
@@ -1318,7 +1591,20 @@
           "model_score": 1.3678013321166227,
           "ev_score": 1.3678013321166227
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "ダノンミッション",
+        "9": "ノビリシマビジョン",
+        "7": "ビーオンザカバー",
+        "5": "オメガインペリアル",
+        "2": "アルゲンテウス",
+        "3": "マイネルフォルツァ",
+        "4": "レベルスルール",
+        "1": "ヤコブセン",
+        "8": "コスモスプモーニ"
+      }
     },
     {
       "prediction_id": 6962,
@@ -1370,7 +1656,20 @@
           "model_score": 1.382233378447234,
           "ev_score": 1.382233378447234
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 8,
+      "horse_num_to_name": {
+        "6": "ダノンミッション",
+        "9": "ノビリシマビジョン",
+        "7": "ビーオンザカバー",
+        "5": "オメガインペリアル",
+        "2": "アルゲンテウス",
+        "3": "マイネルフォルツァ",
+        "4": "レベルスルール",
+        "1": "ヤコブセン",
+        "8": "コスモスプモーニ"
+      }
     },
     {
       "prediction_id": 6963,
@@ -1401,7 +1700,20 @@
           "model_score": 0.03150810748423793,
           "ev_score": 0.35919242532031237
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "ダノンミッション",
+        "9": "ノビリシマビジョン",
+        "7": "ビーオンザカバー",
+        "5": "オメガインペリアル",
+        "2": "アルゲンテウス",
+        "3": "マイネルフォルツァ",
+        "4": "レベルスルール",
+        "1": "ヤコブセン",
+        "8": "コスモスプモーニ"
+      }
     },
     {
       "prediction_id": 6964,
@@ -1432,7 +1744,20 @@
           "model_score": 0.03150810748423793,
           "ev_score": 0.14966351055013014
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "ダノンミッション",
+        "9": "ノビリシマビジョン",
+        "7": "ビーオンザカバー",
+        "5": "オメガインペリアル",
+        "2": "アルゲンテウス",
+        "3": "マイネルフォルツァ",
+        "4": "レベルスルール",
+        "1": "ヤコブセン",
+        "8": "コスモスプモーニ"
+      }
     },
     {
       "prediction_id": 6965,
@@ -1463,7 +1788,20 @@
           "model_score": 0.015754781942526438,
           "ev_score": 0.35920902828960277
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "ダノンミッション",
+        "9": "ノビリシマビジョン",
+        "7": "ビーオンザカバー",
+        "5": "オメガインペリアル",
+        "2": "アルゲンテウス",
+        "3": "マイネルフォルツァ",
+        "4": "レベルスルール",
+        "1": "ヤコブセン",
+        "8": "コスモスプモーニ"
+      }
     },
     {
       "prediction_id": 6968,
@@ -1501,7 +1839,20 @@
           "model_score": 0.014509531896509003,
           "ev_score": 0.8270433181010132
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "ダノンミッション",
+        "9": "ノビリシマビジョン",
+        "7": "ビーオンザカバー",
+        "5": "オメガインペリアル",
+        "2": "アルゲンテウス",
+        "3": "マイネルフォルツァ",
+        "4": "レベルスルール",
+        "1": "ヤコブセン",
+        "8": "コスモスプモーニ"
+      }
     },
     {
       "prediction_id": 6969,
@@ -1581,7 +1932,20 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.6183458646616542
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "6": "ダノンミッション",
+        "9": "ノビリシマビジョン",
+        "7": "ビーオンザカバー",
+        "5": "オメガインペリアル",
+        "2": "アルゲンテウス",
+        "3": "マイネルフォルツァ",
+        "4": "レベルスルール",
+        "1": "ヤコブセン",
+        "8": "コスモスプモーニ"
+      }
     }
   ],
   "training_evals": {}

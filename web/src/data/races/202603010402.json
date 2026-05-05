@@ -4,11 +4,11 @@
   "date": "2026-04-19",
   "venue": "福島",
   "race_number": 2,
-  "distance": 0,
-  "surface": "",
+  "distance": 1700,
+  "surface": "ダート",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "晴",
+  "condition": "良",
   "year": "2026",
   "results": [
     {
@@ -21,12 +21,12 @@
       "weight_carried": 52.0,
       "jockey": "小林美駒",
       "trainer": "西村真幸",
-      "finish_time": null,
+      "finish_time": "1:46.1",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 3.3,
+      "popularity": 2,
+      "horse_weight": 488,
+      "horse_weight_diff": -10,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -41,12 +41,12 @@
       "weight_carried": 55.0,
       "jockey": "横山典弘",
       "trainer": "大竹正博",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:46.5",
+      "margin": "2.1/2",
+      "win_odds": 2.3,
+      "popularity": 1,
+      "horse_weight": 486,
+      "horse_weight_diff": 0,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -61,12 +61,252 @@
       "weight_carried": 52.0,
       "jockey": "石田拓郎",
       "trainer": "新開幸一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:47.4",
+      "margin": "5",
+      "win_odds": 154.1,
+      "popularity": 12,
+      "horse_weight": 458,
+      "horse_weight_diff": -8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 4,
+      "gate_number": 3,
+      "horse_number": 4,
+      "horse_name": "マスカルポーネ",
+      "horse_id": "2023104632",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "武藤雅",
+      "trainer": "水野貴広",
+      "finish_time": "1:48.0",
+      "margin": "3.1/2",
+      "win_odds": 36.9,
+      "popularity": 8,
+      "horse_weight": 432,
+      "horse_weight_diff": -8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 5,
+      "gate_number": 7,
+      "horse_number": 12,
+      "horse_name": "ブエノスオプティマ",
+      "horse_id": "2023103991",
+      "sex_age": "牝1",
+      "weight_carried": 55.0,
+      "jockey": "横山琉人",
+      "trainer": "高橋義忠",
+      "finish_time": "1:48.3",
+      "margin": "1.3/4",
+      "win_odds": 11.8,
+      "popularity": 4,
+      "horse_weight": 464,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 6,
+      "gate_number": 5,
+      "horse_number": 8,
+      "horse_name": "ペールデュクラン",
+      "horse_id": "2023103469",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "菊沢一樹",
+      "trainer": "菊沢隆徳",
+      "finish_time": "1:48.4",
+      "margin": "1/2",
+      "win_odds": 22.0,
+      "popularity": 7,
+      "horse_weight": 460,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 7,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "アルティソナンテ",
+      "horse_id": "2023103533",
+      "sex_age": "牝4",
+      "weight_carried": 53.0,
+      "jockey": "舟山瑠泉",
+      "trainer": "萩原清",
+      "finish_time": "1:48.5",
+      "margin": "3/4",
+      "win_odds": 56.8,
+      "popularity": 11,
+      "horse_weight": 434,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 8,
+      "gate_number": 6,
+      "horse_number": 10,
+      "horse_name": "フィーユレアル",
+      "horse_id": "2023101443",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "斎藤新",
+      "trainer": "斎藤誠",
+      "finish_time": "1:48.5",
+      "margin": "ハナ",
+      "win_odds": 14.5,
+      "popularity": 5,
+      "horse_weight": 468,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 9,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "ブルームザスマイル",
+      "horse_id": "2023104247",
+      "sex_age": "牝3",
+      "weight_carried": 51.0,
+      "jockey": "河原田菜",
+      "trainer": "鈴木孝志",
+      "finish_time": "1:48.6",
+      "margin": "1/2",
+      "win_odds": 50.6,
+      "popularity": 10,
+      "horse_weight": 428,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 10,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "ノーブルトレジャー",
+      "horse_id": "2023106706",
+      "sex_age": "牝4",
+      "weight_carried": 52.0,
+      "jockey": "田山旺佑",
+      "trainer": "牧浦充徳",
+      "finish_time": "1:48.9",
+      "margin": "1.3/4",
+      "win_odds": 21.3,
+      "popularity": 6,
+      "horse_weight": 442,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 11,
+      "gate_number": 8,
+      "horse_number": 14,
+      "horse_name": "シューペルブリアン",
+      "horse_id": "2023101790",
+      "sex_age": "牝7",
+      "weight_carried": 53.0,
+      "jockey": "長浜鴻緒",
+      "trainer": "佐藤吉勝",
+      "finish_time": "1:49.8",
+      "margin": "5",
+      "win_odds": 362.1,
+      "popularity": 14,
+      "horse_weight": 446,
+      "horse_weight_diff": -12,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 12,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "プラトニックガール",
+      "horse_id": "2023105130",
+      "sex_age": "牝1",
+      "weight_carried": 55.0,
+      "jockey": "杉原誠人",
+      "trainer": "田村康仁",
+      "finish_time": "1:49.8",
+      "margin": "クビ",
+      "win_odds": 364.9,
+      "popularity": 15,
+      "horse_weight": 506,
+      "horse_weight_diff": 16,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 13,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "メジロピオラ",
+      "horse_id": "2023103905",
+      "sex_age": "牝6",
+      "weight_carried": 55.0,
+      "jockey": "丹内祐次",
+      "trainer": "武井亮",
+      "finish_time": "1:50.0",
+      "margin": "1.1/4",
+      "win_odds": 6.1,
+      "popularity": 3,
+      "horse_weight": 470,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 14,
+      "gate_number": 4,
+      "horse_number": 6,
+      "horse_name": "スズノボンライミー",
+      "horse_id": "2023102137",
+      "sex_age": "牝1",
+      "weight_carried": 53.0,
+      "jockey": "永島まな",
+      "trainer": "平田修",
+      "finish_time": "1:51.1",
+      "margin": "7",
+      "win_odds": 39.3,
+      "popularity": 9,
+      "horse_weight": 442,
+      "horse_weight_diff": -4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 15,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "ビッグノエルルーフ",
+      "horse_id": "2023100081",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "江田照男",
+      "trainer": "田中剛",
+      "finish_time": "1:56.8",
+      "margin": "大",
+      "win_odds": 181.3,
+      "popularity": 13,
+      "horse_weight": 476,
+      "horse_weight_diff": 0,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -313,7 +553,26 @@
           "model_score": 0.0923524832225405,
           "ev_score": 2.1333423624406858
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "13": "ベルソテイラ",
+        "9": "ダノンプレサージュ",
+        "5": "ブリスフルイヤー",
+        "4": "マスカルポーネ",
+        "12": "ブエノスオプティマ",
+        "8": "ペールデュクラン",
+        "2": "アルティソナンテ",
+        "10": "フィーユレアル",
+        "3": "ブルームザスマイル",
+        "11": "ノーブルトレジャー",
+        "14": "シューペルブリアン",
+        "7": "プラトニックガール",
+        "15": "メジロピオラ",
+        "6": "スズノボンライミー",
+        "1": "ビッグノエルルーフ"
+      }
     },
     {
       "prediction_id": 3215,
@@ -351,7 +610,26 @@
           "model_score": 0.08607741361464548,
           "ev_score": 0.2582322408439364
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "13": "ベルソテイラ",
+        "9": "ダノンプレサージュ",
+        "5": "ブリスフルイヤー",
+        "4": "マスカルポーネ",
+        "12": "ブエノスオプティマ",
+        "8": "ペールデュクラン",
+        "2": "アルティソナンテ",
+        "10": "フィーユレアル",
+        "3": "ブルームザスマイル",
+        "11": "ノーブルトレジャー",
+        "14": "シューペルブリアン",
+        "7": "プラトニックガール",
+        "15": "メジロピオラ",
+        "6": "スズノボンライミー",
+        "1": "ビッグノエルルーフ"
+      }
     },
     {
       "prediction_id": 3216,
@@ -375,7 +653,26 @@
           "model_score": 0.005489535387726617,
           "ev_score": 0.7608496047389091
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "13": "ベルソテイラ",
+        "9": "ダノンプレサージュ",
+        "5": "ブリスフルイヤー",
+        "4": "マスカルポーネ",
+        "12": "ブエノスオプティマ",
+        "8": "ペールデュクラン",
+        "2": "アルティソナンテ",
+        "10": "フィーユレアル",
+        "3": "ブルームザスマイル",
+        "11": "ノーブルトレジャー",
+        "14": "シューペルブリアン",
+        "7": "プラトニックガール",
+        "15": "メジロピオラ",
+        "6": "スズノボンライミー",
+        "1": "ビッグノエルルーフ"
+      }
     },
     {
       "prediction_id": 3217,
@@ -399,7 +696,26 @@
           "model_score": 0.005489535387726617,
           "ev_score": 0.31702066864121214
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "13": "ベルソテイラ",
+        "9": "ダノンプレサージュ",
+        "5": "ブリスフルイヤー",
+        "4": "マスカルポーネ",
+        "12": "ブエノスオプティマ",
+        "8": "ペールデュクラン",
+        "2": "アルティソナンテ",
+        "10": "フィーユレアル",
+        "3": "ブルームザスマイル",
+        "11": "ノーブルトレジャー",
+        "14": "シューペルブリアン",
+        "7": "プラトニックガール",
+        "15": "メジロピオラ",
+        "6": "スズノボンライミー",
+        "1": "ビッグノエルルーフ"
+      }
     },
     {
       "prediction_id": 3218,
@@ -430,7 +746,26 @@
           "model_score": 0.0028994175603475705,
           "ev_score": 0.8037185477283466
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "13": "ベルソテイラ",
+        "9": "ダノンプレサージュ",
+        "5": "ブリスフルイヤー",
+        "4": "マスカルポーネ",
+        "12": "ブエノスオプティマ",
+        "8": "ペールデュクラン",
+        "2": "アルティソナンテ",
+        "10": "フィーユレアル",
+        "3": "ブルームザスマイル",
+        "11": "ノーブルトレジャー",
+        "14": "シューペルブリアン",
+        "7": "プラトニックガール",
+        "15": "メジロピオラ",
+        "6": "スズノボンライミー",
+        "1": "ビッグノエルルーフ"
+      }
     },
     {
       "prediction_id": 3219,
@@ -454,7 +789,26 @@
           "model_score": 0.0006818173728697429,
           "ev_score": 0.4724994393987319
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "13": "ベルソテイラ",
+        "9": "ダノンプレサージュ",
+        "5": "ブリスフルイヤー",
+        "4": "マスカルポーネ",
+        "12": "ブエノスオプティマ",
+        "8": "ペールデュクラン",
+        "2": "アルティソナンテ",
+        "10": "フィーユレアル",
+        "3": "ブルームザスマイル",
+        "11": "ノーブルトレジャー",
+        "14": "シューペルブリアン",
+        "7": "プラトニックガール",
+        "15": "メジロピオラ",
+        "6": "スズノボンライミー",
+        "1": "ビッグノエルルーフ"
+      }
     },
     {
       "prediction_id": 3220,
@@ -506,7 +860,26 @@
           "model_score": 0.00012458500119122274,
           "ev_score": 0.4316870291275868
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "13": "ベルソテイラ",
+        "9": "ダノンプレサージュ",
+        "5": "ブリスフルイヤー",
+        "4": "マスカルポーネ",
+        "12": "ブエノスオプティマ",
+        "8": "ペールデュクラン",
+        "2": "アルティソナンテ",
+        "10": "フィーユレアル",
+        "3": "ブルームザスマイル",
+        "11": "ノーブルトレジャー",
+        "14": "シューペルブリアン",
+        "7": "プラトニックガール",
+        "15": "メジロピオラ",
+        "6": "スズノボンライミー",
+        "1": "ビッグノエルルーフ"
+      }
     },
     {
       "prediction_id": 3228,
@@ -530,7 +903,26 @@
           "model_score": 1.0588213151435715,
           "ev_score": 1.0588213151435715
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "13": "ベルソテイラ",
+        "9": "ダノンプレサージュ",
+        "5": "ブリスフルイヤー",
+        "4": "マスカルポーネ",
+        "12": "ブエノスオプティマ",
+        "8": "ペールデュクラン",
+        "2": "アルティソナンテ",
+        "10": "フィーユレアル",
+        "3": "ブルームザスマイル",
+        "11": "ノーブルトレジャー",
+        "14": "シューペルブリアン",
+        "7": "プラトニックガール",
+        "15": "メジロピオラ",
+        "6": "スズノボンライミー",
+        "1": "ビッグノエルルーフ"
+      }
     },
     {
       "prediction_id": 3229,
@@ -582,7 +974,26 @@
           "model_score": 1.589547297365384,
           "ev_score": 1.589547297365384
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 8,
+      "horse_num_to_name": {
+        "13": "ベルソテイラ",
+        "9": "ダノンプレサージュ",
+        "5": "ブリスフルイヤー",
+        "4": "マスカルポーネ",
+        "12": "ブエノスオプティマ",
+        "8": "ペールデュクラン",
+        "2": "アルティソナンテ",
+        "10": "フィーユレアル",
+        "3": "ブルームザスマイル",
+        "11": "ノーブルトレジャー",
+        "14": "シューペルブリアン",
+        "7": "プラトニックガール",
+        "15": "メジロピオラ",
+        "6": "スズノボンライミー",
+        "1": "ビッグノエルルーフ"
+      }
     },
     {
       "prediction_id": 3230,
@@ -606,7 +1017,26 @@
           "model_score": 0.046196144932934155,
           "ev_score": 1.6630612175856294
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "13": "ベルソテイラ",
+        "9": "ダノンプレサージュ",
+        "5": "ブリスフルイヤー",
+        "4": "マスカルポーネ",
+        "12": "ブエノスオプティマ",
+        "8": "ペールデュクラン",
+        "2": "アルティソナンテ",
+        "10": "フィーユレアル",
+        "3": "ブルームザスマイル",
+        "11": "ノーブルトレジャー",
+        "14": "シューペルブリアン",
+        "7": "プラトニックガール",
+        "15": "メジロピオラ",
+        "6": "スズノボンライミー",
+        "1": "ビッグノエルルーフ"
+      }
     },
     {
       "prediction_id": 3231,
@@ -630,7 +1060,26 @@
           "model_score": 0.046196144932934155,
           "ev_score": 0.6929421739940123
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "13": "ベルソテイラ",
+        "9": "ダノンプレサージュ",
+        "5": "ブリスフルイヤー",
+        "4": "マスカルポーネ",
+        "12": "ブエノスオプティマ",
+        "8": "ペールデュクラン",
+        "2": "アルティソナンテ",
+        "10": "フィーユレアル",
+        "3": "ブルームザスマイル",
+        "11": "ノーブルトレジャー",
+        "14": "シューペルブリアン",
+        "7": "プラトニックガール",
+        "15": "メジロピオラ",
+        "6": "スズノボンライミー",
+        "1": "ビッグノエルルーフ"
+      }
     },
     {
       "prediction_id": 3232,
@@ -654,7 +1103,26 @@
           "model_score": 0.0233234133494733,
           "ev_score": 1.6792857611620775
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "13": "ベルソテイラ",
+        "9": "ダノンプレサージュ",
+        "5": "ブリスフルイヤー",
+        "4": "マスカルポーネ",
+        "12": "ブエノスオプティマ",
+        "8": "ペールデュクラン",
+        "2": "アルティソナンテ",
+        "10": "フィーユレアル",
+        "3": "ブルームザスマイル",
+        "11": "ノーブルトレジャー",
+        "14": "シューペルブリアン",
+        "7": "プラトニックガール",
+        "15": "メジロピオラ",
+        "6": "スズノボンライミー",
+        "1": "ビッグノエルルーフ"
+      }
     },
     {
       "prediction_id": 3233,
@@ -678,7 +1146,26 @@
           "model_score": 0.0244262841011892,
           "ev_score": 4.396731138214055
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "13": "ベルソテイラ",
+        "9": "ダノンプレサージュ",
+        "5": "ブリスフルイヤー",
+        "4": "マスカルポーネ",
+        "12": "ブエノスオプティマ",
+        "8": "ペールデュクラン",
+        "2": "アルティソナンテ",
+        "10": "フィーユレアル",
+        "3": "ブルームザスマイル",
+        "11": "ノーブルトレジャー",
+        "14": "シューペルブリアン",
+        "7": "プラトニックガール",
+        "15": "メジロピオラ",
+        "6": "スズノボンライミー",
+        "1": "ビッグノエルルーフ"
+      }
     },
     {
       "prediction_id": 3234,
@@ -800,7 +1287,26 @@
           "model_score": 0.04298540557645565,
           "ev_score": 12.66779902338148
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "13": "ベルソテイラ",
+        "9": "ダノンプレサージュ",
+        "5": "ブリスフルイヤー",
+        "4": "マスカルポーネ",
+        "12": "ブエノスオプティマ",
+        "8": "ペールデュクラン",
+        "2": "アルティソナンテ",
+        "10": "フィーユレアル",
+        "3": "ブルームザスマイル",
+        "11": "ノーブルトレジャー",
+        "14": "シューペルブリアン",
+        "7": "プラトニックガール",
+        "15": "メジロピオラ",
+        "6": "スズノボンライミー",
+        "1": "ビッグノエルルーフ"
+      }
     }
   ],
   "training_evals": {}

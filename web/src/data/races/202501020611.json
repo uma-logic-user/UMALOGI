@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 6,
-      "horse_number": 7,
-      "horse_name": "ミステリーウェイ",
-      "horse_id": "2018104638",
-      "sex_age": "騸4",
-      "weight_carried": 55.0,
-      "jockey": "松本大輝",
-      "trainer": "小林真也",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ジャスタウェイ",
-      "dam": "ジプシーハイウェイGypsy Highway(愛)",
-      "dam_sire": "High Chaparral(愛)"
-    },
-    {
-      "rank": 2,
-      "gate_number": 5,
-      "horse_number": 6,
-      "horse_name": "ゴールデンスナップ",
-      "horse_id": "2020106909",
-      "sex_age": "牝7",
-      "weight_carried": 55.0,
-      "jockey": "浜中俊",
-      "trainer": "田中克典",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ゴールドシップ",
-      "dam": "メイショウジェイ",
-      "dam_sire": "タニノギムレット"
-    },
-    {
-      "rank": 3,
-      "gate_number": 7,
-      "horse_number": 10,
-      "horse_name": "エンドウノハナ",
-      "horse_id": "2019103888",
-      "sex_age": "牡1",
-      "weight_carried": 54.0,
-      "jockey": "泉谷楓真",
-      "trainer": "中舘英二",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "トーセンラー",
-      "dam": "ヌングロース",
-      "dam_sire": "ハービンジャーHarbinger(英)"
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "古川吉洋",
       "trainer": "中竹和也",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +42,7 @@
       "jockey": "佐々木大",
       "trainer": "上原佑紀",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +62,7 @@
       "jockey": "川又賢治",
       "trainer": "野中賢二",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +82,7 @@
       "jockey": "小林美駒",
       "trainer": "上原博之",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +102,7 @@
       "jockey": "黛弘人",
       "trainer": "千田輝彦",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -170,6 +110,46 @@
       "sire": "ハービンジャーHarbinger(英)",
       "dam": "シャドウマリア",
       "dam_sire": "ヴィクトワールピサ"
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 6,
+      "horse_name": "ゴールデンスナップ",
+      "horse_id": "2020106909",
+      "sex_age": "牝7",
+      "weight_carried": 55.0,
+      "jockey": "浜中俊",
+      "trainer": "田中克典",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ゴールドシップ",
+      "dam": "メイショウジェイ",
+      "dam_sire": "タニノギムレット"
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 7,
+      "horse_name": "ミステリーウェイ",
+      "horse_id": "2018104638",
+      "sex_age": "騸4",
+      "weight_carried": 55.0,
+      "jockey": "松本大輝",
+      "trainer": "小林真也",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ジャスタウェイ",
+      "dam": "ジプシーハイウェイGypsy Highway(愛)",
+      "dam_sire": "High Chaparral(愛)"
     },
     {
       "rank": null,
@@ -182,7 +162,7 @@
       "jockey": "舟山瑠泉",
       "trainer": "辻野泰之",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -202,7 +182,7 @@
       "jockey": "斎藤新",
       "trainer": "奥村豊",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -210,6 +190,26 @@
       "sire": "タリスマニックTalismanic(英)",
       "dam": "マイプラーナ",
       "dam_sire": "マンハッタンカフェ"
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 10,
+      "horse_name": "エンドウノハナ",
+      "horse_id": "2019103888",
+      "sex_age": "牡1",
+      "weight_carried": 54.0,
+      "jockey": "泉谷楓真",
+      "trainer": "中舘英二",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "トーセンラー",
+      "dam": "ヌングロース",
+      "dam_sire": "ハービンジャーHarbinger(英)"
     },
     {
       "rank": null,
@@ -222,7 +222,7 @@
       "jockey": "荻野琢真",
       "trainer": "矢作芳人",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -242,7 +242,7 @@
       "jockey": "丹内祐次",
       "trainer": "青木孝文",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -258,6 +258,12 @@
       "combination": "7",
       "payout": 1670,
       "popularity": 9
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "12",
+      "payout": 12000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -284,10 +290,28 @@
       "popularity": 7
     },
     {
+      "bet_type": "枠連",
+      "combination": "1",
+      "payout": 67009,
+      "popularity": null
+    },
+    {
       "bet_type": "馬連",
       "combination": "6-7",
       "payout": 2560,
       "popularity": 9
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "4-20",
+      "payout": 9060,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "5",
+      "payout": 60000,
+      "popularity": 1
     },
     {
       "bet_type": "ワイド",
@@ -308,16 +332,46 @@
       "popularity": 37
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 40011,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "7→6",
       "payout": 6980,
       "popularity": 27
     },
     {
+      "bet_type": "馬単",
+      "combination": "6",
+      "payout": 7000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "6-7-10",
       "payout": 9160,
       "popularity": 33
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "25-70",
+      "payout": 3706,
+      "popularity": 100
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "10-70-1",
+      "payout": 10710,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "8",
+      "payout": 20007,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 6,
-      "horse_number": 6,
-      "horse_name": "メイショウハチコウ",
-      "horse_id": "2023102039",
-      "sex_age": "牡4",
-      "weight_carried": 55.0,
-      "jockey": "戸崎圭太",
-      "trainer": "牧浦充徳",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ロジャーバローズ",
-      "dam": "アモーレヴォレ",
-      "dam_sire": "アグネスデジタル"
-    },
-    {
-      "rank": 2,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "ロミオ",
-      "horse_id": "2023101545",
-      "sex_age": "牡3",
-      "weight_carried": 55.0,
-      "jockey": "石橋脩",
-      "trainer": "上原佑紀",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 3,
-      "gate_number": 8,
-      "horse_number": 8,
-      "horse_name": "ブランニューホーム",
-      "horse_id": "2023106607",
-      "sex_age": "牡3",
-      "weight_carried": 55.0,
-      "jockey": "黛弘人",
-      "trainer": "深山雅史",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "横山武史",
       "trainer": "黒岩陽一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +42,27 @@
       "jockey": "津村明秀",
       "trainer": "千葉直人",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "ロミオ",
+      "horse_id": "2023101545",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "石橋脩",
+      "trainer": "上原佑紀",
+      "finish_time": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +82,7 @@
       "jockey": "今村聖奈",
       "trainer": "田村康仁",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +102,7 @@
       "jockey": "丸山元気",
       "trainer": "田中勝春",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -150,6 +110,26 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 6,
+      "horse_name": "メイショウハチコウ",
+      "horse_id": "2023102039",
+      "sex_age": "牡4",
+      "weight_carried": 55.0,
+      "jockey": "戸崎圭太",
+      "trainer": "牧浦充徳",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ロジャーバローズ",
+      "dam": "アモーレヴォレ",
+      "dam_sire": "アグネスデジタル"
     },
     {
       "rank": null,
@@ -162,7 +142,27 @@
       "jockey": "江田照男",
       "trainer": "深山雅史",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 8,
+      "horse_name": "ブランニューホーム",
+      "horse_id": "2023106607",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "黛弘人",
+      "trainer": "深山雅史",
+      "finish_time": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +182,7 @@
       "jockey": "丹内祐次",
       "trainer": "林徹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -198,6 +198,12 @@
       "combination": "6",
       "payout": 290,
       "popularity": 2
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "9",
+      "payout": 9000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -230,6 +236,12 @@
       "popularity": 5
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-40",
+      "payout": 2030,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "3-6",
       "payout": 370,
@@ -248,16 +260,52 @@
       "popularity": 29
     },
     {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 30040,
+      "popularity": 80
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3",
+      "payout": 60000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "6→3",
       "payout": 1450,
       "popularity": 6
     },
     {
+      "bet_type": "馬単",
+      "combination": "3",
+      "payout": 6000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "3-6-8",
       "payout": 18840,
       "popularity": 41
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "21-90",
+      "payout": 2103,
+      "popularity": 80
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3-70",
+      "payout": 50608,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "47",
+      "payout": 60029,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

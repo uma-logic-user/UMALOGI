@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 8,
-      "horse_number": 8,
-      "horse_name": "パンジャ",
-      "horse_id": "2021105155",
-      "sex_age": "牡1",
-      "weight_carried": 58.0,
-      "jockey": "戸崎圭太",
-      "trainer": "金成貴史",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ゴールドシップ",
-      "dam": "ノッテビアンカNotte Bianca(仏)",
-      "dam_sire": "Kendargent"
-    },
-    {
-      "rank": 2,
-      "gate_number": 7,
-      "horse_number": 7,
-      "horse_name": "ラブリージャブリー",
-      "horse_id": "2022105442",
-      "sex_age": "牝3",
-      "weight_carried": 53.0,
-      "jockey": "菅原明良",
-      "trainer": "蛯名正義",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 3,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "ラレーヌデリス",
-      "horse_id": "2020103696",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "団野大成",
-      "trainer": "安田翔伍",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "エピファネイア",
-      "dam": "レイリオン",
-      "dam_sire": "ダイワメジャー"
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "津村明秀",
       "trainer": "嘉藤貴行",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +42,7 @@
       "jockey": "石川裕紀",
       "trainer": "尾形和幸",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +62,7 @@
       "jockey": "遠藤汰月",
       "trainer": "伊藤伸一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +82,7 @@
       "jockey": "荻野極",
       "trainer": "林徹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -150,6 +90,26 @@
       "sire": "ドゥラメンテ",
       "dam": "メジロマリアン",
       "dam_sire": "メジロベイリー"
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "ラレーヌデリス",
+      "horse_id": "2020103696",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "団野大成",
+      "trainer": "安田翔伍",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "エピファネイア",
+      "dam": "レイリオン",
+      "dam_sire": "ダイワメジャー"
     },
     {
       "rank": null,
@@ -162,7 +122,7 @@
       "jockey": "内田博幸",
       "trainer": "古賀慎明",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -170,14 +130,54 @@
       "sire": "ダンカークDunkirk(米)",
       "dam": "カフェローレル",
       "dam_sire": "マンハッタンカフェ"
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 7,
+      "horse_name": "ラブリージャブリー",
+      "horse_id": "2022105442",
+      "sex_age": "牝3",
+      "weight_carried": 53.0,
+      "jockey": "菅原明良",
+      "trainer": "蛯名正義",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 8,
+      "horse_name": "パンジャ",
+      "horse_id": "2021105155",
+      "sex_age": "牡1",
+      "weight_carried": 58.0,
+      "jockey": "戸崎圭太",
+      "trainer": "金成貴史",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ゴールドシップ",
+      "dam": "ノッテビアンカNotte Bianca(仏)",
+      "dam_sire": "Kendargent"
     }
   ],
   "payouts": [
     {
       "bet_type": "単勝",
       "combination": "8",
-      "payout": 300,
-      "popularity": 2
+      "payout": 7000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -198,10 +198,22 @@
       "popularity": 4
     },
     {
+      "bet_type": "複勝",
+      "combination": "1",
+      "payout": 11100,
+      "popularity": null
+    },
+    {
       "bet_type": "馬連",
       "combination": "7-8",
       "payout": 200,
       "popularity": 1
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1-10",
+      "payout": 2070,
+      "popularity": null
     },
     {
       "bet_type": "ワイド",
@@ -222,16 +234,46 @@
       "popularity": 5
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 10010,
+      "popularity": 50
+    },
+    {
       "bet_type": "馬単",
       "combination": "8→7",
       "payout": 520,
       "popularity": 2
     },
     {
+      "bet_type": "馬単",
+      "combination": "7",
+      "payout": 8000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "5-7-8",
       "payout": 420,
       "popularity": 2
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2-70",
+      "payout": 505,
+      "popularity": 70
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-30",
+      "payout": 10508,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2",
+      "payout": 50004,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

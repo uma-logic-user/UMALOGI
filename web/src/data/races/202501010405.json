@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "クレパスキュラー",
-      "horse_id": "2023106925",
-      "sex_age": "牡4",
-      "weight_carried": 55.0,
-      "jockey": "キング",
-      "trainer": "栗田徹",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 2,
-      "gate_number": 8,
-      "horse_number": 8,
-      "horse_name": "ストロベリーツリー",
-      "horse_id": "2023106887",
-      "sex_age": "牝7",
-      "weight_carried": 55.0,
-      "jockey": "川田将雅",
-      "trainer": "中内田充",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 3,
-      "gate_number": 6,
-      "horse_number": 6,
-      "horse_name": "グロリアスマーチ",
-      "horse_id": "2023103680",
-      "sex_age": "牡5",
-      "weight_carried": 55.0,
-      "jockey": "佐々木大",
-      "trainer": "須貝尚介",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "菱田裕二",
       "trainer": "角田晃一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +42,7 @@
       "jockey": "横山武史",
       "trainer": "中竹和也",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +62,27 @@
       "jockey": "松本大輝",
       "trainer": "安田翔伍",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "クレパスキュラー",
+      "horse_id": "2023106925",
+      "sex_age": "牡4",
+      "weight_carried": 55.0,
+      "jockey": "キング",
+      "trainer": "栗田徹",
+      "finish_time": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +102,27 @@
       "jockey": "武豊",
       "trainer": "鈴木孝志",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 6,
+      "horse_name": "グロリアスマーチ",
+      "horse_id": "2023103680",
+      "sex_age": "牡5",
+      "weight_carried": 55.0,
+      "jockey": "佐々木大",
+      "trainer": "須貝尚介",
+      "finish_time": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +142,27 @@
       "jockey": "丹内祐次",
       "trainer": "相沢郁",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 8,
+      "horse_name": "ストロベリーツリー",
+      "horse_id": "2023106887",
+      "sex_age": "牝7",
+      "weight_carried": 55.0,
+      "jockey": "川田将雅",
+      "trainer": "中内田充",
+      "finish_time": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -180,9 +180,21 @@
       "popularity": 2
     },
     {
+      "bet_type": "単勝",
+      "combination": "8",
+      "payout": 7000,
+      "popularity": null
+    },
+    {
       "bet_type": "複勝",
       "combination": "8",
       "payout": 110,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "1",
+      "payout": 11000,
       "popularity": 1
     },
     {
@@ -204,6 +216,12 @@
       "popularity": 1
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-10",
+      "payout": 3080,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "4-8",
       "payout": 130,
@@ -222,16 +240,46 @@
       "popularity": 4
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 10010,
+      "popularity": 60
+    },
+    {
       "bet_type": "馬単",
       "combination": "4→8",
       "payout": 730,
       "popularity": 4
     },
     {
+      "bet_type": "馬単",
+      "combination": "4",
+      "payout": 8000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "4-6-8",
       "payout": 350,
       "popularity": 1
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2-30",
+      "payout": 406,
+      "popularity": 80
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-30",
+      "payout": 10406,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1",
+      "payout": 40002,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

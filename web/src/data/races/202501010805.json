@@ -12,7 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "ジャスティンシカゴ",
@@ -22,47 +22,7 @@
       "jockey": "武豊",
       "trainer": "宮田敬介",
       "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 2,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "ジーティーメティオ",
-      "horse_id": "2023105375",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "藤岡佑介",
-      "trainer": "矢作芳人",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 3,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "ショウナンバーボン",
-      "horse_id": "2023106620",
-      "sex_age": "牡7",
-      "weight_carried": 55.0,
-      "jockey": "池添謙一",
-      "trainer": "加藤士津",
-      "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -82,7 +42,7 @@
       "jockey": "丹内祐次",
       "trainer": "伊藤圭三",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +62,47 @@
       "jockey": "鮫島克駿",
       "trainer": "相沢郁",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "ショウナンバーボン",
+      "horse_id": "2023106620",
+      "sex_age": "牡7",
+      "weight_carried": 55.0,
+      "jockey": "池添謙一",
+      "trainer": "加藤士津",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "ジーティーメティオ",
+      "horse_id": "2023105375",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "藤岡佑介",
+      "trainer": "矢作芳人",
+      "finish_time": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -118,6 +118,12 @@
       "combination": "1",
       "payout": 220,
       "popularity": 2
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "5",
+      "payout": 5000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -138,6 +144,12 @@
       "popularity": 1
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-20",
+      "payout": 2050,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "1-5",
       "payout": 110,
@@ -156,16 +168,46 @@
       "popularity": 4
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 10010,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "1→5",
       "payout": 350,
       "popularity": 1
     },
     {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 5000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-4-5",
       "payout": 190,
       "popularity": 1
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-70",
+      "payout": 404,
+      "popularity": 50
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-10",
+      "payout": 10104,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1",
+      "payout": 50002,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

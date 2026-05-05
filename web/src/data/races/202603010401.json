@@ -4,11 +4,11 @@
   "date": "2026-04-19",
   "venue": "福島",
   "race_number": 1,
-  "distance": 0,
-  "surface": "",
+  "distance": 1150,
+  "surface": "ダート",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "晴",
+  "condition": "良",
   "year": "2026",
   "results": [
     {
@@ -21,12 +21,12 @@
       "weight_carried": 52.0,
       "jockey": "小林美駒",
       "trainer": "矢嶋大樹",
-      "finish_time": null,
+      "finish_time": "1:09.0",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 4.2,
+      "popularity": 1,
+      "horse_weight": 440,
+      "horse_weight_diff": -8,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -41,12 +41,12 @@
       "weight_carried": 55.0,
       "jockey": "荻野琢真",
       "trainer": "宮本博",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:09.1",
+      "margin": "1/2",
+      "win_odds": 39.0,
+      "popularity": 11,
+      "horse_weight": 410,
+      "horse_weight_diff": -4,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -61,12 +61,272 @@
       "weight_carried": 54.0,
       "jockey": "田山旺佑",
       "trainer": "新谷功一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:09.1",
+      "margin": "アタマ",
+      "win_odds": 4.6,
+      "popularity": 2,
+      "horse_weight": 518,
+      "horse_weight_diff": 10,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 4,
+      "gate_number": 5,
+      "horse_number": 10,
+      "horse_name": "ゲレイロ",
+      "horse_id": "2023104669",
+      "sex_age": "牡4",
+      "weight_carried": 54.0,
+      "jockey": "和田陽希",
+      "trainer": "今野貞一",
+      "finish_time": "1:09.3",
+      "margin": "1.1/4",
+      "win_odds": 16.3,
+      "popularity": 7,
+      "horse_weight": 470,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 5,
+      "gate_number": 8,
+      "horse_number": 16,
+      "horse_name": "ヴィビーム",
+      "horse_id": "2023104665",
+      "sex_age": "牝1",
+      "weight_carried": 55.0,
+      "jockey": "菊沢一樹",
+      "trainer": "岩戸孝樹",
+      "finish_time": "1:09.5",
+      "margin": "3/4",
+      "win_odds": 48.2,
+      "popularity": 12,
+      "horse_weight": 454,
+      "horse_weight_diff": 8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 6,
+      "gate_number": 1,
+      "horse_number": 2,
+      "horse_name": "スイーヴル",
+      "horse_id": "2023101660",
+      "sex_age": "牝1",
+      "weight_carried": 55.0,
+      "jockey": "松若風馬",
+      "trainer": "小椋研介",
+      "finish_time": "1:09.5",
+      "margin": "クビ",
+      "win_odds": 5.0,
+      "popularity": 4,
+      "horse_weight": 452,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 7,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "オレンジキャンパス",
+      "horse_id": "2023104392",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "武藤雅",
+      "trainer": "武藤善則",
+      "finish_time": "1:09.5",
+      "margin": "アタマ",
+      "win_odds": 12.1,
+      "popularity": 5,
+      "horse_weight": 470,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 8,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "イングラム",
+      "horse_id": "2023102427",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "藤懸貴志",
+      "trainer": "千田輝彦",
+      "finish_time": "1:09.6",
+      "margin": "1/2",
+      "win_odds": 33.2,
+      "popularity": 9,
+      "horse_weight": 498,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 9,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "スプリングドリーム",
+      "horse_id": "2023106782",
+      "sex_age": "牝3",
+      "weight_carried": 52.0,
+      "jockey": "上里直汰",
+      "trainer": "加藤士津",
+      "finish_time": "1:09.9",
+      "margin": "1.3/4",
+      "win_odds": 4.6,
+      "popularity": 3,
+      "horse_weight": 444,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 10,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "チュラヴェール",
+      "horse_id": "2023104607",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "丹内祐次",
+      "trainer": "松山将樹",
+      "finish_time": "1:10.1",
+      "margin": "3/4",
+      "win_odds": 12.6,
+      "popularity": 6,
+      "horse_weight": 444,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 11,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "ジェム",
+      "horse_id": "2023104561",
+      "sex_age": "牝1",
+      "weight_carried": 55.0,
+      "jockey": "小沢大仁",
+      "trainer": "杉山佳明",
+      "finish_time": "1:10.1",
+      "margin": "クビ",
+      "win_odds": 240.3,
+      "popularity": 15,
+      "horse_weight": 402,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 12,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "ミュージックレイン",
+      "horse_id": "2023104810",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "江田照男",
+      "trainer": "村田一誠",
+      "finish_time": "1:10.1",
+      "margin": "ハナ",
+      "win_odds": 21.5,
+      "popularity": 8,
+      "horse_weight": 446,
+      "horse_weight_diff": -8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 13,
+      "gate_number": 2,
+      "horse_number": 4,
+      "horse_name": "カンフージョン",
+      "horse_id": "2023107544",
+      "sex_age": "牡7",
+      "weight_carried": 57.0,
+      "jockey": "川又賢治",
+      "trainer": "吉村圭司",
+      "finish_time": "1:10.4",
+      "margin": "1.3/4",
+      "win_odds": 38.9,
+      "popularity": 10,
+      "horse_weight": 512,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 14,
+      "gate_number": 7,
+      "horse_number": 14,
+      "horse_name": "クインズヒマワリ",
+      "horse_id": "2023102757",
+      "sex_age": "牝1",
+      "weight_carried": 52.0,
+      "jockey": "石神深道",
+      "trainer": "和田正一",
+      "finish_time": "1:10.8",
+      "margin": "2.1/2",
+      "win_odds": 304.2,
+      "popularity": 16,
+      "horse_weight": 402,
+      "horse_weight_diff": 6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 15,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "ラインカシウス",
+      "horse_id": "2023101662",
+      "sex_age": "牝3",
+      "weight_carried": 53.0,
+      "jockey": "永島まな",
+      "trainer": "水野貴広",
+      "finish_time": "1:10.9",
+      "margin": "1",
+      "win_odds": 200.0,
+      "popularity": 13,
+      "horse_weight": 406,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 16,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "セイウンサクラサケ",
+      "horse_id": "2023104704",
+      "sex_age": "牝1",
+      "weight_carried": 51.0,
+      "jockey": "河原田菜",
+      "trainer": "青木孝文",
+      "finish_time": "1:11.0",
+      "margin": "クビ",
+      "win_odds": 226.9,
+      "popularity": 14,
+      "horse_weight": 452,
+      "horse_weight_diff": -10,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -307,7 +567,27 @@
           "model_score": 0.1143457430748477,
           "ev_score": 0.1143457430748477
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "13": "ヨドノティアラ",
+        "8": "フレンズプラス",
+        "12": "ダイイズキャスト",
+        "10": "ゲレイロ",
+        "16": "ヴィビーム",
+        "2": "スイーヴル",
+        "5": "オレンジキャンパス",
+        "3": "イングラム",
+        "1": "スプリングドリーム",
+        "6": "チュラヴェール",
+        "11": "ジェム",
+        "15": "ミュージックレイン",
+        "4": "カンフージョン",
+        "14": "クインズヒマワリ",
+        "7": "ラインカシウス",
+        "9": "セイウンサクラサケ"
+      }
     },
     {
       "prediction_id": 2501,
@@ -345,7 +625,27 @@
           "model_score": 0.0981129374729199,
           "ev_score": 0.2943388124187597
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "13": "ヨドノティアラ",
+        "8": "フレンズプラス",
+        "12": "ダイイズキャスト",
+        "10": "ゲレイロ",
+        "16": "ヴィビーム",
+        "2": "スイーヴル",
+        "5": "オレンジキャンパス",
+        "3": "イングラム",
+        "1": "スプリングドリーム",
+        "6": "チュラヴェール",
+        "11": "ジェム",
+        "15": "ミュージックレイン",
+        "4": "カンフージョン",
+        "14": "クインズヒマワリ",
+        "7": "ラインカシウス",
+        "9": "セイウンサクラサケ"
+      }
     },
     {
       "prediction_id": 2502,
@@ -369,7 +669,27 @@
           "model_score": 0.008333333333333333,
           "ev_score": 0.5
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "13": "ヨドノティアラ",
+        "8": "フレンズプラス",
+        "12": "ダイイズキャスト",
+        "10": "ゲレイロ",
+        "16": "ヴィビーム",
+        "2": "スイーヴル",
+        "5": "オレンジキャンパス",
+        "3": "イングラム",
+        "1": "スプリングドリーム",
+        "6": "チュラヴェール",
+        "11": "ジェム",
+        "15": "ミュージックレイン",
+        "4": "カンフージョン",
+        "14": "クインズヒマワリ",
+        "7": "ラインカシウス",
+        "9": "セイウンサクラサケ"
+      }
     },
     {
       "prediction_id": 2503,
@@ -393,7 +713,27 @@
           "model_score": 0.008333333333333333,
           "ev_score": 0.20833333333333331
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "13": "ヨドノティアラ",
+        "8": "フレンズプラス",
+        "12": "ダイイズキャスト",
+        "10": "ゲレイロ",
+        "16": "ヴィビーム",
+        "2": "スイーヴル",
+        "5": "オレンジキャンパス",
+        "3": "イングラム",
+        "1": "スプリングドリーム",
+        "6": "チュラヴェール",
+        "11": "ジェム",
+        "15": "ミュージックレイン",
+        "4": "カンフージョン",
+        "14": "クインズヒマワリ",
+        "7": "ラインカシウス",
+        "9": "セイウンサクラサケ"
+      }
     },
     {
       "prediction_id": 2504,
@@ -424,7 +764,27 @@
           "model_score": 0.004166666666666667,
           "ev_score": 0.5
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "13": "ヨドノティアラ",
+        "8": "フレンズプラス",
+        "12": "ダイイズキャスト",
+        "10": "ゲレイロ",
+        "16": "ヴィビーム",
+        "2": "スイーヴル",
+        "5": "オレンジキャンパス",
+        "3": "イングラム",
+        "1": "スプリングドリーム",
+        "6": "チュラヴェール",
+        "11": "ジェム",
+        "15": "ミュージックレイン",
+        "4": "カンフージョン",
+        "14": "クインズヒマワリ",
+        "7": "ラインカシウス",
+        "9": "セイウンサクラサケ"
+      }
     },
     {
       "prediction_id": 2505,
@@ -448,7 +808,27 @@
           "model_score": 0.0017857142857142854,
           "ev_score": 0.5357142857142857
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "13": "ヨドノティアラ",
+        "8": "フレンズプラス",
+        "12": "ダイイズキャスト",
+        "10": "ゲレイロ",
+        "16": "ヴィビーム",
+        "2": "スイーヴル",
+        "5": "オレンジキャンパス",
+        "3": "イングラム",
+        "1": "スプリングドリーム",
+        "6": "チュラヴェール",
+        "11": "ジェム",
+        "15": "ミュージックレイン",
+        "4": "カンフージョン",
+        "14": "クインズヒマワリ",
+        "7": "ラインカシウス",
+        "9": "セイウンサクラサケ"
+      }
     },
     {
       "prediction_id": 2506,
@@ -500,7 +880,27 @@
           "model_score": 0.0002976190476190476,
           "ev_score": 0.4464285714285714
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "13": "ヨドノティアラ",
+        "8": "フレンズプラス",
+        "12": "ダイイズキャスト",
+        "10": "ゲレイロ",
+        "16": "ヴィビーム",
+        "2": "スイーヴル",
+        "5": "オレンジキャンパス",
+        "3": "イングラム",
+        "1": "スプリングドリーム",
+        "6": "チュラヴェール",
+        "11": "ジェム",
+        "15": "ミュージックレイン",
+        "4": "カンフージョン",
+        "14": "クインズヒマワリ",
+        "7": "ラインカシウス",
+        "9": "セイウンサクラサケ"
+      }
     },
     {
       "prediction_id": 2511,
@@ -524,7 +924,27 @@
           "model_score": 1.028450754185906,
           "ev_score": 1.028450754185906
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "13": "ヨドノティアラ",
+        "8": "フレンズプラス",
+        "12": "ダイイズキャスト",
+        "10": "ゲレイロ",
+        "16": "ヴィビーム",
+        "2": "スイーヴル",
+        "5": "オレンジキャンパス",
+        "3": "イングラム",
+        "1": "スプリングドリーム",
+        "6": "チュラヴェール",
+        "11": "ジェム",
+        "15": "ミュージックレイン",
+        "4": "カンフージョン",
+        "14": "クインズヒマワリ",
+        "7": "ラインカシウス",
+        "9": "セイウンサクラサケ"
+      }
     },
     {
       "prediction_id": 2512,
@@ -576,7 +996,27 @@
           "model_score": 1.703678654269153,
           "ev_score": 1.703678654269153
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 5,
+      "horse_num_to_name": {
+        "13": "ヨドノティアラ",
+        "8": "フレンズプラス",
+        "12": "ダイイズキャスト",
+        "10": "ゲレイロ",
+        "16": "ヴィビーム",
+        "2": "スイーヴル",
+        "5": "オレンジキャンパス",
+        "3": "イングラム",
+        "1": "スプリングドリーム",
+        "6": "チュラヴェール",
+        "11": "ジェム",
+        "15": "ミュージックレイン",
+        "4": "カンフージョン",
+        "14": "クインズヒマワリ",
+        "7": "ラインカシウス",
+        "9": "セイウンサクラサケ"
+      }
     },
     {
       "prediction_id": 2513,
@@ -600,7 +1040,27 @@
           "model_score": 0.07502348552452975,
           "ev_score": 4.0
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "13": "ヨドノティアラ",
+        "8": "フレンズプラス",
+        "12": "ダイイズキャスト",
+        "10": "ゲレイロ",
+        "16": "ヴィビーム",
+        "2": "スイーヴル",
+        "5": "オレンジキャンパス",
+        "3": "イングラム",
+        "1": "スプリングドリーム",
+        "6": "チュラヴェール",
+        "11": "ジェム",
+        "15": "ミュージックレイン",
+        "4": "カンフージョン",
+        "14": "クインズヒマワリ",
+        "7": "ラインカシウス",
+        "9": "セイウンサクラサケ"
+      }
     },
     {
       "prediction_id": 2514,
@@ -624,7 +1084,27 @@
           "model_score": 0.07502348552452975,
           "ev_score": 1.8755871381132438
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "13": "ヨドノティアラ",
+        "8": "フレンズプラス",
+        "12": "ダイイズキャスト",
+        "10": "ゲレイロ",
+        "16": "ヴィビーム",
+        "2": "スイーヴル",
+        "5": "オレンジキャンパス",
+        "3": "イングラム",
+        "1": "スプリングドリーム",
+        "6": "チュラヴェール",
+        "11": "ジェム",
+        "15": "ミュージックレイン",
+        "4": "カンフージョン",
+        "14": "クインズヒマワリ",
+        "7": "ラインカシウス",
+        "9": "セイウンサクラサケ"
+      }
     },
     {
       "prediction_id": 2515,
@@ -648,7 +1128,27 @@
           "model_score": 0.03927837571226713,
           "ev_score": 4.713405085472056
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "13": "ヨドノティアラ",
+        "8": "フレンズプラス",
+        "12": "ダイイズキャスト",
+        "10": "ゲレイロ",
+        "16": "ヴィビーム",
+        "2": "スイーヴル",
+        "5": "オレンジキャンパス",
+        "3": "イングラム",
+        "1": "スプリングドリーム",
+        "6": "チュラヴェール",
+        "11": "ジェム",
+        "15": "ミュージックレイン",
+        "4": "カンフージョン",
+        "14": "クインズヒマワリ",
+        "7": "ラインカシウス",
+        "9": "セイウンサクラサケ"
+      }
     },
     {
       "prediction_id": 2516,
@@ -672,7 +1172,27 @@
           "model_score": 0.041026869426943946,
           "ev_score": 5.0
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "13": "ヨドノティアラ",
+        "8": "フレンズプラス",
+        "12": "ダイイズキャスト",
+        "10": "ゲレイロ",
+        "16": "ヴィビーム",
+        "2": "スイーヴル",
+        "5": "オレンジキャンパス",
+        "3": "イングラム",
+        "1": "スプリングドリーム",
+        "6": "チュラヴェール",
+        "11": "ジェム",
+        "15": "ミュージックレイン",
+        "4": "カンフージョン",
+        "14": "クインズヒマワリ",
+        "7": "ラインカシウス",
+        "9": "セイウンサクラサケ"
+      }
     },
     {
       "prediction_id": 2517,
@@ -801,7 +1321,27 @@
           "model_score": 0.04483970624493143,
           "ev_score": 0.0
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "13": "ヨドノティアラ",
+        "8": "フレンズプラス",
+        "12": "ダイイズキャスト",
+        "10": "ゲレイロ",
+        "16": "ヴィビーム",
+        "2": "スイーヴル",
+        "5": "オレンジキャンパス",
+        "3": "イングラム",
+        "1": "スプリングドリーム",
+        "6": "チュラヴェール",
+        "11": "ジェム",
+        "15": "ミュージックレイン",
+        "4": "カンフージョン",
+        "14": "クインズヒマワリ",
+        "7": "ラインカシウス",
+        "9": "セイウンサクラサケ"
+      }
     }
   ],
   "training_evals": {}

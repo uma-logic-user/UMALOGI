@@ -12,7 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "ワンダーキサラ",
@@ -22,7 +22,7 @@
       "jockey": "太宰啓介",
       "trainer": "石橋守",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -30,46 +30,6 @@
       "sire": "ザファクター",
       "dam": "ブルーボンボヤージ",
       "dam_sire": "Medaglia d'Oro"
-    },
-    {
-      "rank": 2,
-      "gate_number": 8,
-      "horse_number": 9,
-      "horse_name": "エコロマーズ",
-      "horse_id": "2021102016",
-      "sex_age": "牡4",
-      "weight_carried": 58.0,
-      "jockey": "吉村誠之",
-      "trainer": "牧浦充徳",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "シルバーステート",
-      "dam": "フィナリザール",
-      "dam_sire": "Congrats(米)"
-    },
-    {
-      "rank": 3,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "ヒーローインチーフ",
-      "horse_id": "2021106661",
-      "sex_age": "騸3",
-      "weight_carried": 58.0,
-      "jockey": "富田暁",
-      "trainer": "吉田直弘",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
     },
     {
       "rank": null,
@@ -82,7 +42,7 @@
       "jockey": "西塚洸二",
       "trainer": "笹田和秀",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +62,7 @@
       "jockey": "小沢大仁",
       "trainer": "東田明士",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +82,7 @@
       "jockey": "酒井学",
       "trainer": "角田晃一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -130,6 +90,26 @@
       "sire": "ミッキーアイル",
       "dam": "メイショウマイカゼ",
       "dam_sire": "メイショウボーラー"
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "ヒーローインチーフ",
+      "horse_id": "2021106661",
+      "sex_age": "騸3",
+      "weight_carried": 58.0,
+      "jockey": "富田暁",
+      "trainer": "吉田直弘",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -142,7 +122,7 @@
       "jockey": "角田大和",
       "trainer": "西村真幸",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +142,7 @@
       "jockey": "菱田裕二",
       "trainer": "大久保龍",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +162,7 @@
       "jockey": "高杉吏麒",
       "trainer": "藤岡健一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -190,6 +170,26 @@
       "sire": "ロードカナロア",
       "dam": "パラダイスリッジ",
       "dam_sire": "ディープインパクト"
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 9,
+      "horse_name": "エコロマーズ",
+      "horse_id": "2021102016",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "吉村誠之",
+      "trainer": "牧浦充徳",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "シルバーステート",
+      "dam": "フィナリザール",
+      "dam_sire": "Congrats(米)"
     }
   ],
   "payouts": [
@@ -198,6 +198,12 @@
       "combination": "1",
       "payout": 270,
       "popularity": 1
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "9",
+      "payout": 9000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -230,6 +236,12 @@
       "popularity": 4
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-30",
+      "payout": 1090,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "1-9",
       "payout": 350,
@@ -248,16 +260,52 @@
       "popularity": 18
     },
     {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 20050,
+      "popularity": 50
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 80000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "1→9",
       "payout": 1190,
       "popularity": 3
     },
     {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 9000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-5-9",
       "payout": 5460,
       "popularity": 17
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "9-80",
+      "payout": 1105,
+      "popularity": 90
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3-50",
+      "payout": 40105,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "18",
+      "payout": 30018,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

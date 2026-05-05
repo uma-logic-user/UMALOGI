@@ -4,11 +4,11 @@
   "date": "2026-04-25",
   "venue": "福島",
   "race_number": 3,
-  "distance": 0,
-  "surface": "",
+  "distance": 2000,
+  "surface": "芝",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "晴",
+  "condition": "良",
   "year": "2026",
   "results": [
     {
@@ -21,12 +21,12 @@
       "weight_carried": 55.0,
       "jockey": "丸山元気",
       "trainer": "矢嶋大樹",
-      "finish_time": null,
+      "finish_time": "2:00.6",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 8.8,
+      "popularity": 7,
+      "horse_weight": 456,
+      "horse_weight_diff": 0,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -41,12 +41,12 @@
       "weight_carried": 55.0,
       "jockey": "小崎綾也",
       "trainer": "高橋一哉",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "2:00.7",
+      "margin": "3/4",
+      "win_odds": 8.2,
+      "popularity": 5,
+      "horse_weight": 436,
+      "horse_weight_diff": -6,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -61,118 +61,18 @@
       "weight_carried": 55.0,
       "jockey": "丹内祐次",
       "trainer": "梅田智之",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "2:00.7",
+      "margin": "ハナ",
+      "win_odds": 6.6,
+      "popularity": 4,
+      "horse_weight": 474,
+      "horse_weight_diff": 12,
       "sire": null,
       "dam": null,
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "オーケーグレイス",
-      "horse_id": "2023104951",
-      "sex_age": "牝5",
-      "weight_carried": 55.0,
-      "jockey": "横山琉人",
-      "trainer": "相沢郁",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 2,
-      "horse_name": "イバラヒメ",
-      "horse_id": "2023101298",
-      "sex_age": "牝3",
-      "weight_carried": 53.0,
-      "jockey": "今村聖奈",
-      "trainer": "新開幸一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "ダイナマイトメロン",
-      "horse_id": "2023101081",
-      "sex_age": "牝3",
-      "weight_carried": 52.0,
-      "jockey": "石田拓郎",
-      "trainer": "伊藤大士",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 5,
-      "horse_name": "オウケンサクラコ",
-      "horse_id": "2023105601",
-      "sex_age": "牝1",
-      "weight_carried": 52.0,
-      "jockey": "上里直汰",
-      "trainer": "田中勝春",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 6,
-      "horse_name": "リリーボレア",
-      "horse_id": "2023106813",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "小沢大仁",
-      "trainer": "高橋一哉",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 4,
       "gate_number": 4,
       "horse_number": 7,
       "horse_name": "ダイヤモンドパレス",
@@ -181,78 +81,18 @@
       "weight_carried": 55.0,
       "jockey": "石川裕紀",
       "trainer": "手塚貴久",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "2:01.0",
+      "margin": "1.1/2",
+      "win_odds": 8.4,
+      "popularity": 6,
+      "horse_weight": 424,
+      "horse_weight_diff": 0,
       "sire": null,
       "dam": null,
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 9,
-      "horse_name": "ゴコウコイコイ",
-      "horse_id": "2023104486",
-      "sex_age": "牝7",
-      "weight_carried": 52.0,
-      "jockey": "石神深道",
-      "trainer": "栗田徹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 11,
-      "horse_name": "エリカアズーラ",
-      "horse_id": "2023102622",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "荻野極",
-      "trainer": "友道康夫",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 12,
-      "horse_name": "ストームアイ",
-      "horse_id": "2023104166",
-      "sex_age": "牝7",
-      "weight_carried": 55.0,
-      "jockey": "武藤雅",
-      "trainer": "和田正一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 5,
       "gate_number": 7,
       "horse_number": 13,
       "horse_name": "グリミスティ",
@@ -261,38 +101,18 @@
       "weight_carried": 55.0,
       "jockey": "富田暁",
       "trainer": "森田直行",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "2:01.2",
+      "margin": "1.1/4",
+      "win_odds": 53.7,
+      "popularity": 11,
+      "horse_weight": 440,
+      "horse_weight_diff": -8,
       "sire": null,
       "dam": null,
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 14,
-      "horse_name": "クインズロベリア",
-      "horse_id": "2023105760",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "菊沢一樹",
-      "trainer": "田村康仁",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 6,
       "gate_number": 8,
       "horse_number": 15,
       "horse_name": "エコロディアン",
@@ -301,18 +121,158 @@
       "weight_carried": 55.0,
       "jockey": "斎藤新",
       "trainer": "牧浦充徳",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "2:01.3",
+      "margin": "1/2",
+      "win_odds": 3.4,
+      "popularity": 1,
+      "horse_weight": 446,
+      "horse_weight_diff": 4,
       "sire": null,
       "dam": null,
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 7,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "ゴコウコイコイ",
+      "horse_id": "2023104486",
+      "sex_age": "牝7",
+      "weight_carried": 52.0,
+      "jockey": "石神深道",
+      "trainer": "栗田徹",
+      "finish_time": "2:01.4",
+      "margin": "クビ",
+      "win_odds": 6.1,
+      "popularity": 2,
+      "horse_weight": 410,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 8,
+      "gate_number": 7,
+      "horse_number": 14,
+      "horse_name": "クインズロベリア",
+      "horse_id": "2023105760",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "菊沢一樹",
+      "trainer": "田村康仁",
+      "finish_time": "2:01.6",
+      "margin": "1.1/4",
+      "win_odds": 46.8,
+      "popularity": 10,
+      "horse_weight": 498,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 9,
+      "gate_number": 1,
+      "horse_number": 2,
+      "horse_name": "イバラヒメ",
+      "horse_id": "2023101298",
+      "sex_age": "牝3",
+      "weight_carried": 53.0,
+      "jockey": "今村聖奈",
+      "trainer": "新開幸一",
+      "finish_time": "2:01.7",
+      "margin": "1/2",
+      "win_odds": 147.6,
+      "popularity": 14,
+      "horse_weight": 434,
+      "horse_weight_diff": -16,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 10,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "エリカアズーラ",
+      "horse_id": "2023102622",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "荻野極",
+      "trainer": "友道康夫",
+      "finish_time": "2:01.7",
+      "margin": "クビ",
+      "win_odds": 6.3,
+      "popularity": 3,
+      "horse_weight": 434,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 11,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "ダイナマイトメロン",
+      "horse_id": "2023101081",
+      "sex_age": "牝3",
+      "weight_carried": 52.0,
+      "jockey": "石田拓郎",
+      "trainer": "伊藤大士",
+      "finish_time": "2:01.8",
+      "margin": "クビ",
+      "win_odds": 28.2,
+      "popularity": 8,
+      "horse_weight": 458,
+      "horse_weight_diff": -10,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 12,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "オウケンサクラコ",
+      "horse_id": "2023105601",
+      "sex_age": "牝1",
+      "weight_carried": 52.0,
+      "jockey": "上里直汰",
+      "trainer": "田中勝春",
+      "finish_time": "2:01.8",
+      "margin": "1/2",
+      "win_odds": 312.6,
+      "popularity": 15,
+      "horse_weight": 414,
+      "horse_weight_diff": -12,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 13,
+      "gate_number": 6,
+      "horse_number": 12,
+      "horse_name": "ストームアイ",
+      "horse_id": "2023104166",
+      "sex_age": "牝7",
+      "weight_carried": 55.0,
+      "jockey": "武藤雅",
+      "trainer": "和田正一",
+      "finish_time": "2:01.9",
+      "margin": "1/2",
+      "win_odds": 362.5,
+      "popularity": 16,
+      "horse_weight": 434,
+      "horse_weight_diff": 14,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 14,
       "gate_number": 8,
       "horse_number": 16,
       "horse_name": "アルファリラエ",
@@ -321,12 +281,52 @@
       "weight_carried": 55.0,
       "jockey": "本田正重",
       "trainer": "田島俊明",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "2:01.9",
+      "margin": "アタマ",
+      "win_odds": 143.7,
+      "popularity": 13,
+      "horse_weight": 408,
+      "horse_weight_diff": 8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 15,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "リリーボレア",
+      "horse_id": "2023106813",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "小沢大仁",
+      "trainer": "高橋一哉",
+      "finish_time": "2:02.1",
+      "margin": "1.1/4",
+      "win_odds": 29.7,
+      "popularity": 9,
+      "horse_weight": 400,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 16,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "オーケーグレイス",
+      "horse_id": "2023104951",
+      "sex_age": "牝5",
+      "weight_carried": 55.0,
+      "jockey": "横山琉人",
+      "trainer": "相沢郁",
+      "finish_time": "2:02.9",
+      "margin": "5",
+      "win_odds": 131.0,
+      "popularity": 12,
+      "horse_weight": 434,
+      "horse_weight_diff": -10,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -507,7 +507,27 @@
           "model_score": 0.021660649819494584,
           "ev_score": 1.4772563176895306
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "8": "サルワールカミーズ",
+        "4": "ナムラオリガミ",
+        "10": "ライツェントライゼ",
+        "7": "ダイヤモンドパレス",
+        "13": "グリミスティ",
+        "15": "エコロディアン",
+        "9": "ゴコウコイコイ",
+        "14": "クインズロベリア",
+        "2": "イバラヒメ",
+        "11": "エリカアズーラ",
+        "3": "ダイナマイトメロン",
+        "5": "オウケンサクラコ",
+        "12": "ストームアイ",
+        "16": "アルファリラエ",
+        "6": "リリーボレア",
+        "1": "オーケーグレイス"
+      }
     },
     {
       "prediction_id": 5608,
@@ -545,7 +565,27 @@
           "model_score": 0.021660649819494584,
           "ev_score": 0.06498194945848375
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "8": "サルワールカミーズ",
+        "4": "ナムラオリガミ",
+        "10": "ライツェントライゼ",
+        "7": "ダイヤモンドパレス",
+        "13": "グリミスティ",
+        "15": "エコロディアン",
+        "9": "ゴコウコイコイ",
+        "14": "クインズロベリア",
+        "2": "イバラヒメ",
+        "11": "エリカアズーラ",
+        "3": "ダイナマイトメロン",
+        "5": "オウケンサクラコ",
+        "12": "ストームアイ",
+        "16": "アルファリラエ",
+        "6": "リリーボレア",
+        "1": "オーケーグレイス"
+      }
     },
     {
       "prediction_id": 5609,
@@ -569,7 +609,27 @@
           "model_score": 0.008833347859068601,
           "ev_score": 3.6146059439308718
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "8": "サルワールカミーズ",
+        "4": "ナムラオリガミ",
+        "10": "ライツェントライゼ",
+        "7": "ダイヤモンドパレス",
+        "13": "グリミスティ",
+        "15": "エコロディアン",
+        "9": "ゴコウコイコイ",
+        "14": "クインズロベリア",
+        "2": "イバラヒメ",
+        "11": "エリカアズーラ",
+        "3": "ダイナマイトメロン",
+        "5": "オウケンサクラコ",
+        "12": "ストームアイ",
+        "16": "アルファリラエ",
+        "6": "リリーボレア",
+        "1": "オーケーグレイス"
+      }
     },
     {
       "prediction_id": 5610,
@@ -593,7 +653,27 @@
           "model_score": 0.008833347859068601,
           "ev_score": 1.5060858099711965
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "8": "サルワールカミーズ",
+        "4": "ナムラオリガミ",
+        "10": "ライツェントライゼ",
+        "7": "ダイヤモンドパレス",
+        "13": "グリミスティ",
+        "15": "エコロディアン",
+        "9": "ゴコウコイコイ",
+        "14": "クインズロベリア",
+        "2": "イバラヒメ",
+        "11": "エリカアズーラ",
+        "3": "ダイナマイトメロン",
+        "5": "オウケンサクラコ",
+        "12": "ストームアイ",
+        "16": "アルファリラエ",
+        "6": "リリーボレア",
+        "1": "オーケーグレイス"
+      }
     },
     {
       "prediction_id": 5611,
@@ -624,7 +704,27 @@
           "model_score": 0.0044166739295343005,
           "ev_score": 3.6146059439308718
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "8": "サルワールカミーズ",
+        "4": "ナムラオリガミ",
+        "10": "ライツェントライゼ",
+        "7": "ダイヤモンドパレス",
+        "13": "グリミスティ",
+        "15": "エコロディアン",
+        "9": "ゴコウコイコイ",
+        "14": "クインズロベリア",
+        "2": "イバラヒメ",
+        "11": "エリカアズーラ",
+        "3": "ダイナマイトメロン",
+        "5": "オウケンサクラコ",
+        "12": "ストームアイ",
+        "16": "アルファリラエ",
+        "6": "リリーボレア",
+        "1": "オーケーグレイス"
+      }
     },
     {
       "prediction_id": 5612,
@@ -676,7 +776,27 @@
           "model_score": 0.00032582422399219497,
           "ev_score": 3.333181811440155
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "8": "サルワールカミーズ",
+        "4": "ナムラオリガミ",
+        "10": "ライツェントライゼ",
+        "7": "ダイヤモンドパレス",
+        "13": "グリミスティ",
+        "15": "エコロディアン",
+        "9": "ゴコウコイコイ",
+        "14": "クインズロベリア",
+        "2": "イバラヒメ",
+        "11": "エリカアズーラ",
+        "3": "ダイナマイトメロン",
+        "5": "オウケンサクラコ",
+        "12": "ストームアイ",
+        "16": "アルファリラエ",
+        "6": "リリーボレア",
+        "1": "オーケーグレイス"
+      }
     },
     {
       "prediction_id": 5628,
@@ -700,7 +820,27 @@
           "model_score": 3.157154715632381,
           "ev_score": 3.157154715632381
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "8": "サルワールカミーズ",
+        "4": "ナムラオリガミ",
+        "10": "ライツェントライゼ",
+        "7": "ダイヤモンドパレス",
+        "13": "グリミスティ",
+        "15": "エコロディアン",
+        "9": "ゴコウコイコイ",
+        "14": "クインズロベリア",
+        "2": "イバラヒメ",
+        "11": "エリカアズーラ",
+        "3": "ダイナマイトメロン",
+        "5": "オウケンサクラコ",
+        "12": "ストームアイ",
+        "16": "アルファリラエ",
+        "6": "リリーボレア",
+        "1": "オーケーグレイス"
+      }
     },
     {
       "prediction_id": 5629,
@@ -752,7 +892,27 @@
           "model_score": 4.586070720009111,
           "ev_score": 4.586070720009111
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 16,
+      "horse_num_to_name": {
+        "8": "サルワールカミーズ",
+        "4": "ナムラオリガミ",
+        "10": "ライツェントライゼ",
+        "7": "ダイヤモンドパレス",
+        "13": "グリミスティ",
+        "15": "エコロディアン",
+        "9": "ゴコウコイコイ",
+        "14": "クインズロベリア",
+        "2": "イバラヒメ",
+        "11": "エリカアズーラ",
+        "3": "ダイナマイトメロン",
+        "5": "オウケンサクラコ",
+        "12": "ストームアイ",
+        "16": "アルファリラエ",
+        "6": "リリーボレア",
+        "1": "オーケーグレイス"
+      }
     },
     {
       "prediction_id": 5630,
@@ -776,7 +936,27 @@
           "model_score": 0.013894166403600758,
           "ev_score": 0.6335739880041945
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "8": "サルワールカミーズ",
+        "4": "ナムラオリガミ",
+        "10": "ライツェントライゼ",
+        "7": "ダイヤモンドパレス",
+        "13": "グリミスティ",
+        "15": "エコロディアン",
+        "9": "ゴコウコイコイ",
+        "14": "クインズロベリア",
+        "2": "イバラヒメ",
+        "11": "エリカアズーラ",
+        "3": "ダイナマイトメロン",
+        "5": "オウケンサクラコ",
+        "12": "ストームアイ",
+        "16": "アルファリラエ",
+        "6": "リリーボレア",
+        "1": "オーケーグレイス"
+      }
     },
     {
       "prediction_id": 5631,
@@ -800,7 +980,27 @@
           "model_score": 0.013894166403600758,
           "ev_score": 0.26398916166841435
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "8": "サルワールカミーズ",
+        "4": "ナムラオリガミ",
+        "10": "ライツェントライゼ",
+        "7": "ダイヤモンドパレス",
+        "13": "グリミスティ",
+        "15": "エコロディアン",
+        "9": "ゴコウコイコイ",
+        "14": "クインズロベリア",
+        "2": "イバラヒメ",
+        "11": "エリカアズーラ",
+        "3": "ダイナマイトメロン",
+        "5": "オウケンサクラコ",
+        "12": "ストームアイ",
+        "16": "アルファリラエ",
+        "6": "リリーボレア",
+        "1": "オーケーグレイス"
+      }
     },
     {
       "prediction_id": 5632,
@@ -824,7 +1024,27 @@
           "model_score": 0.006947083201800379,
           "ev_score": 0.6335739880041945
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "8": "サルワールカミーズ",
+        "4": "ナムラオリガミ",
+        "10": "ライツェントライゼ",
+        "7": "ダイヤモンドパレス",
+        "13": "グリミスティ",
+        "15": "エコロディアン",
+        "9": "ゴコウコイコイ",
+        "14": "クインズロベリア",
+        "2": "イバラヒメ",
+        "11": "エリカアズーラ",
+        "3": "ダイナマイトメロン",
+        "5": "オウケンサクラコ",
+        "12": "ストームアイ",
+        "16": "アルファリラエ",
+        "6": "リリーボレア",
+        "1": "オーケーグレイス"
+      }
     },
     {
       "prediction_id": 5635,
@@ -848,7 +1068,27 @@
           "model_score": 0.003953914992994334,
           "ev_score": 0.9014926184027081
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "8": "サルワールカミーズ",
+        "4": "ナムラオリガミ",
+        "10": "ライツェントライゼ",
+        "7": "ダイヤモンドパレス",
+        "13": "グリミスティ",
+        "15": "エコロディアン",
+        "9": "ゴコウコイコイ",
+        "14": "クインズロベリア",
+        "2": "イバラヒメ",
+        "11": "エリカアズーラ",
+        "3": "ダイナマイトメロン",
+        "5": "オウケンサクラコ",
+        "12": "ストームアイ",
+        "16": "アルファリラエ",
+        "6": "リリーボレア",
+        "1": "オーケーグレイス"
+      }
     },
     {
       "prediction_id": 5636,
@@ -977,7 +1217,27 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.05774436090225564
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "8": "サルワールカミーズ",
+        "4": "ナムラオリガミ",
+        "10": "ライツェントライゼ",
+        "7": "ダイヤモンドパレス",
+        "13": "グリミスティ",
+        "15": "エコロディアン",
+        "9": "ゴコウコイコイ",
+        "14": "クインズロベリア",
+        "2": "イバラヒメ",
+        "11": "エリカアズーラ",
+        "3": "ダイナマイトメロン",
+        "5": "オウケンサクラコ",
+        "12": "ストームアイ",
+        "16": "アルファリラエ",
+        "6": "リリーボレア",
+        "1": "オーケーグレイス"
+      }
     },
     {
       "prediction_id": 5753,
@@ -1001,7 +1261,27 @@
           "model_score": 0.021660649819494584,
           "ev_score": 1.4772563176895306
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "8": "サルワールカミーズ",
+        "4": "ナムラオリガミ",
+        "10": "ライツェントライゼ",
+        "7": "ダイヤモンドパレス",
+        "13": "グリミスティ",
+        "15": "エコロディアン",
+        "9": "ゴコウコイコイ",
+        "14": "クインズロベリア",
+        "2": "イバラヒメ",
+        "11": "エリカアズーラ",
+        "3": "ダイナマイトメロン",
+        "5": "オウケンサクラコ",
+        "12": "ストームアイ",
+        "16": "アルファリラエ",
+        "6": "リリーボレア",
+        "1": "オーケーグレイス"
+      }
     },
     {
       "prediction_id": 5754,
@@ -1039,7 +1319,27 @@
           "model_score": 0.021660649819494584,
           "ev_score": 0.06498194945848375
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "8": "サルワールカミーズ",
+        "4": "ナムラオリガミ",
+        "10": "ライツェントライゼ",
+        "7": "ダイヤモンドパレス",
+        "13": "グリミスティ",
+        "15": "エコロディアン",
+        "9": "ゴコウコイコイ",
+        "14": "クインズロベリア",
+        "2": "イバラヒメ",
+        "11": "エリカアズーラ",
+        "3": "ダイナマイトメロン",
+        "5": "オウケンサクラコ",
+        "12": "ストームアイ",
+        "16": "アルファリラエ",
+        "6": "リリーボレア",
+        "1": "オーケーグレイス"
+      }
     },
     {
       "prediction_id": 5755,
@@ -1070,7 +1370,27 @@
           "model_score": 0.008833347859068601,
           "ev_score": 3.6146059439308718
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "8": "サルワールカミーズ",
+        "4": "ナムラオリガミ",
+        "10": "ライツェントライゼ",
+        "7": "ダイヤモンドパレス",
+        "13": "グリミスティ",
+        "15": "エコロディアン",
+        "9": "ゴコウコイコイ",
+        "14": "クインズロベリア",
+        "2": "イバラヒメ",
+        "11": "エリカアズーラ",
+        "3": "ダイナマイトメロン",
+        "5": "オウケンサクラコ",
+        "12": "ストームアイ",
+        "16": "アルファリラエ",
+        "6": "リリーボレア",
+        "1": "オーケーグレイス"
+      }
     },
     {
       "prediction_id": 5756,
@@ -1101,7 +1421,27 @@
           "model_score": 0.008833347859068601,
           "ev_score": 1.5060858099711965
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "8": "サルワールカミーズ",
+        "4": "ナムラオリガミ",
+        "10": "ライツェントライゼ",
+        "7": "ダイヤモンドパレス",
+        "13": "グリミスティ",
+        "15": "エコロディアン",
+        "9": "ゴコウコイコイ",
+        "14": "クインズロベリア",
+        "2": "イバラヒメ",
+        "11": "エリカアズーラ",
+        "3": "ダイナマイトメロン",
+        "5": "オウケンサクラコ",
+        "12": "ストームアイ",
+        "16": "アルファリラエ",
+        "6": "リリーボレア",
+        "1": "オーケーグレイス"
+      }
     },
     {
       "prediction_id": 5757,
@@ -1146,7 +1486,27 @@
           "model_score": 0.0044166739295343005,
           "ev_score": 3.6146059439308718
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "8": "サルワールカミーズ",
+        "4": "ナムラオリガミ",
+        "10": "ライツェントライゼ",
+        "7": "ダイヤモンドパレス",
+        "13": "グリミスティ",
+        "15": "エコロディアン",
+        "9": "ゴコウコイコイ",
+        "14": "クインズロベリア",
+        "2": "イバラヒメ",
+        "11": "エリカアズーラ",
+        "3": "ダイナマイトメロン",
+        "5": "オウケンサクラコ",
+        "12": "ストームアイ",
+        "16": "アルファリラエ",
+        "6": "リリーボレア",
+        "1": "オーケーグレイス"
+      }
     },
     {
       "prediction_id": 5758,
@@ -1268,7 +1628,27 @@
           "model_score": 0.00032582422399219497,
           "ev_score": 3.333181811440155
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "8": "サルワールカミーズ",
+        "4": "ナムラオリガミ",
+        "10": "ライツェントライゼ",
+        "7": "ダイヤモンドパレス",
+        "13": "グリミスティ",
+        "15": "エコロディアン",
+        "9": "ゴコウコイコイ",
+        "14": "クインズロベリア",
+        "2": "イバラヒメ",
+        "11": "エリカアズーラ",
+        "3": "ダイナマイトメロン",
+        "5": "オウケンサクラコ",
+        "12": "ストームアイ",
+        "16": "アルファリラエ",
+        "6": "リリーボレア",
+        "1": "オーケーグレイス"
+      }
     },
     {
       "prediction_id": 5774,
@@ -1292,7 +1672,27 @@
           "model_score": 3.157154715632381,
           "ev_score": 3.157154715632381
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "8": "サルワールカミーズ",
+        "4": "ナムラオリガミ",
+        "10": "ライツェントライゼ",
+        "7": "ダイヤモンドパレス",
+        "13": "グリミスティ",
+        "15": "エコロディアン",
+        "9": "ゴコウコイコイ",
+        "14": "クインズロベリア",
+        "2": "イバラヒメ",
+        "11": "エリカアズーラ",
+        "3": "ダイナマイトメロン",
+        "5": "オウケンサクラコ",
+        "12": "ストームアイ",
+        "16": "アルファリラエ",
+        "6": "リリーボレア",
+        "1": "オーケーグレイス"
+      }
     },
     {
       "prediction_id": 5775,
@@ -1344,7 +1744,27 @@
           "model_score": 4.586070720009111,
           "ev_score": 4.586070720009111
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 16,
+      "horse_num_to_name": {
+        "8": "サルワールカミーズ",
+        "4": "ナムラオリガミ",
+        "10": "ライツェントライゼ",
+        "7": "ダイヤモンドパレス",
+        "13": "グリミスティ",
+        "15": "エコロディアン",
+        "9": "ゴコウコイコイ",
+        "14": "クインズロベリア",
+        "2": "イバラヒメ",
+        "11": "エリカアズーラ",
+        "3": "ダイナマイトメロン",
+        "5": "オウケンサクラコ",
+        "12": "ストームアイ",
+        "16": "アルファリラエ",
+        "6": "リリーボレア",
+        "1": "オーケーグレイス"
+      }
     },
     {
       "prediction_id": 5776,
@@ -1375,7 +1795,27 @@
           "model_score": 0.013894166403600758,
           "ev_score": 0.6335739880041945
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "8": "サルワールカミーズ",
+        "4": "ナムラオリガミ",
+        "10": "ライツェントライゼ",
+        "7": "ダイヤモンドパレス",
+        "13": "グリミスティ",
+        "15": "エコロディアン",
+        "9": "ゴコウコイコイ",
+        "14": "クインズロベリア",
+        "2": "イバラヒメ",
+        "11": "エリカアズーラ",
+        "3": "ダイナマイトメロン",
+        "5": "オウケンサクラコ",
+        "12": "ストームアイ",
+        "16": "アルファリラエ",
+        "6": "リリーボレア",
+        "1": "オーケーグレイス"
+      }
     },
     {
       "prediction_id": 5777,
@@ -1406,7 +1846,27 @@
           "model_score": 0.013894166403600758,
           "ev_score": 0.26398916166841435
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "8": "サルワールカミーズ",
+        "4": "ナムラオリガミ",
+        "10": "ライツェントライゼ",
+        "7": "ダイヤモンドパレス",
+        "13": "グリミスティ",
+        "15": "エコロディアン",
+        "9": "ゴコウコイコイ",
+        "14": "クインズロベリア",
+        "2": "イバラヒメ",
+        "11": "エリカアズーラ",
+        "3": "ダイナマイトメロン",
+        "5": "オウケンサクラコ",
+        "12": "ストームアイ",
+        "16": "アルファリラエ",
+        "6": "リリーボレア",
+        "1": "オーケーグレイス"
+      }
     },
     {
       "prediction_id": 5778,
@@ -1437,7 +1897,27 @@
           "model_score": 0.006947083201800379,
           "ev_score": 0.6335739880041945
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "8": "サルワールカミーズ",
+        "4": "ナムラオリガミ",
+        "10": "ライツェントライゼ",
+        "7": "ダイヤモンドパレス",
+        "13": "グリミスティ",
+        "15": "エコロディアン",
+        "9": "ゴコウコイコイ",
+        "14": "クインズロベリア",
+        "2": "イバラヒメ",
+        "11": "エリカアズーラ",
+        "3": "ダイナマイトメロン",
+        "5": "オウケンサクラコ",
+        "12": "ストームアイ",
+        "16": "アルファリラエ",
+        "6": "リリーボレア",
+        "1": "オーケーグレイス"
+      }
     },
     {
       "prediction_id": 5781,
@@ -1475,7 +1955,27 @@
           "model_score": 0.003953914992994334,
           "ev_score": 0.9014926184027081
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "8": "サルワールカミーズ",
+        "4": "ナムラオリガミ",
+        "10": "ライツェントライゼ",
+        "7": "ダイヤモンドパレス",
+        "13": "グリミスティ",
+        "15": "エコロディアン",
+        "9": "ゴコウコイコイ",
+        "14": "クインズロベリア",
+        "2": "イバラヒメ",
+        "11": "エリカアズーラ",
+        "3": "ダイナマイトメロン",
+        "5": "オウケンサクラコ",
+        "12": "ストームアイ",
+        "16": "アルファリラエ",
+        "6": "リリーボレア",
+        "1": "オーケーグレイス"
+      }
     },
     {
       "prediction_id": 5782,
@@ -1604,7 +2104,27 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.05774436090225564
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "8": "サルワールカミーズ",
+        "4": "ナムラオリガミ",
+        "10": "ライツェントライゼ",
+        "7": "ダイヤモンドパレス",
+        "13": "グリミスティ",
+        "15": "エコロディアン",
+        "9": "ゴコウコイコイ",
+        "14": "クインズロベリア",
+        "2": "イバラヒメ",
+        "11": "エリカアズーラ",
+        "3": "ダイナマイトメロン",
+        "5": "オウケンサクラコ",
+        "12": "ストームアイ",
+        "16": "アルファリラエ",
+        "6": "リリーボレア",
+        "1": "オーケーグレイス"
+      }
     }
   ],
   "training_evals": {}

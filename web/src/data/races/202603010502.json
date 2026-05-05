@@ -4,11 +4,11 @@
   "date": "2026-04-25",
   "venue": "福島",
   "race_number": 2,
-  "distance": 0,
-  "surface": "",
+  "distance": 1200,
+  "surface": "芝",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "晴",
+  "condition": "良",
   "year": "2026",
   "results": [
     {
@@ -21,12 +21,12 @@
       "weight_carried": 55.0,
       "jockey": "国分恭介",
       "trainer": "高橋康之",
-      "finish_time": null,
+      "finish_time": "1:08.7",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 14.3,
+      "popularity": 4,
+      "horse_weight": 446,
+      "horse_weight_diff": -6,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -41,12 +41,12 @@
       "weight_carried": 55.0,
       "jockey": "舟山瑠泉",
       "trainer": "村田一誠",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:09.3",
+      "margin": "3.1/2",
+      "win_odds": 7.9,
+      "popularity": 3,
+      "horse_weight": 460,
+      "horse_weight_diff": 0,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -61,118 +61,18 @@
       "weight_carried": 52.0,
       "jockey": "小林美駒",
       "trainer": "秋山真一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:09.4",
+      "margin": "1/2",
+      "win_odds": 29.1,
+      "popularity": 8,
+      "horse_weight": 424,
+      "horse_weight_diff": 4,
       "sire": null,
       "dam": null,
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "フェブリノ",
-      "horse_id": "2023104075",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "小沢大仁",
-      "trainer": "加藤公太",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 2,
-      "horse_name": "ブルーハーツ",
-      "horse_id": "2023101627",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "武藤雅",
-      "trainer": "勢司和浩",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "ジョーヌミモザ",
-      "horse_id": "2023100264",
-      "sex_age": "牝1",
-      "weight_carried": 52.0,
-      "jockey": "大久保友",
-      "trainer": "小野次郎",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 4,
-      "horse_name": "フクオトコ",
-      "horse_id": "2023102564",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "菊沢一樹",
-      "trainer": "菊沢隆徳",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 5,
-      "horse_name": "ブレッティレディ",
-      "horse_id": "2023101092",
-      "sex_age": "牝1",
-      "weight_carried": 55.0,
-      "jockey": "横山琉人",
-      "trainer": "高橋一哉",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 4,
       "gate_number": 3,
       "horse_number": 6,
       "horse_name": "セイウンプーパ",
@@ -181,38 +81,78 @@
       "weight_carried": 52.0,
       "jockey": "遠藤汰月",
       "trainer": "奥平雅士",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:09.5",
+      "margin": "3/4",
+      "win_odds": 173.6,
+      "popularity": 14,
+      "horse_weight": 422,
+      "horse_weight_diff": 0,
       "sire": null,
       "dam": null,
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 7,
-      "horse_name": "ケイツースクード",
-      "horse_id": "2023104018",
+      "rank": 5,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "ブレッティレディ",
+      "horse_id": "2023101092",
+      "sex_age": "牝1",
+      "weight_carried": 55.0,
+      "jockey": "横山琉人",
+      "trainer": "高橋一哉",
+      "finish_time": "1:09.7",
+      "margin": "1.1/4",
+      "win_odds": 63.2,
+      "popularity": 9,
+      "horse_weight": 446,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 6,
+      "gate_number": 2,
+      "horse_number": 4,
+      "horse_name": "フクオトコ",
+      "horse_id": "2023102564",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "菊沢一樹",
+      "trainer": "菊沢隆徳",
+      "finish_time": "1:09.7",
+      "margin": "クビ",
+      "win_odds": 1.9,
+      "popularity": 1,
+      "horse_weight": 450,
+      "horse_weight_diff": -8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 7,
+      "gate_number": 1,
+      "horse_number": 2,
+      "horse_name": "ブルーハーツ",
+      "horse_id": "2023101627",
       "sex_age": "牡4",
-      "weight_carried": 54.0,
-      "jockey": "上里直汰",
-      "trainer": "萱野浩二",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "weight_carried": 57.0,
+      "jockey": "武藤雅",
+      "trainer": "勢司和浩",
+      "finish_time": "1:09.8",
+      "margin": "クビ",
+      "win_odds": 26.5,
+      "popularity": 7,
+      "horse_weight": 480,
+      "horse_weight_diff": -4,
       "sire": null,
       "dam": null,
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 8,
       "gate_number": 4,
       "horse_number": 8,
       "horse_name": "ウィズアツインクル",
@@ -221,58 +161,38 @@
       "weight_carried": 57.0,
       "jockey": "富田暁",
       "trainer": "牧光二",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:10.0",
+      "margin": "1.1/4",
+      "win_odds": 3.6,
+      "popularity": 2,
+      "horse_weight": 484,
+      "horse_weight_diff": -2,
       "sire": null,
       "dam": null,
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 9,
-      "horse_name": "ジューンスマッシュ",
-      "horse_id": "2023106699",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "本田正重",
-      "trainer": "杉山佳明",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "rank": 9,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "フェブリノ",
+      "horse_id": "2023104075",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "小沢大仁",
+      "trainer": "加藤公太",
+      "finish_time": "1:10.2",
+      "margin": "1.1/4",
+      "win_odds": 14.6,
+      "popularity": 5,
+      "horse_weight": 400,
+      "horse_weight_diff": 2,
       "sire": null,
       "dam": null,
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 10,
-      "horse_name": "エンチャンテッド",
-      "horse_id": "2023104082",
-      "sex_age": "牝4",
-      "weight_carried": 53.0,
-      "jockey": "今村聖奈",
-      "trainer": "佐藤吉勝",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 10,
       "gate_number": 7,
       "horse_number": 13,
       "horse_name": "エクスペクタント",
@@ -281,18 +201,78 @@
       "weight_carried": 54.0,
       "jockey": "和田陽希",
       "trainer": "西園翔太",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:10.3",
+      "margin": "3/4",
+      "win_odds": 19.5,
+      "popularity": 6,
+      "horse_weight": 466,
+      "horse_weight_diff": 0,
       "sire": null,
       "dam": null,
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 11,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "ケイツースクード",
+      "horse_id": "2023104018",
+      "sex_age": "牡4",
+      "weight_carried": 54.0,
+      "jockey": "上里直汰",
+      "trainer": "萱野浩二",
+      "finish_time": "1:10.5",
+      "margin": "1",
+      "win_odds": 314.7,
+      "popularity": 16,
+      "horse_weight": 416,
+      "horse_weight_diff": -8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 12,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "ジューンスマッシュ",
+      "horse_id": "2023106699",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "本田正重",
+      "trainer": "杉山佳明",
+      "finish_time": "1:10.5",
+      "margin": "クビ",
+      "win_odds": 89.2,
+      "popularity": 11,
+      "horse_weight": 446,
+      "horse_weight_diff": 8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 13,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "ジョーヌミモザ",
+      "horse_id": "2023100264",
+      "sex_age": "牝1",
+      "weight_carried": 52.0,
+      "jockey": "大久保友",
+      "trainer": "小野次郎",
+      "finish_time": "1:10.9",
+      "margin": "2.1/2",
+      "win_odds": 135.9,
+      "popularity": 12,
+      "horse_weight": 422,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 14,
       "gate_number": 7,
       "horse_number": 14,
       "horse_name": "アヴァンフライト",
@@ -301,18 +281,38 @@
       "weight_carried": 52.0,
       "jockey": "石田拓郎",
       "trainer": "上原佑紀",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:11.4",
+      "margin": "3.1/2",
+      "win_odds": 79.1,
+      "popularity": 10,
+      "horse_weight": 440,
+      "horse_weight_diff": -2,
       "sire": null,
       "dam": null,
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 15,
+      "gate_number": 5,
+      "horse_number": 10,
+      "horse_name": "エンチャンテッド",
+      "horse_id": "2023104082",
+      "sex_age": "牝4",
+      "weight_carried": 53.0,
+      "jockey": "今村聖奈",
+      "trainer": "佐藤吉勝",
+      "finish_time": "1:12.3",
+      "margin": "5",
+      "win_odds": 198.1,
+      "popularity": 15,
+      "horse_weight": 406,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 16,
       "gate_number": 8,
       "horse_number": 15,
       "horse_name": "バッカス",
@@ -321,12 +321,12 @@
       "weight_carried": 57.0,
       "jockey": "斎藤新",
       "trainer": "長谷川浩",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:16.0",
+      "margin": "大",
+      "win_odds": 156.9,
+      "popularity": 13,
+      "horse_weight": 470,
+      "horse_weight_diff": 2,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -531,7 +531,27 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.8565413533834587
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "11": "フィラーエ",
+        "16": "シルバーアックス",
+        "12": "ナデシコザクラ",
+        "6": "セイウンプーパ",
+        "5": "ブレッティレディ",
+        "4": "フクオトコ",
+        "2": "ブルーハーツ",
+        "8": "ウィズアツインクル",
+        "1": "フェブリノ",
+        "13": "エクスペクタント",
+        "7": "ケイツースクード",
+        "9": "ジューンスマッシュ",
+        "3": "ジョーヌミモザ",
+        "14": "アヴァンフライト",
+        "10": "エンチャンテッド",
+        "15": "バッカス"
+      }
     },
     {
       "prediction_id": 5542,
@@ -569,7 +589,27 @@
           "model_score": 0.011504370682804571,
           "ev_score": 0.034513112048413716
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "11": "フィラーエ",
+        "16": "シルバーアックス",
+        "12": "ナデシコザクラ",
+        "6": "セイウンプーパ",
+        "5": "ブレッティレディ",
+        "4": "フクオトコ",
+        "2": "ブルーハーツ",
+        "8": "ウィズアツインクル",
+        "1": "フェブリノ",
+        "13": "エクスペクタント",
+        "7": "ケイツースクード",
+        "9": "ジューンスマッシュ",
+        "3": "ジョーヌミモザ",
+        "14": "アヴァンフライト",
+        "10": "エンチャンテッド",
+        "15": "バッカス"
+      }
     },
     {
       "prediction_id": 5543,
@@ -593,7 +633,27 @@
           "model_score": 0.010725457828824551,
           "ev_score": 4.0
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "11": "フィラーエ",
+        "16": "シルバーアックス",
+        "12": "ナデシコザクラ",
+        "6": "セイウンプーパ",
+        "5": "ブレッティレディ",
+        "4": "フクオトコ",
+        "2": "ブルーハーツ",
+        "8": "ウィズアツインクル",
+        "1": "フェブリノ",
+        "13": "エクスペクタント",
+        "7": "ケイツースクード",
+        "9": "ジューンスマッシュ",
+        "3": "ジョーヌミモザ",
+        "14": "アヴァンフライト",
+        "10": "エンチャンテッド",
+        "15": "バッカス"
+      }
     },
     {
       "prediction_id": 5544,
@@ -617,7 +677,27 @@
           "model_score": 0.010725457828824551,
           "ev_score": 1.9091314935307702
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "11": "フィラーエ",
+        "16": "シルバーアックス",
+        "12": "ナデシコザクラ",
+        "6": "セイウンプーパ",
+        "5": "ブレッティレディ",
+        "4": "フクオトコ",
+        "2": "ブルーハーツ",
+        "8": "ウィズアツインクル",
+        "1": "フェブリノ",
+        "13": "エクスペクタント",
+        "7": "ケイツースクード",
+        "9": "ジューンスマッシュ",
+        "3": "ジョーヌミモザ",
+        "14": "アヴァンフライト",
+        "10": "エンチャンテッド",
+        "15": "バッカス"
+      }
     },
     {
       "prediction_id": 5545,
@@ -648,7 +728,27 @@
           "model_score": 0.005362728914412276,
           "ev_score": 4.581915584473848
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "11": "フィラーエ",
+        "16": "シルバーアックス",
+        "12": "ナデシコザクラ",
+        "6": "セイウンプーパ",
+        "5": "ブレッティレディ",
+        "4": "フクオトコ",
+        "2": "ブルーハーツ",
+        "8": "ウィズアツインクル",
+        "1": "フェブリノ",
+        "13": "エクスペクタント",
+        "7": "ケイツースクード",
+        "9": "ジューンスマッシュ",
+        "3": "ジョーヌミモザ",
+        "14": "アヴァンフライト",
+        "10": "エンチャンテッド",
+        "15": "バッカス"
+      }
     },
     {
       "prediction_id": 5546,
@@ -700,7 +800,27 @@
           "model_score": 0.00038305206531516245,
           "ev_score": 4.090996057565935
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "11": "フィラーエ",
+        "16": "シルバーアックス",
+        "12": "ナデシコザクラ",
+        "6": "セイウンプーパ",
+        "5": "ブレッティレディ",
+        "4": "フクオトコ",
+        "2": "ブルーハーツ",
+        "8": "ウィズアツインクル",
+        "1": "フェブリノ",
+        "13": "エクスペクタント",
+        "7": "ケイツースクード",
+        "9": "ジューンスマッシュ",
+        "3": "ジョーヌミモザ",
+        "14": "アヴァンフライト",
+        "10": "エンチャンテッド",
+        "15": "バッカス"
+      }
     },
     {
       "prediction_id": 5554,
@@ -724,7 +844,27 @@
           "model_score": 3.2755645115543865,
           "ev_score": 3.2755645115543865
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "11": "フィラーエ",
+        "16": "シルバーアックス",
+        "12": "ナデシコザクラ",
+        "6": "セイウンプーパ",
+        "5": "ブレッティレディ",
+        "4": "フクオトコ",
+        "2": "ブルーハーツ",
+        "8": "ウィズアツインクル",
+        "1": "フェブリノ",
+        "13": "エクスペクタント",
+        "7": "ケイツースクード",
+        "9": "ジューンスマッシュ",
+        "3": "ジョーヌミモザ",
+        "14": "アヴァンフライト",
+        "10": "エンチャンテッド",
+        "15": "バッカス"
+      }
     },
     {
       "prediction_id": 5555,
@@ -776,7 +916,27 @@
           "model_score": 3.3202518015458624,
           "ev_score": 3.3202518015458624
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 8,
+      "horse_num_to_name": {
+        "11": "フィラーエ",
+        "16": "シルバーアックス",
+        "12": "ナデシコザクラ",
+        "6": "セイウンプーパ",
+        "5": "ブレッティレディ",
+        "4": "フクオトコ",
+        "2": "ブルーハーツ",
+        "8": "ウィズアツインクル",
+        "1": "フェブリノ",
+        "13": "エクスペクタント",
+        "7": "ケイツースクード",
+        "9": "ジューンスマッシュ",
+        "3": "ジョーヌミモザ",
+        "14": "アヴァンフライト",
+        "10": "エンチャンテッド",
+        "15": "バッカス"
+      }
     },
     {
       "prediction_id": 5556,
@@ -800,7 +960,27 @@
           "model_score": 0.028096678969199228,
           "ev_score": 4.0
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "11": "フィラーエ",
+        "16": "シルバーアックス",
+        "12": "ナデシコザクラ",
+        "6": "セイウンプーパ",
+        "5": "ブレッティレディ",
+        "4": "フクオトコ",
+        "2": "ブルーハーツ",
+        "8": "ウィズアツインクル",
+        "1": "フェブリノ",
+        "13": "エクスペクタント",
+        "7": "ケイツースクード",
+        "9": "ジューンスマッシュ",
+        "3": "ジョーヌミモザ",
+        "14": "アヴァンフライト",
+        "10": "エンチャンテッド",
+        "15": "バッカス"
+      }
     },
     {
       "prediction_id": 5557,
@@ -824,7 +1004,27 @@
           "model_score": 0.028096678969199228,
           "ev_score": 3.0
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "11": "フィラーエ",
+        "16": "シルバーアックス",
+        "12": "ナデシコザクラ",
+        "6": "セイウンプーパ",
+        "5": "ブレッティレディ",
+        "4": "フクオトコ",
+        "2": "ブルーハーツ",
+        "8": "ウィズアツインクル",
+        "1": "フェブリノ",
+        "13": "エクスペクタント",
+        "7": "ケイツースクード",
+        "9": "ジューンスマッシュ",
+        "3": "ジョーヌミモザ",
+        "14": "アヴァンフライト",
+        "10": "エンチャンテッド",
+        "15": "バッカス"
+      }
     },
     {
       "prediction_id": 5558,
@@ -848,7 +1048,27 @@
           "model_score": 0.014049870431320818,
           "ev_score": 5.0
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "11": "フィラーエ",
+        "16": "シルバーアックス",
+        "12": "ナデシコザクラ",
+        "6": "セイウンプーパ",
+        "5": "ブレッティレディ",
+        "4": "フクオトコ",
+        "2": "ブルーハーツ",
+        "8": "ウィズアツインクル",
+        "1": "フェブリノ",
+        "13": "エクスペクタント",
+        "7": "ケイツースクード",
+        "9": "ジューンスマッシュ",
+        "3": "ジョーヌミモザ",
+        "14": "アヴァンフライト",
+        "10": "エンチャンテッド",
+        "15": "バッカス"
+      }
     },
     {
       "prediction_id": 5561,
@@ -872,7 +1092,27 @@
           "model_score": 0.012069425642519295,
           "ev_score": 5.0
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "11": "フィラーエ",
+        "16": "シルバーアックス",
+        "12": "ナデシコザクラ",
+        "6": "セイウンプーパ",
+        "5": "ブレッティレディ",
+        "4": "フクオトコ",
+        "2": "ブルーハーツ",
+        "8": "ウィズアツインクル",
+        "1": "フェブリノ",
+        "13": "エクスペクタント",
+        "7": "ケイツースクード",
+        "9": "ジューンスマッシュ",
+        "3": "ジョーヌミモザ",
+        "14": "アヴァンフライト",
+        "10": "エンチャンテッド",
+        "15": "バッカス"
+      }
     },
     {
       "prediction_id": 5562,
@@ -1001,7 +1241,27 @@
           "model_score": 0.010452961672473868,
           "ev_score": 0.1285714285714286
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "11": "フィラーエ",
+        "16": "シルバーアックス",
+        "12": "ナデシコザクラ",
+        "6": "セイウンプーパ",
+        "5": "ブレッティレディ",
+        "4": "フクオトコ",
+        "2": "ブルーハーツ",
+        "8": "ウィズアツインクル",
+        "1": "フェブリノ",
+        "13": "エクスペクタント",
+        "7": "ケイツースクード",
+        "9": "ジューンスマッシュ",
+        "3": "ジョーヌミモザ",
+        "14": "アヴァンフライト",
+        "10": "エンチャンテッド",
+        "15": "バッカス"
+      }
     },
     {
       "prediction_id": 5721,
@@ -1025,7 +1285,27 @@
           "model_score": 0.021660649819494584,
           "ev_score": 1.5422382671480144
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "11": "フィラーエ",
+        "16": "シルバーアックス",
+        "12": "ナデシコザクラ",
+        "6": "セイウンプーパ",
+        "5": "ブレッティレディ",
+        "4": "フクオトコ",
+        "2": "ブルーハーツ",
+        "8": "ウィズアツインクル",
+        "1": "フェブリノ",
+        "13": "エクスペクタント",
+        "7": "ケイツースクード",
+        "9": "ジューンスマッシュ",
+        "3": "ジョーヌミモザ",
+        "14": "アヴァンフライト",
+        "10": "エンチャンテッド",
+        "15": "バッカス"
+      }
     },
     {
       "prediction_id": 5722,
@@ -1063,7 +1343,27 @@
           "model_score": 0.01845045827565303,
           "ev_score": 0.05535137482695909
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "11": "フィラーエ",
+        "16": "シルバーアックス",
+        "12": "ナデシコザクラ",
+        "6": "セイウンプーパ",
+        "5": "ブレッティレディ",
+        "4": "フクオトコ",
+        "2": "ブルーハーツ",
+        "8": "ウィズアツインクル",
+        "1": "フェブリノ",
+        "13": "エクスペクタント",
+        "7": "ケイツースクード",
+        "9": "ジューンスマッシュ",
+        "3": "ジョーヌミモザ",
+        "14": "アヴァンフライト",
+        "10": "エンチャンテッド",
+        "15": "バッカス"
+      }
     },
     {
       "prediction_id": 5723,
@@ -1094,7 +1394,27 @@
           "model_score": 0.02445603639721367,
           "ev_score": 4.0
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "11": "フィラーエ",
+        "16": "シルバーアックス",
+        "12": "ナデシコザクラ",
+        "6": "セイウンプーパ",
+        "5": "ブレッティレディ",
+        "4": "フクオトコ",
+        "2": "ブルーハーツ",
+        "8": "ウィズアツインクル",
+        "1": "フェブリノ",
+        "13": "エクスペクタント",
+        "7": "ケイツースクード",
+        "9": "ジューンスマッシュ",
+        "3": "ジョーヌミモザ",
+        "14": "アヴァンフライト",
+        "10": "エンチャンテッド",
+        "15": "バッカス"
+      }
     },
     {
       "prediction_id": 5724,
@@ -1125,7 +1445,27 @@
           "model_score": 0.02445603639721367,
           "ev_score": 3.0
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "11": "フィラーエ",
+        "16": "シルバーアックス",
+        "12": "ナデシコザクラ",
+        "6": "セイウンプーパ",
+        "5": "ブレッティレディ",
+        "4": "フクオトコ",
+        "2": "ブルーハーツ",
+        "8": "ウィズアツインクル",
+        "1": "フェブリノ",
+        "13": "エクスペクタント",
+        "7": "ケイツースクード",
+        "9": "ジューンスマッシュ",
+        "3": "ジョーヌミモザ",
+        "14": "アヴァンフライト",
+        "10": "エンチャンテッド",
+        "15": "バッカス"
+      }
     },
     {
       "prediction_id": 5725,
@@ -1170,7 +1510,27 @@
           "model_score": 0.012228018198606834,
           "ev_score": 5.0
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "11": "フィラーエ",
+        "16": "シルバーアックス",
+        "12": "ナデシコザクラ",
+        "6": "セイウンプーパ",
+        "5": "ブレッティレディ",
+        "4": "フクオトコ",
+        "2": "ブルーハーツ",
+        "8": "ウィズアツインクル",
+        "1": "フェブリノ",
+        "13": "エクスペクタント",
+        "7": "ケイツースクード",
+        "9": "ジューンスマッシュ",
+        "3": "ジョーヌミモザ",
+        "14": "アヴァンフライト",
+        "10": "エンチャンテッド",
+        "15": "バッカス"
+      }
     },
     {
       "prediction_id": 5727,
@@ -1208,7 +1568,27 @@
           "model_score": 0.0051084716078565184,
           "ev_score": 5.0
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "11": "フィラーエ",
+        "16": "シルバーアックス",
+        "12": "ナデシコザクラ",
+        "6": "セイウンプーパ",
+        "5": "ブレッティレディ",
+        "4": "フクオトコ",
+        "2": "ブルーハーツ",
+        "8": "ウィズアツインクル",
+        "1": "フェブリノ",
+        "13": "エクスペクタント",
+        "7": "ケイツースクード",
+        "9": "ジューンスマッシュ",
+        "3": "ジョーヌミモザ",
+        "14": "アヴァンフライト",
+        "10": "エンチャンテッド",
+        "15": "バッカス"
+      }
     },
     {
       "prediction_id": 5728,
@@ -1330,7 +1710,27 @@
           "model_score": 0.0008986757717102938,
           "ev_score": 6.0
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "11": "フィラーエ",
+        "16": "シルバーアックス",
+        "12": "ナデシコザクラ",
+        "6": "セイウンプーパ",
+        "5": "ブレッティレディ",
+        "4": "フクオトコ",
+        "2": "ブルーハーツ",
+        "8": "ウィズアツインクル",
+        "1": "フェブリノ",
+        "13": "エクスペクタント",
+        "7": "ケイツースクード",
+        "9": "ジューンスマッシュ",
+        "3": "ジョーヌミモザ",
+        "14": "アヴァンフライト",
+        "10": "エンチャンテッド",
+        "15": "バッカス"
+      }
     },
     {
       "prediction_id": 5744,
@@ -1354,7 +1754,27 @@
           "model_score": 2.761879717603518,
           "ev_score": 2.761879717603518
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "11": "フィラーエ",
+        "16": "シルバーアックス",
+        "12": "ナデシコザクラ",
+        "6": "セイウンプーパ",
+        "5": "ブレッティレディ",
+        "4": "フクオトコ",
+        "2": "ブルーハーツ",
+        "8": "ウィズアツインクル",
+        "1": "フェブリノ",
+        "13": "エクスペクタント",
+        "7": "ケイツースクード",
+        "9": "ジューンスマッシュ",
+        "3": "ジョーヌミモザ",
+        "14": "アヴァンフライト",
+        "10": "エンチャンテッド",
+        "15": "バッカス"
+      }
     },
     {
       "prediction_id": 5745,
@@ -1406,7 +1826,27 @@
           "model_score": 4.502119702432733,
           "ev_score": 4.502119702432733
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 16,
+      "horse_num_to_name": {
+        "11": "フィラーエ",
+        "16": "シルバーアックス",
+        "12": "ナデシコザクラ",
+        "6": "セイウンプーパ",
+        "5": "ブレッティレディ",
+        "4": "フクオトコ",
+        "2": "ブルーハーツ",
+        "8": "ウィズアツインクル",
+        "1": "フェブリノ",
+        "13": "エクスペクタント",
+        "7": "ケイツースクード",
+        "9": "ジューンスマッシュ",
+        "3": "ジョーヌミモザ",
+        "14": "アヴァンフライト",
+        "10": "エンチャンテッド",
+        "15": "バッカス"
+      }
     },
     {
       "prediction_id": 5746,
@@ -1437,7 +1877,27 @@
           "model_score": 0.014871369440575415,
           "ev_score": 4.0
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "11": "フィラーエ",
+        "16": "シルバーアックス",
+        "12": "ナデシコザクラ",
+        "6": "セイウンプーパ",
+        "5": "ブレッティレディ",
+        "4": "フクオトコ",
+        "2": "ブルーハーツ",
+        "8": "ウィズアツインクル",
+        "1": "フェブリノ",
+        "13": "エクスペクタント",
+        "7": "ケイツースクード",
+        "9": "ジューンスマッシュ",
+        "3": "ジョーヌミモザ",
+        "14": "アヴァンフライト",
+        "10": "エンチャンテッド",
+        "15": "バッカス"
+      }
     },
     {
       "prediction_id": 5747,
@@ -1468,7 +1928,27 @@
           "model_score": 0.014871369440575415,
           "ev_score": 3.0
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "11": "フィラーエ",
+        "16": "シルバーアックス",
+        "12": "ナデシコザクラ",
+        "6": "セイウンプーパ",
+        "5": "ブレッティレディ",
+        "4": "フクオトコ",
+        "2": "ブルーハーツ",
+        "8": "ウィズアツインクル",
+        "1": "フェブリノ",
+        "13": "エクスペクタント",
+        "7": "ケイツースクード",
+        "9": "ジューンスマッシュ",
+        "3": "ジョーヌミモザ",
+        "14": "アヴァンフライト",
+        "10": "エンチャンテッド",
+        "15": "バッカス"
+      }
     },
     {
       "prediction_id": 5748,
@@ -1499,7 +1979,27 @@
           "model_score": 0.007436010243393108,
           "ev_score": 5.0
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "11": "フィラーエ",
+        "16": "シルバーアックス",
+        "12": "ナデシコザクラ",
+        "6": "セイウンプーパ",
+        "5": "ブレッティレディ",
+        "4": "フクオトコ",
+        "2": "ブルーハーツ",
+        "8": "ウィズアツインクル",
+        "1": "フェブリノ",
+        "13": "エクスペクタント",
+        "7": "ケイツースクード",
+        "9": "ジューンスマッシュ",
+        "3": "ジョーヌミモザ",
+        "14": "アヴァンフライト",
+        "10": "エンチャンテッド",
+        "15": "バッカス"
+      }
     },
     {
       "prediction_id": 5751,
@@ -1537,7 +2037,27 @@
           "model_score": 0.004062365935135839,
           "ev_score": 5.0
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "11": "フィラーエ",
+        "16": "シルバーアックス",
+        "12": "ナデシコザクラ",
+        "6": "セイウンプーパ",
+        "5": "ブレッティレディ",
+        "4": "フクオトコ",
+        "2": "ブルーハーツ",
+        "8": "ウィズアツインクル",
+        "1": "フェブリノ",
+        "13": "エクスペクタント",
+        "7": "ケイツースクード",
+        "9": "ジューンスマッシュ",
+        "3": "ジョーヌミモザ",
+        "14": "アヴァンフライト",
+        "10": "エンチャンテッド",
+        "15": "バッカス"
+      }
     },
     {
       "prediction_id": 5752,
@@ -1666,7 +2186,27 @@
           "model_score": 0.010452961672473868,
           "ev_score": 1.6411149825783973
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "11": "フィラーエ",
+        "16": "シルバーアックス",
+        "12": "ナデシコザクラ",
+        "6": "セイウンプーパ",
+        "5": "ブレッティレディ",
+        "4": "フクオトコ",
+        "2": "ブルーハーツ",
+        "8": "ウィズアツインクル",
+        "1": "フェブリノ",
+        "13": "エクスペクタント",
+        "7": "ケイツースクード",
+        "9": "ジューンスマッシュ",
+        "3": "ジョーヌミモザ",
+        "14": "アヴァンフライト",
+        "10": "エンチャンテッド",
+        "15": "バッカス"
+      }
     }
   ],
   "training_evals": {}

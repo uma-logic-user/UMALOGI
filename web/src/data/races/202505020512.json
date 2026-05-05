@@ -12,27 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 4,
-      "horse_number": 7,
-      "horse_name": "イノセントキャット",
-      "horse_id": "2021104745",
-      "sex_age": "牝1",
-      "weight_carried": 56.0,
-      "jockey": "横山武史",
-      "trainer": "久保田貴",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 2,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "フラーハ",
@@ -42,7 +22,7 @@
       "jockey": "ディー",
       "trainer": "嘉藤貴行",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -50,26 +30,6 @@
       "sire": "ドレフォンDrefong(米)",
       "dam": "ナンシーフロムナイロビNancy From Nairobi(英)",
       "dam_sire": "Sixties Icon(英)"
-    },
-    {
-      "rank": 3,
-      "gate_number": 6,
-      "horse_number": 12,
-      "horse_name": "ウェイトゥゴー",
-      "horse_id": "2021104413",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "横山和生",
-      "trainer": "昆貢",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "サンダースノーThunder Snow(愛)",
-      "dam": "チラリ",
-      "dam_sire": "チチカステナンゴChichicastenango(仏)"
     },
     {
       "rank": null,
@@ -82,7 +42,7 @@
       "jockey": "北村宏司",
       "trainer": "田中勝春",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +62,7 @@
       "jockey": "津村明秀",
       "trainer": "鈴木伸尋",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +82,7 @@
       "jockey": "古川吉洋",
       "trainer": "国枝栄",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +102,7 @@
       "jockey": "江田照男",
       "trainer": "鈴木慎太",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +122,7 @@
       "jockey": "菅原明良",
       "trainer": "谷潔",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -170,6 +130,26 @@
       "sire": "エイシンフラッシュ",
       "dam": "ヤマカツオーキッド",
       "dam_sire": "ダンスインザダーク"
+    },
+    {
+      "rank": null,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "イノセントキャット",
+      "horse_id": "2021104745",
+      "sex_age": "牝1",
+      "weight_carried": 56.0,
+      "jockey": "横山武史",
+      "trainer": "久保田貴",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -182,7 +162,7 @@
       "jockey": "木幡巧也",
       "trainer": "伊藤圭三",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -202,7 +182,7 @@
       "jockey": "岩田望来",
       "trainer": "伊藤圭三",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -222,7 +202,7 @@
       "jockey": "田辺裕信",
       "trainer": "小手川準",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -242,7 +222,7 @@
       "jockey": "三浦皇成",
       "trainer": "尾関知人",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -250,6 +230,26 @@
       "sire": "キズナ",
       "dam": "ナギット",
       "dam_sire": "Smart Strike(加)"
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 12,
+      "horse_name": "ウェイトゥゴー",
+      "horse_id": "2021104413",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "横山和生",
+      "trainer": "昆貢",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "サンダースノーThunder Snow(愛)",
+      "dam": "チラリ",
+      "dam_sire": "チチカステナンゴChichicastenango(仏)"
     },
     {
       "rank": null,
@@ -262,7 +262,7 @@
       "jockey": "永島まな",
       "trainer": "高橋康之",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -282,7 +282,7 @@
       "jockey": "石橋脩",
       "trainer": "鈴木慎太",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -302,7 +302,7 @@
       "jockey": "遠藤汰月",
       "trainer": "杉浦宏昭",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -322,7 +322,7 @@
       "jockey": "伊藤工真",
       "trainer": "林徹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -338,6 +338,12 @@
       "combination": "7",
       "payout": 230,
       "popularity": 1
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "16",
+      "payout": 16000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -370,6 +376,12 @@
       "popularity": 9
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-40",
+      "payout": 1010,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "7-12",
       "payout": 1160,
@@ -383,9 +395,21 @@
     },
     {
       "bet_type": "ワイド",
+      "combination": "6",
+      "payout": 20091,
+      "popularity": 20
+    },
+    {
+      "bet_type": "ワイド",
       "combination": "1-12",
       "payout": 8630,
       "popularity": 59
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 40000,
+      "popularity": null
     },
     {
       "bet_type": "馬単",
@@ -394,10 +418,34 @@
       "popularity": 13
     },
     {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 7000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-7-12",
       "payout": 20690,
       "popularity": 61
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "11-60",
+      "payout": 1201,
+      "popularity": 120
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "13-30-1",
+      "payout": 40712,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "86",
+      "payout": 30059,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

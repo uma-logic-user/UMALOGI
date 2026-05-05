@@ -4,11 +4,11 @@
   "date": "2026-04-25",
   "venue": "福島",
   "race_number": 5,
-  "distance": 0,
-  "surface": "",
+  "distance": 2000,
+  "surface": "芝",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "晴",
+  "condition": "良",
   "year": "2026",
   "results": [
     {
@@ -21,12 +21,12 @@
       "weight_carried": 57.0,
       "jockey": "石川裕紀",
       "trainer": "上原佑紀",
-      "finish_time": null,
+      "finish_time": "2:00.4",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 2.6,
+      "popularity": 1,
+      "horse_weight": 470,
+      "horse_weight_diff": -2,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -41,12 +41,12 @@
       "weight_carried": 54.0,
       "jockey": "遠藤汰月",
       "trainer": "深山雅史",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "2:00.8",
+      "margin": "2.1/2",
+      "win_odds": 6.9,
+      "popularity": 3,
+      "horse_weight": 442,
+      "horse_weight_diff": -4,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -61,158 +61,18 @@
       "weight_carried": 57.0,
       "jockey": "武藤雅",
       "trainer": "勢司和浩",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "2:01.0",
+      "margin": "1.1/2",
+      "win_odds": 25.4,
+      "popularity": 9,
+      "horse_weight": 478,
+      "horse_weight_diff": -2,
       "sire": null,
       "dam": null,
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 2,
-      "horse_name": "ナディア",
-      "horse_id": "2023105951",
-      "sex_age": "牝1",
-      "weight_carried": 53.0,
-      "jockey": "舟山瑠泉",
-      "trainer": "菊川正達",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "ルミノヴァンクール",
-      "horse_id": "2023103831",
-      "sex_age": "牡1",
-      "weight_carried": 57.0,
-      "jockey": "丹内祐次",
-      "trainer": "金成貴史",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 4,
-      "horse_name": "ナムラシンジロー",
-      "horse_id": "2023100672",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "松本大輝",
-      "trainer": "羽月友彦",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 5,
-      "horse_name": "ブルーブロディ",
-      "horse_id": "2023103835",
-      "sex_age": "牡3",
-      "weight_carried": 54.0,
-      "jockey": "上里直汰",
-      "trainer": "伊坂重信",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 6,
-      "horse_name": "イザショウブ",
-      "horse_id": "2023100600",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "長岡禎仁",
-      "trainer": "高橋亮",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 7,
-      "horse_name": "ピコブロッサム",
-      "horse_id": "2023107510",
-      "sex_age": "牝3",
-      "weight_carried": 50.0,
-      "jockey": "石田拓郎",
-      "trainer": "伊藤大士",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 9,
-      "horse_name": "ウマナミカイドウ",
-      "horse_id": "2023100465",
-      "sex_age": "騸4",
-      "weight_carried": 53.0,
-      "jockey": "河原田菜",
-      "trainer": "天間昭一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 4,
       "gate_number": 5,
       "horse_number": 10,
       "horse_name": "タイキアロハ",
@@ -221,18 +81,38 @@
       "weight_carried": 57.0,
       "jockey": "菊沢一樹",
       "trainer": "西田雄一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "2:01.1",
+      "margin": "アタマ",
+      "win_odds": 16.1,
+      "popularity": 6,
+      "horse_weight": 480,
+      "horse_weight_diff": 2,
       "sire": null,
       "dam": null,
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 5,
+      "gate_number": 2,
+      "horse_number": 4,
+      "horse_name": "ナムラシンジロー",
+      "horse_id": "2023100672",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "松本大輝",
+      "trainer": "羽月友彦",
+      "finish_time": "2:01.2",
+      "margin": "1",
+      "win_odds": 121.9,
+      "popularity": 12,
+      "horse_weight": 444,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 6,
       "gate_number": 6,
       "horse_number": 12,
       "horse_name": "コンフィグシス",
@@ -241,78 +121,18 @@
       "weight_carried": 55.0,
       "jockey": "丸田恭介",
       "trainer": "小笠倫弘",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "2:01.3",
+      "margin": "1/2",
+      "win_odds": 19.5,
+      "popularity": 7,
+      "horse_weight": 452,
+      "horse_weight_diff": 2,
       "sire": null,
       "dam": null,
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 13,
-      "horse_name": "ヒロイックヴァース",
-      "horse_id": "2023102418",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "荻野極",
-      "trainer": "浅利英明",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 14,
-      "horse_name": "イノセントホープ",
-      "horse_id": "2023103328",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "横山琉人",
-      "trainer": "小島茂之",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 15,
-      "horse_name": "トレセデオロ",
-      "horse_id": "2023102771",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "富田暁",
-      "trainer": "清水久詞",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 7,
       "gate_number": 8,
       "horse_number": 16,
       "horse_name": "レイアン",
@@ -321,12 +141,192 @@
       "weight_carried": 52.0,
       "jockey": "和田陽希",
       "trainer": "笹田和秀",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "2:01.5",
+      "margin": "1.1/4",
+      "win_odds": 209.7,
+      "popularity": 15,
+      "horse_weight": 426,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 8,
+      "gate_number": 1,
+      "horse_number": 2,
+      "horse_name": "ナディア",
+      "horse_id": "2023105951",
+      "sex_age": "牝1",
+      "weight_carried": 53.0,
+      "jockey": "舟山瑠泉",
+      "trainer": "菊川正達",
+      "finish_time": "2:01.6",
+      "margin": "1/2",
+      "win_odds": 15.4,
+      "popularity": 5,
+      "horse_weight": 436,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 9,
+      "gate_number": 7,
+      "horse_number": 14,
+      "horse_name": "イノセントホープ",
+      "horse_id": "2023103328",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "横山琉人",
+      "trainer": "小島茂之",
+      "finish_time": "2:01.6",
+      "margin": "ハナ",
+      "win_odds": 23.9,
+      "popularity": 8,
+      "horse_weight": 482,
+      "horse_weight_diff": -8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 10,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "ピコブロッサム",
+      "horse_id": "2023107510",
+      "sex_age": "牝3",
+      "weight_carried": 50.0,
+      "jockey": "石田拓郎",
+      "trainer": "伊藤大士",
+      "finish_time": "2:01.7",
+      "margin": "1/2",
+      "win_odds": 79.3,
+      "popularity": 11,
+      "horse_weight": 464,
+      "horse_weight_diff": -10,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 11,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "ウマナミカイドウ",
+      "horse_id": "2023100465",
+      "sex_age": "騸4",
+      "weight_carried": 53.0,
+      "jockey": "河原田菜",
+      "trainer": "天間昭一",
+      "finish_time": "2:01.8",
+      "margin": "3/4",
+      "win_odds": 234.4,
+      "popularity": 16,
+      "horse_weight": 456,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 12,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "ブルーブロディ",
+      "horse_id": "2023103835",
+      "sex_age": "牡3",
+      "weight_carried": 54.0,
+      "jockey": "上里直汰",
+      "trainer": "伊坂重信",
+      "finish_time": "2:01.9",
+      "margin": "クビ",
+      "win_odds": 122.1,
+      "popularity": 13,
+      "horse_weight": 498,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 13,
+      "gate_number": 7,
+      "horse_number": 13,
+      "horse_name": "ヒロイックヴァース",
+      "horse_id": "2023102418",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "荻野極",
+      "trainer": "浅利英明",
+      "finish_time": "2:02.0",
+      "margin": "3/4",
+      "win_odds": 3.2,
+      "popularity": 2,
+      "horse_weight": 480,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 14,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "トレセデオロ",
+      "horse_id": "2023102771",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "富田暁",
+      "trainer": "清水久詞",
+      "finish_time": "2:02.1",
+      "margin": "1/2",
+      "win_odds": 10.3,
+      "popularity": 4,
+      "horse_weight": 444,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 15,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "ルミノヴァンクール",
+      "horse_id": "2023103831",
+      "sex_age": "牡1",
+      "weight_carried": 57.0,
+      "jockey": "丹内祐次",
+      "trainer": "金成貴史",
+      "finish_time": "2:02.4",
+      "margin": "1.3/4",
+      "win_odds": 160.3,
+      "popularity": 14,
+      "horse_weight": 552,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 16,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "イザショウブ",
+      "horse_id": "2023100600",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "長岡禎仁",
+      "trainer": "高橋亮",
+      "finish_time": "2:03.1",
+      "margin": "4",
+      "win_odds": 50.9,
+      "popularity": 10,
+      "horse_weight": 486,
+      "horse_weight_diff": -2,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -519,7 +519,27 @@
           "model_score": 0.021660649819494584,
           "ev_score": 0.021660649819494584
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "8": "ミエノストロング",
+        "11": "ブランニューホーム",
+        "1": "ヴォンサクレ",
+        "10": "タイキアロハ",
+        "4": "ナムラシンジロー",
+        "12": "コンフィグシス",
+        "16": "レイアン",
+        "2": "ナディア",
+        "14": "イノセントホープ",
+        "7": "ピコブロッサム",
+        "9": "ウマナミカイドウ",
+        "5": "ブルーブロディ",
+        "13": "ヒロイックヴァース",
+        "15": "トレセデオロ",
+        "3": "ルミノヴァンクール",
+        "6": "イザショウブ"
+      }
     },
     {
       "prediction_id": 5814,
@@ -557,7 +577,27 @@
           "model_score": 0.021660649819494584,
           "ev_score": 0.06498194945848375
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "8": "ミエノストロング",
+        "11": "ブランニューホーム",
+        "1": "ヴォンサクレ",
+        "10": "タイキアロハ",
+        "4": "ナムラシンジロー",
+        "12": "コンフィグシス",
+        "16": "レイアン",
+        "2": "ナディア",
+        "14": "イノセントホープ",
+        "7": "ピコブロッサム",
+        "9": "ウマナミカイドウ",
+        "5": "ブルーブロディ",
+        "13": "ヒロイックヴァース",
+        "15": "トレセデオロ",
+        "3": "ルミノヴァンクール",
+        "6": "イザショウブ"
+      }
     },
     {
       "prediction_id": 5815,
@@ -588,7 +628,27 @@
           "model_score": 0.009523809195340145,
           "ev_score": 0.5714285517204086
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "8": "ミエノストロング",
+        "11": "ブランニューホーム",
+        "1": "ヴォンサクレ",
+        "10": "タイキアロハ",
+        "4": "ナムラシンジロー",
+        "12": "コンフィグシス",
+        "16": "レイアン",
+        "2": "ナディア",
+        "14": "イノセントホープ",
+        "7": "ピコブロッサム",
+        "9": "ウマナミカイドウ",
+        "5": "ブルーブロディ",
+        "13": "ヒロイックヴァース",
+        "15": "トレセデオロ",
+        "3": "ルミノヴァンクール",
+        "6": "イザショウブ"
+      }
     },
     {
       "prediction_id": 5816,
@@ -619,7 +679,27 @@
           "model_score": 0.009523809195340145,
           "ev_score": 0.2380952298835036
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "8": "ミエノストロング",
+        "11": "ブランニューホーム",
+        "1": "ヴォンサクレ",
+        "10": "タイキアロハ",
+        "4": "ナムラシンジロー",
+        "12": "コンフィグシス",
+        "16": "レイアン",
+        "2": "ナディア",
+        "14": "イノセントホープ",
+        "7": "ピコブロッサム",
+        "9": "ウマナミカイドウ",
+        "5": "ブルーブロディ",
+        "13": "ヒロイックヴァース",
+        "15": "トレセデオロ",
+        "3": "ルミノヴァンクール",
+        "6": "イザショウブ"
+      }
     },
     {
       "prediction_id": 5817,
@@ -664,7 +744,27 @@
           "model_score": 0.004761904597670072,
           "ev_score": 0.5714285517204086
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "8": "ミエノストロング",
+        "11": "ブランニューホーム",
+        "1": "ヴォンサクレ",
+        "10": "タイキアロハ",
+        "4": "ナムラシンジロー",
+        "12": "コンフィグシス",
+        "16": "レイアン",
+        "2": "ナディア",
+        "14": "イノセントホープ",
+        "7": "ピコブロッサム",
+        "9": "ウマナミカイドウ",
+        "5": "ブルーブロディ",
+        "13": "ヒロイックヴァース",
+        "15": "トレセデオロ",
+        "3": "ルミノヴァンクール",
+        "6": "イザショウブ"
+      }
     },
     {
       "prediction_id": 5818,
@@ -786,7 +886,27 @@
           "model_score": 0.00036630034662973545,
           "ev_score": 0.5494505199446031
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "8": "ミエノストロング",
+        "11": "ブランニューホーム",
+        "1": "ヴォンサクレ",
+        "10": "タイキアロハ",
+        "4": "ナムラシンジロー",
+        "12": "コンフィグシス",
+        "16": "レイアン",
+        "2": "ナディア",
+        "14": "イノセントホープ",
+        "7": "ピコブロッサム",
+        "9": "ウマナミカイドウ",
+        "5": "ブルーブロディ",
+        "13": "ヒロイックヴァース",
+        "15": "トレセデオロ",
+        "3": "ルミノヴァンクール",
+        "6": "イザショウブ"
+      }
     },
     {
       "prediction_id": 5834,
@@ -810,7 +930,27 @@
           "model_score": 2.7048620155684358,
           "ev_score": 2.7048620155684358
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "8": "ミエノストロング",
+        "11": "ブランニューホーム",
+        "1": "ヴォンサクレ",
+        "10": "タイキアロハ",
+        "4": "ナムラシンジロー",
+        "12": "コンフィグシス",
+        "16": "レイアン",
+        "2": "ナディア",
+        "14": "イノセントホープ",
+        "7": "ピコブロッサム",
+        "9": "ウマナミカイドウ",
+        "5": "ブルーブロディ",
+        "13": "ヒロイックヴァース",
+        "15": "トレセデオロ",
+        "3": "ルミノヴァンクール",
+        "6": "イザショウブ"
+      }
     },
     {
       "prediction_id": 5835,
@@ -862,7 +1002,27 @@
           "model_score": 4.5070708215106325,
           "ev_score": 4.5070708215106325
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 16,
+      "horse_num_to_name": {
+        "8": "ミエノストロング",
+        "11": "ブランニューホーム",
+        "1": "ヴォンサクレ",
+        "10": "タイキアロハ",
+        "4": "ナムラシンジロー",
+        "12": "コンフィグシス",
+        "16": "レイアン",
+        "2": "ナディア",
+        "14": "イノセントホープ",
+        "7": "ピコブロッサム",
+        "9": "ウマナミカイドウ",
+        "5": "ブルーブロディ",
+        "13": "ヒロイックヴァース",
+        "15": "トレセデオロ",
+        "3": "ルミノヴァンクール",
+        "6": "イザショウブ"
+      }
     },
     {
       "prediction_id": 5836,
@@ -893,7 +1053,27 @@
           "model_score": 0.014422293060769302,
           "ev_score": 0.8653375836461582
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "8": "ミエノストロング",
+        "11": "ブランニューホーム",
+        "1": "ヴォンサクレ",
+        "10": "タイキアロハ",
+        "4": "ナムラシンジロー",
+        "12": "コンフィグシス",
+        "16": "レイアン",
+        "2": "ナディア",
+        "14": "イノセントホープ",
+        "7": "ピコブロッサム",
+        "9": "ウマナミカイドウ",
+        "5": "ブルーブロディ",
+        "13": "ヒロイックヴァース",
+        "15": "トレセデオロ",
+        "3": "ルミノヴァンクール",
+        "6": "イザショウブ"
+      }
     },
     {
       "prediction_id": 5837,
@@ -924,7 +1104,27 @@
           "model_score": 0.014422293060769302,
           "ev_score": 0.36055732651923256
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "8": "ミエノストロング",
+        "11": "ブランニューホーム",
+        "1": "ヴォンサクレ",
+        "10": "タイキアロハ",
+        "4": "ナムラシンジロー",
+        "12": "コンフィグシス",
+        "16": "レイアン",
+        "2": "ナディア",
+        "14": "イノセントホープ",
+        "7": "ピコブロッサム",
+        "9": "ウマナミカイドウ",
+        "5": "ブルーブロディ",
+        "13": "ヒロイックヴァース",
+        "15": "トレセデオロ",
+        "3": "ルミノヴァンクール",
+        "6": "イザショウブ"
+      }
     },
     {
       "prediction_id": 5838,
@@ -955,7 +1155,27 @@
           "model_score": 0.007211461463680818,
           "ev_score": 0.8653753756416982
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "8": "ミエノストロング",
+        "11": "ブランニューホーム",
+        "1": "ヴォンサクレ",
+        "10": "タイキアロハ",
+        "4": "ナムラシンジロー",
+        "12": "コンフィグシス",
+        "16": "レイアン",
+        "2": "ナディア",
+        "14": "イノセントホープ",
+        "7": "ピコブロッサム",
+        "9": "ウマナミカイドウ",
+        "5": "ブルーブロディ",
+        "13": "ヒロイックヴァース",
+        "15": "トレセデオロ",
+        "3": "ルミノヴァンクール",
+        "6": "イザショウブ"
+      }
     },
     {
       "prediction_id": 5841,
@@ -993,7 +1213,27 @@
           "model_score": 0.00419559606918439,
           "ev_score": 1.258678820755317
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "8": "ミエノストロング",
+        "11": "ブランニューホーム",
+        "1": "ヴォンサクレ",
+        "10": "タイキアロハ",
+        "4": "ナムラシンジロー",
+        "12": "コンフィグシス",
+        "16": "レイアン",
+        "2": "ナディア",
+        "14": "イノセントホープ",
+        "7": "ピコブロッサム",
+        "9": "ウマナミカイドウ",
+        "5": "ブルーブロディ",
+        "13": "ヒロイックヴァース",
+        "15": "トレセデオロ",
+        "3": "ルミノヴァンクール",
+        "6": "イザショウブ"
+      }
     },
     {
       "prediction_id": 5842,
@@ -1122,7 +1362,27 @@
           "model_score": 0.0,
           "ev_score": 0.0
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "8": "ミエノストロング",
+        "11": "ブランニューホーム",
+        "1": "ヴォンサクレ",
+        "10": "タイキアロハ",
+        "4": "ナムラシンジロー",
+        "12": "コンフィグシス",
+        "16": "レイアン",
+        "2": "ナディア",
+        "14": "イノセントホープ",
+        "7": "ピコブロッサム",
+        "9": "ウマナミカイドウ",
+        "5": "ブルーブロディ",
+        "13": "ヒロイックヴァース",
+        "15": "トレセデオロ",
+        "3": "ルミノヴァンクール",
+        "6": "イザショウブ"
+      }
     },
     {
       "prediction_id": 6616,
@@ -1146,7 +1406,27 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.3765413533834587
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "8": "ミエノストロング",
+        "11": "ブランニューホーム",
+        "1": "ヴォンサクレ",
+        "10": "タイキアロハ",
+        "4": "ナムラシンジロー",
+        "12": "コンフィグシス",
+        "16": "レイアン",
+        "2": "ナディア",
+        "14": "イノセントホープ",
+        "7": "ピコブロッサム",
+        "9": "ウマナミカイドウ",
+        "5": "ブルーブロディ",
+        "13": "ヒロイックヴァース",
+        "15": "トレセデオロ",
+        "3": "ルミノヴァンクール",
+        "6": "イザショウブ"
+      }
     },
     {
       "prediction_id": 6617,
@@ -1184,7 +1464,27 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.03609022556390978
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "8": "ミエノストロング",
+        "11": "ブランニューホーム",
+        "1": "ヴォンサクレ",
+        "10": "タイキアロハ",
+        "4": "ナムラシンジロー",
+        "12": "コンフィグシス",
+        "16": "レイアン",
+        "2": "ナディア",
+        "14": "イノセントホープ",
+        "7": "ピコブロッサム",
+        "9": "ウマナミカイドウ",
+        "5": "ブルーブロディ",
+        "13": "ヒロイックヴァース",
+        "15": "トレセデオロ",
+        "3": "ルミノヴァンクール",
+        "6": "イザショウブ"
+      }
     },
     {
       "prediction_id": 6618,
@@ -1215,7 +1515,27 @@
           "model_score": 0.009878246165249726,
           "ev_score": 1.8551346298338987
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "8": "ミエノストロング",
+        "11": "ブランニューホーム",
+        "1": "ヴォンサクレ",
+        "10": "タイキアロハ",
+        "4": "ナムラシンジロー",
+        "12": "コンフィグシス",
+        "16": "レイアン",
+        "2": "ナディア",
+        "14": "イノセントホープ",
+        "7": "ピコブロッサム",
+        "9": "ウマナミカイドウ",
+        "5": "ブルーブロディ",
+        "13": "ヒロイックヴァース",
+        "15": "トレセデオロ",
+        "3": "ルミノヴァンクール",
+        "6": "イザショウブ"
+      }
     },
     {
       "prediction_id": 6619,
@@ -1246,7 +1566,27 @@
           "model_score": 0.009878246165249726,
           "ev_score": 0.7729727624307912
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "8": "ミエノストロング",
+        "11": "ブランニューホーム",
+        "1": "ヴォンサクレ",
+        "10": "タイキアロハ",
+        "4": "ナムラシンジロー",
+        "12": "コンフィグシス",
+        "16": "レイアン",
+        "2": "ナディア",
+        "14": "イノセントホープ",
+        "7": "ピコブロッサム",
+        "9": "ウマナミカイドウ",
+        "5": "ブルーブロディ",
+        "13": "ヒロイックヴァース",
+        "15": "トレセデオロ",
+        "3": "ルミノヴァンクール",
+        "6": "イザショウブ"
+      }
     },
     {
       "prediction_id": 6620,
@@ -1291,7 +1631,27 @@
           "model_score": 0.004939123082624863,
           "ev_score": 1.8551346298338987
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "8": "ミエノストロング",
+        "11": "ブランニューホーム",
+        "1": "ヴォンサクレ",
+        "10": "タイキアロハ",
+        "4": "ナムラシンジロー",
+        "12": "コンフィグシス",
+        "16": "レイアン",
+        "2": "ナディア",
+        "14": "イノセントホープ",
+        "7": "ピコブロッサム",
+        "9": "ウマナミカイドウ",
+        "5": "ブルーブロディ",
+        "13": "ヒロイックヴァース",
+        "15": "トレセデオロ",
+        "3": "ルミノヴァンクール",
+        "6": "イザショウブ"
+      }
     },
     {
       "prediction_id": 6621,
@@ -1413,7 +1773,27 @@
           "model_score": 0.0003877530781543483,
           "ev_score": 1.8205007019346655
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "8": "ミエノストロング",
+        "11": "ブランニューホーム",
+        "1": "ヴォンサクレ",
+        "10": "タイキアロハ",
+        "4": "ナムラシンジロー",
+        "12": "コンフィグシス",
+        "16": "レイアン",
+        "2": "ナディア",
+        "14": "イノセントホープ",
+        "7": "ピコブロッサム",
+        "9": "ウマナミカイドウ",
+        "5": "ブルーブロディ",
+        "13": "ヒロイックヴァース",
+        "15": "トレセデオロ",
+        "3": "ルミノヴァンクール",
+        "6": "イザショウブ"
+      }
     },
     {
       "prediction_id": 6637,
@@ -1437,7 +1817,27 @@
           "model_score": 2.7048620155684358,
           "ev_score": 2.7048620155684358
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "8": "ミエノストロング",
+        "11": "ブランニューホーム",
+        "1": "ヴォンサクレ",
+        "10": "タイキアロハ",
+        "4": "ナムラシンジロー",
+        "12": "コンフィグシス",
+        "16": "レイアン",
+        "2": "ナディア",
+        "14": "イノセントホープ",
+        "7": "ピコブロッサム",
+        "9": "ウマナミカイドウ",
+        "5": "ブルーブロディ",
+        "13": "ヒロイックヴァース",
+        "15": "トレセデオロ",
+        "3": "ルミノヴァンクール",
+        "6": "イザショウブ"
+      }
     },
     {
       "prediction_id": 6638,
@@ -1489,7 +1889,27 @@
           "model_score": 4.5070708215106325,
           "ev_score": 4.5070708215106325
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 16,
+      "horse_num_to_name": {
+        "8": "ミエノストロング",
+        "11": "ブランニューホーム",
+        "1": "ヴォンサクレ",
+        "10": "タイキアロハ",
+        "4": "ナムラシンジロー",
+        "12": "コンフィグシス",
+        "16": "レイアン",
+        "2": "ナディア",
+        "14": "イノセントホープ",
+        "7": "ピコブロッサム",
+        "9": "ウマナミカイドウ",
+        "5": "ブルーブロディ",
+        "13": "ヒロイックヴァース",
+        "15": "トレセデオロ",
+        "3": "ルミノヴァンクール",
+        "6": "イザショウブ"
+      }
     },
     {
       "prediction_id": 6639,
@@ -1520,7 +1940,27 @@
           "model_score": 0.014422293060769302,
           "ev_score": 1.237432744614006
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "8": "ミエノストロング",
+        "11": "ブランニューホーム",
+        "1": "ヴォンサクレ",
+        "10": "タイキアロハ",
+        "4": "ナムラシンジロー",
+        "12": "コンフィグシス",
+        "16": "レイアン",
+        "2": "ナディア",
+        "14": "イノセントホープ",
+        "7": "ピコブロッサム",
+        "9": "ウマナミカイドウ",
+        "5": "ブルーブロディ",
+        "13": "ヒロイックヴァース",
+        "15": "トレセデオロ",
+        "3": "ルミノヴァンクール",
+        "6": "イザショウブ"
+      }
     },
     {
       "prediction_id": 6640,
@@ -1551,7 +1991,27 @@
           "model_score": 0.014422293060769302,
           "ev_score": 0.5155969769225026
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "8": "ミエノストロング",
+        "11": "ブランニューホーム",
+        "1": "ヴォンサクレ",
+        "10": "タイキアロハ",
+        "4": "ナムラシンジロー",
+        "12": "コンフィグシス",
+        "16": "レイアン",
+        "2": "ナディア",
+        "14": "イノセントホープ",
+        "7": "ピコブロッサム",
+        "9": "ウマナミカイドウ",
+        "5": "ブルーブロディ",
+        "13": "ヒロイックヴァース",
+        "15": "トレセデオロ",
+        "3": "ルミノヴァンクール",
+        "6": "イザショウブ"
+      }
     },
     {
       "prediction_id": 6641,
@@ -1582,7 +2042,27 @@
           "model_score": 0.007211461463680818,
           "ev_score": 1.2374867871676285
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "8": "ミエノストロング",
+        "11": "ブランニューホーム",
+        "1": "ヴォンサクレ",
+        "10": "タイキアロハ",
+        "4": "ナムラシンジロー",
+        "12": "コンフィグシス",
+        "16": "レイアン",
+        "2": "ナディア",
+        "14": "イノセントホープ",
+        "7": "ピコブロッサム",
+        "9": "ウマナミカイドウ",
+        "5": "ブルーブロディ",
+        "13": "ヒロイックヴァース",
+        "15": "トレセデオロ",
+        "3": "ルミノヴァンクール",
+        "6": "イザショウブ"
+      }
     },
     {
       "prediction_id": 6644,
@@ -1620,7 +2100,27 @@
           "model_score": 0.00419559606918439,
           "ev_score": 1.7999107136801034
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "8": "ミエノストロング",
+        "11": "ブランニューホーム",
+        "1": "ヴォンサクレ",
+        "10": "タイキアロハ",
+        "4": "ナムラシンジロー",
+        "12": "コンフィグシス",
+        "16": "レイアン",
+        "2": "ナディア",
+        "14": "イノセントホープ",
+        "7": "ピコブロッサム",
+        "9": "ウマナミカイドウ",
+        "5": "ブルーブロディ",
+        "13": "ヒロイックヴァース",
+        "15": "トレセデオロ",
+        "3": "ルミノヴァンクール",
+        "6": "イザショウブ"
+      }
     },
     {
       "prediction_id": 6645,
@@ -1749,7 +2249,27 @@
           "model_score": 0.0,
           "ev_score": 0.0
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "8": "ミエノストロング",
+        "11": "ブランニューホーム",
+        "1": "ヴォンサクレ",
+        "10": "タイキアロハ",
+        "4": "ナムラシンジロー",
+        "12": "コンフィグシス",
+        "16": "レイアン",
+        "2": "ナディア",
+        "14": "イノセントホープ",
+        "7": "ピコブロッサム",
+        "9": "ウマナミカイドウ",
+        "5": "ブルーブロディ",
+        "13": "ヒロイックヴァース",
+        "15": "トレセデオロ",
+        "3": "ルミノヴァンクール",
+        "6": "イザショウブ"
+      }
     }
   ],
   "training_evals": {}

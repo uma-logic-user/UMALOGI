@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 7,
-      "horse_number": 11,
-      "horse_name": "ホウオウエクレール",
-      "horse_id": "2017103293",
-      "sex_age": "牡3",
-      "weight_carried": 60.0,
-      "jockey": "小牧加矢",
-      "trainer": "宮徹",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ブラックタイド",
-      "dam": "タマヒカル",
-      "dam_sire": "パラダイスクリークParadise Creek(米)"
-    },
-    {
-      "rank": 2,
-      "gate_number": 6,
-      "horse_number": 9,
-      "horse_name": "アスプリージャ",
-      "horse_id": "2021100761",
-      "sex_age": "牡1",
-      "weight_carried": 60.0,
-      "jockey": "草野太郎",
-      "trainer": "中舘英二",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "レイデオロ",
-      "dam": "ポムフィリア",
-      "dam_sire": "フォーティナイナーズサンFourty Niners Son(米)"
-    },
-    {
-      "rank": 3,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "イルディヴィーノ",
-      "horse_id": "2020103349",
-      "sex_age": "騸3",
-      "weight_carried": 57.0,
-      "jockey": "坂口智康",
-      "trainer": "稲垣幸雄",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "キンシャサノキセキ",
-      "dam": "クローバーリーフ",
-      "dam_sire": "タニノギムレット"
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "田村太雅",
       "trainer": "松山将樹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +42,7 @@
       "jockey": "金子光希",
       "trainer": "金成貴史",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -110,6 +50,26 @@
       "sire": "ヴィクトワールピサ",
       "dam": "アンナミルト",
       "dam_sire": "マンハッタンカフェ"
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "イルディヴィーノ",
+      "horse_id": "2020103349",
+      "sex_age": "騸3",
+      "weight_carried": 57.0,
+      "jockey": "坂口智康",
+      "trainer": "稲垣幸雄",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "キンシャサノキセキ",
+      "dam": "クローバーリーフ",
+      "dam_sire": "タニノギムレット"
     },
     {
       "rank": null,
@@ -122,7 +82,7 @@
       "jockey": "大江原圭",
       "trainer": "蛯名利弘",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +102,7 @@
       "jockey": "森一馬",
       "trainer": "相沢郁",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +122,7 @@
       "jockey": "伴啓太",
       "trainer": "蛯名正義",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +142,7 @@
       "jockey": "高田潤",
       "trainer": "高橋亮",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -202,7 +162,7 @@
       "jockey": "黒岩悠",
       "trainer": "小西一男",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -210,6 +170,26 @@
       "sire": "ラブリーデイ",
       "dam": "ユメノトキメキ",
       "dam_sire": "マーベラスサンデー"
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 9,
+      "horse_name": "アスプリージャ",
+      "horse_id": "2021100761",
+      "sex_age": "牡1",
+      "weight_carried": 60.0,
+      "jockey": "草野太郎",
+      "trainer": "中舘英二",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "レイデオロ",
+      "dam": "ポムフィリア",
+      "dam_sire": "フォーティナイナーズサンFourty Niners Son(米)"
     },
     {
       "rank": null,
@@ -222,7 +202,7 @@
       "jockey": "土田真翔",
       "trainer": "杉浦宏昭",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -230,6 +210,26 @@
       "sire": "ゼンノロブロイ",
       "dam": "ヨドノグレイス",
       "dam_sire": "バゴBago(仏)"
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 11,
+      "horse_name": "ホウオウエクレール",
+      "horse_id": "2017103293",
+      "sex_age": "牡3",
+      "weight_carried": 60.0,
+      "jockey": "小牧加矢",
+      "trainer": "宮徹",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ブラックタイド",
+      "dam": "タマヒカル",
+      "dam_sire": "パラダイスクリークParadise Creek(米)"
     },
     {
       "rank": null,
@@ -242,7 +242,7 @@
       "jockey": "石神深一",
       "trainer": "和田正一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -262,7 +262,7 @@
       "jockey": "難波剛健",
       "trainer": "松永幹夫",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -282,7 +282,7 @@
       "jockey": "小野寺祐",
       "trainer": "加藤公太",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -298,6 +298,12 @@
       "combination": "11",
       "payout": 140,
       "popularity": 1
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "14",
+      "payout": 14000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -330,6 +336,12 @@
       "popularity": 4
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-10",
+      "payout": 1090,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "9-11",
       "payout": 460,
@@ -343,9 +355,21 @@
     },
     {
       "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 50040,
+      "popularity": 30
+    },
+    {
+      "bet_type": "ワイド",
       "combination": "3-9",
       "payout": 6990,
       "popularity": 49
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "6",
+      "payout": 70000,
+      "popularity": null
     },
     {
       "bet_type": "馬単",
@@ -354,10 +378,34 @@
       "popularity": 4
     },
     {
+      "bet_type": "馬単",
+      "combination": "9",
+      "payout": 11000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "3-9-11",
       "payout": 13440,
       "popularity": 39
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "19-60",
+      "payout": 2003,
+      "popularity": 90
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4-60",
+      "payout": 40311,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "69",
+      "payout": 90049,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 7,
-      "horse_number": 7,
-      "horse_name": "ジョイエッロ",
-      "horse_id": "2022105438",
-      "sex_age": "牡1",
-      "weight_carried": 55.0,
-      "jockey": "田口貫太",
-      "trainer": "池江泰寿",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 2,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "ニュークレド",
-      "horse_id": "2022101601",
-      "sex_age": "牡4",
-      "weight_carried": 54.0,
-      "jockey": "高杉吏麒",
-      "trainer": "石坂公一",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 3,
-      "gate_number": 8,
-      "horse_number": 8,
-      "horse_name": "オーサムユニバンス",
-      "horse_id": "2021105687",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "富田暁",
-      "trainer": "平田修",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "レイデオロ",
-      "dam": "ハッピーユニバンス",
-      "dam_sire": "ジャングルポケット"
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,27 @@
       "jockey": "松山弘平",
       "trainer": "今野貞一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "ニュークレド",
+      "horse_id": "2022101601",
+      "sex_age": "牡4",
+      "weight_carried": 54.0,
+      "jockey": "高杉吏麒",
+      "trainer": "石坂公一",
+      "finish_time": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +62,7 @@
       "jockey": "松若風馬",
       "trainer": "宮徹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +82,7 @@
       "jockey": "吉村誠之",
       "trainer": "牧光二",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +102,7 @@
       "jockey": "太宰啓介",
       "trainer": "渡辺薫彦",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +122,7 @@
       "jockey": "岩田康誠",
       "trainer": "佐藤悠太",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -170,6 +130,46 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 7,
+      "horse_name": "ジョイエッロ",
+      "horse_id": "2022105438",
+      "sex_age": "牡1",
+      "weight_carried": 55.0,
+      "jockey": "田口貫太",
+      "trainer": "池江泰寿",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 8,
+      "horse_name": "オーサムユニバンス",
+      "horse_id": "2021105687",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "富田暁",
+      "trainer": "平田修",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "レイデオロ",
+      "dam": "ハッピーユニバンス",
+      "dam_sire": "ジャングルポケット"
     }
   ],
   "payouts": [
@@ -178,6 +178,12 @@
       "combination": "7",
       "payout": 240,
       "popularity": 1
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "8",
+      "payout": 8000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -204,6 +210,12 @@
       "popularity": 1
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-10",
+      "payout": 1020,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "2-7",
       "payout": 170,
@@ -222,16 +234,46 @@
       "popularity": 7
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 10020,
+      "popularity": 80
+    },
+    {
       "bet_type": "馬単",
       "combination": "7→2",
       "payout": 680,
       "popularity": 1
     },
     {
+      "bet_type": "馬単",
+      "combination": "2",
+      "payout": 7000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "2-7-8",
       "payout": 840,
       "popularity": 3
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3-20",
+      "payout": 402,
+      "popularity": 80
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-70",
+      "payout": 10708,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3",
+      "payout": 90007,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

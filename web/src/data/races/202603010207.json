@@ -4,11 +4,11 @@
   "date": "2026-04-12",
   "venue": "福島",
   "race_number": 7,
-  "distance": 0,
-  "surface": "",
+  "distance": 1700,
+  "surface": "ダート",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "晴",
+  "condition": "良",
   "year": "2026",
   "results": [
     {
@@ -21,12 +21,12 @@
       "weight_carried": 56.0,
       "jockey": "丹内祐次",
       "trainer": "畠山吉宏",
-      "finish_time": null,
+      "finish_time": "1:46.9",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 8.1,
+      "popularity": 4,
+      "horse_weight": 436,
+      "horse_weight_diff": -8,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -41,12 +41,12 @@
       "weight_carried": 56.0,
       "jockey": "丸田恭介",
       "trainer": "堀内岳志",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:47.0",
+      "margin": "3/4",
+      "win_odds": 6.6,
+      "popularity": 3,
+      "horse_weight": 514,
+      "horse_weight_diff": 4,
       "sire": "マインドユアビスケッツMind Your Biscuits(米)",
       "dam": "クライリング",
       "dam_sire": "ハーツクライ"
@@ -61,15 +61,255 @@
       "weight_carried": 56.0,
       "jockey": "西塚洸二",
       "trainer": "野中賢二",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:47.2",
+      "margin": "1.1/4",
+      "win_odds": 3.7,
+      "popularity": 2,
+      "horse_weight": 424,
+      "horse_weight_diff": 0,
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": 4,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "ピラニアキッス",
+      "horse_id": "2022101599",
+      "sex_age": "牝4",
+      "weight_carried": 54.0,
+      "jockey": "舟山瑠泉",
+      "trainer": "嘉藤貴行",
+      "finish_time": "1:47.3",
+      "margin": "クビ",
+      "win_odds": 8.9,
+      "popularity": 5,
+      "horse_weight": 452,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 5,
+      "gate_number": 7,
+      "horse_number": 12,
+      "horse_name": "ブーケドグレイス",
+      "horse_id": "2021102494",
+      "sex_age": "牝4",
+      "weight_carried": 56.0,
+      "jockey": "松若風馬",
+      "trainer": "相沢郁",
+      "finish_time": "1:47.8",
+      "margin": "3",
+      "win_odds": 25.3,
+      "popularity": 8,
+      "horse_weight": 480,
+      "horse_weight_diff": -2,
+      "sire": "ヴァンセンヌ",
+      "dam": "グレースローラ",
+      "dam_sire": "アサクサデンエン"
+    },
+    {
+      "rank": 6,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "プリマドンナアスク",
+      "horse_id": "2022104435",
+      "sex_age": "牝3",
+      "weight_carried": 54.0,
+      "jockey": "古川奈穂",
+      "trainer": "前川恭子",
+      "finish_time": "1:47.8",
+      "margin": "ハナ",
+      "win_odds": 42.3,
+      "popularity": 9,
+      "horse_weight": 474,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 7,
+      "gate_number": 4,
+      "horse_number": 6,
+      "horse_name": "ブライティアブーケ",
+      "horse_id": "2022102465",
+      "sex_age": "牝1",
+      "weight_carried": 56.0,
+      "jockey": "杉原誠人",
+      "trainer": "田村康仁",
+      "finish_time": "1:48.5",
+      "margin": "4",
+      "win_odds": 74.0,
+      "popularity": 11,
+      "horse_weight": 428,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 8,
+      "gate_number": 6,
+      "horse_number": 10,
+      "horse_name": "ショウナンマリーナ",
+      "horse_id": "2022101259",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "丸山元気",
+      "trainer": "森一誠",
+      "finish_time": "1:48.5",
+      "margin": "クビ",
+      "win_odds": 100.0,
+      "popularity": 13,
+      "horse_weight": 430,
+      "horse_weight_diff": -10,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 9,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "ミルキープリンセス",
+      "horse_id": "2022104181",
+      "sex_age": "牝7",
+      "weight_carried": 56.0,
+      "jockey": "中井裕二",
+      "trainer": "大竹正博",
+      "finish_time": "1:48.5",
+      "margin": "ハナ",
+      "win_odds": 72.7,
+      "popularity": 10,
+      "horse_weight": 526,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 10,
+      "gate_number": 7,
+      "horse_number": 13,
+      "horse_name": "ブルスカメンテ",
+      "horse_id": "2022104844",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "石川裕紀",
+      "trainer": "黒岩陽一",
+      "finish_time": "1:48.7",
+      "margin": "3/4",
+      "win_odds": 3.0,
+      "popularity": 1,
+      "horse_weight": 428,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 11,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "ツインクルステージ",
+      "horse_id": "2021103512",
+      "sex_age": "牝1",
+      "weight_carried": 56.0,
+      "jockey": "菊沢一樹",
+      "trainer": "高木登",
+      "finish_time": "1:49.0",
+      "margin": "2",
+      "win_odds": 138.2,
+      "popularity": 14,
+      "horse_weight": 484,
+      "horse_weight_diff": -4,
+      "sire": "エピファネイア",
+      "dam": "ツインクルスター",
+      "dam_sire": "サクラバクシンオー"
+    },
+    {
+      "rank": 12,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "ニコ",
+      "horse_id": "2022103336",
+      "sex_age": "牝4",
+      "weight_carried": 53.0,
+      "jockey": "遠藤汰月",
+      "trainer": "大和田成",
+      "finish_time": "1:49.5",
+      "margin": "3",
+      "win_odds": 86.1,
+      "popularity": 12,
+      "horse_weight": 398,
+      "horse_weight_diff": -25,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 13,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "レインボーラッキー",
+      "horse_id": "2022106324",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "斎藤新",
+      "trainer": "斎藤誠",
+      "finish_time": "1:49.7",
+      "margin": "1",
+      "win_odds": 13.4,
+      "popularity": 7,
+      "horse_weight": 432,
+      "horse_weight_diff": -8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 14,
+      "gate_number": 5,
+      "horse_number": 8,
+      "horse_name": "フォンデネージュ",
+      "horse_id": "2022105100",
+      "sex_age": "牝3",
+      "weight_carried": 53.0,
+      "jockey": "石神深道",
+      "trainer": "武井亮",
+      "finish_time": "1:49.9",
+      "margin": "1.1/2",
+      "win_odds": 12.7,
+      "popularity": 6,
+      "horse_weight": 522,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 15,
+      "gate_number": 8,
+      "horse_number": 14,
+      "horse_name": "ノクターナル",
+      "horse_id": "2021102900",
+      "sex_age": "牝3",
+      "weight_carried": 52.0,
+      "jockey": "河原田菜",
+      "trainer": "加藤和宏",
+      "finish_time": "1:50.1",
+      "margin": "1",
+      "win_odds": 241.7,
+      "popularity": 15,
+      "horse_weight": 448,
+      "horse_weight_diff": -8,
+      "sire": "キタサンブラック",
+      "dam": "ノーバザー",
+      "dam_sire": "Scat Daddy(米)"
     }
   ],
   "payouts": [
@@ -319,7 +559,26 @@
           "model_score": 2.9124871132911718e-05,
           "ev_score": 2.9124871132911718e-05
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "11": "カスバートテソーロ",
+        "15": "ベルフィーヌ",
+        "4": "キャットテイル",
+        "9": "ピラニアキッス",
+        "12": "ブーケドグレイス",
+        "2": "プリマドンナアスク",
+        "6": "ブライティアブーケ",
+        "10": "ショウナンマリーナ",
+        "7": "ミルキープリンセス",
+        "13": "ブルスカメンテ",
+        "5": "ツインクルステージ",
+        "1": "ニコ",
+        "3": "レインボーラッキー",
+        "8": "フォンデネージュ",
+        "14": "ノクターナル"
+      }
     },
     {
       "prediction_id": 2121,
@@ -343,7 +602,26 @@
           "model_score": 2.9124871132911718e-05,
           "ev_score": 2.9124871132911718e-05
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "11": "カスバートテソーロ",
+        "15": "ベルフィーヌ",
+        "4": "キャットテイル",
+        "9": "ピラニアキッス",
+        "12": "ブーケドグレイス",
+        "2": "プリマドンナアスク",
+        "6": "ブライティアブーケ",
+        "10": "ショウナンマリーナ",
+        "7": "ミルキープリンセス",
+        "13": "ブルスカメンテ",
+        "5": "ツインクルステージ",
+        "1": "ニコ",
+        "3": "レインボーラッキー",
+        "8": "フォンデネージュ",
+        "14": "ノクターナル"
+      }
     },
     {
       "prediction_id": 2207,
@@ -367,7 +645,26 @@
           "model_score": 2.9124871132911718e-05,
           "ev_score": 0.0
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "11": "カスバートテソーロ",
+        "15": "ベルフィーヌ",
+        "4": "キャットテイル",
+        "9": "ピラニアキッス",
+        "12": "ブーケドグレイス",
+        "2": "プリマドンナアスク",
+        "6": "ブライティアブーケ",
+        "10": "ショウナンマリーナ",
+        "7": "ミルキープリンセス",
+        "13": "ブルスカメンテ",
+        "5": "ツインクルステージ",
+        "1": "ニコ",
+        "3": "レインボーラッキー",
+        "8": "フォンデネージュ",
+        "14": "ノクターナル"
+      }
     },
     {
       "prediction_id": 2318,
@@ -391,7 +688,26 @@
           "model_score": 0.1247273321989267,
           "ev_score": 6.0118574119882675
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "11": "カスバートテソーロ",
+        "15": "ベルフィーヌ",
+        "4": "キャットテイル",
+        "9": "ピラニアキッス",
+        "12": "ブーケドグレイス",
+        "2": "プリマドンナアスク",
+        "6": "ブライティアブーケ",
+        "10": "ショウナンマリーナ",
+        "7": "ミルキープリンセス",
+        "13": "ブルスカメンテ",
+        "5": "ツインクルステージ",
+        "1": "ニコ",
+        "3": "レインボーラッキー",
+        "8": "フォンデネージュ",
+        "14": "ノクターナル"
+      }
     },
     {
       "prediction_id": 2319,
@@ -429,7 +745,26 @@
           "model_score": 0.08957118554724751,
           "ev_score": 0.2687135566417425
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "11": "カスバートテソーロ",
+        "15": "ベルフィーヌ",
+        "4": "キャットテイル",
+        "9": "ピラニアキッス",
+        "12": "ブーケドグレイス",
+        "2": "プリマドンナアスク",
+        "6": "ブライティアブーケ",
+        "10": "ショウナンマリーナ",
+        "7": "ミルキープリンセス",
+        "13": "ブルスカメンテ",
+        "5": "ツインクルステージ",
+        "1": "ニコ",
+        "3": "レインボーラッキー",
+        "8": "フォンデネージュ",
+        "14": "ノクターナル"
+      }
     },
     {
       "prediction_id": 2320,
@@ -453,7 +788,26 @@
           "model_score": 0.45957669605887635,
           "ev_score": 132.90958050022707
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "11": "カスバートテソーロ",
+        "15": "ベルフィーヌ",
+        "4": "キャットテイル",
+        "9": "ピラニアキッス",
+        "12": "ブーケドグレイス",
+        "2": "プリマドンナアスク",
+        "6": "ブライティアブーケ",
+        "10": "ショウナンマリーナ",
+        "7": "ミルキープリンセス",
+        "13": "ブルスカメンテ",
+        "5": "ツインクルステージ",
+        "1": "ニコ",
+        "3": "レインボーラッキー",
+        "8": "フォンデネージュ",
+        "14": "ノクターナル"
+      }
     },
     {
       "prediction_id": 2321,
@@ -477,7 +831,26 @@
           "model_score": 0.45957669605887635,
           "ev_score": 55.378991875094606
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "11": "カスバートテソーロ",
+        "15": "ベルフィーヌ",
+        "4": "キャットテイル",
+        "9": "ピラニアキッス",
+        "12": "ブーケドグレイス",
+        "2": "プリマドンナアスク",
+        "6": "ブライティアブーケ",
+        "10": "ショウナンマリーナ",
+        "7": "ミルキープリンセス",
+        "13": "ブルスカメンテ",
+        "5": "ツインクルステージ",
+        "1": "ニコ",
+        "3": "レインボーラッキー",
+        "8": "フォンデネージュ",
+        "14": "ノクターナル"
+      }
     },
     {
       "prediction_id": 2322,
@@ -508,7 +881,26 @@
           "model_score": 0.22981500932838209,
           "ev_score": 132.92500139553619
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "11": "カスバートテソーロ",
+        "15": "ベルフィーヌ",
+        "4": "キャットテイル",
+        "9": "ピラニアキッス",
+        "12": "ブーケドグレイス",
+        "2": "プリマドンナアスク",
+        "6": "ブライティアブーケ",
+        "10": "ショウナンマリーナ",
+        "7": "ミルキープリンセス",
+        "13": "ブルスカメンテ",
+        "5": "ツインクルステージ",
+        "1": "ニコ",
+        "3": "レインボーラッキー",
+        "8": "フォンデネージュ",
+        "14": "ノクターナル"
+      }
     },
     {
       "prediction_id": 2323,
@@ -532,7 +924,26 @@
           "model_score": 0.18955920982447674,
           "ev_score": 274.10261740619336
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "11": "カスバートテソーロ",
+        "15": "ベルフィーヌ",
+        "4": "キャットテイル",
+        "9": "ピラニアキッス",
+        "12": "ブーケドグレイス",
+        "2": "プリマドンナアスク",
+        "6": "ブライティアブーケ",
+        "10": "ショウナンマリーナ",
+        "7": "ミルキープリンセス",
+        "13": "ブルスカメンテ",
+        "5": "ツインクルステージ",
+        "1": "ニコ",
+        "3": "レインボーラッキー",
+        "8": "フォンデネージュ",
+        "14": "ノクターナル"
+      }
     },
     {
       "prediction_id": 2324,
@@ -584,7 +995,26 @@
           "model_score": 0.055146386046933636,
           "ev_score": 398.70837111933025
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "11": "カスバートテソーロ",
+        "15": "ベルフィーヌ",
+        "4": "キャットテイル",
+        "9": "ピラニアキッス",
+        "12": "ブーケドグレイス",
+        "2": "プリマドンナアスク",
+        "6": "ブライティアブーケ",
+        "10": "ショウナンマリーナ",
+        "7": "ミルキープリンセス",
+        "13": "ブルスカメンテ",
+        "5": "ツインクルステージ",
+        "1": "ニコ",
+        "3": "レインボーラッキー",
+        "8": "フォンデネージュ",
+        "14": "ノクターナル"
+      }
     },
     {
       "prediction_id": 2325,
@@ -706,7 +1136,26 @@
           "model_score": 0.0015757333544256862,
           "ev_score": 0.05735669410109498
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "11": "カスバートテソーロ",
+        "15": "ベルフィーヌ",
+        "4": "キャットテイル",
+        "9": "ピラニアキッス",
+        "12": "ブーケドグレイス",
+        "2": "プリマドンナアスク",
+        "6": "ブライティアブーケ",
+        "10": "ショウナンマリーナ",
+        "7": "ミルキープリンセス",
+        "13": "ブルスカメンテ",
+        "5": "ツインクルステージ",
+        "1": "ニコ",
+        "3": "レインボーラッキー",
+        "8": "フォンデネージュ",
+        "14": "ノクターナル"
+      }
     }
   ],
   "training_evals": {}

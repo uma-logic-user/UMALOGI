@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 8,
-      "horse_number": 8,
-      "horse_name": "テーオーダグラス",
-      "horse_id": "2021102246",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "団野大成",
-      "trainer": "須貝尚介",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "リアルスティール",
-      "dam": "ラブミーリル",
-      "dam_sire": "ハービンジャーHarbinger(英)"
-    },
-    {
-      "rank": 2,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "ヤマニンループ",
-      "horse_id": "2019100606",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "横山典弘",
-      "trainer": "松永幹夫",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ディープインパクト",
-      "dam": "ヤマニンプードレ",
-      "dam_sire": "チチカステナンゴChichicastenango(仏)"
-    },
-    {
-      "rank": 3,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "ディーガレジェンド",
-      "horse_id": "2021105072",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "西塚洸二",
-      "trainer": "藤原英昭",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "モーリス",
-      "dam": "ジプシーハイウェイGypsy Highway(愛)",
-      "dam_sire": "High Chaparral(愛)"
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "国分優作",
       "trainer": "河嶋宏樹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +42,7 @@
       "jockey": "小沢大仁",
       "trainer": "小椋研介",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -110,6 +50,26 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "ディーガレジェンド",
+      "horse_id": "2021105072",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "西塚洸二",
+      "trainer": "藤原英昭",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "モーリス",
+      "dam": "ジプシーハイウェイGypsy Highway(愛)",
+      "dam_sire": "High Chaparral(愛)"
     },
     {
       "rank": null,
@@ -122,7 +82,7 @@
       "jockey": "和田竜二",
       "trainer": "秋山真一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -130,6 +90,26 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "ヤマニンループ",
+      "horse_id": "2019100606",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "横山典弘",
+      "trainer": "松永幹夫",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ディープインパクト",
+      "dam": "ヤマニンプードレ",
+      "dam_sire": "チチカステナンゴChichicastenango(仏)"
     },
     {
       "rank": null,
@@ -142,7 +122,7 @@
       "jockey": "酒井学",
       "trainer": "長谷川浩",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +142,7 @@
       "jockey": "小崎綾也",
       "trainer": "小崎憲",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -170,14 +150,34 @@
       "sire": "カリフォルニアクロームCalifornia Chrome(米)",
       "dam": "クイーンオブハルカ",
       "dam_sire": "Singspiel(愛)"
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 8,
+      "horse_name": "テーオーダグラス",
+      "horse_id": "2021102246",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "団野大成",
+      "trainer": "須貝尚介",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "リアルスティール",
+      "dam": "ラブミーリル",
+      "dam_sire": "ハービンジャーHarbinger(英)"
     }
   ],
   "payouts": [
     {
       "bet_type": "単勝",
       "combination": "8",
-      "payout": 180,
-      "popularity": 1
+      "payout": 8000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -204,6 +204,12 @@
       "popularity": 3
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-10",
+      "payout": 1050,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "3-8",
       "payout": 160,
@@ -222,16 +228,46 @@
       "popularity": 5
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 30040,
+      "popularity": 30
+    },
+    {
       "bet_type": "馬単",
       "combination": "8→5",
       "payout": 690,
       "popularity": 3
     },
     {
+      "bet_type": "馬単",
+      "combination": "5",
+      "payout": 8000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "3-5-8",
       "payout": 510,
       "popularity": 2
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-60",
+      "payout": 103,
+      "popularity": 50
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2",
+      "payout": 30308,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3",
+      "payout": 10005,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

@@ -12,7 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "メイショウキルギス",
@@ -22,7 +22,7 @@
       "jockey": "和田陽希",
       "trainer": "高橋亮",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -32,27 +32,7 @@
       "dam_sire": "ハーツクライ"
     },
     {
-      "rank": 2,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "ジーベック",
-      "horse_id": "2021103242",
-      "sex_age": "牡1",
-      "weight_carried": 55.0,
-      "jockey": "古川奈穂",
-      "trainer": "矢作芳人",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "Gun Runner(米)",
-      "dam": "ステラエージェントStellar Agent(米)",
-      "dam_sire": "More Than Ready"
-    },
-    {
-      "rank": 3,
+      "rank": null,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "クラリティスケール",
@@ -62,7 +42,7 @@
       "jockey": "松本大輝",
       "trainer": "藤野健太",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -70,6 +50,26 @@
       "sire": "エイシンヒカリ",
       "dam": "エイシンカラット",
       "dam_sire": "Tale of Ekati"
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "ジーベック",
+      "horse_id": "2021103242",
+      "sex_age": "牡1",
+      "weight_carried": 55.0,
+      "jockey": "古川奈穂",
+      "trainer": "矢作芳人",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "Gun Runner(米)",
+      "dam": "ステラエージェントStellar Agent(米)",
+      "dam_sire": "More Than Ready"
     },
     {
       "rank": null,
@@ -82,7 +82,7 @@
       "jockey": "横山武史",
       "trainer": "牧田和弥",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +102,7 @@
       "jockey": "小林美駒",
       "trainer": "坂口智康",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +122,7 @@
       "jockey": "佐々木大",
       "trainer": "和田正一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +142,7 @@
       "jockey": "鷲頭虎太",
       "trainer": "井上智史",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +162,7 @@
       "jockey": "舟山瑠泉",
       "trainer": "奥村豊",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +182,7 @@
       "jockey": "橋木太希",
       "trainer": "角田晃一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -202,7 +202,7 @@
       "jockey": "キング",
       "trainer": "蛯名正義",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -218,6 +218,12 @@
       "combination": "1",
       "payout": 1510,
       "popularity": 6
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "10",
+      "payout": 10000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -244,10 +250,34 @@
       "popularity": 21
     },
     {
+      "bet_type": "枠連",
+      "combination": "1",
+      "payout": 51006,
+      "popularity": null
+    },
+    {
       "bet_type": "馬連",
       "combination": "1-3",
       "payout": 9820,
       "popularity": 27
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "5-50",
+      "payout": 8030,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 30000,
+      "popularity": 10
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4",
+      "payout": 10070,
+      "popularity": 20
     },
     {
       "bet_type": "ワイド",
@@ -274,10 +304,28 @@
       "popularity": 53
     },
     {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 3000,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "25-40",
+      "payout": 2702,
+      "popularity": 30
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-2-3",
       "payout": 22550,
       "popularity": 59
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "26-50-2",
+      "payout": 80102,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

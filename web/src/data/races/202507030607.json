@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 8,
-      "horse_number": 17,
-      "horse_name": "インビンシブルパパ",
-      "horse_id": "2021110164",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "佐々木大",
-      "trainer": "伊藤大士",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "Shalaa",
-      "dam": "Shwaimsa",
-      "dam_sire": "Canford Cliffs(愛)"
-    },
-    {
-      "rank": 2,
-      "gate_number": 5,
-      "horse_number": 9,
-      "horse_name": "ジューンブレア",
-      "horse_id": "2021110099",
-      "sex_age": "牝3",
-      "weight_carried": 55.5,
-      "jockey": "武豊",
-      "trainer": "武英智",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "American Pharoah(米)",
-      "dam": "Lap of Luxury",
-      "dam_sire": "Galileo(愛)"
-    },
-    {
-      "rank": 3,
-      "gate_number": 3,
-      "horse_number": 5,
-      "horse_name": "シュトラウス",
-      "horse_id": "2021105744",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "杉原誠人",
-      "trainer": "武井亮",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "モーリス",
-      "dam": "ブルーメンブラット",
-      "dam_sire": "アドマイヤベガ"
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "北村友一",
       "trainer": "高野友和",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +42,7 @@
       "jockey": "川須栄彦",
       "trainer": "秋山真一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +62,7 @@
       "jockey": "松若風馬",
       "trainer": "福永祐一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +82,7 @@
       "jockey": "小崎綾也",
       "trainer": "河嶋宏樹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -150,6 +90,26 @@
       "sire": "ミスターメロディ",
       "dam": "ウンベラータ",
       "dam_sire": "アグネスタキオン"
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "シュトラウス",
+      "horse_id": "2021105744",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "杉原誠人",
+      "trainer": "武井亮",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "モーリス",
+      "dam": "ブルーメンブラット",
+      "dam_sire": "アドマイヤベガ"
     },
     {
       "rank": null,
@@ -162,7 +122,7 @@
       "jockey": "西塚洸二",
       "trainer": "藤原英昭",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +142,7 @@
       "jockey": "小沢大仁",
       "trainer": "今野貞一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -202,7 +162,7 @@
       "jockey": "田口貫太",
       "trainer": "中村直也",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -210,6 +170,26 @@
       "sire": "バゴBago(仏)",
       "dam": "ウートゥルメール",
       "dam_sire": "マンハッタンカフェ"
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "ジューンブレア",
+      "horse_id": "2021110099",
+      "sex_age": "牝3",
+      "weight_carried": 55.5,
+      "jockey": "武豊",
+      "trainer": "武英智",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "American Pharoah(米)",
+      "dam": "Lap of Luxury",
+      "dam_sire": "Galileo(愛)"
     },
     {
       "rank": null,
@@ -222,7 +202,7 @@
       "jockey": "角田大和",
       "trainer": "上原佑紀",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -242,7 +222,7 @@
       "jockey": "バデル",
       "trainer": "西村真幸",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -262,7 +242,7 @@
       "jockey": "吉村誠之",
       "trainer": "大久保龍",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -282,7 +262,7 @@
       "jockey": "荻野極",
       "trainer": "友道康夫",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -302,7 +282,7 @@
       "jockey": "団野大成",
       "trainer": "斉藤崇史",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -322,7 +302,7 @@
       "jockey": "横山典弘",
       "trainer": "四位洋文",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -342,7 +322,7 @@
       "jockey": "酒井学",
       "trainer": "石橋守",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -350,6 +330,26 @@
       "sire": "モーリス",
       "dam": "メイショウデイム",
       "dam_sire": "マンハッタンカフェ"
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 17,
+      "horse_name": "インビンシブルパパ",
+      "horse_id": "2021110164",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "佐々木大",
+      "trainer": "伊藤大士",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "Shalaa",
+      "dam": "Shwaimsa",
+      "dam_sire": "Canford Cliffs(愛)"
     },
     {
       "rank": null,
@@ -362,7 +362,7 @@
       "jockey": "藤懸貴志",
       "trainer": "高橋義忠",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -378,6 +378,12 @@
       "combination": "17",
       "payout": 1390,
       "popularity": 5
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "18",
+      "payout": 17000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -398,16 +404,40 @@
       "popularity": 6
     },
     {
+      "bet_type": "複勝",
+      "combination": "1",
+      "payout": 11000,
+      "popularity": null
+    },
+    {
       "bet_type": "枠連",
       "combination": "5-8",
       "payout": 1020,
       "popularity": 3
     },
     {
+      "bet_type": "枠連",
+      "combination": "1",
+      "payout": 39005,
+      "popularity": null
+    },
+    {
       "bet_type": "馬連",
       "combination": "9-17",
       "payout": 2090,
       "popularity": 3
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "3-60",
+      "payout": 4090,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "5",
+      "payout": 80000,
+      "popularity": 1
     },
     {
       "bet_type": "ワイド",
@@ -423,6 +453,12 @@
     },
     {
       "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 60010,
+      "popularity": 50
+    },
+    {
+      "bet_type": "ワイド",
       "combination": "5-17",
       "payout": 5300,
       "popularity": 65
@@ -434,10 +470,34 @@
       "popularity": 11
     },
     {
+      "bet_type": "馬単",
+      "combination": "9",
+      "payout": 17000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "5-9-17",
       "payout": 15520,
       "popularity": 44
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "53",
+      "payout": 6705,
+      "popularity": 90
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "9-90",
+      "payout": 40517,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "13",
+      "payout": 10011,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

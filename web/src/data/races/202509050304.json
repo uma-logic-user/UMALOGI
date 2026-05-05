@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 8,
-      "horse_number": 12,
-      "horse_name": "ロードリベラシオン",
-      "horse_id": "2022102821",
-      "sex_age": "牡3",
-      "weight_carried": 56.0,
-      "jockey": "坂口智康",
-      "trainer": "尾形和幸",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 2,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "コレクテイニア",
-      "horse_id": "2020110020",
-      "sex_age": "牡3",
-      "weight_carried": 60.0,
-      "jockey": "草野太郎",
-      "trainer": "戸田博文",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "Collected",
-      "dam": "ダンスウィズキトゥン",
-      "dam_sire": "Kitten's Joy(米)"
-    },
-    {
-      "rank": 3,
-      "gate_number": 7,
-      "horse_number": 9,
-      "horse_name": "ハイウェイスター",
-      "horse_id": "2021106621",
-      "sex_age": "牝3",
-      "weight_carried": 58.0,
-      "jockey": "中村将之",
-      "trainer": "宮本博",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "アメリカンペイトリオット",
-      "dam": "キエレ",
-      "dam_sire": "Distorted Humor(米)"
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "大江原圭",
       "trainer": "堀内岳志",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +42,7 @@
       "jockey": "小野寺祐",
       "trainer": "藤野健太",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +62,7 @@
       "jockey": "森一馬",
       "trainer": "本田優",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +82,7 @@
       "jockey": "小牧加矢",
       "trainer": "小林真也",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -150,6 +90,26 @@
       "sire": "ディープインパクト",
       "dam": "ポウリナズラヴPaulina's Love(米)",
       "dam_sire": "Mizzen Mast"
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "コレクテイニア",
+      "horse_id": "2020110020",
+      "sex_age": "牡3",
+      "weight_carried": 60.0,
+      "jockey": "草野太郎",
+      "trainer": "戸田博文",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "Collected",
+      "dam": "ダンスウィズキトゥン",
+      "dam_sire": "Kitten's Joy(米)"
     },
     {
       "rank": null,
@@ -162,7 +122,7 @@
       "jockey": "上野翔",
       "trainer": "古賀慎明",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +142,7 @@
       "jockey": "黒岩悠",
       "trainer": "平田修",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -202,7 +162,7 @@
       "jockey": "西谷誠",
       "trainer": "松永幹夫",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -210,6 +170,26 @@
       "sire": "ハーツクライ",
       "dam": "プラヤデシエルタPlaya Desierta(亜)",
       "dam_sire": "Orpen"
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 9,
+      "horse_name": "ハイウェイスター",
+      "horse_id": "2021106621",
+      "sex_age": "牝3",
+      "weight_carried": 58.0,
+      "jockey": "中村将之",
+      "trainer": "宮本博",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "アメリカンペイトリオット",
+      "dam": "キエレ",
+      "dam_sire": "Distorted Humor(米)"
     },
     {
       "rank": null,
@@ -222,7 +202,7 @@
       "jockey": "小坂忠士",
       "trainer": "東田明士",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -242,7 +222,27 @@
       "jockey": "石神深一",
       "trainer": "土田稔",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 12,
+      "horse_name": "ロードリベラシオン",
+      "horse_id": "2022102821",
+      "sex_age": "牡3",
+      "weight_carried": 56.0,
+      "jockey": "坂口智康",
+      "trainer": "尾形和幸",
+      "finish_time": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -256,8 +256,8 @@
     {
       "bet_type": "単勝",
       "combination": "12",
-      "payout": 2110,
-      "popularity": 7
+      "payout": 12000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -284,10 +284,28 @@
       "popularity": 18
     },
     {
+      "bet_type": "枠連",
+      "combination": "2",
+      "payout": 11007,
+      "popularity": null
+    },
+    {
       "bet_type": "馬連",
       "combination": "5-12",
       "payout": 5860,
       "popularity": 17
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "5-10",
+      "payout": 7050,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "5",
+      "payout": 80000,
+      "popularity": 5
     },
     {
       "bet_type": "ワイド",
@@ -308,16 +326,46 @@
       "popularity": 19
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 90040,
+      "popularity": 90
+    },
+    {
       "bet_type": "馬単",
       "combination": "12→5",
       "payout": 15170,
       "popularity": 40
     },
     {
+      "bet_type": "馬単",
+      "combination": "5",
+      "payout": 12000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "5-9-12",
       "payout": 10550,
       "popularity": 30
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "20-90",
+      "payout": 1805,
+      "popularity": 90
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "17-10-1",
+      "payout": 70912,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "6",
+      "payout": 60006,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

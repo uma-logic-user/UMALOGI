@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "ピースフルナイト",
-      "horse_id": "2020106821",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "バデル",
-      "trainer": "高野友和",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ファインニードル",
-      "dam": "フロレンティナ",
-      "dam_sire": "クロフネ"
-    },
-    {
-      "rank": 2,
-      "gate_number": 6,
-      "horse_number": 6,
-      "horse_name": "フォティック",
-      "horse_id": "2020100271",
-      "sex_age": "牡7",
-      "weight_carried": 58.0,
-      "jockey": "酒井学",
-      "trainer": "飯田祐史",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "エイシンヒカリ",
-      "dam": "エイシンミント",
-      "dam_sire": "ジャングルポケット"
-    },
-    {
-      "rank": 3,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "エコロハート",
-      "horse_id": "2022105212",
-      "sex_age": "牝3",
-      "weight_carried": 53.0,
-      "jockey": "亀田温心",
-      "trainer": "須貝尚介",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "河原田菜",
       "trainer": "池添学",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +42,7 @@
       "jockey": "小沢大仁",
       "trainer": "井上智史",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -110,6 +50,46 @@
       "sire": "キタサンブラック",
       "dam": "テーオールネサンス",
       "dam_sire": "クロフネ"
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "ピースフルナイト",
+      "horse_id": "2020106821",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "バデル",
+      "trainer": "高野友和",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ファインニードル",
+      "dam": "フロレンティナ",
+      "dam_sire": "クロフネ"
+    },
+    {
+      "rank": null,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "エコロハート",
+      "horse_id": "2022105212",
+      "sex_age": "牝3",
+      "weight_carried": 53.0,
+      "jockey": "亀田温心",
+      "trainer": "須貝尚介",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -122,7 +102,7 @@
       "jockey": "和田竜二",
       "trainer": "平田修",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -130,6 +110,26 @@
       "sire": "サトノアラジン",
       "dam": "ヴィリエルバクル",
       "dam_sire": "Sea The StarsSea the Stars(愛)"
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 6,
+      "horse_name": "フォティック",
+      "horse_id": "2020100271",
+      "sex_age": "牡7",
+      "weight_carried": 58.0,
+      "jockey": "酒井学",
+      "trainer": "飯田祐史",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "エイシンヒカリ",
+      "dam": "エイシンミント",
+      "dam_sire": "ジャングルポケット"
     },
     {
       "rank": null,
@@ -142,7 +142,7 @@
       "jockey": "国分恭介",
       "trainer": "西園正都",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +162,7 @@
       "jockey": "団野大成",
       "trainer": "森田直行",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +182,7 @@
       "jockey": "川田将雅",
       "trainer": "杉山晴紀",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -198,6 +198,12 @@
       "combination": "3",
       "payout": 690,
       "popularity": 3
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "9",
+      "payout": 9000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -230,10 +236,22 @@
       "popularity": 16
     },
     {
+      "bet_type": "馬連",
+      "combination": "2",
+      "payout": 3060,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "3-4",
       "payout": 590,
       "popularity": 5
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3",
+      "payout": 60000,
+      "popularity": 6
     },
     {
       "bet_type": "ワイド",
@@ -254,10 +272,28 @@
       "popularity": 29
     },
     {
+      "bet_type": "馬単",
+      "combination": "3",
+      "payout": 6000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "3-4-6",
       "payout": 6340,
       "popularity": 23
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5-90",
+      "payout": 604,
+      "popularity": 60
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "11-70-1",
+      "payout": 60304,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

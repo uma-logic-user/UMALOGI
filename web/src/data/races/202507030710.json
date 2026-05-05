@@ -12,7 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "テーオーライマン",
@@ -22,7 +22,7 @@
       "jockey": "高杉吏麒",
       "trainer": "宮徹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -32,27 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": 2,
-      "gate_number": 8,
-      "horse_number": 8,
-      "horse_name": "オーケアニス",
-      "horse_id": "2022104883",
-      "sex_age": "牝3",
-      "weight_carried": 53.0,
-      "jockey": "坂井瑠星",
-      "trainer": "松永幹夫",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 3,
+      "rank": null,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "ポイントネモ",
@@ -62,7 +42,7 @@
       "jockey": "菱田裕二",
       "trainer": "大久保龍",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -82,7 +62,7 @@
       "jockey": "田山旺佑",
       "trainer": "鈴木孝志",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +82,7 @@
       "jockey": "小沢大仁",
       "trainer": "東田明士",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +102,7 @@
       "jockey": "団野大成",
       "trainer": "加藤和宏",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +122,7 @@
       "jockey": "バデル",
       "trainer": "吉岡辰弥",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +142,27 @@
       "jockey": "太宰啓介",
       "trainer": "飯田祐史",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 8,
+      "horse_name": "オーケアニス",
+      "horse_id": "2022104883",
+      "sex_age": "牝3",
+      "weight_carried": 53.0,
+      "jockey": "坂井瑠星",
+      "trainer": "松永幹夫",
+      "finish_time": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -178,6 +178,12 @@
       "combination": "1",
       "payout": 280,
       "popularity": 2
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "8",
+      "payout": 8000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -204,6 +210,12 @@
       "popularity": 2
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-20",
+      "payout": 2080,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "1-2",
       "payout": 230,
@@ -222,16 +234,46 @@
       "popularity": 3
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 10010,
+      "popularity": 20
+    },
+    {
       "bet_type": "馬単",
       "combination": "1→8",
       "payout": 1670,
       "popularity": 6
     },
     {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 8000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-2-8",
       "payout": 790,
       "popularity": 2
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2-30",
+      "payout": 102,
+      "popularity": 80
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2-40",
+      "payout": 20102,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2",
+      "payout": 50003,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

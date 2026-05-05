@@ -113,6 +113,8 @@ export interface Prediction {
   condition:       string
   model_type:      string
   bet_type:        string
+  bet_form:        string
+  n_tickets:       number
   confidence:      number | null
   expected_value:  number | null
   recommended_bet: number | null
@@ -124,6 +126,7 @@ export interface Prediction {
   profit:          number | null
   roi:             number | null
   horses:          PredictionHorse[]
+  horse_num_to_name?: Record<string, string>
 }
 
 /** races/{race_id}.json 内の予想（Prediction のサブセット） */
@@ -131,6 +134,8 @@ export interface RacePrediction {
   prediction_id:   number
   model_type:      string
   bet_type:        string
+  bet_form:        string
+  n_tickets:       number
   confidence:      number | null
   expected_value:  number | null
   recommended_bet: number | null
@@ -142,4 +147,5 @@ export interface RacePrediction {
   profit:          number | null
   roi:             number | null
   horses:          PredictionHorse[]
+  horse_num_to_name?: Record<string, string>
 }

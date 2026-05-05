@@ -4,11 +4,11 @@
   "date": "2026-04-11",
   "venue": "中山",
   "race_number": 9,
-  "distance": 0,
-  "surface": "",
+  "distance": 2000,
+  "surface": "芝",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "晴",
+  "condition": "良",
   "year": "2026",
   "results": [
     {
@@ -16,11 +16,11 @@
       "gate_number": 6,
       "horse_number": 6,
       "horse_name": "チャリングクロス",
-      "horse_id": null,
-      "sex_age": "牡3",
+      "horse_id": "2023107389",
+      "sex_age": "牡5",
       "weight_carried": 57.0,
-      "jockey": "横山武",
-      "trainer": "美浦奥村武",
+      "jockey": "横山武史",
+      "trainer": "奥村武",
       "finish_time": "2:01.2",
       "margin": "@",
       "win_odds": 3.3,
@@ -46,13 +46,13 @@
       "gate_number": 5,
       "horse_number": 5,
       "horse_name": "コッツォリーノ",
-      "horse_id": null,
-      "sex_age": "牡3",
+      "horse_id": "2023106718",
+      "sex_age": "牡4",
       "weight_carried": 57.0,
-      "jockey": "田辺",
-      "trainer": "美浦池上",
+      "jockey": "田辺裕信",
+      "trainer": "池上昌和",
       "finish_time": "2:01.4",
-      "margin": "@",
+      "margin": "1.1/2",
       "win_odds": 1.9,
       "popularity": 1,
       "horse_weight": 462,
@@ -76,13 +76,13 @@
       "gate_number": 3,
       "horse_number": 3,
       "horse_name": "ソングオブザバード",
-      "horse_id": null,
-      "sex_age": "牝3",
+      "horse_id": "2023100503",
+      "sex_age": "牝4",
       "weight_carried": 55.0,
       "jockey": "ディー",
-      "trainer": "栗東佐藤悠",
+      "trainer": "佐藤悠太",
       "finish_time": "2:01.5",
-      "margin": "@",
+      "margin": "1/2",
       "win_odds": 4.7,
       "popularity": 3,
       "horse_weight": 456,
@@ -106,13 +106,13 @@
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "ワッフル",
-      "horse_id": null,
+      "horse_id": "2023105622",
       "sex_age": "牝3",
       "weight_carried": 55.0,
-      "jockey": "嶋田",
-      "trainer": "美浦室井",
+      "jockey": "嶋田純次",
+      "trainer": "室井潔",
       "finish_time": "2:02.8",
-      "margin": "@",
+      "margin": "8",
       "win_odds": 90.8,
       "popularity": 6,
       "horse_weight": 446,
@@ -136,13 +136,13 @@
       "gate_number": 7,
       "horse_number": 7,
       "horse_name": "グランセレスト",
-      "horse_id": null,
+      "horse_id": "2023100953",
       "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "三浦",
-      "trainer": "美浦竹内",
+      "jockey": "三浦皇成",
+      "trainer": "竹内正洋",
       "finish_time": "2:02.9",
-      "margin": "@",
+      "margin": "3/4",
       "win_odds": 9.8,
       "popularity": 4,
       "horse_weight": 520,
@@ -166,13 +166,13 @@
       "gate_number": 4,
       "horse_number": 4,
       "horse_name": "グランアルト",
-      "horse_id": null,
-      "sex_age": "牡3",
+      "horse_id": "2023104156",
+      "sex_age": "牡5",
       "weight_carried": 57.0,
-      "jockey": "戸崎圭",
-      "trainer": "美浦斎藤誠",
+      "jockey": "戸崎圭太",
+      "trainer": "斎藤誠",
       "finish_time": "2:03.3",
-      "margin": "@",
+      "margin": "2.1/2",
       "win_odds": 10.2,
       "popularity": 5,
       "horse_weight": 504,
@@ -196,13 +196,13 @@
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "キタノファーンヒル",
-      "horse_id": null,
+      "horse_id": "2023104820",
       "sex_age": "牝3",
       "weight_carried": 55.0,
-      "jockey": "佐々木",
-      "trainer": "栗東加藤公",
+      "jockey": "佐々木大",
+      "trainer": "加藤公太",
       "finish_time": "2:03.5",
-      "margin": "@",
+      "margin": "3/4",
       "win_odds": 133.6,
       "popularity": 7,
       "horse_weight": 458,
@@ -448,7 +448,18 @@
           "model_score": 0.33332430388486384,
           "ev_score": 0.9999729116545915
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "チャリングクロス",
+        "5": "コッツォリーノ",
+        "3": "ソングオブザバード",
+        "1": "ワッフル",
+        "7": "グランセレスト",
+        "4": "グランアルト",
+        "2": "キタノファーンヒル"
+      }
     },
     {
       "prediction_id": 1937,
@@ -493,7 +504,18 @@
           "model_score": 4.9440588623001274e-05,
           "ev_score": 0.00014832176586900383
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "6": "チャリングクロス",
+        "5": "コッツォリーノ",
+        "3": "ソングオブザバード",
+        "1": "ワッフル",
+        "7": "グランセレスト",
+        "4": "グランアルト",
+        "2": "キタノファーンヒル"
+      }
     },
     {
       "prediction_id": 1938,
@@ -524,7 +546,18 @@
           "model_score": 0.07844266770240557,
           "ev_score": 0.06275413416192446
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "チャリングクロス",
+        "5": "コッツォリーノ",
+        "3": "ソングオブザバード",
+        "1": "ワッフル",
+        "7": "グランセレスト",
+        "4": "グランアルト",
+        "2": "キタノファーンヒル"
+      }
     },
     {
       "prediction_id": 1939,
@@ -555,7 +588,18 @@
           "model_score": 0.07844266770240557,
           "ev_score": 0.02745493369584195
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "チャリングクロス",
+        "5": "コッツォリーノ",
+        "3": "ソングオブザバード",
+        "1": "ワッフル",
+        "7": "グランセレスト",
+        "4": "グランアルト",
+        "2": "キタノファーンヒル"
+      }
     },
     {
       "prediction_id": 1940,
@@ -621,7 +665,18 @@
           "model_score": 0.33332430388486384,
           "ev_score": 1.3332972155394553
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "6": "チャリングクロス",
+        "5": "コッツォリーノ",
+        "3": "ソングオブザバード",
+        "1": "ワッフル",
+        "7": "グランセレスト",
+        "4": "グランアルト",
+        "2": "キタノファーンヒル"
+      }
     },
     {
       "prediction_id": 1941,
@@ -652,7 +707,18 @@
           "model_score": 0.05718259419316098,
           "ev_score": 0.22873037677264393
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "チャリングクロス",
+        "5": "コッツォリーノ",
+        "3": "ソングオブザバード",
+        "1": "ワッフル",
+        "7": "グランセレスト",
+        "4": "グランアルト",
+        "2": "キタノファーンヒル"
+      }
     },
     {
       "prediction_id": 1942,
@@ -711,7 +777,18 @@
           "model_score": 0.009913814465888463,
           "ev_score": 0.19827628931776925
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "6": "チャリングクロス",
+        "5": "コッツォリーノ",
+        "3": "ソングオブザバード",
+        "1": "ワッフル",
+        "7": "グランセレスト",
+        "4": "グランアルト",
+        "2": "キタノファーンヒル"
+      }
     }
   ],
   "training_evals": {

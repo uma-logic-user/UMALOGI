@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "アルデトップガン",
-      "horse_id": "2023105106",
-      "sex_age": "牡3",
-      "weight_carried": 56.0,
-      "jockey": "菅原明良",
-      "trainer": "田中剛",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 2,
-      "gate_number": 8,
-      "horse_number": 10,
-      "horse_name": "ラブルラウザー",
-      "horse_id": "2023101166",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "川田将雅",
-      "trainer": "大久保龍",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 3,
-      "gate_number": 6,
-      "horse_number": 7,
-      "horse_name": "エコロシード",
-      "horse_id": "2023110104",
-      "sex_age": "牡3",
-      "weight_carried": 56.0,
-      "jockey": "松山弘平",
-      "trainer": "堀宣行",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "小林脩斗",
       "trainer": "本間忍",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +42,7 @@
       "jockey": "小林美駒",
       "trainer": "石坂公一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +62,27 @@
       "jockey": "原優介",
       "trainer": "青木孝文",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "アルデトップガン",
+      "horse_id": "2023105106",
+      "sex_age": "牡3",
+      "weight_carried": 56.0,
+      "jockey": "菅原明良",
+      "trainer": "田中剛",
+      "finish_time": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +102,7 @@
       "jockey": "横山和生",
       "trainer": "矢嶋大樹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +122,27 @@
       "jockey": "荻野極",
       "trainer": "畠山吉宏",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 7,
+      "horse_name": "エコロシード",
+      "horse_id": "2023110104",
+      "sex_age": "牡3",
+      "weight_carried": 56.0,
+      "jockey": "松山弘平",
+      "trainer": "堀宣行",
+      "finish_time": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +162,7 @@
       "jockey": "武藤雅",
       "trainer": "武藤善則",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -202,7 +182,27 @@
       "jockey": "佐々木大",
       "trainer": "畠山吉宏",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 10,
+      "horse_name": "ラブルラウザー",
+      "horse_id": "2023101166",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "川田将雅",
+      "trainer": "大久保龍",
+      "finish_time": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -222,7 +222,7 @@
       "jockey": "横山武史",
       "trainer": "鈴木伸尋",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -238,6 +238,12 @@
       "combination": "4",
       "payout": 2450,
       "popularity": 6
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "11",
+      "payout": 11000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -264,16 +270,34 @@
       "popularity": 7
     },
     {
+      "bet_type": "枠連",
+      "combination": "2",
+      "payout": 45006,
+      "popularity": null
+    },
+    {
       "bet_type": "馬連",
       "combination": "4-10",
       "payout": 2140,
       "popularity": 9
     },
     {
+      "bet_type": "馬連",
+      "combination": "2-80",
+      "payout": 6100,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "7-10",
       "payout": 180,
       "popularity": 1
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4",
+      "payout": 80000,
+      "popularity": 2
     },
     {
       "bet_type": "ワイド",
@@ -288,16 +312,46 @@
       "popularity": 9
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 10010,
+      "popularity": 70
+    },
+    {
       "bet_type": "馬単",
       "combination": "4→10",
       "payout": 6140,
       "popularity": 18
     },
     {
+      "bet_type": "馬単",
+      "combination": "4",
+      "payout": 10000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "4-7-10",
       "payout": 900,
       "popularity": 3
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4-60",
+      "payout": 707,
+      "popularity": 100
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5-10",
+      "payout": 90407,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1",
+      "payout": 80001,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

@@ -4,11 +4,11 @@
   "date": "2026-04-11",
   "venue": "福島",
   "race_number": 9,
-  "distance": 0,
-  "surface": "",
+  "distance": 1800,
+  "surface": "芝",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "晴",
+  "condition": "良",
   "year": "2026",
   "results": [
     {
@@ -21,12 +21,12 @@
       "weight_carried": 58.0,
       "jockey": "丹内祐次",
       "trainer": "上原佑紀",
-      "finish_time": null,
+      "finish_time": "1:47.0",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 3.6,
+      "popularity": 1,
+      "horse_weight": 450,
+      "horse_weight_diff": -6,
       "sire": "ドゥラメンテ",
       "dam": "ベルフィオーレ",
       "dam_sire": "ディープインパクト",
@@ -45,12 +45,12 @@
       "weight_carried": 58.0,
       "jockey": "斎藤新",
       "trainer": "室井潔",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:47.1",
+      "margin": "3/4",
+      "win_odds": 21.4,
+      "popularity": 8,
+      "horse_weight": 474,
+      "horse_weight_diff": -4,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -69,18 +69,330 @@
       "weight_carried": 58.0,
       "jockey": "小崎綾也",
       "trainer": "高橋一哉",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:47.6",
+      "margin": "3",
+      "win_odds": 18.0,
+      "popularity": 7,
+      "horse_weight": 498,
+      "horse_weight_diff": 0,
       "sire": null,
       "dam": null,
       "dam_sire": null,
       "training_eval": {
         "eval_grade": "C",
         "eval_text": "良化薄い"
+      }
+    },
+    {
+      "rank": 4,
+      "gate_number": 6,
+      "horse_number": 12,
+      "horse_name": "ロットブラータ",
+      "horse_id": "2022104688",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "藤懸貴志",
+      "trainer": "平田修",
+      "finish_time": "1:47.6",
+      "margin": "アタマ",
+      "win_odds": 5.5,
+      "popularity": 3,
+      "horse_weight": 530,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "好時計"
+      }
+    },
+    {
+      "rank": 5,
+      "gate_number": 7,
+      "horse_number": 13,
+      "horse_name": "シアブリス",
+      "horse_id": "2021105742",
+      "sex_age": "牝4",
+      "weight_carried": 56.0,
+      "jockey": "石川裕紀",
+      "trainer": "手塚貴徳",
+      "finish_time": "1:47.7",
+      "margin": "クビ",
+      "win_odds": 75.1,
+      "popularity": 14,
+      "horse_weight": 432,
+      "horse_weight_diff": -26,
+      "sire": "エピファネイア",
+      "dam": "ブリスフルデイズ",
+      "dam_sire": "キングカメハメハ",
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "仕上るも"
+      }
+    },
+    {
+      "rank": 6,
+      "gate_number": 5,
+      "horse_number": 10,
+      "horse_name": "スペードギニー",
+      "horse_id": "2022105191",
+      "sex_age": "騸5",
+      "weight_carried": 58.0,
+      "jockey": "横山琉人",
+      "trainer": "大和田成",
+      "finish_time": "1:47.8",
+      "margin": "3/4",
+      "win_odds": 39.2,
+      "popularity": 11,
+      "horse_weight": 466,
+      "horse_weight_diff": -5,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "仕上十分"
+      }
+    },
+    {
+      "rank": 7,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "サトノラポール",
+      "horse_id": "2022104786",
+      "sex_age": "騸3",
+      "weight_carried": 58.0,
+      "jockey": "舟山瑠泉",
+      "trainer": "鹿戸雄一",
+      "finish_time": "1:47.8",
+      "margin": "ハナ",
+      "win_odds": 24.1,
+      "popularity": 9,
+      "horse_weight": 466,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "動き軽快"
+      }
+    },
+    {
+      "rank": 8,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "エナジーショット",
+      "horse_id": "2022101425",
+      "sex_age": "牝1",
+      "weight_carried": 56.0,
+      "jockey": "長浜鴻緒",
+      "trainer": "矢嶋大樹",
+      "finish_time": "1:47.8",
+      "margin": "ハナ",
+      "win_odds": 57.5,
+      "popularity": 12,
+      "horse_weight": 418,
+      "horse_weight_diff": -10,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "状態良好"
+      }
+    },
+    {
+      "rank": 9,
+      "gate_number": 7,
+      "horse_number": 14,
+      "horse_name": "ガンバルマン",
+      "horse_id": "2022101307",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "原田和真",
+      "trainer": "萱野浩二",
+      "finish_time": "1:47.8",
+      "margin": "クビ",
+      "win_odds": 7.3,
+      "popularity": 4,
+      "horse_weight": 480,
+      "horse_weight_diff": 12,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "態勢整う"
+      }
+    },
+    {
+      "rank": 10,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "ゼットエイト",
+      "horse_id": "2022101889",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "国分恭介",
+      "trainer": "宮地貴稔",
+      "finish_time": "1:47.9",
+      "margin": "クビ",
+      "win_odds": 38.3,
+      "popularity": 10,
+      "horse_weight": 466,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "素軽さ出"
+      }
+    },
+    {
+      "rank": 11,
+      "gate_number": 8,
+      "horse_number": 16,
+      "horse_name": "レッドシュトラール",
+      "horse_id": "2022105156",
+      "sex_age": "騸1",
+      "weight_carried": 58.0,
+      "jockey": "野中悠太",
+      "trainer": "宮田敬介",
+      "finish_time": "1:48.1",
+      "margin": "1.1/4",
+      "win_odds": 66.1,
+      "popularity": 13,
+      "horse_weight": 474,
+      "horse_weight_diff": -12,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "仕上上々"
+      }
+    },
+    {
+      "rank": 12,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "デイジー",
+      "horse_id": "2021104173",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "江田照男",
+      "trainer": "田中勝春",
+      "finish_time": "1:48.2",
+      "margin": "3/4",
+      "win_odds": 4.4,
+      "popularity": 2,
+      "horse_weight": 472,
+      "horse_weight_diff": 4,
+      "sire": "デクラレーションオブウォー",
+      "dam": "リボンフラワー",
+      "dam_sire": "ディープインパクト",
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "好気配"
+      }
+    },
+    {
+      "rank": 13,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "ラトラース",
+      "horse_id": "2022105194",
+      "sex_age": "騸5",
+      "weight_carried": 58.0,
+      "jockey": "小沢大仁",
+      "trainer": "中内田充",
+      "finish_time": "1:48.3",
+      "margin": "3/4",
+      "win_odds": 8.2,
+      "popularity": 5,
+      "horse_weight": 474,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "伸び上々"
+      }
+    },
+    {
+      "rank": 14,
+      "gate_number": 4,
+      "horse_number": 8,
+      "horse_name": "フォートポータル",
+      "horse_id": "2021103251",
+      "sex_age": "騸3",
+      "weight_carried": 58.0,
+      "jockey": "秋山稔樹",
+      "trainer": "粕谷昌央",
+      "finish_time": "1:48.9",
+      "margin": "3.1/2",
+      "win_odds": 230.7,
+      "popularity": 16,
+      "horse_weight": 460,
+      "horse_weight_diff": -12,
+      "sire": "リアルスティール",
+      "dam": "パールオブアフリカ(愛)",
+      "dam_sire": "Jeremy",
+      "training_eval": {
+        "eval_grade": "D",
+        "eval_text": "動き平凡"
+      }
+    },
+    {
+      "rank": 15,
+      "gate_number": 2,
+      "horse_number": 4,
+      "horse_name": "グレヴィレア",
+      "horse_id": "2022105001",
+      "sex_age": "牝4",
+      "weight_carried": 56.0,
+      "jockey": "荻野極",
+      "trainer": "浅利英明",
+      "finish_time": "1:49.0",
+      "margin": "クビ",
+      "win_odds": 15.8,
+      "popularity": 6,
+      "horse_weight": 436,
+      "horse_weight_diff": -1,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "気配平凡"
+      }
+    },
+    {
+      "rank": 16,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "メイショウヒュウガ",
+      "horse_id": "2020106843",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "田口貫太",
+      "trainer": "安達昭夫",
+      "finish_time": "1:49.0",
+      "margin": "アタマ",
+      "win_odds": 129.7,
+      "popularity": 15,
+      "horse_weight": 482,
+      "horse_weight_diff": -8,
+      "sire": "ダンカークDunkirk(米)",
+      "dam": "カネトシガーネット",
+      "dam_sire": "キングカメハメハ",
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "仕上十分"
       }
     }
   ],
@@ -326,7 +638,27 @@
           "model_score": 6.770918166124499e-05,
           "ev_score": 6.770918166124499e-05
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "フォルテフィオーレ",
+        "9": "コスモキャバリエ",
+        "2": "レッドシュテルン",
+        "12": "ロットブラータ",
+        "13": "シアブリス",
+        "10": "スペードギニー",
+        "11": "サトノラポール",
+        "6": "エナジーショット",
+        "14": "ガンバルマン",
+        "5": "ゼットエイト",
+        "16": "レッドシュトラール",
+        "15": "デイジー",
+        "7": "ラトラース",
+        "8": "フォートポータル",
+        "4": "グレヴィレア",
+        "1": "メイショウヒュウガ"
+      }
     },
     {
       "prediction_id": 1816,
@@ -399,7 +731,27 @@
           "model_score": 0.22043052966946208,
           "ev_score": 0.8817221186778483
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "3": "フォルテフィオーレ",
+        "9": "コスモキャバリエ",
+        "2": "レッドシュテルン",
+        "12": "ロットブラータ",
+        "13": "シアブリス",
+        "10": "スペードギニー",
+        "11": "サトノラポール",
+        "6": "エナジーショット",
+        "14": "ガンバルマン",
+        "5": "ゼットエイト",
+        "16": "レッドシュトラール",
+        "15": "デイジー",
+        "7": "ラトラース",
+        "8": "フォートポータル",
+        "4": "グレヴィレア",
+        "1": "メイショウヒュウガ"
+      }
     },
     {
       "prediction_id": 1817,
@@ -430,7 +782,27 @@
           "model_score": 0.037875752962828205,
           "ev_score": 0.030300602370262563
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "フォルテフィオーレ",
+        "9": "コスモキャバリエ",
+        "2": "レッドシュテルン",
+        "12": "ロットブラータ",
+        "13": "シアブリス",
+        "10": "スペードギニー",
+        "11": "サトノラポール",
+        "6": "エナジーショット",
+        "14": "ガンバルマン",
+        "5": "ゼットエイト",
+        "16": "レッドシュトラール",
+        "15": "デイジー",
+        "7": "ラトラース",
+        "8": "フォートポータル",
+        "4": "グレヴィレア",
+        "1": "メイショウヒュウガ"
+      }
     },
     {
       "prediction_id": 1818,
@@ -461,7 +833,27 @@
           "model_score": 0.037875752962828205,
           "ev_score": 0.013256513536989872
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "フォルテフィオーレ",
+        "9": "コスモキャバリエ",
+        "2": "レッドシュテルン",
+        "12": "ロットブラータ",
+        "13": "シアブリス",
+        "10": "スペードギニー",
+        "11": "サトノラポール",
+        "6": "エナジーショット",
+        "14": "ガンバルマン",
+        "5": "ゼットエイト",
+        "16": "レッドシュトラール",
+        "15": "デイジー",
+        "7": "ラトラース",
+        "8": "フォートポータル",
+        "4": "グレヴィレア",
+        "1": "メイショウヒュウガ"
+      }
     },
     {
       "prediction_id": 1819,
@@ -499,7 +891,27 @@
           "model_score": 0.01904249203092561,
           "ev_score": 0.028563738046388412
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "3": "フォルテフィオーレ",
+        "9": "コスモキャバリエ",
+        "2": "レッドシュテルン",
+        "12": "ロットブラータ",
+        "13": "シアブリス",
+        "10": "スペードギニー",
+        "11": "サトノラポール",
+        "6": "エナジーショット",
+        "14": "ガンバルマン",
+        "5": "ゼットエイト",
+        "16": "レッドシュトラール",
+        "15": "デイジー",
+        "7": "ラトラース",
+        "8": "フォートポータル",
+        "4": "グレヴィレア",
+        "1": "メイショウヒュウガ"
+      }
     },
     {
       "prediction_id": 1820,
@@ -544,7 +956,27 @@
           "model_score": 3.2982659720571488,
           "ev_score": 3.2982659720571488
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "フォルテフィオーレ",
+        "9": "コスモキャバリエ",
+        "2": "レッドシュテルン",
+        "12": "ロットブラータ",
+        "13": "シアブリス",
+        "10": "スペードギニー",
+        "11": "サトノラポール",
+        "6": "エナジーショット",
+        "14": "ガンバルマン",
+        "5": "ゼットエイト",
+        "16": "レッドシュトラール",
+        "15": "デイジー",
+        "7": "ラトラース",
+        "8": "フォートポータル",
+        "4": "グレヴィレア",
+        "1": "メイショウヒュウガ"
+      }
     },
     {
       "prediction_id": 1821,
@@ -603,7 +1035,27 @@
           "model_score": 0.0018162209021215232,
           "ev_score": 0.036324418042430466
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "3": "フォルテフィオーレ",
+        "9": "コスモキャバリエ",
+        "2": "レッドシュテルン",
+        "12": "ロットブラータ",
+        "13": "シアブリス",
+        "10": "スペードギニー",
+        "11": "サトノラポール",
+        "6": "エナジーショット",
+        "14": "ガンバルマン",
+        "5": "ゼットエイト",
+        "16": "レッドシュトラール",
+        "15": "デイジー",
+        "7": "ラトラース",
+        "8": "フォートポータル",
+        "4": "グレヴィレア",
+        "1": "メイショウヒュウガ"
+      }
     },
     {
       "prediction_id": 1823,
@@ -634,7 +1086,27 @@
           "model_score": 1.0539477847156165,
           "ev_score": 1.0539477847156165
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "フォルテフィオーレ",
+        "9": "コスモキャバリエ",
+        "2": "レッドシュテルン",
+        "12": "ロットブラータ",
+        "13": "シアブリス",
+        "10": "スペードギニー",
+        "11": "サトノラポール",
+        "6": "エナジーショット",
+        "14": "ガンバルマン",
+        "5": "ゼットエイト",
+        "16": "レッドシュトラール",
+        "15": "デイジー",
+        "7": "ラトラース",
+        "8": "フォートポータル",
+        "4": "グレヴィレア",
+        "1": "メイショウヒュウガ"
+      }
     },
     {
       "prediction_id": 1824,
@@ -672,7 +1144,27 @@
           "model_score": 1.1610382437456173,
           "ev_score": 1.1610382437456173
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "3": "フォルテフィオーレ",
+        "9": "コスモキャバリエ",
+        "2": "レッドシュテルン",
+        "12": "ロットブラータ",
+        "13": "シアブリス",
+        "10": "スペードギニー",
+        "11": "サトノラポール",
+        "6": "エナジーショット",
+        "14": "ガンバルマン",
+        "5": "ゼットエイト",
+        "16": "レッドシュトラール",
+        "15": "デイジー",
+        "7": "ラトラース",
+        "8": "フォートポータル",
+        "4": "グレヴィレア",
+        "1": "メイショウヒュウガ"
+      }
     },
     {
       "prediction_id": 1825,
@@ -717,7 +1209,27 @@
           "model_score": 0.33330619022914737,
           "ev_score": 0.9999185706874422
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "フォルテフィオーレ",
+        "9": "コスモキャバリエ",
+        "2": "レッドシュテルン",
+        "12": "ロットブラータ",
+        "13": "シアブリス",
+        "10": "スペードギニー",
+        "11": "サトノラポール",
+        "6": "エナジーショット",
+        "14": "ガンバルマン",
+        "5": "ゼットエイト",
+        "16": "レッドシュトラール",
+        "15": "デイジー",
+        "7": "ラトラース",
+        "8": "フォートポータル",
+        "4": "グレヴィレア",
+        "1": "メイショウヒュウガ"
+      }
     },
     {
       "prediction_id": 1826,
@@ -748,7 +1260,27 @@
           "model_score": 0.1117837864539346,
           "ev_score": 0.03912432525887711
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "フォルテフィオーレ",
+        "9": "コスモキャバリエ",
+        "2": "レッドシュテルン",
+        "12": "ロットブラータ",
+        "13": "シアブリス",
+        "10": "スペードギニー",
+        "11": "サトノラポール",
+        "6": "エナジーショット",
+        "14": "ガンバルマン",
+        "5": "ゼットエイト",
+        "16": "レッドシュトラール",
+        "15": "デイジー",
+        "7": "ラトラース",
+        "8": "フォートポータル",
+        "4": "グレヴィレア",
+        "1": "メイショウヒュウガ"
+      }
     },
     {
       "prediction_id": 1827,
@@ -779,7 +1311,27 @@
           "model_score": 0.057269329636405145,
           "ev_score": 0.08590399445460772
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "フォルテフィオーレ",
+        "9": "コスモキャバリエ",
+        "2": "レッドシュテルン",
+        "12": "ロットブラータ",
+        "13": "シアブリス",
+        "10": "スペードギニー",
+        "11": "サトノラポール",
+        "6": "エナジーショット",
+        "14": "ガンバルマン",
+        "5": "ゼットエイト",
+        "16": "レッドシュトラール",
+        "15": "デイジー",
+        "7": "ラトラース",
+        "8": "フォートポータル",
+        "4": "グレヴィレア",
+        "1": "メイショウヒュウガ"
+      }
     }
   ],
   "training_evals": {

@@ -12,7 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "シンハナーダ",
@@ -22,7 +22,7 @@
       "jockey": "ルメール",
       "trainer": "国枝栄",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -30,46 +30,6 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
-    },
-    {
-      "rank": 2,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "マイネルトルファン",
-      "horse_id": "2019100790",
-      "sex_age": "牡4",
-      "weight_carried": 58.0,
-      "jockey": "柴田大知",
-      "trainer": "粕谷昌央",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "オルフェーヴル",
-      "dam": "マイネテレジア",
-      "dam_sire": "ロージズインメイRoses in May(米)"
-    },
-    {
-      "rank": 3,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "ピンキープロミス",
-      "horse_id": "2020106475",
-      "sex_age": "牡7",
-      "weight_carried": 58.0,
-      "jockey": "木幡巧也",
-      "trainer": "畠山吉宏",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ゴールドシップ",
-      "dam": "マイネランデブー",
-      "dam_sire": "アグネスデジタル"
     },
     {
       "rank": null,
@@ -82,7 +42,7 @@
       "jockey": "大野拓弥",
       "trainer": "和田雄二",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +62,7 @@
       "jockey": "横山武史",
       "trainer": "宮田敬介",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -110,6 +70,46 @@
       "sire": "エピファネイア",
       "dam": "レーヌドブリエ",
       "dam_sire": "ゼンノロブロイ"
+    },
+    {
+      "rank": null,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "ピンキープロミス",
+      "horse_id": "2020106475",
+      "sex_age": "牡7",
+      "weight_carried": 58.0,
+      "jockey": "木幡巧也",
+      "trainer": "畠山吉宏",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ゴールドシップ",
+      "dam": "マイネランデブー",
+      "dam_sire": "アグネスデジタル"
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "マイネルトルファン",
+      "horse_id": "2019100790",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "柴田大知",
+      "trainer": "粕谷昌央",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "オルフェーヴル",
+      "dam": "マイネテレジア",
+      "dam_sire": "ロージズインメイRoses in May(米)"
     }
   ],
   "payouts": [
@@ -118,6 +118,12 @@
       "combination": "1",
       "payout": 120,
       "popularity": 1
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "5",
+      "payout": 5000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -138,6 +144,12 @@
       "popularity": 3
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-10",
+      "payout": 1050,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "1-4",
       "payout": 180,
@@ -156,16 +168,46 @@
       "popularity": 6
     },
     {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 60040,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "1→5",
       "payout": 850,
       "popularity": 4
     },
     {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 5000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-4-5",
       "payout": 310,
       "popularity": 2
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-80",
+      "payout": 204,
+      "popularity": 50
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2-20",
+      "payout": 30104,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3",
+      "payout": 20005,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

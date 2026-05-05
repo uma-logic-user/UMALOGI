@@ -12,27 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "ミッキージュエリー",
-      "horse_id": "2022103245",
-      "sex_age": "牝3",
-      "weight_carried": 52.0,
-      "jockey": "丹内祐次",
-      "trainer": "中内田充",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 2,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "リリーブライト",
@@ -42,7 +22,7 @@
       "jockey": "荻野琢真",
       "trainer": "西田雄一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -50,26 +30,6 @@
       "sire": "ハーツクライ",
       "dam": "リリーアメリカLily America(仏)",
       "dam_sire": "American Post"
-    },
-    {
-      "rank": 3,
-      "gate_number": 5,
-      "horse_number": 6,
-      "horse_name": "アルゲンテウス",
-      "horse_id": "2019105497",
-      "sex_age": "騸7",
-      "weight_carried": 55.0,
-      "jockey": "武豊",
-      "trainer": "小島茂之",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "シルバーステート",
-      "dam": "ラダームブランシェ",
-      "dam_sire": "チチカステナンゴChichicastenango(仏)"
     },
     {
       "rank": null,
@@ -82,7 +42,7 @@
       "jockey": "菅原隆一",
       "trainer": "蛯名利弘",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -90,6 +50,26 @@
       "sire": "ダノンレジェンド",
       "dam": "ハルダル",
       "dam_sire": "ゴールドアリュール"
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "ミッキージュエリー",
+      "horse_id": "2022103245",
+      "sex_age": "牝3",
+      "weight_carried": 52.0,
+      "jockey": "丹内祐次",
+      "trainer": "中内田充",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -102,7 +82,7 @@
       "jockey": "藤岡佑介",
       "trainer": "西村真幸",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +102,7 @@
       "jockey": "松岡正海",
       "trainer": "緒方努",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -130,6 +110,26 @@
       "sire": "ハーツクライ",
       "dam": "シルヴァーカップSilver Cup(愛)",
       "dam_sire": "Almutawakel"
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 6,
+      "horse_name": "アルゲンテウス",
+      "horse_id": "2019105497",
+      "sex_age": "騸7",
+      "weight_carried": 55.0,
+      "jockey": "武豊",
+      "trainer": "小島茂之",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "シルバーステート",
+      "dam": "ラダームブランシェ",
+      "dam_sire": "チチカステナンゴChichicastenango(仏)"
     },
     {
       "rank": null,
@@ -142,7 +142,7 @@
       "jockey": "佐々木大",
       "trainer": "大竹正博",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +162,7 @@
       "jockey": "横山武史",
       "trainer": "栗田徹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +182,7 @@
       "jockey": "斎藤新",
       "trainer": "金成貴史",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -202,7 +202,7 @@
       "jockey": "横山和生",
       "trainer": "菊川正達",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -222,7 +222,7 @@
       "jockey": "浜中俊",
       "trainer": "浜田多実",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -242,7 +242,7 @@
       "jockey": "川又賢治",
       "trainer": "緒方努",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -260,6 +260,12 @@
       "popularity": 1
     },
     {
+      "bet_type": "単勝",
+      "combination": "12",
+      "payout": 11000,
+      "popularity": null
+    },
+    {
       "bet_type": "複勝",
       "combination": "3",
       "payout": 130,
@@ -274,8 +280,8 @@
     {
       "bet_type": "複勝",
       "combination": "1",
-      "payout": 1060,
-      "popularity": 11
+      "payout": 11000,
+      "popularity": null
     },
     {
       "bet_type": "枠連",
@@ -284,16 +290,34 @@
       "popularity": 17
     },
     {
+      "bet_type": "枠連",
+      "combination": "1",
+      "payout": 300,
+      "popularity": null
+    },
+    {
       "bet_type": "馬連",
       "combination": "1-3",
       "payout": 6450,
       "popularity": 20
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-30",
+      "payout": 1010,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "3-6",
       "payout": 390,
       "popularity": 3
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 30000,
+      "popularity": 8
     },
     {
       "bet_type": "ワイド",
@@ -308,16 +332,46 @@
       "popularity": 41
     },
     {
+      "bet_type": "ワイド",
+      "combination": "10",
+      "payout": 60110,
+      "popularity": 60
+    },
+    {
       "bet_type": "馬単",
       "combination": "3→1",
       "payout": 8390,
       "popularity": 28
     },
     {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 3000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-3-6",
       "payout": 12630,
       "popularity": 43
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3-90",
+      "payout": 301,
+      "popularity": 60
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "21-10-2",
+      "payout": 60306,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "46",
+      "payout": 30041,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

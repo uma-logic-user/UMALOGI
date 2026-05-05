@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 5,
-      "horse_number": 7,
-      "horse_name": "モンテシート",
-      "horse_id": "2022105108",
-      "sex_age": "牡3",
-      "weight_carried": 55.0,
-      "jockey": "吉村誠之",
-      "trainer": "牧田和弥",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 2,
-      "gate_number": 8,
-      "horse_number": 13,
-      "horse_name": "テラメリタ",
-      "horse_id": "2021105127",
-      "sex_age": "牝7",
-      "weight_carried": 56.0,
-      "jockey": "川田将雅",
-      "trainer": "須貝尚介",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ブリックスアンドモルタルBricks and Mortar(米)",
-      "dam": "テラノヴァ",
-      "dam_sire": "ヴィクトワールピサ"
-    },
-    {
-      "rank": 3,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "サクラオーラ",
-      "horse_id": "2019106280",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "国分恭介",
-      "trainer": "河嶋宏樹",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "シルバーステート",
-      "dam": "サクラクローバー",
-      "dam_sire": "サウスヴィグラス"
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "菱田裕二",
       "trainer": "長谷川浩",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +42,7 @@
       "jockey": "小崎綾也",
       "trainer": "小林真也",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +62,7 @@
       "jockey": "亀田温心",
       "trainer": "高柳大輔",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -130,6 +70,26 @@
       "sire": "ルーラーシップ",
       "dam": "パープルセイル",
       "dam_sire": "フジキセキ"
+    },
+    {
+      "rank": null,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "サクラオーラ",
+      "horse_id": "2019106280",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "国分恭介",
+      "trainer": "河嶋宏樹",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "シルバーステート",
+      "dam": "サクラクローバー",
+      "dam_sire": "サウスヴィグラス"
     },
     {
       "rank": null,
@@ -142,7 +102,7 @@
       "jockey": "高杉吏麒",
       "trainer": "池江泰寿",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +122,7 @@
       "jockey": "松山弘平",
       "trainer": "小栗実",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -170,6 +130,26 @@
       "sire": "モーリス",
       "dam": "パールズシャイン",
       "dam_sire": "ディープインパクト"
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 7,
+      "horse_name": "モンテシート",
+      "horse_id": "2022105108",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "吉村誠之",
+      "trainer": "牧田和弥",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -182,7 +162,7 @@
       "jockey": "松若風馬",
       "trainer": "中尾秀正",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -202,7 +182,7 @@
       "jockey": "城戸義政",
       "trainer": "宮地貴稔",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -222,7 +202,7 @@
       "jockey": "団野大成",
       "trainer": "佐々木晶",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -242,7 +222,7 @@
       "jockey": "田口貫太",
       "trainer": "大橋勇樹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -262,7 +242,7 @@
       "jockey": "井上敏樹",
       "trainer": "小崎憲",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -270,6 +250,26 @@
       "sire": "リオンディーズ",
       "dam": "カーリンホークCurlin Hawk(米)",
       "dam_sire": "Curlin(米)"
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 13,
+      "horse_name": "テラメリタ",
+      "horse_id": "2021105127",
+      "sex_age": "牝7",
+      "weight_carried": 56.0,
+      "jockey": "川田将雅",
+      "trainer": "須貝尚介",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ブリックスアンドモルタルBricks and Mortar(米)",
+      "dam": "テラノヴァ",
+      "dam_sire": "ヴィクトワールピサ"
     }
   ],
   "payouts": [
@@ -278,6 +278,12 @@
       "combination": "7",
       "payout": 390,
       "popularity": 2
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "13",
+      "payout": 13000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -310,6 +316,12 @@
       "popularity": 3
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-60",
+      "payout": 2130,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "7-13",
       "payout": 490,
@@ -328,16 +340,52 @@
       "popularity": 22
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 70030,
+      "popularity": 40
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "5",
+      "payout": 80000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "7→13",
       "payout": 1830,
       "popularity": 5
     },
     {
+      "bet_type": "馬単",
+      "combination": "7",
+      "payout": 13000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "4-7-13",
       "payout": 7100,
       "popularity": 24
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "19-60",
+      "payout": 2304,
+      "popularity": 130
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4-90",
+      "payout": 40407,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "17",
+      "payout": 40021,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

@@ -4,11 +4,11 @@
   "date": "2026-04-25",
   "venue": "福島",
   "race_number": 11,
-  "distance": 0,
-  "surface": "",
+  "distance": 1150,
+  "surface": "ダート",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "晴",
+  "condition": "良",
   "year": "2026",
   "results": [
     {
@@ -21,12 +21,12 @@
       "weight_carried": 56.0,
       "jockey": "松本大輝",
       "trainer": "田中克典",
-      "finish_time": null,
+      "finish_time": "1:07.6",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 10.4,
+      "popularity": 7,
+      "horse_weight": 492,
+      "horse_weight_diff": -2,
       "sire": "マジェスティックウォリアーMajestic Warrior(米)",
       "dam": "キョウエイカプリス",
       "dam_sire": "ゴールドアリュール"
@@ -41,12 +41,12 @@
       "weight_carried": 56.0,
       "jockey": "荻野極",
       "trainer": "森一誠",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:07.8",
+      "margin": "1.1/4",
+      "win_odds": 5.2,
+      "popularity": 1,
+      "horse_weight": 450,
+      "horse_weight_diff": -6,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -61,58 +61,18 @@
       "weight_carried": 58.0,
       "jockey": "国分恭介",
       "trainer": "牧浦充徳",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:08.0",
+      "margin": "1",
+      "win_odds": 5.3,
+      "popularity": 2,
+      "horse_weight": 476,
+      "horse_weight_diff": -6,
       "sire": "モーニン",
       "dam": "ハッピーラン",
       "dam_sire": "フレンチデピュティFrench Deputy(米)"
     },
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "ジェネラーレ",
-      "horse_id": "2021110153",
-      "sex_age": "牡1",
-      "weight_carried": 58.0,
-      "jockey": "富田暁",
-      "trainer": "野中賢二",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "Army Mule",
-      "dam": "Raging Atlantic",
-      "dam_sire": "Stormy Atlantic"
-    },
-    {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "イマージョン",
-      "horse_id": "2022104600",
-      "sex_age": "牡4",
-      "weight_carried": 58.0,
-      "jockey": "丸山元気",
-      "trainer": "高野友和",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 4,
       "gate_number": 3,
       "horse_number": 3,
       "horse_name": "キタノソワレ",
@@ -121,15 +81,155 @@
       "weight_carried": 56.0,
       "jockey": "丹内祐次",
       "trainer": "本間忍",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:08.0",
+      "margin": "アタマ",
+      "win_odds": 6.6,
+      "popularity": 4,
+      "horse_weight": 488,
+      "horse_weight_diff": 8,
       "sire": "トゥザワールド",
       "dam": "チャームラブ",
       "dam_sire": "フレンチデピュティFrench Deputy(米)"
+    },
+    {
+      "rank": 5,
+      "gate_number": 8,
+      "horse_number": 12,
+      "horse_name": "カウスリップ",
+      "horse_id": "2022100627",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "菊沢一樹",
+      "trainer": "中舘英二",
+      "finish_time": "1:08.1",
+      "margin": "3/4",
+      "win_odds": 16.0,
+      "popularity": 9,
+      "horse_weight": 536,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 6,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "ビルカール",
+      "horse_id": "2020105250",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "石川裕紀",
+      "trainer": "水野貴広",
+      "finish_time": "1:08.2",
+      "margin": "1/2",
+      "win_odds": 15.5,
+      "popularity": 8,
+      "horse_weight": 476,
+      "horse_weight_diff": 2,
+      "sire": "ミッキーアイル",
+      "dam": "サンシャインキッス",
+      "dam_sire": "ストリートセンスStreet Sense(米)"
+    },
+    {
+      "rank": 7,
+      "gate_number": 6,
+      "horse_number": 7,
+      "horse_name": "ゴールドハンマー",
+      "horse_id": "2022103779",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "舟山瑠泉",
+      "trainer": "村田一誠",
+      "finish_time": "1:08.4",
+      "margin": "3/4",
+      "win_odds": 7.8,
+      "popularity": 5,
+      "horse_weight": 490,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 8,
+      "gate_number": 7,
+      "horse_number": 9,
+      "horse_name": "サザンエルフ",
+      "horse_id": "2019102011",
+      "sex_age": "牝1",
+      "weight_carried": 56.0,
+      "jockey": "横山琉人",
+      "trainer": "中川公成",
+      "finish_time": "1:08.7",
+      "margin": "2",
+      "win_odds": 20.4,
+      "popularity": 10,
+      "horse_weight": 486,
+      "horse_weight_diff": -6,
+      "sire": "パイロPyro(米)",
+      "dam": "プレシャスエルフ",
+      "dam_sire": "コロナドズクエストCoronado's Quest(米)"
+    },
+    {
+      "rank": 9,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "イマージョン",
+      "horse_id": "2022104600",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "丸山元気",
+      "trainer": "高野友和",
+      "finish_time": "1:09.2",
+      "margin": "3",
+      "win_odds": 6.3,
+      "popularity": 3,
+      "horse_weight": 512,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 10,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "ジェネラーレ",
+      "horse_id": "2021110153",
+      "sex_age": "牡1",
+      "weight_carried": 58.0,
+      "jockey": "富田暁",
+      "trainer": "野中賢二",
+      "finish_time": "1:09.3",
+      "margin": "クビ",
+      "win_odds": 8.0,
+      "popularity": 6,
+      "horse_weight": 492,
+      "horse_weight_diff": 0,
+      "sire": "Army Mule",
+      "dam": "Raging Atlantic",
+      "dam_sire": "Stormy Atlantic"
+    },
+    {
+      "rank": 11,
+      "gate_number": 7,
+      "horse_number": 10,
+      "horse_name": "シャカシャカシー",
+      "horse_id": "2021101237",
+      "sex_age": "牡2",
+      "weight_carried": 58.0,
+      "jockey": "長岡禎仁",
+      "trainer": "茶木太樹",
+      "finish_time": "1:09.7",
+      "margin": "2.1/2",
+      "win_odds": 24.9,
+      "popularity": 11,
+      "horse_weight": 524,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -141,106 +241,6 @@
       "weight_carried": 56.0,
       "jockey": "斎藤新",
       "trainer": "小栗実",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "ビルカール",
-      "horse_id": "2020105250",
-      "sex_age": "牡4",
-      "weight_carried": 58.0,
-      "jockey": "石川裕紀",
-      "trainer": "水野貴広",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ミッキーアイル",
-      "dam": "サンシャインキッス",
-      "dam_sire": "ストリートセンスStreet Sense(米)"
-    },
-    {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 7,
-      "horse_name": "ゴールドハンマー",
-      "horse_id": "2022103779",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "舟山瑠泉",
-      "trainer": "村田一誠",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 9,
-      "horse_name": "サザンエルフ",
-      "horse_id": "2019102011",
-      "sex_age": "牝1",
-      "weight_carried": 56.0,
-      "jockey": "横山琉人",
-      "trainer": "中川公成",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "パイロPyro(米)",
-      "dam": "プレシャスエルフ",
-      "dam_sire": "コロナドズクエストCoronado's Quest(米)"
-    },
-    {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 10,
-      "horse_name": "シャカシャカシー",
-      "horse_id": "2021101237",
-      "sex_age": "牡2",
-      "weight_carried": 58.0,
-      "jockey": "長岡禎仁",
-      "trainer": "茶木太樹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 12,
-      "horse_name": "カウスリップ",
-      "horse_id": "2022100627",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "菊沢一樹",
-      "trainer": "中舘英二",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -451,7 +451,23 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.012030075187969926
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "スノーサイレンス",
+        "8": "プレゼンティーア",
+        "11": "ルージュアズライト",
+        "6": "ワークソング",
+        "3": "キタノソワレ",
+        "12": "カウスリップ",
+        "5": "ビルカール",
+        "7": "ゴールドハンマー",
+        "9": "サザンエルフ",
+        "2": "イマージョン",
+        "1": "ジェネラーレ",
+        "10": "シャカシャカシー"
+      }
     },
     {
       "prediction_id": 5987,
@@ -489,7 +505,23 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.03609022556390978
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "4": "スノーサイレンス",
+        "8": "プレゼンティーア",
+        "11": "ルージュアズライト",
+        "6": "ワークソング",
+        "3": "キタノソワレ",
+        "12": "カウスリップ",
+        "5": "ビルカール",
+        "7": "ゴールドハンマー",
+        "9": "サザンエルフ",
+        "2": "イマージョン",
+        "1": "ジェネラーレ",
+        "10": "シャカシャカシー"
+      }
     },
     {
       "prediction_id": 5988,
@@ -520,7 +552,23 @@
           "model_score": 0.015151515151515152,
           "ev_score": 0.9090909090909092
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "スノーサイレンス",
+        "8": "プレゼンティーア",
+        "11": "ルージュアズライト",
+        "6": "ワークソング",
+        "3": "キタノソワレ",
+        "12": "カウスリップ",
+        "5": "ビルカール",
+        "7": "ゴールドハンマー",
+        "9": "サザンエルフ",
+        "2": "イマージョン",
+        "1": "ジェネラーレ",
+        "10": "シャカシャカシー"
+      }
     },
     {
       "prediction_id": 5989,
@@ -551,7 +599,23 @@
           "model_score": 0.015151515151515152,
           "ev_score": 0.3787878787878788
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "スノーサイレンス",
+        "8": "プレゼンティーア",
+        "11": "ルージュアズライト",
+        "6": "ワークソング",
+        "3": "キタノソワレ",
+        "12": "カウスリップ",
+        "5": "ビルカール",
+        "7": "ゴールドハンマー",
+        "9": "サザンエルフ",
+        "2": "イマージョン",
+        "1": "ジェネラーレ",
+        "10": "シャカシャカシー"
+      }
     },
     {
       "prediction_id": 5990,
@@ -596,7 +660,23 @@
           "model_score": 0.007575757575757576,
           "ev_score": 0.9090909090909092
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "4": "スノーサイレンス",
+        "8": "プレゼンティーア",
+        "11": "ルージュアズライト",
+        "6": "ワークソング",
+        "3": "キタノソワレ",
+        "12": "カウスリップ",
+        "5": "ビルカール",
+        "7": "ゴールドハンマー",
+        "9": "サザンエルフ",
+        "2": "イマージョン",
+        "1": "ジェネラーレ",
+        "10": "シャカシャカシー"
+      }
     },
     {
       "prediction_id": 5992,
@@ -634,7 +714,23 @@
           "model_score": 0.004545454545454546,
           "ev_score": 1.363636363636364
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "スノーサイレンス",
+        "8": "プレゼンティーア",
+        "11": "ルージュアズライト",
+        "6": "ワークソング",
+        "3": "キタノソワレ",
+        "12": "カウスリップ",
+        "5": "ビルカール",
+        "7": "ゴールドハンマー",
+        "9": "サザンエルフ",
+        "2": "イマージョン",
+        "1": "ジェネラーレ",
+        "10": "シャカシャカシー"
+      }
     },
     {
       "prediction_id": 5993,
@@ -756,7 +852,23 @@
           "model_score": 0.0007575757575757577,
           "ev_score": 1.1363636363636365
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "4": "スノーサイレンス",
+        "8": "プレゼンティーア",
+        "11": "ルージュアズライト",
+        "6": "ワークソング",
+        "3": "キタノソワレ",
+        "12": "カウスリップ",
+        "5": "ビルカール",
+        "7": "ゴールドハンマー",
+        "9": "サザンエルフ",
+        "2": "イマージョン",
+        "1": "ジェネラーレ",
+        "10": "シャカシャカシー"
+      }
     },
     {
       "prediction_id": 5996,
@@ -780,7 +892,23 @@
           "model_score": 1.2246517003803958,
           "ev_score": 1.2246517003803958
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "スノーサイレンス",
+        "8": "プレゼンティーア",
+        "11": "ルージュアズライト",
+        "6": "ワークソング",
+        "3": "キタノソワレ",
+        "12": "カウスリップ",
+        "5": "ビルカール",
+        "7": "ゴールドハンマー",
+        "9": "サザンエルフ",
+        "2": "イマージョン",
+        "1": "ジェネラーレ",
+        "10": "シャカシャカシー"
+      }
     },
     {
       "prediction_id": 5997,
@@ -818,7 +946,23 @@
           "model_score": 1.3053990524222485,
           "ev_score": 1.3053990524222485
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "4": "スノーサイレンス",
+        "8": "プレゼンティーア",
+        "11": "ルージュアズライト",
+        "6": "ワークソング",
+        "3": "キタノソワレ",
+        "12": "カウスリップ",
+        "5": "ビルカール",
+        "7": "ゴールドハンマー",
+        "9": "サザンエルフ",
+        "2": "イマージョン",
+        "1": "ジェネラーレ",
+        "10": "シャカシャカシー"
+      }
     },
     {
       "prediction_id": 5998,
@@ -849,7 +993,23 @@
           "model_score": 0.030574264003015193,
           "ev_score": 1.8344558401809117
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "スノーサイレンス",
+        "8": "プレゼンティーア",
+        "11": "ルージュアズライト",
+        "6": "ワークソング",
+        "3": "キタノソワレ",
+        "12": "カウスリップ",
+        "5": "ビルカール",
+        "7": "ゴールドハンマー",
+        "9": "サザンエルフ",
+        "2": "イマージョン",
+        "1": "ジェネラーレ",
+        "10": "シャカシャカシー"
+      }
     },
     {
       "prediction_id": 5999,
@@ -880,7 +1040,23 @@
           "model_score": 0.030574264003015193,
           "ev_score": 0.7643566000753799
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "スノーサイレンス",
+        "8": "プレゼンティーア",
+        "11": "ルージュアズライト",
+        "6": "ワークソング",
+        "3": "キタノソワレ",
+        "12": "カウスリップ",
+        "5": "ビルカール",
+        "7": "ゴールドハンマー",
+        "9": "サザンエルフ",
+        "2": "イマージョン",
+        "1": "ジェネラーレ",
+        "10": "シャカシャカシー"
+      }
     },
     {
       "prediction_id": 6000,
@@ -911,7 +1087,23 @@
           "model_score": 0.015410190337560168,
           "ev_score": 1.84922284050722
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "スノーサイレンス",
+        "8": "プレゼンティーア",
+        "11": "ルージュアズライト",
+        "6": "ワークソング",
+        "3": "キタノソワレ",
+        "12": "カウスリップ",
+        "5": "ビルカール",
+        "7": "ゴールドハンマー",
+        "9": "サザンエルフ",
+        "2": "イマージョン",
+        "1": "ジェネラーレ",
+        "10": "シャカシャカシー"
+      }
     },
     {
       "prediction_id": 6001,
@@ -949,7 +1141,23 @@
           "model_score": 0.012506680112582047,
           "ev_score": 3.752004033774614
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "スノーサイレンス",
+        "8": "プレゼンティーア",
+        "11": "ルージュアズライト",
+        "6": "ワークソング",
+        "3": "キタノソワレ",
+        "12": "カウスリップ",
+        "5": "ビルカール",
+        "7": "ゴールドハンマー",
+        "9": "サザンエルフ",
+        "2": "イマージョン",
+        "1": "ジェネラーレ",
+        "10": "シャカシャカシー"
+      }
     },
     {
       "prediction_id": 6002,
@@ -1050,7 +1258,23 @@
           "model_score": 0.010452961672473868,
           "ev_score": 0.0
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "4": "スノーサイレンス",
+        "8": "プレゼンティーア",
+        "11": "ルージュアズライト",
+        "6": "ワークソング",
+        "3": "キタノソワレ",
+        "12": "カウスリップ",
+        "5": "ビルカール",
+        "7": "ゴールドハンマー",
+        "9": "サザンエルフ",
+        "2": "イマージョン",
+        "1": "ジェネラーレ",
+        "10": "シャカシャカシー"
+      }
     },
     {
       "prediction_id": 7040,
@@ -1074,7 +1298,23 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.07097744360902257
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "スノーサイレンス",
+        "8": "プレゼンティーア",
+        "11": "ルージュアズライト",
+        "6": "ワークソング",
+        "3": "キタノソワレ",
+        "12": "カウスリップ",
+        "5": "ビルカール",
+        "7": "ゴールドハンマー",
+        "9": "サザンエルフ",
+        "2": "イマージョン",
+        "1": "ジェネラーレ",
+        "10": "シャカシャカシー"
+      }
     },
     {
       "prediction_id": 7041,
@@ -1112,7 +1352,23 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.03609022556390978
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "4": "スノーサイレンス",
+        "8": "プレゼンティーア",
+        "11": "ルージュアズライト",
+        "6": "ワークソング",
+        "3": "キタノソワレ",
+        "12": "カウスリップ",
+        "5": "ビルカール",
+        "7": "ゴールドハンマー",
+        "9": "サザンエルフ",
+        "2": "イマージョン",
+        "1": "ジェネラーレ",
+        "10": "シャカシャカシー"
+      }
     },
     {
       "prediction_id": 7042,
@@ -1143,7 +1399,23 @@
           "model_score": 0.0175022954010469,
           "ev_score": 0.6195812571970604
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "スノーサイレンス",
+        "8": "プレゼンティーア",
+        "11": "ルージュアズライト",
+        "6": "ワークソング",
+        "3": "キタノソワレ",
+        "12": "カウスリップ",
+        "5": "ビルカール",
+        "7": "ゴールドハンマー",
+        "9": "サザンエルフ",
+        "2": "イマージョン",
+        "1": "ジェネラーレ",
+        "10": "シャカシャカシー"
+      }
     },
     {
       "prediction_id": 7043,
@@ -1174,7 +1446,23 @@
           "model_score": 0.0175022954010469,
           "ev_score": 0.25815885716544185
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "スノーサイレンス",
+        "8": "プレゼンティーア",
+        "11": "ルージュアズライト",
+        "6": "ワークソング",
+        "3": "キタノソワレ",
+        "12": "カウスリップ",
+        "5": "ビルカール",
+        "7": "ゴールドハンマー",
+        "9": "サザンエルフ",
+        "2": "イマージョン",
+        "1": "ジェネラーレ",
+        "10": "シャカシャカシー"
+      }
     },
     {
       "prediction_id": 7044,
@@ -1219,7 +1507,23 @@
           "model_score": 0.00875114770052345,
           "ev_score": 0.6195812571970604
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "4": "スノーサイレンス",
+        "8": "プレゼンティーア",
+        "11": "ルージュアズライト",
+        "6": "ワークソング",
+        "3": "キタノソワレ",
+        "12": "カウスリップ",
+        "5": "ビルカール",
+        "7": "ゴールドハンマー",
+        "9": "サザンエルフ",
+        "2": "イマージョン",
+        "1": "ジェネラーレ",
+        "10": "シャカシャカシー"
+      }
     },
     {
       "prediction_id": 7046,
@@ -1257,7 +1561,23 @@
           "model_score": 0.0057063797388483715,
           "ev_score": 1.010029213776162
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "スノーサイレンス",
+        "8": "プレゼンティーア",
+        "11": "ルージュアズライト",
+        "6": "ワークソング",
+        "3": "キタノソワレ",
+        "12": "カウスリップ",
+        "5": "ビルカール",
+        "7": "ゴールドハンマー",
+        "9": "サザンエルフ",
+        "2": "イマージョン",
+        "1": "ジェネラーレ",
+        "10": "シャカシャカシー"
+      }
     },
     {
       "prediction_id": 7047,
@@ -1379,7 +1699,23 @@
           "model_score": 0.0009510632898080619,
           "ev_score": 0.8416910114801349
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "4": "スノーサイレンス",
+        "8": "プレゼンティーア",
+        "11": "ルージュアズライト",
+        "6": "ワークソング",
+        "3": "キタノソワレ",
+        "12": "カウスリップ",
+        "5": "ビルカール",
+        "7": "ゴールドハンマー",
+        "9": "サザンエルフ",
+        "2": "イマージョン",
+        "1": "ジェネラーレ",
+        "10": "シャカシャカシー"
+      }
     },
     {
       "prediction_id": 7050,
@@ -1403,7 +1739,23 @@
           "model_score": 1.2246517003803958,
           "ev_score": 1.2246517003803958
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "スノーサイレンス",
+        "8": "プレゼンティーア",
+        "11": "ルージュアズライト",
+        "6": "ワークソング",
+        "3": "キタノソワレ",
+        "12": "カウスリップ",
+        "5": "ビルカール",
+        "7": "ゴールドハンマー",
+        "9": "サザンエルフ",
+        "2": "イマージョン",
+        "1": "ジェネラーレ",
+        "10": "シャカシャカシー"
+      }
     },
     {
       "prediction_id": 7051,
@@ -1441,7 +1793,23 @@
           "model_score": 1.3053990524222485,
           "ev_score": 1.3053990524222485
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "4": "スノーサイレンス",
+        "8": "プレゼンティーア",
+        "11": "ルージュアズライト",
+        "6": "ワークソング",
+        "3": "キタノソワレ",
+        "12": "カウスリップ",
+        "5": "ビルカール",
+        "7": "ゴールドハンマー",
+        "9": "サザンエルフ",
+        "2": "イマージョン",
+        "1": "ジェネラーレ",
+        "10": "シャカシャカシー"
+      }
     },
     {
       "prediction_id": 7052,
@@ -1472,7 +1840,23 @@
           "model_score": 0.030574264003015193,
           "ev_score": 1.430875555341111
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "スノーサイレンス",
+        "8": "プレゼンティーア",
+        "11": "ルージュアズライト",
+        "6": "ワークソング",
+        "3": "キタノソワレ",
+        "12": "カウスリップ",
+        "5": "ビルカール",
+        "7": "ゴールドハンマー",
+        "9": "サザンエルフ",
+        "2": "イマージョン",
+        "1": "ジェネラーレ",
+        "10": "シャカシャカシー"
+      }
     },
     {
       "prediction_id": 7053,
@@ -1503,7 +1887,23 @@
           "model_score": 0.030574264003015193,
           "ev_score": 0.5961981480587962
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "スノーサイレンス",
+        "8": "プレゼンティーア",
+        "11": "ルージュアズライト",
+        "6": "ワークソング",
+        "3": "キタノソワレ",
+        "12": "カウスリップ",
+        "5": "ビルカール",
+        "7": "ゴールドハンマー",
+        "9": "サザンエルフ",
+        "2": "イマージョン",
+        "1": "ジェネラーレ",
+        "10": "シャカシャカシー"
+      }
     },
     {
       "prediction_id": 7054,
@@ -1534,7 +1934,23 @@
           "model_score": 0.015410190337560168,
           "ev_score": 1.4423938155956317
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "スノーサイレンス",
+        "8": "プレゼンティーア",
+        "11": "ルージュアズライト",
+        "6": "ワークソング",
+        "3": "キタノソワレ",
+        "12": "カウスリップ",
+        "5": "ビルカール",
+        "7": "ゴールドハンマー",
+        "9": "サザンエルフ",
+        "2": "イマージョン",
+        "1": "ジェネラーレ",
+        "10": "シャカシャカシー"
+      }
     },
     {
       "prediction_id": 7055,
@@ -1572,7 +1988,23 @@
           "model_score": 0.012506680112582047,
           "ev_score": 2.926563146344199
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "スノーサイレンス",
+        "8": "プレゼンティーア",
+        "11": "ルージュアズライト",
+        "6": "ワークソング",
+        "3": "キタノソワレ",
+        "12": "カウスリップ",
+        "5": "ビルカール",
+        "7": "ゴールドハンマー",
+        "9": "サザンエルフ",
+        "2": "イマージョン",
+        "1": "ジェネラーレ",
+        "10": "シャカシャカシー"
+      }
     },
     {
       "prediction_id": 7056,
@@ -1673,7 +2105,23 @@
           "model_score": 0.010452961672473868,
           "ev_score": 10.45191637630662
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "4": "スノーサイレンス",
+        "8": "プレゼンティーア",
+        "11": "ルージュアズライト",
+        "6": "ワークソング",
+        "3": "キタノソワレ",
+        "12": "カウスリップ",
+        "5": "ビルカール",
+        "7": "ゴールドハンマー",
+        "9": "サザンエルフ",
+        "2": "イマージョン",
+        "1": "ジェネラーレ",
+        "10": "シャカシャカシー"
+      }
     }
   ],
   "training_evals": {}

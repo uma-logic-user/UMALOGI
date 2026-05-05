@@ -4,11 +4,11 @@
   "date": "2026-04-25",
   "venue": "東京",
   "race_number": 2,
-  "distance": 0,
-  "surface": "",
+  "distance": 1400,
+  "surface": "ダート",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "曇",
+  "condition": "稍",
   "year": "2026",
   "results": [
     {
@@ -21,12 +21,12 @@
       "weight_carried": 57.0,
       "jockey": "田辺裕信",
       "trainer": "中舘英二",
-      "finish_time": null,
+      "finish_time": "1:25.6",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 5.2,
+      "popularity": 3,
+      "horse_weight": 516,
+      "horse_weight_diff": 0,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -41,12 +41,12 @@
       "weight_carried": 57.0,
       "jockey": "大野拓弥",
       "trainer": "杉浦宏昭",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:26.0",
+      "margin": "2",
+      "win_odds": 5.0,
+      "popularity": 2,
+      "horse_weight": 444,
+      "horse_weight_diff": 2,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -61,238 +61,18 @@
       "weight_carried": 57.0,
       "jockey": "坂井瑠星",
       "trainer": "尾関知人",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:26.1",
+      "margin": "1",
+      "win_odds": 18.0,
+      "popularity": 7,
+      "horse_weight": 486,
+      "horse_weight_diff": 0,
       "sire": null,
       "dam": null,
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "レッドジェルブロワ",
-      "horse_id": "2023103603",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "ディー",
-      "trainer": "鹿戸雄一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 2,
-      "horse_name": "ウェスケンジントン",
-      "horse_id": "2023100861",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "中井裕二",
-      "trainer": "小野次郎",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "ミュークトーマス",
-      "horse_id": "2023104666",
-      "sex_age": "牡1",
-      "weight_carried": 54.0,
-      "jockey": "佐藤翔馬",
-      "trainer": "粕谷昌央",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 5,
-      "horse_name": "ヘイスティハート",
-      "horse_id": "2023104708",
-      "sex_age": "牡5",
-      "weight_carried": 57.0,
-      "jockey": "津村明秀",
-      "trainer": "小笠倫弘",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 6,
-      "horse_name": "カラクリスピリッツ",
-      "horse_id": "2023104432",
-      "sex_age": "牝4",
-      "weight_carried": 55.0,
-      "jockey": "岩田康誠",
-      "trainer": "斎藤誠",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 7,
-      "horse_name": "コロッセウム",
-      "horse_id": "2023103337",
-      "sex_age": "牡1",
-      "weight_carried": 57.0,
-      "jockey": "石橋脩",
-      "trainer": "清水英克",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 8,
-      "horse_name": "グリュック",
-      "horse_id": "2023107537",
-      "sex_age": "牡3",
-      "weight_carried": 55.0,
-      "jockey": "長浜鴻緒",
-      "trainer": "和田正一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 9,
-      "horse_name": "マスターストーン",
-      "horse_id": "2023100927",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "横山和生",
-      "trainer": "前川恭子",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 10,
-      "horse_name": "ニシノバリキング",
-      "horse_id": "2023106274",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "原田和真",
-      "trainer": "小手川準",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 11,
-      "horse_name": "マカホウ",
-      "horse_id": "2023110049",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "矢野貴之",
-      "trainer": "田中克典",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 12,
-      "horse_name": "コパノミラノ",
-      "horse_id": "2023101578",
-      "sex_age": "牡5",
-      "weight_carried": 57.0,
-      "jockey": "柴田大知",
-      "trainer": "上原博之",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 4,
       "gate_number": 7,
       "horse_number": 13,
       "horse_name": "ココラッシー",
@@ -301,18 +81,38 @@
       "weight_carried": 57.0,
       "jockey": "レーン",
       "trainer": "室井潔",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:26.1",
+      "margin": "クビ",
+      "win_odds": 3.4,
+      "popularity": 1,
+      "horse_weight": 446,
+      "horse_weight_diff": 2,
       "sire": null,
       "dam": null,
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 5,
+      "gate_number": 6,
+      "horse_number": 12,
+      "horse_name": "コパノミラノ",
+      "horse_id": "2023101578",
+      "sex_age": "牡5",
+      "weight_carried": 57.0,
+      "jockey": "柴田大知",
+      "trainer": "上原博之",
+      "finish_time": "1:26.3",
+      "margin": "1",
+      "win_odds": 52.4,
+      "popularity": 10,
+      "horse_weight": 488,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 6,
       "gate_number": 8,
       "horse_number": 15,
       "horse_name": "サリーアン",
@@ -321,12 +121,212 @@
       "weight_carried": 57.0,
       "jockey": "横山武史",
       "trainer": "鈴木伸尋",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:26.6",
+      "margin": "2",
+      "win_odds": 19.7,
+      "popularity": 8,
+      "horse_weight": 456,
+      "horse_weight_diff": -8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 7,
+      "gate_number": 1,
+      "horse_number": 2,
+      "horse_name": "ウェスケンジントン",
+      "horse_id": "2023100861",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "中井裕二",
+      "trainer": "小野次郎",
+      "finish_time": "1:26.7",
+      "margin": "1/2",
+      "win_odds": 9.1,
+      "popularity": 5,
+      "horse_weight": 484,
+      "horse_weight_diff": 8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 8,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "コロッセウム",
+      "horse_id": "2023103337",
+      "sex_age": "牡1",
+      "weight_carried": 57.0,
+      "jockey": "石橋脩",
+      "trainer": "清水英克",
+      "finish_time": "1:26.7",
+      "margin": "クビ",
+      "win_odds": 143.7,
+      "popularity": 13,
+      "horse_weight": 458,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 9,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "マカホウ",
+      "horse_id": "2023110049",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "矢野貴之",
+      "trainer": "田中克典",
+      "finish_time": "1:27.0",
+      "margin": "1.3/4",
+      "win_odds": 47.1,
+      "popularity": 9,
+      "horse_weight": 480,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 10,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "レッドジェルブロワ",
+      "horse_id": "2023103603",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "ディー",
+      "trainer": "鹿戸雄一",
+      "finish_time": "1:27.3",
+      "margin": "2",
+      "win_odds": 90.3,
+      "popularity": 12,
+      "horse_weight": 446,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 11,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "マスターストーン",
+      "horse_id": "2023100927",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "横山和生",
+      "trainer": "前川恭子",
+      "finish_time": "1:27.4",
+      "margin": "1/2",
+      "win_odds": 10.9,
+      "popularity": 6,
+      "horse_weight": 566,
+      "horse_weight_diff": 6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 12,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "ヘイスティハート",
+      "horse_id": "2023104708",
+      "sex_age": "牡5",
+      "weight_carried": 57.0,
+      "jockey": "津村明秀",
+      "trainer": "小笠倫弘",
+      "finish_time": "1:27.5",
+      "margin": "1/2",
+      "win_odds": 5.5,
+      "popularity": 4,
+      "horse_weight": 470,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 13,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "カラクリスピリッツ",
+      "horse_id": "2023104432",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "岩田康誠",
+      "trainer": "斎藤誠",
+      "finish_time": "1:27.5",
+      "margin": "ハナ",
+      "win_odds": 79.8,
+      "popularity": 11,
+      "horse_weight": 464,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 14,
+      "gate_number": 4,
+      "horse_number": 8,
+      "horse_name": "グリュック",
+      "horse_id": "2023107537",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "長浜鴻緒",
+      "trainer": "和田正一",
+      "finish_time": "1:28.3",
+      "margin": "5",
+      "win_odds": 355.7,
+      "popularity": 15,
+      "horse_weight": 512,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 15,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "ミュークトーマス",
+      "horse_id": "2023104666",
+      "sex_age": "牡1",
+      "weight_carried": 54.0,
+      "jockey": "佐藤翔馬",
+      "trainer": "粕谷昌央",
+      "finish_time": "1:28.7",
+      "margin": "2.1/2",
+      "win_odds": 314.2,
+      "popularity": 14,
+      "horse_weight": 384,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 16,
+      "gate_number": 5,
+      "horse_number": 10,
+      "horse_name": "ニシノバリキング",
+      "horse_id": "2023106274",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "原田和真",
+      "trainer": "小手川準",
+      "finish_time": "1:29.4",
+      "margin": "4",
+      "win_odds": 400.4,
+      "popularity": 16,
+      "horse_weight": 520,
+      "horse_weight_diff": -6,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -519,7 +519,27 @@
           "model_score": 0.010452961672473868,
           "ev_score": 0.3104529616724739
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "カフェシューター",
+        "16": "ライカ",
+        "14": "ラッキーモア",
+        "13": "ココラッシー",
+        "12": "コパノミラノ",
+        "15": "サリーアン",
+        "2": "ウェスケンジントン",
+        "7": "コロッセウム",
+        "11": "マカホウ",
+        "1": "レッドジェルブロワ",
+        "9": "マスターストーン",
+        "5": "ヘイスティハート",
+        "6": "カラクリスピリッツ",
+        "8": "グリュック",
+        "3": "ミュークトーマス",
+        "10": "ニシノバリキング"
+      }
     },
     {
       "prediction_id": 5564,
@@ -557,7 +577,27 @@
           "model_score": 0.01045296167247387,
           "ev_score": 0.03135888501742161
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "4": "カフェシューター",
+        "16": "ライカ",
+        "14": "ラッキーモア",
+        "13": "ココラッシー",
+        "12": "コパノミラノ",
+        "15": "サリーアン",
+        "2": "ウェスケンジントン",
+        "7": "コロッセウム",
+        "11": "マカホウ",
+        "1": "レッドジェルブロワ",
+        "9": "マスターストーン",
+        "5": "ヘイスティハート",
+        "6": "カラクリスピリッツ",
+        "8": "グリュック",
+        "3": "ミュークトーマス",
+        "10": "ニシノバリキング"
+      }
     },
     {
       "prediction_id": 5565,
@@ -581,7 +621,27 @@
           "model_score": 0.008333333333333333,
           "ev_score": 1.4849999999999999
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "カフェシューター",
+        "16": "ライカ",
+        "14": "ラッキーモア",
+        "13": "ココラッシー",
+        "12": "コパノミラノ",
+        "15": "サリーアン",
+        "2": "ウェスケンジントン",
+        "7": "コロッセウム",
+        "11": "マカホウ",
+        "1": "レッドジェルブロワ",
+        "9": "マスターストーン",
+        "5": "ヘイスティハート",
+        "6": "カラクリスピリッツ",
+        "8": "グリュック",
+        "3": "ミュークトーマス",
+        "10": "ニシノバリキング"
+      }
     },
     {
       "prediction_id": 5566,
@@ -605,7 +665,27 @@
           "model_score": 0.008333333333333333,
           "ev_score": 0.61875
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "カフェシューター",
+        "16": "ライカ",
+        "14": "ラッキーモア",
+        "13": "ココラッシー",
+        "12": "コパノミラノ",
+        "15": "サリーアン",
+        "2": "ウェスケンジントン",
+        "7": "コロッセウム",
+        "11": "マカホウ",
+        "1": "レッドジェルブロワ",
+        "9": "マスターストーン",
+        "5": "ヘイスティハート",
+        "6": "カラクリスピリッツ",
+        "8": "グリュック",
+        "3": "ミュークトーマス",
+        "10": "ニシノバリキング"
+      }
     },
     {
       "prediction_id": 5567,
@@ -636,7 +716,27 @@
           "model_score": 0.004166666666666667,
           "ev_score": 1.4849999999999999
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "4": "カフェシューター",
+        "16": "ライカ",
+        "14": "ラッキーモア",
+        "13": "ココラッシー",
+        "12": "コパノミラノ",
+        "15": "サリーアン",
+        "2": "ウェスケンジントン",
+        "7": "コロッセウム",
+        "11": "マカホウ",
+        "1": "レッドジェルブロワ",
+        "9": "マスターストーン",
+        "5": "ヘイスティハート",
+        "6": "カラクリスピリッツ",
+        "8": "グリュック",
+        "3": "ミュークトーマス",
+        "10": "ニシノバリキング"
+      }
     },
     {
       "prediction_id": 5568,
@@ -688,7 +788,27 @@
           "model_score": 0.0002976190476190476,
           "ev_score": 1.325892857142857
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "4": "カフェシューター",
+        "16": "ライカ",
+        "14": "ラッキーモア",
+        "13": "ココラッシー",
+        "12": "コパノミラノ",
+        "15": "サリーアン",
+        "2": "ウェスケンジントン",
+        "7": "コロッセウム",
+        "11": "マカホウ",
+        "1": "レッドジェルブロワ",
+        "9": "マスターストーン",
+        "5": "ヘイスティハート",
+        "6": "カラクリスピリッツ",
+        "8": "グリュック",
+        "3": "ミュークトーマス",
+        "10": "ニシノバリキング"
+      }
     },
     {
       "prediction_id": 5576,
@@ -712,7 +832,27 @@
           "model_score": 3.3231817824952943,
           "ev_score": 3.3231817824952943
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "カフェシューター",
+        "16": "ライカ",
+        "14": "ラッキーモア",
+        "13": "ココラッシー",
+        "12": "コパノミラノ",
+        "15": "サリーアン",
+        "2": "ウェスケンジントン",
+        "7": "コロッセウム",
+        "11": "マカホウ",
+        "1": "レッドジェルブロワ",
+        "9": "マスターストーン",
+        "5": "ヘイスティハート",
+        "6": "カラクリスピリッツ",
+        "8": "グリュック",
+        "3": "ミュークトーマス",
+        "10": "ニシノバリキング"
+      }
     },
     {
       "prediction_id": 5577,
@@ -764,7 +904,27 @@
           "model_score": 3.331590117906689,
           "ev_score": 3.331590117906689
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 8,
+      "horse_num_to_name": {
+        "4": "カフェシューター",
+        "16": "ライカ",
+        "14": "ラッキーモア",
+        "13": "ココラッシー",
+        "12": "コパノミラノ",
+        "15": "サリーアン",
+        "2": "ウェスケンジントン",
+        "7": "コロッセウム",
+        "11": "マカホウ",
+        "1": "レッドジェルブロワ",
+        "9": "マスターストーン",
+        "5": "ヘイスティハート",
+        "6": "カラクリスピリッツ",
+        "8": "グリュック",
+        "3": "ミュークトーマス",
+        "10": "ニシノバリキング"
+      }
     },
     {
       "prediction_id": 5578,
@@ -788,7 +948,27 @@
           "model_score": 0.02820634362077286,
           "ev_score": 4.0
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "カフェシューター",
+        "16": "ライカ",
+        "14": "ラッキーモア",
+        "13": "ココラッシー",
+        "12": "コパノミラノ",
+        "15": "サリーアン",
+        "2": "ウェスケンジントン",
+        "7": "コロッセウム",
+        "11": "マカホウ",
+        "1": "レッドジェルブロワ",
+        "9": "マスターストーン",
+        "5": "ヘイスティハート",
+        "6": "カラクリスピリッツ",
+        "8": "グリュック",
+        "3": "ミュークトーマス",
+        "10": "ニシノバリキング"
+      }
     },
     {
       "prediction_id": 5579,
@@ -812,7 +992,27 @@
           "model_score": 0.02820634362077286,
           "ev_score": 1.7699480622034969
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "カフェシューター",
+        "16": "ライカ",
+        "14": "ラッキーモア",
+        "13": "ココラッシー",
+        "12": "コパノミラノ",
+        "15": "サリーアン",
+        "2": "ウェスケンジントン",
+        "7": "コロッセウム",
+        "11": "マカホウ",
+        "1": "レッドジェルブロワ",
+        "9": "マスターストーン",
+        "5": "ヘイスティハート",
+        "6": "カラクリスピリッツ",
+        "8": "グリュック",
+        "3": "ミュークトーマス",
+        "10": "ニシノバリキング"
+      }
     },
     {
       "prediction_id": 5580,
@@ -836,7 +1036,27 @@
           "model_score": 0.01410317181038643,
           "ev_score": 4.2478753492883925
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "カフェシューター",
+        "16": "ライカ",
+        "14": "ラッキーモア",
+        "13": "ココラッシー",
+        "12": "コパノミラノ",
+        "15": "サリーアン",
+        "2": "ウェスケンジントン",
+        "7": "コロッセウム",
+        "11": "マカホウ",
+        "1": "レッドジェルブロワ",
+        "9": "マスターストーン",
+        "5": "ヘイスティハート",
+        "6": "カラクリスピリッツ",
+        "8": "グリュック",
+        "3": "ミュークトーマス",
+        "10": "ニシノバリキング"
+      }
     },
     {
       "prediction_id": 5583,
@@ -860,7 +1080,27 @@
           "model_score": 0.012129170966190667,
           "ev_score": 5.0
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "カフェシューター",
+        "16": "ライカ",
+        "14": "ラッキーモア",
+        "13": "ココラッシー",
+        "12": "コパノミラノ",
+        "15": "サリーアン",
+        "2": "ウェスケンジントン",
+        "7": "コロッセウム",
+        "11": "マカホウ",
+        "1": "レッドジェルブロワ",
+        "9": "マスターストーン",
+        "5": "ヘイスティハート",
+        "6": "カラクリスピリッツ",
+        "8": "グリュック",
+        "3": "ミュークトーマス",
+        "10": "ニシノバリキング"
+      }
     },
     {
       "prediction_id": 5584,
@@ -989,7 +1229,27 @@
           "model_score": 0.010452961672473868,
           "ev_score": 0.3104529616724739
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "4": "カフェシューター",
+        "16": "ライカ",
+        "14": "ラッキーモア",
+        "13": "ココラッシー",
+        "12": "コパノミラノ",
+        "15": "サリーアン",
+        "2": "ウェスケンジントン",
+        "7": "コロッセウム",
+        "11": "マカホウ",
+        "1": "レッドジェルブロワ",
+        "9": "マスターストーン",
+        "5": "ヘイスティハート",
+        "6": "カラクリスピリッツ",
+        "8": "グリュック",
+        "3": "ミュークトーマス",
+        "10": "ニシノバリキング"
+      }
     },
     {
       "prediction_id": 6055,
@@ -1013,7 +1273,27 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.3572932330827068
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "カフェシューター",
+        "16": "ライカ",
+        "14": "ラッキーモア",
+        "13": "ココラッシー",
+        "12": "コパノミラノ",
+        "15": "サリーアン",
+        "2": "ウェスケンジントン",
+        "7": "コロッセウム",
+        "11": "マカホウ",
+        "1": "レッドジェルブロワ",
+        "9": "マスターストーン",
+        "5": "ヘイスティハート",
+        "6": "カラクリスピリッツ",
+        "8": "グリュック",
+        "3": "ミュークトーマス",
+        "10": "ニシノバリキング"
+      }
     },
     {
       "prediction_id": 6056,
@@ -1051,7 +1331,27 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.03609022556390978
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "4": "カフェシューター",
+        "16": "ライカ",
+        "14": "ラッキーモア",
+        "13": "ココラッシー",
+        "12": "コパノミラノ",
+        "15": "サリーアン",
+        "2": "ウェスケンジントン",
+        "7": "コロッセウム",
+        "11": "マカホウ",
+        "1": "レッドジェルブロワ",
+        "9": "マスターストーン",
+        "5": "ヘイスティハート",
+        "6": "カラクリスピリッツ",
+        "8": "グリュック",
+        "3": "ミュークトーマス",
+        "10": "ニシノバリキング"
+      }
     },
     {
       "prediction_id": 6057,
@@ -1082,7 +1382,27 @@
           "model_score": 0.008476258514696893,
           "ev_score": 1.5104692673189866
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "カフェシューター",
+        "16": "ライカ",
+        "14": "ラッキーモア",
+        "13": "ココラッシー",
+        "12": "コパノミラノ",
+        "15": "サリーアン",
+        "2": "ウェスケンジントン",
+        "7": "コロッセウム",
+        "11": "マカホウ",
+        "1": "レッドジェルブロワ",
+        "9": "マスターストーン",
+        "5": "ヘイスティハート",
+        "6": "カラクリスピリッツ",
+        "8": "グリュック",
+        "3": "ミュークトーマス",
+        "10": "ニシノバリキング"
+      }
     },
     {
       "prediction_id": 6058,
@@ -1113,7 +1433,27 @@
           "model_score": 0.008476258514696893,
           "ev_score": 0.6293621947162443
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "カフェシューター",
+        "16": "ライカ",
+        "14": "ラッキーモア",
+        "13": "ココラッシー",
+        "12": "コパノミラノ",
+        "15": "サリーアン",
+        "2": "ウェスケンジントン",
+        "7": "コロッセウム",
+        "11": "マカホウ",
+        "1": "レッドジェルブロワ",
+        "9": "マスターストーン",
+        "5": "ヘイスティハート",
+        "6": "カラクリスピリッツ",
+        "8": "グリュック",
+        "3": "ミュークトーマス",
+        "10": "ニシノバリキング"
+      }
     },
     {
       "prediction_id": 6059,
@@ -1158,7 +1498,27 @@
           "model_score": 0.004238129257348447,
           "ev_score": 1.5104692673189866
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "4": "カフェシューター",
+        "16": "ライカ",
+        "14": "ラッキーモア",
+        "13": "ココラッシー",
+        "12": "コパノミラノ",
+        "15": "サリーアン",
+        "2": "ウェスケンジントン",
+        "7": "コロッセウム",
+        "11": "マカホウ",
+        "1": "レッドジェルブロワ",
+        "9": "マスターストーン",
+        "5": "ヘイスティハート",
+        "6": "カラクリスピリッツ",
+        "8": "グリュック",
+        "3": "ミュークトーマス",
+        "10": "ニシノバリキング"
+      }
     },
     {
       "prediction_id": 6060,
@@ -1280,7 +1640,27 @@
           "model_score": 0.00030558505087058485,
           "ev_score": 1.3613814016284556
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "4": "カフェシューター",
+        "16": "ライカ",
+        "14": "ラッキーモア",
+        "13": "ココラッシー",
+        "12": "コパノミラノ",
+        "15": "サリーアン",
+        "2": "ウェスケンジントン",
+        "7": "コロッセウム",
+        "11": "マカホウ",
+        "1": "レッドジェルブロワ",
+        "9": "マスターストーン",
+        "5": "ヘイスティハート",
+        "6": "カラクリスピリッツ",
+        "8": "グリュック",
+        "3": "ミュークトーマス",
+        "10": "ニシノバリキング"
+      }
     },
     {
       "prediction_id": 6076,
@@ -1304,7 +1684,27 @@
           "model_score": 1.3690486552944978,
           "ev_score": 1.3690486552944978
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "カフェシューター",
+        "16": "ライカ",
+        "14": "ラッキーモア",
+        "13": "ココラッシー",
+        "12": "コパノミラノ",
+        "15": "サリーアン",
+        "2": "ウェスケンジントン",
+        "7": "コロッセウム",
+        "11": "マカホウ",
+        "1": "レッドジェルブロワ",
+        "9": "マスターストーン",
+        "5": "ヘイスティハート",
+        "6": "カラクリスピリッツ",
+        "8": "グリュック",
+        "3": "ミュークトーマス",
+        "10": "ニシノバリキング"
+      }
     },
     {
       "prediction_id": 6077,
@@ -1356,7 +1756,27 @@
           "model_score": 3.2517497900868815,
           "ev_score": 3.2517497900868815
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 16,
+      "horse_num_to_name": {
+        "4": "カフェシューター",
+        "16": "ライカ",
+        "14": "ラッキーモア",
+        "13": "ココラッシー",
+        "12": "コパノミラノ",
+        "15": "サリーアン",
+        "2": "ウェスケンジントン",
+        "7": "コロッセウム",
+        "11": "マカホウ",
+        "1": "レッドジェルブロワ",
+        "9": "マスターストーン",
+        "5": "ヘイスティハート",
+        "6": "カラクリスピリッツ",
+        "8": "グリュック",
+        "3": "ミュークトーマス",
+        "10": "ニシノバリキング"
+      }
     },
     {
       "prediction_id": 6078,
@@ -1387,7 +1807,27 @@
           "model_score": 0.018426745458523117,
           "ev_score": 2.7750678660535812
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "カフェシューター",
+        "16": "ライカ",
+        "14": "ラッキーモア",
+        "13": "ココラッシー",
+        "12": "コパノミラノ",
+        "15": "サリーアン",
+        "2": "ウェスケンジントン",
+        "7": "コロッセウム",
+        "11": "マカホウ",
+        "1": "レッドジェルブロワ",
+        "9": "マスターストーン",
+        "5": "ヘイスティハート",
+        "6": "カラクリスピリッツ",
+        "8": "グリュック",
+        "3": "ミュークトーマス",
+        "10": "ニシノバリキング"
+      }
     },
     {
       "prediction_id": 6079,
@@ -1418,7 +1858,27 @@
           "model_score": 0.018426745458523117,
           "ev_score": 1.1562782775223255
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "カフェシューター",
+        "16": "ライカ",
+        "14": "ラッキーモア",
+        "13": "ココラッシー",
+        "12": "コパノミラノ",
+        "15": "サリーアン",
+        "2": "ウェスケンジントン",
+        "7": "コロッセウム",
+        "11": "マカホウ",
+        "1": "レッドジェルブロワ",
+        "9": "マスターストーン",
+        "5": "ヘイスティハート",
+        "6": "カラクリスピリッツ",
+        "8": "グリュック",
+        "3": "ミュークトーマス",
+        "10": "ニシノバリキング"
+      }
     },
     {
       "prediction_id": 6080,
@@ -1449,7 +1909,27 @@
           "model_score": 0.009213372729261558,
           "ev_score": 2.7750678660535812
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "カフェシューター",
+        "16": "ライカ",
+        "14": "ラッキーモア",
+        "13": "ココラッシー",
+        "12": "コパノミラノ",
+        "15": "サリーアン",
+        "2": "ウェスケンジントン",
+        "7": "コロッセウム",
+        "11": "マカホウ",
+        "1": "レッドジェルブロワ",
+        "9": "マスターストーン",
+        "5": "ヘイスティハート",
+        "6": "カラクリスピリッツ",
+        "8": "グリュック",
+        "3": "ミュークトーマス",
+        "10": "ニシノバリキング"
+      }
     },
     {
       "prediction_id": 6083,
@@ -1487,7 +1967,27 @@
           "model_score": 0.006187523396014155,
           "ev_score": 4.65920511719866
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "カフェシューター",
+        "16": "ライカ",
+        "14": "ラッキーモア",
+        "13": "ココラッシー",
+        "12": "コパノミラノ",
+        "15": "サリーアン",
+        "2": "ウェスケンジントン",
+        "7": "コロッセウム",
+        "11": "マカホウ",
+        "1": "レッドジェルブロワ",
+        "9": "マスターストーン",
+        "5": "ヘイスティハート",
+        "6": "カラクリスピリッツ",
+        "8": "グリュック",
+        "3": "ミュークトーマス",
+        "10": "ニシノバリキング"
+      }
     },
     {
       "prediction_id": 6084,
@@ -1616,7 +2116,27 @@
           "model_score": 0.010452961672473868,
           "ev_score": 0.8770034843205576
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "4": "カフェシューター",
+        "16": "ライカ",
+        "14": "ラッキーモア",
+        "13": "ココラッシー",
+        "12": "コパノミラノ",
+        "15": "サリーアン",
+        "2": "ウェスケンジントン",
+        "7": "コロッセウム",
+        "11": "マカホウ",
+        "1": "レッドジェルブロワ",
+        "9": "マスターストーン",
+        "5": "ヘイスティハート",
+        "6": "カラクリスピリッツ",
+        "8": "グリュック",
+        "3": "ミュークトーマス",
+        "10": "ニシノバリキング"
+      }
     }
   ],
   "training_evals": {}

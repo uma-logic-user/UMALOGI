@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "ロードリベラシオン",
-      "horse_id": "2022102821",
-      "sex_age": "牡3",
-      "weight_carried": 55.0,
-      "jockey": "横山和生",
-      "trainer": "尾形和幸",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 2,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "マイネルゼウス",
-      "horse_id": "2022106828",
-      "sex_age": "牡3",
-      "weight_carried": 55.0,
-      "jockey": "戸崎圭太",
-      "trainer": "奥村武",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 3,
-      "gate_number": 8,
-      "horse_number": 12,
-      "horse_name": "スモーキーゴッド",
-      "horse_id": "2022104592",
-      "sex_age": "牡3",
-      "weight_carried": 55.0,
-      "jockey": "横山武史",
-      "trainer": "萩原清",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "丹内祐次",
       "trainer": "相沢郁",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -90,6 +30,46 @@
       "sire": "ゴールドシップ",
       "dam": "マイネアルデュール",
       "dam_sire": "アドマイヤコジーン"
+    },
+    {
+      "rank": null,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "マイネルゼウス",
+      "horse_id": "2022106828",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "戸崎圭太",
+      "trainer": "奥村武",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "ロードリベラシオン",
+      "horse_id": "2022102821",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "横山和生",
+      "trainer": "尾形和幸",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -102,7 +82,7 @@
       "jockey": "佐々木大",
       "trainer": "千葉直人",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +102,7 @@
       "jockey": "酒井学",
       "trainer": "伊藤大士",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +122,7 @@
       "jockey": "黛弘人",
       "trainer": "天間昭一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +142,7 @@
       "jockey": "北村友一",
       "trainer": "杉山佳明",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +162,7 @@
       "jockey": "武豊",
       "trainer": "福永祐一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -202,7 +182,7 @@
       "jockey": "浜中俊",
       "trainer": "武幸四郎",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -222,7 +202,7 @@
       "jockey": "川又賢治",
       "trainer": "中尾秀正",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -242,7 +222,27 @@
       "jockey": "小沢大仁",
       "trainer": "岩戸孝樹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 12,
+      "horse_name": "スモーキーゴッド",
+      "horse_id": "2022104592",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "横山武史",
+      "trainer": "萩原清",
+      "finish_time": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -258,6 +258,12 @@
       "combination": "3",
       "payout": 1600,
       "popularity": 6
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "12",
+      "payout": 11000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -278,16 +284,40 @@
       "popularity": 6
     },
     {
+      "bet_type": "複勝",
+      "combination": "1",
+      "payout": 11000,
+      "popularity": null
+    },
+    {
       "bet_type": "枠連",
       "combination": "2-3",
       "payout": 3920,
       "popularity": 15
     },
     {
+      "bet_type": "枠連",
+      "combination": "1",
+      "payout": 60006,
+      "popularity": null
+    },
+    {
       "bet_type": "馬連",
       "combination": "2-3",
       "payout": 3950,
       "popularity": 13
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "3-50",
+      "payout": 6020,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 30000,
+      "popularity": 3
     },
     {
       "bet_type": "ワイド",
@@ -308,16 +338,46 @@
       "popularity": 15
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 80031,
+      "popularity": 20
+    },
+    {
       "bet_type": "馬単",
       "combination": "3→2",
       "payout": 8930,
       "popularity": 31
     },
     {
+      "bet_type": "馬単",
+      "combination": "2",
+      "payout": 3000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "2-3-12",
       "payout": 6730,
       "popularity": 22
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "11-80",
+      "payout": 1502,
+      "popularity": 120
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "10-50-1",
+      "payout": 30312,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "6",
+      "payout": 20006,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

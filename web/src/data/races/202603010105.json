@@ -4,11 +4,11 @@
   "date": "2026-04-11",
   "venue": "福島",
   "race_number": 5,
-  "distance": 0,
-  "surface": "",
+  "distance": 2000,
+  "surface": "芝",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "晴",
+  "condition": "良",
   "year": "2026",
   "results": [
     {
@@ -21,12 +21,12 @@
       "weight_carried": 57.0,
       "jockey": "横山琉人",
       "trainer": "長谷川浩",
-      "finish_time": null,
+      "finish_time": "2:00.0",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 8.6,
+      "popularity": 2,
+      "horse_weight": 480,
+      "horse_weight_diff": -8,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -45,12 +45,12 @@
       "weight_carried": 57.0,
       "jockey": "丹内祐次",
       "trainer": "池江泰寿",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "2:00.2",
+      "margin": "1.1/4",
+      "win_odds": 1.4,
+      "popularity": 1,
+      "horse_weight": 490,
+      "horse_weight_diff": 4,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -69,18 +69,330 @@
       "weight_carried": 54.0,
       "jockey": "遠藤汰月",
       "trainer": "深山雅史",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "2:00.3",
+      "margin": "3/4",
+      "win_odds": 62.5,
+      "popularity": 10,
+      "horse_weight": 446,
+      "horse_weight_diff": -6,
       "sire": null,
       "dam": null,
       "dam_sire": null,
       "training_eval": {
         "eval_grade": "C",
         "eval_text": "変わらず"
+      }
+    },
+    {
+      "rank": 4,
+      "gate_number": 2,
+      "horse_number": 4,
+      "horse_name": "オートカリテ",
+      "horse_id": "2023103555",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "富田暁",
+      "trainer": "牧光二",
+      "finish_time": "2:00.4",
+      "margin": "1",
+      "win_odds": 43.7,
+      "popularity": 9,
+      "horse_weight": 510,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "仕上がる"
+      }
+    },
+    {
+      "rank": 5,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "マイネルリーヒム",
+      "horse_id": "2023104485",
+      "sex_age": "牡4",
+      "weight_carried": 54.0,
+      "jockey": "石神深道",
+      "trainer": "武市康男",
+      "finish_time": "2:00.7",
+      "margin": "1.1/2",
+      "win_odds": 11.3,
+      "popularity": 4,
+      "horse_weight": 464,
+      "horse_weight_diff": -16,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "出来は良"
+      }
+    },
+    {
+      "rank": 6,
+      "gate_number": 6,
+      "horse_number": 12,
+      "horse_name": "ルシアージュ",
+      "horse_id": "2023106795",
+      "sex_age": "牝5",
+      "weight_carried": 55.0,
+      "jockey": "丸山元気",
+      "trainer": "高柳瑞樹",
+      "finish_time": "2:00.8",
+      "margin": "3/4",
+      "win_odds": 28.8,
+      "popularity": 7,
+      "horse_weight": 434,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "気配上々"
+      }
+    },
+    {
+      "rank": 7,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "フライングビーナス",
+      "horse_id": "2023101588",
+      "sex_age": "牝4",
+      "weight_carried": 53.0,
+      "jockey": "舟山瑠泉",
+      "trainer": "田中博康",
+      "finish_time": "2:00.8",
+      "margin": "ハナ",
+      "win_odds": 25.1,
+      "popularity": 6,
+      "horse_weight": 430,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "仕上がる"
+      }
+    },
+    {
+      "rank": 8,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "サンタカタリナ",
+      "horse_id": "2023104879",
+      "sex_age": "牝7",
+      "weight_carried": 52.0,
+      "jockey": "和田陽希",
+      "trainer": "杉山晴紀",
+      "finish_time": "2:01.3",
+      "margin": "2.1/2",
+      "win_odds": 92.1,
+      "popularity": 12,
+      "horse_weight": 464,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "仕上十分"
+      }
+    },
+    {
+      "rank": 9,
+      "gate_number": 7,
+      "horse_number": 13,
+      "horse_name": "ウインスターリング",
+      "horse_id": "2023105883",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "松岡正海",
+      "trainer": "畠山吉宏",
+      "finish_time": "2:01.4",
+      "margin": "1/2",
+      "win_odds": 16.5,
+      "popularity": 5,
+      "horse_weight": 474,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "末脚良し"
+      }
+    },
+    {
+      "rank": 10,
+      "gate_number": 1,
+      "horse_number": 2,
+      "horse_name": "オービタルピリオド",
+      "horse_id": "2023106869",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "石川裕紀",
+      "trainer": "奥村武",
+      "finish_time": "2:01.5",
+      "margin": "3/4",
+      "win_odds": 10.5,
+      "popularity": 3,
+      "horse_weight": 418,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "仕上がる"
+      }
+    },
+    {
+      "rank": 11,
+      "gate_number": 5,
+      "horse_number": 10,
+      "horse_name": "ブーケ",
+      "horse_id": "2023102223",
+      "sex_age": "牝6",
+      "weight_carried": 55.0,
+      "jockey": "松若風馬",
+      "trainer": "杉山晴紀",
+      "finish_time": "2:01.5",
+      "margin": "アタマ",
+      "win_odds": 41.4,
+      "popularity": 8,
+      "horse_weight": 510,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "仕上十分"
+      }
+    },
+    {
+      "rank": 12,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "オグナ",
+      "horse_id": "2023103241",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "田口貫太",
+      "trainer": "鈴木孝志",
+      "finish_time": "2:01.9",
+      "margin": "2.1/2",
+      "win_odds": 144.9,
+      "popularity": 13,
+      "horse_weight": 466,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "追毎良化"
+      }
+    },
+    {
+      "rank": 13,
+      "gate_number": 7,
+      "horse_number": 14,
+      "horse_name": "クライングナウ",
+      "horse_id": "2023103697",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "斎藤新",
+      "trainer": "斎藤誠",
+      "finish_time": "2:02.2",
+      "margin": "1.3/4",
+      "win_odds": 65.3,
+      "popularity": 11,
+      "horse_weight": 520,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "仕上十分"
+      }
+    },
+    {
+      "rank": 14,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "ワイルドカイザー",
+      "horse_id": "2023102550",
+      "sex_age": "牡1",
+      "weight_carried": 55.0,
+      "jockey": "長浜鴻緒",
+      "trainer": "矢嶋大樹",
+      "finish_time": "2:02.4",
+      "margin": "1.1/4",
+      "win_odds": 148.7,
+      "popularity": 14,
+      "horse_weight": 420,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "D",
+        "eval_text": "まだまだ"
+      }
+    },
+    {
+      "rank": 15,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "ナカラギ",
+      "horse_id": "2023103383",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "国分恭介",
+      "trainer": "緒方努",
+      "finish_time": "2:02.8",
+      "margin": "2.1/2",
+      "win_odds": 277.2,
+      "popularity": 15,
+      "horse_weight": 448,
+      "horse_weight_diff": -4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "気配平凡"
+      }
+    },
+    {
+      "rank": 16,
+      "gate_number": 8,
+      "horse_number": 16,
+      "horse_name": "ダイビングキャッチ",
+      "horse_id": "2023103476",
+      "sex_age": "騸7",
+      "weight_carried": 54.0,
+      "jockey": "大久保友",
+      "trainer": "田中剛",
+      "finish_time": "2:03.5",
+      "margin": "4",
+      "win_odds": 314.4,
+      "popularity": 16,
+      "horse_weight": 486,
+      "horse_weight_diff": -16,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "まずまず"
       }
     }
   ],
@@ -308,7 +620,27 @@
           "model_score": 9.923377629962528e-05,
           "ev_score": 9.923377629962528e-05
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "1": "メイショウハンター",
+        "3": "アラムシャピラス",
+        "8": "ブランニューホーム",
+        "4": "オートカリテ",
+        "6": "マイネルリーヒム",
+        "12": "ルシアージュ",
+        "11": "フライングビーナス",
+        "5": "サンタカタリナ",
+        "13": "ウインスターリング",
+        "2": "オービタルピリオド",
+        "10": "ブーケ",
+        "9": "オグナ",
+        "14": "クライングナウ",
+        "7": "ワイルドカイザー",
+        "15": "ナカラギ",
+        "16": "ダイビングキャッチ"
+      }
     },
     {
       "prediction_id": 1738,
@@ -353,7 +685,27 @@
           "model_score": 9.756047103107137e-05,
           "ev_score": 0.00029268141309321413
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "1": "メイショウハンター",
+        "3": "アラムシャピラス",
+        "8": "ブランニューホーム",
+        "4": "オートカリテ",
+        "6": "マイネルリーヒム",
+        "12": "ルシアージュ",
+        "11": "フライングビーナス",
+        "5": "サンタカタリナ",
+        "13": "ウインスターリング",
+        "2": "オービタルピリオド",
+        "10": "ブーケ",
+        "9": "オグナ",
+        "14": "クライングナウ",
+        "7": "ワイルドカイザー",
+        "15": "ナカラギ",
+        "16": "ダイビングキャッチ"
+      }
     },
     {
       "prediction_id": 1739,
@@ -384,7 +736,27 @@
           "model_score": 0.015887553708876824,
           "ev_score": 0.012710042967101457
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "1": "メイショウハンター",
+        "3": "アラムシャピラス",
+        "8": "ブランニューホーム",
+        "4": "オートカリテ",
+        "6": "マイネルリーヒム",
+        "12": "ルシアージュ",
+        "11": "フライングビーナス",
+        "5": "サンタカタリナ",
+        "13": "ウインスターリング",
+        "2": "オービタルピリオド",
+        "10": "ブーケ",
+        "9": "オグナ",
+        "14": "クライングナウ",
+        "7": "ワイルドカイザー",
+        "15": "ナカラギ",
+        "16": "ダイビングキャッチ"
+      }
     },
     {
       "prediction_id": 1740,
@@ -429,7 +801,27 @@
           "model_score": 1.4022736204527219e-05,
           "ev_score": 4.2068208613581655e-05
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "1": "メイショウハンター",
+        "3": "アラムシャピラス",
+        "8": "ブランニューホーム",
+        "4": "オートカリテ",
+        "6": "マイネルリーヒム",
+        "12": "ルシアージュ",
+        "11": "フライングビーナス",
+        "5": "サンタカタリナ",
+        "13": "ウインスターリング",
+        "2": "オービタルピリオド",
+        "10": "ブーケ",
+        "9": "オグナ",
+        "14": "クライングナウ",
+        "7": "ワイルドカイザー",
+        "15": "ナカラギ",
+        "16": "ダイビングキャッチ"
+      }
     },
     {
       "prediction_id": 1741,
@@ -467,7 +859,27 @@
           "model_score": 0.007946598603424298,
           "ev_score": 0.011919897905136447
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "1": "メイショウハンター",
+        "3": "アラムシャピラス",
+        "8": "ブランニューホーム",
+        "4": "オートカリテ",
+        "6": "マイネルリーヒム",
+        "12": "ルシアージュ",
+        "11": "フライングビーナス",
+        "5": "サンタカタリナ",
+        "13": "ウインスターリング",
+        "2": "オービタルピリオド",
+        "10": "ブーケ",
+        "9": "オグナ",
+        "14": "クライングナウ",
+        "7": "ワイルドカイザー",
+        "15": "ナカラギ",
+        "16": "ダイビングキャッチ"
+      }
     },
     {
       "prediction_id": 1742,
@@ -498,7 +910,27 @@
           "model_score": 0.00468702867842237,
           "ev_score": 0.01874811471368948
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "1": "メイショウハンター",
+        "3": "アラムシャピラス",
+        "8": "ブランニューホーム",
+        "4": "オートカリテ",
+        "6": "マイネルリーヒム",
+        "12": "ルシアージュ",
+        "11": "フライングビーナス",
+        "5": "サンタカタリナ",
+        "13": "ウインスターリング",
+        "2": "オービタルピリオド",
+        "10": "ブーケ",
+        "9": "オグナ",
+        "14": "クライングナウ",
+        "7": "ワイルドカイザー",
+        "15": "ナカラギ",
+        "16": "ダイビングキャッチ"
+      }
     },
     {
       "prediction_id": 1743,
@@ -557,7 +989,27 @@
           "model_score": 0.0007845063962420944,
           "ev_score": 0.01569012792484189
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "1": "メイショウハンター",
+        "3": "アラムシャピラス",
+        "8": "ブランニューホーム",
+        "4": "オートカリテ",
+        "6": "マイネルリーヒム",
+        "12": "ルシアージュ",
+        "11": "フライングビーナス",
+        "5": "サンタカタリナ",
+        "13": "ウインスターリング",
+        "2": "オービタルピリオド",
+        "10": "ブーケ",
+        "9": "オグナ",
+        "14": "クライングナウ",
+        "7": "ワイルドカイザー",
+        "15": "ナカラギ",
+        "16": "ダイビングキャッチ"
+      }
     },
     {
       "prediction_id": 1752,
@@ -616,7 +1068,27 @@
           "model_score": 0.3365189866079141,
           "ev_score": 1.3460759464316563
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "1": "メイショウハンター",
+        "3": "アラムシャピラス",
+        "8": "ブランニューホーム",
+        "4": "オートカリテ",
+        "6": "マイネルリーヒム",
+        "12": "ルシアージュ",
+        "11": "フライングビーナス",
+        "5": "サンタカタリナ",
+        "13": "ウインスターリング",
+        "2": "オービタルピリオド",
+        "10": "ブーケ",
+        "9": "オグナ",
+        "14": "クライングナウ",
+        "7": "ワイルドカイザー",
+        "15": "ナカラギ",
+        "16": "ダイビングキャッチ"
+      }
     },
     {
       "prediction_id": 1753,
@@ -675,7 +1147,27 @@
           "model_score": 1.3589669130744566,
           "ev_score": 1.3589669130744566
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 9,
+      "horse_num_to_name": {
+        "1": "メイショウハンター",
+        "3": "アラムシャピラス",
+        "8": "ブランニューホーム",
+        "4": "オートカリテ",
+        "6": "マイネルリーヒム",
+        "12": "ルシアージュ",
+        "11": "フライングビーナス",
+        "5": "サンタカタリナ",
+        "13": "ウインスターリング",
+        "2": "オービタルピリオド",
+        "10": "ブーケ",
+        "9": "オグナ",
+        "14": "クライングナウ",
+        "7": "ワイルドカイザー",
+        "15": "ナカラギ",
+        "16": "ダイビングキャッチ"
+      }
     },
     {
       "prediction_id": 1754,
@@ -706,7 +1198,27 @@
           "model_score": 0.017137232606145608,
           "ev_score": 0.013709786084916487
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "1": "メイショウハンター",
+        "3": "アラムシャピラス",
+        "8": "ブランニューホーム",
+        "4": "オートカリテ",
+        "6": "マイネルリーヒム",
+        "12": "ルシアージュ",
+        "11": "フライングビーナス",
+        "5": "サンタカタリナ",
+        "13": "ウインスターリング",
+        "2": "オービタルピリオド",
+        "10": "ブーケ",
+        "9": "オグナ",
+        "14": "クライングナウ",
+        "7": "ワイルドカイザー",
+        "15": "ナカラギ",
+        "16": "ダイビングキャッチ"
+      }
     },
     {
       "prediction_id": 1755,
@@ -737,7 +1249,27 @@
           "model_score": 0.017137232606145608,
           "ev_score": 0.005998031412150963
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "1": "メイショウハンター",
+        "3": "アラムシャピラス",
+        "8": "ブランニューホーム",
+        "4": "オートカリテ",
+        "6": "マイネルリーヒム",
+        "12": "ルシアージュ",
+        "11": "フライングビーナス",
+        "5": "サンタカタリナ",
+        "13": "ウインスターリング",
+        "2": "オービタルピリオド",
+        "10": "ブーケ",
+        "9": "オグナ",
+        "14": "クライングナウ",
+        "7": "ワイルドカイザー",
+        "15": "ナカラギ",
+        "16": "ダイビングキャッチ"
+      }
     },
     {
       "prediction_id": 1756,
@@ -782,7 +1314,27 @@
           "model_score": 7.425534474023062,
           "ev_score": 7.425534474023062
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "1": "メイショウハンター",
+        "3": "アラムシャピラス",
+        "8": "ブランニューホーム",
+        "4": "オートカリテ",
+        "6": "マイネルリーヒム",
+        "12": "ルシアージュ",
+        "11": "フライングビーナス",
+        "5": "サンタカタリナ",
+        "13": "ウインスターリング",
+        "2": "オービタルピリオド",
+        "10": "ブーケ",
+        "9": "オグナ",
+        "14": "クライングナウ",
+        "7": "ワイルドカイザー",
+        "15": "ナカラギ",
+        "16": "ダイビングキャッチ"
+      }
     },
     {
       "prediction_id": 1757,
@@ -813,7 +1365,27 @@
           "model_score": 0.005055491577338873,
           "ev_score": 0.020221966309355494
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "1": "メイショウハンター",
+        "3": "アラムシャピラス",
+        "8": "ブランニューホーム",
+        "4": "オートカリテ",
+        "6": "マイネルリーヒム",
+        "12": "ルシアージュ",
+        "11": "フライングビーナス",
+        "5": "サンタカタリナ",
+        "13": "ウインスターリング",
+        "2": "オービタルピリオド",
+        "10": "ブーケ",
+        "9": "オグナ",
+        "14": "クライングナウ",
+        "7": "ワイルドカイザー",
+        "15": "ナカラギ",
+        "16": "ダイビングキャッチ"
+      }
     }
   ],
   "training_evals": {

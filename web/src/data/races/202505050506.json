@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 6,
-      "horse_number": 11,
-      "horse_name": "カーラデマドレ",
-      "horse_id": "2022104912",
-      "sex_age": "牝4",
-      "weight_carried": 55.0,
-      "jockey": "プーシャ",
-      "trainer": "宮田敬介",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 2,
-      "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "コルヴィル",
-      "horse_id": "2021104511",
-      "sex_age": "牝1",
-      "weight_carried": 56.0,
-      "jockey": "黛弘人",
-      "trainer": "柄崎将寿",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "Omaha Beach(米)",
-      "dam": "ティザチックTiz a Chick(米)",
-      "dam_sire": "Tiznow"
-    },
-    {
-      "rank": 3,
-      "gate_number": 8,
-      "horse_number": 16,
-      "horse_name": "ウエヲムイテゴラン",
-      "horse_id": "2021103226",
-      "sex_age": "牝1",
-      "weight_carried": 56.0,
-      "jockey": "北村宏司",
-      "trainer": "萩原清",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "Justify(米)",
-      "dam": "オールインファンAll in Fun(米)",
-      "dam_sire": "Tapit(米)"
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "木幡巧也",
       "trainer": "岩戸孝樹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +42,7 @@
       "jockey": "丸田恭介",
       "trainer": "佐藤吉勝",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -110,6 +50,26 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "コルヴィル",
+      "horse_id": "2021104511",
+      "sex_age": "牝1",
+      "weight_carried": 56.0,
+      "jockey": "黛弘人",
+      "trainer": "柄崎将寿",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "Omaha Beach(米)",
+      "dam": "ティザチックTiz a Chick(米)",
+      "dam_sire": "Tiznow"
     },
     {
       "rank": null,
@@ -122,7 +82,7 @@
       "jockey": "長浜鴻緒",
       "trainer": "畠山吉宏",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +102,7 @@
       "jockey": "野中悠太",
       "trainer": "根本康広",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +122,7 @@
       "jockey": "内田博幸",
       "trainer": "根本康広",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +142,7 @@
       "jockey": "三浦皇成",
       "trainer": "竹内正洋",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -202,7 +162,7 @@
       "jockey": "吉田豊",
       "trainer": "稲垣幸雄",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -222,7 +182,7 @@
       "jockey": "荻野極",
       "trainer": "伊坂重信",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -242,7 +202,7 @@
       "jockey": "原優介",
       "trainer": "中川公成",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -250,6 +210,26 @@
       "sire": "サトノクラウン",
       "dam": "ケイティバローズ",
       "dam_sire": "マンハッタンカフェ"
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "カーラデマドレ",
+      "horse_id": "2022104912",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "プーシャ",
+      "trainer": "宮田敬介",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -262,7 +242,7 @@
       "jockey": "柴田善臣",
       "trainer": "南田美知",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -282,7 +262,7 @@
       "jockey": "佐々木大",
       "trainer": "栗田徹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -302,7 +282,7 @@
       "jockey": "谷原柚希",
       "trainer": "伊藤圭三",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -322,7 +302,7 @@
       "jockey": "丹内祐次",
       "trainer": "稲垣幸雄",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -330,6 +310,26 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 16,
+      "horse_name": "ウエヲムイテゴラン",
+      "horse_id": "2021103226",
+      "sex_age": "牝1",
+      "weight_carried": 56.0,
+      "jockey": "北村宏司",
+      "trainer": "萩原清",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "Justify(米)",
+      "dam": "オールインファンAll in Fun(米)",
+      "dam_sire": "Tapit(米)"
     }
   ],
   "payouts": [
@@ -338,6 +338,12 @@
       "combination": "11",
       "payout": 370,
       "popularity": 2
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "16",
+      "payout": 16000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -370,10 +376,22 @@
       "popularity": 30
     },
     {
+      "bet_type": "馬連",
+      "combination": "2",
+      "payout": 3030,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "11-16",
       "payout": 770,
       "popularity": 10
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 60000,
+      "popularity": 11
     },
     {
       "bet_type": "ワイド",
@@ -388,16 +406,52 @@
       "popularity": 54
     },
     {
+      "bet_type": "ワイド",
+      "combination": "22",
+      "payout": 40111,
+      "popularity": 60
+    },
+    {
       "bet_type": "馬単",
       "combination": "11→3",
       "payout": 30720,
       "popularity": 57
     },
     {
+      "bet_type": "馬単",
+      "combination": "11",
+      "payout": 209,
+      "popularity": 70
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "3",
+      "payout": 11000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "3-11-16",
       "payout": 42850,
       "popularity": 88
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "7-70",
+      "payout": 1003,
+      "popularity": 160
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "51-40-3",
+      "payout": 61116,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-8",
+      "payout": 40054,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

@@ -4,11 +4,11 @@
   "date": "2026-04-25",
   "venue": "東京",
   "race_number": 1,
-  "distance": 0,
-  "surface": "",
+  "distance": 1600,
+  "surface": "ダート",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "曇",
+  "condition": "稍",
   "year": "2026",
   "results": [
     {
@@ -21,12 +21,12 @@
       "weight_carried": 55.0,
       "jockey": "横山和生",
       "trainer": "小野次郎",
-      "finish_time": null,
+      "finish_time": "1:39.0",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 5.3,
+      "popularity": 3,
+      "horse_weight": 474,
+      "horse_weight_diff": 2,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -41,12 +41,12 @@
       "weight_carried": 55.0,
       "jockey": "レーン",
       "trainer": "堀宣行",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:39.3",
+      "margin": "2",
+      "win_odds": 1.8,
+      "popularity": 1,
+      "horse_weight": 454,
+      "horse_weight_diff": 0,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -61,158 +61,18 @@
       "weight_carried": 55.0,
       "jockey": "佐々木大",
       "trainer": "勢司和浩",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:39.5",
+      "margin": "1",
+      "win_odds": 40.7,
+      "popularity": 7,
+      "horse_weight": 474,
+      "horse_weight_diff": -4,
       "sire": null,
       "dam": null,
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "アルペンローゼ",
-      "horse_id": "2023105243",
-      "sex_age": "牝4",
-      "weight_carried": 55.0,
-      "jockey": "北村友一",
-      "trainer": "栗田徹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "ロンドンプライド",
-      "horse_id": "2023100963",
-      "sex_age": "牝4",
-      "weight_carried": 55.0,
-      "jockey": "吉田豊",
-      "trainer": "竹内正洋",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "イサチルニャーニャ",
-      "horse_id": "2023100756",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "中井裕二",
-      "trainer": "竹内正洋",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 4,
-      "horse_name": "ソフィアプルーマ",
-      "horse_id": "2023105655",
-      "sex_age": "牝1",
-      "weight_carried": 53.0,
-      "jockey": "長浜鴻緒",
-      "trainer": "上原博之",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 5,
-      "horse_name": "アンチェーン",
-      "horse_id": "2023104668",
-      "sex_age": "牝1",
-      "weight_carried": 55.0,
-      "jockey": "ディー",
-      "trainer": "嘉藤貴行",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 6,
-      "horse_name": "バターショコラ",
-      "horse_id": "2023105240",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "岩田康誠",
-      "trainer": "戸田博文",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 7,
-      "horse_name": "ハピネスドリーム",
-      "horse_id": "2023100950",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "戸崎圭太",
-      "trainer": "木村哲也",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 4,
       "gate_number": 6,
       "horse_number": 9,
       "horse_name": "ロット",
@@ -221,58 +81,38 @@
       "weight_carried": 55.0,
       "jockey": "柴田大知",
       "trainer": "本間忍",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:40.3",
+      "margin": "5",
+      "win_odds": 191.2,
+      "popularity": 11,
+      "horse_weight": 424,
+      "horse_weight_diff": 4,
       "sire": null,
       "dam": null,
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 10,
-      "horse_name": "アッシュグレイス",
-      "horse_id": "2023102404",
-      "sex_age": "牝7",
-      "weight_carried": 53.0,
-      "jockey": "永島まな",
-      "trainer": "上原博之",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "rank": 5,
+      "gate_number": 4,
+      "horse_number": 6,
+      "horse_name": "バターショコラ",
+      "horse_id": "2023105240",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "岩田康誠",
+      "trainer": "戸田博文",
+      "finish_time": "1:40.3",
+      "margin": "クビ",
+      "win_odds": 7.0,
+      "popularity": 4,
+      "horse_weight": 454,
+      "horse_weight_diff": -8,
       "sire": null,
       "dam": null,
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 11,
-      "horse_name": "ローズライズ",
-      "horse_id": "2023102570",
-      "sex_age": "牝1",
-      "weight_carried": 51.0,
-      "jockey": "谷原柚希",
-      "trainer": "伊藤圭三",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 6,
       "gate_number": 8,
       "horse_number": 14,
       "horse_name": "ダイユウアドバンス",
@@ -281,12 +121,172 @@
       "weight_carried": 52.0,
       "jockey": "佐藤翔馬",
       "trainer": "松永康利",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:40.5",
+      "margin": "1.1/4",
+      "win_odds": 97.3,
+      "popularity": 10,
+      "horse_weight": 500,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 7,
+      "gate_number": 3,
+      "horse_number": 4,
+      "horse_name": "ソフィアプルーマ",
+      "horse_id": "2023105655",
+      "sex_age": "牝1",
+      "weight_carried": 53.0,
+      "jockey": "長浜鴻緒",
+      "trainer": "上原博之",
+      "finish_time": "1:40.9",
+      "margin": "2.1/2",
+      "win_odds": 218.6,
+      "popularity": 12,
+      "horse_weight": 440,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 8,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "アルペンローゼ",
+      "horse_id": "2023105243",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "北村友一",
+      "trainer": "栗田徹",
+      "finish_time": "1:41.1",
+      "margin": "1.1/4",
+      "win_odds": 15.4,
+      "popularity": 5,
+      "horse_weight": 482,
+      "horse_weight_diff": -4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 9,
+      "gate_number": 7,
+      "horse_number": 11,
+      "horse_name": "ローズライズ",
+      "horse_id": "2023102570",
+      "sex_age": "牝1",
+      "weight_carried": 51.0,
+      "jockey": "谷原柚希",
+      "trainer": "伊藤圭三",
+      "finish_time": "1:41.8",
+      "margin": "4",
+      "win_odds": 246.2,
+      "popularity": 13,
+      "horse_weight": 442,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 10,
+      "gate_number": 4,
+      "horse_number": 5,
+      "horse_name": "アンチェーン",
+      "horse_id": "2023104668",
+      "sex_age": "牝1",
+      "weight_carried": 55.0,
+      "jockey": "ディー",
+      "trainer": "嘉藤貴行",
+      "finish_time": "1:42.3",
+      "margin": "3.1/2",
+      "win_odds": 5.1,
+      "popularity": 2,
+      "horse_weight": 512,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 11,
+      "gate_number": 5,
+      "horse_number": 7,
+      "horse_name": "ハピネスドリーム",
+      "horse_id": "2023100950",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "戸崎圭太",
+      "trainer": "木村哲也",
+      "finish_time": "1:42.5",
+      "margin": "1",
+      "win_odds": 29.9,
+      "popularity": 6,
+      "horse_weight": 408,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 12,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "ロンドンプライド",
+      "horse_id": "2023100963",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "吉田豊",
+      "trainer": "竹内正洋",
+      "finish_time": "1:42.8",
+      "margin": "1.3/4",
+      "win_odds": 52.0,
+      "popularity": 8,
+      "horse_weight": 466,
+      "horse_weight_diff": 38,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 13,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "イサチルニャーニャ",
+      "horse_id": "2023100756",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "中井裕二",
+      "trainer": "竹内正洋",
+      "finish_time": "1:44.2",
+      "margin": "8",
+      "win_odds": 407.6,
+      "popularity": 14,
+      "horse_weight": 428,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 14,
+      "gate_number": 6,
+      "horse_number": 10,
+      "horse_name": "アッシュグレイス",
+      "horse_id": "2023102404",
+      "sex_age": "牝7",
+      "weight_carried": 53.0,
+      "jockey": "永島まな",
+      "trainer": "上原博之",
+      "finish_time": "1:44.8",
+      "margin": "3.1/2",
+      "win_odds": 87.5,
+      "popularity": 9,
+      "horse_weight": 450,
+      "horse_weight_diff": -4,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -491,7 +491,25 @@
           "model_score": 0.010452961672473868,
           "ev_score": 0.22473867595818817
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "13": "リケアマカロニ",
+        "12": "エリカビアリッツ",
+        "8": "サーロー",
+        "9": "ロット",
+        "6": "バターショコラ",
+        "14": "ダイユウアドバンス",
+        "4": "ソフィアプルーマ",
+        "1": "アルペンローゼ",
+        "11": "ローズライズ",
+        "5": "アンチェーン",
+        "7": "ハピネスドリーム",
+        "2": "ロンドンプライド",
+        "3": "イサチルニャーニャ",
+        "10": "アッシュグレイス"
+      }
     },
     {
       "prediction_id": 5498,
@@ -529,7 +547,25 @@
           "model_score": 0.01045296167247387,
           "ev_score": 0.03135888501742161
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "13": "リケアマカロニ",
+        "12": "エリカビアリッツ",
+        "8": "サーロー",
+        "9": "ロット",
+        "6": "バターショコラ",
+        "14": "ダイユウアドバンス",
+        "4": "ソフィアプルーマ",
+        "1": "アルペンローゼ",
+        "11": "ローズライズ",
+        "5": "アンチェーン",
+        "7": "ハピネスドリーム",
+        "2": "ロンドンプライド",
+        "3": "イサチルニャーニャ",
+        "10": "アッシュグレイス"
+      }
     },
     {
       "prediction_id": 5499,
@@ -553,7 +589,25 @@
           "model_score": 0.010989010989010988,
           "ev_score": 1.4175824175824174
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "13": "リケアマカロニ",
+        "12": "エリカビアリッツ",
+        "8": "サーロー",
+        "9": "ロット",
+        "6": "バターショコラ",
+        "14": "ダイユウアドバンス",
+        "4": "ソフィアプルーマ",
+        "1": "アルペンローゼ",
+        "11": "ローズライズ",
+        "5": "アンチェーン",
+        "7": "ハピネスドリーム",
+        "2": "ロンドンプライド",
+        "3": "イサチルニャーニャ",
+        "10": "アッシュグレイス"
+      }
     },
     {
       "prediction_id": 5500,
@@ -577,7 +631,25 @@
           "model_score": 0.010989010989010988,
           "ev_score": 0.5906593406593407
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "13": "リケアマカロニ",
+        "12": "エリカビアリッツ",
+        "8": "サーロー",
+        "9": "ロット",
+        "6": "バターショコラ",
+        "14": "ダイユウアドバンス",
+        "4": "ソフィアプルーマ",
+        "1": "アルペンローゼ",
+        "11": "ローズライズ",
+        "5": "アンチェーン",
+        "7": "ハピネスドリーム",
+        "2": "ロンドンプライド",
+        "3": "イサチルニャーニャ",
+        "10": "アッシュグレイス"
+      }
     },
     {
       "prediction_id": 5501,
@@ -608,7 +680,25 @@
           "model_score": 0.005494505494505494,
           "ev_score": 1.4175824175824174
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "13": "リケアマカロニ",
+        "12": "エリカビアリッツ",
+        "8": "サーロー",
+        "9": "ロット",
+        "6": "バターショコラ",
+        "14": "ダイユウアドバンス",
+        "4": "ソフィアプルーマ",
+        "1": "アルペンローゼ",
+        "11": "ローズライズ",
+        "5": "アンチェーン",
+        "7": "ハピネスドリーム",
+        "2": "ロンドンプライド",
+        "3": "イサチルニャーニャ",
+        "10": "アッシュグレイス"
+      }
     },
     {
       "prediction_id": 5502,
@@ -660,7 +750,25 @@
           "model_score": 0.00045787545787545777,
           "ev_score": 1.4766483516483513
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "13": "リケアマカロニ",
+        "12": "エリカビアリッツ",
+        "8": "サーロー",
+        "9": "ロット",
+        "6": "バターショコラ",
+        "14": "ダイユウアドバンス",
+        "4": "ソフィアプルーマ",
+        "1": "アルペンローゼ",
+        "11": "ローズライズ",
+        "5": "アンチェーン",
+        "7": "ハピネスドリーム",
+        "2": "ロンドンプライド",
+        "3": "イサチルニャーニャ",
+        "10": "アッシュグレイス"
+      }
     },
     {
       "prediction_id": 5510,
@@ -684,7 +792,25 @@
           "model_score": 2.820829331711357,
           "ev_score": 2.820829331711357
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "13": "リケアマカロニ",
+        "12": "エリカビアリッツ",
+        "8": "サーロー",
+        "9": "ロット",
+        "6": "バターショコラ",
+        "14": "ダイユウアドバンス",
+        "4": "ソフィアプルーマ",
+        "1": "アルペンローゼ",
+        "11": "ローズライズ",
+        "5": "アンチェーン",
+        "7": "ハピネスドリーム",
+        "2": "ロンドンプライド",
+        "3": "イサチルニャーニャ",
+        "10": "アッシュグレイス"
+      }
     },
     {
       "prediction_id": 5511,
@@ -736,7 +862,25 @@
           "model_score": 2.8292376671227517,
           "ev_score": 2.8292376671227517
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 8,
+      "horse_num_to_name": {
+        "13": "リケアマカロニ",
+        "12": "エリカビアリッツ",
+        "8": "サーロー",
+        "9": "ロット",
+        "6": "バターショコラ",
+        "14": "ダイユウアドバンス",
+        "4": "ソフィアプルーマ",
+        "1": "アルペンローゼ",
+        "11": "ローズライズ",
+        "5": "アンチェーン",
+        "7": "ハピネスドリーム",
+        "2": "ロンドンプライド",
+        "3": "イサチルニャーニャ",
+        "10": "アッシュグレイス"
+      }
     },
     {
       "prediction_id": 5512,
@@ -760,7 +904,25 @@
           "model_score": 0.0343526037771339,
           "ev_score": 4.0
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "13": "リケアマカロニ",
+        "12": "エリカビアリッツ",
+        "8": "サーロー",
+        "9": "ロット",
+        "6": "バターショコラ",
+        "14": "ダイユウアドバンス",
+        "4": "ソフィアプルーマ",
+        "1": "アルペンローゼ",
+        "11": "ローズライズ",
+        "5": "アンチェーン",
+        "7": "ハピネスドリーム",
+        "2": "ロンドンプライド",
+        "3": "イサチルニャーニャ",
+        "10": "アッシュグレイス"
+      }
     },
     {
       "prediction_id": 5513,
@@ -784,7 +946,25 @@
           "model_score": 0.0343526037771339,
           "ev_score": 3.0
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "13": "リケアマカロニ",
+        "12": "エリカビアリッツ",
+        "8": "サーロー",
+        "9": "ロット",
+        "6": "バターショコラ",
+        "14": "ダイユウアドバンス",
+        "4": "ソフィアプルーマ",
+        "1": "アルペンローゼ",
+        "11": "ローズライズ",
+        "5": "アンチェーン",
+        "7": "ハピネスドリーム",
+        "2": "ロンドンプライド",
+        "3": "イサチルニャーニャ",
+        "10": "アッシュグレイス"
+      }
     },
     {
       "prediction_id": 5514,
@@ -808,7 +988,25 @@
           "model_score": 0.01717630188856695,
           "ev_score": 5.0
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "13": "リケアマカロニ",
+        "12": "エリカビアリッツ",
+        "8": "サーロー",
+        "9": "ロット",
+        "6": "バターショコラ",
+        "14": "ダイユウアドバンス",
+        "4": "ソフィアプルーマ",
+        "1": "アルペンローゼ",
+        "11": "ローズライズ",
+        "5": "アンチェーン",
+        "7": "ハピネスドリーム",
+        "2": "ロンドンプライド",
+        "3": "イサチルニャーニャ",
+        "10": "アッシュグレイス"
+      }
     },
     {
       "prediction_id": 5517,
@@ -832,7 +1030,25 @@
           "model_score": 0.01664884531064256,
           "ev_score": 5.0
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "13": "リケアマカロニ",
+        "12": "エリカビアリッツ",
+        "8": "サーロー",
+        "9": "ロット",
+        "6": "バターショコラ",
+        "14": "ダイユウアドバンス",
+        "4": "ソフィアプルーマ",
+        "1": "アルペンローゼ",
+        "11": "ローズライズ",
+        "5": "アンチェーン",
+        "7": "ハピネスドリーム",
+        "2": "ロンドンプライド",
+        "3": "イサチルニャーニャ",
+        "10": "アッシュグレイス"
+      }
     },
     {
       "prediction_id": 5518,
@@ -947,7 +1163,25 @@
           "model_score": 0.010452961672473868,
           "ev_score": 0.22473867595818817
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "13": "リケアマカロニ",
+        "12": "エリカビアリッツ",
+        "8": "サーロー",
+        "9": "ロット",
+        "6": "バターショコラ",
+        "14": "ダイユウアドバンス",
+        "4": "ソフィアプルーマ",
+        "1": "アルペンローゼ",
+        "11": "ローズライズ",
+        "5": "アンチェーン",
+        "7": "ハピネスドリーム",
+        "2": "ロンドンプライド",
+        "3": "イサチルニャーニャ",
+        "10": "アッシュグレイス"
+      }
     },
     {
       "prediction_id": 6033,
@@ -971,7 +1205,25 @@
           "model_score": 0.010452961672473868,
           "ev_score": 0.22473867595818817
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "13": "リケアマカロニ",
+        "12": "エリカビアリッツ",
+        "8": "サーロー",
+        "9": "ロット",
+        "6": "バターショコラ",
+        "14": "ダイユウアドバンス",
+        "4": "ソフィアプルーマ",
+        "1": "アルペンローゼ",
+        "11": "ローズライズ",
+        "5": "アンチェーン",
+        "7": "ハピネスドリーム",
+        "2": "ロンドンプライド",
+        "3": "イサチルニャーニャ",
+        "10": "アッシュグレイス"
+      }
     },
     {
       "prediction_id": 6034,
@@ -1009,7 +1261,25 @@
           "model_score": 0.01045296167247387,
           "ev_score": 0.03135888501742161
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "13": "リケアマカロニ",
+        "12": "エリカビアリッツ",
+        "8": "サーロー",
+        "9": "ロット",
+        "6": "バターショコラ",
+        "14": "ダイユウアドバンス",
+        "4": "ソフィアプルーマ",
+        "1": "アルペンローゼ",
+        "11": "ローズライズ",
+        "5": "アンチェーン",
+        "7": "ハピネスドリーム",
+        "2": "ロンドンプライド",
+        "3": "イサチルニャーニャ",
+        "10": "アッシュグレイス"
+      }
     },
     {
       "prediction_id": 6035,
@@ -1040,7 +1310,25 @@
           "model_score": 0.010989010989010988,
           "ev_score": 1.4175824175824174
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "13": "リケアマカロニ",
+        "12": "エリカビアリッツ",
+        "8": "サーロー",
+        "9": "ロット",
+        "6": "バターショコラ",
+        "14": "ダイユウアドバンス",
+        "4": "ソフィアプルーマ",
+        "1": "アルペンローゼ",
+        "11": "ローズライズ",
+        "5": "アンチェーン",
+        "7": "ハピネスドリーム",
+        "2": "ロンドンプライド",
+        "3": "イサチルニャーニャ",
+        "10": "アッシュグレイス"
+      }
     },
     {
       "prediction_id": 6036,
@@ -1071,7 +1359,25 @@
           "model_score": 0.010989010989010988,
           "ev_score": 0.5906593406593407
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "13": "リケアマカロニ",
+        "12": "エリカビアリッツ",
+        "8": "サーロー",
+        "9": "ロット",
+        "6": "バターショコラ",
+        "14": "ダイユウアドバンス",
+        "4": "ソフィアプルーマ",
+        "1": "アルペンローゼ",
+        "11": "ローズライズ",
+        "5": "アンチェーン",
+        "7": "ハピネスドリーム",
+        "2": "ロンドンプライド",
+        "3": "イサチルニャーニャ",
+        "10": "アッシュグレイス"
+      }
     },
     {
       "prediction_id": 6037,
@@ -1116,7 +1422,25 @@
           "model_score": 0.005494505494505494,
           "ev_score": 1.4175824175824174
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "13": "リケアマカロニ",
+        "12": "エリカビアリッツ",
+        "8": "サーロー",
+        "9": "ロット",
+        "6": "バターショコラ",
+        "14": "ダイユウアドバンス",
+        "4": "ソフィアプルーマ",
+        "1": "アルペンローゼ",
+        "11": "ローズライズ",
+        "5": "アンチェーン",
+        "7": "ハピネスドリーム",
+        "2": "ロンドンプライド",
+        "3": "イサチルニャーニャ",
+        "10": "アッシュグレイス"
+      }
     },
     {
       "prediction_id": 6038,
@@ -1238,7 +1562,25 @@
           "model_score": 0.00045787545787545777,
           "ev_score": 1.4766483516483513
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "13": "リケアマカロニ",
+        "12": "エリカビアリッツ",
+        "8": "サーロー",
+        "9": "ロット",
+        "6": "バターショコラ",
+        "14": "ダイユウアドバンス",
+        "4": "ソフィアプルーマ",
+        "1": "アルペンローゼ",
+        "11": "ローズライズ",
+        "5": "アンチェーン",
+        "7": "ハピネスドリーム",
+        "2": "ロンドンプライド",
+        "3": "イサチルニャーニャ",
+        "10": "アッシュグレイス"
+      }
     },
     {
       "prediction_id": 6046,
@@ -1262,7 +1604,25 @@
           "model_score": 3.306176207995798,
           "ev_score": 3.306176207995798
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "13": "リケアマカロニ",
+        "12": "エリカビアリッツ",
+        "8": "サーロー",
+        "9": "ロット",
+        "6": "バターショコラ",
+        "14": "ダイユウアドバンス",
+        "4": "ソフィアプルーマ",
+        "1": "アルペンローゼ",
+        "11": "ローズライズ",
+        "5": "アンチェーン",
+        "7": "ハピネスドリーム",
+        "2": "ロンドンプライド",
+        "3": "イサチルニャーニャ",
+        "10": "アッシュグレイス"
+      }
     },
     {
       "prediction_id": 6047,
@@ -1314,7 +1674,25 @@
           "model_score": 3.314584543407193,
           "ev_score": 3.314584543407193
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 8,
+      "horse_num_to_name": {
+        "13": "リケアマカロニ",
+        "12": "エリカビアリッツ",
+        "8": "サーロー",
+        "9": "ロット",
+        "6": "バターショコラ",
+        "14": "ダイユウアドバンス",
+        "4": "ソフィアプルーマ",
+        "1": "アルペンローゼ",
+        "11": "ローズライズ",
+        "5": "アンチェーン",
+        "7": "ハピネスドリーム",
+        "2": "ロンドンプライド",
+        "3": "イサチルニャーニャ",
+        "10": "アッシュグレイス"
+      }
     },
     {
       "prediction_id": 6048,
@@ -1345,7 +1723,25 @@
           "model_score": 0.028815827445010576,
           "ev_score": 4.0
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "13": "リケアマカロニ",
+        "12": "エリカビアリッツ",
+        "8": "サーロー",
+        "9": "ロット",
+        "6": "バターショコラ",
+        "14": "ダイユウアドバンス",
+        "4": "ソフィアプルーマ",
+        "1": "アルペンローゼ",
+        "11": "ローズライズ",
+        "5": "アンチェーン",
+        "7": "ハピネスドリーム",
+        "2": "ロンドンプライド",
+        "3": "イサチルニャーニャ",
+        "10": "アッシュグレイス"
+      }
     },
     {
       "prediction_id": 6049,
@@ -1376,7 +1772,25 @@
           "model_score": 0.028815827445010576,
           "ev_score": 3.0
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "13": "リケアマカロニ",
+        "12": "エリカビアリッツ",
+        "8": "サーロー",
+        "9": "ロット",
+        "6": "バターショコラ",
+        "14": "ダイユウアドバンス",
+        "4": "ソフィアプルーマ",
+        "1": "アルペンローゼ",
+        "11": "ローズライズ",
+        "5": "アンチェーン",
+        "7": "ハピネスドリーム",
+        "2": "ロンドンプライド",
+        "3": "イサチルニャーニャ",
+        "10": "アッシュグレイス"
+      }
     },
     {
       "prediction_id": 6050,
@@ -1407,7 +1821,25 @@
           "model_score": 0.014407913722505288,
           "ev_score": 5.0
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "13": "リケアマカロニ",
+        "12": "エリカビアリッツ",
+        "8": "サーロー",
+        "9": "ロット",
+        "6": "バターショコラ",
+        "14": "ダイユウアドバンス",
+        "4": "ソフィアプルーマ",
+        "1": "アルペンローゼ",
+        "11": "ローズライズ",
+        "5": "アンチェーン",
+        "7": "ハピネスドリーム",
+        "2": "ロンドンプライド",
+        "3": "イサチルニャーニャ",
+        "10": "アッシュグレイス"
+      }
     },
     {
       "prediction_id": 6053,
@@ -1445,7 +1877,25 @@
           "model_score": 0.012552521629382092,
           "ev_score": 5.0
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "13": "リケアマカロニ",
+        "12": "エリカビアリッツ",
+        "8": "サーロー",
+        "9": "ロット",
+        "6": "バターショコラ",
+        "14": "ダイユウアドバンス",
+        "4": "ソフィアプルーマ",
+        "1": "アルペンローゼ",
+        "11": "ローズライズ",
+        "5": "アンチェーン",
+        "7": "ハピネスドリーム",
+        "2": "ロンドンプライド",
+        "3": "イサチルニャーニャ",
+        "10": "アッシュグレイス"
+      }
     },
     {
       "prediction_id": 6054,
@@ -1560,7 +2010,25 @@
           "model_score": 0.010452961672473868,
           "ev_score": 0.22473867595818817
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "13": "リケアマカロニ",
+        "12": "エリカビアリッツ",
+        "8": "サーロー",
+        "9": "ロット",
+        "6": "バターショコラ",
+        "14": "ダイユウアドバンス",
+        "4": "ソフィアプルーマ",
+        "1": "アルペンローゼ",
+        "11": "ローズライズ",
+        "5": "アンチェーン",
+        "7": "ハピネスドリーム",
+        "2": "ロンドンプライド",
+        "3": "イサチルニャーニャ",
+        "10": "アッシュグレイス"
+      }
     }
   ],
   "training_evals": {}

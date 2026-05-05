@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "エルサトアナ",
-      "horse_id": "2022100933",
-      "sex_age": "牝3",
-      "weight_carried": 53.0,
-      "jockey": "松本大輝",
-      "trainer": "本田優",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 2,
-      "gate_number": 7,
-      "horse_number": 7,
-      "horse_name": "ブルーアイドガール",
-      "horse_id": "2021104998",
-      "sex_age": "牝5",
-      "weight_carried": 56.0,
-      "jockey": "吉田隼人",
-      "trainer": "吉岡辰弥",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "キタサンブラック",
-      "dam": "カトマンブルーKathmanblu(米)",
-      "dam_sire": "Bluegrass Cat"
-    },
-    {
-      "rank": 3,
-      "gate_number": 6,
-      "horse_number": 6,
-      "horse_name": "アジュマン",
-      "horse_id": "2022101241",
-      "sex_age": "牡3",
-      "weight_carried": 55.0,
-      "jockey": "佐々木大",
-      "trainer": "石坂公一",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "丹内祐次",
       "trainer": "長谷川浩",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +42,7 @@
       "jockey": "黛弘人",
       "trainer": "伊藤大士",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -110,6 +50,26 @@
       "sire": "ディスクリートキャットDiscreet Cat(米)",
       "dam": "ヴァップ",
       "dam_sire": "ストーミングホームStorming Home(英)"
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "エルサトアナ",
+      "horse_id": "2022100933",
+      "sex_age": "牝3",
+      "weight_carried": 53.0,
+      "jockey": "松本大輝",
+      "trainer": "本田優",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -122,7 +82,7 @@
       "jockey": "松岡正海",
       "trainer": "伊藤伸一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +102,7 @@
       "jockey": "木幡巧也",
       "trainer": "杉浦宏昭",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -150,6 +110,46 @@
       "sire": "ロードカナロア",
       "dam": "ラクレソニエールLa Cressonniere(仏)",
       "dam_sire": "Le Havre"
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 6,
+      "horse_name": "アジュマン",
+      "horse_id": "2022101241",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "佐々木大",
+      "trainer": "石坂公一",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 7,
+      "horse_name": "ブルーアイドガール",
+      "horse_id": "2021104998",
+      "sex_age": "牝5",
+      "weight_carried": 56.0,
+      "jockey": "吉田隼人",
+      "trainer": "吉岡辰弥",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "キタサンブラック",
+      "dam": "カトマンブルーKathmanblu(米)",
+      "dam_sire": "Bluegrass Cat"
     },
     {
       "rank": null,
@@ -162,7 +162,7 @@
       "jockey": "鷲頭虎太",
       "trainer": "菊沢隆徳",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -178,6 +178,12 @@
       "combination": "3",
       "payout": 600,
       "popularity": 3
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "8",
+      "payout": 8000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -204,6 +210,12 @@
       "popularity": 6
     },
     {
+      "bet_type": "馬連",
+      "combination": "3",
+      "payout": 3070,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "3-6",
       "payout": 270,
@@ -222,16 +234,46 @@
       "popularity": 6
     },
     {
+      "bet_type": "ワイド",
+      "combination": "3",
+      "payout": 90040,
+      "popularity": 60
+    },
+    {
       "bet_type": "馬単",
       "combination": "3→7",
       "payout": 3080,
       "popularity": 12
     },
     {
+      "bet_type": "馬単",
+      "combination": "3",
+      "payout": 7000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "3-6-7",
       "payout": 1340,
       "popularity": 4
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2-70",
+      "payout": 506,
+      "popularity": 70
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4-10",
+      "payout": 60306,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2",
+      "payout": 70004,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

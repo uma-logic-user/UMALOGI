@@ -12,27 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 6,
-      "horse_number": 10,
-      "horse_name": "アピーリングルック",
-      "horse_id": "2021104914",
-      "sex_age": "牝4",
-      "weight_carried": 56.0,
-      "jockey": "佐々木大",
-      "trainer": "辻哲英",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "パイロPyro(米)",
-      "dam": "ブライトリビング",
-      "dam_sire": "ワイルドラッシュWild Rush(米)"
-    },
-    {
-      "rank": 2,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "メイショウホマレ",
@@ -42,7 +22,7 @@
       "jockey": "小沢大仁",
       "trainer": "高橋亮",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -50,26 +30,6 @@
       "sire": "ディスクリートキャットDiscreet Cat(米)",
       "dam": "メイショウラグーナ",
       "dam_sire": "バブルガムフェロー"
-    },
-    {
-      "rank": 3,
-      "gate_number": 3,
-      "horse_number": 5,
-      "horse_name": "ゴールドアローン",
-      "horse_id": "2021106874",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "菊沢一樹",
-      "trainer": "青木孝文",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ドレフォンDrefong(米)",
-      "dam": "ゴールドアクション",
-      "dam_sire": "ヘニーヒューズHenny Hughes(米)"
     },
     {
       "rank": null,
@@ -82,7 +42,7 @@
       "jockey": "吉田隼人",
       "trainer": "久保田貴",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +62,7 @@
       "jockey": "小崎綾也",
       "trainer": "中舘英二",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +82,7 @@
       "jockey": "斎藤新",
       "trainer": "茶木太樹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -130,6 +90,26 @@
       "sire": "リアルスティール",
       "dam": "カシシ",
       "dam_sire": "ジャングルポケット"
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "ゴールドアローン",
+      "horse_id": "2021106874",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "菊沢一樹",
+      "trainer": "青木孝文",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ドレフォンDrefong(米)",
+      "dam": "ゴールドアクション",
+      "dam_sire": "ヘニーヒューズHenny Hughes(米)"
     },
     {
       "rank": null,
@@ -142,7 +122,7 @@
       "jockey": "国分恭介",
       "trainer": "角田晃一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +142,7 @@
       "jockey": "丹内祐次",
       "trainer": "田村康仁",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +162,7 @@
       "jockey": "秋山稔樹",
       "trainer": "中村直也",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -202,7 +182,7 @@
       "jockey": "亀田温心",
       "trainer": "田中克典",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -210,6 +190,26 @@
       "sire": "Soldier's Call",
       "dam": "Maralika",
       "dam_sire": "Dubawi"
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 10,
+      "horse_name": "アピーリングルック",
+      "horse_id": "2021104914",
+      "sex_age": "牝4",
+      "weight_carried": 56.0,
+      "jockey": "佐々木大",
+      "trainer": "辻哲英",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "パイロPyro(米)",
+      "dam": "ブライトリビング",
+      "dam_sire": "ワイルドラッシュWild Rush(米)"
     },
     {
       "rank": null,
@@ -222,7 +222,7 @@
       "jockey": "古川吉洋",
       "trainer": "本田優",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -242,7 +242,7 @@
       "jockey": "長浜鴻緒",
       "trainer": "角田晃一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -262,7 +262,7 @@
       "jockey": "荻野極",
       "trainer": "田中博康",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -282,7 +282,7 @@
       "jockey": "古川奈穂",
       "trainer": "梅田智之",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -302,7 +302,7 @@
       "jockey": "柴田大知",
       "trainer": "上原博之",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -318,6 +318,12 @@
       "combination": "10",
       "payout": 360,
       "popularity": 1
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "15",
+      "payout": 15000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -350,9 +356,21 @@
       "popularity": 3
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-60",
+      "payout": 1010,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "1-10",
       "payout": 530,
+      "popularity": 1
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 60000,
       "popularity": 1
     },
     {
@@ -374,10 +392,34 @@
       "popularity": 3
     },
     {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 10000,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "17-10",
+      "payout": 2101,
+      "popularity": 50
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-5-10",
       "payout": 23780,
       "popularity": 85
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5-30",
+      "payout": 10510,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "67",
+      "payout": 10071,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

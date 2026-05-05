@@ -27,13 +27,37 @@ function formatPayout(p: number | null): string {
   return `¥${Math.round(p).toLocaleString()}`
 }
 
-function horseNums(pred: Prediction): string {
-  if (!pred.horses?.length) return '—'
-  return pred.horses
-    .slice()
-    .sort((a, b) => (a.horse_number ?? 0) - (b.horse_number ?? 0))
-    .map(h => h.horse_number != null ? `${h.horse_number}(${h.horse_name})` : `?(${h.horse_name})`)
-    .join(' - ')
+const ORDERED_BET_TYPES = new Set(['馬単', '三連単'])
+
+/** combination_json + horse_num_to_name から買い目を整形する。
+ *  display: 馬番のみコンパクト表示（セル内）
+ *  full:    馬名付き表示（title / ホバー）
+ */
+function formatCombinations(pred: Prediction): { display: string; full: string } {
+  const empty = { display: '—', full: '—' }
+  if (!pred.combination_json) return empty
+
+  let raw: unknown
+  try { raw = JSON.parse(pred.combination_json) } catch { return empty }
+  if (!Array.isArray(raw) || raw.length === 0) return empty
+
+  const combos: number[][] = Array.isArray(raw[0])
+    ? (raw as number[][])
+    : [(raw as number[])]
+
+  const nameMap: Record<string, string> = pred.horse_num_to_name ?? {}
+  const isOrdered = ORDERED_BET_TYPES.has(pred.bet_type ?? '')
+  const sep = isOrdered ? '→' : '-'
+
+  const display = combos.map(c => c.join(sep)).join(' / ')
+  const full    = combos.map(c =>
+    c.map(n => {
+      const name = nameMap[String(n)]
+      return name ? `${n}(${name})` : String(n)
+    }).join(sep)
+  ).join('\n')
+
+  return { display, full }
 }
 
 export default function HitHistory({ predictions }: Props) {
@@ -244,12 +268,17 @@ export default function HitHistory({ predictions }: Props) {
                         {pred.model_type}
                       </span>
                     </td>
-                    <td className="text-[var(--text-muted)]">{pred.bet_type}</td>
+                    <td className="text-[var(--text-muted)]">
+                      <div>{pred.bet_form ?? pred.bet_type}</div>
+                      {pred.n_tickets != null && pred.n_tickets > 0 && (
+                        <div className="text-xs opacity-60">{pred.n_tickets}点</div>
+                      )}
+                    </td>
                     <td
                       className="max-w-[200px] truncate font-mono font-semibold text-[var(--text-primary)]"
-                      title={horseNums(pred)}
+                      title={formatCombinations(pred).full}
                     >
-                      {horseNums(pred)}
+                      {formatCombinations(pred).display}
                     </td>
                     <td className="text-right font-mono text-[var(--text-muted)]">
                       {pred.recommended_bet != null

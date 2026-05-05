@@ -4,11 +4,11 @@
   "date": "2026-04-25",
   "venue": "福島",
   "race_number": 4,
-  "distance": 0,
-  "surface": "",
+  "distance": 1150,
+  "surface": "ダート",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "晴",
+  "condition": "良",
   "year": "2026",
   "results": [
     {
@@ -21,12 +21,12 @@
       "weight_carried": 54.0,
       "jockey": "石田拓郎",
       "trainer": "新開幸一",
-      "finish_time": null,
+      "finish_time": "1:09.0",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 8.5,
+      "popularity": 4,
+      "horse_weight": 452,
+      "horse_weight_diff": -12,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -41,12 +41,12 @@
       "weight_carried": 57.0,
       "jockey": "野中悠太",
       "trainer": "上原博之",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:09.3",
+      "margin": "1.1/2",
+      "win_odds": 13.9,
+      "popularity": 5,
+      "horse_weight": 476,
+      "horse_weight_diff": 4,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -61,238 +61,18 @@
       "weight_carried": 57.0,
       "jockey": "木幡育也",
       "trainer": "松永康利",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:09.4",
+      "margin": "1/2",
+      "win_odds": 3.1,
+      "popularity": 2,
+      "horse_weight": 458,
+      "horse_weight_diff": -6,
       "sire": null,
       "dam": null,
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "ガクエンテンゴク",
-      "horse_id": "2023109088",
-      "sex_age": "牡5",
-      "weight_carried": 57.0,
-      "jockey": "丸田恭介",
-      "trainer": "秋本大介",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "コウソクルリアン",
-      "horse_id": "2023102674",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "武藤雅",
-      "trainer": "武藤善則",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 4,
-      "horse_name": "ヴェントディルーナ",
-      "horse_id": "2023101158",
-      "sex_age": "牝4",
-      "weight_carried": 55.0,
-      "jockey": "菊沢一樹",
-      "trainer": "清水英克",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 5,
-      "horse_name": "ビースタニング",
-      "horse_id": "2023106357",
-      "sex_age": "牝3",
-      "weight_carried": 51.0,
-      "jockey": "河原田菜",
-      "trainer": "小手川準",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 6,
-      "horse_name": "カシノユメミヅキ",
-      "horse_id": "2023109103",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "本田正重",
-      "trainer": "和田雄二",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 9,
-      "horse_name": "マロ",
-      "horse_id": "2023102636",
-      "sex_age": "牡4",
-      "weight_carried": 54.0,
-      "jockey": "小林美駒",
-      "trainer": "藤野健太",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 10,
-      "horse_name": "ユナダイヤ",
-      "horse_id": "2023106105",
-      "sex_age": "牝4",
-      "weight_carried": 55.0,
-      "jockey": "小沢大仁",
-      "trainer": "岡田稲男",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 11,
-      "horse_name": "ルヴレアール",
-      "horse_id": "2023106319",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "丹内祐次",
-      "trainer": "角田晃一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 12,
-      "horse_name": "リスペクトライト",
-      "horse_id": "2023101191",
-      "sex_age": "牡1",
-      "weight_carried": 54.0,
-      "jockey": "石神深道",
-      "trainer": "和田正一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 13,
-      "horse_name": "ブレイシオン",
-      "horse_id": "2023101280",
-      "sex_age": "牝1",
-      "weight_carried": 53.0,
-      "jockey": "古川奈穂",
-      "trainer": "青木孝文",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 14,
-      "horse_name": "クルビデンス",
-      "horse_id": "2023104001",
-      "sex_age": "牡3",
-      "weight_carried": 54.0,
-      "jockey": "上里直汰",
-      "trainer": "菊川正達",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 4,
       "gate_number": 8,
       "horse_number": 15,
       "horse_name": "ジーティーニッツァ",
@@ -301,18 +81,18 @@
       "weight_carried": 54.0,
       "jockey": "遠藤汰月",
       "trainer": "伊藤伸一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:09.5",
+      "margin": "3/4",
+      "win_odds": 36.5,
+      "popularity": 9,
+      "horse_weight": 450,
+      "horse_weight_diff": -8,
       "sire": null,
       "dam": null,
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 5,
       "gate_number": 8,
       "horse_number": 16,
       "horse_name": "フィールマイプラン",
@@ -321,12 +101,232 @@
       "weight_carried": 57.0,
       "jockey": "荻野極",
       "trainer": "岩戸孝樹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:09.7",
+      "margin": "1.1/4",
+      "win_odds": 7.2,
+      "popularity": 3,
+      "horse_weight": 440,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 6,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "コウソクルリアン",
+      "horse_id": "2023102674",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "武藤雅",
+      "trainer": "武藤善則",
+      "finish_time": "1:10.0",
+      "margin": "1.1/2",
+      "win_odds": 2.6,
+      "popularity": 1,
+      "horse_weight": 466,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 7,
+      "gate_number": 5,
+      "horse_number": 10,
+      "horse_name": "ユナダイヤ",
+      "horse_id": "2023106105",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "小沢大仁",
+      "trainer": "岡田稲男",
+      "finish_time": "1:10.4",
+      "margin": "2.1/2",
+      "win_odds": 192.2,
+      "popularity": 12,
+      "horse_weight": 426,
+      "horse_weight_diff": -4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 8,
+      "gate_number": 7,
+      "horse_number": 14,
+      "horse_name": "クルビデンス",
+      "horse_id": "2023104001",
+      "sex_age": "牡3",
+      "weight_carried": 54.0,
+      "jockey": "上里直汰",
+      "trainer": "菊川正達",
+      "finish_time": "1:10.6",
+      "margin": "1.1/2",
+      "win_odds": 34.7,
+      "popularity": 8,
+      "horse_weight": 458,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 9,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "カシノユメミヅキ",
+      "horse_id": "2023109103",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "本田正重",
+      "trainer": "和田雄二",
+      "finish_time": "1:11.0",
+      "margin": "2",
+      "win_odds": 447.6,
+      "popularity": 16,
+      "horse_weight": 510,
+      "horse_weight_diff": 9,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 10,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "ビースタニング",
+      "horse_id": "2023106357",
+      "sex_age": "牝3",
+      "weight_carried": 51.0,
+      "jockey": "河原田菜",
+      "trainer": "小手川準",
+      "finish_time": "1:11.6",
+      "margin": "4",
+      "win_odds": 296.8,
+      "popularity": 14,
+      "horse_weight": 478,
+      "horse_weight_diff": -5,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 11,
+      "gate_number": 7,
+      "horse_number": 13,
+      "horse_name": "ブレイシオン",
+      "horse_id": "2023101280",
+      "sex_age": "牝1",
+      "weight_carried": 53.0,
+      "jockey": "古川奈穂",
+      "trainer": "青木孝文",
+      "finish_time": "1:11.6",
+      "margin": "ハナ",
+      "win_odds": 236.9,
+      "popularity": 13,
+      "horse_weight": 452,
+      "horse_weight_diff": -10,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 12,
+      "gate_number": 2,
+      "horse_number": 4,
+      "horse_name": "ヴェントディルーナ",
+      "horse_id": "2023101158",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "菊沢一樹",
+      "trainer": "清水英克",
+      "finish_time": "1:12.0",
+      "margin": "2.1/2",
+      "win_odds": 84.6,
+      "popularity": 10,
+      "horse_weight": 472,
+      "horse_weight_diff": -4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 13,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "ガクエンテンゴク",
+      "horse_id": "2023109088",
+      "sex_age": "牡5",
+      "weight_carried": 57.0,
+      "jockey": "丸田恭介",
+      "trainer": "秋本大介",
+      "finish_time": "1:12.2",
+      "margin": "1",
+      "win_odds": 164.8,
+      "popularity": 11,
+      "horse_weight": 512,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 14,
+      "gate_number": 6,
+      "horse_number": 12,
+      "horse_name": "リスペクトライト",
+      "horse_id": "2023101191",
+      "sex_age": "牡1",
+      "weight_carried": 54.0,
+      "jockey": "石神深道",
+      "trainer": "和田正一",
+      "finish_time": "1:12.8",
+      "margin": "4",
+      "win_odds": 314.5,
+      "popularity": 15,
+      "horse_weight": 434,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 15,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "マロ",
+      "horse_id": "2023102636",
+      "sex_age": "牡4",
+      "weight_carried": 54.0,
+      "jockey": "小林美駒",
+      "trainer": "藤野健太",
+      "finish_time": "1:13.0",
+      "margin": "1",
+      "win_odds": 14.7,
+      "popularity": 6,
+      "horse_weight": 516,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 16,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "ルヴレアール",
+      "horse_id": "2023106319",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "丹内祐次",
+      "trainer": "角田晃一",
+      "finish_time": "1:13.4",
+      "margin": "2.1/2",
+      "win_odds": 15.5,
+      "popularity": 7,
+      "horse_weight": 466,
+      "horse_weight_diff": -2,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -513,7 +513,27 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.012030075187969926
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "7": "ブレイヴソルジャー",
+        "2": "セイウンヤオヨロズ",
+        "8": "ニンジャトットリ",
+        "15": "ジーティーニッツァ",
+        "16": "フィールマイプラン",
+        "3": "コウソクルリアン",
+        "10": "ユナダイヤ",
+        "14": "クルビデンス",
+        "6": "カシノユメミヅキ",
+        "5": "ビースタニング",
+        "13": "ブレイシオン",
+        "4": "ヴェントディルーナ",
+        "1": "ガクエンテンゴク",
+        "12": "リスペクトライト",
+        "9": "マロ",
+        "11": "ルヴレアール"
+      }
     },
     {
       "prediction_id": 5784,
@@ -551,7 +571,27 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.03609022556390978
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "7": "ブレイヴソルジャー",
+        "2": "セイウンヤオヨロズ",
+        "8": "ニンジャトットリ",
+        "15": "ジーティーニッツァ",
+        "16": "フィールマイプラン",
+        "3": "コウソクルリアン",
+        "10": "ユナダイヤ",
+        "14": "クルビデンス",
+        "6": "カシノユメミヅキ",
+        "5": "ビースタニング",
+        "13": "ブレイシオン",
+        "4": "ヴェントディルーナ",
+        "1": "ガクエンテンゴク",
+        "12": "リスペクトライト",
+        "9": "マロ",
+        "11": "ルヴレアール"
+      }
     },
     {
       "prediction_id": 5785,
@@ -582,7 +622,27 @@
           "model_score": 0.008333333333333333,
           "ev_score": 0.5
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "7": "ブレイヴソルジャー",
+        "2": "セイウンヤオヨロズ",
+        "8": "ニンジャトットリ",
+        "15": "ジーティーニッツァ",
+        "16": "フィールマイプラン",
+        "3": "コウソクルリアン",
+        "10": "ユナダイヤ",
+        "14": "クルビデンス",
+        "6": "カシノユメミヅキ",
+        "5": "ビースタニング",
+        "13": "ブレイシオン",
+        "4": "ヴェントディルーナ",
+        "1": "ガクエンテンゴク",
+        "12": "リスペクトライト",
+        "9": "マロ",
+        "11": "ルヴレアール"
+      }
     },
     {
       "prediction_id": 5786,
@@ -613,7 +673,27 @@
           "model_score": 0.008333333333333333,
           "ev_score": 0.20833333333333331
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "7": "ブレイヴソルジャー",
+        "2": "セイウンヤオヨロズ",
+        "8": "ニンジャトットリ",
+        "15": "ジーティーニッツァ",
+        "16": "フィールマイプラン",
+        "3": "コウソクルリアン",
+        "10": "ユナダイヤ",
+        "14": "クルビデンス",
+        "6": "カシノユメミヅキ",
+        "5": "ビースタニング",
+        "13": "ブレイシオン",
+        "4": "ヴェントディルーナ",
+        "1": "ガクエンテンゴク",
+        "12": "リスペクトライト",
+        "9": "マロ",
+        "11": "ルヴレアール"
+      }
     },
     {
       "prediction_id": 5787,
@@ -658,7 +738,27 @@
           "model_score": 0.004166666666666667,
           "ev_score": 0.5
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "7": "ブレイヴソルジャー",
+        "2": "セイウンヤオヨロズ",
+        "8": "ニンジャトットリ",
+        "15": "ジーティーニッツァ",
+        "16": "フィールマイプラン",
+        "3": "コウソクルリアン",
+        "10": "ユナダイヤ",
+        "14": "クルビデンス",
+        "6": "カシノユメミヅキ",
+        "5": "ビースタニング",
+        "13": "ブレイシオン",
+        "4": "ヴェントディルーナ",
+        "1": "ガクエンテンゴク",
+        "12": "リスペクトライト",
+        "9": "マロ",
+        "11": "ルヴレアール"
+      }
     },
     {
       "prediction_id": 5788,
@@ -780,7 +880,27 @@
           "model_score": 0.0002976190476190476,
           "ev_score": 0.4464285714285714
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "7": "ブレイヴソルジャー",
+        "2": "セイウンヤオヨロズ",
+        "8": "ニンジャトットリ",
+        "15": "ジーティーニッツァ",
+        "16": "フィールマイプラン",
+        "3": "コウソクルリアン",
+        "10": "ユナダイヤ",
+        "14": "クルビデンス",
+        "6": "カシノユメミヅキ",
+        "5": "ビースタニング",
+        "13": "ブレイシオン",
+        "4": "ヴェントディルーナ",
+        "1": "ガクエンテンゴク",
+        "12": "リスペクトライト",
+        "9": "マロ",
+        "11": "ルヴレアール"
+      }
     },
     {
       "prediction_id": 5804,
@@ -804,7 +924,27 @@
           "model_score": 2.2765328413190757,
           "ev_score": 2.2765328413190757
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "7": "ブレイヴソルジャー",
+        "2": "セイウンヤオヨロズ",
+        "8": "ニンジャトットリ",
+        "15": "ジーティーニッツァ",
+        "16": "フィールマイプラン",
+        "3": "コウソクルリアン",
+        "10": "ユナダイヤ",
+        "14": "クルビデンス",
+        "6": "カシノユメミヅキ",
+        "5": "ビースタニング",
+        "13": "ブレイシオン",
+        "4": "ヴェントディルーナ",
+        "1": "ガクエンテンゴク",
+        "12": "リスペクトライト",
+        "9": "マロ",
+        "11": "ルヴレアール"
+      }
     },
     {
       "prediction_id": 5805,
@@ -856,7 +996,27 @@
           "model_score": 4.06889515172881,
           "ev_score": 4.06889515172881
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 16,
+      "horse_num_to_name": {
+        "7": "ブレイヴソルジャー",
+        "2": "セイウンヤオヨロズ",
+        "8": "ニンジャトットリ",
+        "15": "ジーティーニッツァ",
+        "16": "フィールマイプラン",
+        "3": "コウソクルリアン",
+        "10": "ユナダイヤ",
+        "14": "クルビデンス",
+        "6": "カシノユメミヅキ",
+        "5": "ビースタニング",
+        "13": "ブレイシオン",
+        "4": "ヴェントディルーナ",
+        "1": "ガクエンテンゴク",
+        "12": "リスペクトライト",
+        "9": "マロ",
+        "11": "ルヴレアール"
+      }
     },
     {
       "prediction_id": 5806,
@@ -887,7 +1047,27 @@
           "model_score": 0.015379796219182918,
           "ev_score": 0.922787773150975
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "7": "ブレイヴソルジャー",
+        "2": "セイウンヤオヨロズ",
+        "8": "ニンジャトットリ",
+        "15": "ジーティーニッツァ",
+        "16": "フィールマイプラン",
+        "3": "コウソクルリアン",
+        "10": "ユナダイヤ",
+        "14": "クルビデンス",
+        "6": "カシノユメミヅキ",
+        "5": "ビースタニング",
+        "13": "ブレイシオン",
+        "4": "ヴェントディルーナ",
+        "1": "ガクエンテンゴク",
+        "12": "リスペクトライト",
+        "9": "マロ",
+        "11": "ルヴレアール"
+      }
     },
     {
       "prediction_id": 5807,
@@ -918,7 +1098,27 @@
           "model_score": 0.015379796219182918,
           "ev_score": 0.38449490547957293
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "7": "ブレイヴソルジャー",
+        "2": "セイウンヤオヨロズ",
+        "8": "ニンジャトットリ",
+        "15": "ジーティーニッツァ",
+        "16": "フィールマイプラン",
+        "3": "コウソクルリアン",
+        "10": "ユナダイヤ",
+        "14": "クルビデンス",
+        "6": "カシノユメミヅキ",
+        "5": "ビースタニング",
+        "13": "ブレイシオン",
+        "4": "ヴェントディルーナ",
+        "1": "ガクエンテンゴク",
+        "12": "リスペクトライト",
+        "9": "マロ",
+        "11": "ルヴレアール"
+      }
     },
     {
       "prediction_id": 5808,
@@ -949,7 +1149,27 @@
           "model_score": 0.007690395231952623,
           "ev_score": 0.9228474278343148
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "7": "ブレイヴソルジャー",
+        "2": "セイウンヤオヨロズ",
+        "8": "ニンジャトットリ",
+        "15": "ジーティーニッツァ",
+        "16": "フィールマイプラン",
+        "3": "コウソクルリアン",
+        "10": "ユナダイヤ",
+        "14": "クルビデンス",
+        "6": "カシノユメミヅキ",
+        "5": "ビースタニング",
+        "13": "ブレイシオン",
+        "4": "ヴェントディルーナ",
+        "1": "ガクエンテンゴク",
+        "12": "リスペクトライト",
+        "9": "マロ",
+        "11": "ルヴレアール"
+      }
     },
     {
       "prediction_id": 5811,
@@ -987,7 +1207,27 @@
           "model_score": 0.00422573838165919,
           "ev_score": 1.267721514497757
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "7": "ブレイヴソルジャー",
+        "2": "セイウンヤオヨロズ",
+        "8": "ニンジャトットリ",
+        "15": "ジーティーニッツァ",
+        "16": "フィールマイプラン",
+        "3": "コウソクルリアン",
+        "10": "ユナダイヤ",
+        "14": "クルビデンス",
+        "6": "カシノユメミヅキ",
+        "5": "ビースタニング",
+        "13": "ブレイシオン",
+        "4": "ヴェントディルーナ",
+        "1": "ガクエンテンゴク",
+        "12": "リスペクトライト",
+        "9": "マロ",
+        "11": "ルヴレアール"
+      }
     },
     {
       "prediction_id": 5812,
@@ -1116,7 +1356,27 @@
           "model_score": 0.010452961672473868,
           "ev_score": 0.0
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "7": "ブレイヴソルジャー",
+        "2": "セイウンヤオヨロズ",
+        "8": "ニンジャトットリ",
+        "15": "ジーティーニッツァ",
+        "16": "フィールマイプラン",
+        "3": "コウソクルリアン",
+        "10": "ユナダイヤ",
+        "14": "クルビデンス",
+        "6": "カシノユメミヅキ",
+        "5": "ビースタニング",
+        "13": "ブレイシオン",
+        "4": "ヴェントディルーナ",
+        "1": "ガクエンテンゴク",
+        "12": "リスペクトライト",
+        "9": "マロ",
+        "11": "ルヴレアール"
+      }
     },
     {
       "prediction_id": 6534,
@@ -1140,7 +1400,27 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.9864661654135339
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "7": "ブレイヴソルジャー",
+        "2": "セイウンヤオヨロズ",
+        "8": "ニンジャトットリ",
+        "15": "ジーティーニッツァ",
+        "16": "フィールマイプラン",
+        "3": "コウソクルリアン",
+        "10": "ユナダイヤ",
+        "14": "クルビデンス",
+        "6": "カシノユメミヅキ",
+        "5": "ビースタニング",
+        "13": "ブレイシオン",
+        "4": "ヴェントディルーナ",
+        "1": "ガクエンテンゴク",
+        "12": "リスペクトライト",
+        "9": "マロ",
+        "11": "ルヴレアール"
+      }
     },
     {
       "prediction_id": 6535,
@@ -1178,7 +1458,27 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.03609022556390978
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "7": "ブレイヴソルジャー",
+        "2": "セイウンヤオヨロズ",
+        "8": "ニンジャトットリ",
+        "15": "ジーティーニッツァ",
+        "16": "フィールマイプラン",
+        "3": "コウソクルリアン",
+        "10": "ユナダイヤ",
+        "14": "クルビデンス",
+        "6": "カシノユメミヅキ",
+        "5": "ビースタニング",
+        "13": "ブレイシオン",
+        "4": "ヴェントディルーナ",
+        "1": "ガクエンテンゴク",
+        "12": "リスペクトライト",
+        "9": "マロ",
+        "11": "ルヴレアール"
+      }
     },
     {
       "prediction_id": 6536,
@@ -1209,7 +1509,27 @@
           "model_score": 0.009588290991227369,
           "ev_score": 4.0
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "7": "ブレイヴソルジャー",
+        "2": "セイウンヤオヨロズ",
+        "8": "ニンジャトットリ",
+        "15": "ジーティーニッツァ",
+        "16": "フィールマイプラン",
+        "3": "コウソクルリアン",
+        "10": "ユナダイヤ",
+        "14": "クルビデンス",
+        "6": "カシノユメミヅキ",
+        "5": "ビースタニング",
+        "13": "ブレイシオン",
+        "4": "ヴェントディルーナ",
+        "1": "ガクエンテンゴク",
+        "12": "リスペクトライト",
+        "9": "マロ",
+        "11": "ルヴレアール"
+      }
     },
     {
       "prediction_id": 6537,
@@ -1240,7 +1560,27 @@
           "model_score": 0.009588290991227369,
           "ev_score": 1.9655996532016107
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "7": "ブレイヴソルジャー",
+        "2": "セイウンヤオヨロズ",
+        "8": "ニンジャトットリ",
+        "15": "ジーティーニッツァ",
+        "16": "フィールマイプラン",
+        "3": "コウソクルリアン",
+        "10": "ユナダイヤ",
+        "14": "クルビデンス",
+        "6": "カシノユメミヅキ",
+        "5": "ビースタニング",
+        "13": "ブレイシオン",
+        "4": "ヴェントディルーナ",
+        "1": "ガクエンテンゴク",
+        "12": "リスペクトライト",
+        "9": "マロ",
+        "11": "ルヴレアール"
+      }
     },
     {
       "prediction_id": 6538,
@@ -1285,7 +1625,27 @@
           "model_score": 0.004794145495613684,
           "ev_score": 4.717439167683866
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "7": "ブレイヴソルジャー",
+        "2": "セイウンヤオヨロズ",
+        "8": "ニンジャトットリ",
+        "15": "ジーティーニッツァ",
+        "16": "フィールマイプラン",
+        "3": "コウソクルリアン",
+        "10": "ユナダイヤ",
+        "14": "クルビデンス",
+        "6": "カシノユメミヅキ",
+        "5": "ビースタニング",
+        "13": "ブレイシオン",
+        "4": "ヴェントディルーナ",
+        "1": "ガクエンテンゴク",
+        "12": "リスペクトライト",
+        "9": "マロ",
+        "11": "ルヴレアール"
+      }
     },
     {
       "prediction_id": 6539,
@@ -1407,7 +1767,27 @@
           "model_score": 0.00037016942621499266,
           "ev_score": 4.55308394244441
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "7": "ブレイヴソルジャー",
+        "2": "セイウンヤオヨロズ",
+        "8": "ニンジャトットリ",
+        "15": "ジーティーニッツァ",
+        "16": "フィールマイプラン",
+        "3": "コウソクルリアン",
+        "10": "ユナダイヤ",
+        "14": "クルビデンス",
+        "6": "カシノユメミヅキ",
+        "5": "ビースタニング",
+        "13": "ブレイシオン",
+        "4": "ヴェントディルーナ",
+        "1": "ガクエンテンゴク",
+        "12": "リスペクトライト",
+        "9": "マロ",
+        "11": "ルヴレアール"
+      }
     },
     {
       "prediction_id": 6555,
@@ -1431,7 +1811,27 @@
           "model_score": 2.2765328413190757,
           "ev_score": 2.2765328413190757
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "7": "ブレイヴソルジャー",
+        "2": "セイウンヤオヨロズ",
+        "8": "ニンジャトットリ",
+        "15": "ジーティーニッツァ",
+        "16": "フィールマイプラン",
+        "3": "コウソクルリアン",
+        "10": "ユナダイヤ",
+        "14": "クルビデンス",
+        "6": "カシノユメミヅキ",
+        "5": "ビースタニング",
+        "13": "ブレイシオン",
+        "4": "ヴェントディルーナ",
+        "1": "ガクエンテンゴク",
+        "12": "リスペクトライト",
+        "9": "マロ",
+        "11": "ルヴレアール"
+      }
     },
     {
       "prediction_id": 6556,
@@ -1483,7 +1883,27 @@
           "model_score": 4.06889515172881,
           "ev_score": 4.06889515172881
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 16,
+      "horse_num_to_name": {
+        "7": "ブレイヴソルジャー",
+        "2": "セイウンヤオヨロズ",
+        "8": "ニンジャトットリ",
+        "15": "ジーティーニッツァ",
+        "16": "フィールマイプラン",
+        "3": "コウソクルリアン",
+        "10": "ユナダイヤ",
+        "14": "クルビデンス",
+        "6": "カシノユメミヅキ",
+        "5": "ビースタニング",
+        "13": "ブレイシオン",
+        "4": "ヴェントディルーナ",
+        "1": "ガクエンテンゴク",
+        "12": "リスペクトライト",
+        "9": "マロ",
+        "11": "ルヴレアール"
+      }
     },
     {
       "prediction_id": 6557,
@@ -1514,7 +1934,27 @@
           "model_score": 0.015379796219182918,
           "ev_score": 0.9412435286139945
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "7": "ブレイヴソルジャー",
+        "2": "セイウンヤオヨロズ",
+        "8": "ニンジャトットリ",
+        "15": "ジーティーニッツァ",
+        "16": "フィールマイプラン",
+        "3": "コウソクルリアン",
+        "10": "ユナダイヤ",
+        "14": "クルビデンス",
+        "6": "カシノユメミヅキ",
+        "5": "ビースタニング",
+        "13": "ブレイシオン",
+        "4": "ヴェントディルーナ",
+        "1": "ガクエンテンゴク",
+        "12": "リスペクトライト",
+        "9": "マロ",
+        "11": "ルヴレアール"
+      }
     },
     {
       "prediction_id": 6558,
@@ -1545,7 +1985,27 @@
           "model_score": 0.015379796219182918,
           "ev_score": 0.3921848035891644
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "7": "ブレイヴソルジャー",
+        "2": "セイウンヤオヨロズ",
+        "8": "ニンジャトットリ",
+        "15": "ジーティーニッツァ",
+        "16": "フィールマイプラン",
+        "3": "コウソクルリアン",
+        "10": "ユナダイヤ",
+        "14": "クルビデンス",
+        "6": "カシノユメミヅキ",
+        "5": "ビースタニング",
+        "13": "ブレイシオン",
+        "4": "ヴェントディルーナ",
+        "1": "ガクエンテンゴク",
+        "12": "リスペクトライト",
+        "9": "マロ",
+        "11": "ルヴレアール"
+      }
     },
     {
       "prediction_id": 6559,
@@ -1576,7 +2036,27 @@
           "model_score": 0.007690395231952623,
           "ev_score": 0.941304376391001
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "7": "ブレイヴソルジャー",
+        "2": "セイウンヤオヨロズ",
+        "8": "ニンジャトットリ",
+        "15": "ジーティーニッツァ",
+        "16": "フィールマイプラン",
+        "3": "コウソクルリアン",
+        "10": "ユナダイヤ",
+        "14": "クルビデンス",
+        "6": "カシノユメミヅキ",
+        "5": "ビースタニング",
+        "13": "ブレイシオン",
+        "4": "ヴェントディルーナ",
+        "1": "ガクエンテンゴク",
+        "12": "リスペクトライト",
+        "9": "マロ",
+        "11": "ルヴレアール"
+      }
     },
     {
       "prediction_id": 6562,
@@ -1614,7 +2094,27 @@
           "model_score": 0.00422573838165919,
           "ev_score": 1.293075944787712
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "7": "ブレイヴソルジャー",
+        "2": "セイウンヤオヨロズ",
+        "8": "ニンジャトットリ",
+        "15": "ジーティーニッツァ",
+        "16": "フィールマイプラン",
+        "3": "コウソクルリアン",
+        "10": "ユナダイヤ",
+        "14": "クルビデンス",
+        "6": "カシノユメミヅキ",
+        "5": "ビースタニング",
+        "13": "ブレイシオン",
+        "4": "ヴェントディルーナ",
+        "1": "ガクエンテンゴク",
+        "12": "リスペクトライト",
+        "9": "マロ",
+        "11": "ルヴレアール"
+      }
     },
     {
       "prediction_id": 6563,
@@ -1743,7 +2243,27 @@
           "model_score": 0.010452961672473868,
           "ev_score": 0.42020905923344953
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "7": "ブレイヴソルジャー",
+        "2": "セイウンヤオヨロズ",
+        "8": "ニンジャトットリ",
+        "15": "ジーティーニッツァ",
+        "16": "フィールマイプラン",
+        "3": "コウソクルリアン",
+        "10": "ユナダイヤ",
+        "14": "クルビデンス",
+        "6": "カシノユメミヅキ",
+        "5": "ビースタニング",
+        "13": "ブレイシオン",
+        "4": "ヴェントディルーナ",
+        "1": "ガクエンテンゴク",
+        "12": "リスペクトライト",
+        "9": "マロ",
+        "11": "ルヴレアール"
+      }
     }
   ],
   "training_evals": {}

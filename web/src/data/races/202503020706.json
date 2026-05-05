@@ -12,47 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 6,
-      "horse_number": 9,
-      "horse_name": "オーケーマヒナ",
-      "horse_id": "2022100432",
-      "sex_age": "牝1",
-      "weight_carried": 53.0,
-      "jockey": "石川裕紀",
-      "trainer": "相沢郁",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 2,
-      "gate_number": 8,
-      "horse_number": 14,
-      "horse_name": "フィールオーサム",
-      "horse_id": "2022105925",
-      "sex_age": "牝1",
-      "weight_carried": 53.0,
-      "jockey": "菅原明良",
-      "trainer": "岩戸孝樹",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 3,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "フィザルモニカ",
@@ -62,7 +22,7 @@
       "jockey": "津村明秀",
       "trainer": "大和田成",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -82,7 +42,7 @@
       "jockey": "大野拓弥",
       "trainer": "和田勇介",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +62,7 @@
       "jockey": "石田拓郎",
       "trainer": "小西一男",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +82,7 @@
       "jockey": "木幡巧也",
       "trainer": "岩戸孝樹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +102,7 @@
       "jockey": "菊沢一樹",
       "trainer": "伊藤圭三",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +122,7 @@
       "jockey": "杉原誠人",
       "trainer": "新開幸一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +142,7 @@
       "jockey": "戸崎圭太",
       "trainer": "尾関知人",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -202,7 +162,27 @@
       "jockey": "荻野極",
       "trainer": "伊坂重信",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 9,
+      "horse_name": "オーケーマヒナ",
+      "horse_id": "2022100432",
+      "sex_age": "牝1",
+      "weight_carried": 53.0,
+      "jockey": "石川裕紀",
+      "trainer": "相沢郁",
+      "finish_time": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -222,7 +202,7 @@
       "jockey": "三浦皇成",
       "trainer": "竹内正洋",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -242,7 +222,7 @@
       "jockey": "原優介",
       "trainer": "中舘英二",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -262,7 +242,7 @@
       "jockey": "丸田恭介",
       "trainer": "武市康男",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -282,7 +262,7 @@
       "jockey": "水沼元輝",
       "trainer": "加藤和宏",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -290,6 +270,26 @@
       "sire": "ダンカークDunkirk(米)",
       "dam": "サウスエンピリカル",
       "dam_sire": "マンハッタンカフェ"
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 14,
+      "horse_name": "フィールオーサム",
+      "horse_id": "2022105925",
+      "sex_age": "牝1",
+      "weight_carried": 53.0,
+      "jockey": "菅原明良",
+      "trainer": "岩戸孝樹",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     }
   ],
   "payouts": [
@@ -298,6 +298,12 @@
       "combination": "9",
       "payout": 1410,
       "popularity": 7
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "14",
+      "payout": 14000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -324,10 +330,34 @@
       "popularity": 24
     },
     {
+      "bet_type": "枠連",
+      "combination": "1",
+      "payout": 41007,
+      "popularity": null
+    },
+    {
       "bet_type": "馬連",
       "combination": "9-14",
       "payout": 12630,
       "popularity": 38
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "4-90",
+      "payout": 8140,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "6",
+      "payout": 80000,
+      "popularity": 8
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "5",
+      "payout": 90090,
+      "popularity": 10
     },
     {
       "bet_type": "ワイド",
@@ -349,15 +379,45 @@
     },
     {
       "bet_type": "馬単",
+      "combination": "14",
+      "payout": 126,
+      "popularity": 30
+    },
+    {
+      "bet_type": "馬単",
       "combination": "9→14",
       "payout": 27250,
       "popularity": 76
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "9",
+      "payout": 14000,
+      "popularity": null
     },
     {
       "bet_type": "三連複",
       "combination": "1-9-14",
       "payout": 27310,
       "popularity": 88
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "18-70",
+      "payout": 2601,
+      "popularity": 140
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "36-90-4",
+      "payout": 109,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "23",
+      "payout": 80032,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

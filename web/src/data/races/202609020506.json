@@ -4,11 +4,11 @@
   "date": "2026-04-11",
   "venue": "阪神",
   "race_number": 6,
-  "distance": 0,
-  "surface": "",
+  "distance": 1200,
+  "surface": "芝",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "晴",
+  "condition": "稍",
   "year": "2026",
   "results": [
     {
@@ -17,16 +17,16 @@
       "horse_number": 14,
       "horse_name": "デアヴェローチェ",
       "horse_id": "2023107264",
-      "sex_age": "2",
-      "weight_carried": 0.0,
-      "jockey": "201168上村洋行151803",
-      "trainer": "`ＣＩＮＧ　　　　　�",
-      "finish_time": null,
+      "sex_age": "牝7",
+      "weight_carried": 55.0,
+      "jockey": "岩田望来",
+      "trainer": "上村洋行",
+      "finish_time": "1:08.4",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 3.2,
+      "popularity": 2,
+      "horse_weight": 454,
+      "horse_weight_diff": 4,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -47,16 +47,16 @@
       "horse_number": 3,
       "horse_name": "デルマリシリ",
       "horse_id": "2023100997",
-      "sex_age": "2",
-      "weight_carried": 0.0,
-      "jockey": "201180田中克典274002",
-      "trainer": "K　　　　　　　　　�",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "坂井瑠星",
+      "trainer": "田中克典",
+      "finish_time": "1:08.4",
+      "margin": "ハナ",
+      "win_odds": 3.2,
+      "popularity": 1,
+      "horse_weight": 466,
+      "horse_weight_diff": 8,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -77,12 +77,12 @@
       "horse_number": 10,
       "horse_name": "グッドピース",
       "horse_id": "2023110055",
-      "sex_age": "牡3",
+      "sex_age": "牡4",
       "weight_carried": 57.0,
-      "jockey": "西村淳",
-      "trainer": "栗東高野",
+      "jockey": "西村淳也",
+      "trainer": "高野友和",
       "finish_time": "1:08.7",
-      "margin": "@",
+      "margin": "2",
       "win_odds": 19.7,
       "popularity": 6,
       "horse_weight": 456,
@@ -99,6 +99,366 @@
       "training_eval": {
         "eval_grade": "C",
         "eval_text": "伸び一息"
+      }
+    },
+    {
+      "rank": 4,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "マーゴットミスト",
+      "horse_id": "2023101632",
+      "sex_age": "牡7",
+      "weight_carried": 55.0,
+      "jockey": "古川奈穂",
+      "trainer": "杉山佳明",
+      "finish_time": "1:08.7",
+      "margin": "ハナ",
+      "win_odds": 14.0,
+      "popularity": 5,
+      "horse_weight": 530,
+      "horse_weight_diff": -4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0002,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.3087,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "動き軽快"
+      }
+    },
+    {
+      "rank": 5,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "メイクワンズデイ",
+      "horse_id": "2023103160",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "武豊",
+      "trainer": "宮地貴稔",
+      "finish_time": "1:09.0",
+      "margin": "2",
+      "win_odds": 4.2,
+      "popularity": 3,
+      "horse_weight": 462,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0003,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.405,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "素軽い"
+      }
+    },
+    {
+      "rank": 6,
+      "gate_number": 4,
+      "horse_number": 6,
+      "horse_name": "ミトノリン",
+      "horse_id": "2023105185",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "松山弘平",
+      "trainer": "前川恭子",
+      "finish_time": "1:09.1",
+      "margin": "3/4",
+      "win_odds": 31.1,
+      "popularity": 8,
+      "horse_weight": 472,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0002,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "キビキビ"
+      }
+    },
+    {
+      "rank": 7,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "テルヴィセクス",
+      "horse_id": "2023104355",
+      "sex_age": "牡7",
+      "weight_carried": 57.0,
+      "jockey": "団野大成",
+      "trainer": "斉藤崇史",
+      "finish_time": "1:09.2",
+      "margin": "1/2",
+      "win_odds": 23.0,
+      "popularity": 7,
+      "horse_weight": 482,
+      "horse_weight_diff": -8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0003,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.3622,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "好気配"
+      }
+    },
+    {
+      "rank": 8,
+      "gate_number": 7,
+      "horse_number": 12,
+      "horse_name": "ネメス",
+      "horse_id": "2023110095",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "北村友一",
+      "trainer": "坂口智康",
+      "finish_time": "1:09.2",
+      "margin": "クビ",
+      "win_odds": 8.4,
+      "popularity": 4,
+      "horse_weight": 488,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0003,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.2735,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "出来安定"
+      }
+    },
+    {
+      "rank": 9,
+      "gate_number": 3,
+      "horse_number": 4,
+      "horse_name": "ヒナノムサシ",
+      "horse_id": "2023101645",
+      "sex_age": "牡1",
+      "weight_carried": 57.0,
+      "jockey": "松本大輝",
+      "trainer": "本間忍",
+      "finish_time": "1:09.3",
+      "margin": "1/2",
+      "win_odds": 123.1,
+      "popularity": 14,
+      "horse_weight": 526,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0003,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.405,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "目立たず"
+      }
+    },
+    {
+      "rank": 10,
+      "gate_number": 7,
+      "horse_number": 13,
+      "horse_name": "サヨノパララックス",
+      "horse_id": "2023105140",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "菱田裕二",
+      "trainer": "羽月友彦",
+      "finish_time": "1:09.3",
+      "margin": "ハナ",
+      "win_odds": 107.9,
+      "popularity": 12,
+      "horse_weight": 432,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0002,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.2735,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "伸び一息"
+      }
+    },
+    {
+      "rank": 11,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "スローモーション",
+      "horse_id": "2023100971",
+      "sex_age": "牝1",
+      "weight_carried": 55.0,
+      "jockey": "長岡禎仁",
+      "trainer": "深山雅史",
+      "finish_time": "1:09.6",
+      "margin": "1.3/4",
+      "win_odds": 217.5,
+      "popularity": 15,
+      "horse_weight": 382,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0003,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "D",
+        "eval_text": "動き平凡"
+      }
+    },
+    {
+      "rank": 12,
+      "gate_number": 5,
+      "horse_number": 8,
+      "horse_name": "ドルチェミスト",
+      "horse_id": "2023101174",
+      "sex_age": "牝5",
+      "weight_carried": 52.0,
+      "jockey": "田山旺佑",
+      "trainer": "小栗実",
+      "finish_time": "1:09.7",
+      "margin": "1",
+      "win_odds": 104.6,
+      "popularity": 11,
+      "horse_weight": 448,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0002,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "気配平凡"
+      }
+    },
+    {
+      "rank": 13,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "ミスターバッドガイ",
+      "horse_id": "2023102872",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "角田大和",
+      "trainer": "中尾秀正",
+      "finish_time": "1:10.1",
+      "margin": "2.1/2",
+      "win_odds": 34.0,
+      "popularity": 9,
+      "horse_weight": 494,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0004,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.1767,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "攻め動く"
+      }
+    },
+    {
+      "rank": 14,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "エスティヴァリス",
+      "horse_id": "2023103615",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "幸英明",
+      "trainer": "高橋康之",
+      "finish_time": "1:10.2",
+      "margin": "クビ",
+      "win_odds": 56.6,
+      "popularity": 10,
+      "horse_weight": 482,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0003,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "末脚良し"
+      }
+    },
+    {
+      "rank": 15,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "ゴールドヴィーナス",
+      "horse_id": "2023105672",
+      "sex_age": "牝1",
+      "weight_carried": 55.0,
+      "jockey": "吉村誠之",
+      "trainer": "森秀行",
+      "finish_time": "1:10.3",
+      "margin": "3/4",
+      "win_odds": 121.5,
+      "popularity": 13,
+      "horse_weight": 450,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0002,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.2815,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "元気一杯"
       }
     }
   ],
@@ -360,7 +720,26 @@
           "model_score": 0.09438281726730563,
           "ev_score": 0.3775312690692225
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "14": "デアヴェローチェ",
+        "3": "デルマリシリ",
+        "10": "グッドピース",
+        "2": "マーゴットミスト",
+        "7": "メイクワンズデイ",
+        "6": "ミトノリン",
+        "1": "テルヴィセクス",
+        "12": "ネメス",
+        "4": "ヒナノムサシ",
+        "13": "サヨノパララックス",
+        "11": "スローモーション",
+        "8": "ドルチェミスト",
+        "15": "ミスターバッドガイ",
+        "9": "エスティヴァリス",
+        "5": "ゴールドヴィーナス"
+      }
     },
     {
       "prediction_id": 2016,
@@ -405,7 +784,26 @@
           "model_score": 0.00034842360651537183,
           "ev_score": 0.0010452708195461155
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "14": "デアヴェローチェ",
+        "3": "デルマリシリ",
+        "10": "グッドピース",
+        "2": "マーゴットミスト",
+        "7": "メイクワンズデイ",
+        "6": "ミトノリン",
+        "1": "テルヴィセクス",
+        "12": "ネメス",
+        "4": "ヒナノムサシ",
+        "13": "サヨノパララックス",
+        "11": "スローモーション",
+        "8": "ドルチェミスト",
+        "15": "ミスターバッドガイ",
+        "9": "エスティヴァリス",
+        "5": "ゴールドヴィーナス"
+      }
     },
     {
       "prediction_id": 2017,
@@ -436,7 +834,26 @@
           "model_score": 0.020857678249234797,
           "ev_score": 0.016686142599387836
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "14": "デアヴェローチェ",
+        "3": "デルマリシリ",
+        "10": "グッドピース",
+        "2": "マーゴットミスト",
+        "7": "メイクワンズデイ",
+        "6": "ミトノリン",
+        "1": "テルヴィセクス",
+        "12": "ネメス",
+        "4": "ヒナノムサシ",
+        "13": "サヨノパララックス",
+        "11": "スローモーション",
+        "8": "ドルチェミスト",
+        "15": "ミスターバッドガイ",
+        "9": "エスティヴァリス",
+        "5": "ゴールドヴィーナス"
+      }
     },
     {
       "prediction_id": 2018,
@@ -474,7 +891,26 @@
           "model_score": 5.281017491138813,
           "ev_score": 5.281017491138813
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "14": "デアヴェローチェ",
+        "3": "デルマリシリ",
+        "10": "グッドピース",
+        "2": "マーゴットミスト",
+        "7": "メイクワンズデイ",
+        "6": "ミトノリン",
+        "1": "テルヴィセクス",
+        "12": "ネメス",
+        "4": "ヒナノムサシ",
+        "13": "サヨノパララックス",
+        "11": "スローモーション",
+        "8": "ドルチェミスト",
+        "15": "ミスターバッドガイ",
+        "9": "エスティヴァリス",
+        "5": "ゴールドヴィーナス"
+      }
     },
     {
       "prediction_id": 2019,
@@ -512,7 +948,26 @@
           "model_score": 0.010563212862768505,
           "ev_score": 0.015844819294152757
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "14": "デアヴェローチェ",
+        "3": "デルマリシリ",
+        "10": "グッドピース",
+        "2": "マーゴットミスト",
+        "7": "メイクワンズデイ",
+        "6": "ミトノリン",
+        "1": "テルヴィセクス",
+        "12": "ネメス",
+        "4": "ヒナノムサシ",
+        "13": "サヨノパララックス",
+        "11": "スローモーション",
+        "8": "ドルチェミスト",
+        "15": "ミスターバッドガイ",
+        "9": "エスティヴァリス",
+        "5": "ゴールドヴィーナス"
+      }
     },
     {
       "prediction_id": 2020,
@@ -543,7 +998,26 @@
           "model_score": 0.0062005845648705074,
           "ev_score": 0.02480233825948203
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "14": "デアヴェローチェ",
+        "3": "デルマリシリ",
+        "10": "グッドピース",
+        "2": "マーゴットミスト",
+        "7": "メイクワンズデイ",
+        "6": "ミトノリン",
+        "1": "テルヴィセクス",
+        "12": "ネメス",
+        "4": "ヒナノムサシ",
+        "13": "サヨノパララックス",
+        "11": "スローモーション",
+        "8": "ドルチェミスト",
+        "15": "ミスターバッドガイ",
+        "9": "エスティヴァリス",
+        "5": "ゴールドヴィーナス"
+      }
     },
     {
       "prediction_id": 2021,
@@ -602,7 +1076,26 @@
           "model_score": 0.001067048639335619,
           "ev_score": 0.021340972786712382
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "14": "デアヴェローチェ",
+        "3": "デルマリシリ",
+        "10": "グッドピース",
+        "2": "マーゴットミスト",
+        "7": "メイクワンズデイ",
+        "6": "ミトノリン",
+        "1": "テルヴィセクス",
+        "12": "ネメス",
+        "4": "ヒナノムサシ",
+        "13": "サヨノパララックス",
+        "11": "スローモーション",
+        "8": "ドルチェミスト",
+        "15": "ミスターバッドガイ",
+        "9": "エスティヴァリス",
+        "5": "ゴールドヴィーナス"
+      }
     },
     {
       "prediction_id": 2027,
@@ -633,7 +1126,26 @@
           "model_score": 1.1766857648686762,
           "ev_score": 1.1766857648686762
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "14": "デアヴェローチェ",
+        "3": "デルマリシリ",
+        "10": "グッドピース",
+        "2": "マーゴットミスト",
+        "7": "メイクワンズデイ",
+        "6": "ミトノリン",
+        "1": "テルヴィセクス",
+        "12": "ネメス",
+        "4": "ヒナノムサシ",
+        "13": "サヨノパララックス",
+        "11": "スローモーション",
+        "8": "ドルチェミスト",
+        "15": "ミスターバッドガイ",
+        "9": "エスティヴァリス",
+        "5": "ゴールドヴィーナス"
+      }
     },
     {
       "prediction_id": 2028,
@@ -706,7 +1218,26 @@
           "model_score": 1.3159848795103084,
           "ev_score": 1.3159848795103084
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "14": "デアヴェローチェ",
+        "3": "デルマリシリ",
+        "10": "グッドピース",
+        "2": "マーゴットミスト",
+        "7": "メイクワンズデイ",
+        "6": "ミトノリン",
+        "1": "テルヴィセクス",
+        "12": "ネメス",
+        "4": "ヒナノムサシ",
+        "13": "サヨノパララックス",
+        "11": "スローモーション",
+        "8": "ドルチェミスト",
+        "15": "ミスターバッドガイ",
+        "9": "エスティヴァリス",
+        "5": "ゴールドヴィーナス"
+      }
     },
     {
       "prediction_id": 2029,
@@ -737,7 +1268,26 @@
           "model_score": 0.05534254522567354,
           "ev_score": 0.04427403618053884
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "14": "デアヴェローチェ",
+        "3": "デルマリシリ",
+        "10": "グッドピース",
+        "2": "マーゴットミスト",
+        "7": "メイクワンズデイ",
+        "6": "ミトノリン",
+        "1": "テルヴィセクス",
+        "12": "ネメス",
+        "4": "ヒナノムサシ",
+        "13": "サヨノパララックス",
+        "11": "スローモーション",
+        "8": "ドルチェミスト",
+        "15": "ミスターバッドガイ",
+        "9": "エスティヴァリス",
+        "5": "ゴールドヴィーナス"
+      }
     },
     {
       "prediction_id": 2030,
@@ -768,7 +1318,26 @@
           "model_score": 0.05534254522567354,
           "ev_score": 0.019369890828985742
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "14": "デアヴェローチェ",
+        "3": "デルマリシリ",
+        "10": "グッドピース",
+        "2": "マーゴットミスト",
+        "7": "メイクワンズデイ",
+        "6": "ミトノリン",
+        "1": "テルヴィセクス",
+        "12": "ネメス",
+        "4": "ヒナノムサシ",
+        "13": "サヨノパララックス",
+        "11": "スローモーション",
+        "8": "ドルチェミスト",
+        "15": "ミスターバッドガイ",
+        "9": "エスティヴァリス",
+        "5": "ゴールドヴィーナス"
+      }
     },
     {
       "prediction_id": 2031,
@@ -799,7 +1368,26 @@
           "model_score": 0.02767127261283677,
           "ev_score": 0.04150690891925515
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "14": "デアヴェローチェ",
+        "3": "デルマリシリ",
+        "10": "グッドピース",
+        "2": "マーゴットミスト",
+        "7": "メイクワンズデイ",
+        "6": "ミトノリン",
+        "1": "テルヴィセクス",
+        "12": "ネメス",
+        "4": "ヒナノムサシ",
+        "13": "サヨノパララックス",
+        "11": "スローモーション",
+        "8": "ドルチェミスト",
+        "15": "ミスターバッドガイ",
+        "9": "エスティヴァリス",
+        "5": "ゴールドヴィーナス"
+      }
     },
     {
       "prediction_id": 2032,
@@ -858,7 +1446,26 @@
           "model_score": 0.1829916854148599,
           "ev_score": 0.7319667416594396
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "14": "デアヴェローチェ",
+        "3": "デルマリシリ",
+        "10": "グッドピース",
+        "2": "マーゴットミスト",
+        "7": "メイクワンズデイ",
+        "6": "ミトノリン",
+        "1": "テルヴィセクス",
+        "12": "ネメス",
+        "4": "ヒナノムサシ",
+        "13": "サヨノパララックス",
+        "11": "スローモーション",
+        "8": "ドルチェミスト",
+        "15": "ミスターバッドガイ",
+        "9": "エスティヴァリス",
+        "5": "ゴールドヴィーナス"
+      }
     }
   ],
   "training_evals": {

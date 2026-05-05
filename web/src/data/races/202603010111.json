@@ -4,11 +4,11 @@
   "date": "2026-04-11",
   "venue": "福島",
   "race_number": 11,
-  "distance": 0,
-  "surface": "",
+  "distance": 1700,
+  "surface": "ダート",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "晴",
+  "condition": "良",
   "year": "2026",
   "results": [
     {
@@ -21,12 +21,12 @@
       "weight_carried": 56.0,
       "jockey": "斎藤新",
       "trainer": "加藤征弘",
-      "finish_time": null,
+      "finish_time": "1:43.4",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 7.2,
+      "popularity": 5,
+      "horse_weight": 510,
+      "horse_weight_diff": 0,
       "sire": "パイロPyro(米)",
       "dam": "ゴールドフォレスト",
       "dam_sire": "ゴールドアリュール",
@@ -45,12 +45,12 @@
       "weight_carried": 55.0,
       "jockey": "丸山元気",
       "trainer": "渡辺薫彦",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:43.6",
+      "margin": "1.1/4",
+      "win_odds": 16.3,
+      "popularity": 7,
+      "horse_weight": 482,
+      "horse_weight_diff": -8,
       "sire": "マジェスティックウォリアーMajestic Warrior(米)",
       "dam": "ミトス",
       "dam_sire": "エンパイアメーカーEmpire Maker(米)",
@@ -69,18 +69,306 @@
       "weight_carried": 56.0,
       "jockey": "小崎綾也",
       "trainer": "野中賢二",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:44.1",
+      "margin": "3",
+      "win_odds": 6.7,
+      "popularity": 3,
+      "horse_weight": 464,
+      "horse_weight_diff": -8,
       "sire": "リアルスティール",
       "dam": "シンコームーン",
       "dam_sire": "フォーティナイナーズサンFourty Niners Son(米)",
       "training_eval": {
         "eval_grade": "B",
         "eval_text": "前走以上"
+      }
+    },
+    {
+      "rank": 4,
+      "gate_number": 6,
+      "horse_number": 10,
+      "horse_name": "レイナデアルシーラ",
+      "horse_id": "2022104628",
+      "sex_age": "牝3",
+      "weight_carried": 53.0,
+      "jockey": "田口貫太",
+      "trainer": "西園翔太",
+      "finish_time": "1:44.1",
+      "margin": "アタマ",
+      "win_odds": 9.0,
+      "popularity": 6,
+      "horse_weight": 510,
+      "horse_weight_diff": -12,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "伸び上々"
+      }
+    },
+    {
+      "rank": 5,
+      "gate_number": 7,
+      "horse_number": 13,
+      "horse_name": "カンピオーネ",
+      "horse_id": "2019100286",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "菊沢一樹",
+      "trainer": "栗田徹",
+      "finish_time": "1:44.5",
+      "margin": "2.1/2",
+      "win_odds": 5.6,
+      "popularity": 2,
+      "horse_weight": 516,
+      "horse_weight_diff": -10,
+      "sire": "ヘニーヒューズHenny Hughes(米)",
+      "dam": "エルフィン",
+      "dam_sire": "ダンシングブレーヴDancing Brave(米)",
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "キビキビ"
+      }
+    },
+    {
+      "rank": 6,
+      "gate_number": 4,
+      "horse_number": 6,
+      "horse_name": "ホールシバン",
+      "horse_id": "2018100664",
+      "sex_age": "騸3",
+      "weight_carried": 56.0,
+      "jockey": "秋山稔樹",
+      "trainer": "高橋義忠",
+      "finish_time": "1:44.6",
+      "margin": "クビ",
+      "win_odds": 27.3,
+      "popularity": 10,
+      "horse_weight": 524,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "余力十分"
+      }
+    },
+    {
+      "rank": 7,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "マリアナトレンチ",
+      "horse_id": "2020102737",
+      "sex_age": "牡1",
+      "weight_carried": 55.0,
+      "jockey": "富田暁",
+      "trainer": "東田明士",
+      "finish_time": "1:44.6",
+      "margin": "アタマ",
+      "win_odds": 44.4,
+      "popularity": 12,
+      "horse_weight": 472,
+      "horse_weight_diff": -2,
+      "sire": "ハーツクライ",
+      "dam": "アイアムルビー",
+      "dam_sire": "Saint Liam",
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "一歩前進"
+      }
+    },
+    {
+      "rank": 8,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "コトホドサヨウニ",
+      "horse_id": "2021103306",
+      "sex_age": "牡1",
+      "weight_carried": 57.0,
+      "jockey": "松若風馬",
+      "trainer": "奥村豊",
+      "finish_time": "1:44.7",
+      "margin": "クビ",
+      "win_odds": 3.9,
+      "popularity": 1,
+      "horse_weight": 516,
+      "horse_weight_diff": -6,
+      "sire": "シニスターミニスターSinister Minister(米)",
+      "dam": "ティアドーロ",
+      "dam_sire": "ハーツクライ",
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "乗込十分"
+      }
+    },
+    {
+      "rank": 9,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "ミッキークレスト",
+      "horse_id": "2021105112",
+      "sex_age": "牡1",
+      "weight_carried": 56.0,
+      "jockey": "丹内祐次",
+      "trainer": "大久保龍",
+      "finish_time": "1:44.8",
+      "margin": "3/4",
+      "win_odds": 6.9,
+      "popularity": 4,
+      "horse_weight": 520,
+      "horse_weight_diff": -2,
+      "sire": "ジャスタウェイ",
+      "dam": "ダヌスカズマイガールDanuska's My Girl(米)",
+      "dam_sire": "Shackleford",
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "攻め熱心"
+      }
+    },
+    {
+      "rank": 10,
+      "gate_number": 5,
+      "horse_number": 8,
+      "horse_name": "ダイシンピスケス",
+      "horse_id": "2018100830",
+      "sex_age": "牡3",
+      "weight_carried": 56.0,
+      "jockey": "中井裕二",
+      "trainer": "森秀行",
+      "finish_time": "1:45.2",
+      "margin": "2.1/2",
+      "win_odds": 99.6,
+      "popularity": 15,
+      "horse_weight": 510,
+      "horse_weight_diff": -2,
+      "sire": "マジェスティックウォリアーMajestic Warrior(米)",
+      "dam": "ダイシンキャンディ",
+      "dam_sire": "アグネスタキオン",
+      "training_eval": {
+        "eval_grade": "D",
+        "eval_text": "やや重目"
+      }
+    },
+    {
+      "rank": 11,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "イスラアネーロ",
+      "horse_id": "2019105741",
+      "sex_age": "牡1",
+      "weight_carried": 56.0,
+      "jockey": "川又賢治",
+      "trainer": "吉村圭司",
+      "finish_time": "1:45.4",
+      "margin": "1.1/2",
+      "win_odds": 90.2,
+      "popularity": 14,
+      "horse_weight": 456,
+      "horse_weight_diff": -6,
+      "sire": "イスラボニータ",
+      "dam": "エリモフェザー",
+      "dam_sire": "シニスターミニスターSinister Minister(米)",
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "多少良化"
+      }
+    },
+    {
+      "rank": 12,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "サンライズホーク",
+      "horse_id": "2019101681",
+      "sex_age": "騸5",
+      "weight_carried": 58.0,
+      "jockey": "松岡正海",
+      "trainer": "牧浦充徳",
+      "finish_time": "1:46.2",
+      "margin": "5",
+      "win_odds": 47.5,
+      "popularity": 13,
+      "horse_weight": 512,
+      "horse_weight_diff": 0,
+      "sire": "リオンディーズ",
+      "dam": "ローマンブリッジ",
+      "dam_sire": "ブライアンズタイムBrian's Time(米)",
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "平行線"
+      }
+    },
+    {
+      "rank": 13,
+      "gate_number": 3,
+      "horse_number": 4,
+      "horse_name": "ペプチドソレイユ",
+      "horse_id": "2020102095",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "高倉稜",
+      "trainer": "武英智",
+      "finish_time": "1:46.2",
+      "margin": "アタマ",
+      "win_odds": 21.4,
+      "popularity": 9,
+      "horse_weight": 490,
+      "horse_weight_diff": -8,
+      "sire": "コパノリッキー",
+      "dam": "ペプチドヴィーナス",
+      "dam_sire": "ワークフォースWorkforce(英)",
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "仕上良好"
+      }
+    },
+    {
+      "rank": 14,
+      "gate_number": 8,
+      "horse_number": 14,
+      "horse_name": "レアンダー",
+      "horse_id": "2021100836",
+      "sex_age": "牡3",
+      "weight_carried": 54.0,
+      "jockey": "古川吉洋",
+      "trainer": "大根田裕",
+      "finish_time": "1:46.3",
+      "margin": "クビ",
+      "win_odds": 20.5,
+      "popularity": 8,
+      "horse_weight": 460,
+      "horse_weight_diff": 0,
+      "sire": "シルバーステート",
+      "dam": "ミスエンピリカル",
+      "dam_sire": "プリサイスエンドPrecise End(米)",
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "仕上るも"
+      }
+    },
+    {
+      "rank": 15,
+      "gate_number": 7,
+      "horse_number": 12,
+      "horse_name": "ダンツエラン",
+      "horse_id": "2022103304",
+      "sex_age": "牝3",
+      "weight_carried": 53.0,
+      "jockey": "黛弘人",
+      "trainer": "本田優",
+      "finish_time": "1:46.9",
+      "margin": "3.1/2",
+      "win_odds": 39.2,
+      "popularity": 11,
+      "horse_weight": 492,
+      "horse_weight_diff": -2,
+      "sire": "ロードカナロア",
+      "dam": "ミスチヴァスミスティMischievous Misty(米)",
+      "dam_sire": "Into Mischief",
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "変身注"
       }
     }
   ],
@@ -326,7 +614,26 @@
           "model_score": 0.00010045427097777331,
           "ev_score": 0.00010045427097777331
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "1": "ラタフォレスト",
+        "15": "タガノミスト",
+        "11": "スナークラファエロ",
+        "10": "レイナデアルシーラ",
+        "13": "カンピオーネ",
+        "6": "ホールシバン",
+        "9": "マリアナトレンチ",
+        "3": "コトホドサヨウニ",
+        "5": "ミッキークレスト",
+        "8": "ダイシンピスケス",
+        "2": "イスラアネーロ",
+        "7": "サンライズホーク",
+        "4": "ペプチドソレイユ",
+        "14": "レアンダー",
+        "12": "ダンツエラン"
+      }
     },
     {
       "prediction_id": 1844,
@@ -399,7 +706,26 @@
           "model_score": 2.645628081783691e-05,
           "ev_score": 0.00010582512327134764
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "1": "ラタフォレスト",
+        "15": "タガノミスト",
+        "11": "スナークラファエロ",
+        "10": "レイナデアルシーラ",
+        "13": "カンピオーネ",
+        "6": "ホールシバン",
+        "9": "マリアナトレンチ",
+        "3": "コトホドサヨウニ",
+        "5": "ミッキークレスト",
+        "8": "ダイシンピスケス",
+        "2": "イスラアネーロ",
+        "7": "サンライズホーク",
+        "4": "ペプチドソレイユ",
+        "14": "レアンダー",
+        "12": "ダンツエラン"
+      }
     },
     {
       "prediction_id": 1845,
@@ -430,7 +756,26 @@
           "model_score": 0.03807209240910983,
           "ev_score": 0.030457673927287866
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "1": "ラタフォレスト",
+        "15": "タガノミスト",
+        "11": "スナークラファエロ",
+        "10": "レイナデアルシーラ",
+        "13": "カンピオーネ",
+        "6": "ホールシバン",
+        "9": "マリアナトレンチ",
+        "3": "コトホドサヨウニ",
+        "5": "ミッキークレスト",
+        "8": "ダイシンピスケス",
+        "2": "イスラアネーロ",
+        "7": "サンライズホーク",
+        "4": "ペプチドソレイユ",
+        "14": "レアンダー",
+        "12": "ダンツエラン"
+      }
     },
     {
       "prediction_id": 1846,
@@ -461,7 +806,26 @@
           "model_score": 0.03807209240910983,
           "ev_score": 0.01332523234318844
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "1": "ラタフォレスト",
+        "15": "タガノミスト",
+        "11": "スナークラファエロ",
+        "10": "レイナデアルシーラ",
+        "13": "カンピオーネ",
+        "6": "ホールシバン",
+        "9": "マリアナトレンチ",
+        "3": "コトホドサヨウニ",
+        "5": "ミッキークレスト",
+        "8": "ダイシンピスケス",
+        "2": "イスラアネーロ",
+        "7": "サンライズホーク",
+        "4": "ペプチドソレイユ",
+        "14": "レアンダー",
+        "12": "ダンツエラン"
+      }
     },
     {
       "prediction_id": 1847,
@@ -499,7 +863,26 @@
           "model_score": 0.0190409648577977,
           "ev_score": 0.028561447286696552
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "1": "ラタフォレスト",
+        "15": "タガノミスト",
+        "11": "スナークラファエロ",
+        "10": "レイナデアルシーラ",
+        "13": "カンピオーネ",
+        "6": "ホールシバン",
+        "9": "マリアナトレンチ",
+        "3": "コトホドサヨウニ",
+        "5": "ミッキークレスト",
+        "8": "ダイシンピスケス",
+        "2": "イスラアネーロ",
+        "7": "サンライズホーク",
+        "4": "ペプチドソレイユ",
+        "14": "レアンダー",
+        "12": "ダンツエラン"
+      }
     },
     {
       "prediction_id": 1848,
@@ -544,7 +927,26 @@
           "model_score": 0.9998855073002179,
           "ev_score": 2.9996565219006537
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "1": "ラタフォレスト",
+        "15": "タガノミスト",
+        "11": "スナークラファエロ",
+        "10": "レイナデアルシーラ",
+        "13": "カンピオーネ",
+        "6": "ホールシバン",
+        "9": "マリアナトレンチ",
+        "3": "コトホドサヨウニ",
+        "5": "ミッキークレスト",
+        "8": "ダイシンピスケス",
+        "2": "イスラアネーロ",
+        "7": "サンライズホーク",
+        "4": "ペプチドソレイユ",
+        "14": "レアンダー",
+        "12": "ダンツエラン"
+      }
     },
     {
       "prediction_id": 1849,
@@ -603,7 +1005,26 @@
           "model_score": 0.0026021102492366694,
           "ev_score": 0.05204220498473339
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "1": "ラタフォレスト",
+        "15": "タガノミスト",
+        "11": "スナークラファエロ",
+        "10": "レイナデアルシーラ",
+        "13": "カンピオーネ",
+        "6": "ホールシバン",
+        "9": "マリアナトレンチ",
+        "3": "コトホドサヨウニ",
+        "5": "ミッキークレスト",
+        "8": "ダイシンピスケス",
+        "2": "イスラアネーロ",
+        "7": "サンライズホーク",
+        "4": "ペプチドソレイユ",
+        "14": "レアンダー",
+        "12": "ダンツエラン"
+      }
     },
     {
       "prediction_id": 1851,
@@ -634,7 +1055,26 @@
           "model_score": 1.3960968799330604,
           "ev_score": 1.3960968799330604
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "1": "ラタフォレスト",
+        "15": "タガノミスト",
+        "11": "スナークラファエロ",
+        "10": "レイナデアルシーラ",
+        "13": "カンピオーネ",
+        "6": "ホールシバン",
+        "9": "マリアナトレンチ",
+        "3": "コトホドサヨウニ",
+        "5": "ミッキークレスト",
+        "8": "ダイシンピスケス",
+        "2": "イスラアネーロ",
+        "7": "サンライズホーク",
+        "4": "ペプチドソレイユ",
+        "14": "レアンダー",
+        "12": "ダンツエラン"
+      }
     },
     {
       "prediction_id": 1852,
@@ -700,7 +1140,26 @@
           "model_score": 0.9998855073002179,
           "ev_score": 3.9995420292008714
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "1": "ラタフォレスト",
+        "15": "タガノミスト",
+        "11": "スナークラファエロ",
+        "10": "レイナデアルシーラ",
+        "13": "カンピオーネ",
+        "6": "ホールシバン",
+        "9": "マリアナトレンチ",
+        "3": "コトホドサヨウニ",
+        "5": "ミッキークレスト",
+        "8": "ダイシンピスケス",
+        "2": "イスラアネーロ",
+        "7": "サンライズホーク",
+        "4": "ペプチドソレイユ",
+        "14": "レアンダー",
+        "12": "ダンツエラン"
+      }
     },
     {
       "prediction_id": 1853,
@@ -731,7 +1190,26 @@
           "model_score": 0.7827233124531561,
           "ev_score": 0.6261786499625248
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "1": "ラタフォレスト",
+        "15": "タガノミスト",
+        "11": "スナークラファエロ",
+        "10": "レイナデアルシーラ",
+        "13": "カンピオーネ",
+        "6": "ホールシバン",
+        "9": "マリアナトレンチ",
+        "3": "コトホドサヨウニ",
+        "5": "ミッキークレスト",
+        "8": "ダイシンピスケス",
+        "2": "イスラアネーロ",
+        "7": "サンライズホーク",
+        "4": "ペプチドソレイユ",
+        "14": "レアンダー",
+        "12": "ダンツエラン"
+      }
     },
     {
       "prediction_id": 1854,
@@ -762,7 +1240,26 @@
           "model_score": 0.7827233124531561,
           "ev_score": 0.27395315935860465
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "1": "ラタフォレスト",
+        "15": "タガノミスト",
+        "11": "スナークラファエロ",
+        "10": "レイナデアルシーラ",
+        "13": "カンピオーネ",
+        "6": "ホールシバン",
+        "9": "マリアナトレンチ",
+        "3": "コトホドサヨウニ",
+        "5": "ミッキークレスト",
+        "8": "ダイシンピスケス",
+        "2": "イスラアネーロ",
+        "7": "サンライズホーク",
+        "4": "ペプチドソレイユ",
+        "14": "レアンダー",
+        "12": "ダンツエラン"
+      }
     },
     {
       "prediction_id": 1855,
@@ -793,7 +1290,26 @@
           "model_score": 0.4300897797832447,
           "ev_score": 0.6451346696748671
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "1": "ラタフォレスト",
+        "15": "タガノミスト",
+        "11": "スナークラファエロ",
+        "10": "レイナデアルシーラ",
+        "13": "カンピオーネ",
+        "6": "ホールシバン",
+        "9": "マリアナトレンチ",
+        "3": "コトホドサヨウニ",
+        "5": "ミッキークレスト",
+        "8": "ダイシンピスケス",
+        "2": "イスラアネーロ",
+        "7": "サンライズホーク",
+        "4": "ペプチドソレイユ",
+        "14": "レアンダー",
+        "12": "ダンツエラン"
+      }
     }
   ],
   "training_evals": {

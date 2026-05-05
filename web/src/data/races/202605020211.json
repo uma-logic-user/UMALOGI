@@ -4,11 +4,11 @@
   "date": "2026-04-26",
   "venue": "東京",
   "race_number": 11,
-  "distance": 0,
-  "surface": "",
+  "distance": 2000,
+  "surface": "芝",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "晴",
+  "condition": "良",
   "year": "2026",
   "results": [
     {
@@ -21,12 +21,12 @@
       "weight_carried": 55.0,
       "jockey": "レーン",
       "trainer": "小笠倫弘",
-      "finish_time": null,
+      "finish_time": "1:59.3",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 2.2,
+      "popularity": 1,
+      "horse_weight": 460,
+      "horse_weight_diff": 2,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -47,12 +47,12 @@
       "weight_carried": 55.0,
       "jockey": "ディー",
       "trainer": "吉岡辰弥",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:59.5",
+      "margin": "1.1/4",
+      "win_odds": 6.7,
+      "popularity": 3,
+      "horse_weight": 516,
+      "horse_weight_diff": -8,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -73,12 +73,12 @@
       "weight_carried": 55.0,
       "jockey": "松山弘平",
       "trainer": "橋口慎介",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:59.6",
+      "margin": "1/2",
+      "win_odds": 7.0,
+      "popularity": 4,
+      "horse_weight": 490,
+      "horse_weight_diff": 4,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -90,7 +90,59 @@
       "odds_velocity": null
     },
     {
-      "rank": null,
+      "rank": 4,
+      "gate_number": 7,
+      "horse_number": 10,
+      "horse_name": "エイシンウィスパー",
+      "horse_id": "2023105484",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "松若風馬",
+      "trainer": "今野貞一",
+      "finish_time": "1:59.9",
+      "margin": "2",
+      "win_odds": 39.8,
+      "popularity": 9,
+      "horse_weight": 472,
+      "horse_weight_diff": -4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0605,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 5,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "ラベルセーヌ",
+      "horse_id": "2023103818",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "荻野極",
+      "trainer": "鹿戸雄一",
+      "finish_time": "1:59.9",
+      "margin": "ハナ",
+      "win_odds": 4.6,
+      "popularity": 2,
+      "horse_weight": 430,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 6,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "リスレジャンデール",
@@ -99,12 +151,12 @@
       "weight_carried": 55.0,
       "jockey": "津村明秀",
       "trainer": "栗田徹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:59.9",
+      "margin": "アタマ",
+      "win_odds": 15.9,
+      "popularity": 6,
+      "horse_weight": 470,
+      "horse_weight_diff": 4,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -116,21 +168,151 @@
       "odds_velocity": null
     },
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "ラベルセーヌ",
-      "horse_id": "2023103818",
+      "rank": 7,
+      "gate_number": 6,
+      "horse_number": 8,
+      "horse_name": "ゴバド",
+      "horse_id": "2023105239",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "原優介",
+      "trainer": "加藤征弘",
+      "finish_time": "2:00.0",
+      "margin": "クビ",
+      "win_odds": 29.8,
+      "popularity": 7,
+      "horse_weight": 430,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.8931,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 8,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "ペイシャシス",
+      "horse_id": "2023102997",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "北村宏司",
+      "trainer": "加藤公太",
+      "finish_time": "2:00.0",
+      "margin": "クビ",
+      "win_odds": 165.0,
+      "popularity": 12,
+      "horse_weight": 396,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.6275,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 9,
+      "gate_number": 8,
+      "horse_number": 12,
+      "horse_name": "スタニングレディ",
+      "horse_id": "2023106469",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "三浦皇成",
+      "trainer": "高木登",
+      "finish_time": "2:00.3",
+      "margin": "1.1/2",
+      "win_odds": 52.1,
+      "popularity": 10,
+      "horse_weight": 456,
+      "horse_weight_diff": 4,
+      "sire": "ベンバトルBenbatl(英)",
+      "dam": "フォクシーレディ",
+      "dam_sire": "ディープインパクト",
+      "honmei_score": 0.0,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0855,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 10,
+      "gate_number": 7,
+      "horse_number": 11,
+      "horse_name": "ファムクラジューズ",
+      "horse_id": "2023106433",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "横山武史",
+      "trainer": "黒岩陽一",
+      "finish_time": "2:00.3",
+      "margin": "クビ",
+      "win_odds": 9.1,
+      "popularity": 5,
+      "horse_weight": 402,
+      "horse_weight_diff": -8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.756,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 11,
+      "gate_number": 5,
+      "horse_number": 6,
+      "horse_name": "ペンダント",
+      "horse_id": "2023105447",
       "sex_age": "牝4",
       "weight_carried": 55.0,
-      "jockey": "荻野極",
-      "trainer": "鹿戸雄一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "jockey": "佐々木大",
+      "trainer": "池江泰寿",
+      "finish_time": "2:00.5",
+      "margin": "1.1/4",
+      "win_odds": 32.4,
+      "popularity": 8,
+      "horse_weight": 460,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.7048,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 12,
+      "gate_number": 6,
+      "horse_number": 9,
+      "horse_name": "コウギョク",
+      "horse_id": "2023104678",
+      "sex_age": "牝5",
+      "weight_carried": 55.0,
+      "jockey": "横山和生",
+      "trainer": "昆貢",
+      "finish_time": "2:00.8",
+      "margin": "1.1/2",
+      "win_odds": 74.3,
+      "popularity": 11,
+      "horse_weight": 438,
+      "horse_weight_diff": 0,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -164,188 +346,6 @@
       "ev_score": 0.0,
       "kelly_fraction": 0.0,
       "manji_ev": 0.776,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "ペイシャシス",
-      "horse_id": "2023102997",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "北村宏司",
-      "trainer": "加藤公太",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.6275,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 6,
-      "horse_name": "ペンダント",
-      "horse_id": "2023105447",
-      "sex_age": "牝4",
-      "weight_carried": 55.0,
-      "jockey": "佐々木大",
-      "trainer": "池江泰寿",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.7048,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 8,
-      "horse_name": "ゴバド",
-      "horse_id": "2023105239",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "原優介",
-      "trainer": "加藤征弘",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.8931,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 9,
-      "horse_name": "コウギョク",
-      "horse_id": "2023104678",
-      "sex_age": "牝5",
-      "weight_carried": 55.0,
-      "jockey": "横山和生",
-      "trainer": "昆貢",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.0,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 10,
-      "horse_name": "エイシンウィスパー",
-      "horse_id": "2023105484",
-      "sex_age": "牝4",
-      "weight_carried": 55.0,
-      "jockey": "松若風馬",
-      "trainer": "今野貞一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.0605,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 11,
-      "horse_name": "ファムクラジューズ",
-      "horse_id": "2023106433",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "横山武史",
-      "trainer": "黒岩陽一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.756,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 12,
-      "horse_name": "スタニングレディ",
-      "horse_id": "2023106469",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "三浦皇成",
-      "trainer": "高木登",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ベンバトルBenbatl(英)",
-      "dam": "フォクシーレディ",
-      "dam_sire": "ディープインパクト",
-      "honmei_score": 0.0,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.0855,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     }
@@ -537,7 +537,24 @@
           "model_score": 0.0,
           "ev_score": 0.0
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "サムシングスイート",
+        "5": "ラフターラインズ",
+        "13": "エンネ",
+        "7": "リアライズルミナス",
+        "10": "エイシンウィスパー",
+        "2": "ラベルセーヌ",
+        "1": "リスレジャンデール",
+        "8": "ゴバド",
+        "4": "ペイシャシス",
+        "12": "スタニングレディ",
+        "11": "ファムクラジューズ",
+        "6": "ペンダント",
+        "9": "コウギョク"
+      }
     },
     {
       "prediction_id": 12460,
@@ -575,7 +592,24 @@
           "model_score": 0.0,
           "ev_score": 0.0
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "3": "サムシングスイート",
+        "5": "ラフターラインズ",
+        "13": "エンネ",
+        "7": "リアライズルミナス",
+        "10": "エイシンウィスパー",
+        "2": "ラベルセーヌ",
+        "1": "リスレジャンデール",
+        "8": "ゴバド",
+        "4": "ペイシャシス",
+        "12": "スタニングレディ",
+        "11": "ファムクラジューズ",
+        "6": "ペンダント",
+        "9": "コウギョク"
+      }
     },
     {
       "prediction_id": 12461,
@@ -606,7 +640,24 @@
           "model_score": 0.012820512820512822,
           "ev_score": 1.1307692307692307
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "サムシングスイート",
+        "5": "ラフターラインズ",
+        "13": "エンネ",
+        "7": "リアライズルミナス",
+        "10": "エイシンウィスパー",
+        "2": "ラベルセーヌ",
+        "1": "リスレジャンデール",
+        "8": "ゴバド",
+        "4": "ペイシャシス",
+        "12": "スタニングレディ",
+        "11": "ファムクラジューズ",
+        "6": "ペンダント",
+        "9": "コウギョク"
+      }
     },
     {
       "prediction_id": 12462,
@@ -637,7 +688,24 @@
           "model_score": 0.012820512820512822,
           "ev_score": 0.47115384615384615
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "サムシングスイート",
+        "5": "ラフターラインズ",
+        "13": "エンネ",
+        "7": "リアライズルミナス",
+        "10": "エイシンウィスパー",
+        "2": "ラベルセーヌ",
+        "1": "リスレジャンデール",
+        "8": "ゴバド",
+        "4": "ペイシャシス",
+        "12": "スタニングレディ",
+        "11": "ファムクラジューズ",
+        "6": "ペンダント",
+        "9": "コウギョク"
+      }
     },
     {
       "prediction_id": 12463,
@@ -696,7 +764,24 @@
           "model_score": 0.003496503496503496,
           "ev_score": 1.5419580419580416
         }
-      ]
+      ],
+      "bet_form": "軸2頭ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "3": "サムシングスイート",
+        "5": "ラフターラインズ",
+        "13": "エンネ",
+        "7": "リアライズルミナス",
+        "10": "エイシンウィスパー",
+        "2": "ラベルセーヌ",
+        "1": "リスレジャンデール",
+        "8": "ゴバド",
+        "4": "ペイシャシス",
+        "12": "スタニングレディ",
+        "11": "ファムクラジューズ",
+        "6": "ペンダント",
+        "9": "コウギョク"
+      }
     },
     {
       "prediction_id": 12464,
@@ -818,7 +903,24 @@
           "model_score": 0.003496503496503496,
           "ev_score": 6.0
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "3": "サムシングスイート",
+        "5": "ラフターラインズ",
+        "13": "エンネ",
+        "7": "リアライズルミナス",
+        "10": "エイシンウィスパー",
+        "2": "ラベルセーヌ",
+        "1": "リスレジャンデール",
+        "8": "ゴバド",
+        "4": "ペイシャシス",
+        "12": "スタニングレディ",
+        "11": "ファムクラジューズ",
+        "6": "ペンダント",
+        "9": "コウギョク"
+      }
     },
     {
       "prediction_id": 12465,
@@ -842,7 +944,24 @@
           "model_score": 7.585563897318022,
           "ev_score": 7.585563897318022
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "サムシングスイート",
+        "5": "ラフターラインズ",
+        "13": "エンネ",
+        "7": "リアライズルミナス",
+        "10": "エイシンウィスパー",
+        "2": "ラベルセーヌ",
+        "1": "リスレジャンデール",
+        "8": "ゴバド",
+        "4": "ペイシャシス",
+        "12": "スタニングレディ",
+        "11": "ファムクラジューズ",
+        "6": "ペンダント",
+        "9": "コウギョク"
+      }
     },
     {
       "prediction_id": 12466,
@@ -880,7 +999,24 @@
           "model_score": 3.211127445327326,
           "ev_score": 3.211127445327326
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "3": "サムシングスイート",
+        "5": "ラフターラインズ",
+        "13": "エンネ",
+        "7": "リアライズルミナス",
+        "10": "エイシンウィスパー",
+        "2": "ラベルセーヌ",
+        "1": "リスレジャンデール",
+        "8": "ゴバド",
+        "4": "ペイシャシス",
+        "12": "スタニングレディ",
+        "11": "ファムクラジューズ",
+        "6": "ペンダント",
+        "9": "コウギョク"
+      }
     },
     {
       "prediction_id": 12467,
@@ -911,7 +1047,24 @@
           "model_score": 0.18470412305763914,
           "ev_score": 4.0
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "サムシングスイート",
+        "5": "ラフターラインズ",
+        "13": "エンネ",
+        "7": "リアライズルミナス",
+        "10": "エイシンウィスパー",
+        "2": "ラベルセーヌ",
+        "1": "リスレジャンデール",
+        "8": "ゴバド",
+        "4": "ペイシャシス",
+        "12": "スタニングレディ",
+        "11": "ファムクラジューズ",
+        "6": "ペンダント",
+        "9": "コウギョク"
+      }
     },
     {
       "prediction_id": 12468,
@@ -942,7 +1095,24 @@
           "model_score": 0.18470412305763914,
           "ev_score": 3.0
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "サムシングスイート",
+        "5": "ラフターラインズ",
+        "13": "エンネ",
+        "7": "リアライズルミナス",
+        "10": "エイシンウィスパー",
+        "2": "ラベルセーヌ",
+        "1": "リスレジャンデール",
+        "8": "ゴバド",
+        "4": "ペイシャシス",
+        "12": "スタニングレディ",
+        "11": "ファムクラジューズ",
+        "6": "ペンダント",
+        "9": "コウギョク"
+      }
     },
     {
       "prediction_id": 12471,
@@ -980,7 +1150,24 @@
           "model_score": 0.07137221639333952,
           "ev_score": 5.0
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "サムシングスイート",
+        "5": "ラフターラインズ",
+        "13": "エンネ",
+        "7": "リアライズルミナス",
+        "10": "エイシンウィスパー",
+        "2": "ラベルセーヌ",
+        "1": "リスレジャンデール",
+        "8": "ゴバド",
+        "4": "ペイシャシス",
+        "12": "スタニングレディ",
+        "11": "ファムクラジューズ",
+        "6": "ペンダント",
+        "9": "コウギョク"
+      }
     },
     {
       "prediction_id": 12472,
@@ -1018,7 +1205,24 @@
           "model_score": 0.020979020979020976,
           "ev_score": 0.6293706293706293
         }
-      ]
+      ],
+      "bet_form": "軸2頭ながし",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "3": "サムシングスイート",
+        "5": "ラフターラインズ",
+        "13": "エンネ",
+        "7": "リアライズルミナス",
+        "10": "エイシンウィスパー",
+        "2": "ラベルセーヌ",
+        "1": "リスレジャンデール",
+        "8": "ゴバド",
+        "4": "ペイシャシス",
+        "12": "スタニングレディ",
+        "11": "ファムクラジューズ",
+        "6": "ペンダント",
+        "9": "コウギョク"
+      }
     },
     {
       "prediction_id": 12473,
@@ -1056,7 +1260,24 @@
           "model_score": 0.003496503496503496,
           "ev_score": 0.5244755244755244
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "3": "サムシングスイート",
+        "5": "ラフターラインズ",
+        "13": "エンネ",
+        "7": "リアライズルミナス",
+        "10": "エイシンウィスパー",
+        "2": "ラベルセーヌ",
+        "1": "リスレジャンデール",
+        "8": "ゴバド",
+        "4": "ペイシャシス",
+        "12": "スタニングレディ",
+        "11": "ファムクラジューズ",
+        "6": "ペンダント",
+        "9": "コウギョク"
+      }
     },
     {
       "prediction_id": 12474,
@@ -1164,7 +1385,24 @@
           "model_score": 0.0,
           "ev_score": 0.0
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "3": "サムシングスイート",
+        "5": "ラフターラインズ",
+        "13": "エンネ",
+        "7": "リアライズルミナス",
+        "10": "エイシンウィスパー",
+        "2": "ラベルセーヌ",
+        "1": "リスレジャンデール",
+        "8": "ゴバド",
+        "4": "ペイシャシス",
+        "12": "スタニングレディ",
+        "11": "ファムクラジューズ",
+        "6": "ペンダント",
+        "9": "コウギョク"
+      }
     },
     {
       "prediction_id": 12814,
@@ -1188,7 +1426,24 @@
           "model_score": 0.0,
           "ev_score": 0.0
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "サムシングスイート",
+        "5": "ラフターラインズ",
+        "13": "エンネ",
+        "7": "リアライズルミナス",
+        "10": "エイシンウィスパー",
+        "2": "ラベルセーヌ",
+        "1": "リスレジャンデール",
+        "8": "ゴバド",
+        "4": "ペイシャシス",
+        "12": "スタニングレディ",
+        "11": "ファムクラジューズ",
+        "6": "ペンダント",
+        "9": "コウギョク"
+      }
     },
     {
       "prediction_id": 12815,
@@ -1226,7 +1481,24 @@
           "model_score": 0.0,
           "ev_score": 0.0
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "3": "サムシングスイート",
+        "5": "ラフターラインズ",
+        "13": "エンネ",
+        "7": "リアライズルミナス",
+        "10": "エイシンウィスパー",
+        "2": "ラベルセーヌ",
+        "1": "リスレジャンデール",
+        "8": "ゴバド",
+        "4": "ペイシャシス",
+        "12": "スタニングレディ",
+        "11": "ファムクラジューズ",
+        "6": "ペンダント",
+        "9": "コウギョク"
+      }
     },
     {
       "prediction_id": 12816,
@@ -1257,7 +1529,24 @@
           "model_score": 0.012820512820512822,
           "ev_score": 1.1307692307692307
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "サムシングスイート",
+        "5": "ラフターラインズ",
+        "13": "エンネ",
+        "7": "リアライズルミナス",
+        "10": "エイシンウィスパー",
+        "2": "ラベルセーヌ",
+        "1": "リスレジャンデール",
+        "8": "ゴバド",
+        "4": "ペイシャシス",
+        "12": "スタニングレディ",
+        "11": "ファムクラジューズ",
+        "6": "ペンダント",
+        "9": "コウギョク"
+      }
     },
     {
       "prediction_id": 12817,
@@ -1288,7 +1577,24 @@
           "model_score": 0.012820512820512822,
           "ev_score": 0.47115384615384615
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "サムシングスイート",
+        "5": "ラフターラインズ",
+        "13": "エンネ",
+        "7": "リアライズルミナス",
+        "10": "エイシンウィスパー",
+        "2": "ラベルセーヌ",
+        "1": "リスレジャンデール",
+        "8": "ゴバド",
+        "4": "ペイシャシス",
+        "12": "スタニングレディ",
+        "11": "ファムクラジューズ",
+        "6": "ペンダント",
+        "9": "コウギョク"
+      }
     },
     {
       "prediction_id": 12818,
@@ -1347,7 +1653,24 @@
           "model_score": 0.003496503496503496,
           "ev_score": 1.5419580419580416
         }
-      ]
+      ],
+      "bet_form": "軸2頭ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "3": "サムシングスイート",
+        "5": "ラフターラインズ",
+        "13": "エンネ",
+        "7": "リアライズルミナス",
+        "10": "エイシンウィスパー",
+        "2": "ラベルセーヌ",
+        "1": "リスレジャンデール",
+        "8": "ゴバド",
+        "4": "ペイシャシス",
+        "12": "スタニングレディ",
+        "11": "ファムクラジューズ",
+        "6": "ペンダント",
+        "9": "コウギョク"
+      }
     },
     {
       "prediction_id": 12819,
@@ -1469,7 +1792,24 @@
           "model_score": 0.003496503496503496,
           "ev_score": 6.0
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "3": "サムシングスイート",
+        "5": "ラフターラインズ",
+        "13": "エンネ",
+        "7": "リアライズルミナス",
+        "10": "エイシンウィスパー",
+        "2": "ラベルセーヌ",
+        "1": "リスレジャンデール",
+        "8": "ゴバド",
+        "4": "ペイシャシス",
+        "12": "スタニングレディ",
+        "11": "ファムクラジューズ",
+        "6": "ペンダント",
+        "9": "コウギョク"
+      }
     },
     {
       "prediction_id": 12820,
@@ -1493,7 +1833,24 @@
           "model_score": 7.585563897318022,
           "ev_score": 7.585563897318022
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "サムシングスイート",
+        "5": "ラフターラインズ",
+        "13": "エンネ",
+        "7": "リアライズルミナス",
+        "10": "エイシンウィスパー",
+        "2": "ラベルセーヌ",
+        "1": "リスレジャンデール",
+        "8": "ゴバド",
+        "4": "ペイシャシス",
+        "12": "スタニングレディ",
+        "11": "ファムクラジューズ",
+        "6": "ペンダント",
+        "9": "コウギョク"
+      }
     },
     {
       "prediction_id": 12821,
@@ -1531,7 +1888,24 @@
           "model_score": 3.211127445327326,
           "ev_score": 3.211127445327326
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "3": "サムシングスイート",
+        "5": "ラフターラインズ",
+        "13": "エンネ",
+        "7": "リアライズルミナス",
+        "10": "エイシンウィスパー",
+        "2": "ラベルセーヌ",
+        "1": "リスレジャンデール",
+        "8": "ゴバド",
+        "4": "ペイシャシス",
+        "12": "スタニングレディ",
+        "11": "ファムクラジューズ",
+        "6": "ペンダント",
+        "9": "コウギョク"
+      }
     },
     {
       "prediction_id": 12822,
@@ -1562,7 +1936,24 @@
           "model_score": 0.18470412305763914,
           "ev_score": 4.0
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "サムシングスイート",
+        "5": "ラフターラインズ",
+        "13": "エンネ",
+        "7": "リアライズルミナス",
+        "10": "エイシンウィスパー",
+        "2": "ラベルセーヌ",
+        "1": "リスレジャンデール",
+        "8": "ゴバド",
+        "4": "ペイシャシス",
+        "12": "スタニングレディ",
+        "11": "ファムクラジューズ",
+        "6": "ペンダント",
+        "9": "コウギョク"
+      }
     },
     {
       "prediction_id": 12823,
@@ -1593,7 +1984,24 @@
           "model_score": 0.18470412305763914,
           "ev_score": 3.0
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "サムシングスイート",
+        "5": "ラフターラインズ",
+        "13": "エンネ",
+        "7": "リアライズルミナス",
+        "10": "エイシンウィスパー",
+        "2": "ラベルセーヌ",
+        "1": "リスレジャンデール",
+        "8": "ゴバド",
+        "4": "ペイシャシス",
+        "12": "スタニングレディ",
+        "11": "ファムクラジューズ",
+        "6": "ペンダント",
+        "9": "コウギョク"
+      }
     },
     {
       "prediction_id": 12826,
@@ -1631,7 +2039,24 @@
           "model_score": 0.07137221639333952,
           "ev_score": 5.0
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "サムシングスイート",
+        "5": "ラフターラインズ",
+        "13": "エンネ",
+        "7": "リアライズルミナス",
+        "10": "エイシンウィスパー",
+        "2": "ラベルセーヌ",
+        "1": "リスレジャンデール",
+        "8": "ゴバド",
+        "4": "ペイシャシス",
+        "12": "スタニングレディ",
+        "11": "ファムクラジューズ",
+        "6": "ペンダント",
+        "9": "コウギョク"
+      }
     },
     {
       "prediction_id": 12827,
@@ -1669,7 +2094,24 @@
           "model_score": 0.020979020979020976,
           "ev_score": 0.6293706293706293
         }
-      ]
+      ],
+      "bet_form": "軸2頭ながし",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "3": "サムシングスイート",
+        "5": "ラフターラインズ",
+        "13": "エンネ",
+        "7": "リアライズルミナス",
+        "10": "エイシンウィスパー",
+        "2": "ラベルセーヌ",
+        "1": "リスレジャンデール",
+        "8": "ゴバド",
+        "4": "ペイシャシス",
+        "12": "スタニングレディ",
+        "11": "ファムクラジューズ",
+        "6": "ペンダント",
+        "9": "コウギョク"
+      }
     },
     {
       "prediction_id": 12828,
@@ -1707,7 +2149,24 @@
           "model_score": 0.003496503496503496,
           "ev_score": 0.5244755244755244
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "3": "サムシングスイート",
+        "5": "ラフターラインズ",
+        "13": "エンネ",
+        "7": "リアライズルミナス",
+        "10": "エイシンウィスパー",
+        "2": "ラベルセーヌ",
+        "1": "リスレジャンデール",
+        "8": "ゴバド",
+        "4": "ペイシャシス",
+        "12": "スタニングレディ",
+        "11": "ファムクラジューズ",
+        "6": "ペンダント",
+        "9": "コウギョク"
+      }
     },
     {
       "prediction_id": 12829,
@@ -1815,7 +2274,24 @@
           "model_score": 0.0,
           "ev_score": 0.0
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "3": "サムシングスイート",
+        "5": "ラフターラインズ",
+        "13": "エンネ",
+        "7": "リアライズルミナス",
+        "10": "エイシンウィスパー",
+        "2": "ラベルセーヌ",
+        "1": "リスレジャンデール",
+        "8": "ゴバド",
+        "4": "ペイシャシス",
+        "12": "スタニングレディ",
+        "11": "ファムクラジューズ",
+        "6": "ペンダント",
+        "9": "コウギョク"
+      }
     }
   ],
   "training_evals": {},

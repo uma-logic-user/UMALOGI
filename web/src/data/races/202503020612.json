@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 8,
-      "horse_number": 9,
-      "horse_name": "エコロマーズ",
-      "horse_id": "2021102016",
-      "sex_age": "牡4",
-      "weight_carried": 58.0,
-      "jockey": "戸崎圭太",
-      "trainer": "牧浦充徳",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "シルバーステート",
-      "dam": "フィナリザール",
-      "dam_sire": "Congrats(米)"
-    },
-    {
-      "rank": 2,
-      "gate_number": 6,
-      "horse_number": 6,
-      "horse_name": "ベイビーキッス",
-      "horse_id": "2022102514",
-      "sex_age": "牝1",
-      "weight_carried": 53.0,
-      "jockey": "菊沢一樹",
-      "trainer": "青木孝文",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 3,
-      "gate_number": 8,
-      "horse_number": 8,
-      "horse_name": "ファビュラススター",
-      "horse_id": "2021103478",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "菅原明良",
-      "trainer": "萩原清",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "エピファネイア",
-      "dam": "ヴンダーゾンネ",
-      "dam_sire": "グラスワンダー"
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "嶋田純次",
       "trainer": "南田美知",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +42,7 @@
       "jockey": "今村聖奈",
       "trainer": "田中勝春",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +62,7 @@
       "jockey": "吉田豊",
       "trainer": "和田雄二",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +82,7 @@
       "jockey": "野中悠太",
       "trainer": "根本康広",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +102,7 @@
       "jockey": "石神深一",
       "trainer": "松永康利",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -170,6 +110,26 @@
       "sire": "アメリカンペイトリオット",
       "dam": "ビクトリーチャンス",
       "dam_sire": "ステイゴールド"
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 6,
+      "horse_name": "ベイビーキッス",
+      "horse_id": "2022102514",
+      "sex_age": "牝1",
+      "weight_carried": 53.0,
+      "jockey": "菊沢一樹",
+      "trainer": "青木孝文",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -182,7 +142,7 @@
       "jockey": "津村明秀",
       "trainer": "西田雄一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -190,14 +150,54 @@
       "sire": "ネロ",
       "dam": "ニシノアリオス",
       "dam_sire": "リーチザクラウン"
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 8,
+      "horse_name": "ファビュラススター",
+      "horse_id": "2021103478",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "菅原明良",
+      "trainer": "萩原清",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "エピファネイア",
+      "dam": "ヴンダーゾンネ",
+      "dam_sire": "グラスワンダー"
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 9,
+      "horse_name": "エコロマーズ",
+      "horse_id": "2021102016",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "戸崎圭太",
+      "trainer": "牧浦充徳",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "シルバーステート",
+      "dam": "フィナリザール",
+      "dam_sire": "Congrats(米)"
     }
   ],
   "payouts": [
     {
       "bet_type": "単勝",
       "combination": "9",
-      "payout": 510,
-      "popularity": 3
+      "payout": 9000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -230,6 +230,12 @@
       "popularity": 2
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-60",
+      "payout": 4060,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "6-8",
       "payout": 240,
@@ -248,16 +254,52 @@
       "popularity": 6
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 10010,
+      "popularity": 80
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "6",
+      "payout": 80000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "9→6",
       "payout": 1250,
       "popularity": 4
     },
     {
+      "bet_type": "馬単",
+      "combination": "6",
+      "payout": 9000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "6-8-9",
       "payout": 630,
       "popularity": 1
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3-50",
+      "payout": 606,
+      "popularity": 80
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2-50",
+      "payout": 20809,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2",
+      "payout": 40001,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

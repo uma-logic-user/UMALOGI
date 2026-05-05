@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getDb } from '@/lib/db'
 import { validateResponse } from '@/lib/validateResponse'
-import { sanitize, rowToObj, sortedCombinations, chunkArray } from '@/lib/dbHelpers'
+import { sanitize, rowToObj, sortedCombinations, chunkArray, identifyBetForm } from '@/lib/dbHelpers'
 
 export const dynamic = 'force-dynamic'
 
@@ -69,16 +69,41 @@ export async function GET(req: NextRequest) {
       horsesByPred.get(pid)!.push(h)
     }
 
+    // 馬番→馬名マップをレースIDごとに一括取得
+    const raceIds = [...new Set(preds.map(p => p.race_id as string))]
+    const horseNumToNameByRace = new Map<string, Record<string, string>>()
+    for (const chunk of chunkArray(raceIds, 500)) {
+      if (chunk.length === 0) continue
+      const rows = db.prepare(`
+        SELECT race_id, horse_number, horse_name
+        FROM race_results
+        WHERE horse_number IS NOT NULL
+          AND race_id IN (${chunk.map(() => '?').join(',')})
+      `).all(...chunk) as { race_id: string; horse_number: number; horse_name: string }[]
+      for (const row of rows) {
+        if (!horseNumToNameByRace.has(row.race_id)) {
+          horseNumToNameByRace.set(row.race_id, {})
+        }
+        horseNumToNameByRace.get(row.race_id)![String(row.horse_number)] = row.horse_name
+      }
+    }
+
     const output = preds.map(rowToObj).map((pd) => {
       const dateStr = pd.date as string | null
       if (!pd.race_name) {
         pd.race_name = pd.race_number != null ? `第${pd.race_number}レース` : 'レース'
       }
+      const comboJson = pd.combination_json as string | null
+      const betType   = (pd.bet_type as string) ?? ''
+      const [betForm, nTickets] = identifyBetForm(comboJson, betType)
       return {
         ...pd,
-        combination_json: sortedCombinations(pd.combination_json),
-        year:   dateStr ? dateStr.slice(0, 4) : null,
-        horses: horsesByPred.get(pd.prediction_id as number) ?? [],
+        combination_json:  sortedCombinations(comboJson),
+        bet_form:          betForm,
+        n_tickets:         nTickets,
+        year:              dateStr ? dateStr.slice(0, 4) : null,
+        horses:            horsesByPred.get(pd.prediction_id as number) ?? [],
+        horse_num_to_name: horseNumToNameByRace.get(pd.race_id as string) ?? {},
       }
     })
 

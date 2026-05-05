@@ -4,11 +4,11 @@
   "date": "2026-04-11",
   "venue": "中山",
   "race_number": 12,
-  "distance": 0,
-  "surface": "",
+  "distance": 1200,
+  "surface": "ダート",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "晴",
+  "condition": "稍",
   "year": "2026",
   "results": [
     {
@@ -17,10 +17,10 @@
       "horse_number": 6,
       "horse_name": "プレゼンティーア",
       "horse_id": "2021102153",
-      "sex_age": "牝5",
+      "sex_age": "牝3",
       "weight_carried": 53.0,
-      "jockey": "▲上里",
-      "trainer": "栗東田中克",
+      "jockey": "上里直汰",
+      "trainer": "田中克典",
       "finish_time": "1:10.5",
       "margin": "@",
       "win_odds": 13.2,
@@ -47,12 +47,12 @@
       "horse_number": 16,
       "horse_name": "ルーフオブヘヴン",
       "horse_id": "2021104874",
-      "sex_age": "牝5",
+      "sex_age": "牝3",
       "weight_carried": 56.0,
-      "jockey": "佐々木",
-      "trainer": "美浦武藤",
+      "jockey": "佐々木大",
+      "trainer": "武藤善則",
       "finish_time": "1:10.6",
-      "margin": "@",
+      "margin": "クビ",
       "win_odds": 24.4,
       "popularity": 8,
       "horse_weight": 470,
@@ -72,17 +72,47 @@
       }
     },
     {
+      "rank": 3,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "オカメノコイ",
+      "horse_id": "2022106698",
+      "sex_age": "牝1",
+      "weight_carried": 56.0,
+      "jockey": "大野拓弥",
+      "trainer": "小笠倫弘",
+      "finish_time": "1:11.0",
+      "margin": "2.1/2",
+      "win_odds": 90.6,
+      "popularity": 14,
+      "horse_weight": 472,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.3399,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "仕上がる"
+      }
+    },
+    {
       "rank": 4,
       "gate_number": 2,
       "horse_number": 3,
       "horse_name": "アルジェンタージョ",
       "horse_id": "2021103706",
-      "sex_age": "牝5",
+      "sex_age": "牝3",
       "weight_carried": 53.0,
-      "jockey": "▲佐藤",
-      "trainer": "美浦伊藤圭",
+      "jockey": "佐藤翔馬",
+      "trainer": "伊藤圭三",
       "finish_time": "1:11.1",
-      "margin": "@",
+      "margin": "クビ",
       "win_odds": 45.5,
       "popularity": 10,
       "horse_weight": 464,
@@ -107,12 +137,12 @@
       "horse_number": 5,
       "horse_name": "クインズポラリス",
       "horse_id": "2021102371",
-      "sex_age": "牝5",
+      "sex_age": "牝3",
       "weight_carried": 56.0,
-      "jockey": "田辺",
-      "trainer": "美浦上原博",
+      "jockey": "田辺裕信",
+      "trainer": "上原博之",
       "finish_time": "1:11.1",
-      "margin": "@",
+      "margin": "クビ",
       "win_odds": 7.8,
       "popularity": 3,
       "horse_weight": 502,
@@ -132,17 +162,47 @@
       }
     },
     {
+      "rank": 6,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "クインズシフォン",
+      "horse_id": "2022103857",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "津村明秀",
+      "trainer": "和田正一",
+      "finish_time": "1:11.2",
+      "margin": "クビ",
+      "win_odds": 14.2,
+      "popularity": 6,
+      "horse_weight": 456,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "出来安定"
+      }
+    },
+    {
       "rank": 7,
       "gate_number": 4,
       "horse_number": 8,
       "horse_name": "シアター",
       "horse_id": "2021103299",
-      "sex_age": "牝5",
+      "sex_age": "牝3",
       "weight_carried": 56.0,
-      "jockey": "木幡巧",
-      "trainer": "栗東茶木",
+      "jockey": "木幡巧也",
+      "trainer": "茶木太樹",
       "finish_time": "1:11.2",
-      "margin": "@",
+      "margin": "アタマ",
       "win_odds": 33.4,
       "popularity": 9,
       "horse_weight": 450,
@@ -162,17 +222,47 @@
       }
     },
     {
+      "rank": 8,
+      "gate_number": 2,
+      "horse_number": 4,
+      "horse_name": "アスタールフナ",
+      "horse_id": "2022101557",
+      "sex_age": "牝7",
+      "weight_carried": 56.0,
+      "jockey": "三浦皇成",
+      "trainer": "中竹和也",
+      "finish_time": "1:11.3",
+      "margin": "1/2",
+      "win_odds": 2.8,
+      "popularity": 1,
+      "horse_weight": 444,
+      "horse_weight_diff": -4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "まずまず"
+      }
+    },
+    {
       "rank": 9,
       "gate_number": 5,
       "horse_number": 9,
       "horse_name": "モリノレッドスター",
       "horse_id": "2021106298",
-      "sex_age": "牝5",
+      "sex_age": "牝3",
       "weight_carried": 56.0,
-      "jockey": "横山武",
-      "trainer": "美浦鈴木伸",
+      "jockey": "横山武史",
+      "trainer": "鈴木伸尋",
       "finish_time": "1:11.3",
-      "margin": "@",
+      "margin": "クビ",
       "win_odds": 3.4,
       "popularity": 2,
       "horse_weight": 482,
@@ -197,12 +287,12 @@
       "horse_number": 12,
       "horse_name": "バロン",
       "horse_id": "2021105974",
-      "sex_age": "牝5",
+      "sex_age": "牝7",
       "weight_carried": 56.0,
-      "jockey": "嶋田",
-      "trainer": "美浦手塚久",
+      "jockey": "嶋田純次",
+      "trainer": "手塚貴久",
       "finish_time": "1:11.4",
-      "margin": "@",
+      "margin": "クビ",
       "win_odds": 78.7,
       "popularity": 13,
       "horse_weight": 490,
@@ -227,12 +317,12 @@
       "horse_number": 2,
       "horse_name": "プレアデスグループ",
       "horse_id": "2021104839",
-      "sex_age": "牝5",
+      "sex_age": "牝4",
       "weight_carried": 56.0,
-      "jockey": "戸崎圭",
-      "trainer": "栗東吉岡",
+      "jockey": "戸崎圭太",
+      "trainer": "吉岡辰弥",
       "finish_time": "1:11.4",
-      "margin": "@",
+      "margin": "クビ",
       "win_odds": 14.9,
       "popularity": 7,
       "horse_weight": 448,
@@ -260,9 +350,9 @@
       "sex_age": "牝5",
       "weight_carried": 56.0,
       "jockey": "ディー",
-      "trainer": "美浦尾関",
+      "trainer": "尾関知人",
       "finish_time": "1:11.8",
-      "margin": "@",
+      "margin": "2",
       "win_odds": 68.3,
       "popularity": 12,
       "horse_weight": 466,
@@ -282,17 +372,47 @@
       }
     },
     {
+      "rank": 13,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "ボルセーナ",
+      "horse_id": "2022105600",
+      "sex_age": "牝4",
+      "weight_carried": 56.0,
+      "jockey": "泉谷楓真",
+      "trainer": "奥村豊",
+      "finish_time": "1:11.8",
+      "margin": "1/2",
+      "win_odds": 53.5,
+      "popularity": 11,
+      "horse_weight": 460,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "手応劣る"
+      }
+    },
+    {
       "rank": 14,
       "gate_number": 5,
       "horse_number": 10,
       "horse_name": "ベニシア",
       "horse_id": "2021100662",
-      "sex_age": "牝5",
+      "sex_age": "牝4",
       "weight_carried": 56.0,
-      "jockey": "柴田大",
-      "trainer": "美浦粕谷",
+      "jockey": "柴田大知",
+      "trainer": "粕谷昌央",
       "finish_time": "1:12.0",
-      "margin": "@",
+      "margin": "1",
       "win_odds": 135.7,
       "popularity": 15,
       "horse_weight": 440,
@@ -317,12 +437,12 @@
       "horse_number": 13,
       "horse_name": "エリカカリーナ",
       "horse_id": "2021105485",
-      "sex_age": "牝5",
+      "sex_age": "牝3",
       "weight_carried": 56.0,
-      "jockey": "横山和",
-      "trainer": "美浦宮田",
+      "jockey": "横山和生",
+      "trainer": "宮田敬介",
       "finish_time": "1:14.0",
-      "margin": "@",
+      "margin": "大",
       "win_odds": 9.4,
       "popularity": 4,
       "horse_weight": 430,
@@ -339,6 +459,36 @@
       "training_eval": {
         "eval_grade": "B",
         "eval_text": "動き軽快"
+      }
+    },
+    {
+      "rank": 16,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "ヒナアラレ",
+      "horse_id": "2019105752",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "的場勇人",
+      "trainer": "的場均",
+      "finish_time": "1:15.9",
+      "margin": "大",
+      "win_odds": 277.7,
+      "popularity": 16,
+      "horse_weight": 474,
+      "horse_weight_diff": -5,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "気配平凡"
       }
     }
   ],
@@ -618,7 +768,27 @@
           "model_score": 0.06294836112612667,
           "ev_score": 0.2517934445045067
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "プレゼンティーア",
+        "16": "ルーフオブヘヴン",
+        "15": "オカメノコイ",
+        "3": "アルジェンタージョ",
+        "5": "クインズポラリス",
+        "11": "クインズシフォン",
+        "8": "シアター",
+        "4": "アスタールフナ",
+        "9": "モリノレッドスター",
+        "12": "バロン",
+        "2": "プレアデスグループ",
+        "14": "ベルブリエ",
+        "7": "ボルセーナ",
+        "10": "ベニシア",
+        "13": "エリカカリーナ",
+        "1": "ヒナアラレ"
+      }
     },
     {
       "prediction_id": 1966,
@@ -663,7 +833,27 @@
           "model_score": 6.803404573888968e-05,
           "ev_score": 0.00020410213721666902
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "6": "プレゼンティーア",
+        "16": "ルーフオブヘヴン",
+        "15": "オカメノコイ",
+        "3": "アルジェンタージョ",
+        "5": "クインズポラリス",
+        "11": "クインズシフォン",
+        "8": "シアター",
+        "4": "アスタールフナ",
+        "9": "モリノレッドスター",
+        "12": "バロン",
+        "2": "プレアデスグループ",
+        "14": "ベルブリエ",
+        "7": "ボルセーナ",
+        "10": "ベニシア",
+        "13": "エリカカリーナ",
+        "1": "ヒナアラレ"
+      }
     },
     {
       "prediction_id": 1967,
@@ -694,7 +884,27 @@
           "model_score": 0.03928584034955168,
           "ev_score": 0.03142867227964134
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "プレゼンティーア",
+        "16": "ルーフオブヘヴン",
+        "15": "オカメノコイ",
+        "3": "アルジェンタージョ",
+        "5": "クインズポラリス",
+        "11": "クインズシフォン",
+        "8": "シアター",
+        "4": "アスタールフナ",
+        "9": "モリノレッドスター",
+        "12": "バロン",
+        "2": "プレアデスグループ",
+        "14": "ベルブリエ",
+        "7": "ボルセーナ",
+        "10": "ベニシア",
+        "13": "エリカカリーナ",
+        "1": "ヒナアラレ"
+      }
     },
     {
       "prediction_id": 1968,
@@ -725,7 +935,27 @@
           "model_score": 0.03928584034955168,
           "ev_score": 0.013750044122343088
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "プレゼンティーア",
+        "16": "ルーフオブヘヴン",
+        "15": "オカメノコイ",
+        "3": "アルジェンタージョ",
+        "5": "クインズポラリス",
+        "11": "クインズシフォン",
+        "8": "シアター",
+        "4": "アスタールフナ",
+        "9": "モリノレッドスター",
+        "12": "バロン",
+        "2": "プレアデスグループ",
+        "14": "ベルブリエ",
+        "7": "ボルセーナ",
+        "10": "ベニシア",
+        "13": "エリカカリーナ",
+        "1": "ヒナアラレ"
+      }
     },
     {
       "prediction_id": 1969,
@@ -763,7 +993,27 @@
           "model_score": 0.019984087982585434,
           "ev_score": 0.02997613197387815
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "6": "プレゼンティーア",
+        "16": "ルーフオブヘヴン",
+        "15": "オカメノコイ",
+        "3": "アルジェンタージョ",
+        "5": "クインズポラリス",
+        "11": "クインズシフォン",
+        "8": "シアター",
+        "4": "アスタールフナ",
+        "9": "モリノレッドスター",
+        "12": "バロン",
+        "2": "プレアデスグループ",
+        "14": "ベルブリエ",
+        "7": "ボルセーナ",
+        "10": "ベニシア",
+        "13": "エリカカリーナ",
+        "1": "ヒナアラレ"
+      }
     },
     {
       "prediction_id": 1970,
@@ -815,7 +1065,27 @@
           "model_score": 4.974418208340836,
           "ev_score": 4.974418208340836
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "プレゼンティーア",
+        "16": "ルーフオブヘヴン",
+        "15": "オカメノコイ",
+        "3": "アルジェンタージョ",
+        "5": "クインズポラリス",
+        "11": "クインズシフォン",
+        "8": "シアター",
+        "4": "アスタールフナ",
+        "9": "モリノレッドスター",
+        "12": "バロン",
+        "2": "プレアデスグループ",
+        "14": "ベルブリエ",
+        "7": "ボルセーナ",
+        "10": "ベニシア",
+        "13": "エリカカリーナ",
+        "1": "ヒナアラレ"
+      }
     },
     {
       "prediction_id": 1971,
@@ -874,7 +1144,27 @@
           "model_score": 0.002436211631286441,
           "ev_score": 0.04872423262572882
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "6": "プレゼンティーア",
+        "16": "ルーフオブヘヴン",
+        "15": "オカメノコイ",
+        "3": "アルジェンタージョ",
+        "5": "クインズポラリス",
+        "11": "クインズシフォン",
+        "8": "シアター",
+        "4": "アスタールフナ",
+        "9": "モリノレッドスター",
+        "12": "バロン",
+        "2": "プレアデスグループ",
+        "14": "ベルブリエ",
+        "7": "ボルセーナ",
+        "10": "ベニシア",
+        "13": "エリカカリーナ",
+        "1": "ヒナアラレ"
+      }
     },
     {
       "prediction_id": 1973,
@@ -905,7 +1195,27 @@
           "model_score": 1.1166525511783434,
           "ev_score": 1.1166525511783434
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "プレゼンティーア",
+        "16": "ルーフオブヘヴン",
+        "15": "オカメノコイ",
+        "3": "アルジェンタージョ",
+        "5": "クインズポラリス",
+        "11": "クインズシフォン",
+        "8": "シアター",
+        "4": "アスタールフナ",
+        "9": "モリノレッドスター",
+        "12": "バロン",
+        "2": "プレアデスグループ",
+        "14": "ベルブリエ",
+        "7": "ボルセーナ",
+        "10": "ベニシア",
+        "13": "エリカカリーナ",
+        "1": "ヒナアラレ"
+      }
     },
     {
       "prediction_id": 1974,
@@ -943,7 +1253,27 @@
           "model_score": 1.6710264393332035,
           "ev_score": 1.6710264393332035
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "6": "プレゼンティーア",
+        "16": "ルーフオブヘヴン",
+        "15": "オカメノコイ",
+        "3": "アルジェンタージョ",
+        "5": "クインズポラリス",
+        "11": "クインズシフォン",
+        "8": "シアター",
+        "4": "アスタールフナ",
+        "9": "モリノレッドスター",
+        "12": "バロン",
+        "2": "プレアデスグループ",
+        "14": "ベルブリエ",
+        "7": "ボルセーナ",
+        "10": "ベニシア",
+        "13": "エリカカリーナ",
+        "1": "ヒナアラレ"
+      }
     },
     {
       "prediction_id": 1975,
@@ -988,7 +1318,27 @@
           "model_score": 9.267747507883911e-06,
           "ev_score": 2.7803242523651733e-05
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "プレゼンティーア",
+        "16": "ルーフオブヘヴン",
+        "15": "オカメノコイ",
+        "3": "アルジェンタージョ",
+        "5": "クインズポラリス",
+        "11": "クインズシフォン",
+        "8": "シアター",
+        "4": "アスタールフナ",
+        "9": "モリノレッドスター",
+        "12": "バロン",
+        "2": "プレアデスグループ",
+        "14": "ベルブリエ",
+        "7": "ボルセーナ",
+        "10": "ベニシア",
+        "13": "エリカカリーナ",
+        "1": "ヒナアラレ"
+      }
     },
     {
       "prediction_id": 1976,
@@ -1019,7 +1369,27 @@
           "model_score": 0.7264716128276363,
           "ev_score": 0.2542650644896727
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "プレゼンティーア",
+        "16": "ルーフオブヘヴン",
+        "15": "オカメノコイ",
+        "3": "アルジェンタージョ",
+        "5": "クインズポラリス",
+        "11": "クインズシフォン",
+        "8": "シアター",
+        "4": "アスタールフナ",
+        "9": "モリノレッドスター",
+        "12": "バロン",
+        "2": "プレアデスグループ",
+        "14": "ベルブリエ",
+        "7": "ボルセーナ",
+        "10": "ベニシア",
+        "13": "エリカカリーナ",
+        "1": "ヒナアラレ"
+      }
     },
     {
       "prediction_id": 1977,
@@ -1050,7 +1420,27 @@
           "model_score": 0.46337415249787584,
           "ev_score": 0.6950612287468139
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "プレゼンティーア",
+        "16": "ルーフオブヘヴン",
+        "15": "オカメノコイ",
+        "3": "アルジェンタージョ",
+        "5": "クインズポラリス",
+        "11": "クインズシフォン",
+        "8": "シアター",
+        "4": "アスタールフナ",
+        "9": "モリノレッドスター",
+        "12": "バロン",
+        "2": "プレアデスグループ",
+        "14": "ベルブリエ",
+        "7": "ボルセーナ",
+        "10": "ベニシア",
+        "13": "エリカカリーナ",
+        "1": "ヒナアラレ"
+      }
     }
   ],
   "training_evals": {

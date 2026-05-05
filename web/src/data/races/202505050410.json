@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 6,
-      "horse_number": 6,
-      "horse_name": "フレミングフープ",
-      "horse_id": "2021105581",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "杉原誠人",
-      "trainer": "友道康夫",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 2,
-      "gate_number": 8,
-      "horse_number": 11,
-      "horse_name": "クリニクラウン",
-      "horse_id": "2020100934",
-      "sex_age": "牝1",
-      "weight_carried": 56.0,
-      "jockey": "横山武史",
-      "trainer": "小手川準",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "トビーズコーナーToby's Corner(米)",
-      "dam": "ルナフォース",
-      "dam_sire": "ディープブリランテ"
-    },
-    {
-      "rank": 3,
-      "gate_number": 7,
-      "horse_number": 9,
-      "horse_name": "ユキワリザクラ",
-      "horse_id": "2021103678",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "佐々木大",
-      "trainer": "田中剛",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "サトノダイヤモンド",
-      "dam": "ユキアカリノマチ",
-      "dam_sire": "キングカメハメハ"
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "プーシャ",
       "trainer": "浅利英明",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +42,7 @@
       "jockey": "団野大成",
       "trainer": "福永祐一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +62,7 @@
       "jockey": "マーカン",
       "trainer": "久保田貴",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +82,7 @@
       "jockey": "内田博幸",
       "trainer": "斎藤誠",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +102,7 @@
       "jockey": "吉村誠之",
       "trainer": "西園翔太",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -170,6 +110,26 @@
       "sire": "ハーツクライ",
       "dam": "アルアリングスターAlluring Star(米)",
       "dam_sire": "Exchange Rate"
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 6,
+      "horse_name": "フレミングフープ",
+      "horse_id": "2021105581",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "杉原誠人",
+      "trainer": "友道康夫",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -182,7 +142,7 @@
       "jockey": "小林脩斗",
       "trainer": "堀内岳志",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -202,7 +162,7 @@
       "jockey": "池添謙一",
       "trainer": "奥村武",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -210,6 +170,26 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 9,
+      "horse_name": "ユキワリザクラ",
+      "horse_id": "2021103678",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "佐々木大",
+      "trainer": "田中剛",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "サトノダイヤモンド",
+      "dam": "ユキアカリノマチ",
+      "dam_sire": "キングカメハメハ"
     },
     {
       "rank": null,
@@ -222,7 +202,7 @@
       "jockey": "松岡正海",
       "trainer": "蛯名正義",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -230,6 +210,26 @@
       "sire": "シルバーステート",
       "dam": "マルハチメイフェア",
       "dam_sire": "ホワイトマズルWhite Muzzle(英)"
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 11,
+      "horse_name": "クリニクラウン",
+      "horse_id": "2020100934",
+      "sex_age": "牝1",
+      "weight_carried": 56.0,
+      "jockey": "横山武史",
+      "trainer": "小手川準",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "トビーズコーナーToby's Corner(米)",
+      "dam": "ルナフォース",
+      "dam_sire": "ディープブリランテ"
     }
   ],
   "payouts": [
@@ -238,6 +238,12 @@
       "combination": "6",
       "payout": 560,
       "popularity": 3
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "11",
+      "payout": 11000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -270,6 +276,18 @@
       "popularity": 16
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-80",
+      "payout": 2110,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "6",
+      "payout": 80000,
+      "popularity": 1
+    },
+    {
       "bet_type": "ワイド",
       "combination": "6-9",
       "payout": 550,
@@ -288,16 +306,46 @@
       "popularity": 17
     },
     {
+      "bet_type": "ワイド",
+      "combination": "3",
+      "payout": 20060,
+      "popularity": 90
+    },
+    {
       "bet_type": "馬単",
       "combination": "6→11",
       "payout": 5060,
       "popularity": 26
     },
     {
+      "bet_type": "馬単",
+      "combination": "6",
+      "payout": 11000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "6-9-11",
       "payout": 4110,
       "popularity": 14
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5-50",
+      "payout": 409,
+      "popularity": 110
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "9-60-1",
+      "payout": 70609,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "8",
+      "payout": 70014,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

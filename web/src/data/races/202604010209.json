@@ -4,11 +4,11 @@
   "date": "2026-05-03",
   "venue": "新潟",
   "race_number": 9,
-  "distance": 0,
-  "surface": "",
+  "distance": 1800,
+  "surface": "ダート",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "曇",
+  "condition": "稍",
   "year": "2026",
   "results": [
     {
@@ -47,8 +47,8 @@
       "weight_carried": 56.0,
       "jockey": "斎藤新",
       "trainer": "斎藤誠",
-      "finish_time": null,
-      "margin": "@",
+      "finish_time": "1:54.2",
+      "margin": "3.1/2",
       "win_odds": 4.6,
       "popularity": 2,
       "horse_weight": 480,
@@ -73,8 +73,8 @@
       "weight_carried": 56.0,
       "jockey": "田山旺佑",
       "trainer": "新谷功一",
-      "finish_time": null,
-      "margin": "@",
+      "finish_time": "1:54.2",
+      "margin": "ハナ",
       "win_odds": 4.8,
       "popularity": 3,
       "horse_weight": 476,
@@ -99,8 +99,8 @@
       "weight_carried": 56.0,
       "jockey": "横山琉人",
       "trainer": "高橋義忠",
-      "finish_time": null,
-      "margin": "@",
+      "finish_time": "1:54.3",
+      "margin": "3/4",
       "win_odds": 65.5,
       "popularity": 10,
       "horse_weight": 444,
@@ -125,8 +125,8 @@
       "weight_carried": 56.0,
       "jockey": "柴田裕一",
       "trainer": "羽月友彦",
-      "finish_time": null,
-      "margin": "@",
+      "finish_time": "1:54.4",
+      "margin": "1/2",
       "win_odds": 141.7,
       "popularity": 11,
       "horse_weight": 462,
@@ -142,33 +142,7 @@
       "odds_velocity": null
     },
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "ルージュマローネ",
-      "horse_id": "2022105569",
-      "sex_age": "牝1",
-      "weight_carried": 56.0,
-      "jockey": "杉原誠人",
-      "trainer": "栗田徹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0998,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.7574,
-      "odds_vs_morning": null,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
+      "rank": 6,
       "gate_number": 5,
       "horse_number": 5,
       "horse_name": "シンボリノエル",
@@ -177,12 +151,12 @@
       "weight_carried": 56.0,
       "jockey": "菊沢一樹",
       "trainer": "秋本大介",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:54.4",
+      "margin": "ハナ",
+      "win_odds": 15.7,
+      "popularity": 5,
+      "horse_weight": 504,
+      "horse_weight_diff": 14,
       "sire": "ドレフォンDrefong(米)",
       "dam": "ダンツペンダント",
       "dam_sire": "オレハマッテルゼ",
@@ -194,85 +168,7 @@
       "odds_velocity": null
     },
     {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 6,
-      "horse_name": "フローラルセント",
-      "horse_id": "2021104857",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "川端海翼",
-      "trainer": "松下武士",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "キズナ",
-      "dam": "サマーローズ",
-      "dam_sire": "ハービンジャーHarbinger(英)",
-      "honmei_score": 0.07,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 1.2605,
-      "odds_vs_morning": null,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 7,
-      "horse_name": "ベルイストワール",
-      "horse_id": "2021100606",
-      "sex_age": "牝5",
-      "weight_carried": 56.0,
-      "jockey": "小沢大仁",
-      "trainer": "松尾卓哉",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ミッキーグローリー",
-      "dam": "マイスクエアワン",
-      "dam_sire": "Giant's Causeway(米)",
-      "honmei_score": 0.0437,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 2.1651,
-      "odds_vs_morning": null,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 9,
-      "horse_name": "マハナ",
-      "horse_id": "2021106618",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "石川裕紀",
-      "trainer": "井上智史",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ハービンジャーHarbinger(英)",
-      "dam": "エレーデ",
-      "dam_sire": "ディープインパクト",
-      "honmei_score": 0.056,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.9894,
-      "odds_vs_morning": null,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
+      "rank": 7,
       "gate_number": 8,
       "horse_number": 11,
       "horse_name": "プウスカンドゥール",
@@ -281,12 +177,12 @@
       "weight_carried": 56.0,
       "jockey": "中井裕二",
       "trainer": "坂口智康",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:54.5",
+      "margin": "3/4",
+      "win_odds": 21.4,
+      "popularity": 6,
+      "horse_weight": 464,
+      "horse_weight_diff": 2,
       "sire": "シャンハイボビーShanghai Bobby(米)",
       "dam": "トレノトマト",
       "dam_sire": "デヒアDehere(米)",
@@ -298,7 +194,59 @@
       "odds_velocity": null
     },
     {
-      "rank": null,
+      "rank": 8,
+      "gate_number": 7,
+      "horse_number": 9,
+      "horse_name": "マハナ",
+      "horse_id": "2021106618",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "石川裕紀",
+      "trainer": "井上智史",
+      "finish_time": "1:54.7",
+      "margin": "1",
+      "win_odds": 36.0,
+      "popularity": 9,
+      "horse_weight": 444,
+      "horse_weight_diff": -4,
+      "sire": "ハービンジャーHarbinger(英)",
+      "dam": "エレーデ",
+      "dam_sire": "ディープインパクト",
+      "honmei_score": 0.056,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.9894,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
+      "rank": 9,
+      "gate_number": 6,
+      "horse_number": 7,
+      "horse_name": "ベルイストワール",
+      "horse_id": "2021100606",
+      "sex_age": "牝5",
+      "weight_carried": 56.0,
+      "jockey": "小沢大仁",
+      "trainer": "松尾卓哉",
+      "finish_time": "1:54.7",
+      "margin": "クビ",
+      "win_odds": 24.0,
+      "popularity": 7,
+      "horse_weight": 544,
+      "horse_weight_diff": -10,
+      "sire": "ミッキーグローリー",
+      "dam": "マイスクエアワン",
+      "dam_sire": "Giant's Causeway(米)",
+      "honmei_score": 0.0437,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 2.1651,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
+      "rank": 10,
       "gate_number": 8,
       "horse_number": 12,
       "horse_name": "サンコンクエスト",
@@ -307,12 +255,12 @@
       "weight_carried": 56.0,
       "jockey": "丸山元気",
       "trainer": "渡辺薫彦",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:55.0",
+      "margin": "1.3/4",
+      "win_odds": 9.9,
+      "popularity": 4,
+      "horse_weight": 558,
+      "horse_weight_diff": 2,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -322,80 +270,108 @@
       "manji_ev": 1.3034,
       "odds_vs_morning": null,
       "odds_velocity": null
+    },
+    {
+      "rank": 11,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "ルージュマローネ",
+      "horse_id": "2022105569",
+      "sex_age": "牝1",
+      "weight_carried": 56.0,
+      "jockey": "杉原誠人",
+      "trainer": "栗田徹",
+      "finish_time": "1:55.3",
+      "margin": "1.1/2",
+      "win_odds": 33.1,
+      "popularity": 8,
+      "horse_weight": 474,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0998,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.7574,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
+      "rank": 12,
+      "gate_number": 5,
+      "horse_number": 6,
+      "horse_name": "フローラルセント",
+      "horse_id": "2021104857",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "川端海翼",
+      "trainer": "松下武士",
+      "finish_time": "1:55.4",
+      "margin": "3/4",
+      "win_odds": 152.4,
+      "popularity": 12,
+      "horse_weight": 468,
+      "horse_weight_diff": 4,
+      "sire": "キズナ",
+      "dam": "サマーローズ",
+      "dam_sire": "ハービンジャーHarbinger(英)",
+      "honmei_score": 0.07,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.2605,
+      "odds_vs_morning": null,
+      "odds_velocity": null
     }
   ],
   "payouts": [
     {
       "bet_type": "単勝",
-      "combination": "4",
-      "payout": 200,
-      "popularity": 1
-    },
-    {
-      "bet_type": "複勝",
-      "combination": "4",
-      "payout": 110,
-      "popularity": 1
-    },
-    {
-      "bet_type": "複勝",
-      "combination": "3",
-      "payout": 130,
-      "popularity": 2
-    },
-    {
-      "bet_type": "複勝",
-      "combination": "8",
-      "payout": 140,
-      "popularity": 3
-    },
-    {
-      "bet_type": "枠連",
-      "combination": "3-4",
-      "payout": 440,
-      "popularity": 2
+      "combination": "12",
+      "payout": 12000,
+      "popularity": null
     },
     {
       "bet_type": "馬連",
-      "combination": "3-4",
-      "payout": 450,
-      "popularity": 1
+      "combination": "1-10",
+      "payout": 1030,
+      "popularity": null
     },
     {
       "bet_type": "ワイド",
-      "combination": "3-4",
-      "payout": 180,
-      "popularity": 1
+      "combination": "1",
+      "payout": 30020,
+      "popularity": 80
     },
     {
       "bet_type": "ワイド",
-      "combination": "4-8",
-      "payout": 230,
-      "popularity": 2
-    },
-    {
-      "bet_type": "ワイド",
-      "combination": "3-8",
-      "payout": 440,
-      "popularity": 4
+      "combination": "3",
+      "payout": 40000,
+      "popularity": null
     },
     {
       "bet_type": "馬単",
-      "combination": "4→3",
-      "payout": 700,
-      "popularity": 1
+      "combination": "3",
+      "payout": 4000,
+      "popularity": null
     },
     {
       "bet_type": "三連複",
-      "combination": "3-4-8",
-      "payout": 670,
-      "popularity": 1
+      "combination": "2-30",
+      "payout": 203,
+      "popularity": 80
     },
     {
-      "bet_type": "三連単",
-      "combination": "4→3→8",
-      "payout": 2280,
-      "popularity": 1
+      "bet_type": "三連複",
+      "combination": "1-80",
+      "payout": 10408,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4",
+      "payout": 40005,
+      "popularity": null
     }
   ],
   "predictions": [
@@ -421,7 +397,23 @@
           "model_score": 0.10206297502714441,
           "ev_score": 0.10206297502714441
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "レイバックスピン",
+        "3": "コンアフェット",
+        "8": "ステアハート",
+        "2": "メイショウリリー",
+        "10": "サイモンコーラル",
+        "5": "シンボリノエル",
+        "11": "プウスカンドゥール",
+        "9": "マハナ",
+        "7": "ベルイストワール",
+        "12": "サンコンクエスト",
+        "1": "ルージュマローネ",
+        "6": "フローラルセント"
+      }
     },
     {
       "prediction_id": 22451,
@@ -459,7 +451,23 @@
           "model_score": 0.10058405823878136,
           "ev_score": 0.3017521747163441
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "4": "レイバックスピン",
+        "3": "コンアフェット",
+        "8": "ステアハート",
+        "2": "メイショウリリー",
+        "10": "サイモンコーラル",
+        "5": "シンボリノエル",
+        "11": "プウスカンドゥール",
+        "9": "マハナ",
+        "7": "ベルイストワール",
+        "12": "サンコンクエスト",
+        "1": "ルージュマローネ",
+        "6": "フローラルセント"
+      }
     },
     {
       "prediction_id": 22452,
@@ -546,7 +554,23 @@
           "model_score": 0.015151515151515152,
           "ev_score": 0.9090909090909092
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "horse_num_to_name": {
+        "4": "レイバックスピン",
+        "3": "コンアフェット",
+        "8": "ステアハート",
+        "2": "メイショウリリー",
+        "10": "サイモンコーラル",
+        "5": "シンボリノエル",
+        "11": "プウスカンドゥール",
+        "9": "マハナ",
+        "7": "ベルイストワール",
+        "12": "サンコンクエスト",
+        "1": "ルージュマローネ",
+        "6": "フローラルセント"
+      }
     },
     {
       "prediction_id": 22453,
@@ -633,7 +657,23 @@
           "model_score": 0.015151515151515152,
           "ev_score": 0.3787878787878788
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "horse_num_to_name": {
+        "4": "レイバックスピン",
+        "3": "コンアフェット",
+        "8": "ステアハート",
+        "2": "メイショウリリー",
+        "10": "サイモンコーラル",
+        "5": "シンボリノエル",
+        "11": "プウスカンドゥール",
+        "9": "マハナ",
+        "7": "ベルイストワール",
+        "12": "サンコンクエスト",
+        "1": "ルージュマローネ",
+        "6": "フローラルセント"
+      }
     },
     {
       "prediction_id": 22454,
@@ -692,7 +732,23 @@
           "model_score": 0.007575757575757576,
           "ev_score": 0.9090909090909092
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "4": "レイバックスピン",
+        "3": "コンアフェット",
+        "8": "ステアハート",
+        "2": "メイショウリリー",
+        "10": "サイモンコーラル",
+        "5": "シンボリノエル",
+        "11": "プウスカンドゥール",
+        "9": "マハナ",
+        "7": "ベルイストワール",
+        "12": "サンコンクエスト",
+        "1": "ルージュマローネ",
+        "6": "フローラルセント"
+      }
     },
     {
       "prediction_id": 22455,
@@ -751,7 +807,23 @@
           "model_score": 0.004545454545454546,
           "ev_score": 1.363636363636364
         }
-      ]
+      ],
+      "bet_form": "軸2頭ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "4": "レイバックスピン",
+        "3": "コンアフェット",
+        "8": "ステアハート",
+        "2": "メイショウリリー",
+        "10": "サイモンコーラル",
+        "5": "シンボリノエル",
+        "11": "プウスカンドゥール",
+        "9": "マハナ",
+        "7": "ベルイストワール",
+        "12": "サンコンクエスト",
+        "1": "ルージュマローネ",
+        "6": "フローラルセント"
+      }
     },
     {
       "prediction_id": 22456,
@@ -873,7 +945,23 @@
           "model_score": 0.004545454545454546,
           "ev_score": 6.0
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 12,
+      "horse_num_to_name": {
+        "4": "レイバックスピン",
+        "3": "コンアフェット",
+        "8": "ステアハート",
+        "2": "メイショウリリー",
+        "10": "サイモンコーラル",
+        "5": "シンボリノエル",
+        "11": "プウスカンドゥール",
+        "9": "マハナ",
+        "7": "ベルイストワール",
+        "12": "サンコンクエスト",
+        "1": "ルージュマローネ",
+        "6": "フローラルセント"
+      }
     },
     {
       "prediction_id": 22457,
@@ -897,7 +985,23 @@
           "model_score": 3.930337486420226,
           "ev_score": 3.930337486420226
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "レイバックスピン",
+        "3": "コンアフェット",
+        "8": "ステアハート",
+        "2": "メイショウリリー",
+        "10": "サイモンコーラル",
+        "5": "シンボリノエル",
+        "11": "プウスカンドゥール",
+        "9": "マハナ",
+        "7": "ベルイストワール",
+        "12": "サンコンクエスト",
+        "1": "ルージュマローネ",
+        "6": "フローラルセント"
+      }
     },
     {
       "prediction_id": 22458,
@@ -935,7 +1039,23 @@
           "model_score": 2.543743927051673,
           "ev_score": 2.543743927051673
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "4": "レイバックスピン",
+        "3": "コンアフェット",
+        "8": "ステアハート",
+        "2": "メイショウリリー",
+        "10": "サイモンコーラル",
+        "5": "シンボリノエル",
+        "11": "プウスカンドゥール",
+        "9": "マハナ",
+        "7": "ベルイストワール",
+        "12": "サンコンクエスト",
+        "1": "ルージュマローネ",
+        "6": "フローラルセント"
+      }
     },
     {
       "prediction_id": 22459,
@@ -1022,7 +1142,23 @@
           "model_score": 0.07236426497255519,
           "ev_score": 4.0
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "horse_num_to_name": {
+        "4": "レイバックスピン",
+        "3": "コンアフェット",
+        "8": "ステアハート",
+        "2": "メイショウリリー",
+        "10": "サイモンコーラル",
+        "5": "シンボリノエル",
+        "11": "プウスカンドゥール",
+        "9": "マハナ",
+        "7": "ベルイストワール",
+        "12": "サンコンクエスト",
+        "1": "ルージュマローネ",
+        "6": "フローラルセント"
+      }
     },
     {
       "prediction_id": 22460,
@@ -1109,7 +1245,23 @@
           "model_score": 0.07236426497255519,
           "ev_score": 1.8091066243138798
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "horse_num_to_name": {
+        "4": "レイバックスピン",
+        "3": "コンアフェット",
+        "8": "ステアハート",
+        "2": "メイショウリリー",
+        "10": "サイモンコーラル",
+        "5": "シンボリノエル",
+        "11": "プウスカンドゥール",
+        "9": "マハナ",
+        "7": "ベルイストワール",
+        "12": "サンコンクエスト",
+        "1": "ルージュマローネ",
+        "6": "フローラルセント"
+      }
     },
     {
       "prediction_id": 22461,
@@ -1168,7 +1320,23 @@
           "model_score": 0.0384765920632148,
           "ev_score": 4.617191047585775
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "4": "レイバックスピン",
+        "3": "コンアフェット",
+        "8": "ステアハート",
+        "2": "メイショウリリー",
+        "10": "サイモンコーラル",
+        "5": "シンボリノエル",
+        "11": "プウスカンドゥール",
+        "9": "マハナ",
+        "7": "ベルイストワール",
+        "12": "サンコンクエスト",
+        "1": "ルージュマローネ",
+        "6": "フローラルセント"
+      }
     },
     {
       "prediction_id": 22464,
@@ -1206,7 +1374,23 @@
           "model_score": 0.02291983068684804,
           "ev_score": 5.0
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "4": "レイバックスピン",
+        "3": "コンアフェット",
+        "8": "ステアハート",
+        "2": "メイショウリリー",
+        "10": "サイモンコーラル",
+        "5": "シンボリノエル",
+        "11": "プウスカンドゥール",
+        "9": "マハナ",
+        "7": "ベルイストワール",
+        "12": "サンコンクエスト",
+        "1": "ルージュマローネ",
+        "6": "フローラルセント"
+      }
     },
     {
       "prediction_id": 22465,
@@ -1244,7 +1428,23 @@
           "model_score": 0.12174547430051058,
           "ev_score": 3.6523642290153173
         }
-      ]
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 5,
+      "horse_num_to_name": {
+        "4": "レイバックスピン",
+        "3": "コンアフェット",
+        "8": "ステアハート",
+        "2": "メイショウリリー",
+        "10": "サイモンコーラル",
+        "5": "シンボリノエル",
+        "11": "プウスカンドゥール",
+        "9": "マハナ",
+        "7": "ベルイストワール",
+        "12": "サンコンクエスト",
+        "1": "ルージュマローネ",
+        "6": "フローラルセント"
+      }
     },
     {
       "prediction_id": 22466,
@@ -1282,7 +1482,23 @@
           "model_score": 0.02029091238341843,
           "ev_score": 3.0436368575127646
         }
-      ]
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 12,
+      "horse_num_to_name": {
+        "4": "レイバックスピン",
+        "3": "コンアフェット",
+        "8": "ステアハート",
+        "2": "メイショウリリー",
+        "10": "サイモンコーラル",
+        "5": "シンボリノエル",
+        "11": "プウスカンドゥール",
+        "9": "マハナ",
+        "7": "ベルイストワール",
+        "12": "サンコンクエスト",
+        "1": "ルージュマローネ",
+        "6": "フローラルセント"
+      }
     },
     {
       "prediction_id": 22467,
@@ -1383,7 +1599,23 @@
           "model_score": 0.02789400278940028,
           "ev_score": 0.0
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "4": "レイバックスピン",
+        "3": "コンアフェット",
+        "8": "ステアハート",
+        "2": "メイショウリリー",
+        "10": "サイモンコーラル",
+        "5": "シンボリノエル",
+        "11": "プウスカンドゥール",
+        "9": "マハナ",
+        "7": "ベルイストワール",
+        "12": "サンコンクエスト",
+        "1": "ルージュマローネ",
+        "6": "フローラルセント"
+      }
     },
     {
       "prediction_id": 22468,
@@ -1414,7 +1646,23 @@
           "model_score": 0.03894033112318817,
           "ev_score": 2.33641986739129
         }
-      ]
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 7,
+      "horse_num_to_name": {
+        "4": "レイバックスピン",
+        "3": "コンアフェット",
+        "8": "ステアハート",
+        "2": "メイショウリリー",
+        "10": "サイモンコーラル",
+        "5": "シンボリノエル",
+        "11": "プウスカンドゥール",
+        "9": "マハナ",
+        "7": "ベルイストワール",
+        "12": "サンコンクエスト",
+        "1": "ルージュマローネ",
+        "6": "フローラルセント"
+      }
     },
     {
       "prediction_id": 22469,
@@ -1445,7 +1693,23 @@
           "model_score": 0.01950217215797546,
           "ev_score": 2.3402606589570554
         }
-      ]
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 8,
+      "horse_num_to_name": {
+        "4": "レイバックスピン",
+        "3": "コンアフェット",
+        "8": "ステアハート",
+        "2": "メイショウリリー",
+        "10": "サイモンコーラル",
+        "5": "シンボリノエル",
+        "11": "プウスカンドゥール",
+        "9": "マハナ",
+        "7": "ベルイストワール",
+        "12": "サンコンクエスト",
+        "1": "ルージュマローネ",
+        "6": "フローラルセント"
+      }
     },
     {
       "prediction_id": 22470,
@@ -1483,7 +1747,23 @@
           "model_score": 0.003393587024793158,
           "ev_score": 5.090380537189737
         }
-      ]
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 12,
+      "horse_num_to_name": {
+        "4": "レイバックスピン",
+        "3": "コンアフェット",
+        "8": "ステアハート",
+        "2": "メイショウリリー",
+        "10": "サイモンコーラル",
+        "5": "シンボリノエル",
+        "11": "プウスカンドゥール",
+        "9": "マハナ",
+        "7": "ベルイストワール",
+        "12": "サンコンクエスト",
+        "1": "ルージュマローネ",
+        "6": "フローラルセント"
+      }
     }
   ],
   "training_evals": {},

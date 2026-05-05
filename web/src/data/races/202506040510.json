@@ -12,7 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "フレミングフープ",
@@ -22,7 +22,7 @@
       "jockey": "モレイラ",
       "trainer": "友道康夫",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -32,27 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": 2,
-      "gate_number": 6,
-      "horse_number": 6,
-      "horse_name": "ブルーマエストロ",
-      "horse_id": "2022105189",
-      "sex_age": "牡4",
-      "weight_carried": 55.0,
-      "jockey": "ルメール",
-      "trainer": "黒岩陽一",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 3,
+      "rank": null,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "ヤマニンアドホック",
@@ -62,7 +42,7 @@
       "jockey": "石川裕紀",
       "trainer": "辻哲英",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -82,7 +62,7 @@
       "jockey": "松岡正海",
       "trainer": "鈴木伸尋",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +82,7 @@
       "jockey": "三浦皇成",
       "trainer": "鹿戸雄一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +102,7 @@
       "jockey": "吉田豊",
       "trainer": "久保田貴",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -130,6 +110,26 @@
       "sire": "ダイワメジャー",
       "dam": "オーレリアズベルAurelia's Belle(米)",
       "dam_sire": "Lemon Drop Kid"
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 6,
+      "horse_name": "ブルーマエストロ",
+      "horse_id": "2022105189",
+      "sex_age": "牡4",
+      "weight_carried": 55.0,
+      "jockey": "ルメール",
+      "trainer": "黒岩陽一",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -142,7 +142,7 @@
       "jockey": "藤岡佑介",
       "trainer": "堀宣行",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +162,7 @@
       "jockey": "荻野琢真",
       "trainer": "西田雄一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +182,7 @@
       "jockey": "吉田隼人",
       "trainer": "岡田稲男",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -198,6 +198,12 @@
       "combination": "1",
       "payout": 360,
       "popularity": 2
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "9",
+      "payout": 9000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -230,6 +236,12 @@
       "popularity": 1
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-20",
+      "payout": 2060,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "1-6",
       "payout": 150,
@@ -248,16 +260,46 @@
       "popularity": 6
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 60000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "1→6",
       "payout": 660,
       "popularity": 2
     },
     {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 6000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-2-6",
       "payout": 530,
       "popularity": 1
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4-50",
+      "payout": 602,
+      "popularity": 60
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-50",
+      "payout": 10102,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2",
+      "payout": 80002,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

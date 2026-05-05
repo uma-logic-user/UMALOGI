@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "カルプスペルシュ",
-      "horse_id": "2022104960",
-      "sex_age": "牝3",
-      "weight_carried": 53.0,
-      "jockey": "横山武史",
-      "trainer": "石坂公一",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 2,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "クインズスピカ",
-      "horse_id": "2021106559",
-      "sex_age": "牝3",
-      "weight_carried": 53.0,
-      "jockey": "舟山瑠泉",
-      "trainer": "村田一誠",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ルーラーシップ",
-      "dam": "アースザスリー",
-      "dam_sire": "シンボリクリスエス"
-    },
-    {
-      "rank": 3,
-      "gate_number": 8,
-      "horse_number": 11,
-      "horse_name": "ストレイトアスク",
-      "horse_id": "2021102312",
-      "sex_age": "牝3",
-      "weight_carried": 52.0,
-      "jockey": "小林美駒",
-      "trainer": "藤原英昭",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ロードカナロア",
-      "dam": "ストレイトガール",
-      "dam_sire": "フジキセキ"
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "黛弘人",
       "trainer": "栗田徹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -90,6 +30,46 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "カルプスペルシュ",
+      "horse_id": "2022104960",
+      "sex_age": "牝3",
+      "weight_carried": 53.0,
+      "jockey": "横山武史",
+      "trainer": "石坂公一",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "クインズスピカ",
+      "horse_id": "2021106559",
+      "sex_age": "牝3",
+      "weight_carried": 53.0,
+      "jockey": "舟山瑠泉",
+      "trainer": "村田一誠",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ルーラーシップ",
+      "dam": "アースザスリー",
+      "dam_sire": "シンボリクリスエス"
     },
     {
       "rank": null,
@@ -102,7 +82,7 @@
       "jockey": "菊沢一樹",
       "trainer": "石栗龍彦",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +102,7 @@
       "jockey": "丹内祐次",
       "trainer": "加藤征弘",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +122,7 @@
       "jockey": "横山和生",
       "trainer": "小野次郎",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +142,7 @@
       "jockey": "佐々木大",
       "trainer": "須貝尚介",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +162,7 @@
       "jockey": "斎藤新",
       "trainer": "斎藤誠",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -202,7 +182,7 @@
       "jockey": "川端海翼",
       "trainer": "南田美知",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -222,7 +202,7 @@
       "jockey": "鷲頭虎太",
       "trainer": "菊沢隆徳",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -230,6 +210,26 @@
       "sire": "ブラックタイド",
       "dam": "ウエスタンメルシー",
       "dam_sire": "ブラックホーク"
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 11,
+      "horse_name": "ストレイトアスク",
+      "horse_id": "2021102312",
+      "sex_age": "牝3",
+      "weight_carried": 52.0,
+      "jockey": "小林美駒",
+      "trainer": "藤原英昭",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ロードカナロア",
+      "dam": "ストレイトガール",
+      "dam_sire": "フジキセキ"
     }
   ],
   "payouts": [
@@ -238,6 +238,12 @@
       "combination": "2",
       "payout": 190,
       "popularity": 1
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "11",
+      "payout": 11000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -270,10 +276,22 @@
       "popularity": 1
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-20",
+      "payout": 1030,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "2-3",
       "payout": 250,
       "popularity": 2
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 50031,
+      "popularity": 10
     },
     {
       "bet_type": "ワイド",
@@ -288,16 +306,46 @@
       "popularity": 20
     },
     {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 30000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "2→3",
       "payout": 650,
       "popularity": 2
     },
     {
+      "bet_type": "馬単",
+      "combination": "2",
+      "payout": 3000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "2-3-11",
       "payout": 3930,
       "popularity": 14
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "8-90",
+      "payout": 1003,
+      "popularity": 110
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2-50",
+      "payout": 20211,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "18",
+      "payout": 40021,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

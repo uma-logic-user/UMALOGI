@@ -4,11 +4,11 @@
   "date": "2026-04-19",
   "venue": "阪神",
   "race_number": 11,
-  "distance": 0,
-  "surface": "",
+  "distance": 1600,
+  "surface": "芝",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "曇",
+  "condition": "良",
   "year": "2026",
   "results": [
     {
@@ -16,20 +16,20 @@
       "gate_number": 5,
       "horse_number": 5,
       "horse_name": "スイープアワーズ",
-      "horse_id": null,
-      "sex_age": "牡6",
+      "horse_id": "2020103428",
+      "sex_age": "牡3",
       "weight_carried": 58.0,
-      "jockey": "国分優",
-      "trainer": "栗東宮地",
+      "jockey": "国分優作",
+      "trainer": "宮地貴稔",
       "finish_time": "1:31.6",
       "margin": "@",
       "win_odds": 7.1,
       "popularity": 4,
       "horse_weight": 460,
       "horse_weight_diff": -2,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
+      "sire": "ディープインパクト",
+      "dam": "スイープトウショウ",
+      "dam_sire": "エンドスウィープEnd Sweep(米)",
       "honmei_score": 0.0487,
       "ev_score": 0.2924,
       "kelly_fraction": 0.0,
@@ -43,12 +43,12 @@
       "horse_number": 6,
       "horse_name": "ﾟﾃｭ�ｸ螽��00210304201137-�0E",
       "horse_id": "2022103245",
-      "sex_age": "41",
-      "weight_carried": 0.0,
-      "jockey": "eM",
-      "trainer": "}dc}�",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "角田大和",
+      "trainer": "中内田充",
       "finish_time": "11.2",
-      "margin": null,
+      "margin": "@",
       "win_odds": 1.3,
       "popularity": 31,
       "horse_weight": null,
@@ -65,16 +65,42 @@
     },
     {
       "rank": 1,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "??????????????????00110306201211????",
+      "horse_id": "2020103428",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "国分優作",
+      "trainer": "宮地貴稔",
+      "finish_time": "1:31.6",
+      "margin": "@",
+      "win_odds": 7.1,
+      "popularity": 4,
+      "horse_weight": 460,
+      "horse_weight_diff": -2,
+      "sire": "ディープインパクト",
+      "dam": "スイープトウショウ",
+      "dam_sire": "エンドスウィープEnd Sweep(米)",
+      "honmei_score": 0.0487,
+      "ev_score": 0.2924,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.3169,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 1,
       "gate_number": 6,
       "horse_number": 6,
       "horse_name": "??????????????????00210304201137????",
       "horse_id": "2022103245",
-      "sex_age": "41",
-      "weight_carried": 0.0,
-      "jockey": "????????????????????",
-      "trainer": "????????????????????",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "角田大和",
+      "trainer": "中内田充",
       "finish_time": "11.2",
-      "margin": null,
+      "margin": "@",
       "win_odds": 1.3,
       "popularity": 31,
       "horse_weight": null,
@@ -94,20 +120,20 @@
       "gate_number": 3,
       "horse_number": 3,
       "horse_name": "アウフヘーベン",
-      "horse_id": null,
-      "sex_age": "牝6",
+      "horse_id": "2020105305",
+      "sex_age": "牝3",
       "weight_carried": 56.0,
-      "jockey": "鮫島駿",
-      "trainer": "栗東高橋亮",
+      "jockey": "鮫島克駿",
+      "trainer": "高橋亮",
       "finish_time": "1:31.8",
-      "margin": "@",
+      "margin": "3/4",
       "win_odds": 11.2,
       "popularity": 8,
       "horse_weight": 462,
       "horse_weight_diff": 8,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
+      "sire": "サトノダイヤモンド",
+      "dam": "ランウェイ",
+      "dam_sire": "キングカメハメハ",
       "honmei_score": 0.0462,
       "ev_score": 0.6009,
       "kelly_fraction": 0.0,
@@ -120,20 +146,20 @@
       "gate_number": 4,
       "horse_number": 4,
       "horse_name": "インヴォーグ",
-      "horse_id": null,
-      "sex_age": "牝4",
+      "horse_id": "2022104145",
+      "sex_age": "牝3",
       "weight_carried": 56.0,
-      "jockey": "北村友",
-      "trainer": "栗東福永",
+      "jockey": "北村友一",
+      "trainer": "福永祐一",
       "finish_time": "1:31.8",
-      "margin": "@",
+      "margin": "ハナ",
       "win_odds": 4.3,
       "popularity": 2,
       "horse_weight": 494,
       "horse_weight_diff": 8,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
+      "sire": "ロードカナロア",
+      "dam": "トレンドハンター",
+      "dam_sire": "マンハッタンカフェ",
       "honmei_score": 0.0472,
       "ev_score": 0.2075,
       "kelly_fraction": 0.0,
@@ -146,20 +172,20 @@
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "ラーンザロープス",
-      "horse_id": null,
-      "sex_age": "牝5",
+      "horse_id": "2021105011",
+      "sex_age": "牝4",
       "weight_carried": 56.0,
-      "jockey": "浜中",
-      "trainer": "栗東武幸",
+      "jockey": "浜中俊",
+      "trainer": "武幸四郎",
       "finish_time": "1:31.8",
-      "margin": "@",
+      "margin": "クビ",
       "win_odds": 3.9,
       "popularity": 1,
       "horse_weight": 462,
       "horse_weight_diff": -2,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
+      "sire": "キズナ",
+      "dam": "キャンディネバダCandy Nevada(亜)",
+      "dam_sire": "Pure Prize",
       "honmei_score": 0.0461,
       "ev_score": 0.3504,
       "kelly_fraction": 0.0,
@@ -172,13 +198,13 @@
       "gate_number": 8,
       "horse_number": 9,
       "horse_name": "ゼンダンハヤブサ",
-      "horse_id": null,
-      "sex_age": "牡4",
+      "horse_id": "2022106306",
+      "sex_age": "牡1",
       "weight_carried": 58.0,
-      "jockey": "酒井",
-      "trainer": "栗東橋田",
+      "jockey": "酒井学",
+      "trainer": "橋田宜長",
       "finish_time": "1:32.2",
-      "margin": "@",
+      "margin": "2.1/2",
       "win_odds": 18.6,
       "popularity": 9,
       "horse_weight": 450,
@@ -198,13 +224,13 @@
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "ネーヴェフレスカ",
-      "horse_id": null,
-      "sex_age": "牝4",
+      "horse_id": "2022105783",
+      "sex_age": "牝7",
       "weight_carried": 56.0,
-      "jockey": "吉村",
-      "trainer": "栗東石坂",
+      "jockey": "吉村誠之",
+      "trainer": "石坂公一",
       "finish_time": "1:32.3",
-      "margin": "@",
+      "margin": "クビ",
       "win_odds": 6.4,
       "popularity": 3,
       "horse_weight": 444,
@@ -224,20 +250,20 @@
       "gate_number": 7,
       "horse_number": 8,
       "horse_name": "パワーホール",
-      "horse_id": null,
-      "sex_age": "セ5",
+      "horse_id": "2021100363",
+      "sex_age": "騸5",
       "weight_carried": 58.0,
-      "jockey": "古川吉",
-      "trainer": "栗東昆",
+      "jockey": "古川吉洋",
+      "trainer": "昆貢",
       "finish_time": "1:32.4",
-      "margin": "@",
+      "margin": "1/2",
       "win_odds": 10.8,
       "popularity": 7,
       "horse_weight": 496,
       "horse_weight_diff": -4,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
+      "sire": "スワーヴリチャード",
+      "dam": "ストロベリーズ",
+      "dam_sire": "コマンズCommands(豪)",
       "honmei_score": 0.0509,
       "ev_score": 0.382,
       "kelly_fraction": 0.0,
@@ -250,13 +276,13 @@
       "gate_number": 8,
       "horse_number": 10,
       "horse_name": "グーテンベルク",
-      "horse_id": null,
-      "sex_age": "牡4",
+      "horse_id": "2022102391",
+      "sex_age": "牡3",
       "weight_carried": 58.0,
-      "jockey": "幸",
-      "trainer": "美浦金成",
+      "jockey": "幸英明",
+      "trainer": "金成貴史",
       "finish_time": "1:32.4",
-      "margin": "@",
+      "margin": "ハナ",
       "win_odds": 8.9,
       "popularity": 6,
       "horse_weight": 486,
@@ -276,20 +302,20 @@
       "gate_number": 7,
       "horse_number": 7,
       "horse_name": "ミストレス",
-      "horse_id": null,
+      "horse_id": "2022103754",
       "sex_age": "牝4",
       "weight_carried": 56.0,
-      "jockey": "田口",
-      "trainer": "栗東矢作",
+      "jockey": "田口貫太",
+      "trainer": "矢作芳人",
       "finish_time": "1:32.8",
-      "margin": "@",
+      "margin": "2.1/2",
       "win_odds": 96.2,
       "popularity": 10,
       "horse_weight": 476,
       "horse_weight_diff": 0,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
+      "sire": "キズナ",
+      "dam": "チェロキーメイドンCherokee Maiden(米)",
+      "dam_sire": "Distorted Humor(米)",
       "honmei_score": 0.0444,
       "ev_score": 1.9968,
       "kelly_fraction": 0.0023,
@@ -302,13 +328,13 @@
       "gate_number": 6,
       "horse_number": 6,
       "horse_name": "ミッキージュエリー",
-      "horse_id": null,
-      "sex_age": "牝4",
+      "horse_id": "2022103245",
+      "sex_age": "牝3",
       "weight_carried": 56.0,
-      "jockey": "角田和",
-      "trainer": "栗東中内田",
+      "jockey": "角田大和",
+      "trainer": "中内田充",
       "finish_time": "1:33.1",
-      "margin": "@",
+      "margin": "1.1/2",
       "win_odds": 8.3,
       "popularity": 5,
       "horse_weight": 494,
@@ -320,32 +346,6 @@
       "ev_score": 0.3798,
       "kelly_fraction": 0.0,
       "manji_ev": 0.7787,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 10,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "??????????????????00110306201211????",
-      "horse_id": "2020103428",
-      "sex_age": "58",
-      "weight_carried": 0.0,
-      "jockey": "????????????????????",
-      "trainer": "????????????????????",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": 1001.3,
-      "popularity": 16,
-      "horse_weight": null,
-      "horse_weight_diff": 9,
-      "sire": "ディープインパクト",
-      "dam": "スイープトウショウ",
-      "dam_sire": "エンドスウィープEnd Sweep(米)",
-      "honmei_score": 0.0487,
-      "ev_score": 0.2924,
-      "kelly_fraction": 0.0,
-      "manji_ev": 1.3169,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     }
@@ -579,7 +579,21 @@
           "model_score": 0.050930028966769035,
           "ev_score": 0.050930028966769035
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "5": "??????????????????00110306201211????",
+        "6": "ミッキージュエリー",
+        "3": "アウフヘーベン",
+        "4": "インヴォーグ",
+        "1": "ラーンザロープス",
+        "9": "ゼンダンハヤブサ",
+        "2": "ネーヴェフレスカ",
+        "8": "パワーホール",
+        "10": "グーテンベルク",
+        "7": "ミストレス"
+      }
     },
     {
       "prediction_id": 3134,
@@ -617,7 +631,21 @@
           "model_score": 0.04945224466355868,
           "ev_score": 0.14835673399067603
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "5": "??????????????????00110306201211????",
+        "6": "ミッキージュエリー",
+        "3": "アウフヘーベン",
+        "4": "インヴォーグ",
+        "1": "ラーンザロープス",
+        "9": "ゼンダンハヤブサ",
+        "2": "ネーヴェフレスカ",
+        "8": "パワーホール",
+        "10": "グーテンベルク",
+        "7": "ミストレス"
+      }
     },
     {
       "prediction_id": 3135,
@@ -641,7 +669,21 @@
           "model_score": 0.022222222222222227,
           "ev_score": 1.3333333333333335
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "5": "??????????????????00110306201211????",
+        "6": "ミッキージュエリー",
+        "3": "アウフヘーベン",
+        "4": "インヴォーグ",
+        "1": "ラーンザロープス",
+        "9": "ゼンダンハヤブサ",
+        "2": "ネーヴェフレスカ",
+        "8": "パワーホール",
+        "10": "グーテンベルク",
+        "7": "ミストレス"
+      }
     },
     {
       "prediction_id": 3136,
@@ -665,7 +707,21 @@
           "model_score": 0.022222222222222227,
           "ev_score": 0.5555555555555557
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "5": "??????????????????00110306201211????",
+        "6": "ミッキージュエリー",
+        "3": "アウフヘーベン",
+        "4": "インヴォーグ",
+        "1": "ラーンザロープス",
+        "9": "ゼンダンハヤブサ",
+        "2": "ネーヴェフレスカ",
+        "8": "パワーホール",
+        "10": "グーテンベルク",
+        "7": "ミストレス"
+      }
     },
     {
       "prediction_id": 3137,
@@ -696,7 +752,21 @@
           "model_score": 0.011111111111111113,
           "ev_score": 1.3333333333333335
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "5": "??????????????????00110306201211????",
+        "6": "ミッキージュエリー",
+        "3": "アウフヘーベン",
+        "4": "インヴォーグ",
+        "1": "ラーンザロープス",
+        "9": "ゼンダンハヤブサ",
+        "2": "ネーヴェフレスカ",
+        "8": "パワーホール",
+        "10": "グーテンベルク",
+        "7": "ミストレス"
+      }
     },
     {
       "prediction_id": 3138,
@@ -720,7 +790,21 @@
           "model_score": 0.008333333333333335,
           "ev_score": 2.5000000000000004
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "5": "??????????????????00110306201211????",
+        "6": "ミッキージュエリー",
+        "3": "アウフヘーベン",
+        "4": "インヴォーグ",
+        "1": "ラーンザロープス",
+        "9": "ゼンダンハヤブサ",
+        "2": "ネーヴェフレスカ",
+        "8": "パワーホール",
+        "10": "グーテンベルク",
+        "7": "ミストレス"
+      }
     },
     {
       "prediction_id": 3139,
@@ -772,7 +856,21 @@
           "model_score": 0.0013888888888888892,
           "ev_score": 2.083333333333334
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "5": "??????????????????00110306201211????",
+        "6": "ミッキージュエリー",
+        "3": "アウフヘーベン",
+        "4": "インヴォーグ",
+        "1": "ラーンザロープス",
+        "9": "ゼンダンハヤブサ",
+        "2": "ネーヴェフレスカ",
+        "8": "パワーホール",
+        "10": "グーテンベルク",
+        "7": "ミストレス"
+      }
     },
     {
       "prediction_id": 3140,
@@ -796,7 +894,21 @@
           "model_score": 1.3168860534961333,
           "ev_score": 1.3168860534961333
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "5": "??????????????????00110306201211????",
+        "6": "ミッキージュエリー",
+        "3": "アウフヘーベン",
+        "4": "インヴォーグ",
+        "1": "ラーンザロープス",
+        "9": "ゼンダンハヤブサ",
+        "2": "ネーヴェフレスカ",
+        "8": "パワーホール",
+        "10": "グーテンベルク",
+        "7": "ミストレス"
+      }
     },
     {
       "prediction_id": 3141,
@@ -820,7 +932,21 @@
           "model_score": 1.3168860534961333,
           "ev_score": 1.3168860534961333
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "5": "??????????????????00110306201211????",
+        "6": "ミッキージュエリー",
+        "3": "アウフヘーベン",
+        "4": "インヴォーグ",
+        "1": "ラーンザロープス",
+        "9": "ゼンダンハヤブサ",
+        "2": "ネーヴェフレスカ",
+        "8": "パワーホール",
+        "10": "グーテンベルク",
+        "7": "ミストレス"
+      }
     },
     {
       "prediction_id": 3142,
@@ -907,7 +1033,21 @@
           "model_score": 0.04407313835678165,
           "ev_score": 0.0
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "5": "??????????????????00110306201211????",
+        "6": "ミッキージュエリー",
+        "3": "アウフヘーベン",
+        "4": "インヴォーグ",
+        "1": "ラーンザロープス",
+        "9": "ゼンダンハヤブサ",
+        "2": "ネーヴェフレスカ",
+        "8": "パワーホール",
+        "10": "グーテンベルク",
+        "7": "ミストレス"
+      }
     },
     {
       "prediction_id": 3757,
@@ -931,7 +1071,21 @@
           "model_score": 0.050930028966769035,
           "ev_score": 0.3819752172507678
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "5": "??????????????????00110306201211????",
+        "6": "ミッキージュエリー",
+        "3": "アウフヘーベン",
+        "4": "インヴォーグ",
+        "1": "ラーンザロープス",
+        "9": "ゼンダンハヤブサ",
+        "2": "ネーヴェフレスカ",
+        "8": "パワーホール",
+        "10": "グーテンベルク",
+        "7": "ミストレス"
+      }
     },
     {
       "prediction_id": 3758,
@@ -969,7 +1123,21 @@
           "model_score": 0.04945224466355868,
           "ev_score": 0.14835673399067603
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "5": "??????????????????00110306201211????",
+        "6": "ミッキージュエリー",
+        "3": "アウフヘーベン",
+        "4": "インヴォーグ",
+        "1": "ラーンザロープス",
+        "9": "ゼンダンハヤブサ",
+        "2": "ネーヴェフレスカ",
+        "8": "パワーホール",
+        "10": "グーテンベルク",
+        "7": "ミストレス"
+      }
     },
     {
       "prediction_id": 3759,
@@ -993,7 +1161,21 @@
           "model_score": 0.02554489436352586,
           "ev_score": 1.1495202463586638
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "5": "??????????????????00110306201211????",
+        "6": "ミッキージュエリー",
+        "3": "アウフヘーベン",
+        "4": "インヴォーグ",
+        "1": "ラーンザロープス",
+        "9": "ゼンダンハヤブサ",
+        "2": "ネーヴェフレスカ",
+        "8": "パワーホール",
+        "10": "グーテンベルク",
+        "7": "ミストレス"
+      }
     },
     {
       "prediction_id": 3760,
@@ -1017,7 +1199,21 @@
           "model_score": 0.02554489436352586,
           "ev_score": 0.4789667693161099
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "5": "??????????????????00110306201211????",
+        "6": "ミッキージュエリー",
+        "3": "アウフヘーベン",
+        "4": "インヴォーグ",
+        "1": "ラーンザロープス",
+        "9": "ゼンダンハヤブサ",
+        "2": "ネーヴェフレスカ",
+        "8": "パワーホール",
+        "10": "グーテンベルク",
+        "7": "ミストレス"
+      }
     },
     {
       "prediction_id": 3761,
@@ -1048,7 +1244,21 @@
           "model_score": 0.012806027160156545,
           "ev_score": 1.152542444414089
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "5": "??????????????????00110306201211????",
+        "6": "ミッキージュエリー",
+        "3": "アウフヘーベン",
+        "4": "インヴォーグ",
+        "1": "ラーンザロープス",
+        "9": "ゼンダンハヤブサ",
+        "2": "ネーヴェフレスカ",
+        "8": "パワーホール",
+        "10": "グーテンベルク",
+        "7": "ミストレス"
+      }
     },
     {
       "prediction_id": 3762,
@@ -1072,7 +1282,21 @@
           "model_score": 0.010141742535749579,
           "ev_score": 2.2818920705436554
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "5": "??????????????????00110306201211????",
+        "6": "ミッキージュエリー",
+        "3": "アウフヘーベン",
+        "4": "インヴォーグ",
+        "1": "ラーンザロープス",
+        "9": "ゼンダンハヤブサ",
+        "2": "ネーヴェフレスカ",
+        "8": "パワーホール",
+        "10": "グーテンベルク",
+        "7": "ミストレス"
+      }
     },
     {
       "prediction_id": 3763,
@@ -1124,7 +1348,21 @@
           "model_score": 0.0016998080617703969,
           "ev_score": 1.9122840694916963
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "5": "??????????????????00110306201211????",
+        "6": "ミッキージュエリー",
+        "3": "アウフヘーベン",
+        "4": "インヴォーグ",
+        "1": "ラーンザロープス",
+        "9": "ゼンダンハヤブサ",
+        "2": "ネーヴェフレスカ",
+        "8": "パワーホール",
+        "10": "グーテンベルク",
+        "7": "ミストレス"
+      }
     },
     {
       "prediction_id": 3764,
@@ -1148,7 +1386,21 @@
           "model_score": 1.3168860534961333,
           "ev_score": 1.3168860534961333
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "5": "??????????????????00110306201211????",
+        "6": "ミッキージュエリー",
+        "3": "アウフヘーベン",
+        "4": "インヴォーグ",
+        "1": "ラーンザロープス",
+        "9": "ゼンダンハヤブサ",
+        "2": "ネーヴェフレスカ",
+        "8": "パワーホール",
+        "10": "グーテンベルク",
+        "7": "ミストレス"
+      }
     },
     {
       "prediction_id": 3765,
@@ -1172,7 +1424,21 @@
           "model_score": 1.3168860534961333,
           "ev_score": 1.3168860534961333
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "5": "??????????????????00110306201211????",
+        "6": "ミッキージュエリー",
+        "3": "アウフヘーベン",
+        "4": "インヴォーグ",
+        "1": "ラーンザロープス",
+        "9": "ゼンダンハヤブサ",
+        "2": "ネーヴェフレスカ",
+        "8": "パワーホール",
+        "10": "グーテンベルク",
+        "7": "ミストレス"
+      }
     },
     {
       "prediction_id": 3766,
@@ -1259,7 +1525,21 @@
           "model_score": 0.04407313835678165,
           "ev_score": 0.3173265961688279
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "5": "??????????????????00110306201211????",
+        "6": "ミッキージュエリー",
+        "3": "アウフヘーベン",
+        "4": "インヴォーグ",
+        "1": "ラーンザロープス",
+        "9": "ゼンダンハヤブサ",
+        "2": "ネーヴェフレスカ",
+        "8": "パワーホール",
+        "10": "グーテンベルク",
+        "7": "ミストレス"
+      }
     }
   ],
   "training_evals": {},

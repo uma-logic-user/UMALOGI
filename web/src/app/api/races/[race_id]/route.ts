@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getDb } from '@/lib/db'
 import { validateResponse } from '@/lib/validateResponse'
-import { BET_ORDER, sanitize, rowToObj, sortedCombinations } from '@/lib/dbHelpers'
+import { BET_ORDER, sanitize, rowToObj, sortedCombinations, identifyBetForm } from '@/lib/dbHelpers'
 
 export const dynamic = 'force-dynamic'
 
@@ -78,11 +78,29 @@ export async function GET(
       ORDER BY ph.predicted_rank NULLS LAST, ph.id
     `)
 
-    const predictions = predRows.map(rowToObj).map((pd) => ({
-      ...pd,
-      combination_json: sortedCombinations(pd.combination_json),
-      horses: (getHorses.all(race_id, race_id, pd.prediction_id) as Record<string, unknown>[]).map(rowToObj),
-    }))
+    // 馬番→馬名マップ（このレース用）
+    const horseNumToName: Record<string, string> = {}
+    for (const row of results) {
+      const num = row.horse_number
+      const name = row.horse_name
+      if (num != null && name != null) {
+        horseNumToName[String(num)] = name as string
+      }
+    }
+
+    const predictions = predRows.map(rowToObj).map((pd) => {
+      const comboJson = pd.combination_json as string | null
+      const betType   = (pd.bet_type as string) ?? ''
+      const [betForm, nTickets] = identifyBetForm(comboJson, betType)
+      return {
+        ...pd,
+        combination_json:  sortedCombinations(comboJson),
+        bet_form:          betForm,
+        n_tickets:         nTickets,
+        horses:            (getHorses.all(race_id, race_id, pd.prediction_id) as Record<string, unknown>[]).map(rowToObj),
+        horse_num_to_name: horseNumToName,
+      }
+    })
 
     d.results     = results
     d.payouts     = payouts

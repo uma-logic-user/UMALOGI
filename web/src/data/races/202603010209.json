@@ -4,11 +4,11 @@
   "date": "2026-04-12",
   "venue": "福島",
   "race_number": 9,
-  "distance": 0,
-  "surface": "",
+  "distance": 2600,
+  "surface": "芝",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "晴",
+  "condition": "良",
   "year": "2026",
   "results": [
     {
@@ -21,12 +21,12 @@
       "weight_carried": 58.0,
       "jockey": "杉原誠人",
       "trainer": "田島俊明",
-      "finish_time": null,
+      "finish_time": "2:40.0",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 11.9,
+      "popularity": 6,
+      "horse_weight": 458,
+      "horse_weight_diff": -2,
       "sire": "アルアイン",
       "dam": "ベッラレイア",
       "dam_sire": "ナリタトップロード"
@@ -41,12 +41,12 @@
       "weight_carried": 58.0,
       "jockey": "川又賢治",
       "trainer": "吉村圭司",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "2:40.2",
+      "margin": "1.1/4",
+      "win_odds": 6.4,
+      "popularity": 5,
+      "horse_weight": 444,
+      "horse_weight_diff": -12,
       "sire": "サトノクラウン",
       "dam": "アムールレジェンド",
       "dam_sire": "ディープインパクト"
@@ -61,12 +61,212 @@
       "weight_carried": 58.0,
       "jockey": "斎藤新",
       "trainer": "杉山佳明",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "2:40.3",
+      "margin": "クビ",
+      "win_odds": 5.0,
+      "popularity": 3,
+      "horse_weight": 470,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 4,
+      "gate_number": 7,
+      "horse_number": 11,
+      "horse_name": "ニホンピロゴルディ",
+      "horse_id": "2021103845",
+      "sex_age": "牡1",
+      "weight_carried": 58.0,
+      "jockey": "吉田隼人",
+      "trainer": "安達昭夫",
+      "finish_time": "2:40.3",
+      "margin": "クビ",
+      "win_odds": 4.9,
+      "popularity": 2,
+      "horse_weight": 470,
+      "horse_weight_diff": -2,
+      "sire": "ゴールドシップ",
+      "dam": "ニホンピロヘーゼル",
+      "dam_sire": "カジノドライヴ"
+    },
+    {
+      "rank": 5,
+      "gate_number": 5,
+      "horse_number": 6,
+      "horse_name": "ゲンジ",
+      "horse_id": "2022105597",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "石川裕紀",
+      "trainer": "尾形和幸",
+      "finish_time": "2:40.4",
+      "margin": "クビ",
+      "win_odds": 3.8,
+      "popularity": 1,
+      "horse_weight": 422,
+      "horse_weight_diff": -8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 6,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "ペネトレイトゴー",
+      "horse_id": "2020101916",
+      "sex_age": "騸7",
+      "weight_carried": 58.0,
+      "jockey": "武藤雅",
+      "trainer": "戸田博文",
+      "finish_time": "2:40.4",
+      "margin": "クビ",
+      "win_odds": 6.3,
+      "popularity": 4,
+      "horse_weight": 440,
+      "horse_weight_diff": -8,
+      "sire": "ゴールドシップ",
+      "dam": "セカンドノホシ",
+      "dam_sire": "シンボリルドルフ"
+    },
+    {
+      "rank": 7,
+      "gate_number": 4,
+      "horse_number": 5,
+      "horse_name": "テイキットイージー",
+      "horse_id": "2021101088",
+      "sex_age": "牡7",
+      "weight_carried": 58.0,
+      "jockey": "菊沢一樹",
+      "trainer": "萱野浩二",
+      "finish_time": "2:41.4",
+      "margin": "6",
+      "win_odds": 21.4,
+      "popularity": 8,
+      "horse_weight": 442,
+      "horse_weight_diff": -6,
+      "sire": "ゴールドシップ",
+      "dam": "コスモマイルール",
+      "dam_sire": "ルールオブローRule of Law(米)"
+    },
+    {
+      "rank": 8,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "ダノンアンチュラス",
+      "horse_id": "2022105687",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "中井裕二",
+      "trainer": "坂口智康",
+      "finish_time": "2:41.5",
+      "margin": "3/4",
+      "win_odds": 95.6,
+      "popularity": 13,
+      "horse_weight": 476,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 9,
+      "gate_number": 5,
+      "horse_number": 7,
+      "horse_name": "イフルジャンス",
+      "horse_id": "2022105751",
+      "sex_age": "牡7",
+      "weight_carried": 58.0,
+      "jockey": "丸山元気",
+      "trainer": "金成貴史",
+      "finish_time": "2:42.2",
+      "margin": "4",
+      "win_odds": 19.7,
+      "popularity": 7,
+      "horse_weight": 450,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 10,
+      "gate_number": 6,
+      "horse_number": 8,
+      "horse_name": "シェアホルダーズ",
+      "horse_id": "2021101250",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "小沢大仁",
+      "trainer": "松山将樹",
+      "finish_time": "2:43.8",
+      "margin": "10",
+      "win_odds": 80.9,
+      "popularity": 11,
+      "horse_weight": 500,
+      "horse_weight_diff": 8,
+      "sire": "アルアイン",
+      "dam": "クラウンフォルテ",
+      "dam_sire": "ハービンジャーHarbinger(英)"
+    },
+    {
+      "rank": 11,
+      "gate_number": 8,
+      "horse_number": 13,
+      "horse_name": "ヘルツアス",
+      "horse_id": "2021105985",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "松若風馬",
+      "trainer": "森田直行",
+      "finish_time": "2:44.6",
+      "margin": "5",
+      "win_odds": 25.3,
+      "popularity": 9,
+      "horse_weight": 418,
+      "horse_weight_diff": -2,
+      "sire": "バゴBago(仏)",
+      "dam": "ラインハート",
+      "dam_sire": "ステイゴールド"
+    },
+    {
+      "rank": 12,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "サラニキケン",
+      "horse_id": "2022101436",
+      "sex_age": "牝5",
+      "weight_carried": 56.0,
+      "jockey": "鷲頭虎太",
+      "trainer": "竹内正洋",
+      "finish_time": "2:45.0",
+      "margin": "2",
+      "win_odds": 90.6,
+      "popularity": 12,
+      "horse_weight": 428,
+      "horse_weight_diff": -10,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 13,
+      "gate_number": 7,
+      "horse_number": 10,
+      "horse_name": "スタードメイソン",
+      "horse_id": "2022105392",
+      "sex_age": "牝5",
+      "weight_carried": 56.0,
+      "jockey": "和田陽希",
+      "trainer": "藤原英昭",
+      "finish_time": "2:46.5",
+      "margin": "9",
+      "win_odds": 43.3,
+      "popularity": 10,
+      "horse_weight": 394,
+      "horse_weight_diff": -14,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -313,7 +513,24 @@
           "model_score": 3.0012327929302108e-05,
           "ev_score": 3.0012327929302108e-05
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "9": "ビップチェイス",
+        "4": "テイクザクラウン",
+        "12": "ローレルオーブ",
+        "11": "ニホンピロゴルディ",
+        "6": "ゲンジ",
+        "1": "ペネトレイトゴー",
+        "5": "テイキットイージー",
+        "2": "ダノンアンチュラス",
+        "7": "イフルジャンス",
+        "8": "シェアホルダーズ",
+        "13": "ヘルツアス",
+        "3": "サラニキケン",
+        "10": "スタードメイソン"
+      }
     },
     {
       "prediction_id": 2125,
@@ -337,7 +554,24 @@
           "model_score": 3.0012327929302108e-05,
           "ev_score": 3.0012327929302108e-05
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "9": "ビップチェイス",
+        "4": "テイクザクラウン",
+        "12": "ローレルオーブ",
+        "11": "ニホンピロゴルディ",
+        "6": "ゲンジ",
+        "1": "ペネトレイトゴー",
+        "5": "テイキットイージー",
+        "2": "ダノンアンチュラス",
+        "7": "イフルジャンス",
+        "8": "シェアホルダーズ",
+        "13": "ヘルツアス",
+        "3": "サラニキケン",
+        "10": "スタードメイソン"
+      }
     },
     {
       "prediction_id": 2209,
@@ -361,7 +595,24 @@
           "model_score": 3.0012327929302108e-05,
           "ev_score": 0.0
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "9": "ビップチェイス",
+        "4": "テイクザクラウン",
+        "12": "ローレルオーブ",
+        "11": "ニホンピロゴルディ",
+        "6": "ゲンジ",
+        "1": "ペネトレイトゴー",
+        "5": "テイキットイージー",
+        "2": "ダノンアンチュラス",
+        "7": "イフルジャンス",
+        "8": "シェアホルダーズ",
+        "13": "ヘルツアス",
+        "3": "サラニキケン",
+        "10": "スタードメイソン"
+      }
     },
     {
       "prediction_id": 2366,
@@ -385,7 +636,24 @@
           "model_score": 0.09521601630259692,
           "ev_score": 0.5427312929248025
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "9": "ビップチェイス",
+        "4": "テイクザクラウン",
+        "12": "ローレルオーブ",
+        "11": "ニホンピロゴルディ",
+        "6": "ゲンジ",
+        "1": "ペネトレイトゴー",
+        "5": "テイキットイージー",
+        "2": "ダノンアンチュラス",
+        "7": "イフルジャンス",
+        "8": "シェアホルダーズ",
+        "13": "ヘルツアス",
+        "3": "サラニキケン",
+        "10": "スタードメイソン"
+      }
     },
     {
       "prediction_id": 2367,
@@ -423,7 +691,24 @@
           "model_score": 0.051566630431494696,
           "ev_score": 0.15469989129448408
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "9": "ビップチェイス",
+        "4": "テイクザクラウン",
+        "12": "ローレルオーブ",
+        "11": "ニホンピロゴルディ",
+        "6": "ゲンジ",
+        "1": "ペネトレイトゴー",
+        "5": "テイキットイージー",
+        "2": "ダノンアンチュラス",
+        "7": "イフルジャンス",
+        "8": "シェアホルダーズ",
+        "13": "ヘルツアス",
+        "3": "サラニキケン",
+        "10": "スタードメイソン"
+      }
     },
     {
       "prediction_id": 2368,
@@ -447,7 +732,24 @@
           "model_score": 0.5156551331298944,
           "ev_score": 17.63540555304239
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "9": "ビップチェイス",
+        "4": "テイクザクラウン",
+        "12": "ローレルオーブ",
+        "11": "ニホンピロゴルディ",
+        "6": "ゲンジ",
+        "1": "ペネトレイトゴー",
+        "5": "テイキットイージー",
+        "2": "ダノンアンチュラス",
+        "7": "イフルジャンス",
+        "8": "シェアホルダーズ",
+        "13": "ヘルツアス",
+        "3": "サラニキケン",
+        "10": "スタードメイソン"
+      }
     },
     {
       "prediction_id": 2369,
@@ -471,7 +773,24 @@
           "model_score": 0.5156551331298944,
           "ev_score": 7.348085647100996
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "9": "ビップチェイス",
+        "4": "テイクザクラウン",
+        "12": "ローレルオーブ",
+        "11": "ニホンピロゴルディ",
+        "6": "ゲンジ",
+        "1": "ペネトレイトゴー",
+        "5": "テイキットイージー",
+        "2": "ダノンアンチュラス",
+        "7": "イフルジャンス",
+        "8": "シェアホルダーズ",
+        "13": "ヘルツアス",
+        "3": "サラニキケン",
+        "10": "スタードメイソン"
+      }
     },
     {
       "prediction_id": 2370,
@@ -502,7 +821,24 @@
           "model_score": 0.3179115591427406,
           "ev_score": 21.74515064536346
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "9": "ビップチェイス",
+        "4": "テイクザクラウン",
+        "12": "ローレルオーブ",
+        "11": "ニホンピロゴルディ",
+        "6": "ゲンジ",
+        "1": "ペネトレイトゴー",
+        "5": "テイキットイージー",
+        "2": "ダノンアンチュラス",
+        "7": "イフルジャンス",
+        "8": "シェアホルダーズ",
+        "13": "ヘルツアス",
+        "3": "サラニキケン",
+        "10": "スタードメイソン"
+      }
     },
     {
       "prediction_id": 2371,
@@ -526,7 +862,24 @@
           "model_score": 0.3286941500451366,
           "ev_score": 56.20669965771836
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "9": "ビップチェイス",
+        "4": "テイクザクラウン",
+        "12": "ローレルオーブ",
+        "11": "ニホンピロゴルディ",
+        "6": "ゲンジ",
+        "1": "ペネトレイトゴー",
+        "5": "テイキットイージー",
+        "2": "ダノンアンチュラス",
+        "7": "イフルジャンス",
+        "8": "シェアホルダーズ",
+        "13": "ヘルツアス",
+        "3": "サラニキケン",
+        "10": "スタードメイソン"
+      }
     },
     {
       "prediction_id": 2372,
@@ -578,7 +931,24 @@
           "model_score": 0.12264721969036885,
           "ev_score": 104.86337283526537
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "9": "ビップチェイス",
+        "4": "テイクザクラウン",
+        "12": "ローレルオーブ",
+        "11": "ニホンピロゴルディ",
+        "6": "ゲンジ",
+        "1": "ペネトレイトゴー",
+        "5": "テイキットイージー",
+        "2": "ダノンアンチュラス",
+        "7": "イフルジャンス",
+        "8": "シェアホルダーズ",
+        "13": "ヘルツアス",
+        "3": "サラニキケン",
+        "10": "スタードメイソン"
+      }
     },
     {
       "prediction_id": 2373,
@@ -686,7 +1056,24 @@
           "model_score": 0.0003188350468741608,
           "ev_score": 0.00797087617185402
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "9": "ビップチェイス",
+        "4": "テイクザクラウン",
+        "12": "ローレルオーブ",
+        "11": "ニホンピロゴルディ",
+        "6": "ゲンジ",
+        "1": "ペネトレイトゴー",
+        "5": "テイキットイージー",
+        "2": "ダノンアンチュラス",
+        "7": "イフルジャンス",
+        "8": "シェアホルダーズ",
+        "13": "ヘルツアス",
+        "3": "サラニキケン",
+        "10": "スタードメイソン"
+      }
     }
   ],
   "training_evals": {}

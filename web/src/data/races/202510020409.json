@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 7,
-      "horse_number": 7,
-      "horse_name": "ヒーローインチーフ",
-      "horse_id": "2021106661",
-      "sex_age": "騸3",
-      "weight_carried": 58.0,
-      "jockey": "西塚洸二",
-      "trainer": "吉田直弘",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 2,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "ベルビースタローン",
-      "horse_id": "2022106389",
-      "sex_age": "牝5",
-      "weight_carried": 53.0,
-      "jockey": "川田将雅",
-      "trainer": "西村真幸",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 3,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "コウセキ",
-      "horse_id": "2022110026",
-      "sex_age": "牡3",
-      "weight_carried": 55.0,
-      "jockey": "松山弘平",
-      "trainer": "西園正都",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,27 @@
       "jockey": "藤懸貴志",
       "trainer": "矢作芳人",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "ベルビースタローン",
+      "horse_id": "2022106389",
+      "sex_age": "牝5",
+      "weight_carried": 53.0,
+      "jockey": "川田将雅",
+      "trainer": "西村真幸",
+      "finish_time": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +62,7 @@
       "jockey": "団野大成",
       "trainer": "梅田智之",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +82,27 @@
       "jockey": "坂井瑠星",
       "trainer": "松下武士",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "コウセキ",
+      "horse_id": "2022110026",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "松山弘平",
+      "trainer": "西園正都",
+      "finish_time": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +122,7 @@
       "jockey": "幸英明",
       "trainer": "森田直行",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -150,6 +130,26 @@
       "sire": "モーリス",
       "dam": "ヴァイスハイト",
       "dam_sire": "アドマイヤベガ"
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 7,
+      "horse_name": "ヒーローインチーフ",
+      "horse_id": "2021106661",
+      "sex_age": "騸3",
+      "weight_carried": 58.0,
+      "jockey": "西塚洸二",
+      "trainer": "吉田直弘",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -162,7 +162,7 @@
       "jockey": "永島まな",
       "trainer": "高橋康之",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -178,6 +178,12 @@
       "combination": "7",
       "payout": 940,
       "popularity": 4
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "8",
+      "payout": 8000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -204,6 +210,12 @@
       "popularity": 7
     },
     {
+      "bet_type": "馬連",
+      "combination": "2-90",
+      "payout": 4020,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "2-5",
       "payout": 370,
@@ -222,16 +234,46 @@
       "popularity": 7
     },
     {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 40020,
+      "popularity": 50
+    },
+    {
       "bet_type": "馬単",
       "combination": "7→2",
       "payout": 4600,
       "popularity": 15
     },
     {
+      "bet_type": "馬単",
+      "combination": "2",
+      "payout": 7000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "2-5-7",
       "payout": 2250,
       "popularity": 9
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5-10",
+      "payout": 702,
+      "popularity": 50
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4-50",
+      "payout": 60507,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3",
+      "payout": 70004,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

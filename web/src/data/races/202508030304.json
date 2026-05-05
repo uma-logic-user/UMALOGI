@@ -12,47 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "ディナースタ",
-      "horse_id": "2019101507",
-      "sex_age": "牡1",
-      "weight_carried": 61.0,
-      "jockey": "高田潤",
-      "trainer": "辻野泰之",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ドゥラメンテ",
-      "dam": "ラヴァリーノRavarino(米)",
-      "dam_sire": "Unbridled's Song(米)"
-    },
-    {
-      "rank": 2,
-      "gate_number": 6,
-      "horse_number": 7,
-      "horse_name": "ヘザルフェン",
-      "horse_id": "2021110022",
-      "sex_age": "牡4",
-      "weight_carried": 61.0,
-      "jockey": "森一馬",
-      "trainer": "昆貢",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "Golden Horn(英)",
-      "dam": "Entertainment",
-      "dam_sire": "Halling"
-    },
-    {
-      "rank": 3,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "テイエムエメラルド",
@@ -62,7 +22,7 @@
       "jockey": "小野寺祐",
       "trainer": "小椋研介",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -82,7 +42,7 @@
       "jockey": "田村太雅",
       "trainer": "森田直行",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +62,7 @@
       "jockey": "草野太郎",
       "trainer": "和田雄二",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +82,7 @@
       "jockey": "小牧加矢",
       "trainer": "斉藤崇史",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -130,6 +90,26 @@
       "sire": "サトノダイヤモンド",
       "dam": "オーサムフェザーAwesome Feather(米)",
       "dam_sire": "Awesome of Course"
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "ディナースタ",
+      "horse_id": "2019101507",
+      "sex_age": "牡1",
+      "weight_carried": 61.0,
+      "jockey": "高田潤",
+      "trainer": "辻野泰之",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ドゥラメンテ",
+      "dam": "ラヴァリーノRavarino(米)",
+      "dam_sire": "Unbridled's Song(米)"
     },
     {
       "rank": null,
@@ -142,7 +122,7 @@
       "jockey": "難波剛健",
       "trainer": "鈴木孝志",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -150,6 +130,26 @@
       "sire": "マジェスティックウォリアーMajestic Warrior(米)",
       "dam": "ハミングライフ",
       "dam_sire": "スペシャルウィーク"
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 7,
+      "horse_name": "ヘザルフェン",
+      "horse_id": "2021110022",
+      "sex_age": "牡4",
+      "weight_carried": 61.0,
+      "jockey": "森一馬",
+      "trainer": "昆貢",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "Golden Horn(英)",
+      "dam": "Entertainment",
+      "dam_sire": "Halling"
     },
     {
       "rank": null,
@@ -162,7 +162,7 @@
       "jockey": "上野翔",
       "trainer": "水野貴広",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +182,7 @@
       "jockey": "井上敏樹",
       "trainer": "中竹和也",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -202,7 +202,7 @@
       "jockey": "中村将之",
       "trainer": "中村直也",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -222,7 +222,7 @@
       "jockey": "黒岩悠",
       "trainer": "加藤公太",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -240,6 +240,12 @@
       "popularity": 1
     },
     {
+      "bet_type": "単勝",
+      "combination": "11",
+      "payout": 10000,
+      "popularity": null
+    },
+    {
       "bet_type": "複勝",
       "combination": "5",
       "payout": 110,
@@ -254,8 +260,8 @@
     {
       "bet_type": "複勝",
       "combination": "1",
-      "payout": 390,
-      "popularity": 6
+      "payout": 11001,
+      "popularity": null
     },
     {
       "bet_type": "枠連",
@@ -268,6 +274,12 @@
       "combination": "5-7",
       "payout": 280,
       "popularity": 1
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1-10",
+      "payout": 1070,
+      "popularity": null
     },
     {
       "bet_type": "ワイド",
@@ -288,16 +300,52 @@
       "popularity": 10
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 30020,
+      "popularity": 10
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "5",
+      "payout": 60000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "5→7",
       "payout": 560,
       "popularity": 1
     },
     {
+      "bet_type": "馬単",
+      "combination": "5",
+      "payout": 7000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-5-7",
       "payout": 1800,
       "popularity": 5
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "8-10",
+      "payout": 901,
+      "popularity": 70
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-70",
+      "payout": 10105,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "8",
+      "payout": 50010,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

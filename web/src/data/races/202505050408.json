@@ -12,7 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "マカナ",
@@ -22,7 +22,7 @@
       "jockey": "菅原明良",
       "trainer": "伊藤大士",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -42,7 +42,7 @@
       "jockey": "三浦皇成",
       "trainer": "佐々木晶",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -62,7 +62,7 @@
       "jockey": "団野大成",
       "trainer": "尾関知人",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -82,7 +82,7 @@
       "jockey": "松岡正海",
       "trainer": "田中剛",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +102,7 @@
       "jockey": "プーシャ",
       "trainer": "田中博康",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +122,7 @@
       "jockey": "木幡巧也",
       "trainer": "辻哲英",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +142,7 @@
       "jockey": "石橋脩",
       "trainer": "水野貴広",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +162,7 @@
       "jockey": "横山武史",
       "trainer": "鈴木慎太",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +182,7 @@
       "jockey": "佐々木大",
       "trainer": "林徹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -202,7 +202,7 @@
       "jockey": "吉村誠之",
       "trainer": "松永幹夫",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -222,7 +222,7 @@
       "jockey": "横山典弘",
       "trainer": "菊沢隆徳",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -242,7 +242,7 @@
       "jockey": "マーカン",
       "trainer": "池上昌和",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -262,7 +262,7 @@
       "jockey": "横山和生",
       "trainer": "稲垣幸雄",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -284,6 +284,12 @@
       "combination": "5",
       "payout": 410,
       "popularity": 4
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "13",
+      "payout": 13000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -316,6 +322,18 @@
       "popularity": 8
     },
     {
+      "bet_type": "馬連",
+      "combination": "2-40",
+      "payout": 2050,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 40000,
+      "popularity": 1
+    },
+    {
       "bet_type": "ワイド",
       "combination": "1-5",
       "payout": 670,
@@ -334,16 +352,40 @@
       "popularity": 22
     },
     {
+      "bet_type": "ワイド",
+      "combination": "3",
+      "payout": 30031,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "1→5→5→1",
       "payout": 1670,
       "popularity": 11
     },
     {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 5000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-5-10",
       "payout": 10650,
       "popularity": 30
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "12-60",
+      "payout": 1205,
+      "popularity": 100
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "6-70",
+      "payout": 60110,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

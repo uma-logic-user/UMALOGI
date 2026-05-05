@@ -4,11 +4,11 @@
   "date": "2026-04-11",
   "venue": "福島",
   "race_number": 8,
-  "distance": 0,
-  "surface": "",
+  "distance": 1150,
+  "surface": "ダート",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "晴",
+  "condition": "良",
   "year": "2026",
   "results": [
     {
@@ -21,12 +21,12 @@
       "weight_carried": 58.0,
       "jockey": "田口貫太",
       "trainer": "奥村豊",
-      "finish_time": null,
+      "finish_time": "1:09.0",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 3.9,
+      "popularity": 1,
+      "horse_weight": 458,
+      "horse_weight_diff": -12,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -45,12 +45,12 @@
       "weight_carried": 58.0,
       "jockey": "藤懸貴志",
       "trainer": "宮本博",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:09.1",
+      "margin": "1/2",
+      "win_odds": 5.2,
+      "popularity": 4,
+      "horse_weight": 476,
+      "horse_weight_diff": 0,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -69,18 +69,330 @@
       "weight_carried": 58.0,
       "jockey": "吉田隼人",
       "trainer": "久保田貴",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:09.9",
+      "margin": "5",
+      "win_odds": 23.2,
+      "popularity": 8,
+      "horse_weight": 490,
+      "horse_weight_diff": -4,
       "sire": null,
       "dam": null,
       "dam_sire": null,
       "training_eval": {
         "eval_grade": "B",
         "eval_text": "仕上上々"
+      }
+    },
+    {
+      "rank": 4,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "ナンヨークリスタル",
+      "horse_id": "2020103513",
+      "sex_age": "騸3",
+      "weight_carried": 58.0,
+      "jockey": "丸山元気",
+      "trainer": "松永幹夫",
+      "finish_time": "1:09.9",
+      "margin": "クビ",
+      "win_odds": 14.5,
+      "popularity": 5,
+      "horse_weight": 500,
+      "horse_weight_diff": -2,
+      "sire": "ロードカナロア",
+      "dam": "ナンヨーカノン",
+      "dam_sire": "フジキセキ",
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "末脚良し"
+      }
+    },
+    {
+      "rank": 5,
+      "gate_number": 1,
+      "horse_number": 2,
+      "horse_name": "ノーブルミステリー",
+      "horse_id": "2020106429",
+      "sex_age": "牝4",
+      "weight_carried": 54.0,
+      "jockey": "舟山瑠泉",
+      "trainer": "菊川正達",
+      "finish_time": "1:10.0",
+      "margin": "クビ",
+      "win_odds": 76.4,
+      "popularity": 14,
+      "horse_weight": 458,
+      "horse_weight_diff": -6,
+      "sire": "ディーマジェスティ",
+      "dam": "マウンテンミステリーMountain Mystery(加)",
+      "dam_sire": "Mt. Livermore",
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "気配平凡"
+      }
+    },
+    {
+      "rank": 6,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "グランデスフィーダ",
+      "horse_id": "2020104913",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "斎藤新",
+      "trainer": "佐藤悠太",
+      "finish_time": "1:10.0",
+      "margin": "クビ",
+      "win_odds": 4.9,
+      "popularity": 3,
+      "horse_weight": 542,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "素軽い"
+      }
+    },
+    {
+      "rank": 7,
+      "gate_number": 8,
+      "horse_number": 16,
+      "horse_name": "シャーンゴッセ",
+      "horse_id": "2020106930",
+      "sex_age": "騸4",
+      "weight_carried": 56.0,
+      "jockey": "長浜鴻緒",
+      "trainer": "蛯名正義",
+      "finish_time": "1:10.0",
+      "margin": "アタマ",
+      "win_odds": 4.1,
+      "popularity": 2,
+      "horse_weight": 494,
+      "horse_weight_diff": -2,
+      "sire": "イスラボニータ",
+      "dam": "ルーシーブライド",
+      "dam_sire": "ブライアンズタイムBrian's Time(米)",
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "好調子"
+      }
+    },
+    {
+      "rank": 8,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "グッドヴァイブス",
+      "horse_id": "2021101521",
+      "sex_age": "牡1",
+      "weight_carried": 58.0,
+      "jockey": "菊沢一樹",
+      "trainer": "高柳瑞樹",
+      "finish_time": "1:10.6",
+      "margin": "3.1/2",
+      "win_odds": 18.8,
+      "popularity": 6,
+      "horse_weight": 482,
+      "horse_weight_diff": -12,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "変わらず"
+      }
+    },
+    {
+      "rank": 9,
+      "gate_number": 7,
+      "horse_number": 14,
+      "horse_name": "レストプレドゥモア",
+      "horse_id": "2022101418",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "秋山稔樹",
+      "trainer": "小林真也",
+      "finish_time": "1:10.6",
+      "margin": "アタマ",
+      "win_odds": 37.1,
+      "popularity": 10,
+      "horse_weight": 460,
+      "horse_weight_diff": -12,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "D",
+        "eval_text": "直線伸欠"
+      }
+    },
+    {
+      "rank": 10,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "オロパタジン",
+      "horse_id": "2022102567",
+      "sex_age": "牡5",
+      "weight_carried": 58.0,
+      "jockey": "横山琉人",
+      "trainer": "相沢郁",
+      "finish_time": "1:10.9",
+      "margin": "1.1/2",
+      "win_odds": 45.8,
+      "popularity": 11,
+      "horse_weight": 466,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "気配上昇"
+      }
+    },
+    {
+      "rank": 11,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "サイコウダネ",
+      "horse_id": "2021102701",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "遠藤汰月",
+      "trainer": "天間昭一",
+      "finish_time": "1:11.2",
+      "margin": "2",
+      "win_odds": 181.2,
+      "popularity": 16,
+      "horse_weight": 454,
+      "horse_weight_diff": -8,
+      "sire": "タリスマニックTalismanic(英)",
+      "dam": "ジェムディーラー",
+      "dam_sire": "キングズベストKing's Best(米)",
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "多少良化"
+      }
+    },
+    {
+      "rank": 12,
+      "gate_number": 2,
+      "horse_number": 4,
+      "horse_name": "オコジュ",
+      "horse_id": "2020101265",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "江田照男",
+      "trainer": "矢嶋大樹",
+      "finish_time": "1:11.3",
+      "margin": "3/4",
+      "win_odds": 71.9,
+      "popularity": 13,
+      "horse_weight": 472,
+      "horse_weight_diff": 0,
+      "sire": "ロゴタイプ",
+      "dam": "マロンコート",
+      "dam_sire": "ハービンジャーHarbinger(英)",
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "目立たず"
+      }
+    },
+    {
+      "rank": 13,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "メイショウハボマイ",
+      "horse_id": "2022102841",
+      "sex_age": "牡5",
+      "weight_carried": 58.0,
+      "jockey": "黛弘人",
+      "trainer": "本田優",
+      "finish_time": "1:11.5",
+      "margin": "1",
+      "win_odds": 113.5,
+      "popularity": 15,
+      "horse_weight": 470,
+      "horse_weight_diff": -8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "変わらず"
+      }
+    },
+    {
+      "rank": 14,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "エコロレオナ",
+      "horse_id": "2022110110",
+      "sex_age": "牝3",
+      "weight_carried": 53.0,
+      "jockey": "和田陽希",
+      "trainer": "森秀行",
+      "finish_time": "1:11.7",
+      "margin": "1",
+      "win_odds": 20.3,
+      "popularity": 7,
+      "horse_weight": 432,
+      "horse_weight_diff": -8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "好気合"
+      }
+    },
+    {
+      "rank": 15,
+      "gate_number": 7,
+      "horse_number": 13,
+      "horse_name": "マカニ",
+      "horse_id": "2022104370",
+      "sex_age": "牝3",
+      "weight_carried": 53.0,
+      "jockey": "森田誠也",
+      "trainer": "尾形和幸",
+      "finish_time": "1:13.2",
+      "margin": "9",
+      "win_odds": 24.7,
+      "popularity": 9,
+      "horse_weight": 470,
+      "horse_weight_diff": -4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "出来は良"
+      }
+    },
+    {
+      "rank": 16,
+      "gate_number": 5,
+      "horse_number": 10,
+      "horse_name": "リアンエターナル",
+      "horse_id": "2022104499",
+      "sex_age": "牝4",
+      "weight_carried": 56.0,
+      "jockey": "武藤雅",
+      "trainer": "武藤善則",
+      "finish_time": "1:13.6",
+      "margin": "2.1/2",
+      "win_odds": 49.6,
+      "popularity": 12,
+      "horse_weight": 434,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "好気配"
       }
     }
   ],
@@ -360,7 +672,27 @@
           "model_score": 8.787025907935608e-06,
           "ev_score": 3.514810363174243e-05
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "12": "ヒラボクカレラ",
+        "8": "ケイアイマウンガ",
+        "3": "バルジール",
+        "15": "ナンヨークリスタル",
+        "2": "ノーブルミステリー",
+        "6": "グランデスフィーダ",
+        "16": "シャーンゴッセ",
+        "7": "グッドヴァイブス",
+        "14": "レストプレドゥモア",
+        "1": "オロパタジン",
+        "11": "サイコウダネ",
+        "4": "オコジュ",
+        "5": "メイショウハボマイ",
+        "9": "エコロレオナ",
+        "13": "マカニ",
+        "10": "リアンエターナル"
+      }
     },
     {
       "prediction_id": 1796,
@@ -405,7 +737,27 @@
           "model_score": 0.00013695074203242614,
           "ev_score": 0.00041085222609727845
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "12": "ヒラボクカレラ",
+        "8": "ケイアイマウンガ",
+        "3": "バルジール",
+        "15": "ナンヨークリスタル",
+        "2": "ノーブルミステリー",
+        "6": "グランデスフィーダ",
+        "16": "シャーンゴッセ",
+        "7": "グッドヴァイブス",
+        "14": "レストプレドゥモア",
+        "1": "オロパタジン",
+        "11": "サイコウダネ",
+        "4": "オコジュ",
+        "5": "メイショウハボマイ",
+        "9": "エコロレオナ",
+        "13": "マカニ",
+        "10": "リアンエターナル"
+      }
     },
     {
       "prediction_id": 1797,
@@ -436,7 +788,27 @@
           "model_score": 0.029452149456867884,
           "ev_score": 0.023561719565494306
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "12": "ヒラボクカレラ",
+        "8": "ケイアイマウンガ",
+        "3": "バルジール",
+        "15": "ナンヨークリスタル",
+        "2": "ノーブルミステリー",
+        "6": "グランデスフィーダ",
+        "16": "シャーンゴッセ",
+        "7": "グッドヴァイブス",
+        "14": "レストプレドゥモア",
+        "1": "オロパタジン",
+        "11": "サイコウダネ",
+        "4": "オコジュ",
+        "5": "メイショウハボマイ",
+        "9": "エコロレオナ",
+        "13": "マカニ",
+        "10": "リアンエターナル"
+      }
     },
     {
       "prediction_id": 1798,
@@ -467,7 +839,27 @@
           "model_score": 0.029452149456867884,
           "ev_score": 0.010308252309903761
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "12": "ヒラボクカレラ",
+        "8": "ケイアイマウンガ",
+        "3": "バルジール",
+        "15": "ナンヨークリスタル",
+        "2": "ノーブルミステリー",
+        "6": "グランデスフィーダ",
+        "16": "シャーンゴッセ",
+        "7": "グッドヴァイブス",
+        "14": "レストプレドゥモア",
+        "1": "オロパタジン",
+        "11": "サイコウダネ",
+        "4": "オコジュ",
+        "5": "メイショウハボマイ",
+        "9": "エコロレオナ",
+        "13": "マカニ",
+        "10": "リアンエターナル"
+      }
     },
     {
       "prediction_id": 1799,
@@ -519,7 +911,27 @@
           "model_score": 7.738926553384203,
           "ev_score": 7.738926553384203
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "12": "ヒラボクカレラ",
+        "8": "ケイアイマウンガ",
+        "3": "バルジール",
+        "15": "ナンヨークリスタル",
+        "2": "ノーブルミステリー",
+        "6": "グランデスフィーダ",
+        "16": "シャーンゴッセ",
+        "7": "グッドヴァイブス",
+        "14": "レストプレドゥモア",
+        "1": "オロパタジン",
+        "11": "サイコウダネ",
+        "4": "オコジュ",
+        "5": "メイショウハボマイ",
+        "9": "エコロレオナ",
+        "13": "マカニ",
+        "10": "リアンエターナル"
+      }
     },
     {
       "prediction_id": 1800,
@@ -550,7 +962,27 @@
           "model_score": 0.008951097302330938,
           "ev_score": 0.03580438920932375
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "12": "ヒラボクカレラ",
+        "8": "ケイアイマウンガ",
+        "3": "バルジール",
+        "15": "ナンヨークリスタル",
+        "2": "ノーブルミステリー",
+        "6": "グランデスフィーダ",
+        "16": "シャーンゴッセ",
+        "7": "グッドヴァイブス",
+        "14": "レストプレドゥモア",
+        "1": "オロパタジン",
+        "11": "サイコウダネ",
+        "4": "オコジュ",
+        "5": "メイショウハボマイ",
+        "9": "エコロレオナ",
+        "13": "マカニ",
+        "10": "リアンエターナル"
+      }
     },
     {
       "prediction_id": 1801,
@@ -609,7 +1041,27 @@
           "model_score": 0.0016274307491312527,
           "ev_score": 0.032548614982625054
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "12": "ヒラボクカレラ",
+        "8": "ケイアイマウンガ",
+        "3": "バルジール",
+        "15": "ナンヨークリスタル",
+        "2": "ノーブルミステリー",
+        "6": "グランデスフィーダ",
+        "16": "シャーンゴッセ",
+        "7": "グッドヴァイブス",
+        "14": "レストプレドゥモア",
+        "1": "オロパタジン",
+        "11": "サイコウダネ",
+        "4": "オコジュ",
+        "5": "メイショウハボマイ",
+        "9": "エコロレオナ",
+        "13": "マカニ",
+        "10": "リアンエターナル"
+      }
     },
     {
       "prediction_id": 1809,
@@ -640,7 +1092,27 @@
           "model_score": 1.7498157112997024,
           "ev_score": 1.7498157112997024
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "12": "ヒラボクカレラ",
+        "8": "ケイアイマウンガ",
+        "3": "バルジール",
+        "15": "ナンヨークリスタル",
+        "2": "ノーブルミステリー",
+        "6": "グランデスフィーダ",
+        "16": "シャーンゴッセ",
+        "7": "グッドヴァイブス",
+        "14": "レストプレドゥモア",
+        "1": "オロパタジン",
+        "11": "サイコウダネ",
+        "4": "オコジュ",
+        "5": "メイショウハボマイ",
+        "9": "エコロレオナ",
+        "13": "マカニ",
+        "10": "リアンエターナル"
+      }
     },
     {
       "prediction_id": 1810,
@@ -699,7 +1171,27 @@
           "model_score": 1.8852471101596286,
           "ev_score": 1.8852471101596286
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 8,
+      "horse_num_to_name": {
+        "12": "ヒラボクカレラ",
+        "8": "ケイアイマウンガ",
+        "3": "バルジール",
+        "15": "ナンヨークリスタル",
+        "2": "ノーブルミステリー",
+        "6": "グランデスフィーダ",
+        "16": "シャーンゴッセ",
+        "7": "グッドヴァイブス",
+        "14": "レストプレドゥモア",
+        "1": "オロパタジン",
+        "11": "サイコウダネ",
+        "4": "オコジュ",
+        "5": "メイショウハボマイ",
+        "9": "エコロレオナ",
+        "13": "マカニ",
+        "10": "リアンエターナル"
+      }
     },
     {
       "prediction_id": 1811,
@@ -730,7 +1222,27 @@
           "model_score": 0.03159782487247077,
           "ev_score": 0.025278259897976618
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "12": "ヒラボクカレラ",
+        "8": "ケイアイマウンガ",
+        "3": "バルジール",
+        "15": "ナンヨークリスタル",
+        "2": "ノーブルミステリー",
+        "6": "グランデスフィーダ",
+        "16": "シャーンゴッセ",
+        "7": "グッドヴァイブス",
+        "14": "レストプレドゥモア",
+        "1": "オロパタジン",
+        "11": "サイコウダネ",
+        "4": "オコジュ",
+        "5": "メイショウハボマイ",
+        "9": "エコロレオナ",
+        "13": "マカニ",
+        "10": "リアンエターナル"
+      }
     },
     {
       "prediction_id": 1812,
@@ -775,7 +1287,27 @@
           "model_score": 0.22043052966946208,
           "ev_score": 0.6612915890083862
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "12": "ヒラボクカレラ",
+        "8": "ケイアイマウンガ",
+        "3": "バルジール",
+        "15": "ナンヨークリスタル",
+        "2": "ノーブルミステリー",
+        "6": "グランデスフィーダ",
+        "16": "シャーンゴッセ",
+        "7": "グッドヴァイブス",
+        "14": "レストプレドゥモア",
+        "1": "オロパタジン",
+        "11": "サイコウダネ",
+        "4": "オコジュ",
+        "5": "メイショウハボマイ",
+        "9": "エコロレオナ",
+        "13": "マカニ",
+        "10": "リアンエターナル"
+      }
     },
     {
       "prediction_id": 1813,
@@ -806,7 +1338,27 @@
           "model_score": 0.015831280944772753,
           "ev_score": 0.023746921417159127
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "12": "ヒラボクカレラ",
+        "8": "ケイアイマウンガ",
+        "3": "バルジール",
+        "15": "ナンヨークリスタル",
+        "2": "ノーブルミステリー",
+        "6": "グランデスフィーダ",
+        "16": "シャーンゴッセ",
+        "7": "グッドヴァイブス",
+        "14": "レストプレドゥモア",
+        "1": "オロパタジン",
+        "11": "サイコウダネ",
+        "4": "オコジュ",
+        "5": "メイショウハボマイ",
+        "9": "エコロレオナ",
+        "13": "マカニ",
+        "10": "リアンエターナル"
+      }
     },
     {
       "prediction_id": 1814,
@@ -837,7 +1389,27 @@
           "model_score": 0.013520101409531467,
           "ev_score": 0.05408040563812586
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "12": "ヒラボクカレラ",
+        "8": "ケイアイマウンガ",
+        "3": "バルジール",
+        "15": "ナンヨークリスタル",
+        "2": "ノーブルミステリー",
+        "6": "グランデスフィーダ",
+        "16": "シャーンゴッセ",
+        "7": "グッドヴァイブス",
+        "14": "レストプレドゥモア",
+        "1": "オロパタジン",
+        "11": "サイコウダネ",
+        "4": "オコジュ",
+        "5": "メイショウハボマイ",
+        "9": "エコロレオナ",
+        "13": "マカニ",
+        "10": "リアンエターナル"
+      }
     }
   ],
   "training_evals": {

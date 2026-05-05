@@ -12,47 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "アロマデローサ",
-      "horse_id": "2020103729",
-      "sex_age": "牝3",
-      "weight_carried": 53.0,
-      "jockey": "亀田温心",
-      "trainer": "池添学",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "キンシャサノキセキ",
-      "dam": "ローズウィスパー",
-      "dam_sire": "ワークフォースWorkforce(英)"
-    },
-    {
-      "rank": 2,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "ナイトスラッガー",
-      "horse_id": "2021101603",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "川田将雅",
-      "trainer": "小栗実",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ルーラーシップ",
-      "dam": "トーホウアマポーラ",
-      "dam_sire": "フジキセキ"
-    },
-    {
-      "rank": 3,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "ラビットアイ",
@@ -62,7 +22,7 @@
       "jockey": "松山弘平",
       "trainer": "鈴木孝志",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -82,7 +42,7 @@
       "jockey": "田口貫太",
       "trainer": "梅田智之",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -90,6 +50,26 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "アロマデローサ",
+      "horse_id": "2020103729",
+      "sex_age": "牝3",
+      "weight_carried": 53.0,
+      "jockey": "亀田温心",
+      "trainer": "池添学",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "キンシャサノキセキ",
+      "dam": "ローズウィスパー",
+      "dam_sire": "ワークフォースWorkforce(英)"
     },
     {
       "rank": null,
@@ -102,7 +82,7 @@
       "jockey": "小沢大仁",
       "trainer": "杉山晴紀",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -110,6 +90,26 @@
       "sire": "ドゥラメンテ",
       "dam": "ジェラシー",
       "dam_sire": "ハービンジャーHarbinger(英)"
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "ナイトスラッガー",
+      "horse_id": "2021101603",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "川田将雅",
+      "trainer": "小栗実",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ルーラーシップ",
+      "dam": "トーホウアマポーラ",
+      "dam_sire": "フジキセキ"
     },
     {
       "rank": null,
@@ -122,7 +122,7 @@
       "jockey": "北村友一",
       "trainer": "河嶋宏樹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +142,7 @@
       "jockey": "高杉吏麒",
       "trainer": "安田翔伍",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +162,7 @@
       "jockey": "秋山稔樹",
       "trainer": "宮徹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +182,7 @@
       "jockey": "坂井瑠星",
       "trainer": "佐々木晶",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -198,6 +198,12 @@
       "combination": "3",
       "payout": 1230,
       "popularity": 8
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "9",
+      "payout": 9000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -224,15 +230,33 @@
       "popularity": 21
     },
     {
+      "bet_type": "枠連",
+      "combination": "1",
+      "payout": 23008,
+      "popularity": null
+    },
+    {
       "bet_type": "馬連",
       "combination": "3-5",
       "payout": 4200,
       "popularity": 27
     },
     {
+      "bet_type": "馬連",
+      "combination": "4",
+      "payout": 9050,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "1-5",
       "payout": 520,
+      "popularity": 3
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3",
+      "payout": 50000,
       "popularity": 3
     },
     {
@@ -254,10 +278,34 @@
       "popularity": 55
     },
     {
+      "bet_type": "馬単",
+      "combination": "3",
+      "payout": 5000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-3-5",
       "payout": 5280,
       "popularity": 27
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "10",
+      "payout": 1501,
+      "popularity": 50
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "14-20-2",
+      "payout": 90103,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5",
+      "payout": 20003,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

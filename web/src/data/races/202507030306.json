@@ -12,27 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 6,
-      "horse_number": 8,
-      "horse_name": "グラヴィス",
-      "horse_id": "2021105831",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "坂井瑠星",
-      "trainer": "矢作芳人",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ハーツクライ",
-      "dam": "ラヴズオンリーミーLoves Only Me(米)",
-      "dam_sire": "Storm Cat(米)"
-    },
-    {
-      "rank": 2,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "キングオブフジ",
@@ -42,7 +22,7 @@
       "jockey": "中井裕二",
       "trainer": "角田晃一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -50,26 +30,6 @@
       "sire": "ヘニーヒューズHenny Hughes(米)",
       "dam": "ヘイローフジ",
       "dam_sire": "キングヘイロー"
-    },
-    {
-      "rank": 3,
-      "gate_number": 6,
-      "horse_number": 7,
-      "horse_name": "ワンダースティング",
-      "horse_id": "2018102956",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "太宰啓介",
-      "trainer": "渡辺薫彦",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "マクフィMakfi(英)",
-      "dam": "ワンダーノンブーレ",
-      "dam_sire": "デヒアDehere(米)"
     },
     {
       "rank": null,
@@ -82,7 +42,7 @@
       "jockey": "田口貫太",
       "trainer": "谷潔",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +62,7 @@
       "jockey": "幸英明",
       "trainer": "安達昭夫",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +82,7 @@
       "jockey": "川須栄彦",
       "trainer": "安達昭夫",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +102,7 @@
       "jockey": "団野大成",
       "trainer": "中村直也",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +122,7 @@
       "jockey": "吉村誠之",
       "trainer": "清水久詞",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -170,6 +130,46 @@
       "sire": "シニスターミニスターSinister Minister(米)",
       "dam": "ヴォルカン",
       "dam_sire": "ロードカナロア"
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 7,
+      "horse_name": "ワンダースティング",
+      "horse_id": "2018102956",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "太宰啓介",
+      "trainer": "渡辺薫彦",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "マクフィMakfi(英)",
+      "dam": "ワンダーノンブーレ",
+      "dam_sire": "デヒアDehere(米)"
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 8,
+      "horse_name": "グラヴィス",
+      "horse_id": "2021105831",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "坂井瑠星",
+      "trainer": "矢作芳人",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ハーツクライ",
+      "dam": "ラヴズオンリーミーLoves Only Me(米)",
+      "dam_sire": "Storm Cat(米)"
     },
     {
       "rank": null,
@@ -182,7 +182,7 @@
       "jockey": "松山弘平",
       "trainer": "橋口慎介",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -202,7 +202,7 @@
       "jockey": "和田竜二",
       "trainer": "大橋勇樹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -222,7 +222,7 @@
       "jockey": "西塚洸二",
       "trainer": "笹田和秀",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -242,7 +242,7 @@
       "jockey": "川又賢治",
       "trainer": "吉村圭司",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -258,6 +258,12 @@
       "combination": "8",
       "payout": 810,
       "popularity": 2
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "12",
+      "payout": 12000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -290,6 +296,18 @@
       "popularity": 8
     },
     {
+      "bet_type": "馬連",
+      "combination": "2-60",
+      "payout": 3010,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 60000,
+      "popularity": 1
+    },
+    {
       "bet_type": "ワイド",
       "combination": "1-8",
       "payout": 800,
@@ -308,16 +326,46 @@
       "popularity": 12
     },
     {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 40020,
+      "popularity": 70
+    },
+    {
       "bet_type": "馬単",
       "combination": "8→1",
       "payout": 5520,
       "popularity": 15
     },
     {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 8000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-7-8",
       "payout": 8080,
       "popularity": 26
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "11-10",
+      "payout": 1101,
+      "popularity": 70
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "8",
+      "payout": 80708,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "11",
+      "payout": 40012,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

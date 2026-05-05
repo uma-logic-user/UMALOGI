@@ -4,249 +4,15 @@
   "date": "2026-05-03",
   "venue": "京都",
   "race_number": 5,
-  "distance": 0,
-  "surface": "",
+  "distance": 1800,
+  "surface": "芝",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "曇",
+  "condition": "良",
   "year": "2026",
   "results": [
     {
       "rank": 1,
-      "gate_number": 8,
-      "horse_number": 11,
-      "horse_name": "リン",
-      "horse_id": "2023101576",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "岩田望来",
-      "trainer": "四位洋文",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.043,
-      "ev_score": 0.2022,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.781,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "サイレントワルツ",
-      "horse_id": "2023106722",
-      "sex_age": "牝4",
-      "weight_carried": 55.0,
-      "jockey": "川須栄彦",
-      "trainer": "小椋研介",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.043,
-      "ev_score": 6.172,
-      "kelly_fraction": 0.0036,
-      "manji_ev": 0.2598,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "テンダーワーズ",
-      "horse_id": "2023103359",
-      "sex_age": "牝5",
-      "weight_carried": 55.0,
-      "jockey": "北村友一",
-      "trainer": "中尾秀正",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0437,
-      "ev_score": 2.5206,
-      "kelly_fraction": 0.0027,
-      "manji_ev": 0.5112,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "ジーティーウタマロ",
-      "horse_id": "2023100823",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "戸崎圭太",
-      "trainer": "鈴木孝志",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0479,
-      "ev_score": 0.225,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.2263,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "ロスニーニョス",
-      "horse_id": "2023103280",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "古川吉洋",
-      "trainer": "大根田裕",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0874,
-      "ev_score": 7.9033,
-      "kelly_fraction": 0.0077,
-      "manji_ev": 1.4978,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "スノースケープ",
-      "horse_id": "2023107516",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "川田将雅",
-      "trainer": "中内田充",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0437,
-      "ev_score": 0.1573,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.5136,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 6,
-      "horse_name": "リノルアナ",
-      "horse_id": "2023102878",
-      "sex_age": "牡1",
-      "weight_carried": 57.0,
-      "jockey": "酒井学",
-      "trainer": "坂口智康",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.057,
-      "ev_score": 2.4663,
-      "kelly_fraction": 0.0035,
-      "manji_ev": 0.5478,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 7,
-      "horse_name": "ラミエルノムスコ",
-      "horse_id": "2023103248",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "武豊",
-      "trainer": "千田輝彦",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.1338,
-      "ev_score": 0.8697,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.9115,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 8,
-      "horse_name": "メイショウショカツ",
-      "horse_id": "2023101207",
-      "sex_age": "牡5",
-      "weight_carried": 57.0,
-      "jockey": "幸英明",
-      "trainer": "石橋守",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.1021,
-      "ev_score": 0.8777,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.7423,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
       "gate_number": 7,
       "horse_number": 9,
       "horse_name": "オックスアイ",
@@ -255,12 +21,12 @@
       "weight_carried": 57.0,
       "jockey": "吉村誠之",
       "trainer": "清水久詞",
-      "finish_time": null,
+      "finish_time": "1:46.1",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 21.6,
+      "popularity": 7,
+      "horse_weight": 508,
+      "horse_weight_diff": 2,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -272,7 +38,137 @@
       "odds_velocity": null
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 7,
+      "horse_number": 8,
+      "horse_name": "メイショウショカツ",
+      "horse_id": "2023101207",
+      "sex_age": "牡5",
+      "weight_carried": 57.0,
+      "jockey": "幸英明",
+      "trainer": "石橋守",
+      "finish_time": "1:46.1",
+      "margin": "ハナ",
+      "win_odds": 12.2,
+      "popularity": 6,
+      "horse_weight": 440,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1021,
+      "ev_score": 0.8777,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.7423,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "スノースケープ",
+      "horse_id": "2023107516",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "川田将雅",
+      "trainer": "中内田充",
+      "finish_time": "1:46.1",
+      "margin": "ハナ",
+      "win_odds": 3.5,
+      "popularity": 2,
+      "horse_weight": 466,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0437,
+      "ev_score": 0.1573,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.5136,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 4,
+      "gate_number": 6,
+      "horse_number": 7,
+      "horse_name": "ラミエルノムスコ",
+      "horse_id": "2023103248",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "武豊",
+      "trainer": "千田輝彦",
+      "finish_time": "1:46.4",
+      "margin": "1.3/4",
+      "win_odds": 4.8,
+      "popularity": 3,
+      "horse_weight": 486,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1338,
+      "ev_score": 0.8697,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.9115,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 5,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "テンダーワーズ",
+      "horse_id": "2023103359",
+      "sex_age": "牝5",
+      "weight_carried": 55.0,
+      "jockey": "北村友一",
+      "trainer": "中尾秀正",
+      "finish_time": "1:46.6",
+      "margin": "1.1/4",
+      "win_odds": 126.1,
+      "popularity": 9,
+      "horse_weight": 444,
+      "horse_weight_diff": 10,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0437,
+      "ev_score": 2.5206,
+      "kelly_fraction": 0.0027,
+      "manji_ev": 0.5112,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 6,
+      "gate_number": 6,
+      "horse_number": 6,
+      "horse_name": "リノルアナ",
+      "horse_id": "2023102878",
+      "sex_age": "牡1",
+      "weight_carried": 57.0,
+      "jockey": "酒井学",
+      "trainer": "坂口智康",
+      "finish_time": "1:46.6",
+      "margin": "クビ",
+      "win_odds": 57.9,
+      "popularity": 8,
+      "horse_weight": 464,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.057,
+      "ev_score": 2.4663,
+      "kelly_fraction": 0.0035,
+      "manji_ev": 0.5478,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 7,
       "gate_number": 8,
       "horse_number": 10,
       "horse_name": "ビロングトゥミー",
@@ -281,12 +177,12 @@
       "weight_carried": 55.0,
       "jockey": "松山弘平",
       "trainer": "前川恭子",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:46.7",
+      "margin": "1/2",
+      "win_odds": 9.6,
+      "popularity": 5,
+      "horse_weight": 436,
+      "horse_weight_diff": 0,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -294,6 +190,110 @@
       "ev_score": 0.8735,
       "kelly_fraction": 0.0,
       "manji_ev": 2.1378,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 8,
+      "gate_number": 8,
+      "horse_number": 11,
+      "horse_name": "リン",
+      "horse_id": "2023101576",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "岩田望来",
+      "trainer": "四位洋文",
+      "finish_time": "1:46.9",
+      "margin": "1.1/4",
+      "win_odds": 3.1,
+      "popularity": 1,
+      "horse_weight": 456,
+      "horse_weight_diff": -10,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.043,
+      "ev_score": 0.2022,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.781,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 9,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "ロスニーニョス",
+      "horse_id": "2023103280",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "国分優作",
+      "trainer": "大根田裕",
+      "finish_time": "1:47.4",
+      "margin": "3",
+      "win_odds": 240.6,
+      "popularity": 10,
+      "horse_weight": 466,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0874,
+      "ev_score": 7.9033,
+      "kelly_fraction": 0.0077,
+      "manji_ev": 1.4978,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 10,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "ジーティーウタマロ",
+      "horse_id": "2023100823",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "戸崎圭太",
+      "trainer": "鈴木孝志",
+      "finish_time": "1:47.5",
+      "margin": "3/4",
+      "win_odds": 5.5,
+      "popularity": 4,
+      "horse_weight": 464,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0479,
+      "ev_score": 0.225,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.2263,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 11,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "サイレントワルツ",
+      "horse_id": "2023106722",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "川須栄彦",
+      "trainer": "小椋研介",
+      "finish_time": "1:47.9",
+      "margin": "2.1/2",
+      "win_odds": 277.9,
+      "popularity": 11,
+      "horse_weight": 404,
+      "horse_weight_diff": 6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.043,
+      "ev_score": 6.172,
+      "kelly_fraction": 0.0036,
+      "manji_ev": 0.2598,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     }
@@ -377,7 +377,22 @@
           "model_score": 0.1965909090909091,
           "ev_score": 0.9829545454545454
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     },
     {
       "prediction_id": 21725,
@@ -415,7 +430,22 @@
           "model_score": 0.15473218096457533,
           "ev_score": 0.46419654289372597
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     },
     {
       "prediction_id": 21726,
@@ -502,7 +532,22 @@
           "model_score": 0.0792039994434724,
           "ev_score": 2.376119983304172
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     },
     {
       "prediction_id": 21727,
@@ -589,7 +634,22 @@
           "model_score": 0.0792039994434724,
           "ev_score": 0.9900499930434049
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     },
     {
       "prediction_id": 21728,
@@ -648,7 +708,22 @@
           "model_score": 0.04128822200102258,
           "ev_score": 2.4772933200613547
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     },
     {
       "prediction_id": 21729,
@@ -707,7 +782,22 @@
           "model_score": 0.043159141434290824,
           "ev_score": 5.0
         }
-      ]
+      ],
+      "bet_form": "軸2頭ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     },
     {
       "prediction_id": 21730,
@@ -829,7 +919,22 @@
           "model_score": 0.043159141434290824,
           "ev_score": 6.0
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 12,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     },
     {
       "prediction_id": 21731,
@@ -853,7 +958,22 @@
           "model_score": 0.8846739268673532,
           "ev_score": 0.8846739268673532
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     },
     {
       "prediction_id": 21732,
@@ -891,7 +1011,22 @@
           "model_score": 0.8467119902178695,
           "ev_score": 0.8467119902178695
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     },
     {
       "prediction_id": 21733,
@@ -978,7 +1113,22 @@
           "model_score": 0.059943981703090815,
           "ev_score": 3.093109455879486
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     },
     {
       "prediction_id": 21734,
@@ -1065,7 +1215,22 @@
           "model_score": 0.059943981703090815,
           "ev_score": 1.2887956066164525
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     },
     {
       "prediction_id": 21735,
@@ -1124,7 +1289,22 @@
           "model_score": 0.03004842535634241,
           "ev_score": 3.1009974967745366
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     },
     {
       "prediction_id": 21738,
@@ -1162,7 +1342,22 @@
           "model_score": 0.02100339316424788,
           "ev_score": 5.0
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     },
     {
       "prediction_id": 21739,
@@ -1200,7 +1395,22 @@
           "model_score": 0.2203802292210304,
           "ev_score": 6.611406876630912
         }
-      ]
+      ],
+      "bet_form": "軸1頭ながし",
+      "n_tickets": 5,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     },
     {
       "prediction_id": 21740,
@@ -1238,7 +1448,22 @@
           "model_score": 0.03673003820350507,
           "ev_score": 5.50950573052576
         }
-      ]
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 12,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     },
     {
       "prediction_id": 21741,
@@ -1332,7 +1557,22 @@
           "model_score": 0.043010752688172046,
           "ev_score": 6.172043010752689
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     },
     {
       "prediction_id": 22241,
@@ -1356,7 +1596,22 @@
           "model_score": 0.1746987951807229,
           "ev_score": 0.8734939759036144
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     },
     {
       "prediction_id": 22242,
@@ -1394,7 +1649,22 @@
           "model_score": 0.14659191445208752,
           "ev_score": 0.43977574335626257
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     },
     {
       "prediction_id": 22243,
@@ -1481,7 +1751,22 @@
           "model_score": 0.08337178855459632,
           "ev_score": 2.5011536566378894
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     },
     {
       "prediction_id": 22244,
@@ -1568,7 +1853,22 @@
           "model_score": 0.08337178855459632,
           "ev_score": 1.042147356932454
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     },
     {
       "prediction_id": 22245,
@@ -1627,7 +1927,22 @@
           "model_score": 0.042946818107778645,
           "ev_score": 2.5768090864667186
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     },
     {
       "prediction_id": 22246,
@@ -1686,7 +2001,22 @@
           "model_score": 0.05026998220837004,
           "ev_score": 5.0
         }
-      ]
+      ],
+      "bet_form": "軸2頭ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     },
     {
       "prediction_id": 22247,
@@ -1808,7 +2138,22 @@
           "model_score": 0.05026998220837004,
           "ev_score": 6.0
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 12,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     },
     {
       "prediction_id": 22248,
@@ -1832,7 +2177,22 @@
           "model_score": 2.137750744544891,
           "ev_score": 2.137750744544891
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     },
     {
       "prediction_id": 22249,
@@ -1870,7 +2230,22 @@
           "model_score": 1.7174478578747179,
           "ev_score": 1.7174478578747179
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     },
     {
       "prediction_id": 22250,
@@ -1957,7 +2332,22 @@
           "model_score": 0.08612615548886247,
           "ev_score": 2.5837846646658744
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     },
     {
       "prediction_id": 22251,
@@ -2044,7 +2434,22 @@
           "model_score": 0.08612615548886247,
           "ev_score": 1.076576943610781
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     },
     {
       "prediction_id": 22252,
@@ -2103,7 +2508,22 @@
           "model_score": 0.04477300094171063,
           "ev_score": 2.686380056502638
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     },
     {
       "prediction_id": 22255,
@@ -2141,7 +2561,22 @@
           "model_score": 0.03416210341877435,
           "ev_score": 5.0
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     },
     {
       "prediction_id": 22256,
@@ -2179,7 +2614,22 @@
           "model_score": 0.26098951313802354,
           "ev_score": 7.829685394140706
         }
-      ]
+      ],
+      "bet_form": "軸1頭ながし",
+      "n_tickets": 5,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     },
     {
       "prediction_id": 22257,
@@ -2217,7 +2667,22 @@
           "model_score": 0.043498252189670586,
           "ev_score": 6.524737828450588
         }
-      ]
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 12,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     },
     {
       "prediction_id": 22258,
@@ -2311,7 +2776,22 @@
           "model_score": 0.043010752688172046,
           "ev_score": 6.172043010752689
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     },
     {
       "prediction_id": 22259,
@@ -2342,7 +2822,22 @@
           "model_score": 0.06844395465577131,
           "ev_score": 2.0533186396731393
         }
-      ]
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 7,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     },
     {
       "prediction_id": 22260,
@@ -2373,7 +2868,22 @@
           "model_score": 0.0351509977561548,
           "ev_score": 2.109059865369288
         }
-      ]
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 8,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     },
     {
       "prediction_id": 22261,
@@ -2411,7 +2921,22 @@
           "model_score": 0.007703738123023149,
           "ev_score": 5.777803592267362
         }
-      ]
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 12,
+      "horse_num_to_name": {
+        "9": "オックスアイ",
+        "8": "メイショウショカツ",
+        "5": "スノースケープ",
+        "7": "ラミエルノムスコ",
+        "2": "テンダーワーズ",
+        "6": "リノルアナ",
+        "10": "ビロングトゥミー",
+        "11": "リン",
+        "4": "ロスニーニョス",
+        "3": "ジーティーウタマロ",
+        "1": "サイレントワルツ"
+      }
     }
   ],
   "training_evals": {},

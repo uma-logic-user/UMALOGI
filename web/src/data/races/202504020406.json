@@ -12,7 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "サダムオプシス",
@@ -22,7 +22,7 @@
       "jockey": "藤懸貴志",
       "trainer": "平田修",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -30,46 +30,6 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
-    },
-    {
-      "rank": 2,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "フナデ",
-      "horse_id": "2021103790",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "津村明秀",
-      "trainer": "嘉藤貴行",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 3,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "ナイトスラッガー",
-      "horse_id": "2021101603",
-      "sex_age": "牡4",
-      "weight_carried": 58.0,
-      "jockey": "戸崎圭太",
-      "trainer": "小栗実",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ルーラーシップ",
-      "dam": "トーホウアマポーラ",
-      "dam_sire": "フジキセキ"
     },
     {
       "rank": null,
@@ -82,7 +42,7 @@
       "jockey": "杉原誠人",
       "trainer": "矢嶋大樹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -90,6 +50,46 @@
       "sire": "エピファネイア",
       "dam": "トリプライト",
       "dam_sire": "ワイルドラッシュWild Rush(米)"
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "ナイトスラッガー",
+      "horse_id": "2021101603",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "戸崎圭太",
+      "trainer": "小栗実",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ルーラーシップ",
+      "dam": "トーホウアマポーラ",
+      "dam_sire": "フジキセキ"
+    },
+    {
+      "rank": null,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "フナデ",
+      "horse_id": "2021103790",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "津村明秀",
+      "trainer": "嘉藤貴行",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -102,7 +102,7 @@
       "jockey": "菅原明良",
       "trainer": "古賀慎明",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -118,6 +118,12 @@
       "combination": "1",
       "payout": 200,
       "popularity": 1
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "5",
+      "payout": 5000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -138,6 +144,12 @@
       "popularity": 3
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-30",
+      "payout": 2040,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "1-3",
       "payout": 110,
@@ -156,16 +168,46 @@
       "popularity": 3
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 80030,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "1→4",
       "payout": 860,
       "popularity": 4
     },
     {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 4000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-3-4",
       "payout": 130,
       "popularity": 1
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-10",
+      "payout": 103,
+      "popularity": 40
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-30",
+      "payout": 30103,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1",
+      "payout": 20002,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

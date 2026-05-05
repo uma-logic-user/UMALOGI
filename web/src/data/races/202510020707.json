@@ -12,47 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "レディメローラ",
-      "horse_id": "2020101229",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "和田竜二",
-      "trainer": "北出成人",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ビッグアーサー",
-      "dam": "ビエンナーレ",
-      "dam_sire": "ステイゴールド"
-    },
-    {
-      "rank": 2,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "ジェニファー",
-      "horse_id": "2021103932",
-      "sex_age": "牝3",
-      "weight_carried": 53.0,
-      "jockey": "田山旺佑",
-      "trainer": "浜田多実",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "アニマルキングダムAnimal Kingdom(米)",
-      "dam": "スイングサンデー",
-      "dam_sire": "スペシャルウィーク"
-    },
-    {
-      "rank": 3,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "アンダースコア",
@@ -62,7 +22,7 @@
       "jockey": "田口貫太",
       "trainer": "庄野靖志",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -70,6 +30,46 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "ジェニファー",
+      "horse_id": "2021103932",
+      "sex_age": "牝3",
+      "weight_carried": 53.0,
+      "jockey": "田山旺佑",
+      "trainer": "浜田多実",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "アニマルキングダムAnimal Kingdom(米)",
+      "dam": "スイングサンデー",
+      "dam_sire": "スペシャルウィーク"
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "レディメローラ",
+      "horse_id": "2020101229",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "和田竜二",
+      "trainer": "北出成人",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ビッグアーサー",
+      "dam": "ビエンナーレ",
+      "dam_sire": "ステイゴールド"
     },
     {
       "rank": null,
@@ -82,7 +82,7 @@
       "jockey": "河原田菜",
       "trainer": "羽月友彦",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +102,7 @@
       "jockey": "角田大和",
       "trainer": "中竹和也",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +122,7 @@
       "jockey": "川田将雅",
       "trainer": "西村真幸",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +142,7 @@
       "jockey": "団野大成",
       "trainer": "武幸四郎",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +162,7 @@
       "jockey": "加藤祥太",
       "trainer": "庄野靖志",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +182,7 @@
       "jockey": "永島まな",
       "trainer": "西園正都",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -198,6 +198,12 @@
       "combination": "3",
       "payout": 4050,
       "popularity": 8
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "9",
+      "payout": 9000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -224,10 +230,34 @@
       "popularity": 21
     },
     {
+      "bet_type": "枠連",
+      "combination": "4",
+      "payout": 5008,
+      "popularity": null
+    },
+    {
       "bet_type": "馬連",
       "combination": "2-3",
       "payout": 9520,
       "popularity": 18
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "19-90",
+      "payout": 8020,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "5",
+      "payout": 50030,
+      "popularity": 10
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 30000,
+      "popularity": 11
     },
     {
       "bet_type": "ワイド",
@@ -254,10 +284,28 @@
       "popularity": 43
     },
     {
+      "bet_type": "馬単",
+      "combination": "2",
+      "payout": 3000,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "29-70",
+      "payout": 2501,
+      "popularity": 20
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-2-3",
       "payout": 21650,
       "popularity": 41
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "17-80-1",
+      "payout": 80103,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 7,
-      "horse_number": 8,
-      "horse_name": "エンペラーズソード",
-      "horse_id": "2022106691",
-      "sex_age": "騸3",
-      "weight_carried": 57.0,
-      "jockey": "菅原明良",
-      "trainer": "高木登",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 2,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "アンパドゥ",
-      "horse_id": "2021110030",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "ルメール",
-      "trainer": "木村哲也",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 3,
-      "gate_number": 8,
-      "horse_number": 9,
-      "horse_name": "アルゲンテウス",
-      "horse_id": "2019105497",
-      "sex_age": "騸7",
-      "weight_carried": 58.0,
-      "jockey": "武豊",
-      "trainer": "小島茂之",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "シルバーステート",
-      "dam": "ラダームブランシェ",
-      "dam_sire": "チチカステナンゴChichicastenango(仏)"
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "池添謙一",
       "trainer": "緒方努",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -90,6 +30,26 @@
       "sire": "ハーツクライ",
       "dam": "シルヴァーカップSilver Cup(愛)",
       "dam_sire": "Almutawakel"
+    },
+    {
+      "rank": null,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "アンパドゥ",
+      "horse_id": "2021110030",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "ルメール",
+      "trainer": "木村哲也",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -102,7 +62,7 @@
       "jockey": "レーン",
       "trainer": "藤岡健一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +82,7 @@
       "jockey": "横山典弘",
       "trainer": "昆貢",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +102,7 @@
       "jockey": "Ｃ．デム",
       "trainer": "斉藤崇史",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +122,7 @@
       "jockey": "菅原隆一",
       "trainer": "蛯名利弘",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +142,7 @@
       "jockey": "大野拓弥",
       "trainer": "岩戸孝樹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -190,6 +150,46 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 8,
+      "horse_name": "エンペラーズソード",
+      "horse_id": "2022106691",
+      "sex_age": "騸3",
+      "weight_carried": 57.0,
+      "jockey": "菅原明良",
+      "trainer": "高木登",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 9,
+      "horse_name": "アルゲンテウス",
+      "horse_id": "2019105497",
+      "sex_age": "騸7",
+      "weight_carried": 58.0,
+      "jockey": "武豊",
+      "trainer": "小島茂之",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "シルバーステート",
+      "dam": "ラダームブランシェ",
+      "dam_sire": "チチカステナンゴChichicastenango(仏)"
     },
     {
       "rank": null,
@@ -202,7 +202,7 @@
       "jockey": "嶋田純次",
       "trainer": "手塚貴久",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -218,6 +218,12 @@
       "combination": "8",
       "payout": 550,
       "popularity": 3
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "10",
+      "payout": 10000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -250,6 +256,12 @@
       "popularity": 3
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-80",
+      "payout": 3020,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "2-8",
       "payout": 320,
@@ -268,16 +280,46 @@
       "popularity": 19
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 10010,
+      "popularity": 90
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 70000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "8→2",
       "payout": 1650,
       "popularity": 6
     },
     {
+      "bet_type": "馬単",
+      "combination": "2",
+      "payout": 8000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "2-8-9",
       "payout": 3990,
       "popularity": 14
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "13-20",
+      "payout": 1902,
+      "popularity": 90
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3-20",
+      "payout": 30809,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

@@ -4,11 +4,11 @@
   "date": "2026-04-26",
   "venue": "東京",
   "race_number": 8,
-  "distance": 0,
-  "surface": "",
+  "distance": 1400,
+  "surface": "芝",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "晴",
+  "condition": "良",
   "year": "2026",
   "results": [
     {
@@ -21,12 +21,12 @@
       "weight_carried": 56.0,
       "jockey": "津村明秀",
       "trainer": "宮田敬介",
-      "finish_time": null,
+      "finish_time": "1:20.7",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 3.1,
+      "popularity": 1,
+      "horse_weight": 460,
+      "horse_weight_diff": 4,
       "sire": "レイデオロ",
       "dam": "ノッテビアンカNotte Bianca(仏)",
       "dam_sire": "Kendargent",
@@ -47,12 +47,12 @@
       "weight_carried": 56.0,
       "jockey": "荻野極",
       "trainer": "池上昌和",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:20.7",
+      "margin": "アタマ",
+      "win_odds": 6.4,
+      "popularity": 5,
+      "horse_weight": 458,
+      "horse_weight_diff": 12,
       "sire": "ブリックスアンドモルタルBricks and Mortar(米)",
       "dam": "オヒア",
       "dam_sire": "ブラックタイド",
@@ -73,12 +73,12 @@
       "weight_carried": 56.0,
       "jockey": "田辺裕信",
       "trainer": "久保田貴",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:20.7",
+      "margin": "アタマ",
+      "win_odds": 5.3,
+      "popularity": 3,
+      "horse_weight": 490,
+      "horse_weight_diff": 16,
       "sire": "ロジャーバローズ",
       "dam": "レインオンザデューンRain On The Dune(英)",
       "dam_sire": "Frankel",
@@ -90,7 +90,33 @@
       "odds_velocity": null
     },
     {
-      "rank": null,
+      "rank": 4,
+      "gate_number": 6,
+      "horse_number": 7,
+      "horse_name": "エイヨーアメジスト",
+      "horse_id": "2022109145",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "酒井学",
+      "trainer": "高橋康之",
+      "finish_time": "1:20.7",
+      "margin": "ハナ",
+      "win_odds": 109.1,
+      "popularity": 9,
+      "horse_weight": 450,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0558,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.7299,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
+      "rank": 5,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "キャッスルレイク",
@@ -99,12 +125,12 @@
       "weight_carried": 56.0,
       "jockey": "松山弘平",
       "trainer": "松下武士",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:20.7",
+      "margin": "アタマ",
+      "win_odds": 5.4,
+      "popularity": 4,
+      "horse_weight": 480,
+      "horse_weight_diff": 0,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -116,7 +142,7 @@
       "odds_velocity": null
     },
     {
-      "rank": null,
+      "rank": 6,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "レイククレセント",
@@ -125,12 +151,12 @@
       "weight_carried": 56.0,
       "jockey": "レーン",
       "trainer": "大竹正博",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:20.9",
+      "margin": "1",
+      "win_odds": 4.7,
+      "popularity": 2,
+      "horse_weight": 424,
+      "horse_weight_diff": 0,
       "sire": "ハーツクライ",
       "dam": "ジュリエットシアトルGiuliet Seattle(亜)",
       "dam_sire": "Seattle Fitz",
@@ -142,59 +168,33 @@
       "odds_velocity": null
     },
     {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "スカイビート",
-      "horse_id": "2022101490",
-      "sex_age": "牝1",
-      "weight_carried": 56.0,
-      "jockey": "佐々木大",
-      "trainer": "野中賢二",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0596,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.7058,
-      "odds_vs_morning": null,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "フェデルミエール",
-      "horse_id": "2022104479",
+      "rank": 7,
+      "gate_number": 7,
+      "horse_number": 9,
+      "horse_name": "ルージュスエルテ",
+      "horse_id": "2021105863",
       "sex_age": "牝4",
       "weight_carried": 56.0,
-      "jockey": "木幡巧也",
-      "trainer": "中川公成",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0855,
+      "jockey": "横山和生",
+      "trainer": "手塚貴徳",
+      "finish_time": "1:20.9",
+      "margin": "クビ",
+      "win_odds": 11.8,
+      "popularity": 6,
+      "horse_weight": 480,
+      "horse_weight_diff": -2,
+      "sire": "ハーツクライ",
+      "dam": "リュズキナRyzhkina(愛)",
+      "dam_sire": "Storm Cat(米)",
+      "honmei_score": 0.0755,
       "ev_score": 0.0,
       "kelly_fraction": 0.0,
-      "manji_ev": 0.7882,
+      "manji_ev": 0.7253,
       "odds_vs_morning": null,
       "odds_velocity": null
     },
     {
-      "rank": null,
+      "rank": 8,
       "gate_number": 6,
       "horse_number": 6,
       "horse_name": "リュウノタブーク",
@@ -203,12 +203,12 @@
       "weight_carried": 56.0,
       "jockey": "原田和真",
       "trainer": "伊坂重信",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:20.9",
+      "margin": "ハナ",
+      "win_odds": 189.9,
+      "popularity": 11,
+      "horse_weight": 450,
+      "horse_weight_diff": 2,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -220,33 +220,7 @@
       "odds_velocity": null
     },
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 7,
-      "horse_name": "エイヨーアメジスト",
-      "horse_id": "2022109145",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "酒井学",
-      "trainer": "高橋康之",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0558,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.7299,
-      "odds_vs_morning": null,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
+      "rank": 9,
       "gate_number": 7,
       "horse_number": 8,
       "horse_name": "ライツユーアップ",
@@ -255,12 +229,12 @@
       "weight_carried": 56.0,
       "jockey": "ディー",
       "trainer": "角田晃一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:21.2",
+      "margin": "1.1/2",
+      "win_odds": 15.5,
+      "popularity": 7,
+      "horse_weight": 446,
+      "horse_weight_diff": -6,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -272,28 +246,54 @@
       "odds_velocity": null
     },
     {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 9,
-      "horse_name": "ルージュスエルテ",
-      "horse_id": "2021105863",
-      "sex_age": "牝4",
+      "rank": 10,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "スカイビート",
+      "horse_id": "2022101490",
+      "sex_age": "牝1",
       "weight_carried": 56.0,
-      "jockey": "横山和生",
-      "trainer": "手塚貴徳",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ハーツクライ",
-      "dam": "リュズキナRyzhkina(愛)",
-      "dam_sire": "Storm Cat(米)",
-      "honmei_score": 0.0755,
+      "jockey": "佐々木大",
+      "trainer": "野中賢二",
+      "finish_time": "1:21.5",
+      "margin": "2",
+      "win_odds": 38.9,
+      "popularity": 8,
+      "horse_weight": 456,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0596,
       "ev_score": 0.0,
       "kelly_fraction": 0.0,
-      "manji_ev": 0.7253,
+      "manji_ev": 0.7058,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
+      "rank": 11,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "フェデルミエール",
+      "horse_id": "2022104479",
+      "sex_age": "牝4",
+      "weight_carried": 56.0,
+      "jockey": "木幡巧也",
+      "trainer": "中川公成",
+      "finish_time": "1:21.5",
+      "margin": "1/2",
+      "win_odds": 152.9,
+      "popularity": 10,
+      "horse_weight": 502,
+      "horse_weight_diff": 11,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0855,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.7882,
       "odds_vs_morning": null,
       "odds_velocity": null
     }
@@ -479,7 +479,22 @@
           "model_score": 0.08547008547008547,
           "ev_score": 0.08547008547008547
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "ボンヌソワレ",
+        "11": "ホウオウシェリー",
+        "10": "サクセスカラー",
+        "7": "エイヨーアメジスト",
+        "1": "キャッスルレイク",
+        "2": "レイククレセント",
+        "9": "ルージュスエルテ",
+        "6": "リュウノタブーク",
+        "8": "ライツユーアップ",
+        "4": "スカイビート",
+        "5": "フェデルミエール"
+      }
     },
     {
       "prediction_id": 12769,
@@ -517,7 +532,22 @@
           "model_score": 0.07883449059919648,
           "ev_score": 0.23650347179758943
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "3": "ボンヌソワレ",
+        "11": "ホウオウシェリー",
+        "10": "サクセスカラー",
+        "7": "エイヨーアメジスト",
+        "1": "キャッスルレイク",
+        "2": "レイククレセント",
+        "9": "ルージュスエルテ",
+        "6": "リュウノタブーク",
+        "8": "ライツユーアップ",
+        "4": "スカイビート",
+        "5": "フェデルミエール"
+      }
     },
     {
       "prediction_id": 12770,
@@ -548,7 +578,22 @@
           "model_score": 0.018181818181818184,
           "ev_score": 1.090909090909091
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "ボンヌソワレ",
+        "11": "ホウオウシェリー",
+        "10": "サクセスカラー",
+        "7": "エイヨーアメジスト",
+        "1": "キャッスルレイク",
+        "2": "レイククレセント",
+        "9": "ルージュスエルテ",
+        "6": "リュウノタブーク",
+        "8": "ライツユーアップ",
+        "4": "スカイビート",
+        "5": "フェデルミエール"
+      }
     },
     {
       "prediction_id": 12771,
@@ -579,7 +624,22 @@
           "model_score": 0.018181818181818184,
           "ev_score": 0.45454545454545464
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "ボンヌソワレ",
+        "11": "ホウオウシェリー",
+        "10": "サクセスカラー",
+        "7": "エイヨーアメジスト",
+        "1": "キャッスルレイク",
+        "2": "レイククレセント",
+        "9": "ルージュスエルテ",
+        "6": "リュウノタブーク",
+        "8": "ライツユーアップ",
+        "4": "スカイビート",
+        "5": "フェデルミエール"
+      }
     },
     {
       "prediction_id": 12772,
@@ -638,7 +698,22 @@
           "model_score": 0.0060606060606060615,
           "ev_score": 1.8181818181818183
         }
-      ]
+      ],
+      "bet_form": "軸2頭ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "3": "ボンヌソワレ",
+        "11": "ホウオウシェリー",
+        "10": "サクセスカラー",
+        "7": "エイヨーアメジスト",
+        "1": "キャッスルレイク",
+        "2": "レイククレセント",
+        "9": "ルージュスエルテ",
+        "6": "リュウノタブーク",
+        "8": "ライツユーアップ",
+        "4": "スカイビート",
+        "5": "フェデルミエール"
+      }
     },
     {
       "prediction_id": 12773,
@@ -760,7 +835,22 @@
           "model_score": 0.0060606060606060615,
           "ev_score": 6.0
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "3": "ボンヌソワレ",
+        "11": "ホウオウシェリー",
+        "10": "サクセスカラー",
+        "7": "エイヨーアメジスト",
+        "1": "キャッスルレイク",
+        "2": "レイククレセント",
+        "9": "ルージュスエルテ",
+        "6": "リュウノタブーク",
+        "8": "ライツユーアップ",
+        "4": "スカイビート",
+        "5": "フェデルミエール"
+      }
     },
     {
       "prediction_id": 12774,
@@ -784,7 +874,22 @@
           "model_score": 0.7881783786387629,
           "ev_score": 0.7881783786387629
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "ボンヌソワレ",
+        "11": "ホウオウシェリー",
+        "10": "サクセスカラー",
+        "7": "エイヨーアメジスト",
+        "1": "キャッスルレイク",
+        "2": "レイククレセント",
+        "9": "ルージュスエルテ",
+        "6": "リュウノタブーク",
+        "8": "ライツユーアップ",
+        "4": "スカイビート",
+        "5": "フェデルミエール"
+      }
     },
     {
       "prediction_id": 12775,
@@ -822,7 +927,22 @@
           "model_score": 0.7498454344229636,
           "ev_score": 0.7498454344229636
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "3": "ボンヌソワレ",
+        "11": "ホウオウシェリー",
+        "10": "サクセスカラー",
+        "7": "エイヨーアメジスト",
+        "1": "キャッスルレイク",
+        "2": "レイククレセント",
+        "9": "ルージュスエルテ",
+        "6": "リュウノタブーク",
+        "8": "ライツユーアップ",
+        "4": "スカイビート",
+        "5": "フェデルミエール"
+      }
     },
     {
       "prediction_id": 12776,
@@ -853,7 +973,22 @@
           "model_score": 0.03146332953371609,
           "ev_score": 1.8877997720229653
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "ボンヌソワレ",
+        "11": "ホウオウシェリー",
+        "10": "サクセスカラー",
+        "7": "エイヨーアメジスト",
+        "1": "キャッスルレイク",
+        "2": "レイククレセント",
+        "9": "ルージュスエルテ",
+        "6": "リュウノタブーク",
+        "8": "ライツユーアップ",
+        "4": "スカイビート",
+        "5": "フェデルミエール"
+      }
     },
     {
       "prediction_id": 12777,
@@ -884,7 +1019,22 @@
           "model_score": 0.03146332953371609,
           "ev_score": 0.7865832383429022
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "ボンヌソワレ",
+        "11": "ホウオウシェリー",
+        "10": "サクセスカラー",
+        "7": "エイヨーアメジスト",
+        "1": "キャッスルレイク",
+        "2": "レイククレセント",
+        "9": "ルージュスエルテ",
+        "6": "リュウノタブーク",
+        "8": "ライツユーアップ",
+        "4": "スカイビート",
+        "5": "フェデルミエール"
+      }
     },
     {
       "prediction_id": 12780,
@@ -922,7 +1072,22 @@
           "model_score": 0.013874540285319203,
           "ev_score": 4.1623620855957615
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "3": "ボンヌソワレ",
+        "11": "ホウオウシェリー",
+        "10": "サクセスカラー",
+        "7": "エイヨーアメジスト",
+        "1": "キャッスルレイク",
+        "2": "レイククレセント",
+        "9": "ルージュスエルテ",
+        "6": "リュウノタブーク",
+        "8": "ライツユーアップ",
+        "4": "スカイビート",
+        "5": "フェデルミエール"
+      }
     },
     {
       "prediction_id": 12781,
@@ -960,7 +1125,22 @@
           "model_score": 0.0657372102961797,
           "ev_score": 1.9721163088853908
         }
-      ]
+      ],
+      "bet_form": "軸2頭ながし",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "3": "ボンヌソワレ",
+        "11": "ホウオウシェリー",
+        "10": "サクセスカラー",
+        "7": "エイヨーアメジスト",
+        "1": "キャッスルレイク",
+        "2": "レイククレセント",
+        "9": "ルージュスエルテ",
+        "6": "リュウノタブーク",
+        "8": "ライツユーアップ",
+        "4": "スカイビート",
+        "5": "フェデルミエール"
+      }
     },
     {
       "prediction_id": 12782,
@@ -998,7 +1178,22 @@
           "model_score": 0.01095620171602995,
           "ev_score": 1.6434302574044923
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "3": "ボンヌソワレ",
+        "11": "ホウオウシェリー",
+        "10": "サクセスカラー",
+        "7": "エイヨーアメジスト",
+        "1": "キャッスルレイク",
+        "2": "レイククレセント",
+        "9": "ルージュスエルテ",
+        "6": "リュウノタブーク",
+        "8": "ライツユーアップ",
+        "4": "スカイビート",
+        "5": "フェデルミエール"
+      }
     },
     {
       "prediction_id": 12783,
@@ -1092,7 +1287,22 @@
           "model_score": 0.053862089375554895,
           "ev_score": 0.0
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "3": "ボンヌソワレ",
+        "11": "ホウオウシェリー",
+        "10": "サクセスカラー",
+        "7": "エイヨーアメジスト",
+        "1": "キャッスルレイク",
+        "2": "レイククレセント",
+        "9": "ルージュスエルテ",
+        "6": "リュウノタブーク",
+        "8": "ライツユーアップ",
+        "4": "スカイビート",
+        "5": "フェデルミエール"
+      }
     }
   ],
   "training_evals": {},

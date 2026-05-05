@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "アッカン",
-      "horse_id": "2023106288",
-      "sex_age": "牡3",
-      "weight_carried": 56.0,
-      "jockey": "池添謙一",
-      "trainer": "奥村武",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 2,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "フォルテアンジェロ",
-      "horse_id": "2023107345",
-      "sex_age": "牡3",
-      "weight_carried": 56.0,
-      "jockey": "戸崎圭太",
-      "trainer": "上原佑紀",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "フィエールマン",
-      "dam": "レディアンジェラLady Angela(愛)",
-      "dam_sire": "Dark Angel"
-    },
-    {
-      "rank": 3,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "コスモエルヴァル",
-      "horse_id": "2023106426",
-      "sex_age": "牡3",
-      "weight_carried": 56.0,
-      "jockey": "丹内祐次",
-      "trainer": "黒岩陽一",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,67 @@
       "jockey": "ルメール",
       "trainer": "黒岩陽一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "フォルテアンジェロ",
+      "horse_id": "2023107345",
+      "sex_age": "牡3",
+      "weight_carried": 56.0,
+      "jockey": "戸崎圭太",
+      "trainer": "上原佑紀",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "フィエールマン",
+      "dam": "レディアンジェラLady Angela(愛)",
+      "dam_sire": "Dark Angel"
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "アッカン",
+      "horse_id": "2023106288",
+      "sex_age": "牡3",
+      "weight_carried": 56.0,
+      "jockey": "池添謙一",
+      "trainer": "奥村武",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "コスモエルヴァル",
+      "horse_id": "2023106426",
+      "sex_age": "牡3",
+      "weight_carried": 56.0,
+      "jockey": "丹内祐次",
+      "trainer": "黒岩陽一",
+      "finish_time": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +102,7 @@
       "jockey": "横山武史",
       "trainer": "萩原清",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -120,6 +120,12 @@
       "popularity": 4
     },
     {
+      "bet_type": "単勝",
+      "combination": "5",
+      "payout": 5000,
+      "popularity": null
+    },
+    {
       "bet_type": "複勝",
       "combination": "2",
       "payout": 140,
@@ -132,10 +138,22 @@
       "popularity": 4
     },
     {
+      "bet_type": "枠連",
+      "combination": "1",
+      "payout": 18004,
+      "popularity": null
+    },
+    {
       "bet_type": "馬連",
       "combination": "2-3",
       "payout": 900,
       "popularity": 3
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "2-70",
+      "payout": 4020,
+      "popularity": null
     },
     {
       "bet_type": "ワイド",
@@ -156,16 +174,46 @@
       "popularity": 9
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 40020,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "3→2",
       "payout": 3210,
       "popularity": 10
     },
     {
+      "bet_type": "馬単",
+      "combination": "2",
+      "payout": 3000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "2-3-4",
       "payout": 2900,
       "popularity": 9
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "15-80",
+      "payout": 902,
+      "popularity": 40
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3-90",
+      "payout": 50304,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "8",
+      "payout": 60007,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

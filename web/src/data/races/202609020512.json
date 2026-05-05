@@ -4,11 +4,11 @@
   "date": "2026-04-11",
   "venue": "阪神",
   "race_number": 12,
-  "distance": 0,
-  "surface": "",
+  "distance": 1200,
+  "surface": "ダート",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "晴",
+  "condition": "重",
   "year": "2026",
   "results": [
     {
@@ -17,10 +17,10 @@
       "horse_number": 1,
       "horse_name": "ゼンノツキヨミ",
       "horse_id": "2021106983",
-      "sex_age": "牝5",
+      "sex_age": "牝3",
       "weight_carried": 56.0,
-      "jockey": "松山",
-      "trainer": "栗東秋山",
+      "jockey": "松山弘平",
+      "trainer": "秋山真一",
       "finish_time": "1:10.7",
       "margin": "@",
       "win_odds": 17.1,
@@ -47,12 +47,12 @@
       "horse_number": 11,
       "horse_name": "クリノオリーブ",
       "horse_id": "2021102259",
-      "sex_age": "牝5",
+      "sex_age": "牝7",
       "weight_carried": 53.0,
-      "jockey": "▲田山",
-      "trainer": "栗東谷",
+      "jockey": "田山旺佑",
+      "trainer": "谷潔",
       "finish_time": "1:10.7",
-      "margin": "@",
+      "margin": "ハナ",
       "win_odds": 23.9,
       "popularity": 7,
       "horse_weight": 470,
@@ -72,6 +72,66 @@
       }
     },
     {
+      "rank": 3,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "タイセイディアマン",
+      "horse_id": "2022107082",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "岩田望来",
+      "trainer": "大橋勇樹",
+      "finish_time": "1:10.9",
+      "margin": "1",
+      "win_odds": 7.4,
+      "popularity": 4,
+      "horse_weight": 464,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0001,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.9923,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "遅れ上々"
+      }
+    },
+    {
+      "rank": 4,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "ドンパッショーネ",
+      "horse_id": "2022105965",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "団野大成",
+      "trainer": "斉藤崇史",
+      "finish_time": "1:10.9",
+      "margin": "クビ",
+      "win_odds": 2.8,
+      "popularity": 1,
+      "horse_weight": 522,
+      "horse_weight_diff": 12,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.9258,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "伸び上々"
+      }
+    },
+    {
       "rank": 5,
       "gate_number": 2,
       "horse_number": 4,
@@ -79,10 +139,10 @@
       "horse_id": "2021101057",
       "sex_age": "牡5",
       "weight_carried": 58.0,
-      "jockey": "幸",
-      "trainer": "栗東北出",
+      "jockey": "幸英明",
+      "trainer": "北出成人",
       "finish_time": "1:11.2",
-      "margin": "@",
+      "margin": "1.1/2",
       "win_odds": 26.9,
       "popularity": 8,
       "horse_weight": 462,
@@ -107,12 +167,12 @@
       "horse_number": 12,
       "horse_name": "フェンダー",
       "horse_id": "2021105753",
-      "sex_age": "牡5",
+      "sex_age": "牡3",
       "weight_carried": 58.0,
-      "jockey": "西村淳",
-      "trainer": "栗東柴田",
+      "jockey": "西村淳也",
+      "trainer": "柴田卓",
       "finish_time": "1:11.2",
-      "margin": "@",
+      "margin": "クビ",
       "win_odds": 10.5,
       "popularity": 5,
       "horse_weight": 530,
@@ -137,12 +197,12 @@
       "horse_number": 3,
       "horse_name": "メモリーグラス",
       "horse_id": "2020107095",
-      "sex_age": "牡6",
+      "sex_age": "牡4",
       "weight_carried": 58.0,
-      "jockey": "菱田",
-      "trainer": "美浦松永康",
+      "jockey": "菱田裕二",
+      "trainer": "松永康利",
       "finish_time": "1:11.4",
-      "margin": "@",
+      "margin": "3/4",
       "win_odds": 204.4,
       "popularity": 15,
       "horse_weight": 492,
@@ -167,12 +227,12 @@
       "horse_number": 15,
       "horse_name": "ズバットマサムネ",
       "horse_id": "2021105711",
-      "sex_age": "セ5",
+      "sex_age": "騸3",
       "weight_carried": 58.0,
-      "jockey": "荻野琢",
-      "trainer": "栗東杉山佳",
+      "jockey": "荻野琢真",
+      "trainer": "杉山佳明",
       "finish_time": "1:11.5",
-      "margin": "@",
+      "margin": "1/2",
       "win_odds": 46.2,
       "popularity": 11,
       "horse_weight": 492,
@@ -192,17 +252,47 @@
       }
     },
     {
+      "rank": 9,
+      "gate_number": 7,
+      "horse_number": 13,
+      "horse_name": "キタノライブリー",
+      "horse_id": "2022106471",
+      "sex_age": "牝1",
+      "weight_carried": 56.0,
+      "jockey": "西塚洸二",
+      "trainer": "本間忍",
+      "finish_time": "1:11.5",
+      "margin": "クビ",
+      "win_odds": 49.4,
+      "popularity": 12,
+      "horse_weight": 436,
+      "horse_weight_diff": -14,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0001,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.4092,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "出来は良"
+      }
+    },
+    {
       "rank": 10,
       "gate_number": 5,
       "horse_number": 9,
       "horse_name": "カワキタマナレア",
       "horse_id": "2022106169",
-      "sex_age": "牝4",
+      "sex_age": "牝3",
       "weight_carried": 56.0,
-      "jockey": "鮫島駿",
-      "trainer": "栗東杉山佳",
+      "jockey": "鮫島克駿",
+      "trainer": "杉山佳明",
       "finish_time": "1:11.6",
-      "margin": "@",
+      "margin": "クビ",
       "win_odds": 37.6,
       "popularity": 10,
       "horse_weight": 422,
@@ -227,12 +317,12 @@
       "horse_number": 5,
       "horse_name": "ヨシノヤッタルデー",
       "horse_id": "2021102336",
-      "sex_age": "牡5",
+      "sex_age": "牡3",
       "weight_carried": 56.0,
-      "jockey": "△柴田裕",
-      "trainer": "栗東中竹",
+      "jockey": "柴田裕一",
+      "trainer": "中竹和也",
       "finish_time": "1:11.6",
-      "margin": "@",
+      "margin": "クビ",
       "win_odds": 189.1,
       "popularity": 14,
       "horse_weight": 468,
@@ -249,6 +339,156 @@
       "training_eval": {
         "eval_grade": "B",
         "eval_text": "出来は良"
+      }
+    },
+    {
+      "rank": 12,
+      "gate_number": 1,
+      "horse_number": 2,
+      "horse_name": "ゲクウ",
+      "horse_id": "2022103739",
+      "sex_age": "牡1",
+      "weight_carried": 58.0,
+      "jockey": "菅原隆一",
+      "trainer": "小手川準",
+      "finish_time": "1:11.6",
+      "margin": "ハナ",
+      "win_odds": 305.6,
+      "popularity": 16,
+      "horse_weight": 492,
+      "horse_weight_diff": -15,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.8598,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "余力有り"
+      }
+    },
+    {
+      "rank": 13,
+      "gate_number": 7,
+      "horse_number": 14,
+      "horse_name": "ビーマックス",
+      "horse_id": "2022100729",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "高杉吏麒",
+      "trainer": "藤野健太",
+      "finish_time": "1:12.0",
+      "margin": "2.1/2",
+      "win_odds": 27.1,
+      "popularity": 9,
+      "horse_weight": 496,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0001,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "元気一杯"
+      }
+    },
+    {
+      "rank": 14,
+      "gate_number": 5,
+      "horse_number": 10,
+      "horse_name": "レイユール",
+      "horse_id": "2022101464",
+      "sex_age": "牝4",
+      "weight_carried": 56.0,
+      "jockey": "吉村誠之",
+      "trainer": "手塚貴久",
+      "finish_time": "1:12.0",
+      "margin": "ハナ",
+      "win_odds": 129.8,
+      "popularity": 13,
+      "horse_weight": 416,
+      "horse_weight_diff": -8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0001,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "C",
+        "eval_text": "多少良化"
+      }
+    },
+    {
+      "rank": 15,
+      "gate_number": 4,
+      "horse_number": 8,
+      "horse_name": "ジャスパーソレイユ",
+      "horse_id": "2022110111",
+      "sex_age": "牡1",
+      "weight_carried": 58.0,
+      "jockey": "川田将雅",
+      "trainer": "森秀行",
+      "finish_time": "1:12.1",
+      "margin": "クビ",
+      "win_odds": 5.1,
+      "popularity": 3,
+      "horse_weight": 482,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.9923,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "素軽い"
+      }
+    },
+    {
+      "rank": 16,
+      "gate_number": 8,
+      "horse_number": 16,
+      "horse_name": "ミッキーマカパ",
+      "horse_id": "2022105737",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "坂井瑠星",
+      "trainer": "田中博康",
+      "finish_time": "1:12.2",
+      "margin": "3/4",
+      "win_odds": 4.6,
+      "popularity": 2,
+      "horse_weight": 528,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0,
+      "odds_vs_morning": null,
+      "odds_velocity": null,
+      "training_eval": {
+        "eval_grade": "B",
+        "eval_text": "気配上々"
       }
     }
   ],
@@ -500,7 +740,27 @@
           "model_score": 0.00015311565741757407,
           "ev_score": 0.00015311565741757407
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "1": "ゼンノツキヨミ",
+        "11": "クリノオリーブ",
+        "7": "タイセイディアマン",
+        "6": "ドンパッショーネ",
+        "4": "セールヴォラン",
+        "12": "フェンダー",
+        "3": "メモリーグラス",
+        "15": "ズバットマサムネ",
+        "13": "キタノライブリー",
+        "9": "カワキタマナレア",
+        "5": "ヨシノヤッタルデー",
+        "2": "ゲクウ",
+        "14": "ビーマックス",
+        "10": "レイユール",
+        "8": "ジャスパーソレイユ",
+        "16": "ミッキーマカパ"
+      }
     },
     {
       "prediction_id": 2084,
@@ -545,7 +805,27 @@
           "model_score": 0.00013522273754796907,
           "ev_score": 0.00040566821264390724
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "1": "ゼンノツキヨミ",
+        "11": "クリノオリーブ",
+        "7": "タイセイディアマン",
+        "6": "ドンパッショーネ",
+        "4": "セールヴォラン",
+        "12": "フェンダー",
+        "3": "メモリーグラス",
+        "15": "ズバットマサムネ",
+        "13": "キタノライブリー",
+        "9": "カワキタマナレア",
+        "5": "ヨシノヤッタルデー",
+        "2": "ゲクウ",
+        "14": "ビーマックス",
+        "10": "レイユール",
+        "8": "ジャスパーソレイユ",
+        "16": "ミッキーマカパ"
+      }
     },
     {
       "prediction_id": 2085,
@@ -590,7 +870,27 @@
           "model_score": 0.33331015015919446,
           "ev_score": 0.9999304504775834
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "1": "ゼンノツキヨミ",
+        "11": "クリノオリーブ",
+        "7": "タイセイディアマン",
+        "6": "ドンパッショーネ",
+        "4": "セールヴォラン",
+        "12": "フェンダー",
+        "3": "メモリーグラス",
+        "15": "ズバットマサムネ",
+        "13": "キタノライブリー",
+        "9": "カワキタマナレア",
+        "5": "ヨシノヤッタルデー",
+        "2": "ゲクウ",
+        "14": "ビーマックス",
+        "10": "レイユール",
+        "8": "ジャスパーソレイユ",
+        "16": "ミッキーマカパ"
+      }
     },
     {
       "prediction_id": 2086,
@@ -621,7 +921,27 @@
           "model_score": 0.0373729280100807,
           "ev_score": 0.013080524803528244
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "1": "ゼンノツキヨミ",
+        "11": "クリノオリーブ",
+        "7": "タイセイディアマン",
+        "6": "ドンパッショーネ",
+        "4": "セールヴォラン",
+        "12": "フェンダー",
+        "3": "メモリーグラス",
+        "15": "ズバットマサムネ",
+        "13": "キタノライブリー",
+        "9": "カワキタマナレア",
+        "5": "ヨシノヤッタルデー",
+        "2": "ゲクウ",
+        "14": "ビーマックス",
+        "10": "レイユール",
+        "8": "ジャスパーソレイユ",
+        "16": "ミッキーマカパ"
+      }
     },
     {
       "prediction_id": 2087,
@@ -659,7 +979,27 @@
           "model_score": 0.018899561547356458,
           "ev_score": 0.028349342321034685
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "1": "ゼンノツキヨミ",
+        "11": "クリノオリーブ",
+        "7": "タイセイディアマン",
+        "6": "ドンパッショーネ",
+        "4": "セールヴォラン",
+        "12": "フェンダー",
+        "3": "メモリーグラス",
+        "15": "ズバットマサムネ",
+        "13": "キタノライブリー",
+        "9": "カワキタマナレア",
+        "5": "ヨシノヤッタルデー",
+        "2": "ゲクウ",
+        "14": "ビーマックス",
+        "10": "レイユール",
+        "8": "ジャスパーソレイユ",
+        "16": "ミッキーマカパ"
+      }
     },
     {
       "prediction_id": 2088,
@@ -690,7 +1030,27 @@
           "model_score": 0.01612364866293944,
           "ev_score": 0.06449459465175776
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "1": "ゼンノツキヨミ",
+        "11": "クリノオリーブ",
+        "7": "タイセイディアマン",
+        "6": "ドンパッショーネ",
+        "4": "セールヴォラン",
+        "12": "フェンダー",
+        "3": "メモリーグラス",
+        "15": "ズバットマサムネ",
+        "13": "キタノライブリー",
+        "9": "カワキタマナレア",
+        "5": "ヨシノヤッタルデー",
+        "2": "ゲクウ",
+        "14": "ビーマックス",
+        "10": "レイユール",
+        "8": "ジャスパーソレイユ",
+        "16": "ミッキーマカパ"
+      }
     },
     {
       "prediction_id": 2089,
@@ -777,7 +1137,27 @@
           "model_score": 0.0027815109912845575,
           "ev_score": 0.05563021982569115
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "1": "ゼンノツキヨミ",
+        "11": "クリノオリーブ",
+        "7": "タイセイディアマン",
+        "6": "ドンパッショーネ",
+        "4": "セールヴォラン",
+        "12": "フェンダー",
+        "3": "メモリーグラス",
+        "15": "ズバットマサムネ",
+        "13": "キタノライブリー",
+        "9": "カワキタマナレア",
+        "5": "ヨシノヤッタルデー",
+        "2": "ゲクウ",
+        "14": "ビーマックス",
+        "10": "レイユール",
+        "8": "ジャスパーソレイユ",
+        "16": "ミッキーマカパ"
+      }
     },
     {
       "prediction_id": 2091,
@@ -808,7 +1188,27 @@
           "model_score": 1.0841752463363852,
           "ev_score": 1.0841752463363852
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "1": "ゼンノツキヨミ",
+        "11": "クリノオリーブ",
+        "7": "タイセイディアマン",
+        "6": "ドンパッショーネ",
+        "4": "セールヴォラン",
+        "12": "フェンダー",
+        "3": "メモリーグラス",
+        "15": "ズバットマサムネ",
+        "13": "キタノライブリー",
+        "9": "カワキタマナレア",
+        "5": "ヨシノヤッタルデー",
+        "2": "ゲクウ",
+        "14": "ビーマックス",
+        "10": "レイユール",
+        "8": "ジャスパーソレイユ",
+        "16": "ミッキーマカパ"
+      }
     },
     {
       "prediction_id": 2092,
@@ -846,7 +1246,27 @@
           "model_score": 1.1685091621720476,
           "ev_score": 1.1685091621720476
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "1": "ゼンノツキヨミ",
+        "11": "クリノオリーブ",
+        "7": "タイセイディアマン",
+        "6": "ドンパッショーネ",
+        "4": "セールヴォラン",
+        "12": "フェンダー",
+        "3": "メモリーグラス",
+        "15": "ズバットマサムネ",
+        "13": "キタノライブリー",
+        "9": "カワキタマナレア",
+        "5": "ヨシノヤッタルデー",
+        "2": "ゲクウ",
+        "14": "ビーマックス",
+        "10": "レイユール",
+        "8": "ジャスパーソレイユ",
+        "16": "ミッキーマカパ"
+      }
     },
     {
       "prediction_id": 2093,
@@ -891,7 +1311,27 @@
           "model_score": 5.856626026321606e-06,
           "ev_score": 1.756987807896482e-05
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "1": "ゼンノツキヨミ",
+        "11": "クリノオリーブ",
+        "7": "タイセイディアマン",
+        "6": "ドンパッショーネ",
+        "4": "セールヴォラン",
+        "12": "フェンダー",
+        "3": "メモリーグラス",
+        "15": "ズバットマサムネ",
+        "13": "キタノライブリー",
+        "9": "カワキタマナレア",
+        "5": "ヨシノヤッタルデー",
+        "2": "ゲクウ",
+        "14": "ビーマックス",
+        "10": "レイユール",
+        "8": "ジャスパーソレイユ",
+        "16": "ミッキーマカパ"
+      }
     },
     {
       "prediction_id": 2094,
@@ -922,7 +1362,27 @@
           "model_score": 0.06104969455376781,
           "ev_score": 0.021367393093818732
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "1": "ゼンノツキヨミ",
+        "11": "クリノオリーブ",
+        "7": "タイセイディアマン",
+        "6": "ドンパッショーネ",
+        "4": "セールヴォラン",
+        "12": "フェンダー",
+        "3": "メモリーグラス",
+        "15": "ズバットマサムネ",
+        "13": "キタノライブリー",
+        "9": "カワキタマナレア",
+        "5": "ヨシノヤッタルデー",
+        "2": "ゲクウ",
+        "14": "ビーマックス",
+        "10": "レイユール",
+        "8": "ジャスパーソレイユ",
+        "16": "ミッキーマカパ"
+      }
     },
     {
       "prediction_id": 2095,
@@ -953,7 +1413,27 @@
           "model_score": 0.03094598951289529,
           "ev_score": 0.04641898426934293
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "1": "ゼンノツキヨミ",
+        "11": "クリノオリーブ",
+        "7": "タイセイディアマン",
+        "6": "ドンパッショーネ",
+        "4": "セールヴォラン",
+        "12": "フェンダー",
+        "3": "メモリーグラス",
+        "15": "ズバットマサムネ",
+        "13": "キタノライブリー",
+        "9": "カワキタマナレア",
+        "5": "ヨシノヤッタルデー",
+        "2": "ゲクウ",
+        "14": "ビーマックス",
+        "10": "レイユール",
+        "8": "ジャスパーソレイユ",
+        "16": "ミッキーマカパ"
+      }
     }
   ],
   "training_evals": {

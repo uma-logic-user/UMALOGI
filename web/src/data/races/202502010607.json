@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 8,
-      "horse_number": 11,
-      "horse_name": "クリノハレルヤ",
-      "horse_id": "2021105068",
-      "sex_age": "牝3",
-      "weight_carried": 53.0,
-      "jockey": "森田誠也",
-      "trainer": "武英智",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ドレフォンDrefong(米)",
-      "dam": "シーサイドロマンス",
-      "dam_sire": "ショウナンカンプ"
-    },
-    {
-      "rank": 2,
-      "gate_number": 6,
-      "horse_number": 6,
-      "horse_name": "ムチャスグラシアス",
-      "horse_id": "2021104217",
-      "sex_age": "牝1",
-      "weight_carried": 56.0,
-      "jockey": "丹内祐次",
-      "trainer": "菊川正達",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "カリフォルニアクロームCalifornia Chrome(米)",
-      "dam": "ロスグラシアレス",
-      "dam_sire": "シンボリクリスエス"
-    },
-    {
-      "rank": 3,
-      "gate_number": 7,
-      "horse_number": 8,
-      "horse_name": "キタノクニカラ",
-      "horse_id": "2022103316",
-      "sex_age": "牝3",
-      "weight_carried": 50.0,
-      "jockey": "古川奈穂",
-      "trainer": "小島茂之",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "横山和生",
       "trainer": "四位洋文",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +42,7 @@
       "jockey": "和田陽希",
       "trainer": "小林真也",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +62,7 @@
       "jockey": "小林美駒",
       "trainer": "坂口智康",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +82,7 @@
       "jockey": "鷲頭虎太",
       "trainer": "小栗実",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +102,7 @@
       "jockey": "鮫島克駿",
       "trainer": "渡辺薫彦",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -170,6 +110,26 @@
       "sire": "シュヴァルグラン",
       "dam": "アドマイヤテレサ",
       "dam_sire": "エリシオHelissio(仏)"
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 6,
+      "horse_name": "ムチャスグラシアス",
+      "horse_id": "2021104217",
+      "sex_age": "牝1",
+      "weight_carried": 56.0,
+      "jockey": "丹内祐次",
+      "trainer": "菊川正達",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "カリフォルニアクロームCalifornia Chrome(米)",
+      "dam": "ロスグラシアレス",
+      "dam_sire": "シンボリクリスエス"
     },
     {
       "rank": null,
@@ -182,7 +142,7 @@
       "jockey": "橋木太希",
       "trainer": "高橋康之",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -190,6 +150,26 @@
       "sire": "ヤマカツエース",
       "dam": "マリンブラスト",
       "dam_sire": "アグネスデジタル"
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 8,
+      "horse_name": "キタノクニカラ",
+      "horse_id": "2022103316",
+      "sex_age": "牝3",
+      "weight_carried": 50.0,
+      "jockey": "古川奈穂",
+      "trainer": "小島茂之",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -202,7 +182,7 @@
       "jockey": "浜中俊",
       "trainer": "宮本博",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -222,7 +202,7 @@
       "jockey": "川端海翼",
       "trainer": "小島茂之",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -230,14 +210,34 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 11,
+      "horse_name": "クリノハレルヤ",
+      "horse_id": "2021105068",
+      "sex_age": "牝3",
+      "weight_carried": 53.0,
+      "jockey": "森田誠也",
+      "trainer": "武英智",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ドレフォンDrefong(米)",
+      "dam": "シーサイドロマンス",
+      "dam_sire": "ショウナンカンプ"
     }
   ],
   "payouts": [
     {
       "bet_type": "単勝",
       "combination": "11",
-      "payout": 2540,
-      "popularity": 9
+      "payout": 11000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -264,10 +264,28 @@
       "popularity": 15
     },
     {
+      "bet_type": "枠連",
+      "combination": "2",
+      "payout": 54009,
+      "popularity": null
+    },
+    {
       "bet_type": "馬連",
       "combination": "6-11",
       "payout": 29730,
       "popularity": 48
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "6-50",
+      "payout": 9060,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "6",
+      "payout": 80000,
+      "popularity": 5
     },
     {
       "bet_type": "ワイド",
@@ -288,16 +306,52 @@
       "popularity": 47
     },
     {
+      "bet_type": "ワイド",
+      "combination": "9",
+      "payout": 70100,
+      "popularity": 80
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "11",
+      "payout": 297,
+      "popularity": 30
+    },
+    {
       "bet_type": "馬単",
       "combination": "11→6",
       "payout": 67640,
       "popularity": 95
     },
     {
+      "bet_type": "馬単",
+      "combination": "6",
+      "payout": 11000,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "42-80",
+      "payout": 3906,
+      "popularity": 80
+    },
+    {
       "bet_type": "三連複",
       "combination": "6-8-11",
       "payout": 118790,
       "popularity": 140
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "61-60-4",
+      "payout": 60811,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "61",
+      "payout": 80047,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

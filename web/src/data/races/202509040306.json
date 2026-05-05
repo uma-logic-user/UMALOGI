@@ -12,27 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "クリムゾンキャット",
-      "horse_id": "2023104439",
-      "sex_age": "牝1",
-      "weight_carried": 55.0,
-      "jockey": "松山弘平",
-      "trainer": "上村洋行",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 2,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "フィアーブル",
@@ -42,7 +22,7 @@
       "jockey": "西村淳也",
       "trainer": "長谷川浩",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -52,17 +32,17 @@
       "dam_sire": null
     },
     {
-      "rank": 3,
-      "gate_number": 5,
-      "horse_number": 6,
-      "horse_name": "シュヴェスター",
-      "horse_id": "2023104158",
+      "rank": null,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "クリムゾンキャット",
+      "horse_id": "2023104439",
       "sex_age": "牝1",
-      "weight_carried": 54.0,
-      "jockey": "高杉吏麒",
-      "trainer": "高橋亮",
+      "weight_carried": 55.0,
+      "jockey": "松山弘平",
+      "trainer": "上村洋行",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -82,7 +62,7 @@
       "jockey": "中井裕二",
       "trainer": "緒方努",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +82,7 @@
       "jockey": "岩田望来",
       "trainer": "野中賢二",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +102,27 @@
       "jockey": "武豊",
       "trainer": "茶木太樹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 6,
+      "horse_name": "シュヴェスター",
+      "horse_id": "2023104158",
+      "sex_age": "牝1",
+      "weight_carried": 54.0,
+      "jockey": "高杉吏麒",
+      "trainer": "高橋亮",
+      "finish_time": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +142,7 @@
       "jockey": "小崎綾也",
       "trainer": "小崎憲",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +162,7 @@
       "jockey": "モレイラ",
       "trainer": "東田明士",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +182,7 @@
       "jockey": "和田竜二",
       "trainer": "鈴木孝志",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -202,7 +202,7 @@
       "jockey": "鮫島克駿",
       "trainer": "藤野健太",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -222,7 +222,7 @@
       "jockey": "河原田菜",
       "trainer": "羽月友彦",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -242,7 +242,7 @@
       "jockey": "団野大成",
       "trainer": "武幸四郎",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -262,7 +262,7 @@
       "jockey": "川須栄彦",
       "trainer": "中尾秀正",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -278,6 +278,12 @@
       "combination": "2",
       "payout": 380,
       "popularity": 3
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "13",
+      "payout": 13000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -310,6 +316,18 @@
       "popularity": 7
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-80",
+      "payout": 3010,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 20000,
+      "popularity": 1
+    },
+    {
       "bet_type": "ワイド",
       "combination": "1-2",
       "payout": 680,
@@ -328,16 +346,46 @@
       "popularity": 33
     },
     {
+      "bet_type": "ワイド",
+      "combination": "3",
+      "payout": 40050,
+      "popularity": 60
+    },
+    {
       "bet_type": "馬単",
       "combination": "2→1",
       "payout": 3090,
       "popularity": 12
     },
     {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 2000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-2-6",
       "payout": 14330,
       "popularity": 47
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "16",
+      "payout": 1801,
+      "popularity": 60
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "6-80",
+      "payout": 70206,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "31",
+      "payout": 80033,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

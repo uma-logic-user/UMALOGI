@@ -4,11 +4,11 @@
   "date": "2026-04-25",
   "venue": "東京",
   "race_number": 4,
-  "distance": 0,
-  "surface": "",
+  "distance": 1800,
+  "surface": "芝",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "曇",
+  "condition": "良",
   "year": "2026",
   "results": [
     {
@@ -21,12 +21,12 @@
       "weight_carried": 55.0,
       "jockey": "ルメール",
       "trainer": "鹿戸雄一",
-      "finish_time": null,
+      "finish_time": "1:47.6",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 1.5,
+      "popularity": 1,
+      "horse_weight": 470,
+      "horse_weight_diff": -10,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -41,12 +41,12 @@
       "weight_carried": 55.0,
       "jockey": "大野拓弥",
       "trainer": "堀内岳志",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:47.6",
+      "margin": "クビ",
+      "win_odds": 7.4,
+      "popularity": 3,
+      "horse_weight": 472,
+      "horse_weight_diff": -2,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -61,158 +61,18 @@
       "weight_carried": 55.0,
       "jockey": "田辺裕信",
       "trainer": "竹内正洋",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:47.9",
+      "margin": "1.3/4",
+      "win_odds": 25.8,
+      "popularity": 6,
+      "horse_weight": 462,
+      "horse_weight_diff": 6,
       "sire": null,
       "dam": null,
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "ビオトープ",
-      "horse_id": "2023106427",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "矢野貴之",
-      "trainer": "佐藤吉勝",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 4,
-      "horse_name": "カフェオリーブ",
-      "horse_id": "2023106252",
-      "sex_age": "牝1",
-      "weight_carried": 53.0,
-      "jockey": "長浜鴻緒",
-      "trainer": "古賀慎明",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 5,
-      "horse_name": "フレキシブル",
-      "horse_id": "2023105808",
-      "sex_age": "牝4",
-      "weight_carried": 55.0,
-      "jockey": "岩田康誠",
-      "trainer": "斎藤誠",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 6,
-      "horse_name": "ミライヘノティアラ",
-      "horse_id": "2023106113",
-      "sex_age": "牝1",
-      "weight_carried": 55.0,
-      "jockey": "北村宏司",
-      "trainer": "伊藤大士",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 7,
-      "horse_name": "アンジェラス",
-      "horse_id": "2023105814",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "横山和生",
-      "trainer": "上原佑紀",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 8,
-      "horse_name": "インサラータ",
-      "horse_id": "2023107215",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "池添謙一",
-      "trainer": "小笠倫弘",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 9,
-      "horse_name": "アルケミラモリス",
-      "horse_id": "2023102074",
-      "sex_age": "牝1",
-      "weight_carried": 55.0,
-      "jockey": "吉田豊",
-      "trainer": "粕谷昌央",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 4,
       "gate_number": 6,
       "horse_number": 10,
       "horse_name": "ビップジョワ",
@@ -221,78 +81,18 @@
       "weight_carried": 55.0,
       "jockey": "横山武史",
       "trainer": "高柳瑞樹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:48.1",
+      "margin": "1.1/4",
+      "win_odds": 24.9,
+      "popularity": 5,
+      "horse_weight": 416,
+      "horse_weight_diff": 0,
       "sire": null,
       "dam": null,
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 11,
-      "horse_name": "シラカワゴウ",
-      "horse_id": "2023102734",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "原田和真",
-      "trainer": "上原博之",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 13,
-      "horse_name": "ピースフルマインド",
-      "horse_id": "2023105298",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "戸崎圭太",
-      "trainer": "伊坂重信",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 14,
-      "horse_name": "ミスデルマー",
-      "horse_id": "2023106371",
-      "sex_age": "牝3",
-      "weight_carried": 53.0,
-      "jockey": "永島まな",
-      "trainer": "和田正一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 5,
       "gate_number": 8,
       "horse_number": 15,
       "horse_name": "ルージュラベル",
@@ -301,12 +101,212 @@
       "weight_carried": 55.0,
       "jockey": "三浦皇成",
       "trainer": "鹿戸雄一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:48.4",
+      "margin": "1.3/4",
+      "win_odds": 9.3,
+      "popularity": 4,
+      "horse_weight": 426,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 6,
+      "gate_number": 7,
+      "horse_number": 13,
+      "horse_name": "ピースフルマインド",
+      "horse_id": "2023105298",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "戸崎圭太",
+      "trainer": "伊坂重信",
+      "finish_time": "1:48.5",
+      "margin": "1/2",
+      "win_odds": 5.1,
+      "popularity": 2,
+      "horse_weight": 448,
+      "horse_weight_diff": 8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 7,
+      "gate_number": 4,
+      "horse_number": 6,
+      "horse_name": "ミライヘノティアラ",
+      "horse_id": "2023106113",
+      "sex_age": "牝1",
+      "weight_carried": 55.0,
+      "jockey": "北村宏司",
+      "trainer": "伊藤大士",
+      "finish_time": "1:48.7",
+      "margin": "1.1/2",
+      "win_odds": 41.2,
+      "popularity": 8,
+      "horse_weight": 496,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 8,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "フレキシブル",
+      "horse_id": "2023105808",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "岩田康誠",
+      "trainer": "斎藤誠",
+      "finish_time": "1:48.8",
+      "margin": "クビ",
+      "win_odds": 31.7,
+      "popularity": 7,
+      "horse_weight": 440,
+      "horse_weight_diff": 8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 9,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "アルケミラモリス",
+      "horse_id": "2023102074",
+      "sex_age": "牝1",
+      "weight_carried": 55.0,
+      "jockey": "吉田豊",
+      "trainer": "粕谷昌央",
+      "finish_time": "1:48.8",
+      "margin": "アタマ",
+      "win_odds": 99.0,
+      "popularity": 10,
+      "horse_weight": 468,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 10,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "アンジェラス",
+      "horse_id": "2023105814",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "横山和生",
+      "trainer": "上原佑紀",
+      "finish_time": "1:48.9",
+      "margin": "1",
+      "win_odds": 76.4,
+      "popularity": 9,
+      "horse_weight": 428,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 11,
+      "gate_number": 3,
+      "horse_number": 4,
+      "horse_name": "カフェオリーブ",
+      "horse_id": "2023106252",
+      "sex_age": "牝1",
+      "weight_carried": 53.0,
+      "jockey": "長浜鴻緒",
+      "trainer": "古賀慎明",
+      "finish_time": "1:49.0",
+      "margin": "クビ",
+      "win_odds": 327.7,
+      "popularity": 14,
+      "horse_weight": 438,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 12,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "シラカワゴウ",
+      "horse_id": "2023102734",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "原田和真",
+      "trainer": "上原博之",
+      "finish_time": "1:49.3",
+      "margin": "2",
+      "win_odds": 281.7,
+      "popularity": 12,
+      "horse_weight": 482,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 13,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "ビオトープ",
+      "horse_id": "2023106427",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "矢野貴之",
+      "trainer": "佐藤吉勝",
+      "finish_time": "1:49.4",
+      "margin": "1/2",
+      "win_odds": 311.2,
+      "popularity": 13,
+      "horse_weight": 452,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 14,
+      "gate_number": 8,
+      "horse_number": 14,
+      "horse_name": "ミスデルマー",
+      "horse_id": "2023106371",
+      "sex_age": "牝3",
+      "weight_carried": 53.0,
+      "jockey": "永島まな",
+      "trainer": "和田正一",
+      "finish_time": "1:49.5",
+      "margin": "1/2",
+      "win_odds": 470.0,
+      "popularity": 15,
+      "horse_weight": 436,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 15,
+      "gate_number": 5,
+      "horse_number": 8,
+      "horse_name": "インサラータ",
+      "horse_id": "2023107215",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "池添謙一",
+      "trainer": "小笠倫弘",
+      "finish_time": "1:50.4",
+      "margin": "5",
+      "win_odds": 268.8,
+      "popularity": 11,
+      "horse_weight": 430,
+      "horse_weight_diff": -10,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -493,7 +493,26 @@
           "model_score": 0.021660649819494584,
           "ev_score": 0.021660649819494584
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "12": "シニャンガ",
+        "1": "カンティーナ",
+        "2": "ペカリーナ",
+        "10": "ビップジョワ",
+        "15": "ルージュラベル",
+        "13": "ピースフルマインド",
+        "6": "ミライヘノティアラ",
+        "5": "フレキシブル",
+        "9": "アルケミラモリス",
+        "7": "アンジェラス",
+        "4": "カフェオリーブ",
+        "11": "シラカワゴウ",
+        "3": "ビオトープ",
+        "14": "ミスデルマー",
+        "8": "インサラータ"
+      }
     },
     {
       "prediction_id": 6115,
@@ -531,7 +550,26 @@
           "model_score": 0.021660649819494584,
           "ev_score": 0.06498194945848375
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "12": "シニャンガ",
+        "1": "カンティーナ",
+        "2": "ペカリーナ",
+        "10": "ビップジョワ",
+        "15": "ルージュラベル",
+        "13": "ピースフルマインド",
+        "6": "ミライヘノティアラ",
+        "5": "フレキシブル",
+        "9": "アルケミラモリス",
+        "7": "アンジェラス",
+        "4": "カフェオリーブ",
+        "11": "シラカワゴウ",
+        "3": "ビオトープ",
+        "14": "ミスデルマー",
+        "8": "インサラータ"
+      }
     },
     {
       "prediction_id": 6116,
@@ -562,7 +600,26 @@
           "model_score": 0.009523809523809523,
           "ev_score": 0.5714285714285714
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "12": "シニャンガ",
+        "1": "カンティーナ",
+        "2": "ペカリーナ",
+        "10": "ビップジョワ",
+        "15": "ルージュラベル",
+        "13": "ピースフルマインド",
+        "6": "ミライヘノティアラ",
+        "5": "フレキシブル",
+        "9": "アルケミラモリス",
+        "7": "アンジェラス",
+        "4": "カフェオリーブ",
+        "11": "シラカワゴウ",
+        "3": "ビオトープ",
+        "14": "ミスデルマー",
+        "8": "インサラータ"
+      }
     },
     {
       "prediction_id": 6117,
@@ -593,7 +650,26 @@
           "model_score": 0.009523809523809523,
           "ev_score": 0.23809523809523808
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "12": "シニャンガ",
+        "1": "カンティーナ",
+        "2": "ペカリーナ",
+        "10": "ビップジョワ",
+        "15": "ルージュラベル",
+        "13": "ピースフルマインド",
+        "6": "ミライヘノティアラ",
+        "5": "フレキシブル",
+        "9": "アルケミラモリス",
+        "7": "アンジェラス",
+        "4": "カフェオリーブ",
+        "11": "シラカワゴウ",
+        "3": "ビオトープ",
+        "14": "ミスデルマー",
+        "8": "インサラータ"
+      }
     },
     {
       "prediction_id": 6118,
@@ -638,7 +714,26 @@
           "model_score": 0.0047619047619047615,
           "ev_score": 0.5714285714285714
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "12": "シニャンガ",
+        "1": "カンティーナ",
+        "2": "ペカリーナ",
+        "10": "ビップジョワ",
+        "15": "ルージュラベル",
+        "13": "ピースフルマインド",
+        "6": "ミライヘノティアラ",
+        "5": "フレキシブル",
+        "9": "アルケミラモリス",
+        "7": "アンジェラス",
+        "4": "カフェオリーブ",
+        "11": "シラカワゴウ",
+        "3": "ビオトープ",
+        "14": "ミスデルマー",
+        "8": "インサラータ"
+      }
     },
     {
       "prediction_id": 6119,
@@ -760,7 +855,26 @@
           "model_score": 0.00036630036630036625,
           "ev_score": 0.5494505494505494
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "12": "シニャンガ",
+        "1": "カンティーナ",
+        "2": "ペカリーナ",
+        "10": "ビップジョワ",
+        "15": "ルージュラベル",
+        "13": "ピースフルマインド",
+        "6": "ミライヘノティアラ",
+        "5": "フレキシブル",
+        "9": "アルケミラモリス",
+        "7": "アンジェラス",
+        "4": "カフェオリーブ",
+        "11": "シラカワゴウ",
+        "3": "ビオトープ",
+        "14": "ミスデルマー",
+        "8": "インサラータ"
+      }
     },
     {
       "prediction_id": 6134,
@@ -784,7 +898,26 @@
           "model_score": 1.9092288783817963,
           "ev_score": 1.9092288783817963
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "12": "シニャンガ",
+        "1": "カンティーナ",
+        "2": "ペカリーナ",
+        "10": "ビップジョワ",
+        "15": "ルージュラベル",
+        "13": "ピースフルマインド",
+        "6": "ミライヘノティアラ",
+        "5": "フレキシブル",
+        "9": "アルケミラモリス",
+        "7": "アンジェラス",
+        "4": "カフェオリーブ",
+        "11": "シラカワゴウ",
+        "3": "ビオトープ",
+        "14": "ミスデルマー",
+        "8": "インサラータ"
+      }
     },
     {
       "prediction_id": 6135,
@@ -836,7 +969,26 @@
           "model_score": 3.7990068499356107,
           "ev_score": 3.7990068499356107
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 15,
+      "horse_num_to_name": {
+        "12": "シニャンガ",
+        "1": "カンティーナ",
+        "2": "ペカリーナ",
+        "10": "ビップジョワ",
+        "15": "ルージュラベル",
+        "13": "ピースフルマインド",
+        "6": "ミライヘノティアラ",
+        "5": "フレキシブル",
+        "9": "アルケミラモリス",
+        "7": "アンジェラス",
+        "4": "カフェオリーブ",
+        "11": "シラカワゴウ",
+        "3": "ビオトープ",
+        "14": "ミスデルマー",
+        "8": "インサラータ"
+      }
     },
     {
       "prediction_id": 6136,
@@ -867,7 +1019,26 @@
           "model_score": 0.018196230606008657,
           "ev_score": 1.0917738363605194
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "12": "シニャンガ",
+        "1": "カンティーナ",
+        "2": "ペカリーナ",
+        "10": "ビップジョワ",
+        "15": "ルージュラベル",
+        "13": "ピースフルマインド",
+        "6": "ミライヘノティアラ",
+        "5": "フレキシブル",
+        "9": "アルケミラモリス",
+        "7": "アンジェラス",
+        "4": "カフェオリーブ",
+        "11": "シラカワゴウ",
+        "3": "ビオトープ",
+        "14": "ミスデルマー",
+        "8": "インサラータ"
+      }
     },
     {
       "prediction_id": 6137,
@@ -898,7 +1069,26 @@
           "model_score": 0.018196230606008657,
           "ev_score": 0.4549057651502164
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "12": "シニャンガ",
+        "1": "カンティーナ",
+        "2": "ペカリーナ",
+        "10": "ビップジョワ",
+        "15": "ルージュラベル",
+        "13": "ピースフルマインド",
+        "6": "ミライヘノティアラ",
+        "5": "フレキシブル",
+        "9": "アルケミラモリス",
+        "7": "アンジェラス",
+        "4": "カフェオリーブ",
+        "11": "シラカワゴウ",
+        "3": "ビオトープ",
+        "14": "ミスデルマー",
+        "8": "インサラータ"
+      }
     },
     {
       "prediction_id": 6138,
@@ -929,7 +1119,26 @@
           "model_score": 0.009098115303004329,
           "ev_score": 1.0917738363605194
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "12": "シニャンガ",
+        "1": "カンティーナ",
+        "2": "ペカリーナ",
+        "10": "ビップジョワ",
+        "15": "ルージュラベル",
+        "13": "ピースフルマインド",
+        "6": "ミライヘノティアラ",
+        "5": "フレキシブル",
+        "9": "アルケミラモリス",
+        "7": "アンジェラス",
+        "4": "カフェオリーブ",
+        "11": "シラカワゴウ",
+        "3": "ビオトープ",
+        "14": "ミスデルマー",
+        "8": "インサラータ"
+      }
     },
     {
       "prediction_id": 6141,
@@ -967,7 +1176,26 @@
           "model_score": 0.006065712693941451,
           "ev_score": 1.8197138081824353
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "12": "シニャンガ",
+        "1": "カンティーナ",
+        "2": "ペカリーナ",
+        "10": "ビップジョワ",
+        "15": "ルージュラベル",
+        "13": "ピースフルマインド",
+        "6": "ミライヘノティアラ",
+        "5": "フレキシブル",
+        "9": "アルケミラモリス",
+        "7": "アンジェラス",
+        "4": "カフェオリーブ",
+        "11": "シラカワゴウ",
+        "3": "ビオトープ",
+        "14": "ミスデルマー",
+        "8": "インサラータ"
+      }
     },
     {
       "prediction_id": 6142,
@@ -1089,7 +1317,26 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.0
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "12": "シニャンガ",
+        "1": "カンティーナ",
+        "2": "ペカリーナ",
+        "10": "ビップジョワ",
+        "15": "ルージュラベル",
+        "13": "ピースフルマインド",
+        "6": "ミライヘノティアラ",
+        "5": "フレキシブル",
+        "9": "アルケミラモリス",
+        "7": "アンジェラス",
+        "4": "カフェオリーブ",
+        "11": "シラカワゴウ",
+        "3": "ビオトープ",
+        "14": "ミスデルマー",
+        "8": "インサラータ"
+      }
     },
     {
       "prediction_id": 6564,
@@ -1113,7 +1360,26 @@
           "model_score": 0.021660649819494584,
           "ev_score": 0.36389891696750903
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "12": "シニャンガ",
+        "1": "カンティーナ",
+        "2": "ペカリーナ",
+        "10": "ビップジョワ",
+        "15": "ルージュラベル",
+        "13": "ピースフルマインド",
+        "6": "ミライヘノティアラ",
+        "5": "フレキシブル",
+        "9": "アルケミラモリス",
+        "7": "アンジェラス",
+        "4": "カフェオリーブ",
+        "11": "シラカワゴウ",
+        "3": "ビオトープ",
+        "14": "ミスデルマー",
+        "8": "インサラータ"
+      }
     },
     {
       "prediction_id": 6565,
@@ -1151,7 +1417,26 @@
           "model_score": 0.021660649819494584,
           "ev_score": 0.06498194945848375
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "12": "シニャンガ",
+        "1": "カンティーナ",
+        "2": "ペカリーナ",
+        "10": "ビップジョワ",
+        "15": "ルージュラベル",
+        "13": "ピースフルマインド",
+        "6": "ミライヘノティアラ",
+        "5": "フレキシブル",
+        "9": "アルケミラモリス",
+        "7": "アンジェラス",
+        "4": "カフェオリーブ",
+        "11": "シラカワゴウ",
+        "3": "ビオトープ",
+        "14": "ミスデルマー",
+        "8": "インサラータ"
+      }
     },
     {
       "prediction_id": 6566,
@@ -1182,7 +1467,26 @@
           "model_score": 0.010136644755037382,
           "ev_score": 1.021773791307768
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "12": "シニャンガ",
+        "1": "カンティーナ",
+        "2": "ペカリーナ",
+        "10": "ビップジョワ",
+        "15": "ルージュラベル",
+        "13": "ピースフルマインド",
+        "6": "ミライヘノティアラ",
+        "5": "フレキシブル",
+        "9": "アルケミラモリス",
+        "7": "アンジェラス",
+        "4": "カフェオリーブ",
+        "11": "シラカワゴウ",
+        "3": "ビオトープ",
+        "14": "ミスデルマー",
+        "8": "インサラータ"
+      }
     },
     {
       "prediction_id": 6567,
@@ -1213,7 +1517,26 @@
           "model_score": 0.010136644755037382,
           "ev_score": 0.42573907971157005
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "12": "シニャンガ",
+        "1": "カンティーナ",
+        "2": "ペカリーナ",
+        "10": "ビップジョワ",
+        "15": "ルージュラベル",
+        "13": "ピースフルマインド",
+        "6": "ミライヘノティアラ",
+        "5": "フレキシブル",
+        "9": "アルケミラモリス",
+        "7": "アンジェラス",
+        "4": "カフェオリーブ",
+        "11": "シラカワゴウ",
+        "3": "ビオトープ",
+        "14": "ミスデルマー",
+        "8": "インサラータ"
+      }
     },
     {
       "prediction_id": 6568,
@@ -1258,7 +1581,26 @@
           "model_score": 0.005068322377518691,
           "ev_score": 1.021773791307768
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "12": "シニャンガ",
+        "1": "カンティーナ",
+        "2": "ペカリーナ",
+        "10": "ビップジョワ",
+        "15": "ルージュラベル",
+        "13": "ピースフルマインド",
+        "6": "ミライヘノティアラ",
+        "5": "フレキシブル",
+        "9": "アルケミラモリス",
+        "7": "アンジェラス",
+        "4": "カフェオリーブ",
+        "11": "シラカワゴウ",
+        "3": "ビオトープ",
+        "14": "ミスデルマー",
+        "8": "インサラータ"
+      }
     },
     {
       "prediction_id": 6569,
@@ -1380,7 +1722,26 @@
           "model_score": 0.00040367706575973296,
           "ev_score": 1.0172662057145272
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "12": "シニャンガ",
+        "1": "カンティーナ",
+        "2": "ペカリーナ",
+        "10": "ビップジョワ",
+        "15": "ルージュラベル",
+        "13": "ピースフルマインド",
+        "6": "ミライヘノティアラ",
+        "5": "フレキシブル",
+        "9": "アルケミラモリス",
+        "7": "アンジェラス",
+        "4": "カフェオリーブ",
+        "11": "シラカワゴウ",
+        "3": "ビオトープ",
+        "14": "ミスデルマー",
+        "8": "インサラータ"
+      }
     },
     {
       "prediction_id": 6584,
@@ -1404,7 +1765,26 @@
           "model_score": 1.9092288783817963,
           "ev_score": 1.9092288783817963
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "12": "シニャンガ",
+        "1": "カンティーナ",
+        "2": "ペカリーナ",
+        "10": "ビップジョワ",
+        "15": "ルージュラベル",
+        "13": "ピースフルマインド",
+        "6": "ミライヘノティアラ",
+        "5": "フレキシブル",
+        "9": "アルケミラモリス",
+        "7": "アンジェラス",
+        "4": "カフェオリーブ",
+        "11": "シラカワゴウ",
+        "3": "ビオトープ",
+        "14": "ミスデルマー",
+        "8": "インサラータ"
+      }
     },
     {
       "prediction_id": 6585,
@@ -1456,7 +1836,26 @@
           "model_score": 3.7990068499356107,
           "ev_score": 3.7990068499356107
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 15,
+      "horse_num_to_name": {
+        "12": "シニャンガ",
+        "1": "カンティーナ",
+        "2": "ペカリーナ",
+        "10": "ビップジョワ",
+        "15": "ルージュラベル",
+        "13": "ピースフルマインド",
+        "6": "ミライヘノティアラ",
+        "5": "フレキシブル",
+        "9": "アルケミラモリス",
+        "7": "アンジェラス",
+        "4": "カフェオリーブ",
+        "11": "シラカワゴウ",
+        "3": "ビオトープ",
+        "14": "ミスデルマー",
+        "8": "インサラータ"
+      }
     },
     {
       "prediction_id": 6586,
@@ -1487,7 +1886,26 @@
           "model_score": 0.018196230606008657,
           "ev_score": 4.0
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "12": "シニャンガ",
+        "1": "カンティーナ",
+        "2": "ペカリーナ",
+        "10": "ビップジョワ",
+        "15": "ルージュラベル",
+        "13": "ピースフルマインド",
+        "6": "ミライヘノティアラ",
+        "5": "フレキシブル",
+        "9": "アルケミラモリス",
+        "7": "アンジェラス",
+        "4": "カフェオリーブ",
+        "11": "シラカワゴウ",
+        "3": "ビオトープ",
+        "14": "ミスデルマー",
+        "8": "インサラータ"
+      }
     },
     {
       "prediction_id": 6587,
@@ -1518,7 +1936,26 @@
           "model_score": 0.018196230606008657,
           "ev_score": 3.0
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "12": "シニャンガ",
+        "1": "カンティーナ",
+        "2": "ペカリーナ",
+        "10": "ビップジョワ",
+        "15": "ルージュラベル",
+        "13": "ピースフルマインド",
+        "6": "ミライヘノティアラ",
+        "5": "フレキシブル",
+        "9": "アルケミラモリス",
+        "7": "アンジェラス",
+        "4": "カフェオリーブ",
+        "11": "シラカワゴウ",
+        "3": "ビオトープ",
+        "14": "ミスデルマー",
+        "8": "インサラータ"
+      }
     },
     {
       "prediction_id": 6588,
@@ -1549,7 +1986,26 @@
           "model_score": 0.009098115303004329,
           "ev_score": 5.0
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "12": "シニャンガ",
+        "1": "カンティーナ",
+        "2": "ペカリーナ",
+        "10": "ビップジョワ",
+        "15": "ルージュラベル",
+        "13": "ピースフルマインド",
+        "6": "ミライヘノティアラ",
+        "5": "フレキシブル",
+        "9": "アルケミラモリス",
+        "7": "アンジェラス",
+        "4": "カフェオリーブ",
+        "11": "シラカワゴウ",
+        "3": "ビオトープ",
+        "14": "ミスデルマー",
+        "8": "インサラータ"
+      }
     },
     {
       "prediction_id": 6591,
@@ -1587,7 +2043,26 @@
           "model_score": 0.0060457855548487005,
           "ev_score": 5.0
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "12": "シニャンガ",
+        "1": "カンティーナ",
+        "2": "ペカリーナ",
+        "10": "ビップジョワ",
+        "15": "ルージュラベル",
+        "13": "ピースフルマインド",
+        "6": "ミライヘノティアラ",
+        "5": "フレキシブル",
+        "9": "アルケミラモリス",
+        "7": "アンジェラス",
+        "4": "カフェオリーブ",
+        "11": "シラカワゴウ",
+        "3": "ビオトープ",
+        "14": "ミスデルマー",
+        "8": "インサラータ"
+      }
     },
     {
       "prediction_id": 6592,
@@ -1709,7 +2184,26 @@
           "model_score": 0.012030075187969926,
           "ev_score": 1.3738345864661656
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "12": "シニャンガ",
+        "1": "カンティーナ",
+        "2": "ペカリーナ",
+        "10": "ビップジョワ",
+        "15": "ルージュラベル",
+        "13": "ピースフルマインド",
+        "6": "ミライヘノティアラ",
+        "5": "フレキシブル",
+        "9": "アルケミラモリス",
+        "7": "アンジェラス",
+        "4": "カフェオリーブ",
+        "11": "シラカワゴウ",
+        "3": "ビオトープ",
+        "14": "ミスデルマー",
+        "8": "インサラータ"
+      }
     }
   ],
   "training_evals": {}

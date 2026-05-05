@@ -53,13 +53,36 @@ function hitLabelClass(pred: Prediction): string {
   return 'neon-text-green font-bold'
 }
 
-function horseNums(pred: Prediction): string {
-  if (!pred.horses || pred.horses.length === 0) return '—'
-  return pred.horses
-    .slice()
-    .sort((a, b) => (a.horse_number ?? 0) - (b.horse_number ?? 0))
-    .map(h => h.horse_number != null ? `${h.horse_number}(${h.horse_name})` : `?(${h.horse_name})`)
-    .join(' - ')
+/** combination_json を解析して買い目文字列を生成する。
+ *  馬番だけの compact 表示と、馬名付き full 表示の両方を返す。
+ */
+function formatCombinations(pred: Prediction): { display: string; full: string } {
+  const empty = { display: '—', full: '—' }
+  if (!pred.combination_json) return empty
+
+  let raw: unknown
+  try { raw = JSON.parse(pred.combination_json) } catch { return empty }
+  if (!Array.isArray(raw) || raw.length === 0) return empty
+
+  // 正規化: [[1,2],[3,4]] or [[14]] or [14] (flat) → 常に number[][]
+  const combos: number[][] = Array.isArray(raw[0])
+    ? (raw as number[][])
+    : [(raw as number[])]
+
+  const nameMap: Record<string, string> = pred.horse_num_to_name ?? {}
+  const isOrdered = pred.bet_type === '馬単' || pred.bet_type === '三連単'
+  const sep = isOrdered ? '→' : '-'
+
+  const display = combos.map(c => c.join(sep)).join(' / ')
+
+  const full = combos.map(c =>
+    c.map(n => {
+      const name = nameMap[String(n)]
+      return name ? `${n}(${name})` : String(n)
+    }).join(sep)
+  ).join('\n')
+
+  return { display, full }
 }
 
 export default function PredictionsPanel({ predictions, raceId, modelType, limit = 50 }: Props) {
@@ -108,9 +131,26 @@ export default function PredictionsPanel({ predictions, raceId, modelType, limit
                     {pred.model_type}
                   </span>
                 </td>
-                <td>{pred.bet_type}</td>
-                <td className="max-w-[300px] truncate text-sm" title={horseNums(pred)}>
-                  {horseNums(pred)}
+                <td>
+                  <div>{pred.bet_form ?? pred.bet_type}</div>
+                  {pred.n_tickets > 0 && (
+                    <div className="text-xs opacity-60">{pred.n_tickets}点</div>
+                  )}
+                </td>
+                <td className="text-xs min-w-[120px] max-w-[260px]">
+                  {(() => {
+                    const { display, full } = formatCombinations(pred)
+                    const lines = display.split(' / ')
+                    return (
+                      <div title={full} className="leading-snug">
+                        {lines.map((line, i) => (
+                          <span key={i} className="block font-mono text-[var(--text-primary)]">
+                            {line}
+                          </span>
+                        ))}
+                      </div>
+                    )
+                  })()}
                 </td>
                 <td className="text-right text-[var(--text-muted)] font-mono">
                   {formatBet(pred.recommended_bet)}

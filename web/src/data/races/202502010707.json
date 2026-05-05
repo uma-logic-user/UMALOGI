@@ -12,27 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 8,
-      "horse_number": 12,
-      "horse_name": "リギーロ",
-      "horse_id": "2022106624",
-      "sex_age": "牡4",
-      "weight_carried": 55.0,
-      "jockey": "佐々木大",
-      "trainer": "栗田徹",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 2,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "カーミングライツ",
@@ -42,7 +22,7 @@
       "jockey": "横山和生",
       "trainer": "小島茂之",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -50,26 +30,6 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
-    },
-    {
-      "rank": 3,
-      "gate_number": 5,
-      "horse_number": 6,
-      "horse_name": "ペリプルス",
-      "horse_id": "2020105796",
-      "sex_age": "牡7",
-      "weight_carried": 58.0,
-      "jockey": "吉田隼人",
-      "trainer": "佐藤吉勝",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ゴールドシップ",
-      "dam": "マイネリベルタス",
-      "dam_sire": "コンデュイットConduit(愛)"
     },
     {
       "rank": null,
@@ -82,7 +42,7 @@
       "jockey": "丹内祐次",
       "trainer": "西村真幸",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +62,7 @@
       "jockey": "柴田裕一",
       "trainer": "本間忍",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +82,7 @@
       "jockey": "斎藤新",
       "trainer": "松山将樹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +102,7 @@
       "jockey": "鮫島克駿",
       "trainer": "斎藤誠",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -150,6 +110,26 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 6,
+      "horse_name": "ペリプルス",
+      "horse_id": "2020105796",
+      "sex_age": "牡7",
+      "weight_carried": 58.0,
+      "jockey": "吉田隼人",
+      "trainer": "佐藤吉勝",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ゴールドシップ",
+      "dam": "マイネリベルタス",
+      "dam_sire": "コンデュイットConduit(愛)"
     },
     {
       "rank": null,
@@ -162,7 +142,7 @@
       "jockey": "藤岡佑介",
       "trainer": "田村康仁",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +162,7 @@
       "jockey": "松岡正海",
       "trainer": "牧浦充徳",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -202,7 +182,7 @@
       "jockey": "古川奈穂",
       "trainer": "矢作芳人",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -222,7 +202,7 @@
       "jockey": "黛弘人",
       "trainer": "岩戸孝樹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -242,7 +222,27 @@
       "jockey": "浜中俊",
       "trainer": "青木孝文",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 12,
+      "horse_name": "リギーロ",
+      "horse_id": "2022106624",
+      "sex_age": "牡4",
+      "weight_carried": 55.0,
+      "jockey": "佐々木大",
+      "trainer": "栗田徹",
+      "finish_time": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -256,8 +256,8 @@
     {
       "bet_type": "単勝",
       "combination": "12",
-      "payout": 180,
-      "popularity": 1
+      "payout": 12000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -290,6 +290,12 @@
       "popularity": 1
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-20",
+      "payout": 1010,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "1-12",
       "payout": 270,
@@ -308,16 +314,46 @@
       "popularity": 8
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 80000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "12→1",
       "payout": 940,
       "popularity": 1
     },
     {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 12000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-6-12",
       "payout": 1950,
       "popularity": 4
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4",
+      "payout": 401,
+      "popularity": 60
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2-70",
+      "payout": 10612,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "7",
+      "payout": 50008,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

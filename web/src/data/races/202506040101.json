@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "ネロコルヴィーノ",
-      "horse_id": "2021105549",
-      "sex_age": "牡4",
-      "weight_carried": 60.0,
-      "jockey": "小坂忠士",
-      "trainer": "辻野泰之",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 2,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "ファベル",
-      "horse_id": "2019106821",
-      "sex_age": "牡3",
-      "weight_carried": 60.0,
-      "jockey": "小牧加矢",
-      "trainer": "小林真也",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ディープインパクト",
-      "dam": "ポウリナズラヴPaulina's Love(米)",
-      "dam_sire": "Mizzen Mast"
-    },
-    {
-      "rank": 3,
-      "gate_number": 7,
-      "horse_number": 8,
-      "horse_name": "カルマンフィルター",
-      "horse_id": "2021104842",
-      "sex_age": "牡4",
-      "weight_carried": 60.0,
-      "jockey": "草野太郎",
-      "trainer": "戸田博文",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "スワーヴリチャード",
-      "dam": "カルマート",
-      "dam_sire": "シンボリクリスエス"
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "大江原圭",
       "trainer": "国枝栄",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +42,7 @@
       "jockey": "小野寺祐",
       "trainer": "岩戸孝樹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -110,6 +50,26 @@
       "sire": "Invincible Spirit(愛)",
       "dam": "Jasmine Blue",
       "dam_sire": "Galileo(愛)"
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "ファベル",
+      "horse_id": "2019106821",
+      "sex_age": "牡3",
+      "weight_carried": 60.0,
+      "jockey": "小牧加矢",
+      "trainer": "小林真也",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ディープインパクト",
+      "dam": "ポウリナズラヴPaulina's Love(米)",
+      "dam_sire": "Mizzen Mast"
     },
     {
       "rank": null,
@@ -122,7 +82,7 @@
       "jockey": "高田潤",
       "trainer": "秋山真一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -130,6 +90,26 @@
       "sire": "キタサンブラック",
       "dam": "タガノレヴェントン",
       "dam_sire": "キングカメハメハ"
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "ネロコルヴィーノ",
+      "horse_id": "2021105549",
+      "sex_age": "牡4",
+      "weight_carried": 60.0,
+      "jockey": "小坂忠士",
+      "trainer": "辻野泰之",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -142,7 +122,7 @@
       "jockey": "伴啓太",
       "trainer": "天間昭一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +142,7 @@
       "jockey": "石神深一",
       "trainer": "土田稔",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -170,6 +150,26 @@
       "sire": "ゴールドシップ",
       "dam": "コスモリープリング",
       "dam_sire": "ヤマニンセラフィム"
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 8,
+      "horse_name": "カルマンフィルター",
+      "horse_id": "2021104842",
+      "sex_age": "牡4",
+      "weight_carried": 60.0,
+      "jockey": "草野太郎",
+      "trainer": "戸田博文",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "スワーヴリチャード",
+      "dam": "カルマート",
+      "dam_sire": "シンボリクリスエス"
     },
     {
       "rank": null,
@@ -182,7 +182,7 @@
       "jockey": "江田勇亮",
       "trainer": "粕谷昌央",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -202,7 +202,7 @@
       "jockey": "田村太雅",
       "trainer": "西園正都",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -218,6 +218,12 @@
       "combination": "5",
       "payout": 200,
       "popularity": 1
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "10",
+      "payout": 9000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -238,16 +244,34 @@
       "popularity": 4
     },
     {
+      "bet_type": "複勝",
+      "combination": "1",
+      "payout": 11000,
+      "popularity": null
+    },
+    {
       "bet_type": "枠連",
       "combination": "3-5",
       "payout": 830,
       "popularity": 4
     },
     {
+      "bet_type": "枠連",
+      "combination": "1",
+      "payout": 500,
+      "popularity": null
+    },
+    {
       "bet_type": "馬連",
       "combination": "3-5",
       "payout": 790,
       "popularity": 3
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1-10",
+      "payout": 1030,
+      "popularity": null
     },
     {
       "bet_type": "ワイド",
@@ -268,16 +292,46 @@
       "popularity": 6
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 40040,
+      "popularity": 80
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3",
+      "payout": 50000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "5→3",
       "payout": 1220,
       "popularity": 4
     },
     {
+      "bet_type": "馬単",
+      "combination": "3",
+      "payout": 5000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "3-5-8",
       "payout": 840,
       "popularity": 2
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-90",
+      "payout": 103,
+      "popularity": 80
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2-80",
+      "payout": 30508,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

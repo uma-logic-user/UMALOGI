@@ -12,7 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "ショウナンガルフ",
@@ -22,7 +22,7 @@
       "jockey": "池添謙一",
       "trainer": "須貝尚介",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -30,46 +30,6 @@
       "sire": "ハービンジャーHarbinger(英)",
       "dam": "ミカリーニョ",
       "dam_sire": "ハーツクライ"
-    },
-    {
-      "rank": 2,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "ヴンダーバール",
-      "horse_id": "2023107280",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "斎藤新",
-      "trainer": "斎藤誠",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 3,
-      "gate_number": 6,
-      "horse_number": 6,
-      "horse_name": "ティブロン",
-      "horse_id": "2023105139",
-      "sex_age": "牡4",
-      "weight_carried": 55.0,
-      "jockey": "北村友一",
-      "trainer": "矢嶋大樹",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
     },
     {
       "rank": null,
@@ -82,7 +42,7 @@
       "jockey": "松本大輝",
       "trainer": "本田優",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +62,27 @@
       "jockey": "黛弘人",
       "trainer": "和田正一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "ヴンダーバール",
+      "horse_id": "2023107280",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "斎藤新",
+      "trainer": "斎藤誠",
+      "finish_time": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +102,27 @@
       "jockey": "鮫島克駿",
       "trainer": "高柳大輔",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 6,
+      "horse_name": "ティブロン",
+      "horse_id": "2023105139",
+      "sex_age": "牡4",
+      "weight_carried": 55.0,
+      "jockey": "北村友一",
+      "trainer": "矢嶋大樹",
+      "finish_time": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -138,6 +138,12 @@
       "combination": "1",
       "payout": 130,
       "popularity": 1
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "6",
+      "payout": 6000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -158,6 +164,12 @@
       "popularity": 1
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-10",
+      "payout": 1040,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "1-6",
       "payout": 120,
@@ -176,16 +188,46 @@
       "popularity": 3
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 60030,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "1→4",
       "payout": 360,
       "popularity": 2
     },
     {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 4000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-4-6",
       "payout": 230,
       "popularity": 1
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-20",
+      "payout": 104,
+      "popularity": 60
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-30",
+      "payout": 20106,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1",
+      "payout": 70004,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

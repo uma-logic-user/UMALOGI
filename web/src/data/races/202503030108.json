@@ -12,27 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 5,
-      "horse_number": 10,
-      "horse_name": "ジャスパーソレイユ",
-      "horse_id": "2022110111",
-      "sex_age": "牡1",
-      "weight_carried": 57.0,
-      "jockey": "丸山元気",
-      "trainer": "森秀行",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 2,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "シャーンゴッセ",
@@ -42,7 +22,7 @@
       "jockey": "鷲頭虎太",
       "trainer": "蛯名正義",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -50,26 +30,6 @@
       "sire": "イスラボニータ",
       "dam": "ルーシーブライド",
       "dam_sire": "ブライアンズタイムBrian's Time(米)"
-    },
-    {
-      "rank": 3,
-      "gate_number": 4,
-      "horse_number": 7,
-      "horse_name": "ブリングライト",
-      "horse_id": "2020100617",
-      "sex_age": "牡4",
-      "weight_carried": 58.0,
-      "jockey": "菊沢一樹",
-      "trainer": "土田稔",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "バトルプランBattle Plan(米)",
-      "dam": "ティンタジェル",
-      "dam_sire": "キングカメハメハ"
     },
     {
       "rank": null,
@@ -82,7 +42,7 @@
       "jockey": "横山琉人",
       "trainer": "鈴木伸尋",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +62,7 @@
       "jockey": "角田大和",
       "trainer": "石橋守",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +82,7 @@
       "jockey": "石神深道",
       "trainer": "天間昭一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +102,7 @@
       "jockey": "小崎綾也",
       "trainer": "小崎憲",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +122,7 @@
       "jockey": "江田照男",
       "trainer": "萱野浩二",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -170,6 +130,26 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "ブリングライト",
+      "horse_id": "2020100617",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "菊沢一樹",
+      "trainer": "土田稔",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "バトルプランBattle Plan(米)",
+      "dam": "ティンタジェル",
+      "dam_sire": "キングカメハメハ"
     },
     {
       "rank": null,
@@ -182,7 +162,7 @@
       "jockey": "富田暁",
       "trainer": "平田修",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -202,7 +182,7 @@
       "jockey": "小沢大仁",
       "trainer": "渡辺薫彦",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -210,6 +190,26 @@
       "sire": "ミッキーアイル",
       "dam": "ハイノリッジ",
       "dam_sire": "マンハッタンカフェ"
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 10,
+      "horse_name": "ジャスパーソレイユ",
+      "horse_id": "2022110111",
+      "sex_age": "牡1",
+      "weight_carried": 57.0,
+      "jockey": "丸山元気",
+      "trainer": "森秀行",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -222,7 +222,7 @@
       "jockey": "田中健",
       "trainer": "荒川義之",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -242,7 +242,7 @@
       "jockey": "斎藤新",
       "trainer": "本間忍",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -262,7 +262,7 @@
       "jockey": "的場勇人",
       "trainer": "的場均",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -282,7 +282,7 @@
       "jockey": "丹内祐次",
       "trainer": "中村直也",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -302,7 +302,7 @@
       "jockey": "森田誠也",
       "trainer": "前川恭子",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -322,7 +322,7 @@
       "jockey": "舟山瑠泉",
       "trainer": "石坂公一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -338,6 +338,12 @@
       "combination": "10",
       "payout": 480,
       "popularity": 2
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "16",
+      "payout": 16000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -370,6 +376,18 @@
       "popularity": 15
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-90",
+      "payout": 2010,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 50000,
+      "popularity": 1
+    },
+    {
       "bet_type": "ワイド",
       "combination": "7-10",
       "payout": 1010,
@@ -388,16 +406,46 @@
       "popularity": 24
     },
     {
+      "bet_type": "ワイド",
+      "combination": "3",
+      "payout": 50060,
+      "popularity": 70
+    },
+    {
       "bet_type": "馬単",
       "combination": "10→1",
       "payout": 7940,
       "popularity": 22
     },
     {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 10000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-7-10",
       "payout": 16030,
       "popularity": 46
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "10-10",
+      "payout": 901,
+      "popularity": 70
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "12-1",
+      "payout": 30710,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "22",
+      "payout": 90024,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

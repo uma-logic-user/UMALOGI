@@ -4,11 +4,11 @@
   "date": "2026-04-25",
   "venue": "福島",
   "race_number": 7,
-  "distance": 0,
-  "surface": "",
+  "distance": 1200,
+  "surface": "芝",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "晴",
+  "condition": "良",
   "year": "2026",
   "results": [
     {
@@ -21,12 +21,12 @@
       "weight_carried": 56.0,
       "jockey": "舟山瑠泉",
       "trainer": "大和田成",
-      "finish_time": null,
+      "finish_time": "1:08.1",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 5.3,
+      "popularity": 4,
+      "horse_weight": 478,
+      "horse_weight_diff": -12,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -41,12 +41,12 @@
       "weight_carried": 56.0,
       "jockey": "小沢大仁",
       "trainer": "渡辺薫彦",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:08.6",
+      "margin": "2.1/2",
+      "win_odds": 5.0,
+      "popularity": 3,
+      "horse_weight": 456,
+      "horse_weight_diff": -2,
       "sire": "シュヴァルグラン",
       "dam": "アドマイヤテレサ",
       "dam_sire": "エリシオHelissio(仏)"
@@ -61,178 +61,18 @@
       "weight_carried": 53.0,
       "jockey": "石田拓郎",
       "trainer": "田中勝春",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:08.6",
+      "margin": "ハナ",
+      "win_odds": 8.7,
+      "popularity": 5,
+      "horse_weight": 466,
+      "horse_weight_diff": -2,
       "sire": "リオンディーズ",
       "dam": "バンドゥッチBanducci(米)",
       "dam_sire": "Rossini"
     },
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "ホリーアン",
-      "horse_id": "2022106065",
-      "sex_age": "牝3",
-      "weight_carried": 54.0,
-      "jockey": "鷲頭虎太",
-      "trainer": "萱野浩二",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "キョラムン",
-      "horse_id": "2022107147",
-      "sex_age": "牝1",
-      "weight_carried": 52.0,
-      "jockey": "河原田菜",
-      "trainer": "石橋守",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "トリプルバレル",
-      "horse_id": "2022101086",
-      "sex_age": "牡4",
-      "weight_carried": 58.0,
-      "jockey": "松本大輝",
-      "trainer": "藤野健太",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "クリノゴッホ",
-      "horse_id": "2020103885",
-      "sex_age": "騸3",
-      "weight_carried": 55.0,
-      "jockey": "大久保友",
-      "trainer": "岩戸孝樹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "マツリダゴッホ",
-      "dam": "カムホームラッシー",
-      "dam_sire": "Lawman"
-    },
-    {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 7,
-      "horse_name": "アーサーズウェイン",
-      "horse_id": "2022106433",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "横山琉人",
-      "trainer": "高橋一哉",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 8,
-      "horse_name": "クレセントウイング",
-      "horse_id": "2020100707",
-      "sex_age": "騸3",
-      "weight_carried": 55.0,
-      "jockey": "小林美駒",
-      "trainer": "高橋文雅",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ロードカナロア",
-      "dam": "ウイングザムーン",
-      "dam_sire": "アドマイヤムーン"
-    },
-    {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 9,
-      "horse_name": "ハッピーサプライズ",
-      "horse_id": "2021106395",
-      "sex_age": "牡7",
-      "weight_carried": 58.0,
-      "jockey": "西塚洸二",
-      "trainer": "佐藤吉勝",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "レッドファルクス",
-      "dam": "ハッピーパーティー",
-      "dam_sire": "クロフネ"
-    },
-    {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 10,
-      "horse_name": "バーケンティン",
-      "horse_id": "2021105868",
-      "sex_age": "牡3",
-      "weight_carried": 55.0,
-      "jockey": "和田陽希",
-      "trainer": "平田修",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ロードカナロア",
-      "dam": "リーチングReaching(愛)",
-      "dam_sire": "Dansili"
-    },
-    {
-      "rank": null,
+      "rank": 4,
       "gate_number": 8,
       "horse_number": 12,
       "horse_name": "セイプリーズ",
@@ -241,12 +81,172 @@
       "weight_carried": 53.0,
       "jockey": "上里直汰",
       "trainer": "宮徹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "finish_time": "1:08.6",
+      "margin": "クビ",
+      "win_odds": 4.8,
+      "popularity": 2,
+      "horse_weight": 428,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 5,
+      "gate_number": 6,
+      "horse_number": 7,
+      "horse_name": "アーサーズウェイン",
+      "horse_id": "2022106433",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "横山琉人",
+      "trainer": "高橋一哉",
+      "finish_time": "1:08.6",
+      "margin": "アタマ",
+      "win_odds": 19.9,
+      "popularity": 8,
+      "horse_weight": 454,
+      "horse_weight_diff": 8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 6,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "クリノゴッホ",
+      "horse_id": "2020103885",
+      "sex_age": "騸3",
+      "weight_carried": 55.0,
+      "jockey": "大久保友",
+      "trainer": "岩戸孝樹",
+      "finish_time": "1:08.9",
+      "margin": "1.1/2",
+      "win_odds": 141.2,
+      "popularity": 11,
+      "horse_weight": 464,
+      "horse_weight_diff": 0,
+      "sire": "マツリダゴッホ",
+      "dam": "カムホームラッシー",
+      "dam_sire": "Lawman"
+    },
+    {
+      "rank": 7,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "キョラムン",
+      "horse_id": "2022107147",
+      "sex_age": "牝1",
+      "weight_carried": 52.0,
+      "jockey": "河原田菜",
+      "trainer": "石橋守",
+      "finish_time": "1:08.9",
+      "margin": "クビ",
+      "win_odds": 4.6,
+      "popularity": 1,
+      "horse_weight": 462,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 8,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "ホリーアン",
+      "horse_id": "2022106065",
+      "sex_age": "牝3",
+      "weight_carried": 54.0,
+      "jockey": "鷲頭虎太",
+      "trainer": "萱野浩二",
+      "finish_time": "1:09.2",
+      "margin": "2",
+      "win_odds": 202.6,
+      "popularity": 12,
+      "horse_weight": 438,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 9,
+      "gate_number": 7,
+      "horse_number": 9,
+      "horse_name": "ハッピーサプライズ",
+      "horse_id": "2021106395",
+      "sex_age": "牡7",
+      "weight_carried": 58.0,
+      "jockey": "西塚洸二",
+      "trainer": "佐藤吉勝",
+      "finish_time": "1:09.2",
+      "margin": "ハナ",
+      "win_odds": 33.9,
+      "popularity": 10,
+      "horse_weight": 480,
+      "horse_weight_diff": 0,
+      "sire": "レッドファルクス",
+      "dam": "ハッピーパーティー",
+      "dam_sire": "クロフネ"
+    },
+    {
+      "rank": 10,
+      "gate_number": 6,
+      "horse_number": 8,
+      "horse_name": "クレセントウイング",
+      "horse_id": "2020100707",
+      "sex_age": "騸3",
+      "weight_carried": 55.0,
+      "jockey": "小林美駒",
+      "trainer": "高橋文雅",
+      "finish_time": "1:09.2",
+      "margin": "ハナ",
+      "win_odds": 9.6,
+      "popularity": 6,
+      "horse_weight": 460,
+      "horse_weight_diff": -6,
+      "sire": "ロードカナロア",
+      "dam": "ウイングザムーン",
+      "dam_sire": "アドマイヤムーン"
+    },
+    {
+      "rank": 11,
+      "gate_number": 7,
+      "horse_number": 10,
+      "horse_name": "バーケンティン",
+      "horse_id": "2021105868",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "和田陽希",
+      "trainer": "平田修",
+      "finish_time": "1:09.2",
+      "margin": "ハナ",
+      "win_odds": 11.7,
+      "popularity": 7,
+      "horse_weight": 490,
+      "horse_weight_diff": -10,
+      "sire": "ロードカナロア",
+      "dam": "リーチングReaching(愛)",
+      "dam_sire": "Dansili"
+    },
+    {
+      "rank": 12,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "トリプルバレル",
+      "horse_id": "2022101086",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "松本大輝",
+      "trainer": "藤野健太",
+      "finish_time": "1:09.5",
+      "margin": "1.1/2",
+      "win_odds": 21.3,
+      "popularity": 9,
+      "horse_weight": 474,
+      "horse_weight_diff": -4,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -427,7 +427,23 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.012030075187969926
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "カーヌスティ",
+        "1": "グランテレーズ",
+        "11": "ミエノブラボー",
+        "12": "セイプリーズ",
+        "7": "アーサーズウェイン",
+        "5": "クリノゴッホ",
+        "3": "キョラムン",
+        "2": "ホリーアン",
+        "9": "ハッピーサプライズ",
+        "8": "クレセントウイング",
+        "10": "バーケンティン",
+        "4": "トリプルバレル"
+      }
     },
     {
       "prediction_id": 5873,
@@ -465,7 +481,23 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.03609022556390978
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "6": "カーヌスティ",
+        "1": "グランテレーズ",
+        "11": "ミエノブラボー",
+        "12": "セイプリーズ",
+        "7": "アーサーズウェイン",
+        "5": "クリノゴッホ",
+        "3": "キョラムン",
+        "2": "ホリーアン",
+        "9": "ハッピーサプライズ",
+        "8": "クレセントウイング",
+        "10": "バーケンティン",
+        "4": "トリプルバレル"
+      }
     },
     {
       "prediction_id": 5874,
@@ -496,7 +528,23 @@
           "model_score": 0.015151515151515152,
           "ev_score": 0.9090909090909092
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "カーヌスティ",
+        "1": "グランテレーズ",
+        "11": "ミエノブラボー",
+        "12": "セイプリーズ",
+        "7": "アーサーズウェイン",
+        "5": "クリノゴッホ",
+        "3": "キョラムン",
+        "2": "ホリーアン",
+        "9": "ハッピーサプライズ",
+        "8": "クレセントウイング",
+        "10": "バーケンティン",
+        "4": "トリプルバレル"
+      }
     },
     {
       "prediction_id": 5875,
@@ -527,7 +575,23 @@
           "model_score": 0.015151515151515152,
           "ev_score": 0.3787878787878788
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "カーヌスティ",
+        "1": "グランテレーズ",
+        "11": "ミエノブラボー",
+        "12": "セイプリーズ",
+        "7": "アーサーズウェイン",
+        "5": "クリノゴッホ",
+        "3": "キョラムン",
+        "2": "ホリーアン",
+        "9": "ハッピーサプライズ",
+        "8": "クレセントウイング",
+        "10": "バーケンティン",
+        "4": "トリプルバレル"
+      }
     },
     {
       "prediction_id": 5876,
@@ -572,7 +636,23 @@
           "model_score": 0.007575757575757576,
           "ev_score": 0.9090909090909092
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "6": "カーヌスティ",
+        "1": "グランテレーズ",
+        "11": "ミエノブラボー",
+        "12": "セイプリーズ",
+        "7": "アーサーズウェイン",
+        "5": "クリノゴッホ",
+        "3": "キョラムン",
+        "2": "ホリーアン",
+        "9": "ハッピーサプライズ",
+        "8": "クレセントウイング",
+        "10": "バーケンティン",
+        "4": "トリプルバレル"
+      }
     },
     {
       "prediction_id": 5878,
@@ -610,7 +690,23 @@
           "model_score": 0.004545454545454546,
           "ev_score": 1.363636363636364
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "カーヌスティ",
+        "1": "グランテレーズ",
+        "11": "ミエノブラボー",
+        "12": "セイプリーズ",
+        "7": "アーサーズウェイン",
+        "5": "クリノゴッホ",
+        "3": "キョラムン",
+        "2": "ホリーアン",
+        "9": "ハッピーサプライズ",
+        "8": "クレセントウイング",
+        "10": "バーケンティン",
+        "4": "トリプルバレル"
+      }
     },
     {
       "prediction_id": 5879,
@@ -732,7 +828,23 @@
           "model_score": 0.0007575757575757577,
           "ev_score": 1.1363636363636365
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "6": "カーヌスティ",
+        "1": "グランテレーズ",
+        "11": "ミエノブラボー",
+        "12": "セイプリーズ",
+        "7": "アーサーズウェイン",
+        "5": "クリノゴッホ",
+        "3": "キョラムン",
+        "2": "ホリーアン",
+        "9": "ハッピーサプライズ",
+        "8": "クレセントウイング",
+        "10": "バーケンティン",
+        "4": "トリプルバレル"
+      }
     },
     {
       "prediction_id": 5889,
@@ -756,7 +868,23 @@
           "model_score": 1.299527249086352,
           "ev_score": 1.299527249086352
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "カーヌスティ",
+        "1": "グランテレーズ",
+        "11": "ミエノブラボー",
+        "12": "セイプリーズ",
+        "7": "アーサーズウェイン",
+        "5": "クリノゴッホ",
+        "3": "キョラムン",
+        "2": "ホリーアン",
+        "9": "ハッピーサプライズ",
+        "8": "クレセントウイング",
+        "10": "バーケンティン",
+        "4": "トリプルバレル"
+      }
     },
     {
       "prediction_id": 5890,
@@ -808,7 +936,23 @@
           "model_score": 1.3524752498909405,
           "ev_score": 1.3524752498909405
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 10,
+      "horse_num_to_name": {
+        "6": "カーヌスティ",
+        "1": "グランテレーズ",
+        "11": "ミエノブラボー",
+        "12": "セイプリーズ",
+        "7": "アーサーズウェイン",
+        "5": "クリノゴッホ",
+        "3": "キョラムン",
+        "2": "ホリーアン",
+        "9": "ハッピーサプライズ",
+        "8": "クレセントウイング",
+        "10": "バーケンティン",
+        "4": "トリプルバレル"
+      }
     },
     {
       "prediction_id": 5891,
@@ -839,7 +983,23 @@
           "model_score": 0.01965605334156831,
           "ev_score": 1.1793632004940986
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "カーヌスティ",
+        "1": "グランテレーズ",
+        "11": "ミエノブラボー",
+        "12": "セイプリーズ",
+        "7": "アーサーズウェイン",
+        "5": "クリノゴッホ",
+        "3": "キョラムン",
+        "2": "ホリーアン",
+        "9": "ハッピーサプライズ",
+        "8": "クレセントウイング",
+        "10": "バーケンティン",
+        "4": "トリプルバレル"
+      }
     },
     {
       "prediction_id": 5892,
@@ -870,7 +1030,23 @@
           "model_score": 0.01965605334156831,
           "ev_score": 0.4914013335392078
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "カーヌスティ",
+        "1": "グランテレーズ",
+        "11": "ミエノブラボー",
+        "12": "セイプリーズ",
+        "7": "アーサーズウェイン",
+        "5": "クリノゴッホ",
+        "3": "キョラムン",
+        "2": "ホリーアン",
+        "9": "ハッピーサプライズ",
+        "8": "クレセントウイング",
+        "10": "バーケンティン",
+        "4": "トリプルバレル"
+      }
     },
     {
       "prediction_id": 5893,
@@ -901,7 +1077,23 @@
           "model_score": 0.009858963163516038,
           "ev_score": 1.1830755796219246
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "カーヌスティ",
+        "1": "グランテレーズ",
+        "11": "ミエノブラボー",
+        "12": "セイプリーズ",
+        "7": "アーサーズウェイン",
+        "5": "クリノゴッホ",
+        "3": "キョラムン",
+        "2": "ホリーアン",
+        "9": "ハッピーサプライズ",
+        "8": "クレセントウイング",
+        "10": "バーケンティン",
+        "4": "トリプルバレル"
+      }
     },
     {
       "prediction_id": 5896,
@@ -939,7 +1131,23 @@
           "model_score": 0.006292218551594106,
           "ev_score": 1.8876655654782317
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "カーヌスティ",
+        "1": "グランテレーズ",
+        "11": "ミエノブラボー",
+        "12": "セイプリーズ",
+        "7": "アーサーズウェイン",
+        "5": "クリノゴッホ",
+        "3": "キョラムン",
+        "2": "ホリーアン",
+        "9": "ハッピーサプライズ",
+        "8": "クレセントウイング",
+        "10": "バーケンティン",
+        "4": "トリプルバレル"
+      }
     },
     {
       "prediction_id": 5897,
@@ -1040,7 +1248,23 @@
           "model_score": 0.010452961672473868,
           "ev_score": 0.0
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "6": "カーヌスティ",
+        "1": "グランテレーズ",
+        "11": "ミエノブラボー",
+        "12": "セイプリーズ",
+        "7": "アーサーズウェイン",
+        "5": "クリノゴッホ",
+        "3": "キョラムン",
+        "2": "ホリーアン",
+        "9": "ハッピーサプライズ",
+        "8": "クレセントウイング",
+        "10": "バーケンティン",
+        "4": "トリプルバレル"
+      }
     },
     {
       "prediction_id": 6796,
@@ -1064,7 +1288,23 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.06015037593984963
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "カーヌスティ",
+        "1": "グランテレーズ",
+        "11": "ミエノブラボー",
+        "12": "セイプリーズ",
+        "7": "アーサーズウェイン",
+        "5": "クリノゴッホ",
+        "3": "キョラムン",
+        "2": "ホリーアン",
+        "9": "ハッピーサプライズ",
+        "8": "クレセントウイング",
+        "10": "バーケンティン",
+        "4": "トリプルバレル"
+      }
     },
     {
       "prediction_id": 6797,
@@ -1102,7 +1342,23 @@
           "model_score": 0.012030075187969926,
           "ev_score": 0.03609022556390978
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "horse_num_to_name": {
+        "6": "カーヌスティ",
+        "1": "グランテレーズ",
+        "11": "ミエノブラボー",
+        "12": "セイプリーズ",
+        "7": "アーサーズウェイン",
+        "5": "クリノゴッホ",
+        "3": "キョラムン",
+        "2": "ホリーアン",
+        "9": "ハッピーサプライズ",
+        "8": "クレセントウイング",
+        "10": "バーケンティン",
+        "4": "トリプルバレル"
+      }
     },
     {
       "prediction_id": 6798,
@@ -1133,7 +1389,23 @@
           "model_score": 0.01789942471244981,
           "ev_score": 0.5369827413734944
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "カーヌスティ",
+        "1": "グランテレーズ",
+        "11": "ミエノブラボー",
+        "12": "セイプリーズ",
+        "7": "アーサーズウェイン",
+        "5": "クリノゴッホ",
+        "3": "キョラムン",
+        "2": "ホリーアン",
+        "9": "ハッピーサプライズ",
+        "8": "クレセントウイング",
+        "10": "バーケンティン",
+        "4": "トリプルバレル"
+      }
     },
     {
       "prediction_id": 6799,
@@ -1164,7 +1436,23 @@
           "model_score": 0.01789942471244981,
           "ev_score": 0.22374280890562265
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "カーヌスティ",
+        "1": "グランテレーズ",
+        "11": "ミエノブラボー",
+        "12": "セイプリーズ",
+        "7": "アーサーズウェイン",
+        "5": "クリノゴッホ",
+        "3": "キョラムン",
+        "2": "ホリーアン",
+        "9": "ハッピーサプライズ",
+        "8": "クレセントウイング",
+        "10": "バーケンティン",
+        "4": "トリプルバレル"
+      }
     },
     {
       "prediction_id": 6800,
@@ -1209,7 +1497,23 @@
           "model_score": 0.008949712356224906,
           "ev_score": 0.5369827413734944
         }
-      ]
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 2,
+      "horse_num_to_name": {
+        "6": "カーヌスティ",
+        "1": "グランテレーズ",
+        "11": "ミエノブラボー",
+        "12": "セイプリーズ",
+        "7": "アーサーズウェイン",
+        "5": "クリノゴッホ",
+        "3": "キョラムン",
+        "2": "ホリーアン",
+        "9": "ハッピーサプライズ",
+        "8": "クレセントウイング",
+        "10": "バーケンティン",
+        "4": "トリプルバレル"
+      }
     },
     {
       "prediction_id": 6802,
@@ -1247,7 +1551,23 @@
           "model_score": 0.005912398092329848,
           "ev_score": 0.8868597138494771
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "カーヌスティ",
+        "1": "グランテレーズ",
+        "11": "ミエノブラボー",
+        "12": "セイプリーズ",
+        "7": "アーサーズウェイン",
+        "5": "クリノゴッホ",
+        "3": "キョラムン",
+        "2": "ホリーアン",
+        "9": "ハッピーサプライズ",
+        "8": "クレセントウイング",
+        "10": "バーケンティン",
+        "4": "トリプルバレル"
+      }
     },
     {
       "prediction_id": 6803,
@@ -1369,7 +1689,23 @@
           "model_score": 0.0009853996820549746,
           "ev_score": 0.739049761541231
         }
-      ]
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 6,
+      "horse_num_to_name": {
+        "6": "カーヌスティ",
+        "1": "グランテレーズ",
+        "11": "ミエノブラボー",
+        "12": "セイプリーズ",
+        "7": "アーサーズウェイン",
+        "5": "クリノゴッホ",
+        "3": "キョラムン",
+        "2": "ホリーアン",
+        "9": "ハッピーサプライズ",
+        "8": "クレセントウイング",
+        "10": "バーケンティン",
+        "4": "トリプルバレル"
+      }
     },
     {
       "prediction_id": 6813,
@@ -1393,7 +1729,23 @@
           "model_score": 1.299527249086352,
           "ev_score": 1.299527249086352
         }
-      ]
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "カーヌスティ",
+        "1": "グランテレーズ",
+        "11": "ミエノブラボー",
+        "12": "セイプリーズ",
+        "7": "アーサーズウェイン",
+        "5": "クリノゴッホ",
+        "3": "キョラムン",
+        "2": "ホリーアン",
+        "9": "ハッピーサプライズ",
+        "8": "クレセントウイング",
+        "10": "バーケンティン",
+        "4": "トリプルバレル"
+      }
     },
     {
       "prediction_id": 6814,
@@ -1445,7 +1797,23 @@
           "model_score": 1.3524752498909405,
           "ev_score": 1.3524752498909405
         }
-      ]
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 10,
+      "horse_num_to_name": {
+        "6": "カーヌスティ",
+        "1": "グランテレーズ",
+        "11": "ミエノブラボー",
+        "12": "セイプリーズ",
+        "7": "アーサーズウェイン",
+        "5": "クリノゴッホ",
+        "3": "キョラムン",
+        "2": "ホリーアン",
+        "9": "ハッピーサプライズ",
+        "8": "クレセントウイング",
+        "10": "バーケンティン",
+        "4": "トリプルバレル"
+      }
     },
     {
       "prediction_id": 6815,
@@ -1476,7 +1844,23 @@
           "model_score": 0.01965605334156831,
           "ev_score": 0.778379712326105
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "カーヌスティ",
+        "1": "グランテレーズ",
+        "11": "ミエノブラボー",
+        "12": "セイプリーズ",
+        "7": "アーサーズウェイン",
+        "5": "クリノゴッホ",
+        "3": "キョラムン",
+        "2": "ホリーアン",
+        "9": "ハッピーサプライズ",
+        "8": "クレセントウイング",
+        "10": "バーケンティン",
+        "4": "トリプルバレル"
+      }
     },
     {
       "prediction_id": 6816,
@@ -1507,7 +1891,23 @@
           "model_score": 0.01965605334156831,
           "ev_score": 0.3243248801358771
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "カーヌスティ",
+        "1": "グランテレーズ",
+        "11": "ミエノブラボー",
+        "12": "セイプリーズ",
+        "7": "アーサーズウェイン",
+        "5": "クリノゴッホ",
+        "3": "キョラムン",
+        "2": "ホリーアン",
+        "9": "ハッピーサプライズ",
+        "8": "クレセントウイング",
+        "10": "バーケンティン",
+        "4": "トリプルバレル"
+      }
     },
     {
       "prediction_id": 6817,
@@ -1538,7 +1938,23 @@
           "model_score": 0.009858963163516038,
           "ev_score": 0.7808298825504703
         }
-      ]
+      ],
+      "bet_form": "2頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "カーヌスティ",
+        "1": "グランテレーズ",
+        "11": "ミエノブラボー",
+        "12": "セイプリーズ",
+        "7": "アーサーズウェイン",
+        "5": "クリノゴッホ",
+        "3": "キョラムン",
+        "2": "ホリーアン",
+        "9": "ハッピーサプライズ",
+        "8": "クレセントウイング",
+        "10": "バーケンティン",
+        "4": "トリプルバレル"
+      }
     },
     {
       "prediction_id": 6820,
@@ -1576,7 +1992,23 @@
           "model_score": 0.006292218551594106,
           "ev_score": 1.2458592732156328
         }
-      ]
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "horse_num_to_name": {
+        "6": "カーヌスティ",
+        "1": "グランテレーズ",
+        "11": "ミエノブラボー",
+        "12": "セイプリーズ",
+        "7": "アーサーズウェイン",
+        "5": "クリノゴッホ",
+        "3": "キョラムン",
+        "2": "ホリーアン",
+        "9": "ハッピーサプライズ",
+        "8": "クレセントウイング",
+        "10": "バーケンティン",
+        "4": "トリプルバレル"
+      }
     },
     {
       "prediction_id": 6821,
@@ -1677,7 +2109,23 @@
           "model_score": 0.010452961672473868,
           "ev_score": 0.5885017421602787
         }
-      ]
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "horse_num_to_name": {
+        "6": "カーヌスティ",
+        "1": "グランテレーズ",
+        "11": "ミエノブラボー",
+        "12": "セイプリーズ",
+        "7": "アーサーズウェイン",
+        "5": "クリノゴッホ",
+        "3": "キョラムン",
+        "2": "ホリーアン",
+        "9": "ハッピーサプライズ",
+        "8": "クレセントウイング",
+        "10": "バーケンティン",
+        "4": "トリプルバレル"
+      }
     }
   ],
   "training_evals": {}

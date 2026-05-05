@@ -12,7 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "アスクカムオンモア",
@@ -22,7 +22,7 @@
       "jockey": "ディー",
       "trainer": "藤原英昭",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -32,27 +32,7 @@
       "dam_sire": "キングカメハメハ"
     },
     {
-      "rank": 2,
-      "gate_number": 7,
-      "horse_number": 10,
-      "horse_name": "メリオーレム",
-      "horse_id": "2021104791",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "戸崎圭太",
-      "trainer": "友道康夫",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "シュヴァルグラン",
-      "dam": "メリオーラMeliora(愛)",
-      "dam_sire": "Starspangledbanner"
-    },
-    {
-      "rank": 3,
+      "rank": null,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "モズロックンロール",
@@ -62,7 +42,7 @@
       "jockey": "荻野極",
       "trainer": "藤岡健一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -82,7 +62,7 @@
       "jockey": "原優介",
       "trainer": "青木孝文",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +82,7 @@
       "jockey": "杉原誠人",
       "trainer": "嘉藤貴行",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +102,7 @@
       "jockey": "横山武史",
       "trainer": "鹿戸雄一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +122,7 @@
       "jockey": "吉田豊",
       "trainer": "畠山吉宏",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +142,7 @@
       "jockey": "松岡正海",
       "trainer": "畠山吉宏",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +162,7 @@
       "jockey": "Ｍ．デム",
       "trainer": "小島茂之",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -202,7 +182,7 @@
       "jockey": "横山典弘",
       "trainer": "高橋康之",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -210,6 +190,26 @@
       "sire": "マジェスティックウォリアーMajestic Warrior(米)",
       "dam": "ヤマカツセイレーン",
       "dam_sire": "グラスワンダー"
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 10,
+      "horse_name": "メリオーレム",
+      "horse_id": "2021104791",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "戸崎圭太",
+      "trainer": "友道康夫",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "シュヴァルグラン",
+      "dam": "メリオーラMeliora(愛)",
+      "dam_sire": "Starspangledbanner"
     },
     {
       "rank": null,
@@ -222,7 +222,7 @@
       "jockey": "石川裕紀",
       "trainer": "西園翔太",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -242,7 +242,7 @@
       "jockey": "三浦皇成",
       "trainer": "国枝栄",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -262,7 +262,7 @@
       "jockey": "内田博幸",
       "trainer": "古賀慎明",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -278,6 +278,12 @@
       "combination": "1",
       "payout": 240,
       "popularity": 1
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "13",
+      "payout": 13000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -310,6 +316,12 @@
       "popularity": 3
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-20",
+      "payout": 1100,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "1-10",
       "payout": 370,
@@ -328,16 +340,46 @@
       "popularity": 9
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 70000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "1→10",
       "payout": 1280,
       "popularity": 3
     },
     {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 10000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-2-10",
       "payout": 2310,
       "popularity": 6
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4-30",
+      "payout": 402,
+      "popularity": 100
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3-70",
+      "payout": 30102,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "7",
+      "payout": 60009,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 8,
-      "horse_number": 10,
-      "horse_name": "メイショウピース",
-      "horse_id": "2020106901",
-      "sex_age": "牝4",
-      "weight_carried": 56.0,
-      "jockey": "坂井瑠星",
-      "trainer": "高橋亮",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "リオンディーズ",
-      "dam": "メイショウアリアMeisho Aria(仏)",
-      "dam_sire": "Hurricane Run(愛)"
-    },
-    {
-      "rank": 2,
-      "gate_number": 6,
-      "horse_number": 6,
-      "horse_name": "システムリブート",
-      "horse_id": "2020106727",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "高杉吏麒",
-      "trainer": "佐藤悠太",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "キタサンブラック",
-      "dam": "シャンテクレール",
-      "dam_sire": "Dubawi"
-    },
-    {
-      "rank": 3,
-      "gate_number": 7,
-      "horse_number": 8,
-      "horse_name": "ベンガン",
-      "horse_id": "2017101767",
-      "sex_age": "牡7",
-      "weight_carried": 58.0,
-      "jockey": "国分優作",
-      "trainer": "千田輝彦",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "オルフェーヴル",
-      "dam": "ジョリーダンス",
-      "dam_sire": "ダンスインザダーク"
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "鮫島良太",
       "trainer": "牧浦充徳",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +42,7 @@
       "jockey": "松若風馬",
       "trainer": "東田明士",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +62,7 @@
       "jockey": "小沢大仁",
       "trainer": "杉山晴紀",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +82,7 @@
       "jockey": "松山弘平",
       "trainer": "加藤公太",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +102,7 @@
       "jockey": "亀田温心",
       "trainer": "佐藤悠太",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -170,6 +110,26 @@
       "sire": "エピファネイア",
       "dam": "レッドソンブレロ",
       "dam_sire": "キングカメハメハ"
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 6,
+      "horse_name": "システムリブート",
+      "horse_id": "2020106727",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "高杉吏麒",
+      "trainer": "佐藤悠太",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "キタサンブラック",
+      "dam": "シャンテクレール",
+      "dam_sire": "Dubawi"
     },
     {
       "rank": null,
@@ -182,7 +142,7 @@
       "jockey": "幸英明",
       "trainer": "森田直行",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -190,6 +150,26 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 8,
+      "horse_name": "ベンガン",
+      "horse_id": "2017101767",
+      "sex_age": "牡7",
+      "weight_carried": 58.0,
+      "jockey": "国分優作",
+      "trainer": "千田輝彦",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "オルフェーヴル",
+      "dam": "ジョリーダンス",
+      "dam_sire": "ダンスインザダーク"
     },
     {
       "rank": null,
@@ -202,7 +182,7 @@
       "jockey": "角田大和",
       "trainer": "中内田充",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -210,14 +190,34 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 10,
+      "horse_name": "メイショウピース",
+      "horse_id": "2020106901",
+      "sex_age": "牝4",
+      "weight_carried": 56.0,
+      "jockey": "坂井瑠星",
+      "trainer": "高橋亮",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "リオンディーズ",
+      "dam": "メイショウアリアMeisho Aria(仏)",
+      "dam_sire": "Hurricane Run(愛)"
     }
   ],
   "payouts": [
     {
       "bet_type": "単勝",
       "combination": "10",
-      "payout": 600,
-      "popularity": 5
+      "payout": 10000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -250,6 +250,18 @@
       "popularity": 9
     },
     {
+      "bet_type": "馬連",
+      "combination": "2-30",
+      "payout": 4060,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "6",
+      "payout": 80000,
+      "popularity": 1
+    },
+    {
       "bet_type": "ワイド",
       "combination": "6-10",
       "payout": 730,
@@ -268,16 +280,46 @@
       "popularity": 36
     },
     {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 70050,
+      "popularity": 80
+    },
+    {
       "bet_type": "馬単",
       "combination": "10→6",
       "payout": 3870,
       "popularity": 21
     },
     {
+      "bet_type": "馬単",
+      "combination": "6",
+      "payout": 10000,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "57-40",
+      "payout": 3706,
+      "popularity": 80
+    },
+    {
       "bet_type": "三連複",
       "combination": "6-8-10",
       "payout": 40270,
       "popularity": 86
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "7-30",
+      "payout": 90810,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "56",
+      "payout": 10035,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "サクセスバラード",
-      "horse_id": "2020104898",
-      "sex_age": "牡3",
-      "weight_carried": 60.0,
-      "jockey": "上野翔",
-      "trainer": "竹内正洋",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ダノンバラード",
-      "dam": "ミスベルツリー",
-      "dam_sire": "アグネスデジタル"
-    },
-    {
-      "rank": 2,
-      "gate_number": 8,
-      "horse_number": 12,
-      "horse_name": "ディープレイヤー",
-      "horse_id": "2019105844",
-      "sex_age": "牡4",
-      "weight_carried": 60.0,
-      "jockey": "五十嵐雄",
-      "trainer": "大和田成",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ディーマジェスティ",
-      "dam": "クインズプレイヤー",
-      "dam_sire": "トウカイテイオー"
-    },
-    {
-      "rank": 3,
-      "gate_number": 4,
-      "horse_number": 5,
-      "horse_name": "セファーラジエル",
-      "horse_id": "2018105131",
-      "sex_age": "牡3",
-      "weight_carried": 60.0,
-      "jockey": "中村将之",
-      "trainer": "高柳大輔",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "キズナ",
-      "dam": "ダークサファイア",
-      "dam_sire": "Out of Place"
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "伴啓太",
       "trainer": "石栗龍彦",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +42,7 @@
       "jockey": "森一馬",
       "trainer": "寺島良",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -110,6 +50,26 @@
       "sire": "ハービンジャーHarbinger(英)",
       "dam": "オリエントワークス",
       "dam_sire": "ワークフォースWorkforce(英)"
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "サクセスバラード",
+      "horse_id": "2020104898",
+      "sex_age": "牡3",
+      "weight_carried": 60.0,
+      "jockey": "上野翔",
+      "trainer": "竹内正洋",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ダノンバラード",
+      "dam": "ミスベルツリー",
+      "dam_sire": "アグネスデジタル"
     },
     {
       "rank": null,
@@ -122,7 +82,7 @@
       "jockey": "黒岩悠",
       "trainer": "中竹和也",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -130,6 +90,26 @@
       "sire": "ダイワメジャー",
       "dam": "ノヴァホークNova Hawk(英)",
       "dam_sire": "Hawk Wing"
+    },
+    {
+      "rank": null,
+      "gate_number": 4,
+      "horse_number": 5,
+      "horse_name": "セファーラジエル",
+      "horse_id": "2018105131",
+      "sex_age": "牡3",
+      "weight_carried": 60.0,
+      "jockey": "中村将之",
+      "trainer": "高柳大輔",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "キズナ",
+      "dam": "ダークサファイア",
+      "dam_sire": "Out of Place"
     },
     {
       "rank": null,
@@ -142,7 +122,7 @@
       "jockey": "高田潤",
       "trainer": "石坂公一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +142,7 @@
       "jockey": "土田真翔",
       "trainer": "土田稔",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +162,7 @@
       "jockey": "難波剛健",
       "trainer": "大根田裕",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -202,7 +182,7 @@
       "jockey": "草野太郎",
       "trainer": "中舘英二",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -222,7 +202,7 @@
       "jockey": "石神深一",
       "trainer": "矢嶋大樹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -242,7 +222,7 @@
       "jockey": "水沼元輝",
       "trainer": "加藤和宏",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -250,6 +230,26 @@
       "sire": "レイデオロ",
       "dam": "アディクション",
       "dam_sire": "ハーツクライ"
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 12,
+      "horse_name": "ディープレイヤー",
+      "horse_id": "2019105844",
+      "sex_age": "牡4",
+      "weight_carried": 60.0,
+      "jockey": "五十嵐雄",
+      "trainer": "大和田成",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ディーマジェスティ",
+      "dam": "クインズプレイヤー",
+      "dam_sire": "トウカイテイオー"
     },
     {
       "rank": null,
@@ -262,7 +262,7 @@
       "jockey": "小牧加矢",
       "trainer": "加藤公太",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -278,6 +278,12 @@
       "combination": "3",
       "payout": 200,
       "popularity": 1
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "13",
+      "payout": 13000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -310,6 +316,12 @@
       "popularity": 2
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-10",
+      "payout": 1120,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "3-5",
       "payout": 190,
@@ -328,16 +340,52 @@
       "popularity": 4
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 40030,
+      "popularity": 50
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3",
+      "payout": 80000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "3→12",
       "payout": 890,
       "popularity": 3
     },
     {
+      "bet_type": "馬単",
+      "combination": "3",
+      "payout": 12000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "3-5-12",
       "payout": 730,
       "popularity": 1
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-90",
+      "payout": 105,
+      "popularity": 120
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2-30",
+      "payout": 20305,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4",
+      "payout": 20005,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

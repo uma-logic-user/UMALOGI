@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 8,
-      "horse_number": 12,
-      "horse_name": "ヴェルテンベルク",
-      "horse_id": "2020103060",
-      "sex_age": "牡3",
-      "weight_carried": 55.0,
-      "jockey": "団野大成",
-      "trainer": "宮本博",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "キタサンブラック",
-      "dam": "マルカアイチャン",
-      "dam_sire": "フレンチデピュティFrench Deputy(米)"
-    },
-    {
-      "rank": 2,
-      "gate_number": 8,
-      "horse_number": 11,
-      "horse_name": "ガジュノリ",
-      "horse_id": "2021101724",
-      "sex_age": "牝3",
-      "weight_carried": 54.0,
-      "jockey": "幸英明",
-      "trainer": "尾形和幸",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "サトノダイヤモンド",
-      "dam": "ガジュマル",
-      "dam_sire": "ヴィクトワールピサ"
-    },
-    {
-      "rank": 3,
-      "gate_number": 7,
-      "horse_number": 10,
-      "horse_name": "オーロラエックス",
-      "horse_id": "2021101387",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "松山弘平",
-      "trainer": "杉山晴紀",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "サトノダイヤモンド",
-      "dam": "ガリレオズソングGalileo's Song(愛)",
-      "dam_sire": "Galileo(愛)"
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "和田竜二",
       "trainer": "大竹正博",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +42,7 @@
       "jockey": "岩田望来",
       "trainer": "高野友和",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +62,7 @@
       "jockey": "高杉吏麒",
       "trainer": "宮徹",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +82,7 @@
       "jockey": "酒井学",
       "trainer": "天間昭一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +102,7 @@
       "jockey": "坂井瑠星",
       "trainer": "友道康夫",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -182,7 +122,7 @@
       "jockey": "吉村誠之",
       "trainer": "四位洋文",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -202,7 +142,7 @@
       "jockey": "Ｍ．デム",
       "trainer": "中竹和也",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -222,7 +162,7 @@
       "jockey": "松若風馬",
       "trainer": "宮地貴稔",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -242,7 +182,7 @@
       "jockey": "杉原誠人",
       "trainer": "木村哲也",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -250,14 +190,74 @@
       "sire": "ワールドエース",
       "dam": "トップモーション",
       "dam_sire": "シンボリクリスエス"
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 10,
+      "horse_name": "オーロラエックス",
+      "horse_id": "2021101387",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "松山弘平",
+      "trainer": "杉山晴紀",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "サトノダイヤモンド",
+      "dam": "ガリレオズソングGalileo's Song(愛)",
+      "dam_sire": "Galileo(愛)"
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 11,
+      "horse_name": "ガジュノリ",
+      "horse_id": "2021101724",
+      "sex_age": "牝3",
+      "weight_carried": 54.0,
+      "jockey": "幸英明",
+      "trainer": "尾形和幸",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "サトノダイヤモンド",
+      "dam": "ガジュマル",
+      "dam_sire": "ヴィクトワールピサ"
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 12,
+      "horse_name": "ヴェルテンベルク",
+      "horse_id": "2020103060",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "団野大成",
+      "trainer": "宮本博",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "キタサンブラック",
+      "dam": "マルカアイチャン",
+      "dam_sire": "フレンチデピュティFrench Deputy(米)"
     }
   ],
   "payouts": [
     {
       "bet_type": "単勝",
       "combination": "12",
-      "payout": 1790,
-      "popularity": 7
+      "payout": 12000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -284,10 +284,28 @@
       "popularity": 24
     },
     {
+      "bet_type": "枠連",
+      "combination": "1",
+      "payout": 79007,
+      "popularity": null
+    },
+    {
       "bet_type": "馬連",
       "combination": "11-12",
       "payout": 10330,
       "popularity": 36
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "3-50",
+      "payout": 6110,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "8",
+      "payout": 80000,
+      "popularity": 8
     },
     {
       "bet_type": "ワイド",
@@ -308,16 +326,52 @@
       "popularity": 34
     },
     {
+      "bet_type": "ワイド",
+      "combination": "4",
+      "payout": 30071,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "12",
+      "payout": 103,
+      "popularity": 30
+    },
+    {
       "bet_type": "馬単",
       "combination": "12→11",
       "payout": 21790,
       "popularity": 69
     },
     {
+      "bet_type": "馬単",
+      "combination": "11",
+      "payout": 12000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "10-11-12",
       "payout": 13430,
       "popularity": 50
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "12-20",
+      "payout": 1610,
+      "popularity": 110
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "23-10-3",
+      "payout": 41012,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "11",
+      "payout": 10014,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

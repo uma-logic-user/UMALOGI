@@ -12,66 +12,6 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "ドリームコア",
-      "horse_id": "2023107146",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "レーン",
-      "trainer": "萩原清",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 2,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "コルテオソレイユ",
-      "horse_id": "2023105084",
-      "sex_age": "牡7",
-      "weight_carried": 56.0,
-      "jockey": "マーカン",
-      "trainer": "佐藤悠太",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ウインブライト",
-      "dam": "ファンシャン",
-      "dam_sire": "トーセンラー"
-    },
-    {
-      "rank": 3,
-      "gate_number": 8,
-      "horse_number": 8,
-      "horse_name": "グロリアスマーチ",
-      "horse_id": "2023103680",
-      "sex_age": "牡5",
-      "weight_carried": 56.0,
-      "jockey": "佐々木大",
-      "trainer": "須貝尚介",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -82,7 +22,7 @@
       "jockey": "三浦皇成",
       "trainer": "竹内正洋",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +42,7 @@
       "jockey": "Ｃ．デム",
       "trainer": "渡辺薫彦",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -110,6 +50,26 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "コルテオソレイユ",
+      "horse_id": "2023105084",
+      "sex_age": "牡7",
+      "weight_carried": 56.0,
+      "jockey": "マーカン",
+      "trainer": "佐藤悠太",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ウインブライト",
+      "dam": "ファンシャン",
+      "dam_sire": "トーセンラー"
     },
     {
       "rank": null,
@@ -122,7 +82,27 @@
       "jockey": "バルザロ",
       "trainer": "鹿戸雄一",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "ドリームコア",
+      "horse_id": "2023107146",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "レーン",
+      "trainer": "萩原清",
+      "finish_time": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -142,7 +122,7 @@
       "jockey": "ルメール",
       "trainer": "中舘英二",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -162,7 +142,27 @@
       "jockey": "坂井瑠星",
       "trainer": "高橋康之",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 8,
+      "horse_name": "グロリアスマーチ",
+      "horse_id": "2023103680",
+      "sex_age": "牡5",
+      "weight_carried": 56.0,
+      "jockey": "佐々木大",
+      "trainer": "須貝尚介",
+      "finish_time": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -178,6 +178,12 @@
       "combination": "5",
       "payout": 210,
       "popularity": 1
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "8",
+      "payout": 8000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -204,6 +210,12 @@
       "popularity": 7
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-10",
+      "payout": 1030,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "5-8",
       "payout": 600,
@@ -222,16 +234,46 @@
       "popularity": 22
     },
     {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 80050,
+      "popularity": 80
+    },
+    {
       "bet_type": "馬単",
       "combination": "5→3",
       "payout": 2910,
       "popularity": 9
     },
     {
+      "bet_type": "馬単",
+      "combination": "3",
+      "payout": 5000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "3-5-8",
       "payout": 5950,
       "popularity": 24
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "6",
+      "payout": 603,
+      "popularity": 80
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "7-10",
+      "payout": 80508,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "18",
+      "payout": 50021,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

@@ -12,27 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 6,
-      "horse_number": 6,
-      "horse_name": "オストラヴァ",
-      "horse_id": "2022105456",
-      "sex_age": "牡3",
-      "weight_carried": 54.0,
-      "jockey": "津村明秀",
-      "trainer": "林徹",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 2,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "ルークスヘリオス",
@@ -42,7 +22,7 @@
       "jockey": "西塚洸二",
       "trainer": "中川公成",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -52,7 +32,7 @@
       "dam_sire": "ジャングルポケット"
     },
     {
-      "rank": 3,
+      "rank": null,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "エデルクローネ",
@@ -62,7 +42,7 @@
       "jockey": "ルメール",
       "trainer": "手塚貴久",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -82,7 +62,7 @@
       "jockey": "丸山元気",
       "trainer": "根本康広",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -102,7 +82,7 @@
       "jockey": "石田拓郎",
       "trainer": "青木孝文",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -122,7 +102,7 @@
       "jockey": "菅原明良",
       "trainer": "国枝栄",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -130,6 +110,26 @@
       "sire": "ドゥラメンテ",
       "dam": "ヴァシリカVasilika(米)",
       "dam_sire": "Skipshot"
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 6,
+      "horse_name": "オストラヴァ",
+      "horse_id": "2022105456",
+      "sex_age": "牡3",
+      "weight_carried": 54.0,
+      "jockey": "津村明秀",
+      "trainer": "林徹",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -142,7 +142,7 @@
       "jockey": "戸崎圭太",
       "trainer": "斎藤誠",
       "finish_time": null,
-      "margin": null,
+      "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
@@ -158,6 +158,12 @@
       "combination": "6",
       "payout": 180,
       "popularity": 1
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "7",
+      "payout": 7000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -178,6 +184,12 @@
       "popularity": 6
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-30",
+      "payout": 1010,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "2-6",
       "payout": 150,
@@ -196,16 +208,46 @@
       "popularity": 8
     },
     {
+      "bet_type": "ワイド",
+      "combination": "6",
+      "payout": 10050,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "6→1",
       "payout": 3090,
       "popularity": 9
     },
     {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 6000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-2-6",
       "payout": 930,
       "popularity": 3
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-50",
+      "payout": 201,
+      "popularity": 20
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4-90",
+      "payout": 60206,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "6",
+      "payout": 20008,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
