@@ -558,9 +558,10 @@ class Evaluator:
             parsed_combos = _deduplicate_combos(raw_combos, bet_type)
 
             # n_tickets を重複排除済みコンボ数から導出
-            # ROI = payout / (n_tickets × 100) × 100 の分母を正確にするため
+            # ROI = actual_payout / (n_tickets × 100) × 100
+            # n_tickets = 重複排除済みコンボ数（JRA公式点数と一致）
             n_tickets = len(parsed_combos) if parsed_combos else max(1, round(rec_bet / 100))
-            invested  = float(n_tickets * 100)  # 1コンボ = ¥100
+            invested  = float(n_tickets * 100)  # 1コンボ = ¥100（JRA最小単位）
 
             try:
                 _validate_investment(bet_type, n_tickets, invested)
@@ -633,9 +634,11 @@ class Evaluator:
                                 f"払戻平均 {payout_per_100} を使用"
                             )
 
-            # ROI = payout / (n_tickets × 100) × 100
-            actual_payout = (payout_per_100 / 100.0) * rec_bet if hit else 0.0
-            profit        = actual_payout - invested            # 正しい投資額で計算
+            # 真の払戻金 = 的中コンボのpayout合計（各コンボ¥100で購入）
+            # recommended_bet は参考値。払戻計算には使用しない（水増しの原因）
+            # ROI = actual_payout / (n_tickets × 100) × 100
+            actual_payout = float(payout_per_100) if hit else 0.0
+            profit        = actual_payout - invested
             roi           = (actual_payout / invested * 100.0) if invested > 0 else 0.0
 
             detail = BetHitDetail(

@@ -845,58 +845,61 @@ class HonmeiStrategy:
                 notes=f"合成EV最大={trio_ev5_best:.2f} {len(trio_combos5)}点 馬番={trio_combos5}",
             ))
 
-        # ── 三連単フォーメーション（1着固定マルチ）─────────────────
-        # 軸: スコア最上位1頭（1着固定）
-        # 相手: 上位6頭（軸除く）から2・3着候補（全順列）
-        # Harville確率上位12点を1レコードに集約（UNIQUE制約対応）
-        _ST_AITE_N   = min(6, len(scored) - 1)   # 相手候補数（4→6に拡大）
-        _ST_MAX_BETS = 12                         # 最大点数（6→12に拡大）
+        # ── 三連単 1頭軸マルチ（JRA公式：軸が任意位置）──────────────
+        # JRA定義: 軸1頭 × 相手N頭 → C(N,2) × 3! = C(N,2) × 6 点
+        # 例: 軸1頭 × 相手6頭 → C(6,2)×6 = 15×6 = 90点 (¥9,000)
+        _ST_AITE_N = min(6, len(scored) - 1)   # 相手候補数
 
         if len(top_nums) >= 3 and _ST_AITE_N >= 2:
             axis_num  = top_nums[0]
             axis_idx  = all_nums.index(axis_num) if axis_num in all_nums else 0
-            aite_nums = [num for num in all_nums[1:_ST_AITE_N + 1]
-                         if num != axis_num][:_ST_AITE_N]
+            aite_nums = [num for num in all_nums if num != axis_num][:_ST_AITE_N]
 
-            trifecta_cands: list[tuple[float, tuple]] = []
-            for ni, nj in itertools.permutations(aite_nums, 2):
-                try:
-                    ii = all_nums.index(ni)
-                    ij = all_nums.index(nj)
-                except ValueError:
-                    continue
-                p_tf = _harville_trio(all_scores, axis_idx, ii, ij)
-                trifecta_cands.append((p_tf, (axis_num, ni, nj)))
+            # 全組み合わせを生成（軸は1着・2着・3着の任意位置）
+            all_tf_combos: list[tuple[int, int, int]] = []
+            for pair in itertools.combinations(aite_nums, 2):
+                for perm in itertools.permutations((axis_num,) + pair):
+                    all_tf_combos.append(perm)
 
-            trifecta_cands.sort(key=lambda x: x[0], reverse=True)
-            top_tf = trifecta_cands[:_ST_MAX_BETS]
+            n_tf = len(all_tf_combos)  # = C(N,2) × 6
 
-            if top_tf:
+            if all_tf_combos:
+                # Harville確率を軸が1着の代表組み合わせで計算
                 axis_odds_tf = float(scored.iloc[0].get("win_odds") or 10.0)
-                best_p_tf    = top_tf[0][0]
-                ev_tf        = self._estimator.ev(best_p_tf, "三連単", axis_odds_tf)
-                all_tf_combos = [c for _, c in top_tf]
-                # 重複なし馬名
+                # 最高 Harville 確率を代表値として計算
+                best_p_tf = 0.0
+                for ni, nj in itertools.permutations(aite_nums, 2):
+                    try:
+                        ii = all_nums.index(ni)
+                        ij = all_nums.index(nj)
+                    except ValueError:
+                        continue
+                    p = _harville_trio(all_scores, axis_idx, ii, ij)
+                    if p > best_p_tf:
+                        best_p_tf = p
+
+                ev_tf = self._estimator.ev(best_p_tf, "三連単", axis_odds_tf)
+
+                # 馬名リスト（軸→相手順）
                 seen_nms: set[str] = set()
                 all_tf_names: list[str] = []
-                for _, (ca, cb, cc) in top_tf:
-                    for num in (ca, cb, cc):
-                        nm = names.get(num, str(num))
-                        if nm not in seen_nms:
-                            all_tf_names.append(nm)
-                            seen_nms.add(nm)
+                for num in [axis_num] + list(aite_nums):
+                    nm = names.get(num, str(num))
+                    if nm not in seen_nms:
+                        all_tf_names.append(nm)
+                        seen_nms.add(nm)
+
                 result.bets.append(BetRecommendation(
                     bet_type="三連単",
                     combinations=all_tf_combos,
                     horse_names=all_tf_names,
                     expected_value=ev_tf,
                     model_score=best_p_tf,
-                    recommended_bet=_BASE_BET * len(all_tf_combos),
+                    recommended_bet=_BASE_BET * n_tf,  # n_tf × ¥100
                     confidence=min(best_p_tf * 30, 1.0),
                     notes=(
-                        f"1着固定フォーメーション 軸={axis_num}番 "
-                        f"{len(all_tf_combos)}点 相手={aite_nums} "
-                        f"Harville最大={best_p_tf:.4f}"
+                        f"1頭軸マルチ 軸={axis_num}番 相手={list(aite_nums)} "
+                        f"{n_tf}点 Harville最大={best_p_tf:.4f}"
                     ),
                 ))
 
