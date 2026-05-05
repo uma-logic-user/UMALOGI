@@ -380,38 +380,74 @@
     {
       "bet_type": "単勝",
       "combination": "14",
-      "payout": 14000,
-      "popularity": null
+      "payout": 2110,
+      "popularity": 7
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "6",
+      "payout": 150,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "3",
+      "payout": 150,
+      "popularity": 2
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "14",
+      "payout": 330,
+      "popularity": 6
     },
     {
       "bet_type": "枠連",
-      "combination": "2",
-      "payout": 11007,
-      "popularity": null
+      "combination": "4-8",
+      "payout": 3290,
+      "popularity": 14
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "6-14",
+      "payout": 3510,
+      "popularity": 13
     },
     {
       "bet_type": "ワイド",
-      "combination": "4",
-      "payout": 80000,
-      "popularity": 3
+      "combination": "3-6",
+      "payout": 280,
+      "popularity": 1
     },
     {
       "bet_type": "ワイド",
-      "combination": "1",
-      "payout": 50010,
-      "popularity": 30
+      "combination": "6-14",
+      "payout": 1040,
+      "popularity": 11
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3-14",
+      "payout": 1050,
+      "popularity": 13
     },
     {
       "bet_type": "馬単",
-      "combination": "6",
-      "payout": 14000,
-      "popularity": null
+      "combination": "14→6",
+      "payout": 10380,
+      "popularity": 35
     },
     {
       "bet_type": "三連複",
-      "combination": "2",
-      "payout": 80001,
-      "popularity": null
+      "combination": "3-6-14",
+      "payout": 3200,
+      "popularity": 9
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "14→6→3",
+      "payout": 42160,
+      "popularity": 136
     }
   ],
   "predictions": [
@@ -1551,7 +1587,7 @@
           "ev_score": 7.424722088493074
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "14": "カシノスパーク",
@@ -2839,7 +2875,7 @@
           "ev_score": 7.062138046965774
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "14": "カシノスパーク",

@@ -414,12 +414,6 @@
       "popularity": 4
     },
     {
-      "bet_type": "枠連",
-      "combination": "1",
-      "payout": 20000,
-      "popularity": null
-    },
-    {
       "bet_type": "馬連",
       "combination": "6-12",
       "payout": 5270,
@@ -444,34 +438,16 @@
       "popularity": 43
     },
     {
-      "bet_type": "ワイド",
-      "combination": "4",
-      "payout": 70000,
-      "popularity": null
-    },
-    {
       "bet_type": "馬単",
       "combination": "12→6",
       "payout": 7400,
       "popularity": 25
     },
     {
-      "bet_type": "馬単",
-      "combination": "6",
-      "payout": 12000,
-      "popularity": null
-    },
-    {
       "bet_type": "三連複",
       "combination": "6-8-12",
       "payout": 41740,
       "popularity": 75
-    },
-    {
-      "bet_type": "三連複",
-      "combination": "17-1",
-      "payout": 70812,
-      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -1162,7 +1138,7 @@
           "ev_score": 0.7856613390535689
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
       "horse_num_to_name": {
         "12": "サトノフェンサー",

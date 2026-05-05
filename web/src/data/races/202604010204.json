@@ -379,33 +379,75 @@
   "payouts": [
     {
       "bet_type": "単勝",
-      "combination": "14",
-      "payout": 14000,
-      "popularity": null
+      "combination": "5",
+      "payout": 310,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "5",
+      "payout": 160,
+      "popularity": 2
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "11",
+      "payout": 310,
+      "popularity": 6
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "10",
+      "payout": 400,
+      "popularity": 7
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "4-7",
+      "payout": 870,
+      "popularity": 4
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "5-11",
+      "payout": 1600,
+      "popularity": 4
     },
     {
       "bet_type": "ワイド",
-      "combination": "3",
-      "payout": 10061,
-      "popularity": null
+      "combination": "5-11",
+      "payout": 700,
+      "popularity": 5
     },
     {
       "bet_type": "ワイド",
-      "combination": "4",
-      "payout": 70000,
-      "popularity": null
+      "combination": "5-10",
+      "payout": 860,
+      "popularity": 10
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "10-11",
+      "payout": 2180,
+      "popularity": 27
     },
     {
       "bet_type": "馬単",
-      "combination": "5",
-      "payout": 11000,
-      "popularity": null
+      "combination": "5→11",
+      "payout": 2650,
+      "popularity": 7
     },
     {
       "bet_type": "三連複",
-      "combination": "7",
-      "payout": 50510,
-      "popularity": null
+      "combination": "5-10-11",
+      "payout": 6570,
+      "popularity": 17
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "5→11→10",
+      "payout": 23460,
+      "popularity": 67
     }
   ],
   "predictions": [
@@ -1545,7 +1587,7 @@
           "ev_score": 2.4604795227717626
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "3": "ピスタ",
@@ -2833,7 +2875,7 @@
           "ev_score": 3.069380831010019
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "3": "ピスタ",

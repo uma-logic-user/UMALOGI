@@ -223,33 +223,69 @@
   "payouts": [
     {
       "bet_type": "単勝",
-      "combination": "8",
-      "payout": 8000,
-      "popularity": null
+      "combination": "7",
+      "payout": 140,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "7",
+      "payout": 110,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "4",
+      "payout": 110,
+      "popularity": 2
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "5",
+      "payout": 160,
+      "popularity": 4
     },
     {
       "bet_type": "馬連",
-      "combination": "1-10",
-      "payout": 1040,
-      "popularity": null
+      "combination": "4-7",
+      "payout": 230,
+      "popularity": 1
     },
     {
       "bet_type": "ワイド",
-      "combination": "1",
-      "payout": 10020,
-      "popularity": 50
+      "combination": "4-7",
+      "payout": 160,
+      "popularity": 1
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "5-7",
+      "payout": 420,
+      "popularity": 6
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4-5",
+      "payout": 520,
+      "popularity": 7
     },
     {
       "bet_type": "馬単",
-      "combination": "4",
-      "payout": 7000,
-      "popularity": null
+      "combination": "7→4",
+      "payout": 340,
+      "popularity": 1
     },
     {
       "bet_type": "三連複",
-      "combination": "5",
-      "payout": 20007,
-      "popularity": null
+      "combination": "4-5-7",
+      "payout": 750,
+      "popularity": 2
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "7→4→5",
+      "payout": 1960,
+      "popularity": 3
     }
   ],
   "predictions": [
@@ -1305,7 +1341,7 @@
           "ev_score": 5.390816147402547
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "7": "タンテドヴィーヴル",
@@ -2455,7 +2491,7 @@
           "ev_score": 7.583868596382676
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "7": "タンテドヴィーヴル",

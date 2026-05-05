@@ -354,40 +354,16 @@
       "popularity": 8
     },
     {
-      "bet_type": "ワイド",
-      "combination": "1",
-      "payout": 60030,
-      "popularity": 20
-    },
-    {
-      "bet_type": "ワイド",
-      "combination": "6",
-      "payout": 80000,
-      "popularity": null
-    },
-    {
       "bet_type": "馬単",
       "combination": "11→6",
       "payout": 1580,
       "popularity": 4
     },
     {
-      "bet_type": "馬単",
-      "combination": "6",
-      "payout": 11000,
-      "popularity": null
-    },
-    {
       "bet_type": "三連複",
       "combination": "2-6-11",
       "payout": 2020,
       "popularity": 5
-    },
-    {
-      "bet_type": "三連複",
-      "combination": "5",
-      "payout": 60008,
-      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -1623,7 +1599,7 @@
           "ev_score": 6.0
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 6,
       "horse_num_to_name": {
         "11": "カナルサンマルタン",
@@ -1966,7 +1942,7 @@
           "ev_score": 2.5403245397805856
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
       "horse_num_to_name": {
         "11": "カナルサンマルタン",

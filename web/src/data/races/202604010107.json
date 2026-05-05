@@ -470,34 +470,16 @@
       "popularity": 16
     },
     {
-      "bet_type": "ワイド",
-      "combination": "1",
-      "payout": 20000,
-      "popularity": null
-    },
-    {
       "bet_type": "馬単",
       "combination": "1→2",
       "payout": 1130,
       "popularity": 3
     },
     {
-      "bet_type": "馬単",
-      "combination": "1",
-      "payout": 2000,
-      "popularity": null
-    },
-    {
       "bet_type": "三連複",
       "combination": "1-2-14",
       "payout": 2370,
       "popularity": 3
-    },
-    {
-      "bet_type": "三連複",
-      "combination": "16",
-      "payout": 10015,
-      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -1199,7 +1181,7 @@
           "ev_score": 0.9964604900460012
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
       "horse_num_to_name": {
         "1": "レッドイステル",
@@ -2130,7 +2112,7 @@
           "ev_score": 0.9964604900460012
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
       "horse_num_to_name": {
         "1": "レッドイステル",

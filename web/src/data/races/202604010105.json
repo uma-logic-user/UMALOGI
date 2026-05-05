@@ -479,12 +479,6 @@
     },
     {
       "bet_type": "ワイド",
-      "combination": "16",
-      "payout": 50111,
-      "popularity": 60
-    },
-    {
-      "bet_type": "ワイド",
       "combination": "13-16",
       "payout": 15850,
       "popularity": 72
@@ -496,40 +490,16 @@
       "popularity": 103
     },
     {
-      "bet_type": "ワイド",
-      "combination": "5",
-      "payout": 70000,
-      "popularity": null
-    },
-    {
       "bet_type": "馬単",
       "combination": "13→10",
       "payout": 33860,
       "popularity": 68
     },
     {
-      "bet_type": "馬単",
-      "combination": "13",
-      "payout": 182,
-      "popularity": 80
-    },
-    {
-      "bet_type": "馬単",
-      "combination": "10",
-      "payout": 13000,
-      "popularity": null
-    },
-    {
       "bet_type": "三連複",
       "combination": "10-13-16",
       "payout": 476070,
       "popularity": 347
-    },
-    {
-      "bet_type": "三連複",
-      "combination": "4-4",
-      "payout": 40103,
-      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -1242,7 +1212,7 @@
           "ev_score": 0.5683322804436804
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
       "horse_num_to_name": {
         "13": "アイアムアヒーロー",
@@ -2194,7 +2164,7 @@
           "ev_score": 0.5683322804436804
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
       "horse_num_to_name": {
         "13": "アイアムアヒーロー",

@@ -472,22 +472,10 @@
       "popularity": 10
     },
     {
-      "bet_type": "枠連",
-      "combination": "1",
-      "payout": 600,
-      "popularity": null
-    },
-    {
       "bet_type": "馬連",
       "combination": "6-15",
       "payout": 2430,
       "popularity": 8
-    },
-    {
-      "bet_type": "ワイド",
-      "combination": "3",
-      "payout": 80000,
-      "popularity": 2
     },
     {
       "bet_type": "ワイド",
@@ -508,34 +496,16 @@
       "popularity": 11
     },
     {
-      "bet_type": "ワイド",
-      "combination": "2",
-      "payout": 40040,
-      "popularity": 90
-    },
-    {
       "bet_type": "馬単",
       "combination": "6→15",
       "payout": 4980,
       "popularity": 18
     },
     {
-      "bet_type": "馬単",
-      "combination": "6",
-      "payout": 15000,
-      "popularity": null
-    },
-    {
       "bet_type": "三連複",
       "combination": "6-9-15",
       "payout": 6330,
       "popularity": 16
-    },
-    {
-      "bet_type": "三連複",
-      "combination": "9",
-      "payout": 70011,
-      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -1248,7 +1218,7 @@
           "ev_score": 0.7322279245920194
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
       "horse_num_to_name": {
         "12": "ワイルドミュール",

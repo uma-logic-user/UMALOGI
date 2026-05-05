@@ -370,12 +370,6 @@
       "popularity": 12
     },
     {
-      "bet_type": "枠連",
-      "combination": "1",
-      "payout": 43004,
-      "popularity": null
-    },
-    {
       "bet_type": "馬連",
       "combination": "11-16",
       "payout": 5500,
@@ -383,21 +377,9 @@
     },
     {
       "bet_type": "ワイド",
-      "combination": "6",
-      "payout": 80000,
-      "popularity": 3
-    },
-    {
-      "bet_type": "ワイド",
       "combination": "11-16",
       "payout": 1530,
       "popularity": 14
-    },
-    {
-      "bet_type": "ワイド",
-      "combination": "3",
-      "payout": 40031,
-      "popularity": 20
     },
     {
       "bet_type": "ワイド",
@@ -416,18 +398,6 @@
       "combination": "11→16",
       "payout": 10700,
       "popularity": 30
-    },
-    {
-      "bet_type": "馬単",
-      "combination": "11",
-      "payout": 16000,
-      "popularity": null
-    },
-    {
-      "bet_type": "馬単",
-      "combination": "1",
-      "payout": 11600,
-      "popularity": null
     },
     {
       "bet_type": "三連複",
@@ -735,7 +705,7 @@
           "ev_score": 4.090996057565935
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 6,
       "horse_num_to_name": {
         "11": "フィラーエ",
@@ -1645,7 +1615,7 @@
           "ev_score": 6.0
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 6,
       "horse_num_to_name": {
         "11": "フィラーエ",

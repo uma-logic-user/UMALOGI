@@ -596,22 +596,10 @@
       "popularity": 6
     },
     {
-      "bet_type": "枠連",
-      "combination": "1",
-      "payout": 85005,
-      "popularity": null
-    },
-    {
       "bet_type": "馬連",
       "combination": "5-17",
       "payout": 1630,
       "popularity": 4
-    },
-    {
-      "bet_type": "ワイド",
-      "combination": "3",
-      "payout": 80000,
-      "popularity": 1
     },
     {
       "bet_type": "ワイド",
@@ -627,12 +615,6 @@
     },
     {
       "bet_type": "ワイド",
-      "combination": "1",
-      "payout": 30010,
-      "popularity": 20
-    },
-    {
-      "bet_type": "ワイド",
       "combination": "2-5",
       "payout": 9800,
       "popularity": 77
@@ -644,22 +626,10 @@
       "popularity": 17
     },
     {
-      "bet_type": "馬単",
-      "combination": "5",
-      "payout": 17000,
-      "popularity": null
-    },
-    {
       "bet_type": "三連複",
       "combination": "2-5-17",
       "payout": 22070,
       "popularity": 70
-    },
-    {
-      "bet_type": "三連複",
-      "combination": "12",
-      "payout": 70012,
-      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -1394,7 +1364,7 @@
           "ev_score": 0.1838235294117647
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
       "horse_num_to_name": {
         "5": "??????????????????00110304201104????",

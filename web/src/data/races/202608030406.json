@@ -431,33 +431,75 @@
   "payouts": [
     {
       "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
+      "combination": "3",
+      "payout": 220,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "3",
+      "payout": 110,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "11",
+      "payout": 140,
+      "popularity": 2
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "12",
+      "payout": 200,
+      "popularity": 4
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "2-6",
+      "payout": 320,
+      "popularity": 1
     },
     {
       "bet_type": "馬連",
-      "combination": "1-10",
-      "payout": 1120,
-      "popularity": null
+      "combination": "3-12",
+      "payout": 1110,
+      "popularity": 3
     },
     {
       "bet_type": "ワイド",
-      "combination": "2",
-      "payout": 60000,
-      "popularity": null
+      "combination": "3-11",
+      "payout": 260,
+      "popularity": 2
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3-12",
+      "payout": 440,
+      "popularity": 4
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "11-12",
+      "payout": 460,
+      "popularity": 6
     },
     {
       "bet_type": "馬単",
-      "combination": "3",
-      "payout": 12000,
-      "popularity": null
+      "combination": "3→12",
+      "payout": 1380,
+      "popularity": 3
     },
     {
       "bet_type": "三連複",
-      "combination": "4",
-      "payout": 60006,
-      "popularity": null
+      "combination": "3-11-12",
+      "payout": 1400,
+      "popularity": 2
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "3→12→11",
+      "payout": 5000,
+      "popularity": 7
     }
   ],
   "predictions": [
@@ -2959,7 +3001,7 @@
           "ev_score": 0.7697325121905372
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "1頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "3": "ゼロヴィジビリティ",

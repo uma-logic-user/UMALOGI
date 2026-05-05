@@ -405,33 +405,75 @@
   "payouts": [
     {
       "bet_type": "単勝",
-      "combination": "15",
-      "payout": 15000,
-      "popularity": null
+      "combination": "3",
+      "payout": 270,
+      "popularity": 2
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "3",
+      "payout": 140,
+      "popularity": 2
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "10",
+      "payout": 190,
+      "popularity": 3
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "4",
+      "payout": 280,
+      "popularity": 4
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "2-6",
+      "payout": 650,
+      "popularity": 3
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "3-10",
+      "payout": 830,
+      "popularity": 3
     },
     {
       "bet_type": "ワイド",
-      "combination": "1",
-      "payout": 90030,
-      "popularity": 40
+      "combination": "3-10",
+      "payout": 370,
+      "popularity": 2
     },
     {
       "bet_type": "ワイド",
-      "combination": "2",
-      "payout": 60000,
-      "popularity": null
+      "combination": "3-4",
+      "payout": 630,
+      "popularity": 5
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4-10",
+      "payout": 1080,
+      "popularity": 11
     },
     {
       "bet_type": "馬単",
-      "combination": "3",
-      "payout": 10000,
-      "popularity": null
+      "combination": "3→10",
+      "payout": 1460,
+      "popularity": 4
     },
     {
       "bet_type": "三連複",
-      "combination": "10",
-      "payout": 80011,
-      "popularity": null
+      "combination": "3-4-10",
+      "payout": 3680,
+      "popularity": 12
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "3→10→4",
+      "payout": 12450,
+      "popularity": 30
     }
   ],
   "predictions": [
@@ -1585,7 +1627,7 @@
           "ev_score": 1.6324548866541726
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "3": "タケルハーロック",

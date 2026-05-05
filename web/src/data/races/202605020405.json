@@ -405,27 +405,75 @@
   "payouts": [
     {
       "bet_type": "単勝",
-      "combination": "15",
-      "payout": 15000,
-      "popularity": null
+      "combination": "1",
+      "payout": 510,
+      "popularity": 3
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "1",
+      "payout": 170,
+      "popularity": 2
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "4",
+      "payout": 190,
+      "popularity": 3
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "6",
+      "payout": 220,
+      "popularity": 5
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "1-3",
+      "payout": 760,
+      "popularity": 2
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1-4",
+      "payout": 1070,
+      "popularity": 2
     },
     {
       "bet_type": "ワイド",
-      "combination": "1",
-      "payout": 30000,
-      "popularity": null
+      "combination": "1-4",
+      "payout": 460,
+      "popularity": 2
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1-6",
+      "payout": 570,
+      "popularity": 6
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4-6",
+      "payout": 660,
+      "popularity": 10
     },
     {
       "bet_type": "馬単",
-      "combination": "1",
-      "payout": 4000,
-      "popularity": null
+      "combination": "1→4",
+      "payout": 2320,
+      "popularity": 5
     },
     {
       "bet_type": "三連複",
-      "combination": "6",
-      "payout": 60010,
-      "popularity": null
+      "combination": "1-4-6",
+      "payout": 2540,
+      "popularity": 6
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "1→4→6",
+      "payout": 13590,
+      "popularity": 29
     }
   ],
   "predictions": [
@@ -1579,7 +1627,7 @@
           "ev_score": 3.3042790972007703
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "1": "オメガディコン",
@@ -2890,7 +2938,7 @@
           "ev_score": 5.846071276103269
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "1": "オメガディコン",

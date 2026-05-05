@@ -483,33 +483,75 @@
   "payouts": [
     {
       "bet_type": "単勝",
-      "combination": "18",
-      "payout": 18000,
-      "popularity": null
-    },
-    {
-      "bet_type": "枠連",
-      "combination": "2",
-      "payout": 30006,
-      "popularity": null
-    },
-    {
-      "bet_type": "ワイド",
       "combination": "1",
-      "payout": 80000,
+      "payout": 2300,
+      "popularity": 6
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "17",
+      "payout": 270,
       "popularity": 3
     },
     {
-      "bet_type": "ワイド",
+      "bet_type": "複勝",
       "combination": "2",
-      "payout": 70030,
+      "payout": 710,
+      "popularity": 7
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "1",
+      "payout": 720,
+      "popularity": 8
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "1-8",
+      "payout": 3570,
+      "popularity": 14
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1-17",
+      "payout": 7290,
       "popularity": 20
     },
     {
+      "bet_type": "ワイド",
+      "combination": "2-17",
+      "payout": 2080,
+      "popularity": 22
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1-17",
+      "payout": 2540,
+      "popularity": 26
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1-2",
+      "payout": 6510,
+      "popularity": 51
+    },
+    {
       "bet_type": "馬単",
-      "combination": "1",
-      "payout": 17000,
-      "popularity": null
+      "combination": "1→17",
+      "payout": 16600,
+      "popularity": 45
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-2-17",
+      "payout": 47020,
+      "popularity": 113
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "1→17→2",
+      "payout": 203430,
+      "popularity": 468
     }
   ],
   "predictions": [
@@ -1705,7 +1747,7 @@
           "ev_score": 1.6712166754099542
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "1": "モントゥリエ",
@@ -3085,7 +3127,7 @@
           "ev_score": 1.8867036849846766
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "1頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "1": "モントゥリエ",

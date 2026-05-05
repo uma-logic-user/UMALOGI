@@ -360,46 +360,16 @@
       "popularity": 10
     },
     {
-      "bet_type": "ワイド",
-      "combination": "2",
-      "payout": 20051,
-      "popularity": null
-    },
-    {
-      "bet_type": "ワイド",
-      "combination": "3",
-      "payout": 80000,
-      "popularity": null
-    },
-    {
       "bet_type": "馬単",
       "combination": "3→11",
       "payout": 2110,
       "popularity": 7
     },
     {
-      "bet_type": "馬単",
-      "combination": "3",
-      "payout": 11000,
-      "popularity": null
-    },
-    {
       "bet_type": "三連複",
       "combination": "3-10-11",
       "payout": 1930,
       "popularity": 7
-    },
-    {
-      "bet_type": "三連複",
-      "combination": "3-10",
-      "payout": 310,
-      "popularity": 110
-    },
-    {
-      "bet_type": "三連複",
-      "combination": "6",
-      "payout": 40009,
-      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -1131,7 +1101,7 @@
           "ev_score": 1.6434302574044923
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
       "horse_num_to_name": {
         "3": "ボンヌソワレ",

@@ -340,40 +340,16 @@
       "popularity": 11
     },
     {
-      "bet_type": "ワイド",
-      "combination": "1",
-      "payout": 70050,
-      "popularity": 30
-    },
-    {
-      "bet_type": "ワイド",
-      "combination": "5",
-      "payout": 60000,
-      "popularity": null
-    },
-    {
       "bet_type": "馬単",
       "combination": "5→6",
       "payout": 1210,
       "popularity": 4
     },
     {
-      "bet_type": "馬単",
-      "combination": "5",
-      "payout": 6000,
-      "popularity": null
-    },
-    {
       "bet_type": "三連複",
       "combination": "3-5-6",
       "payout": 1390,
       "popularity": 5
-    },
-    {
-      "bet_type": "三連複",
-      "combination": "6",
-      "payout": 60011,
-      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -1919,7 +1895,7 @@
           "ev_score": 2.2548130010998806
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
       "horse_num_to_name": {
         "5": "リトルジャイアンツ",

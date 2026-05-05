@@ -464,34 +464,16 @@
       "popularity": 25
     },
     {
-      "bet_type": "ワイド",
-      "combination": "3",
-      "payout": 70000,
-      "popularity": null
-    },
-    {
       "bet_type": "馬単",
       "combination": "5→12",
       "payout": 3650,
       "popularity": 7
     },
     {
-      "bet_type": "馬単",
-      "combination": "5",
-      "payout": 12000,
-      "popularity": null
-    },
-    {
       "bet_type": "三連複",
       "combination": "5-12-13",
       "payout": 6800,
       "popularity": 13
-    },
-    {
-      "bet_type": "三連複",
-      "combination": "16",
-      "payout": 80025,
-      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -1753,7 +1735,7 @@
           "ev_score": 6.0
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 6,
       "horse_num_to_name": {
         "5": "クインズショコラ",

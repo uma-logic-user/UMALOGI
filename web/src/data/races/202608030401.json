@@ -431,33 +431,75 @@
   "payouts": [
     {
       "bet_type": "単勝",
-      "combination": "16",
-      "payout": 15000,
-      "popularity": null
+      "combination": "9",
+      "payout": 350,
+      "popularity": 3
     },
     {
       "bet_type": "複勝",
-      "combination": "1",
-      "payout": 11000,
-      "popularity": 10
+      "combination": "10",
+      "payout": 150,
+      "popularity": 1
     },
     {
-      "bet_type": "ワイド",
-      "combination": "1",
-      "payout": 50020,
-      "popularity": 50
+      "bet_type": "複勝",
+      "combination": "9",
+      "payout": 180,
+      "popularity": 3
     },
     {
-      "bet_type": "ワイド",
+      "bet_type": "複勝",
       "combination": "5",
-      "payout": 50000,
-      "popularity": null
+      "payout": 1200,
+      "popularity": 11
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "5-5",
+      "payout": 570,
+      "popularity": 2
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "9-10",
+      "payout": 630,
+      "popularity": 3
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "9-10",
+      "payout": 320,
+      "popularity": 3
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "5-9",
+      "payout": 2670,
+      "popularity": 25
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "5-10",
+      "payout": 2980,
+      "popularity": 29
     },
     {
       "bet_type": "馬単",
-      "combination": "9",
-      "payout": 10000,
-      "popularity": null
+      "combination": "9→10",
+      "payout": 1180,
+      "popularity": 5
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5-9-10",
+      "payout": 9750,
+      "popularity": 28
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "9→10→5",
+      "payout": 34260,
+      "popularity": 94
     }
   ],
   "predictions": [
@@ -1625,7 +1667,7 @@
           "ev_score": 1.0074832117631516
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "1頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "4": "タガノシルフィー",
@@ -2959,7 +3001,7 @@
           "ev_score": 1.0074832117631516
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "1頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "4": "タガノシルフィー",

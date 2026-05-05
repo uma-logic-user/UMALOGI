@@ -525,21 +525,9 @@
     },
     {
       "bet_type": "ワイド",
-      "combination": "3",
-      "payout": 80000,
-      "popularity": 2
-    },
-    {
-      "bet_type": "ワイド",
       "combination": "14-16",
       "payout": 1260,
       "popularity": 11
-    },
-    {
-      "bet_type": "ワイド",
-      "combination": "12",
-      "payout": 90131,
-      "popularity": 40
     },
     {
       "bet_type": "ワイド",
@@ -555,21 +543,9 @@
     },
     {
       "bet_type": "馬単",
-      "combination": "16",
-      "payout": 245,
-      "popularity": 90
-    },
-    {
-      "bet_type": "馬単",
       "combination": "16→6",
       "payout": 31360,
       "popularity": 92
-    },
-    {
-      "bet_type": "馬単",
-      "combination": "6",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "三連複",
@@ -2304,7 +2280,7 @@
           "ev_score": 0.8183872426103587
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
       "horse_num_to_name": {
         "16": "ワールズエンド",

@@ -301,39 +301,75 @@
   "payouts": [
     {
       "bet_type": "単勝",
-      "combination": "11",
-      "payout": 11000,
-      "popularity": null
+      "combination": "9",
+      "payout": 2160,
+      "popularity": 7
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "5",
+      "payout": 170,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "8",
+      "payout": 280,
+      "popularity": 6
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "9",
+      "payout": 370,
+      "popularity": 7
     },
     {
       "bet_type": "枠連",
-      "combination": "2",
-      "payout": 16007,
-      "popularity": null
+      "combination": "7-7",
+      "payout": 5190,
+      "popularity": 12
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "8-9",
+      "payout": 6860,
+      "popularity": 21
     },
     {
       "bet_type": "ワイド",
-      "combination": "7",
-      "payout": 70000,
-      "popularity": 5
+      "combination": "5-8",
+      "payout": 950,
+      "popularity": 15
     },
     {
       "bet_type": "ワイド",
-      "combination": "2",
-      "payout": 80060,
-      "popularity": 50
+      "combination": "5-9",
+      "payout": 1390,
+      "popularity": 19
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "8-9",
+      "payout": 1870,
+      "popularity": 21
     },
     {
       "bet_type": "馬単",
-      "combination": "8",
-      "payout": 9000,
-      "popularity": null
+      "combination": "9→8",
+      "payout": 16560,
+      "popularity": 44
     },
     {
       "bet_type": "三連複",
-      "combination": "9",
-      "payout": 50015,
-      "popularity": null
+      "combination": "5-8-9",
+      "payout": 10640,
+      "popularity": 37
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "9→8→5",
+      "payout": 117320,
+      "popularity": 264
     }
   ],
   "predictions": [
@@ -1431,7 +1467,7 @@
           "ev_score": 5.50950573052576
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "1頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "9": "オックスアイ",
@@ -2650,7 +2686,7 @@
           "ev_score": 6.524737828450588
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "9": "オックスアイ",

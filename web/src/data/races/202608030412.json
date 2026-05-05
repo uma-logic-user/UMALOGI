@@ -431,27 +431,75 @@
   "payouts": [
     {
       "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
+      "combination": "13",
+      "payout": 710,
+      "popularity": 4
     },
     {
-      "bet_type": "ワイド",
-      "combination": "5",
-      "payout": 70000,
+      "bet_type": "複勝",
+      "combination": "16",
+      "payout": 220,
       "popularity": 3
     },
     {
+      "bet_type": "複勝",
+      "combination": "13",
+      "payout": 250,
+      "popularity": 4
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "10",
+      "payout": 420,
+      "popularity": 7
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "5-7",
+      "payout": 3240,
+      "popularity": 14
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "10-13",
+      "payout": 7890,
+      "popularity": 29
+    },
+    {
       "bet_type": "ワイド",
-      "combination": "4",
-      "payout": 20071,
-      "popularity": 60
+      "combination": "13-16",
+      "payout": 950,
+      "popularity": 6
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "10-16",
+      "payout": 1920,
+      "popularity": 20
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "10-13",
+      "payout": 2320,
+      "popularity": 27
     },
     {
       "bet_type": "馬単",
-      "combination": "10",
-      "payout": 13000,
-      "popularity": null
+      "combination": "13→10",
+      "payout": 13420,
+      "popularity": 47
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "10-13-16",
+      "payout": 12420,
+      "popularity": 35
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "13→10→16",
+      "payout": 85310,
+      "popularity": 260
     }
   ],
   "predictions": [
@@ -1619,7 +1667,7 @@
           "ev_score": 1.3794372010447333
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "1頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "13": "ハワイアンタイム",

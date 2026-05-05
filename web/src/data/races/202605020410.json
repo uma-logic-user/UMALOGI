@@ -431,39 +431,99 @@
   "payouts": [
     {
       "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
+      "combination": "14",
+      "payout": 550,
+      "popularity": 3
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "14",
+      "payout": 300,
+      "popularity": 4
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "15",
+      "payout": 470,
+      "popularity": 7
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "7",
+      "payout": 2210,
+      "popularity": 14
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "7-8",
+      "payout": 800,
+      "popularity": 9
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "4-7",
+      "payout": 890,
+      "popularity": 10
     },
     {
       "bet_type": "馬連",
-      "combination": "3",
-      "payout": 4070,
-      "popularity": null
+      "combination": "14-15",
+      "payout": 1870,
+      "popularity": 15
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "7-14",
+      "payout": 20790,
+      "popularity": 72
     },
     {
       "bet_type": "ワイド",
-      "combination": "4",
-      "payout": 70000,
-      "popularity": null
+      "combination": "14-15",
+      "payout": 1400,
+      "popularity": 17
     },
     {
-      "bet_type": "馬単",
-      "combination": "7",
-      "payout": 14000,
-      "popularity": 1
+      "bet_type": "ワイド",
+      "combination": "7-14",
+      "payout": 12990,
+      "popularity": 81
     },
     {
-      "bet_type": "馬単",
-      "combination": "14",
-      "payout": 207,
+      "bet_type": "ワイド",
+      "combination": "7-15",
+      "payout": 18070,
       "popularity": 90
     },
     {
+      "bet_type": "馬単",
+      "combination": "14→15",
+      "payout": 3070,
+      "popularity": 19
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "14→7",
+      "payout": 33310,
+      "popularity": 129
+    },
+    {
       "bet_type": "三連複",
-      "combination": "14",
-      "payout": 1507,
-      "popularity": 150
+      "combination": "7-14-15",
+      "payout": 153440,
+      "popularity": 264
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "14→15→7",
+      "payout": 280230,
+      "popularity": 1194
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "14→7→15",
+      "payout": 389670,
+      "popularity": 1413
     }
   ],
   "predictions": [
@@ -1631,7 +1691,7 @@
           "ev_score": 1.6827587688757415
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "14": "タイトニット",

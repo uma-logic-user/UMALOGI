@@ -496,40 +496,16 @@
       "popularity": 3
     },
     {
-      "bet_type": "ワイド",
-      "combination": "1",
-      "payout": 10010,
-      "popularity": 30
-    },
-    {
-      "bet_type": "ワイド",
-      "combination": "3",
-      "payout": 60000,
-      "popularity": null
-    },
-    {
       "bet_type": "馬単",
       "combination": "5→11",
       "payout": 460,
       "popularity": 2
     },
     {
-      "bet_type": "馬単",
-      "combination": "5",
-      "payout": 11000,
-      "popularity": null
-    },
-    {
       "bet_type": "三連複",
       "combination": "3-5-11",
       "payout": 560,
       "popularity": 1
-    },
-    {
-      "bet_type": "三連複",
-      "combination": "2",
-      "payout": 50002,
-      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -1242,7 +1218,7 @@
           "ev_score": 0.767804809686311
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
       "horse_num_to_name": {
         "5": "スターフュージョン",
@@ -1816,7 +1792,7 @@
           "ev_score": 6.0
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 6,
       "horse_num_to_name": {
         "5": "スターフュージョン",
@@ -2194,7 +2170,7 @@
           "ev_score": 1.466511914580264
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
       "horse_num_to_name": {
         "5": "スターフュージョン",

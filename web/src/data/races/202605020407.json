@@ -405,33 +405,75 @@
   "payouts": [
     {
       "bet_type": "単勝",
-      "combination": "15",
-      "payout": 15000,
-      "popularity": null
+      "combination": "10",
+      "payout": 750,
+      "popularity": 5
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "7",
+      "payout": 200,
+      "popularity": 3
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "10",
+      "payout": 240,
+      "popularity": 5
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "12",
+      "payout": 340,
+      "popularity": 6
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "6-7",
+      "payout": 1820,
+      "popularity": 9
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "10-12",
+      "payout": 5420,
+      "popularity": 20
     },
     {
       "bet_type": "ワイド",
-      "combination": "6",
-      "payout": 70000,
-      "popularity": 1
+      "combination": "7-10",
+      "payout": 760,
+      "popularity": 10
     },
     {
       "bet_type": "ワイド",
-      "combination": "3",
-      "payout": 40060,
-      "popularity": 70
+      "combination": "10-12",
+      "payout": 1390,
+      "popularity": 18
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "7-12",
+      "payout": 1650,
+      "popularity": 22
     },
     {
       "bet_type": "馬単",
-      "combination": "10",
-      "payout": 12000,
-      "popularity": null
+      "combination": "10→12",
+      "payout": 9620,
+      "popularity": 36
     },
     {
       "bet_type": "三連複",
-      "combination": "16",
-      "payout": 50022,
-      "popularity": null
+      "combination": "7-10-12",
+      "payout": 7250,
+      "popularity": 25
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "10→12→7",
+      "payout": 53010,
+      "popularity": 182
     }
   ],
   "predictions": [
@@ -1585,7 +1627,7 @@
           "ev_score": 2.4528989665602237
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "1頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "10": "レッドベルダンス",
@@ -2896,7 +2938,7 @@
           "ev_score": 2.80937294654916
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "10": "レッドベルダンス",

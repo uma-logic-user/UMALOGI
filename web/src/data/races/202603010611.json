@@ -473,21 +473,9 @@
     },
     {
       "bet_type": "ワイド",
-      "combination": "1",
-      "payout": 30000,
-      "popularity": 1
-    },
-    {
-      "bet_type": "ワイド",
       "combination": "6-13",
       "payout": 2100,
       "popularity": 24
-    },
-    {
-      "bet_type": "ワイド",
-      "combination": "8",
-      "payout": 30141,
-      "popularity": 30
     },
     {
       "bet_type": "ワイド",
@@ -503,21 +491,9 @@
     },
     {
       "bet_type": "馬単",
-      "combination": "6",
-      "payout": 104,
-      "popularity": 10
-    },
-    {
-      "bet_type": "馬単",
       "combination": "6→1",
       "payout": 18240,
       "popularity": 76
-    },
-    {
-      "bet_type": "馬単",
-      "combination": "1",
-      "payout": 6000,
-      "popularity": null
     },
     {
       "bet_type": "三連複",
@@ -1236,7 +1212,7 @@
           "ev_score": 0.2678571428571428
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
       "horse_num_to_name": {
         "6": "サウンドモリアーナ",
@@ -2109,7 +2085,7 @@
           "ev_score": 0.2678571428571428
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
       "horse_num_to_name": {
         "6": "サウンドモリアーナ",

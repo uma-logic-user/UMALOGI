@@ -353,27 +353,75 @@
   "payouts": [
     {
       "bet_type": "単勝",
-      "combination": "13",
-      "payout": 13000,
-      "popularity": null
+      "combination": "10",
+      "payout": 260,
+      "popularity": 1
     },
     {
-      "bet_type": "ワイド",
-      "combination": "3",
-      "payout": 70000,
-      "popularity": 4
+      "bet_type": "複勝",
+      "combination": "10",
+      "payout": 160,
+      "popularity": 1
     },
     {
-      "bet_type": "ワイド",
+      "bet_type": "複勝",
       "combination": "8",
-      "payout": 50100,
-      "popularity": 80
+      "payout": 280,
+      "popularity": 6
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "3",
+      "payout": 850,
+      "popularity": 10
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "3-7",
+      "payout": 4790,
+      "popularity": 15
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "3-10",
+      "payout": 5600,
+      "popularity": 22
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "8-10",
+      "payout": 620,
+      "popularity": 5
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3-10",
+      "payout": 1900,
+      "popularity": 24
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3-8",
+      "payout": 3970,
+      "popularity": 43
     },
     {
       "bet_type": "馬単",
-      "combination": "3",
-      "payout": 10000,
-      "popularity": null
+      "combination": "10→3",
+      "payout": 8420,
+      "popularity": 33
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3-8-10",
+      "payout": 13230,
+      "popularity": 46
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "10→3→8",
+      "payout": 67740,
+      "popularity": 233
     }
   ],
   "predictions": [
@@ -1499,7 +1547,7 @@
           "ev_score": 4.188115023063946
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "10": "ラストレガシー",
@@ -2764,7 +2812,7 @@
           "ev_score": 2.6802782820136013
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "1頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "10": "ラストレガシー",

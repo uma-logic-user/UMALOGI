@@ -360,40 +360,16 @@
       "popularity": 3
     },
     {
-      "bet_type": "ワイド",
-      "combination": "1",
-      "payout": 40020,
-      "popularity": 10
-    },
-    {
-      "bet_type": "ワイド",
-      "combination": "6",
-      "payout": 80000,
-      "popularity": null
-    },
-    {
       "bet_type": "馬単",
       "combination": "7→11",
       "payout": 1120,
       "popularity": 1
     },
     {
-      "bet_type": "馬単",
-      "combination": "7",
-      "payout": 11000,
-      "popularity": null
-    },
-    {
       "bet_type": "三連複",
       "combination": "1-7-11",
       "payout": 1120,
       "popularity": 1
-    },
-    {
-      "bet_type": "三連複",
-      "combination": "3",
-      "payout": 60002,
-      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -1125,7 +1101,7 @@
           "ev_score": 2.225881334186973
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
       "horse_num_to_name": {
         "7": "シュドゥン",
@@ -1629,7 +1605,7 @@
           "ev_score": 6.0
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 6,
       "horse_num_to_name": {
         "7": "シュドゥン",

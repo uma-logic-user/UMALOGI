@@ -483,27 +483,75 @@
   "payouts": [
     {
       "bet_type": "単勝",
-      "combination": "18",
-      "payout": 18000,
-      "popularity": null
-    },
-    {
-      "bet_type": "ワイド",
-      "combination": "3",
-      "payout": 80000,
+      "combination": "5",
+      "payout": 500,
       "popularity": 1
     },
     {
+      "bet_type": "複勝",
+      "combination": "5",
+      "payout": 220,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "17",
+      "payout": 290,
+      "popularity": 5
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "7",
+      "payout": 1400,
+      "popularity": 14
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "3-8",
+      "payout": 1400,
+      "popularity": 4
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "5-17",
+      "payout": 2380,
+      "popularity": 6
+    },
+    {
       "bet_type": "ワイド",
-      "combination": "2",
-      "payout": 90050,
-      "popularity": 70
+      "combination": "5-17",
+      "payout": 1030,
+      "popularity": 9
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "5-7",
+      "payout": 3830,
+      "popularity": 42
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "7-17",
+      "payout": 6930,
+      "popularity": 68
     },
     {
       "bet_type": "馬単",
-      "combination": "5",
-      "payout": 17000,
-      "popularity": null
+      "combination": "5→17",
+      "payout": 4440,
+      "popularity": 9
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5-7-17",
+      "payout": 35360,
+      "popularity": 113
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "5→17→7",
+      "payout": 124110,
+      "popularity": 416
     }
   ],
   "predictions": [
@@ -1699,7 +1747,7 @@
           "ev_score": 1.0182299184989758
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "5": "アスクセクシーモア",

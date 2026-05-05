@@ -431,33 +431,75 @@
   "payouts": [
     {
       "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
+      "combination": "1",
+      "payout": 760,
+      "popularity": 3
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "11",
+      "payout": 200,
+      "popularity": 2
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "1",
+      "payout": 250,
+      "popularity": 3
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "9",
+      "payout": 580,
+      "popularity": 10
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "1-5",
+      "payout": 7510,
+      "popularity": 24
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1-9",
+      "payout": 12430,
+      "popularity": 42
     },
     {
       "bet_type": "ワイド",
-      "combination": "1",
-      "payout": 50000,
+      "combination": "1-11",
+      "payout": 890,
       "popularity": 7
     },
     {
       "bet_type": "ワイド",
-      "combination": "5",
-      "payout": 80101,
-      "popularity": 10
-    },
-    {
-      "bet_type": "馬単",
-      "combination": "9",
-      "payout": 124,
+      "combination": "9-11",
+      "payout": 2470,
       "popularity": 30
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1-9",
+      "payout": 3510,
+      "popularity": 43
+    },
+    {
       "bet_type": "馬単",
-      "combination": "1",
-      "payout": 9000,
-      "popularity": null
+      "combination": "1→9",
+      "payout": 18460,
+      "popularity": 65
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-9-11",
+      "payout": 19200,
+      "popularity": 71
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "1→9→11",
+      "payout": 170780,
+      "popularity": 547
     }
   ],
   "predictions": [
@@ -2959,7 +3001,7 @@
           "ev_score": 0.7708409598187231
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "1": "メランジェ",

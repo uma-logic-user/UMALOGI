@@ -472,12 +472,6 @@
       "popularity": 12
     },
     {
-      "bet_type": "馬連",
-      "combination": "2",
-      "payout": 2130,
-      "popularity": null
-    },
-    {
       "bet_type": "ワイド",
       "combination": "1-7",
       "payout": 430,
@@ -485,21 +479,9 @@
     },
     {
       "bet_type": "ワイド",
-      "combination": "4",
-      "payout": 70000,
-      "popularity": 2
-    },
-    {
-      "bet_type": "ワイド",
       "combination": "1-13",
       "payout": 520,
       "popularity": 3
-    },
-    {
-      "bet_type": "ワイド",
-      "combination": "2",
-      "payout": 40040,
-      "popularity": 10
     },
     {
       "bet_type": "ワイド",
@@ -514,28 +496,10 @@
       "popularity": 28
     },
     {
-      "bet_type": "馬単",
-      "combination": "7",
-      "payout": 13000,
-      "popularity": null
-    },
-    {
       "bet_type": "三連複",
       "combination": "1-7-13",
       "payout": 3300,
       "popularity": 3
-    },
-    {
-      "bet_type": "三連複",
-      "combination": "10-11",
-      "payout": 30000,
-      "popularity": 5
-    },
-    {
-      "bet_type": "三連複",
-      "combination": "5",
-      "payout": 20003,
-      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -1248,7 +1212,7 @@
           "ev_score": 0.2678571428571428
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
       "horse_num_to_name": {
         "7": "カンシン",

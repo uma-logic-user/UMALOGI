@@ -438,28 +438,10 @@
       "popularity": 28
     },
     {
-      "bet_type": "ワイド",
-      "combination": "6",
-      "payout": 10080,
-      "popularity": 60
-    },
-    {
-      "bet_type": "ワイド",
-      "combination": "4",
-      "payout": 50000,
-      "popularity": null
-    },
-    {
       "bet_type": "馬単",
       "combination": "5→8",
       "payout": 4900,
       "popularity": 18
-    },
-    {
-      "bet_type": "馬単",
-      "combination": "5",
-      "payout": 8000,
-      "popularity": null
     },
     {
       "bet_type": "三連複",
@@ -1162,7 +1144,7 @@
           "ev_score": 1.0873907363291662
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
       "horse_num_to_name": {
         "5": "プレイザリード",
@@ -2072,7 +2054,7 @@
           "ev_score": 1.0873907363291662
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
       "horse_num_to_name": {
         "5": "プレイザリード",

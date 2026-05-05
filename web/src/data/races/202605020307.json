@@ -472,18 +472,6 @@
       "popularity": 18
     },
     {
-      "bet_type": "馬連",
-      "combination": "2",
-      "payout": 3130,
-      "popularity": null
-    },
-    {
-      "bet_type": "ワイド",
-      "combination": "6",
-      "payout": 70000,
-      "popularity": 3
-    },
-    {
       "bet_type": "ワイド",
       "combination": "12-13",
       "payout": 1250,
@@ -502,22 +490,10 @@
       "popularity": 49
     },
     {
-      "bet_type": "ワイド",
-      "combination": "4",
-      "payout": 50070,
-      "popularity": 90
-    },
-    {
       "bet_type": "馬単",
       "combination": "12→13",
       "payout": 7210,
       "popularity": 33
-    },
-    {
-      "bet_type": "馬単",
-      "combination": "12",
-      "payout": 13000,
-      "popularity": null
     },
     {
       "bet_type": "三連複",
@@ -1236,7 +1212,7 @@
           "ev_score": 0.8207002431579601
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
       "horse_num_to_name": {
         "12": "キョウエイスレーヴ",
@@ -2167,7 +2143,7 @@
           "ev_score": 0.5818918033048166
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
       "horse_num_to_name": {
         "12": "キョウエイスレーヴ",

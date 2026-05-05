@@ -490,34 +490,16 @@
       "popularity": 22
     },
     {
-      "bet_type": "ワイド",
-      "combination": "1",
-      "payout": 70000,
-      "popularity": null
-    },
-    {
       "bet_type": "馬単",
       "combination": "14→1",
       "payout": 890,
       "popularity": 2
     },
     {
-      "bet_type": "馬単",
-      "combination": "1",
-      "payout": 14000,
-      "popularity": null
-    },
-    {
       "bet_type": "三連複",
       "combination": "1-10-14",
       "payout": 3810,
       "popularity": 12
-    },
-    {
-      "bet_type": "三連複",
-      "combination": "18",
-      "payout": 20022,
-      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -2103,7 +2085,7 @@
           "ev_score": 1.6823718079378351
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
       "horse_num_to_name": {
         "14": "ミヤエスケープ",

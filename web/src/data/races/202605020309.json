@@ -479,12 +479,6 @@
     },
     {
       "bet_type": "ワイド",
-      "combination": "1",
-      "payout": 60000,
-      "popularity": 1
-    },
-    {
-      "bet_type": "ワイド",
       "combination": "2-14",
       "payout": 230,
       "popularity": 2
@@ -502,28 +496,10 @@
       "popularity": 6
     },
     {
-      "bet_type": "馬単",
-      "combination": "2",
-      "payout": 12000,
-      "popularity": null
-    },
-    {
       "bet_type": "三連複",
       "combination": "2-12-14",
       "payout": 800,
       "popularity": 1
-    },
-    {
-      "bet_type": "三連複",
-      "combination": "2-10",
-      "payout": 102,
-      "popularity": 140
-    },
-    {
-      "bet_type": "三連複",
-      "combination": "2",
-      "payout": 30002,
-      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -1810,7 +1786,7 @@
           "ev_score": 6.0
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 6,
       "horse_num_to_name": {
         "7": "ルカランフィースト",

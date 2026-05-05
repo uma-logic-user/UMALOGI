@@ -464,46 +464,16 @@
       "popularity": 6
     },
     {
-      "bet_type": "ワイド",
-      "combination": "1",
-      "payout": 60040,
-      "popularity": 30
-    },
-    {
-      "bet_type": "ワイド",
-      "combination": "3",
-      "payout": 50000,
-      "popularity": null
-    },
-    {
       "bet_type": "馬単",
       "combination": "8→4",
       "payout": 1940,
       "popularity": 7
     },
     {
-      "bet_type": "馬単",
-      "combination": "4",
-      "payout": 8000,
-      "popularity": null
-    },
-    {
       "bet_type": "三連複",
       "combination": "3-4-8",
       "payout": 1750,
       "popularity": 4
-    },
-    {
-      "bet_type": "三連複",
-      "combination": "4-10",
-      "payout": 503,
-      "popularity": 40
-    },
-    {
-      "bet_type": "三連複",
-      "combination": "4",
-      "payout": 30006,
-      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -2136,7 +2106,7 @@
           "ev_score": 1.2252882679921187
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
       "horse_num_to_name": {
         "8": "アンバサダネージュ",

@@ -395,12 +395,6 @@
     },
     {
       "bet_type": "ワイド",
-      "combination": "1",
-      "payout": 70000,
-      "popularity": 3
-    },
-    {
-      "bet_type": "ワイド",
       "combination": "10-12",
       "payout": 600,
       "popularity": 6
@@ -418,22 +412,10 @@
       "popularity": 12
     },
     {
-      "bet_type": "ワイド",
-      "combination": "2",
-      "payout": 30051,
-      "popularity": 20
-    },
-    {
       "bet_type": "馬単",
       "combination": "1→10",
       "payout": 7970,
       "popularity": 24
-    },
-    {
-      "bet_type": "馬単",
-      "combination": "1",
-      "payout": 10000,
-      "popularity": null
     },
     {
       "bet_type": "三連複",
@@ -838,7 +820,7 @@
           "ev_score": 6.0
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 6,
       "horse_num_to_name": {
         "1": "ダノンブランニュー",
@@ -1727,7 +1709,7 @@
           "ev_score": 6.0
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 6,
       "horse_num_to_name": {
         "1": "ダノンブランニュー",

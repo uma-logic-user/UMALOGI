@@ -432,20 +432,74 @@
     {
       "bet_type": "単勝",
       "combination": "16",
-      "payout": 16000,
-      "popularity": null
+      "payout": 840,
+      "popularity": 5
     },
     {
-      "bet_type": "ワイド",
+      "bet_type": "複勝",
       "combination": "1",
-      "payout": 80000,
+      "payout": 150,
       "popularity": 1
     },
     {
+      "bet_type": "複勝",
+      "combination": "16",
+      "payout": 230,
+      "popularity": 4
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "10",
+      "payout": 1250,
+      "popularity": 12
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "1-8",
+      "payout": 1110,
+      "popularity": 5
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1-16",
+      "payout": 1340,
+      "popularity": 2
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1-16",
+      "payout": 480,
+      "popularity": 2
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1-10",
+      "payout": 3380,
+      "popularity": 35
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "10-16",
+      "payout": 7280,
+      "popularity": 56
+    },
+    {
       "bet_type": "馬単",
-      "combination": "1",
-      "payout": 16000,
-      "popularity": null
+      "combination": "16→1",
+      "payout": 3710,
+      "popularity": 13
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-10-16",
+      "payout": 27990,
+      "popularity": 81
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "16→1→10",
+      "payout": 167150,
+      "popularity": 468
     }
   ],
   "predictions": [
@@ -1613,7 +1667,7 @@
           "ev_score": 6.487628925464977
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "16": "オモイヲノセテ",
@@ -3019,7 +3073,7 @@
           "ev_score": 6.487628925464977
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "16": "オモイヲノセテ",

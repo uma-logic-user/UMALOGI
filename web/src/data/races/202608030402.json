@@ -328,38 +328,74 @@
     {
       "bet_type": "単勝",
       "combination": "12",
-      "payout": 12000,
-      "popularity": null
+      "payout": 2410,
+      "popularity": 8
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "4",
+      "payout": 220,
+      "popularity": 3
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "9",
+      "payout": 290,
+      "popularity": 5
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "12",
+      "payout": 550,
+      "popularity": 8
     },
     {
       "bet_type": "枠連",
-      "combination": "2",
-      "payout": 41008,
-      "popularity": null
+      "combination": "4-8",
+      "payout": 850,
+      "popularity": 3
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "4-12",
+      "payout": 11240,
+      "popularity": 27
     },
     {
       "bet_type": "ワイド",
-      "combination": "2",
-      "payout": 20030,
-      "popularity": 90
+      "combination": "4-9",
+      "payout": 1000,
+      "popularity": 13
     },
     {
       "bet_type": "ワイド",
-      "combination": "4",
-      "payout": 80000,
-      "popularity": null
+      "combination": "4-12",
+      "payout": 3100,
+      "popularity": 29
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "9-12",
+      "payout": 3070,
+      "popularity": 30
     },
     {
       "bet_type": "馬単",
-      "combination": "12",
-      "payout": 112,
-      "popularity": 40
+      "combination": "12→4",
+      "payout": 28700,
+      "popularity": 58
     },
     {
-      "bet_type": "馬単",
-      "combination": "4",
-      "payout": 12000,
-      "popularity": null
+      "bet_type": "三連複",
+      "combination": "4-9-12",
+      "payout": 27630,
+      "popularity": 64
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "12→4→9",
+      "payout": 267650,
+      "popularity": 454
     }
   ],
   "predictions": [
@@ -1471,7 +1507,7 @@
           "ev_score": 7.806270055236958
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "12": "メイショウサッソウ",
@@ -2713,7 +2749,7 @@
           "ev_score": 7.806270055236958
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "12": "メイショウサッソウ",

@@ -369,12 +369,6 @@
     },
     {
       "bet_type": "ワイド",
-      "combination": "4",
-      "payout": 50000,
-      "popularity": 2
-    },
-    {
-      "bet_type": "ワイド",
       "combination": "5-12",
       "payout": 950,
       "popularity": 11
@@ -383,12 +377,6 @@
       "bet_type": "ワイド",
       "combination": "4-5",
       "payout": 1570,
-      "popularity": 20
-    },
-    {
-      "bet_type": "ワイド",
-      "combination": "5",
-      "payout": 20091,
       "popularity": 20
     },
     {
@@ -402,12 +390,6 @@
       "combination": "5→4",
       "payout": 5540,
       "popularity": 23
-    },
-    {
-      "bet_type": "馬単",
-      "combination": "4",
-      "payout": 5000,
-      "popularity": null
     },
     {
       "bet_type": "三連複",
@@ -2025,7 +2007,7 @@
           "ev_score": 1.4733994965722867
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
       "horse_num_to_name": {
         "5": "ファムマルキーズ",

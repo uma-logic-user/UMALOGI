@@ -405,39 +405,75 @@
   "payouts": [
     {
       "bet_type": "単勝",
-      "combination": "15",
-      "payout": 15000,
-      "popularity": null
+      "combination": "14",
+      "payout": 6650,
+      "popularity": 9
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "5",
+      "payout": 210,
+      "popularity": 3
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "10",
+      "payout": 450,
+      "popularity": 7
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "14",
+      "payout": 1030,
+      "popularity": 8
     },
     {
       "bet_type": "枠連",
-      "combination": "6",
-      "payout": 65009,
-      "popularity": null
+      "combination": "3-8",
+      "payout": 770,
+      "popularity": 5
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "5-14",
+      "payout": 26770,
+      "popularity": 35
     },
     {
       "bet_type": "ワイド",
-      "combination": "2",
-      "payout": 10031,
-      "popularity": null
+      "combination": "5-10",
+      "payout": 1200,
+      "popularity": 14
     },
     {
       "bet_type": "ワイド",
-      "combination": "3",
-      "payout": 80000,
-      "popularity": null
+      "combination": "5-14",
+      "payout": 4970,
+      "popularity": 31
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "10-14",
+      "payout": 9870,
+      "popularity": 41
     },
     {
       "bet_type": "馬単",
-      "combination": "14",
-      "payout": 267,
-      "popularity": 70
+      "combination": "14→5",
+      "payout": 52500,
+      "popularity": 65
     },
     {
-      "bet_type": "馬単",
-      "combination": "5",
-      "payout": 14000,
-      "popularity": null
+      "bet_type": "三連複",
+      "combination": "5-10-14",
+      "payout": 100610,
+      "popularity": 107
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "14→5→10",
+      "payout": 857420,
+      "popularity": 674
     }
   ],
   "predictions": [
@@ -1591,7 +1627,7 @@
           "ev_score": 7.382700054397382
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "14": "レザーアンドレース",

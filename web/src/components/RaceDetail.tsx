@@ -14,6 +14,31 @@ const BET_ORDER: Record<string, number> = {
   'ワイド': 5, '馬単': 6, '三連複': 7, '三連単': 8,
 }
 
+// 払戻バリデーション: 不正な組み合わせをフィルタする
+const BET_COMBO_SIZES: Record<string, [number, number]> = {
+  '単勝': [1,1], '複勝': [1,1], '枠連': [2,2],
+  '馬連': [2,2], 'ワイド': [2,2], '馬単': [2,2],
+  '三連複': [3,3], '三連単': [3,3],
+}
+const BET_MAX_NUM: Record<string, number> = {
+  '単勝': 18, '複勝': 18, '枠連': 8,
+  '馬連': 18, 'ワイド': 18, '馬単': 18,
+  '三連複': 18, '三連単': 18,
+}
+
+function isValidPayout(p: RacePayout): boolean {
+  if (!p.combination || p.payout < 100) return false
+  const sizes = BET_COMBO_SIZES[p.bet_type]
+  const maxNum = BET_MAX_NUM[p.bet_type] ?? 18
+  if (!sizes) return true // WIN5 等は通す
+  const parts = p.combination.replace(/→/g, '-').split('-')
+  if (parts.length < sizes[0] || parts.length > sizes[1]) {
+    console.warn(`[PayoutGuard] invalid combo: ${p.bet_type} "${p.combination}" (${parts.length} parts, expected ${sizes[0]}-${sizes[1]})`)
+    return false
+  }
+  return parts.every(pt => /^\d+$/.test(pt) && Number(pt) >= 1 && Number(pt) <= maxNum)
+}
+
 // odds_velocity がこの値以上で🔥シグナル
 const VELOCITY_THRESHOLD = 0.05
 
@@ -33,10 +58,12 @@ export default function RaceDetail({ race, predictions }: Props) {
   const defaultTab: Tab = hasPrerace ? 'prerace' : 'results'
   const [tab, setTab] = useState<Tab>(defaultTab)
 
-  const payoutsByType = (race.payouts ?? []).reduce<Record<string, RacePayout[]>>(
-    (acc, p) => { (acc[p.bet_type] ??= []).push(p); return acc },
-    {},
-  )
+  const payoutsByType = (race.payouts ?? [])
+    .filter(isValidPayout)
+    .reduce<Record<string, RacePayout[]>>(
+      (acc, p) => { (acc[p.bet_type] ??= []).push(p); return acc },
+      {},
+    )
   const betTypes = Object.keys(payoutsByType).sort(
     (a, b) => (BET_ORDER[a] ?? 99) - (BET_ORDER[b] ?? 99),
   )

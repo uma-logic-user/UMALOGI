@@ -327,39 +327,75 @@
   "payouts": [
     {
       "bet_type": "単勝",
-      "combination": "12",
-      "payout": 12000,
-      "popularity": null
+      "combination": "4",
+      "payout": 200,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "4",
+      "payout": 110,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "3",
+      "payout": 130,
+      "popularity": 2
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "8",
+      "payout": 140,
+      "popularity": 3
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "3-4",
+      "payout": 440,
+      "popularity": 2
     },
     {
       "bet_type": "馬連",
-      "combination": "1-10",
-      "payout": 1030,
-      "popularity": null
+      "combination": "3-4",
+      "payout": 450,
+      "popularity": 1
     },
     {
       "bet_type": "ワイド",
-      "combination": "1",
-      "payout": 30020,
-      "popularity": 80
+      "combination": "3-4",
+      "payout": 180,
+      "popularity": 1
     },
     {
       "bet_type": "ワイド",
-      "combination": "3",
-      "payout": 40000,
-      "popularity": null
+      "combination": "4-8",
+      "payout": 230,
+      "popularity": 2
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3-8",
+      "payout": 440,
+      "popularity": 4
     },
     {
       "bet_type": "馬単",
-      "combination": "3",
-      "payout": 4000,
-      "popularity": null
+      "combination": "4→3",
+      "payout": 700,
+      "popularity": 1
     },
     {
       "bet_type": "三連複",
-      "combination": "4",
-      "payout": 40005,
-      "popularity": null
+      "combination": "3-4-8",
+      "payout": 670,
+      "popularity": 1
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "4→3→8",
+      "payout": 2280,
+      "popularity": 1
     }
   ],
   "predictions": [
@@ -1471,7 +1507,7 @@
           "ev_score": 3.0436368575127646
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "1頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "4": "レイバックスピン",

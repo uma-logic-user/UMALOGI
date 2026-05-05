@@ -431,33 +431,75 @@
   "payouts": [
     {
       "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
-    },
-    {
-      "bet_type": "ワイド",
-      "combination": "4",
-      "payout": 80000,
-      "popularity": 4
-    },
-    {
-      "bet_type": "ワイド",
-      "combination": "13",
-      "payout": 10091,
-      "popularity": 10
-    },
-    {
-      "bet_type": "馬単",
-      "combination": "15",
-      "payout": 152,
-      "popularity": 70
-    },
-    {
-      "bet_type": "馬単",
       "combination": "7",
-      "payout": 15000,
-      "popularity": null
+      "payout": 830,
+      "popularity": 3
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "7",
+      "payout": 370,
+      "popularity": 3
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "11",
+      "payout": 490,
+      "popularity": 5
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "15",
+      "payout": 1310,
+      "popularity": 9
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "4-8",
+      "payout": 4130,
+      "popularity": 13
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "7-15",
+      "payout": 15270,
+      "popularity": 34
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "7-11",
+      "payout": 1880,
+      "popularity": 21
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "7-15",
+      "payout": 3320,
+      "popularity": 32
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "11-15",
+      "payout": 7460,
+      "popularity": 52
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "7→15",
+      "payout": 25400,
+      "popularity": 56
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "7-11-15",
+      "payout": 89140,
+      "popularity": 154
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "7→15→11",
+      "payout": 480300,
+      "popularity": 774
     }
   ],
   "predictions": [
@@ -2959,7 +3001,7 @@
           "ev_score": 0.9545034576014813
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "7": "リフレックス",

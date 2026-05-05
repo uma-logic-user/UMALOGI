@@ -405,27 +405,75 @@
   "payouts": [
     {
       "bet_type": "単勝",
-      "combination": "15",
-      "payout": 15000,
-      "popularity": null
+      "combination": "13",
+      "payout": 410,
+      "popularity": 3
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "10",
+      "payout": 170,
+      "popularity": 2
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "13",
+      "payout": 180,
+      "popularity": 3
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "12",
+      "payout": 960,
+      "popularity": 7
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "6-7",
+      "payout": 790,
+      "popularity": 3
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "10-13",
+      "payout": 820,
+      "popularity": 3
     },
     {
       "bet_type": "ワイド",
-      "combination": "1",
-      "payout": 70021,
-      "popularity": 20
+      "combination": "10-13",
+      "payout": 350,
+      "popularity": 3
     },
     {
       "bet_type": "ワイド",
-      "combination": "6",
-      "payout": 70000,
-      "popularity": null
+      "combination": "10-12",
+      "payout": 2400,
+      "popularity": 17
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "12-13",
+      "payout": 2400,
+      "popularity": 18
     },
     {
       "bet_type": "馬単",
-      "combination": "10",
-      "payout": 13000,
-      "popularity": null
+      "combination": "13→10",
+      "payout": 1490,
+      "popularity": 6
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "10-12-13",
+      "payout": 8810,
+      "popularity": 20
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "13→10→12",
+      "payout": 27660,
+      "popularity": 82
     }
   ],
   "predictions": [
@@ -1579,7 +1627,7 @@
           "ev_score": 5.423024473756342
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "15": "ポッドスモーカー",
@@ -2890,7 +2938,7 @@
           "ev_score": 5.423024473756342
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "15": "ポッドスモーカー",

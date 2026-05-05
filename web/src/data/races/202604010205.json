@@ -379,33 +379,75 @@
   "payouts": [
     {
       "bet_type": "単勝",
-      "combination": "14",
-      "payout": 14000,
-      "popularity": null
+      "combination": "11",
+      "payout": 770,
+      "popularity": 4
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "11",
+      "payout": 210,
+      "popularity": 3
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "9",
+      "payout": 240,
+      "popularity": 4
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "5",
+      "payout": 880,
+      "popularity": 9
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "6-7",
+      "payout": 2180,
+      "popularity": 10
     },
     {
       "bet_type": "馬連",
-      "combination": "2-10",
-      "payout": 3090,
-      "popularity": null
+      "combination": "9-11",
+      "payout": 2130,
+      "popularity": 8
     },
     {
       "bet_type": "ワイド",
-      "combination": "6",
-      "payout": 70000,
-      "popularity": 2
+      "combination": "9-11",
+      "payout": 740,
+      "popularity": 8
     },
     {
       "bet_type": "ワイド",
-      "combination": "2",
-      "payout": 40040,
-      "popularity": 50
+      "combination": "5-9",
+      "payout": 2530,
+      "popularity": 26
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "5-11",
+      "payout": 3290,
+      "popularity": 33
     },
     {
       "bet_type": "馬単",
-      "combination": "9",
-      "payout": 11000,
-      "popularity": null
+      "combination": "11→9",
+      "payout": 5260,
+      "popularity": 20
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5-9-11",
+      "payout": 17090,
+      "popularity": 54
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "11→9→5",
+      "payout": 111970,
+      "popularity": 326
     }
   ],
   "predictions": [
@@ -1545,7 +1587,7 @@
           "ev_score": 8.330283307821102
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "1頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "11": "ワールドブレイヴ",
@@ -2833,7 +2875,7 @@
           "ev_score": 7.315894382490816
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "1頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "11": "ワールドブレイヴ",

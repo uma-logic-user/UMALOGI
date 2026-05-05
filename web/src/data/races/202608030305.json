@@ -394,12 +394,6 @@
       "popularity": 1
     },
     {
-      "bet_type": "馬連",
-      "combination": "1",
-      "payout": 1010,
-      "popularity": null
-    },
-    {
       "bet_type": "ワイド",
       "combination": "1-6",
       "payout": 160,
@@ -418,34 +412,16 @@
       "popularity": 5
     },
     {
-      "bet_type": "ワイド",
-      "combination": "1",
-      "payout": 50000,
-      "popularity": null
-    },
-    {
       "bet_type": "馬単",
       "combination": "6→1",
       "payout": 390,
       "popularity": 1
     },
     {
-      "bet_type": "馬単",
-      "combination": "1",
-      "payout": 6000,
-      "popularity": null
-    },
-    {
       "bet_type": "三連複",
       "combination": "1-6-10",
       "payout": 730,
       "popularity": 1
-    },
-    {
-      "bet_type": "三連複",
-      "combination": "5",
-      "payout": 60006,
-      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -1201,7 +1177,7 @@
           "ev_score": 0.9324679017108375
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
       "horse_num_to_name": {
         "6": "ロードスタニング",
@@ -1657,7 +1633,7 @@
           "ev_score": 6.0
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 6,
       "horse_num_to_name": {
         "6": "ロードスタニング",
@@ -2014,7 +1990,7 @@
           "ev_score": 0.9324679017108375
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
       "horse_num_to_name": {
         "6": "ロードスタニング",

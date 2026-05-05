@@ -518,12 +518,6 @@
       "popularity": 2
     },
     {
-      "bet_type": "枠連",
-      "combination": "1",
-      "payout": 8005,
-      "popularity": null
-    },
-    {
       "bet_type": "馬連",
       "combination": "14-16",
       "payout": 1760,
@@ -548,46 +542,16 @@
       "popularity": 9
     },
     {
-      "bet_type": "ワイド",
-      "combination": "1",
-      "payout": 20010,
-      "popularity": 80
-    },
-    {
-      "bet_type": "ワイド",
-      "combination": "7",
-      "payout": 80000,
-      "popularity": null
-    },
-    {
       "bet_type": "馬単",
       "combination": "16→14",
       "payout": 4580,
       "popularity": 15
     },
     {
-      "bet_type": "馬単",
-      "combination": "14",
-      "payout": 16000,
-      "popularity": null
-    },
-    {
-      "bet_type": "馬単",
-      "combination": "1",
-      "payout": 41600,
-      "popularity": null
-    },
-    {
       "bet_type": "三連複",
       "combination": "8-14-16",
       "payout": 2020,
       "popularity": 4
-    },
-    {
-      "bet_type": "三連複",
-      "combination": "2",
-      "payout": 20001,
-      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -1262,7 +1226,7 @@
           "ev_score": 0.5007004623651072
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
       "horse_num_to_name": {
         "16": "ダイユウアレグロ",

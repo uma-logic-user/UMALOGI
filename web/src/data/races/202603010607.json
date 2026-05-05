@@ -459,21 +459,9 @@
     },
     {
       "bet_type": "ワイド",
-      "combination": "2",
-      "payout": 70051,
-      "popularity": 10
-    },
-    {
-      "bet_type": "ワイド",
       "combination": "6-10",
       "payout": 1460,
       "popularity": 14
-    },
-    {
-      "bet_type": "ワイド",
-      "combination": "4",
-      "payout": 60000,
-      "popularity": null
     },
     {
       "bet_type": "馬単",
@@ -482,22 +470,10 @@
       "popularity": 28
     },
     {
-      "bet_type": "馬単",
-      "combination": "6",
-      "payout": 10000,
-      "popularity": null
-    },
-    {
       "bet_type": "三連複",
       "combination": "6-10-11",
       "payout": 2750,
       "popularity": 4
-    },
-    {
-      "bet_type": "三連複",
-      "combination": "5",
-      "payout": 10005,
-      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -1199,7 +1175,7 @@
           "ev_score": 1.2788220933437815
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
       "horse_num_to_name": {
         "10": "ユージュアーナ",

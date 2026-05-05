@@ -353,27 +353,75 @@
   "payouts": [
     {
       "bet_type": "単勝",
-      "combination": "13",
-      "payout": 13000,
-      "popularity": null
-    },
-    {
-      "bet_type": "ワイド",
-      "combination": "4",
-      "payout": 70000,
+      "combination": "5",
+      "payout": 270,
       "popularity": 1
     },
     {
-      "bet_type": "馬単",
+      "bet_type": "複勝",
       "combination": "5",
-      "payout": 10000,
-      "popularity": null
+      "payout": 140,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "13",
+      "payout": 240,
+      "popularity": 5
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "10",
+      "payout": 440,
+      "popularity": 8
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "4-7",
+      "payout": 1160,
+      "popularity": 5
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "5-10",
+      "payout": 2710,
+      "popularity": 12
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "5-13",
+      "payout": 450,
+      "popularity": 3
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "5-10",
+      "payout": 900,
+      "popularity": 12
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "10-13",
+      "payout": 2020,
+      "popularity": 24
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "5→10",
+      "payout": 3800,
+      "popularity": 14
     },
     {
       "bet_type": "三連複",
-      "combination": "9-1",
-      "payout": 10513,
-      "popularity": null
+      "combination": "5-10-13",
+      "payout": 4720,
+      "popularity": 14
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "5→10→13",
+      "payout": 24790,
+      "popularity": 92
     }
   ],
   "predictions": [
@@ -1499,7 +1547,7 @@
           "ev_score": 2.0815976149688007
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "5": "エイプリルインパリ",

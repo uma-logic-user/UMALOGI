@@ -453,12 +453,6 @@
     },
     {
       "bet_type": "ワイド",
-      "combination": "3",
-      "payout": 80000,
-      "popularity": 1
-    },
-    {
-      "bet_type": "ワイド",
       "combination": "8-15",
       "payout": 870,
       "popularity": 7
@@ -482,22 +476,10 @@
       "popularity": 11
     },
     {
-      "bet_type": "馬単",
-      "combination": "4",
-      "payout": 15000,
-      "popularity": null
-    },
-    {
       "bet_type": "三連複",
       "combination": "4-8-15",
       "payout": 6310,
       "popularity": 17
-    },
-    {
-      "bet_type": "三連複",
-      "combination": "8",
-      "payout": 70007,
-      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -1199,7 +1181,7 @@
           "ev_score": 1.4206978687803038
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
       "horse_num_to_name": {
         "4": "マイネルフルムーン",
@@ -1759,7 +1741,7 @@
           "ev_score": 6.0
         }
       ],
-      "bet_form": "1頭軸マルチ",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 6,
       "horse_num_to_name": {
         "4": "マイネルフルムーン",

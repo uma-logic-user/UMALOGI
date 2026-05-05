@@ -327,39 +327,75 @@
   "payouts": [
     {
       "bet_type": "単勝",
-      "combination": "12",
-      "payout": 12000,
-      "popularity": null
-    },
-    {
-      "bet_type": "ワイド",
-      "combination": "2",
-      "payout": 10030,
-      "popularity": 50
-    },
-    {
-      "bet_type": "ワイド",
       "combination": "4",
-      "payout": 50000,
-      "popularity": null
+      "payout": 380,
+      "popularity": 2
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "4",
+      "payout": 150,
+      "popularity": 2
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "6",
+      "payout": 210,
+      "popularity": 3
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "5",
+      "payout": 350,
+      "popularity": 8
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "4-5",
+      "payout": 900,
+      "popularity": 4
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "4-6",
+      "payout": 1050,
+      "popularity": 2
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4-6",
+      "payout": 410,
+      "popularity": 2
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4-5",
+      "payout": 950,
+      "popularity": 13
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "5-6",
+      "payout": 1410,
+      "popularity": 22
     },
     {
       "bet_type": "馬単",
-      "combination": "4",
-      "payout": 6000,
-      "popularity": null
+      "combination": "4→6",
+      "payout": 1760,
+      "popularity": 3
     },
     {
       "bet_type": "三連複",
-      "combination": "4-10",
-      "payout": 20405,
-      "popularity": null
+      "combination": "4-5-6",
+      "payout": 4590,
+      "popularity": 16
     },
     {
-      "bet_type": "三連複",
-      "combination": "14",
-      "payout": 10022,
-      "popularity": null
+      "bet_type": "三連単",
+      "combination": "4→6→5",
+      "payout": 16120,
+      "popularity": 37
     }
   ],
   "predictions": [
@@ -1471,7 +1507,7 @@
           "ev_score": 3.3835525138104
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "4": "マドモアゼルアスク",

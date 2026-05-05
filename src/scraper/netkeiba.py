@@ -442,19 +442,20 @@ def fetch_race_results(
 # 払戻テーブルパーサー
 # ---------------------------------------------------------------------------
 
-# netkeiba の th クラス → 馬券種の対応
 # race.netkeiba.com 払戻テーブルの th テキスト → 内部 bet_type マッピング
 _TH_TEXT_TO_BET_TYPE: dict[str, str] = {
-    "単勝":  "単勝",
-    "複勝":  "複勝",
-    "枠連":  "枠連",
-    "馬連":  "馬連",
-    "ワイド": "ワイド",
-    "馬単":  "馬単",
-    "3連複": "三連複",
-    "3連単": "三連単",
-    "三連複": "三連複",
-    "三連単": "三連単",
+    "単勝":   "単勝",
+    "複勝":   "複勝",
+    "枠連":   "枠連",
+    "馬連":   "馬連",
+    "ワイド":  "ワイド",
+    "馬単":   "馬単",
+    "3連複":  "三連複",
+    "3連単":  "三連単",
+    "三連複":  "三連複",
+    "三連単":  "三連単",
+    "WIN5":   "WIN5",
+    "ＷＩＮ５": "WIN5",
 }
 
 # th class → bet_type（旧 db.netkeiba.com 形式・後方互換）
@@ -469,24 +470,39 @@ _TH_CLASS_TO_BET_TYPE: dict[str, str] = {
     "santan":  "三連単",
 }
 
-# 着順依存型（払戻 combination に → を使う）
+# 着順依存型（組み合わせに → を使う）
 _ORDERED_BET_TYPES = {"馬単", "三連単"}
+
+# 馬券種ごとの組み合わせ馬番数（min, max）
+_BET_COMBO_SIZES: dict[str, tuple[int, int]] = {
+    "単勝":   (1, 1),
+    "複勝":   (1, 1),
+    "枠連":   (2, 2),
+    "馬連":   (2, 2),
+    "ワイド": (2, 2),
+    "馬単":   (2, 2),
+    "三連複": (3, 3),
+    "三連単": (3, 3),
+    "WIN5":   (5, 5),
+}
+
+# 馬券種ごとの最大有効番号（枠連のみ 1-8、他は 1-18）
+_BET_MAX_NUM: dict[str, int] = {
+    "単勝":   18,
+    "複勝":   18,
+    "枠連":   8,
+    "馬連":   18,
+    "ワイド": 18,
+    "馬単":   18,
+    "三連複": 18,
+    "三連単": 18,
+    "WIN5":   99,
+}
 
 
 def _normalize_combination(raw: str) -> str:
-    """
-    netkeiba 払戻テーブルのコンビネーション文字列を正規化する。
-
-    例:
-      "  7  -  14  "  → "7-14"
-      " 14  →  7  "   → "14→7"
-      "14 → 7 → 16"   → "14→7→16"
-    """
-    # 全角スペース・全角数字を半角化
-    raw = raw.translate(str.maketrans(
-        "０１２３４５６７８９　", "0123456789 "
-    ))
-    # 矢印（→ U+2192 と → の全角）と ハイフン まわりのスペースを除去
+    """払戻組み合わせ文字列を "7-14" / "14→7" 形式に正規化する。"""
+    raw = raw.translate(str.maketrans("０１２３４５６７８９　", "0123456789 "))
     raw = re.sub(r"\s*→\s*", "→", raw)
     raw = re.sub(r"\s*-\s*", "-", raw)
     return raw.strip()
@@ -494,7 +510,6 @@ def _normalize_combination(raw: str) -> str:
 
 def _parse_payout_int(raw: str) -> Optional[int]:
     """"1,380" / "250円" / "1,450円" → 1380 / 250 / 1450"""
-    # 数字とカンマのみ抽出（"円" や HTML 残渣を無視）
     numeric = re.sub(r"[^\d,]", "", raw.strip())
     if not numeric:
         return None
@@ -504,19 +519,120 @@ def _parse_payout_int(raw: str) -> Optional[int]:
         return None
 
 
+def _td_row_texts(td) -> list[str]:
+    """
+    <td> から行ごとのテキストを抽出する。
+
+    優先順位: <li> 要素 → <br> 分割 → テキスト全体。
+    """
+    lis = td.find_all("li", recursive=True)
+    if lis:
+        return [li.get_text(" ", strip=True) for li in lis]
+
+    html = td.decode_contents()
+    parts = [re.sub(r"<[^>]+>", "", p).strip() for p in re.split(r"<br\s*/?>", html)]
+    parts = [p for p in parts if p]
+    if parts:
+        return parts
+
+    text = td.get_text(" ", strip=True)
+    return [text] if text else []
+
+
+def _combo_li_nums(td, bet_type: str) -> list[list[int]]:
+    """
+    組み合わせ列 <td> から「組み合わせごとの馬番リスト」を抽出する。
+
+    netkeiba の HTML パターン:
+      A) <ul> 1個に <li> 1個ずつ馬番 → 1 <ul> = 1 組み合わせ
+         (馬連/枠連/馬単/三連複/三連単: <ul><li>9</li><li>10</li><li></li></ul>)
+      B) <ul> 複数 = 複数の組み合わせ
+         (ワイド: <ul><li>9</li><li>10</li></ul><ul><li>5</li><li>9</li></ul>...)
+      C) <div> ベース・<li> なし
+         (単勝/複勝: <div><span>9</span></div><div><span>10</span></div>...)
+    """
+    max_num = _BET_MAX_NUM.get(bet_type, 18)
+    combo_size = _BET_COMBO_SIZES.get(bet_type, (1, 99))
+    result: list[list[int]] = []
+
+    # パターン A/B: <ul> 要素があれば、各 <ul> が 1 組み合わせ
+    uls = td.find_all("ul", recursive=False)
+    if not uls:
+        uls = td.find_all("ul", recursive=True)
+
+    if uls:
+        for ul in uls:
+            # この <ul> 内の全 <li> から数値を収集
+            nums: list[int] = []
+            for li in ul.find_all("li", recursive=False):
+                li_nums = [
+                    int(n) for n in re.findall(r'\d+', li.get_text())
+                    if 0 < int(n) <= max_num
+                ]
+                nums.extend(li_nums)
+            if combo_size[0] <= len(nums) <= combo_size[1]:
+                result.append(nums)
+            elif len(nums) > combo_size[1]:
+                # 超過した場合は先頭 N 個のみ使用
+                result.append(nums[:combo_size[1]])
+        if result:
+            return result
+
+    # パターン C: <div> または <span> のフラットリスト → 全数値を step 個ずつ分割
+    all_nums = [
+        int(n) for n in re.findall(r'\d+', td.get_text())
+        if 0 < int(n) <= max_num
+    ]
+    step = combo_size[0]
+    if step > 0:
+        for i in range(0, len(all_nums), step):
+            chunk = all_nums[i:i + step]
+            if len(chunk) == step:
+                result.append(chunk)
+    return result
+
+
+def _validate_payout_record(bet_type: str, combo: str, payout: int, pop: Optional[int]) -> bool:
+    """
+    払戻レコードの妥当性チェック。問題があれば警告ログを出して False を返す。
+    """
+    # 最小払戻（JRA 最小 ¥100）
+    if payout < 100:
+        logger.warning("払戻不正: bet_type=%s combo=%s payout=%d (< 100)", bet_type, combo, payout)
+        return False
+    # 最大払戻（三連単 1000 万超はありえない）
+    if payout > 10_000_000:
+        logger.warning("払戻不正: bet_type=%s combo=%s payout=%d (> 10M)", bet_type, combo, payout)
+        return False
+
+    # 人気バリデーション
+    if pop is not None and not (1 <= pop <= 9999):
+        logger.warning("人気不正: bet_type=%s combo=%s pop=%d", bet_type, combo, pop)
+        return False
+
+    # 組み合わせ馬番バリデーション
+    max_num = _BET_MAX_NUM.get(bet_type, 18)
+    sep = "→" if bet_type in _ORDERED_BET_TYPES else "-"
+    parts = combo.replace("→", "-").split("-")
+    sizes = _BET_COMBO_SIZES.get(bet_type, (1, 99))
+    if not (sizes[0] <= len(parts) <= sizes[1]):
+        logger.warning("組み合わせ馬番数不正: bet_type=%s combo=%s (expected %s nums)", bet_type, combo, sizes)
+        return False
+    for p in parts:
+        if not p.isdigit() or not (1 <= int(p) <= max_num):
+            logger.warning("馬番不正: bet_type=%s combo=%s (part=%r, max=%d)", bet_type, combo, p, max_num)
+            return False
+
+    return True
+
+
 def _parse_payout_table_new(soup: BeautifulSoup) -> list[dict]:
     """
-    race.netkeiba.com/race/result.html の Payout_Detail_Table を解析する。
+    race.netkeiba.com の Payout_Detail_Table を解析する。
 
-    構造:
-        table.Payout_Detail_Table > tr
-            th: 馬券種テキスト（"単勝" / "3連複" 等）
-            td[0]: 馬番 <span> / <li> 要素の数字
-            td[1]: 払戻 <span> に <br> 区切りで複数ある場合あり
-            td[2]: 人気 <span> が複数ある場合あり
-
-    組み合わせ区切り:
-        馬単・三連単 → "→"  / その他 → "-"  / 単勝・複勝 → 単一数字
+    <li> ベース（新形式）と <br> ベース（旧形式）の両方に対応。
+    全券種の全行（複勝3行、ワイド最大7行等）を漏れなく取得する。
+    不正なレコードはバリデーション後に除外する。
     """
     results: list[dict] = []
 
@@ -531,70 +647,117 @@ def _parse_payout_table_new(soup: BeautifulSoup) -> list[dict]:
             if bet_type is None:
                 continue
 
-            # --- 馬番を取得 ---
-            nums: list[str] = [
-                sp.get_text(strip=True)
-                for sp in tds[0].find_all("span")
-                if sp.get_text(strip=True).isdigit()
-            ]
-            if not nums:
-                nums = [
-                    li.get_text(strip=True)
-                    for li in tds[0].find_all("li")
-                    if li.get_text(strip=True).isdigit()
-                ]
-
-            # --- 払戻を取得 (<br> 区切り) ---
-            pay_html = tds[1].decode_contents()
-            pays: list[Optional[int]] = [
-                _parse_payout_int(re.sub(r"<[^>]+>", "", p))
-                for p in re.split(r"<br\s*/?>", pay_html)
-                if re.search(r"\d", p)
-            ]
-
-            # --- 人気を取得 ---
-            pops: list[Optional[int]] = [
-                _parse_payout_int(re.sub(r"人気|<[^>]+>", "", sp.decode_contents()))
-                for sp in (tds[2].find_all("span") if len(tds) > 2 else [])
-            ]
-
-            # --- 組み合わせ文字列を構築 ---
             sep = "→" if bet_type in _ORDERED_BET_TYPES else "-"
-            n_pays = len(pays)
-            n_nums = len(nums)
 
-            if bet_type in ("単勝", "複勝"):
-                # 1馬番ずつ独立したレコード
-                for i, num in enumerate(nums):
-                    pay = pays[i] if i < n_pays else None
+            # 払戻列: <br> 区切り or <li> でマルチ行を取得
+            pay_rows = _td_row_texts(tds[1])
+            pays = [_parse_payout_int(t) for t in pay_rows]
+
+            # 人気列: 各 <span> が 1 エントリ（"3人気" "25人気" のように並ぶ）
+            if len(tds) > 2:
+                pop_spans = tds[2].find_all("span")
+                if pop_spans:
+                    pops: list[Optional[int]] = [
+                        _parse_payout_int(re.sub(r"[^\d,]", "", sp.get_text()))
+                        for sp in pop_spans
+                    ]
+                else:
+                    pop_rows = _td_row_texts(tds[2])
+                    pops = [_parse_payout_int(re.sub(r"[^\d,]", "", t)) for t in pop_rows]
+            else:
+                pops = []
+
+            # 組み合わせ列: bet_type に応じた馬番リストを行ごとに取得
+            combo_rows = _combo_li_nums(tds[0], bet_type)
+
+            # 組み合わせ数とペイアウト数を合わせる（どちらか少ない方を基準）
+            n = min(len(combo_rows), len(pays)) if combo_rows else len(pays)
+
+            if not combo_rows and bet_type in ("単勝", "複勝"):
+                # 単勝/複勝は馬番が1列テキストで来ることがある
+                raw_rows = _td_row_texts(tds[0])
+                for i, row_text in enumerate(raw_rows):
+                    nums = [int(x) for x in re.findall(r'\d+', row_text)
+                            if 0 < int(x) <= 18]
+                    if not nums:
+                        continue
+                    pay = pays[i] if i < len(pays) else None
                     pop = pops[i] if i < len(pops) else None
                     if pay is None:
                         continue
-                    results.append({"bet_type": bet_type, "combination": num,
-                                    "payout": pay, "popularity": pop})
+                    combo = str(nums[0])
+                    if _validate_payout_record(bet_type, combo, pay, pop):
+                        results.append({"bet_type": bet_type, "combination": combo,
+                                        "payout": pay, "popularity": pop})
+                continue
 
-            elif bet_type == "ワイド":
-                # ワイドは n_pays 組のペア。馬番は 2×n_pays 個
-                for i in range(n_pays):
-                    a, b = nums[i * 2] if i * 2 < n_nums else "?", \
-                           nums[i * 2 + 1] if i * 2 + 1 < n_nums else "?"
-                    pay = pays[i]
-                    pop = pops[i] if i < len(pops) else None
-                    if pay is None:
-                        continue
-                    combo = f"{a}{sep}{b}"
+            for i in range(n):
+                nums = combo_rows[i] if i < len(combo_rows) else []
+                pay  = pays[i] if i < len(pays) else None
+                pop  = pops[i] if i < len(pops) else None
+                if not nums or pay is None:
+                    continue
+                combo = sep.join(str(x) for x in nums)
+                if _validate_payout_record(bet_type, combo, pay, pop):
                     results.append({"bet_type": bet_type, "combination": combo,
                                     "payout": pay, "popularity": pop})
 
-            else:
-                # 馬連・枠連・馬単・三連複・三連単
-                combo = sep.join(nums)
-                pay = pays[0] if pays else None
-                pop = pops[0] if pops else None
+    return results
+
+
+def _parse_old_payout_tables(soup: BeautifulSoup) -> list[dict]:
+    """旧 db.netkeiba.com 形式（pay_table_01/02）の払戻テーブルを解析する。"""
+    results: list[dict] = []
+
+    for table in soup.select("table.pay_table_01, table.pay_table_02"):
+        for tr in table.select("tr"):
+            th = tr.select_one("th")
+            if th is None:
+                continue
+            bet_type = None
+            for cls in (th.get("class") or []):
+                bet_type = _TH_CLASS_TO_BET_TYPE.get(cls)
+                if bet_type:
+                    break
+            if bet_type is None:
+                bet_type = _TH_TEXT_TO_BET_TYPE.get(th.get_text(strip=True))
+            if bet_type is None:
+                continue
+
+            tds = tr.select("td")
+            if len(tds) < 2:
+                continue
+
+            sep = "→" if bet_type in _ORDERED_BET_TYPES else "-"
+            combo_rows = _td_row_texts(tds[0])
+            pay_rows   = _td_row_texts(tds[1])
+            pop_rows   = _td_row_texts(tds[2]) if len(tds) > 2 else []
+
+            pays = [_parse_payout_int(t) for t in pay_rows]
+            pops = [_parse_payout_int(re.sub(r"人気", "", t)) for t in pop_rows]
+
+            max_num = _BET_MAX_NUM.get(bet_type, 18)
+            combo_size = _BET_COMBO_SIZES.get(bet_type, (1, 99))
+
+            for i, raw_combo in enumerate(combo_rows):
+                combo = _normalize_combination(BeautifulSoup(raw_combo, "lxml").get_text())
+                if not combo:
+                    continue
+                # 番号バリデーション
+                parts = combo.replace("→", "-").split("-")
+                parts = [p for p in parts if p.isdigit() and 0 < int(p) <= max_num]
+                if not (combo_size[0] <= len(parts) <= combo_size[1]):
+                    logger.warning("旧形式 組み合わせ不正: bet_type=%s raw=%r", bet_type, raw_combo)
+                    continue
+                combo_clean = sep.join(parts)
+
+                pay = pays[i] if i < len(pays) else None
+                pop = pops[i] if i < len(pops) else None
                 if pay is None:
                     continue
-                results.append({"bet_type": bet_type, "combination": combo,
-                                "payout": pay, "popularity": pop})
+                if _validate_payout_record(bet_type, combo_clean, pay, pop):
+                    results.append({"bet_type": bet_type, "combination": combo_clean,
+                                    "payout": pay, "popularity": pop})
 
     return results
 
@@ -604,71 +767,47 @@ def fetch_race_payouts(
     *,
     delay: float = 1.5,
     max_retries: int = 3,
+    session: Optional[requests.Session] = None,
 ) -> list[dict]:
     """
     レースページの払戻テーブルを取得・解析する。
 
-    Args:
-        race_id: netkeiba レース ID
+    netkeiba の HTML 構造:
+      - table.Payout_Detail_Table: 単勝/複勝（上部目立つセクション）
+      - table.pay_table_01 / pay_table_02: 連複/三連単など残りの券種
+
+    両テーブルを取得・統合し、(bet_type, combination) で重複排除する。
 
     Returns:
-        [{"bet_type": "単勝", "combination": "14",
-          "payout": 380, "popularity": 1}, ...]
-        複勝/ワイドは複数行あり。
-        払戻テーブルが存在しない（レース前・廃止等）は空リスト。
+        [{"bet_type": "単勝", "combination": "14", "payout": 380, "popularity": 1}, ...]
+        複勝/ワイドは複数行あり。払戻テーブルが存在しない場合は空リスト。
     """
     if not race_id or not race_id.isdigit():
         raise ValueError(f"不正なレース ID: {race_id!r}")
 
     url  = RACE_URL_TEMPLATE.format(race_id=race_id)
-    html = _fetch_html(url, max_retries=max_retries, delay=delay)
+    html = _fetch_html(url, session=session, max_retries=max_retries, delay=delay)
     soup = BeautifulSoup(html, "lxml")
 
-    # race.netkeiba.com: Payout_Detail_Table
+    results: list[dict] = []
+
+    # Payout_Detail_Table（新形式・単勝/複勝 等）
     if soup.select("table.Payout_Detail_Table"):
-        results = _parse_payout_table_new(soup)
-        logger.info("払戻取得 (新形式): race_id=%s, %d 件", race_id, len(results))
-        return results
+        new_results = _parse_payout_table_new(soup)
+        results.extend(new_results)
+        logger.debug("払戻取得 (Payout_Detail_Table): race_id=%s, %d 件", race_id, len(new_results))
 
-    # フォールバック: 旧 db.netkeiba.com 形式 pay_table_01
-    tables = soup.select("table.pay_table_01")
-    if not tables:
-        logger.debug("払戻テーブルなし: race_id=%s", race_id)
-        return []
+    # pay_table_01 / pay_table_02（残りの券種 or 旧形式）
+    old_results = _parse_old_payout_tables(soup)
+    if old_results:
+        # (bet_type, combination) 単位で重複排除して追加
+        existing = {(r["bet_type"], r["combination"]) for r in results}
+        for r in old_results:
+            key = (r["bet_type"], r["combination"])
+            if key not in existing:
+                results.append(r)
+                existing.add(key)
+        logger.debug("払戻取得 (pay_table): race_id=%s, +%d 件追加", race_id, len(old_results))
 
-    results_old: list[dict] = []
-    for table in tables:
-        for tr in table.select("tr"):
-            th = tr.select_one("th")
-            if th is None:
-                continue
-            th_classes = th.get("class") or []
-            bet_type = None
-            for cls in th_classes:
-                bet_type = _TH_CLASS_TO_BET_TYPE.get(cls)
-                if bet_type:
-                    break
-            if bet_type is None:
-                continue
-            tds = tr.select("td")
-            if len(tds) < 2:
-                continue
-            combo_html = tds[0].decode_contents()
-            pay_html   = tds[1].decode_contents()
-            pop_html   = tds[2].decode_contents() if len(tds) > 2 else ""
-            combos  = [_normalize_combination(s) for s in re.split(r"<br\s*/?>", combo_html) if s.strip()]
-            payouts = [_parse_payout_int(s)       for s in re.split(r"<br\s*/?>", pay_html)  if s.strip()]
-            pops    = [_parse_payout_int(s)        for s in re.split(r"<br\s*/?>", pop_html)  if s.strip()]
-            for i, combo in enumerate(combos):
-                combo_clean = _normalize_combination(BeautifulSoup(combo, "lxml").get_text())
-                if not combo_clean:
-                    continue
-                payout_val = payouts[i] if i < len(payouts) else None
-                pop_val    = pops[i]    if i < len(pops)    else None
-                if payout_val is None:
-                    continue
-                results_old.append({"bet_type": bet_type, "combination": combo_clean,
-                                    "payout": payout_val, "popularity": pop_val})
-
-    logger.info("払戻取得 (旧形式): race_id=%s, %d 件", race_id, len(results_old))
-    return results_old
+    logger.info("払戻取得完了: race_id=%s, 合計 %d 件", race_id, len(results))
+    return results

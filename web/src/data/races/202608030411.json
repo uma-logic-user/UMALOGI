@@ -405,39 +405,75 @@
   "payouts": [
     {
       "bet_type": "単勝",
-      "combination": "15",
-      "payout": 15000,
-      "popularity": null
+      "combination": "7",
+      "payout": 180,
+      "popularity": 1
     },
     {
-      "bet_type": "馬連",
-      "combination": "1-10",
-      "payout": 1150,
-      "popularity": null
+      "bet_type": "複勝",
+      "combination": "7",
+      "payout": 110,
+      "popularity": 1
     },
     {
-      "bet_type": "ワイド",
-      "combination": "4",
-      "payout": 80000,
+      "bet_type": "複勝",
+      "combination": "3",
+      "payout": 120,
       "popularity": 2
     },
     {
+      "bet_type": "複勝",
+      "combination": "15",
+      "payout": 940,
+      "popularity": 12
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "4-8",
+      "payout": 2530,
+      "popularity": 9
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "7-15",
+      "payout": 18240,
+      "popularity": 28
+    },
+    {
       "bet_type": "ワイド",
-      "combination": "9",
-      "payout": 40120,
+      "combination": "3-7",
+      "payout": 170,
+      "popularity": 1
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3-15",
+      "payout": 3490,
+      "popularity": 29
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "7-15",
+      "payout": 3640,
       "popularity": 30
     },
     {
       "bet_type": "馬単",
-      "combination": "15",
-      "payout": 182,
-      "popularity": 40
+      "combination": "7→15",
+      "payout": 20000,
+      "popularity": 36
     },
     {
-      "bet_type": "馬単",
-      "combination": "7",
-      "payout": 15000,
-      "popularity": null
+      "bet_type": "三連複",
+      "combination": "3-7-15",
+      "payout": 10370,
+      "popularity": 27
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "7→15→3",
+      "payout": 70630,
+      "popularity": 158
     }
   ],
   "predictions": [
@@ -1669,7 +1705,7 @@
           "ev_score": 0.7955059811137812
         }
       ],
-      "bet_form": "2頭軸マルチ",
+      "bet_form": "2頭軸（1着固定）",
       "n_tickets": 12,
       "horse_num_to_name": {
         "7": "クロワデュノール",
@@ -3059,7 +3095,7 @@
           "ev_score": 1.2528236458739432
         }
       ],
-      "bet_form": "フォーメーション",
+      "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
       "horse_num_to_name": {
         "7": "クロワデュノール",
