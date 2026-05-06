@@ -17,10 +17,12 @@
 
 from __future__ import annotations
 
+import csv
 import itertools
 import logging
 import sqlite3
 from dataclasses import dataclass, field
+from pathlib import Path
 from typing import Literal
 
 import pandas as pd
@@ -43,6 +45,41 @@ _TRACK_TAKE: dict[str, float] = {
     "馬連": 0.225, "ワイド": 0.225, "馬単": 0.250,
     "三連複": 0.250, "三連単": 0.275,
 }
+
+# エリート複勝モニター CSV パス
+_ELITE_CSV: Path = Path(__file__).resolve().parents[2] / "logs" / "fukusho_elite_monitor.csv"
+_ELITE_CSV_COLS: list[str] = [
+    "date", "race_id", "venue", "n_horses", "horse_numbers", "edge", "result", "payout"
+]
+
+
+def _log_elite_bet(
+    race_id: str,
+    venue: str,
+    n_horses: int,
+    selected_horses: list[int],
+    edges: list[float],
+) -> None:
+    """FukushoEliteFilter 通過レースを logs/fukusho_elite_monitor.csv に追記する。"""
+    _ELITE_CSV.parent.mkdir(parents=True, exist_ok=True)
+    date_str = race_id[:8] if len(race_id) >= 8 else "00000000"
+    row = {
+        "date":          date_str,
+        "race_id":       race_id,
+        "venue":         venue,
+        "n_horses":      n_horses,
+        "horse_numbers": " ".join(str(h) for h in selected_horses),
+        "edge":          " ".join(f"{e:.3f}" for e in edges),
+        "result":        "",
+        "payout":        "",
+    }
+    write_header = not _ELITE_CSV.exists()
+    with _ELITE_CSV.open("a", encoding="utf-8", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=_ELITE_CSV_COLS)
+        if write_header:
+            writer.writeheader()
+        writer.writerow(row)
+    logger.info("EliteCSV 追記: %s → %s", race_id, _ELITE_CSV)
 
 
 @dataclass
@@ -2041,6 +2078,13 @@ def generate_elite_fukusho_bets(
         return None
 
     logger.info("FukushoElite: 購入 (%s)", flt.reason)
+    _log_elite_bet(
+        race_id=race_id,
+        venue=flt.venue,
+        n_horses=flt.n_horses,
+        selected_horses=flt.selected_horses,
+        edges=flt.edges,
+    )
 
     combos = [(h,) for h in flt.selected_horses]
     rec = RaceBets(race_id=race_id, model_type="卍")

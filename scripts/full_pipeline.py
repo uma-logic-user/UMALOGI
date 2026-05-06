@@ -43,6 +43,8 @@ _MAIN_DB     = _ROOT / "data" / "umalogi.db"
 _RESEARCH_DB = _ROOT / "data" / "netkeiba_research.db"
 _MODELS_DIR  = _ROOT / "data" / "models"
 _DOCS_DIR    = _ROOT / "docs"
+_ELITE_CSV   = _ROOT / "logs" / "fukusho_elite_monitor.csv"
+_ELITE_TARGET = 30
 
 # 2021取得ターゲット
 SCRAPE_2021_FROM = "2021-01-01"
@@ -804,6 +806,35 @@ def cmd_status() -> None:
         print("  または:  py scripts/auto_extend_and_backtest.py")
     else:
         print("  ✓  2021年データは取得済みです")
+
+    # ── エリート複勝モニター ─────────────────────────────────────────
+    print("\n=== エリート複勝モニター (FukushoEliteFilter) ===")
+    import csv as _csv
+    if _ELITE_CSV.exists():
+        try:
+            with _ELITE_CSV.open(encoding="utf-8", newline="") as f:
+                rows = list(_csv.DictReader(f))
+            n_acc     = len(rows)
+            n_result  = sum(1 for r in rows if r.get("result"))
+            pnl_vals  = [int(r["payout"]) - 100 for r in rows if r.get("payout")]
+            pnl_total = sum(pnl_vals)
+            pnl_str   = f"{'+'if pnl_total>=0 else ''}¥{pnl_total:,}" if pnl_vals else "—"
+            progress  = f"{n_acc}/{_ELITE_TARGET}"
+            bar_fill  = int(n_acc / _ELITE_TARGET * 20)
+            bar       = "█" * bar_fill + "░" * (20 - bar_fill)
+            print(f"  蓄積進捗  : {progress} レース [{bar}] {n_acc/max(_ELITE_TARGET,1)*100:.0f}%")
+            print(f"  結果記録済: {n_result} / {n_acc} レース")
+            print(f"  暫定損益  : {pnl_str}（¥100/点換算）")
+            if n_acc < _ELITE_TARGET:
+                remain = _ELITE_TARGET - n_acc
+                print(f"  OOS検証まで あと {remain} レース")
+            else:
+                print("  ✅ OOS検証サンプル数に到達しました！ segment_analysis.py で再評価してください。")
+        except Exception as e:
+            print(f"  ⚠ CSV 読み込みエラー: {e}")
+    else:
+        print(f"  蓄積進捗  : 0/{_ELITE_TARGET} レース（CSV未作成 — 初回ライブ予想で自動生成されます）")
+        print(f"  CSV パス   : {_ELITE_CSV}")
 
 
 # ── main ─────────────────────────────────────────────────────────────────
