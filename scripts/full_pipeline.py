@@ -809,32 +809,57 @@ def cmd_status() -> None:
 
     # ── エリート複勝モニター ─────────────────────────────────────────
     print("\n=== エリート複勝モニター (FukushoEliteFilter) ===")
-    import csv as _csv
-    if _ELITE_CSV.exists():
-        try:
-            with _ELITE_CSV.open(encoding="utf-8", newline="") as f:
-                rows = list(_csv.DictReader(f))
-            n_acc     = len(rows)
-            n_result  = sum(1 for r in rows if r.get("result"))
-            pnl_vals  = [int(r["payout"]) - 100 for r in rows if r.get("payout")]
-            pnl_total = sum(pnl_vals)
-            pnl_str   = f"{'+'if pnl_total>=0 else ''}¥{pnl_total:,}" if pnl_vals else "—"
-            progress  = f"{n_acc}/{_ELITE_TARGET}"
-            bar_fill  = int(n_acc / _ELITE_TARGET * 20)
-            bar       = "█" * bar_fill + "░" * (20 - bar_fill)
-            print(f"  蓄積進捗  : {progress} レース [{bar}] {n_acc/max(_ELITE_TARGET,1)*100:.0f}%")
-            print(f"  結果記録済: {n_result} / {n_acc} レース")
-            print(f"  暫定損益  : {pnl_str}（¥100/点換算）")
-            if n_acc < _ELITE_TARGET:
-                remain = _ELITE_TARGET - n_acc
-                print(f"  OOS検証まで あと {remain} レース")
-            else:
-                print("  ✅ OOS検証サンプル数に到達しました！ segment_analysis.py で再評価してください。")
-        except Exception as e:
-            print(f"  ⚠ CSV 読み込みエラー: {e}")
-    else:
+    if not _ELITE_CSV.exists():
         print(f"  蓄積進捗  : 0/{_ELITE_TARGET} レース（CSV未作成 — 初回ライブ予想で自動生成されます）")
         print(f"  CSV パス   : {_ELITE_CSV}")
+        return
+
+    try:
+        from scripts.evaluate_elite_results import status_summary, _PROTOCOL_LOG
+        s = status_summary()
+    except Exception as e:
+        print(f"  ⚠ ステータス取得エラー: {e}")
+        return
+
+    n_acc    = s["n_total"]
+    n_done   = s["n_done"]
+    roi      = s["roi"]
+    pnl      = s["pnl"]
+    target   = s["target"]
+    bar_fill = int(n_acc / target * 20)
+    bar      = "█" * bar_fill + "░" * (20 - bar_fill)
+    pnl_sign = "+" if pnl >= 0 else ""
+    pnl_str  = f"{pnl_sign}¥{abs(pnl):,}" if n_done > 0 else "—"
+    roi_str  = f"{roi:.1f}%" if n_done > 0 else "—"
+
+    print(f"  蓄積進捗  : {n_acc}/{target} レース [{bar}] {n_acc/max(target,1)*100:.0f}%")
+    print(f"  結果確定  : {n_done} / {n_acc} レース")
+    print(f"  暫定 ROI  : {roi_str}  損益 {pnl_str}")
+    print(f"  的中率    : {s['hit_rate']:.1f}%  ({s['hit_rows']}/{n_done})" if n_done else "  的中率    : —")
+
+    if n_acc < target:
+        print(f"  OOS検証まで あと {target - n_acc} レース")
+        if n_done > 0:
+            print(f"  ヒント    : 照合実行 → py scripts/evaluate_elite_results.py")
+    elif n_done < target:
+        print(f"  ⚠ 蓄積完了・未照合あり → py scripts/evaluate_elite_results.py を実行してください")
+    else:
+        # 30レース到達かつ全照合済み → 合否判定表示
+        if s["protocol_approved"]:
+            try:
+                import json as _json
+                proto = _json.loads(_PROTOCOL_LOG.read_text(encoding="utf-8"))
+                ts    = proto.get("timestamp", "")
+                print(f"\n  ✅ APPROVED — ROI {roi_str} > 100%  合格")
+                print(f"     公認プロトコル保存済み: {_PROTOCOL_LOG.name}  ({ts[:10]})")
+            except Exception:
+                print(f"\n  ✅ APPROVED — ROI {roi_str} > 100%  公認プロトコル保存済み")
+        elif roi <= 100.0:
+            print(f"\n  ❌ REJECTED — ROI {roi_str} ≦ 100%  不合格")
+            print("     詳細分析 → py scripts/evaluate_elite_results.py")
+        else:
+            print(f"\n  ✅ APPROVED — ROI {roi_str} > 100%  合格")
+            print("     公認プロトコル確定 → py scripts/evaluate_elite_results.py で保存してください")
 
 
 # ── main ─────────────────────────────────────────────────────────────────
