@@ -555,6 +555,7 @@ def job_friday_sync() -> None:
     if errors:
         logger.warning("=== [金曜バッチ] 完了（一部エラー: %s）===", " / ".join(errors))
     else:
+        _mark_job_done("job_friday_sync")
         logger.info("=== [金曜バッチ] 完了（全ステップ正常）===")
 
 
@@ -565,6 +566,7 @@ def job_morning_wood() -> None:
     if rc != 0:
         logger.error("[朝調教同期] 失敗: rc=%d", rc)
     else:
+        _mark_job_done("job_morning_wood")
         logger.info("=== [朝調教同期] 完了 ===")
 
 
@@ -807,6 +809,7 @@ def job_post_race(target_date: str | None = None) -> None:
     except Exception as gen_exc:
         logger.warning("[ダッシュボード] JSON 再生成失敗: %s", gen_exc)
 
+    _mark_job_done("job_post_race")
     logger.info("=== [レース後処理] %s 終了 ===", target_date)
 
 
@@ -819,6 +822,7 @@ def job_monday_masters() -> None:
     if rc != 0:
         logger.error("[マスタ更新] 失敗: rc=%d", rc)
     else:
+        _mark_job_done("job_monday_masters")
         logger.info("=== [マスタ更新] 完了 ===")
 
 
@@ -847,6 +851,7 @@ def job_weekly_retrain() -> None:
         logger.info("[週次再学習] ダッシュボード JSON 更新完了")
     except Exception as gen_exc:
         logger.warning("[週次再学習] JSON 更新失敗: %s", gen_exc)
+    _mark_job_done("job_weekly_retrain")
 
 
 def job_git_push() -> None:
@@ -856,6 +861,8 @@ def job_git_push() -> None:
         from src.ops.git_ops import weekly_auto_commit
 
         success = weekly_auto_commit()
+        if success:
+            _mark_job_done("job_git_push")
         logger.info("[Git プッシュ] %s", "成功" if success else "失敗")
     except Exception as e:
         logger.error("[Git プッシュ] 失敗: %s", e, exc_info=True)
@@ -867,6 +874,56 @@ def job_heartbeat() -> None:
 
     now = datetime.now().strftime("%Y-%m-%d %H:%M")
     _send_discord(f"✅ UMALOGI alive ({now})")
+
+
+def job_weekend_batch_pre() -> None:
+    """
+    土日 07:00: 週末バッチ Pre フェーズ
+
+    金曜夜の暫定予想をもとに以下を自動実行:
+      1. note.com に下書き記事を保存（Playwright）
+      2. ウマニティ コロシアムに暫定予想を投稿
+      3. X（Twitter）に本日予想のお知らせツイート
+
+    NOTE_EMAIL / NOTE_PASSWORD が未設定でも他のステップは続行する。
+    """
+    logger.info("=== [週末バッチ Pre] 開始 ===")
+    rc = _run(
+        _PY64 + ["scripts/weekend_batch.py", "--phase", "pre"],
+        "週末バッチ-Pre",
+        timeout=1800,
+    )
+    if rc == 0:
+        _mark_job_done("job_weekend_batch_pre")
+        logger.info("=== [週末バッチ Pre] 完了 ===")
+    else:
+        logger.error("[週末バッチ Pre] 失敗: rc=%d", rc)
+        _send_discord(f"🚨 [UMALOGI] 週末バッチ Pre 失敗 (rc={rc})")
+
+
+def job_weekend_batch_post() -> None:
+    """
+    土日 18:30: 週末バッチ Post フェーズ
+
+    レース確定後の成績を集計して以下を自動実行:
+      1. 的中証拠画像（Pillow）を生成
+      2. X（Twitter）に本日 P&L 結果ツイート（画像付き）
+      3. batch_runs テーブルにログ記録
+
+    prediction_results が空の場合は自動スキップ。
+    """
+    logger.info("=== [週末バッチ Post] 開始 ===")
+    rc = _run(
+        _PY64 + ["scripts/weekend_batch.py", "--phase", "post"],
+        "週末バッチ-Post",
+        timeout=1800,
+    )
+    if rc == 0:
+        _mark_job_done("job_weekend_batch_post")
+        logger.info("=== [週末バッチ Post] 完了 ===")
+    else:
+        logger.error("[週末バッチ Post] 失敗: rc=%d", rc)
+        _send_discord(f"🚨 [UMALOGI] 週末バッチ Post 失敗 (rc={rc})")
 
 
 def job_daily_backup() -> None:
@@ -893,17 +950,21 @@ def register_schedules() -> None:
     # 金曜夜: JVLink同期(32bit) → 暫定予想(64bit) → Discord通知
     schedule.every().friday.at("20:00").do(job_friday_sync)
 
+    # 土日朝: 週末バッチ Pre（note下書き + Umanity暫定投稿 + X告知）
+    schedule.every().saturday.at("07:00").do(job_weekend_batch_pre)
+    schedule.every().sunday.at("07:00").do(job_weekend_batch_pre)
+
     # 土日朝: 調教タイム同期（JVLink 32bit）
     schedule.every().saturday.at("07:30").do(job_morning_wood)
     schedule.every().sunday.at("07:30").do(job_morning_wood)
 
-    # 土日朝: WIN5 バッチ予測（9:00 — 金曜バッチ完了後・WIN5締切前）
-    schedule.every().saturday.at("09:00").do(job_win5_prediction)
-    schedule.every().sunday.at("09:00").do(job_win5_prediction)
-
     # 土日朝: 当日全レース直前予想ループ起動（Discord通知まで自動）
     schedule.every().saturday.at("08:30").do(job_today_auto_runner)
     schedule.every().sunday.at("08:30").do(job_today_auto_runner)
+
+    # 土日朝: WIN5 バッチ予測（9:00 — 金曜バッチ完了後・WIN5締切前）
+    schedule.every().saturday.at("09:00").do(job_win5_prediction)
+    schedule.every().sunday.at("09:00").do(job_win5_prediction)
 
     # 土日昼: ウマニティ予想投稿（直前予想が揃う13:00以降）
     schedule.every().saturday.at("13:00").do(job_umanity_upload)
@@ -918,6 +979,10 @@ def register_schedules() -> None:
     # 土日夕方: 払戻確定後のレース後処理（全レース終了後・OPT_STORED で確実取得）
     schedule.every().saturday.at("17:30").do(job_post_race)
     schedule.every().sunday.at("17:30").do(job_post_race)
+
+    # 土日夜: 週末バッチ Post（P&L集計 + 的中カード + X結果報告）
+    schedule.every().saturday.at("18:30").do(job_weekend_batch_post)
+    schedule.every().sunday.at("18:30").do(job_weekend_batch_post)
 
     # 月曜: マスタ更新 → 全件再学習 → Git プッシュ
     schedule.every().monday.at("06:00").do(job_monday_masters)
@@ -938,6 +1003,9 @@ def register_schedules() -> None:
 def run_daemon() -> None:
     """スケジューラーをデーモンとして常駐させる。Ctrl+C で終了。"""
     register_schedules()
+
+    # 起動時リカバリー: 取りこぼしジョブを検出して即実行（PC 再起動・スリープ復帰対応）
+    _recover_missed_jobs(_JOB_MAP_FULL)
 
     _send_discord(
         f"🤖 **[UMALOGI] スケジューラー起動**\n"
@@ -969,17 +1037,34 @@ def run_daemon() -> None:
 # CLI
 # ================================================================
 
+# リカバリー用フルマップ（関数名 → 関数オブジェクト）
+_JOB_MAP_FULL: dict[str, object] = {
+    "job_friday_sync":        job_friday_sync,
+    "job_morning_wood":       job_morning_wood,
+    "job_weekend_batch_pre":  job_weekend_batch_pre,
+    "job_today_auto_runner":  job_today_auto_runner,
+    "job_win5_prediction":    job_win5_prediction,
+    "job_post_race":          job_post_race,
+    "job_weekend_batch_post": job_weekend_batch_post,
+    "job_monday_masters":     job_monday_masters,
+    "job_weekly_retrain":     job_weekly_retrain,
+    "job_git_push":           job_git_push,
+}
+
+# CLI --run-now 用マップ（短縮名 → 関数）
 _JOB_MAP: dict[str, object] = {
-    "friday": job_friday_sync,
-    "wood": job_morning_wood,
-    "win5": job_win5_prediction,
-    "umanity": job_umanity_upload,
-    "auto_runner": job_today_auto_runner,
+    "friday":        job_friday_sync,
+    "wood":          job_morning_wood,
+    "batch_pre":     job_weekend_batch_pre,
+    "batch_post":    job_weekend_batch_post,
+    "win5":          job_win5_prediction,
+    "umanity":       job_umanity_upload,
+    "auto_runner":   job_today_auto_runner,
     "intraday_sync": job_intraday_sync,
-    "post_race": job_post_race,
-    "masters": job_monday_masters,
-    "retrain": job_weekly_retrain,
-    "git": job_git_push,
+    "post_race":     job_post_race,
+    "masters":       job_monday_masters,
+    "retrain":       job_weekly_retrain,
+    "git":           job_git_push,
 }
 
 
