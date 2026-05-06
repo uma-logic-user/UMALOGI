@@ -40,6 +40,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import json
 import logging
 import os
 import subprocess
@@ -83,6 +84,142 @@ logging.basicConfig(
     ],
 )
 logger = logging.getLogger("scheduler")
+
+# ================================================================
+# ジョブ状態管理（取りこぼしリカバリー用）
+# ================================================================
+
+_STATE_FILE: Path = _ROOT / "data" / "scheduler_state.json"
+
+# ジョブ名 → 取りこぼし許容時間（時間）
+# この時間を超えたら "時機を逸した" として再実行しない
+_CATCHUP_HOURS: dict[str, int] = {
+    "job_friday_sync":        16,  # Fri 20:00 → Sat 12:00 まで
+    "job_morning_wood":        4,  # 07:30 → 11:30 まで
+    "job_weekend_batch_pre":   4,  # 07:00 → 11:00 まで
+    "job_today_auto_runner":   3,  # 08:30 → 11:30 まで
+    "job_win5_prediction":     2,  # 09:00 → 11:00 まで
+    "job_post_race":           4,  # 17:30 → 21:30 まで
+    "job_weekend_batch_post":  4,  # 18:30 → 22:30 まで
+    "job_monday_masters":     12,  # 06:00 → 18:00 まで
+    "job_weekly_retrain":     12,  # 07:00 → 19:00 まで
+    "job_git_push":           12,  # 08:00 → 20:00 まで
+}
+
+# 各ジョブのスケジュール定義 (weekday_int: 0=月…6=日, hour, minute)
+_JOB_SCHEDULES: dict[str, list[tuple[int, int, int]]] = {
+    "job_friday_sync":        [(4, 20,  0)],
+    "job_morning_wood":       [(5,  7, 30), (6,  7, 30)],
+    "job_weekend_batch_pre":  [(5,  7,  0), (6,  7,  0)],
+    "job_today_auto_runner":  [(5,  8, 30), (6,  8, 30)],
+    "job_win5_prediction":    [(5,  9,  0), (6,  9,  0)],
+    "job_post_race":          [(5, 17, 30), (6, 17, 30)],
+    "job_weekend_batch_post": [(5, 18, 30), (6, 18, 30)],
+    "job_monday_masters":     [(0,  6,  0)],
+    "job_weekly_retrain":     [(0,  7,  0)],
+    "job_git_push":           [(0,  8,  0)],
+}
+
+
+def _load_job_state() -> dict[str, str]:
+    """scheduler_state.json を読み込む。ファイルがなければ空辞書を返す。"""
+    if not _STATE_FILE.exists():
+        return {}
+    try:
+        return json.loads(_STATE_FILE.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+
+
+def _save_job_state(state: dict[str, str]) -> None:
+    """scheduler_state.json に書き込む。"""
+    try:
+        _STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+        _STATE_FILE.write_text(
+            json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8"
+        )
+    except Exception as exc:
+        logger.warning("scheduler_state.json 書き込み失敗: %s", exc)
+
+
+def _mark_job_done(job_name: str) -> None:
+    """ジョブ成功時に state ファイルを更新する。"""
+    state = _load_job_state()
+    state[job_name] = datetime.now().isoformat(timespec="seconds")
+    _save_job_state(state)
+
+
+def _should_recover(
+    last_run: datetime | None,
+    scheduled_today: datetime,
+    now: datetime,
+    catchup_hours: int,
+) -> bool:
+    """
+    ジョブを今すぐ実行すべきかを判定する。
+
+    条件:
+    1. スケジュール時刻がすでに過ぎている
+    2. 取りこぼし許容窓内（elapsed_hours < catchup_hours）
+    3. 当日まだ実行されていない（last_run が今日より前か None）
+    """
+    if now < scheduled_today:
+        return False
+    elapsed_hours = (now - scheduled_today).total_seconds() / 3600
+    if elapsed_hours >= catchup_hours:
+        return False
+    if last_run is None:
+        return True
+    return last_run.date() < now.date()
+
+
+def _recover_missed_jobs(
+    job_map: dict[str, object],
+) -> None:
+    """
+    起動時に取りこぼしたジョブを検出して即実行する。
+
+    PC 再起動やスリープ復帰後にスケジューラーが起動した場合に対応する。
+    """
+    state = _load_job_state()
+    now = datetime.now()
+    weekday = now.weekday()
+
+    for job_name, schedules in _JOB_SCHEDULES.items():
+        fn = job_map.get(job_name)
+        if fn is None:
+            continue
+
+        for wd, h, m in schedules:
+            if wd != weekday:
+                continue
+
+            scheduled_today = now.replace(hour=h, minute=m, second=0, microsecond=0)
+            last_run_str = state.get(job_name)
+            last_run: datetime | None = None
+            if last_run_str:
+                try:
+                    last_run = datetime.fromisoformat(last_run_str)
+                except ValueError:
+                    pass
+
+            catchup = _CATCHUP_HOURS.get(job_name, 4)
+            if _should_recover(last_run, scheduled_today, now, catchup):
+                logger.warning(
+                    "[リカバリー] %s は %s に実行すべきでしたが取りこぼしを検出 → 今すぐ実行",
+                    job_name,
+                    scheduled_today.strftime("%H:%M"),
+                )
+                _send_discord(
+                    f"⚠️ [UMALOGI] ジョブ取りこぼしをリカバリー: `{job_name}` "
+                    f"（予定 {scheduled_today.strftime('%H:%M')} → 今実行）"
+                )
+                try:
+                    fn()  # type: ignore[operator]
+                    _mark_job_done(job_name)
+                except Exception as exc:
+                    logger.error("[リカバリー] %s 実行失敗: %s", job_name, exc)
+
 
 try:
     import schedule  # type: ignore[import-untyped]
