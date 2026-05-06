@@ -1519,6 +1519,161 @@ class HitFocusStrategy:
         ))
 
 
+# ── ハイブリッド戦略 ─────────────────────────────────────────────────────
+
+class HybridStrategy:
+    """
+    UMALOGI_HYBRID_STRATEGY — 市場の感情（オッズ）と馬の実力の乖離を突く戦略。
+
+    設計思想:
+      - ALPHA モデル（EV 特化）の win_prob を基盤に使用
+      - netkeiba × JVLink の乖離特徴量（odds_discrepancy_ratio）を組み込んだ
+        ハイブリッドモデルによる EV 計算
+      - 単勝・複勝: EV > ev_threshold の馬のみ buy（Kelly サイジング）
+      - 馬連: EV 上位 combo を Harville 確率で選別
+      - 三連単: win_prob 上位 top_n 頭から Harville で最高 EV の combo を選択
+
+    使用条件:
+      - data/models/alpha/alpha_model.pkl が存在すること
+      - research_db で nb_win_odds が補完されていること
+    """
+
+    EV_THRESHOLD_TANSHO  = 1.5
+    EV_THRESHOLD_FUKUSHO = 1.5
+    EV_THRESHOLD_UMAREN  = 1.0
+    EV_THRESHOLD_SANRENTAN = 1.0
+    TOP_N_MULTI = 6   # 馬連・三連単計算対象の上位頭数
+
+    def __init__(self, estimator: OddsEstimator | None = None) -> None:
+        self._estimator = estimator or OddsEstimator()
+
+    def generate(
+        self,
+        race_id: str,
+        df: pd.DataFrame,
+        win_probs: "pd.Series",
+        bankroll: float = 100_000.0,
+    ) -> RaceBets:
+        """
+        ハイブリッドモデルの win_prob から全券種買い目を生成する。
+
+        Args:
+            race_id:   レース ID
+            df:        出走馬 DataFrame（horse_number, win_odds, horse_name 等を含む）
+            win_probs: ALPHA ハイブリッドモデルの勝率推定（horse_number インデックス）
+            bankroll:  現在のバンクロール
+
+        Returns:
+            RaceBets（単勝・複勝・馬連・三連単を含む）
+        """
+        result = RaceBets(race_id=race_id, model_type="卍")
+        names = _name_map(df)
+
+        # horse_number を float→int→index に整列
+        df = df.copy()
+        df["_win_prob"] = win_probs.values if hasattr(win_probs, "values") else list(win_probs)
+        df = df.dropna(subset=["_win_prob", "win_odds"])
+        if len(df) < 2:
+            return result
+
+        horse_nums = df["horse_number"].tolist()
+        probs = _normalize(df["_win_prob"].tolist())
+        odds_list = pd.to_numeric(df["win_odds"], errors="coerce").fillna(50.0).tolist()
+
+        # ── 単勝・複勝 ──────────────────────────────────────────────────────
+        for i, (hn, p, o) in enumerate(zip(horse_nums, probs, odds_list)):
+            # EV = P(win) × odds
+            ev = p * o
+            if ev < self.EV_THRESHOLD_TANSHO:
+                continue
+            bet = _kelly_bet(p, o - 1.0, bankroll, KELLY_FRACTION, _KELLY_CAP)
+            result.bets.append(BetRecommendation(
+                bet_type="単勝",
+                combinations=[(int(hn),)],
+                horse_names=[names.get(int(hn), str(hn))],
+                expected_value=ev,
+                model_score=p,
+                recommended_bet=float(max(bet, _BASE_BET)),
+                confidence=min(ev / 2.0, 1.0),
+                notes=f"HYBRID EV={ev:.2f} P={p:.3f} odds={o:.1f}",
+            ))
+
+        # 複勝は top-3 フィニッシュ確率（簡易: Harville trio complement）
+        for i, (hn, p, o) in enumerate(zip(horse_nums, probs, odds_list)):
+            p3 = 1.0 - _harville_quinella(probs, i, i) if False else p  # 簡易: P(win_prob)使用
+            ev_f = p3 * (o * 0.3)   # 複勝はオッズの約30%を期待値として近似
+            if ev_f < self.EV_THRESHOLD_FUKUSHO:
+                continue
+            bet = _kelly_bet(p3, (o * 0.3) - 1.0, bankroll, KELLY_FRACTION, _KELLY_CAP)
+            result.bets.append(BetRecommendation(
+                bet_type="複勝",
+                combinations=[(int(hn),)],
+                horse_names=[names.get(int(hn), str(hn))],
+                expected_value=ev_f,
+                model_score=p3,
+                recommended_bet=float(max(bet, _BASE_BET)),
+                confidence=min(ev_f / 2.0, 1.0),
+                notes=f"HYBRID 複勝 EV≈{ev_f:.2f} P={p3:.3f}",
+            ))
+
+        # ── 馬連（Harville quinella × OddsEstimator）────────────────────
+        top_idx = sorted(range(len(probs)), key=lambda x: probs[x], reverse=True)[: self.TOP_N_MULTI]
+        best_umaren: list[tuple[float, tuple]] = []
+        for idx_i, idx_j in itertools.combinations(top_idx, 2):
+            q_prob = _harville_quinella(probs, idx_i, idx_j)
+            axis_odds = odds_list[idx_i]
+            ev = self._estimator.ev(q_prob, "馬連", axis_odds)
+            if ev >= self.EV_THRESHOLD_UMAREN:
+                best_umaren.append((ev, (int(horse_nums[idx_i]), int(horse_nums[idx_j]))))
+        best_umaren.sort(reverse=True)
+        for ev, combo in best_umaren[:3]:
+            result.bets.append(BetRecommendation(
+                bet_type="馬連",
+                combinations=[combo],
+                horse_names=[names.get(n, str(n)) for n in combo],
+                expected_value=ev,
+                model_score=_harville_quinella(
+                    probs,
+                    horse_nums.index(combo[0]),
+                    horse_nums.index(combo[1]),
+                ),
+                recommended_bet=float(_BASE_BET),
+                confidence=min(ev / 2.0, 1.0),
+                notes=f"HYBRID 馬連 EV={ev:.2f}",
+            ))
+
+        # ── 三連単（Harville trifecta × OddsEstimator）──────────────────
+        best_tri: list[tuple[float, tuple]] = []
+        for idx_i, idx_j, idx_k in itertools.permutations(top_idx[:5], 3):
+            tri_prob = _harville_trifecta(probs, idx_i, idx_j, idx_k)
+            axis_odds = odds_list[idx_i]
+            ev = self._estimator.ev(tri_prob, "三連単", axis_odds)
+            if ev >= self.EV_THRESHOLD_SANRENTAN:
+                best_tri.append((
+                    ev,
+                    (int(horse_nums[idx_i]), int(horse_nums[idx_j]), int(horse_nums[idx_k])),
+                ))
+        best_tri.sort(reverse=True)
+        for ev, combo in best_tri[:3]:
+            result.bets.append(BetRecommendation(
+                bet_type="三連単",
+                combinations=[combo],
+                horse_names=[names.get(n, str(n)) for n in combo],
+                expected_value=ev,
+                model_score=_harville_trifecta(
+                    probs,
+                    horse_nums.index(combo[0]),
+                    horse_nums.index(combo[1]),
+                    horse_nums.index(combo[2]),
+                ),
+                recommended_bet=float(_BASE_BET),
+                confidence=min(ev / 3.0, 1.0),
+                notes=f"HYBRID 三連単 EV={ev:.2f}",
+            ))
+
+        return result
+
+
 # ── ファサード ────────────────────────────────────────────────────
 
 class BetGenerator:
@@ -1542,6 +1697,7 @@ class BetGenerator:
         self._manji      = ManjiStrategy(estimator=estimator)
         self._oracle     = VirtualOracleStrategy()
         self._hit_focus  = HitFocusStrategy(estimator=estimator)
+        self._hybrid     = HybridStrategy(estimator=estimator)
 
     def _apply_caps(self, bets: RaceBets) -> None:
         """
@@ -1623,6 +1779,27 @@ class BetGenerator:
     ) -> Win5Recommendation | None:
         return generate_win5(races, scores, top_n=top_n)
 
+    def generate_hybrid(
+        self,
+        race_id: str,
+        df: pd.DataFrame,
+        win_probs: "pd.Series",
+    ) -> RaceBets:
+        """
+        UMALOGI_HYBRID_STRATEGY による全券種買い目生成。
+
+        Args:
+            race_id:   レース ID
+            df:        出走馬 DataFrame（win_odds, horse_number, horse_name 必須）
+            win_probs: ALPHA ハイブリッドモデルの勝率推定 Series
+
+        Returns:
+            単勝・複勝・馬連・三連単を含む RaceBets
+        """
+        bets = self._hybrid.generate(race_id, df, win_probs, bankroll=self._config.bankroll)
+        self._apply_caps(bets)
+        return bets
+
 
 # ── SandboxDerived Strategies ──
 # 【特例サンドボックス由来】 train=2024 → test=2025
@@ -1656,3 +1833,231 @@ def get_sandbox_strategy_note(model: str, bet_type: str) -> str:
         if s.model == model and s.bet_type == bet_type:
             return s.note
     return ""
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  複勝エリートフィルター (FukushoEliteFilter)
+#
+#  【発見経緯】
+#    scripts/segment_analysis.py による 2025年バックテスト (in-sample) にて
+#    複勝 ROI 97.6% → セグメント+Edge フィルター適用後 ROI=119.9% を確認。
+#
+#  【OOS 検証結果】
+#    2024年テスト (F3モデル、rolling stats 未使用) では ROI=65.6% — まだ赤字。
+#    F3 はローリング統計なしの弱いモデルのため直接比較に限界あり。
+#    → 2026年ライブデータでの再検証が必須。
+#
+#  【適用条件】
+#    ① venue ∈ {新潟, 東京, 福島, 京都}  (2025 in-sample ROI: 138.4/125.0/105.5/100.9%)
+#    ② n_horses >= 13 (多頭数)
+#    ③ 選択馬の edge = model_prob / market_implied_prob >= 1.1
+#
+#  【推奨使用方法】
+#    FukushoEliteFilter.should_bet() で事前フィルタリング後、
+#    generate_elite_fukusho_bets() で買い目を生成する。
+# ─────────────────────────────────────────────────────────────────────────────
+
+# 収益セグメント (scripts/segment_analysis.py / 2025 in-sample 発見)
+_FUKUSHO_ELITE_VENUES: frozenset[str] = frozenset({"新潟", "東京", "福島", "京都"})
+_FUKUSHO_ELITE_MIN_HORSES: int = 13
+_FUKUSHO_ELITE_EDGE: float = 1.1
+
+
+@dataclass
+class FukushoEliteResult:
+    """FukushoEliteFilter の判定結果。"""
+    passed: bool                          # フィルターを通過したか
+    venue: str                            # 競馬場
+    n_horses: int                         # 出走頭数
+    selected_horses: list[int]            # 購入馬番 (edge 条件を満たした上位3頭)
+    edges: list[float]                    # 各馬の edge 値
+    reason: str                           # パス/拒否の理由メモ
+
+
+class FukushoEliteFilter:
+    """
+    複勝エリートフィルター。
+
+    セグメント条件 (venue, n_horses) と Edge 条件を同時に満たすレースのみ
+    複勝買い目を生成する。
+
+    ⚠️  2025年 in-sample 発見パターン。2026年ライブで要再検証。
+    """
+
+    @staticmethod
+    def _normalize_ev_scores(
+        horse_numbers: list[int],
+        ev_scores: list[float],
+        implied_probs: list[float],
+    ) -> tuple[list[float], list[float]]:
+        """
+        ev_score を per-race 正規化して model_prob を算出し、edge を計算する。
+
+        Returns: (model_probs, edges) — horse_numbers と同順。
+        """
+        clipped = [max(s, 0.0) for s in ev_scores]
+        total   = sum(clipped)
+        if total > 0:
+            model_probs = [s / total for s in clipped]
+        else:
+            n = len(horse_numbers)
+            model_probs = [1.0 / n] * n
+
+        edges = [
+            mp / max(ip, 1e-6)
+            for mp, ip in zip(model_probs, implied_probs)
+        ]
+        return model_probs, edges
+
+    @classmethod
+    def evaluate(
+        cls,
+        venue: str,
+        n_horses: int,
+        horse_numbers: list[int],
+        ev_scores: list[float],
+        implied_probs: list[float],
+    ) -> FukushoEliteResult:
+        """
+        1レース分のフィルター判定。
+
+        Args:
+            venue:         競馬場名 (e.g. "東京")
+            n_horses:      出走頭数
+            horse_numbers: 全出走馬の馬番リスト (ev_scores / implied_probs と同順)
+            ev_scores:     モデルの EV スコア (全馬)
+            implied_probs: 市場 implied_probability (全馬, per-race 正規化済み)
+
+        Returns:
+            FukushoEliteResult (passed=True なら買い目生成可)
+        """
+        # ─ ① venue チェック ─
+        if venue not in _FUKUSHO_ELITE_VENUES:
+            return FukushoEliteResult(
+                passed=False, venue=venue, n_horses=n_horses,
+                selected_horses=[], edges=[],
+                reason=f"venue={venue} は対象外 ({sorted(_FUKUSHO_ELITE_VENUES)})",
+            )
+
+        # ─ ② 頭数チェック ─
+        if n_horses < _FUKUSHO_ELITE_MIN_HORSES:
+            return FukushoEliteResult(
+                passed=False, venue=venue, n_horses=n_horses,
+                selected_horses=[], edges=[],
+                reason=f"頭数={n_horses} < {_FUKUSHO_ELITE_MIN_HORSES} (多頭数条件不足)",
+            )
+
+        # ─ Edge 計算 ─
+        _, edges = cls._normalize_ev_scores(horse_numbers, ev_scores, implied_probs)
+
+        # EV スコア上位3頭を候補に
+        ranked = sorted(
+            zip(horse_numbers, ev_scores, edges),
+            key=lambda x: -x[1],  # ev_score 降順
+        )
+        top3 = ranked[:3]
+
+        # ─ ③ Edge チェック: 上位3頭すべて or 少なくとも2頭が edge >= threshold ─
+        passing = [(hn, ev, eg) for hn, ev, eg in top3 if eg >= _FUKUSHO_ELITE_EDGE]
+
+        if len(passing) < 2:
+            return FukushoEliteResult(
+                passed=False, venue=venue, n_horses=n_horses,
+                selected_horses=[hn for hn, _, _ in top3],
+                edges=[eg for _, _, eg in top3],
+                reason=(
+                    f"Edge >= {_FUKUSHO_ELITE_EDGE} を満たす馬が "
+                    f"{len(passing)}/3頭 (最低2頭必要)"
+                ),
+            )
+
+        selected = [hn for hn, _, _ in passing[:3]]
+        edges_out = [eg for _, _, eg in passing[:3]]
+
+        return FukushoEliteResult(
+            passed=True,
+            venue=venue,
+            n_horses=n_horses,
+            selected_horses=selected,
+            edges=edges_out,
+            reason=(
+                f"venue={venue}, 頭数={n_horses}, "
+                f"edge通過馬={len(passing)}頭 "
+                f"(edge={[round(e,2) for e in edges_out]})"
+            ),
+        )
+
+
+def generate_elite_fukusho_bets(
+    race_id: str,
+    venue: str,
+    n_horses: int,
+    horse_numbers: list[int],
+    horse_names: list[str],
+    ev_scores: list[float],
+    implied_probs: list[float],
+) -> RaceBets | None:
+    """
+    複勝エリートフィルターを適用し、条件を満たした場合のみ複勝買い目を返す。
+
+    Args:
+        race_id:       レースID
+        venue:         競馬場名
+        n_horses:      出走頭数
+        horse_numbers: 全出走馬の馬番 (ev_scores/implied_probs と同順)
+        horse_names:   全出走馬の馬名 (horse_numbers と同順)
+        ev_scores:     モデルの EV スコア
+        implied_probs: 市場 implied_probability (per-race 正規化済み)
+
+    Returns:
+        RaceBets (フィルター通過時) or None (フィルター拒否時)
+
+    Example::
+
+        result = generate_elite_fukusho_bets(
+            race_id="202506010101",
+            venue="東京",
+            n_horses=16,
+            horse_numbers=[1, 2, ..., 16],
+            horse_names=["ホース1", ...],
+            ev_scores=[0.8, 1.2, ...],
+            implied_probs=[0.10, 0.15, ...],
+        )
+        if result is not None:
+            print(result.bets)
+    """
+    name_map = dict(zip(horse_numbers, horse_names))
+
+    flt = FukushoEliteFilter.evaluate(
+        venue=venue,
+        n_horses=n_horses,
+        horse_numbers=horse_numbers,
+        ev_scores=ev_scores,
+        implied_probs=implied_probs,
+    )
+
+    if not flt.passed:
+        logger.debug("FukushoElite: スキップ (%s)", flt.reason)
+        return None
+
+    logger.info("FukushoElite: 購入 (%s)", flt.reason)
+
+    combos = [(h,) for h in flt.selected_horses]
+    rec = RaceBets(race_id=race_id, model_type="卍")
+    rec.bets.append(
+        BetRecommendation(
+            bet_type="複勝",
+            combinations=combos,
+            horse_names=[name_map.get(h, str(h)) for h in flt.selected_horses],
+            expected_value=sum(flt.edges) / len(flt.edges),
+            model_score=max(flt.edges, default=0.0),
+            recommended_bet=float(_BASE_BET * len(combos)),
+            confidence=min(max(flt.edges, default=0.0) / 2.0, 1.0),
+            notes=(
+                f"[FukushoElite] venue={venue}, 頭数={n_horses}, "
+                f"edge={[round(e,2) for e in flt.edges]} "
+                f"⚠️2025 in-sample 発見。2026年ライブ要検証。"
+            ),
+        )
+    )
+    return rec
