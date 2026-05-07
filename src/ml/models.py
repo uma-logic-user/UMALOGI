@@ -95,6 +95,23 @@ FEATURE_COLS: list[str] = [
 # 訓練に最低限必要なレース数
 _MIN_TRAIN_RACES = 30
 
+
+def _safe_feature_matrix(df: pd.DataFrame) -> pd.DataFrame:
+    """FEATURE_COLS のうち df に存在しない列を NaN で補填して返す。
+
+    KeyError を防ぎ、列追加・削除があっても推論全体が落ちないようにする。
+    欠損補填された列は警告ログを出す。
+    """
+    missing = [c for c in FEATURE_COLS if c not in df.columns]
+    if missing:
+        logger.warning(
+            "FEATURE_COLS に存在しない列 %d 件を NaN で補填: %s", len(missing), missing
+        )
+    df_filled = df.copy()
+    for col in missing:
+        df_filled[col] = float("nan")
+    return df_filled[FEATURE_COLS].astype(float).fillna(-1)
+
 # デフォルトモデル保存先
 _MODEL_DIR = Path(__file__).resolve().parents[2] / "data" / "models"
 
@@ -450,9 +467,9 @@ class HonmeiModel(_BaseModel):
         cal_n = max(1, int(n * 0.2))
         df_cal = df_sorted.iloc[n - cal_n :]          # ホールドアウト (20%)
 
-        X_cal  = df_cal[FEATURE_COLS].astype(float).fillna(-1)
+        X_cal  = _safe_feature_matrix(df_cal)
         y_cal  = df_cal["is_winner"]
-        X_all  = df_sorted[FEATURE_COLS].astype(float).fillna(-1)
+        X_all  = _safe_feature_matrix(df_sorted)
         y_all  = df_sorted["is_winner"]
         groups = df_sorted["race_id"]
 
@@ -460,9 +477,11 @@ class HonmeiModel(_BaseModel):
         # _temporal_cv_split: fold k の val は fold 0..k-1 の train より必ず未来になる。
         # GroupKFold と異なり「未来レースが train に混入する時系列リーク」を排除する。
         # OOF 予測は IsotonicRegression のキャリブレーションデータとして再利用する。
+        # ※ fold 0 は常に train 専用のため val に回らない。oof_mask でそれを明示管理する。
         n_splits = min(5, n_races)
         aucs: list[float] = []
         oof_preds = np.zeros(len(X_all), dtype=float)
+        oof_mask  = np.zeros(len(X_all), dtype=bool)   # 実際に val に入ったインデックスを記録
 
         ts_splits = _temporal_cv_split(df_sorted, n_splits=n_splits)
         for tr_idx, val_idx in ts_splits:
@@ -470,6 +489,7 @@ class HonmeiModel(_BaseModel):
             clone.fit(X_all.iloc[tr_idx], y_all.iloc[tr_idx])
             proba = clone.predict_proba(X_all.iloc[val_idx])[:, 1]
             oof_preds[val_idx] = proba
+            oof_mask[val_idx]  = True
             try:
                 aucs.append(roc_auc_score(y_all.iloc[val_idx], proba))
             except ValueError:
@@ -496,12 +516,12 @@ class HonmeiModel(_BaseModel):
                 logger.debug("相互情報量計算スキップ: %s", _mi_err)
 
         # ── Isotonic Regression: OOF 予測 → 確率キャリブレーション ──
-        # Phase 2.5 実験で Platt Scaling より Brier Score +3.49% 改善を確認。
-        # CalibratedClassifierCV + GroupKFold は新 sklearn で groups 受け渡し不可のため
-        # 手動 OOF 実装（Platt と同じ oof_preds を再利用）。
+        # fold 0 は val に入らないので oof_preds[fold0] = 0 のまま残る。
+        # 0 のままの点を含めて fit すると isotonic が定数に収束するため、
+        # oof_mask == True（実際に val に入った行のみ）で fit する。
         iso = IsotonicRegression(out_of_bounds="clip")
-        if np.any(oof_preds != 0):
-            iso.fit(oof_preds, y_all)
+        if oof_mask.any():
+            iso.fit(oof_preds[oof_mask], y_all.to_numpy()[oof_mask])
         else:
             # OOF 収集不可（n_splits < 2）: 全サンプルで単純 fit
             iso.fit(np.zeros(len(y_all)), y_all)
@@ -575,7 +595,7 @@ class HonmeiModel(_BaseModel):
             logger.debug("未訓練モデル — フォールバック予測を使用")
             return self._fallback_predict(df)
 
-        X = df[FEATURE_COLS].astype(float).fillna(-1)
+        X = _safe_feature_matrix(df)
         proba = self._model.predict_proba(X)[:, 1]
         return pd.Series(proba, index=df.index, name="honmei_score")
 
@@ -639,13 +659,14 @@ class PlaceModel(_BaseModel):
             logger.warning("複勝モデル: 学習レース数が少ない (%d 件)", n_races)
 
         df_sorted = df.sort_values("race_id").reset_index(drop=True)
-        X_all  = df_sorted[FEATURE_COLS].astype(float).fillna(-1)
+        X_all  = _safe_feature_matrix(df_sorted)
         y_all  = df_sorted["is_placed"]
         groups = df_sorted["race_id"]
 
         n_splits = min(5, n_races)
         aucs: list[float] = []
         oof_preds = np.zeros(len(X_all), dtype=float)
+        oof_mask  = np.zeros(len(X_all), dtype=bool)
 
         ts_splits = _temporal_cv_split(df_sorted, n_splits=n_splits)
         for tr_idx, val_idx in ts_splits:
@@ -653,6 +674,7 @@ class PlaceModel(_BaseModel):
             clone.fit(X_all.iloc[tr_idx], y_all.iloc[tr_idx])
             proba = clone.predict_proba(X_all.iloc[val_idx])[:, 1]
             oof_preds[val_idx] = proba
+            oof_mask[val_idx]  = True
             try:
                 aucs.append(roc_auc_score(y_all.iloc[val_idx], proba))
             except ValueError:
@@ -662,8 +684,8 @@ class PlaceModel(_BaseModel):
         cv_auc_std  = float(np.std(aucs))  if aucs else float("nan")
 
         iso = IsotonicRegression(out_of_bounds="clip")
-        if np.any(oof_preds != 0):
-            iso.fit(oof_preds, y_all)
+        if oof_mask.any():
+            iso.fit(oof_preds[oof_mask], y_all.to_numpy()[oof_mask])
         else:
             iso.fit(np.zeros(len(y_all)), y_all)
 
@@ -690,7 +712,7 @@ class PlaceModel(_BaseModel):
             logger.debug("未訓練複勝モデル — フォールバック（オッズ逆数）使用")
             return self._fallback_predict(df)
 
-        X = df[FEATURE_COLS].astype(float).fillna(-1)
+        X = _safe_feature_matrix(df)
         proba = self._model.predict_proba(X)[:, 1]
         return pd.Series(proba, index=df.index, name="place_score")
 
@@ -742,7 +764,7 @@ class ManjiModel(_BaseModel):
             return {"n_races": 0, "n_samples": 0}
 
         n_races = df["race_id"].nunique()
-        X = df[FEATURE_COLS].astype(float).fillna(-1)
+        X = _safe_feature_matrix(df)
         y = df["ev_target"]
 
         self._model.fit(X, y)
@@ -766,7 +788,7 @@ class ManjiModel(_BaseModel):
             return pd.Series(odds, index=df.index, name="manji_score")
 
         _MAX_EV_PRED = 50_000.0  # 単勝500倍 × 100円 = 50,000円が理論上限
-        X = df[FEATURE_COLS].astype(float).fillna(-1)
+        X = _safe_feature_matrix(df)
         pred = self._model.predict(X)
         return pd.Series(pred.clip(min=0, max=_MAX_EV_PRED), index=df.index, name="manji_score")
 

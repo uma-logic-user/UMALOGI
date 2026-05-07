@@ -373,12 +373,21 @@ def _run_jvlink_sync(dry_run: bool) -> None:
         return
     for dataspec in ("RACE", "WOOD"):
         logger.info("JVLink %s 同期開始...", dataspec)
-        subprocess.run(
-            ["py", "-3.14-32",
-             str(_ROOT / "scripts" / "_jvlink_force_worker.py"),
-             "--dataspec", dataspec, "--option", "3"],
-            cwd=str(_ROOT),
-        )
+        try:
+            result = subprocess.run(
+                ["py", "-3.14-32",
+                 str(_ROOT / "scripts" / "_jvlink_force_worker.py"),
+                 "--dataspec", dataspec, "--option", "3"],
+                cwd=str(_ROOT),
+                timeout=1800,  # 30分上限（JVLinkハング対策）
+            )
+            if result.returncode != 0:
+                logger.warning("JVLink %s 同期: rc=%d", dataspec, result.returncode)
+        except subprocess.TimeoutExpired:
+            logger.error("JVLink %s 同期タイムアウト (1800s) — スキップして続行", dataspec)
+            _send_discord(f"⚠️ [UMALOGI] JVLink {dataspec} 同期が30分でタイムアウト。次ステップに続行します。")
+        except Exception as exc:
+            logger.error("JVLink %s 同期エラー: %s — 続行", dataspec, exc)
         logger.info("JVLink %s 同期完了", dataspec)
 
 
@@ -388,11 +397,21 @@ def _run_provisional(date_str: str, dry_run: bool) -> None:
         logger.info("[DRY-RUN] 暫定予想生成をスキップします (date=%s)", date_str)
         return
     logger.info("暫定予想生成: %s", date_str)
-    subprocess.run(
-        [sys.executable, "-m", "src.main_pipeline", "provisional",
-         "--date", date_str],
-        cwd=str(_ROOT),
-    )
+    try:
+        result = subprocess.run(
+            [sys.executable, "-m", "src.main_pipeline", "provisional",
+             "--date", date_str],
+            cwd=str(_ROOT),
+            timeout=3600,  # 1時間上限（全レース暫定予想ハング対策）
+        )
+        if result.returncode != 0:
+            logger.warning("暫定予想生成 rc=%d (date=%s)", result.returncode, date_str)
+            _send_discord(f"⚠️ [UMALOGI] 暫定予想生成失敗 (date={date_str} rc={result.returncode})")
+    except subprocess.TimeoutExpired:
+        logger.error("暫定予想生成タイムアウト (3600s) date=%s — 続行", date_str)
+        _send_discord(f"🚨 [UMALOGI] 暫定予想生成が1時間でタイムアウト (date={date_str})。確認してください。")
+    except Exception as exc:
+        logger.error("暫定予想生成エラー date=%s: %s", date_str, exc)
 
 
 def _run_generate_web_data(dry_run: bool) -> None:
@@ -401,10 +420,16 @@ def _run_generate_web_data(dry_run: bool) -> None:
         logger.info("[DRY-RUN] Web データ生成をスキップします")
         return
     logger.info("Web データ生成中...")
-    subprocess.run(
-        [sys.executable, str(_ROOT / "web" / "generate_data.py")],
-        cwd=str(_ROOT),
-    )
+    try:
+        subprocess.run(
+            [sys.executable, str(_ROOT / "web" / "generate_data.py")],
+            cwd=str(_ROOT),
+            timeout=180,  # 3分上限
+        )
+    except subprocess.TimeoutExpired:
+        logger.warning("Web データ生成タイムアウト (180s) — 続行")
+    except Exception as exc:
+        logger.warning("Web データ生成エラー: %s — 続行", exc)
 
 
 # ─────────────────────────────────────────────────────────────────────────────

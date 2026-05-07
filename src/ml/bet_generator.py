@@ -141,8 +141,8 @@ def get_current_bankroll(
     current = max(initial_bankroll + net_pnl, floor)
     # 100円単位に切り捨て
     result = float(int(current // 100) * 100)
-    logger.info("現在のバンクロール: ¥%,.0f（初期資金 ¥%,.0f + 累積P&L ¥%+,.0f）",
-                result, initial_bankroll, net_pnl)
+    logger.info("現在のバンクロール: ¥%s（初期資金 ¥%s + 累積P&L ¥%s）",
+                f"{result:,.0f}", f"{initial_bankroll:,.0f}", f"{net_pnl:+,.0f}")
     return result
 
 

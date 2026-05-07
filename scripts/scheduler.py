@@ -528,10 +528,12 @@ def job_friday_sync() -> None:
         errors.append(f"JVLink マスタ更新失敗(rc={rc})")
 
     # ── Step 4: AI 暫定予想生成（64bit）─────────────────────────
-    rc = _run(
+    rc = _run_with_retry(
         _PY64 + ["-m", "src.main_pipeline", "provisional", "--date", target_yyyymmdd],
         "暫定予想",
         timeout=3600,
+        max_retries=2,
+        base_delay=120.0,
     )
     if rc != 0:
         msg = f"🚨【緊急】金曜バッチ: 暫定予想生成が失敗しました (rc={rc})。サーバーを確認してください。"
