@@ -361,7 +361,10 @@ def fetch_single_race(race_id: str, delay: float = 1.5) -> bool:
 
 def fetch_for_date(date_str: str, force_all: bool = False, delay: float = 1.5) -> int:
     """
-    指定日の全(未取得)レースの結果を JVLink から取得する。
+    指定日の全(未取得)レースの結果を取得して評価する。
+
+    JVLink 同期を会場グループ別に1回ずつ実行し、結果未取得レースは
+    netkeiba フォールバックで補完する。評価完了後に Hit Flash を送信。
 
     Args:
         date_str: YYYYMMDD 形式
@@ -376,11 +379,6 @@ def fetch_for_date(date_str: str, force_all: bool = False, delay: float = 1.5) -
 
     date_iso = f"{date_str[:4]}-{date_str[4:6]}-{date_str[6:8]}"
 
-    # JVLink 一括同期（日付分を一度だけ実行）
-    ok = _run_jvlink_race_sync(date_str)
-    if not ok:
-        logger.warning("JVLink 同期失敗: date=%s", date_str)
-
     conn = init_db()
     race_ids = _get_target_race_ids(conn, date_iso, force_all)
 
@@ -389,16 +387,41 @@ def fetch_for_date(date_str: str, force_all: bool = False, delay: float = 1.5) -
         conn.close()
         return 0
 
+    # 会場グループ (race_id[:8]) 別に JVLink 同期を1回だけ実行
+    synced_groups: set[str] = set()
+    for race_id in race_ids:
+        group_key = race_id[:8]  # YYYY+venue+kai+day
+        if group_key not in synced_groups:
+            jvlink_date = race_id[:8]   # 会場内部日付コード (YYYYMMDD ではなく YYYYVVKK)
+            ok = _run_jvlink_race_sync(jvlink_date)
+            if not ok:
+                logger.warning("JVLink 同期失敗 (group=%s)", group_key)
+            synced_groups.add(group_key)
+
     logger.info("評価対象: %d レース (date=%s)", len(race_ids), date_iso)
     evaluator = Evaluator()
     saved = 0
+
     for race_id in race_ids:
         with_rank = conn.execute(
             "SELECT COUNT(*) FROM race_results WHERE race_id = ? AND rank IS NOT NULL AND rank > 0",
             (race_id,),
         ).fetchone()[0]
+
+        # JVLink で結果なし → netkeiba フォールバック
         if with_rank == 0:
-            continue
+            logger.info("JVLink 結果なし → netkeiba フォールバック: race_id=%s", race_id)
+            nb_ok = _fetch_result_from_netkeiba(race_id, conn)
+            if not nb_ok:
+                logger.info("netkeiba: 未確定 (race_id=%s)", race_id)
+                continue
+            with_rank = conn.execute(
+                "SELECT COUNT(*) FROM race_results WHERE race_id = ? AND rank IS NOT NULL AND rank > 0",
+                (race_id,),
+            ).fetchone()[0]
+            if with_rank == 0:
+                continue
+
         try:
             result = evaluator.evaluate_race(conn, race_id)
             saved += 1
@@ -406,6 +429,7 @@ def fetch_for_date(date_str: str, force_all: bool = False, delay: float = 1.5) -
                 "評価完了: %s  的中=%d  ROI=%.1f%%",
                 race_id, result.hit_count, result.roi,
             )
+            _send_hit_flash(result, result.race_name)
         except Exception as e:
             logger.warning("評価失敗 %s: %s", race_id, e)
 
