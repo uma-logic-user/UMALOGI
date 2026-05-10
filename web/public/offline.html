@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UMALOGI — オフライン</title>
+  <style>
+    :root {
+      --bg:    #02060e;
+      --cyan:  #00c8ff;
+      --gold:  #ffd700;
+      --muted: #1a3a4a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--cyan);
+      font-family: 'SF Mono', 'Fira Code', Consolas, monospace;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* グリッド背景 */
+    body::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,200,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,200,255,.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+
+    .logo {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      color: var(--cyan);
+      text-shadow: 0 0 20px rgba(0,200,255,.6);
+      animation: pulse 3s ease-in-out infinite;
+    }
+    .logo span { color: var(--gold); }
+
+    .status-ring {
+      width: 80px;
+      height: 80px;
+      border: 3px solid var(--muted);
+      border-top-color: var(--cyan);
+      border-radius: 50%;
+      animation: spin 2s linear infinite;
+    }
+
+    .message {
+      text-align: center;
+      line-height: 1.8;
+    }
+    .message h2 {
+      font-size: 1rem;
+      color: var(--gold);
+      letter-spacing: .1em;
+      margin-bottom: .5rem;
+    }
+    .message p {
+      font-size: .8rem;
+      color: rgba(0,200,255,.5);
+      letter-spacing: .05em;
+    }
+
+    .cached-note {
+      font-size: .7rem;
+      color: rgba(0,200,255,.35);
+      border: 1px solid rgba(0,200,255,.12);
+      padding: .5rem 1.2rem;
+      letter-spacing: .05em;
+    }
+
+    @keyframes pulse {
+      0%, 100% { text-shadow: 0 0 20px rgba(0,200,255,.6); }
+      50%       { text-shadow: 0 0 40px rgba(0,200,255,1), 0 0 80px rgba(0,200,255,.4); }
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">UMA<span>LOGI</span></div>
+  <div class="status-ring"></div>
+  <div class="message">
+    <h2>// OFFLINE MODE</h2>
+    <p>ネットワーク接続を確認中...</p>
+    <p>接続が復旧すると自動で更新されます</p>
+  </div>
+  <div class="cached-note">キャッシュ済みデータは引き続き閲覧可能</div>
+  <script>
+    window.addEventListener('online', () => location.reload());
+  </script>
+</body>
+</html>

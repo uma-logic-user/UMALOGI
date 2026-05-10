@@ -6,6 +6,8 @@
 |------|---------|
 | 2026-05-10 | 初版作成。Discord 3セクション Embed レイアウト・Next.js ダッシュボード仕様記述 |
 | 2026-05-10 | Hit Flash（的中速報）追加: `fetch_race_result.py:_send_hit_flash()` — 評価完了直後に予想チャンネルへ Embed 送信。的中あり=🎉予想ch/なし=🏁システムch |
+| 2026-05-11 | PWA化: manifest.json / Service Worker / SwRegister.tsx / offline.html / アイコン4サイズ。影響: `web/public/` 全体・`web/src/app/layout.tsx` |
+| 2026-05-11 | モバイルアクセス基盤: Cloudflare Named Tunnel セットアップ (`setup_named_tunnel.py`) / Windows自動起動 (`install_tunnel_service.ps1`) / Basic Auth Middleware (`web/src/middleware.ts`) |
 
 ---
 
