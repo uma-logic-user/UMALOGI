@@ -272,8 +272,21 @@ class Win5Engine:
         self,
         race_picks: list[list[Win5HorsePick]],
     ) -> list[Win5Combination]:
-        """全組み合わせを生成して期待値を計算する。"""
-        # 各レースの全頭数の積が組み合わせ総数
+        """全組み合わせを生成して期待値を計算する。
+
+        EV の計算式:
+          market_prob  = 各レースの市場確率（1/win_odds 正規化後）の積
+                         → 市場が想定する「払戻の逆数」。払戻推定に使用。
+          model_prob   = blend_prob の積（モデル × 市場のブレンド確率）
+                         → 我々が推定する「真の勝率」。
+          estimated_payout = (1 / market_prob) × 払戻率 × 100  [円/100円]
+          EV           = model_prob × estimated_payout / 100
+                       = (model_prob / market_prob) × 払戻率
+
+        model_prob > market_prob のとき EV > 払戻率（エッジあり）。
+        以前の実装は払戻推定に model_prob を使っていたため
+        EV = 払戻率（0.725）固定の恒等式になっていた。
+        """
         total = 1
         for picks in race_picks:
             total *= len(picks)
@@ -281,20 +294,26 @@ class Win5Engine:
 
         combos: list[Win5Combination] = []
         for picks_combo in itertools.product(*race_picks):
-            combined_prob = 1.0
+            # モデル確率の積（真の勝率推定）
+            model_prob = 1.0
             for pick in picks_combo:
-                combined_prob *= pick.blend_prob
+                model_prob *= pick.blend_prob
 
-            # 推定払戻 = 1 / combined_prob × WIN5 返還率
-            # 実際には売上・キャリーオーバー次第だが期待値計算の基準として使用
-            estimated_payout = (1.0 / max(combined_prob, 1e-10)) * _WIN5_RETURN_RATE * 100
+            # 市場確率の積（払戻推定に使用）— market_prob は 1/オッズ の正規化済み
+            market_prob = 1.0
+            for pick in picks_combo:
+                market_prob *= pick.market_prob
 
-            # 期待値 = 確率 × 払戻(円/100円) / 100
-            ev = combined_prob * estimated_payout / 100.0
+            # 払戻は市場確率から推定（market が効率的なら売上比例）
+            estimated_payout = (1.0 / max(market_prob, 1e-10)) * _WIN5_RETURN_RATE * 100
+
+            # EV = model_prob × (1/market_prob) × 払戻率
+            # model_prob > market_prob → EV > 払戻率 → エッジあり
+            ev = model_prob * estimated_payout / 100.0
 
             combos.append(Win5Combination(
                 picks=list(picks_combo),
-                combined_prob=combined_prob,
+                combined_prob=model_prob,
                 estimated_payout=estimated_payout,
                 expected_value=ev,
             ))

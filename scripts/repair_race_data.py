@@ -38,7 +38,7 @@ _ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(_ROOT))
 
 from dotenv import load_dotenv
-load_dotenv()
+load_dotenv(_ROOT / ".env", override=False)
 
 from src.database.init_db import init_db
 from src.scraper.netkeiba import fetch_race_results, fetch_race_payouts, RaceInfo, HorseResult
@@ -197,7 +197,8 @@ def _update_race(
             surface         = ?,
             condition       = ?,
             weather         = ?,
-            track_direction = ?
+            track_direction = ?,
+            race_name       = CASE WHEN race_name IS NULL OR race_name = '' THEN ? ELSE race_name END
         WHERE race_id = ?
         """,
         (
@@ -206,6 +207,7 @@ def _update_race(
             info.condition,
             info.weather,
             info.track_direction,
+            info.race_name,
             race_id,
         ),
     )

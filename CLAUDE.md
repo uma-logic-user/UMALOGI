@@ -3,16 +3,31 @@
 
 ---
 
-## 【最優先】データソース絶対規則
+## ⚠️ 最重要ルール：ドキュメント保守の絶対遵守
 
-### 0. netkeiba.com 永久禁止
+> **コードの追加・修正・バグフィックスを行った場合、作業終了時に必ず `docs/` ディレクトリ内の**
+> **関連する Markdown ファイルを開き、一番上の「更新履歴」セクションに本日の日付で**
+> **作業内容と仕様変更の事実を追記すること。ドキュメントとコードの乖離は絶対に許容されない。**
 
-> ⚠️ **この規則は最高優先事項。例外なし。**
+### 対象ドキュメントと担当領域
 
-- **netkeiba.com へのアクセス（スクレイピング・参照）は一切禁止。**
-- 全データは **JRA-VAN（JV-Data）** および **umalogi.db の計算** のみ。
--  はいかなる処理からも呼び出してはならない。
-- **突合キー**: 的中判定・結果突合で馬名（文字列）比較は禁止。必ず **レースID + 馬番（整数）** の組み合わせのみ使用。
+| ファイル | 更新が必要な作業 |
+|---------|----------------|
+| `docs/1_prediction_logic.md` | モデル変更・買い目ロジック変更・新戦略追加 |
+| `docs/2_automation_schedule.md` | スケジューラ変更・新バッチ追加・タイミング変更 |
+| `docs/3_data_schema.md` | DBスキーマ変更・データソース追加・取得ルール変更 |
+| `docs/4_ui_design.md` | Discord通知レイアウト変更・ダッシュボード変更 |
+| `docs/5_ml_roadmap.md` | 新モデル追加・特徴量変更・再学習ルール変更 |
+| `docs/6_special_notes.md` | バグ修正・障害対応・手動リカバリ手順の追加 |
+
+### 更新フォーマット（Changelog エントリ）
+
+```markdown
+| YYYY-MM-DD | 変更内容の要約（1行）。影響ファイル: src/... |
+```
+
+---
+
 
 ---
 
@@ -181,3 +196,63 @@ web/             # Next.js フロントエンド（ダークUI）
 - ⚠️ MCPサーバーの設定（`.claude/mcp.json`）やソースコード内に、APIキーやDB接続情報を**絶対にハードコードしないこと**。
 - 必ず `${ENV_VAR}` などの環境変数を参照する形をとること。
 - `.env` ファイルは `.gitignore` に含めること。Git 履歴にシークレットが混入した場合は即座に報告すること。
+
+### 10. JVLink データ取得後の文字化けスクリーニング
+
+JRA-VAN JVLink から取得したデータを DB に保存する際、**必ず文字化けスクリーニングを実施すること**。
+
+#### 背景
+JVLink COM は CP932 バイト列を Pattern 1（各バイトを U+0000-U+00FF の Unicode 文字として返す）または Pattern 2（正規の Unicode 日本語文字 U+3000+ として返す）で返す。両方が混在する場合、誤ったエンコード処理（`encode('cp932', errors='replace')`）を行うと C1 制御文字（U+0081, U+0083 等）が `?`（0x3F）に化け、レース名等が `?x???X?e?[?N?X` のように壊れる。
+
+#### スクリーニング実装ルール
+
+1. **`_to_bytes()` フォールバック**（`src/scraper/jravan_client.py`）  
+   `encode('latin-1')` 失敗時は文字コードポイントで判定：
+   - `ord(ch) <= 0xFF` → バイト値をそのまま使う（CP932 リードバイトを保持）
+   - `ord(ch) >= 0x100` → `ch.encode('cp932')` を使う（Pattern 2 の正規 Unicode）
+
+2. **保存前スクリーニング関数** `src/utils/text.py:sanitize_str()`  
+   `[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\x9f]` にマッチする制御文字を除去する。  
+   JVLink 由来の文字列は必ずこの関数を通してから DB に保存すること。
+
+3. **文字化け検出チェック**  
+   保存前に `?` (0x3F) が連続する文字列（例: `?x???X?`）は文字化けの兆候。  
+   `_sanitize_check(s)` で以下を確認すること：
+   ```python
+   import re
+   _GARBLED = re.compile(r'\?[^\s\?]{1,4}\?')  # ?X? パターン
+   if _GARBLED.search(s):
+       logger.warning("文字化け疑い: %r", s)
+   ```
+
+4. **DB 保存後の事後検証**  
+   バッチ完了後に `races.race_name LIKE '%?%'` 等で残留文字化けを確認し、  
+   文字化けが検出された場合は当該レコードを空文字にリセットして再取得を促す。
+
+### 11. データ戦略: JVLink 一次・netkeiba 二次の二段構え
+
+**原則**: JRA-VAN（JVLink）データは公式の真実であり、補完の最優先ソースとする。
+
+#### レースエントリー / 出走情報
+- **一次ソース**: JVLink （`src/scraper/jravan_client.py`）
+- **二次ソース**: netkeiba (`src/scraper/entry_table.py`) ← JVLink 失敗時に自動フォールバック
+- フォールバック実装箇所: `src/pipeline/prediction.py` の `_fetch_entries()` 付近
+
+#### オッズ情報（直前予想で最重要）
+- **一次ソース**: JVLink リアルタイムオッズ → `realtime_odds` テーブル経由 → `_latest_odds_map()`
+- **二次ソース**: netkeiba オッズスクレイピング (`src/scraper/entry_table.py:fetch_odds_from_netkeiba()`)  
+  ← `realtime_odds` が空（件数 = 0）の場合に自動フォールバックすること
+- **必須実装**: `_latest_odds_map()` または直前予想パイプラインで、`realtime_odds` の該当 `race_id` の件数が 0 の場合、netkeiba からオッズを取得して一時的に使用する。
+
+#### 確定結果 / 払戻
+- **一次ソース**: JVLink RTD データ (`src/scraper/rtd_reader.py`)
+- **二次ソース**: netkeiba 払戻ページ (`src/scraper/update_payouts.py`)
+- JVLink が取得できなかった場合、当日中に netkeiba で補完すること。
+
+#### ルール要約
+```
+オッズ取得: JVLink → realtime_odds 空 → netkeiba fetch_odds() → 再度 realtime_odds へ保存
+エントリー: JVLink → 失敗 → netkeiba entry_table → entries テーブルへ保存
+払戻:       JVLink RTD → 未取得 → netkeiba update_payouts → race_payouts へ保存
+```
+**「どちらかが死んでも必ず EV スコアが算出される状態」を維持すること。**

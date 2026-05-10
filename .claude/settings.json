@@ -1,3 +1,55 @@
 {
-  "language": "japanese"
+  "language": "japanese",
+  "permissions": {
+    "allow": [
+      "Bash(pytest*)",
+      "Bash(ruff*)",
+      "Bash(ls*)",
+      "Bash(cat*)",
+      "Bash(grep*)",
+      "Bash(py *)",
+      "Bash(python*)"
+    ],
+    "deny": [
+      "Read(.env)",
+      "Write(.env)",
+      "Edit(.env)",
+      "Bash(cat .env*)",
+      "Bash(type .env*)",
+      "Bash(Get-Content .env*)",
+      "Bash(gc .env*)",
+      "Bash(more .env*)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "powershell",
+            "command": "$json = $input | ConvertFrom-Json; $fp = $json.tool_input.file_path; if ($fp -and ($fp -like '*.py') -and (Test-Path $fp)) { py -m ruff format $fp 2>$null; py -m ruff check --fix --exit-zero $fp 2>$null }",
+            "timeout": 30,
+            "statusMessage": "ruff フォーマット中...",
+            "async": true
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "powershell",
+            "command": "$json = $input | ConvertFrom-Json; $cmd = $json.tool_input.command; if ($cmd -match '\\\\?\\.env(?:\\b|\\.|$)' -and $cmd -match '^(cat|type|Get-Content|gc|more|head|tail|less|cp|copy|mv|move|del|rm)') { @{decision='block'; reason='.env ファイルへのシェルアクセスは安全ポリシーにより禁止されています'} | ConvertTo-Json -Compress; exit 1 }",
+            "timeout": 5,
+            "statusMessage": ".env セキュリティチェック中..."
+          }
+        ]
+      }
+    ]
+  }
 }

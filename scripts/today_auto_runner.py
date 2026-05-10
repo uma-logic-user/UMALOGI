@@ -38,6 +38,7 @@ import logging
 import subprocess
 import sys
 import time
+from concurrent.futures import Future, ThreadPoolExecutor
 from logging.handlers import RotatingFileHandler
 from pathlib import Path
 
@@ -49,15 +50,38 @@ from dotenv import load_dotenv
 load_dotenv(_ROOT / ".env", override=False)
 
 
-def _send_discord(text: str) -> None:
-    """Discord Webhook にメッセージを送信する。"""
+def _send_discord(text: str, *, color: int | None = None) -> None:
+    """システムチャンネルにメッセージを送信する。
+
+    color 指定時は Embed、省略時はプレーンテキストで送信する。
+    DISCORD_SYSTEM_WEBHOOK_URL 未設定時は DISCORD_WEBHOOK_URL へ fallback。
+    """
+    import os
+    try:
+        import requests as _req
+        url = os.getenv("DISCORD_SYSTEM_WEBHOOK_URL", "") or os.getenv("DISCORD_WEBHOOK_URL", "")
+        if not url:
+            return
+        safe_text = text.replace('\x00', '').strip()
+        if color is not None:
+            payload: dict = {"embeds": [{"description": safe_text, "color": color}]}
+        else:
+            payload = {"content": safe_text}
+        _req.post(url, json=payload, timeout=10)
+    except Exception:
+        pass
+
+
+def _send_discord_race(text: str) -> None:
+    """予想チャンネルにメッセージを送信する（買い目・結果・週次レポート用）。"""
     import os
     try:
         import requests as _req
         url = os.getenv("DISCORD_WEBHOOK_URL", "")
-        if url:
-            safe_text = text.replace('\x00', '').strip()
-            _req.post(url, json={"content": safe_text}, timeout=10)
+        if not url:
+            return
+        safe_text = text.replace('\x00', '').strip()
+        _req.post(url, json={"content": safe_text}, timeout=10)
     except Exception:
         pass
 
@@ -97,8 +121,8 @@ _MORNING_START_MINUTE = 30
 _RESTART_WAIT_SEC = 60
 
 # postrace 再試行設定
-_POSTRACE_MAX_RETRY      = 3
-_POSTRACE_RETRY_WAIT_SEC = 60
+_POSTRACE_MAX_RETRY      = 8    # 8回 × 5分 = 最大40分待機（審議・写真判定対応）
+_POSTRACE_RETRY_WAIT_SEC = 300  # 5分
 
 # 曜日定数
 _MON, _TUE, _WED, _THU, _FRI, _SAT, _SUN = range(7)
@@ -189,7 +213,11 @@ def _run_prerace(race_id: str, dry_run: bool) -> int:
         logger.info("[DRY-RUN] 実行コマンド: %s", " ".join(cmd))
         return 0
     try:
-        result = subprocess.run(cmd, cwd=str(_ROOT), timeout=300)
+        result = subprocess.run(
+            cmd, cwd=str(_ROOT), timeout=300, stderr=subprocess.PIPE, text=True, encoding="utf-8"
+        )
+        if result.returncode != 0 and result.stderr:
+            logger.error("prerace stderr [%s]: %s", race_id, result.stderr[-2000:])
         return result.returncode
     except subprocess.TimeoutExpired:
         logger.error("prerace パイプラインがタイムアウトしました (300s): %s", race_id)
@@ -214,25 +242,27 @@ def _run_fetch_result(race_id: str, dry_run: bool) -> int:
             result = subprocess.run(cmd, cwd=str(_ROOT), timeout=300)
             if result.returncode == 0:
                 return 0
+            # 途中失敗はログのみ（Discordに通知しない）
             logger.warning(
-                "[NG] 結果取得 rc=%d (試行 %d/%d): %s",
+                "[NG] 結果取得 rc=%d (試行 %d/%d): %s — %d 秒後に再試行",
                 result.returncode, attempt, _POSTRACE_MAX_RETRY, race_id,
+                _POSTRACE_RETRY_WAIT_SEC,
             )
         except subprocess.TimeoutExpired:
-            logger.error(
-                "結果速報取得 タイムアウト (300s) 試行 %d/%d: %s",
-                attempt, _POSTRACE_MAX_RETRY, race_id,
+            logger.warning(
+                "結果速報取得 タイムアウト (300s) 試行 %d/%d: %s — %d 秒後に再試行",
+                attempt, _POSTRACE_MAX_RETRY, race_id, _POSTRACE_RETRY_WAIT_SEC,
             )
 
         if attempt < _POSTRACE_MAX_RETRY:
-            logger.info("再試行まで %d 秒待機 (race_id=%s)...", _POSTRACE_RETRY_WAIT_SEC, race_id)
             time.sleep(_POSTRACE_RETRY_WAIT_SEC)
 
-    # 全試行失敗 → Discord 警告
+    # 全試行失敗 → Discord 警告（最終のみ）
+    wait_min = _POSTRACE_MAX_RETRY * _POSTRACE_RETRY_WAIT_SEC // 60
     _send_discord(
-        f"🚨 **[UMALOGI] 結果取得 全試行失敗** `{race_id}`\n"
-        f"{_POSTRACE_MAX_RETRY} 回試行後も失敗。手動での確認が必要です。\n"
-        f"手動実行: `py scripts/fetch_race_result.py --race-id {race_id}`"
+        f"⚠️ **[UMALOGI] 結果取得 失敗** `{race_id}`\n"
+        f"{_POSTRACE_MAX_RETRY} 回 ({wait_min}分) 試行後も未確定。審議継続中か確認してください。\n"
+        f"手動: `py scripts/fetch_race_result.py --race-id {race_id}`"
     )
     return 1
 
@@ -541,7 +571,7 @@ def _send_weekly_report(sunday_date: str, dry_run: bool) -> None:
         p_emoji  = "🟢" if profit >= 0 else "🔴"
         sign     = "+" if profit >= 0 else ""
 
-        _send_discord(
+        _send_discord_race(
             f"📊 **[UMALOGI] 週次サマリー ({saturday_str} 〜 {sunday_str})**\n"
             f"予想件数: {total} 件 / 的中: {hits} 件 (的中率 {hit_rate})\n"
             f"払戻合計: ¥{int(payout):,}\n"
@@ -610,17 +640,17 @@ def _run_one_day(
 
     schedule.sort(key=lambda x: (x[0], x[1], x[3]))
 
-    done:    set[tuple[str, str]] = set()
     skipped: set[tuple[str, str]] = set()
     now = datetime.datetime.now()
 
-    # 発走時刻を過ぎた prerace はスキップ
+    # 発走時刻を過ぎた prerace はスキップ（発走+30分以内ならまだ実行可）
+    # 30分: 写真判定・審議を考慮しても確定前に予想を DB に確保できるウィンドウ
     for fire_at, race_id, race_number, job_type in schedule:
         if job_type == "prerace":
             start = fire_at + fire_ahead
-            if now >= start:
+            if now >= start + datetime.timedelta(minutes=30):
                 logger.warning(
-                    "R%02d %s [prerace] 発走推定時刻 %s を過ぎています -> スキップ",
+                    "R%02d %s [prerace] 発走推定時刻 %s を 30 分超過 -> スキップ",
                     race_number, race_id, start.strftime("%H:%M"),
                 )
                 skipped.add((race_id, "prerace"))
@@ -629,88 +659,100 @@ def _run_one_day(
     total = len(pending_jobs)
 
     logger.info("スケジュール済みジョブ: %d 件 (スキップ: %d 件)", total, len(skipped))
-    logger.info("監視ループ開始 - Ctrl+C で中断")
+    logger.info("監視ループ開始 [非同期スレッドプール] - Ctrl+C で中断")
     logger.info("-" * 60)
 
     prerace_success = prerace_fail = 0
     postrace_success = postrace_fail = 0
 
+    # ── スレッドプール非同期実行 ──────────────────────────────────────────────
+    # postrace は最大 40 分のリトライループを持つため、同期実行すると後続の
+    # prerace ジョブが遅延する。各ジョブを独立スレッドで並行実行することで
+    # 手動介入・審議による遅延に関係なくスケジュールどおり発火する。
+    submitted:  dict[tuple[str, str], Future] = {}  # key → Future
+
+    def _prerace_worker(race_id: str, race_number: int, fire_at: datetime.datetime) -> int:
+        start = fire_at + fire_ahead
+        logger.info(
+            "[START] R%02d %s  [prerace] 直前予想開始 (推定発走 %s)",
+            race_number, race_id, start.strftime("%H:%M"),
+        )
+        rc = _run_prerace(race_id, dry_run)
+        if rc == 0:
+            logger.info("[OK] R%02d %s  [prerace] 完了", race_number, race_id)
+            if _is_notable_race(race_id):
+                logger.info("[NOTE] 注目レース検知 → note 記事生成: %s", race_id)
+                _run_note_article(race_id, dry_run)
+                _run_sns_post(race_id, dry_run, pattern="a")
+        else:
+            logger.error("[NG] R%02d %s  [prerace] 失敗 (rc=%d)", race_number, race_id, rc)
+        return rc
+
+    def _postrace_worker(race_id: str, race_number: int) -> int:
+        logger.info("[START] R%02d %s  [postrace] 結果取得開始", race_number, race_id)
+        rc = _run_fetch_result(race_id, dry_run)
+        if rc == 0:
+            logger.info("[OK] R%02d %s  [postrace] 完了", race_number, race_id)
+            if _has_hit(race_id):
+                logger.info("[CARD] 的中検知 → カード＋SNS生成: %s", race_id)
+                _run_result_card(race_id, dry_run)
+                _run_sns_post(race_id, dry_run, pattern="b")
+        else:
+            logger.warning(
+                "[NG] R%02d %s  [postrace] 失敗 (rc=%d) → 未確定の可能性あり",
+                race_number, race_id, rc,
+            )
+        return rc
+
     try:
-        while len(done) < total:
-            now = datetime.datetime.now()
+        with ThreadPoolExecutor(max_workers=16, thread_name_prefix="umalogi") as executor:
+            while True:
+                now = datetime.datetime.now()
 
-            for fire_at, race_id, race_number, job_type in pending_jobs:
-                key = (race_id, job_type)
-                if key in done:
-                    continue
-                if now < fire_at:
-                    continue
+                for fire_at, race_id, race_number, job_type in pending_jobs:
+                    key = (race_id, job_type)
+                    if key in submitted:
+                        continue  # 既に起動済み
+                    if now < fire_at:
+                        continue  # まだ時刻未到達
 
-                if job_type == "prerace":
-                    start = fire_at + fire_ahead
-                    # 5 分超過は見送り
-                    if now >= start + datetime.timedelta(minutes=5):
-                        logger.warning(
-                            "R%02d %s [prerace] 発走 5 分超過のため見送り",
-                            race_number, race_id,
+                    if job_type == "prerace":
+                        submitted[key] = executor.submit(
+                            _prerace_worker, race_id, race_number, fire_at
                         )
-                        done.add(key)
-                        skipped.add(key)
-                        continue
-
-                    logger.info(
-                        "[START] R%02d %s  [prerace] 直前予想開始 (推定発走 %s)",
-                        race_number, race_id, start.strftime("%H:%M"),
-                    )
-                    rc = _run_prerace(race_id, dry_run)
-                    done.add(key)
-                    if rc == 0:
-                        prerace_success += 1
-                        logger.info("[OK] R%02d %s  [prerace] 完了", race_number, race_id)
-                        # 重賞または高EV レースは note 記事 + SNS パターンA を自動生成
-                        if _is_notable_race(race_id):
-                            logger.info("[NOTE] 注目レース検知 → note 記事生成: %s", race_id)
-                            _run_note_article(race_id, dry_run)
-                            _run_sns_post(race_id, dry_run, pattern="a")
-                    else:
-                        prerace_fail += 1
-                        logger.error(
-                            "[NG] R%02d %s  [prerace] 失敗 (rc=%d)", race_number, race_id, rc
+                    else:  # postrace
+                        submitted[key] = executor.submit(
+                            _postrace_worker, race_id, race_number
                         )
 
-                else:  # postrace
-                    logger.info(
-                        "[START] R%02d %s  [postrace] 結果取得開始", race_number, race_id
-                    )
-                    rc = _run_fetch_result(race_id, dry_run)
-                    done.add(key)
-                    if rc == 0:
-                        postrace_success += 1
-                        logger.info("[OK] R%02d %s  [postrace] 完了", race_number, race_id)
-                        # 的中があればカード画像 + SNS パターンB を自動生成
-                        if _has_hit(race_id):
-                            logger.info("[CARD] 的中検知 → カード＋SNS生成: %s", race_id)
-                            _run_result_card(race_id, dry_run)
-                            _run_sns_post(race_id, dry_run, pattern="b")
-                        else:
-                            logger.debug("[CARD] 的中なし → スキップ: %s", race_id)
-                    else:
-                        postrace_fail += 1
-                        logger.warning(
-                            "[NG] R%02d %s  [postrace] 失敗 (rc=%d) → 未確定の可能性あり",
-                            race_number, race_id, rc,
-                        )
+                # 全ジョブ起動 & 完了確認
+                all_submitted = len(submitted) == total
+                all_done      = all_submitted and all(f.done() for f in submitted.values())
+                if all_done:
+                    break
 
-            if len(done) >= total:
-                break
-
-            next_fires = [s[0] for s in pending_jobs if (s[1], s[3]) not in done]
-            if next_fires:
-                next_fire  = min(next_fires)
-                sleep_secs = min(30.0, max(1.0, (next_fire - datetime.datetime.now()).total_seconds()))
+                # 次発火まで待機（最大 15 秒）
+                unfired = [s[0] for s in pending_jobs if (s[1], s[3]) not in submitted]
+                if unfired:
+                    next_fire  = min(unfired)
+                    sleep_secs = min(15.0, max(1.0, (next_fire - datetime.datetime.now()).total_seconds()))
+                else:
+                    sleep_secs = 15.0
                 time.sleep(sleep_secs)
+
+        # 結果集計
+        for (race_id, job_type), fut in submitted.items():
+            try:
+                rc = fut.result()
+            except Exception as exc:
+                logger.error("[例外] %s [%s]: %s", race_id, job_type, exc)
+                rc = -1
+            if job_type == "prerace":
+                if rc == 0: prerace_success  += 1
+                else:       prerace_fail     += 1
             else:
-                break
+                if rc == 0: postrace_success += 1
+                else:       postrace_fail    += 1
 
     except KeyboardInterrupt:
         logger.info("\n[中断] Ctrl+C を受け取りました。監視ループを終了します。")
