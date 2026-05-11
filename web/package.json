@@ -5,11 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -H 0.0.0.0 -p 3000",
     "type-check": "tsc --noEmit",
     "gen": "python ../web/generate_data.py",
-    "tunnel": "cloudflared tunnel run umalogi",
-    "dev:mobile": "next dev --port 3000",
+    "dev:mobile": "next dev -H 0.0.0.0 --port 3000",
     "public": "npm run build && npm start"
   },
   "dependencies": {
