@@ -120,7 +120,8 @@ export default function RaceTable({ results }: Props) {
       </div>
 
       {/* ── モバイル: 着順カード ── */}
-      <div className="block md:hidden" style={{ padding: '8px 10px', display: 'flex', flexDirection: 'column', gap: 6 }}>
+      <div className="md:hidden">
+        <div style={{ padding: '8px 10px', display: 'flex', flexDirection: 'column', gap: 6 }}>
         {sorted.map(r => {
           const rankClass = r.rank === 1 ? 'rank-1' : r.rank === 2 ? 'rank-2' : r.rank === 3 ? 'rank-3' : ''
           const medalNum  = r.rank === 1 ? 'medal-1' : r.rank === 2 ? 'medal-2' : r.rank === 3 ? 'medal-3' : ''
@@ -189,6 +190,7 @@ export default function RaceTable({ results }: Props) {
             </div>
           )
         })}
+        </div>
       </div>
     </div>
   )

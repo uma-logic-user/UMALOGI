@@ -313,7 +313,8 @@ function PreraceTable({ results }: { results: RaceResult[] }) {
       </div>
 
       {/* ── モバイル: EV重視カード ── */}
-      <div className="block md:hidden" style={{ padding: '8px 10px', display: 'flex', flexDirection: 'column', gap: 6 }}>
+      <div className="md:hidden">
+        <div style={{ padding: '8px 10px', display: 'flex', flexDirection: 'column', gap: 6 }}>
         {sorted.map((r, i) => {
           const ev       = r.ev_score ?? 0
           const kelly    = r.kelly_fraction ?? 0
@@ -408,6 +409,7 @@ function PreraceTable({ results }: { results: RaceResult[] }) {
             </div>
           )
         })}
+        </div>
       </div>
 
       <div className="px-4 py-2 text-[10px] text-[var(--text-muted)] border-t border-[var(--border)]">
@@ -510,7 +512,8 @@ function ResultsTable({ results }: { results: RaceResult[] }) {
       </div>
 
       {/* ── モバイル: 着順カード ── */}
-      <div className="block md:hidden" style={{ padding: '8px 10px', display: 'flex', flexDirection: 'column', gap: 6 }}>
+      <div className="md:hidden">
+        <div style={{ padding: '8px 10px', display: 'flex', flexDirection: 'column', gap: 6 }}>
         {results.map((r, i) => {
           const rankClass = r.rank === 1 ? 'rank-1' : r.rank === 2 ? 'rank-2' : r.rank === 3 ? 'rank-3' : ''
           const medalNum  = r.rank === 1 ? 'medal-1' : r.rank === 2 ? 'medal-2' : r.rank === 3 ? 'medal-3' : ''
@@ -588,6 +591,7 @@ function ResultsTable({ results }: { results: RaceResult[] }) {
             </div>
           )
         })}
+        </div>
       </div>
     </div>
   )

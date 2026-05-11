@@ -293,3 +293,75 @@ JVLink COM は CP932 バイト列を Pattern 1（各バイトを U+0000-U+00FF �
 払戻:       JVLink RTD → 未取得 → netkeiba update_payouts → race_payouts へ保存
 ```
 **「どちらかが死んでも必ず EV スコアが算出される状態」を維持すること。**
+
+---
+
+## 次フェーズ ロードマップ（Ver2.0 候補）
+
+> ⚠️ **重要な認識修正（2026-05-12 社長指令）**
+> 「X（Twitter）連携」とは**自動ポスト機能ではない**。
+> X 上で活動する凄腕予想家のポストをスクレイピングし、
+> UMALOGI の **第4のファクター** として DB に取り込む戦略である。
+
+### 12. X 予想データ抽出・構造化パイプライン（最優先）
+
+**目的**: 一流競馬予想家の「印（◎〇▲）」「軸馬番号」「レース名」を
+X 投稿から機械的に抽出し、`x_signals` テーブルに格納。
+ALPHA/卍/本命の EV 計算時に **"専門家コンセンサス係数"** として加算する。
+
+```
+【アーキテクチャ案】
+
+1. ターゲット選定
+   - フォロワー1万人超・的中実績公開の凄腕予想家アカウントを選定
+   - scripts/x_targets.json にアカウントリストを管理
+
+2. スクレイピング（src/scraper/x_scraper.py）
+   - Playwright + stealth-mode で X 検索・タイムラインを巡回
+   - レース開催日の 前夜〜当日朝 の投稿を対象
+   - 取得項目: tweet_id / posted_at / screen_name / raw_text
+
+3. 構造化（src/ml/x_signal_parser.py）
+   - 正規表現 + LLM（Claude Haiku）でテキスト → 構造化
+     - race_name: "東京11R" / "NHKマイルC"
+     - horse_nums: [5, 9, 3]
+     - signal_type: "本命" / "穴" / "消し"
+     - confidence: 0.0〜1.0（言語確信度から推定）
+
+4. DB 格納（x_signals テーブル）
+   schema:
+     signal_id     INTEGER PRIMARY KEY
+     race_id       TEXT     (races テーブルと突合)
+     screen_name   TEXT
+     horse_number  INTEGER
+     signal_type   TEXT     ('honmei' / 'ana' / 'keshi')
+     confidence    REAL
+     raw_text      TEXT
+     posted_at     TEXT
+     fetched_at    TEXT
+
+5. EV 計算への統合（src/ml/alpha_model.py）
+   - x_consensus_score = weighted_avg(confidence) by horse_number
+   - FEATURE_COLS に追加: 'x_consensus_score'
+   - 重みは「アカウントの過去的中率」で動的調整
+
+【実装優先順位】
+  Phase A: x_scraper.py（Playwright）+ x_signals テーブル作成
+  Phase B: x_signal_parser.py（Claude Haiku API で構造化）
+  Phase C: FEATURE_COLS への統合・モデル再訓練・バックテスト
+```
+
+**実装開始前の必須確認事項**:
+- X の利用規約（スクレイピング制限）の確認
+- レート制限回避（1アカウントあたり 1時間あたり 15リクエスト以下）
+- 個人情報保護: 収集データは非公開 DB のみに格納し、外部公開禁止
+
+### 13. FukushoElite モデル本番統合
+
+- 現状: `src/ml/` に実装済みだが本番パイプラインに未結合
+- 複勝 ROI 95.4% → 110%+ 目標（X シグナル統合後に再訓練）
+
+### 14. 歴史データ大規模取得（SID 制約解消後）
+
+- JVLink SID が1日分以上のデータ取得に対応した時点で実行
+- 2023〜2025 の 3年分データで ALPHA モデル再訓練 → ROI 250%+ 目標
