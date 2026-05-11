@@ -4,6 +4,7 @@
 
 | 日付 | 変更内容 |
 |------|---------|
+| 2026-05-12 | モバイル完全最適化: PredictionsPanel/RaceDetail/RaceTable の全テーブルをモバイルカード化。モデルタブ（ALPHA/卍/本命）・ベットスリップカード・EV大型表示(2rem)・44px タップ領域。影響: `web/src/components/PredictionsPanel.tsx`, `RaceDetail.tsx`, `RaceTable.tsx`, `web/src/app/globals.css` |
 | 2026-05-10 | 初版作成。Discord 3セクション Embed レイアウト・Next.js ダッシュボード仕様記述 |
 | 2026-05-10 | Hit Flash（的中速報）追加: `fetch_race_result.py:_send_hit_flash()` — 評価完了直後に予想チャンネルへ Embed 送信。的中あり=🎉予想ch/なし=🏁システムch |
 | 2026-05-11 | PWA化: manifest.json / Service Worker / SwRegister.tsx / offline.html / アイコン4サイズ。影響: `web/public/` 全体・`web/src/app/layout.tsx` |
@@ -170,6 +171,23 @@ web/src/data/
 - 買い目テーブル (馬番・馬名・EV・推奨投資額)
 - 的中/外れ結果バッジ (postrace 後)
 - 損益サマリー
+
+**モバイルレスポンシブ仕様** (768px 未満):
+
+| 要素 | デスクトップ | モバイル |
+|------|------------|--------|
+| 予想一覧 | 横テーブル（9列） | モデルタブ + ベットスリップカード（縦積み） |
+| EV表示 | `0.9rem` インライン | `2rem` 大型 LED 数字（右上固定）|
+| 馬番 | `24px` サークル | `34px` 大型サークル |
+| タブ高さ | N/A | 44px 以上（タップ領域確保）|
+| 出走表 | 横テーブル（14列）| 着順カード（左メダル + 右詳細）|
+| AI直前 | 横テーブル（9列）| 馬ごとEVカード（EV右上・指標行）|
+
+**カラーコード（モデルタブ左ボーダー）**:
+- ALPHA: `--neon-cyan` (#00c8ff)
+- 卍: `--neon-gold` (#ffd700)
+- 本命: `--neon-green` (#00ff88)
+- 的中カード: ゴールドボーダーに昇格 + 薄ゴールド背景
 
 ---
 

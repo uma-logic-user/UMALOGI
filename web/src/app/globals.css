@@ -546,6 +546,162 @@ body::before {
   line-height: 1;
 }
 
+/* ─── モバイル予想カード（ベットスリップスタイル）─────────────────── */
+
+/* モデルタブバー */
+.model-tabs {
+  display: flex;
+  gap: 0;
+  background: var(--bg-surface);
+  border-bottom: 1px solid rgba(0,200,255,0.18);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.model-tab-btn {
+  flex: 1;
+  min-height: 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  padding: 6px 4px;
+}
+.model-tab-btn:hover {
+  color: var(--text-primary);
+  background: rgba(255,255,255,0.03);
+}
+.model-tab-btn.tab-active-alpha  { color: var(--neon-cyan);  border-bottom-color: var(--neon-cyan); }
+.model-tab-btn.tab-active-manzai { color: var(--neon-gold);  border-bottom-color: var(--neon-gold); }
+.model-tab-btn.tab-active-honmei { color: var(--neon-green); border-bottom-color: var(--neon-green); }
+.model-tab-btn.tab-active-other  { color: var(--neon-cyan);  border-bottom-color: var(--neon-cyan); }
+
+.model-tab-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 9px;
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0;
+  background: rgba(255,255,255,0.08);
+  color: var(--text-muted);
+}
+.tab-active-alpha  .model-tab-count { background: rgba(0,200,255,0.18);  color: var(--neon-cyan); }
+.tab-active-manzai .model-tab-count { background: rgba(255,215,0,0.18);  color: var(--neon-gold); }
+.tab-active-honmei .model-tab-count { background: rgba(0,255,136,0.18);  color: var(--neon-green); }
+
+/* 予想カード（ベットスリップ） */
+.pred-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(0,200,255,0.10);
+  border-left: 3px solid var(--neon-cyan);
+  border-radius: 6px;
+  padding: 12px 14px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.pred-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(0,200,255,0.3) 0%, transparent 70%);
+}
+.pred-card-alpha  { border-left-color: var(--neon-cyan); }
+.pred-card-manzai { border-left-color: var(--neon-gold); }
+.pred-card-honmei { border-left-color: var(--neon-green); }
+.pred-card-hit {
+  background: rgba(255,215,0,0.04);
+  border-color: rgba(255,215,0,0.25);
+  box-shadow: 0 0 16px rgba(255,215,0,0.10);
+}
+.pred-card-hit.pred-card-alpha  { border-left-color: var(--neon-gold); }
+.pred-card-hit.pred-card-manzai { border-left-color: var(--neon-gold); }
+.pred-card-hit.pred-card-honmei { border-left-color: var(--neon-gold); }
+
+/* EV 大型表示 */
+.ev-display-large {
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.ev-display-cyan  { color: var(--neon-cyan);  text-shadow: 0 0 14px rgba(0,200,255,0.85); }
+.ev-display-gold  { color: var(--neon-gold);  text-shadow: 0 0 14px rgba(255,215,0,0.85); }
+.ev-display-red   { color: var(--neon-red);   text-shadow: 0 0 14px rgba(255,51,102,0.85); }
+.ev-display-muted { color: var(--text-muted); }
+
+/* 馬番サークル（モバイル用大型） */
+.horse-num-lg {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255,215,0,0.12);
+  color: var(--neon-gold);
+  font-weight: 900;
+  font-size: 1rem;
+  font-family: monospace;
+  border: 1.5px solid rgba(255,215,0,0.45);
+  flex-shrink: 0;
+  transition: transform 0.15s;
+}
+.horse-num-lg.medal-1 { background: #FFD700; color: #000; border: none; }
+.horse-num-lg.medal-2 { background: #C0C0C0; color: #222; border: none; }
+.horse-num-lg.medal-3 { background: #CD7F32; color: #fff; border: none; }
+
+/* 馬カード（結果/直前テーブルのモバイル表示） */
+.horse-row-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(0,200,255,0.08);
+  border-radius: 6px;
+  padding: 10px 12px;
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 10px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.horse-row-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+}
+.horse-row-card.rank-1 {
+  background: rgba(255,215,0,0.05);
+  border-color: rgba(255,215,0,0.2);
+}
+.horse-row-card.rank-1::before  { background: var(--neon-gold); }
+.horse-row-card.rank-2::before  { background: #c0c0c0; }
+.horse-row-card.rank-3::before  { background: #cd7f32; }
+.horse-row-card.hot-card {
+  background: rgba(255,51,102,0.04);
+  border-color: rgba(255,51,102,0.2);
+}
+.horse-row-card.hot-card::before { background: var(--neon-red); }
+
 /* ─── モバイル対応（スマホ縦向き）─────────────────────────────── */
 @media (max-width: 768px) {
   html { font-size: 100%; }

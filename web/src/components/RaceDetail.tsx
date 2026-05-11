@@ -140,7 +140,7 @@ export default function RaceDetail({ race, predictions }: Props) {
           <button
             key={t.key}
             onClick={() => setTab(t.key)}
-            className={`relative px-6 py-2.5 text-sm font-semibold tracking-wider transition-colors ${
+            className={`relative px-5 md:px-6 text-sm font-semibold tracking-wider transition-colors min-h-[44px] flex items-center gap-1 ${
               tab === t.key
                 ? 'text-[var(--neon-cyan)]'
                 : 'text-[var(--text-muted)] hover:text-[var(--text-primary)]'
@@ -226,7 +226,9 @@ function PreraceTable({ results }: { results: RaceResult[] }) {
           PRE-RACE ANALYSIS — 直前情報
         </span>
       </div>
-      <div className="table-scroll">
+
+      {/* ── デスクトップ: テーブル ── */}
+      <div className="hidden md:block table-scroll">
         <table className="w-full race-table">
           <thead>
             <tr>
@@ -255,99 +257,53 @@ function PreraceTable({ results }: { results: RaceResult[] }) {
                   className={isHot ? 'row-hot' : ''}
                   style={isHot ? { borderLeft: '2px solid var(--neon-red)' } : {}}
                 >
-                  {/* 馬番 */}
                   <td className="text-center">
                     {r.gate_number != null ? <GateBadge gate={r.gate_number} /> : null}
-                    <span className="ml-1 font-mono text-[var(--text-muted)]">
-                      {r.horse_number}
-                    </span>
+                    <span className="ml-1 font-mono text-[var(--text-muted)]">{r.horse_number}</span>
                   </td>
-
-                  {/* 馬名 + 激アツバッジ */}
                   <td>
                     <div className="flex items-center gap-2">
                       <span className={`font-semibold ${isHot ? 'neon-text-red' : 'text-[var(--text-primary)]'}`}>
                         {r.horse_name}
                       </span>
-                      {isHot && (
-                        <span className="badge-hot" style={{ fontSize: '0.65rem', padding: '1px 5px' }}>
-                          激アツ
-                        </span>
-                      )}
+                      {isHot && <span className="badge-hot" style={{ fontSize: '0.65rem', padding: '1px 5px' }}>激アツ</span>}
                     </div>
                     <div className="text-[10px] text-[var(--text-muted)] mt-0.5">
                       {r.sex_age} {r.weight_carried}kg
                     </div>
                   </td>
-
-                  {/* 単勝オッズ */}
-                  <td className="text-right font-mono">
-                    <OddsCell odds={r.win_odds} />
-                  </td>
-
-                  {/* 調教評価バッジ */}
+                  <td className="text-right font-mono"><OddsCell odds={r.win_odds} /></td>
                   <td className="text-center">
-                    {r.training_eval
-                      ? <EvalBadge eval={r.training_eval} />
-                      : <span className="text-[var(--text-muted)]">—</span>
-                    }
+                    {r.training_eval ? <EvalBadge eval={r.training_eval} /> : <span className="text-[var(--text-muted)]">—</span>}
                   </td>
-
-                  {/* 本命スコア */}
                   <td className="text-right font-mono text-xs">
                     {r.honmei_score != null
-                      ? <span style={{ color: scoreColor(r.honmei_score ?? 0) }}>
-                          {((r.honmei_score ?? 0) * 100).toFixed(1)}%
-                        </span>
-                      : <span className="text-[var(--text-muted)]">—</span>
-                    }
+                      ? <span style={{ color: scoreColor(r.honmei_score ?? 0) }}>{((r.honmei_score ?? 0) * 100).toFixed(1)}%</span>
+                      : <span className="text-[var(--text-muted)]">—</span>}
                   </td>
-
-                  {/* EV */}
                   <td className="text-right font-mono">
-                    {r.ev_score != null ? (
-                      <span
-                        className={ev >= 1.0 ? 'neon-text-red font-bold' : ev >= 0.8 ? 'neon-text-gold' : 'text-[var(--text-muted)]'}
-                      >
-                        {ev.toFixed(2)}
-                      </span>
-                    ) : <span className="text-[var(--text-muted)]">—</span>}
+                    {r.ev_score != null
+                      ? <span className={ev >= 1.0 ? 'neon-text-red font-bold' : ev >= 0.8 ? 'neon-text-gold' : 'text-[var(--text-muted)]'}>
+                          {ev.toFixed(2)}
+                        </span>
+                      : <span className="text-[var(--text-muted)]">—</span>}
                   </td>
-
-                  {/* Kelly推奨額（資金100万想定） */}
                   <td className="text-right font-mono text-xs">
                     {kelly > 0
-                      ? <span className="neon-text-green">
-                          ¥{Math.round(kelly * 100000).toLocaleString()}
-                        </span>
-                      : <span className="text-[var(--text-muted)]">—</span>
-                    }
+                      ? <span className="neon-text-green">¥{Math.round(kelly * 100000).toLocaleString()}</span>
+                      : <span className="text-[var(--text-muted)]">—</span>}
                   </td>
-
-                  {/* オッズ朝一比 */}
                   <td className="text-right font-mono text-xs">
-                    {r.odds_vs_morning != null ? (
-                      <span style={{
-                        color: r.odds_vs_morning < 0.85
-                          ? 'var(--neon-red)'
-                          : r.odds_vs_morning < 0.95
-                          ? 'var(--neon-gold)'
-                          : 'var(--text-muted)',
-                      }}>
-                        ×{r.odds_vs_morning.toFixed(2)}
-                      </span>
-                    ) : <span className="text-[var(--text-muted)]">—</span>}
+                    {r.odds_vs_morning != null
+                      ? <span style={{ color: r.odds_vs_morning < 0.85 ? 'var(--neon-red)' : r.odds_vs_morning < 0.95 ? 'var(--neon-gold)' : 'var(--text-muted)' }}>
+                          ×{r.odds_vs_morning.toFixed(2)}
+                        </span>
+                      : <span className="text-[var(--text-muted)]">—</span>}
                   </td>
-
-                  {/* 大口シグナル */}
                   <td className="text-center">
-                    {isFire ? (
-                      <span className="signal-fire" title={`下落速度 ${velocity.toFixed(3)}/分`}>
-                        🔥
-                      </span>
-                    ) : (
-                      <span className="text-[var(--text-muted)]">·</span>
-                    )}
+                    {isFire
+                      ? <span className="signal-fire" title={`下落速度 ${velocity.toFixed(3)}/分`}>🔥</span>
+                      : <span className="text-[var(--text-muted)]">·</span>}
                   </td>
                 </tr>
               )
@@ -355,6 +311,105 @@ function PreraceTable({ results }: { results: RaceResult[] }) {
           </tbody>
         </table>
       </div>
+
+      {/* ── モバイル: EV重視カード ── */}
+      <div className="block md:hidden" style={{ padding: '8px 10px', display: 'flex', flexDirection: 'column', gap: 6 }}>
+        {sorted.map((r, i) => {
+          const ev       = r.ev_score ?? 0
+          const kelly    = r.kelly_fraction ?? 0
+          const velocity = r.odds_velocity ?? 0
+          const isHot    = ev >= 1.0
+          const isFire   = velocity >= VELOCITY_THRESHOLD
+
+          return (
+            <div
+              key={r.horse_name + i}
+              className={`horse-row-card ${isHot ? 'hot-card' : ''}`}
+              style={{ gridTemplateColumns: '46px 1fr', alignItems: 'start' }}
+            >
+              {/* 左: 馬番サークル */}
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, paddingTop: 2 }}>
+                <span className="horse-num-lg" style={{
+                  background: isHot ? 'rgba(255,51,102,0.18)' : undefined,
+                  color: isHot ? 'var(--neon-red)' : undefined,
+                  borderColor: isHot ? 'rgba(255,51,102,0.5)' : undefined,
+                }}>
+                  {r.horse_number}
+                </span>
+                {r.gate_number != null && <GateBadge gate={r.gate_number} />}
+              </div>
+
+              {/* 右: 馬名 + 指標 */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                {/* 馬名行 */}
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 6 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 5, flexWrap: 'wrap' }}>
+                    <span style={{
+                      fontSize: '0.92rem', fontWeight: 700,
+                      color: isHot ? 'var(--neon-red)' : 'var(--text-primary)',
+                    }}>{r.horse_name}</span>
+                    {isHot && (
+                      <span className="badge-hot" style={{ fontSize: '0.6rem', padding: '1px 5px' }}>激アツ</span>
+                    )}
+                    {isFire && (
+                      <span className="signal-fire" title={`下落速度 ${velocity.toFixed(3)}/分`}>🔥</span>
+                    )}
+                  </div>
+                  {/* EV 大型 */}
+                  {r.ev_score != null && (
+                    <div style={{ textAlign: 'right', flexShrink: 0 }}>
+                      <div style={{ fontSize: '0.5rem', color: 'var(--text-muted)', letterSpacing: '0.15em' }}>EV</div>
+                      <div style={{
+                        fontFamily: 'monospace', fontWeight: 900, fontSize: '1.5rem', lineHeight: 1,
+                        color: ev >= 1.0 ? 'var(--neon-red)' : ev >= 0.8 ? 'var(--neon-gold)' : 'var(--text-muted)',
+                        textShadow: ev >= 1.0 ? '0 0 10px rgba(255,51,102,0.7)' : ev >= 0.8 ? '0 0 10px rgba(255,215,0,0.7)' : 'none',
+                      }}>{ev.toFixed(2)}</div>
+                    </div>
+                  )}
+                </div>
+
+                {/* 性齢 + 騎手 */}
+                <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>
+                  {r.sex_age} · {r.weight_carried}kg
+                </div>
+
+                {/* 指標行 */}
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 12px' }}>
+                  <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+                    単勝 <OddsCell odds={r.win_odds} />
+                  </span>
+                  {r.honmei_score != null && (
+                    <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+                      本命 <span style={{ color: scoreColor(r.honmei_score ?? 0), fontWeight: 700 }}>
+                        {((r.honmei_score ?? 0) * 100).toFixed(1)}%
+                      </span>
+                    </span>
+                  )}
+                  {r.training_eval && (
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+                      調教 <EvalBadge eval={r.training_eval} />
+                    </span>
+                  )}
+                  {kelly > 0 && (
+                    <span style={{ fontSize: '0.72rem' }} className="neon-text-green">
+                      Kelly ¥{Math.round(kelly * 100000).toLocaleString()}
+                    </span>
+                  )}
+                  {r.odds_vs_morning != null && (
+                    <span style={{
+                      fontSize: '0.72rem',
+                      color: r.odds_vs_morning < 0.85 ? 'var(--neon-red)' : r.odds_vs_morning < 0.95 ? 'var(--neon-gold)' : 'var(--text-muted)',
+                    }}>
+                      朝比 ×{r.odds_vs_morning.toFixed(2)}
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>
+          )
+        })}
+      </div>
+
       <div className="px-4 py-2 text-[10px] text-[var(--text-muted)] border-t border-[var(--border)]">
         Kelly推奨 = 100万円資金想定 / EV≥1.0 = 激アツ推奨馬 / 🔥 = 急激なオッズ下落（大口投票シグナル）
       </div>
@@ -362,7 +417,7 @@ function PreraceTable({ results }: { results: RaceResult[] }) {
   )
 }
 
-// ── レース結果テーブル（変更なし）────────────────────────────
+// ── レース結果テーブル ─────────────────────────────────────
 function ResultsTable({ results }: { results: RaceResult[] }) {
   return (
     <div className="neon-card overflow-hidden">
@@ -371,7 +426,9 @@ function ResultsTable({ results }: { results: RaceResult[] }) {
           RACE RESULTS — {results.length} runners
         </span>
       </div>
-      <div className="table-scroll">
+
+      {/* ── デスクトップ: テーブル ── */}
+      <div className="hidden md:block table-scroll">
         <table className="w-full race-table">
           <thead>
             <tr>
@@ -409,17 +466,12 @@ function ResultsTable({ results }: { results: RaceResult[] }) {
                 <td className="text-center">
                   {r.gate_number != null ? <GateBadge gate={r.gate_number} /> : <span className="text-[var(--text-muted)]">—</span>}
                 </td>
-                <td className="text-center font-mono text-[var(--text-muted)]">
-                  {r.horse_number ?? '—'}
-                </td>
+                <td className="text-center font-mono text-[var(--text-muted)]">{r.horse_number ?? '—'}</td>
                 <td>
                   <span className={`font-semibold ${
                     r.rank === 1 ? 'neon-text-gold' :
-                    r.rank != null && r.rank <= 3 ? 'text-[var(--text-primary)]' :
-                    'text-[var(--text-muted)]'
-                  }`}>
-                    {r.horse_name}
-                  </span>
+                    r.rank != null && r.rank <= 3 ? 'text-[var(--text-primary)]' : 'text-[var(--text-muted)]'
+                  }`}>{r.horse_name}</span>
                 </td>
                 <td className="text-[var(--text-muted)]">{r.sex_age}</td>
                 <td className="text-right font-mono">{r.weight_carried}</td>
@@ -438,8 +490,7 @@ function ResultsTable({ results }: { results: RaceResult[] }) {
                       {r.horse_weight_diff != null && (
                         <span className={`ml-1 text-xs ${
                           r.horse_weight_diff > 0 ? 'text-[var(--neon-red)]' :
-                          r.horse_weight_diff < 0 ? 'text-[var(--neon-cyan)]' :
-                          'text-[var(--text-muted)]'
+                          r.horse_weight_diff < 0 ? 'text-[var(--neon-cyan)]' : 'text-[var(--text-muted)]'
                         }`}>
                           ({r.horse_weight_diff > 0 ? '+' : ''}{r.horse_weight_diff})
                         </span>
@@ -447,22 +498,96 @@ function ResultsTable({ results }: { results: RaceResult[] }) {
                     </>
                   ) : '—'}
                 </td>
-                <td className="text-right font-mono">
-                  <OddsCell odds={r.win_odds} />
-                </td>
+                <td className="text-right font-mono"><OddsCell odds={r.win_odds} /></td>
+                <td className="text-center"><PopBadge pop={r.popularity} /></td>
                 <td className="text-center">
-                  <PopBadge pop={r.popularity} />
-                </td>
-                <td className="text-center">
-                  {r.training_eval
-                    ? <EvalBadge eval={r.training_eval} />
-                    : <span className="text-[var(--text-muted)]">—</span>
-                  }
+                  {r.training_eval ? <EvalBadge eval={r.training_eval} /> : <span className="text-[var(--text-muted)]">—</span>}
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+      </div>
+
+      {/* ── モバイル: 着順カード ── */}
+      <div className="block md:hidden" style={{ padding: '8px 10px', display: 'flex', flexDirection: 'column', gap: 6 }}>
+        {results.map((r, i) => {
+          const rankClass = r.rank === 1 ? 'rank-1' : r.rank === 2 ? 'rank-2' : r.rank === 3 ? 'rank-3' : ''
+          const medalNum  = r.rank === 1 ? 'medal-1' : r.rank === 2 ? 'medal-2' : r.rank === 3 ? 'medal-3' : ''
+
+          return (
+            <div key={r.horse_name + i} className={`horse-row-card ${rankClass}`}>
+              {/* 左: 着順メダル + 馬番 */}
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
+                <span className={`horse-num-lg ${medalNum}`} style={{ fontSize: '1.1rem' }}>
+                  {r.horse_number}
+                </span>
+                {r.rank != null && (
+                  <span style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--text-muted)' }}>
+                    {MEDAL[r.rank] ?? `${r.rank}着`}
+                  </span>
+                )}
+              </div>
+
+              {/* 右: 馬名 + 騎手 + 指標 */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                {/* 馬名 + 枠番 */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: 5, flexWrap: 'wrap' }}>
+                  {r.gate_number != null && <GateBadge gate={r.gate_number} />}
+                  <span style={{
+                    fontSize: '0.95rem', fontWeight: 700,
+                    color: r.rank === 1 ? 'var(--neon-gold)' : r.rank != null && r.rank <= 3 ? 'var(--text-primary)' : 'var(--text-muted)',
+                  }}>{r.horse_name}</span>
+                </div>
+
+                {/* 騎手 + 性齢 */}
+                <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+                  {r.jockey && <span>{r.jockey}</span>}
+                  {r.sex_age && <span style={{ marginLeft: 6 }}>{r.sex_age}</span>}
+                  {r.weight_carried && <span style={{ marginLeft: 6 }}>{r.weight_carried}kg</span>}
+                </div>
+
+                {/* タイム + 着差 + オッズ + 人気 + 体重 */}
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '3px 12px', alignItems: 'center' }}>
+                  {r.finish_time && (
+                    <span style={{
+                      fontFamily: 'monospace', fontWeight: 700, fontSize: '0.82rem',
+                      color: r.rank === 1 ? 'var(--neon-cyan)' : 'var(--text-primary)',
+                      textShadow: r.rank === 1 ? '0 0 8px rgba(0,200,255,0.6)' : 'none',
+                    }}>{r.finish_time}</span>
+                  )}
+                  {(r.margin || r.rank === 1) && (
+                    <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>
+                      {r.margin || (r.rank === 1 ? '◎' : '—')}
+                    </span>
+                  )}
+                  {r.win_odds != null && (
+                    <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+                      単勝 <OddsCell odds={r.win_odds} />
+                    </span>
+                  )}
+                  {r.popularity != null && (
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+                      <PopBadge pop={r.popularity} />
+                    </span>
+                  )}
+                  {r.horse_weight != null && (
+                    <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontFamily: 'monospace' }}>
+                      {r.horse_weight}
+                      {r.horse_weight_diff != null && (
+                        <span style={{
+                          marginLeft: 2, fontSize: '0.65rem',
+                          color: r.horse_weight_diff > 0 ? 'var(--neon-red)' : r.horse_weight_diff < 0 ? 'var(--neon-cyan)' : 'var(--text-muted)',
+                        }}>({r.horse_weight_diff > 0 ? '+' : ''}{r.horse_weight_diff})</span>
+                      )}
+                    </span>
+                  )}
+                  {r.training_eval && <EvalBadge eval={r.training_eval} />}
+                </div>
+              </div>
+            </div>
+          )
+        })}
       </div>
     </div>
   )

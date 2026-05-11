@@ -46,11 +46,13 @@ export default function RaceTable({ results }: Props) {
       <div className="flex items-center justify-between px-4 py-3 border-b border-[rgba(0,200,255,0.12)]">
         <span className="text-sm neon-text tracking-[0.2em] font-semibold">RACE RESULTS</span>
         <span className="text-sm text-[var(--text-muted)]">
-          {results.length} runners &nbsp;·&nbsp; click header to sort
+          {results.length} runners
+          <span className="hidden md:inline"> &nbsp;·&nbsp; click header to sort</span>
         </span>
       </div>
 
-      <div className="table-scroll">
+      {/* ── デスクトップ: テーブル ── */}
+      <div className="hidden md:block table-scroll">
         <table className="w-full race-table">
           <thead>
             <tr>
@@ -79,7 +81,6 @@ export default function RaceTable({ results }: Props) {
                 `}
                 onClick={() => setHighlight(h => h === r.horse_name ? null : r.horse_name)}
               >
-                {/* 着順 */}
                 <td className="font-bold text-center w-12">
                   {r.rank != null
                     ? MEDAL[r.rank]
@@ -87,66 +88,107 @@ export default function RaceTable({ results }: Props) {
                       : <span className="text-[var(--text-muted)]">{r.rank}</span>
                     : <span className="text-[var(--text-muted)]">—</span>}
                 </td>
-
-                {/* 馬名 */}
                 <td>
-                  <span
-                    className={`font-semibold ${
-                      r.rank === 1 ? 'neon-text-gold' :
-                      r.rank != null && r.rank <= 3 ? 'text-[var(--text-primary)]' :
-                      'text-[var(--text-muted)]'
-                    }`}
-                  >
-                    {r.horse_name}
-                  </span>
+                  <span className={`font-semibold ${
+                    r.rank === 1 ? 'neon-text-gold' :
+                    r.rank != null && r.rank <= 3 ? 'text-[var(--text-primary)]' : 'text-[var(--text-muted)]'
+                  }`}>{r.horse_name}</span>
                 </td>
-
-                {/* 父 / 母父 */}
                 <td>
                   <div className="text-[var(--text-primary)] leading-tight">
                     {r.sire ?? <span className="text-[var(--text-muted)]">—</span>}
                   </div>
                   {r.dam_sire && (
-                    <div className="text-[var(--text-muted)] text-xs mt-0.5">
-                      母父 {r.dam_sire}
-                    </div>
+                    <div className="text-[var(--text-muted)] text-xs mt-0.5">母父 {r.dam_sire}</div>
                   )}
                 </td>
-
-                {/* 性齢 */}
                 <td className="text-[var(--text-muted)]">{r.sex_age}</td>
-
-                {/* 騎手 */}
                 <td className="text-[var(--text-primary)]">{r.jockey}</td>
-
-                {/* タイム */}
                 <td className={`font-mono ${r.rank === 1 ? 'neon-text' : 'text-[var(--text-primary)]'}`}>
                   {r.finish_time ?? '—'}
                 </td>
-
-                {/* 着差 */}
                 <td className="text-[var(--text-muted)]">
                   {r.margin || (r.rank === 1 ? <span className="neon-text">◎</span> : '—')}
                 </td>
-
-                {/* 単勝 */}
-                <td className="font-mono text-right">
-                  <OddsCell odds={r.win_odds} />
-                </td>
-
-                {/* 人気 */}
-                <td className="text-center">
-                  <PopularityBadge pop={r.popularity} />
-                </td>
-
-                {/* 馬体重 */}
-                <td className="font-mono text-right text-[var(--text-muted)]">
-                  {r.horse_weight ?? '—'}
-                </td>
+                <td className="font-mono text-right"><OddsCell odds={r.win_odds} /></td>
+                <td className="text-center"><PopularityBadge pop={r.popularity} /></td>
+                <td className="font-mono text-right text-[var(--text-muted)]">{r.horse_weight ?? '—'}</td>
               </tr>
             ))}
           </tbody>
         </table>
+      </div>
+
+      {/* ── モバイル: 着順カード ── */}
+      <div className="block md:hidden" style={{ padding: '8px 10px', display: 'flex', flexDirection: 'column', gap: 6 }}>
+        {sorted.map(r => {
+          const rankClass = r.rank === 1 ? 'rank-1' : r.rank === 2 ? 'rank-2' : r.rank === 3 ? 'rank-3' : ''
+          const medalNum  = r.rank === 1 ? 'medal-1' : r.rank === 2 ? 'medal-2' : r.rank === 3 ? 'medal-3' : ''
+
+          return (
+            <div
+              key={r.horse_name}
+              className={`horse-row-card ${rankClass} ${highlight === r.horse_name ? 'outline outline-1 outline-[rgba(0,200,255,0.3)]' : ''}`}
+              onClick={() => setHighlight(h => h === r.horse_name ? null : r.horse_name)}
+              style={{ cursor: 'pointer', userSelect: 'none' }}
+            >
+              {/* 左: 着順 + 馬番 */}
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3 }}>
+                <span className={`horse-num-lg ${medalNum}`} style={{ fontSize: '0.95rem' }}>
+                  {r.horse_number ?? (r.rank != null && r.rank <= 3 ? r.rank : '?')}
+                </span>
+                <span style={{ fontSize: '0.65rem', color: 'var(--text-muted)', fontWeight: 700 }}>
+                  {r.rank != null ? (MEDAL[r.rank] ?? `${r.rank}着`) : '—'}
+                </span>
+              </div>
+
+              {/* 右: 馬名 + 詳細 */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 6 }}>
+                  <span style={{
+                    fontSize: '0.95rem', fontWeight: 700,
+                    color: r.rank === 1 ? 'var(--neon-gold)' : r.rank != null && r.rank <= 3 ? 'var(--text-primary)' : 'var(--text-muted)',
+                  }}>{r.horse_name}</span>
+                  {/* タイム */}
+                  {r.finish_time && (
+                    <span style={{
+                      fontFamily: 'monospace', fontWeight: 700, fontSize: '0.82rem', flexShrink: 0,
+                      color: r.rank === 1 ? 'var(--neon-cyan)' : 'var(--text-muted)',
+                    }}>{r.finish_time}</span>
+                  )}
+                </div>
+
+                {/* 血統 */}
+                {r.sire && (
+                  <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>
+                    {r.sire}{r.dam_sire ? ` / 母父 ${r.dam_sire}` : ''}
+                  </div>
+                )}
+
+                {/* 騎手 + オッズ + 人気 + 体重 */}
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '3px 10px', alignItems: 'center' }}>
+                  {r.jockey && (
+                    <span style={{ fontSize: '0.72rem', color: 'var(--text-primary)' }}>{r.jockey}</span>
+                  )}
+                  {r.sex_age && (
+                    <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>{r.sex_age}</span>
+                  )}
+                  {r.win_odds != null && (
+                    <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+                      単勝 <OddsCell odds={r.win_odds} />
+                    </span>
+                  )}
+                  {r.popularity != null && <PopularityBadge pop={r.popularity} />}
+                  {r.horse_weight != null && (
+                    <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontFamily: 'monospace' }}>
+                      {r.horse_weight}
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>
+          )
+        })}
       </div>
     </div>
   )
