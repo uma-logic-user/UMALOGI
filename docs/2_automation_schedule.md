@@ -4,6 +4,8 @@
 
 | 日付 | 変更内容 |
 |------|---------|
+| 2026-05-12 | Day2 SRE: weekly_backup.py 追加（毎週月曜06:00、ZIP 12世代保持）。scheduler.py に job_weekly_backup() 登録。影響: scripts/weekly_backup.py, scripts/scheduler.py |
+| 2026-05-11 | モバイルアクセス基盤: Tailscale VPN + HKCU Run 自動起動方式。install_autostart.ps1 をレジストリ方式に刷新。影響: scripts/install_autostart.ps1 |
 | 2026-05-10 | 初版作成。週次オートパイロットサイクル全体フロー記述 |
 
 ---

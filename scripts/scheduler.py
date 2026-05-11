@@ -939,6 +939,21 @@ def job_daily_backup() -> None:
         logger.error("DB バックアップ失敗: %s", exc)
 
 
+def job_weekly_backup() -> None:
+    """毎週月曜 05:00: DB+ログ+モデルを ZIP 圧縮して data/backups/ に退避（12世代保持）"""
+    try:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location(
+            "weekly_backup", Path(__file__).parent / "weekly_backup.py"
+        )
+        mod = importlib.util.module_from_spec(spec)  # type: ignore[arg-type]
+        spec.loader.exec_module(mod)  # type: ignore[union-attr]
+        path = mod.run_backup()
+        logger.info("週次バックアップ完了: %s", path)
+    except Exception as exc:
+        logger.error("週次バックアップ失敗: %s", exc)
+
+
 # ================================================================
 # スケジューラー本体
 # ================================================================
@@ -986,7 +1001,8 @@ def register_schedules() -> None:
     schedule.every().saturday.at("18:30").do(job_weekend_batch_post)
     schedule.every().sunday.at("18:30").do(job_weekend_batch_post)
 
-    # 月曜: マスタ更新 → 全件再学習 → Git プッシュ
+    # 月曜: DB+ログ週次ZIPバックアップ → マスタ更新 → 全件再学習 → Git プッシュ
+    schedule.every().monday.at("05:00").do(job_weekly_backup)
     schedule.every().monday.at("06:00").do(job_monday_masters)
     schedule.every().monday.at("07:00").do(job_weekly_retrain)
     schedule.every().monday.at("08:00").do(job_git_push)
