@@ -4,6 +4,19 @@
 
 | 日付 | 変更内容 |
 |------|---------|
+| 2026-05-17 | 【PID死活監視を psutil 完全改修】auto_runner.pid の重複起動防止ロジックが wmic ベースで脆弱だったため3点根治。①_is_umalogi_process(): psutil で PID 生存＋Python プロセス名＋スクリプト名の3重検証に変更。②ゾンビ PID（死亡プロセス or PID 再利用別プロセス）を自動検知・PIDファイル自動削除・自己修復起動。③atexit + SIGTERM シグナルハンドラーで異常終了時もPIDファイル確実削除。テスト: フェイクPID99999→ゾンビ検出・削除・正常起動確認。正規PID登録後の重複起動→[ABORT]ブロック確認（3テスト全証明済み）。影響: scripts/today_auto_runner.py |
+| 2026-05-17 | 【本日データ緊急復旧】auto_runner.pid 残存ゾンビPID(33700)により金曜夜間バッチが沈黙。force_provisional_today.py で全36レース暫定予想を手動生成(393件)→Discord 5分割送信→Next.js クリーンビルド再起動→today_auto_runner.py 起動で監視ループ復旧。根本原因: wmic 旧ロジックが空文字返却時に生存判定してしまう脆弱性（本変更で完全解消）。 |
+| 2026-05-17 | 【的中実績UI消失（第2次）→ 根本原因特定・復旧完了】「的中実績がごっそり消えた」との報告。調査: predictions=8,225件・is_hit=1=782件→DB完全無損傷。原因はNext.jsビルドが不完全状態（.next に BUILD_IDなし）でサーバー起動不能。next build → next start で復旧。/api/hits が782件を正常返却確認。月別: 2026-04: 382件、2026-05: 400件。CLAUDE.md 条項4の事故事例を更新（DB直接確認手順・サーバー障害チェックリスト追記）。教訓: 「UIに出ない≠データ消失」→必ずDBを直接COUNT確認してから判断。影響: CLAUDE.md, web/.next(ビルド) |
+| 2026-05-15 | 【バックテスト実施・2025年着順データ欠損発見】厳密Walk-Forwardバックテスト実施。2025年 race_results の rank データが著しく欠損（有効行11.5%・その61%がrank=1）→ 本命/卍/PlaceModel のテストデータが勝者のみに偏り結果無効。ALPHA(複勝)のみ有効（ROI=92.6%）。修正要: 2025年全レースの2〜18着着順をnetkeiba等から補完後に再バックテスト。影響: scripts/run_strict_backtest.py(新規), data/strict_backtest_result.json(新規) |
+| 2026-05-16 | 【的中実績UI消失 → 表示バグ修正】DBデータは無事（predictions 7,582件・is_hit=1: 782件）。原因: /api/predictions のデフォルトlimit=1000に対し5/16分だけで914件あり、過去の的中データが枠から溢れてUIに表示されなかった。修正: /api/hits エンドポイント新設（is_hit=1のみ全件返却）→ AppShellで別途フェッチしHitHistoryに渡す方式に変更。CLAUDE.md 条項4（DB物理削除禁止・作業前バックアップ義務）追記。影響: web/src/app/api/hits/route.ts(新規), web/src/components/AppShell.tsx, CLAUDE.md |
+| 2026-05-16 | 【/api/races・/api/predictions dateフィルタ修正】`?date=` パラメータが SQLクエリで完全無視されていた（WHERE句なし）→ dateFilter 変数を追加しWHERE date=? 条件を組み込み修正。next build → next start 再起動で適用。5/17のhorse_number=NULL汚染行466件もDB削除（日曜朝JVLinkで再生成予定）。影響: web/src/app/api/races/route.ts, web/src/app/api/predictions/route.ts |
+| 2026-05-16 | 【sex_age/weight_carried 完全修復・CLAUDE.md §16 Web UI禁止追加】5/2・5/3・5/9・5/10 の race_results で異常sex_age（JVLinkコード '10'/'11'/'21'等）が57件残存→ 該当日 entries を netkeiba から再取得し一括UPDATE。5/17未満の異常sex_age=0件で完全修復。CLAUDE.md §16 に「Web UI 文字化け表示の絶対禁止」ルール（TypeScript判定パターン3種）追記。影響: data/umalogi.db, CLAUDE.md |
+| 2026-05-16 | 【race_results 全件文字化け修復】race_resultsのhorse_name/jockey/trainerが全件JVLink CP932ガーベージ→WebUIに反映されていた。entries（netkeiba取得、クリーン）→race_resultsへの一括コピーで修復。対象: 5/16(493行)・5/17(18行)・entriesがある313日分(85738行+113232行jockey/trainer)。UNIQUE制約違反は2ステップrename+merge処理で解消。is_garbled()の検出漏れ(_JVLINK_QUESTION_RE {2,}拡張/_HALFWIDTH_MIXED_RE追加)も同時修正。影響: src/utils/text.py, 直接DB更新 |
+| 2026-05-16 | 【ML汚染調査結果】モデル(honmei/manji/place)の特徴量はhorse_id/jockey_code/trainer_codeベースで馬名・騎手名は非使用。win_rate_allもhorse_idで集計。文字化けhorse_nameはML特徴量に影響なし→モデル再学習不要と判定。 |
+| 2026-05-16 | 【races.race_name 文字化け修復】5/16・5/17 の races.race_name が計20件文字化け（半角カタカナ+?混在パターン）→ netkeiba fetch_race_results() で全件修復。is_garbled() の検出漏れも修正: _JVLINK_QUESTION_RE を {3,}→{2,}+半角カタカナ(U+FF61-FF9F)対応に拡張、_HALFWIDTH_MIXED_RE 追加。影響: src/utils/text.py |
+| 2026-05-15 | 【JVLink文字化け緊急リカバリ】5/16-18エントリー全件文字化け → netkeiba再取得・race_name修復・暫定予想再生成。5/16: entries 493件/predictions 394件、5/17: ヴィクトリアマイル(202605020811)のみ entries 18件/predictions 11件（他35レースは5/16金曜公開予定）。影響: scripts/refetch_entries_from_netkeiba.py 作成 |
+| 2026-05-15 | 【エンコーディング根治】文字化け検知・回復・防止を完全実装。①netkeiba.py の EUC-JP ハードコードを廃止→Content-Type優先+mac/Greek誤検知フォールバック(_detect_encoding)。②src/utils/text.py に is_garbled()/try_recover_encoding()/ensure_clean() 追加。③init_db.py の horses INSERT に ensure_clean() バリデーション追加。④scripts/cleanup_encoding.py 作成・実行: DB全件スキャンで7,562件の文字化けを修正（racehorses.horse_name 5,481件/trainer_name 2,066件/races.race_name 15件）。⑤CLAUDE.md §16 追記。影響: src/scraper/netkeiba.py, src/utils/text.py, src/database/init_db.py, scripts/cleanup_encoding.py, CLAUDE.md |
+| 2026-05-15 | Sprint A 詳細設計書 作成: docs/sprint_A_design.md。A1(Xシグナル統合)/A2(FukushoElite本番統合)の完全アーキテクチャ・DB設計・実装手順を記述。次回セッションから即実装可能な状態。 |
 | 2026-05-12 | Day2 SRE 運用プロトコル策定完了。CLAUDE.md に絶対行動規範3条項追記（予測不変性/平日改修週末凍結/docs同期強制）。HKCU Run自動起動登録済み。影響: CLAUDE.md, scripts/install_autostart.ps1 |
 | 2026-05-10 | 初版作成。既知バグ・手動リカバリ手順・クリティカル障害履歴を記述 |
 
@@ -124,6 +137,21 @@ py scripts/watchdog.py
 ---
 
 ## 3. クリティカル障害対応履歴
+
+### 2026-05-15: 5/16-18 エントリー文字化け緊急リカバリ
+
+**背景**: JVLink RACE データ取得時に `_str()` の `errors='replace'` により CP932 マルチバイト先行バイト（U+0081-U+009F）が `?`(0x3F) に置換され、5/16-18 全エントリーの horse_name が `?A?h?}?C...` パターンに文字化け。  
+**影響**: 5/16 entries 493件・predictions 396件が文字化けデータで生成済み。5/17 entries 18件が文字化け。  
+**対応**:
+1. 5/16-17 の entries (511件) を全削除。5/16 の ガーベージ predictions (396件) も全削除（未来レース・Discord通知前のため条項1除外）
+2. `scripts/refetch_entries_from_netkeiba.py` を作成し netkeiba から 72レース分を再取得 → 成功37件/スキップ35件（5/17 未公開）
+3. `repair_race_data.py` で 5/16-17 全 race_name を修復（各36レース・成功率100%）
+4. `force_provisional_today.py 20260516` で 5/16 全36レースの暫定予想を再生成 (394件)
+5. `force_provisional_today.py 20260517` で 5/17 ヴィクトリアマイル(202605020811)のみ生成 (11件)
+
+**恒久対策**: `src/utils/text.py:ensure_clean()` による保存前文字化け検知・回復を実装済み。
+
+---
 
 ### 2026-05-10: DB深部クレンジング実施
 

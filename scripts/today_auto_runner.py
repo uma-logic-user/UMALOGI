@@ -35,6 +35,7 @@ from __future__ import annotations
 import argparse
 import datetime
 import logging
+import os
 import subprocess
 import sys
 import time
@@ -86,6 +87,72 @@ def _send_discord_race(text: str) -> None:
         pass
 
 
+def _is_umalogi_process(pid: int) -> bool:
+    """psutil でプロセスの生存と同一性を厳密に検証する。
+
+    以下のすべてを満たす場合のみ True を返す:
+      1. 指定 PID のプロセスが OS 上で生存している
+      2. そのプロセスが Python インタープリタを使用している
+      3. コマンドライン引数に 'today_auto_runner' または 'scheduler' が含まれる
+
+    これにより「PID が偶然再利用された別プロセス」を誤検知しない。
+    """
+    import psutil
+    try:
+        proc = psutil.Process(pid)
+        if not proc.is_running():
+            return False
+        # コマンドライン引数を取得（アクセス権限不足の場合は NoSuchProcess 扱い）
+        try:
+            cmdline = proc.cmdline()
+        except (psutil.AccessDenied, psutil.ZombieProcess):
+            # 権限なし = 別ユーザーの別プロセス → ゾンビ扱い
+            return False
+        cmdline_str = " ".join(cmdline).lower()
+        # Python プロセスで UMALOGI 関連スクリプトを実行しているか確認
+        is_python = any(
+            p in cmdline_str for p in ("python", "py.exe", "python3")
+        )
+        is_umalogi = any(
+            s in cmdline_str for s in ("today_auto_runner", "scheduler", "umalogi")
+        )
+        return is_python and is_umalogi
+    except (psutil.NoSuchProcess, psutil.AccessDenied, ValueError):
+        return False
+
+
+def _check_single_instance() -> bool:
+    """重複起動防止: 既存の同プロセスが動作中なら False を返す。
+
+    psutil で PID の生存と UMALOGI スクリプトとしての同一性を厳密に検証する。
+    ゾンビ PID（死亡プロセス or 別プロセスが PID 再利用）の場合は
+    ロックファイルを自動削除して起動を続行する自己修復ロジック。
+    """
+    if _LOCK_FILE.exists():
+        pid_str = _LOCK_FILE.read_text(encoding="utf-8").strip()
+        try:
+            old_pid = int(pid_str)
+        except ValueError:
+            # PID ファイルが壊れている → ゾンビ扱い
+            logger.warning("PID ファイルが不正です (%r) → 自動削除して続行", pid_str)
+            _LOCK_FILE.unlink(missing_ok=True)
+        else:
+            if _is_umalogi_process(old_pid):
+                # 本物の UMALOGI プロセスが生存中 → 重複起動を拒否
+                return False
+            else:
+                # ゾンビ PID（死亡 or 別プロセスが PID 再利用）→ 自動削除
+                logger.warning(
+                    "ゾンビ PID 検出 (pid=%d): UMALOGI プロセスが見つかりません。"
+                    "ロックファイルを自動削除して起動を続行します。",
+                    old_pid,
+                )
+                _LOCK_FILE.unlink(missing_ok=True)
+
+    _LOCK_FILE.write_text(str(os.getpid()), encoding="utf-8")
+    return True
+
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s %(levelname)s: %(message)s",
@@ -118,11 +185,15 @@ _MORNING_START_HOUR   = 8
 _MORNING_START_MINUTE = 30
 
 # 再起動待機時間（秒）
-_RESTART_WAIT_SEC = 60
+_RESTART_WAIT_SEC = 30
 
-# postrace 再試行設定
-_POSTRACE_MAX_RETRY      = 8    # 8回 × 5分 = 最大40分待機（審議・写真判定対応）
-_POSTRACE_RETRY_WAIT_SEC = 300  # 5分
+# postrace 再試行設定（審議・写真判定: 最大40分対応）
+# 300秒→120秒に短縮: スレッドを早く解放してポストレースキューを消化しやすくする
+_POSTRACE_MAX_RETRY      = 20   # 20回 × 120秒 = 最大40分（変わらず）
+_POSTRACE_RETRY_WAIT_SEC = 120  # 120秒（旧300→短縮）
+
+# 重複起動防止 PID ファイル
+_LOCK_FILE = _ROOT / "data" / "auto_runner.pid"
 
 # 曜日定数
 _MON, _TUE, _WED, _THU, _FRI, _SAT, _SUN = range(7)
@@ -705,7 +776,12 @@ def _run_one_day(
         return rc
 
     try:
-        with ThreadPoolExecutor(max_workers=16, thread_name_prefix="umalogi") as executor:
+        # prerace と postrace を完全分離したスレッドプール
+        # postrace の長期リトライ（最大40分）が prerace 発火を絶対にブロックしない。
+        with (
+            ThreadPoolExecutor(max_workers=12, thread_name_prefix="umalogi-pre")  as pre_ex,
+            ThreadPoolExecutor(max_workers=40, thread_name_prefix="umalogi-post") as post_ex,
+        ):
             while True:
                 now = datetime.datetime.now()
 
@@ -717,11 +793,11 @@ def _run_one_day(
                         continue  # まだ時刻未到達
 
                     if job_type == "prerace":
-                        submitted[key] = executor.submit(
+                        submitted[key] = pre_ex.submit(
                             _prerace_worker, race_id, race_number, fire_at
                         )
                     else:  # postrace
-                        submitted[key] = executor.submit(
+                        submitted[key] = post_ex.submit(
                             _postrace_worker, race_id, race_number
                         )
 
@@ -731,13 +807,13 @@ def _run_one_day(
                 if all_done:
                     break
 
-                # 次発火まで待機（最大 15 秒）
+                # 次発火まで待機（最大 10 秒）
                 unfired = [s[0] for s in pending_jobs if (s[1], s[3]) not in submitted]
                 if unfired:
                     next_fire  = min(unfired)
-                    sleep_secs = min(15.0, max(1.0, (next_fire - datetime.datetime.now()).total_seconds()))
+                    sleep_secs = min(10.0, max(1.0, (next_fire - datetime.datetime.now()).total_seconds()))
                 else:
-                    sleep_secs = 15.0
+                    sleep_secs = 10.0
                 time.sleep(sleep_secs)
 
         # 結果集計
@@ -794,9 +870,41 @@ def main() -> None:
 
     target_date = args.date or datetime.date.today().strftime("%Y%m%d")
 
+    # ── 重複起動防止 ──────────────────────────────────────────────────
+    if not _check_single_instance():
+        print(f"[ABORT] 別インスタンスが既に動作中です (PID={_LOCK_FILE.read_text(encoding='utf-8').strip()})。終了します。",
+              flush=True)
+        sys.exit(0)
+
+    # PID ファイルを書き込んだ直後に必ずクリーンアップを登録する。
+    # atexit: 正常終了・例外による終了の両方で発動。
+    # signal: SIGTERM（外部 kill コマンド）でも発動。
+    import atexit
+    import signal
+
+    def _cleanup_pid() -> None:
+        """PID ファイルを確実に削除する（べき等）。"""
+        _LOCK_FILE.unlink(missing_ok=True)
+
+    atexit.register(_cleanup_pid)
+
+    def _handle_sigterm(signum: int, frame: object) -> None:
+        """SIGTERM を受信したら PID ファイルを削除して終了する。"""
+        logger.info("SIGTERM 受信 → PID ファイルを削除して終了します")
+        _cleanup_pid()
+        _send_discord("🛑 **[UMALOGI] SIGTERM 受信** PID ファイルをクリーンアップして終了しました")
+        sys.exit(0)
+
+    # Windows は SIGTERM をサポートしているが SIGKILL は存在しないため SIGTERM のみ登録
+    try:
+        signal.signal(signal.SIGTERM, _handle_sigterm)
+    except (OSError, ValueError):
+        pass  # 一部環境では登録不可（子スレッドからの呼び出し等）→ 無視
+
     _send_discord(
         f"🚀 **[UMALOGI] 週次オートパイロット 起動**\n"
-        f"対象日: `{target_date}`  継続モード: {'ON (週次サイクル)' if continuous else 'OFF (本日のみ)'}"
+        f"対象日: `{target_date}`  継続モード: {'ON (週次サイクル)' if continuous else 'OFF (本日のみ)'}\n"
+        f"PID: `{os.getpid()}`"
     )
 
     while True:
@@ -933,24 +1041,20 @@ def main() -> None:
             break
 
         except Exception as exc:
+            import traceback
             logger.error(
-                "[ERROR] 予期しない例外が発生しました: %s\n%d 秒後に自動再起動します...",
-                exc, _RESTART_WAIT_SEC,
+                "[ERROR] 予期しない例外が発生しました: %s\n%s\n%d 秒後に自動再起動します...",
+                exc, traceback.format_exc(), _RESTART_WAIT_SEC,
             )
             _send_discord(
                 f"⚠️ **[UMALOGI] 例外発生 → 自動再起動**\n"
-                f"エラー: {exc}\n"
-                f"{_RESTART_WAIT_SEC} 秒後に再起動します"
+                f"エラー: `{exc}`\n"
+                f"{_RESTART_WAIT_SEC} 秒後に同じ対象日 `{target_date}` で再起動します"
             )
             time.sleep(_RESTART_WAIT_SEC)
-            if not continuous:
-                logger.info("[RETRY] 1回だけ再試行します")
-                try:
-                    _run_one_day(target_date, fire_ahead, result_after, dry_run)
-                except Exception as exc2:
-                    logger.error("[FATAL] 再試行も失敗しました: %s", exc2)
-                    _send_discord(f"🚨 **[UMALOGI] 再起動失敗** {exc2}")
-                break
+            # --continuous の有無に関わらず、常に同じ target_date でリトライ継続
+            # （旧実装: not continuous 時は1回リトライして break → プロセス死亡）
+            continue
 
 
 if __name__ == "__main__":
