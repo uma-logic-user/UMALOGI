@@ -23,17 +23,39 @@ logger = logging.getLogger(__name__)
 def friday_batch(target_date: str | None = None) -> list[str]:
     """翌日（または指定日）の全レース出馬表を JRA-VAN から取得して DB に保存する。
 
+    JVLINK_DISABLED=1 の場合は JVLink 呼び出しをスキップし、
+    既に races テーブルに存在するレース ID のみを返す（netkeiba 補完前提）。
+
     Args:
         target_date: 対象日 "YYYYMMDD"。None なら翌日。
 
     Returns:
         保存したレース ID のリスト
     """
-    from src.scraper.jravan_client import JVDataLoader, DATASPEC_RACE
     from src.database.init_db import init_db
 
     if target_date is None:
         target_date = (date.today() + timedelta(days=1)).strftime("%Y%m%d")
+
+    if os.environ.get("JVLINK_DISABLED", "").strip() == "1":
+        logger.info(
+            "JVLINK_DISABLED=1: friday_batch の JVLink 同期をスキップ (date=%s)",
+            target_date,
+        )
+        formatted = f"{target_date[:4]}-{target_date[4:6]}-{target_date[6:8]}"
+        conn = init_db()
+        race_ids: list[str] = [
+            r[0]
+            for r in conn.execute(
+                "SELECT race_id FROM races WHERE date = ? ORDER BY race_id",
+                (formatted,),
+            ).fetchall()
+        ]
+        conn.close()
+        logger.info("friday_batch: DB 既存 %d レースを返却 (JVLink スキップ)", len(race_ids))
+        return race_ids
+
+    from src.scraper.jravan_client import JVDataLoader, DATASPEC_RACE
 
     logger.info("金曜バッチ開始: 対象日=%s (JRA-VAN RACE)", target_date)
 
@@ -139,12 +161,12 @@ def save_entries_to_db(conn: sqlite3.Connection, tbl: object) -> int:
 
 
 def fetch_and_save_odds(conn: sqlite3.Connection, race_id: str) -> int:
-    """realtime_odds が空のとき、RTD キャッシュ → DB 既存値 の順でオッズを確保する。
+    """realtime_odds が空のとき、RTD → netkeiba → DB既存値 の順でオッズを確保する。
 
-    フォールバック戦略（2段階）:
+    フォールバック戦略（3段階）:
       Stage 1: JRA-VAN ローカル RTD キャッシュ — リアルタイムオッズ
-      Stage 2: DB 内の既存 realtime_odds を確認して件数を返す（再取得なし）
-               → 既存値が 0 でも予測パイプラインは暫定モードで続行する
+      Stage 2: netkeiba オッズ API — RTD 失敗時のハイブリッドフォールバック
+      Stage 3: DB 内の既存 realtime_odds を確認して件数を返す（再取得なし）
 
     Returns:
         確保済みの頭数（0 の場合は暫定モードで続行）
@@ -159,15 +181,32 @@ def fetch_and_save_odds(conn: sqlite3.Connection, race_id: str) -> int:
     }
 
     # Stage 1: JRA-VAN ローカル RTD キャッシュ
+    # ゼロ許容: 1頭でも NaN があれば即 netkeiba にフォールバック
     odds_list = _fetch_odds_rtd(race_id)
     if odds_list and any(o.win_odds for o in odds_list):
-        n = insert_realtime_odds(conn, race_id, odds_list, name_map)
-        logger.info("オッズ取得 [RTD キャッシュ]: %d 頭保存 (race_id=%s)", n, race_id)
-        return n
-    if odds_list is not None:
-        logger.warning("RTD: オッズ取得なし or 全 NaN (race_id=%s)", race_id)
+        valid = [o for o in odds_list if o.win_odds]
+        nan_ratio = 1.0 - len(valid) / max(len(odds_list), 1)
+        if nan_ratio == 0.0:  # 全頭オッズ完備の場合のみ RTD を採用
+            n = insert_realtime_odds(conn, race_id, odds_list, name_map)
+            logger.info("オッズ取得 [RTD キャッシュ]: %d 頭保存 (race_id=%s)", n, race_id)
+            return n
+        logger.warning(
+            "RTD: NaN あり (%.0f%%) — netkeiba に即フォールバック (race_id=%s)",
+            nan_ratio * 100, race_id,
+        )
+    elif odds_list is not None:
+        logger.warning("RTD: オッズ取得なし or 全 NaN (race_id=%s) — netkeiba にフォールバック", race_id)
 
-    # Stage 2: DB 内の既存 realtime_odds を確認（再フェッチなし）
+    # Stage 2: netkeiba オッズ API（ハイブリッドフォールバック）
+    nb_odds = _fetch_odds_netkeiba(race_id)
+    if nb_odds and any(o.win_odds for o in nb_odds):
+        n = insert_realtime_odds(conn, race_id, nb_odds, name_map)
+        logger.info("オッズ取得 [netkeiba API]: %d 頭保存 (race_id=%s)", n, race_id)
+        return n
+    if nb_odds is not None:
+        logger.warning("netkeiba: オッズ取得なし or 全 NaN (race_id=%s)", race_id)
+
+    # Stage 3: DB 内の既存 realtime_odds を確認（再フェッチなし）
     existing: int = conn.execute(
         "SELECT COUNT(*) FROM realtime_odds WHERE race_id=?", (race_id,)
     ).fetchone()[0]
@@ -180,10 +219,25 @@ def fetch_and_save_odds(conn: sqlite3.Connection, race_id: str) -> int:
         return existing
 
     logger.warning(
-        "⚠️ オッズ全段取得失敗 (race_id=%s) — RTD/DB ともに 0。暫定モードで予測を続行します。",
+        "⚠️ オッズ全段取得失敗 (race_id=%s) — RTD/netkeiba/DB ともに 0。暫定モードで続行。",
         race_id,
     )
     return 0
+
+
+def _fetch_odds_netkeiba(race_id: str) -> list | None:
+    """netkeiba オッズ API からオッズリストを返す（RTD失敗時フォールバック）。失敗時は None。"""
+    try:
+        from src.scraper.entry_table import fetch_realtime_odds
+
+        nb_list = fetch_realtime_odds(race_id, delay=0.5, max_retries=2)
+        if not nb_list:
+            return []
+        # HorseOdds は place_odds_min/max を持つため insert_realtime_odds と完全互換
+        return nb_list
+    except Exception as exc:
+        logger.warning("netkeiba オッズ取得失敗 (race_id=%s): %s", race_id, exc)
+        return None
 
 
 def _fetch_odds_rtd(race_id: str) -> list | None:

@@ -468,9 +468,21 @@ def _run_sns_post(race_id: str, dry_run: bool, pattern: str = "ab") -> None:
 
 
 def _run_jvlink_sync(dry_run: bool) -> None:
-    """JVLink RACE + WOOD の STORED 同期を実行する（32bit 専用プロセス）。"""
+    """JVLink RACE + WOOD の STORED 同期を実行する（32bit 専用プロセス）。
+
+    JVLINK_DISABLED=1 の場合はダイアログ回避のためスキップする。
+    """
     if dry_run:
         logger.info("[DRY-RUN] JVLink 同期をスキップします")
+        return
+    if os.getenv("JVLINK_DISABLED", "").strip() == "1":
+        logger.info(
+            "JVLINK_DISABLED=1: JVLink RACE/WOOD 同期をスキップします（ダイアログ回避）"
+        )
+        _send_discord(
+            "ℹ️ **[UMALOGI]** `JVLINK_DISABLED=1` のため JVLink 夜間同期をスキップ。"
+            "netkeiba フォールバックで続行します。"
+        )
         return
     for dataspec in ("RACE", "WOOD"):
         logger.info("JVLink %s 同期開始...", dataspec)

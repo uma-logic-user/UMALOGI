@@ -4,6 +4,7 @@
 
 | 日付 | 変更内容 |
 |------|---------|
+| 2026-05-17 | 【JVLink完全バイパスHotFix】JVLink「セットアップダイアログ」が毎レースのpostrace時に表示されブロッキングしていた根本原因を特定・即時修正。JVLINK_DISABLED=1を.envに追記し、fetch_race_result.py/_run_jvlink_race_sync()・today_auto_runner.py/_run_jvlink_sync()・scraping.py/friday_batch()の3箇所にJVLINK_DISABLEDガードを追加。JVLink呼び出しを即スキップしてnetkeiba直行。修正後、全postrace[OK]・prerace[OK]が連続発火することを確認。ヴィクトリアマイル14:40発火スケジュール登録済み。影響: scripts/fetch_race_result.py, scripts/today_auto_runner.py, src/pipeline/scraping.py, .env |
 | 2026-05-17 | 【PID死活監視を psutil 完全改修】auto_runner.pid の重複起動防止ロジックが wmic ベースで脆弱だったため3点根治。①_is_umalogi_process(): psutil で PID 生存＋Python プロセス名＋スクリプト名の3重検証に変更。②ゾンビ PID（死亡プロセス or PID 再利用別プロセス）を自動検知・PIDファイル自動削除・自己修復起動。③atexit + SIGTERM シグナルハンドラーで異常終了時もPIDファイル確実削除。テスト: フェイクPID99999→ゾンビ検出・削除・正常起動確認。正規PID登録後の重複起動→[ABORT]ブロック確認（3テスト全証明済み）。影響: scripts/today_auto_runner.py |
 | 2026-05-17 | 【本日データ緊急復旧】auto_runner.pid 残存ゾンビPID(33700)により金曜夜間バッチが沈黙。force_provisional_today.py で全36レース暫定予想を手動生成(393件)→Discord 5分割送信→Next.js クリーンビルド再起動→today_auto_runner.py 起動で監視ループ復旧。根本原因: wmic 旧ロジックが空文字返却時に生存判定してしまう脆弱性（本変更で完全解消）。 |
 | 2026-05-17 | 【的中実績UI消失（第2次）→ 根本原因特定・復旧完了】「的中実績がごっそり消えた」との報告。調査: predictions=8,225件・is_hit=1=782件→DB完全無損傷。原因はNext.jsビルドが不完全状態（.next に BUILD_IDなし）でサーバー起動不能。next build → next start で復旧。/api/hits が782件を正常返却確認。月別: 2026-04: 382件、2026-05: 400件。CLAUDE.md 条項4の事故事例を更新（DB直接確認手順・サーバー障害チェックリスト追記）。教訓: 「UIに出ない≠データ消失」→必ずDBを直接COUNT確認してから判断。影響: CLAUDE.md, web/.next(ビルド) |

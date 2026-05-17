@@ -50,12 +50,22 @@ def _run_jvlink_race_sync(race_date: str) -> bool:
     """
     JVLink RACE TODAY 同期を実行して当日の SE/HR レコードを DB に取り込む。
 
+    JVLINK_DISABLED=1 の場合は即座に False を返し netkeiba フォールバックへ委譲する。
+    （JVLink ダイアログによるブロッキングを完全回避）
+
     Args:
         race_date: YYYYMMDD 形式の日付
 
     Returns:
-        True = 成功 / False = 失敗
+        True = 成功 / False = 失敗（JVLink無効時は常に False）
     """
+    if os.getenv("JVLINK_DISABLED", "").strip() == "1":
+        logger.info(
+            "JVLINK_DISABLED=1: JVLink 同期をスキップ → netkeiba フォールバックへ (date=%s)",
+            race_date,
+        )
+        return False
+
     logger.info("JVLink RACE TODAY 同期開始: date=%s", race_date)
     try:
         proc = subprocess.run(
