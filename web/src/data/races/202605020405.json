@@ -4,197 +4,171 @@
   "date": "2026-05-03",
   "venue": "東京",
   "race_number": 5,
-  "distance": 1800,
-  "surface": "芝",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "曇",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
-      "rank": 1,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "オメガディコン",
       "horse_id": "2023105255",
       "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "岩田康誠",
-      "trainer": "浅利英明",
-      "finish_time": "1:47.5",
-      "margin": "@",
-      "win_odds": 5.1,
-      "popularity": 3,
+      "jockey": "岩田康",
+      "trainer": "美浦浅利",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
       "horse_weight": 530,
       "horse_weight_diff": -4,
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.2526,
-      "ev_score": 5.4067,
-      "kelly_fraction": 0.0216,
-      "manji_ev": 0.0,
-      "odds_vs_morning": 1.0,
+      "honmei_score": 0.1716,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.2801,
+      "odds_vs_morning": null,
       "odds_velocity": null
     },
     {
-      "rank": 2,
+      "rank": null,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "イルミナジーティー",
+      "horse_id": "2023106872",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "佐々木",
+      "trainer": "栗東西園翔",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 438,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1716,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.8486,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "マジックオーラ",
+      "horse_id": "2023104200",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "△長浜",
+      "trainer": "美浦清水英",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 428,
+      "horse_weight_diff": -4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1716,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.5307,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
       "gate_number": 3,
       "horse_number": 4,
       "horse_name": "トランスマーレ",
       "horse_id": "2023103584",
-      "sex_age": "牝1",
+      "sex_age": "牝3",
       "weight_carried": 55.0,
-      "jockey": "横山武史",
-      "trainer": "高柳瑞樹",
-      "finish_time": "1:47.6",
-      "margin": "クビ",
-      "win_odds": 4.3,
-      "popularity": 2,
+      "jockey": "横山武",
+      "trainer": "美浦高柳瑞",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
       "horse_weight": 450,
       "horse_weight_diff": 0,
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.1514,
-      "ev_score": 2.7401,
-      "kelly_fraction": 0.0102,
-      "manji_ev": 0.0796,
-      "odds_vs_morning": 1.0,
+      "honmei_score": 0.1716,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 2.2505,
+      "odds_vs_morning": null,
       "odds_velocity": null
     },
     {
-      "rank": 3,
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "ラヴィニアパーク",
+      "horse_id": "2023106801",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "高杉",
+      "trainer": "美浦萩原",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 478,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1716,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.7494,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
       "gate_number": 4,
       "horse_number": 6,
       "horse_name": "ユマハム",
       "horse_id": "2023103372",
       "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "三浦皇成",
-      "trainer": "田中博康",
-      "finish_time": "1:48.0",
-      "margin": "2.1/2",
-      "win_odds": 7.0,
-      "popularity": 4,
+      "jockey": "三浦",
+      "trainer": "美浦田中博",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
       "horse_weight": 464,
       "horse_weight_diff": 2,
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.0412,
-      "ev_score": 0.6633,
+      "honmei_score": 0.1716,
+      "ev_score": 0.0,
       "kelly_fraction": 0.0,
-      "manji_ev": 0.0,
-      "odds_vs_morning": 1.0,
+      "manji_ev": 2.5665,
+      "odds_vs_morning": null,
       "odds_velocity": null
     },
     {
-      "rank": 4,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "イルミナジーティー",
-      "horse_id": "2023106872",
-      "sex_age": "牝1",
-      "weight_carried": 55.0,
-      "jockey": "佐々木大",
-      "trainer": "西園翔太",
-      "finish_time": "1:48.0",
-      "margin": "アタマ",
-      "win_odds": 7.3,
-      "popularity": 5,
-      "horse_weight": 438,
-      "horse_weight_diff": -2,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.1374,
-      "ev_score": 0.5084,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.3092,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 5,
-      "gate_number": 6,
-      "horse_number": 11,
-      "horse_name": "アラムベイ",
-      "horse_id": "2023101151",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "荻野極",
-      "trainer": "池上昌和",
-      "finish_time": "1:48.4",
-      "margin": "2",
-      "win_odds": 10.5,
-      "popularity": 6,
-      "horse_weight": 422,
-      "horse_weight_diff": -18,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0998,
-      "ev_score": 2.7457,
-      "kelly_fraction": 0.0066,
-      "manji_ev": 0.4326,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 6,
-      "gate_number": 7,
-      "horse_number": 13,
-      "horse_name": "ブライスフェアリー",
-      "horse_id": "2023105892",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "松岡正海",
-      "trainer": "堀内岳志",
-      "finish_time": "1:48.4",
-      "margin": "ハナ",
-      "win_odds": 87.4,
-      "popularity": 11,
-      "horse_weight": 416,
-      "horse_weight_diff": 2,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0998,
-      "ev_score": 11.1027,
-      "kelly_fraction": 0.0092,
-      "manji_ev": 0.5674,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 7,
-      "gate_number": 6,
-      "horse_number": 10,
-      "horse_name": "オープンザパンドラ",
-      "horse_id": "2023105573",
-      "sex_age": "牡7",
-      "weight_carried": 57.0,
-      "jockey": "ディー",
-      "trainer": "小椋研介",
-      "finish_time": "1:48.4",
-      "margin": "クビ",
-      "win_odds": 3.9,
-      "popularity": 1,
-      "horse_weight": 458,
-      "horse_weight_diff": 8,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0279,
-      "ev_score": 0.0446,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.0,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 8,
+      "rank": null,
       "gate_number": 4,
       "horse_number": 7,
       "horse_name": "ルミナスレイナ",
@@ -202,203 +176,229 @@
       "sex_age": "牝3",
       "weight_carried": 55.0,
       "jockey": "吉田豊",
-      "trainer": "菊沢隆徳",
-      "finish_time": "1:48.5",
-      "margin": "3/4",
-      "win_odds": 240.1,
-      "popularity": 13,
+      "trainer": "美浦菊沢",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
       "horse_weight": 468,
       "horse_weight_diff": 0,
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.0279,
-      "ev_score": 3.4756,
-      "kelly_fraction": 0.002,
-      "manji_ev": 0.0,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 9,
-      "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "マジックオーラ",
-      "horse_id": "2023104200",
-      "sex_age": "牡4",
-      "weight_carried": 55.0,
-      "jockey": "長浜鴻緒",
-      "trainer": "清水英克",
-      "finish_time": "1:48.6",
-      "margin": "クビ",
-      "win_odds": 267.6,
-      "popularity": 14,
-      "horse_weight": 428,
-      "horse_weight_diff": -4,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0387,
-      "ev_score": 9.8631,
-      "kelly_fraction": 0.0035,
-      "manji_ev": 0.0,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 10,
-      "gate_number": 8,
-      "horse_number": 14,
-      "horse_name": "サトノリアファル",
-      "horse_id": "2023105260",
-      "sex_age": "牡5",
-      "weight_carried": 57.0,
-      "jockey": "北村宏司",
-      "trainer": "古賀慎明",
-      "finish_time": "1:48.6",
-      "margin": "クビ",
-      "win_odds": 24.9,
-      "popularity": 8,
-      "horse_weight": 524,
-      "horse_weight_diff": -4,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0673,
-      "ev_score": 4.8475,
-      "kelly_fraction": 0.0054,
-      "manji_ev": 0.0,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 11,
-      "gate_number": 3,
-      "horse_number": 5,
-      "horse_name": "ラヴィニアパーク",
-      "horse_id": "2023106801",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "高杉吏麒",
-      "trainer": "萩原清",
-      "finish_time": "1:48.8",
-      "margin": "1.1/4",
-      "win_odds": 11.4,
-      "popularity": 7,
-      "horse_weight": 478,
-      "horse_weight_diff": 4,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.043,
-      "ev_score": 0.5333,
+      "honmei_score": 0.1071,
+      "ev_score": 0.0,
       "kelly_fraction": 0.0,
-      "manji_ev": 0.0,
-      "odds_vs_morning": 1.0,
+      "manji_ev": 0.6353,
+      "odds_vs_morning": null,
       "odds_velocity": null
     },
     {
-      "rank": 12,
-      "gate_number": 8,
-      "horse_number": 15,
-      "horse_name": "キョンチャン",
-      "horse_id": "2023101852",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "江田照男",
-      "trainer": "深山雅史",
-      "finish_time": "1:48.9",
-      "margin": "クビ",
-      "win_odds": 62.8,
-      "popularity": 10,
-      "horse_weight": 454,
-      "horse_weight_diff": 2,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0479,
-      "ev_score": 1.7138,
-      "kelly_fraction": 0.0021,
-      "manji_ev": 0.0,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 13,
-      "gate_number": 5,
-      "horse_number": 9,
-      "horse_name": "ラインクインビー",
-      "horse_id": "2023101328",
-      "sex_age": "牝4",
-      "weight_carried": 55.0,
-      "jockey": "木幡巧也",
-      "trainer": "水野貴広",
-      "finish_time": "1:48.9",
-      "margin": "アタマ",
-      "win_odds": 35.7,
-      "popularity": 9,
-      "horse_weight": 436,
-      "horse_weight_diff": 4,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0226,
-      "ev_score": 0.8775,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.0,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 14,
+      "rank": null,
       "gate_number": 5,
       "horse_number": 8,
       "horse_name": "ブルースパーダ",
       "horse_id": "2023105413",
       "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "原優介",
-      "trainer": "矢野英一",
-      "finish_time": "1:50.2",
-      "margin": "8",
-      "win_odds": 176.5,
-      "popularity": 12,
+      "jockey": "原",
+      "trainer": "美浦矢野",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
       "horse_weight": 484,
       "horse_weight_diff": -2,
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.0412,
-      "ev_score": 3.5474,
-      "kelly_fraction": 0.003,
-      "manji_ev": 0.8087,
-      "odds_vs_morning": 1.0,
+      "honmei_score": 0.1443,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.4801,
+      "odds_vs_morning": null,
       "odds_velocity": null
     },
     {
-      "rank": 15,
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "ラインクインビー",
+      "horse_id": "2023101328",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "木幡巧",
+      "trainer": "美浦水野",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 436,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1478,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.3838,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 10,
+      "horse_name": "オープンザパンドラ",
+      "horse_id": "2023105573",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "ディー",
+      "trainer": "栗東小椋",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 458,
+      "horse_weight_diff": 8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1716,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.9286,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "アラムベイ",
+      "horse_id": "2023101151",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "荻野極",
+      "trainer": "美浦池上",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 422,
+      "horse_weight_diff": -18,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1716,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.0121,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
       "gate_number": 7,
       "horse_number": 12,
       "horse_name": "キタノタイキ",
       "horse_id": "2023104227",
-      "sex_age": "牡4",
+      "sex_age": "牡3",
       "weight_carried": 54.0,
-      "jockey": "佐藤翔馬",
-      "trainer": "奥平雅士",
-      "finish_time": "1:51.1",
-      "margin": "5",
-      "win_odds": 320.8,
-      "popularity": 15,
+      "jockey": "▲佐藤",
+      "trainer": "美浦奥平",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
       "horse_weight": 436,
       "horse_weight_diff": -2,
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.0279,
-      "ev_score": 4.1199,
-      "kelly_fraction": 0.0021,
-      "manji_ev": 0.0,
-      "odds_vs_morning": 1.0,
+      "honmei_score": 0.1028,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.6831,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 13,
+      "horse_name": "ブライスフェアリー",
+      "horse_id": "2023105892",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "松岡",
+      "trainer": "美浦堀内",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 416,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1716,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.944,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 14,
+      "horse_name": "サトノリアファル",
+      "horse_id": "2023105260",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "北村宏",
+      "trainer": "美浦古賀慎",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 524,
+      "horse_weight_diff": -4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1716,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.4217,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "キョンチャン",
+      "horse_id": "2023101852",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "江田照",
+      "trainer": "美浦深山",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 454,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1117,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.1271,
+      "odds_vs_morning": null,
       "odds_velocity": null
     }
   ],
@@ -408,6 +408,12 @@
       "combination": "1",
       "payout": 510,
       "popularity": 3
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "15",
+      "payout": 15000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -440,6 +446,12 @@
       "popularity": 2
     },
     {
+      "bet_type": "馬連",
+      "combination": "1",
+      "payout": 2040,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "1-4",
       "payout": 460,
@@ -458,16 +470,46 @@
       "popularity": 10
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 30000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "1→4",
       "payout": 2320,
       "popularity": 5
     },
     {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 4000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-4-6",
       "payout": 2540,
       "popularity": 6
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5",
+      "payout": 604,
+      "popularity": 60
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4",
+      "payout": 20106,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "6",
+      "payout": 60010,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -477,1333 +519,6 @@
     }
   ],
   "predictions": [
-    {
-      "prediction_id": 21508,
-      "model_type": "本命(暫定)",
-      "bet_type": "単勝",
-      "confidence": 0.13380281690140844,
-      "expected_value": 2.4218309859154927,
-      "recommended_bet": 200.0,
-      "combination_json": "[[4]]",
-      "notes": "確率1位 P(win)=0.13 odds=18.1 EV=2.42",
-      "created_at": "2026-05-03 08:11:59",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -100.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "トランスマーレ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.13380281690140844,
-          "ev_score": 2.4218309859154927
-        }
-      ],
-      "bet_form": "単勝",
-      "n_tickets": 1,
-      "invested": 100,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
-    },
-    {
-      "prediction_id": 21509,
-      "model_type": "本命(暫定)",
-      "bet_type": "複勝",
-      "confidence": 0.37445194817553973,
-      "expected_value": 0.37445194817553973,
-      "recommended_bet": 300.0,
-      "combination_json": "[[4], [13], [2]]",
-      "notes": "上位3頭を複勝",
-      "created_at": "2026-05-03 08:11:59",
-      "is_hit": 1,
-      "payout": 190.0,
-      "profit": -110.0,
-      "roi": 63.33333333333333,
-      "horses": [
-        {
-          "horse_name": "トランスマーレ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.12481731605851325,
-          "ev_score": 0.37445194817553973
-        },
-        {
-          "horse_name": "ブライスフェアリー",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.12481731605851325,
-          "ev_score": 0.37445194817553973
-        },
-        {
-          "horse_name": "イルミナジーティー",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.12481731605851325,
-          "ev_score": 0.37445194817553973
-        }
-      ],
-      "bet_form": "複勝",
-      "n_tickets": 3,
-      "invested": 300,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
-    },
-    {
-      "prediction_id": 21510,
-      "model_type": "本命(暫定)",
-      "bet_type": "馬連",
-      "confidence": 0.051226375816032815,
-      "expected_value": 4.0,
-      "recommended_bet": 500.0,
-      "combination_json": "[[4, 13], [2, 4], [1, 4], [4, 11], [4, 8]]",
-      "notes": "軸4番×相手5頭フォーメーション Harville最大=0.051",
-      "created_at": "2026-05-03 08:11:59",
-      "is_hit": 1,
-      "payout": 1070.0,
-      "profit": 570.0,
-      "roi": 214.0,
-      "horses": [
-        {
-          "horse_name": "トランスマーレ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.051226375816032815,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "トランスマーレ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.051226375816032815,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "トランスマーレ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.051226375816032815,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "トランスマーレ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.051226375816032815,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "トランスマーレ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.051226375816032815,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "ブライスフェアリー",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.051226375816032815,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "ブライスフェアリー",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.051226375816032815,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "ブライスフェアリー",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.051226375816032815,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "ブライスフェアリー",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.051226375816032815,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "ブライスフェアリー",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.051226375816032815,
-          "ev_score": 4.0
-        }
-      ],
-      "bet_form": "軸ながし",
-      "n_tickets": 5,
-      "invested": 500,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
-    },
-    {
-      "prediction_id": 21511,
-      "model_type": "本命(暫定)",
-      "bet_type": "ワイド",
-      "confidence": 0.06659428856084267,
-      "expected_value": 2.317993505675485,
-      "recommended_bet": 500.0,
-      "combination_json": "[[4, 13], [2, 4], [1, 4], [4, 11], [4, 8]]",
-      "notes": "軸4番×相手5頭ワイド Harville最大=0.051",
-      "created_at": "2026-05-03 08:11:59",
-      "is_hit": 1,
-      "payout": 460.0,
-      "profit": -40.0,
-      "roi": 92.0,
-      "horses": [
-        {
-          "horse_name": "トランスマーレ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.051226375816032815,
-          "ev_score": 2.317993505675485
-        },
-        {
-          "horse_name": "トランスマーレ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.051226375816032815,
-          "ev_score": 2.317993505675485
-        },
-        {
-          "horse_name": "トランスマーレ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.051226375816032815,
-          "ev_score": 2.317993505675485
-        },
-        {
-          "horse_name": "トランスマーレ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.051226375816032815,
-          "ev_score": 2.317993505675485
-        },
-        {
-          "horse_name": "トランスマーレ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.051226375816032815,
-          "ev_score": 2.317993505675485
-        },
-        {
-          "horse_name": "ブライスフェアリー",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.051226375816032815,
-          "ev_score": 2.317993505675485
-        },
-        {
-          "horse_name": "ブライスフェアリー",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.051226375816032815,
-          "ev_score": 2.317993505675485
-        },
-        {
-          "horse_name": "ブライスフェアリー",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.051226375816032815,
-          "ev_score": 2.317993505675485
-        },
-        {
-          "horse_name": "ブライスフェアリー",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.051226375816032815,
-          "ev_score": 2.317993505675485
-        },
-        {
-          "horse_name": "ブライスフェアリー",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.051226375816032815,
-          "ev_score": 2.317993505675485
-        }
-      ],
-      "bet_form": "軸ながし",
-      "n_tickets": 5,
-      "invested": 500,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
-    },
-    {
-      "prediction_id": 21512,
-      "model_type": "本命(暫定)",
-      "bet_type": "馬単",
-      "confidence": 0.2084928071955667,
-      "expected_value": 5.0,
-      "recommended_bet": 300.0,
-      "combination_json": "[[4, 13], [4, 2], [4, 1]]",
-      "notes": "軸4番→相手3頭フォーメーション Harville最大=0.026",
-      "created_at": "2026-05-03 08:11:59",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -300.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "トランスマーレ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.026061600899445838,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "トランスマーレ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.026061600899445838,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "トランスマーレ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.026061600899445838,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "ブライスフェアリー",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.026061600899445838,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "ブライスフェアリー",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.026061600899445838,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "ブライスフェアリー",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.026061600899445838,
-          "ev_score": 5.0
-        }
-      ],
-      "bet_form": "軸ながし",
-      "n_tickets": 3,
-      "invested": 300,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
-    },
-    {
-      "prediction_id": 21513,
-      "model_type": "本命(暫定)",
-      "bet_type": "三連複",
-      "confidence": 0.3277782563718878,
-      "expected_value": 5.0,
-      "recommended_bet": 600.0,
-      "combination_json": "[[1, 2, 4], [2, 4, 11]]",
-      "notes": "合成EV最大=5.00 2点 馬番=[(1, 2, 4), (2, 4, 11)]",
-      "created_at": "2026-05-03 08:11:59",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -200.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "オメガディコン",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.027314854697657317,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "オメガディコン",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.027314854697657317,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "イルミナジーティー",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.027314854697657317,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "イルミナジーティー",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.027314854697657317,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "トランスマーレ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.027314854697657317,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "トランスマーレ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.027314854697657317,
-          "ev_score": 5.0
-        }
-      ],
-      "bet_form": "軸2頭ながし",
-      "n_tickets": 2,
-      "invested": 200,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
-    },
-    {
-      "prediction_id": 21514,
-      "model_type": "本命(暫定)",
-      "bet_type": "三連単",
-      "confidence": 0.8194456409297195,
-      "expected_value": 6.0,
-      "recommended_bet": 3600.0,
-      "combination_json": "[[4, 1, 2], [4, 2, 1], [1, 4, 2], [1, 2, 4], [2, 4, 1], [2, 1, 4], [4, 1, 8], [4, 8, 1], [1, 4, 8], [1, 8, 4], [8, 4, 1], [8, 1, 4], [4, 1, 11], [4, 11, 1], [1, 4, 11], [1, 11, 4], [11, 4, 1], [11, 1, 4], [4, 2, 8], [4, 8, 2], [2, 4, 8], [2, 8, 4], [8, 4, 2], [8, 2, 4], [4, 2, 11], [4, 11, 2], [2, 4, 11], [2, 11, 4], [11, 4, 2], [11, 2, 4], [4, 8, 11], [4, 11, 8], [8, 4, 11], [8, 11, 4], [11, 4, 8], [11, 8, 4]]",
-      "notes": "1着固定フォーメーション 軸=4番 12点 相手=[13, 2, 1, 11, 8, 5] Harville最大=0.0273",
-      "created_at": "2026-05-03 08:11:59",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -3600.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "トランスマーレ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.027314854697657317,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "トランスマーレ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.027314854697657317,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "トランスマーレ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.027314854697657317,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "トランスマーレ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.027314854697657317,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "トランスマーレ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.027314854697657317,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "イルミナジーティー",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.027314854697657317,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "イルミナジーティー",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.027314854697657317,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "イルミナジーティー",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.027314854697657317,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "イルミナジーティー",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.027314854697657317,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "イルミナジーティー",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.027314854697657317,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "オメガディコン",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.027314854697657317,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "オメガディコン",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.027314854697657317,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "オメガディコン",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.027314854697657317,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "オメガディコン",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.027314854697657317,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "オメガディコン",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.027314854697657317,
-          "ev_score": 6.0
-        }
-      ],
-      "bet_form": "1頭軸マルチ",
-      "n_tickets": 36,
-      "invested": 3600,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
-    },
-    {
-      "prediction_id": 21515,
-      "model_type": "卍(暫定)",
-      "bet_type": "単勝",
-      "confidence": 0.7739919820419828,
-      "expected_value": 1.5479839640839657,
-      "recommended_bet": 100.0,
-      "combination_json": "[[8]]",
-      "notes": "確率1位(卍) EV=1.55 odds=86.1",
-      "created_at": "2026-05-03 08:11:59",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -100.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "ブルースパーダ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 1.5479839640839657,
-          "ev_score": 1.5479839640839657
-        }
-      ],
-      "bet_form": "単勝",
-      "n_tickets": 1,
-      "invested": 100,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
-    },
-    {
-      "prediction_id": 21516,
-      "model_type": "卍(暫定)",
-      "bet_type": "複勝",
-      "confidence": 0.6,
-      "expected_value": 1.0435795373874692,
-      "recommended_bet": 300.0,
-      "combination_json": "[[8], [2], [13]]",
-      "notes": "確率上位3頭を複勝",
-      "created_at": "2026-05-03 08:11:59",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -300.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "ブルースパーダ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 1.0435795373874692,
-          "ev_score": 1.0435795373874692
-        },
-        {
-          "horse_name": "イルミナジーティー",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 1.0435795373874692,
-          "ev_score": 1.0435795373874692
-        },
-        {
-          "horse_name": "ブライスフェアリー",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 1.0435795373874692,
-          "ev_score": 1.0435795373874692
-        }
-      ],
-      "bet_form": "複勝",
-      "n_tickets": 3,
-      "invested": 300,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
-    },
-    {
-      "prediction_id": 21517,
-      "model_type": "卍(暫定)",
-      "bet_type": "馬連",
-      "confidence": 0.2316994315879401,
-      "expected_value": 4.0,
-      "recommended_bet": 500.0,
-      "combination_json": "[[2, 8], [8, 13], [8, 11], [4, 8], [8, 14]]",
-      "notes": "軸8番×相手5頭フォーメーション Harville最大=0.046",
-      "created_at": "2026-05-03 08:11:59",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -500.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "イルミナジーティー",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.04633988631758802,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "イルミナジーティー",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.04633988631758802,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "イルミナジーティー",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.04633988631758802,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "イルミナジーティー",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.04633988631758802,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "イルミナジーティー",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.04633988631758802,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "ブルースパーダ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.04633988631758802,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "ブルースパーダ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.04633988631758802,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "ブルースパーダ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.04633988631758802,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "ブルースパーダ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.04633988631758802,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "ブルースパーダ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.04633988631758802,
-          "ev_score": 4.0
-        }
-      ],
-      "bet_form": "軸ながし",
-      "n_tickets": 5,
-      "invested": 500,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
-    },
-    {
-      "prediction_id": 21518,
-      "model_type": "卍(暫定)",
-      "bet_type": "ワイド",
-      "confidence": 0.27803931790552816,
-      "expected_value": 3.0,
-      "recommended_bet": 500.0,
-      "combination_json": "[[2, 8], [8, 13], [8, 11], [4, 8], [8, 14]]",
-      "notes": "軸8番×相手5頭ワイド Harville最大=0.046",
-      "created_at": "2026-05-03 08:11:59",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -500.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "イルミナジーティー",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.04633988631758802,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "イルミナジーティー",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.04633988631758802,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "イルミナジーティー",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.04633988631758802,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "イルミナジーティー",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.04633988631758802,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "イルミナジーティー",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.04633988631758802,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "ブルースパーダ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.04633988631758802,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "ブルースパーダ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.04633988631758802,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "ブルースパーダ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.04633988631758802,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "ブルースパーダ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.04633988631758802,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "ブルースパーダ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.04633988631758802,
-          "ev_score": 3.0
-        }
-      ],
-      "bet_form": "軸ながし",
-      "n_tickets": 5,
-      "invested": 500,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
-    },
-    {
-      "prediction_id": 21519,
-      "model_type": "卍(暫定)",
-      "bet_type": "馬単",
-      "confidence": 0.19537478278687578,
-      "expected_value": 5.0,
-      "recommended_bet": 300.0,
-      "combination_json": "[[8, 2], [8, 13], [8, 11]]",
-      "notes": "軸8番→相手3頭フォーメーション Harville最大=0.024",
-      "created_at": "2026-05-03 08:11:59",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -300.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "ブルースパーダ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.024421847848359473,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "ブルースパーダ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.024421847848359473,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "ブルースパーダ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.024421847848359473,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "イルミナジーティー",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.024421847848359473,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "イルミナジーティー",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.024421847848359473,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "イルミナジーティー",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.024421847848359473,
-          "ev_score": 5.0
-        }
-      ],
-      "bet_form": "軸ながし",
-      "n_tickets": 3,
-      "invested": 300,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
-    },
-    {
-      "prediction_id": 21522,
-      "model_type": "卍(暫定)",
-      "bet_type": "三連複",
-      "confidence": 0.21094950340559357,
-      "expected_value": 5.0,
-      "recommended_bet": 300.0,
-      "combination_json": "[[2, 4, 8]]",
-      "notes": "合成EV=5.00 Harville=0.0141 馬番=(2, 4, 8)",
-      "created_at": "2026-05-03 08:11:59",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -100.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "イルミナジーティー",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.014063300227039572,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "トランスマーレ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.014063300227039572,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "ブルースパーダ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.014063300227039572,
-          "ev_score": 5.0
-        }
-      ],
-      "bet_form": "3頭ボックス",
-      "n_tickets": 1,
-      "invested": 100,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
-    },
-    {
-      "prediction_id": 21523,
-      "model_type": "Oracle(暫定)",
-      "bet_type": "三連複",
-      "confidence": 0.1321711638880308,
-      "expected_value": 3.965134916640924,
-      "recommended_bet": 500.0,
-      "combination_json": "[[2, 4, 13], [1, 4, 13], [4, 11, 13], [1, 2, 4], [1, 2, 13]]",
-      "notes": "[Oracle] 的中確率最大 5点 P最大=0.1322 馬番=[(2, 4, 13), (1, 4, 13), (4, 11, 13), (1, 2, 4), (1, 2, 13)]",
-      "created_at": "2026-05-03 08:11:59",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -500.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "イルミナジーティー",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.1321711638880308,
-          "ev_score": 3.965134916640924
-        },
-        {
-          "horse_name": "トランスマーレ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.1321711638880308,
-          "ev_score": 3.965134916640924
-        },
-        {
-          "horse_name": "ブライスフェアリー",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.1321711638880308,
-          "ev_score": 3.965134916640924
-        }
-      ],
-      "bet_form": "フォーメーション",
-      "n_tickets": 5,
-      "invested": 500,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
-    },
-    {
-      "prediction_id": 21524,
-      "model_type": "Oracle(暫定)",
-      "bet_type": "三連単",
-      "confidence": 0.0220285273146718,
-      "expected_value": 3.3042790972007703,
-      "recommended_bet": 1200.0,
-      "combination_json": "[[4, 13, 2], [4, 2, 13], [13, 4, 2], [13, 2, 4], [2, 4, 13], [2, 13, 4], [4, 13, 1], [4, 1, 13], [13, 4, 1], [13, 1, 4], [1, 4, 13], [1, 13, 4]]",
-      "notes": "[Oracle] 的中確率最大 12点 P最大=0.0220 馬番=[(4, 13, 2), (4, 2, 13), (13, 4, 2), (13, 2, 4), (2, 4, 13), (2, 13, 4), (4, 13, 1), (4, 1, 13), (13, 4, 1), (13, 1, 4), (1, 4, 13), (1, 13, 4)]",
-      "created_at": "2026-05-03 08:11:59",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -1200.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "トランスマーレ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.0220285273146718,
-          "ev_score": 3.3042790972007703
-        },
-        {
-          "horse_name": "ブライスフェアリー",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.0220285273146718,
-          "ev_score": 3.3042790972007703
-        },
-        {
-          "horse_name": "イルミナジーティー",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.0220285273146718,
-          "ev_score": 3.3042790972007703
-        }
-      ],
-      "bet_form": "2頭軸マルチ",
-      "n_tickets": 12,
-      "invested": 1200,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
-    },
-    {
-      "prediction_id": 21525,
-      "model_type": "本命(暫定)",
-      "bet_type": "馬分析",
-      "confidence": null,
-      "expected_value": null,
-      "recommended_bet": null,
-      "combination_json": "[]",
-      "notes": "全馬モデルスコア（馬分析タブ用）",
-      "created_at": "2026-05-03 08:11:59",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -100.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "トランスマーレ",
-          "horse_id": "2023103584",
-          "predicted_rank": 1,
-          "model_score": 0.13380281690140844,
-          "ev_score": 2.4218309859154927
-        },
-        {
-          "horse_name": "ブライスフェアリー",
-          "horse_id": "2023105892",
-          "predicted_rank": 2,
-          "model_score": 0.13127413127413126,
-          "ev_score": 14.597683397683397
-        },
-        {
-          "horse_name": "イルミナジーティー",
-          "horse_id": "2023106872",
-          "predicted_rank": 3,
-          "model_score": 0.109375,
-          "ev_score": 0.40468750000000003
-        },
-        {
-          "horse_name": "オメガディコン",
-          "horse_id": "2023105255",
-          "predicted_rank": 4,
-          "model_score": 0.10509554140127389,
-          "ev_score": 2.249044585987261
-        },
-        {
-          "horse_name": "アラムベイ",
-          "horse_id": "2023101151",
-          "predicted_rank": 5,
-          "model_score": 0.1011764705882353,
-          "ev_score": 2.782352941176471
-        },
-        {
-          "horse_name": "ブルースパーダ",
-          "horse_id": "2023105413",
-          "predicted_rank": 6,
-          "model_score": 0.05695830886670581,
-          "ev_score": 4.90411039342337
-        },
-        {
-          "horse_name": "オープンザパンドラ",
-          "horse_id": "2023105573",
-          "predicted_rank": 7,
-          "model_score": 0.04120070629782225,
-          "ev_score": 0.06592113007651561
-        },
-        {
-          "horse_name": "ラヴィニアパーク",
-          "horse_id": "2023106801",
-          "predicted_rank": 8,
-          "model_score": 0.04120070629782225,
-          "ev_score": 0.5108887580929959
-        },
-        {
-          "horse_name": "サトノリアファル",
-          "horse_id": "2023105260",
-          "predicted_rank": 9,
-          "model_score": 0.0387243735763098,
-          "ev_score": 2.7881548974943056
-        },
-        {
-          "horse_name": "キョンチャン",
-          "horse_id": "2023101852",
-          "predicted_rank": 10,
-          "model_score": 0.032411820781696854,
-          "ev_score": 1.1603431839847473
-        },
-        {
-          "horse_name": "ラインクインビー",
-          "horse_id": "2023101328",
-          "predicted_rank": 11,
-          "model_score": 0.032411820781696854,
-          "ev_score": 1.2575786463298377
-        },
-        {
-          "horse_name": "ユマハム",
-          "horse_id": "2023103372",
-          "predicted_rank": 12,
-          "model_score": 0.02996845425867508,
-          "ev_score": 0.4824921135646688
-        },
-        {
-          "horse_name": "ルミナスレイナ",
-          "horse_id": "2023100727",
-          "predicted_rank": 13,
-          "model_score": 0.02996845425867508,
-          "ev_score": 3.734069400630915
-        },
-        {
-          "horse_name": "マジックオーラ",
-          "horse_id": "2023104200",
-          "predicted_rank": 14,
-          "model_score": 0.02789400278940028,
-          "ev_score": 7.104602510460251
-        },
-        {
-          "horse_name": "キタノタイキ",
-          "horse_id": "2023104227",
-          "predicted_rank": 15,
-          "model_score": 0.02577319587628866,
-          "ev_score": 3.8067010309278344
-        }
-      ],
-      "bet_form": "馬分析",
-      "n_tickets": 0,
-      "invested": 0,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
-    },
     {
       "prediction_id": 22220,
       "model_type": "本命(直前)",
@@ -1830,23 +545,8 @@
       "bet_form": "単勝",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22221,
@@ -1888,23 +588,8 @@
       "bet_form": "複勝",
       "n_tickets": 3,
       "invested": 300,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22222,
@@ -1995,23 +680,8 @@
       "bet_form": "軸ながし",
       "n_tickets": 5,
       "invested": 500,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22223,
@@ -2102,23 +772,8 @@
       "bet_form": "軸ながし",
       "n_tickets": 5,
       "invested": 500,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22224,
@@ -2181,23 +836,8 @@
       "bet_form": "軸ながし",
       "n_tickets": 3,
       "invested": 300,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22225,
@@ -2260,23 +900,8 @@
       "bet_form": "軸2頭ながし",
       "n_tickets": 2,
       "invested": 200,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22226,
@@ -2402,23 +1027,8 @@
       "bet_form": "1頭軸マルチ",
       "n_tickets": 60,
       "invested": 6000,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22227,
@@ -2446,23 +1056,8 @@
       "bet_form": "単勝",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22228,
@@ -2504,23 +1099,8 @@
       "bet_form": "複勝",
       "n_tickets": 3,
       "invested": 300,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22229,
@@ -2611,23 +1191,8 @@
       "bet_form": "軸ながし",
       "n_tickets": 5,
       "invested": 500,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22230,
@@ -2718,23 +1283,8 @@
       "bet_form": "軸ながし",
       "n_tickets": 5,
       "invested": 500,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22231,
@@ -2797,23 +1347,8 @@
       "bet_form": "軸ながし",
       "n_tickets": 3,
       "invested": 300,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22234,
@@ -2855,23 +1390,8 @@
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22235,
@@ -2913,23 +1433,8 @@
       "bet_form": "軸1頭ながし",
       "n_tickets": 5,
       "invested": 500,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22236,
@@ -2971,23 +1476,8 @@
       "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
       "invested": 1200,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22237,
@@ -3113,23 +1603,8 @@
       "bet_form": "馬分析",
       "n_tickets": 0,
       "invested": 0,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22238,
@@ -3164,23 +1639,8 @@
       "bet_form": "フォーメーション",
       "n_tickets": 7,
       "invested": 700,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22239,
@@ -3215,23 +1675,8 @@
       "bet_form": "フォーメーション",
       "n_tickets": 8,
       "invested": 800,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22240,
@@ -3273,104 +1718,1156 @@
       "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
       "invested": 1200,
-      "horse_num_to_name": {
-        "1": "オメガディコン",
-        "4": "トランスマーレ",
-        "6": "ユマハム",
-        "2": "イルミナジーティー",
-        "11": "アラムベイ",
-        "13": "ブライスフェアリー",
-        "10": "オープンザパンドラ",
-        "7": "ルミナスレイナ",
-        "3": "マジックオーラ",
-        "14": "サトノリアファル",
-        "5": "ラヴィニアパーク",
-        "15": "キョンチャン",
-        "9": "ラインクインビー",
-        "8": "ブルースパーダ",
-        "12": "キタノタイキ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 23421,
+      "model_type": "本命(暫定)",
+      "bet_type": "単勝",
+      "confidence": 0.17163724893487523,
+      "expected_value": 0.17163724893487523,
+      "recommended_bet": 100.0,
+      "combination_json": "[[1]]",
+      "notes": "確率1位 P(win)=0.17 odds=1.0 EV=0.17",
+      "created_at": "2026-05-08 07:36:08",
+      "is_hit": 1,
+      "payout": 510.0,
+      "profit": 410.0,
+      "roi": 509.99999999999994,
+      "horses": [
+        {
+          "horse_name": "オメガディコン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.17163724893487523
+        }
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {},
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23422,
+      "model_type": "本命(暫定)",
+      "bet_type": "複勝",
+      "confidence": 0.17163724893487523,
+      "expected_value": 0.5149117468046257,
+      "recommended_bet": 300.0,
+      "combination_json": "[[1], [2], [3]]",
+      "notes": "上位3頭を複勝",
+      "created_at": "2026-05-08 07:36:08",
+      "is_hit": 1,
+      "payout": 170.0,
+      "profit": -130.0,
+      "roi": 56.666666666666664,
+      "horses": [
+        {
+          "horse_name": "オメガディコン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.5149117468046257
+        },
+        {
+          "horse_name": "イルミナジーティー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.5149117468046257
+        },
+        {
+          "horse_name": "マジックオーラ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.5149117468046257
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {},
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23423,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.009523809523809523,
+      "expected_value": 0.3442857142857143,
+      "recommended_bet": 500.0,
+      "combination_json": "[[1, 2], [1, 3], [1, 4], [1, 5], [1, 6]]",
+      "notes": "軸1番×相手5頭フォーメーション Harville最大=0.010",
+      "created_at": "2026-05-08 07:36:08",
+      "is_hit": 1,
+      "payout": 1070.0,
+      "profit": 570.0,
+      "roi": 214.0,
+      "horses": [
+        {
+          "horse_name": "オメガディコン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.3442857142857143
+        },
+        {
+          "horse_name": "オメガディコン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.3442857142857143
+        },
+        {
+          "horse_name": "オメガディコン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.3442857142857143
+        },
+        {
+          "horse_name": "オメガディコン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.3442857142857143
+        },
+        {
+          "horse_name": "オメガディコン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.3442857142857143
+        },
+        {
+          "horse_name": "イルミナジーティー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.3442857142857143
+        },
+        {
+          "horse_name": "イルミナジーティー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.3442857142857143
+        },
+        {
+          "horse_name": "イルミナジーティー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.3442857142857143
+        },
+        {
+          "horse_name": "イルミナジーティー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.3442857142857143
+        },
+        {
+          "horse_name": "イルミナジーティー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.3442857142857143
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {},
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23424,
+      "model_type": "本命(暫定)",
+      "bet_type": "ワイド",
+      "confidence": 0.01238095238095238,
+      "expected_value": 0.1499047619047619,
+      "recommended_bet": 500.0,
+      "combination_json": "[[1, 2], [1, 3], [1, 4], [1, 5], [1, 6]]",
+      "notes": "軸1番×相手5頭ワイド Harville最大=0.010",
+      "created_at": "2026-05-08 07:36:08",
+      "is_hit": 1,
+      "payout": 1030.0,
+      "profit": 530.0,
+      "roi": 206.0,
+      "horses": [
+        {
+          "horse_name": "オメガディコン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.1499047619047619
+        },
+        {
+          "horse_name": "オメガディコン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.1499047619047619
+        },
+        {
+          "horse_name": "オメガディコン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.1499047619047619
+        },
+        {
+          "horse_name": "オメガディコン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.1499047619047619
+        },
+        {
+          "horse_name": "オメガディコン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.1499047619047619
+        },
+        {
+          "horse_name": "イルミナジーティー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.1499047619047619
+        },
+        {
+          "horse_name": "イルミナジーティー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.1499047619047619
+        },
+        {
+          "horse_name": "イルミナジーティー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.1499047619047619
+        },
+        {
+          "horse_name": "イルミナジーティー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.1499047619047619
+        },
+        {
+          "horse_name": "イルミナジーティー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.1499047619047619
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {},
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23425,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬単",
+      "confidence": 0.03809523809523809,
+      "expected_value": 0.304047619047619,
+      "recommended_bet": 300.0,
+      "combination_json": "[[1, 2], [1, 3], [1, 4]]",
+      "notes": "軸1番→相手3頭フォーメーション Harville最大=0.005",
+      "created_at": "2026-05-08 07:36:08",
+      "is_hit": 1,
+      "payout": 2320.0,
+      "profit": 2020.0,
+      "roi": 773.3333333333334,
+      "horses": [
+        {
+          "horse_name": "オメガディコン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0047619047619047615,
+          "ev_score": 0.304047619047619
+        },
+        {
+          "horse_name": "オメガディコン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0047619047619047615,
+          "ev_score": 0.304047619047619
+        },
+        {
+          "horse_name": "オメガディコン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0047619047619047615,
+          "ev_score": 0.304047619047619
+        },
+        {
+          "horse_name": "イルミナジーティー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0047619047619047615,
+          "ev_score": 0.304047619047619
+        },
+        {
+          "horse_name": "イルミナジーティー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0047619047619047615,
+          "ev_score": 0.304047619047619
+        },
+        {
+          "horse_name": "イルミナジーティー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0047619047619047615,
+          "ev_score": 0.304047619047619
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {},
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23426,
+      "model_type": "本命(暫定)",
+      "bet_type": "三連単",
+      "confidence": 0.06593406593406592,
+      "expected_value": 1.0711648351648348,
+      "recommended_bet": 1000.0,
+      "combination_json": "[[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1], [1, 2, 4], [1, 4, 2], [2, 1, 4], [2, 4, 1], [4, 1, 2], [4, 2, 1], [1, 2, 5], [1, 5, 2], [2, 1, 5], [2, 5, 1], [5, 1, 2], [5, 2, 1], [1, 2, 6], [1, 6, 2], [2, 1, 6], [2, 6, 1], [6, 1, 2], [6, 2, 1], [1, 2, 11], [1, 11, 2], [2, 1, 11], [2, 11, 1], [11, 1, 2], [11, 2, 1], [1, 3, 4], [1, 4, 3], [3, 1, 4], [3, 4, 1], [4, 1, 3], [4, 3, 1], [1, 3, 5], [1, 5, 3], [3, 1, 5], [3, 5, 1], [5, 1, 3], [5, 3, 1], [1, 3, 6], [1, 6, 3], [3, 1, 6], [3, 6, 1], [6, 1, 3], [6, 3, 1], [1, 3, 11], [1, 11, 3], [3, 1, 11], [3, 11, 1], [11, 1, 3], [11, 3, 1], [1, 4, 5], [1, 5, 4], [4, 1, 5], [4, 5, 1], [5, 1, 4], [5, 4, 1], [1, 4, 6], [1, 6, 4], [4, 1, 6], [4, 6, 1], [6, 1, 4], [6, 4, 1], [1, 4, 11], [1, 11, 4], [4, 1, 11], [4, 11, 1], [11, 1, 4], [11, 4, 1], [1, 5, 6], [1, 6, 5], [5, 1, 6], [5, 6, 1], [6, 1, 5], [6, 5, 1], [1, 5, 11], [1, 11, 5], [5, 1, 11], [5, 11, 1], [11, 1, 5], [11, 5, 1], [1, 6, 11], [1, 11, 6], [6, 1, 11], [6, 11, 1], [11, 1, 6], [11, 6, 1]]",
+      "notes": "1頭軸マルチ 軸=1番 相手=[2, 3, 4, 5, 6, 11] 90点 Harville最大=0.0022",
+      "created_at": "2026-05-08 07:36:08",
+      "is_hit": 1,
+      "payout": 13590.0,
+      "profit": 4590.0,
+      "roi": 151.0,
+      "horses": [
+        {
+          "horse_name": "オメガディコン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0021978021978021974,
+          "ev_score": 1.0711648351648348
+        },
+        {
+          "horse_name": "オメガディコン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0021978021978021974,
+          "ev_score": 1.0711648351648348
+        },
+        {
+          "horse_name": "オメガディコン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0021978021978021974,
+          "ev_score": 1.0711648351648348
+        },
+        {
+          "horse_name": "オメガディコン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0021978021978021974,
+          "ev_score": 1.0711648351648348
+        },
+        {
+          "horse_name": "オメガディコン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0021978021978021974,
+          "ev_score": 1.0711648351648348
+        },
+        {
+          "horse_name": "イルミナジーティー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0021978021978021974,
+          "ev_score": 1.0711648351648348
+        },
+        {
+          "horse_name": "イルミナジーティー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0021978021978021974,
+          "ev_score": 1.0711648351648348
+        },
+        {
+          "horse_name": "イルミナジーティー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0021978021978021974,
+          "ev_score": 1.0711648351648348
+        },
+        {
+          "horse_name": "イルミナジーティー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0021978021978021974,
+          "ev_score": 1.0711648351648348
+        },
+        {
+          "horse_name": "イルミナジーティー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0021978021978021974,
+          "ev_score": 1.0711648351648348
+        },
+        {
+          "horse_name": "マジックオーラ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0021978021978021974,
+          "ev_score": 1.0711648351648348
+        },
+        {
+          "horse_name": "マジックオーラ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0021978021978021974,
+          "ev_score": 1.0711648351648348
+        },
+        {
+          "horse_name": "マジックオーラ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0021978021978021974,
+          "ev_score": 1.0711648351648348
+        },
+        {
+          "horse_name": "マジックオーラ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0021978021978021974,
+          "ev_score": 1.0711648351648348
+        },
+        {
+          "horse_name": "マジックオーラ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0021978021978021974,
+          "ev_score": 1.0711648351648348
+        }
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 90,
+      "invested": 9000,
+      "horse_num_to_name": {},
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23427,
+      "model_type": "卍(暫定)",
+      "bet_type": "単勝",
+      "confidence": 0.2566469244818196,
+      "expected_value": 2.5664692448181956,
+      "recommended_bet": 100.0,
+      "combination_json": "[[6]]",
+      "notes": "確率1位(卍) EV=2.57 odds=1.0",
+      "created_at": "2026-05-08 07:36:08",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ユマハム",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 2.5664692448181956,
+          "ev_score": 2.5664692448181956
+        }
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {},
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23428,
+      "model_type": "卍(暫定)",
+      "bet_type": "複勝",
+      "confidence": 0.6,
+      "expected_value": 2.221833672142528,
+      "recommended_bet": 300.0,
+      "combination_json": "[[6], [4], [2]]",
+      "notes": "確率上位3頭を複勝",
+      "created_at": "2026-05-08 07:36:08",
+      "is_hit": 1,
+      "payout": 410.0,
+      "profit": 110.0,
+      "roi": 136.66666666666666,
+      "horses": [
+        {
+          "horse_name": "ユマハム",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 2.221833672142528,
+          "ev_score": 2.221833672142528
+        },
+        {
+          "horse_name": "トランスマーレ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 2.221833672142528,
+          "ev_score": 2.221833672142528
+        },
+        {
+          "horse_name": "イルミナジーティー",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 2.221833672142528,
+          "ev_score": 2.221833672142528
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {},
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23429,
+      "model_type": "卍(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.2376422874288051,
+      "expected_value": 1.718153738110261,
+      "recommended_bet": 500.0,
+      "combination_json": "[[4, 6], [2, 6], [5, 6], [6, 8], [1, 6]]",
+      "notes": "軸6番×相手5頭フォーメーション Harville最大=0.048",
+      "created_at": "2026-05-08 07:36:08",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "トランスマーレ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.047528457485761025,
+          "ev_score": 1.718153738110261
+        },
+        {
+          "horse_name": "トランスマーレ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.047528457485761025,
+          "ev_score": 1.718153738110261
+        },
+        {
+          "horse_name": "トランスマーレ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.047528457485761025,
+          "ev_score": 1.718153738110261
+        },
+        {
+          "horse_name": "トランスマーレ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.047528457485761025,
+          "ev_score": 1.718153738110261
+        },
+        {
+          "horse_name": "トランスマーレ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.047528457485761025,
+          "ev_score": 1.718153738110261
+        },
+        {
+          "horse_name": "ユマハム",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.047528457485761025,
+          "ev_score": 1.718153738110261
+        },
+        {
+          "horse_name": "ユマハム",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.047528457485761025,
+          "ev_score": 1.718153738110261
+        },
+        {
+          "horse_name": "ユマハム",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.047528457485761025,
+          "ev_score": 1.718153738110261
+        },
+        {
+          "horse_name": "ユマハム",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.047528457485761025,
+          "ev_score": 1.718153738110261
+        },
+        {
+          "horse_name": "ユマハム",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.047528457485761025,
+          "ev_score": 1.718153738110261
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {},
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23430,
+      "model_type": "卍(暫定)",
+      "bet_type": "ワイド",
+      "confidence": 0.2851707449145662,
+      "expected_value": 0.7480979208258786,
+      "recommended_bet": 500.0,
+      "combination_json": "[[4, 6], [2, 6], [5, 6], [6, 8], [1, 6]]",
+      "notes": "軸6番×相手5頭ワイド Harville最大=0.048",
+      "created_at": "2026-05-08 07:36:08",
+      "is_hit": 1,
+      "payout": 1230.0,
+      "profit": 730.0,
+      "roi": 246.0,
+      "horses": [
+        {
+          "horse_name": "トランスマーレ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.047528457485761025,
+          "ev_score": 0.7480979208258786
+        },
+        {
+          "horse_name": "トランスマーレ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.047528457485761025,
+          "ev_score": 0.7480979208258786
+        },
+        {
+          "horse_name": "トランスマーレ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.047528457485761025,
+          "ev_score": 0.7480979208258786
+        },
+        {
+          "horse_name": "トランスマーレ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.047528457485761025,
+          "ev_score": 0.7480979208258786
+        },
+        {
+          "horse_name": "トランスマーレ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.047528457485761025,
+          "ev_score": 0.7480979208258786
+        },
+        {
+          "horse_name": "ユマハム",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.047528457485761025,
+          "ev_score": 0.7480979208258786
+        },
+        {
+          "horse_name": "ユマハム",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.047528457485761025,
+          "ev_score": 0.7480979208258786
+        },
+        {
+          "horse_name": "ユマハム",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.047528457485761025,
+          "ev_score": 0.7480979208258786
+        },
+        {
+          "horse_name": "ユマハム",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.047528457485761025,
+          "ev_score": 0.7480979208258786
+        },
+        {
+          "horse_name": "ユマハム",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.047528457485761025,
+          "ev_score": 0.7480979208258786
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {},
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23431,
+      "model_type": "卍(暫定)",
+      "bet_type": "馬単",
+      "confidence": 0.19219509403149673,
+      "expected_value": 1.5339570942388832,
+      "recommended_bet": 300.0,
+      "combination_json": "[[6, 4], [6, 2], [6, 5]]",
+      "notes": "軸6番→相手3頭フォーメーション Harville最大=0.024",
+      "created_at": "2026-05-08 07:36:08",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ユマハム",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02402438675393709,
+          "ev_score": 1.5339570942388832
+        },
+        {
+          "horse_name": "ユマハム",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02402438675393709,
+          "ev_score": 1.5339570942388832
+        },
+        {
+          "horse_name": "ユマハム",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02402438675393709,
+          "ev_score": 1.5339570942388832
+        },
+        {
+          "horse_name": "トランスマーレ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02402438675393709,
+          "ev_score": 1.5339570942388832
+        },
+        {
+          "horse_name": "トランスマーレ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02402438675393709,
+          "ev_score": 1.5339570942388832
+        },
+        {
+          "horse_name": "トランスマーレ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02402438675393709,
+          "ev_score": 1.5339570942388832
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {},
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23434,
+      "model_type": "卍(暫定)",
+      "bet_type": "三連複",
+      "confidence": 0.24579356001532532,
+      "expected_value": 1.5840575631120997,
+      "recommended_bet": 300.0,
+      "combination_json": "[[4, 6, 8]]",
+      "notes": "合成EV=1.58 Harville=0.0164 馬番=(4, 6, 8)",
+      "created_at": "2026-05-08 07:36:08",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "トランスマーレ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.01638623733435502,
+          "ev_score": 1.5840575631120997
+        },
+        {
+          "horse_name": "ユマハム",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.01638623733435502,
+          "ev_score": 1.5840575631120997
+        },
+        {
+          "horse_name": "ブルースパーダ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.01638623733435502,
+          "ev_score": 1.5840575631120997
+        }
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {},
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23435,
+      "model_type": "Oracle(暫定)",
+      "bet_type": "三連複",
+      "confidence": 0.018213424520493314,
+      "expected_value": 0.5464027356147995,
+      "recommended_bet": 500.0,
+      "combination_json": "[[1, 2, 3], [1, 2, 4], [1, 2, 5], [1, 2, 6], [1, 2, 11]]",
+      "notes": "[Oracle] 的中確率最大 5点 P最大=0.0182 馬番=[(1, 2, 3), (1, 2, 4), (1, 2, 5), (1, 2, 6), (1, 2, 11)]",
+      "created_at": "2026-05-08 07:36:08",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "オメガディコン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.018213424520493314,
+          "ev_score": 0.5464027356147995
+        },
+        {
+          "horse_name": "イルミナジーティー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.018213424520493314,
+          "ev_score": 0.5464027356147995
+        },
+        {
+          "horse_name": "マジックオーラ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.018213424520493314,
+          "ev_score": 0.5464027356147995
+        }
+      ],
+      "bet_form": "軸2頭ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {},
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23436,
+      "model_type": "Oracle(暫定)",
+      "bet_type": "三連単",
+      "confidence": 0.0030355707534155526,
+      "expected_value": 0.4553356130123329,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[1, 2, 3], [1, 2, 4], [1, 2, 5], [1, 2, 6], [1, 2, 11], [1, 2, 14], [1, 2, 10], [1, 2, 13], [1, 3, 2], [1, 3, 4], [1, 3, 5], [1, 3, 6]]",
+      "notes": "[Oracle] 的中確率最大 12点 P最大=0.0030 馬番=[(1, 2, 3), (1, 2, 4), (1, 2, 5), (1, 2, 6), (1, 2, 11), (1, 2, 14), (1, 2, 10), (1, 2, 13), (1, 3, 2), (1, 3, 4), (1, 3, 5), (1, 3, 6)]",
+      "created_at": "2026-05-08 07:36:08",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "オメガディコン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0030355707534155526,
+          "ev_score": 0.4553356130123329
+        },
+        {
+          "horse_name": "イルミナジーティー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0030355707534155526,
+          "ev_score": 0.4553356130123329
+        },
+        {
+          "horse_name": "マジックオーラ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0030355707534155526,
+          "ev_score": 0.4553356130123329
+        }
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 12,
+      "invested": 1200,
+      "horse_num_to_name": {},
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23437,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-05-08 07:36:08",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "サトノリアファル",
+          "horse_id": "2023105260",
+          "predicted_rank": 1,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ブライスフェアリー",
+          "horse_id": "2023105892",
+          "predicted_rank": 2,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "アラムベイ",
+          "horse_id": "2023101151",
+          "predicted_rank": 3,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "オープンザパンドラ",
+          "horse_id": "2023105573",
+          "predicted_rank": 4,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "マジックオーラ",
+          "horse_id": "2023104200",
+          "predicted_rank": 5,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ユマハム",
+          "horse_id": "2023103372",
+          "predicted_rank": 6,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ラヴィニアパーク",
+          "horse_id": "2023106801",
+          "predicted_rank": 7,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "イルミナジーティー",
+          "horse_id": "2023106872",
+          "predicted_rank": 8,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "オメガディコン",
+          "horse_id": "2023105255",
+          "predicted_rank": 9,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "トランスマーレ",
+          "horse_id": "2023103584",
+          "predicted_rank": 10,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ラインクインビー",
+          "horse_id": "2023101328",
+          "predicted_rank": 11,
+          "model_score": 0.14784394250513347,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ブルースパーダ",
+          "horse_id": "2023105413",
+          "predicted_rank": 12,
+          "model_score": 0.1443478260869565,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "キョンチャン",
+          "horse_id": "2023101852",
+          "predicted_rank": 13,
+          "model_score": 0.1116751269035533,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ルミナスレイナ",
+          "horse_id": "2023100727",
+          "predicted_rank": 14,
+          "model_score": 0.10714285714285714,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "キタノタイキ",
+          "horse_id": "2023104227",
+          "predicted_rank": 15,
+          "model_score": 0.10282776349614396,
+          "ev_score": 0.0
+        }
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "invested": 0,
+      "horse_num_to_name": {},
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23438,
+      "model_type": "HitFocus(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.05856812699714356,
+      "expected_value": 0.423447558189348,
+      "recommended_bet": 700.0,
+      "combination_json": "[[1, 2], [1, 3], [2, 3], [1, 4], [2, 4], [1, 5], [2, 5]]",
+      "notes": "2軸マルチ 軸=1,2 相手=[3, 4, 5] Harville最大=0.0117",
+      "created_at": "2026-05-08 07:36:08",
+      "is_hit": 1,
+      "payout": 1070.0,
+      "profit": 370.0,
+      "roi": 152.85714285714283,
+      "horses": [
+        {
+          "horse_name": "オメガディコン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.011713625399428712,
+          "ev_score": 0.423447558189348
+        },
+        {
+          "horse_name": "イルミナジーティー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.011713625399428712,
+          "ev_score": 0.423447558189348
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 7,
+      "invested": 700,
+      "horse_num_to_name": {},
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23439,
+      "model_type": "HitFocus(暫定)",
+      "bet_type": "馬単",
+      "confidence": 0.04685450159771485,
+      "expected_value": 0.3739574908767616,
+      "recommended_bet": 800.0,
+      "combination_json": "[[1, 2], [2, 1], [1, 3], [2, 3], [1, 4], [2, 4], [1, 5], [2, 5]]",
+      "notes": "2軸マルチ 軸=1,2 相手=[3, 4, 5] Harville最大=0.0059",
+      "created_at": "2026-05-08 07:36:08",
+      "is_hit": 1,
+      "payout": 2320.0,
+      "profit": 1520.0,
+      "roi": 290.0,
+      "horses": [
+        {
+          "horse_name": "オメガディコン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.005856812699714356,
+          "ev_score": 0.3739574908767616
+        },
+        {
+          "horse_name": "イルミナジーティー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.005856812699714356,
+          "ev_score": 0.3739574908767616
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 8,
+      "invested": 800,
+      "horse_num_to_name": {},
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23440,
+      "model_type": "HitFocus(暫定)",
+      "bet_type": "三連単",
+      "confidence": 0.015177853767077764,
+      "expected_value": 0.24657941229994537,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[1, 2, 3], [2, 1, 3], [1, 3, 2], [2, 3, 1], [1, 2, 4], [2, 1, 4], [1, 4, 2], [2, 4, 1], [1, 2, 5], [2, 1, 5], [1, 5, 2], [2, 5, 1]]",
+      "notes": "2軸マルチ 軸=1,2 相手=[3, 4, 5] 12点 Harville最大=0.0005",
+      "created_at": "2026-05-08 07:36:08",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "オメガディコン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0005059284589025921,
+          "ev_score": 0.24657941229994537
+        },
+        {
+          "horse_name": "イルミナジーティー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0005059284589025921,
+          "ev_score": 0.24657941229994537
+        },
+        {
+          "horse_name": "マジックオーラ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0005059284589025921,
+          "ev_score": 0.24657941229994537
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 12,
+      "invested": 1200,
+      "horse_num_to_name": {},
+      "is_provisional": true
     }
   ],
   "training_evals": {},
   "prerace": {
     "bias": {
-      "today_inner_bias": -0.03070175438596491,
-      "today_front_bias": 1.0,
-      "today_race_count": 3
+      "today_inner_bias": 0.015250544662309365,
+      "today_front_bias": 0.75,
+      "today_race_count": 4
     },
-    "ev_recommend": [
-      {
-        "horse_number": 13,
-        "horse_name": "ブライスフェアリー",
-        "win_odds": 111.2,
-        "ev_score": 11.1027,
-        "kelly_fraction": 0.0092
-      },
-      {
-        "horse_number": 3,
-        "horse_name": "マジックオーラ",
-        "win_odds": 254.7,
-        "ev_score": 9.8631,
-        "kelly_fraction": 0.0035
-      },
-      {
-        "horse_number": 1,
-        "horse_name": "オメガディコン",
-        "win_odds": 21.4,
-        "ev_score": 5.4067,
-        "kelly_fraction": 0.0216
-      },
-      {
-        "horse_number": 14,
-        "horse_name": "サトノリアファル",
-        "win_odds": 72.0,
-        "ev_score": 4.8475,
-        "kelly_fraction": 0.0054
-      },
-      {
-        "horse_number": 12,
-        "horse_name": "キタノタイキ",
-        "win_odds": 147.7,
-        "ev_score": 4.1199,
-        "kelly_fraction": 0.0021
-      },
-      {
-        "horse_number": 8,
-        "horse_name": "ブルースパーダ",
-        "win_odds": 86.1,
-        "ev_score": 3.5474,
-        "kelly_fraction": 0.003
-      },
-      {
-        "horse_number": 7,
-        "horse_name": "ルミナスレイナ",
-        "win_odds": 124.6,
-        "ev_score": 3.4756,
-        "kelly_fraction": 0.002
-      },
-      {
-        "horse_number": 11,
-        "horse_name": "アラムベイ",
-        "win_odds": 27.5,
-        "ev_score": 2.7457,
-        "kelly_fraction": 0.0066
-      },
-      {
-        "horse_number": 4,
-        "horse_name": "トランスマーレ",
-        "win_odds": 18.1,
-        "ev_score": 2.7401,
-        "kelly_fraction": 0.0102
-      },
-      {
-        "horse_number": 15,
-        "horse_name": "キョンチャン",
-        "win_odds": 35.8,
-        "ev_score": 1.7138,
-        "kelly_fraction": 0.0021
-      }
-    ],
-    "generated_at": "2026-05-03T11:40:16.593498"
+    "ev_recommend": [],
+    "generated_at": "2026-05-08T07:36:08.621436"
   }
 }

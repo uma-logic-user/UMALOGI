@@ -4,11 +4,11 @@
   "date": "2026-04-25",
   "venue": "東京",
   "race_number": 7,
-  "distance": 1400,
-  "surface": "ダート",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "稍",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -42,7 +42,7 @@
       "jockey": "レーン",
       "trainer": "柄崎将寿",
       "finish_time": "1:25.0",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 2.8,
       "popularity": 1,
       "horse_weight": 496,
@@ -62,7 +62,7 @@
       "jockey": "横山和生",
       "trainer": "嘉藤貴行",
       "finish_time": "1:25.2",
-      "margin": "1.1/4",
+      "margin": "@",
       "win_odds": 18.0,
       "popularity": 7,
       "horse_weight": 450,
@@ -82,7 +82,7 @@
       "jockey": "三浦皇成",
       "trainer": "中舘英二",
       "finish_time": "1:25.3",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 7.7,
       "popularity": 3,
       "horse_weight": 458,
@@ -102,7 +102,7 @@
       "jockey": "矢野貴之",
       "trainer": "大竹正博",
       "finish_time": "1:25.4",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 125.6,
       "popularity": 12,
       "horse_weight": 450,
@@ -122,7 +122,7 @@
       "jockey": "坂井瑠星",
       "trainer": "尾関知人",
       "finish_time": "1:25.6",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 25.5,
       "popularity": 9,
       "horse_weight": 464,
@@ -142,7 +142,7 @@
       "jockey": "木幡巧也",
       "trainer": "柄崎将寿",
       "finish_time": "1:25.6",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 20.4,
       "popularity": 8,
       "horse_weight": 486,
@@ -162,7 +162,7 @@
       "jockey": "ルメール",
       "trainer": "野中賢二",
       "finish_time": "1:25.9",
-      "margin": "2",
+      "margin": "@",
       "win_odds": 3.3,
       "popularity": 2,
       "horse_weight": 420,
@@ -182,7 +182,7 @@
       "jockey": "北村友一",
       "trainer": "斎藤誠",
       "finish_time": "1:26.2",
-      "margin": "2",
+      "margin": "@",
       "win_odds": 210.3,
       "popularity": 15,
       "horse_weight": 430,
@@ -202,7 +202,7 @@
       "jockey": "佐藤翔馬",
       "trainer": "鈴木伸尋",
       "finish_time": "1:26.3",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 380.4,
       "popularity": 16,
       "horse_weight": 474,
@@ -222,7 +222,7 @@
       "jockey": "岩田康誠",
       "trainer": "浅利英明",
       "finish_time": "1:26.6",
-      "margin": "1.1/2",
+      "margin": "@",
       "win_odds": 11.1,
       "popularity": 4,
       "horse_weight": 452,
@@ -242,7 +242,7 @@
       "jockey": "佐々木大",
       "trainer": "矢野英一",
       "finish_time": "1:26.7",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 38.8,
       "popularity": 10,
       "horse_weight": 468,
@@ -262,7 +262,7 @@
       "jockey": "江田照男",
       "trainer": "岩戸孝樹",
       "finish_time": "1:26.7",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 163.4,
       "popularity": 14,
       "horse_weight": 492,
@@ -282,7 +282,7 @@
       "jockey": "長浜鴻緒",
       "trainer": "黒岩陽一",
       "finish_time": "1:26.7",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 41.5,
       "popularity": 11,
       "horse_weight": 492,
@@ -302,7 +302,7 @@
       "jockey": "津村明秀",
       "trainer": "武藤善則",
       "finish_time": "1:27.3",
-      "margin": "3.1/2",
+      "margin": "@",
       "win_odds": 144.4,
       "popularity": 13,
       "horse_weight": 442,
@@ -322,7 +322,7 @@
       "jockey": "ディー",
       "trainer": "村田一誠",
       "finish_time": "1:28.6",
-      "margin": "8",
+      "margin": "@",
       "win_odds": 13.8,
       "popularity": 6,
       "horse_weight": 454,
@@ -370,10 +370,22 @@
       "popularity": 4
     },
     {
+      "bet_type": "枠連",
+      "combination": "1",
+      "payout": 12005,
+      "popularity": null
+    },
+    {
       "bet_type": "馬連",
       "combination": "5-16",
       "payout": 1510,
       "popularity": 4
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "3",
+      "payout": 6160,
+      "popularity": null
     },
     {
       "bet_type": "ワイド",
@@ -389,9 +401,21 @@
     },
     {
       "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 50010,
+      "popularity": 30
+    },
+    {
+      "bet_type": "ワイド",
       "combination": "3-5",
       "payout": 2490,
       "popularity": 32
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3",
+      "payout": 80000,
+      "popularity": null
     },
     {
       "bet_type": "馬単",
@@ -400,10 +424,28 @@
       "popularity": 13
     },
     {
+      "bet_type": "馬単",
+      "combination": "5",
+      "payout": 16000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "3-5-16",
       "payout": 7830,
       "popularity": 24
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "7",
+      "payout": 60305,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "10",
+      "payout": 60011,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -456,7 +498,8 @@
         "8": "マオノクラッシュ",
         "14": "パッションディーバ",
         "12": "ミサビスケッツ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6206,
@@ -515,7 +558,8 @@
         "8": "マオノクラッシュ",
         "14": "パッションディーバ",
         "12": "ミサビスケッツ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6207,
@@ -567,7 +611,8 @@
         "8": "マオノクラッシュ",
         "14": "パッションディーバ",
         "12": "ミサビスケッツ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6208,
@@ -619,7 +664,8 @@
         "8": "マオノクラッシュ",
         "14": "パッションディーバ",
         "12": "ミサビスケッツ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6209,
@@ -685,7 +731,8 @@
         "8": "マオノクラッシュ",
         "14": "パッションディーバ",
         "12": "ミサビスケッツ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6210,
@@ -828,7 +875,8 @@
         "8": "マオノクラッシュ",
         "14": "パッションディーバ",
         "12": "ミサビスケッツ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6211,
@@ -978,7 +1026,8 @@
         "8": "マオノクラッシュ",
         "14": "パッションディーバ",
         "12": "ミサビスケッツ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6822,
@@ -1023,7 +1072,8 @@
         "8": "マオノクラッシュ",
         "14": "パッションディーバ",
         "12": "ミサビスケッツ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6823,
@@ -1082,7 +1132,8 @@
         "8": "マオノクラッシュ",
         "14": "パッションディーバ",
         "12": "ミサビスケッツ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6824,
@@ -1134,7 +1185,8 @@
         "8": "マオノクラッシュ",
         "14": "パッションディーバ",
         "12": "ミサビスケッツ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6825,
@@ -1186,7 +1238,8 @@
         "8": "マオノクラッシュ",
         "14": "パッションディーバ",
         "12": "ミサビスケッツ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6826,
@@ -1252,7 +1305,8 @@
         "8": "マオノクラッシュ",
         "14": "パッションディーバ",
         "12": "ミサビスケッツ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6827,
@@ -1395,7 +1449,8 @@
         "8": "マオノクラッシュ",
         "14": "パッションディーバ",
         "12": "ミサビスケッツ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6828,
@@ -1545,7 +1600,8 @@
         "8": "マオノクラッシュ",
         "14": "パッションディーバ",
         "12": "ミサビスケッツ"
-      }
+      },
+      "is_provisional": false
     }
   ],
   "training_evals": {}

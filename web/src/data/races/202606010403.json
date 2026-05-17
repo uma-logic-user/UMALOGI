@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 2,
-      "horse_name": "ゴットタレント",
-      "horse_id": "2023100377",
-      "sex_age": "牡3",
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 16,
+      "horse_name": "ファイタージェット",
+      "horse_id": "2023101114",
+      "sex_age": "牡1",
       "weight_carried": 57.0,
-      "jockey": "杉原誠人",
-      "trainer": "田村康仁",
+      "jockey": "津村明秀",
+      "trainer": "林徹",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 4,
       "horse_number": 7,
       "horse_name": "ミスターキャンベラ",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 16,
-      "horse_name": "ファイタージェット",
-      "horse_id": "2023101114",
-      "sex_age": "牡1",
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 2,
+      "horse_name": "ゴットタレント",
+      "horse_id": "2023100377",
+      "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "津村明秀",
-      "trainer": "林徹",
+      "jockey": "杉原誠人",
+      "trainer": "田村康仁",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -333,12 +333,6 @@
     }
   ],
   "payouts": [
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
-    },
     {
       "bet_type": "複勝",
       "combination": "16",

@@ -4,11 +4,11 @@
   "date": "2026-04-25",
   "venue": "福島",
   "race_number": 3,
-  "distance": 2000,
-  "surface": "芝",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -42,7 +42,7 @@
       "jockey": "小崎綾也",
       "trainer": "高橋一哉",
       "finish_time": "2:00.7",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 8.2,
       "popularity": 5,
       "horse_weight": 436,
@@ -62,7 +62,7 @@
       "jockey": "丹内祐次",
       "trainer": "梅田智之",
       "finish_time": "2:00.7",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 6.6,
       "popularity": 4,
       "horse_weight": 474,
@@ -82,7 +82,7 @@
       "jockey": "石川裕紀",
       "trainer": "手塚貴久",
       "finish_time": "2:01.0",
-      "margin": "1.1/2",
+      "margin": "@",
       "win_odds": 8.4,
       "popularity": 6,
       "horse_weight": 424,
@@ -102,7 +102,7 @@
       "jockey": "富田暁",
       "trainer": "森田直行",
       "finish_time": "2:01.2",
-      "margin": "1.1/4",
+      "margin": "@",
       "win_odds": 53.7,
       "popularity": 11,
       "horse_weight": 440,
@@ -122,7 +122,7 @@
       "jockey": "斎藤新",
       "trainer": "牧浦充徳",
       "finish_time": "2:01.3",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 3.4,
       "popularity": 1,
       "horse_weight": 446,
@@ -142,7 +142,7 @@
       "jockey": "石神深道",
       "trainer": "栗田徹",
       "finish_time": "2:01.4",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 6.1,
       "popularity": 2,
       "horse_weight": 410,
@@ -162,7 +162,7 @@
       "jockey": "菊沢一樹",
       "trainer": "田村康仁",
       "finish_time": "2:01.6",
-      "margin": "1.1/4",
+      "margin": "@",
       "win_odds": 46.8,
       "popularity": 10,
       "horse_weight": 498,
@@ -182,7 +182,7 @@
       "jockey": "今村聖奈",
       "trainer": "新開幸一",
       "finish_time": "2:01.7",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 147.6,
       "popularity": 14,
       "horse_weight": 434,
@@ -202,7 +202,7 @@
       "jockey": "荻野極",
       "trainer": "友道康夫",
       "finish_time": "2:01.7",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 6.3,
       "popularity": 3,
       "horse_weight": 434,
@@ -222,7 +222,7 @@
       "jockey": "石田拓郎",
       "trainer": "伊藤大士",
       "finish_time": "2:01.8",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 28.2,
       "popularity": 8,
       "horse_weight": 458,
@@ -242,7 +242,7 @@
       "jockey": "上里直汰",
       "trainer": "田中勝春",
       "finish_time": "2:01.8",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 312.6,
       "popularity": 15,
       "horse_weight": 414,
@@ -262,7 +262,7 @@
       "jockey": "武藤雅",
       "trainer": "和田正一",
       "finish_time": "2:01.9",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 362.5,
       "popularity": 16,
       "horse_weight": 434,
@@ -282,7 +282,7 @@
       "jockey": "本田正重",
       "trainer": "田島俊明",
       "finish_time": "2:01.9",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 143.7,
       "popularity": 13,
       "horse_weight": 408,
@@ -302,7 +302,7 @@
       "jockey": "小沢大仁",
       "trainer": "高橋一哉",
       "finish_time": "2:02.1",
-      "margin": "1.1/4",
+      "margin": "@",
       "win_odds": 29.7,
       "popularity": 9,
       "horse_weight": 400,
@@ -322,7 +322,7 @@
       "jockey": "横山琉人",
       "trainer": "相沢郁",
       "finish_time": "2:02.9",
-      "margin": "5",
+      "margin": "@",
       "win_odds": 131.0,
       "popularity": 12,
       "horse_weight": 434,
@@ -376,6 +376,18 @@
       "popularity": 18
     },
     {
+      "bet_type": "馬連",
+      "combination": "3",
+      "payout": 7040,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 40000,
+      "popularity": 1
+    },
+    {
       "bet_type": "ワイド",
       "combination": "4-10",
       "payout": 1010,
@@ -400,10 +412,34 @@
       "popularity": 21
     },
     {
+      "bet_type": "馬単",
+      "combination": "4",
+      "payout": 8000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "4-8-10",
       "payout": 10310,
       "popularity": 36
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "13",
+      "payout": 2004,
+      "popularity": 100
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "12-1",
+      "payout": 70810,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "10",
+      "payout": 10010,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -456,7 +492,8 @@
         "16": "アルファリラエ",
         "6": "リリーボレア",
         "1": "オーケーグレイス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5608,
@@ -515,7 +552,8 @@
         "16": "アルファリラエ",
         "6": "リリーボレア",
         "1": "オーケーグレイス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5609,
@@ -560,7 +598,8 @@
         "16": "アルファリラエ",
         "6": "リリーボレア",
         "1": "オーケーグレイス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5610,
@@ -605,7 +644,8 @@
         "16": "アルファリラエ",
         "6": "リリーボレア",
         "1": "オーケーグレイス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5611,
@@ -657,7 +697,8 @@
         "16": "アルファリラエ",
         "6": "リリーボレア",
         "1": "オーケーグレイス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5612,
@@ -730,7 +771,8 @@
         "16": "アルファリラエ",
         "6": "リリーボレア",
         "1": "オーケーグレイス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5628,
@@ -775,7 +817,8 @@
         "16": "アルファリラエ",
         "6": "リリーボレア",
         "1": "オーケーグレイス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5629,
@@ -848,7 +891,8 @@
         "16": "アルファリラエ",
         "6": "リリーボレア",
         "1": "オーケーグレイス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5630,
@@ -893,7 +937,8 @@
         "16": "アルファリラエ",
         "6": "リリーボレア",
         "1": "オーケーグレイス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5631,
@@ -938,7 +983,8 @@
         "16": "アルファリラエ",
         "6": "リリーボレア",
         "1": "オーケーグレイス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5632,
@@ -983,7 +1029,8 @@
         "16": "アルファリラエ",
         "6": "リリーボレア",
         "1": "オーケーグレイス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5635,
@@ -1028,7 +1075,8 @@
         "16": "アルファリラエ",
         "6": "リリーボレア",
         "1": "オーケーグレイス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5636,
@@ -1178,7 +1226,8 @@
         "16": "アルファリラエ",
         "6": "リリーボレア",
         "1": "オーケーグレイス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5753,
@@ -1223,7 +1272,8 @@
         "16": "アルファリラエ",
         "6": "リリーボレア",
         "1": "オーケーグレイス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5754,
@@ -1282,7 +1332,8 @@
         "16": "アルファリラエ",
         "6": "リリーボレア",
         "1": "オーケーグレイス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5755,
@@ -1334,7 +1385,8 @@
         "16": "アルファリラエ",
         "6": "リリーボレア",
         "1": "オーケーグレイス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5756,
@@ -1386,7 +1438,8 @@
         "16": "アルファリラエ",
         "6": "リリーボレア",
         "1": "オーケーグレイス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5757,
@@ -1452,7 +1505,8 @@
         "16": "アルファリラエ",
         "6": "リリーボレア",
         "1": "オーケーグレイス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5758,
@@ -1595,7 +1649,8 @@
         "16": "アルファリラエ",
         "6": "リリーボレア",
         "1": "オーケーグレイス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5774,
@@ -1640,7 +1695,8 @@
         "16": "アルファリラエ",
         "6": "リリーボレア",
         "1": "オーケーグレイス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5775,
@@ -1713,7 +1769,8 @@
         "16": "アルファリラエ",
         "6": "リリーボレア",
         "1": "オーケーグレイス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5776,
@@ -1765,7 +1822,8 @@
         "16": "アルファリラエ",
         "6": "リリーボレア",
         "1": "オーケーグレイス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5777,
@@ -1817,7 +1875,8 @@
         "16": "アルファリラエ",
         "6": "リリーボレア",
         "1": "オーケーグレイス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5778,
@@ -1869,7 +1928,8 @@
         "16": "アルファリラエ",
         "6": "リリーボレア",
         "1": "オーケーグレイス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5781,
@@ -1928,7 +1988,8 @@
         "16": "アルファリラエ",
         "6": "リリーボレア",
         "1": "オーケーグレイス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5782,
@@ -2078,7 +2139,8 @@
         "16": "アルファリラエ",
         "6": "リリーボレア",
         "1": "オーケーグレイス"
-      }
+      },
+      "is_provisional": true
     }
   ],
   "training_evals": {}

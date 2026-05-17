@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "タガノデュード",
@@ -32,27 +32,7 @@
       "dam_sire": "ハーツクライ"
     },
     {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 7,
-      "horse_name": "フクノブルーレイク",
-      "horse_id": "2022101329",
-      "sex_age": "牡5",
-      "weight_carried": 57.0,
-      "jockey": "高杉吏麒",
-      "trainer": "竹内正洋",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ウインブライト",
-      "dam": "ブルーエクセル",
-      "dam_sire": "ロードカナロア"
-    },
-    {
-      "rank": null,
+      "rank": 2,
       "gate_number": 8,
       "horse_number": 9,
       "horse_name": "ウイントレメンデス",
@@ -70,6 +50,26 @@
       "sire": "ゴールドシップ",
       "dam": "イクスキューズ",
       "dam_sire": "ボストンハーバーBoston Harbor(米)"
+    },
+    {
+      "rank": 3,
+      "gate_number": 7,
+      "horse_number": 7,
+      "horse_name": "フクノブルーレイク",
+      "horse_id": "2022101329",
+      "sex_age": "牡5",
+      "weight_carried": 57.0,
+      "jockey": "高杉吏麒",
+      "trainer": "竹内正洋",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ウインブライト",
+      "dam": "ブルーエクセル",
+      "dam_sire": "ロードカナロア"
     },
     {
       "rank": null,
@@ -198,12 +198,6 @@
       "combination": "2",
       "payout": 310,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "9",
-      "payout": 9000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

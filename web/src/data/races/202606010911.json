@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 5,
       "horse_number": 9,
       "horse_name": "ショウヘイ",
@@ -32,7 +32,7 @@
       "dam_sire": "オルフェーヴル"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 7,
       "horse_number": 14,
       "horse_name": "ドゥラドーレス",
@@ -52,7 +52,7 @@
       "dam_sire": "ハービンジャーHarbinger(英)"
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 8,
       "horse_number": 16,
       "horse_name": "エヒト",
@@ -338,12 +338,6 @@
       "combination": "9",
       "payout": 500,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

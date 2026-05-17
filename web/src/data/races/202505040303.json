@@ -12,7 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "ラストスマイル",
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "リスレジャンデール",
@@ -41,6 +41,26 @@
       "weight_carried": 55.0,
       "jockey": "ルメール",
       "trainer": "栗田徹",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 7,
+      "horse_number": 7,
+      "horse_name": "ベアサナエチャン",
+      "horse_id": "2023106829",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "松岡正海",
+      "trainer": "杉浦宏昭",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -134,26 +154,6 @@
     {
       "rank": null,
       "gate_number": 7,
-      "horse_number": 7,
-      "horse_name": "ベアサナエチャン",
-      "horse_id": "2023106829",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "松岡正海",
-      "trainer": "杉浦宏昭",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 7,
       "horse_number": 8,
       "horse_name": "タイセイカラーズ",
       "horse_id": "2023101186",
@@ -218,12 +218,6 @@
       "combination": "1",
       "payout": 390,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "10",
-      "payout": 10000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

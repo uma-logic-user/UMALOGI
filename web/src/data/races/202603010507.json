@@ -4,11 +4,11 @@
   "date": "2026-04-25",
   "venue": "福島",
   "race_number": 7,
-  "distance": 1200,
-  "surface": "芝",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -42,7 +42,7 @@
       "jockey": "小沢大仁",
       "trainer": "渡辺薫彦",
       "finish_time": "1:08.6",
-      "margin": "2.1/2",
+      "margin": "@",
       "win_odds": 5.0,
       "popularity": 3,
       "horse_weight": 456,
@@ -62,7 +62,7 @@
       "jockey": "石田拓郎",
       "trainer": "田中勝春",
       "finish_time": "1:08.6",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 8.7,
       "popularity": 5,
       "horse_weight": 466,
@@ -82,7 +82,7 @@
       "jockey": "上里直汰",
       "trainer": "宮徹",
       "finish_time": "1:08.6",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 4.8,
       "popularity": 2,
       "horse_weight": 428,
@@ -102,7 +102,7 @@
       "jockey": "横山琉人",
       "trainer": "高橋一哉",
       "finish_time": "1:08.6",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 19.9,
       "popularity": 8,
       "horse_weight": 454,
@@ -122,7 +122,7 @@
       "jockey": "大久保友",
       "trainer": "岩戸孝樹",
       "finish_time": "1:08.9",
-      "margin": "1.1/2",
+      "margin": "@",
       "win_odds": 141.2,
       "popularity": 11,
       "horse_weight": 464,
@@ -142,7 +142,7 @@
       "jockey": "河原田菜",
       "trainer": "石橋守",
       "finish_time": "1:08.9",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 4.6,
       "popularity": 1,
       "horse_weight": 462,
@@ -162,7 +162,7 @@
       "jockey": "鷲頭虎太",
       "trainer": "萱野浩二",
       "finish_time": "1:09.2",
-      "margin": "2",
+      "margin": "@",
       "win_odds": 202.6,
       "popularity": 12,
       "horse_weight": 438,
@@ -182,7 +182,7 @@
       "jockey": "西塚洸二",
       "trainer": "佐藤吉勝",
       "finish_time": "1:09.2",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 33.9,
       "popularity": 10,
       "horse_weight": 480,
@@ -202,7 +202,7 @@
       "jockey": "小林美駒",
       "trainer": "高橋文雅",
       "finish_time": "1:09.2",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 9.6,
       "popularity": 6,
       "horse_weight": 460,
@@ -222,7 +222,7 @@
       "jockey": "和田陽希",
       "trainer": "平田修",
       "finish_time": "1:09.2",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 11.7,
       "popularity": 7,
       "horse_weight": 490,
@@ -242,7 +242,7 @@
       "jockey": "松本大輝",
       "trainer": "藤野健太",
       "finish_time": "1:09.5",
-      "margin": "1.1/2",
+      "margin": "@",
       "win_odds": 21.3,
       "popularity": 9,
       "horse_weight": 474,
@@ -296,6 +296,18 @@
       "popularity": 5
     },
     {
+      "bet_type": "馬連",
+      "combination": "1",
+      "payout": 4010,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 50000,
+      "popularity": 1
+    },
+    {
       "bet_type": "ワイド",
       "combination": "1-6",
       "payout": 600,
@@ -320,10 +332,28 @@
       "popularity": 7
     },
     {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 6000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-6-11",
       "payout": 3840,
       "popularity": 9
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "10",
+      "payout": 1401,
+      "popularity": 110
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "6",
+      "payout": 70008,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -372,7 +402,8 @@
         "8": "クレセントウイング",
         "10": "バーケンティン",
         "4": "トリプルバレル"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5873,
@@ -427,7 +458,8 @@
         "8": "クレセントウイング",
         "10": "バーケンティン",
         "4": "トリプルバレル"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5874,
@@ -475,7 +507,8 @@
         "8": "クレセントウイング",
         "10": "バーケンティン",
         "4": "トリプルバレル"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5875,
@@ -523,7 +556,8 @@
         "8": "クレセントウイング",
         "10": "バーケンティン",
         "4": "トリプルバレル"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5876,
@@ -585,7 +619,8 @@
         "8": "クレセントウイング",
         "10": "バーケンティン",
         "4": "トリプルバレル"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5878,
@@ -640,7 +675,8 @@
         "8": "クレセントウイング",
         "10": "バーケンティン",
         "4": "トリプルバレル"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5879,
@@ -779,7 +815,8 @@
         "8": "クレセントウイング",
         "10": "バーケンティン",
         "4": "トリプルバレル"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5889,
@@ -820,7 +857,8 @@
         "8": "クレセントウイング",
         "10": "バーケンティン",
         "4": "トリプルバレル"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5890,
@@ -889,7 +927,8 @@
         "8": "クレセントウイング",
         "10": "バーケンティン",
         "4": "トリプルバレル"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5891,
@@ -937,7 +976,8 @@
         "8": "クレセントウイング",
         "10": "バーケンティン",
         "4": "トリプルバレル"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5892,
@@ -985,7 +1025,8 @@
         "8": "クレセントウイング",
         "10": "バーケンティン",
         "4": "トリプルバレル"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5893,
@@ -1033,7 +1074,8 @@
         "8": "クレセントウイング",
         "10": "バーケンティン",
         "4": "トリプルバレル"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5896,
@@ -1088,7 +1130,8 @@
         "8": "クレセントウイング",
         "10": "バーケンティン",
         "4": "トリプルバレル"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5897,
@@ -1206,7 +1249,8 @@
         "8": "クレセントウイング",
         "10": "バーケンティン",
         "4": "トリプルバレル"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6796,
@@ -1247,7 +1291,8 @@
         "8": "クレセントウイング",
         "10": "バーケンティン",
         "4": "トリプルバレル"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6797,
@@ -1302,7 +1347,8 @@
         "8": "クレセントウイング",
         "10": "バーケンティン",
         "4": "トリプルバレル"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6798,
@@ -1350,7 +1396,8 @@
         "8": "クレセントウイング",
         "10": "バーケンティン",
         "4": "トリプルバレル"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6799,
@@ -1398,7 +1445,8 @@
         "8": "クレセントウイング",
         "10": "バーケンティン",
         "4": "トリプルバレル"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6800,
@@ -1460,7 +1508,8 @@
         "8": "クレセントウイング",
         "10": "バーケンティン",
         "4": "トリプルバレル"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6802,
@@ -1515,7 +1564,8 @@
         "8": "クレセントウイング",
         "10": "バーケンティン",
         "4": "トリプルバレル"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6803,
@@ -1654,7 +1704,8 @@
         "8": "クレセントウイング",
         "10": "バーケンティン",
         "4": "トリプルバレル"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6813,
@@ -1695,7 +1746,8 @@
         "8": "クレセントウイング",
         "10": "バーケンティン",
         "4": "トリプルバレル"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6814,
@@ -1764,7 +1816,8 @@
         "8": "クレセントウイング",
         "10": "バーケンティン",
         "4": "トリプルバレル"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6815,
@@ -1812,7 +1865,8 @@
         "8": "クレセントウイング",
         "10": "バーケンティン",
         "4": "トリプルバレル"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6816,
@@ -1860,7 +1914,8 @@
         "8": "クレセントウイング",
         "10": "バーケンティン",
         "4": "トリプルバレル"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6817,
@@ -1908,7 +1963,8 @@
         "8": "クレセントウイング",
         "10": "バーケンティン",
         "4": "トリプルバレル"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6820,
@@ -1963,7 +2019,8 @@
         "8": "クレセントウイング",
         "10": "バーケンティン",
         "4": "トリプルバレル"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6821,
@@ -2081,7 +2138,8 @@
         "8": "クレセントウイング",
         "10": "バーケンティン",
         "4": "トリプルバレル"
-      }
+      },
+      "is_provisional": false
     }
   ],
   "training_evals": {}

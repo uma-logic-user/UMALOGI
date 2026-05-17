@@ -72,7 +72,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 4,
       "gate_number": 3,
       "horse_number": 3,
       "horse_name": "ブエナオンダ",
@@ -92,7 +92,7 @@
       "dam_sire": "ディープインパクト"
     },
     {
-      "rank": null,
+      "rank": 5,
       "gate_number": 4,
       "horse_number": 4,
       "horse_name": "テーオーダグラス",
@@ -112,7 +112,27 @@
       "dam_sire": "ハービンジャーHarbinger(英)"
     },
     {
-      "rank": null,
+      "rank": 6,
+      "gate_number": 8,
+      "horse_number": 8,
+      "horse_name": "エイムフォーエース",
+      "horse_id": "2021104167",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "団野大成",
+      "trainer": "武井亮",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "サトノアラジン",
+      "dam": "ラストメッセージ",
+      "dam_sire": "ジャングルポケット"
+    },
+    {
+      "rank": 7,
       "gate_number": 5,
       "horse_number": 5,
       "horse_name": "シルバープリペット",
@@ -132,7 +152,7 @@
       "dam_sire": "エイシンフラッシュ"
     },
     {
-      "rank": null,
+      "rank": 8,
       "gate_number": 7,
       "horse_number": 7,
       "horse_name": "デルマアートマン",
@@ -150,26 +170,6 @@
       "sire": "オルフェーヴル",
       "dam": "オータムフラワーAutumn Flower(米)",
       "dam_sire": "Flower Alley"
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 8,
-      "horse_name": "エイムフォーエース",
-      "horse_id": "2021104167",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "団野大成",
-      "trainer": "武井亮",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "サトノアラジン",
-      "dam": "ラストメッセージ",
-      "dam_sire": "ジャングルポケット"
     }
   ],
   "payouts": [

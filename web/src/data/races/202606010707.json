@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "ヴァリディシームス",
-      "horse_id": "2022105769",
-      "sex_age": "牡4",
+      "rank": 1,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "フィーリウス",
+      "horse_id": "2022105175",
+      "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "戸崎圭太",
-      "trainer": "中内田充",
+      "jockey": "丹内祐次",
+      "trainer": "手塚貴久",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 2,
       "horse_number": 4,
       "horse_name": "オストラヴァ",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 5,
-      "horse_name": "フィーリウス",
-      "horse_id": "2022105175",
-      "sex_age": "牡3",
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "ヴァリディシームス",
+      "horse_id": "2022105769",
+      "sex_age": "牡4",
       "weight_carried": 57.0,
-      "jockey": "丹内祐次",
-      "trainer": "手塚貴久",
+      "jockey": "戸崎圭太",
+      "trainer": "中内田充",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "5",
       "payout": 1540,
       "popularity": 5
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

@@ -12,7 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 6,
+      "horse_number": 12,
+      "horse_name": "サマーゲール",
+      "horse_id": "2023100613",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "キング",
+      "trainer": "加藤士津",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
       "gate_number": 1,
       "horse_number": 2,
       "horse_name": "トウカイレオ",
@@ -32,7 +52,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 6,
       "horse_number": 11,
       "horse_name": "マサノピンクレディ",
@@ -41,26 +61,6 @@
       "weight_carried": 55.0,
       "jockey": "大野拓弥",
       "trainer": "小笠倫弘",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 12,
-      "horse_name": "サマーゲール",
-      "horse_id": "2023100613",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "キング",
-      "trainer": "加藤士津",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "12",
       "payout": 210,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

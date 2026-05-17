@@ -12,7 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "マカナ",
@@ -21,6 +21,26 @@
       "weight_carried": 54.0,
       "jockey": "菅原明良",
       "trainer": "伊藤大士",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 1,
+      "gate_number": 4,
+      "horse_number": 5,
+      "horse_name": "キングノジョー",
+      "horse_id": "2022104959",
+      "sex_age": "牡3",
+      "weight_carried": 56.0,
+      "jockey": "プーシャ",
+      "trainer": "田中博康",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -90,26 +110,6 @@
       "sire": "アドマイヤムーン",
       "dam": "オーシャンウェイOceanway(米)",
       "dam_sire": "Street Cry(愛)"
-    },
-    {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 5,
-      "horse_name": "キングノジョー",
-      "horse_id": "2022104959",
-      "sex_age": "牡3",
-      "weight_carried": 56.0,
-      "jockey": "プーシャ",
-      "trainer": "田中博康",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
     },
     {
       "rank": null,
@@ -284,12 +284,6 @@
       "combination": "5",
       "payout": 410,
       "popularity": 4
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "13",
-      "payout": 13000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "ヴィレム",
-      "horse_id": "2021106738",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "キング",
-      "trainer": "藤原英昭",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "キズナ",
-      "dam": "ポウリナズラヴPaulina's Love(米)",
-      "dam_sire": "Mizzen Mast"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 4,
       "horse_number": 4,
       "horse_name": "ダノンシーマ",
@@ -52,7 +32,27 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "ヴィレム",
+      "horse_id": "2021106738",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "キング",
+      "trainer": "藤原英昭",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "キズナ",
+      "dam": "ポウリナズラヴPaulina's Love(米)",
+      "dam_sire": "Mizzen Mast"
+    },
+    {
+      "rank": 3,
       "gate_number": 6,
       "horse_number": 6,
       "horse_name": "ウィクトルウェルス",
@@ -218,12 +218,6 @@
       "combination": "4",
       "payout": 500,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "10",
-      "payout": 10000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

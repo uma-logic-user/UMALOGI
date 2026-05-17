@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 4,
-      "horse_name": "グリオンヴール",
-      "horse_id": "2023106883",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "ルメール",
-      "trainer": "宮田敬介",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 5,
       "horse_number": 10,
       "horse_name": "トラスコンガーデン",
@@ -52,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 8,
       "horse_number": 16,
       "horse_name": "グロリアスマーチ",
@@ -61,6 +41,26 @@
       "weight_carried": 57.0,
       "jockey": "佐々木大",
       "trainer": "須貝尚介",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 4,
+      "horse_name": "グリオンヴール",
+      "horse_id": "2023106883",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "ルメール",
+      "trainer": "宮田敬介",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "10",
       "payout": 17520,
       "popularity": 12
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

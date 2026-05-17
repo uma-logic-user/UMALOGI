@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "アトモス",
-      "horse_id": "2023100145",
-      "sex_age": "牡4",
+      "rank": 1,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "トリグラフヒル",
+      "horse_id": "2023107131",
+      "sex_age": "牡1",
       "weight_carried": 57.0,
-      "jockey": "角田大和",
-      "trainer": "角田晃一",
+      "jockey": "松山弘平",
+      "trainer": "大久保龍",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 4,
       "horse_number": 4,
       "horse_name": "ショコラプリン",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "トリグラフヒル",
-      "horse_id": "2023107131",
-      "sex_age": "牡1",
+      "rank": 3,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "アトモス",
+      "horse_id": "2023100145",
+      "sex_age": "牡4",
       "weight_carried": 57.0,
-      "jockey": "松山弘平",
-      "trainer": "大久保龍",
+      "jockey": "角田大和",
+      "trainer": "角田晃一",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -178,12 +178,6 @@
       "combination": "5",
       "payout": 220,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "8",
-      "payout": 8000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

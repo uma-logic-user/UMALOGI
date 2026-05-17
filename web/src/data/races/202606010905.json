@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 4,
-      "horse_name": "サトノスターライト",
-      "horse_id": "2023107010",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "大野拓弥",
-      "trainer": "森一誠",
+      "rank": 1,
+      "gate_number": 6,
+      "horse_number": 12,
+      "horse_name": "ヤマニンヘルシェ",
+      "horse_id": "2023104361",
+      "sex_age": "牡7",
+      "weight_carried": 57.0,
+      "jockey": "石川裕紀",
+      "trainer": "辻哲英",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 3,
       "horse_number": 6,
       "horse_name": "ミズノミヤコ",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 12,
-      "horse_name": "ヤマニンヘルシェ",
-      "horse_id": "2023104361",
-      "sex_age": "牡7",
-      "weight_carried": 57.0,
-      "jockey": "石川裕紀",
-      "trainer": "辻哲英",
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 4,
+      "horse_name": "サトノスターライト",
+      "horse_id": "2023107010",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "大野拓弥",
+      "trainer": "森一誠",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -378,12 +378,6 @@
       "combination": "12",
       "payout": 19820,
       "popularity": 16
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "18",
-      "payout": 18000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

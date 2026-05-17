@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "オーブフレッシュ",
-      "horse_id": "2023100990",
-      "sex_age": "牝7",
+      "rank": 1,
+      "gate_number": 6,
+      "horse_number": 8,
+      "horse_name": "シャフメラン",
+      "horse_id": "2023103568",
+      "sex_age": "牝1",
       "weight_carried": 55.0,
-      "jockey": "西村淳也",
-      "trainer": "辻野泰之",
+      "jockey": "川田将雅",
+      "trainer": "新谷功一",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 5,
       "horse_number": 5,
       "horse_name": "リーチグローリー",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 8,
-      "horse_name": "シャフメラン",
-      "horse_id": "2023103568",
-      "sex_age": "牝1",
+      "rank": 3,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "オーブフレッシュ",
+      "horse_id": "2023100990",
+      "sex_age": "牝7",
       "weight_carried": 55.0,
-      "jockey": "川田将雅",
-      "trainer": "新谷功一",
+      "jockey": "西村淳也",
+      "trainer": "辻野泰之",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -258,12 +258,6 @@
       "combination": "8",
       "payout": 310,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "12",
-      "payout": 12000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

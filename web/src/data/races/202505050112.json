@@ -12,7 +12,27 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "ダノンエンブレム",
+      "horse_id": "2022104893",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "ルメール",
+      "trainer": "宮田敬介",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "アセンブリールーム",
@@ -32,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "ダノンエンブレム",
-      "horse_id": "2022104893",
+      "rank": 3,
+      "gate_number": 4,
+      "horse_number": 6,
+      "horse_name": "シャンクス",
+      "horse_id": "2022106950",
       "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "ルメール",
-      "trainer": "宮田敬介",
+      "jockey": "黛弘人",
+      "trainer": "森一誠",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -110,26 +130,6 @@
       "sire": "ダイワメジャー",
       "dam": "タイキキララ",
       "dam_sire": "キングヘイロー"
-    },
-    {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 6,
-      "horse_name": "シャンクス",
-      "horse_id": "2022106950",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "黛弘人",
-      "trainer": "森一誠",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
     },
     {
       "rank": null,
@@ -298,12 +298,6 @@
       "combination": "2",
       "payout": 240,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "14",
-      "payout": 14000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

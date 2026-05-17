@@ -12,7 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 9,
+      "horse_name": "キリオス",
+      "horse_id": "2023103884",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "松山弘平",
+      "trainer": "庄野靖志",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
       "gate_number": 6,
       "horse_number": 6,
       "horse_name": "カセノコンコルド",
@@ -32,7 +52,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 7,
       "horse_number": 8,
       "horse_name": "タイセイルビー",
@@ -41,26 +61,6 @@
       "weight_carried": 55.0,
       "jockey": "三浦皇成",
       "trainer": "千葉直人",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 9,
-      "horse_name": "キリオス",
-      "horse_id": "2023103884",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "松山弘平",
-      "trainer": "庄野靖志",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -218,12 +218,6 @@
       "combination": "9",
       "payout": 110,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "10",
-      "payout": 10000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

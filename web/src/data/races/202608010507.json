@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 12,
-      "horse_name": "イーブンベター",
-      "horse_id": "2022106540",
-      "sex_age": "牝3",
+      "rank": 1,
+      "gate_number": 7,
+      "horse_number": 14,
+      "horse_name": "メイケイレイン",
+      "horse_id": "2022101043",
+      "sex_age": "牡4",
       "weight_carried": 55.0,
-      "jockey": "国分恭介",
-      "trainer": "牧浦充徳",
+      "jockey": "柴田裕一",
+      "trainer": "中竹和也",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 7,
       "horse_number": 13,
       "horse_name": "エイシンマールス",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 14,
-      "horse_name": "メイケイレイン",
-      "horse_id": "2022101043",
-      "sex_age": "牡4",
+      "rank": 3,
+      "gate_number": 6,
+      "horse_number": 12,
+      "horse_name": "イーブンベター",
+      "horse_id": "2022106540",
+      "sex_age": "牝3",
       "weight_carried": 55.0,
-      "jockey": "柴田裕一",
-      "trainer": "中竹和也",
+      "jockey": "国分恭介",
+      "trainer": "牧浦充徳",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "14",
       "payout": 730,
       "popularity": 4
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

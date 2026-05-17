@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 8,
-      "horse_name": "ショーダンサー",
-      "horse_id": "2022105885",
-      "sex_age": "牡5",
-      "weight_carried": 57.0,
-      "jockey": "国分優作",
-      "trainer": "大根田裕",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 6,
       "horse_number": 12,
       "horse_name": "バッケンレコード",
@@ -52,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 7,
       "horse_number": 13,
       "horse_name": "マイティマイティー",
@@ -70,6 +50,26 @@
       "sire": "ニューイヤーズデイ",
       "dam": "アップトゥユー",
       "dam_sire": "サウスヴィグラス"
+    },
+    {
+      "rank": 3,
+      "gate_number": 4,
+      "horse_number": 8,
+      "horse_name": "ショーダンサー",
+      "horse_id": "2022105885",
+      "sex_age": "牡5",
+      "weight_carried": 57.0,
+      "jockey": "国分優作",
+      "trainer": "大根田裕",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -338,12 +338,6 @@
       "combination": "12",
       "payout": 340,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

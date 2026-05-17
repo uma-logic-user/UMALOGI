@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "ミッキーマドンナ",
-      "horse_id": "2022105078",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "キング",
-      "trainer": "堀宣行",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 2,
       "horse_number": 4,
       "horse_name": "シャンソンドール",
@@ -52,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 5,
       "horse_number": 9,
       "horse_name": "カザンラク",
@@ -61,6 +41,26 @@
       "weight_carried": 57.0,
       "jockey": "戸崎圭太",
       "trainer": "嘉藤貴行",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "ミッキーマドンナ",
+      "horse_id": "2022105078",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "キング",
+      "trainer": "堀宣行",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "4",
       "payout": 240,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

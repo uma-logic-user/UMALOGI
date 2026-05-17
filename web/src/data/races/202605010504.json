@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "レウコテア",
-      "horse_id": "2023103787",
-      "sex_age": "牝7",
-      "weight_carried": 55.0,
-      "jockey": "津村明秀",
-      "trainer": "西園翔太",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 6,
       "horse_number": 11,
       "horse_name": "ノースブルースカイ",
@@ -52,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 7,
       "horse_number": 14,
       "horse_name": "ヴィスクレス",
@@ -61,6 +41,26 @@
       "weight_carried": 57.0,
       "jockey": "岩田康誠",
       "trainer": "矢嶋大樹",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "レウコテア",
+      "horse_id": "2023103787",
+      "sex_age": "牝7",
+      "weight_carried": 55.0,
+      "jockey": "津村明秀",
+      "trainer": "西園翔太",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "11",
       "payout": 660,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 15000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

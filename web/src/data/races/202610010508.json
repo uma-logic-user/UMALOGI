@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "グレイスフルマーチ",
-      "horse_id": "2022101044",
-      "sex_age": "牡1",
-      "weight_carried": 57.0,
-      "jockey": "丹内祐次",
-      "trainer": "中村直也",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 5,
       "horse_number": 6,
       "horse_name": "キングベルベット",
@@ -52,7 +32,7 @@
       "dam_sire": "クロフネ"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 8,
       "horse_number": 12,
       "horse_name": "ローズマイスター",
@@ -61,6 +41,26 @@
       "weight_carried": 54.0,
       "jockey": "小林美駒",
       "trainer": "黒岩陽一",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "グレイスフルマーチ",
+      "horse_id": "2022101044",
+      "sex_age": "牡1",
+      "weight_carried": 57.0,
+      "jockey": "丹内祐次",
+      "trainer": "中村直也",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -258,12 +258,6 @@
       "combination": "6",
       "payout": 1130,
       "popularity": 5
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "12",
-      "payout": 12000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

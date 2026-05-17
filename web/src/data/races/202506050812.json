@@ -12,6 +12,26 @@
   "year": "2025",
   "results": [
     {
+      "rank": 1,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "ジョイフルニュース",
+      "horse_id": "2022105369",
+      "sex_age": "牝3",
+      "weight_carried": 54.0,
+      "jockey": "佐々木大",
+      "trainer": "大竹正博",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -101,26 +121,6 @@
       "weight_carried": 54.0,
       "jockey": "北村友一",
       "trainer": "吉岡辰弥",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 6,
-      "horse_name": "ジョイフルニュース",
-      "horse_id": "2022105369",
-      "sex_age": "牝3",
-      "weight_carried": 54.0,
-      "jockey": "佐々木大",
-      "trainer": "大竹正博",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "6",
       "payout": 260,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "コルテオソレイユ",
-      "horse_id": "2023105084",
-      "sex_age": "牡7",
-      "weight_carried": 57.0,
-      "jockey": "浜中俊",
-      "trainer": "佐藤悠太",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ウインブライト",
-      "dam": "ファンシャン",
-      "dam_sire": "トーセンラー"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 7,
       "horse_number": 8,
       "horse_name": "テーオーアルアイン",
@@ -52,7 +32,27 @@
       "dam_sire": "Siyouni"
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "コルテオソレイユ",
+      "horse_id": "2023105084",
+      "sex_age": "牡7",
+      "weight_carried": 57.0,
+      "jockey": "浜中俊",
+      "trainer": "佐藤悠太",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ウインブライト",
+      "dam": "ファンシャン",
+      "dam_sire": "トーセンラー"
+    },
+    {
+      "rank": 3,
       "gate_number": 8,
       "horse_number": 10,
       "horse_name": "ブルースカイブルー",
@@ -218,12 +218,6 @@
       "combination": "8",
       "payout": 1750,
       "popularity": 8
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "10",
-      "payout": 10000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

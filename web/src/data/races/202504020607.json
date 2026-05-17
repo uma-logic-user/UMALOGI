@@ -12,7 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "ドンインザムード",
@@ -32,7 +32,7 @@
       "dam_sire": "アグネスタキオン"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "ルヴァンユニベール",
@@ -41,6 +41,26 @@
       "weight_carried": 57.0,
       "jockey": "内田博幸",
       "trainer": "北出成人",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "ヒルノハンブルク",
+      "horse_id": "2022103614",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "石橋脩",
+      "trainer": "武英智",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -213,26 +233,6 @@
     },
     {
       "rank": null,
-      "gate_number": 6,
-      "horse_number": 11,
-      "horse_name": "ヒルノハンブルク",
-      "horse_id": "2022103614",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "石橋脩",
-      "trainer": "武英智",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
       "gate_number": 7,
       "horse_number": 12,
       "horse_name": "トリポリタニア",
@@ -318,12 +318,6 @@
       "combination": "1",
       "payout": 890,
       "popularity": 5
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "15",
-      "payout": 15000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

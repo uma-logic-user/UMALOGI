@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 3,
       "horse_number": 3,
       "horse_name": "クラップサンダー",
@@ -32,27 +32,7 @@
       "dam_sire": "キングカメハメハ"
     },
     {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "スコラーリ",
-      "horse_id": "2019100718",
-      "sex_age": "牡1",
-      "weight_carried": 60.0,
-      "jockey": "伴啓太",
-      "trainer": "萩原清",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 2,
       "gate_number": 5,
       "horse_number": 6,
       "horse_name": "テーオーリカード",
@@ -70,6 +50,26 @@
       "sire": "パイロPyro(米)",
       "dam": "ナナイロボタン",
       "dam_sire": "ネオユニヴァース"
+    },
+    {
+      "rank": 3,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "スコラーリ",
+      "horse_id": "2019100718",
+      "sex_age": "牡1",
+      "weight_carried": 60.0,
+      "jockey": "伴啓太",
+      "trainer": "萩原清",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -258,12 +258,6 @@
       "combination": "3",
       "payout": 1420,
       "popularity": 6
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "12",
-      "payout": 12000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

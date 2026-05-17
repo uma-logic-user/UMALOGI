@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 2,
-      "horse_name": "ビヨンドザヴァレー",
-      "horse_id": "2020103099",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "菱田裕二",
-      "trainer": "橋口慎介",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "イスラボニータ",
-      "dam": "リリーオブザヴァレーLily of the Valley(仏)",
-      "dam_sire": "Galileo(愛)"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 2,
       "horse_number": 3,
       "horse_name": "エセルフリーダ",
@@ -52,7 +32,27 @@
       "dam_sire": "ハービンジャーHarbinger(英)"
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 1,
+      "horse_number": 2,
+      "horse_name": "ビヨンドザヴァレー",
+      "horse_id": "2020103099",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "菱田裕二",
+      "trainer": "橋口慎介",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "イスラボニータ",
+      "dam": "リリーオブザヴァレーLily of the Valley(仏)",
+      "dam_sire": "Galileo(愛)"
+    },
+    {
+      "rank": 3,
       "gate_number": 2,
       "horse_number": 4,
       "horse_name": "パラディレーヌ",
@@ -338,12 +338,6 @@
       "combination": "3",
       "payout": 1530,
       "popularity": 6
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

@@ -4,11 +4,11 @@
   "date": "2026-04-11",
   "venue": "福島",
   "race_number": 11,
-  "distance": 1700,
-  "surface": "ダート",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -46,7 +46,7 @@
       "jockey": "丸山元気",
       "trainer": "渡辺薫彦",
       "finish_time": "1:43.6",
-      "margin": "1.1/4",
+      "margin": "@",
       "win_odds": 16.3,
       "popularity": 7,
       "horse_weight": 482,
@@ -70,7 +70,7 @@
       "jockey": "小崎綾也",
       "trainer": "野中賢二",
       "finish_time": "1:44.1",
-      "margin": "3",
+      "margin": "@",
       "win_odds": 6.7,
       "popularity": 3,
       "horse_weight": 464,
@@ -94,7 +94,7 @@
       "jockey": "田口貫太",
       "trainer": "西園翔太",
       "finish_time": "1:44.1",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 9.0,
       "popularity": 6,
       "horse_weight": 510,
@@ -118,7 +118,7 @@
       "jockey": "菊沢一樹",
       "trainer": "栗田徹",
       "finish_time": "1:44.5",
-      "margin": "2.1/2",
+      "margin": "@",
       "win_odds": 5.6,
       "popularity": 2,
       "horse_weight": 516,
@@ -142,7 +142,7 @@
       "jockey": "秋山稔樹",
       "trainer": "高橋義忠",
       "finish_time": "1:44.6",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 27.3,
       "popularity": 10,
       "horse_weight": 524,
@@ -166,7 +166,7 @@
       "jockey": "富田暁",
       "trainer": "東田明士",
       "finish_time": "1:44.6",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 44.4,
       "popularity": 12,
       "horse_weight": 472,
@@ -190,7 +190,7 @@
       "jockey": "松若風馬",
       "trainer": "奥村豊",
       "finish_time": "1:44.7",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 3.9,
       "popularity": 1,
       "horse_weight": 516,
@@ -214,7 +214,7 @@
       "jockey": "丹内祐次",
       "trainer": "大久保龍",
       "finish_time": "1:44.8",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 6.9,
       "popularity": 4,
       "horse_weight": 520,
@@ -238,7 +238,7 @@
       "jockey": "中井裕二",
       "trainer": "森秀行",
       "finish_time": "1:45.2",
-      "margin": "2.1/2",
+      "margin": "@",
       "win_odds": 99.6,
       "popularity": 15,
       "horse_weight": 510,
@@ -262,7 +262,7 @@
       "jockey": "川又賢治",
       "trainer": "吉村圭司",
       "finish_time": "1:45.4",
-      "margin": "1.1/2",
+      "margin": "@",
       "win_odds": 90.2,
       "popularity": 14,
       "horse_weight": 456,
@@ -286,7 +286,7 @@
       "jockey": "松岡正海",
       "trainer": "牧浦充徳",
       "finish_time": "1:46.2",
-      "margin": "5",
+      "margin": "@",
       "win_odds": 47.5,
       "popularity": 13,
       "horse_weight": 512,
@@ -310,7 +310,7 @@
       "jockey": "高倉稜",
       "trainer": "武英智",
       "finish_time": "1:46.2",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 21.4,
       "popularity": 9,
       "horse_weight": 490,
@@ -334,7 +334,7 @@
       "jockey": "古川吉洋",
       "trainer": "大根田裕",
       "finish_time": "1:46.3",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 20.5,
       "popularity": 8,
       "horse_weight": 460,
@@ -358,7 +358,7 @@
       "jockey": "黛弘人",
       "trainer": "本田優",
       "finish_time": "1:46.9",
-      "margin": "3.1/2",
+      "margin": "@",
       "win_odds": 39.2,
       "popularity": 11,
       "horse_weight": 492,
@@ -416,10 +416,28 @@
       "popularity": 21
     },
     {
+      "bet_type": "馬連",
+      "combination": "2",
+      "payout": 5150,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 80000,
+      "popularity": 6
+    },
+    {
       "bet_type": "ワイド",
       "combination": "1-11",
       "payout": 900,
       "popularity": 8
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "5",
+      "payout": 30081,
+      "popularity": 10
     },
     {
       "bet_type": "ワイド",
@@ -440,10 +458,34 @@
       "popularity": 46
     },
     {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 15000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-11-15",
       "payout": 14120,
       "popularity": 46
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "9",
+      "payout": 811,
+      "popularity": 150
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2",
+      "payout": 30111,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "16",
+      "payout": 80019,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -502,7 +544,8 @@
         "4": "ペプチドソレイユ",
         "14": "レアンダー",
         "12": "ダンツエラン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1844,
@@ -595,7 +638,8 @@
         "4": "ペプチドソレイユ",
         "14": "レアンダー",
         "12": "ダンツエラン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1845,
@@ -646,7 +690,8 @@
         "4": "ペプチドソレイユ",
         "14": "レアンダー",
         "12": "ダンツエラン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1846,
@@ -697,7 +742,8 @@
         "4": "ペプチドソレイユ",
         "14": "レアンダー",
         "12": "ダンツエラン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1847,
@@ -755,7 +801,8 @@
         "4": "ペプチドソレイユ",
         "14": "レアンダー",
         "12": "ダンツエラン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1848,
@@ -820,7 +867,8 @@
         "4": "ペプチドソレイユ",
         "14": "レアンダー",
         "12": "ダンツエラン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1849,
@@ -899,7 +947,8 @@
         "4": "ペプチドソレイユ",
         "14": "レアンダー",
         "12": "ダンツエラン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1851,
@@ -950,7 +999,8 @@
         "4": "ペプチドソレイユ",
         "14": "レアンダー",
         "12": "ダンツエラン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1852,
@@ -1036,7 +1086,8 @@
         "4": "ペプチドソレイユ",
         "14": "レアンダー",
         "12": "ダンツエラン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1853,
@@ -1087,7 +1138,8 @@
         "4": "ペプチドソレイユ",
         "14": "レアンダー",
         "12": "ダンツエラン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1854,
@@ -1138,7 +1190,8 @@
         "4": "ペプチドソレイユ",
         "14": "レアンダー",
         "12": "ダンツエラン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1855,
@@ -1189,7 +1242,8 @@
         "4": "ペプチドソレイユ",
         "14": "レアンダー",
         "12": "ダンツエラン"
-      }
+      },
+      "is_provisional": true
     }
   ],
   "training_evals": {

@@ -12,7 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 12,
+      "horse_name": "カエルム",
+      "horse_id": "2021105160",
+      "sex_age": "牡3",
+      "weight_carried": 56.0,
+      "jockey": "横山和生",
+      "trainer": "安田翔伍",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ブラックタイド",
+      "dam": "ハウオリ",
+      "dam_sire": "キングカメハメハ"
+    },
+    {
+      "rank": 2,
       "gate_number": 4,
       "horse_number": 5,
       "horse_name": "サラトガチップス",
@@ -32,7 +52,7 @@
       "dam_sire": "マンハッタンカフェ"
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 6,
       "horse_number": 8,
       "horse_name": "ピックデムッシュ",
@@ -50,26 +70,6 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 12,
-      "horse_name": "カエルム",
-      "horse_id": "2021105160",
-      "sex_age": "牡3",
-      "weight_carried": 56.0,
-      "jockey": "横山和生",
-      "trainer": "安田翔伍",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ブラックタイド",
-      "dam": "ハウオリ",
-      "dam_sire": "キングカメハメハ"
     },
     {
       "rank": null,
@@ -278,12 +278,6 @@
       "combination": "12",
       "payout": 2120,
       "popularity": 6
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "13",
-      "payout": 13000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

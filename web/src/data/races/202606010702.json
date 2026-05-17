@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "タートルインメイ",
-      "horse_id": "2023104274",
-      "sex_age": "牝5",
-      "weight_carried": 55.0,
-      "jockey": "松岡正海",
-      "trainer": "奥平雅士",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 3,
       "horse_number": 6,
       "horse_name": "デルマホダカ",
@@ -52,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 4,
       "horse_number": 7,
       "horse_name": "サラサチャチャチャ",
@@ -61,6 +41,26 @@
       "weight_carried": 55.0,
       "jockey": "江田照男",
       "trainer": "田中剛",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "タートルインメイ",
+      "horse_id": "2023104274",
+      "sex_age": "牝5",
+      "weight_carried": 55.0,
+      "jockey": "松岡正海",
+      "trainer": "奥平雅士",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "6",
       "payout": 1390,
       "popularity": 7
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

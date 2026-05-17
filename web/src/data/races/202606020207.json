@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 7,
       "horse_number": 10,
       "horse_name": "ロデオドライブ",
@@ -32,27 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 11,
-      "horse_name": "マーゴットブロー",
-      "horse_id": "2023105356",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "荻野極",
-      "trainer": "伊坂重信",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 2,
       "gate_number": 8,
       "horse_number": 12,
       "horse_name": "スペルーチェ",
@@ -70,6 +50,26 @@
       "sire": "レイデオロ",
       "dam": "レーヴディソール",
       "dam_sire": "アグネスタキオン"
+    },
+    {
+      "rank": 3,
+      "gate_number": 8,
+      "horse_number": 11,
+      "horse_name": "マーゴットブロー",
+      "horse_id": "2023105356",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "荻野極",
+      "trainer": "伊坂重信",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -258,12 +258,6 @@
       "combination": "10",
       "payout": 280,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "12",
-      "payout": 12000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

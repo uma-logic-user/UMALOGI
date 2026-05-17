@@ -4,67 +4,41 @@
   "date": "2026-05-03",
   "venue": "東京",
   "race_number": 4,
-  "distance": 1600,
-  "surface": "芝",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "曇",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
-      "rank": 1,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "モントゥリエ",
       "horse_id": "2023105650",
-      "sex_age": "牝1",
+      "sex_age": "牝3",
       "weight_carried": 55.0,
-      "jockey": "田辺裕信",
-      "trainer": "中舘英二",
-      "finish_time": "1:34.8",
-      "margin": "@",
-      "win_odds": 23.0,
-      "popularity": 6,
+      "jockey": "田辺",
+      "trainer": "美浦中舘",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
       "horse_weight": 440,
       "horse_weight_diff": -2,
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.0324,
-      "ev_score": 0.3792,
+      "honmei_score": 0.1028,
+      "ev_score": 0.0,
       "kelly_fraction": 0.0,
-      "manji_ev": 0.0639,
-      "odds_vs_morning": 1.0,
+      "manji_ev": 2.4327,
+      "odds_vs_morning": null,
       "odds_velocity": null
     },
     {
-      "rank": 2,
-      "gate_number": 8,
-      "horse_number": 17,
-      "horse_name": "レヴェランジェ",
-      "horse_id": "2023103694",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "佐々木大",
-      "trainer": "鈴木慎太",
-      "finish_time": "1:35.1",
-      "margin": "1.3/4",
-      "win_odds": 6.1,
-      "popularity": 3,
-      "horse_weight": 470,
-      "horse_weight_diff": 18,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0891,
-      "ev_score": 0.8736,
-      "kelly_fraction": 0.0,
-      "manji_ev": 2.1066,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 3,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 2,
       "horse_name": "ダイヤテソーロ",
@@ -72,411 +46,437 @@
       "sex_age": "牝3",
       "weight_carried": 55.0,
       "jockey": "石橋脩",
-      "trainer": "牧光二",
-      "finish_time": "1:35.2",
-      "margin": "1/2",
-      "win_odds": 27.3,
-      "popularity": 8,
+      "trainer": "美浦牧",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
       "horse_weight": 440,
       "horse_weight_diff": -2,
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.043,
-      "ev_score": 1.0968,
-      "kelly_fraction": 0.0004,
-      "manji_ev": 0.0,
-      "odds_vs_morning": 1.0,
+      "honmei_score": 0.1716,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 2.1904,
+      "odds_vs_morning": null,
       "odds_velocity": null
     },
     {
-      "rank": 4,
+      "rank": null,
       "gate_number": 2,
       "horse_number": 3,
       "horse_name": "フリーヤ",
       "horse_id": "2023105849",
-      "sex_age": "牝4",
+      "sex_age": "牝3",
       "weight_carried": 55.0,
-      "jockey": "横山武史",
-      "trainer": "鈴木伸尋",
-      "finish_time": "1:35.4",
-      "margin": "1.1/4",
-      "win_odds": 2.0,
-      "popularity": 1,
+      "jockey": "横山武",
+      "trainer": "美浦鈴木伸",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
       "horse_weight": 460,
       "horse_weight_diff": -4,
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.1313,
-      "ev_score": 0.3151,
+      "honmei_score": 0.1478,
+      "ev_score": 0.0,
       "kelly_fraction": 0.0,
-      "manji_ev": 0.3911,
-      "odds_vs_morning": 1.0,
+      "manji_ev": 1.8967,
+      "odds_vs_morning": null,
       "odds_velocity": null
     },
     {
-      "rank": 5,
-      "gate_number": 3,
-      "horse_number": 6,
-      "horse_name": "ベアサナエチャン",
-      "horse_id": "2023106829",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "大野拓弥",
-      "trainer": "杉浦宏昭",
-      "finish_time": "1:35.5",
-      "margin": "3/4",
-      "win_odds": 4.7,
-      "popularity": 2,
-      "horse_weight": 446,
-      "horse_weight_diff": 10,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.1021,
-      "ev_score": 0.8063,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.0,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 6,
-      "gate_number": 4,
-      "horse_number": 8,
-      "horse_name": "カーブドフェザー",
-      "horse_id": "2023107003",
-      "sex_age": "牝4",
-      "weight_carried": 55.0,
-      "jockey": "団野大成",
-      "trainer": "蛯名正義",
-      "finish_time": "1:35.6",
-      "margin": "クビ",
-      "win_odds": 13.9,
-      "popularity": 5,
-      "horse_weight": 440,
-      "horse_weight_diff": -4,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.043,
-      "ev_score": 0.4688,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.4951,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 7,
-      "gate_number": 6,
-      "horse_number": 12,
-      "horse_name": "ビップマリク",
-      "horse_id": "2023100161",
-      "sex_age": "騸4",
-      "weight_carried": 57.0,
-      "jockey": "吉田豊",
-      "trainer": "高柳瑞樹",
-      "finish_time": "1:35.7",
-      "margin": "3/4",
-      "win_odds": 13.8,
-      "popularity": 4,
-      "horse_weight": 478,
-      "horse_weight_diff": 0,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0258,
-      "ev_score": 0.3943,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.0,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 8,
-      "gate_number": 8,
-      "horse_number": 18,
-      "horse_name": "アームアンフルール",
-      "horse_id": "2023103369",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "木幡初也",
-      "trainer": "本間忍",
-      "finish_time": "1:35.9",
-      "margin": "1.1/2",
-      "win_odds": 94.9,
-      "popularity": 13,
-      "horse_weight": 464,
-      "horse_weight_diff": 2,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0437,
-      "ev_score": 1.3979,
-      "kelly_fraction": 0.0013,
-      "manji_ev": 0.0,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 9,
-      "gate_number": 6,
-      "horse_number": 11,
-      "horse_name": "ブルージンジャー",
-      "horse_id": "2023107200",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "高杉吏麒",
-      "trainer": "矢嶋大樹",
-      "finish_time": "1:36.0",
-      "margin": "1/2",
-      "win_odds": 46.0,
-      "popularity": 11,
-      "horse_weight": 464,
-      "horse_weight_diff": 0,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.043,
-      "ev_score": 0.8559,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.3481,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 10,
-      "gate_number": 5,
-      "horse_number": 9,
-      "horse_name": "エルアン",
-      "horse_id": "2023100787",
-      "sex_age": "牡1",
-      "weight_carried": 55.0,
-      "jockey": "長浜鴻緒",
-      "trainer": "浅利英明",
-      "finish_time": "1:36.0",
-      "margin": "クビ",
-      "win_odds": 34.0,
-      "popularity": 9,
-      "horse_weight": 448,
-      "horse_weight_diff": 0,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.1313,
-      "ev_score": 3.4656,
-      "kelly_fraction": 0.0097,
-      "manji_ev": 1.6187,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 11,
-      "gate_number": 5,
-      "horse_number": 10,
-      "horse_name": "シーサンタナ",
-      "horse_id": "2023103583",
-      "sex_age": "騸4",
-      "weight_carried": 57.0,
-      "jockey": "嶋田純次",
-      "trainer": "手塚貴久",
-      "finish_time": "1:36.1",
-      "margin": "1/2",
-      "win_odds": 125.3,
-      "popularity": 14,
-      "horse_weight": 420,
-      "horse_weight_diff": 2,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.1514,
-      "ev_score": 6.2675,
-      "kelly_fraction": 0.013,
-      "manji_ev": 0.8739,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 12,
-      "gate_number": 7,
-      "horse_number": 15,
-      "horse_name": "アドマイヤフク",
-      "horse_id": "2023101048",
-      "sex_age": "牝1",
-      "weight_carried": 55.0,
-      "jockey": "ディー",
-      "trainer": "加藤征弘",
-      "finish_time": "1:36.1",
-      "margin": "アタマ",
-      "win_odds": 27.1,
-      "popularity": 7,
-      "horse_weight": 428,
-      "horse_weight_diff": 4,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.043,
-      "ev_score": 1.7548,
-      "kelly_fraction": 0.0019,
-      "manji_ev": 0.0,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 13,
-      "gate_number": 3,
-      "horse_number": 5,
-      "horse_name": "カテドラルクォーツ",
-      "horse_id": "2023103668",
-      "sex_age": "牡1",
-      "weight_carried": 57.0,
-      "jockey": "原優介",
-      "trainer": "菊沢隆徳",
-      "finish_time": "1:36.1",
-      "margin": "ハナ",
-      "win_odds": 134.7,
-      "popularity": 15,
-      "horse_weight": 480,
-      "horse_weight_diff": -4,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0437,
-      "ev_score": 2.1056,
-      "kelly_fraction": 0.0023,
-      "manji_ev": 0.0,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 14,
-      "gate_number": 8,
-      "horse_number": 16,
-      "horse_name": "ケイツースクード",
-      "horse_id": "2023104018",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "西塚洸二",
-      "trainer": "萱野浩二",
-      "finish_time": "1:36.3",
-      "margin": "1.1/4",
-      "win_odds": 467.6,
-      "popularity": 18,
-      "horse_weight": 412,
-      "horse_weight_diff": -4,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.07,
-      "ev_score": 7.1797,
-      "kelly_fraction": 0.0061,
-      "manji_ev": 0.0,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 15,
-      "gate_number": 4,
-      "horse_number": 7,
-      "horse_name": "トウカイティエラ",
-      "horse_id": "2023102134",
-      "sex_age": "牝1",
-      "weight_carried": 52.0,
-      "jockey": "佐藤翔馬",
-      "trainer": "高木登",
-      "finish_time": "1:36.4",
-      "margin": "1",
-      "win_odds": 303.4,
-      "popularity": 17,
-      "horse_weight": 454,
-      "horse_weight_diff": 0,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.03,
-      "ev_score": 1.7621,
-      "kelly_fraction": 0.0013,
-      "manji_ev": 0.0804,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 16,
-      "gate_number": 7,
-      "horse_number": 13,
-      "horse_name": "ミアエッテ",
-      "horse_id": "2023101530",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "岩田康誠",
-      "trainer": "田中剛",
-      "finish_time": "1:36.5",
-      "margin": "クビ",
-      "win_odds": 53.1,
-      "popularity": 12,
-      "horse_weight": 484,
-      "horse_weight_diff": 8,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.1313,
-      "ev_score": 3.1637,
-      "kelly_fraction": 0.0094,
-      "manji_ev": 0.3797,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 17,
-      "gate_number": 7,
-      "horse_number": 14,
-      "horse_name": "ベストバラディア",
-      "horse_id": "2023104493",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "木幡巧也",
-      "trainer": "室井潔",
-      "finish_time": "1:37.0",
-      "margin": "3",
-      "win_odds": 280.9,
-      "popularity": 16,
-      "horse_weight": 398,
-      "horse_weight_diff": -8,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.043,
-      "ev_score": 1.5355,
-      "kelly_fraction": 0.0015,
-      "manji_ev": 0.2793,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 18,
+      "rank": null,
       "gate_number": 2,
       "horse_number": 4,
       "horse_name": "ワッフル",
       "horse_id": "2023105622",
       "sex_age": "牝3",
       "weight_carried": 55.0,
-      "jockey": "柴田大知",
-      "trainer": "室井潔",
-      "finish_time": "1:37.3",
-      "margin": "2",
-      "win_odds": 43.1,
-      "popularity": 10,
+      "jockey": "柴田大",
+      "trainer": "美浦室井",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
       "horse_weight": 448,
       "horse_weight_diff": 2,
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.0226,
-      "ev_score": 0.4682,
+      "honmei_score": 0.1478,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 2.9759,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "カテドラルクォーツ",
+      "horse_id": "2023103668",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "原",
+      "trainer": "美浦菊沢",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 480,
+      "horse_weight_diff": -4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1716,
+      "ev_score": 0.0,
       "kelly_fraction": 0.0,
       "manji_ev": 0.0,
-      "odds_vs_morning": 1.0,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "ベアサナエチャン",
+      "horse_id": "2023106829",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "大野",
+      "trainer": "美浦杉浦",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 446,
+      "horse_weight_diff": 10,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1716,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.0831,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "トウカイティエラ",
+      "horse_id": "2023102134",
+      "sex_age": "牝3",
+      "weight_carried": 52.0,
+      "jockey": "▲佐藤",
+      "trainer": "美浦高木",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 454,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1302,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 4,
+      "horse_number": 8,
+      "horse_name": "カーブドフェザー",
+      "horse_id": "2023107003",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "団野",
+      "trainer": "美浦蛯名正",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 440,
+      "horse_weight_diff": -4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1716,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.6807,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "エルアン",
+      "horse_id": "2023100787",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "△長浜",
+      "trainer": "美浦浅利",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 448,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1716,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.28,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 10,
+      "horse_name": "シーサンタナ",
+      "horse_id": "2023103583",
+      "sex_age": "セ3",
+      "weight_carried": 57.0,
+      "jockey": "嶋田",
+      "trainer": "美浦手塚久",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 420,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1716,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.1995,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "ブルージンジャー",
+      "horse_id": "2023107200",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "高杉",
+      "trainer": "美浦矢嶋",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 464,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1716,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.2526,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 12,
+      "horse_name": "ビップマリク",
+      "horse_id": "2023100161",
+      "sex_age": "セ3",
+      "weight_carried": 57.0,
+      "jockey": "吉田豊",
+      "trainer": "美浦高柳瑞",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 478,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1716,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.4312,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 13,
+      "horse_name": "ミアエッテ",
+      "horse_id": "2023101530",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "岩田康",
+      "trainer": "美浦田中剛",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 484,
+      "horse_weight_diff": 8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1716,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.2828,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 14,
+      "horse_name": "ベストバラディア",
+      "horse_id": "2023104493",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "木幡巧",
+      "trainer": "美浦室井",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 398,
+      "horse_weight_diff": -8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1716,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0811,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 15,
+      "horse_name": "アドマイヤフク",
+      "horse_id": "2023101048",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "ディー",
+      "trainer": "美浦加藤征",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 428,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1667,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.8725,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 16,
+      "horse_name": "ケイツースクード",
+      "horse_id": "2023104018",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "西塚",
+      "trainer": "美浦萱野",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 412,
+      "horse_weight_diff": -4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1716,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 17,
+      "horse_name": "レヴェランジェ",
+      "horse_id": "2023103694",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "佐々木",
+      "trainer": "美浦鈴木慎",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 470,
+      "horse_weight_diff": 18,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1429,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.867,
+      "odds_vs_morning": null,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 18,
+      "horse_name": "アームアンフルール",
+      "horse_id": "2023103369",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "木幡初",
+      "trainer": "美浦本間",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 464,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1716,
+      "ev_score": 0.0,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.2954,
+      "odds_vs_morning": null,
       "odds_velocity": null
     }
   ],
@@ -486,6 +486,12 @@
       "combination": "1",
       "payout": 2300,
       "popularity": 6
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "18",
+      "payout": 18000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -512,9 +518,33 @@
       "popularity": 14
     },
     {
+      "bet_type": "枠連",
+      "combination": "2",
+      "payout": 30006,
+      "popularity": null
+    },
+    {
       "bet_type": "馬連",
       "combination": "1-17",
       "payout": 7290,
+      "popularity": 20
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "7",
+      "payout": 8170,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 80000,
+      "popularity": 3
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 70030,
       "popularity": 20
     },
     {
@@ -542,10 +572,28 @@
       "popularity": 45
     },
     {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 17000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-2-17",
       "payout": 47020,
       "popularity": 113
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "10",
+      "payout": 4902,
+      "popularity": 170
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2",
+      "payout": 50102,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -555,1402 +603,6 @@
     }
   ],
   "predictions": [
-    {
-      "prediction_id": 21490,
-      "model_type": "本命(暫定)",
-      "bet_type": "単勝",
-      "confidence": 0.15138772077375945,
-      "expected_value": 0.3633305298570227,
-      "recommended_bet": 100.0,
-      "combination_json": "[[3]]",
-      "notes": "確率1位 P(win)=0.15 odds=2.4 EV=0.36",
-      "created_at": "2026-05-03 08:11:59",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -100.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "フリーヤ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.15138772077375945,
-          "ev_score": 0.3633305298570227
-        }
-      ],
-      "bet_form": "単勝",
-      "n_tickets": 1,
-      "invested": 100,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
-    },
-    {
-      "prediction_id": 21491,
-      "model_type": "本命(暫定)",
-      "bet_type": "複勝",
-      "confidence": 0.4164646689492991,
-      "expected_value": 0.4164646689492991,
-      "recommended_bet": 300.0,
-      "combination_json": "[[3], [10], [9]]",
-      "notes": "上位3頭を複勝",
-      "created_at": "2026-05-03 08:11:59",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -300.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "フリーヤ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.13882155631643303,
-          "ev_score": 0.4164646689492991
-        },
-        {
-          "horse_name": "シーサンタナ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.13882155631643303,
-          "ev_score": 0.4164646689492991
-        },
-        {
-          "horse_name": "エルアン",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.13882155631643303,
-          "ev_score": 0.4164646689492991
-        }
-      ],
-      "bet_form": "複勝",
-      "n_tickets": 3,
-      "invested": 300,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
-    },
-    {
-      "prediction_id": 21492,
-      "model_type": "本命(暫定)",
-      "bet_type": "馬連",
-      "confidence": 0.031092206078240092,
-      "expected_value": 0.4477277675266573,
-      "recommended_bet": 500.0,
-      "combination_json": "[[3, 10], [3, 9], [3, 13], [3, 6], [3, 17]]",
-      "notes": "軸3番×相手5頭フォーメーション Harville最大=0.031",
-      "created_at": "2026-05-03 08:11:59",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -500.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "フリーヤ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.031092206078240092,
-          "ev_score": 0.4477277675266573
-        },
-        {
-          "horse_name": "フリーヤ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.031092206078240092,
-          "ev_score": 0.4477277675266573
-        },
-        {
-          "horse_name": "フリーヤ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.031092206078240092,
-          "ev_score": 0.4477277675266573
-        },
-        {
-          "horse_name": "フリーヤ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.031092206078240092,
-          "ev_score": 0.4477277675266573
-        },
-        {
-          "horse_name": "フリーヤ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.031092206078240092,
-          "ev_score": 0.4477277675266573
-        },
-        {
-          "horse_name": "シーサンタナ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.031092206078240092,
-          "ev_score": 0.4477277675266573
-        },
-        {
-          "horse_name": "シーサンタナ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.031092206078240092,
-          "ev_score": 0.4477277675266573
-        },
-        {
-          "horse_name": "シーサンタナ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.031092206078240092,
-          "ev_score": 0.4477277675266573
-        },
-        {
-          "horse_name": "シーサンタナ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.031092206078240092,
-          "ev_score": 0.4477277675266573
-        },
-        {
-          "horse_name": "シーサンタナ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.031092206078240092,
-          "ev_score": 0.4477277675266573
-        }
-      ],
-      "bet_form": "軸ながし",
-      "n_tickets": 5,
-      "invested": 500,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
-    },
-    {
-      "prediction_id": 21493,
-      "model_type": "本命(暫定)",
-      "bet_type": "ワイド",
-      "confidence": 0.04041986790171212,
-      "expected_value": 0.18655323646944055,
-      "recommended_bet": 500.0,
-      "combination_json": "[[3, 10], [3, 9], [3, 13], [3, 6], [3, 17]]",
-      "notes": "軸3番×相手5頭ワイド Harville最大=0.031",
-      "created_at": "2026-05-03 08:11:59",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -500.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "フリーヤ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.031092206078240092,
-          "ev_score": 0.18655323646944055
-        },
-        {
-          "horse_name": "フリーヤ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.031092206078240092,
-          "ev_score": 0.18655323646944055
-        },
-        {
-          "horse_name": "フリーヤ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.031092206078240092,
-          "ev_score": 0.18655323646944055
-        },
-        {
-          "horse_name": "フリーヤ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.031092206078240092,
-          "ev_score": 0.18655323646944055
-        },
-        {
-          "horse_name": "フリーヤ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.031092206078240092,
-          "ev_score": 0.18655323646944055
-        },
-        {
-          "horse_name": "シーサンタナ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.031092206078240092,
-          "ev_score": 0.18655323646944055
-        },
-        {
-          "horse_name": "シーサンタナ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.031092206078240092,
-          "ev_score": 0.18655323646944055
-        },
-        {
-          "horse_name": "シーサンタナ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.031092206078240092,
-          "ev_score": 0.18655323646944055
-        },
-        {
-          "horse_name": "シーサンタナ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.031092206078240092,
-          "ev_score": 0.18655323646944055
-        },
-        {
-          "horse_name": "シーサンタナ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.031092206078240092,
-          "ev_score": 0.18655323646944055
-        }
-      ],
-      "bet_form": "軸ながし",
-      "n_tickets": 5,
-      "invested": 500,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
-    },
-    {
-      "prediction_id": 21494,
-      "model_type": "本命(暫定)",
-      "bet_type": "馬単",
-      "confidence": 0.12554630084765722,
-      "expected_value": 0.45196668305156595,
-      "recommended_bet": 300.0,
-      "combination_json": "[[3, 10], [3, 9], [3, 13]]",
-      "notes": "軸3番→相手3頭フォーメーション Harville最大=0.016",
-      "created_at": "2026-05-03 08:11:59",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -300.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "フリーヤ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.015693287605957153,
-          "ev_score": 0.45196668305156595
-        },
-        {
-          "horse_name": "フリーヤ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.015693287605957153,
-          "ev_score": 0.45196668305156595
-        },
-        {
-          "horse_name": "フリーヤ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.015693287605957153,
-          "ev_score": 0.45196668305156595
-        },
-        {
-          "horse_name": "シーサンタナ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.015693287605957153,
-          "ev_score": 0.45196668305156595
-        },
-        {
-          "horse_name": "シーサンタナ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.015693287605957153,
-          "ev_score": 0.45196668305156595
-        },
-        {
-          "horse_name": "シーサンタナ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.015693287605957153,
-          "ev_score": 0.45196668305156595
-        }
-      ],
-      "bet_form": "軸ながし",
-      "n_tickets": 3,
-      "invested": 300,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
-    },
-    {
-      "prediction_id": 21495,
-      "model_type": "本命(暫定)",
-      "bet_type": "三連複",
-      "confidence": 0.15792921238801771,
-      "expected_value": 0.9475752743281061,
-      "recommended_bet": 600.0,
-      "combination_json": "[[3, 9, 13], [3, 6, 9]]",
-      "notes": "合成EV最大=0.95 2点 馬番=[(3, 9, 13), (3, 6, 9)]",
-      "created_at": "2026-05-03 08:11:59",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -200.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "フリーヤ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.013160767699001475,
-          "ev_score": 0.9475752743281061
-        },
-        {
-          "horse_name": "フリーヤ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.013160767699001475,
-          "ev_score": 0.9475752743281061
-        },
-        {
-          "horse_name": "エルアン",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.013160767699001475,
-          "ev_score": 0.9475752743281061
-        },
-        {
-          "horse_name": "エルアン",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.013160767699001475,
-          "ev_score": 0.9475752743281061
-        },
-        {
-          "horse_name": "ミアエッテ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.013160767699001475,
-          "ev_score": 0.9475752743281061
-        },
-        {
-          "horse_name": "ミアエッテ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.013160767699001475,
-          "ev_score": 0.9475752743281061
-        }
-      ],
-      "bet_form": "軸2頭ながし",
-      "n_tickets": 2,
-      "invested": 200,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
-    },
-    {
-      "prediction_id": 21496,
-      "model_type": "本命(暫定)",
-      "bet_type": "三連単",
-      "confidence": 0.39482303097004423,
-      "expected_value": 4.737876371640531,
-      "recommended_bet": 6000.0,
-      "combination_json": "[[3, 6, 9], [3, 9, 6], [6, 3, 9], [6, 9, 3], [9, 3, 6], [9, 6, 3], [3, 6, 10], [3, 10, 6], [6, 3, 10], [6, 10, 3], [10, 3, 6], [10, 6, 3], [3, 6, 13], [3, 13, 6], [6, 3, 13], [6, 13, 3], [13, 3, 6], [13, 6, 3], [3, 6, 17], [3, 17, 6], [6, 3, 17], [6, 17, 3], [17, 3, 6], [17, 6, 3], [3, 9, 10], [3, 10, 9], [9, 3, 10], [9, 10, 3], [10, 3, 9], [10, 9, 3], [3, 9, 13], [3, 13, 9], [9, 3, 13], [9, 13, 3], [13, 3, 9], [13, 9, 3], [3, 9, 17], [3, 17, 9], [9, 3, 17], [9, 17, 3], [17, 3, 9], [17, 9, 3], [3, 10, 13], [3, 13, 10], [10, 3, 13], [10, 13, 3], [13, 3, 10], [13, 10, 3], [3, 10, 17], [3, 17, 10], [10, 3, 17], [10, 17, 3], [17, 3, 10], [17, 10, 3], [3, 13, 17], [3, 17, 13], [13, 3, 17], [13, 17, 3], [17, 3, 13], [17, 13, 3]]",
-      "notes": "1着固定フォーメーション 軸=3番 12点 相手=[10, 9, 13, 6, 17, 16] Harville最大=0.0132",
-      "created_at": "2026-05-03 08:11:59",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -6000.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "フリーヤ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.013160767699001475,
-          "ev_score": 4.737876371640531
-        },
-        {
-          "horse_name": "フリーヤ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.013160767699001475,
-          "ev_score": 4.737876371640531
-        },
-        {
-          "horse_name": "フリーヤ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.013160767699001475,
-          "ev_score": 4.737876371640531
-        },
-        {
-          "horse_name": "フリーヤ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.013160767699001475,
-          "ev_score": 4.737876371640531
-        },
-        {
-          "horse_name": "フリーヤ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.013160767699001475,
-          "ev_score": 4.737876371640531
-        },
-        {
-          "horse_name": "エルアン",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.013160767699001475,
-          "ev_score": 4.737876371640531
-        },
-        {
-          "horse_name": "エルアン",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.013160767699001475,
-          "ev_score": 4.737876371640531
-        },
-        {
-          "horse_name": "エルアン",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.013160767699001475,
-          "ev_score": 4.737876371640531
-        },
-        {
-          "horse_name": "エルアン",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.013160767699001475,
-          "ev_score": 4.737876371640531
-        },
-        {
-          "horse_name": "エルアン",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.013160767699001475,
-          "ev_score": 4.737876371640531
-        },
-        {
-          "horse_name": "ミアエッテ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.013160767699001475,
-          "ev_score": 4.737876371640531
-        },
-        {
-          "horse_name": "ミアエッテ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.013160767699001475,
-          "ev_score": 4.737876371640531
-        },
-        {
-          "horse_name": "ミアエッテ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.013160767699001475,
-          "ev_score": 4.737876371640531
-        },
-        {
-          "horse_name": "ミアエッテ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.013160767699001475,
-          "ev_score": 4.737876371640531
-        },
-        {
-          "horse_name": "ミアエッテ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.013160767699001475,
-          "ev_score": 4.737876371640531
-        }
-      ],
-      "bet_form": "1頭軸マルチ",
-      "n_tickets": 60,
-      "invested": 6000,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
-    },
-    {
-      "prediction_id": 21497,
-      "model_type": "卍(暫定)",
-      "bet_type": "単勝",
-      "confidence": 1.0,
-      "expected_value": 2.0264887234876237,
-      "recommended_bet": 100.0,
-      "combination_json": "[[13]]",
-      "notes": "確率1位(卍) EV=2.03 odds=24.1",
-      "created_at": "2026-05-03 08:11:59",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -100.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "ミアエッテ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 2.0264887234876237,
-          "ev_score": 2.0264887234876237
-        }
-      ],
-      "bet_form": "単勝",
-      "n_tickets": 1,
-      "invested": 100,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
-    },
-    {
-      "prediction_id": 21498,
-      "model_type": "卍(暫定)",
-      "bet_type": "複勝",
-      "confidence": 0.6,
-      "expected_value": 1.9939560321065664,
-      "recommended_bet": 300.0,
-      "combination_json": "[[13], [15], [10]]",
-      "notes": "確率上位3頭を複勝",
-      "created_at": "2026-05-03 08:11:59",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -300.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "ミアエッテ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 1.9939560321065664,
-          "ev_score": 1.9939560321065664
-        },
-        {
-          "horse_name": "アドマイヤフク",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 1.9939560321065664,
-          "ev_score": 1.9939560321065664
-        },
-        {
-          "horse_name": "シーサンタナ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 1.9939560321065664,
-          "ev_score": 1.9939560321065664
-        }
-      ],
-      "bet_form": "複勝",
-      "n_tickets": 3,
-      "invested": 300,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
-    },
-    {
-      "prediction_id": 21499,
-      "model_type": "卍(暫定)",
-      "bet_type": "馬連",
-      "confidence": 0.27295185710111775,
-      "expected_value": 4.0,
-      "recommended_bet": 500.0,
-      "combination_json": "[[13, 15], [10, 13], [3, 13], [6, 13], [8, 13]]",
-      "notes": "軸13番×相手5頭フォーメーション Harville最大=0.055",
-      "created_at": "2026-05-03 08:11:59",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -500.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "ミアエッテ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.05459037142022355,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "ミアエッテ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.05459037142022355,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "ミアエッテ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.05459037142022355,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "ミアエッテ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.05459037142022355,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "ミアエッテ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.05459037142022355,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "アドマイヤフク",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.05459037142022355,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "アドマイヤフク",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.05459037142022355,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "アドマイヤフク",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.05459037142022355,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "アドマイヤフク",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.05459037142022355,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "アドマイヤフク",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.05459037142022355,
-          "ev_score": 4.0
-        }
-      ],
-      "bet_form": "軸ながし",
-      "n_tickets": 5,
-      "invested": 500,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
-    },
-    {
-      "prediction_id": 21500,
-      "model_type": "卍(暫定)",
-      "bet_type": "ワイド",
-      "confidence": 0.3275422285213413,
-      "expected_value": 3.0,
-      "recommended_bet": 500.0,
-      "combination_json": "[[13, 15], [10, 13], [3, 13], [6, 13], [8, 13]]",
-      "notes": "軸13番×相手5頭ワイド Harville最大=0.055",
-      "created_at": "2026-05-03 08:11:59",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -500.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "ミアエッテ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.05459037142022355,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "ミアエッテ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.05459037142022355,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "ミアエッテ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.05459037142022355,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "ミアエッテ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.05459037142022355,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "ミアエッテ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.05459037142022355,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "アドマイヤフク",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.05459037142022355,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "アドマイヤフク",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.05459037142022355,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "アドマイヤフク",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.05459037142022355,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "アドマイヤフク",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.05459037142022355,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "アドマイヤフク",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.05459037142022355,
-          "ev_score": 3.0
-        }
-      ],
-      "bet_form": "軸ながし",
-      "n_tickets": 5,
-      "invested": 500,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
-    },
-    {
-      "prediction_id": 21501,
-      "model_type": "卍(暫定)",
-      "bet_type": "馬単",
-      "confidence": 0.2186965702211442,
-      "expected_value": 5.0,
-      "recommended_bet": 300.0,
-      "combination_json": "[[13, 15], [13, 10], [13, 3]]",
-      "notes": "軸13番→相手3頭フォーメーション Harville最大=0.027",
-      "created_at": "2026-05-03 08:11:59",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -300.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "ミアエッテ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.027337071277643024,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "ミアエッテ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.027337071277643024,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "ミアエッテ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.027337071277643024,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "アドマイヤフク",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.027337071277643024,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "アドマイヤフク",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.027337071277643024,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "アドマイヤフク",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.027337071277643024,
-          "ev_score": 5.0
-        }
-      ],
-      "bet_form": "軸ながし",
-      "n_tickets": 3,
-      "invested": 300,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
-    },
-    {
-      "prediction_id": 21504,
-      "model_type": "卍(暫定)",
-      "bet_type": "三連複",
-      "confidence": 0.14127937427082723,
-      "expected_value": 5.0,
-      "recommended_bet": 300.0,
-      "combination_json": "[[6, 13, 15]]",
-      "notes": "合成EV=5.00 Harville=0.0094 馬番=(6, 13, 15)",
-      "created_at": "2026-05-03 08:11:59",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -100.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "ベアサナエチャン",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.009418624951388482,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "ミアエッテ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.009418624951388482,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "アドマイヤフク",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.009418624951388482,
-          "ev_score": 5.0
-        }
-      ],
-      "bet_form": "3頭ボックス",
-      "n_tickets": 1,
-      "invested": 100,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
-    },
-    {
-      "prediction_id": 21505,
-      "model_type": "Oracle(暫定)",
-      "bet_type": "三連複",
-      "confidence": 0.06684866701639816,
-      "expected_value": 2.005460010491945,
-      "recommended_bet": 500.0,
-      "combination_json": "[[3, 9, 10], [3, 10, 13], [3, 9, 13], [9, 10, 13], [3, 6, 10]]",
-      "notes": "[Oracle] 的中確率最大 5点 P最大=0.0668 馬番=[(3, 9, 10), (3, 10, 13), (3, 9, 13), (9, 10, 13), (3, 6, 10)]",
-      "created_at": "2026-05-03 08:11:59",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -500.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "フリーヤ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.06684866701639816,
-          "ev_score": 2.005460010491945
-        },
-        {
-          "horse_name": "エルアン",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.06684866701639816,
-          "ev_score": 2.005460010491945
-        },
-        {
-          "horse_name": "シーサンタナ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.06684866701639816,
-          "ev_score": 2.005460010491945
-        }
-      ],
-      "bet_form": "フォーメーション",
-      "n_tickets": 5,
-      "invested": 500,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
-    },
-    {
-      "prediction_id": 21506,
-      "model_type": "Oracle(暫定)",
-      "bet_type": "三連単",
-      "confidence": 0.011141444502733027,
-      "expected_value": 1.6712166754099542,
-      "recommended_bet": 1200.0,
-      "combination_json": "[[3, 10, 9], [3, 10, 13], [3, 9, 10], [3, 13, 10], [10, 3, 9], [10, 3, 13], [10, 9, 3], [10, 13, 3], [9, 3, 10], [9, 10, 3], [13, 3, 10], [13, 10, 3]]",
-      "notes": "[Oracle] 的中確率最大 12点 P最大=0.0111 馬番=[(3, 10, 9), (3, 10, 13), (3, 9, 10), (3, 13, 10), (10, 3, 9), (10, 3, 13), (10, 9, 3), (10, 13, 3), (9, 3, 10), (9, 10, 3), (13, 3, 10), (13, 10, 3)]",
-      "created_at": "2026-05-03 08:11:59",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -1200.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "フリーヤ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.011141444502733027,
-          "ev_score": 1.6712166754099542
-        },
-        {
-          "horse_name": "シーサンタナ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.011141444502733027,
-          "ev_score": 1.6712166754099542
-        },
-        {
-          "horse_name": "エルアン",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.011141444502733027,
-          "ev_score": 1.6712166754099542
-        }
-      ],
-      "bet_form": "2頭軸マルチ",
-      "n_tickets": 12,
-      "invested": 1200,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
-    },
-    {
-      "prediction_id": 21507,
-      "model_type": "本命(暫定)",
-      "bet_type": "馬分析",
-      "confidence": null,
-      "expected_value": null,
-      "recommended_bet": null,
-      "combination_json": "[]",
-      "notes": "全馬モデルスコア（馬分析タブ用）",
-      "created_at": "2026-05-03 08:11:59",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -100.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "フリーヤ",
-          "horse_id": "2023105849",
-          "predicted_rank": 1,
-          "model_score": 0.15138772077375945,
-          "ev_score": 0.3633305298570227
-        },
-        {
-          "horse_name": "シーサンタナ",
-          "horse_id": "2023103583",
-          "predicted_rank": 2,
-          "model_score": 0.13380281690140844,
-          "ev_score": 5.539436619718309
-        },
-        {
-          "horse_name": "エルアン",
-          "horse_id": "2023100787",
-          "predicted_rank": 3,
-          "model_score": 0.13127413127413126,
-          "ev_score": 3.465637065637065
-        },
-        {
-          "horse_name": "ミアエッテ",
-          "horse_id": "2023101530",
-          "predicted_rank": 4,
-          "model_score": 0.13127413127413126,
-          "ev_score": 3.1637065637065636
-        },
-        {
-          "horse_name": "ベアサナエチャン",
-          "horse_id": "2023106829",
-          "predicted_rank": 5,
-          "model_score": 0.109375,
-          "ev_score": 0.8640625000000001
-        },
-        {
-          "horse_name": "レヴェランジェ",
-          "horse_id": "2023103694",
-          "predicted_rank": 6,
-          "model_score": 0.09984459984459984,
-          "ev_score": 0.9784770784770785
-        },
-        {
-          "horse_name": "アドマイヤフク",
-          "horse_id": "2023101048",
-          "predicted_rank": 7,
-          "model_score": 0.06997742663656885,
-          "ev_score": 2.8550790067720087
-        },
-        {
-          "horse_name": "ダイヤテソーロ",
-          "horse_id": "2023106747",
-          "predicted_rank": 8,
-          "model_score": 0.06997742663656885,
-          "ev_score": 1.7844243792325056
-        },
-        {
-          "horse_name": "ケイツースクード",
-          "horse_id": "2023104018",
-          "predicted_rank": 9,
-          "model_score": 0.06997742663656885,
-          "ev_score": 7.179683972911963
-        },
-        {
-          "horse_name": "カーブドフェザー",
-          "horse_id": "2023107003",
-          "predicted_rank": 10,
-          "model_score": 0.04924971142747211,
-          "ev_score": 0.536821854559446
-        },
-        {
-          "horse_name": "ブルージンジャー",
-          "horse_id": "2023107200",
-          "predicted_rank": 11,
-          "model_score": 0.0387243735763098,
-          "ev_score": 0.7706150341685649
-        },
-        {
-          "horse_name": "モントゥリエ",
-          "horse_id": "2023105650",
-          "predicted_rank": 12,
-          "model_score": 0.0387243735763098,
-          "ev_score": 0.4530751708428246
-        },
-        {
-          "horse_name": "カテドラルクォーツ",
-          "horse_id": "2023103668",
-          "predicted_rank": 13,
-          "model_score": 0.0387243735763098,
-          "ev_score": 1.8665148063781323
-        },
-        {
-          "horse_name": "ベストバラディア",
-          "horse_id": "2023104493",
-          "predicted_rank": 14,
-          "model_score": 0.02996845425867508,
-          "ev_score": 1.0698738170347004
-        },
-        {
-          "horse_name": "アームアンフルール",
-          "horse_id": "2023103369",
-          "predicted_rank": 15,
-          "model_score": 0.02789400278940028,
-          "ev_score": 0.8926080892608089
-        },
-        {
-          "horse_name": "トウカイティエラ",
-          "horse_id": "2023102134",
-          "predicted_rank": 16,
-          "model_score": 0.02789400278940028,
-          "ev_score": 1.6401673640167362
-        },
-        {
-          "horse_name": "ワッフル",
-          "horse_id": "2023105622",
-          "predicted_rank": 17,
-          "model_score": 0.02789400278940028,
-          "ev_score": 0.5774058577405857
-        },
-        {
-          "horse_name": "ビップマリク",
-          "horse_id": "2023100161",
-          "predicted_rank": 18,
-          "model_score": 0.02577319587628866,
-          "ev_score": 0.3943298969072165
-        }
-      ],
-      "bet_form": "馬分析",
-      "n_tickets": 0,
-      "invested": 0,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
-    },
     {
       "prediction_id": 22157,
       "model_type": "本命(直前)",
@@ -1977,26 +629,8 @@
       "bet_form": "単勝",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22158,
@@ -2038,26 +672,8 @@
       "bet_form": "複勝",
       "n_tickets": 3,
       "invested": 300,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22159,
@@ -2148,26 +764,8 @@
       "bet_form": "軸ながし",
       "n_tickets": 5,
       "invested": 500,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22160,
@@ -2258,26 +856,8 @@
       "bet_form": "軸ながし",
       "n_tickets": 5,
       "invested": 500,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22161,
@@ -2340,26 +920,8 @@
       "bet_form": "軸ながし",
       "n_tickets": 3,
       "invested": 300,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22162,
@@ -2422,26 +984,8 @@
       "bet_form": "軸2頭ながし",
       "n_tickets": 2,
       "invested": 200,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22163,
@@ -2567,26 +1111,8 @@
       "bet_form": "1頭軸マルチ",
       "n_tickets": 36,
       "invested": 3600,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22164,
@@ -2614,26 +1140,8 @@
       "bet_form": "単勝",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22165,
@@ -2675,26 +1183,8 @@
       "bet_form": "複勝",
       "n_tickets": 3,
       "invested": 300,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22166,
@@ -2785,26 +1275,8 @@
       "bet_form": "軸ながし",
       "n_tickets": 5,
       "invested": 500,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22167,
@@ -2895,26 +1367,8 @@
       "bet_form": "軸ながし",
       "n_tickets": 5,
       "invested": 500,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22168,
@@ -2977,26 +1431,8 @@
       "bet_form": "軸ながし",
       "n_tickets": 3,
       "invested": 300,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22171,
@@ -3038,26 +1474,8 @@
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22172,
@@ -3099,26 +1517,8 @@
       "bet_form": "フォーメーション",
       "n_tickets": 5,
       "invested": 500,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22173,
@@ -3160,26 +1560,8 @@
       "bet_form": "1頭軸マルチ",
       "n_tickets": 12,
       "invested": 1200,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22174,
@@ -3326,26 +1708,8 @@
       "bet_form": "馬分析",
       "n_tickets": 0,
       "invested": 0,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22175,
@@ -3380,26 +1744,8 @@
       "bet_form": "フォーメーション",
       "n_tickets": 7,
       "invested": 700,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22176,
@@ -3434,26 +1780,8 @@
       "bet_form": "フォーメーション",
       "n_tickets": 8,
       "invested": 800,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 22177,
@@ -3495,107 +1823,1177 @@
       "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
       "invested": 1200,
-      "horse_num_to_name": {
-        "1": "モントゥリエ",
-        "17": "レヴェランジェ",
-        "2": "ダイヤテソーロ",
-        "3": "フリーヤ",
-        "6": "ベアサナエチャン",
-        "8": "カーブドフェザー",
-        "12": "ビップマリク",
-        "18": "アームアンフルール",
-        "11": "ブルージンジャー",
-        "9": "エルアン",
-        "10": "シーサンタナ",
-        "15": "アドマイヤフク",
-        "5": "カテドラルクォーツ",
-        "16": "ケイツースクード",
-        "7": "トウカイティエラ",
-        "13": "ミアエッテ",
-        "14": "ベストバラディア",
-        "4": "ワッフル"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 23361,
+      "model_type": "本命(暫定)",
+      "bet_type": "単勝",
+      "confidence": 0.17163724893487523,
+      "expected_value": 0.17163724893487523,
+      "recommended_bet": 100.0,
+      "combination_json": "[[2]]",
+      "notes": "確率1位 P(win)=0.17 odds=1.0 EV=0.17",
+      "created_at": "2026-05-08 07:36:00",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ダイヤテソーロ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.17163724893487523
+        }
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {},
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23362,
+      "model_type": "本命(暫定)",
+      "bet_type": "複勝",
+      "confidence": 0.17163724893487523,
+      "expected_value": 0.5149117468046257,
+      "recommended_bet": 300.0,
+      "combination_json": "[[2], [6], [16]]",
+      "notes": "上位3頭を複勝",
+      "created_at": "2026-05-08 07:36:00",
+      "is_hit": 1,
+      "payout": 710.0,
+      "profit": 410.0,
+      "roi": 236.66666666666666,
+      "horses": [
+        {
+          "horse_name": "ダイヤテソーロ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.5149117468046257
+        },
+        {
+          "horse_name": "ベアサナエチャン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.5149117468046257
+        },
+        {
+          "horse_name": "ケイツースクード",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.5149117468046257
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {},
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23363,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.006535947712418301,
+      "expected_value": 0.2362745098039216,
+      "recommended_bet": 500.0,
+      "combination_json": "[[2, 6], [2, 16], [2, 5], [2, 9], [2, 8]]",
+      "notes": "軸2番×相手5頭フォーメーション Harville最大=0.007",
+      "created_at": "2026-05-08 07:36:00",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ダイヤテソーロ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.006535947712418301,
+          "ev_score": 0.2362745098039216
+        },
+        {
+          "horse_name": "ダイヤテソーロ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.006535947712418301,
+          "ev_score": 0.2362745098039216
+        },
+        {
+          "horse_name": "ダイヤテソーロ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.006535947712418301,
+          "ev_score": 0.2362745098039216
+        },
+        {
+          "horse_name": "ダイヤテソーロ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.006535947712418301,
+          "ev_score": 0.2362745098039216
+        },
+        {
+          "horse_name": "ダイヤテソーロ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.006535947712418301,
+          "ev_score": 0.2362745098039216
+        },
+        {
+          "horse_name": "ベアサナエチャン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.006535947712418301,
+          "ev_score": 0.2362745098039216
+        },
+        {
+          "horse_name": "ベアサナエチャン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.006535947712418301,
+          "ev_score": 0.2362745098039216
+        },
+        {
+          "horse_name": "ベアサナエチャン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.006535947712418301,
+          "ev_score": 0.2362745098039216
+        },
+        {
+          "horse_name": "ベアサナエチャン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.006535947712418301,
+          "ev_score": 0.2362745098039216
+        },
+        {
+          "horse_name": "ベアサナエチャン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.006535947712418301,
+          "ev_score": 0.2362745098039216
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {},
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23364,
+      "model_type": "本命(暫定)",
+      "bet_type": "ワイド",
+      "confidence": 0.008496732026143792,
+      "expected_value": 0.10287581699346406,
+      "recommended_bet": 500.0,
+      "combination_json": "[[2, 6], [2, 16], [2, 5], [2, 9], [2, 8]]",
+      "notes": "軸2番×相手5頭ワイド Harville最大=0.007",
+      "created_at": "2026-05-08 07:36:00",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ダイヤテソーロ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.006535947712418301,
+          "ev_score": 0.10287581699346406
+        },
+        {
+          "horse_name": "ダイヤテソーロ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.006535947712418301,
+          "ev_score": 0.10287581699346406
+        },
+        {
+          "horse_name": "ダイヤテソーロ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.006535947712418301,
+          "ev_score": 0.10287581699346406
+        },
+        {
+          "horse_name": "ダイヤテソーロ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.006535947712418301,
+          "ev_score": 0.10287581699346406
+        },
+        {
+          "horse_name": "ダイヤテソーロ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.006535947712418301,
+          "ev_score": 0.10287581699346406
+        },
+        {
+          "horse_name": "ベアサナエチャン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.006535947712418301,
+          "ev_score": 0.10287581699346406
+        },
+        {
+          "horse_name": "ベアサナエチャン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.006535947712418301,
+          "ev_score": 0.10287581699346406
+        },
+        {
+          "horse_name": "ベアサナエチャン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.006535947712418301,
+          "ev_score": 0.10287581699346406
+        },
+        {
+          "horse_name": "ベアサナエチャン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.006535947712418301,
+          "ev_score": 0.10287581699346406
+        },
+        {
+          "horse_name": "ベアサナエチャン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.006535947712418301,
+          "ev_score": 0.10287581699346406
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {},
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23365,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬単",
+      "confidence": 0.026143790849673203,
+      "expected_value": 0.20866013071895426,
+      "recommended_bet": 300.0,
+      "combination_json": "[[2, 6], [2, 16], [2, 5]]",
+      "notes": "軸2番→相手3頭フォーメーション Harville最大=0.003",
+      "created_at": "2026-05-08 07:36:00",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ダイヤテソーロ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0032679738562091504,
+          "ev_score": 0.20866013071895426
+        },
+        {
+          "horse_name": "ダイヤテソーロ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0032679738562091504,
+          "ev_score": 0.20866013071895426
+        },
+        {
+          "horse_name": "ダイヤテソーロ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0032679738562091504,
+          "ev_score": 0.20866013071895426
+        },
+        {
+          "horse_name": "ベアサナエチャン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0032679738562091504,
+          "ev_score": 0.20866013071895426
+        },
+        {
+          "horse_name": "ベアサナエチャン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0032679738562091504,
+          "ev_score": 0.20866013071895426
+        },
+        {
+          "horse_name": "ベアサナエチャン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0032679738562091504,
+          "ev_score": 0.20866013071895426
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {},
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23366,
+      "model_type": "本命(暫定)",
+      "bet_type": "三連単",
+      "confidence": 0.03676470588235294,
+      "expected_value": 0.5972794117647059,
+      "recommended_bet": 1000.0,
+      "combination_json": "[[2, 6, 16], [2, 16, 6], [6, 2, 16], [6, 16, 2], [16, 2, 6], [16, 6, 2], [2, 6, 5], [2, 5, 6], [6, 2, 5], [6, 5, 2], [5, 2, 6], [5, 6, 2], [2, 6, 9], [2, 9, 6], [6, 2, 9], [6, 9, 2], [9, 2, 6], [9, 6, 2], [2, 6, 8], [2, 8, 6], [6, 2, 8], [6, 8, 2], [8, 2, 6], [8, 6, 2], [2, 6, 10], [2, 10, 6], [6, 2, 10], [6, 10, 2], [10, 2, 6], [10, 6, 2], [2, 16, 5], [2, 5, 16], [16, 2, 5], [16, 5, 2], [5, 2, 16], [5, 16, 2], [2, 16, 9], [2, 9, 16], [16, 2, 9], [16, 9, 2], [9, 2, 16], [9, 16, 2], [2, 16, 8], [2, 8, 16], [16, 2, 8], [16, 8, 2], [8, 2, 16], [8, 16, 2], [2, 16, 10], [2, 10, 16], [16, 2, 10], [16, 10, 2], [10, 2, 16], [10, 16, 2], [2, 5, 9], [2, 9, 5], [5, 2, 9], [5, 9, 2], [9, 2, 5], [9, 5, 2], [2, 5, 8], [2, 8, 5], [5, 2, 8], [5, 8, 2], [8, 2, 5], [8, 5, 2], [2, 5, 10], [2, 10, 5], [5, 2, 10], [5, 10, 2], [10, 2, 5], [10, 5, 2], [2, 9, 8], [2, 8, 9], [9, 2, 8], [9, 8, 2], [8, 2, 9], [8, 9, 2], [2, 9, 10], [2, 10, 9], [9, 2, 10], [9, 10, 2], [10, 2, 9], [10, 9, 2], [2, 8, 10], [2, 10, 8], [8, 2, 10], [8, 10, 2], [10, 2, 8], [10, 8, 2]]",
+      "notes": "1頭軸マルチ 軸=2番 相手=[6, 16, 5, 9, 8, 10] 90点 Harville最大=0.0012",
+      "created_at": "2026-05-08 07:36:00",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -9000.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ダイヤテソーロ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0012254901960784314,
+          "ev_score": 0.5972794117647059
+        },
+        {
+          "horse_name": "ダイヤテソーロ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0012254901960784314,
+          "ev_score": 0.5972794117647059
+        },
+        {
+          "horse_name": "ダイヤテソーロ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0012254901960784314,
+          "ev_score": 0.5972794117647059
+        },
+        {
+          "horse_name": "ダイヤテソーロ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0012254901960784314,
+          "ev_score": 0.5972794117647059
+        },
+        {
+          "horse_name": "ダイヤテソーロ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0012254901960784314,
+          "ev_score": 0.5972794117647059
+        },
+        {
+          "horse_name": "ベアサナエチャン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0012254901960784314,
+          "ev_score": 0.5972794117647059
+        },
+        {
+          "horse_name": "ベアサナエチャン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0012254901960784314,
+          "ev_score": 0.5972794117647059
+        },
+        {
+          "horse_name": "ベアサナエチャン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0012254901960784314,
+          "ev_score": 0.5972794117647059
+        },
+        {
+          "horse_name": "ベアサナエチャン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0012254901960784314,
+          "ev_score": 0.5972794117647059
+        },
+        {
+          "horse_name": "ベアサナエチャン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0012254901960784314,
+          "ev_score": 0.5972794117647059
+        },
+        {
+          "horse_name": "ケイツースクード",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0012254901960784314,
+          "ev_score": 0.5972794117647059
+        },
+        {
+          "horse_name": "ケイツースクード",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0012254901960784314,
+          "ev_score": 0.5972794117647059
+        },
+        {
+          "horse_name": "ケイツースクード",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0012254901960784314,
+          "ev_score": 0.5972794117647059
+        },
+        {
+          "horse_name": "ケイツースクード",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0012254901960784314,
+          "ev_score": 0.5972794117647059
+        },
+        {
+          "horse_name": "ケイツースクード",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0012254901960784314,
+          "ev_score": 0.5972794117647059
+        }
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 90,
+      "invested": 9000,
+      "horse_num_to_name": {},
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23367,
+      "model_type": "卍(暫定)",
+      "bet_type": "単勝",
+      "confidence": 0.2975917136119567,
+      "expected_value": 2.9759171361195667,
+      "recommended_bet": 100.0,
+      "combination_json": "[[4]]",
+      "notes": "確率1位(卍) EV=2.98 odds=1.0",
+      "created_at": "2026-05-08 07:36:00",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ワッフル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 2.9759171361195667,
+          "ev_score": 2.9759171361195667
+        }
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {},
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23368,
+      "model_type": "卍(暫定)",
+      "bet_type": "複勝",
+      "confidence": 0.6,
+      "expected_value": 2.532999199315056,
+      "recommended_bet": 300.0,
+      "combination_json": "[[4], [1], [2]]",
+      "notes": "確率上位3頭を複勝",
+      "created_at": "2026-05-08 07:36:00",
+      "is_hit": 1,
+      "payout": 1430.0,
+      "profit": 1130.0,
+      "roi": 476.6666666666667,
+      "horses": [
+        {
+          "horse_name": "ワッフル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 2.532999199315056,
+          "ev_score": 2.532999199315056
+        },
+        {
+          "horse_name": "モントゥリエ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 2.532999199315056,
+          "ev_score": 2.532999199315056
+        },
+        {
+          "horse_name": "ダイヤテソーロ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 2.532999199315056,
+          "ev_score": 2.532999199315056
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {},
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23369,
+      "model_type": "卍(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.30496886625579483,
+      "expected_value": 2.2049249030293967,
+      "recommended_bet": 500.0,
+      "combination_json": "[[1, 4], [2, 4], [3, 4], [4, 15], [4, 17]]",
+      "notes": "軸4番×相手5頭フォーメーション Harville最大=0.061",
+      "created_at": "2026-05-08 07:36:00",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "モントゥリエ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06099377325115897,
+          "ev_score": 2.2049249030293967
+        },
+        {
+          "horse_name": "モントゥリエ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06099377325115897,
+          "ev_score": 2.2049249030293967
+        },
+        {
+          "horse_name": "モントゥリエ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06099377325115897,
+          "ev_score": 2.2049249030293967
+        },
+        {
+          "horse_name": "モントゥリエ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06099377325115897,
+          "ev_score": 2.2049249030293967
+        },
+        {
+          "horse_name": "モントゥリエ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06099377325115897,
+          "ev_score": 2.2049249030293967
+        },
+        {
+          "horse_name": "ワッフル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06099377325115897,
+          "ev_score": 2.2049249030293967
+        },
+        {
+          "horse_name": "ワッフル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06099377325115897,
+          "ev_score": 2.2049249030293967
+        },
+        {
+          "horse_name": "ワッフル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06099377325115897,
+          "ev_score": 2.2049249030293967
+        },
+        {
+          "horse_name": "ワッフル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06099377325115897,
+          "ev_score": 2.2049249030293967
+        },
+        {
+          "horse_name": "ワッフル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06099377325115897,
+          "ev_score": 2.2049249030293967
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {},
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23370,
+      "model_type": "卍(暫定)",
+      "bet_type": "ワイド",
+      "confidence": 0.36596263950695385,
+      "expected_value": 0.9600419909732422,
+      "recommended_bet": 500.0,
+      "combination_json": "[[1, 4], [2, 4], [3, 4], [4, 15], [4, 17]]",
+      "notes": "軸4番×相手5頭ワイド Harville最大=0.061",
+      "created_at": "2026-05-08 07:36:00",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "モントゥリエ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06099377325115897,
+          "ev_score": 0.9600419909732422
+        },
+        {
+          "horse_name": "モントゥリエ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06099377325115897,
+          "ev_score": 0.9600419909732422
+        },
+        {
+          "horse_name": "モントゥリエ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06099377325115897,
+          "ev_score": 0.9600419909732422
+        },
+        {
+          "horse_name": "モントゥリエ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06099377325115897,
+          "ev_score": 0.9600419909732422
+        },
+        {
+          "horse_name": "モントゥリエ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06099377325115897,
+          "ev_score": 0.9600419909732422
+        },
+        {
+          "horse_name": "ワッフル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06099377325115897,
+          "ev_score": 0.9600419909732422
+        },
+        {
+          "horse_name": "ワッフル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06099377325115897,
+          "ev_score": 0.9600419909732422
+        },
+        {
+          "horse_name": "ワッフル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06099377325115897,
+          "ev_score": 0.9600419909732422
+        },
+        {
+          "horse_name": "ワッフル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06099377325115897,
+          "ev_score": 0.9600419909732422
+        },
+        {
+          "horse_name": "ワッフル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06099377325115897,
+          "ev_score": 0.9600419909732422
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {},
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23371,
+      "model_type": "卍(暫定)",
+      "bet_type": "馬単",
+      "confidence": 0.2486689087604829,
+      "expected_value": 1.984688728044604,
+      "recommended_bet": 300.0,
+      "combination_json": "[[4, 1], [4, 2], [4, 3]]",
+      "notes": "軸4番→相手3頭フォーメーション Harville最大=0.031",
+      "created_at": "2026-05-08 07:36:00",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ワッフル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03108361359506036,
+          "ev_score": 1.984688728044604
+        },
+        {
+          "horse_name": "ワッフル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03108361359506036,
+          "ev_score": 1.984688728044604
+        },
+        {
+          "horse_name": "ワッフル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03108361359506036,
+          "ev_score": 1.984688728044604
+        },
+        {
+          "horse_name": "モントゥリエ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03108361359506036,
+          "ev_score": 1.984688728044604
+        },
+        {
+          "horse_name": "モントゥリエ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03108361359506036,
+          "ev_score": 1.984688728044604
+        },
+        {
+          "horse_name": "モントゥリエ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03108361359506036,
+          "ev_score": 1.984688728044604
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {},
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23374,
+      "model_type": "卍(暫定)",
+      "bet_type": "三連複",
+      "confidence": 0.422275643561014,
+      "expected_value": 2.721425764202882,
+      "recommended_bet": 300.0,
+      "combination_json": "[[1, 4, 15]]",
+      "notes": "合成EV=2.72 Harville=0.0282 馬番=(1, 4, 15)",
+      "created_at": "2026-05-08 07:36:00",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "モントゥリエ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.028151709570734266,
+          "ev_score": 2.721425764202882
+        },
+        {
+          "horse_name": "ワッフル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.028151709570734266,
+          "ev_score": 2.721425764202882
+        },
+        {
+          "horse_name": "アドマイヤフク",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.028151709570734266,
+          "ev_score": 2.721425764202882
+        }
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {},
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23375,
+      "model_type": "Oracle(暫定)",
+      "bet_type": "三連複",
+      "confidence": 0.009018973751080926,
+      "expected_value": 0.27056921253242777,
+      "recommended_bet": 500.0,
+      "combination_json": "[[2, 6, 16], [2, 5, 6], [2, 6, 9], [2, 6, 8], [2, 6, 10]]",
+      "notes": "[Oracle] 的中確率最大 5点 P最大=0.0090 馬番=[(2, 6, 16), (2, 5, 6), (2, 6, 9), (2, 6, 8), (2, 6, 10)]",
+      "created_at": "2026-05-08 07:36:00",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ダイヤテソーロ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.009018973751080926,
+          "ev_score": 0.27056921253242777
+        },
+        {
+          "horse_name": "ベアサナエチャン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.009018973751080926,
+          "ev_score": 0.27056921253242777
+        },
+        {
+          "horse_name": "ケイツースクード",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.009018973751080926,
+          "ev_score": 0.27056921253242777
+        }
+      ],
+      "bet_form": "軸2頭ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {},
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23376,
+      "model_type": "Oracle(暫定)",
+      "bet_type": "三連単",
+      "confidence": 0.0015031622918468212,
+      "expected_value": 0.2254743437770232,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[2, 6, 16], [2, 6, 5], [2, 6, 9], [2, 6, 8], [2, 6, 10], [2, 6, 13], [2, 6, 12], [2, 6, 11], [2, 6, 14], [2, 6, 18], [2, 16, 6], [2, 16, 5]]",
+      "notes": "[Oracle] 的中確率最大 12点 P最大=0.0015 馬番=[(2, 6, 16), (2, 6, 5), (2, 6, 9), (2, 6, 8), (2, 6, 10), (2, 6, 13), (2, 6, 12), (2, 6, 11), (2, 6, 14), (2, 6, 18), (2, 16, 6), (2, 16, 5)]",
+      "created_at": "2026-05-08 07:36:00",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ダイヤテソーロ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0015031622918468212,
+          "ev_score": 0.2254743437770232
+        },
+        {
+          "horse_name": "ベアサナエチャン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0015031622918468212,
+          "ev_score": 0.2254743437770232
+        },
+        {
+          "horse_name": "ケイツースクード",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0015031622918468212,
+          "ev_score": 0.2254743437770232
+        }
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 12,
+      "invested": 1200,
+      "horse_num_to_name": {},
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23377,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-05-08 07:36:00",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "アームアンフルール",
+          "horse_id": "2023103369",
+          "predicted_rank": 1,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ケイツースクード",
+          "horse_id": "2023104018",
+          "predicted_rank": 2,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "カテドラルクォーツ",
+          "horse_id": "2023103668",
+          "predicted_rank": 3,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ベストバラディア",
+          "horse_id": "2023104493",
+          "predicted_rank": 4,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ミアエッテ",
+          "horse_id": "2023101530",
+          "predicted_rank": 5,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ビップマリク",
+          "horse_id": "2023100161",
+          "predicted_rank": 6,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "シーサンタナ",
+          "horse_id": "2023103583",
+          "predicted_rank": 7,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ブルージンジャー",
+          "horse_id": "2023107200",
+          "predicted_rank": 8,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "エルアン",
+          "horse_id": "2023100787",
+          "predicted_rank": 9,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "カーブドフェザー",
+          "horse_id": "2023107003",
+          "predicted_rank": 10,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ダイヤテソーロ",
+          "horse_id": "2023106747",
+          "predicted_rank": 11,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ベアサナエチャン",
+          "horse_id": "2023106829",
+          "predicted_rank": 12,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "アドマイヤフク",
+          "horse_id": "2023101048",
+          "predicted_rank": 13,
+          "model_score": 0.16666666666666666,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "フリーヤ",
+          "horse_id": "2023105849",
+          "predicted_rank": 14,
+          "model_score": 0.14784394250513347,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ワッフル",
+          "horse_id": "2023105622",
+          "predicted_rank": 15,
+          "model_score": 0.14784394250513347,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "レヴェランジェ",
+          "horse_id": "2023103694",
+          "predicted_rank": 16,
+          "model_score": 0.14285714285714285,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "トウカイティエラ",
+          "horse_id": "2023102134",
+          "predicted_rank": 17,
+          "model_score": 0.1302170283806344,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "モントゥリエ",
+          "horse_id": "2023105650",
+          "predicted_rank": 18,
+          "model_score": 0.10282776349614396,
+          "ev_score": 0.0
+        }
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "invested": 0,
+      "horse_num_to_name": {},
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23378,
+      "model_type": "HitFocus(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.03728815636709623,
+      "expected_value": 0.26959337053410576,
+      "recommended_bet": 700.0,
+      "combination_json": "[[2, 6], [2, 16], [6, 16], [2, 5], [5, 6], [2, 9], [6, 9]]",
+      "notes": "2軸マルチ 軸=2,6 相手=[16, 5, 9] Harville最大=0.0075",
+      "created_at": "2026-05-08 07:36:00",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -700.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ダイヤテソーロ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.007457631273419246,
+          "ev_score": 0.26959337053410576
+        },
+        {
+          "horse_name": "ベアサナエチャン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.007457631273419246,
+          "ev_score": 0.26959337053410576
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 7,
+      "invested": 700,
+      "horse_num_to_name": {},
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23379,
+      "model_type": "HitFocus(暫定)",
+      "bet_type": "馬単",
+      "confidence": 0.029830525093676983,
+      "expected_value": 0.23808487840390943,
+      "recommended_bet": 800.0,
+      "combination_json": "[[2, 6], [6, 2], [2, 16], [6, 16], [2, 5], [6, 5], [2, 9], [6, 9]]",
+      "notes": "2軸マルチ 軸=2,6 相手=[16, 5, 9] Harville最大=0.0037",
+      "created_at": "2026-05-08 07:36:00",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -800.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ダイヤテソーロ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.003728815636709623,
+          "ev_score": 0.23808487840390943
+        },
+        {
+          "horse_name": "ベアサナエチャン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.003728815636709623,
+          "ev_score": 0.23808487840390943
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 8,
+      "invested": 800,
+      "horse_num_to_name": {},
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23380,
+      "model_type": "HitFocus(暫定)",
+      "bet_type": "三連単",
+      "confidence": 0.007515811459234106,
+      "expected_value": 0.12210187296671729,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[2, 6, 16], [6, 2, 16], [2, 16, 6], [6, 16, 2], [2, 6, 5], [6, 2, 5], [2, 5, 6], [6, 5, 2], [2, 6, 9], [6, 2, 9], [2, 9, 6], [6, 9, 2]]",
+      "notes": "2軸マルチ 軸=2,6 相手=[16, 5, 9] 12点 Harville最大=0.0003",
+      "created_at": "2026-05-08 07:36:00",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ダイヤテソーロ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.00025052704864113686,
+          "ev_score": 0.12210187296671729
+        },
+        {
+          "horse_name": "ベアサナエチャン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.00025052704864113686,
+          "ev_score": 0.12210187296671729
+        },
+        {
+          "horse_name": "ケイツースクード",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.00025052704864113686,
+          "ev_score": 0.12210187296671729
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 12,
+      "invested": 1200,
+      "horse_num_to_name": {},
+      "is_provisional": true
     }
   ],
   "training_evals": {},
   "prerace": {
     "bias": {
-      "today_inner_bias": 0.004166666666666666,
+      "today_inner_bias": -0.03070175438596491,
       "today_front_bias": 1.0,
-      "today_race_count": 2
+      "today_race_count": 3
     },
-    "ev_recommend": [
-      {
-        "horse_number": 16,
-        "horse_name": "ケイツースクード",
-        "win_odds": 102.6,
-        "ev_score": 7.1797,
-        "kelly_fraction": 0.0061
-      },
-      {
-        "horse_number": 10,
-        "horse_name": "シーサンタナ",
-        "win_odds": 41.4,
-        "ev_score": 6.2675,
-        "kelly_fraction": 0.013
-      },
-      {
-        "horse_number": 9,
-        "horse_name": "エルアン",
-        "win_odds": 26.4,
-        "ev_score": 3.4656,
-        "kelly_fraction": 0.0097
-      },
-      {
-        "horse_number": 13,
-        "horse_name": "ミアエッテ",
-        "win_odds": 24.1,
-        "ev_score": 3.1637,
-        "kelly_fraction": 0.0094
-      },
-      {
-        "horse_number": 5,
-        "horse_name": "カテドラルクォーツ",
-        "win_odds": 48.2,
-        "ev_score": 2.1056,
-        "kelly_fraction": 0.0023
-      },
-      {
-        "horse_number": 7,
-        "horse_name": "トウカイティエラ",
-        "win_odds": 58.8,
-        "ev_score": 1.7621,
-        "kelly_fraction": 0.0013
-      },
-      {
-        "horse_number": 15,
-        "horse_name": "アドマイヤフク",
-        "win_odds": 40.8,
-        "ev_score": 1.7548,
-        "kelly_fraction": 0.0019
-      },
-      {
-        "horse_number": 14,
-        "horse_name": "ベストバラディア",
-        "win_odds": 35.7,
-        "ev_score": 1.5355,
-        "kelly_fraction": 0.0015
-      },
-      {
-        "horse_number": 18,
-        "horse_name": "アームアンフルール",
-        "win_odds": 32.0,
-        "ev_score": 1.3979,
-        "kelly_fraction": 0.0013
-      },
-      {
-        "horse_number": 2,
-        "horse_name": "ダイヤテソーロ",
-        "win_odds": 25.5,
-        "ev_score": 1.0968,
-        "kelly_fraction": 0.0004
-      }
-    ],
-    "generated_at": "2026-05-03T11:10:27.525719"
+    "ev_recommend": [],
+    "generated_at": "2026-05-08T07:36:00.983838"
   }
 }

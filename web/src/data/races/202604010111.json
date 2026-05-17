@@ -1,262 +1,28 @@
 {
   "race_id": "202604010111",
-  "race_name": "三条ステークス",
+  "race_name": "",
   "date": "2026-05-02",
   "venue": "新潟",
   "race_number": 11,
-  "distance": 1800,
-  "surface": "ダート",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "重",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
-    {
-      "rank": 1,
-      "gate_number": 3,
-      "horse_number": 5,
-      "horse_name": "クインズショコラ",
-      "horse_id": "2022100159",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "田山旺佑",
-      "trainer": "新谷功一",
-      "finish_time": "1:52.9",
-      "margin": "@",
-      "win_odds": 4.2,
-      "popularity": 1,
-      "horse_weight": 500,
-      "horse_weight_diff": 0,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0808,
-      "ev_score": 0.4285,
-      "kelly_fraction": 0.0,
-      "manji_ev": 54.8273,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 2,
-      "gate_number": 7,
-      "horse_number": 12,
-      "horse_name": "エルフストラック",
-      "horse_id": "2021105616",
-      "sex_age": "牝4",
-      "weight_carried": 56.0,
-      "jockey": "小沢大仁",
-      "trainer": "中村直也",
-      "finish_time": "1:53.7",
-      "margin": "5",
-      "win_odds": 14.5,
-      "popularity": 8,
-      "horse_weight": 490,
-      "horse_weight_diff": 4,
-      "sire": "カリフォルニアクロームCalifornia Chrome(米)",
-      "dam": "スペルオンミー",
-      "dam_sire": "ダイワメジャー",
-      "honmei_score": 0.098,
-      "ev_score": 1.088,
-      "kelly_fraction": 0.0009,
-      "manji_ev": 6321.6995,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 3,
-      "gate_number": 7,
-      "horse_number": 13,
-      "horse_name": "ウィンターダフネ",
-      "horse_id": "2020103246",
-      "sex_age": "牝7",
-      "weight_carried": 56.0,
-      "jockey": "柴田裕一",
-      "trainer": "橋田宜長",
-      "finish_time": "1:53.9",
-      "margin": "1.1/2",
-      "win_odds": 10.0,
-      "popularity": 5,
-      "horse_weight": 492,
-      "horse_weight_diff": 2,
-      "sire": "ブラックタイド",
-      "dam": "ウィンターコスモス",
-      "dam_sire": "キングカメハメハ",
-      "honmei_score": 0.0468,
-      "ev_score": 0.5432,
-      "kelly_fraction": 0.0,
-      "manji_ev": 847.5988,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 4,
-      "gate_number": 4,
-      "horse_number": 7,
-      "horse_name": "ゴールドアローン",
-      "horse_id": "2021106874",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "菊沢一樹",
-      "trainer": "青木孝文",
-      "finish_time": "1:54.1",
-      "margin": "1",
-      "win_odds": 19.2,
-      "popularity": 9,
-      "horse_weight": 462,
-      "horse_weight_diff": -12,
-      "sire": "ドレフォンDrefong(米)",
-      "dam": "ゴールドアクション",
-      "dam_sire": "ヘニーヒューズHenny Hughes(米)",
-      "honmei_score": 0.0643,
-      "ev_score": 0.8806,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.0,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 5,
-      "gate_number": 5,
-      "horse_number": 8,
-      "horse_name": "エリカサファイア",
-      "horse_id": "2021103732",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "丹内祐次",
-      "trainer": "堀宣行",
-      "finish_time": "1:54.4",
-      "margin": "1.3/4",
-      "win_odds": 10.1,
-      "popularity": 6,
-      "horse_weight": 516,
-      "horse_weight_diff": 2,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0483,
-      "ev_score": 0.5457,
-      "kelly_fraction": 0.0,
-      "manji_ev": 523.2931,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 6,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "サンセットブライト",
-      "horse_id": "2021102753",
-      "sex_age": "牝4",
-      "weight_carried": 56.0,
-      "jockey": "横山琉人",
-      "trainer": "相沢郁",
-      "finish_time": "1:54.5",
-      "margin": "1/2",
-      "win_odds": 40.4,
-      "popularity": 12,
-      "horse_weight": 492,
-      "horse_weight_diff": 0,
-      "sire": "ホッコータルマエ",
-      "dam": "デルマオサキ",
-      "dam_sire": "ネオユニヴァース",
-      "honmei_score": 0.0468,
-      "ev_score": 1.0865,
-      "kelly_fraction": 0.0004,
-      "manji_ev": 392.5043,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 7,
-      "gate_number": 4,
-      "horse_number": 6,
-      "horse_name": "ファリーザ",
-      "horse_id": "2022105564",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "丸山元気",
-      "trainer": "千葉直人",
-      "finish_time": "1:54.5",
-      "margin": "アタマ",
-      "win_odds": 13.5,
-      "popularity": 7,
-      "horse_weight": 438,
-      "horse_weight_diff": 0,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0872,
-      "ev_score": 1.0373,
-      "kelly_fraction": 0.0003,
-      "manji_ev": 1252.042,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 8,
-      "gate_number": 6,
-      "horse_number": 10,
-      "horse_name": "ハワイアンティアレ",
-      "horse_id": "2021105255",
-      "sex_age": "牝7",
-      "weight_carried": 56.0,
-      "jockey": "富田暁",
-      "trainer": "松永幹夫",
-      "finish_time": "1:54.8",
-      "margin": "1.3/4",
-      "win_odds": 39.6,
-      "popularity": 11,
-      "horse_weight": 440,
-      "horse_weight_diff": 0,
-      "sire": "ロードカナロア",
-      "dam": "モアニケアラ",
-      "dam_sire": "マンハッタンカフェ",
-      "honmei_score": 0.0682,
-      "ev_score": 1.7586,
-      "kelly_fraction": 0.0031,
-      "manji_ev": 3529.9211,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 9,
-      "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "ツキノアカリ",
-      "horse_id": "2022103881",
-      "sex_age": "牝1",
-      "weight_carried": 56.0,
-      "jockey": "小崎綾也",
-      "trainer": "牧田和弥",
-      "finish_time": "1:55.3",
-      "margin": "3",
-      "win_odds": 52.5,
-      "popularity": 14,
-      "horse_weight": 444,
-      "horse_weight_diff": 0,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0748,
-      "ev_score": 1.9294,
-      "kelly_fraction": 0.0037,
-      "manji_ev": 428.0864,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
     {
       "rank": 10,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "ルージュミラージュ",
       "horse_id": "2022102435",
-      "sex_age": "牝3",
+      "sex_age": "牝4",
       "weight_carried": 56.0,
-      "jockey": "森田誠也",
-      "trainer": "武幸四郎",
+      "jockey": "森田",
+      "trainer": "栗東武幸",
       "finish_time": "1:55.6",
-      "margin": "1.3/4",
+      "margin": "@",
       "win_odds": 26.6,
       "popularity": 10,
       "horse_weight": 456,
@@ -268,136 +34,6 @@
       "ev_score": 1.1451,
       "kelly_fraction": 0.0009,
       "manji_ev": 670.2906,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 11,
-      "gate_number": 6,
-      "horse_number": 11,
-      "horse_name": "ドゥラリス",
-      "horse_id": "2022102885",
-      "sex_age": "牝4",
-      "weight_carried": 56.0,
-      "jockey": "斎藤新",
-      "trainer": "吉岡辰弥",
-      "finish_time": "1:55.8",
-      "margin": "1.1/2",
-      "win_odds": 8.8,
-      "popularity": 4,
-      "horse_weight": 528,
-      "horse_weight_diff": -4,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.05,
-      "ev_score": 0.4248,
-      "kelly_fraction": 0.0,
-      "manji_ev": 1639.991,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 12,
-      "gate_number": 8,
-      "horse_number": 15,
-      "horse_name": "カフェニクス",
-      "horse_id": "2021103288",
-      "sex_age": "牝1",
-      "weight_carried": 56.0,
-      "jockey": "杉原誠人",
-      "trainer": "柄崎将寿",
-      "finish_time": "1:56.2",
-      "margin": "2",
-      "win_odds": 41.4,
-      "popularity": 13,
-      "horse_weight": 498,
-      "horse_weight_diff": -2,
-      "sire": "サンダースノーThunder Snow(愛)",
-      "dam": "ルミエールカフェ",
-      "dam_sire": "マンハッタンカフェ",
-      "honmei_score": 0.0468,
-      "ev_score": 1.728,
-      "kelly_fraction": 0.002,
-      "manji_ev": 85337.7335,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 13,
-      "gate_number": 3,
-      "horse_number": 4,
-      "horse_name": "サイモンブーケ",
-      "horse_id": "2020102317",
-      "sex_age": "牝1",
-      "weight_carried": 56.0,
-      "jockey": "古川奈穂",
-      "trainer": "梅田智之",
-      "finish_time": "1:57.3",
-      "margin": "7",
-      "win_odds": 170.3,
-      "popularity": 15,
-      "horse_weight": 504,
-      "horse_weight_diff": -4,
-      "sire": "ダイワメジャー",
-      "dam": "サイモンガーランド",
-      "dam_sire": "ロージズインメイRoses in May(米)",
-      "honmei_score": 0.1072,
-      "ev_score": 7.7362,
-      "kelly_fraction": 0.0095,
-      "manji_ev": 0.0,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 14,
-      "gate_number": 5,
-      "horse_number": 9,
-      "horse_name": "モズカトレア",
-      "horse_id": "2022102123",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "石川裕紀",
-      "trainer": "井上智史",
-      "finish_time": "1:58.4",
-      "margin": "7",
-      "win_odds": 4.9,
-      "popularity": 2,
-      "horse_weight": 480,
-      "horse_weight_diff": -2,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.05,
-      "ev_score": 0.2899,
-      "kelly_fraction": 0.0,
-      "manji_ev": 70.3764,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 15,
-      "gate_number": 8,
-      "horse_number": 14,
-      "horse_name": "トウカイポワール",
-      "horse_id": "2021102389",
-      "sex_age": "牝1",
-      "weight_carried": 56.0,
-      "jockey": "亀田温心",
-      "trainer": "北出成人",
-      "finish_time": "1:58.6",
-      "margin": "1",
-      "win_odds": 5.8,
-      "popularity": 3,
-      "horse_weight": 466,
-      "horse_weight_diff": -6,
-      "sire": "ヘニーヒューズHenny Hughes(米)",
-      "dam": "トウカイシェーン",
-      "dam_sire": "ダイワメジャー",
-      "honmei_score": 0.0468,
-      "ev_score": 0.3512,
-      "kelly_fraction": 0.0,
-      "manji_ev": 67077.2169,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     }
@@ -446,6 +82,12 @@
       "popularity": 7
     },
     {
+      "bet_type": "馬連",
+      "combination": "1",
+      "payout": 1120,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "5-12",
       "payout": 860,
@@ -464,16 +106,46 @@
       "popularity": 25
     },
     {
+      "bet_type": "ワイド",
+      "combination": "3",
+      "payout": 70000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "5→12",
       "payout": 3650,
       "popularity": 7
     },
     {
+      "bet_type": "馬単",
+      "combination": "5",
+      "payout": 12000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "5-12-13",
       "payout": 6800,
       "popularity": 13
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "9",
+      "payout": 712,
+      "popularity": 130
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "8",
+      "payout": 60513,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "16",
+      "payout": 80025,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -510,22 +182,9 @@
       "n_tickets": 1,
       "invested": 100,
       "horse_num_to_name": {
-        "5": "クインズショコラ",
-        "12": "エルフストラック",
-        "13": "ウィンターダフネ",
-        "7": "ゴールドアローン",
-        "8": "エリカサファイア",
-        "1": "サンセットブライト",
-        "6": "ファリーザ",
-        "10": "ハワイアンティアレ",
-        "3": "ツキノアカリ",
-        "2": "ルージュミラージュ",
-        "11": "ドゥラリス",
-        "15": "カフェニクス",
-        "4": "サイモンブーケ",
-        "9": "モズカトレア",
-        "14": "トウカイポワール"
-      }
+        "2": "ルージュミラージュ"
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 15945,
@@ -568,22 +227,9 @@
       "n_tickets": 3,
       "invested": 300,
       "horse_num_to_name": {
-        "5": "クインズショコラ",
-        "12": "エルフストラック",
-        "13": "ウィンターダフネ",
-        "7": "ゴールドアローン",
-        "8": "エリカサファイア",
-        "1": "サンセットブライト",
-        "6": "ファリーザ",
-        "10": "ハワイアンティアレ",
-        "3": "ツキノアカリ",
-        "2": "ルージュミラージュ",
-        "11": "ドゥラリス",
-        "15": "カフェニクス",
-        "4": "サイモンブーケ",
-        "9": "モズカトレア",
-        "14": "トウカイポワール"
-      }
+        "2": "ルージュミラージュ"
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 15946,
@@ -619,22 +265,9 @@
       "n_tickets": 1,
       "invested": 100,
       "horse_num_to_name": {
-        "5": "クインズショコラ",
-        "12": "エルフストラック",
-        "13": "ウィンターダフネ",
-        "7": "ゴールドアローン",
-        "8": "エリカサファイア",
-        "1": "サンセットブライト",
-        "6": "ファリーザ",
-        "10": "ハワイアンティアレ",
-        "3": "ツキノアカリ",
-        "2": "ルージュミラージュ",
-        "11": "ドゥラリス",
-        "15": "カフェニクス",
-        "4": "サイモンブーケ",
-        "9": "モズカトレア",
-        "14": "トウカイポワール"
-      }
+        "2": "ルージュミラージュ"
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 15947,
@@ -670,22 +303,9 @@
       "n_tickets": 1,
       "invested": 100,
       "horse_num_to_name": {
-        "5": "クインズショコラ",
-        "12": "エルフストラック",
-        "13": "ウィンターダフネ",
-        "7": "ゴールドアローン",
-        "8": "エリカサファイア",
-        "1": "サンセットブライト",
-        "6": "ファリーザ",
-        "10": "ハワイアンティアレ",
-        "3": "ツキノアカリ",
-        "2": "ルージュミラージュ",
-        "11": "ドゥラリス",
-        "15": "カフェニクス",
-        "4": "サイモンブーケ",
-        "9": "モズカトレア",
-        "14": "トウカイポワール"
-      }
+        "2": "ルージュミラージュ"
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 15948,
@@ -812,124 +432,9 @@
       "n_tickets": 36,
       "invested": 3600,
       "horse_num_to_name": {
-        "5": "クインズショコラ",
-        "12": "エルフストラック",
-        "13": "ウィンターダフネ",
-        "7": "ゴールドアローン",
-        "8": "エリカサファイア",
-        "1": "サンセットブライト",
-        "6": "ファリーザ",
-        "10": "ハワイアンティアレ",
-        "3": "ツキノアカリ",
-        "2": "ルージュミラージュ",
-        "11": "ドゥラリス",
-        "15": "カフェニクス",
-        "4": "サイモンブーケ",
-        "9": "モズカトレア",
-        "14": "トウカイポワール"
-      }
-    },
-    {
-      "prediction_id": 15949,
-      "model_type": "卍(暫定)",
-      "bet_type": "単勝",
-      "confidence": 1.0,
-      "expected_value": 83851.70998427879,
-      "recommended_bet": 100.0,
-      "combination_json": "[[15]]",
-      "notes": "確率1位(卍) EV=83851.71 odds=1.0",
-      "created_at": "2026-05-02 13:24:20",
-      "is_hit": 1,
-      "payout": 15000.0,
-      "profit": 14900.0,
-      "roi": 15000.0,
-      "horses": [
-        {
-          "horse_name": "カフェニクス",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 83851.70998427879,
-          "ev_score": 83851.70998427879
-        }
-      ],
-      "bet_form": "単勝",
-      "n_tickets": 1,
-      "invested": 100,
-      "horse_num_to_name": {
-        "5": "クインズショコラ",
-        "12": "エルフストラック",
-        "13": "ウィンターダフネ",
-        "7": "ゴールドアローン",
-        "8": "エリカサファイア",
-        "1": "サンセットブライト",
-        "6": "ファリーザ",
-        "10": "ハワイアンティアレ",
-        "3": "ツキノアカリ",
-        "2": "ルージュミラージュ",
-        "11": "ドゥラリス",
-        "15": "カフェニクス",
-        "4": "サイモンブーケ",
-        "9": "モズカトレア",
-        "14": "トウカイポワール"
-      }
-    },
-    {
-      "prediction_id": 15950,
-      "model_type": "卍(暫定)",
-      "bet_type": "複勝",
-      "confidence": 0.6,
-      "expected_value": 54037.80904020843,
-      "recommended_bet": 300.0,
-      "combination_json": "[[15], [14], [12]]",
-      "notes": "確率上位3頭を複勝",
-      "created_at": "2026-05-02 13:24:20",
-      "is_hit": 1,
-      "payout": 390.0,
-      "profit": 90.0,
-      "roi": 130.0,
-      "horses": [
-        {
-          "horse_name": "カフェニクス",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 54037.80904020843,
-          "ev_score": 54037.80904020843
-        },
-        {
-          "horse_name": "トウカイポワール",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 54037.80904020843,
-          "ev_score": 54037.80904020843
-        },
-        {
-          "horse_name": "エルフストラック",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 54037.80904020843,
-          "ev_score": 54037.80904020843
-        }
-      ],
-      "bet_form": "複勝",
-      "n_tickets": 3,
-      "invested": 300,
-      "horse_num_to_name": {
-        "5": "クインズショコラ",
-        "12": "エルフストラック",
-        "13": "ウィンターダフネ",
-        "7": "ゴールドアローン",
-        "8": "エリカサファイア",
-        "1": "サンセットブライト",
-        "6": "ファリーザ",
-        "10": "ハワイアンティアレ",
-        "3": "ツキノアカリ",
-        "2": "ルージュミラージュ",
-        "11": "ドゥラリス",
-        "15": "カフェニクス",
-        "4": "サイモンブーケ",
-        "9": "モズカトレア",
-        "14": "トウカイポワール"
-      }
+        "2": "ルージュミラージュ"
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 15951,
@@ -965,22 +470,9 @@
       "n_tickets": 1,
       "invested": 100,
       "horse_num_to_name": {
-        "5": "クインズショコラ",
-        "12": "エルフストラック",
-        "13": "ウィンターダフネ",
-        "7": "ゴールドアローン",
-        "8": "エリカサファイア",
-        "1": "サンセットブライト",
-        "6": "ファリーザ",
-        "10": "ハワイアンティアレ",
-        "3": "ツキノアカリ",
-        "2": "ルージュミラージュ",
-        "11": "ドゥラリス",
-        "15": "カフェニクス",
-        "4": "サイモンブーケ",
-        "9": "モズカトレア",
-        "14": "トウカイポワール"
-      }
+        "2": "ルージュミラージュ"
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 15952,
@@ -1016,22 +508,9 @@
       "n_tickets": 1,
       "invested": 100,
       "horse_num_to_name": {
-        "5": "クインズショコラ",
-        "12": "エルフストラック",
-        "13": "ウィンターダフネ",
-        "7": "ゴールドアローン",
-        "8": "エリカサファイア",
-        "1": "サンセットブライト",
-        "6": "ファリーザ",
-        "10": "ハワイアンティアレ",
-        "3": "ツキノアカリ",
-        "2": "ルージュミラージュ",
-        "11": "ドゥラリス",
-        "15": "カフェニクス",
-        "4": "サイモンブーケ",
-        "9": "モズカトレア",
-        "14": "トウカイポワール"
-      }
+        "2": "ルージュミラージュ"
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 15955,
@@ -1074,22 +553,9 @@
       "n_tickets": 1,
       "invested": 100,
       "horse_num_to_name": {
-        "5": "クインズショコラ",
-        "12": "エルフストラック",
-        "13": "ウィンターダフネ",
-        "7": "ゴールドアローン",
-        "8": "エリカサファイア",
-        "1": "サンセットブライト",
-        "6": "ファリーザ",
-        "10": "ハワイアンティアレ",
-        "3": "ツキノアカリ",
-        "2": "ルージュミラージュ",
-        "11": "ドゥラリス",
-        "15": "カフェニクス",
-        "4": "サイモンブーケ",
-        "9": "モズカトレア",
-        "14": "トウカイポワール"
-      }
+        "2": "ルージュミラージュ"
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 15956,
@@ -1132,22 +598,9 @@
       "n_tickets": 3,
       "invested": 300,
       "horse_num_to_name": {
-        "5": "クインズショコラ",
-        "12": "エルフストラック",
-        "13": "ウィンターダフネ",
-        "7": "ゴールドアローン",
-        "8": "エリカサファイア",
-        "1": "サンセットブライト",
-        "6": "ファリーザ",
-        "10": "ハワイアンティアレ",
-        "3": "ツキノアカリ",
-        "2": "ルージュミラージュ",
-        "11": "ドゥラリス",
-        "15": "カフェニクス",
-        "4": "サイモンブーケ",
-        "9": "モズカトレア",
-        "14": "トウカイポワール"
-      }
+        "2": "ルージュミラージュ"
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 15957,
@@ -1190,22 +643,9 @@
       "n_tickets": 3,
       "invested": 300,
       "horse_num_to_name": {
-        "5": "クインズショコラ",
-        "12": "エルフストラック",
-        "13": "ウィンターダフネ",
-        "7": "ゴールドアローン",
-        "8": "エリカサファイア",
-        "1": "サンセットブライト",
-        "6": "ファリーザ",
-        "10": "ハワイアンティアレ",
-        "3": "ツキノアカリ",
-        "2": "ルージュミラージュ",
-        "11": "ドゥラリス",
-        "15": "カフェニクス",
-        "4": "サイモンブーケ",
-        "9": "モズカトレア",
-        "14": "トウカイポワール"
-      }
+        "2": "ルージュミラージュ"
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 15958,
@@ -1332,22 +772,9 @@
       "n_tickets": 0,
       "invested": 0,
       "horse_num_to_name": {
-        "5": "クインズショコラ",
-        "12": "エルフストラック",
-        "13": "ウィンターダフネ",
-        "7": "ゴールドアローン",
-        "8": "エリカサファイア",
-        "1": "サンセットブライト",
-        "6": "ファリーザ",
-        "10": "ハワイアンティアレ",
-        "3": "ツキノアカリ",
-        "2": "ルージュミラージュ",
-        "11": "ドゥラリス",
-        "15": "カフェニクス",
-        "4": "サイモンブーケ",
-        "9": "モズカトレア",
-        "14": "トウカイポワール"
-      }
+        "2": "ルージュミラージュ"
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 17128,
@@ -1376,22 +803,9 @@
       "n_tickets": 1,
       "invested": 100,
       "horse_num_to_name": {
-        "5": "クインズショコラ",
-        "12": "エルフストラック",
-        "13": "ウィンターダフネ",
-        "7": "ゴールドアローン",
-        "8": "エリカサファイア",
-        "1": "サンセットブライト",
-        "6": "ファリーザ",
-        "10": "ハワイアンティアレ",
-        "3": "ツキノアカリ",
-        "2": "ルージュミラージュ",
-        "11": "ドゥラリス",
-        "15": "カフェニクス",
-        "4": "サイモンブーケ",
-        "9": "モズカトレア",
-        "14": "トウカイポワール"
-      }
+        "2": "ルージュミラージュ"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 17129,
@@ -1434,22 +848,9 @@
       "n_tickets": 3,
       "invested": 300,
       "horse_num_to_name": {
-        "5": "クインズショコラ",
-        "12": "エルフストラック",
-        "13": "ウィンターダフネ",
-        "7": "ゴールドアローン",
-        "8": "エリカサファイア",
-        "1": "サンセットブライト",
-        "6": "ファリーザ",
-        "10": "ハワイアンティアレ",
-        "3": "ツキノアカリ",
-        "2": "ルージュミラージュ",
-        "11": "ドゥラリス",
-        "15": "カフェニクス",
-        "4": "サイモンブーケ",
-        "9": "モズカトレア",
-        "14": "トウカイポワール"
-      }
+        "2": "ルージュミラージュ"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 17130,
@@ -1485,22 +886,9 @@
       "n_tickets": 1,
       "invested": 100,
       "horse_num_to_name": {
-        "5": "クインズショコラ",
-        "12": "エルフストラック",
-        "13": "ウィンターダフネ",
-        "7": "ゴールドアローン",
-        "8": "エリカサファイア",
-        "1": "サンセットブライト",
-        "6": "ファリーザ",
-        "10": "ハワイアンティアレ",
-        "3": "ツキノアカリ",
-        "2": "ルージュミラージュ",
-        "11": "ドゥラリス",
-        "15": "カフェニクス",
-        "4": "サイモンブーケ",
-        "9": "モズカトレア",
-        "14": "トウカイポワール"
-      }
+        "2": "ルージュミラージュ"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 17131,
@@ -1536,22 +924,9 @@
       "n_tickets": 1,
       "invested": 100,
       "horse_num_to_name": {
-        "5": "クインズショコラ",
-        "12": "エルフストラック",
-        "13": "ウィンターダフネ",
-        "7": "ゴールドアローン",
-        "8": "エリカサファイア",
-        "1": "サンセットブライト",
-        "6": "ファリーザ",
-        "10": "ハワイアンティアレ",
-        "3": "ツキノアカリ",
-        "2": "ルージュミラージュ",
-        "11": "ドゥラリス",
-        "15": "カフェニクス",
-        "4": "サイモンブーケ",
-        "9": "モズカトレア",
-        "14": "トウカイポワール"
-      }
+        "2": "ルージュミラージュ"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 17132,
@@ -1615,22 +990,9 @@
       "n_tickets": 2,
       "invested": 200,
       "horse_num_to_name": {
-        "5": "クインズショコラ",
-        "12": "エルフストラック",
-        "13": "ウィンターダフネ",
-        "7": "ゴールドアローン",
-        "8": "エリカサファイア",
-        "1": "サンセットブライト",
-        "6": "ファリーザ",
-        "10": "ハワイアンティアレ",
-        "3": "ツキノアカリ",
-        "2": "ルージュミラージュ",
-        "11": "ドゥラリス",
-        "15": "カフェニクス",
-        "4": "サイモンブーケ",
-        "9": "モズカトレア",
-        "14": "トウカイポワール"
-      }
+        "2": "ルージュミラージュ"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 17133,
@@ -1757,124 +1119,9 @@
       "n_tickets": 36,
       "invested": 3600,
       "horse_num_to_name": {
-        "5": "クインズショコラ",
-        "12": "エルフストラック",
-        "13": "ウィンターダフネ",
-        "7": "ゴールドアローン",
-        "8": "エリカサファイア",
-        "1": "サンセットブライト",
-        "6": "ファリーザ",
-        "10": "ハワイアンティアレ",
-        "3": "ツキノアカリ",
-        "2": "ルージュミラージュ",
-        "11": "ドゥラリス",
-        "15": "カフェニクス",
-        "4": "サイモンブーケ",
-        "9": "モズカトレア",
-        "14": "トウカイポワール"
-      }
-    },
-    {
-      "prediction_id": 17134,
-      "model_type": "卍(直前)",
-      "bet_type": "単勝",
-      "confidence": 1.0,
-      "expected_value": 85337.73354841462,
-      "recommended_bet": 400.0,
-      "combination_json": "[[15]]",
-      "notes": "確率1位(卍) EV=85337.73 odds=36.9",
-      "created_at": "2026-05-02 14:40:09",
-      "is_hit": 1,
-      "payout": 15000.0,
-      "profit": 14900.0,
-      "roi": 15000.0,
-      "horses": [
-        {
-          "horse_name": "カフェニクス",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 85337.73354841462,
-          "ev_score": 85337.73354841462
-        }
-      ],
-      "bet_form": "単勝",
-      "n_tickets": 1,
-      "invested": 100,
-      "horse_num_to_name": {
-        "5": "クインズショコラ",
-        "12": "エルフストラック",
-        "13": "ウィンターダフネ",
-        "7": "ゴールドアローン",
-        "8": "エリカサファイア",
-        "1": "サンセットブライト",
-        "6": "ファリーザ",
-        "10": "ハワイアンティアレ",
-        "3": "ツキノアカリ",
-        "2": "ルージュミラージュ",
-        "11": "ドゥラリス",
-        "15": "カフェニクス",
-        "4": "サイモンブーケ",
-        "9": "モズカトレア",
-        "14": "トウカイポワール"
-      }
-    },
-    {
-      "prediction_id": 17135,
-      "model_type": "卍(直前)",
-      "bet_type": "複勝",
-      "confidence": 0.6,
-      "expected_value": 52912.216667461245,
-      "recommended_bet": 300.0,
-      "combination_json": "[[15], [14], [12]]",
-      "notes": "確率上位3頭を複勝",
-      "created_at": "2026-05-02 14:40:09",
-      "is_hit": 1,
-      "payout": 390.0,
-      "profit": 90.0,
-      "roi": 130.0,
-      "horses": [
-        {
-          "horse_name": "カフェニクス",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 52912.216667461245,
-          "ev_score": 52912.216667461245
-        },
-        {
-          "horse_name": "トウカイポワール",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 52912.216667461245,
-          "ev_score": 52912.216667461245
-        },
-        {
-          "horse_name": "エルフストラック",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 52912.216667461245,
-          "ev_score": 52912.216667461245
-        }
-      ],
-      "bet_form": "複勝",
-      "n_tickets": 3,
-      "invested": 300,
-      "horse_num_to_name": {
-        "5": "クインズショコラ",
-        "12": "エルフストラック",
-        "13": "ウィンターダフネ",
-        "7": "ゴールドアローン",
-        "8": "エリカサファイア",
-        "1": "サンセットブライト",
-        "6": "ファリーザ",
-        "10": "ハワイアンティアレ",
-        "3": "ツキノアカリ",
-        "2": "ルージュミラージュ",
-        "11": "ドゥラリス",
-        "15": "カフェニクス",
-        "4": "サイモンブーケ",
-        "9": "モズカトレア",
-        "14": "トウカイポワール"
-      }
+        "2": "ルージュミラージュ"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 17136,
@@ -1910,22 +1157,9 @@
       "n_tickets": 1,
       "invested": 100,
       "horse_num_to_name": {
-        "5": "クインズショコラ",
-        "12": "エルフストラック",
-        "13": "ウィンターダフネ",
-        "7": "ゴールドアローン",
-        "8": "エリカサファイア",
-        "1": "サンセットブライト",
-        "6": "ファリーザ",
-        "10": "ハワイアンティアレ",
-        "3": "ツキノアカリ",
-        "2": "ルージュミラージュ",
-        "11": "ドゥラリス",
-        "15": "カフェニクス",
-        "4": "サイモンブーケ",
-        "9": "モズカトレア",
-        "14": "トウカイポワール"
-      }
+        "2": "ルージュミラージュ"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 17137,
@@ -1961,22 +1195,9 @@
       "n_tickets": 1,
       "invested": 100,
       "horse_num_to_name": {
-        "5": "クインズショコラ",
-        "12": "エルフストラック",
-        "13": "ウィンターダフネ",
-        "7": "ゴールドアローン",
-        "8": "エリカサファイア",
-        "1": "サンセットブライト",
-        "6": "ファリーザ",
-        "10": "ハワイアンティアレ",
-        "3": "ツキノアカリ",
-        "2": "ルージュミラージュ",
-        "11": "ドゥラリス",
-        "15": "カフェニクス",
-        "4": "サイモンブーケ",
-        "9": "モズカトレア",
-        "14": "トウカイポワール"
-      }
+        "2": "ルージュミラージュ"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 17140,
@@ -2019,22 +1240,9 @@
       "n_tickets": 1,
       "invested": 100,
       "horse_num_to_name": {
-        "5": "クインズショコラ",
-        "12": "エルフストラック",
-        "13": "ウィンターダフネ",
-        "7": "ゴールドアローン",
-        "8": "エリカサファイア",
-        "1": "サンセットブライト",
-        "6": "ファリーザ",
-        "10": "ハワイアンティアレ",
-        "3": "ツキノアカリ",
-        "2": "ルージュミラージュ",
-        "11": "ドゥラリス",
-        "15": "カフェニクス",
-        "4": "サイモンブーケ",
-        "9": "モズカトレア",
-        "14": "トウカイポワール"
-      }
+        "2": "ルージュミラージュ"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 17141,
@@ -2077,22 +1285,9 @@
       "n_tickets": 3,
       "invested": 300,
       "horse_num_to_name": {
-        "5": "クインズショコラ",
-        "12": "エルフストラック",
-        "13": "ウィンターダフネ",
-        "7": "ゴールドアローン",
-        "8": "エリカサファイア",
-        "1": "サンセットブライト",
-        "6": "ファリーザ",
-        "10": "ハワイアンティアレ",
-        "3": "ツキノアカリ",
-        "2": "ルージュミラージュ",
-        "11": "ドゥラリス",
-        "15": "カフェニクス",
-        "4": "サイモンブーケ",
-        "9": "モズカトレア",
-        "14": "トウカイポワール"
-      }
+        "2": "ルージュミラージュ"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 17142,
@@ -2135,22 +1330,9 @@
       "n_tickets": 3,
       "invested": 300,
       "horse_num_to_name": {
-        "5": "クインズショコラ",
-        "12": "エルフストラック",
-        "13": "ウィンターダフネ",
-        "7": "ゴールドアローン",
-        "8": "エリカサファイア",
-        "1": "サンセットブライト",
-        "6": "ファリーザ",
-        "10": "ハワイアンティアレ",
-        "3": "ツキノアカリ",
-        "2": "ルージュミラージュ",
-        "11": "ドゥラリス",
-        "15": "カフェニクス",
-        "4": "サイモンブーケ",
-        "9": "モズカトレア",
-        "14": "トウカイポワール"
-      }
+        "2": "ルージュミラージュ"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 17143,
@@ -2277,22 +1459,9 @@
       "n_tickets": 0,
       "invested": 0,
       "horse_num_to_name": {
-        "5": "クインズショコラ",
-        "12": "エルフストラック",
-        "13": "ウィンターダフネ",
-        "7": "ゴールドアローン",
-        "8": "エリカサファイア",
-        "1": "サンセットブライト",
-        "6": "ファリーザ",
-        "10": "ハワイアンティアレ",
-        "3": "ツキノアカリ",
-        "2": "ルージュミラージュ",
-        "11": "ドゥラリス",
-        "15": "カフェニクス",
-        "4": "サイモンブーケ",
-        "9": "モズカトレア",
-        "14": "トウカイポワール"
-      }
+        "2": "ルージュミラージュ"
+      },
+      "is_provisional": false
     }
   ],
   "training_evals": {},

@@ -12,6 +12,26 @@
   "year": "2025",
   "results": [
     {
+      "rank": 1,
+      "gate_number": 6,
+      "horse_number": 8,
+      "horse_name": "オトメナシャチョウ",
+      "horse_id": "2022110088",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "丸山元気",
+      "trainer": "森秀行",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -153,26 +173,6 @@
     },
     {
       "rank": null,
-      "gate_number": 6,
-      "horse_number": 8,
-      "horse_name": "オトメナシャチョウ",
-      "horse_id": "2022110088",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "丸山元気",
-      "trainer": "森秀行",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
       "gate_number": 7,
       "horse_number": 9,
       "horse_name": "テイエムタワードン",
@@ -258,12 +258,6 @@
       "combination": "8",
       "payout": 620,
       "popularity": 4
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "12",
-      "payout": 12000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

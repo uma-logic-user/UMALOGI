@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 6,
-      "horse_name": "アンクルクロス",
-      "horse_id": "2021101598",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "ハマーハ",
-      "trainer": "高橋亮",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "タリスマニックTalismanic(英)",
-      "dam": "ウインクルキラリ",
-      "dam_sire": "ダンスインザダーク"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 6,
       "horse_number": 12,
       "horse_name": "ヤブサメ",
@@ -52,7 +32,27 @@
       "dam_sire": "グラスワンダー"
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "アンクルクロス",
+      "horse_id": "2021101598",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "ハマーハ",
+      "trainer": "高橋亮",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "タリスマニックTalismanic(英)",
+      "dam": "ウインクルキラリ",
+      "dam_sire": "ダンスインザダーク"
+    },
+    {
+      "rank": 3,
       "gate_number": 7,
       "horse_number": 13,
       "horse_name": "セッション",
@@ -338,12 +338,6 @@
       "combination": "12",
       "payout": 360,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

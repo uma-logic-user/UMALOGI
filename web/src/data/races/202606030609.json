@@ -4,39 +4,13 @@
   "date": "2026-04-12",
   "venue": "中山",
   "race_number": 9,
-  "distance": 2400,
-  "surface": "ダート",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
-    {
-      "rank": 1,
-      "gate_number": 8,
-      "horse_number": 12,
-      "horse_name": "インジケーター",
-      "horse_id": "2021103574",
-      "sex_age": "牡7",
-      "weight_carried": 53.0,
-      "jockey": "田山旺佑",
-      "trainer": "高橋康之",
-      "finish_time": "2:34.3",
-      "margin": "@",
-      "win_odds": 21.8,
-      "popularity": 7,
-      "horse_weight": 498,
-      "horse_weight_diff": -8,
-      "sire": "Liam's Map",
-      "dam": "アイスクリームサイレンスIce Cream Silence(米)",
-      "dam_sire": "ストリートセンスStreet Sense(米)",
-      "honmei_score": 0.0019,
-      "ev_score": 0.0498,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.0,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
     {
       "rank": 2,
       "gate_number": 6,
@@ -48,7 +22,7 @@
       "jockey": "佐々木大",
       "trainer": "久保田貴",
       "finish_time": "2:34.5",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 3.3,
       "popularity": 2,
       "horse_weight": 462,
@@ -74,7 +48,7 @@
       "jockey": "三浦皇成",
       "trainer": "小崎憲",
       "finish_time": "2:34.8",
-      "margin": "2",
+      "margin": "@",
       "win_odds": 3.1,
       "popularity": 1,
       "horse_weight": 508,
@@ -100,7 +74,7 @@
       "jockey": "ディー",
       "trainer": "藤原英昭",
       "finish_time": "2:35.1",
-      "margin": "1.1/2",
+      "margin": "@",
       "win_odds": 5.0,
       "popularity": 3,
       "horse_weight": 516,
@@ -126,7 +100,7 @@
       "jockey": "吉田豊",
       "trainer": "小野次郎",
       "finish_time": "2:35.5",
-      "margin": "2.1/2",
+      "margin": "@",
       "win_odds": 22.0,
       "popularity": 8,
       "horse_weight": 488,
@@ -152,7 +126,7 @@
       "jockey": "田辺裕信",
       "trainer": "尾形和幸",
       "finish_time": "2:35.6",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 13.7,
       "popularity": 5,
       "horse_weight": 504,
@@ -178,7 +152,7 @@
       "jockey": "横山琉人",
       "trainer": "小島茂之",
       "finish_time": "2:35.9",
-      "margin": "2",
+      "margin": "@",
       "win_odds": 35.3,
       "popularity": 10,
       "horse_weight": 500,
@@ -204,7 +178,7 @@
       "jockey": "木幡巧也",
       "trainer": "田島俊明",
       "finish_time": "2:36.0",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 19.9,
       "popularity": 6,
       "horse_weight": 484,
@@ -230,7 +204,7 @@
       "jockey": "大野拓弥",
       "trainer": "松山将樹",
       "finish_time": "2:36.4",
-      "margin": "2",
+      "margin": "@",
       "win_odds": 29.5,
       "popularity": 9,
       "horse_weight": 522,
@@ -256,7 +230,7 @@
       "jockey": "酒井学",
       "trainer": "尾関知人",
       "finish_time": "2:36.4",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 68.6,
       "popularity": 11,
       "horse_weight": 494,
@@ -282,7 +256,7 @@
       "jockey": "横山和生",
       "trainer": "高橋一哉",
       "finish_time": "2:37.0",
-      "margin": "3.1/2",
+      "margin": "@",
       "win_odds": 7.1,
       "popularity": 4,
       "horse_weight": 450,
@@ -308,7 +282,7 @@
       "jockey": "長浜鴻緒",
       "trainer": "手塚貴徳",
       "finish_time": "2:37.7",
-      "margin": "4",
+      "margin": "@",
       "win_odds": 165.3,
       "popularity": 12,
       "horse_weight": 538,
@@ -318,6 +292,32 @@
       "dam_sire": "マリエンバードMarienbard(愛)",
       "honmei_score": 0.0083,
       "ev_score": 0.3458,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 12,
+      "horse_name": "インジケーター",
+      "horse_id": "2021103574",
+      "sex_age": "牡7",
+      "weight_carried": 53.0,
+      "jockey": "田山旺佑",
+      "trainer": "高橋康之",
+      "finish_time": "2:34.3",
+      "margin": "@",
+      "win_odds": 21.8,
+      "popularity": 7,
+      "horse_weight": 498,
+      "horse_weight_diff": -8,
+      "sire": "Liam's Map",
+      "dam": "アイスクリームサイレンスIce Cream Silence(米)",
+      "dam_sire": "ストリートセンスStreet Sense(米)",
+      "honmei_score": 0.0019,
+      "ev_score": 0.0498,
       "kelly_fraction": 0.0,
       "manji_ev": 0.0,
       "odds_vs_morning": 1.0,
@@ -356,6 +356,12 @@
       "popularity": 4
     },
     {
+      "bet_type": "枠連",
+      "combination": "2",
+      "payout": 18007,
+      "popularity": null
+    },
+    {
       "bet_type": "馬連",
       "combination": "7-12",
       "payout": 5290,
@@ -386,16 +392,46 @@
       "popularity": 20
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 30010,
+      "popularity": 50
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "6",
+      "payout": 80000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "12→7",
       "payout": 10660,
       "popularity": 37
     },
     {
+      "bet_type": "馬単",
+      "combination": "7",
+      "payout": 12000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "5-7-12",
       "payout": 3870,
       "popularity": 11
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "11-10",
+      "payout": 1205,
+      "popularity": 70
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "14-2",
+      "payout": 10512,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -444,7 +480,8 @@
         "4": "ロンパイア",
         "1": "オーシンハーフ",
         "6": "アースイオス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2153,
@@ -485,7 +522,8 @@
         "4": "ロンパイア",
         "1": "オーシンハーフ",
         "6": "アースイオス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2221,
@@ -526,7 +564,8 @@
         "4": "ロンパイア",
         "1": "オーシンハーフ",
         "6": "アースイオス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2374,
@@ -567,7 +606,8 @@
         "4": "ロンパイア",
         "1": "オーシンハーフ",
         "6": "アースイオス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 2375,
@@ -622,7 +662,8 @@
         "4": "ロンパイア",
         "1": "オーシンハーフ",
         "6": "アースイオス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 2376,
@@ -663,7 +704,8 @@
         "4": "ロンパイア",
         "1": "オーシンハーフ",
         "6": "アースイオス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 2377,
@@ -704,7 +746,8 @@
         "4": "ロンパイア",
         "1": "オーシンハーフ",
         "6": "アースイオス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 2378,
@@ -752,7 +795,8 @@
         "4": "ロンパイア",
         "1": "オーシンハーフ",
         "6": "アースイオス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 2379,
@@ -793,76 +837,8 @@
         "4": "ロンパイア",
         "1": "オーシンハーフ",
         "6": "アースイオス"
-      }
-    },
-    {
-      "prediction_id": 2380,
-      "model_type": "本命(直前)",
-      "bet_type": "三連単",
-      "confidence": 0.05201477901144024,
-      "expected_value": 107.28048171109549,
-      "recommended_bet": 600.0,
-      "combination_json": "[[10, 3, 8], [10, 8, 3], [3, 10, 8], [3, 8, 10], [8, 10, 3], [8, 3, 10]]",
-      "notes": "上位3頭 6点ボックス Harville=0.065",
-      "created_at": "2026-04-12 13:40:35",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -600.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "ラファールドール",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.0650184737643003,
-          "ev_score": 107.28048171109549
-        },
-        {
-          "horse_name": "シゲルカミカゼ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.0650184737643003,
-          "ev_score": 107.28048171109549
-        },
-        {
-          "horse_name": "ムジェロ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.0650184737643003,
-          "ev_score": 107.28048171109549
-        },
-        {
-          "horse_name": "本命",
-          "horse_id": null,
-          "predicted_rank": 4,
-          "model_score": 0.0650184737643003,
-          "ev_score": 107.28048171109549
-        },
-        {
-          "horse_name": "本命",
-          "horse_id": null,
-          "predicted_rank": 5,
-          "model_score": 0.0650184737643003,
-          "ev_score": 107.28048171109549
-        }
-      ],
-      "bet_form": "3頭ボックス",
-      "n_tickets": 6,
-      "invested": 600,
-      "horse_num_to_name": {
-        "12": "インジケーター",
-        "7": "オオタチ",
-        "5": "イプシロンナンバー",
-        "8": "ムジェロ",
-        "2": "コーリンカルベラ",
-        "11": "キャストロププ",
-        "9": "ルーラーリッチ",
-        "10": "ラファールドール",
-        "3": "シゲルカミカゼ",
-        "4": "ロンパイア",
-        "1": "オーシンハーフ",
-        "6": "アースイオス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 2381,
@@ -980,7 +956,8 @@
         "4": "ロンパイア",
         "1": "オーシンハーフ",
         "6": "アースイオス"
-      }
+      },
+      "is_provisional": false
     }
   ],
   "training_evals": {},

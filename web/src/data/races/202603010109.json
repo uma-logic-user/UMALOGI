@@ -4,11 +4,11 @@
   "date": "2026-04-11",
   "venue": "福島",
   "race_number": 9,
-  "distance": 1800,
-  "surface": "芝",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -46,7 +46,7 @@
       "jockey": "斎藤新",
       "trainer": "室井潔",
       "finish_time": "1:47.1",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 21.4,
       "popularity": 8,
       "horse_weight": 474,
@@ -70,7 +70,7 @@
       "jockey": "小崎綾也",
       "trainer": "高橋一哉",
       "finish_time": "1:47.6",
-      "margin": "3",
+      "margin": "@",
       "win_odds": 18.0,
       "popularity": 7,
       "horse_weight": 498,
@@ -94,7 +94,7 @@
       "jockey": "藤懸貴志",
       "trainer": "平田修",
       "finish_time": "1:47.6",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 5.5,
       "popularity": 3,
       "horse_weight": 530,
@@ -118,7 +118,7 @@
       "jockey": "石川裕紀",
       "trainer": "手塚貴徳",
       "finish_time": "1:47.7",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 75.1,
       "popularity": 14,
       "horse_weight": 432,
@@ -142,7 +142,7 @@
       "jockey": "横山琉人",
       "trainer": "大和田成",
       "finish_time": "1:47.8",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 39.2,
       "popularity": 11,
       "horse_weight": 466,
@@ -166,7 +166,7 @@
       "jockey": "舟山瑠泉",
       "trainer": "鹿戸雄一",
       "finish_time": "1:47.8",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 24.1,
       "popularity": 9,
       "horse_weight": 466,
@@ -190,7 +190,7 @@
       "jockey": "長浜鴻緒",
       "trainer": "矢嶋大樹",
       "finish_time": "1:47.8",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 57.5,
       "popularity": 12,
       "horse_weight": 418,
@@ -214,7 +214,7 @@
       "jockey": "原田和真",
       "trainer": "萱野浩二",
       "finish_time": "1:47.8",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 7.3,
       "popularity": 4,
       "horse_weight": 480,
@@ -238,7 +238,7 @@
       "jockey": "国分恭介",
       "trainer": "宮地貴稔",
       "finish_time": "1:47.9",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 38.3,
       "popularity": 10,
       "horse_weight": 466,
@@ -262,7 +262,7 @@
       "jockey": "野中悠太",
       "trainer": "宮田敬介",
       "finish_time": "1:48.1",
-      "margin": "1.1/4",
+      "margin": "@",
       "win_odds": 66.1,
       "popularity": 13,
       "horse_weight": 474,
@@ -286,7 +286,7 @@
       "jockey": "江田照男",
       "trainer": "田中勝春",
       "finish_time": "1:48.2",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 4.4,
       "popularity": 2,
       "horse_weight": 472,
@@ -310,7 +310,7 @@
       "jockey": "小沢大仁",
       "trainer": "中内田充",
       "finish_time": "1:48.3",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 8.2,
       "popularity": 5,
       "horse_weight": 474,
@@ -334,7 +334,7 @@
       "jockey": "秋山稔樹",
       "trainer": "粕谷昌央",
       "finish_time": "1:48.9",
-      "margin": "3.1/2",
+      "margin": "@",
       "win_odds": 230.7,
       "popularity": 16,
       "horse_weight": 460,
@@ -358,7 +358,7 @@
       "jockey": "荻野極",
       "trainer": "浅利英明",
       "finish_time": "1:49.0",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 15.8,
       "popularity": 6,
       "horse_weight": 436,
@@ -382,7 +382,7 @@
       "jockey": "田口貫太",
       "trainer": "安達昭夫",
       "finish_time": "1:49.0",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 129.7,
       "popularity": 15,
       "horse_weight": 482,
@@ -440,6 +440,18 @@
       "popularity": 13
     },
     {
+      "bet_type": "馬連",
+      "combination": "1",
+      "payout": 1090,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 50000,
+      "popularity": 2
+    },
+    {
       "bet_type": "ワイド",
       "combination": "2-3",
       "payout": 1130,
@@ -450,6 +462,12 @@
       "combination": "3-9",
       "payout": 1370,
       "popularity": 14
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4",
+      "payout": 20060,
+      "popularity": 20
     },
     {
       "bet_type": "ワイド",
@@ -464,10 +482,28 @@
       "popularity": 22
     },
     {
+      "bet_type": "馬単",
+      "combination": "3",
+      "payout": 9000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "2-3-9",
       "payout": 20650,
       "popularity": 65
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "11",
+      "payout": 1002,
+      "popularity": 90
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "13-1",
+      "payout": 40203,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -527,7 +563,8 @@
         "8": "フォートポータル",
         "4": "グレヴィレア",
         "1": "メイショウヒュウガ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1816,
@@ -621,7 +658,8 @@
         "8": "フォートポータル",
         "4": "グレヴィレア",
         "1": "メイショウヒュウガ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1817,
@@ -673,7 +711,8 @@
         "8": "フォートポータル",
         "4": "グレヴィレア",
         "1": "メイショウヒュウガ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1818,
@@ -725,7 +764,8 @@
         "8": "フォートポータル",
         "4": "グレヴィレア",
         "1": "メイショウヒュウガ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1819,
@@ -784,7 +824,8 @@
         "8": "フォートポータル",
         "4": "グレヴィレア",
         "1": "メイショウヒュウガ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1820,
@@ -850,7 +891,8 @@
         "8": "フォートポータル",
         "4": "グレヴィレア",
         "1": "メイショウヒュウガ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1821,
@@ -930,7 +972,8 @@
         "8": "フォートポータル",
         "4": "グレヴィレア",
         "1": "メイショウヒュウガ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1823,
@@ -982,7 +1025,8 @@
         "8": "フォートポータル",
         "4": "グレヴィレア",
         "1": "メイショウヒュウガ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1824,
@@ -1041,7 +1085,8 @@
         "8": "フォートポータル",
         "4": "グレヴィレア",
         "1": "メイショウヒュウガ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1825,
@@ -1107,7 +1152,8 @@
         "8": "フォートポータル",
         "4": "グレヴィレア",
         "1": "メイショウヒュウガ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1826,
@@ -1159,7 +1205,8 @@
         "8": "フォートポータル",
         "4": "グレヴィレア",
         "1": "メイショウヒュウガ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1827,
@@ -1211,7 +1258,8 @@
         "8": "フォートポータル",
         "4": "グレヴィレア",
         "1": "メイショウヒュウガ"
-      }
+      },
+      "is_provisional": true
     }
   ],
   "training_evals": {

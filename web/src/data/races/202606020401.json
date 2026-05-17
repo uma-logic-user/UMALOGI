@@ -12,7 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 16,
+      "horse_name": "ステイグローリアス",
+      "horse_id": "2023105716",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "松岡正海",
+      "trainer": "堀内岳志",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
       "gate_number": 7,
       "horse_number": 14,
       "horse_name": "キタノエピックアン",
@@ -32,7 +52,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 8,
       "horse_number": 15,
       "horse_name": "セニング",
@@ -41,26 +61,6 @@
       "weight_carried": 55.0,
       "jockey": "田辺裕信",
       "trainer": "深山雅史",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 16,
-      "horse_name": "ステイグローリアス",
-      "horse_id": "2023105716",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "松岡正海",
-      "trainer": "堀内岳志",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -333,12 +333,6 @@
     }
   ],
   "payouts": [
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
-    },
     {
       "bet_type": "複勝",
       "combination": "14",

@@ -12,27 +12,27 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "エマヌエーレ",
-      "horse_id": "2020103280",
+      "rank": 1,
+      "gate_number": 4,
+      "horse_number": 8,
+      "horse_name": "マイネルチケット",
+      "horse_id": "2022106768",
       "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "三浦皇成",
-      "trainer": "平田修",
+      "weight_carried": 57.0,
+      "jockey": "横山武史",
+      "trainer": "宮徹",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
       "horse_weight_diff": null,
-      "sire": "ロードカナロア",
-      "dam": "エマノン",
-      "dam_sire": "ハーツクライ"
+      "sire": "ダノンバラード",
+      "dam": "エントリーチケット",
+      "dam_sire": "マツリダゴッホ"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 1,
       "horse_number": 2,
       "horse_name": "スライビングロード",
@@ -52,7 +52,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 2,
       "horse_number": 3,
       "horse_name": "ユハンヌス",
@@ -70,6 +70,26 @@
       "sire": "Frankel",
       "dam": "ミッドサマーフェア",
       "dam_sire": "タニノギムレット"
+    },
+    {
+      "rank": null,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "エマヌエーレ",
+      "horse_id": "2020103280",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "三浦皇成",
+      "trainer": "平田修",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ロードカナロア",
+      "dam": "エマノン",
+      "dam_sire": "ハーツクライ"
     },
     {
       "rank": null,
@@ -150,26 +170,6 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 8,
-      "horse_name": "マイネルチケット",
-      "horse_id": "2022106768",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "横山武史",
-      "trainer": "宮徹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ダノンバラード",
-      "dam": "エントリーチケット",
-      "dam_sire": "マツリダゴッホ"
     },
     {
       "rank": null,
@@ -378,12 +378,6 @@
       "combination": "8",
       "payout": 250,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "18",
-      "payout": 18000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

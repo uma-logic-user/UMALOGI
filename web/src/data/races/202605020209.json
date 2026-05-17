@@ -4,11 +4,11 @@
   "date": "2026-04-26",
   "venue": "東京",
   "race_number": 9,
-  "distance": 1400,
-  "surface": "芝",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -48,7 +48,7 @@
       "jockey": "大野拓弥",
       "trainer": "千葉直人",
       "finish_time": "1:20.1",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 8.2,
       "popularity": 3,
       "horse_weight": 480,
@@ -74,7 +74,7 @@
       "jockey": "津村明秀",
       "trainer": "伊藤大士",
       "finish_time": "1:20.4",
-      "margin": "2",
+      "margin": "@",
       "win_odds": 2.7,
       "popularity": 1,
       "horse_weight": 446,
@@ -100,7 +100,7 @@
       "jockey": "荻野極",
       "trainer": "辻哲英",
       "finish_time": "1:20.5",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 20.7,
       "popularity": 9,
       "horse_weight": 476,
@@ -126,7 +126,7 @@
       "jockey": "木幡巧也",
       "trainer": "千葉直人",
       "finish_time": "1:20.6",
-      "margin": "1",
+      "margin": "@",
       "win_odds": 21.5,
       "popularity": 10,
       "horse_weight": 492,
@@ -152,7 +152,7 @@
       "jockey": "酒井学",
       "trainer": "中村直也",
       "finish_time": "1:20.8",
-      "margin": "1",
+      "margin": "@",
       "win_odds": 132.7,
       "popularity": 15,
       "horse_weight": 420,
@@ -178,7 +178,7 @@
       "jockey": "ディー",
       "trainer": "牧田和弥",
       "finish_time": "1:20.8",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 18.0,
       "popularity": 8,
       "horse_weight": 510,
@@ -204,7 +204,7 @@
       "jockey": "田辺裕信",
       "trainer": "鈴木伸尋",
       "finish_time": "1:20.9",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 9.7,
       "popularity": 5,
       "horse_weight": 468,
@@ -230,7 +230,7 @@
       "jockey": "松山弘平",
       "trainer": "藤野健太",
       "finish_time": "1:20.9",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 10.7,
       "popularity": 6,
       "horse_weight": 472,
@@ -256,7 +256,7 @@
       "jockey": "松岡正海",
       "trainer": "和田正一",
       "finish_time": "1:20.9",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 104.4,
       "popularity": 14,
       "horse_weight": 524,
@@ -282,7 +282,7 @@
       "jockey": "吉田豊",
       "trainer": "和田勇介",
       "finish_time": "1:21.0",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 95.6,
       "popularity": 13,
       "horse_weight": 462,
@@ -308,7 +308,7 @@
       "jockey": "原優介",
       "trainer": "高野友和",
       "finish_time": "1:21.1",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 11.4,
       "popularity": 7,
       "horse_weight": 432,
@@ -334,7 +334,7 @@
       "jockey": "横山武史",
       "trainer": "上村洋行",
       "finish_time": "1:21.1",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 27.1,
       "popularity": 11,
       "horse_weight": 520,
@@ -360,7 +360,7 @@
       "jockey": "松若風馬",
       "trainer": "本間忍",
       "finish_time": "1:21.2",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 48.0,
       "popularity": 12,
       "horse_weight": 490,
@@ -386,7 +386,7 @@
       "jockey": "横山和生",
       "trainer": "手塚貴久",
       "finish_time": "1:21.4",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 7.3,
       "popularity": 2,
       "horse_weight": 494,
@@ -412,7 +412,7 @@
       "jockey": "原田和真",
       "trainer": "萱野浩二",
       "finish_time": "1:21.4",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 338.7,
       "popularity": 16,
       "horse_weight": 468,
@@ -472,6 +472,12 @@
       "popularity": 12
     },
     {
+      "bet_type": "馬連",
+      "combination": "2",
+      "payout": 2130,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "1-7",
       "payout": 430,
@@ -479,9 +485,21 @@
     },
     {
       "bet_type": "ワイド",
+      "combination": "4",
+      "payout": 70000,
+      "popularity": 2
+    },
+    {
+      "bet_type": "ワイド",
       "combination": "1-13",
       "payout": 520,
       "popularity": 3
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 40040,
+      "popularity": 10
     },
     {
       "bet_type": "ワイド",
@@ -496,10 +514,34 @@
       "popularity": 28
     },
     {
+      "bet_type": "馬単",
+      "combination": "7",
+      "payout": 13000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-7-13",
       "payout": 3300,
       "popularity": 3
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4",
+      "payout": 101,
+      "popularity": 130
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "14-1",
+      "payout": 60107,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5",
+      "payout": 20003,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -552,7 +594,8 @@
         "4": "ウナギノボリ",
         "11": "レッドアトレーヴ",
         "14": "ハピネスアゲン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12785,
@@ -611,7 +654,8 @@
         "4": "ウナギノボリ",
         "11": "レッドアトレーヴ",
         "14": "ハピネスアゲン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12786,
@@ -663,7 +707,8 @@
         "4": "ウナギノボリ",
         "11": "レッドアトレーヴ",
         "14": "ハピネスアゲン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12787,
@@ -715,7 +760,8 @@
         "4": "ウナギノボリ",
         "11": "レッドアトレーヴ",
         "14": "ハピネスアゲン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12788,
@@ -858,7 +904,8 @@
         "4": "ウナギノボリ",
         "11": "レッドアトレーヴ",
         "14": "ハピネスアゲン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12789,
@@ -903,7 +950,8 @@
         "4": "ウナギノボリ",
         "11": "レッドアトレーヴ",
         "14": "ハピネスアゲン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12790,
@@ -962,7 +1010,8 @@
         "4": "ウナギノボリ",
         "11": "レッドアトレーヴ",
         "14": "ハピネスアゲン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12791,
@@ -1014,7 +1063,8 @@
         "4": "ウナギノボリ",
         "11": "レッドアトレーヴ",
         "14": "ハピネスアゲン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12792,
@@ -1066,7 +1116,8 @@
         "4": "ウナギノボリ",
         "11": "レッドアトレーヴ",
         "14": "ハピネスアゲン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12795,
@@ -1125,7 +1176,8 @@
         "4": "ウナギノボリ",
         "11": "レッドアトレーヴ",
         "14": "ハピネスアゲン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12796,
@@ -1184,7 +1236,8 @@
         "4": "ウナギノボリ",
         "11": "レッドアトレーヴ",
         "14": "ハピネスアゲン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12797,
@@ -1243,7 +1296,8 @@
         "4": "ウナギノボリ",
         "11": "レッドアトレーヴ",
         "14": "ハピネスアゲン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12798,
@@ -1393,7 +1447,8 @@
         "4": "ウナギノボリ",
         "11": "レッドアトレーヴ",
         "14": "ハピネスアゲン"
-      }
+      },
+      "is_provisional": true
     }
   ],
   "training_evals": {},

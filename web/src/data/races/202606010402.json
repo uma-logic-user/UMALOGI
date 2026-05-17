@@ -12,7 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 7,
+      "horse_number": 13,
+      "horse_name": "ノーブルクラウド",
+      "horse_id": "2023103069",
+      "sex_age": "牝7",
+      "weight_carried": 55.0,
+      "jockey": "西村淳也",
+      "trainer": "久保田貴",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
       "gate_number": 2,
       "horse_number": 3,
       "horse_name": "プレイメイカー",
@@ -32,7 +52,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 2,
       "horse_number": 4,
       "horse_name": "アイアンパイク",
@@ -41,26 +61,6 @@
       "weight_carried": 55.0,
       "jockey": "横山典弘",
       "trainer": "村田一誠",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 13,
-      "horse_name": "ノーブルクラウド",
-      "horse_id": "2023103069",
-      "sex_age": "牝7",
-      "weight_carried": 55.0,
-      "jockey": "西村淳也",
-      "trainer": "久保田貴",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "13",
       "payout": 820,
       "popularity": 4
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

@@ -12,7 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 14,
+      "horse_name": "ヴァリオーサ",
+      "horse_id": "2022105711",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "富田暁",
+      "trainer": "武幸四郎",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
       "gate_number": 5,
       "horse_number": 8,
       "horse_name": "カルネヴァーレ",
@@ -32,7 +52,7 @@
       "dam_sire": "Medaglia d'Oro"
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 7,
       "horse_number": 13,
       "horse_name": "サウンドルーチェ",
@@ -41,26 +61,6 @@
       "weight_carried": 55.0,
       "jockey": "松若風馬",
       "trainer": "渡辺薫彦",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 14,
-      "horse_name": "ヴァリオーサ",
-      "horse_id": "2022105711",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "富田暁",
-      "trainer": "武幸四郎",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -318,12 +318,6 @@
       "combination": "14",
       "payout": 790,
       "popularity": 5
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "15",
-      "payout": 15000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

@@ -12,7 +12,27 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "ドラゴンブースト",
+      "horse_id": "2022105891",
+      "sex_age": "牡3",
+      "weight_carried": 56.0,
+      "jockey": "丹内祐次",
+      "trainer": "藤野健太",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "スクリーンヒーロー",
+      "dam": "トーコーディオーネ",
+      "dam_sire": "エンパイアメーカーEmpire Maker(米)"
+    },
+    {
+      "rank": 2,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "グランディア",
@@ -30,6 +50,26 @@
       "sire": "ハービンジャーHarbinger(英)",
       "dam": "ディアデラノビア",
       "dam_sire": "サンデーサイレンスSunday Silence(米)"
+    },
+    {
+      "rank": 3,
+      "gate_number": 7,
+      "horse_number": 13,
+      "horse_name": "シルトホルン",
+      "horse_id": "2020105424",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "戸崎圭太",
+      "trainer": "新開幸一",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "スクリーンヒーロー",
+      "dam": "シンメイミヤビ",
+      "dam_sire": "Langfuhr(加)"
     },
     {
       "rank": null,
@@ -50,26 +90,6 @@
       "sire": "ザファクター",
       "dam": "レッドメアラス",
       "dam_sire": "ステイゴールド"
-    },
-    {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "ドラゴンブースト",
-      "horse_id": "2022105891",
-      "sex_age": "牡3",
-      "weight_carried": 56.0,
-      "jockey": "丹内祐次",
-      "trainer": "藤野健太",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "スクリーンヒーロー",
-      "dam": "トーコーディオーネ",
-      "dam_sire": "エンパイアメーカーEmpire Maker(米)"
     },
     {
       "rank": null,
@@ -254,26 +274,6 @@
     {
       "rank": null,
       "gate_number": 7,
-      "horse_number": 13,
-      "horse_name": "シルトホルン",
-      "horse_id": "2020105424",
-      "sex_age": "牡4",
-      "weight_carried": 58.0,
-      "jockey": "戸崎圭太",
-      "trainer": "新開幸一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "スクリーンヒーロー",
-      "dam": "シンメイミヤビ",
-      "dam_sire": "Langfuhr(加)"
-    },
-    {
-      "rank": null,
-      "gate_number": 7,
       "horse_number": 14,
       "horse_name": "ビーアストニッシド",
       "horse_id": "2019101348",
@@ -338,12 +338,6 @@
       "combination": "3",
       "payout": 730,
       "popularity": 4
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

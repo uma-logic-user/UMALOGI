@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 10,
-      "horse_name": "ヴァルカンテソーロ",
-      "horse_id": "2023106744",
-      "sex_age": "牡7",
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 18,
+      "horse_name": "ダノンファンスター",
+      "horse_id": "2023105324",
+      "sex_age": "牡5",
       "weight_carried": 57.0,
-      "jockey": "柴田大知",
-      "trainer": "嘉藤貴行",
+      "jockey": "ルメール",
+      "trainer": "田中博康",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 7,
       "horse_number": 14,
       "horse_name": "ベアドッキューン",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 18,
-      "horse_name": "ダノンファンスター",
-      "horse_id": "2023105324",
-      "sex_age": "牡5",
+      "rank": 3,
+      "gate_number": 5,
+      "horse_number": 10,
+      "horse_name": "ヴァルカンテソーロ",
+      "horse_id": "2023106744",
+      "sex_age": "牡7",
       "weight_carried": 57.0,
-      "jockey": "ルメール",
-      "trainer": "田中博康",
+      "jockey": "柴田大知",
+      "trainer": "嘉藤貴行",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -373,12 +373,6 @@
     }
   ],
   "payouts": [
-    {
-      "bet_type": "単勝",
-      "combination": "18",
-      "payout": 18000,
-      "popularity": null
-    },
     {
       "bet_type": "複勝",
       "combination": "18",

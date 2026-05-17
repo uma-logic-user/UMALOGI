@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "ダンツシタン",
-      "horse_id": "2023104848",
-      "sex_age": "牡5",
-      "weight_carried": 57.0,
-      "jockey": "団野大成",
-      "trainer": "本田優",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 7,
       "horse_number": 7,
       "horse_name": "メルカントゥール",
@@ -52,7 +32,27 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "ダンツシタン",
+      "horse_id": "2023104848",
+      "sex_age": "牡5",
+      "weight_carried": 57.0,
+      "jockey": "団野大成",
+      "trainer": "本田優",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
       "gate_number": 8,
       "horse_number": 8,
       "horse_name": "ブームバップビート",
@@ -178,12 +178,6 @@
       "combination": "7",
       "payout": 110,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "8",
-      "payout": 8000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

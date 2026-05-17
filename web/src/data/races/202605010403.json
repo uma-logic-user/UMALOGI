@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 7,
-      "horse_name": "キタノエピックアン",
-      "horse_id": "2023100485",
-      "sex_age": "牝3",
-      "weight_carried": 52.0,
-      "jockey": "上里直汰",
-      "trainer": "萱野浩二",
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "ティルベリー",
+      "horse_id": "2023106994",
+      "sex_age": "牝1",
+      "weight_carried": 55.0,
+      "jockey": "岩田望来",
+      "trainer": "宮田敬介",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 4,
       "horse_number": 8,
       "horse_name": "サラサチャチャチャ",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 15,
-      "horse_name": "ティルベリー",
-      "horse_id": "2023106994",
-      "sex_age": "牝1",
-      "weight_carried": 55.0,
-      "jockey": "岩田望来",
-      "trainer": "宮田敬介",
+      "rank": 3,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "キタノエピックアン",
+      "horse_id": "2023100485",
+      "sex_age": "牝3",
+      "weight_carried": 52.0,
+      "jockey": "上里直汰",
+      "trainer": "萱野浩二",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "15",
       "payout": 190,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 7,
-      "horse_name": "サトノワーグナー",
-      "horse_id": "2023100925",
+      "rank": 1,
+      "gate_number": 6,
+      "horse_number": 12,
+      "horse_name": "イモータリス",
+      "horse_id": "2023107032",
       "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "三浦皇成",
-      "trainer": "斎藤誠",
+      "jockey": "石川裕紀",
+      "trainer": "手塚貴久",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 5,
       "horse_number": 10,
       "horse_name": "ウィロークリーク",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 12,
-      "horse_name": "イモータリス",
-      "horse_id": "2023107032",
+      "rank": 3,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "サトノワーグナー",
+      "horse_id": "2023100925",
       "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "石川裕紀",
-      "trainer": "手塚貴久",
+      "jockey": "三浦皇成",
+      "trainer": "斎藤誠",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -378,12 +378,6 @@
       "combination": "12",
       "payout": 570,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "18",
-      "payout": 18000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

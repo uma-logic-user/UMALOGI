@@ -12,7 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "エンジェルマーク",
+      "horse_id": "2022104855",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "丸山元気",
+      "trainer": "宮田敬介",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
       "gate_number": 2,
       "horse_number": 3,
       "horse_name": "マイネルビスマルク",
@@ -32,7 +52,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 6,
       "horse_number": 11,
       "horse_name": "ダノンアトラス",
@@ -50,26 +70,6 @@
       "sire": "ミッキーロケット",
       "dam": "ダノンジャンヌ",
       "dam_sire": "ディープインパクト"
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 15,
-      "horse_name": "エンジェルマーク",
-      "horse_id": "2022104855",
-      "sex_age": "牝4",
-      "weight_carried": 55.0,
-      "jockey": "丸山元気",
-      "trainer": "宮田敬介",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
     },
     {
       "rank": null,
@@ -338,12 +338,6 @@
       "combination": "15",
       "payout": 1670,
       "popularity": 8
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

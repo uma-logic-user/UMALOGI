@@ -12,7 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 14,
+      "horse_name": "ヴァランセカズマ",
+      "horse_id": "2017105822",
+      "sex_age": "牡3",
+      "weight_carried": 60.0,
+      "jockey": "大江原圭",
+      "trainer": "蛯名利弘",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
       "gate_number": 3,
       "horse_number": 3,
       "horse_name": "フォーディアライフ",
@@ -32,7 +52,7 @@
       "dam_sire": "ハーツクライ"
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 8,
       "horse_number": 13,
       "horse_name": "インターステラ",
@@ -41,26 +61,6 @@
       "weight_carried": 59.0,
       "jockey": "江田勇亮",
       "trainer": "天間昭一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 14,
-      "horse_name": "ヴァランセカズマ",
-      "horse_id": "2017105822",
-      "sex_age": "牡3",
-      "weight_carried": 60.0,
-      "jockey": "大江原圭",
-      "trainer": "蛯名利弘",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -293,12 +293,6 @@
     }
   ],
   "payouts": [
-    {
-      "bet_type": "単勝",
-      "combination": "14",
-      "payout": 14000,
-      "popularity": null
-    },
     {
       "bet_type": "複勝",
       "combination": "3",

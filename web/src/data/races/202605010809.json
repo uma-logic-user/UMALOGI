@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 3,
       "horse_number": 3,
       "horse_name": "ラッキーキッド",
@@ -32,15 +32,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 6,
-      "horse_name": "イッテラッシャイ",
-      "horse_id": "2023103142",
-      "sex_age": "牡1",
+      "rank": 2,
+      "gate_number": 7,
+      "horse_number": 8,
+      "horse_name": "ドンエレクトス",
+      "horse_id": "2023101269",
+      "sex_age": "牡4",
       "weight_carried": 57.0,
-      "jockey": "戸崎圭太",
-      "trainer": "斎藤誠",
+      "jockey": "菅原明良",
+      "trainer": "高木登",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 8,
-      "horse_name": "ドンエレクトス",
-      "horse_id": "2023101269",
-      "sex_age": "牡4",
+      "rank": 3,
+      "gate_number": 6,
+      "horse_number": 6,
+      "horse_name": "イッテラッシャイ",
+      "horse_id": "2023103142",
+      "sex_age": "牡1",
       "weight_carried": 57.0,
-      "jockey": "菅原明良",
-      "trainer": "高木登",
+      "jockey": "戸崎圭太",
+      "trainer": "斎藤誠",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -218,12 +218,6 @@
       "combination": "3",
       "payout": 2350,
       "popularity": 7
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "10",
-      "payout": 10000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

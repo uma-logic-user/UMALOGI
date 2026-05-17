@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "ゾネブルーム",
-      "horse_id": "2023107195",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "荻野極",
-      "trainer": "矢嶋大樹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 8,
       "horse_number": 17,
       "horse_name": "ミッキーファルコン",
@@ -52,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 8,
       "horse_number": 18,
       "horse_name": "ベルトラッキ",
@@ -61,6 +41,26 @@
       "weight_carried": 54.0,
       "jockey": "上里直汰",
       "trainer": "加藤士津",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "ゾネブルーム",
+      "horse_id": "2023107195",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "荻野極",
+      "trainer": "矢嶋大樹",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -378,12 +378,6 @@
       "combination": "17",
       "payout": 380,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "18",
-      "payout": 18000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

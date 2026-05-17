@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 5,
-      "horse_name": "サディーク",
-      "horse_id": "2022110063",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "松若風馬",
-      "trainer": "河嶋宏樹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 4,
       "horse_number": 7,
       "horse_name": "スネーフリンガ",
@@ -52,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 5,
       "horse_number": 10,
       "horse_name": "ジャンヌローサ",
@@ -70,6 +50,26 @@
       "sire": "イスラボニータ",
       "dam": "オルレアンローズ",
       "dam_sire": "ベーカバドBehkabad(仏)"
+    },
+    {
+      "rank": 3,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "サディーク",
+      "horse_id": "2022110063",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "松若風馬",
+      "trainer": "河嶋宏樹",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -378,12 +378,6 @@
       "combination": "7",
       "payout": 1760,
       "popularity": 9
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "18",
-      "payout": 18000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

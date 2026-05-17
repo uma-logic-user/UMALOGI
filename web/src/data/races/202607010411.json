@@ -12,7 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 18,
+      "horse_name": "アイサンサン",
+      "horse_id": "2022103875",
+      "sex_age": "牝5",
+      "weight_carried": 55.0,
+      "jockey": "幸英明",
+      "trainer": "橋田宜長",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "キズナ",
+      "dam": "ウアジェト",
+      "dam_sire": "シンボリクリスエス"
+    },
+    {
+      "rank": 2,
       "gate_number": 4,
       "horse_number": 8,
       "horse_name": "ソルトクィーン",
@@ -32,7 +52,7 @@
       "dam_sire": "ストロングリターン"
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 5,
       "horse_number": 10,
       "horse_name": "セフィロ",
@@ -50,26 +70,6 @@
       "sire": "イスラボニータ",
       "dam": "クリスプウインド",
       "dam_sire": "ハーツクライ"
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 18,
-      "horse_name": "アイサンサン",
-      "horse_id": "2022103875",
-      "sex_age": "牝5",
-      "weight_carried": 55.0,
-      "jockey": "幸英明",
-      "trainer": "橋田宜長",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "キズナ",
-      "dam": "ウアジェト",
-      "dam_sire": "シンボリクリスエス"
     },
     {
       "rank": null,
@@ -373,12 +373,6 @@
     }
   ],
   "payouts": [
-    {
-      "bet_type": "単勝",
-      "combination": "18",
-      "payout": 18000,
-      "popularity": null
-    },
     {
       "bet_type": "複勝",
       "combination": "8",

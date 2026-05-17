@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "ブレイヴロッカー",
-      "horse_id": "2020102870",
-      "sex_age": "騸7",
-      "weight_carried": 56.5,
-      "jockey": "太宰啓介",
-      "trainer": "本田優",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ドゥラメンテ",
-      "dam": "シティイメージCity Image(愛)",
-      "dam_sire": "Elusive City"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 5,
       "horse_number": 5,
       "horse_name": "アクアヴァーナル",
@@ -52,7 +32,7 @@
       "dam_sire": "ディープインパクト"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 8,
       "horse_number": 9,
       "horse_name": "ヴォランテ",
@@ -70,6 +50,26 @@
       "sire": "サトノクラウン",
       "dam": "ローザディアマント",
       "dam_sire": "スペシャルウィーク"
+    },
+    {
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "ブレイヴロッカー",
+      "horse_id": "2020102870",
+      "sex_age": "騸7",
+      "weight_carried": 56.5,
+      "jockey": "太宰啓介",
+      "trainer": "本田優",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ドゥラメンテ",
+      "dam": "シティイメージCity Image(愛)",
+      "dam_sire": "Elusive City"
     },
     {
       "rank": null,
@@ -198,12 +198,6 @@
       "combination": "5",
       "payout": 230,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "9",
-      "payout": 9000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

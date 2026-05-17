@@ -4,79 +4,27 @@
   "date": "2026-05-02",
   "venue": "京都",
   "race_number": 12,
-  "distance": 1600,
-  "surface": "芝",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "曇",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "ミッキースターダム",
-      "horse_id": "2021105765",
-      "sex_age": "騸3",
-      "weight_carried": 58.0,
-      "jockey": "鮫島克駿",
-      "trainer": "前川恭子",
-      "finish_time": "1:32.8",
-      "margin": "@",
-      "win_odds": 17.4,
-      "popularity": 6,
-      "horse_weight": 474,
-      "horse_weight_diff": -2,
-      "sire": "エピファネイア",
-      "dam": "ベルダム",
-      "dam_sire": "ディープインパクト",
-      "honmei_score": 0.0682,
-      "ev_score": 0.9474,
-      "kelly_fraction": 0.0,
-      "manji_ev": 262.0342,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 2,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "ヤエギリ",
-      "horse_id": "2022110125",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "川田将雅",
-      "trainer": "福永祐一",
-      "finish_time": "1:32.8",
-      "margin": "クビ",
-      "win_odds": 2.4,
-      "popularity": 1,
-      "horse_weight": 462,
-      "horse_weight_diff": 2,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0748,
-      "ev_score": 0.2543,
-      "kelly_fraction": 0.0,
-      "manji_ev": 1044.2824,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 3,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "ムーンライトラガー",
       "horse_id": "2022104710",
-      "sex_age": "牝3",
+      "sex_age": "牝4",
       "weight_carried": 56.0,
-      "jockey": "池添謙一",
-      "trainer": "大久保龍",
-      "finish_time": "1:33.0",
-      "margin": "1",
-      "win_odds": 5.1,
-      "popularity": 3,
+      "jockey": "池添",
+      "trainer": "栗東大久保",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
       "horse_weight": 432,
       "horse_weight_diff": 6,
       "sire": null,
@@ -90,19 +38,19 @@
       "odds_velocity": null
     },
     {
-      "rank": 4,
+      "rank": null,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "ウインラウダ",
       "horse_id": "2021106206",
-      "sex_age": "牡1",
+      "sex_age": "牡5",
       "weight_carried": 58.0,
-      "jockey": "岩田望来",
-      "trainer": "梅田智之",
-      "finish_time": "1:33.2",
-      "margin": "1",
-      "win_odds": 34.7,
-      "popularity": 7,
+      "jockey": "岩田望",
+      "trainer": "栗東梅田",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
       "horse_weight": 516,
       "horse_weight_diff": 4,
       "sire": "マクフィMakfi(英)",
@@ -116,123 +64,19 @@
       "odds_velocity": null
     },
     {
-      "rank": 5,
-      "gate_number": 7,
-      "horse_number": 7,
-      "horse_name": "ジェゼロ",
-      "horse_id": "2022105122",
-      "sex_age": "牡5",
-      "weight_carried": 58.0,
-      "jockey": "団野大成",
-      "trainer": "須貝尚介",
-      "finish_time": "1:33.5",
-      "margin": "2",
-      "win_odds": 6.8,
-      "popularity": 5,
-      "horse_weight": 496,
-      "horse_weight_diff": 6,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0483,
-      "ev_score": 0.2849,
-      "kelly_fraction": 0.0,
-      "manji_ev": 1103.6183,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 6,
-      "gate_number": 8,
-      "horse_number": 9,
-      "horse_name": "ペールノエル",
-      "horse_id": "2022104817",
-      "sex_age": "騸3",
-      "weight_carried": 58.0,
-      "jockey": "北村友一",
-      "trainer": "西村真幸",
-      "finish_time": "1:33.5",
-      "margin": "クビ",
-      "win_odds": 4.6,
-      "popularity": 2,
-      "horse_weight": 448,
-      "horse_weight_diff": 2,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0483,
-      "ev_score": 0.2994,
-      "kelly_fraction": 0.0,
-      "manji_ev": 66328.4821,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 7,
-      "gate_number": 7,
-      "horse_number": 8,
-      "horse_name": "ピコラ",
-      "horse_id": "2022101718",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "国分優作",
-      "trainer": "秋山真一",
-      "finish_time": "1:33.8",
-      "margin": "1.3/4",
-      "win_odds": 135.6,
-      "popularity": 9,
-      "horse_weight": 438,
-      "horse_weight_diff": 4,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0643,
-      "ev_score": 2.9954,
-      "kelly_fraction": 0.0044,
-      "manji_ev": 1201.7379,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 8,
-      "gate_number": 8,
-      "horse_number": 10,
-      "horse_name": "レフィナード",
-      "horse_id": "2022102970",
-      "sex_age": "牝4",
-      "weight_carried": 56.0,
-      "jockey": "岩部純二",
-      "trainer": "昆貢",
-      "finish_time": "1:35.3",
-      "margin": "9",
-      "win_odds": 310.8,
-      "popularity": 10,
-      "horse_weight": 442,
-      "horse_weight_diff": -6,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0682,
-      "ev_score": 5.2757,
-      "kelly_fraction": 0.0056,
-      "manji_ev": 80034.7184,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 9,
+      "rank": null,
       "gate_number": 3,
       "horse_number": 3,
       "horse_name": "ギザキズラヴ",
       "horse_id": "2022106715",
-      "sex_age": "牝3",
+      "sex_age": "牝4",
       "weight_carried": 56.0,
-      "jockey": "Ｍ．デム",
-      "trainer": "加藤公太",
-      "finish_time": "1:35.6",
-      "margin": "2",
-      "win_odds": 64.3,
-      "popularity": 8,
+      "jockey": "Ｍデムーロ",
+      "trainer": "栗東加藤公",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
       "horse_weight": 458,
       "horse_weight_diff": -6,
       "sire": null,
@@ -246,19 +90,71 @@
       "odds_velocity": null
     },
     {
-      "rank": 10,
+      "rank": null,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "ミッキースターダム",
+      "horse_id": "2021105765",
+      "sex_age": "セ5",
+      "weight_carried": 58.0,
+      "jockey": "鮫島駿",
+      "trainer": "栗東前川",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 474,
+      "horse_weight_diff": -2,
+      "sire": "エピファネイア",
+      "dam": "ベルダム",
+      "dam_sire": "ディープインパクト",
+      "honmei_score": 0.0682,
+      "ev_score": 0.9474,
+      "kelly_fraction": 0.0,
+      "manji_ev": 262.0342,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "ヤエギリ",
+      "horse_id": "2022110125",
+      "sex_age": "牝4",
+      "weight_carried": 56.0,
+      "jockey": "川田",
+      "trainer": "栗東福永",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 462,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0748,
+      "ev_score": 0.2543,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1044.2824,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
       "gate_number": 6,
       "horse_number": 6,
       "horse_name": "ダノンクロム",
       "horse_id": "2020102675",
-      "sex_age": "牡1",
+      "sex_age": "牡6",
       "weight_carried": 58.0,
-      "jockey": "松山弘平",
-      "trainer": "東田明士",
-      "finish_time": "1:36.3",
-      "margin": "4",
-      "win_odds": 5.8,
-      "popularity": 4,
+      "jockey": "松山",
+      "trainer": "栗東東田",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
       "horse_weight": 532,
       "horse_weight_diff": 2,
       "sire": "ハーツクライ",
@@ -268,6 +164,110 @@
       "ev_score": 0.5093,
       "kelly_fraction": 0.0,
       "manji_ev": 2126.2924,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 7,
+      "horse_name": "ジェゼロ",
+      "horse_id": "2022105122",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "団野",
+      "trainer": "栗東須貝",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 496,
+      "horse_weight_diff": 6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0483,
+      "ev_score": 0.2849,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1103.6183,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 8,
+      "horse_name": "ピコラ",
+      "horse_id": "2022101718",
+      "sex_age": "牝4",
+      "weight_carried": 56.0,
+      "jockey": "国分優",
+      "trainer": "栗東秋山",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 438,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0643,
+      "ev_score": 2.9954,
+      "kelly_fraction": 0.0044,
+      "manji_ev": 1201.7379,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 9,
+      "horse_name": "ペールノエル",
+      "horse_id": "2022104817",
+      "sex_age": "セ4",
+      "weight_carried": 58.0,
+      "jockey": "北村友",
+      "trainer": "栗東西村",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 448,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0483,
+      "ev_score": 0.2994,
+      "kelly_fraction": 0.0,
+      "manji_ev": 66328.4821,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 10,
+      "horse_name": "レフィナード",
+      "horse_id": "2022102970",
+      "sex_age": "牝4",
+      "weight_carried": 56.0,
+      "jockey": "岩部",
+      "trainer": "栗東昆",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 442,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0682,
+      "ev_score": 5.2757,
+      "kelly_fraction": 0.0056,
+      "manji_ev": 80034.7184,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     }
@@ -310,10 +310,28 @@
       "popularity": 7
     },
     {
+      "bet_type": "枠連",
+      "combination": "1",
+      "payout": 74006,
+      "popularity": null
+    },
+    {
       "bet_type": "馬連",
       "combination": "4-5",
       "payout": 1650,
       "popularity": 6
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "2",
+      "payout": 6050,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4",
+      "payout": 50000,
+      "popularity": 1
     },
     {
       "bet_type": "ワイド",
@@ -329,6 +347,12 @@
     },
     {
       "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 10010,
+      "popularity": 10
+    },
+    {
+      "bet_type": "ワイド",
       "combination": "1-4",
       "payout": 1140,
       "popularity": 15
@@ -340,10 +364,34 @@
       "popularity": 21
     },
     {
+      "bet_type": "馬単",
+      "combination": "4",
+      "payout": 5000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-4-5",
       "payout": 2390,
       "popularity": 9
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "11",
+      "payout": 1501,
+      "popularity": 50
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5",
+      "payout": 70104,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3",
+      "payout": 10003,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -379,18 +427,8 @@
       "bet_form": "単勝",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "4": "ミッキースターダム",
-        "5": "ヤエギリ",
-        "1": "ムーンライトラガー",
-        "2": "ウインラウダ",
-        "7": "ジェゼロ",
-        "9": "ペールノエル",
-        "8": "ピコラ",
-        "10": "レフィナード",
-        "3": "ギザキズラヴ",
-        "6": "ダノンクロム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 16332,
@@ -432,18 +470,8 @@
       "bet_form": "複勝",
       "n_tickets": 3,
       "invested": 300,
-      "horse_num_to_name": {
-        "4": "ミッキースターダム",
-        "5": "ヤエギリ",
-        "1": "ムーンライトラガー",
-        "2": "ウインラウダ",
-        "7": "ジェゼロ",
-        "9": "ペールノエル",
-        "8": "ピコラ",
-        "10": "レフィナード",
-        "3": "ギザキズラヴ",
-        "6": "ダノンクロム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 16333,
@@ -478,18 +506,8 @@
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "4": "ミッキースターダム",
-        "5": "ヤエギリ",
-        "1": "ムーンライトラガー",
-        "2": "ウインラウダ",
-        "7": "ジェゼロ",
-        "9": "ペールノエル",
-        "8": "ピコラ",
-        "10": "レフィナード",
-        "3": "ギザキズラヴ",
-        "6": "ダノンクロム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 16334,
@@ -524,18 +542,8 @@
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "4": "ミッキースターダム",
-        "5": "ヤエギリ",
-        "1": "ムーンライトラガー",
-        "2": "ウインラウダ",
-        "7": "ジェゼロ",
-        "9": "ペールノエル",
-        "8": "ピコラ",
-        "10": "レフィナード",
-        "3": "ギザキズラヴ",
-        "6": "ダノンクロム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 16335,
@@ -598,18 +606,8 @@
       "bet_form": "軸2頭ながし",
       "n_tickets": 2,
       "invested": 200,
-      "horse_num_to_name": {
-        "4": "ミッキースターダム",
-        "5": "ヤエギリ",
-        "1": "ムーンライトラガー",
-        "2": "ウインラウダ",
-        "7": "ジェゼロ",
-        "9": "ペールノエル",
-        "8": "ピコラ",
-        "10": "レフィナード",
-        "3": "ギザキズラヴ",
-        "6": "ダノンクロム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 16336,
@@ -735,110 +733,8 @@
       "bet_form": "1頭軸マルチ",
       "n_tickets": 36,
       "invested": 3600,
-      "horse_num_to_name": {
-        "4": "ミッキースターダム",
-        "5": "ヤエギリ",
-        "1": "ムーンライトラガー",
-        "2": "ウインラウダ",
-        "7": "ジェゼロ",
-        "9": "ペールノエル",
-        "8": "ピコラ",
-        "10": "レフィナード",
-        "3": "ギザキズラヴ",
-        "6": "ダノンクロム"
-      }
-    },
-    {
-      "prediction_id": 16337,
-      "model_type": "卍(暫定)",
-      "bet_type": "単勝",
-      "confidence": 1.0,
-      "expected_value": 77981.88851775398,
-      "recommended_bet": 100.0,
-      "combination_json": "[[10]]",
-      "notes": "確率1位(卍) EV=77981.89 odds=1.0",
-      "created_at": "2026-05-02 13:24:33",
-      "is_hit": 1,
-      "payout": 10000.0,
-      "profit": 9900.0,
-      "roi": 10000.0,
-      "horses": [
-        {
-          "horse_name": "レフィナード",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 77981.88851775398,
-          "ev_score": 77981.88851775398
-        }
-      ],
-      "bet_form": "単勝",
-      "n_tickets": 1,
-      "invested": 100,
-      "horse_num_to_name": {
-        "4": "ミッキースターダム",
-        "5": "ヤエギリ",
-        "1": "ムーンライトラガー",
-        "2": "ウインラウダ",
-        "7": "ジェゼロ",
-        "9": "ペールノエル",
-        "8": "ピコラ",
-        "10": "レフィナード",
-        "3": "ギザキズラヴ",
-        "6": "ダノンクロム"
-      }
-    },
-    {
-      "prediction_id": 16338,
-      "model_type": "卍(暫定)",
-      "bet_type": "複勝",
-      "confidence": 0.6,
-      "expected_value": 49195.05790410799,
-      "recommended_bet": 300.0,
-      "combination_json": "[[10], [9], [6]]",
-      "notes": "確率上位3頭を複勝",
-      "created_at": "2026-05-02 13:24:33",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -300.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "レフィナード",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 49195.05790410799,
-          "ev_score": 49195.05790410799
-        },
-        {
-          "horse_name": "ペールノエル",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 49195.05790410799,
-          "ev_score": 49195.05790410799
-        },
-        {
-          "horse_name": "ダノンクロム",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 49195.05790410799,
-          "ev_score": 49195.05790410799
-        }
-      ],
-      "bet_form": "複勝",
-      "n_tickets": 3,
-      "invested": 300,
-      "horse_num_to_name": {
-        "4": "ミッキースターダム",
-        "5": "ヤエギリ",
-        "1": "ムーンライトラガー",
-        "2": "ウインラウダ",
-        "7": "ジェゼロ",
-        "9": "ペールノエル",
-        "8": "ピコラ",
-        "10": "レフィナード",
-        "3": "ギザキズラヴ",
-        "6": "ダノンクロム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 16339,
@@ -873,18 +769,8 @@
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "4": "ミッキースターダム",
-        "5": "ヤエギリ",
-        "1": "ムーンライトラガー",
-        "2": "ウインラウダ",
-        "7": "ジェゼロ",
-        "9": "ペールノエル",
-        "8": "ピコラ",
-        "10": "レフィナード",
-        "3": "ギザキズラヴ",
-        "6": "ダノンクロム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 16340,
@@ -919,18 +805,8 @@
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "4": "ミッキースターダム",
-        "5": "ヤエギリ",
-        "1": "ムーンライトラガー",
-        "2": "ウインラウダ",
-        "7": "ジェゼロ",
-        "9": "ペールノエル",
-        "8": "ピコラ",
-        "10": "レフィナード",
-        "3": "ギザキズラヴ",
-        "6": "ダノンクロム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 16343,
@@ -972,18 +848,8 @@
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "4": "ミッキースターダム",
-        "5": "ヤエギリ",
-        "1": "ムーンライトラガー",
-        "2": "ウインラウダ",
-        "7": "ジェゼロ",
-        "9": "ペールノエル",
-        "8": "ピコラ",
-        "10": "レフィナード",
-        "3": "ギザキズラヴ",
-        "6": "ダノンクロム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 16344,
@@ -1025,18 +891,8 @@
       "bet_form": "軸1頭ながし",
       "n_tickets": 3,
       "invested": 300,
-      "horse_num_to_name": {
-        "4": "ミッキースターダム",
-        "5": "ヤエギリ",
-        "1": "ムーンライトラガー",
-        "2": "ウインラウダ",
-        "7": "ジェゼロ",
-        "9": "ペールノエル",
-        "8": "ピコラ",
-        "10": "レフィナード",
-        "3": "ギザキズラヴ",
-        "6": "ダノンクロム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 16345,
@@ -1078,18 +934,8 @@
       "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
       "invested": 300,
-      "horse_num_to_name": {
-        "4": "ミッキースターダム",
-        "5": "ヤエギリ",
-        "1": "ムーンライトラガー",
-        "2": "ウインラウダ",
-        "7": "ジェゼロ",
-        "9": "ペールノエル",
-        "8": "ピコラ",
-        "10": "レフィナード",
-        "3": "ギザキズラヴ",
-        "6": "ダノンクロム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 16346,
@@ -1180,18 +1026,8 @@
       "bet_form": "馬分析",
       "n_tickets": 0,
       "invested": 0,
-      "horse_num_to_name": {
-        "4": "ミッキースターダム",
-        "5": "ヤエギリ",
-        "1": "ムーンライトラガー",
-        "2": "ウインラウダ",
-        "7": "ジェゼロ",
-        "9": "ペールノエル",
-        "8": "ピコラ",
-        "10": "レフィナード",
-        "3": "ギザキズラヴ",
-        "6": "ダノンクロム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 17288,
@@ -1219,18 +1055,8 @@
       "bet_form": "単勝",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "4": "ミッキースターダム",
-        "5": "ヤエギリ",
-        "1": "ムーンライトラガー",
-        "2": "ウインラウダ",
-        "7": "ジェゼロ",
-        "9": "ペールノエル",
-        "8": "ピコラ",
-        "10": "レフィナード",
-        "3": "ギザキズラヴ",
-        "6": "ダノンクロム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 17289,
@@ -1272,18 +1098,8 @@
       "bet_form": "複勝",
       "n_tickets": 3,
       "invested": 300,
-      "horse_num_to_name": {
-        "4": "ミッキースターダム",
-        "5": "ヤエギリ",
-        "1": "ムーンライトラガー",
-        "2": "ウインラウダ",
-        "7": "ジェゼロ",
-        "9": "ペールノエル",
-        "8": "ピコラ",
-        "10": "レフィナード",
-        "3": "ギザキズラヴ",
-        "6": "ダノンクロム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 17290,
@@ -1318,18 +1134,8 @@
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "4": "ミッキースターダム",
-        "5": "ヤエギリ",
-        "1": "ムーンライトラガー",
-        "2": "ウインラウダ",
-        "7": "ジェゼロ",
-        "9": "ペールノエル",
-        "8": "ピコラ",
-        "10": "レフィナード",
-        "3": "ギザキズラヴ",
-        "6": "ダノンクロム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 17291,
@@ -1364,18 +1170,8 @@
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "4": "ミッキースターダム",
-        "5": "ヤエギリ",
-        "1": "ムーンライトラガー",
-        "2": "ウインラウダ",
-        "7": "ジェゼロ",
-        "9": "ペールノエル",
-        "8": "ピコラ",
-        "10": "レフィナード",
-        "3": "ギザキズラヴ",
-        "6": "ダノンクロム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 17292,
@@ -1438,18 +1234,8 @@
       "bet_form": "軸2頭ながし",
       "n_tickets": 2,
       "invested": 200,
-      "horse_num_to_name": {
-        "4": "ミッキースターダム",
-        "5": "ヤエギリ",
-        "1": "ムーンライトラガー",
-        "2": "ウインラウダ",
-        "7": "ジェゼロ",
-        "9": "ペールノエル",
-        "8": "ピコラ",
-        "10": "レフィナード",
-        "3": "ギザキズラヴ",
-        "6": "ダノンクロム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 17293,
@@ -1575,110 +1361,8 @@
       "bet_form": "1頭軸マルチ",
       "n_tickets": 18,
       "invested": 1800,
-      "horse_num_to_name": {
-        "4": "ミッキースターダム",
-        "5": "ヤエギリ",
-        "1": "ムーンライトラガー",
-        "2": "ウインラウダ",
-        "7": "ジェゼロ",
-        "9": "ペールノエル",
-        "8": "ピコラ",
-        "10": "レフィナード",
-        "3": "ギザキズラヴ",
-        "6": "ダノンクロム"
-      }
-    },
-    {
-      "prediction_id": 17294,
-      "model_type": "卍(直前)",
-      "bet_type": "単勝",
-      "confidence": 1.0,
-      "expected_value": 80034.71835358288,
-      "recommended_bet": 400.0,
-      "combination_json": "[[10]]",
-      "notes": "確率1位(卍) EV=80034.72 odds=77.4",
-      "created_at": "2026-05-02 15:10:33",
-      "is_hit": 1,
-      "payout": 10000.0,
-      "profit": 9900.0,
-      "roi": 10000.0,
-      "horses": [
-        {
-          "horse_name": "レフィナード",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 80034.71835358288,
-          "ev_score": 80034.71835358288
-        }
-      ],
-      "bet_form": "単勝",
-      "n_tickets": 1,
-      "invested": 100,
-      "horse_num_to_name": {
-        "4": "ミッキースターダム",
-        "5": "ヤエギリ",
-        "1": "ムーンライトラガー",
-        "2": "ウインラウダ",
-        "7": "ジェゼロ",
-        "9": "ペールノエル",
-        "8": "ピコラ",
-        "10": "レフィナード",
-        "3": "ギザキズラヴ",
-        "6": "ダノンクロム"
-      }
-    },
-    {
-      "prediction_id": 17295,
-      "model_type": "卍(直前)",
-      "bet_type": "複勝",
-      "confidence": 0.6,
-      "expected_value": 49496.49759915029,
-      "recommended_bet": 300.0,
-      "combination_json": "[[10], [9], [6]]",
-      "notes": "確率上位3頭を複勝",
-      "created_at": "2026-05-02 15:10:33",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -300.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "レフィナード",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 49496.49759915029,
-          "ev_score": 49496.49759915029
-        },
-        {
-          "horse_name": "ペールノエル",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 49496.49759915029,
-          "ev_score": 49496.49759915029
-        },
-        {
-          "horse_name": "ダノンクロム",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 49496.49759915029,
-          "ev_score": 49496.49759915029
-        }
-      ],
-      "bet_form": "複勝",
-      "n_tickets": 3,
-      "invested": 300,
-      "horse_num_to_name": {
-        "4": "ミッキースターダム",
-        "5": "ヤエギリ",
-        "1": "ムーンライトラガー",
-        "2": "ウインラウダ",
-        "7": "ジェゼロ",
-        "9": "ペールノエル",
-        "8": "ピコラ",
-        "10": "レフィナード",
-        "3": "ギザキズラヴ",
-        "6": "ダノンクロム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 17296,
@@ -1713,18 +1397,8 @@
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "4": "ミッキースターダム",
-        "5": "ヤエギリ",
-        "1": "ムーンライトラガー",
-        "2": "ウインラウダ",
-        "7": "ジェゼロ",
-        "9": "ペールノエル",
-        "8": "ピコラ",
-        "10": "レフィナード",
-        "3": "ギザキズラヴ",
-        "6": "ダノンクロム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 17297,
@@ -1759,18 +1433,8 @@
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "4": "ミッキースターダム",
-        "5": "ヤエギリ",
-        "1": "ムーンライトラガー",
-        "2": "ウインラウダ",
-        "7": "ジェゼロ",
-        "9": "ペールノエル",
-        "8": "ピコラ",
-        "10": "レフィナード",
-        "3": "ギザキズラヴ",
-        "6": "ダノンクロム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 17300,
@@ -1812,18 +1476,8 @@
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "4": "ミッキースターダム",
-        "5": "ヤエギリ",
-        "1": "ムーンライトラガー",
-        "2": "ウインラウダ",
-        "7": "ジェゼロ",
-        "9": "ペールノエル",
-        "8": "ピコラ",
-        "10": "レフィナード",
-        "3": "ギザキズラヴ",
-        "6": "ダノンクロム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 17301,
@@ -1865,18 +1519,8 @@
       "bet_form": "軸2頭ながし",
       "n_tickets": 3,
       "invested": 300,
-      "horse_num_to_name": {
-        "4": "ミッキースターダム",
-        "5": "ヤエギリ",
-        "1": "ムーンライトラガー",
-        "2": "ウインラウダ",
-        "7": "ジェゼロ",
-        "9": "ペールノエル",
-        "8": "ピコラ",
-        "10": "レフィナード",
-        "3": "ギザキズラヴ",
-        "6": "ダノンクロム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 17302,
@@ -1918,18 +1562,8 @@
       "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
       "invested": 300,
-      "horse_num_to_name": {
-        "4": "ミッキースターダム",
-        "5": "ヤエギリ",
-        "1": "ムーンライトラガー",
-        "2": "ウインラウダ",
-        "7": "ジェゼロ",
-        "9": "ペールノエル",
-        "8": "ピコラ",
-        "10": "レフィナード",
-        "3": "ギザキズラヴ",
-        "6": "ダノンクロム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 17303,
@@ -2020,18 +1654,8 @@
       "bet_form": "馬分析",
       "n_tickets": 0,
       "invested": 0,
-      "horse_num_to_name": {
-        "4": "ミッキースターダム",
-        "5": "ヤエギリ",
-        "1": "ムーンライトラガー",
-        "2": "ウインラウダ",
-        "7": "ジェゼロ",
-        "9": "ペールノエル",
-        "8": "ピコラ",
-        "10": "レフィナード",
-        "3": "ギザキズラヴ",
-        "6": "ダノンクロム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     }
   ],
   "training_evals": {},

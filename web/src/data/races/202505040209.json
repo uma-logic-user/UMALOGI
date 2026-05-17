@@ -12,6 +12,26 @@
   "year": "2025",
   "results": [
     {
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 16,
+      "horse_name": "ジュドー",
+      "horse_id": "2020103534",
+      "sex_age": "騸1",
+      "weight_carried": 58.0,
+      "jockey": "嶋田純次",
+      "trainer": "手塚貴久",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "モーリス",
+      "dam": "パンデイア",
+      "dam_sire": "ディープインパクト"
+    },
+    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -314,26 +334,6 @@
     {
       "rank": null,
       "gate_number": 8,
-      "horse_number": 16,
-      "horse_name": "ジュドー",
-      "horse_id": "2020103534",
-      "sex_age": "騸1",
-      "weight_carried": 58.0,
-      "jockey": "嶋田純次",
-      "trainer": "手塚貴久",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "モーリス",
-      "dam": "パンデイア",
-      "dam_sire": "ディープインパクト"
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
       "horse_number": 17,
       "horse_name": "オンザブルースカイ",
       "horse_id": "2022104163",
@@ -378,12 +378,6 @@
       "combination": "16",
       "payout": 24430,
       "popularity": 16
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "18",
-      "payout": 17000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

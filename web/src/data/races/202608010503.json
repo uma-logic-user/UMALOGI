@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 6,
       "horse_number": 11,
       "horse_name": "フェスティヴドレス",
@@ -32,15 +32,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 13,
-      "horse_name": "アスターエポワス",
-      "horse_id": "2023101047",
-      "sex_age": "牝4",
+      "rank": 2,
+      "gate_number": 8,
+      "horse_number": 16,
+      "horse_name": "アンティスマ",
+      "horse_id": "2023100989",
+      "sex_age": "牝1",
       "weight_carried": 55.0,
-      "jockey": "古川吉洋",
-      "trainer": "河嶋宏樹",
+      "jockey": "太宰啓介",
+      "trainer": "石橋守",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 16,
-      "horse_name": "アンティスマ",
-      "horse_id": "2023100989",
-      "sex_age": "牝1",
+      "rank": 3,
+      "gate_number": 7,
+      "horse_number": 13,
+      "horse_name": "アスターエポワス",
+      "horse_id": "2023101047",
+      "sex_age": "牝4",
       "weight_carried": 55.0,
-      "jockey": "太宰啓介",
-      "trainer": "石橋守",
+      "jockey": "古川吉洋",
+      "trainer": "河嶋宏樹",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "11",
       "payout": 670,
       "popularity": 4
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 3,
       "horse_number": 5,
       "horse_name": "アイドクレース",
@@ -32,15 +32,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 6,
-      "horse_name": "バンオンタイム",
-      "horse_id": "2023101120",
-      "sex_age": "牝4",
-      "weight_carried": 52.0,
-      "jockey": "舟山瑠泉",
-      "trainer": "田中博康",
+      "rank": 2,
+      "gate_number": 4,
+      "horse_number": 8,
+      "horse_name": "エクリュ",
+      "horse_id": "2023104305",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "松若風馬",
+      "trainer": "井上智史",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 8,
-      "horse_name": "エクリュ",
-      "horse_id": "2023104305",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "松若風馬",
-      "trainer": "井上智史",
+      "rank": 3,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "バンオンタイム",
+      "horse_id": "2023101120",
+      "sex_age": "牝4",
+      "weight_carried": 52.0,
+      "jockey": "舟山瑠泉",
+      "trainer": "田中博康",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "5",
       "payout": 1760,
       "popularity": 6
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

@@ -12,7 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "クリエープキー",
@@ -32,47 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "フェイスリフト",
-      "horse_id": "2023106605",
-      "sex_age": "牡1",
-      "weight_carried": 55.0,
-      "jockey": "内田博幸",
-      "trainer": "嘉藤貴行",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "ルクスアンジュ",
-      "horse_id": "2023101626",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "三浦皇成",
-      "trainer": "鹿戸雄一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 2,
       "gate_number": 4,
       "horse_number": 4,
       "horse_name": "タイセイフレッサ",
@@ -92,7 +52,27 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "フェイスリフト",
+      "horse_id": "2023106605",
+      "sex_age": "牡1",
+      "weight_carried": 55.0,
+      "jockey": "内田博幸",
+      "trainer": "嘉藤貴行",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 4,
       "gate_number": 5,
       "horse_number": 5,
       "horse_name": "セイウンヤオヨロズ",
@@ -112,7 +92,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 5,
       "gate_number": 6,
       "horse_number": 6,
       "horse_name": "トラスコンガーデン",
@@ -130,6 +110,26 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": 6,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "ルクスアンジュ",
+      "horse_id": "2023101626",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "三浦皇成",
+      "trainer": "鹿戸雄一",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     }
   ],
   "payouts": [
@@ -138,12 +138,6 @@
       "combination": "1",
       "payout": 210,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "6",
-      "payout": 6000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

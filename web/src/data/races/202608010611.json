@@ -12,7 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "エストレヤデベレン",
+      "horse_id": "2021106587",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "ルメール",
+      "trainer": "武幸四郎",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "エピファネイア",
+      "dam": "レゼトワール",
+      "dam_sire": "ファスリエフFasliyev(米)"
+    },
+    {
+      "rank": 2,
       "gate_number": 1,
       "horse_number": 2,
       "horse_name": "ジャーヴィス",
@@ -32,7 +52,7 @@
       "dam_sire": "メイショウサムソン"
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 2,
       "horse_number": 4,
       "horse_name": "ノボリショウリュウ",
@@ -50,26 +70,6 @@
       "sire": "リアルスティール",
       "dam": "スウィングダンス",
       "dam_sire": "クロフネ"
-    },
-    {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 5,
-      "horse_name": "エストレヤデベレン",
-      "horse_id": "2021106587",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "ルメール",
-      "trainer": "武幸四郎",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "エピファネイア",
-      "dam": "レゼトワール",
-      "dam_sire": "ファスリエフFasliyev(米)"
     },
     {
       "rank": null,
@@ -338,12 +338,6 @@
       "combination": "5",
       "payout": 630,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

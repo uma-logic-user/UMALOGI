@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "ジョバンニ",
-      "horse_id": "2022103995",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "松山弘平",
-      "trainer": "杉山晴紀",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "エピファネイア",
-      "dam": "ベアフットレディBarefoot Lady(愛)",
-      "dam_sire": "Footstepsinthesand(英)"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 6,
       "horse_number": 9,
       "horse_name": "シェイクユアハート",
@@ -52,7 +32,27 @@
       "dam_sire": "Sri Pekan"
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "ジョバンニ",
+      "horse_id": "2022103995",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "松山弘平",
+      "trainer": "杉山晴紀",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "エピファネイア",
+      "dam": "ベアフットレディBarefoot Lady(愛)",
+      "dam_sire": "Footstepsinthesand(英)"
+    },
+    {
+      "rank": 3,
       "gate_number": 7,
       "horse_number": 12,
       "horse_name": "クイーンズウォーク",
@@ -298,12 +298,6 @@
       "combination": "9",
       "payout": 1350,
       "popularity": 8
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "14",
-      "payout": 14000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

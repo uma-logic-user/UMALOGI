@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 3,
       "horse_number": 3,
       "horse_name": "ドラゴン",
@@ -32,15 +32,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "レーンアジリティ",
-      "horse_id": "2022107325",
-      "sex_age": "牡3",
+      "rank": 2,
+      "gate_number": 8,
+      "horse_number": 8,
+      "horse_name": "メイショウアゴナス",
+      "horse_id": "2022103263",
+      "sex_age": "牡1",
       "weight_carried": 57.0,
-      "jockey": "高倉稜",
-      "trainer": "中尾秀正",
+      "jockey": "高杉吏麒",
+      "trainer": "本田優",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 8,
-      "horse_name": "メイショウアゴナス",
-      "horse_id": "2022103263",
-      "sex_age": "牡1",
+      "rank": 3,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "レーンアジリティ",
+      "horse_id": "2022107325",
+      "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "高杉吏麒",
-      "trainer": "本田優",
+      "jockey": "高倉稜",
+      "trainer": "中尾秀正",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -198,12 +198,6 @@
       "combination": "3",
       "payout": 130,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "9",
-      "payout": 9000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

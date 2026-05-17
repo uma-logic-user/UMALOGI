@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "クラウンシエンタ",
-      "horse_id": "2021101253",
-      "sex_age": "牡5",
-      "weight_carried": 58.0,
-      "jockey": "吉田隼人",
-      "trainer": "水野貴広",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "パイロPyro(米)",
-      "dam": "クラウンミストラル",
-      "dam_sire": "フジキセキ"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 4,
       "horse_number": 6,
       "horse_name": "コトホドサヨウニ",
@@ -52,7 +32,7 @@
       "dam_sire": "ハーツクライ"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 7,
       "horse_number": 13,
       "horse_name": "ハギノサステナブル",
@@ -70,6 +50,26 @@
       "sire": "サトノダイヤモンド",
       "dam": "ハギノエスカーダ",
       "dam_sire": "タートルボウルTurtle Bowl(愛)"
+    },
+    {
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "クラウンシエンタ",
+      "horse_id": "2021101253",
+      "sex_age": "牡5",
+      "weight_carried": 58.0,
+      "jockey": "吉田隼人",
+      "trainer": "水野貴広",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "パイロPyro(米)",
+      "dam": "クラウンミストラル",
+      "dam_sire": "フジキセキ"
     },
     {
       "rank": null,
@@ -318,12 +318,6 @@
       "combination": "6",
       "payout": 810,
       "popularity": 5
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "15",
-      "payout": 15000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

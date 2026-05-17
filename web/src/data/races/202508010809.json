@@ -72,7 +72,7 @@
       "dam_sire": "Sinndar(愛)"
     },
     {
-      "rank": null,
+      "rank": 4,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "メイショウフンケイ",
@@ -92,7 +92,7 @@
       "dam_sire": "キングカメハメハ"
     },
     {
-      "rank": null,
+      "rank": 5,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "ムーンリットナイト",
@@ -112,47 +112,7 @@
       "dam_sire": "ゼンノロブロイ"
     },
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "アクートゥス",
-      "horse_id": "2020102625",
-      "sex_age": "牡3",
-      "weight_carried": 56.0,
-      "jockey": "北村友一",
-      "trainer": "藤原英昭",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ルーラーシップ",
-      "dam": "アッフィラート",
-      "dam_sire": "ディープインパクト"
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "マサノカナリア",
-      "horse_id": "2021100019",
-      "sex_age": "牝4",
-      "weight_carried": 53.0,
-      "jockey": "高杉吏麒",
-      "trainer": "藤野健太",
-      "finish_time": null,
-      "margin": null,
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "シルバーステート",
-      "dam": "マサノジュエリー",
-      "dam_sire": "メイショウボーラー"
-    },
-    {
-      "rank": null,
+      "rank": 6,
       "gate_number": 7,
       "horse_number": 7,
       "horse_name": "ニシノコウダイ",
@@ -172,7 +132,7 @@
       "dam_sire": "ルーラーシップ"
     },
     {
-      "rank": null,
+      "rank": 6,
       "gate_number": 8,
       "horse_number": 9,
       "horse_name": "サトミノキラリ",
@@ -190,6 +150,46 @@
       "sire": "ビッグアーサー",
       "dam": "パレード",
       "dam_sire": "ディープインパクト"
+    },
+    {
+      "rank": 8,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "アクートゥス",
+      "horse_id": "2020102625",
+      "sex_age": "牡3",
+      "weight_carried": 56.0,
+      "jockey": "北村友一",
+      "trainer": "藤原英昭",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ルーラーシップ",
+      "dam": "アッフィラート",
+      "dam_sire": "ディープインパクト"
+    },
+    {
+      "rank": 9,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "マサノカナリア",
+      "horse_id": "2021100019",
+      "sex_age": "牝4",
+      "weight_carried": 53.0,
+      "jockey": "高杉吏麒",
+      "trainer": "藤野健太",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "シルバーステート",
+      "dam": "マサノジュエリー",
+      "dam_sire": "メイショウボーラー"
     }
   ],
   "payouts": [

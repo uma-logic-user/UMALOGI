@@ -12,6 +12,26 @@
   "year": "2025",
   "results": [
     {
+      "rank": 1,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "ペプチドヤマト",
+      "horse_id": "2019103605",
+      "sex_age": "牡1",
+      "weight_carried": 56.0,
+      "jockey": "高倉稜",
+      "trainer": "武英智",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ドレフォンDrefong(米)",
+      "dam": "ペプチドルビー",
+      "dam_sire": "コロナドズクエストCoronado's Quest(米)"
+    },
+    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -110,26 +130,6 @@
       "sire": "ミッキーアイル",
       "dam": "ナムラヒラリー",
       "dam_sire": "クロフネ"
-    },
-    {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 6,
-      "horse_name": "ペプチドヤマト",
-      "horse_id": "2019103605",
-      "sex_age": "牡1",
-      "weight_carried": 56.0,
-      "jockey": "高倉稜",
-      "trainer": "武英智",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ドレフォンDrefong(米)",
-      "dam": "ペプチドルビー",
-      "dam_sire": "コロナドズクエストCoronado's Quest(米)"
     },
     {
       "rank": null,
@@ -338,12 +338,6 @@
       "combination": "6",
       "payout": 9460,
       "popularity": 16
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

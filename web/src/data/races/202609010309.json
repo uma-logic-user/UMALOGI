@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "キングスコール",
-      "horse_id": "2022104207",
-      "sex_age": "牡4",
-      "weight_carried": 56.0,
-      "jockey": "坂井瑠星",
-      "trainer": "矢作芳人",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ドゥラメンテ",
-      "dam": "レインオンザデューンRain On The Dune(英)",
-      "dam_sire": "Frankel"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 5,
       "horse_number": 5,
       "horse_name": "アマキヒ",
@@ -52,7 +32,27 @@
       "dam_sire": "キングカメハメハ"
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "キングスコール",
+      "horse_id": "2022104207",
+      "sex_age": "牡4",
+      "weight_carried": 56.0,
+      "jockey": "坂井瑠星",
+      "trainer": "矢作芳人",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ドゥラメンテ",
+      "dam": "レインオンザデューンRain On The Dune(英)",
+      "dam_sire": "Frankel"
+    },
+    {
+      "rank": 3,
       "gate_number": 6,
       "horse_number": 6,
       "horse_name": "スピードリッチ",
@@ -198,12 +198,6 @@
       "combination": "5",
       "payout": 240,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "9",
-      "payout": 9000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

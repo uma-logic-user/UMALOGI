@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 3,
       "horse_number": 3,
       "horse_name": "チェルノボーグ",
@@ -32,7 +32,7 @@
       "dam_sire": "Ghostzapper"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 4,
       "horse_number": 4,
       "horse_name": "ナイトスラッガー",
@@ -52,7 +52,7 @@
       "dam_sire": "フジキセキ"
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 6,
       "horse_number": 6,
       "horse_name": "レディーミコノス",
@@ -238,12 +238,6 @@
       "combination": "3",
       "payout": 1210,
       "popularity": 5
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "11",
-      "payout": 11000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

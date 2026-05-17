@@ -4,39 +4,13 @@
   "date": "2026-04-12",
   "venue": "中山",
   "race_number": 8,
-  "distance": 1800,
-  "surface": "芝",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
-    {
-      "rank": 1,
-      "gate_number": 8,
-      "horse_number": 10,
-      "horse_name": "ソルトブリーズ",
-      "horse_id": "2021101639",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "横山琉人",
-      "trainer": "田中剛",
-      "finish_time": "1:47.4",
-      "margin": "@",
-      "win_odds": 6.1,
-      "popularity": 5,
-      "horse_weight": 462,
-      "horse_weight_diff": -2,
-      "sire": "アドマイヤムーン",
-      "dam": "オーシャンウェイOceanway(米)",
-      "dam_sire": "Street Cry(愛)",
-      "honmei_score": 0.0105,
-      "ev_score": 0.0775,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.0,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
     {
       "rank": 2,
       "gate_number": 4,
@@ -48,7 +22,7 @@
       "jockey": "木幡巧也",
       "trainer": "辻哲英",
       "finish_time": "1:47.5",
-      "margin": "1",
+      "margin": "@",
       "win_odds": 38.6,
       "popularity": 9,
       "horse_weight": 450,
@@ -74,7 +48,7 @@
       "jockey": "三浦皇成",
       "trainer": "杉山晴紀",
       "finish_time": "1:47.6",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 3.7,
       "popularity": 2,
       "horse_weight": 472,
@@ -100,7 +74,7 @@
       "jockey": "大野拓弥",
       "trainer": "堀内岳志",
       "finish_time": "1:47.7",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 5.9,
       "popularity": 4,
       "horse_weight": 440,
@@ -126,7 +100,7 @@
       "jockey": "横山武史",
       "trainer": "黒岩陽一",
       "finish_time": "1:47.7",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 3.3,
       "popularity": 1,
       "horse_weight": 482,
@@ -152,7 +126,7 @@
       "jockey": "長浜鴻緒",
       "trainer": "鹿戸雄一",
       "finish_time": "1:47.8",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 30.3,
       "popularity": 8,
       "horse_weight": 442,
@@ -178,7 +152,7 @@
       "jockey": "岩田康誠",
       "trainer": "友道康夫",
       "finish_time": "1:47.9",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 16.3,
       "popularity": 6,
       "horse_weight": 518,
@@ -204,7 +178,7 @@
       "jockey": "ディー",
       "trainer": "鈴木慎太",
       "finish_time": "1:48.4",
-      "margin": "3",
+      "margin": "@",
       "win_odds": 5.8,
       "popularity": 3,
       "horse_weight": 486,
@@ -230,7 +204,7 @@
       "jockey": "佐々木大",
       "trainer": "清水英克",
       "finish_time": "1:48.6",
-      "margin": "1.1/4",
+      "margin": "@",
       "win_odds": 17.3,
       "popularity": 7,
       "horse_weight": 492,
@@ -256,7 +230,7 @@
       "jockey": "田山旺佑",
       "trainer": "村田一誠",
       "finish_time": "1:48.9",
-      "margin": "1.3/4",
+      "margin": "@",
       "win_odds": 146.8,
       "popularity": 10,
       "horse_weight": 484,
@@ -266,6 +240,32 @@
       "dam_sire": "シンボリクリスエス",
       "honmei_score": 0.0034,
       "ev_score": 0.1845,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 10,
+      "horse_name": "ソルトブリーズ",
+      "horse_id": "2021101639",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "横山琉人",
+      "trainer": "田中剛",
+      "finish_time": "1:47.4",
+      "margin": "@",
+      "win_odds": 6.1,
+      "popularity": 5,
+      "horse_weight": 462,
+      "horse_weight_diff": -2,
+      "sire": "アドマイヤムーン",
+      "dam": "オーシャンウェイOceanway(米)",
+      "dam_sire": "Street Cry(愛)",
+      "honmei_score": 0.0105,
+      "ev_score": 0.0775,
       "kelly_fraction": 0.0,
       "manji_ev": 0.0,
       "odds_vs_morning": 1.0,
@@ -304,10 +304,28 @@
       "popularity": 25
     },
     {
+      "bet_type": "馬連",
+      "combination": "2",
+      "payout": 5040,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4",
+      "payout": 80000,
+      "popularity": 4
+    },
+    {
       "bet_type": "ワイド",
       "combination": "1-10",
       "payout": 600,
       "popularity": 7
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "6",
+      "payout": 50090,
+      "popularity": 10
     },
     {
       "bet_type": "ワイド",
@@ -328,6 +346,12 @@
       "popularity": 44
     },
     {
+      "bet_type": "馬単",
+      "combination": "4",
+      "payout": 10000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-4-10",
       "payout": 7620,
@@ -335,8 +359,20 @@
     },
     {
       "bet_type": "三連複",
+      "combination": "6",
+      "payout": 701,
+      "popularity": 40
+    },
+    {
+      "bet_type": "三連複",
       "combination": "18-10-2",
       "payout": 30110,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "16",
+      "payout": 10018,
       "popularity": null
     },
     {
@@ -384,7 +420,8 @@
         "6": "マイネルフーガ",
         "2": "コスモアバンサ",
         "3": "クインズスピカ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2151,
@@ -423,7 +460,8 @@
         "6": "マイネルフーガ",
         "2": "コスモアバンサ",
         "3": "クインズスピカ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2220,
@@ -462,7 +500,8 @@
         "6": "マイネルフーガ",
         "2": "コスモアバンサ",
         "3": "クインズスピカ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2350,
@@ -501,7 +540,8 @@
         "6": "マイネルフーガ",
         "2": "コスモアバンサ",
         "3": "クインズスピカ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 2351,
@@ -554,7 +594,8 @@
         "6": "マイネルフーガ",
         "2": "コスモアバンサ",
         "3": "クインズスピカ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 2352,
@@ -593,7 +634,8 @@
         "6": "マイネルフーガ",
         "2": "コスモアバンサ",
         "3": "クインズスピカ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 2353,
@@ -632,7 +674,8 @@
         "6": "マイネルフーガ",
         "2": "コスモアバンサ",
         "3": "クインズスピカ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 2354,
@@ -678,113 +721,8 @@
         "6": "マイネルフーガ",
         "2": "コスモアバンサ",
         "3": "クインズスピカ"
-      }
-    },
-    {
-      "prediction_id": 2355,
-      "model_type": "本命(直前)",
-      "bet_type": "三連複",
-      "confidence": 0.20929971270940756,
-      "expected_value": 173.92806126151768,
-      "recommended_bet": 300.0,
-      "combination_json": "[[4, 8, 10]]",
-      "notes": "本命・対抗・単穴 Harville=0.209",
-      "created_at": "2026-04-12 13:10:27",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -100.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "ヤマニンガラッシア",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.20929971270940756,
-          "ev_score": 173.92806126151768
-        }
-      ],
-      "bet_form": "3頭ボックス",
-      "n_tickets": 1,
-      "invested": 100,
-      "horse_num_to_name": {
-        "10": "ソルトブリーズ",
-        "4": "ヤマニンガラッシア",
-        "1": "ウインシャーガス",
-        "5": "ミーントゥビー",
-        "9": "クラッシファイド",
-        "7": "グランカンタンテ",
-        "8": "ロードマンハイム",
-        "6": "マイネルフーガ",
-        "2": "コスモアバンサ",
-        "3": "クインズスピカ"
-      }
-    },
-    {
-      "prediction_id": 2356,
-      "model_type": "本命(直前)",
-      "bet_type": "三連単",
-      "confidence": 0.041461439234049595,
-      "expected_value": 215.34035002184507,
-      "recommended_bet": 600.0,
-      "combination_json": "[[4, 8, 10], [4, 10, 8], [8, 4, 10], [8, 10, 4], [10, 4, 8], [10, 8, 4]]",
-      "notes": "上位3頭 6点ボックス Harville=0.052",
-      "created_at": "2026-04-12 13:10:27",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -600.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "ヤマニンガラッシア",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.05182679904256199,
-          "ev_score": 215.34035002184507
-        },
-        {
-          "horse_name": "ロードマンハイム",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.05182679904256199,
-          "ev_score": 215.34035002184507
-        },
-        {
-          "horse_name": "ソルトブリーズ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.05182679904256199,
-          "ev_score": 215.34035002184507
-        },
-        {
-          "horse_name": "本命",
-          "horse_id": null,
-          "predicted_rank": 4,
-          "model_score": 0.05182679904256199,
-          "ev_score": 215.34035002184507
-        },
-        {
-          "horse_name": "本命",
-          "horse_id": null,
-          "predicted_rank": 5,
-          "model_score": 0.05182679904256199,
-          "ev_score": 215.34035002184507
-        }
-      ],
-      "bet_form": "3頭ボックス",
-      "n_tickets": 6,
-      "invested": 600,
-      "horse_num_to_name": {
-        "10": "ソルトブリーズ",
-        "4": "ヤマニンガラッシア",
-        "1": "ウインシャーガス",
-        "5": "ミーントゥビー",
-        "9": "クラッシファイド",
-        "7": "グランカンタンテ",
-        "8": "ロードマンハイム",
-        "6": "マイネルフーガ",
-        "2": "コスモアバンサ",
-        "3": "クインズスピカ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 2357,
@@ -886,7 +824,8 @@
         "6": "マイネルフーガ",
         "2": "コスモアバンサ",
         "3": "クインズスピカ"
-      }
+      },
+      "is_provisional": false
     }
   ],
   "training_evals": {},

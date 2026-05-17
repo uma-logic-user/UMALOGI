@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 5,
-      "horse_name": "トラペジスト",
-      "horse_id": "2021104928",
-      "sex_age": "牡3",
-      "weight_carried": 56.0,
-      "jockey": "西村淳也",
-      "trainer": "秋山真一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ニューイヤーズデイ",
-      "dam": "ルシルクLe Cirque(米)",
-      "dam_sire": "Dynaformer"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 8,
       "horse_number": 17,
       "horse_name": "ララマセラシオン",
@@ -52,7 +32,7 @@
       "dam_sire": "クロフネ"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 8,
       "horse_number": 18,
       "horse_name": "ブリュットミレジメ",
@@ -70,6 +50,26 @@
       "sire": "コパノリッキー",
       "dam": "ミスマープル",
       "dam_sire": "Sinndar(愛)"
+    },
+    {
+      "rank": 3,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "トラペジスト",
+      "horse_id": "2021104928",
+      "sex_age": "牡3",
+      "weight_carried": 56.0,
+      "jockey": "西村淳也",
+      "trainer": "秋山真一",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ニューイヤーズデイ",
+      "dam": "ルシルクLe Cirque(米)",
+      "dam_sire": "Dynaformer"
     },
     {
       "rank": null,
@@ -378,12 +378,6 @@
       "combination": "17",
       "payout": 2190,
       "popularity": 10
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "18",
-      "payout": 18000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

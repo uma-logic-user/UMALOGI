@@ -4,11 +4,11 @@
   "date": "2026-04-18",
   "venue": "福島",
   "race_number": 9,
-  "distance": 2000,
-  "surface": "芝",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -42,7 +42,7 @@
       "jockey": "松本大輝",
       "trainer": "角田晃一",
       "finish_time": "1:58.3",
-      "margin": "3",
+      "margin": "@",
       "win_odds": 18.1,
       "popularity": 7,
       "horse_weight": 450,
@@ -62,7 +62,7 @@
       "jockey": "松若風馬",
       "trainer": "梅田智之",
       "finish_time": "1:58.4",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 4.6,
       "popularity": 2,
       "horse_weight": 482,
@@ -82,7 +82,7 @@
       "jockey": "今村聖奈",
       "trainer": "寺島良",
       "finish_time": "1:58.5",
-      "margin": "1",
+      "margin": "@",
       "win_odds": 9.5,
       "popularity": 4,
       "horse_weight": 422,
@@ -102,7 +102,7 @@
       "jockey": "丹内祐次",
       "trainer": "武市康男",
       "finish_time": "1:58.7",
-      "margin": "1.1/4",
+      "margin": "@",
       "win_odds": 2.0,
       "popularity": 1,
       "horse_weight": 450,
@@ -122,7 +122,7 @@
       "jockey": "斎藤新",
       "trainer": "佐藤悠太",
       "finish_time": "1:58.7",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 13.2,
       "popularity": 6,
       "horse_weight": 520,
@@ -142,7 +142,7 @@
       "jockey": "石神深道",
       "trainer": "金成貴史",
       "finish_time": "1:59.3",
-      "margin": "3.1/2",
+      "margin": "@",
       "win_odds": 24.0,
       "popularity": 8,
       "horse_weight": 418,
@@ -162,7 +162,7 @@
       "jockey": "石川裕紀",
       "trainer": "上原佑紀",
       "finish_time": "2:00.0",
-      "margin": "4",
+      "margin": "@",
       "win_odds": 6.5,
       "popularity": 3,
       "horse_weight": 410,
@@ -182,7 +182,7 @@
       "jockey": "西塚洸二",
       "trainer": "浅利英明",
       "finish_time": "2:00.4",
-      "margin": "2.1/2",
+      "margin": "@",
       "win_odds": 34.7,
       "popularity": 9,
       "horse_weight": 478,
@@ -230,10 +230,28 @@
       "popularity": 24
     },
     {
+      "bet_type": "枠連",
+      "combination": "1",
+      "payout": 12005,
+      "popularity": null
+    },
+    {
       "bet_type": "馬連",
       "combination": "2-5",
       "payout": 7010,
       "popularity": 22
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "2",
+      "payout": 5020,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 50000,
+      "popularity": 8
     },
     {
       "bet_type": "ワイド",
@@ -254,16 +272,46 @@
       "popularity": 23
     },
     {
+      "bet_type": "ワイド",
+      "combination": "3",
+      "payout": 90070,
+      "popularity": 40
+    },
+    {
       "bet_type": "馬単",
       "combination": "5→2",
       "payout": 15850,
       "popularity": 47
     },
     {
+      "bet_type": "馬単",
+      "combination": "2",
+      "payout": 5000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "2-4-5",
       "payout": 9780,
       "popularity": 36
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "7",
+      "payout": 1102,
+      "popularity": 40
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "18-2",
+      "payout": 30405,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "10",
+      "payout": 40013,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

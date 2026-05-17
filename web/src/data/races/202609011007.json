@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "クラッチプレイヤー",
-      "horse_id": "2021105418",
-      "sex_age": "牡1",
-      "weight_carried": 58.0,
-      "jockey": "川田将雅",
-      "trainer": "橋田宜長",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ドゥラメンテ",
-      "dam": "ヴァシリカVasilika(米)",
-      "dam_sire": "Skipshot"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 6,
       "horse_number": 6,
       "horse_name": "セイキュート",
@@ -52,7 +32,27 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "クラッチプレイヤー",
+      "horse_id": "2021105418",
+      "sex_age": "牡1",
+      "weight_carried": 58.0,
+      "jockey": "川田将雅",
+      "trainer": "橋田宜長",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ドゥラメンテ",
+      "dam": "ヴァシリカVasilika(米)",
+      "dam_sire": "Skipshot"
+    },
+    {
+      "rank": 3,
       "gate_number": 6,
       "horse_number": 7,
       "horse_name": "マイネルビスマルク",
@@ -238,12 +238,6 @@
       "combination": "6",
       "payout": 210,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "11",
-      "payout": 10000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

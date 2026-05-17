@@ -12,7 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 11,
+      "horse_name": "ケイアイメキラ",
+      "horse_id": "2020104215",
+      "sex_age": "騸3",
+      "weight_carried": 58.0,
+      "jockey": "藤懸貴志",
+      "trainer": "秋山真一",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "パイロPyro(米)",
+      "dam": "ケイアイベローナ",
+      "dam_sire": "クロフネ"
+    },
+    {
+      "rank": 2,
       "gate_number": 6,
       "horse_number": 6,
       "horse_name": "アラナコア",
@@ -32,7 +52,7 @@
       "dam_sire": "キングカメハメハ"
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 7,
       "horse_number": 9,
       "horse_name": "エンマ",
@@ -50,26 +70,6 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 11,
-      "horse_name": "ケイアイメキラ",
-      "horse_id": "2020104215",
-      "sex_age": "騸3",
-      "weight_carried": 58.0,
-      "jockey": "藤懸貴志",
-      "trainer": "秋山真一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "パイロPyro(米)",
-      "dam": "ケイアイベローナ",
-      "dam_sire": "クロフネ"
     },
     {
       "rank": null,
@@ -233,12 +233,6 @@
     }
   ],
   "payouts": [
-    {
-      "bet_type": "単勝",
-      "combination": "11",
-      "payout": 11000,
-      "popularity": null
-    },
     {
       "bet_type": "複勝",
       "combination": "6",

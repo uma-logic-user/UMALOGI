@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "タイキプレジール",
-      "horse_id": "2023102182",
-      "sex_age": "牡3",
-      "weight_carried": 55.0,
-      "jockey": "長浜鴻緒",
-      "trainer": "矢野英一",
+      "rank": 1,
+      "gate_number": 4,
+      "horse_number": 8,
+      "horse_name": "ジャスフォール",
+      "horse_id": "2023101792",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "津村明秀",
+      "trainer": "上原佑紀",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 4,
       "horse_number": 7,
       "horse_name": "ユイノカタリベ",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 8,
-      "horse_name": "ジャスフォール",
-      "horse_id": "2023101792",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "津村明秀",
-      "trainer": "上原佑紀",
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "タイキプレジール",
+      "horse_id": "2023102182",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "長浜鴻緒",
+      "trainer": "矢野英一",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "8",
       "payout": 480,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

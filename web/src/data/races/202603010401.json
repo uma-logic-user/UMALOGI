@@ -4,11 +4,11 @@
   "date": "2026-04-19",
   "venue": "福島",
   "race_number": 1,
-  "distance": 1150,
-  "surface": "ダート",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -42,7 +42,7 @@
       "jockey": "荻野琢真",
       "trainer": "宮本博",
       "finish_time": "1:09.1",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 39.0,
       "popularity": 11,
       "horse_weight": 410,
@@ -62,7 +62,7 @@
       "jockey": "田山旺佑",
       "trainer": "新谷功一",
       "finish_time": "1:09.1",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 4.6,
       "popularity": 2,
       "horse_weight": 518,
@@ -82,7 +82,7 @@
       "jockey": "和田陽希",
       "trainer": "今野貞一",
       "finish_time": "1:09.3",
-      "margin": "1.1/4",
+      "margin": "@",
       "win_odds": 16.3,
       "popularity": 7,
       "horse_weight": 470,
@@ -102,7 +102,7 @@
       "jockey": "菊沢一樹",
       "trainer": "岩戸孝樹",
       "finish_time": "1:09.5",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 48.2,
       "popularity": 12,
       "horse_weight": 454,
@@ -122,7 +122,7 @@
       "jockey": "松若風馬",
       "trainer": "小椋研介",
       "finish_time": "1:09.5",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 5.0,
       "popularity": 4,
       "horse_weight": 452,
@@ -142,7 +142,7 @@
       "jockey": "武藤雅",
       "trainer": "武藤善則",
       "finish_time": "1:09.5",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 12.1,
       "popularity": 5,
       "horse_weight": 470,
@@ -162,7 +162,7 @@
       "jockey": "藤懸貴志",
       "trainer": "千田輝彦",
       "finish_time": "1:09.6",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 33.2,
       "popularity": 9,
       "horse_weight": 498,
@@ -182,7 +182,7 @@
       "jockey": "上里直汰",
       "trainer": "加藤士津",
       "finish_time": "1:09.9",
-      "margin": "1.3/4",
+      "margin": "@",
       "win_odds": 4.6,
       "popularity": 3,
       "horse_weight": 444,
@@ -202,7 +202,7 @@
       "jockey": "丹内祐次",
       "trainer": "松山将樹",
       "finish_time": "1:10.1",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 12.6,
       "popularity": 6,
       "horse_weight": 444,
@@ -222,7 +222,7 @@
       "jockey": "小沢大仁",
       "trainer": "杉山佳明",
       "finish_time": "1:10.1",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 240.3,
       "popularity": 15,
       "horse_weight": 402,
@@ -242,7 +242,7 @@
       "jockey": "江田照男",
       "trainer": "村田一誠",
       "finish_time": "1:10.1",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 21.5,
       "popularity": 8,
       "horse_weight": 446,
@@ -262,7 +262,7 @@
       "jockey": "川又賢治",
       "trainer": "吉村圭司",
       "finish_time": "1:10.4",
-      "margin": "1.3/4",
+      "margin": "@",
       "win_odds": 38.9,
       "popularity": 10,
       "horse_weight": 512,
@@ -282,7 +282,7 @@
       "jockey": "石神深道",
       "trainer": "和田正一",
       "finish_time": "1:10.8",
-      "margin": "2.1/2",
+      "margin": "@",
       "win_odds": 304.2,
       "popularity": 16,
       "horse_weight": 402,
@@ -302,7 +302,7 @@
       "jockey": "永島まな",
       "trainer": "水野貴広",
       "finish_time": "1:10.9",
-      "margin": "1",
+      "margin": "@",
       "win_odds": 200.0,
       "popularity": 13,
       "horse_weight": 406,
@@ -322,7 +322,7 @@
       "jockey": "河原田菜",
       "trainer": "青木孝文",
       "finish_time": "1:11.0",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 226.9,
       "popularity": 14,
       "horse_weight": 452,
@@ -376,10 +376,22 @@
       "popularity": 30
     },
     {
+      "bet_type": "馬連",
+      "combination": "1",
+      "payout": 2080,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "12-13",
       "payout": 550,
       "popularity": 5
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4",
+      "payout": 70000,
+      "popularity": 8
     },
     {
       "bet_type": "ワイド",
@@ -400,10 +412,34 @@
       "popularity": 46
     },
     {
+      "bet_type": "馬単",
+      "combination": "8",
+      "payout": 13000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "8-12-13",
       "payout": 7950,
       "popularity": 26
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5",
+      "payout": 508,
+      "popularity": 120
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2",
+      "payout": 91213,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "15",
+      "payout": 70019,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -456,7 +492,8 @@
         "14": "クインズヒマワリ",
         "7": "ラインカシウス",
         "9": "セイウンサクラサケ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2501,
@@ -515,7 +552,8 @@
         "14": "クインズヒマワリ",
         "7": "ラインカシウス",
         "9": "セイウンサクラサケ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2502,
@@ -560,7 +598,8 @@
         "14": "クインズヒマワリ",
         "7": "ラインカシウス",
         "9": "セイウンサクラサケ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2503,
@@ -605,7 +644,8 @@
         "14": "クインズヒマワリ",
         "7": "ラインカシウス",
         "9": "セイウンサクラサケ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2504,
@@ -657,7 +697,8 @@
         "14": "クインズヒマワリ",
         "7": "ラインカシウス",
         "9": "セイウンサクラサケ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2505,
@@ -702,7 +743,8 @@
         "14": "クインズヒマワリ",
         "7": "ラインカシウス",
         "9": "セイウンサクラサケ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2506,
@@ -775,7 +817,8 @@
         "14": "クインズヒマワリ",
         "7": "ラインカシウス",
         "9": "セイウンサクラサケ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2511,
@@ -820,7 +863,8 @@
         "14": "クインズヒマワリ",
         "7": "ラインカシウス",
         "9": "セイウンサクラサケ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2512,
@@ -893,7 +937,8 @@
         "14": "クインズヒマワリ",
         "7": "ラインカシウス",
         "9": "セイウンサクラサケ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2513,
@@ -938,7 +983,8 @@
         "14": "クインズヒマワリ",
         "7": "ラインカシウス",
         "9": "セイウンサクラサケ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2514,
@@ -983,7 +1029,8 @@
         "14": "クインズヒマワリ",
         "7": "ラインカシウス",
         "9": "セイウンサクラサケ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2515,
@@ -1028,7 +1075,8 @@
         "14": "クインズヒマワリ",
         "7": "ラインカシウス",
         "9": "セイウンサクラサケ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2516,
@@ -1073,7 +1121,8 @@
         "14": "クインズヒマワリ",
         "7": "ラインカシウス",
         "9": "セイウンサクラサケ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2517,
@@ -1223,7 +1272,8 @@
         "14": "クインズヒマワリ",
         "7": "ラインカシウス",
         "9": "セイウンサクラサケ"
-      }
+      },
+      "is_provisional": true
     }
   ],
   "training_evals": {}

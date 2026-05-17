@@ -1,0 +1,3160 @@
+{
+  "race_id": "202605020808",
+  "race_name": "",
+  "date": "2026-05-17",
+  "venue": "東京",
+  "race_number": 8,
+  "distance": 0,
+  "surface": "",
+  "track_direction": "",
+  "weather": "",
+  "condition": "",
+  "year": "2026",
+  "results": [
+    {
+      "rank": 1,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "ディープキング",
+      "horse_id": "2017104815",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "丹内",
+      "trainer": "美浦田村",
+      "finish_time": "1:47.5",
+      "margin": null,
+      "win_odds": 71.6,
+      "popularity": 10,
+      "horse_weight": 476,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0507,
+      "ev_score": 1.8101,
+      "kelly_fraction": 0.0023,
+      "manji_ev": 0.0041,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 2,
+      "gate_number": 5,
+      "horse_number": 8,
+      "horse_name": "エデルクローネ",
+      "horse_id": "2022104774",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "レーン",
+      "trainer": "美浦手塚久",
+      "finish_time": null,
+      "margin": "1.3/4",
+      "win_odds": 2.7,
+      "popularity": 1,
+      "horse_weight": 486,
+      "horse_weight_diff": 8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0992,
+      "ev_score": 0.4069,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.8291,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "ウインファヴォリ",
+      "horse_id": "2022106218",
+      "sex_age": "騸5",
+      "weight_carried": 58.0,
+      "jockey": "原田和",
+      "trainer": "美浦松尾",
+      "finish_time": null,
+      "margin": "クビ",
+      "win_odds": 64.6,
+      "popularity": 9,
+      "horse_weight": 480,
+      "horse_weight_diff": -4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.057,
+      "ev_score": 1.1225,
+      "kelly_fraction": 0.0007,
+      "manji_ev": 0.0,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 4,
+      "gate_number": 6,
+      "horse_number": 10,
+      "horse_name": "バズアップビート",
+      "horse_id": "2022104973",
+      "sex_age": "騸3",
+      "weight_carried": 58.0,
+      "jockey": "西村淳",
+      "trainer": "栗東武幸",
+      "finish_time": null,
+      "margin": "クビ",
+      "win_odds": 5.4,
+      "popularity": 3,
+      "horse_weight": 492,
+      "horse_weight_diff": -12,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0972,
+      "ev_score": 0.5348,
+      "kelly_fraction": 0.0,
+      "manji_ev": 2.9344,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 5,
+      "gate_number": 4,
+      "horse_number": 6,
+      "horse_name": "ゴガツノアマノガワ",
+      "horse_id": "2022100922",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "石橋脩",
+      "trainer": "美浦清水英",
+      "finish_time": null,
+      "margin": "クビ",
+      "win_odds": 84.0,
+      "popularity": 11,
+      "horse_weight": 458,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0614,
+      "ev_score": 1.6647,
+      "kelly_fraction": 0.0025,
+      "manji_ev": 1.2121,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "アドミラルシップ",
+      "horse_id": "2021102708",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "横山武史",
+      "trainer": "相沢郁",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ゴールドシップ",
+      "dam": "ヴィーヴァブーケ",
+      "dam_sire": "キングカメハメハ",
+      "honmei_score": 0.0674,
+      "ev_score": 0.2562,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.8621,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "ヴァーナリー",
+      "horse_id": "2022104977",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "岩田望来",
+      "trainer": "浅利英明",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1215,
+      "ev_score": 1.0931,
+      "kelly_fraction": 0.0012,
+      "manji_ev": 2.652,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "ドルビナ",
+      "horse_id": "2022103394",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "木幡巧也",
+      "trainer": "杉浦宏昭",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1192,
+      "ev_score": 3.5869,
+      "kelly_fraction": 0.0089,
+      "manji_ev": 3.251,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 4,
+      "horse_name": "ペプロス",
+      "horse_id": "2022100106",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "松山弘平",
+      "trainer": "矢野英一",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0972,
+      "ev_score": 1.6531,
+      "kelly_fraction": 0.0041,
+      "manji_ev": 0.9223,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "ヒラボクヒーロー",
+      "horse_id": "2021103004",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "松岡正海",
+      "trainer": "平岩大典",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "モーリス",
+      "dam": "ヒラボクキャロル",
+      "dam_sire": "ダンスインザダーク",
+      "honmei_score": 0.0535,
+      "ev_score": 2.5458,
+      "kelly_fraction": 0.0033,
+      "manji_ev": 0.0,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "ホウオウペトリュス",
+      "horse_id": "2021105694",
+      "sex_age": "牝1",
+      "weight_carried": 56.0,
+      "jockey": "川田将雅",
+      "trainer": "須貝尚介",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "スワーヴリチャード",
+      "dam": "パシオンルージュ",
+      "dam_sire": "ボストンハーバーBoston Harbor(米)",
+      "honmei_score": 0.057,
+      "ev_score": 0.5014,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.3316,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 12,
+      "horse_name": "レリッシュ",
+      "horse_id": "2021101385",
+      "sex_age": "牝3",
+      "weight_carried": 52.0,
+      "jockey": "谷原柚希",
+      "trainer": "天間昭一",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "コパノリッキー",
+      "dam": "カクシアジ",
+      "dam_sire": "スウェプトオーヴァーボードSwept Overboard(米)",
+      "honmei_score": 0.0445,
+      "ev_score": 1.4779,
+      "kelly_fraction": 0.0015,
+      "manji_ev": 4.5632,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 13,
+      "horse_name": "クモヒトツナイ",
+      "horse_id": "2022101498",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "原優介",
+      "trainer": "加藤和宏",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0972,
+      "ev_score": 1.9837,
+      "kelly_fraction": 0.0051,
+      "manji_ev": 0.3906,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 14,
+      "horse_name": "カポレイラ",
+      "horse_id": "2022106593",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "吉田豊",
+      "trainer": "中舘英二",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0535,
+      "ev_score": 3.241,
+      "kelly_fraction": 0.0038,
+      "manji_ev": 1.8161,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "リケアキャンディ",
+      "horse_id": "2022100765",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "菅原隆一",
+      "trainer": "蛯名利弘",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0535,
+      "ev_score": 3.2197,
+      "kelly_fraction": 0.0037,
+      "manji_ev": 0.8583,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    }
+  ],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "5",
+      "payout": 7160,
+      "popularity": 10
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "8",
+      "payout": 160,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "11",
+      "payout": 1220,
+      "popularity": 11
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "5",
+      "payout": 1260,
+      "popularity": 12
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "3-5",
+      "payout": 1440,
+      "popularity": 5
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "5-8",
+      "payout": 9810,
+      "popularity": 24
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "5-8",
+      "payout": 2800,
+      "popularity": 25
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "8-11",
+      "payout": 2840,
+      "popularity": 27
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "5-11",
+      "payout": 28350,
+      "popularity": 82
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "5→8",
+      "payout": 31750,
+      "popularity": 64
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5-8-11",
+      "payout": 101890,
+      "popularity": 150
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "5→8→11",
+      "payout": 1046780,
+      "popularity": 1020
+    }
+  ],
+  "predictions": [
+    {
+      "prediction_id": 34168,
+      "model_type": "本命(暫定)",
+      "bet_type": "単勝",
+      "confidence": 0.12145922746781115,
+      "expected_value": 1.0931330472103005,
+      "recommended_bet": 100.0,
+      "combination_json": "[[2]]",
+      "notes": "確率1位 P(win)=0.12 odds=9.0 EV=1.09",
+      "created_at": "2026-05-17 09:44:13",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.12145922746781115,
+          "ev_score": 1.0931330472103005
+        }
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "1": "アドミラルシップ",
+        "2": "ヴァーナリー",
+        "3": "ドルビナ",
+        "4": "ペプロス",
+        "7": "ヒラボクヒーロー",
+        "9": "ホウオウペトリュス",
+        "12": "レリッシュ",
+        "13": "クモヒトツナイ",
+        "14": "カポレイラ",
+        "15": "リケアキャンディ",
+        "5": "ディープキング",
+        "8": "エデルクローネ",
+        "11": "ウインファヴォリ",
+        "10": "バズアップビート",
+        "6": "ゴガツノアマノガワ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34169,
+      "model_type": "本命(暫定)",
+      "bet_type": "複勝",
+      "confidence": 0.11262177544472936,
+      "expected_value": 0.3378653263341881,
+      "recommended_bet": 100.0,
+      "combination_json": "[[2], [8], [3]]",
+      "notes": "上位3頭を複勝",
+      "created_at": "2026-05-17 09:44:13",
+      "is_hit": 1,
+      "payout": 160.0,
+      "profit": -140.0,
+      "roi": 53.333333333333336,
+      "horses": [
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11262177544472936,
+          "ev_score": 0.3378653263341881
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11262177544472936,
+          "ev_score": 0.3378653263341881
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.11262177544472936,
+          "ev_score": 0.3378653263341881
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "1": "アドミラルシップ",
+        "2": "ヴァーナリー",
+        "3": "ドルビナ",
+        "4": "ペプロス",
+        "7": "ヒラボクヒーロー",
+        "9": "ホウオウペトリュス",
+        "12": "レリッシュ",
+        "13": "クモヒトツナイ",
+        "14": "カポレイラ",
+        "15": "リケアキャンディ",
+        "5": "ディープキング",
+        "8": "エデルクローネ",
+        "11": "ウインファヴォリ",
+        "10": "バズアップビート",
+        "6": "ゴガツノアマノガワ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34170,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.028615835494734607,
+      "expected_value": 1.0350633856800455,
+      "recommended_bet": 100.0,
+      "combination_json": "[[2, 8], [2, 3], [2, 10], [2, 13], [2, 4]]",
+      "notes": "軸2番×相手5頭フォーメーション Harville最大=0.029",
+      "created_at": "2026-05-17 09:44:13",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.028615835494734607,
+          "ev_score": 1.0350633856800455
+        },
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.028615835494734607,
+          "ev_score": 1.0350633856800455
+        },
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.028615835494734607,
+          "ev_score": 1.0350633856800455
+        },
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.028615835494734607,
+          "ev_score": 1.0350633856800455
+        },
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.028615835494734607,
+          "ev_score": 1.0350633856800455
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.028615835494734607,
+          "ev_score": 1.0350633856800455
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.028615835494734607,
+          "ev_score": 1.0350633856800455
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.028615835494734607,
+          "ev_score": 1.0350633856800455
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.028615835494734607,
+          "ev_score": 1.0350633856800455
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.028615835494734607,
+          "ev_score": 1.0350633856800455
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "アドミラルシップ",
+        "2": "ヴァーナリー",
+        "3": "ドルビナ",
+        "4": "ペプロス",
+        "7": "ヒラボクヒーロー",
+        "9": "ホウオウペトリュス",
+        "12": "レリッシュ",
+        "13": "クモヒトツナイ",
+        "14": "カポレイラ",
+        "15": "リケアキャンディ",
+        "5": "ディープキング",
+        "8": "エデルクローネ",
+        "11": "ウインファヴォリ",
+        "10": "バズアップビート",
+        "6": "ゴガツノアマノガワ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34171,
+      "model_type": "本命(暫定)",
+      "bet_type": "ワイド",
+      "confidence": 0.03720058614315499,
+      "expected_value": 0.5465052262784416,
+      "recommended_bet": 100.0,
+      "combination_json": "[[2, 8], [2, 3], [2, 10], [2, 13], [2, 4]]",
+      "notes": "軸2番×相手5頭ワイド Harville最大=0.029",
+      "created_at": "2026-05-17 09:44:13",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.028615835494734607,
+          "ev_score": 0.5465052262784416
+        },
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.028615835494734607,
+          "ev_score": 0.5465052262784416
+        },
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.028615835494734607,
+          "ev_score": 0.5465052262784416
+        },
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.028615835494734607,
+          "ev_score": 0.5465052262784416
+        },
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.028615835494734607,
+          "ev_score": 0.5465052262784416
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.028615835494734607,
+          "ev_score": 0.5465052262784416
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.028615835494734607,
+          "ev_score": 0.5465052262784416
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.028615835494734607,
+          "ev_score": 0.5465052262784416
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.028615835494734607,
+          "ev_score": 0.5465052262784416
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.028615835494734607,
+          "ev_score": 0.5465052262784416
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "アドミラルシップ",
+        "2": "ヴァーナリー",
+        "3": "ドルビナ",
+        "4": "ペプロス",
+        "7": "ヒラボクヒーロー",
+        "9": "ホウオウペトリュス",
+        "12": "レリッシュ",
+        "13": "クモヒトツナイ",
+        "14": "カポレイラ",
+        "15": "リケアキャンディ",
+        "5": "ディープキング",
+        "8": "エデルクローネ",
+        "11": "ウインファヴォリ",
+        "10": "バズアップビート",
+        "6": "ゴガツノアマノガワ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34172,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬単",
+      "confidence": 0.11460188054901778,
+      "expected_value": 1.0129803474078367,
+      "recommended_bet": 100.0,
+      "combination_json": "[[2, 8], [2, 3], [2, 10]]",
+      "notes": "軸2番→相手3頭フォーメーション Harville最大=0.014",
+      "created_at": "2026-05-17 09:44:13",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.014325235068627222,
+          "ev_score": 1.0129803474078367
+        },
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.014325235068627222,
+          "ev_score": 1.0129803474078367
+        },
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.014325235068627222,
+          "ev_score": 1.0129803474078367
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.014325235068627222,
+          "ev_score": 1.0129803474078367
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.014325235068627222,
+          "ev_score": 1.0129803474078367
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.014325235068627222,
+          "ev_score": 1.0129803474078367
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "1": "アドミラルシップ",
+        "2": "ヴァーナリー",
+        "3": "ドルビナ",
+        "4": "ペプロス",
+        "7": "ヒラボクヒーロー",
+        "9": "ホウオウペトリュス",
+        "12": "レリッシュ",
+        "13": "クモヒトツナイ",
+        "14": "カポレイラ",
+        "15": "リケアキャンディ",
+        "5": "ディープキング",
+        "8": "エデルクローネ",
+        "11": "ウインファヴォリ",
+        "10": "バズアップビート",
+        "6": "ゴガツノアマノガワ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34173,
+      "model_type": "本命(暫定)",
+      "bet_type": "三連複",
+      "confidence": 0.11798863787049041,
+      "expected_value": 1.2602956354136434,
+      "recommended_bet": 100.0,
+      "combination_json": "[[2, 3, 8], [2, 8, 10]]",
+      "notes": "合成EV最大=1.26 2点 馬番=[(2, 3, 8), (2, 8, 10)]",
+      "created_at": "2026-05-17 09:44:13",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.009832386489207534,
+          "ev_score": 1.2602956354136434
+        },
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.009832386489207534,
+          "ev_score": 1.2602956354136434
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.009832386489207534,
+          "ev_score": 1.2602956354136434
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.009832386489207534,
+          "ev_score": 1.2602956354136434
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.009832386489207534,
+          "ev_score": 1.2602956354136434
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.009832386489207534,
+          "ev_score": 1.2602956354136434
+        }
+      ],
+      "bet_form": "軸2頭ながし",
+      "n_tickets": 2,
+      "invested": 200,
+      "horse_num_to_name": {
+        "1": "アドミラルシップ",
+        "2": "ヴァーナリー",
+        "3": "ドルビナ",
+        "4": "ペプロス",
+        "7": "ヒラボクヒーロー",
+        "9": "ホウオウペトリュス",
+        "12": "レリッシュ",
+        "13": "クモヒトツナイ",
+        "14": "カポレイラ",
+        "15": "リケアキャンディ",
+        "5": "ディープキング",
+        "8": "エデルクローネ",
+        "11": "ウインファヴォリ",
+        "10": "バズアップビート",
+        "6": "ゴガツノアマノガワ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34174,
+      "model_type": "本命(暫定)",
+      "bet_type": "三連単",
+      "confidence": 0.294971594676226,
+      "expected_value": 4.099544719969657,
+      "recommended_bet": 200.0,
+      "combination_json": "[[2, 8, 3], [2, 3, 8], [8, 2, 3], [8, 3, 2], [3, 2, 8], [3, 8, 2], [2, 8, 10], [2, 10, 8], [8, 2, 10], [8, 10, 2], [10, 2, 8], [10, 8, 2], [2, 8, 13], [2, 13, 8], [8, 2, 13], [8, 13, 2], [13, 2, 8], [13, 8, 2], [2, 8, 4], [2, 4, 8], [8, 2, 4], [8, 4, 2], [4, 2, 8], [4, 8, 2], [2, 8, 1], [2, 1, 8], [8, 2, 1], [8, 1, 2], [1, 2, 8], [1, 8, 2], [2, 3, 10], [2, 10, 3], [3, 2, 10], [3, 10, 2], [10, 2, 3], [10, 3, 2], [2, 3, 13], [2, 13, 3], [3, 2, 13], [3, 13, 2], [13, 2, 3], [13, 3, 2], [2, 3, 4], [2, 4, 3], [3, 2, 4], [3, 4, 2], [4, 2, 3], [4, 3, 2], [2, 3, 1], [2, 1, 3], [3, 2, 1], [3, 1, 2], [1, 2, 3], [1, 3, 2], [2, 10, 13], [2, 13, 10], [10, 2, 13], [10, 13, 2], [13, 2, 10], [13, 10, 2], [2, 10, 4], [2, 4, 10], [10, 2, 4], [10, 4, 2], [4, 2, 10], [4, 10, 2], [2, 10, 1], [2, 1, 10], [10, 2, 1], [10, 1, 2], [1, 2, 10], [1, 10, 2], [2, 13, 4], [2, 4, 13], [13, 2, 4], [13, 4, 2], [4, 2, 13], [4, 13, 2], [2, 13, 1], [2, 1, 13], [13, 2, 1], [13, 1, 2], [1, 2, 13], [1, 13, 2], [2, 4, 1], [2, 1, 4], [4, 2, 1], [4, 1, 2], [1, 2, 4], [1, 4, 2]]",
+      "notes": "1頭軸マルチ 軸=2番 相手=[8, 3, 10, 13, 4, 1] 90点 Harville最大=0.0098",
+      "created_at": "2026-05-17 09:44:13",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -9000.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.009832386489207534,
+          "ev_score": 4.099544719969657
+        },
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.009832386489207534,
+          "ev_score": 4.099544719969657
+        },
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.009832386489207534,
+          "ev_score": 4.099544719969657
+        },
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.009832386489207534,
+          "ev_score": 4.099544719969657
+        },
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.009832386489207534,
+          "ev_score": 4.099544719969657
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.009832386489207534,
+          "ev_score": 4.099544719969657
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.009832386489207534,
+          "ev_score": 4.099544719969657
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.009832386489207534,
+          "ev_score": 4.099544719969657
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.009832386489207534,
+          "ev_score": 4.099544719969657
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.009832386489207534,
+          "ev_score": 4.099544719969657
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.009832386489207534,
+          "ev_score": 4.099544719969657
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.009832386489207534,
+          "ev_score": 4.099544719969657
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.009832386489207534,
+          "ev_score": 4.099544719969657
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.009832386489207534,
+          "ev_score": 4.099544719969657
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.009832386489207534,
+          "ev_score": 4.099544719969657
+        }
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 90,
+      "invested": 9000,
+      "horse_num_to_name": {
+        "1": "アドミラルシップ",
+        "2": "ヴァーナリー",
+        "3": "ドルビナ",
+        "4": "ペプロス",
+        "7": "ヒラボクヒーロー",
+        "9": "ホウオウペトリュス",
+        "12": "レリッシュ",
+        "13": "クモヒトツナイ",
+        "14": "カポレイラ",
+        "15": "リケアキャンディ",
+        "5": "ディープキング",
+        "8": "エデルクローネ",
+        "11": "ウインファヴォリ",
+        "10": "バズアップビート",
+        "6": "ゴガツノアマノガワ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34175,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-05-17 09:44:13",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": "2022104977",
+          "predicted_rank": 1,
+          "model_score": 0.12145922746781115,
+          "ev_score": 1.0931330472103005
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": "2022104774",
+          "predicted_rank": 2,
+          "model_score": 0.11916583912611721,
+          "ev_score": 0.4885799404170805
+        },
+        {
+          "horse_name": "クモヒトツナイ",
+          "horse_id": "2022101498",
+          "predicted_rank": 3,
+          "model_score": 0.09724025974025974,
+          "ev_score": 1.9837012987012985
+        },
+        {
+          "horse_name": "バズアップビート",
+          "horse_id": "2022104973",
+          "predicted_rank": 4,
+          "model_score": 0.09724025974025974,
+          "ev_score": 0.5348214285714286
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": "2022103394",
+          "predicted_rank": 5,
+          "model_score": 0.09724025974025974,
+          "ev_score": 2.9269318181818185
+        },
+        {
+          "horse_name": "ペプロス",
+          "horse_id": "2022100106",
+          "predicted_rank": 6,
+          "model_score": 0.06741003547896604,
+          "ev_score": 1.1459706031424226
+        },
+        {
+          "horse_name": "アドミラルシップ",
+          "horse_id": "2021102708",
+          "predicted_rank": 7,
+          "model_score": 0.06741003547896604,
+          "ev_score": 0.25615813482007094
+        },
+        {
+          "horse_name": "ゴガツノアマノガワ",
+          "horse_id": "2022100922",
+          "predicted_rank": 8,
+          "model_score": 0.06142916840785627,
+          "ev_score": 1.664730463852905
+        },
+        {
+          "horse_name": "ウインファヴォリ",
+          "horse_id": "2022106218",
+          "predicted_rank": 9,
+          "model_score": 0.053482587064676616,
+          "ev_score": 1.0536069651741293
+        },
+        {
+          "horse_name": "リケアキャンディ",
+          "horse_id": "2022100765",
+          "predicted_rank": 10,
+          "model_score": 0.05070318282753516,
+          "ev_score": 3.0523316062176167
+        },
+        {
+          "horse_name": "ホウオウペトリュス",
+          "horse_id": "2021105694",
+          "predicted_rank": 11,
+          "model_score": 0.05070318282753516,
+          "ev_score": 0.4461880088823094
+        },
+        {
+          "horse_name": "ディープキング",
+          "horse_id": "2017104815",
+          "predicted_rank": 12,
+          "model_score": 0.05070318282753516,
+          "ev_score": 1.8101036269430053
+        },
+        {
+          "horse_name": "カポレイラ",
+          "horse_id": "2022106593",
+          "predicted_rank": 13,
+          "model_score": 0.04451566951566951,
+          "ev_score": 2.6976495726495724
+        },
+        {
+          "horse_name": "レリッシュ",
+          "horse_id": "2021101385",
+          "predicted_rank": 14,
+          "model_score": 0.04451566951566951,
+          "ev_score": 1.4779202279202277
+        },
+        {
+          "horse_name": "ヒラボクヒーロー",
+          "horse_id": "2021103004",
+          "predicted_rank": 15,
+          "model_score": 0.04451566951566951,
+          "ev_score": 2.1189458689458687
+        }
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "invested": 0,
+      "horse_num_to_name": {
+        "1": "アドミラルシップ",
+        "2": "ヴァーナリー",
+        "3": "ドルビナ",
+        "4": "ペプロス",
+        "7": "ヒラボクヒーロー",
+        "9": "ホウオウペトリュス",
+        "12": "レリッシュ",
+        "13": "クモヒトツナイ",
+        "14": "カポレイラ",
+        "15": "リケアキャンディ",
+        "5": "ディープキング",
+        "8": "エデルクローネ",
+        "11": "ウインファヴォリ",
+        "10": "バズアップビート",
+        "6": "ゴガツノアマノガワ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34176,
+      "model_type": "HitFocus(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.14307917747367305,
+      "expected_value": 1.0350633856800455,
+      "recommended_bet": 700.0,
+      "combination_json": "[[2, 8], [2, 3], [3, 8], [2, 10], [8, 10], [2, 13], [8, 13]]",
+      "notes": "2軸マルチ 軸=2,8 相手=[3, 10, 13] Harville最大=0.0286",
+      "created_at": "2026-05-17 09:44:13",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -700.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.028615835494734607,
+          "ev_score": 1.0350633856800455
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.028615835494734607,
+          "ev_score": 1.0350633856800455
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 7,
+      "invested": 700,
+      "horse_num_to_name": {
+        "1": "アドミラルシップ",
+        "2": "ヴァーナリー",
+        "3": "ドルビナ",
+        "4": "ペプロス",
+        "7": "ヒラボクヒーロー",
+        "9": "ホウオウペトリュス",
+        "12": "レリッシュ",
+        "13": "クモヒトツナイ",
+        "14": "カポレイラ",
+        "15": "リケアキャンディ",
+        "5": "ディープキング",
+        "8": "エデルクローネ",
+        "11": "ウインファヴォリ",
+        "10": "バズアップビート",
+        "6": "ゴガツノアマノガワ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34177,
+      "model_type": "HitFocus(暫定)",
+      "bet_type": "馬単",
+      "confidence": 0.11460188054901778,
+      "expected_value": 1.0129803474078367,
+      "recommended_bet": 800.0,
+      "combination_json": "[[2, 8], [8, 2], [2, 3], [8, 3], [2, 10], [8, 10], [2, 13], [8, 13]]",
+      "notes": "2軸マルチ 軸=2,8 相手=[3, 10, 13] Harville最大=0.0143",
+      "created_at": "2026-05-17 09:44:13",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -800.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.014325235068627222,
+          "ev_score": 1.0129803474078367
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.014325235068627222,
+          "ev_score": 1.0129803474078367
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 8,
+      "invested": 800,
+      "horse_num_to_name": {
+        "1": "アドミラルシップ",
+        "2": "ヴァーナリー",
+        "3": "ドルビナ",
+        "4": "ペプロス",
+        "7": "ヒラボクヒーロー",
+        "9": "ホウオウペトリュス",
+        "12": "レリッシュ",
+        "13": "クモヒトツナイ",
+        "14": "カポレイラ",
+        "15": "リケアキャンディ",
+        "5": "ディープキング",
+        "8": "エデルクローネ",
+        "11": "ウインファヴォリ",
+        "10": "バズアップビート",
+        "6": "ゴガツノアマノガワ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34178,
+      "model_type": "HitFocus(暫定)",
+      "bet_type": "三連単",
+      "confidence": 0.0505249962797623,
+      "expected_value": 0.7022014507957643,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[2, 8, 3], [8, 2, 3], [2, 3, 8], [8, 3, 2], [2, 8, 10], [8, 2, 10], [2, 10, 8], [8, 10, 2], [2, 8, 13], [8, 2, 13], [2, 13, 8], [8, 13, 2]]",
+      "notes": "2軸マルチ 軸=2,8 相手=[3, 10, 13] 12点 Harville最大=0.0017",
+      "created_at": "2026-05-17 09:44:13",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0016841665426587432,
+          "ev_score": 0.7022014507957643
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0016841665426587432,
+          "ev_score": 0.7022014507957643
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0016841665426587432,
+          "ev_score": 0.7022014507957643
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 12,
+      "invested": 1200,
+      "horse_num_to_name": {
+        "1": "アドミラルシップ",
+        "2": "ヴァーナリー",
+        "3": "ドルビナ",
+        "4": "ペプロス",
+        "7": "ヒラボクヒーロー",
+        "9": "ホウオウペトリュス",
+        "12": "レリッシュ",
+        "13": "クモヒトツナイ",
+        "14": "カポレイラ",
+        "15": "リケアキャンディ",
+        "5": "ディープキング",
+        "8": "エデルクローネ",
+        "11": "ウインファヴォリ",
+        "10": "バズアップビート",
+        "6": "ゴガツノアマノガワ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34997,
+      "model_type": "Alpha-Payout(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.26029911632211394,
+      "expected_value": 0.7808973489663418,
+      "recommended_bet": 100.0,
+      "combination_json": "[[1], [8]]",
+      "notes": "2頭 relative nan=0% max=0.781",
+      "created_at": "2026-05-17 13:28:30",
+      "is_hit": 1,
+      "payout": 160.0,
+      "profit": -40.0,
+      "roi": 80.0,
+      "horses": [
+        {
+          "horse_name": "アドミラルシップ",
+          "horse_id": "2021102708",
+          "predicted_rank": 1,
+          "model_score": 0.7808973489663418,
+          "ev_score": 0.7808973489663418
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": "2022104774",
+          "predicted_rank": 2,
+          "model_score": 0.6768186610700114,
+          "ev_score": 0.6768186610700114
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 2,
+      "invested": 200,
+      "horse_num_to_name": {
+        "1": "アドミラルシップ",
+        "2": "ヴァーナリー",
+        "3": "ドルビナ",
+        "4": "ペプロス",
+        "7": "ヒラボクヒーロー",
+        "9": "ホウオウペトリュス",
+        "12": "レリッシュ",
+        "13": "クモヒトツナイ",
+        "14": "カポレイラ",
+        "15": "リケアキャンディ",
+        "5": "ディープキング",
+        "8": "エデルクローネ",
+        "11": "ウインファヴォリ",
+        "10": "バズアップビート",
+        "6": "ゴガツノアマノガワ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34998,
+      "model_type": "Alpha-Payout(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.7430389393865117,
+      "expected_value": 2.229116818159535,
+      "recommended_bet": 200.0,
+      "combination_json": "[[1, 8, 10], [1, 8, 9], [1, 2, 8], [1, 9, 10], [1, 2, 10], [1, 2, 9]]",
+      "notes": "Alpha EV=2.23 軸1番 相手4頭 6点",
+      "created_at": "2026-05-17 13:28:30",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "アドミラルシップ",
+          "horse_id": "2021102708",
+          "predicted_rank": 1,
+          "model_score": 0.7808973489663418,
+          "ev_score": 0.7808973489663418
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": "2022104774",
+          "predicted_rank": 2,
+          "model_score": 0.6768186610700114,
+          "ev_score": 0.6768186610700114
+        }
+      ],
+      "bet_form": "軸1頭ながし",
+      "n_tickets": 6,
+      "invested": 600,
+      "horse_num_to_name": {
+        "1": "アドミラルシップ",
+        "2": "ヴァーナリー",
+        "3": "ドルビナ",
+        "4": "ペプロス",
+        "7": "ヒラボクヒーロー",
+        "9": "ホウオウペトリュス",
+        "12": "レリッシュ",
+        "13": "クモヒトツナイ",
+        "14": "カポレイラ",
+        "15": "リケアキャンディ",
+        "5": "ディープキング",
+        "8": "エデルクローネ",
+        "11": "ウインファヴォリ",
+        "10": "バズアップビート",
+        "6": "ゴガツノアマノガワ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34999,
+      "model_type": "Alpha-Payout(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.26284839573908164,
+      "expected_value": 1.3142419786954083,
+      "recommended_bet": 200.0,
+      "combination_json": "[[1, 8, 10], [1, 10, 8], [1, 8, 9], [1, 8, 2], [1, 9, 8], [1, 2, 8]]",
+      "notes": "Alpha EV=1.31 軸1番→フォーメーション 6点",
+      "created_at": "2026-05-17 13:28:30",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "アドミラルシップ",
+          "horse_id": "2021102708",
+          "predicted_rank": 1,
+          "model_score": 0.7808973489663418,
+          "ev_score": 0.7808973489663418
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": "2022104774",
+          "predicted_rank": 2,
+          "model_score": 0.6768186610700114,
+          "ev_score": 0.6768186610700114
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 6,
+      "invested": 600,
+      "horse_num_to_name": {
+        "1": "アドミラルシップ",
+        "2": "ヴァーナリー",
+        "3": "ドルビナ",
+        "4": "ペプロス",
+        "7": "ヒラボクヒーロー",
+        "9": "ホウオウペトリュス",
+        "12": "レリッシュ",
+        "13": "クモヒトツナイ",
+        "14": "カポレイラ",
+        "15": "リケアキャンディ",
+        "5": "ディープキング",
+        "8": "エデルクローネ",
+        "11": "ウインファヴォリ",
+        "10": "バズアップビート",
+        "6": "ゴガツノアマノガワ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 35000,
+      "model_type": "本命(直前)",
+      "bet_type": "単勝",
+      "confidence": 0.12145922746781115,
+      "expected_value": 1.0931330472103005,
+      "recommended_bet": 100.0,
+      "combination_json": "[[2]]",
+      "notes": "確率1位 P(win)=0.12 odds=9.0 EV=1.09",
+      "created_at": "2026-05-17 13:28:30",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.12145922746781115,
+          "ev_score": 1.0931330472103005
+        }
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "1": "アドミラルシップ",
+        "2": "ヴァーナリー",
+        "3": "ドルビナ",
+        "4": "ペプロス",
+        "7": "ヒラボクヒーロー",
+        "9": "ホウオウペトリュス",
+        "12": "レリッシュ",
+        "13": "クモヒトツナイ",
+        "14": "カポレイラ",
+        "15": "リケアキャンディ",
+        "5": "ディープキング",
+        "8": "エデルクローネ",
+        "11": "ウインファヴォリ",
+        "10": "バズアップビート",
+        "6": "ゴガツノアマノガワ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 35001,
+      "model_type": "本命(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.11328998084594448,
+      "expected_value": 0.3398699425378334,
+      "recommended_bet": 100.0,
+      "combination_json": "[[2], [3], [8]]",
+      "notes": "上位3頭を複勝",
+      "created_at": "2026-05-17 13:28:30",
+      "is_hit": 1,
+      "payout": 160.0,
+      "profit": -140.0,
+      "roi": 53.333333333333336,
+      "horses": [
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11328998084594448,
+          "ev_score": 0.3398699425378334
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11328998084594448,
+          "ev_score": 0.3398699425378334
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.11328998084594448,
+          "ev_score": 0.3398699425378334
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "1": "アドミラルシップ",
+        "2": "ヴァーナリー",
+        "3": "ドルビナ",
+        "4": "ペプロス",
+        "7": "ヒラボクヒーロー",
+        "9": "ホウオウペトリュス",
+        "12": "レリッシュ",
+        "13": "クモヒトツナイ",
+        "14": "カポレイラ",
+        "15": "リケアキャンディ",
+        "5": "ディープキング",
+        "8": "エデルクローネ",
+        "11": "ウインファヴォリ",
+        "10": "バズアップビート",
+        "6": "ゴガツノアマノガワ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 35002,
+      "model_type": "本命(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.025369095077672828,
+      "expected_value": 0.9132874227962218,
+      "recommended_bet": 100.0,
+      "combination_json": "[[2, 3], [2, 8], [2, 10], [2, 13], [2, 4]]",
+      "notes": "軸2番×相手5頭フォーメーション Harville最大=0.025",
+      "created_at": "2026-05-17 13:28:30",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.025369095077672828,
+          "ev_score": 0.9132874227962218
+        },
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.025369095077672828,
+          "ev_score": 0.9132874227962218
+        },
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.025369095077672828,
+          "ev_score": 0.9132874227962218
+        },
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.025369095077672828,
+          "ev_score": 0.9132874227962218
+        },
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.025369095077672828,
+          "ev_score": 0.9132874227962218
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.025369095077672828,
+          "ev_score": 0.9132874227962218
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.025369095077672828,
+          "ev_score": 0.9132874227962218
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.025369095077672828,
+          "ev_score": 0.9132874227962218
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.025369095077672828,
+          "ev_score": 0.9132874227962218
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.025369095077672828,
+          "ev_score": 0.9132874227962218
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "アドミラルシップ",
+        "2": "ヴァーナリー",
+        "3": "ドルビナ",
+        "4": "ペプロス",
+        "7": "ヒラボクヒーロー",
+        "9": "ホウオウペトリュス",
+        "12": "レリッシュ",
+        "13": "クモヒトツナイ",
+        "14": "カポレイラ",
+        "15": "リケアキャンディ",
+        "5": "ディープキング",
+        "8": "エデルクローネ",
+        "11": "ウインファヴォリ",
+        "10": "バズアップビート",
+        "6": "ゴガツノアマノガワ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 35003,
+      "model_type": "本命(直前)",
+      "bet_type": "ワイド",
+      "confidence": 0.03297982360097468,
+      "expected_value": 0.4781059658338221,
+      "recommended_bet": 100.0,
+      "combination_json": "[[2, 3], [2, 8], [2, 10], [2, 13], [2, 4]]",
+      "notes": "軸2番×相手5頭ワイド Harville最大=0.025",
+      "created_at": "2026-05-17 13:28:30",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.025369095077672828,
+          "ev_score": 0.4781059658338221
+        },
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.025369095077672828,
+          "ev_score": 0.4781059658338221
+        },
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.025369095077672828,
+          "ev_score": 0.4781059658338221
+        },
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.025369095077672828,
+          "ev_score": 0.4781059658338221
+        },
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.025369095077672828,
+          "ev_score": 0.4781059658338221
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.025369095077672828,
+          "ev_score": 0.4781059658338221
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.025369095077672828,
+          "ev_score": 0.4781059658338221
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.025369095077672828,
+          "ev_score": 0.4781059658338221
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.025369095077672828,
+          "ev_score": 0.4781059658338221
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.025369095077672828,
+          "ev_score": 0.4781059658338221
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "アドミラルシップ",
+        "2": "ヴァーナリー",
+        "3": "ドルビナ",
+        "4": "ペプロス",
+        "7": "ヒラボクヒーロー",
+        "9": "ホウオウペトリュス",
+        "12": "レリッシュ",
+        "13": "クモヒトツナイ",
+        "14": "カポレイラ",
+        "15": "リケアキャンディ",
+        "5": "ディープキング",
+        "8": "エデルクローネ",
+        "11": "ウインファヴォリ",
+        "10": "バズアップビート",
+        "6": "ゴガツノアマノガワ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 35004,
+      "model_type": "本命(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.1015916202929432,
+      "expected_value": 0.8738657198548242,
+      "recommended_bet": 100.0,
+      "combination_json": "[[2, 3], [2, 8], [2, 10]]",
+      "notes": "軸2番→相手3頭フォーメーション Harville最大=0.013",
+      "created_at": "2026-05-17 13:28:30",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0126989525366179,
+          "ev_score": 0.8738657198548242
+        },
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0126989525366179,
+          "ev_score": 0.8738657198548242
+        },
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0126989525366179,
+          "ev_score": 0.8738657198548242
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0126989525366179,
+          "ev_score": 0.8738657198548242
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0126989525366179,
+          "ev_score": 0.8738657198548242
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0126989525366179,
+          "ev_score": 0.8738657198548242
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "1": "アドミラルシップ",
+        "2": "ヴァーナリー",
+        "3": "ドルビナ",
+        "4": "ペプロス",
+        "7": "ヒラボクヒーロー",
+        "9": "ホウオウペトリュス",
+        "12": "レリッシュ",
+        "13": "クモヒトツナイ",
+        "14": "カポレイラ",
+        "15": "リケアキャンディ",
+        "5": "ディープキング",
+        "8": "エデルクローネ",
+        "11": "ウインファヴォリ",
+        "10": "バズアップビート",
+        "6": "ゴガツノアマノガワ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 35005,
+      "model_type": "本命(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.09965719631824152,
+      "expected_value": 1.059929025741737,
+      "recommended_bet": 100.0,
+      "combination_json": "[[2, 3, 8], [2, 3, 10]]",
+      "notes": "合成EV最大=1.06 2点 馬番=[(2, 3, 8), (2, 3, 10)]",
+      "created_at": "2026-05-17 13:28:30",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.00830476635985346,
+          "ev_score": 1.059929025741737
+        },
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.00830476635985346,
+          "ev_score": 1.059929025741737
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.00830476635985346,
+          "ev_score": 1.059929025741737
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.00830476635985346,
+          "ev_score": 1.059929025741737
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.00830476635985346,
+          "ev_score": 1.059929025741737
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.00830476635985346,
+          "ev_score": 1.059929025741737
+        }
+      ],
+      "bet_form": "軸2頭ながし",
+      "n_tickets": 2,
+      "invested": 200,
+      "horse_num_to_name": {
+        "1": "アドミラルシップ",
+        "2": "ヴァーナリー",
+        "3": "ドルビナ",
+        "4": "ペプロス",
+        "7": "ヒラボクヒーロー",
+        "9": "ホウオウペトリュス",
+        "12": "レリッシュ",
+        "13": "クモヒトツナイ",
+        "14": "カポレイラ",
+        "15": "リケアキャンディ",
+        "5": "ディープキング",
+        "8": "エデルクローネ",
+        "11": "ウインファヴォリ",
+        "10": "バズアップビート",
+        "6": "ゴガツノアマノガワ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 35006,
+      "model_type": "本命(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.24914299079560379,
+      "expected_value": 3.432567555686431,
+      "recommended_bet": 200.0,
+      "combination_json": "[[2, 3, 8], [2, 8, 3], [3, 2, 8], [3, 8, 2], [8, 2, 3], [8, 3, 2], [2, 3, 10], [2, 10, 3], [3, 2, 10], [3, 10, 2], [10, 2, 3], [10, 3, 2], [2, 3, 13], [2, 13, 3], [3, 2, 13], [3, 13, 2], [13, 2, 3], [13, 3, 2], [2, 3, 4], [2, 4, 3], [3, 2, 4], [3, 4, 2], [4, 2, 3], [4, 3, 2], [2, 3, 1], [2, 1, 3], [3, 2, 1], [3, 1, 2], [1, 2, 3], [1, 3, 2], [2, 8, 10], [2, 10, 8], [8, 2, 10], [8, 10, 2], [10, 2, 8], [10, 8, 2], [2, 8, 13], [2, 13, 8], [8, 2, 13], [8, 13, 2], [13, 2, 8], [13, 8, 2], [2, 8, 4], [2, 4, 8], [8, 2, 4], [8, 4, 2], [4, 2, 8], [4, 8, 2], [2, 8, 1], [2, 1, 8], [8, 2, 1], [8, 1, 2], [1, 2, 8], [1, 8, 2], [2, 10, 13], [2, 13, 10], [10, 2, 13], [10, 13, 2], [13, 2, 10], [13, 10, 2], [2, 10, 4], [2, 4, 10], [10, 2, 4], [10, 4, 2], [4, 2, 10], [4, 10, 2], [2, 10, 1], [2, 1, 10], [10, 2, 1], [10, 1, 2], [1, 2, 10], [1, 10, 2], [2, 13, 4], [2, 4, 13], [13, 2, 4], [13, 4, 2], [4, 2, 13], [4, 13, 2], [2, 13, 1], [2, 1, 13], [13, 2, 1], [13, 1, 2], [1, 2, 13], [1, 13, 2], [2, 4, 1], [2, 1, 4], [4, 2, 1], [4, 1, 2], [1, 2, 4], [1, 4, 2]]",
+      "notes": "1頭軸マルチ 軸=2番 相手=[3, 8, 10, 13, 4, 1] 90点 Harville最大=0.0083",
+      "created_at": "2026-05-17 13:28:30",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -9000.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.00830476635985346,
+          "ev_score": 3.432567555686431
+        },
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.00830476635985346,
+          "ev_score": 3.432567555686431
+        },
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.00830476635985346,
+          "ev_score": 3.432567555686431
+        },
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.00830476635985346,
+          "ev_score": 3.432567555686431
+        },
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.00830476635985346,
+          "ev_score": 3.432567555686431
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.00830476635985346,
+          "ev_score": 3.432567555686431
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.00830476635985346,
+          "ev_score": 3.432567555686431
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.00830476635985346,
+          "ev_score": 3.432567555686431
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.00830476635985346,
+          "ev_score": 3.432567555686431
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.00830476635985346,
+          "ev_score": 3.432567555686431
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.00830476635985346,
+          "ev_score": 3.432567555686431
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.00830476635985346,
+          "ev_score": 3.432567555686431
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.00830476635985346,
+          "ev_score": 3.432567555686431
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.00830476635985346,
+          "ev_score": 3.432567555686431
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.00830476635985346,
+          "ev_score": 3.432567555686431
+        }
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 90,
+      "invested": 9000,
+      "horse_num_to_name": {
+        "1": "アドミラルシップ",
+        "2": "ヴァーナリー",
+        "3": "ドルビナ",
+        "4": "ペプロス",
+        "7": "ヒラボクヒーロー",
+        "9": "ホウオウペトリュス",
+        "12": "レリッシュ",
+        "13": "クモヒトツナイ",
+        "14": "カポレイラ",
+        "15": "リケアキャンディ",
+        "5": "ディープキング",
+        "8": "エデルクローネ",
+        "11": "ウインファヴォリ",
+        "10": "バズアップビート",
+        "6": "ゴガツノアマノガワ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 35007,
+      "model_type": "卍(直前)",
+      "bet_type": "単勝",
+      "confidence": 0.1374472672547526,
+      "expected_value": 4.563249272857786,
+      "recommended_bet": 100.0,
+      "combination_json": "[[12]]",
+      "notes": "確率1位(卍) EV=4.56 odds=33.2",
+      "created_at": "2026-05-17 13:28:30",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "レリッシュ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 4.563249272857786,
+          "ev_score": 4.563249272857786
+        }
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "1": "アドミラルシップ",
+        "2": "ヴァーナリー",
+        "3": "ドルビナ",
+        "4": "ペプロス",
+        "7": "ヒラボクヒーロー",
+        "9": "ホウオウペトリュス",
+        "12": "レリッシュ",
+        "13": "クモヒトツナイ",
+        "14": "カポレイラ",
+        "15": "リケアキャンディ",
+        "5": "ディープキング",
+        "8": "エデルクローネ",
+        "11": "ウインファヴォリ",
+        "10": "バズアップビート",
+        "6": "ゴガツノアマノガワ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 35008,
+      "model_type": "卍(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.6,
+      "expected_value": 3.5828768595405838,
+      "recommended_bet": 100.0,
+      "combination_json": "[[12], [3], [10]]",
+      "notes": "確率上位3頭を複勝",
+      "created_at": "2026-05-17 13:28:30",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "レリッシュ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 3.5828768595405838,
+          "ev_score": 3.5828768595405838
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 3.5828768595405838,
+          "ev_score": 3.5828768595405838
+        },
+        {
+          "horse_name": "バズアップビート",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 3.5828768595405838,
+          "ev_score": 3.5828768595405838
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "1": "アドミラルシップ",
+        "2": "ヴァーナリー",
+        "3": "ドルビナ",
+        "4": "ペプロス",
+        "7": "ヒラボクヒーロー",
+        "9": "ホウオウペトリュス",
+        "12": "レリッシュ",
+        "13": "クモヒトツナイ",
+        "14": "カポレイラ",
+        "15": "リケアキャンディ",
+        "5": "ディープキング",
+        "8": "エデルクローネ",
+        "11": "ウインファヴォリ",
+        "10": "バズアップビート",
+        "6": "ゴガツノアマノガワ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 35009,
+      "model_type": "卍(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.3876390285683927,
+      "expected_value": 4.0,
+      "recommended_bet": 100.0,
+      "combination_json": "[[3, 12], [10, 12], [2, 12], [8, 12], [12, 14]]",
+      "notes": "軸12番×相手5頭フォーメーション Harville最大=0.078",
+      "created_at": "2026-05-17 13:28:30",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07752780571367854,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07752780571367854,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07752780571367854,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07752780571367854,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07752780571367854,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "レリッシュ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07752780571367854,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "レリッシュ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07752780571367854,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "レリッシュ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07752780571367854,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "レリッシュ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07752780571367854,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "レリッシュ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07752780571367854,
+          "ev_score": 4.0
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "アドミラルシップ",
+        "2": "ヴァーナリー",
+        "3": "ドルビナ",
+        "4": "ペプロス",
+        "7": "ヒラボクヒーロー",
+        "9": "ホウオウペトリュス",
+        "12": "レリッシュ",
+        "13": "クモヒトツナイ",
+        "14": "カポレイラ",
+        "15": "リケアキャンディ",
+        "5": "ディープキング",
+        "8": "エデルクローネ",
+        "11": "ウインファヴォリ",
+        "10": "バズアップビート",
+        "6": "ゴガツノアマノガワ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 35010,
+      "model_type": "卍(直前)",
+      "bet_type": "ワイド",
+      "confidence": 0.46516683428207123,
+      "expected_value": 3.0,
+      "recommended_bet": 100.0,
+      "combination_json": "[[3, 12], [10, 12], [2, 12], [8, 12], [12, 14]]",
+      "notes": "軸12番×相手5頭ワイド Harville最大=0.078",
+      "created_at": "2026-05-17 13:28:30",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07752780571367854,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07752780571367854,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07752780571367854,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07752780571367854,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07752780571367854,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "レリッシュ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07752780571367854,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "レリッシュ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07752780571367854,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "レリッシュ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07752780571367854,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "レリッシュ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07752780571367854,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "レリッシュ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07752780571367854,
+          "ev_score": 3.0
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "アドミラルシップ",
+        "2": "ヴァーナリー",
+        "3": "ドルビナ",
+        "4": "ペプロス",
+        "7": "ヒラボクヒーロー",
+        "9": "ホウオウペトリュス",
+        "12": "レリッシュ",
+        "13": "クモヒトツナイ",
+        "14": "カポレイラ",
+        "15": "リケアキャンディ",
+        "5": "ディープキング",
+        "8": "エデルクローネ",
+        "11": "ウインファヴォリ",
+        "10": "バズアップビート",
+        "6": "ゴガツノアマノガワ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 35011,
+      "model_type": "卍(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.3215942615058371,
+      "expected_value": 5.0,
+      "recommended_bet": 100.0,
+      "combination_json": "[[12, 3], [12, 10], [12, 2]]",
+      "notes": "軸12番→相手3頭フォーメーション Harville最大=0.040",
+      "created_at": "2026-05-17 13:28:30",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "レリッシュ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.040199282688229636,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "レリッシュ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.040199282688229636,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "レリッシュ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.040199282688229636,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.040199282688229636,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.040199282688229636,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.040199282688229636,
+          "ev_score": 5.0
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "1": "アドミラルシップ",
+        "2": "ヴァーナリー",
+        "3": "ドルビナ",
+        "4": "ペプロス",
+        "7": "ヒラボクヒーロー",
+        "9": "ホウオウペトリュス",
+        "12": "レリッシュ",
+        "13": "クモヒトツナイ",
+        "14": "カポレイラ",
+        "15": "リケアキャンディ",
+        "5": "ディープキング",
+        "8": "エデルクローネ",
+        "11": "ウインファヴォリ",
+        "10": "バズアップビート",
+        "6": "ゴガツノアマノガワ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 35014,
+      "model_type": "卍(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.40814253535060857,
+      "expected_value": 5.0,
+      "recommended_bet": 100.0,
+      "combination_json": "[[3, 8, 12]]",
+      "notes": "合成EV=5.00 Harville=0.0272 馬番=(3, 8, 12)",
+      "created_at": "2026-05-17 13:28:30",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.027209502356707237,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.027209502356707237,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "レリッシュ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.027209502356707237,
+          "ev_score": 5.0
+        }
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "1": "アドミラルシップ",
+        "2": "ヴァーナリー",
+        "3": "ドルビナ",
+        "4": "ペプロス",
+        "7": "ヒラボクヒーロー",
+        "9": "ホウオウペトリュス",
+        "12": "レリッシュ",
+        "13": "クモヒトツナイ",
+        "14": "カポレイラ",
+        "15": "リケアキャンディ",
+        "5": "ディープキング",
+        "8": "エデルクローネ",
+        "11": "ウインファヴォリ",
+        "10": "バズアップビート",
+        "6": "ゴガツノアマノガワ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 35015,
+      "model_type": "Oracle(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.04982859815912076,
+      "expected_value": 1.4948579447736228,
+      "recommended_bet": 500.0,
+      "combination_json": "[[2, 3, 8], [2, 3, 10], [2, 3, 13], [2, 3, 4], [2, 8, 10]]",
+      "notes": "[Oracle] 的中確率最大 5点 P最大=0.0498 馬番=[(2, 3, 8), (2, 3, 10), (2, 3, 13), (2, 3, 4), (2, 8, 10)]",
+      "created_at": "2026-05-17 13:28:30",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.04982859815912076,
+          "ev_score": 1.4948579447736228
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.04982859815912076,
+          "ev_score": 1.4948579447736228
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.04982859815912076,
+          "ev_score": 1.4948579447736228
+        }
+      ],
+      "bet_form": "軸1頭ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "アドミラルシップ",
+        "2": "ヴァーナリー",
+        "3": "ドルビナ",
+        "4": "ペプロス",
+        "7": "ヒラボクヒーロー",
+        "9": "ホウオウペトリュス",
+        "12": "レリッシュ",
+        "13": "クモヒトツナイ",
+        "14": "カポレイラ",
+        "15": "リケアキャンディ",
+        "5": "ディープキング",
+        "8": "エデルクローネ",
+        "11": "ウインファヴォリ",
+        "10": "バズアップビート",
+        "6": "ゴガツノアマノガワ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 35016,
+      "model_type": "Oracle(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.00830476635985346,
+      "expected_value": 1.245714953978019,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[2, 3, 8], [2, 8, 3], [3, 2, 8], [3, 8, 2], [8, 2, 3], [8, 3, 2], [2, 3, 10], [2, 3, 13], [2, 3, 4], [2, 10, 3], [2, 13, 3], [2, 4, 3]]",
+      "notes": "[Oracle] 的中確率最大 12点 P最大=0.0083 馬番=[(2, 3, 8), (2, 8, 3), (3, 2, 8), (3, 8, 2), (8, 2, 3), (8, 3, 2), (2, 3, 10), (2, 3, 13), (2, 3, 4), (2, 10, 3), (2, 13, 3), (2, 4, 3)]",
+      "created_at": "2026-05-17 13:28:30",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.00830476635985346,
+          "ev_score": 1.245714953978019
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.00830476635985346,
+          "ev_score": 1.245714953978019
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.00830476635985346,
+          "ev_score": 1.245714953978019
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 12,
+      "invested": 1200,
+      "horse_num_to_name": {
+        "1": "アドミラルシップ",
+        "2": "ヴァーナリー",
+        "3": "ドルビナ",
+        "4": "ペプロス",
+        "7": "ヒラボクヒーロー",
+        "9": "ホウオウペトリュス",
+        "12": "レリッシュ",
+        "13": "クモヒトツナイ",
+        "14": "カポレイラ",
+        "15": "リケアキャンディ",
+        "5": "ディープキング",
+        "8": "エデルクローネ",
+        "11": "ウインファヴォリ",
+        "10": "バズアップビート",
+        "6": "ゴガツノアマノガワ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 35017,
+      "model_type": "本命(直前)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-05-17 13:28:30",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": "2022104977",
+          "predicted_rank": 1,
+          "model_score": 0.12145922746781115,
+          "ev_score": 1.0931330472103005
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": "2022103394",
+          "predicted_rank": 2,
+          "model_score": 0.11916583912611721,
+          "ev_score": 3.586891757696128
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": "2022104774",
+          "predicted_rank": 3,
+          "model_score": 0.09924487594390508,
+          "ev_score": 0.40690399137001076
+        },
+        {
+          "horse_name": "ペプロス",
+          "horse_id": "2022100106",
+          "predicted_rank": 4,
+          "model_score": 0.09724025974025974,
+          "ev_score": 1.6530844155844155
+        },
+        {
+          "horse_name": "クモヒトツナイ",
+          "horse_id": "2022101498",
+          "predicted_rank": 5,
+          "model_score": 0.09724025974025974,
+          "ev_score": 1.9837012987012985
+        },
+        {
+          "horse_name": "バズアップビート",
+          "horse_id": "2022104973",
+          "predicted_rank": 6,
+          "model_score": 0.09724025974025974,
+          "ev_score": 0.5348214285714286
+        },
+        {
+          "horse_name": "アドミラルシップ",
+          "horse_id": "2021102708",
+          "predicted_rank": 7,
+          "model_score": 0.06741003547896604,
+          "ev_score": 0.25615813482007094
+        },
+        {
+          "horse_name": "ゴガツノアマノガワ",
+          "horse_id": "2022100922",
+          "predicted_rank": 8,
+          "model_score": 0.06142916840785627,
+          "ev_score": 1.664730463852905
+        },
+        {
+          "horse_name": "ウインファヴォリ",
+          "horse_id": "2022106218",
+          "predicted_rank": 9,
+          "model_score": 0.0569777979157227,
+          "ev_score": 1.1224626189397373
+        },
+        {
+          "horse_name": "ホウオウペトリュス",
+          "horse_id": "2021105694",
+          "predicted_rank": 10,
+          "model_score": 0.0569777979157227,
+          "ev_score": 0.5014046216583599
+        },
+        {
+          "horse_name": "リケアキャンディ",
+          "horse_id": "2022100765",
+          "predicted_rank": 11,
+          "model_score": 0.053482587064676616,
+          "ev_score": 3.2196517412935326
+        },
+        {
+          "horse_name": "ヒラボクヒーロー",
+          "horse_id": "2021103004",
+          "predicted_rank": 12,
+          "model_score": 0.053482587064676616,
+          "ev_score": 2.545771144278607
+        },
+        {
+          "horse_name": "カポレイラ",
+          "horse_id": "2022106593",
+          "predicted_rank": 13,
+          "model_score": 0.053482587064676616,
+          "ev_score": 3.241044776119403
+        },
+        {
+          "horse_name": "ディープキング",
+          "horse_id": "2017104815",
+          "predicted_rank": 14,
+          "model_score": 0.05070318282753516,
+          "ev_score": 1.8101036269430053
+        },
+        {
+          "horse_name": "レリッシュ",
+          "horse_id": "2021101385",
+          "predicted_rank": 15,
+          "model_score": 0.04451566951566951,
+          "ev_score": 1.4779202279202277
+        }
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "invested": 0,
+      "horse_num_to_name": {
+        "1": "アドミラルシップ",
+        "2": "ヴァーナリー",
+        "3": "ドルビナ",
+        "4": "ペプロス",
+        "7": "ヒラボクヒーロー",
+        "9": "ホウオウペトリュス",
+        "12": "レリッシュ",
+        "13": "クモヒトツナイ",
+        "14": "カポレイラ",
+        "15": "リケアキャンディ",
+        "5": "ディープキング",
+        "8": "エデルクローネ",
+        "11": "ウインファヴォリ",
+        "10": "バズアップビート",
+        "6": "ゴガツノアマノガワ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 35018,
+      "model_type": "HitFocus(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.12684547538836413,
+      "expected_value": 0.9132874227962218,
+      "recommended_bet": 700.0,
+      "combination_json": "[[2, 3], [2, 8], [3, 8], [2, 10], [3, 10], [2, 13], [3, 13]]",
+      "notes": "2軸マルチ 軸=2,3 相手=[8, 10, 13] Harville最大=0.0254",
+      "created_at": "2026-05-17 13:28:30",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -700.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.025369095077672828,
+          "ev_score": 0.9132874227962218
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.025369095077672828,
+          "ev_score": 0.9132874227962218
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 7,
+      "invested": 700,
+      "horse_num_to_name": {
+        "1": "アドミラルシップ",
+        "2": "ヴァーナリー",
+        "3": "ドルビナ",
+        "4": "ペプロス",
+        "7": "ヒラボクヒーロー",
+        "9": "ホウオウペトリュス",
+        "12": "レリッシュ",
+        "13": "クモヒトツナイ",
+        "14": "カポレイラ",
+        "15": "リケアキャンディ",
+        "5": "ディープキング",
+        "8": "エデルクローネ",
+        "11": "ウインファヴォリ",
+        "10": "バズアップビート",
+        "6": "ゴガツノアマノガワ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 35019,
+      "model_type": "HitFocus(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.1015916202929432,
+      "expected_value": 0.8738657198548242,
+      "recommended_bet": 800.0,
+      "combination_json": "[[2, 3], [3, 2], [2, 8], [3, 8], [2, 10], [3, 10], [2, 13], [3, 13]]",
+      "notes": "2軸マルチ 軸=2,3 相手=[8, 10, 13] Harville最大=0.0127",
+      "created_at": "2026-05-17 13:28:30",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -800.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0126989525366179,
+          "ev_score": 0.8738657198548242
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0126989525366179,
+          "ev_score": 0.8738657198548242
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 8,
+      "invested": 800,
+      "horse_num_to_name": {
+        "1": "アドミラルシップ",
+        "2": "ヴァーナリー",
+        "3": "ドルビナ",
+        "4": "ペプロス",
+        "7": "ヒラボクヒーロー",
+        "9": "ホウオウペトリュス",
+        "12": "レリッシュ",
+        "13": "クモヒトツナイ",
+        "14": "カポレイラ",
+        "15": "リケアキャンディ",
+        "5": "ディープキング",
+        "8": "エデルクローネ",
+        "11": "ウインファヴォリ",
+        "10": "バズアップビート",
+        "6": "ゴガツノアマノガワ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 35020,
+      "model_type": "HitFocus(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.04250958894311896,
+      "expected_value": 0.5856758616638215,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[2, 3, 8], [3, 2, 8], [2, 8, 3], [3, 8, 2], [2, 3, 10], [3, 2, 10], [2, 10, 3], [3, 10, 2], [2, 3, 13], [3, 2, 13], [2, 13, 3], [3, 13, 2]]",
+      "notes": "2軸マルチ 軸=2,3 相手=[8, 10, 13] 12点 Harville最大=0.0014",
+      "created_at": "2026-05-17 13:28:30",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ヴァーナリー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0014169862981039654,
+          "ev_score": 0.5856758616638215
+        },
+        {
+          "horse_name": "ドルビナ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0014169862981039654,
+          "ev_score": 0.5856758616638215
+        },
+        {
+          "horse_name": "エデルクローネ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0014169862981039654,
+          "ev_score": 0.5856758616638215
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 12,
+      "invested": 1200,
+      "horse_num_to_name": {
+        "1": "アドミラルシップ",
+        "2": "ヴァーナリー",
+        "3": "ドルビナ",
+        "4": "ペプロス",
+        "7": "ヒラボクヒーロー",
+        "9": "ホウオウペトリュス",
+        "12": "レリッシュ",
+        "13": "クモヒトツナイ",
+        "14": "カポレイラ",
+        "15": "リケアキャンディ",
+        "5": "ディープキング",
+        "8": "エデルクローネ",
+        "11": "ウインファヴォリ",
+        "10": "バズアップビート",
+        "6": "ゴガツノアマノガワ"
+      },
+      "is_provisional": false
+    }
+  ],
+  "training_evals": {},
+  "prerace": {
+    "bias": {
+      "today_inner_bias": -0.04006410256410256,
+      "today_front_bias": 1.0,
+      "today_race_count": 6
+    },
+    "ev_recommend": [
+      {
+        "horse_number": 3,
+        "horse_name": "ドルビナ",
+        "win_odds": 30.1,
+        "ev_score": 3.5869,
+        "kelly_fraction": 0.0089
+      },
+      {
+        "horse_number": 14,
+        "horse_name": "カポレイラ",
+        "win_odds": 60.6,
+        "ev_score": 3.241,
+        "kelly_fraction": 0.0038
+      },
+      {
+        "horse_number": 15,
+        "horse_name": "リケアキャンディ",
+        "win_odds": 60.2,
+        "ev_score": 3.2197,
+        "kelly_fraction": 0.0037
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "ヒラボクヒーロー",
+        "win_odds": 47.6,
+        "ev_score": 2.5458,
+        "kelly_fraction": 0.0033
+      },
+      {
+        "horse_number": 13,
+        "horse_name": "クモヒトツナイ",
+        "win_odds": 20.4,
+        "ev_score": 1.9837,
+        "kelly_fraction": 0.0051
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "ディープキング",
+        "win_odds": 35.7,
+        "ev_score": 1.8101,
+        "kelly_fraction": 0.0023
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "ゴガツノアマノガワ",
+        "win_odds": 27.1,
+        "ev_score": 1.6647,
+        "kelly_fraction": 0.0025
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "ペプロス",
+        "win_odds": 17.0,
+        "ev_score": 1.6531,
+        "kelly_fraction": 0.0041
+      },
+      {
+        "horse_number": 12,
+        "horse_name": "レリッシュ",
+        "win_odds": 33.2,
+        "ev_score": 1.4779,
+        "kelly_fraction": 0.0015
+      },
+      {
+        "horse_number": 11,
+        "horse_name": "ウインファヴォリ",
+        "win_odds": 19.7,
+        "ev_score": 1.1225,
+        "kelly_fraction": 0.0007
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "ヴァーナリー",
+        "win_odds": 9.0,
+        "ev_score": 1.0931,
+        "kelly_fraction": 0.0012
+      }
+    ],
+    "generated_at": "2026-05-17T13:28:30.937245"
+  }
+}

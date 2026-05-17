@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 5,
-      "horse_name": "エヴィーヴァ",
-      "horse_id": "2023106997",
+      "rank": 1,
+      "gate_number": 5,
+      "horse_number": 10,
+      "horse_name": "ナハトナナレオン",
+      "horse_id": "2023102619",
       "sex_age": "牝1",
       "weight_carried": 55.0,
-      "jockey": "ルメール",
-      "trainer": "鹿戸雄一",
+      "jockey": "佐々木大",
+      "trainer": "矢嶋大樹",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 5,
       "horse_number": 9,
       "horse_name": "ミリオングローリー",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 10,
-      "horse_name": "ナハトナナレオン",
-      "horse_id": "2023102619",
+      "rank": 3,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "エヴィーヴァ",
+      "horse_id": "2023106997",
       "sex_age": "牝1",
       "weight_carried": 55.0,
-      "jockey": "佐々木大",
-      "trainer": "矢嶋大樹",
+      "jockey": "ルメール",
+      "trainer": "鹿戸雄一",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "10",
       "payout": 300,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

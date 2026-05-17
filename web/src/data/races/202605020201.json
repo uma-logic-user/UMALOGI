@@ -4,11 +4,11 @@
   "date": "2026-04-26",
   "venue": "東京",
   "race_number": 1,
-  "distance": 1400,
-  "surface": "ダート",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "稍",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -48,7 +48,7 @@
       "jockey": "吉田豊",
       "trainer": "小野次郎",
       "finish_time": "1:26.5",
-      "margin": "3",
+      "margin": "@",
       "win_odds": 8.5,
       "popularity": 5,
       "horse_weight": 440,
@@ -74,7 +74,7 @@
       "jockey": "松山弘平",
       "trainer": "加藤士津",
       "finish_time": "1:26.6",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 3.9,
       "popularity": 2,
       "horse_weight": 488,
@@ -100,7 +100,7 @@
       "jockey": "佐藤翔馬",
       "trainer": "高木登",
       "finish_time": "1:26.7",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 19.9,
       "popularity": 8,
       "horse_weight": 446,
@@ -126,7 +126,7 @@
       "jockey": "横山和生",
       "trainer": "柄崎将寿",
       "finish_time": "1:27.2",
-      "margin": "3",
+      "margin": "@",
       "win_odds": 3.6,
       "popularity": 1,
       "horse_weight": 420,
@@ -152,7 +152,7 @@
       "jockey": "ディー",
       "trainer": "嘉藤貴行",
       "finish_time": "1:27.2",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 7.4,
       "popularity": 4,
       "horse_weight": 400,
@@ -178,7 +178,7 @@
       "jockey": "荻野極",
       "trainer": "村田一誠",
       "finish_time": "1:27.3",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 82.5,
       "popularity": 12,
       "horse_weight": 482,
@@ -204,7 +204,7 @@
       "jockey": "石橋脩",
       "trainer": "田中勝春",
       "finish_time": "1:27.4",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 24.1,
       "popularity": 9,
       "horse_weight": 450,
@@ -230,7 +230,7 @@
       "jockey": "大野拓弥",
       "trainer": "松山将樹",
       "finish_time": "1:27.4",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 13.9,
       "popularity": 7,
       "horse_weight": 460,
@@ -256,7 +256,7 @@
       "jockey": "佐々木大",
       "trainer": "鈴木慎太",
       "finish_time": "1:27.8",
-      "margin": "2.1/2",
+      "margin": "@",
       "win_odds": 33.6,
       "popularity": 10,
       "horse_weight": 488,
@@ -282,7 +282,7 @@
       "jockey": "江田照男",
       "trainer": "奥平雅士",
       "finish_time": "1:28.2",
-      "margin": "2.1/2",
+      "margin": "@",
       "win_odds": 36.3,
       "popularity": 11,
       "horse_weight": 442,
@@ -308,7 +308,7 @@
       "jockey": "小林脩斗",
       "trainer": "浅利英明",
       "finish_time": "1:28.3",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 12.8,
       "popularity": 6,
       "horse_weight": 398,
@@ -334,7 +334,7 @@
       "jockey": "長岡禎仁",
       "trainer": "平岩大典",
       "finish_time": "1:28.6",
-      "margin": "1.3/4",
+      "margin": "@",
       "win_odds": 130.4,
       "popularity": 13,
       "horse_weight": 458,
@@ -360,7 +360,7 @@
       "jockey": "木幡初也",
       "trainer": "粕谷昌央",
       "finish_time": "1:28.7",
-      "margin": "1",
+      "margin": "@",
       "win_odds": 363.0,
       "popularity": 15,
       "horse_weight": 474,
@@ -386,7 +386,7 @@
       "jockey": "津村明秀",
       "trainer": "矢嶋大樹",
       "finish_time": "1:28.8",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 164.0,
       "popularity": 14,
       "horse_weight": 434,
@@ -472,10 +472,28 @@
       "popularity": 10
     },
     {
+      "bet_type": "枠連",
+      "combination": "1",
+      "payout": 600,
+      "popularity": null
+    },
+    {
       "bet_type": "馬連",
       "combination": "6-15",
       "payout": 2430,
       "popularity": 8
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "2",
+      "payout": 5150,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3",
+      "payout": 80000,
+      "popularity": 2
     },
     {
       "bet_type": "ワイド",
@@ -496,16 +514,40 @@
       "popularity": 11
     },
     {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 40040,
+      "popularity": 90
+    },
+    {
       "bet_type": "馬単",
       "combination": "6→15",
       "payout": 4980,
       "popularity": 18
     },
     {
+      "bet_type": "馬単",
+      "combination": "6",
+      "payout": 15000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "6-9-15",
       "payout": 6330,
       "popularity": 16
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "8",
+      "payout": 70609,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "9",
+      "payout": 70011,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -558,7 +600,8 @@
         "4": "マクシーン",
         "13": "キタノトゥシャイン",
         "11": "レイナデルアイレ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12668,
@@ -617,7 +660,8 @@
         "4": "マクシーン",
         "13": "キタノトゥシャイン",
         "11": "レイナデルアイレ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12669,
@@ -669,7 +713,8 @@
         "4": "マクシーン",
         "13": "キタノトゥシャイン",
         "11": "レイナデルアイレ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12670,
@@ -721,7 +766,8 @@
         "4": "マクシーン",
         "13": "キタノトゥシャイン",
         "11": "レイナデルアイレ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12671,
@@ -864,7 +910,8 @@
         "4": "マクシーン",
         "13": "キタノトゥシャイン",
         "11": "レイナデルアイレ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12672,
@@ -909,7 +956,8 @@
         "4": "マクシーン",
         "13": "キタノトゥシャイン",
         "11": "レイナデルアイレ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12673,
@@ -968,7 +1016,8 @@
         "4": "マクシーン",
         "13": "キタノトゥシャイン",
         "11": "レイナデルアイレ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12674,
@@ -1020,7 +1069,8 @@
         "4": "マクシーン",
         "13": "キタノトゥシャイン",
         "11": "レイナデルアイレ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12675,
@@ -1072,7 +1122,8 @@
         "4": "マクシーン",
         "13": "キタノトゥシャイン",
         "11": "レイナデルアイレ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12678,
@@ -1131,7 +1182,8 @@
         "4": "マクシーン",
         "13": "キタノトゥシャイン",
         "11": "レイナデルアイレ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12679,
@@ -1190,7 +1242,8 @@
         "4": "マクシーン",
         "13": "キタノトゥシャイン",
         "11": "レイナデルアイレ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12680,
@@ -1249,7 +1302,8 @@
         "4": "マクシーン",
         "13": "キタノトゥシャイン",
         "11": "レイナデルアイレ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12681,
@@ -1399,7 +1453,8 @@
         "4": "マクシーン",
         "13": "キタノトゥシャイン",
         "11": "レイナデルアイレ"
-      }
+      },
+      "is_provisional": true
     }
   ],
   "training_evals": {},

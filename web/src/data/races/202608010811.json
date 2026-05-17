@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 4,
-      "horse_name": "マイネルチケット",
-      "horse_id": "2022106768",
-      "sex_age": "牡3",
-      "weight_carried": 56.0,
-      "jockey": "横山武史",
-      "trainer": "宮徹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ダノンバラード",
-      "dam": "エントリーチケット",
-      "dam_sire": "マツリダゴッホ"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 4,
       "horse_number": 5,
       "horse_name": "レイベリング",
@@ -52,7 +32,27 @@
       "dam_sire": "Docksider"
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 3,
+      "horse_number": 4,
+      "horse_name": "マイネルチケット",
+      "horse_id": "2022106768",
+      "sex_age": "牡3",
+      "weight_carried": 56.0,
+      "jockey": "横山武史",
+      "trainer": "宮徹",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ダノンバラード",
+      "dam": "エントリーチケット",
+      "dam_sire": "マツリダゴッホ"
+    },
+    {
+      "rank": 3,
       "gate_number": 8,
       "horse_number": 14,
       "horse_name": "ニホンピロキーフ",
@@ -298,12 +298,6 @@
       "combination": "5",
       "payout": 10650,
       "popularity": 12
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "14",
-      "payout": 14000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

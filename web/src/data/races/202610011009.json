@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 5,
       "horse_number": 5,
       "horse_name": "インパクトシー",
@@ -32,27 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 8,
-      "horse_name": "ゴーゴータカシ",
-      "horse_id": "2022102135",
-      "sex_age": "騸5",
-      "weight_carried": 57.0,
-      "jockey": "吉田隼人",
-      "trainer": "武井亮",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 2,
       "gate_number": 7,
       "horse_number": 9,
       "horse_name": "フォルテフィオーレ",
@@ -70,6 +50,26 @@
       "sire": "ドゥラメンテ",
       "dam": "ベルフィオーレ",
       "dam_sire": "ディープインパクト"
+    },
+    {
+      "rank": 3,
+      "gate_number": 6,
+      "horse_number": 8,
+      "horse_name": "ゴーゴータカシ",
+      "horse_id": "2022102135",
+      "sex_age": "騸5",
+      "weight_carried": 57.0,
+      "jockey": "吉田隼人",
+      "trainer": "武井亮",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -258,12 +258,6 @@
       "combination": "5",
       "payout": 180,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "12",
-      "payout": 12000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

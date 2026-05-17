@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "ケイテンアイジン",
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 5,
       "horse_number": 8,
       "horse_name": "アナザーエース",
@@ -52,7 +52,7 @@
       "dam_sire": "タバスコキャットTabasco Cat(米)"
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 6,
       "horse_number": 9,
       "horse_name": "セキテイオー",
@@ -298,12 +298,6 @@
       "combination": "2",
       "payout": 1840,
       "popularity": 7
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "14",
-      "payout": 14000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

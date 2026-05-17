@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 3,
       "horse_number": 3,
       "horse_name": "ファームツエンティ",
@@ -32,7 +32,7 @@
       "dam_sire": "ブライアンズタイムBrian's Time(米)"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 6,
       "horse_number": 6,
       "horse_name": "セイキュート",
@@ -52,7 +52,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 7,
       "horse_number": 7,
       "horse_name": "ロードガレリア",
@@ -198,12 +198,6 @@
       "combination": "3",
       "payout": 550,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "9",
-      "payout": 9000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

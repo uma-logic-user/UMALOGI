@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 4,
       "horse_number": 4,
       "horse_name": "サンコンクエスト",
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 6,
       "horse_number": 6,
       "horse_name": "デルマサクラサク",
@@ -52,7 +52,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 7,
       "horse_number": 7,
       "horse_name": "アリストクラシア",
@@ -178,12 +178,6 @@
       "combination": "4",
       "payout": 390,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "8",
-      "payout": 8000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

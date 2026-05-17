@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "ボールドタワー",
-      "horse_id": "2023103016",
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 14,
+      "horse_name": "ジャイアンバローズ",
+      "horse_id": "2023100922",
       "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "横山琉人",
-      "trainer": "鈴木慎太",
+      "jockey": "丹内祐次",
+      "trainer": "池江泰寿",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 7,
       "horse_number": 12,
       "horse_name": "オオツカ",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 14,
-      "horse_name": "ジャイアンバローズ",
-      "horse_id": "2023100922",
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "ボールドタワー",
+      "horse_id": "2023103016",
       "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "丹内祐次",
-      "trainer": "池江泰寿",
+      "jockey": "横山琉人",
+      "trainer": "鈴木慎太",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -293,12 +293,6 @@
     }
   ],
   "payouts": [
-    {
-      "bet_type": "単勝",
-      "combination": "14",
-      "payout": 14000,
-      "popularity": null
-    },
     {
       "bet_type": "複勝",
       "combination": "2",

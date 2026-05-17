@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "メイショウペイト",
@@ -32,15 +32,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 10,
-      "horse_name": "コスモブラック",
-      "horse_id": "2023102452",
+      "rank": 2,
+      "gate_number": 7,
+      "horse_number": 12,
+      "horse_name": "マイカラー",
+      "horse_id": "2023110031",
       "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "武豊",
-      "trainer": "武英智",
+      "jockey": "岩田康誠",
+      "trainer": "吉岡辰弥",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 12,
-      "horse_name": "マイカラー",
-      "horse_id": "2023110031",
+      "rank": 3,
+      "gate_number": 6,
+      "horse_number": 10,
+      "horse_name": "コスモブラック",
+      "horse_id": "2023102452",
       "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "岩田康誠",
-      "trainer": "吉岡辰弥",
+      "jockey": "武豊",
+      "trainer": "武英智",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -298,12 +298,6 @@
       "combination": "1",
       "payout": 6300,
       "popularity": 9
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "14",
-      "payout": 14000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "アセンブリールーム",
-      "horse_id": "2022104811",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "戸崎圭太",
-      "trainer": "中川公成",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "プリムツァール",
@@ -52,7 +32,7 @@
       "dam_sire": "Footstepsinthesand(英)"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 6,
       "horse_number": 8,
       "horse_name": "ゴールドシーン",
@@ -70,6 +50,26 @@
       "sire": "エピファネイア",
       "dam": "ローガンサファイア",
       "dam_sire": "ダイワメジャー"
+    },
+    {
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "アセンブリールーム",
+      "horse_id": "2022104811",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "戸崎圭太",
+      "trainer": "中川公成",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -258,12 +258,6 @@
       "combination": "2",
       "payout": 180,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "12",
-      "payout": 12000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "ベイラム",
@@ -32,15 +32,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "シドニーホバート",
-      "horse_id": "2022105506",
-      "sex_age": "牡1",
-      "weight_carried": 57.0,
-      "jockey": "斎藤新",
-      "trainer": "杉山佳明",
+      "rank": 2,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "ニヒトツーゼーア",
+      "horse_id": "2022102383",
+      "sex_age": "牡4",
+      "weight_carried": 55.0,
+      "jockey": "柴田裕一",
+      "trainer": "中竹和也",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "ニヒトツーゼーア",
-      "horse_id": "2022102383",
-      "sex_age": "牡4",
-      "weight_carried": 55.0,
-      "jockey": "柴田裕一",
-      "trainer": "中竹和也",
+      "rank": 3,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "シドニーホバート",
+      "horse_id": "2022105506",
+      "sex_age": "牡1",
+      "weight_carried": 57.0,
+      "jockey": "斎藤新",
+      "trainer": "杉山佳明",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -158,12 +158,6 @@
       "combination": "1",
       "payout": 140,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "7",
-      "payout": 7000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

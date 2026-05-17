@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "ジューンベロシティ",
-      "horse_id": "2018103308",
-      "sex_age": "牡5",
-      "weight_carried": 61.0,
-      "jockey": "高田潤",
-      "trainer": "武英智",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ロードカナロア",
-      "dam": "アドマイヤサブリナ",
-      "dam_sire": "シンボリクリスエス"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 7,
       "horse_number": 10,
       "horse_name": "サンデイビス",
@@ -52,7 +32,27 @@
       "dam_sire": "アドマイヤムーン"
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "ジューンベロシティ",
+      "horse_id": "2018103308",
+      "sex_age": "牡5",
+      "weight_carried": 61.0,
+      "jockey": "高田潤",
+      "trainer": "武英智",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ロードカナロア",
+      "dam": "アドマイヤサブリナ",
+      "dam_sire": "シンボリクリスエス"
+    },
+    {
+      "rank": 3,
       "gate_number": 8,
       "horse_number": 13,
       "horse_name": "トゥラッタッタ",
@@ -278,12 +278,6 @@
       "combination": "10",
       "payout": 1530,
       "popularity": 5
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "13",
-      "payout": 13000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

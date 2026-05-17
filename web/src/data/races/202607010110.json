@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "シンゼンカガ",
@@ -32,27 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 6,
-      "horse_name": "ナイトスラッガー",
-      "horse_id": "2021101603",
-      "sex_age": "牡4",
-      "weight_carried": 58.0,
-      "jockey": "鮫島克駿",
-      "trainer": "小栗実",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ルーラーシップ",
-      "dam": "トーホウアマポーラ",
-      "dam_sire": "フジキセキ"
-    },
-    {
-      "rank": null,
+      "rank": 2,
       "gate_number": 7,
       "horse_number": 7,
       "horse_name": "ステラクラウン",
@@ -70,6 +50,26 @@
       "sire": "ルーラーシップ",
       "dam": "レッドステラーノ",
       "dam_sire": "アグネスタキオン"
+    },
+    {
+      "rank": 3,
+      "gate_number": 6,
+      "horse_number": 6,
+      "horse_name": "ナイトスラッガー",
+      "horse_id": "2021101603",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "鮫島克駿",
+      "trainer": "小栗実",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ルーラーシップ",
+      "dam": "トーホウアマポーラ",
+      "dam_sire": "フジキセキ"
     },
     {
       "rank": null,
@@ -218,12 +218,6 @@
       "combination": "1",
       "payout": 530,
       "popularity": 4
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "10",
-      "payout": 10000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 2,
       "horse_number": 3,
       "horse_name": "サンダーヴィント",
@@ -32,15 +32,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 12,
-      "horse_name": "テンカムテキ",
-      "horse_id": "2023104927",
+      "rank": 2,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "エスシービクトリア",
+      "horse_id": "2023101793",
       "sex_age": "牡1",
-      "weight_carried": 57.0,
-      "jockey": "丹内祐次",
-      "trainer": "林徹",
+      "weight_carried": 54.0,
+      "jockey": "遠藤汰月",
+      "trainer": "村田一誠",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 15,
-      "horse_name": "エスシービクトリア",
-      "horse_id": "2023101793",
+      "rank": 3,
+      "gate_number": 6,
+      "horse_number": 12,
+      "horse_name": "テンカムテキ",
+      "horse_id": "2023104927",
       "sex_age": "牡1",
-      "weight_carried": 54.0,
-      "jockey": "遠藤汰月",
-      "trainer": "村田一誠",
+      "weight_carried": 57.0,
+      "jockey": "丹内祐次",
+      "trainer": "林徹",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "3",
       "payout": 4350,
       "popularity": 10
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

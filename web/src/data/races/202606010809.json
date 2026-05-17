@@ -12,7 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 7,
+      "horse_number": 7,
+      "horse_name": "ドゥカート",
+      "horse_id": "2022105777",
+      "sex_age": "牡1",
+      "weight_carried": 57.0,
+      "jockey": "菅原明良",
+      "trainer": "宮田敬介",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
       "gate_number": 5,
       "horse_number": 5,
       "horse_name": "ヤマニンアドホック",
@@ -32,7 +52,7 @@
       "dam_sire": "ダイワメジャー"
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 6,
       "horse_number": 6,
       "horse_name": "ビーオンザカバー",
@@ -41,26 +61,6 @@
       "weight_carried": 57.0,
       "jockey": "キング",
       "trainer": "伊藤圭三",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 7,
-      "horse_name": "ドゥカート",
-      "horse_id": "2022105777",
-      "sex_age": "牡1",
-      "weight_carried": 57.0,
-      "jockey": "菅原明良",
-      "trainer": "宮田敬介",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -198,12 +198,6 @@
       "combination": "7",
       "payout": 3310,
       "popularity": 7
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "9",
-      "payout": 9000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

@@ -12,7 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 7,
+      "horse_number": 8,
+      "horse_name": "ネブラディスク",
+      "horse_id": "2022105140",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "川田将雅",
+      "trainer": "福永祐一",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "ジーティーマン",
@@ -32,7 +52,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 6,
       "horse_number": 7,
       "horse_name": "ホウオウトランプ",
@@ -50,26 +70,6 @@
       "sire": "サトノダイヤモンド",
       "dam": "レディイヴァンカLady Ivanka(米)",
       "dam_sire": "Tiz Wonderful"
-    },
-    {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 8,
-      "horse_name": "ネブラディスク",
-      "horse_id": "2022105140",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "川田将雅",
-      "trainer": "福永祐一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
     },
     {
       "rank": null,
@@ -238,12 +238,6 @@
       "combination": "8",
       "payout": 170,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "11",
-      "payout": 11000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

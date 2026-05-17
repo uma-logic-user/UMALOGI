@@ -12,7 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "ドラゴンウェルズ",
+      "horse_id": "2022110137",
+      "sex_age": "牡7",
+      "weight_carried": 57.0,
+      "jockey": "戸崎圭太",
+      "trainer": "藤原英昭",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
       "gate_number": 6,
       "horse_number": 11,
       "horse_name": "ドンレパルス",
@@ -32,7 +52,7 @@
       "dam_sire": "サウスヴィグラス"
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 7,
       "horse_number": 13,
       "horse_name": "サザンエルフ",
@@ -50,26 +70,6 @@
       "sire": "パイロPyro(米)",
       "dam": "プレシャスエルフ",
       "dam_sire": "コロナドズクエストCoronado's Quest(米)"
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 15,
-      "horse_name": "ドラゴンウェルズ",
-      "horse_id": "2022110137",
-      "sex_age": "牡7",
-      "weight_carried": 57.0,
-      "jockey": "戸崎圭太",
-      "trainer": "藤原英昭",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
     },
     {
       "rank": null,
@@ -338,12 +338,6 @@
       "combination": "15",
       "payout": 220,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

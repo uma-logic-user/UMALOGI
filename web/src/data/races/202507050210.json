@@ -12,7 +12,27 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 6,
+      "horse_number": 8,
+      "horse_name": "キングメーカー",
+      "horse_id": "2022102744",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "ルメール",
+      "trainer": "須貝尚介",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "マテンロウブラボー",
@@ -30,6 +50,26 @@
       "sire": "モーリス",
       "dam": "トリニティプレイス",
       "dam_sire": "マンハッタンカフェ"
+    },
+    {
+      "rank": 3,
+      "gate_number": 8,
+      "horse_number": 13,
+      "horse_name": "テラメリタ",
+      "horse_id": "2021105127",
+      "sex_age": "牝7",
+      "weight_carried": 55.0,
+      "jockey": "川田将雅",
+      "trainer": "須貝尚介",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ブリックスアンドモルタルBricks and Mortar(米)",
+      "dam": "テラノヴァ",
+      "dam_sire": "ヴィクトワールピサ"
     },
     {
       "rank": null,
@@ -154,26 +194,6 @@
     {
       "rank": null,
       "gate_number": 6,
-      "horse_number": 8,
-      "horse_name": "キングメーカー",
-      "horse_id": "2022102744",
-      "sex_age": "牡3",
-      "weight_carried": 55.0,
-      "jockey": "ルメール",
-      "trainer": "須貝尚介",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 6,
       "horse_number": 9,
       "horse_name": "ヴィスマール",
       "horse_id": "2021105459",
@@ -250,26 +270,6 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 13,
-      "horse_name": "テラメリタ",
-      "horse_id": "2021105127",
-      "sex_age": "牝7",
-      "weight_carried": 55.0,
-      "jockey": "川田将雅",
-      "trainer": "須貝尚介",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ブリックスアンドモルタルBricks and Mortar(米)",
-      "dam": "テラノヴァ",
-      "dam_sire": "ヴィクトワールピサ"
     }
   ],
   "payouts": [
@@ -278,12 +278,6 @@
       "combination": "8",
       "payout": 450,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "13",
-      "payout": 13000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

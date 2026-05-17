@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 7,
-      "horse_name": "コパノミラノ",
-      "horse_id": "2023101578",
-      "sex_age": "牡5",
-      "weight_carried": 57.0,
-      "jockey": "柴田大知",
-      "trainer": "上原博之",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 4,
       "horse_number": 8,
       "horse_name": "イナズマダイモン",
@@ -52,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 6,
       "horse_number": 11,
       "horse_name": "アオハルブルース",
@@ -61,6 +41,26 @@
       "weight_carried": 57.0,
       "jockey": "田辺裕信",
       "trainer": "栗田徹",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "コパノミラノ",
+      "horse_id": "2023101578",
+      "sex_age": "牡5",
+      "weight_carried": 57.0,
+      "jockey": "柴田大知",
+      "trainer": "上原博之",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "8",
       "payout": 110,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

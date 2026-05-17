@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "カットソロ",
@@ -32,15 +32,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 6,
-      "horse_name": "ナムラヴンダー",
-      "horse_id": "2023106243",
-      "sex_age": "牡3",
+      "rank": 2,
+      "gate_number": 8,
+      "horse_number": 13,
+      "horse_name": "デルマフジ",
+      "horse_id": "2023103481",
+      "sex_age": "牡4",
       "weight_carried": 57.0,
-      "jockey": "鮫島克駿",
-      "trainer": "河嶋宏樹",
+      "jockey": "浜中俊",
+      "trainer": "武幸四郎",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 13,
-      "horse_name": "デルマフジ",
-      "horse_id": "2023103481",
-      "sex_age": "牡4",
+      "rank": 3,
+      "gate_number": 5,
+      "horse_number": 6,
+      "horse_name": "ナムラヴンダー",
+      "horse_id": "2023106243",
+      "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "浜中俊",
-      "trainer": "武幸四郎",
+      "jockey": "鮫島克駿",
+      "trainer": "河嶋宏樹",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -278,12 +278,6 @@
       "combination": "2",
       "payout": 340,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "13",
-      "payout": 13000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 7,
-      "horse_name": "プレデスティナーレ",
-      "horse_id": "2022106751",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "秋山稔樹",
-      "trainer": "北出成人",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 5,
       "horse_number": 8,
       "horse_name": "ヤコブセン",
@@ -52,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 8,
       "horse_number": 13,
       "horse_name": "マイネルアウルム",
@@ -61,6 +41,26 @@
       "weight_carried": 54.0,
       "jockey": "石神深道",
       "trainer": "伊藤伸一",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 5,
+      "horse_number": 7,
+      "horse_name": "プレデスティナーレ",
+      "horse_id": "2022106751",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "秋山稔樹",
+      "trainer": "北出成人",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -298,12 +298,6 @@
       "combination": "8",
       "payout": 700,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "14",
-      "payout": 14000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

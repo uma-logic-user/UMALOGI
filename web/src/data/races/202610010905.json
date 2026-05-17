@@ -12,27 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "コパノニコルソン",
-      "horse_id": "2019104116",
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 11,
+      "horse_name": "スズカハービン",
+      "horse_id": "2020106654",
       "sex_age": "牡1",
       "weight_carried": 61.0,
-      "jockey": "小牧加矢",
-      "trainer": "宮徹",
+      "jockey": "難波剛健",
+      "trainer": "高橋義忠",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
       "horse_weight_diff": null,
-      "sire": "コパノリッキー",
-      "dam": "ソフィアルージュ",
-      "dam_sire": "クロフネ"
+      "sire": "ハービンジャーHarbinger(英)",
+      "dam": "スズカローラン",
+      "dam_sire": "サンデーサイレンスSunday Silence(米)"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 6,
       "horse_number": 7,
       "horse_name": "ダノンロッキー",
@@ -52,24 +52,24 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 11,
-      "horse_name": "スズカハービン",
-      "horse_id": "2020106654",
+      "rank": 3,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "コパノニコルソン",
+      "horse_id": "2019104116",
       "sex_age": "牡1",
       "weight_carried": 61.0,
-      "jockey": "難波剛健",
-      "trainer": "高橋義忠",
+      "jockey": "小牧加矢",
+      "trainer": "宮徹",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
       "horse_weight_diff": null,
-      "sire": "ハービンジャーHarbinger(英)",
-      "dam": "スズカローラン",
-      "dam_sire": "サンデーサイレンスSunday Silence(米)"
+      "sire": "コパノリッキー",
+      "dam": "ソフィアルージュ",
+      "dam_sire": "クロフネ"
     },
     {
       "rank": null,
@@ -258,12 +258,6 @@
       "combination": "11",
       "payout": 210,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "12",
-      "payout": 12000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

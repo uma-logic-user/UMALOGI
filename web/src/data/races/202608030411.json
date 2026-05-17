@@ -1,14 +1,14 @@
 {
   "race_id": "202608030411",
-  "race_name": "天皇賞（春）",
+  "race_name": "“V皇賞（春）",
   "date": "2026-05-03",
   "venue": "京都",
   "race_number": 11,
-  "distance": 3200,
-  "surface": "芝",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "小雨",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -17,12 +17,12 @@
       "horse_number": 7,
       "horse_name": "クロワデュノール",
       "horse_id": "2022105102",
-      "sex_age": "牡5",
+      "sex_age": "牡4",
       "weight_carried": 58.0,
-      "jockey": "北村友一",
-      "trainer": "斉藤崇史",
+      "jockey": "北村友",
+      "trainer": "栗東斉藤崇",
       "finish_time": "3:13.7",
-      "margin": "@",
+      "margin": "�",
       "win_odds": 1.8,
       "popularity": 1,
       "horse_weight": 514,
@@ -30,140 +30,10 @@
       "sire": "キタサンブラック",
       "dam": "ライジングクロスRising Cross(英)",
       "dam_sire": "Cape Cross",
-      "honmei_score": 0.0437,
+      "honmei_score": 0.1478,
       "ev_score": 0.0,
       "kelly_fraction": 0.0,
-      "manji_ev": 1.8372,
-      "odds_vs_morning": null,
-      "odds_velocity": null
-    },
-    {
-      "rank": 2,
-      "gate_number": 8,
-      "horse_number": 15,
-      "horse_name": "ヴェルテンベルク",
-      "horse_id": "2020103060",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "松若風馬",
-      "trainer": "宮本博",
-      "finish_time": "3:13.7",
-      "margin": "ハナ",
-      "win_odds": 208.4,
-      "popularity": 12,
-      "horse_weight": 492,
-      "horse_weight_diff": 6,
-      "sire": "キタサンブラック",
-      "dam": "マルカアイチャン",
-      "dam_sire": "フレンチデピュティFrench Deputy(米)",
-      "honmei_score": 0.07,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 2.395,
-      "odds_vs_morning": null,
-      "odds_velocity": null
-    },
-    {
-      "rank": 3,
-      "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "アドマイヤテラ",
-      "horse_id": "2021105369",
-      "sex_age": "牡7",
-      "weight_carried": 58.0,
-      "jockey": "武豊",
-      "trainer": "友道康夫",
-      "finish_time": "3:13.8",
-      "margin": "1/2",
-      "win_odds": 3.0,
-      "popularity": 2,
-      "horse_weight": 500,
-      "horse_weight_diff": -4,
-      "sire": "レイデオロ",
-      "dam": "アドマイヤミヤビ",
-      "dam_sire": "ハーツクライ",
-      "honmei_score": 0.0673,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 1.964,
-      "odds_vs_morning": null,
-      "odds_velocity": null
-    },
-    {
-      "rank": 4,
-      "gate_number": 3,
-      "horse_number": 4,
-      "horse_name": "アクアヴァーナル",
-      "horse_id": "2021105433",
-      "sex_age": "牝7",
-      "weight_carried": 56.0,
-      "jockey": "松山弘平",
-      "trainer": "四位洋文",
-      "finish_time": "3:13.9",
-      "margin": "1/2",
-      "win_odds": 26.4,
-      "popularity": 4,
-      "horse_weight": 478,
-      "horse_weight_diff": 0,
-      "sire": "エピファネイア",
-      "dam": "エイプリルミスト",
-      "dam_sire": "ディープインパクト",
-      "honmei_score": 0.0437,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 2.3054,
-      "odds_vs_morning": null,
-      "odds_velocity": null
-    },
-    {
-      "rank": 5,
-      "gate_number": 7,
-      "horse_number": 12,
-      "horse_name": "ヘデントール",
-      "horse_id": "2021105521",
-      "sex_age": "牡4",
-      "weight_carried": 58.0,
-      "jockey": "ルメール",
-      "trainer": "木村哲也",
-      "finish_time": "3:14.1",
-      "margin": "1.1/4",
-      "win_odds": 5.0,
-      "popularity": 3,
-      "horse_weight": 482,
-      "horse_weight_diff": 0,
-      "sire": "ルーラーシップ",
-      "dam": "コルコバード",
-      "dam_sire": "ステイゴールド",
-      "honmei_score": 0.0874,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 3.2083,
-      "odds_vs_morning": null,
-      "odds_velocity": null
-    },
-    {
-      "rank": 6,
-      "gate_number": 6,
-      "horse_number": 11,
-      "horse_name": "タガノデュード",
-      "horse_id": "2021106548",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "レーン",
-      "trainer": "宮徹",
-      "finish_time": "3:14.5",
-      "margin": "2.1/2",
-      "win_odds": 28.2,
-      "popularity": 5,
-      "horse_weight": 502,
-      "horse_weight_diff": 2,
-      "sire": "ヤマカツエース",
-      "dam": "タガノミューチャン",
-      "dam_sire": "ハーツクライ",
-      "honmei_score": 0.0437,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 2.1613,
+      "manji_ev": 2.6728,
       "odds_vs_morning": null,
       "odds_velocity": null
     },
@@ -173,12 +43,12 @@
       "horse_number": 8,
       "horse_name": "シンエンペラー",
       "horse_id": "2021110048",
-      "sex_age": "牡1",
+      "sex_age": "牡5",
       "weight_carried": 58.0,
-      "jockey": "岩田望来",
-      "trainer": "矢作芳人",
+      "jockey": "岩田望",
+      "trainer": "栗東矢作",
       "finish_time": "3:14.6",
-      "margin": "3/4",
+      "margin": "�",
       "win_odds": 30.2,
       "popularity": 6,
       "horse_weight": 508,
@@ -186,218 +56,10 @@
       "sire": "Siyouni",
       "dam": "Starlet's Sister",
       "dam_sire": "Galileo(愛)",
-      "honmei_score": 0.0387,
+      "honmei_score": 0.0593,
       "ev_score": 0.0,
       "kelly_fraction": 0.0,
-      "manji_ev": 1.4409,
-      "odds_vs_morning": null,
-      "odds_velocity": null
-    },
-    {
-      "rank": 8,
-      "gate_number": 7,
-      "horse_number": 13,
-      "horse_name": "ミステリーウェイ",
-      "horse_id": "2018104638",
-      "sex_age": "騸4",
-      "weight_carried": 58.0,
-      "jockey": "松本大輝",
-      "trainer": "小林真也",
-      "finish_time": "3:14.8",
-      "margin": "1.1/4",
-      "win_odds": 64.7,
-      "popularity": 8,
-      "horse_weight": 506,
-      "horse_weight_diff": 6,
-      "sire": "ジャスタウェイ",
-      "dam": "ジプシーハイウェイGypsy Highway(愛)",
-      "dam_sire": "High Chaparral(愛)",
-      "honmei_score": 0.057,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 4.506,
-      "odds_vs_morning": null,
-      "odds_velocity": null
-    },
-    {
-      "rank": 9,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "ヴェルミセル",
-      "horse_id": "2020103945",
-      "sex_age": "牝1",
-      "weight_carried": 56.0,
-      "jockey": "鮫島克駿",
-      "trainer": "吉村圭司",
-      "finish_time": "3:15.0",
-      "margin": "1.1/4",
-      "win_odds": 111.6,
-      "popularity": 9,
-      "horse_weight": 470,
-      "horse_weight_diff": null,
-      "sire": "ゴールドシップ",
-      "dam": "マルーンドロップ",
-      "dam_sire": "コンデュイットConduit(愛)",
-      "honmei_score": 0.0673,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 1.3237,
-      "odds_vs_morning": null,
-      "odds_velocity": null
-    },
-    {
-      "rank": 10,
-      "gate_number": 6,
-      "horse_number": 10,
-      "horse_name": "マイネルカンパーナ",
-      "horse_id": "2020105798",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "津村明秀",
-      "trainer": "青木孝文",
-      "finish_time": "3:15.3",
-      "margin": "2",
-      "win_odds": 143.3,
-      "popularity": 10,
-      "horse_weight": 418,
-      "horse_weight_diff": -4,
-      "sire": "ゴールドシップ",
-      "dam": "マンバラManbala(仏)",
-      "dam_sire": "Linamix(仏)",
-      "honmei_score": 0.1021,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 1.4395,
-      "odds_vs_morning": null,
-      "odds_velocity": null
-    },
-    {
-      "rank": 11,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "サンライズソレイユ",
-      "horse_id": "2021105104",
-      "sex_age": "牡4",
-      "weight_carried": 58.0,
-      "jockey": "池添謙一",
-      "trainer": "矢作芳人",
-      "finish_time": "3:15.6",
-      "margin": "1.1/2",
-      "win_odds": 223.9,
-      "popularity": 13,
-      "horse_weight": 526,
-      "horse_weight_diff": -6,
-      "sire": "キズナ",
-      "dam": "ソラリアSolaria(智)",
-      "dam_sire": "Scat Daddy(米)",
-      "honmei_score": 0.0279,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 2.3428,
-      "odds_vs_morning": null,
-      "odds_velocity": null
-    },
-    {
-      "rank": 12,
-      "gate_number": 3,
-      "horse_number": 5,
-      "horse_name": "ケイアイサンデラ",
-      "horse_id": "2020104881",
-      "sex_age": "騸3",
-      "weight_carried": 58.0,
-      "jockey": "藤懸貴志",
-      "trainer": "小林真也",
-      "finish_time": "3:15.7",
-      "margin": "1/2",
-      "win_odds": 270.9,
-      "popularity": 14,
-      "horse_weight": 442,
-      "horse_weight_diff": 16,
-      "sire": "シルバーステート",
-      "dam": "クインズミリセント",
-      "dam_sire": "エンパイアメーカーEmpire Maker(米)",
-      "honmei_score": 0.0387,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 1.0627,
-      "odds_vs_morning": null,
-      "odds_velocity": null
-    },
-    {
-      "rank": 13,
-      "gate_number": 5,
-      "horse_number": 9,
-      "horse_name": "プレシャスデイ",
-      "horse_id": "2022104859",
-      "sex_age": "牡4",
-      "weight_carried": 58.0,
-      "jockey": "吉村誠之",
-      "trainer": "伊坂重信",
-      "finish_time": "3:16.0",
-      "margin": "1.3/4",
-      "win_odds": 308.4,
-      "popularity": 15,
-      "horse_weight": 502,
-      "horse_weight_diff": -2,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0673,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 1.942,
-      "odds_vs_morning": null,
-      "odds_velocity": null
-    },
-    {
-      "rank": 14,
-      "gate_number": 8,
-      "horse_number": 14,
-      "horse_name": "ホーエリート",
-      "horse_id": "2021104855",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "戸崎圭太",
-      "trainer": "田島俊明",
-      "finish_time": "3:16.1",
-      "margin": "1/2",
-      "win_odds": 45.4,
-      "popularity": 7,
-      "horse_weight": 482,
-      "horse_weight_diff": -4,
-      "sire": "ルーラーシップ",
-      "dam": "ゴールデンハープ",
-      "dam_sire": "ステイゴールド",
-      "honmei_score": 0.057,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 9.6471,
-      "odds_vs_morning": null,
-      "odds_velocity": null
-    },
-    {
-      "rank": 15,
-      "gate_number": 4,
-      "horse_number": 6,
-      "horse_name": "エヒト",
-      "horse_id": "2017100464",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "川田将雅",
-      "trainer": "森秀行",
-      "finish_time": "3:16.3",
-      "margin": "1.1/2",
-      "win_odds": 147.4,
-      "popularity": 11,
-      "horse_weight": 466,
-      "horse_weight_diff": -4,
-      "sire": "ルーラーシップ",
-      "dam": "ヒーラ",
-      "dam_sire": "ディープインパクト",
-      "honmei_score": 0.0437,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 4.8803,
+      "manji_ev": 1.8059,
       "odds_vs_morning": null,
       "odds_velocity": null
     }
@@ -408,6 +70,12 @@
       "combination": "7",
       "payout": 180,
       "popularity": 1
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "15",
+      "payout": 15000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -440,10 +108,22 @@
       "popularity": 28
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-10",
+      "payout": 1150,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "3-7",
       "payout": 170,
       "popularity": 1
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4",
+      "payout": 80000,
+      "popularity": 2
     },
     {
       "bet_type": "ワイド",
@@ -458,16 +138,46 @@
       "popularity": 30
     },
     {
+      "bet_type": "ワイド",
+      "combination": "9",
+      "payout": 40120,
+      "popularity": 30
+    },
+    {
       "bet_type": "馬単",
       "combination": "7→15",
       "payout": 20000,
       "popularity": 36
     },
     {
+      "bet_type": "馬単",
+      "combination": "15",
+      "payout": 182,
+      "popularity": 40
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "7",
+      "payout": 15000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "3-7-15",
       "payout": 10370,
       "popularity": 27
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1",
+      "payout": 103,
+      "popularity": 150
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3",
+      "payout": 20307,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -477,85 +187,6 @@
     }
   ],
   "predictions": [
-    {
-      "prediction_id": 21837,
-      "model_type": "本命(暫定)",
-      "bet_type": "三連複",
-      "confidence": 0.14573830065057902,
-      "expected_value": 0.6922569280902503,
-      "recommended_bet": 600.0,
-      "combination_json": "[[7, 11, 12], [7, 10, 12]]",
-      "notes": "合成EV最大=0.69 2点 馬番=[(7, 11, 12), (7, 10, 12)]",
-      "created_at": "2026-05-03 08:12:09",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -200.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "クロワデュノール",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.012144858387548252,
-          "ev_score": 0.6922569280902503
-        },
-        {
-          "horse_name": "クロワデュノール",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.012144858387548252,
-          "ev_score": 0.6922569280902503
-        },
-        {
-          "horse_name": "タガノデュード",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.012144858387548252,
-          "ev_score": 0.6922569280902503
-        },
-        {
-          "horse_name": "タガノデュード",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.012144858387548252,
-          "ev_score": 0.6922569280902503
-        },
-        {
-          "horse_name": "ヘデントール",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.012144858387548252,
-          "ev_score": 0.6922569280902503
-        },
-        {
-          "horse_name": "ヘデントール",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.012144858387548252,
-          "ev_score": 0.6922569280902503
-        }
-      ],
-      "bet_form": "軸2頭ながし",
-      "n_tickets": 2,
-      "invested": 200,
-      "horse_num_to_name": {
-        "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
-    },
     {
       "prediction_id": 21925,
       "model_type": "本命(直前)",
@@ -584,21 +215,9 @@
       "invested": 100,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21926,
@@ -642,21 +261,9 @@
       "invested": 300,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21927,
@@ -749,21 +356,9 @@
       "invested": 500,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21928,
@@ -856,21 +451,9 @@
       "invested": 500,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21929,
@@ -935,21 +518,9 @@
       "invested": 300,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21930,
@@ -1014,21 +585,9 @@
       "invested": 200,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21931,
@@ -1156,21 +715,9 @@
       "invested": 6000,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21932,
@@ -1200,21 +747,9 @@
       "invested": 100,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21933,
@@ -1258,21 +793,9 @@
       "invested": 300,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21934,
@@ -1365,21 +888,9 @@
       "invested": 500,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21935,
@@ -1472,21 +983,9 @@
       "invested": 500,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21936,
@@ -1551,21 +1050,9 @@
       "invested": 300,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21939,
@@ -1609,21 +1096,9 @@
       "invested": 100,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21940,
@@ -1667,21 +1142,9 @@
       "invested": 500,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21941,
@@ -1725,21 +1188,9 @@
       "invested": 1200,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21942,
@@ -1867,21 +1318,9 @@
       "invested": 0,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21943,
@@ -1918,21 +1357,9 @@
       "invested": 700,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21944,
@@ -1969,21 +1396,9 @@
       "invested": 800,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21945,
@@ -2027,43 +1442,31 @@
       "invested": 1200,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": false
     },
     {
-      "prediction_id": 22612,
+      "prediction_id": 24155,
       "model_type": "本命(暫定)",
       "bet_type": "単勝",
-      "confidence": 0.10206297502714441,
-      "expected_value": 0.10206297502714441,
+      "confidence": 0.17163724893487523,
+      "expected_value": 0.17163724893487523,
       "recommended_bet": 100.0,
-      "combination_json": "[[10]]",
-      "notes": "確率1位 P(win)=0.10 odds=1.0 EV=0.10",
-      "created_at": "2026-05-03 14:40:25",
+      "combination_json": "[[6]]",
+      "notes": "確率1位 P(win)=0.17 odds=1.0 EV=0.17",
+      "created_at": "2026-05-08 07:37:15",
       "is_hit": 0,
       "payout": 0.0,
       "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
-          "horse_name": "マイネルカンパーナ",
+          "horse_name": "エヒト",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.10206297502714441,
-          "ev_score": 0.10206297502714441
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.17163724893487523
         }
       ],
       "bet_form": "単勝",
@@ -2071,57 +1474,45 @@
       "invested": 100,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22613,
+      "prediction_id": 24156,
       "model_type": "本命(暫定)",
       "bet_type": "複勝",
-      "confidence": 0.2594658261703677,
-      "expected_value": 0.2594658261703677,
+      "confidence": 0.1699803881788057,
+      "expected_value": 0.5099411645364171,
       "recommended_bet": 300.0,
-      "combination_json": "[[10], [12], [15]]",
+      "combination_json": "[[6], [9], [2]]",
       "notes": "上位3頭を複勝",
-      "created_at": "2026-05-03 14:40:25",
-      "is_hit": 1,
-      "payout": 940.0,
-      "profit": 640.0,
-      "roi": 313.3333333333333,
+      "created_at": "2026-05-08 07:37:15",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
-          "horse_name": "マイネルカンパーナ",
+          "horse_name": "エヒト",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.08648860872345589,
-          "ev_score": 0.2594658261703677
+          "model_score": 0.1699803881788057,
+          "ev_score": 0.5099411645364171
         },
         {
-          "horse_name": "ヘデントール",
+          "horse_name": "プレシャスデイ",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.08648860872345589,
-          "ev_score": 0.2594658261703677
+          "model_score": 0.1699803881788057,
+          "ev_score": 0.5099411645364171
         },
         {
-          "horse_name": "ヴェルテンベルク",
+          "horse_name": "サンライズソレイユ",
           "horse_id": null,
           "predicted_rank": 3,
-          "model_score": 0.08648860872345589,
-          "ev_score": 0.2594658261703677
+          "model_score": 0.1699803881788057,
+          "ev_score": 0.5099411645364171
         }
       ],
       "bet_form": "複勝",
@@ -2129,106 +1520,94 @@
       "invested": 300,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22614,
+      "prediction_id": 24157,
       "model_type": "本命(暫定)",
       "bet_type": "馬連",
       "confidence": 0.009523809523809523,
-      "expected_value": 0.5714285714285714,
+      "expected_value": 0.3442857142857143,
       "recommended_bet": 500.0,
-      "combination_json": "[[10, 12], [10, 15], [9, 10], [1, 10], [3, 10]]",
-      "notes": "軸10番×相手5頭フォーメーション Harville最大=0.010",
-      "created_at": "2026-05-03 14:40:25",
+      "combination_json": "[[6, 9], [2, 6], [6, 7], [1, 6], [6, 12]]",
+      "notes": "軸6番×相手5頭フォーメーション Harville最大=0.010",
+      "created_at": "2026-05-08 07:37:15",
       "is_hit": 0,
       "payout": 0.0,
       "profit": -500.0,
       "roi": 0.0,
       "horses": [
         {
-          "horse_name": "マイネルカンパーナ",
+          "horse_name": "エヒト",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.009523809523809523,
-          "ev_score": 0.5714285714285714
+          "ev_score": 0.3442857142857143
         },
         {
-          "horse_name": "マイネルカンパーナ",
+          "horse_name": "エヒト",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.009523809523809523,
-          "ev_score": 0.5714285714285714
+          "ev_score": 0.3442857142857143
         },
         {
-          "horse_name": "マイネルカンパーナ",
+          "horse_name": "エヒト",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.009523809523809523,
-          "ev_score": 0.5714285714285714
+          "ev_score": 0.3442857142857143
         },
         {
-          "horse_name": "マイネルカンパーナ",
+          "horse_name": "エヒト",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.009523809523809523,
-          "ev_score": 0.5714285714285714
+          "ev_score": 0.3442857142857143
         },
         {
-          "horse_name": "マイネルカンパーナ",
+          "horse_name": "エヒト",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.009523809523809523,
-          "ev_score": 0.5714285714285714
+          "ev_score": 0.3442857142857143
         },
         {
-          "horse_name": "ヘデントール",
+          "horse_name": "プレシャスデイ",
           "horse_id": null,
           "predicted_rank": 2,
           "model_score": 0.009523809523809523,
-          "ev_score": 0.5714285714285714
+          "ev_score": 0.3442857142857143
         },
         {
-          "horse_name": "ヘデントール",
+          "horse_name": "プレシャスデイ",
           "horse_id": null,
           "predicted_rank": 2,
           "model_score": 0.009523809523809523,
-          "ev_score": 0.5714285714285714
+          "ev_score": 0.3442857142857143
         },
         {
-          "horse_name": "ヘデントール",
+          "horse_name": "プレシャスデイ",
           "horse_id": null,
           "predicted_rank": 2,
           "model_score": 0.009523809523809523,
-          "ev_score": 0.5714285714285714
+          "ev_score": 0.3442857142857143
         },
         {
-          "horse_name": "ヘデントール",
+          "horse_name": "プレシャスデイ",
           "horse_id": null,
           "predicted_rank": 2,
           "model_score": 0.009523809523809523,
-          "ev_score": 0.5714285714285714
+          "ev_score": 0.3442857142857143
         },
         {
-          "horse_name": "ヘデントール",
+          "horse_name": "プレシャスデイ",
           "horse_id": null,
           "predicted_rank": 2,
           "model_score": 0.009523809523809523,
-          "ev_score": 0.5714285714285714
+          "ev_score": 0.3442857142857143
         }
       ],
       "bet_form": "軸ながし",
@@ -2236,106 +1615,94 @@
       "invested": 500,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22615,
+      "prediction_id": 24158,
       "model_type": "本命(暫定)",
       "bet_type": "ワイド",
       "confidence": 0.01238095238095238,
-      "expected_value": 0.23809523809523808,
+      "expected_value": 0.1499047619047619,
       "recommended_bet": 500.0,
-      "combination_json": "[[10, 12], [10, 15], [9, 10], [1, 10], [3, 10]]",
-      "notes": "軸10番×相手5頭ワイド Harville最大=0.010",
-      "created_at": "2026-05-03 14:40:25",
+      "combination_json": "[[6, 9], [2, 6], [6, 7], [1, 6], [6, 12]]",
+      "notes": "軸6番×相手5頭ワイド Harville最大=0.010",
+      "created_at": "2026-05-08 07:37:15",
       "is_hit": 0,
       "payout": 0.0,
       "profit": -500.0,
       "roi": 0.0,
       "horses": [
         {
-          "horse_name": "マイネルカンパーナ",
+          "horse_name": "エヒト",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.009523809523809523,
-          "ev_score": 0.23809523809523808
+          "ev_score": 0.1499047619047619
         },
         {
-          "horse_name": "マイネルカンパーナ",
+          "horse_name": "エヒト",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.009523809523809523,
-          "ev_score": 0.23809523809523808
+          "ev_score": 0.1499047619047619
         },
         {
-          "horse_name": "マイネルカンパーナ",
+          "horse_name": "エヒト",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.009523809523809523,
-          "ev_score": 0.23809523809523808
+          "ev_score": 0.1499047619047619
         },
         {
-          "horse_name": "マイネルカンパーナ",
+          "horse_name": "エヒト",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.009523809523809523,
-          "ev_score": 0.23809523809523808
+          "ev_score": 0.1499047619047619
         },
         {
-          "horse_name": "マイネルカンパーナ",
+          "horse_name": "エヒト",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.009523809523809523,
-          "ev_score": 0.23809523809523808
+          "ev_score": 0.1499047619047619
         },
         {
-          "horse_name": "ヘデントール",
+          "horse_name": "プレシャスデイ",
           "horse_id": null,
           "predicted_rank": 2,
           "model_score": 0.009523809523809523,
-          "ev_score": 0.23809523809523808
+          "ev_score": 0.1499047619047619
         },
         {
-          "horse_name": "ヘデントール",
+          "horse_name": "プレシャスデイ",
           "horse_id": null,
           "predicted_rank": 2,
           "model_score": 0.009523809523809523,
-          "ev_score": 0.23809523809523808
+          "ev_score": 0.1499047619047619
         },
         {
-          "horse_name": "ヘデントール",
+          "horse_name": "プレシャスデイ",
           "horse_id": null,
           "predicted_rank": 2,
           "model_score": 0.009523809523809523,
-          "ev_score": 0.23809523809523808
+          "ev_score": 0.1499047619047619
         },
         {
-          "horse_name": "ヘデントール",
+          "horse_name": "プレシャスデイ",
           "horse_id": null,
           "predicted_rank": 2,
           "model_score": 0.009523809523809523,
-          "ev_score": 0.23809523809523808
+          "ev_score": 0.1499047619047619
         },
         {
-          "horse_name": "ヘデントール",
+          "horse_name": "プレシャスデイ",
           "horse_id": null,
           "predicted_rank": 2,
           "model_score": 0.009523809523809523,
-          "ev_score": 0.23809523809523808
+          "ev_score": 0.1499047619047619
         }
       ],
       "bet_form": "軸ながし",
@@ -2343,78 +1710,66 @@
       "invested": 500,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22616,
+      "prediction_id": 24159,
       "model_type": "本命(暫定)",
       "bet_type": "馬単",
       "confidence": 0.03809523809523809,
-      "expected_value": 0.5714285714285714,
+      "expected_value": 0.304047619047619,
       "recommended_bet": 300.0,
-      "combination_json": "[[10, 12], [10, 15], [10, 9]]",
-      "notes": "軸10番→相手3頭フォーメーション Harville最大=0.005",
-      "created_at": "2026-05-03 14:40:25",
+      "combination_json": "[[6, 9], [6, 2], [6, 7]]",
+      "notes": "軸6番→相手3頭フォーメーション Harville最大=0.005",
+      "created_at": "2026-05-08 07:37:15",
       "is_hit": 0,
       "payout": 0.0,
       "profit": -300.0,
       "roi": 0.0,
       "horses": [
         {
-          "horse_name": "マイネルカンパーナ",
+          "horse_name": "エヒト",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.0047619047619047615,
-          "ev_score": 0.5714285714285714
+          "ev_score": 0.304047619047619
         },
         {
-          "horse_name": "マイネルカンパーナ",
+          "horse_name": "エヒト",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.0047619047619047615,
-          "ev_score": 0.5714285714285714
+          "ev_score": 0.304047619047619
         },
         {
-          "horse_name": "マイネルカンパーナ",
+          "horse_name": "エヒト",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.0047619047619047615,
-          "ev_score": 0.5714285714285714
+          "ev_score": 0.304047619047619
         },
         {
-          "horse_name": "ヘデントール",
+          "horse_name": "プレシャスデイ",
           "horse_id": null,
           "predicted_rank": 2,
           "model_score": 0.0047619047619047615,
-          "ev_score": 0.5714285714285714
+          "ev_score": 0.304047619047619
         },
         {
-          "horse_name": "ヘデントール",
+          "horse_name": "プレシャスデイ",
           "horse_id": null,
           "predicted_rank": 2,
           "model_score": 0.0047619047619047615,
-          "ev_score": 0.5714285714285714
+          "ev_score": 0.304047619047619
         },
         {
-          "horse_name": "ヘデントール",
+          "horse_name": "プレシャスデイ",
           "horse_id": null,
           "predicted_rank": 2,
           "model_score": 0.0047619047619047615,
-          "ev_score": 0.5714285714285714
+          "ev_score": 0.304047619047619
         }
       ],
       "bet_form": "軸ながし",
@@ -2422,141 +1777,129 @@
       "invested": 300,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22617,
+      "prediction_id": 24160,
       "model_type": "本命(暫定)",
       "bet_type": "三連単",
       "confidence": 0.06593406593406592,
-      "expected_value": 3.296703296703296,
-      "recommended_bet": 9000.0,
-      "combination_json": "[[10, 1, 3], [10, 3, 1], [1, 10, 3], [1, 3, 10], [3, 10, 1], [3, 1, 10], [10, 1, 9], [10, 9, 1], [1, 10, 9], [1, 9, 10], [9, 10, 1], [9, 1, 10], [10, 1, 12], [10, 12, 1], [1, 10, 12], [1, 12, 10], [12, 10, 1], [12, 1, 10], [10, 1, 13], [10, 13, 1], [1, 10, 13], [1, 13, 10], [13, 10, 1], [13, 1, 10], [10, 1, 15], [10, 15, 1], [1, 10, 15], [1, 15, 10], [15, 10, 1], [15, 1, 10], [10, 3, 9], [10, 9, 3], [3, 10, 9], [3, 9, 10], [9, 10, 3], [9, 3, 10], [10, 3, 12], [10, 12, 3], [3, 10, 12], [3, 12, 10], [12, 10, 3], [12, 3, 10], [10, 3, 13], [10, 13, 3], [3, 10, 13], [3, 13, 10], [13, 10, 3], [13, 3, 10], [10, 3, 15], [10, 15, 3], [3, 10, 15], [3, 15, 10], [15, 10, 3], [15, 3, 10], [10, 9, 12], [10, 12, 9], [9, 10, 12], [9, 12, 10], [12, 10, 9], [12, 9, 10], [10, 9, 13], [10, 13, 9], [9, 10, 13], [9, 13, 10], [13, 10, 9], [13, 9, 10], [10, 9, 15], [10, 15, 9], [9, 10, 15], [9, 15, 10], [15, 10, 9], [15, 9, 10], [10, 12, 13], [10, 13, 12], [12, 10, 13], [12, 13, 10], [13, 10, 12], [13, 12, 10], [10, 12, 15], [10, 15, 12], [12, 10, 15], [12, 15, 10], [15, 10, 12], [15, 12, 10], [10, 13, 15], [10, 15, 13], [13, 10, 15], [13, 15, 10], [15, 10, 13], [15, 13, 10]]",
-      "notes": "1着固定フォーメーション 軸=10番 12点 相手=[12, 15, 9, 1, 3, 13] Harville最大=0.0022",
-      "created_at": "2026-05-03 14:40:25",
+      "expected_value": 1.0711648351648348,
+      "recommended_bet": 1000.0,
+      "combination_json": "[[6, 9, 2], [6, 2, 9], [9, 6, 2], [9, 2, 6], [2, 6, 9], [2, 9, 6], [6, 9, 7], [6, 7, 9], [9, 6, 7], [9, 7, 6], [7, 6, 9], [7, 9, 6], [6, 9, 1], [6, 1, 9], [9, 6, 1], [9, 1, 6], [1, 6, 9], [1, 9, 6], [6, 9, 12], [6, 12, 9], [9, 6, 12], [9, 12, 6], [12, 6, 9], [12, 9, 6], [6, 9, 5], [6, 5, 9], [9, 6, 5], [9, 5, 6], [5, 6, 9], [5, 9, 6], [6, 2, 7], [6, 7, 2], [2, 6, 7], [2, 7, 6], [7, 6, 2], [7, 2, 6], [6, 2, 1], [6, 1, 2], [2, 6, 1], [2, 1, 6], [1, 6, 2], [1, 2, 6], [6, 2, 12], [6, 12, 2], [2, 6, 12], [2, 12, 6], [12, 6, 2], [12, 2, 6], [6, 2, 5], [6, 5, 2], [2, 6, 5], [2, 5, 6], [5, 6, 2], [5, 2, 6], [6, 7, 1], [6, 1, 7], [7, 6, 1], [7, 1, 6], [1, 6, 7], [1, 7, 6], [6, 7, 12], [6, 12, 7], [7, 6, 12], [7, 12, 6], [12, 6, 7], [12, 7, 6], [6, 7, 5], [6, 5, 7], [7, 6, 5], [7, 5, 6], [5, 6, 7], [5, 7, 6], [6, 1, 12], [6, 12, 1], [1, 6, 12], [1, 12, 6], [12, 6, 1], [12, 1, 6], [6, 1, 5], [6, 5, 1], [1, 6, 5], [1, 5, 6], [5, 6, 1], [5, 1, 6], [6, 12, 5], [6, 5, 12], [12, 6, 5], [12, 5, 6], [5, 6, 12], [5, 12, 6]]",
+      "notes": "1頭軸マルチ 軸=6番 相手=[9, 2, 7, 1, 12, 5] 90点 Harville最大=0.0022",
+      "created_at": "2026-05-08 07:37:15",
       "is_hit": 0,
       "payout": 0.0,
       "profit": -9000.0,
       "roi": 0.0,
       "horses": [
         {
-          "horse_name": "マイネルカンパーナ",
+          "horse_name": "エヒト",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.0021978021978021974,
-          "ev_score": 3.296703296703296
+          "ev_score": 1.0711648351648348
         },
         {
-          "horse_name": "マイネルカンパーナ",
+          "horse_name": "エヒト",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.0021978021978021974,
-          "ev_score": 3.296703296703296
+          "ev_score": 1.0711648351648348
         },
         {
-          "horse_name": "マイネルカンパーナ",
+          "horse_name": "エヒト",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.0021978021978021974,
-          "ev_score": 3.296703296703296
+          "ev_score": 1.0711648351648348
         },
         {
-          "horse_name": "マイネルカンパーナ",
+          "horse_name": "エヒト",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.0021978021978021974,
-          "ev_score": 3.296703296703296
+          "ev_score": 1.0711648351648348
         },
         {
-          "horse_name": "マイネルカンパーナ",
+          "horse_name": "エヒト",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.0021978021978021974,
-          "ev_score": 3.296703296703296
+          "ev_score": 1.0711648351648348
         },
         {
-          "horse_name": "ヘデントール",
+          "horse_name": "プレシャスデイ",
           "horse_id": null,
           "predicted_rank": 2,
           "model_score": 0.0021978021978021974,
-          "ev_score": 3.296703296703296
+          "ev_score": 1.0711648351648348
         },
         {
-          "horse_name": "ヘデントール",
+          "horse_name": "プレシャスデイ",
           "horse_id": null,
           "predicted_rank": 2,
           "model_score": 0.0021978021978021974,
-          "ev_score": 3.296703296703296
+          "ev_score": 1.0711648351648348
         },
         {
-          "horse_name": "ヘデントール",
+          "horse_name": "プレシャスデイ",
           "horse_id": null,
           "predicted_rank": 2,
           "model_score": 0.0021978021978021974,
-          "ev_score": 3.296703296703296
+          "ev_score": 1.0711648351648348
         },
         {
-          "horse_name": "ヘデントール",
+          "horse_name": "プレシャスデイ",
           "horse_id": null,
           "predicted_rank": 2,
           "model_score": 0.0021978021978021974,
-          "ev_score": 3.296703296703296
+          "ev_score": 1.0711648351648348
         },
         {
-          "horse_name": "ヘデントール",
+          "horse_name": "プレシャスデイ",
           "horse_id": null,
           "predicted_rank": 2,
           "model_score": 0.0021978021978021974,
-          "ev_score": 3.296703296703296
+          "ev_score": 1.0711648351648348
         },
         {
-          "horse_name": "ヴェルテンベルク",
+          "horse_name": "サンライズソレイユ",
           "horse_id": null,
           "predicted_rank": 3,
           "model_score": 0.0021978021978021974,
-          "ev_score": 3.296703296703296
+          "ev_score": 1.0711648351648348
         },
         {
-          "horse_name": "ヴェルテンベルク",
+          "horse_name": "サンライズソレイユ",
           "horse_id": null,
           "predicted_rank": 3,
           "model_score": 0.0021978021978021974,
-          "ev_score": 3.296703296703296
+          "ev_score": 1.0711648351648348
         },
         {
-          "horse_name": "ヴェルテンベルク",
+          "horse_name": "サンライズソレイユ",
           "horse_id": null,
           "predicted_rank": 3,
           "model_score": 0.0021978021978021974,
-          "ev_score": 3.296703296703296
+          "ev_score": 1.0711648351648348
         },
         {
-          "horse_name": "ヴェルテンベルク",
+          "horse_name": "サンライズソレイユ",
           "horse_id": null,
           "predicted_rank": 3,
           "model_score": 0.0021978021978021974,
-          "ev_score": 3.296703296703296
+          "ev_score": 1.0711648351648348
         },
         {
-          "horse_name": "ヴェルテンベルク",
+          "horse_name": "サンライズソレイユ",
           "horse_id": null,
           "predicted_rank": 3,
           "model_score": 0.0021978021978021974,
-          "ev_score": 3.296703296703296
+          "ev_score": 1.0711648351648348
         }
       ],
       "bet_form": "1頭軸マルチ",
@@ -2564,43 +1907,31 @@
       "invested": 9000,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22618,
+      "prediction_id": 24161,
       "model_type": "卍(暫定)",
       "bet_type": "単勝",
-      "confidence": 1.0,
-      "expected_value": 9.647093809085673,
+      "confidence": 0.6287765279537062,
+      "expected_value": 6.287765279537062,
       "recommended_bet": 100.0,
-      "combination_json": "[[14]]",
-      "notes": "確率1位(卍) EV=9.65 odds=1.0",
-      "created_at": "2026-05-03 14:40:25",
+      "combination_json": "[[10]]",
+      "notes": "確率1位(卍) EV=6.29 odds=1.0",
+      "created_at": "2026-05-08 07:37:15",
       "is_hit": 0,
       "payout": 0.0,
       "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
-          "horse_name": "ホーエリート",
+          "horse_name": "マイネルカンパーナ",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 9.647093809085673,
-          "ev_score": 9.647093809085673
+          "model_score": 6.287765279537062,
+          "ev_score": 6.287765279537062
         }
       ],
       "bet_form": "単勝",
@@ -2608,57 +1939,45 @@
       "invested": 100,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22619,
+      "prediction_id": 24162,
       "model_type": "卍(暫定)",
       "bet_type": "複勝",
       "confidence": 0.6,
-      "expected_value": 6.344484904389905,
+      "expected_value": 5.32173458807759,
       "recommended_bet": 300.0,
-      "combination_json": "[[14], [6], [13]]",
+      "combination_json": "[[10], [1], [6]]",
       "notes": "確率上位3頭を複勝",
-      "created_at": "2026-05-03 14:40:25",
+      "created_at": "2026-05-08 07:37:15",
       "is_hit": 0,
       "payout": 0.0,
       "profit": -300.0,
       "roi": 0.0,
       "horses": [
         {
-          "horse_name": "ホーエリート",
+          "horse_name": "マイネルカンパーナ",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 6.344484904389905,
-          "ev_score": 6.344484904389905
+          "model_score": 5.32173458807759,
+          "ev_score": 5.32173458807759
+        },
+        {
+          "horse_name": "ヴェルミセル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 5.32173458807759,
+          "ev_score": 5.32173458807759
         },
         {
           "horse_name": "エヒト",
           "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 6.344484904389905,
-          "ev_score": 6.344484904389905
-        },
-        {
-          "horse_name": "ミステリーウェイ",
-          "horse_id": null,
           "predicted_rank": 3,
-          "model_score": 6.344484904389905,
-          "ev_score": 6.344484904389905
+          "model_score": 5.32173458807759,
+          "ev_score": 5.32173458807759
         }
       ],
       "bet_form": "複勝",
@@ -2666,106 +1985,94 @@
       "invested": 300,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22620,
+      "prediction_id": 24163,
       "model_type": "卍(暫定)",
       "bet_type": "馬連",
-      "confidence": 0.3165527699515002,
-      "expected_value": 3.7986332394180025,
+      "confidence": 0.17615407882505635,
+      "expected_value": 1.2735939899051574,
       "recommended_bet": 500.0,
-      "combination_json": "[[6, 14], [13, 14], [12, 14], [14, 15], [2, 14]]",
-      "notes": "軸14番×相手5頭フォーメーション Harville最大=0.063",
-      "created_at": "2026-05-03 14:40:25",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -500.0,
-      "roi": 0.0,
+      "combination_json": "[[1, 10], [6, 10], [9, 10], [3, 10], [2, 10]]",
+      "notes": "軸10番×相手5頭フォーメーション Harville最大=0.035",
+      "created_at": "2026-05-08 07:37:15",
+      "is_hit": 1,
+      "payout": 1150.0,
+      "profit": 650.0,
+      "roi": 229.99999999999997,
       "horses": [
         {
-          "horse_name": "エヒト",
+          "horse_name": "ヴェルミセル",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.06331055399030004,
-          "ev_score": 3.7986332394180025
+          "model_score": 0.03523081576501127,
+          "ev_score": 1.2735939899051574
         },
         {
-          "horse_name": "エヒト",
+          "horse_name": "ヴェルミセル",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.06331055399030004,
-          "ev_score": 3.7986332394180025
+          "model_score": 0.03523081576501127,
+          "ev_score": 1.2735939899051574
         },
         {
-          "horse_name": "エヒト",
+          "horse_name": "ヴェルミセル",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.06331055399030004,
-          "ev_score": 3.7986332394180025
+          "model_score": 0.03523081576501127,
+          "ev_score": 1.2735939899051574
         },
         {
-          "horse_name": "エヒト",
+          "horse_name": "ヴェルミセル",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.06331055399030004,
-          "ev_score": 3.7986332394180025
+          "model_score": 0.03523081576501127,
+          "ev_score": 1.2735939899051574
         },
         {
-          "horse_name": "エヒト",
+          "horse_name": "ヴェルミセル",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.06331055399030004,
-          "ev_score": 3.7986332394180025
+          "model_score": 0.03523081576501127,
+          "ev_score": 1.2735939899051574
         },
         {
-          "horse_name": "ホーエリート",
+          "horse_name": "マイネルカンパーナ",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.06331055399030004,
-          "ev_score": 3.7986332394180025
+          "model_score": 0.03523081576501127,
+          "ev_score": 1.2735939899051574
         },
         {
-          "horse_name": "ホーエリート",
+          "horse_name": "マイネルカンパーナ",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.06331055399030004,
-          "ev_score": 3.7986332394180025
+          "model_score": 0.03523081576501127,
+          "ev_score": 1.2735939899051574
         },
         {
-          "horse_name": "ホーエリート",
+          "horse_name": "マイネルカンパーナ",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.06331055399030004,
-          "ev_score": 3.7986332394180025
+          "model_score": 0.03523081576501127,
+          "ev_score": 1.2735939899051574
         },
         {
-          "horse_name": "ホーエリート",
+          "horse_name": "マイネルカンパーナ",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.06331055399030004,
-          "ev_score": 3.7986332394180025
+          "model_score": 0.03523081576501127,
+          "ev_score": 1.2735939899051574
         },
         {
-          "horse_name": "ホーエリート",
+          "horse_name": "マイネルカンパーナ",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.06331055399030004,
-          "ev_score": 3.7986332394180025
+          "model_score": 0.03523081576501127,
+          "ev_score": 1.2735939899051574
         }
       ],
       "bet_form": "軸ながし",
@@ -2773,106 +2080,94 @@
       "invested": 500,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22621,
+      "prediction_id": 24164,
       "model_type": "卍(暫定)",
       "bet_type": "ワイド",
-      "confidence": 0.3798633239418002,
-      "expected_value": 1.5827638497575012,
+      "confidence": 0.2113848945900676,
+      "expected_value": 0.5545330401412774,
       "recommended_bet": 500.0,
-      "combination_json": "[[6, 14], [13, 14], [12, 14], [14, 15], [2, 14]]",
-      "notes": "軸14番×相手5頭ワイド Harville最大=0.063",
-      "created_at": "2026-05-03 14:40:25",
+      "combination_json": "[[1, 10], [6, 10], [9, 10], [3, 10], [2, 10]]",
+      "notes": "軸10番×相手5頭ワイド Harville最大=0.035",
+      "created_at": "2026-05-08 07:37:15",
       "is_hit": 0,
       "payout": 0.0,
       "profit": -500.0,
       "roi": 0.0,
       "horses": [
         {
-          "horse_name": "エヒト",
+          "horse_name": "ヴェルミセル",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.06331055399030004,
-          "ev_score": 1.5827638497575012
+          "model_score": 0.03523081576501127,
+          "ev_score": 0.5545330401412774
         },
         {
-          "horse_name": "エヒト",
+          "horse_name": "ヴェルミセル",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.06331055399030004,
-          "ev_score": 1.5827638497575012
+          "model_score": 0.03523081576501127,
+          "ev_score": 0.5545330401412774
         },
         {
-          "horse_name": "エヒト",
+          "horse_name": "ヴェルミセル",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.06331055399030004,
-          "ev_score": 1.5827638497575012
+          "model_score": 0.03523081576501127,
+          "ev_score": 0.5545330401412774
         },
         {
-          "horse_name": "エヒト",
+          "horse_name": "ヴェルミセル",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.06331055399030004,
-          "ev_score": 1.5827638497575012
+          "model_score": 0.03523081576501127,
+          "ev_score": 0.5545330401412774
         },
         {
-          "horse_name": "エヒト",
+          "horse_name": "ヴェルミセル",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.06331055399030004,
-          "ev_score": 1.5827638497575012
+          "model_score": 0.03523081576501127,
+          "ev_score": 0.5545330401412774
         },
         {
-          "horse_name": "ホーエリート",
+          "horse_name": "マイネルカンパーナ",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.06331055399030004,
-          "ev_score": 1.5827638497575012
+          "model_score": 0.03523081576501127,
+          "ev_score": 0.5545330401412774
         },
         {
-          "horse_name": "ホーエリート",
+          "horse_name": "マイネルカンパーナ",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.06331055399030004,
-          "ev_score": 1.5827638497575012
+          "model_score": 0.03523081576501127,
+          "ev_score": 0.5545330401412774
         },
         {
-          "horse_name": "ホーエリート",
+          "horse_name": "マイネルカンパーナ",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.06331055399030004,
-          "ev_score": 1.5827638497575012
+          "model_score": 0.03523081576501127,
+          "ev_score": 0.5545330401412774
         },
         {
-          "horse_name": "ホーエリート",
+          "horse_name": "マイネルカンパーナ",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.06331055399030004,
-          "ev_score": 1.5827638497575012
+          "model_score": 0.03523081576501127,
+          "ev_score": 0.5545330401412774
         },
         {
-          "horse_name": "ホーエリート",
+          "horse_name": "マイネルカンパーナ",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.06331055399030004,
-          "ev_score": 1.5827638497575012
+          "model_score": 0.03523081576501127,
+          "ev_score": 0.5545330401412774
         }
       ],
       "bet_form": "軸ながし",
@@ -2880,78 +2175,66 @@
       "invested": 500,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22622,
+      "prediction_id": 24165,
       "model_type": "卍(暫定)",
       "bet_type": "馬単",
-      "confidence": 0.27039278817253964,
-      "expected_value": 4.055891822588094,
+      "confidence": 0.14215778444396168,
+      "expected_value": 1.1345968170933691,
       "recommended_bet": 300.0,
-      "combination_json": "[[14, 6], [14, 13], [14, 12]]",
-      "notes": "軸14番→相手3頭フォーメーション Harville最大=0.034",
-      "created_at": "2026-05-03 14:40:25",
+      "combination_json": "[[10, 1], [10, 6], [10, 9]]",
+      "notes": "軸10番→相手3頭フォーメーション Harville最大=0.018",
+      "created_at": "2026-05-08 07:37:15",
       "is_hit": 0,
       "payout": 0.0,
       "profit": -300.0,
       "roi": 0.0,
       "horses": [
         {
-          "horse_name": "ホーエリート",
+          "horse_name": "マイネルカンパーナ",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.033799098521567456,
-          "ev_score": 4.055891822588094
+          "model_score": 0.01776972305549521,
+          "ev_score": 1.1345968170933691
         },
         {
-          "horse_name": "ホーエリート",
+          "horse_name": "マイネルカンパーナ",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.033799098521567456,
-          "ev_score": 4.055891822588094
+          "model_score": 0.01776972305549521,
+          "ev_score": 1.1345968170933691
         },
         {
-          "horse_name": "ホーエリート",
+          "horse_name": "マイネルカンパーナ",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.033799098521567456,
-          "ev_score": 4.055891822588094
+          "model_score": 0.01776972305549521,
+          "ev_score": 1.1345968170933691
         },
         {
-          "horse_name": "エヒト",
+          "horse_name": "ヴェルミセル",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.033799098521567456,
-          "ev_score": 4.055891822588094
+          "model_score": 0.01776972305549521,
+          "ev_score": 1.1345968170933691
         },
         {
-          "horse_name": "エヒト",
+          "horse_name": "ヴェルミセル",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.033799098521567456,
-          "ev_score": 4.055891822588094
+          "model_score": 0.01776972305549521,
+          "ev_score": 1.1345968170933691
         },
         {
-          "horse_name": "エヒト",
+          "horse_name": "ヴェルミセル",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.033799098521567456,
-          "ev_score": 4.055891822588094
+          "model_score": 0.01776972305549521,
+          "ev_score": 1.1345968170933691
         }
       ],
       "bet_form": "軸ながし",
@@ -2959,57 +2242,45 @@
       "invested": 300,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22625,
+      "prediction_id": 24168,
       "model_type": "卍(暫定)",
       "bet_type": "三連複",
-      "confidence": 0.2655928801741663,
-      "expected_value": 5.0,
+      "confidence": 0.13083861793170337,
+      "expected_value": 0.8432112796971843,
       "recommended_bet": 300.0,
-      "combination_json": "[[12, 13, 14]]",
-      "notes": "合成EV=5.00 Harville=0.0177 馬番=(12, 13, 14)",
-      "created_at": "2026-05-03 14:40:25",
+      "combination_json": "[[1, 3, 10]]",
+      "notes": "合成EV=0.84 Harville=0.0087 馬番=(1, 3, 10)",
+      "created_at": "2026-05-08 07:37:15",
       "is_hit": 0,
       "payout": 0.0,
       "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
-          "horse_name": "ヘデントール",
+          "horse_name": "ヴェルミセル",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.01770619201161109,
-          "ev_score": 5.0
+          "model_score": 0.008722574528780225,
+          "ev_score": 0.8432112796971843
         },
         {
-          "horse_name": "ミステリーウェイ",
+          "horse_name": "アドマイヤテラ",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.01770619201161109,
-          "ev_score": 5.0
+          "model_score": 0.008722574528780225,
+          "ev_score": 0.8432112796971843
         },
         {
-          "horse_name": "ホーエリート",
+          "horse_name": "マイネルカンパーナ",
           "horse_id": null,
           "predicted_rank": 3,
-          "model_score": 0.01770619201161109,
-          "ev_score": 5.0
+          "model_score": 0.008722574528780225,
+          "ev_score": 0.8432112796971843
         }
       ],
       "bet_form": "3頭ボックス",
@@ -3017,115 +2288,91 @@
       "invested": 100,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22626,
+      "prediction_id": 24169,
       "model_type": "Oracle(暫定)",
       "bet_type": "三連複",
-      "confidence": 0.050112945834957734,
-      "expected_value": 1.503388375048732,
+      "confidence": 0.047334782675565734,
+      "expected_value": 1.4200434802669721,
       "recommended_bet": 500.0,
-      "combination_json": "[[10, 12, 15], [9, 10, 12], [1, 10, 12], [3, 10, 12], [10, 12, 13]]",
-      "notes": "[Oracle] 的中確率最大 5点 P最大=0.0501 馬番=[(10, 12, 15), (9, 10, 12), (1, 10, 12), (3, 10, 12), (10, 12, 13)]",
-      "created_at": "2026-05-03 14:40:25",
+      "combination_json": "[[2, 6, 9], [6, 7, 9], [2, 6, 7], [2, 7, 9], [1, 6, 9]]",
+      "notes": "[Oracle] 的中確率最大 5点 P最大=0.0473 馬番=[(2, 6, 9), (6, 7, 9), (2, 6, 7), (2, 7, 9), (1, 6, 9)]",
+      "created_at": "2026-05-08 07:37:15",
       "is_hit": 0,
       "payout": 0.0,
       "profit": -500.0,
       "roi": 0.0,
       "horses": [
         {
-          "horse_name": "マイネルカンパーナ",
+          "horse_name": "サンライズソレイユ",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.050112945834957734,
-          "ev_score": 1.503388375048732
+          "model_score": 0.047334782675565734,
+          "ev_score": 1.4200434802669721
         },
         {
-          "horse_name": "ヘデントール",
+          "horse_name": "エヒト",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.050112945834957734,
-          "ev_score": 1.503388375048732
+          "model_score": 0.047334782675565734,
+          "ev_score": 1.4200434802669721
         },
         {
-          "horse_name": "ヴェルテンベルク",
+          "horse_name": "プレシャスデイ",
           "horse_id": null,
           "predicted_rank": 3,
-          "model_score": 0.050112945834957734,
-          "ev_score": 1.503388375048732
+          "model_score": 0.047334782675565734,
+          "ev_score": 1.4200434802669721
         }
       ],
-      "bet_form": "軸2頭ながし",
+      "bet_form": "フォーメーション",
       "n_tickets": 5,
       "invested": 500,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22627,
+      "prediction_id": 24170,
       "model_type": "Oracle(暫定)",
       "bet_type": "三連単",
-      "confidence": 0.008352157639159622,
-      "expected_value": 1.2528236458739432,
+      "confidence": 0.007889130445927622,
+      "expected_value": 1.1833695668891433,
       "recommended_bet": 1200.0,
-      "combination_json": "[[10, 12, 15], [10, 15, 12], [12, 10, 15], [12, 15, 10], [15, 10, 12], [15, 12, 10], [10, 12, 9], [10, 12, 1], [10, 12, 3], [10, 9, 12], [10, 1, 12], [10, 3, 12]]",
-      "notes": "[Oracle] 的中確率最大 12点 P最大=0.0084 馬番=[(10, 12, 15), (10, 15, 12), (12, 10, 15), (12, 15, 10), (15, 10, 12), (15, 12, 10), (10, 12, 9), (10, 12, 1), (10, 12, 3), (10, 9, 12), (10, 1, 12), (10, 3, 12)]",
-      "created_at": "2026-05-03 14:40:25",
+      "combination_json": "[[6, 9, 2], [6, 2, 9], [9, 6, 2], [9, 2, 6], [2, 6, 9], [2, 9, 6], [6, 9, 7], [6, 7, 9], [9, 6, 7], [9, 7, 6], [7, 6, 9], [7, 9, 6]]",
+      "notes": "[Oracle] 的中確率最大 12点 P最大=0.0079 馬番=[(6, 9, 2), (6, 2, 9), (9, 6, 2), (9, 2, 6), (2, 6, 9), (2, 9, 6), (6, 9, 7), (6, 7, 9), (9, 6, 7), (9, 7, 6), (7, 6, 9), (7, 9, 6)]",
+      "created_at": "2026-05-08 07:37:15",
       "is_hit": 0,
       "payout": 0.0,
       "profit": -1200.0,
       "roi": 0.0,
       "horses": [
         {
-          "horse_name": "マイネルカンパーナ",
+          "horse_name": "エヒト",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.008352157639159622,
-          "ev_score": 1.2528236458739432
+          "model_score": 0.007889130445927622,
+          "ev_score": 1.1833695668891433
         },
         {
-          "horse_name": "ヘデントール",
+          "horse_name": "プレシャスデイ",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.008352157639159622,
-          "ev_score": 1.2528236458739432
+          "model_score": 0.007889130445927622,
+          "ev_score": 1.1833695668891433
         },
         {
-          "horse_name": "ヴェルテンベルク",
+          "horse_name": "サンライズソレイユ",
           "horse_id": null,
           "predicted_rank": 3,
-          "model_score": 0.008352157639159622,
-          "ev_score": 1.2528236458739432
+          "model_score": 0.007889130445927622,
+          "ev_score": 1.1833695668891433
         }
       ],
       "bet_form": "2頭軸マルチ",
@@ -3133,24 +2380,12 @@
       "invested": 1200,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22628,
+      "prediction_id": 24171,
       "model_type": "本命(暫定)",
       "bet_type": "馬分析",
       "confidence": null,
@@ -3158,115 +2393,115 @@
       "recommended_bet": null,
       "combination_json": "[]",
       "notes": "全馬モデルスコア（馬分析タブ用）",
-      "created_at": "2026-05-03 14:40:25",
+      "created_at": "2026-05-08 07:37:15",
       "is_hit": 0,
       "payout": 0.0,
       "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
-          "horse_name": "マイネルカンパーナ",
-          "horse_id": "2020105798",
-          "predicted_rank": 1,
-          "model_score": 0.10206297502714441,
-          "ev_score": 0.0
-        },
-        {
-          "horse_name": "ヘデントール",
-          "horse_id": "2021105521",
-          "predicted_rank": 2,
-          "model_score": 0.08742542450665443,
-          "ev_score": 0.0
-        },
-        {
-          "horse_name": "ヴェルテンベルク",
-          "horse_id": "2020103060",
-          "predicted_rank": 3,
-          "model_score": 0.06997742663656885,
-          "ev_score": 0.0
-        },
-        {
           "horse_name": "プレシャスデイ",
           "horse_id": "2022104859",
+          "predicted_rank": 1,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "エヒト",
+          "horse_id": "2017100464",
+          "predicted_rank": 2,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "サンライズソレイユ",
+          "horse_id": "2021105104",
+          "predicted_rank": 3,
+          "model_score": 0.16666666666666666,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "クロワデュノール",
+          "horse_id": "2022105102",
           "predicted_rank": 4,
-          "model_score": 0.06732673267326732,
+          "model_score": 0.14784394250513347,
           "ev_score": 0.0
         },
         {
           "horse_name": "ヴェルミセル",
           "horse_id": "2020103945",
           "predicted_rank": 5,
-          "model_score": 0.06732673267326732,
+          "model_score": 0.1116751269035533,
           "ev_score": 0.0
         },
         {
-          "horse_name": "アドマイヤテラ",
-          "horse_id": "2021105369",
+          "horse_name": "ヘデントール",
+          "horse_id": "2021105521",
           "predicted_rank": 6,
-          "model_score": 0.06732673267326732,
-          "ev_score": 0.0
-        },
-        {
-          "horse_name": "ホーエリート",
-          "horse_id": "2021104855",
-          "predicted_rank": 7,
-          "model_score": 0.05695830886670581,
-          "ev_score": 0.0
-        },
-        {
-          "horse_name": "ミステリーウェイ",
-          "horse_id": "2018104638",
-          "predicted_rank": 8,
-          "model_score": 0.05695830886670581,
+          "model_score": 0.10714285714285714,
           "ev_score": 0.0
         },
         {
           "horse_name": "タガノデュード",
           "horse_id": "2021106548",
-          "predicted_rank": 9,
-          "model_score": 0.043684710351377026,
-          "ev_score": 0.0
-        },
-        {
-          "horse_name": "クロワデュノール",
-          "horse_id": "2022105102",
-          "predicted_rank": 10,
-          "model_score": 0.043684710351377026,
-          "ev_score": 0.0
-        },
-        {
-          "horse_name": "エヒト",
-          "horse_id": "2017100464",
-          "predicted_rank": 11,
-          "model_score": 0.043684710351377026,
-          "ev_score": 0.0
-        },
-        {
-          "horse_name": "アクアヴァーナル",
-          "horse_id": "2021105433",
-          "predicted_rank": 12,
-          "model_score": 0.043684710351377026,
-          "ev_score": 0.0
-        },
-        {
-          "horse_name": "シンエンペラー",
-          "horse_id": "2021110048",
-          "predicted_rank": 13,
-          "model_score": 0.0387243735763098,
+          "predicted_rank": 7,
+          "model_score": 0.10558375634517767,
           "ev_score": 0.0
         },
         {
           "horse_name": "ケイアイサンデラ",
           "horse_id": "2020104881",
-          "predicted_rank": 14,
-          "model_score": 0.0387243735763098,
+          "predicted_rank": 8,
+          "model_score": 0.10558375634517767,
           "ev_score": 0.0
         },
         {
-          "horse_name": "サンライズソレイユ",
-          "horse_id": "2021105104",
+          "horse_name": "ヴェルテンベルク",
+          "horse_id": "2020103060",
+          "predicted_rank": 9,
+          "model_score": 0.10282776349614396,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ホーエリート",
+          "horse_id": "2021104855",
+          "predicted_rank": 10,
+          "model_score": 0.10282776349614396,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ミステリーウェイ",
+          "horse_id": "2018104638",
+          "predicted_rank": 11,
+          "model_score": 0.10282776349614396,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "アドマイヤテラ",
+          "horse_id": "2021105369",
+          "predicted_rank": 12,
+          "model_score": 0.10282776349614396,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "アクアヴァーナル",
+          "horse_id": "2021105433",
+          "predicted_rank": 13,
+          "model_score": 0.09099933818663138,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "マイネルカンパーナ",
+          "horse_id": "2020105798",
+          "predicted_rank": 14,
+          "model_score": 0.07820627802690583,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "シンエンペラー",
+          "horse_id": "2021110048",
           "predicted_rank": 15,
-          "model_score": 0.02789400278940028,
+          "model_score": 0.0593311758360302,
           "ev_score": 0.0
         }
       ],
@@ -3275,50 +2510,38 @@
       "invested": 0,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22629,
+      "prediction_id": 24172,
       "model_type": "HitFocus(暫定)",
       "bet_type": "馬連",
-      "confidence": 0.13713270332377442,
-      "expected_value": 1.645592439885293,
+      "confidence": 0.10958999592580405,
+      "expected_value": 0.7923356705435634,
       "recommended_bet": 700.0,
-      "combination_json": "[[10, 12], [10, 15], [12, 15], [9, 10], [9, 12], [1, 10], [1, 12]]",
-      "notes": "2軸マルチ 軸=10,12 相手=[15, 9, 1] Harville最大=0.0274",
-      "created_at": "2026-05-03 14:40:25",
+      "combination_json": "[[6, 9], [2, 6], [2, 9], [6, 7], [7, 9], [1, 6], [1, 9]]",
+      "notes": "2軸マルチ 軸=6,9 相手=[2, 7, 1] Harville最大=0.0219",
+      "created_at": "2026-05-08 07:37:15",
       "is_hit": 0,
       "payout": 0.0,
       "profit": -700.0,
       "roi": 0.0,
       "horses": [
         {
-          "horse_name": "マイネルカンパーナ",
+          "horse_name": "エヒト",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.027426540664754882,
-          "ev_score": 1.645592439885293
+          "model_score": 0.02191799918516081,
+          "ev_score": 0.7923356705435634
         },
         {
-          "horse_name": "ヘデントール",
+          "horse_name": "プレシャスデイ",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.027426540664754882,
-          "ev_score": 1.645592439885293
+          "model_score": 0.02191799918516081,
+          "ev_score": 0.7923356705435634
         }
       ],
       "bet_form": "フォーメーション",
@@ -3326,50 +2549,38 @@
       "invested": 700,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22630,
+      "prediction_id": 24173,
       "model_type": "HitFocus(暫定)",
       "bet_type": "馬単",
-      "confidence": 0.1107616572216615,
-      "expected_value": 1.6614248583249225,
+      "confidence": 0.08767199674064324,
+      "expected_value": 0.6997321239862588,
       "recommended_bet": 800.0,
-      "combination_json": "[[10, 12], [12, 10], [10, 15], [12, 15], [10, 9], [12, 9], [10, 1], [12, 1]]",
-      "notes": "2軸マルチ 軸=10,12 相手=[15, 9, 1] Harville最大=0.0138",
-      "created_at": "2026-05-03 14:40:25",
+      "combination_json": "[[6, 9], [9, 6], [6, 2], [9, 2], [6, 7], [9, 7], [6, 1], [9, 1]]",
+      "notes": "2軸マルチ 軸=6,9 相手=[2, 7, 1] Harville最大=0.0110",
+      "created_at": "2026-05-08 07:37:15",
       "is_hit": 0,
       "payout": 0.0,
       "profit": -800.0,
       "roi": 0.0,
       "horses": [
         {
-          "horse_name": "マイネルカンパーナ",
+          "horse_name": "エヒト",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.013845207152707687,
-          "ev_score": 1.6614248583249225
+          "model_score": 0.010958999592580405,
+          "ev_score": 0.6997321239862588
         },
         {
-          "horse_name": "ヘデントール",
+          "horse_name": "プレシャスデイ",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.013845207152707687,
-          "ev_score": 1.6614248583249225
+          "model_score": 0.010958999592580405,
+          "ev_score": 0.6997321239862588
         }
       ],
       "bet_form": "フォーメーション",
@@ -3377,57 +2588,45 @@
       "invested": 800,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22631,
+      "prediction_id": 24174,
       "model_type": "HitFocus(暫定)",
       "bet_type": "三連単",
-      "confidence": 0.043644874872236755,
-      "expected_value": 2.1822437436118376,
+      "confidence": 0.039581924626467174,
+      "expected_value": 0.6430479474815858,
       "recommended_bet": 1200.0,
-      "combination_json": "[[10, 12, 15], [12, 10, 15], [10, 15, 12], [12, 15, 10], [10, 12, 9], [12, 10, 9], [10, 9, 12], [12, 9, 10], [10, 12, 1], [12, 10, 1], [10, 1, 12], [12, 1, 10]]",
-      "notes": "2軸マルチ 軸=10,12 相手=[15, 9, 1] 12点 Harville最大=0.0015",
-      "created_at": "2026-05-03 14:40:25",
+      "combination_json": "[[6, 9, 2], [9, 6, 2], [6, 2, 9], [9, 2, 6], [6, 9, 7], [9, 6, 7], [6, 7, 9], [9, 7, 6], [6, 9, 1], [9, 6, 1], [6, 1, 9], [9, 1, 6]]",
+      "notes": "2軸マルチ 軸=6,9 相手=[2, 7, 1] 12点 Harville最大=0.0013",
+      "created_at": "2026-05-08 07:37:15",
       "is_hit": 0,
       "payout": 0.0,
       "profit": -1200.0,
       "roi": 0.0,
       "horses": [
         {
-          "horse_name": "マイネルカンパーナ",
+          "horse_name": "エヒト",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.0014548291624078918,
-          "ev_score": 2.1822437436118376
+          "model_score": 0.001319397487548906,
+          "ev_score": 0.6430479474815858
         },
         {
-          "horse_name": "ヘデントール",
+          "horse_name": "プレシャスデイ",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.0014548291624078918,
-          "ev_score": 2.1822437436118376
+          "model_score": 0.001319397487548906,
+          "ev_score": 0.6430479474815858
         },
         {
-          "horse_name": "ヴェルテンベルク",
+          "horse_name": "サンライズソレイユ",
           "horse_id": null,
           "predicted_rank": 3,
-          "model_score": 0.0014548291624078918,
-          "ev_score": 2.1822437436118376
+          "model_score": 0.001319397487548906,
+          "ev_score": 0.6430479474815858
         }
       ],
       "bet_form": "2頭軸マルチ",
@@ -3435,31 +2634,19 @@
       "invested": 1200,
       "horse_num_to_name": {
         "7": "クロワデュノール",
-        "15": "ヴェルテンベルク",
-        "3": "アドマイヤテラ",
-        "4": "アクアヴァーナル",
-        "12": "ヘデントール",
-        "11": "タガノデュード",
-        "8": "シンエンペラー",
-        "13": "ミステリーウェイ",
-        "1": "ヴェルミセル",
-        "10": "マイネルカンパーナ",
-        "2": "サンライズソレイユ",
-        "5": "ケイアイサンデラ",
-        "9": "プレシャスデイ",
-        "14": "ホーエリート",
-        "6": "エヒト"
-      }
+        "8": "シンエンペラー"
+      },
+      "is_provisional": true
     }
   ],
   "training_evals": {},
   "prerace": {
     "bias": {
-      "today_inner_bias": -0.12903225806451613,
-      "today_front_bias": 0.5,
-      "today_race_count": 4
+      "today_inner_bias": -0.07450132179764479,
+      "today_front_bias": 0.6,
+      "today_race_count": 10
     },
     "ev_recommend": [],
-    "generated_at": "2026-05-03T14:40:25.844123"
+    "generated_at": "2026-05-08T07:37:16.013449"
   }
 }

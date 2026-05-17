@@ -12,7 +12,27 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "バドリナート",
+      "horse_id": "2023107278",
+      "sex_age": "牡5",
+      "weight_carried": 55.0,
+      "jockey": "坂井瑠星",
+      "trainer": "松永幹夫",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "コントレイル",
+      "dam": "モヒニMohini(愛)",
+      "dam_sire": "Galileo(愛)"
+    },
+    {
+      "rank": 2,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "メイショウナルカミ",
@@ -32,7 +52,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "ライツェントライゼ",
@@ -90,35 +110,9 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "バドリナート",
-      "horse_id": "2023107278",
-      "sex_age": "牡5",
-      "weight_carried": 55.0,
-      "jockey": "坂井瑠星",
-      "trainer": "松永幹夫",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "コントレイル",
-      "dam": "モヒニMohini(愛)",
-      "dam_sire": "Galileo(愛)"
     }
   ],
   "payouts": [
-    {
-      "bet_type": "単勝",
-      "combination": "5",
-      "payout": 5000,
-      "popularity": null
-    },
     {
       "bet_type": "複勝",
       "combination": "5",

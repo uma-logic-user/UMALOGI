@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "マナボニート",
@@ -32,15 +32,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "サウンドジュテ",
-      "horse_id": "2023104071",
-      "sex_age": "牝4",
-      "weight_carried": 55.0,
-      "jockey": "松山弘平",
-      "trainer": "鈴木孝志",
+      "rank": 2,
+      "gate_number": 5,
+      "horse_number": 8,
+      "horse_name": "ウェルカムソング",
+      "horse_id": "2023107545",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "岩田望来",
+      "trainer": "河嶋宏樹",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 8,
-      "horse_name": "ウェルカムソング",
-      "horse_id": "2023107545",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "岩田望来",
-      "trainer": "河嶋宏樹",
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "サウンドジュテ",
+      "horse_id": "2023104071",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "松山弘平",
+      "trainer": "鈴木孝志",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -298,12 +298,6 @@
       "combination": "1",
       "payout": 410,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "14",
-      "payout": 14000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

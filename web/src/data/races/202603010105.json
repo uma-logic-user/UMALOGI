@@ -4,11 +4,11 @@
   "date": "2026-04-11",
   "venue": "福島",
   "race_number": 5,
-  "distance": 2000,
-  "surface": "芝",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -46,7 +46,7 @@
       "jockey": "丹内祐次",
       "trainer": "池江泰寿",
       "finish_time": "2:00.2",
-      "margin": "1.1/4",
+      "margin": "@",
       "win_odds": 1.4,
       "popularity": 1,
       "horse_weight": 490,
@@ -70,7 +70,7 @@
       "jockey": "遠藤汰月",
       "trainer": "深山雅史",
       "finish_time": "2:00.3",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 62.5,
       "popularity": 10,
       "horse_weight": 446,
@@ -94,7 +94,7 @@
       "jockey": "富田暁",
       "trainer": "牧光二",
       "finish_time": "2:00.4",
-      "margin": "1",
+      "margin": "@",
       "win_odds": 43.7,
       "popularity": 9,
       "horse_weight": 510,
@@ -118,7 +118,7 @@
       "jockey": "石神深道",
       "trainer": "武市康男",
       "finish_time": "2:00.7",
-      "margin": "1.1/2",
+      "margin": "@",
       "win_odds": 11.3,
       "popularity": 4,
       "horse_weight": 464,
@@ -142,7 +142,7 @@
       "jockey": "丸山元気",
       "trainer": "高柳瑞樹",
       "finish_time": "2:00.8",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 28.8,
       "popularity": 7,
       "horse_weight": 434,
@@ -166,7 +166,7 @@
       "jockey": "舟山瑠泉",
       "trainer": "田中博康",
       "finish_time": "2:00.8",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 25.1,
       "popularity": 6,
       "horse_weight": 430,
@@ -190,7 +190,7 @@
       "jockey": "和田陽希",
       "trainer": "杉山晴紀",
       "finish_time": "2:01.3",
-      "margin": "2.1/2",
+      "margin": "@",
       "win_odds": 92.1,
       "popularity": 12,
       "horse_weight": 464,
@@ -214,7 +214,7 @@
       "jockey": "松岡正海",
       "trainer": "畠山吉宏",
       "finish_time": "2:01.4",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 16.5,
       "popularity": 5,
       "horse_weight": 474,
@@ -238,7 +238,7 @@
       "jockey": "石川裕紀",
       "trainer": "奥村武",
       "finish_time": "2:01.5",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 10.5,
       "popularity": 3,
       "horse_weight": 418,
@@ -262,7 +262,7 @@
       "jockey": "松若風馬",
       "trainer": "杉山晴紀",
       "finish_time": "2:01.5",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 41.4,
       "popularity": 8,
       "horse_weight": 510,
@@ -286,7 +286,7 @@
       "jockey": "田口貫太",
       "trainer": "鈴木孝志",
       "finish_time": "2:01.9",
-      "margin": "2.1/2",
+      "margin": "@",
       "win_odds": 144.9,
       "popularity": 13,
       "horse_weight": 466,
@@ -310,7 +310,7 @@
       "jockey": "斎藤新",
       "trainer": "斎藤誠",
       "finish_time": "2:02.2",
-      "margin": "1.3/4",
+      "margin": "@",
       "win_odds": 65.3,
       "popularity": 11,
       "horse_weight": 520,
@@ -334,7 +334,7 @@
       "jockey": "長浜鴻緒",
       "trainer": "矢嶋大樹",
       "finish_time": "2:02.4",
-      "margin": "1.1/4",
+      "margin": "@",
       "win_odds": 148.7,
       "popularity": 14,
       "horse_weight": 420,
@@ -358,7 +358,7 @@
       "jockey": "国分恭介",
       "trainer": "緒方努",
       "finish_time": "2:02.8",
-      "margin": "2.1/2",
+      "margin": "@",
       "win_odds": 277.2,
       "popularity": 15,
       "horse_weight": 448,
@@ -382,7 +382,7 @@
       "jockey": "大久保友",
       "trainer": "田中剛",
       "finish_time": "2:03.5",
-      "margin": "4",
+      "margin": "@",
       "win_odds": 314.4,
       "popularity": 16,
       "horse_weight": 486,
@@ -440,6 +440,12 @@
       "popularity": 1
     },
     {
+      "bet_type": "馬連",
+      "combination": "1",
+      "payout": 2030,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "1-3",
       "payout": 230,
@@ -458,16 +464,40 @@
       "popularity": 30
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 20000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "1→3",
       "payout": 1580,
       "popularity": 5
     },
     {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 3000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-3-8",
       "payout": 4150,
       "popularity": 17
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2",
+      "payout": 10108,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "8",
+      "payout": 20010,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -527,7 +557,8 @@
         "7": "ワイルドカイザー",
         "15": "ナカラギ",
         "16": "ダイビングキャッチ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1738,
@@ -593,7 +624,8 @@
         "7": "ワイルドカイザー",
         "15": "ナカラギ",
         "16": "ダイビングキャッチ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1739,
@@ -645,7 +677,8 @@
         "7": "ワイルドカイザー",
         "15": "ナカラギ",
         "16": "ダイビングキャッチ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1740,
@@ -711,7 +744,8 @@
         "7": "ワイルドカイザー",
         "15": "ナカラギ",
         "16": "ダイビングキャッチ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1741,
@@ -770,7 +804,8 @@
         "7": "ワイルドカイザー",
         "15": "ナカラギ",
         "16": "ダイビングキャッチ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1742,
@@ -822,7 +857,8 @@
         "7": "ワイルドカイザー",
         "15": "ナカラギ",
         "16": "ダイビングキャッチ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1743,
@@ -902,7 +938,8 @@
         "7": "ワイルドカイザー",
         "15": "ナカラギ",
         "16": "ダイビングキャッチ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1752,
@@ -982,7 +1019,8 @@
         "7": "ワイルドカイザー",
         "15": "ナカラギ",
         "16": "ダイビングキャッチ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1753,
@@ -1062,7 +1100,8 @@
         "7": "ワイルドカイザー",
         "15": "ナカラギ",
         "16": "ダイビングキャッチ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1754,
@@ -1114,7 +1153,8 @@
         "7": "ワイルドカイザー",
         "15": "ナカラギ",
         "16": "ダイビングキャッチ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1755,
@@ -1166,7 +1206,8 @@
         "7": "ワイルドカイザー",
         "15": "ナカラギ",
         "16": "ダイビングキャッチ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1756,
@@ -1232,7 +1273,8 @@
         "7": "ワイルドカイザー",
         "15": "ナカラギ",
         "16": "ダイビングキャッチ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1757,
@@ -1284,7 +1326,8 @@
         "7": "ワイルドカイザー",
         "15": "ナカラギ",
         "16": "ダイビングキャッチ"
-      }
+      },
+      "is_provisional": true
     }
   ],
   "training_evals": {

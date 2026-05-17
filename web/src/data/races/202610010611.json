@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "バトルボーン",
-      "horse_id": "2019105193",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "杉原誠人",
-      "trainer": "林徹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "シルバーステート",
-      "dam": "コンカラン",
-      "dam_sire": "ジャングルポケット"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 7,
       "horse_number": 10,
       "horse_name": "レーゼドラマ",
@@ -52,7 +32,7 @@
       "dam_sire": "Burning Roma"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 8,
       "horse_number": 12,
       "horse_name": "シルトホルン",
@@ -70,6 +50,26 @@
       "sire": "スクリーンヒーロー",
       "dam": "シンメイミヤビ",
       "dam_sire": "Langfuhr(加)"
+    },
+    {
+      "rank": 3,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "バトルボーン",
+      "horse_id": "2019105193",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "杉原誠人",
+      "trainer": "林徹",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "シルバーステート",
+      "dam": "コンカラン",
+      "dam_sire": "ジャングルポケット"
     },
     {
       "rank": null,
@@ -258,12 +258,6 @@
       "combination": "10",
       "payout": 880,
       "popularity": 6
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "12",
-      "payout": 12000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "ロザーンジュ",
-      "horse_id": "2023103661",
-      "sex_age": "牝4",
-      "weight_carried": 53.0,
-      "jockey": "今村聖奈",
-      "trainer": "寺島良",
+      "rank": 1,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "フォーチュンライド",
+      "horse_id": "2023103343",
+      "sex_age": "牝5",
+      "weight_carried": 54.0,
+      "jockey": "松本大輝",
+      "trainer": "福永祐一",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 2,
       "horse_number": 4,
       "horse_name": "クランズクラウン",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 11,
-      "horse_name": "フォーチュンライド",
-      "horse_id": "2023103343",
-      "sex_age": "牝5",
-      "weight_carried": 54.0,
-      "jockey": "松本大輝",
-      "trainer": "福永祐一",
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "ロザーンジュ",
+      "horse_id": "2023103661",
+      "sex_age": "牝4",
+      "weight_carried": 53.0,
+      "jockey": "今村聖奈",
+      "trainer": "寺島良",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -378,12 +378,6 @@
       "combination": "11",
       "payout": 160,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "18",
-      "payout": 18000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

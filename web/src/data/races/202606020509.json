@@ -12,27 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 6,
-      "horse_name": "ホウオウシンデレラ",
-      "horse_id": "2021103533",
+      "rank": 1,
+      "gate_number": 7,
+      "horse_number": 9,
+      "horse_name": "テンミラクルスター",
+      "horse_id": "2022101134",
       "sex_age": "牝1",
       "weight_carried": 56.0,
-      "jockey": "丸田恭介",
-      "trainer": "奥村武",
+      "jockey": "ルメール",
+      "trainer": "辻哲英",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
       "horse_weight_diff": null,
-      "sire": "エピファネイア",
-      "dam": "フサイチジェット",
-      "dam_sire": "Gilded Time"
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 6,
       "horse_number": 7,
       "horse_name": "ヴォワラクテ",
@@ -52,24 +52,24 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 9,
-      "horse_name": "テンミラクルスター",
-      "horse_id": "2022101134",
+      "rank": 3,
+      "gate_number": 6,
+      "horse_number": 6,
+      "horse_name": "ホウオウシンデレラ",
+      "horse_id": "2021103533",
       "sex_age": "牝1",
       "weight_carried": 56.0,
-      "jockey": "ルメール",
-      "trainer": "辻哲英",
+      "jockey": "丸田恭介",
+      "trainer": "奥村武",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
       "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
+      "sire": "エピファネイア",
+      "dam": "フサイチジェット",
+      "dam_sire": "Gilded Time"
     },
     {
       "rank": null,
@@ -238,12 +238,6 @@
       "combination": "9",
       "payout": 230,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "11",
-      "payout": 10000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

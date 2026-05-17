@@ -12,7 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 16,
+      "horse_name": "ランウインディ",
+      "horse_id": "2021106305",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "岩田望来",
+      "trainer": "中尾秀正",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "エスポワールシチー",
+      "dam": "ブリュット",
+      "dam_sire": "ベーカバドBehkabad(仏)"
+    },
+    {
+      "rank": 2,
       "gate_number": 4,
       "horse_number": 7,
       "horse_name": "ミッキーマカパ",
@@ -32,7 +52,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 8,
       "horse_number": 15,
       "horse_name": "エイプリルインパリ",
@@ -50,26 +70,6 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 16,
-      "horse_name": "ランウインディ",
-      "horse_id": "2021106305",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "岩田望来",
-      "trainer": "中尾秀正",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "エスポワールシチー",
-      "dam": "ブリュット",
-      "dam_sire": "ベーカバドBehkabad(仏)"
     },
     {
       "rank": null,
@@ -333,12 +333,6 @@
     }
   ],
   "payouts": [
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 15000,
-      "popularity": null
-    },
     {
       "bet_type": "複勝",
       "combination": "15",

@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "ルークススペイ",
-      "horse_id": "2022101543",
-      "sex_age": "牡3",
+      "rank": 1,
+      "gate_number": 7,
+      "horse_number": 10,
+      "horse_name": "ハクサンアイリス",
+      "horse_id": "2022100328",
+      "sex_age": "牡1",
       "weight_carried": 57.0,
-      "jockey": "団野大成",
-      "trainer": "伊藤圭三",
+      "jockey": "岩田望来",
+      "trainer": "高橋一哉",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 5,
       "horse_number": 7,
       "horse_name": "メイケイレイン",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 10,
-      "horse_name": "ハクサンアイリス",
-      "horse_id": "2022100328",
-      "sex_age": "牡1",
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "ルークススペイ",
+      "horse_id": "2022101543",
+      "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "岩田望来",
-      "trainer": "高橋一哉",
+      "jockey": "団野大成",
+      "trainer": "伊藤圭三",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -278,12 +278,6 @@
       "combination": "10",
       "payout": 440,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "13",
-      "payout": 13000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

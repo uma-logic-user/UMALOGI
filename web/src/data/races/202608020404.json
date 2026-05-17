@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "フランキーバローズ",
-      "horse_id": "2022101417",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "団野大成",
-      "trainer": "池江泰寿",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 7,
       "horse_number": 7,
       "horse_name": "ルクスフレンジー",
@@ -52,7 +32,27 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "フランキーバローズ",
+      "horse_id": "2022101417",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "団野大成",
+      "trainer": "池江泰寿",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
       "gate_number": 8,
       "horse_number": 9,
       "horse_name": "ハイクオリティ",
@@ -198,12 +198,6 @@
       "combination": "7",
       "payout": 200,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "9",
-      "payout": 9000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

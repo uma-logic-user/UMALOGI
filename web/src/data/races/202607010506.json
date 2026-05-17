@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "ホウオウゴールド",
@@ -32,27 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 5,
-      "horse_name": "エイシンマールス",
-      "horse_id": "2022102624",
-      "sex_age": "牡4",
-      "weight_carried": 58.0,
-      "jockey": "小沢大仁",
-      "trainer": "今野貞一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 2,
       "gate_number": 7,
       "horse_number": 13,
       "horse_name": "ポルトドール",
@@ -70,6 +50,26 @@
       "sire": "モーリス",
       "dam": "レクレドール",
       "dam_sire": "サンデーサイレンスSunday Silence(米)"
+    },
+    {
+      "rank": 3,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "エイシンマールス",
+      "horse_id": "2022102624",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "小沢大仁",
+      "trainer": "今野貞一",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -338,12 +338,6 @@
       "combination": "1",
       "payout": 440,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

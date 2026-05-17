@@ -4,11 +4,11 @@
   "date": "2026-04-25",
   "venue": "福島",
   "race_number": 4,
-  "distance": 1150,
-  "surface": "ダート",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -42,7 +42,7 @@
       "jockey": "野中悠太",
       "trainer": "上原博之",
       "finish_time": "1:09.3",
-      "margin": "1.1/2",
+      "margin": "@",
       "win_odds": 13.9,
       "popularity": 5,
       "horse_weight": 476,
@@ -62,7 +62,7 @@
       "jockey": "木幡育也",
       "trainer": "松永康利",
       "finish_time": "1:09.4",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 3.1,
       "popularity": 2,
       "horse_weight": 458,
@@ -82,7 +82,7 @@
       "jockey": "遠藤汰月",
       "trainer": "伊藤伸一",
       "finish_time": "1:09.5",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 36.5,
       "popularity": 9,
       "horse_weight": 450,
@@ -102,7 +102,7 @@
       "jockey": "荻野極",
       "trainer": "岩戸孝樹",
       "finish_time": "1:09.7",
-      "margin": "1.1/4",
+      "margin": "@",
       "win_odds": 7.2,
       "popularity": 3,
       "horse_weight": 440,
@@ -122,7 +122,7 @@
       "jockey": "武藤雅",
       "trainer": "武藤善則",
       "finish_time": "1:10.0",
-      "margin": "1.1/2",
+      "margin": "@",
       "win_odds": 2.6,
       "popularity": 1,
       "horse_weight": 466,
@@ -142,7 +142,7 @@
       "jockey": "小沢大仁",
       "trainer": "岡田稲男",
       "finish_time": "1:10.4",
-      "margin": "2.1/2",
+      "margin": "@",
       "win_odds": 192.2,
       "popularity": 12,
       "horse_weight": 426,
@@ -162,7 +162,7 @@
       "jockey": "上里直汰",
       "trainer": "菊川正達",
       "finish_time": "1:10.6",
-      "margin": "1.1/2",
+      "margin": "@",
       "win_odds": 34.7,
       "popularity": 8,
       "horse_weight": 458,
@@ -182,7 +182,7 @@
       "jockey": "本田正重",
       "trainer": "和田雄二",
       "finish_time": "1:11.0",
-      "margin": "2",
+      "margin": "@",
       "win_odds": 447.6,
       "popularity": 16,
       "horse_weight": 510,
@@ -202,7 +202,7 @@
       "jockey": "河原田菜",
       "trainer": "小手川準",
       "finish_time": "1:11.6",
-      "margin": "4",
+      "margin": "@",
       "win_odds": 296.8,
       "popularity": 14,
       "horse_weight": 478,
@@ -222,7 +222,7 @@
       "jockey": "古川奈穂",
       "trainer": "青木孝文",
       "finish_time": "1:11.6",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 236.9,
       "popularity": 13,
       "horse_weight": 452,
@@ -242,7 +242,7 @@
       "jockey": "菊沢一樹",
       "trainer": "清水英克",
       "finish_time": "1:12.0",
-      "margin": "2.1/2",
+      "margin": "@",
       "win_odds": 84.6,
       "popularity": 10,
       "horse_weight": 472,
@@ -262,7 +262,7 @@
       "jockey": "丸田恭介",
       "trainer": "秋本大介",
       "finish_time": "1:12.2",
-      "margin": "1",
+      "margin": "@",
       "win_odds": 164.8,
       "popularity": 11,
       "horse_weight": 512,
@@ -282,7 +282,7 @@
       "jockey": "石神深道",
       "trainer": "和田正一",
       "finish_time": "1:12.8",
-      "margin": "4",
+      "margin": "@",
       "win_odds": 314.5,
       "popularity": 15,
       "horse_weight": 434,
@@ -302,7 +302,7 @@
       "jockey": "小林美駒",
       "trainer": "藤野健太",
       "finish_time": "1:13.0",
-      "margin": "1",
+      "margin": "@",
       "win_odds": 14.7,
       "popularity": 6,
       "horse_weight": 516,
@@ -322,7 +322,7 @@
       "jockey": "丹内祐次",
       "trainer": "角田晃一",
       "finish_time": "1:13.4",
-      "margin": "2.1/2",
+      "margin": "@",
       "win_odds": 15.5,
       "popularity": 7,
       "horse_weight": 466,
@@ -376,6 +376,18 @@
       "popularity": 16
     },
     {
+      "bet_type": "馬連",
+      "combination": "2",
+      "payout": 5020,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 40000,
+      "popularity": 1
+    },
+    {
       "bet_type": "ワイド",
       "combination": "7-8",
       "payout": 520,
@@ -394,16 +406,46 @@
       "popularity": 19
     },
     {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 20040,
+      "popularity": 80
+    },
+    {
       "bet_type": "馬単",
       "combination": "7→2",
       "payout": 7470,
       "popularity": 27
     },
     {
+      "bet_type": "馬単",
+      "combination": "2",
+      "payout": 7000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "2-7-8",
       "payout": 4820,
       "popularity": 14
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5",
+      "payout": 402,
+      "popularity": 80
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "15-1",
+      "payout": 80708,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "6",
+      "payout": 90008,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -456,7 +498,8 @@
         "12": "リスペクトライト",
         "9": "マロ",
         "11": "ルヴレアール"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5784,
@@ -515,7 +558,8 @@
         "12": "リスペクトライト",
         "9": "マロ",
         "11": "ルヴレアール"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5785,
@@ -567,7 +611,8 @@
         "12": "リスペクトライト",
         "9": "マロ",
         "11": "ルヴレアール"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5786,
@@ -619,7 +664,8 @@
         "12": "リスペクトライト",
         "9": "マロ",
         "11": "ルヴレアール"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5787,
@@ -685,7 +731,8 @@
         "12": "リスペクトライト",
         "9": "マロ",
         "11": "ルヴレアール"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5788,
@@ -828,7 +875,8 @@
         "12": "リスペクトライト",
         "9": "マロ",
         "11": "ルヴレアール"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5804,
@@ -873,7 +921,8 @@
         "12": "リスペクトライト",
         "9": "マロ",
         "11": "ルヴレアール"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5805,
@@ -946,7 +995,8 @@
         "12": "リスペクトライト",
         "9": "マロ",
         "11": "ルヴレアール"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5806,
@@ -998,7 +1048,8 @@
         "12": "リスペクトライト",
         "9": "マロ",
         "11": "ルヴレアール"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5807,
@@ -1050,7 +1101,8 @@
         "12": "リスペクトライト",
         "9": "マロ",
         "11": "ルヴレアール"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5808,
@@ -1102,7 +1154,8 @@
         "12": "リスペクトライト",
         "9": "マロ",
         "11": "ルヴレアール"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5811,
@@ -1161,7 +1214,8 @@
         "12": "リスペクトライト",
         "9": "マロ",
         "11": "ルヴレアール"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5812,
@@ -1311,7 +1365,8 @@
         "12": "リスペクトライト",
         "9": "マロ",
         "11": "ルヴレアール"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6534,
@@ -1356,7 +1411,8 @@
         "12": "リスペクトライト",
         "9": "マロ",
         "11": "ルヴレアール"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6535,
@@ -1415,7 +1471,8 @@
         "12": "リスペクトライト",
         "9": "マロ",
         "11": "ルヴレアール"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6536,
@@ -1467,7 +1524,8 @@
         "12": "リスペクトライト",
         "9": "マロ",
         "11": "ルヴレアール"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6537,
@@ -1519,7 +1577,8 @@
         "12": "リスペクトライト",
         "9": "マロ",
         "11": "ルヴレアール"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6538,
@@ -1585,7 +1644,8 @@
         "12": "リスペクトライト",
         "9": "マロ",
         "11": "ルヴレアール"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6539,
@@ -1728,7 +1788,8 @@
         "12": "リスペクトライト",
         "9": "マロ",
         "11": "ルヴレアール"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6555,
@@ -1773,7 +1834,8 @@
         "12": "リスペクトライト",
         "9": "マロ",
         "11": "ルヴレアール"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6556,
@@ -1846,7 +1908,8 @@
         "12": "リスペクトライト",
         "9": "マロ",
         "11": "ルヴレアール"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6557,
@@ -1898,7 +1961,8 @@
         "12": "リスペクトライト",
         "9": "マロ",
         "11": "ルヴレアール"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6558,
@@ -1950,7 +2014,8 @@
         "12": "リスペクトライト",
         "9": "マロ",
         "11": "ルヴレアール"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6559,
@@ -2002,7 +2067,8 @@
         "12": "リスペクトライト",
         "9": "マロ",
         "11": "ルヴレアール"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6562,
@@ -2061,7 +2127,8 @@
         "12": "リスペクトライト",
         "9": "マロ",
         "11": "ルヴレアール"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6563,
@@ -2211,7 +2278,8 @@
         "12": "リスペクトライト",
         "9": "マロ",
         "11": "ルヴレアール"
-      }
+      },
+      "is_provisional": false
     }
   ],
   "training_evals": {}

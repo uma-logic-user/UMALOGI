@@ -12,27 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "コーシューパンジャ",
-      "horse_id": "2022102769",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "石川裕紀",
-      "trainer": "相沢郁",
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "ツーネサーン",
+      "horse_id": "2021105584",
+      "sex_age": "牡1",
+      "weight_carried": 58.0,
+      "jockey": "坂井瑠星",
+      "trainer": "矢作芳人",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
       "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
+      "sire": "Frankel",
+      "dam": "ジェットセッティングJet Setting(愛)",
+      "dam_sire": "Fast Company"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 8,
       "horse_number": 14,
       "horse_name": "セブンマイスター",
@@ -52,24 +52,24 @@
       "dam_sire": "メイショウサムソン"
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 15,
-      "horse_name": "ツーネサーン",
-      "horse_id": "2021105584",
-      "sex_age": "牡1",
-      "weight_carried": 58.0,
-      "jockey": "坂井瑠星",
-      "trainer": "矢作芳人",
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "コーシューパンジャ",
+      "horse_id": "2022102769",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "石川裕紀",
+      "trainer": "相沢郁",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
       "horse_weight_diff": null,
-      "sire": "Frankel",
-      "dam": "ジェットセッティングJet Setting(愛)",
-      "dam_sire": "Fast Company"
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -313,12 +313,6 @@
     }
   ],
   "payouts": [
-    {
-      "bet_type": "単勝",
-      "combination": "15",
-      "payout": 15000,
-      "popularity": null
-    },
     {
       "bet_type": "複勝",
       "combination": "14",

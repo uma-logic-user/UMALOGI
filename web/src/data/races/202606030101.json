@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 6,
-      "horse_name": "オーシャンステラ",
-      "horse_id": "2023107206",
-      "sex_age": "牝4",
-      "weight_carried": 52.0,
-      "jockey": "石田拓郎",
-      "trainer": "菊沢隆徳",
+      "rank": 1,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "マジェステラ",
+      "horse_id": "2023102390",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "ディー",
+      "trainer": "千葉直人",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 4,
       "horse_number": 7,
       "horse_name": "アイムインディ",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 9,
-      "horse_name": "マジェステラ",
-      "horse_id": "2023102390",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "ディー",
-      "trainer": "千葉直人",
+      "rank": 3,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "オーシャンステラ",
+      "horse_id": "2023107206",
+      "sex_age": "牝4",
+      "weight_carried": 52.0,
+      "jockey": "石田拓郎",
+      "trainer": "菊沢隆徳",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "9",
       "payout": 410,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

@@ -12,7 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 12,
+      "horse_name": "エクリプスルバン",
+      "horse_id": "2021106623",
+      "sex_age": "騸4",
+      "weight_carried": 58.0,
+      "jockey": "佐々木大",
+      "trainer": "田中博康",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "シニスターミニスターSinister Minister(米)",
+      "dam": "キングベイビー",
+      "dam_sire": "マンハッタンカフェ"
+    },
+    {
+      "rank": 2,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "パイシャオピン",
@@ -32,7 +52,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 5,
       "horse_number": 7,
       "horse_name": "レッドライトニング",
@@ -50,26 +70,6 @@
       "sire": "エイシンフラッシュ",
       "dam": "ブランシェール",
       "dam_sire": "ディープインパクト"
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 12,
-      "horse_name": "エクリプスルバン",
-      "horse_id": "2021106623",
-      "sex_age": "騸4",
-      "weight_carried": 58.0,
-      "jockey": "佐々木大",
-      "trainer": "田中博康",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "シニスターミニスターSinister Minister(米)",
-      "dam": "キングベイビー",
-      "dam_sire": "マンハッタンカフェ"
     },
     {
       "rank": null,
@@ -278,12 +278,6 @@
       "combination": "12",
       "payout": 370,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "13",
-      "payout": 13000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

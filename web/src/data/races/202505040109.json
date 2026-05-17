@@ -12,27 +12,27 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "ラブリージャブリー",
-      "horse_id": "2022105442",
-      "sex_age": "牝3",
-      "weight_carried": 54.0,
-      "jockey": "三浦皇成",
-      "trainer": "蛯名正義",
+      "rank": 1,
+      "gate_number": 5,
+      "horse_number": 6,
+      "horse_name": "サトノヴィレ",
+      "horse_id": "2020104753",
+      "sex_age": "騸4",
+      "weight_carried": 58.0,
+      "jockey": "荻野極",
+      "trainer": "鹿戸雄一",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
       "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
+      "sire": "デクラレーションオブウォー",
+      "dam": "ダイワジェラート",
+      "dam_sire": "フジキセキ"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "アルゲンテウス",
@@ -50,6 +50,26 @@
       "sire": "シルバーステート",
       "dam": "ラダームブランシェ",
       "dam_sire": "チチカステナンゴChichicastenango(仏)"
+    },
+    {
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "ラブリージャブリー",
+      "horse_id": "2022105442",
+      "sex_age": "牝3",
+      "weight_carried": 54.0,
+      "jockey": "三浦皇成",
+      "trainer": "蛯名正義",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -110,26 +130,6 @@
       "sire": "エピファネイア",
       "dam": "パセンジャーシップ",
       "dam_sire": "ダイワメジャー"
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 6,
-      "horse_name": "サトノヴィレ",
-      "horse_id": "2020104753",
-      "sex_age": "騸4",
-      "weight_carried": 58.0,
-      "jockey": "荻野極",
-      "trainer": "鹿戸雄一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "デクラレーションオブウォー",
-      "dam": "ダイワジェラート",
-      "dam_sire": "フジキセキ"
     },
     {
       "rank": null,
@@ -258,12 +258,6 @@
       "combination": "6",
       "payout": 7870,
       "popularity": 10
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "12",
-      "payout": 12000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

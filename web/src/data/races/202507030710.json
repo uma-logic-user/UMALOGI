@@ -12,7 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "テーオーライマン",
@@ -32,7 +32,27 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 8,
+      "horse_number": 8,
+      "horse_name": "オーケアニス",
+      "horse_id": "2022104883",
+      "sex_age": "牝3",
+      "weight_carried": 53.0,
+      "jockey": "坂井瑠星",
+      "trainer": "松永幹夫",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "ポイントネモ",
@@ -150,26 +170,6 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 8,
-      "horse_name": "オーケアニス",
-      "horse_id": "2022104883",
-      "sex_age": "牝3",
-      "weight_carried": 53.0,
-      "jockey": "坂井瑠星",
-      "trainer": "松永幹夫",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
     }
   ],
   "payouts": [
@@ -178,12 +178,6 @@
       "combination": "1",
       "payout": 280,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "8",
-      "payout": 8000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

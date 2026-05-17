@@ -12,14 +12,14 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 2,
-      "horse_name": "ベルシュヴァル",
-      "horse_id": "2023102376",
-      "sex_age": "牝1",
+      "rank": 1,
+      "gate_number": 5,
+      "horse_number": 10,
+      "horse_name": "シルバーリム",
+      "horse_id": "2023106808",
+      "sex_age": "牝4",
       "weight_carried": 55.0,
-      "jockey": "高杉吏麒",
+      "jockey": "国分優作",
       "trainer": "中村直也",
       "finish_time": null,
       "margin": "@",
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 2,
       "horse_number": 4,
       "horse_name": "レゼルフォート",
@@ -52,14 +52,14 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 10,
-      "horse_name": "シルバーリム",
-      "horse_id": "2023106808",
-      "sex_age": "牝4",
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 2,
+      "horse_name": "ベルシュヴァル",
+      "horse_id": "2023102376",
+      "sex_age": "牝1",
       "weight_carried": 55.0,
-      "jockey": "国分優作",
+      "jockey": "高杉吏麒",
       "trainer": "中村直也",
       "finish_time": null,
       "margin": "@",
@@ -338,12 +338,6 @@
       "combination": "10",
       "payout": 1120,
       "popularity": 6
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 5,
-      "horse_name": "エルフストラック",
-      "horse_id": "2021105616",
-      "sex_age": "牝4",
-      "weight_carried": 56.0,
-      "jockey": "浜中俊",
-      "trainer": "中村直也",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "カリフォルニアクロームCalifornia Chrome(米)",
-      "dam": "スペルオンミー",
-      "dam_sire": "ダイワメジャー"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 5,
       "horse_number": 9,
       "horse_name": "クインズショコラ",
@@ -52,7 +32,27 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "エルフストラック",
+      "horse_id": "2021105616",
+      "sex_age": "牝4",
+      "weight_carried": 56.0,
+      "jockey": "浜中俊",
+      "trainer": "中村直也",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "カリフォルニアクロームCalifornia Chrome(米)",
+      "dam": "スペルオンミー",
+      "dam_sire": "ダイワメジャー"
+    },
+    {
+      "rank": 3,
       "gate_number": 6,
       "horse_number": 10,
       "horse_name": "レイバックスピン",
@@ -318,12 +318,6 @@
       "combination": "9",
       "payout": 890,
       "popularity": 5
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "15",
-      "payout": 15000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

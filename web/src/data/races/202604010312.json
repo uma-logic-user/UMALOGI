@@ -1,0 +1,2828 @@
+{
+  "race_id": "202604010312",
+  "race_name": "",
+  "date": "2026-05-09",
+  "venue": "新潟",
+  "race_number": 12,
+  "distance": 0,
+  "surface": "",
+  "track_direction": "",
+  "weather": "",
+  "condition": "",
+  "year": "2026",
+  "results": [
+    {
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 11,
+      "horse_name": "ハイクオリティ",
+      "horse_id": "2022106924",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "ゴンサル",
+      "trainer": "今野貞一",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1117,
+      "ev_score": 0.2234,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.2593,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 2,
+      "gate_number": 6,
+      "horse_number": 8,
+      "horse_name": "カレンラップスター",
+      "horse_id": "2022104723",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "松本大輝",
+      "trainer": "小林真也",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0549,
+      "ev_score": 0.406,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.4422,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "タルタロス",
+      "horse_id": "2021103150",
+      "sex_age": "牡4",
+      "weight_carried": 55.0,
+      "jockey": "石神深道",
+      "trainer": "天間昭一",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ハービンジャーHarbinger(英)",
+      "dam": "タイヨウノコ",
+      "dam_sire": "エンパイアメーカーEmpire Maker(米)",
+      "honmei_score": 0.1478,
+      "ev_score": 2.8682,
+      "kelly_fraction": 0.0102,
+      "manji_ev": 0.4065,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "チュウワダイオウ",
+      "horse_id": "2021102294",
+      "sex_age": "騸5",
+      "weight_carried": 56.0,
+      "jockey": "舟山瑠泉",
+      "trainer": "加藤公太",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ルーラーシップ",
+      "dam": "チュウワプリンセス",
+      "dam_sire": "スペシャルウィーク",
+      "honmei_score": 0.0546,
+      "ev_score": 1.377,
+      "kelly_fraction": 0.0016,
+      "manji_ev": 1.8828,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "トーアケルキラ",
+      "horse_id": "2022105903",
+      "sex_age": "騸1",
+      "weight_carried": 55.0,
+      "jockey": "石田拓郎",
+      "trainer": "辻哲英",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1716,
+      "ev_score": 1.4761,
+      "kelly_fraction": 0.0063,
+      "manji_ev": 0.8233,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "キュードス",
+      "horse_id": "2022106312",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "遠藤汰月",
+      "trainer": "荒川義之",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.091,
+      "ev_score": 1.7927,
+      "kelly_fraction": 0.0042,
+      "manji_ev": 0.3517,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "ロストボール",
+      "horse_id": "2019106972",
+      "sex_age": "騸1",
+      "weight_carried": 55.0,
+      "jockey": "森田誠也",
+      "trainer": "加藤和宏",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "フリオーソ",
+      "dam": "センスオブラヴ",
+      "dam_sire": "ストリートセンスStreet Sense(米)",
+      "honmei_score": 0.091,
+      "ev_score": 6.3427,
+      "kelly_fraction": 0.0078,
+      "manji_ev": 0.77,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 6,
+      "horse_name": "ブラックジジ",
+      "horse_id": "2022101578",
+      "sex_age": "牡1",
+      "weight_carried": 58.0,
+      "jockey": "原田和真",
+      "trainer": "菊川正達",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.091,
+      "ev_score": 1.3195,
+      "kelly_fraction": 0.0024,
+      "manji_ev": 0.1272,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 7,
+      "horse_name": "キタノブレイク",
+      "horse_id": "2022102486",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "長浜鴻緒",
+      "trainer": "本間忍",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1716,
+      "ev_score": 3.8275,
+      "kelly_fraction": 0.0133,
+      "manji_ev": 0.4571,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 9,
+      "horse_name": "ナムラジミー",
+      "horse_id": "2022101814",
+      "sex_age": "牡7",
+      "weight_carried": 54.0,
+      "jockey": "河原田菜",
+      "trainer": "武市康男",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1056,
+      "ev_score": 3.347,
+      "kelly_fraction": 0.0076,
+      "manji_ev": 0.0,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 10,
+      "horse_name": "リリーアロー",
+      "horse_id": "2019100689",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "和田陽希",
+      "trainer": "平田修",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1056,
+      "ev_score": 3.1992,
+      "kelly_fraction": 0.0075,
+      "manji_ev": 0.0,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 12,
+      "horse_name": "マテンロウミラクル",
+      "horse_id": "2021105993",
+      "sex_age": "牡1",
+      "weight_carried": 58.0,
+      "jockey": "富田暁",
+      "trainer": "柴田卓",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1028,
+      "ev_score": 0.5964,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.9476,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    }
+  ],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "11",
+      "payout": 170,
+      "popularity": 1
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "12",
+      "payout": 12000,
+      "popularity": null
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "11",
+      "payout": 110,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "8",
+      "payout": 160,
+      "popularity": 2
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "3",
+      "payout": 250,
+      "popularity": 5
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "6-8",
+      "payout": 370,
+      "popularity": 1
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "8-11",
+      "payout": 600,
+      "popularity": 2
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1-10",
+      "payout": 1080,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "8-11",
+      "payout": 280,
+      "popularity": 2
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3-11",
+      "payout": 490,
+      "popularity": 4
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3-8",
+      "payout": 1140,
+      "popularity": 16
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 60020,
+      "popularity": 30
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "6",
+      "payout": 80000,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "11→8",
+      "payout": 730,
+      "popularity": 2
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "8",
+      "payout": 11000,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3-8-11",
+      "payout": 2100,
+      "popularity": 5
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4",
+      "payout": 403,
+      "popularity": 80
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2",
+      "payout": 20311,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "11",
+      "payout": 40016,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "11→8→3",
+      "payout": 5130,
+      "popularity": 9
+    }
+  ],
+  "predictions": [
+    {
+      "prediction_id": 25860,
+      "model_type": "本命(暫定)",
+      "bet_type": "単勝",
+      "confidence": 0.17163724893487523,
+      "expected_value": 0.17163724893487523,
+      "recommended_bet": 100.0,
+      "combination_json": "[[2]]",
+      "notes": "確率1位 P(win)=0.17 odds=1.0 EV=0.17",
+      "created_at": "2026-05-09 09:23:12",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.17163724893487523
+        }
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "1": "チュウワダイオウ",
+        "2": "トーアケルキラ",
+        "4": "キュードス",
+        "5": "ロストボール",
+        "6": "ブラックジジ",
+        "7": "キタノブレイク",
+        "9": "ナムラジミー",
+        "10": "リリーアロー",
+        "12": "マテンロウミラクル",
+        "11": "ハイクオリティ",
+        "8": "カレンラップスター",
+        "3": "タルタロス"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 25861,
+      "model_type": "本命(暫定)",
+      "bet_type": "複勝",
+      "confidence": 0.16370614679162798,
+      "expected_value": 0.49111844037488395,
+      "recommended_bet": 300.0,
+      "combination_json": "[[2], [7], [3]]",
+      "notes": "上位3頭を複勝",
+      "created_at": "2026-05-09 09:23:12",
+      "is_hit": 1,
+      "payout": 250.0,
+      "profit": -50.0,
+      "roi": 83.33333333333334,
+      "horses": [
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.16370614679162798,
+          "ev_score": 0.49111844037488395
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.16370614679162798,
+          "ev_score": 0.49111844037488395
+        },
+        {
+          "horse_name": "タルタロス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.16370614679162798,
+          "ev_score": 0.49111844037488395
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "1": "チュウワダイオウ",
+        "2": "トーアケルキラ",
+        "4": "キュードス",
+        "5": "ロストボール",
+        "6": "ブラックジジ",
+        "7": "キタノブレイク",
+        "9": "ナムラジミー",
+        "10": "リリーアロー",
+        "12": "マテンロウミラクル",
+        "11": "ハイクオリティ",
+        "8": "カレンラップスター",
+        "3": "タルタロス"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 25862,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.015151515151515152,
+      "expected_value": 0.6018181818181818,
+      "recommended_bet": 500.0,
+      "combination_json": "[[2, 7], [2, 3], [2, 11], [2, 9], [2, 10]]",
+      "notes": "軸2番×相手5頭フォーメーション Harville最大=0.015",
+      "created_at": "2026-05-09 09:23:12",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.015151515151515152,
+          "ev_score": 0.6018181818181818
+        },
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.015151515151515152,
+          "ev_score": 0.6018181818181818
+        },
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.015151515151515152,
+          "ev_score": 0.6018181818181818
+        },
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.015151515151515152,
+          "ev_score": 0.6018181818181818
+        },
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.015151515151515152,
+          "ev_score": 0.6018181818181818
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.015151515151515152,
+          "ev_score": 0.6018181818181818
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.015151515151515152,
+          "ev_score": 0.6018181818181818
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.015151515151515152,
+          "ev_score": 0.6018181818181818
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.015151515151515152,
+          "ev_score": 0.6018181818181818
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.015151515151515152,
+          "ev_score": 0.6018181818181818
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "チュウワダイオウ",
+        "2": "トーアケルキラ",
+        "4": "キュードス",
+        "5": "ロストボール",
+        "6": "ブラックジジ",
+        "7": "キタノブレイク",
+        "9": "ナムラジミー",
+        "10": "リリーアロー",
+        "12": "マテンロウミラクル",
+        "11": "ハイクオリティ",
+        "8": "カレンラップスター",
+        "3": "タルタロス"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 25863,
+      "model_type": "本命(暫定)",
+      "bet_type": "ワイド",
+      "confidence": 0.0196969696969697,
+      "expected_value": 0.28530303030303034,
+      "recommended_bet": 500.0,
+      "combination_json": "[[2, 7], [2, 3], [2, 11], [2, 9], [2, 10]]",
+      "notes": "軸2番×相手5頭ワイド Harville最大=0.015",
+      "created_at": "2026-05-09 09:23:12",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.015151515151515152,
+          "ev_score": 0.28530303030303034
+        },
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.015151515151515152,
+          "ev_score": 0.28530303030303034
+        },
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.015151515151515152,
+          "ev_score": 0.28530303030303034
+        },
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.015151515151515152,
+          "ev_score": 0.28530303030303034
+        },
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.015151515151515152,
+          "ev_score": 0.28530303030303034
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.015151515151515152,
+          "ev_score": 0.28530303030303034
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.015151515151515152,
+          "ev_score": 0.28530303030303034
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.015151515151515152,
+          "ev_score": 0.28530303030303034
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.015151515151515152,
+          "ev_score": 0.28530303030303034
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.015151515151515152,
+          "ev_score": 0.28530303030303034
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "チュウワダイオウ",
+        "2": "トーアケルキラ",
+        "4": "キュードス",
+        "5": "ロストボール",
+        "6": "ブラックジジ",
+        "7": "キタノブレイク",
+        "9": "ナムラジミー",
+        "10": "リリーアロー",
+        "12": "マテンロウミラクル",
+        "11": "ハイクオリティ",
+        "8": "カレンラップスター",
+        "3": "タルタロス"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 25864,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬単",
+      "confidence": 0.06060606060606061,
+      "expected_value": 0.5632575757575757,
+      "recommended_bet": 300.0,
+      "combination_json": "[[2, 7], [2, 3], [2, 11]]",
+      "notes": "軸2番→相手3頭フォーメーション Harville最大=0.008",
+      "created_at": "2026-05-09 09:23:12",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.007575757575757576,
+          "ev_score": 0.5632575757575757
+        },
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.007575757575757576,
+          "ev_score": 0.5632575757575757
+        },
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.007575757575757576,
+          "ev_score": 0.5632575757575757
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.007575757575757576,
+          "ev_score": 0.5632575757575757
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.007575757575757576,
+          "ev_score": 0.5632575757575757
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.007575757575757576,
+          "ev_score": 0.5632575757575757
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "1": "チュウワダイオウ",
+        "2": "トーアケルキラ",
+        "4": "キュードス",
+        "5": "ロストボール",
+        "6": "ブラックジジ",
+        "7": "キタノブレイク",
+        "9": "ナムラジミー",
+        "10": "リリーアロー",
+        "12": "マテンロウミラクル",
+        "11": "ハイクオリティ",
+        "8": "カレンラップスター",
+        "3": "タルタロス"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 25865,
+      "model_type": "本命(暫定)",
+      "bet_type": "三連複",
+      "confidence": 0.05454545454545455,
+      "expected_value": 0.5701818181818183,
+      "recommended_bet": 600.0,
+      "combination_json": "[[2, 3, 7], [2, 7, 11]]",
+      "notes": "合成EV最大=0.57 2点 馬番=[(2, 3, 7), (2, 7, 11)]",
+      "created_at": "2026-05-09 09:23:12",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.004545454545454546,
+          "ev_score": 0.5701818181818183
+        },
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.004545454545454546,
+          "ev_score": 0.5701818181818183
+        },
+        {
+          "horse_name": "タルタロス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.004545454545454546,
+          "ev_score": 0.5701818181818183
+        },
+        {
+          "horse_name": "タルタロス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.004545454545454546,
+          "ev_score": 0.5701818181818183
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.004545454545454546,
+          "ev_score": 0.5701818181818183
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.004545454545454546,
+          "ev_score": 0.5701818181818183
+        }
+      ],
+      "bet_form": "軸2頭ながし",
+      "n_tickets": 2,
+      "invested": 200,
+      "horse_num_to_name": {
+        "1": "チュウワダイオウ",
+        "2": "トーアケルキラ",
+        "4": "キュードス",
+        "5": "ロストボール",
+        "6": "ブラックジジ",
+        "7": "キタノブレイク",
+        "9": "ナムラジミー",
+        "10": "リリーアロー",
+        "12": "マテンロウミラクル",
+        "11": "ハイクオリティ",
+        "8": "カレンラップスター",
+        "3": "タルタロス"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 25866,
+      "model_type": "本命(暫定)",
+      "bet_type": "三連単",
+      "confidence": 0.13636363636363638,
+      "expected_value": 2.215363636363637,
+      "recommended_bet": 1000.0,
+      "combination_json": "[[2, 7, 3], [2, 3, 7], [7, 2, 3], [7, 3, 2], [3, 2, 7], [3, 7, 2], [2, 7, 11], [2, 11, 7], [7, 2, 11], [7, 11, 2], [11, 2, 7], [11, 7, 2], [2, 7, 9], [2, 9, 7], [7, 2, 9], [7, 9, 2], [9, 2, 7], [9, 7, 2], [2, 7, 10], [2, 10, 7], [7, 2, 10], [7, 10, 2], [10, 2, 7], [10, 7, 2], [2, 7, 12], [2, 12, 7], [7, 2, 12], [7, 12, 2], [12, 2, 7], [12, 7, 2], [2, 3, 11], [2, 11, 3], [3, 2, 11], [3, 11, 2], [11, 2, 3], [11, 3, 2], [2, 3, 9], [2, 9, 3], [3, 2, 9], [3, 9, 2], [9, 2, 3], [9, 3, 2], [2, 3, 10], [2, 10, 3], [3, 2, 10], [3, 10, 2], [10, 2, 3], [10, 3, 2], [2, 3, 12], [2, 12, 3], [3, 2, 12], [3, 12, 2], [12, 2, 3], [12, 3, 2], [2, 11, 9], [2, 9, 11], [11, 2, 9], [11, 9, 2], [9, 2, 11], [9, 11, 2], [2, 11, 10], [2, 10, 11], [11, 2, 10], [11, 10, 2], [10, 2, 11], [10, 11, 2], [2, 11, 12], [2, 12, 11], [11, 2, 12], [11, 12, 2], [12, 2, 11], [12, 11, 2], [2, 9, 10], [2, 10, 9], [9, 2, 10], [9, 10, 2], [10, 2, 9], [10, 9, 2], [2, 9, 12], [2, 12, 9], [9, 2, 12], [9, 12, 2], [12, 2, 9], [12, 9, 2], [2, 10, 12], [2, 12, 10], [10, 2, 12], [10, 12, 2], [12, 2, 10], [12, 10, 2]]",
+      "notes": "1頭軸マルチ 軸=2番 相手=[7, 3, 11, 9, 10, 12] 90点 Harville最大=0.0045",
+      "created_at": "2026-05-09 09:23:12",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -9000.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.004545454545454546,
+          "ev_score": 2.215363636363637
+        },
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.004545454545454546,
+          "ev_score": 2.215363636363637
+        },
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.004545454545454546,
+          "ev_score": 2.215363636363637
+        },
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.004545454545454546,
+          "ev_score": 2.215363636363637
+        },
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.004545454545454546,
+          "ev_score": 2.215363636363637
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.004545454545454546,
+          "ev_score": 2.215363636363637
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.004545454545454546,
+          "ev_score": 2.215363636363637
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.004545454545454546,
+          "ev_score": 2.215363636363637
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.004545454545454546,
+          "ev_score": 2.215363636363637
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.004545454545454546,
+          "ev_score": 2.215363636363637
+        },
+        {
+          "horse_name": "タルタロス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.004545454545454546,
+          "ev_score": 2.215363636363637
+        },
+        {
+          "horse_name": "タルタロス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.004545454545454546,
+          "ev_score": 2.215363636363637
+        },
+        {
+          "horse_name": "タルタロス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.004545454545454546,
+          "ev_score": 2.215363636363637
+        },
+        {
+          "horse_name": "タルタロス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.004545454545454546,
+          "ev_score": 2.215363636363637
+        },
+        {
+          "horse_name": "タルタロス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.004545454545454546,
+          "ev_score": 2.215363636363637
+        }
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 90,
+      "invested": 9000,
+      "horse_num_to_name": {
+        "1": "チュウワダイオウ",
+        "2": "トーアケルキラ",
+        "4": "キュードス",
+        "5": "ロストボール",
+        "6": "ブラックジジ",
+        "7": "キタノブレイク",
+        "9": "ナムラジミー",
+        "10": "リリーアロー",
+        "12": "マテンロウミラクル",
+        "11": "ハイクオリティ",
+        "8": "カレンラップスター",
+        "3": "タルタロス"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 25867,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-05-09 09:23:12",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": "2022105903",
+          "predicted_rank": 1,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": "2022102486",
+          "predicted_rank": 2,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "タルタロス",
+          "horse_id": "2021103150",
+          "predicted_rank": 3,
+          "model_score": 0.14784394250513347,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ハイクオリティ",
+          "horse_id": "2022106924",
+          "predicted_rank": 4,
+          "model_score": 0.1116751269035533,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "リリーアロー",
+          "horse_id": "2019100689",
+          "predicted_rank": 5,
+          "model_score": 0.10558375634517767,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ナムラジミー",
+          "horse_id": "2022101814",
+          "predicted_rank": 6,
+          "model_score": 0.10558375634517767,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "マテンロウミラクル",
+          "horse_id": "2021105993",
+          "predicted_rank": 7,
+          "model_score": 0.10282776349614396,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ブラックジジ",
+          "horse_id": "2022101578",
+          "predicted_rank": 8,
+          "model_score": 0.09099933818663138,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "キュードス",
+          "horse_id": "2022106312",
+          "predicted_rank": 9,
+          "model_score": 0.09099933818663138,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ロストボール",
+          "horse_id": "2019106972",
+          "predicted_rank": 10,
+          "model_score": 0.09099933818663138,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "カレンラップスター",
+          "horse_id": "2022104723",
+          "predicted_rank": 11,
+          "model_score": 0.05485980272636595,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "チュウワダイオウ",
+          "horse_id": "2021102294",
+          "predicted_rank": 12,
+          "model_score": 0.0546448087431694,
+          "ev_score": 0.0
+        }
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "invested": 0,
+      "horse_num_to_name": {
+        "1": "チュウワダイオウ",
+        "2": "トーアケルキラ",
+        "4": "キュードス",
+        "5": "ロストボール",
+        "6": "ブラックジジ",
+        "7": "キタノブレイク",
+        "9": "ナムラジミー",
+        "10": "リリーアロー",
+        "12": "マテンロウミラクル",
+        "11": "ハイクオリティ",
+        "8": "カレンラップスター",
+        "3": "タルタロス"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 25868,
+      "model_type": "HitFocus(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.20106688649394633,
+      "expected_value": 1.5972753463079097,
+      "recommended_bet": 700.0,
+      "combination_json": "[[2, 7], [2, 3], [3, 7], [2, 11], [7, 11], [2, 9], [7, 9]]",
+      "notes": "2軸マルチ 軸=2,7 相手=[3, 11, 9] Harville最大=0.0402",
+      "created_at": "2026-05-09 09:23:12",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -700.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.040213377298789266,
+          "ev_score": 1.5972753463079097
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.040213377298789266,
+          "ev_score": 1.5972753463079097
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 7,
+      "invested": 700,
+      "horse_num_to_name": {
+        "1": "チュウワダイオウ",
+        "2": "トーアケルキラ",
+        "4": "キュードス",
+        "5": "ロストボール",
+        "6": "ブラックジジ",
+        "7": "キタノブレイク",
+        "9": "ナムラジミー",
+        "10": "リリーアロー",
+        "12": "マテンロウミラクル",
+        "11": "ハイクオリティ",
+        "8": "カレンラップスター",
+        "3": "タルタロス"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 25869,
+      "model_type": "HitFocus(暫定)",
+      "bet_type": "馬単",
+      "confidence": 0.16085350919515706,
+      "expected_value": 1.4949323010824909,
+      "recommended_bet": 800.0,
+      "combination_json": "[[2, 7], [7, 2], [2, 3], [7, 3], [2, 11], [7, 11], [2, 9], [7, 9]]",
+      "notes": "2軸マルチ 軸=2,7 相手=[3, 11, 9] Harville最大=0.0201",
+      "created_at": "2026-05-09 09:23:12",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -800.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.020106688649394633,
+          "ev_score": 1.4949323010824909
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.020106688649394633,
+          "ev_score": 1.4949323010824909
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 8,
+      "invested": 800,
+      "horse_num_to_name": {
+        "1": "チュウワダイオウ",
+        "2": "トーアケルキラ",
+        "4": "キュードス",
+        "5": "ロストボール",
+        "6": "ブラックジジ",
+        "7": "キタノブレイク",
+        "9": "ナムラジミー",
+        "10": "リリーアロー",
+        "12": "マテンロウミラクル",
+        "11": "ハイクオリティ",
+        "8": "カレンラップスター",
+        "3": "タルタロス"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 25870,
+      "model_type": "HitFocus(暫定)",
+      "bet_type": "三連単",
+      "confidence": 0.09328240634467352,
+      "expected_value": 1.515465973475566,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[2, 7, 3], [7, 2, 3], [2, 3, 7], [7, 3, 2], [2, 7, 11], [7, 2, 11], [2, 11, 7], [7, 11, 2], [2, 7, 9], [7, 2, 9], [2, 9, 7], [7, 9, 2]]",
+      "notes": "2軸マルチ 軸=2,7 相手=[3, 11, 9] 12点 Harville最大=0.0031",
+      "created_at": "2026-05-09 09:23:12",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0031094135448224507,
+          "ev_score": 1.515465973475566
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0031094135448224507,
+          "ev_score": 1.515465973475566
+        },
+        {
+          "horse_name": "タルタロス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0031094135448224507,
+          "ev_score": 1.515465973475566
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 12,
+      "invested": 1200,
+      "horse_num_to_name": {
+        "1": "チュウワダイオウ",
+        "2": "トーアケルキラ",
+        "4": "キュードス",
+        "5": "ロストボール",
+        "6": "ブラックジジ",
+        "7": "キタノブレイク",
+        "9": "ナムラジミー",
+        "10": "リリーアロー",
+        "12": "マテンロウミラクル",
+        "11": "ハイクオリティ",
+        "8": "カレンラップスター",
+        "3": "タルタロス"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 26477,
+      "model_type": "本命(直前)",
+      "bet_type": "単勝",
+      "confidence": 0.17163724893487523,
+      "expected_value": 1.4760803408399268,
+      "recommended_bet": 1000.0,
+      "combination_json": "[[2]]",
+      "notes": "確率1位 P(win)=0.17 odds=8.6 EV=1.48",
+      "created_at": "2026-05-09 10:02:23",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.17163724893487523,
+          "ev_score": 1.4760803408399268
+        }
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "1": "チュウワダイオウ",
+        "2": "トーアケルキラ",
+        "4": "キュードス",
+        "5": "ロストボール",
+        "6": "ブラックジジ",
+        "7": "キタノブレイク",
+        "9": "ナムラジミー",
+        "10": "リリーアロー",
+        "12": "マテンロウミラクル",
+        "11": "ハイクオリティ",
+        "8": "カレンラップスター",
+        "3": "タルタロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 26478,
+      "model_type": "本命(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.16370614679162798,
+      "expected_value": 0.49111844037488395,
+      "recommended_bet": 300.0,
+      "combination_json": "[[2], [7], [3]]",
+      "notes": "上位3頭を複勝",
+      "created_at": "2026-05-09 10:02:23",
+      "is_hit": 1,
+      "payout": 250.0,
+      "profit": -50.0,
+      "roi": 83.33333333333334,
+      "horses": [
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.16370614679162798,
+          "ev_score": 0.49111844037488395
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.16370614679162798,
+          "ev_score": 0.49111844037488395
+        },
+        {
+          "horse_name": "タルタロス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.16370614679162798,
+          "ev_score": 0.49111844037488395
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "1": "チュウワダイオウ",
+        "2": "トーアケルキラ",
+        "4": "キュードス",
+        "5": "ロストボール",
+        "6": "ブラックジジ",
+        "7": "キタノブレイク",
+        "9": "ナムラジミー",
+        "10": "リリーアロー",
+        "12": "マテンロウミラクル",
+        "11": "ハイクオリティ",
+        "8": "カレンラップスター",
+        "3": "タルタロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 26479,
+      "model_type": "本命(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.04254947236015546,
+      "expected_value": 1.4534559362450221,
+      "recommended_bet": 500.0,
+      "combination_json": "[[2, 7], [2, 3], [2, 11], [2, 9], [2, 10]]",
+      "notes": "軸2番×相手5頭フォーメーション Harville最大=0.043",
+      "created_at": "2026-05-09 10:02:23",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.04254947236015546,
+          "ev_score": 1.4534559362450221
+        },
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.04254947236015546,
+          "ev_score": 1.4534559362450221
+        },
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.04254947236015546,
+          "ev_score": 1.4534559362450221
+        },
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.04254947236015546,
+          "ev_score": 1.4534559362450221
+        },
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.04254947236015546,
+          "ev_score": 1.4534559362450221
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.04254947236015546,
+          "ev_score": 1.4534559362450221
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.04254947236015546,
+          "ev_score": 1.4534559362450221
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.04254947236015546,
+          "ev_score": 1.4534559362450221
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.04254947236015546,
+          "ev_score": 1.4534559362450221
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.04254947236015546,
+          "ev_score": 1.4534559362450221
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "チュウワダイオウ",
+        "2": "トーアケルキラ",
+        "4": "キュードス",
+        "5": "ロストボール",
+        "6": "ブラックジジ",
+        "7": "キタノブレイク",
+        "9": "ナムラジミー",
+        "10": "リリーアロー",
+        "12": "マテンロウミラクル",
+        "11": "ハイクオリティ",
+        "8": "カレンラップスター",
+        "3": "タルタロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 26480,
+      "model_type": "本命(直前)",
+      "bet_type": "ワイド",
+      "confidence": 0.0553143140682021,
+      "expected_value": 0.6890376455058854,
+      "recommended_bet": 500.0,
+      "combination_json": "[[2, 7], [2, 3], [2, 11], [2, 9], [2, 10]]",
+      "notes": "軸2番×相手5頭ワイド Harville最大=0.043",
+      "created_at": "2026-05-09 10:02:23",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.04254947236015546,
+          "ev_score": 0.6890376455058854
+        },
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.04254947236015546,
+          "ev_score": 0.6890376455058854
+        },
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.04254947236015546,
+          "ev_score": 0.6890376455058854
+        },
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.04254947236015546,
+          "ev_score": 0.6890376455058854
+        },
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.04254947236015546,
+          "ev_score": 0.6890376455058854
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.04254947236015546,
+          "ev_score": 0.6890376455058854
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.04254947236015546,
+          "ev_score": 0.6890376455058854
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.04254947236015546,
+          "ev_score": 0.6890376455058854
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.04254947236015546,
+          "ev_score": 0.6890376455058854
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.04254947236015546,
+          "ev_score": 0.6890376455058854
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "チュウワダイオウ",
+        "2": "トーアケルキラ",
+        "4": "キュードス",
+        "5": "ロストボール",
+        "6": "ブラックジジ",
+        "7": "キタノブレイク",
+        "9": "ナムラジミー",
+        "10": "リリーアロー",
+        "12": "マテンロウミラクル",
+        "11": "ハイクオリティ",
+        "8": "カレンラップスター",
+        "3": "タルタロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 26481,
+      "model_type": "本命(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.17019788944062184,
+      "expected_value": 1.36032790609035,
+      "recommended_bet": 300.0,
+      "combination_json": "[[2, 7], [2, 3], [2, 11]]",
+      "notes": "軸2番→相手3頭フォーメーション Harville最大=0.021",
+      "created_at": "2026-05-09 10:02:23",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02127473618007773,
+          "ev_score": 1.36032790609035
+        },
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02127473618007773,
+          "ev_score": 1.36032790609035
+        },
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02127473618007773,
+          "ev_score": 1.36032790609035
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02127473618007773,
+          "ev_score": 1.36032790609035
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02127473618007773,
+          "ev_score": 1.36032790609035
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02127473618007773,
+          "ev_score": 1.36032790609035
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "1": "チュウワダイオウ",
+        "2": "トーアケルキラ",
+        "4": "キュードス",
+        "5": "ロストボール",
+        "6": "ブラックジジ",
+        "7": "キタノブレイク",
+        "9": "ナムラジミー",
+        "10": "リリーアロー",
+        "12": "マテンロウミラクル",
+        "11": "ハイクオリティ",
+        "8": "カレンラップスター",
+        "3": "タルタロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 26482,
+      "model_type": "本命(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.23970094176075762,
+      "expected_value": 2.154879506303643,
+      "recommended_bet": 600.0,
+      "combination_json": "[[2, 3, 7], [2, 7, 11]]",
+      "notes": "合成EV最大=2.15 2点 馬番=[(2, 3, 7), (2, 7, 11)]",
+      "created_at": "2026-05-09 10:02:23",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.019975078480063135,
+          "ev_score": 2.154879506303643
+        },
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.019975078480063135,
+          "ev_score": 2.154879506303643
+        },
+        {
+          "horse_name": "タルタロス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.019975078480063135,
+          "ev_score": 2.154879506303643
+        },
+        {
+          "horse_name": "タルタロス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.019975078480063135,
+          "ev_score": 2.154879506303643
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.019975078480063135,
+          "ev_score": 2.154879506303643
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.019975078480063135,
+          "ev_score": 2.154879506303643
+        }
+      ],
+      "bet_form": "軸2頭ながし",
+      "n_tickets": 2,
+      "invested": 200,
+      "horse_num_to_name": {
+        "1": "チュウワダイオウ",
+        "2": "トーアケルキラ",
+        "4": "キュードス",
+        "5": "ロストボール",
+        "6": "ブラックジジ",
+        "7": "キタノブレイク",
+        "9": "ナムラジミー",
+        "10": "リリーアロー",
+        "12": "マテンロウミラクル",
+        "11": "ハイクオリティ",
+        "8": "カレンラップスター",
+        "3": "タルタロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 26483,
+      "model_type": "本命(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.5992523544018941,
+      "expected_value": 6.0,
+      "recommended_bet": 1000.0,
+      "combination_json": "[[2, 7, 3], [2, 3, 7], [7, 2, 3], [7, 3, 2], [3, 2, 7], [3, 7, 2], [2, 7, 11], [2, 11, 7], [7, 2, 11], [7, 11, 2], [11, 2, 7], [11, 7, 2], [2, 7, 9], [2, 9, 7], [7, 2, 9], [7, 9, 2], [9, 2, 7], [9, 7, 2], [2, 7, 10], [2, 10, 7], [7, 2, 10], [7, 10, 2], [10, 2, 7], [10, 7, 2], [2, 7, 12], [2, 12, 7], [7, 2, 12], [7, 12, 2], [12, 2, 7], [12, 7, 2], [2, 3, 11], [2, 11, 3], [3, 2, 11], [3, 11, 2], [11, 2, 3], [11, 3, 2], [2, 3, 9], [2, 9, 3], [3, 2, 9], [3, 9, 2], [9, 2, 3], [9, 3, 2], [2, 3, 10], [2, 10, 3], [3, 2, 10], [3, 10, 2], [10, 2, 3], [10, 3, 2], [2, 3, 12], [2, 12, 3], [3, 2, 12], [3, 12, 2], [12, 2, 3], [12, 3, 2], [2, 11, 9], [2, 9, 11], [11, 2, 9], [11, 9, 2], [9, 2, 11], [9, 11, 2], [2, 11, 10], [2, 10, 11], [11, 2, 10], [11, 10, 2], [10, 2, 11], [10, 11, 2], [2, 11, 12], [2, 12, 11], [11, 2, 12], [11, 12, 2], [12, 2, 11], [12, 11, 2], [2, 9, 10], [2, 10, 9], [9, 2, 10], [9, 10, 2], [10, 2, 9], [10, 9, 2], [2, 9, 12], [2, 12, 9], [9, 2, 12], [9, 12, 2], [12, 2, 9], [12, 9, 2], [2, 10, 12], [2, 12, 10], [10, 2, 12], [10, 12, 2], [12, 2, 10], [12, 10, 2]]",
+      "notes": "1頭軸マルチ 軸=2番 相手=[7, 3, 11, 9, 10, 12] 90点 Harville最大=0.0200",
+      "created_at": "2026-05-09 10:02:23",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -9000.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.019975078480063135,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.019975078480063135,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.019975078480063135,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.019975078480063135,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.019975078480063135,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.019975078480063135,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.019975078480063135,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.019975078480063135,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.019975078480063135,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.019975078480063135,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "タルタロス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.019975078480063135,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "タルタロス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.019975078480063135,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "タルタロス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.019975078480063135,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "タルタロス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.019975078480063135,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "タルタロス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.019975078480063135,
+          "ev_score": 6.0
+        }
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 90,
+      "invested": 9000,
+      "horse_num_to_name": {
+        "1": "チュウワダイオウ",
+        "2": "トーアケルキラ",
+        "4": "キュードス",
+        "5": "ロストボール",
+        "6": "ブラックジジ",
+        "7": "キタノブレイク",
+        "9": "ナムラジミー",
+        "10": "リリーアロー",
+        "12": "マテンロウミラクル",
+        "11": "ハイクオリティ",
+        "8": "カレンラップスター",
+        "3": "タルタロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 26484,
+      "model_type": "卍(直前)",
+      "bet_type": "単勝",
+      "confidence": 0.335787857981282,
+      "expected_value": 1.9475695762914358,
+      "recommended_bet": 1000.0,
+      "combination_json": "[[12]]",
+      "notes": "確率1位(卍) EV=1.95 odds=5.8",
+      "created_at": "2026-05-09 10:02:23",
+      "is_hit": 1,
+      "payout": 12000.0,
+      "profit": 11900.0,
+      "roi": 12000.0,
+      "horses": [
+        {
+          "horse_name": "マテンロウミラクル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 1.9475695762914358,
+          "ev_score": 1.9475695762914358
+        }
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "1": "チュウワダイオウ",
+        "2": "トーアケルキラ",
+        "4": "キュードス",
+        "5": "ロストボール",
+        "6": "ブラックジジ",
+        "7": "キタノブレイク",
+        "9": "ナムラジミー",
+        "10": "リリーアロー",
+        "12": "マテンロウミラクル",
+        "11": "ハイクオリティ",
+        "8": "カレンラップスター",
+        "3": "タルタロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 26485,
+      "model_type": "卍(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.6,
+      "expected_value": 1.5512468429938888,
+      "recommended_bet": 300.0,
+      "combination_json": "[[12], [1], [2]]",
+      "notes": "確率上位3頭を複勝",
+      "created_at": "2026-05-09 10:02:23",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "マテンロウミラクル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 1.5512468429938888,
+          "ev_score": 1.5512468429938888
+        },
+        {
+          "horse_name": "チュウワダイオウ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 1.5512468429938888,
+          "ev_score": 1.5512468429938888
+        },
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 1.5512468429938888,
+          "ev_score": 1.5512468429938888
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "1": "チュウワダイオウ",
+        "2": "トーアケルキラ",
+        "4": "キュードス",
+        "5": "ロストボール",
+        "6": "ブラックジジ",
+        "7": "キタノブレイク",
+        "9": "ナムラジミー",
+        "10": "リリーアロー",
+        "12": "マテンロウミラクル",
+        "11": "ハイクオリティ",
+        "8": "カレンラップスター",
+        "3": "タルタロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 26486,
+      "model_type": "卍(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.8843739789149927,
+      "expected_value": 4.0,
+      "recommended_bet": 500.0,
+      "combination_json": "[[1, 12], [2, 12], [5, 12], [7, 12], [8, 12]]",
+      "notes": "軸12番×相手5頭フォーメーション Harville最大=0.177",
+      "created_at": "2026-05-09 10:02:23",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "チュウワダイオウ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.17687479578299853,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "チュウワダイオウ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.17687479578299853,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "チュウワダイオウ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.17687479578299853,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "チュウワダイオウ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.17687479578299853,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "チュウワダイオウ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.17687479578299853,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "マテンロウミラクル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.17687479578299853,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "マテンロウミラクル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.17687479578299853,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "マテンロウミラクル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.17687479578299853,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "マテンロウミラクル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.17687479578299853,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "マテンロウミラクル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.17687479578299853,
+          "ev_score": 4.0
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "チュウワダイオウ",
+        "2": "トーアケルキラ",
+        "4": "キュードス",
+        "5": "ロストボール",
+        "6": "ブラックジジ",
+        "7": "キタノブレイク",
+        "9": "ナムラジミー",
+        "10": "リリーアロー",
+        "12": "マテンロウミラクル",
+        "11": "ハイクオリティ",
+        "8": "カレンラップスター",
+        "3": "タルタロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 26487,
+      "model_type": "卍(直前)",
+      "bet_type": "ワイド",
+      "confidence": 1.0,
+      "expected_value": 1.93172039466444,
+      "recommended_bet": 500.0,
+      "combination_json": "[[1, 12], [2, 12], [5, 12], [7, 12], [8, 12]]",
+      "notes": "軸12番×相手5頭ワイド Harville最大=0.177",
+      "created_at": "2026-05-09 10:02:23",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "チュウワダイオウ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.17687479578299853,
+          "ev_score": 1.93172039466444
+        },
+        {
+          "horse_name": "チュウワダイオウ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.17687479578299853,
+          "ev_score": 1.93172039466444
+        },
+        {
+          "horse_name": "チュウワダイオウ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.17687479578299853,
+          "ev_score": 1.93172039466444
+        },
+        {
+          "horse_name": "チュウワダイオウ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.17687479578299853,
+          "ev_score": 1.93172039466444
+        },
+        {
+          "horse_name": "チュウワダイオウ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.17687479578299853,
+          "ev_score": 1.93172039466444
+        },
+        {
+          "horse_name": "マテンロウミラクル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.17687479578299853,
+          "ev_score": 1.93172039466444
+        },
+        {
+          "horse_name": "マテンロウミラクル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.17687479578299853,
+          "ev_score": 1.93172039466444
+        },
+        {
+          "horse_name": "マテンロウミラクル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.17687479578299853,
+          "ev_score": 1.93172039466444
+        },
+        {
+          "horse_name": "マテンロウミラクル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.17687479578299853,
+          "ev_score": 1.93172039466444
+        },
+        {
+          "horse_name": "マテンロウミラクル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.17687479578299853,
+          "ev_score": 1.93172039466444
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "チュウワダイオウ",
+        "2": "トーアケルキラ",
+        "4": "キュードス",
+        "5": "ロストボール",
+        "6": "ブラックジジ",
+        "7": "キタノブレイク",
+        "9": "ナムラジミー",
+        "10": "リリーアロー",
+        "12": "マテンロウミラクル",
+        "11": "ハイクオリティ",
+        "8": "カレンラップスター",
+        "3": "タルタロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 26488,
+      "model_type": "卍(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.7116237489410345,
+      "expected_value": 3.8359188656980288,
+      "recommended_bet": 300.0,
+      "combination_json": "[[12, 1], [12, 2], [12, 5]]",
+      "notes": "軸12番→相手3頭フォーメーション Harville最大=0.089",
+      "created_at": "2026-05-09 10:02:23",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "マテンロウミラクル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.08895296861762932,
+          "ev_score": 3.8359188656980288
+        },
+        {
+          "horse_name": "マテンロウミラクル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.08895296861762932,
+          "ev_score": 3.8359188656980288
+        },
+        {
+          "horse_name": "マテンロウミラクル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.08895296861762932,
+          "ev_score": 3.8359188656980288
+        },
+        {
+          "horse_name": "チュウワダイオウ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.08895296861762932,
+          "ev_score": 3.8359188656980288
+        },
+        {
+          "horse_name": "チュウワダイオウ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.08895296861762932,
+          "ev_score": 3.8359188656980288
+        },
+        {
+          "horse_name": "チュウワダイオウ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.08895296861762932,
+          "ev_score": 3.8359188656980288
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "1": "チュウワダイオウ",
+        "2": "トーアケルキラ",
+        "4": "キュードス",
+        "5": "ロストボール",
+        "6": "ブラックジジ",
+        "7": "キタノブレイク",
+        "9": "ナムラジミー",
+        "10": "リリーアロー",
+        "12": "マテンロウミラクル",
+        "11": "ハイクオリティ",
+        "8": "カレンラップスター",
+        "3": "タルタロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 26491,
+      "model_type": "卍(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.7599233184660092,
+      "expected_value": 3.6858915346438796,
+      "recommended_bet": 300.0,
+      "combination_json": "[[1, 7, 12]]",
+      "notes": "合成EV=3.69 Harville=0.0507 馬番=(1, 7, 12)",
+      "created_at": "2026-05-09 10:02:24",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "チュウワダイオウ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.050661554564400614,
+          "ev_score": 3.6858915346438796
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.050661554564400614,
+          "ev_score": 3.6858915346438796
+        },
+        {
+          "horse_name": "マテンロウミラクル",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.050661554564400614,
+          "ev_score": 3.6858915346438796
+        }
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "1": "チュウワダイオウ",
+        "2": "トーアケルキラ",
+        "4": "キュードス",
+        "5": "ロストボール",
+        "6": "ブラックジジ",
+        "7": "キタノブレイク",
+        "9": "ナムラジミー",
+        "10": "リリーアロー",
+        "12": "マテンロウミラクル",
+        "11": "ハイクオリティ",
+        "8": "カレンラップスター",
+        "3": "タルタロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 26492,
+      "model_type": "Oracle(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.10937439752704296,
+      "expected_value": 3.281231925811289,
+      "recommended_bet": 500.0,
+      "combination_json": "[[2, 3, 7], [2, 7, 11], [2, 7, 9], [2, 7, 10], [2, 7, 12]]",
+      "notes": "[Oracle] 的中確率最大 5点 P最大=0.1094 馬番=[(2, 3, 7), (2, 7, 11), (2, 7, 9), (2, 7, 10), (2, 7, 12)]",
+      "created_at": "2026-05-09 10:02:24",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.10937439752704296,
+          "ev_score": 3.281231925811289
+        },
+        {
+          "horse_name": "タルタロス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.10937439752704296,
+          "ev_score": 3.281231925811289
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.10937439752704296,
+          "ev_score": 3.281231925811289
+        }
+      ],
+      "bet_form": "軸2頭ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "チュウワダイオウ",
+        "2": "トーアケルキラ",
+        "4": "キュードス",
+        "5": "ロストボール",
+        "6": "ブラックジジ",
+        "7": "キタノブレイク",
+        "9": "ナムラジミー",
+        "10": "リリーアロー",
+        "12": "マテンロウミラクル",
+        "11": "ハイクオリティ",
+        "8": "カレンラップスター",
+        "3": "タルタロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 26493,
+      "model_type": "Oracle(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.01822906625450716,
+      "expected_value": 2.734359938176074,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[2, 7, 3], [2, 3, 7], [7, 2, 3], [7, 3, 2], [3, 2, 7], [3, 7, 2], [2, 7, 11], [2, 11, 7], [7, 2, 11], [7, 11, 2], [11, 2, 7], [11, 7, 2]]",
+      "notes": "[Oracle] 的中確率最大 12点 P最大=0.0182 馬番=[(2, 7, 3), (2, 3, 7), (7, 2, 3), (7, 3, 2), (3, 2, 7), (3, 7, 2), (2, 7, 11), (2, 11, 7), (7, 2, 11), (7, 11, 2), (11, 2, 7), (11, 7, 2)]",
+      "created_at": "2026-05-09 10:02:24",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.01822906625450716,
+          "ev_score": 2.734359938176074
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.01822906625450716,
+          "ev_score": 2.734359938176074
+        },
+        {
+          "horse_name": "タルタロス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.01822906625450716,
+          "ev_score": 2.734359938176074
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 12,
+      "invested": 1200,
+      "horse_num_to_name": {
+        "1": "チュウワダイオウ",
+        "2": "トーアケルキラ",
+        "4": "キュードス",
+        "5": "ロストボール",
+        "6": "ブラックジジ",
+        "7": "キタノブレイク",
+        "9": "ナムラジミー",
+        "10": "リリーアロー",
+        "12": "マテンロウミラクル",
+        "11": "ハイクオリティ",
+        "8": "カレンラップスター",
+        "3": "タルタロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 26494,
+      "model_type": "本命(直前)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-05-09 10:02:24",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": "2022105903",
+          "predicted_rank": 1,
+          "model_score": 0.17163724893487523,
+          "ev_score": 1.4760803408399268
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": "2022102486",
+          "predicted_rank": 2,
+          "model_score": 0.17163724893487523,
+          "ev_score": 3.8275106512477177
+        },
+        {
+          "horse_name": "タルタロス",
+          "horse_id": "2021103150",
+          "predicted_rank": 3,
+          "model_score": 0.14784394250513347,
+          "ev_score": 2.8681724845995893
+        },
+        {
+          "horse_name": "ハイクオリティ",
+          "horse_id": "2022106924",
+          "predicted_rank": 4,
+          "model_score": 0.1116751269035533,
+          "ev_score": 0.2233502538071066
+        },
+        {
+          "horse_name": "リリーアロー",
+          "horse_id": "2019100689",
+          "predicted_rank": 5,
+          "model_score": 0.10558375634517767,
+          "ev_score": 3.1991878172588835
+        },
+        {
+          "horse_name": "ナムラジミー",
+          "horse_id": "2022101814",
+          "predicted_rank": 6,
+          "model_score": 0.10558375634517767,
+          "ev_score": 3.347005076142132
+        },
+        {
+          "horse_name": "マテンロウミラクル",
+          "horse_id": "2021105993",
+          "predicted_rank": 7,
+          "model_score": 0.10282776349614396,
+          "ev_score": 0.596401028277635
+        },
+        {
+          "horse_name": "ブラックジジ",
+          "horse_id": "2022101578",
+          "predicted_rank": 8,
+          "model_score": 0.09099933818663138,
+          "ev_score": 1.319490403706155
+        },
+        {
+          "horse_name": "キュードス",
+          "horse_id": "2022106312",
+          "predicted_rank": 9,
+          "model_score": 0.09099933818663138,
+          "ev_score": 1.7926869622766382
+        },
+        {
+          "horse_name": "ロストボール",
+          "horse_id": "2019106972",
+          "predicted_rank": 10,
+          "model_score": 0.09099933818663138,
+          "ev_score": 6.342653871608207
+        },
+        {
+          "horse_name": "カレンラップスター",
+          "horse_id": "2022104723",
+          "predicted_rank": 11,
+          "model_score": 0.05485980272636595,
+          "ev_score": 0.4059625401751081
+        },
+        {
+          "horse_name": "チュウワダイオウ",
+          "horse_id": "2021102294",
+          "predicted_rank": 12,
+          "model_score": 0.0546448087431694,
+          "ev_score": 1.3770491803278688
+        }
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "invested": 0,
+      "horse_num_to_name": {
+        "1": "チュウワダイオウ",
+        "2": "トーアケルキラ",
+        "4": "キュードス",
+        "5": "ロストボール",
+        "6": "ブラックジジ",
+        "7": "キタノブレイク",
+        "9": "ナムラジミー",
+        "10": "リリーアロー",
+        "12": "マテンロウミラクル",
+        "11": "ハイクオリティ",
+        "8": "カレンラップスター",
+        "3": "タルタロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 26495,
+      "model_type": "HitFocus(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.20106688649394633,
+      "expected_value": 1.3736567978248022,
+      "recommended_bet": 700.0,
+      "combination_json": "[[2, 7], [2, 3], [3, 7], [2, 11], [7, 11], [2, 9], [7, 9]]",
+      "notes": "2軸マルチ 軸=2,7 相手=[3, 11, 9] Harville最大=0.0402",
+      "created_at": "2026-05-09 10:02:24",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -700.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.040213377298789266,
+          "ev_score": 1.3736567978248022
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.040213377298789266,
+          "ev_score": 1.3736567978248022
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 7,
+      "invested": 700,
+      "horse_num_to_name": {
+        "1": "チュウワダイオウ",
+        "2": "トーアケルキラ",
+        "4": "キュードス",
+        "5": "ロストボール",
+        "6": "ブラックジジ",
+        "7": "キタノブレイク",
+        "9": "ナムラジミー",
+        "10": "リリーアロー",
+        "12": "マテンロウミラクル",
+        "11": "ハイクオリティ",
+        "8": "カレンラップスター",
+        "3": "タルタロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 26496,
+      "model_type": "HitFocus(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.16085350919515706,
+      "expected_value": 1.285641778930942,
+      "recommended_bet": 800.0,
+      "combination_json": "[[2, 7], [7, 2], [2, 3], [7, 3], [2, 11], [7, 11], [2, 9], [7, 9]]",
+      "notes": "2軸マルチ 軸=2,7 相手=[3, 11, 9] Harville最大=0.0201",
+      "created_at": "2026-05-09 10:02:24",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -800.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.020106688649394633,
+          "ev_score": 1.285641778930942
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.020106688649394633,
+          "ev_score": 1.285641778930942
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 8,
+      "invested": 800,
+      "horse_num_to_name": {
+        "1": "チュウワダイオウ",
+        "2": "トーアケルキラ",
+        "4": "キュードス",
+        "5": "ロストボール",
+        "6": "ブラックジジ",
+        "7": "キタノブレイク",
+        "9": "ナムラジミー",
+        "10": "リリーアロー",
+        "12": "マテンロウミラクル",
+        "11": "ハイクオリティ",
+        "8": "カレンラップスター",
+        "3": "タルタロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 26497,
+      "model_type": "HitFocus(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.09328240634467352,
+      "expected_value": 1.3033007371889866,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[2, 7, 3], [7, 2, 3], [2, 3, 7], [7, 3, 2], [2, 7, 11], [7, 2, 11], [2, 11, 7], [7, 11, 2], [2, 7, 9], [7, 2, 9], [2, 9, 7], [7, 9, 2]]",
+      "notes": "2軸マルチ 軸=2,7 相手=[3, 11, 9] 12点 Harville最大=0.0031",
+      "created_at": "2026-05-09 10:02:24",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "トーアケルキラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0031094135448224507,
+          "ev_score": 1.3033007371889866
+        },
+        {
+          "horse_name": "キタノブレイク",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0031094135448224507,
+          "ev_score": 1.3033007371889866
+        },
+        {
+          "horse_name": "タルタロス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0031094135448224507,
+          "ev_score": 1.3033007371889866
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 12,
+      "invested": 1200,
+      "horse_num_to_name": {
+        "1": "チュウワダイオウ",
+        "2": "トーアケルキラ",
+        "4": "キュードス",
+        "5": "ロストボール",
+        "6": "ブラックジジ",
+        "7": "キタノブレイク",
+        "9": "ナムラジミー",
+        "10": "リリーアロー",
+        "12": "マテンロウミラクル",
+        "11": "ハイクオリティ",
+        "8": "カレンラップスター",
+        "3": "タルタロス"
+      },
+      "is_provisional": false
+    }
+  ],
+  "training_evals": {},
+  "prerace": {
+    "bias": {
+      "today_inner_bias": null,
+      "today_front_bias": null,
+      "today_race_count": null
+    },
+    "ev_recommend": [
+      {
+        "horse_number": 5,
+        "horse_name": "ロストボール",
+        "win_odds": 69.7,
+        "ev_score": 6.3427,
+        "kelly_fraction": 0.0078
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "キタノブレイク",
+        "win_odds": 22.3,
+        "ev_score": 3.8275,
+        "kelly_fraction": 0.0133
+      },
+      {
+        "horse_number": 9,
+        "horse_name": "ナムラジミー",
+        "win_odds": 31.7,
+        "ev_score": 3.347,
+        "kelly_fraction": 0.0076
+      },
+      {
+        "horse_number": 10,
+        "horse_name": "リリーアロー",
+        "win_odds": 30.3,
+        "ev_score": 3.1992,
+        "kelly_fraction": 0.0075
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "タルタロス",
+        "win_odds": 19.4,
+        "ev_score": 2.8682,
+        "kelly_fraction": 0.0102
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "キュードス",
+        "win_odds": 19.7,
+        "ev_score": 1.7927,
+        "kelly_fraction": 0.0042
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "トーアケルキラ",
+        "win_odds": 8.6,
+        "ev_score": 1.4761,
+        "kelly_fraction": 0.0063
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "チュウワダイオウ",
+        "win_odds": 25.2,
+        "ev_score": 1.377,
+        "kelly_fraction": 0.0016
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "ブラックジジ",
+        "win_odds": 14.5,
+        "ev_score": 1.3195,
+        "kelly_fraction": 0.0024
+      }
+    ],
+    "generated_at": "2026-05-09T10:02:24.030105"
+  }
+}

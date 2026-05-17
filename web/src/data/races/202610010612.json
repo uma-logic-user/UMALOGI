@@ -12,7 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 4,
+      "horse_number": 8,
+      "horse_name": "ヤマニンレセディ",
+      "horse_id": "2022106605",
+      "sex_age": "牝1",
+      "weight_carried": 56.0,
+      "jockey": "横山琉人",
+      "trainer": "長谷川浩",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "ルパヴィヨン",
@@ -32,7 +52,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 4,
       "horse_number": 7,
       "horse_name": "タマモブラウンタイ",
@@ -41,26 +61,6 @@
       "weight_carried": 56.0,
       "jockey": "柴田裕一",
       "trainer": "角田晃一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 8,
-      "horse_name": "ヤマニンレセディ",
-      "horse_id": "2022106605",
-      "sex_age": "牝1",
-      "weight_carried": 56.0,
-      "jockey": "横山琉人",
-      "trainer": "長谷川浩",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -378,12 +378,6 @@
       "combination": "8",
       "payout": 460,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "18",
-      "payout": 18000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

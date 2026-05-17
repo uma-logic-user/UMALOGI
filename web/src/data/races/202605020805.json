@@ -1,0 +1,2840 @@
+{
+  "race_id": "202605020805",
+  "race_name": "",
+  "date": "2026-05-17",
+  "venue": "東京",
+  "race_number": 5,
+  "distance": 0,
+  "surface": "",
+  "track_direction": "",
+  "weather": "",
+  "condition": "",
+  "year": "2026",
+  "results": [
+    {
+      "rank": 1,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "ウルフマン",
+      "horse_id": "2023107045",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "津村",
+      "trainer": "美浦手塚久",
+      "finish_time": "2:24.3",
+      "margin": null,
+      "win_odds": 3.1,
+      "popularity": 2,
+      "horse_weight": 442,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1464,
+      "ev_score": 0.4977,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.1881,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 2,
+      "gate_number": 6,
+      "horse_number": 6,
+      "horse_name": "クリスタルドレス",
+      "horse_id": "2023107406",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "江田照",
+      "trainer": "美浦高橋文",
+      "finish_time": null,
+      "margin": "1",
+      "win_odds": 194.3,
+      "popularity": 11,
+      "horse_weight": 422,
+      "horse_weight_diff": 6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0719,
+      "ev_score": 3.5283,
+      "kelly_fraction": 0.0053,
+      "manji_ev": 0.15,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 8,
+      "horse_number": 11,
+      "horse_name": "ショウナンマルチ",
+      "horse_id": "2023103888",
+      "sex_age": "牡5",
+      "weight_carried": 57.0,
+      "jockey": "ルメー",
+      "trainer": "美浦大竹",
+      "finish_time": null,
+      "margin": "2.1/2",
+      "win_odds": 1.5,
+      "popularity": 1,
+      "horse_weight": 510,
+      "horse_weight_diff": 6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1464,
+      "ev_score": 0.3074,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.5954,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 4,
+      "gate_number": 8,
+      "horse_number": 10,
+      "horse_name": "レッドブライトン",
+      "horse_id": "2023107357",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "西村淳",
+      "trainer": "栗東奥村豊",
+      "finish_time": null,
+      "margin": "1/2",
+      "win_odds": 6.2,
+      "popularity": 3,
+      "horse_weight": 468,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1192,
+      "ev_score": 0.7984,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.1482,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 5,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "フレキシブル",
+      "horse_id": "2023105808",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "ゴンサ",
+      "trainer": "美浦斎藤誠",
+      "finish_time": null,
+      "margin": "3/4",
+      "win_odds": 38.2,
+      "popularity": 5,
+      "horse_weight": 440,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.057,
+      "ev_score": 1.282,
+      "kelly_fraction": 0.0013,
+      "manji_ev": 0.238,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "ゴールデンダガー",
+      "horse_id": "2023105726",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "岩田望来",
+      "trainer": "中舘英二",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0719,
+      "ev_score": 1.3582,
+      "kelly_fraction": 0.002,
+      "manji_ev": 0.9223,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "レッドリアライズ",
+      "horse_id": "2023105233",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "原優介",
+      "trainer": "黒岩陽一",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0672,
+      "ev_score": 1.284,
+      "kelly_fraction": 0.0016,
+      "manji_ev": 0.5216,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "ウインスターリング",
+      "horse_id": "2023105883",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "松岡正海",
+      "trainer": "畠山吉宏",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0719,
+      "ev_score": 1.8468,
+      "kelly_fraction": 0.0034,
+      "manji_ev": 1.0805,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 7,
+      "horse_name": "ルアグロール",
+      "horse_id": "2023101699",
+      "sex_age": "騸3",
+      "weight_carried": 57.0,
+      "jockey": "小林脩斗",
+      "trainer": "嘉藤貴行",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.057,
+      "ev_score": 0.6268,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.2453,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 8,
+      "horse_name": "ラスターヴァース",
+      "horse_id": "2023104597",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "石橋脩",
+      "trainer": "牧光二",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0507,
+      "ev_score": 1.7898,
+      "kelly_fraction": 0.0023,
+      "manji_ev": 0.3705,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 9,
+      "horse_name": "コスモアマデウス",
+      "horse_id": "2023106451",
+      "sex_age": "牡1",
+      "weight_carried": 57.0,
+      "jockey": "柴田大知",
+      "trainer": "畠山吉宏",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0879,
+      "ev_score": 5.2062,
+      "kelly_fraction": 0.0072,
+      "manji_ev": 0.4795,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    }
+  ],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "5",
+      "payout": 310,
+      "popularity": 2
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "5",
+      "payout": 110,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "11",
+      "payout": 110,
+      "popularity": 2
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "6",
+      "payout": 1880,
+      "popularity": 11
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "5-6",
+      "payout": 6190,
+      "popularity": 11
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "5-6",
+      "payout": 36800,
+      "popularity": 32
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "5-11",
+      "payout": 160,
+      "popularity": 1
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "6-11",
+      "payout": 5610,
+      "popularity": 34
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "5-6",
+      "payout": 8270,
+      "popularity": 35
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "5→6",
+      "payout": 83430,
+      "popularity": 55
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5-6-11",
+      "payout": 13360,
+      "popularity": 35
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "5→6→11",
+      "payout": 215450,
+      "popularity": 251
+    }
+  ],
+  "predictions": [
+    {
+      "prediction_id": 34135,
+      "model_type": "本命(暫定)",
+      "bet_type": "単勝",
+      "confidence": 0.17103620474406991,
+      "expected_value": 0.5815230961298377,
+      "recommended_bet": 100.0,
+      "combination_json": "[[5]]",
+      "notes": "確率1位 P(win)=0.17 odds=3.4 EV=0.58",
+      "created_at": "2026-05-17 09:44:12",
+      "is_hit": 1,
+      "payout": 310.0,
+      "profit": 210.0,
+      "roi": 310.0,
+      "horses": [
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.17103620474406991,
+          "ev_score": 0.5815230961298377
+        }
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "1": "ゴールデンダガー",
+        "2": "レッドリアライズ",
+        "4": "ウインスターリング",
+        "7": "ルアグロール",
+        "8": "ラスターヴァース",
+        "9": "コスモアマデウス",
+        "5": "ウルフマン",
+        "6": "クリスタルドレス",
+        "11": "ショウナンマルチ",
+        "10": "レッドブライトン",
+        "3": "フレキシブル"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34136,
+      "model_type": "本命(暫定)",
+      "bet_type": "複勝",
+      "confidence": 0.1462914922986702,
+      "expected_value": 0.43887447689601056,
+      "recommended_bet": 100.0,
+      "combination_json": "[[5], [11], [10]]",
+      "notes": "上位3頭を複勝",
+      "created_at": "2026-05-17 09:44:12",
+      "is_hit": 1,
+      "payout": 220.0,
+      "profit": -80.0,
+      "roi": 73.33333333333333,
+      "horses": [
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.1462914922986702,
+          "ev_score": 0.43887447689601056
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.1462914922986702,
+          "ev_score": 0.43887447689601056
+        },
+        {
+          "horse_name": "レッドブライトン",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.1462914922986702,
+          "ev_score": 0.43887447689601056
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "1": "ゴールデンダガー",
+        "2": "レッドリアライズ",
+        "4": "ウインスターリング",
+        "7": "ルアグロール",
+        "8": "ラスターヴァース",
+        "9": "コスモアマデウス",
+        "5": "ウルフマン",
+        "6": "クリスタルドレス",
+        "11": "ショウナンマルチ",
+        "10": "レッドブライトン",
+        "3": "フレキシブル"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34137,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.06785160003729211,
+      "expected_value": 0.9271649738695817,
+      "recommended_bet": 100.0,
+      "combination_json": "[[5, 11], [5, 10], [2, 5], [1, 5], [4, 5]]",
+      "notes": "軸5番×相手5頭フォーメーション Harville最大=0.068",
+      "created_at": "2026-05-17 09:44:12",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06785160003729211,
+          "ev_score": 0.9271649738695817
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06785160003729211,
+          "ev_score": 0.9271649738695817
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06785160003729211,
+          "ev_score": 0.9271649738695817
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06785160003729211,
+          "ev_score": 0.9271649738695817
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06785160003729211,
+          "ev_score": 0.9271649738695817
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06785160003729211,
+          "ev_score": 0.9271649738695817
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06785160003729211,
+          "ev_score": 0.9271649738695817
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06785160003729211,
+          "ev_score": 0.9271649738695817
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06785160003729211,
+          "ev_score": 0.9271649738695817
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06785160003729211,
+          "ev_score": 0.9271649738695817
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "ゴールデンダガー",
+        "2": "レッドリアライズ",
+        "4": "ウインスターリング",
+        "7": "ルアグロール",
+        "8": "ラスターヴァース",
+        "9": "コスモアマデウス",
+        "5": "ウルフマン",
+        "6": "クリスタルドレス",
+        "11": "ショウナンマルチ",
+        "10": "レッドブライトン",
+        "3": "フレキシブル"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34138,
+      "model_type": "本命(暫定)",
+      "bet_type": "ワイド",
+      "confidence": 0.08820708004847976,
+      "expected_value": 0.48953572394905503,
+      "recommended_bet": 100.0,
+      "combination_json": "[[5, 11], [5, 10], [2, 5], [1, 5], [4, 5]]",
+      "notes": "軸5番×相手5頭ワイド Harville最大=0.068",
+      "created_at": "2026-05-17 09:44:12",
+      "is_hit": 1,
+      "payout": 160.0,
+      "profit": -340.0,
+      "roi": 32.0,
+      "horses": [
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06785160003729211,
+          "ev_score": 0.48953572394905503
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06785160003729211,
+          "ev_score": 0.48953572394905503
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06785160003729211,
+          "ev_score": 0.48953572394905503
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06785160003729211,
+          "ev_score": 0.48953572394905503
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06785160003729211,
+          "ev_score": 0.48953572394905503
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06785160003729211,
+          "ev_score": 0.48953572394905503
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06785160003729211,
+          "ev_score": 0.48953572394905503
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06785160003729211,
+          "ev_score": 0.48953572394905503
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06785160003729211,
+          "ev_score": 0.48953572394905503
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06785160003729211,
+          "ev_score": 0.48953572394905503
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "ゴールデンダガー",
+        "2": "レッドリアライズ",
+        "4": "ウインスターリング",
+        "7": "ルアグロール",
+        "8": "ラスターヴァース",
+        "9": "コスモアマデウス",
+        "5": "ウルフマン",
+        "6": "クリスタルドレス",
+        "11": "ショウナンマルチ",
+        "10": "レッドブライトン",
+        "3": "フレキシブル"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34139,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬単",
+      "confidence": 0.2756772729417698,
+      "expected_value": 0.9205484417389813,
+      "recommended_bet": 100.0,
+      "combination_json": "[[5, 11], [5, 10], [5, 2]]",
+      "notes": "軸5番→相手3頭フォーメーション Harville最大=0.034",
+      "created_at": "2026-05-17 09:44:12",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.034459659117721225,
+          "ev_score": 0.9205484417389813
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.034459659117721225,
+          "ev_score": 0.9205484417389813
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.034459659117721225,
+          "ev_score": 0.9205484417389813
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.034459659117721225,
+          "ev_score": 0.9205484417389813
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.034459659117721225,
+          "ev_score": 0.9205484417389813
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.034459659117721225,
+          "ev_score": 0.9205484417389813
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "1": "ゴールデンダガー",
+        "2": "レッドリアライズ",
+        "4": "ウインスターリング",
+        "7": "ルアグロール",
+        "8": "ラスターヴァース",
+        "9": "コスモアマデウス",
+        "5": "ウルフマン",
+        "6": "クリスタルドレス",
+        "11": "ショウナンマルチ",
+        "10": "レッドブライトン",
+        "3": "フレキシブル"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34140,
+      "model_type": "本命(暫定)",
+      "bet_type": "三連複",
+      "confidence": 0.45039832687922354,
+      "expected_value": 1.8174623419006055,
+      "recommended_bet": 100.0,
+      "combination_json": "[[5, 10, 11], [2, 5, 11]]",
+      "notes": "合成EV最大=1.82 2点 馬番=[(5, 10, 11), (2, 5, 11)]",
+      "created_at": "2026-05-17 09:44:12",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03753319390660196,
+          "ev_score": 1.8174623419006055
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03753319390660196,
+          "ev_score": 1.8174623419006055
+        },
+        {
+          "horse_name": "レッドブライトン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03753319390660196,
+          "ev_score": 1.8174623419006055
+        },
+        {
+          "horse_name": "レッドブライトン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03753319390660196,
+          "ev_score": 1.8174623419006055
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.03753319390660196,
+          "ev_score": 1.8174623419006055
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.03753319390660196,
+          "ev_score": 1.8174623419006055
+        }
+      ],
+      "bet_form": "軸2頭ながし",
+      "n_tickets": 2,
+      "invested": 200,
+      "horse_num_to_name": {
+        "1": "ゴールデンダガー",
+        "2": "レッドリアライズ",
+        "4": "ウインスターリング",
+        "7": "ルアグロール",
+        "8": "ラスターヴァース",
+        "9": "コスモアマデウス",
+        "5": "ウルフマン",
+        "6": "クリスタルドレス",
+        "11": "ショウナンマルチ",
+        "10": "レッドブライトン",
+        "3": "フレキシブル"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34141,
+      "model_type": "本命(暫定)",
+      "bet_type": "三連単",
+      "confidence": 1.0,
+      "expected_value": 5.911920931977907,
+      "recommended_bet": 200.0,
+      "combination_json": "[[5, 11, 10], [5, 10, 11], [11, 5, 10], [11, 10, 5], [10, 5, 11], [10, 11, 5], [5, 11, 2], [5, 2, 11], [11, 5, 2], [11, 2, 5], [2, 5, 11], [2, 11, 5], [5, 11, 1], [5, 1, 11], [11, 5, 1], [11, 1, 5], [1, 5, 11], [1, 11, 5], [5, 11, 4], [5, 4, 11], [11, 5, 4], [11, 4, 5], [4, 5, 11], [4, 11, 5], [5, 11, 9], [5, 9, 11], [11, 5, 9], [11, 9, 5], [9, 5, 11], [9, 11, 5], [5, 10, 2], [5, 2, 10], [10, 5, 2], [10, 2, 5], [2, 5, 10], [2, 10, 5], [5, 10, 1], [5, 1, 10], [10, 5, 1], [10, 1, 5], [1, 5, 10], [1, 10, 5], [5, 10, 4], [5, 4, 10], [10, 5, 4], [10, 4, 5], [4, 5, 10], [4, 10, 5], [5, 10, 9], [5, 9, 10], [10, 5, 9], [10, 9, 5], [9, 5, 10], [9, 10, 5], [5, 2, 1], [5, 1, 2], [2, 5, 1], [2, 1, 5], [1, 5, 2], [1, 2, 5], [5, 2, 4], [5, 4, 2], [2, 5, 4], [2, 4, 5], [4, 5, 2], [4, 2, 5], [5, 2, 9], [5, 9, 2], [2, 5, 9], [2, 9, 5], [9, 5, 2], [9, 2, 5], [5, 1, 4], [5, 4, 1], [1, 5, 4], [1, 4, 5], [4, 5, 1], [4, 1, 5], [5, 1, 9], [5, 9, 1], [1, 5, 9], [1, 9, 5], [9, 5, 1], [9, 1, 5], [5, 4, 9], [5, 9, 4], [4, 5, 9], [4, 9, 5], [9, 5, 4], [9, 4, 5]]",
+      "notes": "1頭軸マルチ 軸=5番 相手=[11, 10, 2, 1, 4, 9] 90点 Harville最大=0.0375",
+      "created_at": "2026-05-17 09:44:12",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -9000.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03753319390660196,
+          "ev_score": 5.911920931977907
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03753319390660196,
+          "ev_score": 5.911920931977907
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03753319390660196,
+          "ev_score": 5.911920931977907
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03753319390660196,
+          "ev_score": 5.911920931977907
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03753319390660196,
+          "ev_score": 5.911920931977907
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03753319390660196,
+          "ev_score": 5.911920931977907
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03753319390660196,
+          "ev_score": 5.911920931977907
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03753319390660196,
+          "ev_score": 5.911920931977907
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03753319390660196,
+          "ev_score": 5.911920931977907
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03753319390660196,
+          "ev_score": 5.911920931977907
+        },
+        {
+          "horse_name": "レッドブライトン",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.03753319390660196,
+          "ev_score": 5.911920931977907
+        },
+        {
+          "horse_name": "レッドブライトン",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.03753319390660196,
+          "ev_score": 5.911920931977907
+        },
+        {
+          "horse_name": "レッドブライトン",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.03753319390660196,
+          "ev_score": 5.911920931977907
+        },
+        {
+          "horse_name": "レッドブライトン",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.03753319390660196,
+          "ev_score": 5.911920931977907
+        },
+        {
+          "horse_name": "レッドブライトン",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.03753319390660196,
+          "ev_score": 5.911920931977907
+        }
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 90,
+      "invested": 9000,
+      "horse_num_to_name": {
+        "1": "ゴールデンダガー",
+        "2": "レッドリアライズ",
+        "4": "ウインスターリング",
+        "7": "ルアグロール",
+        "8": "ラスターヴァース",
+        "9": "コスモアマデウス",
+        "5": "ウルフマン",
+        "6": "クリスタルドレス",
+        "11": "ショウナンマルチ",
+        "10": "レッドブライトン",
+        "3": "フレキシブル"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34142,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-05-17 09:44:12",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": "2023107045",
+          "predicted_rank": 1,
+          "model_score": 0.17103620474406991,
+          "ev_score": 0.5815230961298377
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": "2023103888",
+          "predicted_rank": 2,
+          "model_score": 0.14637904468412946,
+          "ev_score": 0.3073959938366719
+        },
+        {
+          "horse_name": "レッドブライトン",
+          "horse_id": "2023107357",
+          "predicted_rank": 3,
+          "model_score": 0.12145922746781115,
+          "ev_score": 0.8137768240343347
+        },
+        {
+          "horse_name": "レッドリアライズ",
+          "horse_id": "2023105233",
+          "predicted_rank": 4,
+          "model_score": 0.07447447447447447,
+          "ev_score": 1.4224624624624624
+        },
+        {
+          "horse_name": "ウインスターリング",
+          "horse_id": "2023105883",
+          "predicted_rank": 5,
+          "model_score": 0.07186030893216921,
+          "ev_score": 1.8468099395567488
+        },
+        {
+          "horse_name": "ゴールデンダガー",
+          "horse_id": "2023105726",
+          "predicted_rank": 6,
+          "model_score": 0.07186030893216921,
+          "ev_score": 1.358159838817998
+        },
+        {
+          "horse_name": "コスモアマデウス",
+          "horse_id": "2023106451",
+          "predicted_rank": 7,
+          "model_score": 0.0672235481304694,
+          "ev_score": 3.979634049323788
+        },
+        {
+          "horse_name": "フレキシブル",
+          "horse_id": "2023105808",
+          "predicted_rank": 8,
+          "model_score": 0.0569777979157227,
+          "ev_score": 1.2820004531037608
+        },
+        {
+          "horse_name": "クリスタルドレス",
+          "horse_id": "2023107406",
+          "predicted_rank": 9,
+          "model_score": 0.05363204344874406,
+          "ev_score": 2.6333333333333333
+        },
+        {
+          "horse_name": "ラスターヴァース",
+          "horse_id": "2023104597",
+          "predicted_rank": 10,
+          "model_score": 0.05363204344874406,
+          "ev_score": 1.8932111337406652
+        },
+        {
+          "horse_name": "ルアグロール",
+          "horse_id": "2023101699",
+          "predicted_rank": 11,
+          "model_score": 0.05363204344874406,
+          "ev_score": 0.5899524779361847
+        }
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "invested": 0,
+      "horse_num_to_name": {
+        "1": "ゴールデンダガー",
+        "2": "レッドリアライズ",
+        "4": "ウインスターリング",
+        "7": "ルアグロール",
+        "8": "ラスターヴァース",
+        "9": "コスモアマデウス",
+        "5": "ウルフマン",
+        "6": "クリスタルドレス",
+        "11": "ショウナンマルチ",
+        "10": "レッドブライトン",
+        "3": "フレキシブル"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34143,
+      "model_type": "HitFocus(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.3392580001864606,
+      "expected_value": 0.9271649738695817,
+      "recommended_bet": 700.0,
+      "combination_json": "[[5, 11], [5, 10], [10, 11], [2, 5], [2, 11], [1, 5], [1, 11]]",
+      "notes": "2軸マルチ 軸=5,11 相手=[10, 2, 1] Harville最大=0.0679",
+      "created_at": "2026-05-17 09:44:12",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -700.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06785160003729211,
+          "ev_score": 0.9271649738695817
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06785160003729211,
+          "ev_score": 0.9271649738695817
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 7,
+      "invested": 700,
+      "horse_num_to_name": {
+        "1": "ゴールデンダガー",
+        "2": "レッドリアライズ",
+        "4": "ウインスターリング",
+        "7": "ルアグロール",
+        "8": "ラスターヴァース",
+        "9": "コスモアマデウス",
+        "5": "ウルフマン",
+        "6": "クリスタルドレス",
+        "11": "ショウナンマルチ",
+        "10": "レッドブライトン",
+        "3": "フレキシブル"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34144,
+      "model_type": "HitFocus(暫定)",
+      "bet_type": "馬単",
+      "confidence": 0.2756772729417698,
+      "expected_value": 0.9205484417389813,
+      "recommended_bet": 800.0,
+      "combination_json": "[[5, 11], [11, 5], [5, 10], [11, 10], [5, 2], [11, 2], [5, 1], [11, 1]]",
+      "notes": "2軸マルチ 軸=5,11 相手=[10, 2, 1] Harville最大=0.0345",
+      "created_at": "2026-05-17 09:44:12",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -800.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.034459659117721225,
+          "ev_score": 0.9205484417389813
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.034459659117721225,
+          "ev_score": 0.9205484417389813
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 8,
+      "invested": 800,
+      "horse_num_to_name": {
+        "1": "ゴールデンダガー",
+        "2": "レッドリアライズ",
+        "4": "ウインスターリング",
+        "7": "ルアグロール",
+        "8": "ラスターヴァース",
+        "9": "コスモアマデウス",
+        "5": "ウルフマン",
+        "6": "クリスタルドレス",
+        "11": "ショウナンマルチ",
+        "10": "レッドブライトン",
+        "3": "フレキシブル"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34145,
+      "model_type": "HitFocus(暫定)",
+      "bet_type": "三連単",
+      "confidence": 0.20098110645090658,
+      "expected_value": 1.055229861435797,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[5, 11, 10], [11, 5, 10], [5, 10, 11], [11, 10, 5], [5, 11, 2], [11, 5, 2], [5, 2, 11], [11, 2, 5], [5, 11, 1], [11, 5, 1], [5, 1, 11], [11, 1, 5]]",
+      "notes": "2軸マルチ 軸=5,11 相手=[10, 2, 1] 12点 Harville最大=0.0067",
+      "created_at": "2026-05-17 09:44:12",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.00669937021503022,
+          "ev_score": 1.055229861435797
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.00669937021503022,
+          "ev_score": 1.055229861435797
+        },
+        {
+          "horse_name": "レッドブライトン",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.00669937021503022,
+          "ev_score": 1.055229861435797
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 12,
+      "invested": 1200,
+      "horse_num_to_name": {
+        "1": "ゴールデンダガー",
+        "2": "レッドリアライズ",
+        "4": "ウインスターリング",
+        "7": "ルアグロール",
+        "8": "ラスターヴァース",
+        "9": "コスモアマデウス",
+        "5": "ウルフマン",
+        "6": "クリスタルドレス",
+        "11": "ショウナンマルチ",
+        "10": "レッドブライトン",
+        "3": "フレキシブル"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34641,
+      "model_type": "Alpha-Payout(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.29688869724216477,
+      "expected_value": 0.8906660917264942,
+      "recommended_bet": 100.0,
+      "combination_json": "[[11], [5]]",
+      "notes": "2頭 relative nan=0% max=0.891",
+      "created_at": "2026-05-17 11:40:06",
+      "is_hit": 1,
+      "payout": 220.0,
+      "profit": 20.0,
+      "roi": 110.00000000000001,
+      "horses": [
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": "2023103888",
+          "predicted_rank": 1,
+          "model_score": 0.8906660917264942,
+          "ev_score": 0.8906660917264942
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": "2023107045",
+          "predicted_rank": 2,
+          "model_score": 0.8217301135080486,
+          "ev_score": 0.8217301135080486
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 2,
+      "invested": 200,
+      "horse_num_to_name": {
+        "1": "ゴールデンダガー",
+        "2": "レッドリアライズ",
+        "4": "ウインスターリング",
+        "7": "ルアグロール",
+        "8": "ラスターヴァース",
+        "9": "コスモアマデウス",
+        "5": "ウルフマン",
+        "6": "クリスタルドレス",
+        "11": "ショウナンマルチ",
+        "10": "レッドブライトン",
+        "3": "フレキシブル"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34665,
+      "model_type": "Alpha-Payout(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.678759982838352,
+      "expected_value": 2.0362799485150562,
+      "recommended_bet": 200.0,
+      "combination_json": "[[5, 10, 11], [5, 7, 11], [1, 5, 11], [7, 10, 11], [1, 10, 11], [1, 7, 11]]",
+      "notes": "Alpha EV=2.04 軸11番 相手4頭 6点",
+      "created_at": "2026-05-17 11:40:07",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": "2023103888",
+          "predicted_rank": 1,
+          "model_score": 0.8906660917264942,
+          "ev_score": 0.8906660917264942
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": "2023107045",
+          "predicted_rank": 2,
+          "model_score": 0.8217301135080486,
+          "ev_score": 0.8217301135080486
+        }
+      ],
+      "bet_form": "軸1頭ながし",
+      "n_tickets": 6,
+      "invested": 600,
+      "horse_num_to_name": {
+        "1": "ゴールデンダガー",
+        "2": "レッドリアライズ",
+        "4": "ウインスターリング",
+        "7": "ルアグロール",
+        "8": "ラスターヴァース",
+        "9": "コスモアマデウス",
+        "5": "ウルフマン",
+        "6": "クリスタルドレス",
+        "11": "ショウナンマルチ",
+        "10": "レッドブライトン",
+        "3": "フレキシブル"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34666,
+      "model_type": "Alpha-Payout(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.2636682096041608,
+      "expected_value": 1.318341048020804,
+      "recommended_bet": 200.0,
+      "combination_json": "[[11, 5, 10], [11, 10, 5], [11, 5, 7], [11, 5, 1], [11, 7, 5], [11, 1, 5]]",
+      "notes": "Alpha EV=1.32 軸11番→フォーメーション 6点",
+      "created_at": "2026-05-17 11:40:07",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": "2023103888",
+          "predicted_rank": 1,
+          "model_score": 0.8906660917264942,
+          "ev_score": 0.8906660917264942
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": "2023107045",
+          "predicted_rank": 2,
+          "model_score": 0.8217301135080486,
+          "ev_score": 0.8217301135080486
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 6,
+      "invested": 600,
+      "horse_num_to_name": {
+        "1": "ゴールデンダガー",
+        "2": "レッドリアライズ",
+        "4": "ウインスターリング",
+        "7": "ルアグロール",
+        "8": "ラスターヴァース",
+        "9": "コスモアマデウス",
+        "5": "ウルフマン",
+        "6": "クリスタルドレス",
+        "11": "ショウナンマルチ",
+        "10": "レッドブライトン",
+        "3": "フレキシブル"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34667,
+      "model_type": "本命(直前)",
+      "bet_type": "単勝",
+      "confidence": 0.14637904468412946,
+      "expected_value": 0.4976887519260402,
+      "recommended_bet": 100.0,
+      "combination_json": "[[5]]",
+      "notes": "確率1位 P(win)=0.15 odds=3.4 EV=0.50",
+      "created_at": "2026-05-17 11:40:07",
+      "is_hit": 1,
+      "payout": 310.0,
+      "profit": 210.0,
+      "roi": 310.0,
+      "horses": [
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.14637904468412946,
+          "ev_score": 0.4976887519260402
+        }
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "1": "ゴールデンダガー",
+        "2": "レッドリアライズ",
+        "4": "ウインスターリング",
+        "7": "ルアグロール",
+        "8": "ラスターヴァース",
+        "9": "コスモアマデウス",
+        "5": "ウルフマン",
+        "6": "クリスタルドレス",
+        "11": "ショウナンマルチ",
+        "10": "レッドブライトン",
+        "3": "フレキシブル"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34668,
+      "model_type": "本命(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.13730797616479204,
+      "expected_value": 0.41192392849437615,
+      "recommended_bet": 100.0,
+      "combination_json": "[[5], [11], [10]]",
+      "notes": "上位3頭を複勝",
+      "created_at": "2026-05-17 11:40:07",
+      "is_hit": 1,
+      "payout": 220.0,
+      "profit": -80.0,
+      "roi": 73.33333333333333,
+      "horses": [
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.13730797616479204,
+          "ev_score": 0.41192392849437615
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.13730797616479204,
+          "ev_score": 0.41192392849437615
+        },
+        {
+          "horse_name": "レッドブライトン",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.13730797616479204,
+          "ev_score": 0.41192392849437615
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "1": "ゴールデンダガー",
+        "2": "レッドリアライズ",
+        "4": "ウインスターリング",
+        "7": "ルアグロール",
+        "8": "ラスターヴァース",
+        "9": "コスモアマデウス",
+        "5": "ウルフマン",
+        "6": "クリスタルドレス",
+        "11": "ショウナンマルチ",
+        "10": "レッドブライトン",
+        "3": "フレキシブル"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34669,
+      "model_type": "本命(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.05922625178781155,
+      "expected_value": 0.8099071479479654,
+      "recommended_bet": 100.0,
+      "combination_json": "[[5, 11], [5, 10], [5, 9], [4, 5], [1, 5]]",
+      "notes": "軸5番×相手5頭フォーメーション Harville最大=0.059",
+      "created_at": "2026-05-17 11:40:07",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05922625178781155,
+          "ev_score": 0.8099071479479654
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05922625178781155,
+          "ev_score": 0.8099071479479654
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05922625178781155,
+          "ev_score": 0.8099071479479654
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05922625178781155,
+          "ev_score": 0.8099071479479654
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05922625178781155,
+          "ev_score": 0.8099071479479654
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05922625178781155,
+          "ev_score": 0.8099071479479654
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05922625178781155,
+          "ev_score": 0.8099071479479654
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05922625178781155,
+          "ev_score": 0.8099071479479654
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05922625178781155,
+          "ev_score": 0.8099071479479654
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05922625178781155,
+          "ev_score": 0.8099071479479654
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "ゴールデンダガー",
+        "2": "レッドリアライズ",
+        "4": "ウインスターリング",
+        "7": "ルアグロール",
+        "8": "ラスターヴァース",
+        "9": "コスモアマデウス",
+        "5": "ウルフマン",
+        "6": "クリスタルドレス",
+        "11": "ショウナンマルチ",
+        "10": "レッドブライトン",
+        "3": "フレキシブル"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34670,
+      "model_type": "本命(直前)",
+      "bet_type": "ワイド",
+      "confidence": 0.07699412732415502,
+      "expected_value": 0.4244863918136029,
+      "recommended_bet": 100.0,
+      "combination_json": "[[5, 11], [5, 10], [5, 9], [4, 5], [1, 5]]",
+      "notes": "軸5番×相手5頭ワイド Harville最大=0.059",
+      "created_at": "2026-05-17 11:40:07",
+      "is_hit": 1,
+      "payout": 160.0,
+      "profit": -340.0,
+      "roi": 32.0,
+      "horses": [
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05922625178781155,
+          "ev_score": 0.4244863918136029
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05922625178781155,
+          "ev_score": 0.4244863918136029
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05922625178781155,
+          "ev_score": 0.4244863918136029
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05922625178781155,
+          "ev_score": 0.4244863918136029
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05922625178781155,
+          "ev_score": 0.4244863918136029
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05922625178781155,
+          "ev_score": 0.4244863918136029
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05922625178781155,
+          "ev_score": 0.4244863918136029
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05922625178781155,
+          "ev_score": 0.4244863918136029
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05922625178781155,
+          "ev_score": 0.4244863918136029
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05922625178781155,
+          "ev_score": 0.4244863918136029
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "ゴールデンダガー",
+        "2": "レッドリアライズ",
+        "4": "ウインスターリング",
+        "7": "ルアグロール",
+        "8": "ラスターヴァース",
+        "9": "コスモアマデウス",
+        "5": "ウルフマン",
+        "6": "クリスタルドレス",
+        "11": "ショウナンマルチ",
+        "10": "レッドブライトン",
+        "3": "フレキシブル"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34671,
+      "model_type": "本命(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.2369050071512462,
+      "expected_value": 0.791381176388738,
+      "recommended_bet": 100.0,
+      "combination_json": "[[5, 11], [5, 10], [5, 9]]",
+      "notes": "軸5番→相手3頭フォーメーション Harville最大=0.030",
+      "created_at": "2026-05-17 11:40:07",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.029613125893905776,
+          "ev_score": 0.791381176388738
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.029613125893905776,
+          "ev_score": 0.791381176388738
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.029613125893905776,
+          "ev_score": 0.791381176388738
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.029613125893905776,
+          "ev_score": 0.791381176388738
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.029613125893905776,
+          "ev_score": 0.791381176388738
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.029613125893905776,
+          "ev_score": 0.791381176388738
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "1": "ゴールデンダガー",
+        "2": "レッドリアライズ",
+        "4": "ウインスターリング",
+        "7": "ルアグロール",
+        "8": "ラスターヴァース",
+        "9": "コスモアマデウス",
+        "5": "ウルフマン",
+        "6": "クリスタルドレス",
+        "11": "ショウナンマルチ",
+        "10": "レッドブライトン",
+        "3": "フレキシブル"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34672,
+      "model_type": "本命(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.38532813147262157,
+      "expected_value": 1.5492117525856748,
+      "recommended_bet": 100.0,
+      "combination_json": "[[5, 10, 11], [4, 5, 11]]",
+      "notes": "合成EV最大=1.55 2点 馬番=[(5, 10, 11), (4, 5, 11)]",
+      "created_at": "2026-05-17 11:40:07",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.032110677622718464,
+          "ev_score": 1.5492117525856748
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.032110677622718464,
+          "ev_score": 1.5492117525856748
+        },
+        {
+          "horse_name": "レッドブライトン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.032110677622718464,
+          "ev_score": 1.5492117525856748
+        },
+        {
+          "horse_name": "レッドブライトン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.032110677622718464,
+          "ev_score": 1.5492117525856748
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.032110677622718464,
+          "ev_score": 1.5492117525856748
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.032110677622718464,
+          "ev_score": 1.5492117525856748
+        }
+      ],
+      "bet_form": "軸2頭ながし",
+      "n_tickets": 2,
+      "invested": 200,
+      "horse_num_to_name": {
+        "1": "ゴールデンダガー",
+        "2": "レッドリアライズ",
+        "4": "ウインスターリング",
+        "7": "ルアグロール",
+        "8": "ラスターヴァース",
+        "9": "コスモアマデウス",
+        "5": "ウルフマン",
+        "6": "クリスタルドレス",
+        "11": "ショウナンマルチ",
+        "10": "レッドブライトン",
+        "3": "フレキシブル"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34673,
+      "model_type": "本命(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.9633203286815539,
+      "expected_value": 5.014795167830712,
+      "recommended_bet": 200.0,
+      "combination_json": "[[5, 11, 10], [5, 10, 11], [11, 5, 10], [11, 10, 5], [10, 5, 11], [10, 11, 5], [5, 11, 9], [5, 9, 11], [11, 5, 9], [11, 9, 5], [9, 5, 11], [9, 11, 5], [5, 11, 4], [5, 4, 11], [11, 5, 4], [11, 4, 5], [4, 5, 11], [4, 11, 5], [5, 11, 1], [5, 1, 11], [11, 5, 1], [11, 1, 5], [1, 5, 11], [1, 11, 5], [5, 11, 6], [5, 6, 11], [11, 5, 6], [11, 6, 5], [6, 5, 11], [6, 11, 5], [5, 10, 9], [5, 9, 10], [10, 5, 9], [10, 9, 5], [9, 5, 10], [9, 10, 5], [5, 10, 4], [5, 4, 10], [10, 5, 4], [10, 4, 5], [4, 5, 10], [4, 10, 5], [5, 10, 1], [5, 1, 10], [10, 5, 1], [10, 1, 5], [1, 5, 10], [1, 10, 5], [5, 10, 6], [5, 6, 10], [10, 5, 6], [10, 6, 5], [6, 5, 10], [6, 10, 5], [5, 9, 4], [5, 4, 9], [9, 5, 4], [9, 4, 5], [4, 5, 9], [4, 9, 5], [5, 9, 1], [5, 1, 9], [9, 5, 1], [9, 1, 5], [1, 5, 9], [1, 9, 5], [5, 9, 6], [5, 6, 9], [9, 5, 6], [9, 6, 5], [6, 5, 9], [6, 9, 5], [5, 4, 1], [5, 1, 4], [4, 5, 1], [4, 1, 5], [1, 5, 4], [1, 4, 5], [5, 4, 6], [5, 6, 4], [4, 5, 6], [4, 6, 5], [6, 5, 4], [6, 4, 5], [5, 1, 6], [5, 6, 1], [1, 5, 6], [1, 6, 5], [6, 5, 1], [6, 1, 5]]",
+      "notes": "1頭軸マルチ 軸=5番 相手=[11, 10, 9, 4, 1, 6] 90点 Harville最大=0.0321",
+      "created_at": "2026-05-17 11:40:07",
+      "is_hit": 1,
+      "payout": 215450.0,
+      "profit": 206450.0,
+      "roi": 2393.888888888889,
+      "horses": [
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.032110677622718464,
+          "ev_score": 5.014795167830712
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.032110677622718464,
+          "ev_score": 5.014795167830712
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.032110677622718464,
+          "ev_score": 5.014795167830712
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.032110677622718464,
+          "ev_score": 5.014795167830712
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.032110677622718464,
+          "ev_score": 5.014795167830712
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.032110677622718464,
+          "ev_score": 5.014795167830712
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.032110677622718464,
+          "ev_score": 5.014795167830712
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.032110677622718464,
+          "ev_score": 5.014795167830712
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.032110677622718464,
+          "ev_score": 5.014795167830712
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.032110677622718464,
+          "ev_score": 5.014795167830712
+        },
+        {
+          "horse_name": "レッドブライトン",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.032110677622718464,
+          "ev_score": 5.014795167830712
+        },
+        {
+          "horse_name": "レッドブライトン",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.032110677622718464,
+          "ev_score": 5.014795167830712
+        },
+        {
+          "horse_name": "レッドブライトン",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.032110677622718464,
+          "ev_score": 5.014795167830712
+        },
+        {
+          "horse_name": "レッドブライトン",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.032110677622718464,
+          "ev_score": 5.014795167830712
+        },
+        {
+          "horse_name": "レッドブライトン",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.032110677622718464,
+          "ev_score": 5.014795167830712
+        }
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 90,
+      "invested": 9000,
+      "horse_num_to_name": {
+        "1": "ゴールデンダガー",
+        "2": "レッドリアライズ",
+        "4": "ウインスターリング",
+        "7": "ルアグロール",
+        "8": "ラスターヴァース",
+        "9": "コスモアマデウス",
+        "5": "ウルフマン",
+        "6": "クリスタルドレス",
+        "11": "ショウナンマルチ",
+        "10": "レッドブライトン",
+        "3": "フレキシブル"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34674,
+      "model_type": "卍(直前)",
+      "bet_type": "単勝",
+      "confidence": 0.7597158267773744,
+      "expected_value": 1.5954032362324861,
+      "recommended_bet": 100.0,
+      "combination_json": "[[11]]",
+      "notes": "確率1位(卍) EV=1.60 odds=2.1",
+      "created_at": "2026-05-17 11:40:07",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 1.5954032362324861,
+          "ev_score": 1.5954032362324861
+        }
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "1": "ゴールデンダガー",
+        "2": "レッドリアライズ",
+        "4": "ウインスターリング",
+        "7": "ルアグロール",
+        "8": "ラスターヴァース",
+        "9": "コスモアマデウス",
+        "5": "ウルフマン",
+        "6": "クリスタルドレス",
+        "11": "ショウナンマルチ",
+        "10": "レッドブライトン",
+        "3": "フレキシブル"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34675,
+      "model_type": "卍(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.6,
+      "expected_value": 1.3429289152333908,
+      "recommended_bet": 100.0,
+      "combination_json": "[[11], [7], [5]]",
+      "notes": "確率上位3頭を複勝",
+      "created_at": "2026-05-17 11:40:07",
+      "is_hit": 1,
+      "payout": 220.0,
+      "profit": -80.0,
+      "roi": 73.33333333333333,
+      "horses": [
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 1.3429289152333908,
+          "ev_score": 1.3429289152333908
+        },
+        {
+          "horse_name": "ルアグロール",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 1.3429289152333908,
+          "ev_score": 1.3429289152333908
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 1.3429289152333908,
+          "ev_score": 1.3429289152333908
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "1": "ゴールデンダガー",
+        "2": "レッドリアライズ",
+        "4": "ウインスターリング",
+        "7": "ルアグロール",
+        "8": "ラスターヴァース",
+        "9": "コスモアマデウス",
+        "5": "ウルフマン",
+        "6": "クリスタルドレス",
+        "11": "ショウナンマルチ",
+        "10": "レッドブライトン",
+        "3": "フレキシブル"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34676,
+      "model_type": "卍(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.38413359990272594,
+      "expected_value": 0.6488938422996808,
+      "recommended_bet": 100.0,
+      "combination_json": "[[7, 11], [5, 11], [4, 11], [1, 11], [2, 11]]",
+      "notes": "軸11番×相手5頭フォーメーション Harville最大=0.077",
+      "created_at": "2026-05-17 11:40:07",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ルアグロール",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07682671998054519,
+          "ev_score": 0.6488938422996808
+        },
+        {
+          "horse_name": "ルアグロール",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07682671998054519,
+          "ev_score": 0.6488938422996808
+        },
+        {
+          "horse_name": "ルアグロール",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07682671998054519,
+          "ev_score": 0.6488938422996808
+        },
+        {
+          "horse_name": "ルアグロール",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07682671998054519,
+          "ev_score": 0.6488938422996808
+        },
+        {
+          "horse_name": "ルアグロール",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07682671998054519,
+          "ev_score": 0.6488938422996808
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07682671998054519,
+          "ev_score": 0.6488938422996808
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07682671998054519,
+          "ev_score": 0.6488938422996808
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07682671998054519,
+          "ev_score": 0.6488938422996808
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07682671998054519,
+          "ev_score": 0.6488938422996808
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07682671998054519,
+          "ev_score": 0.6488938422996808
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "ゴールデンダガー",
+        "2": "レッドリアライズ",
+        "4": "ウインスターリング",
+        "7": "ルアグロール",
+        "8": "ラスターヴァース",
+        "9": "コスモアマデウス",
+        "5": "ウルフマン",
+        "6": "クリスタルドレス",
+        "11": "ショウナンマルチ",
+        "10": "レッドブライトン",
+        "3": "フレキシブル"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34677,
+      "model_type": "卍(直前)",
+      "bet_type": "ワイド",
+      "confidence": 0.46096031988327113,
+      "expected_value": 0.3400965240098775,
+      "recommended_bet": 100.0,
+      "combination_json": "[[7, 11], [5, 11], [4, 11], [1, 11], [2, 11]]",
+      "notes": "軸11番×相手5頭ワイド Harville最大=0.077",
+      "created_at": "2026-05-17 11:40:07",
+      "is_hit": 1,
+      "payout": 160.0,
+      "profit": -340.0,
+      "roi": 32.0,
+      "horses": [
+        {
+          "horse_name": "ルアグロール",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07682671998054519,
+          "ev_score": 0.3400965240098775
+        },
+        {
+          "horse_name": "ルアグロール",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07682671998054519,
+          "ev_score": 0.3400965240098775
+        },
+        {
+          "horse_name": "ルアグロール",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07682671998054519,
+          "ev_score": 0.3400965240098775
+        },
+        {
+          "horse_name": "ルアグロール",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07682671998054519,
+          "ev_score": 0.3400965240098775
+        },
+        {
+          "horse_name": "ルアグロール",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07682671998054519,
+          "ev_score": 0.3400965240098775
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07682671998054519,
+          "ev_score": 0.3400965240098775
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07682671998054519,
+          "ev_score": 0.3400965240098775
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07682671998054519,
+          "ev_score": 0.3400965240098775
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07682671998054519,
+          "ev_score": 0.3400965240098775
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07682671998054519,
+          "ev_score": 0.3400965240098775
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "ゴールデンダガー",
+        "2": "レッドリアライズ",
+        "4": "ウインスターリング",
+        "7": "ルアグロール",
+        "8": "ラスターヴァース",
+        "9": "コスモアマデウス",
+        "5": "ウルフマン",
+        "6": "クリスタルドレス",
+        "11": "ショウナンマルチ",
+        "10": "レッドブライトン",
+        "3": "フレキシブル"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34678,
+      "model_type": "卍(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.31555887483070244,
+      "expected_value": 0.6510768484944468,
+      "recommended_bet": 100.0,
+      "combination_json": "[[11, 7], [11, 5], [11, 4]]",
+      "notes": "軸11番→相手3頭フォーメーション Harville最大=0.039",
+      "created_at": "2026-05-17 11:40:07",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.039444859353837805,
+          "ev_score": 0.6510768484944468
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.039444859353837805,
+          "ev_score": 0.6510768484944468
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.039444859353837805,
+          "ev_score": 0.6510768484944468
+        },
+        {
+          "horse_name": "ルアグロール",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.039444859353837805,
+          "ev_score": 0.6510768484944468
+        },
+        {
+          "horse_name": "ルアグロール",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.039444859353837805,
+          "ev_score": 0.6510768484944468
+        },
+        {
+          "horse_name": "ルアグロール",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.039444859353837805,
+          "ev_score": 0.6510768484944468
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "1": "ゴールデンダガー",
+        "2": "レッドリアライズ",
+        "4": "ウインスターリング",
+        "7": "ルアグロール",
+        "8": "ラスターヴァース",
+        "9": "コスモアマデウス",
+        "5": "ウルフマン",
+        "6": "クリスタルドレス",
+        "11": "ショウナンマルチ",
+        "10": "レッドブライトン",
+        "3": "フレキシブル"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34681,
+      "model_type": "卍(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.65303489036619,
+      "expected_value": 1.297319113201473,
+      "recommended_bet": 100.0,
+      "combination_json": "[[4, 5, 11]]",
+      "notes": "合成EV=1.30 Harville=0.0435 馬番=(4, 5, 11)",
+      "created_at": "2026-05-17 11:40:07",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ウインスターリング",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.043535659357746,
+          "ev_score": 1.297319113201473
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.043535659357746,
+          "ev_score": 1.297319113201473
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.043535659357746,
+          "ev_score": 1.297319113201473
+        }
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "1": "ゴールデンダガー",
+        "2": "レッドリアライズ",
+        "4": "ウインスターリング",
+        "7": "ルアグロール",
+        "8": "ラスターヴァース",
+        "9": "コスモアマデウス",
+        "5": "ウルフマン",
+        "6": "クリスタルドレス",
+        "11": "ショウナンマルチ",
+        "10": "レッドブライトン",
+        "3": "フレキシブル"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34682,
+      "model_type": "Oracle(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.1782044111062667,
+      "expected_value": 5.346132333188001,
+      "recommended_bet": 500.0,
+      "combination_json": "[[5, 10, 11], [5, 9, 11], [4, 5, 11], [1, 5, 11], [5, 6, 11]]",
+      "notes": "[Oracle] 的中確率最大 5点 P最大=0.1782 馬番=[(5, 10, 11), (5, 9, 11), (4, 5, 11), (1, 5, 11), (5, 6, 11)]",
+      "created_at": "2026-05-17 11:40:07",
+      "is_hit": 1,
+      "payout": 13360.0,
+      "profit": 12860.0,
+      "roi": 2672.0,
+      "horses": [
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.1782044111062667,
+          "ev_score": 5.346132333188001
+        },
+        {
+          "horse_name": "レッドブライトン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.1782044111062667,
+          "ev_score": 5.346132333188001
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.1782044111062667,
+          "ev_score": 5.346132333188001
+        }
+      ],
+      "bet_form": "軸2頭ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "ゴールデンダガー",
+        "2": "レッドリアライズ",
+        "4": "ウインスターリング",
+        "7": "ルアグロール",
+        "8": "ラスターヴァース",
+        "9": "コスモアマデウス",
+        "5": "ウルフマン",
+        "6": "クリスタルドレス",
+        "11": "ショウナンマルチ",
+        "10": "レッドブライトン",
+        "3": "フレキシブル"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34683,
+      "model_type": "Oracle(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.029700735184377783,
+      "expected_value": 4.455110277656668,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[5, 11, 10], [5, 10, 11], [11, 5, 10], [11, 10, 5], [10, 5, 11], [10, 11, 5], [5, 11, 9], [5, 9, 11], [11, 5, 9], [11, 9, 5], [9, 5, 11], [9, 11, 5]]",
+      "notes": "[Oracle] 的中確率最大 12点 P最大=0.0297 馬番=[(5, 11, 10), (5, 10, 11), (11, 5, 10), (11, 10, 5), (10, 5, 11), (10, 11, 5), (5, 11, 9), (5, 9, 11), (11, 5, 9), (11, 9, 5), (9, 5, 11), (9, 11, 5)]",
+      "created_at": "2026-05-17 11:40:07",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.029700735184377783,
+          "ev_score": 4.455110277656668
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.029700735184377783,
+          "ev_score": 4.455110277656668
+        },
+        {
+          "horse_name": "レッドブライトン",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.029700735184377783,
+          "ev_score": 4.455110277656668
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 12,
+      "invested": 1200,
+      "horse_num_to_name": {
+        "1": "ゴールデンダガー",
+        "2": "レッドリアライズ",
+        "4": "ウインスターリング",
+        "7": "ルアグロール",
+        "8": "ラスターヴァース",
+        "9": "コスモアマデウス",
+        "5": "ウルフマン",
+        "6": "クリスタルドレス",
+        "11": "ショウナンマルチ",
+        "10": "レッドブライトン",
+        "3": "フレキシブル"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34684,
+      "model_type": "本命(直前)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-05-17 11:40:07",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": "2023103888",
+          "predicted_rank": 1,
+          "model_score": 0.14637904468412946,
+          "ev_score": 0.3073959938366719
+        },
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": "2023107045",
+          "predicted_rank": 2,
+          "model_score": 0.14637904468412946,
+          "ev_score": 0.4976887519260402
+        },
+        {
+          "horse_name": "レッドブライトン",
+          "horse_id": "2023107357",
+          "predicted_rank": 3,
+          "model_score": 0.11916583912611721,
+          "ev_score": 0.7984111221449853
+        },
+        {
+          "horse_name": "コスモアマデウス",
+          "horse_id": "2023106451",
+          "predicted_rank": 4,
+          "model_score": 0.08794197642792385,
+          "ev_score": 5.2061650045330925
+        },
+        {
+          "horse_name": "クリスタルドレス",
+          "horse_id": "2023107406",
+          "predicted_rank": 5,
+          "model_score": 0.07186030893216921,
+          "ev_score": 3.5283411685695087
+        },
+        {
+          "horse_name": "ゴールデンダガー",
+          "horse_id": "2023105726",
+          "predicted_rank": 6,
+          "model_score": 0.07186030893216921,
+          "ev_score": 1.358159838817998
+        },
+        {
+          "horse_name": "ウインスターリング",
+          "horse_id": "2023105883",
+          "predicted_rank": 7,
+          "model_score": 0.07186030893216921,
+          "ev_score": 1.8468099395567488
+        },
+        {
+          "horse_name": "レッドリアライズ",
+          "horse_id": "2023105233",
+          "predicted_rank": 8,
+          "model_score": 0.0672235481304694,
+          "ev_score": 1.2839697692919656
+        },
+        {
+          "horse_name": "ルアグロール",
+          "horse_id": "2023101699",
+          "predicted_rank": 9,
+          "model_score": 0.0569777979157227,
+          "ev_score": 0.6267557770729497
+        },
+        {
+          "horse_name": "フレキシブル",
+          "horse_id": "2023105808",
+          "predicted_rank": 10,
+          "model_score": 0.0569777979157227,
+          "ev_score": 1.2820004531037608
+        },
+        {
+          "horse_name": "ラスターヴァース",
+          "horse_id": "2023104597",
+          "predicted_rank": 11,
+          "model_score": 0.05070318282753516,
+          "ev_score": 1.7898223538119908
+        }
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "invested": 0,
+      "horse_num_to_name": {
+        "1": "ゴールデンダガー",
+        "2": "レッドリアライズ",
+        "4": "ウインスターリング",
+        "7": "ルアグロール",
+        "8": "ラスターヴァース",
+        "9": "コスモアマデウス",
+        "5": "ウルフマン",
+        "6": "クリスタルドレス",
+        "11": "ショウナンマルチ",
+        "10": "レッドブライトン",
+        "3": "フレキシブル"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34685,
+      "model_type": "HitFocus(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.28239138574507533,
+      "expected_value": 0.7723291443573512,
+      "recommended_bet": 700.0,
+      "combination_json": "[[5, 11], [5, 10], [10, 11], [5, 9], [9, 11], [4, 5], [4, 11]]",
+      "notes": "2軸マルチ 軸=5,11 相手=[10, 9, 4] Harville最大=0.0565",
+      "created_at": "2026-05-17 11:40:07",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -700.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.056478277149015065,
+          "ev_score": 0.7723291443573512
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.056478277149015065,
+          "ev_score": 0.7723291443573512
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 7,
+      "invested": 700,
+      "horse_num_to_name": {
+        "1": "ゴールデンダガー",
+        "2": "レッドリアライズ",
+        "4": "ウインスターリング",
+        "7": "ルアグロール",
+        "8": "ラスターヴァース",
+        "9": "コスモアマデウス",
+        "5": "ウルフマン",
+        "6": "クリスタルドレス",
+        "11": "ショウナンマルチ",
+        "10": "レッドブライトン",
+        "3": "フレキシブル"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34686,
+      "model_type": "HitFocus(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.22591310859606026,
+      "expected_value": 0.7546627392651393,
+      "recommended_bet": 800.0,
+      "combination_json": "[[5, 11], [11, 5], [5, 10], [11, 10], [5, 9], [11, 9], [5, 4], [11, 4]]",
+      "notes": "2軸マルチ 軸=5,11 相手=[10, 9, 4] Harville最大=0.0282",
+      "created_at": "2026-05-17 11:40:07",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -800.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.028239138574507532,
+          "ev_score": 0.7546627392651393
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.028239138574507532,
+          "ev_score": 0.7546627392651393
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 8,
+      "invested": 800,
+      "horse_num_to_name": {
+        "1": "ゴールデンダガー",
+        "2": "レッドリアライズ",
+        "4": "ウインスターリング",
+        "7": "ルアグロール",
+        "8": "ラスターヴァース",
+        "9": "コスモアマデウス",
+        "5": "ウルフマン",
+        "6": "クリスタルドレス",
+        "11": "ショウナンマルチ",
+        "10": "レッドブライトン",
+        "3": "フレキシブル"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34687,
+      "model_type": "HitFocus(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.15422957734067674,
+      "expected_value": 0.8028790799454545,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[5, 11, 10], [11, 5, 10], [5, 10, 11], [11, 10, 5], [5, 11, 9], [11, 5, 9], [5, 9, 11], [11, 9, 5], [5, 11, 4], [11, 5, 4], [5, 4, 11], [11, 4, 5]]",
+      "notes": "2軸マルチ 軸=5,11 相手=[10, 9, 4] 12点 Harville最大=0.0051",
+      "created_at": "2026-05-17 11:40:07",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ウルフマン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.005140985911355892,
+          "ev_score": 0.8028790799454545
+        },
+        {
+          "horse_name": "ショウナンマルチ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.005140985911355892,
+          "ev_score": 0.8028790799454545
+        },
+        {
+          "horse_name": "レッドブライトン",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.005140985911355892,
+          "ev_score": 0.8028790799454545
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 12,
+      "invested": 1200,
+      "horse_num_to_name": {
+        "1": "ゴールデンダガー",
+        "2": "レッドリアライズ",
+        "4": "ウインスターリング",
+        "7": "ルアグロール",
+        "8": "ラスターヴァース",
+        "9": "コスモアマデウス",
+        "5": "ウルフマン",
+        "6": "クリスタルドレス",
+        "11": "ショウナンマルチ",
+        "10": "レッドブライトン",
+        "3": "フレキシブル"
+      },
+      "is_provisional": false
+    }
+  ],
+  "training_evals": {},
+  "prerace": {
+    "bias": {
+      "today_inner_bias": 0.125,
+      "today_front_bias": 1.0,
+      "today_race_count": 1
+    },
+    "ev_recommend": [
+      {
+        "horse_number": 9,
+        "horse_name": "コスモアマデウス",
+        "win_odds": 59.2,
+        "ev_score": 5.2062,
+        "kelly_fraction": 0.0072
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "クリスタルドレス",
+        "win_odds": 49.1,
+        "ev_score": 3.5283,
+        "kelly_fraction": 0.0053
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "ウインスターリング",
+        "win_odds": 25.7,
+        "ev_score": 1.8468,
+        "kelly_fraction": 0.0034
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "ラスターヴァース",
+        "win_odds": 35.3,
+        "ev_score": 1.7898,
+        "kelly_fraction": 0.0023
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "ゴールデンダガー",
+        "win_odds": 18.9,
+        "ev_score": 1.3582,
+        "kelly_fraction": 0.002
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "レッドリアライズ",
+        "win_odds": 19.1,
+        "ev_score": 1.284,
+        "kelly_fraction": 0.0016
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "フレキシブル",
+        "win_odds": 22.5,
+        "ev_score": 1.282,
+        "kelly_fraction": 0.0013
+      }
+    ],
+    "generated_at": "2026-05-17T11:40:07.095360"
+  }
+}

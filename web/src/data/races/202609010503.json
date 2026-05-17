@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "ハイドパーク",
-      "horse_id": "2023104100",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "藤懸貴志",
-      "trainer": "田中克典",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 6,
       "horse_number": 8,
       "horse_name": "テンマジックアワー",
@@ -52,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 7,
       "horse_number": 11,
       "horse_name": "ポップアップ",
@@ -61,6 +41,26 @@
       "weight_carried": 57.0,
       "jockey": "高杉吏麒",
       "trainer": "寺島良",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "ハイドパーク",
+      "horse_id": "2023104100",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "藤懸貴志",
+      "trainer": "田中克典",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -278,12 +278,6 @@
       "combination": "8",
       "payout": 380,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "13",
-      "payout": 13000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 4,
       "horse_number": 8,
       "horse_name": "ペイシャシス",
@@ -32,15 +32,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 14,
-      "horse_name": "タイムレスフレアー",
-      "horse_id": "2023103795",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "岩田望来",
-      "trainer": "橋口慎介",
+      "rank": 2,
+      "gate_number": 8,
+      "horse_number": 16,
+      "horse_name": "ダイチノナポリ",
+      "horse_id": "2023109106",
+      "sex_age": "牝1",
+      "weight_carried": 55.0,
+      "jockey": "高倉稜",
+      "trainer": "畑端省吾",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 16,
-      "horse_name": "ダイチノナポリ",
-      "horse_id": "2023109106",
-      "sex_age": "牝1",
-      "weight_carried": 55.0,
-      "jockey": "高倉稜",
-      "trainer": "畑端省吾",
+      "rank": 3,
+      "gate_number": 7,
+      "horse_number": 14,
+      "horse_name": "タイムレスフレアー",
+      "horse_id": "2023103795",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "岩田望来",
+      "trainer": "橋口慎介",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "8",
       "payout": 620,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

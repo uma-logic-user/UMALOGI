@@ -12,7 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "ルドヴィクス",
@@ -30,6 +30,46 @@
       "sire": "モーリス",
       "dam": "ピーチブローフィズ",
       "dam_sire": "シンボリクリスエス"
+    },
+    {
+      "rank": 2,
+      "gate_number": 5,
+      "horse_number": 7,
+      "horse_name": "サニーオーシャン",
+      "horse_id": "2018103296",
+      "sex_age": "騸3",
+      "weight_carried": 57.0,
+      "jockey": "水沼元輝",
+      "trainer": "杉浦宏昭",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ゼンノロブロイ",
+      "dam": "ヨドノグレイス",
+      "dam_sire": "バゴBago(仏)"
+    },
+    {
+      "rank": 3,
+      "gate_number": 6,
+      "horse_number": 10,
+      "horse_name": "グローリーアテイン",
+      "horse_id": "2021104950",
+      "sex_age": "騸3",
+      "weight_carried": 60.0,
+      "jockey": "金子光希",
+      "trainer": "金成貴史",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ヴィクトワールピサ",
+      "dam": "アンナミルト",
+      "dam_sire": "マンハッタンカフェ"
     },
     {
       "rank": null,
@@ -134,26 +174,6 @@
     {
       "rank": null,
       "gate_number": 5,
-      "horse_number": 7,
-      "horse_name": "サニーオーシャン",
-      "horse_id": "2018103296",
-      "sex_age": "騸3",
-      "weight_carried": 57.0,
-      "jockey": "水沼元輝",
-      "trainer": "杉浦宏昭",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ゼンノロブロイ",
-      "dam": "ヨドノグレイス",
-      "dam_sire": "バゴBago(仏)"
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
       "horse_number": 8,
       "horse_name": "ゴットリープ",
       "horse_id": "2020101319",
@@ -190,26 +210,6 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 10,
-      "horse_name": "グローリーアテイン",
-      "horse_id": "2021104950",
-      "sex_age": "騸3",
-      "weight_carried": 60.0,
-      "jockey": "金子光希",
-      "trainer": "金成貴史",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ヴィクトワールピサ",
-      "dam": "アンナミルト",
-      "dam_sire": "マンハッタンカフェ"
     },
     {
       "rank": null,
@@ -298,12 +298,6 @@
       "combination": "1",
       "payout": 630,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "14",
-      "payout": 14000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

@@ -12,7 +12,27 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 7,
+      "horse_number": 7,
+      "horse_name": "アーロンイメル",
+      "horse_id": "2021100255",
+      "sex_age": "牡1",
+      "weight_carried": 58.0,
+      "jockey": "丹内祐次",
+      "trainer": "高橋義忠",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "パイロPyro(米)",
+      "dam": "アビス",
+      "dam_sire": "ダイワメジャー"
+    },
+    {
+      "rank": 2,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "ハミルトン",
@@ -32,7 +52,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "リーゼノアール",
@@ -130,35 +150,9 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 7,
-      "horse_name": "アーロンイメル",
-      "horse_id": "2021100255",
-      "sex_age": "牡1",
-      "weight_carried": 58.0,
-      "jockey": "丹内祐次",
-      "trainer": "高橋義忠",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "パイロPyro(米)",
-      "dam": "アビス",
-      "dam_sire": "ダイワメジャー"
     }
   ],
   "payouts": [
-    {
-      "bet_type": "単勝",
-      "combination": "7",
-      "payout": 6000,
-      "popularity": null
-    },
     {
       "bet_type": "複勝",
       "combination": "7",

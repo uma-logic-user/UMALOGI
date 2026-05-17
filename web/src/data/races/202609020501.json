@@ -4,11 +4,11 @@
   "date": "2026-04-11",
   "venue": "阪神",
   "race_number": 1,
-  "distance": 1800,
-  "surface": "ダート",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "重",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -52,7 +52,7 @@
       "jockey": "吉村誠之",
       "trainer": "藤岡健一",
       "finish_time": "1:53.4",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 4.9,
       "popularity": 4,
       "horse_weight": 504,
@@ -82,7 +82,7 @@
       "jockey": "武豊",
       "trainer": "高野友和",
       "finish_time": "1:53.8",
-      "margin": "2.1/2",
+      "margin": "@",
       "win_odds": 3.1,
       "popularity": 1,
       "horse_weight": 480,
@@ -112,7 +112,7 @@
       "jockey": "幸英明",
       "trainer": "鈴木孝志",
       "finish_time": "1:54.3",
-      "margin": "2.1/2",
+      "margin": "@",
       "win_odds": 158.7,
       "popularity": 14,
       "horse_weight": 420,
@@ -142,7 +142,7 @@
       "jockey": "団野大成",
       "trainer": "小林真也",
       "finish_time": "1:54.3",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 4.6,
       "popularity": 3,
       "horse_weight": 494,
@@ -172,7 +172,7 @@
       "jockey": "酒井学",
       "trainer": "石坂公一",
       "finish_time": "1:54.5",
-      "margin": "1",
+      "margin": "@",
       "win_odds": 226.2,
       "popularity": 15,
       "horse_weight": 490,
@@ -202,7 +202,7 @@
       "jockey": "田山旺佑",
       "trainer": "野中賢二",
       "finish_time": "1:54.6",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 67.3,
       "popularity": 9,
       "horse_weight": 452,
@@ -232,7 +232,7 @@
       "jockey": "柴田裕一",
       "trainer": "宮本博",
       "finish_time": "1:54.8",
-      "margin": "1.1/4",
+      "margin": "@",
       "win_odds": 150.9,
       "popularity": 13,
       "horse_weight": 434,
@@ -262,7 +262,7 @@
       "jockey": "北村友一",
       "trainer": "河嶋宏樹",
       "finish_time": "1:55.1",
-      "margin": "1.1/2",
+      "margin": "@",
       "win_odds": 76.0,
       "popularity": 10,
       "horse_weight": 450,
@@ -292,7 +292,7 @@
       "jockey": "鮫島克駿",
       "trainer": "吉村圭司",
       "finish_time": "1:55.3",
-      "margin": "1",
+      "margin": "@",
       "win_odds": 39.6,
       "popularity": 7,
       "horse_weight": 464,
@@ -322,7 +322,7 @@
       "jockey": "城戸義政",
       "trainer": "安達昭夫",
       "finish_time": "1:55.3",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 248.6,
       "popularity": 16,
       "horse_weight": 456,
@@ -352,7 +352,7 @@
       "jockey": "松山弘平",
       "trainer": "松永幹夫",
       "finish_time": "1:55.3",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 90.6,
       "popularity": 11,
       "horse_weight": 462,
@@ -382,7 +382,7 @@
       "jockey": "岩田望来",
       "trainer": "藤野健太",
       "finish_time": "1:55.4",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 17.9,
       "popularity": 5,
       "horse_weight": 430,
@@ -412,7 +412,7 @@
       "jockey": "角田大和",
       "trainer": "松永幹夫",
       "finish_time": "1:56.3",
-      "margin": "5",
+      "margin": "@",
       "win_odds": 95.9,
       "popularity": 12,
       "horse_weight": 452,
@@ -442,7 +442,7 @@
       "jockey": "高杉吏麒",
       "trainer": "角田晃一",
       "finish_time": "1:56.3",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 52.6,
       "popularity": 8,
       "horse_weight": 464,
@@ -472,7 +472,7 @@
       "jockey": "松本大輝",
       "trainer": "加藤公太",
       "finish_time": "1:57.1",
-      "margin": "5",
+      "margin": "@",
       "win_odds": 29.3,
       "popularity": 6,
       "horse_weight": 478,
@@ -536,6 +536,12 @@
       "popularity": 4
     },
     {
+      "bet_type": "馬連",
+      "combination": "1",
+      "payout": 4110,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "2-11",
       "payout": 270,
@@ -554,16 +560,46 @@
       "popularity": 6
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 30020,
+      "popularity": 20
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4",
+      "payout": 60000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "7→11",
       "payout": 1150,
       "popularity": 2
     },
     {
+      "bet_type": "馬単",
+      "combination": "7",
+      "payout": 11000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "2-7-11",
       "payout": 1160,
       "popularity": 4
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3",
+      "payout": 602,
+      "popularity": 110
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2",
+      "payout": 70003,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -623,7 +659,8 @@
         "6": "トゥスコラーナ",
         "3": "ハバタクジユウニ",
         "16": "トライアンドエラー"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1979,
@@ -717,7 +754,8 @@
         "6": "トゥスコラーナ",
         "3": "ハバタクジユウニ",
         "16": "トライアンドエラー"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1980,
@@ -769,7 +807,8 @@
         "6": "トゥスコラーナ",
         "3": "ハバタクジユウニ",
         "16": "トライアンドエラー"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1981,
@@ -835,7 +874,8 @@
         "6": "トゥスコラーナ",
         "3": "ハバタクジユウニ",
         "16": "トライアンドエラー"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1982,
@@ -894,7 +934,8 @@
         "6": "トゥスコラーナ",
         "3": "ハバタクジユウニ",
         "16": "トライアンドエラー"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1983,
@@ -946,7 +987,8 @@
         "6": "トゥスコラーナ",
         "3": "ハバタクジユウニ",
         "16": "トライアンドエラー"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1984,
@@ -1026,7 +1068,8 @@
         "6": "トゥスコラーナ",
         "3": "ハバタクジユウニ",
         "16": "トライアンドエラー"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1985,
@@ -1106,7 +1149,8 @@
         "6": "トゥスコラーナ",
         "3": "ハバタクジユウニ",
         "16": "トライアンドエラー"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1986,
@@ -1158,7 +1202,8 @@
         "6": "トゥスコラーナ",
         "3": "ハバタクジユウニ",
         "16": "トライアンドエラー"
-      }
+      },
+      "is_provisional": true
     }
   ],
   "training_evals": {

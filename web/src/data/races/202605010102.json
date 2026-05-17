@@ -12,7 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 16,
+      "horse_name": "ダブルメッセージ",
+      "horse_id": "2022106337",
+      "sex_age": "牡1",
+      "weight_carried": 57.0,
+      "jockey": "石川裕紀",
+      "trainer": "和田正一",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
       "gate_number": 2,
       "horse_number": 3,
       "horse_name": "ディズレーリ",
@@ -32,7 +52,7 @@
       "dam_sire": "Siyouni"
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 4,
       "horse_number": 7,
       "horse_name": "オウケンシルヴァー",
@@ -50,26 +70,6 @@
       "sire": "ニューイヤーズデイ",
       "dam": "メロウメロディ",
       "dam_sire": "キャプテンスティーヴCaptain Steve(米)"
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 16,
-      "horse_name": "ダブルメッセージ",
-      "horse_id": "2022106337",
-      "sex_age": "牡1",
-      "weight_carried": 57.0,
-      "jockey": "石川裕紀",
-      "trainer": "和田正一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
     },
     {
       "rank": null,
@@ -333,12 +333,6 @@
     }
   ],
   "payouts": [
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
-    },
     {
       "bet_type": "複勝",
       "combination": "7",

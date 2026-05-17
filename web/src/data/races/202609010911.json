@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "マテンロウゲイル",
@@ -32,15 +32,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 7,
-      "horse_name": "サヴォアフェール",
-      "horse_id": "2023105645",
-      "sex_age": "牡6",
+      "rank": 2,
+      "gate_number": 7,
+      "horse_number": 9,
+      "horse_name": "ロードフィレール",
+      "horse_id": "2023105818",
+      "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "松山弘平",
-      "trainer": "杉山晴紀",
+      "jockey": "坂井瑠星",
+      "trainer": "吉岡辰弥",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 9,
-      "horse_name": "ロードフィレール",
-      "horse_id": "2023105818",
-      "sex_age": "牡3",
+      "rank": 3,
+      "gate_number": 6,
+      "horse_number": 7,
+      "horse_name": "サヴォアフェール",
+      "horse_id": "2023105645",
+      "sex_age": "牡6",
       "weight_carried": 57.0,
-      "jockey": "坂井瑠星",
-      "trainer": "吉岡辰弥",
+      "jockey": "松山弘平",
+      "trainer": "杉山晴紀",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -258,12 +258,6 @@
       "combination": "1",
       "payout": 210,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "12",
-      "payout": 12000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

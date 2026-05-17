@@ -12,7 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 7,
+      "horse_number": 11,
+      "horse_name": "エアビッグマム",
+      "horse_id": "2022105250",
+      "sex_age": "牝1",
+      "weight_carried": 56.0,
+      "jockey": "西塚洸二",
+      "trainer": "笹田和秀",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
       "gate_number": 4,
       "horse_number": 5,
       "horse_name": "コスモレオナルド",
@@ -32,7 +52,7 @@
       "dam_sire": "アグネスタキオン"
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 5,
       "horse_number": 6,
       "horse_name": "ルールーリマ",
@@ -41,26 +61,6 @@
       "weight_carried": 56.0,
       "jockey": "三浦皇成",
       "trainer": "大竹正博",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 11,
-      "horse_name": "エアビッグマム",
-      "horse_id": "2022105250",
-      "sex_age": "牝1",
-      "weight_carried": 56.0,
-      "jockey": "西塚洸二",
-      "trainer": "笹田和秀",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -278,12 +278,6 @@
       "combination": "11",
       "payout": 510,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "13",
-      "payout": 13000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

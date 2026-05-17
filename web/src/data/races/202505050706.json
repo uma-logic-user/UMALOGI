@@ -12,7 +12,27 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 1,
+      "horse_number": 2,
+      "horse_name": "コーカサスゴールド",
+      "horse_id": "2021102676",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "バルザロ",
+      "trainer": "加藤和宏",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ドレフォンDrefong(米)",
+      "dam": "マリスレーン",
+      "dam_sire": "ストリートセンスStreet Sense(米)"
+    },
+    {
+      "rank": 2,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "キョウエイカンセ",
@@ -32,24 +52,24 @@
       "dam_sire": "ハービンジャーHarbinger(英)"
     },
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 2,
-      "horse_name": "コーカサスゴールド",
-      "horse_id": "2021102676",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "バルザロ",
-      "trainer": "加藤和宏",
+      "rank": 3,
+      "gate_number": 8,
+      "horse_number": 16,
+      "horse_name": "ルヴァレドクール",
+      "horse_id": "2022100994",
+      "sex_age": "騸3",
+      "weight_carried": 57.0,
+      "jockey": "横山和生",
+      "trainer": "田村康仁",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
       "horse_weight_diff": null,
-      "sire": "ドレフォンDrefong(米)",
-      "dam": "マリスレーン",
-      "dam_sire": "ストリートセンスStreet Sense(米)"
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -310,26 +330,6 @@
       "sire": "シニスターミニスターSinister Minister(米)",
       "dam": "ディアレストトリックスキDearest Trickski(米)",
       "dam_sire": "Proudest Romeo"
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 16,
-      "horse_name": "ルヴァレドクール",
-      "horse_id": "2022100994",
-      "sex_age": "騸3",
-      "weight_carried": 57.0,
-      "jockey": "横山和生",
-      "trainer": "田村康仁",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
     }
   ],
   "payouts": [
@@ -338,12 +338,6 @@
       "combination": "2",
       "payout": 690,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

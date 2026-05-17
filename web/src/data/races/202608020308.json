@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 6,
-      "horse_name": "ヴィスマール",
-      "horse_id": "2021105459",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "西村淳也",
-      "trainer": "奥村豊",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ブリックスアンドモルタルBricks and Mortar(米)",
-      "dam": "オーマイベイビー",
-      "dam_sire": "ディープインパクト"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 7,
       "horse_number": 7,
       "horse_name": "ヴァリディシームス",
@@ -52,7 +32,27 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 6,
+      "horse_number": 6,
+      "horse_name": "ヴィスマール",
+      "horse_id": "2021105459",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "西村淳也",
+      "trainer": "奥村豊",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ブリックスアンドモルタルBricks and Mortar(米)",
+      "dam": "オーマイベイビー",
+      "dam_sire": "ディープインパクト"
+    },
+    {
+      "rank": 3,
       "gate_number": 8,
       "horse_number": 8,
       "horse_name": "バルティカ",
@@ -178,12 +178,6 @@
       "combination": "7",
       "payout": 170,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "8",
-      "payout": 8000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

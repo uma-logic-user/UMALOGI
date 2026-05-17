@@ -12,7 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 10,
+      "horse_name": "グランドプラージュ",
+      "horse_id": "2022105722",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "川田将雅",
+      "trainer": "杉山晴紀",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
       "gate_number": 4,
       "horse_number": 4,
       "horse_name": "ゴールデンクラウド",
@@ -32,7 +52,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 7,
       "horse_number": 8,
       "horse_name": "メイショウソウタ",
@@ -50,26 +70,6 @@
       "sire": "ドレフォンDrefong(米)",
       "dam": "メイショウオウヒ",
       "dam_sire": "マンハッタンカフェ"
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 10,
-      "horse_name": "グランドプラージュ",
-      "horse_id": "2022105722",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "川田将雅",
-      "trainer": "杉山晴紀",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
     },
     {
       "rank": null,
@@ -213,12 +213,6 @@
     }
   ],
   "payouts": [
-    {
-      "bet_type": "単勝",
-      "combination": "10",
-      "payout": 10000,
-      "popularity": null
-    },
     {
       "bet_type": "複勝",
       "combination": "10",

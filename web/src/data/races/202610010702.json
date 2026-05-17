@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "マーゴットミスト",
@@ -32,15 +32,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 2,
-      "horse_name": "オレンジキャンパス",
-      "horse_id": "2023104392",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "武藤雅",
-      "trainer": "武藤善則",
+      "rank": 2,
+      "gate_number": 8,
+      "horse_number": 18,
+      "horse_name": "ウインドトリック",
+      "horse_id": "2023102363",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "国分恭介",
+      "trainer": "鈴木孝志",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 18,
-      "horse_name": "ウインドトリック",
-      "horse_id": "2023102363",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "国分恭介",
-      "trainer": "鈴木孝志",
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 2,
+      "horse_name": "オレンジキャンパス",
+      "horse_id": "2023104392",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "武藤雅",
+      "trainer": "武藤善則",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -378,12 +378,6 @@
       "combination": "1",
       "payout": 240,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "18",
-      "payout": 18000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

@@ -12,7 +12,27 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "シュタールヴィント",
+      "horse_id": "2020103061",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "西村淳也",
+      "trainer": "矢作芳人",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ロードカナロア",
+      "dam": "マルセリーナ",
+      "dam_sire": "ディープインパクト"
+    },
+    {
+      "rank": 2,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "ルーフ",
@@ -30,6 +50,26 @@
       "sire": "ダイワメジャー",
       "dam": "ラスエモーショネス",
       "dam_sire": "Fastnet Rock(豪)"
+    },
+    {
+      "rank": 3,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "モンシュマン",
+      "horse_id": "2021105054",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "団野大成",
+      "trainer": "上村洋行",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ミッキーアイル",
+      "dam": "ザウェイアイアムThewayiam(仏)",
+      "dam_sire": "Thewayyouare"
     },
     {
       "rank": null,
@@ -113,26 +153,6 @@
     },
     {
       "rank": null,
-      "gate_number": 3,
-      "horse_number": 6,
-      "horse_name": "モンシュマン",
-      "horse_id": "2021105054",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "団野大成",
-      "trainer": "上村洋行",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ミッキーアイル",
-      "dam": "ザウェイアイアムThewayiam(仏)",
-      "dam_sire": "Thewayyouare"
-    },
-    {
-      "rank": null,
       "gate_number": 4,
       "horse_number": 7,
       "horse_name": "ミルテンベルク",
@@ -210,26 +230,6 @@
       "sire": "シルバーステート",
       "dam": "フィナリザール",
       "dam_sire": "Congrats(米)"
-    },
-    {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 11,
-      "horse_name": "シュタールヴィント",
-      "horse_id": "2020103061",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "西村淳也",
-      "trainer": "矢作芳人",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ロードカナロア",
-      "dam": "マルセリーナ",
-      "dam_sire": "ディープインパクト"
     },
     {
       "rank": null,
@@ -338,12 +338,6 @@
       "combination": "11",
       "payout": 520,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

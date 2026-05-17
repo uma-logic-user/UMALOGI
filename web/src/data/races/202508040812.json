@@ -12,7 +12,27 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 5,
+      "horse_number": 10,
+      "horse_name": "エーティーマクフィ",
+      "horse_id": "2019105859",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "富田暁",
+      "trainer": "武英智",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "マクフィMakfi(英)",
+      "dam": "テンシンランマン",
+      "dam_sire": "ハーツクライ"
+    },
+    {
+      "rank": 2,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "ルガル",
@@ -30,6 +50,26 @@
       "sire": "ドゥラメンテ",
       "dam": "アタブAtab(愛)",
       "dam_sire": "New Approach"
+    },
+    {
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 4,
+      "horse_name": "ヨシノイースター",
+      "horse_id": "2018106055",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "内田博幸",
+      "trainer": "中尾秀正",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ルーラーシップ",
+      "dam": "アースプレイ",
+      "dam_sire": "ゼンノロブロイ"
     },
     {
       "rank": null,
@@ -70,26 +110,6 @@
       "sire": "キズナ",
       "dam": "ミスエーニョMi Sueno(米)",
       "dam_sire": "Pulpit"
-    },
-    {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 4,
-      "horse_name": "ヨシノイースター",
-      "horse_id": "2018106055",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "内田博幸",
-      "trainer": "中尾秀正",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ルーラーシップ",
-      "dam": "アースプレイ",
-      "dam_sire": "ゼンノロブロイ"
     },
     {
       "rank": null,
@@ -190,26 +210,6 @@
       "sire": "ファインニードル",
       "dam": "ラルティスタ",
       "dam_sire": "マイネルラヴ"
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 10,
-      "horse_name": "エーティーマクフィ",
-      "horse_id": "2019105859",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "富田暁",
-      "trainer": "武英智",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "マクフィMakfi(英)",
-      "dam": "テンシンランマン",
-      "dam_sire": "ハーツクライ"
     },
     {
       "rank": null,
@@ -378,12 +378,6 @@
       "combination": "10",
       "payout": 1170,
       "popularity": 7
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "18",
-      "payout": 18000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

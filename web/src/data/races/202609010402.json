@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 6,
-      "horse_name": "デルニエジョイ",
-      "horse_id": "2023101973",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "田口貫太",
-      "trainer": "鈴木孝志",
+      "rank": 1,
+      "gate_number": 7,
+      "horse_number": 13,
+      "horse_name": "アーディアイリ",
+      "horse_id": "2023102460",
+      "sex_age": "牝1",
+      "weight_carried": 55.0,
+      "jockey": "松山弘平",
+      "trainer": "緒方努",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 5,
       "horse_number": 9,
       "horse_name": "ナムラロダン",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 13,
-      "horse_name": "アーディアイリ",
-      "horse_id": "2023102460",
-      "sex_age": "牝1",
-      "weight_carried": 55.0,
-      "jockey": "松山弘平",
-      "trainer": "緒方努",
+      "rank": 3,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "デルニエジョイ",
+      "horse_id": "2023101973",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "田口貫太",
+      "trainer": "鈴木孝志",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "13",
       "payout": 340,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

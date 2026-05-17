@@ -1,186 +1,30 @@
 {
   "race_id": "202608030309",
-  "race_name": "矢車賞",
+  "race_name": "",
   "date": "2026-05-02",
   "venue": "京都",
   "race_number": 9,
-  "distance": 2200,
-  "surface": "芝",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 7,
-      "horse_number": 7,
-      "horse_name": "トリニティ",
-      "horse_id": "2023103492",
-      "sex_age": "牝4",
-      "weight_carried": 55.0,
-      "jockey": "岩田望来",
-      "trainer": "安田翔伍",
-      "finish_time": "2:12.0",
-      "margin": "@",
-      "win_odds": 7.1,
-      "popularity": 4,
-      "horse_weight": 450,
-      "horse_weight_diff": 8,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0643,
-      "ev_score": 0.5914,
-      "kelly_fraction": 0.0,
-      "manji_ev": 815.0652,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 2,
-      "gate_number": 8,
-      "horse_number": 9,
-      "horse_name": "レイクラシック",
-      "horse_id": "2023103906",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "松山弘平",
-      "trainer": "新谷功一",
-      "finish_time": "2:12.3",
-      "margin": "1.1/2",
-      "win_odds": 4.2,
-      "popularity": 2,
-      "horse_weight": 490,
-      "horse_weight_diff": 6,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0643,
-      "ev_score": 0.3085,
-      "kelly_fraction": 0.0,
-      "manji_ev": 58885.432,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 3,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "クリスレジーナ",
-      "horse_id": "2023102091",
-      "sex_age": "牝5",
-      "weight_carried": 55.0,
-      "jockey": "鮫島克駿",
-      "trainer": "高野友和",
-      "finish_time": "2:12.6",
-      "margin": "2",
-      "win_odds": 5.7,
-      "popularity": 3,
-      "horse_weight": 458,
-      "horse_weight_diff": -10,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0643,
-      "ev_score": 0.27,
-      "kelly_fraction": 0.0,
-      "manji_ev": 1627.4767,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 4,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "ヴィスコンテッサ",
-      "horse_id": "2023107244",
-      "sex_age": "牝5",
-      "weight_carried": 55.0,
-      "jockey": "吉村誠之",
-      "trainer": "松永幹夫",
-      "finish_time": "2:12.7",
-      "margin": "1/2",
-      "win_odds": 15.8,
-      "popularity": 7,
-      "horse_weight": 446,
-      "horse_weight_diff": 0,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0991,
-      "ev_score": 0.9712,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.0,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 5,
-      "gate_number": 6,
-      "horse_number": 6,
-      "horse_name": "エイズルブルーム",
-      "horse_id": "2023102996",
-      "sex_age": "牝4",
-      "weight_carried": 55.0,
-      "jockey": "池添謙一",
-      "trainer": "坂口智康",
-      "finish_time": "2:12.7",
-      "margin": "ハナ",
-      "win_odds": 7.5,
-      "popularity": 5,
-      "horse_weight": 440,
-      "horse_weight_diff": 10,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0483,
-      "ev_score": 0.3767,
-      "kelly_fraction": 0.0,
-      "manji_ev": 1762.386,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 6,
-      "gate_number": 8,
-      "horse_number": 8,
-      "horse_name": "デルマホダカ",
-      "horse_id": "2023101362",
-      "sex_age": "牝1",
-      "weight_carried": 55.0,
-      "jockey": "角田大和",
-      "trainer": "菊沢隆徳",
-      "finish_time": "2:13.2",
-      "margin": "3",
-      "win_odds": 172.4,
-      "popularity": 9,
-      "horse_weight": 488,
-      "horse_weight_diff": -4,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0682,
-      "ev_score": 5.3166,
-      "kelly_fraction": 0.0056,
-      "manji_ev": 71347.1518,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 7,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "ロングトールサリー",
       "horse_id": "2023106995",
       "sex_age": "牝3",
       "weight_carried": 55.0,
-      "jockey": "川田将雅",
-      "trainer": "福永祐一",
-      "finish_time": "2:13.2",
-      "margin": "ハナ",
-      "win_odds": 2.5,
-      "popularity": 1,
+      "jockey": "川田",
+      "trainer": "栗東福永",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
       "horse_weight": 496,
       "horse_weight_diff": 6,
       "sire": null,
@@ -194,19 +38,71 @@
       "odds_velocity": null
     },
     {
-      "rank": 8,
+      "rank": null,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "ヴィスコンテッサ",
+      "horse_id": "2023107244",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "吉村",
+      "trainer": "栗東松永幹",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 446,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0991,
+      "ev_score": 0.9712,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "ララオウ",
+      "horse_id": "2023105981",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "浜中",
+      "trainer": "栗東須貝",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 498,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.05,
+      "ev_score": 0.4448,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
       "gate_number": 4,
       "horse_number": 4,
       "horse_name": "リュクスパトロール",
       "horse_id": "2023105259",
-      "sex_age": "牝4",
+      "sex_age": "牝3",
       "weight_carried": 55.0,
-      "jockey": "団野大成",
-      "trainer": "加藤士津",
-      "finish_time": "2:13.3",
-      "margin": "3/4",
-      "win_odds": 59.4,
-      "popularity": 8,
+      "jockey": "団野",
+      "trainer": "美浦加藤士",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
       "horse_weight": 422,
       "horse_weight_diff": 0,
       "sire": null,
@@ -220,28 +116,132 @@
       "odds_velocity": null
     },
     {
-      "rank": 9,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "ララオウ",
-      "horse_id": "2023105981",
-      "sex_age": "牝4",
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "クリスレジーナ",
+      "horse_id": "2023102091",
+      "sex_age": "牝3",
       "weight_carried": 55.0,
-      "jockey": "浜中俊",
-      "trainer": "須貝尚介",
-      "finish_time": "2:14.8",
-      "margin": "9",
-      "win_odds": 10.4,
-      "popularity": 6,
-      "horse_weight": 498,
-      "horse_weight_diff": 2,
+      "jockey": "鮫島駿",
+      "trainer": "栗東高野",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 458,
+      "horse_weight_diff": -10,
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.05,
-      "ev_score": 0.4448,
+      "honmei_score": 0.0643,
+      "ev_score": 0.27,
       "kelly_fraction": 0.0,
-      "manji_ev": 0.0,
+      "manji_ev": 1627.4767,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 6,
+      "horse_name": "エイズルブルーム",
+      "horse_id": "2023102996",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "池添",
+      "trainer": "栗東坂口",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 440,
+      "horse_weight_diff": 10,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0483,
+      "ev_score": 0.3767,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1762.386,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 7,
+      "horse_name": "トリニティ",
+      "horse_id": "2023103492",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "岩田望",
+      "trainer": "栗東安田",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 450,
+      "horse_weight_diff": 8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0643,
+      "ev_score": 0.5914,
+      "kelly_fraction": 0.0,
+      "manji_ev": 815.0652,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 8,
+      "horse_name": "デルマホダカ",
+      "horse_id": "2023101362",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "角田大和",
+      "trainer": "美浦菊沢",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 488,
+      "horse_weight_diff": -4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0682,
+      "ev_score": 5.3166,
+      "kelly_fraction": 0.0056,
+      "manji_ev": 71347.1518,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 9,
+      "horse_name": "レイクラシック",
+      "horse_id": "2023103906",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "松山",
+      "trainer": "栗東新谷",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 490,
+      "horse_weight_diff": 6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0643,
+      "ev_score": 0.3085,
+      "kelly_fraction": 0.0,
+      "manji_ev": 58885.432,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     }
@@ -290,6 +290,18 @@
       "popularity": 7
     },
     {
+      "bet_type": "馬連",
+      "combination": "1",
+      "payout": 4090,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "7",
+      "payout": 80000,
+      "popularity": 1
+    },
+    {
       "bet_type": "ワイド",
       "combination": "7-9",
       "payout": 430,
@@ -308,16 +320,40 @@
       "popularity": 9
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 40020,
+      "popularity": 50
+    },
+    {
       "bet_type": "馬単",
       "combination": "7→9",
       "payout": 2920,
       "popularity": 16
     },
     {
+      "bet_type": "馬単",
+      "combination": "7",
+      "payout": 9000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "5-7-9",
       "payout": 2680,
       "popularity": 12
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4",
+      "payout": 50507,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5",
+      "payout": 40007,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -353,17 +389,8 @@
       "bet_form": "単勝",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "7": "トリニティ",
-        "9": "レイクラシック",
-        "5": "クリスレジーナ",
-        "2": "ヴィスコンテッサ",
-        "6": "エイズルブルーム",
-        "8": "デルマホダカ",
-        "1": "ロングトールサリー",
-        "4": "リュクスパトロール",
-        "3": "ララオウ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 16284,
@@ -405,17 +432,8 @@
       "bet_form": "複勝",
       "n_tickets": 3,
       "invested": 300,
-      "horse_num_to_name": {
-        "7": "トリニティ",
-        "9": "レイクラシック",
-        "5": "クリスレジーナ",
-        "2": "ヴィスコンテッサ",
-        "6": "エイズルブルーム",
-        "8": "デルマホダカ",
-        "1": "ロングトールサリー",
-        "4": "リュクスパトロール",
-        "3": "ララオウ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 16285,
@@ -450,17 +468,8 @@
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "7": "トリニティ",
-        "9": "レイクラシック",
-        "5": "クリスレジーナ",
-        "2": "ヴィスコンテッサ",
-        "6": "エイズルブルーム",
-        "8": "デルマホダカ",
-        "1": "ロングトールサリー",
-        "4": "リュクスパトロール",
-        "3": "ララオウ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 16286,
@@ -495,17 +504,8 @@
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "7": "トリニティ",
-        "9": "レイクラシック",
-        "5": "クリスレジーナ",
-        "2": "ヴィスコンテッサ",
-        "6": "エイズルブルーム",
-        "8": "デルマホダカ",
-        "1": "ロングトールサリー",
-        "4": "リュクスパトロール",
-        "3": "ララオウ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 16287,
@@ -568,17 +568,8 @@
       "bet_form": "軸2頭ながし",
       "n_tickets": 2,
       "invested": 200,
-      "horse_num_to_name": {
-        "7": "トリニティ",
-        "9": "レイクラシック",
-        "5": "クリスレジーナ",
-        "2": "ヴィスコンテッサ",
-        "6": "エイズルブルーム",
-        "8": "デルマホダカ",
-        "1": "ロングトールサリー",
-        "4": "リュクスパトロール",
-        "3": "ララオウ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 16288,
@@ -704,107 +695,8 @@
       "bet_form": "1頭軸マルチ",
       "n_tickets": 36,
       "invested": 3600,
-      "horse_num_to_name": {
-        "7": "トリニティ",
-        "9": "レイクラシック",
-        "5": "クリスレジーナ",
-        "2": "ヴィスコンテッサ",
-        "6": "エイズルブルーム",
-        "8": "デルマホダカ",
-        "1": "ロングトールサリー",
-        "4": "リュクスパトロール",
-        "3": "ララオウ"
-      }
-    },
-    {
-      "prediction_id": 16289,
-      "model_type": "卍(暫定)",
-      "bet_type": "単勝",
-      "confidence": 1.0,
-      "expected_value": 77432.43708897856,
-      "recommended_bet": 100.0,
-      "combination_json": "[[8]]",
-      "notes": "確率1位(卍) EV=77432.44 odds=1.0",
-      "created_at": "2026-05-02 13:24:31",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -100.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "デルマホダカ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 77432.43708897856,
-          "ev_score": 77432.43708897856
-        }
-      ],
-      "bet_form": "単勝",
-      "n_tickets": 1,
-      "invested": 100,
-      "horse_num_to_name": {
-        "7": "トリニティ",
-        "9": "レイクラシック",
-        "5": "クリスレジーナ",
-        "2": "ヴィスコンテッサ",
-        "6": "エイズルブルーム",
-        "8": "デルマホダカ",
-        "1": "ロングトールサリー",
-        "4": "リュクスパトロール",
-        "3": "ララオウ"
-      }
-    },
-    {
-      "prediction_id": 16290,
-      "model_type": "卍(暫定)",
-      "bet_type": "複勝",
-      "confidence": 0.6,
-      "expected_value": 47187.269913275784,
-      "recommended_bet": 300.0,
-      "combination_json": "[[8], [9], [5]]",
-      "notes": "確率上位3頭を複勝",
-      "created_at": "2026-05-02 13:24:31",
-      "is_hit": 1,
-      "payout": 320.0,
-      "profit": 20.0,
-      "roi": 106.66666666666667,
-      "horses": [
-        {
-          "horse_name": "デルマホダカ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 47187.269913275784,
-          "ev_score": 47187.269913275784
-        },
-        {
-          "horse_name": "レイクラシック",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 47187.269913275784,
-          "ev_score": 47187.269913275784
-        },
-        {
-          "horse_name": "クリスレジーナ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 47187.269913275784,
-          "ev_score": 47187.269913275784
-        }
-      ],
-      "bet_form": "複勝",
-      "n_tickets": 3,
-      "invested": 300,
-      "horse_num_to_name": {
-        "7": "トリニティ",
-        "9": "レイクラシック",
-        "5": "クリスレジーナ",
-        "2": "ヴィスコンテッサ",
-        "6": "エイズルブルーム",
-        "8": "デルマホダカ",
-        "1": "ロングトールサリー",
-        "4": "リュクスパトロール",
-        "3": "ララオウ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 16291,
@@ -839,17 +731,8 @@
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "7": "トリニティ",
-        "9": "レイクラシック",
-        "5": "クリスレジーナ",
-        "2": "ヴィスコンテッサ",
-        "6": "エイズルブルーム",
-        "8": "デルマホダカ",
-        "1": "ロングトールサリー",
-        "4": "リュクスパトロール",
-        "3": "ララオウ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 16292,
@@ -884,17 +767,8 @@
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "7": "トリニティ",
-        "9": "レイクラシック",
-        "5": "クリスレジーナ",
-        "2": "ヴィスコンテッサ",
-        "6": "エイズルブルーム",
-        "8": "デルマホダカ",
-        "1": "ロングトールサリー",
-        "4": "リュクスパトロール",
-        "3": "ララオウ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 16295,
@@ -936,17 +810,8 @@
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "7": "トリニティ",
-        "9": "レイクラシック",
-        "5": "クリスレジーナ",
-        "2": "ヴィスコンテッサ",
-        "6": "エイズルブルーム",
-        "8": "デルマホダカ",
-        "1": "ロングトールサリー",
-        "4": "リュクスパトロール",
-        "3": "ララオウ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 16296,
@@ -988,17 +853,8 @@
       "bet_form": "軸2頭ながし",
       "n_tickets": 3,
       "invested": 300,
-      "horse_num_to_name": {
-        "7": "トリニティ",
-        "9": "レイクラシック",
-        "5": "クリスレジーナ",
-        "2": "ヴィスコンテッサ",
-        "6": "エイズルブルーム",
-        "8": "デルマホダカ",
-        "1": "ロングトールサリー",
-        "4": "リュクスパトロール",
-        "3": "ララオウ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 16297,
@@ -1040,17 +896,8 @@
       "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
       "invested": 300,
-      "horse_num_to_name": {
-        "7": "トリニティ",
-        "9": "レイクラシック",
-        "5": "クリスレジーナ",
-        "2": "ヴィスコンテッサ",
-        "6": "エイズルブルーム",
-        "8": "デルマホダカ",
-        "1": "ロングトールサリー",
-        "4": "リュクスパトロール",
-        "3": "ララオウ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 16298,
@@ -1134,17 +981,8 @@
       "bet_form": "馬分析",
       "n_tickets": 0,
       "invested": 0,
-      "horse_num_to_name": {
-        "7": "トリニティ",
-        "9": "レイクラシック",
-        "5": "クリスレジーナ",
-        "2": "ヴィスコンテッサ",
-        "6": "エイズルブルーム",
-        "8": "デルマホダカ",
-        "1": "ロングトールサリー",
-        "4": "リュクスパトロール",
-        "3": "ララオウ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 17000,
@@ -1172,17 +1010,8 @@
       "bet_form": "単勝",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "7": "トリニティ",
-        "9": "レイクラシック",
-        "5": "クリスレジーナ",
-        "2": "ヴィスコンテッサ",
-        "6": "エイズルブルーム",
-        "8": "デルマホダカ",
-        "1": "ロングトールサリー",
-        "4": "リュクスパトロール",
-        "3": "ララオウ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 17001,
@@ -1224,17 +1053,8 @@
       "bet_form": "複勝",
       "n_tickets": 3,
       "invested": 300,
-      "horse_num_to_name": {
-        "7": "トリニティ",
-        "9": "レイクラシック",
-        "5": "クリスレジーナ",
-        "2": "ヴィスコンテッサ",
-        "6": "エイズルブルーム",
-        "8": "デルマホダカ",
-        "1": "ロングトールサリー",
-        "4": "リュクスパトロール",
-        "3": "ララオウ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 17002,
@@ -1269,17 +1089,8 @@
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "7": "トリニティ",
-        "9": "レイクラシック",
-        "5": "クリスレジーナ",
-        "2": "ヴィスコンテッサ",
-        "6": "エイズルブルーム",
-        "8": "デルマホダカ",
-        "1": "ロングトールサリー",
-        "4": "リュクスパトロール",
-        "3": "ララオウ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 17003,
@@ -1314,17 +1125,8 @@
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "7": "トリニティ",
-        "9": "レイクラシック",
-        "5": "クリスレジーナ",
-        "2": "ヴィスコンテッサ",
-        "6": "エイズルブルーム",
-        "8": "デルマホダカ",
-        "1": "ロングトールサリー",
-        "4": "リュクスパトロール",
-        "3": "ララオウ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 17004,
@@ -1387,17 +1189,8 @@
       "bet_form": "軸2頭ながし",
       "n_tickets": 2,
       "invested": 200,
-      "horse_num_to_name": {
-        "7": "トリニティ",
-        "9": "レイクラシック",
-        "5": "クリスレジーナ",
-        "2": "ヴィスコンテッサ",
-        "6": "エイズルブルーム",
-        "8": "デルマホダカ",
-        "1": "ロングトールサリー",
-        "4": "リュクスパトロール",
-        "3": "ララオウ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 17005,
@@ -1523,107 +1316,8 @@
       "bet_form": "1頭軸マルチ",
       "n_tickets": 36,
       "invested": 3600,
-      "horse_num_to_name": {
-        "7": "トリニティ",
-        "9": "レイクラシック",
-        "5": "クリスレジーナ",
-        "2": "ヴィスコンテッサ",
-        "6": "エイズルブルーム",
-        "8": "デルマホダカ",
-        "1": "ロングトールサリー",
-        "4": "リュクスパトロール",
-        "3": "ララオウ"
-      }
-    },
-    {
-      "prediction_id": 17006,
-      "model_type": "卍(直前)",
-      "bet_type": "単勝",
-      "confidence": 1.0,
-      "expected_value": 71347.15177201827,
-      "recommended_bet": 400.0,
-      "combination_json": "[[8]]",
-      "notes": "確率1位(卍) EV=71347.15 odds=78.0",
-      "created_at": "2026-05-02 13:52:25",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -100.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "デルマホダカ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 71347.15177201827,
-          "ev_score": 71347.15177201827
-        }
-      ],
-      "bet_form": "単勝",
-      "n_tickets": 1,
-      "invested": 100,
-      "horse_num_to_name": {
-        "7": "トリニティ",
-        "9": "レイクラシック",
-        "5": "クリスレジーナ",
-        "2": "ヴィスコンテッサ",
-        "6": "エイズルブルーム",
-        "8": "デルマホダカ",
-        "1": "ロングトールサリー",
-        "4": "リュクスパトロール",
-        "3": "ララオウ"
-      }
-    },
-    {
-      "prediction_id": 17007,
-      "model_type": "卍(直前)",
-      "bet_type": "複勝",
-      "confidence": 0.6,
-      "expected_value": 43998.32326663576,
-      "recommended_bet": 300.0,
-      "combination_json": "[[8], [9], [6]]",
-      "notes": "確率上位3頭を複勝",
-      "created_at": "2026-05-02 13:52:25",
-      "is_hit": 1,
-      "payout": 140.0,
-      "profit": -160.0,
-      "roi": 46.666666666666664,
-      "horses": [
-        {
-          "horse_name": "デルマホダカ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 43998.32326663576,
-          "ev_score": 43998.32326663576
-        },
-        {
-          "horse_name": "レイクラシック",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 43998.32326663576,
-          "ev_score": 43998.32326663576
-        },
-        {
-          "horse_name": "エイズルブルーム",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 43998.32326663576,
-          "ev_score": 43998.32326663576
-        }
-      ],
-      "bet_form": "複勝",
-      "n_tickets": 3,
-      "invested": 300,
-      "horse_num_to_name": {
-        "7": "トリニティ",
-        "9": "レイクラシック",
-        "5": "クリスレジーナ",
-        "2": "ヴィスコンテッサ",
-        "6": "エイズルブルーム",
-        "8": "デルマホダカ",
-        "1": "ロングトールサリー",
-        "4": "リュクスパトロール",
-        "3": "ララオウ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 17008,
@@ -1658,17 +1352,8 @@
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "7": "トリニティ",
-        "9": "レイクラシック",
-        "5": "クリスレジーナ",
-        "2": "ヴィスコンテッサ",
-        "6": "エイズルブルーム",
-        "8": "デルマホダカ",
-        "1": "ロングトールサリー",
-        "4": "リュクスパトロール",
-        "3": "ララオウ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 17009,
@@ -1703,17 +1388,8 @@
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "7": "トリニティ",
-        "9": "レイクラシック",
-        "5": "クリスレジーナ",
-        "2": "ヴィスコンテッサ",
-        "6": "エイズルブルーム",
-        "8": "デルマホダカ",
-        "1": "ロングトールサリー",
-        "4": "リュクスパトロール",
-        "3": "ララオウ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 17012,
@@ -1755,17 +1431,8 @@
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "7": "トリニティ",
-        "9": "レイクラシック",
-        "5": "クリスレジーナ",
-        "2": "ヴィスコンテッサ",
-        "6": "エイズルブルーム",
-        "8": "デルマホダカ",
-        "1": "ロングトールサリー",
-        "4": "リュクスパトロール",
-        "3": "ララオウ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 17013,
@@ -1807,17 +1474,8 @@
       "bet_form": "軸2頭ながし",
       "n_tickets": 3,
       "invested": 300,
-      "horse_num_to_name": {
-        "7": "トリニティ",
-        "9": "レイクラシック",
-        "5": "クリスレジーナ",
-        "2": "ヴィスコンテッサ",
-        "6": "エイズルブルーム",
-        "8": "デルマホダカ",
-        "1": "ロングトールサリー",
-        "4": "リュクスパトロール",
-        "3": "ララオウ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 17014,
@@ -1859,17 +1517,8 @@
       "bet_form": "1頭軸マルチ",
       "n_tickets": 18,
       "invested": 1800,
-      "horse_num_to_name": {
-        "7": "トリニティ",
-        "9": "レイクラシック",
-        "5": "クリスレジーナ",
-        "2": "ヴィスコンテッサ",
-        "6": "エイズルブルーム",
-        "8": "デルマホダカ",
-        "1": "ロングトールサリー",
-        "4": "リュクスパトロール",
-        "3": "ララオウ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 17015,
@@ -1953,17 +1602,8 @@
       "bet_form": "馬分析",
       "n_tickets": 0,
       "invested": 0,
-      "horse_num_to_name": {
-        "7": "トリニティ",
-        "9": "レイクラシック",
-        "5": "クリスレジーナ",
-        "2": "ヴィスコンテッサ",
-        "6": "エイズルブルーム",
-        "8": "デルマホダカ",
-        "1": "ロングトールサリー",
-        "4": "リュクスパトロール",
-        "3": "ララオウ"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     }
   ],
   "training_evals": {},

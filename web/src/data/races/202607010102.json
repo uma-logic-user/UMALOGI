@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 4,
-      "horse_name": "スノーランス",
-      "horse_id": "2023103693",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "鮫島克駿",
-      "trainer": "上原佑紀",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 5,
       "horse_number": 9,
       "horse_name": "ゴーゴーパンチ",
@@ -52,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 6,
       "horse_number": 12,
       "horse_name": "マジェステラ",
@@ -61,6 +41,26 @@
       "weight_carried": 55.0,
       "jockey": "ディー",
       "trainer": "千葉直人",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 4,
+      "horse_name": "スノーランス",
+      "horse_id": "2023103693",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "鮫島克駿",
+      "trainer": "上原佑紀",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "9",
       "payout": 820,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

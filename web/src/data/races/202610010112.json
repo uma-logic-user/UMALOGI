@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "ウィズマスタング",
-      "horse_id": "2022106045",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "国分恭介",
-      "trainer": "西園翔太",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 5,
       "horse_number": 8,
       "horse_name": "ラマンシュ",
@@ -52,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 5,
       "horse_number": 9,
       "horse_name": "ロードヴォイジャー",
@@ -61,6 +41,26 @@
       "weight_carried": 57.0,
       "jockey": "丹内祐次",
       "trainer": "坂口智康",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "ウィズマスタング",
+      "horse_id": "2022106045",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "国分恭介",
+      "trainer": "西園翔太",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -318,12 +318,6 @@
       "combination": "8",
       "payout": 750,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "15",
-      "payout": 15000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

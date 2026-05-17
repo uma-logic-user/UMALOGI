@@ -12,27 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 10,
-      "horse_name": "バーケンティン",
-      "horse_id": "2021105868",
-      "sex_age": "牡3",
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 14,
+      "horse_name": "ハヤテノツバサ",
+      "horse_id": "2022100194",
+      "sex_age": "牡1",
       "weight_carried": 58.0,
-      "jockey": "富田暁",
-      "trainer": "平田修",
+      "jockey": "斎藤新",
+      "trainer": "杉山佳明",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
       "horse_weight_diff": null,
-      "sire": "ロードカナロア",
-      "dam": "リーチングReaching(愛)",
-      "dam_sire": "Dansili"
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 7,
       "horse_number": 11,
       "horse_name": "キャリーグレイス",
@@ -52,24 +52,24 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 14,
-      "horse_name": "ハヤテノツバサ",
-      "horse_id": "2022100194",
-      "sex_age": "牡1",
+      "rank": 3,
+      "gate_number": 6,
+      "horse_number": 10,
+      "horse_name": "バーケンティン",
+      "horse_id": "2021105868",
+      "sex_age": "牡3",
       "weight_carried": 58.0,
-      "jockey": "斎藤新",
-      "trainer": "杉山佳明",
+      "jockey": "富田暁",
+      "trainer": "平田修",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
       "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
+      "sire": "ロードカナロア",
+      "dam": "リーチングReaching(愛)",
+      "dam_sire": "Dansili"
     },
     {
       "rank": null,
@@ -293,12 +293,6 @@
     }
   ],
   "payouts": [
-    {
-      "bet_type": "単勝",
-      "combination": "14",
-      "payout": 14000,
-      "popularity": null
-    },
     {
       "bet_type": "複勝",
       "combination": "14",

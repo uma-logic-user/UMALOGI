@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "アビラーシャ",
@@ -32,15 +32,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "マーゴットバディ",
-      "horse_id": "2023105638",
-      "sex_age": "騸3",
+      "horse_number": 5,
+      "horse_name": "ミスターエメラルド",
+      "horse_id": "2023106516",
+      "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "小崎綾也",
-      "trainer": "石坂公一",
+      "jockey": "ディー",
+      "trainer": "中村直也",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 4,
-      "horse_number": 5,
-      "horse_name": "ミスターエメラルド",
-      "horse_id": "2023106516",
-      "sex_age": "牡3",
+      "horse_number": 4,
+      "horse_name": "マーゴットバディ",
+      "horse_id": "2023105638",
+      "sex_age": "騸3",
       "weight_carried": 57.0,
-      "jockey": "ディー",
-      "trainer": "中村直也",
+      "jockey": "小崎綾也",
+      "trainer": "石坂公一",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -278,12 +278,6 @@
       "combination": "1",
       "payout": 800,
       "popularity": 4
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "13",
-      "payout": 13000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "タイセイカイザー",
-      "horse_id": "2022102882",
-      "sex_age": "牡3",
+      "rank": 1,
+      "gate_number": 7,
+      "horse_number": 12,
+      "horse_name": "ギュルヴィ",
+      "horse_id": "2022103267",
+      "sex_age": "牡7",
       "weight_carried": 58.0,
-      "jockey": "団野大成",
-      "trainer": "奥村豊",
+      "jockey": "武豊",
+      "trainer": "大久保龍",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 3,
       "horse_number": 4,
       "horse_name": "ユウトザユウト",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 12,
-      "horse_name": "ギュルヴィ",
-      "horse_id": "2022103267",
-      "sex_age": "牡7",
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "タイセイカイザー",
+      "horse_id": "2022102882",
+      "sex_age": "牡3",
       "weight_carried": 58.0,
-      "jockey": "武豊",
-      "trainer": "大久保龍",
+      "jockey": "団野大成",
+      "trainer": "奥村豊",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -298,12 +298,6 @@
       "combination": "12",
       "payout": 210,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "14",
-      "payout": 14000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

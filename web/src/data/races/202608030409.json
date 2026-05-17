@@ -1,236 +1,28 @@
 {
   "race_id": "202608030409",
-  "race_name": "六波羅特別",
+  "race_name": "",
   "date": "2026-05-03",
   "venue": "京都",
   "race_number": 9,
-  "distance": 1800,
-  "surface": "ダート",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "曇",
-  "condition": "稍",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
-    {
-      "rank": 1,
-      "gate_number": 6,
-      "horse_number": 6,
-      "horse_name": "レヴァンテシチー",
-      "horse_id": "2022104267",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "松山弘平",
-      "trainer": "柴田卓",
-      "finish_time": "1:50.8",
-      "margin": "@",
-      "win_odds": 5.0,
-      "popularity": 2,
-      "horse_weight": 488,
-      "horse_weight_diff": -2,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.057,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 2.86,
-      "odds_vs_morning": null,
-      "odds_velocity": null
-    },
-    {
-      "rank": 2,
-      "gate_number": 8,
-      "horse_number": 8,
-      "horse_name": "サンライズバレット",
-      "horse_id": "2022102218",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "鮫島克駿",
-      "trainer": "茶木太樹",
-      "finish_time": "1:50.9",
-      "margin": "1/2",
-      "win_odds": 1.5,
-      "popularity": 1,
-      "horse_weight": 510,
-      "horse_weight_diff": -4,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.1514,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 3.9783,
-      "odds_vs_morning": null,
-      "odds_velocity": null
-    },
-    {
-      "rank": 3,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "ジョータルマエ",
-      "horse_id": "2020100771",
-      "sex_age": "騸7",
-      "weight_carried": 58.0,
-      "jockey": "鮫島良太",
-      "trainer": "河嶋宏樹",
-      "finish_time": "1:51.1",
-      "margin": "1",
-      "win_odds": 11.9,
-      "popularity": 5,
-      "horse_weight": 496,
-      "horse_weight_diff": 4,
-      "sire": "ホッコータルマエ",
-      "dam": "ジョーイロンデル",
-      "dam_sire": "クロフネ",
-      "honmei_score": 0.07,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 2.7022,
-      "odds_vs_morning": null,
-      "odds_velocity": null
-    },
-    {
-      "rank": 4,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "バトンインディ",
-      "horse_id": "2021106359",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "幸英明",
-      "trainer": "安達昭夫",
-      "finish_time": "1:51.3",
-      "margin": "1.1/4",
-      "win_odds": 11.8,
-      "popularity": 4,
-      "horse_weight": 474,
-      "horse_weight_diff": 6,
-      "sire": "パイロPyro(米)",
-      "dam": "ミスアシング",
-      "dam_sire": "キングカメハメハ",
-      "honmei_score": 0.1021,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 3.0211,
-      "odds_vs_morning": null,
-      "odds_velocity": null
-    },
-    {
-      "rank": 5,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "テーオーライマン",
-      "horse_id": "2022103186",
-      "sex_age": "牡4",
-      "weight_carried": 58.0,
-      "jockey": "レーン",
-      "trainer": "宮徹",
-      "finish_time": "1:51.5",
-      "margin": "1.1/2",
-      "win_odds": 5.4,
-      "popularity": 3,
-      "horse_weight": 458,
-      "horse_weight_diff": 2,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0891,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 3.6112,
-      "odds_vs_morning": null,
-      "odds_velocity": null
-    },
-    {
-      "rank": 6,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "ヒデノレインボー",
-      "horse_id": "2019102705",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "吉村誠之",
-      "trainer": "梅田智之",
-      "finish_time": "1:52.1",
-      "margin": "3.1/2",
-      "win_odds": 97.6,
-      "popularity": 8,
-      "horse_weight": 506,
-      "horse_weight_diff": -8,
-      "sire": "シニスターミニスターSinister Minister(米)",
-      "dam": "カリビアンセレブ",
-      "dam_sire": "ゴールドアリュール",
-      "honmei_score": 0.1734,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 4.0797,
-      "odds_vs_morning": null,
-      "odds_velocity": null
-    },
-    {
-      "rank": 7,
-      "gate_number": 7,
-      "horse_number": 7,
-      "horse_name": "シュプリンガー",
-      "horse_id": "2019104636",
-      "sex_age": "騸6",
-      "weight_carried": 58.0,
-      "jockey": "国分優作",
-      "trainer": "小栗実",
-      "finish_time": "1:53.5",
-      "margin": "9",
-      "win_odds": 75.1,
-      "popularity": 7,
-      "horse_weight": 506,
-      "horse_weight_diff": 4,
-      "sire": "ラブリーデイ",
-      "dam": "アルテミスハート",
-      "dam_sire": "ハーツクライ",
-      "honmei_score": 0.0387,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 1.5293,
-      "odds_vs_morning": null,
-      "odds_velocity": null
-    },
-    {
-      "rank": 8,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "サパテアール",
-      "horse_id": "2019102514",
-      "sex_age": "騸5",
-      "weight_carried": 58.0,
-      "jockey": "津村明秀",
-      "trainer": "畠山吉宏",
-      "finish_time": "1:53.7",
-      "margin": "1.1/4",
-      "win_odds": 41.9,
-      "popularity": 6,
-      "horse_weight": 530,
-      "horse_weight_diff": 10,
-      "sire": "プリサイスエンドPrecise End(米)",
-      "dam": "ファーレサルティ",
-      "dam_sire": "ダンスインザダーク",
-      "honmei_score": 0.0874,
-      "ev_score": 0.0,
-      "kelly_fraction": 0.0,
-      "manji_ev": 1.8913,
-      "odds_vs_morning": null,
-      "odds_velocity": null
-    },
     {
       "rank": 9,
       "gate_number": 8,
       "horse_number": 9,
       "horse_name": "グランオース",
       "horse_id": "2021100620",
-      "sex_age": "牡1",
+      "sex_age": "牡5",
       "weight_carried": 58.0,
-      "jockey": "角田大和",
-      "trainer": "角田晃一",
+      "jockey": "角田和",
+      "trainer": "栗東角田",
       "finish_time": "2:11.4",
-      "margin": "大",
+      "margin": "@",
       "win_odds": 124.6,
       "popularity": 9,
       "horse_weight": 520,
@@ -238,10 +30,10 @@
       "sire": "マジェスティックウォリアーMajestic Warrior(米)",
       "dam": "レゾリューション",
       "dam_sire": "カリズマティックCharismatic(米)",
-      "honmei_score": 0.0891,
+      "honmei_score": 0.1056,
       "ev_score": 0.0,
       "kelly_fraction": 0.0,
-      "manji_ev": 3.754,
+      "manji_ev": 0.6238,
       "odds_vs_morning": null,
       "odds_velocity": null
     }
@@ -252,6 +44,12 @@
       "combination": "6",
       "payout": 500,
       "popularity": 2
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "9",
+      "payout": 9000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -284,6 +82,12 @@
       "popularity": 1
     },
     {
+      "bet_type": "馬連",
+      "combination": "1-10",
+      "payout": 2080,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "6-8",
       "payout": 150,
@@ -302,16 +106,46 @@
       "popularity": 6
     },
     {
+      "bet_type": "ワイド",
+      "combination": "6",
+      "payout": 80000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "6→8",
       "payout": 780,
       "popularity": 3
     },
     {
+      "bet_type": "馬単",
+      "combination": "6",
+      "payout": 8000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "3-6-8",
       "payout": 510,
       "popularity": 2
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4",
+      "payout": 603,
+      "popularity": 80
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1",
+      "payout": 10306,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2",
+      "payout": 30003,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -322,954 +156,870 @@
   ],
   "predictions": [
     {
-      "prediction_id": 22491,
+      "prediction_id": 24094,
       "model_type": "本命(暫定)",
       "bet_type": "単勝",
-      "confidence": 0.17341040462427745,
-      "expected_value": 0.17341040462427745,
+      "confidence": 0.21052631578947367,
+      "expected_value": 0.21052631578947367,
       "recommended_bet": 100.0,
-      "combination_json": "[[1]]",
-      "notes": "確率1位 P(win)=0.17 odds=1.0 EV=0.17",
-      "created_at": "2026-05-03 13:40:25",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -100.0,
-      "roi": 0.0,
+      "combination_json": "[[6]]",
+      "notes": "確率1位 P(win)=0.21 odds=1.0 EV=0.21",
+      "created_at": "2026-05-08 07:37:06",
+      "is_hit": 1,
+      "payout": 500.0,
+      "profit": 400.0,
+      "roi": 500.0,
       "horses": [
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.17341040462427745,
-          "ev_score": 0.17341040462427745
+          "model_score": 0.21052631578947367,
+          "ev_score": 0.21052631578947367
         }
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
       "invested": 100,
       "horse_num_to_name": {
-        "6": "レヴァンテシチー",
-        "8": "サンライズバレット",
-        "3": "ジョータルマエ",
-        "2": "バトンインディ",
-        "5": "テーオーライマン",
-        "1": "ヒデノレインボー",
-        "7": "シュプリンガー",
-        "4": "サパテアール",
         "9": "グランオース"
-      }
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22492,
+      "prediction_id": 24095,
       "model_type": "本命(暫定)",
       "bet_type": "複勝",
-      "confidence": 0.4268611004251813,
-      "expected_value": 0.4268611004251813,
+      "confidence": 0.17501230832042458,
+      "expected_value": 0.5250369249612737,
       "recommended_bet": 300.0,
-      "combination_json": "[[1], [8], [2]]",
+      "combination_json": "[[6], [5], [8]]",
       "notes": "上位3頭を複勝",
-      "created_at": "2026-05-03 13:40:26",
+      "created_at": "2026-05-08 07:37:06",
       "is_hit": 1,
-      "payout": 100.0,
-      "profit": -200.0,
-      "roi": 33.33333333333333,
+      "payout": 210.0,
+      "profit": -90.0,
+      "roi": 70.0,
       "horses": [
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.14228703347506041,
-          "ev_score": 0.4268611004251813
+          "model_score": 0.17501230832042458,
+          "ev_score": 0.5250369249612737
+        },
+        {
+          "horse_name": "テーオーライマン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.17501230832042458,
+          "ev_score": 0.5250369249612737
         },
         {
           "horse_name": "サンライズバレット",
           "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.14228703347506041,
-          "ev_score": 0.4268611004251813
-        },
-        {
-          "horse_name": "バトンインディ",
-          "horse_id": null,
           "predicted_rank": 3,
-          "model_score": 0.14228703347506041,
-          "ev_score": 0.4268611004251813
+          "model_score": 0.17501230832042458,
+          "ev_score": 0.5250369249612737
         }
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
       "invested": 300,
       "horse_num_to_name": {
-        "6": "レヴァンテシチー",
-        "8": "サンライズバレット",
-        "3": "ジョータルマエ",
-        "2": "バトンインディ",
-        "5": "テーオーライマン",
-        "1": "ヒデノレインボー",
-        "7": "シュプリンガー",
-        "4": "サパテアール",
         "9": "グランオース"
-      }
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22493,
+      "prediction_id": 24096,
       "model_type": "本命(暫定)",
       "bet_type": "馬連",
       "confidence": 0.027777777777777776,
-      "expected_value": 1.6666666666666667,
+      "expected_value": 1.0041666666666669,
       "recommended_bet": 500.0,
-      "combination_json": "[[1, 8], [1, 2], [1, 9], [1, 5], [1, 4]]",
-      "notes": "軸1番×相手5頭フォーメーション Harville最大=0.028",
-      "created_at": "2026-05-03 13:40:26",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -500.0,
-      "roi": 0.0,
+      "combination_json": "[[5, 6], [6, 8], [2, 6], [6, 9], [3, 6]]",
+      "notes": "軸6番×相手5頭フォーメーション Harville最大=0.028",
+      "created_at": "2026-05-08 07:37:06",
+      "is_hit": 1,
+      "payout": 250.0,
+      "profit": -250.0,
+      "roi": 50.0,
       "horses": [
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "テーオーライマン",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.027777777777777776,
-          "ev_score": 1.6666666666666667
+          "ev_score": 1.0041666666666669
         },
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "テーオーライマン",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.027777777777777776,
-          "ev_score": 1.6666666666666667
+          "ev_score": 1.0041666666666669
         },
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "テーオーライマン",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.027777777777777776,
-          "ev_score": 1.6666666666666667
+          "ev_score": 1.0041666666666669
         },
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "テーオーライマン",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.027777777777777776,
-          "ev_score": 1.6666666666666667
+          "ev_score": 1.0041666666666669
         },
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "テーオーライマン",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.027777777777777776,
-          "ev_score": 1.6666666666666667
+          "ev_score": 1.0041666666666669
         },
         {
-          "horse_name": "サンライズバレット",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 2,
           "model_score": 0.027777777777777776,
-          "ev_score": 1.6666666666666667
+          "ev_score": 1.0041666666666669
         },
         {
-          "horse_name": "サンライズバレット",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 2,
           "model_score": 0.027777777777777776,
-          "ev_score": 1.6666666666666667
+          "ev_score": 1.0041666666666669
         },
         {
-          "horse_name": "サンライズバレット",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 2,
           "model_score": 0.027777777777777776,
-          "ev_score": 1.6666666666666667
+          "ev_score": 1.0041666666666669
         },
         {
-          "horse_name": "サンライズバレット",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 2,
           "model_score": 0.027777777777777776,
-          "ev_score": 1.6666666666666667
+          "ev_score": 1.0041666666666669
         },
         {
-          "horse_name": "サンライズバレット",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 2,
           "model_score": 0.027777777777777776,
-          "ev_score": 1.6666666666666667
+          "ev_score": 1.0041666666666669
         }
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
       "invested": 500,
       "horse_num_to_name": {
-        "6": "レヴァンテシチー",
-        "8": "サンライズバレット",
-        "3": "ジョータルマエ",
-        "2": "バトンインディ",
-        "5": "テーオーライマン",
-        "1": "ヒデノレインボー",
-        "7": "シュプリンガー",
-        "4": "サパテアール",
         "9": "グランオース"
-      }
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22494,
+      "prediction_id": 24097,
       "model_type": "本命(暫定)",
       "bet_type": "ワイド",
       "confidence": 0.03611111111111111,
-      "expected_value": 0.6944444444444444,
+      "expected_value": 0.43722222222222223,
       "recommended_bet": 500.0,
-      "combination_json": "[[1, 8], [1, 2], [1, 9], [1, 5], [1, 4]]",
-      "notes": "軸1番×相手5頭ワイド Harville最大=0.028",
-      "created_at": "2026-05-03 13:40:26",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -500.0,
-      "roi": 0.0,
+      "combination_json": "[[5, 6], [6, 8], [2, 6], [6, 9], [3, 6]]",
+      "notes": "軸6番×相手5頭ワイド Harville最大=0.028",
+      "created_at": "2026-05-08 07:37:06",
+      "is_hit": 1,
+      "payout": 580.0,
+      "profit": 80.0,
+      "roi": 115.99999999999999,
       "horses": [
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "テーオーライマン",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.027777777777777776,
-          "ev_score": 0.6944444444444444
+          "ev_score": 0.43722222222222223
         },
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "テーオーライマン",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.027777777777777776,
-          "ev_score": 0.6944444444444444
+          "ev_score": 0.43722222222222223
         },
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "テーオーライマン",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.027777777777777776,
-          "ev_score": 0.6944444444444444
+          "ev_score": 0.43722222222222223
         },
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "テーオーライマン",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.027777777777777776,
-          "ev_score": 0.6944444444444444
+          "ev_score": 0.43722222222222223
         },
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "テーオーライマン",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.027777777777777776,
-          "ev_score": 0.6944444444444444
+          "ev_score": 0.43722222222222223
         },
         {
-          "horse_name": "サンライズバレット",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 2,
           "model_score": 0.027777777777777776,
-          "ev_score": 0.6944444444444444
+          "ev_score": 0.43722222222222223
         },
         {
-          "horse_name": "サンライズバレット",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 2,
           "model_score": 0.027777777777777776,
-          "ev_score": 0.6944444444444444
+          "ev_score": 0.43722222222222223
         },
         {
-          "horse_name": "サンライズバレット",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 2,
           "model_score": 0.027777777777777776,
-          "ev_score": 0.6944444444444444
+          "ev_score": 0.43722222222222223
         },
         {
-          "horse_name": "サンライズバレット",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 2,
           "model_score": 0.027777777777777776,
-          "ev_score": 0.6944444444444444
+          "ev_score": 0.43722222222222223
         },
         {
-          "horse_name": "サンライズバレット",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 2,
           "model_score": 0.027777777777777776,
-          "ev_score": 0.6944444444444444
+          "ev_score": 0.43722222222222223
         }
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
       "invested": 500,
       "horse_num_to_name": {
-        "6": "レヴァンテシチー",
-        "8": "サンライズバレット",
-        "3": "ジョータルマエ",
-        "2": "バトンインディ",
-        "5": "テーオーライマン",
-        "1": "ヒデノレインボー",
-        "7": "シュプリンガー",
-        "4": "サパテアール",
         "9": "グランオース"
-      }
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22495,
+      "prediction_id": 24098,
       "model_type": "本命(暫定)",
       "bet_type": "馬単",
       "confidence": 0.1111111111111111,
-      "expected_value": 1.6666666666666667,
+      "expected_value": 0.8868055555555555,
       "recommended_bet": 300.0,
-      "combination_json": "[[1, 8], [1, 2], [1, 9]]",
-      "notes": "軸1番→相手3頭フォーメーション Harville最大=0.014",
-      "created_at": "2026-05-03 13:40:26",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -300.0,
-      "roi": 0.0,
+      "combination_json": "[[6, 5], [6, 8], [6, 2]]",
+      "notes": "軸6番→相手3頭フォーメーション Harville最大=0.014",
+      "created_at": "2026-05-08 07:37:06",
+      "is_hit": 1,
+      "payout": 780.0,
+      "profit": 480.0,
+      "roi": 260.0,
       "horses": [
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.013888888888888888,
-          "ev_score": 1.6666666666666667
+          "ev_score": 0.8868055555555555
         },
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.013888888888888888,
-          "ev_score": 1.6666666666666667
+          "ev_score": 0.8868055555555555
         },
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.013888888888888888,
-          "ev_score": 1.6666666666666667
+          "ev_score": 0.8868055555555555
         },
         {
-          "horse_name": "サンライズバレット",
+          "horse_name": "テーオーライマン",
           "horse_id": null,
           "predicted_rank": 2,
           "model_score": 0.013888888888888888,
-          "ev_score": 1.6666666666666667
+          "ev_score": 0.8868055555555555
         },
         {
-          "horse_name": "サンライズバレット",
+          "horse_name": "テーオーライマン",
           "horse_id": null,
           "predicted_rank": 2,
           "model_score": 0.013888888888888888,
-          "ev_score": 1.6666666666666667
+          "ev_score": 0.8868055555555555
         },
         {
-          "horse_name": "サンライズバレット",
+          "horse_name": "テーオーライマン",
           "horse_id": null,
           "predicted_rank": 2,
           "model_score": 0.013888888888888888,
-          "ev_score": 1.6666666666666667
+          "ev_score": 0.8868055555555555
         }
       ],
       "bet_form": "軸ながし",
       "n_tickets": 3,
       "invested": 300,
       "horse_num_to_name": {
-        "6": "レヴァンテシチー",
-        "8": "サンライズバレット",
-        "3": "ジョータルマエ",
-        "2": "バトンインディ",
-        "5": "テーオーライマン",
-        "1": "ヒデノレインボー",
-        "7": "シュプリンガー",
-        "4": "サパテアール",
         "9": "グランオース"
-      }
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22496,
+      "prediction_id": 24099,
       "model_type": "本命(暫定)",
       "bet_type": "三連複",
       "confidence": 0.1428571428571429,
-      "expected_value": 3.571428571428572,
+      "expected_value": 1.1508333333333336,
       "recommended_bet": 600.0,
-      "combination_json": "[[1, 2, 8], [1, 8, 9]]",
-      "notes": "合成EV最大=3.57 2点 馬番=[(1, 2, 8), (1, 8, 9)]",
-      "created_at": "2026-05-03 13:40:26",
+      "combination_json": "[[5, 6, 8], [2, 5, 6]]",
+      "notes": "合成EV最大=1.15 2点 馬番=[(5, 6, 8), (2, 5, 6)]",
+      "created_at": "2026-05-08 07:37:06",
       "is_hit": 0,
       "payout": 0.0,
       "profit": -200.0,
       "roi": 0.0,
       "horses": [
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "テーオーライマン",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.011904761904761908,
-          "ev_score": 3.571428571428572
+          "ev_score": 1.1508333333333336
         },
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "テーオーライマン",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.011904761904761908,
-          "ev_score": 3.571428571428572
+          "ev_score": 1.1508333333333336
         },
         {
-          "horse_name": "バトンインディ",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 2,
           "model_score": 0.011904761904761908,
-          "ev_score": 3.571428571428572
+          "ev_score": 1.1508333333333336
         },
         {
-          "horse_name": "バトンインディ",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 2,
           "model_score": 0.011904761904761908,
-          "ev_score": 3.571428571428572
+          "ev_score": 1.1508333333333336
         },
         {
           "horse_name": "サンライズバレット",
           "horse_id": null,
           "predicted_rank": 3,
           "model_score": 0.011904761904761908,
-          "ev_score": 3.571428571428572
+          "ev_score": 1.1508333333333336
         },
         {
           "horse_name": "サンライズバレット",
           "horse_id": null,
           "predicted_rank": 3,
           "model_score": 0.011904761904761908,
-          "ev_score": 3.571428571428572
+          "ev_score": 1.1508333333333336
         }
       ],
       "bet_form": "軸2頭ながし",
       "n_tickets": 2,
       "invested": 200,
       "horse_num_to_name": {
-        "6": "レヴァンテシチー",
-        "8": "サンライズバレット",
-        "3": "ジョータルマエ",
-        "2": "バトンインディ",
-        "5": "テーオーライマン",
-        "1": "ヒデノレインボー",
-        "7": "シュプリンガー",
-        "4": "サパテアール",
         "9": "グランオース"
-      }
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22497,
+      "prediction_id": 24100,
       "model_type": "本命(暫定)",
       "bet_type": "三連単",
       "confidence": 0.3571428571428572,
-      "expected_value": 6.0,
-      "recommended_bet": 9000.0,
-      "combination_json": "[[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1], [1, 2, 4], [1, 4, 2], [2, 1, 4], [2, 4, 1], [4, 1, 2], [4, 2, 1], [1, 2, 5], [1, 5, 2], [2, 1, 5], [2, 5, 1], [5, 1, 2], [5, 2, 1], [1, 2, 8], [1, 8, 2], [2, 1, 8], [2, 8, 1], [8, 1, 2], [8, 2, 1], [1, 2, 9], [1, 9, 2], [2, 1, 9], [2, 9, 1], [9, 1, 2], [9, 2, 1], [1, 3, 4], [1, 4, 3], [3, 1, 4], [3, 4, 1], [4, 1, 3], [4, 3, 1], [1, 3, 5], [1, 5, 3], [3, 1, 5], [3, 5, 1], [5, 1, 3], [5, 3, 1], [1, 3, 8], [1, 8, 3], [3, 1, 8], [3, 8, 1], [8, 1, 3], [8, 3, 1], [1, 3, 9], [1, 9, 3], [3, 1, 9], [3, 9, 1], [9, 1, 3], [9, 3, 1], [1, 4, 5], [1, 5, 4], [4, 1, 5], [4, 5, 1], [5, 1, 4], [5, 4, 1], [1, 4, 8], [1, 8, 4], [4, 1, 8], [4, 8, 1], [8, 1, 4], [8, 4, 1], [1, 4, 9], [1, 9, 4], [4, 1, 9], [4, 9, 1], [9, 1, 4], [9, 4, 1], [1, 5, 8], [1, 8, 5], [5, 1, 8], [5, 8, 1], [8, 1, 5], [8, 5, 1], [1, 5, 9], [1, 9, 5], [5, 1, 9], [5, 9, 1], [9, 1, 5], [9, 5, 1], [1, 8, 9], [1, 9, 8], [8, 1, 9], [8, 9, 1], [9, 1, 8], [9, 8, 1]]",
-      "notes": "1着固定フォーメーション 軸=1番 12点 相手=[8, 2, 9, 5, 4, 3] Harville最大=0.0119",
-      "created_at": "2026-05-03 13:40:26",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -9000.0,
-      "roi": 0.0,
+      "expected_value": 5.802142857142858,
+      "recommended_bet": 1000.0,
+      "combination_json": "[[6, 5, 8], [6, 8, 5], [5, 6, 8], [5, 8, 6], [8, 6, 5], [8, 5, 6], [6, 5, 2], [6, 2, 5], [5, 6, 2], [5, 2, 6], [2, 6, 5], [2, 5, 6], [6, 5, 9], [6, 9, 5], [5, 6, 9], [5, 9, 6], [9, 6, 5], [9, 5, 6], [6, 5, 3], [6, 3, 5], [5, 6, 3], [5, 3, 6], [3, 6, 5], [3, 5, 6], [6, 5, 1], [6, 1, 5], [5, 6, 1], [5, 1, 6], [1, 6, 5], [1, 5, 6], [6, 8, 2], [6, 2, 8], [8, 6, 2], [8, 2, 6], [2, 6, 8], [2, 8, 6], [6, 8, 9], [6, 9, 8], [8, 6, 9], [8, 9, 6], [9, 6, 8], [9, 8, 6], [6, 8, 3], [6, 3, 8], [8, 6, 3], [8, 3, 6], [3, 6, 8], [3, 8, 6], [6, 8, 1], [6, 1, 8], [8, 6, 1], [8, 1, 6], [1, 6, 8], [1, 8, 6], [6, 2, 9], [6, 9, 2], [2, 6, 9], [2, 9, 6], [9, 6, 2], [9, 2, 6], [6, 2, 3], [6, 3, 2], [2, 6, 3], [2, 3, 6], [3, 6, 2], [3, 2, 6], [6, 2, 1], [6, 1, 2], [2, 6, 1], [2, 1, 6], [1, 6, 2], [1, 2, 6], [6, 9, 3], [6, 3, 9], [9, 6, 3], [9, 3, 6], [3, 6, 9], [3, 9, 6], [6, 9, 1], [6, 1, 9], [9, 6, 1], [9, 1, 6], [1, 6, 9], [1, 9, 6], [6, 3, 1], [6, 1, 3], [3, 6, 1], [3, 1, 6], [1, 6, 3], [1, 3, 6]]",
+      "notes": "1頭軸マルチ 軸=6番 相手=[5, 8, 2, 9, 3, 1] 90点 Harville最大=0.0119",
+      "created_at": "2026-05-08 07:37:06",
+      "is_hit": 1,
+      "payout": 3690.0,
+      "profit": -5310.0,
+      "roi": 41.0,
       "horses": [
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.011904761904761908,
-          "ev_score": 6.0
+          "ev_score": 5.802142857142858
         },
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.011904761904761908,
-          "ev_score": 6.0
+          "ev_score": 5.802142857142858
         },
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.011904761904761908,
-          "ev_score": 6.0
+          "ev_score": 5.802142857142858
         },
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.011904761904761908,
-          "ev_score": 6.0
+          "ev_score": 5.802142857142858
         },
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.011904761904761908,
-          "ev_score": 6.0
+          "ev_score": 5.802142857142858
+        },
+        {
+          "horse_name": "テーオーライマン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.011904761904761908,
+          "ev_score": 5.802142857142858
+        },
+        {
+          "horse_name": "テーオーライマン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.011904761904761908,
+          "ev_score": 5.802142857142858
+        },
+        {
+          "horse_name": "テーオーライマン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.011904761904761908,
+          "ev_score": 5.802142857142858
+        },
+        {
+          "horse_name": "テーオーライマン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.011904761904761908,
+          "ev_score": 5.802142857142858
+        },
+        {
+          "horse_name": "テーオーライマン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.011904761904761908,
+          "ev_score": 5.802142857142858
         },
         {
           "horse_name": "サンライズバレット",
           "horse_id": null,
-          "predicted_rank": 2,
+          "predicted_rank": 3,
           "model_score": 0.011904761904761908,
-          "ev_score": 6.0
+          "ev_score": 5.802142857142858
         },
         {
           "horse_name": "サンライズバレット",
           "horse_id": null,
-          "predicted_rank": 2,
+          "predicted_rank": 3,
           "model_score": 0.011904761904761908,
-          "ev_score": 6.0
+          "ev_score": 5.802142857142858
         },
         {
           "horse_name": "サンライズバレット",
           "horse_id": null,
-          "predicted_rank": 2,
+          "predicted_rank": 3,
           "model_score": 0.011904761904761908,
-          "ev_score": 6.0
+          "ev_score": 5.802142857142858
         },
         {
           "horse_name": "サンライズバレット",
           "horse_id": null,
-          "predicted_rank": 2,
+          "predicted_rank": 3,
           "model_score": 0.011904761904761908,
-          "ev_score": 6.0
+          "ev_score": 5.802142857142858
         },
         {
           "horse_name": "サンライズバレット",
           "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.011904761904761908,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "バトンインディ",
-          "horse_id": null,
           "predicted_rank": 3,
           "model_score": 0.011904761904761908,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "バトンインディ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.011904761904761908,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "バトンインディ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.011904761904761908,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "バトンインディ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.011904761904761908,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "バトンインディ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.011904761904761908,
-          "ev_score": 6.0
+          "ev_score": 5.802142857142858
         }
       ],
       "bet_form": "1頭軸マルチ",
       "n_tickets": 90,
       "invested": 9000,
       "horse_num_to_name": {
-        "6": "レヴァンテシチー",
-        "8": "サンライズバレット",
-        "3": "ジョータルマエ",
-        "2": "バトンインディ",
-        "5": "テーオーライマン",
-        "1": "ヒデノレインボー",
-        "7": "シュプリンガー",
-        "4": "サパテアール",
         "9": "グランオース"
-      }
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22498,
+      "prediction_id": 24101,
       "model_type": "卍(暫定)",
       "bet_type": "単勝",
-      "confidence": 1.0,
-      "expected_value": 4.079705317292502,
+      "confidence": 0.3721994754446659,
+      "expected_value": 3.7219947544466594,
       "recommended_bet": 100.0,
-      "combination_json": "[[1]]",
-      "notes": "確率1位(卍) EV=4.08 odds=1.0",
-      "created_at": "2026-05-03 13:40:26",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -100.0,
-      "roi": 0.0,
+      "combination_json": "[[6]]",
+      "notes": "確率1位(卍) EV=3.72 odds=1.0",
+      "created_at": "2026-05-08 07:37:06",
+      "is_hit": 1,
+      "payout": 500.0,
+      "profit": 400.0,
+      "roi": 500.0,
       "horses": [
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 4.079705317292502,
-          "ev_score": 4.079705317292502
+          "model_score": 3.7219947544466594,
+          "ev_score": 3.7219947544466594
         }
       ],
       "bet_form": "単勝",
       "n_tickets": 1,
       "invested": 100,
       "horse_num_to_name": {
-        "6": "レヴァンテシチー",
-        "8": "サンライズバレット",
-        "3": "ジョータルマエ",
-        "2": "バトンインディ",
-        "5": "テーオーライマン",
-        "1": "ヒデノレインボー",
-        "7": "シュプリンガー",
-        "4": "サパテアール",
         "9": "グランオース"
-      }
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22499,
+      "prediction_id": 24102,
       "model_type": "卍(暫定)",
       "bet_type": "複勝",
       "confidence": 0.6,
-      "expected_value": 3.9373379600284775,
+      "expected_value": 2.6779979113412544,
       "recommended_bet": 300.0,
-      "combination_json": "[[1], [8], [9]]",
+      "combination_json": "[[6], [3], [4]]",
       "notes": "確率上位3頭を複勝",
-      "created_at": "2026-05-03 13:40:26",
+      "created_at": "2026-05-08 07:37:06",
       "is_hit": 1,
-      "payout": 100.0,
-      "profit": -200.0,
-      "roi": 33.33333333333333,
+      "payout": 270.0,
+      "profit": -30.0,
+      "roi": 90.0,
       "horses": [
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 3.9373379600284775,
-          "ev_score": 3.9373379600284775
+          "model_score": 2.6779979113412544,
+          "ev_score": 2.6779979113412544
         },
         {
-          "horse_name": "サンライズバレット",
+          "horse_name": "ジョータルマエ",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 3.9373379600284775,
-          "ev_score": 3.9373379600284775
+          "model_score": 2.6779979113412544,
+          "ev_score": 2.6779979113412544
         },
         {
-          "horse_name": "グランオース",
+          "horse_name": "サパテアール",
           "horse_id": null,
           "predicted_rank": 3,
-          "model_score": 3.9373379600284775,
-          "ev_score": 3.9373379600284775
+          "model_score": 2.6779979113412544,
+          "ev_score": 2.6779979113412544
         }
       ],
       "bet_form": "複勝",
       "n_tickets": 3,
       "invested": 300,
       "horse_num_to_name": {
-        "6": "レヴァンテシチー",
-        "8": "サンライズバレット",
-        "3": "ジョータルマエ",
-        "2": "バトンインディ",
-        "5": "テーオーライマン",
-        "1": "ヒデノレインボー",
-        "7": "シュプリンガー",
-        "4": "サパテアール",
         "9": "グランオース"
-      }
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22500,
+      "prediction_id": 24103,
       "model_type": "卍(暫定)",
       "bet_type": "馬連",
-      "confidence": 0.25290838985799113,
-      "expected_value": 3.0349006782958936,
+      "confidence": 1.0,
+      "expected_value": 4.0,
       "recommended_bet": 500.0,
-      "combination_json": "[[1, 8], [1, 9], [1, 5], [1, 2], [1, 6]]",
-      "notes": "軸1番×相手5頭フォーメーション Harville最大=0.051",
-      "created_at": "2026-05-03 13:40:26",
+      "combination_json": "[[3, 6], [4, 6], [2, 6], [1, 6], [5, 6]]",
+      "notes": "軸6番×相手5頭フォーメーション Harville最大=0.217",
+      "created_at": "2026-05-08 07:37:06",
       "is_hit": 0,
       "payout": 0.0,
       "profit": -500.0,
       "roi": 0.0,
       "horses": [
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "ジョータルマエ",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.050581677971598224,
-          "ev_score": 3.0349006782958936
+          "model_score": 0.21722339654834225,
+          "ev_score": 4.0
         },
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "ジョータルマエ",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.050581677971598224,
-          "ev_score": 3.0349006782958936
+          "model_score": 0.21722339654834225,
+          "ev_score": 4.0
         },
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "ジョータルマエ",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.050581677971598224,
-          "ev_score": 3.0349006782958936
+          "model_score": 0.21722339654834225,
+          "ev_score": 4.0
         },
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "ジョータルマエ",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.050581677971598224,
-          "ev_score": 3.0349006782958936
+          "model_score": 0.21722339654834225,
+          "ev_score": 4.0
         },
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "ジョータルマエ",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.050581677971598224,
-          "ev_score": 3.0349006782958936
+          "model_score": 0.21722339654834225,
+          "ev_score": 4.0
         },
         {
-          "horse_name": "サンライズバレット",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.050581677971598224,
-          "ev_score": 3.0349006782958936
+          "model_score": 0.21722339654834225,
+          "ev_score": 4.0
         },
         {
-          "horse_name": "サンライズバレット",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.050581677971598224,
-          "ev_score": 3.0349006782958936
+          "model_score": 0.21722339654834225,
+          "ev_score": 4.0
         },
         {
-          "horse_name": "サンライズバレット",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.050581677971598224,
-          "ev_score": 3.0349006782958936
+          "model_score": 0.21722339654834225,
+          "ev_score": 4.0
         },
         {
-          "horse_name": "サンライズバレット",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.050581677971598224,
-          "ev_score": 3.0349006782958936
+          "model_score": 0.21722339654834225,
+          "ev_score": 4.0
         },
         {
-          "horse_name": "サンライズバレット",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.050581677971598224,
-          "ev_score": 3.0349006782958936
+          "model_score": 0.21722339654834225,
+          "ev_score": 4.0
         }
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
       "invested": 500,
       "horse_num_to_name": {
-        "6": "レヴァンテシチー",
-        "8": "サンライズバレット",
-        "3": "ジョータルマエ",
-        "2": "バトンインディ",
-        "5": "テーオーライマン",
-        "1": "ヒデノレインボー",
-        "7": "シュプリンガー",
-        "4": "サパテアール",
         "9": "グランオース"
-      }
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22501,
+      "prediction_id": 24104,
       "model_type": "卍(暫定)",
       "bet_type": "ワイド",
-      "confidence": 0.3034900678295893,
-      "expected_value": 1.2645419492899557,
+      "confidence": 1.0,
+      "expected_value": 3.0,
       "recommended_bet": 500.0,
-      "combination_json": "[[1, 8], [1, 9], [1, 5], [1, 2], [1, 6]]",
-      "notes": "軸1番×相手5頭ワイド Harville最大=0.051",
-      "created_at": "2026-05-03 13:40:26",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -500.0,
-      "roi": 0.0,
+      "combination_json": "[[3, 6], [4, 6], [2, 6], [1, 6], [5, 6]]",
+      "notes": "軸6番×相手5頭ワイド Harville最大=0.217",
+      "created_at": "2026-05-08 07:37:06",
+      "is_hit": 1,
+      "payout": 430.0,
+      "profit": -70.0,
+      "roi": 86.0,
       "horses": [
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "ジョータルマエ",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.050581677971598224,
-          "ev_score": 1.2645419492899557
+          "model_score": 0.21722339654834225,
+          "ev_score": 3.0
         },
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "ジョータルマエ",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.050581677971598224,
-          "ev_score": 1.2645419492899557
+          "model_score": 0.21722339654834225,
+          "ev_score": 3.0
         },
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "ジョータルマエ",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.050581677971598224,
-          "ev_score": 1.2645419492899557
+          "model_score": 0.21722339654834225,
+          "ev_score": 3.0
         },
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "ジョータルマエ",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.050581677971598224,
-          "ev_score": 1.2645419492899557
+          "model_score": 0.21722339654834225,
+          "ev_score": 3.0
         },
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "ジョータルマエ",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.050581677971598224,
-          "ev_score": 1.2645419492899557
+          "model_score": 0.21722339654834225,
+          "ev_score": 3.0
         },
         {
-          "horse_name": "サンライズバレット",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.050581677971598224,
-          "ev_score": 1.2645419492899557
+          "model_score": 0.21722339654834225,
+          "ev_score": 3.0
         },
         {
-          "horse_name": "サンライズバレット",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.050581677971598224,
-          "ev_score": 1.2645419492899557
+          "model_score": 0.21722339654834225,
+          "ev_score": 3.0
         },
         {
-          "horse_name": "サンライズバレット",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.050581677971598224,
-          "ev_score": 1.2645419492899557
+          "model_score": 0.21722339654834225,
+          "ev_score": 3.0
         },
         {
-          "horse_name": "サンライズバレット",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.050581677971598224,
-          "ev_score": 1.2645419492899557
+          "model_score": 0.21722339654834225,
+          "ev_score": 3.0
         },
         {
-          "horse_name": "サンライズバレット",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.050581677971598224,
-          "ev_score": 1.2645419492899557
+          "model_score": 0.21722339654834225,
+          "ev_score": 3.0
         }
       ],
       "bet_form": "軸ながし",
       "n_tickets": 5,
       "invested": 500,
       "horse_num_to_name": {
-        "6": "レヴァンテシチー",
-        "8": "サンライズバレット",
-        "3": "ジョータルマエ",
-        "2": "バトンインディ",
-        "5": "テーオーライマン",
-        "1": "ヒデノレインボー",
-        "7": "シュプリンガー",
-        "4": "サパテアール",
         "9": "グランオース"
-      }
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22502,
+      "prediction_id": 24105,
       "model_type": "卍(暫定)",
       "bet_type": "馬単",
-      "confidence": 0.202765254627721,
-      "expected_value": 3.041478819415815,
+      "confidence": 0.9203154819524485,
+      "expected_value": 5.0,
       "recommended_bet": 300.0,
-      "combination_json": "[[1, 8], [1, 9], [1, 5]]",
-      "notes": "軸1番→相手3頭フォーメーション Harville最大=0.025",
-      "created_at": "2026-05-03 13:40:26",
+      "combination_json": "[[6, 3], [6, 4], [6, 2]]",
+      "notes": "軸6番→相手3頭フォーメーション Harville最大=0.115",
+      "created_at": "2026-05-08 07:37:06",
       "is_hit": 0,
       "payout": 0.0,
       "profit": -300.0,
       "roi": 0.0,
       "horses": [
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.025345656828465124,
-          "ev_score": 3.041478819415815
+          "model_score": 0.11503943524405606,
+          "ev_score": 5.0
         },
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.025345656828465124,
-          "ev_score": 3.041478819415815
+          "model_score": 0.11503943524405606,
+          "ev_score": 5.0
         },
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.025345656828465124,
-          "ev_score": 3.041478819415815
+          "model_score": 0.11503943524405606,
+          "ev_score": 5.0
         },
         {
-          "horse_name": "サンライズバレット",
+          "horse_name": "ジョータルマエ",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.025345656828465124,
-          "ev_score": 3.041478819415815
+          "model_score": 0.11503943524405606,
+          "ev_score": 5.0
         },
         {
-          "horse_name": "サンライズバレット",
+          "horse_name": "ジョータルマエ",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.025345656828465124,
-          "ev_score": 3.041478819415815
+          "model_score": 0.11503943524405606,
+          "ev_score": 5.0
         },
         {
-          "horse_name": "サンライズバレット",
+          "horse_name": "ジョータルマエ",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.025345656828465124,
-          "ev_score": 3.041478819415815
+          "model_score": 0.11503943524405606,
+          "ev_score": 5.0
         }
       ],
       "bet_form": "軸ながし",
       "n_tickets": 3,
       "invested": 300,
       "horse_num_to_name": {
-        "6": "レヴァンテシチー",
-        "8": "サンライズバレット",
-        "3": "ジョータルマエ",
-        "2": "バトンインディ",
-        "5": "テーオーライマン",
-        "1": "ヒデノレインボー",
-        "7": "シュプリンガー",
-        "4": "サパテアール",
         "9": "グランオース"
-      }
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22505,
+      "prediction_id": 24108,
       "model_type": "卍(暫定)",
       "bet_type": "三連複",
-      "confidence": 0.3386725065909666,
+      "confidence": 1.0,
       "expected_value": 5.0,
       "recommended_bet": 300.0,
-      "combination_json": "[[1, 2, 8]]",
-      "notes": "合成EV=5.00 Harville=0.0226 馬番=(1, 2, 8)",
-      "created_at": "2026-05-03 13:40:26",
+      "combination_json": "[[1, 3, 6]]",
+      "notes": "合成EV=5.00 Harville=0.0787 馬番=(1, 3, 6)",
+      "created_at": "2026-05-08 07:37:06",
       "is_hit": 0,
       "payout": 0.0,
       "profit": -100.0,
@@ -1279,21 +1029,21 @@
           "horse_name": "ヒデノレインボー",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.022578167106064438,
+          "model_score": 0.07874601515571364,
           "ev_score": 5.0
         },
         {
-          "horse_name": "バトンインディ",
+          "horse_name": "ジョータルマエ",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.022578167106064438,
+          "model_score": 0.07874601515571364,
           "ev_score": 5.0
         },
         {
-          "horse_name": "サンライズバレット",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 3,
-          "model_score": 0.022578167106064438,
+          "model_score": 0.07874601515571364,
           "ev_score": 5.0
         }
       ],
@@ -1301,123 +1051,102 @@
       "n_tickets": 1,
       "invested": 100,
       "horse_num_to_name": {
-        "6": "レヴァンテシチー",
-        "8": "サンライズバレット",
-        "3": "ジョータルマエ",
-        "2": "バトンインディ",
-        "5": "テーオーライマン",
-        "1": "ヒデノレインボー",
-        "7": "シュプリンガー",
-        "4": "サパテアール",
         "9": "グランオース"
-      }
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22506,
+      "prediction_id": 24109,
       "model_type": "Oracle(暫定)",
       "bet_type": "三連複",
-      "confidence": 0.27518115722305175,
-      "expected_value": 8.255434716691553,
+      "confidence": 0.23959565573040145,
+      "expected_value": 7.187869671912043,
       "recommended_bet": 500.0,
-      "combination_json": "[[1, 2, 8], [1, 8, 9], [1, 5, 8], [1, 4, 8], [1, 3, 8]]",
-      "notes": "[Oracle] 的中確率最大 5点 P最大=0.2752 馬番=[(1, 2, 8), (1, 8, 9), (1, 5, 8), (1, 4, 8), (1, 3, 8)]",
-      "created_at": "2026-05-03 13:40:26",
+      "combination_json": "[[5, 6, 8], [2, 5, 6], [5, 6, 9], [3, 5, 6], [1, 5, 6]]",
+      "notes": "[Oracle] 的中確率最大 5点 P最大=0.2396 馬番=[(5, 6, 8), (2, 5, 6), (5, 6, 9), (3, 5, 6), (1, 5, 6)]",
+      "created_at": "2026-05-08 07:37:06",
       "is_hit": 0,
       "payout": 0.0,
       "profit": -500.0,
       "roi": 0.0,
       "horses": [
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "テーオーライマン",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.27518115722305175,
-          "ev_score": 8.255434716691553
+          "model_score": 0.23959565573040145,
+          "ev_score": 7.187869671912043
         },
         {
-          "horse_name": "バトンインディ",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.27518115722305175,
-          "ev_score": 8.255434716691553
+          "model_score": 0.23959565573040145,
+          "ev_score": 7.187869671912043
         },
         {
           "horse_name": "サンライズバレット",
           "horse_id": null,
           "predicted_rank": 3,
-          "model_score": 0.27518115722305175,
-          "ev_score": 8.255434716691553
+          "model_score": 0.23959565573040145,
+          "ev_score": 7.187869671912043
         }
       ],
       "bet_form": "軸2頭ながし",
       "n_tickets": 5,
       "invested": 500,
       "horse_num_to_name": {
-        "6": "レヴァンテシチー",
-        "8": "サンライズバレット",
-        "3": "ジョータルマエ",
-        "2": "バトンインディ",
-        "5": "テーオーライマン",
-        "1": "ヒデノレインボー",
-        "7": "シュプリンガー",
-        "4": "サパテアール",
         "9": "グランオース"
-      }
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22507,
+      "prediction_id": 24110,
       "model_type": "Oracle(暫定)",
       "bet_type": "三連単",
-      "confidence": 0.04586352620384196,
-      "expected_value": 6.879528930576294,
+      "confidence": 0.03993260928840024,
+      "expected_value": 5.989891393260036,
       "recommended_bet": 1200.0,
-      "combination_json": "[[1, 8, 2], [1, 2, 8], [8, 1, 2], [8, 2, 1], [2, 1, 8], [2, 8, 1], [1, 8, 9], [1, 8, 5], [1, 9, 8], [1, 5, 8], [8, 1, 9], [8, 1, 5]]",
-      "notes": "[Oracle] 的中確率最大 12点 P最大=0.0459 馬番=[(1, 8, 2), (1, 2, 8), (8, 1, 2), (8, 2, 1), (2, 1, 8), (2, 8, 1), (1, 8, 9), (1, 8, 5), (1, 9, 8), (1, 5, 8), (8, 1, 9), (8, 1, 5)]",
-      "created_at": "2026-05-03 13:40:26",
+      "combination_json": "[[6, 5, 8], [6, 8, 5], [5, 6, 8], [5, 8, 6], [8, 6, 5], [8, 5, 6], [6, 5, 2], [6, 2, 5], [5, 6, 2], [5, 2, 6], [2, 6, 5], [2, 5, 6]]",
+      "notes": "[Oracle] 的中確率最大 12点 P最大=0.0399 馬番=[(6, 5, 8), (6, 8, 5), (5, 6, 8), (5, 8, 6), (8, 6, 5), (8, 5, 6), (6, 5, 2), (6, 2, 5), (5, 6, 2), (5, 2, 6), (2, 6, 5), (2, 5, 6)]",
+      "created_at": "2026-05-08 07:37:06",
       "is_hit": 0,
       "payout": 0.0,
       "profit": -1200.0,
       "roi": 0.0,
       "horses": [
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.04586352620384196,
-          "ev_score": 6.879528930576294
+          "model_score": 0.03993260928840024,
+          "ev_score": 5.989891393260036
+        },
+        {
+          "horse_name": "テーオーライマン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03993260928840024,
+          "ev_score": 5.989891393260036
         },
         {
           "horse_name": "サンライズバレット",
           "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.04586352620384196,
-          "ev_score": 6.879528930576294
-        },
-        {
-          "horse_name": "バトンインディ",
-          "horse_id": null,
           "predicted_rank": 3,
-          "model_score": 0.04586352620384196,
-          "ev_score": 6.879528930576294
+          "model_score": 0.03993260928840024,
+          "ev_score": 5.989891393260036
         }
       ],
       "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
       "invested": 1200,
       "horse_num_to_name": {
-        "6": "レヴァンテシチー",
-        "8": "サンライズバレット",
-        "3": "ジョータルマエ",
-        "2": "バトンインディ",
-        "5": "テーオーライマン",
-        "1": "ヒデノレインボー",
-        "7": "シュプリンガー",
-        "4": "サパテアール",
         "9": "グランオース"
-      }
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22508,
+      "prediction_id": 24111,
       "model_type": "本命(暫定)",
       "bet_type": "馬分析",
       "confidence": null,
@@ -1425,73 +1154,73 @@
       "recommended_bet": null,
       "combination_json": "[]",
       "notes": "全馬モデルスコア（馬分析タブ用）",
-      "created_at": "2026-05-03 13:40:26",
+      "created_at": "2026-05-08 07:37:06",
       "is_hit": 0,
       "payout": 0.0,
       "profit": -100.0,
       "roi": 0.0,
       "horses": [
         {
-          "horse_name": "ヒデノレインボー",
-          "horse_id": "2019102705",
+          "horse_name": "レヴァンテシチー",
+          "horse_id": "2022104267",
           "predicted_rank": 1,
-          "model_score": 0.17341040462427745,
-          "ev_score": 0.0
-        },
-        {
-          "horse_name": "サンライズバレット",
-          "horse_id": "2022102218",
-          "predicted_rank": 2,
-          "model_score": 0.15138772077375945,
-          "ev_score": 0.0
-        },
-        {
-          "horse_name": "バトンインディ",
-          "horse_id": "2021106359",
-          "predicted_rank": 3,
-          "model_score": 0.10206297502714441,
-          "ev_score": 0.0
-        },
-        {
-          "horse_name": "グランオース",
-          "horse_id": "2021100620",
-          "predicted_rank": 4,
-          "model_score": 0.08914237431347699,
+          "model_score": 0.21052631578947367,
           "ev_score": 0.0
         },
         {
           "horse_name": "テーオーライマン",
           "horse_id": "2022103186",
-          "predicted_rank": 5,
-          "model_score": 0.08914237431347699,
+          "predicted_rank": 2,
+          "model_score": 0.16666666666666666,
           "ev_score": 0.0
         },
         {
-          "horse_name": "サパテアール",
-          "horse_id": "2019102514",
-          "predicted_rank": 6,
-          "model_score": 0.08742542450665443,
+          "horse_name": "サンライズバレット",
+          "horse_id": "2022102218",
+          "predicted_rank": 3,
+          "model_score": 0.14784394250513347,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "バトンインディ",
+          "horse_id": "2021106359",
+          "predicted_rank": 4,
+          "model_score": 0.10714285714285714,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "グランオース",
+          "horse_id": "2021100620",
+          "predicted_rank": 5,
+          "model_score": 0.10558375634517767,
           "ev_score": 0.0
         },
         {
           "horse_name": "ジョータルマエ",
           "horse_id": "2020100771",
-          "predicted_rank": 7,
-          "model_score": 0.06997742663656885,
+          "predicted_rank": 6,
+          "model_score": 0.10558375634517767,
           "ev_score": 0.0
         },
         {
-          "horse_name": "レヴァンテシチー",
-          "horse_id": "2022104267",
+          "horse_name": "サパテアール",
+          "horse_id": "2019102514",
+          "predicted_rank": 7,
+          "model_score": 0.10282776349614396,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ヒデノレインボー",
+          "horse_id": "2019102705",
           "predicted_rank": 8,
-          "model_score": 0.05695830886670581,
+          "model_score": 0.10282776349614396,
           "ev_score": 0.0
         },
         {
           "horse_name": "シュプリンガー",
           "horse_id": "2019104636",
           "predicted_rank": 9,
-          "model_score": 0.0387243735763098,
+          "model_score": 0.05814991076740036,
           "ev_score": 0.0
         }
       ],
@@ -1499,168 +1228,140 @@
       "n_tickets": 0,
       "invested": 0,
       "horse_num_to_name": {
-        "6": "レヴァンテシチー",
-        "8": "サンライズバレット",
-        "3": "ジョータルマエ",
-        "2": "バトンインディ",
-        "5": "テーオーライマン",
-        "1": "ヒデノレインボー",
-        "7": "シュプリンガー",
-        "4": "サパテアール",
         "9": "グランオース"
-      }
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22509,
+      "prediction_id": 24112,
       "model_type": "HitFocus(暫定)",
       "bet_type": "馬連",
-      "confidence": 0.4397092321489799,
-      "expected_value": 4.0,
+      "confidence": 0.3452148430309773,
+      "expected_value": 2.4959033151139662,
       "recommended_bet": 700.0,
-      "combination_json": "[[1, 8], [1, 2], [2, 8], [1, 9], [8, 9], [1, 5], [5, 8]]",
-      "notes": "2軸マルチ 軸=1,8 相手=[2, 9, 5] Harville最大=0.0879",
-      "created_at": "2026-05-03 13:40:26",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -700.0,
-      "roi": 0.0,
+      "combination_json": "[[5, 6], [6, 8], [5, 8], [2, 6], [2, 5], [6, 9], [5, 9]]",
+      "notes": "2軸マルチ 軸=6,5 相手=[8, 2, 9] Harville最大=0.0690",
+      "created_at": "2026-05-08 07:37:06",
+      "is_hit": 1,
+      "payout": 250.0,
+      "profit": -450.0,
+      "roi": 35.714285714285715,
       "horses": [
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "テーオーライマン",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.08794184642979598,
-          "ev_score": 4.0
+          "model_score": 0.06904296860619547,
+          "ev_score": 2.4959033151139662
         },
         {
-          "horse_name": "サンライズバレット",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.08794184642979598,
-          "ev_score": 4.0
+          "model_score": 0.06904296860619547,
+          "ev_score": 2.4959033151139662
         }
       ],
       "bet_form": "フォーメーション",
       "n_tickets": 7,
       "invested": 700,
       "horse_num_to_name": {
-        "6": "レヴァンテシチー",
-        "8": "サンライズバレット",
-        "3": "ジョータルマエ",
-        "2": "バトンインディ",
-        "5": "テーオーライマン",
-        "1": "ヒデノレインボー",
-        "7": "シュプリンガー",
-        "4": "サパテアール",
         "9": "グランオース"
-      }
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22510,
+      "prediction_id": 24113,
       "model_type": "HitFocus(暫定)",
       "bet_type": "馬単",
-      "confidence": 0.35733400119724334,
-      "expected_value": 5.0,
+      "confidence": 0.2827652657517908,
+      "expected_value": 2.25682027728148,
       "recommended_bet": 800.0,
-      "combination_json": "[[1, 8], [8, 1], [1, 2], [8, 2], [1, 9], [8, 9], [1, 5], [8, 5]]",
-      "notes": "2軸マルチ 軸=1,8 相手=[2, 9, 5] Harville最大=0.0447",
-      "created_at": "2026-05-03 13:40:26",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -800.0,
-      "roi": 0.0,
+      "combination_json": "[[6, 5], [5, 6], [6, 8], [5, 8], [6, 2], [5, 2], [6, 9], [5, 9]]",
+      "notes": "2軸マルチ 軸=6,5 相手=[8, 2, 9] Harville最大=0.0353",
+      "created_at": "2026-05-08 07:37:06",
+      "is_hit": 1,
+      "payout": 780.0,
+      "profit": -20.0,
+      "roi": 97.5,
       "horses": [
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.04466675014965542,
-          "ev_score": 5.0
+          "model_score": 0.03534565821897385,
+          "ev_score": 2.25682027728148
         },
         {
-          "horse_name": "サンライズバレット",
+          "horse_name": "テーオーライマン",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.04466675014965542,
-          "ev_score": 5.0
+          "model_score": 0.03534565821897385,
+          "ev_score": 2.25682027728148
         }
       ],
       "bet_form": "フォーメーション",
       "n_tickets": 8,
       "invested": 800,
       "horse_num_to_name": {
-        "6": "レヴァンテシチー",
-        "8": "サンライズバレット",
-        "3": "ジョータルマエ",
-        "2": "バトンインディ",
-        "5": "テーオーライマン",
-        "1": "ヒデノレインボー",
-        "7": "シュプリンガー",
-        "4": "サパテアール",
         "9": "グランオース"
-      }
+      },
+      "is_provisional": true
     },
     {
-      "prediction_id": 22511,
+      "prediction_id": 24114,
       "model_type": "HitFocus(暫定)",
       "bet_type": "三連単",
-      "confidence": 0.2563856683019304,
-      "expected_value": 6.0,
+      "confidence": 0.21476423025366503,
+      "expected_value": 3.489059684701042,
       "recommended_bet": 1200.0,
-      "combination_json": "[[1, 8, 2], [8, 1, 2], [1, 2, 8], [8, 2, 1], [1, 8, 9], [8, 1, 9], [1, 9, 8], [8, 9, 1], [1, 8, 5], [8, 1, 5], [1, 5, 8], [8, 5, 1]]",
-      "notes": "2軸マルチ 軸=1,8 相手=[2, 9, 5] 12点 Harville最大=0.0085",
-      "created_at": "2026-05-03 13:40:26",
+      "combination_json": "[[6, 5, 8], [5, 6, 8], [6, 8, 5], [5, 8, 6], [6, 5, 2], [5, 6, 2], [6, 2, 5], [5, 2, 6], [6, 5, 9], [5, 6, 9], [6, 9, 5], [5, 9, 6]]",
+      "notes": "2軸マルチ 軸=6,5 相手=[8, 2, 9] 12点 Harville最大=0.0072",
+      "created_at": "2026-05-08 07:37:06",
       "is_hit": 0,
       "payout": 0.0,
       "profit": -1200.0,
       "roi": 0.0,
       "horses": [
         {
-          "horse_name": "ヒデノレインボー",
+          "horse_name": "レヴァンテシチー",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.008546188943397679,
-          "ev_score": 6.0
+          "model_score": 0.007158807675122168,
+          "ev_score": 3.489059684701042
+        },
+        {
+          "horse_name": "テーオーライマン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.007158807675122168,
+          "ev_score": 3.489059684701042
         },
         {
           "horse_name": "サンライズバレット",
           "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.008546188943397679,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "バトンインディ",
-          "horse_id": null,
           "predicted_rank": 3,
-          "model_score": 0.008546188943397679,
-          "ev_score": 6.0
+          "model_score": 0.007158807675122168,
+          "ev_score": 3.489059684701042
         }
       ],
       "bet_form": "2頭軸マルチ",
       "n_tickets": 12,
       "invested": 1200,
       "horse_num_to_name": {
-        "6": "レヴァンテシチー",
-        "8": "サンライズバレット",
-        "3": "ジョータルマエ",
-        "2": "バトンインディ",
-        "5": "テーオーライマン",
-        "1": "ヒデノレインボー",
-        "7": "シュプリンガー",
-        "4": "サパテアール",
         "9": "グランオース"
-      }
+      },
+      "is_provisional": true
     }
   ],
   "training_evals": {},
   "prerace": {
     "bias": {
-      "today_inner_bias": -0.12903225806451613,
+      "today_inner_bias": -0.09846743295019157,
       "today_front_bias": 0.5,
-      "today_race_count": 4
+      "today_race_count": 8
     },
     "ev_recommend": [],
-    "generated_at": "2026-05-03T13:40:26.075767"
+    "generated_at": "2026-05-08T07:37:06.366300"
   }
 }

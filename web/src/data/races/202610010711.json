@@ -12,7 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 16,
+      "horse_name": "ジャスパーディビネ",
+      "horse_id": "2022110112",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "和田陽希",
+      "trainer": "森秀行",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
       "gate_number": 1,
       "horse_number": 2,
       "horse_name": "コウセキ",
@@ -32,7 +52,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 4,
       "horse_number": 8,
       "horse_name": "ミルテンベルク",
@@ -50,26 +70,6 @@
       "sire": "モーリス",
       "dam": "ペルレンケッテ",
       "dam_sire": "ディープインパクト"
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 16,
-      "horse_name": "ジャスパーディビネ",
-      "horse_id": "2022110112",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "和田陽希",
-      "trainer": "森秀行",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
     },
     {
       "rank": null,
@@ -378,12 +378,6 @@
       "combination": "16",
       "payout": 490,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "18",
-      "payout": 18000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

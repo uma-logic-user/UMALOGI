@@ -12,7 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "サダムオプシス",
@@ -32,47 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "マーシャルポイント",
-      "horse_id": "2021105675",
-      "sex_age": "騸4",
-      "weight_carried": 58.0,
-      "jockey": "杉原誠人",
-      "trainer": "矢嶋大樹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "エピファネイア",
-      "dam": "トリプライト",
-      "dam_sire": "ワイルドラッシュWild Rush(米)"
-    },
-    {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "ナイトスラッガー",
-      "horse_id": "2021101603",
-      "sex_age": "牡4",
-      "weight_carried": 58.0,
-      "jockey": "戸崎圭太",
-      "trainer": "小栗実",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ルーラーシップ",
-      "dam": "トーホウアマポーラ",
-      "dam_sire": "フジキセキ"
-    },
-    {
-      "rank": null,
+      "rank": 2,
       "gate_number": 4,
       "horse_number": 4,
       "horse_name": "フナデ",
@@ -92,7 +52,27 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "ナイトスラッガー",
+      "horse_id": "2021101603",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "戸崎圭太",
+      "trainer": "小栗実",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ルーラーシップ",
+      "dam": "トーホウアマポーラ",
+      "dam_sire": "フジキセキ"
+    },
+    {
+      "rank": 4,
       "gate_number": 5,
       "horse_number": 5,
       "horse_name": "カフェアローロ",
@@ -110,6 +90,26 @@
       "sire": "ダンカークDunkirk(米)",
       "dam": "カフェローレル",
       "dam_sire": "マンハッタンカフェ"
+    },
+    {
+      "rank": 5,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "マーシャルポイント",
+      "horse_id": "2021105675",
+      "sex_age": "騸4",
+      "weight_carried": 58.0,
+      "jockey": "杉原誠人",
+      "trainer": "矢嶋大樹",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "エピファネイア",
+      "dam": "トリプライト",
+      "dam_sire": "ワイルドラッシュWild Rush(米)"
     }
   ],
   "payouts": [
@@ -118,12 +118,6 @@
       "combination": "1",
       "payout": 200,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "5",
-      "payout": 5000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

@@ -12,7 +12,27 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 5,
+      "horse_number": 6,
+      "horse_name": "バレンタインガール",
+      "horse_id": "2021102577",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "内田博幸",
+      "trainer": "古賀慎明",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "アロンズロッド",
@@ -30,6 +50,26 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "ジュンツバメガエシ",
+      "horse_id": "2020103208",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "Ｃ．デム",
+      "trainer": "友道康夫",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ジャスタウェイ",
+      "dam": "アドマイヤテレサ",
+      "dam_sire": "エリシオHelissio(仏)"
     },
     {
       "rank": null,
@@ -73,26 +113,6 @@
     },
     {
       "rank": null,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "ジュンツバメガエシ",
-      "horse_id": "2020103208",
-      "sex_age": "牡4",
-      "weight_carried": 58.0,
-      "jockey": "Ｃ．デム",
-      "trainer": "友道康夫",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ジャスタウェイ",
-      "dam": "アドマイヤテレサ",
-      "dam_sire": "エリシオHelissio(仏)"
-    },
-    {
-      "rank": null,
       "gate_number": 5,
       "horse_number": 5,
       "horse_name": "エコロレイズ",
@@ -110,26 +130,6 @@
       "sire": "アメリカンペイトリオット",
       "dam": "ペブルガーデン",
       "dam_sire": "ディープインパクト"
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 6,
-      "horse_name": "バレンタインガール",
-      "horse_id": "2021102577",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "内田博幸",
-      "trainer": "古賀慎明",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
     },
     {
       "rank": null,
@@ -258,12 +258,6 @@
       "combination": "6",
       "payout": 1510,
       "popularity": 5
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "12",
-      "payout": 12000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

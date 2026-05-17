@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 7,
-      "horse_name": "リラボニート",
-      "horse_id": "2021103519",
-      "sex_age": "牝4",
-      "weight_carried": 54.0,
-      "jockey": "浜中俊",
-      "trainer": "須貝尚介",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "スクリーンヒーロー",
-      "dam": "ネイティヴコード",
-      "dam_sire": "アグネスデジタル"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 7,
       "horse_number": 11,
       "horse_name": "スズハローム",
@@ -52,7 +32,7 @@
       "dam_sire": "ローレルゲレイロ"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 8,
       "horse_number": 14,
       "horse_name": "チェルビアット",
@@ -70,6 +50,26 @@
       "sire": "ロードカナロア",
       "dam": "キューティゴールド",
       "dam_sire": "フレンチデピュティFrench Deputy(米)"
+    },
+    {
+      "rank": 3,
+      "gate_number": 5,
+      "horse_number": 7,
+      "horse_name": "リラボニート",
+      "horse_id": "2021103519",
+      "sex_age": "牝4",
+      "weight_carried": 54.0,
+      "jockey": "浜中俊",
+      "trainer": "須貝尚介",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "スクリーンヒーロー",
+      "dam": "ネイティヴコード",
+      "dam_sire": "アグネスデジタル"
     },
     {
       "rank": null,
@@ -298,12 +298,6 @@
       "combination": "11",
       "payout": 1200,
       "popularity": 7
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "14",
-      "payout": 14000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

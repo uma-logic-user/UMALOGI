@@ -12,27 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "スナークメモリー",
-      "horse_id": "2020105167",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "和田竜二",
-      "trainer": "宮地貴稔",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "タマモナポリ",
@@ -52,7 +32,7 @@
       "dam_sire": "ワイルドラッシュWild Rush(米)"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 3,
       "horse_number": 3,
       "horse_name": "ヒラリーステップ",
@@ -72,27 +52,27 @@
       "dam_sire": "アグネスタキオン"
     },
     {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "ニホンピロマリンバ",
-      "horse_id": "2021103841",
-      "sex_age": "牝4",
-      "weight_carried": 53.0,
-      "jockey": "森田誠也",
-      "trainer": "安達昭夫",
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "スナークメモリー",
+      "horse_id": "2020105167",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "和田竜二",
+      "trainer": "宮地貴稔",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
       "horse_weight_diff": null,
-      "sire": "ニホンピロアワーズ",
-      "dam": "ニホンピロアニカ",
-      "dam_sire": "キャプテンスティーヴCaptain Steve(米)"
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 4,
       "gate_number": 5,
       "horse_number": 5,
       "horse_name": "ステラスプレンダー",
@@ -112,7 +92,27 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 5,
+      "gate_number": 7,
+      "horse_number": 7,
+      "horse_name": "シゲルオトヒメ",
+      "horse_id": "2019102986",
+      "sex_age": "牝7",
+      "weight_carried": 55.0,
+      "jockey": "高杉吏麒",
+      "trainer": "谷潔",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ベルシャザール",
+      "dam": "ピースヴィクトリア",
+      "dam_sire": "マヤノトップガン"
+    },
+    {
+      "rank": 6,
       "gate_number": 6,
       "horse_number": 6,
       "horse_name": "デンタルフロス",
@@ -132,24 +132,24 @@
       "dam_sire": "プリサイスエンドPrecise End(米)"
     },
     {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 7,
-      "horse_name": "シゲルオトヒメ",
-      "horse_id": "2019102986",
-      "sex_age": "牝7",
-      "weight_carried": 55.0,
-      "jockey": "高杉吏麒",
-      "trainer": "谷潔",
+      "rank": 7,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "ニホンピロマリンバ",
+      "horse_id": "2021103841",
+      "sex_age": "牝4",
+      "weight_carried": 53.0,
+      "jockey": "森田誠也",
+      "trainer": "安達昭夫",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
       "horse_weight_diff": null,
-      "sire": "ベルシャザール",
-      "dam": "ピースヴィクトリア",
-      "dam_sire": "マヤノトップガン"
+      "sire": "ニホンピロアワーズ",
+      "dam": "ニホンピロアニカ",
+      "dam_sire": "キャプテンスティーヴCaptain Steve(米)"
     }
   ],
   "payouts": [
@@ -158,12 +158,6 @@
       "combination": "2",
       "payout": 150,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "7",
-      "payout": 7000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

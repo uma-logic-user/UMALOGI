@@ -1,0 +1,2822 @@
+{
+  "race_id": "202604010606",
+  "race_name": "",
+  "date": "2026-05-17",
+  "venue": "新潟",
+  "race_number": 6,
+  "distance": 0,
+  "surface": "",
+  "track_direction": "",
+  "weather": "",
+  "condition": "",
+  "year": "2026",
+  "results": [
+    {
+      "rank": 1,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "オーケーリアン",
+      "horse_id": "2023105544",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "富田",
+      "trainer": "栗東宮地",
+      "finish_time": "1:55.6",
+      "margin": null,
+      "win_odds": 6.0,
+      "popularity": 5,
+      "horse_weight": 436,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1215,
+      "ev_score": 0.9109,
+      "kelly_fraction": 0.0,
+      "manji_ev": 2.2146,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 2,
+      "gate_number": 4,
+      "horse_number": 5,
+      "horse_name": "サイモンセレーノ",
+      "horse_id": "2023105097",
+      "sex_age": "牝3",
+      "weight_carried": 52.0,
+      "jockey": "▲石神道",
+      "trainer": "美浦勢司",
+      "finish_time": "1:55.6",
+      "margin": "クビ",
+      "win_odds": 5.7,
+      "popularity": 4,
+      "horse_weight": 436,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0672,
+      "ev_score": 0.6185,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.2592,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "ブエノスオプティマ",
+      "horse_id": "2023103991",
+      "sex_age": "牝1",
+      "weight_carried": 55.0,
+      "jockey": "横山琉",
+      "trainer": "栗東高橋忠",
+      "finish_time": "1:55.7",
+      "margin": "クビ",
+      "win_odds": 15.1,
+      "popularity": 6,
+      "horse_weight": 450,
+      "horse_weight_diff": -14,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0674,
+      "ev_score": 0.782,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.7334,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 4,
+      "gate_number": 5,
+      "horse_number": 6,
+      "horse_name": "タイセイルビー",
+      "horse_id": "2023104679",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "丸山",
+      "trainer": "美浦千葉",
+      "finish_time": "1:56.0",
+      "margin": "1.3/4",
+      "win_odds": 4.6,
+      "popularity": 1,
+      "horse_weight": 452,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0972,
+      "ev_score": 0.7293,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.1785,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 5,
+      "gate_number": 8,
+      "horse_number": 12,
+      "horse_name": "ピンクカメリア",
+      "horse_id": "2023101229",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "川又",
+      "trainer": "栗東笹田",
+      "finish_time": "1:56.1",
+      "margin": "3/4",
+      "win_odds": 52.3,
+      "popularity": 11,
+      "horse_weight": 406,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0445,
+      "ev_score": 1.1708,
+      "kelly_fraction": 0.0007,
+      "manji_ev": 0.0,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 6,
+      "gate_number": 5,
+      "horse_number": 7,
+      "horse_name": "トランセンコ",
+      "horse_id": "2023104273",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "木幡育",
+      "trainer": "美浦松永康",
+      "finish_time": "1:56.1",
+      "margin": "ハナ",
+      "win_odds": 16.8,
+      "popularity": 7,
+      "horse_weight": 436,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0512,
+      "ev_score": 0.8802,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 7,
+      "gate_number": 6,
+      "horse_number": 9,
+      "horse_name": "スマートエトワール",
+      "horse_id": "2023106004",
+      "sex_age": "牝7",
+      "weight_carried": 55.0,
+      "jockey": "泉谷",
+      "trainer": "栗東辻野",
+      "finish_time": "1:56.5",
+      "margin": "2.1/2",
+      "win_odds": 32.9,
+      "popularity": 9,
+      "horse_weight": 454,
+      "horse_weight_diff": -4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0672,
+      "ev_score": 2.3327,
+      "kelly_fraction": 0.004,
+      "manji_ev": 0.7297,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 8,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "フライスカイハイ",
+      "horse_id": "2023103544",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "吉田隼",
+      "trainer": "美浦菊川",
+      "finish_time": "1:56.9",
+      "margin": "2.1/2",
+      "win_odds": 21.7,
+      "popularity": 8,
+      "horse_weight": 428,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0672,
+      "ev_score": 0.8941,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 9,
+      "gate_number": 7,
+      "horse_number": 10,
+      "horse_name": "テンタイムトップ",
+      "horse_id": "2023103436",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "亀田",
+      "trainer": "栗東高柳大",
+      "finish_time": "1:57.8",
+      "margin": "5",
+      "win_odds": 36.0,
+      "popularity": 10,
+      "horse_weight": 466,
+      "horse_weight_diff": 12,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0536,
+      "ev_score": 1.0083,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.2082,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 10,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "エコロラヴァー",
+      "horse_id": "2023105384",
+      "sex_age": "牝3",
+      "weight_carried": 53.0,
+      "jockey": "△舟山",
+      "trainer": "栗東牧浦",
+      "finish_time": "1:57.9",
+      "margin": "1/2",
+      "win_odds": 4.7,
+      "popularity": 3,
+      "horse_weight": 458,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.057,
+      "ev_score": 0.2336,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 11,
+      "gate_number": 7,
+      "horse_number": 11,
+      "horse_name": "ノーブルスアーク",
+      "horse_id": "2023103651",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "小林凌",
+      "trainer": "美浦尾形",
+      "finish_time": "1:58.1",
+      "margin": "1.1/4",
+      "win_odds": 78.4,
+      "popularity": 12,
+      "horse_weight": 444,
+      "horse_weight_diff": 8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0512,
+      "ev_score": 1.8372,
+      "kelly_fraction": 0.0024,
+      "manji_ev": 0.0475,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 12,
+      "gate_number": 6,
+      "horse_number": 8,
+      "horse_name": "ライトオブジアース",
+      "horse_id": "2023103478",
+      "sex_age": "牝3",
+      "weight_carried": 53.0,
+      "jockey": "◇永島",
+      "trainer": "栗東松永幹",
+      "finish_time": "1:59.2",
+      "margin": "7",
+      "win_odds": 4.7,
+      "popularity": 2,
+      "horse_weight": 476,
+      "horse_weight_diff": -4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.057,
+      "ev_score": 0.2621,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.1348,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 13,
+      "gate_number": 8,
+      "horse_number": 13,
+      "horse_name": "チョコスコーン",
+      "horse_id": "2023107263",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "伊藤",
+      "trainer": "美浦林",
+      "finish_time": "2:07.4",
+      "margin": "大",
+      "win_odds": 94.3,
+      "popularity": 13,
+      "horse_weight": 404,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.057,
+      "ev_score": 1.0712,
+      "kelly_fraction": 0.0004,
+      "manji_ev": 0.4431,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    }
+  ],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "3",
+      "payout": 600,
+      "popularity": 5
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "5",
+      "payout": 170,
+      "popularity": 2
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "3",
+      "payout": 200,
+      "popularity": 3
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "4",
+      "payout": 320,
+      "popularity": 6
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "3-4",
+      "payout": 1400,
+      "popularity": 8
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "3-5",
+      "payout": 2090,
+      "popularity": 9
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3-5",
+      "payout": 610,
+      "popularity": 5
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3-4",
+      "payout": 1030,
+      "popularity": 14
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4-5",
+      "payout": 1210,
+      "popularity": 15
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "3→5",
+      "payout": 4360,
+      "popularity": 17
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3-4-5",
+      "payout": 5800,
+      "popularity": 18
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "3→5→4",
+      "payout": 26270,
+      "popularity": 85
+    }
+  ],
+  "predictions": [
+    {
+      "prediction_id": 34014,
+      "model_type": "本命(暫定)",
+      "bet_type": "単勝",
+      "confidence": 0.12145922746781115,
+      "expected_value": 0.9109442060085836,
+      "recommended_bet": 100.0,
+      "combination_json": "[[3]]",
+      "notes": "確率1位 P(win)=0.12 odds=7.5 EV=0.91",
+      "created_at": "2026-05-17 09:44:06",
+      "is_hit": 1,
+      "payout": 600.0,
+      "profit": 500.0,
+      "roi": 600.0,
+      "horses": [
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.12145922746781115,
+          "ev_score": 0.9109442060085836
+        }
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "3": "オーケーリアン",
+        "5": "サイモンセレーノ",
+        "4": "ブエノスオプティマ",
+        "6": "タイセイルビー",
+        "12": "ピンクカメリア",
+        "7": "トランセンコ",
+        "9": "スマートエトワール",
+        "1": "フライスカイハイ",
+        "10": "テンタイムトップ",
+        "2": "エコロラヴァー",
+        "11": "ノーブルスアーク",
+        "8": "ライトオブジアース",
+        "13": "チョコスコーン"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34015,
+      "model_type": "本命(暫定)",
+      "bet_type": "複勝",
+      "confidence": 0.11328998084594448,
+      "expected_value": 0.3398699425378334,
+      "recommended_bet": 100.0,
+      "combination_json": "[[3], [6], [1]]",
+      "notes": "上位3頭を複勝",
+      "created_at": "2026-05-17 09:44:06",
+      "is_hit": 1,
+      "payout": 200.0,
+      "profit": -100.0,
+      "roi": 66.66666666666666,
+      "horses": [
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11328998084594448,
+          "ev_score": 0.3398699425378334
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11328998084594448,
+          "ev_score": 0.3398699425378334
+        },
+        {
+          "horse_name": "フライスカイハイ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.11328998084594448,
+          "ev_score": 0.3398699425378334
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "3": "オーケーリアン",
+        "5": "サイモンセレーノ",
+        "4": "ブエノスオプティマ",
+        "6": "タイセイルビー",
+        "12": "ピンクカメリア",
+        "7": "トランセンコ",
+        "9": "スマートエトワール",
+        "1": "フライスカイハイ",
+        "10": "テンタイムトップ",
+        "2": "エコロラヴァー",
+        "11": "ノーブルスアーク",
+        "8": "ライトオブジアース",
+        "13": "チョコスコーン"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34016,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.03587557072215738,
+      "expected_value": 1.0813793904926288,
+      "recommended_bet": 100.0,
+      "combination_json": "[[3, 6], [1, 3], [3, 4], [3, 5], [3, 9]]",
+      "notes": "軸3番×相手5頭フォーメーション Harville最大=0.036",
+      "created_at": "2026-05-17 09:44:06",
+      "is_hit": 1,
+      "payout": 2090.0,
+      "profit": 1590.0,
+      "roi": 418.0,
+      "horses": [
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03587557072215738,
+          "ev_score": 1.0813793904926288
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03587557072215738,
+          "ev_score": 1.0813793904926288
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03587557072215738,
+          "ev_score": 1.0813793904926288
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03587557072215738,
+          "ev_score": 1.0813793904926288
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03587557072215738,
+          "ev_score": 1.0813793904926288
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03587557072215738,
+          "ev_score": 1.0813793904926288
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03587557072215738,
+          "ev_score": 1.0813793904926288
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03587557072215738,
+          "ev_score": 1.0813793904926288
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03587557072215738,
+          "ev_score": 1.0813793904926288
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03587557072215738,
+          "ev_score": 1.0813793904926288
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "3": "オーケーリアン",
+        "5": "サイモンセレーノ",
+        "4": "ブエノスオプティマ",
+        "6": "タイセイルビー",
+        "12": "ピンクカメリア",
+        "7": "トランセンコ",
+        "9": "スマートエトワール",
+        "1": "フライスカイハイ",
+        "10": "テンタイムトップ",
+        "2": "エコロラヴァー",
+        "11": "ノーブルスアーク",
+        "8": "ライトオブジアース",
+        "13": "チョコスコーン"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34017,
+      "model_type": "本命(暫定)",
+      "bet_type": "ワイド",
+      "confidence": 0.046638241938804594,
+      "expected_value": 0.5709597080431346,
+      "recommended_bet": 100.0,
+      "combination_json": "[[3, 6], [1, 3], [3, 4], [3, 5], [3, 9]]",
+      "notes": "軸3番×相手5頭ワイド Harville最大=0.036",
+      "created_at": "2026-05-17 09:44:06",
+      "is_hit": 1,
+      "payout": 1640.0,
+      "profit": 1140.0,
+      "roi": 328.0,
+      "horses": [
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03587557072215738,
+          "ev_score": 0.5709597080431346
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03587557072215738,
+          "ev_score": 0.5709597080431346
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03587557072215738,
+          "ev_score": 0.5709597080431346
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03587557072215738,
+          "ev_score": 0.5709597080431346
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03587557072215738,
+          "ev_score": 0.5709597080431346
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03587557072215738,
+          "ev_score": 0.5709597080431346
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03587557072215738,
+          "ev_score": 0.5709597080431346
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03587557072215738,
+          "ev_score": 0.5709597080431346
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03587557072215738,
+          "ev_score": 0.5709597080431346
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03587557072215738,
+          "ev_score": 0.5709597080431346
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "3": "オーケーリアン",
+        "5": "サイモンセレーノ",
+        "4": "ブエノスオプティマ",
+        "6": "タイセイルビー",
+        "12": "ピンクカメリア",
+        "7": "トランセンコ",
+        "9": "スマートエトワール",
+        "1": "フライスカイハイ",
+        "10": "テンタイムトップ",
+        "2": "エコロラヴァー",
+        "11": "ノーブルスアーク",
+        "8": "ライトオブジアース",
+        "13": "チョコスコーン"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34018,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬単",
+      "confidence": 0.14369815014633858,
+      "expected_value": 1.0584715928435457,
+      "recommended_bet": 100.0,
+      "combination_json": "[[3, 6], [3, 1], [3, 4]]",
+      "notes": "軸3番→相手3頭フォーメーション Harville最大=0.018",
+      "created_at": "2026-05-17 09:44:06",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.017962268768292322,
+          "ev_score": 1.0584715928435457
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.017962268768292322,
+          "ev_score": 1.0584715928435457
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.017962268768292322,
+          "ev_score": 1.0584715928435457
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.017962268768292322,
+          "ev_score": 1.0584715928435457
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.017962268768292322,
+          "ev_score": 1.0584715928435457
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.017962268768292322,
+          "ev_score": 1.0584715928435457
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "3": "オーケーリアン",
+        "5": "サイモンセレーノ",
+        "4": "ブエノスオプティマ",
+        "6": "タイセイルビー",
+        "12": "ピンクカメリア",
+        "7": "トランセンコ",
+        "9": "スマートエトワール",
+        "1": "フライスカイハイ",
+        "10": "テンタイムトップ",
+        "2": "エコロラヴァー",
+        "11": "ノーブルスアーク",
+        "8": "ライトオブジアース",
+        "13": "チョコスコーン"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34019,
+      "model_type": "本命(暫定)",
+      "bet_type": "三連複",
+      "confidence": 0.17328320264764516,
+      "expected_value": 1.5424371075673515,
+      "recommended_bet": 100.0,
+      "combination_json": "[[1, 3, 6], [3, 4, 6]]",
+      "notes": "合成EV最大=1.54 2点 馬番=[(1, 3, 6), (3, 4, 6)]",
+      "created_at": "2026-05-17 09:44:06",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "フライスカイハイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.014440266887303764,
+          "ev_score": 1.5424371075673515
+        },
+        {
+          "horse_name": "フライスカイハイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.014440266887303764,
+          "ev_score": 1.5424371075673515
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.014440266887303764,
+          "ev_score": 1.5424371075673515
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.014440266887303764,
+          "ev_score": 1.5424371075673515
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.014440266887303764,
+          "ev_score": 1.5424371075673515
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.014440266887303764,
+          "ev_score": 1.5424371075673515
+        }
+      ],
+      "bet_form": "軸2頭ながし",
+      "n_tickets": 2,
+      "invested": 200,
+      "horse_num_to_name": {
+        "3": "オーケーリアン",
+        "5": "サイモンセレーノ",
+        "4": "ブエノスオプティマ",
+        "6": "タイセイルビー",
+        "12": "ピンクカメリア",
+        "7": "トランセンコ",
+        "9": "スマートエトワール",
+        "1": "フライスカイハイ",
+        "10": "テンタイムトップ",
+        "2": "エコロラヴァー",
+        "11": "ノーブルスアーク",
+        "8": "ライトオブジアース",
+        "13": "チョコスコーン"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34020,
+      "model_type": "本命(暫定)",
+      "bet_type": "三連単",
+      "confidence": 0.4332080066191129,
+      "expected_value": 5.01730683066091,
+      "recommended_bet": 200.0,
+      "combination_json": "[[3, 6, 1], [3, 1, 6], [6, 3, 1], [6, 1, 3], [1, 3, 6], [1, 6, 3], [3, 6, 4], [3, 4, 6], [6, 3, 4], [6, 4, 3], [4, 3, 6], [4, 6, 3], [3, 6, 5], [3, 5, 6], [6, 3, 5], [6, 5, 3], [5, 3, 6], [5, 6, 3], [3, 6, 9], [3, 9, 6], [6, 3, 9], [6, 9, 3], [9, 3, 6], [9, 6, 3], [3, 6, 2], [3, 2, 6], [6, 3, 2], [6, 2, 3], [2, 3, 6], [2, 6, 3], [3, 1, 4], [3, 4, 1], [1, 3, 4], [1, 4, 3], [4, 3, 1], [4, 1, 3], [3, 1, 5], [3, 5, 1], [1, 3, 5], [1, 5, 3], [5, 3, 1], [5, 1, 3], [3, 1, 9], [3, 9, 1], [1, 3, 9], [1, 9, 3], [9, 3, 1], [9, 1, 3], [3, 1, 2], [3, 2, 1], [1, 3, 2], [1, 2, 3], [2, 3, 1], [2, 1, 3], [3, 4, 5], [3, 5, 4], [4, 3, 5], [4, 5, 3], [5, 3, 4], [5, 4, 3], [3, 4, 9], [3, 9, 4], [4, 3, 9], [4, 9, 3], [9, 3, 4], [9, 4, 3], [3, 4, 2], [3, 2, 4], [4, 3, 2], [4, 2, 3], [2, 3, 4], [2, 4, 3], [3, 5, 9], [3, 9, 5], [5, 3, 9], [5, 9, 3], [9, 3, 5], [9, 5, 3], [3, 5, 2], [3, 2, 5], [5, 3, 2], [5, 2, 3], [2, 3, 5], [2, 5, 3], [3, 9, 2], [3, 2, 9], [9, 3, 2], [9, 2, 3], [2, 3, 9], [2, 9, 3]]",
+      "notes": "1頭軸マルチ 軸=3番 相手=[6, 1, 4, 5, 9, 2] 90点 Harville最大=0.0144",
+      "created_at": "2026-05-17 09:44:06",
+      "is_hit": 1,
+      "payout": 26270.0,
+      "profit": 17270.0,
+      "roi": 291.8888888888889,
+      "horses": [
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.014440266887303764,
+          "ev_score": 5.01730683066091
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.014440266887303764,
+          "ev_score": 5.01730683066091
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.014440266887303764,
+          "ev_score": 5.01730683066091
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.014440266887303764,
+          "ev_score": 5.01730683066091
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.014440266887303764,
+          "ev_score": 5.01730683066091
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.014440266887303764,
+          "ev_score": 5.01730683066091
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.014440266887303764,
+          "ev_score": 5.01730683066091
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.014440266887303764,
+          "ev_score": 5.01730683066091
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.014440266887303764,
+          "ev_score": 5.01730683066091
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.014440266887303764,
+          "ev_score": 5.01730683066091
+        },
+        {
+          "horse_name": "フライスカイハイ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.014440266887303764,
+          "ev_score": 5.01730683066091
+        },
+        {
+          "horse_name": "フライスカイハイ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.014440266887303764,
+          "ev_score": 5.01730683066091
+        },
+        {
+          "horse_name": "フライスカイハイ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.014440266887303764,
+          "ev_score": 5.01730683066091
+        },
+        {
+          "horse_name": "フライスカイハイ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.014440266887303764,
+          "ev_score": 5.01730683066091
+        },
+        {
+          "horse_name": "フライスカイハイ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.014440266887303764,
+          "ev_score": 5.01730683066091
+        }
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 90,
+      "invested": 9000,
+      "horse_num_to_name": {
+        "3": "オーケーリアン",
+        "5": "サイモンセレーノ",
+        "4": "ブエノスオプティマ",
+        "6": "タイセイルビー",
+        "12": "ピンクカメリア",
+        "7": "トランセンコ",
+        "9": "スマートエトワール",
+        "1": "フライスカイハイ",
+        "10": "テンタイムトップ",
+        "2": "エコロラヴァー",
+        "11": "ノーブルスアーク",
+        "8": "ライトオブジアース",
+        "13": "チョコスコーン"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34021,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-05-17 09:44:06",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": "2023105544",
+          "predicted_rank": 1,
+          "model_score": 0.12145922746781115,
+          "ev_score": 0.9109442060085836
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": "2023104679",
+          "predicted_rank": 2,
+          "model_score": 0.11916583912611721,
+          "ev_score": 0.8937437934458791
+        },
+        {
+          "horse_name": "ブエノスオプティマ",
+          "horse_id": "2023103991",
+          "predicted_rank": 3,
+          "model_score": 0.09924487594390508,
+          "ev_score": 1.1512405609492988
+        },
+        {
+          "horse_name": "フライスカイハイ",
+          "horse_id": "2023103544",
+          "predicted_rank": 4,
+          "model_score": 0.09924487594390508,
+          "ev_score": 1.3199568500539376
+        },
+        {
+          "horse_name": "サイモンセレーノ",
+          "horse_id": "2023105097",
+          "predicted_rank": 5,
+          "model_score": 0.08794197642792385,
+          "ev_score": 0.8090661831368994
+        },
+        {
+          "horse_name": "スマートエトワール",
+          "horse_id": "2023106004",
+          "predicted_rank": 6,
+          "model_score": 0.0672235481304694,
+          "ev_score": 2.3326571201272883
+        },
+        {
+          "horse_name": "トランセンコ",
+          "horse_id": "2023104273",
+          "predicted_rank": 7,
+          "model_score": 0.05363204344874406,
+          "ev_score": 0.9224711473183977
+        },
+        {
+          "horse_name": "ノーブルスアーク",
+          "horse_id": "2023103651",
+          "predicted_rank": 8,
+          "model_score": 0.05363204344874406,
+          "ev_score": 1.9253903598099116
+        },
+        {
+          "horse_name": "チョコスコーン",
+          "horse_id": "2023107263",
+          "predicted_rank": 9,
+          "model_score": 0.05363204344874406,
+          "ev_score": 1.0082824168363884
+        },
+        {
+          "horse_name": "ライトオブジアース",
+          "horse_id": "2023103478",
+          "predicted_rank": 10,
+          "model_score": 0.05363204344874406,
+          "ev_score": 0.24670739986422266
+        },
+        {
+          "horse_name": "エコロラヴァー",
+          "horse_id": "2023105384",
+          "predicted_rank": 11,
+          "model_score": 0.05363204344874406,
+          "ev_score": 0.21989137813985063
+        },
+        {
+          "horse_name": "テンタイムトップ",
+          "horse_id": "2023103436",
+          "predicted_rank": 12,
+          "model_score": 0.053482587064676616,
+          "ev_score": 1.0054726368159204
+        },
+        {
+          "horse_name": "ピンクカメリア",
+          "horse_id": "2023101229",
+          "predicted_rank": 13,
+          "model_score": 0.04451566951566951,
+          "ev_score": 1.170762108262108
+        }
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "invested": 0,
+      "horse_num_to_name": {
+        "3": "オーケーリアン",
+        "5": "サイモンセレーノ",
+        "4": "ブエノスオプティマ",
+        "6": "タイセイルビー",
+        "12": "ピンクカメリア",
+        "7": "トランセンコ",
+        "9": "スマートエトワール",
+        "1": "フライスカイハイ",
+        "10": "テンタイムトップ",
+        "2": "エコロラヴァー",
+        "11": "ノーブルスアーク",
+        "8": "ライトオブジアース",
+        "13": "チョコスコーン"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34022,
+      "model_type": "HitFocus(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.1793778536107869,
+      "expected_value": 1.0813793904926288,
+      "recommended_bet": 700.0,
+      "combination_json": "[[3, 6], [1, 3], [1, 6], [3, 4], [4, 6], [3, 5], [5, 6]]",
+      "notes": "2軸マルチ 軸=3,6 相手=[1, 4, 5] Harville最大=0.0359",
+      "created_at": "2026-05-17 09:44:06",
+      "is_hit": 1,
+      "payout": 2090.0,
+      "profit": 1390.0,
+      "roi": 298.57142857142856,
+      "horses": [
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03587557072215738,
+          "ev_score": 1.0813793904926288
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03587557072215738,
+          "ev_score": 1.0813793904926288
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 7,
+      "invested": 700,
+      "horse_num_to_name": {
+        "3": "オーケーリアン",
+        "5": "サイモンセレーノ",
+        "4": "ブエノスオプティマ",
+        "6": "タイセイルビー",
+        "12": "ピンクカメリア",
+        "7": "トランセンコ",
+        "9": "スマートエトワール",
+        "1": "フライスカイハイ",
+        "10": "テンタイムトップ",
+        "2": "エコロラヴァー",
+        "11": "ノーブルスアーク",
+        "8": "ライトオブジアース",
+        "13": "チョコスコーン"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34023,
+      "model_type": "HitFocus(暫定)",
+      "bet_type": "馬単",
+      "confidence": 0.14369815014633858,
+      "expected_value": 1.0584715928435457,
+      "recommended_bet": 800.0,
+      "combination_json": "[[3, 6], [6, 3], [3, 1], [6, 1], [3, 4], [6, 4], [3, 5], [6, 5]]",
+      "notes": "2軸マルチ 軸=3,6 相手=[1, 4, 5] Harville最大=0.0180",
+      "created_at": "2026-05-17 09:44:06",
+      "is_hit": 1,
+      "payout": 4360.0,
+      "profit": 3560.0,
+      "roi": 545.0,
+      "horses": [
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.017962268768292322,
+          "ev_score": 1.0584715928435457
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.017962268768292322,
+          "ev_score": 1.0584715928435457
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 8,
+      "invested": 800,
+      "horse_num_to_name": {
+        "3": "オーケーリアン",
+        "5": "サイモンセレーノ",
+        "4": "ブエノスオプティマ",
+        "6": "タイセイルビー",
+        "12": "ピンクカメリア",
+        "7": "トランセンコ",
+        "9": "スマートエトワール",
+        "1": "フライスカイハイ",
+        "10": "テンタイムトップ",
+        "2": "エコロラヴァー",
+        "11": "ノーブルスアーク",
+        "8": "ライトオブジアース",
+        "13": "チョコスコーン"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34024,
+      "model_type": "HitFocus(暫定)",
+      "bet_type": "三連単",
+      "confidence": 0.07429684977166298,
+      "expected_value": 0.8604875398429577,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[3, 6, 1], [6, 3, 1], [3, 1, 6], [6, 1, 3], [3, 6, 4], [6, 3, 4], [3, 4, 6], [6, 4, 3], [3, 6, 5], [6, 3, 5], [3, 5, 6], [6, 5, 3]]",
+      "notes": "2軸マルチ 軸=3,6 相手=[1, 4, 5] 12点 Harville最大=0.0025",
+      "created_at": "2026-05-17 09:44:06",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0024765616590554326,
+          "ev_score": 0.8604875398429577
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0024765616590554326,
+          "ev_score": 0.8604875398429577
+        },
+        {
+          "horse_name": "フライスカイハイ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0024765616590554326,
+          "ev_score": 0.8604875398429577
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 12,
+      "invested": 1200,
+      "horse_num_to_name": {
+        "3": "オーケーリアン",
+        "5": "サイモンセレーノ",
+        "4": "ブエノスオプティマ",
+        "6": "タイセイルビー",
+        "12": "ピンクカメリア",
+        "7": "トランセンコ",
+        "9": "スマートエトワール",
+        "1": "フライスカイハイ",
+        "10": "テンタイムトップ",
+        "2": "エコロラヴァー",
+        "11": "ノーブルスアーク",
+        "8": "ライトオブジアース",
+        "13": "チョコスコーン"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34736,
+      "model_type": "本命(直前)",
+      "bet_type": "単勝",
+      "confidence": 0.12145922746781115,
+      "expected_value": 0.9109442060085836,
+      "recommended_bet": 100.0,
+      "combination_json": "[[3]]",
+      "notes": "確率1位 P(win)=0.12 odds=7.5 EV=0.91",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 1,
+      "payout": 600.0,
+      "profit": 500.0,
+      "roi": 600.0,
+      "horses": [
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.12145922746781115,
+          "ev_score": 0.9109442060085836
+        }
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "3": "オーケーリアン",
+        "5": "サイモンセレーノ",
+        "4": "ブエノスオプティマ",
+        "6": "タイセイルビー",
+        "12": "ピンクカメリア",
+        "7": "トランセンコ",
+        "9": "スマートエトワール",
+        "1": "フライスカイハイ",
+        "10": "テンタイムトップ",
+        "2": "エコロラヴァー",
+        "11": "ノーブルスアーク",
+        "8": "ライトオブジアース",
+        "13": "チョコスコーン"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34737,
+      "model_type": "本命(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.09536984089567897,
+      "expected_value": 0.28610952268703693,
+      "recommended_bet": 100.0,
+      "combination_json": "[[3], [6], [4]]",
+      "notes": "上位3頭を複勝",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 1,
+      "payout": 520.0,
+      "profit": 220.0,
+      "roi": 173.33333333333334,
+      "horses": [
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.09536984089567897,
+          "ev_score": 0.28610952268703693
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.09536984089567897,
+          "ev_score": 0.28610952268703693
+        },
+        {
+          "horse_name": "ブエノスオプティマ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.09536984089567897,
+          "ev_score": 0.28610952268703693
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "3": "オーケーリアン",
+        "5": "サイモンセレーノ",
+        "4": "ブエノスオプティマ",
+        "6": "タイセイルビー",
+        "12": "ピンクカメリア",
+        "7": "トランセンコ",
+        "9": "スマートエトワール",
+        "1": "フライスカイハイ",
+        "10": "テンタイムトップ",
+        "2": "エコロラヴァー",
+        "11": "ノーブルスアーク",
+        "8": "ライトオブジアース",
+        "13": "チョコスコーン"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34738,
+      "model_type": "本命(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.03667245176179636,
+      "expected_value": 1.1001735528538907,
+      "recommended_bet": 100.0,
+      "combination_json": "[[3, 6], [3, 4], [3, 5], [1, 3], [3, 9]]",
+      "notes": "軸3番×相手5頭フォーメーション Harville最大=0.037",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 1,
+      "payout": 2090.0,
+      "profit": 1590.0,
+      "roi": 418.0,
+      "horses": [
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03667245176179636,
+          "ev_score": 1.1001735528538907
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03667245176179636,
+          "ev_score": 1.1001735528538907
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03667245176179636,
+          "ev_score": 1.1001735528538907
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03667245176179636,
+          "ev_score": 1.1001735528538907
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03667245176179636,
+          "ev_score": 1.1001735528538907
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03667245176179636,
+          "ev_score": 1.1001735528538907
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03667245176179636,
+          "ev_score": 1.1001735528538907
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03667245176179636,
+          "ev_score": 1.1001735528538907
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03667245176179636,
+          "ev_score": 1.1001735528538907
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03667245176179636,
+          "ev_score": 1.1001735528538907
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "3": "オーケーリアン",
+        "5": "サイモンセレーノ",
+        "4": "ブエノスオプティマ",
+        "6": "タイセイルビー",
+        "12": "ピンクカメリア",
+        "7": "トランセンコ",
+        "9": "スマートエトワール",
+        "1": "フライスカイハイ",
+        "10": "テンタイムトップ",
+        "2": "エコロラヴァー",
+        "11": "ノーブルスアーク",
+        "8": "ライトオブジアース",
+        "13": "チョコスコーン"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34739,
+      "model_type": "本命(直前)",
+      "bet_type": "ワイド",
+      "confidence": 0.04767418729033526,
+      "expected_value": 0.5806165925186408,
+      "recommended_bet": 100.0,
+      "combination_json": "[[3, 6], [3, 4], [3, 5], [1, 3], [3, 9]]",
+      "notes": "軸3番×相手5頭ワイド Harville最大=0.037",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 1,
+      "payout": 1640.0,
+      "profit": 1140.0,
+      "roi": 328.0,
+      "horses": [
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03667245176179636,
+          "ev_score": 0.5806165925186408
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03667245176179636,
+          "ev_score": 0.5806165925186408
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03667245176179636,
+          "ev_score": 0.5806165925186408
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03667245176179636,
+          "ev_score": 0.5806165925186408
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03667245176179636,
+          "ev_score": 0.5806165925186408
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03667245176179636,
+          "ev_score": 0.5806165925186408
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03667245176179636,
+          "ev_score": 0.5806165925186408
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03667245176179636,
+          "ev_score": 0.5806165925186408
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03667245176179636,
+          "ev_score": 0.5806165925186408
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03667245176179636,
+          "ev_score": 0.5806165925186408
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "3": "オーケーリアン",
+        "5": "サイモンセレーノ",
+        "4": "ブエノスオプティマ",
+        "6": "タイセイルビー",
+        "12": "ピンクカメリア",
+        "7": "トランセンコ",
+        "9": "スマートエトワール",
+        "1": "フライスカイハイ",
+        "10": "テンタイムトップ",
+        "2": "エコロラヴァー",
+        "11": "ノーブルスアーク",
+        "8": "ライトオブジアース",
+        "13": "チョコスコーン"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34740,
+      "model_type": "本命(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.14905869805532565,
+      "expected_value": 1.0968391134714854,
+      "recommended_bet": 100.0,
+      "combination_json": "[[3, 6], [3, 4], [3, 5]]",
+      "notes": "軸3番→相手3頭フォーメーション Harville最大=0.019",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 1,
+      "payout": 4360.0,
+      "profit": 4060.0,
+      "roi": 1453.3333333333333,
+      "horses": [
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.018632337256915706,
+          "ev_score": 1.0968391134714854
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.018632337256915706,
+          "ev_score": 1.0968391134714854
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.018632337256915706,
+          "ev_score": 1.0968391134714854
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.018632337256915706,
+          "ev_score": 1.0968391134714854
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.018632337256915706,
+          "ev_score": 1.0968391134714854
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.018632337256915706,
+          "ev_score": 1.0968391134714854
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "3": "オーケーリアン",
+        "5": "サイモンセレーノ",
+        "4": "ブエノスオプティマ",
+        "6": "タイセイルビー",
+        "12": "ピンクカメリア",
+        "7": "トランセンコ",
+        "9": "スマートエトワール",
+        "1": "フライスカイハイ",
+        "10": "テンタイムトップ",
+        "2": "エコロラヴァー",
+        "11": "ノーブルスアーク",
+        "8": "ライトオブジアース",
+        "13": "チョコスコーン"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34741,
+      "model_type": "本命(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.13097769446474278,
+      "expected_value": 1.1635730932011588,
+      "recommended_bet": 100.0,
+      "combination_json": "[[3, 4, 6], [3, 5, 6]]",
+      "notes": "合成EV最大=1.16 2点 馬番=[(3, 4, 6), (3, 5, 6)]",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.010914807872061899,
+          "ev_score": 1.1635730932011588
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.010914807872061899,
+          "ev_score": 1.1635730932011588
+        },
+        {
+          "horse_name": "ブエノスオプティマ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.010914807872061899,
+          "ev_score": 1.1635730932011588
+        },
+        {
+          "horse_name": "ブエノスオプティマ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.010914807872061899,
+          "ev_score": 1.1635730932011588
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.010914807872061899,
+          "ev_score": 1.1635730932011588
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.010914807872061899,
+          "ev_score": 1.1635730932011588
+        }
+      ],
+      "bet_form": "軸2頭ながし",
+      "n_tickets": 2,
+      "invested": 200,
+      "horse_num_to_name": {
+        "3": "オーケーリアン",
+        "5": "サイモンセレーノ",
+        "4": "ブエノスオプティマ",
+        "6": "タイセイルビー",
+        "12": "ピンクカメリア",
+        "7": "トランセンコ",
+        "9": "スマートエトワール",
+        "1": "フライスカイハイ",
+        "10": "テンタイムトップ",
+        "2": "エコロラヴァー",
+        "11": "ノーブルスアーク",
+        "8": "ライトオブジアース",
+        "13": "チョコスコーン"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34742,
+      "model_type": "本命(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.32744423616185697,
+      "expected_value": 3.831343146270848,
+      "recommended_bet": 200.0,
+      "combination_json": "[[3, 6, 4], [3, 4, 6], [6, 3, 4], [6, 4, 3], [4, 3, 6], [4, 6, 3], [3, 6, 5], [3, 5, 6], [6, 3, 5], [6, 5, 3], [5, 3, 6], [5, 6, 3], [3, 6, 1], [3, 1, 6], [6, 3, 1], [6, 1, 3], [1, 3, 6], [1, 6, 3], [3, 6, 9], [3, 9, 6], [6, 3, 9], [6, 9, 3], [9, 3, 6], [9, 6, 3], [3, 6, 2], [3, 2, 6], [6, 3, 2], [6, 2, 3], [2, 3, 6], [2, 6, 3], [3, 4, 5], [3, 5, 4], [4, 3, 5], [4, 5, 3], [5, 3, 4], [5, 4, 3], [3, 4, 1], [3, 1, 4], [4, 3, 1], [4, 1, 3], [1, 3, 4], [1, 4, 3], [3, 4, 9], [3, 9, 4], [4, 3, 9], [4, 9, 3], [9, 3, 4], [9, 4, 3], [3, 4, 2], [3, 2, 4], [4, 3, 2], [4, 2, 3], [2, 3, 4], [2, 4, 3], [3, 5, 1], [3, 1, 5], [5, 3, 1], [5, 1, 3], [1, 3, 5], [1, 5, 3], [3, 5, 9], [3, 9, 5], [5, 3, 9], [5, 9, 3], [9, 3, 5], [9, 5, 3], [3, 5, 2], [3, 2, 5], [5, 3, 2], [5, 2, 3], [2, 3, 5], [2, 5, 3], [3, 1, 9], [3, 9, 1], [1, 3, 9], [1, 9, 3], [9, 3, 1], [9, 1, 3], [3, 1, 2], [3, 2, 1], [1, 3, 2], [1, 2, 3], [2, 3, 1], [2, 1, 3], [3, 9, 2], [3, 2, 9], [9, 3, 2], [9, 2, 3], [2, 3, 9], [2, 9, 3]]",
+      "notes": "1頭軸マルチ 軸=3番 相手=[6, 4, 5, 1, 9, 2] 90点 Harville最大=0.0109",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 1,
+      "payout": 26270.0,
+      "profit": 17270.0,
+      "roi": 291.8888888888889,
+      "horses": [
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.010914807872061899,
+          "ev_score": 3.831343146270848
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.010914807872061899,
+          "ev_score": 3.831343146270848
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.010914807872061899,
+          "ev_score": 3.831343146270848
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.010914807872061899,
+          "ev_score": 3.831343146270848
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.010914807872061899,
+          "ev_score": 3.831343146270848
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.010914807872061899,
+          "ev_score": 3.831343146270848
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.010914807872061899,
+          "ev_score": 3.831343146270848
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.010914807872061899,
+          "ev_score": 3.831343146270848
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.010914807872061899,
+          "ev_score": 3.831343146270848
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.010914807872061899,
+          "ev_score": 3.831343146270848
+        },
+        {
+          "horse_name": "ブエノスオプティマ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.010914807872061899,
+          "ev_score": 3.831343146270848
+        },
+        {
+          "horse_name": "ブエノスオプティマ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.010914807872061899,
+          "ev_score": 3.831343146270848
+        },
+        {
+          "horse_name": "ブエノスオプティマ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.010914807872061899,
+          "ev_score": 3.831343146270848
+        },
+        {
+          "horse_name": "ブエノスオプティマ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.010914807872061899,
+          "ev_score": 3.831343146270848
+        },
+        {
+          "horse_name": "ブエノスオプティマ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.010914807872061899,
+          "ev_score": 3.831343146270848
+        }
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 90,
+      "invested": 9000,
+      "horse_num_to_name": {
+        "3": "オーケーリアン",
+        "5": "サイモンセレーノ",
+        "4": "ブエノスオプティマ",
+        "6": "タイセイルビー",
+        "12": "ピンクカメリア",
+        "7": "トランセンコ",
+        "9": "スマートエトワール",
+        "1": "フライスカイハイ",
+        "10": "テンタイムトップ",
+        "2": "エコロラヴァー",
+        "11": "ノーブルスアーク",
+        "8": "ライトオブジアース",
+        "13": "チョコスコーン"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34743,
+      "model_type": "卍(直前)",
+      "bet_type": "単勝",
+      "confidence": 0.2952801747859681,
+      "expected_value": 2.2146013108947606,
+      "recommended_bet": 100.0,
+      "combination_json": "[[3]]",
+      "notes": "確率1位(卍) EV=2.21 odds=7.5",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 1,
+      "payout": 600.0,
+      "profit": 500.0,
+      "roi": 600.0,
+      "horses": [
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 2.2146013108947606,
+          "ev_score": 2.2146013108947606
+        }
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "3": "オーケーリアン",
+        "5": "サイモンセレーノ",
+        "4": "ブエノスオプティマ",
+        "6": "タイセイルビー",
+        "12": "ピンクカメリア",
+        "7": "トランセンコ",
+        "9": "スマートエトワール",
+        "1": "フライスカイハイ",
+        "10": "テンタイムトップ",
+        "2": "エコロラヴァー",
+        "11": "ノーブルスアーク",
+        "8": "ライトオブジアース",
+        "13": "チョコスコーン"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34744,
+      "model_type": "卍(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.6,
+      "expected_value": 1.2259014549383995,
+      "recommended_bet": 100.0,
+      "combination_json": "[[3], [4], [9]]",
+      "notes": "確率上位3頭を複勝",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 1,
+      "payout": 520.0,
+      "profit": 220.0,
+      "roi": 173.33333333333334,
+      "horses": [
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 1.2259014549383995,
+          "ev_score": 1.2259014549383995
+        },
+        {
+          "horse_name": "ブエノスオプティマ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 1.2259014549383995,
+          "ev_score": 1.2259014549383995
+        },
+        {
+          "horse_name": "スマートエトワール",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 1.2259014549383995,
+          "ev_score": 1.2259014549383995
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "3": "オーケーリアン",
+        "5": "サイモンセレーノ",
+        "4": "ブエノスオプティマ",
+        "6": "タイセイルビー",
+        "12": "ピンクカメリア",
+        "7": "トランセンコ",
+        "9": "スマートエトワール",
+        "1": "フライスカイハイ",
+        "10": "テンタイムトップ",
+        "2": "エコロラヴァー",
+        "11": "ノーブルスアーク",
+        "8": "ライトオブジアース",
+        "13": "チョコスコーン"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34745,
+      "model_type": "卍(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.9892584965785428,
+      "expected_value": 4.0,
+      "recommended_bet": 100.0,
+      "combination_json": "[[3, 4], [3, 9], [3, 13], [3, 5], [3, 10]]",
+      "notes": "軸3番×相手5頭フォーメーション Harville最大=0.198",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 1,
+      "payout": 2090.0,
+      "profit": 1590.0,
+      "roi": 418.0,
+      "horses": [
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.19785169931570856,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.19785169931570856,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.19785169931570856,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.19785169931570856,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.19785169931570856,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ブエノスオプティマ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.19785169931570856,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ブエノスオプティマ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.19785169931570856,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ブエノスオプティマ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.19785169931570856,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ブエノスオプティマ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.19785169931570856,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ブエノスオプティマ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.19785169931570856,
+          "ev_score": 4.0
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "3": "オーケーリアン",
+        "5": "サイモンセレーノ",
+        "4": "ブエノスオプティマ",
+        "6": "タイセイルビー",
+        "12": "ピンクカメリア",
+        "7": "トランセンコ",
+        "9": "スマートエトワール",
+        "1": "フライスカイハイ",
+        "10": "テンタイムトップ",
+        "2": "エコロラヴァー",
+        "11": "ノーブルスアーク",
+        "8": "ライトオブジアース",
+        "13": "チョコスコーン"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34746,
+      "model_type": "卍(直前)",
+      "bet_type": "ワイド",
+      "confidence": 1.0,
+      "expected_value": 3.0,
+      "recommended_bet": 100.0,
+      "combination_json": "[[3, 4], [3, 9], [3, 13], [3, 5], [3, 10]]",
+      "notes": "軸3番×相手5頭ワイド Harville最大=0.198",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 1,
+      "payout": 1640.0,
+      "profit": 1140.0,
+      "roi": 328.0,
+      "horses": [
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.19785169931570856,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.19785169931570856,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.19785169931570856,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.19785169931570856,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.19785169931570856,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ブエノスオプティマ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.19785169931570856,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ブエノスオプティマ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.19785169931570856,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ブエノスオプティマ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.19785169931570856,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ブエノスオプティマ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.19785169931570856,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ブエノスオプティマ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.19785169931570856,
+          "ev_score": 3.0
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "3": "オーケーリアン",
+        "5": "サイモンセレーノ",
+        "4": "ブエノスオプティマ",
+        "6": "タイセイルビー",
+        "12": "ピンクカメリア",
+        "7": "トランセンコ",
+        "9": "スマートエトワール",
+        "1": "フライスカイハイ",
+        "10": "テンタイムトップ",
+        "2": "エコロラヴァー",
+        "11": "ノーブルスアーク",
+        "8": "ライトオブジアース",
+        "13": "チョコスコーン"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34747,
+      "model_type": "卍(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.9600725282739235,
+      "expected_value": 5.0,
+      "recommended_bet": 100.0,
+      "combination_json": "[[3, 4], [3, 9], [3, 13]]",
+      "notes": "軸3番→相手3頭フォーメーション Harville最大=0.120",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.12000906603424044,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.12000906603424044,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.12000906603424044,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ブエノスオプティマ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.12000906603424044,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ブエノスオプティマ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.12000906603424044,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ブエノスオプティマ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.12000906603424044,
+          "ev_score": 5.0
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "3": "オーケーリアン",
+        "5": "サイモンセレーノ",
+        "4": "ブエノスオプティマ",
+        "6": "タイセイルビー",
+        "12": "ピンクカメリア",
+        "7": "トランセンコ",
+        "9": "スマートエトワール",
+        "1": "フライスカイハイ",
+        "10": "テンタイムトップ",
+        "2": "エコロラヴァー",
+        "11": "ノーブルスアーク",
+        "8": "ライトオブジアース",
+        "13": "チョコスコーン"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34750,
+      "model_type": "卍(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.8279662172794295,
+      "expected_value": 5.0,
+      "recommended_bet": 100.0,
+      "combination_json": "[[3, 4, 5]]",
+      "notes": "合成EV=5.00 Harville=0.0552 馬番=(3, 4, 5)",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 1,
+      "payout": 5800.0,
+      "profit": 5700.0,
+      "roi": 5800.0,
+      "horses": [
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.055197747818628635,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ブエノスオプティマ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.055197747818628635,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "サイモンセレーノ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.055197747818628635,
+          "ev_score": 5.0
+        }
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "3": "オーケーリアン",
+        "5": "サイモンセレーノ",
+        "4": "ブエノスオプティマ",
+        "6": "タイセイルビー",
+        "12": "ピンクカメリア",
+        "7": "トランセンコ",
+        "9": "スマートエトワール",
+        "1": "フライスカイハイ",
+        "10": "テンタイムトップ",
+        "2": "エコロラヴァー",
+        "11": "ノーブルスアーク",
+        "8": "ライトオブジアース",
+        "13": "チョコスコーン"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34751,
+      "model_type": "Oracle(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.06548884723237139,
+      "expected_value": 1.9646654169711417,
+      "recommended_bet": 500.0,
+      "combination_json": "[[3, 4, 6], [3, 5, 6], [1, 3, 6], [3, 6, 9], [2, 3, 6]]",
+      "notes": "[Oracle] 的中確率最大 5点 P最大=0.0655 馬番=[(3, 4, 6), (3, 5, 6), (1, 3, 6), (3, 6, 9), (2, 3, 6)]",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06548884723237139,
+          "ev_score": 1.9646654169711417
+        },
+        {
+          "horse_name": "ブエノスオプティマ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06548884723237139,
+          "ev_score": 1.9646654169711417
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.06548884723237139,
+          "ev_score": 1.9646654169711417
+        }
+      ],
+      "bet_form": "軸2頭ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "3": "オーケーリアン",
+        "5": "サイモンセレーノ",
+        "4": "ブエノスオプティマ",
+        "6": "タイセイルビー",
+        "12": "ピンクカメリア",
+        "7": "トランセンコ",
+        "9": "スマートエトワール",
+        "1": "フライスカイハイ",
+        "10": "テンタイムトップ",
+        "2": "エコロラヴァー",
+        "11": "ノーブルスアーク",
+        "8": "ライトオブジアース",
+        "13": "チョコスコーン"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34752,
+      "model_type": "Oracle(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.010914807872061899,
+      "expected_value": 1.637221180809285,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[3, 6, 4], [3, 4, 6], [6, 3, 4], [6, 4, 3], [4, 3, 6], [4, 6, 3], [3, 6, 5], [3, 6, 1], [3, 6, 9], [3, 5, 6], [3, 1, 6], [3, 9, 6]]",
+      "notes": "[Oracle] 的中確率最大 12点 P最大=0.0109 馬番=[(3, 6, 4), (3, 4, 6), (6, 3, 4), (6, 4, 3), (4, 3, 6), (4, 6, 3), (3, 6, 5), (3, 6, 1), (3, 6, 9), (3, 5, 6), (3, 1, 6), (3, 9, 6)]",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.010914807872061899,
+          "ev_score": 1.637221180809285
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.010914807872061899,
+          "ev_score": 1.637221180809285
+        },
+        {
+          "horse_name": "ブエノスオプティマ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.010914807872061899,
+          "ev_score": 1.637221180809285
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 12,
+      "invested": 1200,
+      "horse_num_to_name": {
+        "3": "オーケーリアン",
+        "5": "サイモンセレーノ",
+        "4": "ブエノスオプティマ",
+        "6": "タイセイルビー",
+        "12": "ピンクカメリア",
+        "7": "トランセンコ",
+        "9": "スマートエトワール",
+        "1": "フライスカイハイ",
+        "10": "テンタイムトップ",
+        "2": "エコロラヴァー",
+        "11": "ノーブルスアーク",
+        "8": "ライトオブジアース",
+        "13": "チョコスコーン"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34753,
+      "model_type": "本命(直前)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": "2023105544",
+          "predicted_rank": 1,
+          "model_score": 0.12145922746781115,
+          "ev_score": 0.9109442060085836
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": "2023104679",
+          "predicted_rank": 2,
+          "model_score": 0.09724025974025974,
+          "ev_score": 0.729301948051948
+        },
+        {
+          "horse_name": "ブエノスオプティマ",
+          "horse_id": "2023103991",
+          "predicted_rank": 3,
+          "model_score": 0.06741003547896604,
+          "ev_score": 0.781956411556006
+        },
+        {
+          "horse_name": "サイモンセレーノ",
+          "horse_id": "2023105097",
+          "predicted_rank": 4,
+          "model_score": 0.0672235481304694,
+          "ev_score": 0.6184566428003184
+        },
+        {
+          "horse_name": "スマートエトワール",
+          "horse_id": "2023106004",
+          "predicted_rank": 5,
+          "model_score": 0.0672235481304694,
+          "ev_score": 2.3326571201272883
+        },
+        {
+          "horse_name": "フライスカイハイ",
+          "horse_id": "2023103544",
+          "predicted_rank": 6,
+          "model_score": 0.0672235481304694,
+          "ev_score": 0.894073190135243
+        },
+        {
+          "horse_name": "ライトオブジアース",
+          "horse_id": "2023103478",
+          "predicted_rank": 7,
+          "model_score": 0.0569777979157227,
+          "ev_score": 0.2620978704123244
+        },
+        {
+          "horse_name": "エコロラヴァー",
+          "horse_id": "2023105384",
+          "predicted_rank": 8,
+          "model_score": 0.0569777979157227,
+          "ev_score": 0.23360897145446305
+        },
+        {
+          "horse_name": "チョコスコーン",
+          "horse_id": "2023107263",
+          "predicted_rank": 9,
+          "model_score": 0.0569777979157227,
+          "ev_score": 1.071182600815587
+        },
+        {
+          "horse_name": "テンタイムトップ",
+          "horse_id": "2023103436",
+          "predicted_rank": 10,
+          "model_score": 0.05363204344874406,
+          "ev_score": 1.0082824168363884
+        },
+        {
+          "horse_name": "ノーブルスアーク",
+          "horse_id": "2023103651",
+          "predicted_rank": 11,
+          "model_score": 0.051174496644295304,
+          "ev_score": 1.8371644295302014
+        },
+        {
+          "horse_name": "トランセンコ",
+          "horse_id": "2023104273",
+          "predicted_rank": 12,
+          "model_score": 0.051174496644295304,
+          "ev_score": 0.8802013422818792
+        },
+        {
+          "horse_name": "ピンクカメリア",
+          "horse_id": "2023101229",
+          "predicted_rank": 13,
+          "model_score": 0.04451566951566951,
+          "ev_score": 1.170762108262108
+        }
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "invested": 0,
+      "horse_num_to_name": {
+        "3": "オーケーリアン",
+        "5": "サイモンセレーノ",
+        "4": "ブエノスオプティマ",
+        "6": "タイセイルビー",
+        "12": "ピンクカメリア",
+        "7": "トランセンコ",
+        "9": "スマートエトワール",
+        "1": "フライスカイハイ",
+        "10": "テンタイムトップ",
+        "2": "エコロラヴァー",
+        "11": "ノーブルスアーク",
+        "8": "ライトオブジアース",
+        "13": "チョコスコーン"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34754,
+      "model_type": "HitFocus(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.18336225880898177,
+      "expected_value": 1.1001735528538907,
+      "recommended_bet": 700.0,
+      "combination_json": "[[3, 6], [3, 4], [4, 6], [3, 5], [5, 6], [1, 3], [1, 6]]",
+      "notes": "2軸マルチ 軸=3,6 相手=[4, 5, 1] Harville最大=0.0367",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 1,
+      "payout": 2090.0,
+      "profit": 1390.0,
+      "roi": 298.57142857142856,
+      "horses": [
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03667245176179636,
+          "ev_score": 1.1001735528538907
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03667245176179636,
+          "ev_score": 1.1001735528538907
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 7,
+      "invested": 700,
+      "horse_num_to_name": {
+        "3": "オーケーリアン",
+        "5": "サイモンセレーノ",
+        "4": "ブエノスオプティマ",
+        "6": "タイセイルビー",
+        "12": "ピンクカメリア",
+        "7": "トランセンコ",
+        "9": "スマートエトワール",
+        "1": "フライスカイハイ",
+        "10": "テンタイムトップ",
+        "2": "エコロラヴァー",
+        "11": "ノーブルスアーク",
+        "8": "ライトオブジアース",
+        "13": "チョコスコーン"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34755,
+      "model_type": "HitFocus(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.14905869805532565,
+      "expected_value": 1.0968391134714854,
+      "recommended_bet": 800.0,
+      "combination_json": "[[3, 6], [6, 3], [3, 4], [6, 4], [3, 5], [6, 5], [3, 1], [6, 1]]",
+      "notes": "2軸マルチ 軸=3,6 相手=[4, 5, 1] Harville最大=0.0186",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 1,
+      "payout": 4360.0,
+      "profit": 3560.0,
+      "roi": 545.0,
+      "horses": [
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.018632337256915706,
+          "ev_score": 1.0968391134714854
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.018632337256915706,
+          "ev_score": 1.0968391134714854
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 8,
+      "invested": 800,
+      "horse_num_to_name": {
+        "3": "オーケーリアン",
+        "5": "サイモンセレーノ",
+        "4": "ブエノスオプティマ",
+        "6": "タイセイルビー",
+        "12": "ピンクカメリア",
+        "7": "トランセンコ",
+        "9": "スマートエトワール",
+        "1": "フライスカイハイ",
+        "10": "テンタイムトップ",
+        "2": "エコロラヴァー",
+        "11": "ノーブルスアーク",
+        "8": "ライトオブジアース",
+        "13": "チョコスコーン"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34756,
+      "model_type": "HitFocus(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.058828354885702296,
+      "expected_value": 0.6883358734288811,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[3, 6, 4], [6, 3, 4], [3, 4, 6], [6, 4, 3], [3, 6, 5], [6, 3, 5], [3, 5, 6], [6, 5, 3], [3, 6, 1], [6, 3, 1], [3, 1, 6], [6, 1, 3]]",
+      "notes": "2軸マルチ 軸=3,6 相手=[4, 5, 1] 12点 Harville最大=0.0020",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "オーケーリアン",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0019609451628567432,
+          "ev_score": 0.6883358734288811
+        },
+        {
+          "horse_name": "タイセイルビー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0019609451628567432,
+          "ev_score": 0.6883358734288811
+        },
+        {
+          "horse_name": "ブエノスオプティマ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0019609451628567432,
+          "ev_score": 0.6883358734288811
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 12,
+      "invested": 1200,
+      "horse_num_to_name": {
+        "3": "オーケーリアン",
+        "5": "サイモンセレーノ",
+        "4": "ブエノスオプティマ",
+        "6": "タイセイルビー",
+        "12": "ピンクカメリア",
+        "7": "トランセンコ",
+        "9": "スマートエトワール",
+        "1": "フライスカイハイ",
+        "10": "テンタイムトップ",
+        "2": "エコロラヴァー",
+        "11": "ノーブルスアーク",
+        "8": "ライトオブジアース",
+        "13": "チョコスコーン"
+      },
+      "is_provisional": false
+    }
+  ],
+  "training_evals": {},
+  "prerace": {
+    "bias": {
+      "today_inner_bias": -0.06366459627329192,
+      "today_front_bias": 0.75,
+      "today_race_count": 4
+    },
+    "ev_recommend": [
+      {
+        "horse_number": 9,
+        "horse_name": "スマートエトワール",
+        "win_odds": 34.7,
+        "ev_score": 2.3327,
+        "kelly_fraction": 0.004
+      },
+      {
+        "horse_number": 11,
+        "horse_name": "ノーブルスアーク",
+        "win_odds": 35.9,
+        "ev_score": 1.8372,
+        "kelly_fraction": 0.0024
+      },
+      {
+        "horse_number": 12,
+        "horse_name": "ピンクカメリア",
+        "win_odds": 26.3,
+        "ev_score": 1.1708,
+        "kelly_fraction": 0.0007
+      },
+      {
+        "horse_number": 13,
+        "horse_name": "チョコスコーン",
+        "win_odds": 18.8,
+        "ev_score": 1.0712,
+        "kelly_fraction": 0.0004
+      },
+      {
+        "horse_number": 10,
+        "horse_name": "テンタイムトップ",
+        "win_odds": 18.8,
+        "ev_score": 1.0083,
+        "kelly_fraction": 0.0
+      }
+    ],
+    "generated_at": "2026-05-17T12:10:09.423599"
+  }
+}

@@ -4,105 +4,27 @@
   "date": "2026-05-02",
   "venue": "東京",
   "race_number": 3,
-  "distance": 2100,
-  "surface": "ダート",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "重",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
-      "rank": 1,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "リオンサーガ",
-      "horse_id": "2023101586",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "高杉吏麒",
-      "trainer": "宮地貴稔",
-      "finish_time": "2:12.8",
-      "margin": "@",
-      "win_odds": 9.4,
-      "popularity": 5,
-      "horse_weight": 510,
-      "horse_weight_diff": -4,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0483,
-      "ev_score": 0.4539,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.0,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 2,
-      "gate_number": 8,
-      "horse_number": 8,
-      "horse_name": "クアッドフォルツァ",
-      "horse_id": "2023101301",
-      "sex_age": "牡1",
-      "weight_carried": 57.0,
-      "jockey": "ディー",
-      "trainer": "伊藤圭三",
-      "finish_time": "2:12.8",
-      "margin": "アタマ",
-      "win_odds": 4.5,
-      "popularity": 3,
-      "horse_weight": 468,
-      "horse_weight_diff": -2,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0258,
-      "ev_score": 0.116,
-      "kelly_fraction": 0.0,
-      "manji_ev": 41472.6223,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 3,
-      "gate_number": 8,
-      "horse_number": 9,
-      "horse_name": "ブルーフレア",
-      "horse_id": "2023106046",
-      "sex_age": "牡5",
-      "weight_carried": 57.0,
-      "jockey": "大野拓弥",
-      "trainer": "辻哲英",
-      "finish_time": "2:13.2",
-      "margin": "2.1/2",
-      "win_odds": 23.7,
-      "popularity": 6,
-      "horse_weight": 496,
-      "horse_weight_diff": 8,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0468,
-      "ev_score": 1.1099,
-      "kelly_fraction": 0.0005,
-      "manji_ev": 35584.2735,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 4,
+      "rank": null,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "アイムスティルミー",
       "horse_id": "2023106595",
-      "sex_age": "騸4",
+      "sex_age": "セ3",
       "weight_carried": 57.0,
-      "jockey": "江田照男",
-      "trainer": "手塚貴久",
-      "finish_time": "2:13.7",
-      "margin": "3",
-      "win_odds": 5.1,
-      "popularity": 4,
+      "jockey": "江田照",
+      "trainer": "美浦手塚久",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
       "horse_weight": 438,
       "horse_weight_diff": 12,
       "sire": null,
@@ -116,45 +38,19 @@
       "odds_velocity": null
     },
     {
-      "rank": 5,
-      "gate_number": 7,
-      "horse_number": 7,
-      "horse_name": "ナウオアネヴァー",
-      "horse_id": "2023104408",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "川又賢治",
-      "trainer": "寺島良",
-      "finish_time": "2:13.8",
-      "margin": "クビ",
-      "win_odds": 3.1,
-      "popularity": 1,
-      "horse_weight": 502,
-      "horse_weight_diff": -14,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0258,
-      "ev_score": 0.0799,
-      "kelly_fraction": 0.0,
-      "manji_ev": 801.8815,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 6,
+      "rank": null,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "オーキッドワン",
       "horse_id": "2023100313",
       "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "柴田大知",
-      "trainer": "水野貴広",
-      "finish_time": "2:13.9",
-      "margin": "3/4",
-      "win_odds": 81.4,
-      "popularity": 8,
+      "jockey": "柴田大",
+      "trainer": "美浦水野",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
       "horse_weight": 456,
       "horse_weight_diff": 2,
       "sire": null,
@@ -168,45 +64,71 @@
       "odds_velocity": null
     },
     {
-      "rank": 7,
-      "gate_number": 6,
-      "horse_number": 6,
-      "horse_name": "ニシノモリミチ",
-      "horse_id": "2023100362",
-      "sex_age": "牡5",
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "リオンサーガ",
+      "horse_id": "2023101586",
+      "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "横山武史",
-      "trainer": "高木登",
-      "finish_time": "2:14.1",
-      "margin": "1.1/4",
-      "win_odds": 3.1,
-      "popularity": 2,
-      "horse_weight": 482,
-      "horse_weight_diff": 2,
+      "jockey": "高杉",
+      "trainer": "栗東宮地",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 510,
+      "horse_weight_diff": -4,
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.0384,
-      "ev_score": 0.1191,
+      "honmei_score": 0.0483,
+      "ev_score": 0.4539,
       "kelly_fraction": 0.0,
-      "manji_ev": 7858.9814,
+      "manji_ev": 0.0,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
     {
-      "rank": 8,
+      "rank": null,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "キングオブストーム",
+      "horse_id": "2023103713",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "△長浜",
+      "trainer": "栗東田中克",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 502,
+      "horse_weight_diff": -14,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0692,
+      "ev_score": 6.0493,
+      "kelly_fraction": 0.0058,
+      "manji_ev": 0.0,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
       "gate_number": 5,
       "horse_number": 5,
       "horse_name": "タニセンローマ",
       "horse_id": "2023101095",
-      "sex_age": "牡5",
+      "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "岩田康誠",
-      "trainer": "斎藤誠",
-      "finish_time": "2:14.6",
-      "margin": "3",
-      "win_odds": 33.9,
-      "popularity": 7,
+      "jockey": "岩田康",
+      "trainer": "美浦斎藤誠",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
       "horse_weight": 466,
       "horse_weight_diff": 2,
       "sire": null,
@@ -220,28 +142,106 @@
       "odds_velocity": null
     },
     {
-      "rank": 9,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "キングオブストーム",
-      "horse_id": "2023103713",
-      "sex_age": "牡4",
-      "weight_carried": 55.0,
-      "jockey": "長浜鴻緒",
-      "trainer": "田中克典",
-      "finish_time": "2:15.9",
-      "margin": "8",
-      "win_odds": 87.4,
-      "popularity": 9,
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 6,
+      "horse_name": "ニシノモリミチ",
+      "horse_id": "2023100362",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "横山武",
+      "trainer": "美浦高木",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 482,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0384,
+      "ev_score": 0.1191,
+      "kelly_fraction": 0.0,
+      "manji_ev": 7858.9814,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 7,
+      "horse_name": "ナウオアネヴァー",
+      "horse_id": "2023104408",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "川又",
+      "trainer": "栗東寺島",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
       "horse_weight": 502,
       "horse_weight_diff": -14,
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.0692,
-      "ev_score": 6.0493,
-      "kelly_fraction": 0.0058,
-      "manji_ev": 0.0,
+      "honmei_score": 0.0258,
+      "ev_score": 0.0799,
+      "kelly_fraction": 0.0,
+      "manji_ev": 801.8815,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 8,
+      "horse_name": "クアッドフォルツァ",
+      "horse_id": "2023101301",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "ディー",
+      "trainer": "美浦伊藤圭",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 468,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0258,
+      "ev_score": 0.116,
+      "kelly_fraction": 0.0,
+      "manji_ev": 41472.6223,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 9,
+      "horse_name": "ブルーフレア",
+      "horse_id": "2023106046",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "大野",
+      "trainer": "美浦辻",
+      "finish_time": null,
+      "margin": null,
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": 496,
+      "horse_weight_diff": 8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0468,
+      "ev_score": 1.1099,
+      "kelly_fraction": 0.0005,
+      "manji_ev": 35584.2735,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     }
@@ -290,6 +290,18 @@
       "popularity": 9
     },
     {
+      "bet_type": "馬連",
+      "combination": "3",
+      "payout": 5080,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3",
+      "payout": 80000,
+      "popularity": 2
+    },
+    {
       "bet_type": "ワイド",
       "combination": "3-8",
       "payout": 800,
@@ -314,10 +326,28 @@
       "popularity": 21
     },
     {
+      "bet_type": "馬単",
+      "combination": "3",
+      "payout": 8000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "3-8-9",
       "payout": 18120,
       "popularity": 42
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "8",
+      "payout": 90309,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "13",
+      "payout": 50014,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -353,17 +383,8 @@
       "bet_form": "単勝",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "3": "リオンサーガ",
-        "8": "クアッドフォルツァ",
-        "9": "ブルーフレア",
-        "1": "アイムスティルミー",
-        "7": "ナウオアネヴァー",
-        "2": "オーキッドワン",
-        "6": "ニシノモリミチ",
-        "5": "タニセンローマ",
-        "4": "キングオブストーム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 16005,
@@ -405,17 +426,8 @@
       "bet_form": "複勝",
       "n_tickets": 3,
       "invested": 300,
-      "horse_num_to_name": {
-        "3": "リオンサーガ",
-        "8": "クアッドフォルツァ",
-        "9": "ブルーフレア",
-        "1": "アイムスティルミー",
-        "7": "ナウオアネヴァー",
-        "2": "オーキッドワン",
-        "6": "ニシノモリミチ",
-        "5": "タニセンローマ",
-        "4": "キングオブストーム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 16006,
@@ -450,17 +462,8 @@
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "3": "リオンサーガ",
-        "8": "クアッドフォルツァ",
-        "9": "ブルーフレア",
-        "1": "アイムスティルミー",
-        "7": "ナウオアネヴァー",
-        "2": "オーキッドワン",
-        "6": "ニシノモリミチ",
-        "5": "タニセンローマ",
-        "4": "キングオブストーム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 16007,
@@ -495,17 +498,8 @@
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "3": "リオンサーガ",
-        "8": "クアッドフォルツァ",
-        "9": "ブルーフレア",
-        "1": "アイムスティルミー",
-        "7": "ナウオアネヴァー",
-        "2": "オーキッドワン",
-        "6": "ニシノモリミチ",
-        "5": "タニセンローマ",
-        "4": "キングオブストーム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 16008,
@@ -568,17 +562,8 @@
       "bet_form": "軸2頭ながし",
       "n_tickets": 2,
       "invested": 200,
-      "horse_num_to_name": {
-        "3": "リオンサーガ",
-        "8": "クアッドフォルツァ",
-        "9": "ブルーフレア",
-        "1": "アイムスティルミー",
-        "7": "ナウオアネヴァー",
-        "2": "オーキッドワン",
-        "6": "ニシノモリミチ",
-        "5": "タニセンローマ",
-        "4": "キングオブストーム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 16009,
@@ -704,107 +689,8 @@
       "bet_form": "1頭軸マルチ",
       "n_tickets": 36,
       "invested": 3600,
-      "horse_num_to_name": {
-        "3": "リオンサーガ",
-        "8": "クアッドフォルツァ",
-        "9": "ブルーフレア",
-        "1": "アイムスティルミー",
-        "7": "ナウオアネヴァー",
-        "2": "オーキッドワン",
-        "6": "ニシノモリミチ",
-        "5": "タニセンローマ",
-        "4": "キングオブストーム"
-      }
-    },
-    {
-      "prediction_id": 16010,
-      "model_type": "卍(暫定)",
-      "bet_type": "単勝",
-      "confidence": 1.0,
-      "expected_value": 90694.04928845626,
-      "recommended_bet": 100.0,
-      "combination_json": "[[9]]",
-      "notes": "確率1位(卍) EV=90694.05 odds=1.0",
-      "created_at": "2026-05-02 13:24:22",
-      "is_hit": 1,
-      "payout": 9000.0,
-      "profit": 8900.0,
-      "roi": 9000.0,
-      "horses": [
-        {
-          "horse_name": "ブルーフレア",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 90694.04928845626,
-          "ev_score": 90694.04928845626
-        }
-      ],
-      "bet_form": "単勝",
-      "n_tickets": 1,
-      "invested": 100,
-      "horse_num_to_name": {
-        "3": "リオンサーガ",
-        "8": "クアッドフォルツァ",
-        "9": "ブルーフレア",
-        "1": "アイムスティルミー",
-        "7": "ナウオアネヴァー",
-        "2": "オーキッドワン",
-        "6": "ニシノモリミチ",
-        "5": "タニセンローマ",
-        "4": "キングオブストーム"
-      }
-    },
-    {
-      "prediction_id": 16011,
-      "model_type": "卍(暫定)",
-      "bet_type": "複勝",
-      "confidence": 0.6,
-      "expected_value": 62217.97735674659,
-      "recommended_bet": 300.0,
-      "combination_json": "[[9], [8], [6]]",
-      "notes": "確率上位3頭を複勝",
-      "created_at": "2026-05-02 13:24:22",
-      "is_hit": 1,
-      "payout": 700.0,
-      "profit": 400.0,
-      "roi": 233.33333333333334,
-      "horses": [
-        {
-          "horse_name": "ブルーフレア",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 62217.97735674659,
-          "ev_score": 62217.97735674659
-        },
-        {
-          "horse_name": "クアッドフォルツァ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 62217.97735674659,
-          "ev_score": 62217.97735674659
-        },
-        {
-          "horse_name": "ニシノモリミチ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 62217.97735674659,
-          "ev_score": 62217.97735674659
-        }
-      ],
-      "bet_form": "複勝",
-      "n_tickets": 3,
-      "invested": 300,
-      "horse_num_to_name": {
-        "3": "リオンサーガ",
-        "8": "クアッドフォルツァ",
-        "9": "ブルーフレア",
-        "1": "アイムスティルミー",
-        "7": "ナウオアネヴァー",
-        "2": "オーキッドワン",
-        "6": "ニシノモリミチ",
-        "5": "タニセンローマ",
-        "4": "キングオブストーム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 16012,
@@ -839,17 +725,8 @@
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "3": "リオンサーガ",
-        "8": "クアッドフォルツァ",
-        "9": "ブルーフレア",
-        "1": "アイムスティルミー",
-        "7": "ナウオアネヴァー",
-        "2": "オーキッドワン",
-        "6": "ニシノモリミチ",
-        "5": "タニセンローマ",
-        "4": "キングオブストーム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 16013,
@@ -884,17 +761,8 @@
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "3": "リオンサーガ",
-        "8": "クアッドフォルツァ",
-        "9": "ブルーフレア",
-        "1": "アイムスティルミー",
-        "7": "ナウオアネヴァー",
-        "2": "オーキッドワン",
-        "6": "ニシノモリミチ",
-        "5": "タニセンローマ",
-        "4": "キングオブストーム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 16016,
@@ -936,17 +804,8 @@
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "3": "リオンサーガ",
-        "8": "クアッドフォルツァ",
-        "9": "ブルーフレア",
-        "1": "アイムスティルミー",
-        "7": "ナウオアネヴァー",
-        "2": "オーキッドワン",
-        "6": "ニシノモリミチ",
-        "5": "タニセンローマ",
-        "4": "キングオブストーム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 16017,
@@ -988,17 +847,8 @@
       "bet_form": "軸2頭ながし",
       "n_tickets": 3,
       "invested": 300,
-      "horse_num_to_name": {
-        "3": "リオンサーガ",
-        "8": "クアッドフォルツァ",
-        "9": "ブルーフレア",
-        "1": "アイムスティルミー",
-        "7": "ナウオアネヴァー",
-        "2": "オーキッドワン",
-        "6": "ニシノモリミチ",
-        "5": "タニセンローマ",
-        "4": "キングオブストーム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 16018,
@@ -1040,17 +890,8 @@
       "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
       "invested": 300,
-      "horse_num_to_name": {
-        "3": "リオンサーガ",
-        "8": "クアッドフォルツァ",
-        "9": "ブルーフレア",
-        "1": "アイムスティルミー",
-        "7": "ナウオアネヴァー",
-        "2": "オーキッドワン",
-        "6": "ニシノモリミチ",
-        "5": "タニセンローマ",
-        "4": "キングオブストーム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 16019,
@@ -1134,17 +975,8 @@
       "bet_form": "馬分析",
       "n_tickets": 0,
       "invested": 0,
-      "horse_num_to_name": {
-        "3": "リオンサーガ",
-        "8": "クアッドフォルツァ",
-        "9": "ブルーフレア",
-        "1": "アイムスティルミー",
-        "7": "ナウオアネヴァー",
-        "2": "オーキッドワン",
-        "6": "ニシノモリミチ",
-        "5": "タニセンローマ",
-        "4": "キングオブストーム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": true
     },
     {
       "prediction_id": 16554,
@@ -1172,17 +1004,8 @@
       "bet_form": "単勝",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "3": "リオンサーガ",
-        "8": "クアッドフォルツァ",
-        "9": "ブルーフレア",
-        "1": "アイムスティルミー",
-        "7": "ナウオアネヴァー",
-        "2": "オーキッドワン",
-        "6": "ニシノモリミチ",
-        "5": "タニセンローマ",
-        "4": "キングオブストーム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 16555,
@@ -1224,17 +1047,8 @@
       "bet_form": "複勝",
       "n_tickets": 3,
       "invested": 300,
-      "horse_num_to_name": {
-        "3": "リオンサーガ",
-        "8": "クアッドフォルツァ",
-        "9": "ブルーフレア",
-        "1": "アイムスティルミー",
-        "7": "ナウオアネヴァー",
-        "2": "オーキッドワン",
-        "6": "ニシノモリミチ",
-        "5": "タニセンローマ",
-        "4": "キングオブストーム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 16556,
@@ -1269,17 +1083,8 @@
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "3": "リオンサーガ",
-        "8": "クアッドフォルツァ",
-        "9": "ブルーフレア",
-        "1": "アイムスティルミー",
-        "7": "ナウオアネヴァー",
-        "2": "オーキッドワン",
-        "6": "ニシノモリミチ",
-        "5": "タニセンローマ",
-        "4": "キングオブストーム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 16557,
@@ -1314,17 +1119,8 @@
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "3": "リオンサーガ",
-        "8": "クアッドフォルツァ",
-        "9": "ブルーフレア",
-        "1": "アイムスティルミー",
-        "7": "ナウオアネヴァー",
-        "2": "オーキッドワン",
-        "6": "ニシノモリミチ",
-        "5": "タニセンローマ",
-        "4": "キングオブストーム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 16558,
@@ -1387,17 +1183,8 @@
       "bet_form": "軸2頭ながし",
       "n_tickets": 2,
       "invested": 200,
-      "horse_num_to_name": {
-        "3": "リオンサーガ",
-        "8": "クアッドフォルツァ",
-        "9": "ブルーフレア",
-        "1": "アイムスティルミー",
-        "7": "ナウオアネヴァー",
-        "2": "オーキッドワン",
-        "6": "ニシノモリミチ",
-        "5": "タニセンローマ",
-        "4": "キングオブストーム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 16559,
@@ -1523,107 +1310,8 @@
       "bet_form": "1頭軸マルチ",
       "n_tickets": 18,
       "invested": 1800,
-      "horse_num_to_name": {
-        "3": "リオンサーガ",
-        "8": "クアッドフォルツァ",
-        "9": "ブルーフレア",
-        "1": "アイムスティルミー",
-        "7": "ナウオアネヴァー",
-        "2": "オーキッドワン",
-        "6": "ニシノモリミチ",
-        "5": "タニセンローマ",
-        "4": "キングオブストーム"
-      }
-    },
-    {
-      "prediction_id": 16560,
-      "model_type": "卍(直前)",
-      "bet_type": "単勝",
-      "confidence": 1.0,
-      "expected_value": 41472.62225022028,
-      "recommended_bet": 400.0,
-      "combination_json": "[[8]]",
-      "notes": "確率1位(卍) EV=41472.62 odds=4.5",
-      "created_at": "2026-05-02 13:37:06",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -100.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "クアッドフォルツァ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 41472.62225022028,
-          "ev_score": 41472.62225022028
-        }
-      ],
-      "bet_form": "単勝",
-      "n_tickets": 1,
-      "invested": 100,
-      "horse_num_to_name": {
-        "3": "リオンサーガ",
-        "8": "クアッドフォルツァ",
-        "9": "ブルーフレア",
-        "1": "アイムスティルミー",
-        "7": "ナウオアネヴァー",
-        "2": "オーキッドワン",
-        "6": "ニシノモリミチ",
-        "5": "タニセンローマ",
-        "4": "キングオブストーム"
-      }
-    },
-    {
-      "prediction_id": 16561,
-      "model_type": "卍(直前)",
-      "bet_type": "複勝",
-      "confidence": 0.6,
-      "expected_value": 28305.29239189219,
-      "recommended_bet": 300.0,
-      "combination_json": "[[8], [9], [6]]",
-      "notes": "確率上位3頭を複勝",
-      "created_at": "2026-05-02 13:37:06",
-      "is_hit": 1,
-      "payout": 700.0,
-      "profit": 400.0,
-      "roi": 233.33333333333334,
-      "horses": [
-        {
-          "horse_name": "クアッドフォルツァ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 28305.29239189219,
-          "ev_score": 28305.29239189219
-        },
-        {
-          "horse_name": "ブルーフレア",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 28305.29239189219,
-          "ev_score": 28305.29239189219
-        },
-        {
-          "horse_name": "ニシノモリミチ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 28305.29239189219,
-          "ev_score": 28305.29239189219
-        }
-      ],
-      "bet_form": "複勝",
-      "n_tickets": 3,
-      "invested": 300,
-      "horse_num_to_name": {
-        "3": "リオンサーガ",
-        "8": "クアッドフォルツァ",
-        "9": "ブルーフレア",
-        "1": "アイムスティルミー",
-        "7": "ナウオアネヴァー",
-        "2": "オーキッドワン",
-        "6": "ニシノモリミチ",
-        "5": "タニセンローマ",
-        "4": "キングオブストーム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 16562,
@@ -1658,17 +1346,8 @@
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "3": "リオンサーガ",
-        "8": "クアッドフォルツァ",
-        "9": "ブルーフレア",
-        "1": "アイムスティルミー",
-        "7": "ナウオアネヴァー",
-        "2": "オーキッドワン",
-        "6": "ニシノモリミチ",
-        "5": "タニセンローマ",
-        "4": "キングオブストーム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 16563,
@@ -1703,17 +1382,8 @@
       "bet_form": "2頭ボックス",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "3": "リオンサーガ",
-        "8": "クアッドフォルツァ",
-        "9": "ブルーフレア",
-        "1": "アイムスティルミー",
-        "7": "ナウオアネヴァー",
-        "2": "オーキッドワン",
-        "6": "ニシノモリミチ",
-        "5": "タニセンローマ",
-        "4": "キングオブストーム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 16566,
@@ -1755,17 +1425,8 @@
       "bet_form": "3頭ボックス",
       "n_tickets": 1,
       "invested": 100,
-      "horse_num_to_name": {
-        "3": "リオンサーガ",
-        "8": "クアッドフォルツァ",
-        "9": "ブルーフレア",
-        "1": "アイムスティルミー",
-        "7": "ナウオアネヴァー",
-        "2": "オーキッドワン",
-        "6": "ニシノモリミチ",
-        "5": "タニセンローマ",
-        "4": "キングオブストーム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 16567,
@@ -1807,17 +1468,8 @@
       "bet_form": "軸1頭ながし",
       "n_tickets": 3,
       "invested": 300,
-      "horse_num_to_name": {
-        "3": "リオンサーガ",
-        "8": "クアッドフォルツァ",
-        "9": "ブルーフレア",
-        "1": "アイムスティルミー",
-        "7": "ナウオアネヴァー",
-        "2": "オーキッドワン",
-        "6": "ニシノモリミチ",
-        "5": "タニセンローマ",
-        "4": "キングオブストーム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 16568,
@@ -1859,17 +1511,8 @@
       "bet_form": "2頭軸マルチ",
       "n_tickets": 3,
       "invested": 300,
-      "horse_num_to_name": {
-        "3": "リオンサーガ",
-        "8": "クアッドフォルツァ",
-        "9": "ブルーフレア",
-        "1": "アイムスティルミー",
-        "7": "ナウオアネヴァー",
-        "2": "オーキッドワン",
-        "6": "ニシノモリミチ",
-        "5": "タニセンローマ",
-        "4": "キングオブストーム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     },
     {
       "prediction_id": 16569,
@@ -1953,17 +1596,8 @@
       "bet_form": "馬分析",
       "n_tickets": 0,
       "invested": 0,
-      "horse_num_to_name": {
-        "3": "リオンサーガ",
-        "8": "クアッドフォルツァ",
-        "9": "ブルーフレア",
-        "1": "アイムスティルミー",
-        "7": "ナウオアネヴァー",
-        "2": "オーキッドワン",
-        "6": "ニシノモリミチ",
-        "5": "タニセンローマ",
-        "4": "キングオブストーム"
-      }
+      "horse_num_to_name": {},
+      "is_provisional": false
     }
   ],
   "training_evals": {},

@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "オオツカ",
@@ -32,15 +32,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 11,
-      "horse_name": "ハオカノア",
-      "horse_id": "2023106078",
-      "sex_age": "牡3",
+      "rank": 2,
+      "gate_number": 8,
+      "horse_number": 13,
+      "horse_name": "ガイストライヒ",
+      "horse_id": "2023106948",
+      "sex_age": "牡1",
       "weight_carried": 57.0,
-      "jockey": "小崎綾也",
-      "trainer": "小崎憲",
+      "jockey": "亀田温心",
+      "trainer": "高柳大輔",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 13,
-      "horse_name": "ガイストライヒ",
-      "horse_id": "2023106948",
-      "sex_age": "牡1",
+      "rank": 3,
+      "gate_number": 7,
+      "horse_number": 11,
+      "horse_name": "ハオカノア",
+      "horse_id": "2023106078",
+      "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "亀田温心",
-      "trainer": "高柳大輔",
+      "jockey": "小崎綾也",
+      "trainer": "小崎憲",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -278,12 +278,6 @@
       "combination": "1",
       "payout": 120,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "13",
-      "payout": 13000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

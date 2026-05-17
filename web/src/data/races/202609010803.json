@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 4,
       "horse_number": 8,
       "horse_name": "セイウンバジリスク",
@@ -32,15 +32,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 9,
-      "horse_name": "レッツエンジョイ",
-      "horse_id": "2023102104",
+      "rank": 2,
+      "gate_number": 7,
+      "horse_number": 14,
+      "horse_name": "ナムラロダン",
+      "horse_id": "2023106223",
       "sex_age": "牡1",
       "weight_carried": 57.0,
-      "jockey": "鮫島克駿",
-      "trainer": "石坂公一",
+      "jockey": "吉村誠之",
+      "trainer": "長谷川浩",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 14,
-      "horse_name": "ナムラロダン",
-      "horse_id": "2023106223",
+      "rank": 3,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "レッツエンジョイ",
+      "horse_id": "2023102104",
       "sex_age": "牡1",
       "weight_carried": 57.0,
-      "jockey": "吉村誠之",
-      "trainer": "長谷川浩",
+      "jockey": "鮫島克駿",
+      "trainer": "石坂公一",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "8",
       "payout": 870,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "ベニシア",
@@ -32,7 +32,7 @@
       "dam_sire": "ゴールドアリュール"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 3,
       "horse_number": 4,
       "horse_name": "ミライハーモニー",
@@ -52,7 +52,7 @@
       "dam_sire": "ディープインパクト"
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 7,
       "horse_number": 11,
       "horse_name": "イチトゼロノアイダ",
@@ -298,12 +298,6 @@
       "combination": "1",
       "payout": 15370,
       "popularity": 14
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "14",
-      "payout": 14000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

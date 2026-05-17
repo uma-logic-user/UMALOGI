@@ -12,7 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "ソングオブライフ",
+      "horse_id": "2021105092",
+      "sex_age": "牡1",
+      "weight_carried": 58.0,
+      "jockey": "酒井学",
+      "trainer": "森田直行",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
       "gate_number": 3,
       "horse_number": 5,
       "horse_name": "アサクサグレース",
@@ -32,7 +52,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 4,
       "horse_number": 6,
       "horse_name": "ディアドコス",
@@ -50,26 +70,6 @@
       "sire": "ネロ",
       "dam": "チェインブラッド",
       "dam_sire": "マンハッタンカフェ"
-    },
-    {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 7,
-      "horse_name": "ソングオブライフ",
-      "horse_id": "2021105092",
-      "sex_age": "牡1",
-      "weight_carried": 58.0,
-      "jockey": "酒井学",
-      "trainer": "森田直行",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
     },
     {
       "rank": null,
@@ -318,12 +318,6 @@
       "combination": "7",
       "payout": 730,
       "popularity": 5
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "15",
-      "payout": 15000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

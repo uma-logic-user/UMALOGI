@@ -12,7 +12,27 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "マジックローズ",
+      "horse_id": "2022100622",
+      "sex_age": "牝5",
+      "weight_carried": 55.0,
+      "jockey": "西村淳也",
+      "trainer": "中内田充",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "フォースミラクル",
@@ -21,6 +41,26 @@
       "weight_carried": 57.0,
       "jockey": "鮫島克駿",
       "trainer": "加藤征弘",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 8,
+      "horse_number": 16,
+      "horse_name": "エイシンマールス",
+      "horse_id": "2022102624",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "松山弘平",
+      "trainer": "今野貞一",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -50,26 +90,6 @@
       "sire": "ラブリーデイ",
       "dam": "オーキッドレイ",
       "dam_sire": "ディープインパクト"
-    },
-    {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "マジックローズ",
-      "horse_id": "2022100622",
-      "sex_age": "牝5",
-      "weight_carried": 55.0,
-      "jockey": "西村淳也",
-      "trainer": "中内田充",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
     },
     {
       "rank": null,
@@ -310,26 +330,6 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 16,
-      "horse_name": "エイシンマールス",
-      "horse_id": "2022102624",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "松山弘平",
-      "trainer": "今野貞一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
     }
   ],
   "payouts": [
@@ -338,12 +338,6 @@
       "combination": "3",
       "payout": 570,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

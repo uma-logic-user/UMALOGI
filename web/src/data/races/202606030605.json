@@ -4,11 +4,11 @@
   "date": "2026-04-12",
   "venue": "中山",
   "race_number": 5,
-  "distance": 2200,
-  "surface": "芝",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -48,7 +48,7 @@
       "jockey": "ディー",
       "trainer": "小椋研介",
       "finish_time": "2:14.1",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 4.3,
       "popularity": 2,
       "horse_weight": 440,
@@ -74,7 +74,7 @@
       "jockey": "大野拓弥",
       "trainer": "森一誠",
       "finish_time": "2:14.1",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 18.8,
       "popularity": 10,
       "horse_weight": 422,
@@ -100,7 +100,7 @@
       "jockey": "三浦皇成",
       "trainer": "勢司和浩",
       "finish_time": "2:14.2",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 12.4,
       "popularity": 3,
       "horse_weight": 462,
@@ -126,7 +126,7 @@
       "jockey": "岩田康誠",
       "trainer": "林徹",
       "finish_time": "2:14.3",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 17.8,
       "popularity": 9,
       "horse_weight": 522,
@@ -152,7 +152,7 @@
       "jockey": "吉田豊",
       "trainer": "戸田博文",
       "finish_time": "2:14.8",
-      "margin": "3",
+      "margin": "@",
       "win_odds": 17.3,
       "popularity": 8,
       "horse_weight": 424,
@@ -178,7 +178,7 @@
       "jockey": "大久保友",
       "trainer": "田中克典",
       "finish_time": "2:14.8",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 114.0,
       "popularity": 13,
       "horse_weight": 478,
@@ -204,7 +204,7 @@
       "jockey": "江田照男",
       "trainer": "高橋文雅",
       "finish_time": "2:15.0",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 15.3,
       "popularity": 6,
       "horse_weight": 448,
@@ -230,7 +230,7 @@
       "jockey": "横山和生",
       "trainer": "黒岩陽一",
       "finish_time": "2:15.5",
-      "margin": "3",
+      "margin": "@",
       "win_odds": 14.1,
       "popularity": 4,
       "horse_weight": 406,
@@ -256,7 +256,7 @@
       "jockey": "横山琉人",
       "trainer": "武藤善則",
       "finish_time": "2:15.6",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 140.1,
       "popularity": 14,
       "horse_weight": 466,
@@ -282,7 +282,7 @@
       "jockey": "木幡巧也",
       "trainer": "牧光二",
       "finish_time": "2:15.8",
-      "margin": "1.1/2",
+      "margin": "@",
       "win_odds": 56.2,
       "popularity": 12,
       "horse_weight": 472,
@@ -308,7 +308,7 @@
       "jockey": "長浜鴻緒",
       "trainer": "田村康仁",
       "finish_time": "2:15.9",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 238.9,
       "popularity": 17,
       "horse_weight": 418,
@@ -334,7 +334,7 @@
       "jockey": "水沼元輝",
       "trainer": "松尾卓哉",
       "finish_time": "2:16.1",
-      "margin": "1",
+      "margin": "@",
       "win_odds": 167.3,
       "popularity": 15,
       "horse_weight": 538,
@@ -360,7 +360,7 @@
       "jockey": "田山旺佑",
       "trainer": "高橋康之",
       "finish_time": "2:16.2",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 175.7,
       "popularity": 16,
       "horse_weight": 408,
@@ -386,7 +386,7 @@
       "jockey": "横山武史",
       "trainer": "斉藤崇史",
       "finish_time": "2:16.4",
-      "margin": "1.1/4",
+      "margin": "@",
       "win_odds": 2.3,
       "popularity": 1,
       "horse_weight": 490,
@@ -412,7 +412,7 @@
       "jockey": "田辺裕信",
       "trainer": "秋山真一",
       "finish_time": "2:16.4",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 14.1,
       "popularity": 5,
       "horse_weight": 448,
@@ -438,7 +438,7 @@
       "jockey": "酒井学",
       "trainer": "奥平雅士",
       "finish_time": "2:16.5",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 399.1,
       "popularity": 18,
       "horse_weight": 456,
@@ -464,7 +464,7 @@
       "jockey": "横山典弘",
       "trainer": "柄崎将寿",
       "finish_time": "2:17.9",
-      "margin": "9",
+      "margin": "@",
       "win_odds": 47.1,
       "popularity": 11,
       "horse_weight": 482,
@@ -518,10 +518,28 @@
       "popularity": 13
     },
     {
+      "bet_type": "枠連",
+      "combination": "1",
+      "payout": 65007,
+      "popularity": null
+    },
+    {
       "bet_type": "馬連",
       "combination": "3-8",
       "payout": 2940,
       "popularity": 11
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "4",
+      "payout": 8030,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 40000,
+      "popularity": 3
     },
     {
       "bet_type": "ワイド",
@@ -548,10 +566,28 @@
       "popularity": 27
     },
     {
+      "bet_type": "馬単",
+      "combination": "3",
+      "payout": 8000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "3-8-15",
       "payout": 12220,
       "popularity": 45
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "10-1",
+      "payout": 10815,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "12",
+      "payout": 80015,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -606,7 +642,8 @@
         "17": "ダーリンダーリン",
         "7": "マランドロ",
         "9": "ハチマン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2145,
@@ -653,7 +690,8 @@
         "17": "ダーリンダーリン",
         "7": "マランドロ",
         "9": "ハチマン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2217,
@@ -700,7 +738,8 @@
         "17": "ダーリンダーリン",
         "7": "マランドロ",
         "9": "ハチマン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2276,
@@ -747,7 +786,8 @@
         "17": "ダーリンダーリン",
         "7": "マランドロ",
         "9": "ハチマン"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 2277,
@@ -808,7 +848,8 @@
         "17": "ダーリンダーリン",
         "7": "マランドロ",
         "9": "ハチマン"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 2278,
@@ -855,7 +896,8 @@
         "17": "ダーリンダーリン",
         "7": "マランドロ",
         "9": "ハチマン"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 2279,
@@ -902,7 +944,8 @@
         "17": "ダーリンダーリン",
         "7": "マランドロ",
         "9": "ハチマン"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 2280,
@@ -956,129 +999,8 @@
         "17": "ダーリンダーリン",
         "7": "マランドロ",
         "9": "ハチマン"
-      }
-    },
-    {
-      "prediction_id": 2281,
-      "model_type": "本命(直前)",
-      "bet_type": "三連複",
-      "confidence": 0.039414767287977076,
-      "expected_value": 118.1260575620673,
-      "recommended_bet": 300.0,
-      "combination_json": "[[6, 8, 14]]",
-      "notes": "本命・対抗・単穴 Harville=0.039",
-      "created_at": "2026-04-12 11:40:27",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -100.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "ネオアンボウ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.039414767287977076,
-          "ev_score": 118.1260575620673
-        }
-      ],
-      "bet_form": "3頭ボックス",
-      "n_tickets": 1,
-      "invested": 100,
-      "horse_num_to_name": {
-        "8": "ティラーノ",
-        "3": "ビップヴォルフ",
-        "15": "ディアアズール",
-        "11": "フキョウワオン",
-        "13": "ハリウッドグラム",
-        "1": "フォンドルレール",
-        "2": "デルマタカチホ",
-        "5": "ミサダメキメル",
-        "10": "レッドリアライズ",
-        "4": "ノーブルジャッカル",
-        "18": "ラスターヴァース",
-        "16": "パーフェクトスノー",
-        "6": "ネオアンボウ",
-        "12": "イノリ",
-        "14": "アメリカンジゴロ",
-        "17": "ダーリンダーリン",
-        "7": "マランドロ",
-        "9": "ハチマン"
-      }
-    },
-    {
-      "prediction_id": 2282,
-      "model_type": "本命(直前)",
-      "bet_type": "三連単",
-      "confidence": 0.005751073854665043,
-      "expected_value": 107.7248021401946,
-      "recommended_bet": 600.0,
-      "combination_json": "[[6, 8, 14], [6, 14, 8], [8, 6, 14], [8, 14, 6], [14, 6, 8], [14, 8, 6]]",
-      "notes": "上位3頭 6点ボックス Harville=0.007",
-      "created_at": "2026-04-12 11:40:27",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -600.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "ネオアンボウ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.007188842318331304,
-          "ev_score": 107.7248021401946
-        },
-        {
-          "horse_name": "ティラーノ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.007188842318331304,
-          "ev_score": 107.7248021401946
-        },
-        {
-          "horse_name": "アメリカンジゴロ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.007188842318331304,
-          "ev_score": 107.7248021401946
-        },
-        {
-          "horse_name": "本命",
-          "horse_id": null,
-          "predicted_rank": 4,
-          "model_score": 0.007188842318331304,
-          "ev_score": 107.7248021401946
-        },
-        {
-          "horse_name": "本命",
-          "horse_id": null,
-          "predicted_rank": 5,
-          "model_score": 0.007188842318331304,
-          "ev_score": 107.7248021401946
-        }
-      ],
-      "bet_form": "3頭ボックス",
-      "n_tickets": 6,
-      "invested": 600,
-      "horse_num_to_name": {
-        "8": "ティラーノ",
-        "3": "ビップヴォルフ",
-        "15": "ディアアズール",
-        "11": "フキョウワオン",
-        "13": "ハリウッドグラム",
-        "1": "フォンドルレール",
-        "2": "デルマタカチホ",
-        "5": "ミサダメキメル",
-        "10": "レッドリアライズ",
-        "4": "ノーブルジャッカル",
-        "18": "ラスターヴァース",
-        "16": "パーフェクトスノー",
-        "6": "ネオアンボウ",
-        "12": "イノリ",
-        "14": "アメリカンジゴロ",
-        "17": "ダーリンダーリン",
-        "7": "マランドロ",
-        "9": "ハチマン"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 2283,
@@ -1251,7 +1173,8 @@
         "17": "ダーリンダーリン",
         "7": "マランドロ",
         "9": "ハチマン"
-      }
+      },
+      "is_provisional": false
     }
   ],
   "training_evals": {},

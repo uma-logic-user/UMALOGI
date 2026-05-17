@@ -12,7 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "ヴィアルークス",
@@ -30,6 +30,46 @@
       "sire": "ディープインパクト",
       "dam": "リズムオブライトRhythm of Light(英)",
       "dam_sire": "Beat Hollow"
+    },
+    {
+      "rank": 2,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "フォーディアライフ",
+      "horse_id": "2021104770",
+      "sex_age": "騸3",
+      "weight_carried": 60.0,
+      "jockey": "石神深一",
+      "trainer": "矢嶋大樹",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ドレフォンDrefong(米)",
+      "dam": "ディアマイダーリン",
+      "dam_sire": "ハーツクライ"
+    },
+    {
+      "rank": 3,
+      "gate_number": 8,
+      "horse_number": 12,
+      "horse_name": "オステリア",
+      "horse_id": "2019103208",
+      "sex_age": "牡1",
+      "weight_carried": 60.0,
+      "jockey": "高田潤",
+      "trainer": "宮本博",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ドレフォンDrefong(米)",
+      "dam": "グローブ",
+      "dam_sire": "ダイワメジャー"
     },
     {
       "rank": null,
@@ -90,26 +130,6 @@
       "sire": "ダノンバラード",
       "dam": "メイショウグレア",
       "dam_sire": "ジャングルポケット"
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "フォーディアライフ",
-      "horse_id": "2021104770",
-      "sex_age": "騸3",
-      "weight_carried": 60.0,
-      "jockey": "石神深一",
-      "trainer": "矢嶋大樹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ドレフォンDrefong(米)",
-      "dam": "ディアマイダーリン",
-      "dam_sire": "ハーツクライ"
     },
     {
       "rank": null,
@@ -230,26 +250,6 @@
       "sire": "カレンブラックヒル",
       "dam": "キシャリKishari(仏)",
       "dam_sire": "Kris"
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 12,
-      "horse_name": "オステリア",
-      "horse_id": "2019103208",
-      "sex_age": "牡1",
-      "weight_carried": 60.0,
-      "jockey": "高田潤",
-      "trainer": "宮本博",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ドレフォンDrefong(米)",
-      "dam": "グローブ",
-      "dam_sire": "ダイワメジャー"
     }
   ],
   "payouts": [
@@ -258,12 +258,6 @@
       "combination": "1",
       "payout": 220,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "12",
-      "payout": 12000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

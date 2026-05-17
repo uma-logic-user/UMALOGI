@@ -12,7 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 7,
+      "horse_number": 14,
+      "horse_name": "レダアトミカ",
+      "horse_id": "2023106835",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "津村明秀",
+      "trainer": "上原佑紀",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
       "gate_number": 2,
       "horse_number": 4,
       "horse_name": "サムシングスイート",
@@ -32,7 +52,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 3,
       "horse_number": 5,
       "horse_name": "ジャストビコーズ",
@@ -41,26 +61,6 @@
       "weight_carried": 55.0,
       "jockey": "三浦皇成",
       "trainer": "武井亮",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 14,
-      "horse_name": "レダアトミカ",
-      "horse_id": "2023106835",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "津村明秀",
-      "trainer": "上原佑紀",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -378,12 +378,6 @@
       "combination": "14",
       "payout": 370,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "18",
-      "payout": 18000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

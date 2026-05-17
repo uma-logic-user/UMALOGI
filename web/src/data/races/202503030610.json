@@ -12,6 +12,26 @@
   "year": "2025",
   "results": [
     {
+      "rank": 1,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "ノーランサンライズ",
+      "horse_id": "2022102219",
+      "sex_age": "牝3",
+      "weight_carried": 54.0,
+      "jockey": "小崎綾也",
+      "trainer": "佐藤悠太",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -110,26 +130,6 @@
       "sire": "リアルスティール",
       "dam": "スカイダイヤモンズSkye Diamonds(米)",
       "dam_sire": "First Dude"
-    },
-    {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 6,
-      "horse_name": "ノーランサンライズ",
-      "horse_id": "2022102219",
-      "sex_age": "牝3",
-      "weight_carried": 54.0,
-      "jockey": "小崎綾也",
-      "trainer": "佐藤悠太",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
     },
     {
       "rank": null,
@@ -338,12 +338,6 @@
       "combination": "6",
       "payout": 1380,
       "popularity": 7
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

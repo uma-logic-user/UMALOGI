@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "アドマイヤテラ",
@@ -32,7 +32,7 @@
       "dam_sire": "ハーツクライ"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 4,
       "horse_number": 4,
       "horse_name": "アクアヴァーナル",
@@ -52,7 +52,7 @@
       "dam_sire": "ディープインパクト"
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 5,
       "horse_number": 5,
       "horse_name": "ダノンシーマ",
@@ -218,12 +218,6 @@
       "combination": "1",
       "payout": 310,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "10",
-      "payout": 10000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

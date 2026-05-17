@@ -12,7 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "ハニーコム",
@@ -32,7 +32,7 @@
       "dam_sire": "ホワイトマズルWhite Muzzle(英)"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "タケトンボ",
@@ -52,47 +52,7 @@
       "dam_sire": "ジャングルポケット"
     },
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "ステラクラウン",
-      "horse_id": "2021101454",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "岩田康誠",
-      "trainer": "上村洋行",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ルーラーシップ",
-      "dam": "レッドステラーノ",
-      "dam_sire": "アグネスタキオン"
-    },
-    {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "ファミリーツリー",
-      "horse_id": "2021106642",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "武豊",
-      "trainer": "河嶋宏樹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ワンアンドオンリー",
-      "dam": "ハーモニー",
-      "dam_sire": "Street Cry(愛)"
-    },
-    {
-      "rank": null,
+      "rank": 3,
       "gate_number": 5,
       "horse_number": 5,
       "horse_name": "エコテーラー",
@@ -112,7 +72,47 @@
       "dam_sire": "Dylan Thomas(愛)"
     },
     {
-      "rank": null,
+      "rank": 4,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "ステラクラウン",
+      "horse_id": "2021101454",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "岩田康誠",
+      "trainer": "上村洋行",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ルーラーシップ",
+      "dam": "レッドステラーノ",
+      "dam_sire": "アグネスタキオン"
+    },
+    {
+      "rank": 5,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "ファミリーツリー",
+      "horse_id": "2021106642",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "武豊",
+      "trainer": "河嶋宏樹",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ワンアンドオンリー",
+      "dam": "ハーモニー",
+      "dam_sire": "Street Cry(愛)"
+    },
+    {
+      "rank": 6,
       "gate_number": 6,
       "horse_number": 6,
       "horse_name": "ゴーツウキリシマ",
@@ -138,12 +138,6 @@
       "combination": "1",
       "payout": 500,
       "popularity": 4
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "6",
-      "payout": 6000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

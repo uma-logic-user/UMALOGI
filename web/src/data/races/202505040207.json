@@ -12,7 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "レイククレセント",
@@ -30,6 +30,46 @@
       "sire": "ハーツクライ",
       "dam": "ジュリエットシアトルGiuliet Seattle(亜)",
       "dam_sire": "Seattle Fitz"
+    },
+    {
+      "rank": 2,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "バンブルビー",
+      "horse_id": "2022102635",
+      "sex_age": "牡7",
+      "weight_carried": 53.0,
+      "jockey": "石田拓郎",
+      "trainer": "小西一男",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 4,
+      "horse_number": 8,
+      "horse_name": "アサクサヴィーナス",
+      "horse_id": "2020102741",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "大野拓弥",
+      "trainer": "高柳瑞樹",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "モーリス",
+      "dam": "アサクサティアラ",
+      "dam_sire": "ディープインパクト"
     },
     {
       "rank": null,
@@ -113,26 +153,6 @@
     },
     {
       "rank": null,
-      "gate_number": 3,
-      "horse_number": 6,
-      "horse_name": "バンブルビー",
-      "horse_id": "2022102635",
-      "sex_age": "牡7",
-      "weight_carried": 53.0,
-      "jockey": "石田拓郎",
-      "trainer": "小西一男",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
       "gate_number": 4,
       "horse_number": 7,
       "horse_name": "サザンティスプーン",
@@ -150,26 +170,6 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 8,
-      "horse_name": "アサクサヴィーナス",
-      "horse_id": "2020102741",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "大野拓弥",
-      "trainer": "高柳瑞樹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "モーリス",
-      "dam": "アサクサティアラ",
-      "dam_sire": "ディープインパクト"
     },
     {
       "rank": null,
@@ -378,12 +378,6 @@
       "combination": "1",
       "payout": 360,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "18",
-      "payout": 18000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

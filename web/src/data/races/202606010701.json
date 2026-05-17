@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 6,
-      "horse_name": "モーゲンセン",
-      "horse_id": "2023110008",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "戸崎圭太",
-      "trainer": "斎藤誠",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 5,
       "horse_number": 10,
       "horse_name": "マーガレットクレア",
@@ -52,7 +32,27 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "モーゲンセン",
+      "horse_id": "2023110008",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "戸崎圭太",
+      "trainer": "斎藤誠",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
       "gate_number": 6,
       "horse_number": 12,
       "horse_name": "クリオロゴールド",
@@ -338,12 +338,6 @@
       "combination": "10",
       "payout": 1310,
       "popularity": 6
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

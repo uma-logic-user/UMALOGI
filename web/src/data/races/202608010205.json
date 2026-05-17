@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 2,
       "horse_name": "タガノアルトゥーラ",
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 5,
       "horse_number": 10,
       "horse_name": "オンザムービー",
@@ -52,7 +52,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 8,
       "horse_number": 15,
       "horse_name": "アルペングロー",
@@ -358,12 +358,6 @@
       "combination": "2",
       "payout": 330,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "17",
-      "payout": 17000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

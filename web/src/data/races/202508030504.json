@@ -12,27 +12,27 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "アリストクラシア",
-      "horse_id": "2021105238",
-      "sex_age": "牝4",
-      "weight_carried": 56.0,
-      "jockey": "高杉吏麒",
-      "trainer": "吉岡辰弥",
+      "rank": 1,
+      "gate_number": 6,
+      "horse_number": 8,
+      "horse_name": "プリンセッサ",
+      "horse_id": "2022102138",
+      "sex_age": "牝3",
+      "weight_carried": 54.0,
+      "jockey": "松若風馬",
+      "trainer": "牧田和弥",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
       "horse_weight_diff": null,
-      "sire": "ハーツクライ",
-      "dam": "マジェスティッククオリティMajestic Quality(米)",
-      "dam_sire": "Quality Road"
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "ヴァンアグレアブル",
@@ -50,6 +50,26 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "アリストクラシア",
+      "horse_id": "2021105238",
+      "sex_age": "牝4",
+      "weight_carried": 56.0,
+      "jockey": "高杉吏麒",
+      "trainer": "吉岡辰弥",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ハーツクライ",
+      "dam": "マジェスティッククオリティMajestic Quality(米)",
+      "dam_sire": "Quality Road"
     },
     {
       "rank": null,
@@ -150,26 +170,6 @@
       "sire": "レイデオロ",
       "dam": "レイズアベール",
       "dam_sire": "ハーツクライ"
-    },
-    {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 8,
-      "horse_name": "プリンセッサ",
-      "horse_id": "2022102138",
-      "sex_age": "牝3",
-      "weight_carried": 54.0,
-      "jockey": "松若風馬",
-      "trainer": "牧田和弥",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
     },
     {
       "rank": null,
@@ -278,12 +278,6 @@
       "combination": "8",
       "payout": 490,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "13",
-      "payout": 13000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

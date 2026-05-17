@@ -12,7 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "ホウオウラスカーズ",
@@ -30,6 +30,46 @@
       "sire": "ディープインパクト",
       "dam": "ビーコンターンBeacon Tarn(英)",
       "dam_sire": "Shamardal(米)"
+    },
+    {
+      "rank": 2,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "ドロップオブライト",
+      "horse_id": "2019105806",
+      "sex_age": "牝4",
+      "weight_carried": 56.0,
+      "jockey": "松若風馬",
+      "trainer": "福永祐一",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "トーセンラー",
+      "dam": "プレシャスドロップ",
+      "dam_sire": "フレンチデピュティFrench Deputy(米)"
+    },
+    {
+      "rank": 3,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "コントラポスト",
+      "horse_id": "2020102740",
+      "sex_age": "牡5",
+      "weight_carried": 56.0,
+      "jockey": "丸山元気",
+      "trainer": "菊沢隆徳",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ルーラーシップ",
+      "dam": "アカンサス",
+      "dam_sire": "フジキセキ"
     },
     {
       "rank": null,
@@ -50,26 +90,6 @@
       "sire": "キタサンブラック",
       "dam": "アスコルティ",
       "dam_sire": "Danehill Dancer(愛)"
-    },
-    {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "ドロップオブライト",
-      "horse_id": "2019105806",
-      "sex_age": "牝4",
-      "weight_carried": 56.0,
-      "jockey": "松若風馬",
-      "trainer": "福永祐一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "トーセンラー",
-      "dam": "プレシャスドロップ",
-      "dam_sire": "フレンチデピュティFrench Deputy(米)"
     },
     {
       "rank": null,
@@ -130,26 +150,6 @@
       "sire": "カレンブラックヒル",
       "dam": "ライクザウインド",
       "dam_sire": "デインヒルDanehill(米)"
-    },
-    {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 7,
-      "horse_name": "コントラポスト",
-      "horse_id": "2020102740",
-      "sex_age": "牡5",
-      "weight_carried": 56.0,
-      "jockey": "丸山元気",
-      "trainer": "菊沢隆徳",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ルーラーシップ",
-      "dam": "アカンサス",
-      "dam_sire": "フジキセキ"
     },
     {
       "rank": null,
@@ -338,12 +338,6 @@
       "combination": "1",
       "payout": 8950,
       "popularity": 13
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

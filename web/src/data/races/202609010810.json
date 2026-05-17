@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 4,
-      "horse_name": "メイプルタピット",
-      "horse_id": "2021103140",
-      "sex_age": "牡7",
-      "weight_carried": 55.0,
-      "jockey": "藤懸貴志",
-      "trainer": "梅田智之",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ラニ",
-      "dam": "ディヴィナライン",
-      "dam_sire": "オルフェーヴル"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 4,
       "horse_number": 5,
       "horse_name": "テスティモーネ",
@@ -52,7 +32,27 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 3,
+      "horse_number": 4,
+      "horse_name": "メイプルタピット",
+      "horse_id": "2021103140",
+      "sex_age": "牡7",
+      "weight_carried": 55.0,
+      "jockey": "藤懸貴志",
+      "trainer": "梅田智之",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ラニ",
+      "dam": "ディヴィナライン",
+      "dam_sire": "オルフェーヴル"
+    },
+    {
+      "rank": 3,
       "gate_number": 8,
       "horse_number": 14,
       "horse_name": "ペイシャモノノフ",
@@ -298,12 +298,6 @@
       "combination": "5",
       "payout": 220,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "14",
-      "payout": 14000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

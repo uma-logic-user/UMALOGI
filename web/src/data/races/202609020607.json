@@ -4,11 +4,11 @@
   "date": "2026-04-12",
   "venue": "阪神",
   "race_number": 7,
-  "distance": 1600,
-  "surface": "芝",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -48,7 +48,7 @@
       "jockey": "荻野極",
       "trainer": "鹿戸雄一",
       "finish_time": "1:32.0",
-      "margin": "1",
+      "margin": "@",
       "win_odds": 40.2,
       "popularity": 7,
       "horse_weight": 498,
@@ -74,7 +74,7 @@
       "jockey": "森田誠也",
       "trainer": "宮地貴稔",
       "finish_time": "1:32.3",
-      "margin": "1.1/2",
+      "margin": "@",
       "win_odds": 41.3,
       "popularity": 8,
       "horse_weight": 482,
@@ -100,7 +100,7 @@
       "jockey": "北村友一",
       "trainer": "浜田多実",
       "finish_time": "1:32.4",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 25.5,
       "popularity": 6,
       "horse_weight": 484,
@@ -126,7 +126,7 @@
       "jockey": "松山弘平",
       "trainer": "河嶋宏樹",
       "finish_time": "1:32.7",
-      "margin": "2",
+      "margin": "@",
       "win_odds": 13.6,
       "popularity": 3,
       "horse_weight": 450,
@@ -152,7 +152,7 @@
       "jockey": "西村淳也",
       "trainer": "藤原英昭",
       "finish_time": "1:32.7",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 3.7,
       "popularity": 2,
       "horse_weight": 462,
@@ -178,7 +178,7 @@
       "jockey": "幸英明",
       "trainer": "高橋康之",
       "finish_time": "1:33.2",
-      "margin": "3",
+      "margin": "@",
       "win_odds": 188.5,
       "popularity": 11,
       "horse_weight": 470,
@@ -204,7 +204,7 @@
       "jockey": "岩田望来",
       "trainer": "梅田智之",
       "finish_time": "1:33.2",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 109.6,
       "popularity": 9,
       "horse_weight": 464,
@@ -230,7 +230,7 @@
       "jockey": "今村聖奈",
       "trainer": "本田優",
       "finish_time": "1:33.3",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 21.5,
       "popularity": 4,
       "horse_weight": 426,
@@ -256,7 +256,7 @@
       "jockey": "角田大和",
       "trainer": "角田晃一",
       "finish_time": "1:33.5",
-      "margin": "1.1/4",
+      "margin": "@",
       "win_odds": 23.4,
       "popularity": 5,
       "horse_weight": 502,
@@ -282,7 +282,7 @@
       "jockey": "柴田裕一",
       "trainer": "橋田宜長",
       "finish_time": "1:33.5",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 131.7,
       "popularity": 10,
       "horse_weight": 512,
@@ -366,16 +366,46 @@
       "popularity": 33
     },
     {
+      "bet_type": "ワイド",
+      "combination": "4",
+      "payout": 70080,
+      "popularity": 40
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 80000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "2→11",
       "payout": 2440,
       "popularity": 8
     },
     {
+      "bet_type": "馬単",
+      "combination": "2",
+      "payout": 11000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "2-4-11",
       "payout": 12210,
       "popularity": 26
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "6",
+      "payout": 704,
+      "popularity": 110
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "7",
+      "payout": 90204,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -423,7 +453,8 @@
         "1": "エルサトアナ",
         "8": "ブルボンクイーン",
         "7": "タイキエクセロン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2177,
@@ -463,7 +494,8 @@
         "1": "エルサトアナ",
         "8": "ブルボンクイーン",
         "7": "タイキエクセロン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2231,
@@ -503,7 +535,8 @@
         "1": "エルサトアナ",
         "8": "ブルボンクイーン",
         "7": "タイキエクセロン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2334,
@@ -543,7 +576,8 @@
         "1": "エルサトアナ",
         "8": "ブルボンクイーン",
         "7": "タイキエクセロン"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 2335,
@@ -597,7 +631,8 @@
         "1": "エルサトアナ",
         "8": "ブルボンクイーン",
         "7": "タイキエクセロン"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 2336,
@@ -637,7 +672,8 @@
         "1": "エルサトアナ",
         "8": "ブルボンクイーン",
         "7": "タイキエクセロン"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 2337,
@@ -677,7 +713,8 @@
         "1": "エルサトアナ",
         "8": "ブルボンクイーン",
         "7": "タイキエクセロン"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 2338,
@@ -724,7 +761,8 @@
         "1": "エルサトアナ",
         "8": "ブルボンクイーン",
         "7": "タイキエクセロン"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 2339,
@@ -764,7 +802,8 @@
         "1": "エルサトアナ",
         "8": "ブルボンクイーン",
         "7": "タイキエクセロン"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 2340,
@@ -832,7 +871,8 @@
         "1": "エルサトアナ",
         "8": "ブルボンクイーン",
         "7": "タイキエクセロン"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 2341,
@@ -942,7 +982,8 @@
         "1": "エルサトアナ",
         "8": "ブルボンクイーン",
         "7": "タイキエクセロン"
-      }
+      },
+      "is_provisional": false
     }
   ],
   "training_evals": {},

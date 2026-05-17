@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 3,
       "horse_number": 5,
       "horse_name": "ミッキージャンプ",
@@ -32,15 +32,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 12,
-      "horse_name": "パンキー",
-      "horse_id": "2023102310",
-      "sex_age": "牡7",
+      "rank": 2,
+      "gate_number": 7,
+      "horse_number": 14,
+      "horse_name": "サイモンシャリオ",
+      "horse_id": "2023101569",
+      "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "長岡禎仁",
-      "trainer": "茶木太樹",
+      "jockey": "松若風馬",
+      "trainer": "梅田智之",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 14,
-      "horse_name": "サイモンシャリオ",
-      "horse_id": "2023101569",
-      "sex_age": "牡3",
+      "rank": 3,
+      "gate_number": 6,
+      "horse_number": 12,
+      "horse_name": "パンキー",
+      "horse_id": "2023102310",
+      "sex_age": "牡7",
       "weight_carried": 57.0,
-      "jockey": "松若風馬",
-      "trainer": "梅田智之",
+      "jockey": "長岡禎仁",
+      "trainer": "茶木太樹",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -378,12 +378,6 @@
       "combination": "5",
       "payout": 480,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "18",
-      "payout": 18000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

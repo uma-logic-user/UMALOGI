@@ -4,11 +4,11 @@
   "date": "2026-04-26",
   "venue": "東京",
   "race_number": 4,
-  "distance": 2400,
-  "surface": "芝",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -48,7 +48,7 @@
       "jockey": "木幡巧也",
       "trainer": "伊坂重信",
       "finish_time": "2:26.0",
-      "margin": "2",
+      "margin": "@",
       "win_odds": 8.9,
       "popularity": 4,
       "horse_weight": 444,
@@ -74,7 +74,7 @@
       "jockey": "津村明秀",
       "trainer": "手塚貴久",
       "finish_time": "2:26.1",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 5.1,
       "popularity": 3,
       "horse_weight": 440,
@@ -100,7 +100,7 @@
       "jockey": "レーン",
       "trainer": "林徹",
       "finish_time": "2:26.2",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 2.9,
       "popularity": 2,
       "horse_weight": 514,
@@ -126,7 +126,7 @@
       "jockey": "佐々木大",
       "trainer": "斎藤誠",
       "finish_time": "2:26.5",
-      "margin": "1.1/2",
+      "margin": "@",
       "win_odds": 140.1,
       "popularity": 9,
       "horse_weight": 518,
@@ -152,7 +152,7 @@
       "jockey": "荻野極",
       "trainer": "稲垣幸雄",
       "finish_time": "2:26.6",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 17.0,
       "popularity": 5,
       "horse_weight": 496,
@@ -178,7 +178,7 @@
       "jockey": "大野拓弥",
       "trainer": "和田勇介",
       "finish_time": "2:26.7",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 64.8,
       "popularity": 8,
       "horse_weight": 508,
@@ -204,7 +204,7 @@
       "jockey": "ディー",
       "trainer": "矢作芳人",
       "finish_time": "2:27.8",
-      "margin": "7",
+      "margin": "@",
       "win_odds": 34.6,
       "popularity": 6,
       "horse_weight": 448,
@@ -230,7 +230,7 @@
       "jockey": "酒井学",
       "trainer": "斎藤誠",
       "finish_time": "2:28.2",
-      "margin": "2.1/2",
+      "margin": "@",
       "win_odds": 152.5,
       "popularity": 10,
       "horse_weight": 440,
@@ -256,7 +256,7 @@
       "jockey": "横山武史",
       "trainer": "萩原清",
       "finish_time": "2:28.3",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 39.4,
       "popularity": 7,
       "horse_weight": 464,
@@ -340,16 +340,46 @@
       "popularity": 8
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 80040,
+      "popularity": 20
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "6",
+      "payout": 70000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "6→8",
       "payout": 1500,
       "popularity": 6
     },
     {
+      "bet_type": "馬単",
+      "combination": "6",
+      "payout": 8000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "2-6-8",
       "payout": 1280,
       "popularity": 4
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2",
+      "payout": 202,
+      "popularity": 80
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "6",
+      "payout": 50007,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -396,7 +426,8 @@
         "9": "ボンボンベイビー",
         "5": "ルージュダズリング",
         "10": "カゲムシャ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12710,
@@ -449,7 +480,8 @@
         "9": "ボンボンベイビー",
         "5": "ルージュダズリング",
         "10": "カゲムシャ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12711,
@@ -495,7 +527,8 @@
         "9": "ボンボンベイビー",
         "5": "ルージュダズリング",
         "10": "カゲムシャ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12712,
@@ -541,7 +574,8 @@
         "9": "ボンボンベイビー",
         "5": "ルージュダズリング",
         "10": "カゲムシャ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12713,
@@ -615,7 +649,8 @@
         "9": "ボンボンベイビー",
         "5": "ルージュダズリング",
         "10": "カゲムシャ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12714,
@@ -752,7 +787,8 @@
         "9": "ボンボンベイビー",
         "5": "ルージュダズリング",
         "10": "カゲムシャ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12715,
@@ -791,7 +827,8 @@
         "9": "ボンボンベイビー",
         "5": "ルージュダズリング",
         "10": "カゲムシャ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12716,
@@ -844,7 +881,8 @@
         "9": "ボンボンベイビー",
         "5": "ルージュダズリング",
         "10": "カゲムシャ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12717,
@@ -890,7 +928,8 @@
         "9": "ボンボンベイビー",
         "5": "ルージュダズリング",
         "10": "カゲムシャ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12718,
@@ -936,7 +975,8 @@
         "9": "ボンボンベイビー",
         "5": "ルージュダズリング",
         "10": "カゲムシャ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12721,
@@ -989,7 +1029,8 @@
         "9": "ボンボンベイビー",
         "5": "ルージュダズリング",
         "10": "カゲムシャ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12722,
@@ -1042,7 +1083,8 @@
         "9": "ボンボンベイビー",
         "5": "ルージュダズリング",
         "10": "カゲムシャ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12723,
@@ -1095,7 +1137,8 @@
         "9": "ボンボンベイビー",
         "5": "ルージュダズリング",
         "10": "カゲムシャ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12724,
@@ -1197,7 +1240,8 @@
         "9": "ボンボンベイビー",
         "5": "ルージュダズリング",
         "10": "カゲムシャ"
-      }
+      },
+      "is_provisional": true
     }
   ],
   "training_evals": {},

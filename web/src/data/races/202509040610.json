@@ -12,7 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "グローリーリンク",
@@ -30,6 +30,46 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": 2,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "ウィルサヴァイブ",
+      "horse_id": "2022104748",
+      "sex_age": "牝4",
+      "weight_carried": 53.0,
+      "jockey": "川田将雅",
+      "trainer": "須貝尚介",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "アルアイン",
+      "dam": "クラシックリディア",
+      "dam_sire": "ハービンジャーHarbinger(英)"
+    },
+    {
+      "rank": 3,
+      "gate_number": 7,
+      "horse_number": 7,
+      "horse_name": "スターリングアップ",
+      "horse_id": "2021105102",
+      "sex_age": "牝5",
+      "weight_carried": 56.0,
+      "jockey": "池添謙一",
+      "trainer": "松永幹夫",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ブリックスアンドモルタルBricks and Mortar(米)",
+      "dam": "ソウルスターリング",
+      "dam_sire": "Frankel"
     },
     {
       "rank": null,
@@ -93,26 +133,6 @@
     },
     {
       "rank": null,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "ウィルサヴァイブ",
-      "horse_id": "2022104748",
-      "sex_age": "牝4",
-      "weight_carried": 53.0,
-      "jockey": "川田将雅",
-      "trainer": "須貝尚介",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "アルアイン",
-      "dam": "クラシックリディア",
-      "dam_sire": "ハービンジャーHarbinger(英)"
-    },
-    {
-      "rank": null,
       "gate_number": 6,
       "horse_number": 6,
       "horse_name": "イトカワサクラ",
@@ -130,26 +150,6 @@
       "sire": "ゴールドシップ",
       "dam": "カワカミサクラKawakami Sakura(愛)",
       "dam_sire": "Danehill Dancer(愛)"
-    },
-    {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 7,
-      "horse_name": "スターリングアップ",
-      "horse_id": "2021105102",
-      "sex_age": "牝5",
-      "weight_carried": 56.0,
-      "jockey": "池添謙一",
-      "trainer": "松永幹夫",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ブリックスアンドモルタルBricks and Mortar(米)",
-      "dam": "ソウルスターリング",
-      "dam_sire": "Frankel"
     }
   ],
   "payouts": [
@@ -158,12 +158,6 @@
       "combination": "1",
       "payout": 140,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "7",
-      "payout": 7000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

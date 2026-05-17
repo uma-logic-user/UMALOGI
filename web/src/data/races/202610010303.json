@@ -12,27 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "マーベリックシチー",
-      "horse_id": "2021100387",
+      "rank": 1,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "モレポブラーノ",
+      "horse_id": "2022105443",
       "sex_age": "牡1",
-      "weight_carried": 58.0,
-      "jockey": "国分恭介",
-      "trainer": "岡田稲男",
+      "weight_carried": 57.0,
+      "jockey": "小沢大仁",
+      "trainer": "庄野靖志",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
       "horse_weight_diff": null,
-      "sire": "パイロPyro(米)",
-      "dam": "ラフィネシチー",
-      "dam_sire": "ゴールドアリュール"
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 1,
       "horse_number": 2,
       "horse_name": "マテンロウカナロア",
@@ -52,24 +52,24 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 6,
-      "horse_name": "モレポブラーノ",
-      "horse_id": "2022105443",
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "マーベリックシチー",
+      "horse_id": "2021100387",
       "sex_age": "牡1",
-      "weight_carried": 57.0,
-      "jockey": "小沢大仁",
-      "trainer": "庄野靖志",
+      "weight_carried": 58.0,
+      "jockey": "国分恭介",
+      "trainer": "岡田稲男",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
       "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
+      "sire": "パイロPyro(米)",
+      "dam": "ラフィネシチー",
+      "dam_sire": "ゴールドアリュール"
     },
     {
       "rank": null,
@@ -338,12 +338,6 @@
       "combination": "6",
       "payout": 710,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

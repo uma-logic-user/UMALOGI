@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "レオアジャイル",
-      "horse_id": "2023104909",
-      "sex_age": "牝1",
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "ブラックチャリス",
+      "horse_id": "2023107008",
+      "sex_age": "牝3",
       "weight_carried": 55.0,
-      "jockey": "横山典弘",
-      "trainer": "杉浦宏昭",
+      "jockey": "津村明秀",
+      "trainer": "武幸四郎",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 2,
       "horse_number": 4,
       "horse_name": "ビッグカレンルーフ",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 15,
-      "horse_name": "ブラックチャリス",
-      "horse_id": "2023107008",
-      "sex_age": "牝3",
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "レオアジャイル",
+      "horse_id": "2023104909",
+      "sex_age": "牝1",
       "weight_carried": 55.0,
-      "jockey": "津村明秀",
-      "trainer": "武幸四郎",
+      "jockey": "横山典弘",
+      "trainer": "杉浦宏昭",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "15",
       "payout": 1100,
       "popularity": 4
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

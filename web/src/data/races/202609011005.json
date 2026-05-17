@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "フィオラーノ",
-      "horse_id": "2023102027",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "松本大輝",
-      "trainer": "吉田直弘",
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 11,
+      "horse_name": "シラヌイ",
+      "horse_id": "2023105668",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "松山弘平",
+      "trainer": "高橋亮",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "ネメス",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 11,
-      "horse_name": "シラヌイ",
-      "horse_id": "2023105668",
-      "sex_age": "牝4",
-      "weight_carried": 55.0,
-      "jockey": "松山弘平",
-      "trainer": "高橋亮",
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "フィオラーノ",
+      "horse_id": "2023102027",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "松本大輝",
+      "trainer": "吉田直弘",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -233,12 +233,6 @@
     }
   ],
   "payouts": [
-    {
-      "bet_type": "単勝",
-      "combination": "11",
-      "payout": 11000,
-      "popularity": null
-    },
     {
       "bet_type": "複勝",
       "combination": "2",

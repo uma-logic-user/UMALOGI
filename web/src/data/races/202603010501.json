@@ -4,11 +4,11 @@
   "date": "2026-04-25",
   "venue": "福島",
   "race_number": 1,
-  "distance": 1700,
-  "surface": "ダート",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -42,7 +42,7 @@
       "jockey": "長岡禎仁",
       "trainer": "高橋亮",
       "finish_time": "1:47.8",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 13.5,
       "popularity": 7,
       "horse_weight": 424,
@@ -62,7 +62,7 @@
       "jockey": "丹内祐次",
       "trainer": "伊藤大士",
       "finish_time": "1:48.0",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 5.6,
       "popularity": 4,
       "horse_weight": 490,
@@ -82,7 +82,7 @@
       "jockey": "石神深道",
       "trainer": "勢司和浩",
       "finish_time": "1:48.0",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 50.3,
       "popularity": 8,
       "horse_weight": 436,
@@ -102,7 +102,7 @@
       "jockey": "横山琉人",
       "trainer": "高橋義忠",
       "finish_time": "1:48.1",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 9.4,
       "popularity": 5,
       "horse_weight": 478,
@@ -122,7 +122,7 @@
       "jockey": "遠藤汰月",
       "trainer": "本田優",
       "finish_time": "1:48.7",
-      "margin": "3.1/2",
+      "margin": "@",
       "win_odds": 153.0,
       "popularity": 13,
       "horse_weight": 484,
@@ -142,7 +142,7 @@
       "jockey": "川又賢治",
       "trainer": "笹田和秀",
       "finish_time": "1:49.0",
-      "margin": "1.3/4",
+      "margin": "@",
       "win_odds": 158.7,
       "popularity": 14,
       "horse_weight": 402,
@@ -162,7 +162,7 @@
       "jockey": "菊沢一樹",
       "trainer": "田中剛",
       "finish_time": "1:49.2",
-      "margin": "1.1/4",
+      "margin": "@",
       "win_odds": 4.7,
       "popularity": 3,
       "horse_weight": 470,
@@ -182,7 +182,7 @@
       "jockey": "松本大輝",
       "trainer": "藤岡健一",
       "finish_time": "1:49.6",
-      "margin": "2",
+      "margin": "@",
       "win_odds": 9.6,
       "popularity": 6,
       "horse_weight": 478,
@@ -202,7 +202,7 @@
       "jockey": "和田陽希",
       "trainer": "飯田祐史",
       "finish_time": "1:49.6",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 220.4,
       "popularity": 15,
       "horse_weight": 502,
@@ -222,7 +222,7 @@
       "jockey": "古川奈穂",
       "trainer": "牧浦充徳",
       "finish_time": "1:49.9",
-      "margin": "2",
+      "margin": "@",
       "win_odds": 74.6,
       "popularity": 10,
       "horse_weight": 478,
@@ -242,7 +242,7 @@
       "jockey": "丸山元気",
       "trainer": "宮田敬介",
       "finish_time": "1:50.0",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 4.1,
       "popularity": 2,
       "horse_weight": 460,
@@ -262,7 +262,7 @@
       "jockey": "野中悠太",
       "trainer": "畠山吉宏",
       "finish_time": "1:50.8",
-      "margin": "5",
+      "margin": "@",
       "win_odds": 131.8,
       "popularity": 12,
       "horse_weight": 438,
@@ -282,7 +282,7 @@
       "jockey": "菅原隆一",
       "trainer": "石栗龍彦",
       "finish_time": "1:51.1",
-      "margin": "2",
+      "margin": "@",
       "win_odds": 115.9,
       "popularity": 11,
       "horse_weight": 404,
@@ -302,7 +302,7 @@
       "jockey": "小林美駒",
       "trainer": "秋本大介",
       "finish_time": "1:52.7",
-      "margin": "10",
+      "margin": "@",
       "win_odds": 60.4,
       "popularity": 9,
       "horse_weight": 472,
@@ -356,6 +356,18 @@
       "popularity": 13
     },
     {
+      "bet_type": "馬連",
+      "combination": "1",
+      "payout": 2150,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3",
+      "payout": 80000,
+      "popularity": 3
+    },
+    {
       "bet_type": "ワイド",
       "combination": "5-10",
       "payout": 470,
@@ -380,10 +392,28 @@
       "popularity": 23
     },
     {
+      "bet_type": "馬単",
+      "combination": "5",
+      "payout": 15000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "5-10-15",
       "payout": 5720,
       "popularity": 20
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4",
+      "payout": 510,
+      "popularity": 150
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "10-1",
+      "payout": 40510,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -435,7 +465,8 @@
         "8": "レインボーワールド",
         "4": "サツキマーメイド",
         "7": "ノヴェルカフナ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5476,
@@ -493,7 +524,8 @@
         "8": "レインボーワールド",
         "4": "サツキマーメイド",
         "7": "ノヴェルカフナ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5477,
@@ -537,7 +569,8 @@
         "8": "レインボーワールド",
         "4": "サツキマーメイド",
         "7": "ノヴェルカフナ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5478,
@@ -581,7 +614,8 @@
         "8": "レインボーワールド",
         "4": "サツキマーメイド",
         "7": "ノヴェルカフナ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5479,
@@ -632,7 +666,8 @@
         "8": "レインボーワールド",
         "4": "サツキマーメイド",
         "7": "ノヴェルカフナ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5480,
@@ -704,7 +739,8 @@
         "8": "レインボーワールド",
         "4": "サツキマーメイド",
         "7": "ノヴェルカフナ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5488,
@@ -748,7 +784,8 @@
         "8": "レインボーワールド",
         "4": "サツキマーメイド",
         "7": "ノヴェルカフナ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5489,
@@ -820,7 +857,8 @@
         "8": "レインボーワールド",
         "4": "サツキマーメイド",
         "7": "ノヴェルカフナ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5490,
@@ -864,7 +902,8 @@
         "8": "レインボーワールド",
         "4": "サツキマーメイド",
         "7": "ノヴェルカフナ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5491,
@@ -908,7 +947,8 @@
         "8": "レインボーワールド",
         "4": "サツキマーメイド",
         "7": "ノヴェルカフナ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5492,
@@ -952,7 +992,8 @@
         "8": "レインボーワールド",
         "4": "サツキマーメイド",
         "7": "ノヴェルカフナ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5495,
@@ -996,7 +1037,8 @@
         "8": "レインボーワールド",
         "4": "サツキマーメイド",
         "7": "ノヴェルカフナ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5496,
@@ -1138,7 +1180,8 @@
         "8": "レインボーワールド",
         "4": "サツキマーメイド",
         "7": "ノヴェルカフナ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5697,
@@ -1182,7 +1225,8 @@
         "8": "レインボーワールド",
         "4": "サツキマーメイド",
         "7": "ノヴェルカフナ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5698,
@@ -1240,7 +1284,8 @@
         "8": "レインボーワールド",
         "4": "サツキマーメイド",
         "7": "ノヴェルカフナ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5699,
@@ -1291,7 +1336,8 @@
         "8": "レインボーワールド",
         "4": "サツキマーメイド",
         "7": "ノヴェルカフナ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5700,
@@ -1342,7 +1388,8 @@
         "8": "レインボーワールド",
         "4": "サツキマーメイド",
         "7": "ノヴェルカフナ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5701,
@@ -1407,7 +1454,8 @@
         "8": "レインボーワールド",
         "4": "サツキマーメイド",
         "7": "ノヴェルカフナ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5703,
@@ -1465,7 +1513,8 @@
         "8": "レインボーワールド",
         "4": "サツキマーメイド",
         "7": "ノヴェルカフナ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5704,
@@ -1607,7 +1656,8 @@
         "8": "レインボーワールド",
         "4": "サツキマーメイド",
         "7": "ノヴェルカフナ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5712,
@@ -1651,7 +1701,8 @@
         "8": "レインボーワールド",
         "4": "サツキマーメイド",
         "7": "ノヴェルカフナ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5713,
@@ -1723,7 +1774,8 @@
         "8": "レインボーワールド",
         "4": "サツキマーメイド",
         "7": "ノヴェルカフナ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5714,
@@ -1774,7 +1826,8 @@
         "8": "レインボーワールド",
         "4": "サツキマーメイド",
         "7": "ノヴェルカフナ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5715,
@@ -1825,7 +1878,8 @@
         "8": "レインボーワールド",
         "4": "サツキマーメイド",
         "7": "ノヴェルカフナ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5716,
@@ -1876,7 +1930,8 @@
         "8": "レインボーワールド",
         "4": "サツキマーメイド",
         "7": "ノヴェルカフナ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5719,
@@ -1934,7 +1989,8 @@
         "8": "レインボーワールド",
         "4": "サツキマーメイド",
         "7": "ノヴェルカフナ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5720,
@@ -2076,7 +2132,8 @@
         "8": "レインボーワールド",
         "4": "サツキマーメイド",
         "7": "ノヴェルカフナ"
-      }
+      },
+      "is_provisional": true
     }
   ],
   "training_evals": {}

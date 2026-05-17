@@ -4,11 +4,11 @@
   "date": "2026-04-25",
   "venue": "東京",
   "race_number": 1,
-  "distance": 1600,
-  "surface": "ダート",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "曇",
-  "condition": "稍",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -42,7 +42,7 @@
       "jockey": "レーン",
       "trainer": "堀宣行",
       "finish_time": "1:39.3",
-      "margin": "2",
+      "margin": "@",
       "win_odds": 1.8,
       "popularity": 1,
       "horse_weight": 454,
@@ -62,7 +62,7 @@
       "jockey": "佐々木大",
       "trainer": "勢司和浩",
       "finish_time": "1:39.5",
-      "margin": "1",
+      "margin": "@",
       "win_odds": 40.7,
       "popularity": 7,
       "horse_weight": 474,
@@ -82,7 +82,7 @@
       "jockey": "柴田大知",
       "trainer": "本間忍",
       "finish_time": "1:40.3",
-      "margin": "5",
+      "margin": "@",
       "win_odds": 191.2,
       "popularity": 11,
       "horse_weight": 424,
@@ -102,7 +102,7 @@
       "jockey": "岩田康誠",
       "trainer": "戸田博文",
       "finish_time": "1:40.3",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 7.0,
       "popularity": 4,
       "horse_weight": 454,
@@ -122,7 +122,7 @@
       "jockey": "佐藤翔馬",
       "trainer": "松永康利",
       "finish_time": "1:40.5",
-      "margin": "1.1/4",
+      "margin": "@",
       "win_odds": 97.3,
       "popularity": 10,
       "horse_weight": 500,
@@ -142,7 +142,7 @@
       "jockey": "長浜鴻緒",
       "trainer": "上原博之",
       "finish_time": "1:40.9",
-      "margin": "2.1/2",
+      "margin": "@",
       "win_odds": 218.6,
       "popularity": 12,
       "horse_weight": 440,
@@ -162,7 +162,7 @@
       "jockey": "北村友一",
       "trainer": "栗田徹",
       "finish_time": "1:41.1",
-      "margin": "1.1/4",
+      "margin": "@",
       "win_odds": 15.4,
       "popularity": 5,
       "horse_weight": 482,
@@ -182,7 +182,7 @@
       "jockey": "谷原柚希",
       "trainer": "伊藤圭三",
       "finish_time": "1:41.8",
-      "margin": "4",
+      "margin": "@",
       "win_odds": 246.2,
       "popularity": 13,
       "horse_weight": 442,
@@ -202,7 +202,7 @@
       "jockey": "ディー",
       "trainer": "嘉藤貴行",
       "finish_time": "1:42.3",
-      "margin": "3.1/2",
+      "margin": "@",
       "win_odds": 5.1,
       "popularity": 2,
       "horse_weight": 512,
@@ -222,7 +222,7 @@
       "jockey": "戸崎圭太",
       "trainer": "木村哲也",
       "finish_time": "1:42.5",
-      "margin": "1",
+      "margin": "@",
       "win_odds": 29.9,
       "popularity": 6,
       "horse_weight": 408,
@@ -242,7 +242,7 @@
       "jockey": "吉田豊",
       "trainer": "竹内正洋",
       "finish_time": "1:42.8",
-      "margin": "1.3/4",
+      "margin": "@",
       "win_odds": 52.0,
       "popularity": 8,
       "horse_weight": 466,
@@ -262,7 +262,7 @@
       "jockey": "中井裕二",
       "trainer": "竹内正洋",
       "finish_time": "1:44.2",
-      "margin": "8",
+      "margin": "@",
       "win_odds": 407.6,
       "popularity": 14,
       "horse_weight": 428,
@@ -282,7 +282,7 @@
       "jockey": "永島まな",
       "trainer": "上原博之",
       "finish_time": "1:44.8",
-      "margin": "3.1/2",
+      "margin": "@",
       "win_odds": 87.5,
       "popularity": 9,
       "horse_weight": 450,
@@ -336,6 +336,12 @@
       "popularity": 1
     },
     {
+      "bet_type": "馬連",
+      "combination": "1",
+      "payout": 2120,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "12-13",
       "payout": 240,
@@ -354,16 +360,52 @@
       "popularity": 13
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 10010,
+      "popularity": 80
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "7",
+      "payout": 80000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "13→12",
       "payout": 1500,
       "popularity": 5
     },
     {
+      "bet_type": "馬単",
+      "combination": "12",
+      "payout": 13000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "8-12-13",
       "payout": 3080,
       "popularity": 8
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "12",
+      "payout": 1308,
+      "popularity": 120
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2",
+      "payout": 20813,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "10",
+      "payout": 50010,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -414,7 +456,8 @@
         "2": "ロンドンプライド",
         "3": "イサチルニャーニャ",
         "10": "アッシュグレイス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5498,
@@ -471,7 +514,8 @@
         "2": "ロンドンプライド",
         "3": "イサチルニャーニャ",
         "10": "アッシュグレイス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5499,
@@ -514,7 +558,8 @@
         "2": "ロンドンプライド",
         "3": "イサチルニャーニャ",
         "10": "アッシュグレイス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5500,
@@ -557,7 +602,8 @@
         "2": "ロンドンプライド",
         "3": "イサチルニャーニャ",
         "10": "アッシュグレイス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5501,
@@ -607,7 +653,8 @@
         "2": "ロンドンプライド",
         "3": "イサチルニャーニャ",
         "10": "アッシュグレイス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5502,
@@ -678,7 +725,8 @@
         "2": "ロンドンプライド",
         "3": "イサチルニャーニャ",
         "10": "アッシュグレイス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5510,
@@ -721,7 +769,8 @@
         "2": "ロンドンプライド",
         "3": "イサチルニャーニャ",
         "10": "アッシュグレイス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5511,
@@ -792,7 +841,8 @@
         "2": "ロンドンプライド",
         "3": "イサチルニャーニャ",
         "10": "アッシュグレイス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5512,
@@ -835,7 +885,8 @@
         "2": "ロンドンプライド",
         "3": "イサチルニャーニャ",
         "10": "アッシュグレイス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5513,
@@ -878,7 +929,8 @@
         "2": "ロンドンプライド",
         "3": "イサチルニャーニャ",
         "10": "アッシュグレイス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5514,
@@ -921,7 +973,8 @@
         "2": "ロンドンプライド",
         "3": "イサチルニャーニャ",
         "10": "アッシュグレイス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5517,
@@ -964,7 +1017,8 @@
         "2": "ロンドンプライド",
         "3": "イサチルニャーニャ",
         "10": "アッシュグレイス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5518,
@@ -1098,7 +1152,8 @@
         "2": "ロンドンプライド",
         "3": "イサチルニャーニャ",
         "10": "アッシュグレイス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6033,
@@ -1141,7 +1196,8 @@
         "2": "ロンドンプライド",
         "3": "イサチルニャーニャ",
         "10": "アッシュグレイス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6034,
@@ -1198,7 +1254,8 @@
         "2": "ロンドンプライド",
         "3": "イサチルニャーニャ",
         "10": "アッシュグレイス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6035,
@@ -1248,7 +1305,8 @@
         "2": "ロンドンプライド",
         "3": "イサチルニャーニャ",
         "10": "アッシュグレイス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6036,
@@ -1298,7 +1356,8 @@
         "2": "ロンドンプライド",
         "3": "イサチルニャーニャ",
         "10": "アッシュグレイス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6037,
@@ -1362,7 +1421,8 @@
         "2": "ロンドンプライド",
         "3": "イサチルニャーニャ",
         "10": "アッシュグレイス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6038,
@@ -1503,7 +1563,8 @@
         "2": "ロンドンプライド",
         "3": "イサチルニャーニャ",
         "10": "アッシュグレイス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6046,
@@ -1546,7 +1607,8 @@
         "2": "ロンドンプライド",
         "3": "イサチルニャーニャ",
         "10": "アッシュグレイス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6047,
@@ -1617,7 +1679,8 @@
         "2": "ロンドンプライド",
         "3": "イサチルニャーニャ",
         "10": "アッシュグレイス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6048,
@@ -1667,7 +1730,8 @@
         "2": "ロンドンプライド",
         "3": "イサチルニャーニャ",
         "10": "アッシュグレイス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6049,
@@ -1717,7 +1781,8 @@
         "2": "ロンドンプライド",
         "3": "イサチルニャーニャ",
         "10": "アッシュグレイス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6050,
@@ -1767,7 +1832,8 @@
         "2": "ロンドンプライド",
         "3": "イサチルニャーニャ",
         "10": "アッシュグレイス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6053,
@@ -1824,7 +1890,8 @@
         "2": "ロンドンプライド",
         "3": "イサチルニャーニャ",
         "10": "アッシュグレイス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6054,
@@ -1958,7 +2025,8 @@
         "2": "ロンドンプライド",
         "3": "イサチルニャーニャ",
         "10": "アッシュグレイス"
-      }
+      },
+      "is_provisional": true
     }
   ],
   "training_evals": {}

@@ -4,11 +4,11 @@
   "date": "2026-04-26",
   "venue": "福島",
   "race_number": 7,
-  "distance": 1700,
-  "surface": "ダート",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -48,7 +48,7 @@
       "jockey": "斎藤新",
       "trainer": "茶木太樹",
       "finish_time": "1:46.5",
-      "margin": "2.1/2",
+      "margin": "@",
       "win_odds": 24.1,
       "popularity": 8,
       "horse_weight": 434,
@@ -74,7 +74,7 @@
       "jockey": "菱田裕二",
       "trainer": "加藤士津",
       "finish_time": "1:46.5",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 1.9,
       "popularity": 1,
       "horse_weight": 460,
@@ -100,7 +100,7 @@
       "jockey": "小沢大仁",
       "trainer": "吉岡辰弥",
       "finish_time": "1:46.5",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 13.8,
       "popularity": 5,
       "horse_weight": 440,
@@ -126,7 +126,7 @@
       "jockey": "石神深道",
       "trainer": "和田正一",
       "finish_time": "1:46.6",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 28.3,
       "popularity": 10,
       "horse_weight": 456,
@@ -152,7 +152,7 @@
       "jockey": "亀田温心",
       "trainer": "斉藤崇史",
       "finish_time": "1:46.6",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 27.9,
       "popularity": 9,
       "horse_weight": 454,
@@ -178,7 +178,7 @@
       "jockey": "幸英明",
       "trainer": "畑端省吾",
       "finish_time": "1:46.7",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 10.4,
       "popularity": 3,
       "horse_weight": 486,
@@ -204,7 +204,7 @@
       "jockey": "小林美駒",
       "trainer": "中竹和也",
       "finish_time": "1:46.8",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 10.5,
       "popularity": 4,
       "horse_weight": 434,
@@ -230,7 +230,7 @@
       "jockey": "鷲頭虎太",
       "trainer": "井上智史",
       "finish_time": "1:46.8",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 35.4,
       "popularity": 11,
       "horse_weight": 420,
@@ -256,7 +256,7 @@
       "jockey": "富田暁",
       "trainer": "笹田和秀",
       "finish_time": "1:47.0",
-      "margin": "1",
+      "margin": "@",
       "win_odds": 19.9,
       "popularity": 7,
       "horse_weight": 452,
@@ -282,7 +282,7 @@
       "jockey": "石田拓郎",
       "trainer": "松山将樹",
       "finish_time": "1:47.0",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 75.2,
       "popularity": 13,
       "horse_weight": 464,
@@ -308,7 +308,7 @@
       "jockey": "長浜鴻緒",
       "trainer": "畠山吉宏",
       "finish_time": "1:47.2",
-      "margin": "1.1/4",
+      "margin": "@",
       "win_odds": 64.3,
       "popularity": 12,
       "horse_weight": 432,
@@ -334,7 +334,7 @@
       "jockey": "杉原誠人",
       "trainer": "田村康仁",
       "finish_time": "1:47.9",
-      "margin": "4",
+      "margin": "@",
       "win_odds": 160.7,
       "popularity": 15,
       "horse_weight": 468,
@@ -360,7 +360,7 @@
       "jockey": "小林凌大",
       "trainer": "尾形和幸",
       "finish_time": "1:47.9",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 18.7,
       "popularity": 6,
       "horse_weight": 418,
@@ -386,7 +386,7 @@
       "jockey": "古川奈穂",
       "trainer": "前川恭子",
       "finish_time": "1:48.5",
-      "margin": "3.1/2",
+      "margin": "@",
       "win_odds": 108.4,
       "popularity": 14,
       "horse_weight": 452,
@@ -446,6 +446,12 @@
       "popularity": 18
     },
     {
+      "bet_type": "馬連",
+      "combination": "1",
+      "payout": 2060,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "10-11",
       "payout": 260,
@@ -459,9 +465,21 @@
     },
     {
       "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 70051,
+      "popularity": 10
+    },
+    {
+      "bet_type": "ワイド",
       "combination": "6-10",
       "payout": 1460,
       "popularity": 14
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4",
+      "payout": 60000,
+      "popularity": null
     },
     {
       "bet_type": "馬単",
@@ -470,10 +488,34 @@
       "popularity": 28
     },
     {
+      "bet_type": "馬単",
+      "combination": "6",
+      "payout": 10000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "6-10-11",
       "payout": 2750,
       "popularity": 4
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2",
+      "payout": 106,
+      "popularity": 110
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "14-1",
+      "payout": 41011,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5",
+      "payout": 10005,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -525,7 +567,8 @@
         "15": "ノアチュロス",
         "4": "ライヴスプーン",
         "1": "サラサラヘアー"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12579,
@@ -583,7 +626,8 @@
         "15": "ノアチュロス",
         "4": "ライヴスプーン",
         "1": "サラサラヘアー"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12580,
@@ -634,7 +678,8 @@
         "15": "ノアチュロス",
         "4": "ライヴスプーン",
         "1": "サラサラヘアー"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12581,
@@ -685,7 +730,8 @@
         "15": "ノアチュロス",
         "4": "ライヴスプーン",
         "1": "サラサラヘアー"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12582,
@@ -827,7 +873,8 @@
         "15": "ノアチュロス",
         "4": "ライヴスプーン",
         "1": "サラサラヘアー"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12583,
@@ -871,7 +918,8 @@
         "15": "ノアチュロス",
         "4": "ライヴスプーン",
         "1": "サラサラヘアー"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12584,
@@ -929,7 +977,8 @@
         "15": "ノアチュロス",
         "4": "ライヴスプーン",
         "1": "サラサラヘアー"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12585,
@@ -980,7 +1029,8 @@
         "15": "ノアチュロス",
         "4": "ライヴスプーン",
         "1": "サラサラヘアー"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12586,
@@ -1031,7 +1081,8 @@
         "15": "ノアチュロス",
         "4": "ライヴスプーン",
         "1": "サラサラヘアー"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12589,
@@ -1089,7 +1140,8 @@
         "15": "ノアチュロス",
         "4": "ライヴスプーン",
         "1": "サラサラヘアー"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12590,
@@ -1147,7 +1199,8 @@
         "15": "ノアチュロス",
         "4": "ライヴスプーン",
         "1": "サラサラヘアー"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12591,
@@ -1205,7 +1258,8 @@
         "15": "ノアチュロス",
         "4": "ライヴスプーン",
         "1": "サラサラヘアー"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12592,
@@ -1347,7 +1401,8 @@
         "15": "ノアチュロス",
         "4": "ライヴスプーン",
         "1": "サラサラヘアー"
-      }
+      },
+      "is_provisional": true
     }
   ],
   "training_evals": {},

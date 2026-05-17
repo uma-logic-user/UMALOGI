@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "ダイシンレアレア",
-      "horse_id": "2022106566",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "丹内祐次",
-      "trainer": "高橋一哉",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 4,
       "horse_number": 6,
       "horse_name": "イプシロンナンバー",
@@ -52,7 +32,27 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "ダイシンレアレア",
+      "horse_id": "2022106566",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "丹内祐次",
+      "trainer": "高橋一哉",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
       "gate_number": 4,
       "horse_number": 7,
       "horse_name": "アークドール",
@@ -318,12 +318,6 @@
       "combination": "6",
       "payout": 690,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "15",
-      "payout": 15000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

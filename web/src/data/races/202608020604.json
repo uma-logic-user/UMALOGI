@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "テイエムゴッホ",
-      "horse_id": "2023101704",
-      "sex_age": "牡3",
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 8,
+      "horse_name": "ダノンバーボン",
+      "horse_id": "2023110038",
+      "sex_age": "牡4",
       "weight_carried": 57.0,
-      "jockey": "高杉吏麒",
-      "trainer": "浜田多実",
+      "jockey": "西村淳也",
+      "trainer": "池添学",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 5,
       "horse_number": 5,
       "horse_name": "アレンスター",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 8,
-      "horse_name": "ダノンバーボン",
-      "horse_id": "2023110038",
-      "sex_age": "牡4",
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "テイエムゴッホ",
+      "horse_id": "2023101704",
+      "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "西村淳也",
-      "trainer": "池添学",
+      "jockey": "高杉吏麒",
+      "trainer": "浜田多実",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -198,12 +198,6 @@
       "combination": "8",
       "payout": 190,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "9",
-      "payout": 9000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

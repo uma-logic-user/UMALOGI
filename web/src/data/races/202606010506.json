@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "ウインターブレス",
-      "horse_id": "2023103521",
-      "sex_age": "牡1",
+      "rank": 1,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "サトノマティーニ",
+      "horse_id": "2023105007",
+      "sex_age": "牡7",
       "weight_carried": 57.0,
-      "jockey": "原優介",
-      "trainer": "竹内正洋",
+      "jockey": "北村宏司",
+      "trainer": "蛯名正義",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 4,
       "horse_number": 7,
       "horse_name": "エリュグレイス",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 11,
-      "horse_name": "サトノマティーニ",
-      "horse_id": "2023105007",
-      "sex_age": "牡7",
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "ウインターブレス",
+      "horse_id": "2023103521",
+      "sex_age": "牡1",
       "weight_carried": 57.0,
-      "jockey": "北村宏司",
-      "trainer": "蛯名正義",
+      "jockey": "原優介",
+      "trainer": "竹内正洋",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -378,12 +378,6 @@
       "combination": "11",
       "payout": 290,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "18",
-      "payout": 18000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

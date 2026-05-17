@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "オリオンブレード",
-      "horse_id": "2023106715",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "横山武史",
-      "trainer": "矢作芳人",
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 14,
+      "horse_name": "ランザワールド",
+      "horse_id": "2023107164",
+      "sex_age": "牝5",
+      "weight_carried": 55.0,
+      "jockey": "戸崎圭太",
+      "trainer": "宮田敬介",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 3,
       "horse_number": 5,
       "horse_name": "インタノン",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 14,
-      "horse_name": "ランザワールド",
-      "horse_id": "2023107164",
-      "sex_age": "牝5",
-      "weight_carried": 55.0,
-      "jockey": "戸崎圭太",
-      "trainer": "宮田敬介",
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "オリオンブレード",
+      "horse_id": "2023106715",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "横山武史",
+      "trainer": "矢作芳人",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -318,12 +318,6 @@
       "combination": "14",
       "payout": 610,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "15",
-      "payout": 15000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

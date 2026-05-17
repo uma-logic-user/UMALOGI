@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 2,
-      "horse_name": "ショウナンアビアス",
-      "horse_id": "2020104597",
-      "sex_age": "牡4",
-      "weight_carried": 58.0,
-      "jockey": "ルメール",
-      "trainer": "加藤士津",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ドレフォンDrefong(米)",
-      "dam": "ショウナンカサロ",
-      "dam_sire": "キングカメハメハ"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 5,
       "horse_number": 9,
       "horse_name": "ルディック",
@@ -52,7 +32,7 @@
       "dam_sire": "Medaglia d'Oro"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 8,
       "horse_number": 16,
       "horse_name": "ワンダラー",
@@ -70,6 +50,26 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 2,
+      "horse_name": "ショウナンアビアス",
+      "horse_id": "2020104597",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "ルメール",
+      "trainer": "加藤士津",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ドレフォンDrefong(米)",
+      "dam": "ショウナンカサロ",
+      "dam_sire": "キングカメハメハ"
     },
     {
       "rank": null,
@@ -338,12 +338,6 @@
       "combination": "9",
       "payout": 450,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

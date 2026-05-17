@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "プルパレイ",
-      "horse_id": "2019104911",
-      "sex_age": "騸3",
-      "weight_carried": 59.0,
-      "jockey": "田山旺佑",
-      "trainer": "須貝尚介",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "イスラボニータ",
-      "dam": "マイジェンMy Jen(米)",
-      "dam_sire": "Fusaichi Pegasus"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 4,
       "horse_number": 7,
       "horse_name": "ジョーメッドヴィン",
@@ -52,7 +32,7 @@
       "dam_sire": "キングヘイロー"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 7,
       "horse_number": 13,
       "horse_name": "アスクワンタイム",
@@ -70,6 +50,26 @@
       "sire": "ロードカナロア",
       "dam": "ディープインアスク",
       "dam_sire": "ディープインパクト"
+    },
+    {
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "プルパレイ",
+      "horse_id": "2019104911",
+      "sex_age": "騸3",
+      "weight_carried": 59.0,
+      "jockey": "田山旺佑",
+      "trainer": "須貝尚介",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "イスラボニータ",
+      "dam": "マイジェンMy Jen(米)",
+      "dam_sire": "Fusaichi Pegasus"
     },
     {
       "rank": null,
@@ -378,12 +378,6 @@
       "combination": "7",
       "payout": 1120,
       "popularity": 4
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "18",
-      "payout": 18000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

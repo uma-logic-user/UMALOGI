@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 7,
-      "horse_name": "ムーンリットアイル",
-      "horse_id": "2023107269",
-      "sex_age": "牝3",
+      "rank": 1,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "ケールハイム",
+      "horse_id": "2023107138",
+      "sex_age": "牝1",
       "weight_carried": 55.0,
-      "jockey": "吉村誠之",
-      "trainer": "武英智",
+      "jockey": "高杉吏麒",
+      "trainer": "福永祐一",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 4,
       "horse_number": 8,
       "horse_name": "アクアアイ",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 9,
-      "horse_name": "ケールハイム",
-      "horse_id": "2023107138",
-      "sex_age": "牝1",
+      "rank": 3,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "ムーンリットアイル",
+      "horse_id": "2023107269",
+      "sex_age": "牝3",
       "weight_carried": 55.0,
-      "jockey": "高杉吏麒",
-      "trainer": "福永祐一",
+      "jockey": "吉村誠之",
+      "trainer": "武英智",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -378,12 +378,6 @@
       "combination": "9",
       "payout": 1030,
       "popularity": 6
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "18",
-      "payout": 18000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

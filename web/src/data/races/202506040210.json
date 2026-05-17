@@ -12,27 +12,27 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "アシャカタカ",
-      "horse_id": "2020102299",
-      "sex_age": "牡4",
-      "weight_carried": 54.0,
-      "jockey": "菊沢一樹",
-      "trainer": "鈴木伸尋",
+      "rank": 1,
+      "gate_number": 5,
+      "horse_number": 6,
+      "horse_name": "ルージュラナキラ",
+      "horse_id": "2022102434",
+      "sex_age": "牝3",
+      "weight_carried": 53.0,
+      "jockey": "鮫島克駿",
+      "trainer": "加藤征弘",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
       "horse_weight_diff": null,
-      "sire": "ファインニードル",
-      "dam": "ハートノイヤリング",
-      "dam_sire": "ハーツクライ"
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "マックアルイーン",
@@ -50,6 +50,26 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "アシャカタカ",
+      "horse_id": "2020102299",
+      "sex_age": "牡4",
+      "weight_carried": 54.0,
+      "jockey": "菊沢一樹",
+      "trainer": "鈴木伸尋",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ファインニードル",
+      "dam": "ハートノイヤリング",
+      "dam_sire": "ハーツクライ"
     },
     {
       "rank": null,
@@ -110,26 +130,6 @@
       "sire": "ダイワメジャー",
       "dam": "プリンセスオブザスターズPrincessofthestars(愛)",
       "dam_sire": "Sea The StarsSea the Stars(愛)"
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 6,
-      "horse_name": "ルージュラナキラ",
-      "horse_id": "2022102434",
-      "sex_age": "牝3",
-      "weight_carried": 53.0,
-      "jockey": "鮫島克駿",
-      "trainer": "加藤征弘",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
     },
     {
       "rank": null,
@@ -278,12 +278,6 @@
       "combination": "6",
       "payout": 500,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "13",
-      "payout": 12000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

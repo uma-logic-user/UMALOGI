@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 2,
-      "horse_name": "ルビドゥソレイユ",
-      "horse_id": "2023107081",
-      "sex_age": "牝4",
+      "rank": 1,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "アイカンアズーラ",
+      "horse_id": "2023102036",
+      "sex_age": "牝1",
       "weight_carried": 55.0,
-      "jockey": "北村友一",
-      "trainer": "田中克典",
+      "jockey": "酒井学",
+      "trainer": "河嶋宏樹",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 4,
       "horse_number": 7,
       "horse_name": "マリブサーフ",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 11,
-      "horse_name": "アイカンアズーラ",
-      "horse_id": "2023102036",
-      "sex_age": "牝1",
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 2,
+      "horse_name": "ルビドゥソレイユ",
+      "horse_id": "2023107081",
+      "sex_age": "牝4",
       "weight_carried": 55.0,
-      "jockey": "酒井学",
-      "trainer": "河嶋宏樹",
+      "jockey": "北村友一",
+      "trainer": "田中克典",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "11",
       "payout": 480,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

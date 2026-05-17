@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "ペガサスウィンド",
-      "horse_id": "2023100609",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "吉村誠之",
-      "trainer": "宮地貴稔",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 6,
       "horse_number": 6,
       "horse_name": "アーネストアイズ",
@@ -52,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 8,
       "horse_number": 9,
       "horse_name": "アキノビューティー",
@@ -61,6 +41,26 @@
       "weight_carried": 55.0,
       "jockey": "鮫島良太",
       "trainer": "河嶋宏樹",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "ペガサスウィンド",
+      "horse_id": "2023100609",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "吉村誠之",
+      "trainer": "宮地貴稔",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -218,12 +218,6 @@
       "combination": "6",
       "payout": 510,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "10",
-      "payout": 10000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

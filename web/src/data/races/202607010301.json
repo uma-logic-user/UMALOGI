@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "レジェルテ",
-      "horse_id": "2023107303",
-      "sex_age": "牡5",
-      "weight_carried": 54.0,
-      "jockey": "和田陽希",
-      "trainer": "柴田卓",
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 13,
+      "horse_name": "コルヴァス",
+      "horse_id": "2023104411",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "川田将雅",
+      "trainer": "矢作芳人",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 6,
       "horse_number": 9,
       "horse_name": "ナウオアネヴァー",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 13,
-      "horse_name": "コルヴァス",
-      "horse_id": "2023104411",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "川田将雅",
-      "trainer": "矢作芳人",
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "レジェルテ",
+      "horse_id": "2023107303",
+      "sex_age": "牡5",
+      "weight_carried": 54.0,
+      "jockey": "和田陽希",
+      "trainer": "柴田卓",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -273,12 +273,6 @@
     }
   ],
   "payouts": [
-    {
-      "bet_type": "単勝",
-      "combination": "13",
-      "payout": 13000,
-      "popularity": null
-    },
     {
       "bet_type": "複勝",
       "combination": "13",

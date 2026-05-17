@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 5,
       "horse_number": 5,
       "horse_name": "コンテナワールド",
@@ -32,27 +32,7 @@
       "dam_sire": "アグネスタキオン"
     },
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 6,
-      "horse_name": "フォージドブリック",
-      "horse_id": "2021104800",
-      "sex_age": "牡3",
-      "weight_carried": 59.0,
-      "jockey": "大江原圭",
-      "trainer": "西田雄一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ブリックスアンドモルタルBricks and Mortar(米)",
-      "dam": "リープオブフェイス",
-      "dam_sire": "クロフネ"
-    },
-    {
-      "rank": null,
+      "rank": 2,
       "gate_number": 7,
       "horse_number": 7,
       "horse_name": "ディナースタ",
@@ -70,6 +50,26 @@
       "sire": "ドゥラメンテ",
       "dam": "ラヴァリーノRavarino(米)",
       "dam_sire": "Unbridled's Song(米)"
+    },
+    {
+      "rank": 3,
+      "gate_number": 6,
+      "horse_number": 6,
+      "horse_name": "フォージドブリック",
+      "horse_id": "2021104800",
+      "sex_age": "牡3",
+      "weight_carried": 59.0,
+      "jockey": "大江原圭",
+      "trainer": "西田雄一",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ブリックスアンドモルタルBricks and Mortar(米)",
+      "dam": "リープオブフェイス",
+      "dam_sire": "クロフネ"
     },
     {
       "rank": null,
@@ -198,12 +198,6 @@
       "combination": "5",
       "payout": 2260,
       "popularity": 5
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "9",
-      "payout": 9000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

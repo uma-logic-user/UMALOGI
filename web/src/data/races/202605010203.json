@@ -12,7 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "ジュワネング",
+      "horse_id": "2023107196",
+      "sex_age": "牝1",
+      "weight_carried": 55.0,
+      "jockey": "岩田康誠",
+      "trainer": "栗田徹",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
       "gate_number": 1,
       "horse_number": 2,
       "horse_name": "グラスハーティー",
@@ -32,7 +52,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 5,
       "horse_number": 9,
       "horse_name": "ルージュリリック",
@@ -41,26 +61,6 @@
       "weight_carried": 55.0,
       "jockey": "荻野極",
       "trainer": "上原佑紀",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 11,
-      "horse_name": "ジュワネング",
-      "horse_id": "2023107196",
-      "sex_age": "牝1",
-      "weight_carried": 55.0,
-      "jockey": "岩田康誠",
-      "trainer": "栗田徹",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "11",
       "payout": 280,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 4,
       "horse_number": 4,
       "horse_name": "アロマフェリス",
@@ -32,27 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "ウィンターガーデン",
-      "horse_id": "2021105857",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "丹内祐次",
-      "trainer": "武幸四郎",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "リアルインパクト",
-      "dam": "リッチダンサーRich Dancer(英)",
-      "dam_sire": "Halling"
-    },
-    {
-      "rank": null,
+      "rank": 2,
       "gate_number": 8,
       "horse_number": 11,
       "horse_name": "バシリス",
@@ -70,6 +50,26 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "ウィンターガーデン",
+      "horse_id": "2021105857",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "丹内祐次",
+      "trainer": "武幸四郎",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "リアルインパクト",
+      "dam": "リッチダンサーRich Dancer(英)",
+      "dam_sire": "Halling"
     },
     {
       "rank": null,
@@ -238,12 +238,6 @@
       "combination": "4",
       "payout": 210,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "11",
-      "payout": 11000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

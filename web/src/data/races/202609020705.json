@@ -4,11 +4,11 @@
   "date": "2026-04-18",
   "venue": "阪神",
   "race_number": 5,
-  "distance": 2000,
-  "surface": "芝",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -16,26 +16,6 @@
       "gate_number": 3,
       "horse_number": 3,
       "horse_name": "イベントホライゾン",
-      "horse_id": "2023107287",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "松山弘平",
-      "trainer": "池江泰寿",
-      "finish_time": "2:00.0",
-      "margin": "@",
-      "win_odds": 1.9,
-      "popularity": 1,
-      "horse_weight": 486,
-      "horse_weight_diff": -4,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": 1,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "??????????????????00110303201071????",
       "horse_id": "2023107287",
       "sex_age": "牡3",
       "weight_carried": 57.0,
@@ -62,7 +42,7 @@
       "jockey": "団野大成",
       "trainer": "杉山晴紀",
       "finish_time": "2:00.1",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 6.7,
       "popularity": 4,
       "horse_weight": 484,
@@ -82,7 +62,7 @@
       "jockey": "幸英明",
       "trainer": "宮本博",
       "finish_time": "2:00.2",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 2.8,
       "popularity": 2,
       "horse_weight": 472,
@@ -102,7 +82,7 @@
       "jockey": "高杉吏麒",
       "trainer": "荒川義之",
       "finish_time": "2:00.5",
-      "margin": "1.3/4",
+      "margin": "@",
       "win_odds": 4.5,
       "popularity": 3,
       "horse_weight": 452,
@@ -122,7 +102,7 @@
       "jockey": "古川吉洋",
       "trainer": "大根田裕",
       "finish_time": "2:02.3",
-      "margin": "大",
+      "margin": "@",
       "win_odds": 98.2,
       "popularity": 5,
       "horse_weight": 454,
@@ -228,16 +208,40 @@
       "popularity": 5
     },
     {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 20040,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "3→4",
       "payout": 820,
       "popularity": 4
     },
     {
+      "bet_type": "馬単",
+      "combination": "3",
+      "payout": 4000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "3-4-6",
       "payout": 300,
       "popularity": 2
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-10",
+      "payout": 104,
+      "popularity": 60
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1",
+      "payout": 80005,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

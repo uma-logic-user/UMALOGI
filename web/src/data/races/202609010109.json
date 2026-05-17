@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 4,
-      "horse_name": "テーオーシュタイン",
-      "horse_id": "2022104879",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "田口貫太",
-      "trainer": "梅田智之",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 7,
       "horse_number": 13,
       "horse_name": "レッドフェルメール",
@@ -52,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 7,
       "horse_number": 15,
       "horse_name": "ロケベンドラ",
@@ -61,6 +41,26 @@
       "weight_carried": 56.0,
       "jockey": "松山弘平",
       "trainer": "西園翔太",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 4,
+      "horse_name": "テーオーシュタイン",
+      "horse_id": "2022104879",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "田口貫太",
+      "trainer": "梅田智之",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -378,12 +378,6 @@
       "combination": "13",
       "payout": 280,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "18",
-      "payout": 18000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

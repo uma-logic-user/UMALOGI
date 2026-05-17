@@ -4,11 +4,11 @@
   "date": "2026-04-12",
   "venue": "福島",
   "race_number": 9,
-  "distance": 2600,
-  "surface": "芝",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -42,7 +42,7 @@
       "jockey": "川又賢治",
       "trainer": "吉村圭司",
       "finish_time": "2:40.2",
-      "margin": "1.1/4",
+      "margin": "@",
       "win_odds": 6.4,
       "popularity": 5,
       "horse_weight": 444,
@@ -62,7 +62,7 @@
       "jockey": "斎藤新",
       "trainer": "杉山佳明",
       "finish_time": "2:40.3",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 5.0,
       "popularity": 3,
       "horse_weight": 470,
@@ -82,7 +82,7 @@
       "jockey": "吉田隼人",
       "trainer": "安達昭夫",
       "finish_time": "2:40.3",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 4.9,
       "popularity": 2,
       "horse_weight": 470,
@@ -102,7 +102,7 @@
       "jockey": "石川裕紀",
       "trainer": "尾形和幸",
       "finish_time": "2:40.4",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 3.8,
       "popularity": 1,
       "horse_weight": 422,
@@ -122,7 +122,7 @@
       "jockey": "武藤雅",
       "trainer": "戸田博文",
       "finish_time": "2:40.4",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 6.3,
       "popularity": 4,
       "horse_weight": 440,
@@ -142,7 +142,7 @@
       "jockey": "菊沢一樹",
       "trainer": "萱野浩二",
       "finish_time": "2:41.4",
-      "margin": "6",
+      "margin": "@",
       "win_odds": 21.4,
       "popularity": 8,
       "horse_weight": 442,
@@ -162,7 +162,7 @@
       "jockey": "中井裕二",
       "trainer": "坂口智康",
       "finish_time": "2:41.5",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 95.6,
       "popularity": 13,
       "horse_weight": 476,
@@ -182,7 +182,7 @@
       "jockey": "丸山元気",
       "trainer": "金成貴史",
       "finish_time": "2:42.2",
-      "margin": "4",
+      "margin": "@",
       "win_odds": 19.7,
       "popularity": 7,
       "horse_weight": 450,
@@ -202,7 +202,7 @@
       "jockey": "小沢大仁",
       "trainer": "松山将樹",
       "finish_time": "2:43.8",
-      "margin": "10",
+      "margin": "@",
       "win_odds": 80.9,
       "popularity": 11,
       "horse_weight": 500,
@@ -222,7 +222,7 @@
       "jockey": "松若風馬",
       "trainer": "森田直行",
       "finish_time": "2:44.6",
-      "margin": "5",
+      "margin": "@",
       "win_odds": 25.3,
       "popularity": 9,
       "horse_weight": 418,
@@ -242,7 +242,7 @@
       "jockey": "鷲頭虎太",
       "trainer": "竹内正洋",
       "finish_time": "2:45.0",
-      "margin": "2",
+      "margin": "@",
       "win_odds": 90.6,
       "popularity": 12,
       "horse_weight": 428,
@@ -262,7 +262,7 @@
       "jockey": "和田陽希",
       "trainer": "藤原英昭",
       "finish_time": "2:46.5",
-      "margin": "9",
+      "margin": "@",
       "win_odds": 43.3,
       "popularity": 10,
       "horse_weight": 394,
@@ -310,10 +310,28 @@
       "popularity": 12
     },
     {
+      "bet_type": "枠連",
+      "combination": "1",
+      "payout": 19006,
+      "popularity": null
+    },
+    {
       "bet_type": "馬連",
       "combination": "4-9",
       "payout": 2880,
       "popularity": 12
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "3",
+      "payout": 6040,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4",
+      "payout": 60000,
+      "popularity": 2
     },
     {
       "bet_type": "ワイド",
@@ -340,10 +358,34 @@
       "popularity": 24
     },
     {
+      "bet_type": "馬単",
+      "combination": "4",
+      "payout": 9000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "4-9-12",
       "payout": 4420,
       "popularity": 12
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "13",
+      "payout": 1404,
+      "popularity": 120
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "9-1",
+      "payout": 10912,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5",
+      "payout": 50006,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -393,7 +435,8 @@
         "13": "ヘルツアス",
         "3": "サラニキケン",
         "10": "スタードメイソン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2125,
@@ -435,7 +478,8 @@
         "13": "ヘルツアス",
         "3": "サラニキケン",
         "10": "スタードメイソン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2209,
@@ -477,7 +521,8 @@
         "13": "ヘルツアス",
         "3": "サラニキケン",
         "10": "スタードメイソン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2366,
@@ -519,7 +564,8 @@
         "13": "ヘルツアス",
         "3": "サラニキケン",
         "10": "スタードメイソン"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 2367,
@@ -575,7 +621,8 @@
         "13": "ヘルツアス",
         "3": "サラニキケン",
         "10": "スタードメイソン"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 2368,
@@ -617,7 +664,8 @@
         "13": "ヘルツアス",
         "3": "サラニキケン",
         "10": "スタードメイソン"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 2369,
@@ -659,7 +707,8 @@
         "13": "ヘルツアス",
         "3": "サラニキケン",
         "10": "スタードメイソン"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 2370,
@@ -708,7 +757,8 @@
         "13": "ヘルツアス",
         "3": "サラニキケン",
         "10": "スタードメイソン"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 2371,
@@ -750,77 +800,8 @@
         "13": "ヘルツアス",
         "3": "サラニキケン",
         "10": "スタードメイソン"
-      }
-    },
-    {
-      "prediction_id": 2372,
-      "model_type": "本命(直前)",
-      "bet_type": "三連単",
-      "confidence": 0.09811777575229508,
-      "expected_value": 104.86337283526537,
-      "recommended_bet": 600.0,
-      "combination_json": "[[11, 8, 4], [11, 4, 8], [8, 11, 4], [8, 4, 11], [4, 11, 8], [4, 8, 11]]",
-      "notes": "上位3頭 6点ボックス Harville=0.123",
-      "created_at": "2026-04-12 13:40:22",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -600.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "ニホンピロゴルディ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.12264721969036885,
-          "ev_score": 104.86337283526537
-        },
-        {
-          "horse_name": "シェアホルダーズ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.12264721969036885,
-          "ev_score": 104.86337283526537
-        },
-        {
-          "horse_name": "テイクザクラウン",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.12264721969036885,
-          "ev_score": 104.86337283526537
-        },
-        {
-          "horse_name": "本命",
-          "horse_id": null,
-          "predicted_rank": 4,
-          "model_score": 0.12264721969036885,
-          "ev_score": 104.86337283526537
-        },
-        {
-          "horse_name": "本命",
-          "horse_id": null,
-          "predicted_rank": 5,
-          "model_score": 0.12264721969036885,
-          "ev_score": 104.86337283526537
-        }
-      ],
-      "bet_form": "3頭ボックス",
-      "n_tickets": 6,
-      "invested": 600,
-      "horse_num_to_name": {
-        "9": "ビップチェイス",
-        "4": "テイクザクラウン",
-        "12": "ローレルオーブ",
-        "11": "ニホンピロゴルディ",
-        "6": "ゲンジ",
-        "1": "ペネトレイトゴー",
-        "5": "テイキットイージー",
-        "2": "ダノンアンチュラス",
-        "7": "イフルジャンス",
-        "8": "シェアホルダーズ",
-        "13": "ヘルツアス",
-        "3": "サラニキケン",
-        "10": "スタードメイソン"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 2373,
@@ -946,7 +927,8 @@
         "13": "ヘルツアス",
         "3": "サラニキケン",
         "10": "スタードメイソン"
-      }
+      },
+      "is_provisional": false
     }
   ],
   "training_evals": {}

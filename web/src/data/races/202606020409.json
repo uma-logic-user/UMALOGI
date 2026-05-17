@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "マイユニバース",
@@ -32,15 +32,15 @@
       "dam_sire": "ネオユニヴァース"
     },
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 11,
-      "horse_name": "バレンタインガール",
-      "horse_id": "2021102577",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "戸崎圭太",
-      "trainer": "古賀慎明",
+      "rank": 2,
+      "gate_number": 8,
+      "horse_number": 16,
+      "horse_name": "トリプルコーク",
+      "horse_id": "2022104925",
+      "sex_age": "牡5",
+      "weight_carried": 57.0,
+      "jockey": "ルメール",
+      "trainer": "黒岩陽一",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 16,
-      "horse_name": "トリプルコーク",
-      "horse_id": "2022104925",
-      "sex_age": "牡5",
-      "weight_carried": 57.0,
-      "jockey": "ルメール",
-      "trainer": "黒岩陽一",
+      "rank": 3,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "バレンタインガール",
+      "horse_id": "2021102577",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "戸崎圭太",
+      "trainer": "古賀慎明",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "1",
       "payout": 220,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

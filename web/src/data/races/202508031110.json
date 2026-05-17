@@ -12,27 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "ギャンブルルーム",
-      "horse_id": "2021105559",
-      "sex_age": "牡5",
-      "weight_carried": 55.0,
-      "jockey": "和田竜二",
-      "trainer": "大久保龍",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "キズナ",
-      "dam": "シャンデリアハウス",
-      "dam_sire": "ヴァーミリアン"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "ヴォランテ",
@@ -50,6 +30,46 @@
       "sire": "サトノクラウン",
       "dam": "ローザディアマント",
       "dam_sire": "スペシャルウィーク"
+    },
+    {
+      "rank": 2,
+      "gate_number": 8,
+      "horse_number": 13,
+      "horse_name": "アクアヴァーナル",
+      "horse_id": "2021105433",
+      "sex_age": "牝7",
+      "weight_carried": 54.0,
+      "jockey": "北村友一",
+      "trainer": "四位洋文",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "エピファネイア",
+      "dam": "エイプリルミスト",
+      "dam_sire": "ディープインパクト"
+    },
+    {
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "ギャンブルルーム",
+      "horse_id": "2021105559",
+      "sex_age": "牡5",
+      "weight_carried": 55.0,
+      "jockey": "和田竜二",
+      "trainer": "大久保龍",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "キズナ",
+      "dam": "シャンデリアハウス",
+      "dam_sire": "ヴァーミリアン"
     },
     {
       "rank": null,
@@ -250,26 +270,6 @@
       "sire": "サトノダイヤモンド",
       "dam": "オーサムフェザーAwesome Feather(米)",
       "dam_sire": "Awesome of Course"
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 13,
-      "horse_name": "アクアヴァーナル",
-      "horse_id": "2021105433",
-      "sex_age": "牝7",
-      "weight_carried": 54.0,
-      "jockey": "北村友一",
-      "trainer": "四位洋文",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "エピファネイア",
-      "dam": "エイプリルミスト",
-      "dam_sire": "ディープインパクト"
     }
   ],
   "payouts": [
@@ -278,12 +278,6 @@
       "combination": "2",
       "payout": 940,
       "popularity": 6
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "13",
-      "payout": 13000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

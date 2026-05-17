@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 4,
-      "horse_name": "ジャンヌローサ",
-      "horse_id": "2021103488",
-      "sex_age": "牝4",
-      "weight_carried": 56.0,
-      "jockey": "丹内祐次",
-      "trainer": "井上智史",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "イスラボニータ",
-      "dam": "オルレアンローズ",
-      "dam_sire": "ベーカバドBehkabad(仏)"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 5,
       "horse_number": 9,
       "horse_name": "ベルビースタローン",
@@ -52,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 7,
       "horse_number": 15,
       "horse_name": "ダノンゴーイチ",
@@ -67,9 +47,29 @@
       "popularity": null,
       "horse_weight": null,
       "horse_weight_diff": null,
-      "sire": "„¤„¹„é„Ü„Ė”¼„æ",
-      "dam": "„ģ„Ė”¼„ŗ„“„Ć„Č„ø„Ć„×Reneesgotzip(ŹĘ)",
+      "sire": "､ｹ鰤ｼ�",
+      "dam": null,
       "dam_sire": "City Zip(ŹĘ)"
+    },
+    {
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 4,
+      "horse_name": "ジャンヌローサ",
+      "horse_id": "2021103488",
+      "sex_age": "牝4",
+      "weight_carried": 56.0,
+      "jockey": "丹内祐次",
+      "trainer": "井上智史",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "イスラボニータ",
+      "dam": "オルレアンローズ",
+      "dam_sire": "ベーカバドBehkabad(仏)"
     },
     {
       "rank": null,
@@ -378,12 +378,6 @@
       "combination": "9",
       "payout": 360,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "18",
-      "payout": 18000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

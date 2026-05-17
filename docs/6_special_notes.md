@@ -4,6 +4,14 @@
 
 | 日付 | 変更内容 |
 |------|---------|
+| 2026-05-18 | 【5/17 各場12R データ緊急回収完了】昨夜未確定だった新潟12R(202604010612)/東京12R(202605020812)/京都12R(202608030812)の3レース（rank=0・払戻0件）をnetkeiba直接取得で補完。①rank更新: fetch_race_results()で11+16+13=40頭のrank/finish_time/win_odds/popularity/horse_weightを UPDATE。②払戻取得: fetch_race_payouts()で各レース12件×3=36件を INSERT。③infer_ranks_from_payouts実行: 97レース処理・rank1=96/rank2=71/rank3=71確定。④Evaluator.evaluate_race()で3レース評価→prediction_results 99件保存（新潟3的中¥1380/東京5的中¥1860/京都0的中）。5/17全体: 1176件評価/253件的中。generate_data.py でJSON再生成完了。影響: data/umalogi.db(race_results/race_payouts/prediction_results更新) |
+| 2026-05-17 | 【U score パイプラインBugFix 2件 + JVLinkAgent 自動起動登録完了】①`src/ml/features.py` の `build_race_features_for_simulate()` / `build_race_features()` で DataFrame 生成後に `race_id` 列が追加されていなかったため、UScoreEngine が `KeyError: 'race_id'` で静かにスキップされ 0列生成になっていたバグを修正（各関数の `df = pd.DataFrame(records)` 直後に `df["race_id"] = race_id` を追加）。②`src/ml/u_score.py` の `_days_since_last_race_batch()` で horse_ids 用の `ph`（14プレースホルダー等）を race_ids クエリに流用し「Incorrect number of bindings」エラーが発生していたバグを修正（`ph_race` を `df["race_id"].unique()` から別途算出）。③TARGET frontier JV が未インストールのため JVLinkAgent.exe（C:\Program Files (x86)\JRA-VAN\Data Lab）をフォールバックとして登録。スタートアップショートカット作成成功・JVInit=0 確認。scheduler.py ウォッチドッグを JVLinkAgent.exe も認識するよう更新。影響: src/ml/features.py, src/ml/u_score.py, scripts/setup_target_autostart.py, scripts/scheduler.py |
+| 2026-05-17 | 【U score Phase 1 実装完了 + TARGET JV 完全自動化】U score 18因子エンジン（src/ml/u_score.py）新規実装。A:能力指数×40%/B:人的要素×30%/C:コース適性×20%/D:調教指数×7%/E:血統適性×3%の加重合成スコアをALPHA/本命モデルのFEATURE_COLSに追加。features.py の両 build メソッドに自動統合（エラー時は元 df を返す安全設計）。TARGET JV 完全自動化: setup_target_autostart.py（exe自動探索/タスクスケジューラ登録/スタートアップショートカット/JVLink疎通確認を1コマンドで完結）を新規作成。scheduler.py に TARGET JV ウォッチドッグスレッド（60秒間隔/金土日6-22時/最大5回/日・Discord通知）を追加。影響: src/ml/u_score.py(新規), src/ml/features.py, src/ml/models.py(FEATURE_COLS+26列), scripts/setup_target_autostart.py(新規), scripts/scheduler.py |
+| 2026-05-17 | 【TARGET frontier JV 依存関係ドキュメント化】JVLink の安定稼働は TARGET frontier JV の常時起動・ログイン状態が絶対前提であることを docs/6_special_notes.md §1-5 に明文化。JVInit=-4 は TARGET JV 未起動のサイン。Windows タスクスケジューラで「ログオン時自動起動」を設定しないと 365 日無人稼働は成立しない。また今回の CRITICAL 脆弱性3件（init_db.py busy_timeout/wal_autocheckpoint 追加・today_auto_runner.py Future メモリリーク修正・連続エラー上限 10 回カウンター実装）を同時対処。影響: src/database/init_db.py, scripts/today_auto_runner.py, docs/6_special_notes.md |
+| 2026-05-17 | 【全期間データ完全復元・予実結合・UI確認完了】4/1〜5/17の全480レースを対象に全データ品質を修復。①infer_ranks_from_payouts.py: rank=2未設定97レースに払戻逆算で1〜3着を補完（rank有75%→4393/5831頭）。②evaluator.evaluate_race()で未結合14レースのprediction_resultsを新規作成。③reevaluate_predictions.py: 361レース・7867予想を全期間再評価・ROI正規化（エラー0件）。④generate_data.py: JSON全更新（races.json 18,624件・predictions.json 9,008件）。最終DB確認: 予想9,008件・結果付8,909件(99%)・的中1,068件・払戻合計¥4,110,542・全期間ROI 461.4%。/api/hits API返却=1,068件（DBと完全一致・文字化け0件）。残99件は5/17各場12R（払戻未確定・翌日自動補完）。影響: scripts/infer_ranks_from_payouts.py, scripts/reevaluate_predictions.py, src/ops/data_sync.py(RuntimeError catch追加), web/src/data/* |
+| 2026-05-17 | 【着順・払戻同期完了 + RuntimeError→Stage2フォールバックBugFix】2026-05-17 全36レース着順・払戻をJVLink OPT_STOREDで同期。文字化け0件。ヴィクトリアマイル(202605020811)1着エンブロイダリー(12番)・払戻全券種取得確認。rank完全取得13R/1-5着のみ20R/未取得3R(各場12R=最終レース・データ未確定・安全スキップ)。本日prediction_results: 1033件中237件的中・払戻合計¥627,530。合わせて `sync_race_results()` のStage1 OPT_NORMAL で RuntimeError(-503等)が発生した際にStage2 OPT_STOREDへフォールバックできていなかったバグを修正（try/except RuntimeError追加）。影響: src/ops/data_sync.py |
+| 2026-05-17 | 【JVLink完全開通・JVLINK_DISABLED解除】JVInit=0/JVOpen=(0,29,0,...)でJVLink認証済みを確認。過去のホットフィックス JVLINK_DISABLED=1 を .env から削除。scheduler.py の全JVLinkジョブが自動復活。影響: .env |
+| 2026-05-17 | 【JVLinkアーキテクチャ刷新 + setup_jvlink.py v2】GUIダイアログブロック根本解決: ①jravan_client.py `_connect()` でJVSetUI失敗時をsilent→warningに変更、JVInit成功後に `JVLINK_READY` をstdoutへ出力。②scheduler.py に `_run_jvlink()` 追加（CREATE_NO_WINDOWフラグ+スレッドreader+10秒JVLINK_READYタイムアウト→kill→-2返却）。③job_friday_sync/job_post_race/job_morning_wood/job_monday_mastersを_run_jvlinkに切替、-2受信時にNetkeiba自動フォールバック。④`_netkeiba_fallback_entries()` / `_netkeiba_fallback_results()` ヘルパー追加。⑤`scripts/setup_jvlink.py` v2再構築（管理者権限UAC自動昇格・HKCU/HKLM/WOW6432Node全9パスレジストリ検索・JVSetUI呼び出し削除・Enter待ちダイアログ完了確認・JVOpen動作確認・失敗時は必ずexit(1)の厳格判定）。⑥refetch_entries_from_netkeiba.py に `--date YYYYMMDD` 引数追加。影響: src/scraper/jravan_client.py, scripts/scheduler.py, scripts/setup_jvlink.py(再構築), scripts/refetch_entries_from_netkeiba.py |
 | 2026-05-17 | 【JVLink完全バイパスHotFix】JVLink「セットアップダイアログ」が毎レースのpostrace時に表示されブロッキングしていた根本原因を特定・即時修正。JVLINK_DISABLED=1を.envに追記し、fetch_race_result.py/_run_jvlink_race_sync()・today_auto_runner.py/_run_jvlink_sync()・scraping.py/friday_batch()の3箇所にJVLINK_DISABLEDガードを追加。JVLink呼び出しを即スキップしてnetkeiba直行。修正後、全postrace[OK]・prerace[OK]が連続発火することを確認。ヴィクトリアマイル14:40発火スケジュール登録済み。影響: scripts/fetch_race_result.py, scripts/today_auto_runner.py, src/pipeline/scraping.py, .env |
 | 2026-05-17 | 【PID死活監視を psutil 完全改修】auto_runner.pid の重複起動防止ロジックが wmic ベースで脆弱だったため3点根治。①_is_umalogi_process(): psutil で PID 生存＋Python プロセス名＋スクリプト名の3重検証に変更。②ゾンビ PID（死亡プロセス or PID 再利用別プロセス）を自動検知・PIDファイル自動削除・自己修復起動。③atexit + SIGTERM シグナルハンドラーで異常終了時もPIDファイル確実削除。テスト: フェイクPID99999→ゾンビ検出・削除・正常起動確認。正規PID登録後の重複起動→[ABORT]ブロック確認（3テスト全証明済み）。影響: scripts/today_auto_runner.py |
 | 2026-05-17 | 【本日データ緊急復旧】auto_runner.pid 残存ゾンビPID(33700)により金曜夜間バッチが沈黙。force_provisional_today.py で全36レース暫定予想を手動生成(393件)→Discord 5分割送信→Next.js クリーンビルド再起動→today_auto_runner.py 起動で監視ループ復旧。根本原因: wmic 旧ロジックが空文字返却時に生存判定してしまう脆弱性（本変更で完全解消）。 |
@@ -53,7 +61,67 @@ subprocess.run(
 
 複数プロセス（scheduler + auto_runner + self_healing_monitor）が同時に DB へ書き込む。  
 WAL モード (`PRAGMA journal_mode=WAL`) で並行書き込みを許容している。  
-ただし `EXCLUSIVE` ロック待ちでタイムアウトする場合がある (30秒デフォルト)。
+`PRAGMA busy_timeout = 5000` を設定済みのため、ロック競合時は最大 5 秒待機してリトライする（2026-05-17 対応済み）。
+
+---
+
+### 1-5. TARGET frontier JV 常時起動必須（JVLink 365日無人稼働の前提条件）
+
+> **⚠️ 免責事項: JVLink は TARGET frontier JV が常時起動・ログイン状態でない限り正常動作しない。**
+
+#### 現象
+`JVInit()` が **-4** を返す場合、TARGET frontier JV が未起動か未ログイン状態である。  
+この状態では JVLink データ取得が一切できず、`scheduler.py` の全 JVLink ジョブが失敗する。
+
+#### 必須設定: Windows タスクスケジューラによる自動起動
+
+365日無人稼働を成立させるには、TARGET frontier JV を **ログオン時に自動起動** するよう設定すること。
+
+```
+設定手順:
+1. タスクスケジューラ (taskschd.msc) を開く
+2. 「タスクの作成」
+   - トリガー: 「ログオン時」→ 「特定のユーザー」(sayaka)
+   - 操作: TARGET frontier JV の実行ファイルパスを指定
+     (例: C:\Program Files\TARGET\TargetFrontierJV\TargetFrontierJV.exe)
+   - 全般: 「ユーザーがログオンしているときのみ実行する」
+   - 「最上位の特権で実行する」は不要
+3. 保存後、手動実行でテスト
+```
+
+#### 復旧手順（JVInit=-4 発生時）
+
+```bash
+# Step 1: TARGET frontier JV を手動起動してログイン
+# Step 2: JVLink 疎通確認
+py -c "
+import win32com.client
+jv = win32com.client.Dispatch('JVDTLab.JVLink.1')
+ret = jv.JVInit('UNKNOWN')
+print('JVInit=', ret)  # 0 なら OK、-4 なら TARGET JV 未起動
+"
+# Step 3: scheduler.py / today_auto_runner.py を再起動
+py scripts/today_auto_runner.py --continuous
+```
+
+#### scheduler.py フォールバック動作
+
+- JVLink ジョブが `-2` (JVLINK_DISABLED 扱い) を返した場合、`scheduler.py` は自動的に netkeiba フォールバックへ切り替える
+- ただし netkeiba は払戻・調教タイムの一部フィールドが欠損するため、回収率算出精度が低下する
+- 翌日 TARGET JV が復旧した際に差分データを JVLink 経由で補完すること
+
+#### 依存関係まとめ
+
+```
+Windows ログオン
+  └── タスクスケジューラ → TARGET frontier JV 自動起動
+        └── JVInit() = 0 (認証OK)
+              └── scheduler.py / today_auto_runner.py
+                    └── JVLink RACE/ODDS/WOOD データ取得
+                          └── 予想生成・的中評価・Discord通知
+```
+
+**TARGET JV が落ちると上記のすべてが停止する。** 停止を検知した場合は `DISCORD_SYSTEM_WEBHOOK_URL` へ自動アラートが送信される（scheduler.py の `-2` ハンドラ経由）。
 
 ---
 

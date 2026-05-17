@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "ユイノサダハル",
-      "horse_id": "2023101841",
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 14,
+      "horse_name": "ジェネラスキング",
+      "horse_id": "2023103806",
       "sex_age": "牡4",
       "weight_carried": 57.0,
-      "jockey": "江田照男",
-      "trainer": "古賀慎明",
+      "jockey": "横山武史",
+      "trainer": "久保田貴",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 3,
       "horse_number": 5,
       "horse_name": "エタンセル",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 14,
-      "horse_name": "ジェネラスキング",
-      "horse_id": "2023103806",
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "ユイノサダハル",
+      "horse_id": "2023101841",
       "sex_age": "牡4",
       "weight_carried": 57.0,
-      "jockey": "横山武史",
-      "trainer": "久保田貴",
+      "jockey": "江田照男",
+      "trainer": "古賀慎明",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -318,12 +318,6 @@
       "combination": "14",
       "payout": 190,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "15",
-      "payout": 15000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

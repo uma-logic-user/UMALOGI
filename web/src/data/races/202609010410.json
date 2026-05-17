@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "ベルウェザー",
@@ -32,27 +32,7 @@
       "dam_sire": "ディープインパクト"
     },
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 9,
-      "horse_name": "ダブルジョーク",
-      "horse_id": "2020110026",
-      "sex_age": "牡1",
-      "weight_carried": 58.0,
-      "jockey": "池添謙一",
-      "trainer": "小林真也",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "Practical Joke(米)",
-      "dam": "Double Date",
-      "dam_sire": "Rahy"
-    },
-    {
-      "rank": null,
+      "rank": 2,
       "gate_number": 6,
       "horse_number": 10,
       "horse_name": "タガノマカシヤ",
@@ -70,6 +50,26 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 6,
+      "horse_number": 9,
+      "horse_name": "ダブルジョーク",
+      "horse_id": "2020110026",
+      "sex_age": "牡1",
+      "weight_carried": 58.0,
+      "jockey": "池添謙一",
+      "trainer": "小林真也",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "Practical Joke(米)",
+      "dam": "Double Date",
+      "dam_sire": "Rahy"
     },
     {
       "rank": null,
@@ -298,12 +298,6 @@
       "combination": "2",
       "payout": 1350,
       "popularity": 6
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "14",
-      "payout": 14000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

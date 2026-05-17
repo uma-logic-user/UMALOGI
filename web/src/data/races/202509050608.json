@@ -12,7 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "デルアヴァー",
@@ -30,6 +30,46 @@
       "sire": "Frankel",
       "dam": "アムールブリエ",
       "dam_sire": "Smart Strike(加)"
+    },
+    {
+      "rank": 2,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "ビービーバザーク",
+      "horse_id": "2022102397",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "太宰啓介",
+      "trainer": "武幸四郎",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 5,
+      "horse_number": 8,
+      "horse_name": "オセアバトルプラン",
+      "horse_id": "2020100060",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "古川吉洋",
+      "trainer": "菊川正達",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "バトルプランBattle Plan(米)",
+      "dam": "プレミアステイタス",
+      "dam_sire": "タニノギムレット"
     },
     {
       "rank": null,
@@ -93,26 +133,6 @@
     },
     {
       "rank": null,
-      "gate_number": 3,
-      "horse_number": 5,
-      "horse_name": "ビービーバザーク",
-      "horse_id": "2022102397",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "太宰啓介",
-      "trainer": "武幸四郎",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
       "gate_number": 4,
       "horse_number": 6,
       "horse_name": "ゼロスネーク",
@@ -150,26 +170,6 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 8,
-      "horse_name": "オセアバトルプラン",
-      "horse_id": "2020100060",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "古川吉洋",
-      "trainer": "菊川正達",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "バトルプランBattle Plan(米)",
-      "dam": "プレミアステイタス",
-      "dam_sire": "タニノギムレット"
     },
     {
       "rank": null,
@@ -318,12 +318,6 @@
       "combination": "1",
       "payout": 350,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "15",
-      "payout": 15000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

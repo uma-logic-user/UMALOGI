@@ -4,11 +4,11 @@
   "date": "2026-04-25",
   "venue": "福島",
   "race_number": 5,
-  "distance": 2000,
-  "surface": "芝",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -42,7 +42,7 @@
       "jockey": "遠藤汰月",
       "trainer": "深山雅史",
       "finish_time": "2:00.8",
-      "margin": "2.1/2",
+      "margin": "@",
       "win_odds": 6.9,
       "popularity": 3,
       "horse_weight": 442,
@@ -62,7 +62,7 @@
       "jockey": "武藤雅",
       "trainer": "勢司和浩",
       "finish_time": "2:01.0",
-      "margin": "1.1/2",
+      "margin": "@",
       "win_odds": 25.4,
       "popularity": 9,
       "horse_weight": 478,
@@ -82,7 +82,7 @@
       "jockey": "菊沢一樹",
       "trainer": "西田雄一",
       "finish_time": "2:01.1",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 16.1,
       "popularity": 6,
       "horse_weight": 480,
@@ -102,7 +102,7 @@
       "jockey": "松本大輝",
       "trainer": "羽月友彦",
       "finish_time": "2:01.2",
-      "margin": "1",
+      "margin": "@",
       "win_odds": 121.9,
       "popularity": 12,
       "horse_weight": 444,
@@ -122,7 +122,7 @@
       "jockey": "丸田恭介",
       "trainer": "小笠倫弘",
       "finish_time": "2:01.3",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 19.5,
       "popularity": 7,
       "horse_weight": 452,
@@ -142,7 +142,7 @@
       "jockey": "和田陽希",
       "trainer": "笹田和秀",
       "finish_time": "2:01.5",
-      "margin": "1.1/4",
+      "margin": "@",
       "win_odds": 209.7,
       "popularity": 15,
       "horse_weight": 426,
@@ -162,7 +162,7 @@
       "jockey": "舟山瑠泉",
       "trainer": "菊川正達",
       "finish_time": "2:01.6",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 15.4,
       "popularity": 5,
       "horse_weight": 436,
@@ -182,7 +182,7 @@
       "jockey": "横山琉人",
       "trainer": "小島茂之",
       "finish_time": "2:01.6",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 23.9,
       "popularity": 8,
       "horse_weight": 482,
@@ -202,7 +202,7 @@
       "jockey": "石田拓郎",
       "trainer": "伊藤大士",
       "finish_time": "2:01.7",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 79.3,
       "popularity": 11,
       "horse_weight": 464,
@@ -222,7 +222,7 @@
       "jockey": "河原田菜",
       "trainer": "天間昭一",
       "finish_time": "2:01.8",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 234.4,
       "popularity": 16,
       "horse_weight": 456,
@@ -242,7 +242,7 @@
       "jockey": "上里直汰",
       "trainer": "伊坂重信",
       "finish_time": "2:01.9",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 122.1,
       "popularity": 13,
       "horse_weight": 498,
@@ -262,7 +262,7 @@
       "jockey": "荻野極",
       "trainer": "浅利英明",
       "finish_time": "2:02.0",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 3.2,
       "popularity": 2,
       "horse_weight": 480,
@@ -282,7 +282,7 @@
       "jockey": "富田暁",
       "trainer": "清水久詞",
       "finish_time": "2:02.1",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 10.3,
       "popularity": 4,
       "horse_weight": 444,
@@ -302,7 +302,7 @@
       "jockey": "丹内祐次",
       "trainer": "金成貴史",
       "finish_time": "2:02.4",
-      "margin": "1.3/4",
+      "margin": "@",
       "win_odds": 160.3,
       "popularity": 14,
       "horse_weight": 552,
@@ -322,7 +322,7 @@
       "jockey": "長岡禎仁",
       "trainer": "高橋亮",
       "finish_time": "2:03.1",
-      "margin": "4",
+      "margin": "@",
       "win_odds": 50.9,
       "popularity": 10,
       "horse_weight": 486,
@@ -376,10 +376,22 @@
       "popularity": 2
     },
     {
+      "bet_type": "馬連",
+      "combination": "1",
+      "payout": 1110,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "8-11",
       "payout": 420,
       "popularity": 2
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 90030,
+      "popularity": 10
     },
     {
       "bet_type": "ワイド",
@@ -394,16 +406,46 @@
       "popularity": 18
     },
     {
+      "bet_type": "ワイド",
+      "combination": "4",
+      "payout": 60000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "8→11",
       "payout": 1550,
       "popularity": 3
     },
     {
+      "bet_type": "馬単",
+      "combination": "8",
+      "payout": 11000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-8-11",
       "payout": 5390,
       "popularity": 14
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "11",
+      "payout": 1201,
+      "popularity": 110
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4",
+      "payout": 20108,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "14",
+      "payout": 60018,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -456,7 +498,8 @@
         "15": "トレセデオロ",
         "3": "ルミノヴァンクール",
         "6": "イザショウブ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5814,
@@ -515,7 +558,8 @@
         "15": "トレセデオロ",
         "3": "ルミノヴァンクール",
         "6": "イザショウブ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5815,
@@ -567,7 +611,8 @@
         "15": "トレセデオロ",
         "3": "ルミノヴァンクール",
         "6": "イザショウブ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5816,
@@ -619,7 +664,8 @@
         "15": "トレセデオロ",
         "3": "ルミノヴァンクール",
         "6": "イザショウブ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5817,
@@ -685,7 +731,8 @@
         "15": "トレセデオロ",
         "3": "ルミノヴァンクール",
         "6": "イザショウブ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5818,
@@ -828,7 +875,8 @@
         "15": "トレセデオロ",
         "3": "ルミノヴァンクール",
         "6": "イザショウブ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5834,
@@ -873,7 +921,8 @@
         "15": "トレセデオロ",
         "3": "ルミノヴァンクール",
         "6": "イザショウブ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5835,
@@ -946,7 +995,8 @@
         "15": "トレセデオロ",
         "3": "ルミノヴァンクール",
         "6": "イザショウブ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5836,
@@ -998,7 +1048,8 @@
         "15": "トレセデオロ",
         "3": "ルミノヴァンクール",
         "6": "イザショウブ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5837,
@@ -1050,7 +1101,8 @@
         "15": "トレセデオロ",
         "3": "ルミノヴァンクール",
         "6": "イザショウブ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5838,
@@ -1102,7 +1154,8 @@
         "15": "トレセデオロ",
         "3": "ルミノヴァンクール",
         "6": "イザショウブ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5841,
@@ -1161,7 +1214,8 @@
         "15": "トレセデオロ",
         "3": "ルミノヴァンクール",
         "6": "イザショウブ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 5842,
@@ -1311,7 +1365,8 @@
         "15": "トレセデオロ",
         "3": "ルミノヴァンクール",
         "6": "イザショウブ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6616,
@@ -1356,7 +1411,8 @@
         "15": "トレセデオロ",
         "3": "ルミノヴァンクール",
         "6": "イザショウブ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6617,
@@ -1415,7 +1471,8 @@
         "15": "トレセデオロ",
         "3": "ルミノヴァンクール",
         "6": "イザショウブ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6618,
@@ -1467,7 +1524,8 @@
         "15": "トレセデオロ",
         "3": "ルミノヴァンクール",
         "6": "イザショウブ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6619,
@@ -1519,7 +1577,8 @@
         "15": "トレセデオロ",
         "3": "ルミノヴァンクール",
         "6": "イザショウブ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6620,
@@ -1585,7 +1644,8 @@
         "15": "トレセデオロ",
         "3": "ルミノヴァンクール",
         "6": "イザショウブ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6621,
@@ -1728,7 +1788,8 @@
         "15": "トレセデオロ",
         "3": "ルミノヴァンクール",
         "6": "イザショウブ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6637,
@@ -1773,7 +1834,8 @@
         "15": "トレセデオロ",
         "3": "ルミノヴァンクール",
         "6": "イザショウブ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6638,
@@ -1846,7 +1908,8 @@
         "15": "トレセデオロ",
         "3": "ルミノヴァンクール",
         "6": "イザショウブ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6639,
@@ -1898,7 +1961,8 @@
         "15": "トレセデオロ",
         "3": "ルミノヴァンクール",
         "6": "イザショウブ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6640,
@@ -1950,7 +2014,8 @@
         "15": "トレセデオロ",
         "3": "ルミノヴァンクール",
         "6": "イザショウブ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6641,
@@ -2002,7 +2067,8 @@
         "15": "トレセデオロ",
         "3": "ルミノヴァンクール",
         "6": "イザショウブ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6644,
@@ -2061,7 +2127,8 @@
         "15": "トレセデオロ",
         "3": "ルミノヴァンクール",
         "6": "イザショウブ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6645,
@@ -2211,7 +2278,8 @@
         "15": "トレセデオロ",
         "3": "ルミノヴァンクール",
         "6": "イザショウブ"
-      }
+      },
+      "is_provisional": false
     }
   ],
   "training_evals": {}

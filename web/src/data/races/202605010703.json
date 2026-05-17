@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "スティールヴォーグ",
-      "horse_id": "2023102958",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "田辺裕信",
-      "trainer": "田村康仁",
+      "rank": 1,
+      "gate_number": 4,
+      "horse_number": 8,
+      "horse_name": "エムノビアンカ",
+      "horse_id": "2023104757",
+      "sex_age": "牝1",
+      "weight_carried": 53.0,
+      "jockey": "長浜鴻緒",
+      "trainer": "古賀慎明",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 4,
       "horse_number": 7,
       "horse_name": "ナックスプレンダー",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 8,
-      "horse_name": "エムノビアンカ",
-      "horse_id": "2023104757",
-      "sex_age": "牝1",
-      "weight_carried": 53.0,
-      "jockey": "長浜鴻緒",
-      "trainer": "古賀慎明",
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "スティールヴォーグ",
+      "horse_id": "2023102958",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "田辺裕信",
+      "trainer": "田村康仁",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "8",
       "payout": 9440,
       "popularity": 12
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

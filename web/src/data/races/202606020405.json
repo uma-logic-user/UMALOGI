@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 2,
-      "horse_name": "ランウェイミューズ",
-      "horse_id": "2023107304",
+      "rank": 1,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "ラベルセーヌ",
+      "horse_id": "2023103818",
       "sex_age": "牝4",
       "weight_carried": 55.0,
-      "jockey": "戸崎圭太",
-      "trainer": "竹内正洋",
+      "jockey": "荻野極",
+      "trainer": "鹿戸雄一",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 2,
       "horse_number": 3,
       "horse_name": "トーセンブリラーレ",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 9,
-      "horse_name": "ラベルセーヌ",
-      "horse_id": "2023103818",
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 2,
+      "horse_name": "ランウェイミューズ",
+      "horse_id": "2023107304",
       "sex_age": "牝4",
       "weight_carried": 55.0,
-      "jockey": "荻野極",
-      "trainer": "鹿戸雄一",
+      "jockey": "戸崎圭太",
+      "trainer": "竹内正洋",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "9",
       "payout": 1990,
       "popularity": 8
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

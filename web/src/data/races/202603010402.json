@@ -4,11 +4,11 @@
   "date": "2026-04-19",
   "venue": "福島",
   "race_number": 2,
-  "distance": 1700,
-  "surface": "ダート",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -42,7 +42,7 @@
       "jockey": "横山典弘",
       "trainer": "大竹正博",
       "finish_time": "1:46.5",
-      "margin": "2.1/2",
+      "margin": "@",
       "win_odds": 2.3,
       "popularity": 1,
       "horse_weight": 486,
@@ -62,7 +62,7 @@
       "jockey": "石田拓郎",
       "trainer": "新開幸一",
       "finish_time": "1:47.4",
-      "margin": "5",
+      "margin": "@",
       "win_odds": 154.1,
       "popularity": 12,
       "horse_weight": 458,
@@ -82,7 +82,7 @@
       "jockey": "武藤雅",
       "trainer": "水野貴広",
       "finish_time": "1:48.0",
-      "margin": "3.1/2",
+      "margin": "@",
       "win_odds": 36.9,
       "popularity": 8,
       "horse_weight": 432,
@@ -102,7 +102,7 @@
       "jockey": "横山琉人",
       "trainer": "高橋義忠",
       "finish_time": "1:48.3",
-      "margin": "1.3/4",
+      "margin": "@",
       "win_odds": 11.8,
       "popularity": 4,
       "horse_weight": 464,
@@ -122,7 +122,7 @@
       "jockey": "菊沢一樹",
       "trainer": "菊沢隆徳",
       "finish_time": "1:48.4",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 22.0,
       "popularity": 7,
       "horse_weight": 460,
@@ -142,7 +142,7 @@
       "jockey": "舟山瑠泉",
       "trainer": "萩原清",
       "finish_time": "1:48.5",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 56.8,
       "popularity": 11,
       "horse_weight": 434,
@@ -162,7 +162,7 @@
       "jockey": "斎藤新",
       "trainer": "斎藤誠",
       "finish_time": "1:48.5",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 14.5,
       "popularity": 5,
       "horse_weight": 468,
@@ -182,7 +182,7 @@
       "jockey": "河原田菜",
       "trainer": "鈴木孝志",
       "finish_time": "1:48.6",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 50.6,
       "popularity": 10,
       "horse_weight": 428,
@@ -202,7 +202,7 @@
       "jockey": "田山旺佑",
       "trainer": "牧浦充徳",
       "finish_time": "1:48.9",
-      "margin": "1.3/4",
+      "margin": "@",
       "win_odds": 21.3,
       "popularity": 6,
       "horse_weight": 442,
@@ -222,7 +222,7 @@
       "jockey": "長浜鴻緒",
       "trainer": "佐藤吉勝",
       "finish_time": "1:49.8",
-      "margin": "5",
+      "margin": "@",
       "win_odds": 362.1,
       "popularity": 14,
       "horse_weight": 446,
@@ -242,7 +242,7 @@
       "jockey": "杉原誠人",
       "trainer": "田村康仁",
       "finish_time": "1:49.8",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 364.9,
       "popularity": 15,
       "horse_weight": 506,
@@ -262,7 +262,7 @@
       "jockey": "丹内祐次",
       "trainer": "武井亮",
       "finish_time": "1:50.0",
-      "margin": "1.1/4",
+      "margin": "@",
       "win_odds": 6.1,
       "popularity": 3,
       "horse_weight": 470,
@@ -282,7 +282,7 @@
       "jockey": "永島まな",
       "trainer": "平田修",
       "finish_time": "1:51.1",
-      "margin": "7",
+      "margin": "@",
       "win_odds": 39.3,
       "popularity": 9,
       "horse_weight": 442,
@@ -302,7 +302,7 @@
       "jockey": "江田照男",
       "trainer": "田中剛",
       "finish_time": "1:56.8",
-      "margin": "大",
+      "margin": "@",
       "win_odds": 181.3,
       "popularity": 13,
       "horse_weight": 476,
@@ -362,6 +362,12 @@
       "popularity": 1
     },
     {
+      "bet_type": "馬連",
+      "combination": "1",
+      "payout": 2090,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "9-13",
       "payout": 250,
@@ -380,16 +386,40 @@
       "popularity": 43
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 30010,
+      "popularity": 50
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "5",
+      "payout": 70000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "13→9",
       "payout": 1090,
       "popularity": 3
     },
     {
+      "bet_type": "馬単",
+      "combination": "9",
+      "payout": 13000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "5-9-13",
       "payout": 10810,
       "popularity": 35
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2",
+      "payout": 10513,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -441,7 +471,8 @@
         "15": "メジロピオラ",
         "6": "スズノボンライミー",
         "1": "ビッグノエルルーフ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3215,
@@ -499,7 +530,8 @@
         "15": "メジロピオラ",
         "6": "スズノボンライミー",
         "1": "ビッグノエルルーフ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3216,
@@ -543,7 +575,8 @@
         "15": "メジロピオラ",
         "6": "スズノボンライミー",
         "1": "ビッグノエルルーフ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3217,
@@ -587,7 +620,8 @@
         "15": "メジロピオラ",
         "6": "スズノボンライミー",
         "1": "ビッグノエルルーフ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3218,
@@ -638,7 +672,8 @@
         "15": "メジロピオラ",
         "6": "スズノボンライミー",
         "1": "ビッグノエルルーフ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3219,
@@ -682,7 +717,8 @@
         "15": "メジロピオラ",
         "6": "スズノボンライミー",
         "1": "ビッグノエルルーフ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3220,
@@ -754,7 +790,8 @@
         "15": "メジロピオラ",
         "6": "スズノボンライミー",
         "1": "ビッグノエルルーフ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3228,
@@ -798,7 +835,8 @@
         "15": "メジロピオラ",
         "6": "スズノボンライミー",
         "1": "ビッグノエルルーフ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3229,
@@ -870,7 +908,8 @@
         "15": "メジロピオラ",
         "6": "スズノボンライミー",
         "1": "ビッグノエルルーフ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3230,
@@ -914,7 +953,8 @@
         "15": "メジロピオラ",
         "6": "スズノボンライミー",
         "1": "ビッグノエルルーフ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3231,
@@ -958,7 +998,8 @@
         "15": "メジロピオラ",
         "6": "スズノボンライミー",
         "1": "ビッグノエルルーフ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3232,
@@ -1002,7 +1043,8 @@
         "15": "メジロピオラ",
         "6": "スズノボンライミー",
         "1": "ビッグノエルルーフ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3233,
@@ -1046,7 +1088,8 @@
         "15": "メジロピオラ",
         "6": "スズノボンライミー",
         "1": "ビッグノエルルーフ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3234,
@@ -1188,7 +1231,8 @@
         "15": "メジロピオラ",
         "6": "スズノボンライミー",
         "1": "ビッグノエルルーフ"
-      }
+      },
+      "is_provisional": false
     }
   ],
   "training_evals": {}

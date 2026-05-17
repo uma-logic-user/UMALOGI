@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 2,
       "horse_number": 4,
       "horse_name": "アルヴァンドルード",
@@ -32,15 +32,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 6,
-      "horse_name": "サトノアグード",
-      "horse_id": "2023105247",
+      "rank": 2,
+      "gate_number": 7,
+      "horse_number": 14,
+      "horse_name": "ベンティガオルサ",
+      "horse_id": "2023101582",
       "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "ルメール",
-      "trainer": "藤原英昭",
+      "jockey": "松若風馬",
+      "trainer": "清水久詞",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 14,
-      "horse_name": "ベンティガオルサ",
-      "horse_id": "2023101582",
+      "rank": 3,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "サトノアグード",
+      "horse_id": "2023105247",
       "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "松若風馬",
-      "trainer": "清水久詞",
+      "jockey": "ルメール",
+      "trainer": "藤原英昭",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "4",
       "payout": 210,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

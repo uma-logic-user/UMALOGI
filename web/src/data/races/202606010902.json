@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 5,
-      "horse_name": "エコロストーム",
-      "horse_id": "2023102405",
-      "sex_age": "牝4",
+      "rank": 1,
+      "gate_number": 7,
+      "horse_number": 12,
+      "horse_name": "プレイメイカー",
+      "horse_id": "2023101165",
+      "sex_age": "牝1",
       "weight_carried": 55.0,
-      "jockey": "菅原明良",
-      "trainer": "千葉直人",
+      "jockey": "横山武史",
+      "trainer": "栗田徹",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 4,
       "horse_number": 6,
       "horse_name": "キタノエピックアン",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 12,
-      "horse_name": "プレイメイカー",
-      "horse_id": "2023101165",
-      "sex_age": "牝1",
+      "rank": 3,
+      "gate_number": 4,
+      "horse_number": 5,
+      "horse_name": "エコロストーム",
+      "horse_id": "2023102405",
+      "sex_age": "牝4",
       "weight_carried": 55.0,
-      "jockey": "横山武史",
-      "trainer": "栗田徹",
+      "jockey": "菅原明良",
+      "trainer": "千葉直人",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -298,12 +298,6 @@
       "combination": "12",
       "payout": 120,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "14",
-      "payout": 14000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

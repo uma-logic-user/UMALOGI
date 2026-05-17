@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "メイショウカイト",
-      "horse_id": "2018103368",
-      "sex_age": "牝4",
-      "weight_carried": 56.0,
-      "jockey": "高杉吏麒",
-      "trainer": "荒川義之",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ラブリーデイ",
-      "dam": "デンコウデア",
-      "dam_sire": "スペシャルウィーク"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 7,
       "horse_number": 8,
       "horse_name": "エイムフォーエース",
@@ -52,7 +32,27 @@
       "dam_sire": "ジャングルポケット"
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "メイショウカイト",
+      "horse_id": "2018103368",
+      "sex_age": "牝4",
+      "weight_carried": 56.0,
+      "jockey": "高杉吏麒",
+      "trainer": "荒川義之",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ラブリーデイ",
+      "dam": "デンコウデア",
+      "dam_sire": "スペシャルウィーク"
+    },
+    {
+      "rank": 3,
       "gate_number": 8,
       "horse_number": 10,
       "horse_name": "リアライズ",
@@ -238,12 +238,6 @@
       "combination": "8",
       "payout": 590,
       "popularity": 4
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "11",
-      "payout": 11000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "トルークマクト",
-      "horse_id": "2023101088",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "吉田隼人",
-      "trainer": "福永祐一",
+      "rank": 1,
+      "gate_number": 6,
+      "horse_number": 12,
+      "horse_name": "デイトナチャンプ",
+      "horse_id": "2023107204",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "横山武史",
+      "trainer": "加藤征弘",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 5,
       "horse_number": 10,
       "horse_name": "ココナッツコースト",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 12,
-      "horse_name": "デイトナチャンプ",
-      "horse_id": "2023107204",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "横山武史",
-      "trainer": "加藤征弘",
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "トルークマクト",
+      "horse_id": "2023101088",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "吉田隼人",
+      "trainer": "福永祐一",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "12",
       "payout": 250,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

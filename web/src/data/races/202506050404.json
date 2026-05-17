@@ -12,27 +12,27 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "マテンロウノカゼ",
-      "horse_id": "2021107052",
-      "sex_age": "牡5",
+      "rank": 1,
+      "gate_number": 5,
+      "horse_number": 7,
+      "horse_name": "ゴールデンスロープ",
+      "horse_id": "2021102482",
+      "sex_age": "騸7",
       "weight_carried": 60.0,
-      "jockey": "森一馬",
-      "trainer": "昆貢",
+      "jockey": "大江原圭",
+      "trainer": "小笠倫弘",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
       "horse_weight_diff": null,
-      "sire": "ドゥラメンテ",
-      "dam": "ゼフィランサス",
-      "dam_sire": "キングヘイロー"
+      "sire": "ゴールドシップ",
+      "dam": "ブリュメール",
+      "dam_sire": "ティンバーカントリーTimber Country(米)"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "デザートスター",
@@ -50,6 +50,26 @@
       "sire": "サトノアラジン",
       "dam": "ファーマペニー",
       "dam_sire": "ジャングルポケット"
+    },
+    {
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "マテンロウノカゼ",
+      "horse_id": "2021107052",
+      "sex_age": "牡5",
+      "weight_carried": 60.0,
+      "jockey": "森一馬",
+      "trainer": "昆貢",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ドゥラメンテ",
+      "dam": "ゼフィランサス",
+      "dam_sire": "キングヘイロー"
     },
     {
       "rank": null,
@@ -130,26 +150,6 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 7,
-      "horse_name": "ゴールデンスロープ",
-      "horse_id": "2021102482",
-      "sex_age": "騸7",
-      "weight_carried": 60.0,
-      "jockey": "大江原圭",
-      "trainer": "小笠倫弘",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ゴールドシップ",
-      "dam": "ブリュメール",
-      "dam_sire": "ティンバーカントリーTimber Country(米)"
     },
     {
       "rank": null,
@@ -298,12 +298,6 @@
       "combination": "7",
       "payout": 190,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "14",
-      "payout": 14000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

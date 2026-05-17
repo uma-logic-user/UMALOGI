@@ -4,11 +4,11 @@
   "date": "2026-04-26",
   "venue": "東京",
   "race_number": 5,
-  "distance": 1800,
-  "surface": "芝",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -48,7 +48,7 @@
       "jockey": "レーン",
       "trainer": "堀宣行",
       "finish_time": "1:46.8",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 2.5,
       "popularity": 1,
       "horse_weight": 502,
@@ -74,7 +74,7 @@
       "jockey": "津村明秀",
       "trainer": "木村哲也",
       "finish_time": "1:47.1",
-      "margin": "1.3/4",
+      "margin": "@",
       "win_odds": 3.2,
       "popularity": 2,
       "horse_weight": 428,
@@ -100,7 +100,7 @@
       "jockey": "荻野極",
       "trainer": "鹿戸雄一",
       "finish_time": "1:47.1",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 6.0,
       "popularity": 3,
       "horse_weight": 486,
@@ -126,7 +126,7 @@
       "jockey": "横山武史",
       "trainer": "鈴木伸尋",
       "finish_time": "1:47.2",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 136.9,
       "popularity": 14,
       "horse_weight": 430,
@@ -152,7 +152,7 @@
       "jockey": "原優介",
       "trainer": "黒岩陽一",
       "finish_time": "1:47.2",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 74.4,
       "popularity": 9,
       "horse_weight": 442,
@@ -178,7 +178,7 @@
       "jockey": "ディー",
       "trainer": "戸田博文",
       "finish_time": "1:47.2",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 75.8,
       "popularity": 10,
       "horse_weight": 454,
@@ -204,7 +204,7 @@
       "jockey": "原田和真",
       "trainer": "上原博之",
       "finish_time": "1:47.2",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 121.0,
       "popularity": 13,
       "horse_weight": 430,
@@ -230,7 +230,7 @@
       "jockey": "松山弘平",
       "trainer": "森一誠",
       "finish_time": "1:47.2",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 7.2,
       "popularity": 4,
       "horse_weight": 490,
@@ -256,7 +256,7 @@
       "jockey": "酒井学",
       "trainer": "矢野英一",
       "finish_time": "1:47.5",
-      "margin": "1.1/2",
+      "margin": "@",
       "win_odds": 80.1,
       "popularity": 12,
       "horse_weight": 446,
@@ -282,7 +282,7 @@
       "jockey": "三浦皇成",
       "trainer": "田村康仁",
       "finish_time": "1:47.6",
-      "margin": "1",
+      "margin": "@",
       "win_odds": 32.8,
       "popularity": 6,
       "horse_weight": 488,
@@ -308,7 +308,7 @@
       "jockey": "松岡正海",
       "trainer": "深山雅史",
       "finish_time": "1:47.7",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 80.0,
       "popularity": 11,
       "horse_weight": 478,
@@ -334,7 +334,7 @@
       "jockey": "吉田豊",
       "trainer": "辻哲英",
       "finish_time": "1:48.2",
-      "margin": "3",
+      "margin": "@",
       "win_odds": 266.7,
       "popularity": 16,
       "horse_weight": 456,
@@ -360,7 +360,7 @@
       "jockey": "木幡巧也",
       "trainer": "伊坂重信",
       "finish_time": "1:48.3",
-      "margin": "1",
+      "margin": "@",
       "win_odds": 40.9,
       "popularity": 7,
       "horse_weight": 484,
@@ -386,7 +386,7 @@
       "jockey": "木幡初也",
       "trainer": "田中勝春",
       "finish_time": "1:48.7",
-      "margin": "2.1/2",
+      "margin": "@",
       "win_odds": 220.0,
       "popularity": 15,
       "horse_weight": 420,
@@ -412,7 +412,7 @@
       "jockey": "江田照男",
       "trainer": "武市康男",
       "finish_time": "1:48.9",
-      "margin": "1.1/4",
+      "margin": "@",
       "win_odds": 462.5,
       "popularity": 17,
       "horse_weight": 462,
@@ -438,7 +438,7 @@
       "jockey": "小林脩斗",
       "trainer": "奥平雅士",
       "finish_time": "1:49.2",
-      "margin": "1.3/4",
+      "margin": "@",
       "win_odds": 600.1,
       "popularity": 18,
       "horse_weight": 452,
@@ -464,7 +464,7 @@
       "jockey": "佐々木大",
       "trainer": "伊藤圭三",
       "finish_time": "1:51.9",
-      "margin": "大",
+      "margin": "@",
       "win_odds": 61.2,
       "popularity": 8,
       "horse_weight": 518,
@@ -518,10 +518,22 @@
       "popularity": 2
     },
     {
+      "bet_type": "枠連",
+      "combination": "1",
+      "payout": 8005,
+      "popularity": null
+    },
+    {
       "bet_type": "馬連",
       "combination": "14-16",
       "payout": 1760,
       "popularity": 7
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "2",
+      "payout": 5140,
+      "popularity": null
     },
     {
       "bet_type": "ワイド",
@@ -542,16 +554,52 @@
       "popularity": 9
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 20010,
+      "popularity": 80
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "7",
+      "payout": 80000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "16→14",
       "payout": 4580,
       "popularity": 15
     },
     {
+      "bet_type": "馬単",
+      "combination": "14",
+      "payout": 16000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "8-14-16",
       "payout": 2020,
       "popularity": 4
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "7",
+      "payout": 908,
+      "popularity": 140
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5",
+      "payout": 60816,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2",
+      "payout": 20001,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -606,7 +654,8 @@
         "3": "ヴレクール",
         "9": "マランドロ",
         "10": "サクラモンストール"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12726,
@@ -667,7 +716,8 @@
         "3": "ヴレクール",
         "9": "マランドロ",
         "10": "サクラモンストール"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12727,
@@ -721,7 +771,8 @@
         "3": "ヴレクール",
         "9": "マランドロ",
         "10": "サクラモンストール"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12728,
@@ -775,7 +826,8 @@
         "3": "ヴレクール",
         "9": "マランドロ",
         "10": "サクラモンストール"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12729,
@@ -920,7 +972,8 @@
         "3": "ヴレクール",
         "9": "マランドロ",
         "10": "サクラモンストール"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12730,
@@ -967,7 +1020,8 @@
         "3": "ヴレクール",
         "9": "マランドロ",
         "10": "サクラモンストール"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12731,
@@ -1028,7 +1082,8 @@
         "3": "ヴレクール",
         "9": "マランドロ",
         "10": "サクラモンストール"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12732,
@@ -1082,7 +1137,8 @@
         "3": "ヴレクール",
         "9": "マランドロ",
         "10": "サクラモンストール"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12733,
@@ -1136,7 +1192,8 @@
         "3": "ヴレクール",
         "9": "マランドロ",
         "10": "サクラモンストール"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12734,
@@ -1197,7 +1254,8 @@
         "3": "ヴレクール",
         "9": "マランドロ",
         "10": "サクラモンストール"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12735,
@@ -1258,7 +1316,8 @@
         "3": "ヴレクール",
         "9": "マランドロ",
         "10": "サクラモンストール"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12736,
@@ -1424,7 +1483,8 @@
         "3": "ヴレクール",
         "9": "マランドロ",
         "10": "サクラモンストール"
-      }
+      },
+      "is_provisional": true
     }
   ],
   "training_evals": {},

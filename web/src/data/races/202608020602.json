@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 7,
-      "horse_name": "シオミン",
-      "horse_id": "2023102733",
-      "sex_age": "牝4",
-      "weight_carried": 53.0,
-      "jockey": "今村聖奈",
-      "trainer": "寺島良",
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 11,
+      "horse_name": "ハノハノ",
+      "horse_id": "2023106076",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "ルメール",
+      "trainer": "奥村豊",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 7,
       "horse_number": 10,
       "horse_name": "ペイシャプレイ",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 11,
-      "horse_name": "ハノハノ",
-      "horse_id": "2023106076",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "ルメール",
-      "trainer": "奥村豊",
+      "rank": 3,
+      "gate_number": 6,
+      "horse_number": 7,
+      "horse_name": "シオミン",
+      "horse_id": "2023102733",
+      "sex_age": "牝4",
+      "weight_carried": 53.0,
+      "jockey": "今村聖奈",
+      "trainer": "寺島良",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -258,12 +258,6 @@
       "combination": "11",
       "payout": 240,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "12",
-      "payout": 11000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

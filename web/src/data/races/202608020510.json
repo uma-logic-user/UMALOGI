@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 2,
       "horse_name": "ミラージュナイト",
@@ -32,27 +32,7 @@
       "dam_sire": "ディープインパクト"
     },
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 6,
-      "horse_name": "マイネルエニグマ",
-      "horse_id": "2018102178",
-      "sex_age": "牡1",
-      "weight_carried": 58.0,
-      "jockey": "田口貫太",
-      "trainer": "吉田直弘",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "グラスワンダー",
-      "dam": "マイネレーツェル",
-      "dam_sire": "ステイゴールド"
-    },
-    {
-      "rank": null,
+      "rank": 2,
       "gate_number": 7,
       "horse_number": 14,
       "horse_name": "ジーティーアダマン",
@@ -70,6 +50,26 @@
       "sire": "ルーラーシップ",
       "dam": "カウニスクッカ",
       "dam_sire": "マンハッタンカフェ"
+    },
+    {
+      "rank": 3,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "マイネルエニグマ",
+      "horse_id": "2018102178",
+      "sex_age": "牡1",
+      "weight_carried": 58.0,
+      "jockey": "田口貫太",
+      "trainer": "吉田直弘",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "グラスワンダー",
+      "dam": "マイネレーツェル",
+      "dam_sire": "ステイゴールド"
     },
     {
       "rank": null,
@@ -338,12 +338,6 @@
       "combination": "2",
       "payout": 220,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

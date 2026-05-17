@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "ドラゴンブースト",
@@ -32,27 +32,7 @@
       "dam_sire": "エンパイアメーカーEmpire Maker(米)"
     },
     {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 6,
-      "horse_name": "グランディア",
-      "horse_id": "2019105302",
-      "sex_age": "騸3",
-      "weight_carried": 58.0,
-      "jockey": "西村淳也",
-      "trainer": "中内田充",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ハービンジャーHarbinger(英)",
-      "dam": "ディアデラノビア",
-      "dam_sire": "サンデーサイレンスSunday Silence(米)"
-    },
-    {
-      "rank": null,
+      "rank": 2,
       "gate_number": 6,
       "horse_number": 8,
       "horse_name": "サブマリーナ",
@@ -70,6 +50,26 @@
       "sire": "スワーヴリチャード",
       "dam": "ヒシサブリナ",
       "dam_sire": "Bernardini(米)"
+    },
+    {
+      "rank": 3,
+      "gate_number": 5,
+      "horse_number": 6,
+      "horse_name": "グランディア",
+      "horse_id": "2019105302",
+      "sex_age": "騸3",
+      "weight_carried": 58.0,
+      "jockey": "西村淳也",
+      "trainer": "中内田充",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ハービンジャーHarbinger(英)",
+      "dam": "ディアデラノビア",
+      "dam_sire": "サンデーサイレンスSunday Silence(米)"
     },
     {
       "rank": null,
@@ -278,12 +278,6 @@
       "combination": "2",
       "payout": 880,
       "popularity": 7
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "13",
-      "payout": 13000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

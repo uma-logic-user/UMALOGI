@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 11,
-      "horse_name": "アンシュウマト",
-      "horse_id": "2023101929",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "三浦皇成",
-      "trainer": "中川公成",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 7,
       "horse_number": 13,
       "horse_name": "ミリオンヴォイス",
@@ -52,7 +32,27 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "アンシュウマト",
+      "horse_id": "2023101929",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "三浦皇成",
+      "trainer": "中川公成",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
       "gate_number": 8,
       "horse_number": 15,
       "horse_name": "キセログラフィカ",
@@ -338,12 +338,6 @@
       "combination": "13",
       "payout": 240,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

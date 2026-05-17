@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 2,
       "horse_name": "ビービークローサー",
@@ -32,15 +32,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "セッシュウ",
-      "horse_id": "2023102255",
-      "sex_age": "牡1",
+      "horse_number": 4,
+      "horse_name": "ワイドグンサ",
+      "horse_id": "2023106323",
+      "sex_age": "牡4",
       "weight_carried": 57.0,
-      "jockey": "和田竜二",
-      "trainer": "石橋守",
+      "jockey": "西村淳也",
+      "trainer": "庄野靖志",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 2,
-      "horse_number": 4,
-      "horse_name": "ワイドグンサ",
-      "horse_id": "2023106323",
-      "sex_age": "牡4",
+      "horse_number": 3,
+      "horse_name": "セッシュウ",
+      "horse_id": "2023102255",
+      "sex_age": "牡1",
       "weight_carried": 57.0,
-      "jockey": "西村淳也",
-      "trainer": "庄野靖志",
+      "jockey": "和田竜二",
+      "trainer": "石橋守",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "2",
       "payout": 300,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

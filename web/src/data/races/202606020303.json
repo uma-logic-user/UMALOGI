@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 7,
-      "horse_name": "ドラリズム",
-      "horse_id": "2023100515",
-      "sex_age": "牡1",
+      "rank": 1,
+      "gate_number": 7,
+      "horse_number": 14,
+      "horse_name": "トヨサカエ",
+      "horse_id": "2023104545",
+      "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "武藤雅",
-      "trainer": "武藤善則",
+      "jockey": "吉田豊",
+      "trainer": "高橋文雅",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 4,
       "horse_number": 8,
       "horse_name": "シュヴァルツシルト",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 14,
-      "horse_name": "トヨサカエ",
-      "horse_id": "2023104545",
-      "sex_age": "牡3",
+      "rank": 3,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "ドラリズム",
+      "horse_id": "2023100515",
+      "sex_age": "牡1",
       "weight_carried": 57.0,
-      "jockey": "吉田豊",
-      "trainer": "高橋文雅",
+      "jockey": "武藤雅",
+      "trainer": "武藤善則",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "14",
       "payout": 160,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

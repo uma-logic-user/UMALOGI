@@ -12,7 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "ルージュミラージュ",
@@ -30,6 +30,46 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": 2,
+      "gate_number": 6,
+      "horse_number": 10,
+      "horse_name": "レーヴドレフォン",
+      "horse_id": "2021105895",
+      "sex_age": "牝1",
+      "weight_carried": 53.0,
+      "jockey": "古川奈穂",
+      "trainer": "矢作芳人",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ドレフォンDrefong(米)",
+      "dam": "レーヴドリーブ",
+      "dam_sire": "オルフェーヴル"
+    },
+    {
+      "rank": 3,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "ケープウィッカム",
+      "horse_id": "2021105896",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "丹内祐次",
+      "trainer": "中舘英二",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ドレフォンDrefong(米)",
+      "dam": "レーヴルシード",
+      "dam_sire": "ディープインパクト"
     },
     {
       "rank": null,
@@ -50,26 +90,6 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "ケープウィッカム",
-      "horse_id": "2021105896",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "丹内祐次",
-      "trainer": "中舘英二",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ドレフォンDrefong(米)",
-      "dam": "レーヴルシード",
-      "dam_sire": "ディープインパクト"
     },
     {
       "rank": null,
@@ -193,26 +213,6 @@
     },
     {
       "rank": null,
-      "gate_number": 6,
-      "horse_number": 10,
-      "horse_name": "レーヴドレフォン",
-      "horse_id": "2021105895",
-      "sex_age": "牝1",
-      "weight_carried": 53.0,
-      "jockey": "古川奈穂",
-      "trainer": "矢作芳人",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ドレフォンDrefong(米)",
-      "dam": "レーヴドリーブ",
-      "dam_sire": "オルフェーヴル"
-    },
-    {
-      "rank": null,
       "gate_number": 7,
       "horse_number": 11,
       "horse_name": "サンピノン",
@@ -298,12 +298,6 @@
       "combination": "1",
       "payout": 530,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "14",
-      "payout": 14000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "リアル",
-      "horse_id": "2023100745",
-      "sex_age": "牝3",
-      "weight_carried": 52.0,
-      "jockey": "田山旺佑",
-      "trainer": "長谷川浩",
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 18,
+      "horse_name": "ボンドマティーニ",
+      "horse_id": "2023105337",
+      "sex_age": "牡1",
+      "weight_carried": 57.0,
+      "jockey": "北村友一",
+      "trainer": "安田翔伍",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 3,
       "horse_number": 6,
       "horse_name": "ニホンピロロジャー",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 18,
-      "horse_name": "ボンドマティーニ",
-      "horse_id": "2023105337",
-      "sex_age": "牡1",
-      "weight_carried": 57.0,
-      "jockey": "北村友一",
-      "trainer": "安田翔伍",
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "リアル",
+      "horse_id": "2023100745",
+      "sex_age": "牝3",
+      "weight_carried": 52.0,
+      "jockey": "田山旺佑",
+      "trainer": "長谷川浩",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -373,12 +373,6 @@
     }
   ],
   "payouts": [
-    {
-      "bet_type": "単勝",
-      "combination": "18",
-      "payout": 18000,
-      "popularity": null
-    },
     {
       "bet_type": "複勝",
       "combination": "18",

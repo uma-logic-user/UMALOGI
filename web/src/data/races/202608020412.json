@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 13,
-      "horse_name": "ハリーケーン",
-      "horse_id": "2022106453",
-      "sex_age": "牡4",
-      "weight_carried": 58.0,
-      "jockey": "田口貫太",
-      "trainer": "大根田裕",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 7,
       "horse_number": 14,
       "horse_name": "ディニトーソ",
@@ -52,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 8,
       "horse_number": 15,
       "horse_name": "ベンダバール",
@@ -70,6 +50,26 @@
       "sire": "ドレフォンDrefong(米)",
       "dam": "ラヴアズギフト",
       "dam_sire": "Tiznow"
+    },
+    {
+      "rank": 3,
+      "gate_number": 7,
+      "horse_number": 13,
+      "horse_name": "ハリーケーン",
+      "horse_id": "2022106453",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "田口貫太",
+      "trainer": "大根田裕",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -338,12 +338,6 @@
       "combination": "14",
       "payout": 3360,
       "popularity": 9
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 15000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

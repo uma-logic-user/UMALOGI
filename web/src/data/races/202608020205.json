@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "フウセン",
-      "horse_id": "2023104552",
-      "sex_age": "牡6",
+      "rank": 1,
+      "gate_number": 7,
+      "horse_number": 11,
+      "horse_name": "メイショウテンク",
+      "horse_id": "2023105021",
+      "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "武豊",
-      "trainer": "杉山晴紀",
+      "jockey": "団野大成",
+      "trainer": "荒川義之",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 6,
       "horse_number": 9,
       "horse_name": "ショウナンバンライ",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 11,
-      "horse_name": "メイショウテンク",
-      "horse_id": "2023105021",
-      "sex_age": "牡3",
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "フウセン",
+      "horse_id": "2023104552",
+      "sex_age": "牡6",
       "weight_carried": 57.0,
-      "jockey": "団野大成",
-      "trainer": "荒川義之",
+      "jockey": "武豊",
+      "trainer": "杉山晴紀",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -278,12 +278,6 @@
       "combination": "11",
       "payout": 290,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "13",
-      "payout": 13000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

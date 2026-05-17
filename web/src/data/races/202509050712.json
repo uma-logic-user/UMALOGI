@@ -12,7 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "ミュージシャン",
@@ -32,7 +32,27 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "カリーニョ",
+      "horse_id": "2021105585",
+      "sex_age": "牡1",
+      "weight_carried": 58.0,
+      "jockey": "Ｃ．デム",
+      "trainer": "杉山晴紀",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ドゥラメンテ",
+      "dam": "ジェラシー",
+      "dam_sire": "ハービンジャーHarbinger(英)"
+    },
+    {
+      "rank": 3,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "コスモエクスプレス",
@@ -70,26 +90,6 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "カリーニョ",
-      "horse_id": "2021105585",
-      "sex_age": "牡1",
-      "weight_carried": 58.0,
-      "jockey": "Ｃ．デム",
-      "trainer": "杉山晴紀",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ドゥラメンテ",
-      "dam": "ジェラシー",
-      "dam_sire": "ハービンジャーHarbinger(英)"
     },
     {
       "rank": null,
@@ -198,12 +198,6 @@
       "combination": "1",
       "payout": 180,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "9",
-      "payout": 9000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

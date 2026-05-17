@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 3,
       "horse_number": 4,
       "horse_name": "スペシャルナンバー",
@@ -32,15 +32,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 5,
-      "horse_name": "フェデラー",
-      "horse_id": "2022103211",
-      "sex_age": "牡1",
+      "rank": 2,
+      "gate_number": 6,
+      "horse_number": 10,
+      "horse_name": "ヴリトラハン",
+      "horse_id": "2022105302",
+      "sex_age": "牡3",
       "weight_carried": 58.0,
-      "jockey": "武豊",
-      "trainer": "石橋守",
+      "jockey": "高杉吏麒",
+      "trainer": "千田輝彦",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 10,
-      "horse_name": "ヴリトラハン",
-      "horse_id": "2022105302",
-      "sex_age": "牡3",
+      "rank": 3,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "フェデラー",
+      "horse_id": "2022103211",
+      "sex_age": "牡1",
       "weight_carried": 58.0,
-      "jockey": "高杉吏麒",
-      "trainer": "千田輝彦",
+      "jockey": "武豊",
+      "trainer": "石橋守",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -318,12 +318,6 @@
       "combination": "4",
       "payout": 1310,
       "popularity": 7
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "15",
-      "payout": 15000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

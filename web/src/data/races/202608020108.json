@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "モーメントキャッチ",
-      "horse_id": "2020104725",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "横山和生",
-      "trainer": "松山将樹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 4,
       "horse_number": 4,
       "horse_name": "チムニートップス",
@@ -52,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 8,
       "horse_number": 9,
       "horse_name": "トモジャザーン",
@@ -70,6 +50,26 @@
       "sire": "マジェスティックウォリアーMajestic Warrior(米)",
       "dam": "トモジャオール",
       "dam_sire": "エンパイアメーカーEmpire Maker(米)"
+    },
+    {
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "モーメントキャッチ",
+      "horse_id": "2020104725",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "横山和生",
+      "trainer": "松山将樹",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -218,12 +218,6 @@
       "combination": "4",
       "payout": 650,
       "popularity": 4
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "10",
-      "payout": 10000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

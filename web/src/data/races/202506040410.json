@@ -12,7 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "ブラックシールド",
@@ -32,7 +32,27 @@
       "dam_sire": "キングカメハメハ"
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 8,
+      "horse_number": 13,
+      "horse_name": "アスクナイスショー",
+      "horse_id": "2021106954",
+      "sex_age": "牡5",
+      "weight_carried": 57.0,
+      "jockey": "戸崎圭太",
+      "trainer": "中舘英二",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "シルバーステート",
+      "dam": "ケンブリッジヒカリ",
+      "dam_sire": "アドマイヤムーン"
+    },
+    {
+      "rank": 3,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "ミカッテヨンデイイ",
@@ -254,26 +274,6 @@
     {
       "rank": null,
       "gate_number": 8,
-      "horse_number": 13,
-      "horse_name": "アスクナイスショー",
-      "horse_id": "2021106954",
-      "sex_age": "牡5",
-      "weight_carried": 57.0,
-      "jockey": "戸崎圭太",
-      "trainer": "中舘英二",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "シルバーステート",
-      "dam": "ケンブリッジヒカリ",
-      "dam_sire": "アドマイヤムーン"
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
       "horse_number": 14,
       "horse_name": "レッドヴェロシティ",
       "horse_id": "2018105162",
@@ -298,12 +298,6 @@
       "combination": "1",
       "payout": 1190,
       "popularity": 5
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "14",
-      "payout": 14000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

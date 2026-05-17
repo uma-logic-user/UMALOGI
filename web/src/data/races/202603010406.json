@@ -4,11 +4,11 @@
   "date": "2026-04-19",
   "venue": "福島",
   "race_number": 6,
-  "distance": 1800,
-  "surface": "芝",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -42,7 +42,7 @@
       "jockey": "石川裕紀",
       "trainer": "相沢郁",
       "finish_time": "1:46.0",
-      "margin": "1",
+      "margin": "@",
       "win_odds": 6.2,
       "popularity": 3,
       "horse_weight": 476,
@@ -62,7 +62,7 @@
       "jockey": "菊沢一樹",
       "trainer": "矢野英一",
       "finish_time": "1:46.0",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 22.1,
       "popularity": 9,
       "horse_weight": 460,
@@ -82,7 +82,7 @@
       "jockey": "舟山瑠泉",
       "trainer": "萩原清",
       "finish_time": "1:46.0",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 9.2,
       "popularity": 6,
       "horse_weight": 436,
@@ -102,7 +102,7 @@
       "jockey": "斎藤新",
       "trainer": "東田明士",
       "finish_time": "1:46.1",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 6.6,
       "popularity": 5,
       "horse_weight": 530,
@@ -122,7 +122,7 @@
       "jockey": "丹内祐次",
       "trainer": "室井潔",
       "finish_time": "1:46.1",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 4.4,
       "popularity": 2,
       "horse_weight": 474,
@@ -142,7 +142,7 @@
       "jockey": "石神深道",
       "trainer": "奥平雅士",
       "finish_time": "1:46.3",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 6.5,
       "popularity": 4,
       "horse_weight": 440,
@@ -162,7 +162,7 @@
       "jockey": "横山琉人",
       "trainer": "高橋一哉",
       "finish_time": "1:46.4",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 13.3,
       "popularity": 7,
       "horse_weight": 468,
@@ -182,7 +182,7 @@
       "jockey": "松若風馬",
       "trainer": "奥村豊",
       "finish_time": "1:47.2",
-      "margin": "5",
+      "margin": "@",
       "win_odds": 19.7,
       "popularity": 8,
       "horse_weight": 468,
@@ -202,7 +202,7 @@
       "jockey": "田山旺佑",
       "trainer": "柴田卓",
       "finish_time": "1:47.2",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 122.2,
       "popularity": 12,
       "horse_weight": 470,
@@ -222,7 +222,7 @@
       "jockey": "西塚洸二",
       "trainer": "秋本大介",
       "finish_time": "1:47.5",
-      "margin": "1.1/2",
+      "margin": "@",
       "win_odds": 140.6,
       "popularity": 13,
       "horse_weight": 500,
@@ -242,7 +242,7 @@
       "jockey": "河原田菜",
       "trainer": "加藤和宏",
       "finish_time": "1:47.9",
-      "margin": "2.1/2",
+      "margin": "@",
       "win_odds": 54.4,
       "popularity": 11,
       "horse_weight": 470,
@@ -262,7 +262,7 @@
       "jockey": "富田暁",
       "trainer": "武英智",
       "finish_time": "1:47.9",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 44.3,
       "popularity": 10,
       "horse_weight": 468,
@@ -316,6 +316,12 @@
       "popularity": 2
     },
     {
+      "bet_type": "馬連",
+      "combination": "1",
+      "payout": 2050,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "5-6",
       "payout": 530,
@@ -329,9 +335,21 @@
     },
     {
       "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 40040,
+      "popularity": 20
+    },
+    {
+      "bet_type": "ワイド",
       "combination": "2-5",
       "payout": 1880,
       "popularity": 28
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4",
+      "payout": 50000,
+      "popularity": null
     },
     {
       "bet_type": "馬単",
@@ -340,10 +358,34 @@
       "popularity": 5
     },
     {
+      "bet_type": "馬単",
+      "combination": "5",
+      "payout": 6000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "2-5-6",
       "payout": 8920,
       "popularity": 38
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "14",
+      "payout": 2002,
+      "popularity": 50
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5",
+      "payout": 30206,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "18",
+      "payout": 80028,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -393,7 +435,8 @@
         "9": "シュードタキライト",
         "10": "テンクウハット",
         "3": "サラダ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2615,
@@ -449,7 +492,8 @@
         "9": "シュードタキライト",
         "10": "テンクウハット",
         "3": "サラダ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2616,
@@ -491,7 +535,8 @@
         "9": "シュードタキライト",
         "10": "テンクウハット",
         "3": "サラダ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2617,
@@ -533,7 +578,8 @@
         "9": "シュードタキライト",
         "10": "テンクウハット",
         "3": "サラダ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2618,
@@ -582,7 +628,8 @@
         "9": "シュードタキライト",
         "10": "テンクウハット",
         "3": "サラダ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2619,
@@ -624,7 +671,8 @@
         "9": "シュードタキライト",
         "10": "テンクウハット",
         "3": "サラダ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2620,
@@ -694,7 +742,8 @@
         "9": "シュードタキライト",
         "10": "テンクウハット",
         "3": "サラダ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2632,
@@ -736,7 +785,8 @@
         "9": "シュードタキライト",
         "10": "テンクウハット",
         "3": "サラダ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2633,
@@ -806,7 +856,8 @@
         "9": "シュードタキライト",
         "10": "テンクウハット",
         "3": "サラダ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2634,
@@ -848,7 +899,8 @@
         "9": "シュードタキライト",
         "10": "テンクウハット",
         "3": "サラダ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2635,
@@ -890,7 +942,8 @@
         "9": "シュードタキライト",
         "10": "テンクウハット",
         "3": "サラダ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2636,
@@ -932,7 +985,8 @@
         "9": "シュードタキライト",
         "10": "テンクウハット",
         "3": "サラダ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2637,
@@ -974,7 +1028,8 @@
         "9": "シュードタキライト",
         "10": "テンクウハット",
         "3": "サラダ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2638,
@@ -1100,7 +1155,8 @@
         "9": "シュードタキライト",
         "10": "テンクウハット",
         "3": "サラダ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 3429,
@@ -1142,7 +1198,8 @@
         "9": "シュードタキライト",
         "10": "テンクウハット",
         "3": "サラダ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3430,
@@ -1198,7 +1255,8 @@
         "9": "シュードタキライト",
         "10": "テンクウハット",
         "3": "サラダ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3431,
@@ -1240,7 +1298,8 @@
         "9": "シュードタキライト",
         "10": "テンクウハット",
         "3": "サラダ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3432,
@@ -1282,7 +1341,8 @@
         "9": "シュードタキライト",
         "10": "テンクウハット",
         "3": "サラダ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3433,
@@ -1331,7 +1391,8 @@
         "9": "シュードタキライト",
         "10": "テンクウハット",
         "3": "サラダ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3434,
@@ -1373,7 +1434,8 @@
         "9": "シュードタキライト",
         "10": "テンクウハット",
         "3": "サラダ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3435,
@@ -1443,7 +1505,8 @@
         "9": "シュードタキライト",
         "10": "テンクウハット",
         "3": "サラダ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3447,
@@ -1485,7 +1548,8 @@
         "9": "シュードタキライト",
         "10": "テンクウハット",
         "3": "サラダ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3448,
@@ -1555,7 +1619,8 @@
         "9": "シュードタキライト",
         "10": "テンクウハット",
         "3": "サラダ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3449,
@@ -1597,7 +1662,8 @@
         "9": "シュードタキライト",
         "10": "テンクウハット",
         "3": "サラダ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3450,
@@ -1639,7 +1705,8 @@
         "9": "シュードタキライト",
         "10": "テンクウハット",
         "3": "サラダ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3451,
@@ -1681,7 +1748,8 @@
         "9": "シュードタキライト",
         "10": "テンクウハット",
         "3": "サラダ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3452,
@@ -1723,7 +1791,8 @@
         "9": "シュードタキライト",
         "10": "テンクウハット",
         "3": "サラダ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3453,
@@ -1849,7 +1918,8 @@
         "9": "シュードタキライト",
         "10": "テンクウハット",
         "3": "サラダ"
-      }
+      },
+      "is_provisional": false
     }
   ],
   "training_evals": {}

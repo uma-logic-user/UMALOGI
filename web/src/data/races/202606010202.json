@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 5,
-      "horse_name": "ルミテュット",
-      "horse_id": "2023107284",
-      "sex_age": "牝3",
+      "rank": 1,
+      "gate_number": 6,
+      "horse_number": 12,
+      "horse_name": "ラングドシャ",
+      "horse_id": "2023103620",
+      "sex_age": "牝4",
       "weight_carried": 55.0,
-      "jockey": "内田博幸",
-      "trainer": "萩原清",
+      "jockey": "石橋脩",
+      "trainer": "上原佑紀",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 3,
       "horse_number": 6,
       "horse_name": "イサチルクイーン",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 12,
-      "horse_name": "ラングドシャ",
-      "horse_id": "2023103620",
-      "sex_age": "牝4",
+      "rank": 3,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "ルミテュット",
+      "horse_id": "2023107284",
+      "sex_age": "牝3",
       "weight_carried": 55.0,
-      "jockey": "石橋脩",
-      "trainer": "上原佑紀",
+      "jockey": "内田博幸",
+      "trainer": "萩原清",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "12",
       "payout": 500,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

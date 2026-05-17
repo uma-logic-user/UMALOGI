@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 6,
-      "horse_name": "カンティーナ",
-      "horse_id": "2023104576",
-      "sex_age": "牝5",
-      "weight_carried": 55.0,
-      "jockey": "大野拓弥",
-      "trainer": "堀内岳志",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 7,
       "horse_number": 14,
       "horse_name": "ナックホワイト",
@@ -52,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 8,
       "horse_number": 15,
       "horse_name": "サムシングスイート",
@@ -61,6 +41,26 @@
       "weight_carried": 55.0,
       "jockey": "横山武史",
       "trainer": "伊藤大士",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "カンティーナ",
+      "horse_id": "2023104576",
+      "sex_age": "牝5",
+      "weight_carried": 55.0,
+      "jockey": "大野拓弥",
+      "trainer": "堀内岳志",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "14",
       "payout": 590,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

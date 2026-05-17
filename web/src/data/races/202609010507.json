@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "クロノスバレット",
@@ -32,15 +32,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 6,
-      "horse_name": "ダノンヴェステル",
-      "horse_id": "2022103242",
-      "sex_age": "牡4",
+      "rank": 2,
+      "gate_number": 7,
+      "horse_number": 7,
+      "horse_name": "レッドイステル",
+      "horse_id": "2022103227",
+      "sex_age": "騸4",
       "weight_carried": 58.0,
-      "jockey": "坂井瑠星",
-      "trainer": "高柳大輔",
+      "jockey": "西村淳也",
+      "trainer": "宮地貴稔",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 7,
-      "horse_name": "レッドイステル",
-      "horse_id": "2022103227",
-      "sex_age": "騸4",
+      "rank": 3,
+      "gate_number": 6,
+      "horse_number": 6,
+      "horse_name": "ダノンヴェステル",
+      "horse_id": "2022103242",
+      "sex_age": "牡4",
       "weight_carried": 58.0,
-      "jockey": "西村淳也",
-      "trainer": "宮地貴稔",
+      "jockey": "坂井瑠星",
+      "trainer": "高柳大輔",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -178,12 +178,6 @@
       "combination": "2",
       "payout": 540,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "8",
-      "payout": 8000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

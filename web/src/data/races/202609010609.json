@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "カレントゥルーシー",
-      "horse_id": "2023100553",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "藤懸貴志",
-      "trainer": "鈴木孝志",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 3,
       "horse_number": 3,
       "horse_name": "カフジエメンタール",
@@ -52,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 6,
       "horse_number": 6,
       "horse_name": "ダノンセフィーロ",
@@ -61,6 +41,26 @@
       "weight_carried": 57.0,
       "jockey": "岩田望来",
       "trainer": "福永祐一",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "カレントゥルーシー",
+      "horse_id": "2023100553",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "藤懸貴志",
+      "trainer": "鈴木孝志",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -138,12 +138,6 @@
       "combination": "3",
       "payout": 390,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "6",
-      "payout": 6000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

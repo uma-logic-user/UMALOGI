@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 4,
-      "horse_name": "コパノキャメロン",
-      "horse_id": "2023101570",
+      "rank": 1,
+      "gate_number": 5,
+      "horse_number": 10,
+      "horse_name": "ブーケドリス",
+      "horse_id": "2023103802",
       "sex_age": "牝3",
       "weight_carried": 55.0,
-      "jockey": "武藤雅",
-      "trainer": "手塚貴久",
+      "jockey": "横山武史",
+      "trainer": "宮田敬介",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 4,
       "horse_number": 7,
       "horse_name": "カンレイスター",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 10,
-      "horse_name": "ブーケドリス",
-      "horse_id": "2023103802",
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 4,
+      "horse_name": "コパノキャメロン",
+      "horse_id": "2023101570",
       "sex_age": "牝3",
       "weight_carried": 55.0,
-      "jockey": "横山武史",
-      "trainer": "宮田敬介",
+      "jockey": "武藤雅",
+      "trainer": "手塚貴久",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "10",
       "payout": 220,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

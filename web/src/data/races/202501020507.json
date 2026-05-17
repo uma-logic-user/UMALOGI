@@ -12,15 +12,15 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "クリールスル",
-      "horse_id": "2022103501",
-      "sex_age": "牝4",
-      "weight_carried": 54.0,
-      "jockey": "浜中俊",
-      "trainer": "矢野英一",
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 14,
+      "horse_name": "ダノンミッション",
+      "horse_id": "2022105478",
+      "sex_age": "牡3",
+      "weight_carried": 56.0,
+      "jockey": "佐々木大",
+      "trainer": "堀宣行",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "ラヴスコール",
@@ -50,6 +50,26 @@
       "sire": "ドゥラメンテ",
       "dam": "カレドニアレディ",
       "dam_sire": "Firebreak(英)"
+    },
+    {
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "クリールスル",
+      "horse_id": "2022103501",
+      "sex_age": "牝4",
+      "weight_carried": 54.0,
+      "jockey": "浜中俊",
+      "trainer": "矢野英一",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -270,35 +290,9 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 14,
-      "horse_name": "ダノンミッション",
-      "horse_id": "2022105478",
-      "sex_age": "牡3",
-      "weight_carried": 56.0,
-      "jockey": "佐々木大",
-      "trainer": "堀宣行",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
     }
   ],
   "payouts": [
-    {
-      "bet_type": "単勝",
-      "combination": "14",
-      "payout": 14000,
-      "popularity": null
-    },
     {
       "bet_type": "複勝",
       "combination": "14",

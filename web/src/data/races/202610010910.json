@@ -12,7 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "エコロレイズ",
+      "horse_id": "2021103976",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "菊沢一樹",
+      "trainer": "岩戸孝樹",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "アメリカンペイトリオット",
+      "dam": "ペブルガーデン",
+      "dam_sire": "ディープインパクト"
+    },
+    {
+      "rank": 2,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "ドーバーブライト",
@@ -32,7 +52,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 2,
       "horse_number": 4,
       "horse_name": "ベイラム",
@@ -50,26 +70,6 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 9,
-      "horse_name": "エコロレイズ",
-      "horse_id": "2021103976",
-      "sex_age": "牡4",
-      "weight_carried": 58.0,
-      "jockey": "菊沢一樹",
-      "trainer": "岩戸孝樹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "アメリカンペイトリオット",
-      "dam": "ペブルガーデン",
-      "dam_sire": "ディープインパクト"
     },
     {
       "rank": null,
@@ -338,12 +338,6 @@
       "combination": "9",
       "payout": 1320,
       "popularity": 6
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

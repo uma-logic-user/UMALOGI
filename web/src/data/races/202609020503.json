@@ -4,11 +4,11 @@
   "date": "2026-04-11",
   "venue": "阪神",
   "race_number": 3,
-  "distance": 1800,
-  "surface": "ダート",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "重",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -52,7 +52,7 @@
       "jockey": "幸英明",
       "trainer": "大根田裕",
       "finish_time": "1:53.0",
-      "margin": "7",
+      "margin": "@",
       "win_odds": 105.6,
       "popularity": 8,
       "horse_weight": 462,
@@ -82,7 +82,7 @@
       "jockey": "角田大和",
       "trainer": "石橋守",
       "finish_time": "1:53.1",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 38.1,
       "popularity": 6,
       "horse_weight": 454,
@@ -112,7 +112,7 @@
       "jockey": "鮫島克駿",
       "trainer": "小崎憲",
       "finish_time": "1:53.4",
-      "margin": "2",
+      "margin": "@",
       "win_odds": 18.8,
       "popularity": 4,
       "horse_weight": 472,
@@ -142,7 +142,7 @@
       "jockey": "柴田裕一",
       "trainer": "岡田稲男",
       "finish_time": "1:53.5",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 258.1,
       "popularity": 13,
       "horse_weight": 480,
@@ -172,7 +172,7 @@
       "jockey": "北村友一",
       "trainer": "吉岡辰弥",
       "finish_time": "1:53.6",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 8.5,
       "popularity": 2,
       "horse_weight": 514,
@@ -202,7 +202,7 @@
       "jockey": "太宰啓介",
       "trainer": "本田優",
       "finish_time": "1:54.1",
-      "margin": "3",
+      "margin": "@",
       "win_odds": 20.1,
       "popularity": 5,
       "horse_weight": 500,
@@ -232,7 +232,7 @@
       "jockey": "川端海翼",
       "trainer": "畑端省吾",
       "finish_time": "1:54.3",
-      "margin": "1.1/2",
+      "margin": "@",
       "win_odds": 128.4,
       "popularity": 10,
       "horse_weight": 430,
@@ -262,7 +262,7 @@
       "jockey": "田山旺佑",
       "trainer": "東田明士",
       "finish_time": "1:55.8",
-      "margin": "9",
+      "margin": "@",
       "win_odds": 174.6,
       "popularity": 12,
       "horse_weight": 460,
@@ -292,7 +292,7 @@
       "jockey": "吉村誠之",
       "trainer": "石坂公一",
       "finish_time": "1:55.8",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 76.0,
       "popularity": 7,
       "horse_weight": 486,
@@ -322,7 +322,7 @@
       "jockey": "高杉吏麒",
       "trainer": "石橋守",
       "finish_time": "1:56.5",
-      "margin": "4",
+      "margin": "@",
       "win_odds": 16.8,
       "popularity": 3,
       "horse_weight": 546,
@@ -352,7 +352,7 @@
       "jockey": "国分優作",
       "trainer": "吉田直弘",
       "finish_time": "1:57.0",
-      "margin": "3",
+      "margin": "@",
       "win_odds": 106.6,
       "popularity": 9,
       "horse_weight": 462,
@@ -382,7 +382,7 @@
       "jockey": "城戸義政",
       "trainer": "安達昭夫",
       "finish_time": "1:57.2",
-      "margin": "1.1/2",
+      "margin": "@",
       "win_odds": 173.8,
       "popularity": 11,
       "horse_weight": 448,
@@ -446,6 +446,18 @@
       "popularity": 8
     },
     {
+      "bet_type": "馬連",
+      "combination": "1",
+      "payout": 1080,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3",
+      "payout": 60000,
+      "popularity": 2
+    },
+    {
       "bet_type": "ワイド",
       "combination": "3-4",
       "payout": 540,
@@ -464,16 +476,40 @@
       "popularity": 40
     },
     {
+      "bet_type": "ワイド",
+      "combination": "7",
+      "payout": 30100,
+      "popularity": 40
+    },
+    {
       "bet_type": "馬単",
       "combination": "3→8",
       "payout": 4170,
       "popularity": 12
     },
     {
+      "bet_type": "馬単",
+      "combination": "3",
+      "payout": 8000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "3-4-8",
       "payout": 12860,
       "popularity": 31
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5",
+      "payout": 604,
+      "popularity": 80
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "12-1",
+      "payout": 10304,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -530,7 +566,8 @@
         "2": "ブラストオフ",
         "5": "ウインマデイラ",
         "7": "メイショウトッド"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1995,
@@ -593,7 +630,8 @@
         "2": "ブラストオフ",
         "5": "ウインマデイラ",
         "7": "メイショウトッド"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1996,
@@ -670,7 +708,8 @@
         "2": "ブラストオフ",
         "5": "ウインマデイラ",
         "7": "メイショウトッド"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1997,
@@ -719,7 +758,8 @@
         "2": "ブラストオフ",
         "5": "ウインマデイラ",
         "7": "メイショウトッド"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1998,
@@ -775,7 +815,8 @@
         "2": "ブラストオフ",
         "5": "ウインマデイラ",
         "7": "メイショウトッド"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1999,
@@ -824,7 +865,8 @@
         "2": "ブラストオフ",
         "5": "ウインマデイラ",
         "7": "メイショウトッド"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2000,
@@ -915,7 +957,8 @@
         "2": "ブラストオフ",
         "5": "ウインマデイラ",
         "7": "メイショウトッド"
-      }
+      },
+      "is_provisional": true
     }
   ],
   "training_evals": {

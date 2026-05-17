@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 5,
-      "horse_name": "コートアリシアン",
-      "horse_id": "2022105326",
-      "sex_age": "牝1",
-      "weight_carried": 55.0,
-      "jockey": "佐々木大",
-      "trainer": "伊藤大士",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "サートゥルナーリア",
-      "dam": "コートシャルマン",
-      "dam_sire": "ハーツクライ"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 4,
       "horse_number": 7,
       "horse_name": "ポルカリズム",
@@ -52,7 +32,27 @@
       "dam_sire": "フジキセキ"
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "コートアリシアン",
+      "horse_id": "2022105326",
+      "sex_age": "牝1",
+      "weight_carried": 55.0,
+      "jockey": "佐々木大",
+      "trainer": "伊藤大士",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "サートゥルナーリア",
+      "dam": "コートシャルマン",
+      "dam_sire": "ハーツクライ"
+    },
+    {
+      "rank": 3,
       "gate_number": 5,
       "horse_number": 8,
       "horse_name": "グローリーリンク",
@@ -318,12 +318,6 @@
       "combination": "7",
       "payout": 910,
       "popularity": 5
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "15",
-      "payout": 15000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

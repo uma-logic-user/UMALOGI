@@ -12,7 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 5,
+      "horse_number": 8,
+      "horse_name": "アスゴッド",
+      "horse_id": "2022103704",
+      "sex_age": "牡1",
+      "weight_carried": 58.0,
+      "jockey": "西村淳也",
+      "trainer": "矢作芳人",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
       "gate_number": 3,
       "horse_number": 5,
       "horse_name": "サンライズブレイク",
@@ -32,7 +52,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 4,
       "horse_number": 7,
       "horse_name": "インディゴアスール",
@@ -41,26 +61,6 @@
       "weight_carried": 58.0,
       "jockey": "田口貫太",
       "trainer": "鈴木孝志",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 8,
-      "horse_name": "アスゴッド",
-      "horse_id": "2022103704",
-      "sex_age": "牡1",
-      "weight_carried": 58.0,
-      "jockey": "西村淳也",
-      "trainer": "矢作芳人",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -318,12 +318,6 @@
       "combination": "8",
       "payout": 830,
       "popularity": 4
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "15",
-      "payout": 15000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

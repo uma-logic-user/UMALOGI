@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "シャンデルナゴル",
-      "horse_id": "2020103193",
-      "sex_age": "牡3",
-      "weight_carried": 60.0,
-      "jockey": "中村将之",
-      "trainer": "石坂公一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "サトノダイヤモンド",
-      "dam": "アガルタ",
-      "dam_sire": "キングカメハメハ"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 3,
       "horse_number": 4,
       "horse_name": "バルサムノート",
@@ -52,7 +32,27 @@
       "dam_sire": "ダイワメジャー"
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "シャンデルナゴル",
+      "horse_id": "2020103193",
+      "sex_age": "牡3",
+      "weight_carried": 60.0,
+      "jockey": "中村将之",
+      "trainer": "石坂公一",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "サトノダイヤモンド",
+      "dam": "アガルタ",
+      "dam_sire": "キングカメハメハ"
+    },
+    {
+      "rank": 3,
       "gate_number": 4,
       "horse_number": 6,
       "horse_name": "モンツァフレイバー",
@@ -298,12 +298,6 @@
       "combination": "4",
       "payout": 300,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "14",
-      "payout": 14000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

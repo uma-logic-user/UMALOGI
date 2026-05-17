@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "ジュンライトニング",
-      "horse_id": "2022104611",
-      "sex_age": "牡1",
-      "weight_carried": 58.0,
-      "jockey": "富田暁",
-      "trainer": "清水久詞",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 8,
       "horse_number": 14,
       "horse_name": "モズタチアガレ",
@@ -52,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 8,
       "horse_number": 15,
       "horse_name": "シュテルンビルト",
@@ -61,6 +41,26 @@
       "weight_carried": 58.0,
       "jockey": "幸英明",
       "trainer": "森田直行",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "ジュンライトニング",
+      "horse_id": "2022104611",
+      "sex_age": "牡1",
+      "weight_carried": 58.0,
+      "jockey": "富田暁",
+      "trainer": "清水久詞",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -318,12 +318,6 @@
       "combination": "14",
       "payout": 450,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "15",
-      "payout": 15000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

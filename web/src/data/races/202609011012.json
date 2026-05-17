@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "モズケイスター",
-      "horse_id": "2022102127",
-      "sex_age": "牡1",
-      "weight_carried": 58.0,
-      "jockey": "坂井瑠星",
-      "trainer": "高柳大輔",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 6,
       "horse_number": 8,
       "horse_name": "ゲイルライダー",
@@ -52,7 +32,27 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "モズケイスター",
+      "horse_id": "2022102127",
+      "sex_age": "牡1",
+      "weight_carried": 58.0,
+      "jockey": "坂井瑠星",
+      "trainer": "高柳大輔",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
       "gate_number": 7,
       "horse_number": 11,
       "horse_name": "ザックザク",
@@ -278,12 +278,6 @@
       "combination": "8",
       "payout": 290,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "13",
-      "payout": 12000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

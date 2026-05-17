@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 7,
-      "horse_name": "ジョイエッロ",
-      "horse_id": "2022105438",
-      "sex_age": "牡1",
-      "weight_carried": 57.0,
-      "jockey": "田口貫太",
-      "trainer": "池江泰寿",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 6,
       "horse_number": 8,
       "horse_name": "ディーガレジェンド",
@@ -52,7 +32,7 @@
       "dam_sire": "High Chaparral(愛)"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 8,
       "horse_number": 11,
       "horse_name": "パフュームセント",
@@ -70,6 +50,26 @@
       "sire": "ドゥラメンテ",
       "dam": "シャッセロール",
       "dam_sire": "クロフネ"
+    },
+    {
+      "rank": 3,
+      "gate_number": 6,
+      "horse_number": 7,
+      "horse_name": "ジョイエッロ",
+      "horse_id": "2022105438",
+      "sex_age": "牡1",
+      "weight_carried": 57.0,
+      "jockey": "田口貫太",
+      "trainer": "池江泰寿",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -258,12 +258,6 @@
       "combination": "8",
       "payout": 1580,
       "popularity": 7
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "12",
-      "payout": 12000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

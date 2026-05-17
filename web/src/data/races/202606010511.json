@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "ダノンエアズロック",
-      "horse_id": "2021105817",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "津村明秀",
-      "trainer": "堀宣行",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "モーリス",
-      "dam": "モシーンMosheen(豪)",
-      "dam_sire": "Fastnet Rock(豪)"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 3,
       "horse_number": 4,
       "horse_name": "カピリナ",
@@ -52,7 +32,27 @@
       "dam_sire": "マンハッタンカフェ"
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "ダノンエアズロック",
+      "horse_id": "2021105817",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "津村明秀",
+      "trainer": "堀宣行",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "モーリス",
+      "dam": "モシーンMosheen(豪)",
+      "dam_sire": "Fastnet Rock(豪)"
+    },
+    {
+      "rank": 3,
       "gate_number": 5,
       "horse_number": 8,
       "horse_name": "ファンダム",
@@ -298,12 +298,6 @@
       "combination": "4",
       "payout": 690,
       "popularity": 4
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "14",
-      "payout": 14000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "アナザーエース",
-      "horse_id": "2020104005",
-      "sex_age": "牡1",
-      "weight_carried": 57.0,
-      "jockey": "井上敏樹",
-      "trainer": "宮徹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ヤマカツエース",
-      "dam": "ホットフレイバー",
-      "dam_sire": "タバスコキャットTabasco Cat(米)"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 3,
       "horse_number": 3,
       "horse_name": "ハイウェイスター",
@@ -52,7 +32,7 @@
       "dam_sire": "Distorted Humor(米)"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 8,
       "horse_number": 11,
       "horse_name": "スノーディーヴァ",
@@ -70,6 +50,26 @@
       "sire": "エイシンヒカリ",
       "dam": "スノースタイル",
       "dam_sire": "ホワイトマズルWhite Muzzle(英)"
+    },
+    {
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "アナザーエース",
+      "horse_id": "2020104005",
+      "sex_age": "牡1",
+      "weight_carried": 57.0,
+      "jockey": "井上敏樹",
+      "trainer": "宮徹",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ヤマカツエース",
+      "dam": "ホットフレイバー",
+      "dam_sire": "タバスコキャットTabasco Cat(米)"
     },
     {
       "rank": null,
@@ -258,12 +258,6 @@
       "combination": "3",
       "payout": 280,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "12",
-      "payout": 12000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

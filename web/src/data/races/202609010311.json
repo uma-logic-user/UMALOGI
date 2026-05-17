@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "クールミラボー",
-      "horse_id": "2020103387",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "武豊",
-      "trainer": "寺島良",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ドレフォンDrefong(米)",
-      "dam": "サンソヴール",
-      "dam_sire": "キングカメハメハ"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 2,
       "horse_number": 4,
       "horse_name": "ジューンアヲニヨシ",
@@ -52,7 +32,7 @@
       "dam_sire": "ノボジャック"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 4,
       "horse_number": 7,
       "horse_name": "ムルソー",
@@ -70,6 +50,26 @@
       "sire": "レイデオロ",
       "dam": "ラユロット",
       "dam_sire": "エンパイアメーカーEmpire Maker(米)"
+    },
+    {
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "クールミラボー",
+      "horse_id": "2020103387",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "武豊",
+      "trainer": "寺島良",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ドレフォンDrefong(米)",
+      "dam": "サンソヴール",
+      "dam_sire": "キングカメハメハ"
     },
     {
       "rank": null,
@@ -338,12 +338,6 @@
       "combination": "4",
       "payout": 2570,
       "popularity": 7
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

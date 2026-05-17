@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "ウインアクトゥール",
-      "horse_id": "2021107085",
-      "sex_age": "牡7",
-      "weight_carried": 58.0,
-      "jockey": "菊沢一樹",
-      "trainer": "栗田徹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ゴールドアクター",
-      "dam": "ポートドラルーン",
-      "dam_sire": "チチカステナンゴChichicastenango(仏)"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 6,
       "horse_number": 12,
       "horse_name": "トーアライデン",
@@ -52,7 +32,7 @@
       "dam_sire": "アグネスデジタル"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 7,
       "horse_number": 14,
       "horse_name": "ツーエムクロノス",
@@ -70,6 +50,26 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "ウインアクトゥール",
+      "horse_id": "2021107085",
+      "sex_age": "牡7",
+      "weight_carried": 58.0,
+      "jockey": "菊沢一樹",
+      "trainer": "栗田徹",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ゴールドアクター",
+      "dam": "ポートドラルーン",
+      "dam_sire": "チチカステナンゴChichicastenango(仏)"
     },
     {
       "rank": null,
@@ -338,12 +338,6 @@
       "combination": "12",
       "payout": 2290,
       "popularity": 9
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

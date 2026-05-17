@@ -4,11 +4,11 @@
   "date": "2026-04-11",
   "venue": "福島",
   "race_number": 1,
-  "distance": 1700,
-  "surface": "ダート",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -46,7 +46,7 @@
       "jockey": "丹内祐次",
       "trainer": "上原博之",
       "finish_time": "1:45.9",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 1.7,
       "popularity": 1,
       "horse_weight": 496,
@@ -70,7 +70,7 @@
       "jockey": "小林美駒",
       "trainer": "辻哲英",
       "finish_time": "1:46.2",
-      "margin": "1.1/2",
+      "margin": "@",
       "win_odds": 7.7,
       "popularity": 3,
       "horse_weight": 490,
@@ -94,7 +94,7 @@
       "jockey": "菊沢一樹",
       "trainer": "萱野浩二",
       "finish_time": "1:46.6",
-      "margin": "2.1/2",
+      "margin": "@",
       "win_odds": 10.8,
       "popularity": 4,
       "horse_weight": 470,
@@ -118,7 +118,7 @@
       "jockey": "和田陽希",
       "trainer": "柴田卓",
       "finish_time": "1:46.7",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 28.4,
       "popularity": 8,
       "horse_weight": 460,
@@ -142,7 +142,7 @@
       "jockey": "富田暁",
       "trainer": "野中賢二",
       "finish_time": "1:46.7",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 15.2,
       "popularity": 6,
       "horse_weight": 512,
@@ -166,7 +166,7 @@
       "jockey": "武藤雅",
       "trainer": "武藤善則",
       "finish_time": "1:47.3",
-      "margin": "3.1/2",
+      "margin": "@",
       "win_odds": 16.0,
       "popularity": 7,
       "horse_weight": 444,
@@ -190,7 +190,7 @@
       "jockey": "松岡正海",
       "trainer": "牧浦充徳",
       "finish_time": "1:48.1",
-      "margin": "5",
+      "margin": "@",
       "win_odds": 196.7,
       "popularity": 13,
       "horse_weight": 480,
@@ -214,7 +214,7 @@
       "jockey": "亀田温心",
       "trainer": "久保田貴",
       "finish_time": "1:48.1",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 12.0,
       "popularity": 5,
       "horse_weight": 480,
@@ -238,7 +238,7 @@
       "jockey": "藤懸貴志",
       "trainer": "千田輝彦",
       "finish_time": "1:48.3",
-      "margin": "1",
+      "margin": "@",
       "win_odds": 132.6,
       "popularity": 11,
       "horse_weight": 474,
@@ -262,7 +262,7 @@
       "jockey": "森田誠也",
       "trainer": "尾形和幸",
       "finish_time": "1:49.1",
-      "margin": "5",
+      "margin": "@",
       "win_odds": 135.5,
       "popularity": 12,
       "horse_weight": 444,
@@ -286,7 +286,7 @@
       "jockey": "古川吉洋",
       "trainer": "大根田裕",
       "finish_time": "1:50.1",
-      "margin": "6",
+      "margin": "@",
       "win_odds": 117.4,
       "popularity": 9,
       "horse_weight": 496,
@@ -310,7 +310,7 @@
       "jockey": "松若風馬",
       "trainer": "庄野靖志",
       "finish_time": "1:50.1",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 123.0,
       "popularity": 10,
       "horse_weight": 464,
@@ -334,7 +334,7 @@
       "jockey": "小崎綾也",
       "trainer": "高橋一哉",
       "finish_time": "1:50.9",
-      "margin": "5",
+      "margin": "@",
       "win_odds": 245.9,
       "popularity": 14,
       "horse_weight": 478,
@@ -358,7 +358,7 @@
       "jockey": "国分恭介",
       "trainer": "岡田稲男",
       "finish_time": "1:51.1",
-      "margin": "1.1/4",
+      "margin": "@",
       "win_odds": 250.7,
       "popularity": 15,
       "horse_weight": 402,
@@ -416,6 +416,12 @@
       "popularity": 1
     },
     {
+      "bet_type": "馬連",
+      "combination": "1",
+      "payout": 2140,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "11-14",
       "payout": 220,
@@ -434,16 +440,46 @@
       "popularity": 12
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 10010,
+      "popularity": 40
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "6",
+      "payout": 80000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "11→14",
       "payout": 1300,
       "popularity": 5
     },
     {
+      "bet_type": "馬単",
+      "combination": "11",
+      "payout": 14000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "4-11-14",
       "payout": 1390,
       "popularity": 3
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "8",
+      "payout": 1204,
+      "popularity": 140
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2",
+      "payout": 10411,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -530,7 +566,8 @@
         "8": "ウォーターサオラ",
         "9": "パシオネ",
         "7": "ディーズベンチャー"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1668,
@@ -595,7 +632,8 @@
         "8": "ウォーターサオラ",
         "9": "パシオネ",
         "7": "ディーズベンチャー"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1669,
@@ -646,7 +684,8 @@
         "8": "ウォーターサオラ",
         "9": "パシオネ",
         "7": "ディーズベンチャー"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1670,
@@ -697,7 +736,8 @@
         "8": "ウォーターサオラ",
         "9": "パシオネ",
         "7": "ディーズベンチャー"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1671,
@@ -769,7 +809,8 @@
         "8": "ウォーターサオラ",
         "9": "パシオネ",
         "7": "ディーズベンチャー"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1672,
@@ -820,7 +861,8 @@
         "8": "ウォーターサオラ",
         "9": "パシオネ",
         "7": "ディーズベンチャー"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1673,
@@ -899,7 +941,8 @@
         "8": "ウォーターサオラ",
         "9": "パシオネ",
         "7": "ディーズベンチャー"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1684,
@@ -964,7 +1007,8 @@
         "8": "ウォーターサオラ",
         "9": "パシオネ",
         "7": "ディーズベンチャー"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1685,
@@ -1043,7 +1087,8 @@
         "8": "ウォーターサオラ",
         "9": "パシオネ",
         "7": "ディーズベンチャー"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1686,
@@ -1094,7 +1139,8 @@
         "8": "ウォーターサオラ",
         "9": "パシオネ",
         "7": "ディーズベンチャー"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1687,
@@ -1145,7 +1191,8 @@
         "8": "ウォーターサオラ",
         "9": "パシオネ",
         "7": "ディーズベンチャー"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1688,
@@ -1196,7 +1243,8 @@
         "8": "ウォーターサオラ",
         "9": "パシオネ",
         "7": "ディーズベンチャー"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1689,
@@ -1261,7 +1309,8 @@
         "8": "ウォーターサオラ",
         "9": "パシオネ",
         "7": "ディーズベンチャー"
-      }
+      },
+      "is_provisional": true
     }
   ],
   "training_evals": {

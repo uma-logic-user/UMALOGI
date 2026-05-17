@@ -4,143 +4,13 @@
   "date": "2026-05-03",
   "venue": "東京",
   "race_number": 1,
-  "distance": 1600,
-  "surface": "ダート",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "曇",
-  "condition": "稍",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
-    {
-      "rank": 1,
-      "gate_number": 7,
-      "horse_number": 13,
-      "horse_name": "ブルーサーマル",
-      "horse_id": "2023101107",
-      "sex_age": "牝5",
-      "weight_carried": 55.0,
-      "jockey": "原優介",
-      "trainer": "池上昌和",
-      "finish_time": "1:38.7",
-      "margin": "@",
-      "win_odds": 2.5,
-      "popularity": 1,
-      "horse_weight": 524,
-      "horse_weight_diff": 6,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.1514,
-      "ev_score": 0.439,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.661,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 2,
-      "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "エフハリスト",
-      "horse_id": "2023105800",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "横山和生",
-      "trainer": "奥村武",
-      "finish_time": "1:38.8",
-      "margin": "3/4",
-      "win_odds": 9.1,
-      "popularity": 4,
-      "horse_weight": 512,
-      "horse_weight_diff": -2,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0412,
-      "ev_score": 0.4285,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.8665,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 3,
-      "gate_number": 3,
-      "horse_number": 4,
-      "horse_name": "キャルキュラス",
-      "horse_id": "2023107207",
-      "sex_age": "牝4",
-      "weight_carried": 55.0,
-      "jockey": "ディー",
-      "trainer": "萩原清",
-      "finish_time": "1:39.3",
-      "margin": "3",
-      "win_odds": 6.5,
-      "popularity": 3,
-      "horse_weight": 452,
-      "horse_weight_diff": 0,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0387,
-      "ev_score": 0.3485,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.282,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 4,
-      "gate_number": 4,
-      "horse_number": 7,
-      "horse_name": "フレンチブラッサム",
-      "horse_id": "2023105062",
-      "sex_age": "牝7",
-      "weight_carried": 55.0,
-      "jockey": "木幡巧也",
-      "trainer": "柄崎将寿",
-      "finish_time": "1:39.6",
-      "margin": "1.1/2",
-      "win_odds": 20.9,
-      "popularity": 8,
-      "horse_weight": 438,
-      "horse_weight_diff": 5,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.043,
-      "ev_score": 2.2022,
-      "kelly_fraction": 0.0024,
-      "manji_ev": 0.3238,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 5,
-      "gate_number": 8,
-      "horse_number": 15,
-      "horse_name": "メリティス",
-      "horse_id": "2023106369",
-      "sex_age": "牝4",
-      "weight_carried": 55.0,
-      "jockey": "吉田豊",
-      "trainer": "嘉藤貴行",
-      "finish_time": "1:39.9",
-      "margin": "1.3/4",
-      "win_odds": 10.5,
-      "popularity": 5,
-      "horse_weight": 484,
-      "horse_weight_diff": 0,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0226,
-      "ev_score": 0.2443,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.2538,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
     {
       "rank": 6,
       "gate_number": 2,
@@ -149,10 +19,10 @@
       "horse_id": "2023102403",
       "sex_age": "牝3",
       "weight_carried": 55.0,
-      "jockey": "佐々木大",
-      "trainer": "菊川正達",
+      "jockey": "佐々木",
+      "trainer": "美浦菊川",
       "finish_time": "1:39.9",
-      "margin": "アタマ",
+      "margin": "�",
       "win_odds": 17.4,
       "popularity": 7,
       "horse_weight": 450,
@@ -160,245 +30,11 @@
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.1313,
-      "ev_score": 2.5336,
-      "kelly_fraction": 0.0084,
-      "manji_ev": 0.8461,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 7,
-      "gate_number": 5,
-      "horse_number": 9,
-      "horse_name": "ディープマウンテン",
-      "horse_id": "2023103475",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "木幡初也",
-      "trainer": "深山雅史",
-      "finish_time": "1:39.9",
-      "margin": "ハナ",
-      "win_odds": 118.4,
-      "popularity": 12,
-      "horse_weight": 402,
-      "horse_weight_diff": -4,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.07,
-      "ev_score": 4.6535,
-      "kelly_fraction": 0.0056,
-      "manji_ev": 0.303,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 8,
-      "gate_number": 3,
-      "horse_number": 5,
-      "horse_name": "アスパラゴ",
-      "horse_id": "2023100332",
-      "sex_age": "牝1",
-      "weight_carried": 55.0,
-      "jockey": "大野拓弥",
-      "trainer": "田村康仁",
-      "finish_time": "1:39.9",
-      "margin": "クビ",
-      "win_odds": 41.0,
-      "popularity": 10,
-      "horse_weight": 470,
-      "horse_weight_diff": -2,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0412,
-      "ev_score": 2.2784,
-      "kelly_fraction": 0.0024,
-      "manji_ev": 0.3967,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 9,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "ウォータースパウト",
-      "horse_id": "2023105555",
-      "sex_age": "牝5",
-      "weight_carried": 55.0,
-      "jockey": "高杉吏麒",
-      "trainer": "小笠倫弘",
-      "finish_time": "1:40.1",
-      "margin": "1.1/2",
-      "win_odds": 11.4,
-      "popularity": 6,
-      "horse_weight": 466,
-      "horse_weight_diff": -2,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0279,
-      "ev_score": 0.1925,
+      "honmei_score": 0.1716,
+      "ev_score": 0.0,
       "kelly_fraction": 0.0,
-      "manji_ev": 0.2759,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 10,
-      "gate_number": 6,
-      "horse_number": 10,
-      "horse_name": "シンデレラカラー",
-      "horse_id": "2023101778",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "岩田康誠",
-      "trainer": "加藤和宏",
-      "finish_time": "1:40.2",
-      "margin": "クビ",
-      "win_odds": 28.5,
-      "popularity": 9,
-      "horse_weight": 456,
-      "horse_weight_diff": 0,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.1313,
-      "ev_score": 1.0764,
-      "kelly_fraction": 0.0011,
-      "manji_ev": 0.6504,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 11,
-      "gate_number": 6,
-      "horse_number": 11,
-      "horse_name": "ライヴマルガリータ",
-      "horse_id": "2023101046",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "石橋脩",
-      "trainer": "牧光二",
-      "finish_time": "1:40.4",
-      "margin": "1.1/4",
-      "win_odds": 46.1,
-      "popularity": 11,
-      "horse_weight": 454,
-      "horse_weight_diff": -4,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.057,
-      "ev_score": 2.5403,
-      "kelly_fraction": 0.0035,
-      "manji_ev": 0.7428,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 12,
-      "gate_number": 7,
-      "horse_number": 12,
-      "horse_name": "イデアクリスタル",
-      "horse_id": "2023102033",
-      "sex_age": "牝1",
-      "weight_carried": 55.0,
-      "jockey": "横山武史",
-      "trainer": "手塚貴徳",
-      "finish_time": "1:40.5",
-      "margin": "1/2",
-      "win_odds": 4.9,
-      "popularity": 2,
-      "horse_weight": 476,
-      "horse_weight_diff": 4,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.1514,
-      "ev_score": 0.8326,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.662,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 13,
-      "gate_number": 4,
-      "horse_number": 6,
-      "horse_name": "グレープレモネード",
-      "horse_id": "2023105428",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "松岡正海",
-      "trainer": "本間忍",
-      "finish_time": "1:41.5",
-      "margin": "6",
-      "win_odds": 269.0,
-      "popularity": 15,
-      "horse_weight": 422,
-      "horse_weight_diff": -8,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.043,
-      "ev_score": 4.1935,
-      "kelly_fraction": 0.0033,
-      "manji_ev": 0.3476,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 14,
-      "gate_number": 5,
-      "horse_number": 8,
-      "horse_name": "アジャイブ",
-      "horse_id": "2023102676",
-      "sex_age": "牝3",
-      "weight_carried": 53.0,
-      "jockey": "長浜鴻緒",
-      "trainer": "小笠倫弘",
-      "finish_time": "1:41.7",
-      "margin": "1.1/4",
-      "win_odds": 124.2,
-      "popularity": 13,
-      "horse_weight": 460,
-      "horse_weight_diff": 4,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0226,
-      "ev_score": 1.0517,
-      "kelly_fraction": 0.0001,
-      "manji_ev": 0.2549,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 15,
-      "gate_number": 8,
-      "horse_number": 14,
-      "horse_name": "マウンテンドーター",
-      "horse_id": "2023107464",
-      "sex_age": "牝1",
-      "weight_carried": 55.0,
-      "jockey": "柴田大知",
-      "trainer": "和田雄二",
-      "finish_time": "1:43.7",
-      "margin": "大",
-      "win_odds": 244.6,
-      "popularity": 14,
-      "horse_weight": 426,
-      "horse_weight_diff": 0,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.043,
-      "ev_score": 5.1613,
-      "kelly_fraction": 0.0035,
-      "manji_ev": 0.4049,
-      "odds_vs_morning": 1.0,
+      "manji_ev": 1.0221,
+      "odds_vs_morning": null,
       "odds_velocity": null
     }
   ],
@@ -408,6 +44,12 @@
       "combination": "13",
       "payout": 250,
       "popularity": 1
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "15",
+      "payout": 15000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -440,6 +82,12 @@
       "popularity": 2
     },
     {
+      "bet_type": "馬連",
+      "combination": "1",
+      "payout": 1030,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "3-13",
       "payout": 400,
@@ -458,16 +106,40 @@
       "popularity": 13
     },
     {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 70000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "13→3",
       "payout": 1640,
       "popularity": 3
     },
     {
+      "bet_type": "馬単",
+      "combination": "3",
+      "payout": 13000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "3-4-13",
       "payout": 2620,
       "popularity": 5
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4",
+      "payout": 403,
+      "popularity": 40
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "11",
+      "payout": 30013,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -477,1333 +149,6 @@
     }
   ],
   "predictions": [
-    {
-      "prediction_id": 21436,
-      "model_type": "本命(暫定)",
-      "bet_type": "単勝",
-      "confidence": 0.15138772077375945,
-      "expected_value": 0.4390243902439024,
-      "recommended_bet": 100.0,
-      "combination_json": "[[13]]",
-      "notes": "確率1位 P(win)=0.15 odds=2.9 EV=0.44",
-      "created_at": "2026-05-03 08:11:57",
-      "is_hit": 1,
-      "payout": 250.0,
-      "profit": 150.0,
-      "roi": 250.0,
-      "horses": [
-        {
-          "horse_name": "ブルーサーマル",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.15138772077375945,
-          "ev_score": 0.4390243902439024
-        }
-      ],
-      "bet_form": "単勝",
-      "n_tickets": 1,
-      "invested": 100,
-      "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
-    },
-    {
-      "prediction_id": 21437,
-      "model_type": "本命(暫定)",
-      "bet_type": "複勝",
-      "confidence": 0.43404957282165013,
-      "expected_value": 0.43404957282165013,
-      "recommended_bet": 300.0,
-      "combination_json": "[[13], [12], [2]]",
-      "notes": "上位3頭を複勝",
-      "created_at": "2026-05-03 08:11:57",
-      "is_hit": 1,
-      "payout": 120.0,
-      "profit": -180.0,
-      "roi": 40.0,
-      "horses": [
-        {
-          "horse_name": "ブルーサーマル",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.14468319094055004,
-          "ev_score": 0.43404957282165013
-        },
-        {
-          "horse_name": "イデアクリスタル",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.14468319094055004,
-          "ev_score": 0.43404957282165013
-        },
-        {
-          "horse_name": "ルンベーラ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.14468319094055004,
-          "ev_score": 0.43404957282165013
-        }
-      ],
-      "bet_form": "複勝",
-      "n_tickets": 3,
-      "invested": 300,
-      "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
-    },
-    {
-      "prediction_id": 21438,
-      "model_type": "本命(暫定)",
-      "bet_type": "馬連",
-      "confidence": 0.05471969314442312,
-      "expected_value": 0.9521226607129623,
-      "recommended_bet": 500.0,
-      "combination_json": "[[12, 13], [2, 13], [10, 13], [9, 13], [11, 13]]",
-      "notes": "軸13番×相手5頭フォーメーション Harville最大=0.055",
-      "created_at": "2026-05-03 08:11:57",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -500.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "イデアクリスタル",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.05471969314442312,
-          "ev_score": 0.9521226607129623
-        },
-        {
-          "horse_name": "イデアクリスタル",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.05471969314442312,
-          "ev_score": 0.9521226607129623
-        },
-        {
-          "horse_name": "イデアクリスタル",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.05471969314442312,
-          "ev_score": 0.9521226607129623
-        },
-        {
-          "horse_name": "イデアクリスタル",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.05471969314442312,
-          "ev_score": 0.9521226607129623
-        },
-        {
-          "horse_name": "イデアクリスタル",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.05471969314442312,
-          "ev_score": 0.9521226607129623
-        },
-        {
-          "horse_name": "ブルーサーマル",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.05471969314442312,
-          "ev_score": 0.9521226607129623
-        },
-        {
-          "horse_name": "ブルーサーマル",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.05471969314442312,
-          "ev_score": 0.9521226607129623
-        },
-        {
-          "horse_name": "ブルーサーマル",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.05471969314442312,
-          "ev_score": 0.9521226607129623
-        },
-        {
-          "horse_name": "ブルーサーマル",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.05471969314442312,
-          "ev_score": 0.9521226607129623
-        },
-        {
-          "horse_name": "ブルーサーマル",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.05471969314442312,
-          "ev_score": 0.9521226607129623
-        }
-      ],
-      "bet_form": "軸ながし",
-      "n_tickets": 5,
-      "invested": 500,
-      "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
-    },
-    {
-      "prediction_id": 21439,
-      "model_type": "本命(暫定)",
-      "bet_type": "ワイド",
-      "confidence": 0.07113560108775006,
-      "expected_value": 0.39671777529706764,
-      "recommended_bet": 500.0,
-      "combination_json": "[[12, 13], [2, 13], [10, 13], [9, 13], [11, 13]]",
-      "notes": "軸13番×相手5頭ワイド Harville最大=0.055",
-      "created_at": "2026-05-03 08:11:57",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -500.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "イデアクリスタル",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.05471969314442312,
-          "ev_score": 0.39671777529706764
-        },
-        {
-          "horse_name": "イデアクリスタル",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.05471969314442312,
-          "ev_score": 0.39671777529706764
-        },
-        {
-          "horse_name": "イデアクリスタル",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.05471969314442312,
-          "ev_score": 0.39671777529706764
-        },
-        {
-          "horse_name": "イデアクリスタル",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.05471969314442312,
-          "ev_score": 0.39671777529706764
-        },
-        {
-          "horse_name": "イデアクリスタル",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.05471969314442312,
-          "ev_score": 0.39671777529706764
-        },
-        {
-          "horse_name": "ブルーサーマル",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.05471969314442312,
-          "ev_score": 0.39671777529706764
-        },
-        {
-          "horse_name": "ブルーサーマル",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.05471969314442312,
-          "ev_score": 0.39671777529706764
-        },
-        {
-          "horse_name": "ブルーサーマル",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.05471969314442312,
-          "ev_score": 0.39671777529706764
-        },
-        {
-          "horse_name": "ブルーサーマル",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.05471969314442312,
-          "ev_score": 0.39671777529706764
-        },
-        {
-          "horse_name": "ブルーサーマル",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.05471969314442312,
-          "ev_score": 0.39671777529706764
-        }
-      ],
-      "bet_form": "軸ながし",
-      "n_tickets": 5,
-      "invested": 500,
-      "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
-    },
-    {
-      "prediction_id": 21440,
-      "model_type": "本命(暫定)",
-      "bet_type": "馬単",
-      "confidence": 0.21887877257769248,
-      "expected_value": 0.9521226607129623,
-      "recommended_bet": 300.0,
-      "combination_json": "[[13, 12], [13, 2], [13, 10]]",
-      "notes": "軸13番→相手3頭フォーメーション Harville最大=0.027",
-      "created_at": "2026-05-03 08:11:57",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -300.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "ブルーサーマル",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.02735984657221156,
-          "ev_score": 0.9521226607129623
-        },
-        {
-          "horse_name": "ブルーサーマル",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.02735984657221156,
-          "ev_score": 0.9521226607129623
-        },
-        {
-          "horse_name": "ブルーサーマル",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.02735984657221156,
-          "ev_score": 0.9521226607129623
-        },
-        {
-          "horse_name": "イデアクリスタル",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.02735984657221156,
-          "ev_score": 0.9521226607129623
-        },
-        {
-          "horse_name": "イデアクリスタル",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.02735984657221156,
-          "ev_score": 0.9521226607129623
-        },
-        {
-          "horse_name": "イデアクリスタル",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.02735984657221156,
-          "ev_score": 0.9521226607129623
-        }
-      ],
-      "bet_form": "軸ながし",
-      "n_tickets": 3,
-      "invested": 300,
-      "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
-    },
-    {
-      "prediction_id": 21441,
-      "model_type": "本命(暫定)",
-      "bet_type": "三連複",
-      "confidence": 0.3642095983613557,
-      "expected_value": 2.6405195881198287,
-      "recommended_bet": 600.0,
-      "combination_json": "[[2, 12, 13], [10, 12, 13]]",
-      "notes": "合成EV最大=2.64 2点 馬番=[(2, 12, 13), (10, 12, 13)]",
-      "created_at": "2026-05-03 08:11:57",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -200.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "ルンベーラ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.03035079986344631,
-          "ev_score": 2.6405195881198287
-        },
-        {
-          "horse_name": "ルンベーラ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.03035079986344631,
-          "ev_score": 2.6405195881198287
-        },
-        {
-          "horse_name": "イデアクリスタル",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.03035079986344631,
-          "ev_score": 2.6405195881198287
-        },
-        {
-          "horse_name": "イデアクリスタル",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.03035079986344631,
-          "ev_score": 2.6405195881198287
-        },
-        {
-          "horse_name": "ブルーサーマル",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.03035079986344631,
-          "ev_score": 2.6405195881198287
-        },
-        {
-          "horse_name": "ブルーサーマル",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.03035079986344631,
-          "ev_score": 2.6405195881198287
-        }
-      ],
-      "bet_form": "軸2頭ながし",
-      "n_tickets": 2,
-      "invested": 200,
-      "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
-    },
-    {
-      "prediction_id": 21442,
-      "model_type": "本命(暫定)",
-      "bet_type": "三連単",
-      "confidence": 0.9105239959033893,
-      "expected_value": 6.0,
-      "recommended_bet": 6000.0,
-      "combination_json": "[[13, 2, 9], [13, 9, 2], [2, 13, 9], [2, 9, 13], [9, 13, 2], [9, 2, 13], [13, 2, 10], [13, 10, 2], [2, 13, 10], [2, 10, 13], [10, 13, 2], [10, 2, 13], [13, 2, 11], [13, 11, 2], [2, 13, 11], [2, 11, 13], [11, 13, 2], [11, 2, 13], [13, 2, 12], [13, 12, 2], [2, 13, 12], [2, 12, 13], [12, 13, 2], [12, 2, 13], [13, 9, 10], [13, 10, 9], [9, 13, 10], [9, 10, 13], [10, 13, 9], [10, 9, 13], [13, 9, 11], [13, 11, 9], [9, 13, 11], [9, 11, 13], [11, 13, 9], [11, 9, 13], [13, 9, 12], [13, 12, 9], [9, 13, 12], [9, 12, 13], [12, 13, 9], [12, 9, 13], [13, 10, 11], [13, 11, 10], [10, 13, 11], [10, 11, 13], [11, 13, 10], [11, 10, 13], [13, 10, 12], [13, 12, 10], [10, 13, 12], [10, 12, 13], [12, 13, 10], [12, 10, 13], [13, 11, 12], [13, 12, 11], [11, 13, 12], [11, 12, 13], [12, 13, 11], [12, 11, 13]]",
-      "notes": "1着固定フォーメーション 軸=13番 12点 相手=[12, 2, 10, 9, 11, 6] Harville最大=0.0304",
-      "created_at": "2026-05-03 08:11:57",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -6000.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "ブルーサーマル",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.03035079986344631,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "ブルーサーマル",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.03035079986344631,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "ブルーサーマル",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.03035079986344631,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "ブルーサーマル",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.03035079986344631,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "ブルーサーマル",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.03035079986344631,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "イデアクリスタル",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.03035079986344631,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "イデアクリスタル",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.03035079986344631,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "イデアクリスタル",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.03035079986344631,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "イデアクリスタル",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.03035079986344631,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "イデアクリスタル",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.03035079986344631,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "ルンベーラ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.03035079986344631,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "ルンベーラ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.03035079986344631,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "ルンベーラ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.03035079986344631,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "ルンベーラ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.03035079986344631,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "ルンベーラ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.03035079986344631,
-          "ev_score": 6.0
-        }
-      ],
-      "bet_form": "1頭軸マルチ",
-      "n_tickets": 60,
-      "invested": 6000,
-      "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
-    },
-    {
-      "prediction_id": 21443,
-      "model_type": "卍(暫定)",
-      "bet_type": "単勝",
-      "confidence": 0.43325033460909956,
-      "expected_value": 0.8665006692181991,
-      "recommended_bet": 100.0,
-      "combination_json": "[[3]]",
-      "notes": "確率1位(卍) EV=0.87 odds=10.4",
-      "created_at": "2026-05-03 08:11:57",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -100.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "エフハリスト",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.8665006692181991,
-          "ev_score": 0.8665006692181991
-        }
-      ],
-      "bet_form": "単勝",
-      "n_tickets": 1,
-      "invested": 100,
-      "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
-    },
-    {
-      "prediction_id": 21444,
-      "model_type": "卍(暫定)",
-      "bet_type": "複勝",
-      "confidence": 0.6,
-      "expected_value": 0.818462370999803,
-      "recommended_bet": 300.0,
-      "combination_json": "[[3], [2], [11]]",
-      "notes": "確率上位3頭を複勝",
-      "created_at": "2026-05-03 08:11:57",
-      "is_hit": 1,
-      "payout": 210.0,
-      "profit": -90.0,
-      "roi": 70.0,
-      "horses": [
-        {
-          "horse_name": "エフハリスト",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.818462370999803,
-          "ev_score": 0.818462370999803
-        },
-        {
-          "horse_name": "ルンベーラ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.818462370999803,
-          "ev_score": 0.818462370999803
-        },
-        {
-          "horse_name": "ライヴマルガリータ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.818462370999803,
-          "ev_score": 0.818462370999803
-        }
-      ],
-      "bet_form": "複勝",
-      "n_tickets": 3,
-      "invested": 300,
-      "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
-    },
-    {
-      "prediction_id": 21445,
-      "model_type": "卍(暫定)",
-      "bet_type": "馬連",
-      "confidence": 0.15716246882164459,
-      "expected_value": 1.9613876108941246,
-      "recommended_bet": 500.0,
-      "combination_json": "[[2, 3], [3, 11], [3, 12], [3, 13], [3, 10]]",
-      "notes": "軸3番×相手5頭フォーメーション Harville最大=0.031",
-      "created_at": "2026-05-03 08:11:57",
-      "is_hit": 1,
-      "payout": 960.0,
-      "profit": 460.0,
-      "roi": 192.0,
-      "horses": [
-        {
-          "horse_name": "ルンベーラ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.03143249376432892,
-          "ev_score": 1.9613876108941246
-        },
-        {
-          "horse_name": "ルンベーラ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.03143249376432892,
-          "ev_score": 1.9613876108941246
-        },
-        {
-          "horse_name": "ルンベーラ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.03143249376432892,
-          "ev_score": 1.9613876108941246
-        },
-        {
-          "horse_name": "ルンベーラ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.03143249376432892,
-          "ev_score": 1.9613876108941246
-        },
-        {
-          "horse_name": "ルンベーラ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.03143249376432892,
-          "ev_score": 1.9613876108941246
-        },
-        {
-          "horse_name": "エフハリスト",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.03143249376432892,
-          "ev_score": 1.9613876108941246
-        },
-        {
-          "horse_name": "エフハリスト",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.03143249376432892,
-          "ev_score": 1.9613876108941246
-        },
-        {
-          "horse_name": "エフハリスト",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.03143249376432892,
-          "ev_score": 1.9613876108941246
-        },
-        {
-          "horse_name": "エフハリスト",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.03143249376432892,
-          "ev_score": 1.9613876108941246
-        },
-        {
-          "horse_name": "エフハリスト",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.03143249376432892,
-          "ev_score": 1.9613876108941246
-        }
-      ],
-      "bet_form": "軸ながし",
-      "n_tickets": 5,
-      "invested": 500,
-      "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
-    },
-    {
-      "prediction_id": 21446,
-      "model_type": "卍(暫定)",
-      "bet_type": "ワイド",
-      "confidence": 0.18859496258597352,
-      "expected_value": 0.8172448378725519,
-      "recommended_bet": 500.0,
-      "combination_json": "[[2, 3], [3, 11], [3, 12], [3, 13], [3, 10]]",
-      "notes": "軸3番×相手5頭ワイド Harville最大=0.031",
-      "created_at": "2026-05-03 08:11:57",
-      "is_hit": 1,
-      "payout": 400.0,
-      "profit": -100.0,
-      "roi": 80.0,
-      "horses": [
-        {
-          "horse_name": "ルンベーラ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.03143249376432892,
-          "ev_score": 0.8172448378725519
-        },
-        {
-          "horse_name": "ルンベーラ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.03143249376432892,
-          "ev_score": 0.8172448378725519
-        },
-        {
-          "horse_name": "ルンベーラ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.03143249376432892,
-          "ev_score": 0.8172448378725519
-        },
-        {
-          "horse_name": "ルンベーラ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.03143249376432892,
-          "ev_score": 0.8172448378725519
-        },
-        {
-          "horse_name": "ルンベーラ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.03143249376432892,
-          "ev_score": 0.8172448378725519
-        },
-        {
-          "horse_name": "エフハリスト",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.03143249376432892,
-          "ev_score": 0.8172448378725519
-        },
-        {
-          "horse_name": "エフハリスト",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.03143249376432892,
-          "ev_score": 0.8172448378725519
-        },
-        {
-          "horse_name": "エフハリスト",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.03143249376432892,
-          "ev_score": 0.8172448378725519
-        },
-        {
-          "horse_name": "エフハリスト",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.03143249376432892,
-          "ev_score": 0.8172448378725519
-        },
-        {
-          "horse_name": "エフハリスト",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.03143249376432892,
-          "ev_score": 0.8172448378725519
-        }
-      ],
-      "bet_form": "軸ながし",
-      "n_tickets": 5,
-      "invested": 500,
-      "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
-    },
-    {
-      "prediction_id": 21447,
-      "model_type": "卍(暫定)",
-      "bet_type": "馬単",
-      "confidence": 0.12593029873125983,
-      "expected_value": 1.9645126602076535,
-      "recommended_bet": 300.0,
-      "combination_json": "[[3, 2], [3, 11], [3, 12]]",
-      "notes": "軸3番→相手3頭フォーメーション Harville最大=0.016",
-      "created_at": "2026-05-03 08:11:57",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -300.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "エフハリスト",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.01574128734140748,
-          "ev_score": 1.9645126602076535
-        },
-        {
-          "horse_name": "エフハリスト",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.01574128734140748,
-          "ev_score": 1.9645126602076535
-        },
-        {
-          "horse_name": "エフハリスト",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.01574128734140748,
-          "ev_score": 1.9645126602076535
-        },
-        {
-          "horse_name": "ルンベーラ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.01574128734140748,
-          "ev_score": 1.9645126602076535
-        },
-        {
-          "horse_name": "ルンベーラ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.01574128734140748,
-          "ev_score": 1.9645126602076535
-        },
-        {
-          "horse_name": "ルンベーラ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.01574128734140748,
-          "ev_score": 1.9645126602076535
-        }
-      ],
-      "bet_form": "軸ながし",
-      "n_tickets": 3,
-      "invested": 300,
-      "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
-    },
-    {
-      "prediction_id": 21450,
-      "model_type": "卍(暫定)",
-      "bet_type": "三連複",
-      "confidence": 0.16278193347080452,
-      "expected_value": 3.3858642161927346,
-      "recommended_bet": 300.0,
-      "combination_json": "[[2, 3, 13]]",
-      "notes": "合成EV=3.39 Harville=0.0109 馬番=(2, 3, 13)",
-      "created_at": "2026-05-03 08:11:57",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -100.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "ルンベーラ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.010852128898053636,
-          "ev_score": 3.3858642161927346
-        },
-        {
-          "horse_name": "エフハリスト",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.010852128898053636,
-          "ev_score": 3.3858642161927346
-        },
-        {
-          "horse_name": "ブルーサーマル",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.010852128898053636,
-          "ev_score": 3.3858642161927346
-        }
-      ],
-      "bet_form": "3頭ボックス",
-      "n_tickets": 1,
-      "invested": 100,
-      "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
-    },
-    {
-      "prediction_id": 21451,
-      "model_type": "Oracle(暫定)",
-      "bet_type": "三連複",
-      "confidence": 0.16870451425547586,
-      "expected_value": 5.061135427664276,
-      "recommended_bet": 500.0,
-      "combination_json": "[[2, 12, 13], [10, 12, 13], [2, 10, 13], [2, 10, 12], [9, 12, 13]]",
-      "notes": "[Oracle] 的中確率最大 5点 P最大=0.1687 馬番=[(2, 12, 13), (10, 12, 13), (2, 10, 13), (2, 10, 12), (9, 12, 13)]",
-      "created_at": "2026-05-03 08:11:57",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -500.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "ルンベーラ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.16870451425547586,
-          "ev_score": 5.061135427664276
-        },
-        {
-          "horse_name": "イデアクリスタル",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.16870451425547586,
-          "ev_score": 5.061135427664276
-        },
-        {
-          "horse_name": "ブルーサーマル",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.16870451425547586,
-          "ev_score": 5.061135427664276
-        }
-      ],
-      "bet_form": "フォーメーション",
-      "n_tickets": 5,
-      "invested": 500,
-      "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
-    },
-    {
-      "prediction_id": 21452,
-      "model_type": "Oracle(暫定)",
-      "bet_type": "三連単",
-      "confidence": 0.02811741904257931,
-      "expected_value": 4.217612856386896,
-      "recommended_bet": 1200.0,
-      "combination_json": "[[13, 12, 2], [13, 12, 10], [13, 2, 12], [13, 10, 12], [12, 13, 2], [12, 13, 10], [12, 2, 13], [12, 10, 13], [2, 13, 12], [2, 12, 13], [10, 13, 12], [10, 12, 13]]",
-      "notes": "[Oracle] 的中確率最大 12点 P最大=0.0281 馬番=[(13, 12, 2), (13, 12, 10), (13, 2, 12), (13, 10, 12), (12, 13, 2), (12, 13, 10), (12, 2, 13), (12, 10, 13), (2, 13, 12), (2, 12, 13), (10, 13, 12), (10, 12, 13)]",
-      "created_at": "2026-05-03 08:11:57",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -1200.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "ブルーサーマル",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.02811741904257931,
-          "ev_score": 4.217612856386896
-        },
-        {
-          "horse_name": "イデアクリスタル",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.02811741904257931,
-          "ev_score": 4.217612856386896
-        },
-        {
-          "horse_name": "ルンベーラ",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.02811741904257931,
-          "ev_score": 4.217612856386896
-        }
-      ],
-      "bet_form": "2頭軸マルチ",
-      "n_tickets": 12,
-      "invested": 1200,
-      "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
-    },
-    {
-      "prediction_id": 21453,
-      "model_type": "本命(暫定)",
-      "bet_type": "馬分析",
-      "confidence": null,
-      "expected_value": null,
-      "recommended_bet": null,
-      "combination_json": "[]",
-      "notes": "全馬モデルスコア（馬分析タブ用）",
-      "created_at": "2026-05-03 08:11:57",
-      "is_hit": 0,
-      "payout": 0.0,
-      "profit": -100.0,
-      "roi": 0.0,
-      "horses": [
-        {
-          "horse_name": "ブルーサーマル",
-          "horse_id": "2023101107",
-          "predicted_rank": 1,
-          "model_score": 0.15138772077375945,
-          "ev_score": 0.4390243902439024
-        },
-        {
-          "horse_name": "イデアクリスタル",
-          "horse_id": "2023102033",
-          "predicted_rank": 2,
-          "model_score": 0.15138772077375945,
-          "ev_score": 0.8326324642556769
-        },
-        {
-          "horse_name": "シンデレラカラー",
-          "horse_id": "2023101778",
-          "predicted_rank": 3,
-          "model_score": 0.13127413127413126,
-          "ev_score": 1.0764478764478762
-        },
-        {
-          "horse_name": "ルンベーラ",
-          "horse_id": "2023102403",
-          "predicted_rank": 4,
-          "model_score": 0.13127413127413126,
-          "ev_score": 2.5335907335907333
-        },
-        {
-          "horse_name": "ディープマウンテン",
-          "horse_id": "2023103475",
-          "predicted_rank": 5,
-          "model_score": 0.06997742663656885,
-          "ev_score": 4.653498871331829
-        },
-        {
-          "horse_name": "ライヴマルガリータ",
-          "horse_id": "2023101046",
-          "predicted_rank": 6,
-          "model_score": 0.05695830886670581,
-          "ev_score": 2.540340575455079
-        },
-        {
-          "horse_name": "マウンテンドーター",
-          "horse_id": "2023107464",
-          "predicted_rank": 7,
-          "model_score": 0.043010752688172046,
-          "ev_score": 5.161290322580646
-        },
-        {
-          "horse_name": "グレープレモネード",
-          "horse_id": "2023105428",
-          "predicted_rank": 8,
-          "model_score": 0.043010752688172046,
-          "ev_score": 4.193548387096775
-        },
-        {
-          "horse_name": "フレンチブラッサム",
-          "horse_id": "2023105062",
-          "predicted_rank": 9,
-          "model_score": 0.043010752688172046,
-          "ev_score": 2.202150537634409
-        },
-        {
-          "horse_name": "エフハリスト",
-          "horse_id": "2023105800",
-          "predicted_rank": 10,
-          "model_score": 0.04120070629782225,
-          "ev_score": 0.4284873454973514
-        },
-        {
-          "horse_name": "アスパラゴ",
-          "horse_id": "2023100332",
-          "predicted_rank": 11,
-          "model_score": 0.04120070629782225,
-          "ev_score": 2.2783990582695703
-        },
-        {
-          "horse_name": "キャルキュラス",
-          "horse_id": "2023107207",
-          "predicted_rank": 12,
-          "model_score": 0.0387243735763098,
-          "ev_score": 0.3485193621867882
-        },
-        {
-          "horse_name": "ウォータースパウト",
-          "horse_id": "2023105555",
-          "predicted_rank": 13,
-          "model_score": 0.02789400278940028,
-          "ev_score": 0.19246861924686193
-        },
-        {
-          "horse_name": "メリティス",
-          "horse_id": "2023106369",
-          "predicted_rank": 14,
-          "model_score": 0.022617124394184167,
-          "ev_score": 0.24426494345718902
-        },
-        {
-          "horse_name": "アジャイブ",
-          "horse_id": "2023102676",
-          "predicted_rank": 15,
-          "model_score": 0.022617124394184167,
-          "ev_score": 1.0516962843295639
-        }
-      ],
-      "bet_form": "馬分析",
-      "n_tickets": 0,
-      "invested": 0,
-      "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
-    },
     {
       "prediction_id": 21968,
       "model_type": "本命(直前)",
@@ -1831,22 +176,9 @@
       "n_tickets": 1,
       "invested": 100,
       "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
+        "2": "ルンベーラ"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21969,
@@ -1889,22 +221,9 @@
       "n_tickets": 3,
       "invested": 300,
       "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
+        "2": "ルンベーラ"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21970,
@@ -1996,22 +315,9 @@
       "n_tickets": 5,
       "invested": 500,
       "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
+        "2": "ルンベーラ"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21971,
@@ -2103,22 +409,9 @@
       "n_tickets": 5,
       "invested": 500,
       "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
+        "2": "ルンベーラ"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21972,
@@ -2182,22 +475,9 @@
       "n_tickets": 3,
       "invested": 300,
       "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
+        "2": "ルンベーラ"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21973,
@@ -2261,22 +541,9 @@
       "n_tickets": 2,
       "invested": 200,
       "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
+        "2": "ルンベーラ"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21974,
@@ -2403,22 +670,9 @@
       "n_tickets": 60,
       "invested": 6000,
       "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
+        "2": "ルンベーラ"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21975,
@@ -2447,22 +701,9 @@
       "n_tickets": 1,
       "invested": 100,
       "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
+        "2": "ルンベーラ"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21976,
@@ -2505,22 +746,9 @@
       "n_tickets": 3,
       "invested": 300,
       "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
+        "2": "ルンベーラ"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21977,
@@ -2612,22 +840,9 @@
       "n_tickets": 5,
       "invested": 500,
       "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
+        "2": "ルンベーラ"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21978,
@@ -2719,22 +934,9 @@
       "n_tickets": 5,
       "invested": 500,
       "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
+        "2": "ルンベーラ"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21979,
@@ -2798,22 +1000,9 @@
       "n_tickets": 3,
       "invested": 300,
       "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
+        "2": "ルンベーラ"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21982,
@@ -2856,22 +1045,9 @@
       "n_tickets": 1,
       "invested": 100,
       "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
+        "2": "ルンベーラ"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21983,
@@ -2914,22 +1090,9 @@
       "n_tickets": 5,
       "invested": 500,
       "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
+        "2": "ルンベーラ"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21984,
@@ -2972,22 +1135,9 @@
       "n_tickets": 12,
       "invested": 1200,
       "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
+        "2": "ルンベーラ"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21985,
@@ -3114,22 +1264,9 @@
       "n_tickets": 0,
       "invested": 0,
       "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
+        "2": "ルンベーラ"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21986,
@@ -3165,22 +1302,9 @@
       "n_tickets": 7,
       "invested": 700,
       "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
+        "2": "ルンベーラ"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21987,
@@ -3216,22 +1340,9 @@
       "n_tickets": 8,
       "invested": 800,
       "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
+        "2": "ルンベーラ"
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 21988,
@@ -3274,22 +1385,1183 @@
       "n_tickets": 12,
       "invested": 1200,
       "horse_num_to_name": {
-        "13": "ブルーサーマル",
-        "3": "エフハリスト",
-        "4": "キャルキュラス",
-        "7": "フレンチブラッサム",
-        "15": "メリティス",
-        "2": "ルンベーラ",
-        "9": "ディープマウンテン",
-        "5": "アスパラゴ",
-        "1": "ウォータースパウト",
-        "10": "シンデレラカラー",
-        "11": "ライヴマルガリータ",
-        "12": "イデアクリスタル",
-        "6": "グレープレモネード",
-        "8": "アジャイブ",
-        "14": "マウンテンドーター"
-      }
+        "2": "ルンベーラ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 23239,
+      "model_type": "本命(暫定)",
+      "bet_type": "単勝",
+      "confidence": 0.17163724893487523,
+      "expected_value": 0.17163724893487523,
+      "recommended_bet": 100.0,
+      "combination_json": "[[1]]",
+      "notes": "確率1位 P(win)=0.17 odds=1.0 EV=0.17",
+      "created_at": "2026-05-08 07:35:44",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ウォータースパウト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.17163724893487523
+        }
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "2": "ルンベーラ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23240,
+      "model_type": "本命(暫定)",
+      "bet_type": "複勝",
+      "confidence": 0.17163724893487523,
+      "expected_value": 0.5149117468046257,
+      "recommended_bet": 300.0,
+      "combination_json": "[[1], [2], [3]]",
+      "notes": "上位3頭を複勝",
+      "created_at": "2026-05-08 07:35:44",
+      "is_hit": 1,
+      "payout": 210.0,
+      "profit": -90.0,
+      "roi": 70.0,
+      "horses": [
+        {
+          "horse_name": "ウォータースパウト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.5149117468046257
+        },
+        {
+          "horse_name": "ルンベーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.5149117468046257
+        },
+        {
+          "horse_name": "エフハリスト",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.5149117468046257
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "2": "ルンベーラ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23241,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.009523809523809523,
+      "expected_value": 0.3442857142857143,
+      "recommended_bet": 500.0,
+      "combination_json": "[[1, 2], [1, 3], [1, 5], [1, 6], [1, 7]]",
+      "notes": "軸1番×相手5頭フォーメーション Harville最大=0.010",
+      "created_at": "2026-05-08 07:35:44",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ウォータースパウト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.3442857142857143
+        },
+        {
+          "horse_name": "ウォータースパウト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.3442857142857143
+        },
+        {
+          "horse_name": "ウォータースパウト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.3442857142857143
+        },
+        {
+          "horse_name": "ウォータースパウト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.3442857142857143
+        },
+        {
+          "horse_name": "ウォータースパウト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.3442857142857143
+        },
+        {
+          "horse_name": "ルンベーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.3442857142857143
+        },
+        {
+          "horse_name": "ルンベーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.3442857142857143
+        },
+        {
+          "horse_name": "ルンベーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.3442857142857143
+        },
+        {
+          "horse_name": "ルンベーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.3442857142857143
+        },
+        {
+          "horse_name": "ルンベーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.3442857142857143
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "2": "ルンベーラ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23242,
+      "model_type": "本命(暫定)",
+      "bet_type": "ワイド",
+      "confidence": 0.01238095238095238,
+      "expected_value": 0.1499047619047619,
+      "recommended_bet": 500.0,
+      "combination_json": "[[1, 2], [1, 3], [1, 5], [1, 6], [1, 7]]",
+      "notes": "軸1番×相手5頭ワイド Harville最大=0.010",
+      "created_at": "2026-05-08 07:35:44",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ウォータースパウト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.1499047619047619
+        },
+        {
+          "horse_name": "ウォータースパウト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.1499047619047619
+        },
+        {
+          "horse_name": "ウォータースパウト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.1499047619047619
+        },
+        {
+          "horse_name": "ウォータースパウト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.1499047619047619
+        },
+        {
+          "horse_name": "ウォータースパウト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.1499047619047619
+        },
+        {
+          "horse_name": "ルンベーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.1499047619047619
+        },
+        {
+          "horse_name": "ルンベーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.1499047619047619
+        },
+        {
+          "horse_name": "ルンベーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.1499047619047619
+        },
+        {
+          "horse_name": "ルンベーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.1499047619047619
+        },
+        {
+          "horse_name": "ルンベーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.009523809523809523,
+          "ev_score": 0.1499047619047619
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "2": "ルンベーラ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23243,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬単",
+      "confidence": 0.03809523809523809,
+      "expected_value": 0.304047619047619,
+      "recommended_bet": 300.0,
+      "combination_json": "[[1, 2], [1, 3], [1, 5]]",
+      "notes": "軸1番→相手3頭フォーメーション Harville最大=0.005",
+      "created_at": "2026-05-08 07:35:44",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ウォータースパウト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0047619047619047615,
+          "ev_score": 0.304047619047619
+        },
+        {
+          "horse_name": "ウォータースパウト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0047619047619047615,
+          "ev_score": 0.304047619047619
+        },
+        {
+          "horse_name": "ウォータースパウト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0047619047619047615,
+          "ev_score": 0.304047619047619
+        },
+        {
+          "horse_name": "ルンベーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0047619047619047615,
+          "ev_score": 0.304047619047619
+        },
+        {
+          "horse_name": "ルンベーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0047619047619047615,
+          "ev_score": 0.304047619047619
+        },
+        {
+          "horse_name": "ルンベーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0047619047619047615,
+          "ev_score": 0.304047619047619
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "2": "ルンベーラ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23244,
+      "model_type": "本命(暫定)",
+      "bet_type": "三連単",
+      "confidence": 0.06593406593406592,
+      "expected_value": 1.0711648351648348,
+      "recommended_bet": 1000.0,
+      "combination_json": "[[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1], [1, 2, 5], [1, 5, 2], [2, 1, 5], [2, 5, 1], [5, 1, 2], [5, 2, 1], [1, 2, 6], [1, 6, 2], [2, 1, 6], [2, 6, 1], [6, 1, 2], [6, 2, 1], [1, 2, 7], [1, 7, 2], [2, 1, 7], [2, 7, 1], [7, 1, 2], [7, 2, 1], [1, 2, 9], [1, 9, 2], [2, 1, 9], [2, 9, 1], [9, 1, 2], [9, 2, 1], [1, 3, 5], [1, 5, 3], [3, 1, 5], [3, 5, 1], [5, 1, 3], [5, 3, 1], [1, 3, 6], [1, 6, 3], [3, 1, 6], [3, 6, 1], [6, 1, 3], [6, 3, 1], [1, 3, 7], [1, 7, 3], [3, 1, 7], [3, 7, 1], [7, 1, 3], [7, 3, 1], [1, 3, 9], [1, 9, 3], [3, 1, 9], [3, 9, 1], [9, 1, 3], [9, 3, 1], [1, 5, 6], [1, 6, 5], [5, 1, 6], [5, 6, 1], [6, 1, 5], [6, 5, 1], [1, 5, 7], [1, 7, 5], [5, 1, 7], [5, 7, 1], [7, 1, 5], [7, 5, 1], [1, 5, 9], [1, 9, 5], [5, 1, 9], [5, 9, 1], [9, 1, 5], [9, 5, 1], [1, 6, 7], [1, 7, 6], [6, 1, 7], [6, 7, 1], [7, 1, 6], [7, 6, 1], [1, 6, 9], [1, 9, 6], [6, 1, 9], [6, 9, 1], [9, 1, 6], [9, 6, 1], [1, 7, 9], [1, 9, 7], [7, 1, 9], [7, 9, 1], [9, 1, 7], [9, 7, 1]]",
+      "notes": "1頭軸マルチ 軸=1番 相手=[2, 3, 5, 6, 7, 9] 90点 Harville最大=0.0022",
+      "created_at": "2026-05-08 07:35:44",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -9000.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ウォータースパウト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0021978021978021974,
+          "ev_score": 1.0711648351648348
+        },
+        {
+          "horse_name": "ウォータースパウト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0021978021978021974,
+          "ev_score": 1.0711648351648348
+        },
+        {
+          "horse_name": "ウォータースパウト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0021978021978021974,
+          "ev_score": 1.0711648351648348
+        },
+        {
+          "horse_name": "ウォータースパウト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0021978021978021974,
+          "ev_score": 1.0711648351648348
+        },
+        {
+          "horse_name": "ウォータースパウト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0021978021978021974,
+          "ev_score": 1.0711648351648348
+        },
+        {
+          "horse_name": "ルンベーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0021978021978021974,
+          "ev_score": 1.0711648351648348
+        },
+        {
+          "horse_name": "ルンベーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0021978021978021974,
+          "ev_score": 1.0711648351648348
+        },
+        {
+          "horse_name": "ルンベーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0021978021978021974,
+          "ev_score": 1.0711648351648348
+        },
+        {
+          "horse_name": "ルンベーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0021978021978021974,
+          "ev_score": 1.0711648351648348
+        },
+        {
+          "horse_name": "ルンベーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0021978021978021974,
+          "ev_score": 1.0711648351648348
+        },
+        {
+          "horse_name": "エフハリスト",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0021978021978021974,
+          "ev_score": 1.0711648351648348
+        },
+        {
+          "horse_name": "エフハリスト",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0021978021978021974,
+          "ev_score": 1.0711648351648348
+        },
+        {
+          "horse_name": "エフハリスト",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0021978021978021974,
+          "ev_score": 1.0711648351648348
+        },
+        {
+          "horse_name": "エフハリスト",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0021978021978021974,
+          "ev_score": 1.0711648351648348
+        },
+        {
+          "horse_name": "エフハリスト",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0021978021978021974,
+          "ev_score": 1.0711648351648348
+        }
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 90,
+      "invested": 9000,
+      "horse_num_to_name": {
+        "2": "ルンベーラ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23245,
+      "model_type": "卍(暫定)",
+      "bet_type": "単勝",
+      "confidence": 0.6373525419959176,
+      "expected_value": 6.373525419959176,
+      "recommended_bet": 100.0,
+      "combination_json": "[[4]]",
+      "notes": "確率1位(卍) EV=6.37 odds=1.0",
+      "created_at": "2026-05-08 07:35:44",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "キャルキュラス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 6.373525419959176,
+          "ev_score": 6.373525419959176
+        }
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "2": "ルンベーラ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23246,
+      "model_type": "卍(暫定)",
+      "bet_type": "複勝",
+      "confidence": 0.6,
+      "expected_value": 3.0763368078900526,
+      "recommended_bet": 300.0,
+      "combination_json": "[[4], [3], [1]]",
+      "notes": "確率上位3頭を複勝",
+      "created_at": "2026-05-08 07:35:44",
+      "is_hit": 1,
+      "payout": 410.0,
+      "profit": 110.0,
+      "roi": 136.66666666666666,
+      "horses": [
+        {
+          "horse_name": "キャルキュラス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 3.0763368078900526,
+          "ev_score": 3.0763368078900526
+        },
+        {
+          "horse_name": "エフハリスト",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 3.0763368078900526,
+          "ev_score": 3.0763368078900526
+        },
+        {
+          "horse_name": "ウォータースパウト",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 3.0763368078900526,
+          "ev_score": 3.0763368078900526
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "2": "ルンベーラ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23247,
+      "model_type": "卍(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.6491623488273025,
+      "expected_value": 4.0,
+      "recommended_bet": 500.0,
+      "combination_json": "[[3, 4], [1, 4], [2, 4], [4, 7], [4, 5]]",
+      "notes": "軸4番×相手5頭フォーメーション Harville最大=0.130",
+      "created_at": "2026-05-08 07:35:44",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "エフハリスト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.1298324697654605,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "エフハリスト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.1298324697654605,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "エフハリスト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.1298324697654605,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "エフハリスト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.1298324697654605,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "エフハリスト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.1298324697654605,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "キャルキュラス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.1298324697654605,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "キャルキュラス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.1298324697654605,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "キャルキュラス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.1298324697654605,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "キャルキュラス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.1298324697654605,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "キャルキュラス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.1298324697654605,
+          "ev_score": 4.0
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "2": "ルンベーラ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23248,
+      "model_type": "卍(暫定)",
+      "bet_type": "ワイド",
+      "confidence": 0.7789948185927631,
+      "expected_value": 2.0435630741083486,
+      "recommended_bet": 500.0,
+      "combination_json": "[[3, 4], [1, 4], [2, 4], [4, 7], [4, 5]]",
+      "notes": "軸4番×相手5頭ワイド Harville最大=0.130",
+      "created_at": "2026-05-08 07:35:44",
+      "is_hit": 1,
+      "payout": 1130.0,
+      "profit": 630.0,
+      "roi": 225.99999999999997,
+      "horses": [
+        {
+          "horse_name": "エフハリスト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.1298324697654605,
+          "ev_score": 2.0435630741083486
+        },
+        {
+          "horse_name": "エフハリスト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.1298324697654605,
+          "ev_score": 2.0435630741083486
+        },
+        {
+          "horse_name": "エフハリスト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.1298324697654605,
+          "ev_score": 2.0435630741083486
+        },
+        {
+          "horse_name": "エフハリスト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.1298324697654605,
+          "ev_score": 2.0435630741083486
+        },
+        {
+          "horse_name": "エフハリスト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.1298324697654605,
+          "ev_score": 2.0435630741083486
+        },
+        {
+          "horse_name": "キャルキュラス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.1298324697654605,
+          "ev_score": 2.0435630741083486
+        },
+        {
+          "horse_name": "キャルキュラス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.1298324697654605,
+          "ev_score": 2.0435630741083486
+        },
+        {
+          "horse_name": "キャルキュラス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.1298324697654605,
+          "ev_score": 2.0435630741083486
+        },
+        {
+          "horse_name": "キャルキュラス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.1298324697654605,
+          "ev_score": 2.0435630741083486
+        },
+        {
+          "horse_name": "キャルキュラス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.1298324697654605,
+          "ev_score": 2.0435630741083486
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "2": "ルンベーラ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23249,
+      "model_type": "卍(暫定)",
+      "bet_type": "馬単",
+      "confidence": 0.6228963019000509,
+      "expected_value": 4.97149110953978,
+      "recommended_bet": 300.0,
+      "combination_json": "[[4, 3], [4, 1], [4, 2]]",
+      "notes": "軸4番→相手3頭フォーメーション Harville最大=0.078",
+      "created_at": "2026-05-08 07:35:44",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "キャルキュラス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07786203773750636,
+          "ev_score": 4.97149110953978
+        },
+        {
+          "horse_name": "キャルキュラス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07786203773750636,
+          "ev_score": 4.97149110953978
+        },
+        {
+          "horse_name": "キャルキュラス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07786203773750636,
+          "ev_score": 4.97149110953978
+        },
+        {
+          "horse_name": "エフハリスト",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07786203773750636,
+          "ev_score": 4.97149110953978
+        },
+        {
+          "horse_name": "エフハリスト",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07786203773750636,
+          "ev_score": 4.97149110953978
+        },
+        {
+          "horse_name": "エフハリスト",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07786203773750636,
+          "ev_score": 4.97149110953978
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "2": "ルンベーラ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23252,
+      "model_type": "卍(暫定)",
+      "bet_type": "三連複",
+      "confidence": 0.6104218123549701,
+      "expected_value": 3.93396510669033,
+      "recommended_bet": 300.0,
+      "combination_json": "[[3, 4, 7]]",
+      "notes": "合成EV=3.93 Harville=0.0407 馬番=(3, 4, 7)",
+      "created_at": "2026-05-08 07:35:44",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "エフハリスト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.040694787490331334,
+          "ev_score": 3.93396510669033
+        },
+        {
+          "horse_name": "キャルキュラス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.040694787490331334,
+          "ev_score": 3.93396510669033
+        },
+        {
+          "horse_name": "フレンチブラッサム",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.040694787490331334,
+          "ev_score": 3.93396510669033
+        }
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "2": "ルンベーラ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23253,
+      "model_type": "Oracle(暫定)",
+      "bet_type": "三連複",
+      "confidence": 0.018224168933252204,
+      "expected_value": 0.5467250679975661,
+      "recommended_bet": 500.0,
+      "combination_json": "[[1, 2, 3], [1, 2, 5], [1, 2, 6], [1, 2, 7], [1, 2, 9]]",
+      "notes": "[Oracle] 的中確率最大 5点 P最大=0.0182 馬番=[(1, 2, 3), (1, 2, 5), (1, 2, 6), (1, 2, 7), (1, 2, 9)]",
+      "created_at": "2026-05-08 07:35:44",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ウォータースパウト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.018224168933252204,
+          "ev_score": 0.5467250679975661
+        },
+        {
+          "horse_name": "ルンベーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.018224168933252204,
+          "ev_score": 0.5467250679975661
+        },
+        {
+          "horse_name": "エフハリスト",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.018224168933252204,
+          "ev_score": 0.5467250679975661
+        }
+      ],
+      "bet_form": "軸2頭ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "2": "ルンベーラ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23254,
+      "model_type": "Oracle(暫定)",
+      "bet_type": "三連単",
+      "confidence": 0.003037361488875367,
+      "expected_value": 0.45560422333130507,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[1, 2, 3], [1, 2, 5], [1, 2, 6], [1, 2, 7], [1, 2, 9], [1, 2, 15], [1, 2, 12], [1, 3, 2], [1, 3, 5], [1, 3, 6], [1, 3, 7], [1, 3, 9]]",
+      "notes": "[Oracle] 的中確率最大 12点 P最大=0.0030 馬番=[(1, 2, 3), (1, 2, 5), (1, 2, 6), (1, 2, 7), (1, 2, 9), (1, 2, 15), (1, 2, 12), (1, 3, 2), (1, 3, 5), (1, 3, 6), (1, 3, 7), (1, 3, 9)]",
+      "created_at": "2026-05-08 07:35:44",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ウォータースパウト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.003037361488875367,
+          "ev_score": 0.45560422333130507
+        },
+        {
+          "horse_name": "ルンベーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.003037361488875367,
+          "ev_score": 0.45560422333130507
+        },
+        {
+          "horse_name": "エフハリスト",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.003037361488875367,
+          "ev_score": 0.45560422333130507
+        }
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 12,
+      "invested": 1200,
+      "horse_num_to_name": {
+        "2": "ルンベーラ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23255,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-05-08 07:35:44",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "メリティス",
+          "horse_id": "2023106369",
+          "predicted_rank": 1,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ディープマウンテン",
+          "horse_id": "2023103475",
+          "predicted_rank": 2,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "イデアクリスタル",
+          "horse_id": "2023102033",
+          "predicted_rank": 3,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "エフハリスト",
+          "horse_id": "2023105800",
+          "predicted_rank": 4,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "アスパラゴ",
+          "horse_id": "2023100332",
+          "predicted_rank": 5,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "グレープレモネード",
+          "horse_id": "2023105428",
+          "predicted_rank": 6,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "フレンチブラッサム",
+          "horse_id": "2023105062",
+          "predicted_rank": 7,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ウォータースパウト",
+          "horse_id": "2023105555",
+          "predicted_rank": 8,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ルンベーラ",
+          "horse_id": "2023102403",
+          "predicted_rank": 9,
+          "model_score": 0.17163724893487523,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "マウンテンドーター",
+          "horse_id": "2023107464",
+          "predicted_rank": 10,
+          "model_score": 0.14784394250513347,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "シンデレラカラー",
+          "horse_id": "2023101778",
+          "predicted_rank": 11,
+          "model_score": 0.1443478260869565,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "キャルキュラス",
+          "horse_id": "2023107207",
+          "predicted_rank": 12,
+          "model_score": 0.1443478260869565,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ブルーサーマル",
+          "horse_id": "2023101107",
+          "predicted_rank": 13,
+          "model_score": 0.14285714285714285,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "ライヴマルガリータ",
+          "horse_id": "2023101046",
+          "predicted_rank": 14,
+          "model_score": 0.10282776349614396,
+          "ev_score": 0.0
+        },
+        {
+          "horse_name": "アジャイブ",
+          "horse_id": "2023102676",
+          "predicted_rank": 15,
+          "model_score": 0.10282776349614396,
+          "ev_score": 0.0
+        }
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "invested": 0,
+      "horse_num_to_name": {
+        "2": "ルンベーラ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23256,
+      "model_type": "HitFocus(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.05859021611252666,
+      "expected_value": 0.4236072624935678,
+      "recommended_bet": 700.0,
+      "combination_json": "[[1, 2], [1, 3], [2, 3], [1, 5], [2, 5], [1, 6], [2, 6]]",
+      "notes": "2軸マルチ 軸=1,2 相手=[3, 5, 6] Harville最大=0.0117",
+      "created_at": "2026-05-08 07:35:44",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -700.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ウォータースパウト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.011718043222505333,
+          "ev_score": 0.4236072624935678
+        },
+        {
+          "horse_name": "ルンベーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.011718043222505333,
+          "ev_score": 0.4236072624935678
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 7,
+      "invested": 700,
+      "horse_num_to_name": {
+        "2": "ルンベーラ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23257,
+      "model_type": "HitFocus(暫定)",
+      "bet_type": "馬単",
+      "confidence": 0.04687217289002133,
+      "expected_value": 0.37409852987848274,
+      "recommended_bet": 800.0,
+      "combination_json": "[[1, 2], [2, 1], [1, 3], [2, 3], [1, 5], [2, 5], [1, 6], [2, 6]]",
+      "notes": "2軸マルチ 軸=1,2 相手=[3, 5, 6] Harville最大=0.0059",
+      "created_at": "2026-05-08 07:35:44",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -800.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ウォータースパウト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.005859021611252666,
+          "ev_score": 0.37409852987848274
+        },
+        {
+          "horse_name": "ルンベーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.005859021611252666,
+          "ev_score": 0.37409852987848274
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 8,
+      "invested": 800,
+      "horse_num_to_name": {
+        "2": "ルンベーラ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 23258,
+      "model_type": "HitFocus(暫定)",
+      "bet_type": "三連単",
+      "confidence": 0.015186807444376834,
+      "expected_value": 0.24672487374134602,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[1, 2, 3], [2, 1, 3], [1, 3, 2], [2, 3, 1], [1, 2, 5], [2, 1, 5], [1, 5, 2], [2, 5, 1], [1, 2, 6], [2, 1, 6], [1, 6, 2], [2, 6, 1]]",
+      "notes": "2軸マルチ 軸=1,2 相手=[3, 5, 6] 12点 Harville最大=0.0005",
+      "created_at": "2026-05-08 07:35:44",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ウォータースパウト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0005062269148125611,
+          "ev_score": 0.24672487374134602
+        },
+        {
+          "horse_name": "ルンベーラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0005062269148125611,
+          "ev_score": 0.24672487374134602
+        },
+        {
+          "horse_name": "エフハリスト",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0005062269148125611,
+          "ev_score": 0.24672487374134602
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 12,
+      "invested": 1200,
+      "horse_num_to_name": {
+        "2": "ルンベーラ"
+      },
+      "is_provisional": true
     }
   ],
   "training_evals": {},
@@ -3299,71 +2571,7 @@
       "today_front_bias": null,
       "today_race_count": null
     },
-    "ev_recommend": [
-      {
-        "horse_number": 14,
-        "horse_name": "マウンテンドーター",
-        "win_odds": 120.0,
-        "ev_score": 5.1613,
-        "kelly_fraction": 0.0035
-      },
-      {
-        "horse_number": 9,
-        "horse_name": "ディープマウンテン",
-        "win_odds": 66.5,
-        "ev_score": 4.6535,
-        "kelly_fraction": 0.0056
-      },
-      {
-        "horse_number": 6,
-        "horse_name": "グレープレモネード",
-        "win_odds": 97.5,
-        "ev_score": 4.1935,
-        "kelly_fraction": 0.0033
-      },
-      {
-        "horse_number": 11,
-        "horse_name": "ライヴマルガリータ",
-        "win_odds": 44.6,
-        "ev_score": 2.5403,
-        "kelly_fraction": 0.0035
-      },
-      {
-        "horse_number": 2,
-        "horse_name": "ルンベーラ",
-        "win_odds": 19.3,
-        "ev_score": 2.5336,
-        "kelly_fraction": 0.0084
-      },
-      {
-        "horse_number": 5,
-        "horse_name": "アスパラゴ",
-        "win_odds": 55.3,
-        "ev_score": 2.2784,
-        "kelly_fraction": 0.0024
-      },
-      {
-        "horse_number": 7,
-        "horse_name": "フレンチブラッサム",
-        "win_odds": 51.2,
-        "ev_score": 2.2022,
-        "kelly_fraction": 0.0024
-      },
-      {
-        "horse_number": 10,
-        "horse_name": "シンデレラカラー",
-        "win_odds": 8.2,
-        "ev_score": 1.0764,
-        "kelly_fraction": 0.0011
-      },
-      {
-        "horse_number": 8,
-        "horse_name": "アジャイブ",
-        "win_odds": 46.5,
-        "ev_score": 1.0517,
-        "kelly_fraction": 0.0001
-      }
-    ],
-    "generated_at": "2026-05-03T09:40:22.171569"
+    "ev_recommend": [],
+    "generated_at": "2026-05-08T07:35:44.987417"
   }
 }

@@ -12,7 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 6,
+      "horse_number": 8,
+      "horse_name": "コンクイスタ",
+      "horse_id": "2020106557",
+      "sex_age": "騸3",
+      "weight_carried": 58.0,
+      "jockey": "松山弘平",
+      "trainer": "吉岡辰弥",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ロードカナロア",
+      "dam": "ドリームオブジェニーDream of Genie(仏)",
+      "dam_sire": "Pivotal"
+    },
+    {
+      "rank": 2,
       "gate_number": 5,
       "horse_number": 6,
       "horse_name": "エコロガイア",
@@ -32,7 +52,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 6,
       "horse_number": 7,
       "horse_name": "バトゥーキ",
@@ -50,26 +70,6 @@
       "sire": "ラニ",
       "dam": "サンバホイッスル",
       "dam_sire": "サウスヴィグラス"
-    },
-    {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 8,
-      "horse_name": "コンクイスタ",
-      "horse_id": "2020106557",
-      "sex_age": "騸3",
-      "weight_carried": 58.0,
-      "jockey": "松山弘平",
-      "trainer": "吉岡辰弥",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ロードカナロア",
-      "dam": "ドリームオブジェニーDream of Genie(仏)",
-      "dam_sire": "Pivotal"
     },
     {
       "rank": null,
@@ -258,12 +258,6 @@
       "combination": "8",
       "payout": 350,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "12",
-      "payout": 12000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

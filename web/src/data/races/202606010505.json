@@ -12,7 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "スローモーション",
+      "horse_id": "2023100971",
+      "sex_age": "牝1",
+      "weight_carried": 55.0,
+      "jockey": "長岡禎仁",
+      "trainer": "深山雅史",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
       "gate_number": 6,
       "horse_number": 12,
       "horse_name": "ヴォンドゥ",
@@ -32,7 +52,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 7,
       "horse_number": 13,
       "horse_name": "スカット",
@@ -41,26 +61,6 @@
       "weight_carried": 52.0,
       "jockey": "上里直汰",
       "trainer": "堀内岳志",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 15,
-      "horse_name": "スローモーション",
-      "horse_id": "2023100971",
-      "sex_age": "牝1",
-      "weight_carried": 55.0,
-      "jockey": "長岡禎仁",
-      "trainer": "深山雅史",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "15",
       "payout": 2740,
       "popularity": 8
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

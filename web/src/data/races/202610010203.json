@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "アイファーモービル",
-      "horse_id": "2022101117",
-      "sex_age": "牡5",
-      "weight_carried": 58.0,
-      "jockey": "丸山元気",
-      "trainer": "宮本博",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 3,
       "horse_number": 3,
       "horse_name": "ララアヴリル",
@@ -52,7 +32,27 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "アイファーモービル",
+      "horse_id": "2022101117",
+      "sex_age": "牡5",
+      "weight_carried": 58.0,
+      "jockey": "丸山元気",
+      "trainer": "宮本博",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
       "gate_number": 4,
       "horse_number": 5,
       "horse_name": "ヨドノゴールド",
@@ -298,12 +298,6 @@
       "combination": "3",
       "payout": 360,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "14",
-      "payout": 14000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "サトノガレオン",
-      "horse_id": "2020101567",
-      "sex_age": "騸3",
-      "weight_carried": 58.0,
-      "jockey": "三浦皇成",
-      "trainer": "堀宣行",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ロードカナロア",
-      "dam": "スウィーティーガールSweetie Girl(亜)",
-      "dam_sire": "Star Dabbler"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 2,
       "horse_name": "エコロエイト",
@@ -52,7 +32,7 @@
       "dam_sire": "Speightstown(米)"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 4,
       "horse_number": 7,
       "horse_name": "ラファル",
@@ -70,6 +50,26 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "サトノガレオン",
+      "horse_id": "2020101567",
+      "sex_age": "騸3",
+      "weight_carried": 58.0,
+      "jockey": "三浦皇成",
+      "trainer": "堀宣行",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ロードカナロア",
+      "dam": "スウィーティーガールSweetie Girl(亜)",
+      "dam_sire": "Star Dabbler"
     },
     {
       "rank": null,
@@ -338,12 +338,6 @@
       "combination": "2",
       "payout": 790,
       "popularity": 4
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

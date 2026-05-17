@@ -12,7 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 7,
+      "horse_number": 12,
+      "horse_name": "ミヤフロント",
+      "horse_id": "2023102606",
+      "sex_age": "牝4",
+      "weight_carried": 52.0,
+      "jockey": "森田誠也",
+      "trainer": "斉藤崇史",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "マーゴットオネイロ",
@@ -32,7 +52,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 5,
       "horse_number": 8,
       "horse_name": "スイーヴル",
@@ -41,26 +61,6 @@
       "weight_carried": 55.0,
       "jockey": "長岡禎仁",
       "trainer": "小椋研介",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 12,
-      "horse_name": "ミヤフロント",
-      "horse_id": "2023102606",
-      "sex_age": "牝4",
-      "weight_carried": 52.0,
-      "jockey": "森田誠也",
-      "trainer": "斉藤崇史",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -298,12 +298,6 @@
       "combination": "12",
       "payout": 690,
       "popularity": 4
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "14",
-      "payout": 14000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

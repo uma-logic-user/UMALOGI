@@ -4,11 +4,11 @@
   "date": "2026-04-19",
   "venue": "中山",
   "race_number": 6,
-  "distance": 1800,
-  "surface": "ダート",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -16,32 +16,6 @@
       "gate_number": 4,
       "horse_number": 4,
       "horse_name": "イッテラッシャイ",
-      "horse_id": "2023103142",
-      "sex_age": "牡1",
-      "weight_carried": 57.0,
-      "jockey": "戸崎圭太",
-      "trainer": "斎藤誠",
-      "finish_time": "1:50.8",
-      "margin": "@",
-      "win_odds": 2.2,
-      "popularity": 2,
-      "horse_weight": 496,
-      "horse_weight_diff": -2,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0479,
-      "ev_score": 0.1149,
-      "kelly_fraction": 0.0,
-      "manji_ev": 1.2257,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": 1,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "??????????????????00110103101086????",
       "horse_id": "2023103142",
       "sex_age": "牡1",
       "weight_carried": 57.0,
@@ -74,7 +48,7 @@
       "jockey": "菅原隆一",
       "trainer": "天間昭一",
       "finish_time": "1:52.1",
-      "margin": "8",
+      "margin": "@",
       "win_odds": 65.3,
       "popularity": 6,
       "horse_weight": 464,
@@ -100,7 +74,7 @@
       "jockey": "岩田望来",
       "trainer": "中舘英二",
       "finish_time": "1:53.3",
-      "margin": "7",
+      "margin": "@",
       "win_odds": 10.6,
       "popularity": 4,
       "horse_weight": 452,
@@ -126,7 +100,7 @@
       "jockey": "ルメール",
       "trainer": "宮田敬介",
       "finish_time": "1:53.4",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 1.7,
       "popularity": 1,
       "horse_weight": 510,
@@ -152,7 +126,7 @@
       "jockey": "岩田康誠",
       "trainer": "小手川準",
       "finish_time": "1:53.5",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 44.3,
       "popularity": 5,
       "horse_weight": 488,
@@ -178,7 +152,7 @@
       "jockey": "津村明秀",
       "trainer": "林徹",
       "finish_time": "1:53.5",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 9.8,
       "popularity": 3,
       "horse_weight": 508,
@@ -252,6 +226,12 @@
       "popularity": 8
     },
     {
+      "bet_type": "馬連",
+      "combination": "2",
+      "payout": 2050,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "1-4",
       "payout": 310,
@@ -276,10 +256,28 @@
       "popularity": 13
     },
     {
+      "bet_type": "馬単",
+      "combination": "4",
+      "payout": 5000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-4-5",
       "payout": 3260,
       "popularity": 8
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3-10",
+      "payout": 301,
+      "popularity": 50
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "11",
+      "payout": 90104,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -322,7 +320,8 @@
         "3": "イナズマダイモン",
         "2": "ピュアエンブレム",
         "6": "ファイタージェット"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2872,
@@ -371,7 +370,8 @@
         "3": "イナズマダイモン",
         "2": "ピュアエンブレム",
         "6": "ファイタージェット"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2873,
@@ -406,7 +406,8 @@
         "3": "イナズマダイモン",
         "2": "ピュアエンブレム",
         "6": "ファイタージェット"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2874,
@@ -441,7 +442,8 @@
         "3": "イナズマダイモン",
         "2": "ピュアエンブレム",
         "6": "ファイタージェット"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2875,
@@ -483,7 +485,8 @@
         "3": "イナズマダイモン",
         "2": "ピュアエンブレム",
         "6": "ファイタージェット"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2876,
@@ -518,7 +521,8 @@
         "3": "イナズマダイモン",
         "2": "ピュアエンブレム",
         "6": "ファイタージェット"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2877,
@@ -581,7 +585,8 @@
         "3": "イナズマダイモン",
         "2": "ピュアエンブレム",
         "6": "ファイタージェット"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2880,
@@ -616,7 +621,8 @@
         "3": "イナズマダイモン",
         "2": "ピュアエンブレム",
         "6": "ファイタージェット"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2881,
@@ -665,7 +671,8 @@
         "3": "イナズマダイモン",
         "2": "ピュアエンブレム",
         "6": "ファイタージェット"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2882,
@@ -700,7 +707,8 @@
         "3": "イナズマダイモン",
         "2": "ピュアエンブレム",
         "6": "ファイタージェット"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2883,
@@ -735,7 +743,8 @@
         "3": "イナズマダイモン",
         "2": "ピュアエンブレム",
         "6": "ファイタージェット"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2884,
@@ -770,7 +779,8 @@
         "3": "イナズマダイモン",
         "2": "ピュアエンブレム",
         "6": "ファイタージェット"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2885,
@@ -840,7 +850,8 @@
         "3": "イナズマダイモン",
         "2": "ピュアエンブレム",
         "6": "ファイタージェット"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 3454,
@@ -875,7 +886,8 @@
         "3": "イナズマダイモン",
         "2": "ピュアエンブレム",
         "6": "ファイタージェット"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3455,
@@ -924,7 +936,8 @@
         "3": "イナズマダイモン",
         "2": "ピュアエンブレム",
         "6": "ファイタージェット"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3456,
@@ -959,7 +972,8 @@
         "3": "イナズマダイモン",
         "2": "ピュアエンブレム",
         "6": "ファイタージェット"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3457,
@@ -994,7 +1008,8 @@
         "3": "イナズマダイモン",
         "2": "ピュアエンブレム",
         "6": "ファイタージェット"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3458,
@@ -1036,7 +1051,8 @@
         "3": "イナズマダイモン",
         "2": "ピュアエンブレム",
         "6": "ファイタージェット"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3459,
@@ -1071,7 +1087,8 @@
         "3": "イナズマダイモン",
         "2": "ピュアエンブレム",
         "6": "ファイタージェット"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3460,
@@ -1134,7 +1151,8 @@
         "3": "イナズマダイモン",
         "2": "ピュアエンブレム",
         "6": "ファイタージェット"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3463,
@@ -1169,7 +1187,8 @@
         "3": "イナズマダイモン",
         "2": "ピュアエンブレム",
         "6": "ファイタージェット"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3464,
@@ -1218,7 +1237,8 @@
         "3": "イナズマダイモン",
         "2": "ピュアエンブレム",
         "6": "ファイタージェット"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3465,
@@ -1253,7 +1273,8 @@
         "3": "イナズマダイモン",
         "2": "ピュアエンブレム",
         "6": "ファイタージェット"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3466,
@@ -1288,7 +1309,8 @@
         "3": "イナズマダイモン",
         "2": "ピュアエンブレム",
         "6": "ファイタージェット"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3467,
@@ -1323,7 +1345,8 @@
         "3": "イナズマダイモン",
         "2": "ピュアエンブレム",
         "6": "ファイタージェット"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3468,
@@ -1393,7 +1416,8 @@
         "3": "イナズマダイモン",
         "2": "ピュアエンブレム",
         "6": "ファイタージェット"
-      }
+      },
+      "is_provisional": false
     }
   ],
   "training_evals": {},

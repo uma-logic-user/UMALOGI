@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "キングブルー",
@@ -32,27 +32,7 @@
       "dam_sire": "ジャングルポケット"
     },
     {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "ソウルアンドジャズ",
-      "horse_id": "2021106694",
-      "sex_age": "騸7",
-      "weight_carried": 58.0,
-      "jockey": "高杉吏麒",
-      "trainer": "武井亮",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ブリックスアンドモルタルBricks and Mortar(米)",
-      "dam": "ナスノシベリウス",
-      "dam_sire": "Unbridled's Song(米)"
-    },
-    {
-      "rank": null,
+      "rank": 2,
       "gate_number": 6,
       "horse_number": 7,
       "horse_name": "サンライズバレット",
@@ -70,6 +50,26 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "ソウルアンドジャズ",
+      "horse_id": "2021106694",
+      "sex_age": "騸7",
+      "weight_carried": 58.0,
+      "jockey": "高杉吏麒",
+      "trainer": "武井亮",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ブリックスアンドモルタルBricks and Mortar(米)",
+      "dam": "ナスノシベリウス",
+      "dam_sire": "Unbridled's Song(米)"
     },
     {
       "rank": null,
@@ -238,12 +238,6 @@
       "combination": "2",
       "payout": 460,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "11",
-      "payout": 11000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

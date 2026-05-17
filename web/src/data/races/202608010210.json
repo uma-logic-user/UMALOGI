@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 6,
       "horse_number": 11,
       "horse_name": "ヒルノドゴール",
@@ -32,7 +32,7 @@
       "dam_sire": "ハーツクライ"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 6,
       "horse_number": 12,
       "horse_name": "ルディック",
@@ -52,7 +52,7 @@
       "dam_sire": "Medaglia d'Oro"
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 7,
       "horse_number": 14,
       "horse_name": "ゼットエール",
@@ -338,12 +338,6 @@
       "combination": "11",
       "payout": 1220,
       "popularity": 4
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 5,
       "horse_number": 5,
       "horse_name": "エンマ",
@@ -32,15 +32,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 9,
-      "horse_name": "アスクガンバーレ",
-      "horse_id": "2022102300",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "岩田康誠",
-      "trainer": "福永祐一",
+      "rank": 2,
+      "gate_number": 8,
+      "horse_number": 10,
+      "horse_name": "オリジナルファイン",
+      "horse_id": "2022102906",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "吉村誠之",
+      "trainer": "清水久詞",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 10,
-      "horse_name": "オリジナルファイン",
-      "horse_id": "2022102906",
-      "sex_age": "牝4",
-      "weight_carried": 55.0,
-      "jockey": "吉村誠之",
-      "trainer": "清水久詞",
+      "rank": 3,
+      "gate_number": 7,
+      "horse_number": 9,
+      "horse_name": "アスクガンバーレ",
+      "horse_id": "2022102300",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "岩田康誠",
+      "trainer": "福永祐一",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -238,12 +238,6 @@
       "combination": "5",
       "payout": 860,
       "popularity": 5
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "11",
-      "payout": 11000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

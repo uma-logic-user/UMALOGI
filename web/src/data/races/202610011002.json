@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 5,
       "horse_number": 10,
       "horse_name": "ロジケープ",
@@ -32,15 +32,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 13,
-      "horse_name": "フクオトコ",
-      "horse_id": "2023102564",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "菊沢一樹",
-      "trainer": "菊沢隆徳",
+      "rank": 2,
+      "gate_number": 8,
+      "horse_number": 18,
+      "horse_name": "バレンタインビスタ",
+      "horse_id": "2023105817",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "北村友一",
+      "trainer": "蛯名正義",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 18,
-      "horse_name": "バレンタインビスタ",
-      "horse_id": "2023105817",
-      "sex_age": "牝4",
-      "weight_carried": 55.0,
-      "jockey": "北村友一",
-      "trainer": "蛯名正義",
+      "rank": 3,
+      "gate_number": 7,
+      "horse_number": 13,
+      "horse_name": "フクオトコ",
+      "horse_id": "2023102564",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "菊沢一樹",
+      "trainer": "菊沢隆徳",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -378,12 +378,6 @@
       "combination": "10",
       "payout": 390,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "18",
-      "payout": 18000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

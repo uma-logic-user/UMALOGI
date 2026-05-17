@@ -12,7 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "エラトー",
+      "horse_id": "2021105442",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "斎藤新",
+      "trainer": "上村洋行",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "Saxon Warrior(安平町)",
+      "dam": "エライヤElaya(仏)",
+      "dam_sire": "Siyouni"
+    },
+    {
+      "rank": 2,
       "gate_number": 3,
       "horse_number": 3,
       "horse_name": "ミッキーツインクル",
@@ -32,7 +52,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 4,
       "horse_number": 4,
       "horse_name": "キングノジョー",
@@ -50,26 +70,6 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "エラトー",
-      "horse_id": "2021105442",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "斎藤新",
-      "trainer": "上村洋行",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "Saxon Warrior(安平町)",
-      "dam": "エライヤElaya(仏)",
-      "dam_sire": "Siyouni"
     },
     {
       "rank": null,
@@ -258,12 +258,6 @@
       "combination": "5",
       "payout": 1050,
       "popularity": 6
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "12",
-      "payout": 12000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

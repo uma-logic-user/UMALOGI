@@ -12,7 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "コロナドブリッジ",
@@ -32,7 +32,27 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "シーズザスローン",
+      "horse_id": "2023104414",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "武豊",
+      "trainer": "松永幹夫",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "ジーモンスター",
@@ -90,26 +110,6 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "シーズザスローン",
-      "horse_id": "2023104414",
-      "sex_age": "牡3",
-      "weight_carried": 55.0,
-      "jockey": "武豊",
-      "trainer": "松永幹夫",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
     }
   ],
   "payouts": [
@@ -118,12 +118,6 @@
       "combination": "1",
       "payout": 290,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "5",
-      "payout": 5000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

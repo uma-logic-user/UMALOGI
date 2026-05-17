@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "ヴェールミューズ",
-      "horse_id": "2023104766",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "高杉吏麒",
-      "trainer": "浜田多実",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 3,
       "horse_number": 3,
       "horse_name": "モスカテル",
@@ -52,7 +32,27 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "ヴェールミューズ",
+      "horse_id": "2023104766",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "高杉吏麒",
+      "trainer": "浜田多実",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
       "gate_number": 5,
       "horse_number": 7,
       "horse_name": "グロリアス",
@@ -278,12 +278,6 @@
       "combination": "3",
       "payout": 220,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "13",
-      "payout": 13000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

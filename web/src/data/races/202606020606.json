@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 4,
-      "horse_name": "ニシノケンタマン",
-      "horse_id": "2022106427",
-      "sex_age": "牡5",
-      "weight_carried": 56.0,
-      "jockey": "長浜鴻緒",
-      "trainer": "深山雅史",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 3,
       "horse_number": 5,
       "horse_name": "ブレードサクセス",
@@ -52,7 +32,27 @@
       "dam_sire": "ゼンノロブロイ"
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 2,
+      "horse_number": 4,
+      "horse_name": "ニシノケンタマン",
+      "horse_id": "2022106427",
+      "sex_age": "牡5",
+      "weight_carried": 56.0,
+      "jockey": "長浜鴻緒",
+      "trainer": "深山雅史",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
       "gate_number": 4,
       "horse_number": 7,
       "horse_name": "ロードソルスティス",
@@ -338,12 +338,6 @@
       "combination": "5",
       "payout": 490,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

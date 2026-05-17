@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 5,
       "horse_number": 8,
       "horse_name": "マジッククッキー",
@@ -32,15 +32,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 10,
-      "horse_name": "コックピットサイト",
-      "horse_id": "2023103717",
-      "sex_age": "牡3",
+      "rank": 2,
+      "gate_number": 8,
+      "horse_number": 14,
+      "horse_name": "フルミネブル",
+      "horse_id": "2023110094",
+      "sex_age": "牡4",
       "weight_carried": 57.0,
-      "jockey": "荻野極",
-      "trainer": "鹿戸雄一",
+      "jockey": "ルメール",
+      "trainer": "千葉直人",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 14,
-      "horse_name": "フルミネブル",
-      "horse_id": "2023110094",
-      "sex_age": "牡4",
+      "rank": 3,
+      "gate_number": 6,
+      "horse_number": 10,
+      "horse_name": "コックピットサイト",
+      "horse_id": "2023103717",
+      "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "ルメール",
-      "trainer": "千葉直人",
+      "jockey": "荻野極",
+      "trainer": "鹿戸雄一",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -298,12 +298,6 @@
       "combination": "8",
       "payout": 270,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "14",
-      "payout": 14000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

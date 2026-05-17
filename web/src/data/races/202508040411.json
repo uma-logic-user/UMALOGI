@@ -12,7 +12,27 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "レガレイラ",
+      "horse_id": "2021105898",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "戸崎圭太",
+      "trainer": "木村哲也",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "スワーヴリチャード",
+      "dam": "ロカ",
+      "dam_sire": "ハービンジャーHarbinger(英)"
+    },
+    {
+      "rank": 2,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "パラディレーヌ",
@@ -30,6 +50,26 @@
       "sire": "キズナ",
       "dam": "パラダイスガーデン",
       "dam_sire": "Closing Argument"
+    },
+    {
+      "rank": 3,
+      "gate_number": 6,
+      "horse_number": 12,
+      "horse_name": "ライラック",
+      "horse_id": "2019103588",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "藤岡佑介",
+      "trainer": "相沢郁",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "オルフェーヴル",
+      "dam": "ヴィーヴァブーケ",
+      "dam_sire": "キングカメハメハ"
     },
     {
       "rank": null,
@@ -134,26 +174,6 @@
     {
       "rank": null,
       "gate_number": 4,
-      "horse_number": 7,
-      "horse_name": "レガレイラ",
-      "horse_id": "2021105898",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "戸崎圭太",
-      "trainer": "木村哲也",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "スワーヴリチャード",
-      "dam": "ロカ",
-      "dam_sire": "ハービンジャーHarbinger(英)"
-    },
-    {
-      "rank": null,
-      "gate_number": 4,
       "horse_number": 8,
       "horse_name": "ヴェルミセル",
       "horse_id": "2020103945",
@@ -230,26 +250,6 @@
       "sire": "ゴールドシップ",
       "dam": "マイネポリーヌ",
       "dam_sire": "スペシャルウィーク"
-    },
-    {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 12,
-      "horse_name": "ライラック",
-      "horse_id": "2019103588",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "藤岡佑介",
-      "trainer": "相沢郁",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "オルフェーヴル",
-      "dam": "ヴィーヴァブーケ",
-      "dam_sire": "キングカメハメハ"
     },
     {
       "rank": null,
@@ -338,12 +338,6 @@
       "combination": "7",
       "payout": 230,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

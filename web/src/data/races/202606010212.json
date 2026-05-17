@@ -12,7 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 6,
+      "horse_number": 12,
+      "horse_name": "ビーコング",
+      "horse_id": "2021103595",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "横山武史",
+      "trainer": "小手川準",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "タリスマニックTalismanic(英)",
+      "dam": "タマモペンライト",
+      "dam_sire": "ブラックタイド"
+    },
+    {
+      "rank": 2,
       "gate_number": 1,
       "horse_number": 2,
       "horse_name": "フォースミラクル",
@@ -32,7 +52,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 4,
       "horse_number": 7,
       "horse_name": "リッキースタイル",
@@ -50,26 +70,6 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 12,
-      "horse_name": "ビーコング",
-      "horse_id": "2021103595",
-      "sex_age": "牡4",
-      "weight_carried": 58.0,
-      "jockey": "横山武史",
-      "trainer": "小手川準",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "タリスマニックTalismanic(英)",
-      "dam": "タマモペンライト",
-      "dam_sire": "ブラックタイド"
     },
     {
       "rank": null,
@@ -338,12 +338,6 @@
       "combination": "12",
       "payout": 460,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

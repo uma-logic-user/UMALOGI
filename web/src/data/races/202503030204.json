@@ -12,27 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "フォルガイル",
-      "horse_id": "2021101164",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "水沼元輝",
-      "trainer": "加藤和宏",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "レイデオロ",
-      "dam": "アディクション",
-      "dam_sire": "ハーツクライ"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "ローンウルフ",
@@ -52,7 +32,27 @@
       "dam_sire": "Mineshaft(米)"
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 6,
+      "horse_number": 6,
+      "horse_name": "マグナレガリア",
+      "horse_id": "2021106574",
+      "sex_age": "牡3",
+      "weight_carried": 60.0,
+      "jockey": "五十嵐雄",
+      "trainer": "相沢郁",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "レイデオロ",
+      "dam": "デライトポイント",
+      "dam_sire": "トウカイテイオー"
+    },
+    {
+      "rank": 3,
       "gate_number": 3,
       "horse_number": 3,
       "horse_name": "グラヴィテ",
@@ -70,6 +70,26 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "フォルガイル",
+      "horse_id": "2021101164",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "水沼元輝",
+      "trainer": "加藤和宏",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "レイデオロ",
+      "dam": "アディクション",
+      "dam_sire": "ハーツクライ"
     },
     {
       "rank": null,
@@ -110,26 +130,6 @@
       "sire": "ヴィクトワールピサ",
       "dam": "アンナミルト",
       "dam_sire": "マンハッタンカフェ"
-    },
-    {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 6,
-      "horse_name": "マグナレガリア",
-      "horse_id": "2021106574",
-      "sex_age": "牡3",
-      "weight_carried": 60.0,
-      "jockey": "五十嵐雄",
-      "trainer": "相沢郁",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "レイデオロ",
-      "dam": "デライトポイント",
-      "dam_sire": "トウカイテイオー"
     },
     {
       "rank": null,
@@ -218,12 +218,6 @@
       "combination": "2",
       "payout": 560,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "10",
-      "payout": 10000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

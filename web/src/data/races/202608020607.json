@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 10,
-      "horse_name": "ジーティーアメリカ",
-      "horse_id": "2022104654",
-      "sex_age": "牡7",
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 13,
+      "horse_name": "ロードヴォイジャー",
+      "horse_id": "2022101821",
+      "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "幸英明",
-      "trainer": "吉岡辰弥",
+      "jockey": "西村淳也",
+      "trainer": "坂口智康",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 7,
       "horse_number": 11,
       "horse_name": "レヴァンテシチー",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 13,
-      "horse_name": "ロードヴォイジャー",
-      "horse_id": "2022101821",
-      "sex_age": "牡3",
+      "rank": 3,
+      "gate_number": 7,
+      "horse_number": 10,
+      "horse_name": "ジーティーアメリカ",
+      "horse_id": "2022104654",
+      "sex_age": "牡7",
       "weight_carried": 57.0,
-      "jockey": "西村淳也",
-      "trainer": "坂口智康",
+      "jockey": "幸英明",
+      "trainer": "吉岡辰弥",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -273,12 +273,6 @@
     }
   ],
   "payouts": [
-    {
-      "bet_type": "単勝",
-      "combination": "13",
-      "payout": 13000,
-      "popularity": null
-    },
     {
       "bet_type": "複勝",
       "combination": "11",

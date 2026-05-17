@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "ハートメテオ",
-      "horse_id": "2022105549",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "鮫島克駿",
-      "trainer": "笹田和秀",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 8,
       "horse_number": 9,
       "horse_name": "ジェットマグナム",
@@ -52,7 +32,27 @@
       "dam_sire": "ルーラーシップ"
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "ハートメテオ",
+      "horse_id": "2022105549",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "鮫島克駿",
+      "trainer": "笹田和秀",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
       "gate_number": 8,
       "horse_number": 10,
       "horse_name": "ピンキープロミス",
@@ -218,12 +218,6 @@
       "combination": "9",
       "payout": 410,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "10",
-      "payout": 10000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

@@ -12,15 +12,15 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "ファニーバニー",
-      "horse_id": "2023105277",
+      "rank": 1,
+      "gate_number": 7,
+      "horse_number": 7,
+      "horse_name": "リリージョワ",
+      "horse_id": "2023105312",
       "sex_age": "牝4",
       "weight_carried": 55.0,
-      "jockey": "横山武史",
-      "trainer": "杉山佳明",
+      "jockey": "ルメール",
+      "trainer": "武幸四郎",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "ダイヤモンドノット",
@@ -50,6 +50,26 @@
       "sire": "ブリックスアンドモルタルBricks and Mortar(米)",
       "dam": "エンドレスノット",
       "dam_sire": "ディープインパクト"
+    },
+    {
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "ファニーバニー",
+      "horse_id": "2023105277",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "横山武史",
+      "trainer": "杉山佳明",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -130,35 +150,9 @@
       "sire": null,
       "dam": null,
       "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 7,
-      "horse_name": "リリージョワ",
-      "horse_id": "2023105312",
-      "sex_age": "牝4",
-      "weight_carried": 55.0,
-      "jockey": "ルメール",
-      "trainer": "武幸四郎",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
     }
   ],
   "payouts": [
-    {
-      "bet_type": "単勝",
-      "combination": "7",
-      "payout": 7000,
-      "popularity": null
-    },
     {
       "bet_type": "複勝",
       "combination": "2",

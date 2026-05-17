@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "ホワイトフレイムス",
-      "horse_id": "2023106873",
-      "sex_age": "牡7",
-      "weight_carried": 57.0,
-      "jockey": "幸英明",
-      "trainer": "吉岡辰弥",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 7,
       "horse_number": 13,
       "horse_name": "レザベーション",
@@ -52,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 7,
       "horse_number": 14,
       "horse_name": "フェルギナス",
@@ -61,6 +41,26 @@
       "weight_carried": 57.0,
       "jockey": "北村友一",
       "trainer": "矢作芳人",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "ホワイトフレイムス",
+      "horse_id": "2023106873",
+      "sex_age": "牡7",
+      "weight_carried": 57.0,
+      "jockey": "幸英明",
+      "trainer": "吉岡辰弥",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -378,12 +378,6 @@
       "combination": "13",
       "payout": 280,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "18",
-      "payout": 18000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

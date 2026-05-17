@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 4,
-      "horse_name": "デスサイズ",
-      "horse_id": "2023101085",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "石川裕紀",
-      "trainer": "小手川準",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 5,
       "horse_number": 9,
       "horse_name": "マダックス",
@@ -52,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 8,
       "horse_number": 15,
       "horse_name": "カンノンミッキー",
@@ -61,6 +41,26 @@
       "weight_carried": 57.0,
       "jockey": "木幡巧也",
       "trainer": "手塚貴徳",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 4,
+      "horse_name": "デスサイズ",
+      "horse_id": "2023101085",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "石川裕紀",
+      "trainer": "小手川準",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "9",
       "payout": 820,
       "popularity": 4
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

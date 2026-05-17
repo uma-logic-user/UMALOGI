@@ -4,11 +4,11 @@
   "date": "2026-04-11",
   "venue": "阪神",
   "race_number": 9,
-  "distance": 2400,
-  "surface": "芝",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -52,7 +52,7 @@
       "jockey": "ルメール",
       "trainer": "宮田敬介",
       "finish_time": "2:27.4",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 1.7,
       "popularity": 1,
       "horse_weight": 484,
@@ -82,7 +82,7 @@
       "jockey": "武豊",
       "trainer": "清水久詞",
       "finish_time": "2:27.7",
-      "margin": "1.3/4",
+      "margin": "@",
       "win_odds": 3.2,
       "popularity": 2,
       "horse_weight": 494,
@@ -112,7 +112,7 @@
       "jockey": "高杉吏麒",
       "trainer": "池江泰寿",
       "finish_time": "2:27.7",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 40.6,
       "popularity": 5,
       "horse_weight": 504,
@@ -142,7 +142,7 @@
       "jockey": "柴田裕一",
       "trainer": "中竹和也",
       "finish_time": "2:28.1",
-      "margin": "2.1/2",
+      "margin": "@",
       "win_odds": 108.4,
       "popularity": 7,
       "horse_weight": 486,
@@ -172,7 +172,7 @@
       "jockey": "幸英明",
       "trainer": "小椋研介",
       "finish_time": "2:28.2",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 15.0,
       "popularity": 4,
       "horse_weight": 494,
@@ -202,7 +202,7 @@
       "jockey": "吉村誠之",
       "trainer": "西村真幸",
       "finish_time": "2:29.0",
-      "margin": "5",
+      "margin": "@",
       "win_odds": 75.9,
       "popularity": 6,
       "horse_weight": 466,
@@ -232,7 +232,7 @@
       "jockey": "浜中俊",
       "trainer": "安達昭夫",
       "finish_time": "2:30.6",
-      "margin": "10",
+      "margin": "@",
       "win_odds": 139.5,
       "popularity": 8,
       "horse_weight": 468,
@@ -290,6 +290,12 @@
       "popularity": 2
     },
     {
+      "bet_type": "馬連",
+      "combination": "1",
+      "payout": 2040,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "2-4",
       "payout": 120,
@@ -314,10 +320,22 @@
       "popularity": 4
     },
     {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 4000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-2-4",
       "payout": 190,
       "popularity": 1
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1",
+      "payout": 20002,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -376,7 +394,8 @@
         "5": "パンデアスカル",
         "8": "リッチブラック",
         "6": "プレイリードリーム"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2063,
@@ -434,7 +453,8 @@
         "5": "パンデアスカル",
         "8": "リッチブラック",
         "6": "プレイリードリーム"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2064,
@@ -478,7 +498,8 @@
         "5": "パンデアスカル",
         "8": "リッチブラック",
         "6": "プレイリードリーム"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2065,
@@ -522,7 +543,8 @@
         "5": "パンデアスカル",
         "8": "リッチブラック",
         "6": "プレイリードリーム"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2066,
@@ -587,7 +609,8 @@
         "5": "パンデアスカル",
         "8": "リッチブラック",
         "6": "プレイリードリーム"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2067,
@@ -631,7 +654,8 @@
         "5": "パンデアスカル",
         "8": "リッチブラック",
         "6": "プレイリードリーム"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2068,
@@ -703,7 +727,8 @@
         "5": "パンデアスカル",
         "8": "リッチブラック",
         "6": "プレイリードリーム"
-      }
+      },
+      "is_provisional": true
     }
   ],
   "training_evals": {

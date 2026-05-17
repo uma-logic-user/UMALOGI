@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "リアレスト",
-      "horse_id": "2021105496",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "ハマーハ",
-      "trainer": "尾関知人",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "リアルスティール",
-      "dam": "クィーンズベスト",
-      "dam_sire": "ワークフォースWorkforce(英)"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 4,
       "horse_number": 7,
       "horse_name": "ゼットリアン",
@@ -52,7 +32,7 @@
       "dam_sire": "ネオユニヴァース"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 8,
       "horse_number": 15,
       "horse_name": "ロードプレジール",
@@ -70,6 +50,26 @@
       "sire": "キングカメハメハ",
       "dam": "キャトルフィーユ",
       "dam_sire": "ディープインパクト"
+    },
+    {
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "リアレスト",
+      "horse_id": "2021105496",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "ハマーハ",
+      "trainer": "尾関知人",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "リアルスティール",
+      "dam": "クィーンズベスト",
+      "dam_sire": "ワークフォースWorkforce(英)"
     },
     {
       "rank": null,
@@ -338,12 +338,6 @@
       "combination": "7",
       "payout": 1310,
       "popularity": 6
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

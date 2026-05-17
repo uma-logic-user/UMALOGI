@@ -12,27 +12,27 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "レッドラマンシュ",
-      "horse_id": "2019103920",
-      "sex_age": "騸4",
+      "rank": 1,
+      "gate_number": 6,
+      "horse_number": 6,
+      "horse_name": "ソルアマゾン",
+      "horse_id": "2021104667",
+      "sex_age": "牡4",
       "weight_carried": 60.0,
-      "jockey": "小牧加矢",
-      "trainer": "庄野靖志",
+      "jockey": "難波剛健",
+      "trainer": "小栗実",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
       "horse_weight_diff": null,
-      "sire": "ロードカナロア",
-      "dam": "レッドシェリール",
-      "dam_sire": "ゼンノロブロイ"
+      "sire": "リオンディーズ",
+      "dam": "アミカブルナンバー",
+      "dam_sire": "ダイワメジャー"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "ウェイトゥザドーン",
@@ -50,6 +50,26 @@
       "sire": "ジャスタウェイ",
       "dam": "ソワーSower(米)",
       "dam_sire": "Flatter"
+    },
+    {
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "レッドラマンシュ",
+      "horse_id": "2019103920",
+      "sex_age": "騸4",
+      "weight_carried": 60.0,
+      "jockey": "小牧加矢",
+      "trainer": "庄野靖志",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ロードカナロア",
+      "dam": "レッドシェリール",
+      "dam_sire": "ゼンノロブロイ"
     },
     {
       "rank": null,
@@ -110,26 +130,6 @@
       "sire": "ドレフォンDrefong(米)",
       "dam": "ヴェイルオブクララ",
       "dam_sire": "ゼンノロブロイ"
-    },
-    {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 6,
-      "horse_name": "ソルアマゾン",
-      "horse_id": "2021104667",
-      "sex_age": "牡4",
-      "weight_carried": 60.0,
-      "jockey": "難波剛健",
-      "trainer": "小栗実",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "リオンディーズ",
-      "dam": "アミカブルナンバー",
-      "dam_sire": "ダイワメジャー"
     },
     {
       "rank": null,
@@ -198,12 +198,6 @@
       "combination": "6",
       "payout": 220,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "9",
-      "payout": 9000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

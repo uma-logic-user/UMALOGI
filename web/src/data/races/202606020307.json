@@ -12,7 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 6,
+      "horse_number": 12,
+      "horse_name": "レッドスティンガー",
+      "horse_id": "2023106619",
+      "sex_age": "牡7",
+      "weight_carried": 57.0,
+      "jockey": "戸崎圭太",
+      "trainer": "矢嶋大樹",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
       "gate_number": 2,
       "horse_number": 3,
       "horse_name": "ライヴレッドアイ",
@@ -32,7 +52,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 3,
       "horse_number": 5,
       "horse_name": "アンティミスト",
@@ -41,26 +61,6 @@
       "weight_carried": 57.0,
       "jockey": "津村明秀",
       "trainer": "鈴木伸尋",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 12,
-      "horse_name": "レッドスティンガー",
-      "horse_id": "2023106619",
-      "sex_age": "牡7",
-      "weight_carried": 57.0,
-      "jockey": "戸崎圭太",
-      "trainer": "矢嶋大樹",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "12",
       "payout": 200,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 15000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

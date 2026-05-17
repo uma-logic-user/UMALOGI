@@ -4,11 +4,11 @@
   "date": "2026-04-26",
   "venue": "東京",
   "race_number": 2,
-  "distance": 1600,
-  "surface": "ダート",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "稍",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -48,7 +48,7 @@
       "jockey": "原優介",
       "trainer": "鈴木慎太",
       "finish_time": "1:39.6",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 41.7,
       "popularity": 7,
       "horse_weight": 504,
@@ -74,7 +74,7 @@
       "jockey": "松若風馬",
       "trainer": "浜田多実",
       "finish_time": "1:39.7",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 49.1,
       "popularity": 8,
       "horse_weight": 458,
@@ -100,7 +100,7 @@
       "jockey": "津村明秀",
       "trainer": "林徹",
       "finish_time": "1:39.8",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 2.4,
       "popularity": 1,
       "horse_weight": 480,
@@ -126,7 +126,7 @@
       "jockey": "北村宏司",
       "trainer": "田中勝春",
       "finish_time": "1:40.1",
-      "margin": "1.3/4",
+      "margin": "@",
       "win_odds": 8.1,
       "popularity": 4,
       "horse_weight": 484,
@@ -152,7 +152,7 @@
       "jockey": "田辺裕信",
       "trainer": "久保田貴",
       "finish_time": "1:40.5",
-      "margin": "2.1/2",
+      "margin": "@",
       "win_odds": 7.0,
       "popularity": 3,
       "horse_weight": 492,
@@ -178,7 +178,7 @@
       "jockey": "横山和生",
       "trainer": "田村康仁",
       "finish_time": "1:40.8",
-      "margin": "2",
+      "margin": "@",
       "win_odds": 11.2,
       "popularity": 5,
       "horse_weight": 526,
@@ -204,7 +204,7 @@
       "jockey": "小崎綾也",
       "trainer": "加藤公太",
       "finish_time": "1:40.9",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 118.4,
       "popularity": 10,
       "horse_weight": 462,
@@ -230,7 +230,7 @@
       "jockey": "酒井学",
       "trainer": "和田正一",
       "finish_time": "1:41.0",
-      "margin": "1",
+      "margin": "@",
       "win_odds": 140.3,
       "popularity": 11,
       "horse_weight": 466,
@@ -256,7 +256,7 @@
       "jockey": "佐々木大",
       "trainer": "黒岩陽一",
       "finish_time": "1:41.1",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 75.8,
       "popularity": 9,
       "horse_weight": 494,
@@ -282,7 +282,7 @@
       "jockey": "佐藤翔馬",
       "trainer": "松永康利",
       "finish_time": "1:41.3",
-      "margin": "1.1/4",
+      "margin": "@",
       "win_odds": 657.4,
       "popularity": 13,
       "horse_weight": 494,
@@ -308,7 +308,7 @@
       "jockey": "木幡巧也",
       "trainer": "小笠倫弘",
       "finish_time": "1:41.9",
-      "margin": "3.1/2",
+      "margin": "@",
       "win_odds": 176.7,
       "popularity": 12,
       "horse_weight": 464,
@@ -334,7 +334,7 @@
       "jockey": "原田和真",
       "trainer": "蛯名利弘",
       "finish_time": "1:43.3",
-      "margin": "8",
+      "margin": "@",
       "win_odds": 736.4,
       "popularity": 14,
       "horse_weight": 508,
@@ -360,7 +360,7 @@
       "jockey": "荻野極",
       "trainer": "蛯名正義",
       "finish_time": "1:46.6",
-      "margin": "大",
+      "margin": "@",
       "win_odds": 29.2,
       "popularity": 6,
       "horse_weight": 464,
@@ -420,6 +420,12 @@
       "popularity": 17
     },
     {
+      "bet_type": "馬連",
+      "combination": "1",
+      "payout": 2060,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "8-12",
       "payout": 1550,
@@ -438,16 +444,40 @@
       "popularity": 43
     },
     {
+      "bet_type": "ワイド",
+      "combination": "4",
+      "payout": 70000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "12→6",
       "payout": 7400,
       "popularity": 25
     },
     {
+      "bet_type": "馬単",
+      "combination": "6",
+      "payout": 12000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "6-8-12",
       "payout": 41740,
       "popularity": 75
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "15",
+      "payout": 1606,
+      "popularity": 80
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "17-1",
+      "payout": 70812,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -498,7 +528,8 @@
         "14": "ホグホグナナハン",
         "10": "シャトーベスト",
         "7": "ホウオウパーソンズ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12683,
@@ -555,7 +586,8 @@
         "14": "ホグホグナナハン",
         "10": "シャトーベスト",
         "7": "ホウオウパーソンズ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12684,
@@ -605,7 +637,8 @@
         "14": "ホグホグナナハン",
         "10": "シャトーベスト",
         "7": "ホウオウパーソンズ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12685,
@@ -655,7 +688,8 @@
         "14": "ホグホグナナハン",
         "10": "シャトーベスト",
         "7": "ホウオウパーソンズ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12686,
@@ -796,7 +830,8 @@
         "14": "ホグホグナナハン",
         "10": "シャトーベスト",
         "7": "ホウオウパーソンズ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12687,
@@ -839,7 +874,8 @@
         "14": "ホグホグナナハン",
         "10": "シャトーベスト",
         "7": "ホウオウパーソンズ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12688,
@@ -896,7 +932,8 @@
         "14": "ホグホグナナハン",
         "10": "シャトーベスト",
         "7": "ホウオウパーソンズ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12689,
@@ -946,7 +983,8 @@
         "14": "ホグホグナナハン",
         "10": "シャトーベスト",
         "7": "ホウオウパーソンズ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12690,
@@ -996,7 +1034,8 @@
         "14": "ホグホグナナハン",
         "10": "シャトーベスト",
         "7": "ホウオウパーソンズ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12693,
@@ -1053,7 +1092,8 @@
         "14": "ホグホグナナハン",
         "10": "シャトーベスト",
         "7": "ホウオウパーソンズ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12694,
@@ -1110,7 +1150,8 @@
         "14": "ホグホグナナハン",
         "10": "シャトーベスト",
         "7": "ホウオウパーソンズ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12695,
@@ -1167,7 +1208,8 @@
         "14": "ホグホグナナハン",
         "10": "シャトーベスト",
         "7": "ホウオウパーソンズ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12696,
@@ -1301,7 +1343,8 @@
         "14": "ホグホグナナハン",
         "10": "シャトーベスト",
         "7": "ホウオウパーソンズ"
-      }
+      },
+      "is_provisional": true
     }
   ],
   "training_evals": {},

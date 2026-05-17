@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "カフジエメンタール",
-      "horse_id": "2023103899",
-      "sex_age": "牡3",
+      "rank": 1,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "アルトラムス",
+      "horse_id": "2023103480",
+      "sex_age": "牡4",
       "weight_carried": 57.0,
-      "jockey": "武豊",
-      "trainer": "矢作芳人",
+      "jockey": "岩田望来",
+      "trainer": "野中賢二",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 3,
       "horse_number": 3,
       "horse_name": "ローベルクランツ",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "アルトラムス",
-      "horse_id": "2023103480",
-      "sex_age": "牡4",
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "カフジエメンタール",
+      "horse_id": "2023103899",
+      "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "岩田望来",
-      "trainer": "野中賢二",
+      "jockey": "武豊",
+      "trainer": "矢作芳人",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -158,12 +158,6 @@
       "combination": "4",
       "payout": 240,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "7",
-      "payout": 7000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

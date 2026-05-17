@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 6,
-      "horse_name": "メイショウローゼ",
-      "horse_id": "2023101938",
-      "sex_age": "牝3",
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "エレガンスアスク",
+      "horse_id": "2023106399",
+      "sex_age": "牝5",
       "weight_carried": 55.0,
-      "jockey": "藤懸貴志",
-      "trainer": "本田優",
+      "jockey": "川田将雅",
+      "trainer": "田中克典",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 7,
       "horse_number": 14,
       "horse_name": "スマートティアナ",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 15,
-      "horse_name": "エレガンスアスク",
-      "horse_id": "2023106399",
-      "sex_age": "牝5",
+      "rank": 3,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "メイショウローゼ",
+      "horse_id": "2023101938",
+      "sex_age": "牝3",
       "weight_carried": 55.0,
-      "jockey": "川田将雅",
-      "trainer": "田中克典",
+      "jockey": "藤懸貴志",
+      "trainer": "本田優",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "15",
       "payout": 320,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

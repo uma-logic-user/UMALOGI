@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 13,
-      "horse_name": "ブレードサクセス",
-      "horse_id": "2021103376",
-      "sex_age": "牡4",
-      "weight_carried": 58.0,
-      "jockey": "内田博幸",
-      "trainer": "岩戸孝樹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "タリスマニックTalismanic(英)",
-      "dam": "ポーズ",
-      "dam_sire": "ゼンノロブロイ"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 8,
       "horse_number": 15,
       "horse_name": "ニシノブレイゼスト",
@@ -52,7 +32,27 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 7,
+      "horse_number": 13,
+      "horse_name": "ブレードサクセス",
+      "horse_id": "2021103376",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "内田博幸",
+      "trainer": "岩戸孝樹",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "タリスマニックTalismanic(英)",
+      "dam": "ポーズ",
+      "dam_sire": "ゼンノロブロイ"
+    },
+    {
+      "rank": 3,
       "gate_number": 8,
       "horse_number": 16,
       "horse_name": "ファルコンミノル",
@@ -338,12 +338,6 @@
       "combination": "15",
       "payout": 400,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

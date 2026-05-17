@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 2,
       "horse_number": 3,
       "horse_name": "イーグルロック",
@@ -32,15 +32,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 6,
-      "horse_name": "アイデアユー",
-      "horse_id": "2023101124",
-      "sex_age": "牡5",
-      "weight_carried": 57.0,
-      "jockey": "戸崎圭太",
-      "trainer": "鹿戸雄一",
+      "rank": 2,
+      "gate_number": 6,
+      "horse_number": 10,
+      "horse_name": "クアッドフォルツァ",
+      "horse_id": "2023101301",
+      "sex_age": "牡1",
+      "weight_carried": 54.0,
+      "jockey": "佐藤翔馬",
+      "trainer": "伊藤圭三",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 10,
-      "horse_name": "クアッドフォルツァ",
-      "horse_id": "2023101301",
-      "sex_age": "牡1",
-      "weight_carried": 54.0,
-      "jockey": "佐藤翔馬",
-      "trainer": "伊藤圭三",
+      "rank": 3,
+      "gate_number": 4,
+      "horse_number": 6,
+      "horse_name": "アイデアユー",
+      "horse_id": "2023101124",
+      "sex_age": "牡5",
+      "weight_carried": 57.0,
+      "jockey": "戸崎圭太",
+      "trainer": "鹿戸雄一",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -318,12 +318,6 @@
       "combination": "3",
       "payout": 340,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "15",
-      "payout": 15000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

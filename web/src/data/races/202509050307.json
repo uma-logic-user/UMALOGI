@@ -12,7 +12,27 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "ヨカオウ",
+      "horse_id": "2023102707",
+      "sex_age": "牡5",
+      "weight_carried": 56.0,
+      "jockey": "岩田康誠",
+      "trainer": "谷潔",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 2,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "ゴリョウセイ",
@@ -32,7 +52,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "サリエンテ",
@@ -81,26 +101,6 @@
       "weight_carried": 52.0,
       "jockey": "田山旺佑",
       "trainer": "中川公成",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "ヨカオウ",
-      "horse_id": "2023102707",
-      "sex_age": "牡5",
-      "weight_carried": 56.0,
-      "jockey": "岩田康誠",
-      "trainer": "谷潔",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -178,12 +178,6 @@
       "combination": "5",
       "payout": 820,
       "popularity": 5
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "8",
-      "payout": 8000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

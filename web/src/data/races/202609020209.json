@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 7,
-      "horse_name": "リアルフォルゴーレ",
-      "horse_id": "2022104222",
-      "sex_age": "牡1",
-      "weight_carried": 58.0,
-      "jockey": "田口貫太",
-      "trainer": "大橋勇樹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 8,
       "horse_number": 14,
       "horse_name": "テイエムパイロット",
@@ -52,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 8,
       "horse_number": 15,
       "horse_name": "ビルンバウム",
@@ -70,6 +50,26 @@
       "sire": "マインドユアビスケッツMind Your Biscuits(米)",
       "dam": "スカーレル",
       "dam_sire": "ゴールドアリュール"
+    },
+    {
+      "rank": 3,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "リアルフォルゴーレ",
+      "horse_id": "2022104222",
+      "sex_age": "牡1",
+      "weight_carried": 58.0,
+      "jockey": "田口貫太",
+      "trainer": "大橋勇樹",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -318,12 +318,6 @@
       "combination": "14",
       "payout": 490,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "15",
-      "payout": 15000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

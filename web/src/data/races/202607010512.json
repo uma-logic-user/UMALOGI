@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 7,
-      "horse_name": "ライラ",
-      "horse_id": "2022103525",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "丸山元気",
-      "trainer": "吉岡辰弥",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 6,
       "horse_number": 11,
       "horse_name": "ノクナレア",
@@ -52,7 +32,27 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "ライラ",
+      "horse_id": "2022103525",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "丸山元気",
+      "trainer": "吉岡辰弥",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
       "gate_number": 6,
       "horse_number": 12,
       "horse_name": "キャッスルレイク",
@@ -338,12 +338,6 @@
       "combination": "11",
       "payout": 370,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

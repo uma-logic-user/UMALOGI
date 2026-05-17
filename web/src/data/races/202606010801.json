@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 2,
-      "horse_name": "アドミ",
-      "horse_id": "2023100283",
-      "sex_age": "牝1",
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 16,
+      "horse_name": "ムーンブランシュ",
+      "horse_id": "2023104849",
+      "sex_age": "牝4",
       "weight_carried": 55.0,
-      "jockey": "菅原明良",
-      "trainer": "中川公成",
+      "jockey": "木幡巧也",
+      "trainer": "牧光二",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 7,
       "horse_number": 14,
       "horse_name": "タヤスロレンヌ",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 16,
-      "horse_name": "ムーンブランシュ",
-      "horse_id": "2023104849",
-      "sex_age": "牝4",
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 2,
+      "horse_name": "アドミ",
+      "horse_id": "2023100283",
+      "sex_age": "牝1",
       "weight_carried": 55.0,
-      "jockey": "木幡巧也",
-      "trainer": "牧光二",
+      "jockey": "菅原明良",
+      "trainer": "中川公成",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -333,12 +333,6 @@
     }
   ],
   "payouts": [
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
-    },
     {
       "bet_type": "複勝",
       "combination": "16",

@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 5,
       "horse_number": 5,
       "horse_name": "テイエムマジック",
@@ -32,27 +32,7 @@
       "dam_sire": "スペシャルウィーク"
     },
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 8,
-      "horse_name": "トーアモルペウス",
-      "horse_id": "2020103173",
-      "sex_age": "騸3",
-      "weight_carried": 61.0,
-      "jockey": "石神深一",
-      "trainer": "辻哲英",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "タリスマニックTalismanic(英)",
-      "dam": "トーアヒミコ",
-      "dam_sire": "クロフネ"
-    },
-    {
-      "rank": null,
+      "rank": 2,
       "gate_number": 7,
       "horse_number": 9,
       "horse_name": "タイキフロリゼル",
@@ -69,6 +49,26 @@
       "horse_weight_diff": null,
       "sire": "リオンディーズ",
       "dam": "フロレンティナ",
+      "dam_sire": "クロフネ"
+    },
+    {
+      "rank": 3,
+      "gate_number": 6,
+      "horse_number": 8,
+      "horse_name": "トーアモルペウス",
+      "horse_id": "2020103173",
+      "sex_age": "騸3",
+      "weight_carried": 61.0,
+      "jockey": "石神深一",
+      "trainer": "辻哲英",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "タリスマニックTalismanic(英)",
+      "dam": "トーアヒミコ",
       "dam_sire": "クロフネ"
     },
     {
@@ -258,12 +258,6 @@
       "combination": "5",
       "payout": 320,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "12",
-      "payout": 12000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

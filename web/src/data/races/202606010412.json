@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 11,
-      "horse_name": "ハードセルツァー",
-      "horse_id": "2022105441",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "ルメール",
-      "trainer": "堀宣行",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 6,
       "horse_number": 12,
       "horse_name": "スプランドゥール",
@@ -52,7 +32,27 @@
       "dam_sire": "サクラバクシンオー"
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "ハードセルツァー",
+      "horse_id": "2022105441",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "ルメール",
+      "trainer": "堀宣行",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
       "gate_number": 8,
       "horse_number": 15,
       "horse_name": "ロードトレゾール",
@@ -338,12 +338,6 @@
       "combination": "12",
       "payout": 2640,
       "popularity": 8
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

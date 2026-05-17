@@ -12,7 +12,27 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 6,
+      "horse_number": 12,
+      "horse_name": "ランスオブセヘル",
+      "horse_id": "2021102754",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "団野大成",
+      "trainer": "奥村豊",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "サトノアラジン",
+      "dam": "ビシャーラBishaara(愛)",
+      "dam_sire": "Alhaarth"
+    },
+    {
+      "rank": 2,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "ルクスデイジー",
@@ -32,7 +52,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 1,
       "horse_number": 2,
       "horse_name": "アンリーベイビー",
@@ -233,26 +253,6 @@
     },
     {
       "rank": null,
-      "gate_number": 6,
-      "horse_number": 12,
-      "horse_name": "ランスオブセヘル",
-      "horse_id": "2021102754",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "団野大成",
-      "trainer": "奥村豊",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "サトノアラジン",
-      "dam": "ビシャーラBishaara(愛)",
-      "dam_sire": "Alhaarth"
-    },
-    {
-      "rank": null,
       "gate_number": 7,
       "horse_number": 13,
       "horse_name": "オリージネアリア",
@@ -338,12 +338,6 @@
       "combination": "12",
       "payout": 520,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 8,
-      "horse_name": "フェルアフリーゼ",
-      "horse_id": "2023107029",
-      "sex_age": "牝3",
-      "weight_carried": 53.0,
-      "jockey": "長浜鴻緒",
-      "trainer": "深山雅史",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 6,
       "horse_number": 12,
       "horse_name": "サトノエスケープ",
@@ -52,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 7,
       "horse_number": 14,
       "horse_name": "マイネルテオドロス",
@@ -61,6 +41,26 @@
       "weight_carried": 57.0,
       "jockey": "佐々木大",
       "trainer": "菊川正達",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 4,
+      "horse_number": 8,
+      "horse_name": "フェルアフリーゼ",
+      "horse_id": "2023107029",
+      "sex_age": "牝3",
+      "weight_carried": 53.0,
+      "jockey": "長浜鴻緒",
+      "trainer": "深山雅史",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "12",
       "payout": 120,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

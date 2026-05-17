@@ -4,11 +4,11 @@
   "date": "2026-04-25",
   "venue": "東京",
   "race_number": 2,
-  "distance": 1400,
-  "surface": "ダート",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "曇",
-  "condition": "稍",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -42,7 +42,7 @@
       "jockey": "大野拓弥",
       "trainer": "杉浦宏昭",
       "finish_time": "1:26.0",
-      "margin": "2",
+      "margin": "@",
       "win_odds": 5.0,
       "popularity": 2,
       "horse_weight": 444,
@@ -62,7 +62,7 @@
       "jockey": "坂井瑠星",
       "trainer": "尾関知人",
       "finish_time": "1:26.1",
-      "margin": "1",
+      "margin": "@",
       "win_odds": 18.0,
       "popularity": 7,
       "horse_weight": 486,
@@ -82,7 +82,7 @@
       "jockey": "レーン",
       "trainer": "室井潔",
       "finish_time": "1:26.1",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 3.4,
       "popularity": 1,
       "horse_weight": 446,
@@ -102,7 +102,7 @@
       "jockey": "柴田大知",
       "trainer": "上原博之",
       "finish_time": "1:26.3",
-      "margin": "1",
+      "margin": "@",
       "win_odds": 52.4,
       "popularity": 10,
       "horse_weight": 488,
@@ -122,7 +122,7 @@
       "jockey": "横山武史",
       "trainer": "鈴木伸尋",
       "finish_time": "1:26.6",
-      "margin": "2",
+      "margin": "@",
       "win_odds": 19.7,
       "popularity": 8,
       "horse_weight": 456,
@@ -142,7 +142,7 @@
       "jockey": "中井裕二",
       "trainer": "小野次郎",
       "finish_time": "1:26.7",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 9.1,
       "popularity": 5,
       "horse_weight": 484,
@@ -162,7 +162,7 @@
       "jockey": "石橋脩",
       "trainer": "清水英克",
       "finish_time": "1:26.7",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 143.7,
       "popularity": 13,
       "horse_weight": 458,
@@ -182,7 +182,7 @@
       "jockey": "矢野貴之",
       "trainer": "田中克典",
       "finish_time": "1:27.0",
-      "margin": "1.3/4",
+      "margin": "@",
       "win_odds": 47.1,
       "popularity": 9,
       "horse_weight": 480,
@@ -202,7 +202,7 @@
       "jockey": "ディー",
       "trainer": "鹿戸雄一",
       "finish_time": "1:27.3",
-      "margin": "2",
+      "margin": "@",
       "win_odds": 90.3,
       "popularity": 12,
       "horse_weight": 446,
@@ -222,7 +222,7 @@
       "jockey": "横山和生",
       "trainer": "前川恭子",
       "finish_time": "1:27.4",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 10.9,
       "popularity": 6,
       "horse_weight": 566,
@@ -242,7 +242,7 @@
       "jockey": "津村明秀",
       "trainer": "小笠倫弘",
       "finish_time": "1:27.5",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 5.5,
       "popularity": 4,
       "horse_weight": 470,
@@ -262,7 +262,7 @@
       "jockey": "岩田康誠",
       "trainer": "斎藤誠",
       "finish_time": "1:27.5",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 79.8,
       "popularity": 11,
       "horse_weight": 464,
@@ -282,7 +282,7 @@
       "jockey": "長浜鴻緒",
       "trainer": "和田正一",
       "finish_time": "1:28.3",
-      "margin": "5",
+      "margin": "@",
       "win_odds": 355.7,
       "popularity": 15,
       "horse_weight": 512,
@@ -302,7 +302,7 @@
       "jockey": "佐藤翔馬",
       "trainer": "粕谷昌央",
       "finish_time": "1:28.7",
-      "margin": "2.1/2",
+      "margin": "@",
       "win_odds": 314.2,
       "popularity": 14,
       "horse_weight": 384,
@@ -322,7 +322,7 @@
       "jockey": "原田和真",
       "trainer": "小手川準",
       "finish_time": "1:29.4",
-      "margin": "4",
+      "margin": "@",
       "win_odds": 400.4,
       "popularity": 16,
       "horse_weight": 520,
@@ -376,6 +376,18 @@
       "popularity": 6
     },
     {
+      "bet_type": "馬連",
+      "combination": "2",
+      "payout": 5160,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 80000,
+      "popularity": 1
+    },
+    {
       "bet_type": "ワイド",
       "combination": "4-16",
       "payout": 700,
@@ -394,16 +406,40 @@
       "popularity": 24
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 80031,
+      "popularity": 40
+    },
+    {
       "bet_type": "馬単",
       "combination": "4→16",
       "payout": 2900,
       "popularity": 10
     },
     {
+      "bet_type": "馬単",
+      "combination": "4",
+      "payout": 16000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "4-14-16",
       "payout": 10450,
       "popularity": 34
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "7",
+      "payout": 80414,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "16",
+      "payout": 90020,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -456,7 +492,8 @@
         "8": "グリュック",
         "3": "ミュークトーマス",
         "10": "ニシノバリキング"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5564,
@@ -515,7 +552,8 @@
         "8": "グリュック",
         "3": "ミュークトーマス",
         "10": "ニシノバリキング"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5565,
@@ -560,7 +598,8 @@
         "8": "グリュック",
         "3": "ミュークトーマス",
         "10": "ニシノバリキング"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5566,
@@ -605,7 +644,8 @@
         "8": "グリュック",
         "3": "ミュークトーマス",
         "10": "ニシノバリキング"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5567,
@@ -657,7 +697,8 @@
         "8": "グリュック",
         "3": "ミュークトーマス",
         "10": "ニシノバリキング"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5568,
@@ -730,7 +771,8 @@
         "8": "グリュック",
         "3": "ミュークトーマス",
         "10": "ニシノバリキング"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5576,
@@ -775,7 +817,8 @@
         "8": "グリュック",
         "3": "ミュークトーマス",
         "10": "ニシノバリキング"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5577,
@@ -848,7 +891,8 @@
         "8": "グリュック",
         "3": "ミュークトーマス",
         "10": "ニシノバリキング"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5578,
@@ -893,7 +937,8 @@
         "8": "グリュック",
         "3": "ミュークトーマス",
         "10": "ニシノバリキング"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5579,
@@ -938,7 +983,8 @@
         "8": "グリュック",
         "3": "ミュークトーマス",
         "10": "ニシノバリキング"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5580,
@@ -983,7 +1029,8 @@
         "8": "グリュック",
         "3": "ミュークトーマス",
         "10": "ニシノバリキング"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5583,
@@ -1028,7 +1075,8 @@
         "8": "グリュック",
         "3": "ミュークトーマス",
         "10": "ニシノバリキング"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 5584,
@@ -1178,7 +1226,8 @@
         "8": "グリュック",
         "3": "ミュークトーマス",
         "10": "ニシノバリキング"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6055,
@@ -1223,7 +1272,8 @@
         "8": "グリュック",
         "3": "ミュークトーマス",
         "10": "ニシノバリキング"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6056,
@@ -1282,7 +1332,8 @@
         "8": "グリュック",
         "3": "ミュークトーマス",
         "10": "ニシノバリキング"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6057,
@@ -1334,7 +1385,8 @@
         "8": "グリュック",
         "3": "ミュークトーマス",
         "10": "ニシノバリキング"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6058,
@@ -1386,7 +1438,8 @@
         "8": "グリュック",
         "3": "ミュークトーマス",
         "10": "ニシノバリキング"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6059,
@@ -1452,7 +1505,8 @@
         "8": "グリュック",
         "3": "ミュークトーマス",
         "10": "ニシノバリキング"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6060,
@@ -1595,7 +1649,8 @@
         "8": "グリュック",
         "3": "ミュークトーマス",
         "10": "ニシノバリキング"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6076,
@@ -1640,7 +1695,8 @@
         "8": "グリュック",
         "3": "ミュークトーマス",
         "10": "ニシノバリキング"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6077,
@@ -1713,7 +1769,8 @@
         "8": "グリュック",
         "3": "ミュークトーマス",
         "10": "ニシノバリキング"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6078,
@@ -1765,7 +1822,8 @@
         "8": "グリュック",
         "3": "ミュークトーマス",
         "10": "ニシノバリキング"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6079,
@@ -1817,7 +1875,8 @@
         "8": "グリュック",
         "3": "ミュークトーマス",
         "10": "ニシノバリキング"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6080,
@@ -1869,7 +1928,8 @@
         "8": "グリュック",
         "3": "ミュークトーマス",
         "10": "ニシノバリキング"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6083,
@@ -1928,7 +1988,8 @@
         "8": "グリュック",
         "3": "ミュークトーマス",
         "10": "ニシノバリキング"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6084,
@@ -2078,7 +2139,8 @@
         "8": "グリュック",
         "3": "ミュークトーマス",
         "10": "ニシノバリキング"
-      }
+      },
+      "is_provisional": true
     }
   ],
   "training_evals": {}

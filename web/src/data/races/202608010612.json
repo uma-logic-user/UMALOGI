@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "ポッドドンナー",
-      "horse_id": "2022100018",
-      "sex_age": "牡3",
-      "weight_carried": 57.0,
-      "jockey": "吉村誠之",
-      "trainer": "辻野泰之",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 4,
       "horse_number": 8,
       "horse_name": "カズミクラーシュ",
@@ -52,7 +32,7 @@
       "dam_sire": "キングカメハメハ"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 8,
       "horse_number": 17,
       "horse_name": "モアリジット",
@@ -70,6 +50,26 @@
       "sire": "ロードカナロア",
       "dam": "インフレキシビリティInflexibility(加)",
       "dam_sire": "Scat Daddy(米)"
+    },
+    {
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "ポッドドンナー",
+      "horse_id": "2022100018",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "吉村誠之",
+      "trainer": "辻野泰之",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -378,12 +378,6 @@
       "combination": "8",
       "payout": 2160,
       "popularity": 9
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "18",
-      "payout": 18000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "マーゴットレジーナ",
-      "horse_id": "2022101400",
-      "sex_age": "牝4",
-      "weight_carried": 56.0,
-      "jockey": "浜中俊",
-      "trainer": "小林真也",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 2,
       "horse_name": "サラスヴァティー",
@@ -52,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 8,
       "horse_number": 16,
       "horse_name": "ホウオウタイタン",
@@ -61,6 +41,26 @@
       "weight_carried": 53.0,
       "jockey": "田山旺佑",
       "trainer": "須貝尚介",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "マーゴットレジーナ",
+      "horse_id": "2022101400",
+      "sex_age": "牝4",
+      "weight_carried": 56.0,
+      "jockey": "浜中俊",
+      "trainer": "小林真也",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -358,12 +358,6 @@
       "combination": "2",
       "payout": 200,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "17",
-      "payout": 17000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

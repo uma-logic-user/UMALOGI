@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "ナンナンプー",
-      "horse_id": "2022102878",
-      "sex_age": "牝3",
-      "weight_carried": 53.0,
-      "jockey": "石神深道",
-      "trainer": "水野貴広",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 3,
       "horse_number": 6,
       "horse_name": "ワインクーラー",
@@ -52,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 5,
       "horse_number": 9,
       "horse_name": "ベルファスト",
@@ -70,6 +50,26 @@
       "sire": "ダイワメジャー",
       "dam": "タミーンTameen(英)",
       "dam_sire": "Shirocco"
+    },
+    {
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "ナンナンプー",
+      "horse_id": "2022102878",
+      "sex_age": "牝3",
+      "weight_carried": 53.0,
+      "jockey": "石神深道",
+      "trainer": "水野貴広",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -378,12 +378,6 @@
       "combination": "6",
       "payout": 630,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "18",
-      "payout": 17000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

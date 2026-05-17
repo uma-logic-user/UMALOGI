@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 3,
       "horse_number": 3,
       "horse_name": "アンジュプロミス",
@@ -32,15 +32,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "ガラベイヤ",
-      "horse_id": "2023107279",
+      "rank": 2,
+      "gate_number": 8,
+      "horse_number": 10,
+      "horse_name": "デルマリシリ",
+      "horse_id": "2023100997",
       "sex_age": "牝3",
       "weight_carried": 55.0,
-      "jockey": "丸山元気",
-      "trainer": "加藤士津",
+      "jockey": "藤岡佑介",
+      "trainer": "田中克典",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 10,
-      "horse_name": "デルマリシリ",
-      "horse_id": "2023100997",
+      "rank": 3,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "ガラベイヤ",
+      "horse_id": "2023107279",
       "sex_age": "牝3",
       "weight_carried": 55.0,
-      "jockey": "藤岡佑介",
-      "trainer": "田中克典",
+      "jockey": "丸山元気",
+      "trainer": "加藤士津",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -218,12 +218,6 @@
       "combination": "3",
       "payout": 660,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "10",
-      "payout": 10000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

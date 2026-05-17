@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 3,
       "horse_number": 4,
       "horse_name": "エコロレバン",
@@ -32,15 +32,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 5,
-      "horse_number": 7,
-      "horse_name": "モズタイシソウシ",
-      "horse_id": "2023105728",
-      "sex_age": "牡3",
-      "weight_carried": 54.0,
-      "jockey": "和田陽希",
-      "trainer": "平田修",
+      "horse_number": 8,
+      "horse_name": "ファンシーフリル",
+      "horse_id": "2023101676",
+      "sex_age": "牝5",
+      "weight_carried": 55.0,
+      "jockey": "秋山稔樹",
+      "trainer": "蛯名利弘",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 5,
-      "horse_number": 8,
-      "horse_name": "ファンシーフリル",
-      "horse_id": "2023101676",
-      "sex_age": "牝5",
-      "weight_carried": 55.0,
-      "jockey": "秋山稔樹",
-      "trainer": "蛯名利弘",
+      "horse_number": 7,
+      "horse_name": "モズタイシソウシ",
+      "horse_id": "2023105728",
+      "sex_age": "牡3",
+      "weight_carried": 54.0,
+      "jockey": "和田陽希",
+      "trainer": "平田修",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -298,12 +298,6 @@
       "combination": "4",
       "payout": 400,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "14",
-      "payout": 14000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

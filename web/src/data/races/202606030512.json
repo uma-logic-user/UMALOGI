@@ -4,11 +4,11 @@
   "date": "2026-04-11",
   "venue": "中山",
   "race_number": 12,
-  "distance": 1200,
-  "surface": "ダート",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "稍",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -52,7 +52,7 @@
       "jockey": "佐々木大",
       "trainer": "武藤善則",
       "finish_time": "1:10.6",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 24.4,
       "popularity": 8,
       "horse_weight": 470,
@@ -82,7 +82,7 @@
       "jockey": "大野拓弥",
       "trainer": "小笠倫弘",
       "finish_time": "1:11.0",
-      "margin": "2.1/2",
+      "margin": "@",
       "win_odds": 90.6,
       "popularity": 14,
       "horse_weight": 472,
@@ -112,7 +112,7 @@
       "jockey": "佐藤翔馬",
       "trainer": "伊藤圭三",
       "finish_time": "1:11.1",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 45.5,
       "popularity": 10,
       "horse_weight": 464,
@@ -142,7 +142,7 @@
       "jockey": "田辺裕信",
       "trainer": "上原博之",
       "finish_time": "1:11.1",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 7.8,
       "popularity": 3,
       "horse_weight": 502,
@@ -172,7 +172,7 @@
       "jockey": "津村明秀",
       "trainer": "和田正一",
       "finish_time": "1:11.2",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 14.2,
       "popularity": 6,
       "horse_weight": 456,
@@ -202,7 +202,7 @@
       "jockey": "木幡巧也",
       "trainer": "茶木太樹",
       "finish_time": "1:11.2",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 33.4,
       "popularity": 9,
       "horse_weight": 450,
@@ -232,7 +232,7 @@
       "jockey": "三浦皇成",
       "trainer": "中竹和也",
       "finish_time": "1:11.3",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 2.8,
       "popularity": 1,
       "horse_weight": 444,
@@ -262,7 +262,7 @@
       "jockey": "横山武史",
       "trainer": "鈴木伸尋",
       "finish_time": "1:11.3",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 3.4,
       "popularity": 2,
       "horse_weight": 482,
@@ -292,7 +292,7 @@
       "jockey": "嶋田純次",
       "trainer": "手塚貴久",
       "finish_time": "1:11.4",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 78.7,
       "popularity": 13,
       "horse_weight": 490,
@@ -322,7 +322,7 @@
       "jockey": "戸崎圭太",
       "trainer": "吉岡辰弥",
       "finish_time": "1:11.4",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 14.9,
       "popularity": 7,
       "horse_weight": 448,
@@ -352,7 +352,7 @@
       "jockey": "ディー",
       "trainer": "尾関知人",
       "finish_time": "1:11.8",
-      "margin": "2",
+      "margin": "@",
       "win_odds": 68.3,
       "popularity": 12,
       "horse_weight": 466,
@@ -382,7 +382,7 @@
       "jockey": "泉谷楓真",
       "trainer": "奥村豊",
       "finish_time": "1:11.8",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 53.5,
       "popularity": 11,
       "horse_weight": 460,
@@ -412,7 +412,7 @@
       "jockey": "柴田大知",
       "trainer": "粕谷昌央",
       "finish_time": "1:12.0",
-      "margin": "1",
+      "margin": "@",
       "win_odds": 135.7,
       "popularity": 15,
       "horse_weight": 440,
@@ -442,7 +442,7 @@
       "jockey": "横山和生",
       "trainer": "宮田敬介",
       "finish_time": "1:14.0",
-      "margin": "大",
+      "margin": "@",
       "win_odds": 9.4,
       "popularity": 4,
       "horse_weight": 430,
@@ -472,7 +472,7 @@
       "jockey": "的場勇人",
       "trainer": "的場均",
       "finish_time": "1:15.9",
-      "margin": "大",
+      "margin": "@",
       "win_odds": 277.7,
       "popularity": 16,
       "horse_weight": 474,
@@ -530,6 +530,12 @@
       "popularity": 17
     },
     {
+      "bet_type": "枠連",
+      "combination": "1",
+      "payout": 32005,
+      "popularity": null
+    },
+    {
       "bet_type": "馬連",
       "combination": "8-15",
       "payout": 175,
@@ -542,10 +548,28 @@
       "popularity": 39
     },
     {
+      "bet_type": "馬連",
+      "combination": "4",
+      "payout": 7160,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3",
+      "payout": 80000,
+      "popularity": 3
+    },
+    {
       "bet_type": "ワイド",
       "combination": "6-16",
       "payout": 3820,
       "popularity": 37
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "5",
+      "payout": 80081,
+      "popularity": 50
     },
     {
       "bet_type": "ワイド",
@@ -561,15 +585,45 @@
     },
     {
       "bet_type": "馬単",
+      "combination": "16",
+      "payout": 148,
+      "popularity": 60
+    },
+    {
+      "bet_type": "馬単",
       "combination": "6→16",
       "payout": 24920,
       "popularity": 71
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "6",
+      "payout": 16000,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-1",
+      "payout": 6915,
+      "popularity": 160
     },
     {
       "bet_type": "三連複",
       "combination": "6-15-16",
       "payout": 225240,
       "popularity": 298
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3",
+      "payout": 70615,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-5",
+      "payout": 50072,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -657,7 +711,8 @@
         "10": "ベニシア",
         "13": "エリカカリーナ",
         "1": "ヒナアラレ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1966,
@@ -723,7 +778,8 @@
         "10": "ベニシア",
         "13": "エリカカリーナ",
         "1": "ヒナアラレ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1967,
@@ -775,7 +831,8 @@
         "10": "ベニシア",
         "13": "エリカカリーナ",
         "1": "ヒナアラレ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1968,
@@ -827,7 +884,8 @@
         "10": "ベニシア",
         "13": "エリカカリーナ",
         "1": "ヒナアラレ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1969,
@@ -886,7 +944,8 @@
         "10": "ベニシア",
         "13": "エリカカリーナ",
         "1": "ヒナアラレ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1970,
@@ -959,7 +1018,8 @@
         "10": "ベニシア",
         "13": "エリカカリーナ",
         "1": "ヒナアラレ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1971,
@@ -1039,7 +1099,8 @@
         "10": "ベニシア",
         "13": "エリカカリーナ",
         "1": "ヒナアラレ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1973,
@@ -1091,7 +1152,8 @@
         "10": "ベニシア",
         "13": "エリカカリーナ",
         "1": "ヒナアラレ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1974,
@@ -1150,7 +1212,8 @@
         "10": "ベニシア",
         "13": "エリカカリーナ",
         "1": "ヒナアラレ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1975,
@@ -1216,7 +1279,8 @@
         "10": "ベニシア",
         "13": "エリカカリーナ",
         "1": "ヒナアラレ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1976,
@@ -1268,7 +1332,8 @@
         "10": "ベニシア",
         "13": "エリカカリーナ",
         "1": "ヒナアラレ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 1977,
@@ -1320,7 +1385,8 @@
         "10": "ベニシア",
         "13": "エリカカリーナ",
         "1": "ヒナアラレ"
-      }
+      },
+      "is_provisional": true
     }
   ],
   "training_evals": {

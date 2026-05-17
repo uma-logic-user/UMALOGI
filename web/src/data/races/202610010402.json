@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 2,
       "horse_number": 3,
       "horse_name": "デルマリシリ",
@@ -32,15 +32,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 8,
-      "horse_name": "リラベガ",
-      "horse_id": "2023106372",
+      "rank": 2,
+      "gate_number": 8,
+      "horse_number": 16,
+      "horse_name": "ムーンリットアイル",
+      "horse_id": "2023107269",
       "sex_age": "牝3",
       "weight_carried": 55.0,
-      "jockey": "丸山元気",
-      "trainer": "岩戸孝樹",
+      "jockey": "吉田隼人",
+      "trainer": "武英智",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 16,
-      "horse_name": "ムーンリットアイル",
-      "horse_id": "2023107269",
+      "rank": 3,
+      "gate_number": 4,
+      "horse_number": 8,
+      "horse_name": "リラベガ",
+      "horse_id": "2023106372",
       "sex_age": "牝3",
       "weight_carried": 55.0,
-      "jockey": "吉田隼人",
-      "trainer": "武英智",
+      "jockey": "丸山元気",
+      "trainer": "岩戸孝樹",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -378,12 +378,6 @@
       "combination": "3",
       "payout": 170,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "18",
-      "payout": 18000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

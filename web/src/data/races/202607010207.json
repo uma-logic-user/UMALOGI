@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "オリーブグリーン",
@@ -32,15 +32,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 6,
-      "horse_name": "レッドエウロス",
-      "horse_id": "2022105160",
-      "sex_age": "騸3",
-      "weight_carried": 55.0,
-      "jockey": "舟山瑠泉",
-      "trainer": "田中博康",
+      "rank": 2,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "アークドール",
+      "horse_id": "2021110012",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "武豊",
+      "trainer": "松永幹夫",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 15,
-      "horse_name": "アークドール",
-      "horse_id": "2021110012",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "武豊",
-      "trainer": "松永幹夫",
+      "rank": 3,
+      "gate_number": 4,
+      "horse_number": 6,
+      "horse_name": "レッドエウロス",
+      "horse_id": "2022105160",
+      "sex_age": "騸3",
+      "weight_carried": 55.0,
+      "jockey": "舟山瑠泉",
+      "trainer": "田中博康",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -318,12 +318,6 @@
       "combination": "1",
       "payout": 380,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "15",
-      "payout": 15000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

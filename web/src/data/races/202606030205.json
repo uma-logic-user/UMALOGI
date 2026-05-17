@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "キンググローリー",
@@ -32,15 +32,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "ゴンファロニエーレ",
-      "horse_id": "2023107093",
-      "sex_age": "牡4",
+      "rank": 2,
+      "gate_number": 7,
+      "horse_number": 10,
+      "horse_name": "ニシノヒノトリ",
+      "horse_id": "2023106254",
+      "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "ディー",
-      "trainer": "田中博康",
+      "jockey": "津村明秀",
+      "trainer": "手塚貴久",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 10,
-      "horse_name": "ニシノヒノトリ",
-      "horse_id": "2023106254",
-      "sex_age": "牡3",
+      "rank": 3,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "ゴンファロニエーレ",
+      "horse_id": "2023107093",
+      "sex_age": "牡4",
       "weight_carried": 57.0,
-      "jockey": "津村明秀",
-      "trainer": "手塚貴久",
+      "jockey": "ディー",
+      "trainer": "田中博康",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -278,12 +278,6 @@
       "combination": "2",
       "payout": 750,
       "popularity": 5
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "13",
-      "payout": 13000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

@@ -12,27 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "ミレニアムヒロイン",
-      "horse_id": "2021103480",
-      "sex_age": "牝1",
-      "weight_carried": 58.0,
-      "jockey": "石神深一",
-      "trainer": "池上昌和",
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 14,
+      "horse_name": "モズバンディット",
+      "horse_id": "2020101268",
+      "sex_age": "牡3",
+      "weight_carried": 60.0,
+      "jockey": "中村将之",
+      "trainer": "中尾秀正",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
       "horse_weight_diff": null,
-      "sire": "スクリーンヒーロー",
-      "dam": "エクラミレネール",
-      "dam_sire": "マツリダゴッホ"
+      "sire": "ドレフォンDrefong(米)",
+      "dam": "アマルティア",
+      "dam_sire": "アドマイヤムーン"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 5,
       "horse_number": 7,
       "horse_name": "バラジ",
@@ -52,24 +52,24 @@
       "dam_sire": "アラジArazi(米)"
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 14,
-      "horse_name": "モズバンディット",
-      "horse_id": "2020101268",
-      "sex_age": "牡3",
-      "weight_carried": 60.0,
-      "jockey": "中村将之",
-      "trainer": "中尾秀正",
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "ミレニアムヒロイン",
+      "horse_id": "2021103480",
+      "sex_age": "牝1",
+      "weight_carried": 58.0,
+      "jockey": "石神深一",
+      "trainer": "池上昌和",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
       "horse_weight_diff": null,
-      "sire": "ドレフォンDrefong(米)",
-      "dam": "アマルティア",
-      "dam_sire": "アドマイヤムーン"
+      "sire": "スクリーンヒーロー",
+      "dam": "エクラミレネール",
+      "dam_sire": "マツリダゴッホ"
     },
     {
       "rank": null,
@@ -293,12 +293,6 @@
     }
   ],
   "payouts": [
-    {
-      "bet_type": "単勝",
-      "combination": "14",
-      "payout": 14000,
-      "popularity": null
-    },
     {
       "bet_type": "複勝",
       "combination": "7",

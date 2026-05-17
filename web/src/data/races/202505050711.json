@@ -12,7 +12,27 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
+      "gate_number": 2,
+      "horse_number": 4,
+      "horse_name": "ミッキーゴージャス",
+      "horse_id": "2020103640",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "レーン",
+      "trainer": "安田翔伍",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ミッキーロケット",
+      "dam": "ミッキークイーン",
+      "dam_sire": "ディープインパクト"
+    },
+    {
+      "rank": 2,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "シヴァース",
@@ -29,6 +49,26 @@
       "horse_weight_diff": null,
       "sire": "モーリス",
       "dam": "ヴィブロス",
+      "dam_sire": "ディープインパクト"
+    },
+    {
+      "rank": 3,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "ブエナオンダ",
+      "horse_id": "2021105454",
+      "sex_age": "牡5",
+      "weight_carried": 57.0,
+      "jockey": "川田将雅",
+      "trainer": "須貝尚介",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "リオンディーズ",
+      "dam": "オーサムウインド",
       "dam_sire": "ディープインパクト"
     },
     {
@@ -73,26 +113,6 @@
     },
     {
       "rank": null,
-      "gate_number": 2,
-      "horse_number": 4,
-      "horse_name": "ミッキーゴージャス",
-      "horse_id": "2020103640",
-      "sex_age": "牝4",
-      "weight_carried": 55.0,
-      "jockey": "レーン",
-      "trainer": "安田翔伍",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ミッキーロケット",
-      "dam": "ミッキークイーン",
-      "dam_sire": "ディープインパクト"
-    },
-    {
-      "rank": null,
       "gate_number": 3,
       "horse_number": 5,
       "horse_name": "マピュース",
@@ -110,26 +130,6 @@
       "sire": "マインドユアビスケッツMind Your Biscuits(米)",
       "dam": "フィルムフランセ",
       "dam_sire": "シンボリクリスエス"
-    },
-    {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 6,
-      "horse_name": "ブエナオンダ",
-      "horse_id": "2021105454",
-      "sex_age": "牡5",
-      "weight_carried": 57.0,
-      "jockey": "川田将雅",
-      "trainer": "須貝尚介",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "リオンディーズ",
-      "dam": "オーサムウインド",
-      "dam_sire": "ディープインパクト"
     },
     {
       "rank": null,
@@ -378,12 +378,6 @@
       "combination": "4",
       "payout": 650,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "18",
-      "payout": 18000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

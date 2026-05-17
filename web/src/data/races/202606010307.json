@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 3,
       "horse_number": 6,
       "horse_name": "ディールメーカー",
@@ -32,15 +32,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 9,
-      "horse_name": "ラプランセス",
-      "horse_id": "2023103733",
-      "sex_age": "牝1",
-      "weight_carried": 55.0,
-      "jockey": "横山武史",
-      "trainer": "斎藤誠",
+      "rank": 2,
+      "gate_number": 7,
+      "horse_number": 13,
+      "horse_name": "シャルムグリーン",
+      "horse_id": "2023101459",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "津村明秀",
+      "trainer": "相沢郁",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 13,
-      "horse_name": "シャルムグリーン",
-      "horse_id": "2023101459",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "津村明秀",
-      "trainer": "相沢郁",
+      "rank": 3,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "ラプランセス",
+      "horse_id": "2023103733",
+      "sex_age": "牝1",
+      "weight_carried": 55.0,
+      "jockey": "横山武史",
+      "trainer": "斎藤誠",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "6",
       "payout": 320,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

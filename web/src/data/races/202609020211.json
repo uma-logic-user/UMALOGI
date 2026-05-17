@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "メイショウチタン",
-      "horse_id": "2017104172",
-      "sex_age": "牡4",
-      "weight_carried": 58.0,
-      "jockey": "古川吉洋",
-      "trainer": "本田優",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ロードカナロア",
-      "dam": "ラルティスタ",
-      "dam_sire": "マイネルラヴ"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 5,
       "horse_number": 6,
       "horse_name": "ベラジオボンド",
@@ -52,7 +32,7 @@
       "dam_sire": "Dubai Destination"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 5,
       "horse_number": 7,
       "horse_name": "クランフォード",
@@ -70,6 +50,26 @@
       "sire": "ブリックスアンドモルタルBricks and Mortar(米)",
       "dam": "エンジェルフェイス",
       "dam_sire": "キングカメハメハ"
+    },
+    {
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "メイショウチタン",
+      "horse_id": "2017104172",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "古川吉洋",
+      "trainer": "本田優",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ロードカナロア",
+      "dam": "ラルティスタ",
+      "dam_sire": "マイネルラヴ"
     },
     {
       "rank": null,
@@ -267,8 +267,8 @@
       "popularity": null,
       "horse_weight": null,
       "horse_weight_diff": null,
-      "sire": "Ξ«ΞΘΓΦΞΉΞΛΞσΞ―Ξ·Ξ»",
-      "dam": "ΞξΞ»ΞκΞ≤ΞκΞά",
+      "sire": "ディープインパクト",
+      "dam": "リトルゲルダ",
       "dam_sire": "Closing Argument"
     }
   ],
@@ -278,12 +278,6 @@
       "combination": "6",
       "payout": 280,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "13",
-      "payout": 13000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

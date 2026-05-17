@@ -4,11 +4,11 @@
   "date": "2026-04-26",
   "venue": "東京",
   "race_number": 6,
-  "distance": 1600,
-  "surface": "芝",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -48,7 +48,7 @@
       "jockey": "大野拓弥",
       "trainer": "藤岡健一",
       "finish_time": "1:32.9",
-      "margin": "1.1/2",
+      "margin": "@",
       "win_odds": 19.3,
       "popularity": 5,
       "horse_weight": 498,
@@ -74,7 +74,7 @@
       "jockey": "レーン",
       "trainer": "田中博康",
       "finish_time": "1:33.0",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 2.0,
       "popularity": 1,
       "horse_weight": 504,
@@ -100,7 +100,7 @@
       "jockey": "津村明秀",
       "trainer": "黒岩陽一",
       "finish_time": "1:33.3",
-      "margin": "1.3/4",
+      "margin": "@",
       "win_odds": 5.2,
       "popularity": 3,
       "horse_weight": 430,
@@ -126,7 +126,7 @@
       "jockey": "松山弘平",
       "trainer": "平田修",
       "finish_time": "1:33.5",
-      "margin": "1",
+      "margin": "@",
       "win_odds": 10.6,
       "popularity": 4,
       "horse_weight": 532,
@@ -152,7 +152,7 @@
       "jockey": "横山和生",
       "trainer": "村田一誠",
       "finish_time": "1:33.8",
-      "margin": "2",
+      "margin": "@",
       "win_odds": 55.5,
       "popularity": 7,
       "horse_weight": 472,
@@ -178,7 +178,7 @@
       "jockey": "三浦皇成",
       "trainer": "竹内正洋",
       "finish_time": "1:35.0",
-      "margin": "7",
+      "margin": "@",
       "win_odds": 25.1,
       "popularity": 6,
       "horse_weight": 518,
@@ -204,7 +204,7 @@
       "jockey": "原田和真",
       "trainer": "和田雄二",
       "finish_time": "1:36.2",
-      "margin": "7",
+      "margin": "@",
       "win_odds": 328.3,
       "popularity": 8,
       "horse_weight": 484,
@@ -282,16 +282,46 @@
       "popularity": 10
     },
     {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 40050,
+      "popularity": 10
+    },
+    {
       "bet_type": "馬単",
       "combination": "2→5",
       "payout": 2700,
       "popularity": 9
     },
     {
+      "bet_type": "馬単",
+      "combination": "2",
+      "payout": 5000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-2-5",
       "payout": 1170,
       "popularity": 3
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1",
+      "payout": 101,
+      "popularity": 50
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4",
+      "payout": 70102,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "6",
+      "payout": 70010,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -336,7 +366,8 @@
         "6": "アルデキングダム",
         "3": "グランセレスト",
         "8": "シュテルン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12738,
@@ -387,7 +418,8 @@
         "6": "アルデキングダム",
         "3": "グランセレスト",
         "8": "シュテルン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12739,
@@ -431,7 +463,8 @@
         "6": "アルデキングダム",
         "3": "グランセレスト",
         "8": "シュテルン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12740,
@@ -475,7 +508,8 @@
         "6": "アルデキングダム",
         "3": "グランセレスト",
         "8": "シュテルン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12741,
@@ -547,7 +581,8 @@
         "6": "アルデキングダム",
         "3": "グランセレスト",
         "8": "シュテルン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12742,
@@ -682,7 +717,8 @@
         "6": "アルデキングダム",
         "3": "グランセレスト",
         "8": "シュテルン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12743,
@@ -719,7 +755,8 @@
         "6": "アルデキングダム",
         "3": "グランセレスト",
         "8": "シュテルン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12744,
@@ -770,7 +807,8 @@
         "6": "アルデキングダム",
         "3": "グランセレスト",
         "8": "シュテルン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12745,
@@ -814,7 +852,8 @@
         "6": "アルデキングダム",
         "3": "グランセレスト",
         "8": "シュテルン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12746,
@@ -858,7 +897,8 @@
         "6": "アルデキングダム",
         "3": "グランセレスト",
         "8": "シュテルン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12749,
@@ -909,7 +949,8 @@
         "6": "アルデキングダム",
         "3": "グランセレスト",
         "8": "シュテルン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12750,
@@ -960,7 +1001,8 @@
         "6": "アルデキングダム",
         "3": "グランセレスト",
         "8": "シュテルン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12751,
@@ -1011,7 +1053,8 @@
         "6": "アルデキングダム",
         "3": "グランセレスト",
         "8": "シュテルン"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 12752,
@@ -1097,7 +1140,8 @@
         "6": "アルデキングダム",
         "3": "グランセレスト",
         "8": "シュテルン"
-      }
+      },
+      "is_provisional": true
     }
   ],
   "training_evals": {},

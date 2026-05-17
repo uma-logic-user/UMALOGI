@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 2,
-      "horse_name": "スムースベルベット",
-      "horse_id": "2020106987",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "嶋田純次",
-      "trainer": "南田美知",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ディスクリートキャットDiscreet Cat(米)",
-      "dam": "ローブドヴルール",
-      "dam_sire": "サウスヴィグラス"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 4,
       "horse_number": 8,
       "horse_name": "カンシン",
@@ -52,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 5,
       "horse_number": 9,
       "horse_name": "ヴァンヴィーヴ",
@@ -70,6 +50,26 @@
       "sire": "ダイワメジャー",
       "dam": "サンドスラッシュSandslash(愛)",
       "dam_sire": "Holy Roman Emperor"
+    },
+    {
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 2,
+      "horse_name": "スムースベルベット",
+      "horse_id": "2020106987",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "嶋田純次",
+      "trainer": "南田美知",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ディスクリートキャットDiscreet Cat(米)",
+      "dam": "ローブドヴルール",
+      "dam_sire": "サウスヴィグラス"
     },
     {
       "rank": null,
@@ -338,12 +338,6 @@
       "combination": "8",
       "payout": 580,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

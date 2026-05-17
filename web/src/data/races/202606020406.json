@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 3,
-      "horse_name": "カーヌスティ",
-      "horse_id": "2022103639",
-      "sex_age": "牡3",
+      "rank": 1,
+      "gate_number": 5,
+      "horse_number": 10,
+      "horse_name": "マクミランテソーロ",
+      "horse_id": "2021102276",
+      "sex_age": "牡7",
       "weight_carried": 58.0,
-      "jockey": "ルメール",
-      "trainer": "大和田成",
+      "jockey": "木幡巧也",
+      "trainer": "田中剛",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 4,
       "horse_number": 7,
       "horse_name": "ルイステソーロ",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 10,
-      "horse_name": "マクミランテソーロ",
-      "horse_id": "2021102276",
-      "sex_age": "牡7",
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "カーヌスティ",
+      "horse_id": "2022103639",
+      "sex_age": "牡3",
       "weight_carried": 58.0,
-      "jockey": "木幡巧也",
-      "trainer": "田中剛",
+      "jockey": "ルメール",
+      "trainer": "大和田成",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "10",
       "payout": 200,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

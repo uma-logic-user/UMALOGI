@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "スマイルスルー",
-      "horse_id": "2020103446",
-      "sex_age": "騸3",
-      "weight_carried": 61.0,
-      "jockey": "高田潤",
-      "trainer": "斉藤崇史",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ルーラーシップ",
-      "dam": "スマイルシャワー",
-      "dam_sire": "シンボリクリスエス"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 4,
       "horse_number": 4,
       "horse_name": "ホウオウプロサンゲ",
@@ -52,7 +32,27 @@
       "dam_sire": "Monsun"
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "スマイルスルー",
+      "horse_id": "2020103446",
+      "sex_age": "騸3",
+      "weight_carried": 61.0,
+      "jockey": "高田潤",
+      "trainer": "斉藤崇史",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ルーラーシップ",
+      "dam": "スマイルシャワー",
+      "dam_sire": "シンボリクリスエス"
+    },
+    {
+      "rank": 3,
       "gate_number": 6,
       "horse_number": 6,
       "horse_name": "オールザワールド",
@@ -238,12 +238,6 @@
       "combination": "4",
       "payout": 190,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "11",
-      "payout": 11000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

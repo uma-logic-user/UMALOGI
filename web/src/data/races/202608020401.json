@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 7,
-      "horse_number": 13,
-      "horse_name": "アドフランマム",
-      "horse_id": "2023105187",
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 16,
+      "horse_name": "スリーコーズ",
+      "horse_id": "2023106208",
       "sex_age": "牡1",
       "weight_carried": 57.0,
-      "jockey": "太宰啓介",
-      "trainer": "本田優",
+      "jockey": "川田将雅",
+      "trainer": "伊藤圭三",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 7,
       "horse_number": 14,
       "horse_name": "プレデンシア",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 16,
-      "horse_name": "スリーコーズ",
-      "horse_id": "2023106208",
+      "rank": 3,
+      "gate_number": 7,
+      "horse_number": 13,
+      "horse_name": "アドフランマム",
+      "horse_id": "2023105187",
       "sex_age": "牡1",
       "weight_carried": 57.0,
-      "jockey": "川田将雅",
-      "trainer": "伊藤圭三",
+      "jockey": "太宰啓介",
+      "trainer": "本田優",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -333,12 +333,6 @@
     }
   ],
   "payouts": [
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
-    },
     {
       "bet_type": "複勝",
       "combination": "16",

@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 6,
       "horse_number": 7,
       "horse_name": "メイショウハチコウ",
@@ -32,7 +32,7 @@
       "dam_sire": "アグネスデジタル"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 7,
       "horse_number": 9,
       "horse_name": "コッツォリーノ",
@@ -52,7 +52,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 8,
       "horse_number": 10,
       "horse_name": "サンプレクス",
@@ -238,12 +238,6 @@
       "combination": "7",
       "payout": 490,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "11",
-      "payout": 11000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

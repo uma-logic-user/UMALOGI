@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 8,
-      "horse_name": "ドバイブルース",
-      "horse_id": "2021105182",
-      "sex_age": "牡5",
-      "weight_carried": 58.0,
-      "jockey": "ルメール",
-      "trainer": "加藤征弘",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "キンシャサノキセキ",
-      "dam": "Pirika(愛)",
-      "dam_sire": "Monsun"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 7,
       "horse_number": 11,
       "horse_name": "マーズオデッセイ",
@@ -52,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 8,
       "horse_number": 13,
       "horse_name": "エクリプスルバン",
@@ -70,6 +50,26 @@
       "sire": "シニスターミニスターSinister Minister(米)",
       "dam": "キングベイビー",
       "dam_sire": "マンハッタンカフェ"
+    },
+    {
+      "rank": 3,
+      "gate_number": 5,
+      "horse_number": 8,
+      "horse_name": "ドバイブルース",
+      "horse_id": "2021105182",
+      "sex_age": "牡5",
+      "weight_carried": 58.0,
+      "jockey": "ルメール",
+      "trainer": "加藤征弘",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "キンシャサノキセキ",
+      "dam": "Pirika(愛)",
+      "dam_sire": "Monsun"
     },
     {
       "rank": null,
@@ -298,12 +298,6 @@
       "combination": "11",
       "payout": 1540,
       "popularity": 8
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "14",
-      "payout": 14000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

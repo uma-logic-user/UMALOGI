@@ -1,0 +1,3233 @@
+{
+  "race_id": "202608030806",
+  "race_name": "",
+  "date": "2026-05-17",
+  "venue": "京都",
+  "race_number": 6,
+  "distance": 0,
+  "surface": "",
+  "track_direction": "",
+  "weather": "",
+  "condition": "",
+  "year": "2026",
+  "results": [
+    {
+      "rank": 1,
+      "gate_number": 4,
+      "horse_number": 8,
+      "horse_name": "ジャイアンバローズ",
+      "horse_id": "2023100922",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "高杉",
+      "trainer": "栗東池江",
+      "finish_time": "1:51.8",
+      "margin": null,
+      "win_odds": 15.0,
+      "popularity": 6,
+      "horse_weight": 518,
+      "horse_weight_diff": -10,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1192,
+      "ev_score": 1.6445,
+      "kelly_fraction": 0.005,
+      "manji_ev": 0.4389,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 2,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "システマソラー",
+      "horse_id": "2023102120",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "佐々木",
+      "trainer": "栗東橋田",
+      "finish_time": "1:52.0",
+      "margin": "1",
+      "win_odds": 4.2,
+      "popularity": 2,
+      "horse_weight": 518,
+      "horse_weight_diff": 10,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0992,
+      "ev_score": 0.5061,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.2199,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 4,
+      "horse_name": "チェリヴェント",
+      "horse_id": "2023104387",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "吉村",
+      "trainer": "栗東清水久",
+      "finish_time": "1:52.2",
+      "margin": "1",
+      "win_odds": 3.5,
+      "popularity": 1,
+      "horse_weight": 504,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0672,
+      "ev_score": 0.2151,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.4326,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 4,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "バケラッタ",
+      "horse_id": "2023104066",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "鮫島良",
+      "trainer": "栗東河嶋",
+      "finish_time": "1:52.9",
+      "margin": "4",
+      "win_odds": 34.9,
+      "popularity": 10,
+      "horse_weight": 478,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0972,
+      "ev_score": 2.6936,
+      "kelly_fraction": 0.0063,
+      "manji_ev": 1.1167,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 5,
+      "gate_number": 7,
+      "horse_number": 14,
+      "horse_name": "ロードアマルフィ",
+      "horse_id": "2023105786",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "団野",
+      "trainer": "栗東中村",
+      "finish_time": "1:52.9",
+      "margin": "クビ",
+      "win_odds": 5.1,
+      "popularity": 3,
+      "horse_weight": 518,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1192,
+      "ev_score": 1.1559,
+      "kelly_fraction": 0.0018,
+      "manji_ev": 0.8488,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 6,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "ラブインアクション",
+      "horse_id": "2023110043",
+      "sex_age": "牝1",
+      "weight_carried": 55.0,
+      "jockey": "鮫島駿",
+      "trainer": "栗東橋口",
+      "finish_time": "1:53.1",
+      "margin": "1",
+      "win_odds": 16.0,
+      "popularity": 7,
+      "horse_weight": 470,
+      "horse_weight_diff": -8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0879,
+      "ev_score": 2.3744,
+      "kelly_fraction": 0.0053,
+      "manji_ev": 0.6196,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 7,
+      "gate_number": 8,
+      "horse_number": 16,
+      "horse_name": "オオツカ",
+      "horse_id": "2023103919",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "菱田",
+      "trainer": "栗東大久保",
+      "finish_time": "1:53.2",
+      "margin": "1/2",
+      "win_odds": 17.4,
+      "popularity": 8,
+      "horse_weight": 442,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0614,
+      "ev_score": 0.9829,
+      "kelly_fraction": 0.0,
+      "manji_ev": 3.6443,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 8,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "テスタヴェローチェ",
+      "horse_id": "2023102132",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "△田山",
+      "trainer": "栗東須貝",
+      "finish_time": "1:53.5",
+      "margin": "1.3/4",
+      "win_odds": 7.1,
+      "popularity": 4,
+      "horse_weight": 488,
+      "horse_weight_diff": -4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0879,
+      "ev_score": 1.8468,
+      "kelly_fraction": 0.0042,
+      "manji_ev": 2.7971,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 9,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "ケンフィールド",
+      "horse_id": "2023101694",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "田口",
+      "trainer": "栗東大根田",
+      "finish_time": "1:53.5",
+      "margin": "アタマ",
+      "win_odds": 40.1,
+      "popularity": 11,
+      "horse_weight": 474,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0536,
+      "ev_score": 1.4105,
+      "kelly_fraction": 0.0016,
+      "manji_ev": 0.9636,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 10,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "トーアエレクトラム",
+      "horse_id": "2023103846",
+      "sex_age": "牝1",
+      "weight_carried": 52.0,
+      "jockey": "▲森田",
+      "trainer": "美浦小島",
+      "finish_time": "1:53.6",
+      "margin": "クビ",
+      "win_odds": 101.5,
+      "popularity": 14,
+      "horse_weight": 486,
+      "horse_weight_diff": -4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.057,
+      "ev_score": 2.1879,
+      "kelly_fraction": 0.0032,
+      "manji_ev": 0.3442,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 11,
+      "gate_number": 1,
+      "horse_number": 2,
+      "horse_name": "フクシマブリルハム",
+      "horse_id": "2023105405",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "川須",
+      "trainer": "美浦小島",
+      "finish_time": "1:53.7",
+      "margin": "1/2",
+      "win_odds": 201.8,
+      "popularity": 16,
+      "horse_weight": 538,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.057,
+      "ev_score": 3.8061,
+      "kelly_fraction": 0.0043,
+      "manji_ev": 0.0559,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 12,
+      "gate_number": 7,
+      "horse_number": 13,
+      "horse_name": "ジーティーシップ",
+      "horse_id": "2023106054",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "国分恭",
+      "trainer": "栗東緒方",
+      "finish_time": "1:53.7",
+      "margin": "クビ",
+      "win_odds": 99.9,
+      "popularity": 13,
+      "horse_weight": 458,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0972,
+      "ev_score": 7.3805,
+      "kelly_fraction": 0.0085,
+      "manji_ev": 0.2201,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 13,
+      "gate_number": 5,
+      "horse_number": 10,
+      "horse_name": "アビラーシャ",
+      "horse_id": "2023107017",
+      "sex_age": "牡1",
+      "weight_carried": 57.0,
+      "jockey": "浜中",
+      "trainer": "栗東武幸",
+      "finish_time": "1:53.8",
+      "margin": "1/2",
+      "win_odds": 14.4,
+      "popularity": 5,
+      "horse_weight": 476,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0992,
+      "ev_score": 0.7245,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.6733,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 14,
+      "gate_number": 6,
+      "horse_number": 12,
+      "horse_name": "ベルウッドピース",
+      "horse_id": "2023101642",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "角田大",
+      "trainer": "美浦中舘",
+      "finish_time": "1:55.1",
+      "margin": "8",
+      "win_odds": 94.0,
+      "popularity": 12,
+      "horse_weight": 520,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0674,
+      "ev_score": 2.7031,
+      "kelly_fraction": 0.0044,
+      "manji_ev": 0.3936,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 15,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "マイコンチェルト",
+      "horse_id": "2023107118",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "Ｍデム",
+      "trainer": "栗東大久保",
+      "finish_time": "1:55.2",
+      "margin": "クビ",
+      "win_odds": 23.0,
+      "popularity": 9,
+      "horse_weight": 502,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0719,
+      "ev_score": 0.7473,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0618,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 16,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "ディープスリー",
+      "horse_id": "2023107529",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "酒井",
+      "trainer": "栗東小栗",
+      "finish_time": "1:55.5",
+      "margin": "1.3/4",
+      "win_odds": 162.6,
+      "popularity": 15,
+      "horse_weight": 512,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.057,
+      "ev_score": 1.5498,
+      "kelly_fraction": 0.0021,
+      "manji_ev": 0.0,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    }
+  ],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "8",
+      "payout": 1500,
+      "popularity": 6
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "6",
+      "payout": 150,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "4",
+      "payout": 150,
+      "popularity": 2
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "8",
+      "payout": 310,
+      "popularity": 5
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "3-4",
+      "payout": 1140,
+      "popularity": 4
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "6-8",
+      "payout": 2360,
+      "popularity": 6
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4-6",
+      "payout": 360,
+      "popularity": 2
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "6-8",
+      "payout": 840,
+      "popularity": 7
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4-8",
+      "payout": 1140,
+      "popularity": 12
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "8→6",
+      "payout": 5520,
+      "popularity": 19
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4-6-8",
+      "payout": 3030,
+      "popularity": 5
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "8→6→4",
+      "payout": 25640,
+      "popularity": 63
+    }
+  ],
+  "predictions": [
+    {
+      "prediction_id": 34276,
+      "model_type": "本命(暫定)",
+      "bet_type": "単勝",
+      "confidence": 0.17103620474406991,
+      "expected_value": 4.737702871410736,
+      "recommended_bet": 100.0,
+      "combination_json": "[[1]]",
+      "notes": "確率1位 P(win)=0.17 odds=27.7 EV=4.74",
+      "created_at": "2026-05-17 09:44:18",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "バケラッタ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.17103620474406991,
+          "ev_score": 4.737702871410736
+        }
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "8": "ジャイアンバローズ",
+        "6": "システマソラー",
+        "4": "チェリヴェント",
+        "1": "バケラッタ",
+        "14": "ロードアマルフィ",
+        "9": "ラブインアクション",
+        "16": "オオツカ",
+        "7": "テスタヴェローチェ",
+        "15": "ケンフィールド",
+        "5": "トーアエレクトラム",
+        "2": "フクシマブリルハム",
+        "13": "ジーティーシップ",
+        "10": "アビラーシャ",
+        "12": "ベルウッドピース",
+        "11": "マイコンチェルト",
+        "3": "ディープスリー"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34277,
+      "model_type": "本命(暫定)",
+      "bet_type": "複勝",
+      "confidence": 0.13058010271859538,
+      "expected_value": 0.39174030815578614,
+      "recommended_bet": 100.0,
+      "combination_json": "[[1], [14], [10]]",
+      "notes": "上位3頭を複勝",
+      "created_at": "2026-05-17 09:44:18",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "バケラッタ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.13058010271859538,
+          "ev_score": 0.39174030815578614
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.13058010271859538,
+          "ev_score": 0.39174030815578614
+        },
+        {
+          "horse_name": "アビラーシャ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.13058010271859538,
+          "ev_score": 0.39174030815578614
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "8": "ジャイアンバローズ",
+        "6": "システマソラー",
+        "4": "チェリヴェント",
+        "1": "バケラッタ",
+        "14": "ロードアマルフィ",
+        "9": "ラブインアクション",
+        "16": "オオツカ",
+        "7": "テスタヴェローチェ",
+        "15": "ケンフィールド",
+        "5": "トーアエレクトラム",
+        "2": "フクシマブリルハム",
+        "13": "ジーティーシップ",
+        "10": "アビラーシャ",
+        "12": "ベルウッドピース",
+        "11": "マイコンチェルト",
+        "3": "ディープスリー"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34278,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.02282666059662841,
+      "expected_value": 2.5412076655784333,
+      "recommended_bet": 100.0,
+      "combination_json": "[[1, 14], [1, 10], [1, 6], [1, 9], [1, 11]]",
+      "notes": "軸1番×相手5頭フォーメーション Harville最大=0.023",
+      "created_at": "2026-05-17 09:44:18",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "バケラッタ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02282666059662841,
+          "ev_score": 2.5412076655784333
+        },
+        {
+          "horse_name": "バケラッタ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02282666059662841,
+          "ev_score": 2.5412076655784333
+        },
+        {
+          "horse_name": "バケラッタ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02282666059662841,
+          "ev_score": 2.5412076655784333
+        },
+        {
+          "horse_name": "バケラッタ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02282666059662841,
+          "ev_score": 2.5412076655784333
+        },
+        {
+          "horse_name": "バケラッタ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02282666059662841,
+          "ev_score": 2.5412076655784333
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02282666059662841,
+          "ev_score": 2.5412076655784333
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02282666059662841,
+          "ev_score": 2.5412076655784333
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02282666059662841,
+          "ev_score": 2.5412076655784333
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02282666059662841,
+          "ev_score": 2.5412076655784333
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02282666059662841,
+          "ev_score": 2.5412076655784333
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "8": "ジャイアンバローズ",
+        "6": "システマソラー",
+        "4": "チェリヴェント",
+        "1": "バケラッタ",
+        "14": "ロードアマルフィ",
+        "9": "ラブインアクション",
+        "16": "オオツカ",
+        "7": "テスタヴェローチェ",
+        "15": "ケンフィールド",
+        "5": "トーアエレクトラム",
+        "2": "フクシマブリルハム",
+        "13": "ジーティーシップ",
+        "10": "アビラーシャ",
+        "12": "ベルウッドピース",
+        "11": "マイコンチェルト",
+        "3": "ディープスリー"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34279,
+      "model_type": "本命(暫定)",
+      "bet_type": "ワイド",
+      "confidence": 0.02967465877561693,
+      "expected_value": 1.3417374138734597,
+      "recommended_bet": 100.0,
+      "combination_json": "[[1, 14], [1, 10], [1, 6], [1, 9], [1, 11]]",
+      "notes": "軸1番×相手5頭ワイド Harville最大=0.023",
+      "created_at": "2026-05-17 09:44:18",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "バケラッタ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02282666059662841,
+          "ev_score": 1.3417374138734597
+        },
+        {
+          "horse_name": "バケラッタ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02282666059662841,
+          "ev_score": 1.3417374138734597
+        },
+        {
+          "horse_name": "バケラッタ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02282666059662841,
+          "ev_score": 1.3417374138734597
+        },
+        {
+          "horse_name": "バケラッタ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02282666059662841,
+          "ev_score": 1.3417374138734597
+        },
+        {
+          "horse_name": "バケラッタ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02282666059662841,
+          "ev_score": 1.3417374138734597
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02282666059662841,
+          "ev_score": 1.3417374138734597
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02282666059662841,
+          "ev_score": 1.3417374138734597
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02282666059662841,
+          "ev_score": 1.3417374138734597
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02282666059662841,
+          "ev_score": 1.3417374138734597
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02282666059662841,
+          "ev_score": 1.3417374138734597
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "8": "ジャイアンバローズ",
+        "6": "システマソラー",
+        "4": "チェリヴェント",
+        "1": "バケラッタ",
+        "14": "ロードアマルフィ",
+        "9": "ラブインアクション",
+        "16": "オオツカ",
+        "7": "テスタヴェローチェ",
+        "15": "ケンフィールド",
+        "5": "トーアエレクトラム",
+        "2": "フクシマブリルハム",
+        "13": "ジーティーシップ",
+        "10": "アビラーシャ",
+        "12": "ベルウッドピース",
+        "11": "マイコンチェルト",
+        "3": "ディープスリー"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34280,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬単",
+      "confidence": 0.09219813080684744,
+      "expected_value": 2.508237471357299,
+      "recommended_bet": 100.0,
+      "combination_json": "[[1, 14], [1, 10], [1, 6]]",
+      "notes": "軸1番→相手3頭フォーメーション Harville最大=0.012",
+      "created_at": "2026-05-17 09:44:18",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "バケラッタ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.01152476635085593,
+          "ev_score": 2.508237471357299
+        },
+        {
+          "horse_name": "バケラッタ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.01152476635085593,
+          "ev_score": 2.508237471357299
+        },
+        {
+          "horse_name": "バケラッタ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.01152476635085593,
+          "ev_score": 2.508237471357299
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.01152476635085593,
+          "ev_score": 2.508237471357299
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.01152476635085593,
+          "ev_score": 2.508237471357299
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.01152476635085593,
+          "ev_score": 2.508237471357299
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "8": "ジャイアンバローズ",
+        "6": "システマソラー",
+        "4": "チェリヴェント",
+        "1": "バケラッタ",
+        "14": "ロードアマルフィ",
+        "9": "ラブインアクション",
+        "16": "オオツカ",
+        "7": "テスタヴェローチェ",
+        "15": "ケンフィールド",
+        "5": "トーアエレクトラム",
+        "2": "フクシマブリルハム",
+        "13": "ジーティーシップ",
+        "10": "アビラーシャ",
+        "12": "ベルウッドピース",
+        "11": "マイコンチェルト",
+        "3": "ディープスリー"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34281,
+      "model_type": "本命(暫定)",
+      "bet_type": "三連複",
+      "confidence": 0.07592915689320069,
+      "expected_value": 2.4961925461250924,
+      "recommended_bet": 100.0,
+      "combination_json": "[[1, 10, 14], [1, 6, 14]]",
+      "notes": "合成EV最大=2.50 2点 馬番=[(1, 10, 14), (1, 6, 14)]",
+      "created_at": "2026-05-17 09:44:18",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "バケラッタ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.006327429741100058,
+          "ev_score": 2.4961925461250924
+        },
+        {
+          "horse_name": "バケラッタ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.006327429741100058,
+          "ev_score": 2.4961925461250924
+        },
+        {
+          "horse_name": "アビラーシャ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.006327429741100058,
+          "ev_score": 2.4961925461250924
+        },
+        {
+          "horse_name": "アビラーシャ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.006327429741100058,
+          "ev_score": 2.4961925461250924
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.006327429741100058,
+          "ev_score": 2.4961925461250924
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.006327429741100058,
+          "ev_score": 2.4961925461250924
+        }
+      ],
+      "bet_form": "軸2頭ながし",
+      "n_tickets": 2,
+      "invested": 200,
+      "horse_num_to_name": {
+        "8": "ジャイアンバローズ",
+        "6": "システマソラー",
+        "4": "チェリヴェント",
+        "1": "バケラッタ",
+        "14": "ロードアマルフィ",
+        "9": "ラブインアクション",
+        "16": "オオツカ",
+        "7": "テスタヴェローチェ",
+        "15": "ケンフィールド",
+        "5": "トーアエレクトラム",
+        "2": "フクシマブリルハム",
+        "13": "ジーティーシップ",
+        "10": "アビラーシャ",
+        "12": "ベルウッドピース",
+        "11": "マイコンチェルト",
+        "3": "ディープスリー"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34282,
+      "model_type": "本命(暫定)",
+      "bet_type": "三連単",
+      "confidence": 0.18982289223300175,
+      "expected_value": 6.0,
+      "recommended_bet": 100.0,
+      "combination_json": "[[1, 14, 10], [1, 10, 14], [14, 1, 10], [14, 10, 1], [10, 1, 14], [10, 14, 1], [1, 14, 6], [1, 6, 14], [14, 1, 6], [14, 6, 1], [6, 1, 14], [6, 14, 1], [1, 14, 9], [1, 9, 14], [14, 1, 9], [14, 9, 1], [9, 1, 14], [9, 14, 1], [1, 14, 11], [1, 11, 14], [14, 1, 11], [14, 11, 1], [11, 1, 14], [11, 14, 1], [1, 14, 8], [1, 8, 14], [14, 1, 8], [14, 8, 1], [8, 1, 14], [8, 14, 1], [1, 10, 6], [1, 6, 10], [10, 1, 6], [10, 6, 1], [6, 1, 10], [6, 10, 1], [1, 10, 9], [1, 9, 10], [10, 1, 9], [10, 9, 1], [9, 1, 10], [9, 10, 1], [1, 10, 11], [1, 11, 10], [10, 1, 11], [10, 11, 1], [11, 1, 10], [11, 10, 1], [1, 10, 8], [1, 8, 10], [10, 1, 8], [10, 8, 1], [8, 1, 10], [8, 10, 1], [1, 6, 9], [1, 9, 6], [6, 1, 9], [6, 9, 1], [9, 1, 6], [9, 6, 1], [1, 6, 11], [1, 11, 6], [6, 1, 11], [6, 11, 1], [11, 1, 6], [11, 6, 1], [1, 6, 8], [1, 8, 6], [6, 1, 8], [6, 8, 1], [8, 1, 6], [8, 6, 1], [1, 9, 11], [1, 11, 9], [9, 1, 11], [9, 11, 1], [11, 1, 9], [11, 9, 1], [1, 9, 8], [1, 8, 9], [9, 1, 8], [9, 8, 1], [8, 1, 9], [8, 9, 1], [1, 11, 8], [1, 8, 11], [11, 1, 8], [11, 8, 1], [8, 1, 11], [8, 11, 1]]",
+      "notes": "1頭軸マルチ 軸=1番 相手=[14, 10, 6, 9, 11, 8] 90点 Harville最大=0.0063",
+      "created_at": "2026-05-17 09:44:18",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -9000.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "バケラッタ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.006327429741100058,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "バケラッタ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.006327429741100058,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "バケラッタ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.006327429741100058,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "バケラッタ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.006327429741100058,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "バケラッタ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.006327429741100058,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.006327429741100058,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.006327429741100058,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.006327429741100058,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.006327429741100058,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.006327429741100058,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "アビラーシャ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.006327429741100058,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "アビラーシャ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.006327429741100058,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "アビラーシャ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.006327429741100058,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "アビラーシャ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.006327429741100058,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "アビラーシャ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.006327429741100058,
+          "ev_score": 6.0
+        }
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 90,
+      "invested": 9000,
+      "horse_num_to_name": {
+        "8": "ジャイアンバローズ",
+        "6": "システマソラー",
+        "4": "チェリヴェント",
+        "1": "バケラッタ",
+        "14": "ロードアマルフィ",
+        "9": "ラブインアクション",
+        "16": "オオツカ",
+        "7": "テスタヴェローチェ",
+        "15": "ケンフィールド",
+        "5": "トーアエレクトラム",
+        "2": "フクシマブリルハム",
+        "13": "ジーティーシップ",
+        "10": "アビラーシャ",
+        "12": "ベルウッドピース",
+        "11": "マイコンチェルト",
+        "3": "ディープスリー"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34283,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-05-17 09:44:18",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "バケラッタ",
+          "horse_id": "2023104066",
+          "predicted_rank": 1,
+          "model_score": 0.17103620474406991,
+          "ev_score": 4.737702871410736
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": "2023105786",
+          "predicted_rank": 2,
+          "model_score": 0.12145922746781115,
+          "ev_score": 1.178154506437768
+        },
+        {
+          "horse_name": "アビラーシャ",
+          "horse_id": "2023107017",
+          "predicted_rank": 3,
+          "model_score": 0.09924487594390508,
+          "ev_score": 0.724487594390507
+        },
+        {
+          "horse_name": "マイコンチェルト",
+          "horse_id": "2023107118",
+          "predicted_rank": 4,
+          "model_score": 0.09724025974025974,
+          "ev_score": 1.0112987012987014
+        },
+        {
+          "horse_name": "ラブインアクション",
+          "horse_id": "2023110043",
+          "predicted_rank": 5,
+          "model_score": 0.09724025974025974,
+          "ev_score": 2.625487012987013
+        },
+        {
+          "horse_name": "システマソラー",
+          "horse_id": "2023102120",
+          "predicted_rank": 6,
+          "model_score": 0.09724025974025974,
+          "ev_score": 0.49592532467532463
+        },
+        {
+          "horse_name": "ジャイアンバローズ",
+          "horse_id": "2023100922",
+          "predicted_rank": 7,
+          "model_score": 0.09724025974025974,
+          "ev_score": 1.3419155844155846
+        },
+        {
+          "horse_name": "ジーティーシップ",
+          "horse_id": "2023106054",
+          "predicted_rank": 8,
+          "model_score": 0.09724025974025974,
+          "ev_score": 7.380535714285715
+        },
+        {
+          "horse_name": "フクシマブリルハム",
+          "horse_id": "2023105405",
+          "predicted_rank": 9,
+          "model_score": 0.08912655971479501,
+          "ev_score": 5.953654188948306
+        },
+        {
+          "horse_name": "チェリヴェント",
+          "horse_id": "2023104387",
+          "predicted_rank": 10,
+          "model_score": 0.07186030893216921,
+          "ev_score": 0.2299529885829415
+        },
+        {
+          "horse_name": "テスタヴェローチェ",
+          "horse_id": "2023102132",
+          "predicted_rank": 11,
+          "model_score": 0.06741003547896604,
+          "ev_score": 1.4156107450582869
+        },
+        {
+          "horse_name": "オオツカ",
+          "horse_id": "2023103919",
+          "predicted_rank": 12,
+          "model_score": 0.0672235481304694,
+          "ev_score": 1.0755767700875103
+        },
+        {
+          "horse_name": "ベルウッドピース",
+          "horse_id": "2023101642",
+          "predicted_rank": 13,
+          "model_score": 0.0672235481304694,
+          "ev_score": 2.695664280031823
+        },
+        {
+          "horse_name": "トーアエレクトラム",
+          "horse_id": "2023103846",
+          "predicted_rank": 14,
+          "model_score": 0.0569777979157227,
+          "ev_score": 2.1879474399637515
+        },
+        {
+          "horse_name": "ディープスリー",
+          "horse_id": "2023107529",
+          "predicted_rank": 15,
+          "model_score": 0.0569777979157227,
+          "ev_score": 1.5497961033076575
+        },
+        {
+          "horse_name": "ケンフィールド",
+          "horse_id": "2023101694",
+          "predicted_rank": 16,
+          "model_score": 0.05363204344874406,
+          "ev_score": 1.4105227427019689
+        }
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "invested": 0,
+      "horse_num_to_name": {
+        "8": "ジャイアンバローズ",
+        "6": "システマソラー",
+        "4": "チェリヴェント",
+        "1": "バケラッタ",
+        "14": "ロードアマルフィ",
+        "9": "ラブインアクション",
+        "16": "オオツカ",
+        "7": "テスタヴェローチェ",
+        "15": "ケンフィールド",
+        "5": "トーアエレクトラム",
+        "2": "フクシマブリルハム",
+        "13": "ジーティーシップ",
+        "10": "アビラーシャ",
+        "12": "ベルウッドピース",
+        "11": "マイコンチェルト",
+        "3": "ディープスリー"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34284,
+      "model_type": "HitFocus(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.11691380752053365,
+      "expected_value": 2.603116322034637,
+      "recommended_bet": 700.0,
+      "combination_json": "[[1, 14], [1, 10], [10, 14], [1, 6], [6, 14], [1, 9], [9, 14]]",
+      "notes": "2軸マルチ 軸=1,14 相手=[10, 6, 9] Harville最大=0.0234",
+      "created_at": "2026-05-17 09:44:18",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -700.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "バケラッタ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02338276150410673,
+          "ev_score": 2.603116322034637
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02338276150410673,
+          "ev_score": 2.603116322034637
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 7,
+      "invested": 700,
+      "horse_num_to_name": {
+        "8": "ジャイアンバローズ",
+        "6": "システマソラー",
+        "4": "チェリヴェント",
+        "1": "バケラッタ",
+        "14": "ロードアマルフィ",
+        "9": "ラブインアクション",
+        "16": "オオツカ",
+        "7": "テスタヴェローチェ",
+        "15": "ケンフィールド",
+        "5": "トーアエレクトラム",
+        "2": "フクシマブリルハム",
+        "13": "ジーティーシップ",
+        "10": "アビラーシャ",
+        "12": "ベルウッドピース",
+        "11": "マイコンチェルト",
+        "3": "ディープスリー"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34285,
+      "model_type": "HitFocus(暫定)",
+      "bet_type": "馬単",
+      "confidence": 0.09536802119489617,
+      "expected_value": 2.594473903504236,
+      "recommended_bet": 800.0,
+      "combination_json": "[[1, 14], [14, 1], [1, 10], [14, 10], [1, 6], [14, 6], [1, 9], [14, 9]]",
+      "notes": "2軸マルチ 軸=1,14 相手=[10, 6, 9] Harville最大=0.0119",
+      "created_at": "2026-05-17 09:44:18",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -800.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "バケラッタ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.01192100264936202,
+          "ev_score": 2.594473903504236
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.01192100264936202,
+          "ev_score": 2.594473903504236
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 8,
+      "invested": 800,
+      "horse_num_to_name": {
+        "8": "ジャイアンバローズ",
+        "6": "システマソラー",
+        "4": "チェリヴェント",
+        "1": "バケラッタ",
+        "14": "ロードアマルフィ",
+        "9": "ラブインアクション",
+        "16": "オオツカ",
+        "7": "テスタヴェローチェ",
+        "15": "ケンフィールド",
+        "5": "トーアエレクトラム",
+        "2": "フクシマブリルハム",
+        "13": "ジーティーシップ",
+        "10": "アビラーシャ",
+        "12": "ベルウッドピース",
+        "11": "マイコンチェルト",
+        "3": "ディープスリー"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34286,
+      "model_type": "HitFocus(暫定)",
+      "bet_type": "三連単",
+      "confidence": 0.0318072036352492,
+      "expected_value": 1.3605615113947418,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[1, 14, 10], [14, 1, 10], [1, 10, 14], [14, 10, 1], [1, 14, 6], [14, 1, 6], [1, 6, 14], [14, 6, 1], [1, 14, 9], [14, 1, 9], [1, 9, 14], [14, 9, 1]]",
+      "notes": "2軸マルチ 軸=1,14 相手=[10, 6, 9] 12点 Harville最大=0.0011",
+      "created_at": "2026-05-17 09:44:18",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "バケラッタ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0010602401211749733,
+          "ev_score": 1.3605615113947418
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0010602401211749733,
+          "ev_score": 1.3605615113947418
+        },
+        {
+          "horse_name": "アビラーシャ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0010602401211749733,
+          "ev_score": 1.3605615113947418
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 12,
+      "invested": 1200,
+      "horse_num_to_name": {
+        "8": "ジャイアンバローズ",
+        "6": "システマソラー",
+        "4": "チェリヴェント",
+        "1": "バケラッタ",
+        "14": "ロードアマルフィ",
+        "9": "ラブインアクション",
+        "16": "オオツカ",
+        "7": "テスタヴェローチェ",
+        "15": "ケンフィールド",
+        "5": "トーアエレクトラム",
+        "2": "フクシマブリルハム",
+        "13": "ジーティーシップ",
+        "10": "アビラーシャ",
+        "12": "ベルウッドピース",
+        "11": "マイコンチェルト",
+        "3": "ディープスリー"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 34757,
+      "model_type": "Alpha-Payout(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.2747574191557514,
+      "expected_value": 0.8242722574672543,
+      "recommended_bet": 100.0,
+      "combination_json": "[[6], [4]]",
+      "notes": "2頭 relative nan=0% max=0.824",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 1,
+      "payout": 300.0,
+      "profit": 100.0,
+      "roi": 150.0,
+      "horses": [
+        {
+          "horse_name": "システマソラー",
+          "horse_id": "2023102120",
+          "predicted_rank": 1,
+          "model_score": 0.8242722574672543,
+          "ev_score": 0.8242722574672543
+        },
+        {
+          "horse_name": "チェリヴェント",
+          "horse_id": "2023104387",
+          "predicted_rank": 2,
+          "model_score": 0.7692562724530876,
+          "ev_score": 0.7692562724530876
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 2,
+      "invested": 200,
+      "horse_num_to_name": {
+        "8": "ジャイアンバローズ",
+        "6": "システマソラー",
+        "4": "チェリヴェント",
+        "1": "バケラッタ",
+        "14": "ロードアマルフィ",
+        "9": "ラブインアクション",
+        "16": "オオツカ",
+        "7": "テスタヴェローチェ",
+        "15": "ケンフィールド",
+        "5": "トーアエレクトラム",
+        "2": "フクシマブリルハム",
+        "13": "ジーティーシップ",
+        "10": "アビラーシャ",
+        "12": "ベルウッドピース",
+        "11": "マイコンチェルト",
+        "3": "ディープスリー"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34758,
+      "model_type": "Alpha-Payout(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.6677414660552383,
+      "expected_value": 2.003224398165715,
+      "recommended_bet": 200.0,
+      "combination_json": "[[4, 6, 14], [4, 6, 10], [4, 6, 11], [6, 10, 14], [6, 11, 14], [6, 10, 11]]",
+      "notes": "Alpha EV=2.00 軸6番 相手4頭 6点",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "システマソラー",
+          "horse_id": "2023102120",
+          "predicted_rank": 1,
+          "model_score": 0.8242722574672543,
+          "ev_score": 0.8242722574672543
+        },
+        {
+          "horse_name": "チェリヴェント",
+          "horse_id": "2023104387",
+          "predicted_rank": 2,
+          "model_score": 0.7692562724530876,
+          "ev_score": 0.7692562724530876
+        }
+      ],
+      "bet_form": "軸1頭ながし",
+      "n_tickets": 6,
+      "invested": 600,
+      "horse_num_to_name": {
+        "8": "ジャイアンバローズ",
+        "6": "システマソラー",
+        "4": "チェリヴェント",
+        "1": "バケラッタ",
+        "14": "ロードアマルフィ",
+        "9": "ラブインアクション",
+        "16": "オオツカ",
+        "7": "テスタヴェローチェ",
+        "15": "ケンフィールド",
+        "5": "トーアエレクトラム",
+        "2": "フクシマブリルハム",
+        "13": "ジーティーシップ",
+        "10": "アビラーシャ",
+        "12": "ベルウッドピース",
+        "11": "マイコンチェルト",
+        "3": "ディープスリー"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34759,
+      "model_type": "Alpha-Payout(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.2509956412419475,
+      "expected_value": 1.2549782062097374,
+      "recommended_bet": 200.0,
+      "combination_json": "[[6, 4, 14], [6, 4, 10], [6, 4, 11], [6, 14, 4], [6, 10, 4], [6, 11, 4]]",
+      "notes": "Alpha EV=1.25 軸6番→フォーメーション 6点",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "システマソラー",
+          "horse_id": "2023102120",
+          "predicted_rank": 1,
+          "model_score": 0.8242722574672543,
+          "ev_score": 0.8242722574672543
+        },
+        {
+          "horse_name": "チェリヴェント",
+          "horse_id": "2023104387",
+          "predicted_rank": 2,
+          "model_score": 0.7692562724530876,
+          "ev_score": 0.7692562724530876
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 6,
+      "invested": 600,
+      "horse_num_to_name": {
+        "8": "ジャイアンバローズ",
+        "6": "システマソラー",
+        "4": "チェリヴェント",
+        "1": "バケラッタ",
+        "14": "ロードアマルフィ",
+        "9": "ラブインアクション",
+        "16": "オオツカ",
+        "7": "テスタヴェローチェ",
+        "15": "ケンフィールド",
+        "5": "トーアエレクトラム",
+        "2": "フクシマブリルハム",
+        "13": "ジーティーシップ",
+        "10": "アビラーシャ",
+        "12": "ベルウッドピース",
+        "11": "マイコンチェルト",
+        "3": "ディープスリー"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34760,
+      "model_type": "本命(直前)",
+      "bet_type": "単勝",
+      "confidence": 0.11916583912611721,
+      "expected_value": 1.6444885799404176,
+      "recommended_bet": 100.0,
+      "combination_json": "[[8]]",
+      "notes": "確率1位 P(win)=0.12 odds=13.8 EV=1.64",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 1,
+      "payout": 1500.0,
+      "profit": 1400.0,
+      "roi": 1500.0,
+      "horses": [
+        {
+          "horse_name": "ジャイアンバローズ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11916583912611721,
+          "ev_score": 1.6444885799404176
+        }
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "8": "ジャイアンバローズ",
+        "6": "システマソラー",
+        "4": "チェリヴェント",
+        "1": "バケラッタ",
+        "14": "ロードアマルフィ",
+        "9": "ラブインアクション",
+        "16": "オオツカ",
+        "7": "テスタヴェローチェ",
+        "15": "ケンフィールド",
+        "5": "トーアエレクトラム",
+        "2": "フクシマブリルハム",
+        "13": "ジーティーシップ",
+        "10": "アビラーシャ",
+        "12": "ベルウッドピース",
+        "11": "マイコンチェルト",
+        "3": "ディープスリー"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34761,
+      "model_type": "本命(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.11252551806537985,
+      "expected_value": 0.3375765541961395,
+      "recommended_bet": 100.0,
+      "combination_json": "[[8], [14], [10]]",
+      "notes": "上位3頭を複勝",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 1,
+      "payout": 310.0,
+      "profit": 10.0,
+      "roi": 103.33333333333334,
+      "horses": [
+        {
+          "horse_name": "ジャイアンバローズ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11252551806537985,
+          "ev_score": 0.3375765541961395
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11252551806537985,
+          "ev_score": 0.3375765541961395
+        },
+        {
+          "horse_name": "アビラーシャ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.11252551806537985,
+          "ev_score": 0.3375765541961395
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "8": "ジャイアンバローズ",
+        "6": "システマソラー",
+        "4": "チェリヴェント",
+        "1": "バケラッタ",
+        "14": "ロードアマルフィ",
+        "9": "ラブインアクション",
+        "16": "オオツカ",
+        "7": "テスタヴェローチェ",
+        "15": "ケンフィールド",
+        "5": "トーアエレクトラム",
+        "2": "フクシマブリルハム",
+        "13": "ジーティーシップ",
+        "10": "アビラーシャ",
+        "12": "ベルウッドピース",
+        "11": "マイコンチェルト",
+        "3": "ディープスリー"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34762,
+      "model_type": "本命(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.0199194122148866,
+      "expected_value": 1.0995515542617402,
+      "recommended_bet": 100.0,
+      "combination_json": "[[8, 14], [8, 10], [6, 8], [1, 8], [8, 13]]",
+      "notes": "軸8番×相手5頭フォーメーション Harville最大=0.020",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 1,
+      "payout": 2360.0,
+      "profit": 1860.0,
+      "roi": 472.0,
+      "horses": [
+        {
+          "horse_name": "ジャイアンバローズ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0199194122148866,
+          "ev_score": 1.0995515542617402
+        },
+        {
+          "horse_name": "ジャイアンバローズ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0199194122148866,
+          "ev_score": 1.0995515542617402
+        },
+        {
+          "horse_name": "ジャイアンバローズ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0199194122148866,
+          "ev_score": 1.0995515542617402
+        },
+        {
+          "horse_name": "ジャイアンバローズ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0199194122148866,
+          "ev_score": 1.0995515542617402
+        },
+        {
+          "horse_name": "ジャイアンバローズ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0199194122148866,
+          "ev_score": 1.0995515542617402
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0199194122148866,
+          "ev_score": 1.0995515542617402
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0199194122148866,
+          "ev_score": 1.0995515542617402
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0199194122148866,
+          "ev_score": 1.0995515542617402
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0199194122148866,
+          "ev_score": 1.0995515542617402
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0199194122148866,
+          "ev_score": 1.0995515542617402
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "8": "ジャイアンバローズ",
+        "6": "システマソラー",
+        "4": "チェリヴェント",
+        "1": "バケラッタ",
+        "14": "ロードアマルフィ",
+        "9": "ラブインアクション",
+        "16": "オオツカ",
+        "7": "テスタヴェローチェ",
+        "15": "ケンフィールド",
+        "5": "トーアエレクトラム",
+        "2": "フクシマブリルハム",
+        "13": "ジーティーシップ",
+        "10": "アビラーシャ",
+        "12": "ベルウッドピース",
+        "11": "マイコンチェルト",
+        "3": "ディープスリー"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34763,
+      "model_type": "本命(直前)",
+      "bet_type": "ワイド",
+      "confidence": 0.02589523587935258,
+      "expected_value": 0.5802883327616335,
+      "recommended_bet": 100.0,
+      "combination_json": "[[8, 14], [8, 10], [6, 8], [1, 8], [8, 13]]",
+      "notes": "軸8番×相手5頭ワイド Harville最大=0.020",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 1,
+      "payout": 840.0,
+      "profit": 340.0,
+      "roi": 168.0,
+      "horses": [
+        {
+          "horse_name": "ジャイアンバローズ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0199194122148866,
+          "ev_score": 0.5802883327616335
+        },
+        {
+          "horse_name": "ジャイアンバローズ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0199194122148866,
+          "ev_score": 0.5802883327616335
+        },
+        {
+          "horse_name": "ジャイアンバローズ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0199194122148866,
+          "ev_score": 0.5802883327616335
+        },
+        {
+          "horse_name": "ジャイアンバローズ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0199194122148866,
+          "ev_score": 0.5802883327616335
+        },
+        {
+          "horse_name": "ジャイアンバローズ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0199194122148866,
+          "ev_score": 0.5802883327616335
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0199194122148866,
+          "ev_score": 0.5802883327616335
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0199194122148866,
+          "ev_score": 0.5802883327616335
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0199194122148866,
+          "ev_score": 0.5802883327616335
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0199194122148866,
+          "ev_score": 0.5802883327616335
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0199194122148866,
+          "ev_score": 0.5802883327616335
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "8": "ジャイアンバローズ",
+        "6": "システマソラー",
+        "4": "チェリヴェント",
+        "1": "バケラッタ",
+        "14": "ロードアマルフィ",
+        "9": "ラブインアクション",
+        "16": "オオツカ",
+        "7": "テスタヴェローチェ",
+        "15": "ケンフィールド",
+        "5": "トーアエレクトラム",
+        "2": "フクシマブリルハム",
+        "13": "ジーティーシップ",
+        "10": "アビラーシャ",
+        "12": "ベルウッドピース",
+        "11": "マイコンチェルト",
+        "3": "ディープスリー"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34764,
+      "model_type": "本命(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.0796776488595464,
+      "expected_value": 1.0787975186750498,
+      "recommended_bet": 100.0,
+      "combination_json": "[[8, 14], [8, 10], [8, 6]]",
+      "notes": "軸8番→相手3頭フォーメーション Harville最大=0.010",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 1,
+      "payout": 5520.0,
+      "profit": 5220.0,
+      "roi": 1839.9999999999998,
+      "horses": [
+        {
+          "horse_name": "ジャイアンバローズ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0099597061074433,
+          "ev_score": 1.0787975186750498
+        },
+        {
+          "horse_name": "ジャイアンバローズ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0099597061074433,
+          "ev_score": 1.0787975186750498
+        },
+        {
+          "horse_name": "ジャイアンバローズ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0099597061074433,
+          "ev_score": 1.0787975186750498
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0099597061074433,
+          "ev_score": 1.0787975186750498
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0099597061074433,
+          "ev_score": 1.0787975186750498
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0099597061074433,
+          "ev_score": 1.0787975186750498
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "8": "ジャイアンバローズ",
+        "6": "システマソラー",
+        "4": "チェリヴェント",
+        "1": "バケラッタ",
+        "14": "ロードアマルフィ",
+        "9": "ラブインアクション",
+        "16": "オオツカ",
+        "7": "テスタヴェローチェ",
+        "15": "ケンフィールド",
+        "5": "トーアエレクトラム",
+        "2": "フクシマブリルハム",
+        "13": "ジーティーシップ",
+        "10": "アビラーシャ",
+        "12": "ベルウッドピース",
+        "11": "マイコンチェルト",
+        "3": "ディープスリー"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34765,
+      "model_type": "本命(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.06870130025491268,
+      "expected_value": 1.1229983240968282,
+      "recommended_bet": 100.0,
+      "combination_json": "[[8, 10, 14], [6, 8, 14]]",
+      "notes": "合成EV最大=1.12 2点 馬番=[(8, 10, 14), (6, 8, 14)]",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ジャイアンバローズ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0057251083545760565,
+          "ev_score": 1.1229983240968282
+        },
+        {
+          "horse_name": "ジャイアンバローズ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0057251083545760565,
+          "ev_score": 1.1229983240968282
+        },
+        {
+          "horse_name": "アビラーシャ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0057251083545760565,
+          "ev_score": 1.1229983240968282
+        },
+        {
+          "horse_name": "アビラーシャ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0057251083545760565,
+          "ev_score": 1.1229983240968282
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0057251083545760565,
+          "ev_score": 1.1229983240968282
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0057251083545760565,
+          "ev_score": 1.1229983240968282
+        }
+      ],
+      "bet_form": "軸2頭ながし",
+      "n_tickets": 2,
+      "invested": 200,
+      "horse_num_to_name": {
+        "8": "ジャイアンバローズ",
+        "6": "システマソラー",
+        "4": "チェリヴェント",
+        "1": "バケラッタ",
+        "14": "ロードアマルフィ",
+        "9": "ラブインアクション",
+        "16": "オオツカ",
+        "7": "テスタヴェローチェ",
+        "15": "ケンフィールド",
+        "5": "トーアエレクトラム",
+        "2": "フクシマブリルハム",
+        "13": "ジーティーシップ",
+        "10": "アビラーシャ",
+        "12": "ベルウッドピース",
+        "11": "マイコンチェルト",
+        "3": "ディープスリー"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34766,
+      "model_type": "本命(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.1717532506372817,
+      "expected_value": 3.69774099920528,
+      "recommended_bet": 200.0,
+      "combination_json": "[[8, 14, 10], [8, 10, 14], [14, 8, 10], [14, 10, 8], [10, 8, 14], [10, 14, 8], [8, 14, 6], [8, 6, 14], [14, 8, 6], [14, 6, 8], [6, 8, 14], [6, 14, 8], [8, 14, 1], [8, 1, 14], [14, 8, 1], [14, 1, 8], [1, 8, 14], [1, 14, 8], [8, 14, 13], [8, 13, 14], [14, 8, 13], [14, 13, 8], [13, 8, 14], [13, 14, 8], [8, 14, 9], [8, 9, 14], [14, 8, 9], [14, 9, 8], [9, 8, 14], [9, 14, 8], [8, 10, 6], [8, 6, 10], [10, 8, 6], [10, 6, 8], [6, 8, 10], [6, 10, 8], [8, 10, 1], [8, 1, 10], [10, 8, 1], [10, 1, 8], [1, 8, 10], [1, 10, 8], [8, 10, 13], [8, 13, 10], [10, 8, 13], [10, 13, 8], [13, 8, 10], [13, 10, 8], [8, 10, 9], [8, 9, 10], [10, 8, 9], [10, 9, 8], [9, 8, 10], [9, 10, 8], [8, 6, 1], [8, 1, 6], [6, 8, 1], [6, 1, 8], [1, 8, 6], [1, 6, 8], [8, 6, 13], [8, 13, 6], [6, 8, 13], [6, 13, 8], [13, 8, 6], [13, 6, 8], [8, 6, 9], [8, 9, 6], [6, 8, 9], [6, 9, 8], [9, 8, 6], [9, 6, 8], [8, 1, 13], [8, 13, 1], [1, 8, 13], [1, 13, 8], [13, 8, 1], [13, 1, 8], [8, 1, 9], [8, 9, 1], [1, 8, 9], [1, 9, 8], [9, 8, 1], [9, 1, 8], [8, 13, 9], [8, 9, 13], [13, 8, 9], [13, 9, 8], [9, 8, 13], [9, 13, 8]]",
+      "notes": "1頭軸マルチ 軸=8番 相手=[14, 10, 6, 1, 13, 9] 90点 Harville最大=0.0057",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -9000.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ジャイアンバローズ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0057251083545760565,
+          "ev_score": 3.69774099920528
+        },
+        {
+          "horse_name": "ジャイアンバローズ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0057251083545760565,
+          "ev_score": 3.69774099920528
+        },
+        {
+          "horse_name": "ジャイアンバローズ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0057251083545760565,
+          "ev_score": 3.69774099920528
+        },
+        {
+          "horse_name": "ジャイアンバローズ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0057251083545760565,
+          "ev_score": 3.69774099920528
+        },
+        {
+          "horse_name": "ジャイアンバローズ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0057251083545760565,
+          "ev_score": 3.69774099920528
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0057251083545760565,
+          "ev_score": 3.69774099920528
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0057251083545760565,
+          "ev_score": 3.69774099920528
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0057251083545760565,
+          "ev_score": 3.69774099920528
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0057251083545760565,
+          "ev_score": 3.69774099920528
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0057251083545760565,
+          "ev_score": 3.69774099920528
+        },
+        {
+          "horse_name": "アビラーシャ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0057251083545760565,
+          "ev_score": 3.69774099920528
+        },
+        {
+          "horse_name": "アビラーシャ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0057251083545760565,
+          "ev_score": 3.69774099920528
+        },
+        {
+          "horse_name": "アビラーシャ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0057251083545760565,
+          "ev_score": 3.69774099920528
+        },
+        {
+          "horse_name": "アビラーシャ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0057251083545760565,
+          "ev_score": 3.69774099920528
+        },
+        {
+          "horse_name": "アビラーシャ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0057251083545760565,
+          "ev_score": 3.69774099920528
+        }
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 90,
+      "invested": 9000,
+      "horse_num_to_name": {
+        "8": "ジャイアンバローズ",
+        "6": "システマソラー",
+        "4": "チェリヴェント",
+        "1": "バケラッタ",
+        "14": "ロードアマルフィ",
+        "9": "ラブインアクション",
+        "16": "オオツカ",
+        "7": "テスタヴェローチェ",
+        "15": "ケンフィールド",
+        "5": "トーアエレクトラム",
+        "2": "フクシマブリルハム",
+        "13": "ジーティーシップ",
+        "10": "アビラーシャ",
+        "12": "ベルウッドピース",
+        "11": "マイコンチェルト",
+        "3": "ディープスリー"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34767,
+      "model_type": "卍(直前)",
+      "bet_type": "単勝",
+      "confidence": 0.22777148221923033,
+      "expected_value": 3.644343715507685,
+      "recommended_bet": 100.0,
+      "combination_json": "[[16]]",
+      "notes": "確率1位(卍) EV=3.64 odds=16.0",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "オオツカ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 3.644343715507685,
+          "ev_score": 3.644343715507685
+        }
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "8": "ジャイアンバローズ",
+        "6": "システマソラー",
+        "4": "チェリヴェント",
+        "1": "バケラッタ",
+        "14": "ロードアマルフィ",
+        "9": "ラブインアクション",
+        "16": "オオツカ",
+        "7": "テスタヴェローチェ",
+        "15": "ケンフィールド",
+        "5": "トーアエレクトラム",
+        "2": "フクシマブリルハム",
+        "13": "ジーティーシップ",
+        "10": "アビラーシャ",
+        "12": "ベルウッドピース",
+        "11": "マイコンチェルト",
+        "3": "ディープスリー"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34768,
+      "model_type": "卍(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.6,
+      "expected_value": 2.553792927911127,
+      "recommended_bet": 100.0,
+      "combination_json": "[[16], [7], [6]]",
+      "notes": "確率上位3頭を複勝",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 1,
+      "payout": 150.0,
+      "profit": -150.0,
+      "roi": 50.0,
+      "horses": [
+        {
+          "horse_name": "オオツカ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 2.553792927911127,
+          "ev_score": 2.553792927911127
+        },
+        {
+          "horse_name": "テスタヴェローチェ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 2.553792927911127,
+          "ev_score": 2.553792927911127
+        },
+        {
+          "horse_name": "システマソラー",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 2.553792927911127,
+          "ev_score": 2.553792927911127
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "8": "ジャイアンバローズ",
+        "6": "システマソラー",
+        "4": "チェリヴェント",
+        "1": "バケラッタ",
+        "14": "ロードアマルフィ",
+        "9": "ラブインアクション",
+        "16": "オオツカ",
+        "7": "テスタヴェローチェ",
+        "15": "ケンフィールド",
+        "5": "トーアエレクトラム",
+        "2": "フクシマブリルハム",
+        "13": "ジーティーシップ",
+        "10": "アビラーシャ",
+        "12": "ベルウッドピース",
+        "11": "マイコンチェルト",
+        "3": "ディープスリー"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34769,
+      "model_type": "卍(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.695778112232688,
+      "expected_value": 4.0,
+      "recommended_bet": 100.0,
+      "combination_json": "[[7, 16], [6, 16], [1, 16], [15, 16], [14, 16]]",
+      "notes": "軸16番×相手5頭フォーメーション Harville最大=0.139",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "テスタヴェローチェ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.13915562244653762,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "テスタヴェローチェ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.13915562244653762,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "テスタヴェローチェ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.13915562244653762,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "テスタヴェローチェ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.13915562244653762,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "テスタヴェローチェ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.13915562244653762,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "オオツカ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.13915562244653762,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "オオツカ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.13915562244653762,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "オオツカ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.13915562244653762,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "オオツカ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.13915562244653762,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "オオツカ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.13915562244653762,
+          "ev_score": 4.0
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "8": "ジャイアンバローズ",
+        "6": "システマソラー",
+        "4": "チェリヴェント",
+        "1": "バケラッタ",
+        "14": "ロードアマルフィ",
+        "9": "ラブインアクション",
+        "16": "オオツカ",
+        "7": "テスタヴェローチェ",
+        "15": "ケンフィールド",
+        "5": "トーアエレクトラム",
+        "2": "フクシマブリルハム",
+        "13": "ジーティーシップ",
+        "10": "アビラーシャ",
+        "12": "ベルウッドピース",
+        "11": "マイコンチェルト",
+        "3": "ディープスリー"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34770,
+      "model_type": "卍(直前)",
+      "bet_type": "ワイド",
+      "confidence": 0.8349337346792257,
+      "expected_value": 3.0,
+      "recommended_bet": 100.0,
+      "combination_json": "[[7, 16], [6, 16], [1, 16], [15, 16], [14, 16]]",
+      "notes": "軸16番×相手5頭ワイド Harville最大=0.139",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "テスタヴェローチェ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.13915562244653762,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "テスタヴェローチェ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.13915562244653762,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "テスタヴェローチェ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.13915562244653762,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "テスタヴェローチェ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.13915562244653762,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "テスタヴェローチェ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.13915562244653762,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "オオツカ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.13915562244653762,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "オオツカ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.13915562244653762,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "オオツカ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.13915562244653762,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "オオツカ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.13915562244653762,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "オオツカ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.13915562244653762,
+          "ev_score": 3.0
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "8": "ジャイアンバローズ",
+        "6": "システマソラー",
+        "4": "チェリヴェント",
+        "1": "バケラッタ",
+        "14": "ロードアマルフィ",
+        "9": "ラブインアクション",
+        "16": "オオツカ",
+        "7": "テスタヴェローチェ",
+        "15": "ケンフィールド",
+        "5": "トーアエレクトラム",
+        "2": "フクシマブリルハム",
+        "13": "ジーティーシップ",
+        "10": "アビラーシャ",
+        "12": "ベルウッドピース",
+        "11": "マイコンチェルト",
+        "3": "ディープスリー"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34771,
+      "model_type": "卍(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.5788464702011832,
+      "expected_value": 5.0,
+      "recommended_bet": 100.0,
+      "combination_json": "[[16, 7], [16, 6], [16, 1]]",
+      "notes": "軸16番→相手3頭フォーメーション Harville最大=0.072",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "オオツカ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0723558087751479,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "オオツカ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0723558087751479,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "オオツカ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0723558087751479,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "テスタヴェローチェ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0723558087751479,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "テスタヴェローチェ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0723558087751479,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "テスタヴェローチェ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0723558087751479,
+          "ev_score": 5.0
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "8": "ジャイアンバローズ",
+        "6": "システマソラー",
+        "4": "チェリヴェント",
+        "1": "バケラッタ",
+        "14": "ロードアマルフィ",
+        "9": "ラブインアクション",
+        "16": "オオツカ",
+        "7": "テスタヴェローチェ",
+        "15": "ケンフィールド",
+        "5": "トーアエレクトラム",
+        "2": "フクシマブリルハム",
+        "13": "ジーティーシップ",
+        "10": "アビラーシャ",
+        "12": "ベルウッドピース",
+        "11": "マイコンチェルト",
+        "3": "ディープスリー"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34774,
+      "model_type": "卍(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.653487817442398,
+      "expected_value": 5.0,
+      "recommended_bet": 100.0,
+      "combination_json": "[[7, 15, 16]]",
+      "notes": "合成EV=5.00 Harville=0.0436 馬番=(7, 15, 16)",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "テスタヴェローチェ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.04356585449615987,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ケンフィールド",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.04356585449615987,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "オオツカ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.04356585449615987,
+          "ev_score": 5.0
+        }
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "8": "ジャイアンバローズ",
+        "6": "システマソラー",
+        "4": "チェリヴェント",
+        "1": "バケラッタ",
+        "14": "ロードアマルフィ",
+        "9": "ラブインアクション",
+        "16": "オオツカ",
+        "7": "テスタヴェローチェ",
+        "15": "ケンフィールド",
+        "5": "トーアエレクトラム",
+        "2": "フクシマブリルハム",
+        "13": "ジーティーシップ",
+        "10": "アビラーシャ",
+        "12": "ベルウッドピース",
+        "11": "マイコンチェルト",
+        "3": "ディープスリー"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34775,
+      "model_type": "Oracle(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.03060508084182579,
+      "expected_value": 0.9181524252547737,
+      "recommended_bet": 500.0,
+      "combination_json": "[[8, 10, 14], [6, 8, 14], [1, 8, 14], [8, 13, 14], [8, 9, 14]]",
+      "notes": "[Oracle] 的中確率最大 5点 P最大=0.0306 馬番=[(8, 10, 14), (6, 8, 14), (1, 8, 14), (8, 13, 14), (8, 9, 14)]",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ジャイアンバローズ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03060508084182579,
+          "ev_score": 0.9181524252547737
+        },
+        {
+          "horse_name": "アビラーシャ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03060508084182579,
+          "ev_score": 0.9181524252547737
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.03060508084182579,
+          "ev_score": 0.9181524252547737
+        }
+      ],
+      "bet_form": "軸2頭ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "8": "ジャイアンバローズ",
+        "6": "システマソラー",
+        "4": "チェリヴェント",
+        "1": "バケラッタ",
+        "14": "ロードアマルフィ",
+        "9": "ラブインアクション",
+        "16": "オオツカ",
+        "7": "テスタヴェローチェ",
+        "15": "ケンフィールド",
+        "5": "トーアエレクトラム",
+        "2": "フクシマブリルハム",
+        "13": "ジーティーシップ",
+        "10": "アビラーシャ",
+        "12": "ベルウッドピース",
+        "11": "マイコンチェルト",
+        "3": "ディープスリー"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34776,
+      "model_type": "Oracle(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.005100846806970965,
+      "expected_value": 0.7651270210456448,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[8, 14, 10], [8, 14, 6], [8, 10, 14], [8, 6, 14], [14, 8, 10], [14, 8, 6], [14, 10, 8], [14, 6, 8], [10, 8, 14], [10, 14, 8], [6, 8, 14], [6, 14, 8]]",
+      "notes": "[Oracle] 的中確率最大 12点 P最大=0.0051 馬番=[(8, 14, 10), (8, 14, 6), (8, 10, 14), (8, 6, 14), (14, 8, 10), (14, 8, 6), (14, 10, 8), (14, 6, 8), (10, 8, 14), (10, 14, 8), (6, 8, 14), (6, 14, 8)]",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ジャイアンバローズ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.005100846806970965,
+          "ev_score": 0.7651270210456448
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.005100846806970965,
+          "ev_score": 0.7651270210456448
+        },
+        {
+          "horse_name": "アビラーシャ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.005100846806970965,
+          "ev_score": 0.7651270210456448
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 12,
+      "invested": 1200,
+      "horse_num_to_name": {
+        "8": "ジャイアンバローズ",
+        "6": "システマソラー",
+        "4": "チェリヴェント",
+        "1": "バケラッタ",
+        "14": "ロードアマルフィ",
+        "9": "ラブインアクション",
+        "16": "オオツカ",
+        "7": "テスタヴェローチェ",
+        "15": "ケンフィールド",
+        "5": "トーアエレクトラム",
+        "2": "フクシマブリルハム",
+        "13": "ジーティーシップ",
+        "10": "アビラーシャ",
+        "12": "ベルウッドピース",
+        "11": "マイコンチェルト",
+        "3": "ディープスリー"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34777,
+      "model_type": "本命(直前)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": "2023105786",
+          "predicted_rank": 1,
+          "model_score": 0.11916583912611721,
+          "ev_score": 1.155908639523337
+        },
+        {
+          "horse_name": "ジャイアンバローズ",
+          "horse_id": "2023100922",
+          "predicted_rank": 2,
+          "model_score": 0.11916583912611721,
+          "ev_score": 1.6444885799404176
+        },
+        {
+          "horse_name": "システマソラー",
+          "horse_id": "2023102120",
+          "predicted_rank": 3,
+          "model_score": 0.09924487594390508,
+          "ev_score": 0.5061488673139158
+        },
+        {
+          "horse_name": "アビラーシャ",
+          "horse_id": "2023107017",
+          "predicted_rank": 4,
+          "model_score": 0.09924487594390508,
+          "ev_score": 0.724487594390507
+        },
+        {
+          "horse_name": "ジーティーシップ",
+          "horse_id": "2023106054",
+          "predicted_rank": 5,
+          "model_score": 0.09724025974025974,
+          "ev_score": 7.380535714285715
+        },
+        {
+          "horse_name": "バケラッタ",
+          "horse_id": "2023104066",
+          "predicted_rank": 6,
+          "model_score": 0.09724025974025974,
+          "ev_score": 2.6935551948051946
+        },
+        {
+          "horse_name": "テスタヴェローチェ",
+          "horse_id": "2023102132",
+          "predicted_rank": 7,
+          "model_score": 0.08794197642792385,
+          "ev_score": 1.846781504986401
+        },
+        {
+          "horse_name": "ラブインアクション",
+          "horse_id": "2023110043",
+          "predicted_rank": 8,
+          "model_score": 0.08794197642792385,
+          "ev_score": 2.374433363553944
+        },
+        {
+          "horse_name": "マイコンチェルト",
+          "horse_id": "2023107118",
+          "predicted_rank": 9,
+          "model_score": 0.07186030893216921,
+          "ev_score": 0.7473472128945599
+        },
+        {
+          "horse_name": "ベルウッドピース",
+          "horse_id": "2023101642",
+          "predicted_rank": 10,
+          "model_score": 0.06741003547896604,
+          "ev_score": 2.7031424227065384
+        },
+        {
+          "horse_name": "チェリヴェント",
+          "horse_id": "2023104387",
+          "predicted_rank": 11,
+          "model_score": 0.0672235481304694,
+          "ev_score": 0.21511535401750206
+        },
+        {
+          "horse_name": "オオツカ",
+          "horse_id": "2023103919",
+          "predicted_rank": 12,
+          "model_score": 0.06142916840785627,
+          "ev_score": 0.9828666945257003
+        },
+        {
+          "horse_name": "ディープスリー",
+          "horse_id": "2023107529",
+          "predicted_rank": 13,
+          "model_score": 0.0569777979157227,
+          "ev_score": 1.5497961033076575
+        },
+        {
+          "horse_name": "トーアエレクトラム",
+          "horse_id": "2023103846",
+          "predicted_rank": 14,
+          "model_score": 0.0569777979157227,
+          "ev_score": 2.1879474399637515
+        },
+        {
+          "horse_name": "フクシマブリルハム",
+          "horse_id": "2023105405",
+          "predicted_rank": 15,
+          "model_score": 0.0569777979157227,
+          "ev_score": 3.8061169007702764
+        },
+        {
+          "horse_name": "ケンフィールド",
+          "horse_id": "2023101694",
+          "predicted_rank": 16,
+          "model_score": 0.05363204344874406,
+          "ev_score": 1.4105227427019689
+        }
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "invested": 0,
+      "horse_num_to_name": {
+        "8": "ジャイアンバローズ",
+        "6": "システマソラー",
+        "4": "チェリヴェント",
+        "1": "バケラッタ",
+        "14": "ロードアマルフィ",
+        "9": "ラブインアクション",
+        "16": "オオツカ",
+        "7": "テスタヴェローチェ",
+        "15": "ケンフィールド",
+        "5": "トーアエレクトラム",
+        "2": "フクシマブリルハム",
+        "13": "ジーティーシップ",
+        "10": "アビラーシャ",
+        "12": "ベルウッドピース",
+        "11": "マイコンチェルト",
+        "3": "ディープスリー"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34778,
+      "model_type": "HitFocus(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.09255499145772139,
+      "expected_value": 1.0218071056932443,
+      "recommended_bet": 700.0,
+      "combination_json": "[[8, 14], [8, 10], [10, 14], [6, 8], [6, 14], [1, 8], [1, 14]]",
+      "notes": "2軸マルチ 軸=8,14 相手=[10, 6, 1] Harville最大=0.0185",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 1,
+      "payout": 2360.0,
+      "profit": 1660.0,
+      "roi": 337.14285714285717,
+      "horses": [
+        {
+          "horse_name": "ジャイアンバローズ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.01851099829154428,
+          "ev_score": 1.0218071056932443
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.01851099829154428,
+          "ev_score": 1.0218071056932443
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 7,
+      "invested": 700,
+      "horse_num_to_name": {
+        "8": "ジャイアンバローズ",
+        "6": "システマソラー",
+        "4": "チェリヴェント",
+        "1": "バケラッタ",
+        "14": "ロードアマルフィ",
+        "9": "ラブインアクション",
+        "16": "オオツカ",
+        "7": "テスタヴェローチェ",
+        "15": "ケンフィールド",
+        "5": "トーアエレクトラム",
+        "2": "フクシマブリルハム",
+        "13": "ジーティーシップ",
+        "10": "アビラーシャ",
+        "12": "ベルウッドピース",
+        "11": "マイコンチェルト",
+        "3": "ディープスリー"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34779,
+      "model_type": "HitFocus(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.07404399316617712,
+      "expected_value": 1.0025204965732843,
+      "recommended_bet": 800.0,
+      "combination_json": "[[8, 14], [14, 8], [8, 10], [14, 10], [8, 6], [14, 6], [8, 1], [14, 1]]",
+      "notes": "2軸マルチ 軸=8,14 相手=[10, 6, 1] Harville最大=0.0093",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 1,
+      "payout": 5520.0,
+      "profit": 4720.0,
+      "roi": 690.0,
+      "horses": [
+        {
+          "horse_name": "ジャイアンバローズ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.00925549914577214,
+          "ev_score": 1.0025204965732843
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.00925549914577214,
+          "ev_score": 1.0025204965732843
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 8,
+      "invested": 800,
+      "horse_num_to_name": {
+        "8": "ジャイアンバローズ",
+        "6": "システマソラー",
+        "4": "チェリヴェント",
+        "1": "バケラッタ",
+        "14": "ロードアマルフィ",
+        "9": "ラブインアクション",
+        "16": "オオツカ",
+        "7": "テスタヴェローチェ",
+        "15": "ケンフィールド",
+        "5": "トーアエレクトラム",
+        "2": "フクシマブリルハム",
+        "13": "ジーティーシップ",
+        "10": "アビラーシャ",
+        "12": "ベルウッドピース",
+        "11": "マイコンチェルト",
+        "3": "ディープスリー"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 34780,
+      "model_type": "HitFocus(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.025964116354525876,
+      "expected_value": 0.5589913273608023,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[8, 14, 10], [14, 8, 10], [8, 10, 14], [14, 10, 8], [8, 14, 6], [14, 8, 6], [8, 6, 14], [14, 6, 8], [8, 14, 1], [14, 8, 1], [8, 1, 14], [14, 1, 8]]",
+      "notes": "2軸マルチ 軸=8,14 相手=[10, 6, 1] 12点 Harville最大=0.0009",
+      "created_at": "2026-05-17 12:10:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ジャイアンバローズ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0008654705451508625,
+          "ev_score": 0.5589913273608023
+        },
+        {
+          "horse_name": "ロードアマルフィ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0008654705451508625,
+          "ev_score": 0.5589913273608023
+        },
+        {
+          "horse_name": "アビラーシャ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0008654705451508625,
+          "ev_score": 0.5589913273608023
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 12,
+      "invested": 1200,
+      "horse_num_to_name": {
+        "8": "ジャイアンバローズ",
+        "6": "システマソラー",
+        "4": "チェリヴェント",
+        "1": "バケラッタ",
+        "14": "ロードアマルフィ",
+        "9": "ラブインアクション",
+        "16": "オオツカ",
+        "7": "テスタヴェローチェ",
+        "15": "ケンフィールド",
+        "5": "トーアエレクトラム",
+        "2": "フクシマブリルハム",
+        "13": "ジーティーシップ",
+        "10": "アビラーシャ",
+        "12": "ベルウッドピース",
+        "11": "マイコンチェルト",
+        "3": "ディープスリー"
+      },
+      "is_provisional": false
+    }
+  ],
+  "training_evals": {},
+  "prerace": {
+    "bias": {
+      "today_inner_bias": 0.1111111111111111,
+      "today_front_bias": 0.3333333333333333,
+      "today_race_count": 3
+    },
+    "ev_recommend": [
+      {
+        "horse_number": 13,
+        "horse_name": "ジーティーシップ",
+        "win_odds": 75.9,
+        "ev_score": 7.3805,
+        "kelly_fraction": 0.0085
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "フクシマブリルハム",
+        "win_odds": 66.8,
+        "ev_score": 3.8061,
+        "kelly_fraction": 0.0043
+      },
+      {
+        "horse_number": 12,
+        "horse_name": "ベルウッドピース",
+        "win_odds": 40.1,
+        "ev_score": 2.7031,
+        "kelly_fraction": 0.0044
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "バケラッタ",
+        "win_odds": 27.7,
+        "ev_score": 2.6936,
+        "kelly_fraction": 0.0063
+      },
+      {
+        "horse_number": 9,
+        "horse_name": "ラブインアクション",
+        "win_odds": 27.0,
+        "ev_score": 2.3744,
+        "kelly_fraction": 0.0053
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "トーアエレクトラム",
+        "win_odds": 38.4,
+        "ev_score": 2.1879,
+        "kelly_fraction": 0.0032
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "テスタヴェローチェ",
+        "win_odds": 21.0,
+        "ev_score": 1.8468,
+        "kelly_fraction": 0.0042
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "ジャイアンバローズ",
+        "win_odds": 13.8,
+        "ev_score": 1.6445,
+        "kelly_fraction": 0.005
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "ディープスリー",
+        "win_odds": 27.2,
+        "ev_score": 1.5498,
+        "kelly_fraction": 0.0021
+      },
+      {
+        "horse_number": 15,
+        "horse_name": "ケンフィールド",
+        "win_odds": 26.3,
+        "ev_score": 1.4105,
+        "kelly_fraction": 0.0016
+      },
+      {
+        "horse_number": 14,
+        "horse_name": "ロードアマルフィ",
+        "win_odds": 9.7,
+        "ev_score": 1.1559,
+        "kelly_fraction": 0.0018
+      }
+    ],
+    "generated_at": "2026-05-17T12:10:09.811522"
+  }
+}

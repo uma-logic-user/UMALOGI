@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "フジフォンテ",
-      "horse_id": "2019105759",
-      "sex_age": "騸5",
-      "weight_carried": 60.0,
-      "jockey": "石神深一",
-      "trainer": "粕谷昌央",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ロージズインメイRoses in May(米)",
-      "dam": "シチリアーナ",
-      "dam_sire": "メイショウオウドウ"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 7,
       "horse_number": 9,
       "horse_name": "グアラニア",
@@ -52,7 +32,7 @@
       "dam_sire": "ダイワメジャー"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 8,
       "horse_number": 11,
       "horse_name": "コンバスチョン",
@@ -70,6 +50,26 @@
       "sire": "ディスクリートキャットDiscreet Cat(米)",
       "dam": "スモーダリング",
       "dam_sire": "パイロPyro(米)"
+    },
+    {
+      "rank": 3,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "フジフォンテ",
+      "horse_id": "2019105759",
+      "sex_age": "騸5",
+      "weight_carried": 60.0,
+      "jockey": "石神深一",
+      "trainer": "粕谷昌央",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ロージズインメイRoses in May(米)",
+      "dam": "シチリアーナ",
+      "dam_sire": "メイショウオウドウ"
     },
     {
       "rank": null,
@@ -258,12 +258,6 @@
       "combination": "9",
       "payout": 3690,
       "popularity": 9
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "12",
-      "payout": 12000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 2,
       "horse_number": 3,
       "horse_name": "デイトナモード",
@@ -32,27 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 6,
-      "horse_name": "レッドエヴァンス",
-      "horse_id": "2021105880",
-      "sex_age": "騸4",
-      "weight_carried": 56.0,
-      "jockey": "斎藤新",
-      "trainer": "東田明士",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ロードカナロア",
-      "dam": "レッドアヴァンセ",
-      "dam_sire": "ディープインパクト"
-    },
-    {
-      "rank": null,
+      "rank": 2,
       "gate_number": 4,
       "horse_number": 7,
       "horse_name": "トーラスシャイン",
@@ -69,6 +49,26 @@
       "horse_weight_diff": null,
       "sire": "ファインニードル",
       "dam": "スターライト",
+      "dam_sire": "ディープインパクト"
+    },
+    {
+      "rank": 3,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "レッドエヴァンス",
+      "horse_id": "2021105880",
+      "sex_age": "騸4",
+      "weight_carried": 56.0,
+      "jockey": "斎藤新",
+      "trainer": "東田明士",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ロードカナロア",
+      "dam": "レッドアヴァンセ",
       "dam_sire": "ディープインパクト"
     },
     {
@@ -378,12 +378,6 @@
       "combination": "3",
       "payout": 2490,
       "popularity": 14
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "18",
-      "payout": 18000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

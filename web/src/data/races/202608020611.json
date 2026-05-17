@@ -12,27 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "エコロディノス",
-      "horse_id": "2022105073",
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 12,
+      "horse_name": "ジューンテイク",
+      "horse_id": "2021100913",
       "sex_age": "牡4",
-      "weight_carried": 56.0,
-      "jockey": "池添謙一",
-      "trainer": "大久保龍",
+      "weight_carried": 57.0,
+      "jockey": "藤岡佑介",
+      "trainer": "武英智",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
       "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
+      "sire": "キズナ",
+      "dam": "アドマイヤサブリナ",
+      "dam_sire": "シンボリクリスエス"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 5,
       "horse_number": 6,
       "horse_name": "エリキング",
@@ -52,24 +52,24 @@
       "dam_sire": "High Chaparral(愛)"
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 12,
-      "horse_name": "ジューンテイク",
-      "horse_id": "2021100913",
+      "rank": 3,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "エコロディノス",
+      "horse_id": "2022105073",
       "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "藤岡佑介",
-      "trainer": "武英智",
+      "weight_carried": 56.0,
+      "jockey": "池添謙一",
+      "trainer": "大久保龍",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
       "horse_weight_diff": null,
-      "sire": "キズナ",
-      "dam": "アドマイヤサブリナ",
-      "dam_sire": "シンボリクリスエス"
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -253,12 +253,6 @@
     }
   ],
   "payouts": [
-    {
-      "bet_type": "単勝",
-      "combination": "12",
-      "payout": 12000,
-      "popularity": null
-    },
     {
       "bet_type": "複勝",
       "combination": "6",

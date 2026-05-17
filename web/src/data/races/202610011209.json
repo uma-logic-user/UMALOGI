@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 5,
-      "horse_name": "ゼンノインヴォーク",
-      "horse_id": "2019100915",
-      "sex_age": "騸3",
-      "weight_carried": 58.0,
-      "jockey": "古川吉洋",
-      "trainer": "緒方努",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "シルバーステート",
-      "dam": "ヴォワルドール",
-      "dam_sire": "ハービンジャーHarbinger(英)"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 5,
       "horse_number": 10,
       "horse_name": "ジャスティンガルフ",
@@ -52,7 +32,7 @@
       "dam_sire": "Pivotal"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 8,
       "horse_number": 18,
       "horse_name": "シンドリームシン",
@@ -70,6 +50,26 @@
       "sire": "キズナ",
       "dam": "アルビアーノ",
       "dam_sire": "Harlan's Holiday"
+    },
+    {
+      "rank": 3,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "ゼンノインヴォーク",
+      "horse_id": "2019100915",
+      "sex_age": "騸3",
+      "weight_carried": 58.0,
+      "jockey": "古川吉洋",
+      "trainer": "緒方努",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "シルバーステート",
+      "dam": "ヴォワルドール",
+      "dam_sire": "ハービンジャーHarbinger(英)"
     },
     {
       "rank": null,
@@ -378,12 +378,6 @@
       "combination": "10",
       "payout": 5860,
       "popularity": 14
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "18",
-      "payout": 18000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

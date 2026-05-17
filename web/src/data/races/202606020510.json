@@ -12,27 +12,27 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 6,
-      "horse_name": "マテンロウブラボー",
-      "horse_id": "2021101422",
-      "sex_age": "牡3",
-      "weight_carried": 56.0,
-      "jockey": "戸崎圭太",
-      "trainer": "野中賢二",
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 16,
+      "horse_name": "メタルスピード",
+      "horse_id": "2020101772",
+      "sex_age": "牡4",
+      "weight_carried": 55.0,
+      "jockey": "斎藤新",
+      "trainer": "斎藤誠",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
       "horse_weight_diff": null,
-      "sire": "モーリス",
-      "dam": "トリニティプレイス",
-      "dam_sire": "マンハッタンカフェ"
+      "sire": "シルバーステート",
+      "dam": "マイビビアーヌ",
+      "dam_sire": "Shamardal(米)"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 4,
       "horse_number": 7,
       "horse_name": "ヒシアマン",
@@ -52,24 +52,24 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 16,
-      "horse_name": "メタルスピード",
-      "horse_id": "2020101772",
-      "sex_age": "牡4",
-      "weight_carried": 55.0,
-      "jockey": "斎藤新",
-      "trainer": "斎藤誠",
+      "rank": 3,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "マテンロウブラボー",
+      "horse_id": "2021101422",
+      "sex_age": "牡3",
+      "weight_carried": 56.0,
+      "jockey": "戸崎圭太",
+      "trainer": "野中賢二",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
       "popularity": null,
       "horse_weight": null,
       "horse_weight_diff": null,
-      "sire": "シルバーステート",
-      "dam": "マイビビアーヌ",
-      "dam_sire": "Shamardal(米)"
+      "sire": "モーリス",
+      "dam": "トリニティプレイス",
+      "dam_sire": "マンハッタンカフェ"
     },
     {
       "rank": null,
@@ -333,12 +333,6 @@
     }
   ],
   "payouts": [
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
-    },
     {
       "bet_type": "複勝",
       "combination": "7",

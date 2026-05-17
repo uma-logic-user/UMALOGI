@@ -4,11 +4,11 @@
   "date": "2026-04-19",
   "venue": "福島",
   "race_number": 5,
-  "distance": 1200,
-  "surface": "芝",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -42,7 +42,7 @@
       "jockey": "舟山瑠泉",
       "trainer": "菊川正達",
       "finish_time": "1:08.4",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 3.2,
       "popularity": 1,
       "horse_weight": 432,
@@ -62,7 +62,7 @@
       "jockey": "松若風馬",
       "trainer": "森田直行",
       "finish_time": "1:08.7",
-      "margin": "1.1/2",
+      "margin": "@",
       "win_odds": 94.8,
       "popularity": 14,
       "horse_weight": 382,
@@ -82,7 +82,7 @@
       "jockey": "田山旺佑",
       "trainer": "奥平雅士",
       "finish_time": "1:08.8",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 4.8,
       "popularity": 2,
       "horse_weight": 472,
@@ -102,7 +102,7 @@
       "jockey": "横山琉人",
       "trainer": "大竹正博",
       "finish_time": "1:08.8",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 9.6,
       "popularity": 5,
       "horse_weight": 472,
@@ -122,7 +122,7 @@
       "jockey": "上里直汰",
       "trainer": "小野次郎",
       "finish_time": "1:08.9",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 76.3,
       "popularity": 13,
       "horse_weight": 436,
@@ -142,7 +142,7 @@
       "jockey": "大久保友",
       "trainer": "稲垣幸雄",
       "finish_time": "1:09.0",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 22.1,
       "popularity": 7,
       "horse_weight": 406,
@@ -162,7 +162,7 @@
       "jockey": "石神深道",
       "trainer": "深山雅史",
       "finish_time": "1:09.0",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 48.8,
       "popularity": 11,
       "horse_weight": 420,
@@ -182,7 +182,7 @@
       "jockey": "菊沢一樹",
       "trainer": "畠山吉宏",
       "finish_time": "1:09.2",
-      "margin": "1.1/4",
+      "margin": "@",
       "win_odds": 60.9,
       "popularity": 12,
       "horse_weight": 446,
@@ -202,7 +202,7 @@
       "jockey": "斎藤新",
       "trainer": "浜田多実",
       "finish_time": "1:09.3",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 8.1,
       "popularity": 4,
       "horse_weight": 456,
@@ -222,7 +222,7 @@
       "jockey": "遠藤汰月",
       "trainer": "室井潔",
       "finish_time": "1:10.1",
-      "margin": "5",
+      "margin": "@",
       "win_odds": 173.8,
       "popularity": 15,
       "horse_weight": 416,
@@ -242,7 +242,7 @@
       "jockey": "丹内祐次",
       "trainer": "矢嶋大樹",
       "finish_time": "1:10.1",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 31.7,
       "popularity": 9,
       "horse_weight": 488,
@@ -262,7 +262,7 @@
       "jockey": "永島まな",
       "trainer": "中川公成",
       "finish_time": "1:10.4",
-      "margin": "1.3/4",
+      "margin": "@",
       "win_odds": 199.4,
       "popularity": 16,
       "horse_weight": 382,
@@ -282,7 +282,7 @@
       "jockey": "富田暁",
       "trainer": "杉山佳明",
       "finish_time": "1:10.7",
-      "margin": "2",
+      "margin": "@",
       "win_odds": 39.1,
       "popularity": 10,
       "horse_weight": 466,
@@ -302,7 +302,7 @@
       "jockey": "小沢大仁",
       "trainer": "今野貞一",
       "finish_time": "1:10.8",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 24.4,
       "popularity": 8,
       "horse_weight": 450,
@@ -322,7 +322,7 @@
       "jockey": "小林美駒",
       "trainer": "千葉直人",
       "finish_time": "1:10.8",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 10.1,
       "popularity": 6,
       "horse_weight": 396,
@@ -382,10 +382,22 @@
       "popularity": 1
     },
     {
+      "bet_type": "馬連",
+      "combination": "1",
+      "payout": 2160,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "9-16",
       "payout": 310,
       "popularity": 1
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 40010,
+      "popularity": 10
     },
     {
       "bet_type": "ワイド",
@@ -400,16 +412,34 @@
       "popularity": 47
     },
     {
+      "bet_type": "ワイド",
+      "combination": "5",
+      "payout": 80000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "9→16",
       "payout": 1490,
       "popularity": 2
     },
     {
+      "bet_type": "馬単",
+      "combination": "9",
+      "payout": 16000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "1-9-16",
       "payout": 13150,
       "popularity": 37
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3-10",
+      "payout": 10109,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -462,7 +492,8 @@
         "11": "カフジラクレット",
         "12": "サカトクフェイス",
         "15": "クロノレガリス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2588,
@@ -521,7 +552,8 @@
         "11": "カフジラクレット",
         "12": "サカトクフェイス",
         "15": "クロノレガリス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2589,
@@ -566,7 +598,8 @@
         "11": "カフジラクレット",
         "12": "サカトクフェイス",
         "15": "クロノレガリス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2590,
@@ -611,7 +644,8 @@
         "11": "カフジラクレット",
         "12": "サカトクフェイス",
         "15": "クロノレガリス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2591,
@@ -663,7 +697,8 @@
         "11": "カフジラクレット",
         "12": "サカトクフェイス",
         "15": "クロノレガリス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2592,
@@ -708,7 +743,8 @@
         "11": "カフジラクレット",
         "12": "サカトクフェイス",
         "15": "クロノレガリス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2593,
@@ -781,7 +817,8 @@
         "11": "カフジラクレット",
         "12": "サカトクフェイス",
         "15": "クロノレガリス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2607,
@@ -826,7 +863,8 @@
         "11": "カフジラクレット",
         "12": "サカトクフェイス",
         "15": "クロノレガリス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2608,
@@ -899,7 +937,8 @@
         "11": "カフジラクレット",
         "12": "サカトクフェイス",
         "15": "クロノレガリス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2609,
@@ -944,7 +983,8 @@
         "11": "カフジラクレット",
         "12": "サカトクフェイス",
         "15": "クロノレガリス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2610,
@@ -989,7 +1029,8 @@
         "11": "カフジラクレット",
         "12": "サカトクフェイス",
         "15": "クロノレガリス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2611,
@@ -1034,7 +1075,8 @@
         "11": "カフジラクレット",
         "12": "サカトクフェイス",
         "15": "クロノレガリス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2612,
@@ -1079,7 +1121,8 @@
         "11": "カフジラクレット",
         "12": "サカトクフェイス",
         "15": "クロノレガリス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2613,
@@ -1229,7 +1272,8 @@
         "11": "カフジラクレット",
         "12": "サカトクフェイス",
         "15": "クロノレガリス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 3381,
@@ -1274,7 +1318,8 @@
         "11": "カフジラクレット",
         "12": "サカトクフェイス",
         "15": "クロノレガリス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3382,
@@ -1333,7 +1378,8 @@
         "11": "カフジラクレット",
         "12": "サカトクフェイス",
         "15": "クロノレガリス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3383,
@@ -1378,7 +1424,8 @@
         "11": "カフジラクレット",
         "12": "サカトクフェイス",
         "15": "クロノレガリス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3384,
@@ -1423,7 +1470,8 @@
         "11": "カフジラクレット",
         "12": "サカトクフェイス",
         "15": "クロノレガリス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3385,
@@ -1475,7 +1523,8 @@
         "11": "カフジラクレット",
         "12": "サカトクフェイス",
         "15": "クロノレガリス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3386,
@@ -1520,7 +1569,8 @@
         "11": "カフジラクレット",
         "12": "サカトクフェイス",
         "15": "クロノレガリス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3387,
@@ -1593,7 +1643,8 @@
         "11": "カフジラクレット",
         "12": "サカトクフェイス",
         "15": "クロノレガリス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3401,
@@ -1638,7 +1689,8 @@
         "11": "カフジラクレット",
         "12": "サカトクフェイス",
         "15": "クロノレガリス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3402,
@@ -1711,7 +1763,8 @@
         "11": "カフジラクレット",
         "12": "サカトクフェイス",
         "15": "クロノレガリス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3403,
@@ -1756,7 +1809,8 @@
         "11": "カフジラクレット",
         "12": "サカトクフェイス",
         "15": "クロノレガリス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3404,
@@ -1801,7 +1855,8 @@
         "11": "カフジラクレット",
         "12": "サカトクフェイス",
         "15": "クロノレガリス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3405,
@@ -1846,7 +1901,8 @@
         "11": "カフジラクレット",
         "12": "サカトクフェイス",
         "15": "クロノレガリス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3406,
@@ -1891,7 +1947,8 @@
         "11": "カフジラクレット",
         "12": "サカトクフェイス",
         "15": "クロノレガリス"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 3407,
@@ -2041,7 +2098,8 @@
         "11": "カフジラクレット",
         "12": "サカトクフェイス",
         "15": "クロノレガリス"
-      }
+      },
+      "is_provisional": false
     }
   ],
   "training_evals": {}

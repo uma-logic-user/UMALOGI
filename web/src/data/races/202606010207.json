@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "ステラスペース",
@@ -32,15 +32,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 7,
-      "horse_number": 7,
-      "horse_name": "チャリングクロス",
-      "horse_id": "2023107389",
-      "sex_age": "牡5",
-      "weight_carried": 57.0,
-      "jockey": "内田博幸",
-      "trainer": "奥村武",
+      "horse_number": 8,
+      "horse_name": "フロレセール",
+      "horse_id": "2023104443",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "戸崎圭太",
+      "trainer": "辻哲英",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 3,
       "gate_number": 7,
-      "horse_number": 8,
-      "horse_name": "フロレセール",
-      "horse_id": "2023104443",
-      "sex_age": "牝4",
-      "weight_carried": 55.0,
-      "jockey": "戸崎圭太",
-      "trainer": "辻哲英",
+      "horse_number": 7,
+      "horse_name": "チャリングクロス",
+      "horse_id": "2023107389",
+      "sex_age": "牡5",
+      "weight_carried": 57.0,
+      "jockey": "内田博幸",
+      "trainer": "奥村武",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -218,12 +218,6 @@
       "combination": "2",
       "payout": 1380,
       "popularity": 6
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "10",
-      "payout": 10000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

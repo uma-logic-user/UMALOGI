@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "ミーサーク",
-      "horse_id": "2023104376",
-      "sex_age": "牡4",
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 9,
+      "horse_name": "サイモンゼスト",
+      "horse_id": "2023102919",
+      "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "武豊",
-      "trainer": "武幸四郎",
+      "jockey": "酒井学",
+      "trainer": "佐々木晶",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 7,
       "horse_number": 7,
       "horse_name": "アビル",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 9,
-      "horse_name": "サイモンゼスト",
-      "horse_id": "2023102919",
-      "sex_age": "牡3",
+      "rank": 3,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "ミーサーク",
+      "horse_id": "2023104376",
+      "sex_age": "牡4",
       "weight_carried": 57.0,
-      "jockey": "酒井学",
-      "trainer": "佐々木晶",
+      "jockey": "武豊",
+      "trainer": "武幸四郎",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -193,12 +193,6 @@
     }
   ],
   "payouts": [
-    {
-      "bet_type": "単勝",
-      "combination": "9",
-      "payout": 9000,
-      "popularity": null
-    },
     {
       "bet_type": "複勝",
       "combination": "7",

@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "マオノムサシ",
-      "horse_id": "2023101278",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "荻野琢真",
-      "trainer": "加藤公太",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 5,
       "horse_number": 8,
       "horse_name": "チェリヴェント",
@@ -52,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 7,
       "horse_number": 11,
       "horse_name": "スマートグロワール",
@@ -61,6 +41,26 @@
       "weight_carried": 57.0,
       "jockey": "北村友一",
       "trainer": "畑端省吾",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "マオノムサシ",
+      "horse_id": "2023101278",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "荻野琢真",
+      "trainer": "加藤公太",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -298,12 +298,6 @@
       "combination": "8",
       "payout": 360,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "14",
-      "payout": 14000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

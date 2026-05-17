@@ -12,7 +12,7 @@
   "year": "2025",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "シャイニングソード",
@@ -30,6 +30,46 @@
       "sire": "Frankel",
       "dam": "スタセリタStacelita(仏)",
       "dam_sire": "Monsun"
+    },
+    {
+      "rank": 2,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "エンドウノハナ",
+      "horse_id": "2019103888",
+      "sex_age": "牡1",
+      "weight_carried": 58.0,
+      "jockey": "津村明秀",
+      "trainer": "中舘英二",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "トーセンラー",
+      "dam": "ヌングロース",
+      "dam_sire": "ハービンジャーHarbinger(英)"
+    },
+    {
+      "rank": 3,
+      "gate_number": 8,
+      "horse_number": 8,
+      "horse_name": "デュアルウィルダー",
+      "horse_id": "2021104887",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "大野拓弥",
+      "trainer": "堀宣行",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ヨシダYoshida(安平町)",
+      "dam": "ダンスウィズキトゥン",
+      "dam_sire": "Kitten's Joy(米)"
     },
     {
       "rank": null,
@@ -93,26 +133,6 @@
     },
     {
       "rank": null,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "エンドウノハナ",
-      "horse_id": "2019103888",
-      "sex_age": "牡1",
-      "weight_carried": 58.0,
-      "jockey": "津村明秀",
-      "trainer": "中舘英二",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "トーセンラー",
-      "dam": "ヌングロース",
-      "dam_sire": "ハービンジャーHarbinger(英)"
-    },
-    {
-      "rank": null,
       "gate_number": 6,
       "horse_number": 6,
       "horse_name": "スピードリッチ",
@@ -150,26 +170,6 @@
       "sire": "サトノクラウン",
       "dam": "ローザディアマント",
       "dam_sire": "スペシャルウィーク"
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 8,
-      "horse_name": "デュアルウィルダー",
-      "horse_id": "2021104887",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "大野拓弥",
-      "trainer": "堀宣行",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ヨシダYoshida(安平町)",
-      "dam": "ダンスウィズキトゥン",
-      "dam_sire": "Kitten's Joy(米)"
     }
   ],
   "payouts": [
@@ -178,12 +178,6 @@
       "combination": "1",
       "payout": 280,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "8",
-      "payout": 8000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

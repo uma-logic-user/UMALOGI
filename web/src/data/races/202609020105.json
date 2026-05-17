@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 2,
-      "horse_name": "パンキー",
-      "horse_id": "2023102310",
-      "sex_age": "牡7",
-      "weight_carried": 57.0,
-      "jockey": "岩田望来",
-      "trainer": "茶木太樹",
+      "rank": 1,
+      "gate_number": 5,
+      "horse_number": 10,
+      "horse_name": "ラヴリーティアラ",
+      "horse_id": "2023107290",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "団野大成",
+      "trainer": "須貝尚介",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 3,
       "horse_number": 6,
       "horse_name": "タナブイハチターボ",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 10,
-      "horse_name": "ラヴリーティアラ",
-      "horse_id": "2023107290",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "団野大成",
-      "trainer": "須貝尚介",
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 2,
+      "horse_name": "パンキー",
+      "horse_id": "2023102310",
+      "sex_age": "牡7",
+      "weight_carried": 57.0,
+      "jockey": "岩田望来",
+      "trainer": "茶木太樹",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -378,12 +378,6 @@
       "combination": "10",
       "payout": 2190,
       "popularity": 8
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "18",
-      "payout": 18000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

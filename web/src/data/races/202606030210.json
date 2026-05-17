@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 6,
-      "horse_name": "カンシン",
-      "horse_id": "2022103146",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "津村明秀",
-      "trainer": "西園翔太",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 6,
       "horse_number": 10,
       "horse_name": "サウンドモリアーナ",
@@ -52,7 +32,27 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 4,
+      "horse_number": 6,
+      "horse_name": "カンシン",
+      "horse_id": "2022103146",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "津村明秀",
+      "trainer": "西園翔太",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
       "gate_number": 8,
       "horse_number": 15,
       "horse_name": "トーセンエスクード",
@@ -318,12 +318,6 @@
       "combination": "10",
       "payout": 1180,
       "popularity": 7
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "15",
-      "payout": 15000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

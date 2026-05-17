@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "ダンツシタン",
-      "horse_id": "2023104848",
-      "sex_age": "牡5",
-      "weight_carried": 57.0,
-      "jockey": "石橋脩",
-      "trainer": "本田優",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 4,
       "horse_number": 4,
       "horse_name": "マクリール",
@@ -52,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 7,
       "horse_number": 8,
       "horse_name": "テンカムテキ",
@@ -61,6 +41,26 @@
       "weight_carried": 57.0,
       "jockey": "丹内祐次",
       "trainer": "林徹",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "ダンツシタン",
+      "horse_id": "2023104848",
+      "sex_age": "牡5",
+      "weight_carried": 57.0,
+      "jockey": "石橋脩",
+      "trainer": "本田優",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -218,12 +218,6 @@
       "combination": "4",
       "payout": 170,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "10",
-      "payout": 10000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

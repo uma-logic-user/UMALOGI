@@ -12,6 +12,26 @@
   "year": "2025",
   "results": [
     {
+      "rank": 1,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "アピーリングルック",
+      "horse_id": "2021104914",
+      "sex_age": "牝4",
+      "weight_carried": 53.0,
+      "jockey": "大野拓弥",
+      "trainer": "辻哲英",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "パイロPyro(米)",
+      "dam": "ブライトリビング",
+      "dam_sire": "ワイルドラッシュWild Rush(米)"
+    },
+    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -30,26 +50,6 @@
       "sire": "キタサンブラック",
       "dam": "ランドオーバーシーLand Over Sea(米)",
       "dam_sire": "Bellamy Road"
-    },
-    {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "アピーリングルック",
-      "horse_id": "2021104914",
-      "sex_age": "牝4",
-      "weight_carried": 53.0,
-      "jockey": "大野拓弥",
-      "trainer": "辻哲英",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "パイロPyro(米)",
-      "dam": "ブライトリビング",
-      "dam_sire": "ワイルドラッシュWild Rush(米)"
     },
     {
       "rank": null,
@@ -258,12 +258,6 @@
       "combination": "2",
       "payout": 2890,
       "popularity": 9
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "12",
-      "payout": 12000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

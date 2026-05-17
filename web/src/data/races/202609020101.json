@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "マユナイト",
-      "horse_id": "2023103534",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "幸英明",
-      "trainer": "高橋康之",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 2,
       "horse_name": "ゴールドヴィーナス",
@@ -52,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 2,
       "horse_number": 3,
       "horse_name": "マリリンバローズ",
@@ -61,6 +41,26 @@
       "weight_carried": 55.0,
       "jockey": "吉村誠之",
       "trainer": "佐藤悠太",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "マユナイト",
+      "horse_id": "2023103534",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "幸英明",
+      "trainer": "高橋康之",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "2",
       "payout": 1210,
       "popularity": 4
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

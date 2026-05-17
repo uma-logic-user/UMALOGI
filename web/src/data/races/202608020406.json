@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 1,
-      "horse_number": 1,
-      "horse_name": "ヴィラジョヴィス",
-      "horse_id": "2023103901",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "北村友一",
-      "trainer": "小栗実",
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "パウンドフォーワン",
+      "horse_id": "2023106716",
+      "sex_age": "牡5",
+      "weight_carried": 57.0,
+      "jockey": "松山弘平",
+      "trainer": "田中克典",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 5,
       "horse_number": 9,
       "horse_name": "ビクスバイト",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 15,
-      "horse_name": "パウンドフォーワン",
-      "horse_id": "2023106716",
-      "sex_age": "牡5",
-      "weight_carried": 57.0,
-      "jockey": "松山弘平",
-      "trainer": "田中克典",
+      "rank": 3,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "ヴィラジョヴィス",
+      "horse_id": "2023103901",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "北村友一",
+      "trainer": "小栗実",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -313,12 +313,6 @@
     }
   ],
   "payouts": [
-    {
-      "bet_type": "単勝",
-      "combination": "15",
-      "payout": 15000,
-      "popularity": null
-    },
     {
       "bet_type": "複勝",
       "combination": "9",

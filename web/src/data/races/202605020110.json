@@ -4,33 +4,13 @@
   "date": "2026-04-25",
   "venue": "東京",
   "race_number": 10,
-  "distance": 1400,
-  "surface": "ダート",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "稍",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
-    {
-      "rank": 1,
-      "gate_number": 8,
-      "horse_number": 15,
-      "horse_name": "ペイシャケイプ",
-      "horse_id": "2022104219",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "横山典弘",
-      "trainer": "高橋康之",
-      "finish_time": "1:23.7",
-      "margin": "@",
-      "win_odds": 3.8,
-      "popularity": 2,
-      "horse_weight": 542,
-      "horse_weight_diff": 0,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
     {
       "rank": 2,
       "gate_number": 3,
@@ -42,7 +22,7 @@
       "jockey": "川田将雅",
       "trainer": "福永祐一",
       "finish_time": "1:23.7",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 2.3,
       "popularity": 1,
       "horse_weight": 500,
@@ -62,7 +42,7 @@
       "jockey": "大野拓弥",
       "trainer": "鈴木慎太",
       "finish_time": "1:24.3",
-      "margin": "3.1/2",
+      "margin": "@",
       "win_odds": 33.8,
       "popularity": 9,
       "horse_weight": 496,
@@ -82,7 +62,7 @@
       "jockey": "レーン",
       "trainer": "黒岩陽一",
       "finish_time": "1:24.4",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 11.9,
       "popularity": 5,
       "horse_weight": 540,
@@ -102,7 +82,7 @@
       "jockey": "武豊",
       "trainer": "小島茂之",
       "finish_time": "1:24.7",
-      "margin": "1.3/4",
+      "margin": "@",
       "win_odds": 13.0,
       "popularity": 6,
       "horse_weight": 482,
@@ -122,7 +102,7 @@
       "jockey": "矢野貴之",
       "trainer": "平岩大典",
       "finish_time": "1:24.7",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 116.4,
       "popularity": 14,
       "horse_weight": 498,
@@ -142,7 +122,7 @@
       "jockey": "田辺裕信",
       "trainer": "久保田貴",
       "finish_time": "1:24.8",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 95.6,
       "popularity": 13,
       "horse_weight": 454,
@@ -162,7 +142,7 @@
       "jockey": "杉原誠人",
       "trainer": "小島茂之",
       "finish_time": "1:24.9",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 23.7,
       "popularity": 7,
       "horse_weight": 422,
@@ -182,7 +162,7 @@
       "jockey": "ルメール",
       "trainer": "稲垣幸雄",
       "finish_time": "1:25.1",
-      "margin": "1.1/4",
+      "margin": "@",
       "win_odds": 11.2,
       "popularity": 4,
       "horse_weight": 486,
@@ -202,7 +182,7 @@
       "jockey": "三浦皇成",
       "trainer": "菊沢隆徳",
       "finish_time": "1:25.2",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 23.9,
       "popularity": 8,
       "horse_weight": 532,
@@ -222,7 +202,7 @@
       "jockey": "佐々木大",
       "trainer": "小笠倫弘",
       "finish_time": "1:25.5",
-      "margin": "1.3/4",
+      "margin": "@",
       "win_odds": 164.5,
       "popularity": 15,
       "horse_weight": 454,
@@ -242,7 +222,7 @@
       "jockey": "柴田大知",
       "trainer": "和田雄二",
       "finish_time": "1:25.8",
-      "margin": "2",
+      "margin": "@",
       "win_odds": 81.4,
       "popularity": 12,
       "horse_weight": 476,
@@ -262,7 +242,7 @@
       "jockey": "戸崎圭太",
       "trainer": "矢嶋大樹",
       "finish_time": "1:25.9",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 43.1,
       "popularity": 10,
       "horse_weight": 496,
@@ -282,7 +262,7 @@
       "jockey": "木幡巧也",
       "trainer": "田中剛",
       "finish_time": "1:26.1",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 64.7,
       "popularity": 11,
       "horse_weight": 516,
@@ -302,11 +282,31 @@
       "jockey": "横山武史",
       "trainer": "久保田貴",
       "finish_time": "1:26.2",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 8.0,
       "popularity": 3,
       "horse_weight": 506,
       "horse_weight_diff": -12,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "ペイシャケイプ",
+      "horse_id": "2022104219",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "横山典弘",
+      "trainer": "高橋康之",
+      "finish_time": "1:23.7",
+      "margin": "@",
+      "win_odds": 3.8,
+      "popularity": 2,
+      "horse_weight": 542,
+      "horse_weight_diff": 0,
       "sire": null,
       "dam": null,
       "dam_sire": null
@@ -350,6 +350,12 @@
       "popularity": 1
     },
     {
+      "bet_type": "馬連",
+      "combination": "1",
+      "payout": 2040,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "4-15",
       "payout": 300,
@@ -368,16 +374,52 @@
       "popularity": 19
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 20011,
+      "popularity": 20
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3",
+      "payout": 80000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "15→4",
       "payout": 1020,
       "popularity": 1
     },
     {
+      "bet_type": "馬単",
+      "combination": "4",
+      "payout": 15000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "4-12-15",
       "payout": 5070,
       "popularity": 14
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "16",
+      "payout": 2004,
+      "popularity": 120
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3",
+      "payout": 11215,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "12",
+      "payout": 40014,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -429,7 +471,8 @@
         "3": "ラストシャリナ",
         "1": "ピックアップライン",
         "5": "ベンヌ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6246,
@@ -487,7 +530,8 @@
         "3": "ラストシャリナ",
         "1": "ピックアップライン",
         "5": "ベンヌ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6247,
@@ -538,7 +582,8 @@
         "3": "ラストシャリナ",
         "1": "ピックアップライン",
         "5": "ベンヌ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6248,
@@ -589,7 +634,8 @@
         "3": "ラストシャリナ",
         "1": "ピックアップライン",
         "5": "ベンヌ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6249,
@@ -654,7 +700,8 @@
         "3": "ラストシャリナ",
         "1": "ピックアップライン",
         "5": "ベンヌ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6250,
@@ -796,7 +843,8 @@
         "3": "ラストシャリナ",
         "1": "ピックアップライン",
         "5": "ベンヌ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6251,
@@ -938,7 +986,8 @@
         "3": "ラストシャリナ",
         "1": "ピックアップライン",
         "5": "ベンヌ"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 7007,
@@ -982,7 +1031,8 @@
         "3": "ラストシャリナ",
         "1": "ピックアップライン",
         "5": "ベンヌ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 7008,
@@ -1040,7 +1090,8 @@
         "3": "ラストシャリナ",
         "1": "ピックアップライン",
         "5": "ベンヌ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 7009,
@@ -1091,7 +1142,8 @@
         "3": "ラストシャリナ",
         "1": "ピックアップライン",
         "5": "ベンヌ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 7010,
@@ -1142,7 +1194,8 @@
         "3": "ラストシャリナ",
         "1": "ピックアップライン",
         "5": "ベンヌ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 7011,
@@ -1207,7 +1260,8 @@
         "3": "ラストシャリナ",
         "1": "ピックアップライン",
         "5": "ベンヌ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 7012,
@@ -1349,7 +1403,8 @@
         "3": "ラストシャリナ",
         "1": "ピックアップライン",
         "5": "ベンヌ"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 7013,
@@ -1491,7 +1546,8 @@
         "3": "ラストシャリナ",
         "1": "ピックアップライン",
         "5": "ベンヌ"
-      }
+      },
+      "is_provisional": false
     }
   ],
   "training_evals": {}

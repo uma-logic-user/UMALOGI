@@ -4,11 +4,11 @@
   "date": "2026-04-18",
   "venue": "福島",
   "race_number": 6,
-  "distance": 2600,
-  "surface": "芝",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -42,7 +42,7 @@
       "jockey": "丹内祐次",
       "trainer": "加藤士津",
       "finish_time": "2:43.3",
-      "margin": "3.1/2",
+      "margin": "@",
       "win_odds": 2.7,
       "popularity": 1,
       "horse_weight": 468,
@@ -62,7 +62,7 @@
       "jockey": "丸山元気",
       "trainer": "上原佑紀",
       "finish_time": "2:43.3",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 90.7,
       "popularity": 12,
       "horse_weight": 366,
@@ -82,7 +82,7 @@
       "jockey": "吉田隼人",
       "trainer": "松尾卓哉",
       "finish_time": "2:43.4",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 73.9,
       "popularity": 10,
       "horse_weight": 474,
@@ -102,7 +102,7 @@
       "jockey": "松本大輝",
       "trainer": "池江泰寿",
       "finish_time": "2:43.5",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 7.8,
       "popularity": 3,
       "horse_weight": 450,
@@ -122,7 +122,7 @@
       "jockey": "石川裕紀",
       "trainer": "奥村武",
       "finish_time": "2:43.7",
-      "margin": "1",
+      "margin": "@",
       "win_odds": 3.0,
       "popularity": 2,
       "horse_weight": 458,
@@ -142,7 +142,7 @@
       "jockey": "松若風馬",
       "trainer": "森田直行",
       "finish_time": "2:43.8",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 17.0,
       "popularity": 6,
       "horse_weight": 488,
@@ -162,7 +162,7 @@
       "jockey": "田山旺佑",
       "trainer": "辻野泰之",
       "finish_time": "2:44.0",
-      "margin": "1",
+      "margin": "@",
       "win_odds": 34.4,
       "popularity": 8,
       "horse_weight": 416,
@@ -182,7 +182,7 @@
       "jockey": "富田暁",
       "trainer": "矢作芳人",
       "finish_time": "2:44.2",
-      "margin": "1.1/2",
+      "margin": "@",
       "win_odds": 18.7,
       "popularity": 7,
       "horse_weight": 436,
@@ -202,7 +202,7 @@
       "jockey": "長浜鴻緒",
       "trainer": "中舘英二",
       "finish_time": "2:44.3",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 7.9,
       "popularity": 4,
       "horse_weight": 470,
@@ -222,7 +222,7 @@
       "jockey": "荻野琢真",
       "trainer": "河嶋宏樹",
       "finish_time": "2:44.4",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 253.5,
       "popularity": 15,
       "horse_weight": 456,
@@ -242,7 +242,7 @@
       "jockey": "石神深道",
       "trainer": "和田正一",
       "finish_time": "2:44.8",
-      "margin": "2.1/2",
+      "margin": "@",
       "win_odds": 199.8,
       "popularity": 14,
       "horse_weight": 446,
@@ -262,7 +262,7 @@
       "jockey": "杉原誠人",
       "trainer": "田村康仁",
       "finish_time": "2:45.2",
-      "margin": "2.1/2",
+      "margin": "@",
       "win_odds": 90.2,
       "popularity": 11,
       "horse_weight": 448,
@@ -282,7 +282,7 @@
       "jockey": "城戸義政",
       "trainer": "宮地貴稔",
       "finish_time": "2:45.9",
-      "margin": "4",
+      "margin": "@",
       "win_odds": 169.1,
       "popularity": 13,
       "horse_weight": 436,
@@ -302,7 +302,7 @@
       "jockey": "菊沢一樹",
       "trainer": "深山雅史",
       "finish_time": "2:49.0",
-      "margin": "大",
+      "margin": "@",
       "win_odds": 67.7,
       "popularity": 9,
       "horse_weight": 530,
@@ -350,6 +350,12 @@
       "popularity": 5
     },
     {
+      "bet_type": "枠連",
+      "combination": "1",
+      "payout": 7005,
+      "popularity": null
+    },
+    {
       "bet_type": "馬連",
       "combination": "1-6",
       "payout": 140,
@@ -360,6 +366,18 @@
       "combination": "2-12",
       "payout": 1340,
       "popularity": 6
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1",
+      "payout": 3020,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 70000,
+      "popularity": 1
     },
     {
       "bet_type": "ワイド",
@@ -380,16 +398,34 @@
       "popularity": 47
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 40010,
+      "popularity": 60
+    },
+    {
       "bet_type": "馬単",
       "combination": "12→2",
       "payout": 3970,
       "popularity": 14
     },
     {
+      "bet_type": "馬単",
+      "combination": "2",
+      "payout": 12000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "2-6-12",
       "payout": 21050,
       "popularity": 50
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4",
+      "payout": 40612,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

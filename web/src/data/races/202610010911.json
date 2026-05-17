@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "メイショウシナノ",
-      "horse_id": "2020106635",
-      "sex_age": "牡3",
-      "weight_carried": 58.0,
-      "jockey": "浜中俊",
-      "trainer": "大橋勇樹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "サトノダイヤモンド",
-      "dam": "アルボナンザ",
-      "dam_sire": "キングカメハメハ"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 5,
       "horse_number": 6,
       "horse_name": "オーケーバーディー",
@@ -52,7 +32,7 @@
       "dam_sire": "ベーカバドBehkabad(仏)"
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 6,
       "horse_number": 9,
       "horse_name": "プルートマスター",
@@ -70,6 +50,26 @@
       "sire": "ロードカナロア",
       "dam": "アラドヴァル",
       "dam_sire": "シンボリクリスエス"
+    },
+    {
+      "rank": 3,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "メイショウシナノ",
+      "horse_id": "2020106635",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "浜中俊",
+      "trainer": "大橋勇樹",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "サトノダイヤモンド",
+      "dam": "アルボナンザ",
+      "dam_sire": "キングカメハメハ"
     },
     {
       "rank": null,
@@ -278,12 +278,6 @@
       "combination": "6",
       "payout": 840,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "13",
-      "payout": 13000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

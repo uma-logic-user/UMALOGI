@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 5,
-      "horse_number": 5,
-      "horse_name": "コスモアミマネラ",
-      "horse_id": "2021106768",
-      "sex_age": "牡3",
-      "weight_carried": 60.0,
-      "jockey": "石神深一",
-      "trainer": "柄崎将寿",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "Study of Man(愛)",
-      "dam": "ヴァニティールールズVanity Rules(英)",
-      "dam_sire": "New Approach"
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 5,
       "horse_number": 6,
       "horse_name": "アルカンサス",
@@ -52,7 +32,27 @@
       "dam_sire": "Orientate"
     },
     {
-      "rank": null,
+      "rank": 2,
+      "gate_number": 5,
+      "horse_number": 5,
+      "horse_name": "コスモアミマネラ",
+      "horse_id": "2021106768",
+      "sex_age": "牡3",
+      "weight_carried": 60.0,
+      "jockey": "石神深一",
+      "trainer": "柄崎将寿",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "Study of Man(愛)",
+      "dam": "ヴァニティールールズVanity Rules(英)",
+      "dam_sire": "New Approach"
+    },
+    {
+      "rank": 3,
       "gate_number": 8,
       "horse_number": 12,
       "horse_name": "バルサムノート",
@@ -258,12 +258,6 @@
       "combination": "6",
       "payout": 1560,
       "popularity": 7
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "12",
-      "payout": 12000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

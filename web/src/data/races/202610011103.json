@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "プルミエールパス",
-      "horse_id": "2021103451",
-      "sex_age": "牝3",
-      "weight_carried": 56.0,
-      "jockey": "小崎綾也",
-      "trainer": "河嶋宏樹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 4,
       "horse_number": 5,
       "horse_name": "ミキノバカラ",
@@ -52,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 5,
       "horse_number": 8,
       "horse_name": "キャンドルマス",
@@ -70,6 +50,26 @@
       "sire": "パイロPyro(米)",
       "dam": "アプト",
       "dam_sire": "アドマイヤムーン"
+    },
+    {
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "プルミエールパス",
+      "horse_id": "2021103451",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "小崎綾也",
+      "trainer": "河嶋宏樹",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
     },
     {
       "rank": null,
@@ -298,12 +298,6 @@
       "combination": "5",
       "payout": 1550,
       "popularity": 7
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "14",
-      "payout": 14000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

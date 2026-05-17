@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "ヒーローインチーフ",
-      "horse_id": "2021106661",
-      "sex_age": "騸3",
-      "weight_carried": 58.0,
-      "jockey": "丹内祐次",
-      "trainer": "吉田直弘",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 2,
       "horse_number": 3,
       "horse_name": "コウセキ",
@@ -52,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 7,
       "horse_number": 12,
       "horse_name": "ハリウッドメモリー",
@@ -61,6 +41,26 @@
       "weight_carried": 56.0,
       "jockey": "横山琉人",
       "trainer": "長谷川浩",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "ヒーローインチーフ",
+      "horse_id": "2021106661",
+      "sex_age": "騸3",
+      "weight_carried": 58.0,
+      "jockey": "丹内祐次",
+      "trainer": "吉田直弘",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -318,12 +318,6 @@
       "combination": "3",
       "payout": 410,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "15",
-      "payout": 15000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

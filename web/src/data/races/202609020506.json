@@ -4,11 +4,11 @@
   "date": "2026-04-11",
   "venue": "阪神",
   "race_number": 6,
-  "distance": 1200,
-  "surface": "芝",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "稍",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -52,7 +52,7 @@
       "jockey": "坂井瑠星",
       "trainer": "田中克典",
       "finish_time": "1:08.4",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 3.2,
       "popularity": 1,
       "horse_weight": 466,
@@ -82,7 +82,7 @@
       "jockey": "西村淳也",
       "trainer": "高野友和",
       "finish_time": "1:08.7",
-      "margin": "2",
+      "margin": "@",
       "win_odds": 19.7,
       "popularity": 6,
       "horse_weight": 456,
@@ -112,7 +112,7 @@
       "jockey": "古川奈穂",
       "trainer": "杉山佳明",
       "finish_time": "1:08.7",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 14.0,
       "popularity": 5,
       "horse_weight": 530,
@@ -142,7 +142,7 @@
       "jockey": "武豊",
       "trainer": "宮地貴稔",
       "finish_time": "1:09.0",
-      "margin": "2",
+      "margin": "@",
       "win_odds": 4.2,
       "popularity": 3,
       "horse_weight": 462,
@@ -172,7 +172,7 @@
       "jockey": "松山弘平",
       "trainer": "前川恭子",
       "finish_time": "1:09.1",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 31.1,
       "popularity": 8,
       "horse_weight": 472,
@@ -202,7 +202,7 @@
       "jockey": "団野大成",
       "trainer": "斉藤崇史",
       "finish_time": "1:09.2",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 23.0,
       "popularity": 7,
       "horse_weight": 482,
@@ -232,7 +232,7 @@
       "jockey": "北村友一",
       "trainer": "坂口智康",
       "finish_time": "1:09.2",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 8.4,
       "popularity": 4,
       "horse_weight": 488,
@@ -262,7 +262,7 @@
       "jockey": "松本大輝",
       "trainer": "本間忍",
       "finish_time": "1:09.3",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 123.1,
       "popularity": 14,
       "horse_weight": 526,
@@ -292,7 +292,7 @@
       "jockey": "菱田裕二",
       "trainer": "羽月友彦",
       "finish_time": "1:09.3",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 107.9,
       "popularity": 12,
       "horse_weight": 432,
@@ -322,7 +322,7 @@
       "jockey": "長岡禎仁",
       "trainer": "深山雅史",
       "finish_time": "1:09.6",
-      "margin": "1.3/4",
+      "margin": "@",
       "win_odds": 217.5,
       "popularity": 15,
       "horse_weight": 382,
@@ -352,7 +352,7 @@
       "jockey": "田山旺佑",
       "trainer": "小栗実",
       "finish_time": "1:09.7",
-      "margin": "1",
+      "margin": "@",
       "win_odds": 104.6,
       "popularity": 11,
       "horse_weight": 448,
@@ -382,7 +382,7 @@
       "jockey": "角田大和",
       "trainer": "中尾秀正",
       "finish_time": "1:10.1",
-      "margin": "2.1/2",
+      "margin": "@",
       "win_odds": 34.0,
       "popularity": 9,
       "horse_weight": 494,
@@ -412,7 +412,7 @@
       "jockey": "幸英明",
       "trainer": "高橋康之",
       "finish_time": "1:10.2",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 56.6,
       "popularity": 10,
       "horse_weight": 482,
@@ -442,7 +442,7 @@
       "jockey": "吉村誠之",
       "trainer": "森秀行",
       "finish_time": "1:10.3",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 121.5,
       "popularity": 13,
       "horse_weight": 450,
@@ -506,6 +506,12 @@
       "popularity": 1
     },
     {
+      "bet_type": "馬連",
+      "combination": "1",
+      "payout": 1030,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "3-14",
       "payout": 290,
@@ -524,16 +530,52 @@
       "popularity": 12
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 50021,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 80000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "14→3",
       "payout": 1120,
       "popularity": 1
     },
     {
+      "bet_type": "馬単",
+      "combination": "3",
+      "payout": 14000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "3-10-14",
       "payout": 3000,
       "popularity": 7
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "9",
+      "payout": 1103,
+      "popularity": 100
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2",
+      "payout": 11014,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "11",
+      "payout": 30012,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -620,7 +662,8 @@
         "15": "ミスターバッドガイ",
         "9": "エスティヴァリス",
         "5": "ゴールドヴィーナス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2016,
@@ -685,7 +728,8 @@
         "15": "ミスターバッドガイ",
         "9": "エスティヴァリス",
         "5": "ゴールドヴィーナス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2017,
@@ -736,7 +780,8 @@
         "15": "ミスターバッドガイ",
         "9": "エスティヴァリス",
         "5": "ゴールドヴィーナス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2018,
@@ -794,7 +839,8 @@
         "15": "ミスターバッドガイ",
         "9": "エスティヴァリス",
         "5": "ゴールドヴィーナス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2019,
@@ -852,7 +898,8 @@
         "15": "ミスターバッドガイ",
         "9": "エスティヴァリス",
         "5": "ゴールドヴィーナス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2020,
@@ -903,7 +950,8 @@
         "15": "ミスターバッドガイ",
         "9": "エスティヴァリス",
         "5": "ゴールドヴィーナス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2021,
@@ -982,7 +1030,8 @@
         "15": "ミスターバッドガイ",
         "9": "エスティヴァリス",
         "5": "ゴールドヴィーナス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2027,
@@ -1033,7 +1082,8 @@
         "15": "ミスターバッドガイ",
         "9": "エスティヴァリス",
         "5": "ゴールドヴィーナス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2028,
@@ -1126,7 +1176,8 @@
         "15": "ミスターバッドガイ",
         "9": "エスティヴァリス",
         "5": "ゴールドヴィーナス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2029,
@@ -1177,7 +1228,8 @@
         "15": "ミスターバッドガイ",
         "9": "エスティヴァリス",
         "5": "ゴールドヴィーナス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2030,
@@ -1228,7 +1280,8 @@
         "15": "ミスターバッドガイ",
         "9": "エスティヴァリス",
         "5": "ゴールドヴィーナス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2031,
@@ -1279,7 +1332,8 @@
         "15": "ミスターバッドガイ",
         "9": "エスティヴァリス",
         "5": "ゴールドヴィーナス"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 2032,
@@ -1358,7 +1412,8 @@
         "15": "ミスターバッドガイ",
         "9": "エスティヴァリス",
         "5": "ゴールドヴィーナス"
-      }
+      },
+      "is_provisional": true
     }
   ],
   "training_evals": {

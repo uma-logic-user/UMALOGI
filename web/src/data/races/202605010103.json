@@ -12,7 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 2,
       "horse_number": 2,
       "horse_name": "タイキブリッツェン",
@@ -32,15 +32,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 7,
-      "horse_name": "ミスターキャンベラ",
-      "horse_id": "2023101813",
+      "rank": 2,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "スティールヴォーグ",
+      "horse_id": "2023102958",
       "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "戸崎圭太",
-      "trainer": "稲垣幸雄",
+      "jockey": "田辺裕信",
+      "trainer": "田村康仁",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 11,
-      "horse_name": "スティールヴォーグ",
-      "horse_id": "2023102958",
+      "rank": 3,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "ミスターキャンベラ",
+      "horse_id": "2023101813",
       "sex_age": "牡3",
       "weight_carried": 57.0,
-      "jockey": "田辺裕信",
-      "trainer": "田村康仁",
+      "jockey": "戸崎圭太",
+      "trainer": "稲垣幸雄",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -318,12 +318,6 @@
       "combination": "2",
       "payout": 520,
       "popularity": 2
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "15",
-      "payout": 15000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

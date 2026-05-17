@@ -12,15 +12,15 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 7,
-      "horse_name": "サンデースマッシュ",
-      "horse_id": "2023107021",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "ルメール",
-      "trainer": "嘉藤貴行",
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "ナイスプレーアスク",
+      "horse_id": "2023105420",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "荻野極",
+      "trainer": "田村康仁",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -32,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 7,
       "horse_number": 14,
       "horse_name": "シャルムグリーン",
@@ -52,15 +52,15 @@
       "dam_sire": null
     },
     {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 15,
-      "horse_name": "ナイスプレーアスク",
-      "horse_id": "2023105420",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "荻野極",
-      "trainer": "田村康仁",
+      "rank": 3,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "サンデースマッシュ",
+      "horse_id": "2023107021",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "ルメール",
+      "trainer": "嘉藤貴行",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -338,12 +338,6 @@
       "combination": "15",
       "payout": 480,
       "popularity": 3
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "16",
-      "payout": 16000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

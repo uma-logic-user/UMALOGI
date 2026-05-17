@@ -12,27 +12,7 @@
   "year": "2026",
   "results": [
     {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "ランズダウンロード",
-      "horse_id": "2023107039",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "ルメール",
-      "trainer": "木村哲也",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null
-    },
-    {
-      "rank": null,
+      "rank": 1,
       "gate_number": 4,
       "horse_number": 4,
       "horse_name": "ディールメーカー",
@@ -52,7 +32,7 @@
       "dam_sire": null
     },
     {
-      "rank": null,
+      "rank": 2,
       "gate_number": 8,
       "horse_number": 10,
       "horse_name": "サーディンラン",
@@ -61,6 +41,26 @@
       "weight_carried": 57.0,
       "jockey": "佐々木大",
       "trainer": "武英智",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "ランズダウンロード",
+      "horse_id": "2023107039",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "ルメール",
+      "trainer": "木村哲也",
       "finish_time": null,
       "margin": "@",
       "win_odds": null,
@@ -238,12 +238,6 @@
       "combination": "4",
       "payout": 280,
       "popularity": 1
-    },
-    {
-      "bet_type": "単勝",
-      "combination": "11",
-      "payout": 11000,
-      "popularity": null
     },
     {
       "bet_type": "複勝",

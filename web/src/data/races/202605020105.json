@@ -4,11 +4,11 @@
   "date": "2026-04-25",
   "venue": "東京",
   "race_number": 5,
-  "distance": 1400,
-  "surface": "芝",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "晴",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
@@ -42,7 +42,7 @@
       "jockey": "ルメール",
       "trainer": "木村哲也",
       "finish_time": "1:21.6",
-      "margin": "1.1/2",
+      "margin": "@",
       "win_odds": 2.2,
       "popularity": 1,
       "horse_weight": 490,
@@ -62,7 +62,7 @@
       "jockey": "横山典弘",
       "trainer": "浅利英明",
       "finish_time": "1:21.6",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 13.5,
       "popularity": 5,
       "horse_weight": 528,
@@ -82,7 +82,7 @@
       "jockey": "佐藤翔馬",
       "trainer": "伊藤大士",
       "finish_time": "1:21.7",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 18.0,
       "popularity": 6,
       "horse_weight": 400,
@@ -102,7 +102,7 @@
       "jockey": "三浦皇成",
       "trainer": "高柳瑞樹",
       "finish_time": "1:22.0",
-      "margin": "1.3/4",
+      "margin": "@",
       "win_odds": 20.9,
       "popularity": 8,
       "horse_weight": 424,
@@ -122,7 +122,7 @@
       "jockey": "戸崎圭太",
       "trainer": "栗田徹",
       "finish_time": "1:22.0",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 7.0,
       "popularity": 4,
       "horse_weight": 424,
@@ -142,7 +142,7 @@
       "jockey": "津村明秀",
       "trainer": "宮田敬介",
       "finish_time": "1:22.1",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 60.7,
       "popularity": 11,
       "horse_weight": 434,
@@ -162,7 +162,7 @@
       "jockey": "原田和真",
       "trainer": "伊坂重信",
       "finish_time": "1:22.3",
-      "margin": "1.1/4",
+      "margin": "@",
       "win_odds": 257.1,
       "popularity": 14,
       "horse_weight": 422,
@@ -182,7 +182,7 @@
       "jockey": "横山武史",
       "trainer": "尾関知人",
       "finish_time": "1:22.4",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 6.9,
       "popularity": 3,
       "horse_weight": 406,
@@ -202,7 +202,7 @@
       "jockey": "岩田康誠",
       "trainer": "武井亮",
       "finish_time": "1:22.4",
-      "margin": "クビ",
+      "margin": "@",
       "win_odds": 66.1,
       "popularity": 12,
       "horse_weight": 440,
@@ -222,7 +222,7 @@
       "jockey": "ディー",
       "trainer": "加藤征弘",
       "finish_time": "1:22.5",
-      "margin": "3/4",
+      "margin": "@",
       "win_odds": 26.9,
       "popularity": 9,
       "horse_weight": 436,
@@ -242,7 +242,7 @@
       "jockey": "横山和生",
       "trainer": "長谷川浩",
       "finish_time": "1:22.5",
-      "margin": "ハナ",
+      "margin": "@",
       "win_odds": 48.3,
       "popularity": 10,
       "horse_weight": 482,
@@ -262,7 +262,7 @@
       "jockey": "田辺裕信",
       "trainer": "小島茂之",
       "finish_time": "1:22.5",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 315.5,
       "popularity": 16,
       "horse_weight": 468,
@@ -282,7 +282,7 @@
       "jockey": "矢野貴之",
       "trainer": "和田正一",
       "finish_time": "1:22.6",
-      "margin": "アタマ",
+      "margin": "@",
       "win_odds": 303.1,
       "popularity": 15,
       "horse_weight": 414,
@@ -302,7 +302,7 @@
       "jockey": "永島まな",
       "trainer": "武市康男",
       "finish_time": "1:22.7",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 145.8,
       "popularity": 13,
       "horse_weight": 442,
@@ -322,7 +322,7 @@
       "jockey": "木幡巧也",
       "trainer": "古賀慎明",
       "finish_time": "1:22.8",
-      "margin": "1/2",
+      "margin": "@",
       "win_odds": 448.4,
       "popularity": 17,
       "horse_weight": 420,
@@ -342,7 +342,7 @@
       "jockey": "長浜鴻緒",
       "trainer": "中舘英二",
       "finish_time": "1:23.0",
-      "margin": "1.1/2",
+      "margin": "@",
       "win_odds": 580.9,
       "popularity": 18,
       "horse_weight": 388,
@@ -362,7 +362,7 @@
       "jockey": "杉原誠人",
       "trainer": "田中博康",
       "finish_time": "1:23.2",
-      "margin": "1",
+      "margin": "@",
       "win_odds": 19.7,
       "popularity": 7,
       "horse_weight": 480,
@@ -416,6 +416,12 @@
       "popularity": 1
     },
     {
+      "bet_type": "馬連",
+      "combination": "1",
+      "payout": 2060,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "3-6",
       "payout": 250,
@@ -434,16 +440,52 @@
       "popularity": 11
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 10010,
+      "popularity": 20
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 30000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "3→6",
       "payout": 1300,
       "popularity": 4
     },
     {
+      "bet_type": "馬単",
+      "combination": "3",
+      "payout": 6000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "2-3-6",
       "payout": 2310,
       "popularity": 4
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "10",
+      "payout": 1102,
+      "popularity": 60
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2",
+      "payout": 10203,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "6",
+      "payout": 30004,
+      "popularity": null
     },
     {
       "bet_type": "三連単",
@@ -498,7 +540,8 @@
         "1": "シエラモレーナ",
         "18": "アルマサーガ",
         "4": "スターリットフレア"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6144,
@@ -559,7 +602,8 @@
         "1": "シエラモレーナ",
         "18": "アルマサーガ",
         "4": "スターリットフレア"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6145,
@@ -613,7 +657,8 @@
         "1": "シエラモレーナ",
         "18": "アルマサーガ",
         "4": "スターリットフレア"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6146,
@@ -667,7 +712,8 @@
         "1": "シエラモレーナ",
         "18": "アルマサーガ",
         "4": "スターリットフレア"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6147,
@@ -735,7 +781,8 @@
         "1": "シエラモレーナ",
         "18": "アルマサーガ",
         "4": "スターリットフレア"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6148,
@@ -880,7 +927,8 @@
         "1": "シエラモレーナ",
         "18": "アルマサーガ",
         "4": "スターリットフレア"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6166,
@@ -927,7 +975,8 @@
         "1": "シエラモレーナ",
         "18": "アルマサーガ",
         "4": "スターリットフレア"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6167,
@@ -1002,7 +1051,8 @@
         "1": "シエラモレーナ",
         "18": "アルマサーガ",
         "4": "スターリットフレア"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6168,
@@ -1056,7 +1106,8 @@
         "1": "シエラモレーナ",
         "18": "アルマサーガ",
         "4": "スターリットフレア"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6169,
@@ -1110,7 +1161,8 @@
         "1": "シエラモレーナ",
         "18": "アルマサーガ",
         "4": "スターリットフレア"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6170,
@@ -1164,7 +1216,8 @@
         "1": "シエラモレーナ",
         "18": "アルマサーガ",
         "4": "スターリットフレア"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6173,
@@ -1225,7 +1278,8 @@
         "1": "シエラモレーナ",
         "18": "アルマサーガ",
         "4": "スターリットフレア"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6174,
@@ -1391,7 +1445,8 @@
         "1": "シエラモレーナ",
         "18": "アルマサーガ",
         "4": "スターリットフレア"
-      }
+      },
+      "is_provisional": true
     },
     {
       "prediction_id": 6646,
@@ -1438,7 +1493,8 @@
         "1": "シエラモレーナ",
         "18": "アルマサーガ",
         "4": "スターリットフレア"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6647,
@@ -1499,7 +1555,8 @@
         "1": "シエラモレーナ",
         "18": "アルマサーガ",
         "4": "スターリットフレア"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6648,
@@ -1553,7 +1610,8 @@
         "1": "シエラモレーナ",
         "18": "アルマサーガ",
         "4": "スターリットフレア"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6649,
@@ -1607,7 +1665,8 @@
         "1": "シエラモレーナ",
         "18": "アルマサーガ",
         "4": "スターリットフレア"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6650,
@@ -1675,7 +1734,8 @@
         "1": "シエラモレーナ",
         "18": "アルマサーガ",
         "4": "スターリットフレア"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6651,
@@ -1820,7 +1880,8 @@
         "1": "シエラモレーナ",
         "18": "アルマサーガ",
         "4": "スターリットフレア"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6669,
@@ -1867,7 +1928,8 @@
         "1": "シエラモレーナ",
         "18": "アルマサーガ",
         "4": "スターリットフレア"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6670,
@@ -1942,7 +2004,8 @@
         "1": "シエラモレーナ",
         "18": "アルマサーガ",
         "4": "スターリットフレア"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6671,
@@ -1996,7 +2059,8 @@
         "1": "シエラモレーナ",
         "18": "アルマサーガ",
         "4": "スターリットフレア"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6672,
@@ -2050,7 +2114,8 @@
         "1": "シエラモレーナ",
         "18": "アルマサーガ",
         "4": "スターリットフレア"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6673,
@@ -2104,7 +2169,8 @@
         "1": "シエラモレーナ",
         "18": "アルマサーガ",
         "4": "スターリットフレア"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6676,
@@ -2165,7 +2231,8 @@
         "1": "シエラモレーナ",
         "18": "アルマサーガ",
         "4": "スターリットフレア"
-      }
+      },
+      "is_provisional": false
     },
     {
       "prediction_id": 6677,
@@ -2331,7 +2398,8 @@
         "1": "シエラモレーナ",
         "18": "アルマサーガ",
         "4": "スターリットフレア"
-      }
+      },
+      "is_provisional": false
     }
   ],
   "training_evals": {}
