@@ -5,7 +5,7 @@
 | 日付 | 変更内容 |
 |------|---------|
 | 2026-05-18 | 【U score 完全体ロードマップ追記（§6新設）】社長ビジョン「30因子完全体」への Phase 2-A〜C・Phase B のロードマップを §6 に追記。現在18因子(AUC 0.759)→目標30因子(AUC 0.80+)の具体的実装計画・弱点台帳(docs/7_weakness_ledger.md)との連携を明記。影響: docs/5_ml_roadmap.md |
-| 2026-05-18 | 【W-004 大衆心理乖離スコア実装】u_score.py にグループF(crowd 5%)追加・_calc_crowd_bias()新設・crowd_bias_ratio/uf_crowd_bias を算出。models.py の FEATURE_COLS に2列追加。bet_generator.py に _crowd_bias_ev_multiplier()新設し ManjiGenerator・HonmeiGenerator 両方の EV 調整に適用（過小評価馬→最大1.5x EV 向上、過大評価馬→最小0.5x EV 引下げ）。ドライラン再学習を実施し AUC / ROI 変化を計測。影響: src/ml/u_score.py, src/ml/models.py, src/ml/bet_generator.py |
+| 2026-05-18 | 【W-004 大衆心理乖離スコア実装・効果測定完了】u_score.py にグループF(crowd 5%)追加・_calc_crowd_bias()新設・crowd_bias_ratio/uf_crowd_bias を算出。models.py の FEATURE_COLS に2列追加（80→82特徴量）。bet_generator.py に _crowd_bias_ev_multiplier()新設し ManjiGenerator・HonmeiGenerator 両方の EV 調整に適用（過小評価馬→最大1.5x EV 向上、過大評価馬→最小0.5x EV 引下げ）。features.py の build_race_features() に market_prob 欠落バグも同時修正。ドライラン再学習: HonmeiModel AUC **0.7591 → 0.7679**（+0.0088向上）確認済み。影響: src/ml/u_score.py, src/ml/models.py, src/ml/bet_generator.py, src/ml/features.py |
 | 2026-05-18 | 【X世論分析 Phase A 実装】src/scraper/x_scraper.py 新規作成（Playwright stealth-mode・RateLimiter・競馬関連フィルタ・x_signals保存）。scripts/x_targets.json アカウントマスタ新規作成。src/database/schema.py に x_accounts/x_signals テーブル DDL 追加（インデックス4件含む）。DB テーブル作成確認済み。Phase B: x_signal_parser.py（Claude Haiku API で構造化）は平日実装予定。Phase C: FEATURE_COLS への x_consensus_score 統合はモデル再訓練とセット。※社長明示指令により週末凍結ルール例外適用。影響: src/scraper/x_scraper.py(新規), scripts/x_targets.json(新規), src/database/schema.py |
 | 2026-05-17 | 【U score 統合モデル ドライラン再学習完了】scripts/dry_run_retrain.py 実行。6,135レース/47,199サンプルで HonmeiModel・ManjiModel を U score 27列込みの 80特徴量で再学習。HonmeiModel CV AUC=**0.7591**（従来比 +0.152: 旧0.607→新0.759、U score 18因子の予測力向上を確認）。ManjiModel 正常完了（回帰モデルのためAUCなし）。エラー0件。総処理時間 60分（_build_train_df が3回呼ばれる設計上の制約）。モデルバイナリ: data/models/honmei_model.pkl (v20260517_232119) / data/models/manji_model.pkl (v20260517_234054)。影響: data/models/honmei_model.pkl, data/models/manji_model.pkl, data/models/history/ |
 | 2026-05-17 | 【U score Phase 1 実装 + BugFix 2件】src/ml/u_score.py 新規作成。18因子（A:能力6/B:人的4/C:コース3/D:調教2/E:血統3）を DB バッチ SQL で算出し u_score 合成スコア（0〜1）を FEATURE_COLS に追加（計26列追加）。features.py に _add_u_score() 統合。①features.py BugFix: build_race_features_for_simulate/build_race_features の両関数で race_id 列未追加のため UScoreEngine が KeyError でスキップされていた（df["race_id"]=race_id を追加）。②u_score.py BugFix: _days_since_last_race_batch で horse_ids 用プレースホルダーを race_ids クエリに流用しバインディング不一致が発生（ph_race を別途算出）。Phase 2: X シグナルスコア・PCI加速力は CLAUDE.md §12 Phase C で実装予定。影響: src/ml/u_score.py(新規), src/ml/features.py, src/ml/models.py |
@@ -156,7 +156,7 @@ threshold = 1.0 + 0.5 * (roi_30d < 0.9)   # ROI 低迷時に閾値引き上げ
 
 > **社長ビジョン**: 「1000以上の要素から厳選した30項目（加速力・PCI・不完全燃焼度など）、  
 > AIチームの目視分析、大衆心理のジレンマを排除した真の期待値算出」  
-> **現状**: Phase 1 として 18 因子実装・AUC 0.607 → **0.759** への向上を確認済み
+> **現状**: Phase 1+W-004 として 19 因子実装・AUC 0.607 → **0.768**（W-004追加後）への向上を確認済み
 
 ### Phase 2-A: ラップ系因子（最優先）
 

@@ -103,7 +103,7 @@
 | **実装概要** | `crowd_bias_ratio = win_rate_all / market_implied_prob`（学習特徴量）<br>市場乖離 EV 倍率: crowd_bias > 1.3 → 最大 1.5x EV ブースト<br>crowd_bias < 0.7 → 最小 0.5x EV ペナルティ<br>bet_generator.py の ManjiGenerator / HonmeiGenerator 両方に適用済み |
 | **実装ファイル** | `src/ml/u_score.py` (_calc_crowd_bias 新設・グループF追加・重み5%)<br>`src/ml/models.py` (FEATURE_COLS: uf_crowd_bias / crowd_bias_ratio 追加)<br>`src/ml/bet_generator.py` (_crowd_bias_ev_multiplier 新設・両Generator適用) |
 | **データ依存** | `market_prob` 列（features.py で `1/min(win_odds, 80)` として既存） |
-| **効果測定** | ドライラン再学習（2026-05-18）で AUC / ROI 変化を計測 |
+| **効果測定** | ドライラン再学習（2026-05-18）: HonmeiModel AUC **0.7591 → 0.7679**（+0.0088向上） |
 | **担当フェーズ** | Phase 2-B ✅ |
 
 #### W-005: X シグナルコンセンサス係数
