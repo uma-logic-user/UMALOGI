@@ -280,10 +280,12 @@ def _run(cmd: list[str], label: str, timeout: int = 3600) -> int:
         return -1
 
 
-# JVInit は失敗時に3回リトライ (3秒 × 3 = 9秒) するため、
-# タイムアウトは 30秒以上を確保しないとリトライ完了前にKillされる。
+# JVLink 起動タイムアウト設計値:
+#   _kill_stale_py32(): 親チェーン3段×3秒 + wmic 8秒 = 最大 17秒
+#   JVInit 3リトライ: 3秒 × 3 = 9秒
+#   合計最悪: 26秒 → マージン込みで 60秒
 # 旧値 10秒 は JVInit 失敗リトライ中にタイムアウトし GUI_BLOCKED 誤判定を招いていた。
-_JVLINK_STARTUP_TIMEOUT = 30  # JVLink初期化タイムアウト秒数（GUIダイアログ検出用）
+_JVLINK_STARTUP_TIMEOUT = 60  # JVLink初期化タイムアウト秒数（GUIダイアログ検出用）
 
 
 def _run_jvlink(

@@ -78,16 +78,16 @@ def _kill_stale_py32(exclude_pid: int | None = None) -> int:
     """
     my_pid = exclude_pid if exclude_pid is not None else os.getpid()
 
-    # 保護対象PIDセット: 自分 + 親プロセスチェーン
+    # 保護対象PIDセット: 自分 + 直接の親のみ（wmic を最小限に抑えて高速化）
     protected_pids: set[int] = {my_pid}
     try:
-        # wmic で親PIDを辿る（psutil 不要）
+        # 親チェーンは 3 段まで（10段は wmic コストが高すぎる）
         _cur = my_pid
-        for _ in range(10):  # 最大10段上まで辿る
+        for _ in range(3):
             ppid_res = subprocess.run(
                 ["wmic", "process", "where", f"ProcessId={_cur}",
                  "get", "ParentProcessId"],
-                capture_output=True, encoding="utf-8", errors="replace", timeout=5,
+                capture_output=True, encoding="utf-8", errors="replace", timeout=3,
             )
             for _ln in ppid_res.stdout.splitlines():
                 _ln = _ln.strip()
@@ -109,7 +109,7 @@ def _kill_stale_py32(exclude_pid: int | None = None) -> int:
         result = subprocess.run(
             ["wmic", "process", "where", "Name='python.exe'",
              "get", "ProcessId,ExecutablePath"],
-            capture_output=True, encoding="utf-8", errors="replace", timeout=15,
+            capture_output=True, encoding="utf-8", errors="replace", timeout=8,
         )
         for line in result.stdout.splitlines():
             line = line.strip()
