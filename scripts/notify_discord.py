@@ -27,9 +27,8 @@ from typing import Any
 import requests
 from dotenv import load_dotenv
 
-load_dotenv()
-
-ROOT         = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent
+load_dotenv(ROOT / ".env", override=False)
 PREDICTIONS  = ROOT / "data" / "predictions"
 EV_THRESHOLD = 1.0
 

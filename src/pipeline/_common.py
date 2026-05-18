@@ -62,10 +62,13 @@ def build_output_json(
     ev_scores: pd.Series,
     honmei_bets: object,
     manji_bets: object,
+    provisional: bool = False,
 ) -> dict:
     """UI 用の JSON ペイロードを組み立てる。
 
     各馬に honmei_score / ev_score / kelly_fraction / manji_ev を付与する。
+    provisional=True の場合はオッズ非依存スコアのみ有効とし、
+    ev_recommend は空にして EV 基準の買い推奨を出力しない。
     """
     def _int_or_none(v: object) -> int | None:
         return int(v) if (v is not None and pd.notna(v) and v != 0) else None  # type: ignore[arg-type]
@@ -102,7 +105,8 @@ def build_output_json(
         }
         horses.append(entry)
 
-        if ev_val >= 1.0:
+        # provisional モードではオッズ未取得のため EV 推奨は出力しない
+        if not provisional and ev_val >= 1.0:
             ev_recommend.append({
                 "horse_number":   num,
                 "horse_name":     entry["horse_name"],

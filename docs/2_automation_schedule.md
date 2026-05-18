@@ -4,6 +4,9 @@
 
 | 日付 | 変更内容 |
 |------|---------|
+| 2026-05-16 | 【today_auto_runner 耐障害性強化】①ThreadPoolExecutorを prerace/postrace に完全分離（umalogi-pre max=12, umalogi-post max=40）→ postrace 長期リトライが prerace 発火をブロックしない。②PIDファイルロック(_LOCK_FILE)で重複起動を防止。③例外ハンドラを「1回リトライしてbreak→プロセス死亡」から「無限continueリトライ」に修正。④postrace再試行を300s×8→120s×20に変更（最大40分同等）。⑤scheduler.pyのjob_today_auto_runner()に自動リスタートループ追加（rc!=0かつ19時前なら30秒後再起動）。影響: scripts/today_auto_runner.py, scripts/scheduler.py |
+| 2026-05-13 | WIN5完全実装: job_win5_result_fetch()追加（土日17:15 netkeiba WIN5結果取得→win5_results保存）。job_win5_prediction()エラー時Discord🚨通知追加。start_ui.bat/start_ai.bat 分離。影響: scripts/scheduler.py, scripts/fetch_win5_result.py, src/database/schema.py, src/database/init_db.py |
+| 2026-05-13 | WIN5沈黙バグ修正: job_win5_prediction()に_mark_job_done()追加（スキップ・成功時どちらも）。logger.info()の%,.0fフォーマットバグ修正→f-string化。原因特定: 5/9はno such column:win_oddsで失敗、5/10はPC停止でスケジューラー不在。影響: scripts/scheduler.py, src/pipeline/win5.py |
 | 2026-05-12 | Day2 SRE: weekly_backup.py 追加（毎週月曜06:00、ZIP 12世代保持）。scheduler.py に job_weekly_backup() 登録。影響: scripts/weekly_backup.py, scripts/scheduler.py |
 | 2026-05-11 | モバイルアクセス基盤: Tailscale VPN + HKCU Run 自動起動方式。install_autostart.ps1 をレジストリ方式に刷新。影響: scripts/install_autostart.ps1 |
 | 2026-05-10 | 初版作成。週次オートパイロットサイクル全体フロー記述 |

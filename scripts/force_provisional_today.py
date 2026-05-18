@@ -43,7 +43,7 @@ def main(target_date: str | None = None) -> None:
     if target_date is None:
         target_date = date.today().strftime("%Y%m%d")
 
-    formatted = f"{target_date[:4]}/{target_date[4:6]}/{target_date[6:8]}"
+    formatted = f"{target_date[:4]}-{target_date[4:6]}-{target_date[6:8]}"
     logger.info("暫定予想強制生成: 対象日=%s (%s)", target_date, formatted)
 
     conn = init_db()

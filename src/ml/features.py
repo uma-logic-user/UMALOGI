@@ -252,7 +252,9 @@ class FeatureBuilder:
             })
 
         df = pd.DataFrame(records)
+        df["race_id"] = race_id  # UScoreEngine が基準日導出に使用
         df = self._add_intra_race_features(df)
+        df = self._add_u_score(df)
         logger.info(
             "[SIMULATE] 特徴量生成 race_id=%s: %d 頭 × %d 特徴量 (リーク除外済み)",
             race_id, len(df), df.shape[1],
@@ -386,12 +388,31 @@ class FeatureBuilder:
             })
 
         df = pd.DataFrame(records)
+        df["race_id"] = race_id  # UScoreEngine が基準日導出に使用
         df = self._add_intra_race_features(df)
+        df = self._add_u_score(df)
         logger.info(
             "特徴量生成 race_id=%s: %d 頭 × %d 特徴量",
             race_id, len(df), df.shape[1],
         )
         return df
+
+    # ── U Score 統合 ───────────────────────────────────────────
+
+    def _add_u_score(self, df: pd.DataFrame) -> pd.DataFrame:
+        """
+        UScoreEngine を呼び出して 18 因子 + u_score を DataFrame に追加する。
+
+        インポートエラーや計算エラーが起きても元の df をそのまま返すため、
+        U score 未対応の環境でも既存パイプラインは正常稼働する。
+        """
+        try:
+            from src.ml.u_score import UScoreEngine
+            engine = UScoreEngine(self._conn)
+            return engine.calc(df)
+        except Exception as exc:
+            logger.warning("U score 計算をスキップ（エラー: %s）", exc)
+            return df
 
     # ── 内部メソッド ───────────────────────────────────────────
 

@@ -76,13 +76,13 @@ def test_send_text_no_url_skips(caplog: pytest.LogCaptureFixture) -> None:
 # ── notify_skip ──────────────────────────────────────────────────
 
 
-def test_notify_skip_logs_and_sends() -> None:
+def test_notify_skip_logs_only(caplog: pytest.LogCaptureFixture) -> None:
     n = _make_notifier()
-    with patch("src.notification.discord_notifier.requests.post", return_value=_mock_response()) as mock_post:
-        n.notify_skip("202505050701", "オッズ欠損 100%")
-    mock_post.assert_called_once()
-    content = mock_post.call_args[1]["json"]["content"]
-    assert "見送り" in content
+    with patch("src.notification.discord_notifier.requests.post") as mock_post:
+        with caplog.at_level("WARNING", logger="src.notification.discord_notifier"):
+            n.notify_skip("202505050701", "オッズ欠損 100%")
+    mock_post.assert_not_called()
+    assert "見送り" in caplog.text
 
 
 # ── notify_scraping_alert ─────────────────────────────────────────

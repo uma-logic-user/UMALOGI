@@ -37,6 +37,8 @@ import os
 import sqlite3
 from pathlib import Path
 
+from src.utils.text import ensure_clean
+
 from .schema import DDL_STATEMENTS  # noqa: F401 (re-exported for legacy imports)
 
 logger = logging.getLogger(__name__)
@@ -129,6 +131,10 @@ def init_db(db_path: Path | None = None) -> sqlite3.Connection:
     conn.execute("PRAGMA temp_store   = MEMORY")
     # mmap_size=256MB    : メモリマップ I/O で大規模 SELECT を高速化
     conn.execute("PRAGMA mmap_size    = 268435456")
+    # busy_timeout=5000  : 他プロセスがDBロック中でも 5 秒待機してリトライ（ロック競合対策）
+    conn.execute("PRAGMA busy_timeout = 5000")
+    # wal_autocheckpoint=1000 : WAL が 1000 ページ蓄積したら自動チェックポイント
+    conn.execute("PRAGMA wal_autocheckpoint = 1000")
     # foreign_keys=ON    : FK 制約を有効化
     conn.execute("PRAGMA foreign_keys = ON")
 
@@ -152,6 +158,8 @@ def init_db(db_path: Path | None = None) -> sqlite3.Connection:
     _migrate_fix_prediction_results_fk(conn)     # 9. prediction_results FK 修正
     _migrate_add_rank_guard_triggers(conn)       # 10. rank > 18 防止トリガー
     _migrate_purge_binary_horse_names(conn)      # 11. バイナリゴミ馬名レコード削除
+    _migrate_recreate_analytics_view(conn)       # 12. v_analytics ビュー作成/更新
+    _migrate_create_win5_results(conn)           # 13. win5_results テーブル作成
 
     logger.info("DB 初期化完了: %s", path)
     return conn
@@ -175,6 +183,39 @@ def _migrate_races_new_columns(conn: sqlite3.Connection) -> None:
                 "ALTER TABLE races ADD COLUMN track_direction TEXT NOT NULL DEFAULT ''"
             )
         logger.info("マイグレーション: races.track_direction 列を追加しました")
+
+
+def _migrate_create_win5_results(conn: sqlite3.Connection) -> None:
+    """win5_results テーブルが存在しない場合に作成する。"""
+    tables = [r[0] for r in conn.execute("SELECT name FROM sqlite_master WHERE type='table'").fetchall()]
+    if "win5_results" not in tables:
+        with conn:
+            conn.execute("""
+                CREATE TABLE win5_results (
+                    id              INTEGER PRIMARY KEY AUTOINCREMENT,
+                    race_date       TEXT    NOT NULL UNIQUE,
+                    race_ids        TEXT    NOT NULL,
+                    winning_numbers TEXT    NOT NULL,
+                    payout          INTEGER NOT NULL DEFAULT 0,
+                    scraped_at      TEXT    NOT NULL DEFAULT (datetime('now', 'localtime'))
+                )
+            """)
+            conn.execute("CREATE INDEX IF NOT EXISTS idx_win5r_date ON win5_results(race_date)")
+        logger.info("マイグレーション: win5_results テーブルを作成しました")
+
+
+def _migrate_recreate_analytics_view(conn: sqlite3.Connection) -> None:
+    """v_analytics ビューを DROP → CREATE で最新定義に再構築する。"""
+    analytics_ddl = next(
+        (ddl for ddl in DDL_STATEMENTS if "v_analytics" in ddl and "CREATE VIEW" in ddl),
+        None,
+    )
+    if analytics_ddl is None:
+        return
+    with conn:
+        conn.execute("DROP VIEW IF EXISTS v_analytics")
+        conn.execute(analytics_ddl)
+    logger.info("マイグレーション: v_analytics ビューを再作成しました")
 
 
 def _migrate_recreate_mart_view(conn: sqlite3.Connection) -> None:
@@ -702,7 +743,9 @@ def insert_race(conn: sqlite3.Connection, race: "RaceInfo") -> None:  # type: ig
                         updated_at = datetime('now', 'localtime')
                     """,
                     (r.horse_id, r.horse_name,
-                     r.pedigree.sire, r.pedigree.dam, r.pedigree.dam_sire),
+                     ensure_clean(r.pedigree.sire),
+                     ensure_clean(r.pedigree.dam),
+                     ensure_clean(r.pedigree.dam_sire)),
                 )
 
             conn.execute(
@@ -761,10 +804,12 @@ def insert_prediction(
     Returns:
         新規 prediction.id
     """
-    _VALID_BASE_TYPES = {"卍", "本命", "WIN5", "Oracle", "HitFocus"}
+    _VALID_BASE_TYPES = {"卍", "本命", "WIN5", "Oracle", "HitFocus", "Alpha-Payout"}
     base = model_type.split("(")[0]
     if base not in _VALID_BASE_TYPES:
-        raise ValueError(f"model_type のベースは '卍' / '本命' / 'WIN5' / 'Oracle' / 'HitFocus' を指定してください: {model_type!r}")
+        raise ValueError(
+            f"model_type のベースは '卍' / '本命' / 'WIN5' / 'Oracle' / 'HitFocus' / 'Alpha-Payout' を指定してください: {model_type!r}"
+        )
 
     with conn:
         cur = conn.execute(

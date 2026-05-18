@@ -9,16 +9,26 @@ export async function GET(req: NextRequest) {
   try {
     const db = getDb()
     const { searchParams } = req.nextUrl
-    const limit  = Math.min(parseInt(searchParams.get('limit')  ?? '500', 10), 2000)
+    const limit  = Math.min(parseInt(searchParams.get('limit')  ?? '2000', 10), 5000)
     const offset = parseInt(searchParams.get('offset') ?? '0', 10)
+    const dateFilter = searchParams.get('date') ?? null
 
-    const races = db.prepare(`
-      SELECT race_id, race_name, date, venue, race_number,
-             distance, surface, track_direction, weather, condition
-      FROM races
-      ORDER BY date DESC, race_id
-      LIMIT ? OFFSET ?
-    `).all(limit, offset) as Record<string, unknown>[]
+    const races = dateFilter
+      ? (db.prepare(`
+          SELECT race_id, race_name, date, venue, race_number,
+                 distance, surface, track_direction, weather, condition
+          FROM races
+          WHERE date = ?
+          ORDER BY race_id
+          LIMIT ? OFFSET ?
+        `).all(dateFilter, limit, offset) as Record<string, unknown>[])
+      : (db.prepare(`
+          SELECT race_id, race_name, date, venue, race_number,
+                 distance, surface, track_direction, weather, condition
+          FROM races
+          ORDER BY date DESC, race_id
+          LIMIT ? OFFSET ?
+        `).all(limit, offset) as Record<string, unknown>[])
 
     if (races.length === 0) {
       return NextResponse.json([])

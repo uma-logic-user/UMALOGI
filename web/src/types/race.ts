@@ -65,6 +65,7 @@ export interface RacePayout {
   combination: string   // "14" / "7-14" / "14→7→16"
   payout:      number   // 払戻金（100円あたり）
   popularity:  number | null
+  race_id?:    string   // 全レース統合表示時に設定（cross-race照合排除用）
 }
 
 /** races.json の各エントリ（レース情報 + 結果 + 払戻） */
@@ -125,8 +126,11 @@ export interface Prediction {
   payout:          number | null
   profit:          number | null
   roi:             number | null
+  invested?:       number | null   // n_tickets × 100（API で計算）
   horses:          PredictionHorse[]
   horse_num_to_name?: Record<string, string>
+  /** model_type に "(暫定)" が含まれる場合 true — オッズ未取得の金曜夜暫定予想 */
+  is_provisional?: boolean
 }
 
 /** races/{race_id}.json 内の予想（Prediction のサブセット） */

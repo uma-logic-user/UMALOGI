@@ -9,38 +9,71 @@ export async function GET(req: NextRequest) {
   try {
     const db = getDb()
     const { searchParams } = req.nextUrl
-    const limit = Math.min(parseInt(searchParams.get('limit') ?? '1000', 10), 5000)
+    const limit = Math.min(parseInt(searchParams.get('limit') ?? '50000', 10), 50000)
+    const dateFilter = searchParams.get('date') ?? null
 
-    const preds = db.prepare(`
-      SELECT
-        p.id            AS prediction_id,
-        p.race_id,
-        r.race_name,
-        r.date,
-        r.venue,
-        r.race_number,
-        r.surface,
-        r.distance,
-        r.weather,
-        r.condition,
-        p.model_type,
-        p.bet_type,
-        p.confidence,
-        p.expected_value,
-        p.recommended_bet,
-        p.combination_json,
-        p.notes,
-        p.created_at,
-        pr.is_hit,
-        pr.payout,
-        pr.profit,
-        pr.roi
-      FROM predictions p
-      JOIN  races r             ON p.race_id = r.race_id
-      LEFT JOIN prediction_results pr ON p.id = pr.prediction_id
-      ORDER BY p.created_at DESC
-      LIMIT ?
-    `).all(limit) as Record<string, unknown>[]
+    const preds = dateFilter
+      ? (db.prepare(`
+          SELECT
+            p.id            AS prediction_id,
+            p.race_id,
+            r.race_name,
+            r.date,
+            r.venue,
+            r.race_number,
+            r.surface,
+            r.distance,
+            r.weather,
+            r.condition,
+            p.model_type,
+            p.bet_type,
+            p.confidence,
+            p.expected_value,
+            p.recommended_bet,
+            p.combination_json,
+            p.notes,
+            p.created_at,
+            pr.is_hit,
+            pr.payout,
+            pr.profit,
+            pr.roi
+          FROM predictions p
+          JOIN  races r             ON p.race_id = r.race_id
+          LEFT JOIN prediction_results pr ON p.id = pr.prediction_id
+          WHERE r.date = ?
+          ORDER BY p.created_at DESC
+          LIMIT ?
+        `).all(dateFilter, limit) as Record<string, unknown>[])
+      : (db.prepare(`
+          SELECT
+            p.id            AS prediction_id,
+            p.race_id,
+            r.race_name,
+            r.date,
+            r.venue,
+            r.race_number,
+            r.surface,
+            r.distance,
+            r.weather,
+            r.condition,
+            p.model_type,
+            p.bet_type,
+            p.confidence,
+            p.expected_value,
+            p.recommended_bet,
+            p.combination_json,
+            p.notes,
+            p.created_at,
+            pr.is_hit,
+            pr.payout,
+            pr.profit,
+            pr.roi
+          FROM predictions p
+          JOIN  races r             ON p.race_id = r.race_id
+          LEFT JOIN prediction_results pr ON p.id = pr.prediction_id
+          ORDER BY p.created_at DESC
+          LIMIT ?
+        `).all(limit) as Record<string, unknown>[])
 
     // N+1 → バルク IN 句: prediction_horses を全件まとめて取得してメモリで結合
     const predIds = preds.map(p => p.prediction_id as number)
@@ -89,7 +122,8 @@ export async function GET(req: NextRequest) {
     }
 
     const output = preds.map(rowToObj).map((pd) => {
-      const dateStr = pd.date as string | null
+      const dateStr   = pd.date as string | null
+      const modelType = (pd.model_type as string) ?? ''
       if (!pd.race_name) {
         pd.race_name = pd.race_number != null ? `第${pd.race_number}レース` : 'レース'
       }
@@ -101,9 +135,11 @@ export async function GET(req: NextRequest) {
         combination_json:  sortedCombinations(comboJson, betType),
         bet_form:          betForm,
         n_tickets:         nTickets,
+        invested:          nTickets * 100,
         year:              dateStr ? dateStr.slice(0, 4) : null,
         horses:            horsesByPred.get(pd.prediction_id as number) ?? [],
         horse_num_to_name: horseNumToNameByRace.get(pd.race_id as string) ?? {},
+        is_provisional:    modelType.includes('(暫定)'),
       }
     })
 

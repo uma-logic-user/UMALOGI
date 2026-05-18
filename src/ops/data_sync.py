@@ -40,7 +40,7 @@ _PROJECT_ROOT = Path(__file__).resolve().parents[2]
 try:
     from dotenv import load_dotenv as _load_dotenv
 
-    _load_dotenv(_PROJECT_ROOT / ".env", override=True)
+    _load_dotenv(_PROJECT_ROOT / ".env", override=False)
 except ImportError:
     pass
 
@@ -238,7 +238,14 @@ def sync_race_results(from_date: str | None = None, stored: bool = False) -> int
             )
     else:
         # ── Stage 1: OPT_NORMAL (差分ダウンロード) ──────────────────
-        stats = loader.load(dataspec=DATASPEC_RACE, fromtime=from_dt, option=OPT_NORMAL)
+        # RuntimeError (-503 等) は OPT_NORMAL ポインタ消費済みの既知パターン → Stage 2 へ
+        try:
+            stats = loader.load(dataspec=DATASPEC_RACE, fromtime=from_dt, option=OPT_NORMAL)
+        except RuntimeError as e:
+            logger.warning(
+                "Stage1 OPT_NORMAL で RuntimeError (%s) → Stage2 OPT_STORED にフォールバック", e
+            )
+            stats = {"total_read": 0, "open_code": -1}
 
         # ── Stage 2: OPT_STORED (ローカルキャッシュ) ────────────────
         # 条件: total_read==0 OR 対象日を指定したのに race_results が 0 のまま

@@ -4,6 +4,10 @@
 
 | 日付 | 変更内容 |
 |------|---------|
+| 2026-05-18 | Race Explorer過去データ表示バグ修正: `/api/predictions` のLIMIT 1000→50000（5/17当日1,176件でLIMIT消化→5/16以前の予想がゼロになる致命バグ）。`/api/races` のLIMIT 500→2000（将来的なデータ増加対応）。`RaceTree.formatDate()` を正規表現`/[-/]/`で分割しYYYY-MM-DD形式に対応（スラッシュ期待バグ）。.nextクリーンビルド実施。影響: `web/src/app/api/predictions/route.ts`, `web/src/app/api/races/route.ts`, `web/src/components/RaceTree.tsx` |
+| 2026-05-13 | WIN5タブ予実比較実装: Win5Panel.tsx にactual_numbers/per_race_hit表示追加。各レース行に「AI予想バッジ(SABC)＋確定1着馬番★」「的中✓/外れ✗バッジ」。全体サマリー（的中回数・累計払戻）追加。影響: `web/src/components/Win5Panel.tsx`, `web/src/app/api/win5/route.ts` |
+| 2026-05-13 | モバイルスクロール完全修正: `.app-main/.app-sidebar` に `min-width:0; overflow-x:hidden; max-width:100vw` を追加してCSS Grid min-widthバグを根本解決。AppShellのコンテンツラッパーに `min-w-0 overflow-x-hidden` 追加。影響: `globals.css`, `AppShell.tsx` |
+| 2026-05-12 | モバイルUIレイアウト崩壊修正: NavBar nav links を `hidden md:flex` でスマホ非表示化・FinancialDashboard モデルボタンを `text-xs px-2 py-1 sm:text-sm sm:px-4 sm:py-2` でレスポンシブ化・TabViewタブバーに `overflow-x-auto shrink-0 whitespace-nowrap`・HitHistory モデルフィルターの `ml-auto` を削除して `flex-wrap` 化・globals.css に `flex-shrink: 0` 追加。影響: `NavBar.tsx`, `FinancialDashboard.tsx`, `TabView.tsx`, `HitHistory.tsx`, `globals.css` |
 | 2026-05-12 | モバイル完全最適化: PredictionsPanel/RaceDetail/RaceTable の全テーブルをモバイルカード化。モデルタブ（ALPHA/卍/本命）・ベットスリップカード・EV大型表示(2rem)・44px タップ領域。影響: `web/src/components/PredictionsPanel.tsx`, `RaceDetail.tsx`, `RaceTable.tsx`, `web/src/app/globals.css` |
 | 2026-05-10 | 初版作成。Discord 3セクション Embed レイアウト・Next.js ダッシュボード仕様記述 |
 | 2026-05-10 | Hit Flash（的中速報）追加: `fetch_race_result.py:_send_hit_flash()` — 評価完了直後に予想チャンネルへ Embed 送信。的中あり=🎉予想ch/なし=🏁システムch |

@@ -137,15 +137,15 @@ export default function FinancialDashboard({ data, onSelectRace }: Props) {
     <div className="space-y-5">
 
       {/* ── ヘッダー：モデルタブ ──────────────────────────────── */}
-      <div className="flex items-center justify-between flex-wrap gap-3">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3">
         <h1 className="text-xl font-bold neon-text tracking-[0.2em]">収支管理</h1>
-        <div className="flex gap-2 flex-wrap">
+        <div className="flex gap-1.5 sm:gap-2 flex-wrap">
           {availableModels.map(m => {
             const active = model === m
             const cyan   = modelColor(m) === 'cyan'
             return (
               <button key={m} onClick={() => switchModel(m)}
-                className="px-4 py-2 text-sm font-bold rounded tracking-wider transition-all"
+                className="px-2 py-1 sm:px-4 sm:py-2 text-xs sm:text-sm font-bold rounded tracking-wide sm:tracking-wider transition-all"
                 style={active ? {
                   background: cyan ? 'rgba(0,200,255,0.15)' : 'rgba(255,215,0,0.15)',
                   border: `1px solid ${cyan ? 'var(--neon-cyan)' : 'var(--neon-gold)'}`,
@@ -214,14 +214,14 @@ export default function FinancialDashboard({ data, onSelectRace }: Props) {
           {/* ── 粒度トグル＋収支テーブル ──────────────────────── */}
           <div className="neon-card overflow-hidden">
             {/* ヘッダー行：トグル＋累計損益 */}
-            <div className="px-5 py-3 border-b border-[rgba(0,200,255,0.12)] flex items-center justify-between gap-4 flex-wrap">
+            <div className="px-3 sm:px-5 py-3 border-b border-[rgba(0,200,255,0.12)] flex items-center justify-between gap-2 sm:gap-4 flex-wrap">
               {/* 粒度トグル */}
-              <div className="flex gap-1 p-1 rounded"
+              <div className="flex gap-0.5 sm:gap-1 p-0.5 sm:p-1 rounded"
                 style={{ background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(0,200,255,0.12)' }}>
                 {GRAN_LABELS.map(g => (
                   <button key={g.id}
                     onClick={() => { setGranularity(g.id); setExpKey(null); setExpBet(null) }}
-                    className="px-4 py-1.5 text-sm font-bold rounded transition-all"
+                    className="px-2 py-1 sm:px-4 sm:py-1.5 text-xs sm:text-sm font-bold rounded transition-all"
                     style={granularity === g.id ? {
                       background: isCyan ? 'rgba(0,200,255,0.2)' : 'rgba(255,215,0,0.2)',
                       color: accent,

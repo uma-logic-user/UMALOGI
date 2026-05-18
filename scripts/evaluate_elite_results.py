@@ -24,6 +24,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import random
 import sqlite3
 import sys
 from collections import defaultdict
@@ -36,22 +37,30 @@ if str(_ROOT) not in sys.path:
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-_MAIN_DB      = _ROOT / "data" / "umalogi.db"
-_ELITE_CSV    = _ROOT / "logs" / "fukusho_elite_monitor.csv"
+_MAIN_DB = _ROOT / "data" / "umalogi.db"
+_ELITE_CSV = _ROOT / "logs" / "fukusho_elite_monitor.csv"
 _PROTOCOL_LOG = _ROOT / "logs" / "elite_protocol.json"
-_TARGET       = 30       # OOS 検証目標レース数
-_ROI_PASS     = 100.0    # 合格ライン (%)
+_TARGET = 30  # OOS 検証目標レース数
+_ROI_PASS = 100.0  # 合格ライン (%)
 # 発見時の in-sample フィルター条件（参照用）
 _ORIGINAL_FILTER = {
-    "venues":        ["東京", "京都", "福島", "新潟"],
-    "n_horses_min":  13,
+    "venues": ["東京", "京都", "福島", "新潟"],
+    "n_horses_min": 13,
     "edge_threshold": 1.1,
 }
 
 # ── CSV I/O ──────────────────────────────────────────────────────────────────
 
-_CSV_COLS = ["date", "race_id", "venue", "n_horses", "horse_numbers",
-             "edge", "result", "payout"]
+_CSV_COLS = [
+    "date",
+    "race_id",
+    "venue",
+    "n_horses",
+    "horse_numbers",
+    "edge",
+    "result",
+    "payout",
+]
 
 
 def _load_csv() -> list[dict]:
@@ -70,6 +79,7 @@ def _save_csv(rows: list[dict]) -> None:
 
 
 # ── DB 照合 ───────────────────────────────────────────────────────────────────
+
 
 def _conn() -> sqlite3.Connection:
     conn = sqlite3.connect(str(_MAIN_DB))
@@ -137,6 +147,7 @@ def _lookup_race_result(
 
 # ── ROI 計算 ─────────────────────────────────────────────────────────────────
 
+
 def _parse_horse_nums(s: str) -> list[int]:
     try:
         return [int(x) for x in s.split() if x]
@@ -198,25 +209,28 @@ def _calc_stats(rows: list[dict]) -> dict:
     period = f"{min(dates)} ~ {max(dates)}" if dates else "—"
 
     return {
-        "n_done":     len(done),
-        "n_bets":     n_bets,
+        "n_done": len(done),
+        "n_bets": n_bets,
         "investment": total_investment,
-        "ret":        total_return,
-        "pnl":        pnl_total,
-        "roi":        roi,
-        "hit_rate":   hit_rate,
-        "hit_rows":   hit_rows,
-        "max_dd":     max_dd,
-        "period":     period,
+        "ret": total_return,
+        "pnl": pnl_total,
+        "roi": roi,
+        "hit_rate": hit_rate,
+        "hit_rows": hit_rows,
+        "max_dd": max_dd,
+        "period": period,
     }
 
 
 # ── 会場別 ROI 分析（不合格時の失敗解析）───────────────────────────────────────
 
+
 def _analyze_by_venue(rows: list[dict]) -> list[dict]:
     """結果記録済み行を会場ごとに集計して ROI を返す。"""
     done = [r for r in rows if r.get("result") and r.get("payout")]
-    venue_data: dict[str, dict] = defaultdict(lambda: {"inv": 0, "ret": 0, "hits": 0, "n": 0})
+    venue_data: dict[str, dict] = defaultdict(
+        lambda: {"inv": 0, "ret": 0, "hits": 0, "n": 0}
+    )
 
     for r in done:
         v = r.get("venue", "不明")
@@ -233,13 +247,15 @@ def _analyze_by_venue(rows: list[dict]) -> list[dict]:
     for venue, d in venue_data.items():
         roi = d["ret"] / d["inv"] * 100 if d["inv"] > 0 else 0.0
         pnl = d["ret"] - d["inv"]
-        result.append({
-            "venue": venue,
-            "n":     d["n"],
-            "roi":   roi,
-            "pnl":   pnl,
-            "hits":  d["hits"],
-        })
+        result.append(
+            {
+                "venue": venue,
+                "n": d["n"],
+                "roi": roi,
+                "pnl": pnl,
+                "hits": d["hits"],
+            }
+        )
     return sorted(result, key=lambda x: x["roi"])
 
 
@@ -273,20 +289,26 @@ def _propose_next_filter(
 
         if kept:
             sub_stats = _calc_stats(kept)
-            edge_sensitivity.append({
-                "threshold": thr,
-                "n_races":   len(kept),
-                "roi":       sub_stats.get("roi", 0),
-                "pnl":       sub_stats.get("pnl", 0),
-            })
+            edge_sensitivity.append(
+                {
+                    "threshold": thr,
+                    "n_races": len(kept),
+                    "roi": sub_stats.get("roi", 0),
+                    "pnl": sub_stats.get("pnl", 0),
+                }
+            )
 
     # 最良 edge 閾値（ROI が最高）
-    best_edge = max(edge_sensitivity, key=lambda x: x["roi"]) if edge_sensitivity else None
+    best_edge = (
+        max(edge_sensitivity, key=lambda x: x["roi"]) if edge_sensitivity else None
+    )
 
     # 新フィルター提案
-    proposed_venues = good_venues if good_venues else [
-        v["venue"] for v in venue_stats if v["roi"] >= 95.0
-    ]
+    proposed_venues = (
+        good_venues
+        if good_venues
+        else [v["venue"] for v in venue_stats if v["roi"] >= 95.0]
+    )
     if not proposed_venues:
         proposed_venues = _ORIGINAL_FILTER["venues"]
 
@@ -297,50 +319,163 @@ def _propose_next_filter(
     )
 
     return {
-        "poor_venues":      poor_venues,
-        "good_venues":      good_venues,
+        "poor_venues": poor_venues,
+        "good_venues": good_venues,
         "proposed_filter": {
-            "venues":         proposed_venues,
-            "n_horses_min":   _ORIGINAL_FILTER["n_horses_min"],
+            "venues": proposed_venues,
+            "n_horses_min": _ORIGINAL_FILTER["n_horses_min"],
             "edge_threshold": proposed_edge,
         },
         "edge_sensitivity": edge_sensitivity,
-        "best_edge":        best_edge,
+        "best_edge": best_edge,
     }
 
 
 # ── プロトコル保存 ────────────────────────────────────────────────────────────
+
 
 def _save_protocol(stats: dict, rows: list[dict]) -> Path:
     """合格時に UMALOGI公認プロトコルを logs/elite_protocol.json に永久保存する。"""
     _PROTOCOL_LOG.parent.mkdir(parents=True, exist_ok=True)
 
     protocol = {
-        "timestamp":  datetime.now().isoformat(timespec="seconds"),
-        "verdict":    "APPROVED",
-        "filter":     _ORIGINAL_FILTER,
+        "timestamp": datetime.now().isoformat(timespec="seconds"),
+        "verdict": "APPROVED",
+        "filter": _ORIGINAL_FILTER,
         "validation": {
-            "n_races":          stats["n_done"],
-            "n_bets":           stats["n_bets"],
+            "n_races": stats["n_done"],
+            "n_bets": stats["n_bets"],
             "total_investment": stats["investment"],
-            "total_return":     stats["ret"],
-            "roi":              round(stats["roi"], 2),
-            "pnl":              stats["pnl"],
-            "hit_rate":         round(stats["hit_rate"], 2),
-            "max_drawdown":     stats["max_dd"],
-            "period":           stats["period"],
+            "total_return": stats["ret"],
+            "roi": round(stats["roi"], 2),
+            "pnl": stats["pnl"],
+            "hit_rate": round(stats["hit_rate"], 2),
+            "max_drawdown": stats["max_dd"],
+            "period": stats["period"],
         },
     }
 
-    _PROTOCOL_LOG.write_text(json.dumps(protocol, ensure_ascii=False, indent=2), encoding="utf-8")
+    _PROTOCOL_LOG.write_text(
+        json.dumps(protocol, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
     return _PROTOCOL_LOG
+
+
+# ── 月次目標逆算 + RoR ────────────────────────────────────────────────────────
+
+
+def _ror_mc(
+    hit_p: float,
+    pnl_when_hit: float,
+    pnl_when_miss: float,
+    bankroll: float,
+    n_races: int,
+    n_trials: int = 3_000,
+) -> float:
+    """モンテカルロ法で月次破綻確率を推定する（n_trials 試行）。"""
+    ruin = 0
+    stake = abs(pnl_when_miss)
+    for _ in range(n_trials):
+        bk = bankroll
+        for _ in range(n_races):
+            if bk < stake:
+                ruin += 1
+                break
+            bk += pnl_when_hit if random.random() < hit_p else pnl_when_miss
+    return ruin / n_trials
+
+
+def _render_monthly_target(stats: dict) -> str | None:
+    """
+    月次 ¥100,000 達成逆算 + RoR 警告を CLI に表示する。
+    Discord 送信が必要な場合は警告テキストを返す（不要なら None）。
+    """
+    n_done = stats.get("n_done", 0)
+    if n_done < 5:
+        return None
+
+    roi = stats["roi"] / 100.0
+    hit_p = stats.get("hit_rate", 0.0) / 100.0
+    if roi <= 1.0 or hit_p <= 0:
+        print("\n  ⚠️  ROI < 100% のため月次目標逆算をスキップします。")
+        return None
+
+    avg_inv = stats["investment"] / n_done
+    avg_ret = stats["ret"] / n_done
+    edge = avg_ret - avg_inv
+    if edge <= 0:
+        return None
+
+    RACES = 56
+    TARGET = 100_000
+
+    scale = TARGET / (edge * RACES)
+    bet_per_horse = max(100, round(100 * scale / 100) * 100)
+    monthly_inv = avg_inv * scale * RACES
+
+    # スケール後パラメータ
+    avg_inv_s = avg_inv * scale
+    pnl_hit = (avg_ret / hit_p) * scale - avg_inv_s
+    pnl_miss = -avg_inv_s
+
+    print("\n" + "─" * 68)
+    print("  📊 月次 ¥100,000 目標逆算シミュレーター")
+    print("─" * 68)
+    print(
+        f"\n  OOS実績 {n_done}レース | ROI {stats['roi']:.1f}% | 的中率 {stats['hit_rate']:.1f}%"
+    )
+    print()
+    print(f"  月次 ¥{TARGET:,} 達成条件（週末 {RACES}レース/月 想定）")
+    print(f"  ┌─────────────────────────────────────────────────────┐")
+    print(f"  │  推奨ベット / 馬  : ¥{bet_per_horse:>8,}                 │")
+    print(f"  │  月間総投資額     : ¥{monthly_inv:>8,.0f}                 │")
+    print(f"  │  期待月次損益     : +¥{TARGET:>7,}                 │")
+    print(f"  └─────────────────────────────────────────────────────┘")
+    print()
+    print("  ─── 軍資金別 破綻リスク（月次 Monte Carlo 3,000試行）───")
+
+    ror_20: float = 0.0
+    ror_lines: list[str] = []
+    for bk_yen, label in [(100_000, "¥10万"), (200_000, "¥20万"), (300_000, "¥30万")]:
+        ror = _ror_mc(hit_p, pnl_hit, pnl_miss, float(bk_yen), RACES)
+        pct = ror * 100
+        icon = "🔴" if pct >= 20 else ("🟡" if pct >= 10 else "🟢")
+        print(f"  {icon}  軍資金 {label}: {pct:.1f}%")
+        ror_lines.append(f"{icon} {label}: {pct:.1f}%")
+        if bk_yen == 200_000:
+            ror_20 = pct
+
+    discord_msg: str | None = None
+    if ror_20 >= 20.0:
+        print(
+            f"\n  ⚠️  警告: 破綻リスク {ror_20:.0f}% (¥20万) — ベットを推奨額の50%以下に"
+        )
+        discord_msg = (
+            f"⚠️ RoR警告 — FukushoElite 軍資金¥20万 破綻リスク **{ror_20:.0f}%**\n"
+            f"推奨ベット ¥{bet_per_horse:,}/馬 → **¥{bet_per_horse // 2:,} 以下**に引き下げを推奨\n"
+            + "  ".join(ror_lines)
+        )
+    elif ror_20 >= 10.0:
+        print(
+            f"\n  📌  注意: 破綻リスク {ror_20:.0f}% (¥20万) — 2週連続赤字で投資額縮小を"
+        )
+        discord_msg = (
+            f"📌 RoR注意 — FukushoElite 軍資金¥20万 破綻リスク {ror_20:.0f}%\n"
+            f"2週連続赤字の場合はベット額縮小を検討してください\n"
+            + "  ".join(ror_lines)
+        )
+    else:
+        print(f"\n  ✅  破綻リスク {ror_20:.1f}% (¥20万) — 許容範囲内")
+
+    return discord_msg
 
 
 # ── レポート表示 ──────────────────────────────────────────────────────────────
 
-def _render_report(rows: list[dict], stats: dict, updated_count: int) -> None:
+
+def _render_report(rows: list[dict], stats: dict, updated_count: int) -> str | None:
     n_total = len(rows)
-    n_done  = stats.get("n_done", 0)
+    n_done = stats.get("n_done", 0)
 
     print("\n" + "=" * 68)
     print("  FukushoEliteFilter — 事後結果照合レポート")
@@ -351,13 +486,15 @@ def _render_report(rows: list[dict], stats: dict, updated_count: int) -> None:
 
     if n_done == 0:
         print("\n  結果確定レースなし。レース後に再実行してください。")
-        return
+        return None
 
     pnl_sign = "+" if stats["pnl"] >= 0 else "-"
     bar_fill = int(n_done / _TARGET * 20)
-    bar      = "█" * bar_fill + "░" * (20 - bar_fill)
+    bar = "█" * bar_fill + "░" * (20 - bar_fill)
 
-    print(f"\n  OOS 検証進捗 : {n_done}/{_TARGET} [{bar}] {n_done/_TARGET*100:.0f}%")
+    print(
+        f"\n  OOS 検証進捗 : {n_done}/{_TARGET} [{bar}] {n_done / _TARGET * 100:.0f}%"
+    )
     print()
     print(f"  {'項目':<16}{'値':>16}")
     print("  " + "-" * 34)
@@ -365,9 +502,13 @@ def _render_report(rows: list[dict], stats: dict, updated_count: int) -> None:
     print(f"  {'総回収額':<16}¥{stats['ret']:>12,}")
     print(f"  {'損益':<16}{pnl_sign}¥{abs(stats['pnl']):>11,}")
     print(f"  {'ROI':<16}{stats['roi']:>15.1f}%")
-    print(f"  {'的中レース率':<14}{stats['hit_rate']:>14.1f}%  ({stats['hit_rows']}/{n_done})")
+    print(
+        f"  {'的中レース率':<14}{stats['hit_rate']:>14.1f}%  ({stats['hit_rows']}/{n_done})"
+    )
     print(f"  {'最大DD':<16}¥{stats['max_dd']:>12,}")
     print(f"  {'検証期間':<14}{stats['period']:>18}")
+
+    return _render_monthly_target(stats)
 
 
 def _render_verdict(
@@ -428,7 +569,12 @@ def _render_verdict(
                 print("  " + "-" * 38)
                 for s in sens:
                     pnl_sign = "+" if s["pnl"] >= 0 else "-"
-                    best_mark = " ← 最適" if proposal.get("best_edge") and s["threshold"] == proposal["best_edge"]["threshold"] else ""
+                    best_mark = (
+                        " ← 最適"
+                        if proposal.get("best_edge")
+                        and s["threshold"] == proposal["best_edge"]["threshold"]
+                        else ""
+                    )
                     print(
                         f"  ≥{s['threshold']:.1f}  {s['n_races']:>5}件  {s['roi']:>7.1f}%"
                         f"  {pnl_sign}¥{abs(s['pnl']):>7,}{best_mark}"
@@ -441,22 +587,23 @@ def _render_verdict(
 
 # ── ステータスサマリー（full_pipeline.py から呼び出し用）────────────────────
 
+
 def status_summary() -> dict:
     """
     full_pipeline.py --status から呼び出されるサマリー関数。
     CSV の現在状態をまとめた dict を返す。
     """
-    rows  = _load_csv()
+    rows = _load_csv()
     stats = _calc_stats(rows)
     return {
-        "n_total":    len(rows),
-        "n_done":     stats.get("n_done", 0),
-        "roi":        stats.get("roi", 0.0),
-        "pnl":        stats.get("pnl", 0),
+        "n_total": len(rows),
+        "n_done": stats.get("n_done", 0),
+        "roi": stats.get("roi", 0.0),
+        "pnl": stats.get("pnl", 0),
         "investment": stats.get("investment", 0),
-        "hit_rate":   stats.get("hit_rate", 0.0),
-        "hit_rows":   stats.get("hit_rows", 0),
-        "target":     _TARGET,
+        "hit_rate": stats.get("hit_rate", 0.0),
+        "hit_rows": stats.get("hit_rows", 0),
+        "target": _TARGET,
         "protocol_approved": _PROTOCOL_LOG.exists() and _check_approved(),
     }
 
@@ -473,10 +620,13 @@ def _check_approved() -> bool:
 
 # ── メイン ────────────────────────────────────────────────────────────────────
 
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="FukushoEliteFilter 事後結果照合")
-    parser.add_argument("--dry-run", action="store_true", help="CSV を更新せずレポートのみ出力")
-    parser.add_argument("--force",   action="store_true", help="照合済み行も再照合する")
+    parser.add_argument(
+        "--dry-run", action="store_true", help="CSV を更新せずレポートのみ出力"
+    )
+    parser.add_argument("--force", action="store_true", help="照合済み行も再照合する")
     args = parser.parse_args()
 
     rows = _load_csv()
@@ -513,7 +663,15 @@ def main() -> None:
         print(f"CSV 更新: {updated_count} 件 照合完了 → {_ELITE_CSV}")
 
     stats = _calc_stats(rows)
-    _render_report(rows, stats, updated_count)
+    discord_warning = _render_report(rows, stats, updated_count)
+
+    if discord_warning:
+        try:
+            from src.notification.discord_notifier import DiscordNotifier
+
+            DiscordNotifier().notify_ror_warning(discord_warning)
+        except Exception as exc:
+            print(f"  Discord RoR通知失敗: {exc}")
 
     n_done = stats.get("n_done", 0)
     if n_done < _TARGET:
@@ -523,8 +681,8 @@ def main() -> None:
 
     # ── 30レース到達: 合否判定 ──────────────────────────────────────
     venue_stats = _analyze_by_venue(rows)
-    roi         = stats.get("roi", 0.0)
-    passed      = roi > _ROI_PASS
+    roi = stats.get("roi", 0.0)
+    passed = roi > _ROI_PASS
 
     proposal: dict | None = None
     if passed:

@@ -32,7 +32,7 @@ sys.path.insert(0, str(_ROOT))
 
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(_ROOT / ".env", override=False)
 
 _OUT_DIR = _ROOT / "outputs" / "sns"
 _CARDS_DIR = _ROOT / "outputs" / "cards"

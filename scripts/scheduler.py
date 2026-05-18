@@ -99,6 +99,7 @@ _CATCHUP_HOURS: dict[str, int] = {
     "job_weekend_batch_pre":   4,  # 07:00 → 11:00 まで
     "job_today_auto_runner":   3,  # 08:30 → 11:30 まで
     "job_win5_prediction":     2,  # 09:00 → 11:00 まで
+    "job_win5_result_fetch":   4,  # 17:15 → 21:15 まで
     "job_post_race":           4,  # 17:30 → 21:30 まで
     "job_weekend_batch_post":  4,  # 18:30 → 22:30 まで
     "job_monday_masters":     12,  # 06:00 → 18:00 まで
@@ -113,6 +114,7 @@ _JOB_SCHEDULES: dict[str, list[tuple[int, int, int]]] = {
     "job_weekend_batch_pre":  [(5,  7,  0), (6,  7,  0)],
     "job_today_auto_runner":  [(5,  8, 30), (6,  8, 30)],
     "job_win5_prediction":    [(5,  9,  0), (6,  9,  0)],
+    "job_win5_result_fetch":  [(5, 17, 15), (6, 17, 15)],
     "job_post_race":          [(5, 17, 30), (6, 17, 30)],
     "job_weekend_batch_post": [(5, 18, 30), (6, 18, 30)],
     "job_monday_masters":     [(0,  6,  0)],
@@ -276,6 +278,153 @@ def _run(cmd: list[str], label: str, timeout: int = 3600) -> int:
     except Exception as exc:
         logger.error("[%s] 実行エラー: %s", label, exc)
         return -1
+
+
+# JVInit は失敗時に3回リトライ (3秒 × 3 = 9秒) するため、
+# タイムアウトは 30秒以上を確保しないとリトライ完了前にKillされる。
+# 旧値 10秒 は JVInit 失敗リトライ中にタイムアウトし GUI_BLOCKED 誤判定を招いていた。
+_JVLINK_STARTUP_TIMEOUT = 30  # JVLink初期化タイムアウト秒数（GUIダイアログ検出用）
+
+
+def _run_jvlink(
+    cmd: list[str],
+    label: str,
+    startup_timeout: int = _JVLINK_STARTUP_TIMEOUT,
+    fetch_timeout: int = 3600,
+) -> int:
+    """
+    JVLink専用subprocess実行。
+
+    GUIダイアログブロック検出: 子プロセスが startup_timeout 秒以内に
+    "JVLINK_READY" を stdout に出力しない場合、ダイアログで停止していると判断して
+    Kill し、-2 (GUI_BLOCKED) を返す。呼び出し元はこの値を受け取ったら
+    Netkeiba フォールバックへ切り替えること。
+
+    CREATE_NO_WINDOW フラグでダイアログウィンドウの描画自体も抑制する。
+
+    Returns:
+        0   : 正常完了
+        -1  : タイムアウトまたは起動失敗
+        -2  : GUI_BLOCKED — JVLink設定ダイアログで停止を検出。Netkeibaへフォールバックすること
+    """
+    import threading as _threading
+
+    CREATE_NO_WINDOW = 0x08000000
+
+    logger.info("[%s] JVLink起動: %s", label, " ".join(cmd))
+    try:
+        proc = subprocess.Popen(
+            cmd,
+            cwd=str(_ROOT),
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            encoding="utf-8",
+            errors="replace",
+            creationflags=CREATE_NO_WINDOW,
+        )
+    except Exception as exc:
+        logger.error("[%s] 起動失敗: %s", label, exc)
+        return -1
+
+    ready_event  = _threading.Event()
+    failed_event = _threading.Event()  # JVLINK_FAILED 受信フラグ
+
+    def _reader() -> None:
+        assert proc.stdout is not None
+        for line in proc.stdout:
+            line = line.rstrip()
+            if line:
+                logger.info("[%s] %s", label, line)
+            if "JVLINK_READY" in line:
+                ready_event.set()
+            elif "JVLINK_FAILED" in line:
+                # JVInit が全リトライ消化して失敗した — タイムアウトを待たずに即Fallback
+                failed_event.set()
+                ready_event.set()  # wait() を解除するため set() する
+
+    reader_thread = _threading.Thread(target=_reader, daemon=True)
+    reader_thread.start()
+
+    if not ready_event.wait(timeout=startup_timeout):
+        proc.kill()
+        proc.wait()
+        logger.error(
+            "[%s] JVLink起動タイムアウト(%d秒) — GUIダイアログブロック疑い。"
+            "Kill完了。setup_jvlink.py で初期設定を実施してください。",
+            label,
+            startup_timeout,
+        )
+        return -2  # GUI_BLOCKED
+
+    if failed_event.is_set():
+        proc.kill()
+        proc.wait()
+        logger.error(
+            "[%s] JVLINK_FAILED 受信 — JVInit が全リトライ消化して失敗。"
+            "SID/TARGET状態を確認してください。Netkeibaフォールバックへ切り替えます。",
+            label,
+        )
+        return -2  # JVLINK_FAILED → same as GUI_BLOCKED for fallback routing
+
+    reader_thread.join(timeout=fetch_timeout)
+    if reader_thread.is_alive():
+        proc.kill()
+        logger.error("[%s] データ取得タイムアウト(%d秒)", label, fetch_timeout)
+        return -1
+
+    proc.wait()
+    rc = proc.returncode
+    if rc == 0:
+        logger.info("[%s] 完了: rc=0", label)
+    else:
+        logger.warning("[%s] 終了: rc=%d", label, rc)
+    return rc
+
+
+def _netkeiba_fallback_entries(target_date: str, label: str) -> None:
+    """JVLink失敗時のエントリーNetkeiba補完（GUI_BLOCKEDフォールバック専用）。"""
+    logger.warning(
+        "[%s] JVLink GUI_BLOCKED → Netkeiba フォールバックでエントリー取得を試みます (date=%s)",
+        label,
+        target_date,
+    )
+    _send_discord(
+        f"⚠️【{label}】JVLink設定ダイアログ停止を検出。"
+        f"Netkeibaフォールバックでエントリー取得 ({target_date})。"
+        f"夜間に `scripts/setup_jvlink.py` を実行してJVLink初期設定を完了してください。"
+    )
+    rc_fb = _run(
+        _PY64 + ["scripts/refetch_entries_from_netkeiba.py", "--date", target_date],
+        f"{label}-Netkeiba補完",
+        timeout=1800,
+    )
+    if rc_fb == 0:
+        logger.info("[%s] Netkeiba エントリー補完成功", label)
+    else:
+        logger.error("[%s] Netkeiba エントリー補完も失敗: rc=%d", label, rc_fb)
+
+
+def _netkeiba_fallback_results(target_date: str, label: str) -> None:
+    """JVLink失敗時の払戻・結果Netkeiba補完（GUI_BLOCKEDフォールバック専用）。"""
+    logger.warning(
+        "[%s] JVLink GUI_BLOCKED → Netkeiba フォールバックでレース結果取得を試みます (date=%s)",
+        label,
+        target_date,
+    )
+    _send_discord(
+        f"⚠️【{label}】JVLink設定ダイアログ停止を検出。"
+        f"Netkeibaフォールバックでレース結果取得 ({target_date})。"
+        f"夜間に `scripts/setup_jvlink.py` を実行してJVLink初期設定を完了してください。"
+    )
+    rc_fb = _run(
+        _PY64 + ["-m", "src.ops.data_sync", "netkeiba_results", "--date", target_date],
+        f"{label}-Netkeiba補完",
+        timeout=1800,
+    )
+    if rc_fb == 0:
+        logger.info("[%s] Netkeiba 結果補完成功", label)
+    else:
+        logger.error("[%s] Netkeiba 結果補完も失敗: rc=%d", label, rc_fb)
 
 
 def _run_with_retry(
@@ -511,20 +660,30 @@ def job_friday_sync() -> None:
     errors: list[str] = []
 
     # ── Step 1: JVLink RACE 同期（32bit 必須）───────────────────
-    rc = _run_with_retry(_PY32 + ["-m", "src.ops.data_sync", "friday"], "JVLink-RACE")
-    if rc != 0:
+    # _run_jvlink: 10秒でJVLINK_READY未到着 → GUIダイアログブロック検出 → -2返却
+    rc = _run_jvlink(_PY32 + ["-m", "src.ops.data_sync", "friday"], "JVLink-RACE")
+    if rc == -2:
+        _netkeiba_fallback_entries(target_yyyymmdd, "JVLink-RACE")
+        errors.append("JVLink RACE 同期 GUI_BLOCKED → Netkeibaフォールバック実施")
+    elif rc != 0:
         errors.append(f"JVLink RACE 同期失敗(rc={rc})")
 
     # ── Step 2: JVLink WOOD 同期（32bit 必須）───────────────────
-    rc = _run_with_retry(_PY32 + ["-m", "src.ops.data_sync", "wood"], "JVLink-WOOD")
-    if rc != 0:
+    rc = _run_jvlink(_PY32 + ["-m", "src.ops.data_sync", "wood"], "JVLink-WOOD")
+    if rc == -2:
+        logger.warning("[金曜バッチ] JVLink WOOD GUI_BLOCKED — 調教タイムは取得不可（続行）")
+        errors.append("JVLink WOOD 同期 GUI_BLOCKED（調教タイムは暫定予想でも使用可）")
+    elif rc != 0:
         errors.append(f"JVLink WOOD 同期失敗(rc={rc})")
 
     # ── Step 3: JVLink マスタ差分更新（32bit 必須）──────────────
-    rc = _run_with_retry(
+    rc = _run_jvlink(
         _PY32 + ["-m", "src.ops.data_sync", "masters"], "JVLink-Masters"
     )
-    if rc != 0:
+    if rc == -2:
+        logger.warning("[金曜バッチ] JVLink Masters GUI_BLOCKED — マスタ更新スキップ（続行）")
+        errors.append("JVLink Masters GUI_BLOCKED（既存マスタで続行）")
+    elif rc != 0:
         errors.append(f"JVLink マスタ更新失敗(rc={rc})")
 
     # ── Step 4: AI 暫定予想生成（64bit）─────────────────────────
@@ -564,8 +723,10 @@ def job_friday_sync() -> None:
 def job_morning_wood() -> None:
     """土日朝: 調教タイム同期（32bit subprocess）"""
     logger.info("=== [朝調教同期] 開始 ===")
-    rc = _run_with_retry(_PY32 + ["-m", "src.ops.data_sync", "wood"], "JVLink-WOOD朝")
-    if rc != 0:
+    rc = _run_jvlink(_PY32 + ["-m", "src.ops.data_sync", "wood"], "JVLink-WOOD朝")
+    if rc == -2:
+        logger.warning("[朝調教同期] JVLink GUI_BLOCKED — 調教タイムは取得不可。setup_jvlink.py を実行してください。")
+    elif rc != 0:
         logger.error("[朝調教同期] 失敗: rc=%d", rc)
     else:
         _mark_job_done("job_morning_wood")
@@ -593,21 +754,35 @@ def job_today_auto_runner() -> None:
         return
 
     def _run_loop() -> None:
+        import datetime as _dt
+        _RACING_CUTOFF_HOUR = 19  # 19:00 以降は再起動しない
+        attempt = 0
         try:
-            logger.info("=== [直前予想ループ] バックグラウンドスレッド開始 ===")
-            rc = _run(
-                _PY64 + ["scripts/today_auto_runner.py"],
-                "直前予想ループ",
-                timeout=14 * 3600,  # 最大14時間（8:30〜22:30）
-            )
-            if rc != 0:
-                logger.error("[直前予想ループ] 異常終了: rc=%d", rc)
-                _send_discord(
-                    f"🚨【緊急】直前予想ループが異常終了しました (rc={rc})。"
-                    f"手動で `py scripts/today_auto_runner.py` を起動してください。"
+            while True:
+                attempt += 1
+                logger.info("=== [直前予想ループ] バックグラウンドスレッド開始 (attempt=%d) ===", attempt)
+                rc = _run(
+                    _PY64 + ["scripts/today_auto_runner.py"],
+                    "直前予想ループ",
+                    timeout=14 * 3600,  # 最大14時間（8:30〜22:30）
                 )
-            else:
-                logger.info("=== [直前予想ループ] 正常終了 ===")
+                if rc == 0:
+                    logger.info("=== [直前予想ループ] 正常終了 ===")
+                    break
+
+                now_h = _dt.datetime.now().hour
+                if now_h >= _RACING_CUTOFF_HOUR:
+                    logger.warning("[直前予想ループ] 異常終了 rc=%d だが %d時以降のため再起動しません", rc, now_h)
+                    _send_discord(
+                        f"⚠️【直前予想ループ】異常終了 rc={rc}。レース終了後のため再起動不要。"
+                    )
+                    break
+
+                logger.error("[直前予想ループ] 異常終了: rc=%d — 30秒後に再起動します (attempt=%d)", rc, attempt)
+                _send_discord(
+                    f"🔄【直前予想ループ】異常終了 rc={rc}。30秒後に自動再起動します (attempt={attempt})。"
+                )
+                time.sleep(30)
         finally:
             _auto_runner_lock.release()
 
@@ -639,15 +814,49 @@ def job_win5_prediction() -> None:
         result = win5_batch()
         if result.get("skipped"):
             logger.info("[WIN5予測] スキップ: %s", result.get("reason", ""))
+            # スキップも「正常完了」として記録（取りこぼし再試行を防ぐ）
+            _mark_job_done("job_win5_prediction")
         elif result.get("error"):
             logger.error("[WIN5予測] エラー: %s", result["error"])
+            # エラー時は state を更新しない → 起動時リカバリーが再実行できる
         else:
             ev = result.get("ev", 0) or 0
             bet = result.get("bet", 0) or 0
             logger.info("[WIN5予測] 完了: EV=%.3f 推定払戻=¥%.0f", ev, bet)
+            _mark_job_done("job_win5_prediction")
     except Exception as e:
         logger.error("[WIN5予測] 例外: %s", e, exc_info=True)
+        _send_discord(f"🚨 [ERROR] WIN5タスクが失敗しました: {e}")
     logger.info("=== [WIN5予測] 終了 ===")
+
+
+def job_win5_result_fetch() -> None:
+    """
+    土日 17:15: WIN5 確定結果（的中馬番5つ＋払戻）を netkeiba から取得する。
+
+    全レース終了後（最終レース約15:30 + バッファ）に実行。
+    取得結果は win5_results テーブルに保存し、UI の予実比較に反映される。
+    """
+    logger.info("=== [WIN5結果取得] 開始 ===")
+    try:
+        from scripts.fetch_win5_result import fetch_win5_result
+
+        result = fetch_win5_result()
+        if result.get("skipped"):
+            logger.info("[WIN5結果取得] スキップ: %s", result.get("reason", ""))
+            _mark_job_done("job_win5_result_fetch")
+        elif result.get("winning_numbers"):
+            logger.info(
+                "[WIN5結果取得] 完了: 的中馬番=%s 払戻=¥%d",
+                result["winning_numbers"], result.get("payout", 0),
+            )
+            _mark_job_done("job_win5_result_fetch")
+        else:
+            logger.warning("[WIN5結果取得] 結果なし: %s", result.get("reason", "unknown"))
+    except Exception as e:
+        logger.error("[WIN5結果取得] 例外: %s", e, exc_info=True)
+        _send_discord(f"🚨 [ERROR] WIN5結果取得タスクが失敗しました: {e}")
+    logger.info("=== [WIN5結果取得] 終了 ===")
 
 
 def job_umanity_upload() -> None:
@@ -741,13 +950,16 @@ def job_post_race(target_date: str | None = None) -> None:
     # Step 1: JVLink RACE 払戻同期（32bit）
     # OPT_NORMAL → OPT_STORED → OPT_SETUP の3段階フォールバックを data_sync が自動実施
     date_yyyymmdd = target_date.replace("/", "")
-    rc = _run_with_retry(
+    rc = _run_jvlink(
         _PY32 + ["-m", "src.ops.data_sync", "race_results", "--date", date_yyyymmdd],
         "JVLink-払戻同期",
     )
-    if rc != 0:
+    if rc == -2:
+        _netkeiba_fallback_results(date_yyyymmdd, "JVLink-払戻同期")
+        logger.info("[レース後処理] Netkeibaフォールバック完了 — 後続処理を続行")
+    elif rc != 0:
         logger.warning(
-            "[レース後処理] JVLink 払戻同期リトライ全滅: rc=%d — 払戻推論フォールバックへ",
+            "[レース後処理] JVLink 払戻同期失敗: rc=%d — 払戻推論フォールバックへ",
             rc,
         )
 
@@ -818,10 +1030,12 @@ def job_post_race(target_date: str | None = None) -> None:
 def job_monday_masters() -> None:
     """月曜: マスタデータ差分更新（32bit subprocess）"""
     logger.info("=== [マスタ更新] 開始 ===")
-    rc = _run_with_retry(
+    rc = _run_jvlink(
         _PY32 + ["-m", "src.ops.data_sync", "masters"], "JVLink-Masters月曜"
     )
-    if rc != 0:
+    if rc == -2:
+        logger.warning("[マスタ更新] JVLink GUI_BLOCKED — setup_jvlink.py を実行してください。")
+    elif rc != 0:
         logger.error("[マスタ更新] 失敗: rc=%d", rc)
     else:
         _mark_job_done("job_monday_masters")
@@ -876,6 +1090,143 @@ def job_heartbeat() -> None:
 
     now = datetime.now().strftime("%Y-%m-%d %H:%M")
     _send_discord(f"✅ UMALOGI alive ({now})")
+
+
+# ================================================================
+# TARGET frontier JV ウォッチドッグ
+# ================================================================
+
+_TARGET_JV_EXE: Path | None = None
+_TARGET_JV_RESTART_COUNT: int = 0
+_TARGET_JV_MAX_RESTARTS_PER_DAY: int = 5
+_TARGET_JV_LAST_RESTART_DATE: str = ""
+
+
+def _find_target_jv_exe() -> Path | None:
+    """
+    TARGET frontier JV 実行ファイルパスを決定する。
+    優先順: 環境変数 TARGET_JV_PATH → 既知パス。
+    """
+    from dotenv import load_dotenv as _ldotenv
+    _ldotenv(_ROOT / ".env", override=False)
+
+    env_path = os.environ.get("TARGET_JV_PATH", "").strip()
+    if env_path:
+        p = Path(env_path)
+        if p.exists():
+            return p
+
+    known = [
+        Path(r"C:\Program Files\TARGET\TargetFrontierJV\TargetFrontierJV.exe"),
+        Path(r"C:\Program Files (x86)\TARGET\TargetFrontierJV\TargetFrontierJV.exe"),
+        Path(r"C:\TARGET\TargetFrontierJV\TargetFrontierJV.exe"),
+    ]
+    for p in known:
+        if p.exists():
+            return p
+    return None
+
+
+def _is_target_jv_running() -> bool:
+    """psutil で TargetFrontierJV.exe または JVLinkAgent.exe プロセスの生存を確認する。"""
+    try:
+        import psutil
+        for proc in psutil.process_iter(["name"]):
+            name = (proc.info.get("name") or "").lower()
+            if "targetfrontierjv" in name or "jvlinkagent" in name:
+                return True
+    except Exception:
+        pass
+    return False
+
+
+def _restart_target_jv(exe: Path) -> bool:
+    """TARGET frontier JV を subprocess.Popen で再起動する。"""
+    global _TARGET_JV_RESTART_COUNT, _TARGET_JV_LAST_RESTART_DATE
+
+    today = date.today().isoformat()
+    if _TARGET_JV_LAST_RESTART_DATE != today:
+        _TARGET_JV_RESTART_COUNT = 0
+        _TARGET_JV_LAST_RESTART_DATE = today
+
+    if _TARGET_JV_RESTART_COUNT >= _TARGET_JV_MAX_RESTARTS_PER_DAY:
+        logger.error(
+            "[TARGETウォッチドッグ] 本日の再起動上限(%d回)に達しました。手動確認が必要です。",
+            _TARGET_JV_MAX_RESTARTS_PER_DAY,
+        )
+        return False
+
+    try:
+        logger.warning("[TARGETウォッチドッグ] TARGET JV が停止 → 再起動: %s", exe)
+        subprocess.Popen(
+            [str(exe)],
+            cwd=str(exe.parent),
+            creationflags=subprocess.DETACHED_PROCESS | subprocess.CREATE_NEW_PROCESS_GROUP,
+        )
+        _TARGET_JV_RESTART_COUNT += 1
+        logger.info(
+            "[TARGETウォッチドッグ] 再起動完了 (本日 %d/%d 回目)",
+            _TARGET_JV_RESTART_COUNT, _TARGET_JV_MAX_RESTARTS_PER_DAY,
+        )
+        _send_discord(
+            f"🔄 **[UMALOGI] TARGET frontier JV 自動再起動**\n"
+            f"停止を検知したため自動再起動しました。\n"
+            f"本日 {_TARGET_JV_RESTART_COUNT}/{_TARGET_JV_MAX_RESTARTS_PER_DAY} 回目\n"
+            f"実行ファイル: `{exe}`"
+        )
+        return True
+    except Exception as exc:
+        logger.error("[TARGETウォッチドッグ] 再起動失敗: %s", exc)
+        _send_discord(
+            f"🚨 **[UMALOGI] TARGET frontier JV 再起動失敗**\n"
+            f"エラー: `{exc}`\n"
+            f"手動で起動してください: `{exe}`"
+        )
+        return False
+
+
+def _target_jv_watchdog_loop() -> None:
+    """
+    TARGET frontier JV ウォッチドッグ（バックグラウンドスレッド）。
+
+    60 秒ごとに TargetFrontierJV.exe の生存を確認し、
+    停止を検知した場合は自動再起動する。
+
+    平日 (月〜木) は競馬がないため監視のみ（再起動はしない）。
+    金〜日は積極的に再起動する。
+    """
+    global _TARGET_JV_EXE
+
+    # 起動から15秒後に開始（メインスレッドの初期化が完了するまで待機）
+    time.sleep(15)
+
+    _TARGET_JV_EXE = _find_target_jv_exe()
+    if _TARGET_JV_EXE is None:
+        logger.warning(
+            "[TARGETウォッチドッグ] TARGET frontier JV が見つかりません。"
+            "setup_target_autostart.py を実行してください。ウォッチドッグを無効化します。"
+        )
+        return
+
+    logger.info("[TARGETウォッチドッグ] 起動: %s (60秒間隔)", _TARGET_JV_EXE)
+
+    while True:
+        try:
+            time.sleep(60)
+
+            if not _is_target_jv_running():
+                today_wd = date.today().weekday()  # 0=月, 4=金, 5=土, 6=日
+                is_racing_day = today_wd in (4, 5, 6)  # 金土日
+                hour = datetime.now().hour
+
+                if is_racing_day and 6 <= hour <= 22:
+                    _restart_target_jv(_TARGET_JV_EXE)
+                else:
+                    logger.info(
+                        "[TARGETウォッチドッグ] TARGET JV 停止を検知 (非レース日 or 深夜) → 再起動スキップ"
+                    )
+        except Exception as exc:
+            logger.warning("[TARGETウォッチドッグ] ループ例外（続行）: %s", exc)
 
 
 def job_weekend_batch_pre() -> None:
@@ -993,6 +1344,10 @@ def register_schedules() -> None:
     schedule.every().sunday.at("13:00").do(job_intraday_sync)
     schedule.every().sunday.at("15:30").do(job_intraday_sync)
 
+    # 土日夕方: WIN5 確定結果取得（全レース確定後・17:15 に先行実行）
+    schedule.every().saturday.at("17:15").do(job_win5_result_fetch)
+    schedule.every().sunday.at("17:15").do(job_win5_result_fetch)
+
     # 土日夕方: 払戻確定後のレース後処理（全レース終了後・OPT_STORED で確実取得）
     schedule.every().saturday.at("17:30").do(job_post_race)
     schedule.every().sunday.at("17:30").do(job_post_race)
@@ -1021,6 +1376,15 @@ def register_schedules() -> None:
 def run_daemon() -> None:
     """スケジューラーをデーモンとして常駐させる。Ctrl+C で終了。"""
     register_schedules()
+
+    # TARGET JV ウォッチドッグをバックグラウンドスレッドで起動
+    watchdog_thread = threading.Thread(
+        target=_target_jv_watchdog_loop,
+        name="target_jv_watchdog",
+        daemon=True,
+    )
+    watchdog_thread.start()
+    logger.info("[TARGETウォッチドッグ] バックグラウンドスレッド起動済み")
 
     # 起動時リカバリー: 取りこぼしジョブを検出して即実行（PC 再起動・スリープ復帰対応）
     _recover_missed_jobs(_JOB_MAP_FULL)
@@ -1062,6 +1426,7 @@ _JOB_MAP_FULL: dict[str, object] = {
     "job_weekend_batch_pre":  job_weekend_batch_pre,
     "job_today_auto_runner":  job_today_auto_runner,
     "job_win5_prediction":    job_win5_prediction,
+    "job_win5_result_fetch":  job_win5_result_fetch,
     "job_post_race":          job_post_race,
     "job_weekend_batch_post": job_weekend_batch_post,
     "job_monday_masters":     job_monday_masters,
@@ -1076,6 +1441,7 @@ _JOB_MAP: dict[str, object] = {
     "batch_pre":     job_weekend_batch_pre,
     "batch_post":    job_weekend_batch_post,
     "win5":          job_win5_prediction,
+    "win5_result":   job_win5_result_fetch,
     "umanity":       job_umanity_upload,
     "auto_runner":   job_today_auto_runner,
     "intraday_sync": job_intraday_sync,

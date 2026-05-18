@@ -80,7 +80,9 @@ export default function HitHistory({ predictions }: Props) {
     if (filter === 'jackpot') data = data.filter(p => (p.roi ?? 0) >= 500)
     else if (filter === 'big')    data = data.filter(p => (p.roi ?? 0) >= 200)
     else if (filter === 'normal') data = data.filter(p => (p.roi ?? 0) < 200)
-    if (modelFilter !== 'all') data = data.filter(p => p.model_type === modelFilter)
+    if (modelFilter !== 'all') {
+      data = data.filter(p => (p.model_type ?? '').includes(modelFilter))
+    }
     return data
   }, [hits, filter, modelFilter])
 
@@ -206,12 +208,12 @@ export default function HitHistory({ predictions }: Props) {
         ))}
 
         {/* モデルフィルター */}
-        <div className="ml-auto flex gap-2">
-          {['all', '卍', '本命'].map(m => (
+        <div className="flex gap-1.5 flex-wrap">
+          {['all', '卍', '本命', 'Oracle', 'Alpha'].map(m => (
             <button
               key={m}
               onClick={() => setModelFilter(m)}
-              className="px-3 py-1.5 rounded text-xs font-semibold transition-all"
+              className="px-2 py-1 sm:px-3 sm:py-1.5 rounded text-xs font-semibold transition-all"
               style={{
                 background: modelFilter === m ? 'rgba(0,200,255,0.12)' : 'rgba(0,200,255,0.03)',
                 color: modelFilter === m ? 'var(--neon-cyan)' : 'var(--text-muted)',
@@ -263,9 +265,12 @@ export default function HitHistory({ predictions }: Props) {
                     </td>
                     <td>
                       <span className={`font-bold text-sm ${
-                        pred.model_type === '卍' ? 'neon-text' : 'neon-text-gold'
+                        (pred.model_type ?? '').includes('卍') ? 'neon-text' :
+                        (pred.model_type ?? '').includes('Oracle') ? 'neon-text-gold' :
+                        (pred.model_type ?? '').includes('Alpha') ? 'neon-text-green' :
+                        'neon-text-gold'
                       }`}>
-                        {pred.model_type}
+                        {pred.model_type ?? '—'}
                       </span>
                     </td>
                     <td className="text-[var(--text-muted)]">
@@ -281,9 +286,11 @@ export default function HitHistory({ predictions }: Props) {
                       {formatCombinations(pred).display}
                     </td>
                     <td className="text-right font-mono text-[var(--text-muted)]">
-                      {pred.recommended_bet != null
-                        ? `¥${Math.round(pred.recommended_bet).toLocaleString()}`
-                        : '—'}
+                      {(pred.invested ?? 0) > 0
+                        ? `¥${Math.round(pred.invested!).toLocaleString()}`
+                        : pred.recommended_bet != null
+                          ? `¥${Math.round(pred.recommended_bet).toLocaleString()}`
+                          : '—'}
                     </td>
                     <td className="text-right">
                       <PayoutDisplay payout={pred.payout} roi={roi} />

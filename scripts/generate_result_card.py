@@ -28,7 +28,7 @@ sys.path.insert(0, str(_ROOT))
 
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(_ROOT / ".env", override=False)
 
 # ── フォント設定 ──────────────────────────────────────────────────────
 _FONT_DIR   = Path("C:/Windows/Fonts")

@@ -91,6 +91,13 @@ ALPHA_EXTRA_FEATURES: list[str] = [
     "odds_vs_field",          # win_odds / mean_field_odds (1より大=人気薄)
     "market_prob",            # 市場確率 = inv_odds / sum(inv_odds) in race
     "log_market_prob",        # log(市場確率)
+    # ── ハイブリッド特徴量（netkeiba × JVLink 乖離）─────────────────
+    "nb_win_odds",            # netkeiba 単勝オッズ（独立ソース）
+    "log_nb_win_odds",        # log(nb_win_odds)
+    "nb_market_prob",         # 市場確率（netkeiba 基準）
+    "nb_log_market_prob",     # log(nb 市場確率)
+    "odds_discrepancy_ratio", # nb_win_odds / jvlink_win_odds（乖離度: 1=一致）
+    "nb_vs_field",            # nb_win_odds / レース内平均 nb_win_odds
 ]
 
 ALL_ALPHA_FEATURES: list[str] = BASE_FEATURES + ALPHA_EXTRA_FEATURES
@@ -141,6 +148,7 @@ class AlphaModel:
         bet_type: str = BET_TYPE_TANSHO,
         min_date: str | None = None,
         max_date: str | None = None,
+        research_db_path: Path | None = None,
     ) -> pd.DataFrame:
         """
         race_results + race_payouts から EV 学習データを生成する。
@@ -153,8 +161,8 @@ class AlphaModel:
         時系列分割のため years または min_date/max_date で絞る。
         """
         logger.info(
-            "EV学習データ生成: years=%s bet_type=%s min_date=%s max_date=%s",
-            years, bet_type, min_date, max_date,
+            "EV学習データ生成: years=%s bet_type=%s min_date=%s max_date=%s research_db=%s",
+            years, bet_type, min_date, max_date, research_db_path,
         )
 
         if bet_type == BET_TYPE_TANSHO:
@@ -223,24 +231,73 @@ class AlphaModel:
             ON rp_hit.race_id = rr.race_id
             AND rp_hit.bet_type = '{payout_bet_type}'
             AND CAST(rp_hit.combination AS INTEGER) = rr.horse_number
-        WHERE rr.win_odds IS NOT NULL
-          AND rr.horse_number IS NOT NULL
+        WHERE rr.horse_number IS NOT NULL
           AND rr.horse_number > 0
         ORDER BY r.date, rr.race_id, rr.horse_number
         """
 
         df = pd.read_sql_query(sql, conn, params=params)
-
-        # 重複カラム除去
         df = df.loc[:, ~df.columns.duplicated(keep="first")]
+
+        # research_db がある場合: in-memory JOIN で win_odds を補完
+        if research_db_path is not None and Path(research_db_path).exists():
+            df = self._merge_research_odds(df, Path(research_db_path))
+        else:
+            # research_db なし: 従来通り win_odds IS NOT NULL のみ
+            df = df[df["win_odds"].notna() & (df["win_odds"] > 0)]
 
         logger.info(
             "ロード完了: %d 行, is_hit=%d (%.1f%%)",
             len(df),
-            df["is_hit"].sum() if "is_hit" in df.columns else 0,
-            df["is_hit"].mean() * 100 if "is_hit" in df.columns and len(df) > 0 else 0,
+            int(df["is_hit"].sum()) if "is_hit" in df.columns else 0,
+            float(df["is_hit"].mean()) * 100 if "is_hit" in df.columns and len(df) > 0 else 0,
         )
         return df
+
+    @staticmethod
+    def _merge_research_odds(df: pd.DataFrame, research_db_path: Path) -> pd.DataFrame:
+        """
+        research DB の horse_odds テーブルと in-memory JOIN して
+        win_odds を補完し、nb_win_odds を独立特徴量として保持する。
+
+        ハイブリッド設計:
+          - nb_win_odds: netkeiba 由来の単勝オッズ（JVLink と独立した市場信号）
+          - win_odds:    JVLink 由来（優先）、NULL の場合のみ nb_win_odds で補完
+          - 両方が存在する場合: odds_discrepancy_ratio = nb/jvlink で乖離度を算出
+        """
+        import sqlite3 as _sqlite3
+
+        rconn = _sqlite3.connect(str(research_db_path))
+        odds_df = pd.read_sql_query(
+            "SELECT race_id, horse_number, win_odds AS nb_win_odds FROM horse_odds",
+            rconn,
+        )
+        rconn.close()
+
+        merged = df.merge(odds_df, on=["race_id", "horse_number"], how="left")
+
+        # dtype を float64 に統一してから補完（FutureWarning 回避）
+        merged["win_odds"]   = pd.to_numeric(merged["win_odds"],   errors="coerce")
+        merged["nb_win_odds"] = pd.to_numeric(merged["nb_win_odds"], errors="coerce")
+
+        # JVLink の win_odds が NULL → nb_win_odds で補完
+        jvlink_null = merged["win_odds"].isna() | (merged["win_odds"] <= 0)
+        merged.loc[jvlink_null, "win_odds"] = merged.loc[jvlink_null, "nb_win_odds"]
+
+        # nb_win_odds が NULL → JVLink で補完（双方向）
+        nb_null = merged["nb_win_odds"].isna() | (merged["nb_win_odds"] <= 0)
+        merged.loc[nb_null, "nb_win_odds"] = merged.loc[nb_null, "win_odds"]
+
+        # それでも win_odds が NULL の行は除外
+        merged = merged[merged["win_odds"].notna() & (merged["win_odds"] > 0)]
+
+        logger.info(
+            "research_db 補完後: %d 行 (JVLink補完: %d 行, nb補完: %d 行)",
+            len(merged),
+            int(jvlink_null.sum()),
+            int(nb_null.sum()),
+        )
+        return merged
 
     def _add_alpha_features(self, df: pd.DataFrame) -> pd.DataFrame:
         """オッズ歪み検知特徴量を追加する。"""
@@ -304,6 +361,33 @@ class AlphaModel:
         inv_sum = grp["inv_odds"].transform("sum").clip(lower=1e-8)
         df["market_prob"] = df["inv_odds"] / inv_sum
         df["log_market_prob"] = np.log(df["market_prob"].clip(lower=1e-8))
+
+        # ── ハイブリッド特徴量（netkeiba × JVLink 乖離）─────────────────
+        # nb_win_odds が存在しない場合は JVLink の win_odds で代替
+        if "nb_win_odds" in df.columns:
+            df["nb_win_odds"] = (
+                pd.to_numeric(df["nb_win_odds"], errors="coerce")
+                .fillna(df["win_odds"])
+                .clip(lower=1.01)
+            )
+        else:
+            df["nb_win_odds"] = df["win_odds"]
+
+        df["log_nb_win_odds"] = np.log(df["nb_win_odds"])
+        df["nb_market_prob"] = 1.0 / df["nb_win_odds"]
+
+        nb_inv_sum = grp["nb_market_prob"].transform("sum").clip(lower=1e-8)
+        df["nb_log_market_prob"] = np.log(
+            (df["nb_market_prob"] / nb_inv_sum).clip(lower=1e-8)
+        )
+
+        # 乖離度: nb_win_odds / jvlink_win_odds（1.0=完全一致、>1=nbが割高）
+        df["odds_discrepancy_ratio"] = (
+            df["nb_win_odds"] / df["win_odds"].clip(lower=1.01)
+        ).clip(0.1, 10.0)
+
+        nb_mean_field = grp["nb_win_odds"].transform("mean").clip(lower=1.0)
+        df["nb_vs_field"] = df["nb_win_odds"] / nb_mean_field
 
         return df
 
@@ -382,15 +466,15 @@ class AlphaModel:
 
         self._model = LGBMClassifier(
             objective="binary",
-            n_estimators=800,
-            learning_rate=0.03,
-            num_leaves=63,
-            max_depth=7,
-            min_child_samples=30,
-            subsample=0.8,
-            colsample_bytree=0.8,
-            reg_alpha=0.1,
-            reg_lambda=1.0,
+            n_estimators=1500,
+            learning_rate=0.02,
+            num_leaves=127,
+            max_depth=8,
+            min_child_samples=15,
+            subsample=0.75,
+            colsample_bytree=0.75,
+            reg_alpha=0.05,
+            reg_lambda=0.5,
             scale_pos_weight=scale_pos_weight,  # クラス不均衡補正
             random_state=42,
             n_jobs=-1,
@@ -532,6 +616,7 @@ def run_backtest(
     bankroll: int = 100_000,
     verbose: bool = True,
     holdout_ratio: float = 0.20,
+    research_db_path: Path | None = None,
 ) -> AlphaBacktestResult:
     """
     時系列バックテストを実行する。
@@ -549,13 +634,17 @@ def run_backtest(
 
     # ── 学習データロード ────────────────────────────────────────────
     logger.info("=== バックテスト 学習フェーズ: %s ===", train_years)
-    all_train_df = model.load_training_data(conn, train_years, bet_type)
+    all_train_df = model.load_training_data(
+        conn, train_years, bet_type, research_db_path=research_db_path
+    )
     if len(all_train_df) < 500:
         raise ValueError(f"学習データ不足: {len(all_train_df)} 行 (最小 500 行)")
 
     # ── テストデータ確認（フォールバック判定） ─────────────────────
     logger.info("=== バックテスト テストフェーズ: %s ===", test_years)
-    test_df = model.load_training_data(conn, test_years, bet_type)
+    test_df = model.load_training_data(
+        conn, test_years, bet_type, research_db_path=research_db_path
+    )
 
     holdout_mode = False
     if len(test_df) < 100:

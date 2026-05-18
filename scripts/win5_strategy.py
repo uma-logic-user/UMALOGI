@@ -37,7 +37,7 @@ _ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(_ROOT))
 
 from dotenv import load_dotenv
-load_dotenv()
+load_dotenv(_ROOT / ".env", override=False)
 
 # ── 定数 ──────────────────────────────────────────────────────────────
 
@@ -95,6 +95,7 @@ class Win5WeekResult:
     cost:        int           # 投資額（円）
     # 理論払戻 = 1/combined_prob × return_rate × 100 円
     theoretical_payout: float
+    actual_payout: Optional[int] = None  # 実際の WIN5 払戻（research_db から取得時）
 
     def report(self) -> str:
         lines = [
@@ -273,6 +274,7 @@ def get_winner(conn: sqlite3.Connection, race_id: str) -> int | None:
 def _get_horses_with_odds(
     conn: sqlite3.Connection,
     race_id: str,
+    research_conn: Optional[sqlite3.Connection] = None,
 ) -> list[tuple[int, float]]:
     """
     (horse_number, win_odds) のリストを返す。
@@ -298,7 +300,24 @@ def _get_horses_with_odds(
     if rows:
         return [(int(r[0]), float(r[1])) for r in rows]
 
-    # 2. realtime_odds にフォールバック
+    # 2. research_db (netkeiba スクレイプ済みオッズ) にフォールバック
+    if research_conn is not None:
+        rows = research_conn.execute(
+            """
+            SELECT horse_number, win_odds
+            FROM horse_odds
+            WHERE race_id = ?
+              AND win_odds IS NOT NULL
+              AND win_odds > 0
+              AND win_odds <= ?
+            ORDER BY horse_number
+            """,
+            (race_id, _MAX_VALID_ODDS),
+        ).fetchall()
+        if rows:
+            return [(int(r[0]), float(r[1])) for r in rows]
+
+    # 3. realtime_odds にフォールバック
     rows = conn.execute(
         """
         SELECT horse_number, MIN(win_odds) AS odds
@@ -315,7 +334,7 @@ def _get_horses_with_odds(
     if rows:
         return [(int(r[0]), float(r[1])) for r in rows]
 
-    # 3. prediction_horses の model_score を擬似オッズとして使用
+    # 4. prediction_horses の model_score を擬似オッズとして使用
     #    score → 正規化確率 → pseudo_odds = 1 / prob（_MIN_ODDS 未満にならない）
     ph_rows = conn.execute(
         """
@@ -379,6 +398,7 @@ def get_coverage_picks(
     conn: sqlite3.Connection,
     race_id: str,
     threshold: float = _DEFAULT_THRESHOLD,
+    research_conn: Optional[sqlite3.Connection] = None,
 ) -> Win5RacePicks | None:
     """
     累積勝率カバー法で選択馬を決定する。
@@ -388,7 +408,7 @@ def get_coverage_picks(
     """
     race_name, race_number, _, venue = _get_race_meta(conn, race_id)
     field_size = _get_field_size(conn, race_id)
-    horse_odds  = _get_horses_with_odds(conn, race_id)
+    horse_odds  = _get_horses_with_odds(conn, race_id, research_conn)
 
     if not horse_odds:
         return None
@@ -440,83 +460,107 @@ def backtest_win5(
     end_date:   str | None = None,
     threshold:  float = _DEFAULT_THRESHOLD,
     verbose:    bool = False,
+    research_db_path: Optional[Path] = None,
+    max_combinations: int = 5000,
 ) -> list[Win5WeekResult]:
     """
     全日曜日を対象としたウォークフォワードバックテスト。
 
-    win_odds データがあるレースのみ対象。全 5 レースでデータが揃っている
-    日曜日のみをバックテスト対象とする。
+    research_db_path が指定された場合:
+      - netkeiba スクレイプ済みオッズを用いてオッズ不足を補完
+      - win5_results テーブルに実際の WIN5 払戻があれば理論値の代わりに使用
     """
-    today     = dt_date.today().isoformat()
-    end_date  = end_date or today
-    sundays   = _get_sundays(conn, start_date, end_date)
-    results:   list[Win5WeekResult] = []
+    from pathlib import Path as _Path
 
-    for date_str in sundays:
-        # バックテストでは odds が揃っている会場を優先選択
-        race_ids = detect_win5_races(conn, date_str, prefer_odds=True)
-        if len(race_ids) < 5:
-            if verbose:
-                print(f"[SKIP] {date_str}: WIN5 対象レース数不足 ({len(race_ids)}件)")
-            continue
+    today    = dt_date.today().isoformat()
+    end_date = end_date or today
+    sundays  = _get_sundays(conn, start_date, end_date)
+    results: list[Win5WeekResult] = []
 
-        venue = detect_win5_venue(conn, date_str, prefer_odds=True) or ""
+    research_conn: Optional[sqlite3.Connection] = None
+    if research_db_path and _Path(research_db_path).exists():
+        research_conn = sqlite3.connect(str(research_db_path))
 
-        # 各レースの coverage picks を計算
-        race_results_list: list[Win5RacePicks] = []
-        skip = False
-        for rid in race_ids:
-            pick = get_coverage_picks(conn, rid, threshold)
-            if pick is None:
+    try:
+        for date_str in sundays:
+            race_ids = detect_win5_races(conn, date_str, prefer_odds=(research_conn is None))
+            if len(race_ids) < 5:
                 if verbose:
-                    print(f"[SKIP] {date_str} {rid}: odds データなし")
-                skip = True
-                break
-            race_results_list.append(pick)
+                    print(f"[SKIP] {date_str}: WIN5 対象レース数不足 ({len(race_ids)}件)")
+                continue
 
-        if skip:
-            continue
+            venue = detect_win5_venue(conn, date_str, prefer_odds=(research_conn is None)) or ""
 
-        # 全レース 的中カバー判定
-        all_covered = all(
-            r.is_covered is True for r in race_results_list
-        )
+            race_results_list: list[Win5RacePicks] = []
+            skip = False
+            for rid in race_ids:
+                pick = get_coverage_picks(conn, rid, threshold, research_conn)
+                if pick is None:
+                    if verbose:
+                        print(f"[SKIP] {date_str} {rid}: odds データなし")
+                    skip = True
+                    break
+                race_results_list.append(pick)
 
-        # 組み合わせ数・コスト計算
-        combos = 1
-        for r in race_results_list:
-            combos *= len(r.picks)
-        cost = combos * 100
+            if skip:
+                continue
 
-        # 理論払戻 = combined_prob_of_winner × payout_estimate
-        # winner の確率積で理論値を計算
-        combined_prob_winner = 1.0
-        for r in race_results_list:
-            if r.winner and r.winner in r.picks:
-                idx = r.picks.index(r.winner)
-                combined_prob_winner *= r.probs[idx]
-            else:
-                combined_prob_winner *= 0.0
+            # 組み合わせ数チェック（汚染データ週を除外）
+            combos = 1
+            for r in race_results_list:
+                combos *= len(r.picks)
 
-        theoretical_payout = (
-            (1.0 / max(combined_prob_winner, 1e-10)) * _WIN5_RETURN_RATE * 100
-            if combined_prob_winner > 0 else 0.0
-        )
+            if combos > max_combinations:
+                if verbose:
+                    print(f"[SKIP] {date_str}: 組み合わせ数超過 ({combos:,}点 > 上限{max_combinations:,}点)")
+                continue
 
-        week = Win5WeekResult(
-            date=date_str,
-            venue=venue,
-            races=race_results_list,
-            all_covered=all_covered,
-            combinations=combos,
-            cost=cost,
-            theoretical_payout=theoretical_payout,
-        )
-        results.append(week)
+            all_covered = all(r.is_covered is True for r in race_results_list)
+            cost = combos * 100
 
-        if verbose:
-            print(week.report())
-            print()
+            combined_prob_winner = 1.0
+            for r in race_results_list:
+                if r.winner and r.winner in r.picks:
+                    idx = r.picks.index(r.winner)
+                    combined_prob_winner *= r.probs[idx]
+                else:
+                    combined_prob_winner *= 0.0
+
+            theoretical_payout = (
+                (1.0 / max(combined_prob_winner, 1e-10)) * _WIN5_RETURN_RATE * 100
+                if combined_prob_winner > 0 else 0.0
+            )
+
+            # 実際の WIN5 払戻を research_db から取得（あれば）
+            actual_payout: Optional[int] = None
+            if research_conn is not None and all_covered:
+                week_id = date_str.replace("-", "")
+                row = research_conn.execute(
+                    "SELECT payout FROM win5_results WHERE week_id = ?",
+                    (week_id,),
+                ).fetchone()
+                if row and row[0]:
+                    actual_payout = int(row[0])
+
+            week = Win5WeekResult(
+                date=date_str,
+                venue=venue,
+                races=race_results_list,
+                all_covered=all_covered,
+                combinations=combos,
+                cost=cost,
+                theoretical_payout=theoretical_payout,
+                actual_payout=actual_payout,
+            )
+            results.append(week)
+
+            if verbose:
+                print(week.report())
+                print()
+
+    finally:
+        if research_conn is not None:
+            research_conn.close()
 
     return results
 
@@ -530,8 +574,19 @@ def _print_backtest_summary(results: list[Win5WeekResult]) -> None:
     n_weeks    = len(results)
     n_hit      = sum(1 for r in results if r.all_covered)
     total_cost = sum(r.cost for r in results)
-    total_payout = sum(r.theoretical_payout for r in results if r.all_covered)
     avg_combos = sum(r.combinations for r in results) / n_weeks
+
+    # 実際の払戻があればそちらを優先
+    has_actual = any(r.actual_payout is not None for r in results if r.all_covered)
+    if has_actual:
+        total_payout = sum(
+            (r.actual_payout or r.theoretical_payout)
+            for r in results if r.all_covered
+        )
+        payout_label = "実績払戻合計   "
+    else:
+        total_payout = sum(r.theoretical_payout for r in results if r.all_covered)
+        payout_label = "理論払戻合計（≈）"
 
     print("=" * 60)
     print("WIN5 バックテスト サマリー")
@@ -541,9 +596,9 @@ def _print_backtest_summary(results: list[Win5WeekResult]) -> None:
           f"({n_hit/n_weeks*100:.1f}%)")
     print(f"  平均組み合わせ数  : {avg_combos:.1f} 点/週")
     print(f"  総投資額         : ¥{total_cost:,}")
-    print(f"  理論払戻合計（≈） : ¥{total_payout:,.0f}")
+    print(f"  {payout_label} : ¥{total_payout:,.0f}")
     roi = (total_payout / total_cost * 100) if total_cost > 0 else 0.0
-    print(f"  理論 ROI         : {roi:.1f}%")
+    print(f"  {'実績' if has_actual else '理論'} ROI            : {roi:.1f}%")
     print()
 
     print("週別結果:")
@@ -652,6 +707,10 @@ def _parse_args() -> argparse.Namespace:
         help="バックテスト開始日 YYYY-MM-DD（デフォルト 2026-01-01）",
     )
     p.add_argument(
+        "--end", default=None,
+        help="バックテスト終了日 YYYY-MM-DD（デフォルト: 本日）",
+    )
+    p.add_argument(
         "--threshold", type=float, default=_DEFAULT_THRESHOLD,
         help=f"累積確率閾値 0〜1（デフォルト {_DEFAULT_THRESHOLD}）",
     )
@@ -659,14 +718,25 @@ def _parse_args() -> argparse.Namespace:
         "--verbose", "-v", action="store_true",
         help="バックテスト週別詳細を表示",
     )
+    p.add_argument(
+        "--research-db", default=None,
+        help="Research DB パス（netkeiba オッズ補完・実際の WIN5 払戻用）",
+    )
+    p.add_argument(
+        "--max-combos", type=int, default=5000,
+        help="週あたりの最大組み合わせ数（超過週をスキップ）（デフォルト: 5000）",
+    )
     return p.parse_args()
 
 
 def main() -> None:
     args = _parse_args()
 
+    from pathlib import Path as _Path
     from src.database.init_db import init_db
     conn = init_db()
+
+    research_db_path = _Path(args.research_db) if args.research_db else None
 
     try:
         if args.backtest:
@@ -674,8 +744,11 @@ def main() -> None:
             results = backtest_win5(
                 conn,
                 start_date=args.start,
+                end_date=args.end,
                 threshold=args.threshold,
                 verbose=args.verbose,
+                research_db_path=research_db_path,
+                max_combinations=args.max_combos,
             )
             _print_backtest_summary(results)
 
@@ -694,8 +767,11 @@ def main() -> None:
             results = backtest_win5(
                 conn,
                 start_date=args.start,
+                end_date=args.end,
                 threshold=args.threshold,
                 verbose=False,
+                research_db_path=research_db_path,
+                max_combinations=args.max_combos,
             )
             _print_backtest_summary(results)
 

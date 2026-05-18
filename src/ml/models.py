@@ -90,6 +90,43 @@ FEATURE_COLS: list[str] = [
     # 訓練データ（シミュレーション）では常に NaN → 実際の prerace データで再学習後に有効化。
     "odds_vs_morning",    # 直前オッズ / 朝一オッズ（1未満=短縮=大口流入の疑い）
     "odds_velocity",      # 直近1時間のオッズ下落速度（オッズ/分、正値=資金流入中）
+    # ── U Score 統合因子（u_score.py で算出・Phase 1: 18因子） ─────
+    # 欠損時は _safe_feature_matrix が NaN → -1 で補填するため学習は継続する。
+    # 再学習後に有効化される（モデルが因子の重要度を学習する）。
+    # A: 能力指数
+    "uf_win_rate_all",          # 通算勝率スコア [0,1]
+    "uf_win_rate_surface",      # 馬場別勝率スコア [0,1]
+    "uf_win_rate_distance",     # 距離帯別勝率スコア [0,1]
+    "uf_recent_rank",           # 直近5走着順スコア [0,1]（1着=1.0）
+    "uf_rank_trend",            # 着順改善トレンド [0,1]（改善=高）
+    "uf_rest_days",             # 休養日数スコア [0,1]（28日ピーク・ガウス型）
+    # B: 人的要素
+    "uf_jockey_win_rate",       # 騎手直近90日勝率スコア [0,1]
+    "uf_trainer_win_rate",      # 調教師直近90日勝率スコア [0,1]
+    "uf_jockey_horse_combo",    # 騎手×馬コンビ勝率スコア [0,1]
+    "uf_jockey_venue",          # 騎手×会場勝率スコア [0,1]
+    # C: コース適性
+    "uf_gate_fit",              # 枠番×馬場×距離帯 統計勝率スコア [0,1]
+    "uf_venue_win_rate",        # 馬の当該会場過去勝率スコア [0,1]
+    "uf_east_west_match",       # 美浦/栗東一致フラグ (0 or 1)
+    # D: 調教指数
+    "uf_tc_speed",              # ウッド4Fスピード指数スコア [0,1]
+    "uf_hc_speed",              # 坂路4Fスピード指数スコア [0,1]
+    # E: 血統適性
+    "uf_sire_distance",         # 父馬距離帯別産駒勝率スコア [0,1]
+    "uf_bms_surface",           # 母父馬場別産駒勝率スコア [0,1]
+    "uf_father_sire",           # 父の父情報存在スコア [0.25|0.75]
+    # 合成 U score
+    "u_score",                  # 加重合成スコア（A×40%+B×30%+C×20%+D×7%+E×3%）[0,1]
+    # 派生数値（EV計算の直接インプット）
+    "days_since_last_race",     # 前走からの日数
+    "jockey_win_rate_90d",      # 騎手直近90日勝率（生値）
+    "trainer_win_rate_90d",     # 調教師直近90日勝率（生値）
+    "jockey_horse_combo_rate",  # 騎手×馬コンビ勝率（生値）
+    "jockey_venue_win_rate",    # 騎手×会場勝率（生値）
+    "venue_win_rate",           # 馬の当該会場過去勝率（生値）
+    "tc_speed_index",           # ウッド4Fスピード指数（200/sec*100）
+    "hc_speed_index",           # 坂路4Fスピード指数
 ]
 
 # 訓練に最低限必要なレース数
@@ -610,7 +647,7 @@ class HonmeiModel(_BaseModel):
             pd.Series (index=df.index, values=EV 値)
         """
         p_win = self.predict(df)
-        odds  = df["win_odds"].fillna(0.0).astype(float)
+        odds  = df["win_odds"].astype(float, errors="ignore").fillna(0.0)
         return (p_win * odds).rename("ev_score")
 
 

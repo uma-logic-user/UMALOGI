@@ -19,6 +19,7 @@ import argparse
 import logging
 import sys
 from pathlib import Path
+from typing import Optional
 
 _ROOT = Path(__file__).resolve().parent.parent
 if str(_ROOT) not in sys.path:
@@ -152,9 +153,23 @@ def main() -> None:
                         help="学習済みモデルを保存する")
     parser.add_argument("--both-ways", action="store_true",
                         help="順逆両方向でバックテスト（2024→2025 and 2025→2024）")
+    parser.add_argument("--research-db", default=None,
+                        help="Research DB パス（netkeiba win_odds 補完用）")
     args = parser.parse_args()
 
     conn = init_db()
+    research_db: Optional[Path] = None
+    if args.research_db:
+        p = Path(args.research_db)
+        # 相対パスの場合はプロジェクトルート基準で解決
+        if not p.is_absolute():
+            p = _ROOT / p
+        if p.exists():
+            research_db = p
+            print(f"[INFO] Research DB: {research_db}")
+        else:
+            logger.warning("Research DB が見つかりません: %s", p)
+
 
     # ── メインバックテスト ───────────────────────────────────────────
     results = []
@@ -170,6 +185,7 @@ def main() -> None:
             ev_threshold=args.threshold,
             bankroll=args.bankroll,
             verbose=True,
+            research_db_path=research_db,
         )
         results.append(r)
     except ValueError as e:
@@ -189,6 +205,7 @@ def main() -> None:
                 ev_threshold=args.threshold,
                 bankroll=args.bankroll,
                 verbose=True,
+                research_db_path=research_db,
             )
             results.append(r2)
         except ValueError as e:
@@ -206,6 +223,7 @@ def main() -> None:
                 ev_threshold=args.threshold,
                 bankroll=args.bankroll,
                 verbose=True,
+                research_db_path=research_db,
             )
             results.append(r3)
         except ValueError as e:
@@ -222,7 +240,9 @@ def main() -> None:
     # ── モデル保存 ───────────────────────────────────────────────────
     if args.save:
         model = AlphaModel()
-        train_df = model.load_training_data(conn, args.train, args.bet_type)
+        train_df = model.load_training_data(
+            conn, args.train, args.bet_type, research_db_path=research_db
+        )
         model.train(train_df)
         model.save()
         print(f"\nモデル保存完了: data/models/alpha/alpha_model.pkl")

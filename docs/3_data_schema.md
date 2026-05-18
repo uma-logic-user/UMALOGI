@@ -4,6 +4,8 @@
 
 | 日付 | 変更内容 |
 |------|---------|
+| 2026-05-18 | 【x_accounts / x_signals テーブル追加】X 世論分析 Phase A として 2 テーブルを schema.py に追加・DB 作成確認済み。x_accounts: 監視アカウントマスタ（screen_name/weight/hit_rate_30d 等）。x_signals: 予想家ポストから抽出した馬番シグナル（tweet_id UNIQUE/race_id FK/signal_type/confidence/parsed フラグ）。インデックス 4 件追加。影響: src/database/schema.py |
+| 2026-05-13 | win5_results テーブル追加: race_date(UNIQUE)/race_ids(JSON)/winning_numbers(JSON)/payout。マイグレーション: init_db._migrate_create_win5_results()。影響: src/database/schema.py, src/database/init_db.py |
 | 2026-05-10 | 初版作成。ハイブリッド補完ルール・全テーブルスキーマを記述 |
 
 ---

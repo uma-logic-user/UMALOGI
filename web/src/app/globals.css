@@ -712,11 +712,20 @@ body::before {
     grid-template-rows: auto auto 1fr;
     height: 100dvh;
     max-height: 100dvh;
+    overflow: hidden;          /* ← 横揺れ防止: ページ全体の横スクロールを封じる */
   }
-  .app-navbar  { grid-column: 1; grid-row: 1; }
+  .app-navbar  {
+    grid-column: 1;
+    grid-row: 1;
+    min-width: 0;              /* ← CSS Grid min-width fix */
+    max-width: 100vw;
+    overflow: hidden;
+  }
   .app-sidebar {
     grid-column: 1;
     grid-row: 2;
+    min-width: 0;              /* ← CSS Grid min-width fix */
+    max-width: 100vw;
     /* 横スクロール可能な水平ナビバーに変換 */
     display: flex;
     flex-direction: row;
@@ -733,7 +742,14 @@ body::before {
     gap: 0;
   }
   .app-sidebar::-webkit-scrollbar { display: none; }
-  .app-main    { grid-column: 1; grid-row: 3; overflow-y: auto; }
+  .app-main {
+    grid-column: 1;
+    grid-row: 3;
+    overflow-y: auto;
+    overflow-x: hidden;        /* ← ページ全体の横揺れを防ぎ、子要素を clip */
+    min-width: 0;              /* ← CSS Grid min-width fix（最重要）*/
+    max-width: 100vw;
+  }
 
   /* サイドバー内のレースツリーはモバイルで非表示 */
   .app-sidebar .py-1:last-child { display: none; }
@@ -745,6 +761,8 @@ body::before {
     border: none;
     flex-shrink: 0;
     padding: 0;
+    /* ボタン合計幅 > ビューポート幅なのでこの div 自体もスクロール可能にする */
+    overflow-x: visible;
   }
   .sidebar-special-btn {
     flex-direction: column;
@@ -756,7 +774,8 @@ body::before {
     white-space: nowrap;
     border-bottom: none;
     border-right: 1px solid rgba(0,200,255,0.08);
-    min-width: 64px;
+    min-width: 60px;
+    flex-shrink: 0;  /* ← これがないとボタンが押しつぶされる */
     gap: 2px;
   }
   .sidebar-special-btn .ml-auto { display: none; }

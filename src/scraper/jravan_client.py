@@ -47,15 +47,116 @@ JRA-VAN Data Lab. (JV-Link) Python クライアント
 from __future__ import annotations
 
 import argparse
+import io as _io
 import logging
+import os
 import re
 import sqlite3
+import subprocess
 import sys
 import time
 from pathlib import Path
 from typing import Optional
 
 logger = logging.getLogger(__name__)
+
+
+def _kill_stale_py32(exclude_pid: int | None = None) -> int:
+    """自分以外の 32bit Python プロセスを終了し、JVLink ストリーム競合を防ぐ。
+
+    ⚠️ 重要: wmic の ExecutablePath で "-32" / "(x86)" を含む真の 32bit プロセス
+    だけを対象とする。メモリ使用量ヒューリスティックは廃止済み（64bit Python を
+    誤 kill する致命的バグがあったため）。
+
+    親プロセスチェーンも保護対象に含め、呼び出し元 64bit Python を kill しない。
+
+    Args:
+        exclude_pid: 終了対象から除外するPID（通常は os.getpid()）。
+
+    Returns:
+        終了したプロセス数。
+    """
+    my_pid = exclude_pid if exclude_pid is not None else os.getpid()
+
+    # 保護対象PIDセット: 自分 + 親プロセスチェーン
+    protected_pids: set[int] = {my_pid}
+    try:
+        # wmic で親PIDを辿る（psutil 不要）
+        _cur = my_pid
+        for _ in range(10):  # 最大10段上まで辿る
+            ppid_res = subprocess.run(
+                ["wmic", "process", "where", f"ProcessId={_cur}",
+                 "get", "ParentProcessId"],
+                capture_output=True, encoding="utf-8", errors="replace", timeout=5,
+            )
+            for _ln in ppid_res.stdout.splitlines():
+                _ln = _ln.strip()
+                if _ln and _ln.isdigit():
+                    _parent = int(_ln)
+                    if _parent in protected_pids or _parent <= 4:
+                        break
+                    protected_pids.add(_parent)
+                    _cur = _parent
+                    break
+            else:
+                break
+    except Exception:
+        pass
+
+    killed = 0
+    try:
+        # wmic で全 python.exe の実行パスを取得し、32bit プロセスのみ対象にする
+        result = subprocess.run(
+            ["wmic", "process", "where", "Name='python.exe'",
+             "get", "ProcessId,ExecutablePath"],
+            capture_output=True, encoding="utf-8", errors="replace", timeout=15,
+        )
+        for line in result.stdout.splitlines():
+            line = line.strip()
+            if not line or "ProcessId" in line or "ExecutablePath" in line:
+                continue
+            # 行形式: "C:\Python314-32\python.exe  12345"
+            # (ExecutablePath が空の場合は "  12345" になる)
+            parts = line.rsplit(None, 1)
+            if len(parts) < 1:
+                continue
+            pid_str = parts[-1]
+            exe_path = parts[0] if len(parts) == 2 else ""
+            try:
+                pid = int(pid_str)
+            except ValueError:
+                continue
+            if pid in protected_pids:
+                continue
+            # 32bit Python かどうかを実行パスで判定
+            # パスが空 (System / Protected プロセス) はスキップ
+            if not exe_path:
+                continue
+            exe_lower = exe_path.lower()
+            is_32bit = (
+                "(x86)" in exe_lower
+                or "-32" in exe_lower
+                or "32bit" in exe_lower
+                or "\\python3" in exe_lower and exe_lower.endswith("-32\\python.exe")
+            )
+            if not is_32bit:
+                continue  # 64bit Python は絶対に保護
+            try:
+                subprocess.run(
+                    ["taskkill", "/F", "/PID", str(pid)],
+                    capture_output=True, timeout=5,
+                )
+                logger.debug("古い 32bit Python セッション終了: PID=%d path=%s", pid, exe_path)
+                killed += 1
+            except Exception:
+                pass
+    except Exception as exc:
+        logger.debug("セッションクリーンアップスキップ: %s", exc)
+
+    if killed:
+        logger.info("古い 32bit Python セッション %d 件を終了しました", killed)
+        time.sleep(1)  # OS がソケット/COM ハンドルを解放するまで待機
+    return killed
 
 # ────────────────────────────────────────────────────────────────────────────
 # JVOpen / JVRead 定数
@@ -360,16 +461,33 @@ def _to_bytes(com_str: str) -> bytes:
                → encode('latin-1') でそのまま復元可能
     パターン2: JV-Linkが正規Unicodeを返す (U+3000以上の日本語文字)
                → encode('cp932') でSJIS変換可能
+
+    【バグ修正 2026-05-08】
+    latin-1 失敗時に encode('cp932', errors='replace') を使うと、
+    Pattern 1 のリードバイト (U+0081-U+009F = C1制御文字) が CP932 未定義のため
+    全て '?' (0x3F) に置換され競走名が文字化けする。
+    修正: U+0000-U+00FF は直接バイト値として扱い (Pattern 1 保持)、
+          U+0100+ のみ cp932 エンコードで変換 (Pattern 2 対応)。
     """
     if not isinstance(com_str, str):
         return b''
     try:
         return com_str.encode('latin-1')
     except (UnicodeEncodeError, AttributeError):
-        try:
-            return com_str.encode('cp932', errors='replace')
-        except Exception:
-            return bytes(ord(c) & 0xFF for c in com_str)
+        # latin-1 失敗 → Pattern 1 と Pattern 2 が混在している可能性がある。
+        # U+0000-U+00FF: バイト値をそのまま使用（CP932 リードバイト U+0083/U+0081 を保持）
+        # U+0100+: cp932 でエンコード（正規Unicode日本語文字を CP932 バイト列へ）
+        buf = bytearray()
+        for ch in com_str:
+            o = ord(ch)
+            if o <= 0xFF:
+                buf.append(o)
+            else:
+                try:
+                    buf.extend(ch.encode('cp932'))
+                except (UnicodeEncodeError, ValueError):
+                    buf.append(0x3F)
+        return bytes(buf)
 
 
 def _str(raw: bytes, sl: slice, encoding: str = 'ascii') -> str:
@@ -561,6 +679,10 @@ class JVLinkClient:
                 "  py -3.14-32 -m pip install pywin32\n"
                 "で 32bit Python 用をインストールしてください。"
             )
+
+        # JVOpen 前に古い 32bit Python セッションを終了してストリーム競合を防ぐ
+        _kill_stale_py32(exclude_pid=os.getpid())
+
         try:
             self._jvl = win32com.client.Dispatch("JVDTLab.JVLink.1")
         except Exception as e:
@@ -570,15 +692,65 @@ class JVLinkClient:
                 "また 32bit Python で実行しているか確認してください。"
             ) from e
 
+        # ────────────────────────────────────────────────────────────────
+        # ダイアログ完全抑制
+        #
+        # 旧 JVLink (JVLink.1) には JVSetUI(hwnd) メソッドが存在したが、
+        # 新 JVLink (JVDTLab.JVLink.1) では廃止され AttributeError になる。
+        # 代わりに ParentHWnd(hwnd) メソッドと JVSetUIProperties() を使う。
+        #
+        # ParentHWnd(0) = 親ウィンドウなし → JVLink が UI を表示しようとしても
+        # 描画先のウィンドウがないため実質的にダイアログがブロッキングしない。
+        # ────────────────────────────────────────────────────────────────
+        _ui_suppressed = False
+
+        # Step A: 新 API — ParentHWnd プロパティを 0 に設定してヘッドレス化
+        # COM Property なので object.Prop = value 形式でセット（メソッド呼び出しではない）
+        try:
+            self._jvl.ParentHWnd = 0  # 親ウィンドウなし → ダイアログが描画できない
+            logger.debug("ParentHWnd=0 完了 — ダイアログ親ウィンドウなし設定")
+            _ui_suppressed = True
+        except Exception as _hwnd_exc:
+            logger.debug("ParentHWnd=0 非対応: %s", _hwnd_exc)
+
+        # Step B: 新 API — JVSetUIProperties() でUI非表示プロパティ設定（引数なし）
+        try:
+            self._jvl.JVSetUIProperties()
+            logger.debug("JVSetUIProperties() 完了")
+            _ui_suppressed = True
+        except Exception as _prop_exc:
+            logger.debug("JVSetUIProperties() 非対応: %s", _prop_exc)
+
+        # Step C: 旧 API — JVSetUI(0) (フォールバック)
+        if not _ui_suppressed:
+            try:
+                self._jvl.JVSetUI(0)
+                logger.debug("JVSetUI(0) 完了 — ダイアログ無効化 (旧API)")
+                _ui_suppressed = True
+            except Exception as _ui_exc:
+                logger.warning(
+                    "ダイアログ抑制API (ParentHWnd/JVSetUIProperties/JVSetUI) がすべて"
+                    "失敗しました。UI表示を抑制できない可能性があります: %s",
+                    _ui_exc,
+                )
+
+        if _ui_suppressed:
+            logger.info("JVLink GUIダイアログ抑制完了")
+
         for attempt in range(1, self._MAX_RECONNECT + 1):
             ret = self._jvl.JVInit(self._sid)
             if ret == 0:
                 logger.info("JVInit 完了 sid=%s (attempt=%d)", self._sid, attempt)
+                # 親プロセスへ「JVLink初期化成功」を通知（GUIダイアログブロック検出用）
+                print("JVLINK_READY", flush=True)
                 return
             logger.warning("JVInit 失敗 code=%d sid=%s (attempt=%d/%d)", ret, self._sid, attempt, self._MAX_RECONNECT)
             if attempt < self._MAX_RECONNECT:
                 time.sleep(3)
 
+        # 全リトライ消化 → 親プロセスへ「JVLink初期化失敗」を通知して即時終了
+        # GUI_BLOCKED タイムアウトを待たずに Netkeiba フォールバックへ切り替えさせる
+        print("JVLINK_FAILED", flush=True)
         raise RuntimeError(
             f"JVInit 失敗 (全{self._MAX_RECONNECT}回): SID={self._sid!r} を確認してください。\n"
             "TARGET frontier を起動してログイン後に再実行、もしくは .env の JRAVAN_SID を確認してください。"

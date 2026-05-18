@@ -488,6 +488,8 @@ def _fetch_race_predictions(
         # 投資額 = n_tickets × 100 で統一（rec_bet は参考値として保持）
         pd["invested"]  = n_tickets * 100
         pd["horse_num_to_name"] = horse_num_to_name
+        # model_type に "(暫定)" が含まれる場合は暫定予想フラグを立てる
+        pd["is_provisional"] = "(暫定)" in (pd.get("model_type") or "")
         output.append(pd)
 
     return output
@@ -617,6 +619,8 @@ def export_predictions(
         pd["invested"]   = n_tickets * 100
         # combination_json の馬番から馬名を引くためのマップ
         pd["horse_num_to_name"] = horse_name_map.get(str(pd.get("race_id", "")), {})
+        # model_type に "(暫定)" が含まれる場合は暫定予想フラグを立てる
+        pd["is_provisional"] = "(暫定)" in (pd.get("model_type") or "")
         output.append(pd)
 
     return output

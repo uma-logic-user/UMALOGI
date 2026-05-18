@@ -2,12 +2,10 @@
 chcp 65001 > nul
 title UMALOGI Startup Monitor
 
-cd /d "%~dp0"
-
 echo.
 echo  ============================================================
 echo    _   _ __  __    _    _     ___   ____ ___
-echo   | | | |  \/  |  / \  | |   / _ \ / ___|_ _|
+echo   | | | |  \/  |  / \  / \  | |   / _ \ / ___|_ _|
 echo   | | | | |\/| | / _ \ | |  | | | | |  _ | |
 echo   | |_| | |  | |/ ___ \| |__| |_| | |_| || |
 echo    \___/|_|  |_/_/   \_\_____\___/ \____|___|
@@ -18,7 +16,8 @@ echo.
 
 echo  [1/2] Next.js Dashboard を起動中...
 echo        http://localhost:3000
-start "UMALOGI_UI" cmd /k "cd /d "%~dp0web" && npm run start"
+cd /d "%~dp0web"
+start "UMALOGI_UI" cmd /k "npm start"
 
 echo.
 echo        5秒待機中...
@@ -27,7 +26,8 @@ timeout /t 5 /nobreak > nul
 echo.
 echo  [2/2] AI スケジューラーを起動中...
 echo        scripts/scheduler.py
-start "UMALOGI_AI" cmd /k "cd /d "%~dp0" && python scripts/scheduler.py"
+cd /d "%~dp0"
+start "UMALOGI_AI" cmd /k "python scripts/scheduler.py"
 
 echo.
 echo  ============================================================

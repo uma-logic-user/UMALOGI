@@ -42,8 +42,8 @@ function buildTree(races: RaceEntry[]): TreeNode {
 
 // ── 表示用フォーマット ──────────────────────────────────────
 function formatDate(dateStr: string): string {
-  // "2024/06/01" → "06/01"
-  const parts = dateStr.split('/')
+  // "2026-05-17" → "05/17"  or  "2024/06/01" → "06/01"
+  const parts = dateStr.split(/[-/]/)
   return parts.length >= 3 ? `${parts[1]}/${parts[2]}` : dateStr
 }
 

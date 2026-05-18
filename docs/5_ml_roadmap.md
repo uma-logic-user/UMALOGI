@@ -4,6 +4,10 @@
 
 | 日付 | 変更内容 |
 |------|---------|
+| 2026-05-18 | 【X世論分析 Phase A 実装】src/scraper/x_scraper.py 新規作成（Playwright stealth-mode・RateLimiter・競馬関連フィルタ・x_signals保存）。scripts/x_targets.json アカウントマスタ新規作成。src/database/schema.py に x_accounts/x_signals テーブル DDL 追加（インデックス4件含む）。DB テーブル作成確認済み。Phase B: x_signal_parser.py（Claude Haiku API で構造化）は平日実装予定。Phase C: FEATURE_COLS への x_consensus_score 統合はモデル再訓練とセット。※社長明示指令により週末凍結ルール例外適用。影響: src/scraper/x_scraper.py(新規), scripts/x_targets.json(新規), src/database/schema.py |
+| 2026-05-17 | 【U score 統合モデル ドライラン再学習完了】scripts/dry_run_retrain.py 実行。6,135レース/47,199サンプルで HonmeiModel・ManjiModel を U score 27列込みの 80特徴量で再学習。HonmeiModel CV AUC=**0.7591**（従来比 +0.152: 旧0.607→新0.759、U score 18因子の予測力向上を確認）。ManjiModel 正常完了（回帰モデルのためAUCなし）。エラー0件。総処理時間 60分（_build_train_df が3回呼ばれる設計上の制約）。モデルバイナリ: data/models/honmei_model.pkl (v20260517_232119) / data/models/manji_model.pkl (v20260517_234054)。影響: data/models/honmei_model.pkl, data/models/manji_model.pkl, data/models/history/ |
+| 2026-05-17 | 【U score Phase 1 実装 + BugFix 2件】src/ml/u_score.py 新規作成。18因子（A:能力6/B:人的4/C:コース3/D:調教2/E:血統3）を DB バッチ SQL で算出し u_score 合成スコア（0〜1）を FEATURE_COLS に追加（計26列追加）。features.py に _add_u_score() 統合。①features.py BugFix: build_race_features_for_simulate/build_race_features の両関数で race_id 列未追加のため UScoreEngine が KeyError でスキップされていた（df["race_id"]=race_id を追加）。②u_score.py BugFix: _days_since_last_race_batch で horse_ids 用プレースホルダーを race_ids クエリに流用しバインディング不一致が発生（ph_race を別途算出）。Phase 2: X シグナルスコア・PCI加速力は CLAUDE.md §12 Phase C で実装予定。影響: src/ml/u_score.py(新規), src/ml/features.py, src/ml/models.py |
+| 2026-05-15 | 厳密 Walk-Forward バックテスト実施 (scripts/run_strict_backtest.py 新規作成)。2024-2025 全モデル評価: ALPHA(複勝) EV≥1.3 が唯一の有効モデル（通算ROI=92.6%、2025H2窓ROI=102.3%）。本命/卍/PlaceModel は 2025年 race_results 着順欠損バイアスにより結果無効と判定。推奨EV閾値=1.3確定。影響: scripts/run_strict_backtest.py, data/strict_backtest_result.json |
 | 2026-05-10 | 初版作成。現状スペック・再学習スケジュール・開発計画を記述 |
 
 ---

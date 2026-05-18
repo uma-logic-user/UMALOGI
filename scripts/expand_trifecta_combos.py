@@ -30,7 +30,7 @@ _ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(_ROOT))
 
 from dotenv import load_dotenv
-load_dotenv()
+load_dotenv(_ROOT / ".env", override=False)
 
 from src.database.init_db import init_db
 

@@ -85,8 +85,8 @@ def try_win5(conn: sqlite3.Connection, race_id: str) -> None:
             combination_json=combo_json,
         )
         logger.info(
-            "WIN5 予測保存: EV=%.3f 推定払戻=¥%,.0f [%s]",
-            best.expected_value, best.estimated_payout, horse_names_str,
+            "WIN5 予測保存: EV=%.3f 推定払戻=¥%s [%s]",
+            best.expected_value, f"{best.estimated_payout:,.0f}", horse_names_str,
         )
         _discord.send_text(
             f"[WIN5] 推奨買い目 EV={best.expected_value:.3f} "
@@ -176,8 +176,8 @@ def win5_batch(target_date: str | None = None) -> dict:
             combination_json=combo_json,
         )
         logger.info(
-            "WIN5 予測保存: EV=%.3f 推定払戻=¥%,.0f [%s]",
-            best.expected_value, best.estimated_payout, horse_names_str,
+            "WIN5 予測保存: EV=%.3f 推定払戻=¥%s [%s]",
+            best.expected_value, f"{best.estimated_payout:,.0f}", horse_names_str,
         )
         _discord.send_text(
             f"🎯 **[WIN5] 本日推奨買い目**\n"
@@ -197,6 +197,6 @@ def win5_batch(target_date: str | None = None) -> dict:
 
     except Exception as exc:
         logger.error("WIN5 バッチ失敗: %s", exc, exc_info=True)
-        _discord.send_text(f"🚨 [WIN5] 予測失敗: {exc}")
+        _discord.send_system_text(f"🚨 [WIN5] 予測失敗: {exc}")
         conn.close()
         return {"date": target_date, "error": str(exc), "skipped": False}

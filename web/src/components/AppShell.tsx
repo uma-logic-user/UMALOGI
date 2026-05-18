@@ -11,8 +11,9 @@ import FinancialDashboard  from './FinancialDashboard'
 import Win5Panel           from './Win5Panel'
 import GachiHits           from './GachiHits'
 import ConditionAnalysis   from './ConditionAnalysis'
+import DrillDownAnalytics  from './DrillDownAnalytics'
 
-type View = 'race' | 'hits' | 'dashboard' | 'financial' | 'win5' | 'gachi' | 'condition'
+type View = 'race' | 'hits' | 'dashboard' | 'financial' | 'win5' | 'gachi' | 'condition' | 'analytics'
 
 interface Summary {
   total_races_in_db: number
@@ -26,6 +27,7 @@ export default function AppShell() {
   // ── データ状態 ────────────────────────────────────────────────────
   const [races,         setRaces]         = useState<RaceEntry[]>([])
   const [predictions,   setPredictions]   = useState<Prediction[]>([])
+  const [hitsHistory,   setHitsHistory]   = useState<Prediction[]>([])
   const [summary,       setSummary]       = useState<Summary>({ total_races_in_db: 0, overall: {} })
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [financialData, setFinancialData] = useState<Record<string, { daily: any[]; monthly: any[]; yearly: any[] }>>({})
@@ -44,9 +46,10 @@ export default function AppShell() {
 
     async function fetchAll() {
       try {
-        const [racesRes, predsRes, summaryRes, finRes, gachiRes, win5Res, condRes] = await Promise.all([
+        const [racesRes, predsRes, hitsRes, summaryRes, finRes, gachiRes, win5Res, condRes] = await Promise.all([
           fetch('/api/races'),
           fetch('/api/predictions'),
+          fetch('/api/hits'),
           fetch('/api/summary'),
           fetch('/api/financial'),
           fetch('/api/gachi'),
@@ -56,10 +59,11 @@ export default function AppShell() {
 
         if (cancelled) return
 
-        const [racesData, predsData, summaryData, finData, gachiData, win5RawData, condData] =
+        const [racesData, predsData, hitsData, summaryData, finData, gachiData, win5RawData, condData] =
           await Promise.all([
             racesRes.json(),
             predsRes.json(),
+            hitsRes.json(),
             summaryRes.json(),
             finRes.json(),
             gachiRes.json(),
@@ -71,6 +75,7 @@ export default function AppShell() {
 
         setRaces(racesData)
         setPredictions(predsData)
+        setHitsHistory(hitsData)
         setSummary(summaryData)
         setFinancialData(finData)
         setGachiHits(gachiData)
@@ -104,7 +109,7 @@ export default function AppShell() {
     setView('race')
   }, [])
 
-  const hits = predictions.filter(p => p.is_hit === 1)
+  const hits = hitsHistory
 
   // ── ローディング / エラー ────────────────────────────────────────
   if (loading) {
@@ -216,6 +221,15 @@ export default function AppShell() {
               得意条件分析
             </span>
           </button>
+          <button
+            className={`sidebar-special-btn ${view === 'analytics' ? 'active' : ''}`}
+            onClick={() => setView('analytics')}
+          >
+            <span style={{ color: '#F59E0B', fontSize: '0.9rem' }}>▦</span>
+            <span style={{ color: view === 'analytics' ? '#F59E0B' : 'var(--text-primary)' }}>
+              収支分析
+            </span>
+          </button>
         </div>
 
         {/* レースツリー */}
@@ -234,15 +248,15 @@ export default function AppShell() {
       {/* ── Main ────────────────────────────────────── */}
       <main className="app-main">
         {view === 'hits' && (
-          <HitHistory predictions={predictions} />
+          <HitHistory predictions={hitsHistory} />
         )}
         {view === 'dashboard' && (
-          <div className="p-4">
+          <div className="p-3 sm:p-4 min-w-0 overflow-x-hidden">
             <TabView races={races} predictions={predictions} summary={summary} />
           </div>
         )}
         {view === 'financial' && (
-          <div className="p-4">
+          <div className="p-3 sm:p-4 min-w-0 overflow-x-hidden">
             <FinancialDashboard
               data={financialData}
               onSelectRace={(raceId) => handleSelectRace(raceId)}
@@ -271,6 +285,9 @@ export default function AppShell() {
         )}
         {view === 'condition' && (
           <ConditionAnalysis data={conditionData} />
+        )}
+        {view === 'analytics' && (
+          <DrillDownAnalytics />
         )}
       </main>
     </div>

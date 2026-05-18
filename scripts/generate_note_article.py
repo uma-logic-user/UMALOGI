@@ -41,27 +41,53 @@ logger = logging.getLogger("generate_note_article")
 
 # ── 定数 ────────────────────────────────────────────────────────────
 
-_EV_THRESHOLD      = 1.0
+_EV_THRESHOLD = 1.0
 _MAX_PICKS_DEFAULT = 3
-_FREE_PICKS        = 1
-_BET_PER_HORSE     = 300
+_FREE_PICKS = 1
+_BET_PER_HORSE = 300
 
 # バックテスト実績（2024年学習 → 2025年 3,257レース検証 / クリーンデータ確定値）
 _BACKTEST_STATS = {
     "複勝": {"roi": 95.4, "hit_rate": 19.0, "n_bets": 8612, "n_signals": 45313},
-    "単勝": {"roi": 68.1, "hit_rate": 2.0,  "n_bets": 609,  "n_signals": 29920},
+    "単勝": {"roi": 68.1, "hit_rate": 2.0, "n_bets": 609, "n_signals": 29920},
     "market_avg_fukusho": 77.5,  # JRA 複勝控除後の市場平均
 }
 
-_SURFACE_JP = {"芝": "芝", "ダート": "ダート", "D": "ダート", "T": "芝", "": "芝/ダート"}
+_SURFACE_JP = {
+    "芝": "芝",
+    "ダート": "ダート",
+    "D": "ダート",
+    "T": "芝",
+    "": "芝/ダート",
+}
 _CONDITION_JP = {
-    "良": "良馬場", "稍": "稍重", "稍重": "稍重", "重": "重", "不良": "不良", "": "良馬場"
+    "良": "良馬場",
+    "稍": "稍重",
+    "稍重": "稍重",
+    "重": "重",
+    "不良": "不良",
+    "": "良馬場",
 }
 
 _CHAOS_LABELS = [
-    (0.0, 0.3, "🟢 堅い",   "順当な決着が予想される。上位人気馬中心の手堅い本命買いが有効。"),
-    (0.3, 0.6, "🟡 中程度", "中穴の台頭もあり得る。本命◎ + 紐1〜2頭の組み合わせが妙手。"),
-    (0.6, 1.0, "🔴 高波乱", "人気薄の激走が起こりやすい条件が揃っている。複勝の払戻倍率に期待できる。"),
+    (
+        0.0,
+        0.3,
+        "🟢 堅い",
+        "順当な決着が予想される。上位人気馬中心の手堅い本命買いが有効。",
+    ),
+    (
+        0.3,
+        0.6,
+        "🟡 中程度",
+        "中穴の台頭もあり得る。本命◎ + 紐1〜2頭の組み合わせが妙手。",
+    ),
+    (
+        0.6,
+        1.0,
+        "🔴 高波乱",
+        "人気薄の激走が起こりやすい条件が揃っている。複勝の払戻倍率に期待できる。",
+    ),
 ]
 
 _DIST_CAT_SQL = """
@@ -93,6 +119,7 @@ def _load_elite_csv() -> dict[str, dict]:
 
 # ── DB ヘルパー ─────────────────────────────────────────────────────
 
+
 def _fetch_race_info(conn: sqlite3.Connection, race_id: str) -> dict:
     row = conn.execute(
         """
@@ -105,14 +132,14 @@ def _fetch_race_info(conn: sqlite3.Connection, race_id: str) -> dict:
     if not row:
         return {}
     return {
-        "race_name":   row[0] or "",
-        "venue":       row[1] or "",
+        "race_name": row[0] or "",
+        "venue": row[1] or "",
         "race_number": row[2] or 0,
-        "distance":    row[3] or 0,
-        "surface":     row[4] or "",
-        "condition":   row[5] or "",
-        "date":        row[6] or "",
-        "weather":     row[7] or "",
+        "distance": row[3] or 0,
+        "surface": row[4] or "",
+        "condition": row[5] or "",
+        "date": row[6] or "",
+        "weather": row[7] or "",
     }
 
 
@@ -147,16 +174,18 @@ def _fetch_predictions(
                     combo = [[n] for n in raw]
             except Exception:
                 pass
-        result.append({
-            "prediction_id":   row[0],
-            "model_type":      row[1],
-            "combination_json": row[2],
-            "combos":          combo,
-            "ev":              row[3] or 1.0,
-            "recommended_bet": row[4] or _BET_PER_HORSE,
-            "confidence":      row[5] or 0.5,
-            "notes":           row[6] or "",
-        })
+        result.append(
+            {
+                "prediction_id": row[0],
+                "model_type": row[1],
+                "combination_json": row[2],
+                "combos": combo,
+                "ev": row[3] or 1.0,
+                "recommended_bet": row[4] or _BET_PER_HORSE,
+                "confidence": row[5] or 0.5,
+                "notes": row[6] or "",
+            }
+        )
     return result
 
 
@@ -181,17 +210,17 @@ def _fetch_horse_info(
     ).fetchall()
     return {
         row[0]: {
-            "horse_number":      row[0],
-            "horse_name":        row[1] or f"{row[0]}番",
-            "jockey":            row[2] or "不明",
-            "trainer":           row[3] or "不明",
-            "win_odds":          row[4],
-            "weight_carried":    row[5],
-            "horse_weight":      row[6],
+            "horse_number": row[0],
+            "horse_name": row[1] or f"{row[0]}番",
+            "jockey": row[2] or "不明",
+            "trainer": row[3] or "不明",
+            "win_odds": row[4],
+            "weight_carried": row[5],
+            "horse_weight": row[6],
             "horse_weight_diff": row[7],
-            "gate_number":       row[8] or row[0],
-            "sex_age":           row[9] or "",
-            "popularity":        row[10],
+            "gate_number": row[8] or row[0],
+            "sex_age": row[9] or "",
+            "popularity": row[10],
         }
         for row in rows
     }
@@ -202,25 +231,35 @@ def _fetch_top_races_by_ev(
     target_date: str,
     top_n: int,
 ) -> list[str]:
-    rows = conn.execute(
-        """
-        SELECT p.race_id, MAX(p.expected_value) AS max_ev
-        FROM predictions p
-        JOIN races r ON r.race_id = p.race_id
-        WHERE r.date = ?
-          AND p.model_type LIKE '卍%'
-          AND p.bet_type  = '複勝'
-          AND (p.expected_value IS NULL OR p.expected_value >= 1.0)
-        GROUP BY p.race_id
-        ORDER BY max_ev DESC NULLS LAST
-        LIMIT ?
-        """,
-        (target_date, top_n),
-    ).fetchall()
-    return [row[0] for row in rows]
+    # 卍(直前) 優先、なければ 本命(暫定) でフォールバック（金曜暫定バッチ対応）
+    candidates = [
+        ("卍%", "複勝", True),   # (model_pattern, bet_type, require_ev_ge1)
+        ("本命%", "複勝", False),  # 暫定モードはEV条件なし
+    ]
+    for model_pattern, bet_type, require_ev in candidates:
+        ev_clause = "AND (p.expected_value IS NULL OR p.expected_value >= 1.0)" if require_ev else ""
+        rows = conn.execute(
+            f"""
+            SELECT p.race_id, MAX(p.expected_value) AS max_ev
+            FROM predictions p
+            JOIN races r ON r.race_id = p.race_id
+            WHERE r.date = ?
+              AND p.model_type LIKE ?
+              AND p.bet_type  = ?
+              {ev_clause}
+            GROUP BY p.race_id
+            ORDER BY max_ev DESC NULLS LAST
+            LIMIT ?
+            """,
+            (target_date, model_pattern, bet_type, top_n),
+        ).fetchall()
+        if rows:
+            return [row[0] for row in rows]
+    return []
 
 
 # ── 波乱度計算 ────────────────────────────────────────────────────
+
 
 def _calc_chaos_score(conn: sqlite3.Connection, race_id: str) -> float:
     row = conn.execute(
@@ -238,7 +277,12 @@ def _calc_chaos_score(conn: sqlite3.Connection, race_id: str) -> float:
         return 0.3
 
     import statistics
-    ev_cv = statistics.stdev(ev_list) / max(statistics.mean(ev_list), 0.01) if len(ev_list) > 1 else 0
+
+    ev_cv = (
+        statistics.stdev(ev_list) / max(statistics.mean(ev_list), 0.01)
+        if len(ev_list) > 1
+        else 0
+    )
     head_factor = min(head_count / 18.0, 1.0)
     return min((ev_cv * 0.6 + head_factor * 0.4), 1.0)
 
@@ -251,6 +295,7 @@ def _chaos_label(score: float) -> tuple[str, str]:
 
 
 # ── パフォーマンス統計 ───────────────────────────────────────────
+
 
 def _fetch_performance_stats(conn: sqlite3.Connection) -> dict:
     """
@@ -277,9 +322,9 @@ def _fetch_performance_stats(conn: sqlite3.Connection) -> dict:
             roi = payout / investment * 100 if investment > 0 else 0
             return {
                 "total": total,
-                "hits":  hits,
+                "hits": hits,
                 "hit_rate": hits / total * 100,
-                "roi":   roi,
+                "roi": roi,
                 "investment": investment,
                 "payout": payout,
             }
@@ -289,12 +334,12 @@ def _fetch_performance_stats(conn: sqlite3.Connection) -> dict:
     # フォールバック: バックテスト確定値
     s = _BACKTEST_STATS["複勝"]
     return {
-        "total":    s["n_signals"],
-        "hits":     s["n_bets"],
+        "total": s["n_signals"],
+        "hits": s["n_bets"],
         "hit_rate": s["hit_rate"],
-        "roi":      s["roi"],
+        "roi": s["roi"],
         "investment": 0,
-        "payout":   0,
+        "payout": 0,
     }
 
 
@@ -327,14 +372,14 @@ def _fetch_strong_conditions(conn: sqlite3.Connection, top_n: int = 3) -> list[d
         ).fetchall()
         return [
             {
-                "venue":    row[0],
-                "surface":  row[1],
+                "venue": row[0],
+                "surface": row[1],
                 "dist_cat": row[2],
-                "cnt":      row[3],
-                "hits":     row[4],
+                "cnt": row[3],
+                "hits": row[4],
                 "hit_rate": row[4] / row[3] * 100 if row[3] else 0,
-                "profit":   row[5],
-                "payout":   row[6],
+                "profit": row[5],
+                "payout": row[6],
             }
             for row in rows
         ]
@@ -365,10 +410,10 @@ def _fetch_month_stats(conn: sqlite3.Connection, date_str: str) -> dict | None:
         if stat and stat[0] > 0:
             total, hits, profit = stat
             return {
-                "total":    total,
-                "hits":     hits or 0,
+                "total": total,
+                "hits": hits or 0,
                 "hit_rate": (hits or 0) / total * 100,
-                "profit":   profit or 0,
+                "profit": profit or 0,
             }
     except Exception:
         pass
@@ -376,6 +421,7 @@ def _fetch_month_stats(conn: sqlite3.Connection, date_str: str) -> dict | None:
 
 
 # ── 的中実績取得 ─────────────────────────────────────────────────
+
 
 def _fetch_hit_examples(conn: sqlite3.Connection, limit: int = 3) -> list[dict]:
     """
@@ -403,7 +449,13 @@ def _fetch_hit_examples(conn: sqlite3.Connection, limit: int = 3) -> list[dict]:
 
     results = []
     for row in rows:
-        race_id, date, venue, race_no, race_name = row[0], row[1], row[2], row[3], row[4] or ""
+        race_id, date, venue, race_no, race_name = (
+            row[0],
+            row[1],
+            row[2],
+            row[3],
+            row[4] or "",
+        )
         combo_json, ev, payout, profit = row[5], row[6], row[7], row[8]
 
         # 買い目の馬番を取得（最大3頭）
@@ -427,26 +479,34 @@ def _fetch_hit_examples(conn: sqlite3.Connection, limit: int = 3) -> list[dict]:
         except Exception:
             placed = []
 
-        results.append({
-            "race_id":     race_id,
-            "date":        date,
-            "venue":       venue,
-            "race_number": race_no,
-            "race_name":   race_name,
-            "horse_nums":  horse_nums,
-            "ev":          ev,
-            "payout":      payout,
-            "profit":      profit,
-            "placed":      [
-                {"number": p[0], "name": p[1] or f"{p[0]}番", "rank": p[2], "odds": p[3]}
-                for p in placed
-                if p[1] and not p[1].startswith("??")  # 文字化けデータを除外
-            ],
-        })
+        results.append(
+            {
+                "race_id": race_id,
+                "date": date,
+                "venue": venue,
+                "race_number": race_no,
+                "race_name": race_name,
+                "horse_nums": horse_nums,
+                "ev": ev,
+                "payout": payout,
+                "profit": profit,
+                "placed": [
+                    {
+                        "number": p[0],
+                        "name": p[1] or f"{p[0]}番",
+                        "rank": p[2],
+                        "odds": p[3],
+                    }
+                    for p in placed
+                    if p[1] and not p[1].startswith("??")  # 文字化けデータを除外
+                ],
+            }
+        )
     return results
 
 
 # ── 軸馬ロジック ────────────────────────────────────────────────
+
 
 def _infer_axis(combos: list[list[int]]) -> list[int]:
     """全コンボに必ず含まれる馬番（軸馬）を昇順で返す。"""
@@ -460,12 +520,14 @@ def _infer_axis(combos: list[list[int]]) -> list[int]:
 
 # ── note.com フォーマット正規化 ────────────────────────────────────
 
+
 def _normalize_spacing(md: str) -> str:
     """
     note.com の WYSIWYG エディタ向けに Markdown の空行を正規化する。
     見出し・水平線の前後、テーブルブロックの前後に必ず空行を確保する。
     """
     import re
+
     lines_in = md.split("\n")
     out: list[str] = []
     n = len(lines_in)
@@ -476,8 +538,8 @@ def _normalize_spacing(md: str) -> str:
     for i, line in enumerate(lines_in):
         stripped = line.strip()
         is_heading = bool(re.match(r"^#{1,6}\s", stripped))
-        is_hr      = stripped == "---"
-        is_table   = _is_table(stripped)
+        is_hr = stripped == "---"
+        is_table = _is_table(stripped)
         prev_table = out and _is_table(out[-1].strip())
 
         # テーブルブロック開始（前の行がテーブルでない）
@@ -519,6 +581,7 @@ def _normalize_spacing(md: str) -> str:
 
 # ── セールスレターブロック ──────────────────────────────────────
 
+
 def _build_sales_header(
     conn: sqlite3.Connection,
     race_info: dict,
@@ -530,15 +593,15 @@ def _build_sales_header(
     通算ROI・期待値ロジック・軸馬信頼性・得意条件を動的に挿入。
     """
     conds = _fetch_strong_conditions(conn, top_n=3)
-    axis  = _infer_axis(combos)
+    axis = _infer_axis(combos)
     lines: list[str] = []
 
     # ROI・的中率は常にバックテスト確定値で統一（DB実績は母集団が異なるため使わない）
-    bt_fuku      = _BACKTEST_STATS["複勝"]
-    roi_str      = f"{bt_fuku['roi']:.1f}%"
-    market_avg   = _BACKTEST_STATS["market_avg_fukusho"]
-    diff_pp      = bt_fuku["roi"] - market_avg
-    diff_str     = f"+{diff_pp:.1f}pp" if diff_pp >= 0 else f"{diff_pp:.1f}pp"
+    bt_fuku = _BACKTEST_STATS["複勝"]
+    roi_str = f"{bt_fuku['roi']:.1f}%"
+    market_avg = _BACKTEST_STATS["market_avg_fukusho"]
+    diff_pp = bt_fuku["roi"] - market_avg
+    diff_str = f"+{diff_pp:.1f}pp" if diff_pp >= 0 else f"{diff_pp:.1f}pp"
     hit_rate_str = f"{bt_fuku['hit_rate']:.1f}%"
 
     # ── ブロック1: 通算ROI・期待値ロジック前面 ───────────────────
@@ -617,10 +680,10 @@ def _build_sales_header(
             "|---|---|---|---|",
         ]
         for c in conds[:3]:
-            surf_jp  = _SURFACE_JP.get(c["surface"], c["surface"])
-            pph      = c["profit"] / c["cnt"] if c["cnt"] else 0
-            sign     = "+" if pph >= 0 else "−"
-            pph_abs  = abs(int(pph))
+            surf_jp = _SURFACE_JP.get(c["surface"], c["surface"])
+            pph = c["profit"] / c["cnt"] if c["cnt"] else 0
+            sign = "+" if pph >= 0 else "−"
+            pph_abs = abs(int(pph))
             lines.append(
                 f"| {c['venue']} | {surf_jp}{c['dist_cat']} | "
                 f"{c['hit_rate']:.0f}%（{c['hits']}/{c['cnt']}件）| "
@@ -628,9 +691,9 @@ def _build_sales_header(
             )
 
         # 今回のレースが得意条件に該当するかチェック
-        venue   = race_info.get("venue", "")
+        venue = race_info.get("venue", "")
         surface = race_info.get("surface", "")
-        dist    = race_info.get("distance", 0)
+        dist = race_info.get("distance", 0)
         if dist < 1400:
             dist_c = "短距離"
         elif dist < 1800:
@@ -640,10 +703,7 @@ def _build_sales_header(
         else:
             dist_c = "長距離"
 
-        matched = [
-            c for c in conds
-            if c["venue"] == venue and c["dist_cat"] == dist_c
-        ]
+        matched = [c for c in conds if c["venue"] == venue and c["dist_cat"] == dist_c]
         if matched:
             lines += [
                 "",
@@ -670,7 +730,66 @@ def _build_sales_header(
     return lines
 
 
+# ── 軍資金別ガイド ─────────────────────────────────────────────────
+
+
+def _build_bankroll_guide(ev: float, n_horses: int) -> list[str]:
+    """軍資金別の推奨投資額テーブルと資金管理方針を生成する。"""
+    RACES_PER_MONTH = 56
+    RISK_PCT = 1.5  # 1レースに軍資金の1.5%をリスク
+    edge_rate = ev - 1.0
+
+    lines: list[str] = [
+        "---",
+        "",
+        "## 💡 資金管理ガイドライン",
+        "",
+        f"このレースのEV（期待値）: **{ev:.2f}**  "
+        f"（100円投資 → 約{int(100 * ev)}円回収期待）",
+        "",
+        "### 軍資金別 推奨投資額",
+        "",
+        "| 軍資金 | 1馬あたり | 1レース投資 | 月間投資目安 | 期待月次損益 |",
+        "|---|---|---|---|---|",
+    ]
+
+    for bankroll, label in [
+        (50_000, "¥5万"),
+        (100_000, "¥10万"),
+        (200_000, "¥20万"),
+        (500_000, "¥50万"),
+    ]:
+        bet_per_race = bankroll * RISK_PCT / 100
+        bet_per_horse = max(100, round(bet_per_race / max(n_horses, 1) / 100) * 100)
+        actual_per_race = bet_per_horse * n_horses
+        monthly_inv = actual_per_race * RACES_PER_MONTH
+        monthly_pnl = int(monthly_inv * edge_rate)
+        sign = "+" if monthly_pnl >= 0 else ""
+        lines.append(
+            f"| {label} | ¥{bet_per_horse:,} | ¥{actual_per_race:,} | "
+            f"¥{monthly_inv:,} | {sign}¥{monthly_pnl:,} |"
+        )
+
+    lines += [
+        "",
+        f"> EV {ev:.2f} の場合、1点 ¥100 投資に対して **約 ¥{int(100 * ev)} の期待回収**。",
+        "> 上記は同等のEVが続いた場合の期待値ベース試算です。実際は毎月変動します。",
+        "",
+        "| 運用ルール | 内容 |",
+        "|---|---|",
+        "| 損切り基準 | 月次ROI < 80%が2週連続の場合は投資額を半分に縮小 |",
+        "| 軸馬優先 | 軸馬を通常の**1.5〜2倍**の点数で買うと期待値が高まる |",
+        "| 上限管理 | 1日の総投資額は軍資金の**5%以内**を厳守 |",
+        "",
+        "> ⚠️ 本予想はバックテストに基づく参考情報であり、的中を保証するものではありません。",
+        "> 投票は余裕資金の範囲内でお願いします。",
+        "",
+    ]
+    return lines
+
+
 # ── 記事生成 ──────────────────────────────────────────────────────
+
 
 def generate_article(
     conn: sqlite3.Connection,
@@ -678,44 +797,64 @@ def generate_article(
     max_picks: int = _MAX_PICKS_DEFAULT,
     use_shap: bool = True,
 ) -> str:
-    race  = _fetch_race_info(conn, race_id)
+    import json as _json
+    from pathlib import Path as _Path
+
+    race = _fetch_race_info(conn, race_id)
     preds = _fetch_predictions(conn, race_id)
 
+    # 暫定予想フラグを prerace JSON から取得
+    _prerace_json = _Path(__file__).resolve().parents[1] / "data" / "predictions" / f"{race_id}.json"
+    _is_provisional = False
+    if _prerace_json.exists():
+        try:
+            _is_provisional = bool(_json.loads(_prerace_json.read_text(encoding="utf-8")).get("provisional", False))
+        except Exception:
+            pass
+
     if not preds:
+        if _is_provisional:
+            return (
+                f"<!-- {race_id}: 暫定予想（オッズ未取得）— "
+                f"直前予想バッチで EV 計算後に再生成されます -->\n"
+            )
         return f"<!-- {race_id}: 卍複勝予想なし（EV閾値未達または未予想）-->\n"
 
-    pred   = preds[0]
+    pred = preds[0]
     combos = pred["combos"]
 
     all_horse_nums = [c[0] for c in combos if c][:max_picks]
     horse_info_map = _fetch_horse_info(conn, race_id, all_horse_nums)
 
     # レース属性
-    race_name   = race.get("race_name") or f"R{race.get('race_number', '?')}（{race.get('venue', '')}）"
-    venue       = race.get("venue", "")
-    distance    = race.get("distance", 0)
+    race_name = (
+        race.get("race_name")
+        or f"R{race.get('race_number', '?')}（{race.get('venue', '')}）"
+    )
+    venue = race.get("venue", "")
+    distance = race.get("distance", 0)
     surface_raw = race.get("surface", "")
-    condition   = race.get("condition", "")
-    date_str    = race.get("date", "")
-    race_no     = race.get("race_number", 0)
-    surface_jp  = _SURFACE_JP.get(surface_raw, surface_raw or "芝")
-    cond_jp     = _CONDITION_JP.get(condition, condition or "良馬場")
-    dist_str    = f"{distance}m" if distance else "中距離"
+    condition = race.get("condition", "")
+    date_str = race.get("date", "")
+    race_no = race.get("race_number", 0)
+    surface_jp = _SURFACE_JP.get(surface_raw, surface_raw or "芝")
+    cond_jp = _CONDITION_JP.get(condition, condition or "良馬場")
+    dist_str = f"{distance}m" if distance else "中距離"
 
     # 波乱度
-    chaos_score  = _calc_chaos_score(conn, race_id)
+    chaos_score = _calc_chaos_score(conn, race_id)
     chaos_lbl, chaos_desc = _chaos_label(chaos_score)
 
     # エリートフィルター判定
     elite_data = _load_elite_csv()
-    elite_row  = elite_data.get(race_id)
+    elite_row = elite_data.get(race_id)
 
     # 軸馬
-    axis_list    = _infer_axis(combos)
+    axis_list = _infer_axis(combos)
 
     # 予算計算
-    total_bet    = len(all_horse_nums) * _BET_PER_HORSE
-    ev           = pred.get("ev", 1.0)
+    total_bet = len(all_horse_nums) * _BET_PER_HORSE
+    ev = pred.get("ev", 1.0)
     expected_ret = int(total_bet * ev)
 
     # SHAP 根拠文
@@ -723,6 +862,7 @@ def generate_article(
     if use_shap:
         try:
             from src.ml.narrative_generator import NarrativeGenerator
+
             gen = NarrativeGenerator(conn)
             for hn in all_horse_nums:
                 narratives[hn] = gen.generate(race_id=race_id, horse_number=hn, ev=ev)
@@ -735,12 +875,16 @@ def generate_article(
     lines: list[str] = []
 
     # ── ① タイトル（レース名は除去・会場+R番号のみ）───────────────
-    elite_badge = "🔥【AI厳選】" if elite_row else ""
+    # 暫定モードでは "AI厳選" バッジを抑制（オッズ未取得のため Edge 計算不可）
+    elite_badge = ("🔥【AI厳選】" if elite_row else "") if not _is_provisional else ""
+    provisional_note = "\n> ⚠️ **※オッズ未確定（暫定予想）** — 直前予想バッチで更新予定。" if _is_provisional else ""
     lines += [
-        f"# 🏇{elite_badge}【UMALOGI AI予想】{date_str} {venue}{race_no}R 複勝予想",
+        f"# 🏇{elite_badge}【UMALOGI AI予想】{date_str} {venue}{race_no}R 複勝予想"
+        + ("【暫定】" if _is_provisional else ""),
         "",
         f"> **{venue} {race_no}R｜{surface_jp}{dist_str}｜{cond_jp}**",
         f"> JRA-VAN公式データ × LightGBM AI — 期待値（EV）1.0以上の買い目のみ公開",
+        provisional_note,
         "",
     ]
 
@@ -790,15 +934,15 @@ def generate_article(
     # 無料公開馬
     free_picks = all_horse_nums[:_FREE_PICKS]
     if free_picks:
-        hn_free   = free_picks[0]
-        hi        = horse_info_map.get(hn_free, {})
+        hn_free = free_picks[0]
+        hi = horse_info_map.get(hn_free, {})
         free_name = hi.get("horse_name", f"{hn_free}番")
         free_gate = hi.get("gate_number", hn_free)
-        free_jky  = hi.get("jockey", "")
+        free_jky = hi.get("jockey", "")
         free_odds = hi.get("win_odds")
-        odds_str  = f"（単勝 {free_odds:.1f}倍）" if free_odds else ""
-        is_axis   = hn_free in axis_list
-        axis_str  = "　✅ **軸馬指定**" if is_axis else ""
+        odds_str = f"（単勝 {free_odds:.1f}倍）" if free_odds else ""
+        is_axis = hn_free in axis_list
+        axis_str = "　✅ **軸馬指定**" if is_axis else ""
 
         lines += [
             "### 🔍 無料公開：注目馬",
@@ -830,13 +974,19 @@ def generate_article(
         for ex in hit_examples:
             race_label = ex["race_name"] or f"{ex['venue']}{ex['race_number']}R"
             payout_str = f"¥{int(ex['payout']):,}" if ex["payout"] else "—"
-            profit_str = f"+¥{int(ex['profit']):,}" if ex["profit"] and ex["profit"] > 0 else "—"
+            profit_str = (
+                f"+¥{int(ex['profit']):,}" if ex["profit"] and ex["profit"] > 0 else "—"
+            )
             # 複勝圏に入った馬をメダル付きで表示
             placed_strs = []
             for p in ex["placed"][:3]:
                 medal = _RANK_MEDAL.get(p["rank"], "✅")
-                placed_strs.append(f"{medal}{p['rank']}着 **{p['number']}番 {p['name']}**")
-            placed_display = "　".join(placed_strs) if placed_strs else "（着順データ取得中）"
+                placed_strs.append(
+                    f"{medal}{p['rank']}着 **{p['number']}番 {p['name']}**"
+                )
+            placed_display = (
+                "　".join(placed_strs) if placed_strs else "（着順データ取得中）"
+            )
 
             lines += [
                 f"**📅 {ex['date']}　{race_label}**",
@@ -939,9 +1089,9 @@ def generate_article(
     if axis_list:
         axis_disp = []
         for ax in axis_list:
-            hi   = horse_info_map.get(ax, {})
+            hi = horse_info_map.get(ax, {})
             name = hi.get("horse_name", f"{ax}番")
-            pop  = hi.get("popularity")
+            pop = hi.get("popularity")
             pop_s = f"（{pop}番人気）" if pop else ""
             axis_disp.append(f"**{ax}番 {name}**{pop_s}")
         lines += [
@@ -961,15 +1111,17 @@ def generate_article(
         "|---|---|---|---|---|---|",
     ]
     for hn in all_horse_nums:
-        hi      = horse_info_map.get(hn, {})
-        name    = hi.get("horse_name", f"{hn}番")
-        jky     = hi.get("jockey", "—")
-        odds    = hi.get("win_odds")
-        fuku_lo = f"{odds/3:.1f}" if odds else "—"
-        fuku_hi = f"{odds/1.5:.1f}" if odds else "—"
+        hi = horse_info_map.get(hn, {})
+        name = hi.get("horse_name", f"{hn}番")
+        jky = hi.get("jockey", "—")
+        odds = hi.get("win_odds")
+        fuku_lo = f"{odds / 3:.1f}" if odds else "—"
+        fuku_hi = f"{odds / 1.5:.1f}" if odds else "—"
         fuku_str = f"{fuku_lo}〜{fuku_hi}倍" if odds else "—"
         axis_mark = "🔑" if hn in axis_list else "　"
-        lines.append(f"| {hn}番 | {name} | {jky} | {fuku_str} | ¥{_BET_PER_HORSE:,} | {axis_mark} |")
+        lines.append(
+            f"| {hn}番 | {name} | {jky} | {fuku_str} | ¥{_BET_PER_HORSE:,} | {axis_mark} |"
+        )
 
     lines += [
         "",
@@ -989,19 +1141,19 @@ def generate_article(
     ]
 
     for i, hn in enumerate(all_horse_nums, 1):
-        hi         = horse_info_map.get(hn, {})
+        hi = horse_info_map.get(hn, {})
         horse_name = hi.get("horse_name", f"{hn}番")
-        narrative  = narratives.get(hn)
-        is_axis    = hn in axis_list
+        narrative = narratives.get(hn)
+        is_axis = hn in axis_list
 
         prefix = "🔑 [軸馬] " if is_axis else ""
         if narrative:
             lines += [f"#### {i}. {prefix}{horse_name}", "", narrative, ""]
         else:
-            jky     = hi.get("jockey", "不明")
-            gate    = hi.get("gate_number", hn)
-            wc      = hi.get("weight_carried")
-            wc_str  = f"斤量{wc:.0f}kg" if wc else ""
+            jky = hi.get("jockey", "不明")
+            gate = hi.get("gate_number", hn)
+            wc = hi.get("weight_carried")
+            wc_str = f"斤量{wc:.0f}kg" if wc else ""
             exp_ret = int(100 * ev)
             lines += [
                 f"#### {i}. {hn}番 {prefix}{horse_name}",
@@ -1014,22 +1166,9 @@ def generate_article(
                 "",
             ]
 
-    # 資金管理
+    # 資金管理（軍資金別動的ガイド）
+    lines += _build_bankroll_guide(ev, len(all_horse_nums))
     lines += [
-        "---",
-        "",
-        "## 💡 資金管理ガイドライン",
-        "",
-        "| 推奨事項 | 内容 |",
-        "|---|---|",
-        f"| 1点あたり | ¥{_BET_PER_HORSE} を推奨（損失許容額の5%以内） |",
-        "| 月間予算  | ¥30,000 を上限に週5,000円ペースで運用 |",
-        "| 損切り基準 | 月次ROI < 80%が続く場合は一時休止を推奨 |",
-        "| 買い方    | 軸馬優先、EV上位から順に点数調整可 |",
-        "",
-        "> ⚠️ 本予想はバックテストに基づく参考情報であり、的中を保証するものではありません。",
-        "> 投票は余裕資金の範囲内でお願いします。",
-        "",
         "---",
         "",
         "## 🤖 UMALOGIについて",
@@ -1057,30 +1196,44 @@ _DEFAULT_OUT_DIR = _ROOT / "outputs" / "note"
 
 def _safe_filename(s: str) -> str:
     import re
+
     s = s.replace("（", "(").replace("）", ")")
     s = re.sub(r'[\\/:*?"<>|]', "_", s)
     return s.strip()
 
 
 def _parse_args() -> argparse.Namespace:
-    p = argparse.ArgumentParser(description="note 用 Markdown 記事を自動生成する（セールスレター版）")
-    p.add_argument("--date",       help="対象日 YYYYMMDD または YYYY-MM-DD（省略時=本日）")
-    p.add_argument("--race-id",    help="特定レース ID（指定時は --date より優先）")
-    p.add_argument("--top",        type=int, default=1, help="生成するレース数 EV 順（デフォルト 1）")
-    p.add_argument("--max-picks",  type=int, default=_MAX_PICKS_DEFAULT, help="1レースあたり最大公開馬数")
-    p.add_argument("--output",     help=f"出力ディレクトリ（省略時: {_DEFAULT_OUT_DIR}）")
-    p.add_argument("--stdout",     action="store_true", help="ファイル保存せず標準出力のみ")
-    p.add_argument("--no-shap",    action="store_true", help="SHAP 計算を省略（高速モード）")
-    p.add_argument("--preview",    action="store_true", help="Markdown プレビューをコンソールに出力")
+    p = argparse.ArgumentParser(
+        description="note 用 Markdown 記事を自動生成する（セールスレター版）"
+    )
+    p.add_argument("--date", help="対象日 YYYYMMDD または YYYY-MM-DD（省略時=本日）")
+    p.add_argument("--race-id", help="特定レース ID（指定時は --date より優先）")
+    p.add_argument(
+        "--top", type=int, default=1, help="生成するレース数 EV 順（デフォルト 1）"
+    )
+    p.add_argument(
+        "--max-picks",
+        type=int,
+        default=_MAX_PICKS_DEFAULT,
+        help="1レースあたり最大公開馬数",
+    )
+    p.add_argument("--output", help=f"出力ディレクトリ（省略時: {_DEFAULT_OUT_DIR}）")
+    p.add_argument("--stdout", action="store_true", help="ファイル保存せず標準出力のみ")
+    p.add_argument(
+        "--no-shap", action="store_true", help="SHAP 計算を省略（高速モード）"
+    )
+    p.add_argument(
+        "--preview", action="store_true", help="Markdown プレビューをコンソールに出力"
+    )
     return p.parse_args()
 
 
 def _build_out_path(out_dir: Path, race_id: str, race_info: dict) -> Path:
-    date_raw  = (race_info.get("date") or "").replace("-", "")
-    race_no   = race_info.get("race_number") or int(race_id[10:12])
+    date_raw = (race_info.get("date") or "").replace("-", "")
+    race_no = race_info.get("race_number") or int(race_id[10:12])
     race_name = race_info.get("race_name") or ""
     safe_name = _safe_filename(race_name) if race_name else race_id
-    filename  = f"{date_raw}_R{race_no:02d}_{safe_name}.md"
+    filename = f"{date_raw}_R{race_no:02d}_{safe_name}.md"
     return out_dir / filename
 
 
@@ -1088,17 +1241,18 @@ def main() -> None:
     args = _parse_args()
 
     from src.database.init_db import init_db
+
     conn = init_db()
 
     if args.race_id:
-        race_ids    = [args.race_id]
-        raw         = args.race_id
+        race_ids = [args.race_id]
+        raw = args.race_id
         target_date = raw[2:6] + "-" + raw[6:8] + "-" + raw[8:10]
     else:
-        raw_date    = args.date or dt_date.today().strftime("%Y%m%d")
-        raw_date    = raw_date.replace("-", "")
+        raw_date = args.date or dt_date.today().strftime("%Y%m%d")
+        raw_date = raw_date.replace("-", "")
         target_date = f"{raw_date[:4]}-{raw_date[4:6]}-{raw_date[6:8]}"
-        race_ids    = _fetch_top_races_by_ev(conn, target_date, top_n=args.top)
+        race_ids = _fetch_top_races_by_ev(conn, target_date, top_n=args.top)
 
     if not race_ids:
         logger.warning("対象レースが見つかりません (date=%s)", target_date)
@@ -1123,7 +1277,7 @@ def main() -> None:
         else:
             race_info = _fetch_race_info(conn, race_id)
             out_dir.mkdir(parents=True, exist_ok=True)
-            out_path  = _build_out_path(out_dir, race_id, race_info)
+            out_path = _build_out_path(out_dir, race_id, race_info)
             out_path.write_text(article, encoding="utf-8")
             logger.info("保存: %s", out_path)
             print(f"[UMALOGI] note記事保存: {out_path.name}")

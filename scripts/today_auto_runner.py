@@ -752,7 +752,13 @@ def _run_one_day(
     # postrace は最大 40 分のリトライループを持つため、同期実行すると後続の
     # prerace ジョブが遅延する。各ジョブを独立スレッドで並行実行することで
     # 手動介入・審議による遅延に関係なくスケジュールどおり発火する。
-    submitted:  dict[tuple[str, str], Future] = {}  # key → Future
+    # ── メモリ管理: Future を3段階で分離して完了後即解放 ──────────────────
+    # submitted_keys : 重複起動防止（全ジョブの起動済みキーセット）
+    # active_futures : 実行中 Future のみ保持。完了次第 result_cache に移して解放
+    # result_cache   : 完了後の戻り値 (int) を保持（結果集計用）
+    submitted_keys: set[tuple[str, str]]         = set()
+    active_futures: dict[tuple[str, str], Future] = {}
+    result_cache:   dict[tuple[str, str], int]    = {}
 
     def _prerace_worker(race_id: str, race_number: int, fire_at: datetime.datetime) -> int:
         start = fire_at + fire_ahead
@@ -799,28 +805,40 @@ def _run_one_day(
 
                 for fire_at, race_id, race_number, job_type in pending_jobs:
                     key = (race_id, job_type)
-                    if key in submitted:
+                    if key in submitted_keys:
                         continue  # 既に起動済み
                     if now < fire_at:
                         continue  # まだ時刻未到達
 
                     if job_type == "prerace":
-                        submitted[key] = pre_ex.submit(
+                        active_futures[key] = pre_ex.submit(
                             _prerace_worker, race_id, race_number, fire_at
                         )
                     else:  # postrace
-                        submitted[key] = post_ex.submit(
+                        active_futures[key] = post_ex.submit(
                             _postrace_worker, race_id, race_number
                         )
+                    submitted_keys.add(key)
+
+                # 完了済み Future をメモリから即時解放
+                for k in list(active_futures.keys()):
+                    f = active_futures[k]
+                    if f.done():
+                        try:
+                            result_cache[k] = f.result()
+                        except Exception as exc:
+                            logger.error("[例外] %s [%s]: %s", k[0], k[1], exc)
+                            result_cache[k] = -1
+                        del active_futures[k]
 
                 # 全ジョブ起動 & 完了確認
-                all_submitted = len(submitted) == total
-                all_done      = all_submitted and all(f.done() for f in submitted.values())
+                all_submitted = len(submitted_keys) == total
+                all_done      = all_submitted and len(active_futures) == 0
                 if all_done:
                     break
 
                 # 次発火まで待機（最大 10 秒）
-                unfired = [s[0] for s in pending_jobs if (s[1], s[3]) not in submitted]
+                unfired = [s[0] for s in pending_jobs if (s[1], s[3]) not in submitted_keys]
                 if unfired:
                     next_fire  = min(unfired)
                     sleep_secs = min(10.0, max(1.0, (next_fire - datetime.datetime.now()).total_seconds()))
@@ -828,13 +846,9 @@ def _run_one_day(
                     sleep_secs = 10.0
                 time.sleep(sleep_secs)
 
-        # 結果集計
-        for (race_id, job_type), fut in submitted.items():
-            try:
-                rc = fut.result()
-            except Exception as exc:
-                logger.error("[例外] %s [%s]: %s", race_id, job_type, exc)
-                rc = -1
+        # 結果集計（result_cache から取得）
+        for (race_id, job_type) in submitted_keys:
+            rc = result_cache.get((race_id, job_type), -1)
             if job_type == "prerace":
                 if rc == 0: prerace_success  += 1
                 else:       prerace_fail     += 1
@@ -919,6 +933,9 @@ def main() -> None:
         f"PID: `{os.getpid()}`"
     )
 
+    _consecutive_errors = 0
+    _MAX_CONSECUTIVE_ERRORS = 10
+
     while True:
         try:
             wd         = _weekday(target_date)
@@ -950,6 +967,9 @@ def main() -> None:
                 # 月〜木: レースなし
                 logger.info("平日 (%s, weekday=%d) - レースなし", target_date, wd)
                 ps = pf = rs = rf = 0
+
+            # 正常完了: 連続エラーカウンタをリセット
+            _consecutive_errors = 0
 
             if not continuous:
                 break
@@ -1054,18 +1074,33 @@ def main() -> None:
 
         except Exception as exc:
             import traceback
+            _consecutive_errors += 1
+            tb_str = traceback.format_exc()
             logger.error(
-                "[ERROR] 予期しない例外が発生しました: %s\n%s\n%d 秒後に自動再起動します...",
-                exc, traceback.format_exc(), _RESTART_WAIT_SEC,
+                "[ERROR] 予期しない例外 (%d/%d 回): %s\n%s",
+                _consecutive_errors, _MAX_CONSECUTIVE_ERRORS, exc, tb_str,
             )
+
+            if _consecutive_errors >= _MAX_CONSECUTIVE_ERRORS:
+                # 連続エラー上限到達 → Discord 通知して安全に終了
+                logger.critical(
+                    "連続 %d 回エラー上限到達。プロセスを安全に終了します。",
+                    _MAX_CONSECUTIVE_ERRORS,
+                )
+                _send_discord(
+                    f"🚨 **[UMALOGI] 連続{_MAX_CONSECUTIVE_ERRORS}回エラー → 自動停止**\n"
+                    f"最終エラー: `{exc}`\n"
+                    f"手動で原因を確認してからプロセスを再起動してください。\n"
+                    f"再起動コマンド: `py scripts/today_auto_runner.py --continuous`"
+                )
+                break  # sys.exit より break を使用（atexit/_cleanup_pid が確実に実行される）
+
             _send_discord(
-                f"⚠️ **[UMALOGI] 例外発生 → 自動再起動**\n"
+                f"⚠️ **[UMALOGI] 例外発生 → 自動再起動 ({_consecutive_errors}/{_MAX_CONSECUTIVE_ERRORS})**\n"
                 f"エラー: `{exc}`\n"
                 f"{_RESTART_WAIT_SEC} 秒後に同じ対象日 `{target_date}` で再起動します"
             )
             time.sleep(_RESTART_WAIT_SEC)
-            # --continuous の有無に関わらず、常に同じ target_date でリトライ継続
-            # （旧実装: not continuous 時は1回リトライして break → プロセス死亡）
             continue
 
 

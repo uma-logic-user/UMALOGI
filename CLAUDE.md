@@ -66,6 +66,43 @@ ALPHA / 卍 / 本命 モデルのロジック・特徴量・データ取得ル�
 必ず該当 `docs/` ファイルの Changelog に **日付・変更内容・影響ファイル** を記録すること。
 ドキュメントとコードの乖離は「技術的負債」ではなく「障害」として扱う。
 
+### 条項4: DB 物理削除禁止 ＆ 作業前バックアップ義務（2026-05-16 策定）
+
+```
+【原則】DBのレコードは物理削除（DELETE / DROP TABLE）を禁止する。
+        変更が必要な場合は UPDATE による上書き、または is_deleted フラグ等の論理削除のみ許可。
+
+【例外】ゴミデータの削除は影響行数・リカバリ手段を社長に報告し、明示的な許可を得ること。
+
+【作業前バックアップ義務】
+  DBスキーマ変更・大規模データ操作・モデル再学習を行う前に、必ず以下のいずれかを実行すること:
+  1. data/backups/ に日付入りバックアップを作成:
+     cp data/umalogi.db data/backups/umalogi_$(date +%Y%m%d_%H%M%S).db
+  2. または git stash / git commit で作業前状態を保存する。
+
+【事故事例（2026-05-16）】
+  predictions テーブルは無事だったが、/api/predictions の limit=1000 が的中実績の全件表示を
+  阻害し「データ消失」に見えた。根本原因の調査なしに DELETE/リストアを実施すると
+  正常なデータを破壊する恐れがある。必ず現状調査（COUNT確認・バックアップ比較）を先に行うこと。
+
+【事故事例（2026-05-17）】
+  「的中実績がごっそり消えた」との報告が上がった。調査の結果:
+  - predictions: 8,225件 (2026-04-11〜05-17) → 正常存在
+  - prediction_results.is_hit=1: 782件 → 正常存在
+  - /api/hits SQL (WHERE is_hit=1 + NO LIMIT) → 782件返却確認済み
+  実際の原因: Next.jsサーバーが起動していなかった（または旧ビルドで稼働中）。
+  DB データは完全無損傷。データ削除の事実なし。
+  教訓: 「UIに出ない = データ消失」は誤り。必ずDB側を直接確認してから判断すること。
+         py -c "import sqlite3; con=sqlite3.connect('data/umalogi.db'); print(con.execute('SELECT COUNT(*) FROM predictions').fetchone())"
+         を実行してDBを直接確認する手順をまず踏むこと。
+
+【Next.jsサーバー障害時のチェックリスト】
+  1. DBのCOUNT確認（上記コマンド）
+  2. ポート3000の疎通確認
+  3. サーバー再起動: cd web && npm start
+  4. ビルドが古い場合のみ再ビルド: cd web && npm run build && npm start
+```
+
 ---
 
 ## ⚠️ 最重要ルール：ドキュメント保守の絶対遵守
@@ -296,6 +333,62 @@ JVLink COM は CP932 バイト列を Pattern 1（各バイトを U+0000-U+00FF �
 
 ---
 
+### 16. 日本語エンコーディングの絶対遵守（2026-05-15 策定）
+
+> **あらゆる入力ソース（JRA-VAN / JVLink, netkeiba, X/Twitter, 外部 API 等）から**
+> **取得したデータは、DB 保存前に必ず UTF-8 であることを保証すること。**
+> **Shift-JIS / CP932 / EUC-JP の生バイト列を変換せずに放置することは絶対禁止。**
+
+#### 根拠
+2026-05-15 調査で判明した文字化けパターン:
+- `netkeiba.py` が EUC-JP 固定デコードを使用していたため、`db.netkeiba.com` の
+  血統ページが Mac-Greek / Mac-Roman 等に誤検知され父馬・母馬名が化けていた。
+- JVLink COM BSTR の CP932 リードバイト（U+0081-U+009F = C1 制御文字域）が
+  `errors='replace'` で `?`（0x3F）に置換され `?A?h?}?C...` パターンが生成されていた。
+
+#### 実装ルール（実施済み）
+
+```
+1. HTTP レスポンスのエンコーディング検知
+   - Content-Type ヘッダーに charset が明示 → そのまま使用
+   - 不明 → apparent_encoding を参照
+   - apparent_encoding が 'mac'/'greek'/'iso-8859-7' 等を返した場合 → euc-jp にフォールバック
+   - ソース: src/scraper/netkeiba.py:_detect_encoding()
+
+2. DB 挿入前バリデーション
+   - 血統情報 (sire/dam/dam_sire) 等のテキストフィールドは
+     src/utils/text:ensure_clean() を必ず通すこと
+   - ensure_clean() は文字化け検知・回復・最終ゲートの3層構造
+   - ソース: src/database/init_db.py の horses INSERT 箇所
+
+3. 文字化け検知 (src/utils/text:is_garbled)
+   - ギリシャ文字/キリル文字の連続: Mac-Greek/Cyrillic 誤変換の痕跡
+   - '?A?h?}' スタイルの ?X 繰り返し: JVLink CP932 リードバイト欠損の痕跡
+   - 稀漢字 (窿/噬/穢 等) の出現: 不正な回復処理の痕跡
+   - 上記のいずれかを検知したら ensure_clean() がフォールバック処理を起動
+
+4. 定期クレンジング
+   - scripts/cleanup_encoding.py を使って全テーブルをスキャン可能
+   - 2026-05-15 実績: 7,562 件の文字化けを修正（racehorses 7,547 / races 15）
+
+5. Web UI での文字化け表示の絶対禁止（2026-05-16 追加）
+   - Next.js の /api/* ハンドラーは、DB から取得した文字列フィールドを
+     レスポンスに含める前に文字化けチェックを実施すること。
+   - チェック方法: Python 側の is_garbled() と同等のパターンを TypeScript で実装するか、
+     あるいは API 呼び出し先の Python サービスで ensure_clean() を通した値のみを返すこと。
+   - 文字化けを検知した場合の動作:
+     a) 即座に scripts/cleanup_encoding.py を実行して DB 側を修復する
+     b) レスポンスには空文字 "" または "（データ修復中）" を返す（文字化け文字列を絶対に返さない）
+     c) システムログ・Discord #system チャンネルにアラートを送信する
+   - 対象フィールド（最低限）: horse_name, jockey, trainer, race_name, sex_age
+   - 判定パターン（TypeScript 簡易版）:
+     /(\?[\x21-\x7e]){2,}/.test(s)   // JVLink ?X?X パターン
+     || /[\\uFF61-\\uFF9F]/.test(s)   // 半角カタカナ混在
+     || /[\\u0370-\\u03FF]{2,}/.test(s) // ギリシャ文字連続
+```
+
+---
+
 ## 次フェーズ ロードマップ（Ver2.0 候補）
 
 > ⚠️ **重要な認識修正（2026-05-12 社長指令）**
@@ -365,3 +458,25 @@ ALPHA/卍/本命の EV 計算時に **"専門家コンセンサス係数"** と�
 
 - JVLink SID が1日分以上のデータ取得に対応した時点で実行
 - 2023〜2025 の 3年分データで ALPHA モデル再訓練 → ROI 250%+ 目標
+
+### 15. WIN5 結果取得ソース移行計画（Plan B: JVLink 化）
+
+**現状 (Plan A):** `scripts/fetch_win5_result.py` が netkeiba から WIN5 払戻・的中馬番を
+スクレイピングして `win5_results` テーブルに保存する。
+
+**将来移行先 (Plan B):** JVLink SID/32bit 制約が解消された時点で、
+WIN5 公式結果データ（JVLink RACE データスペック内の払戻レコード）を直接取得する方式に切り替える。
+
+```
+移行条件:
+  - JVLink SID がリアルタイム当日データの全取得に対応
+  - 32bit Python COM 呼び出し不要の 64bit JVLink SDK（または代替 API）が利用可能
+
+移行ファイル:
+  - scripts/fetch_win5_result.py  → JVLink RTD / RACE 払戻パーサーを利用する実装に変更
+  - src/scraper/rtd_reader.py     → WIN5 払戻レコードのパース拡張
+
+移行後のメリット:
+  - netkeiba スクレイピング依存をゼロ化（利用規約リスク解消）
+  - 払戻確定タイミングが JVLink RTD で自動通知 → 取得遅延なし
+```

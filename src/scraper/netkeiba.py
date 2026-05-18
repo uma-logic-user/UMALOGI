@@ -100,6 +100,49 @@ class RaceInfo:
 # ---------------------------------------------------------------------------
 # HTTP ユーティリティ
 # ---------------------------------------------------------------------------
+
+def _detect_encoding(resp: requests.Response) -> str:
+    """
+    レスポンスのエンコーディングを確定する。
+
+    優先順位:
+      1. Content-Type ヘッダーに charset が明示されている場合はそれを使用
+      2. apparent_encoding (chardet/charset-normalizer による自動検知)
+         - "euc" が含まれる場合 → "euc-jp"
+         - "utf" が含まれる場合 → "utf-8"
+         - "mac" が含まれる場合 → フォールバック (mac-greek 等は誤検知しやすい)
+      3. フォールバック: "euc-jp" (netkeiba 旧来のデフォルト)
+
+    背景: db.netkeiba.com の血統ページが EUC-JP を返すが、
+    chardet が MacGreek 等に誤検知して文字化けが発生したため、
+    Content-Type 優先 + "mac" 検知時のフォールバックを実装した。
+    """
+    ct = resp.headers.get("Content-Type", "").lower()
+    if "utf-8" in ct or "utf8" in ct:
+        return "utf-8"
+    if "euc" in ct:
+        return "euc-jp"
+    if "shift_jis" in ct or "sjis" in ct or "shift-jis" in ct:
+        return "cp932"
+
+    apparent = (resp.apparent_encoding or "").lower()
+    if "utf" in apparent:
+        return "utf-8"
+    if "euc" in apparent:
+        return "euc-jp"
+    if "shift" in apparent or "sjis" in apparent or "932" in apparent:
+        return "cp932"
+    # chardet が MacGreek / MacRoman 等を誤検知した場合は euc-jp にフォールバック
+    if "mac" in apparent or "greek" in apparent or "iso-8859-7" in apparent:
+        logger.debug(
+            "apparent_encoding=%r は誤検知の可能性があるため euc-jp にフォールバック",
+            resp.apparent_encoding,
+        )
+        return "euc-jp"
+
+    return "euc-jp"
+
+
 def _fetch_html(
     url: str,
     *,
@@ -128,8 +171,7 @@ def _fetch_html(
         try:
             resp = requester(url, headers=DEFAULT_HEADERS, timeout=timeout)
             resp.raise_for_status()
-            # netkeiba は EUC-JP 固定（chardet の誤検知を防ぐ）
-            resp.encoding = "euc-jp"
+            resp.encoding = _detect_encoding(resp)
             return resp.text
         except (requests.HTTPError, requests.Timeout, requests.ConnectionError) as exc:
             last_exc = exc

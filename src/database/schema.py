@@ -237,9 +237,47 @@ DDL_STATEMENTS: list[str] = [
     "CREATE INDEX IF NOT EXISTS idx_payouts_race_id  ON race_payouts(race_id)",
     "CREATE INDEX IF NOT EXISTS idx_payouts_bet_type ON race_payouts(race_id, bet_type)",
 
+    # win5_results: WIN5 確定結果（的中馬番5つ＋払戻金額）
+    """
+    CREATE TABLE IF NOT EXISTS win5_results (
+        id              INTEGER PRIMARY KEY AUTOINCREMENT,
+        race_date       TEXT    NOT NULL UNIQUE,  -- YYYY-MM-DD
+        race_ids        TEXT    NOT NULL,          -- JSON ["202501010101", ...]
+        winning_numbers TEXT    NOT NULL,          -- JSON [3, 7, 12, 1, 9] (各レース1着馬番)
+        payout          INTEGER NOT NULL DEFAULT 0, -- 払戻金額（100円あたり・円）
+        scraped_at      TEXT    NOT NULL DEFAULT (datetime('now', 'localtime'))
+    )
+    """,
+
+    "CREATE INDEX IF NOT EXISTS idx_win5r_date ON win5_results(race_date)",
+
     # ================================================================
     # ── ビュー ───────────────────────────────────────────────────────
     # ================================================================
+
+    # 階層型収支分析ビュー（Analytics ドリルダウン用）
+    # 粒度: 日 × モデル × 券種
+    """
+    CREATE VIEW IF NOT EXISTS v_analytics AS
+    SELECT
+        r.date,
+        substr(r.date, 1, 4)  AS year,
+        substr(r.date, 6, 2)  AS month,
+        substr(r.date, 9, 2)  AS day,
+        r.venue,
+        r.surface,
+        p.model_type,
+        p.bet_type,
+        COUNT(*)                                              AS total_bets,
+        SUM(CASE WHEN pr.is_hit = 1 THEN 1 ELSE 0 END)      AS hits,
+        SUM(COALESCE(pr.payout,  0))                         AS total_payout,
+        SUM(COALESCE(pr.profit,  0))                         AS total_profit
+    FROM predictions p
+    JOIN  races r              ON r.race_id = p.race_id
+    LEFT JOIN prediction_results pr ON pr.prediction_id = p.id
+    WHERE pr.is_hit IS NOT NULL
+    GROUP BY r.date, p.model_type, p.bet_type
+    """,
 
     # 予想 × レース × 的中実績 の結合ビュー（ダッシュボード用）
     """
@@ -610,4 +648,47 @@ DDL_STATEMENTS: list[str] = [
     """,
 
     "CREATE INDEX IF NOT EXISTS idx_batch_runs_date ON batch_runs(run_date)",
+
+    # ================================================================
+    # ── X（旧Twitter）世論分析層（2026-05-18 Phase A）
+    # ── 社長明示指令により日曜実装（週末凍結ルール例外適用）
+    # ================================================================
+
+    # x_accounts: 監視対象の競馬予想家アカウントマスタ
+    """
+    CREATE TABLE IF NOT EXISTS x_accounts (
+        screen_name     TEXT    PRIMARY KEY,
+        display_name    TEXT    NOT NULL DEFAULT '',
+        follower_count  INTEGER NOT NULL DEFAULT 0,
+        hit_rate_30d    REAL,                       -- 直近30日的中率（0〜1）
+        weight          REAL    NOT NULL DEFAULT 1.0,  -- EV計算時の重み（的中率で動的調整）
+        is_active       INTEGER NOT NULL DEFAULT 1, -- 監視対象フラグ
+        last_scraped_at TEXT,
+        created_at      TEXT    NOT NULL DEFAULT (datetime('now','localtime')),
+        updated_at      TEXT    NOT NULL DEFAULT (datetime('now','localtime'))
+    )
+    """,
+
+    # x_signals: 予想家ポストから抽出した馬番シグナル
+    """
+    CREATE TABLE IF NOT EXISTS x_signals (
+        signal_id       INTEGER PRIMARY KEY AUTOINCREMENT,
+        tweet_id        TEXT    NOT NULL UNIQUE,    -- X の tweet ID（重複排除）
+        race_id         TEXT    REFERENCES races(race_id),  -- races テーブルと突合後に設定
+        screen_name     TEXT    NOT NULL REFERENCES x_accounts(screen_name),
+        horse_number    INTEGER,                    -- 抽出した馬番（NULL=未抽出）
+        signal_type     TEXT,                       -- 'honmei'|'ana'|'keshi'|NULL
+        confidence      REAL    NOT NULL DEFAULT 0.5,  -- 0.0〜1.0（LLM推定）
+        race_name_raw   TEXT,                       -- 元テキストから抽出したレース名
+        raw_text        TEXT    NOT NULL,
+        posted_at       TEXT    NOT NULL,           -- ISO 8601
+        fetched_at      TEXT    NOT NULL DEFAULT (datetime('now','localtime')),
+        parsed          INTEGER NOT NULL DEFAULT 0  -- x_signal_parser 処理済みフラグ
+    )
+    """,
+
+    "CREATE INDEX IF NOT EXISTS idx_x_signals_race_id     ON x_signals(race_id)",
+    "CREATE INDEX IF NOT EXISTS idx_x_signals_posted_at   ON x_signals(posted_at)",
+    "CREATE INDEX IF NOT EXISTS idx_x_signals_screen_name ON x_signals(screen_name)",
+    "CREATE INDEX IF NOT EXISTS idx_x_signals_parsed      ON x_signals(parsed) WHERE parsed=0",
 ]

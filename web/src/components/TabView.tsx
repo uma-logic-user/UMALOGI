@@ -23,6 +23,11 @@ export default function TabView({ races, predictions, summary }: Props) {
   const hasPredictions = Array.isArray(predictions) && predictions.length > 0
   const featured       = hasRaces ? races[0] : null
 
+  // 全レースの払戻を race_id 付きで集約（的中コンボ照合用）
+  const allPayouts = hasRaces
+    ? races.flatMap(r => r.payouts.map(p => ({ ...p, race_id: r.race_id })))
+    : []
+
   const reconciled = predictions.filter(p => p.is_hit !== null)
   const hits       = reconciled.filter(p => p.is_hit === 1)
   const bigHits    = hits.filter(p => (p.roi ?? 0) >= 200)
@@ -58,12 +63,13 @@ export default function TabView({ races, predictions, summary }: Props) {
       </div>
 
       {/* ── タブバー ────────────────────────────────────────── */}
-      <div className="flex gap-0 border-b border-[rgba(0,200,255,0.18)]">
+      <div className="flex gap-0 border-b border-[rgba(0,200,255,0.18)] overflow-x-auto"
+        style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none' }}>
         {TABS.map(tab => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`relative px-6 py-3 text-sm font-semibold tracking-wider transition-colors ${
+            className={`relative shrink-0 px-4 py-3 sm:px-6 text-sm font-semibold tracking-wider transition-colors whitespace-nowrap ${
               activeTab === tab.id
                 ? 'text-[var(--neon-cyan)]'
                 : 'text-[var(--text-muted)] hover:text-[var(--text-primary)]'
@@ -148,7 +154,7 @@ export default function TabView({ races, predictions, summary }: Props) {
             )}
           </div>
           {hasPredictions ? (
-            <PredictionsPanel predictions={predictions} limit={500} />
+            <PredictionsPanel predictions={predictions} payouts={allPayouts} limit={500} />
           ) : (
             <div className="neon-card p-12 text-center">
               <div className="text-[var(--text-muted)] text-base tracking-widest">NO PREDICTIONS AVAILABLE</div>

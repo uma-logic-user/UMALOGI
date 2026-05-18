@@ -20,7 +20,10 @@ import pandas as pd
 from src.database.init_db import init_db, insert_prediction
 from src.ml.features import FeatureBuilder
 from src.ml.models import load_models
-from src.ml.bet_generator import BetGenerator, BetConfig, get_current_bankroll
+from src.ml.bet_generator import (
+    BetGenerator, BetConfig, get_current_bankroll,
+    RaceBets, BetRecommendation,
+)
 from src.notification.discord_notifier import DiscordNotifier
 from src.pipeline.scraping import fetch_and_save_odds
 from ._common import build_output_json, save_json
@@ -99,7 +102,7 @@ def _check_race_deadline(conn: sqlite3.Connection, race_id: str) -> None:
                 f"現在: {now.strftime('%H:%M')} JST (締切から +{elapsed}分)"
             )
             logger.warning("[遅延警告] %s: 締切から +%d 分", race_id, elapsed)
-            _discord.send_text(text)
+            _discord.send_system_text(text)
         else:
             remaining = int((deadline - now).total_seconds() / 60)
             logger.info("締め切りまで残り %d 分 (race_id=%s)", remaining, race_id)
@@ -272,6 +275,193 @@ def _save_predictions(
     return prediction_ids
 
 
+def _run_alpha_payout(
+    conn: sqlite3.Connection,
+    race_id: str,
+    df: pd.DataFrame,
+    bankroll: float,
+) -> "RaceBets | None":
+    """
+    Alpha-Payout 複勝シグナル + 三連複・三連単を生成して DB に保存し
+    RaceBets を返す（Discord 通知用）。
+
+    モデルファイル (data/models/alpha_payout/alpha_payout_model.pkl) が
+    存在しない場合は None を返す。
+    """
+    try:
+        from src.ml.alpha_payout_model import AlphaPayoutModel, _MODEL_PATH
+        if not _MODEL_PATH.exists():
+            logger.debug("Alpha-Payout モデルなし → スキップ (race_id=%s)", race_id)
+            return
+
+        ap = AlphaPayoutModel.load()
+
+        # FeatureBuilder は encoded integers のみ提供するため
+        # AlphaPayoutModel が必要とする raw 文字列カラムを DB から補完する
+        df_ap = df.copy()
+        df_ap["race_id"] = race_id  # groupby 用
+
+        race_row = conn.execute(
+            "SELECT venue, condition, surface FROM races WHERE race_id = ?", (race_id,)
+        ).fetchone()
+        if race_row:
+            df_ap["venue"]     = race_row[0] or ""
+            df_ap["condition"] = race_row[1] or ""
+            df_ap["surface"]   = race_row[2] or ""
+
+        # 馬別の生文字列: entries 優先、なければ race_results から取得
+        entry_rows = conn.execute(
+            "SELECT horse_number, sex_age, jockey, trainer FROM entries WHERE race_id = ?",
+            (race_id,),
+        ).fetchall()
+        if not entry_rows:
+            entry_rows = conn.execute(
+                "SELECT horse_number, sex_age, jockey, trainer FROM race_results WHERE race_id = ?",
+                (race_id,),
+            ).fetchall()
+        if entry_rows:
+            meta = pd.DataFrame(
+                entry_rows, columns=["horse_number", "sex_age", "jockey", "trainer"]
+            )
+            df_ap = df_ap.merge(meta, on="horse_number", how="left")
+
+        pred_ev   = ap.predict_payout_ev(df_ap)
+        threshold = ap._ev_threshold
+
+        # ── オッズデータ品質チェック ──────────────────────────────────────
+        # win_odds が 50%超 NaN → オッズ依存特徴量が崩壊 → EV値が信頼できない
+        odds_col   = "win_odds" if "win_odds" in df_ap.columns else None
+        nan_rate   = float(df_ap[odds_col].isna().mean()) if odds_col else 1.0
+        has_odds   = nan_rate < 0.5   # オッズデータが十分にある
+
+        # ── ハイブリッド抽出 ──────────────────────────────────────────────
+        # 絶対閾値（通常モード）
+        abs_pairs: list[tuple[int, float]] = sorted(
+            [(i, float(pred_ev.iloc[i])) for i in range(len(pred_ev))
+             if float(pred_ev.iloc[i]) >= threshold],
+            key=lambda x: x[1], reverse=True,
+        )
+
+        # 相対シグナル（オッズあり & 絶対閾値ゼロ件 の場合のみ補完）
+        # 条件: EV が race 内上位3頭 かつ median比 1.2倍以上 かつ 絶対値 >= 0.6
+        rel_pairs: list[tuple[int, float]] = []
+        signal_type = "absolute"
+        if has_odds and not abs_pairs:
+            race_median = float(pred_ev.median())
+            rel_floor   = max(race_median * 1.2, 0.6)
+            sorted_idx  = sorted(range(len(pred_ev)),
+                                  key=lambda i: float(pred_ev.iloc[i]), reverse=True)
+            rel_pairs = [
+                (i, float(pred_ev.iloc[i]))
+                for i in sorted_idx[:3]
+                if float(pred_ev.iloc[i]) >= rel_floor
+            ]
+            if rel_pairs:
+                signal_type = "relative"
+                logger.info(
+                    "Alpha-Payout: 相対シグナル発動 (nan_rate=%.0f%% median=%.3f floor=%.3f) "
+                    "%d頭 max=%.3f (race_id=%s)",
+                    nan_rate * 100, race_median, rel_floor,
+                    len(rel_pairs), rel_pairs[0][1], race_id,
+                )
+
+        buy_pairs = abs_pairs or rel_pairs
+
+        if not buy_pairs:
+            logger.info(
+                "Alpha-Payout: 買いシグナルなし "
+                "(nan_rate=%.0f%% max_ev=%.3f threshold=%.2f race_id=%s)",
+                nan_rate * 100, float(pred_ev.max()), threshold, race_id,
+            )
+            return
+
+        combos = [[int(df_ap.iloc[i]["horse_number"])] for i, _ in buy_pairs]
+        horses_payload: list[dict] = []
+        for rank, (i, ev_val) in enumerate(buy_pairs):
+            row = df_ap.iloc[i]
+            horses_payload.append({
+                "horse_id":      row.get("horse_id") or None,
+                "horse_name":    str(row.get("horse_name", "")),
+                "predicted_rank": rank + 1,
+                "model_score":   ev_val,
+                "ev_score":      ev_val,
+            })
+
+        max_ev      = buy_pairs[0][1]
+        total_kelly = sum(ap._kelly_bet(ev_val, bankroll) for _, ev_val in buy_pairs)
+
+        # 相対シグナルは kelly を 50% 割引（オッズ品質が低下しているため）
+        if signal_type == "relative":
+            total_kelly *= 0.5
+
+        notes_str = (
+            f"{len(buy_pairs)}頭 pred_ev>{threshold:.2f} max={max_ev:.3f}"
+            if signal_type == "absolute"
+            else f"{len(buy_pairs)}頭 relative nan={nan_rate:.0%} max={max_ev:.3f}"
+        )
+
+        insert_prediction(
+            conn,
+            race_id=race_id,
+            model_type="Alpha-Payout(直前)",
+            bet_type="複勝",
+            horses=horses_payload,
+            confidence=min(max_ev / 3.0, 1.0),
+            expected_value=max_ev,
+            recommended_bet=float(total_kelly),
+            notes=notes_str,
+            combination_json=_json.dumps(combos),
+        )
+        logger.info(
+            "Alpha-Payout[%s]: %d頭複勝 ev_max=%.3f kelly=¥%d (race_id=%s)",
+            signal_type, len(buy_pairs), max_ev, int(total_kelly), race_id,
+        )
+
+        # ── Alpha 三連系（複勝シグナルと独立して三連複・三連単を生成）──────
+        alpha_gen   = BetGenerator(conn=conn, config=BetConfig(bankroll=bankroll))
+        alpha_bets  = alpha_gen.generate_alpha_trifecta(race_id, df_ap, pred_ev)
+
+        # 三連系を predictions に保存
+        for bet in alpha_bets.bets:
+            import json as _json_inner
+            try:
+                insert_prediction(
+                    conn,
+                    race_id=race_id,
+                    model_type="Alpha-Payout(直前)",
+                    bet_type=bet.bet_type,
+                    horses=horses_payload,
+                    confidence=bet.confidence,
+                    expected_value=bet.expected_value,
+                    recommended_bet=bet.recommended_bet,
+                    notes=bet.notes or "",
+                    combination_json=_json_inner.dumps([list(c) for c in bet.combinations]),
+                )
+            except Exception as e_bet:
+                logger.warning("Alpha三連系保存失敗 %s: %s", bet.bet_type, e_bet)
+
+        # 複勝シグナルを RaceBets に変換して返す（Discord 通知用）
+        ret = RaceBets(race_id=race_id, model_type="Alpha-Payout")
+        fukusho_combos = [tuple(c) for c in combos]
+        fukusho_names  = [str(df_ap.iloc[i].get("horse_name", "")) for i, _ in buy_pairs]
+        ret.bets.append(BetRecommendation(
+            bet_type="複勝",
+            combinations=fukusho_combos,
+            horse_names=fukusho_names,
+            expected_value=max_ev,
+            model_score=max_ev,
+            recommended_bet=float(total_kelly),
+            confidence=min(max_ev / 3.0, 1.0),
+            notes=notes_str,
+        ))
+        ret.bets.extend(alpha_bets.bets)
+        return ret
+
+    except Exception as exc:
+        logger.warning("Alpha-Payout スキップ（例外）: %s", exc)
+        return None
+
+
 def prerace_pipeline(race_id: str, provisional: bool = False) -> dict:
     """レース直前（または前日暫定）の自動予想パイプライン。
 
@@ -327,8 +517,11 @@ def prerace_pipeline(race_id: str, provisional: bool = False) -> dict:
         except Exception as exc:
             logger.error("netkeiba 出馬表フォールバック失敗 (%s): %s", race_id, exc)
 
-    # Step 1c: オッズ取得（直前のみ）
-    if cached_odds == 0 and not provisional:
+    # Step 1c: オッズ取得（RTD→netkeiba 3段階フォールバック）
+    # 暫定モードでも試みる（netkeiba に既に公開されていれば Alpha-Payout EV が改善する）
+    # fetch_and_save_odds は取得失敗時も 0 を返して安全に続行するため、
+    # 暫定バッチの早朝実行でオッズ未公開でも問題なし。
+    if cached_odds == 0:
         fetch_and_save_odds(conn, race_id)
 
     # Step 2: 特徴量生成
@@ -379,7 +572,7 @@ def prerace_pipeline(race_id: str, provisional: bool = False) -> dict:
                 reason,
                 race_id,
             )
-            _discord.send_text(
+            _discord.send_system_text(
                 f"⚠️ [オッズ欠損フォールバック] `{race_id}` — {reason}\n"
                 f"暫定モードで予測を強制続行します。"
             )
@@ -401,12 +594,18 @@ def prerace_pipeline(race_id: str, provisional: bool = False) -> dict:
     ev_scores = manji_model.ev_score(df)
 
     # Step 4: 買い目生成（動的バンクロールで Kelly 計算）
+    # 暫定モードでは EV 依存の 卍/Oracle ベットをスキップ
     current_bankroll = get_current_bankroll(conn)
-    gen = BetGenerator(conn=conn, config=BetConfig(bankroll=current_bankroll))
+    gen = BetGenerator(conn=conn, config=BetConfig(bankroll=current_bankroll, provisional=provisional))
     honmei_bets = gen.generate_honmei(race_id, df, honmei_scores)
     manji_bets = gen.generate_manji(race_id, df, ev_scores)
     oracle_bets = gen.generate_oracle(race_id, df, honmei_scores)
     hit_focus_bets = gen.generate_hit_focus(race_id, df, honmei_scores)
+
+    # Step 4b: Alpha-Payout 複勝+三連系シグナル（直前のみ、返却された RaceBets を Discord 通知に使用）
+    alpha_bets = None
+    if not provisional:
+        alpha_bets = _run_alpha_payout(conn, race_id, df, current_bankroll)
 
     # Step 5: DB 保存
     suffix = "(暫定)" if provisional else "(直前)"
@@ -432,23 +631,31 @@ def prerace_pipeline(race_id: str, provisional: bool = False) -> dict:
 
     # Step 6: JSON 出力
     payload = build_output_json(
-        race_id, df, honmei_scores, honmei_ev_scores, ev_scores, honmei_bets, manji_bets
+        race_id, df, honmei_scores, honmei_ev_scores, ev_scores,
+        honmei_bets, manji_bets, provisional=provisional,
     )
     payload["provisional"] = provisional
     save_json(race_id, payload)
 
-    # Step 7: Discord 通知（直前のみ）
+    # Step 7: Discord 通知（直前のみ）— ALPHA / 卍 / 本命 独立3セクション送信
     if not provisional:
-        _discord.notify_prerace_result(race_id, honmei_bets, manji_bets)
+        _discord.notify_prerace_result(
+            race_id, honmei_bets, manji_bets,
+            oracle_bets=oracle_bets,
+            hit_focus_bets=hit_focus_bets,
+            alpha_bets=alpha_bets,
+        )
 
-    hf_bets_count = len(hit_focus_bets.bets) if hit_focus_bets is not None else 0
+    hf_bets_count  = len(hit_focus_bets.bets)  if hit_focus_bets  is not None else 0
+    alpha_bet_count = len(alpha_bets.bets)       if alpha_bets       is not None else 0
     logger.info(
-        "%sパイプライン完了: race_id=%s 本命%d件 卍%d件 HitFocus%d件",
+        "%sパイプライン完了: race_id=%s 本命%d件 卍%d件 HitFocus%d件 Alpha%d件",
         mode_label,
         race_id,
         len(prediction_ids["本命"]),
         len(prediction_ids["卍"]),
         hf_bets_count,
+        alpha_bet_count,
     )
     return payload
 

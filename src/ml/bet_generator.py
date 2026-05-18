@@ -92,10 +92,13 @@ class BetConfig:
                            get_current_bankroll(conn) を使うこと。
         max_bet_fraction:  1レースあたりの最大投資比率（0.0〜1.0）
         max_bet_per_combo: 1点あたりの最大購入額（円）
+        provisional:       True = 金曜夜暫定モード。オッズ未取得のため
+                           EV 依存の 卍/Oracle ベット生成を抑制する。
     """
     bankroll: float = 100_000.0
     max_bet_fraction: float = 0.05
     max_bet_per_combo: float = 1_000.0
+    provisional: bool = False
 
     @property
     def max_race_bet(self) -> float:
@@ -1556,6 +1559,148 @@ class HitFocusStrategy:
         ))
 
 
+# ── ALPHAモデル専用三連系戦略 ────────────────────────────────────────────
+
+class AlphaTrifectaStrategy:
+    """
+    ALPHA(期待値)モデル専用の三連複・三連単生成戦略。
+
+    卍・本命とは完全独立。Alpha-Payout EV スコア上位馬をベースに
+    三連複フォーメーション・三連単軸流しを個別構築する。
+    """
+
+    TOP_N           = 5    # EV上位何頭を候補にするか
+    MAX_SANRENPUKU  = 6    # 三連複最大推奨点数
+    MAX_SANRENTAN   = 6    # 三連単最大推奨点数
+
+    def __init__(self, estimator: OddsEstimator | None = None) -> None:
+        self._estimator = estimator or OddsEstimator()
+
+    def generate(
+        self,
+        race_id: str,
+        df: pd.DataFrame,
+        pred_ev: "pd.Series",
+        bankroll: float = 100_000.0,
+    ) -> RaceBets:
+        """
+        Alpha-Payout EV スコアから三連複・三連単を独立生成する。
+
+        Args:
+            race_id:  レース ID
+            df:       出走馬 DataFrame (horse_number, win_odds, horse_name 等)
+            pred_ev:  AlphaPayoutModel.predict_payout_ev() の出力 Series
+            bankroll: 現在バンクロール（円）
+        """
+        result = RaceBets(race_id=race_id, model_type="Alpha-Payout")
+        names = _name_map(df)
+
+        df = df.copy()
+        ev_vals = pred_ev.values if hasattr(pred_ev, "values") else list(pred_ev)
+        if len(ev_vals) != len(df):
+            return result
+        df["_alpha_ev"] = ev_vals
+        df = df.dropna(subset=["_alpha_ev", "horse_number"])
+        df = df.sort_values("_alpha_ev", ascending=False)
+        if len(df) < 3:
+            return result
+
+        all_nums   = [int(r["horse_number"]) for _, r in df.iterrows()]
+        all_scores = [max(float(r["_alpha_ev"]), 1e-6) for _, r in df.iterrows()]
+
+        top_n    = min(self.TOP_N, len(df))
+        top_df   = df.head(top_n)
+        top_nums = [int(r["horse_number"]) for _, r in top_df.iterrows()]
+
+        axis     = top_nums[0]
+        axis_idx = all_nums.index(axis)
+        axis_odds = float(
+            df[df["horse_number"] == axis]["win_odds"].iloc[0]
+            if "win_odds" in df.columns and not df[df["horse_number"] == axis]["win_odds"].isna().all()
+            else 10.0
+        )
+
+        # ── 三連複：軸1頭 × 相手4頭フォーメーション ──────────────────────
+        partners = top_nums[1:]
+        # (ev_score, harville_prob, combo_tuple)
+        sanrenpuku_combos: list[tuple[float, float, tuple]] = []
+        for b, c in itertools.combinations(partners, 2):
+            try:
+                ib = all_nums.index(b)
+                ic = all_nums.index(c)
+            except ValueError:
+                continue
+            tp   = _harville_trio(all_scores, axis_idx, ib, ic)
+            combo = tuple(sorted([axis, b, c]))
+            ev_c  = self._estimator.ev(tp, "三連複", axis_odds)
+            sanrenpuku_combos.append((ev_c, tp, combo))
+
+        sanrenpuku_combos.sort(reverse=True)
+        if sanrenpuku_combos:
+            best_combos = [c for _, _, c in sanrenpuku_combos[:self.MAX_SANRENPUKU]]
+            best_ev     = sanrenpuku_combos[0][0]
+            best_prob   = sanrenpuku_combos[0][1]
+            result.bets.append(BetRecommendation(
+                bet_type="三連複",
+                combinations=best_combos,
+                horse_names=[names.get(n, str(n)) for n in best_combos[0]],
+                expected_value=best_ev,
+                model_score=best_prob,
+                recommended_bet=float(_BASE_BET * len(best_combos)),
+                confidence=min(best_ev / 3.0, 1.0),
+                notes=(
+                    f"Alpha EV={best_ev:.2f} 軸{axis}番 "
+                    f"相手{len(partners)}頭 {len(best_combos)}点"
+                ),
+            ))
+
+        # ── 三連単：軸1頭 → 相手2頭フォーメーション ──────────────────────
+        if len(top_nums) >= 3:
+            sanrentan_combos: list[tuple[float, float, tuple]] = []
+            total_s = max(sum(all_scores), 1e-9)
+            pa = all_scores[axis_idx] / total_s
+
+            for b, c in itertools.permutations(partners[:4], 2):
+                if b == c:
+                    continue
+                try:
+                    ib = all_nums.index(b)
+                    ic = all_nums.index(c)
+                except ValueError:
+                    continue
+                rem1 = total_s - all_scores[axis_idx]
+                pb   = all_scores[ib] / max(rem1, 1e-9)
+                rem2 = rem1 - all_scores[ib]
+                pc   = all_scores[ic] / max(rem2, 1e-9)
+                tp   = pa * pb * pc
+                ev_t = self._estimator.ev(tp, "三連単", axis_odds)
+                sanrentan_combos.append((ev_t, tp, (axis, b, c)))
+
+            sanrentan_combos.sort(reverse=True)
+            if sanrentan_combos:
+                best_tan  = [c for _, _, c in sanrentan_combos[:self.MAX_SANRENTAN]]
+                best_ev_t = sanrentan_combos[0][0]
+                result.bets.append(BetRecommendation(
+                    bet_type="三連単",
+                    combinations=best_tan,
+                    horse_names=[names.get(n, str(n)) for n in best_tan[0]],
+                    expected_value=best_ev_t,
+                    model_score=pa,
+                    recommended_bet=float(_BASE_BET * len(best_tan)),
+                    confidence=min(best_ev_t / 5.0, 1.0),
+                    notes=(
+                        f"Alpha EV={best_ev_t:.2f} 軸{axis}番→フォーメーション "
+                        f"{len(best_tan)}点"
+                    ),
+                ))
+
+        logger.info(
+            "AlphaTrifecta生成: race_id=%s %d件 (EV上位%d頭)",
+            race_id, len(result.bets), top_n,
+        )
+        return result
+
+
 # ── ハイブリッド戦略 ─────────────────────────────────────────────────────
 
 class HybridStrategy:
@@ -1729,12 +1874,13 @@ class BetGenerator:
         config: BetConfig | None = None,
     ) -> None:
         estimator = OddsEstimator(conn)
-        self._config     = config or BetConfig()
-        self._honmei     = HonmeiStrategy(estimator=estimator)
-        self._manji      = ManjiStrategy(estimator=estimator)
-        self._oracle     = VirtualOracleStrategy()
-        self._hit_focus  = HitFocusStrategy(estimator=estimator)
-        self._hybrid     = HybridStrategy(estimator=estimator)
+        self._config        = config or BetConfig()
+        self._honmei        = HonmeiStrategy(estimator=estimator)
+        self._manji         = ManjiStrategy(estimator=estimator)
+        self._oracle        = VirtualOracleStrategy()
+        self._hit_focus     = HitFocusStrategy(estimator=estimator)
+        self._hybrid        = HybridStrategy(estimator=estimator)
+        self._alpha_trifecta = AlphaTrifectaStrategy(estimator=estimator)
 
     def _apply_caps(self, bets: RaceBets) -> None:
         """
@@ -1779,6 +1925,9 @@ class BetGenerator:
         df: pd.DataFrame,
         ev_scores: pd.Series,
     ) -> RaceBets:
+        if self._config.provisional:
+            logger.info("暫定モード: 卍ベット生成スキップ — オッズ未取得 (race_id=%s)", race_id)
+            return RaceBets(race_id=race_id, model_type="卍")
         bets = self._manji.generate(race_id, df, ev_scores, bankroll=self._config.bankroll)
         self._apply_caps(bets)
         return bets
@@ -1794,7 +1943,11 @@ class BetGenerator:
 
         model_type は "Oracle" として返す（呼び出し側で insert_prediction に渡すこと）。
         recommended_bet は参照用の最小単位のみ（Kelly 対象外）。
+        暫定モードでは空の RaceBets を返す。
         """
+        if self._config.provisional:
+            logger.info("暫定モード: Oracleベット生成スキップ — オッズ未取得 (race_id=%s)", race_id)
+            return RaceBets(race_id=race_id, model_type="本命")
         bets = self._oracle.generate(race_id, df, honmei_scores)
         bets.model_type = "本命"   # 型互換のため本命を維持（保存時に "Oracle" を付加）
         return bets
@@ -1807,6 +1960,22 @@ class BetGenerator:
     ) -> RaceBets:
         """HitFocusStrategy で2軸マルチフォーメーションの買い目を生成する。"""
         return self._hit_focus.generate(race_id, df, honmei_scores)
+
+    def generate_alpha_trifecta(
+        self,
+        race_id: str,
+        df: "pd.DataFrame",
+        pred_ev: "pd.Series",
+    ) -> RaceBets:
+        """
+        Alpha-Payout EV スコアから三連複・三連単を独立生成する。
+        他モデルとスコアを混合せず、ALPHA固有のロジックで買い目を構築する。
+        """
+        bets = self._alpha_trifecta.generate(
+            race_id, df, pred_ev, bankroll=self._config.bankroll
+        )
+        self._apply_caps(bets)
+        return bets
 
     def generate_win5(
         self,
