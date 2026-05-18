@@ -11,6 +11,7 @@
 | 日付 | 更新内容 |
 |------|---------|
 | 2026-05-18 | 初版作成。社長指令「ビジョン再監査」を受け、U score ギャップ・インフラ・データ弱点を全面棚卸し |
+| 2026-05-18 | 【W-004 実装完了】大衆心理乖離スコア (crowd_bias_ratio / uf_crowd_bias) を u_score.py・models.py・bet_generator.py に追加。ManjiGenerator・HonmeiGenerator の EV 調整まで統合完了 |
 
 ---
 
@@ -97,11 +98,13 @@
 | 項目 | 内容 |
 |------|------|
 | **優先度** | 🔴 高 |
-| **ステータス** | 🔴 未着手 |
+| **ステータス** | 🟢 完了（2026-05-18） |
 | **社長ビジョン** | 「大衆心理のジレンマを排除した真の期待値算出」— 市場の過大/過小評価を定量化し、モデルの EV 計算に組み込む |
-| **実装概要** | `crowd_bias = model_win_prob / market_implied_prob`<br>market_implied_prob = 1 / (odds × 0.8)（払戻率80%補正）<br>crowd_bias > 1.3 → 市場が過小評価 → EV ブースト<br>crowd_bias < 0.7 → 市場が過大評価 → EV ペナルティ |
-| **データ依存** | `realtime_odds` テーブル（既存）+ モデルの勝率スコア（既存）|
-| **担当フェーズ** | Phase 2-B（最も即効性が高い）|
+| **実装概要** | `crowd_bias_ratio = win_rate_all / market_implied_prob`（学習特徴量）<br>市場乖離 EV 倍率: crowd_bias > 1.3 → 最大 1.5x EV ブースト<br>crowd_bias < 0.7 → 最小 0.5x EV ペナルティ<br>bet_generator.py の ManjiGenerator / HonmeiGenerator 両方に適用済み |
+| **実装ファイル** | `src/ml/u_score.py` (_calc_crowd_bias 新設・グループF追加・重み5%)<br>`src/ml/models.py` (FEATURE_COLS: uf_crowd_bias / crowd_bias_ratio 追加)<br>`src/ml/bet_generator.py` (_crowd_bias_ev_multiplier 新設・両Generator適用) |
+| **データ依存** | `market_prob` 列（features.py で `1/min(win_odds, 80)` として既存） |
+| **効果測定** | ドライラン再学習（2026-05-18）で AUC / ROI 変化を計測 |
+| **担当フェーズ** | Phase 2-B ✅ |
 
 #### W-005: X シグナルコンセンサス係数
 

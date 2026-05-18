@@ -116,8 +116,10 @@ FEATURE_COLS: list[str] = [
     "uf_sire_distance",         # 父馬距離帯別産駒勝率スコア [0,1]
     "uf_bms_surface",           # 母父馬場別産駒勝率スコア [0,1]
     "uf_father_sire",           # 父の父情報存在スコア [0.25|0.75]
+    # F: 大衆心理乖離 [W-004]
+    "uf_crowd_bias",            # 大衆心理乖離スコア [0,1]（通算勝率/市場暗示確率 を正規化）
     # 合成 U score
-    "u_score",                  # 加重合成スコア（A×40%+B×30%+C×20%+D×7%+E×3%）[0,1]
+    "u_score",                  # 加重合成スコア（A×38%+B×28.5%+C×19%+D×6.5%+E×3%+F×5%）[0,1]
     # 派生数値（EV計算の直接インプット）
     "days_since_last_race",     # 前走からの日数
     "jockey_win_rate_90d",      # 騎手直近90日勝率（生値）
@@ -127,6 +129,7 @@ FEATURE_COLS: list[str] = [
     "venue_win_rate",           # 馬の当該会場過去勝率（生値）
     "tc_speed_index",           # ウッド4Fスピード指数（200/sec*100）
     "hc_speed_index",           # 坂路4Fスピード指数
+    "crowd_bias_ratio",         # 大衆心理乖離比率（生値）[W-004]
 ]
 
 # 訓練に最低限必要なレース数

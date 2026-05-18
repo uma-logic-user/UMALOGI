@@ -329,6 +329,9 @@ class FeatureBuilder:
             jockey_key  = jockey  or ""
             trainer_key = trainer or ""
 
+            raw_odds_val = odds.get("win_odds")
+            market_prob  = (1.0 / min(float(raw_odds_val), 80.0)) if raw_odds_val else None
+
             records.append({
                 # 識別子（モデル学習には使わない）
                 "horse_number": horse_number,
@@ -337,8 +340,9 @@ class FeatureBuilder:
                 # 数値特徴量
                 "weight_carried":       weight_carried,
                 "horse_weight":         horse_weight,
-                "win_odds":             odds.get("win_odds"),
+                "win_odds":             raw_odds_val,
                 "popularity":           odds.get("popularity"),
+                "market_prob":          market_prob,  # 市場確率 1/odds.clip(max=80) [W-004]
                 # 馬成績特徴量
                 "win_rate_all":             stats["win_rate_all"],
                 "win_rate_surface":         stats["win_rate_surface"],

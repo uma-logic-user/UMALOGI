@@ -46,6 +46,21 @@ _TRACK_TAKE: dict[str, float] = {
     "三連複": 0.250, "三連単": 0.275,
 }
 
+def _crowd_bias_ev_multiplier(crowd_bias_ratio: float) -> float:
+    """W-004: 大衆心理乖離比率からEV倍率を算出する。
+
+    crowd_bias_ratio = win_rate_all / market_implied_prob
+      > 1.3: 市場過小評価（隠れた期待値） → 最大 1.5 倍 EV 向上
+      < 0.7: 市場過大評価（群衆人気薄め） → 最小 0.5 倍 EV 引下げ
+      0.7〜1.3: 中立（倍率 1.0）
+    """
+    if crowd_bias_ratio > 1.3:
+        return min(crowd_bias_ratio, 1.5)
+    if crowd_bias_ratio < 0.7:
+        return max(crowd_bias_ratio, 0.5)
+    return 1.0
+
+
 # エリート複勝モニター CSV パス
 _ELITE_CSV: Path = Path(__file__).resolve().parents[2] / "logs" / "fukusho_elite_monitor.csv"
 _ELITE_CSV_COLS: list[str] = [
@@ -456,6 +471,15 @@ class ManjiStrategy:
             ev.values if len(ev) == len(scored)
             else ev.reindex(scored.index).values
         )
+
+        # W-004: 大衆心理乖離スコアによるEV調整（市場乖離が大きい馬を再評価）
+        if "crowd_bias_ratio" in scored.columns:
+            scored["ev_score"] = scored.apply(
+                lambda r: float(r["ev_score"])
+                * _crowd_bias_ev_multiplier(float(r.get("crowd_bias_ratio") or 1.0)),
+                axis=1,
+            )
+
         scored = scored.sort_values("ev_score", ascending=False)
 
         # 馬番が不正な行を除外（枠順未確定で horse_number=0 が入る場合）
@@ -695,6 +719,18 @@ class HonmeiStrategy:
             honmei_scores.values if len(honmei_scores) == len(scored)
             else honmei_scores.reindex(scored.index).values
         )
+
+        # W-004: 大衆心理乖離スコアによる確率調整（[0,1]クリップで確率の意味を維持）
+        if "crowd_bias_ratio" in scored.columns:
+            scored["honmei_score"] = scored.apply(
+                lambda r: float(min(max(
+                    float(r["honmei_score"])
+                    * _crowd_bias_ev_multiplier(float(r.get("crowd_bias_ratio") or 1.0)),
+                    0.0,
+                ), 1.0)),
+                axis=1,
+            )
+
         scored = scored.sort_values("honmei_score", ascending=False)
 
         n = min(self.TOP_N_COMBO, len(scored))
