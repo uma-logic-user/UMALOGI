@@ -17,6 +17,7 @@ tweepy>=4.14.0          # X (Twitter) API v2
 
 # ブラウザ自動化（ウマニティ・note 自動投稿）
 playwright>=1.40.0
+playwright-stealth>=2.0.0   # Bot検知回避（navigator.webdriver隠蔽等）
 
 # 画像生成（証拠画像）
 pillow>=10.0.0

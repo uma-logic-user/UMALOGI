@@ -11,13 +11,17 @@ note.com は公式 API を持たないため Playwright で操作する。
 使用例:
   from src.ops.note_draft_publisher import save_draft
   ok = save_draft(title="週末予想 5/10", body="## AI予想まとめ\n...", tags=["競馬", "UMALOGI"])
+
+Bot検知回避:
+  playwright-stealth を使用して navigator.webdriver / chrome runtime 等を隠蔽。
+  headless=False で実行することで Chromium 特有のフラグも除去。
 """
 
 from __future__ import annotations
 
 import logging
 import os
-import sys
+import random
 import time
 from pathlib import Path
 
@@ -30,7 +34,22 @@ _DEBUG_DIR.mkdir(parents=True, exist_ok=True)
 _LOGIN_URL    = "https://note.com/login"
 _NEW_POST_URL = "https://note.com/notes/new"
 _SETTINGS_URL = "https://note.com/settings/profile"
-_SESSION_FILE = _ROOT / ".note_session.json"  # Cookie 永続化ファイル（gitignore 推奨）
+_SESSION_FILE = _ROOT / ".note_session.json"
+
+# Playwright 1.58 が同梱する Chromium バージョンに合わせた UA
+_UA = (
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) "
+    "Chrome/134.0.0.0 Safari/537.36"
+)
+
+# ボット検知・WAF の特徴的 HTML パターン
+_BOT_SIGNATURES = [
+    ("cloudflare",    ["cf-browser-verification", "Checking your browser", "_cf_chl_", "cf_clearance"]),
+    ("imperva",       ["_Incapsula_Resource", "visid_incap_", "incap_ses_"]),
+    ("akamai",        ["akamai-bot-manager", "__utmzzses"]),
+    ("note_bot_page", ["申し訳ありません、ただ今障害が発生しております"]),
+]
 
 # なおふみブランドのプロフィール固定値
 _PROFILE_NAME = "なおふみ | UMALOGI開発者"
@@ -40,6 +59,122 @@ _PROFILE_BIO  = (
     "単なる予想ではなく、1円単位の ROI を追求する投資ロジックを提唱。"
 )
 
+
+# ─── 証拠保全・ブロック検知 ─────────────────────────────────────────────────
+
+def _dump_evidence(page, label: str) -> Path:
+    """スクリーンショット + HTML ソースを保存して解析結果を返す。"""
+    ss_path = _DEBUG_DIR / f"note_{label}.png"
+    html_path = _DEBUG_DIR / f"note_{label}.html"
+    try:
+        page.screenshot(path=str(ss_path), full_page=True)
+        logger.info("[note] スクリーンショット: %s", ss_path)
+    except Exception as e:
+        logger.warning("[note] スクリーンショット失敗: %s", e)
+
+    try:
+        html = page.content()
+        html_path.write_text(html, encoding="utf-8")
+        logger.info("[note] HTML ダンプ: %s (%d bytes)", html_path, len(html))
+    except Exception as e:
+        logger.warning("[note] HTML ダンプ失敗: %s", e)
+        html = ""
+
+    return ss_path
+
+
+def _detect_block(page) -> str | None:
+    """
+    ページが WAF / Bot検知 / note障害ページかを判定する。
+
+    Returns:
+        None        = 正常
+        "cloudflare" / "imperva" / "akamai" / "note_bot_page" = ブロック種別
+    """
+    try:
+        html = page.content().lower()
+    except Exception:
+        return None
+
+    for kind, signatures in _BOT_SIGNATURES:
+        if any(sig.lower() in html for sig in signatures):
+            return kind
+    return None
+
+
+def _log_block(kind: str, url: str, page) -> None:
+    """ブロック種別に応じた詳細ログを出力する。"""
+    if kind == "cloudflare":
+        logger.error(
+            "[note] Cloudflare Bot 検知ブロック — url=%s\n"
+            "  対策: headless=False は有効。playwright-stealth も適用済み。\n"
+            "  次の手: セッションを削除して再ログイン、またはリクエスト間隔を延ばす。",
+            url,
+        )
+    elif kind in ("imperva", "akamai"):
+        logger.error("[note] WAF(%s) ブロック — url=%s", kind, url)
+    elif kind == "note_bot_page":
+        logger.error(
+            "[note] note.com ブロックページ — url=%s\n"
+            "  通常ブラウザでアクセス可能であれば Playwright のフィンガープリントが検知された可能性あり。\n"
+            "  HTML は outputs/debug/ に保存済み。",
+            url,
+        )
+    else:
+        logger.error("[note] 不明なブロック: kind=%s url=%s", kind, url)
+
+
+# ─── ステルス Playwright コンテキスト ───────────────────────────────────────
+
+def _build_stealth() -> "Stealth":  # type: ignore[name-defined]
+    """playwright-stealth の Stealth インスタンスを構築する。"""
+    from playwright_stealth import Stealth
+    return Stealth(
+        navigator_user_agent_override=_UA,
+        navigator_languages_override=("ja-JP", "ja", "en-US", "en"),
+        navigator_platform_override="Win32",
+        navigator_vendor_override="Google Inc.",
+    )
+
+
+def _browser_opts() -> dict:
+    """共通の browser launch オプション。常に headless=False。"""
+    return dict(
+        headless=False,
+        slow_mo=random.randint(40, 90),
+        args=[
+            "--disable-blink-features=AutomationControlled",
+            "--no-sandbox",
+            "--disable-dev-shm-usage",
+            "--disable-web-security",
+            "--disable-features=IsolateOrigins,site-per-process",
+        ],
+    )
+
+
+def _ctx_opts(session: bool = False) -> dict:
+    """共通の BrowserContext オプション。"""
+    w = random.choice([1280, 1366, 1440, 1920])
+    h = random.choice([768, 900, 1024, 1080])
+    opts = dict(
+        user_agent=_UA,
+        viewport={"width": w, "height": h},
+        locale="ja-JP",
+        timezone_id="Asia/Tokyo",
+        permissions=["clipboard-read", "clipboard-write"],
+        extra_http_headers={
+            "Accept-Language": "ja-JP,ja;q=0.9,en-US;q=0.8,en;q=0.7",
+            "sec-ch-ua": '"Chromium";v="134","Google Chrome";v="134","Not-A.Brand";v="99"',
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": '"Windows"',
+        },
+    )
+    if session and _SESSION_FILE.exists():
+        opts["storage_state"] = str(_SESSION_FILE)
+    return opts
+
+
+# ─── 認証情報 ────────────────────────────────────────────────────────────────
 
 def _load_credentials() -> tuple[str, str]:
     try:
@@ -54,29 +189,145 @@ def _load_credentials() -> tuple[str, str]:
     return email, password
 
 
-def _clipboard_paste(page, text: str) -> None:
-    """
-    テキストをクリップボード経由でエディタにペーストする。
-    JavaScript で clipboard.writeText を呼び出してから Ctrl+V。
-    """
-    # JS 経由でクリップボードに書き込む（pyperclip は不要）
-    escaped = text.replace("\\", "\\\\").replace("`", "\\`").replace("$", "\\$")
-    page.evaluate(f"""
-        async () => {{
-            await navigator.clipboard.writeText(`{escaped}`);
-        }}
-    """)
-    time.sleep(0.3)
-    page.keyboard.press("Control+a")  # 既存テキストを全選択してから
-    page.keyboard.press("Control+v")  # ペースト
-    time.sleep(0.5)
+# ─── 操作ヘルパー ────────────────────────────────────────────────────────────
 
+def _human_delay(lo: float = 0.3, hi: float = 0.8) -> None:
+    time.sleep(random.uniform(lo, hi))
+
+
+def _clipboard_paste(page, text: str) -> None:
+    """クリップボード経由でエディタにペーストする。"""
+    escaped = text.replace("\\", "\\\\").replace("`", "\\`").replace("$", "\\$")
+    page.evaluate(f"async () => {{ await navigator.clipboard.writeText(`{escaped}`); }}")
+    _human_delay(0.2, 0.5)
+    page.keyboard.press("Control+a")
+    page.keyboard.press("Control+v")
+    _human_delay(0.3, 0.6)
+
+
+def _try_autofill_login(page, email: str, password: str) -> None:
+    """メールアドレス・パスワードを自動入力してログインを試みる。"""
+    # note.com のメール欄は type="text"（email IDと共用）
+    email_selectors = [
+        'input[type="text"]',
+        'input[type="email"]',
+        'input[name="email"]',
+        'input[placeholder*="mail"]',
+        'input[placeholder*="note ID"]',
+        'input[placeholder*="メール"]',
+    ]
+    email_filled = False
+    for sel in email_selectors:
+        try:
+            locs = page.locator(sel)
+            for i in range(locs.count()):
+                loc = locs.nth(i)
+                if loc.is_visible(timeout=2000):
+                    loc.click()
+                    _human_delay()
+                    loc.fill(email)
+                    _human_delay()
+                    val = loc.input_value()
+                    if email in val or val in email:
+                        logger.info("[note] メールアドレス自動入力: %s (selector=%s)", email, sel)
+                        email_filled = True
+                        break
+        except Exception:
+            continue
+        if email_filled:
+            break
+
+    if not email_filled:
+        logger.warning("[note] メールアドレス入力フィールドが見つかりません — 手動入力してください")
+
+    _human_delay()
+
+    pw_selectors = [
+        'input[type="password"]',
+        'input[name="password"]',
+        'input[placeholder*="パスワード"]',
+    ]
+    pw_filled = False
+    for sel in pw_selectors:
+        try:
+            loc = page.locator(sel).first
+            if loc.is_visible(timeout=3000):
+                loc.click()
+                _human_delay()
+                loc.fill(password)
+                logger.info("[note] パスワード自動入力完了")
+                pw_filled = True
+                _human_delay()
+                break
+        except Exception:
+            continue
+
+    if not pw_filled:
+        logger.warning("[note] パスワード入力フィールドが見つかりません — 手動入力してください")
+
+    _human_delay()
+
+    btn_selectors = [
+        'button[type="submit"]',
+        'button:has-text("ログイン")',
+        'input[type="submit"]',
+    ]
+    for sel in btn_selectors:
+        try:
+            loc = page.locator(sel).first
+            if loc.is_visible(timeout=3000):
+                loc.click()
+                logger.info("[note] ログインボタンクリック: %s", sel)
+                _human_delay(2.0, 3.5)
+                break
+        except Exception:
+            continue
+
+
+def _wait_for_login(page) -> bool:
+    """ログイン完了（/login 離脱）を最大8分ポーリングで検知する。"""
+    print("  ★ブラウザでログインが完了するまで待機中（最大8分）...")
+    deadline = time.time() + 480
+    while time.time() < deadline:
+        try:
+            current = page.evaluate("() => window.location.href")
+        except Exception:
+            current = page.url
+        if "/login" not in current and "note.com" in current:
+            logger.info("[note] ログイン完了を検出: %s", current)
+            return True
+        try:
+            dom_ok: bool = page.evaluate("""() => {
+                var hasPassword = !!document.querySelector('input[type="password"]');
+                var hasLoginTitle = document.title.includes('ログイン');
+                return window.location.pathname !== '/login' || (!hasPassword && !hasLoginTitle);
+            }""")
+            if dom_ok:
+                logger.info("[note] DOM でログイン完了を検出: %s", page.evaluate("() => window.location.href"))
+                return True
+        except Exception:
+            pass
+        time.sleep(2)
+
+    # タイムアウト後に最終確認
+    try:
+        current = page.evaluate("() => window.location.href")
+    except Exception:
+        current = page.url
+    if "/login" not in current and "note.com" in current:
+        logger.info("[note] タイムアウト後にログイン完了を確認: %s", current)
+        return True
+
+    logger.error("[note] ログイン完了を検出できませんでした（タイムアウト、url=%s）", current)
+    return False
+
+
+# ─── 公開 API ────────────────────────────────────────────────────────────────
 
 def login_and_save_session() -> bool:
     """
-    可視モードでブラウザを開き、手動ログインを促してセッションを保存する。
-    reCAPTCHA が出た場合にユーザーが手動で解決できる。
-    保存したセッションは .note_session.json に書き込み、以降の操作で再利用する。
+    可視モードでブラウザを開き、メール/パスワードを自動入力してログインし、
+    セッションを保存する。playwright-stealth でBot検知を回避。
 
     Returns:
         True = セッション保存成功, False = 失敗
@@ -87,181 +338,63 @@ def login_and_save_session() -> bool:
         logger.error("[note] Playwright がインストールされていません。pip install playwright")
         return False
 
+    try:
+        email, password = _load_credentials()
+        logger.info("[note] 認証情報ロード完了: %s", email)
+    except EnvironmentError as e:
+        logger.error("[note] %s", e)
+        email, password = "", ""
+
     print(f"\n{'='*55}")
-    print("  note.com 手動ログイン — ブラウザが開きます")
-    print("  reCAPTCHA を解決して「ログイン」ボタンを押してください。")
+    print("  note.com ログイン — ブラウザが開きます (Stealth mode)")
+    if email:
+        print(f"  メールアドレス・パスワードを自動入力します: {email}")
+        print("  reCAPTCHA が出た場合は手動で解決してください。")
+    else:
+        print("  NOTE_EMAIL/NOTE_PASSWORD 未設定 — 手動でログインしてください。")
     print("  ログイン完了後、このプログラムが自動で続行します。")
     print(f"{'='*55}\n")
 
-    with sync_playwright() as pw:
-        browser = pw.chromium.launch(headless=False)
-        ctx = browser.new_context(
-            user_agent=(
-                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                "AppleWebKit/537.36 (KHTML, like Gecko) "
-                "Chrome/124.0.0.0 Safari/537.36"
-            ),
-            viewport={"width": 1280, "height": 900},
-            permissions=["clipboard-read", "clipboard-write"],
-        )
+    stealth = _build_stealth()
+    with stealth.use_sync(sync_playwright()) as pw:
+        browser = pw.chromium.launch(**_browser_opts())
+        ctx = browser.new_context(**_ctx_opts(session=False))
         page = ctx.new_page()
+
+        # ページロード前にwebdriverフラグを追加で隠蔽
+        page.add_init_script("""
+            Object.defineProperty(navigator, 'webdriver', {get: () => undefined});
+            delete navigator.__proto__.webdriver;
+        """)
+
         page.goto(_LOGIN_URL, wait_until="domcontentloaded", timeout=30000)
+        _human_delay(1.5, 2.5)
 
-        # ログイン完了を検知するまで待機（最大3分）
-        try:
-            page.wait_for_url("**/note.com/", timeout=180000)
-        except Exception:
-            pass
-
-        if "/login" in page.url:
-            logger.error("[note] ログイン完了を検出できませんでした")
+        # ブロックチェック
+        block = _detect_block(page)
+        if block:
+            _log_block(block, _LOGIN_URL, page)
+            _dump_evidence(page, "login_block")
             browser.close()
             return False
 
-        # セッションを保存
+        if email and password:
+            _try_autofill_login(page, email, password)
+
+        # reCAPTCHA や二段階認証のために長めに待機
+        if not _wait_for_login(page):
+            _dump_evidence(page, "login_timeout")
+            browser.close()
+            return False
+
+        _human_delay(1.0, 2.0)
         ctx.storage_state(path=str(_SESSION_FILE))
         logger.info("[note] セッション保存完了: %s", _SESSION_FILE)
         browser.close()
 
     print(f"\n✅ セッション保存完了: {_SESSION_FILE}")
-    print("  以降の publish_note_draft.py はこのセッションを自動利用します。")
+    print("  以降の post_weekly_note_draft.py はこのセッションを自動利用します。")
     return True
-
-
-def _new_context_with_session(pw, headless: bool = True):
-    """
-    保存済みセッションがあればそれを使用、なければ空のコンテキストを返す。
-    """
-    base_opts = dict(
-        user_agent=(
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-            "AppleWebKit/537.36 (KHTML, like Gecko) "
-            "Chrome/124.0.0.0 Safari/537.36"
-        ),
-        viewport={"width": 1280, "height": 900},
-        permissions=["clipboard-read", "clipboard-write"],
-    )
-    browser = pw.chromium.launch(headless=headless)
-    if _SESSION_FILE.exists():
-        logger.info("[note] 保存済みセッションを使用: %s", _SESSION_FILE)
-        ctx = browser.new_context(storage_state=str(_SESSION_FILE), **base_opts)
-    else:
-        logger.warning("[note] セッションファイルなし — 直接ログインを試みます")
-        ctx = browser.new_context(**base_opts)
-    return browser, ctx
-
-
-def update_profile(*, headless: bool = True) -> bool:
-    """
-    note.com のプロフィールを「なおふみ | UMALOGI開発者」に更新する。
-
-    note.com 設定ページ（/settings）で名前・自己紹介を書き換える。
-
-    Returns:
-        True = 更新成功, False = 失敗
-    """
-    try:
-        email, password = _load_credentials()
-    except EnvironmentError as e:
-        logger.error("[note] %s", e)
-        return False
-
-    try:
-        from playwright.sync_api import sync_playwright
-    except ImportError:
-        logger.error("[note] Playwright がインストールされていません。pip install playwright")
-        return False
-
-    if not _SESSION_FILE.exists():
-        logger.error("[note] セッションファイルが見つかりません。先に login_and_save_session() を実行してください。")
-        return False
-
-    with sync_playwright() as pw:
-        browser, ctx = _new_context_with_session(pw, headless=headless)
-        page = ctx.new_page()
-
-        # ログイン状態を確認
-        page.goto("https://note.com/", wait_until="domcontentloaded", timeout=20000)
-        time.sleep(2)
-        if "/login" in page.url:
-            logger.error("[note] セッション期限切れ。再度 login_and_save_session() を実行してください。")
-            browser.close()
-            return False
-        logger.info("[note] セッション有効: %s", page.url)
-
-        # 設定ページへ遷移
-        try:
-            page.goto(_SETTINGS_URL, wait_until="domcontentloaded", timeout=40000)
-            # React/Next.js の SPA レンダリング完了を待つ
-            try:
-                page.wait_for_selector('input[name="editNickname"]', timeout=15000)
-            except Exception:
-                time.sleep(5)  # フォールバック: 5秒待機
-            ss = _DEBUG_DIR / "note_settings.png"
-            try:
-                page.screenshot(path=str(ss), timeout=60000)
-                logger.info("[note] 設定ページ: %s", ss)
-            except Exception:
-                logger.warning("[note] 設定ページスクリーンショット失敗（続行）")
-        except Exception as e:
-            logger.error("[note] 設定ページ遷移失敗: %s", e)
-            browser.close()
-            return False
-
-        # 名前・自己紹介を page.fill() で入力（Playwright が keyboard type をシミュレート → React state も更新）
-        name_filled = False
-        bio_filled  = False
-        try:
-            page.fill('input[name="editNickname"]', _PROFILE_NAME, timeout=8000)
-            name_filled = True
-            logger.info("[note] 名前入力完了: %s", _PROFILE_NAME)
-        except Exception as e:
-            logger.warning("[note] 名前フィールド fill 失敗: %s", e)
-
-        time.sleep(0.3)
-
-        try:
-            page.fill('textarea[name="editBiography"]', _PROFILE_BIO, timeout=8000)
-            bio_filled = True
-            logger.info("[note] 自己紹介入力完了")
-        except Exception as e:
-            logger.warning("[note] 自己紹介フィールド fill 失敗: %s", e)
-
-        time.sleep(0.5)
-
-        time.sleep(0.5)
-
-        # 保存ボタンをクリック（「保存」テキストで絞り込み）
-        save_selectors = [
-            'button:has-text("保存")',
-            'button:has-text("変更を保存")',
-            'button[type="submit"]',
-            'input[type="submit"]',
-        ]
-        saved = False
-        for sel in save_selectors:
-            try:
-                loc = page.locator(sel).first
-                if loc.count() > 0 and loc.is_visible(timeout=2000):
-                    loc.click(timeout=8000)
-                    time.sleep(2)
-                    saved = True
-                    logger.info("[note] プロフィール保存ボタンクリック: %s", sel)
-                    break
-            except Exception:
-                continue
-
-        ss_final = _DEBUG_DIR / "note_profile_saved.png"
-        page.screenshot(path=str(ss_final), full_page=True)
-        logger.info("[note] プロフィール保存後スクリーンショット: %s", ss_final)
-
-        browser.close()
-        if saved:
-            logger.info("[note] プロフィール更新完了: %s", _PROFILE_NAME)
-            return True
-        else:
-            logger.warning("[note] 保存ボタンが見つかりませんでした（手動確認推奨）")
-            return False
 
 
 def save_draft(
@@ -269,61 +402,65 @@ def save_draft(
     body: str,
     *,
     tags: list[str] | None = None,
-    headless: bool = True,
+    headless: bool = False,  # Bot検知回避のため常に False 推奨
 ) -> bool:
     """
-    note.com に下書き記事を保存する。
-
-    フロー:
-      1. ログイン
-      2. 新規記事作成ページへ遷移
-      3. タイトル入力
-      4. 本文をクリップボード経由でペースト
-      5. タグ設定（指定時）
-      6. 「下書き保存」ボタンをクリック
-      7. 保存確認後にスクリーンショット
+    note.com に下書き記事を保存する (Stealth mode)。
 
     Returns:
         True = 下書き保存成功, False = 失敗
     """
     try:
-        from playwright.sync_api import sync_playwright, TimeoutError as PWTimeout
+        from playwright.sync_api import sync_playwright
     except ImportError:
         logger.error("[note] Playwright がインストールされていません。pip install playwright")
         return False
 
     if not _SESSION_FILE.exists():
-        logger.error("[note] セッションファイルが見つかりません。先に --login を実行してください。")
+        logger.error("[note] セッションファイルが見つかりません。先に --login-only を実行してください。")
         return False
 
-    with sync_playwright() as pw:
-        browser, ctx = _new_context_with_session(pw, headless=headless)
+    # headless 引数は受け取るが Bot検知回避のため常に False を推奨
+    if headless:
+        logger.warning("[note] headless=True はBot検知されやすいため headless=False に強制します")
+        headless = False
+
+    stealth = _build_stealth()
+    with stealth.use_sync(sync_playwright()) as pw:
+        browser = pw.chromium.launch(**_browser_opts())
+        ctx = browser.new_context(**_ctx_opts(session=True))
         page = ctx.new_page()
+
+        page.add_init_script("""
+            Object.defineProperty(navigator, 'webdriver', {get: () => undefined});
+            delete navigator.__proto__.webdriver;
+        """)
 
         # ── Step 1: セッション有効確認 ────────────────────────────
         try:
-            logger.info("[note] セッション確認中...")
+            logger.info("[note] セッション確認中 (stealth mode)...")
             page.goto("https://note.com/", wait_until="domcontentloaded", timeout=20000)
-            time.sleep(2)
+            _human_delay(2.0, 3.0)
 
-            # スクリーンショットで状態確認
-            ss = _DEBUG_DIR / "note_after_login.png"
-            page.screenshot(path=str(ss))
-            logger.info("[note] ログイン後スクリーンショット: %s", ss)
-
-            current_url = page.url
-            if "/login" in current_url:
-                logger.error("[note] ログイン失敗（まだ /login にいる）: %s", current_url)
-                _notify_discord("note ログイン", f"ログイン後も /login (url={current_url})", ss)
+            block = _detect_block(page)
+            if block:
+                _log_block(block, "https://note.com/", page)
+                _dump_evidence(page, "session_check_block")
                 browser.close()
                 return False
 
-            logger.info("[note] ログイン成功: %s", current_url)
+            ss = _dump_evidence(page, "after_login")
+            current_url = page.evaluate("() => window.location.href")
+            if "/login" in current_url:
+                logger.error("[note] セッション期限切れ — 再ログインが必要: %s", current_url)
+                browser.close()
+                return False
+
+            logger.info("[note] セッション有効: %s", current_url)
 
         except Exception as e:
-            ss = _DEBUG_DIR / "note_login_error.png"
-            page.screenshot(path=str(ss))
-            logger.error("[note] ログイン例外: %s", e)
+            _dump_evidence(page, "login_error")
+            logger.error("[note] セッション確認例外: %s", e)
             browser.close()
             return False
 
@@ -331,14 +468,22 @@ def save_draft(
         logger.info("[note] 新規記事ページへ遷移: %s", _NEW_POST_URL)
         try:
             page.goto(_NEW_POST_URL, wait_until="domcontentloaded", timeout=30000)
-            time.sleep(3)
-            ss = _DEBUG_DIR / "note_new_post.png"
-            page.screenshot(path=str(ss))
-            logger.info("[note] 記事作成ページ: %s", ss)
+            _human_delay(3.0, 5.0)
         except Exception as e:
             logger.error("[note] 記事作成ページ遷移失敗: %s", e)
+            _dump_evidence(page, "new_post_error")
             browser.close()
             return False
+
+        # ブロック・障害ページ検出（証拠保全あり）
+        block = _detect_block(page)
+        _dump_evidence(page, "new_post")
+        if block:
+            _log_block(block, _NEW_POST_URL, page)
+            browser.close()
+            return False
+
+        logger.info("[note] 記事作成ページ正常表示")
 
         # ── Step 3: タイトル入力 ──────────────────────────────────
         title_selectors = [
@@ -347,8 +492,8 @@ def save_draft(
             'textarea[placeholder*="タイトル"]',
             '[contenteditable="true"][data-placeholder*="タイトル"]',
             '[contenteditable="true"][aria-label*="タイトル"]',
-            '.title-input',
             'h1[contenteditable="true"]',
+            '.title-input',
         ]
         title_filled = False
         for sel in title_selectors:
@@ -356,7 +501,7 @@ def save_draft(
                 loc = page.locator(sel).first
                 if loc.count() > 0 and loc.is_visible(timeout=2000):
                     loc.click()
-                    time.sleep(0.3)
+                    _human_delay()
                     loc.fill(title)
                     title_filled = True
                     logger.info("[note] タイトル入力: %r (selector=%s)", title[:30], sel)
@@ -365,20 +510,11 @@ def save_draft(
                 continue
 
         if not title_filled:
-            logger.warning("[note] タイトル入力フィールドが見つかりません（スキップ）")
+            logger.warning("[note] タイトル入力フィールドが見つかりません — エディタが未ロードの可能性")
 
-        time.sleep(1)
+        _human_delay(0.8, 1.5)
 
         # ── Step 4: 本文入力（クリップボード経由）────────────────
-        #
-        # note.com は ProseMirror ベースの WYSIWYG エディタ。
-        # fill() で流すと Markdown 記法が平文になるため、
-        # クリップボード経由で Ctrl+V ペーストを行う。
-        # ただし note.com は Markdown をリッチテキストとして解釈しないため、
-        # 本文は Markdown 記法のままテキストとして保存される。
-        # （note.com 側で有料プラン向けに Markdown モードがあるが、
-        #   無料プランは WYSIWYG のみ。テキストとして保存で OK。）
-        #
         body_selectors = [
             '.ProseMirror',
             '[contenteditable="true"].ProseMirror',
@@ -393,7 +529,6 @@ def save_draft(
                 locs = page.locator(sel)
                 if locs.count() == 0:
                     continue
-                # タイトル入力欄でないものを選ぶ
                 for i in range(min(locs.count(), 5)):
                     loc = locs.nth(i)
                     if not loc.is_visible(timeout=1000):
@@ -402,41 +537,39 @@ def save_draft(
                     aria = loc.get_attribute("aria-label") or ""
                     if "タイトル" in placeholder or "タイトル" in aria:
                         continue
-
                     loc.click()
-                    time.sleep(0.5)
-                    page.keyboard.press("Control+End")  # 末尾へ移動
-                    time.sleep(0.3)
-
-                    # クリップボード経由でペースト
+                    _human_delay(0.4, 0.8)
+                    page.keyboard.press("Control+End")
+                    _human_delay()
                     try:
                         _clipboard_paste(page, body)
                         body_filled = True
                         logger.info("[note] 本文ペースト完了 (%d 文字, selector=%s)", len(body), sel)
                         break
                     except Exception as ce:
-                        logger.warning("[note] clipboard_paste 失敗 (%s): %s — type() にフォールバック", sel, ce)
-                        # フォールバック: type() で1文字ずつ（遅いが確実）
-                        # 長文は切り詰める
-                        truncated = body[:3000] + "\n\n[以下省略 — 全文はファイルを参照]" if len(body) > 3000 else body
+                        logger.warning("[note] clipboard_paste 失敗: %s — type() フォールバック", ce)
+                        truncated = body[:3000] + "\n\n[以下省略]" if len(body) > 3000 else body
                         page.keyboard.type(truncated, delay=0)
                         body_filled = True
-                        logger.info("[note] 本文 type() 完了")
                         break
-
                 if body_filled:
                     break
             except Exception as ex:
                 logger.debug("[note] body selector '%s' エラー: %s", sel, ex)
-                continue
 
-        if not body_filled:
-            logger.warning("[note] 本文入力フィールドが見つかりません（スキップ）")
+        if not body_filled and not title_filled:
+            # エディタ自体が見つからない = ブロック or ページ構造変化
+            _dump_evidence(page, "editor_not_found")
+            logger.error(
+                "[note] タイトル・本文フィールドが見つかりません。\n"
+                "  → Bot検知ブロック / note.com ページ構造変化 の可能性。\n"
+                "  → outputs/debug/note_editor_not_found.html を確認してください。"
+            )
+            browser.close()
+            return False
 
-        ss = _DEBUG_DIR / "note_body_entered.png"
-        page.screenshot(path=str(ss))
-        logger.info("[note] 本文入力後スクリーンショット: %s", ss)
-        time.sleep(1)
+        _dump_evidence(page, "body_entered")
+        _human_delay(0.8, 1.5)
 
         # ── Step 5: タグ設定（任意） ──────────────────────────────
         if tags:
@@ -447,7 +580,6 @@ def save_draft(
                 'input[name*="tag"]',
             ]
             for tag in tags[:5]:
-                added = False
                 for sel in tag_selectors:
                     try:
                         loc = page.locator(sel).first
@@ -455,17 +587,14 @@ def save_draft(
                             loc.click()
                             loc.fill(tag)
                             page.keyboard.press("Enter")
-                            time.sleep(0.5)
+                            _human_delay(0.4, 0.8)
                             logger.info("[note] タグ追加: %s", tag)
-                            added = True
                             break
                     except Exception:
                         continue
-                if not added:
-                    logger.debug("[note] タグ追加スキップ: %s", tag)
 
         # ── Step 6: 下書き保存 ────────────────────────────────────
-        time.sleep(1)
+        _human_delay(0.8, 1.5)
         draft_selectors = [
             'button:has-text("下書き保存")',
             'button:has-text("下書きとして保存")',
@@ -479,35 +608,110 @@ def save_draft(
                 loc = page.locator(sel).first
                 if loc.count() > 0 and loc.is_visible(timeout=2000):
                     loc.click(timeout=8000)
-                    time.sleep(2)
+                    _human_delay(2.0, 3.0)
                     logger.info("[note] 下書き保存ボタンクリック: %s", sel)
                     saved = True
                     break
             except Exception as ex:
                 logger.debug("[note] セレクタ '%s' → %s", sel, ex)
 
-        if not saved:
-            # Ctrl+S フォールバック
+        if not saved and body_filled:
+            # エディタは開いているが保存ボタンが見つからない場合のみ Ctrl+S
             try:
                 page.keyboard.press("Control+s")
-                time.sleep(2)
+                _human_delay(2.0, 3.0)
                 logger.info("[note] Ctrl+S 下書き保存")
                 saved = True
             except Exception as e:
                 logger.warning("[note] Ctrl+S 失敗: %s", e)
 
-        ss_final = _DEBUG_DIR / "note_draft_saved.png"
-        page.screenshot(path=str(ss_final), full_page=True)
-        logger.info("[note] 最終スクリーンショット: %s", ss_final)
+        _dump_evidence(page, "draft_saved")
 
         if not saved:
-            _notify_discord("note 下書き保存", "保存ボタンが見つかりません", ss_final)
+            _notify_discord("note 下書き保存", "保存ボタンが見つかりません")
             browser.close()
             return False
 
         browser.close()
         logger.info("[note] 下書き保存完了: %r", title[:40])
         return True
+
+
+def update_profile(*, headless: bool = False) -> bool:
+    """note.com のプロフィールを「なおふみ | UMALOGI開発者」に更新する。"""
+    try:
+        from playwright.sync_api import sync_playwright
+    except ImportError:
+        logger.error("[note] Playwright がインストールされていません。pip install playwright")
+        return False
+
+    if not _SESSION_FILE.exists():
+        logger.error("[note] セッションファイルが見つかりません。先に login_and_save_session() を実行してください。")
+        return False
+
+    stealth = _build_stealth()
+    with stealth.use_sync(sync_playwright()) as pw:
+        browser = pw.chromium.launch(**_browser_opts())
+        ctx = browser.new_context(**_ctx_opts(session=True))
+        page = ctx.new_page()
+        page.add_init_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined});")
+
+        page.goto("https://note.com/", wait_until="domcontentloaded", timeout=20000)
+        _human_delay(2.0, 3.0)
+        if "/login" in page.evaluate("() => window.location.href"):
+            logger.error("[note] セッション期限切れ。再度 login_and_save_session() を実行してください。")
+            browser.close()
+            return False
+
+        try:
+            page.goto(_SETTINGS_URL, wait_until="domcontentloaded", timeout=40000)
+            try:
+                page.wait_for_selector('input[name="editNickname"]', timeout=15000)
+            except Exception:
+                _human_delay(5.0, 6.0)
+            _dump_evidence(page, "settings")
+        except Exception as e:
+            logger.error("[note] 設定ページ遷移失敗: %s", e)
+            browser.close()
+            return False
+
+        try:
+            page.fill('input[name="editNickname"]', _PROFILE_NAME, timeout=8000)
+            logger.info("[note] 名前入力完了: %s", _PROFILE_NAME)
+        except Exception as e:
+            logger.warning("[note] 名前フィールド fill 失敗: %s", e)
+
+        _human_delay()
+
+        try:
+            page.fill('textarea[name="editBiography"]', _PROFILE_BIO, timeout=8000)
+            logger.info("[note] 自己紹介入力完了")
+        except Exception as e:
+            logger.warning("[note] 自己紹介フィールド fill 失敗: %s", e)
+
+        _human_delay(0.5, 1.0)
+
+        saved = False
+        for sel in ['button:has-text("保存")', 'button:has-text("変更を保存")', 'button[type="submit"]']:
+            try:
+                loc = page.locator(sel).first
+                if loc.count() > 0 and loc.is_visible(timeout=2000):
+                    loc.click(timeout=8000)
+                    _human_delay(2.0, 3.0)
+                    saved = True
+                    logger.info("[note] プロフィール保存ボタンクリック: %s", sel)
+                    break
+            except Exception:
+                continue
+
+        _dump_evidence(page, "profile_saved")
+        browser.close()
+        if saved:
+            logger.info("[note] プロフィール更新完了: %s", _PROFILE_NAME)
+            return True
+        else:
+            logger.warning("[note] 保存ボタンが見つかりませんでした（手動確認推奨）")
+            return False
 
 
 def _notify_discord(step: str, error: str, screenshot_path: Path | None = None) -> None:
