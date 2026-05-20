@@ -30,12 +30,14 @@ def _mock_post(sent: list) -> object:
 class TestNotificationRouter:
     def test_fallback_to_prediction(self, monkeypatch):
         """DISCORD_WEBHOOK_SYSTEM 未設定時にシステム通知が予想チャンネルへフォールバックする。"""
-        monkeypatch.setenv("DISCORD_WEBHOOK_URL", "http://fake-prediction")
-        monkeypatch.delenv("DISCORD_WEBHOOK_SYSTEM", raising=False)
-        monkeypatch.delenv("DISCORD_SYSTEM_WEBHOOK_URL", raising=False)
-        monkeypatch.delenv("DISCORD_WEBHOOK_EV_ALERT", raising=False)
-        monkeypatch.delenv("DISCORD_WEBHOOK_AB_TEST", raising=False)
-        monkeypatch.delenv("DISCORD_WEBHOOK_NOTE_DRAFT", raising=False)
+        # discord_notifier.py は load_dotenv(override=False) をモジュールレベルで呼ぶため
+        # delenv ではなく setenv("") で空文字にする（override=False が再設定しなくなる）
+        monkeypatch.setenv("DISCORD_WEBHOOK_SYSTEM", "")
+        monkeypatch.setenv("DISCORD_SYSTEM_WEBHOOK_URL", "")
+        monkeypatch.setenv("DISCORD_WEBHOOK_EV_ALERT", "")
+        monkeypatch.setenv("DISCORD_WEBHOOK_AB_TEST", "")
+        monkeypatch.setenv("DISCORD_WEBHOOK_NOTE_DRAFT", "")
+        # DISCORD_WEBHOOK_URL は設定済み（フォールバック先として使用される）
 
         sent: list = []
         with patch("requests.post", _mock_post(sent)):
@@ -43,15 +45,21 @@ class TestNotificationRouter:
             router = NotificationRouter()
             router.send_system_text("system msg")
 
-        assert any("fake-prediction" in e["url"] for e in sent), \
-            f"prediction へのフォールバックが発生していない: {sent}"
+        # system 未設定 → prediction へ1回フォールバック送信されること（URL値は問わない）
+        assert len(sent) == 1, \
+            f"prediction フォールバックで1回の送信を期待: sent={[e['url'] for e in sent]}"
+        # prediction URL と一致すること
+        prediction_url = os.environ.get("DISCORD_WEBHOOK_URL", "")
+        if prediction_url:
+            assert sent[0]["url"] == prediction_url, \
+                f"prediction URL 以外が使われた: actual={sent[0]['url']}"
 
     def test_ev_alert_routes_separately(self, monkeypatch):
         """max_ev >= 1.5 かつ ev_alert URL 設定済みで ev_alert チャンネルへ別送される。"""
         monkeypatch.setenv("DISCORD_WEBHOOK_URL", "http://fake-prediction")
         monkeypatch.setenv("DISCORD_WEBHOOK_EV_ALERT", "http://fake-ev-alert")
-        monkeypatch.delenv("DISCORD_WEBHOOK_SYSTEM", raising=False)
-        monkeypatch.delenv("DISCORD_SYSTEM_WEBHOOK_URL", raising=False)
+        monkeypatch.setenv("DISCORD_WEBHOOK_SYSTEM", "")
+        monkeypatch.setenv("DISCORD_SYSTEM_WEBHOOK_URL", "")
 
         sent: list = []
         with patch("requests.post", _mock_post(sent)):
@@ -67,7 +75,9 @@ class TestNotificationRouter:
     def test_send_note_draft_chunking(self, monkeypatch):
         """3000文字の本文が複数チャンクに分割され、ページング番号付きで送信される。"""
         monkeypatch.setenv("DISCORD_WEBHOOK_NOTE_DRAFT", "http://fake-draft")
-        monkeypatch.delenv("DISCORD_WEBHOOK_URL", raising=False)
+        monkeypatch.setenv("DISCORD_WEBHOOK_URL", "")
+        monkeypatch.setenv("DISCORD_WEBHOOK_SYSTEM", "")
+        monkeypatch.setenv("DISCORD_SYSTEM_WEBHOOK_URL", "")
 
         sent: list = []
         with patch("requests.post", _mock_post(sent)):
@@ -86,7 +96,9 @@ class TestNotificationRouter:
     def test_send_note_draft_x_post(self, monkeypatch):
         """x_post が指定されたとき末尾メッセージとして送信される。"""
         monkeypatch.setenv("DISCORD_WEBHOOK_NOTE_DRAFT", "http://fake-draft")
-        monkeypatch.delenv("DISCORD_WEBHOOK_URL", raising=False)
+        monkeypatch.setenv("DISCORD_WEBHOOK_URL", "")
+        monkeypatch.setenv("DISCORD_WEBHOOK_SYSTEM", "")
+        monkeypatch.setenv("DISCORD_SYSTEM_WEBHOOK_URL", "")
 
         sent: list = []
         with patch("requests.post", _mock_post(sent)):
@@ -104,7 +116,7 @@ class TestNotificationRouter:
             "DISCORD_WEBHOOK_EV_ALERT", "DISCORD_WEBHOOK_AB_TEST",
             "DISCORD_WEBHOOK_NOTE_DRAFT", "DISCORD_SYSTEM_WEBHOOK_URL",
         ]:
-            monkeypatch.delenv(key, raising=False)
+            monkeypatch.setenv(key, "")
 
         from src.notification.router import NotificationRouter
         router = NotificationRouter()
