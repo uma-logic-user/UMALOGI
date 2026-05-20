@@ -93,6 +93,10 @@ class DiscordNotifier(BaseNotifier):
     # 内部ヘルパー
     # ────────────────────────────────────────────────────────────────────────
 
+    def _sanitize(self, s: str) -> str:
+        """文字列を Discord 送信用にサニタイズする（null バイト除去・前後空白除去）。"""
+        return _s(s)
+
     def _post(self, url: str, payload: dict[str, Any], image_path: str | None = None) -> bool:
         """指定 URL に payload を POST する。失敗しても例外を外に出さない。"""
         if not url:

@@ -67,8 +67,9 @@ def test_send_text_calls_post() -> None:
 
 
 def test_send_text_no_url_skips(caplog: pytest.LogCaptureFixture) -> None:
-    n = DiscordNotifier(webhook_url="", enabled=True)
-    with caplog.at_level("WARNING"):
+    with patch.dict("os.environ", {"DISCORD_WEBHOOK_URL": "", "DISCORD_SYSTEM_WEBHOOK_URL": ""}, clear=False):
+        n = DiscordNotifier(enabled=False)  # enabled=False でコンストラクタ警告を抑制
+    with caplog.at_level("WARNING", logger="src.notification.discord_notifier"):
         n.send_text("this should be skipped")
     assert "スキップ" in caplog.text or "未設定" in caplog.text
 
@@ -93,8 +94,11 @@ def test_notify_scraping_alert_sends_emergency_text() -> None:
     with patch("src.notification.discord_notifier.requests.post", return_value=_mock_response()) as mock_post:
         n.notify_scraping_alert("202505050701", "0頭取得")
     mock_post.assert_called_once()
-    content = mock_post.call_args[1]["json"]["content"]
-    assert "緊急" in content or "スクレイピング" in content
+    payload = mock_post.call_args[1]["json"]
+    # notify_scraping_alert は send_system_embed 経由で embeds 形式で送信する
+    assert "embeds" in payload
+    title = payload["embeds"][0].get("title", "")
+    assert "スクレイピング" in title or "異常" in title
 
 
 # ── notify_prerace_result ─────────────────────────────────────────

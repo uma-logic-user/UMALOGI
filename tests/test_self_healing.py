@@ -208,6 +208,7 @@ def test_prerace_pipeline_does_not_skip_on_odds_failure() -> None:
                 predict=lambda x: pd.Series([0.6, 0.4]),
                 ev_predict=lambda x: pd.Series([1.1, 0.9]),
             ),
+            MagicMock(predict=lambda x: pd.Series([0.5, 0.5])),  # PlaceModel
             MagicMock(ev_score=lambda x: pd.Series([1.1, 0.9])),
         )
         mock_bg.return_value.generate_honmei.return_value = MagicMock(bets=[])

@@ -73,6 +73,11 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     p_pre = sub.add_parser("prerace", help="レース直前予想パイプライン")
     p_pre.add_argument("race_id")
     p_pre.add_argument("--provisional", action="store_true")
+    p_pre.add_argument(
+        "--model-version", dest="model_version", default="v1",
+        choices=["v1", "v2"],
+        help="モデルバージョン: v1=既存(固定EV閾値) / v2=強化版(W-004+動的EV+Kelly)",
+    )
 
     p_sim = sub.add_parser("simulate", help="過去レースのシミュレーション")
     p_sim.add_argument("race_id")
@@ -108,8 +113,9 @@ def main(argv: list[str] | None = None) -> None:
             print(f"  {r}")
 
     elif args.command == "prerace":
-        prov   = getattr(args, "provisional", False)
-        result = prerace_pipeline(args.race_id, provisional=prov)
+        prov    = getattr(args, "provisional", False)
+        ver     = getattr(args, "model_version", "v1")
+        result  = prerace_pipeline(args.race_id, provisional=prov, model_version=ver)
         print(json.dumps(result, ensure_ascii=False, indent=2))
 
     elif args.command == "simulate":

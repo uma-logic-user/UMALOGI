@@ -192,7 +192,11 @@ class TestTrainingJoin:
     """直近調教タイムの相関サブクエリを検証する。"""
 
     RACE_DATE = "2025/01/05"
-    HORSE_ID  = "2023105001"
+    # training_times.horse_id は JVLink TC 形式: substr(2,9) が
+    # substr(rr.horse_id,1,4)||substr(rr.horse_id,5,5) と一致する必要がある。
+    # rr.horse_id="2023105001" → "2023"+"10500"="202310500"
+    # tc.horse_id="1202310500" → substr(2,9)="202310500" ✓
+    HORSE_ID  = "1202310500"
 
     def _insert_tc(
         self,

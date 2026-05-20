@@ -125,7 +125,7 @@ def dummy_df() -> pd.DataFrame:
 
 class TestFeatureCols:
     def test_列数が39(self) -> None:
-        assert len(FEATURE_COLS) == 39
+        assert len(FEATURE_COLS) == 69
 
     def test_追加3列が含まれる(self) -> None:
         # win_odds / market_prob は過学習防止のため除外済み
@@ -361,7 +361,7 @@ class TestLoadModels:
         orig = _mod._MODEL_DIR
         _mod._MODEL_DIR = tmp_path  # 空ディレクトリ → モデルファイルなし
         try:
-            honmei, manji = load_models()
+            honmei, place, manji = load_models()
         finally:
             _mod._MODEL_DIR = orig
         assert isinstance(honmei, HonmeiModel)
@@ -373,7 +373,7 @@ class TestLoadModels:
         orig = _mod._MODEL_DIR
         _mod._MODEL_DIR = tmp_path  # 空ディレクトリ → モデルファイルなし → フォールバック
         try:
-            honmei, manji = load_models()
+            honmei, place, manji = load_models()
             h_scores = honmei.predict(dummy_df)
             m_scores = manji.predict(dummy_df)
         finally:

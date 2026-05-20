@@ -29,48 +29,43 @@ from src.database.init_db import init_db, insert_race
 # ---------------------------------------------------------------------------
 SAMPLE_RACE_HTML = """
 <html><body>
-<dl class="racedata fc">
-  11 R 東京優駿（日本ダービー）(GI) 芝左2400m&nbsp;/&nbsp;
-  天候 : 晴&nbsp;/&nbsp;
-  芝 : 良&nbsp;/&nbsp;
-  発走 : 15:40
-</dl>
-<p class="smalltxt">2023年5月28日 5回東京8日目 3歳オープン(国際)(指)(定量)</p>
-<table class="race_table_01">
-  <tr>
-    <th>着順</th><th>枠</th><th>馬番</th><th>馬名</th><th>性齢</th>
-    <th>斤量</th><th>騎手</th><th>タイム</th><th>着差</th>
-    <th>x</th><th>x</th><th>x</th><th>x</th><th>x</th><th>x</th><th>x</th>
-    <th>単勝</th><th>人気</th><th>馬体重</th><th>x</th><th>x</th>
-    <th>x</th><th>x</th><th>x</th><th>x</th>
-  </tr>
-  <tr>
-    <td>1</td><td>5</td><td>9</td>
-    <td><a href="/horse/2020104451/">タスティエーラ</a></td>
-    <td>牡3</td><td>57</td><td>松山弘平</td>
-    <td>2:25.2</td><td></td>
-    <td>**</td><td>**</td><td>**</td><td>**</td><td>**</td><td>**</td><td>**</td>
-    <td>6.1</td><td>3</td><td>476(+2)</td><td></td><td></td>
-    <td></td><td></td><td></td><td></td>
-  </tr>
-  <tr>
-    <td>2</td><td>7</td><td>14</td>
-    <td><a href="/horse/2020104785/">ソールオリエンス</a></td>
-    <td>牡3</td><td>57</td><td>横山武史</td>
-    <td>2:25.3</td><td>クビ</td>
-    <td>**</td><td>**</td><td>**</td><td>**</td><td>**</td><td>**</td><td>**</td>
-    <td>2.7</td><td>1</td><td>488(0)</td><td></td><td></td>
-    <td></td><td></td><td></td><td></td>
-  </tr>
-  <tr>
-    <td>除外</td><td>1</td><td>1</td>
-    <td><a href="/horse/2020104999/">テストウマ</a></td>
-    <td>牡3</td><td>57</td><td>福永祐一</td>
-    <td></td><td></td>
-    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    <td></td><td></td><td></td><td></td><td></td>
-    <td></td><td></td><td></td><td></td>
-  </tr>
+<div class="RaceData01">
+  15:40発走 / 芝左2400m / 天候:晴 / 馬場:良
+</div>
+<div class="RaceData02">
+  1回 東京 8日目 3歳オープン(国際)(指)(定量)
+</div>
+<table class="RaceTable01">
+  <thead>
+    <tr>
+      <th>着順</th><th>枠</th><th>馬番</th><th>馬名</th><th>性齢</th>
+      <th>斤量</th><th>騎手</th><th>タイム</th><th>着差</th>
+      <th>人気</th><th>単勝</th><th>x</th><th>x</th><th>調教師</th><th>馬体重</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="HorseList">
+      <td>1</td><td>5</td><td>9</td>
+      <td><a href="/horse/2020104451/">タスティエーラ</a></td>
+      <td>牡3</td><td>57</td><td>松山弘平</td>
+      <td>2:25.2</td><td></td>
+      <td>3</td><td>6.1</td><td></td><td></td><td>堀宣行</td><td>476(+2)</td>
+    </tr>
+    <tr class="HorseList">
+      <td>2</td><td>7</td><td>14</td>
+      <td><a href="/horse/2020104785/">ソールオリエンス</a></td>
+      <td>牡3</td><td>57</td><td>横山武史</td>
+      <td>2:25.3</td><td>クビ</td>
+      <td>1</td><td>2.7</td><td></td><td></td><td>手塚貴久</td><td>488(0)</td>
+    </tr>
+    <tr class="HorseList">
+      <td>除外</td><td>1</td><td>1</td>
+      <td><a href="/horse/2020104999/">テストウマ</a></td>
+      <td>牡3</td><td>57</td><td>福永祐一</td>
+      <td></td><td></td>
+      <td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+  </tbody>
 </table>
 </body></html>
 """

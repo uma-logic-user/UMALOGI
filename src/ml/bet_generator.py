@@ -164,6 +164,96 @@ def get_current_bankroll(
     return result
 
 
+def get_dynamic_ev_threshold(
+    conn: sqlite3.Connection,
+    lookback_days: int = 28,
+) -> tuple[float, float, str]:
+    """直近N日のROIを分析し、動的EV閾値とモード情報を返す。
+
+    WFバックテスト実証値に基づく閾値基準:
+        ROI >= 150%: 1.1 (好調期 — 積極モード)
+        ROI 110-150%: 1.2 (通常期 — 標準モード)
+        ROI  80-110%: 1.3 (低調期 — 保守モード)
+        ROI  <  80%: 1.5 (不調期 — 防衛モード)
+        データ不足(<10件): 1.2 (デフォルト)
+
+    Returns:
+        (threshold, roi_pct, mode_label)
+    """
+    try:
+        row = conn.execute(
+            """
+            SELECT
+                COALESCE(SUM(payout), 0.0)           AS total_payout,
+                COALESCE(SUM(payout - profit), 0.0)  AS total_stake,
+                COUNT(*)                              AS n_records
+            FROM prediction_results
+            WHERE recorded_at >= datetime('now', 'localtime', ? || ' days')
+              AND profit IS NOT NULL
+              AND payout IS NOT NULL
+            """,
+            (f"-{lookback_days}",),
+        ).fetchone()
+    except Exception as exc:
+        logger.warning("動的EV閾値: DB照会失敗 → デフォルト1.2 (%s)", exc)
+        return 1.2, 0.0, "データ不足"
+
+    if not row or row[2] < 10 or row[1] <= 0:
+        n = int(row[2]) if row else 0
+        logger.info("動的EV閾値: データ不足(%d件) → デフォルト1.2", n)
+        return 1.2, 0.0, f"データ不足({n}件)"
+
+    roi = float(row[0]) / float(row[1]) * 100.0
+
+    if roi >= 150.0:
+        threshold, mode = 1.1, "好調期"
+    elif roi >= 110.0:
+        threshold, mode = 1.2, "通常期"
+    elif roi >= 80.0:
+        threshold, mode = 1.3, "低調期"
+    else:
+        threshold, mode = 1.5, "不調期"
+
+    logger.info(
+        "動的EV閾値: 直近%d日ROI=%.1f%% → 閾値=%.1f (%s)",
+        lookback_days, roi, threshold, mode,
+    )
+    return threshold, roi, mode
+
+
+def calc_qf_kelly_bet(
+    ev_score: float,
+    win_odds: float,
+    bankroll: float,
+    kelly_fraction: float = KELLY_FRACTION,
+) -> tuple[int, float]:
+    """QF推奨買い目の Kelly ベット額を算出する。
+
+    モデル勝率を ev_score / win_odds で近似し 1/4 Kelly を適用する。
+
+    Args:
+        ev_score:       EV スコア（期待値）
+        win_odds:       単勝オッズ（例: 5.0）
+        bankroll:       現在の総資金（円）
+        kelly_fraction: Kelly 比率（デフォルト 1/4 Kelly）
+
+    Returns:
+        (bet_yen, kelly_pct)
+        bet_yen:   推奨購入額（100円単位、最低100円）
+        kelly_pct: 使用した Kelly 比率（%、参考表示用）
+    """
+    if win_odds <= 1.0 or ev_score <= 0.0:
+        return _BASE_BET, 0.0
+    implied_prob = min(ev_score / win_odds, 0.999)
+    b = win_odds - 1.0
+    full_kelly = (implied_prob * (b + 1.0) - 1.0) / b
+    if full_kelly <= 0.0:
+        return _BASE_BET, 0.0
+    adj_kelly = min(full_kelly * kelly_fraction, _KELLY_CAP)
+    bet_yen = max(int(bankroll * adj_kelly // 100) * 100, _BASE_BET)
+    return bet_yen, adj_kelly * 100.0
+
+
 class OddsEstimator:
     """
     各券種の推定払戻オッズを過去実績から統計的に学習する。
@@ -472,14 +562,6 @@ class ManjiStrategy:
             else ev.reindex(scored.index).values
         )
 
-        # W-004: 大衆心理乖離スコアによるEV調整（市場乖離が大きい馬を再評価）
-        if "crowd_bias_ratio" in scored.columns:
-            scored["ev_score"] = scored.apply(
-                lambda r: float(r["ev_score"])
-                * _crowd_bias_ev_multiplier(float(r.get("crowd_bias_ratio") or 1.0)),
-                axis=1,
-            )
-
         scored = scored.sort_values("ev_score", ascending=False)
 
         # 馬番が不正な行を除外（枠順未確定で horse_number=0 が入る場合）
@@ -720,17 +802,6 @@ class HonmeiStrategy:
             else honmei_scores.reindex(scored.index).values
         )
 
-        # W-004: 大衆心理乖離スコアによる確率調整（[0,1]クリップで確率の意味を維持）
-        if "crowd_bias_ratio" in scored.columns:
-            scored["honmei_score"] = scored.apply(
-                lambda r: float(min(max(
-                    float(r["honmei_score"])
-                    * _crowd_bias_ev_multiplier(float(r.get("crowd_bias_ratio") or 1.0)),
-                    0.0,
-                ), 1.0)),
-                axis=1,
-            )
-
         scored = scored.sort_values("honmei_score", ascending=False)
 
         n = min(self.TOP_N_COMBO, len(scored))
@@ -816,7 +887,7 @@ class HonmeiStrategy:
                     recommended_bet=_BASE_BET * len(umaren2_combos),
                     confidence=best_q2,
                     notes=(
-                        f"軸{n_axis2}番×相手{len(umaren2_combos)}頭フォーメーション "
+                        f"★QF推奨 軸{n_axis2}番×相手{len(umaren2_combos)}頭フォーメーション "
                         f"Harville最大={best_q2:.3f}"
                     ),
                 ))
@@ -832,7 +903,7 @@ class HonmeiStrategy:
                     recommended_bet=_BASE_BET * len(umaren2_combos),
                     confidence=min(best_q2 * 1.3, 1.0),
                     notes=(
-                        f"軸{n_axis2}番×相手{len(umaren2_combos)}頭ワイド "
+                        f"★QF推奨 軸{n_axis2}番×相手{len(umaren2_combos)}頭ワイド "
                         f"Harville最大={best_q2:.3f}"
                     ),
                 ))
@@ -979,6 +1050,10 @@ class HonmeiStrategy:
                         f"{n_tf}点 Harville最大={best_p_tf:.4f}"
                     ),
                 ))
+
+        # ワイド→馬連を先頭に並び替え（クオンツ推奨戦略: WF実証済み）
+        _QF_ORDER = {"ワイド": 0, "馬連": 1, "複勝": 2, "単勝": 3, "馬単": 4, "三連複": 5, "三連単": 6}
+        result.bets.sort(key=lambda b: _QF_ORDER.get(b.bet_type, 99))
 
         logger.info(
             "本命買い目生成: race_id=%s %d 件 (上位%d頭)",
@@ -2039,6 +2114,131 @@ class BetGenerator:
             単勝・複勝・馬連・三連単を含む RaceBets
         """
         bets = self._hybrid.generate(race_id, df, win_probs, bankroll=self._config.bankroll)
+        self._apply_caps(bets)
+        return bets
+
+
+# ── V2 戦略クラス（W-004 + 動的EV閾値 + Kelly対応）────────────────────────
+
+
+class ManjiStrategyV2(ManjiStrategy):
+    """V2 卍戦略: W-004 大衆心理乖離EV調整を追加した強化版。
+
+    V1 との違い:
+      - ManjiStrategy.generate() の前に crowd_bias_ratio でEV値を補正する。
+      - EV 高い馬（crowd_bias > 1.3）はブースト、過人気馬（< 0.7）はペナルティ。
+    """
+
+    def generate(
+        self,
+        race_id: str,
+        df: pd.DataFrame,
+        manji_scores: pd.Series,
+        bankroll: float = 100_000.0,
+    ) -> RaceBets:
+        """W-004 crowd_bias 補正を適用してから V1 generate() を呼ぶ。"""
+        scores_v2 = manji_scores.copy()
+        if "crowd_bias_ratio" in df.columns:
+            for idx in df.index:
+                bias = float(df.loc[idx, "crowd_bias_ratio"] or 1.0) if idx in df.index else 1.0
+                scores_v2.loc[idx] = float(scores_v2.loc[idx]) * _crowd_bias_ev_multiplier(bias)
+        result = super().generate(race_id, df, scores_v2, bankroll=bankroll)
+        result.model_type = "卍V2"
+        return result
+
+
+class HonmeiStrategyV2(HonmeiStrategy):
+    """V2 本命戦略: W-004 大衆心理乖離EV調整を追加した強化版。
+
+    V1 との違い:
+      - HonmeiStrategy.generate() の前に crowd_bias_ratio でスコアを補正する。
+      - 市場で過小評価されている馬（crowd_bias > 1.3）の確率スコアをブースト。
+    """
+
+    def generate(
+        self,
+        race_id: str,
+        df: pd.DataFrame,
+        honmei_scores: pd.Series,
+        bankroll: float = 100_000.0,
+    ) -> RaceBets:
+        """W-004 crowd_bias 補正を適用してから V1 generate() を呼ぶ。"""
+        scores_v2 = honmei_scores.copy()
+        if "crowd_bias_ratio" in df.columns:
+            for idx in df.index:
+                if idx not in df.index:
+                    continue
+                bias = float(df.loc[idx, "crowd_bias_ratio"] or 1.0)
+                adj = float(scores_v2.loc[idx]) * _crowd_bias_ev_multiplier(bias)
+                scores_v2.loc[idx] = min(max(adj, 0.0), 1.0)
+        result = super().generate(race_id, df, scores_v2, bankroll=bankroll)
+        result.model_type = "本命V2"
+        return result
+
+
+class BetGeneratorV2(BetGenerator):
+    """V2 ファサード: HonmeiStrategyV2 / ManjiStrategyV2 を使用する強化版。
+
+    V1 との違い:
+      - W-004 大衆心理乖離EV調整が有効
+      - 動的EV閾値（get_dynamic_ev_threshold()）でリスク管理
+      - Kelly 資金管理（calc_qf_kelly_bet()）で推奨ベット額を算出
+
+    Usage:
+        gen = BetGeneratorV2(conn=conn, config=BetConfig(bankroll=200_000))
+        honmei_bets = gen.generate_honmei(race_id, df, honmei_scores)  # → model_type "本命V2"
+        manji_bets  = gen.generate_manji(race_id, df, ev_scores)       # → model_type "卍V2"
+    """
+
+    def __init__(
+        self,
+        conn: sqlite3.Connection | None = None,
+        config: BetConfig | None = None,
+    ) -> None:
+        super().__init__(conn=conn, config=config)
+        estimator = OddsEstimator(conn)
+        # V1 の策略を V2 版に差し替え
+        self._honmei = HonmeiStrategyV2(estimator=estimator)
+        self._manji  = ManjiStrategyV2(estimator=estimator)
+
+        # 動的EV閾値（DB接続がある場合のみ計算）
+        self._ev_threshold: float = 1.2
+        if conn is not None:
+            try:
+                threshold, roi_pct, mode = get_dynamic_ev_threshold(conn)
+                self._ev_threshold = threshold
+                logger.info(
+                    "BetGeneratorV2: 動的EV閾値=%.1f (%s, ROI=%.1f%%)",
+                    threshold, mode, roi_pct,
+                )
+            except Exception as exc:
+                logger.warning("動的EV閾値取得失敗 → デフォルト1.2: %s", exc)
+
+    @property
+    def ev_threshold(self) -> float:
+        """現在の動的EV閾値を返す（Discord通知で参照可能）。"""
+        return self._ev_threshold
+
+    def generate_honmei(
+        self,
+        race_id: str,
+        df: pd.DataFrame,
+        honmei_scores: pd.Series,
+    ) -> RaceBets:
+        bets = self._honmei.generate(race_id, df, honmei_scores, bankroll=self._config.bankroll)
+        self._apply_caps(bets)
+        return bets
+
+    def generate_manji(
+        self,
+        race_id: str,
+        df: pd.DataFrame,
+        ev_scores: pd.Series,
+    ) -> RaceBets:
+        if self._config.provisional:
+            logger.info("暫定モード: 卍V2ベット生成スキップ (race_id=%s)", race_id)
+            return RaceBets(race_id=race_id, model_type="卍V2")
+        bets = self._manji.generate(race_id, df, ev_scores, bankroll=self._config.bankroll)
         self._apply_caps(bets)
         return bets
 

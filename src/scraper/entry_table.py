@@ -368,11 +368,11 @@ def fetch_realtime_odds(
             logger.warning("オッズ JSON パース失敗 type=%d", odds_type)
             return {}
         # 新形式: {"status":..., "data": {"odds": {"1": {...}, "2": {...}}}}
-        # 旧形式: {"1": {"01": [...]}} （フォールバック）
+        # 旧形式: {"1": {"01": [...]}} — 単勝/複勝ともに外部キーは常に "1"
         nested = data.get("data", {}).get("odds", {})
         if nested:
             return nested.get(str(odds_type), {})
-        return data.get(str(odds_type), {}) or {}
+        return data.get("1", {}) or {}
 
     win_data = _get(1)
     time.sleep(delay)

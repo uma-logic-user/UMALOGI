@@ -74,7 +74,7 @@ def _make_low_ev_scores(df: pd.DataFrame) -> pd.Series:
 
 class TestKellyBet:
     def test_正の賭け金を返す(self) -> None:
-        bet = _kelly_bet(win_prob=0.3, odds=5.0, base_bet=1000)
+        bet = _kelly_bet(win_prob=0.3, odds=5.0, max_bet=1000)
         assert bet >= 0
 
     def test_勝率0でゼロ(self) -> None:
@@ -85,8 +85,8 @@ class TestKellyBet:
 
     def test_上限を超えない(self) -> None:
         # 極端な確率でも cap=0.25 が上限
-        bet = _kelly_bet(win_prob=0.99, odds=100.0, base_bet=1000, cap=0.25)
-        assert bet <= 1000 * (1 + 0.25 * 10)
+        bet = _kelly_bet(win_prob=0.99, odds=100.0, max_bet=1000)
+        assert bet <= 1000  # max_bet が上限
 
 
 # ── ManjiStrategy ─────────────────────────────────────────────────

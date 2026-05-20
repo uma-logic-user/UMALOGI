@@ -40,6 +40,7 @@ from .models import (
     _build_train_df,
     _MIN_TRAIN_RACES,
 )
+from .models_v2 import HonmeiModelV2, ManjiModelV2
 
 logger = logging.getLogger(__name__)
 
@@ -295,11 +296,37 @@ class IncrementalTrainer:
                 trained_at=datetime.now().strftime("%Y%m%d_%H%M%S"),
             )
 
+        # ── V2 モデル (W-004 + 動的EV + Kelly 用の独立 pkl) ──────────
+        honmei_v2 = HonmeiModelV2()
+        honmei_v2.train(conn)
+        if honmei_v2.is_trained:
+            self._archive_and_save(honmei_v2, "honmei_v2")
+            results["honmei_v2"] = ModelVersion(
+                model_type="honmei_v2",
+                n_races=n_races,
+                n_samples=len(df_all),
+                trained_at=datetime.now().strftime("%Y%m%d_%H%M%S"),
+                cv_auc=cv_auc,
+            )
+
+        manji_v2 = ManjiModelV2()
+        manji_v2.train(conn)
+        if manji_v2.is_trained:
+            self._archive_and_save(manji_v2, "manji_v2")
+            results["manji_v2"] = ModelVersion(
+                model_type="manji_v2",
+                n_races=n_races,
+                n_samples=len(df_all),
+                trained_at=datetime.now().strftime("%Y%m%d_%H%M%S"),
+            )
+
         logger.info(
-            "[全件再学習] 完了: %d レース / 本命=%s 卍=%s",
+            "[全件再学習] 完了: %d レース / V1: 本命=%s 卍=%s / V2: 本命=%s 卍=%s",
             n_races,
             results.get("honmei"),
             results.get("manji"),
+            results.get("honmei_v2"),
+            results.get("manji_v2"),
         )
         return results
 
@@ -323,14 +350,15 @@ class IncrementalTrainer:
         name: str,
     ) -> None:
         """現在のモデルファイルを history にコピーしてから上書き保存する。"""
-        ts   = datetime.now().strftime("%Y%m%d_%H%M%S")
-        src  = _MODEL_DIR / f"{name}_model.pkl"
+        import shutil
+        ts  = datetime.now().strftime("%Y%m%d_%H%M%S")
+        # モデルオブジェクトの _filename を使って正確なパスを参照 (V2 対応)
+        filename = getattr(model, "_filename", f"{name}_model")
+        src = _MODEL_DIR / f"{filename}.pkl"
         if src.exists():
-            import shutil
-            dst = _HISTORY_DIR / f"{name}_model_{ts}.pkl"
+            dst = _HISTORY_DIR / f"{filename}_{ts}.pkl"
             shutil.copy2(str(src), str(dst))
-            # 直近10件を超える old バックアップを削除
-            old = sorted(_HISTORY_DIR.glob(f"{name}_model_*.pkl"))
+            old = sorted(_HISTORY_DIR.glob(f"{filename}_*.pkl"))
             for f in old[:-10]:
                 f.unlink()
         model.save()

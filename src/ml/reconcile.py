@@ -647,7 +647,7 @@ def reconcile(
             years_to_refresh = {int(r[0]) for r in y_rows if r[0].isdigit()}
 
         for y in sorted(years_to_refresh):
-            for model in ("卍", "本命"):
+            for model in ("卍", "卍V2", "本命", "本命V2"):
                 refresh_model_performance(conn, model_type=model, year=y)
         logger.info("モデル成績再集計完了: %s年分", sorted(years_to_refresh))
 

@@ -479,9 +479,11 @@ class FeatureBuilder:
         df["x_signal_count"]    = x_count.clip(0, 50)
 
         # 複合特徴量: 専門家世論 × 市場乖離の積
-        crowd_ratio = pd.to_numeric(
-            df.get("crowd_bias_ratio"), errors="coerce"
-        ).fillna(1.0)
+        _crowd_raw = df.get("crowd_bias_ratio")
+        if isinstance(_crowd_raw, pd.Series):
+            crowd_ratio = pd.to_numeric(_crowd_raw, errors="coerce").fillna(1.0)
+        else:
+            crowd_ratio = pd.Series(1.0, index=df.index)
         # tanh で [-1,1] に圧縮し、過激な crowd_bias を抑制
         divergence = df["x_consensus_score"] * np.tanh(crowd_ratio - 1.0)
         df["x_crowd_divergence"] = divergence.clip(-1.0, 1.0).fillna(0.0)
