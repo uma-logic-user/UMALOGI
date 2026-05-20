@@ -52,37 +52,21 @@ load_dotenv(_ROOT / ".env", override=False)
 
 
 def _send_discord(text: str, *, color: int | None = None) -> None:
-    """システムチャンネルにメッセージを送信する。
-
-    color 指定時は Embed、省略時はプレーンテキストで送信する。
-    DISCORD_SYSTEM_WEBHOOK_URL 未設定時は DISCORD_WEBHOOK_URL へ fallback。
-    """
-    import os
+    """システムチャンネルにメッセージを送信する。NotificationRouter 経由。"""
     try:
-        import requests as _req
-        url = os.getenv("DISCORD_SYSTEM_WEBHOOK_URL", "") or os.getenv("DISCORD_WEBHOOK_URL", "")
-        if not url:
-            return
+        from src.notification.router import NotificationRouter
         safe_text = text.replace('\x00', '').strip()
-        if color is not None:
-            payload: dict = {"embeds": [{"description": safe_text, "color": color}]}
-        else:
-            payload = {"content": safe_text}
-        _req.post(url, json=payload, timeout=10)
+        NotificationRouter().send_system_text(safe_text)
     except Exception:
         pass
 
 
 def _send_discord_race(text: str) -> None:
     """予想チャンネルにメッセージを送信する（買い目・結果・週次レポート用）。"""
-    import os
     try:
-        import requests as _req
-        url = os.getenv("DISCORD_WEBHOOK_URL", "")
-        if not url:
-            return
+        from src.notification.router import NotificationRouter
         safe_text = text.replace('\x00', '').strip()
-        _req.post(url, json={"content": safe_text}, timeout=10)
+        NotificationRouter().send_text(safe_text)
     except Exception:
         pass
 
@@ -277,9 +261,18 @@ def _fetch_today_races(target_date: str) -> list[tuple[str, str, int]]:
 # サブプロセス実行
 # ─────────────────────────────────────────────────────────────────────────────
 
-def _run_prerace(race_id: str, dry_run: bool) -> int:
-    """prerace パイプラインを実行して returncode を返す。"""
-    cmd = [sys.executable, "-m", "src.main_pipeline", "prerace", race_id]
+def _run_prerace(race_id: str, dry_run: bool, model_version: str = "v1") -> int:
+    """prerace パイプラインを実行して returncode を返す。
+
+    Args:
+        race_id:       対象レース ID
+        dry_run:       True = 実行せずログのみ
+        model_version: "v1" (既存) or "v2" (W-004+動的EV+Kelly)
+    """
+    cmd = [
+        sys.executable, "-m", "src.main_pipeline", "prerace", race_id,
+        "--model-version", model_version,
+    ]
     if dry_run:
         logger.info("[DRY-RUN] 実行コマンド: %s", " ".join(cmd))
         return 0
@@ -288,11 +281,19 @@ def _run_prerace(race_id: str, dry_run: bool) -> int:
             cmd, cwd=str(_ROOT), timeout=300, stderr=subprocess.PIPE, text=True, encoding="utf-8"
         )
         if result.returncode != 0 and result.stderr:
-            logger.error("prerace stderr [%s]: %s", race_id, result.stderr[-2000:])
+            logger.error("prerace[%s] stderr [%s]: %s", model_version, race_id, result.stderr[-2000:])
         return result.returncode
     except subprocess.TimeoutExpired:
-        logger.error("prerace パイプラインがタイムアウトしました (300s): %s", race_id)
+        logger.error("prerace[%s] タイムアウト (300s): %s", model_version, race_id)
         return -1
+
+
+def _run_prerace_v2(race_id: str, dry_run: bool) -> int:
+    """V2 モデルで prerace パイプラインを実行する（A/B テスト用）。
+
+    V1 実行後に呼ぶこと。V2 の prediction は {race_id}_v2.json / "本命V2(直前)" で保存される。
+    """
+    return _run_prerace(race_id, dry_run, model_version="v2")
 
 
 def _run_fetch_result(race_id: str, dry_run: bool) -> int:
@@ -768,13 +769,21 @@ def _run_one_day(
         )
         rc = _run_prerace(race_id, dry_run)
         if rc == 0:
-            logger.info("[OK] R%02d %s  [prerace] 完了", race_number, race_id)
+            logger.info("[OK] R%02d %s  [prerace V1] 完了", race_number, race_id)
+            # V2 A/Bテスト: V1 成功後に V2 も並列実行（独立した predictions として保存）
+            rc_v2 = _run_prerace_v2(race_id, dry_run)
+            if rc_v2 == 0:
+                logger.info("[OK] R%02d %s  [prerace V2] 完了 (A/Bテスト)", race_number, race_id)
+            else:
+                logger.warning(
+                    "[WARN] R%02d %s  [prerace V2] 失敗 (rc=%d) — V1 予想は正常", race_number, race_id, rc_v2
+                )
             if _is_notable_race(race_id):
                 logger.info("[NOTE] 注目レース検知 → note 記事生成: %s", race_id)
                 _run_note_article(race_id, dry_run)
                 _run_sns_post(race_id, dry_run, pattern="a")
         else:
-            logger.error("[NG] R%02d %s  [prerace] 失敗 (rc=%d)", race_number, race_id, rc)
+            logger.error("[NG] R%02d %s  [prerace V1] 失敗 (rc=%d)", race_number, race_id, rc)
         return rc
 
     def _postrace_worker(race_id: str, race_number: int) -> int:

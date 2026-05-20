@@ -474,46 +474,23 @@ def _run_with_retry(
 
 
 def _send_discord(text: str) -> None:
-    """Discord Webhook にテキストメッセージを送信する。"""
+    """システムチャンネルにテキストを送信する。NotificationRouter 経由。"""
     try:
-        import requests as _req
-    except ImportError:
-        logger.warning("requests 未インストール — Discord 通知スキップ")
-        return
-
-    url = os.getenv("DISCORD_WEBHOOK_URL", "")
-    if not url:
-        logger.warning("DISCORD_WEBHOOK_URL 未設定 — Discord 通知スキップ")
-        return
-    try:
-        resp = _req.post(url, json={"content": text}, timeout=10)
-        resp.raise_for_status()
-        logger.info("Discord 送信完了: HTTP %d", resp.status_code)
+        from src.notification.router import NotificationRouter
+        NotificationRouter().send_system_text(text)
     except Exception as exc:
         logger.warning("Discord 送信失敗: %s", exc)
 
 
 def _send_discord_embed(embeds: list[dict]) -> None:
-    """
-    Discord Webhook に Embed メッセージを送信する。
-
-    Discord Embed 仕様: https://discord.com/developers/docs/resources/message#embed-object
-    color は 0xRRGGBB の整数値（例: シアン = 0x00C8FF = 52479）。
-    """
+    """システムチャンネルに Embed を送信する。NotificationRouter 経由。"""
     try:
-        import requests as _req
-    except ImportError:
-        logger.warning("requests 未インストール — Discord 通知スキップ")
-        return
-
-    url = os.getenv("DISCORD_WEBHOOK_URL", "")
-    if not url:
-        logger.warning("DISCORD_WEBHOOK_URL 未設定 — Discord 通知スキップ")
-        return
-    try:
-        resp = _req.post(url, json={"embeds": embeds}, timeout=10)
-        resp.raise_for_status()
-        logger.info("Discord Embed 送信完了: HTTP %d", resp.status_code)
+        from src.notification.router import NotificationRouter
+        router = NotificationRouter()
+        for embed in embeds:
+            title = embed.get("title", "通知")
+            desc  = embed.get("description", "")
+            router.send_system_embed(title, desc, color=embed.get("color"))
     except Exception as exc:
         logger.warning("Discord Embed 送信失敗: %s", exc)
 
@@ -1264,6 +1241,7 @@ def job_weekend_batch_post() -> None:
       1. 的中証拠画像（Pillow）を生成
       2. X（Twitter）に本日 P&L 結果ツイート（画像付き）
       3. batch_runs テーブルにログ記録
+      4. 日曜のみ: note.com 週次まとめ記事を docs/note_drafts/ に生成
 
     prediction_results が空の場合は自動スキップ。
     """
@@ -1279,6 +1257,19 @@ def job_weekend_batch_post() -> None:
     else:
         logger.error("[週末バッチ Post] 失敗: rc=%d", rc)
         _send_discord(f"🚨 [UMALOGI] 週末バッチ Post 失敗 (rc={rc})")
+
+    # 日曜のみ: note.com 週次まとめ記事を生成（土日両日分の結果が揃った後）
+    if date.today().weekday() == 6:  # 0=月, 6=日
+        logger.info("[週末バッチ Post] note週次記事生成を開始")
+        rc_note = _run(
+            _PY64 + ["scripts/generate_weekly_note.py"],
+            "note週次記事生成",
+            timeout=120,
+        )
+        if rc_note == 0:
+            logger.info("[週末バッチ Post] note週次記事生成完了")
+        else:
+            logger.warning("[週末バッチ Post] note週次記事生成失敗(rc=%d) — 続行", rc_note)
 
 
 def job_daily_backup() -> None:

@@ -20,18 +20,20 @@ import pandas as pd
 from src.database.init_db import init_db, insert_prediction
 from src.ml.features import FeatureBuilder
 from src.ml.models import load_models
+from src.ml.models_v2 import load_models_v2
 from src.ml.bet_generator import (
-    BetGenerator, BetConfig, get_current_bankroll,
+    BetGenerator, BetGeneratorV2, BetConfig, get_current_bankroll,
     RaceBets, BetRecommendation,
 )
-from src.notification.discord_notifier import DiscordNotifier
+from src.notification.discord_notifier import DiscordNotifier  # noqa: F401 (後方互換のため保持)
+from src.notification.router import NotificationRouter
 from src.pipeline.scraping import fetch_and_save_odds
 from ._common import build_output_json, save_json
 
 logger = logging.getLogger(__name__)
 
-# モジュールレベルの通知インスタンス（DISCORD_WEBHOOK_URL から自動初期化）
-_discord = DiscordNotifier()
+# モジュールレベルの通知インスタンス（NotificationRouter 経由でチャンネル分離）
+_discord = NotificationRouter()
 
 
 def _check_data_quality(df: pd.DataFrame) -> tuple[bool, str]:
@@ -462,12 +464,18 @@ def _run_alpha_payout(
         return None
 
 
-def prerace_pipeline(race_id: str, provisional: bool = False) -> dict:
+def prerace_pipeline(
+    race_id: str,
+    provisional: bool = False,
+    model_version: str = "v1",
+) -> dict:
     """レース直前（または前日暫定）の自動予想パイプライン。
 
     Args:
-        race_id:     対象レース ID
-        provisional: True = 暫定モード（オッズ・馬体重欠損を許容）
+        race_id:       対象レース ID
+        provisional:   True = 暫定モード（オッズ・馬体重欠損を許容）
+        model_version: "v1" = 既存モデル（固定EV閾値）
+                       "v2" = V2モデル（W-004+動的EV閾値+Kelly）
 
     Returns:
         UI 用 JSON データ（dict）
@@ -587,28 +595,42 @@ def prerace_pipeline(race_id: str, provisional: bool = False) -> dict:
             n,
         )
 
-    # Step 3: モデル予測
-    honmei_model, _place_model, manji_model = load_models()
+    # Step 3: モデル予測（V1/V2 分岐）
+    is_v2 = (model_version == "v2")
+    if is_v2:
+        honmei_model, _place_model, manji_model = load_models_v2()
+        logger.info("V2 モデル使用: honmei_model_v2 / manji_model_v2")
+    else:
+        honmei_model, _place_model, manji_model = load_models()
     honmei_scores = honmei_model.predict(df)
     honmei_ev_scores = honmei_model.ev_predict(df)
     ev_scores = manji_model.ev_score(df)
 
-    # Step 4: 買い目生成（動的バンクロールで Kelly 計算）
-    # 暫定モードでは EV 依存の 卍/Oracle ベットをスキップ
+    # Step 4: 買い目生成（V2 は BetGeneratorV2 を使用）
     current_bankroll = get_current_bankroll(conn)
-    gen = BetGenerator(conn=conn, config=BetConfig(bankroll=current_bankroll, provisional=provisional))
+    if is_v2:
+        gen: BetGenerator = BetGeneratorV2(
+            conn=conn, config=BetConfig(bankroll=current_bankroll, provisional=provisional)
+        )
+    else:
+        gen = BetGenerator(
+            conn=conn, config=BetConfig(bankroll=current_bankroll, provisional=provisional)
+        )
     honmei_bets = gen.generate_honmei(race_id, df, honmei_scores)
     manji_bets = gen.generate_manji(race_id, df, ev_scores)
     oracle_bets = gen.generate_oracle(race_id, df, honmei_scores)
     hit_focus_bets = gen.generate_hit_focus(race_id, df, honmei_scores)
 
-    # Step 4b: Alpha-Payout 複勝+三連系シグナル（直前のみ、返却された RaceBets を Discord 通知に使用）
+    # Step 4b: Alpha-Payout 複勝+三連系シグナル（直前のみ）
     alpha_bets = None
     if not provisional:
         alpha_bets = _run_alpha_payout(conn, race_id, df, current_bankroll)
 
-    # Step 5: DB 保存
-    suffix = "(暫定)" if provisional else "(直前)"
+    # Step 5: DB 保存（V2 は suffix に "V2" を付与して V1 と識別）
+    if is_v2:
+        suffix = "V2(暫定)" if provisional else "V2(直前)"
+    else:
+        suffix = "(暫定)" if provisional else "(直前)"
     prediction_ids = _save_predictions(
         conn,
         race_id,
@@ -629,13 +651,22 @@ def prerace_pipeline(race_id: str, provisional: bool = False) -> dict:
 
     conn.close()
 
-    # Step 6: JSON 出力
+    # Step 6: JSON 出力（V2 は {race_id}_v2.json に分離保存）
     payload = build_output_json(
         race_id, df, honmei_scores, honmei_ev_scores, ev_scores,
         honmei_bets, manji_bets, provisional=provisional,
     )
     payload["provisional"] = provisional
-    save_json(race_id, payload)
+    payload["model_version"] = model_version
+    if is_v2:
+        from src.pipeline._common import JSON_OUT_DIR
+        import json as _json_mod
+        v2_out = JSON_OUT_DIR / f"{race_id}_v2.json"
+        JSON_OUT_DIR.mkdir(parents=True, exist_ok=True)
+        v2_out.write_text(_json_mod.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+        logger.info("V2 JSON 出力: %s", v2_out)
+    else:
+        save_json(race_id, payload)
 
     # Step 7: Discord 通知（直前のみ）— ALPHA / 卍 / 本命 独立3セクション送信
     if not provisional:

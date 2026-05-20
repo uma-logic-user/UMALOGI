@@ -115,7 +115,7 @@ def test_check_race_deadline_logs_warning_when_late(
     fake_now = datetime(2025, 6, 5, 13, 30)  # R7 発走推定 13:00 → 締切 12:45 を超過
     with (
         patch("src.pipeline.prediction.datetime") as mock_dt,
-        patch("src.pipeline.prediction._discord.send_text") as mock_send,
+        patch("src.pipeline.prediction._discord.send_system_text") as mock_send,
     ):
         mock_dt.now.return_value = fake_now
         mock_dt.strptime.side_effect = datetime.strptime
