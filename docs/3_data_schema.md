@@ -4,6 +4,8 @@
 
 | 日付 | 変更内容 |
 |------|---------|
+| 2026-05-20 | 【EV 複合インデックス Phase 2 適用】schema.py DDL_STATEMENTS に 6 本追加（idx_pred_model_ev/idx_pred_race_model/idx_tc_horse_date/idx_hc_horse_date/idx_rr_horse_race/idx_pr_pred_hit）、init_db.py マイグレーション #15 _migrate_add_ev_indexes() 追加・実行済み。EXPLAIN QUERY PLAN でフルスキャン 0 件確認。影響: src/database/schema.py, src/database/init_db.py |
+| 2026-05-20 | 【insert_prediction バリデーション拡張】`_VALID_BASE_TYPES` に `卍V2`/`本命V2`/`OracleV2`/`HitFocusV2` を追加。`reconcile.py` モデル成績再集計を `("卍","卍V2","本命","本命V2")` に拡張。影響: `src/database/init_db.py`, `src/ml/reconcile.py` |
 | 2026-05-18 | 【x_accounts / x_signals テーブル追加】X 世論分析 Phase A として 2 テーブルを schema.py に追加・DB 作成確認済み。x_accounts: 監視アカウントマスタ（screen_name/weight/hit_rate_30d 等）。x_signals: 予想家ポストから抽出した馬番シグナル（tweet_id UNIQUE/race_id FK/signal_type/confidence/parsed フラグ）。インデックス 4 件追加。影響: src/database/schema.py |
 | 2026-05-13 | win5_results テーブル追加: race_date(UNIQUE)/race_ids(JSON)/winning_numbers(JSON)/payout。マイグレーション: init_db._migrate_create_win5_results()。影響: src/database/schema.py, src/database/init_db.py |
 | 2026-05-10 | 初版作成。ハイブリッド補完ルール・全テーブルスキーマを記述 |

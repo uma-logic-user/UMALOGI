@@ -49,7 +49,7 @@ _AUDIT_QUERIES: list[tuple[str, str]] = [
         """
         SELECT p.model_type, AVG(pr.payout) AS avg_payout, COUNT(*) AS n
         FROM predictions p
-        JOIN prediction_results pr ON pr.prediction_id = p.prediction_id
+        JOIN prediction_results pr ON pr.prediction_id = p.id
         WHERE p.model_type = 'ManjiModel'
           AND pr.is_hit = 1
         GROUP BY p.model_type
@@ -158,7 +158,7 @@ def _get_existing_indexes(conn: sqlite3.Connection) -> dict[str, list[dict]]:
                 "name":    idx_name,
                 "unique":  bool(idx_row[2]),
                 "origin":  idx_row[3],
-                "columns": [r[2] for r in idx_info],
+                "columns": [r[2] for r in idx_info if r[2] is not None],
             })
     return result
 

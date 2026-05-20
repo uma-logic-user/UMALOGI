@@ -11,11 +11,9 @@ init_db.py はこのリストを参照して CREATE TABLE / CREATE INDEX / CREAT
 """
 
 DDL_STATEMENTS: list[str] = [
-
     # ================================================================
     # ── データ層 ────────────────────────────────────────────────────
     # ================================================================
-
     """
     CREATE TABLE IF NOT EXISTS races (
         race_id         TEXT    PRIMARY KEY,
@@ -31,7 +29,6 @@ DDL_STATEMENTS: list[str] = [
         created_at      TEXT    NOT NULL DEFAULT (datetime('now', 'localtime'))
     )
     """,
-
     """
     CREATE TABLE IF NOT EXISTS horses (
         horse_id   TEXT PRIMARY KEY,
@@ -43,7 +40,6 @@ DDL_STATEMENTS: list[str] = [
         updated_at TEXT NOT NULL DEFAULT (datetime('now', 'localtime'))
     )
     """,
-
     """
     CREATE TABLE IF NOT EXISTS race_results (
         id                INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -67,11 +63,9 @@ DDL_STATEMENTS: list[str] = [
         UNIQUE(race_id, horse_name)
     )
     """,
-
     # ================================================================
     # ── 出馬表・オッズ層 ─────────────────────────────────────────
     # ================================================================
-
     # entries: レース前の出走登録情報（出馬表）
     """
     CREATE TABLE IF NOT EXISTS entries (
@@ -91,7 +85,6 @@ DDL_STATEMENTS: list[str] = [
         UNIQUE(race_id, horse_number)
     )
     """,
-
     # realtime_odds: 単勝・複勝オッズの時系列スナップショット
     """
     CREATE TABLE IF NOT EXISTS realtime_odds (
@@ -106,19 +99,15 @@ DDL_STATEMENTS: list[str] = [
         recorded_at      TEXT    NOT NULL DEFAULT (datetime('now', 'localtime'))
     )
     """,
-
     # entries インデックス
     "CREATE INDEX IF NOT EXISTS idx_entries_race_id      ON entries(race_id)",
     "CREATE INDEX IF NOT EXISTS idx_entries_horse_id     ON entries(horse_id)",
-
     # realtime_odds インデックス
     "CREATE INDEX IF NOT EXISTS idx_odds_race_id         ON realtime_odds(race_id)",
     "CREATE INDEX IF NOT EXISTS idx_odds_recorded_at     ON realtime_odds(race_id, recorded_at)",
-
     # ================================================================
     # ── 予想層 ────────────────────────────────────────────────────
     # ================================================================
-
     # predictions: 1レース × 1モデル × 1馬券種 の予想バッチ
     """
     CREATE TABLE IF NOT EXISTS predictions (
@@ -136,7 +125,6 @@ DDL_STATEMENTS: list[str] = [
         UNIQUE(race_id, model_type, bet_type)
     )
     """,
-
     # prediction_horses: 予想に含まれる馬と個別スコア
     """
     CREATE TABLE IF NOT EXISTS prediction_horses (
@@ -150,7 +138,6 @@ DDL_STATEMENTS: list[str] = [
         created_at     TEXT    NOT NULL DEFAULT (datetime('now', 'localtime'))
     )
     """,
-
     # prediction_results: レース終了後に照合し的中・払戻を記録
     """
     CREATE TABLE IF NOT EXISTS prediction_results (
@@ -163,11 +150,9 @@ DDL_STATEMENTS: list[str] = [
         recorded_at   TEXT    NOT NULL DEFAULT (datetime('now', 'localtime'))
     )
     """,
-
     # ================================================================
     # ── 集計層 ──────────────────────────────────────────────────────
     # ================================================================
-
     # model_performance: 定期バッチで集計・更新するモデル累積成績
     """
     CREATE TABLE IF NOT EXISTS model_performance (
@@ -187,40 +172,31 @@ DDL_STATEMENTS: list[str] = [
         UNIQUE(model_type, bet_type, year, month, venue)
     )
     """,
-
     # ================================================================
     # ── インデックス ─────────────────────────────────────────────────
     # ================================================================
-
     # データ層 ---
     "CREATE INDEX IF NOT EXISTS idx_races_date        ON races(date)",
     "CREATE INDEX IF NOT EXISTS idx_races_venue       ON races(venue)",
     "CREATE INDEX IF NOT EXISTS idx_races_year_venue  ON races(substr(date,1,4), venue)",
-
     "CREATE INDEX IF NOT EXISTS idx_results_race_id   ON race_results(race_id)",
     "CREATE INDEX IF NOT EXISTS idx_results_horse_id  ON race_results(horse_id)",
     "CREATE INDEX IF NOT EXISTS idx_results_rank      ON race_results(rank)",
-
     # 予想層 ---
     "CREATE INDEX IF NOT EXISTS idx_pred_race_id      ON predictions(race_id)",
     "CREATE INDEX IF NOT EXISTS idx_pred_model_type   ON predictions(model_type)",
     "CREATE INDEX IF NOT EXISTS idx_pred_created_at   ON predictions(created_at)",
     "CREATE INDEX IF NOT EXISTS idx_pred_bet_type     ON predictions(bet_type)",
-
     "CREATE INDEX IF NOT EXISTS idx_pred_h_pred_id    ON prediction_horses(prediction_id)",
     "CREATE INDEX IF NOT EXISTS idx_pred_h_horse_id   ON prediction_horses(horse_id)",
-
     "CREATE INDEX IF NOT EXISTS idx_pred_r_pred_id    ON prediction_results(prediction_id)",
     "CREATE INDEX IF NOT EXISTS idx_pred_r_is_hit     ON prediction_results(is_hit)",
-
     # 集計層 ---
     "CREATE INDEX IF NOT EXISTS idx_mperf_type_year   ON model_performance(model_type, year, month)",
     "CREATE INDEX IF NOT EXISTS idx_mperf_venue       ON model_performance(model_type, venue)",
-
     # ================================================================
     # ── 払戻層 ────────────────────────────────────────────────────────
     # ================================================================
-
     # race_payouts: レース確定払戻（netkeiba pay_table_01 から取得）
     """
     CREATE TABLE IF NOT EXISTS race_payouts (
@@ -233,10 +209,8 @@ DDL_STATEMENTS: list[str] = [
         UNIQUE(race_id, bet_type, combination)
     )
     """,
-
     "CREATE INDEX IF NOT EXISTS idx_payouts_race_id  ON race_payouts(race_id)",
     "CREATE INDEX IF NOT EXISTS idx_payouts_bet_type ON race_payouts(race_id, bet_type)",
-
     # win5_results: WIN5 確定結果（的中馬番5つ＋払戻金額）
     """
     CREATE TABLE IF NOT EXISTS win5_results (
@@ -248,13 +222,10 @@ DDL_STATEMENTS: list[str] = [
         scraped_at      TEXT    NOT NULL DEFAULT (datetime('now', 'localtime'))
     )
     """,
-
     "CREATE INDEX IF NOT EXISTS idx_win5r_date ON win5_results(race_date)",
-
     # ================================================================
     # ── ビュー ───────────────────────────────────────────────────────
     # ================================================================
-
     # 階層型収支分析ビュー（Analytics ドリルダウン用）
     # 粒度: 日 × モデル × 券種
     """
@@ -278,7 +249,6 @@ DDL_STATEMENTS: list[str] = [
     WHERE pr.is_hit IS NOT NULL
     GROUP BY r.date, p.model_type, p.bet_type
     """,
-
     # 予想 × レース × 的中実績 の結合ビュー（ダッシュボード用）
     """
     CREATE VIEW IF NOT EXISTS v_prediction_summary AS
@@ -305,7 +275,6 @@ DDL_STATEMENTS: list[str] = [
     JOIN  races r              ON p.race_id = r.race_id
     LEFT JOIN prediction_results pr ON p.id = pr.prediction_id
     """,
-
     # 各モデルの年別サマリービュー
     """
     CREATE VIEW IF NOT EXISTS v_model_annual_summary AS
@@ -324,11 +293,9 @@ DDL_STATEMENTS: list[str] = [
     FROM model_performance mp
     ORDER BY mp.year DESC, mp.model_type, mp.venue
     """,
-
     # ================================================================
     # ── JRA-VAN マスタ層 (WOOD / BLOD / DIFN dataspec) ─────────────
     # ================================================================
-
     """
     CREATE TABLE IF NOT EXISTS training_times (
         id             INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -351,7 +318,6 @@ DDL_STATEMENTS: list[str] = [
         UNIQUE(horse_id, training_date, course_type, direction)
     )
     """,
-
     """
     CREATE TABLE IF NOT EXISTS training_hillwork (
         id             INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -371,7 +337,6 @@ DDL_STATEMENTS: list[str] = [
         UNIQUE(horse_id, training_date)
     )
     """,
-
     """
     CREATE TABLE IF NOT EXISTS breeding_horses (
         horse_id        TEXT    PRIMARY KEY,
@@ -391,7 +356,6 @@ DDL_STATEMENTS: list[str] = [
         updated_at      TEXT    NOT NULL DEFAULT (datetime('now', 'localtime'))
     )
     """,
-
     """
     CREATE TABLE IF NOT EXISTS foals (
         horse_id        TEXT    PRIMARY KEY,
@@ -409,7 +373,6 @@ DDL_STATEMENTS: list[str] = [
         updated_at      TEXT    NOT NULL DEFAULT (datetime('now', 'localtime'))
     )
     """,
-
     """
     CREATE TABLE IF NOT EXISTS racehorses (
         horse_id        TEXT    PRIMARY KEY,
@@ -436,7 +399,6 @@ DDL_STATEMENTS: list[str] = [
         updated_at      TEXT    NOT NULL DEFAULT (datetime('now', 'localtime'))
     )
     """,
-
     """
     CREATE TABLE IF NOT EXISTS jockeys (
         jockey_code      TEXT    PRIMARY KEY,
@@ -450,7 +412,6 @@ DDL_STATEMENTS: list[str] = [
         updated_at       TEXT    NOT NULL DEFAULT (datetime('now', 'localtime'))
     )
     """,
-
     """
     CREATE TABLE IF NOT EXISTS trainers (
         trainer_code      TEXT    PRIMARY KEY,
@@ -465,21 +426,16 @@ DDL_STATEMENTS: list[str] = [
         updated_at        TEXT    NOT NULL DEFAULT (datetime('now', 'localtime'))
     )
     """,
-
     # ================================================================
     # ── PERFORMANCE_INDEXES（AI特徴量生成クエリ最適化）──────────────
     # ================================================================
-
     "CREATE INDEX IF NOT EXISTS idx_races_date_venue    ON races(date, venue)",
     "CREATE INDEX IF NOT EXISTS idx_races_surface_dist  ON races(surface, distance)",
-
     "CREATE INDEX IF NOT EXISTS idx_rr_horse_raceid     ON race_results(horse_id, race_id DESC)",
     "CREATE INDEX IF NOT EXISTS idx_rr_jockey_raceid    ON race_results(jockey, race_id DESC)",
     "CREATE INDEX IF NOT EXISTS idx_rr_trainer_raceid   ON race_results(trainer, race_id DESC)",
     "CREATE INDEX IF NOT EXISTS idx_rr_race_rank        ON race_results(race_id, rank)",
-
     "CREATE INDEX IF NOT EXISTS idx_rp_race_bet         ON race_payouts(race_id, bet_type)",
-
     "CREATE INDEX IF NOT EXISTS idx_racehorses_father   ON racehorses(father_id)",
     "CREATE INDEX IF NOT EXISTS idx_racehorses_name     ON racehorses(horse_name)",
     "CREATE INDEX IF NOT EXISTS idx_jockeys_name        ON jockeys(jockey_name)",
@@ -492,7 +448,6 @@ DDL_STATEMENTS: list[str] = [
     "CREATE INDEX IF NOT EXISTS idx_tc_mart ON training_times(substr(horse_id,2,9), training_date DESC) WHERE training_date != ''",
     "CREATE INDEX IF NOT EXISTS idx_hc_mart ON training_hillwork(substr(horse_id,2,9), training_date DESC) WHERE training_date != ''",
     "CREATE INDEX IF NOT EXISTS idx_foals_father        ON foals(father_id)",
-
     # ================================================================
     # ── v_race_mart: AI学習用フラットビュー ─────────────────────────
     # ================================================================
@@ -625,11 +580,9 @@ DDL_STATEMENTS: list[str] = [
               AND    h2.training_date != ''
           )
     """,
-
     # ================================================================
     # ── 運用層 ────────────────────────────────────────────────────
     # ================================================================
-
     # batch_runs: 週末バッチの実行ログ（Pre/Post 両フェーズ）
     """
     CREATE TABLE IF NOT EXISTS batch_runs (
@@ -646,14 +599,11 @@ DDL_STATEMENTS: list[str] = [
         UNIQUE (run_date, phase)
     )
     """,
-
     "CREATE INDEX IF NOT EXISTS idx_batch_runs_date ON batch_runs(run_date)",
-
     # ================================================================
     # ── X（旧Twitter）世論分析層（2026-05-18 Phase A）
     # ── 社長明示指令により日曜実装（週末凍結ルール例外適用）
     # ================================================================
-
     # x_accounts: 監視対象の競馬予想家アカウントマスタ
     """
     CREATE TABLE IF NOT EXISTS x_accounts (
@@ -668,7 +618,6 @@ DDL_STATEMENTS: list[str] = [
         updated_at      TEXT    NOT NULL DEFAULT (datetime('now','localtime'))
     )
     """,
-
     # x_signals: 予想家ポストから抽出した馬番シグナル
     """
     CREATE TABLE IF NOT EXISTS x_signals (
@@ -686,9 +635,45 @@ DDL_STATEMENTS: list[str] = [
         parsed          INTEGER NOT NULL DEFAULT 0  -- x_signal_parser 処理済みフラグ
     )
     """,
-
     "CREATE INDEX IF NOT EXISTS idx_x_signals_race_id     ON x_signals(race_id)",
     "CREATE INDEX IF NOT EXISTS idx_x_signals_posted_at   ON x_signals(posted_at)",
     "CREATE INDEX IF NOT EXISTS idx_x_signals_screen_name ON x_signals(screen_name)",
     "CREATE INDEX IF NOT EXISTS idx_x_signals_parsed      ON x_signals(parsed) WHERE parsed=0",
+    # x_accounts_history: アカウント別予想精度の蓄積テーブル（Phase C 2026-05-20）
+    # signal 1件ごとに評価結果を記録し、アカウント重みの動的更新に使用する。
+    # FK は参照整合性より可用性を優先しアプリ側で担保する（テスト容易性向上）。
+    """
+    CREATE TABLE IF NOT EXISTS x_accounts_history (
+        history_id      INTEGER PRIMARY KEY AUTOINCREMENT,
+        screen_name     TEXT    NOT NULL,           -- x_accounts.screen_name 参照（アプリ側で整合）
+        race_id         TEXT    NOT NULL,           -- races.race_id 参照
+        horse_number    INTEGER NOT NULL,
+        signal_type     TEXT    NOT NULL,           -- 'honmei'/'ana'/'keshi'
+        confidence      REAL    NOT NULL DEFAULT 0.5,
+        consensus_score REAL,                       -- get_x_consensus_score() の出力値
+        win_odds        REAL,                       -- 発走時単勝オッズ
+        final_rank      INTEGER,                    -- 着順（NULL=未確定）
+        is_hit          INTEGER,                    -- 1=的中/0=外れ/NULL=未評価
+        payout          REAL,                       -- 実際の払戻金額
+        roi             REAL,                       -- 払戻 / (自己 confidence × 想定賭け金)
+        evaluated_at    TEXT,                       -- 評価完了日時 (ISO 8601)
+        created_at      TEXT    NOT NULL DEFAULT (datetime('now','localtime'))
+    )
+    """,
+    "CREATE INDEX IF NOT EXISTS idx_x_ah_screen_name ON x_accounts_history(screen_name)",
+    "CREATE INDEX IF NOT EXISTS idx_x_ah_race_id     ON x_accounts_history(race_id)",
+    "CREATE INDEX IF NOT EXISTS idx_x_ah_evaluated   ON x_accounts_history(evaluated_at) WHERE evaluated_at IS NOT NULL",
+    # ── Phase 2 EV インデックス（等値述語列レフトモスト準拠） ─────────────────────────
+    # model_type（=）+ expected_value 降順 → EV閾値フィルタ・ソートを完全カバー
+    "CREATE INDEX IF NOT EXISTS idx_pred_model_ev    ON predictions(model_type, expected_value DESC)",
+    # race_id（=）+ model_type → プレレース通知の予想検索を高速化
+    "CREATE INDEX IF NOT EXISTS idx_pred_race_model  ON predictions(race_id, model_type)",
+    # horse_id（=）+ training_date 降順 → 特徴量生成の調教データ取得を高速化
+    "CREATE INDEX IF NOT EXISTS idx_tc_horse_date    ON training_times(horse_id, training_date DESC)",
+    # horse_id（=）+ training_date 降順 → 坂路調教データ取得を高速化
+    "CREATE INDEX IF NOT EXISTS idx_hc_horse_date    ON training_hillwork(horse_id, training_date DESC)",
+    # horse_id（=）+ race_id → 馬の過去成績履歴取得を高速化
+    "CREATE INDEX IF NOT EXISTS idx_rr_horse_race    ON race_results(horse_id, race_id)",
+    # prediction_id（=）+ is_hit → 回収率・的中統計クエリを高速化
+    "CREATE INDEX IF NOT EXISTS idx_pr_pred_hit      ON prediction_results(prediction_id, is_hit)",
 ]

@@ -255,6 +255,8 @@ class FeatureBuilder:
         df["race_id"] = race_id  # UScoreEngine が基準日導出に使用
         df = self._add_intra_race_features(df)
         df = self._add_u_score(df)
+        # シミュレーション時は過去 x_signals がある場合のみ反映（なければ 0 埋め）
+        df = self._add_x_consensus(df, race_id)
         logger.info(
             "[SIMULATE] 特徴量生成 race_id=%s: %d 頭 × %d 特徴量 (リーク除外済み)",
             race_id, len(df), df.shape[1],
@@ -395,6 +397,8 @@ class FeatureBuilder:
         df["race_id"] = race_id  # UScoreEngine が基準日導出に使用
         df = self._add_intra_race_features(df)
         df = self._add_u_score(df)
+        df = self._add_x_consensus(df, race_id)
+        df = self._add_ev_features(df)
         logger.info(
             "特徴量生成 race_id=%s: %d 頭 × %d 特徴量",
             race_id, len(df), df.shape[1],
@@ -416,6 +420,101 @@ class FeatureBuilder:
             return engine.calc(df)
         except Exception as exc:
             logger.warning("U score 計算をスキップ（エラー: %s）", exc)
+            return df
+
+    def _add_x_consensus(
+        self,
+        df: pd.DataFrame,
+        race_id: str,
+        *,
+        dry_run: bool = False,
+    ) -> pd.DataFrame:
+        """X 世論コンセンサススコアと複合特徴量を DataFrame に追加する。
+
+        追加列:
+          x_consensus_score  : 馬番別コンセンサス加重平均 (Phase B 出力)
+          x_crowd_divergence : x_consensus × (crowd_bias_ratio - 1.0)
+                               専門家が推す かつ 市場が過小評価 → 高プラス値
+                               専門家が推す かつ 市場が過大評価 → マイナス（矛盾）
+          x_signal_count     : その馬へのシグナル件数（信頼度代理変数）
+
+        dry_run=True または x_signals が空の場合はダミー 0.0 で埋める。
+        """
+        import numpy as np
+
+        n = len(df)
+        # デフォルト: シグナルなし（0 = ニュートラル）
+        x_score   = pd.Series(0.0, index=df.index, dtype=float)
+        x_count   = pd.Series(0,   index=df.index, dtype=int)
+
+        if not dry_run:
+            try:
+                from src.ml.x_signal_parser import get_x_consensus_score
+                scores = get_x_consensus_score(self._conn, race_id)
+                if "horse_number" in df.columns:
+                    for idx, row in df.iterrows():
+                        hn = row.get("horse_number")
+                        if hn is not None and int(hn) in scores:
+                            x_score.at[idx] = float(scores[int(hn)])
+                # シグナル件数も取得
+                cnt_rows = self._conn.execute(
+                    """
+                    SELECT horse_number, COUNT(*) AS cnt
+                    FROM   x_signals
+                    WHERE  race_id = ? AND parsed = 1 AND horse_number IS NOT NULL
+                    GROUP  BY horse_number
+                    """,
+                    (race_id,),
+                ).fetchall()
+                cnt_map = {r[0]: r[1] for r in cnt_rows}
+                if "horse_number" in df.columns:
+                    for idx, row in df.iterrows():
+                        hn = row.get("horse_number")
+                        if hn is not None:
+                            x_count.at[idx] = cnt_map.get(int(hn), 0)
+            except Exception as exc:
+                logger.warning("x_consensus_score 取得スキップ: %s", exc)
+
+        df["x_consensus_score"] = x_score.clip(-1.0, 1.0)
+        df["x_signal_count"]    = x_count.clip(0, 50)
+
+        # 複合特徴量: 専門家世論 × 市場乖離の積
+        crowd_ratio = pd.to_numeric(
+            df.get("crowd_bias_ratio"), errors="coerce"
+        ).fillna(1.0)
+        # tanh で [-1,1] に圧縮し、過激な crowd_bias を抑制
+        divergence = df["x_consensus_score"] * np.tanh(crowd_ratio - 1.0)
+        df["x_crowd_divergence"] = divergence.clip(-1.0, 1.0).fillna(0.0)
+
+        logger.debug(
+            "[X-feature] race_id=%s: %d頭中%d頭にシグナルあり (dry_run=%s)",
+            race_id, n, int((x_score != 0.0).sum()), dry_run,
+        )
+        return df
+
+    def _add_ev_features(self, df: pd.DataFrame) -> pd.DataFrame:
+        """EVEnhancedFeatures を呼び出して EV 特化特徴量 7 列を DataFrame に追加する。
+
+        追加列:
+          shin_prob             : Shin (1993) 真確率推定
+          implied_prob_excess   : Shin確率 − 市場確率（FLB 補正量）
+          harville_place_prob   : Harville 法複勝確率
+          odds_reversal_score   : オッズ逆転スコア
+          odds_steam_flag       : スチームムーブ検出フラグ
+          field_strength_ev_adj : フィールド強度 EV 調整値
+          ev_rank_in_race       : レース内 EV ランク
+
+        インポートエラーや計算エラーが起きても元の df をそのまま返す。
+        win_odds 列が存在しない場合はスキップする。
+        """
+        if "win_odds" not in df.columns:
+            return df
+        try:
+            from src.ml.ev_features import EVEnhancedFeatures
+            engine = EVEnhancedFeatures()
+            return engine.add_ev_features(df)
+        except Exception as exc:
+            logger.warning("EV 特徴量計算をスキップ（エラー: %s）", exc)
             return df
 
     # ── 内部メソッド ───────────────────────────────────────────

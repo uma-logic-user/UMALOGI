@@ -160,6 +160,8 @@ def init_db(db_path: Path | None = None) -> sqlite3.Connection:
     _migrate_purge_binary_horse_names(conn)      # 11. バイナリゴミ馬名レコード削除
     _migrate_recreate_analytics_view(conn)       # 12. v_analytics ビュー作成/更新
     _migrate_create_win5_results(conn)           # 13. win5_results テーブル作成
+    _migrate_create_x_accounts_history(conn)     # 14. x_accounts_history テーブル作成
+    _migrate_add_ev_indexes(conn)                # 15. EV 複合インデックス追加
 
     logger.info("DB 初期化完了: %s", path)
     return conn
@@ -202,6 +204,49 @@ def _migrate_create_win5_results(conn: sqlite3.Connection) -> None:
             """)
             conn.execute("CREATE INDEX IF NOT EXISTS idx_win5r_date ON win5_results(race_date)")
         logger.info("マイグレーション: win5_results テーブルを作成しました")
+
+
+def _migrate_create_x_accounts_history(conn: sqlite3.Connection) -> None:
+    """x_accounts_history テーブルが存在しない場合に作成する（Phase C 2026-05-20）。"""
+    tables = {
+        r[0] for r in conn.execute(
+            "SELECT name FROM sqlite_master WHERE type='table'"
+        ).fetchall()
+    }
+    if "x_accounts_history" not in tables:
+        with conn:
+            conn.execute("""
+                CREATE TABLE IF NOT EXISTS x_accounts_history (
+                    history_id      INTEGER PRIMARY KEY AUTOINCREMENT,
+                    screen_name     TEXT    NOT NULL,
+                    race_id         TEXT    NOT NULL,
+                    horse_number    INTEGER NOT NULL,
+                    signal_type     TEXT    NOT NULL,
+                    confidence      REAL    NOT NULL DEFAULT 0.5,
+                    consensus_score REAL,
+                    win_odds        REAL,
+                    final_rank      INTEGER,
+                    is_hit          INTEGER,
+                    payout          REAL,
+                    roi             REAL,
+                    evaluated_at    TEXT,
+                    created_at      TEXT NOT NULL DEFAULT (datetime('now','localtime'))
+                )
+            """)
+            conn.execute(
+                "CREATE INDEX IF NOT EXISTS idx_x_ah_screen_name"
+                " ON x_accounts_history(screen_name)"
+            )
+            conn.execute(
+                "CREATE INDEX IF NOT EXISTS idx_x_ah_race_id"
+                " ON x_accounts_history(race_id)"
+            )
+            conn.execute(
+                "CREATE INDEX IF NOT EXISTS idx_x_ah_evaluated"
+                " ON x_accounts_history(evaluated_at)"
+                " WHERE evaluated_at IS NOT NULL"
+            )
+        logger.info("マイグレーション: x_accounts_history テーブルを作成しました")
 
 
 def _migrate_recreate_analytics_view(conn: sqlite3.Connection) -> None:
@@ -700,6 +745,28 @@ def _migrate_purge_binary_horse_names(conn: sqlite3.Connection) -> None:
     logger.info("マイグレーション: バイナリゴミ馬名レコード %d 件を削除しました", len(bad_ids))
 
 
+def _migrate_add_ev_indexes(conn: sqlite3.Connection) -> None:
+    """マイグレーション #15: EV 複合インデックス6本を追加（等値述語列レフトモスト準拠）。"""
+    indexes = [
+        ("idx_pred_model_ev",
+         "CREATE INDEX IF NOT EXISTS idx_pred_model_ev   ON predictions(model_type, expected_value DESC)"),
+        ("idx_pred_race_model",
+         "CREATE INDEX IF NOT EXISTS idx_pred_race_model ON predictions(race_id, model_type)"),
+        ("idx_tc_horse_date",
+         "CREATE INDEX IF NOT EXISTS idx_tc_horse_date   ON training_times(horse_id, training_date DESC)"),
+        ("idx_hc_horse_date",
+         "CREATE INDEX IF NOT EXISTS idx_hc_horse_date   ON training_hillwork(horse_id, training_date DESC)"),
+        ("idx_rr_horse_race",
+         "CREATE INDEX IF NOT EXISTS idx_rr_horse_race   ON race_results(horse_id, race_id)"),
+        ("idx_pr_pred_hit",
+         "CREATE INDEX IF NOT EXISTS idx_pr_pred_hit     ON prediction_results(prediction_id, is_hit)"),
+    ]
+    with conn:
+        for name, ddl in indexes:
+            conn.execute(ddl)
+            logger.info("マイグレーション #15: インデックス %s を作成（または確認）しました", name)
+
+
 def insert_race(conn: sqlite3.Connection, race: "RaceInfo") -> None:  # type: ignore[name-defined]
     """
     RaceInfo をトランザクション内で races / horses / race_results に保存する。
@@ -804,11 +871,15 @@ def insert_prediction(
     Returns:
         新規 prediction.id
     """
-    _VALID_BASE_TYPES = {"卍", "本命", "WIN5", "Oracle", "HitFocus", "Alpha-Payout"}
+    _VALID_BASE_TYPES = {
+        "卍", "卍V2", "本命", "本命V2",
+        "WIN5", "Oracle", "OracleV2",
+        "HitFocus", "HitFocusV2", "Alpha-Payout",
+    }
     base = model_type.split("(")[0]
     if base not in _VALID_BASE_TYPES:
         raise ValueError(
-            f"model_type のベースは '卍' / '本命' / 'WIN5' / 'Oracle' / 'HitFocus' / 'Alpha-Payout' を指定してください: {model_type!r}"
+            f"model_type のベースは '卍'/'卍V2'/'本命'/'本命V2'/'WIN5'/'Oracle'/'HitFocus'/'Alpha-Payout' を指定してください: {model_type!r}"
         )
 
     with conn:
