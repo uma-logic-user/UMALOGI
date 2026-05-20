@@ -285,6 +285,34 @@ class NotificationRouter:
         if n:
             n.send_text(text)
 
+    def send_prediction_embed(self, embeds: list[dict]) -> None:
+        """予想チャンネルに生 embed リストを送信する（scheduler 週次サマリー用）。"""
+        n = self._get("prediction")
+        if n:
+            n.send_prediction_embed(embeds)
+
+    # ── ev_alert チャンネル ──────────────────────────────────────────────────
+
+    def notify_ev_alert(
+        self,
+        race_id: str,
+        max_ev: float,
+        bets_summary: str,
+    ) -> None:
+        """EV >= EV_ALERT_THRESHOLD の激熱レースを @everyone 付きで ev_alert チャンネルへ送信する。
+
+        ev_alert チャンネルが未設定の場合は何もしない（prediction への二重送信を防ぐ）。
+        """
+        ev_notifier = self._channels.get("ev_alert")  # fallback 経由しない
+        if ev_notifier is None:
+            return
+        text = (
+            f"@everyone 🔥 **激熱 EV アラート** `{race_id}`\n"
+            f"{bets_summary}\n"
+            f"EV={max_ev:.2f} ≥ {EV_ALERT_THRESHOLD} 閾値超過"
+        )
+        ev_notifier.send_text(text)
+
     def notify_hit_summary(
         self,
         date_str: str,

@@ -152,6 +152,12 @@ class DiscordNotifier(BaseNotifier):
         self._post(self._url, {"content": _s(text)})
         logger.info("[Discord:予想] 送信: %s", text[:60])
 
+    def send_prediction_embed(self, embeds: list[dict[str, Any]]) -> None:
+        """予想チャンネルに生 embed リストを送信する（scheduler の週次サマリー用）。"""
+        if not self._url:
+            return
+        self._post(self._url, {"embeds": embeds})
+
     # ────────────────────────────────────────────────────────────────────────
     # システムチャンネル送信
     # ────────────────────────────────────────────────────────────────────────
@@ -490,7 +496,7 @@ def _format_combo_card(bet: object) -> str:
             # 三連単は馬名がname_by_numに全馬分ないので combo 順で名前を補完
             lines.append(f"▶ {arrow_str}")
         if n_total > 4:
-            lines.append(f"  (+{n_total - 4}組)")
+            lines.append(f"  (+{n_total - 4}点)")
         return "\n".join(lines)
 
     # ── 馬連・ワイド・三連複（軸流し or ボックス）──────────────────────────
