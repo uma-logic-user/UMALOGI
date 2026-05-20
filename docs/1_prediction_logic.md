@@ -6,6 +6,8 @@
 |------|---------|
 | 2026-05-10 | 初版作成。ALPHA/卍/本命 3モデル並列稼働・三連系生成ロジックを記述 |
 | 2026-05-10 | 将来設計案「予測不変性（Prediction Immutability）」を追記 |
+| 2026-05-19 | 動的EV閾値（W-022完全対応）実装: `get_dynamic_ev_threshold()` を bet_generator.py に追加。直近28日ROIから自動で1.1/1.2/1.3/1.5を選択（好調/通常/低調/不調）。Kelly資金管理: `calc_qf_kelly_bet()` を追加し、notify_discord.py のQF推奨セクションに推奨ベット額・Kelly%・総資金比を表示。影響ファイル: src/ml/bet_generator.py / scripts/notify_discord.py |
+| 2026-05-20 | EV>=1.5 の激熱レースを DISCORD_WEBHOOK_EV_ALERT チャンネルへ自動追加送信。NotificationRouter 導入（マルチWebhook 5チャンネル対応）。買い方テンプレート自動送信 (_format_buying_guide)。影響: src/notification/router.py, src/pipeline/prediction.py |
 
 ---
 

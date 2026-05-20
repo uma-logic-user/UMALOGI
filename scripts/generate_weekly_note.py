@@ -618,10 +618,18 @@ def _build_v2_preview_section() -> list[str]:
 
 # ── メイン記事生成 ─────────────────────────────────────────────────
 
+_PREMIUM_SEPARATOR = (
+    "\n\n---\n\n"
+    "【有料エリア設定箇所：ここから下はnoteの有料ブロックへ貼り付けてください】\n\n"
+    "---\n\n"
+)
+
+
 def generate_weekly_note(
     conn: sqlite3.Connection,
     week_offset: int = 1,
     include_picks: bool = True,
+    is_premium: bool = False,
 ) -> str:
     today = date.today()
     last_from, last_to = _last_week_range(week_offset)
@@ -812,7 +820,12 @@ def generate_weekly_note(
         "",
     ]
 
-    return "\n".join(lines)
+    body = "\n".join(lines)
+
+    if not is_premium:
+        body = body + _PREMIUM_SEPARATOR
+
+    return body
 
 
 # ── メイン ────────────────────────────────────────────────────────

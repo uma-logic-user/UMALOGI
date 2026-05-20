@@ -46,7 +46,8 @@ def _generate_article(week_offset: int) -> tuple[str, str]:
     conn = sqlite3.connect(str(_DB_PATH))
     conn.row_factory = sqlite3.Row
     try:
-        body = generate_weekly_note(conn, week_offset=week_offset, include_picks=True)
+        _is_premium = os.environ.get("IS_PREMIUM_NOTE", os.environ.get("NOTE_IS_PREMIUM", "")).lower() in ("1", "true")
+        body = generate_weekly_note(conn, week_offset=week_offset, include_picks=True, is_premium=_is_premium)
     finally:
         conn.close()
 

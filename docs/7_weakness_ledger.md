@@ -12,6 +12,10 @@
 |------|---------|
 | 2026-05-18 | 初版作成。社長指令「ビジョン再監査」を受け、U score ギャップ・インフラ・データ弱点を全面棚卸し |
 | 2026-05-18 | 【W-004 実装完了】大衆心理乖離スコア (crowd_bias_ratio / uf_crowd_bias) を u_score.py・models.py・bet_generator.py に追加。ManjiGenerator・HonmeiGenerator の EV 調整まで統合完了 |
+| 2026-05-19 | 【W-026 完了確認】_IsotonicModel プロキシ追加により増分学習 E2E 動作確認済み。フルモード WF バックテスト完走（OOM回避: expanding window + float32 + max_bin=127）。全21組み合わせ ROI 100%超。★QF推奨戦略（本命×ワイド ROI=805%/複勝×馬連 ROI=963%）を bet_generator.py・notify_discord.py に実装。W-022 部分対応: QF推奨 EV≥1.3 フィルタを実質的に適用 |
+| 2026-05-19 | 【W-022 完全実装】動的EV閾値: get_dynamic_ev_threshold() で直近28日ROIから1.1/1.2/1.3/1.5を自動選択。Kelly資金管理: calc_qf_kelly_bet()実装。notify_discord.pyにDB接続→閾値・バンクロール自動取得・QF推奨セクションへの推奨ベット額・Kelly%・総資金比を表示統合。影響: src/ml/bet_generator.py / scripts/notify_discord.py |
+| 2026-05-19 | 【V1/V2 モデル分離・週次再学習対応完了】models_v2.py 新設・BetGeneratorV2・prerace_pipeline model_version 引数・_archive_and_save() 命名バグ修正・IncrementalTrainer.full_retrain() V2 同時再学習対応。今週末より実弾 A/B テスト開始。影響: src/ml/models_v2.py / src/ml/incremental.py / src/pipeline/prediction.py |
+| 2026-05-20 | Discord 通知ルーター新設 (NotificationRouter): EV激熱アラート・note下書き転送・ENABLE_PLAYWRIGHT_POST トグル・IS_PREMIUM_NOTE 有料/無料出し分け・買い方テンプレート自動生成・2カ年バックテストシミュレーター・万馬券特化報告スクリプト実装。影響: src/notification/router.py, src/pipeline/prediction.py, scripts/post_weekly_note_draft.py, scripts/generate_weekly_note.py, scripts/run_2year_backtest.py, scripts/generate_result_note_draft.py |
 
 ---
 
@@ -295,14 +299,15 @@ Phase 2-C+B完了後: 30因子 ← 社長ビジョン達成
 | **影響** | WIN5 ROI 22.8%（目標 110%+）。現在は等確率 + market 50/50 ブレンドで実質ランダム |
 | **対応方針** | 本命モデルスコアを WIN5 エンジンに組み込む（CLAUDE.md §15 Plan B参照）|
 
-#### W-022: 動的EV閾値の未実装
+#### W-022: 動的EV閾値の実装
 
 | 項目 | 内容 |
 |------|------|
 | **優先度** | 🟡 中 |
-| **ステータス** | 🔴 未着手 |
-| **影響** | EV 閾値 1.0 固定 → ROI 低迷期に大量の買い目を生成し続ける。自己調整機能なし |
-| **対応方針** | `bet_generator.py` に動的閾値ロジック追加（CLAUDE.md §4-A）|
+| **ステータス** | 🟢 完了（2026-05-19） |
+| **実装内容** | `get_dynamic_ev_threshold(conn, lookback_days=28)` を `src/ml/bet_generator.py` に実装<br>直近28日の prediction_results ROI を計算し自動で閾値を選択:<br>ROI≥150% → 1.1(好調期) / ROI 110-150% → 1.2(通常期) / ROI 80-110% → 1.3(低調期) / ROI<80% → 1.5(不調期)<br>Kelly資金管理: `calc_qf_kelly_bet(ev_score, win_odds, bankroll)` で 1/4 Kelly ベット額を算出<br>Discord通知: `_get_threshold_and_bankroll()` でDB接続し動的取得。ヘッダーにモード・ROI・総資金を表示。★QF推奨セクションに推奨ベット額・Kelly%・総資金比を表示 |
+| **実機検証** | 直近28日 ROI=62.2% → 不調期 → 閾値1.5 自動適用。Kelly算出正常確認（EV=1.5/odds=5.0 → 1/4 Kelly=3.12% → ¥300/点） |
+| **影響ファイル** | `src/ml/bet_generator.py` (2関数追加) / `scripts/notify_discord.py` (全面改修) |
 
 #### W-023: 破産確率 UI の未実装
 
@@ -332,6 +337,16 @@ Phase 2-C+B完了後: 30因子 ← 社長ビジョン達成
 | **ステータス** | ⚪ 保留 |
 | **影響** | Next.js サーバーが落ちると UI が完全停止。Discord 通知のみ機能する |
 | **対応方針** | 静的 JSON ファイルから直接表示するフォールバックページを追加（将来）|
+
+#### W-026: 増分学習 `_IsotonicModel.booster_` 属性エラー（→完了）
+
+| 項目 | 内容 |
+|------|------|
+| **ステータス** | 🟢 完了（2026-05-19） |
+| **優先度** | 高（毎レース後に発生・モデル陳腐化リスク） |
+| **影響** | W-004 実装時に Isotonic キャリブレーション層を HonmeiModel に導入したが、`incremental.py` の 194/217/218行目が `LGBMClassifier` 生メソッドに直接依存。毎レース後の増分学習が全件スキップされ、モデルが最新データを学習できなかった |
+| **対応方針** | `_IsotonicModel`・`_PlattModel` に透過プロキシ3種を追加（`booster_` property / `_Booster` property+setter / `set_params()` メソッド） |
+| **実装** | `src/ml/models.py` — 実機E2Eテスト（Booster取得・set_params・_Boosterセット）で全コードパス確認済み |
 
 ---
 
