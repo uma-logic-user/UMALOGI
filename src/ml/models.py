@@ -130,6 +130,8 @@ FEATURE_COLS: list[str] = [
     "tc_speed_index",           # ウッド4Fスピード指数（200/sec*100）
     "hc_speed_index",           # 坂路4Fスピード指数
     "crowd_bias_ratio",         # 大衆心理乖離比率（生値）[W-004]
+    # ── X シグナル特徴量（Phase C）────────────────────────────────
+    "x_consensus_score",        # 凄腕予想家コンセンサス係数 [−1,1]（Phase B 出力）
 ]
 
 # 訓練に最低限必要なレース数
@@ -346,6 +348,25 @@ class _IsotonicModel:
         """LightGBM の特徴量重要度（base モデルから取得）。"""
         return self.base.feature_importances_
 
+    # ── 増分学習 (incremental.py) との互換プロキシ ────────────────
+    @property
+    def booster_(self) -> Any:
+        """base LGBMClassifier の Booster を透過返却（増分学習用）。"""
+        return self.base.booster_
+
+    @property
+    def _Booster(self) -> Any:
+        return self.base._Booster
+
+    @_Booster.setter
+    def _Booster(self, value: Any) -> None:
+        self.base._Booster = value
+
+    def set_params(self, **kwargs: Any) -> "_IsotonicModel":
+        """base LGBMClassifier の set_params に委譲（増分学習用）。"""
+        self.base.set_params(**kwargs)
+        return self
+
 
 @dataclass
 class _PlattModel:
@@ -368,6 +389,23 @@ class _PlattModel:
     @property
     def feature_importances_(self) -> np.ndarray:
         return self.base.feature_importances_
+
+    # ── 増分学習 (incremental.py) との互換プロキシ ────────────────
+    @property
+    def booster_(self) -> Any:
+        return self.base.booster_
+
+    @property
+    def _Booster(self) -> Any:
+        return self.base._Booster
+
+    @_Booster.setter
+    def _Booster(self, value: Any) -> None:
+        self.base._Booster = value
+
+    def set_params(self, **kwargs: Any) -> "_PlattModel":
+        self.base.set_params(**kwargs)
+        return self
 
 
 # ── ベースクラス ──────────────────────────────────────────────────
