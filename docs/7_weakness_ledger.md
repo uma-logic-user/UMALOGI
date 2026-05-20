@@ -15,6 +15,7 @@
 | 2026-05-19 | 【W-026 完了確認】_IsotonicModel プロキシ追加により増分学習 E2E 動作確認済み。フルモード WF バックテスト完走（OOM回避: expanding window + float32 + max_bin=127）。全21組み合わせ ROI 100%超。★QF推奨戦略（本命×ワイド ROI=805%/複勝×馬連 ROI=963%）を bet_generator.py・notify_discord.py に実装。W-022 部分対応: QF推奨 EV≥1.3 フィルタを実質的に適用 |
 | 2026-05-19 | 【W-022 完全実装】動的EV閾値: get_dynamic_ev_threshold() で直近28日ROIから1.1/1.2/1.3/1.5を自動選択。Kelly資金管理: calc_qf_kelly_bet()実装。notify_discord.pyにDB接続→閾値・バンクロール自動取得・QF推奨セクションへの推奨ベット額・Kelly%・総資金比を表示統合。影響: src/ml/bet_generator.py / scripts/notify_discord.py |
 | 2026-05-19 | 【V1/V2 モデル分離・週次再学習対応完了】models_v2.py 新設・BetGeneratorV2・prerace_pipeline model_version 引数・_archive_and_save() 命名バグ修正・IncrementalTrainer.full_retrain() V2 同時再学習対応。今週末より実弾 A/B テスト開始。影響: src/ml/models_v2.py / src/ml/incremental.py / src/pipeline/prediction.py |
+| 2026-05-20 | 【商用化ロードマップ策定・全4週タスク完了】通知ルーター(W-028完了)・実績レポート自動化(generate_performance_report.py)・A/Bテスト自動比較(generate_ab_report.py)・note下書き転送・X信号統合Phase C(FEATURE_COLS)・有料JACKPOT記事フォーマット確立(generate_note_article.py --jackpot-only)・scheduler 月曜08:30/日曜18:00自動ジョブ登録 |
 | 2026-05-20 | Discord 通知ルーター新設 (NotificationRouter): EV激熱アラート・note下書き転送・ENABLE_PLAYWRIGHT_POST トグル・IS_PREMIUM_NOTE 有料/無料出し分け・買い方テンプレート自動生成・2カ年バックテストシミュレーター・万馬券特化報告スクリプト実装。影響: src/notification/router.py, src/pipeline/prediction.py, scripts/post_weekly_note_draft.py, scripts/generate_weekly_note.py, scripts/run_2year_backtest.py, scripts/generate_result_note_draft.py |
 
 ---
@@ -337,6 +338,19 @@ Phase 2-C+B完了後: 30因子 ← 社長ビジョン達成
 | **ステータス** | ⚪ 保留 |
 | **影響** | Next.js サーバーが落ちると UI が完全停止。Discord 通知のみ機能する |
 | **対応方針** | 静的 JSON ファイルから直接表示するフォールバックページを追加（将来）|
+
+#### W-028: Discord マルチチャンネル通知の統合管理（→完了）
+
+| 項目 | 内容 |
+|------|------|
+| **ID** | W-028 |
+| **優先度** | 高 |
+| **ステータス** | 🟢 完了（2026-05-20） |
+| **影響** | DiscordNotifier 直呼び出しが散在し、チャンネル管理・フォールバック制御が困難だった |
+| **対応** | `NotificationRouter` 新設。5チャンネル（prediction/system/ev_alert/ab_test/note_draft）を EV 閾値・フォールバック付きで一元管理。全呼び出し元を Router 経由に統一 |
+| **影響ファイル** | `src/notification/router.py`（新設）, `src/pipeline/prediction.py`, `scripts/scheduler.py`, `scripts/today_auto_runner.py`, `scripts/post_weekly_note_draft.py` |
+
+---
 
 #### W-026: 増分学習 `_IsotonicModel.booster_` 属性エラー（→完了）
 
