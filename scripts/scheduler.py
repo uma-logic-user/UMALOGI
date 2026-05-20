@@ -1272,6 +1272,20 @@ def job_weekend_batch_post() -> None:
             logger.warning("[週末バッチ Post] note週次記事生成失敗(rc=%d) — 続行", rc_note)
 
 
+def job_ab_report() -> None:
+    """日曜 18:00: V1 vs V2 週次 A/B 成績比較レポートを Discord ab_test チャンネルへ送信。"""
+    logger.info("=== [A/B レポート] 開始 ===")
+    rc = _run(
+        _PY64 + ["scripts/generate_ab_report.py", "--days", "7"],
+        "A/B-レポート",
+        timeout=120,
+    )
+    if rc == 0:
+        logger.info("=== [A/B レポート] 完了 ===")
+    else:
+        logger.warning("[A/B レポート] 失敗(rc=%d) — 続行", rc)
+
+
 def job_daily_backup() -> None:
     """毎日23:00: DB を data/backups/ に日付付きでバックアップ（5世代ローテーション）"""
     try:
@@ -1344,6 +1358,9 @@ def register_schedules() -> None:
     # 土日夕方: 払戻確定後のレース後処理（全レース終了後・OPT_STORED で確実取得）
     schedule.every().saturday.at("17:30").do(job_post_race)
     schedule.every().sunday.at("17:30").do(job_post_race)
+
+    # 日曜 18:00 — V1/V2 A/B 週次成績比較レポート（日曜のみ）
+    schedule.every().sunday.at("18:00").do(job_ab_report)
 
     # 土日夜: 週末バッチ Post（P&L集計 + 的中カード + X結果報告）
     schedule.every().saturday.at("18:30").do(job_weekend_batch_post)
@@ -1421,6 +1438,7 @@ _JOB_MAP_FULL: dict[str, object] = {
     "job_win5_prediction":    job_win5_prediction,
     "job_win5_result_fetch":  job_win5_result_fetch,
     "job_post_race":          job_post_race,
+    "job_ab_report":          job_ab_report,
     "job_weekend_batch_post": job_weekend_batch_post,
     "job_monday_masters":     job_monday_masters,
     "job_weekly_retrain":     job_weekly_retrain,
@@ -1439,6 +1457,7 @@ _JOB_MAP: dict[str, object] = {
     "auto_runner":   job_today_auto_runner,
     "intraday_sync": job_intraday_sync,
     "post_race":     job_post_race,
+    "ab_report":     job_ab_report,
     "masters":       job_monday_masters,
     "retrain":       job_weekly_retrain,
     "git":           job_git_push,

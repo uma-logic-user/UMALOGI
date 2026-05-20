@@ -30,21 +30,26 @@ def build_ab_report(conn: sqlite3.Connection, days: int = 7) -> str:
     """
     V1 vs V2 週次 A/B 成績比較 Markdown を生成して返す。
 
-    prediction_results テーブルの model_version カラムで V1/V2 を識別する。
-    model_version が NULL の行は v1 として扱う（後方互換）。
+    predictions.model_type で V1/V2 を識別する。
+    model_type に 'V2' または 'v2' を含む場合は v2、それ以外は v1 として扱う。
+    invested = payout - profit（profit = payout - invested のため）。
     """
     sql = """
         WITH base AS (
             SELECT
-                COALESCE(model_version, 'v1') AS ver,
-                bet_type,
-                COUNT(*) AS n_bets,
-                SUM(is_hit) AS n_hits,
-                SUM(COALESCE(payout, 0))   AS total_payout,
-                SUM(COALESCE(invested, 0)) AS total_invest
-            FROM prediction_results
-            WHERE date(created_at) >= date('now', :offset)
-            GROUP BY ver, bet_type
+                CASE
+                    WHEN p.model_type LIKE '%V2%' OR p.model_type LIKE '%v2%' THEN 'v2'
+                    ELSE 'v1'
+                END AS ver,
+                p.bet_type,
+                COUNT(*)                         AS n_bets,
+                SUM(pr.is_hit)                   AS n_hits,
+                SUM(COALESCE(pr.payout, 0))      AS total_payout,
+                SUM(COALESCE(pr.payout, 0) - COALESCE(pr.profit, 0)) AS total_invest
+            FROM prediction_results pr
+            JOIN predictions p ON p.id = pr.prediction_id
+            WHERE date(pr.recorded_at) >= date('now', :offset)
+            GROUP BY ver, p.bet_type
         )
         SELECT
             ver,
@@ -72,9 +77,15 @@ def build_ab_report(conn: sqlite3.Connection, days: int = 7) -> str:
     def _overall_roi(ver: str) -> float:
         r = conn.execute(
             """
-            SELECT SUM(COALESCE(payout,0)), SUM(COALESCE(invested,0))
-            FROM prediction_results
-            WHERE COALESCE(model_version,'v1') = ? AND date(created_at) >= date('now', ?)
+            SELECT
+                SUM(COALESCE(pr.payout, 0)),
+                SUM(COALESCE(pr.payout, 0) - COALESCE(pr.profit, 0))
+            FROM prediction_results pr
+            JOIN predictions p ON p.id = pr.prediction_id
+            WHERE (
+                CASE WHEN p.model_type LIKE '%V2%' OR p.model_type LIKE '%v2%' THEN 'v2' ELSE 'v1' END
+            ) = ?
+            AND date(pr.recorded_at) >= date('now', ?)
             """,
             (ver, f"-{days} days"),
         ).fetchone()

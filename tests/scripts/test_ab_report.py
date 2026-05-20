@@ -1,5 +1,6 @@
 """
 scripts/generate_ab_report.py のユニットテスト。
+本番 DB スキーマ（predictions + prediction_results）に準拠。
 """
 from __future__ import annotations
 
@@ -19,49 +20,74 @@ def _load_mod():
 
 
 def _make_ab_db() -> sqlite3.Connection:
-    """V1/V2 両方の予想データを持つインメモリ DB。"""
+    """本番スキーマ準拠の V1/V2 両方データを持つインメモリ DB。"""
     conn = sqlite3.connect(":memory:")
+    # predictions: id, race_id, model_type, bet_type, ...
     conn.execute("""
         CREATE TABLE predictions (
-            prediction_id INTEGER PRIMARY KEY,
+            id INTEGER PRIMARY KEY,
             race_id TEXT,
-            model_version TEXT
+            model_type TEXT,
+            bet_type TEXT
         )
     """)
+    # prediction_results: 本番スキーマ (payout, profit, roi, recorded_at)
     conn.execute("""
         CREATE TABLE prediction_results (
             id INTEGER PRIMARY KEY,
             prediction_id INTEGER,
-            race_id TEXT,
-            bet_type TEXT,
-            model_version TEXT,
-            is_hit INTEGER,
-            payout REAL,
-            invested REAL,
-            created_at TEXT
+            is_hit INTEGER DEFAULT 0,
+            payout REAL DEFAULT 0,
+            profit REAL DEFAULT 0,
+            roi REAL,
+            recorded_at TEXT
         )
     """)
-    # V1: 10件中2件的中, 総投資3000, 総払戻2400 → ROI=80%
+
+    # V1: 10件中2件的中, bet=300, payout=1200 → invested=300 (payout-profit)
+    # 外れ: payout=0, profit=-300 → invested=300
+    # 的中: payout=1200, profit=900 → invested=300
+    # total_payout=2400, total_invest=3000 → ROI=80%
     for i in range(8):
         conn.execute(
-            "INSERT INTO prediction_results VALUES (?,?,?,'複勝','v1',0,0,300,date('now','-'||?||' days'))",
-            (i, i, f"r{i:03d}", i),
+            "INSERT INTO predictions VALUES (?, ?, '本命(ロバスト)', '複勝')",
+            (i, f"r{i:03d}"),
+        )
+        conn.execute(
+            "INSERT INTO prediction_results VALUES (?,?,0,0,-300,0,date('now','-1 day'))",
+            (i, i),
         )
     for i in range(8, 10):
         conn.execute(
-            "INSERT INTO prediction_results VALUES (?,?,?,'複勝','v1',1,1200,300,date('now','-'||?||' days'))",
-            (i, i, f"r{i:03d}", i),
+            "INSERT INTO predictions VALUES (?, ?, '本命(ロバスト)', '複勝')",
+            (i, f"r{i:03d}"),
         )
-    # V2: 10件中4件的中, 総投資3000, 総払戻4800 → ROI=160%
+        conn.execute(
+            "INSERT INTO prediction_results VALUES (?,?,1,1200,900,400,date('now','-1 day'))",
+            (i, i),
+        )
+
+    # V2: 10件中4件的中, bet=300 → ROI=160%
+    # 外れ: payout=0, profit=-300 → invested=300
+    # 的中: payout=1200, profit=900 → invested=300
+    # total_payout=4800, total_invest=3000 → ROI=160%
     for i in range(10, 16):
         conn.execute(
-            "INSERT INTO prediction_results VALUES (?,?,?,'複勝','v2',0,0,300,date('now','-'||?||' days'))",
-            (100 + i, 100 + i, f"r{i:03d}", i - 10),
+            "INSERT INTO predictions VALUES (?, ?, '本命V2', '複勝')",
+            (i, f"r{i:03d}"),
+        )
+        conn.execute(
+            "INSERT INTO prediction_results VALUES (?,?,0,0,-300,0,date('now','-1 day'))",
+            (100 + i, i),
         )
     for i in range(16, 20):
         conn.execute(
-            "INSERT INTO prediction_results VALUES (?,?,?,'複勝','v2',1,1200,300,date('now','-'||?||' days'))",
-            (100 + i, 100 + i, f"r{i:03d}", i - 10),
+            "INSERT INTO predictions VALUES (?, ?, '本命V2', '複勝')",
+            (i, f"r{i:03d}"),
+        )
+        conn.execute(
+            "INSERT INTO prediction_results VALUES (?,?,1,1200,900,400,date('now','-1 day'))",
+            (100 + i, i),
         )
     conn.commit()
     return conn
@@ -87,16 +113,22 @@ def test_build_ab_report_empty_db_no_exception() -> None:
     """データなしでもクラッシュしないこと。"""
     conn = sqlite3.connect(":memory:")
     conn.execute("""
+        CREATE TABLE predictions (
+            id INTEGER PRIMARY KEY,
+            race_id TEXT,
+            model_type TEXT,
+            bet_type TEXT
+        )
+    """)
+    conn.execute("""
         CREATE TABLE prediction_results (
             id INTEGER PRIMARY KEY,
             prediction_id INTEGER,
-            race_id TEXT,
-            bet_type TEXT,
-            model_version TEXT,
-            is_hit INTEGER,
-            payout REAL,
-            invested REAL,
-            created_at TEXT
+            is_hit INTEGER DEFAULT 0,
+            payout REAL DEFAULT 0,
+            profit REAL DEFAULT 0,
+            roi REAL,
+            recorded_at TEXT
         )
     """)
     conn.commit()
