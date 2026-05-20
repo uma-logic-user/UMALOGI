@@ -248,3 +248,49 @@ ENABLE_PLAYWRIGHT_POST=           # True にすると Playwright 自動投稿も
 - `predictions` テーブルへの書き込みは一切行わない（予測不変性条項1）
 - 土日は大規模リファクタ禁止のため、本実装は平日のみ実施（条項2）
 - DB 操作は一切含まない
+
+---
+
+## 【絶対厳守】UI実装の制約事項（2026-05-20 社長指令）
+
+> この制約はUMALOGI全体の永続ルールであり、今回の Discord 通知改修に限らず、
+> 将来のあらゆる実装フェーズにも適用される。
+
+### ルール1: 既存4大モデルUIの完全凍結
+
+以下のコンポーネント・APIエンドポイントは **1行も変更してはならない**。
+
+| 保護対象 | 対応ファイル |
+|---|---|
+| 本命予想タブの表示・レイアウト | `web/src/components/RaceTable.tsx` 等 |
+| 卍予想タブの表示・レイアウト | 同上 |
+| ALPHA予想タブの表示・レイアウト | 同上 |
+| oracle予想タブの表示・レイアウト | 同上 |
+| 予想タブ全体のレイアウト | `web/src/components/TabView.tsx` |
+| 予想系 API エンドポイント | `web/src/app/api/predictions/` 配下 |
+
+**禁止事項**:
+- 既存タブの中に新モデルの表示要素を「追加」すること
+- 既存APIのレスポンス形式を変えること
+- 既存コンポーネントに props を追加してロジック分岐を混ぜ込むこと
+
+### ルール2: 新規予想方法は「完全独立タブ」に隔離
+
+FukushoElite・X シグナル統合・Phase C モデルなど、新しい予想方法を UI に追加する場合は:
+
+1. `web/src/components/` に **新規コンポーネントファイルを作成**（既存ファイルは変更しない）
+2. `web/src/components/TabView.tsx` には**タブの追加エントリのみ**を加える（既存エントリは変更しない）
+3. 新規タブの API は **新規エンドポイント**として `web/src/app/api/` 配下に独立して作成する
+
+**実装パターン（例: FukushoElite 本番統合時）**:
+```
+新設: web/src/components/FukushoElitePanel.tsx   ← 完全新規
+変更: web/src/components/TabView.tsx             ← タブ追加エントリのみ（1〜2行）
+新設: web/src/app/api/fukusho-elite/route.ts     ← 完全新規
+禁止: RaceTable.tsx など既存コンポーネントへの変更  ← 絶対禁止
+```
+
+### ルール3: 今回の Discord 通知改修は UI 無関係
+
+本スペック（Discord ルーター + note下書き転送）は**フロントエンドコードへの変更をゼロとする**。
+`web/` 配下のいかなるファイルも変更しないこと。
