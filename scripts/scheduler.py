@@ -1372,6 +1372,15 @@ def register_schedules() -> None:
     schedule.every().monday.at("07:00").do(job_weekly_retrain)
     schedule.every().monday.at("08:00").do(job_git_push)
 
+    # 月曜 08:30 — 直近28日実績サマリーを Discord へ自動送信
+    schedule.every().monday.at("08:30").do(
+        lambda: _run(
+            _PY64 + ["scripts/generate_performance_report.py", "--days", "28"],
+            "実績レポート",
+            timeout=120,
+        )
+    )
+
     # 毎時0分: 死活監視ハートビート → Discord
     schedule.every().hour.at(":00").do(job_heartbeat)
 
