@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import argparse
 import logging
+import os
 import sqlite3
 import sys
 from pathlib import Path
@@ -52,6 +53,27 @@ def _generate_article(week_offset: int) -> tuple[str, str]:
     issue_date = date.today().strftime("%Y-%m-%d")
     title = f"🏇【UMALOGI週次レポート】{issue_date}号 — 全モデル成績公開＆今週のAI厳選予想"
     return title, body
+
+
+def _generate_x_post(title: str, body: str) -> str:
+    """
+    note記事 Markdown から X 告知ポストテキストを生成する。
+    140文字以内に収め、固定ハッシュタグを末尾に付与する。
+    """
+    sub = ""
+    for line in body.splitlines():
+        stripped = line.strip()
+        if stripped.startswith("## "):
+            sub = stripped.lstrip("# ").strip()
+            break
+
+    hashtags = "#競馬 #AI予想 #UMALOGI #JRA"
+    short_title = title[:40]
+    base = f"🏇 {short_title}\n{sub}\n\nnoteで全モデル成績公開中📊\n\n{hashtags}"
+    if len(base) > 140:
+        trim_len = 140 - len(f"\n\nnoteで全モデル成績公開中📊\n\n{hashtags}") - 5
+        base = f"🏇 {short_title[:trim_len]}\n\nnoteで全モデル成績公開中📊\n\n{hashtags}"
+    return base
 
 
 def main() -> None:
@@ -97,8 +119,36 @@ def main() -> None:
     print(f"\n  タイトル: {title}")
     print(f"  本文文字数: {len(body):,} 文字\n")
 
-    # ── Step 3: note.com に下書き保存 ───────────────────────────────
-    logger.info("note.com に下書き保存中 (headless=%s)...", headless)
+    # ── Step 3-A: Discord note_draft チャンネルへ転送 ──────────────
+    from dotenv import load_dotenv
+    load_dotenv(_ROOT / ".env", override=False)
+
+    x_post = _generate_x_post(title, body)
+    from src.notification.router import NotificationRouter
+    router = NotificationRouter()
+    discord_ok = router.send_note_draft(title, body, x_post=x_post)
+    if discord_ok:
+        logger.info("Discord note-draft 転送完了")
+    else:
+        logger.info("Discord note-draft 転送スキップ（DISCORD_WEBHOOK_NOTE_DRAFT 未設定）")
+
+    # ── Step 3-B: Playwright 投稿（ENABLE_PLAYWRIGHT_POST トグル）────
+    enable_pw = os.environ.get("ENABLE_PLAYWRIGHT_POST", "").lower() in ("1", "true")
+    if not enable_pw:
+        logger.info(
+            "Playwright投稿: スキップ (ENABLE_PLAYWRIGHT_POST=%s)",
+            os.environ.get("ENABLE_PLAYWRIGHT_POST", "未設定"),
+        )
+        print()
+        print("=" * 60)
+        print("  ✅ Discord 転送完了（Playwright投稿はスキップ）")
+        print(f"  タイトル: {title}")
+        print("  ENABLE_PLAYWRIGHT_POST=1 を設定すると note.com にも自動投稿します。")
+        print("=" * 60)
+        print()
+        return
+
+    logger.info("note.com に下書き保存中 (headless=%s, ENABLE_PLAYWRIGHT_POST=True)...", headless)
     ok = save_draft(
         title=title,
         body=body,
