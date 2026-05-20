@@ -55,6 +55,11 @@ def _generate_article(week_offset: int) -> tuple[str, str]:
     return title, body
 
 
+def _should_publish_playwright() -> bool:
+    """ENABLE_PLAYWRIGHT_POST 環境変数が '1' または 'true' なら True を返す。"""
+    return os.environ.get("ENABLE_PLAYWRIGHT_POST", "").lower() in ("1", "true")
+
+
 def _generate_x_post(title: str, body: str) -> str:
     """
     note記事 Markdown から X 告知ポストテキストを生成する。
@@ -133,7 +138,7 @@ def main() -> None:
         logger.info("Discord note-draft 転送スキップ（DISCORD_WEBHOOK_NOTE_DRAFT 未設定）")
 
     # ── Step 3-B: Playwright 投稿（ENABLE_PLAYWRIGHT_POST トグル）────
-    enable_pw = os.environ.get("ENABLE_PLAYWRIGHT_POST", "").lower() in ("1", "true")
+    enable_pw = _should_publish_playwright()
     if not enable_pw:
         logger.info(
             "Playwright投稿: スキップ (ENABLE_PLAYWRIGHT_POST=%s)",
