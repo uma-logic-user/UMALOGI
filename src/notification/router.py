@@ -193,6 +193,15 @@ class NotificationRouter:
         self._channels: dict[str, DiscordNotifier] = {}
         self._build_channels()
 
+    # チャンネル識別子 → ログラベル
+    _CHANNEL_LABELS: dict[str, str] = {
+        "prediction": "予想",
+        "system":     "システム",
+        "ev_alert":   "EV激熱",
+        "ab_test":    "A/Bテスト",
+        "note_draft": "note下書き",
+    }
+
     def _build_channels(self) -> None:
         """環境変数からチャンネル → DiscordNotifier を構築する。"""
         for channel, env_key in CHANNEL_ENV.items():
@@ -201,7 +210,10 @@ class NotificationRouter:
             if not url and channel == "system":
                 url = os.environ.get("DISCORD_SYSTEM_WEBHOOK_URL", "").strip()
             if url:
-                self._channels[channel] = DiscordNotifier(webhook_url=url, enabled=True)
+                label = self._CHANNEL_LABELS.get(channel, channel)
+                self._channels[channel] = DiscordNotifier(
+                    webhook_url=url, enabled=True, channel_label=label
+                )
 
         if "prediction" not in self._channels:
             logger.warning(
@@ -427,7 +439,7 @@ class NotificationRouter:
         )
 
         logger.info(
-            "[Discord:note_draft] 送信完了: %dチャンク + X告知ポスト1件",
+            "[Discord:note下書き] 送信完了: %dチャンク + X告知ポスト1件",
             n_total,
         )
         return True

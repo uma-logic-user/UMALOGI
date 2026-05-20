@@ -80,10 +80,12 @@ class DiscordNotifier(BaseNotifier):
         webhook_url:    str | None = None,
         system_url:     str | None = None,
         enabled: bool = True,
+        channel_label:  str = "予想",
     ) -> None:
         super().__init__(enabled=enabled)
         self._url        = webhook_url or os.environ.get("DISCORD_WEBHOOK_URL", "")
         self._system_url = system_url  or os.environ.get("DISCORD_SYSTEM_WEBHOOK_URL", "")
+        self._label      = channel_label
         if enabled and not self._url:
             logger.warning("DISCORD_WEBHOOK_URL が設定されていません（予想通知が届きません）")
         if enabled and not self._system_url:
@@ -149,12 +151,12 @@ class DiscordNotifier(BaseNotifier):
     # ────────────────────────────────────────────────────────────────────────
 
     def send_text(self, text: str) -> None:
-        """予想チャンネルにプレーンテキストを送信する。"""
+        """プレーンテキストを送信する。ログラベルは channel_label に従う。"""
         if not self._url:
             logger.warning("DISCORD_WEBHOOK_URL 未設定のため送信スキップ")
             return
         self._post(self._url, {"content": _s(text)})
-        logger.info("[Discord:予想] 送信: %s", text[:60])
+        logger.info("[Discord:%s] 送信: %s", self._label, text[:60])
 
     def send_prediction_embed(self, embeds: list[dict[str, Any]]) -> None:
         """予想チャンネルに生 embed リストを送信する（scheduler の週次サマリー用）。"""
