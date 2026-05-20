@@ -28,6 +28,9 @@ database.db
 data/models/
 data/backups/
 
+# 処理済み学習データ（Parquet、毎回再生成可能）
+data/processed/
+
 # 予想 JSON（毎回生成・大量ファイル）
 data/predictions/
 
