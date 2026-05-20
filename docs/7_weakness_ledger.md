@@ -17,6 +17,7 @@
 | 2026-05-19 | 【V1/V2 モデル分離・週次再学習対応完了】models_v2.py 新設・BetGeneratorV2・prerace_pipeline model_version 引数・_archive_and_save() 命名バグ修正・IncrementalTrainer.full_retrain() V2 同時再学習対応。今週末より実弾 A/B テスト開始。影響: src/ml/models_v2.py / src/ml/incremental.py / src/pipeline/prediction.py |
 | 2026-05-20 | 【商用化ロードマップ策定・全4週タスク完了】通知ルーター(W-028完了)・実績レポート自動化(generate_performance_report.py)・A/Bテスト自動比較(generate_ab_report.py)・note下書き転送・X信号統合Phase C(FEATURE_COLS)・有料JACKPOT記事フォーマット確立(generate_note_article.py --jackpot-only)・scheduler 月曜08:30/日曜18:00自動ジョブ登録 |
 | 2026-05-20 | Discord 通知ルーター新設 (NotificationRouter): EV激熱アラート・note下書き転送・ENABLE_PLAYWRIGHT_POST トグル・IS_PREMIUM_NOTE 有料/無料出し分け・買い方テンプレート自動生成・2カ年バックテストシミュレーター・万馬券特化報告スクリプト実装。影響: src/notification/router.py, src/pipeline/prediction.py, scripts/post_weekly_note_draft.py, scripts/generate_weekly_note.py, scripts/run_2year_backtest.py, scripts/generate_result_note_draft.py |
+| 2026-05-20 | EV 特化特徴量エンジン Phase 1 実装（71 テスト全 PASS）: JRATakeoutRates（控除率クラス定数）・Shin 1993 真確率推定・Harville 法・オッズ異常検知・np.cumprod Kelly バンクロールシミュレーター・Sharpe/MDD・グリッドサーチ・READ ONLY DB 監査スクリプト。W-029 (DB インデックス最適化) を Phase 2 として計上、承認待ち。|
 
 ---
 
