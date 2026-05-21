@@ -109,6 +109,45 @@ class TestNotificationRouter:
         assert any("X告知テキストXX" in e["json"].get("content", "") for e in sent), \
             "X 告知テキストが送信されていない"
 
+    def test_system_alert_routes_to_system_channel(self, monkeypatch):
+        """DISCORD_WEBHOOK_SYSTEM 設定時に致命アラートが system チャンネルへ届く（prediction へは行かない）。"""
+        monkeypatch.setenv("DISCORD_WEBHOOK_SYSTEM", "http://fake-system")
+        monkeypatch.setenv("DISCORD_WEBHOOK_URL", "http://fake-prediction")
+        monkeypatch.setenv("DISCORD_SYSTEM_WEBHOOK_URL", "")
+        monkeypatch.setenv("DISCORD_WEBHOOK_EV_ALERT", "")
+        monkeypatch.setenv("DISCORD_WEBHOOK_AB_TEST", "")
+        monkeypatch.setenv("DISCORD_WEBHOOK_NOTE_DRAFT", "")
+
+        sent: list = []
+        with patch("requests.post", _mock_post(sent)):
+            from src.notification.router import NotificationRouter
+            router = NotificationRouter()
+            router.send_system_text(
+                "🚨 [UMALOGI] スケジューラー例外 — デーモンは継続中\n`ValueError: test`"
+            )
+
+        urls = [e["url"] for e in sent]
+        assert "http://fake-system" in urls, f"system チャンネルへ送信されていない: {urls}"
+        assert "http://fake-prediction" not in urls, \
+            f"prediction チャンネルへ誤送信（system 専用のはずが混在）: {urls}"
+
+    def test_legacy_system_webhook_url_accepted(self, monkeypatch):
+        """旧変数名 DISCORD_SYSTEM_WEBHOOK_URL も system チャンネルとして認識される。"""
+        monkeypatch.setenv("DISCORD_WEBHOOK_SYSTEM", "")
+        monkeypatch.setenv("DISCORD_SYSTEM_WEBHOOK_URL", "http://legacy-system")
+        monkeypatch.setenv("DISCORD_WEBHOOK_URL", "http://fake-prediction")
+        monkeypatch.setenv("DISCORD_WEBHOOK_EV_ALERT", "")
+
+        sent: list = []
+        with patch("requests.post", _mock_post(sent)):
+            from src.notification.router import NotificationRouter
+            router = NotificationRouter()
+            router.send_system_text("legacy system alert")
+
+        urls = [e["url"] for e in sent]
+        assert "http://legacy-system" in urls, \
+            f"旧変数 DISCORD_SYSTEM_WEBHOOK_URL が system チャンネルとして使われていない: {urls}"
+
     def test_all_channels_unset(self, monkeypatch):
         """全チャンネル URL 未設定でも例外が発生しない。"""
         for key in [

@@ -18,6 +18,7 @@
 | 2026-05-20 | 【商用化ロードマップ策定・全4週タスク完了】通知ルーター(W-028完了)・実績レポート自動化(generate_performance_report.py)・A/Bテスト自動比較(generate_ab_report.py)・note下書き転送・X信号統合Phase C(FEATURE_COLS)・有料JACKPOT記事フォーマット確立(generate_note_article.py --jackpot-only)・scheduler 月曜08:30/日曜18:00自動ジョブ登録 |
 | 2026-05-20 | Discord 通知ルーター新設 (NotificationRouter): EV激熱アラート・note下書き転送・ENABLE_PLAYWRIGHT_POST トグル・IS_PREMIUM_NOTE 有料/無料出し分け・買い方テンプレート自動生成・2カ年バックテストシミュレーター・万馬券特化報告スクリプト実装。影響: src/notification/router.py, src/pipeline/prediction.py, scripts/post_weekly_note_draft.py, scripts/generate_weekly_note.py, scripts/run_2year_backtest.py, scripts/generate_result_note_draft.py |
 | 2026-05-20 | EV 特化特徴量エンジン Phase 1 実装（71 テスト全 PASS）: JRATakeoutRates（控除率クラス定数）・Shin 1993 真確率推定・Harville 法・オッズ異常検知・np.cumprod Kelly バンクロールシミュレーター・Sharpe/MDD・グリッドサーチ・READ ONLY DB 監査スクリプト。W-029 (DB インデックス最適化) を Phase 2 として計上、承認待ち。|
+| 2026-05-21 | 【Week1-4 商用化ロードマップ完全完了 + 本番環境ロック確定】① W-029 完了: DB 複合インデックス 6 件 (migration #15) 適用。idx_pred_model_ev/idx_pred_race_model/idx_tc_horse_date/idx_hc_horse_date/idx_rr_horse_race/idx_pr_pred_hit。② W-030 完了: EV 特化特徴量 7 本を features.py へ統合・try/except ガード付き安全実装。③ 69 FEATURE_COLS 全モデル完全再訓練: HonmeiModel CV AUC=**0.7677** (特徴量重要度 Top3: uf_rank_trend/uf_jockey_win_rate/u_score) / PlaceModel AUC=**0.7293** / ManjiModel 完了。Parquet cache 84,930 行×90 列で再学習 95% 短縮 (38分→2分)。466 テスト ALL GREEN。④ E2E 本番シミュレーション (scripts/e2e_production_sim.py) 全 6 ステップ ALL PASS: prerace_pipeline 2.13秒 / 全 Discord チャンネル routing 確認 / 総スループット **5.12秒**。⑤ 本番ロック確定: DISCORD_WEBHOOK_URL/EV_ALERT/AB_TEST/NOTE_DRAFT/DISCORD_SYSTEM_WEBHOOK_URL 全 URL 設定済み・JVLINK_DISABLED 未設定 (本番 JVLink 有効) / ENABLE_PLAYWRIGHT_POST=0 (X 自動投稿安全オフ) / DRY_RUN 未設定 (本番モード) / scheduler.py 全ジョブ dry_run=False 確認済み。⑥ system アラートテスト 2 件追加 (test_system_alert_routes_to_system_channel / test_legacy_system_webhook_url_accepted): 計 12 テスト PASS。⑦ .env.example 復旧 (全 13 キー完全文書化)。影響: tests/notification/test_router.py, .env.example(復旧) |
 
 ---
 
@@ -353,6 +354,32 @@ Phase 2-C+B完了後: 30因子 ← 社長ビジョン達成
 
 ---
 
+#### W-029: DB クエリ性能 — 予想・評価クエリの複合インデックス未整備（→完了）
+
+| 項目 | 内容 |
+|------|------|
+| **ID** | W-029 |
+| **優先度** | 中 |
+| **ステータス** | 🟢 完了（2026-05-21） |
+| **影響** | `predictions`/`race_results`/`training_times` の大量 JOIN クエリが full scan していた（EXPLAIN QUERY PLAN で SEARCH USING COVERING INDEX なし） |
+| **対応** | migration #15 で 6 複合インデックス追加。`idx_pred_model_ev` (model_type, ev_score)・`idx_pred_race_model` (race_id, model_type)・`idx_tc_horse_date` (horse_id, date)・`idx_hc_horse_date` (horse_id, date)・`idx_rr_horse_race` (horse_id, race_id)・`idx_pr_pred_hit` (prediction_id, is_hit)。全クエリ SEARCH USING INDEX 確認済み |
+| **影響ファイル** | `src/database/schema.py`, `src/database/init_db.py` |
+
+---
+
+#### W-030: EV 特化特徴量の本番統合（→完了）
+
+| 項目 | 内容 |
+|------|------|
+| **ID** | W-030 |
+| **優先度** | 高 |
+| **ステータス** | 🟢 完了（2026-05-21） |
+| **影響** | オッズから算出できる Shin 真確率・Harville 複勝確率・オッズ異常スコアが FEATURE_COLS に未統合で EV 算出精度に限界があった |
+| **対応** | `src/ml/ev_features.py` で 7 特徴量エンジン実装（shin_prob / implied_prob_excess / harville_place_prob / odds_steam_flag / odds_reversal_score / field_strength_ev_adj / ev_rank_in_race）。`FeatureBuilder._add_ev_features()` で `build_race_features()` に統合。try/except ガード付き安全動作。EV 特徴量は FEATURE_COLS 外（買い目サイズ決定専用として機能）。全 69 FEATURE_COLS モデル再訓練完了: HonmeiModel CV AUC=**0.7677** / PlaceModel CV AUC=**0.7293** |
+| **影響ファイル** | `src/ml/ev_features.py`（新設）, `src/ml/features.py`, `src/ml/models.py`（FEATURE_COLS 69 列）|
+
+---
+
 #### W-026: 増分学習 `_IsotonicModel.booster_` 属性エラー（→完了）
 
 | 項目 | 内容 |
@@ -367,22 +394,28 @@ Phase 2-C+B完了後: 30因子 ← 社長ビジョン達成
 
 ## 改善ロードマップ（優先順）
 
+> **2026-05-21 更新: Week1-4 商用化フェーズ完了。本番稼働フェーズ移行。**
+
 ```
-【最優先】今週内
-  Phase 2-A (W-001/W-002: 加速力・PCI) — ラップタイムDBカラム追加から着手
-  W-004 (大衆心理乖離スコア) — データ既存のため即実装可能
+【完了済み（2026-05-21 本番確定）】
+  W-004  大衆心理乖離スコア                    🟢 完了
+  W-022  動的EV閾値 + Kelly資金管理            🟢 完了
+  W-026  増分学習 _IsotonicModel 修正          🟢 完了
+  W-028  Discord マルチチャンネル Router        🟢 完了
+  W-029  DB 複合インデックス 6件               🟢 完了
+  W-030  EV 特化特徴量統合 + 69列再訓練        🟢 完了
+  E2E    本番シミュレーション 5.12秒 ALL PASS   🟢 完了
 
-【今月内】
-  Phase B (W-005: Xシグナル構造化) — x_signal_parser.py 作成
+【本番稼働後・次フェーズ（JVLink SID 制約解消次第）】
+  W-001  加速力スコア (上がり3F)               🔴 未着手
+  W-002  PCI ペース変動指数                    🔴 未着手
+  W-020  FukushoElite 本番統合                🔴 未着手
+  W-023  破産確率 UI (Monte Carlo)             🔴 未着手
+
+【中長期（歴史データ大規模取得後）】
   Phase 2-B (W-003/W-008/W-010: 不完全燃焼・馬場脚質・相手関係)
-  W-020 (FukushoElite 本番統合)
-  W-022 (動的EV閾値)
-
-【翌月以降】
-  Phase 2-C (W-006/W-009: オッズ動向・輸送疲れ)
-  W-015 (ラップタイムDB格納 — スキーマ変更)
-  W-016 (2025年着順データ補完)
-  W-023 (破産確率UI)
+  W-015  ラップタイム DB 格納
+  W-016  2025年着順データ補完（netkeiba 一括）
 ```
 
 ---
