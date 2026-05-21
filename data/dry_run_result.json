@@ -1,0 +1,14 @@
+{
+  "status": "success",
+  "start_time": "2026-05-21 07:30:38",
+  "elapsed_sec": 6486.9,
+  "n_races": 6140,
+  "n_samples": 47238,
+  "models": {
+    "honmei": "honmei v20260521_081946  races=6138 samples=84930 AUC=0.7677",
+    "manji": "manji v20260521_083857  races=6138 samples=84930",
+    "honmei_v2": "honmei_v2 v20260521_085834  races=6138 samples=84930 AUC=0.7677",
+    "manji_v2": "manji_v2 v20260521_091844  races=6138 samples=84930"
+  },
+  "finished_at": "2026-05-21 09:18:45"
+}
