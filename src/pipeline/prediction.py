@@ -487,7 +487,22 @@ def prerace_pipeline(
     logger.info("%sパイプライン開始: race_id=%s", mode_label, race_id)
 
     conn = init_db()
+    try:
+        return _prerace_pipeline_inner(
+            conn, race_id, provisional, model_version, mode_label
+        )
+    finally:
+        conn.close()
 
+
+def _prerace_pipeline_inner(
+    conn: "sqlite3.Connection",
+    race_id: str,
+    provisional: bool,
+    model_version: str,
+    mode_label: str,
+) -> dict:
+    """prerace_pipeline の内部実装。conn は呼び出し元で finally close される。"""
     # Step 0: 締め切りチェック（直前のみ）
     if not provisional:
         _check_race_deadline(conn, race_id)
@@ -538,14 +553,12 @@ def prerace_pipeline(
         df = fb.build_race_features(race_id)
     except ValueError as exc:
         logger.error("特徴量生成失敗: %s", exc)
-        conn.close()
         return {"error": str(exc), "race_id": race_id}
 
     if df.empty:
         _discord.notify_scraping_alert(
             race_id, "出馬表が 0 頭（features DataFrame が空）"
         )
-        conn.close()
         return {"error": "出馬表が空です", "race_id": race_id}
 
     # Step 2b: データ品質チェック（直前のみ）
@@ -572,7 +585,6 @@ def prerace_pipeline(
         if not ok:
             # 出馬表が 0 頭（真の失敗）のみ中断する。オッズ欠損は暫定モードで続行。
             if "0 頭" in reason or df.empty:
-                conn.close()
                 _discord.notify_skip(race_id, reason)
                 return {"skipped": True, "reason": reason, "race_id": race_id}
             logger.warning(
@@ -648,8 +660,6 @@ def prerace_pipeline(
     # Step 5c: WIN5（直前のみ）
     if not provisional:
         try_win5(conn, race_id)
-
-    conn.close()
 
     # Step 6: JSON 出力（V2 は {race_id}_v2.json に分離保存）
     payload = build_output_json(

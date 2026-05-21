@@ -311,7 +311,10 @@ def _run_fetch_result(race_id: str, dry_run: bool) -> int:
 
     for attempt in range(1, _POSTRACE_MAX_RETRY + 1):
         try:
-            result = subprocess.run(cmd, cwd=str(_ROOT), timeout=300)
+            result = subprocess.run(
+                cmd, cwd=str(_ROOT), timeout=300,
+                stderr=subprocess.PIPE, text=True, encoding="utf-8",
+            )
             if result.returncode == 0:
                 return 0
             # 途中失敗はログのみ（Discordに通知しない）
@@ -320,6 +323,8 @@ def _run_fetch_result(race_id: str, dry_run: bool) -> int:
                 result.returncode, attempt, _POSTRACE_MAX_RETRY, race_id,
                 _POSTRACE_RETRY_WAIT_SEC,
             )
+            if result.stderr:
+                logger.warning("[NG] 結果取得 stderr: %s", result.stderr[-1000:])
         except subprocess.TimeoutExpired:
             logger.warning(
                 "結果速報取得 タイムアウト (300s) 試行 %d/%d: %s — %d 秒後に再試行",
@@ -784,6 +789,10 @@ def _run_one_day(
                 _run_sns_post(race_id, dry_run, pattern="a")
         else:
             logger.error("[NG] R%02d %s  [prerace V1] 失敗 (rc=%d)", race_number, race_id, rc)
+            _send_discord(
+                f"🚨 **[UMALOGI]** R{race_number:02d} `{race_id}` 直前予想 V1 失敗 (rc={rc})\n"
+                f"手動実行: `py -m src.main_pipeline prerace {race_id}`"
+            )
         return rc
 
     def _postrace_worker(race_id: str, race_number: int) -> int:
