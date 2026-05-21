@@ -1,0 +1,33 @@
+{
+  "trained_at": "2026-05-21 09:19:21",
+  "feature_cols": 69,
+  "x_consensus_score_included": true,
+  "n_races": 6138,
+  "n_samples": 84930,
+  "honmei": {
+    "n_races": 6138.0,
+    "n_samples": 84930.0,
+    "cv_auc_mean": 0.7153053250333696,
+    "cv_auc_std": 0.0403321792337031,
+    "challenger_auc": 0.9195655593485834,
+    "champion_auc": 0.9195655593485834,
+    "train_until": null
+  },
+  "place": {
+    "n_races": 6138.0,
+    "n_samples": 84930.0,
+    "cv_auc_mean": 0.7292704622209616,
+    "cv_auc_std": 0.06008425047289744,
+    "train_until": null
+  },
+  "manji": {
+    "n_races": 6138.0,
+    "n_samples": 84930.0,
+    "train_until": null
+  },
+  "model_files": {
+    "honmei": "data/models/honmei_model.pkl",
+    "place": "data/models/place_model.pkl",
+    "manji": "data/models/manji_model.pkl"
+  }
+}
