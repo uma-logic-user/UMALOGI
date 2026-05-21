@@ -22,13 +22,14 @@ def _load_mod():
 def _make_ab_db() -> sqlite3.Connection:
     """本番スキーマ準拠の V1/V2 両方データを持つインメモリ DB。"""
     conn = sqlite3.connect(":memory:")
-    # predictions: id, race_id, model_type, bet_type, ...
+    # predictions: id, race_id, model_type, bet_type, expected_value
     conn.execute("""
         CREATE TABLE predictions (
             id INTEGER PRIMARY KEY,
             race_id TEXT,
             model_type TEXT,
-            bet_type TEXT
+            bet_type TEXT,
+            expected_value REAL DEFAULT 0
         )
     """)
     # prediction_results: 本番スキーマ (payout, profit, roi, recorded_at)
@@ -50,7 +51,7 @@ def _make_ab_db() -> sqlite3.Connection:
     # total_payout=2400, total_invest=3000 → ROI=80%
     for i in range(8):
         conn.execute(
-            "INSERT INTO predictions VALUES (?, ?, '本命(ロバスト)', '複勝')",
+            "INSERT INTO predictions(id, race_id, model_type, bet_type) VALUES (?, ?, '本命(ロバスト)', '複勝')",
             (i, f"r{i:03d}"),
         )
         conn.execute(
@@ -59,7 +60,7 @@ def _make_ab_db() -> sqlite3.Connection:
         )
     for i in range(8, 10):
         conn.execute(
-            "INSERT INTO predictions VALUES (?, ?, '本命(ロバスト)', '複勝')",
+            "INSERT INTO predictions(id, race_id, model_type, bet_type) VALUES (?, ?, '本命(ロバスト)', '複勝')",
             (i, f"r{i:03d}"),
         )
         conn.execute(
@@ -73,7 +74,7 @@ def _make_ab_db() -> sqlite3.Connection:
     # total_payout=4800, total_invest=3000 → ROI=160%
     for i in range(10, 16):
         conn.execute(
-            "INSERT INTO predictions VALUES (?, ?, '本命V2', '複勝')",
+            "INSERT INTO predictions(id, race_id, model_type, bet_type) VALUES (?, ?, '本命V2', '複勝')",
             (i, f"r{i:03d}"),
         )
         conn.execute(
@@ -82,7 +83,7 @@ def _make_ab_db() -> sqlite3.Connection:
         )
     for i in range(16, 20):
         conn.execute(
-            "INSERT INTO predictions VALUES (?, ?, '本命V2', '複勝')",
+            "INSERT INTO predictions(id, race_id, model_type, bet_type) VALUES (?, ?, '本命V2', '複勝')",
             (i, f"r{i:03d}"),
         )
         conn.execute(
@@ -117,7 +118,8 @@ def test_build_ab_report_empty_db_no_exception() -> None:
             id INTEGER PRIMARY KEY,
             race_id TEXT,
             model_type TEXT,
-            bet_type TEXT
+            bet_type TEXT,
+            expected_value REAL DEFAULT 0
         )
     """)
     conn.execute("""

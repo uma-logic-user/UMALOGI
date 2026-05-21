@@ -101,6 +101,7 @@ _CATCHUP_HOURS: dict[str, int] = {
     "job_win5_prediction":     2,  # 09:00 → 11:00 まで
     "job_win5_result_fetch":   4,  # 17:15 → 21:15 まで
     "job_post_race":           4,  # 17:30 → 21:30 まで
+    "job_ab_report":           4,  # 18:00 → 22:00 まで
     "job_weekend_batch_post":  4,  # 18:30 → 22:30 まで
     "job_monday_masters":     12,  # 06:00 → 18:00 まで
     "job_weekly_retrain":     12,  # 07:00 → 19:00 まで
@@ -116,6 +117,7 @@ _JOB_SCHEDULES: dict[str, list[tuple[int, int, int]]] = {
     "job_win5_prediction":    [(5,  9,  0), (6,  9,  0)],
     "job_win5_result_fetch":  [(5, 17, 15), (6, 17, 15)],
     "job_post_race":          [(5, 17, 30), (6, 17, 30)],
+    "job_ab_report":          [(6, 18,  0)],              # 日曜18:00
     "job_weekend_batch_post": [(5, 18, 30), (6, 18, 30)],
     "job_monday_masters":     [(0,  6,  0)],
     "job_weekly_retrain":     [(0,  7,  0)],
