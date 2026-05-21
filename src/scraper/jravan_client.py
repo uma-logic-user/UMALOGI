@@ -734,8 +734,22 @@ class JVLinkClient:
                     _ui_exc,
                 )
 
+        # Step D: JVSetDialog(False) — JVLink が自発的に起動するダイアログをすべて抑制
+        try:
+            self._jvl.JVSetDialog(False)
+            logger.info("JVSetDialog(False) 完了 — JVLink自発ダイアログ無効化")
+        except Exception as _dlg_exc:
+            logger.debug("JVSetDialog 非対応: %s", _dlg_exc)
+
+        # Step E: JVSetAutoDownload(True) — ダウンロード確認ダイアログなしで自動DL
+        try:
+            self._jvl.JVSetAutoDownload(True)
+            logger.info("JVSetAutoDownload(True) 完了 — 自動ダウンロード有効化")
+        except Exception as _ald_exc:
+            logger.debug("JVSetAutoDownload 非対応: %s", _ald_exc)
+
         if _ui_suppressed:
-            logger.info("JVLink GUIダイアログ抑制完了")
+            logger.info("JVLink GUIダイアログ抑制完了 (Steps A-E)")
 
         for attempt in range(1, self._MAX_RECONNECT + 1):
             ret = self._jvl.JVInit(self._sid)
@@ -746,7 +760,7 @@ class JVLinkClient:
                 return
             logger.warning("JVInit 失敗 code=%d sid=%s (attempt=%d/%d)", ret, self._sid, attempt, self._MAX_RECONNECT)
             if attempt < self._MAX_RECONNECT:
-                time.sleep(3)
+                time.sleep(1)  # 3s→1s: タイムアウト10秒以内に収めるため短縮
 
         # 全リトライ消化 → 親プロセスへ「JVLink初期化失敗」を通知して即時終了
         # GUI_BLOCKED タイムアウトを待たずに Netkeiba フォールバックへ切り替えさせる

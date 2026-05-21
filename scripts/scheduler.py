@@ -282,12 +282,12 @@ def _run(cmd: list[str], label: str, timeout: int = 3600) -> int:
         return -1
 
 
-# JVLink 起動タイムアウト設計値:
-#   _kill_stale_py32(): 親チェーン3段×3秒 + wmic 8秒 = 最大 17秒
-#   JVInit 3リトライ: 3秒 × 3 = 9秒
-#   合計最悪: 26秒 → マージン込みで 60秒
-# 旧値 10秒 は JVInit 失敗リトライ中にタイムアウトし GUI_BLOCKED 誤判定を招いていた。
-_JVLINK_STARTUP_TIMEOUT = 60  # JVLink初期化タイムアウト秒数（GUIダイアログ検出用）
+# JVLink 起動タイムアウト設計値 (2026-05-22 更新):
+#   JVInit 3リトライ: 1秒 × 2スリープ = 2秒 (スリープ間隔を 3s→1s に短縮)
+#   合計想定: 2〜5秒 → マージン込みで 10秒
+#   ダイアログ発生時は JVSetDialog/JVSetAutoDownload + STARTUPINFO SW_HIDE で抑制済み。
+#   残存するダイアログは JVLINK_FAILED シグナルで即通知 → 10秒後タイムアウトで Kill → Netkeiba fallback。
+_JVLINK_STARTUP_TIMEOUT = 10  # JVLink初期化タイムアウト秒数（GUIダイアログ検出用）
 
 
 def _run_jvlink(
@@ -315,6 +315,11 @@ def _run_jvlink(
 
     CREATE_NO_WINDOW = 0x08000000
 
+    # STARTUPINFO(SW_HIDE=0): COM が子ウィンドウを生成しても非表示にする
+    _si = subprocess.STARTUPINFO()
+    _si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+    _si.wShowWindow = 0  # SW_HIDE
+
     logger.info("[%s] JVLink起動: %s", label, " ".join(cmd))
     try:
         proc = subprocess.Popen(
@@ -325,6 +330,7 @@ def _run_jvlink(
             encoding="utf-8",
             errors="replace",
             creationflags=CREATE_NO_WINDOW,
+            startupinfo=_si,
         )
     except Exception as exc:
         logger.error("[%s] 起動失敗: %s", label, exc)
