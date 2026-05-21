@@ -18,6 +18,7 @@
 | 2026-05-20 | 【商用化ロードマップ策定・全4週タスク完了】通知ルーター(W-028完了)・実績レポート自動化(generate_performance_report.py)・A/Bテスト自動比較(generate_ab_report.py)・note下書き転送・X信号統合Phase C(FEATURE_COLS)・有料JACKPOT記事フォーマット確立(generate_note_article.py --jackpot-only)・scheduler 月曜08:30/日曜18:00自動ジョブ登録 |
 | 2026-05-20 | Discord 通知ルーター新設 (NotificationRouter): EV激熱アラート・note下書き転送・ENABLE_PLAYWRIGHT_POST トグル・IS_PREMIUM_NOTE 有料/無料出し分け・買い方テンプレート自動生成・2カ年バックテストシミュレーター・万馬券特化報告スクリプト実装。影響: src/notification/router.py, src/pipeline/prediction.py, scripts/post_weekly_note_draft.py, scripts/generate_weekly_note.py, scripts/run_2year_backtest.py, scripts/generate_result_note_draft.py |
 | 2026-05-20 | EV 特化特徴量エンジン Phase 1 実装（71 テスト全 PASS）: JRATakeoutRates（控除率クラス定数）・Shin 1993 真確率推定・Harville 法・オッズ異常検知・np.cumprod Kelly バンクロールシミュレーター・Sharpe/MDD・グリッドサーチ・READ ONLY DB 監査スクリプト。W-029 (DB インデックス最適化) を Phase 2 として計上、承認待ち。|
+| 2026-05-21 | 【W-031 完了】V1 vs V2 A/B テスト週次レポート自動化: `generate_ab_report.py` 完全実装（`build_ab_report()` Markdown生成 + `_send_summary_to_discord()` Embed プッシュ送信）。`scheduler.py` 日曜18:00 自動配信・取りこぼし4時間窓。エラーハンドリング: HTTPError/OSError は WARNING ログ止まり・例外伝播なし。テスト17件 PASS。W-024 を 🟡 対応中 に昇格（週次 ROI レポートが監視要件を部分充足）。実測: V1 ROI=64.1%/純利益 ¥-2,300,518 / V2=0件（V2稼働前）|
 | 2026-05-21 | 【Week1-4 商用化ロードマップ完全完了 + 本番環境ロック確定】① W-029 完了: DB 複合インデックス 6 件 (migration #15) 適用。idx_pred_model_ev/idx_pred_race_model/idx_tc_horse_date/idx_hc_horse_date/idx_rr_horse_race/idx_pr_pred_hit。② W-030 完了: EV 特化特徴量 7 本を features.py へ統合・try/except ガード付き安全実装。③ 69 FEATURE_COLS 全モデル完全再訓練: HonmeiModel CV AUC=**0.7677** (特徴量重要度 Top3: uf_rank_trend/uf_jockey_win_rate/u_score) / PlaceModel AUC=**0.7293** / ManjiModel 完了。Parquet cache 84,930 行×90 列で再学習 95% 短縮 (38分→2分)。466 テスト ALL GREEN。④ E2E 本番シミュレーション (scripts/e2e_production_sim.py) 全 6 ステップ ALL PASS: prerace_pipeline 2.13秒 / 全 Discord チャンネル routing 確認 / 総スループット **5.12秒**。⑤ 本番ロック確定: DISCORD_WEBHOOK_URL/EV_ALERT/AB_TEST/NOTE_DRAFT/DISCORD_SYSTEM_WEBHOOK_URL 全 URL 設定済み・JVLINK_DISABLED 未設定 (本番 JVLink 有効) / ENABLE_PLAYWRIGHT_POST=0 (X 自動投稿安全オフ) / DRY_RUN 未設定 (本番モード) / scheduler.py 全ジョブ dry_run=False 確認済み。⑥ system アラートテスト 2 件追加 (test_system_alert_routes_to_system_channel / test_legacy_system_webhook_url_accepted): 計 12 テスト PASS。⑦ .env.example 復旧 (全 13 キー完全文書化)。影響: tests/notification/test_router.py, .env.example(復旧) |
 
 ---
@@ -329,9 +330,10 @@ Phase 2-C+B完了後: 30因子 ← 社長ビジョン達成
 
 | 項目 | 内容 |
 |------|------|
-| **ステータス** | 🔴 未着手 |
+| **ステータス** | 🟡 対応中（週次 ROI レポートは実装済み、閾値アラートは未実装）|
 | **影響** | ROI が急落しても Discord で自動アラートが来ない。目視での発見に依存 |
 | **対応方針** | 週次バッチで ROI 計算 → 直近4週 ROI < 90% で Discord アラート |
+| **部分対応（2026-05-21）** | `scripts/generate_ab_report.py` が毎週日曜18:00に V1/V2 ROI を Discord ab_test チャンネルへ配信開始。ROI・純利益・勝者バッジを Embed で表示。実測値（直近28日）: V1 ROI=64.1% / 純利益 ¥-2,300,518（単勝 615.6% / 複勝 105.0% が黒字、馬連 47.7% / ワイド 41.2% / 三連単 50.0% が赤字）。**残作業**: ROI < 90% 継続時の専用アラート送信ロジック（job_alert_threshold の新設） |
 
 #### W-025: Web ダッシュボードのオフライン耐性なし
 
@@ -380,6 +382,23 @@ Phase 2-C+B完了後: 30因子 ← 社長ビジョン達成
 
 ---
 
+#### W-031: V1 vs V2 A/B テスト週次レポート自動化（→完了）
+
+| 項目 | 内容 |
+|------|------|
+| **ID** | W-031 |
+| **優先度** | 高 |
+| **ステータス** | 🟢 完了（2026-05-21） |
+| **影響** | V1/V2 モデルの成績比較が手動確認に依存しており、どちらのモデルが優れているか週次で定量評価できなかった。A/B テスト稼働直後の旗振りもなく、モデル劣化に気づくタイミングが遅れるリスクがあった |
+| **対応** | `scripts/generate_ab_report.py` を完全実装。`_summary_row()` / `_detail_rows()` / `build_ab_report()` / `_send_summary_to_discord()` の4層構造で、対象レース数・ベット数・的中率・ROI・純利益・EV乖離MAE を V1/V2 で比較した Markdown レポートを生成し Discord に自動配信。`scripts/scheduler.py` 日曜18:00 自動実行（`_JOB_SCHEDULES["job_ab_report"] = [(6, 18, 0)]`・取りこぼし4時間窓・`_JOB_MAP_FULL` / `_JOB_MAP` 両対応）|
+| **エラーハンドリング仕様** | `_send_summary_to_discord()` は以下の3条件でいずれも例外を外に伝播させない: ① `DISCORD_WEBHOOK_AB_TEST` 未設定 → 静かにスキップ ② `urllib.error.HTTPError`（4xx/5xx）→ `WARNING` ログのみ ③ `OSError`（ネットワーク障害・タイムアウト）→ `WARNING` ログのみ。バッチ全体の継続実行を保証 |
+| **実測値（2026-05-21 ドライラン・直近28日）** | V1: 396レース / 8,987ベット / 的中率12.0% / **ROI 64.1%** / 純利益 **¥-2,300,518**。券種別: 単勝ROI 615.6%・複勝ROI 105.0%（黒字）/ 馬単59.6%・三連複87.8%・三連単50.0%・馬連47.7%・ワイド41.2%（赤字）。V2: 0件（V2稼働前期間のため正常ゼロ表示）|
+| **Discord Embed 出力** | title: "📊 V1 vs V2 A/B サマリー（直近 N 日）" / fields: V1 ROI・V2 ROI・V1 純利益・V2 純利益・判定（🔵V2優勢/🟠V1優勢/⚖️同等）/ color: Blurple(V2優勢)・Red(V1優勢)・Gray(同等) |
+| **テスト** | `tests/scripts/test_ab_report.py` 17件（`TestSendSummaryToDiscord` 8件含む）/ `tests/test_scheduler_state.py` 4件 = 計21件 all PASS。全スイート **486 PASS** |
+| **影響ファイル** | `scripts/generate_ab_report.py`（実装）, `scripts/scheduler.py`（ジョブ登録）, `tests/scripts/test_ab_report.py`（17件）, `tests/test_scheduler_state.py`（4件追加）|
+
+---
+
 #### W-026: 増分学習 `_IsotonicModel.booster_` 属性エラー（→完了）
 
 | 項目 | 内容 |
@@ -404,6 +423,8 @@ Phase 2-C+B完了後: 30因子 ← 社長ビジョン達成
   W-028  Discord マルチチャンネル Router        🟢 完了
   W-029  DB 複合インデックス 6件               🟢 完了
   W-030  EV 特化特徴量統合 + 69列再訓練        🟢 完了
+  W-031  V1/V2 A/B テスト週次レポート自動化    🟢 完了
+         （Discord Embed サマリー通知・日曜18:00自動配信・例外伝播なし）
   E2E    本番シミュレーション 5.12秒 ALL PASS   🟢 完了
 
 【本番稼働後・次フェーズ（JVLink SID 制約解消次第）】
