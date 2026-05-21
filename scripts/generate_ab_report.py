@@ -9,8 +9,13 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import json
+import logging
+import os
 import sqlite3
 import sys
+import urllib.error
+import urllib.request
 from datetime import date
 from pathlib import Path
 
@@ -24,6 +29,7 @@ from dotenv import load_dotenv
 load_dotenv(_ROOT / ".env", override=False)
 
 _DB_PATH = _ROOT / "data" / "umalogi.db"
+_logger = logging.getLogger("generate_ab_report")
 
 
 def _ver_expr() -> str:
@@ -106,6 +112,56 @@ def _detail_rows(conn: sqlite3.Connection, days: int) -> list[tuple]:
     return conn.execute(sql, (f"-{days} days",)).fetchall()
 
 
+def _send_summary_to_discord(v1: dict, v2: dict, days: int) -> None:
+    """
+    V1/V2 の ROI・純利益・勝者バッジを抽出し ab_test チャンネルへ Embed 送信する。
+
+    DISCORD_WEBHOOK_AB_TEST が未設定の場合は静かにスキップする。
+    HTTP エラーは WARNING ログに留め例外を外に伝播させない。
+    """
+    url = os.environ.get("DISCORD_WEBHOOK_AB_TEST", "").strip()
+    if not url:
+        return
+
+    if v2["roi"] > v1["roi"]:
+        verdict = f"🔵 V2 優勢 (ROI +{v2['roi'] - v1['roi']:.1f}pt)"
+        color = 0x5865F2  # Blurple
+    elif v1["roi"] > v2["roi"]:
+        verdict = f"🟠 V1 優勢 (ROI +{v1['roi'] - v2['roi']:.1f}pt)"
+        color = 0xED4245  # Red
+    else:
+        verdict = "⚖️ 同等"
+        color = 0x747F8D  # Gray
+
+    embed: dict = {
+        "title": f"📊 V1 vs V2 A/B サマリー（直近 {days} 日）",
+        "color": color,
+        "fields": [
+            {"name": "V1 ROI",    "value": f"`{v1['roi']:.1f}%`",         "inline": True},
+            {"name": "V2 ROI",    "value": f"`{v2['roi']:.1f}%`",         "inline": True},
+            {"name": "​",    "value": "​",                       "inline": True},
+            {"name": "V1 純利益", "value": f"`¥{v1['net_profit']:,.0f}`", "inline": True},
+            {"name": "V2 純利益", "value": f"`¥{v2['net_profit']:,.0f}`", "inline": True},
+            {"name": "​",    "value": "​",                       "inline": True},
+            {"name": "判定",      "value": verdict,                        "inline": False},
+        ],
+    }
+    payload = json.dumps({"embeds": [embed]}, ensure_ascii=False).encode("utf-8")
+    req = urllib.request.Request(
+        url,
+        data=payload,
+        headers={"Content-Type": "application/json"},
+        method="POST",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=10):
+            pass  # HTTP 204 No Content = success
+    except urllib.error.HTTPError as exc:
+        _logger.warning("Discord サマリー送信 HTTPError: %s %s", exc.code, exc.reason)
+    except Exception as exc:
+        _logger.warning("Discord サマリー送信失敗: %s", exc)
+
+
 def build_ab_report(conn: sqlite3.Connection, days: int = 7) -> str:
     """
     V1 vs V2 週次 A/B 成績比較 Markdown を生成して返す。
@@ -180,6 +236,8 @@ def main() -> None:
     conn.row_factory = sqlite3.Row
     try:
         report = build_ab_report(conn, days=args.days)
+        v1 = _summary_row(conn, "v1", args.days)
+        v2 = _summary_row(conn, "v2", args.days)
     finally:
         conn.close()
 
@@ -190,6 +248,7 @@ def main() -> None:
 
     from src.notification.router import NotificationRouter
     NotificationRouter().send_ab_report(report)
+    _send_summary_to_discord(v1, v2, args.days)
     print("\n✅ Discord 送信完了")
 
 

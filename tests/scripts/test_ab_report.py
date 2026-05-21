@@ -4,8 +4,11 @@ scripts/generate_ab_report.py のユニットテスト。
 """
 from __future__ import annotations
 
+import json
 import sqlite3
+import urllib.error
 from pathlib import Path
+from unittest.mock import MagicMock, patch
 
 
 def _load_mod():
@@ -198,3 +201,169 @@ def test_build_ab_report_winner_badge() -> None:
     report = mod.build_ab_report(_make_ab_db(), days=28)
     assert "🔵 V2" in report
     assert "🟠 V1" in report
+
+
+# ──────────────────────────────────────────────
+# _send_summary_to_discord() のテスト
+# ──────────────────────────────────────────────
+
+def _make_v1_v2() -> tuple[dict, dict]:
+    """テスト用 V1/V2 サマリー辞書を返す。"""
+    v1 = {"roi": 80.0, "net_profit": -600.0, "n_races": 10, "n_bets": 10,
+          "n_hits": 2, "hit_rate": 20.0, "ev_mae": 0.8}
+    v2 = {"roi": 160.0, "net_profit": 1800.0, "n_races": 10, "n_bets": 10,
+          "n_hits": 4, "hit_rate": 40.0, "ev_mae": 1.6}
+    return v1, v2
+
+
+class TestSendSummaryToDiscord:
+    """_send_summary_to_discord() の単体テスト。"""
+
+    def test_skip_when_no_webhook_url(self) -> None:
+        """DISCORD_WEBHOOK_AB_TEST 未設定時は HTTP リクエストを送らない。"""
+        mod = _load_mod()
+        with patch.dict("os.environ", {"DISCORD_WEBHOOK_AB_TEST": ""}, clear=False):
+            with patch("urllib.request.urlopen") as mock_open:
+                v1, v2 = _make_v1_v2()
+                mod._send_summary_to_discord(v1, v2, days=7)
+                mock_open.assert_not_called()
+
+    def test_posts_to_webhook_url(self) -> None:
+        """Webhook URL が設定されているとき urllib.request.urlopen を呼ぶこと。"""
+        mod = _load_mod()
+        fake_url = "https://discord.com/api/webhooks/test/token"
+        mock_ctx = MagicMock()
+        mock_ctx.__enter__ = MagicMock(return_value=mock_ctx)
+        mock_ctx.__exit__ = MagicMock(return_value=False)
+
+        with patch.dict("os.environ", {"DISCORD_WEBHOOK_AB_TEST": fake_url}, clear=False):
+            with patch("urllib.request.urlopen", return_value=mock_ctx) as mock_open:
+                v1, v2 = _make_v1_v2()
+                mod._send_summary_to_discord(v1, v2, days=7)
+                mock_open.assert_called_once()
+
+    def test_embed_contains_roi_values(self) -> None:
+        """POST ペイロードに V1/V2 ROI・純利益・判定が含まれること。"""
+        mod = _load_mod()
+        fake_url = "https://discord.com/api/webhooks/test/token"
+        captured: list[dict] = []
+
+        def _fake_urlopen(req, timeout=10):
+            body = req.data.decode("utf-8")
+            captured.append(json.loads(body))
+            ctx = MagicMock()
+            ctx.__enter__ = MagicMock(return_value=ctx)
+            ctx.__exit__ = MagicMock(return_value=False)
+            return ctx
+
+        with patch.dict("os.environ", {"DISCORD_WEBHOOK_AB_TEST": fake_url}, clear=False):
+            with patch("urllib.request.urlopen", side_effect=_fake_urlopen):
+                v1, v2 = _make_v1_v2()
+                mod._send_summary_to_discord(v1, v2, days=7)
+
+        assert len(captured) == 1
+        embed = captured[0]["embeds"][0]
+        field_names  = [f["name"]  for f in embed["fields"]]
+        field_values = [f["value"] for f in embed["fields"]]
+        assert "V1 ROI"    in field_names
+        assert "V2 ROI"    in field_names
+        assert "V1 純利益" in field_names
+        assert "V2 純利益" in field_names
+        assert "判定"      in field_names
+        # V2 優勢の文字列が含まれること
+        assert any("V2 優勢" in v for v in field_values)
+        # ROI 値が含まれること
+        assert any("80.0%" in v for v in field_values)
+        assert any("160.0%" in v for v in field_values)
+
+    def test_v1_wins_verdict_when_v1_roi_higher(self) -> None:
+        """V1 ROI > V2 ROI のとき 🟠 V1 優勢 が Embed に入ること。"""
+        mod = _load_mod()
+        fake_url = "https://discord.com/api/webhooks/test/token"
+        captured: list[dict] = []
+
+        def _fake_urlopen(req, timeout=10):
+            captured.append(json.loads(req.data.decode("utf-8")))
+            ctx = MagicMock()
+            ctx.__enter__ = MagicMock(return_value=ctx)
+            ctx.__exit__ = MagicMock(return_value=False)
+            return ctx
+
+        with patch.dict("os.environ", {"DISCORD_WEBHOOK_AB_TEST": fake_url}, clear=False):
+            with patch("urllib.request.urlopen", side_effect=_fake_urlopen):
+                v1 = {"roi": 120.0, "net_profit": 5000.0}
+                v2 = {"roi":  80.0, "net_profit": -1000.0}
+                mod._send_summary_to_discord(v1, v2, days=7)
+
+        verdict_values = [
+            f["value"] for f in captured[0]["embeds"][0]["fields"]
+            if f["name"] == "判定"
+        ]
+        assert verdict_values and "V1 優勢" in verdict_values[0]
+
+    def test_equal_roi_verdict(self) -> None:
+        """V1 ROI == V2 ROI のとき 同等 判定が Embed に入ること。"""
+        mod = _load_mod()
+        fake_url = "https://discord.com/api/webhooks/test/token"
+        captured: list[dict] = []
+
+        def _fake_urlopen(req, timeout=10):
+            captured.append(json.loads(req.data.decode("utf-8")))
+            ctx = MagicMock()
+            ctx.__enter__ = MagicMock(return_value=ctx)
+            ctx.__exit__ = MagicMock(return_value=False)
+            return ctx
+
+        with patch.dict("os.environ", {"DISCORD_WEBHOOK_AB_TEST": fake_url}, clear=False):
+            with patch("urllib.request.urlopen", side_effect=_fake_urlopen):
+                v1 = {"roi": 100.0, "net_profit": 0.0}
+                v2 = {"roi": 100.0, "net_profit": 0.0}
+                mod._send_summary_to_discord(v1, v2, days=7)
+
+        verdict_values = [
+            f["value"] for f in captured[0]["embeds"][0]["fields"]
+            if f["name"] == "判定"
+        ]
+        assert verdict_values and "同等" in verdict_values[0]
+
+    def test_http_error_does_not_raise(self) -> None:
+        """HTTP 4xx/5xx エラー時に例外を外に伝播させないこと。"""
+        mod = _load_mod()
+        fake_url = "https://discord.com/api/webhooks/test/token"
+        http_err = urllib.error.HTTPError(fake_url, 400, "Bad Request", {}, None)  # type: ignore[arg-type]
+
+        with patch.dict("os.environ", {"DISCORD_WEBHOOK_AB_TEST": fake_url}, clear=False):
+            with patch("urllib.request.urlopen", side_effect=http_err):
+                v1, v2 = _make_v1_v2()
+                mod._send_summary_to_discord(v1, v2, days=7)  # 例外が出なければ PASS
+
+    def test_generic_exception_does_not_raise(self) -> None:
+        """ネットワーク障害など一般例外時に例外を外に伝播させないこと。"""
+        mod = _load_mod()
+        fake_url = "https://discord.com/api/webhooks/test/token"
+
+        with patch.dict("os.environ", {"DISCORD_WEBHOOK_AB_TEST": fake_url}, clear=False):
+            with patch("urllib.request.urlopen", side_effect=OSError("connection refused")):
+                v1, v2 = _make_v1_v2()
+                mod._send_summary_to_discord(v1, v2, days=7)  # 例外が出なければ PASS
+
+    def test_embed_title_contains_days(self) -> None:
+        """Embed タイトルに集計日数が含まれること。"""
+        mod = _load_mod()
+        fake_url = "https://discord.com/api/webhooks/test/token"
+        captured: list[dict] = []
+
+        def _fake_urlopen(req, timeout=10):
+            captured.append(json.loads(req.data.decode("utf-8")))
+            ctx = MagicMock()
+            ctx.__enter__ = MagicMock(return_value=ctx)
+            ctx.__exit__ = MagicMock(return_value=False)
+            return ctx
+
+        with patch.dict("os.environ", {"DISCORD_WEBHOOK_AB_TEST": fake_url}, clear=False):
+            with patch("urllib.request.urlopen", side_effect=_fake_urlopen):
+                v1, v2 = _make_v1_v2()
+                mod._send_summary_to_discord(v1, v2, days=28)
+
+        title = captured[0]["embeds"][0]["title"]
+        assert "28" in title
