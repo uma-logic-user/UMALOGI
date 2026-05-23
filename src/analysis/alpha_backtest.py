@@ -1,30 +1,37 @@
 """
-src/analysis/alpha_backtest.py — ALPHA-Payout ガチ投資シミュレーション
-=======================================================================
+src/analysis/alpha_backtest.py — ALPHA-Payout 超攻撃型投資シミュレーション
+==========================================================================
 
-本番稼働モデルと同じ AlphaPayoutModel（複勝ペイアウト直接回帰）を使い
-2024 学習 → 2025 テスト の walk-forward（カンニング排除）で検証する。
+AlphaPayoutModel (複勝EV直接回帰) の予測を使い、
+複勝 / 馬連 / 三連複 の全3券種を組み合わせた超攻撃型複利シミュレーション。
 
-初期資金: ¥50,000
-Pattern 1: 単利固定ベット ¥1,000/bet
-Pattern 2: 複利ベット     残高の 2%/bet（初期 = ¥1,000）
+walk-forward: 2024学習 → 2025テスト (カンニング排除)
+
+券種別ポジション配分（全体投資額の割合）:
+  複勝  : 40%  ← 的中率が高く土台を支える
+  馬連  : 35%  ← 中配当でリターンを積み上げ
+  三連複 : 25%  ← 高配当爆発狙い
+
+モード:
+  --mode aggressive : 1レースあたり残高の20%（攻撃型）
+  --mode ultra      : 1レースあたり残高の50%（超攻撃型）
+  --mode yolo       : EV比例全ツッパ (min(pred_ev/2, 1.0) * 残高)
 
 Usage:
-    py src/analysis/alpha_backtest.py
-    py src/analysis/alpha_backtest.py --bet-type 複勝 --optuna-trials 20
-    py src/analysis/alpha_backtest.py --no-optuna    # 速度優先（Optuna なし）
+  py src/analysis/alpha_backtest.py
+  py src/analysis/alpha_backtest.py --mode ultra
+  py src/analysis/alpha_backtest.py --mode yolo --no-optuna
+  py src/analysis/alpha_backtest.py --mode ultra --compare   # 全モード比較
 """
 
 from __future__ import annotations
 
 import argparse
-import logging
 import sqlite3
 import sys
 from pathlib import Path
 from typing import NamedTuple
 
-import numpy as np
 import pandas as pd
 
 _ROOT = Path(__file__).resolve().parents[2]
@@ -33,360 +40,526 @@ if str(_ROOT) not in sys.path:
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-logging.basicConfig(
-    level=logging.WARNING,
-    format="%(asctime)s %(levelname)s: %(message)s",
-    stream=sys.stdout,
-)
+import logging
+logging.basicConfig(level=logging.WARNING, stream=sys.stdout)
 
 _DB_PATH     = _ROOT / "data" / "umalogi.db"
 _RESEARCH_DB = _ROOT / "data" / "netkeiba_research.db"
 
-_INITIAL   = 50_000      # 初期資金 (円)
-_FIXED     = 1_000       # Pattern 1: 固定賭け金 (円)
-_FRAC      = 0.02        # Pattern 2: 残高の何割を賭けるか
-_MIN_BET   = 100         # 最低賭け金 (円)
+_INITIAL   = 50_000    # 初期資金 (円)
+_MIN_BET   = 100       # 最低賭け金 (円)
+_EV_THR    = 1.05      # AlphaPayoutModel デフォルト閾値
+
+# 券種別投資配分
+_SPLIT = {"複勝": 0.40, "馬連": 0.35, "三連複": 0.25}
 
 
-# ── ベットデータ取得 ───────────────────────────────────────────────────
+# ── 払戻マップ構築 ─────────────────────────────────────────────────────
 
-def _load_bet_rows(
-    conn: sqlite3.Connection,
-    n_optuna: int,
-    research_db: Path | None,
-) -> tuple[pd.DataFrame, float, float]:
+def _build_payout_map(
+    conn: sqlite3.Connection, year: int
+) -> dict[str, dict[str, dict[str, float]]]:
     """
-    AlphaPayoutModel を 2024 で学習 → 2025 でシグナル生成する。
-    戻り値: (bets_df, ev_threshold, auc)
+    {race_id: {bet_type: {combination_str: payout}}} を返す。
+    payouts は「100円あたりの払い戻し額」ではなく「実払戻額」。
+    """
+    rows = conn.execute(
+        """
+        SELECT rp.race_id, rp.bet_type, rp.combination, rp.payout
+        FROM race_payouts rp
+        JOIN races r ON rp.race_id = r.race_id
+        WHERE strftime('%Y', r.date) = ?
+          AND rp.bet_type IN ('複勝', '馬連', '三連複')
+          AND rp.combination IS NOT NULL
+          AND rp.payout IS NOT NULL AND rp.payout > 0
+        """,
+        (str(year),),
+    ).fetchall()
+
+    pmap: dict[str, dict[str, dict[str, float]]] = {}
+    for race_id, bet_type, combo, payout in rows:
+        pmap.setdefault(race_id, {}).setdefault(bet_type, {})[combo] = float(payout)
+    return pmap
+
+
+def _combo_key_umaren(h1: int, h2: int) -> str:
+    """馬連キー: 小さい馬番-大きい馬番"""
+    return f"{min(h1, h2)}-{max(h1, h2)}"
+
+
+def _combo_key_sanrenpuku(h1: int, h2: int, h3: int) -> str:
+    """三連複キー: 数値昇順でハイフン連結"""
+    nums = sorted([h1, h2, h3])
+    return f"{nums[0]}-{nums[1]}-{nums[2]}"
+
+
+def _get_payout(
+    pmap: dict[str, dict[str, dict[str, float]]],
+    race_id: str,
+    bet_type: str,
+    combo_key: str,
+) -> float:
+    """払戻額 (0 = 外れ)"""
+    return pmap.get(race_id, {}).get(bet_type, {}).get(combo_key, 0.0)
+
+
+# ── モデル予測ロード ──────────────────────────────────────────────────
+
+def _load_predictions(
+    conn: sqlite3.Connection, n_optuna: int, research_db: Path | None
+) -> tuple[pd.DataFrame, float]:
+    """
+    AlphaPayoutModel を 2024 で学習 → 2025 で pred_ev を付与した全馬データを返す。
+    戻り値: (test_df_with_pred_ev, ev_threshold)
     """
     from src.ml.alpha_payout_model import AlphaPayoutModel
 
     model = AlphaPayoutModel()
 
     print("  [学習] 2024年データをロード中...", flush=True)
-    train_df = model.load_training_data(
-        conn, [2024], research_db_path=research_db
-    )
-    print(f"  [学習] {len(train_df):,} 行ロード完了", flush=True)
+    train_df = model.load_training_data(conn, [2024], research_db_path=research_db)
+    print(f"  [学習] {len(train_df):,} 行", flush=True)
 
-    print(f"  [学習] Optuna {n_optuna}試行でハイパーパラ最適化中...", flush=True)
+    print(f"  [学習] Optuna {n_optuna}試行...", flush=True)
     metrics = model.train(train_df, n_optuna_trials=n_optuna)
     threshold = model._ev_threshold
     print(
-        f"  [学習完了] n_train={metrics['n_train']:,}  "
-        f"val_ROI={metrics['val_roi']:.1f}%  閾値={threshold:.2f}",
+        f"  [学習完了] val_ROI={metrics['val_roi']:.1f}%  閾値={threshold:.2f}",
         flush=True,
     )
 
     print("  [テスト] 2025年データをロード中...", flush=True)
-    test_df = model.load_training_data(
-        conn, [2025], research_db_path=research_db
-    )
-    print(f"  [テスト] {len(test_df):,} 行ロード完了", flush=True)
-
-    pred_ev = model.predict_payout_ev(test_df)
-    test_df = test_df.copy()
-    test_df["pred_ev"]       = pred_ev.values
+    test_df = model.load_training_data(conn, [2025], research_db_path=research_db)
+    test_df["pred_ev"] = model.predict_payout_ev(test_df).values
     test_df["actual_payout"] = pd.to_numeric(
         test_df["actual_payout"], errors="coerce"
     ).fillna(0.0)
+    print(f"  [テスト] {len(test_df):,} 行", flush=True)
+    return test_df, threshold
 
-    bets_df = test_df[test_df["pred_ev"] >= threshold].copy()
-    bets_df = bets_df.sort_values(["date", "race_id", "horse_number"]).reset_index(drop=True)
 
-    n_total = len(test_df)
-    n_bets  = len(bets_df)
-    n_days  = test_df["date"].nunique()
-    print(
-        f"  [シグナル] pred_ev>{threshold:.2f}: {n_bets:,} / {n_total:,} 件  "
-        f"({n_bets / n_total * 100:.1f}%)  日平均 {n_bets / max(n_days, 1):.1f}件",
-        flush=True,
-    )
-    return bets_df, threshold, float(metrics.get("auc", 0.0))
+# ── レース単位シグナル生成 ───────────────────────────────────────────
+
+def _build_race_signals(
+    test_df: pd.DataFrame,
+    pmap: dict,
+    threshold: float,
+) -> pd.DataFrame:
+    """
+    pred_ev > threshold の馬が1頭以上いるレースを「エントリーレース」として選択。
+    各エントリーレースで pred_ev 上位3頭を使い、複勝・馬連・三連複を生成。
+
+    ※ 閾値はレース選択のフィルタのみに使用。
+      2番手・3番手の馬は閾値を超えなくてもモデルのトップピックとして使う。
+    """
+    signals: list[dict] = []
+    # pred_ev 降順でソートしてグループ化
+    sorted_df = test_df.sort_values("pred_ev", ascending=False)
+    grouped = sorted_df.groupby("race_id", sort=False)
+
+    for race_id, grp in grouped:
+        # レース選択: 最高EVが閾値を超えるか
+        if float(grp["pred_ev"].iloc[0]) < threshold:
+            continue
+
+        date   = grp["date"].iloc[0]
+        max_ev = float(grp["pred_ev"].iloc[0])
+        # 上位3頭（EV順。3頭未満なら可能な分だけ）
+        top_horses = grp["horse_number"].astype(int).tolist()[:3]
+
+        h1 = top_horses[0]
+
+        # ── 複勝 (top-1) ──────────────────────────────────────────────
+        combo_f = str(h1)
+        pay_f   = _get_payout(pmap, race_id, "複勝", combo_f)
+        signals.append({
+            "date": date, "race_id": race_id, "bet_type": "複勝",
+            "combo": combo_f, "max_ev": max_ev,
+            "actual_payout": pay_f, "is_hit": int(pay_f > 0),
+        })
+
+        # ── 馬連 (top-1 × top-2) ─────────────────────────────────────
+        if len(top_horses) >= 2:
+            h2 = top_horses[1]
+            combo_u = _combo_key_umaren(h1, h2)
+            pay_u   = _get_payout(pmap, race_id, "馬連", combo_u)
+            signals.append({
+                "date": date, "race_id": race_id, "bet_type": "馬連",
+                "combo": combo_u, "max_ev": max_ev,
+                "actual_payout": pay_u, "is_hit": int(pay_u > 0),
+            })
+
+        # ── 三連複 (top-1 × top-2 × top-3) ────────────────────────────
+        if len(top_horses) >= 3:
+            h3 = top_horses[2]
+            combo_s = _combo_key_sanrenpuku(h1, h2, h3)
+            pay_s   = _get_payout(pmap, race_id, "三連複", combo_s)
+            signals.append({
+                "date": date, "race_id": race_id, "bet_type": "三連複",
+                "combo": combo_s, "max_ev": max_ev,
+                "actual_payout": pay_s, "is_hit": int(pay_s > 0),
+            })
+
+    return pd.DataFrame(signals).sort_values(["date", "race_id", "bet_type"])
 
 
 # ── シミュレーション ──────────────────────────────────────────────────
 
 class SimResult(NamedTuple):
-    label: str
+    mode: str
+    final_balance: float
+    peak_balance: float
     n_bets: int
+    n_races: int
     n_hits: int
     hit_rate: float
     total_stake: float
     total_payout: float
     roi: float
-    net_profit: float
-    final_balance: float
-    max_drawdown_pct: float
+    max_dd_pct: float
     max_consec_loss: int
+    bankruptcy_month: str | None
     monthly: pd.DataFrame
 
 
-def _simulate(
-    bets_df: pd.DataFrame,
-    pattern: str,           # "fixed" | "compound"
-    initial: int = _INITIAL,
-    fixed: int = _FIXED,
-    frac: float = _FRAC,
-) -> SimResult:
-    if len(bets_df) == 0:
-        empty = pd.DataFrame(
-            columns=["month", "bets", "hits", "stake", "payout", "profit", "balance"]
-        )
-        return SimResult(
-            label=pattern, n_bets=0, n_hits=0, hit_rate=0,
-            total_stake=0, total_payout=0, roi=0, net_profit=0,
-            final_balance=initial, max_drawdown_pct=0, max_consec_loss=0,
-            monthly=empty,
-        )
+def _compute_stake(balance: float, mode: str, max_ev: float, frac: float = 0.20) -> float:
+    """
+    モード別賭け金算出（残高に対する割合）。
+    mode:
+      fixed     : 固定1000円（旧パターン1）
+      compound  : 残高の2%（旧パターン2）
+      aggressive: 残高の20%（攻撃型）
+      ultra     : 残高の50%（超攻撃型）
+      yolo      : min(pred_ev/2, 1.0) × 残高（EV全ツッパ）
+    """
+    if balance < _MIN_BET:
+        return 0.0
+    if mode == "fixed":
+        raw = 1_000.0
+    elif mode == "compound":
+        raw = balance * 0.02
+    elif mode == "aggressive":
+        raw = balance * 0.20
+    elif mode == "ultra":
+        raw = balance * 0.50
+    elif mode == "yolo":
+        ratio = min(max_ev / 2.0, 1.0)
+        raw = balance * ratio
+    else:
+        raw = balance * frac
 
-    balance  = float(initial)
-    peak     = float(initial)
-    max_dd   = 0.0
-    consec   = 0
-    max_cl   = 0
+    raw = max(_MIN_BET, raw)
+    raw = min(raw, balance)              # 残高上限
+    return round(raw / 100) * 100        # 100円単位
+
+
+def _simulate(sig_df: pd.DataFrame, mode: str) -> SimResult:
+    balance = float(_INITIAL)
+    peak    = float(_INITIAL)
+    max_dd  = 0.0
+    consec  = 0
+    max_cl  = 0
+    bankrupt_month: str | None = None
     records: list[dict] = []
 
-    for _, row in bets_df.iterrows():
+    # レースごとにグループ化して投資額を決定
+    for (date, race_id), grp in sig_df.groupby(["date", "race_id"], sort=True):
         if balance < _MIN_BET:
-            break  # 実質破産
+            bankrupt_month = pd.to_datetime(date).strftime("%Y-%m")
+            break
 
-        if pattern == "fixed":
-            stake = float(fixed)
-        else:
-            # 残高の frac 割、100 円単位切り上げ、上限なし
-            raw = balance * frac
-            stake = max(_MIN_BET, round(raw / 100) * 100)
+        # このレースの最大EV (全券種共通で投資総額を決める)
+        max_ev = float(grp["max_ev"].iloc[0])
 
-        stake = min(stake, balance)  # 残高を超えないよう
+        # 全体割当（残高の何%をこのレースに使うか）
+        total_alloc = _compute_stake(balance, mode, max_ev)
+        total_alloc = min(total_alloc, balance)
 
-        is_hit = int(row.get("is_place", row.get("is_hit", 0)))
-        apy    = float(row["actual_payout"])
+        race_profit = 0.0
+        race_stake  = 0.0
+        race_hit    = False
 
-        payout = is_hit * apy * stake / 100.0 if apy > 0 else 0.0
+        for _, row in grp.iterrows():
+            frac = _SPLIT.get(row["bet_type"], 0.0)
+            stake = round(total_alloc * frac / 100) * 100
+            stake = max(_MIN_BET, min(stake, balance - race_stake))
+            if stake < _MIN_BET:
+                continue
 
-        balance += payout - stake
-        peak  = max(peak, balance)
-        dd    = (peak - balance) / peak * 100 if peak > 0 else 0.0
+            pay_x100 = float(row["actual_payout"])    # 100円あたり払戻
+            is_hit   = int(row["is_hit"])
+            payout   = is_hit * pay_x100 * stake / 100.0
+
+            race_stake  += stake
+            race_profit += payout - stake
+            if is_hit:
+                race_hit = True
+
+            records.append({
+                "date":     date,
+                "race_id":  race_id,
+                "bet_type": row["bet_type"],
+                "stake":    stake,
+                "payout":   payout,
+                "is_hit":   is_hit,
+                "balance":  balance + race_profit,   # 仮（後で更新）
+            })
+
+        balance += race_profit
+        peak = max(peak, balance)
+        dd   = (peak - balance) / peak * 100 if peak > 0 else 0.0
         max_dd = max(max_dd, dd)
 
-        if payout > 0:
+        # records 末尾を正しい balance で上書き
+        for r in records[-len(grp):]:
+            r["balance"] = balance
+
+        if race_hit:
             consec = 0
         else:
             consec += 1
             max_cl = max(max_cl, consec)
 
-        records.append({
-            "date":    row["date"],
-            "stake":   stake,
-            "payout":  payout,
-            "is_hit":  is_hit,
-            "balance": balance,
-        })
+    if not records:
+        empty = pd.DataFrame(
+            columns=["month","bets","hits","stake","payout","profit","balance"]
+        )
+        return SimResult(
+            mode=mode, final_balance=balance, peak_balance=peak,
+            n_bets=0, n_races=0, n_hits=0, hit_rate=0,
+            total_stake=0, total_payout=0, roi=0, max_dd_pct=0,
+            max_consec_loss=0, bankruptcy_month=bankrupt_month, monthly=empty,
+        )
 
     df = pd.DataFrame(records)
     n_b  = len(df)
+    n_r  = df.groupby(["date", "race_id"]).ngroups
     n_h  = int(df["is_hit"].sum())
     ts   = float(df["stake"].sum())
     tp   = float(df["payout"].sum())
     roi  = tp / ts * 100 if ts > 0 else 0.0
-    prof = tp - ts
 
     df["month"] = pd.to_datetime(df["date"]).dt.to_period("M").astype(str)
     monthly = (
         df.groupby("month")
-        .agg(
-            bets=("stake", "count"),
-            hits=("is_hit", "sum"),
-            stake=("stake", "sum"),
-            payout=("payout", "sum"),
-            balance=("balance", "last"),
-        )
+        .agg(bets=("stake", "count"), hits=("is_hit", "sum"),
+             stake=("stake", "sum"), payout=("payout", "sum"),
+             balance=("balance", "last"))
         .reset_index()
     )
     monthly["profit"] = monthly["payout"] - monthly["stake"]
 
     return SimResult(
-        label=pattern,
-        n_bets=n_b,
-        n_hits=n_h,
+        mode=mode, final_balance=balance, peak_balance=peak,
+        n_bets=n_b, n_races=n_r, n_hits=n_h,
         hit_rate=n_h / n_b * 100 if n_b > 0 else 0.0,
-        total_stake=ts,
-        total_payout=tp,
-        roi=roi,
-        net_profit=prof,
-        final_balance=balance,
-        max_drawdown_pct=max_dd,
-        max_consec_loss=max_cl,
-        monthly=monthly,
+        total_stake=ts, total_payout=tp, roi=roi,
+        max_dd_pct=max_dd, max_consec_loss=max_cl,
+        bankruptcy_month=bankrupt_month, monthly=monthly,
     )
 
 
 # ── レポート出力 ──────────────────────────────────────────────────────
 
-def _pct_bar(val: float, good: float, bad: float, width: int = 10) -> str:
-    ratio = max(0, min(1, (val - bad) / (good - bad))) if good != bad else 0
-    filled = round(ratio * width)
-    return "▓" * filled + "░" * (width - filled)
+_MODE_LABEL = {
+    "fixed":      "旧 Pattern 1: 単利固定 ¥1,000/bet",
+    "compound":   "旧 Pattern 2: 複利 2%/bet",
+    "aggressive": "攻撃型: 1レース残高の 20%",
+    "ultra":      "超攻撃型: 1レース残高の 50%",
+    "yolo":       "全ツッパ: EV比例 (min(EV/2, 100%))",
+}
 
 
-def _print_detail(r: SimResult, initial: int) -> None:
-    tag = "Pattern 1: 単利固定ベット (¥1,000/bet)" if r.label == "fixed" \
-          else "Pattern 2: 複利ベット (残高の2%/bet)"
+def _print_detail(r: SimResult) -> None:
+    label = _MODE_LABEL.get(r.mode, r.mode)
+    bankrupt = r.bankruptcy_month is not None
     print()
-    print(f"{'═'*68}")
-    print(f"  {tag}")
-    print(f"{'═'*68}")
-    print(f"  初期資金    : ¥{initial:>12,}")
-    print(f"  最終残高    : ¥{r.final_balance:>12,.0f}  ({r.final_balance/initial*100 - 100:+.1f}%)")
-    print(f"  {'─'*64}")
-    print(f"  ベット件数  : {r.n_bets:>8,}")
+    print(f"{'═'*72}")
+    print(f"  {label}")
+    print(f"{'═'*72}")
+    if bankrupt:
+        print(f"  ⚠️  破産: {r.bankruptcy_month}  最大連敗 {r.max_consec_loss}連敗")
+    print(f"  初期資金    : ¥{_INITIAL:>12,}")
+    print(f"  最終残高    : ¥{r.final_balance:>12,.0f}"
+          + (f"  (破産)" if bankrupt else f"  ({r.final_balance/_INITIAL*100 - 100:+.1f}%)"))
+    print(f"  最高到達残高: ¥{r.peak_balance:>12,.0f}")
+    print(f"  ─"*36)
+    print(f"  ベット件数  : {r.n_bets:>8,}  ({r.n_races}レース×複数券種)")
     print(f"  的中数      : {r.n_hits:>8,}  (的中率 {r.hit_rate:.1f}%)")
     print(f"  総投資額    : ¥{r.total_stake:>12,.0f}")
     print(f"  総払戻額    : ¥{r.total_payout:>12,.0f}")
-    print(f"  純損益      : ¥{r.net_profit:>+12,.0f}")
+    print(f"  純損益      : ¥{r.total_payout - r.total_stake:>+12,.0f}")
     print(f"  ROI         : {r.roi:>10.1f}%")
-    print(f"  {'─'*64}")
-    print(f"  最大DD      : {r.max_drawdown_pct:>8.1f}%")
+    print(f"  最大DD      : {r.max_dd_pct:>8.1f}%")
     print(f"  最大連負    : {r.max_consec_loss:>8} 連敗")
+
+    if not r.monthly.empty:
+        print()
+        print(f"  ── 月別成績 ──")
+        print(f"  {'月':>7}  {'件数':>5}  {'的中':>4}  {'投資':>10}  {'払戻':>10}  "
+              f"{'損益':>11}  {'残高':>11}")
+        print(f"  {'─'*72}")
+        for _, row in r.monthly.iterrows():
+            sign = "+" if row["profit"] >= 0 else ""
+            print(
+                f"  {row['month']:>7}  {int(row['bets']):>5,}  {int(row['hits']):>4}  "
+                f"¥{int(row['stake']):>9,}  ¥{int(row['payout']):>9,}  "
+                f"{sign}¥{int(row['profit']):>9,}  ¥{int(row['balance']):>10,}"
+            )
+
+
+def _print_comparison_table(results: list[SimResult]) -> None:
+    """全モード比較サマリーテーブル"""
+    print()
+    w = 76
+    print("╔" + "═" * w + "╗")
+    print("║" + " UMALOGI Alpha-Payout 超攻撃型シミュレーション 2025年 全モード比較 ".center(w) + "║")
+    print("╠" + "═" * w + "╣")
+
+    cols = [
+        ("モード",       lambda r: _MODE_LABEL.get(r.mode, r.mode)[:28]),
+        ("最終残高",     lambda r: f"¥{r.final_balance:>12,.0f}" + ("💀" if r.bankruptcy_month else "")),
+        ("最高到達残高", lambda r: f"¥{r.peak_balance:>12,.0f}"),
+        ("ROI",          lambda r: f"{r.roi:>8.1f}%"),
+        ("件数",         lambda r: f"{r.n_bets:>6,}"),
+        ("的中率",       lambda r: f"{r.hit_rate:>6.1f}%"),
+        ("最大DD",       lambda r: f"{r.max_dd_pct:>6.1f}%"),
+        ("最大連負",     lambda r: f"{r.max_consec_loss:>5}連敗"),
+        ("破産",         lambda r: r.bankruptcy_month or "なし"),
+    ]
+
+    for label, fn in cols:
+        row = f"║  {label:<14}"
+        for r in results:
+            cell = fn(r)
+            row += f"  {cell:<18}"
+        row += "  ║"
+        print(row)
+
+    print("╠" + "═" * w + "╣")
+    row = "║  " + "評価".ljust(14)
+    for r in results:
+        if r.bankruptcy_month:
+            cell = "💀 破産"
+        elif r.roi >= 150:
+            cell = "🚀 爆益"
+        elif r.roi >= 120:
+            cell = "✅ 大黒字"
+        elif r.roi > 100:
+            cell = "✅ 黒字"
+        else:
+            cell = "❌ 赤字"
+        row += f"  {cell:<18}"
+    row += "  ║"
+    print(row)
+    print("╚" + "═" * w + "╝")
     print()
 
-    if r.monthly.empty:
-        print("  月別データなし")
-        return
 
-    print(f"  ── 月別成績 ──")
-    print(f"  {'月':>7}  {'件数':>5}  {'的中':>4}  {'投資':>9}  {'払戻':>9}  {'損益':>10}  {'残高':>10}")
-    print(f"  {'─'*68}")
-    for _, row in r.monthly.iterrows():
-        sign = "+" if row["profit"] >= 0 else ""
+def _print_bet_type_breakdown(sig_df: pd.DataFrame) -> None:
+    """券種別成績内訳"""
+    print()
+    print("  ── 券種別シグナル内訳 (全モード共通) ──")
+    print(f"  {'券種':>6}  {'件数':>6}  {'的中':>5}  {'的中率':>7}  {'平均払戻':>9}  {'最高払戻':>9}")
+    print(f"  {'─'*56}")
+    for bt in ["複勝", "馬連", "三連複"]:
+        sub = sig_df[sig_df["bet_type"] == bt]
+        n   = len(sub)
+        h   = int(sub["is_hit"].sum())
+        hr  = h / n * 100 if n > 0 else 0
+        payouts_hit = sub[sub["is_hit"] == 1]["actual_payout"]
+        avg_p = float(payouts_hit.mean()) if len(payouts_hit) > 0 else 0
+        max_p = float(payouts_hit.max())  if len(payouts_hit) > 0 else 0
         print(
-            f"  {row['month']:>7}  {int(row['bets']):>5,}  {int(row['hits']):>4}  "
-            f"¥{int(row['stake']):>8,}  ¥{int(row['payout']):>8,}  "
-            f"{sign}¥{int(row['profit']):>8,}  ¥{int(row['balance']):>9,}"
+            f"  {bt:>6}  {n:>6,}  {h:>5}  {hr:>6.1f}%  "
+            f"¥{avg_p:>8,.0f}  ¥{max_p:>8,.0f}"
         )
-
-
-def _print_summary(p1: SimResult, p2: SimResult, initial: int,
-                   threshold: float, n_signals: int, n_days: int) -> None:
-    avg_sig = n_signals / max(n_days, 1)
-    print()
-    print("╔" + "═" * 68 + "╗")
-    print("║" + " UMALOGI Alpha-Payout ガチ投資シミュレーション 2025年 ".center(68) + "║")
-    print("╠" + "═" * 68 + "╣")
-    rows = [
-        ("モデル",             "AlphaPayoutModel (複勝EV直接回帰)"),
-        ("学習期間",           "2024年 (カンニング排除)"),
-        ("テスト期間",         "2025年全52週"),
-        ("EV閾値",             f"pred_ev > {threshold:.2f}"),
-        ("日平均シグナル数",   f"{avg_sig:.1f} 件/日"),
-        ("初期資金",           f"¥{initial:,}"),
-    ]
-    for lbl, val in rows:
-        print(f"║  {lbl:<22} {val:<44}║")
-    print("╠" + "═" * 68 + "╣")
-    hdr = f"{'指標':<24} {'Pattern 1: 単利固定':>19}  {'Pattern 2: 複利2%':>18}"
-    print(f"║  {hdr}  ║")
-    print("╠" + "═" * 68 + "╣")
-    rows2 = [
-        ("最終残高",         f"¥{p1.final_balance:>12,.0f}", f"¥{p2.final_balance:>12,.0f}"),
-        ("損益",             f"¥{p1.net_profit:>+12,.0f}", f"¥{p2.net_profit:>+12,.0f}"),
-        ("ROI",              f"{p1.roi:>14.1f}%",            f"{p2.roi:>14.1f}%"),
-        ("ベット件数",       f"{p1.n_bets:>15,}",            f"{p2.n_bets:>15,}"),
-        ("的中率",           f"{p1.hit_rate:>14.1f}%",       f"{p2.hit_rate:>14.1f}%"),
-        ("最大ドローダウン", f"{p1.max_drawdown_pct:>14.1f}%", f"{p2.max_drawdown_pct:>14.1f}%"),
-        ("最大連続負け",     f"{p1.max_consec_loss:>13}連敗", f"{p2.max_consec_loss:>13}連敗"),
-    ]
-    for lbl, v1, v2 in rows2:
-        print(f"║  {lbl:<24} {v1:>19}  {v2:>18}  ║")
-    print("╠" + "═" * 68 + "╣")
-    v1 = "✅ 黒字" if p1.net_profit > 0 else "❌ 赤字"
-    v2 = "✅ 黒字" if p2.net_profit > 0 else "❌ 赤字"
-    print(f"║  {'評価':<24} {v1:>19}  {v2:>18}  ║")
-
-    # 必要資金推定（ROIが1未満の場合のみ）
-    if p1.roi < 100 and p1.n_bets > 0:
-        loss_per_bet = (100 - p1.roi) / 100 * _FIXED
-        needed_days = n_days
-        daily_bets  = n_signals / max(n_days, 1)
-        # 1年間の総損失 = 日損失 × 日数
-        daily_loss = loss_per_bet * daily_bets
-        needed_capital = int(daily_loss * needed_days + 1)
-        print(f"║  {'必要資金(単利全期間)':24} ¥{needed_capital:>18,}{'':>20}║")
-
-    print("╚" + "═" * 68 + "╝")
-    print()
 
 
 # ── main ──────────────────────────────────────────────────────────────
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description="Alpha-Payout ガチ投資シミュレーション")
-    ap.add_argument("--optuna-trials", type=int, default=20,
-                    help="Optuna 試行回数 (デフォルト20)")
-    ap.add_argument("--no-optuna",    action="store_true",
-                    help="Optuna を使わず高速実行 (デフォルト閾値使用)")
+    ap = argparse.ArgumentParser(description="Alpha-Payout 超攻撃型投資シミュレーション")
+    ap.add_argument("--mode",   default="ultra",
+                    choices=["fixed","compound","aggressive","ultra","yolo","all"],
+                    help="投資モード (default: ultra / all: 全モード比較)")
+    ap.add_argument("--optuna-trials", type=int, default=20)
+    ap.add_argument("--no-optuna",    action="store_true")
+    ap.add_argument("--compare",      action="store_true",
+                    help="全5モードを一括比較")
     args = ap.parse_args()
 
     n_optuna = 1 if args.no_optuna else args.optuna_trials
+    modes    = ["fixed","compound","aggressive","ultra","yolo"] \
+               if (args.mode == "all" or args.compare) else [args.mode]
 
     print()
-    print("=" * 68)
-    print("  UMALOGI Alpha-Payout バックテスト — ガチ投資シミュレーション")
-    print(f"  初期資金: ¥{_INITIAL:,}  |  Optuna: {n_optuna}試行")
-    print("  walk-forward: 2024学習 → 2025テスト  (カンニング排除)")
-    print("=" * 68)
+    print("=" * 72)
+    print("  UMALOGI Alpha-Payout 超攻撃型バックテスト 2025年全期間")
+    print(f"  初期資金: ¥{_INITIAL:,}  |  券種: 複勝+馬連+三連複")
+    print(f"  Optuna: {n_optuna}試行  |  モード: {', '.join(modes)}")
+    print("  walk-forward: 2024学習 → 2025テスト (カンニング排除)")
+    print("=" * 72)
 
     conn = sqlite3.connect(str(_DB_PATH))
     research_db = _RESEARCH_DB if _RESEARCH_DB.exists() else None
-    if research_db:
-        print(f"  Research DB: {research_db.name}")
 
     print()
     print("[Phase 1] AlphaPayoutModel 学習・予測...", flush=True)
-    try:
-        bets_df, threshold, _ = _load_bet_rows(conn, n_optuna, research_db)
-    finally:
-        conn.close()
+    test_df, threshold = _load_predictions(conn, n_optuna, research_db)
 
-    if bets_df.empty:
-        print(f"  買いシグナルが0件 (pred_ev > {threshold:.2f})")
-        return
+    print("[Phase 2] 払戻マップ構築 (2025年 複勝/馬連/三連複)...", flush=True)
+    pmap = _build_payout_map(conn, 2025)
+    conn.close()
+    print(f"  払戻マップ: {sum(len(v) for v in pmap.values())} レース×券種", flush=True)
 
-    n_signals = len(bets_df)
-    n_days    = bets_df["date"].nunique()
-    d_min     = bets_df["date"].min()
-    d_max     = bets_df["date"].max()
-    overall_hit  = int(bets_df.get("is_place", bets_df.get("is_hit", pd.Series([0]*len(bets_df)))).sum())
-    overall_rate = overall_hit / n_signals * 100
-
-    print()
-    print(f"  シグナル期間 : {d_min} 〜 {d_max}  ({n_days}日間)")
-    print(f"  総シグナル数 : {n_signals:,} 件  日平均: {n_signals/n_days:.1f} 件/日")
-    print(f"  全シグナル的中率: {overall_rate:.1f}%  ({overall_hit}/{n_signals})")
-
-    # Pattern 1/2 資金が続く限り全シグナルにベット
-    print()
-    print("[Phase 2] Pattern 1: 単利固定 ¥1,000/bet...", flush=True)
-    p1 = _simulate(bets_df, "fixed", _INITIAL, _FIXED)
-
-    print("[Phase 3] Pattern 2: 複利 残高2%/bet...", flush=True)
-    p2 = _simulate(bets_df, "compound", _INITIAL, frac=_FRAC)
-
-    _print_detail(p1, _INITIAL)
-    _print_detail(p2, _INITIAL)
-    _print_summary(p1, p2, _INITIAL, threshold, n_signals, n_days)
-
-    # --- 補足: 全シグナルに100円ずつ張った場合のROI（資金制約なし参考値）
-    print("  【参考】資金制約なし ¥100固定ベット (全シグナル消化した場合の理論ROI)")
-    total_100 = n_signals * 100
-    payout_col = "is_place" if "is_place" in bets_df.columns else "is_hit"
-    payout_100 = float(
-        (bets_df[payout_col] * bets_df["actual_payout"]).sum()
+    print("[Phase 3] レース単位シグナル生成...", flush=True)
+    sig_df = _build_race_signals(test_df, pmap, threshold)
+    n_races  = sig_df.groupby("race_id").ngroups
+    n_days   = sig_df["date"].nunique()
+    print(
+        f"  シグナル: {len(sig_df):,}件  {n_races}レース  {n_days}日間  "
+        f"日平均{n_races/n_days:.1f}レース",
+        flush=True,
     )
-    roi_100 = payout_100 / total_100 * 100 if total_100 > 0 else 0
-    print(f"  全{n_signals:,}件 ×¥100 → 投資¥{total_100:,}  払戻¥{payout_100:,.0f}  ROI {roi_100:.1f}%")
+
+    _print_bet_type_breakdown(sig_df)
+
     print()
+    print("[Phase 4] シミュレーション実行...", flush=True)
+    results: list[SimResult] = []
+    for m in modes:
+        print(f"  → {_MODE_LABEL.get(m, m)}...", flush=True)
+        results.append(_simulate(sig_df, m))
+
+    # 詳細レポート（ultraとyoloは必ず表示、他は--compare時のみ）
+    for r in results:
+        if r.mode in ("ultra", "yolo") or len(modes) == 1:
+            _print_detail(r)
+
+    if len(results) > 1:
+        _print_comparison_table(results)
+    else:
+        r = results[0]
+        bankrupt = r.bankruptcy_month is not None
+        print()
+        print("╔" + "═" * 65 + "╗")
+        print("║" + f" 結果サマリー [{_MODE_LABEL.get(r.mode,r.mode)}] ".center(65) + "║")
+        print("╠" + "═" * 65 + "╣")
+        items = [
+            ("初期資金",     f"¥{_INITIAL:,}"),
+            ("最終残高",     f"¥{r.final_balance:,.0f}" + (" 💀破産" if bankrupt else f" ({r.final_balance/_INITIAL*100-100:+.1f}%)")),
+            ("最高到達残高", f"¥{r.peak_balance:,.0f}"),
+            ("総投資件数",   f"{r.n_bets:,}件 ({r.n_races}レース)"),
+            ("ROI",          f"{r.roi:.1f}%"),
+            ("最大DD",       f"{r.max_dd_pct:.1f}%"),
+            ("最大連続負け", f"{r.max_consec_loss}連敗"),
+            ("破産",         r.bankruptcy_month or "なし"),
+        ]
+        for lbl, val in items:
+            print(f"║  {lbl:<22} {val:<41}║")
+        print("╚" + "═" * 65 + "╝")
+        print()
 
 
 if __name__ == "__main__":
