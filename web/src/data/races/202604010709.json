@@ -1,0 +1,3621 @@
+{
+  "race_id": "202604010709",
+  "race_name": "はやぶさ賞",
+  "date": "2026-05-23",
+  "venue": "新潟",
+  "race_number": 9,
+  "distance": 0,
+  "surface": "",
+  "track_direction": "",
+  "weather": "",
+  "condition": "",
+  "year": "2026",
+  "results": [
+    {
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 16,
+      "horse_name": "カレンデュラ",
+      "horse_id": "2023106613",
+      "sex_age": "牝7",
+      "weight_carried": 55.0,
+      "jockey": "嶋田純次",
+      "trainer": "室井潔",
+      "finish_time": "0:56.0",
+      "margin": "@",
+      "win_odds": 4.2,
+      "popularity": 1,
+      "horse_weight": 424,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.114,
+      "ev_score": 0.5815,
+      "kelly_fraction": 0.0,
+      "manji_ev": 4.0396,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 2,
+      "gate_number": 4,
+      "horse_number": 8,
+      "horse_name": "ウィングブルー",
+      "horse_id": "2023105317",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "ゴンサル",
+      "trainer": "斎藤誠",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": 5.9,
+      "popularity": 3,
+      "horse_weight": 492,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1099,
+      "ev_score": 0.9125,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.5397,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "ブレイヴソルジャー",
+      "horse_id": "2023102740",
+      "sex_age": "牡1",
+      "weight_carried": 57.0,
+      "jockey": "石田拓郎",
+      "trainer": "新開幸一",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": 13.7,
+      "popularity": 8,
+      "horse_weight": 454,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0323,
+      "ev_score": 0.168,
+      "kelly_fraction": 0.0,
+      "manji_ev": 2.2236,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 4,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "ミヤフロント",
+      "horse_id": "2023102606",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "森田誠也",
+      "trainer": "斉藤崇史",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": 76.0,
+      "popularity": 11,
+      "horse_weight": 456,
+      "horse_weight_diff": -4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0567,
+      "ev_score": 2.4784,
+      "kelly_fraction": 0.0035,
+      "manji_ev": 4.5431,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 5,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "シーグルロス",
+      "horse_id": "2023100214",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "丹内祐次",
+      "trainer": "尾形和幸",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": 6.1,
+      "popularity": 4,
+      "horse_weight": 454,
+      "horse_weight_diff": 2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0786,
+      "ev_score": 1.0067,
+      "kelly_fraction": 0.0001,
+      "manji_ev": 8.2533,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "クイーンレグナント",
+      "horse_id": "2023101106",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "杉原誠人",
+      "trainer": "嘉藤貴行",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0275,
+      "ev_score": 1.3013,
+      "kelly_fraction": 0.0007,
+      "manji_ev": 6.5118,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 1,
+      "horse_number": 2,
+      "horse_name": "コパノトーマス",
+      "horse_id": "2023103037",
+      "sex_age": "牡5",
+      "weight_carried": 57.0,
+      "jockey": "菊沢一樹",
+      "trainer": "青木孝文",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0786,
+      "ev_score": 0.8415,
+      "kelly_fraction": 0.0,
+      "manji_ev": 6.3398,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 2,
+      "horse_number": 4,
+      "horse_name": "カシノリアーナ",
+      "horse_id": "2023100421",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "石神深道",
+      "trainer": "天間昭一",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0042,
+      "ev_score": 0.5421,
+      "kelly_fraction": 0.0,
+      "manji_ev": 2.8784,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "コウジハラ",
+      "horse_id": "2023101860",
+      "sex_age": "牝1",
+      "weight_carried": 55.0,
+      "jockey": "木幡初也",
+      "trainer": "西田雄一",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0458,
+      "ev_score": 3.3552,
+      "kelly_fraction": 0.0033,
+      "manji_ev": 3.1168,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "アースコーリング",
+      "horse_id": "2023105169",
+      "sex_age": "牡5",
+      "weight_carried": 57.0,
+      "jockey": "井上瑛太",
+      "trainer": "五十嵐冬",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0063,
+      "ev_score": 0.8782,
+      "kelly_fraction": 0.0,
+      "manji_ev": 7.3182,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "フローラルツッキー",
+      "horse_id": "2023104108",
+      "sex_age": "牝1",
+      "weight_carried": 55.0,
+      "jockey": "河原田菜",
+      "trainer": "伊坂重信",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0042,
+      "ev_score": 0.4598,
+      "kelly_fraction": 0.0,
+      "manji_ev": 4.3198,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 10,
+      "horse_name": "ダブルチャレンジ",
+      "horse_id": "2023104875",
+      "sex_age": "牝5",
+      "weight_carried": 55.0,
+      "jockey": "長岡禎仁",
+      "trainer": "深山雅史",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0674,
+      "ev_score": 0.3371,
+      "kelly_fraction": 0.0,
+      "manji_ev": 3.1232,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "エムティリオ",
+      "horse_id": "2023101551",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "上里直汰",
+      "trainer": "小野次郎",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0063,
+      "ev_score": 0.7991,
+      "kelly_fraction": 0.0,
+      "manji_ev": 3.8827,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 12,
+      "horse_name": "クワイエットアイ",
+      "horse_id": "2023110054",
+      "sex_age": "牡1",
+      "weight_carried": 57.0,
+      "jockey": "柴田裕一",
+      "trainer": "中竹和也",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0275,
+      "ev_score": 0.8281,
+      "kelly_fraction": 0.0,
+      "manji_ev": 2.2103,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 13,
+      "horse_name": "オタルイーグル",
+      "horse_id": "2023100611",
+      "sex_age": "牡1",
+      "weight_carried": 57.0,
+      "jockey": "亀田温心",
+      "trainer": "高柳大輔",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0275,
+      "ev_score": 0.1843,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.2568,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 14,
+      "horse_name": "トモジャオーリー",
+      "horse_id": "2023103068",
+      "sex_age": "牝3",
+      "weight_carried": 55.0,
+      "jockey": "小林美駒",
+      "trainer": "鈴木伸尋",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0388,
+      "ev_score": 0.3489,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.7197,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    }
+  ],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "16",
+      "payout": 420,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "16",
+      "payout": 160,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "8",
+      "payout": 190,
+      "popularity": 3
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "3",
+      "payout": 470,
+      "popularity": 8
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "4-8",
+      "payout": 820,
+      "popularity": 2
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "8-16",
+      "payout": 1330,
+      "popularity": 5
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "8-16",
+      "payout": 400,
+      "popularity": 2
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3-16",
+      "payout": 1670,
+      "popularity": 21
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3-8",
+      "payout": 2050,
+      "popularity": 23
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "16→8",
+      "payout": 2560,
+      "popularity": 6
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "3-8-16",
+      "payout": 8700,
+      "popularity": 29
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "16→8→3",
+      "payout": 36930,
+      "popularity": 124
+    }
+  ],
+  "predictions": [
+    {
+      "prediction_id": 35495,
+      "model_type": "本命(暫定)",
+      "bet_type": "ワイド",
+      "confidence": 0.06874752679193168,
+      "expected_value": 0.9304713337723368,
+      "recommended_bet": 100.0,
+      "combination_json": "[[10, 16], [2, 10], [8, 10], [5, 10], [10, 12]]",
+      "notes": "★QF推奨 軸10番×相手5頭ワイド Harville最大=0.053",
+      "created_at": "2026-05-23 08:29:29",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ダブルチャレンジ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05288271291687052,
+          "ev_score": 0.9304713337723368
+        },
+        {
+          "horse_name": "ダブルチャレンジ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05288271291687052,
+          "ev_score": 0.9304713337723368
+        },
+        {
+          "horse_name": "ダブルチャレンジ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05288271291687052,
+          "ev_score": 0.9304713337723368
+        },
+        {
+          "horse_name": "ダブルチャレンジ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05288271291687052,
+          "ev_score": 0.9304713337723368
+        },
+        {
+          "horse_name": "ダブルチャレンジ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05288271291687052,
+          "ev_score": 0.9304713337723368
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05288271291687052,
+          "ev_score": 0.9304713337723368
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05288271291687052,
+          "ev_score": 0.9304713337723368
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05288271291687052,
+          "ev_score": 0.9304713337723368
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05288271291687052,
+          "ev_score": 0.9304713337723368
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05288271291687052,
+          "ev_score": 0.9304713337723368
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 35496,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.05288271291687052,
+      "expected_value": 1.7980122391735978,
+      "recommended_bet": 100.0,
+      "combination_json": "[[10, 16], [2, 10], [8, 10], [5, 10], [10, 12]]",
+      "notes": "★QF推奨 軸10番×相手5頭フォーメーション Harville最大=0.053",
+      "created_at": "2026-05-23 08:29:29",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ダブルチャレンジ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05288271291687052,
+          "ev_score": 1.7980122391735978
+        },
+        {
+          "horse_name": "ダブルチャレンジ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05288271291687052,
+          "ev_score": 1.7980122391735978
+        },
+        {
+          "horse_name": "ダブルチャレンジ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05288271291687052,
+          "ev_score": 1.7980122391735978
+        },
+        {
+          "horse_name": "ダブルチャレンジ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05288271291687052,
+          "ev_score": 1.7980122391735978
+        },
+        {
+          "horse_name": "ダブルチャレンジ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05288271291687052,
+          "ev_score": 1.7980122391735978
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05288271291687052,
+          "ev_score": 1.7980122391735978
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05288271291687052,
+          "ev_score": 1.7980122391735978
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05288271291687052,
+          "ev_score": 1.7980122391735978
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05288271291687052,
+          "ev_score": 1.7980122391735978
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05288271291687052,
+          "ev_score": 1.7980122391735978
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 35497,
+      "model_type": "本命(暫定)",
+      "bet_type": "複勝",
+      "confidence": 0.12756612954417143,
+      "expected_value": 0.38269838863251426,
+      "recommended_bet": 100.0,
+      "combination_json": "[[10], [16], [2]]",
+      "notes": "上位3頭を複勝",
+      "created_at": "2026-05-23 08:29:29",
+      "is_hit": 1,
+      "payout": 160.0,
+      "profit": -140.0,
+      "roi": 53.333333333333336,
+      "horses": [
+        {
+          "horse_name": "ダブルチャレンジ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.12756612954417143,
+          "ev_score": 0.38269838863251426
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.12756612954417143,
+          "ev_score": 0.38269838863251426
+        },
+        {
+          "horse_name": "コパノトーマス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.12756612954417143,
+          "ev_score": 0.38269838863251426
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 35498,
+      "model_type": "本命(暫定)",
+      "bet_type": "単勝",
+      "confidence": 0.14588528678304238,
+      "expected_value": 1.2400249376558603,
+      "recommended_bet": 100.0,
+      "combination_json": "[[10]]",
+      "notes": "確率1位 P(win)=0.15 odds=8.5 EV=1.24",
+      "created_at": "2026-05-23 08:29:29",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ダブルチャレンジ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.14588528678304238,
+          "ev_score": 1.2400249376558603
+        }
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 35499,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬単",
+      "confidence": 0.21413816735872945,
+      "expected_value": 1.7380390517316677,
+      "recommended_bet": 100.0,
+      "combination_json": "[[10, 16], [10, 2], [10, 8]]",
+      "notes": "軸10番→相手3頭フォーメーション Harville最大=0.027",
+      "created_at": "2026-05-23 08:29:29",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ダブルチャレンジ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02676727091984118,
+          "ev_score": 1.7380390517316677
+        },
+        {
+          "horse_name": "ダブルチャレンジ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02676727091984118,
+          "ev_score": 1.7380390517316677
+        },
+        {
+          "horse_name": "ダブルチャレンジ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02676727091984118,
+          "ev_score": 1.7380390517316677
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02676727091984118,
+          "ev_score": 1.7380390517316677
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02676727091984118,
+          "ev_score": 1.7380390517316677
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02676727091984118,
+          "ev_score": 1.7380390517316677
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 35500,
+      "model_type": "本命(暫定)",
+      "bet_type": "三連複",
+      "confidence": 0.31741903323610393,
+      "expected_value": 3.1391948839467587,
+      "recommended_bet": 100.0,
+      "combination_json": "[[2, 10, 16], [8, 10, 16]]",
+      "notes": "合成EV最大=3.14 2点 馬番=[(2, 10, 16), (8, 10, 16)]",
+      "created_at": "2026-05-23 08:29:29",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "コパノトーマス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02645158610300866,
+          "ev_score": 3.1391948839467587
+        },
+        {
+          "horse_name": "コパノトーマス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02645158610300866,
+          "ev_score": 3.1391948839467587
+        },
+        {
+          "horse_name": "ダブルチャレンジ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02645158610300866,
+          "ev_score": 3.1391948839467587
+        },
+        {
+          "horse_name": "ダブルチャレンジ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02645158610300866,
+          "ev_score": 3.1391948839467587
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.02645158610300866,
+          "ev_score": 3.1391948839467587
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.02645158610300866,
+          "ev_score": 3.1391948839467587
+        }
+      ],
+      "bet_form": "軸2頭ながし",
+      "n_tickets": 2,
+      "invested": 200,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 35501,
+      "model_type": "本命(暫定)",
+      "bet_type": "三連単",
+      "confidence": 0.7935475830902597,
+      "expected_value": 6.0,
+      "recommended_bet": 200.0,
+      "combination_json": "[[10, 16, 2], [10, 2, 16], [16, 10, 2], [16, 2, 10], [2, 10, 16], [2, 16, 10], [10, 16, 8], [10, 8, 16], [16, 10, 8], [16, 8, 10], [8, 10, 16], [8, 16, 10], [10, 16, 5], [10, 5, 16], [16, 10, 5], [16, 5, 10], [5, 10, 16], [5, 16, 10], [10, 16, 12], [10, 12, 16], [16, 10, 12], [16, 12, 10], [12, 10, 16], [12, 16, 10], [10, 16, 9], [10, 9, 16], [16, 10, 9], [16, 9, 10], [9, 10, 16], [9, 16, 10], [10, 2, 8], [10, 8, 2], [2, 10, 8], [2, 8, 10], [8, 10, 2], [8, 2, 10], [10, 2, 5], [10, 5, 2], [2, 10, 5], [2, 5, 10], [5, 10, 2], [5, 2, 10], [10, 2, 12], [10, 12, 2], [2, 10, 12], [2, 12, 10], [12, 10, 2], [12, 2, 10], [10, 2, 9], [10, 9, 2], [2, 10, 9], [2, 9, 10], [9, 10, 2], [9, 2, 10], [10, 8, 5], [10, 5, 8], [8, 10, 5], [8, 5, 10], [5, 10, 8], [5, 8, 10], [10, 8, 12], [10, 12, 8], [8, 10, 12], [8, 12, 10], [12, 10, 8], [12, 8, 10], [10, 8, 9], [10, 9, 8], [8, 10, 9], [8, 9, 10], [9, 10, 8], [9, 8, 10], [10, 5, 12], [10, 12, 5], [5, 10, 12], [5, 12, 10], [12, 10, 5], [12, 5, 10], [10, 5, 9], [10, 9, 5], [5, 10, 9], [5, 9, 10], [9, 10, 5], [9, 5, 10], [10, 12, 9], [10, 9, 12], [12, 10, 9], [12, 9, 10], [9, 10, 12], [9, 12, 10]]",
+      "notes": "1頭軸マルチ 軸=10番 相手=[16, 2, 8, 5, 12, 9] 90点 Harville最大=0.0265",
+      "created_at": "2026-05-23 08:29:29",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -9000.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ダブルチャレンジ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02645158610300866,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ダブルチャレンジ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02645158610300866,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ダブルチャレンジ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02645158610300866,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ダブルチャレンジ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02645158610300866,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ダブルチャレンジ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02645158610300866,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02645158610300866,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02645158610300866,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02645158610300866,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02645158610300866,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02645158610300866,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "コパノトーマス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.02645158610300866,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "コパノトーマス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.02645158610300866,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "コパノトーマス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.02645158610300866,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "コパノトーマス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.02645158610300866,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "コパノトーマス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.02645158610300866,
+          "ev_score": 6.0
+        }
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 90,
+      "invested": 9000,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 35502,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-05-23 08:29:29",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ダブルチャレンジ",
+          "horse_id": "2023104875",
+          "predicted_rank": 1,
+          "model_score": 0.14588528678304238,
+          "ev_score": 1.2400249376558603
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": "2023106613",
+          "predicted_rank": 2,
+          "model_score": 0.1268712574850299,
+          "ev_score": 0.6597305389221555
+        },
+        {
+          "horse_name": "コパノトーマス",
+          "horse_id": "2023103037",
+          "predicted_rank": 3,
+          "model_score": 0.10994184436444199,
+          "ev_score": 1.000470783716422
+        },
+        {
+          "horse_name": "ウィングブルー",
+          "horse_id": "2023105317",
+          "predicted_rank": 4,
+          "model_score": 0.10994184436444199,
+          "ev_score": 1.0114649681528662
+        },
+        {
+          "horse_name": "コウジハラ",
+          "horse_id": "2023101860",
+          "predicted_rank": 5,
+          "model_score": 0.06742572495997154,
+          "ev_score": 4.908592777085928
+        },
+        {
+          "horse_name": "ブレイヴソルジャー",
+          "horse_id": "2023102740",
+          "predicted_rank": 6,
+          "model_score": 0.05149700598802395,
+          "ev_score": 0.2059880239520958
+        },
+        {
+          "horse_name": "クワイエットアイ",
+          "horse_id": "2023110054",
+          "predicted_rank": 7,
+          "model_score": 0.05149700598802395,
+          "ev_score": 1.5346107784431138
+        },
+        {
+          "horse_name": "ミヤフロント",
+          "horse_id": "2023102606",
+          "predicted_rank": 8,
+          "model_score": 0.05149700598802395,
+          "ev_score": 4.222754491017964
+        },
+        {
+          "horse_name": "トモジャオーリー",
+          "horse_id": "2023103068",
+          "predicted_rank": 9,
+          "model_score": 0.045773003269500234,
+          "ev_score": 0.34329752452125173
+        },
+        {
+          "horse_name": "シーグルロス",
+          "horse_id": "2023100214",
+          "predicted_rank": 10,
+          "model_score": 0.045773003269500234,
+          "ev_score": 0.5218122372723026
+        },
+        {
+          "horse_name": "オタルイーグル",
+          "horse_id": "2023100611",
+          "predicted_rank": 11,
+          "model_score": 0.03876739562624255,
+          "ev_score": 0.2985089463220676
+        },
+        {
+          "horse_name": "クイーンレグナント",
+          "horse_id": "2023101106",
+          "predicted_rank": 12,
+          "model_score": 0.03151515151515152,
+          "ev_score": 1.0872727272727274
+        },
+        {
+          "horse_name": "フローラルツッキー",
+          "horse_id": "2023104108",
+          "predicted_rank": 13,
+          "model_score": 0.02751091703056769,
+          "ev_score": 1.6368995633187775
+        },
+        {
+          "horse_name": "エムティリオ",
+          "horse_id": "2023101551",
+          "predicted_rank": 14,
+          "model_score": 0.00632688927943761,
+          "ev_score": 0.8205975395430579
+        },
+        {
+          "horse_name": "アースコーリング",
+          "horse_id": "2023105169",
+          "predicted_rank": 15,
+          "model_score": 0.00632688927943761,
+          "ev_score": 0.8149033391915642
+        },
+        {
+          "horse_name": "カシノリアーナ",
+          "horse_id": "2023100421",
+          "predicted_rank": 16,
+          "model_score": 0.00632688927943761,
+          "ev_score": 0.6118101933216169
+        }
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "invested": 0,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 35503,
+      "model_type": "HitFocus(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.2550329149965187,
+      "expected_value": 1.7342238219763273,
+      "recommended_bet": 700.0,
+      "combination_json": "[[10, 16], [2, 10], [2, 16], [8, 10], [8, 16], [5, 10], [5, 16]]",
+      "notes": "2軸マルチ 軸=10,16 相手=[2, 8, 5] Harville最大=0.0510",
+      "created_at": "2026-05-23 08:29:29",
+      "is_hit": 1,
+      "payout": 1330.0,
+      "profit": 630.0,
+      "roi": 190.0,
+      "horses": [
+        {
+          "horse_name": "ダブルチャレンジ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.051006582999303746,
+          "ev_score": 1.7342238219763273
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.051006582999303746,
+          "ev_score": 1.7342238219763273
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 7,
+      "invested": 700,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 35504,
+      "model_type": "HitFocus(暫定)",
+      "bet_type": "馬単",
+      "confidence": 0.20649255473356237,
+      "expected_value": 1.6759839147102882,
+      "recommended_bet": 800.0,
+      "combination_json": "[[10, 16], [16, 10], [10, 2], [16, 2], [10, 8], [16, 8], [10, 5], [16, 5]]",
+      "notes": "2軸マルチ 軸=10,16 相手=[2, 8, 5] Harville最大=0.0258",
+      "created_at": "2026-05-23 08:29:29",
+      "is_hit": 1,
+      "payout": 2560.0,
+      "profit": 1760.0,
+      "roi": 320.0,
+      "horses": [
+        {
+          "horse_name": "ダブルチャレンジ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.025811569341695297,
+          "ev_score": 1.6759839147102882
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.025811569341695297,
+          "ev_score": 1.6759839147102882
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 8,
+      "invested": 800,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 35505,
+      "model_type": "HitFocus(暫定)",
+      "bet_type": "三連単",
+      "confidence": 0.13094978082991843,
+      "expected_value": 1.7039294606406346,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[10, 16, 2], [16, 10, 2], [10, 2, 16], [16, 2, 10], [10, 16, 8], [16, 10, 8], [10, 8, 16], [16, 8, 10], [10, 16, 5], [16, 10, 5], [10, 5, 16], [16, 5, 10]]",
+      "notes": "2軸マルチ 軸=10,16 相手=[2, 8, 5] 12点 Harville最大=0.0044",
+      "created_at": "2026-05-23 08:29:29",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ダブルチャレンジ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0043649926943306145,
+          "ev_score": 1.7039294606406346
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0043649926943306145,
+          "ev_score": 1.7039294606406346
+        },
+        {
+          "horse_name": "コパノトーマス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0043649926943306145,
+          "ev_score": 1.7039294606406346
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 12,
+      "invested": 1200,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 37507,
+      "model_type": "本命(直前)",
+      "bet_type": "ワイド",
+      "confidence": 0.07313018004348928,
+      "expected_value": 0.6188332089264712,
+      "recommended_bet": 100.0,
+      "combination_json": "[[8, 16], [15, 16], [2, 16], [10, 16], [9, 16]]",
+      "notes": "★QF推奨 軸16番×相手5頭ワイド Harville最大=0.056",
+      "created_at": "2026-05-23 13:40:26",
+      "is_hit": 1,
+      "payout": 400.0,
+      "profit": -100.0,
+      "roi": 80.0,
+      "horses": [
+        {
+          "horse_name": "ウィングブルー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.056253984648837914,
+          "ev_score": 0.6188332089264712
+        },
+        {
+          "horse_name": "ウィングブルー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.056253984648837914,
+          "ev_score": 0.6188332089264712
+        },
+        {
+          "horse_name": "ウィングブルー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.056253984648837914,
+          "ev_score": 0.6188332089264712
+        },
+        {
+          "horse_name": "ウィングブルー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.056253984648837914,
+          "ev_score": 0.6188332089264712
+        },
+        {
+          "horse_name": "ウィングブルー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.056253984648837914,
+          "ev_score": 0.6188332089264712
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.056253984648837914,
+          "ev_score": 0.6188332089264712
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.056253984648837914,
+          "ev_score": 0.6188332089264712
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.056253984648837914,
+          "ev_score": 0.6188332089264712
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.056253984648837914,
+          "ev_score": 0.6188332089264712
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.056253984648837914,
+          "ev_score": 0.6188332089264712
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 37508,
+      "model_type": "本命(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.056253984648837914,
+      "expected_value": 1.1719673891815645,
+      "recommended_bet": 100.0,
+      "combination_json": "[[8, 16], [15, 16], [2, 16], [10, 16], [9, 16]]",
+      "notes": "★QF推奨 軸16番×相手5頭フォーメーション Harville最大=0.056",
+      "created_at": "2026-05-23 13:40:26",
+      "is_hit": 1,
+      "payout": 1330.0,
+      "profit": 830.0,
+      "roi": 266.0,
+      "horses": [
+        {
+          "horse_name": "ウィングブルー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.056253984648837914,
+          "ev_score": 1.1719673891815645
+        },
+        {
+          "horse_name": "ウィングブルー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.056253984648837914,
+          "ev_score": 1.1719673891815645
+        },
+        {
+          "horse_name": "ウィングブルー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.056253984648837914,
+          "ev_score": 1.1719673891815645
+        },
+        {
+          "horse_name": "ウィングブルー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.056253984648837914,
+          "ev_score": 1.1719673891815645
+        },
+        {
+          "horse_name": "ウィングブルー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.056253984648837914,
+          "ev_score": 1.1719673891815645
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.056253984648837914,
+          "ev_score": 1.1719673891815645
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.056253984648837914,
+          "ev_score": 1.1719673891815645
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.056253984648837914,
+          "ev_score": 1.1719673891815645
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.056253984648837914,
+          "ev_score": 1.1719673891815645
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.056253984648837914,
+          "ev_score": 1.1719673891815645
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 37509,
+      "model_type": "本命(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.10086709862672717,
+      "expected_value": 0.30260129588018153,
+      "recommended_bet": 100.0,
+      "combination_json": "[[16], [8], [15]]",
+      "notes": "上位3頭を複勝",
+      "created_at": "2026-05-23 13:40:26",
+      "is_hit": 1,
+      "payout": 350.0,
+      "profit": 50.0,
+      "roi": 116.66666666666667,
+      "horses": [
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.10086709862672717,
+          "ev_score": 0.30260129588018153
+        },
+        {
+          "horse_name": "ウィングブルー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.10086709862672717,
+          "ev_score": 0.30260129588018153
+        },
+        {
+          "horse_name": "シーグルロス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.10086709862672717,
+          "ev_score": 0.30260129588018153
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 37510,
+      "model_type": "本命(直前)",
+      "bet_type": "単勝",
+      "confidence": 0.11401218450826806,
+      "expected_value": 0.5814621409921671,
+      "recommended_bet": 100.0,
+      "combination_json": "[[16]]",
+      "notes": "確率1位 P(win)=0.11 odds=5.1 EV=0.58",
+      "created_at": "2026-05-23 13:40:26",
+      "is_hit": 1,
+      "payout": 420.0,
+      "profit": 320.0,
+      "roi": 420.0,
+      "horses": [
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11401218450826806,
+          "ev_score": 0.5814621409921671
+        }
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 37511,
+      "model_type": "本命(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.2257618673462964,
+      "expected_value": 1.1349782797567196,
+      "recommended_bet": 100.0,
+      "combination_json": "[[16, 8], [16, 15], [16, 2]]",
+      "notes": "軸16番→相手3頭フォーメーション Harville最大=0.028",
+      "created_at": "2026-05-23 13:40:26",
+      "is_hit": 1,
+      "payout": 2560.0,
+      "profit": 2260.0,
+      "roi": 853.3333333333334,
+      "horses": [
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02822023341828705,
+          "ev_score": 1.1349782797567196
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02822023341828705,
+          "ev_score": 1.1349782797567196
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02822023341828705,
+          "ev_score": 1.1349782797567196
+        },
+        {
+          "horse_name": "ウィングブルー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02822023341828705,
+          "ev_score": 1.1349782797567196
+        },
+        {
+          "horse_name": "ウィングブルー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02822023341828705,
+          "ev_score": 1.1349782797567196
+        },
+        {
+          "horse_name": "ウィングブルー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02822023341828705,
+          "ev_score": 1.1349782797567196
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 37512,
+      "model_type": "本命(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.29903066211632806,
+      "expected_value": 1.8022353732754504,
+      "recommended_bet": 100.0,
+      "combination_json": "[[8, 15, 16], [2, 8, 16]]",
+      "notes": "合成EV最大=1.80 2点 馬番=[(8, 15, 16), (2, 8, 16)]",
+      "created_at": "2026-05-23 13:40:26",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ウィングブルー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.024919221843027337,
+          "ev_score": 1.8022353732754504
+        },
+        {
+          "horse_name": "ウィングブルー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.024919221843027337,
+          "ev_score": 1.8022353732754504
+        },
+        {
+          "horse_name": "シーグルロス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.024919221843027337,
+          "ev_score": 1.8022353732754504
+        },
+        {
+          "horse_name": "シーグルロス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.024919221843027337,
+          "ev_score": 1.8022353732754504
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.024919221843027337,
+          "ev_score": 1.8022353732754504
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.024919221843027337,
+          "ev_score": 1.8022353732754504
+        }
+      ],
+      "bet_form": "軸2頭ながし",
+      "n_tickets": 2,
+      "invested": 200,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 37513,
+      "model_type": "本命(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.7475766552908201,
+      "expected_value": 5.779201139858108,
+      "recommended_bet": 200.0,
+      "combination_json": "[[16, 8, 15], [16, 15, 8], [8, 16, 15], [8, 15, 16], [15, 16, 8], [15, 8, 16], [16, 8, 2], [16, 2, 8], [8, 16, 2], [8, 2, 16], [2, 16, 8], [2, 8, 16], [16, 8, 10], [16, 10, 8], [8, 16, 10], [8, 10, 16], [10, 16, 8], [10, 8, 16], [16, 8, 9], [16, 9, 8], [8, 16, 9], [8, 9, 16], [9, 16, 8], [9, 8, 16], [16, 8, 5], [16, 5, 8], [8, 16, 5], [8, 5, 16], [5, 16, 8], [5, 8, 16], [16, 15, 2], [16, 2, 15], [15, 16, 2], [15, 2, 16], [2, 16, 15], [2, 15, 16], [16, 15, 10], [16, 10, 15], [15, 16, 10], [15, 10, 16], [10, 16, 15], [10, 15, 16], [16, 15, 9], [16, 9, 15], [15, 16, 9], [15, 9, 16], [9, 16, 15], [9, 15, 16], [16, 15, 5], [16, 5, 15], [15, 16, 5], [15, 5, 16], [5, 16, 15], [5, 15, 16], [16, 2, 10], [16, 10, 2], [2, 16, 10], [2, 10, 16], [10, 16, 2], [10, 2, 16], [16, 2, 9], [16, 9, 2], [2, 16, 9], [2, 9, 16], [9, 16, 2], [9, 2, 16], [16, 2, 5], [16, 5, 2], [2, 16, 5], [2, 5, 16], [5, 16, 2], [5, 2, 16], [16, 10, 9], [16, 9, 10], [10, 16, 9], [10, 9, 16], [9, 16, 10], [9, 10, 16], [16, 10, 5], [16, 5, 10], [10, 16, 5], [10, 5, 16], [5, 16, 10], [5, 10, 16], [16, 9, 5], [16, 5, 9], [9, 16, 5], [9, 5, 16], [5, 16, 9], [5, 9, 16]]",
+      "notes": "1頭軸マルチ 軸=16番 相手=[8, 15, 2, 10, 9, 5] 90点 Harville最大=0.0249",
+      "created_at": "2026-05-23 13:40:26",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -9000.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.024919221843027337,
+          "ev_score": 5.779201139858108
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.024919221843027337,
+          "ev_score": 5.779201139858108
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.024919221843027337,
+          "ev_score": 5.779201139858108
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.024919221843027337,
+          "ev_score": 5.779201139858108
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.024919221843027337,
+          "ev_score": 5.779201139858108
+        },
+        {
+          "horse_name": "ウィングブルー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.024919221843027337,
+          "ev_score": 5.779201139858108
+        },
+        {
+          "horse_name": "ウィングブルー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.024919221843027337,
+          "ev_score": 5.779201139858108
+        },
+        {
+          "horse_name": "ウィングブルー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.024919221843027337,
+          "ev_score": 5.779201139858108
+        },
+        {
+          "horse_name": "ウィングブルー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.024919221843027337,
+          "ev_score": 5.779201139858108
+        },
+        {
+          "horse_name": "ウィングブルー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.024919221843027337,
+          "ev_score": 5.779201139858108
+        },
+        {
+          "horse_name": "シーグルロス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.024919221843027337,
+          "ev_score": 5.779201139858108
+        },
+        {
+          "horse_name": "シーグルロス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.024919221843027337,
+          "ev_score": 5.779201139858108
+        },
+        {
+          "horse_name": "シーグルロス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.024919221843027337,
+          "ev_score": 5.779201139858108
+        },
+        {
+          "horse_name": "シーグルロス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.024919221843027337,
+          "ev_score": 5.779201139858108
+        },
+        {
+          "horse_name": "シーグルロス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.024919221843027337,
+          "ev_score": 5.779201139858108
+        }
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 90,
+      "invested": 9000,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 37514,
+      "model_type": "卍(直前)",
+      "bet_type": "単勝",
+      "confidence": 0.6447921347823243,
+      "expected_value": 8.253339325213751,
+      "recommended_bet": 100.0,
+      "combination_json": "[[15]]",
+      "notes": "確率1位(卍) EV=8.25 odds=12.8",
+      "created_at": "2026-05-23 13:40:26",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "シーグルロス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 8.253339325213751,
+          "ev_score": 8.253339325213751
+        }
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 37515,
+      "model_type": "卍(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.6,
+      "expected_value": 7.361105642684886,
+      "recommended_bet": 100.0,
+      "combination_json": "[[15], [6], [1]]",
+      "notes": "確率上位3頭を複勝",
+      "created_at": "2026-05-23 13:40:26",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "シーグルロス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 7.361105642684886,
+          "ev_score": 7.361105642684886
+        },
+        {
+          "horse_name": "アースコーリング",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 7.361105642684886,
+          "ev_score": 7.361105642684886
+        },
+        {
+          "horse_name": "クイーンレグナント",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 7.361105642684886,
+          "ev_score": 7.361105642684886
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 37516,
+      "model_type": "卍(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.17799781951782667,
+      "expected_value": 1.8614299973896242,
+      "recommended_bet": 100.0,
+      "combination_json": "[[6, 15], [1, 15], [2, 15], [9, 15], [7, 15]]",
+      "notes": "軸15番×相手5頭フォーメーション Harville最大=0.036",
+      "created_at": "2026-05-23 13:40:26",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "アースコーリング",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.035599563903565334,
+          "ev_score": 1.8614299973896242
+        },
+        {
+          "horse_name": "アースコーリング",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.035599563903565334,
+          "ev_score": 1.8614299973896242
+        },
+        {
+          "horse_name": "アースコーリング",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.035599563903565334,
+          "ev_score": 1.8614299973896242
+        },
+        {
+          "horse_name": "アースコーリング",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.035599563903565334,
+          "ev_score": 1.8614299973896242
+        },
+        {
+          "horse_name": "アースコーリング",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.035599563903565334,
+          "ev_score": 1.8614299973896242
+        },
+        {
+          "horse_name": "シーグルロス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.035599563903565334,
+          "ev_score": 1.8614299973896242
+        },
+        {
+          "horse_name": "シーグルロス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.035599563903565334,
+          "ev_score": 1.8614299973896242
+        },
+        {
+          "horse_name": "シーグルロス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.035599563903565334,
+          "ev_score": 1.8614299973896242
+        },
+        {
+          "horse_name": "シーグルロス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.035599563903565334,
+          "ev_score": 1.8614299973896242
+        },
+        {
+          "horse_name": "シーグルロス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.035599563903565334,
+          "ev_score": 1.8614299973896242
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 37517,
+      "model_type": "卍(直前)",
+      "bet_type": "ワイド",
+      "confidence": 0.213597383421392,
+      "expected_value": 0.9828897195518775,
+      "recommended_bet": 100.0,
+      "combination_json": "[[6, 15], [1, 15], [2, 15], [9, 15], [7, 15]]",
+      "notes": "軸15番×相手5頭ワイド Harville最大=0.036",
+      "created_at": "2026-05-23 13:40:26",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "アースコーリング",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.035599563903565334,
+          "ev_score": 0.9828897195518775
+        },
+        {
+          "horse_name": "アースコーリング",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.035599563903565334,
+          "ev_score": 0.9828897195518775
+        },
+        {
+          "horse_name": "アースコーリング",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.035599563903565334,
+          "ev_score": 0.9828897195518775
+        },
+        {
+          "horse_name": "アースコーリング",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.035599563903565334,
+          "ev_score": 0.9828897195518775
+        },
+        {
+          "horse_name": "アースコーリング",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.035599563903565334,
+          "ev_score": 0.9828897195518775
+        },
+        {
+          "horse_name": "シーグルロス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.035599563903565334,
+          "ev_score": 0.9828897195518775
+        },
+        {
+          "horse_name": "シーグルロス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.035599563903565334,
+          "ev_score": 0.9828897195518775
+        },
+        {
+          "horse_name": "シーグルロス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.035599563903565334,
+          "ev_score": 0.9828897195518775
+        },
+        {
+          "horse_name": "シーグルロス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.035599563903565334,
+          "ev_score": 0.9828897195518775
+        },
+        {
+          "horse_name": "シーグルロス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.035599563903565334,
+          "ev_score": 0.9828897195518775
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 37518,
+      "model_type": "卍(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.14362010091958202,
+      "expected_value": 1.8121409853629182,
+      "recommended_bet": 100.0,
+      "combination_json": "[[15, 6], [15, 1], [15, 2]]",
+      "notes": "軸15番→相手3頭フォーメーション Harville最大=0.018",
+      "created_at": "2026-05-23 13:40:26",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "シーグルロス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.017952512614947753,
+          "ev_score": 1.8121409853629182
+        },
+        {
+          "horse_name": "シーグルロス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.017952512614947753,
+          "ev_score": 1.8121409853629182
+        },
+        {
+          "horse_name": "シーグルロス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.017952512614947753,
+          "ev_score": 1.8121409853629182
+        },
+        {
+          "horse_name": "アースコーリング",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.017952512614947753,
+          "ev_score": 1.8121409853629182
+        },
+        {
+          "horse_name": "アースコーリング",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.017952512614947753,
+          "ev_score": 1.8121409853629182
+        },
+        {
+          "horse_name": "アースコーリング",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.017952512614947753,
+          "ev_score": 1.8121409853629182
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 37521,
+      "model_type": "卍(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.18503350957040166,
+      "expected_value": 2.239112703332579,
+      "recommended_bet": 100.0,
+      "combination_json": "[[1, 2, 15]]",
+      "notes": "合成EV=2.24 Harville=0.0123 馬番=(1, 2, 15)",
+      "created_at": "2026-05-23 13:40:26",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "クイーンレグナント",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.012335567304693443,
+          "ev_score": 2.239112703332579
+        },
+        {
+          "horse_name": "コパノトーマス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.012335567304693443,
+          "ev_score": 2.239112703332579
+        },
+        {
+          "horse_name": "シーグルロス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.012335567304693443,
+          "ev_score": 2.239112703332579
+        }
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 37522,
+      "model_type": "Oracle(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.14951533105816403,
+      "expected_value": 4.485459931744921,
+      "recommended_bet": 500.0,
+      "combination_json": "[[8, 15, 16], [2, 8, 16], [8, 10, 16], [8, 9, 16], [2, 15, 16]]",
+      "notes": "[Oracle] 的中確率最大 5点 P最大=0.1495 馬番=[(8, 15, 16), (2, 8, 16), (8, 10, 16), (8, 9, 16), (2, 15, 16)]",
+      "created_at": "2026-05-23 13:40:26",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ウィングブルー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.14951533105816403,
+          "ev_score": 4.485459931744921
+        },
+        {
+          "horse_name": "シーグルロス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.14951533105816403,
+          "ev_score": 4.485459931744921
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.14951533105816403,
+          "ev_score": 4.485459931744921
+        }
+      ],
+      "bet_form": "軸1頭ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 37523,
+      "model_type": "Oracle(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.024919221843027337,
+      "expected_value": 3.7378832764541006,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[16, 8, 15], [16, 8, 2], [16, 15, 8], [16, 2, 8], [8, 16, 15], [8, 16, 2], [8, 15, 16], [8, 2, 16], [15, 16, 8], [15, 8, 16], [2, 16, 8], [2, 8, 16]]",
+      "notes": "[Oracle] 的中確率最大 12点 P最大=0.0249 馬番=[(16, 8, 15), (16, 8, 2), (16, 15, 8), (16, 2, 8), (8, 16, 15), (8, 16, 2), (8, 15, 16), (8, 2, 16), (15, 16, 8), (15, 8, 16), (2, 16, 8), (2, 8, 16)]",
+      "created_at": "2026-05-23 13:40:26",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.024919221843027337,
+          "ev_score": 3.7378832764541006
+        },
+        {
+          "horse_name": "ウィングブルー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.024919221843027337,
+          "ev_score": 3.7378832764541006
+        },
+        {
+          "horse_name": "シーグルロス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.024919221843027337,
+          "ev_score": 3.7378832764541006
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 12,
+      "invested": 1200,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 37524,
+      "model_type": "本命(直前)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-05-23 13:40:26",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": "2023106613",
+          "predicted_rank": 1,
+          "model_score": 0.11401218450826806,
+          "ev_score": 0.5814621409921671
+        },
+        {
+          "horse_name": "ウィングブルー",
+          "horse_id": "2023105317",
+          "predicted_rank": 2,
+          "model_score": 0.10994184436444199,
+          "ev_score": 0.9125173082248685
+        },
+        {
+          "horse_name": "コパノトーマス",
+          "horse_id": "2023103037",
+          "predicted_rank": 3,
+          "model_score": 0.0786472670074715,
+          "ev_score": 0.841525756979945
+        },
+        {
+          "horse_name": "シーグルロス",
+          "horse_id": "2023100214",
+          "predicted_rank": 4,
+          "model_score": 0.0786472670074715,
+          "ev_score": 1.0066850176956352
+        },
+        {
+          "horse_name": "ダブルチャレンジ",
+          "horse_id": "2023104875",
+          "predicted_rank": 5,
+          "model_score": 0.06742572495997154,
+          "ev_score": 0.3371286247998577
+        },
+        {
+          "horse_name": "ミヤフロント",
+          "horse_id": "2023102606",
+          "predicted_rank": 6,
+          "model_score": 0.05671367259350092,
+          "ev_score": 2.4783874923359903
+        },
+        {
+          "horse_name": "コウジハラ",
+          "horse_id": "2023101860",
+          "predicted_rank": 7,
+          "model_score": 0.045773003269500234,
+          "ev_score": 3.355161139654367
+        },
+        {
+          "horse_name": "トモジャオーリー",
+          "horse_id": "2023103068",
+          "predicted_rank": 8,
+          "model_score": 0.03876739562624255,
+          "ev_score": 0.3489065606361829
+        },
+        {
+          "horse_name": "ブレイヴソルジャー",
+          "horse_id": "2023102740",
+          "predicted_rank": 9,
+          "model_score": 0.032305433186490456,
+          "ev_score": 0.1679882525697504
+        },
+        {
+          "horse_name": "クイーンレグナント",
+          "horse_id": "2023101106",
+          "predicted_rank": 10,
+          "model_score": 0.02751091703056769,
+          "ev_score": 1.3012663755458516
+        },
+        {
+          "horse_name": "オタルイーグル",
+          "horse_id": "2023100611",
+          "predicted_rank": 11,
+          "model_score": 0.02751091703056769,
+          "ev_score": 0.18432314410480352
+        },
+        {
+          "horse_name": "クワイエットアイ",
+          "horse_id": "2023110054",
+          "predicted_rank": 12,
+          "model_score": 0.02751091703056769,
+          "ev_score": 0.8280786026200875
+        },
+        {
+          "horse_name": "エムティリオ",
+          "horse_id": "2023101551",
+          "predicted_rank": 13,
+          "model_score": 0.00632688927943761,
+          "ev_score": 0.7990861159929701
+        },
+        {
+          "horse_name": "アースコーリング",
+          "horse_id": "2023105169",
+          "predicted_rank": 14,
+          "model_score": 0.00632688927943761,
+          "ev_score": 0.8781722319859403
+        },
+        {
+          "horse_name": "フローラルツッキー",
+          "horse_id": "2023104108",
+          "predicted_rank": 15,
+          "model_score": 0.0042417815482502655,
+          "ev_score": 0.4598091198303288
+        },
+        {
+          "horse_name": "カシノリアーナ",
+          "horse_id": "2023100421",
+          "predicted_rank": 16,
+          "model_score": 0.0042417815482502655,
+          "ev_score": 0.5420996818663839
+        }
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "invested": 0,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 37525,
+      "model_type": "HitFocus(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.2812699232441896,
+      "expected_value": 1.1719673891815645,
+      "recommended_bet": 700.0,
+      "combination_json": "[[8, 16], [15, 16], [8, 15], [2, 16], [2, 8], [10, 16], [8, 10]]",
+      "notes": "2軸マルチ 軸=16,8 相手=[15, 2, 10] Harville最大=0.0563",
+      "created_at": "2026-05-23 13:40:26",
+      "is_hit": 1,
+      "payout": 1330.0,
+      "profit": 630.0,
+      "roi": 190.0,
+      "horses": [
+        {
+          "horse_name": "ウィングブルー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.056253984648837914,
+          "ev_score": 1.1719673891815645
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.056253984648837914,
+          "ev_score": 1.1719673891815645
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 7,
+      "invested": 700,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 37526,
+      "model_type": "HitFocus(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.2257618673462964,
+      "expected_value": 1.1349782797567196,
+      "recommended_bet": 800.0,
+      "combination_json": "[[16, 8], [8, 16], [16, 15], [8, 15], [16, 2], [8, 2], [16, 10], [8, 10]]",
+      "notes": "2軸マルチ 軸=16,8 相手=[15, 2, 10] Harville最大=0.0282",
+      "created_at": "2026-05-23 13:40:26",
+      "is_hit": 1,
+      "payout": 2560.0,
+      "profit": 1760.0,
+      "roi": 320.0,
+      "horses": [
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02822023341828705,
+          "ev_score": 1.1349782797567196
+        },
+        {
+          "horse_name": "ウィングブルー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02822023341828705,
+          "ev_score": 1.1349782797567196
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 8,
+      "invested": 800,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 37527,
+      "model_type": "HitFocus(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.1326493595549063,
+      "expected_value": 1.0254564859879676,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[16, 8, 15], [8, 16, 15], [16, 15, 8], [8, 15, 16], [16, 8, 2], [8, 16, 2], [16, 2, 8], [8, 2, 16], [16, 8, 10], [8, 16, 10], [16, 10, 8], [8, 10, 16]]",
+      "notes": "2軸マルチ 軸=16,8 相手=[15, 2, 10] 12点 Harville最大=0.0044",
+      "created_at": "2026-05-23 13:40:26",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.004421645318496877,
+          "ev_score": 1.0254564859879676
+        },
+        {
+          "horse_name": "ウィングブルー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.004421645318496877,
+          "ev_score": 1.0254564859879676
+        },
+        {
+          "horse_name": "シーグルロス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.004421645318496877,
+          "ev_score": 1.0254564859879676
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 12,
+      "invested": 1200,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 37544,
+      "model_type": "Alpha-Payout(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.2943433741793953,
+      "expected_value": 0.883030122538186,
+      "recommended_bet": 100.0,
+      "combination_json": "[[16], [10]]",
+      "notes": "2頭 relative nan=0% max=0.883",
+      "created_at": "2026-05-23 13:40:44",
+      "is_hit": 1,
+      "payout": 160.0,
+      "profit": -40.0,
+      "roi": 80.0,
+      "horses": [
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": "2023106613",
+          "predicted_rank": 1,
+          "model_score": 0.883030122538186,
+          "ev_score": 0.883030122538186
+        },
+        {
+          "horse_name": "ダブルチャレンジ",
+          "horse_id": "2023104875",
+          "predicted_rank": 2,
+          "model_score": 0.6218537307671217,
+          "ev_score": 0.6218537307671217
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 2,
+      "invested": 200,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 37545,
+      "model_type": "Alpha-Payout(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.8964804515216495,
+      "expected_value": 2.6894413545649485,
+      "recommended_bet": 200.0,
+      "combination_json": "[[3, 10, 16], [10, 13, 16], [3, 13, 16], [2, 10, 16], [2, 3, 16], [2, 13, 16]]",
+      "notes": "Alpha EV=2.69 軸16番 相手4頭 6点",
+      "created_at": "2026-05-23 13:40:44",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": "2023106613",
+          "predicted_rank": 1,
+          "model_score": 0.883030122538186,
+          "ev_score": 0.883030122538186
+        },
+        {
+          "horse_name": "ダブルチャレンジ",
+          "horse_id": "2023104875",
+          "predicted_rank": 2,
+          "model_score": 0.6218537307671217,
+          "ev_score": 0.6218537307671217
+        }
+      ],
+      "bet_form": "軸1頭ながし",
+      "n_tickets": 6,
+      "invested": 600,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 37546,
+      "model_type": "Alpha-Payout(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.3216580616109573,
+      "expected_value": 1.6082903080547863,
+      "recommended_bet": 200.0,
+      "combination_json": "[[16, 10, 3], [16, 3, 10], [16, 10, 13], [16, 13, 10], [16, 10, 2], [16, 3, 13]]",
+      "notes": "Alpha EV=1.61 軸16番→フォーメーション 6点",
+      "created_at": "2026-05-23 13:40:44",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": "2023106613",
+          "predicted_rank": 1,
+          "model_score": 0.883030122538186,
+          "ev_score": 0.883030122538186
+        },
+        {
+          "horse_name": "ダブルチャレンジ",
+          "horse_id": "2023104875",
+          "predicted_rank": 2,
+          "model_score": 0.6218537307671217,
+          "ev_score": 0.6218537307671217
+        }
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 6,
+      "invested": 600,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 37547,
+      "model_type": "OracleV2(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.14951533105816403,
+      "expected_value": 4.485459931744921,
+      "recommended_bet": 500.0,
+      "combination_json": "[[8, 15, 16], [2, 8, 16], [8, 10, 16], [8, 9, 16], [2, 15, 16]]",
+      "notes": "[Oracle] 的中確率最大 5点 P最大=0.1495 馬番=[(8, 15, 16), (2, 8, 16), (8, 10, 16), (8, 9, 16), (2, 15, 16)]",
+      "created_at": "2026-05-23 13:40:44",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ウィングブルー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.14951533105816403,
+          "ev_score": 4.485459931744921
+        },
+        {
+          "horse_name": "シーグルロス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.14951533105816403,
+          "ev_score": 4.485459931744921
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.14951533105816403,
+          "ev_score": 4.485459931744921
+        }
+      ],
+      "bet_form": "軸1頭ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 37548,
+      "model_type": "OracleV2(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.024919221843027337,
+      "expected_value": 3.7378832764541006,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[16, 8, 15], [16, 8, 2], [16, 15, 8], [16, 2, 8], [8, 16, 15], [8, 16, 2], [8, 15, 16], [8, 2, 16], [15, 16, 8], [15, 8, 16], [2, 16, 8], [2, 8, 16]]",
+      "notes": "[Oracle] 的中確率最大 12点 P最大=0.0249 馬番=[(16, 8, 15), (16, 8, 2), (16, 15, 8), (16, 2, 8), (8, 16, 15), (8, 16, 2), (8, 15, 16), (8, 2, 16), (15, 16, 8), (15, 8, 16), (2, 16, 8), (2, 8, 16)]",
+      "created_at": "2026-05-23 13:40:44",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.024919221843027337,
+          "ev_score": 3.7378832764541006
+        },
+        {
+          "horse_name": "ウィングブルー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.024919221843027337,
+          "ev_score": 3.7378832764541006
+        },
+        {
+          "horse_name": "シーグルロス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.024919221843027337,
+          "ev_score": 3.7378832764541006
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 12,
+      "invested": 1200,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 37549,
+      "model_type": "本命V2(直前)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-05-23 13:40:44",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": "2023106613",
+          "predicted_rank": 1,
+          "model_score": 0.11401218450826806,
+          "ev_score": 0.5814621409921671
+        },
+        {
+          "horse_name": "ウィングブルー",
+          "horse_id": "2023105317",
+          "predicted_rank": 2,
+          "model_score": 0.10994184436444199,
+          "ev_score": 0.9125173082248685
+        },
+        {
+          "horse_name": "コパノトーマス",
+          "horse_id": "2023103037",
+          "predicted_rank": 3,
+          "model_score": 0.0786472670074715,
+          "ev_score": 0.841525756979945
+        },
+        {
+          "horse_name": "シーグルロス",
+          "horse_id": "2023100214",
+          "predicted_rank": 4,
+          "model_score": 0.0786472670074715,
+          "ev_score": 1.0066850176956352
+        },
+        {
+          "horse_name": "ダブルチャレンジ",
+          "horse_id": "2023104875",
+          "predicted_rank": 5,
+          "model_score": 0.06742572495997154,
+          "ev_score": 0.3371286247998577
+        },
+        {
+          "horse_name": "ミヤフロント",
+          "horse_id": "2023102606",
+          "predicted_rank": 6,
+          "model_score": 0.05671367259350092,
+          "ev_score": 2.4783874923359903
+        },
+        {
+          "horse_name": "コウジハラ",
+          "horse_id": "2023101860",
+          "predicted_rank": 7,
+          "model_score": 0.045773003269500234,
+          "ev_score": 3.355161139654367
+        },
+        {
+          "horse_name": "トモジャオーリー",
+          "horse_id": "2023103068",
+          "predicted_rank": 8,
+          "model_score": 0.03876739562624255,
+          "ev_score": 0.3489065606361829
+        },
+        {
+          "horse_name": "ブレイヴソルジャー",
+          "horse_id": "2023102740",
+          "predicted_rank": 9,
+          "model_score": 0.032305433186490456,
+          "ev_score": 0.1679882525697504
+        },
+        {
+          "horse_name": "クイーンレグナント",
+          "horse_id": "2023101106",
+          "predicted_rank": 10,
+          "model_score": 0.02751091703056769,
+          "ev_score": 1.3012663755458516
+        },
+        {
+          "horse_name": "オタルイーグル",
+          "horse_id": "2023100611",
+          "predicted_rank": 11,
+          "model_score": 0.02751091703056769,
+          "ev_score": 0.18432314410480352
+        },
+        {
+          "horse_name": "クワイエットアイ",
+          "horse_id": "2023110054",
+          "predicted_rank": 12,
+          "model_score": 0.02751091703056769,
+          "ev_score": 0.8280786026200875
+        },
+        {
+          "horse_name": "エムティリオ",
+          "horse_id": "2023101551",
+          "predicted_rank": 13,
+          "model_score": 0.00632688927943761,
+          "ev_score": 0.7990861159929701
+        },
+        {
+          "horse_name": "アースコーリング",
+          "horse_id": "2023105169",
+          "predicted_rank": 14,
+          "model_score": 0.00632688927943761,
+          "ev_score": 0.8781722319859403
+        },
+        {
+          "horse_name": "フローラルツッキー",
+          "horse_id": "2023104108",
+          "predicted_rank": 15,
+          "model_score": 0.0042417815482502655,
+          "ev_score": 0.4598091198303288
+        },
+        {
+          "horse_name": "カシノリアーナ",
+          "horse_id": "2023100421",
+          "predicted_rank": 16,
+          "model_score": 0.0042417815482502655,
+          "ev_score": 0.5420996818663839
+        }
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "invested": 0,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 37550,
+      "model_type": "HitFocusV2(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.2812699232441896,
+      "expected_value": 1.1705329125730193,
+      "recommended_bet": 700.0,
+      "combination_json": "[[8, 16], [15, 16], [8, 15], [2, 16], [2, 8], [10, 16], [8, 10]]",
+      "notes": "2軸マルチ 軸=16,8 相手=[15, 2, 10] Harville最大=0.0563",
+      "created_at": "2026-05-23 13:40:44",
+      "is_hit": 1,
+      "payout": 1330.0,
+      "profit": 630.0,
+      "roi": 190.0,
+      "horses": [
+        {
+          "horse_name": "ウィングブルー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.056253984648837914,
+          "ev_score": 1.1705329125730193
+        },
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.056253984648837914,
+          "ev_score": 1.1705329125730193
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 7,
+      "invested": 700,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 37551,
+      "model_type": "HitFocusV2(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.2257618673462964,
+      "expected_value": 1.1315241231863213,
+      "recommended_bet": 800.0,
+      "combination_json": "[[16, 8], [8, 16], [16, 15], [8, 15], [16, 2], [8, 2], [16, 10], [8, 10]]",
+      "notes": "2軸マルチ 軸=16,8 相手=[15, 2, 10] Harville最大=0.0282",
+      "created_at": "2026-05-23 13:40:44",
+      "is_hit": 1,
+      "payout": 2560.0,
+      "profit": 1760.0,
+      "roi": 320.0,
+      "horses": [
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02822023341828705,
+          "ev_score": 1.1315241231863213
+        },
+        {
+          "horse_name": "ウィングブルー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02822023341828705,
+          "ev_score": 1.1315241231863213
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 8,
+      "invested": 800,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 37552,
+      "model_type": "HitFocusV2(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.1326493595549063,
+      "expected_value": 1.023517152351275,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[16, 8, 15], [8, 16, 15], [16, 15, 8], [8, 15, 16], [16, 8, 2], [8, 16, 2], [16, 2, 8], [8, 2, 16], [16, 8, 10], [8, 16, 10], [16, 10, 8], [8, 10, 16]]",
+      "notes": "2軸マルチ 軸=16,8 相手=[15, 2, 10] 12点 Harville最大=0.0044",
+      "created_at": "2026-05-23 13:40:44",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "カレンデュラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.004421645318496877,
+          "ev_score": 1.023517152351275
+        },
+        {
+          "horse_name": "ウィングブルー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.004421645318496877,
+          "ev_score": 1.023517152351275
+        },
+        {
+          "horse_name": "シーグルロス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.004421645318496877,
+          "ev_score": 1.023517152351275
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 12,
+      "invested": 1200,
+      "horse_num_to_name": {
+        "1": "クイーンレグナント",
+        "2": "コパノトーマス",
+        "3": "ブレイヴソルジャー",
+        "4": "カシノリアーナ",
+        "5": "コウジハラ",
+        "6": "アースコーリング",
+        "7": "フローラルツッキー",
+        "8": "ウィングブルー",
+        "9": "ミヤフロント",
+        "10": "ダブルチャレンジ",
+        "11": "エムティリオ",
+        "12": "クワイエットアイ",
+        "13": "オタルイーグル",
+        "14": "トモジャオーリー",
+        "15": "シーグルロス",
+        "16": "カレンデュラ"
+      },
+      "is_provisional": false
+    }
+  ],
+  "training_evals": {},
+  "prerace": {
+    "bias": {
+      "today_inner_bias": 0.03577235772357723,
+      "today_front_bias": 0.5714285714285714,
+      "today_race_count": 7
+    },
+    "ev_recommend": [
+      {
+        "horse_number": 5,
+        "horse_name": "コウジハラ",
+        "win_odds": 73.3,
+        "ev_score": 3.3552,
+        "kelly_fraction": 0.0033
+      },
+      {
+        "horse_number": 9,
+        "horse_name": "ミヤフロント",
+        "win_odds": 43.7,
+        "ev_score": 2.4784,
+        "kelly_fraction": 0.0035
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "クイーンレグナント",
+        "win_odds": 47.3,
+        "ev_score": 1.3013,
+        "kelly_fraction": 0.0007
+      },
+      {
+        "horse_number": 15,
+        "horse_name": "シーグルロス",
+        "win_odds": 12.8,
+        "ev_score": 1.0067,
+        "kelly_fraction": 0.0001
+      }
+    ],
+    "generated_at": "2026-05-23T13:40:26.595838"
+  }
+}

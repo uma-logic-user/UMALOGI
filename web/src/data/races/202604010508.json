@@ -12,6 +12,32 @@
   "year": "2026",
   "results": [
     {
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 9,
+      "horse_name": "ファルコンミノル",
+      "horse_id": "2020104748",
+      "sex_age": "牡1",
+      "weight_carried": 58.0,
+      "jockey": "ルメール",
+      "trainer": "中舘英二",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ゴールドシップ",
+      "dam": "ストライクルート",
+      "dam_sire": "Smart Strike(加)",
+      "honmei_score": 0.0879,
+      "ev_score": 0.1407,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.5138,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -218,35 +244,52 @@
       "manji_ev": 1.0693,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 9,
-      "horse_name": "ファルコンミノル",
-      "horse_id": "2020104748",
-      "sex_age": "牡1",
-      "weight_carried": 58.0,
-      "jockey": "ルメール",
-      "trainer": "中舘英二",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ゴールドシップ",
-      "dam": "ストライクルート",
-      "dam_sire": "Smart Strike(加)",
-      "honmei_score": 0.0879,
-      "ev_score": 0.1407,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.5138,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
     }
   ],
-  "payouts": [],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "9",
+      "payout": 9000,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1-10",
+      "payout": 2070,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "7",
+      "payout": 80000,
+      "popularity": 1
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 50040,
+      "popularity": 50
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "7",
+      "payout": 9000,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1",
+      "payout": 105,
+      "popularity": 70
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2",
+      "payout": 90005,
+      "popularity": null
+    }
+  ],
   "predictions": [
     {
       "prediction_id": 32318,

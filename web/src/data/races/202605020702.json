@@ -12,6 +12,32 @@
   "year": "2026",
   "results": [
     {
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 16,
+      "horse_name": "サンタピア",
+      "horse_id": "2023102804",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "柴田大知",
+      "trainer": "松山将樹",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.057,
+      "ev_score": 3.5383,
+      "kelly_fraction": 0.0042,
+      "manji_ev": 1.3505,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -400,35 +426,64 @@
       "manji_ev": 2.2355,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 16,
-      "horse_name": "サンタピア",
-      "horse_id": "2023102804",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "柴田大知",
-      "trainer": "松山将樹",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.057,
-      "ev_score": 3.5383,
-      "kelly_fraction": 0.0042,
-      "manji_ev": 1.3505,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
     }
   ],
-  "payouts": [],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "16",
+      "payout": 16000,
+      "popularity": null
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "1-4",
+      "payout": 99012,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "16",
+      "payout": 12050,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 30021,
+      "popularity": 40
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "3",
+      "payout": 70000,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "13",
+      "payout": 222,
+      "popularity": 10
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "5",
+      "payout": 13000,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4",
+      "payout": 51314,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1",
+      "payout": 90001,
+      "popularity": null
+    }
+  ],
   "predictions": [
     {
       "prediction_id": 32384,

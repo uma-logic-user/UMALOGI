@@ -12,6 +12,32 @@
   "year": "2026",
   "results": [
     {
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "シュガークン",
+      "horse_id": "2021102224",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "武豊",
+      "trainer": "清水久詞",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ドゥラメンテ",
+      "dam": "シュガーハート",
+      "dam_sire": "サクラバクシンオー",
+      "honmei_score": 0.0614,
+      "ev_score": 0.344,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.2694,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -374,35 +400,58 @@
       "manji_ev": 0.5939,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 15,
-      "horse_name": "シュガークン",
-      "horse_id": "2021102224",
-      "sex_age": "牡4",
-      "weight_carried": 58.0,
-      "jockey": "武豊",
-      "trainer": "清水久詞",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ドゥラメンテ",
-      "dam": "シュガーハート",
-      "dam_sire": "サクラバクシンオー",
-      "honmei_score": 0.0614,
-      "ev_score": 0.344,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.2694,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
     }
   ],
-  "payouts": [],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "15",
+      "payout": 15000,
+      "popularity": null
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "1",
+      "payout": 53007,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "4",
+      "payout": 5110,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 60000,
+      "popularity": 9
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "10",
+      "payout": 30120,
+      "popularity": 90
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "11",
+      "payout": 251,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "3",
+      "payout": 11000,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5",
+      "payout": 90309,
+      "popularity": null
+    }
+  ],
   "predictions": [
     {
       "prediction_id": 32351,

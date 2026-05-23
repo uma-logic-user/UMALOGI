@@ -12,6 +12,32 @@
   "year": "2026",
   "results": [
     {
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "ホウオウアートマン",
+      "horse_id": "2022104845",
+      "sex_age": "牡1",
+      "weight_carried": 58.0,
+      "jockey": "丸田恭介",
+      "trainer": "矢作芳人",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ドゥラメンテ",
+      "dam": "スウィートリーズンSweet Reason(米)",
+      "dam_sire": "ストリートセンスStreet Sense(米)",
+      "honmei_score": 0.0674,
+      "ev_score": 1.483,
+      "kelly_fraction": 0.0023,
+      "manji_ev": 1.7694,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -374,35 +400,58 @@
       "manji_ev": 1.0704,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 15,
-      "horse_name": "ホウオウアートマン",
-      "horse_id": "2022104845",
-      "sex_age": "牡1",
-      "weight_carried": 58.0,
-      "jockey": "丸田恭介",
-      "trainer": "矢作芳人",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "ドゥラメンテ",
-      "dam": "スウィートリーズンSweet Reason(米)",
-      "dam_sire": "ストリートセンスStreet Sense(米)",
-      "honmei_score": 0.0674,
-      "ev_score": 1.483,
-      "kelly_fraction": 0.0023,
-      "manji_ev": 1.7694,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
     }
   ],
-  "payouts": [],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "15",
+      "payout": 15000,
+      "popularity": null
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "1",
+      "payout": 49005,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "7",
+      "payout": 5080,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "10",
+      "payout": 80080,
+      "popularity": 40
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4",
+      "payout": 50000,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "8",
+      "payout": 156,
+      "popularity": 40
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "7",
+      "payout": 8000,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "10-3",
+      "payout": 70407,
+      "popularity": null
+    }
+  ],
   "predictions": [
     {
       "prediction_id": 32482,

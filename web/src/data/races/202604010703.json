@@ -1,0 +1,3535 @@
+{
+  "race_id": "202604010703",
+  "race_name": "",
+  "date": "2026-05-23",
+  "venue": "新潟",
+  "race_number": 3,
+  "distance": 0,
+  "surface": "",
+  "track_direction": "",
+  "weather": "",
+  "condition": "",
+  "year": "2026",
+  "results": [
+    {
+      "rank": 1,
+      "gate_number": 7,
+      "horse_number": 12,
+      "horse_name": "アイアンナックル",
+      "horse_id": "2023100633",
+      "sex_age": "牡3",
+      "weight_carried": 54.0,
+      "jockey": "森田誠也",
+      "trainer": "尾形和幸",
+      "finish_time": "1:12.2",
+      "margin": "@",
+      "win_odds": 13.7,
+      "popularity": 5,
+      "horse_weight": 442,
+      "horse_weight_diff": -4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0959,
+      "ev_score": 1.3908,
+      "kelly_fraction": 0.0029,
+      "manji_ev": 0.8106,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 2,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "マイベスティー",
+      "horse_id": "2023103250",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "長岡禎仁",
+      "trainer": "高橋亮",
+      "finish_time": "1:12.6",
+      "margin": "@",
+      "win_odds": 79.3,
+      "popularity": 9,
+      "horse_weight": 484,
+      "horse_weight_diff": 6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0388,
+      "ev_score": 0.9924,
+      "kelly_fraction": 0.0,
+      "manji_ev": 2.344,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "ジャーナーリア",
+      "horse_id": "2023100596",
+      "sex_age": "牡1",
+      "weight_carried": 57.0,
+      "jockey": "丸山元気",
+      "trainer": "本田優",
+      "finish_time": "1:13.0",
+      "margin": "@",
+      "win_odds": 1.8,
+      "popularity": 1,
+      "horse_weight": 526,
+      "horse_weight_diff": -8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1269,
+      "ev_score": 0.3426,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.738,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 4,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "ワイドポティロン",
+      "horse_id": "2023103282",
+      "sex_age": "牝3",
+      "weight_carried": 52.0,
+      "jockey": "石田拓郎",
+      "trainer": "佐藤悠太",
+      "finish_time": "1:13.3",
+      "margin": "@",
+      "win_odds": 49.3,
+      "popularity": 8,
+      "horse_weight": 414,
+      "horse_weight_diff": -12,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0458,
+      "ev_score": 0.7598,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.914,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 5,
+      "gate_number": 4,
+      "horse_number": 6,
+      "horse_name": "サンライズロイ",
+      "horse_id": "2023106556",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "丹内祐次",
+      "trainer": "牧浦充徳",
+      "finish_time": "1:13.4",
+      "margin": "@",
+      "win_odds": 6.3,
+      "popularity": 3,
+      "horse_weight": 468,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1378,
+      "ev_score": 0.8266,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.0499,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 6,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "サリーアン",
+      "horse_id": "2023100789",
+      "sex_age": "牡3",
+      "weight_carried": 54.0,
+      "jockey": "小林美駒",
+      "trainer": "鈴木伸尋",
+      "finish_time": "1:13.7",
+      "margin": "@",
+      "win_odds": 14.4,
+      "popularity": 6,
+      "horse_weight": 452,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0674,
+      "ev_score": 0.5057,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.8047,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 7,
+      "gate_number": 5,
+      "horse_number": 8,
+      "horse_name": "クリコファルコン",
+      "horse_id": "2023101610",
+      "sex_age": "牡4",
+      "weight_carried": 55.0,
+      "jockey": "永島まな",
+      "trainer": "谷潔",
+      "finish_time": "1:13.9",
+      "margin": "@",
+      "win_odds": 6.2,
+      "popularity": 2,
+      "horse_weight": 460,
+      "horse_weight_diff": 6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1099,
+      "ev_score": 0.9235,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.4949,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 8,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "シンクシビリティ",
+      "horse_id": "2023101349",
+      "sex_age": "牝5",
+      "weight_carried": 51.0,
+      "jockey": "河原田菜",
+      "trainer": "青木孝文",
+      "finish_time": "1:14.0",
+      "margin": "@",
+      "win_odds": 451.3,
+      "popularity": 15,
+      "horse_weight": 422,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0063,
+      "ev_score": 0.5542,
+      "kelly_fraction": 0.0,
+      "manji_ev": 6.3945,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 9,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "ヒエンジョー",
+      "horse_id": "2023101502",
+      "sex_age": "牡3",
+      "weight_carried": 55.0,
+      "jockey": "柴田裕一",
+      "trainer": "岡田稲男",
+      "finish_time": "1:14.0",
+      "margin": "@",
+      "win_odds": 82.1,
+      "popularity": 10,
+      "horse_weight": 476,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0323,
+      "ev_score": 1.1533,
+      "kelly_fraction": 0.0004,
+      "manji_ev": 2.9752,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 10,
+      "gate_number": 6,
+      "horse_number": 10,
+      "horse_name": "ラインメテオラ",
+      "horse_id": "2023101317",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "富田暁",
+      "trainer": "長谷川浩",
+      "finish_time": "1:14.1",
+      "margin": "@",
+      "win_odds": 7.2,
+      "popularity": 4,
+      "horse_weight": 478,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1631,
+      "ev_score": 1.2888,
+      "kelly_fraction": 0.0042,
+      "manji_ev": 1.3383,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 11,
+      "gate_number": 7,
+      "horse_number": 13,
+      "horse_name": "アクシズ",
+      "horse_id": "2023105799",
+      "sex_age": "牡3",
+      "weight_carried": 57.0,
+      "jockey": "横山琉人",
+      "trainer": "尾形和幸",
+      "finish_time": "1:14.2",
+      "margin": "@",
+      "win_odds": 123.5,
+      "popularity": 11,
+      "horse_weight": 440,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0315,
+      "ev_score": 1.6419,
+      "kelly_fraction": 0.0013,
+      "manji_ev": 2.9466,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 12,
+      "gate_number": 3,
+      "horse_number": 4,
+      "horse_name": "リオンアンサー",
+      "horse_id": "2023100328",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "杉原誠人",
+      "trainer": "佐藤吉勝",
+      "finish_time": "1:14.4",
+      "margin": "@",
+      "win_odds": 366.3,
+      "popularity": 14,
+      "horse_weight": 412,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0388,
+      "ev_score": 3.5472,
+      "kelly_fraction": 0.0028,
+      "manji_ev": 2.0431,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 13,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "オッピポイカ",
+      "horse_id": "2023106165",
+      "sex_age": "牡5",
+      "weight_carried": 57.0,
+      "jockey": "菅原隆一",
+      "trainer": "鈴木慎太",
+      "finish_time": "1:14.7",
+      "margin": "@",
+      "win_odds": 255.0,
+      "popularity": 13,
+      "horse_weight": 454,
+      "horse_weight_diff": -8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0315,
+      "ev_score": 1.7775,
+      "kelly_fraction": 0.0014,
+      "manji_ev": 3.7299,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 14,
+      "gate_number": 8,
+      "horse_number": 14,
+      "horse_name": "ララクロシェット",
+      "horse_id": "2023101846",
+      "sex_age": "牝1",
+      "weight_carried": 53.0,
+      "jockey": "鷲頭虎太",
+      "trainer": "井上智史",
+      "finish_time": "1:14.9",
+      "margin": "@",
+      "win_odds": 123.9,
+      "popularity": 12,
+      "horse_weight": 436,
+      "horse_weight_diff": -12,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0323,
+      "ev_score": 0.9918,
+      "kelly_fraction": 0.0,
+      "manji_ev": 2.8424,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 15,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "マイネルテオドロス",
+      "horse_id": "2023106407",
+      "sex_age": "牡3",
+      "weight_carried": 54.0,
+      "jockey": "石神深道",
+      "trainer": "菊川正達",
+      "finish_time": "1:15.2",
+      "margin": "@",
+      "win_odds": 20.8,
+      "popularity": 7,
+      "horse_weight": 450,
+      "horse_weight_diff": -6,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0674,
+      "ev_score": 1.2137,
+      "kelly_fraction": 0.0013,
+      "manji_ev": 0.365,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    }
+  ],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "12",
+      "payout": 1370,
+      "popularity": 5
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "11",
+      "payout": 130,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "12",
+      "payout": 250,
+      "popularity": 5
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "15",
+      "payout": 1080,
+      "popularity": 9
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "7-8",
+      "payout": 9210,
+      "popularity": 21
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "12-15",
+      "payout": 59370,
+      "popularity": 54
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "11-12",
+      "payout": 570,
+      "popularity": 5
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "11-15",
+      "payout": 2230,
+      "popularity": 21
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "12-15",
+      "payout": 8600,
+      "popularity": 45
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "12→15",
+      "payout": 107950,
+      "popularity": 98
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "11-12-15",
+      "payout": 21210,
+      "popularity": 53
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "12→15→11",
+      "payout": 254810,
+      "popularity": 448
+    }
+  ],
+  "predictions": [
+    {
+      "prediction_id": 35430,
+      "model_type": "本命(暫定)",
+      "bet_type": "ワイド",
+      "confidence": 0.08219675016207628,
+      "expected_value": 0.7852951053946056,
+      "recommended_bet": 100.0,
+      "combination_json": "[[6, 10], [6, 11], [6, 12], [6, 8], [1, 6]]",
+      "notes": "★QF推奨 軸6番×相手5頭ワイド Harville最大=0.063",
+      "created_at": "2026-05-23 08:29:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06322826935544329,
+          "ev_score": 0.7852951053946056
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06322826935544329,
+          "ev_score": 0.7852951053946056
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06322826935544329,
+          "ev_score": 0.7852951053946056
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06322826935544329,
+          "ev_score": 0.7852951053946056
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06322826935544329,
+          "ev_score": 0.7852951053946056
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06322826935544329,
+          "ev_score": 0.7852951053946056
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06322826935544329,
+          "ev_score": 0.7852951053946056
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06322826935544329,
+          "ev_score": 0.7852951053946056
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06322826935544329,
+          "ev_score": 0.7852951053946056
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06322826935544329,
+          "ev_score": 0.7852951053946056
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 35431,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.06322826935544329,
+      "expected_value": 1.517478464530639,
+      "recommended_bet": 100.0,
+      "combination_json": "[[6, 10], [6, 11], [6, 12], [6, 8], [1, 6]]",
+      "notes": "★QF推奨 軸6番×相手5頭フォーメーション Harville最大=0.063",
+      "created_at": "2026-05-23 08:29:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06322826935544329,
+          "ev_score": 1.517478464530639
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06322826935544329,
+          "ev_score": 1.517478464530639
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06322826935544329,
+          "ev_score": 1.517478464530639
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06322826935544329,
+          "ev_score": 1.517478464530639
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06322826935544329,
+          "ev_score": 1.517478464530639
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06322826935544329,
+          "ev_score": 1.517478464530639
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06322826935544329,
+          "ev_score": 1.517478464530639
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06322826935544329,
+          "ev_score": 1.517478464530639
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06322826935544329,
+          "ev_score": 1.517478464530639
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06322826935544329,
+          "ev_score": 1.517478464530639
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 35432,
+      "model_type": "本命(暫定)",
+      "bet_type": "複勝",
+      "confidence": 0.1655124103166368,
+      "expected_value": 0.4965372309499104,
+      "recommended_bet": 100.0,
+      "combination_json": "[[6], [10], [11]]",
+      "notes": "上位3頭を複勝",
+      "created_at": "2026-05-23 08:29:09",
+      "is_hit": 1,
+      "payout": 130.0,
+      "profit": -170.0,
+      "roi": 43.333333333333336,
+      "horses": [
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.1655124103166368,
+          "ev_score": 0.4965372309499104
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.1655124103166368,
+          "ev_score": 0.4965372309499104
+        },
+        {
+          "horse_name": "ジャーナーリア",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.1655124103166368,
+          "ev_score": 0.4965372309499104
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 35433,
+      "model_type": "本命(暫定)",
+      "bet_type": "単勝",
+      "confidence": 0.20652173913043478,
+      "expected_value": 1.2391304347826086,
+      "recommended_bet": 100.0,
+      "combination_json": "[[6]]",
+      "notes": "確率1位 P(win)=0.21 odds=6.0 EV=1.24",
+      "created_at": "2026-05-23 08:29:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.20652173913043478,
+          "ev_score": 1.2391304347826086
+        }
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 35434,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬単",
+      "confidence": 0.2587217832715737,
+      "expected_value": 1.4822817768086636,
+      "recommended_bet": 100.0,
+      "combination_json": "[[6, 10], [6, 11], [6, 12]]",
+      "notes": "軸6番→相手3頭フォーメーション Harville最大=0.032",
+      "created_at": "2026-05-23 08:29:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03234022290894671,
+          "ev_score": 1.4822817768086636
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03234022290894671,
+          "ev_score": 1.4822817768086636
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03234022290894671,
+          "ev_score": 1.4822817768086636
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03234022290894671,
+          "ev_score": 1.4822817768086636
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03234022290894671,
+          "ev_score": 1.4822817768086636
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03234022290894671,
+          "ev_score": 1.4822817768086636
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 35435,
+      "model_type": "本命(暫定)",
+      "bet_type": "三連複",
+      "confidence": 0.3556223490692838,
+      "expected_value": 2.48259961885267,
+      "recommended_bet": 100.0,
+      "combination_json": "[[6, 10, 11], [6, 10, 12]]",
+      "notes": "合成EV最大=2.48 2点 馬番=[(6, 10, 11), (6, 10, 12)]",
+      "created_at": "2026-05-23 08:29:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.029635195755773648,
+          "ev_score": 2.48259961885267
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.029635195755773648,
+          "ev_score": 2.48259961885267
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.029635195755773648,
+          "ev_score": 2.48259961885267
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.029635195755773648,
+          "ev_score": 2.48259961885267
+        },
+        {
+          "horse_name": "ジャーナーリア",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.029635195755773648,
+          "ev_score": 2.48259961885267
+        },
+        {
+          "horse_name": "ジャーナーリア",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.029635195755773648,
+          "ev_score": 2.48259961885267
+        }
+      ],
+      "bet_form": "軸2頭ながし",
+      "n_tickets": 2,
+      "invested": 200,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 35436,
+      "model_type": "本命(暫定)",
+      "bet_type": "三連単",
+      "confidence": 0.8890558726732094,
+      "expected_value": 6.0,
+      "recommended_bet": 200.0,
+      "combination_json": "[[6, 10, 11], [6, 11, 10], [10, 6, 11], [10, 11, 6], [11, 6, 10], [11, 10, 6], [6, 10, 12], [6, 12, 10], [10, 6, 12], [10, 12, 6], [12, 6, 10], [12, 10, 6], [6, 10, 8], [6, 8, 10], [10, 6, 8], [10, 8, 6], [8, 6, 10], [8, 10, 6], [6, 10, 1], [6, 1, 10], [10, 6, 1], [10, 1, 6], [1, 6, 10], [1, 10, 6], [6, 10, 2], [6, 2, 10], [10, 6, 2], [10, 2, 6], [2, 6, 10], [2, 10, 6], [6, 11, 12], [6, 12, 11], [11, 6, 12], [11, 12, 6], [12, 6, 11], [12, 11, 6], [6, 11, 8], [6, 8, 11], [11, 6, 8], [11, 8, 6], [8, 6, 11], [8, 11, 6], [6, 11, 1], [6, 1, 11], [11, 6, 1], [11, 1, 6], [1, 6, 11], [1, 11, 6], [6, 11, 2], [6, 2, 11], [11, 6, 2], [11, 2, 6], [2, 6, 11], [2, 11, 6], [6, 12, 8], [6, 8, 12], [12, 6, 8], [12, 8, 6], [8, 6, 12], [8, 12, 6], [6, 12, 1], [6, 1, 12], [12, 6, 1], [12, 1, 6], [1, 6, 12], [1, 12, 6], [6, 12, 2], [6, 2, 12], [12, 6, 2], [12, 2, 6], [2, 6, 12], [2, 12, 6], [6, 8, 1], [6, 1, 8], [8, 6, 1], [8, 1, 6], [1, 6, 8], [1, 8, 6], [6, 8, 2], [6, 2, 8], [8, 6, 2], [8, 2, 6], [2, 6, 8], [2, 8, 6], [6, 1, 2], [6, 2, 1], [1, 6, 2], [1, 2, 6], [2, 6, 1], [2, 1, 6]]",
+      "notes": "1頭軸マルチ 軸=6番 相手=[10, 11, 12, 8, 1, 2] 90点 Harville最大=0.0296",
+      "created_at": "2026-05-23 08:29:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -9000.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.029635195755773648,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.029635195755773648,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.029635195755773648,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.029635195755773648,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.029635195755773648,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.029635195755773648,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.029635195755773648,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.029635195755773648,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.029635195755773648,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.029635195755773648,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ジャーナーリア",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.029635195755773648,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ジャーナーリア",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.029635195755773648,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ジャーナーリア",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.029635195755773648,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ジャーナーリア",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.029635195755773648,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ジャーナーリア",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.029635195755773648,
+          "ev_score": 6.0
+        }
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 90,
+      "invested": 9000,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 35437,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-05-23 08:29:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": "2023106556",
+          "predicted_rank": 1,
+          "model_score": 0.20652173913043478,
+          "ev_score": 1.2391304347826086
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": "2023101317",
+          "predicted_rank": 2,
+          "model_score": 0.1631442343344457,
+          "ev_score": 1.288839451242121
+        },
+        {
+          "horse_name": "アイアンナックル",
+          "horse_id": "2023100633",
+          "predicted_rank": 3,
+          "model_score": 0.1268712574850299,
+          "ev_score": 1.8396332335329335
+        },
+        {
+          "horse_name": "ジャーナーリア",
+          "horse_id": "2023100596",
+          "predicted_rank": 4,
+          "model_score": 0.1268712574850299,
+          "ev_score": 0.34255239520958075
+        },
+        {
+          "horse_name": "クリコファルコン",
+          "horse_id": "2023101610",
+          "predicted_rank": 5,
+          "model_score": 0.11401218450826806,
+          "ev_score": 0.9577023498694517
+        },
+        {
+          "horse_name": "マイネルテオドロス",
+          "horse_id": "2023106407",
+          "predicted_rank": 6,
+          "model_score": 0.0786472670074715,
+          "ev_score": 1.415650806134487
+        },
+        {
+          "horse_name": "サリーアン",
+          "horse_id": "2023100789",
+          "predicted_rank": 7,
+          "model_score": 0.06742572495997154,
+          "ev_score": 0.5056929371997866
+        },
+        {
+          "horse_name": "リオンアンサー",
+          "horse_id": "2023100328",
+          "predicted_rank": 8,
+          "model_score": 0.05149700598802395,
+          "ev_score": 4.711976047904192
+        },
+        {
+          "horse_name": "マイベスティー",
+          "horse_id": "2023103250",
+          "predicted_rank": 9,
+          "model_score": 0.03876739562624255,
+          "ev_score": 0.9924453280318093
+        },
+        {
+          "horse_name": "ワイドポティロン",
+          "horse_id": "2023103282",
+          "predicted_rank": 10,
+          "model_score": 0.03250591016548463,
+          "ev_score": 0.539598108747045
+        },
+        {
+          "horse_name": "アクシズ",
+          "horse_id": "2023105799",
+          "predicted_rank": 11,
+          "model_score": 0.03151515151515152,
+          "ev_score": 1.641939393939394
+        },
+        {
+          "horse_name": "ララクロシェット",
+          "horse_id": "2023101846",
+          "predicted_rank": 12,
+          "model_score": 0.03151515151515152,
+          "ev_score": 0.9675151515151516
+        },
+        {
+          "horse_name": "オッピポイカ",
+          "horse_id": "2023106165",
+          "predicted_rank": 13,
+          "model_score": 0.03151515151515152,
+          "ev_score": 1.7774545454545454
+        },
+        {
+          "horse_name": "ヒエンジョー",
+          "horse_id": "2023101502",
+          "predicted_rank": 14,
+          "model_score": 0.02981366459627329,
+          "ev_score": 1.0643478260869565
+        },
+        {
+          "horse_name": "シンクシビリティ",
+          "horse_id": "2023101349",
+          "predicted_rank": 15,
+          "model_score": 0.00632688927943761,
+          "ev_score": 0.5542355008787346
+        }
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "invested": 0,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 35438,
+      "model_type": "HitFocus(暫定)",
+      "bet_type": "馬連",
+      "confidence": 0.31140905809501956,
+      "expected_value": 1.4947634788560937,
+      "recommended_bet": 700.0,
+      "combination_json": "[[6, 10], [6, 11], [10, 11], [6, 12], [10, 12], [6, 8], [8, 10]]",
+      "notes": "2軸マルチ 軸=6,10 相手=[11, 12, 8] Harville最大=0.0623",
+      "created_at": "2026-05-23 08:29:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -700.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06228181161900391,
+          "ev_score": 1.4947634788560937
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06228181161900391,
+          "ev_score": 1.4947634788560937
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 7,
+      "invested": 700,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 35439,
+      "model_type": "HitFocus(暫定)",
+      "bet_type": "馬単",
+      "confidence": 0.2548022414331595,
+      "expected_value": 1.4598257417309293,
+      "recommended_bet": 800.0,
+      "combination_json": "[[6, 10], [10, 6], [6, 11], [10, 11], [6, 12], [10, 12], [6, 8], [10, 8]]",
+      "notes": "2軸マルチ 軸=6,10 相手=[11, 12, 8] Harville最大=0.0319",
+      "created_at": "2026-05-23 08:29:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -800.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03185028017914494,
+          "ev_score": 1.4598257417309293
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03185028017914494,
+          "ev_score": 1.4598257417309293
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 8,
+      "invested": 800,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 35440,
+      "model_type": "HitFocus(暫定)",
+      "bet_type": "三連単",
+      "confidence": 0.15799436856137777,
+      "expected_value": 1.451178275236255,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[6, 10, 11], [10, 6, 11], [6, 11, 10], [10, 11, 6], [6, 10, 12], [10, 6, 12], [6, 12, 10], [10, 12, 6], [6, 10, 8], [10, 6, 8], [6, 8, 10], [10, 8, 6]]",
+      "notes": "2軸マルチ 軸=6,10 相手=[11, 12, 8] 12点 Harville最大=0.0053",
+      "created_at": "2026-05-23 08:29:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.005266478952045926,
+          "ev_score": 1.451178275236255
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.005266478952045926,
+          "ev_score": 1.451178275236255
+        },
+        {
+          "horse_name": "ジャーナーリア",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.005266478952045926,
+          "ev_score": 1.451178275236255
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 12,
+      "invested": 1200,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 36908,
+      "model_type": "本命(直前)",
+      "bet_type": "ワイド",
+      "confidence": 0.06509590815141983,
+      "expected_value": 0.8164829538106086,
+      "recommended_bet": 100.0,
+      "combination_json": "[[6, 10], [10, 11], [8, 10], [10, 12], [2, 10]]",
+      "notes": "★QF推奨 軸10番×相手5頭ワイド Harville最大=0.050",
+      "created_at": "2026-05-23 10:40:18",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.050073775501092176,
+          "ev_score": 0.8164829538106086
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.050073775501092176,
+          "ev_score": 0.8164829538106086
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.050073775501092176,
+          "ev_score": 0.8164829538106086
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.050073775501092176,
+          "ev_score": 0.8164829538106086
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.050073775501092176,
+          "ev_score": 0.8164829538106086
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.050073775501092176,
+          "ev_score": 0.8164829538106086
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.050073775501092176,
+          "ev_score": 0.8164829538106086
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.050073775501092176,
+          "ev_score": 0.8164829538106086
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.050073775501092176,
+          "ev_score": 0.8164829538106086
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.050073775501092176,
+          "ev_score": 0.8164829538106086
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 36909,
+      "model_type": "本命(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.050073775501092176,
+      "expected_value": 1.5807489745286782,
+      "recommended_bet": 100.0,
+      "combination_json": "[[6, 10], [10, 11], [8, 10], [10, 12], [2, 10]]",
+      "notes": "★QF推奨 軸10番×相手5頭フォーメーション Harville最大=0.050",
+      "created_at": "2026-05-23 10:40:18",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.050073775501092176,
+          "ev_score": 1.5807489745286782
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.050073775501092176,
+          "ev_score": 1.5807489745286782
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.050073775501092176,
+          "ev_score": 1.5807489745286782
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.050073775501092176,
+          "ev_score": 1.5807489745286782
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.050073775501092176,
+          "ev_score": 1.5807489745286782
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.050073775501092176,
+          "ev_score": 1.5807489745286782
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.050073775501092176,
+          "ev_score": 1.5807489745286782
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.050073775501092176,
+          "ev_score": 1.5807489745286782
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.050073775501092176,
+          "ev_score": 1.5807489745286782
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.050073775501092176,
+          "ev_score": 1.5807489745286782
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 36910,
+      "model_type": "本命(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.14259206478139122,
+      "expected_value": 0.4277761943441737,
+      "recommended_bet": 100.0,
+      "combination_json": "[[10], [6], [11]]",
+      "notes": "上位3頭を複勝",
+      "created_at": "2026-05-23 10:40:18",
+      "is_hit": 1,
+      "payout": 130.0,
+      "profit": -170.0,
+      "roi": 43.333333333333336,
+      "horses": [
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.14259206478139122,
+          "ev_score": 0.4277761943441737
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.14259206478139122,
+          "ev_score": 0.4277761943441737
+        },
+        {
+          "horse_name": "ジャーナーリア",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.14259206478139122,
+          "ev_score": 0.4277761943441737
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 36911,
+      "model_type": "本命(直前)",
+      "bet_type": "単勝",
+      "confidence": 0.1631442343344457,
+      "expected_value": 1.288839451242121,
+      "recommended_bet": 100.0,
+      "combination_json": "[[10]]",
+      "notes": "確率1位 P(win)=0.16 odds=7.9 EV=1.29",
+      "created_at": "2026-05-23 10:40:18",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.1631442343344457,
+          "ev_score": 1.288839451242121
+        }
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 36912,
+      "model_type": "本命(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.20319933087389633,
+      "expected_value": 1.532234714421159,
+      "recommended_bet": 100.0,
+      "combination_json": "[[10, 6], [10, 11], [10, 8]]",
+      "notes": "軸10番→相手3頭フォーメーション Harville最大=0.025",
+      "created_at": "2026-05-23 10:40:18",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02539991635923704,
+          "ev_score": 1.532234714421159
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02539991635923704,
+          "ev_score": 1.532234714421159
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02539991635923704,
+          "ev_score": 1.532234714421159
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02539991635923704,
+          "ev_score": 1.532234714421159
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02539991635923704,
+          "ev_score": 1.532234714421159
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02539991635923704,
+          "ev_score": 1.532234714421159
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 36913,
+      "model_type": "本命(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.30628027957019394,
+      "expected_value": 2.795259314490386,
+      "recommended_bet": 100.0,
+      "combination_json": "[[6, 10, 11], [6, 8, 10]]",
+      "notes": "合成EV最大=2.80 2点 馬番=[(6, 10, 11), (6, 8, 10)]",
+      "created_at": "2026-05-23 10:40:18",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.025523356630849495,
+          "ev_score": 2.795259314490386
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.025523356630849495,
+          "ev_score": 2.795259314490386
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.025523356630849495,
+          "ev_score": 2.795259314490386
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.025523356630849495,
+          "ev_score": 2.795259314490386
+        },
+        {
+          "horse_name": "ジャーナーリア",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.025523356630849495,
+          "ev_score": 2.795259314490386
+        },
+        {
+          "horse_name": "ジャーナーリア",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.025523356630849495,
+          "ev_score": 2.795259314490386
+        }
+      ],
+      "bet_form": "軸2頭ながし",
+      "n_tickets": 2,
+      "invested": 200,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 36914,
+      "model_type": "本命(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.7657006989254849,
+      "expected_value": 6.0,
+      "recommended_bet": 200.0,
+      "combination_json": "[[10, 6, 11], [10, 11, 6], [6, 10, 11], [6, 11, 10], [11, 10, 6], [11, 6, 10], [10, 6, 8], [10, 8, 6], [6, 10, 8], [6, 8, 10], [8, 10, 6], [8, 6, 10], [10, 6, 12], [10, 12, 6], [6, 10, 12], [6, 12, 10], [12, 10, 6], [12, 6, 10], [10, 6, 2], [10, 2, 6], [6, 10, 2], [6, 2, 10], [2, 10, 6], [2, 6, 10], [10, 6, 1], [10, 1, 6], [6, 10, 1], [6, 1, 10], [1, 10, 6], [1, 6, 10], [10, 11, 8], [10, 8, 11], [11, 10, 8], [11, 8, 10], [8, 10, 11], [8, 11, 10], [10, 11, 12], [10, 12, 11], [11, 10, 12], [11, 12, 10], [12, 10, 11], [12, 11, 10], [10, 11, 2], [10, 2, 11], [11, 10, 2], [11, 2, 10], [2, 10, 11], [2, 11, 10], [10, 11, 1], [10, 1, 11], [11, 10, 1], [11, 1, 10], [1, 10, 11], [1, 11, 10], [10, 8, 12], [10, 12, 8], [8, 10, 12], [8, 12, 10], [12, 10, 8], [12, 8, 10], [10, 8, 2], [10, 2, 8], [8, 10, 2], [8, 2, 10], [2, 10, 8], [2, 8, 10], [10, 8, 1], [10, 1, 8], [8, 10, 1], [8, 1, 10], [1, 10, 8], [1, 8, 10], [10, 12, 2], [10, 2, 12], [12, 10, 2], [12, 2, 10], [2, 10, 12], [2, 12, 10], [10, 12, 1], [10, 1, 12], [12, 10, 1], [12, 1, 10], [1, 10, 12], [1, 12, 10], [10, 2, 1], [10, 1, 2], [2, 10, 1], [2, 1, 10], [1, 10, 2], [1, 2, 10]]",
+      "notes": "1頭軸マルチ 軸=10番 相手=[6, 11, 8, 12, 2, 1] 90点 Harville最大=0.0255",
+      "created_at": "2026-05-23 10:40:18",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -9000.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.025523356630849495,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.025523356630849495,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.025523356630849495,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.025523356630849495,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.025523356630849495,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.025523356630849495,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.025523356630849495,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.025523356630849495,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.025523356630849495,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.025523356630849495,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ジャーナーリア",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.025523356630849495,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ジャーナーリア",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.025523356630849495,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ジャーナーリア",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.025523356630849495,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ジャーナーリア",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.025523356630849495,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ジャーナーリア",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.025523356630849495,
+          "ev_score": 6.0
+        }
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 90,
+      "invested": 9000,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 36915,
+      "model_type": "卍(直前)",
+      "bet_type": "単勝",
+      "confidence": 0.07299610231059192,
+      "expected_value": 6.394458562407852,
+      "recommended_bet": 100.0,
+      "combination_json": "[[5]]",
+      "notes": "確率1位(卍) EV=6.39 odds=87.6",
+      "created_at": "2026-05-23 10:40:18",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "シンクシビリティ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 6.394458562407852,
+          "ev_score": 6.394458562407852
+        }
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 36916,
+      "model_type": "卍(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.6,
+      "expected_value": 4.366535446334985,
+      "recommended_bet": 100.0,
+      "combination_json": "[[5], [3], [7]]",
+      "notes": "確率上位3頭を複勝",
+      "created_at": "2026-05-23 10:40:18",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "シンクシビリティ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 4.366535446334985,
+          "ev_score": 4.366535446334985
+        },
+        {
+          "horse_name": "オッピポイカ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 4.366535446334985,
+          "ev_score": 4.366535446334985
+        },
+        {
+          "horse_name": "ヒエンジョー",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 4.366535446334985,
+          "ev_score": 4.366535446334985
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 36917,
+      "model_type": "卍(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.26291784015007086,
+      "expected_value": 4.0,
+      "recommended_bet": 100.0,
+      "combination_json": "[[3, 5], [5, 7], [5, 13], [5, 14], [5, 15]]",
+      "notes": "軸5番×相手5頭フォーメーション Harville最大=0.053",
+      "created_at": "2026-05-23 10:40:18",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "オッピポイカ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05258356803001417,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "オッピポイカ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05258356803001417,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "オッピポイカ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05258356803001417,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "オッピポイカ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05258356803001417,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "オッピポイカ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05258356803001417,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "シンクシビリティ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05258356803001417,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "シンクシビリティ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05258356803001417,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "シンクシビリティ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05258356803001417,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "シンクシビリティ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05258356803001417,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "シンクシビリティ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05258356803001417,
+          "ev_score": 4.0
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 36918,
+      "model_type": "卍(直前)",
+      "bet_type": "ワイド",
+      "confidence": 0.315501408180085,
+      "expected_value": 3.0,
+      "recommended_bet": 100.0,
+      "combination_json": "[[3, 5], [5, 7], [5, 13], [5, 14], [5, 15]]",
+      "notes": "軸5番×相手5頭ワイド Harville最大=0.053",
+      "created_at": "2026-05-23 10:40:18",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "オッピポイカ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05258356803001417,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "オッピポイカ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05258356803001417,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "オッピポイカ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05258356803001417,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "オッピポイカ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05258356803001417,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "オッピポイカ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05258356803001417,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "シンクシビリティ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05258356803001417,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "シンクシビリティ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05258356803001417,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "シンクシビリティ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05258356803001417,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "シンクシビリティ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05258356803001417,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "シンクシビリティ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05258356803001417,
+          "ev_score": 3.0
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 36919,
+      "model_type": "卍(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.22043995602687652,
+      "expected_value": 5.0,
+      "recommended_bet": 100.0,
+      "combination_json": "[[5, 3], [5, 7], [5, 13]]",
+      "notes": "軸5番→相手3頭フォーメーション Harville最大=0.028",
+      "created_at": "2026-05-23 10:40:18",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "シンクシビリティ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.027554994503359565,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "シンクシビリティ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.027554994503359565,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "シンクシビリティ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.027554994503359565,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "オッピポイカ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.027554994503359565,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "オッピポイカ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.027554994503359565,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "オッピポイカ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.027554994503359565,
+          "ev_score": 5.0
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 36950,
+      "model_type": "卍(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.27293907445478466,
+      "expected_value": 5.0,
+      "recommended_bet": 100.0,
+      "combination_json": "[[3, 5, 14]]",
+      "notes": "合成EV=5.00 Harville=0.0182 馬番=(3, 5, 14)",
+      "created_at": "2026-05-23 10:40:18",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "オッピポイカ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.018195938296985643,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "シンクシビリティ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.018195938296985643,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ララクロシェット",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.018195938296985643,
+          "ev_score": 5.0
+        }
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 36952,
+      "model_type": "Oracle(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.15314013978509697,
+      "expected_value": 4.594204193552909,
+      "recommended_bet": 500.0,
+      "combination_json": "[[6, 10, 11], [6, 8, 10], [8, 10, 11], [6, 10, 12], [10, 11, 12]]",
+      "notes": "[Oracle] 的中確率最大 5点 P最大=0.1531 馬番=[(6, 10, 11), (6, 8, 10), (8, 10, 11), (6, 10, 12), (10, 11, 12)]",
+      "created_at": "2026-05-23 10:40:18",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.15314013978509697,
+          "ev_score": 4.594204193552909
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.15314013978509697,
+          "ev_score": 4.594204193552909
+        },
+        {
+          "horse_name": "ジャーナーリア",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.15314013978509697,
+          "ev_score": 4.594204193552909
+        }
+      ],
+      "bet_form": "軸1頭ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 36957,
+      "model_type": "Oracle(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.025523356630849495,
+      "expected_value": 3.8285034946274243,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[10, 6, 11], [10, 11, 6], [6, 10, 11], [6, 11, 10], [11, 10, 6], [11, 6, 10], [10, 6, 8], [10, 8, 6], [6, 10, 8], [6, 8, 10], [8, 10, 6], [8, 6, 10]]",
+      "notes": "[Oracle] 的中確率最大 12点 P最大=0.0255 馬番=[(10, 6, 11), (10, 11, 6), (6, 10, 11), (6, 11, 10), (11, 10, 6), (11, 6, 10), (10, 6, 8), (10, 8, 6), (6, 10, 8), (6, 8, 10), (8, 10, 6), (8, 6, 10)]",
+      "created_at": "2026-05-23 10:40:18",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.025523356630849495,
+          "ev_score": 3.8285034946274243
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.025523356630849495,
+          "ev_score": 3.8285034946274243
+        },
+        {
+          "horse_name": "ジャーナーリア",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.025523356630849495,
+          "ev_score": 3.8285034946274243
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 12,
+      "invested": 1200,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 36958,
+      "model_type": "本命(直前)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-05-23 10:40:18",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": "2023101317",
+          "predicted_rank": 1,
+          "model_score": 0.1631442343344457,
+          "ev_score": 1.288839451242121
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": "2023106556",
+          "predicted_rank": 2,
+          "model_score": 0.13776070252469813,
+          "ev_score": 0.8265642151481888
+        },
+        {
+          "horse_name": "ジャーナーリア",
+          "horse_id": "2023100596",
+          "predicted_rank": 3,
+          "model_score": 0.1268712574850299,
+          "ev_score": 0.34255239520958075
+        },
+        {
+          "horse_name": "クリコファルコン",
+          "horse_id": "2023101610",
+          "predicted_rank": 4,
+          "model_score": 0.10994184436444199,
+          "ev_score": 0.9235114926613127
+        },
+        {
+          "horse_name": "アイアンナックル",
+          "horse_id": "2023100633",
+          "predicted_rank": 5,
+          "model_score": 0.09591642924976258,
+          "ev_score": 1.3907882241215574
+        },
+        {
+          "horse_name": "マイネルテオドロス",
+          "horse_id": "2023106407",
+          "predicted_rank": 6,
+          "model_score": 0.06742572495997154,
+          "ev_score": 1.2136630492794878
+        },
+        {
+          "horse_name": "サリーアン",
+          "horse_id": "2023100789",
+          "predicted_rank": 7,
+          "model_score": 0.06742572495997154,
+          "ev_score": 0.5056929371997866
+        },
+        {
+          "horse_name": "ワイドポティロン",
+          "horse_id": "2023103282",
+          "predicted_rank": 8,
+          "model_score": 0.045773003269500234,
+          "ev_score": 0.7598318542737039
+        },
+        {
+          "horse_name": "リオンアンサー",
+          "horse_id": "2023100328",
+          "predicted_rank": 9,
+          "model_score": 0.03876739562624255,
+          "ev_score": 3.547216699801193
+        },
+        {
+          "horse_name": "マイベスティー",
+          "horse_id": "2023103250",
+          "predicted_rank": 10,
+          "model_score": 0.03876739562624255,
+          "ev_score": 0.9924453280318093
+        },
+        {
+          "horse_name": "ララクロシェット",
+          "horse_id": "2023101846",
+          "predicted_rank": 11,
+          "model_score": 0.032305433186490456,
+          "ev_score": 0.991776798825257
+        },
+        {
+          "horse_name": "ヒエンジョー",
+          "horse_id": "2023101502",
+          "predicted_rank": 12,
+          "model_score": 0.032305433186490456,
+          "ev_score": 1.1533039647577095
+        },
+        {
+          "horse_name": "アクシズ",
+          "horse_id": "2023105799",
+          "predicted_rank": 13,
+          "model_score": 0.03151515151515152,
+          "ev_score": 1.641939393939394
+        },
+        {
+          "horse_name": "オッピポイカ",
+          "horse_id": "2023106165",
+          "predicted_rank": 14,
+          "model_score": 0.03151515151515152,
+          "ev_score": 1.7774545454545454
+        },
+        {
+          "horse_name": "シンクシビリティ",
+          "horse_id": "2023101349",
+          "predicted_rank": 15,
+          "model_score": 0.00632688927943761,
+          "ev_score": 0.5542355008787346
+        }
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "invested": 0,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 36959,
+      "model_type": "HitFocus(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.2503688775054609,
+      "expected_value": 1.5807489745286782,
+      "recommended_bet": 700.0,
+      "combination_json": "[[6, 10], [10, 11], [6, 11], [8, 10], [6, 8], [10, 12], [6, 12]]",
+      "notes": "2軸マルチ 軸=10,6 相手=[11, 8, 12] Harville最大=0.0501",
+      "created_at": "2026-05-23 10:40:18",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -700.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.050073775501092176,
+          "ev_score": 1.5807489745286782
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.050073775501092176,
+          "ev_score": 1.5807489745286782
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 7,
+      "invested": 700,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 36960,
+      "model_type": "HitFocus(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.20319933087389633,
+      "expected_value": 1.532234714421159,
+      "recommended_bet": 800.0,
+      "combination_json": "[[10, 6], [6, 10], [10, 11], [6, 11], [10, 8], [6, 8], [10, 12], [6, 12]]",
+      "notes": "2軸マルチ 軸=10,6 相手=[11, 8, 12] Harville最大=0.0254",
+      "created_at": "2026-05-23 10:40:18",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -800.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02539991635923704,
+          "ev_score": 1.532234714421159
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02539991635923704,
+          "ev_score": 1.532234714421159
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 8,
+      "invested": 800,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 36961,
+      "model_type": "HitFocus(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.1333719643532666,
+      "expected_value": 1.6126639949650217,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[10, 6, 11], [6, 10, 11], [10, 11, 6], [6, 11, 10], [10, 6, 8], [6, 10, 8], [10, 8, 6], [6, 8, 10], [10, 6, 12], [6, 10, 12], [10, 12, 6], [6, 12, 10]]",
+      "notes": "2軸マルチ 軸=10,6 相手=[11, 8, 12] 12点 Harville最大=0.0044",
+      "created_at": "2026-05-23 10:40:18",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.004445732145108887,
+          "ev_score": 1.6126639949650217
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.004445732145108887,
+          "ev_score": 1.6126639949650217
+        },
+        {
+          "horse_name": "ジャーナーリア",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.004445732145108887,
+          "ev_score": 1.6126639949650217
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 12,
+      "invested": 1200,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 36962,
+      "model_type": "Alpha-Payout(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.2616781258470194,
+      "expected_value": 0.7850343775410582,
+      "recommended_bet": 50.0,
+      "combination_json": "[[11]]",
+      "notes": "1頭 relative nan=0% max=0.785",
+      "created_at": "2026-05-23 10:40:32",
+      "is_hit": 1,
+      "payout": 130.0,
+      "profit": 30.0,
+      "roi": 130.0,
+      "horses": [
+        {
+          "horse_name": "ジャーナーリア",
+          "horse_id": "2023100596",
+          "predicted_rank": 1,
+          "model_score": 0.7850343775410582,
+          "ev_score": 0.7850343775410582
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 36964,
+      "model_type": "Alpha-Payout(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.4188223640071689,
+      "expected_value": 1.2564670920215066,
+      "recommended_bet": 200.0,
+      "combination_json": "[[2, 6, 11], [6, 8, 11], [6, 10, 11], [2, 8, 11], [2, 10, 11], [8, 10, 11]]",
+      "notes": "Alpha EV=1.26 軸11番 相手4頭 6点",
+      "created_at": "2026-05-23 10:40:32",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ジャーナーリア",
+          "horse_id": "2023100596",
+          "predicted_rank": 1,
+          "model_score": 0.7850343775410582,
+          "ev_score": 0.7850343775410582
+        }
+      ],
+      "bet_form": "軸1頭ながし",
+      "n_tickets": 6,
+      "invested": 600,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 36965,
+      "model_type": "Alpha-Payout(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.16050884574978294,
+      "expected_value": 0.8025442287489147,
+      "recommended_bet": 200.0,
+      "combination_json": "[[11, 6, 2], [11, 2, 6], [11, 6, 8], [11, 6, 10], [11, 8, 6], [11, 10, 6]]",
+      "notes": "Alpha EV=0.80 軸11番→フォーメーション 6点",
+      "created_at": "2026-05-23 10:40:32",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ジャーナーリア",
+          "horse_id": "2023100596",
+          "predicted_rank": 1,
+          "model_score": 0.7850343775410582,
+          "ev_score": 0.7850343775410582
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 6,
+      "invested": 600,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 36966,
+      "model_type": "OracleV2(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.15314013978509697,
+      "expected_value": 4.594204193552909,
+      "recommended_bet": 500.0,
+      "combination_json": "[[6, 10, 11], [6, 8, 10], [8, 10, 11], [6, 10, 12], [10, 11, 12]]",
+      "notes": "[Oracle] 的中確率最大 5点 P最大=0.1531 馬番=[(6, 10, 11), (6, 8, 10), (8, 10, 11), (6, 10, 12), (10, 11, 12)]",
+      "created_at": "2026-05-23 10:40:32",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.15314013978509697,
+          "ev_score": 4.594204193552909
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.15314013978509697,
+          "ev_score": 4.594204193552909
+        },
+        {
+          "horse_name": "ジャーナーリア",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.15314013978509697,
+          "ev_score": 4.594204193552909
+        }
+      ],
+      "bet_form": "軸1頭ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 36967,
+      "model_type": "OracleV2(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.025523356630849495,
+      "expected_value": 3.8285034946274243,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[10, 6, 11], [10, 11, 6], [6, 10, 11], [6, 11, 10], [11, 10, 6], [11, 6, 10], [10, 6, 8], [10, 8, 6], [6, 10, 8], [6, 8, 10], [8, 10, 6], [8, 6, 10]]",
+      "notes": "[Oracle] 的中確率最大 12点 P最大=0.0255 馬番=[(10, 6, 11), (10, 11, 6), (6, 10, 11), (6, 11, 10), (11, 10, 6), (11, 6, 10), (10, 6, 8), (10, 8, 6), (6, 10, 8), (6, 8, 10), (8, 10, 6), (8, 6, 10)]",
+      "created_at": "2026-05-23 10:40:32",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.025523356630849495,
+          "ev_score": 3.8285034946274243
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.025523356630849495,
+          "ev_score": 3.8285034946274243
+        },
+        {
+          "horse_name": "ジャーナーリア",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.025523356630849495,
+          "ev_score": 3.8285034946274243
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 12,
+      "invested": 1200,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 36968,
+      "model_type": "本命V2(直前)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-05-23 10:40:32",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": "2023101317",
+          "predicted_rank": 1,
+          "model_score": 0.1631442343344457,
+          "ev_score": 1.288839451242121
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": "2023106556",
+          "predicted_rank": 2,
+          "model_score": 0.13776070252469813,
+          "ev_score": 0.8265642151481888
+        },
+        {
+          "horse_name": "ジャーナーリア",
+          "horse_id": "2023100596",
+          "predicted_rank": 3,
+          "model_score": 0.1268712574850299,
+          "ev_score": 0.34255239520958075
+        },
+        {
+          "horse_name": "クリコファルコン",
+          "horse_id": "2023101610",
+          "predicted_rank": 4,
+          "model_score": 0.10994184436444199,
+          "ev_score": 0.9235114926613127
+        },
+        {
+          "horse_name": "アイアンナックル",
+          "horse_id": "2023100633",
+          "predicted_rank": 5,
+          "model_score": 0.09591642924976258,
+          "ev_score": 1.3907882241215574
+        },
+        {
+          "horse_name": "マイネルテオドロス",
+          "horse_id": "2023106407",
+          "predicted_rank": 6,
+          "model_score": 0.06742572495997154,
+          "ev_score": 1.2136630492794878
+        },
+        {
+          "horse_name": "サリーアン",
+          "horse_id": "2023100789",
+          "predicted_rank": 7,
+          "model_score": 0.06742572495997154,
+          "ev_score": 0.5056929371997866
+        },
+        {
+          "horse_name": "ワイドポティロン",
+          "horse_id": "2023103282",
+          "predicted_rank": 8,
+          "model_score": 0.045773003269500234,
+          "ev_score": 0.7598318542737039
+        },
+        {
+          "horse_name": "リオンアンサー",
+          "horse_id": "2023100328",
+          "predicted_rank": 9,
+          "model_score": 0.03876739562624255,
+          "ev_score": 3.547216699801193
+        },
+        {
+          "horse_name": "マイベスティー",
+          "horse_id": "2023103250",
+          "predicted_rank": 10,
+          "model_score": 0.03876739562624255,
+          "ev_score": 0.9924453280318093
+        },
+        {
+          "horse_name": "ララクロシェット",
+          "horse_id": "2023101846",
+          "predicted_rank": 11,
+          "model_score": 0.032305433186490456,
+          "ev_score": 0.991776798825257
+        },
+        {
+          "horse_name": "ヒエンジョー",
+          "horse_id": "2023101502",
+          "predicted_rank": 12,
+          "model_score": 0.032305433186490456,
+          "ev_score": 1.1533039647577095
+        },
+        {
+          "horse_name": "アクシズ",
+          "horse_id": "2023105799",
+          "predicted_rank": 13,
+          "model_score": 0.03151515151515152,
+          "ev_score": 1.641939393939394
+        },
+        {
+          "horse_name": "オッピポイカ",
+          "horse_id": "2023106165",
+          "predicted_rank": 14,
+          "model_score": 0.03151515151515152,
+          "ev_score": 1.7774545454545454
+        },
+        {
+          "horse_name": "シンクシビリティ",
+          "horse_id": "2023101349",
+          "predicted_rank": 15,
+          "model_score": 0.00632688927943761,
+          "ev_score": 0.5542355008787346
+        }
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "invested": 0,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 36969,
+      "model_type": "HitFocusV2(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.2503688775054609,
+      "expected_value": 1.5807489745286782,
+      "recommended_bet": 700.0,
+      "combination_json": "[[6, 10], [10, 11], [6, 11], [8, 10], [6, 8], [10, 12], [6, 12]]",
+      "notes": "2軸マルチ 軸=10,6 相手=[11, 8, 12] Harville最大=0.0501",
+      "created_at": "2026-05-23 10:40:32",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -700.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.050073775501092176,
+          "ev_score": 1.5807489745286782
+        },
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.050073775501092176,
+          "ev_score": 1.5807489745286782
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 7,
+      "invested": 700,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 36970,
+      "model_type": "HitFocusV2(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.20319933087389633,
+      "expected_value": 1.532234714421159,
+      "recommended_bet": 800.0,
+      "combination_json": "[[10, 6], [6, 10], [10, 11], [6, 11], [10, 8], [6, 8], [10, 12], [6, 12]]",
+      "notes": "2軸マルチ 軸=10,6 相手=[11, 8, 12] Harville最大=0.0254",
+      "created_at": "2026-05-23 10:40:32",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -800.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.02539991635923704,
+          "ev_score": 1.532234714421159
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.02539991635923704,
+          "ev_score": 1.532234714421159
+        }
+      ],
+      "bet_form": "フォーメーション",
+      "n_tickets": 8,
+      "invested": 800,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 36971,
+      "model_type": "HitFocusV2(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.1333719643532666,
+      "expected_value": 1.6126639949650217,
+      "recommended_bet": 1200.0,
+      "combination_json": "[[10, 6, 11], [6, 10, 11], [10, 11, 6], [6, 11, 10], [10, 6, 8], [6, 10, 8], [10, 8, 6], [6, 8, 10], [10, 6, 12], [6, 10, 12], [10, 12, 6], [6, 12, 10]]",
+      "notes": "2軸マルチ 軸=10,6 相手=[11, 8, 12] 12点 Harville最大=0.0044",
+      "created_at": "2026-05-23 10:40:32",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -1200.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ラインメテオラ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.004445732145108887,
+          "ev_score": 1.6126639949650217
+        },
+        {
+          "horse_name": "サンライズロイ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.004445732145108887,
+          "ev_score": 1.6126639949650217
+        },
+        {
+          "horse_name": "ジャーナーリア",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.004445732145108887,
+          "ev_score": 1.6126639949650217
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 12,
+      "invested": 1200,
+      "horse_num_to_name": {
+        "12": "アイアンナックル",
+        "15": "マイベスティー",
+        "11": "ジャーナーリア",
+        "9": "ワイドポティロン",
+        "6": "サンライズロイ",
+        "2": "サリーアン",
+        "8": "クリコファルコン",
+        "5": "シンクシビリティ",
+        "7": "ヒエンジョー",
+        "10": "ラインメテオラ",
+        "13": "アクシズ",
+        "4": "リオンアンサー",
+        "3": "オッピポイカ",
+        "14": "ララクロシェット",
+        "1": "マイネルテオドロス"
+      },
+      "is_provisional": false
+    }
+  ],
+  "training_evals": {},
+  "prerace": {
+    "bias": {
+      "today_inner_bias": 0.16666666666666666,
+      "today_front_bias": 0.0,
+      "today_race_count": 1
+    },
+    "ev_recommend": [
+      {
+        "horse_number": 4,
+        "horse_name": "リオンアンサー",
+        "win_odds": 91.5,
+        "ev_score": 3.5472,
+        "kelly_fraction": 0.0028
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "オッピポイカ",
+        "win_odds": 56.4,
+        "ev_score": 1.7775,
+        "kelly_fraction": 0.0014
+      },
+      {
+        "horse_number": 13,
+        "horse_name": "アクシズ",
+        "win_odds": 52.1,
+        "ev_score": 1.6419,
+        "kelly_fraction": 0.0013
+      },
+      {
+        "horse_number": 12,
+        "horse_name": "アイアンナックル",
+        "win_odds": 14.5,
+        "ev_score": 1.3908,
+        "kelly_fraction": 0.0029
+      },
+      {
+        "horse_number": 10,
+        "horse_name": "ラインメテオラ",
+        "win_odds": 7.9,
+        "ev_score": 1.2888,
+        "kelly_fraction": 0.0042
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "マイネルテオドロス",
+        "win_odds": 18.0,
+        "ev_score": 1.2137,
+        "kelly_fraction": 0.0013
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "ヒエンジョー",
+        "win_odds": 35.7,
+        "ev_score": 1.1533,
+        "kelly_fraction": 0.0004
+      }
+    ],
+    "generated_at": "2026-05-23T10:40:18.510813"
+  }
+}

@@ -12,6 +12,32 @@
   "year": "2026",
   "results": [
     {
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 16,
+      "horse_name": "ロストボール",
+      "horse_id": "2019106972",
+      "sex_age": "騸1",
+      "weight_carried": 55.0,
+      "jockey": "水沼元輝",
+      "trainer": "加藤和宏",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "フリオーソ",
+      "dam": "センスオブラヴ",
+      "dam_sire": "ストリートセンスStreet Sense(米)",
+      "honmei_score": 0.0536,
+      "ev_score": 2.4671,
+      "kelly_fraction": 0.0033,
+      "manji_ev": 3.1663,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -400,35 +426,58 @@
       "manji_ev": 1.2427,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 16,
-      "horse_name": "ロストボール",
-      "horse_id": "2019106972",
-      "sex_age": "騸1",
-      "weight_carried": 55.0,
-      "jockey": "水沼元輝",
-      "trainer": "加藤和宏",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": "フリオーソ",
-      "dam": "センスオブラヴ",
-      "dam_sire": "ストリートセンスStreet Sense(米)",
-      "honmei_score": 0.0536,
-      "ev_score": 2.4671,
-      "kelly_fraction": 0.0033,
-      "manji_ev": 3.1663,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
     }
   ],
-  "payouts": [],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "16",
+      "payout": 16000,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1",
+      "payout": 2140,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 70000,
+      "popularity": 4
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "9",
+      "payout": 50111,
+      "popularity": 50
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "14",
+      "payout": 283,
+      "popularity": 20
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 14000,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "2",
+      "payout": 114,
+      "popularity": 150
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4",
+      "payout": 60115,
+      "popularity": null
+    }
+  ],
   "predictions": [
     {
       "prediction_id": 32450,

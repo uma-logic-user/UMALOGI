@@ -12,6 +12,32 @@
   "year": "2026",
   "results": [
     {
+      "rank": 1,
+      "gate_number": 8,
+      "horse_number": 16,
+      "horse_name": "ウインファイネスト",
+      "horse_id": "2023105877",
+      "sex_age": "牡5",
+      "weight_carried": 56.0,
+      "jockey": "長浜鴻緒",
+      "trainer": "鹿戸雄一",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.057,
+      "ev_score": 2.5754,
+      "kelly_fraction": 0.0036,
+      "manji_ev": 1.3577,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
       "rank": null,
       "gate_number": 1,
       "horse_number": 1,
@@ -400,35 +426,52 @@
       "manji_ev": 1.0946,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 16,
-      "horse_name": "ウインファイネスト",
-      "horse_id": "2023105877",
-      "sex_age": "牡5",
-      "weight_carried": 56.0,
-      "jockey": "長浜鴻緒",
-      "trainer": "鹿戸雄一",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.057,
-      "ev_score": 2.5754,
-      "kelly_fraction": 0.0036,
-      "manji_ev": 1.3577,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
     }
   ],
-  "payouts": [],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "16",
+      "payout": 16000,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1",
+      "payout": 1090,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "2",
+      "payout": 60041,
+      "popularity": 10
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 50000,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 9000,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "15",
+      "payout": 1609,
+      "popularity": 110
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "6-10",
+      "payout": 30111,
+      "popularity": null
+    }
+  ],
   "predictions": [
     {
       "prediction_id": 32285,
