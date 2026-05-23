@@ -396,6 +396,14 @@ function RaceList({
   races:          RaceHit[]
   onSelectRace?:  (raceId: string) => void
 }) {
+  const hitRaces = races.filter(r => r.is_hit === 1)
+  if (hitRaces.length === 0) {
+    return (
+      <div className="ml-6 mt-1 mb-2 px-3 py-2 text-xs text-[var(--text-muted)] rounded border border-[rgba(0,200,255,0.06)]">
+        この券種の的中レースはありません
+      </div>
+    )
+  }
   return (
     <div className="ml-6 mt-1 mb-2 rounded border border-[rgba(0,200,255,0.08)] overflow-x-auto w-full" style={{ WebkitOverflowScrolling: 'touch' }}>
       <table style={{ fontSize: '0.8rem', minWidth: '480px', width: '100%' }}>
@@ -405,16 +413,16 @@ function RaceList({
             <th className="px-2 py-1.5 text-center text-[var(--text-muted)] font-normal whitespace-nowrap">R</th>
             <th className="px-3 py-1.5 text-left text-[var(--text-muted)] font-normal whitespace-nowrap">レース名</th>
             <th className="px-3 py-1.5 text-right text-[var(--text-muted)] font-normal whitespace-nowrap">投資</th>
-            <th className="px-3 py-1.5 text-right text-[var(--text-muted)] font-normal whitespace-nowrap">払戻</th>
-            <th className="px-3 py-1.5 text-center text-[var(--text-muted)] font-normal whitespace-nowrap">結果</th>
+            <th className="px-3 py-1.5 text-center text-[var(--text-muted)] font-normal whitespace-nowrap">レース結果</th>
+            <th className="px-3 py-1.5 text-right text-[var(--text-muted)] font-normal whitespace-nowrap">払戻金</th>
             {onSelectRace && <th className="px-2 py-1.5"></th>}
           </tr>
         </thead>
         <tbody>
-          {races.map((r, i) => (
+          {hitRaces.map((r, i) => (
             <tr key={r.race_id + i}
               style={{ borderTop: '1px solid rgba(0,200,255,0.05)' }}
-              className={r.is_hit ? 'hit-normal' : 'hit-miss'}
+              className="hit-normal"
             >
               <td className="px-3 py-1.5 text-[var(--text-muted)]">{r.venue}</td>
               <td className="px-2 py-1.5 text-center text-[var(--text-muted)]">{r.race_number}R</td>
@@ -425,20 +433,14 @@ function RaceList({
               <td className="px-3 py-1.5 text-right font-mono text-[var(--text-muted)]">
                 {fmtNum(r.invested)}
               </td>
-              <td className="px-3 py-1.5 text-right font-mono">
-                {r.is_hit
-                  ? <span className="neon-text-green font-bold">{fmtNum(r.payout)}</span>
-                  : <span className="text-[var(--text-muted)]">—</span>}
-              </td>
               <td className="px-3 py-1.5 text-center">
-                {r.is_hit ? (
-                  <span className="text-xs font-bold px-1.5 py-0.5 rounded"
-                    style={{ background: 'rgba(0,255,136,0.2)', color: 'var(--neon-green)', border: '1px solid rgba(0,255,136,0.4)' }}>
-                    ◎的中
-                  </span>
-                ) : (
-                  <span className="text-xs text-[rgba(255,51,102,0.6)]">✕</span>
-                )}
+                <span className="text-xs font-bold px-1.5 py-0.5 rounded"
+                  style={{ background: 'rgba(0,255,136,0.2)', color: 'var(--neon-green)', border: '1px solid rgba(0,255,136,0.4)' }}>
+                  ◎的中
+                </span>
+              </td>
+              <td className="px-3 py-1.5 text-right font-mono">
+                <span className="neon-text-green font-bold">{fmtNum(r.payout)}</span>
               </td>
               {onSelectRace && (
                 <td className="px-2 py-1.5 text-center">
