@@ -46,6 +46,56 @@ _TRACK_TAKE: dict[str, float] = {
     "三連複": 0.250, "三連単": 0.275,
 }
 
+# ─── ROI実績ベース 購入許可券種フィルター ─────────────────────────────
+# 2026年4-5月 本番実績ROI（n_tickets*100ベース正確投資額）に基づく。
+# ROI < 100% の券種はこのリストから除外することで損失を防止する。
+#
+# 本命: 三連単(ROI66%/50%) 馬単(52%/19%) 馬連(48%/24%) ワイド(41%/40%) → 除外
+# 本命: 単勝(274%/384%) 複勝(125%/109%) → 許可
+# 卍  : 全券種がROI100%超 → 全許可（単勝1459%/三連複1198%/馬単692%）
+# Alpha: 三連単(32%) → 除外、三連複(74%) → 複勝のみ維持
+
+_ALLOWED_BET_TYPES: dict[str, set[str]] = {
+    "本命":        {"単勝", "複勝"},            # 三連単/馬単/馬連/ワイド=損失除外
+    "卍":          {"単勝", "複勝", "馬連", "ワイド", "馬単", "三連複"},  # 全部ROI>100%
+    "Alpha-Payout": {"複勝", "三連複"},         # 三連単(32%)除外
+}
+
+def _is_allowed_bet_type(model_type: str, bet_type: str) -> bool:
+    """モデルと券種の組み合わせが ROI実績ベースで購入許可されているか判定する。
+
+    Returns:
+        True = 購入してよい（ROI実績 >= 100% の組み合わせ）
+        False = スキップ（ROI実績 < 100% の損失確定パターン）
+    """
+    for key, allowed in _ALLOWED_BET_TYPES.items():
+        if key in model_type:
+            return bet_type in allowed
+    return True  # 未知モデルはデフォルト許可
+
+# ─── Kelly分数 ロールオーバーテーブル（ROI実績別）────────────────────
+# ROI が高いほど積極的な Kelly 比率を適用。
+# 直近28日 ROI から動的に切り替える（get_dynamic_kelly_fraction 参照）
+_KELLY_BY_ROI: list[tuple[float, float]] = [
+    (300.0, 0.25),   # ROI >= 300%: 1/4 Kelly（攻め）
+    (200.0, 0.20),   # ROI 200-300%: 1/5 Kelly
+    (150.0, 0.15),   # ROI 150-200%: 1/7 Kelly
+    (100.0, 0.10),   # ROI 100-150%: 1/10 Kelly（保守）
+    (  0.0, 0.00),   # ROI < 100%: 購入禁止
+]
+
+def get_dynamic_kelly_fraction(
+    roi_pct: float,
+) -> float:
+    """ROI実績からKelly分数を動的に算出する。
+
+    ROIが100%未満の場合は0.0を返す（購入禁止シグナル）。
+    """
+    for threshold, fraction in _KELLY_BY_ROI:
+        if roi_pct >= threshold:
+            return fraction
+    return 0.0
+
 def _crowd_bias_ev_multiplier(crowd_bias_ratio: float) -> float:
     """W-004: 大衆心理乖離比率からEV倍率を算出する。
 
@@ -109,11 +159,14 @@ class BetConfig:
         max_bet_per_combo: 1点あたりの最大購入額（円）
         provisional:       True = 金曜夜暫定モード。オッズ未取得のため
                            EV 依存の 卍/Oracle ベット生成を抑制する。
+        use_roi_filter:    True = ROI実績100%未満の券種を自動除外する。
+                           本番運用では True 推奨（破産防止）。
     """
     bankroll: float = 100_000.0
     max_bet_fraction: float = 0.05
     max_bet_per_combo: float = 1_000.0
     provisional: bool = False
+    use_roi_filter: bool = True
 
     @property
     def max_race_bet(self) -> float:
@@ -164,6 +217,46 @@ def get_current_bankroll(
     return result
 
 
+def get_model_bet_roi(
+    conn: sqlite3.Connection,
+    model_type: str,
+    bet_type: str,
+    lookback_days: int = 60,
+    min_records: int = 5,
+) -> float:
+    """直近N日の特定モデル×券種のROI実績を返す。
+
+    DBに記録が十分にない場合は -1.0（不明）を返す。
+
+    Returns:
+        ROI実績（%）。例: 124.6 = 124.6%。
+        -1.0 = 記録不足（この場合はデフォルトのEV閾値判断に委ねる）。
+    """
+    try:
+        row = conn.execute(
+            """
+            SELECT
+                COALESCE(SUM(pr.payout), 0.0)    AS total_payout,
+                SUM(json_array_length(p.combination_json)) * 100 AS actual_cost,
+                COUNT(*)                          AS n_records
+            FROM predictions p
+            JOIN prediction_results pr ON p.id = pr.prediction_id
+            WHERE p.model_type = ?
+              AND p.bet_type   = ?
+              AND p.combination_json IS NOT NULL
+              AND pr.recorded_at >= datetime('now', 'localtime', ? || ' days')
+            """,
+            (model_type, bet_type, f"-{lookback_days}"),
+        ).fetchone()
+    except Exception:
+        return -1.0
+
+    if not row or row[2] < min_records or not row[1]:
+        return -1.0
+
+    return float(row[0]) / float(row[1]) * 100.0
+
+
 def get_dynamic_ev_threshold(
     conn: sqlite3.Connection,
     lookback_days: int = 28,
@@ -205,14 +298,14 @@ def get_dynamic_ev_threshold(
 
     roi = float(row[0]) / float(row[1]) * 100.0
 
-    if roi >= 150.0:
-        threshold, mode = 1.1, "好調期"
-    elif roi >= 110.0:
-        threshold, mode = 1.2, "通常期"
-    elif roi >= 80.0:
-        threshold, mode = 1.3, "低調期"
+    if roi >= 200.0:
+        threshold, mode = 1.1, "好調期(ROI≥200%)"
+    elif roi >= 150.0:
+        threshold, mode = 1.2, "通常期(ROI≥150%)"
+    elif roi >= 100.0:
+        threshold, mode = 1.3, "低調期(ROI≥100%)"
     else:
-        threshold, mode = 1.5, "不調期"
+        threshold, mode = 1.5, "不調期(ROI<100%)"
 
     logger.info(
         "動的EV閾値: 直近%d日ROI=%.1f%% → 閾値=%.1f (%s)",
@@ -2030,6 +2123,27 @@ class BetGenerator:
                 raw = b.recommended_bet * ratio
                 b.recommended_bet = float(max(round(raw / 100) * 100, _BASE_BET))
 
+    def _apply_roi_filter(self, bets: RaceBets) -> None:
+        """ROI実績100%未満の券種を in-place で除外する。
+
+        `_ALLOWED_BET_TYPES` に定義したモデル別の許可券種リストに基づいてフィルタリング。
+        `config.use_roi_filter = False` の場合はスキップ（バックテスト用）。
+        """
+        if not self._config.use_roi_filter:
+            return
+        before = len(bets.bets)
+        bets.bets = [
+            b for b in bets.bets
+            if _is_allowed_bet_type(bets.model_type, b.bet_type)
+        ]
+        removed = before - len(bets.bets)
+        if removed > 0:
+            logger.info(
+                "ROIフィルター: %s — %d件除外（残%d件）除外券種=%s",
+                bets.race_id, removed, len(bets.bets),
+                [b.bet_type for b in bets.bets],
+            )
+
     def generate_honmei(
         self,
         race_id: str,
@@ -2037,6 +2151,7 @@ class BetGenerator:
         honmei_scores: pd.Series,
     ) -> RaceBets:
         bets = self._honmei.generate(race_id, df, honmei_scores, bankroll=self._config.bankroll)
+        self._apply_roi_filter(bets)
         self._apply_caps(bets)
         return bets
 
@@ -2095,6 +2210,7 @@ class BetGenerator:
         bets = self._alpha_trifecta.generate(
             race_id, df, pred_ev, bankroll=self._config.bankroll
         )
+        self._apply_roi_filter(bets)
         self._apply_caps(bets)
         return bets
 
