@@ -294,3 +294,109 @@ FukushoElite・X シグナル統合・Phase C モデルなど、新しい予想�
 
 本スペック（Discord ルーター + note下書き転送）は**フロントエンドコードへの変更をゼロとする**。
 `web/` 配下のいかなるファイルも変更しないこと。
+
+---
+
+## 追加機能仕様（2026-05-20 第2次承認）
+
+### 機能A: 「組」→「点」 表記統一（バグフィックス）
+
+`src/notification/discord_notifier.py:493` の1行を修正する。
+
+```python
+# 変更前
+lines.append(f"  (+{n_total - 4}組)")
+# 変更後
+lines.append(f"  (+{n_total - 4}点)")
+```
+
+影響箇所: `_format_combo_card()` 内の馬単・三連単の「溢れ組表示」のみ。他の「組」出現はコメント・docstring のみで影響なし。
+
+### 機能B: IS_PREMIUM_NOTE フラグ（週次記事有料/無料出し分け）
+
+**環境変数**: `NOTE_IS_PREMIUM=0`（デフォルト False、`1` または `true` で有料版）
+
+`generate_weekly_note(conn, *, is_premium: bool = False)` にパラメータ追加。
+
+| フラグ | 生成コンテンツ |
+|---|---|
+| `False`（無料版） | モデル実績・万馬券・注目的中・軸馬1頭・単複基本買い目 + セパレーター |
+| `True`（有料版） | + oracle EV上位3買い目・三連複フォーメーション詳細・全QFピック（馬番+馬名+騎手+人気） |
+
+**セパレーター文字列**（無料版の末尾・有料版コンテンツ先頭に挿入）:
+```
+---
+【有料エリア設定箇所：ここから下はnoteの有料ブロックへ貼り付けてください】
+---
+```
+
+`post_weekly_note_draft.py` で `os.getenv("NOTE_IS_PREMIUM", "0").lower() in ("1", "true")` を読んで `generate_weekly_note(..., is_premium=val)` に渡す。
+
+### 機能C: 買い方テンプレート（Discord 直前予想への追加）
+
+`src/notification/router.py` に `_format_buying_guide(honmei_bets, manji_bets, alpha_bets)` 関数を追加。`notify_prerace_result` の embed 送信後、prediction チャンネルへ別メッセージとして送信する。
+
+**抽出ロジック（優先順位）:**
+- 単勝・複勝: `honmei_bets.bets` から `bet_type in ("単勝", "複勝")` の最高EV買い目の馬番+馬名
+- 馬連: `manji_bets.bets` から `bet_type == "馬連"` の最高EV買い目の軸+相手
+- 三連複: `alpha_bets` が None なら `manji_bets`、`bet_type == "三連複"` の最高EV から軸+相手
+
+**出力フォーマット:**
+```
+【💡 推奨される買い方サマリー】
+
+■ 単複で手堅く行くなら
+・単勝：5番 アーバンシック（1点）
+・複勝：5番 アーバンシック（1点）
+
+■ 馬連で中穴・好配当を狙うなら
+・馬連 軸流し：5番 アーバンシック → 相手：3番 レガシー、7番 サクセス、9番 キタノ（計3点）
+
+■ 三連複で高配当（万馬券）を狙うなら
+・三連複 軸1頭流し：5番 アーバンシック → 相手：3番 レガシー、7番 サクセス、9番 キタノ、12番 ホープ（計6点）
+```
+
+セクションが取れない場合（該当モデルが None または bet_type が存在しない）はそのセクションのみ省略。全セクション空の場合は送信スキップ。
+
+---
+
+## 商用化フェーズ ロードマップ（Task 17以降・2026-05-20 追記）
+
+> 以下は現行実装スプリント完了後のフェーズ（Task 17+）として計画する。
+
+### Task 17: 2カ年厳選黒字化シミュレーター（`scripts/run_2year_backtest.py`）
+
+**目的**: 卍・本命・ALPHA・oracle の予測値と確定払戻を突き合わせ、ROI 100%+を保証する「厳選購入条件」の閾値を自動炙り出し。
+
+**データソース**: 既存 `simulate_year.py` のインフラを流用し、`predictions` + `prediction_results` + `race_payouts` + `races` テーブルを使用。
+
+**検証パターン（自動グリッドサーチ対象）:**
+
+| パターン | 条件 | 目的 |
+|---|---|---|
+| A | oracle EV ≥ 1.5 かつ ALPHA EV ≥ 1.5 | コンセンサス銘柄 |
+| B | 単勝オッズ 5〜25倍 かつ 卍スコア ≥ 閾値 | 中穴狙い |
+| C | 全モデル EV ≥ 1.0 の超厳選（1日3〜5レース） | 聖杯探索 |
+
+**出力**: `data/backtest_{YYYYMMDD}.csv` + `docs/backtest_2year_report.md`
+
+### Task 18: 万馬券特化的中報告（`scripts/generate_result_note_draft.py`）
+
+**抽出条件**: `prediction_results.payout >= 10000` OR `prediction_results.payout / 100 >= 3.0`（回収率 300%以上）
+
+**生成物**: Markdown「万馬券炸裂レポート」→ `DISCORD_WEBHOOK_NOTE_DRAFT` チャンネルへ転送
+
+**フォーマット:**
+```markdown
+# 🎰 【万馬券炸裂】UMALOGI AI 神的中レポート
+
+## 🏆 {日付} {レース名} — {払戻金額}
+- モデル: {model_type}
+- 券種: {bet_type}
+- 軸馬: {馬番}番 {馬名}
+- 払戻: ¥{payout:,}（回収率 {roi:.0f}%）
+```
+
+### Task 19: `docs/commercialization_roadmap.md` 更新
+
+2カ年シミュレーター・万馬券特化報告・有料/無料分離の進捗を商用化ロードマップに反映。
