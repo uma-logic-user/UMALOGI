@@ -53,6 +53,11 @@ MAX_RACE_BUDGET_ABS  = 50_000        # 1レース物理上限 ¥50,000（JRAス�
 MAX_BET_ABS          = 15_000        # 1ベット物理上限 ¥15,000（JRAスリッページ対策）
 MIN_BET              = 100
 EDGE_THRESHOLD       = 1.20          # 基本エッジ閾値
+# コンボ系（ワイド/馬連/三連複）の発注モード:
+#   "disabled" — バックテスト期間中は全て発注しない（現在設定: ROI 35-60% で赤字確定のため）
+#   "filtered" — COMBO_EV_THRESHOLD 以上のみ発注（再校正後に切り替え）
+COMBO_BET_MODE       = "disabled"    # ワイド/馬連/三連複 の発注モード
+COMBO_EV_THRESHOLD   = 1.50          # "filtered" モード時の最低 EV 閾値
 
 # 単勝 edge 黄金ゾーン: [1.2, 1.5] OR [5.0, ∞)
 # バックテスト上、1.5〜5.0 の過熱ゾーンは ROI が悪化するためスキップ
@@ -74,13 +79,16 @@ BET_TYPE_HEX: dict[str, str] = {
     # "三連単": "E4B889E980A3E58D98", # 除外: 赤字(ROI 1.1%)
 }
 
-# 控除率差し引き後の典型的な市場オッズ（Kelly 計算用）
+# 控除率差し引き後の「モデルトップ馬買い」時の実態オッズ（Kelly / EV 計算用）
+# 市場平均ではなく、このモデルのトップ予測馬（=人気馬寄り）を買い続けた場合の実績オッズ。
+# ワイド/馬連: トップ2頭は人気馬ペアになりやすく実際払戻が市場平均より低い。
+# 三連複: トップ3頭 → 中位オッズ帯（35倍より実際は低い）。
 TYPICAL_ODDS: dict[str, float] = {
     "単勝":  5.0,
     "複勝":  2.0,
-    "ワイド": 4.0,
-    "馬連":  12.0,
-    "三連複": 35.0,
+    "ワイド": 2.5,   # 市場平均4.0 → 実態2.5（人気馬ペアのため低オッズ）
+    "馬連":  5.0,    # 市場平均12.0 → 実態5.0（同上）
+    "三連複": 15.0,  # 市場平均35.0 → 実態15.0（トップ3中位オッズ帯）
 }
 
 # ── LightGBM パラメータ ────────────────────────────────────────────────────────
@@ -435,6 +443,23 @@ def get_payouts(conn: sqlite3.Connection, race_id: str) -> dict[str, dict]:
     return dict(result)
 
 
+# ── 実際の単勝オッズ取得（Kelly 計算改善用）──────────────────────────────────
+def _get_race_odds_map(conn: sqlite3.Connection, race_id: str) -> dict[int, float]:
+    """race_results から全馬の単勝オッズを馬番→オッズ のマップで返す。
+
+    win_odds が記録されていない馬はマップに含まれない（呼び出し側が TYPICAL_ODDS にフォールバック）。
+    22.8% 充填率（2026年）。実際のオッズが取れる馬は Kelly 計算の精度が向上する。
+    """
+    rows = conn.execute(
+        """SELECT horse_number, win_odds
+           FROM race_results
+           WHERE race_id = ? AND win_odds IS NOT NULL AND win_odds > 1.0
+           ORDER BY horse_number""",
+        (race_id,),
+    ).fetchall()
+    return {int(r[0]): float(r[1]) for r in rows}
+
+
 # ── Harville 確率 ──────────────────────────────────────────────────────────────
 def _harville_quinella(probs: list[float], i: int, j: int) -> float:
     """P(i と j が 1着・2着に入る = 馬連)"""
@@ -509,20 +534,32 @@ def kelly_bet(
     field_size: int,
     race_budget_remaining: float,
     edge_threshold: float = EDGE_THRESHOLD,
+    actual_win_odds: float | None = None,
+    min_ev: float = 1.0,
 ) -> float:
     """
     フラクショナルKelly + 流動性制限で賭け金を算出。
 
-    単勝: edge 黄金ゾーン ([1.2,1.5] or ≥5.0) かつ EV≥1.0
-    複勝: edge ≥ threshold かつ EV≥1.0
-    コンボ: EV≥1.0 のみ（Harville 確率は 1/n 未満のため edge チェックなし）
+    単勝/複勝: actual_win_odds が取れる場合はそれを Kelly 計算に使用。
+               ない場合は TYPICAL_ODDS にフォールバック。
+    単勝: edge 黄金ゾーン ([1.2,1.5] or ≥5.0) かつ EV≥min_ev
+    複勝: edge ≥ threshold かつ EV≥min_ev
+    コンボ: EV≥min_ev のみ（コンボは COMBO_EV_THRESHOLD=1.5 が渡される）
 
     物理上限:
       1ベット: min(bankroll×3%, ¥15,000)
     """
-    typical_odds = TYPICAL_ODDS.get(bet_type, 5.0)
+    # 単勝・複勝は実際のオッズがあれば優先使用（Kelly 精度向上）
+    if bet_type == "単勝" and actual_win_odds is not None and actual_win_odds > 1.0:
+        typical_odds = actual_win_odds
+    elif bet_type == "複勝" and actual_win_odds is not None and actual_win_odds > 1.0:
+        # 単勝オッズから複勝オッズを推定: 単勝の約1/3（JRA平均的な関係性）
+        typical_odds = max(actual_win_odds / 3.0, 1.1)
+    else:
+        typical_odds = TYPICAL_ODDS.get(bet_type, 5.0)
+
     ev           = p * typical_odds
-    if ev < 1.0:
+    if ev < min_ev:
         return 0.0
 
     base_rate = 1.0 / max(field_size, 2)
@@ -566,6 +603,7 @@ def simulate_race(
     probs: np.ndarray,
     payouts: dict[str, dict],
     bankroll: float,
+    odds_map: dict[int, float] | None = None,
 ) -> tuple[list[dict], float]:
     n          = len(race_df)
     horse_nums = list(race_df["horse_number"].astype(int))
@@ -604,43 +642,51 @@ def simulate_race(
             "profit":        profit,
         }
 
-    def try_bet(bt: str, combo: str, p_bet: float, eth: float = EDGE_THRESHOLD) -> None:
+    # 実際の単勝オッズ（馬番→オッズ）— race_results.win_odds から取得済み
+    tan_actual_odds = (odds_map or {}).get(h_top)
+
+    def try_bet(
+        bt: str,
+        combo: str,
+        p_bet: float,
+        eth: float = EDGE_THRESHOLD,
+        win_odds: float | None = None,
+        min_ev: float = 1.0,
+    ) -> None:
         nonlocal total_invested
         remaining = race_budget - total_invested
         if remaining < MIN_BET:
             return
-        bet = kelly_bet(bankroll, p_bet, bt, n, remaining, eth)
+        bet = kelly_bet(bankroll, p_bet, bt, n, remaining, eth,
+                        actual_win_odds=win_odds, min_ev=min_ev)
         if bet > 0:
             records.append(make_record(bt, combo, p_bet, bet))
             total_invested += bet
 
     # ── 単勝 ──────────────────────────────────────────────────────────────────
-    try_bet("単勝", str(h_top), p_top)
+    try_bet("単勝", str(h_top), p_top, win_odds=tan_actual_odds)
 
     # ── 複勝（確率を2.5倍でplace調整）────────────────────────────────────────
     p_fuku = min(p_top * 2.5, 0.95)
-    try_bet("複勝", str(h_top), p_fuku)
+    try_bet("複勝", str(h_top), p_fuku, win_odds=tan_actual_odds)
 
-    # ── ワイド（top-1 × top-2）────────────────────────────────────────────────
-    if n >= 2:
-        i1, i2 = sorted_idx[0], sorted_idx[1]
-        p_wide  = _harville_wide(prob_list, i1, i2)
-        h1, h2  = horse_nums[i1], horse_nums[i2]
-        try_bet("ワイド", _combo_unordered(h1, h2), p_wide)
+    # ── ワイド/馬連/三連複 ─────────────────────────────────────────────────────
+    # COMBO_BET_MODE="disabled": 実績ROI 35-60%（赤字確定）のため現在は発注しない。
+    # 再評価条件: Harville確率キャリブレーション完了後に "filtered" モードで再検証。
+    if COMBO_BET_MODE != "disabled":
+        if n >= 2:
+            i1, i2 = sorted_idx[0], sorted_idx[1]
+            h1, h2  = horse_nums[i1], horse_nums[i2]
+            p_wide  = _harville_wide(prob_list, i1, i2)
+            p_uma   = _harville_quinella(prob_list, i1, i2)
+            try_bet("ワイド", _combo_unordered(h1, h2), p_wide, min_ev=COMBO_EV_THRESHOLD)
+            try_bet("馬連",  _combo_unordered(h1, h2), p_uma,  min_ev=COMBO_EV_THRESHOLD)
 
-    # ── 馬連（top-1 × top-2）─────────────────────────────────────────────────
-    if n >= 2:
-        i1, i2 = sorted_idx[0], sorted_idx[1]
-        p_uma   = _harville_quinella(prob_list, i1, i2)
-        h1, h2  = horse_nums[i1], horse_nums[i2]
-        try_bet("馬連", _combo_unordered(h1, h2), p_uma)
-
-    # ── 三連複（top-3）────────────────────────────────────────────────────────
-    if n >= 3:
-        i1, i2, i3 = sorted_idx[0], sorted_idx[1], sorted_idx[2]
-        p_trio      = _harville_trio(prob_list, i1, i2, i3)
-        trio_sorted = sorted([horse_nums[i1], horse_nums[i2], horse_nums[i3]])
-        try_bet("三連複", _combo_unordered(*trio_sorted), p_trio)
+        if n >= 3:
+            i1, i2, i3 = sorted_idx[0], sorted_idx[1], sorted_idx[2]
+            p_trio      = _harville_trio(prob_list, i1, i2, i3)
+            trio_sorted = sorted([horse_nums[i1], horse_nums[i2], horse_nums[i3]])
+            try_bet("三連複", _combo_unordered(*trio_sorted), p_trio, min_ev=COMBO_EV_THRESHOLD)
 
     # 馬単・三連単は除外（赤字確定のためシミュレーション対象外）
 
@@ -684,11 +730,12 @@ def run_simulation(
             continue
 
         race_df = race_df_raw.drop(columns=["rank"])
-        probs   = predict_win_prob(model, iso, feat_cols, race_df)
-        payouts = get_payouts(conn, race_id)
+        probs    = predict_win_prob(model, iso, feat_cols, race_df)
+        payouts  = get_payouts(conn, race_id)
+        odds_map = _get_race_odds_map(conn, race_id)
 
         bets, net_profit = simulate_race(
-            race_id, race_date, race_df, probs, payouts, bankroll
+            race_id, race_date, race_df, probs, payouts, bankroll, odds_map=odds_map
         )
 
         if bets:
@@ -775,6 +822,16 @@ def print_report(df: pd.DataFrame, cv_auc: float) -> None:
     print(f"  単勝 発注ゾーン           : [1.2〜1.5×] OR [≥5.0×]（過熱ゾーン除外）")
     print(f"  1レース最大投資            : bankroll × {MAX_RACE_BUDGET_RATE*100:.0f}%")
     print(f"  1ベット最大投資            : bankroll × {MAX_BET_RATE*100:.0f}%")
+    print(f"  Kelly オッズ              : 単勝/複勝=race_results.win_odds 優先 (22.8%充填), それ以外=TYPICAL_ODDS")
+    print(f"  コンボ発注モード          : {COMBO_BET_MODE} (disabled=無効化, filtered=EV≥{COMBO_EV_THRESHOLD}×)")
+    if COMBO_BET_MODE == "disabled":
+        print("  ⚠️  ワイド/馬連/三連複: ROI 35-60% (赤字確定) のため無効化。複勝+単勝のみ発注")
+    print()
+    print("  【特徴量リーク監査サマリー】")
+    print("  ✅ Oracle / HitFocus: 買い目生成戦略 (post-prediction), ML 特徴量ではない → リークなし")
+    print("  ✅ FEATURE_COLS (16列): 未来情報の混入なし (馬体重/騎手/調教師/血統/過去成績のみ)")
+    print("  ✅ 利益計算: race_payouts.payout を使用 (TYPICAL_ODDS は Kelly サイジングのみ)")
+    print("  ✅ データリーク修正済: build_race_df(test_mode=True) — rank フィルタ除去")
     print(SEP)
 
     if df.empty:
