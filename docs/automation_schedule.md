@@ -152,3 +152,4 @@ py scripts/update_payouts.py --date 20260525
 | 日付 | 変更内容 |
 |------|----------|
 | 2026-05-23 | 初版作成。job_friday_synを土曜20:00にも追加（日曜暫定予想の取りこぼし修正）。scheduler.py register_schedules() + _JOB_SCHEDULES を同時更新。 |
+| 2026-05-23 | `DISCORD_WEBHOOK_HIT_FLASH` 環境変数を追加（的中速報専用チャンネル分離）。discord_notifier.py の `notify_hit_summary()` 送信先を変更。|
