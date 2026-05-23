@@ -79,13 +79,15 @@ class DiscordNotifier(BaseNotifier):
         *,
         webhook_url:    str | None = None,
         system_url:     str | None = None,
+        hit_flash_url:  str | None = None,
         enabled: bool = True,
         channel_label:  str = "予想",
     ) -> None:
         super().__init__(enabled=enabled)
-        self._url        = webhook_url or os.environ.get("DISCORD_WEBHOOK_URL", "")
-        self._system_url = system_url  or os.environ.get("DISCORD_SYSTEM_WEBHOOK_URL", "")
-        self._label      = channel_label
+        self._url           = webhook_url   or os.environ.get("DISCORD_WEBHOOK_URL", "")
+        self._system_url    = system_url    or os.environ.get("DISCORD_SYSTEM_WEBHOOK_URL", "")
+        self._hit_flash_url = hit_flash_url or os.environ.get("DISCORD_WEBHOOK_HIT_FLASH", "")
+        self._label         = channel_label
         if enabled and not self._url:
             logger.warning("DISCORD_WEBHOOK_URL が設定されていません（予想通知が届きません）")
         if enabled and not self._system_url:
@@ -305,8 +307,10 @@ class DiscordNotifier(BaseNotifier):
                 "timestamp": datetime.utcnow().isoformat(),
             }]
         }
-        ok = self._post(self._url, payload)
-        logger.info("[Discord:予想] 結果サマリー %s: %s", "送信完了" if ok else "失敗", date_str)
+        hit_url = self._hit_flash_url or self._url
+        ok = self._post(hit_url, payload)
+        ch_label = "的中速報" if self._hit_flash_url else "予想(fallback)"
+        logger.info("[Discord:%s] 結果サマリー %s: %s", ch_label, "送信完了" if ok else "失敗", date_str)
 
     def notify_prerace_result(
         self,
@@ -381,9 +385,12 @@ class DiscordNotifier(BaseNotifier):
                 bet_type  = getattr(bet, "bet_type", "?")
                 rec_bet   = int(getattr(bet, "recommended_bet", 0) or 0)
                 fire      = _FIRE if ev >= 1.0 else "　"
+                combos    = getattr(bet, "combinations", []) or []
+                n_combos  = len(combos)
+                cost_str  = f"¥100×{n_combos}点=¥{n_combos * 100:,}" if n_combos > 0 else f"¥{rec_bet:,}"
 
-                # フィールド name: "🔥 三連複  EV=2.13  ¥800"
-                field_name = f"{fire} {bet_type}  EV={ev:.2f}  ¥{rec_bet:,}"
+                # フィールド name: "🔥 三連複  EV=2.13 | ¥100×4点=¥400"
+                field_name = f"{fire} {bet_type}  EV={ev:.2f} | {cost_str}"
 
                 # フィールド value: 馬番+馬名 カード形式
                 field_value = _format_combo_card(bet)
@@ -429,24 +436,28 @@ class DiscordNotifier(BaseNotifier):
 
 def _format_combo_card(bet: object) -> str:
     """
-    買い目をスマホ対応カード形式にフォーマット。馬番・馬名を必ず表示。
+    買い目をスマホ対応カード形式にフォーマット。馬番を省略せず全表示。
 
     出力例:
       複勝:
         ⬛ 5番 アーバンシック
         ⬛ 9番 キタノオウジ
 
-      三連複 (軸1頭流し 4点):
+      三連複 (軸1頭流し):
+        【推奨: 三連複流し 軸5 - 相手3,7,9,12】
         ▶ 軸: 5番 アーバンシック
-          相手: 3番 レガシー / 7番 サクセス / 9番 オウジ / 12番 ホープ
+          相手: 3番 / 7番 / 9番 / 12番
+          計4点
 
-      三連単 (軸1頭→2頭 4組):
-        ▶ 5番 アーバン → 9番 オウジ → 3番 レガシー
-        ▶ 5番 アーバン → 3番 レガシー → 9番 オウジ
-        ▶ 5番 アーバン → 7番 サクセス → 3番 レガシー
-        (+1組)
+      三連単:
+        ▶ 5→9→3
+        ▶ 5→3→9
+        ▶ 5→7→3
+        ▶ 5→7→9
     """
     from collections import Counter
+
+    _BUDGET = 900  # Discord field.value 上限 1024 に余裕を持たせたバジェット
 
     bt: str      = getattr(bet, "bet_type", "")
     combos: list = getattr(bet, "combinations", []) or []
@@ -461,13 +472,11 @@ def _format_combo_card(bet: object) -> str:
     name_by_num: dict[int, str] = {}
 
     if bt in ("単勝", "複勝"):
-        # 単勝/複勝: combo は1頭ずつ、names[i] が i 番目の combo の馬名
         for i, combo in enumerate(combos):
             num = combo[0] if isinstance(combo, (list, tuple)) else combo
             if i < len(names) and names[i]:
                 name_by_num[int(num)] = str(names[i])
     else:
-        # 多馬券: names は最初の combo に対応する順序
         first = combos[0]
         first_legs = list(first) if isinstance(first, (list, tuple)) else [first]
         for i, leg in enumerate(first_legs):
@@ -478,52 +487,72 @@ def _format_combo_card(bet: object) -> str:
         n = name_by_num.get(int(num), "")
         return f"{num}番 {n}" if n else f"{num}番"
 
+    def _fit(lines: list[str], budget: int = _BUDGET) -> str:
+        """行リストを budget 文字以内に収める。超える場合は末尾に省略行を追記。"""
+        out: list[str] = []
+        used = 0
+        for line in lines:
+            if used + len(line) + 1 > budget:
+                remaining = n_total - len(out)
+                if remaining > 0:
+                    out.append(f"  …(残り{remaining}点 省略)")
+                break
+            out.append(line)
+            used += len(line) + 1
+        return "\n".join(out)
+
     # ── 単勝・複勝 ──────────────────────────────────────────────────────────
     if bt in ("単勝", "複勝"):
         nums = [c[0] if isinstance(c, (list, tuple)) else c for c in combos]
-        lines = [f"⬛ {_label(n)}" for n in nums[:5]]
-        if n_total > 5:
-            lines.append(f"  … 他{n_total-5}頭")
-        return "\n".join(lines)
+        lines = [f"⬛ {_label(n)}" for n in nums]
+        return _fit(lines)
 
     # ── 馬単・三連単（順序あり）────────────────────────────────────────────
     if bt in ("馬単", "三連単"):
         lines = []
-        for combo in combos[:4]:
+        for combo in combos:
             legs = list(combo) if isinstance(combo, (list, tuple)) else [combo]
-            arrow_str = " → ".join(_label(n) for n in legs)
-            # 三連単は馬名がname_by_numに全馬分ないので combo 順で名前を補完
+            # 番号のみで表示（Discord文字数節約）
+            arrow_str = "→".join(str(n) for n in legs)
             lines.append(f"▶ {arrow_str}")
-        if n_total > 4:
-            lines.append(f"  (+{n_total - 4}点)")
-        return "\n".join(lines)
+        return _fit(lines)
 
     # ── 馬連・ワイド・三連複（軸流し or ボックス）──────────────────────────
+    first = combos[0]
     if isinstance(first, (list, tuple)) and len(first) >= 2:
         flat     = [int(n) for combo in combos for n in combo]
         cnt      = Counter(flat)
         axis_set = {num for num, c in cnt.items() if c == n_total}
 
         if axis_set:
-            # 軸あり: 軸馬を先頭、相手馬を列挙
+            # 軸あり: 全相手馬を省略なしで表示
             axes   = sorted(axis_set)
             others = sorted({int(n) for combo in combos for n in combo} - axis_set)
-            axis_str = " / ".join(_label(a) for a in axes[:2])
-            opp_str  = " / ".join(_label(o) for o in others[:6])
-            if len(others) > 6:
-                opp_str += f" … +{len(others)-6}頭"
-            return (
-                f"▶ 軸: {axis_str}\n"
-                f"  相手: {opp_str}\n"
+            axis_str  = ",".join(str(a) for a in axes)
+            opp_nums  = ",".join(str(o) for o in others)
+            axis_label = " / ".join(_label(a) for a in axes[:2])
+            opp_label  = " / ".join(_label(o) for o in others)
+            smart_str  = f"【推奨: {bt}流し 軸{axis_str} - 相手{opp_nums}】"
+            detail     = (
+                f"▶ 軸: {axis_label}\n"
+                f"  相手: {opp_label}\n"
                 f"  計{n_total}点"
             )
+            result = smart_str + "\n" + detail
+            if len(result) <= _BUDGET:
+                return result
+            # 超える場合は番号のみのコンパクト表記
+            return f"{smart_str}\n計{n_total}点"
         else:
-            # ボックス
+            # ボックス: 全馬番を省略なしで表示
             nums_all = sorted({int(n) for combo in combos for n in combo})
-            box_str  = " / ".join(_label(n) for n in nums_all[:6])
-            if len(nums_all) > 6:
-                box_str += f" … +{len(nums_all)-6}頭"
-            return f"ボックス: {box_str}\n計{n_total}点"
+            all_labels = " / ".join(_label(n) for n in nums_all)
+            box_str = f"ボックス: {all_labels}\n計{n_total}点"
+            if len(box_str) <= _BUDGET:
+                return box_str
+            # 超える場合は番号のみ
+            nums_str = ",".join(str(n) for n in nums_all)
+            return f"ボックス: {nums_str}\n計{n_total}点"
 
     return f"計{n_total}点"
 
