@@ -4,11 +4,11 @@
   "date": "2026-05-24",
   "venue": "京都",
   "race_number": 10,
-  "distance": 0,
-  "surface": "",
+  "distance": 1200,
+  "surface": "ダート",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "曇",
+  "condition": "稍",
   "year": "2026",
   "results": [
     {
@@ -33,7 +33,7 @@
       "honmei_score": 0.0141,
       "ev_score": 1.0041,
       "kelly_fraction": 0.0,
-      "manji_ev": 8.6011,
+      "manji_ev": 9.1476,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
@@ -59,7 +59,7 @@
       "honmei_score": 0.0063,
       "ev_score": 0.198,
       "kelly_fraction": 0.0,
-      "manji_ev": 3.2697,
+      "manji_ev": 3.3749,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
@@ -85,7 +85,7 @@
       "honmei_score": 0.0298,
       "ev_score": 0.3488,
       "kelly_fraction": 0.0,
-      "manji_ev": 1.9662,
+      "manji_ev": 1.9576,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
@@ -163,7 +163,7 @@
       "honmei_score": 0.0315,
       "ev_score": 0.5515,
       "kelly_fraction": 0.0,
-      "manji_ev": 8.3501,
+      "manji_ev": 8.6206,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
@@ -186,10 +186,10 @@
       "sire": "パイロPyro(米)",
       "dam": "プレシャスエルフ",
       "dam_sire": "コロナドズクエストCoronado's Quest(米)",
-      "honmei_score": 0.0315,
-      "ev_score": 1.2385,
-      "kelly_fraction": 0.0006,
-      "manji_ev": 0.0,
+      "honmei_score": 0.0323,
+      "ev_score": 1.2696,
+      "kelly_fraction": 0.0007,
+      "manji_ev": 0.0298,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
@@ -215,7 +215,7 @@
       "honmei_score": 0.0042,
       "ev_score": 0.1756,
       "kelly_fraction": 0.0,
-      "manji_ev": 2.9238,
+      "manji_ev": 3.6856,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
@@ -241,7 +241,7 @@
       "honmei_score": 0.0388,
       "ev_score": 1.1669,
       "kelly_fraction": 0.0006,
-      "manji_ev": 0.2227,
+      "manji_ev": 0.0783,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
@@ -267,7 +267,7 @@
       "honmei_score": 0.0063,
       "ev_score": 0.305,
       "kelly_fraction": 0.0,
-      "manji_ev": 4.1391,
+      "manji_ev": 4.1375,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
@@ -316,8 +316,8 @@
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.0786,
-      "ev_score": 0.173,
+      "honmei_score": 0.0674,
+      "ev_score": 0.1483,
       "kelly_fraction": 0.0,
       "manji_ev": 0.5165,
       "odds_vs_morning": 1.0,
@@ -345,7 +345,7 @@
       "honmei_score": 0.0786,
       "ev_score": 1.4392,
       "kelly_fraction": 0.0025,
-      "manji_ev": 0.0,
+      "manji_ev": 1.2352,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
@@ -371,7 +371,7 @@
       "honmei_score": 0.0674,
       "ev_score": 0.2158,
       "kelly_fraction": 0.0,
-      "manji_ev": 10.3406,
+      "manji_ev": 10.3289,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     }
@@ -379,15 +379,168 @@
   "payouts": [],
   "predictions": [
     {
-      "prediction_id": 38108,
-      "model_type": "本命(暫定)",
+      "prediction_id": 40379,
+      "model_type": "Alpha-Payout(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.29313839958591054,
+      "expected_value": 0.8794151987577316,
+      "recommended_bet": 100.0,
+      "combination_json": "[[14], [12]]",
+      "notes": "2頭 relative nan=0% max=0.879",
+      "created_at": "2026-05-24 05:18:18",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "ゲイルライダー",
+          "horse_id": "2022103684",
+          "predicted_rank": 1,
+          "model_score": 0.8794151987577316,
+          "ev_score": 0.8794151987577316
+        },
+        {
+          "horse_name": "アンズアメ",
+          "horse_id": "2022106689",
+          "predicted_rank": 2,
+          "model_score": 0.8105430208226948,
+          "ev_score": 0.8105430208226948
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 2,
+      "invested": 200,
+      "horse_num_to_name": {
+        "1": "イミュータブル",
+        "2": "メイショウヤーキス",
+        "3": "ワンダラー",
+        "4": "スノーサイレンス",
+        "5": "ルクスデイジー",
+        "6": "トーアジョウトウ",
+        "7": "サザンエルフ",
+        "8": "シャカシャカシー",
+        "9": "ジャーヴィス",
+        "10": "クアトロジャック",
+        "11": "ハクサンアイリス",
+        "12": "アンズアメ",
+        "13": "エンヤラヴフェイス",
+        "14": "ゲイルライダー"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 40380,
+      "model_type": "Alpha-Payout(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.873595359419218,
+      "expected_value": 2.620786078257654,
+      "recommended_bet": 200.0,
+      "combination_json": "[[3, 12, 14], [11, 12, 14], [6, 12, 14], [3, 11, 14], [3, 6, 14], [6, 11, 14]]",
+      "notes": "Alpha EV=2.62 軸14番 相手4頭 6点",
+      "created_at": "2026-05-24 05:18:18",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "ゲイルライダー",
+          "horse_id": "2022103684",
+          "predicted_rank": 1,
+          "model_score": 0.8794151987577316,
+          "ev_score": 0.8794151987577316
+        },
+        {
+          "horse_name": "アンズアメ",
+          "horse_id": "2022106689",
+          "predicted_rank": 2,
+          "model_score": 0.8105430208226948,
+          "ev_score": 0.8105430208226948
+        }
+      ],
+      "bet_form": "軸1頭ながし",
+      "n_tickets": 6,
+      "invested": 600,
+      "horse_num_to_name": {
+        "1": "イミュータブル",
+        "2": "メイショウヤーキス",
+        "3": "ワンダラー",
+        "4": "スノーサイレンス",
+        "5": "ルクスデイジー",
+        "6": "トーアジョウトウ",
+        "7": "サザンエルフ",
+        "8": "シャカシャカシー",
+        "9": "ジャーヴィス",
+        "10": "クアトロジャック",
+        "11": "ハクサンアイリス",
+        "12": "アンズアメ",
+        "13": "エンヤラヴフェイス",
+        "14": "ゲイルライダー"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 40381,
+      "model_type": "Alpha-Payout(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.32007924110613006,
+      "expected_value": 1.6003962055306502,
+      "recommended_bet": 200.0,
+      "combination_json": "[[14, 12, 3], [14, 3, 12], [14, 12, 11], [14, 12, 6], [14, 11, 12], [14, 6, 12]]",
+      "notes": "Alpha EV=1.60 軸14番→フォーメーション 6点",
+      "created_at": "2026-05-24 05:18:18",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "ゲイルライダー",
+          "horse_id": "2022103684",
+          "predicted_rank": 1,
+          "model_score": 0.8794151987577316,
+          "ev_score": 0.8794151987577316
+        },
+        {
+          "horse_name": "アンズアメ",
+          "horse_id": "2022106689",
+          "predicted_rank": 2,
+          "model_score": 0.8105430208226948,
+          "ev_score": 0.8105430208226948
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 6,
+      "invested": 600,
+      "horse_num_to_name": {
+        "1": "イミュータブル",
+        "2": "メイショウヤーキス",
+        "3": "ワンダラー",
+        "4": "スノーサイレンス",
+        "5": "ルクスデイジー",
+        "6": "トーアジョウトウ",
+        "7": "サザンエルフ",
+        "8": "シャカシャカシー",
+        "9": "ジャーヴィス",
+        "10": "クアトロジャック",
+        "11": "ハクサンアイリス",
+        "12": "アンズアメ",
+        "13": "エンヤラヴフェイス",
+        "14": "ゲイルライダー"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 40382,
+      "model_type": "本命(直前)",
       "bet_type": "ワイド",
-      "confidence": 0.04926738624438661,
-      "expected_value": 1.5687948515874097,
+      "confidence": 0.05112148371214524,
+      "expected_value": 1.6278338788930728,
       "recommended_bet": 100.0,
-      "combination_json": "[[5, 12], [5, 13], [5, 11], [5, 14], [4, 5]]",
-      "notes": "★QF推奨 軸5番×相手5頭ワイド Harville最大=0.038",
-      "created_at": "2026-05-23 21:50:59",
+      "combination_json": "[[5, 13], [5, 11], [5, 14], [5, 12], [4, 5]]",
+      "notes": "★QF推奨 軸5番×相手5頭ワイド Harville最大=0.039",
+      "created_at": "2026-05-24 05:18:18",
       "is_hit": null,
       "payout": null,
       "profit": null,
@@ -397,71 +550,71 @@
           "horse_name": "ルクスデイジー",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.03789798941875893,
-          "ev_score": 1.5687948515874097
+          "model_score": 0.03932421824011172,
+          "ev_score": 1.6278338788930728
         },
         {
           "horse_name": "ルクスデイジー",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.03789798941875893,
-          "ev_score": 1.5687948515874097
+          "model_score": 0.03932421824011172,
+          "ev_score": 1.6278338788930728
         },
         {
           "horse_name": "ルクスデイジー",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.03789798941875893,
-          "ev_score": 1.5687948515874097
+          "model_score": 0.03932421824011172,
+          "ev_score": 1.6278338788930728
         },
         {
           "horse_name": "ルクスデイジー",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.03789798941875893,
-          "ev_score": 1.5687948515874097
+          "model_score": 0.03932421824011172,
+          "ev_score": 1.6278338788930728
         },
         {
           "horse_name": "ルクスデイジー",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.03789798941875893,
-          "ev_score": 1.5687948515874097
+          "model_score": 0.03932421824011172,
+          "ev_score": 1.6278338788930728
         },
         {
-          "horse_name": "アンズアメ",
+          "horse_name": "エンヤラヴフェイス",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.03789798941875893,
-          "ev_score": 1.5687948515874097
+          "model_score": 0.03932421824011172,
+          "ev_score": 1.6278338788930728
         },
         {
-          "horse_name": "アンズアメ",
+          "horse_name": "エンヤラヴフェイス",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.03789798941875893,
-          "ev_score": 1.5687948515874097
+          "model_score": 0.03932421824011172,
+          "ev_score": 1.6278338788930728
         },
         {
-          "horse_name": "アンズアメ",
+          "horse_name": "エンヤラヴフェイス",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.03789798941875893,
-          "ev_score": 1.5687948515874097
+          "model_score": 0.03932421824011172,
+          "ev_score": 1.6278338788930728
         },
         {
-          "horse_name": "アンズアメ",
+          "horse_name": "エンヤラヴフェイス",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.03789798941875893,
-          "ev_score": 1.5687948515874097
+          "model_score": 0.03932421824011172,
+          "ev_score": 1.6278338788930728
         },
         {
-          "horse_name": "アンズアメ",
+          "horse_name": "エンヤラヴフェイス",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.03789798941875893,
-          "ev_score": 1.5687948515874097
+          "model_score": 0.03932421824011172,
+          "ev_score": 1.6278338788930728
         }
       ],
       "bet_form": "軸ながし",
@@ -483,18 +636,18 @@
         "13": "エンヤラヴフェイス",
         "14": "ゲイルライダー"
       },
-      "is_provisional": true
+      "is_provisional": false
     },
     {
-      "prediction_id": 38109,
-      "model_type": "本命(暫定)",
+      "prediction_id": 40383,
+      "model_type": "本命(直前)",
       "bet_type": "馬連",
-      "confidence": 0.03789798941875893,
-      "expected_value": 2.9687768991078998,
+      "confidence": 0.03932421824011172,
+      "expected_value": 3.0805019600573917,
       "recommended_bet": 100.0,
-      "combination_json": "[[5, 12], [5, 13], [5, 11], [5, 14], [4, 5]]",
-      "notes": "★QF推奨 軸5番×相手5頭フォーメーション Harville最大=0.038",
-      "created_at": "2026-05-23 21:50:59",
+      "combination_json": "[[5, 13], [5, 11], [5, 14], [5, 12], [4, 5]]",
+      "notes": "★QF推奨 軸5番×相手5頭フォーメーション Harville最大=0.039",
+      "created_at": "2026-05-24 05:18:18",
       "is_hit": null,
       "payout": null,
       "profit": null,
@@ -504,71 +657,71 @@
           "horse_name": "ルクスデイジー",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.03789798941875893,
-          "ev_score": 2.9687768991078998
+          "model_score": 0.03932421824011172,
+          "ev_score": 3.0805019600573917
         },
         {
           "horse_name": "ルクスデイジー",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.03789798941875893,
-          "ev_score": 2.9687768991078998
+          "model_score": 0.03932421824011172,
+          "ev_score": 3.0805019600573917
         },
         {
           "horse_name": "ルクスデイジー",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.03789798941875893,
-          "ev_score": 2.9687768991078998
+          "model_score": 0.03932421824011172,
+          "ev_score": 3.0805019600573917
         },
         {
           "horse_name": "ルクスデイジー",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.03789798941875893,
-          "ev_score": 2.9687768991078998
+          "model_score": 0.03932421824011172,
+          "ev_score": 3.0805019600573917
         },
         {
           "horse_name": "ルクスデイジー",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.03789798941875893,
-          "ev_score": 2.9687768991078998
+          "model_score": 0.03932421824011172,
+          "ev_score": 3.0805019600573917
         },
         {
-          "horse_name": "アンズアメ",
+          "horse_name": "エンヤラヴフェイス",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.03789798941875893,
-          "ev_score": 2.9687768991078998
+          "model_score": 0.03932421824011172,
+          "ev_score": 3.0805019600573917
         },
         {
-          "horse_name": "アンズアメ",
+          "horse_name": "エンヤラヴフェイス",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.03789798941875893,
-          "ev_score": 2.9687768991078998
+          "model_score": 0.03932421824011172,
+          "ev_score": 3.0805019600573917
         },
         {
-          "horse_name": "アンズアメ",
+          "horse_name": "エンヤラヴフェイス",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.03789798941875893,
-          "ev_score": 2.9687768991078998
+          "model_score": 0.03932421824011172,
+          "ev_score": 3.0805019600573917
         },
         {
-          "horse_name": "アンズアメ",
+          "horse_name": "エンヤラヴフェイス",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.03789798941875893,
-          "ev_score": 2.9687768991078998
+          "model_score": 0.03932421824011172,
+          "ev_score": 3.0805019600573917
         },
         {
-          "horse_name": "アンズアメ",
+          "horse_name": "エンヤラヴフェイス",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.03789798941875893,
-          "ev_score": 2.9687768991078998
+          "model_score": 0.03932421824011172,
+          "ev_score": 3.0805019600573917
         }
       ],
       "bet_form": "軸ながし",
@@ -590,18 +743,18 @@
         "13": "エンヤラヴフェイス",
         "14": "ゲイルライダー"
       },
-      "is_provisional": true
+      "is_provisional": false
     },
     {
-      "prediction_id": 38110,
-      "model_type": "本命(暫定)",
+      "prediction_id": 40384,
+      "model_type": "本命(直前)",
       "bet_type": "複勝",
       "confidence": 0.0786472670074715,
       "expected_value": 0.23594180102241452,
       "recommended_bet": 100.0,
-      "combination_json": "[[5], [12], [13]]",
+      "combination_json": "[[5], [13], [11]]",
       "notes": "上位3頭を複勝",
-      "created_at": "2026-05-23 21:50:59",
+      "created_at": "2026-05-24 05:18:18",
       "is_hit": null,
       "payout": null,
       "profit": null,
@@ -611,18 +764,18 @@
           "horse_name": "ルクスデイジー",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.0786472670074715,
-          "ev_score": 0.23594180102241452
-        },
-        {
-          "horse_name": "アンズアメ",
-          "horse_id": null,
-          "predicted_rank": 2,
           "model_score": 0.0786472670074715,
           "ev_score": 0.23594180102241452
         },
         {
           "horse_name": "エンヤラヴフェイス",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0786472670074715,
+          "ev_score": 0.23594180102241452
+        },
+        {
+          "horse_name": "ハクサンアイリス",
           "horse_id": null,
           "predicted_rank": 3,
           "model_score": 0.0786472670074715,
@@ -648,18 +801,18 @@
         "13": "エンヤラヴフェイス",
         "14": "ゲイルライダー"
       },
-      "is_provisional": true
+      "is_provisional": false
     },
     {
-      "prediction_id": 38111,
-      "model_type": "本命(暫定)",
+      "prediction_id": 40385,
+      "model_type": "本命(直前)",
       "bet_type": "単勝",
       "confidence": 0.0786472670074715,
       "expected_value": 1.5100275265434528,
       "recommended_bet": 100.0,
       "combination_json": "[[5]]",
       "notes": "確率1位 P(win)=0.08 odds=19.2 EV=1.51",
-      "created_at": "2026-05-23 21:50:59",
+      "created_at": "2026-05-24 05:18:18",
       "is_hit": null,
       "payout": null,
       "profit": null,
@@ -692,18 +845,18 @@
         "13": "エンヤラヴフェイス",
         "14": "ゲイルライダー"
       },
-      "is_provisional": true
+      "is_provisional": false
     },
     {
-      "prediction_id": 38112,
-      "model_type": "本命(暫定)",
+      "prediction_id": 40386,
+      "model_type": "本命(直前)",
       "bet_type": "馬単",
-      "confidence": 0.15159195767503572,
-      "expected_value": 2.855628661899253,
+      "confidence": 0.1572968729604469,
+      "expected_value": 2.963095574079714,
       "recommended_bet": 100.0,
-      "combination_json": "[[5, 12], [5, 13], [5, 11]]",
-      "notes": "軸5番→相手3頭フォーメーション Harville最大=0.019",
-      "created_at": "2026-05-23 21:50:59",
+      "combination_json": "[[5, 13], [5, 11], [5, 14]]",
+      "notes": "軸5番→相手3頭フォーメーション Harville最大=0.020",
+      "created_at": "2026-05-24 05:18:18",
       "is_hit": null,
       "payout": null,
       "profit": null,
@@ -713,43 +866,43 @@
           "horse_name": "ルクスデイジー",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.018948994709379465,
-          "ev_score": 2.855628661899253
+          "model_score": 0.01966210912005586,
+          "ev_score": 2.963095574079714
         },
         {
           "horse_name": "ルクスデイジー",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.018948994709379465,
-          "ev_score": 2.855628661899253
+          "model_score": 0.01966210912005586,
+          "ev_score": 2.963095574079714
         },
         {
           "horse_name": "ルクスデイジー",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.018948994709379465,
-          "ev_score": 2.855628661899253
+          "model_score": 0.01966210912005586,
+          "ev_score": 2.963095574079714
         },
         {
-          "horse_name": "アンズアメ",
+          "horse_name": "エンヤラヴフェイス",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.018948994709379465,
-          "ev_score": 2.855628661899253
+          "model_score": 0.01966210912005586,
+          "ev_score": 2.963095574079714
         },
         {
-          "horse_name": "アンズアメ",
+          "horse_name": "エンヤラヴフェイス",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.018948994709379465,
-          "ev_score": 2.855628661899253
+          "model_score": 0.01966210912005586,
+          "ev_score": 2.963095574079714
         },
         {
-          "horse_name": "アンズアメ",
+          "horse_name": "エンヤラヴフェイス",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.018948994709379465,
-          "ev_score": 2.855628661899253
+          "model_score": 0.01966210912005586,
+          "ev_score": 2.963095574079714
         }
       ],
       "bet_form": "軸ながし",
@@ -771,18 +924,18 @@
         "13": "エンヤラヴフェイス",
         "14": "ゲイルライダー"
       },
-      "is_provisional": true
+      "is_provisional": false
     },
     {
-      "prediction_id": 38113,
-      "model_type": "本命(暫定)",
+      "prediction_id": 40387,
+      "model_type": "本命(直前)",
       "bet_type": "三連複",
-      "confidence": 0.23597317535693835,
+      "confidence": 0.2506025103002988,
       "expected_value": 5.0,
       "recommended_bet": 100.0,
-      "combination_json": "[[5, 12, 13], [5, 11, 12]]",
-      "notes": "合成EV最大=5.00 2点 馬番=[(5, 12, 13), (5, 11, 12)]",
-      "created_at": "2026-05-23 21:50:59",
+      "combination_json": "[[5, 11, 13], [5, 13, 14]]",
+      "notes": "合成EV最大=5.00 2点 馬番=[(5, 11, 13), (5, 13, 14)]",
+      "created_at": "2026-05-24 05:18:18",
       "is_hit": null,
       "payout": null,
       "profit": null,
@@ -792,42 +945,42 @@
           "horse_name": "ルクスデイジー",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.019664431279744862,
+          "model_score": 0.020883542525024897,
           "ev_score": 5.0
         },
         {
           "horse_name": "ルクスデイジー",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.019664431279744862,
+          "model_score": 0.020883542525024897,
           "ev_score": 5.0
         },
         {
-          "horse_name": "アンズアメ",
+          "horse_name": "ハクサンアイリス",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.019664431279744862,
+          "model_score": 0.020883542525024897,
           "ev_score": 5.0
         },
         {
-          "horse_name": "アンズアメ",
+          "horse_name": "ハクサンアイリス",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.019664431279744862,
+          "model_score": 0.020883542525024897,
           "ev_score": 5.0
         },
         {
           "horse_name": "エンヤラヴフェイス",
           "horse_id": null,
           "predicted_rank": 3,
-          "model_score": 0.019664431279744862,
+          "model_score": 0.020883542525024897,
           "ev_score": 5.0
         },
         {
           "horse_name": "エンヤラヴフェイス",
           "horse_id": null,
           "predicted_rank": 3,
-          "model_score": 0.019664431279744862,
+          "model_score": 0.020883542525024897,
           "ev_score": 5.0
         }
       ],
@@ -850,18 +1003,18 @@
         "13": "エンヤラヴフェイス",
         "14": "ゲイルライダー"
       },
-      "is_provisional": true
+      "is_provisional": false
     },
     {
-      "prediction_id": 38114,
-      "model_type": "本命(暫定)",
+      "prediction_id": 40388,
+      "model_type": "本命(直前)",
       "bet_type": "三連単",
-      "confidence": 0.5899329383923458,
+      "confidence": 0.6265062757507469,
       "expected_value": 6.0,
       "recommended_bet": 200.0,
-      "combination_json": "[[5, 12, 13], [5, 13, 12], [12, 5, 13], [12, 13, 5], [13, 5, 12], [13, 12, 5], [5, 12, 11], [5, 11, 12], [12, 5, 11], [12, 11, 5], [11, 5, 12], [11, 12, 5], [5, 12, 14], [5, 14, 12], [12, 5, 14], [12, 14, 5], [14, 5, 12], [14, 12, 5], [5, 12, 4], [5, 4, 12], [12, 5, 4], [12, 4, 5], [4, 5, 12], [4, 12, 5], [5, 12, 9], [5, 9, 12], [12, 5, 9], [12, 9, 5], [9, 5, 12], [9, 12, 5], [5, 13, 11], [5, 11, 13], [13, 5, 11], [13, 11, 5], [11, 5, 13], [11, 13, 5], [5, 13, 14], [5, 14, 13], [13, 5, 14], [13, 14, 5], [14, 5, 13], [14, 13, 5], [5, 13, 4], [5, 4, 13], [13, 5, 4], [13, 4, 5], [4, 5, 13], [4, 13, 5], [5, 13, 9], [5, 9, 13], [13, 5, 9], [13, 9, 5], [9, 5, 13], [9, 13, 5], [5, 11, 14], [5, 14, 11], [11, 5, 14], [11, 14, 5], [14, 5, 11], [14, 11, 5], [5, 11, 4], [5, 4, 11], [11, 5, 4], [11, 4, 5], [4, 5, 11], [4, 11, 5], [5, 11, 9], [5, 9, 11], [11, 5, 9], [11, 9, 5], [9, 5, 11], [9, 11, 5], [5, 14, 4], [5, 4, 14], [14, 5, 4], [14, 4, 5], [4, 5, 14], [4, 14, 5], [5, 14, 9], [5, 9, 14], [14, 5, 9], [14, 9, 5], [9, 5, 14], [9, 14, 5], [5, 4, 9], [5, 9, 4], [4, 5, 9], [4, 9, 5], [9, 5, 4], [9, 4, 5]]",
-      "notes": "1頭軸マルチ 軸=5番 相手=[12, 13, 11, 14, 4, 9] 90点 Harville最大=0.0197",
-      "created_at": "2026-05-23 21:50:59",
+      "combination_json": "[[5, 13, 11], [5, 11, 13], [13, 5, 11], [13, 11, 5], [11, 5, 13], [11, 13, 5], [5, 13, 14], [5, 14, 13], [13, 5, 14], [13, 14, 5], [14, 5, 13], [14, 13, 5], [5, 13, 12], [5, 12, 13], [13, 5, 12], [13, 12, 5], [12, 5, 13], [12, 13, 5], [5, 11, 14], [5, 14, 11], [11, 5, 14], [11, 14, 5], [14, 5, 11], [14, 11, 5], [5, 11, 12], [5, 12, 11], [11, 5, 12], [11, 12, 5], [12, 5, 11], [12, 11, 5], [5, 14, 12], [5, 12, 14], [14, 5, 12], [14, 12, 5], [12, 5, 14], [12, 14, 5]]",
+      "notes": "1頭軸マルチ 軸=5番 相手=[13, 11, 14, 12] 36点 Harville最大=0.0209",
+      "created_at": "2026-05-24 05:18:18",
       "is_hit": null,
       "payout": null,
       "profit": null,
@@ -871,111 +1024,111 @@
           "horse_name": "ルクスデイジー",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.019664431279744862,
+          "model_score": 0.020883542525024897,
           "ev_score": 6.0
         },
         {
           "horse_name": "ルクスデイジー",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.019664431279744862,
+          "model_score": 0.020883542525024897,
           "ev_score": 6.0
         },
         {
           "horse_name": "ルクスデイジー",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.019664431279744862,
+          "model_score": 0.020883542525024897,
           "ev_score": 6.0
         },
         {
           "horse_name": "ルクスデイジー",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.019664431279744862,
+          "model_score": 0.020883542525024897,
           "ev_score": 6.0
         },
         {
           "horse_name": "ルクスデイジー",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.019664431279744862,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "アンズアメ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.019664431279744862,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "アンズアメ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.019664431279744862,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "アンズアメ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.019664431279744862,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "アンズアメ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.019664431279744862,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "アンズアメ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.019664431279744862,
+          "model_score": 0.020883542525024897,
           "ev_score": 6.0
         },
         {
           "horse_name": "エンヤラヴフェイス",
           "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.019664431279744862,
+          "predicted_rank": 2,
+          "model_score": 0.020883542525024897,
           "ev_score": 6.0
         },
         {
           "horse_name": "エンヤラヴフェイス",
           "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.019664431279744862,
+          "predicted_rank": 2,
+          "model_score": 0.020883542525024897,
           "ev_score": 6.0
         },
         {
           "horse_name": "エンヤラヴフェイス",
           "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.019664431279744862,
+          "predicted_rank": 2,
+          "model_score": 0.020883542525024897,
           "ev_score": 6.0
         },
         {
           "horse_name": "エンヤラヴフェイス",
           "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.019664431279744862,
+          "predicted_rank": 2,
+          "model_score": 0.020883542525024897,
           "ev_score": 6.0
         },
         {
           "horse_name": "エンヤラヴフェイス",
           "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.020883542525024897,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ハクサンアイリス",
+          "horse_id": null,
           "predicted_rank": 3,
-          "model_score": 0.019664431279744862,
+          "model_score": 0.020883542525024897,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ハクサンアイリス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.020883542525024897,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ハクサンアイリス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.020883542525024897,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ハクサンアイリス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.020883542525024897,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ハクサンアイリス",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.020883542525024897,
           "ev_score": 6.0
         }
       ],
       "bet_form": "1頭軸マルチ",
-      "n_tickets": 90,
-      "invested": 9000,
+      "n_tickets": 36,
+      "invested": 3600,
       "horse_num_to_name": {
         "1": "イミュータブル",
         "2": "メイショウヤーキス",
@@ -992,18 +1145,471 @@
         "13": "エンヤラヴフェイス",
         "14": "ゲイルライダー"
       },
-      "is_provisional": true
+      "is_provisional": false
     },
     {
-      "prediction_id": 38115,
-      "model_type": "本命(暫定)",
+      "prediction_id": 40389,
+      "model_type": "卍(直前)",
+      "bet_type": "単勝",
+      "confidence": 1.0,
+      "expected_value": 10.328865577307877,
+      "recommended_bet": 100.0,
+      "combination_json": "[[14]]",
+      "notes": "確率1位(卍) EV=10.33 odds=3.2",
+      "created_at": "2026-05-24 05:18:18",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "ゲイルライダー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 10.328865577307877,
+          "ev_score": 10.328865577307877
+        }
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "1": "イミュータブル",
+        "2": "メイショウヤーキス",
+        "3": "ワンダラー",
+        "4": "スノーサイレンス",
+        "5": "ルクスデイジー",
+        "6": "トーアジョウトウ",
+        "7": "サザンエルフ",
+        "8": "シャカシャカシー",
+        "9": "ジャーヴィス",
+        "10": "クアトロジャック",
+        "11": "ハクサンアイリス",
+        "12": "アンズアメ",
+        "13": "エンヤラヴフェイス",
+        "14": "ゲイルライダー"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 40390,
+      "model_type": "卍(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.6,
+      "expected_value": 9.365686832036669,
+      "recommended_bet": 100.0,
+      "combination_json": "[[14], [1], [6]]",
+      "notes": "確率上位3頭を複勝",
+      "created_at": "2026-05-24 05:18:18",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "ゲイルライダー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 9.365686832036669,
+          "ev_score": 9.365686832036669
+        },
+        {
+          "horse_name": "イミュータブル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 9.365686832036669,
+          "ev_score": 9.365686832036669
+        },
+        {
+          "horse_name": "トーアジョウトウ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 9.365686832036669,
+          "ev_score": 9.365686832036669
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "1": "イミュータブル",
+        "2": "メイショウヤーキス",
+        "3": "ワンダラー",
+        "4": "スノーサイレンス",
+        "5": "ルクスデイジー",
+        "6": "トーアジョウトウ",
+        "7": "サザンエルフ",
+        "8": "シャカシャカシー",
+        "9": "ジャーヴィス",
+        "10": "クアトロジャック",
+        "11": "ハクサンアイリス",
+        "12": "アンズアメ",
+        "13": "エンヤラヴフェイス",
+        "14": "ゲイルライダー"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 40391,
+      "model_type": "卍(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.32565217880364916,
+      "expected_value": 0.8503429692920887,
+      "recommended_bet": 100.0,
+      "combination_json": "[[1, 14], [6, 14], [4, 14], [11, 14], [10, 14]]",
+      "notes": "軸14番×相手5頭フォーメーション Harville最大=0.065",
+      "created_at": "2026-05-24 05:18:18",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "イミュータブル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06513043576072983,
+          "ev_score": 0.8503429692920887
+        },
+        {
+          "horse_name": "イミュータブル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06513043576072983,
+          "ev_score": 0.8503429692920887
+        },
+        {
+          "horse_name": "イミュータブル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06513043576072983,
+          "ev_score": 0.8503429692920887
+        },
+        {
+          "horse_name": "イミュータブル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06513043576072983,
+          "ev_score": 0.8503429692920887
+        },
+        {
+          "horse_name": "イミュータブル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06513043576072983,
+          "ev_score": 0.8503429692920887
+        },
+        {
+          "horse_name": "ゲイルライダー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06513043576072983,
+          "ev_score": 0.8503429692920887
+        },
+        {
+          "horse_name": "ゲイルライダー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06513043576072983,
+          "ev_score": 0.8503429692920887
+        },
+        {
+          "horse_name": "ゲイルライダー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06513043576072983,
+          "ev_score": 0.8503429692920887
+        },
+        {
+          "horse_name": "ゲイルライダー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06513043576072983,
+          "ev_score": 0.8503429692920887
+        },
+        {
+          "horse_name": "ゲイルライダー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06513043576072983,
+          "ev_score": 0.8503429692920887
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "イミュータブル",
+        "2": "メイショウヤーキス",
+        "3": "ワンダラー",
+        "4": "スノーサイレンス",
+        "5": "ルクスデイジー",
+        "6": "トーアジョウトウ",
+        "7": "サザンエルフ",
+        "8": "シャカシャカシー",
+        "9": "ジャーヴィス",
+        "10": "クアトロジャック",
+        "11": "ハクサンアイリス",
+        "12": "アンズアメ",
+        "13": "エンヤラヴフェイス",
+        "14": "ゲイルライダー"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 40392,
+      "model_type": "卍(直前)",
+      "bet_type": "ワイド",
+      "confidence": 0.39078261456437896,
+      "expected_value": 0.44934790240042727,
+      "recommended_bet": 100.0,
+      "combination_json": "[[1, 14], [6, 14], [4, 14], [11, 14], [10, 14]]",
+      "notes": "軸14番×相手5頭ワイド Harville最大=0.065",
+      "created_at": "2026-05-24 05:18:18",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "イミュータブル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06513043576072983,
+          "ev_score": 0.44934790240042727
+        },
+        {
+          "horse_name": "イミュータブル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06513043576072983,
+          "ev_score": 0.44934790240042727
+        },
+        {
+          "horse_name": "イミュータブル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06513043576072983,
+          "ev_score": 0.44934790240042727
+        },
+        {
+          "horse_name": "イミュータブル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06513043576072983,
+          "ev_score": 0.44934790240042727
+        },
+        {
+          "horse_name": "イミュータブル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06513043576072983,
+          "ev_score": 0.44934790240042727
+        },
+        {
+          "horse_name": "ゲイルライダー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06513043576072983,
+          "ev_score": 0.44934790240042727
+        },
+        {
+          "horse_name": "ゲイルライダー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06513043576072983,
+          "ev_score": 0.44934790240042727
+        },
+        {
+          "horse_name": "ゲイルライダー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06513043576072983,
+          "ev_score": 0.44934790240042727
+        },
+        {
+          "horse_name": "ゲイルライダー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06513043576072983,
+          "ev_score": 0.44934790240042727
+        },
+        {
+          "horse_name": "ゲイルライダー",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06513043576072983,
+          "ev_score": 0.44934790240042727
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "イミュータブル",
+        "2": "メイショウヤーキス",
+        "3": "ワンダラー",
+        "4": "スノーサイレンス",
+        "5": "ルクスデイジー",
+        "6": "トーアジョウトウ",
+        "7": "サザンエルフ",
+        "8": "シャカシャカシー",
+        "9": "ジャーヴィス",
+        "10": "クアトロジャック",
+        "11": "ハクサンアイリス",
+        "12": "アンズアメ",
+        "13": "エンヤラヴフェイス",
+        "14": "ゲイルライダー"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 40393,
+      "model_type": "卍(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.2636479423903747,
+      "expected_value": 0.8277490799288204,
+      "recommended_bet": 100.0,
+      "combination_json": "[[14, 1], [14, 6], [14, 4]]",
+      "notes": "軸14番→相手3頭フォーメーション Harville最大=0.033",
+      "created_at": "2026-05-24 05:18:18",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "ゲイルライダー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03295599279879684,
+          "ev_score": 0.8277490799288204
+        },
+        {
+          "horse_name": "ゲイルライダー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03295599279879684,
+          "ev_score": 0.8277490799288204
+        },
+        {
+          "horse_name": "ゲイルライダー",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.03295599279879684,
+          "ev_score": 0.8277490799288204
+        },
+        {
+          "horse_name": "イミュータブル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03295599279879684,
+          "ev_score": 0.8277490799288204
+        },
+        {
+          "horse_name": "イミュータブル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03295599279879684,
+          "ev_score": 0.8277490799288204
+        },
+        {
+          "horse_name": "イミュータブル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03295599279879684,
+          "ev_score": 0.8277490799288204
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "1": "イミュータブル",
+        "2": "メイショウヤーキス",
+        "3": "ワンダラー",
+        "4": "スノーサイレンス",
+        "5": "ルクスデイジー",
+        "6": "トーアジョウトウ",
+        "7": "サザンエルフ",
+        "8": "シャカシャカシー",
+        "9": "ジャーヴィス",
+        "10": "クアトロジャック",
+        "11": "ハクサンアイリス",
+        "12": "アンズアメ",
+        "13": "エンヤラヴフェイス",
+        "14": "ゲイルライダー"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 40396,
+      "model_type": "卍(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.514998656458629,
+      "expected_value": 1.5590039328315615,
+      "recommended_bet": 100.0,
+      "combination_json": "[[4, 6, 14]]",
+      "notes": "合成EV=1.56 Harville=0.0343 馬番=(4, 6, 14)",
+      "created_at": "2026-05-24 05:18:18",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "スノーサイレンス",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.034333243763908596,
+          "ev_score": 1.5590039328315615
+        },
+        {
+          "horse_name": "トーアジョウトウ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.034333243763908596,
+          "ev_score": 1.5590039328315615
+        },
+        {
+          "horse_name": "ゲイルライダー",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.034333243763908596,
+          "ev_score": 1.5590039328315615
+        }
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "1": "イミュータブル",
+        "2": "メイショウヤーキス",
+        "3": "ワンダラー",
+        "4": "スノーサイレンス",
+        "5": "ルクスデイジー",
+        "6": "トーアジョウトウ",
+        "7": "サザンエルフ",
+        "8": "シャカシャカシー",
+        "9": "ジャーヴィス",
+        "10": "クアトロジャック",
+        "11": "ハクサンアイリス",
+        "12": "アンズアメ",
+        "13": "エンヤラヴフェイス",
+        "14": "ゲイルライダー"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 40397,
+      "model_type": "本命(直前)",
       "bet_type": "馬分析",
       "confidence": null,
       "expected_value": null,
       "recommended_bet": null,
       "combination_json": "[]",
       "notes": "全馬モデルスコア（馬分析タブ用）",
-      "created_at": "2026-05-23 21:50:59",
+      "created_at": "2026-05-24 05:18:18",
       "is_hit": null,
       "payout": null,
       "profit": null,
@@ -1017,25 +1623,25 @@
           "ev_score": 1.4392449862367285
         },
         {
-          "horse_name": "アンズアメ",
-          "horse_id": "2022106689",
-          "predicted_rank": 2,
-          "model_score": 0.0786472670074715,
-          "ev_score": 0.17302398741643732
-        },
-        {
           "horse_name": "ハクサンアイリス",
           "horse_id": "2022100328",
-          "predicted_rank": 3,
+          "predicted_rank": 2,
           "model_score": 0.0786472670074715,
           "ev_score": 1.101061738104601
         },
         {
           "horse_name": "ルクスデイジー",
           "horse_id": "2022101127",
-          "predicted_rank": 4,
+          "predicted_rank": 3,
           "model_score": 0.0786472670074715,
           "ev_score": 1.5100275265434528
+        },
+        {
+          "horse_name": "ゲイルライダー",
+          "horse_id": "2022103684",
+          "predicted_rank": 4,
+          "model_score": 0.06742572495997154,
+          "ev_score": 0.21576231987190894
         },
         {
           "horse_name": "スノーサイレンス",
@@ -1045,11 +1651,11 @@
           "ev_score": 3.290375378046611
         },
         {
-          "horse_name": "ゲイルライダー",
-          "horse_id": "2022103684",
+          "horse_name": "アンズアメ",
+          "horse_id": "2022106689",
           "predicted_rank": 6,
           "model_score": 0.06742572495997154,
-          "ev_score": 0.21576231987190894
+          "ev_score": 0.1483365949119374
         },
         {
           "horse_name": "ジャーヴィス",
@@ -1059,18 +1665,18 @@
           "ev_score": 1.1668986083499007
         },
         {
-          "horse_name": "トーアジョウトウ",
-          "horse_id": "2022105905",
-          "predicted_rank": 8,
-          "model_score": 0.03151515151515152,
-          "ev_score": 0.5515151515151515
-        },
-        {
           "horse_name": "サザンエルフ",
           "horse_id": "2019102011",
+          "predicted_rank": 8,
+          "model_score": 0.032305433186490456,
+          "ev_score": 1.2696035242290749
+        },
+        {
+          "horse_name": "トーアジョウトウ",
+          "horse_id": "2022105905",
           "predicted_rank": 9,
           "model_score": 0.03151515151515152,
-          "ev_score": 1.2385454545454546
+          "ev_score": 0.5515151515151515
         },
         {
           "horse_name": "ワンダラー",
@@ -1127,7 +1733,7 @@
         "13": "エンヤラヴフェイス",
         "14": "ゲイルライダー"
       },
-      "is_provisional": true
+      "is_provisional": false
     }
   ],
   "training_evals": {},
@@ -1137,7 +1743,57 @@
       "today_front_bias": null,
       "today_race_count": null
     },
-    "ev_recommend": [],
-    "generated_at": "2026-05-23T21:50:59.281782"
+    "ev_recommend": [
+      {
+        "horse_number": 4,
+        "horse_name": "スノーサイレンス",
+        "win_odds": 48.8,
+        "ev_score": 3.2904,
+        "kelly_fraction": 0.0048
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "ルクスデイジー",
+        "win_odds": 19.2,
+        "ev_score": 1.51,
+        "kelly_fraction": 0.0028
+      },
+      {
+        "horse_number": 13,
+        "horse_name": "エンヤラヴフェイス",
+        "win_odds": 18.3,
+        "ev_score": 1.4392,
+        "kelly_fraction": 0.0025
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "サザンエルフ",
+        "win_odds": 39.3,
+        "ev_score": 1.2696,
+        "kelly_fraction": 0.0007
+      },
+      {
+        "horse_number": 9,
+        "horse_name": "ジャーヴィス",
+        "win_odds": 30.1,
+        "ev_score": 1.1669,
+        "kelly_fraction": 0.0006
+      },
+      {
+        "horse_number": 11,
+        "horse_name": "ハクサンアイリス",
+        "win_odds": 14.0,
+        "ev_score": 1.1011,
+        "kelly_fraction": 0.0008
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "イミュータブル",
+        "win_odds": 71.4,
+        "ev_score": 1.0041,
+        "kelly_fraction": 0.0
+      }
+    ],
+    "generated_at": "2026-05-24T05:18:18.179003"
   }
 }

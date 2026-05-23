@@ -1,14 +1,14 @@
 {
   "race_id": "202604010806",
-  "race_name": "",
+  "race_name": "3歳未勝利",
   "date": "2026-05-24",
   "venue": "新潟",
   "race_number": 6,
-  "distance": 0,
-  "surface": "",
+  "distance": 1800,
+  "surface": "ダート",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "晴",
+  "condition": "稍",
   "year": "2026",
   "results": [
     {
@@ -30,10 +30,10 @@
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.0334,
-      "ev_score": 0.5081,
+      "honmei_score": 0.0325,
+      "ev_score": 0.4941,
       "kelly_fraction": 0.0,
-      "manji_ev": 0.4738,
+      "manji_ev": 0.3164,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
@@ -59,7 +59,7 @@
       "honmei_score": 0.1378,
       "ev_score": 0.4684,
       "kelly_fraction": 0.0,
-      "manji_ev": 0.651,
+      "manji_ev": 0.7357,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
@@ -108,10 +108,10 @@
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.0674,
-      "ev_score": 0.863,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.2922,
+      "honmei_score": 0.0786,
+      "ev_score": 1.0067,
+      "kelly_fraction": 0.0001,
+      "manji_ev": 0.4249,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
@@ -134,10 +134,10 @@
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.0208,
-      "ev_score": 0.9521,
+      "honmei_score": 0.021,
+      "ev_score": 0.961,
       "kelly_fraction": 0.0,
-      "manji_ev": 1.6959,
+      "manji_ev": 1.5434,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
@@ -160,10 +160,10 @@
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.1269,
-      "ev_score": 0.7993,
+      "honmei_score": 0.1099,
+      "ev_score": 0.6926,
       "kelly_fraction": 0.0,
-      "manji_ev": 0.0706,
+      "manji_ev": 0.0,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
@@ -186,10 +186,10 @@
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.1269,
-      "ev_score": 0.4187,
+      "honmei_score": 0.114,
+      "ev_score": 0.3762,
       "kelly_fraction": 0.0,
-      "manji_ev": 0.2974,
+      "manji_ev": 0.1225,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
@@ -215,7 +215,7 @@
       "honmei_score": 0.0674,
       "ev_score": 1.4294,
       "kelly_fraction": 0.0021,
-      "manji_ev": 1.057,
+      "manji_ev": 1.0726,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
@@ -241,7 +241,7 @@
       "honmei_score": 0.0228,
       "ev_score": 0.7971,
       "kelly_fraction": 0.0,
-      "manji_ev": 1.7305,
+      "manji_ev": 2.1573,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
@@ -264,10 +264,10 @@
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.0786,
-      "ev_score": 1.2584,
-      "kelly_fraction": 0.0017,
-      "manji_ev": 1.0631,
+      "honmei_score": 0.0959,
+      "ev_score": 1.5347,
+      "kelly_fraction": 0.0036,
+      "manji_ev": 1.2455,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
@@ -293,7 +293,7 @@
       "honmei_score": 0.0141,
       "ev_score": 0.727,
       "kelly_fraction": 0.0,
-      "manji_ev": 1.0141,
+      "manji_ev": 0.9955,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
@@ -316,8 +316,8 @@
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.0959,
-      "ev_score": 0.5947,
+      "honmei_score": 0.1269,
+      "ev_score": 0.7866,
       "kelly_fraction": 0.0,
       "manji_ev": 0.0,
       "odds_vs_morning": 1.0,
@@ -327,225 +327,162 @@
   "payouts": [],
   "predictions": [
     {
-      "prediction_id": 37884,
-      "model_type": "本命(暫定)",
-      "bet_type": "ワイド",
-      "confidence": 0.08508309251777825,
-      "expected_value": 0.47976392414793967,
-      "recommended_bet": 100.0,
-      "combination_json": "[[2, 6], [2, 7], [2, 12], [2, 10], [2, 8]]",
-      "notes": "★QF推奨 軸2番×相手5頭ワイド Harville最大=0.065",
-      "created_at": "2026-05-23 21:48:48",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
-      "horses": [
-        {
-          "horse_name": "ホウオウストライク",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.06544853270598326,
-          "ev_score": 0.47976392414793967
-        },
-        {
-          "horse_name": "ホウオウストライク",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.06544853270598326,
-          "ev_score": 0.47976392414793967
-        },
-        {
-          "horse_name": "ホウオウストライク",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.06544853270598326,
-          "ev_score": 0.47976392414793967
-        },
-        {
-          "horse_name": "ホウオウストライク",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.06544853270598326,
-          "ev_score": 0.47976392414793967
-        },
-        {
-          "horse_name": "ホウオウストライク",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.06544853270598326,
-          "ev_score": 0.47976392414793967
-        },
-        {
-          "horse_name": "ウルトラハート",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.06544853270598326,
-          "ev_score": 0.47976392414793967
-        },
-        {
-          "horse_name": "ウルトラハート",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.06544853270598326,
-          "ev_score": 0.47976392414793967
-        },
-        {
-          "horse_name": "ウルトラハート",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.06544853270598326,
-          "ev_score": 0.47976392414793967
-        },
-        {
-          "horse_name": "ウルトラハート",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.06544853270598326,
-          "ev_score": 0.47976392414793967
-        },
-        {
-          "horse_name": "ウルトラハート",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.06544853270598326,
-          "ev_score": 0.47976392414793967
-        }
-      ],
-      "bet_form": "軸ながし",
-      "n_tickets": 5,
-      "invested": 500,
-      "horse_num_to_name": {
-        "1": "ニシノロッドマン",
-        "2": "ホウオウストライク",
-        "3": "メイショウイッカク",
-        "4": "クロームクロス",
-        "5": "キングスペード",
-        "6": "ウルトラハート",
-        "7": "コイオステソーロ",
-        "8": "フィオリータ",
-        "9": "キタノハイテイル",
-        "10": "マイカラー",
-        "11": "ドリームゴーズオン",
-        "12": "パンサーズ"
-      },
-      "is_provisional": true
-    },
-    {
-      "prediction_id": 37885,
-      "model_type": "本命(暫定)",
-      "bet_type": "馬連",
-      "confidence": 0.06544853270598326,
-      "expected_value": 0.9079020456973997,
-      "recommended_bet": 100.0,
-      "combination_json": "[[2, 6], [2, 7], [2, 12], [2, 10], [2, 8]]",
-      "notes": "★QF推奨 軸2番×相手5頭フォーメーション Harville最大=0.065",
-      "created_at": "2026-05-23 21:48:48",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
-      "horses": [
-        {
-          "horse_name": "ホウオウストライク",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.06544853270598326,
-          "ev_score": 0.9079020456973997
-        },
-        {
-          "horse_name": "ホウオウストライク",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.06544853270598326,
-          "ev_score": 0.9079020456973997
-        },
-        {
-          "horse_name": "ホウオウストライク",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.06544853270598326,
-          "ev_score": 0.9079020456973997
-        },
-        {
-          "horse_name": "ホウオウストライク",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.06544853270598326,
-          "ev_score": 0.9079020456973997
-        },
-        {
-          "horse_name": "ホウオウストライク",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.06544853270598326,
-          "ev_score": 0.9079020456973997
-        },
-        {
-          "horse_name": "ウルトラハート",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.06544853270598326,
-          "ev_score": 0.9079020456973997
-        },
-        {
-          "horse_name": "ウルトラハート",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.06544853270598326,
-          "ev_score": 0.9079020456973997
-        },
-        {
-          "horse_name": "ウルトラハート",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.06544853270598326,
-          "ev_score": 0.9079020456973997
-        },
-        {
-          "horse_name": "ウルトラハート",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.06544853270598326,
-          "ev_score": 0.9079020456973997
-        },
-        {
-          "horse_name": "ウルトラハート",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.06544853270598326,
-          "ev_score": 0.9079020456973997
-        }
-      ],
-      "bet_form": "軸ながし",
-      "n_tickets": 5,
-      "invested": 500,
-      "horse_num_to_name": {
-        "1": "ニシノロッドマン",
-        "2": "ホウオウストライク",
-        "3": "メイショウイッカク",
-        "4": "クロームクロス",
-        "5": "キングスペード",
-        "6": "ウルトラハート",
-        "7": "コイオステソーロ",
-        "8": "フィオリータ",
-        "9": "キタノハイテイル",
-        "10": "マイカラー",
-        "11": "ドリームゴーズオン",
-        "12": "パンサーズ"
-      },
-      "is_provisional": true
-    },
-    {
-      "prediction_id": 37886,
-      "model_type": "本命(暫定)",
+      "prediction_id": 39856,
+      "model_type": "Alpha-Payout(直前)",
       "bet_type": "複勝",
-      "confidence": 0.13050107249825263,
-      "expected_value": 0.3915032174947579,
+      "confidence": 0.26078126968873144,
+      "expected_value": 0.7823438090661943,
       "recommended_bet": 100.0,
-      "combination_json": "[[2], [6], [7]]",
-      "notes": "上位3頭を複勝",
-      "created_at": "2026-05-23 21:48:48",
+      "combination_json": "[[2], [7]]",
+      "notes": "2頭 relative nan=0% max=0.782",
+      "created_at": "2026-05-24 05:15:59",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "ホウオウストライク",
+          "horse_id": "2023110105",
+          "predicted_rank": 1,
+          "model_score": 0.7823438090661943,
+          "ev_score": 0.7823438090661943
+        },
+        {
+          "horse_name": "コイオステソーロ",
+          "horse_id": "2023104193",
+          "predicted_rank": 2,
+          "model_score": 0.776660618923529,
+          "ev_score": 0.776660618923529
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 2,
+      "invested": 200,
+      "horse_num_to_name": {
+        "1": "ニシノロッドマン",
+        "2": "ホウオウストライク",
+        "3": "メイショウイッカク",
+        "4": "クロームクロス",
+        "5": "キングスペード",
+        "6": "ウルトラハート",
+        "7": "コイオステソーロ",
+        "8": "フィオリータ",
+        "9": "キタノハイテイル",
+        "10": "マイカラー",
+        "11": "ドリームゴーズオン",
+        "12": "パンサーズ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 39857,
+      "model_type": "Alpha-Payout(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.8524855625652998,
+      "expected_value": 2.5574566876958995,
+      "recommended_bet": 200.0,
+      "combination_json": "[[2, 6, 7], [2, 7, 12], [2, 4, 7], [2, 6, 12], [2, 4, 6], [2, 4, 12]]",
+      "notes": "Alpha EV=2.56 軸2番 相手4頭 6点",
+      "created_at": "2026-05-24 05:15:59",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "ホウオウストライク",
+          "horse_id": "2023110105",
+          "predicted_rank": 1,
+          "model_score": 0.7823438090661943,
+          "ev_score": 0.7823438090661943
+        },
+        {
+          "horse_name": "コイオステソーロ",
+          "horse_id": "2023104193",
+          "predicted_rank": 2,
+          "model_score": 0.776660618923529,
+          "ev_score": 0.776660618923529
+        }
+      ],
+      "bet_form": "軸1頭ながし",
+      "n_tickets": 6,
+      "invested": 600,
+      "horse_num_to_name": {
+        "1": "ニシノロッドマン",
+        "2": "ホウオウストライク",
+        "3": "メイショウイッカク",
+        "4": "クロームクロス",
+        "5": "キングスペード",
+        "6": "ウルトラハート",
+        "7": "コイオステソーロ",
+        "8": "フィオリータ",
+        "9": "キタノハイテイル",
+        "10": "マイカラー",
+        "11": "ドリームゴーズオン",
+        "12": "パンサーズ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 39858,
+      "model_type": "Alpha-Payout(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.30519546295641314,
+      "expected_value": 1.5259773147820657,
+      "recommended_bet": 200.0,
+      "combination_json": "[[2, 7, 6], [2, 6, 7], [2, 7, 12], [2, 12, 7], [2, 7, 4], [2, 4, 7]]",
+      "notes": "Alpha EV=1.53 軸2番→フォーメーション 6点",
+      "created_at": "2026-05-24 05:15:59",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "ホウオウストライク",
+          "horse_id": "2023110105",
+          "predicted_rank": 1,
+          "model_score": 0.7823438090661943,
+          "ev_score": 0.7823438090661943
+        },
+        {
+          "horse_name": "コイオステソーロ",
+          "horse_id": "2023104193",
+          "predicted_rank": 2,
+          "model_score": 0.776660618923529,
+          "ev_score": 0.776660618923529
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 6,
+      "invested": 600,
+      "horse_num_to_name": {
+        "1": "ニシノロッドマン",
+        "2": "ホウオウストライク",
+        "3": "メイショウイッカク",
+        "4": "クロームクロス",
+        "5": "キングスペード",
+        "6": "ウルトラハート",
+        "7": "コイオステソーロ",
+        "8": "フィオリータ",
+        "9": "キタノハイテイル",
+        "10": "マイカラー",
+        "11": "ドリームゴーズオン",
+        "12": "パンサーズ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 39859,
+      "model_type": "本命(直前)",
+      "bet_type": "ワイド",
+      "confidence": 0.07870237820840563,
+      "expected_value": 0.44378454862992045,
+      "recommended_bet": 100.0,
+      "combination_json": "[[2, 12], [2, 7], [2, 6], [2, 10], [2, 4]]",
+      "notes": "★QF推奨 軸2番×相手5頭ワイド Harville最大=0.061",
+      "created_at": "2026-05-24 05:15:59",
       "is_hit": null,
       "payout": null,
       "profit": null,
@@ -555,22 +492,232 @@
           "horse_name": "ホウオウストライク",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.13050107249825263,
-          "ev_score": 0.3915032174947579
+          "model_score": 0.06054029092954279,
+          "ev_score": 0.44378454862992045
         },
         {
-          "horse_name": "ウルトラハート",
+          "horse_name": "ホウオウストライク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06054029092954279,
+          "ev_score": 0.44378454862992045
+        },
+        {
+          "horse_name": "ホウオウストライク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06054029092954279,
+          "ev_score": 0.44378454862992045
+        },
+        {
+          "horse_name": "ホウオウストライク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06054029092954279,
+          "ev_score": 0.44378454862992045
+        },
+        {
+          "horse_name": "ホウオウストライク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06054029092954279,
+          "ev_score": 0.44378454862992045
+        },
+        {
+          "horse_name": "パンサーズ",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.13050107249825263,
-          "ev_score": 0.3915032174947579
+          "model_score": 0.06054029092954279,
+          "ev_score": 0.44378454862992045
+        },
+        {
+          "horse_name": "パンサーズ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06054029092954279,
+          "ev_score": 0.44378454862992045
+        },
+        {
+          "horse_name": "パンサーズ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06054029092954279,
+          "ev_score": 0.44378454862992045
+        },
+        {
+          "horse_name": "パンサーズ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06054029092954279,
+          "ev_score": 0.44378454862992045
+        },
+        {
+          "horse_name": "パンサーズ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06054029092954279,
+          "ev_score": 0.44378454862992045
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "ニシノロッドマン",
+        "2": "ホウオウストライク",
+        "3": "メイショウイッカク",
+        "4": "クロームクロス",
+        "5": "キングスペード",
+        "6": "ウルトラハート",
+        "7": "コイオステソーロ",
+        "8": "フィオリータ",
+        "9": "キタノハイテイル",
+        "10": "マイカラー",
+        "11": "ドリームゴーズオン",
+        "12": "パンサーズ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 39860,
+      "model_type": "本命(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.06054029092954279,
+      "expected_value": 0.8398149157746175,
+      "recommended_bet": 100.0,
+      "combination_json": "[[2, 12], [2, 7], [2, 6], [2, 10], [2, 4]]",
+      "notes": "★QF推奨 軸2番×相手5頭フォーメーション Harville最大=0.061",
+      "created_at": "2026-05-24 05:15:59",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "ホウオウストライク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06054029092954279,
+          "ev_score": 0.8398149157746175
+        },
+        {
+          "horse_name": "ホウオウストライク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06054029092954279,
+          "ev_score": 0.8398149157746175
+        },
+        {
+          "horse_name": "ホウオウストライク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06054029092954279,
+          "ev_score": 0.8398149157746175
+        },
+        {
+          "horse_name": "ホウオウストライク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06054029092954279,
+          "ev_score": 0.8398149157746175
+        },
+        {
+          "horse_name": "ホウオウストライク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06054029092954279,
+          "ev_score": 0.8398149157746175
+        },
+        {
+          "horse_name": "パンサーズ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06054029092954279,
+          "ev_score": 0.8398149157746175
+        },
+        {
+          "horse_name": "パンサーズ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06054029092954279,
+          "ev_score": 0.8398149157746175
+        },
+        {
+          "horse_name": "パンサーズ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06054029092954279,
+          "ev_score": 0.8398149157746175
+        },
+        {
+          "horse_name": "パンサーズ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06054029092954279,
+          "ev_score": 0.8398149157746175
+        },
+        {
+          "horse_name": "パンサーズ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06054029092954279,
+          "ev_score": 0.8398149157746175
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "ニシノロッドマン",
+        "2": "ホウオウストライク",
+        "3": "メイショウイッカク",
+        "4": "クロームクロス",
+        "5": "キングスペード",
+        "6": "ウルトラハート",
+        "7": "コイオステソーロ",
+        "8": "フィオリータ",
+        "9": "キタノハイテイル",
+        "10": "マイカラー",
+        "11": "ドリームゴーズオン",
+        "12": "パンサーズ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 39861,
+      "model_type": "本命(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.12621471483933203,
+      "expected_value": 0.37864414451799605,
+      "recommended_bet": 100.0,
+      "combination_json": "[[2], [12], [7]]",
+      "notes": "上位3頭を複勝",
+      "created_at": "2026-05-24 05:15:59",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "ホウオウストライク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.12621471483933203,
+          "ev_score": 0.37864414451799605
+        },
+        {
+          "horse_name": "パンサーズ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.12621471483933203,
+          "ev_score": 0.37864414451799605
         },
         {
           "horse_name": "コイオステソーロ",
           "horse_id": null,
           "predicted_rank": 3,
-          "model_score": 0.13050107249825263,
-          "ev_score": 0.3915032174947579
+          "model_score": 0.12621471483933203,
+          "ev_score": 0.37864414451799605
         }
       ],
       "bet_form": "複勝",
@@ -590,18 +737,18 @@
         "11": "ドリームゴーズオン",
         "12": "パンサーズ"
       },
-      "is_provisional": true
+      "is_provisional": false
     },
     {
-      "prediction_id": 37887,
-      "model_type": "本命(暫定)",
+      "prediction_id": 39862,
+      "model_type": "本命(直前)",
       "bet_type": "単勝",
       "confidence": 0.13776070252469813,
       "expected_value": 0.46838638858397363,
       "recommended_bet": 100.0,
       "combination_json": "[[2]]",
       "notes": "確率1位 P(win)=0.14 odds=3.4 EV=0.47",
-      "created_at": "2026-05-23 21:48:48",
+      "created_at": "2026-05-24 05:15:59",
       "is_hit": null,
       "payout": null,
       "profit": null,
@@ -632,18 +779,18 @@
         "11": "ドリームゴーズオン",
         "12": "パンサーズ"
       },
-      "is_provisional": true
+      "is_provisional": false
     },
     {
-      "prediction_id": 37888,
-      "model_type": "本命(暫定)",
+      "prediction_id": 39863,
+      "model_type": "本命(直前)",
       "bet_type": "馬単",
-      "confidence": 0.2639290035378149,
-      "expected_value": 0.8804209682265314,
+      "confidence": 0.24405391335310636,
+      "expected_value": 0.814121145511126,
       "recommended_bet": 100.0,
-      "combination_json": "[[2, 6], [2, 7], [2, 12]]",
-      "notes": "軸2番→相手3頭フォーメーション Harville最大=0.033",
-      "created_at": "2026-05-23 21:48:48",
+      "combination_json": "[[2, 12], [2, 7], [2, 6]]",
+      "notes": "軸2番→相手3頭フォーメーション Harville最大=0.031",
+      "created_at": "2026-05-24 05:15:59",
       "is_hit": null,
       "payout": null,
       "profit": null,
@@ -653,43 +800,43 @@
           "horse_name": "ホウオウストライク",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.03299112544222686,
-          "ev_score": 0.8804209682265314
+          "model_score": 0.030506739169138295,
+          "ev_score": 0.814121145511126
         },
         {
           "horse_name": "ホウオウストライク",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.03299112544222686,
-          "ev_score": 0.8804209682265314
+          "model_score": 0.030506739169138295,
+          "ev_score": 0.814121145511126
         },
         {
           "horse_name": "ホウオウストライク",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.03299112544222686,
-          "ev_score": 0.8804209682265314
+          "model_score": 0.030506739169138295,
+          "ev_score": 0.814121145511126
         },
         {
-          "horse_name": "ウルトラハート",
+          "horse_name": "パンサーズ",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.03299112544222686,
-          "ev_score": 0.8804209682265314
+          "model_score": 0.030506739169138295,
+          "ev_score": 0.814121145511126
         },
         {
-          "horse_name": "ウルトラハート",
+          "horse_name": "パンサーズ",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.03299112544222686,
-          "ev_score": 0.8804209682265314
+          "model_score": 0.030506739169138295,
+          "ev_score": 0.814121145511126
         },
         {
-          "horse_name": "ウルトラハート",
+          "horse_name": "パンサーズ",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.03299112544222686,
-          "ev_score": 0.8804209682265314
+          "model_score": 0.030506739169138295,
+          "ev_score": 0.814121145511126
         }
       ],
       "bet_form": "軸ながし",
@@ -709,18 +856,18 @@
         "11": "ドリームゴーズオン",
         "12": "パンサーズ"
       },
-      "is_provisional": true
+      "is_provisional": false
     },
     {
-      "prediction_id": 37889,
-      "model_type": "本命(暫定)",
+      "prediction_id": 39864,
+      "model_type": "本命(直前)",
       "bet_type": "三連複",
-      "confidence": 0.5531724164585877,
-      "expected_value": 2.224029700371752,
+      "confidence": 0.42751131203465903,
+      "expected_value": 1.7188092300353466,
       "recommended_bet": 100.0,
-      "combination_json": "[[2, 6, 7], [2, 6, 12]]",
-      "notes": "合成EV最大=2.22 2点 馬番=[(2, 6, 7), (2, 6, 12)]",
-      "created_at": "2026-05-23 21:48:48",
+      "combination_json": "[[2, 7, 12], [2, 6, 12]]",
+      "notes": "合成EV最大=1.72 2点 馬番=[(2, 7, 12), (2, 6, 12)]",
+      "created_at": "2026-05-24 05:15:59",
       "is_hit": null,
       "payout": null,
       "profit": null,
@@ -730,43 +877,43 @@
           "horse_name": "ホウオウストライク",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.04609770137154898,
-          "ev_score": 2.224029700371752
+          "model_score": 0.03562594266955492,
+          "ev_score": 1.7188092300353466
         },
         {
           "horse_name": "ホウオウストライク",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.04609770137154898,
-          "ev_score": 2.224029700371752
-        },
-        {
-          "horse_name": "ウルトラハート",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.04609770137154898,
-          "ev_score": 2.224029700371752
-        },
-        {
-          "horse_name": "ウルトラハート",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.04609770137154898,
-          "ev_score": 2.224029700371752
+          "model_score": 0.03562594266955492,
+          "ev_score": 1.7188092300353466
         },
         {
           "horse_name": "コイオステソーロ",
           "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.04609770137154898,
-          "ev_score": 2.224029700371752
+          "predicted_rank": 2,
+          "model_score": 0.03562594266955492,
+          "ev_score": 1.7188092300353466
         },
         {
           "horse_name": "コイオステソーロ",
           "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.03562594266955492,
+          "ev_score": 1.7188092300353466
+        },
+        {
+          "horse_name": "パンサーズ",
+          "horse_id": null,
           "predicted_rank": 3,
-          "model_score": 0.04609770137154898,
-          "ev_score": 2.224029700371752
+          "model_score": 0.03562594266955492,
+          "ev_score": 1.7188092300353466
+        },
+        {
+          "horse_name": "パンサーズ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.03562594266955492,
+          "ev_score": 1.7188092300353466
         }
       ],
       "bet_form": "軸2頭ながし",
@@ -786,18 +933,18 @@
         "11": "ドリームゴーズオン",
         "12": "パンサーズ"
       },
-      "is_provisional": true
+      "is_provisional": false
     },
     {
-      "prediction_id": 37890,
-      "model_type": "本命(暫定)",
+      "prediction_id": 39865,
+      "model_type": "本命(直前)",
       "bet_type": "三連単",
       "confidence": 1.0,
-      "expected_value": 6.0,
+      "expected_value": 5.562812818137653,
       "recommended_bet": 200.0,
-      "combination_json": "[[2, 6, 7], [2, 7, 6], [6, 2, 7], [6, 7, 2], [7, 2, 6], [7, 6, 2], [2, 6, 12], [2, 12, 6], [6, 2, 12], [6, 12, 2], [12, 2, 6], [12, 6, 2], [2, 6, 10], [2, 10, 6], [6, 2, 10], [6, 10, 2], [10, 2, 6], [10, 6, 2], [2, 6, 8], [2, 8, 6], [6, 2, 8], [6, 8, 2], [8, 2, 6], [8, 6, 2], [2, 6, 4], [2, 4, 6], [6, 2, 4], [6, 4, 2], [4, 2, 6], [4, 6, 2], [2, 7, 12], [2, 12, 7], [7, 2, 12], [7, 12, 2], [12, 2, 7], [12, 7, 2], [2, 7, 10], [2, 10, 7], [7, 2, 10], [7, 10, 2], [10, 2, 7], [10, 7, 2], [2, 7, 8], [2, 8, 7], [7, 2, 8], [7, 8, 2], [8, 2, 7], [8, 7, 2], [2, 7, 4], [2, 4, 7], [7, 2, 4], [7, 4, 2], [4, 2, 7], [4, 7, 2], [2, 12, 10], [2, 10, 12], [12, 2, 10], [12, 10, 2], [10, 2, 12], [10, 12, 2], [2, 12, 8], [2, 8, 12], [12, 2, 8], [12, 8, 2], [8, 2, 12], [8, 12, 2], [2, 12, 4], [2, 4, 12], [12, 2, 4], [12, 4, 2], [4, 2, 12], [4, 12, 2], [2, 10, 8], [2, 8, 10], [10, 2, 8], [10, 8, 2], [8, 2, 10], [8, 10, 2], [2, 10, 4], [2, 4, 10], [10, 2, 4], [10, 4, 2], [4, 2, 10], [4, 10, 2], [2, 8, 4], [2, 4, 8], [8, 2, 4], [8, 4, 2], [4, 2, 8], [4, 8, 2]]",
-      "notes": "1頭軸マルチ 軸=2番 相手=[6, 7, 12, 10, 8, 4] 90点 Harville最大=0.0461",
-      "created_at": "2026-05-23 21:48:48",
+      "combination_json": "[[2, 12, 7], [2, 7, 12], [12, 2, 7], [12, 7, 2], [7, 2, 12], [7, 12, 2], [2, 12, 6], [2, 6, 12], [12, 2, 6], [12, 6, 2], [6, 2, 12], [6, 12, 2], [2, 12, 10], [2, 10, 12], [12, 2, 10], [12, 10, 2], [10, 2, 12], [10, 12, 2], [2, 7, 6], [2, 6, 7], [7, 2, 6], [7, 6, 2], [6, 2, 7], [6, 7, 2], [2, 7, 10], [2, 10, 7], [7, 2, 10], [7, 10, 2], [10, 2, 7], [10, 7, 2], [2, 6, 10], [2, 10, 6], [6, 2, 10], [6, 10, 2], [10, 2, 6], [10, 6, 2]]",
+      "notes": "1頭軸マルチ 軸=2番 相手=[12, 7, 6, 10] 36点 Harville最大=0.0356",
+      "created_at": "2026-05-24 05:15:59",
       "is_hit": null,
       "payout": null,
       "profit": null,
@@ -807,111 +954,111 @@
           "horse_name": "ホウオウストライク",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.04609770137154898,
-          "ev_score": 6.0
+          "model_score": 0.03562594266955492,
+          "ev_score": 5.562812818137653
         },
         {
           "horse_name": "ホウオウストライク",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.04609770137154898,
-          "ev_score": 6.0
+          "model_score": 0.03562594266955492,
+          "ev_score": 5.562812818137653
         },
         {
           "horse_name": "ホウオウストライク",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.04609770137154898,
-          "ev_score": 6.0
+          "model_score": 0.03562594266955492,
+          "ev_score": 5.562812818137653
         },
         {
           "horse_name": "ホウオウストライク",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.04609770137154898,
-          "ev_score": 6.0
+          "model_score": 0.03562594266955492,
+          "ev_score": 5.562812818137653
         },
         {
           "horse_name": "ホウオウストライク",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.04609770137154898,
-          "ev_score": 6.0
+          "model_score": 0.03562594266955492,
+          "ev_score": 5.562812818137653
         },
         {
-          "horse_name": "ウルトラハート",
+          "horse_name": "パンサーズ",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.04609770137154898,
-          "ev_score": 6.0
+          "model_score": 0.03562594266955492,
+          "ev_score": 5.562812818137653
         },
         {
-          "horse_name": "ウルトラハート",
+          "horse_name": "パンサーズ",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.04609770137154898,
-          "ev_score": 6.0
+          "model_score": 0.03562594266955492,
+          "ev_score": 5.562812818137653
         },
         {
-          "horse_name": "ウルトラハート",
+          "horse_name": "パンサーズ",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.04609770137154898,
-          "ev_score": 6.0
+          "model_score": 0.03562594266955492,
+          "ev_score": 5.562812818137653
         },
         {
-          "horse_name": "ウルトラハート",
+          "horse_name": "パンサーズ",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.04609770137154898,
-          "ev_score": 6.0
+          "model_score": 0.03562594266955492,
+          "ev_score": 5.562812818137653
         },
         {
-          "horse_name": "ウルトラハート",
+          "horse_name": "パンサーズ",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.04609770137154898,
-          "ev_score": 6.0
+          "model_score": 0.03562594266955492,
+          "ev_score": 5.562812818137653
         },
         {
           "horse_name": "コイオステソーロ",
           "horse_id": null,
           "predicted_rank": 3,
-          "model_score": 0.04609770137154898,
-          "ev_score": 6.0
+          "model_score": 0.03562594266955492,
+          "ev_score": 5.562812818137653
         },
         {
           "horse_name": "コイオステソーロ",
           "horse_id": null,
           "predicted_rank": 3,
-          "model_score": 0.04609770137154898,
-          "ev_score": 6.0
+          "model_score": 0.03562594266955492,
+          "ev_score": 5.562812818137653
         },
         {
           "horse_name": "コイオステソーロ",
           "horse_id": null,
           "predicted_rank": 3,
-          "model_score": 0.04609770137154898,
-          "ev_score": 6.0
+          "model_score": 0.03562594266955492,
+          "ev_score": 5.562812818137653
         },
         {
           "horse_name": "コイオステソーロ",
           "horse_id": null,
           "predicted_rank": 3,
-          "model_score": 0.04609770137154898,
-          "ev_score": 6.0
+          "model_score": 0.03562594266955492,
+          "ev_score": 5.562812818137653
         },
         {
           "horse_name": "コイオステソーロ",
           "horse_id": null,
           "predicted_rank": 3,
-          "model_score": 0.04609770137154898,
-          "ev_score": 6.0
+          "model_score": 0.03562594266955492,
+          "ev_score": 5.562812818137653
         }
       ],
       "bet_form": "1頭軸マルチ",
-      "n_tickets": 90,
-      "invested": 9000,
+      "n_tickets": 36,
+      "invested": 3600,
       "horse_num_to_name": {
         "1": "ニシノロッドマン",
         "2": "ホウオウストライク",
@@ -926,18 +1073,459 @@
         "11": "ドリームゴーズオン",
         "12": "パンサーズ"
       },
-      "is_provisional": true
+      "is_provisional": false
     },
     {
-      "prediction_id": 37891,
-      "model_type": "本命(暫定)",
+      "prediction_id": 39866,
+      "model_type": "卍(直前)",
+      "bet_type": "単勝",
+      "confidence": 0.06163619508603289,
+      "expected_value": 2.157266828011151,
+      "recommended_bet": 100.0,
+      "combination_json": "[[9]]",
+      "notes": "確率1位(卍) EV=2.16 odds=35.0",
+      "created_at": "2026-05-24 05:15:59",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "キタノハイテイル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 2.157266828011151,
+          "ev_score": 2.157266828011151
+        }
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "1": "ニシノロッドマン",
+        "2": "ホウオウストライク",
+        "3": "メイショウイッカク",
+        "4": "クロームクロス",
+        "5": "キングスペード",
+        "6": "ウルトラハート",
+        "7": "コイオステソーロ",
+        "8": "フィオリータ",
+        "9": "キタノハイテイル",
+        "10": "マイカラー",
+        "11": "ドリームゴーズオン",
+        "12": "パンサーズ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 39867,
+      "model_type": "卍(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.6,
+      "expected_value": 1.6487088127341007,
+      "recommended_bet": 100.0,
+      "combination_json": "[[9], [5], [10]]",
+      "notes": "確率上位3頭を複勝",
+      "created_at": "2026-05-24 05:15:59",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "キタノハイテイル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 1.6487088127341007,
+          "ev_score": 1.6487088127341007
+        },
+        {
+          "horse_name": "キングスペード",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 1.6487088127341007,
+          "ev_score": 1.6487088127341007
+        },
+        {
+          "horse_name": "マイカラー",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 1.6487088127341007,
+          "ev_score": 1.6487088127341007
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "1": "ニシノロッドマン",
+        "2": "ホウオウストライク",
+        "3": "メイショウイッカク",
+        "4": "クロームクロス",
+        "5": "キングスペード",
+        "6": "ウルトラハート",
+        "7": "コイオステソーロ",
+        "8": "フィオリータ",
+        "9": "キタノハイテイル",
+        "10": "マイカラー",
+        "11": "ドリームゴーズオン",
+        "12": "パンサーズ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 39868,
+      "model_type": "卍(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.5726877073026897,
+      "expected_value": 4.0,
+      "recommended_bet": 100.0,
+      "combination_json": "[[5, 9], [9, 10], [8, 9], [9, 11], [2, 9]]",
+      "notes": "軸9番×相手5頭フォーメーション Harville最大=0.115",
+      "created_at": "2026-05-24 05:15:59",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "キングスペード",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11453754146053793,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "キングスペード",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11453754146053793,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "キングスペード",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11453754146053793,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "キングスペード",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11453754146053793,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "キングスペード",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11453754146053793,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "キタノハイテイル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11453754146053793,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "キタノハイテイル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11453754146053793,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "キタノハイテイル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11453754146053793,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "キタノハイテイル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11453754146053793,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "キタノハイテイル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11453754146053793,
+          "ev_score": 4.0
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "ニシノロッドマン",
+        "2": "ホウオウストライク",
+        "3": "メイショウイッカク",
+        "4": "クロームクロス",
+        "5": "キングスペード",
+        "6": "ウルトラハート",
+        "7": "コイオステソーロ",
+        "8": "フィオリータ",
+        "9": "キタノハイテイル",
+        "10": "マイカラー",
+        "11": "ドリームゴーズオン",
+        "12": "パンサーズ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 39869,
+      "model_type": "卍(直前)",
+      "bet_type": "ワイド",
+      "confidence": 0.6872252487632275,
+      "expected_value": 3.0,
+      "recommended_bet": 100.0,
+      "combination_json": "[[5, 9], [9, 10], [8, 9], [9, 11], [2, 9]]",
+      "notes": "軸9番×相手5頭ワイド Harville最大=0.115",
+      "created_at": "2026-05-24 05:15:59",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "キングスペード",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11453754146053793,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "キングスペード",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11453754146053793,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "キングスペード",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11453754146053793,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "キングスペード",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11453754146053793,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "キングスペード",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11453754146053793,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "キタノハイテイル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11453754146053793,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "キタノハイテイル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11453754146053793,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "キタノハイテイル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11453754146053793,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "キタノハイテイル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11453754146053793,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "キタノハイテイル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11453754146053793,
+          "ev_score": 3.0
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "ニシノロッドマン",
+        "2": "ホウオウストライク",
+        "3": "メイショウイッカク",
+        "4": "クロームクロス",
+        "5": "キングスペード",
+        "6": "ウルトラハート",
+        "7": "コイオステソーロ",
+        "8": "フィオリータ",
+        "9": "キタノハイテイル",
+        "10": "マイカラー",
+        "11": "ドリームゴーズオン",
+        "12": "パンサーズ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 39870,
+      "model_type": "卍(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.4789424348752297,
+      "expected_value": 5.0,
+      "recommended_bet": 100.0,
+      "combination_json": "[[9, 5], [9, 10], [9, 8]]",
+      "notes": "軸9番→相手3頭フォーメーション Harville最大=0.060",
+      "created_at": "2026-05-24 05:15:59",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "キタノハイテイル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05986780435940371,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "キタノハイテイル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05986780435940371,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "キタノハイテイル",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.05986780435940371,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "キングスペード",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05986780435940371,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "キングスペード",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05986780435940371,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "キングスペード",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.05986780435940371,
+          "ev_score": 5.0
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "1": "ニシノロッドマン",
+        "2": "ホウオウストライク",
+        "3": "メイショウイッカク",
+        "4": "クロームクロス",
+        "5": "キングスペード",
+        "6": "ウルトラハート",
+        "7": "コイオステソーロ",
+        "8": "フィオリータ",
+        "9": "キタノハイテイル",
+        "10": "マイカラー",
+        "11": "ドリームゴーズオン",
+        "12": "パンサーズ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 39873,
+      "model_type": "卍(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.9096838321799595,
+      "expected_value": 5.0,
+      "recommended_bet": 100.0,
+      "combination_json": "[[5, 9, 11]]",
+      "notes": "合成EV=5.00 Harville=0.0606 馬番=(5, 9, 11)",
+      "created_at": "2026-05-24 05:15:59",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "キングスペード",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.0606455888119973,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "キタノハイテイル",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.0606455888119973,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ドリームゴーズオン",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.0606455888119973,
+          "ev_score": 5.0
+        }
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "1": "ニシノロッドマン",
+        "2": "ホウオウストライク",
+        "3": "メイショウイッカク",
+        "4": "クロームクロス",
+        "5": "キングスペード",
+        "6": "ウルトラハート",
+        "7": "コイオステソーロ",
+        "8": "フィオリータ",
+        "9": "キタノハイテイル",
+        "10": "マイカラー",
+        "11": "ドリームゴーズオン",
+        "12": "パンサーズ"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 39874,
+      "model_type": "本命(直前)",
       "bet_type": "馬分析",
       "confidence": null,
       "expected_value": null,
       "recommended_bet": null,
       "combination_json": "[]",
       "notes": "全馬モデルスコア（馬分析タブ用）",
-      "created_at": "2026-05-23 21:48:48",
+      "created_at": "2026-05-24 05:15:59",
       "is_hit": null,
       "payout": null,
       "profit": null,
@@ -951,53 +1539,53 @@
           "ev_score": 0.46838638858397363
         },
         {
-          "horse_name": "コイオステソーロ",
-          "horse_id": "2023104193",
+          "horse_name": "パンサーズ",
+          "horse_id": "2023104325",
           "predicted_rank": 2,
           "model_score": 0.1268712574850299,
-          "ev_score": 0.4186751497005986
+          "ev_score": 0.7866017964071853
+        },
+        {
+          "horse_name": "コイオステソーロ",
+          "horse_id": "2023104193",
+          "predicted_rank": 3,
+          "model_score": 0.11401218450826806,
+          "ev_score": 0.37624020887728454
         },
         {
           "horse_name": "ウルトラハート",
           "horse_id": "2023104157",
-          "predicted_rank": 3,
-          "model_score": 0.1268712574850299,
-          "ev_score": 0.7992889221556883
-        },
-        {
-          "horse_name": "パンサーズ",
-          "horse_id": "2023104325",
           "predicted_rank": 4,
-          "model_score": 0.09591642924976258,
-          "ev_score": 0.5946818613485281
+          "model_score": 0.10994184436444199,
+          "ev_score": 0.6926336194959845
         },
         {
           "horse_name": "マイカラー",
           "horse_id": "2023110031",
           "predicted_rank": 5,
-          "model_score": 0.0786472670074715,
-          "ev_score": 1.258356272119544
-        },
-        {
-          "horse_name": "フィオリータ",
-          "horse_id": "2023110045",
-          "predicted_rank": 6,
-          "model_score": 0.06742572495997154,
-          "ev_score": 1.4294253691513965
+          "model_score": 0.09591642924976258,
+          "ev_score": 1.5346628679962013
         },
         {
           "horse_name": "クロームクロス",
           "horse_id": "2023102887",
+          "predicted_rank": 6,
+          "model_score": 0.0786472670074715,
+          "ev_score": 1.0066850176956352
+        },
+        {
+          "horse_name": "フィオリータ",
+          "horse_id": "2023110045",
           "predicted_rank": 7,
           "model_score": 0.06742572495997154,
-          "ev_score": 0.8630492794876358
+          "ev_score": 1.4294253691513965
         },
         {
           "horse_name": "ニシノロッドマン",
           "horse_id": "2023104706",
           "predicted_rank": 8,
-          "model_score": 0.03342465753424658,
-          "ev_score": 0.508054794520548
+          "model_score": 0.03250591016548463,
+          "ev_score": 0.49408983451536637
         },
         {
           "horse_name": "キタノハイテイル",
@@ -1010,8 +1598,8 @@
           "horse_name": "キングスペード",
           "horse_id": "2023105127",
           "predicted_rank": 10,
-          "model_score": 0.020833333333333336,
-          "ev_score": 0.9520833333333335
+          "model_score": 0.02102803738317757,
+          "ev_score": 0.960981308411215
         },
         {
           "horse_name": "ドリームゴーズオン",
@@ -1045,7 +1633,7 @@
         "11": "ドリームゴーズオン",
         "12": "パンサーズ"
       },
-      "is_provisional": true
+      "is_provisional": false
     }
   ],
   "training_evals": {},
@@ -1055,7 +1643,29 @@
       "today_front_bias": null,
       "today_race_count": null
     },
-    "ev_recommend": [],
-    "generated_at": "2026-05-23T21:48:48.381717"
+    "ev_recommend": [
+      {
+        "horse_number": 10,
+        "horse_name": "マイカラー",
+        "win_odds": 16.0,
+        "ev_score": 1.5347,
+        "kelly_fraction": 0.0036
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "フィオリータ",
+        "win_odds": 21.2,
+        "ev_score": 1.4294,
+        "kelly_fraction": 0.0021
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "クロームクロス",
+        "win_odds": 12.8,
+        "ev_score": 1.0067,
+        "kelly_fraction": 0.0001
+      }
+    ],
+    "generated_at": "2026-05-24T05:15:59.648017"
   }
 }

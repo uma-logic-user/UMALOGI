@@ -1,5 +1,5 @@
 {
-  "total_races_in_db": 18624,
+  "total_races_in_db": 18696,
   "annual_performance": [
     {
       "model_type": "卍",
@@ -56,71 +56,71 @@
   ],
   "by_bet_type": [
     {
-      "bet_type": "馬連",
-      "total_bets": 1352,
-      "hits": 90,
-      "hit_rate": 6.66,
-      "total_invested": 449200.0,
-      "total_payout": 245250.0,
-      "roi": 54.6
+      "bet_type": "三連単",
+      "total_bets": 1615,
+      "hits": 81,
+      "hit_rate": 5.02,
+      "total_invested": 2001400.0,
+      "total_payout": 2793540.0,
+      "roi": 139.58
     },
     {
-      "bet_type": "三連単",
-      "total_bets": 1342,
-      "hits": 51,
-      "hit_rate": 3.8,
-      "total_invested": 1777300.0,
-      "total_payout": 2128010.0,
-      "roi": 119.73
+      "bet_type": "馬連",
+      "total_bets": 1550,
+      "hits": 136,
+      "hit_rate": 8.77,
+      "total_invested": 525600.0,
+      "total_payout": 413290.0,
+      "roi": 78.63
     },
     {
       "bet_type": "三連複",
-      "total_bets": 1289,
-      "hits": 40,
-      "hit_rate": 3.1,
-      "total_invested": 396800.0,
-      "total_payout": 276660.0,
-      "roi": 69.72
-    },
-    {
-      "bet_type": "複勝",
-      "total_bets": 1153,
-      "hits": 629,
-      "hit_rate": 54.55,
-      "total_invested": 306750.0,
-      "total_payout": 424322.0,
-      "roi": 138.33
+      "total_bets": 1495,
+      "hits": 69,
+      "hit_rate": 4.62,
+      "total_invested": 448600.0,
+      "total_payout": 387430.0,
+      "roi": 86.36
     },
     {
       "bet_type": "馬単",
-      "total_bets": 1140,
-      "hits": 41,
-      "hit_rate": 3.6,
-      "total_invested": 404000.0,
-      "total_payout": 268500.0,
-      "roi": 66.46
+      "total_bets": 1345,
+      "hits": 78,
+      "hit_rate": 5.8,
+      "total_invested": 495700.0,
+      "total_payout": 497380.0,
+      "roi": 100.34
+    },
+    {
+      "bet_type": "複勝",
+      "total_bets": 1288,
+      "hits": 725,
+      "hit_rate": 56.29,
+      "total_invested": 319650.0,
+      "total_payout": 448882.0,
+      "roi": 140.43
     },
     {
       "bet_type": "ワイド",
-      "total_bets": 1061,
-      "hits": 106,
-      "hit_rate": 9.99,
-      "total_invested": 244000.0,
-      "total_payout": 127760.0,
-      "roi": 52.36
+      "total_bets": 1164,
+      "hits": 131,
+      "hit_rate": 11.25,
+      "total_invested": 253900.0,
+      "total_payout": 161240.0,
+      "roi": 63.51
     },
     {
       "bet_type": "単勝",
-      "total_bets": 1047,
-      "hits": 119,
-      "hit_rate": 11.37,
-      "total_invested": 157600.0,
-      "total_payout": 643280.0,
-      "roi": 408.17
+      "total_bets": 1150,
+      "hits": 133,
+      "hit_rate": 11.57,
+      "total_invested": 167900.0,
+      "total_payout": 651450.0,
+      "roi": 388.0
     },
     {
       "bet_type": "馬分析",
-      "total_bets": 620,
+      "total_bets": 723,
       "hits": 0,
       "hit_rate": 0.0,
       "total_invested": 0,
@@ -129,10 +129,10 @@
     },
     {
       "bet_type": "WIN5",
-      "total_bets": 4,
+      "total_bets": 5,
       "hits": 0,
       "hit_rate": 0.0,
-      "total_invested": 400.0,
+      "total_invested": 500.0,
       "total_payout": 0.0,
       "roi": 0.0
     }
@@ -141,32 +141,42 @@
     {
       "year": "2026",
       "model_type": "Alpha-Payout(直前)",
-      "total_bets": 314,
-      "hits": 81,
-      "hit_rate": 25.8,
-      "total_invested": 51950.0,
-      "total_payout": 57910.0,
-      "roi": 111.47
+      "total_bets": 410,
+      "hits": 121,
+      "hit_rate": 29.51,
+      "total_invested": 67550.0,
+      "total_payout": 103260.0,
+      "roi": 152.86
     },
     {
       "year": "2026",
       "model_type": "HitFocus(暫定)",
-      "total_bets": 424,
-      "hits": 20,
-      "hit_rate": 4.72,
-      "total_invested": 383200.0,
-      "total_payout": 36490.0,
-      "roi": 9.52
+      "total_bets": 520,
+      "hits": 43,
+      "hit_rate": 8.27,
+      "total_invested": 470200.0,
+      "total_payout": 168430.0,
+      "roi": 35.82
     },
     {
       "year": "2026",
       "model_type": "HitFocus(直前)",
-      "total_bets": 490,
-      "hits": 42,
-      "hit_rate": 8.57,
-      "total_invested": 442600.0,
-      "total_payout": 219870.0,
-      "roi": 49.68
+      "total_bets": 593,
+      "hits": 65,
+      "hit_rate": 10.96,
+      "total_invested": 535700.0,
+      "total_payout": 388660.0,
+      "roi": 72.55
+    },
+    {
+      "year": "2026",
+      "model_type": "HitFocusV2(直前)",
+      "total_bets": 101,
+      "hits": 23,
+      "hit_rate": 22.77,
+      "total_invested": 91600.0,
+      "total_payout": 168790.0,
+      "roi": 184.27
     },
     {
       "year": "2026",
@@ -181,20 +191,30 @@
     {
       "year": "2026",
       "model_type": "Oracle(直前)",
-      "total_bets": 416,
-      "hits": 11,
-      "hit_rate": 2.64,
-      "total_invested": 360200.0,
-      "total_payout": 36290.0,
-      "roi": 10.07
+      "total_bets": 486,
+      "hits": 18,
+      "hit_rate": 3.7,
+      "total_invested": 419700.0,
+      "total_payout": 96120.0,
+      "roi": 22.9
+    },
+    {
+      "year": "2026",
+      "model_type": "OracleV2(直前)",
+      "total_bets": 70,
+      "hits": 7,
+      "hit_rate": 10.0,
+      "total_invested": 59500.0,
+      "total_payout": 59830.0,
+      "roi": 100.55
     },
     {
       "year": "2026",
       "model_type": "WIN5",
-      "total_bets": 4,
+      "total_bets": 5,
       "hits": 0,
       "hit_rate": 0.0,
-      "total_invested": 400.0,
+      "total_invested": 500.0,
       "total_payout": 0.0,
       "roi": 0.0
     },
@@ -211,38 +231,48 @@
     {
       "year": "2026",
       "model_type": "卍(直前)",
-      "total_bets": 1450,
-      "hits": 193,
-      "hit_rate": 13.31,
-      "total_invested": 314500.0,
-      "total_payout": 324170.0,
-      "roi": 103.07
+      "total_bets": 1660,
+      "hits": 209,
+      "hit_rate": 12.59,
+      "total_invested": 335500.0,
+      "total_payout": 386520.0,
+      "roi": 115.21
     },
     {
       "year": "2026",
       "model_type": "本命(暫定)",
-      "total_bets": 2467,
-      "hits": 272,
-      "hit_rate": 11.03,
-      "total_invested": 903600.0,
-      "total_payout": 1171931.0,
-      "roi": 129.7
+      "total_bets": 2732,
+      "hits": 337,
+      "hit_rate": 12.34,
+      "total_invested": 926600.0,
+      "total_payout": 1372681.0,
+      "roi": 148.14
     },
     {
       "year": "2026",
       "model_type": "本命(直前)",
-      "total_bets": 2284,
-      "hits": 275,
-      "hit_rate": 12.04,
-      "total_invested": 810600.0,
-      "total_payout": 1360141.0,
-      "roi": 167.79
+      "total_bets": 2564,
+      "hits": 348,
+      "hit_rate": 13.57,
+      "total_invested": 837400.0,
+      "total_payout": 1701941.0,
+      "roi": 203.24
+    },
+    {
+      "year": "2026",
+      "model_type": "本命V2(直前)",
+      "total_bets": 35,
+      "hits": 0,
+      "hit_rate": 0.0,
+      "total_invested": 0,
+      "total_payout": 0.0,
+      "roi": null
     }
   ],
   "overall": {
-    "total_bets": 9008,
-    "total_hits": 1076,
-    "total_invested": 3736050.0,
-    "total_payout": 4113782.0
+    "total_bets": 10335,
+    "total_hits": 1353,
+    "total_invested": 4299650.0,
+    "total_payout": 5353212.0
   }
 }

@@ -1,14 +1,14 @@
 {
   "race_id": "202608031005",
-  "race_name": "",
+  "race_name": "3歳1勝クラス",
   "date": "2026-05-24",
   "venue": "京都",
   "race_number": 5,
-  "distance": 0,
-  "surface": "",
+  "distance": 1200,
+  "surface": "芝",
   "track_direction": "",
-  "weather": "",
-  "condition": "",
+  "weather": "曇",
+  "condition": "良",
   "year": "2026",
   "results": [
     {
@@ -108,10 +108,10 @@
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.0594,
-      "ev_score": 0.6718,
+      "honmei_score": 0.0567,
+      "ev_score": 0.6409,
       "kelly_fraction": 0.0,
-      "manji_ev": 4.8812,
+      "manji_ev": 4.9445,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
@@ -134,8 +134,8 @@
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.0674,
-      "ev_score": 0.1416,
+      "honmei_score": 0.0786,
+      "ev_score": 0.1652,
       "kelly_fraction": 0.0,
       "manji_ev": 0.0697,
       "odds_vs_morning": 1.0,
@@ -163,7 +163,7 @@
       "honmei_score": 0.0388,
       "ev_score": 0.6746,
       "kelly_fraction": 0.0,
-      "manji_ev": 5.3744,
+      "manji_ev": 5.2179,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
@@ -189,7 +189,7 @@
       "honmei_score": 0.0786,
       "ev_score": 2.6504,
       "kelly_fraction": 0.005,
-      "manji_ev": 4.6502,
+      "manji_ev": 4.1379,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
@@ -212,10 +212,10 @@
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.0567,
-      "ev_score": 0.5558,
+      "honmei_score": 0.0388,
+      "ev_score": 0.3799,
       "kelly_fraction": 0.0,
-      "manji_ev": 0.6362,
+      "manji_ev": 0.9257,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
@@ -241,7 +241,7 @@
       "honmei_score": 0.0063,
       "ev_score": 0.2588,
       "kelly_fraction": 0.0,
-      "manji_ev": 3.2208,
+      "manji_ev": 3.0569,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     }
@@ -249,244 +249,382 @@
   "payouts": [],
   "predictions": [
     {
-      "prediction_id": 38068,
-      "model_type": "本命(暫定)",
-      "bet_type": "ワイド",
-      "confidence": 0.09868530507132417,
-      "expected_value": 3.0,
-      "recommended_bet": 100.0,
-      "combination_json": "[[5, 7], [4, 7], [7, 8], [3, 7], [6, 7]]",
-      "notes": "★QF推奨 軸7番×相手5頭ワイド Harville最大=0.076",
-      "created_at": "2026-05-23 21:50:36",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
-      "horses": [
-        {
-          "horse_name": "メイクワンズデイ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.07591177313178782,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "メイクワンズデイ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.07591177313178782,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "メイクワンズデイ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.07591177313178782,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "メイクワンズデイ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.07591177313178782,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "メイクワンズデイ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.07591177313178782,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "ミルトベスト",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.07591177313178782,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "ミルトベスト",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.07591177313178782,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "ミルトベスト",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.07591177313178782,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "ミルトベスト",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.07591177313178782,
-          "ev_score": 3.0
-        },
-        {
-          "horse_name": "ミルトベスト",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.07591177313178782,
-          "ev_score": 3.0
-        }
-      ],
-      "bet_form": "軸ながし",
-      "n_tickets": 5,
-      "invested": 500,
-      "horse_num_to_name": {
-        "1": "マイケルバローズ",
-        "2": "フィラーエ",
-        "3": "ウォーターサグラダ",
-        "4": "サンセットゴールド",
-        "5": "メイクワンズデイ",
-        "6": "ベネサルート",
-        "7": "ミルトベスト",
-        "8": "マーゴットミスト",
-        "9": "モンサンゴールデン"
-      },
-      "is_provisional": true
-    },
-    {
-      "prediction_id": 38069,
-      "model_type": "本命(暫定)",
-      "bet_type": "馬連",
-      "confidence": 0.07591177313178782,
-      "expected_value": 4.0,
-      "recommended_bet": 100.0,
-      "combination_json": "[[5, 7], [4, 7], [7, 8], [3, 7], [6, 7]]",
-      "notes": "★QF推奨 軸7番×相手5頭フォーメーション Harville最大=0.076",
-      "created_at": "2026-05-23 21:50:36",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
-      "horses": [
-        {
-          "horse_name": "メイクワンズデイ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.07591177313178782,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "メイクワンズデイ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.07591177313178782,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "メイクワンズデイ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.07591177313178782,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "メイクワンズデイ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.07591177313178782,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "メイクワンズデイ",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.07591177313178782,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "ミルトベスト",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.07591177313178782,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "ミルトベスト",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.07591177313178782,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "ミルトベスト",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.07591177313178782,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "ミルトベスト",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.07591177313178782,
-          "ev_score": 4.0
-        },
-        {
-          "horse_name": "ミルトベスト",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.07591177313178782,
-          "ev_score": 4.0
-        }
-      ],
-      "bet_form": "軸ながし",
-      "n_tickets": 5,
-      "invested": 500,
-      "horse_num_to_name": {
-        "1": "マイケルバローズ",
-        "2": "フィラーエ",
-        "3": "ウォーターサグラダ",
-        "4": "サンセットゴールド",
-        "5": "メイクワンズデイ",
-        "6": "ベネサルート",
-        "7": "ミルトベスト",
-        "8": "マーゴットミスト",
-        "9": "モンサンゴールデン"
-      },
-      "is_provisional": true
-    },
-    {
-      "prediction_id": 38070,
-      "model_type": "本命(暫定)",
+      "prediction_id": 40284,
+      "model_type": "Alpha-Payout(直前)",
       "bet_type": "複勝",
-      "confidence": 0.06850699166076835,
-      "expected_value": 0.20552097498230504,
+      "confidence": 0.29019444083634527,
+      "expected_value": 0.8705833225090358,
       "recommended_bet": 100.0,
-      "combination_json": "[[7], [5], [4]]",
-      "notes": "上位3頭を複勝",
-      "created_at": "2026-05-23 21:50:36",
+      "combination_json": "[[5], [3]]",
+      "notes": "2頭 relative nan=0% max=0.871",
+      "created_at": "2026-05-24 05:17:55",
       "is_hit": null,
       "payout": null,
       "profit": null,
       "roi": null,
       "horses": [
         {
-          "horse_name": "ミルトベスト",
+          "horse_name": "メイクワンズデイ",
+          "horse_id": "2023103160",
+          "predicted_rank": 1,
+          "model_score": 0.8705833225090358,
+          "ev_score": 0.8705833225090358
+        },
+        {
+          "horse_name": "ウォーターサグラダ",
+          "horse_id": "2023105190",
+          "predicted_rank": 2,
+          "model_score": 0.8351838576658047,
+          "ev_score": 0.8351838576658047
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 2,
+      "invested": 200,
+      "horse_num_to_name": {
+        "1": "マイケルバローズ",
+        "2": "フィラーエ",
+        "3": "ウォーターサグラダ",
+        "4": "サンセットゴールド",
+        "5": "メイクワンズデイ",
+        "6": "ベネサルート",
+        "7": "ミルトベスト",
+        "8": "マーゴットミスト",
+        "9": "モンサンゴールデン"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 40285,
+      "model_type": "Alpha-Payout(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.6377397161113085,
+      "expected_value": 1.9132191483339256,
+      "recommended_bet": 200.0,
+      "combination_json": "[[3, 4, 5], [1, 3, 5], [2, 3, 5], [1, 4, 5], [2, 4, 5], [1, 2, 5]]",
+      "notes": "Alpha EV=1.91 軸5番 相手4頭 6点",
+      "created_at": "2026-05-24 05:17:55",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "メイクワンズデイ",
+          "horse_id": "2023103160",
+          "predicted_rank": 1,
+          "model_score": 0.8705833225090358,
+          "ev_score": 0.8705833225090358
+        },
+        {
+          "horse_name": "ウォーターサグラダ",
+          "horse_id": "2023105190",
+          "predicted_rank": 2,
+          "model_score": 0.8351838576658047,
+          "ev_score": 0.8351838576658047
+        }
+      ],
+      "bet_form": "軸1頭ながし",
+      "n_tickets": 6,
+      "invested": 600,
+      "horse_num_to_name": {
+        "1": "マイケルバローズ",
+        "2": "フィラーエ",
+        "3": "ウォーターサグラダ",
+        "4": "サンセットゴールド",
+        "5": "メイクワンズデイ",
+        "6": "ベネサルート",
+        "7": "ミルトベスト",
+        "8": "マーゴットミスト",
+        "9": "モンサンゴールデン"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 40286,
+      "model_type": "Alpha-Payout(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.24366693036745804,
+      "expected_value": 1.2183346518372902,
+      "recommended_bet": 200.0,
+      "combination_json": "[[5, 3, 4], [5, 3, 1], [5, 4, 3], [5, 3, 2], [5, 1, 3], [5, 2, 3]]",
+      "notes": "Alpha EV=1.22 軸5番→フォーメーション 6点",
+      "created_at": "2026-05-24 05:17:55",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "メイクワンズデイ",
+          "horse_id": "2023103160",
+          "predicted_rank": 1,
+          "model_score": 0.8705833225090358,
+          "ev_score": 0.8705833225090358
+        },
+        {
+          "horse_name": "ウォーターサグラダ",
+          "horse_id": "2023105190",
+          "predicted_rank": 2,
+          "model_score": 0.8351838576658047,
+          "ev_score": 0.8351838576658047
+        }
+      ],
+      "bet_form": "2頭軸マルチ",
+      "n_tickets": 6,
+      "invested": 600,
+      "horse_num_to_name": {
+        "1": "マイケルバローズ",
+        "2": "フィラーエ",
+        "3": "ウォーターサグラダ",
+        "4": "サンセットゴールド",
+        "5": "メイクワンズデイ",
+        "6": "ベネサルート",
+        "7": "ミルトベスト",
+        "8": "マーゴットミスト",
+        "9": "モンサンゴールデン"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 40287,
+      "model_type": "本命(直前)",
+      "bet_type": "ワイド",
+      "confidence": 0.12325892666919677,
+      "expected_value": 0.4292823972211195,
+      "recommended_bet": 100.0,
+      "combination_json": "[[5, 7], [4, 5], [3, 5], [5, 8], [5, 6]]",
+      "notes": "★QF推奨 軸5番×相手5頭ワイド Harville最大=0.095",
+      "created_at": "2026-05-24 05:17:55",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "メイクワンズデイ",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.06850699166076835,
-          "ev_score": 0.20552097498230504
+          "model_score": 0.09481455897630521,
+          "ev_score": 0.4292823972211195
         },
         {
           "horse_name": "メイクワンズデイ",
           "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.09481455897630521,
+          "ev_score": 0.4292823972211195
+        },
+        {
+          "horse_name": "メイクワンズデイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.09481455897630521,
+          "ev_score": 0.4292823972211195
+        },
+        {
+          "horse_name": "メイクワンズデイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.09481455897630521,
+          "ev_score": 0.4292823972211195
+        },
+        {
+          "horse_name": "メイクワンズデイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.09481455897630521,
+          "ev_score": 0.4292823972211195
+        },
+        {
+          "horse_name": "ミルトベスト",
+          "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.06850699166076835,
-          "ev_score": 0.20552097498230504
+          "model_score": 0.09481455897630521,
+          "ev_score": 0.4292823972211195
+        },
+        {
+          "horse_name": "ミルトベスト",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.09481455897630521,
+          "ev_score": 0.4292823972211195
+        },
+        {
+          "horse_name": "ミルトベスト",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.09481455897630521,
+          "ev_score": 0.4292823972211195
+        },
+        {
+          "horse_name": "ミルトベスト",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.09481455897630521,
+          "ev_score": 0.4292823972211195
+        },
+        {
+          "horse_name": "ミルトベスト",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.09481455897630521,
+          "ev_score": 0.4292823972211195
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "マイケルバローズ",
+        "2": "フィラーエ",
+        "3": "ウォーターサグラダ",
+        "4": "サンセットゴールド",
+        "5": "メイクワンズデイ",
+        "6": "ベネサルート",
+        "7": "ミルトベスト",
+        "8": "マーゴットミスト",
+        "9": "モンサンゴールデン"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 40288,
+      "model_type": "本命(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.09481455897630521,
+      "expected_value": 0.812371141308983,
+      "recommended_bet": 100.0,
+      "combination_json": "[[5, 7], [4, 5], [3, 5], [5, 8], [5, 6]]",
+      "notes": "★QF推奨 軸5番×相手5頭フォーメーション Harville最大=0.095",
+      "created_at": "2026-05-24 05:17:55",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "メイクワンズデイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.09481455897630521,
+          "ev_score": 0.812371141308983
+        },
+        {
+          "horse_name": "メイクワンズデイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.09481455897630521,
+          "ev_score": 0.812371141308983
+        },
+        {
+          "horse_name": "メイクワンズデイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.09481455897630521,
+          "ev_score": 0.812371141308983
+        },
+        {
+          "horse_name": "メイクワンズデイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.09481455897630521,
+          "ev_score": 0.812371141308983
+        },
+        {
+          "horse_name": "メイクワンズデイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.09481455897630521,
+          "ev_score": 0.812371141308983
+        },
+        {
+          "horse_name": "ミルトベスト",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.09481455897630521,
+          "ev_score": 0.812371141308983
+        },
+        {
+          "horse_name": "ミルトベスト",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.09481455897630521,
+          "ev_score": 0.812371141308983
+        },
+        {
+          "horse_name": "ミルトベスト",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.09481455897630521,
+          "ev_score": 0.812371141308983
+        },
+        {
+          "horse_name": "ミルトベスト",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.09481455897630521,
+          "ev_score": 0.812371141308983
+        },
+        {
+          "horse_name": "ミルトベスト",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.09481455897630521,
+          "ev_score": 0.812371141308983
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "マイケルバローズ",
+        "2": "フィラーエ",
+        "3": "ウォーターサグラダ",
+        "4": "サンセットゴールド",
+        "5": "メイクワンズデイ",
+        "6": "ベネサルート",
+        "7": "ミルトベスト",
+        "8": "マーゴットミスト",
+        "9": "モンサンゴールデン"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 40289,
+      "model_type": "本命(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.07133606886948131,
+      "expected_value": 0.21400820660844394,
+      "recommended_bet": 100.0,
+      "combination_json": "[[5], [7], [4]]",
+      "notes": "上位3頭を複勝",
+      "created_at": "2026-05-24 05:17:55",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "メイクワンズデイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07133606886948131,
+          "ev_score": 0.21400820660844394
+        },
+        {
+          "horse_name": "ミルトベスト",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07133606886948131,
+          "ev_score": 0.21400820660844394
         },
         {
           "horse_name": "サンセットゴールド",
           "horse_id": null,
           "predicted_rank": 3,
-          "model_score": 0.06850699166076835,
-          "ev_score": 0.20552097498230504
+          "model_score": 0.07133606886948131,
+          "ev_score": 0.21400820660844394
         }
       ],
       "bet_form": "複勝",
@@ -503,29 +641,29 @@
         "8": "マーゴットミスト",
         "9": "モンサンゴールデン"
       },
-      "is_provisional": true
+      "is_provisional": false
     },
     {
-      "prediction_id": 38071,
-      "model_type": "本命(暫定)",
+      "prediction_id": 40290,
+      "model_type": "本命(直前)",
       "bet_type": "単勝",
       "confidence": 0.0786472670074715,
-      "expected_value": 2.65041289815179,
+      "expected_value": 0.16515926071569018,
       "recommended_bet": 100.0,
-      "combination_json": "[[7]]",
-      "notes": "確率1位 P(win)=0.08 odds=33.7 EV=2.65",
-      "created_at": "2026-05-23 21:50:36",
+      "combination_json": "[[5]]",
+      "notes": "確率1位 P(win)=0.08 odds=2.1 EV=0.17",
+      "created_at": "2026-05-24 05:17:55",
       "is_hit": null,
       "payout": null,
       "profit": null,
       "roi": null,
       "horses": [
         {
-          "horse_name": "ミルトベスト",
+          "horse_name": "メイクワンズデイ",
           "horse_id": null,
           "predicted_rank": 1,
           "model_score": 0.0786472670074715,
-          "ev_score": 2.65041289815179
+          "ev_score": 0.16515926071569018
         }
       ],
       "bet_form": "単勝",
@@ -542,63 +680,644 @@
         "8": "マーゴットミスト",
         "9": "モンサンゴールデン"
       },
-      "is_provisional": true
+      "is_provisional": false
     },
     {
-      "prediction_id": 38072,
-      "model_type": "本命(暫定)",
+      "prediction_id": 40291,
+      "model_type": "本命(直前)",
       "bet_type": "馬単",
-      "confidence": 0.3086713832169221,
-      "expected_value": 5.0,
+      "confidence": 0.37925823590522084,
+      "expected_value": 0.7814094470752706,
       "recommended_bet": 100.0,
-      "combination_json": "[[7, 5], [7, 4], [7, 8]]",
-      "notes": "軸7番→相手3頭フォーメーション Harville最大=0.039",
-      "created_at": "2026-05-23 21:50:36",
+      "combination_json": "[[5, 7], [5, 4], [5, 3]]",
+      "notes": "軸5番→相手3頭フォーメーション Harville最大=0.047",
+      "created_at": "2026-05-24 05:17:55",
       "is_hit": null,
       "payout": null,
       "profit": null,
       "roi": null,
       "horses": [
         {
-          "horse_name": "ミルトベスト",
+          "horse_name": "メイクワンズデイ",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.038583922902115264,
-          "ev_score": 5.0
+          "model_score": 0.047407279488152605,
+          "ev_score": 0.7814094470752706
+        },
+        {
+          "horse_name": "メイクワンズデイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.047407279488152605,
+          "ev_score": 0.7814094470752706
+        },
+        {
+          "horse_name": "メイクワンズデイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.047407279488152605,
+          "ev_score": 0.7814094470752706
         },
         {
           "horse_name": "ミルトベスト",
           "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.038583922902115264,
-          "ev_score": 5.0
+          "predicted_rank": 2,
+          "model_score": 0.047407279488152605,
+          "ev_score": 0.7814094470752706
         },
         {
           "horse_name": "ミルトベスト",
           "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.047407279488152605,
+          "ev_score": 0.7814094470752706
+        },
+        {
+          "horse_name": "ミルトベスト",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.047407279488152605,
+          "ev_score": 0.7814094470752706
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "1": "マイケルバローズ",
+        "2": "フィラーエ",
+        "3": "ウォーターサグラダ",
+        "4": "サンセットゴールド",
+        "5": "メイクワンズデイ",
+        "6": "ベネサルート",
+        "7": "ミルトベスト",
+        "8": "マーゴットミスト",
+        "9": "モンサンゴールデン"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 40292,
+      "model_type": "本命(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.7304647895591482,
+      "expected_value": 1.8139266886727548,
+      "recommended_bet": 100.0,
+      "combination_json": "[[4, 5, 7], [3, 5, 7]]",
+      "notes": "合成EV最大=1.81 2点 馬番=[(4, 5, 7), (3, 5, 7)]",
+      "created_at": "2026-05-24 05:17:55",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "サンセットゴールド",
+          "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.038583922902115264,
-          "ev_score": 5.0
+          "model_score": 0.06087206579659568,
+          "ev_score": 1.8139266886727548
+        },
+        {
+          "horse_name": "サンセットゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06087206579659568,
+          "ev_score": 1.8139266886727548
         },
         {
           "horse_name": "メイクワンズデイ",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.038583922902115264,
-          "ev_score": 5.0
+          "model_score": 0.06087206579659568,
+          "ev_score": 1.8139266886727548
         },
         {
           "horse_name": "メイクワンズデイ",
           "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.038583922902115264,
-          "ev_score": 5.0
+          "model_score": 0.06087206579659568,
+          "ev_score": 1.8139266886727548
+        },
+        {
+          "horse_name": "ミルトベスト",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.06087206579659568,
+          "ev_score": 1.8139266886727548
+        },
+        {
+          "horse_name": "ミルトベスト",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.06087206579659568,
+          "ev_score": 1.8139266886727548
+        }
+      ],
+      "bet_form": "軸2頭ながし",
+      "n_tickets": 2,
+      "invested": 200,
+      "horse_num_to_name": {
+        "1": "マイケルバローズ",
+        "2": "フィラーエ",
+        "3": "ウォーターサグラダ",
+        "4": "サンセットゴールド",
+        "5": "メイクワンズデイ",
+        "6": "ベネサルート",
+        "7": "ミルトベスト",
+        "8": "マーゴットミスト",
+        "9": "モンサンゴールデン"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 40293,
+      "model_type": "本命(直前)",
+      "bet_type": "三連単",
+      "confidence": 1.0,
+      "expected_value": 5.870654205588179,
+      "recommended_bet": 200.0,
+      "combination_json": "[[5, 7, 4], [5, 4, 7], [7, 5, 4], [7, 4, 5], [4, 5, 7], [4, 7, 5], [5, 7, 3], [5, 3, 7], [7, 5, 3], [7, 3, 5], [3, 5, 7], [3, 7, 5], [5, 7, 8], [5, 8, 7], [7, 5, 8], [7, 8, 5], [8, 5, 7], [8, 7, 5], [5, 4, 3], [5, 3, 4], [4, 5, 3], [4, 3, 5], [3, 5, 4], [3, 4, 5], [5, 4, 8], [5, 8, 4], [4, 5, 8], [4, 8, 5], [8, 5, 4], [8, 4, 5], [5, 3, 8], [5, 8, 3], [3, 5, 8], [3, 8, 5], [8, 5, 3], [8, 3, 5]]",
+      "notes": "1頭軸マルチ 軸=5番 相手=[7, 4, 3, 8] 36点 Harville最大=0.0609",
+      "created_at": "2026-05-24 05:17:55",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "メイクワンズデイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06087206579659568,
+          "ev_score": 5.870654205588179
         },
         {
           "horse_name": "メイクワンズデイ",
           "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06087206579659568,
+          "ev_score": 5.870654205588179
+        },
+        {
+          "horse_name": "メイクワンズデイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06087206579659568,
+          "ev_score": 5.870654205588179
+        },
+        {
+          "horse_name": "メイクワンズデイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06087206579659568,
+          "ev_score": 5.870654205588179
+        },
+        {
+          "horse_name": "メイクワンズデイ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.06087206579659568,
+          "ev_score": 5.870654205588179
+        },
+        {
+          "horse_name": "ミルトベスト",
+          "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.038583922902115264,
+          "model_score": 0.06087206579659568,
+          "ev_score": 5.870654205588179
+        },
+        {
+          "horse_name": "ミルトベスト",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06087206579659568,
+          "ev_score": 5.870654205588179
+        },
+        {
+          "horse_name": "ミルトベスト",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06087206579659568,
+          "ev_score": 5.870654205588179
+        },
+        {
+          "horse_name": "ミルトベスト",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06087206579659568,
+          "ev_score": 5.870654205588179
+        },
+        {
+          "horse_name": "ミルトベスト",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.06087206579659568,
+          "ev_score": 5.870654205588179
+        },
+        {
+          "horse_name": "サンセットゴールド",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.06087206579659568,
+          "ev_score": 5.870654205588179
+        },
+        {
+          "horse_name": "サンセットゴールド",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.06087206579659568,
+          "ev_score": 5.870654205588179
+        },
+        {
+          "horse_name": "サンセットゴールド",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.06087206579659568,
+          "ev_score": 5.870654205588179
+        },
+        {
+          "horse_name": "サンセットゴールド",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.06087206579659568,
+          "ev_score": 5.870654205588179
+        },
+        {
+          "horse_name": "サンセットゴールド",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.06087206579659568,
+          "ev_score": 5.870654205588179
+        }
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 36,
+      "invested": 3600,
+      "horse_num_to_name": {
+        "1": "マイケルバローズ",
+        "2": "フィラーエ",
+        "3": "ウォーターサグラダ",
+        "4": "サンセットゴールド",
+        "5": "メイクワンズデイ",
+        "6": "ベネサルート",
+        "7": "ミルトベスト",
+        "8": "マーゴットミスト",
+        "9": "モンサンゴールデン"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 40294,
+      "model_type": "卍(直前)",
+      "bet_type": "単勝",
+      "confidence": 0.2998767290321937,
+      "expected_value": 5.21785508516017,
+      "recommended_bet": 100.0,
+      "combination_json": "[[6]]",
+      "notes": "確率1位(卍) EV=5.22 odds=17.4",
+      "created_at": "2026-05-24 05:17:55",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "ベネサルート",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 5.21785508516017,
+          "ev_score": 5.21785508516017
+        }
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "1": "マイケルバローズ",
+        "2": "フィラーエ",
+        "3": "ウォーターサグラダ",
+        "4": "サンセットゴールド",
+        "5": "メイクワンズデイ",
+        "6": "ベネサルート",
+        "7": "ミルトベスト",
+        "8": "マーゴットミスト",
+        "9": "モンサンゴールデン"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 40295,
+      "model_type": "卍(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.6,
+      "expected_value": 4.766725770105412,
+      "recommended_bet": 100.0,
+      "combination_json": "[[6], [4], [7]]",
+      "notes": "確率上位3頭を複勝",
+      "created_at": "2026-05-24 05:17:55",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "ベネサルート",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 4.766725770105412,
+          "ev_score": 4.766725770105412
+        },
+        {
+          "horse_name": "サンセットゴールド",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 4.766725770105412,
+          "ev_score": 4.766725770105412
+        },
+        {
+          "horse_name": "ミルトベスト",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 4.766725770105412,
+          "ev_score": 4.766725770105412
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "1": "マイケルバローズ",
+        "2": "フィラーエ",
+        "3": "ウォーターサグラダ",
+        "4": "サンセットゴールド",
+        "5": "メイクワンズデイ",
+        "6": "ベネサルート",
+        "7": "ミルトベスト",
+        "8": "マーゴットミスト",
+        "9": "モンサンゴールデン"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 40296,
+      "model_type": "卍(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.5738074567545386,
+      "expected_value": 4.0,
+      "recommended_bet": 100.0,
+      "combination_json": "[[4, 6], [6, 7], [6, 9], [2, 6], [1, 6]]",
+      "notes": "軸6番×相手5頭フォーメーション Harville最大=0.115",
+      "created_at": "2026-05-24 05:17:55",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "サンセットゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11476149135090771,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "サンセットゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11476149135090771,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "サンセットゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11476149135090771,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "サンセットゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11476149135090771,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "サンセットゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11476149135090771,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ベネサルート",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11476149135090771,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ベネサルート",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11476149135090771,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ベネサルート",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11476149135090771,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ベネサルート",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11476149135090771,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ベネサルート",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11476149135090771,
+          "ev_score": 4.0
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "マイケルバローズ",
+        "2": "フィラーエ",
+        "3": "ウォーターサグラダ",
+        "4": "サンセットゴールド",
+        "5": "メイクワンズデイ",
+        "6": "ベネサルート",
+        "7": "ミルトベスト",
+        "8": "マーゴットミスト",
+        "9": "モンサンゴールデン"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 40297,
+      "model_type": "卍(直前)",
+      "bet_type": "ワイド",
+      "confidence": 0.6885689481054462,
+      "expected_value": 3.0,
+      "recommended_bet": 100.0,
+      "combination_json": "[[4, 6], [6, 7], [6, 9], [2, 6], [1, 6]]",
+      "notes": "軸6番×相手5頭ワイド Harville最大=0.115",
+      "created_at": "2026-05-24 05:17:55",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "サンセットゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11476149135090771,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "サンセットゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11476149135090771,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "サンセットゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11476149135090771,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "サンセットゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11476149135090771,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "サンセットゴールド",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.11476149135090771,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ベネサルート",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11476149135090771,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ベネサルート",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11476149135090771,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ベネサルート",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11476149135090771,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ベネサルート",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11476149135090771,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ベネサルート",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.11476149135090771,
+          "ev_score": 3.0
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "マイケルバローズ",
+        "2": "フィラーエ",
+        "3": "ウォーターサグラダ",
+        "4": "サンセットゴールド",
+        "5": "メイクワンズデイ",
+        "6": "ベネサルート",
+        "7": "ミルトベスト",
+        "8": "マーゴットミスト",
+        "9": "モンサンゴールデン"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 40298,
+      "model_type": "卍(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.46238091326694636,
+      "expected_value": 5.0,
+      "recommended_bet": 100.0,
+      "combination_json": "[[6, 4], [6, 7], [6, 9]]",
+      "notes": "軸6番→相手3頭フォーメーション Harville最大=0.058",
+      "created_at": "2026-05-24 05:17:55",
+      "is_hit": null,
+      "payout": null,
+      "profit": null,
+      "roi": null,
+      "horses": [
+        {
+          "horse_name": "ベネサルート",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.057797614158368295,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ベネサルート",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.057797614158368295,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ベネサルート",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.057797614158368295,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "サンセットゴールド",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.057797614158368295,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "サンセットゴールド",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.057797614158368295,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "サンセットゴールド",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.057797614158368295,
           "ev_score": 5.0
         }
       ],
@@ -616,69 +1335,48 @@
         "8": "マーゴットミスト",
         "9": "モンサンゴールデン"
       },
-      "is_provisional": true
+      "is_provisional": false
     },
     {
-      "prediction_id": 38073,
-      "model_type": "本命(暫定)",
+      "prediction_id": 40301,
+      "model_type": "卍(直前)",
       "bet_type": "三連複",
-      "confidence": 0.5835526220791011,
+      "confidence": 0.8111900124864061,
       "expected_value": 5.0,
       "recommended_bet": 100.0,
-      "combination_json": "[[4, 5, 7], [5, 7, 8]]",
-      "notes": "合成EV最大=5.00 2点 馬番=[(4, 5, 7), (5, 7, 8)]",
-      "created_at": "2026-05-23 21:50:36",
+      "combination_json": "[[2, 4, 6]]",
+      "notes": "合成EV=5.00 Harville=0.0541 馬番=(2, 4, 6)",
+      "created_at": "2026-05-24 05:17:55",
       "is_hit": null,
       "payout": null,
       "profit": null,
       "roi": null,
       "horses": [
         {
-          "horse_name": "サンセットゴールド",
+          "horse_name": "フィラーエ",
           "horse_id": null,
           "predicted_rank": 1,
-          "model_score": 0.048629385173258426,
+          "model_score": 0.054079334165760405,
           "ev_score": 5.0
         },
         {
           "horse_name": "サンセットゴールド",
           "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.048629385173258426,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "メイクワンズデイ",
-          "horse_id": null,
           "predicted_rank": 2,
-          "model_score": 0.048629385173258426,
+          "model_score": 0.054079334165760405,
           "ev_score": 5.0
         },
         {
-          "horse_name": "メイクワンズデイ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.048629385173258426,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "ミルトベスト",
+          "horse_name": "ベネサルート",
           "horse_id": null,
           "predicted_rank": 3,
-          "model_score": 0.048629385173258426,
-          "ev_score": 5.0
-        },
-        {
-          "horse_name": "ミルトベスト",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.048629385173258426,
+          "model_score": 0.054079334165760405,
           "ev_score": 5.0
         }
       ],
-      "bet_form": "軸2頭ながし",
-      "n_tickets": 2,
-      "invested": 200,
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "invested": 100,
       "horse_num_to_name": {
         "1": "マイケルバローズ",
         "2": "フィラーエ",
@@ -690,155 +1388,18 @@
         "8": "マーゴットミスト",
         "9": "モンサンゴールデン"
       },
-      "is_provisional": true
+      "is_provisional": false
     },
     {
-      "prediction_id": 38074,
-      "model_type": "本命(暫定)",
-      "bet_type": "三連単",
-      "confidence": 1.0,
-      "expected_value": 6.0,
-      "recommended_bet": 200.0,
-      "combination_json": "[[7, 5, 4], [7, 4, 5], [5, 7, 4], [5, 4, 7], [4, 7, 5], [4, 5, 7], [7, 5, 8], [7, 8, 5], [5, 7, 8], [5, 8, 7], [8, 7, 5], [8, 5, 7], [7, 5, 3], [7, 3, 5], [5, 7, 3], [5, 3, 7], [3, 7, 5], [3, 5, 7], [7, 5, 6], [7, 6, 5], [5, 7, 6], [5, 6, 7], [6, 7, 5], [6, 5, 7], [7, 5, 2], [7, 2, 5], [5, 7, 2], [5, 2, 7], [2, 7, 5], [2, 5, 7], [7, 4, 8], [7, 8, 4], [4, 7, 8], [4, 8, 7], [8, 7, 4], [8, 4, 7], [7, 4, 3], [7, 3, 4], [4, 7, 3], [4, 3, 7], [3, 7, 4], [3, 4, 7], [7, 4, 6], [7, 6, 4], [4, 7, 6], [4, 6, 7], [6, 7, 4], [6, 4, 7], [7, 4, 2], [7, 2, 4], [4, 7, 2], [4, 2, 7], [2, 7, 4], [2, 4, 7], [7, 8, 3], [7, 3, 8], [8, 7, 3], [8, 3, 7], [3, 7, 8], [3, 8, 7], [7, 8, 6], [7, 6, 8], [8, 7, 6], [8, 6, 7], [6, 7, 8], [6, 8, 7], [7, 8, 2], [7, 2, 8], [8, 7, 2], [8, 2, 7], [2, 7, 8], [2, 8, 7], [7, 3, 6], [7, 6, 3], [3, 7, 6], [3, 6, 7], [6, 7, 3], [6, 3, 7], [7, 3, 2], [7, 2, 3], [3, 7, 2], [3, 2, 7], [2, 7, 3], [2, 3, 7], [7, 6, 2], [7, 2, 6], [6, 7, 2], [6, 2, 7], [2, 7, 6], [2, 6, 7]]",
-      "notes": "1頭軸マルチ 軸=7番 相手=[5, 4, 8, 3, 6, 2] 90点 Harville最大=0.0486",
-      "created_at": "2026-05-23 21:50:36",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
-      "horses": [
-        {
-          "horse_name": "ミルトベスト",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.048629385173258426,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "ミルトベスト",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.048629385173258426,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "ミルトベスト",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.048629385173258426,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "ミルトベスト",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.048629385173258426,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "ミルトベスト",
-          "horse_id": null,
-          "predicted_rank": 1,
-          "model_score": 0.048629385173258426,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "メイクワンズデイ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.048629385173258426,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "メイクワンズデイ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.048629385173258426,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "メイクワンズデイ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.048629385173258426,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "メイクワンズデイ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.048629385173258426,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "メイクワンズデイ",
-          "horse_id": null,
-          "predicted_rank": 2,
-          "model_score": 0.048629385173258426,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "サンセットゴールド",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.048629385173258426,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "サンセットゴールド",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.048629385173258426,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "サンセットゴールド",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.048629385173258426,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "サンセットゴールド",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.048629385173258426,
-          "ev_score": 6.0
-        },
-        {
-          "horse_name": "サンセットゴールド",
-          "horse_id": null,
-          "predicted_rank": 3,
-          "model_score": 0.048629385173258426,
-          "ev_score": 6.0
-        }
-      ],
-      "bet_form": "1頭軸マルチ",
-      "n_tickets": 90,
-      "invested": 9000,
-      "horse_num_to_name": {
-        "1": "マイケルバローズ",
-        "2": "フィラーエ",
-        "3": "ウォーターサグラダ",
-        "4": "サンセットゴールド",
-        "5": "メイクワンズデイ",
-        "6": "ベネサルート",
-        "7": "ミルトベスト",
-        "8": "マーゴットミスト",
-        "9": "モンサンゴールデン"
-      },
-      "is_provisional": true
-    },
-    {
-      "prediction_id": 38075,
-      "model_type": "本命(暫定)",
+      "prediction_id": 40302,
+      "model_type": "本命(直前)",
       "bet_type": "馬分析",
       "confidence": null,
       "expected_value": null,
       "recommended_bet": null,
       "combination_json": "[]",
       "notes": "全馬モデルスコア（馬分析タブ用）",
-      "created_at": "2026-05-23 21:50:36",
+      "created_at": "2026-05-24 05:17:55",
       "is_hit": null,
       "payout": null,
       "profit": null,
@@ -855,36 +1416,36 @@
           "horse_name": "メイクワンズデイ",
           "horse_id": "2023103160",
           "predicted_rank": 2,
-          "model_score": 0.06742572495997154,
-          "ev_score": 0.14159402241594024
+          "model_score": 0.0786472670074715,
+          "ev_score": 0.16515926071569018
         },
         {
           "horse_name": "サンセットゴールド",
           "horse_id": "2023105394",
           "predicted_rank": 3,
-          "model_score": 0.059447983014861996,
-          "ev_score": 0.6717622080679406
-        },
-        {
-          "horse_name": "マーゴットミスト",
-          "horse_id": "2023101632",
-          "predicted_rank": 4,
           "model_score": 0.05671367259350092,
-          "ev_score": 0.555793991416309
+          "ev_score": 0.6408645003065605
         },
         {
           "horse_name": "ウォーターサグラダ",
           "horse_id": "2023105190",
-          "predicted_rank": 5,
+          "predicted_rank": 4,
           "model_score": 0.045773003269500234,
           "ev_score": 0.16936011209715088
         },
         {
           "horse_name": "ベネサルート",
           "horse_id": "2023106833",
-          "predicted_rank": 6,
+          "predicted_rank": 5,
           "model_score": 0.03876739562624255,
           "ev_score": 0.6745526838966203
+        },
+        {
+          "horse_name": "マーゴットミスト",
+          "horse_id": "2023101632",
+          "predicted_rank": 6,
+          "model_score": 0.03876739562624255,
+          "ev_score": 0.37992047713717697
         },
         {
           "horse_name": "フィラーエ",
@@ -922,7 +1483,7 @@
         "8": "マーゴットミスト",
         "9": "モンサンゴールデン"
       },
-      "is_provisional": true
+      "is_provisional": false
     }
   ],
   "training_evals": {},
@@ -932,7 +1493,15 @@
       "today_front_bias": null,
       "today_race_count": null
     },
-    "ev_recommend": [],
-    "generated_at": "2026-05-23T21:50:36.855935"
+    "ev_recommend": [
+      {
+        "horse_number": 7,
+        "horse_name": "ミルトベスト",
+        "win_odds": 33.7,
+        "ev_score": 2.6504,
+        "kelly_fraction": 0.005
+      }
+    ],
+    "generated_at": "2026-05-24T05:17:55.335903"
   }
 }
