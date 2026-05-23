@@ -50,11 +50,18 @@ TEST_TO    = "2025-12-31"
 BET_TYPES:     list[str]   = ["単勝", "複勝", "ワイド", "馬連", "三連複"]
 EV_THRESHOLDS: list[float] = [1.0, 1.1, 1.2, 1.3, 1.5]
 
+# ── 流し設定 ───────────────────────────────────────────────────────────────────
+# ワイド/馬連流し: 1軸(確率最上位) × NAGASHI_AITE頭 = NAGASHI_AITE通り
+# 三連複流し    : 1軸            × C(NAGASHI_AITE,2)通り
+NAGASHI_AITE = 4
+
 # ── 資金管理 ──────────────────────────────────────────────────────────────────
 INITIAL_BANKROLL     = 10_000.0
 KELLY_FRACTION       = 0.05   # 1/20 Kelly（初期¥10,000でも破産しにくいよう控えめ）
-MAX_BET_RATE         = 0.05   # 1ベット最大 bankroll × 5%
-MAX_RACE_BUDGET_RATE = 0.15   # 1レース最大 bankroll × 15%
+MAX_BET_RATE         = 0.05   # 1ベット最大 bankroll × 5%（相対上限）
+MAX_BET_ABS          = 15_000 # 1ベット物理上限 ¥15,000（JRAスリッページ対策）
+MAX_RACE_BUDGET_RATE = 0.15   # 1レース最大 bankroll × 15%（相対上限）
+MAX_RACE_BUDGET_ABS  = 50_000 # 1レース物理上限 ¥50,000（流動性上限）
 MIN_BET              = 100
 
 # ── 典型オッズ（Kelly / EV 計算用） ───────────────────────────────────────────
@@ -386,6 +393,33 @@ def _combo_key(*nums: int) -> str:
     return "-".join(str(n) for n in sorted(nums))
 
 
+# ── 流し/マルチ 購入点数計算 ────────────────────────────────────────────────────
+def calculate_bet_combinations(
+    ticket_type: str,
+    jiku_count: int,
+    aite_count: int,
+    is_multi: bool = False,
+) -> int:
+    """
+    流し・マルチの購入点数を返す。実投資額 = 100円 × 戻り値。
+
+    ワイド/馬連 流し (jiku=1, aite=N):  N通り
+    三連複 流し  (1軸, aite=N):        C(N,2) 通り
+    ワイド/馬連 マルチ (N頭):           C(N,2) 通り
+    三連複 マルチ (N頭):               C(N,3) 通り
+    単勝/複勝:                         1通り（流し非対応）
+    """
+    from math import comb as _comb
+    if ticket_type in ("単勝", "複勝"):
+        return 1
+    total = jiku_count + aite_count
+    if ticket_type in ("ワイド", "馬連"):
+        return _comb(total, 2) if is_multi else jiku_count * aite_count
+    if ticket_type == "三連複":
+        return _comb(total, 3) if is_multi else jiku_count * _comb(aite_count, 2)
+    return 1
+
+
 # ── Kelly 賭け金算出 ────────────────────────────────────────────────────────────
 def kelly_bet(
     bankroll: float,
@@ -395,7 +429,7 @@ def kelly_bet(
     race_budget_remaining: float,
     actual_win_odds: float | None = None,
 ) -> float:
-    """EV閾値フィルタ + フラクショナルKelly でベット額を算出"""
+    """EV閾値フィルタ + フラクショナルKelly + 物理上限キャップ でベット額を算出"""
     if bet_type == "単勝" and actual_win_odds is not None and actual_win_odds > 1.0:
         odds = actual_win_odds
     elif bet_type == "複勝" and actual_win_odds is not None and actual_win_odds > 1.0:
@@ -412,7 +446,8 @@ def kelly_bet(
     effective  = kelly_full * KELLY_FRACTION
 
     rel_cap = bankroll * MAX_BET_RATE
-    bet     = min(bankroll * effective, rel_cap, race_budget_remaining)
+    abs_cap = float(MAX_BET_ABS)
+    bet     = min(bankroll * effective, rel_cap, abs_cap, race_budget_remaining)
     if bet < MIN_BET:
         if kelly_full > 0 and race_budget_remaining >= MIN_BET:
             return float(MIN_BET)
@@ -451,7 +486,7 @@ def simulate_race_pattern(
     horse_nums = list(race_df["horse_number"].astype(int))
     prob_list  = list(probs)
     sorted_idx = sorted(range(n), key=lambda i: -prob_list[i])
-    race_budget = min(bankroll * MAX_RACE_BUDGET_RATE, bankroll)
+    race_budget = min(bankroll * MAX_RACE_BUDGET_RATE, bankroll, float(MAX_RACE_BUDGET_ABS))
 
     records: list[dict] = []
     total_invested = 0.0
@@ -497,21 +532,86 @@ def simulate_race_pattern(
         add_bet(str(h1), p_place, w1)
 
     elif bet_type in ("ワイド", "馬連") and n >= 2:
-        i2 = sorted_idx[1]
-        h2 = horse_nums[i2]
-        if bet_type == "ワイド":
-            p_bet = _harville_wide(prob_list, i1, i2)
-        else:
-            p_bet = _harville_quinella(prob_list, i1, i2)
-        combo = _combo_key(h1, h2)
-        add_bet(combo, p_bet)
+        # 流し: 1軸(確率最上位) × 相手 NAGASHI_AITE 頭
+        n_aite    = min(NAGASHI_AITE, n - 1)
+        aite_idxs = sorted_idx[1:n_aite + 1]
+        n_combos  = calculate_bet_combinations(bet_type, 1, n_aite)
+        remaining = race_budget - total_invested
+        if remaining < MIN_BET * n_combos:
+            return records  # 予算不足: 流し全体をスキップ
+
+        # 各コンボの Harville 確率の平均で Kelly 算出
+        p_fn = _harville_wide if bet_type == "ワイド" else _harville_quinella
+        p_vals = [p_fn(prob_list, i1, ai) for ai in aite_idxs]
+        avg_p  = float(np.mean(p_vals))
+
+        total_kelly = kelly_bet(bankroll, avg_p, bet_type, ev_threshold, remaining)
+        if total_kelly <= 0:
+            return records
+
+        # Kelly 総額をコンボ数で均等配分（各¥100単位・物理上限キャップ）
+        per_combo = max(MIN_BET, min(MAX_BET_ABS, int(total_kelly / n_combos / 100) * 100))
+
+        pmap = payouts.get(bet_type, {})
+        for ai in aite_idxs:
+            combo    = _combo_key(h1, horse_nums[ai])
+            payout_a = float(pmap.get(combo, 0))
+            is_hit   = payout_a > 0
+            profit   = (payout_a / 100.0 * per_combo) - per_combo if is_hit else -per_combo
+            records.append({
+                "race_id":       race_id,
+                "date":          race_date,
+                "bet_type":      bet_type,
+                "ev_threshold":  ev_threshold,
+                "combo":         combo,
+                "p_bet":         avg_p,
+                "bet_amount":    per_combo,
+                "payout_per100": payout_a,
+                "is_hit":        int(is_hit),
+                "profit":        profit,
+            })
+            total_invested += per_combo
 
     elif bet_type == "三連複" and n >= 3:
-        i2, i3 = sorted_idx[1], sorted_idx[2]
-        h2, h3 = horse_nums[i2], horse_nums[i3]
-        p_bet   = _harville_trio(prob_list, i1, i2, i3)
-        combo   = _combo_key(h1, h2, h3)
-        add_bet(combo, p_bet)
+        # 流し: 1軸(確率最上位) × 相手 NAGASHI_AITE 頭から2頭選択
+        n_aite    = min(NAGASHI_AITE, n - 1)
+        aite_idxs = sorted_idx[1:n_aite + 1]
+        n_combos  = calculate_bet_combinations(bet_type, 1, n_aite)
+        if n_combos == 0:
+            return records
+        remaining = race_budget - total_invested
+        if remaining < MIN_BET * n_combos:
+            return records
+
+        pairs   = list(itertools.combinations(range(n_aite), 2))
+        p_vals  = [_harville_trio(prob_list, i1, aite_idxs[a], aite_idxs[b]) for a, b in pairs]
+        avg_p   = float(np.mean(p_vals))
+
+        total_kelly = kelly_bet(bankroll, avg_p, bet_type, ev_threshold, remaining)
+        if total_kelly <= 0:
+            return records
+
+        per_combo = max(MIN_BET, min(MAX_BET_ABS, int(total_kelly / n_combos / 100) * 100))
+
+        pmap = payouts.get(bet_type, {})
+        for a, b in pairs:
+            combo    = _combo_key(h1, horse_nums[aite_idxs[a]], horse_nums[aite_idxs[b]])
+            payout_a = float(pmap.get(combo, 0))
+            is_hit   = payout_a > 0
+            profit   = (payout_a / 100.0 * per_combo) - per_combo if is_hit else -per_combo
+            records.append({
+                "race_id":       race_id,
+                "date":          race_date,
+                "bet_type":      bet_type,
+                "ev_threshold":  ev_threshold,
+                "combo":         combo,
+                "p_bet":         avg_p,
+                "bet_amount":    per_combo,
+                "payout_per100": payout_a,
+                "is_hit":        int(is_hit),
+                "profit":        profit,
+            })
+            total_invested += per_combo
 
     return records
 
@@ -736,7 +836,7 @@ def recommend_portfolio(df: pd.DataFrame) -> str:
 
 
 # ── 結果保存 ───────────────────────────────────────────────────────────────────
-def save_results(df: pd.DataFrame, cv_auc: float) -> None:
+def save_results(df: pd.DataFrame, cv_auc: float, portfolio_text: str) -> None:
     RULES_DIR.mkdir(parents=True, exist_ok=True)
     payload = {
         "meta": {
@@ -745,6 +845,7 @@ def save_results(df: pd.DataFrame, cv_auc: float) -> None:
             "cv_auc":           cv_auc,
             "kelly_fraction":   KELLY_FRACTION,
             "initial_bankroll": INITIAL_BANKROLL,
+            "nagashi_aite":     NAGASHI_AITE,
             "generated_at":     "2026-05-23",
         },
         "patterns": df.to_dict(orient="records"),
@@ -754,6 +855,70 @@ def save_results(df: pd.DataFrame, cv_auc: float) -> None:
         encoding="utf-8",
     )
     logger.info("JSON 保存: %s", OUT_JSON)
+
+    # ── ポートフォリオ戦略を恒久ルールとして保存 ──────────────────────────────
+    strategy_path = RULES_DIR / "portfolio_strategy_2024_2025.md"
+    profitable = df[(df["roi"] > 100.0) & (df["n_bets"] >= 10)].copy()
+    top5 = df.sort_values("roi", ascending=False).head(5)
+
+    lines = [
+        "# ポートフォリオ戦略 2024-2025 Walk-Forward バックテスト結果",
+        "",
+        f"**生成日**: 2026-05-23  ",
+        f"**Train**: {TRAIN_FROM} ～ {TRAIN_TO}  ",
+        f"**Test** : {TEST_FROM} ～ {TEST_TO}  ",
+        f"**CV AUC**: {cv_auc:.4f}  ",
+        f"**初期資金**: ¥{INITIAL_BANKROLL:,.0f}  ",
+        f"**Kelly分数**: {KELLY_FRACTION} (1/{int(1/KELLY_FRACTION)} Kelly)  ",
+        f"**流し相手頭数**: {NAGASHI_AITE}頭  ",
+        "",
+        "---",
+        "",
+        "## 25パターン ROI マトリクス",
+        "",
+        "| 券種 | EV≥1.0 | EV≥1.1 | EV≥1.2 | EV≥1.3 | EV≥1.5 |",
+        "|------|--------|--------|--------|--------|--------|",
+    ]
+    for bt in BET_TYPES:
+        sub = df[df["bet_type"] == bt].sort_values("ev_threshold")
+        rois = [f"{row['roi']:.1f}%" for _, row in sub.iterrows()]
+        lines.append(f"| {bt} | " + " | ".join(rois) + " |")
+
+    lines += [
+        "",
+        "## ROI 上位5パターン",
+        "",
+        "| 券種 | EV閾値 | 件数 | 的中率 | ROI | 最大DD | 最終残高 |",
+        "|------|--------|------|--------|-----|--------|----------|",
+    ]
+    for _, r in top5.iterrows():
+        lines.append(
+            f"| {r['bet_type']} | ≥{r['ev_threshold']:.1f} | {r['n_bets']} | "
+            f"{r['hit_rate']:.1f}% | {r['roi']:.1f}% | {r['max_drawdown']:.1f}% | "
+            f"¥{r['final_bankroll']:,} |"
+        )
+
+    lines += ["", "## 推奨ポートフォリオ方針", ""]
+    lines.append(portfolio_text.strip())
+
+    lines += [
+        "",
+        "---",
+        "",
+        "## 流し点数計算ルール（永続ルール）",
+        "",
+        "```",
+        f"ワイド/馬連 流し(1軸×{NAGASHI_AITE}頭): {NAGASHI_AITE}通り = ¥{100*NAGASHI_AITE}以上",
+        f"三連複 流し (1軸×{NAGASHI_AITE}頭):     {NAGASHI_AITE*(NAGASHI_AITE-1)//2}通り = "
+        f"¥{100*NAGASHI_AITE*(NAGASHI_AITE-1)//2}以上",
+        "実投資額 = ¥100 × 購入点数 × 単位数",
+        "払戻: 的中コンボのみ払戻 / 非的中コンボは-¥100×単位数 の損失",
+        "流動性チェック: 残予算 < ¥100×点数 の場合はスキップ",
+        "```",
+    ]
+
+    strategy_path.write_text("\n".join(lines), encoding="utf-8")
+    logger.info("ポートフォリオ戦略保存: %s", strategy_path)
 
 
 # ── メイン ─────────────────────────────────────────────────────────────────────
@@ -778,7 +943,7 @@ def main() -> None:
     print(portfolio_text)
 
     logger.info("Step 5: 結果保存...")
-    save_results(summary_df, cv_auc)
+    save_results(summary_df, cv_auc, portfolio_text)
 
     conn.close()
     logger.info("=== バックテスト完了 ===")
