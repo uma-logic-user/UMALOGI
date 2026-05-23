@@ -45,7 +45,7 @@ TEST_FROM  = "2026-01-01"
 TEST_TO    = "2026-05-23"
 
 # ── 資金管理 ──────────────────────────────────────────────────────────────────
-INITIAL_BANKROLL     = 50_000.0
+INITIAL_BANKROLL     = 10_000.0
 KELLY_FRACTION       = 0.05          # 1/20 Kelly
 MAX_RACE_BUDGET_RATE = 0.10          # 1レース最大 bankroll × 10%（相対上限）
 MAX_BET_RATE         = 0.03          # 1ベット最大 bankroll × 3%（相対上限）
@@ -230,7 +230,12 @@ def build_race_df(
     race_id: str,
     race_date: str,
     include_rank: bool = False,
+    test_mode: bool = False,
 ) -> pd.DataFrame | None:
+    """
+    test_mode=True: rank フィルタなしで全出走馬を含める（データリーク防止）。
+    test_mode=False (train時): rank IS NOT NULL AND rank > 0 で確定着順馬のみ。
+    """
     race_row = conn.execute(
         "SELECT distance, surface, venue, condition FROM races WHERE race_id = ?",
         (race_id,),
@@ -239,27 +244,74 @@ def build_race_df(
         return None
     distance, surface, venue, condition = race_row
 
-    rr_rows = conn.execute(
-        """
-        SELECT rr.horse_id, rr.horse_name, rr.rank,
-               rr.weight_carried, rr.horse_weight, rr.horse_weight_diff,
-               rr.gate_number, rr.horse_number,
-               rr.sex_age, rr.jockey, rr.trainer,
-               h.sire
-        FROM race_results rr
-        LEFT JOIN horses h ON h.horse_id = rr.horse_id
-        WHERE rr.race_id = ?
-          AND rr.rank IS NOT NULL AND rr.rank > 0
-        ORDER BY rr.horse_number
-        """,
-        (race_id,),
-    ).fetchall()
+    # test_mode 時は rank フィルタを外す（entries テーブルがあれば優先使用）
+    if test_mode:
+        # entries テーブルから出走馬一覧を取得（JVLink/netkeiba で事前取得済み）
+        entry_rows = conn.execute(
+            """
+            SELECT e.horse_id, e.horse_name, NULL AS rank,
+                   e.weight_carried, NULL AS horse_weight, NULL AS horse_weight_diff,
+                   e.gate_number, e.horse_number,
+                   e.sex_age, e.jockey, e.trainer,
+                   h.sire
+            FROM entries e
+            LEFT JOIN horses h ON h.horse_id = e.horse_id
+            WHERE e.race_id = ?
+            ORDER BY e.horse_number
+            """,
+            (race_id,),
+        ).fetchall()
+
+        if len(entry_rows) >= 2:
+            # entries にデータあり → entries ベースで特徴量構築、rank は race_results から補完
+            rank_map: dict[int, int] = {}
+            for rr in conn.execute(
+                "SELECT horse_number, rank FROM race_results WHERE race_id = ? AND rank IS NOT NULL AND rank > 0",
+                (race_id,),
+            ).fetchall():
+                rank_map[int(rr[0])] = int(rr[1])
+            rr_rows = entry_rows
+            rank_source = rank_map
+        else:
+            # entries にデータなし → race_results から全馬取得（rank NULL も含む）
+            rr_rows = conn.execute(
+                """
+                SELECT rr.horse_id, rr.horse_name, rr.rank,
+                       rr.weight_carried, rr.horse_weight, rr.horse_weight_diff,
+                       rr.gate_number, rr.horse_number,
+                       rr.sex_age, rr.jockey, rr.trainer,
+                       h.sire
+                FROM race_results rr
+                LEFT JOIN horses h ON h.horse_id = rr.horse_id
+                WHERE rr.race_id = ?
+                ORDER BY rr.horse_number
+                """,
+                (race_id,),
+            ).fetchall()
+            rank_source = None
+    else:
+        rr_rows = conn.execute(
+            """
+            SELECT rr.horse_id, rr.horse_name, rr.rank,
+                   rr.weight_carried, rr.horse_weight, rr.horse_weight_diff,
+                   rr.gate_number, rr.horse_number,
+                   rr.sex_age, rr.jockey, rr.trainer,
+                   h.sire
+            FROM race_results rr
+            LEFT JOIN horses h ON h.horse_id = rr.horse_id
+            WHERE rr.race_id = ?
+              AND rr.rank IS NOT NULL AND rr.rank > 0
+            ORDER BY rr.horse_number
+            """,
+            (race_id,),
+        ).fetchall()
+        rank_source = None
 
     if len(rr_rows) < 2:
         return None
 
     records = []
-    for (horse_id, horse_name, rank,
+    for (horse_id, horse_name, raw_rank,
          weight_carried, horse_weight, hw_diff,
          gate_number, horse_number,
          sex_age, jockey, trainer, sire) in rr_rows:
@@ -267,13 +319,21 @@ def build_race_df(
         stats   = _horse_stats(conn, horse_id or "", race_date, surface, distance)
         sex_str = (sex_age or "")[:1]
 
+        # rank の決定: rank_source (entries 経由) > raw_rank > 99
+        if rank_source is not None:
+            rank = rank_source.get(int(horse_number or 0), 99)
+        elif raw_rank is not None and int(raw_rank) > 0:
+            rank = int(raw_rank)
+        else:
+            rank = 99  # 未確定・競走中止等
+
         records.append({
             "race_id":          race_id,
             "race_date":        race_date,
             "horse_id":         horse_id or "",
             "horse_name":       horse_name or "",
             "horse_number":     int(horse_number or 0),
-            "rank":             int(rank),
+            "rank":             rank,
             "weight_carried":   float(weight_carried or 55.0),
             "horse_weight":     float(horse_weight or 480.0),
             "horse_weight_diff": float(hw_diff or 0.0),
@@ -483,6 +543,9 @@ def kelly_bet(
     abs_cap      = float(MAX_BET_ABS)
     bet_size     = min(bankroll * effective_kelly, relative_cap, abs_cap, race_budget_remaining)
     if bet_size < MIN_BET:
+        # 小残高フェーズでも正EV かつ予算がある場合は最小ベット(¥100)を保証
+        if kelly_full > 0 and race_budget_remaining >= MIN_BET:
+            return float(MIN_BET)
         return 0.0
     return float(int(bet_size / 100) * 100)
 
@@ -614,7 +677,8 @@ def run_simulation(
     bet_races = 0
 
     for idx, (race_id, race_date) in enumerate(race_list):
-        race_df_raw = build_race_df(conn, race_id, race_date, include_rank=True)
+        # test_mode=True: rank フィルタなし（データリーク防止）、include_rank=True で払戻照合用に保持
+        race_df_raw = build_race_df(conn, race_id, race_date, include_rank=True, test_mode=True)
         if race_df_raw is None or len(race_df_raw) < 2:
             skipped += 1
             continue
