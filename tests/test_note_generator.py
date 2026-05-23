@@ -216,7 +216,6 @@ class TestBuildBetSummary:
             "honmei_preds": [],
             "manji_preds": manji_preds,
             "alpha_preds": [],
-            "oracle_preds": [],
             "manji_ev": max(
                 (p["expected_value"] or 0 for p in manji_preds if p["bet_type"] == "複勝"),
                 default=0.0,
@@ -243,7 +242,6 @@ class TestBuildBetSummary:
     def test_no_signal_returns_note(self) -> None:
         sc = self._make_sc([])
         sc["honmei_preds"] = []
-        sc["oracle_preds"] = []
         sc["alpha_preds"] = []
         sc["manji_ev"] = 0.0
         sc["alpha_ev"] = 0.0
@@ -279,12 +277,11 @@ class TestScoreRace:
         _insert_race(conn, "CON", "2026-05-01")
         _insert_pred(conn, "CON", "Alpha-Payout(直前)", "単勝", 0.7, 1.5, [[5]])
         _insert_pred(conn, "CON", "卍(直前)", "複勝", 0.8, 1.2, [[5], [6]])
-        _insert_pred(conn, "CON", "Oracle(直前)", "三連複", 0.9, 2.0, [[5, 6, 7]])
         _insert_pred(conn, "CON", "本命(直前)", "単勝", 0.95, 1.1, [[5]])
         conn.commit()
 
         result = ng._score_race(conn, "CON")
-        assert result["consensus"] == 4
+        assert result["consensus"] == 3
 
 
 # ── select_recommended_races ─────────────────────────────────────────

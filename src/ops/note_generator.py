@@ -1,7 +1,7 @@
 """
 note 予想記事生成エンジン
 
-本日の全レースを4モデル（本命・卍・Oracle・ALPHA）の合意スコアで採点し、
+本日の全レースを3モデル（本命・卍・ALPHA）の合意スコアで採点し、
 「本日のおすすめ厳選レース」3〜5本を自動抽出。
 各レースの買い目・根拠・馬プロファイルを網羅した記事 Markdown を生成する。
 
@@ -48,10 +48,9 @@ _START_TIMES: dict[int, str] = {
 }
 
 # 採点の重み
-_W_ALPHA  = 3.0
-_W_MANJI  = 2.0
-_W_ORACLE = 1.0
-_W_HONMEI = 0.5
+_W_ALPHA     = 3.0
+_W_MANJI     = 2.0
+_W_HONMEI    = 0.5
 _W_CONSENSUS = 2.5   # 複数モデル同意ボーナスの単価
 
 # EV しきい値（卍推奨条件）
@@ -167,50 +166,44 @@ def _fetch_honmei_scores(
 
 def _score_race(conn: sqlite3.Connection, race_id: str) -> dict[str, Any]:
     """
-    4モデルの合意スコアでレースを採点する。
+    3モデルの合意スコアでレースを採点する。
 
     Returns:
         {
-            "race_id":        str,
-            "score":          float,   # 総合スコア
-            "alpha_ev":       float,   # Alpha-Payout 最大 EV (0 = シグナルなし)
-            "manji_ev":       float,   # 卍 複勝 最大 EV
-            "oracle_count":   int,     # Oracle 買い目数
-            "honmei_conf":    float,   # 本命 最高 confidence
-            "consensus":      int,     # EV≥1.0 のモデル数
-            "alpha_preds":    list,
-            "manji_preds":    list,
-            "oracle_preds":   list,
-            "honmei_preds":   list,
+            "race_id":     str,
+            "score":       float,   # 総合スコア
+            "alpha_ev":    float,   # Alpha-Payout 最大 EV (0 = シグナルなし)
+            "manji_ev":    float,   # 卍 複勝 最大 EV
+            "honmei_conf": float,   # 本命 最高 confidence
+            "consensus":   int,     # EV≥1.0 のモデル数
+            "alpha_preds": list,
+            "manji_preds": list,
+            "honmei_preds": list,
         }
     """
     alpha_preds  = _fetch_preds_for_race(conn, race_id, "Alpha-Payout%")
     manji_preds  = _fetch_preds_for_race(conn, race_id, "卍%")
-    oracle_preds = _fetch_preds_for_race(conn, race_id, "Oracle%")
     honmei_preds = _fetch_honmei_scores(conn, race_id)
 
-    alpha_ev    = max((p["expected_value"] or 0.0 for p in alpha_preds),  default=0.0)
-    manji_ev    = max(
+    alpha_ev   = max((p["expected_value"] or 0.0 for p in alpha_preds),  default=0.0)
+    manji_ev   = max(
         (p["expected_value"] or 0.0 for p in manji_preds if p["bet_type"] == "複勝"),
         default=0.0,
     )
-    oracle_count = len(oracle_preds)
-    honmei_conf  = max((p["confidence"] or 0.0 for p in honmei_preds), default=0.0)
+    honmei_conf = max((p["confidence"] or 0.0 for p in honmei_preds), default=0.0)
 
     # 合意ボーナス: EV≥1.0 のモデル数
     consensus = sum([
-        alpha_ev  >= 1.0,
-        manji_ev  >= 1.0,
-        oracle_count >= 1,
+        alpha_ev   >= 1.0,
+        manji_ev   >= 1.0,
         honmei_conf >= 0.5,
     ])
 
     score = (
-        alpha_ev  * _W_ALPHA
-        + manji_ev  * _W_MANJI
-        + oracle_count * _W_ORACLE
+        alpha_ev   * _W_ALPHA
+        + manji_ev   * _W_MANJI
         + honmei_conf * _W_HONMEI
-        + consensus * _W_CONSENSUS
+        + consensus  * _W_CONSENSUS
     )
 
     return {
@@ -218,12 +211,10 @@ def _score_race(conn: sqlite3.Connection, race_id: str) -> dict[str, Any]:
         "score":        round(score, 3),
         "alpha_ev":     round(alpha_ev,    3),
         "manji_ev":     round(manji_ev,    3),
-        "oracle_count": oracle_count,
         "honmei_conf":  round(honmei_conf, 3),
         "consensus":    consensus,
         "alpha_preds":  alpha_preds,
         "manji_preds":  manji_preds,
-        "oracle_preds": oracle_preds,
         "honmei_preds": honmei_preds,
     }
 
@@ -401,23 +392,6 @@ def _build_race_section(
                 lines.append(f"- **{bt}**: {cmb}  `{ev_str}`")
         lines.append("")
 
-    # Oracle モデル
-    oracle = sc["oracle_preds"]
-    if oracle:
-        lines.append("**🔮 Oracle（オラクル）モデル** — 高配当組み合わせ")
-        shown_oracle: set[str] = set()
-        for p in oracle:
-            bt  = p["bet_type"]
-            if bt in shown_oracle:
-                continue
-            shown_oracle.add(bt)
-            ev  = p.get("expected_value") or 0.0
-            cmb = _fmt_combo(p["combos"], bt, max_show=6)
-            lines.append(f"- **{bt}**: {cmb}  `EV={ev:.2f}`")
-            if len(shown_oracle) >= 3:
-                break
-        lines.append("")
-
     # ALPHA モデル
     alpha = sc["alpha_preds"]
     if alpha:
@@ -514,19 +488,14 @@ def _build_bet_summary(
             lines.append(f"{order}. **馬連**: {cmb}  `EV={umaren_ev:.2f}` ← 卍モデル推奨")
             order += 1
 
-    # ⑤ 三連複（Oracle or ALPHA）
-    oracle_tri = next(
-        (p for p in sc["oracle_preds"] if p["bet_type"] == "三連複"), None
-    )
+    # ⑤ 三連複（ALPHA）
     alpha_tri = next(
         (p for p in sc["alpha_preds"] if p["bet_type"] == "三連複"), None
     )
-    tri = oracle_tri or alpha_tri
-    if tri:
-        src = "Oracle" if oracle_tri else "ALPHA"
-        ev  = tri.get("expected_value", 0)
-        cmb = _fmt_combo(tri["combos"], "三連複", max_show=6)
-        lines.append(f"{order}. **三連複**: {cmb}  `EV={ev:.2f}` ← {src}モデル推奨")
+    if alpha_tri:
+        ev  = alpha_tri.get("expected_value", 0)
+        cmb = _fmt_combo(alpha_tri["combos"], "三連複", max_show=6)
+        lines.append(f"{order}. **三連複**: {cmb}  `EV={ev:.2f}` ← ALPHAモデル推奨")
         order += 1
 
     if not lines:
@@ -590,7 +559,7 @@ def _build_header(date_str: str, n_races: int) -> list[str]:
         f"> **{disp}開催分**　厳選 {n_races} レース　by UMALOGI AI予測システム",
         "",
         (
-            "本命・卍（まんじ）・Oracle・ALPHAの**4つのAIモデルが合意したレース**のみを厳選しました。  \n"
+            "本命・卍（まんじ）・ALPHAの**3つのAIモデルが合意したレース**のみを厳選しました。  \n"
             "期待値（EV）ベースの買い目と根拠を丁寧に解説しています。"
         ),
         "",

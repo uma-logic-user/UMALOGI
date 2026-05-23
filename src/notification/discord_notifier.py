@@ -310,13 +310,11 @@ class DiscordNotifier(BaseNotifier):
 
     def notify_prerace_result(
         self,
-        race_id:        str,
-        honmei_bets:    object,
-        manji_bets:     object,
-        oracle_bets:    object | None = None,
-        hit_focus_bets: object | None = None,
-        alpha_bets:     object | None = None,
-        dashboard_url:  str = "",
+        race_id:       str,
+        honmei_bets:   object,
+        manji_bets:    object,
+        alpha_bets:    object | None = None,
+        dashboard_url: str = "",
     ) -> None:
         """
         直前予想を「🟦 ALPHA / 🟩 卍 / 🟥 本命」の3セクション分離 Embed で送信する。
@@ -332,7 +330,7 @@ class DiscordNotifier(BaseNotifier):
 
         # ── 全モデル最大EV と投資合計を集計 ────────────────────────────────
         all_bets_flat: list[object] = []
-        for rb in [alpha_bets, manji_bets, honmei_bets, oracle_bets, hit_focus_bets]:
+        for rb in [alpha_bets, manji_bets, honmei_bets]:
             if rb is not None:
                 all_bets_flat.extend(getattr(rb, "bets", []))
 
@@ -358,11 +356,6 @@ class DiscordNotifier(BaseNotifier):
             ("🟩", "卍 予想  (回収率特化)",      manji_bets,    3),
             ("🟥", "本命 予想  (勝率特化)",      honmei_bets,   3),
         ]
-        if oracle_bets is not None and getattr(oracle_bets, "bets", []):
-            sections.append(("🟨", "Oracle 予想", oracle_bets, 2))
-        if hit_focus_bets is not None and getattr(hit_focus_bets, "bets", []):
-            sections.append(("🔶", "HitFocus 予想", hit_focus_bets, 2))
-
         fields: list[dict[str, Any]] = []
 
         for icon, section_label, rb, max_bets in sections:

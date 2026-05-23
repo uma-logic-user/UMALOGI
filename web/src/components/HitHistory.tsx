@@ -131,7 +131,7 @@ export default function HitHistory({ predictions }: Props) {
   }
 
   return (
-    <div className="p-4 space-y-4 max-w-[1400px]">
+    <div className="p-4 space-y-4 w-full min-w-0">
 
       {/* ── ヘッダー ──────────────────────────────────────── */}
       <div className="flex items-center gap-3 flex-wrap">
@@ -209,25 +209,38 @@ export default function HitHistory({ predictions }: Props) {
 
         {/* モデルフィルター */}
         <div className="flex gap-1.5 flex-wrap">
-          {['all', '卍', '本命', 'Oracle', 'Alpha'].map(m => (
+          {[
+            { key: 'all',   label: '全モデル', cyan: false },
+            { key: '卍',    label: '⚡卍 (全)',  cyan: true  },
+            { key: '卍V2',  label: '⚡卍V2',     cyan: true  },
+            { key: '本命',  label: '🎯本命 (全)', cyan: false },
+            { key: '本命V2',label: '🎯本命V2',   cyan: false },
+            { key: 'Alpha', label: 'Alpha',      cyan: false },
+          ].map(({ key, label, cyan }) => (
             <button
-              key={m}
-              onClick={() => setModelFilter(m)}
+              key={key}
+              onClick={() => setModelFilter(key)}
               className="px-2 py-1 sm:px-3 sm:py-1.5 rounded text-xs font-semibold transition-all"
               style={{
-                background: modelFilter === m ? 'rgba(0,200,255,0.12)' : 'rgba(0,200,255,0.03)',
-                color: modelFilter === m ? 'var(--neon-cyan)' : 'var(--text-muted)',
-                border: `1px solid ${modelFilter === m ? 'rgba(0,200,255,0.3)' : 'rgba(0,200,255,0.08)'}`,
+                background: modelFilter === key
+                  ? (cyan ? 'rgba(0,200,255,0.12)' : 'rgba(255,215,0,0.10)')
+                  : 'rgba(0,200,255,0.03)',
+                color: modelFilter === key
+                  ? (cyan ? 'var(--neon-cyan)' : 'var(--neon-gold)')
+                  : 'var(--text-muted)',
+                border: `1px solid ${modelFilter === key
+                  ? (cyan ? 'rgba(0,200,255,0.3)' : 'rgba(255,215,0,0.3)')
+                  : 'rgba(0,200,255,0.08)'}`,
               }}
             >
-              {m === 'all' ? '全モデル' : m}
+              {label}
             </button>
           ))}
         </div>
       </div>
 
       {/* ── テーブル ────────────────────────────────────── */}
-      <div className="neon-card overflow-hidden">
+      <div className="neon-card">
         <div className="px-4 py-3 border-b border-[rgba(0,200,255,0.12)] flex items-center justify-between">
           <span className="text-sm neon-text-gold tracking-[0.2em] font-semibold">
             HIT RECORDS — {sorted.length} 件
@@ -236,17 +249,17 @@ export default function HitHistory({ predictions }: Props) {
             合計払戻 ¥{Math.round(filtered.reduce((s, p) => s + (p.payout ?? 0), 0)).toLocaleString()}
           </span>
         </div>
-        <div className="table-scroll">
-          <table className="race-table w-full">
+        <div className="w-full overflow-x-auto" style={{ WebkitOverflowScrolling: 'touch' }}>
+          <table className="race-table" style={{ minWidth: '700px', width: '100%' }}>
             <thead>
               <tr>
                 <SortTh col="date"   label="日付" />
-                <th className="text-left">会場 · R</th>
-                <th className="text-left">レース名</th>
-                <th className="text-left">モデル</th>
-                <th className="text-left">券種</th>
-                <th className="text-left">予想馬</th>
-                <th className="text-right">投資</th>
+                <th className="text-left whitespace-nowrap">会場 · R</th>
+                <th className="text-left whitespace-nowrap">レース名</th>
+                <th className="text-left whitespace-nowrap">モデル</th>
+                <th className="text-left whitespace-nowrap">券種</th>
+                <th className="text-left whitespace-nowrap">予想馬</th>
+                <th className="text-right whitespace-nowrap">投資</th>
                 <SortTh col="payout" label="払戻" />
                 <SortTh col="roi"    label="ROI" />
               </tr>

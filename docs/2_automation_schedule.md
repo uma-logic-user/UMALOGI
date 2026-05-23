@@ -4,6 +4,7 @@
 
 | 日付 | 変更内容 |
 |------|---------|
+| 2026-05-23 | Oracle/HitFocus廃止: `prerace_pipeline()`からOracle/HitFocus生成呼び出し削除。`_save_predictions()`のOracle/HitFocusブロック削除。`notify_prerace_result()`のoracle_bets/hit_focus_bets引数削除。note_generatorを3モデル（本命・卍・ALPHA）合意スコアに変更。テスト573件PASS。影響: src/pipeline/prediction.py, src/notification/discord_notifier.py, src/notification/router.py, src/ops/note_generator.py |
 | 2026-05-23 | note記事完全自動化ルーティン確立: `job_note_daily_article()` を scheduler.py に追加（土日 10:30）。Step1=記事生成(`note_generator.generate()`) → Step2=Discord note_draftチャンネルへ全文転送 → Step3=Discord systemチャンネルへ厳選レースEmbed送信 → Step4=`NOTE_DRAFT_AUTO_POST=1` かつ `.note_session.json` 存在時のみ `note_draft_publisher.save_draft()` でPlaywright自動保存。リカバリー窓3時間。CLI: `py scripts/scheduler.py --run-now note_article`。テスト15件PASS。影響: scripts/scheduler.py, .env(NOTE_DRAFT_AUTO_POST=0追加) |
 | 2026-05-23 | note当日予想記事生成エンジン新設: `src/ops/note_generator.py` を実装。4モデル合意スコアで当日レースを採点し上位3〜5本を厳選したMarkdown記事を自動生成。CLI: `py -m src.ops.note_generator --date YYYYMMDD` → `outputs/note/YYYYMMDD_recommendations.md`。影響: src/ops/note_generator.py(新規), outputs/note/(新規) |
 | 2026-05-21 | `generate_ab_report.py` に `_send_summary_to_discord(v1, v2, days)` 実装: ROI・純利益・勝者バッジを Discord Embed として `DISCORD_WEBHOOK_AB_TEST` へプッシュ送信（Webhook未設定時スキップ・HTTP4xx/5xx・OSError は WARNING 止まりで例外伝播なし）。`main()` 内で `_summary_row()` を追加呼び出しし、全文レポート送信後にコンパクト Embed も連続送信。`TestSendSummaryToDiscord` 8件追加（mock `urlopen`）。全スイート 486 PASS。影響: `scripts/generate_ab_report.py`, `tests/scripts/test_ab_report.py` |

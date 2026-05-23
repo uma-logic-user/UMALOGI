@@ -231,8 +231,6 @@ class NotificationRouter:
         race_id: str,
         honmei_bets: object,
         manji_bets: object,
-        oracle_bets: object | None = None,
-        hit_focus_bets: object | None = None,
         alpha_bets: object | None = None,
         dashboard_url: str = "",
         predictions: dict | None = None,
@@ -247,8 +245,6 @@ class NotificationRouter:
         if pred:
             pred.notify_prerace_result(
                 race_id, honmei_bets, manji_bets,
-                oracle_bets=oracle_bets,
-                hit_focus_bets=hit_focus_bets,
                 alpha_bets=alpha_bets,
                 dashboard_url=dashboard_url,
             )
@@ -265,7 +261,7 @@ class NotificationRouter:
             return
 
         all_bets: list[object] = []
-        for rb in [alpha_bets, manji_bets, honmei_bets, oracle_bets, hit_focus_bets]:
+        for rb in [alpha_bets, manji_bets, honmei_bets]:
             if rb is not None:
                 all_bets.extend(getattr(rb, "bets", []))
 
