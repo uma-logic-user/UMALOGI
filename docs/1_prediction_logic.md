@@ -9,6 +9,7 @@
 | 2026-05-19 | 動的EV閾値（W-022完全対応）実装: `get_dynamic_ev_threshold()` を bet_generator.py に追加。直近28日ROIから自動で1.1/1.2/1.3/1.5を選択（好調/通常/低調/不調）。Kelly資金管理: `calc_qf_kelly_bet()` を追加し、notify_discord.py のQF推奨セクションに推奨ベット額・Kelly%・総資金比を表示。影響ファイル: src/ml/bet_generator.py / scripts/notify_discord.py |
 | 2026-05-23 | 【Discord通知完全リアル化】`DISCORD_WEBHOOK_HIT_FLASH` 環境変数を追加し的中速報を専用チャンネルへ分離。直前予想通知に購入単価×点数表示（`¥100×N点=¥XXX`）を追加。`_format_combo_card()` を馬番全表示版に刷新（省略撤廃・軸推奨スマート表記 `【推奨: 三連複流し 軸X - 相手A,B,C】`）。影響: `src/notification/discord_notifier.py` |
 | 2026-05-20 | EV>=1.5 の激熱レースを DISCORD_WEBHOOK_EV_ALERT チャンネルへ自動追加送信。NotificationRouter 導入（マルチWebhook 5チャンネル対応）。買い方テンプレート自動送信 (_format_buying_guide)。影響: src/notification/router.py, src/pipeline/prediction.py |
+| 2026-05-24 | NOTE記事生成に有料仕切りロジック追加: `_build_paywall_separator()` を新設し、1レース目（無料）終了後に `🔒 ここから先は有料エリアです` ブロックを自動挿入。`generate()` の rank==1 後に挿入。影響: `src/ops/note_generator.py` |
 | 2026-05-23 | Walk-Forward Backtest 2024-2025 実施: Train=2024-01〜05月 / Test=2025年全12ヶ月。5券種×EV閾値5段階=25パターン成績マトリクス生成（CV AUC=0.7494）。全パターンROI<80%（最高79.3%=単勝EV≥1.5）でランダム水準と判明。推奨ポートフォリオ方針（見送り・改善ロードマップ）を `.claudecode/rules/portfolio_strategy_2024_2025.md` に保存。影響ファイル: src/analysis/walk_forward_backtest_2024_2025.py |
 
 ---

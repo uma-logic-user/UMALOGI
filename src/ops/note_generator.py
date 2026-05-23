@@ -549,6 +549,31 @@ def _calc_rec_bet(ev: float) -> int:
 
 # ── 記事ドキュメント生成 ──────────────────────────────────────────
 
+def _build_paywall_separator() -> list[str]:
+    """1レース目（無料公開）と2レース目以降（有料）の仕切りブロックを生成する。
+
+    note の有料ライン機能は、記事本文中の「---」区切りで設定するのではなく
+    note エディタ上で「有料設定」を手動 or Playwright 経由で行う。
+    ここでは読者向けの視覚的な案内テキストとして仕切りを挿入する。
+    """
+    return [
+        "",
+        "---",
+        "",
+        "> ## 🔒 ここから先は有料エリアです",
+        ">",
+        "> **2レース目以降の詳細予想・買い目・根拠は有料コンテンツです。**  ",
+        "> 購入いただくとすべての厳選レースの AI 予想が閲覧できます。",
+        ">",
+        "> - 1レース目（↑上記）は無料でお読みいただけます",
+        "> - 2レース目以降：AI 合意スコア上位の厳選レース予想を公開",
+        "> - 買い目 / 根拠 / 馬プロファイルを完全収録",
+        "",
+        "---",
+        "",
+    ]
+
+
 def _build_header(date_str: str, n_races: int) -> list[str]:
     """記事の冒頭部分（note 記事トップ）を生成する。"""
     y, m, d = date_str[:4], date_str[4:6], date_str[6:]
@@ -562,6 +587,8 @@ def _build_header(date_str: str, n_races: int) -> list[str]:
             "本命・卍（まんじ）・ALPHAの**3つのAIモデルが合意したレース**のみを厳選しました。  \n"
             "期待値（EV）ベースの買い目と根拠を丁寧に解説しています。"
         ),
+        "",
+        "📖 **1レース目の詳細予想は無料公開。2レース目以降は有料エリアです。**",
         "",
         "---",
         "",
@@ -628,6 +655,9 @@ def generate(
 
         for rank, sc in enumerate(recommended, 1):
             lines += _build_race_section(conn, sc, rank)
+            # 1レース目（無料）と2レース目以降（有料）の仕切りを挿入
+            if rank == 1 and len(recommended) > 1:
+                lines += _build_paywall_separator()
 
         lines += _build_footer(ds)
         md = "\n".join(lines)
