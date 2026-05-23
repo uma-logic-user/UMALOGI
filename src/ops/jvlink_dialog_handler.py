@@ -26,6 +26,10 @@ import time
 logger = logging.getLogger(__name__)
 
 # ── ターゲットウィンドウタイトルパターン（小文字で前方一致・部分一致）─────────
+#
+# 【重要】"設定" / "更新" 等の広すぎるパターンは Chrome/Edge のタブタイトルにも一致する。
+# ブラウザウィンドウへの誤クリックを防ぐため、_EXCLUDED_WIN_CLASSES で除外すること。
+#
 _TARGET_TITLE_PATTERNS: tuple[str, ...] = (
     "jvlink",
     "jra-van",
@@ -46,6 +50,22 @@ _TARGET_TITLE_PATTERNS: tuple[str, ...] = (
     "競馬データ",
     "jvlink viewer",
 )
+
+# ── ブラウザ・UWP系ウィンドウのクラス名（小文字）— 誤操作防止で除外 ──────────
+#
+# これらのウィンドウクラスは Win32 ネイティブダイアログではなく、
+# JVLink と無関係のアプリ（ブラウザ・UWP）なので絶対に操作しない。
+#
+_EXCLUDED_WIN_CLASSES: frozenset[str] = frozenset({
+    "chrome_widgetwin_1",          # Google Chrome / Microsoft Edge (Chromium)
+    "chrome_widgetwin_0",          # Chrome / Edge サブウィンドウ
+    "mozillawindowclass",          # Mozilla Firefox メインウィンドウ
+    "mozilladialogclass",          # Firefox ダイアログ
+    "ieframe",                     # Internet Explorer / IE モード
+    "applicationframewindow",      # Windows 10/11 UWP ホスト
+    "windows.ui.core.corewindow",  # UWP コアウィンドウ
+    "msoswp",                      # Microsoft Office WebPane (IE内蔵)
+})
 
 # ── ボタンテキスト優先順（小文字で部分一致）───────────────────────────────────
 _BUTTON_PRIORITY: tuple[str, ...] = (
@@ -301,6 +321,20 @@ def _dismiss_dialog(hwnd: int, title: str) -> bool:
 
 # ── ウィンドウスキャン ────────────────────────────────────────────────────────
 
+def _is_browser_window(hwnd: int) -> bool:
+    """ウィンドウクラスがブラウザ / UWP系かどうかを判定する。
+
+    Chrome/Edge/Firefox 等のウィンドウは JVLink ダイアログではないため
+    タイトルがパターンに一致しても絶対に操作しない。
+    """
+    try:
+        import win32gui
+        cls = win32gui.GetClassName(hwnd).lower()
+        return cls in _EXCLUDED_WIN_CLASSES
+    except Exception:
+        return False  # クラス取得失敗 → 安全策として操作対象とみなす（従来動作）
+
+
 def _scan_windows() -> None:
     """可視トップレベルウィンドウを列挙してダイアログを検出・クリック。"""
     import win32gui
@@ -312,8 +346,15 @@ def _scan_windows() -> None:
             if not win32gui.IsWindowVisible(hwnd):
                 return True
             title = win32gui.GetWindowText(hwnd)
-            if title and _is_target_window(title):
-                found.append((hwnd, title))
+            if not title or not _is_target_window(title):
+                return True
+            # ブラウザ / UWP ウィンドウへの誤クリックを防ぐ
+            if _is_browser_window(hwnd):
+                logger.debug(
+                    "[DialogHandler] ブラウザ/UWPウィンドウをスキップ: title=%r", title
+                )
+                return True
+            found.append((hwnd, title))
         except Exception:
             pass
         return True

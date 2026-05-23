@@ -1157,10 +1157,16 @@ def _restart_target_jv(exe: Path) -> bool:
 
     try:
         logger.warning("[TARGETウォッチドッグ] TARGET JV が停止 → 再起動: %s", exe)
+        # SW_SHOWMINIMIZED: 最小化状態で起動 → フォーカス奪取・ブラウザ開きを抑制
+        # 認証が必要な場合はタスクバーアイコンが点滅するため手動確認は可能
+        _si = subprocess.STARTUPINFO()
+        _si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+        _si.wShowWindow = 2  # SW_SHOWMINIMIZED
         subprocess.Popen(
             [str(exe)],
             cwd=str(exe.parent),
             creationflags=subprocess.DETACHED_PROCESS | subprocess.CREATE_NEW_PROCESS_GROUP,
+            startupinfo=_si,
         )
         _TARGET_JV_RESTART_COUNT += 1
         logger.info(
