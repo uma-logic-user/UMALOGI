@@ -160,8 +160,29 @@ _scan_windows()
 
 ---
 
+## 全件監査結果（2026-05-23）
+
+プロジェクト全体の `JVLink` 呼び出しを網羅的にスキャンし、ハンドラーカバレッジを確認・修正した。
+
+| ファイル | 用途 | 修正前状態 | 修正後状態 |
+|---------|------|-----------|-----------|
+| `src/scraper/jravan_client.py:JVLinkClient._connect()` | 全JVLink呼び出しの共通経路 | ✅ 自動起動フック追加済み | ✅ 保護済み |
+| `scripts/scheduler.py:run_daemon()` | デーモン起動 | ✅ 明示的に `start_dialog_handler()` 呼び出し済み | ✅ 保護済み |
+| `scripts/fetch_race_result.py:main()` | レース結果取得 | ❌ ハンドラー未実装 | ✅ **修正済み** |
+| `scripts/today_auto_runner.py:main()` | 当日全レース監視 | ❌ ハンドラー未実装 | ✅ **修正済み** |
+| `scripts/import_historical.py:main()` | 歴史データ一括取得 | ❌ ハンドラー未実装 | ✅ **修正済み** |
+| `scripts/fetch_wood_history.py:main()` | WOOD調教データ取得 | ❌ ハンドラー未実装 | ✅ **修正済み** |
+| `scripts/test_jvlink_standalone.py:main()` | JVLink接続テスト | ❌ ハンドラー未実装 | ✅ **修正済み** |
+| `src/scraper/jvlink_force_worker.py` | サブプロセス強制取得 | ✅ JVLinkClient経由で保護 | ✅ 保護済み |
+| `scripts/reconstruct_missing.py` 等 | その他バッチ | ✅ JVLinkClient経由で保護 | ✅ 保護済み |
+
+**監査後テスト結果**: `py -m pytest tests/test_jvlink_dialog_handler.py` → **39件全件PASS**
+
+---
+
 ## 変更履歴
 
 | 日付 | 変更内容 |
 |------|---------|
 | 2026-05-23 | 初版作成: 2段階セットアップダイアログ自動突破実装（アプローチA）|
+| 2026-05-23 | 全件監査: 4スクリプトのmain()にstart_dialog_handler()追加（fetch_race_result/today_auto_runner/import_historical/fetch_wood_history/test_jvlink_standalone）|

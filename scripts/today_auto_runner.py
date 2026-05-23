@@ -907,6 +907,12 @@ def main() -> None:
                         ))
     args = parser.parse_args()
 
+    try:
+        from src.ops.jvlink_dialog_handler import start_dialog_handler
+        start_dialog_handler(interval=0.3)
+    except Exception:
+        pass
+
     fire_ahead   = datetime.timedelta(minutes=args.fire_ahead_min)
     result_after = datetime.timedelta(minutes=args.result_after_min)
     dry_run      = args.dry_run

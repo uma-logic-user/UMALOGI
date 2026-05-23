@@ -473,6 +473,12 @@ def main() -> None:
                         help="generate_data.py を実行しない")
     args = parser.parse_args()
 
+    try:
+        from src.ops.jvlink_dialog_handler import start_dialog_handler
+        start_dialog_handler(interval=0.3)
+    except Exception:
+        pass
+
     if args.race_id:
         ok = fetch_single_race(args.race_id, delay=args.delay)
         if ok and not args.no_dashboard:

@@ -44,6 +44,13 @@ def main() -> int:
         print("[FAIL] pywin32 が見つかりません。py -3.14-32 -m pip install pywin32")
         return 1
 
+    try:
+        from src.ops.jvlink_dialog_handler import start_dialog_handler
+        start_dialog_handler(interval=0.3)
+        print("[test] ダイアログハンドラー起動済み")
+    except Exception as _dh_exc:
+        print(f"[warn] ダイアログハンドラー起動スキップ: {_dh_exc}")
+
     print("[test] JV-Link COM オブジェクト生成中...")
     try:
         jvl = win32com.client.Dispatch("JVDTLab.JVLink.1")

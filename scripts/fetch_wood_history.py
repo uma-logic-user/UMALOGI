@@ -101,6 +101,12 @@ def main() -> None:
     )
     args = parser.parse_args()
 
+    try:
+        from src.ops.jvlink_dialog_handler import start_dialog_handler
+        start_dialog_handler(interval=0.3)
+    except Exception:
+        pass
+
     ok = fetch_with_retry(args.fromtime)
     sys.exit(0 if ok else 1)
 
