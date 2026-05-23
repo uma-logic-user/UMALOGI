@@ -62,6 +62,23 @@ _BUTTON_PRIORITY: tuple[str, ...] = (
     "close",
 )
 
+# ── BM_SETCHECK 定数（ラジオボタン選択用）────────────────────────────────────
+BM_SETCHECK: int = 0x00F1
+BST_CHECKED: int = 1
+
+# ── セットアップダイアログ判定パターン（小文字で部分一致）──────────────────
+_SETUP_TITLE_PATTERNS: tuple[str, ...] = ("セットアップ", "setup")
+
+# ── 「スタートキットを持っていない」ラジオボタン識別パターン（小文字部分一致）
+_NO_STARTKIT_PATTERNS: tuple[str, ...] = (
+    "持っていない",
+    "持ってない",
+    "スタートキット",
+    "cd/dvd",
+    "starterkit",
+    "starter kit",
+)
+
 # ── クールダウン（秒）: 同一 hwnd への再クリックを防ぐ ─────────────────────────
 _CLICK_COOLDOWN = 1.5
 
@@ -92,6 +109,59 @@ def _is_target_window(title: str) -> bool:
     """タイトルがダイアログ対象パターンに一致するか判定する。"""
     t = title.lower()
     return any(p in t for p in _TARGET_TITLE_PATTERNS)
+
+
+def _is_setup_dialog(title: str) -> bool:
+    """タイトルがセットアップダイアログかどうかを判定する。"""
+    t = title.lower()
+    return any(p in t for p in _SETUP_TITLE_PATTERNS)
+
+
+def _select_no_startkit_radio(hwnd: int) -> bool:
+    """
+    セットアップダイアログの「スタートキットを持っていない」ラジオボタンを
+    選択状態（BST_CHECKED）にする。
+
+    Returns:
+        True : ラジオボタンを見つけて選択完了
+        False: ラジオボタンが見つからなかった
+    """
+    import win32gui
+
+    found: list[int] = []
+
+    def _enum_cb(child_hwnd: int, _: object) -> bool:
+        try:
+            if win32gui.GetClassName(child_hwnd) != "Button":
+                return True
+            text = win32gui.GetWindowText(child_hwnd).lower()
+            for pat in _NO_STARTKIT_PATTERNS:
+                if pat in text:
+                    found.append(child_hwnd)
+                    return False  # 最初の一致で列挙終了
+        except Exception:
+            pass
+        return True
+
+    try:
+        win32gui.EnumChildWindows(hwnd, _enum_cb, None)
+    except Exception:
+        pass
+
+    if not found:
+        return False
+
+    radio_hwnd = found[0]
+    try:
+        win32gui.SendMessage(radio_hwnd, BM_SETCHECK, BST_CHECKED, 0)
+        btn_text = win32gui.GetWindowText(radio_hwnd)
+        logger.info(
+            "[DialogHandler] ✅ ラジオ選択完了: %r hwnd=%d", btn_text, radio_hwnd
+        )
+        return True
+    except Exception as exc:
+        logger.debug("[DialogHandler] BM_SETCHECK 失敗: %s", exc)
+        return False
 
 
 # ── ボタン検索 ────────────────────────────────────────────────────────────────
@@ -135,7 +205,11 @@ def _dismiss_dialog(hwnd: int, title: str) -> bool:
     """
     ダイアログを閉じる。成功したら True を返す。
 
-    試行順:
+    セットアップダイアログ（タイトルに「セットアップ」等を含む）の場合は2段階突破:
+      1. 「スタートキットを持っていない」ラジオボタンを BM_SETCHECK で選択
+      2. OK ボタンを BM_CLICK
+
+    通常ダイアログの試行順:
       1. 優先ボタンを見つけて BM_CLICK
       2. WM_COMMAND IDOK をポスト
       3. VK_RETURN キーイベントをポスト
@@ -164,6 +238,22 @@ def _dismiss_dialog(hwnd: int, title: str) -> bool:
 
     stats["click_attempts"] += 1
     _last_click[hwnd] = now
+
+    # ── セットアップダイアログ専用: 2段階突破 ──────────────────────────────
+    if _is_setup_dialog(title):
+        radio_ok = _select_no_startkit_radio(hwnd)
+        if radio_ok:
+            logger.info(
+                "[DialogHandler] セットアップダイアログ: ラジオ選択完了 hwnd=%d", hwnd
+            )
+        else:
+            logger.warning(
+                "[DialogHandler] セットアップダイアログ: ラジオボタン未検出 "
+                "title=%r hwnd=%d — OKのみクリックを試みます",
+                title,
+                hwnd,
+            )
+    # ───────────────────────────────────────────────────────────────────────
 
     # 方法 1: 優先ボタンを探して BM_CLICK
     button_hwnd = _find_best_button(hwnd)
@@ -308,3 +398,34 @@ def stop_dialog_handler() -> None:
     """ダイアログハンドラーを停止する（テスト・シャットダウン用）。"""
     global _running
     _running = False
+
+
+# ── Context Manager ───────────────────────────────────────────────────────────
+
+from contextlib import contextmanager
+from collections.abc import Iterator
+
+
+@contextmanager
+def jvlink_guard(interval: float = 0.3) -> Iterator[threading.Thread]:
+    """
+    JVLink ダイアログ自動突破ハンドラーを有効にする Context Manager。
+
+    スケジューラー経由でない実行文脈（バックテスト・シミュレーション・
+    直接実行スクリプト）で JVLink を使用する際にこれで包む。
+
+    Usage:
+        from src.ops.jvlink_dialog_handler import jvlink_guard
+
+        with jvlink_guard():
+            loader = JVDataLoader(sid=os.environ["JRAVAN_SID"])
+            stats  = loader.load("RACE", ...)
+
+    多重起動は安全（既存スレッドがあれば再利用する）。
+    daemon スレッドのためプロセス終了時に自動停止する。
+    """
+    thread = start_dialog_handler(interval=interval)
+    try:
+        yield thread
+    finally:
+        pass  # daemon スレッドはプロセス終了時に自動停止

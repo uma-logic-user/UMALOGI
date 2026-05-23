@@ -344,3 +344,167 @@ class TestStartStopHandler:
         finally:
             if saved is not None:
                 sys.modules["win32gui"] = saved
+
+
+# ── _is_setup_dialog ──────────────────────────────────────────────────────────
+
+class TestIsSetupDialog:
+    def test_katakana_setup_title(self) -> None:
+        mod = _fresh()
+        assert mod._is_setup_dialog("セットアップ") is True
+
+    def test_english_setup_title(self) -> None:
+        mod = _fresh()
+        assert mod._is_setup_dialog("Setup Wizard") is True
+
+    def test_jvlink_title_not_setup(self) -> None:
+        mod = _fresh()
+        assert mod._is_setup_dialog("JVLink 設定") is False
+
+    def test_empty_not_setup(self) -> None:
+        mod = _fresh()
+        assert mod._is_setup_dialog("") is False
+
+
+# ── _select_no_startkit_radio ─────────────────────────────────────────────────
+
+class TestSelectNoStartkitRadio:
+    def test_radio_found_by_持っていない(self) -> None:
+        mod = _fresh()
+        import win32gui
+
+        def _fake_enum(hwnd: int, cb, extra: object) -> None:
+            cb(200, None)
+
+        win32gui.EnumChildWindows.side_effect = _fake_enum
+        win32gui.GetClassName.return_value = "Button"
+        win32gui.GetWindowText.return_value = "スタートキット（CD/DVD-ROM）を持っていない"
+        win32gui.SendMessage.reset_mock()
+
+        result = mod._select_no_startkit_radio(999)
+        assert result is True
+        win32gui.SendMessage.assert_called_once_with(
+            200, mod.BM_SETCHECK, mod.BST_CHECKED, 0
+        )
+
+    def test_radio_found_by_スタートキット(self) -> None:
+        mod = _fresh()
+        import win32gui
+
+        def _fake_enum(hwnd: int, cb, extra: object) -> None:
+            cb(201, None)
+
+        win32gui.EnumChildWindows.side_effect = _fake_enum
+        win32gui.GetClassName.return_value = "Button"
+        win32gui.GetWindowText.return_value = "スタートキットを使用しない"
+        win32gui.SendMessage.reset_mock()
+
+        result = mod._select_no_startkit_radio(999)
+        assert result is True
+
+    def test_no_matching_radio_returns_false(self) -> None:
+        mod = _fresh()
+        import win32gui
+
+        def _fake_enum(hwnd: int, cb, extra: object) -> None:
+            cb(202, None)
+
+        win32gui.EnumChildWindows.side_effect = _fake_enum
+        win32gui.GetClassName.return_value = "Button"
+        win32gui.GetWindowText.return_value = "キャンセル"
+
+        result = mod._select_no_startkit_radio(999)
+        assert result is False
+
+    def test_non_button_class_ignored(self) -> None:
+        mod = _fresh()
+        import win32gui
+
+        def _fake_enum(hwnd: int, cb, extra: object) -> None:
+            cb(203, None)
+
+        win32gui.EnumChildWindows.side_effect = _fake_enum
+        win32gui.GetClassName.return_value = "Static"
+        win32gui.GetWindowText.return_value = "持っていない"
+        win32gui.SendMessage.reset_mock()
+
+        result = mod._select_no_startkit_radio(999)
+        assert result is False
+        win32gui.SendMessage.assert_not_called()
+
+    def test_enum_exception_returns_false(self) -> None:
+        mod = _fresh()
+        import win32gui
+        win32gui.EnumChildWindows.side_effect = OSError("access denied")
+
+        result = mod._select_no_startkit_radio(999)
+        assert result is False
+
+
+# ── _dismiss_dialog (セットアップ専用) ───────────────────────────────────────
+
+class TestDismissSetupDialog:
+    def test_setup_dialog_selects_radio_then_clicks_ok(self) -> None:
+        """セットアップダイアログはラジオ選択 → OK クリックの2段階で突破する。"""
+        mod = _fresh()
+        import win32gui, win32con
+
+        radio_selected: list[int] = []
+        ok_clicked: list[int] = []
+
+        def _fake_enum(hwnd: int, cb, extra: object) -> None:
+            cb(300, None)
+
+        win32gui.EnumChildWindows.side_effect = _fake_enum
+        win32gui.GetClassName.return_value = "Button"
+        win32gui.GetWindowText.return_value = "スタートキット（CD/DVD-ROM）を持っていない"
+
+        def _send_msg(h, msg, wp, lp):
+            if msg == mod.BM_SETCHECK:
+                radio_selected.append(h)
+            elif msg == win32con.BM_CLICK:
+                ok_clicked.append(h)
+
+        win32gui.SendMessage.side_effect = _send_msg
+
+        result = mod._dismiss_dialog(999, "セットアップ")
+        assert result is True
+        assert len(radio_selected) == 1, "ラジオボタンが選択されていない"
+        assert mod.stats["dialogs_dismissed"] == 1
+
+    def test_setup_dialog_no_radio_still_clicks_ok(self) -> None:
+        """ラジオボタンが見つからなくても OK クリックは試みる（フォールバック）。"""
+        mod = _fresh()
+        import win32api, win32gui
+
+        win32gui.EnumChildWindows.side_effect = lambda hwnd, cb, ex: None
+        win32api.PostMessage.reset_mock()
+
+        result = mod._dismiss_dialog(888, "セットアップ")
+        assert result is True  # WM_COMMAND IDOK で成功
+
+
+# ── jvlink_guard ──────────────────────────────────────────────────────────────
+
+class TestJvlinkGuard:
+    def test_guard_starts_handler(self) -> None:
+        """with jvlink_guard(): ブロック内でハンドラーが起動している。"""
+        mod = _fresh()
+        import win32gui
+        win32gui.EnumWindows.side_effect = lambda cb, ex: None
+
+        with mod.jvlink_guard(interval=0.05) as t:
+            assert isinstance(t, threading.Thread)
+            assert t.is_alive()
+        mod.stop_dialog_handler()
+
+    def test_guard_reentrant(self) -> None:
+        """入れ子の jvlink_guard() は同一スレッドを返す（多重起動しない）。"""
+        mod = _fresh()
+        import win32gui
+        win32gui.EnumWindows.side_effect = lambda cb, ex: None
+
+        with mod.jvlink_guard(interval=0.05) as t1:
+            with mod.jvlink_guard(interval=0.05) as t2:
+                assert t1 is t2
+        mod.stop_dialog_handler()
