@@ -4,6 +4,7 @@
 
 | 日付 | 変更内容 |
 |------|---------|
+| 2026-05-23 | `job_friday_sync` を土曜20:00にも追加（日曜暫定予想の取りこぼし修正）: `register_schedules()` に `schedule.every().saturday.at("20:00").do(job_friday_sync)` を追加。`_JOB_SCHEDULES["job_friday_sync"]` に `(5, 20, 0)` を追記。`docs/automation_schedule.md` を新規作成（Claude Codeへの絶対指示付き）。影響: `scripts/scheduler.py`, `docs/automation_schedule.md`(新規) |
 | 2026-05-23 | Oracle/HitFocus廃止: `prerace_pipeline()`からOracle/HitFocus生成呼び出し削除。`_save_predictions()`のOracle/HitFocusブロック削除。`notify_prerace_result()`のoracle_bets/hit_focus_bets引数削除。note_generatorを3モデル（本命・卍・ALPHA）合意スコアに変更。テスト573件PASS。影響: src/pipeline/prediction.py, src/notification/discord_notifier.py, src/notification/router.py, src/ops/note_generator.py |
 | 2026-05-23 | note記事完全自動化ルーティン確立: `job_note_daily_article()` を scheduler.py に追加（土日 10:30）。Step1=記事生成(`note_generator.generate()`) → Step2=Discord note_draftチャンネルへ全文転送 → Step3=Discord systemチャンネルへ厳選レースEmbed送信 → Step4=`NOTE_DRAFT_AUTO_POST=1` かつ `.note_session.json` 存在時のみ `note_draft_publisher.save_draft()` でPlaywright自動保存。リカバリー窓3時間。CLI: `py scripts/scheduler.py --run-now note_article`。テスト15件PASS。影響: scripts/scheduler.py, .env(NOTE_DRAFT_AUTO_POST=0追加) |
 | 2026-05-23 | note当日予想記事生成エンジン新設: `src/ops/note_generator.py` を実装。4モデル合意スコアで当日レースを採点し上位3〜5本を厳選したMarkdown記事を自動生成。CLI: `py -m src.ops.note_generator --date YYYYMMDD` → `outputs/note/YYYYMMDD_recommendations.md`。影響: src/ops/note_generator.py(新規), outputs/note/(新規) |

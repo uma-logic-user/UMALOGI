@@ -113,7 +113,7 @@ _CATCHUP_HOURS: dict[str, int] = {
 
 # 各ジョブのスケジュール定義 (weekday_int: 0=月…6=日, hour, minute)
 _JOB_SCHEDULES: dict[str, list[tuple[int, int, int]]] = {
-    "job_friday_sync":          [(4, 20,  0)],
+    "job_friday_sync":          [(4, 20,  0), (5, 20,  0)],  # 金曜20:00(→土曜予想) + 土曜20:00(→日曜予想)
     "job_morning_wood":         [(5,  7, 30), (6,  7, 30)],
     "job_weekend_batch_pre":    [(5,  7,  0), (6,  7,  0)],
     "job_today_auto_runner":    [(5,  8, 30), (6,  8, 30)],
@@ -1539,8 +1539,10 @@ def register_schedules() -> None:
     if not _SCHEDULE_AVAILABLE:
         raise RuntimeError("schedule ライブラリが必要です: pip install schedule")
 
-    # 金曜夜: JVLink同期(32bit) → 暫定予想(64bit) → Discord通知
+    # 金曜夜: JVLink同期(32bit) → 暫定予想(64bit) → Discord通知（土曜分）
     schedule.every().friday.at("20:00").do(job_friday_sync)
+    # 土曜夜: JVLink同期(32bit) → 暫定予想(64bit) → Discord通知（日曜分）
+    schedule.every().saturday.at("20:00").do(job_friday_sync)
 
     # 土日朝: 週末バッチ Pre（note下書き + Umanity暫定投稿 + X告知）
     schedule.every().saturday.at("07:00").do(job_weekend_batch_pre)
