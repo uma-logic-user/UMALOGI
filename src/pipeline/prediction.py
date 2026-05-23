@@ -659,6 +659,7 @@ def _prerace_pipeline_inner(
 
     # Step 5c: WIN5（直前のみ）
     if not provisional:
+        from src.pipeline.win5 import try_win5
         try_win5(conn, race_id)
 
     # Step 6: JSON 出力（V2 は {race_id}_v2.json に分離保存）

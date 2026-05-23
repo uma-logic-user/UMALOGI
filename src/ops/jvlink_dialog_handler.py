@@ -1,0 +1,310 @@
+"""
+JVLink ダイアログ自動突破ハンドラー
+
+Windows デスクトップに出現する JVLink / 設定 / セットアップ系ダイアログを
+0.3 秒間隔でスキャンし、OK・次へ・はい ボタンを自動クリックして消去する。
+
+scheduler.py の run_daemon() から daemon スレッドとして起動される。
+JVLink の GUI ブロックが発生しても、既存の 10 秒タイムアウト → netkeiba
+フォールバック経路と共存し、二重の安全網として機能する。
+
+動作フロー:
+  1. EnumWindows でトップレベルウィンドウを列挙
+  2. タイトルが _TARGET_TITLE_PATTERNS に一致するウィンドウを抽出
+  3. 子ウィンドウを EnumChildWindows で走査し優先ボタンを探す
+  4. 見つかれば BM_CLICK → なければ WM_COMMAND IDOK → なければ VK_RETURN
+  5. クリック後 1.5 秒のクールダウンで同一 hwnd への連打を防止
+  6. 3 秒経過後もウィンドウが残存する場合は「頑固なダイアログ」として警告ログ
+"""
+
+from __future__ import annotations
+
+import logging
+import threading
+import time
+
+logger = logging.getLogger(__name__)
+
+# ── ターゲットウィンドウタイトルパターン（小文字で前方一致・部分一致）─────────
+_TARGET_TITLE_PATTERNS: tuple[str, ...] = (
+    "jvlink",
+    "jra-van",
+    "jravan",
+    "jvdtlab",
+    "設定",
+    "セットアップ",
+    "setup",
+    "target frontier",
+    "targetfrontier",
+    "認証",
+    "ライセンス",
+    "license",
+    "使用許諾",
+    "更新",
+    "アップデート",
+    "update",
+    "競馬データ",
+    "jvlink viewer",
+)
+
+# ── ボタンテキスト優先順（小文字で部分一致）───────────────────────────────────
+_BUTTON_PRIORITY: tuple[str, ...] = (
+    "ok",
+    "はい",
+    "yes",
+    "次へ",
+    "next",
+    "続行",
+    "continue",
+    "完了",
+    "finish",
+    "閉じる",
+    "close",
+)
+
+# ── クールダウン（秒）: 同一 hwnd への再クリックを防ぐ ─────────────────────────
+_CLICK_COOLDOWN = 1.5
+
+# ── hwnd → 最終クリック monotonic 時刻 ─────────────────────────────────────────
+_last_click: dict[int, float] = {}
+
+# ── hwnd → 初回検出 monotonic 時刻（頑固ダイアログ検出用）─────────────────────
+_first_seen: dict[int, float] = {}
+
+# ── 頑固ダイアログ判定閾値（秒）────────────────────────────────────────────────
+_STUBBORN_THRESHOLD = 3.0
+
+# ── 統計カウンター ────────────────────────────────────────────────────────────
+stats: dict[str, int] = {
+    "dialogs_dismissed": 0,
+    "click_attempts":    0,
+    "stubborn_dialogs":  0,
+}
+
+# ── スレッド制御 ──────────────────────────────────────────────────────────────
+_running = False
+_thread: threading.Thread | None = None
+
+
+# ── ウィンドウ判定 ─────────────────────────────────────────────────────────────
+
+def _is_target_window(title: str) -> bool:
+    """タイトルがダイアログ対象パターンに一致するか判定する。"""
+    t = title.lower()
+    return any(p in t for p in _TARGET_TITLE_PATTERNS)
+
+
+# ── ボタン検索 ────────────────────────────────────────────────────────────────
+
+def _find_best_button(hwnd: int) -> int | None:
+    """
+    子ウィンドウ中から最優先ボタンの HWND を返す。
+    優先順は _BUTTON_PRIORITY の順。見つからなければ None。
+    """
+    import win32gui
+
+    candidates: list[tuple[int, int]] = []  # (child_hwnd, priority_index)
+
+    def _enum_cb(child_hwnd: int, _: object) -> bool:
+        try:
+            if win32gui.GetClassName(child_hwnd) != "Button":
+                return True
+            text = win32gui.GetWindowText(child_hwnd).strip().lower()
+            for i, pat in enumerate(_BUTTON_PRIORITY):
+                if pat in text:
+                    candidates.append((child_hwnd, i))
+                    break
+        except Exception:
+            pass
+        return True
+
+    try:
+        win32gui.EnumChildWindows(hwnd, _enum_cb, None)
+    except Exception:
+        pass
+
+    if not candidates:
+        return None
+    candidates.sort(key=lambda x: x[1])
+    return candidates[0][0]
+
+
+# ── ダイアログ閉じ処理 ────────────────────────────────────────────────────────
+
+def _dismiss_dialog(hwnd: int, title: str) -> bool:
+    """
+    ダイアログを閉じる。成功したら True を返す。
+
+    試行順:
+      1. 優先ボタンを見つけて BM_CLICK
+      2. WM_COMMAND IDOK をポスト
+      3. VK_RETURN キーイベントをポスト
+    """
+    import win32api
+    import win32con
+    import win32gui
+
+    now = time.monotonic()
+    if now - _last_click.get(hwnd, 0.0) < _CLICK_COOLDOWN:
+        return False
+
+    # 頑固ダイアログ検出
+    if hwnd not in _first_seen:
+        _first_seen[hwnd] = now
+    elif now - _first_seen[hwnd] >= _STUBBORN_THRESHOLD:
+        stats["stubborn_dialogs"] += 1
+        logger.warning(
+            "[DialogHandler] 頑固なダイアログ: %.1f 秒経過しても消えません "
+            "title=%r hwnd=%d — netkeiba フォールバックに期待",
+            now - _first_seen[hwnd],
+            title,
+            hwnd,
+        )
+        # 頑固でも諦めずに再クリックを試みる
+
+    stats["click_attempts"] += 1
+    _last_click[hwnd] = now
+
+    # 方法 1: 優先ボタンを探して BM_CLICK
+    button_hwnd = _find_best_button(hwnd)
+    if button_hwnd is not None:
+        try:
+            btn_text = win32gui.GetWindowText(button_hwnd)
+            win32gui.SendMessage(button_hwnd, win32con.BM_CLICK, 0, 0)
+            logger.info(
+                "[DialogHandler] ✅ BM_CLICK: title=%r button=%r hwnd=%d",
+                title, btn_text, hwnd,
+            )
+            stats["dialogs_dismissed"] += 1
+            _first_seen.pop(hwnd, None)
+            return True
+        except Exception as exc:
+            logger.debug("[DialogHandler] BM_CLICK 失敗: %s", exc)
+
+    # 方法 2: WM_COMMAND IDOK をポスト
+    try:
+        win32api.PostMessage(hwnd, win32con.WM_COMMAND, win32con.IDOK, 0)
+        logger.info(
+            "[DialogHandler] ✅ WM_COMMAND IDOK: title=%r hwnd=%d", title, hwnd
+        )
+        stats["dialogs_dismissed"] += 1
+        _first_seen.pop(hwnd, None)
+        return True
+    except Exception as exc:
+        logger.debug("[DialogHandler] WM_COMMAND IDOK 失敗: %s", exc)
+
+    # 方法 3: VK_RETURN キーをポスト
+    try:
+        win32api.PostMessage(hwnd, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
+        win32api.PostMessage(hwnd, win32con.WM_KEYUP,   win32con.VK_RETURN, 0)
+        logger.info(
+            "[DialogHandler] ✅ VK_RETURN: title=%r hwnd=%d", title, hwnd
+        )
+        stats["dialogs_dismissed"] += 1
+        _first_seen.pop(hwnd, None)
+        return True
+    except Exception as exc:
+        logger.debug("[DialogHandler] VK_RETURN 失敗: %s", exc)
+
+    return False
+
+
+# ── ウィンドウスキャン ────────────────────────────────────────────────────────
+
+def _scan_windows() -> None:
+    """可視トップレベルウィンドウを列挙してダイアログを検出・クリック。"""
+    import win32gui
+
+    found: list[tuple[int, str]] = []
+
+    def _callback(hwnd: int, _: object) -> bool:
+        try:
+            if not win32gui.IsWindowVisible(hwnd):
+                return True
+            title = win32gui.GetWindowText(hwnd)
+            if title and _is_target_window(title):
+                found.append((hwnd, title))
+        except Exception:
+            pass
+        return True
+
+    try:
+        win32gui.EnumWindows(_callback, None)
+    except Exception as exc:
+        logger.debug("[DialogHandler] EnumWindows 例外: %s", exc)
+        return
+
+    for hwnd, title in found:
+        _dismiss_dialog(hwnd, title)
+
+    # _last_click / _first_seen の定期クリーンアップ（無効 hwnd のメモリリーク防止）
+    # 10 分 = 600 秒以上前のエントリーを削除
+    cutoff = time.monotonic() - 600
+    stale = [h for h, t in _last_click.items() if t < cutoff]
+    for h in stale:
+        _last_click.pop(h, None)
+        _first_seen.pop(h, None)
+
+
+# ── メインループ ─────────────────────────────────────────────────────────────
+
+def _handler_loop(interval: float) -> None:
+    logger.info(
+        "[DialogHandler] 起動 — JVLink/設定ダイアログを %.1f 秒間隔で監視中",
+        interval,
+    )
+    while _running:
+        try:
+            _scan_windows()
+        except Exception as exc:
+            logger.debug("[DialogHandler] スキャン例外（続行）: %s", exc)
+        time.sleep(interval)
+    logger.info("[DialogHandler] 停止")
+
+
+# ── 公開 API ─────────────────────────────────────────────────────────────────
+
+def start_dialog_handler(interval: float = 0.3) -> threading.Thread:
+    """
+    ダイアログ自動突破ハンドラーをデーモンスレッドとして起動する。
+
+    pywin32 が未インストールの環境ではダミースレッドを返して何もしない。
+
+    Args:
+        interval: ウィンドウスキャン間隔（秒）。デフォルト 0.3 秒。
+
+    Returns:
+        起動した Thread オブジェクト。
+    """
+    global _running, _thread
+
+    try:
+        import win32gui  # noqa: F401
+    except ImportError:
+        logger.warning(
+            "[DialogHandler] pywin32 が未インストールです。ダイアログハンドラーを無効化します。"
+            " pip install pywin32 でインストールしてください。"
+        )
+        dummy = threading.Thread(target=lambda: None, daemon=True)
+        dummy.start()
+        return dummy
+
+    if _running and _thread is not None and _thread.is_alive():
+        logger.info("[DialogHandler] 既に稼働中です")
+        return _thread
+
+    _running = True
+    _thread = threading.Thread(
+        target=_handler_loop,
+        args=(interval,),
+        name="jvlink_dialog_handler",
+        daemon=True,
+    )
+    _thread.start()
+    return _thread
+
+
+def stop_dialog_handler() -> None:
+    """ダイアログハンドラーを停止する（テスト・シャットダウン用）。"""
+    global _running
+    _running = False

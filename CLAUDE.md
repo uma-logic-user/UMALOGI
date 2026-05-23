@@ -363,6 +363,47 @@ JVLink COM は CP932 バイト列を Pattern 1（各バイトを U+0000-U+00FF �
 
 ---
 
+### 17. JVLink ダイアログ自動突破ハンドラー（2026-05-23 策定）
+
+`scheduler.py` が起動すると、`src/ops/jvlink_dialog_handler.py` が **daemon スレッド** として自動起動し、
+JVLink / 設定 / セットアップ系ダイアログを **0.3 秒以内** に自動クリックして消去する。
+
+#### アーキテクチャ（三重安全網）
+
+```
+① COM フラグによるダイアログ生成抑制（_run_jvlink 内 SW_HIDE / CREATE_NO_WINDOW）
+     ↓ 抑制しきれなかった場合
+② JVLinkDialogHandler（scheduler daemon スレッド）
+   - 0.3 秒間隔で EnumWindows → タイトルパターン照合
+   - 検出したら BM_CLICK → WM_COMMAND IDOK → VK_RETURN の優先順で自動消去
+   - 同一 hwnd への連打防止クールダウン 1.5 秒
+   - 3 秒超残存で「頑固なダイアログ」として WARNING ログ
+     ↓ 3 秒超残存した場合
+③ _run_jvlink の 10 秒タイムアウト → Kill → netkeiba フォールバック
+```
+
+#### 検出ターゲットタイトルパターン
+
+`jvlink` / `jra-van` / `jravan` / `jvdtlab` / `設定` / `セットアップ` /
+`setup` / `target frontier` / `認証` / `ライセンス` / `license` / `使用許諾` /
+`更新` / `アップデート` / `update` / `競馬データ` / `jvlink viewer`
+
+#### ファイル
+
+| ファイル | 役割 |
+|---------|------|
+| `src/ops/jvlink_dialog_handler.py` | ハンドラー本体（`start_dialog_handler()` / `stop_dialog_handler()`） |
+| `scripts/scheduler.py:run_daemon()` | daemon スレッドとして起動（`start_dialog_handler(interval=0.3)`） |
+| `tests/test_jvlink_dialog_handler.py` | 26 件のユニットテスト（win32 stub 使用） |
+
+#### 注意事項
+
+- `pywin32` が必須。未インストール環境ではダミースレッドで無害スキップ。
+- **テスト用停止**: `from src.ops.jvlink_dialog_handler import stop_dialog_handler; stop_dialog_handler()` で停止可能。
+- ダイアログ消去統計は `src.ops.jvlink_dialog_handler.stats` dict で参照できる。
+
+---
+
 ### 16. 日本語エンコーディングの絶対遵守（2026-05-15 策定）
 
 > **あらゆる入力ソース（JRA-VAN / JVLink, netkeiba, X/Twitter, 外部 API 等）から**

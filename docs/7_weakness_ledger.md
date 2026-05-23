@@ -19,6 +19,9 @@
 | 2026-05-20 | Discord 通知ルーター新設 (NotificationRouter): EV激熱アラート・note下書き転送・ENABLE_PLAYWRIGHT_POST トグル・IS_PREMIUM_NOTE 有料/無料出し分け・買い方テンプレート自動生成・2カ年バックテストシミュレーター・万馬券特化報告スクリプト実装。影響: src/notification/router.py, src/pipeline/prediction.py, scripts/post_weekly_note_draft.py, scripts/generate_weekly_note.py, scripts/run_2year_backtest.py, scripts/generate_result_note_draft.py |
 | 2026-05-20 | EV 特化特徴量エンジン Phase 1 実装（71 テスト全 PASS）: JRATakeoutRates（控除率クラス定数）・Shin 1993 真確率推定・Harville 法・オッズ異常検知・np.cumprod Kelly バンクロールシミュレーター・Sharpe/MDD・グリッドサーチ・READ ONLY DB 監査スクリプト。W-029 (DB インデックス最適化) を Phase 2 として計上、承認待ち。|
 | 2026-05-21 | 【W-031 完了】V1 vs V2 A/B テスト週次レポート自動化: `generate_ab_report.py` 完全実装（`build_ab_report()` Markdown生成 + `_send_summary_to_discord()` Embed プッシュ送信）。`scheduler.py` 日曜18:00 自動配信・取りこぼし4時間窓。エラーハンドリング: HTTPError/OSError は WARNING ログ止まり・例外伝播なし。テスト17件 PASS。W-024 を 🟡 対応中 に昇格（週次 ROI レポートが監視要件を部分充足）。実測: V1 ROI=64.1%/純利益 ¥-2,300,518 / V2=0件（V2稼働前）|
+| 2026-05-23 | 【W-032 新規登録】スケジューラークロスデイ回収バグ: `_recover_missed_jobs()` が当日曜日のジョブしか確認しないため、前日のジョブ（job_friday_sync の 16h 窓など）が土曜朝起動時に完全スキップされる脆弱性。`day_delta in (0, -1)` ループで前日チェックを追加し修正済み（2026-05-23完了）。影響: scripts/scheduler.py |
+| 2026-05-23 | 【note完全自動化ルーティン完成・W-033 新規登録→即完了】`job_note_daily_article()` を scheduler.py に追加（土日10:30）。4ステップ自動実行（記事生成→Discord転送→Embed送信→note.com下書き）。`NOTE_DRAFT_AUTO_POST=0`（デフォルト）でPlaywright未起動でも安全完走。`NOTE_DRAFT_AUTO_POST=1` + `.note_session.json` 存在時のみ Playwright 自動保存。テスト15件PASS / 全560件GREEN。影響: scripts/scheduler.py, tests/test_scheduler_note_article.py(新規), .env(NOTE_DRAFT_AUTO_POST=0追加) |
+| 2026-05-23 | 【W-017 強化完了】JVLink ダイアログ自動突破ハンドラー新設: `src/ops/jvlink_dialog_handler.py` — 0.3 秒間隔でデスクトップ全ウィンドウをスキャンし、JVLink/設定/セットアップ系ダイアログを BM_CLICK → WM_COMMAND IDOK → VK_RETURN の 3 段階で 0.5 秒以内に自動消去。`scheduler.py` の `run_daemon()` に daemon スレッドとして組み込み。既存の 10 秒タイムアウト → netkeiba fallback と共存する二重安全網を構築。頑固ダイアログ（3 秒超）は WARNING ログ + fallback に委譲。テスト 26 件 PASS（全 512 件 GREEN）。影響: src/ops/jvlink_dialog_handler.py, scripts/scheduler.py |
 | 2026-05-21 | 【Week1-4 商用化ロードマップ完全完了 + 本番環境ロック確定】① W-029 完了: DB 複合インデックス 6 件 (migration #15) 適用。idx_pred_model_ev/idx_pred_race_model/idx_tc_horse_date/idx_hc_horse_date/idx_rr_horse_race/idx_pr_pred_hit。② W-030 完了: EV 特化特徴量 7 本を features.py へ統合・try/except ガード付き安全実装。③ 69 FEATURE_COLS 全モデル完全再訓練: HonmeiModel CV AUC=**0.7677** (特徴量重要度 Top3: uf_rank_trend/uf_jockey_win_rate/u_score) / PlaceModel AUC=**0.7293** / ManjiModel 完了。Parquet cache 84,930 行×90 列で再学習 95% 短縮 (38分→2分)。466 テスト ALL GREEN。④ E2E 本番シミュレーション (scripts/e2e_production_sim.py) 全 6 ステップ ALL PASS: prerace_pipeline 2.13秒 / 全 Discord チャンネル routing 確認 / 総スループット **5.12秒**。⑤ 本番ロック確定: DISCORD_WEBHOOK_URL/EV_ALERT/AB_TEST/NOTE_DRAFT/DISCORD_SYSTEM_WEBHOOK_URL 全 URL 設定済み・JVLINK_DISABLED 未設定 (本番 JVLink 有効) / ENABLE_PLAYWRIGHT_POST=0 (X 自動投稿安全オフ) / DRY_RUN 未設定 (本番モード) / scheduler.py 全ジョブ dry_run=False 確認済み。⑥ system アラートテスト 2 件追加 (test_system_alert_routes_to_system_channel / test_legacy_system_webhook_url_accepted): 計 12 テスト PASS。⑦ .env.example 復旧 (全 13 キー完全文書化)。影響: tests/notification/test_router.py, .env.example(復旧) |
 
 ---
@@ -261,9 +264,11 @@ Phase 2-C+B完了後: 30因子 ← 社長ビジョン達成
 
 | 項目 | 内容 |
 |------|------|
-| **ステータス** | 🟢 完了（2026-05-18）|
-| **修正内容** | 3段フォールバック（ParentHWnd → JVSetUIProperties → JVSetUI(0)）+ `_kill_stale_py32` 64bit 誤 kill 根治 + `_JVLINK_STARTUP_TIMEOUT` 60秒化 |
-| **E2E 証明** | elapsed=2.78s で JVLINK_READY 受信確認。64bit outer 生存確認 |
+| **ステータス** | 🟢 完了（2026-05-23 最終強化）|
+| **修正内容（2026-05-18）** | 3段フォールバック（ParentHWnd → JVSetUIProperties → JVSetUI(0)）+ `_kill_stale_py32` 64bit 誤 kill 根治 + `_JVLINK_STARTUP_TIMEOUT` 60秒化 |
+| **強化内容（2026-05-23）** | `src/ops/jvlink_dialog_handler.py` 新設。0.3 秒間隔でデスクトップ全ウィンドウをスキャンし、JVLink/設定/セットアップ/認証/ライセンス系ダイアログを検知次第 **BM_CLICK → WM_COMMAND IDOK → VK_RETURN** の優先順で自動クリック。`scheduler.py run_daemon()` から daemon スレッドとして起動。既存の 10秒タイムアウト → netkeiba fallback と共存する二重安全網 |
+| **安全網の層構造** | ① ダイアログ生成自体を COM フラグで抑制（2026-05-18）→ ② 出現したダイアログを 0.3 秒以内に自動クリック（2026-05-23）→ ③ 3秒超残存で WARNING + 10秒タイムアウト Kill → netkeiba fallback |
+| **E2E 証明** | elapsed=2.78s で JVLINK_READY 受信確認。テスト 26 件 PASS（全 512 件 GREEN）|
 
 #### W-018: オッズ取得の netkeiba 依存
 
@@ -396,6 +401,18 @@ Phase 2-C+B完了後: 30因子 ← 社長ビジョン達成
 | **Discord Embed 出力** | title: "📊 V1 vs V2 A/B サマリー（直近 N 日）" / fields: V1 ROI・V2 ROI・V1 純利益・V2 純利益・判定（🔵V2優勢/🟠V1優勢/⚖️同等）/ color: Blurple(V2優勢)・Red(V1優勢)・Gray(同等) |
 | **テスト** | `tests/scripts/test_ab_report.py` 17件（`TestSendSummaryToDiscord` 8件含む）/ `tests/test_scheduler_state.py` 4件 = 計21件 all PASS。全スイート **486 PASS** |
 | **影響ファイル** | `scripts/generate_ab_report.py`（実装）, `scripts/scheduler.py`（ジョブ登録）, `tests/scripts/test_ab_report.py`（17件）, `tests/test_scheduler_state.py`（4件追加）|
+
+---
+
+#### W-032: スケジューラークロスデイ回収バグ（→完了）
+
+| 項目 | 内容 |
+|------|------|
+| **ステータス** | 🟢 完了（2026-05-23） |
+| **優先度** | 高（毎週末の前日バッチ取りこぼしに直結） |
+| **影響** | `_recover_missed_jobs()` が `if wd != weekday: continue` で当日の曜日だけを確認していたため、前日（金曜）のジョブ（`job_friday_sync`）が土曜朝の起動時に完全スキップされていた。16時間のリカバリー窓が無意味化し、スケジューラー停止時に金曜夜バッチが必ず取りこぼされる構造的バグ。実際に 2026-05-22 金曜夜バッチが未発火となり手動リカバリーが必要になった |
+| **対応方針** | `day_delta in (0, -1)` ループで当日と前日のスケジュールを両方チェック。前日ジョブが catchup 窓内なら当日起動時に即回収 |
+| **実装** | `scripts/scheduler.py` — `_recover_missed_jobs()` 関数修正。`for day_delta in (0, -1)` ループ追加・各ループで `target_day.weekday()` を使用・リカバリー後に `break` で重複実行を防止 |
 
 ---
 
