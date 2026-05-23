@@ -804,8 +804,18 @@ class HonmeiStrategy:
 
         scored = scored.sort_values("honmei_score", ascending=False)
 
-        n = min(self.TOP_N_COMBO, len(scored))
-        top = scored.head(n)
+        # win_odds=999.9 等のセンチネル（オッズ未確定）馬は軸候補から外す。
+        # 未確定オッズ馬はコンボプール（all_scores）には残るが単勝・軸には使わない。
+        _ODDS_SENTINEL = 500.0
+        valid_mask = scored["win_odds"].apply(
+            lambda v: (v is not None) and (float(v) < _ODDS_SENTINEL)
+            if v is not None else True
+        )
+        scored_valid = scored[valid_mask]
+        scored_for_top = scored_valid if len(scored_valid) >= 2 else scored
+
+        n = min(self.TOP_N_COMBO, len(scored_for_top))
+        top = scored_for_top.head(n)
         top_nums   = [int(r["horse_number"]) for _, r in top.iterrows()]
         top_scores = [float(r["honmei_score"]) for _, r in top.iterrows()]
 
@@ -995,8 +1005,8 @@ class HonmeiStrategy:
 
         # ── 三連単 1頭軸マルチ（JRA公式：軸が任意位置）──────────────
         # JRA定義: 軸1頭 × 相手N頭 → C(N,2) × 3! = C(N,2) × 6 点
-        # 例: 軸1頭 × 相手6頭 → C(6,2)×6 = 15×6 = 90点 (¥9,000)
-        _ST_AITE_N = min(6, len(scored) - 1)   # 相手候補数
+        # 例: 軸1頭 × 相手4頭 → C(4,2)×6 = 6×6 = 36点 (¥3,600)
+        _ST_AITE_N = min(4, len(scored) - 1)   # 相手候補数（上限4頭: 36点に抑制）
 
         if len(top_nums) >= 3 and _ST_AITE_N >= 2:
             axis_num  = top_nums[0]

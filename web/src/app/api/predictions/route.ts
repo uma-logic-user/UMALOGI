@@ -103,22 +103,36 @@ export async function GET(req: NextRequest) {
     }
 
     // 馬番→馬名マップをレースIDごとに一括取得
+    // race_results（確定済み）と entries（未来レース用）の両方を参照する
     const raceIds = [...new Set(preds.map(p => p.race_id as string))]
     const horseNumToNameByRace = new Map<string, Record<string, string>>()
+    const _applyRows = (rows: { race_id: string; horse_number: number; horse_name: string }[]) => {
+      for (const row of rows) {
+        if (!horseNumToNameByRace.has(row.race_id)) {
+          horseNumToNameByRace.set(row.race_id, {})
+        }
+        // race_results が優先（entries より後に適用して上書き）
+        horseNumToNameByRace.get(row.race_id)![String(row.horse_number)] = row.horse_name
+      }
+    }
     for (const chunk of chunkArray(raceIds, 500)) {
       if (chunk.length === 0) continue
-      const rows = db.prepare(`
+      // entries から取得（未来レース用フォールバック）
+      const entryRows = db.prepare(`
+        SELECT race_id, horse_number, horse_name
+        FROM entries
+        WHERE horse_number IS NOT NULL
+          AND race_id IN (${chunk.map(() => '?').join(',')})
+      `).all(...chunk) as { race_id: string; horse_number: number; horse_name: string }[]
+      _applyRows(entryRows)
+      // race_results から取得（確定済みレースは上書き優先）
+      const rrRows = db.prepare(`
         SELECT race_id, horse_number, horse_name
         FROM race_results
         WHERE horse_number IS NOT NULL
           AND race_id IN (${chunk.map(() => '?').join(',')})
       `).all(...chunk) as { race_id: string; horse_number: number; horse_name: string }[]
-      for (const row of rows) {
-        if (!horseNumToNameByRace.has(row.race_id)) {
-          horseNumToNameByRace.set(row.race_id, {})
-        }
-        horseNumToNameByRace.get(row.race_id)![String(row.horse_number)] = row.horse_name
-      }
+      _applyRows(rrRows)
     }
 
     const output = preds.map(rowToObj).map((pd) => {
