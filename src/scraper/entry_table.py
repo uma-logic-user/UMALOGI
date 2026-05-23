@@ -59,6 +59,12 @@ class EntryHorse:
 class EntryTable:
     race_id: str
     entries: list[EntryHorse] = field(default_factory=list)
+    race_name: str = ""
+    distance: int = 0
+    surface: str = ""
+    track_direction: str = ""
+    weather: str = ""
+    condition: str = ""
 
 
 @dataclass
@@ -179,6 +185,76 @@ def _parse_race_condition(soup: BeautifulSoup) -> str | None:
     return None
 
 
+def _parse_race_header(soup: BeautifulSoup) -> tuple[str, int, str, str, str, str]:
+    """
+    出馬表ページ（shutuba.html）からレース基本情報を抽出する。
+
+    Returns:
+        (race_name, distance, surface, track_direction, weather, condition)
+        - race_name: レース名（例: "3歳未勝利"）
+        - distance: 距離 m（例: 1800）、未取得時は 0
+        - surface: "芝" / "ダート" / "障害" / ""
+        - track_direction: "右" / "左" / "直線" / ""
+        - weather: "晴" / "曇" / "雨" / ""
+        - condition: "良" / "稍重" / "重" / "不良" / ""
+    """
+    race_name = ""
+    distance = 0
+    surface = ""
+    track_direction = ""
+    weather = ""
+    condition = ""
+
+    # --- レース名 ---
+    for sel in ("div.RaceName", "h1.RaceName", "span.RaceName"):
+        tag = soup.select_one(sel)
+        if tag:
+            race_name = tag.get_text(strip=True)
+            break
+    if not race_name:
+        # RaceList_Item02 / レースタイトル行（テキスト先頭部分）
+        tag = soup.select_one("div.RaceList_Item02")
+        if tag:
+            raw = tag.get_text(" ", strip=True)
+            # "3歳未勝利 09:50発走 / ダ1800m..." の先頭部分
+            race_name = re.split(r"\s+\d{2}:\d{2}発走", raw)[0].strip()
+
+    # --- div.RaceData01 から距離・馬場・天候・馬場状態を取得 ---
+    data01 = soup.select_one("div.RaceData01")
+    if data01:
+        text = data01.get_text(" ", strip=True)
+
+        # 距離・馬場種別: "ダ1800m" / "芝2500m" / "障2970m (右)"
+        m = re.search(
+            r"(芝|ダート|ダ|障害|障)\s*(右\s*外|左\s*外|右|左|直線?)?\s*(\d+)m",
+            text,
+        )
+        if m:
+            raw_surf = m.group(1)
+            if raw_surf == "芝":
+                surface = "芝"
+            elif raw_surf in ("障", "障害"):
+                surface = "障害"
+            else:
+                surface = "ダート"
+            track_direction = (m.group(2) or "").replace(" ", "")
+            distance = int(m.group(3))
+
+        # 天候
+        mw = re.search(r"天候\s*[：:]\s*(\S+?)(?:\s|/|$)", text)
+        if mw:
+            weather = mw.group(1)
+
+        # 馬場状態
+        mc = re.search(r"馬場\s*[：:]\s*([良稍重不]+)", text)
+        if not mc:
+            mc = re.search(r"(?:芝|ダート)\s*[：:]\s*([良稍重不]+)", text)
+        if mc:
+            condition = mc.group(1)
+
+    return race_name, distance, surface, track_direction, weather, condition
+
+
 def _parse_entry_rows(soup: BeautifulSoup) -> list[EntryHorse]:
     """
     出馬表 HTML（BeautifulSoup 解析済み）から EntryHorse のリストを返す。
@@ -277,13 +353,26 @@ def fetch_entry_table(
     soup = BeautifulSoup(html, "lxml")
     table = EntryTable(race_id=race_id)
     table.entries = _parse_entry_rows(soup)
+
+    # レース基本情報（距離・馬場・馬場状態）を同一ページから取得
+    rname, dist, surf, tdir, weather, cond = _parse_race_header(soup)
+    table.race_name      = rname
+    table.distance       = dist
+    table.surface        = surf
+    table.track_direction = tdir
+    table.weather        = weather
+    table.condition      = cond
+
     if len(table.entries) == 0:
         logger.error(
             "🚨 出馬表が 0 頭 (race_id=%s) — netkeiba HTML 構造変更またはページ未公開の可能性",
             race_id,
         )
     else:
-        logger.info("出馬表 race_id=%s: %d 頭取得", race_id, len(table.entries))
+        logger.info(
+            "出馬表 race_id=%s: %d 頭取得 (dist=%dm surface=%s)",
+            race_id, len(table.entries), dist, surf,
+        )
     return table
 
 

@@ -118,12 +118,59 @@ def ensure_race_record(conn: sqlite3.Connection, race_id: str, date_str: str) ->
             )
 
 
+def update_race_details_from_entry(conn: sqlite3.Connection, tbl: object) -> bool:
+    """EntryTable に含まれる distance/surface/race_name で races テーブルを更新する。
+
+    distance > 0 かつ surface が取得できた場合のみ更新する（空値による上書きを防ぐ）。
+    Returns True if races table was updated.
+    """
+    dist    = getattr(tbl, "distance", 0)
+    surf    = getattr(tbl, "surface", "")
+    rname   = getattr(tbl, "race_name", "")
+    tdir    = getattr(tbl, "track_direction", "")
+    weather = getattr(tbl, "weather", "")
+    cond    = getattr(tbl, "condition", "")
+
+    if dist <= 0 or not surf:
+        return False
+
+    with conn:
+        conn.execute(
+            """
+            UPDATE races SET
+                distance        = ?,
+                surface         = ?,
+                track_direction = CASE WHEN ? != '' THEN ? ELSE track_direction END,
+                weather         = CASE WHEN ? != '' THEN ? ELSE weather END,
+                condition       = CASE WHEN ? != '' THEN ? ELSE condition END,
+                race_name       = CASE WHEN ? != '' AND (race_name = '' OR race_name LIKE 'レース%') THEN ? ELSE race_name END
+            WHERE race_id = ?
+            """,
+            (
+                dist, surf,
+                tdir, tdir,
+                weather, weather,
+                cond, cond,
+                rname, rname,
+                tbl.race_id,  # type: ignore[attr-defined]
+            ),
+        )
+    logger.info(
+        "races 更新 race_id=%s dist=%dm surface=%s",
+        tbl.race_id, dist, surf,  # type: ignore[attr-defined]
+    )
+    return True
+
+
 def save_entries_to_db(conn: sqlite3.Connection, tbl: object) -> int:
     """EntryTable を entries テーブルに保存して保存件数を返す。
 
     horse_id は JVLink と netkeiba で形式が異なるため NULL で保存し、
     後続の JVLink 同期で上書きされることを想定する。
     """
+    # EntryTable に race details が含まれている場合は races テーブルも更新
+    update_race_details_from_entry(conn, tbl)
+
     saved = 0
     for h in tbl.entries:  # type: ignore[attr-defined]
         try:
