@@ -214,7 +214,9 @@ export async function GET() {
         r.race_name,
         r.venue,
         r.race_number,
-        COALESCE(p.recommended_bet, 0) AS invested,
+        -- 実際の投資額 = 組み合わせ点数 × ¥100 (evaluator が profit に正確に反映済み)
+        -- recommended_bet はKelly推奨額で点数×単価と一致しないケースがある
+        (COALESCE(pr.payout, 0) - COALESCE(pr.profit, 0)) AS invested,
         COALESCE(pr.payout, 0)         AS payout,
         pr.is_hit
       FROM predictions p

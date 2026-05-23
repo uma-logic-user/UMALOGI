@@ -27,10 +27,10 @@ const AGG_COLS = `
   COALESCE(SUM(pr.is_hit), 0) AS hits,
   ROUND(CAST(SUM(pr.is_hit) AS REAL)
         / NULLIF(COUNT(pr.id), 0) * 100, 1) AS hit_rate,
-  COALESCE(SUM(p.recommended_bet), 0)  AS total_invested,
+  COALESCE(SUM(COALESCE(pr.payout, 0) - COALESCE(pr.profit, 0)), 0) AS total_invested,
   COALESCE(SUM(pr.payout), 0)          AS total_payout,
   ROUND(COALESCE(SUM(pr.payout), 0)
-        / NULLIF(SUM(p.recommended_bet), 0) * 100, 1) AS roi
+        / NULLIF(SUM(COALESCE(pr.payout, 0) - COALESCE(pr.profit, 0)), 0) * 100, 1) AS roi
 `
 
 export async function GET() {
