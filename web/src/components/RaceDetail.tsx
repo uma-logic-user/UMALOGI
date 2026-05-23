@@ -173,7 +173,7 @@ export default function RaceDetail({ race, predictions }: Props) {
       {/* ── AI予想タブ ────────────────────────────── */}
       {tab === 'predictions' && (
         <div className="space-y-4">
-          <SnsShareButton race={race} predictions={predictions} />
+          <SnsButtons race={race} predictions={predictions} />
           {hasPrerace && (
             <>
               <BiasPanel
@@ -229,75 +229,239 @@ export default function RaceDetail({ race, predictions }: Props) {
   )
 }
 
-// ── SNS投稿用テキスト生成・コピーボタン ──────────────────────
-function buildSnsText(
+// ── 買い目フォーマット: マルチ・軸流し・ボックス自動判定 ──────────
+function formatBetCompact(
+  combinationJson: string | null,
+  betType: string,
+  nTickets: number,
+  ev?: number | null,
+): string {
+  const evStr  = ev != null && ev > 0 ? `  EV=${ev.toFixed(2)}` : ''
+  const costStr = nTickets > 0 ? `  ¥${(nTickets * 100).toLocaleString()}` : ''
+
+  if (!combinationJson) return `${betType} ${nTickets}点${evStr}${costStr}`
+
+  let combos: number[][]
+  try {
+    const parsed = JSON.parse(combinationJson)
+    if (!Array.isArray(parsed) || parsed.length === 0) return `${betType} ${nTickets}点${evStr}${costStr}`
+    combos = Array.isArray(parsed[0]) ? (parsed as number[][]) : [(parsed as number[])]
+  } catch {
+    return `${betType} ${nTickets}点${evStr}${costStr}`
+  }
+
+  const n         = combos.length
+  const allNums   = new Set(combos.flatMap(c => c))
+  const sorted    = [...allNums].sort((a, b) => a - b)
+
+  // 単勝・複勝
+  if (betType === '単勝' || betType === '複勝') {
+    const nums = combos.map(c => c[0]).join(', ')
+    return `${betType} ${nums}番  計${n}点${evStr}${costStr}`
+  }
+
+  // 三連単: マルチ（位置不問）または1着固定
+  if (betType === '三連単') {
+    const alwaysIn = sorted.filter(h => combos.every(c => c.includes(h)))
+    if (alwaysIn.length >= 1) {
+      const others = sorted.filter(n => !alwaysIn.includes(n)).join(', ')
+      return `【三連単マルチ 軸${alwaysIn.join(', ')} - 相手${others}】 計${n}点${evStr}${costStr}`
+    }
+    const firsts = [...new Set(combos.map(c => c[0]))].sort((a, b) => a - b)
+    if (firsts.length <= 2) {
+      const others = sorted.filter(n => !firsts.includes(n)).join(', ')
+      return `【三連単 軸${firsts.join(', ')} - 相手${others}】 計${n}点${evStr}${costStr}`
+    }
+    return `三連単フォーメーション 計${n}点${evStr}${costStr}`
+  }
+
+  // 三連複・馬連・ワイド・馬単: 軸流し or ボックス
+  const axes = sorted.filter(h => combos.every(c => c.includes(h)))
+  if (axes.length >= 1) {
+    const others = sorted.filter(n => !axes.includes(n)).join(', ')
+    return `【${betType}流し 軸${axes.join(', ')} - 相手${others}】 計${n}点${evStr}${costStr}`
+  }
+  return `${betType}ボックス ${sorted.join(', ')}番  計${n}点${evStr}${costStr}`
+}
+
+// ── クリップボード書き込み（HTTPS以外のフォールバック対応）───────
+async function copyToClipboard(text: string): Promise<boolean> {
+  try {
+    await navigator.clipboard.writeText(text)
+    return true
+  } catch {
+    try {
+      const el = document.createElement('textarea')
+      el.value = text
+      el.style.cssText = 'position:fixed;left:-9999px;top:-9999px;opacity:0'
+      document.body.appendChild(el)
+      el.select()
+      const ok = document.execCommand('copy')
+      document.body.removeChild(el)
+      return ok
+    } catch {
+      return false
+    }
+  }
+}
+
+// ── X（旧Twitter）用テキスト生成（≤280文字・動的ハッシュタグ）───
+function buildXText(
   race: RaceEntry & { prerace?: { ev_recommend: EvRecommend[]; bias: RaceBias; generated_at: string } },
   predictions: Prediction[],
 ): string {
-  const evRecs = race.prerace?.ev_recommend ?? []
-  const topBets = predictions
+  const venue   = race.venue ?? ''
+  const raceNum = race.race_number ?? ''
+  const name    = race.race_name || `${raceNum}R`
+
+  // ハッシュタグ: 重賞名は数字・スペースを除いた短縮形のみ
+  const isGrade    = name && !/^第\d+/.test(name) && !/^\d/.test(name)
+  const gradeTag   = isGrade ? ` #${name.replace(/[\s　]/g, '')}` : ''
+  const hashtags   = `#${venue}${raceNum}R #UMALOGI #競馬AI${gradeTag}`
+
+  // 最高EV買い目を1行にまとめる
+  const topBet = [...predictions]
     .filter(p => (p.expected_value ?? 0) >= 1.0)
-    .slice(0, 6)
+    .sort((a, b) => (b.expected_value ?? 0) - (a.expected_value ?? 0))[0]
 
-  const header = `📊 UMALOGI AI予想 | ${race.date} ${race.venue}${race.race_number}R — ${race.race_name || ''}`
+  let betLine = ''
+  if (topBet) {
+    const model = topBet.model_type.replace(/\(直前\)|\(暫定\)/g, '').trim()
+    betLine = `\n${model}: ${formatBetCompact(topBet.combination_json, topBet.bet_type, topBet.n_tickets, topBet.expected_value)}`
+  } else if ((race.prerace?.ev_recommend ?? []).length > 0) {
+    const top = race.prerace!.ev_recommend[0]
+    betLine = `\n本命◎${top.horse_number}番${top.horse_name}  EV${top.ev_score.toFixed(2)}`
+  }
 
-  const evSection = evRecs.length > 0
-    ? `\n🔥【激アツ推奨馬 — EV≥1.0】\n` +
-      evRecs.slice(0, 5).map(h =>
-        `  ⬛ ${h.horse_number}番 ${h.horse_name}  EV=${h.ev_score.toFixed(2)}`
-      ).join('\n')
-    : ''
+  const full = `【UMALOGI直前AI予想】${venue}${raceNum}R「${name}」${betLine}\n🆓1レース目無料 📲Discord/NOTEで全買い目公開\n${hashtags}`
+  if (full.length <= 280) return full
 
-  const betSection = topBets.length > 0
-    ? `\n\n【AI買い目（EV≥1.0）】\n` +
-      topBets.map(p => {
-        const nStr = p.n_tickets > 0 ? ` ${p.n_tickets}点` : ''
-        return `  ${p.model_type}: ${p.bet_type}${nStr}`
-      }).join('\n')
-    : ''
-
-  const footer = [
-    '',
-    '─────────────────',
-    '🆓 1レース目は無料公開中',
-    '📲 フォロー＆リポストで最新AI予想をチェック',
-    '#競馬予想 #AI競馬 #UMALOGI',
-  ].join('\n')
-
-  return [header, evSection, betSection, footer].join('')
+  // 280字を超えたら簡略版
+  const brief = `【UMALOGI AI予想】${venue}${raceNum}R${betLine ? '\n' + betLine.trim() : ''}\n${hashtags}`
+  return brief.slice(0, 280)
 }
 
-function SnsShareButton({
+// ── NOTE用テキスト生成（Markdown・マルチ/軸流し表記）─────────────
+function buildNoteText(
+  race: RaceEntry & { prerace?: { ev_recommend: EvRecommend[]; bias: RaceBias; generated_at: string } },
+  predictions: Prediction[],
+): string {
+  const venue   = race.venue ?? ''
+  const raceNum = race.race_number ?? ''
+  const name    = race.race_name || `${raceNum}R`
+  const date    = race.date ?? ''
+  const surf    = `${race.surface ?? ''}${race.track_direction ?? ''}${race.distance ?? 0}m`
+
+  const lines: string[] = [
+    `## 🏇 ${venue} ${raceNum}R「${name}」— AI厳選予想`,
+    `> ${date}　${surf}　馬場: ${race.condition || '—'}`,
+    '',
+  ]
+
+  const qualified = predictions.filter(p => (p.expected_value ?? 0) >= 1.0)
+  if (qualified.length === 0) {
+    lines.push('*このレースのAI予想データはありません。*')
+    return lines.join('\n')
+  }
+
+  // モデルごとにグループ化（表示順: 本命 → 卍 → Alpha）
+  const ORDER: Record<string, number> = { '本命': 1, '卍': 2, 'Alpha': 3 }
+  const byModel = new Map<string, Prediction[]>()
+  for (const p of qualified) {
+    const key = p.model_type.replace(/\(直前\)|\(暫定\)/g, '').trim()
+    if (!byModel.has(key)) byModel.set(key, [])
+    byModel.get(key)!.push(p)
+  }
+  const modelKeys = [...byModel.keys()].sort((a, b) => {
+    const oa = Object.entries(ORDER).find(([k]) => a.includes(k))?.[1] ?? 9
+    const ob = Object.entries(ORDER).find(([k]) => b.includes(k))?.[1] ?? 9
+    return oa - ob
+  })
+
+  let totalCost = 0
+  for (const key of modelKeys) {
+    const bets = byModel.get(key)!.sort((a, b) => (b.expected_value ?? 0) - (a.expected_value ?? 0))
+    const icon = key.includes('卍') ? '🟩' : key.toLowerCase().includes('alpha') ? '🟦' : '🟥'
+    lines.push(`### ${icon} ${key}`)
+    for (const bet of bets) {
+      lines.push(`- ${formatBetCompact(bet.combination_json, bet.bet_type, bet.n_tickets, bet.expected_value)}`)
+      totalCost += bet.n_tickets * 100
+    }
+    lines.push('')
+  }
+
+  lines.push(`**合計投資額**: ¥${totalCost.toLocaleString()}`)
+  lines.push('')
+  lines.push('---')
+  lines.push(`*UMALOGI AI予測システム | ${date}*`)
+
+  return lines.join('\n')
+}
+
+// ── X用/NOTE用 2ボタンコピーコンポーネント ───────────────────────
+function SnsButtons({
   race,
   predictions,
 }: {
   race: RaceEntry & { prerace?: { ev_recommend: EvRecommend[]; bias: RaceBias; generated_at: string } }
   predictions: Prediction[]
 }) {
-  const [copied, setCopied] = useState(false)
+  const [xCopied,    setXCopied]    = useState(false)
+  const [noteCopied, setNoteCopied] = useState(false)
+  const [failed,     setFailed]     = useState(false)
 
-  const handleCopy = async () => {
-    const text = buildSnsText(race, predictions)
-    try {
-      await navigator.clipboard.writeText(text)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 1500)
-    } catch {
-      // clipboard API not available (non-HTTPS)
+  const handleX = async () => {
+    const text = buildXText(race, predictions)
+    const ok = await copyToClipboard(text)
+    if (ok) {
+      setXCopied(true)
+      setTimeout(() => setXCopied(false), 2000)
+    } else {
+      setFailed(true)
+      setTimeout(() => setFailed(false), 2000)
+    }
+  }
+
+  const handleNote = async () => {
+    const text = buildNoteText(race, predictions)
+    const ok = await copyToClipboard(text)
+    if (ok) {
+      setNoteCopied(true)
+      setTimeout(() => setNoteCopied(false), 2000)
+    } else {
+      setFailed(true)
+      setTimeout(() => setFailed(false), 2000)
     }
   }
 
   return (
-    <div className="flex justify-end">
+    <div className="flex flex-wrap gap-2 justify-end items-center">
+      {failed && (
+        <span className="text-xs text-[var(--neon-red)] opacity-80">
+          ⚠ クリップボードへのアクセスが拒否されました
+        </span>
+      )}
+      {/* X（Twitter）用 */}
       <button
-        onClick={handleCopy}
-        className={`px-4 py-2 text-sm font-semibold rounded-md tracking-wider transition-colors ${
-          copied
+        onClick={handleX}
+        className={`px-3 py-2 text-xs font-semibold rounded-md tracking-wider transition-all ${
+          xCopied
             ? 'bg-[rgba(0,200,100,0.2)] text-[var(--neon-green)] border border-[rgba(0,200,100,0.4)]'
-            : 'bg-[rgba(0,200,255,0.1)] text-[var(--neon-cyan)] border border-[rgba(0,200,255,0.3)] hover:bg-[rgba(0,200,255,0.2)]'
+            : 'bg-[rgba(0,200,255,0.08)] text-[var(--neon-cyan)] border border-[rgba(0,200,255,0.25)] hover:bg-[rgba(0,200,255,0.18)]'
         }`}
       >
-        {copied ? '✅ コピーしました!' : '📋 SNS投稿テキストをコピー'}
+        {xCopied ? '✅ コピー完了' : '𝕏 X用コピー（≤280字）'}
+      </button>
+      {/* NOTE用 */}
+      <button
+        onClick={handleNote}
+        className={`px-3 py-2 text-xs font-semibold rounded-md tracking-wider transition-all ${
+          noteCopied
+            ? 'bg-[rgba(0,200,100,0.2)] text-[var(--neon-green)] border border-[rgba(0,200,100,0.4)]'
+            : 'bg-[rgba(255,180,0,0.08)] text-[rgba(255,200,60,0.9)] border border-[rgba(255,180,0,0.25)] hover:bg-[rgba(255,180,0,0.18)]'
+        }`}
+      >
+        {noteCopied ? '✅ コピー完了' : '📝 NOTE用コピー（Markdown）'}
       </button>
     </div>
   )

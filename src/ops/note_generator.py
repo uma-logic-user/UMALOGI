@@ -255,18 +255,55 @@ def select_recommended_races(
 # ── Markdown 生成ユーティリティ ──────────────────────────────────
 
 def _fmt_combo(combo: list[list[int]], bet_type: str, max_show: int = 8) -> str:
-    """買い目リストを人が読みやすい文字列に変換する。"""
+    """買い目リストをマルチ/軸流し/ボックス表記に自動変換する。
+
+    ベタ展開（▶ A→B→C の箇条書き）は廃止し、即PAT入力しやすい
+    「【三連単マルチ 軸X - 相手Y,Z】計N点」形式を優先して返す。
+    """
     if not combo:
         return "―"
-    flat: list[str] = []
-    for c in combo[:max_show]:
-        if len(c) == 1:
-            flat.append(f"{c[0]}番")
-        else:
-            flat.append("→".join(str(x) for x in c))
-    suffix = f" 他{len(combo) - max_show}点" if len(combo) > max_show else ""
-    sep = " / " if bet_type in ("馬連", "複勝") else "  "
-    return sep.join(flat) + suffix
+
+    n = len(combo)
+    all_nums = sorted({int(x) for c in combo for x in c})
+
+    # 単勝・複勝
+    if bet_type in ("単勝", "複勝"):
+        nums = [c[0] for c in combo]
+        return " / ".join(f"{x}番" for x in nums)
+
+    # 三連単・馬単: マルチ または 1着固定
+    if bet_type in ("三連単", "馬単"):
+        always_in = [x for x in all_nums if all(x in list(c) for c in combo)]
+        if always_in:
+            others = [x for x in all_nums if x not in always_in]
+            return (
+                f"【{bet_type}マルチ 軸{','.join(str(a) for a in always_in)} "
+                f"- 相手{','.join(str(o) for o in others)}】 計{n}点"
+            )
+        firsts = sorted({int(c[0]) for c in combo if c})
+        if len(firsts) <= 2:
+            others = [x for x in all_nums if x not in firsts]
+            return (
+                f"【{bet_type} 軸{','.join(str(f) for f in firsts)}(1着) "
+                f"- 相手{','.join(str(o) for o in others)}】 計{n}点"
+            )
+        # フォーメーション（上記非該当）
+        flat = ["→".join(str(x) for x in c) for c in combo[:max_show]]
+        suffix = f" 他{n - max_show}点" if n > max_show else ""
+        return "  ".join(flat) + suffix
+
+    # 三連複・馬連・ワイド: 軸流し or ボックス
+    axes = [x for x in all_nums if all(x in list(c) for c in combo)]
+    if axes:
+        others = [x for x in all_nums if x not in axes]
+        if others:
+            return (
+                f"【{bet_type}流し 軸{','.join(str(a) for a in axes)} "
+                f"- 相手{','.join(str(o) for o in others)}】 計{n}点"
+            )
+        # 相手がない（全馬が軸 = ボックス1通り）
+        return f"{bet_type} {','.join(str(x) for x in all_nums)}番 計{n}点"
+    return f"{bet_type}ボックス {','.join(str(x) for x in all_nums)}番 計{n}点"
 
 
 def _star_rating(consensus: int) -> str:

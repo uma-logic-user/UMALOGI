@@ -4,6 +4,7 @@
 
 | 日付 | 変更内容 |
 |------|---------|
+| 2026-05-24 | 【SNSコピーボタン分離強化 + 買い目マルチ/軸流し表記統一】`SnsShareButton` を X用/NOTE用 2ボタン（`SnsButtons`）に分割。X用: ≤280文字・動的ハッシュタグ（`#会場NR #UMALOGI #競馬AI #重賞名`）・最高EV買い目を1行集約。NOTE用: Markdown形式・モデル別グループ・`formatBetCompact()` で全買い目をマルチ/軸流し/ボックス表記に自動変換。クリップボードAPIフォールバック（`execCommand`）対応。`discord_notifier.py:_format_combo_card()` の三連単/馬単セクションを「マルチ・1着固定」自動判定に刷新。`note_generator.py:_fmt_combo()` も全面改修（ベタ展開廃止・軸流し/マルチ優先）。Next.jsクリーンビルド実施。影響: `web/src/components/RaceDetail.tsx`, `src/notification/discord_notifier.py`, `src/ops/note_generator.py` |
 | 2026-05-24 | 【収支タブROI計算バグ修正】financial/condition/summary の全APIが `p.recommended_bet` を投資額として使用していたため、流し/マルチ等の複数組み合わせ買いで投資額が2〜3倍過少計上されROIが水増しされていた。`(COALESCE(pr.payout,0) - COALESCE(pr.profit,0))` 基準（evaluator.py が正確に記録済みの実投資額）に統一。修正後の真実ROI: 単勝446.9%・卍(暫定)378.2%・全体69.6%。影響ファイル: `web/src/app/api/financial/route.ts`, `web/src/app/api/condition/route.ts`, `web/src/app/api/summary/route.ts` |
 | 2026-05-23 | 【RaceDetail 4サブタブ化 + SNSコピーボタン】RaceDetail.tsx を出馬表/レース結果/AI予想/的中結果の4サブタブに再編成。AI予想タブにSNS投稿テキスト一発コピーボタン（`SnsShareButton`）を追加。新規コンポーネント: `RaceCardTable`（出馬表）、`SnsShareButton`（コピーボタン）。影響: `web/src/components/RaceDetail.tsx` |
 | 2026-05-21 | 【Discord ログラベル精緻化】`DiscordNotifier.__init__` に `channel_label` パラメータを追加（デフォルト "予想"）。`send_text()` ログを `[Discord:{channel_label}] 送信:` に動的化。`NotificationRouter._build_channels()` で各チャンネル（予想/システム/EV激熱/A/Bテスト/note下書き）のラベルを設定。全 10 テスト PASS 継続確認。影響: `src/notification/discord_notifier.py`, `src/notification/router.py` |

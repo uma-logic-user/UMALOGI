@@ -507,14 +507,32 @@ def _format_combo_card(bet: object) -> str:
         lines = [f"⬛ {_label(n)}" for n in nums]
         return _fit(lines)
 
-    # ── 馬単・三連単（順序あり）────────────────────────────────────────────
+    # ── 馬単・三連単（順序あり）: マルチ・軸固定を自動判定 ────────────────
     if bt in ("馬単", "三連単"):
+        all_nums = sorted({int(n) for combo in combos for n in combo})
+        # マルチ判定: 軸馬が位置不問ですべての組み合わせに含まれる
+        always_in = [n for n in all_nums if all(n in list(c) for c in combos)]
+        if always_in:
+            others = [n for n in all_nums if n not in always_in]
+            axis_str = ",".join(str(a) for a in always_in)
+            opp_str  = ",".join(str(o) for o in others)
+            smart    = f"【推奨: {bt}マルチ 軸{axis_str} - 相手{opp_str}】\n計{n_total}点"
+            if len(smart) <= _BUDGET:
+                return smart
+        # 1着固定判定
+        firsts = sorted({int(c[0]) for c in combos if isinstance(c, (list, tuple)) and c})
+        if len(firsts) <= 2:
+            others = [n for n in all_nums if n not in firsts]
+            axis_str = ",".join(str(f) for f in firsts)
+            opp_str  = ",".join(str(o) for o in others)
+            smart    = f"【推奨: {bt} 軸{axis_str}(1着) - 相手{opp_str}】\n計{n_total}点"
+            if len(smart) <= _BUDGET:
+                return smart
+        # ベタ展開（上記に該当しないフォーメーション）
         lines = []
         for combo in combos:
             legs = list(combo) if isinstance(combo, (list, tuple)) else [combo]
-            # 番号のみで表示（Discord文字数節約）
-            arrow_str = "→".join(str(n) for n in legs)
-            lines.append(f"▶ {arrow_str}")
+            lines.append(f"▶ {'→'.join(str(n) for n in legs)}")
         return _fit(lines)
 
     # ── 馬連・ワイド・三連複（軸流し or ボックス）──────────────────────────
@@ -528,16 +546,21 @@ def _format_combo_card(bet: object) -> str:
             # 軸あり: 全相手馬を省略なしで表示
             axes   = sorted(axis_set)
             others = sorted({int(n) for combo in combos for n in combo} - axis_set)
-            axis_str  = ",".join(str(a) for a in axes)
-            opp_nums  = ",".join(str(o) for o in others)
+            axis_str   = ",".join(str(a) for a in axes)
             axis_label = " / ".join(_label(a) for a in axes[:2])
-            opp_label  = " / ".join(_label(o) for o in others)
-            smart_str  = f"【推奨: {bt}流し 軸{axis_str} - 相手{opp_nums}】"
-            detail     = (
-                f"▶ 軸: {axis_label}\n"
-                f"  相手: {opp_label}\n"
-                f"  計{n_total}点"
-            )
+            if others:
+                opp_nums  = ",".join(str(o) for o in others)
+                opp_label = " / ".join(_label(o) for o in others)
+                smart_str = f"【推奨: {bt}流し 軸{axis_str} - 相手{opp_nums}】"
+                detail    = (
+                    f"▶ 軸: {axis_label}\n"
+                    f"  相手: {opp_label}\n"
+                    f"  計{n_total}点"
+                )
+            else:
+                # 全馬が軸 = 組み合わせ1通り
+                smart_str = f"【推奨: {bt} {axis_str}番】"
+                detail    = f"▶ {axis_label}\n計{n_total}点"
             result = smart_str + "\n" + detail
             if len(result) <= _BUDGET:
                 return result
