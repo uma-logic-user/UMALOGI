@@ -671,6 +671,15 @@ class JVLinkClient:
 
     def _connect(self) -> None:
         """COM オブジェクトを生成して JVInit を実行する（失敗時は自動再試行）。"""
+        # JVLink 起動前にダイアログ自動突破ハンドラーを起動（多重起動安全）
+        # スケジューラー外（バックテスト・直接実行）でも必ず保護される。
+        try:
+            from src.ops.jvlink_dialog_handler import start_dialog_handler
+            start_dialog_handler(interval=0.3)
+            logger.debug("[JVLinkClient] ダイアログハンドラー起動確認済み")
+        except Exception as _dh_exc:
+            logger.debug("[JVLinkClient] ダイアログハンドラー起動スキップ: %s", _dh_exc)
+
         try:
             import win32com.client  # type: ignore[import]
         except ImportError:
