@@ -1,12 +1,13 @@
 """
 src/analysis/all_bets_backtest_2026.py
 
-本命直前モデル — 2026年 全券種ガチシミュレーション
+本命直前モデル — 2026年 全券種ガチシミュレーション（現実世界流動性制限付き）
 Train: 2024-01-01 ～ 2025-12-31
 Test : 2026-01-01 ～ 2026-05-23
 
-券種: 単勝 / 複勝 / ワイド / 馬連 / 馬単 / 三連複 / 三連単
-賭け金: 1/20 フラクショナルKelly (edge-based)
+券種: 単勝 / 複勝 / ワイド / 馬連 / 三連複（馬単・三連単は赤字のため除外）
+賭け金: 1/20 フラクショナルKelly + 現実的な流動性上限
+発注ゾーン: 単勝 edge 1.2〜1.5 倍 OR ≥5.0 倍（過熱ゾーン 1.5〜5.0 はスキップ）
 """
 from __future__ import annotations
 
@@ -45,24 +46,32 @@ TEST_TO    = "2026-05-23"
 
 # ── 資金管理 ──────────────────────────────────────────────────────────────────
 INITIAL_BANKROLL     = 50_000.0
-KELLY_FRACTION       = 0.05          # 1/20 Kelly (前回より保守的)
-MAX_RACE_BUDGET_RATE = 0.10          # 1レース最大 bankroll × 10%
-MAX_BET_RATE         = 0.03          # 1ベット最大 bankroll × 3%
+KELLY_FRACTION       = 0.05          # 1/20 Kelly
+MAX_RACE_BUDGET_RATE = 0.10          # 1レース最大 bankroll × 10%（相対上限）
+MAX_BET_RATE         = 0.03          # 1ベット最大 bankroll × 3%（相対上限）
+MAX_RACE_BUDGET_ABS  = 50_000        # 1レース物理上限 ¥50,000（JRAスリッページ対策）
+MAX_BET_ABS          = 15_000        # 1ベット物理上限 ¥15,000（JRAスリッページ対策）
 MIN_BET              = 100
-EDGE_THRESHOLD       = 1.20          # 基本エッジ閾値（ランダム比1.2倍）
-HIGH_EDGE_THRESHOLD  = 1.50          # 馬単・三連単用の高閾値
+EDGE_THRESHOLD       = 1.20          # 基本エッジ閾値
+
+# 単勝 edge 黄金ゾーン: [1.2, 1.5] OR [5.0, ∞)
+# バックテスト上、1.5〜5.0 の過熱ゾーンは ROI が悪化するためスキップ
+EDGE_GOLDEN_ZONES: list[tuple[float, float]] = [
+    (1.20, 1.50),
+    (5.00, float("inf")),
+]
 
 ARROW = "→"  # → (U+2192): 馬単・三連単のコンビネーション区切り
 
-# ── 券種設定 ──────────────────────────────────────────────────────────────────
+# ── 券種設定（馬単・三連単は除外）─────────────────────────────────────────────
 BET_TYPE_HEX: dict[str, str] = {
     "単勝":  "E58D98E58B9D",
     "複勝":  "E8A487E58B9D",
     "ワイド": "E383AFE382A4E38389",
     "馬連":  "E9A6ACE980A3",
-    "馬単":  "E9A6ACE58D98",
+    # "馬単":  "E9A6ACE58D98",   # 除外: 赤字(ROI 0.3%)
     "三連複": "E4B889E980A3E8A487",
-    "三連単": "E4B889E980A3E58D98",
+    # "三連単": "E4B889E980A3E58D98", # 除外: 赤字(ROI 1.1%)
 }
 
 # 控除率差し引き後の典型的な市場オッズ（Kelly 計算用）
@@ -71,9 +80,7 @@ TYPICAL_ODDS: dict[str, float] = {
     "複勝":  2.0,
     "ワイド": 4.0,
     "馬連":  12.0,
-    "馬単":  20.0,
     "三連複": 35.0,
-    "三連単": 100.0,
 }
 
 # ── LightGBM パラメータ ────────────────────────────────────────────────────────
@@ -419,10 +426,20 @@ def _harville_wide(probs: list[float], i: int, j: int) -> float:
     return min(total, 0.99)
 
 
+# ── 黄金ゾーン判定（単勝専用）─────────────────────────────────────────────────
+def _in_golden_zone(edge: float) -> bool:
+    """単勝 edge が発注許可ゾーン内かどうか。
+    許可: [1.2, 1.5] OR [5.0, ∞)
+    禁止（過熱ゾーン）: (1.5, 5.0)
+    """
+    for lo, hi in EDGE_GOLDEN_ZONES:
+        if lo <= edge <= hi:
+            return True
+    return False
+
+
 # ── Kelly 賭け金算出 ────────────────────────────────────────────────────────────
 
-# 券種ごとのランダム基準確率（n頭立て時の分母係数）
-# 単勝/複勝は 1/n, コンボ系は EV チェックのみで edge は使わない
 _SINGLE_BET_TYPES = {"単勝", "複勝"}
 
 def kelly_bet(
@@ -434,20 +451,27 @@ def kelly_bet(
     edge_threshold: float = EDGE_THRESHOLD,
 ) -> float:
     """
-    フラクショナルKelly でベット金額を算出。
+    フラクショナルKelly + 流動性制限で賭け金を算出。
 
-    単勝・複勝: edge = p / (1/n) ≥ edge_threshold かつ EV ≥ 1.0
-    コンボ系  : EV ≥ 1.0 のみ（edge チェックなし — Harville 確率は 1/n より小さいため）
+    単勝: edge 黄金ゾーン ([1.2,1.5] or ≥5.0) かつ EV≥1.0
+    複勝: edge ≥ threshold かつ EV≥1.0
+    コンボ: EV≥1.0 のみ（Harville 確率は 1/n 未満のため edge チェックなし）
+
+    物理上限:
+      1ベット: min(bankroll×3%, ¥15,000)
     """
     typical_odds = TYPICAL_ODDS.get(bet_type, 5.0)
     ev           = p * typical_odds
     if ev < 1.0:
         return 0.0
 
-    # 単勝・複勝のみ edge チェックを適用
-    if bet_type in _SINGLE_BET_TYPES:
-        base_rate = 1.0 / max(field_size, 2)
-        edge      = p / base_rate
+    base_rate = 1.0 / max(field_size, 2)
+    edge      = p / base_rate
+
+    if bet_type == "単勝":
+        if not _in_golden_zone(edge):
+            return 0.0
+    elif bet_type == "複勝":
         if edge < edge_threshold:
             return 0.0
 
@@ -455,8 +479,9 @@ def kelly_bet(
     kelly_full      = max(kelly_full, 0.0)
     effective_kelly = kelly_full * KELLY_FRACTION
 
-    bet_size = bankroll * effective_kelly
-    bet_size = min(bet_size, bankroll * MAX_BET_RATE, race_budget_remaining)
+    relative_cap = bankroll * MAX_BET_RATE
+    abs_cap      = float(MAX_BET_ABS)
+    bet_size     = min(bankroll * effective_kelly, relative_cap, abs_cap, race_budget_remaining)
     if bet_size < MIN_BET:
         return 0.0
     return float(int(bet_size / 100) * 100)
@@ -482,7 +507,8 @@ def simulate_race(
     n          = len(race_df)
     horse_nums = list(race_df["horse_number"].astype(int))
     prob_list  = list(probs)
-    race_budget = bankroll * MAX_RACE_BUDGET_RATE
+    # 1レース上限: bankroll×10% か ¥50,000 の小さい方
+    race_budget = min(bankroll * MAX_RACE_BUDGET_RATE, float(MAX_RACE_BUDGET_ABS))
     month       = race_date[5:7]
 
     records: list[dict] = []
@@ -546,26 +572,14 @@ def simulate_race(
         h1, h2  = horse_nums[i1], horse_nums[i2]
         try_bet("馬連", _combo_unordered(h1, h2), p_uma)
 
-    # ── 馬単（top-1 → top-2, 高閾値）─────────────────────────────────────────
-    if n >= 2 and edge_top >= HIGH_EDGE_THRESHOLD:
-        i1, i2   = sorted_idx[0], sorted_idx[1]
-        p_exacta  = _harville_exacta(prob_list, i1, i2)
-        h1, h2   = horse_nums[i1], horse_nums[i2]
-        try_bet("馬単", _combo_ordered(h1, h2), p_exacta, HIGH_EDGE_THRESHOLD)
-
     # ── 三連複（top-3）────────────────────────────────────────────────────────
-    if n >= 3 and edge_top >= EDGE_THRESHOLD:
+    if n >= 3:
         i1, i2, i3 = sorted_idx[0], sorted_idx[1], sorted_idx[2]
         p_trio      = _harville_trio(prob_list, i1, i2, i3)
         trio_sorted = sorted([horse_nums[i1], horse_nums[i2], horse_nums[i3]])
         try_bet("三連複", _combo_unordered(*trio_sorted), p_trio)
 
-    # ── 三連単（top-1 → top-2 → top-3, 高閾値）──────────────────────────────
-    if n >= 3 and edge_top >= HIGH_EDGE_THRESHOLD:
-        i1, i2, i3  = sorted_idx[0], sorted_idx[1], sorted_idx[2]
-        p_trifecta   = _harville_trifecta(prob_list, i1, i2, i3)
-        h1, h2, h3  = horse_nums[i1], horse_nums[i2], horse_nums[i3]
-        try_bet("三連単", _combo_ordered(h1, h2, h3), p_trifecta, HIGH_EDGE_THRESHOLD)
+    # 馬単・三連単は除外（赤字確定のためシミュレーション対象外）
 
     total_profit = sum(r["profit"] for r in records)
     return records, total_profit
@@ -694,7 +708,7 @@ def print_report(df: pd.DataFrame, cv_auc: float) -> None:
     print(f"  CV AUC (2024-25年モデル) : {cv_auc:.4f}")
     print(f"  Kelly 分数               : {KELLY_FRACTION} (1/{int(1/KELLY_FRACTION)} Kelly)")
     print(f"  Edge 閾値（通常）          : {EDGE_THRESHOLD}×")
-    print(f"  Edge 閾値（馬単・三連単）   : {HIGH_EDGE_THRESHOLD}×")
+    print(f"  単勝 発注ゾーン           : [1.2〜1.5×] OR [≥5.0×]（過熱ゾーン除外）")
     print(f"  1レース最大投資            : bankroll × {MAX_RACE_BUDGET_RATE*100:.0f}%")
     print(f"  1ベット最大投資            : bankroll × {MAX_BET_RATE*100:.0f}%")
     print(SEP)
@@ -730,7 +744,7 @@ def print_report(df: pd.DataFrame, cv_auc: float) -> None:
 
     # 券種別
     print(f"\n■ 券種別 ROI 詳細")
-    bet_order = ["単勝", "複勝", "ワイド", "馬連", "馬単", "三連複", "三連単"]
+    bet_order = ["単勝", "複勝", "ワイド", "馬連", "三連複"]
     header = f"{'券種':<8}{'件数':>6}{'的中':>6}{'的中率':>7}{'投資額':>13}{'回収額':>13}{'ROI':>8}{'損益':>12}{'最大払戻':>10}"
     sep2 = "-" * 80
     print(header)
@@ -827,7 +841,7 @@ def save_json(df: pd.DataFrame, cv_auc: float) -> None:
             "test":  [TEST_FROM,  TEST_TO],
             "kelly_fraction":     KELLY_FRACTION,
             "edge_threshold":     EDGE_THRESHOLD,
-            "high_edge_threshold": HIGH_EDGE_THRESHOLD,
+            "edge_golden_zones": EDGE_GOLDEN_ZONES,
             "max_race_budget":    MAX_RACE_BUDGET_RATE,
             "max_bet_rate":       MAX_BET_RATE,
         },
