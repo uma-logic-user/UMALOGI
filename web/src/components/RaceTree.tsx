@@ -1,10 +1,10 @@
 'use client'
 
-import { useMemo, useState } from 'react'
-import type { RaceEntry } from '@/types/race'
+import { useMemo, useState, useEffect, useRef } from 'react'
+import type { Race } from '@/types/race'
 
 interface Props {
-  races:          RaceEntry[]
+  races:          Race[]
   selectedRaceId: string | null
   onSelectRace:   (raceId: string) => void
 }
@@ -13,12 +13,12 @@ interface Props {
 type TreeNode = {
   [year: string]: {
     [date: string]: {
-      [venue: string]: RaceEntry[]
+      [venue: string]: Race[]
     }
   }
 }
 
-function buildTree(races: RaceEntry[]): TreeNode {
+function buildTree(races: Race[]): TreeNode {
   const tree: TreeNode = {}
   for (const race of races) {
     const year  = race.year ?? race.date.slice(0, 4)
@@ -55,9 +55,24 @@ export default function RaceTree({ races, selectedRaceId, onSelectRace }: Props)
   const tree = useMemo(() => buildTree(races), [races])
   const years = Object.keys(tree).sort((a, b) => b.localeCompare(a))  // 降順
 
-  // デフォルトで最新年を展開
-  const [openYears,  setOpenYears]  = useState<Set<string>>(() => new Set(years.slice(0, 1)))
-  const [openDates,  setOpenDates]  = useState<Set<string>>(new Set())
+  // races=[] で初期化されるため useState の lazy initializer では年が取れない
+  // → useState は空 Set で起動し、useEffect でデータロード後に最新年・日付を自動展開する
+  const [openYears, setOpenYears] = useState<Set<string>>(new Set())
+  const [openDates, setOpenDates] = useState<Set<string>>(new Set())
+  const didAutoExpand = useRef(false)
+
+  // データ初回ロード時に最新年と最新日付を自動展開
+  useEffect(() => {
+    if (didAutoExpand.current || years.length === 0) return
+    didAutoExpand.current = true
+    const latestYear = years[0]
+    const datesInYear = Object.keys(tree[latestYear] ?? {}).sort((a, b) => b.localeCompare(a))
+    const latestDate = datesInYear[0]
+    if (!latestDate) return
+    const dkey = `${latestYear}-${latestDate}`
+    setOpenYears(new Set([latestYear]))
+    setOpenDates(new Set([dkey]))
+  }, [years, tree])
 
   function toggleYear(year: string) {
     setOpenYears(prev => {
@@ -75,13 +90,13 @@ export default function RaceTree({ races, selectedRaceId, onSelectRace }: Props)
     })
   }
 
-  // 選択レースが含まれるノードを自動展開
-  useMemo(() => {
+  // 選択レースが含まれるノードを自動展開（useMemo → useEffect に変更: 副作用は useEffect で）
+  useEffect(() => {
     if (!selectedRaceId) return
-    const race = races.find(r => r.race_id === selectedRaceId)
+    const race = races.find((r: Race) => r.race_id === selectedRaceId)
     if (!race) return
-    const year  = race.year ?? race.date.slice(0, 4)
-    const dkey  = `${year}-${race.date}`
+    const year = race.year ?? race.date.slice(0, 4)
+    const dkey = `${year}-${race.date}`
     setOpenYears(prev => new Set([...prev, year]))
     setOpenDates(prev => new Set([...prev, dkey]))
   }, [selectedRaceId, races])

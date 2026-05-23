@@ -60,7 +60,7 @@ export default function Win5Panel({ data }: Props) {
   const totalPayout = data.reduce((s, e) => s + (e.payout ?? 0), 0)
 
   return (
-    <div className="space-y-4 p-4">
+    <div className="space-y-4 p-4 w-full min-w-0">
       {/* ヘッダー */}
       <div className="flex flex-wrap items-center gap-3 mb-4">
         <div className="flex items-center gap-2">

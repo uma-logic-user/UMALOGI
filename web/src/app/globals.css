@@ -18,6 +18,7 @@
 /* ─── ベース ─────────────────────────────────────────── */
 html {
   font-size: 110%;
+  overflow-x: hidden;   /* Blowout防止: ページ全体の横スクロールを封じる */
 }
 
 body {
@@ -80,6 +81,9 @@ body::before {
     0 4px 24px rgba(0, 0, 0, 0.5),
     inset 0 0 20px rgba(0, 200, 255, 0.03);
   border-radius: 8px;
+  /* グリッド/フレックスの子要素として幅が膨張しないよう封じる */
+  min-width: 0;
+  overflow: hidden;
 }
 
 .neon-card-bright {
@@ -113,11 +117,16 @@ body::before {
 }
 
 /* ─── テーブルスクロールコンテナ ──────────────────────── */
+/* 注: 収支管理など高さを制限したくないテーブルは直接 overflow-x-auto を使うこと */
 .table-scroll {
   overflow-x: auto;
   overflow-y: auto;
   max-height: 72vh;
+  min-width: 0;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
 }
+
 
 /* ─── テーブル ───────────────────────────────────────── */
 .race-table th {
@@ -251,7 +260,8 @@ body::before {
 .app-shell {
   display: grid;
   grid-template-rows: auto 1fr;
-  grid-template-columns: 260px 1fr;
+  /* minmax(0,1fr) で子要素が 1fr 列を押し広げるのを防ぐ */
+  grid-template-columns: 260px minmax(0, 1fr);
   height: 100vh;
   max-height: 100vh;
   overflow: hidden;
@@ -265,6 +275,7 @@ body::before {
   grid-column: 1;
   grid-row: 2;
   overflow-y: auto;
+  overflow-x: hidden;
   border-right: 1px solid var(--border);
   background: var(--bg-surface);
 }
@@ -272,6 +283,10 @@ body::before {
   grid-column: 2;
   grid-row: 2;
   overflow-y: auto;
+  overflow-x: hidden;  /* 横はみ出しを封じる: 内部コンテンツは各自でoverflow-x:autoを持つこと */
+  min-width: 0;        /* CSS Grid min-width fix: これがないと1fr列がコンテンツで押し広げられる */
+  width: 100%;
+  max-width: 100%;
   background: var(--bg-base);
 }
 

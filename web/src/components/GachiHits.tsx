@@ -180,7 +180,7 @@ export default function GachiHits({ data }: Props) {
   const nonHits = data.filter(d => d.is_hit !== 1).slice(0, 20)
 
   return (
-    <div className="space-y-4 p-4">
+    <div className="space-y-4 p-4 w-full min-w-0">
       {/* ヒットセクションヘッダー */}
       <div className="flex items-center gap-2 mb-2">
         <span className="text-xl">🎯</span>

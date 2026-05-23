@@ -134,7 +134,7 @@ export default function FinancialDashboard({ data, onSelectRace }: Props) {
   const chartDays = allDays
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-5 w-full min-w-0">
 
       {/* ── ヘッダー：モデルタブ ──────────────────────────────── */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3">
@@ -166,7 +166,7 @@ export default function FinancialDashboard({ data, onSelectRace }: Props) {
       {!modelData || allDays.length === 0 ? <EmptyState /> : (
         <>
           {/* ── KPI カード ────────────────────────────────────── */}
-          <div className="grid grid-cols-2 xl:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
             <KpiCard
               label={todayData?.date === today ? '本日の損益' : `最終日の損益 (${todayData?.date ?? '—'})`}
               value={todayData ? `${fmtProfit(todayData.profit)}円` : '—'}
@@ -212,7 +212,8 @@ export default function FinancialDashboard({ data, onSelectRace }: Props) {
           </div>
 
           {/* ── 粒度トグル＋収支テーブル ──────────────────────── */}
-          <div className="neon-card overflow-hidden">
+          {/* overflow-hidden を除去: 子のoverflow-x-autoを完全に機能させる */}
+          <div className="neon-card">
             {/* ヘッダー行：トグル＋累計損益 */}
             <div className="px-3 sm:px-5 py-3 border-b border-[rgba(0,200,255,0.12)] flex items-center justify-between gap-2 sm:gap-4 flex-wrap">
               {/* 粒度トグル */}
@@ -238,19 +239,19 @@ export default function FinancialDashboard({ data, onSelectRace }: Props) {
               </span>
             </div>
 
-            {/* テーブル本体 — overflow-x-auto でスマホ横スクロール対応 */}
-            <div className="table-scroll overflow-x-auto">
-              <table className="w-full race-table" style={{ minWidth: '560px' }}>
+            {/* テーブル本体 — 幅が狭い場合は内部で横スクロール */}
+            <div className="w-full overflow-x-auto" style={{ WebkitOverflowScrolling: 'touch' }}>
+              <table className="race-table" style={{ minWidth: '640px', width: '100%' }}>
                 <thead>
                   <tr>
-                    <th className="text-left w-8"></th>
-                    <th>{granularity === 'daily' ? '日付' : granularity === 'monthly' ? '月' : '年'}</th>
-                    <th className="text-right">投資額</th>
-                    <th className="text-right">払戻額</th>
-                    <th className="text-right">損益</th>
-                    <th className="text-right">回収率</th>
-                    <th className="text-right hidden sm:table-cell">的中/買い目</th>
-                    <th className="text-right">累計損益</th>
+                    <th className="text-left w-8 whitespace-nowrap"></th>
+                    <th className="whitespace-nowrap">{granularity === 'daily' ? '日付' : granularity === 'monthly' ? '月' : '年'}</th>
+                    <th className="text-right whitespace-nowrap min-w-[90px]">投資額</th>
+                    <th className="text-right whitespace-nowrap min-w-[90px]">払戻額</th>
+                    <th className="text-right whitespace-nowrap min-w-[90px]">損益</th>
+                    <th className="text-right whitespace-nowrap min-w-[70px]">回収率</th>
+                    <th className="text-right whitespace-nowrap">的中/買い目</th>
+                    <th className="text-right whitespace-nowrap min-w-[100px]">累計損益</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -264,26 +265,26 @@ export default function FinancialDashboard({ data, onSelectRace }: Props) {
                           style={{ background: expandedKey === key ? 'rgba(0,200,255,0.06)' : undefined }}
                           onClick={() => toggleKey(key)}
                         >
-                          <td className="text-center text-[var(--text-muted)]">
+                          <td className="text-center text-[var(--text-muted)] whitespace-nowrap">
                             {expandedKey === key ? '▼' : '▶'}
                           </td>
-                          <td className="font-mono font-bold" style={{ color: accent }}>
+                          <td className="font-mono font-bold whitespace-nowrap" style={{ color: accent }}>
                             {periodLabel(item)}
                           </td>
-                          <td className="text-right font-mono">{fmtNum(item.invested)}</td>
-                          <td className="text-right font-mono">{fmtNum(item.payout)}</td>
-                          <td className={`text-right font-mono font-bold ${
+                          <td className="text-right font-mono whitespace-nowrap">{fmtNum(item.invested)}</td>
+                          <td className="text-right font-mono whitespace-nowrap">{fmtNum(item.payout)}</td>
+                          <td className={`text-right font-mono font-bold whitespace-nowrap ${
                             item.profit > 0 ? 'neon-text-green' : item.profit < 0 ? 'neon-text-red' : ''
                           }`}>
                             {fmtProfit(item.profit)}
                           </td>
-                          <td className={`text-right font-mono ${item.roi >= 100 ? 'neon-text-green' : 'neon-text-red'}`}>
+                          <td className={`text-right font-mono whitespace-nowrap ${item.roi >= 100 ? 'neon-text-green' : 'neon-text-red'}`}>
                             {item.roi.toFixed(1)}%
                           </td>
-                          <td className="text-right text-[var(--text-muted)] hidden sm:table-cell">
+                          <td className="text-right text-[var(--text-muted)] whitespace-nowrap">
                             {item.hits} / {item.total_bets}
                           </td>
-                          <td className={`text-right font-mono font-bold ${
+                          <td className={`text-right font-mono font-bold whitespace-nowrap ${
                             item.cumulative_profit > 0 ? 'neon-text-green' : item.cumulative_profit < 0 ? 'neon-text-red' : ''
                           }`}>
                             {fmtProfit(item.cumulative_profit)}
@@ -396,16 +397,16 @@ function RaceList({
   onSelectRace?:  (raceId: string) => void
 }) {
   return (
-    <div className="ml-6 mt-1 mb-2 rounded overflow-hidden border border-[rgba(0,200,255,0.08)]">
-      <table className="w-full" style={{ fontSize: '0.8rem' }}>
+    <div className="ml-6 mt-1 mb-2 rounded border border-[rgba(0,200,255,0.08)] overflow-x-auto w-full" style={{ WebkitOverflowScrolling: 'touch' }}>
+      <table style={{ fontSize: '0.8rem', minWidth: '480px', width: '100%' }}>
         <thead>
           <tr style={{ background: 'rgba(0,0,0,0.3)' }}>
-            <th className="px-3 py-1.5 text-left text-[var(--text-muted)] font-normal tracking-wider">会場</th>
-            <th className="px-2 py-1.5 text-center text-[var(--text-muted)] font-normal">R</th>
-            <th className="px-3 py-1.5 text-left text-[var(--text-muted)] font-normal">レース名</th>
-            <th className="px-3 py-1.5 text-right text-[var(--text-muted)] font-normal">投資</th>
-            <th className="px-3 py-1.5 text-right text-[var(--text-muted)] font-normal">払戻</th>
-            <th className="px-3 py-1.5 text-center text-[var(--text-muted)] font-normal">結果</th>
+            <th className="px-3 py-1.5 text-left text-[var(--text-muted)] font-normal tracking-wider whitespace-nowrap">会場</th>
+            <th className="px-2 py-1.5 text-center text-[var(--text-muted)] font-normal whitespace-nowrap">R</th>
+            <th className="px-3 py-1.5 text-left text-[var(--text-muted)] font-normal whitespace-nowrap">レース名</th>
+            <th className="px-3 py-1.5 text-right text-[var(--text-muted)] font-normal whitespace-nowrap">投資</th>
+            <th className="px-3 py-1.5 text-right text-[var(--text-muted)] font-normal whitespace-nowrap">払戻</th>
+            <th className="px-3 py-1.5 text-center text-[var(--text-muted)] font-normal whitespace-nowrap">結果</th>
             {onSelectRace && <th className="px-2 py-1.5"></th>}
           </tr>
         </thead>
@@ -476,7 +477,7 @@ function KpiCard({
     : positive === false ? 'var(--neon-red)'
     : accent
   return (
-    <div className="neon-card p-5 flex flex-col gap-2" style={{ borderColor: `${accent}44` }}>
+    <div className="neon-card p-5 flex flex-col gap-2 min-w-0" style={{ borderColor: `${accent}44` }}>
       <div className="text-sm text-[var(--text-muted)] tracking-wider">{label}</div>
       <div className="text-3xl font-black leading-none"
         style={{ color: valueColor, textShadow: `0 0 20px ${valueColor}80, 0 0 40px ${valueColor}30` }}>
@@ -646,7 +647,7 @@ function ProfitHeatmap({ days, isCyan }: { days: DailyStats[]; isCyan: boolean }
     <div className="overflow-x-auto">
       <svg
         viewBox={`0 0 ${W} ${H}`}
-        style={{ width: Math.min(W, 900), height: 'auto', display: 'block' }}
+        style={{ width: '100%', maxWidth: `${Math.min(W, 900)}px`, height: 'auto', display: 'block' }}
       >
         {/* 曜日ラベル */}
         {[1, 3, 5].map(d => (

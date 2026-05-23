@@ -43,7 +43,7 @@ export default function TabView({ races, predictions, summary }: Props) {
   ]
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-5 w-full min-w-0">
 
       {/* ── サマリーバッジ ──────────────────────────────────── */}
       <div className="flex gap-3 flex-wrap">
@@ -98,7 +98,7 @@ export default function TabView({ races, predictions, summary }: Props) {
             <>
               <RaceHeader race={featured} />
               <StatCards  results={featured.results} />
-              <div className="grid grid-cols-1 xl:grid-cols-[1fr_300px] gap-5">
+              <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-5 min-w-0">
                 <PredictionSummaryCard
                   predictions={predictions}
                   hits={hits.length}
@@ -352,14 +352,14 @@ function PredictionSummaryCard({
 
 function AllRacesTable({ races }: { races: RaceEntry[] }) {
   return (
-    <div className="neon-card overflow-hidden">
+    <div className="neon-card min-w-0">
       <div className="px-4 py-3 border-b border-[rgba(0,200,255,0.12)]">
         <span className="text-sm neon-text tracking-[0.2em] font-semibold">
           ALL RACES — {races.length} RECORDS
         </span>
       </div>
-      <div className="table-scroll">
-        <table className="w-full race-table">
+      <div className="w-full overflow-x-auto" style={{ WebkitOverflowScrolling: 'touch' }}>
+        <table className="race-table" style={{ minWidth: '640px', width: '100%' }}>
           <thead>
             <tr>
               <th>日付</th>

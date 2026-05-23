@@ -42,7 +42,7 @@ export default function RaceTable({ results }: Props) {
   }
 
   return (
-    <div className="neon-card overflow-hidden slide-in" style={{ animationDelay: '0.25s' }}>
+    <div className="neon-card slide-in" style={{ animationDelay: '0.25s' }}>
       <div className="flex items-center justify-between px-4 py-3 border-b border-[rgba(0,200,255,0.12)]">
         <span className="text-sm neon-text tracking-[0.2em] font-semibold">RACE RESULTS</span>
         <span className="text-sm text-[var(--text-muted)]">
@@ -52,8 +52,8 @@ export default function RaceTable({ results }: Props) {
       </div>
 
       {/* ── デスクトップ: テーブル ── */}
-      <div className="hidden md:block table-scroll">
-        <table className="w-full race-table">
+      <div className="hidden md:block w-full overflow-x-auto" style={{ WebkitOverflowScrolling: 'touch' }}>
+        <table className="race-table" style={{ minWidth: '640px', width: '100%' }}>
           <thead>
             <tr>
               <SortTh col="rank"         label="着順" />

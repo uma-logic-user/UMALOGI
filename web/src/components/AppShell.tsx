@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useMemo, useEffect, useCallback } from 'react'
-import type { RaceEntry, Prediction } from '@/types/race'
+import type { Race, RaceEntry, Prediction } from '@/types/race'
 import NavBar              from './NavBar'
 import RaceTree            from './RaceTree'
 import RaceDetail          from './RaceDetail'
@@ -25,7 +25,8 @@ export default function AppShell() {
   const [selectedRaceId, setSelectedRaceId] = useState<string | null>(null)
 
   // ── データ状態 ────────────────────────────────────────────────────
-  const [races,         setRaces]         = useState<RaceEntry[]>([])
+  const [raceList,      setRaceList]      = useState<Race[]>([])           // RaceTree用: 全期間lightweight
+  const [races,         setRaces]         = useState<RaceEntry[]>([])      // TabView用: 直近full data
   const [predictions,   setPredictions]   = useState<Prediction[]>([])
   const [hitsHistory,   setHitsHistory]   = useState<Prediction[]>([])
   const [summary,       setSummary]       = useState<Summary>({ total_races_in_db: 0, overall: {} })
@@ -37,6 +38,7 @@ export default function AppShell() {
   const [gachiHits,     setGachiHits]     = useState<any[]>([])
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [conditionData, setConditionData] = useState<any>(null)
+  const [selectedRaceData, setSelectedRaceData] = useState<RaceEntry | null>(null)  // 選択レース詳細（オンデマンド）
   const [loading,       setLoading]       = useState(true)
   const [error,         setError]         = useState<string | null>(null)
 
@@ -46,8 +48,9 @@ export default function AppShell() {
 
     async function fetchAll() {
       try {
-        const [racesRes, predsRes, hitsRes, summaryRes, finRes, gachiRes, win5Res, condRes] = await Promise.all([
-          fetch('/api/races'),
+        const [raceListRes, racesRes, predsRes, hitsRes, summaryRes, finRes, gachiRes, win5Res, condRes] = await Promise.all([
+          fetch('/api/race-list'),  // 全期間lightweight（RaceTree用）
+          fetch('/api/races'),      // 直近2000件full data（TabView用）
           fetch('/api/predictions'),
           fetch('/api/hits'),
           fetch('/api/summary'),
@@ -59,8 +62,9 @@ export default function AppShell() {
 
         if (cancelled) return
 
-        const [racesData, predsData, hitsData, summaryData, finData, gachiData, win5RawData, condData] =
+        const [raceListData, racesData, predsData, hitsData, summaryData, finData, gachiData, win5RawData, condData] =
           await Promise.all([
+            raceListRes.json(),
             racesRes.json(),
             predsRes.json(),
             hitsRes.json(),
@@ -73,6 +77,7 @@ export default function AppShell() {
 
         if (cancelled) return
 
+        setRaceList(raceListData)
         setRaces(racesData)
         setPredictions(predsData)
         setHitsHistory(hitsData)
@@ -93,21 +98,36 @@ export default function AppShell() {
   }, [])
 
   // ── 選択レース ───────────────────────────────────────────────────
-  const selectedRace = useMemo(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    () => races.find(r => r.race_id === selectedRaceId) as any ?? null,
-    [races, selectedRaceId],
-  )
+  const selectedRace = selectedRaceData
 
   const racePredictions = useMemo(
     () => selectedRaceId ? predictions.filter(p => p.race_id === selectedRaceId) : [],
     [predictions, selectedRaceId],
   )
 
-  const handleSelectRace = useCallback((raceId: string) => {
+  const handleSelectRace = useCallback(async (raceId: string) => {
     setSelectedRaceId(raceId)
     setView('race')
-  }, [])
+
+    // 直近2000件に含まれている場合はそのまま使用
+    const existing = races.find(r => r.race_id === raceId)
+    if (existing) {
+      setSelectedRaceData(existing)
+      return
+    }
+
+    // 含まれていない場合はメタから日付を取得してオンデマンドフェッチ
+    const meta = raceList.find(r => r.race_id === raceId)
+    if (!meta?.date) return
+    try {
+      const res = await fetch(`/api/races?date=${encodeURIComponent(meta.date)}`)
+      const dayRaces: RaceEntry[] = await res.json()
+      const detail = dayRaces.find(r => r.race_id === raceId)
+      if (detail) setSelectedRaceData(detail)
+    } catch {
+      // フェッチ失敗時は詳細なし
+    }
+  }, [races, raceList])
 
   const hits = hitsHistory
 
@@ -238,7 +258,7 @@ export default function AppShell() {
             Race Explorer
           </div>
           <RaceTree
-            races={races}
+            races={raceList}
             selectedRaceId={selectedRaceId}
             onSelectRace={handleSelectRace}
           />
@@ -248,15 +268,17 @@ export default function AppShell() {
       {/* ── Main ────────────────────────────────────── */}
       <main className="app-main">
         {view === 'hits' && (
-          <HitHistory predictions={hitsHistory} />
+          <div className="min-w-0 w-full">
+            <HitHistory predictions={hitsHistory} />
+          </div>
         )}
         {view === 'dashboard' && (
-          <div className="p-3 sm:p-4 min-w-0 overflow-x-hidden">
+          <div className="p-3 sm:p-4 min-w-0 w-full">
             <TabView races={races} predictions={predictions} summary={summary} />
           </div>
         )}
         {view === 'financial' && (
-          <div className="p-3 sm:p-4 min-w-0 overflow-x-hidden">
+          <div className="p-3 sm:p-4 min-w-0 w-full">
             <FinancialDashboard
               data={financialData}
               onSelectRace={(raceId) => handleSelectRace(raceId)}
@@ -278,16 +300,24 @@ export default function AppShell() {
           </div>
         )}
         {view === 'win5' && (
-          <Win5Panel data={win5Data} />
+          <div className="p-3 sm:p-4 min-w-0 w-full">
+            <Win5Panel data={win5Data} />
+          </div>
         )}
         {view === 'gachi' && (
-          <GachiHits data={gachiHits} />
+          <div className="p-3 sm:p-4 min-w-0 w-full">
+            <GachiHits data={gachiHits} />
+          </div>
         )}
         {view === 'condition' && (
-          <ConditionAnalysis data={conditionData} />
+          <div className="p-3 sm:p-4 min-w-0 w-full">
+            <ConditionAnalysis data={conditionData} />
+          </div>
         )}
         {view === 'analytics' && (
-          <DrillDownAnalytics />
+          <div className="min-w-0 w-full">
+            <DrillDownAnalytics />
+          </div>
         )}
       </main>
     </div>

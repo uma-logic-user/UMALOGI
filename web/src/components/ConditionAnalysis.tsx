@@ -104,7 +104,7 @@ export default function ConditionAnalysis({ data }: Props) {
   const rows: (ConditionRow | CombinedRow)[] = data[activeTab] ?? []
 
   return (
-    <div className="p-4 space-y-5">
+    <div className="p-4 space-y-5 w-full min-w-0">
       {/* ヘッダー */}
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
@@ -155,7 +155,7 @@ export default function ConditionAnalysis({ data }: Props) {
       </div>
 
       {/* テーブル */}
-      <div className="neon-card overflow-hidden">
+      <div className="neon-card">
         <div className="px-4 py-2.5 border-b border-[rgba(0,200,255,0.12)]">
           <span className="text-xs text-[var(--text-muted)] tracking-wider">
             {GROUP_LABELS[activeTab]} — {rows.length} 件
@@ -166,19 +166,19 @@ export default function ConditionAnalysis({ data }: Props) {
             データなし（最低3件以上の条件が必要です）
           </div>
         ) : (
-          <div className="table-scroll">
-            <table className="w-full race-table">
+          <div className="w-full overflow-x-auto" style={{ WebkitOverflowScrolling: 'touch' }}>
+            <table className="race-table" style={{ minWidth: '640px', width: '100%' }}>
               <thead>
                 <tr>
-                  <th className="text-left">条件</th>
-                  <th className="text-center">モデル</th>
-                  <th className="text-right">件数</th>
-                  <th className="text-right">的中</th>
-                  <th className="text-right">的中率</th>
-                  <th className="text-right">ROI</th>
-                  <th className="text-right">投資</th>
-                  <th className="text-right">払戻</th>
-                  <th className="text-right">損益</th>
+                  <th className="text-left whitespace-nowrap">条件</th>
+                  <th className="text-center whitespace-nowrap">モデル</th>
+                  <th className="text-right whitespace-nowrap">件数</th>
+                  <th className="text-right whitespace-nowrap">的中</th>
+                  <th className="text-right whitespace-nowrap">的中率</th>
+                  <th className="text-right whitespace-nowrap">ROI</th>
+                  <th className="text-right whitespace-nowrap">投資</th>
+                  <th className="text-right whitespace-nowrap">払戻</th>
+                  <th className="text-right whitespace-nowrap">損益</th>
                 </tr>
               </thead>
               <tbody>
