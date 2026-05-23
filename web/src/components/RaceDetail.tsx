@@ -5,7 +5,7 @@ import type { RaceEntry, Prediction, RacePayout, RaceResult, TrainingEval, RaceB
 import PredictionsPanel from './PredictionsPanel'
 import BiasPanel from './BiasPanel'
 
-type Tab = 'results' | 'prerace' | 'predictions'
+type Tab = 'race_card' | 'results' | 'predictions' | 'payouts'
 
 const MEDAL: Record<number, string> = { 1: '🥇', 2: '🥈', 3: '🥉' }
 
@@ -55,8 +55,7 @@ interface Props {
 
 export default function RaceDetail({ race, predictions }: Props) {
   const hasPrerace = !!race.prerace
-  const defaultTab: Tab = hasPrerace ? 'prerace' : 'results'
-  const [tab, setTab] = useState<Tab>(defaultTab)
+  const [tab, setTab] = useState<Tab>('race_card')
 
   const payoutsByType = (race.payouts ?? [])
     .filter(isValidPayout)
@@ -72,9 +71,10 @@ export default function RaceDetail({ race, predictions }: Props) {
   const hasPredictions = predictions.length > 0
 
   const tabs: { key: Tab; label: string; count?: number }[] = [
-    ...(hasPrerace ? [{ key: 'prerace' as Tab, label: 'AI直前分析' }] : []),
+    { key: 'race_card',   label: '出馬表' },
     { key: 'results',     label: 'レース結果' },
     { key: 'predictions', label: 'AI予想', count: hasPredictions ? predictions.length : undefined },
+    { key: 'payouts',     label: '的中結果', count: hasPayouts ? betTypes.length : undefined },
   ]
 
   return (
@@ -160,25 +160,46 @@ export default function RaceDetail({ race, predictions }: Props) {
         ))}
       </div>
 
-      {/* ── AI直前分析タブ ─────────────────────────── */}
-      {tab === 'prerace' && hasPrerace && (
-        <div className="space-y-4">
-          {/* バイアスパネル */}
-          <BiasPanel
-            bias={race.prerace!.bias}
-            condition={race.condition || ''}
-          />
-
-          {/* AI直前予想テーブル */}
-          <PreraceTable results={race.results ?? []} />
-        </div>
+      {/* ── 出馬表タブ ────────────────────────────── */}
+      {tab === 'race_card' && (
+        <RaceCardTable results={race.results ?? []} />
       )}
 
       {/* ── レース結果タブ ─────────────────────────── */}
       {tab === 'results' && (
+        <ResultsTable results={race.results ?? []} />
+      )}
+
+      {/* ── AI予想タブ ────────────────────────────── */}
+      {tab === 'predictions' && (
         <div className="space-y-4">
-          <ResultsTable results={race.results ?? []} />
-          {hasPayouts && (
+          <SnsShareButton race={race} predictions={predictions} />
+          {hasPrerace && (
+            <>
+              <BiasPanel
+                bias={race.prerace!.bias}
+                condition={race.condition || ''}
+              />
+              <PreraceTable results={race.results ?? []} />
+            </>
+          )}
+          {hasPredictions
+            ? <PredictionsPanel predictions={predictions} limit={200} payouts={race.payouts ?? []} />
+            : (
+              <div className="neon-card p-12 text-center">
+                <div className="text-[var(--text-muted)] text-base tracking-widest">
+                  このレースの予想データはありません
+                </div>
+              </div>
+            )
+          }
+        </div>
+      )}
+
+      {/* ── 的中結果タブ ──────────────────────────── */}
+      {tab === 'payouts' && (
+        hasPayouts
+          ? (
             <div className="neon-card overflow-hidden">
               <div className="px-4 py-3 border-b border-[rgba(0,200,255,0.12)]">
                 <span className="text-sm neon-text tracking-[0.2em] font-semibold">
@@ -195,22 +216,177 @@ export default function RaceDetail({ race, predictions }: Props) {
                 ))}
               </div>
             </div>
-          )}
-        </div>
-      )}
-
-      {/* ── AI予想タブ ────────────────────────────── */}
-      {tab === 'predictions' && (
-        hasPredictions
-          ? <PredictionsPanel predictions={predictions} limit={200} payouts={race.payouts ?? []} />
+          )
           : (
             <div className="neon-card p-12 text-center">
               <div className="text-[var(--text-muted)] text-base tracking-widest">
-                このレースの予想データはありません
+                払戻データはありません
               </div>
             </div>
           )
       )}
+    </div>
+  )
+}
+
+// ── SNS投稿用テキスト生成・コピーボタン ──────────────────────
+function buildSnsText(
+  race: RaceEntry & { prerace?: { ev_recommend: EvRecommend[]; bias: RaceBias; generated_at: string } },
+  predictions: Prediction[],
+): string {
+  const evRecs = race.prerace?.ev_recommend ?? []
+  const topBets = predictions
+    .filter(p => (p.expected_value ?? 0) >= 1.0)
+    .slice(0, 6)
+
+  const header = `📊 UMALOGI AI予想 | ${race.date} ${race.venue}${race.race_number}R — ${race.race_name || ''}`
+
+  const evSection = evRecs.length > 0
+    ? `\n🔥【激アツ推奨馬 — EV≥1.0】\n` +
+      evRecs.slice(0, 5).map(h =>
+        `  ⬛ ${h.horse_number}番 ${h.horse_name}  EV=${h.ev_score.toFixed(2)}`
+      ).join('\n')
+    : ''
+
+  const betSection = topBets.length > 0
+    ? `\n\n【AI買い目（EV≥1.0）】\n` +
+      topBets.map(p => {
+        const nStr = p.n_tickets > 0 ? ` ${p.n_tickets}点` : ''
+        return `  ${p.model_type}: ${p.bet_type}${nStr}`
+      }).join('\n')
+    : ''
+
+  const footer = [
+    '',
+    '─────────────────',
+    '🆓 1レース目は無料公開中',
+    '📲 フォロー＆リポストで最新AI予想をチェック',
+    '#競馬予想 #AI競馬 #UMALOGI',
+  ].join('\n')
+
+  return [header, evSection, betSection, footer].join('')
+}
+
+function SnsShareButton({
+  race,
+  predictions,
+}: {
+  race: RaceEntry & { prerace?: { ev_recommend: EvRecommend[]; bias: RaceBias; generated_at: string } }
+  predictions: Prediction[]
+}) {
+  const [copied, setCopied] = useState(false)
+
+  const handleCopy = async () => {
+    const text = buildSnsText(race, predictions)
+    try {
+      await navigator.clipboard.writeText(text)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 1500)
+    } catch {
+      // clipboard API not available (non-HTTPS)
+    }
+  }
+
+  return (
+    <div className="flex justify-end">
+      <button
+        onClick={handleCopy}
+        className={`px-4 py-2 text-sm font-semibold rounded-md tracking-wider transition-colors ${
+          copied
+            ? 'bg-[rgba(0,200,100,0.2)] text-[var(--neon-green)] border border-[rgba(0,200,100,0.4)]'
+            : 'bg-[rgba(0,200,255,0.1)] text-[var(--neon-cyan)] border border-[rgba(0,200,255,0.3)] hover:bg-[rgba(0,200,255,0.2)]'
+        }`}
+      >
+        {copied ? '✅ コピーしました!' : '📋 SNS投稿テキストをコピー'}
+      </button>
+    </div>
+  )
+}
+
+// ── 出馬表テーブル ────────────────────────────────────────
+function RaceCardTable({ results }: { results: RaceResult[] }) {
+  const sorted = [...results].sort((a, b) => (a.horse_number ?? 99) - (b.horse_number ?? 99))
+
+  return (
+    <div className="neon-card overflow-hidden">
+      <div className="px-4 py-3 border-b border-[rgba(0,200,255,0.12)]">
+        <span className="text-sm neon-text tracking-[0.2em] font-semibold">
+          RACE CARD — 出馬表
+        </span>
+      </div>
+
+      {/* デスクトップ */}
+      <div className="hidden md:block table-scroll">
+        <table className="w-full race-table">
+          <thead>
+            <tr>
+              <th className="text-center">枠</th>
+              <th className="text-center">馬番</th>
+              <th className="text-left">馬名</th>
+              <th>性齢</th>
+              <th className="text-right">斤量</th>
+              <th>騎手</th>
+              <th>厩舎</th>
+              <th className="text-right">単勝</th>
+              <th className="text-center">人気</th>
+            </tr>
+          </thead>
+          <tbody>
+            {sorted.map((r, i) => (
+              <tr key={r.horse_name + i}>
+                <td className="text-center">
+                  {r.gate_number != null ? <GateBadge gate={r.gate_number} /> : <span className="text-[var(--text-muted)]">—</span>}
+                </td>
+                <td className="text-center font-mono text-[var(--text-muted)]">{r.horse_number ?? '—'}</td>
+                <td>
+                  <span className="font-semibold text-[var(--text-primary)]">{r.horse_name}</span>
+                </td>
+                <td className="text-[var(--text-muted)]">{r.sex_age}</td>
+                <td className="text-right font-mono">{r.weight_carried}</td>
+                <td>{r.jockey}</td>
+                <td className="text-[var(--text-muted)]">{r.trainer || '—'}</td>
+                <td className="text-right font-mono"><OddsCell odds={r.win_odds} /></td>
+                <td className="text-center font-mono text-[var(--text-muted)]">
+                  {r.popularity != null ? `${r.popularity}人気` : '—'}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* モバイル */}
+      <div className="md:hidden">
+        <div style={{ padding: '8px 10px', display: 'flex', flexDirection: 'column', gap: 6 }}>
+          {sorted.map((r, i) => (
+            <div key={r.horse_name + i} className="horse-row-card">
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, paddingTop: 2 }}>
+                <span className="horse-num-lg">{r.horse_number}</span>
+                {r.gate_number != null && <GateBadge gate={r.gate_number} />}
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                <span style={{ fontSize: '0.92rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+                  {r.horse_name}
+                </span>
+                <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>
+                  {r.sex_age} · {r.weight_carried}kg · {r.jockey}
+                  {r.trainer ? ` / ${r.trainer}` : ''}
+                </div>
+                <div style={{ display: 'flex', gap: 12 }}>
+                  <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+                    単勝 <OddsCell odds={r.win_odds} />
+                  </span>
+                  {r.popularity != null && (
+                    <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+                      {r.popularity}人気
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   )
 }
