@@ -579,7 +579,7 @@ function PreraceTable({ results }: { results: RaceResult[] }) {
               <th className="text-center">調教</th>
               <th className="text-right">本命スコア</th>
               <th className="text-right">EV</th>
-              <th className="text-right">Kelly推奨</th>
+              <th className="text-right">単勝Kelly推奨</th>
               <th className="text-right">オッズ朝比</th>
               <th className="text-center">大口</th>
             </tr>
@@ -754,7 +754,7 @@ function PreraceTable({ results }: { results: RaceResult[] }) {
       </div>
 
       <div className="px-4 py-2 text-[10px] text-[var(--text-muted)] border-t border-[var(--border)]">
-        Kelly推奨 = 100万円資金想定 / EV≥1.0 = 激アツ推奨馬 / 🔥 = 急激なオッズ下落（大口投票シグナル）
+        単勝Kelly推奨 = このバンクロールでの単勝買い参考額（1/4 Kelly）/ EV≥1.0 = 激アツ推奨馬 / 🔥 = 急激なオッズ下落（大口投票シグナル）
       </div>
     </div>
   )

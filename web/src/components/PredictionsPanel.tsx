@@ -421,15 +421,26 @@ function MobilePredCard({
         </div>
       )}
 
-      {/* ── フッター: 投資額・結果 ── */}
+      {/* ── フッター: 投資額・Kelly推奨・結果 ── */}
       <div style={{
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         paddingTop: 8, borderTop: '1px solid rgba(255,255,255,0.06)', gap: 8,
         flexWrap: 'wrap',
       }}>
-        <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontFamily: 'monospace' }}>
-          {pred.is_provisional ? '—' : formatBet(pred.n_tickets)}
-        </span>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          {/* Kelly推奨額（recommended_bet が設定されている場合に優先表示） */}
+          {!pred.is_provisional && pred.recommended_bet != null && pred.recommended_bet > 0 && (
+            <span style={{
+              fontSize: '0.78rem', fontFamily: 'monospace', fontWeight: 700,
+              color: 'var(--neon-green)',
+            }}>
+              💰 Kelly推奨 ¥{Math.round(pred.recommended_bet).toLocaleString()}
+            </span>
+          )}
+          <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontFamily: 'monospace' }}>
+            {pred.is_provisional ? '—' : formatBet(pred.n_tickets)}
+          </span>
+        </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
           <span className={hitLabelClass(pred)} style={{ fontSize: '0.82rem' }}>
             {hitLabel(pred)}
