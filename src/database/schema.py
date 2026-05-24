@@ -676,4 +676,19 @@ DDL_STATEMENTS: list[str] = [
     "CREATE INDEX IF NOT EXISTS idx_rr_horse_race    ON race_results(horse_id, race_id)",
     # prediction_id（=）+ is_hit → 回収率・的中統計クエリを高速化
     "CREATE INDEX IF NOT EXISTS idx_pr_pred_hit      ON prediction_results(prediction_id, is_hit)",
+    # ── umasugi_engine Phase2: オッズ時系列テーブル ──────────────────────────────────
+    """
+CREATE TABLE IF NOT EXISTS odds_timeseries (
+    id             INTEGER PRIMARY KEY AUTOINCREMENT,
+    race_id        TEXT    NOT NULL,
+    horse_number   INTEGER NOT NULL,
+    win_odds       REAL,
+    place_odds_min REAL,
+    place_odds_max REAL,
+    popularity     INTEGER,
+    recorded_at    TEXT    NOT NULL DEFAULT (datetime('now','localtime'))
+)
+    """,
+    "CREATE INDEX IF NOT EXISTS idx_ots_race_horse ON odds_timeseries(race_id, horse_number)",
+    "CREATE INDEX IF NOT EXISTS idx_ots_recorded_at ON odds_timeseries(recorded_at)",
 ]

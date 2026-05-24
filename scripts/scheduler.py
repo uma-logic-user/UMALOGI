@@ -1529,6 +1529,22 @@ def job_weekly_backup() -> None:
         logger.error("週次バックアップ失敗: %s", exc)
 
 
+def job_record_odds_timeseries() -> None:
+    """毎分: realtime_odds → odds_timeseries へコピー記録（5:00〜17:59 のみ）"""
+    now = datetime.now()
+    if not (5 <= now.hour < 18):
+        return
+    try:
+        import subprocess
+        subprocess.run(
+            [_PY64[0], "scripts/record_odds_timeseries.py"],
+            timeout=30,
+            encoding="utf-8",
+        )
+    except Exception as exc:
+        logger.warning("odds_timeseries 記録失敗: %s", exc)
+
+
 # ================================================================
 # スケジューラー本体
 # ================================================================
@@ -1609,6 +1625,9 @@ def register_schedules() -> None:
 
     # 毎日23:00: DB バックアップ（5世代ローテーション）
     schedule.every().day.at("23:00").do(job_daily_backup)
+
+    # 毎分: オッズ時系列記録（5:00〜17:59 のみ実際に記録）
+    schedule.every(1).minutes.do(job_record_odds_timeseries)
 
     logger.info("スケジュール登録完了: %d ジョブ", len(schedule.jobs))
     for job in schedule.jobs:
