@@ -50,19 +50,26 @@ _TRACK_TAKE: dict[str, float] = {
 # 2026年4-5月 本番実績ROI（n_tickets*100ベース正確投資額）に基づく。
 # ROI < 100% の券種はこのリストから除外することで損失を防止する。
 #
-# 本命: 三連単(ROI66%/50%) 馬単(52%/19%) 馬連(48%/24%) ワイド(41%/40%) → 除外
 # 本命: 単勝(274%/384%) 複勝(125%/109%) → 許可
+# 本命: 三連単 → 条件付き部分開放（個別EV≥1.5 の場合のみ許可）
+# 本命: 馬単/馬連/ワイド → 引き続き除外
 # 卍  : 全券種がROI100%超 → 全許可（単勝1459%/三連複1198%/馬単692%）
 # Alpha: 三連単(32%) → 除外、三連複(74%) → 複勝のみ維持
 
 _ALLOWED_BET_TYPES: dict[str, set[str]] = {
-    "本命":        {"単勝", "複勝"},            # 三連単/馬単/馬連/ワイド=損失除外
+    "本命":        {"単勝", "複勝"},            # 三連単は_apply_roi_filterで個別EV判定
     "卍":          {"単勝", "複勝", "馬連", "ワイド", "馬単", "三連複"},  # 全部ROI>100%
     "Alpha-Payout": {"複勝", "三連複"},         # 三連単(32%)除外
 }
 
+# 本命モデルの三連単を条件付き許可する個別EV閾値
+_HONMEI_SANRENTAN_EV_MIN: float = 1.5
+
 def _is_allowed_bet_type(model_type: str, bet_type: str) -> bool:
     """モデルと券種の組み合わせが ROI実績ベースで購入許可されているか判定する。
+
+    本命モデルの三連単は _apply_roi_filter() 側で EV 条件を個別判定するため
+    このルックアップを経由しない。
 
     Returns:
         True = 購入してよい（ROI実績 >= 100% の組み合わせ）
@@ -2211,20 +2218,25 @@ class BetGenerator:
         """ROI実績100%未満の券種を in-place で除外する。
 
         `_ALLOWED_BET_TYPES` に定義したモデル別の許可券種リストに基づいてフィルタリング。
+        本命モデルの三連単のみ「個別EV≥1.5」の場合に条件付き許可（部分開放）。
         `config.use_roi_filter = False` の場合はスキップ（バックテスト用）。
         """
         if not self._config.use_roi_filter:
             return
+
+        is_honmei = "本命" in bets.model_type
+
+        def _should_keep(b: "BetRecommendation") -> bool:
+            # 本命モデルの三連単: EV≥1.5 の場合のみ条件付き許可
+            if is_honmei and b.bet_type == "三連単":
+                return b.expected_value >= _HONMEI_SANRENTAN_EV_MIN
+            return _is_allowed_bet_type(bets.model_type, b.bet_type)
+
         before = len(bets.bets)
-        removed_bets = [
-            b for b in bets.bets
-            if not _is_allowed_bet_type(bets.model_type, b.bet_type)
-        ]
-        bets.bets = [
-            b for b in bets.bets
-            if _is_allowed_bet_type(bets.model_type, b.bet_type)
-        ]
+        removed_bets = [b for b in bets.bets if not _should_keep(b)]
+        bets.bets = [b for b in bets.bets if _should_keep(b)]
         removed = before - len(bets.bets)
+
         if removed > 0:
             removed_types = sorted({b.bet_type for b in removed_bets})
             logger.info(
@@ -2232,6 +2244,15 @@ class BetGenerator:
                 bets.race_id, removed, len(bets.bets),
                 removed_types,
             )
+
+        if is_honmei:
+            kept_sanrentan = [b for b in bets.bets if b.bet_type == "三連単"]
+            if kept_sanrentan:
+                ev_vals = [f"EV{b.expected_value:.2f}" for b in kept_sanrentan]
+                logger.info(
+                    "ROIフィルター[条件付き許可]: %s — 本命三連単 %d件 発注承認 %s",
+                    bets.race_id, len(kept_sanrentan), ev_vals,
+                )
 
     def generate_honmei(
         self,
