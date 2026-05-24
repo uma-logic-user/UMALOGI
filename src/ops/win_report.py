@@ -195,12 +195,13 @@ def _fetch_ev_vs_odds(
         pred_ids,
     ).fetchall()
 
-    pred_map: dict[int, tuple[float, list]] = {}
+    pred_map: dict[int, tuple[float, list[int]]] = {}
     for p in preds:
         try:
             combos = json.loads(p["combination_json"]) if p["combination_json"] else []
             horse_nums = list(combos[0]) if combos else []
-        except Exception:
+        except (json.JSONDecodeError, IndexError, TypeError, ValueError) as exc:
+            logger.warning("[WinReport] combination_json パース失敗 id=%s: %s", p["id"], exc)
             horse_nums = []
         pred_map[p["id"]] = (p["expected_value"] or 0.0, horse_nums)
 
