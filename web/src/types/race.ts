@@ -129,8 +129,16 @@ export interface Prediction {
   invested?:       number | null   // n_tickets × 100（API で計算）
   horses:          PredictionHorse[]
   horse_num_to_name?: Record<string, string>
+  /** 確定着順上位3頭（/api/hits のみ付与） */
+  actual_winners?: ActualWinner[]
   /** model_type に "(暫定)" が含まれる場合 true — オッズ未取得の金曜夜暫定予想 */
   is_provisional?: boolean
+}
+
+export interface ActualWinner {
+  rank:         number
+  horse_number: number | null
+  horse_name:   string
 }
 
 /** races/{race_id}.json 内の予想（Prediction のサブセット） */

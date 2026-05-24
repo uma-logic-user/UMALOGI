@@ -274,7 +274,7 @@ export default function AppShell() {
         )}
         {view === 'dashboard' && (
           <div className="p-3 sm:p-4 min-w-0 w-full">
-            <TabView races={races} predictions={predictions} summary={summary} />
+            <TabView races={races} predictions={predictions} hitsData={hitsHistory} summary={summary} />
           </div>
         )}
         {view === 'financial' && (

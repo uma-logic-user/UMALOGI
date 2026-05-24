@@ -67,6 +67,8 @@ export async function GET() {
 
     const raceIds = [...new Set(preds.map(p => p.race_id as string))]
     const horseNumToNameByRace = new Map<string, Record<string, string>>()
+    // 確定着順 1-3着（actual_winners 用）
+    const actualWinnersByRace = new Map<string, { rank: number; horse_number: number | null; horse_name: string }[]>()
     for (const chunk of chunkArray(raceIds, 500)) {
       if (chunk.length === 0) continue
       const rows = db.prepare(`
@@ -78,6 +80,22 @@ export async function GET() {
       for (const row of rows) {
         if (!horseNumToNameByRace.has(row.race_id)) horseNumToNameByRace.set(row.race_id, {})
         horseNumToNameByRace.get(row.race_id)![String(row.horse_number)] = row.horse_name
+      }
+      // 1-3着馬を取得
+      const winnerRows = db.prepare(`
+        SELECT race_id, rank, horse_number, horse_name
+        FROM race_results
+        WHERE rank IN (1, 2, 3)
+          AND race_id IN (${chunk.map(() => '?').join(',')})
+        ORDER BY race_id, rank
+      `).all(...chunk) as { race_id: string; rank: number; horse_number: number | null; horse_name: string }[]
+      for (const row of winnerRows) {
+        if (!actualWinnersByRace.has(row.race_id)) actualWinnersByRace.set(row.race_id, [])
+        actualWinnersByRace.get(row.race_id)!.push({
+          rank: row.rank,
+          horse_number: row.horse_number,
+          horse_name: row.horse_name,
+        })
       }
     }
 
@@ -99,6 +117,7 @@ export async function GET() {
         year:              dateStr ? dateStr.slice(0, 4) : null,
         horses:            horsesByPred.get(pd.prediction_id as number) ?? [],
         horse_num_to_name: horseNumToNameByRace.get(pd.race_id as string) ?? {},
+        actual_winners:    actualWinnersByRace.get(pd.race_id as string) ?? [],
         is_provisional:    modelType.includes('(暫定)'),
       }
     })
