@@ -35,11 +35,13 @@ class WinReportData:
     total_payout:   float
     roi:            float
     top_ev:         float         # 的中した買い目の中で最高の expected_value
-    ev_vs_odds:     list[dict]    # [{horse_number, odds, ev, gap}, ...]
+    ev_vs_odds:     list[dict[str, Any]]    # [{horse_number, odds, ev, gap}, ...]
 
 
 def build_x_post(data: WinReportData) -> str:
     """280字以内の X 投稿テキストを返す。"""
+    if not data.hit_items:
+        raise ValueError("hit_items must not be empty")
     h = data.hit_items[0]
     race_name = data.race_name
     hashtags_full  = f"#競馬予想 #期待値アルゴリズム #的中実績 #{race_name}"
@@ -122,7 +124,7 @@ def _fetch_ev_vs_odds(
     raise NotImplementedError
 
 
-def _post_note_draft(title: str, body: str) -> None:
+def _post_note_draft(data: WinReportData, predictions: list[dict]) -> None:
     raise NotImplementedError
 
 
