@@ -313,6 +313,7 @@ def _alert_note_failure(data: WinReportData) -> None:
 
         system_url = os.environ.get("DISCORD_SYSTEM_WEBHOOK_URL", "")
         if not system_url:
+            logger.warning("[WinReport] DISCORD_SYSTEM_WEBHOOK_URL 未設定 — Note失敗アラートをスキップ")
             return
         date_nodash = data.date_str.replace("-", "")
         msg = (
@@ -349,7 +350,7 @@ def publish_win_report(
         f"SELECT id, expected_value, model_type, combination_json "
         f"FROM predictions WHERE id IN ({placeholders})",
         pred_ids,
-    ).fetchall() if pred_ids else []
+    ).fetchall()
 
     pred_ev_map: dict[int, float] = {p["id"]: p["expected_value"] or 0.0 for p in preds}
     top_ev = max(pred_ev_map.values(), default=0.0)
