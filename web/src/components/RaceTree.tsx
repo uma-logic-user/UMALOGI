@@ -3,6 +3,38 @@
 import { useMemo, useState, useEffect, useRef } from 'react'
 import type { Race } from '@/types/race'
 
+// ── 発走時刻ユーティリティ ─────────────────────────────────────
+// R1=10:00 JST, 以降30分間隔
+function estimatePostTime(dateStr: string, raceNumber: number): Date {
+  const normalized = dateStr.replace(/\//g, '-')
+  const [y, m, d]  = normalized.split('-').map(Number)
+  const totalMin   = 10 * 60 + (raceNumber - 1) * 30  // JST分
+  const h = Math.floor(totalMin / 60)
+  const min = totalMin % 60
+  // JST(UTC+9) → UTC へ変換
+  return new Date(Date.UTC(y, m - 1, d, h - 9, min, 0))
+}
+
+function formatPostTimeHHMM(dt: Date): string {
+  const jst = new Date(dt.getTime() + 9 * 60 * 60 * 1000)
+  return `${String(jst.getUTCHours()).padStart(2, '0')}:${String(jst.getUTCMinutes()).padStart(2, '0')}`
+}
+
+function formatCountdown(secRemaining: number): string {
+  if (secRemaining <= 0) return ''
+  const h = Math.floor(secRemaining / 3600)
+  const m = Math.floor((secRemaining % 3600) / 60)
+  if (h > 0) return `${h}時間${m}分後`
+  if (m === 0) return '間もなく'
+  return `${m}分後`
+}
+
+// JST で今日の日付文字列 "YYYY-MM-DD" を返す
+function todayJST(now: Date): string {
+  const jst = new Date(now.getTime() + 9 * 60 * 60 * 1000)
+  return jst.toISOString().slice(0, 10)
+}
+
 interface Props {
   races:          Race[]
   selectedRaceId: string | null
@@ -60,6 +92,13 @@ export default function RaceTree({ races, selectedRaceId, onSelectRace }: Props)
   const [openYears, setOpenYears] = useState<Set<string>>(new Set())
   const [openDates, setOpenDates] = useState<Set<string>>(new Set())
   const didAutoExpand = useRef(false)
+
+  // カウントダウン用: 60秒ごとに更新
+  const [now, setNow] = useState<Date>(() => new Date())
+  useEffect(() => {
+    const timer = setInterval(() => setNow(new Date()), 60_000)
+    return () => clearInterval(timer)
+  }, [])
 
   // データ初回ロード時に最新年と最新日付を自動展開
   useEffect(() => {
@@ -153,28 +192,54 @@ export default function RaceTree({ races, selectedRaceId, onSelectRace }: Props)
                   </button>
 
                   {/* 会場リスト */}
-                  {dateOpen && venues.map(venue => (
-                    <div key={venue}>
-                      <div className="tree-venue-label">{venue}</div>
-                      {tree[year][date][venue].map(race => {
-                        const isActive = race.race_id === selectedRaceId
-                        return (
-                          <button
-                            key={race.race_id}
-                            className={`tree-race-btn ${isActive ? 'active' : ''}`}
-                            onClick={() => onSelectRace(race.race_id)}
-                            title={`${race.race_number}R ${race.race_name || `第${race.race_number}R`} ${race.surface}${race.distance}m`}
-                          >
-                            <span className="text-[var(--text-muted)] mr-1.5 font-mono text-[10px]">
-                              {String(race.race_number).padStart(2, ' ')}R
-                            </span>
-                            {surfaceIcon(race.surface)}
-                            <span className="ml-1">{race.race_name || `第${race.race_number}R`}</span>
-                          </button>
-                        )
-                      })}
-                    </div>
-                  ))}
+                  {dateOpen && venues.map(venue => {
+                    const todayStr = todayJST(now)
+                    return (
+                      <div key={venue}>
+                        <div className="tree-venue-label">{venue}</div>
+                        {tree[year][date][venue].map(race => {
+                          const isActive   = race.race_id === selectedRaceId
+                          const postTime   = estimatePostTime(race.date, race.race_number)
+                          const timeLabel  = formatPostTimeHHMM(postTime)
+                          const isToday    = race.date.replace(/\//g, '-') === todayStr
+                          const secLeft    = isToday
+                            ? Math.floor((postTime.getTime() - now.getTime()) / 1000)
+                            : -1
+                          const countdown  = secLeft > 0 ? formatCountdown(secLeft) : ''
+                          const isPast     = isToday && secLeft <= 0
+
+                          return (
+                            <button
+                              key={race.race_id}
+                              className={`tree-race-btn ${isActive ? 'active' : ''}`}
+                              onClick={() => onSelectRace(race.race_id)}
+                              title={`${race.race_number}R ${race.race_name || `第${race.race_number}R`} ${race.surface}${race.distance}m  発走 ${timeLabel} JST`}
+                            >
+                              <span className="text-[var(--text-muted)] mr-1.5 font-mono text-[10px]">
+                                {String(race.race_number).padStart(2, ' ')}R
+                              </span>
+                              {surfaceIcon(race.surface)}
+                              <span className="ml-1 truncate flex-1">{race.race_name || `第${race.race_number}R`}</span>
+                              <span
+                                className="ml-1.5 font-mono text-[9px] shrink-0"
+                                style={{ color: isPast ? 'var(--text-muted)' : 'rgba(180,200,255,0.7)' }}
+                              >
+                                {timeLabel}
+                              </span>
+                              {countdown && (
+                                <span
+                                  className="ml-1 font-mono text-[9px] shrink-0"
+                                  style={{ color: secLeft < 1800 ? '#FFD700' : 'rgba(0,255,180,0.7)' }}
+                                >
+                                  {countdown}
+                                </span>
+                              )}
+                            </button>
+                          )
+                        })}
+                      </div>
+                    )
+                  })}
                 </div>
               )
             })}
