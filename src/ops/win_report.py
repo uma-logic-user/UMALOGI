@@ -230,9 +230,161 @@ def _fetch_ev_vs_odds(
     return result
 
 
+def _send_discord_report(data: WinReportData, report_path: Path | None) -> None:
+    """Discord 予想チャンネルへ Embed + X投稿テキストを2メッセージ送信する。"""
+    import requests
+
+    webhook_url = os.environ.get("DISCORD_WEBHOOK_URL", "")
+    if not webhook_url:
+        logger.warning("[WinReport] DISCORD_WEBHOOK_URL 未設定 — Discord 送信スキップ")
+        return
+
+    color = (
+        0xFF4500 if data.total_payout >= 100_000
+        else 0xFFD700 if data.total_payout >= 10_000
+        else 0x43B581
+    )
+
+    lines: list[str] = []
+    for h in data.hit_items:
+        combo_str = "-".join(str(c) for c in h.combination) if h.combination else "?"
+        sign = "+" if h.profit >= 0 else ""
+        lines.append(
+            f"**{h.bet_type}**  {combo_str}  "
+            f"¥{int(h.payout):,}  "
+            f"(投資¥{int(h.invested):,} / 利益{sign}¥{int(h.profit):,})"
+        )
+
+    footer_text = data.date_str
+    if report_path:
+        footer_text += f" | {report_path} に保存済み"
+
+    fields: list[dict[str, Any]] = [
+        {"name": "EV最大値", "value": f"{data.top_ev:.2f}", "inline": True},
+        {"name": "ROI", "value": f"{data.roi:.1f}%", "inline": True},
+    ]
+    if data.ev_vs_odds:
+        fields.append({
+            "name": "乖離スコア（主力馬）",
+            "value": f"{data.ev_vs_odds[0]['gap']:+.2f}",
+            "inline": True,
+        })
+
+    embed = {
+        "title": f"🏆 的中レポート  {data.venue}{data.race_number}R「{data.race_name}」",
+        "description": "\n".join(lines),
+        "color": color,
+        "fields": fields,
+        "footer": {"text": footer_text},
+    }
+
+    resp = requests.post(webhook_url, json={"embeds": [embed]}, timeout=10)
+    if resp.status_code not in (200, 204):
+        logger.warning("[WinReport] Discord Embed 送信失敗: status=%d", resp.status_code)
+
+    x_post = build_x_post(data)
+    resp2 = requests.post(
+        webhook_url,
+        json={"content": f"📋 X投稿テキスト（コピーしてそのまま貼り付けてください）\n\n```\n{x_post}\n```"},
+        timeout=10,
+    )
+    if resp2.status_code not in (200, 204):
+        logger.warning("[WinReport] Discord X投稿テキスト送信失敗: status=%d", resp2.status_code)
+
+
 def _post_note_draft(data: WinReportData, predictions: list[dict[str, Any]]) -> None:
-    raise NotImplementedError
+    """note.com に分析記事を下書き保存する（Playwright 経由）。"""
+    from src.ops.note_draft_publisher import save_draft
+
+    title, body = build_note_draft(data, predictions)
+    ok = save_draft(
+        title=title,
+        body=body,
+        tags=["競馬", "UMALOGI", "AI予想", "的中実績"],
+    )
+    if not ok:
+        raise RuntimeError("save_draft が False を返しました")
 
 
-def publish_win_report(result: Any, race_id: str, conn: sqlite3.Connection) -> None:
-    raise NotImplementedError
+def _alert_note_failure(data: WinReportData) -> None:
+    """Note 投稿失敗時にシステムチャンネルへアラートを送る（例外は握り潰す）。"""
+    try:
+        import requests
+
+        system_url = os.environ.get("DISCORD_SYSTEM_WEBHOOK_URL", "")
+        if not system_url:
+            return
+        date_nodash = data.date_str.replace("-", "")
+        msg = (
+            f"⚠️ **Note 投稿失敗 — 手動確認が必要**\n"
+            f"レース: {data.venue}{data.race_number}R「{data.race_name}」\n"
+            f"下書きファイル: `data/results/{date_nodash}/{data.race_id}_win_report.txt`\n"
+            "対応: note.com に手動で下書き投稿してください。"
+        )
+        requests.post(system_url, json={"content": msg}, timeout=10)
+    except Exception:
+        pass
+
+
+def publish_win_report(
+    result: Any,
+    race_id: str,
+    conn: sqlite3.Connection,
+) -> None:
+    """メインエントリーポイント。各ステップの例外は内部でキャッチしてログに落とす。"""
+    hit_items = [h for h in result.hits if h.is_hit]
+    if not hit_items:
+        return
+
+    race_row = conn.execute(
+        "SELECT venue, race_number FROM races WHERE race_id = ?",
+        (race_id,),
+    ).fetchone()
+    venue       = race_row["venue"]       if race_row else ""
+    race_number = race_row["race_number"] if race_row else 0
+
+    pred_ids = [h.prediction_id for h in hit_items]
+    placeholders = ",".join("?" * len(pred_ids))
+    preds = conn.execute(
+        f"SELECT id, expected_value, model_type, combination_json "
+        f"FROM predictions WHERE id IN ({placeholders})",
+        pred_ids,
+    ).fetchall() if pred_ids else []
+
+    pred_ev_map: dict[int, float] = {p["id"]: p["expected_value"] or 0.0 for p in preds}
+    top_ev = max(pred_ev_map.values(), default=0.0)
+
+    ev_vs_odds = _fetch_ev_vs_odds(conn, race_id, hit_items)
+
+    data = WinReportData(
+        race_id=race_id,
+        race_name=result.race_name,
+        venue=venue,
+        race_number=race_number,
+        date_str=result.date,
+        hit_items=hit_items,
+        total_invested=result.total_invested,
+        total_payout=result.total_payout,
+        roi=result.roi,
+        top_ev=top_ev,
+        ev_vs_odds=ev_vs_odds,
+    )
+
+    report_path: Path | None = None
+    try:
+        report_path = generate_win_report_file(data)
+        logger.info("[WinReport] ファイル保存: %s", report_path)
+    except Exception as e:
+        logger.warning("[WinReport] ファイル生成失敗: %s", e)
+
+    try:
+        _send_discord_report(data, report_path)
+    except Exception as e:
+        logger.warning("[WinReport] Discord 送信失敗: %s", e)
+
+    predictions_list = [dict(p) for p in preds]
+    try:
+        _post_note_draft(data, predictions_list)
+    except Exception as e:
+        logger.warning("[WinReport] Note 投稿失敗: %s", e)
+        _alert_note_failure(data)
