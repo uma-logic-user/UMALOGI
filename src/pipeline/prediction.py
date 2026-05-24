@@ -538,6 +538,26 @@ def _prerace_pipeline_inner(
             n,
         )
 
+    # Step 2c: センチネルオッズ馬の自動除外（data_validator）
+    # win_odds >= 500 の馬は JRA-VAN 未確定値であり、軸計算・EV計算から除外する
+    try:
+        from src.ml.data_validator import validate_race_df, filter_sentinel_horses
+        _vr = validate_race_df(df, race_id=race_id)
+        if _vr["n_sentinel"] > 0:
+            if _vr["is_valid"]:
+                df = filter_sentinel_horses(df, race_id=race_id)
+                logger.info(
+                    "センチネル除外 (race_id=%s): %d頭除外 → %d頭で推論",
+                    race_id, _vr["n_sentinel"], len(df),
+                )
+            else:
+                logger.warning(
+                    "センチネル除外スキップ (race_id=%s): 除外後の有効頭数 %d < 最低 3頭 → 全馬で続行",
+                    race_id, _vr["n_valid_odds"],
+                )
+    except Exception as _ve:
+        logger.warning("data_validator 呼び出し失敗（続行）: %s", _ve)
+
     # Step 3: モデル予測（V1/V2 分岐）
     is_v2 = (model_version == "v2")
     if is_v2:

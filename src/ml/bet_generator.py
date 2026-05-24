@@ -240,11 +240,14 @@ def get_current_bankroll(
     """
     prediction_results テーブルの累積 profit を集計し、現在の実効バンクロールを返す。
 
-    bankroll = initial_bankroll + Σprofit（全履歴）
+    bankroll = initial_bankroll + Σprofit（BANKROLL_RESET_DATE 以降）
     prediction_results が空・profit が全 NULL の場合は initial_bankroll を返す。
     最低限 initial_bankroll の 10% を下限として保持（完全破産防止）。
 
-    初期資金は環境変数 INITIAL_BANKROLL → 引数 initial_bankroll の優先順で解決する。
+    環境変数の優先順:
+      BANKROLL_OVERRIDE=¥N  → P&L を無視してこの値を直接返す（Kelly新規開始時に使用）
+      BANKROLL_RESET_DATE=YYYY-MM-DD → この日以降の prediction_results のみ集計
+      INITIAL_BANKROLL=N    → 基準初期資金（デフォルト 10万）
 
     Args:
         conn:              DB 接続
@@ -255,13 +258,41 @@ def get_current_bankroll(
     """
     import os
 
+    # BANKROLL_OVERRIDE: P&L を無視して直接指定（Kelly 新規開始時に使用）
+    override = os.environ.get("BANKROLL_OVERRIDE", "").strip()
+    if override:
+        try:
+            val = float(override)
+            if val > 0:
+                logger.info("バンクロール直接指定 (BANKROLL_OVERRIDE): ¥%s", f"{val:,.0f}")
+                return float(int(val // 100) * 100)
+        except ValueError:
+            logger.warning("BANKROLL_OVERRIDE の値が不正（無視）: %r", override)
+
     if initial_bankroll is None:
         initial_bankroll = float(os.environ.get("INITIAL_BANKROLL", "100000"))
 
+    # BANKROLL_RESET_DATE: この日以降の prediction_results のみ集計
+    reset_date = os.environ.get("BANKROLL_RESET_DATE", "").strip()
+
     try:
-        row = conn.execute(
-            "SELECT COALESCE(SUM(profit), 0.0) FROM prediction_results WHERE profit IS NOT NULL"
-        ).fetchone()
+        if reset_date:
+            row = conn.execute(
+                """
+                SELECT COALESCE(SUM(pr.profit), 0.0)
+                FROM prediction_results pr
+                JOIN predictions p ON pr.prediction_id = p.id
+                JOIN races r ON p.race_id = r.race_id
+                WHERE pr.profit IS NOT NULL
+                  AND r.date >= ?
+                """,
+                (reset_date,),
+            ).fetchone()
+            logger.info("バンクロール集計: %s 以降のみ (BANKROLL_RESET_DATE)", reset_date)
+        else:
+            row = conn.execute(
+                "SELECT COALESCE(SUM(profit), 0.0) FROM prediction_results WHERE profit IS NOT NULL"
+            ).fetchone()
         net_pnl: float = float(row[0]) if row else 0.0
     except Exception as exc:
         logger.warning("バンクロール計算失敗（初期値を使用）: %s", exc)
