@@ -228,6 +228,17 @@ def _fetch_result_from_netkeiba(race_id: str, conn) -> bool:
     return True
 
 
+def _try_publish_win_report(result: object, race_id: str, conn: object) -> None:
+    """的中時のみ win_report パイプラインを起動する。失敗しても例外を漏らさない。"""
+    if not hasattr(result, "hit_count") or result.hit_count == 0:  # type: ignore[union-attr]
+        return
+    try:
+        from src.ops.win_report import publish_win_report
+        publish_win_report(result, race_id, conn)
+    except Exception as e:
+        logger.warning("[WinReport] 失敗（スキップ）: %s", e)
+
+
 def _send_hit_flash(result: object, race_name: str) -> None:
     """評価完了直後に Discord へ速報を送信する。
 
@@ -362,6 +373,7 @@ def fetch_single_race(race_id: str, delay: float = 1.5) -> bool:
         )
         # 的中速報を Discord へ送信
         _send_hit_flash(result, result.race_name)
+        _try_publish_win_report(result, race_id, conn)
     except Exception as ee:
         logger.warning("評価失敗 race_id=%s: %s", race_id, ee)
 
@@ -440,6 +452,7 @@ def fetch_for_date(date_str: str, force_all: bool = False, delay: float = 1.5) -
                 race_id, result.hit_count, result.roi,
             )
             _send_hit_flash(result, result.race_name)
+            _try_publish_win_report(result, race_id, conn)
         except Exception as e:
             logger.warning("評価失敗 %s: %s", race_id, e)
 
