@@ -115,16 +115,18 @@ def generate_win_report_file(data: WinReportData) -> Path:
 
 def build_note_draft(
     data: WinReportData,
-    predictions: list[dict],
+    predictions: list[dict[str, Any]],
 ) -> tuple[str, str]:
     """(note_title, note_body) の Markdown を返す。"""
+    if not data.hit_items:
+        raise ValueError("hit_items must not be empty")
     ymd = data.date_str.replace("-", "/")
     title = (
         f"【的中実績】{ymd} {data.venue}{data.race_number}R"
         f"「{data.race_name}」— EV期待値アルゴリズム選別成功"
     )
 
-    h = data.hit_items[0]
+    h = data.hit_items[0]  # 主力買い目のみ表示（複数的中時は先頭のみ）
     combo_str = "-".join(str(c) for c in h.combination) if h.combination else "?"
 
     top_model = "AIモデル"
@@ -177,7 +179,7 @@ def _fetch_ev_vs_odds(
     raise NotImplementedError
 
 
-def _post_note_draft(data: WinReportData, predictions: list[dict]) -> None:
+def _post_note_draft(data: WinReportData, predictions: list[dict[str, Any]]) -> None:
     raise NotImplementedError
 
 
