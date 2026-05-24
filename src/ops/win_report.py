@@ -174,9 +174,59 @@ def build_note_draft(
 
 
 def _fetch_ev_vs_odds(
-    conn: sqlite3.Connection, race_id: str, hit_items: list[Any]
-) -> list[dict]:
-    raise NotImplementedError
+    conn: sqlite3.Connection,
+    race_id: str,
+    hit_items: list[Any],
+) -> list[dict[str, Any]]:
+    """的中買い目の馬番ごとに EV vs 市場オッズを構築する。
+
+    predictions.combination_json の形式: [[horse_num, ...], ...]
+    race_results.win_odds: 単勝オッズ
+    gap = ev - (1.0 / win_odds)  正値 = AI が市場より高く評価
+    """
+    if not hit_items:
+        return []
+
+    pred_ids = [h.prediction_id for h in hit_items]
+    placeholders = ",".join("?" * len(pred_ids))
+    preds = conn.execute(
+        f"SELECT id, expected_value, combination_json "
+        f"FROM predictions WHERE id IN ({placeholders})",
+        pred_ids,
+    ).fetchall()
+
+    pred_map: dict[int, tuple[float, list]] = {}
+    for p in preds:
+        try:
+            combos = json.loads(p["combination_json"]) if p["combination_json"] else []
+            horse_nums = list(combos[0]) if combos else []
+        except Exception:
+            horse_nums = []
+        pred_map[p["id"]] = (p["expected_value"] or 0.0, horse_nums)
+
+    odds_rows = conn.execute(
+        "SELECT horse_number, win_odds FROM race_results WHERE race_id = ?",
+        (race_id,),
+    ).fetchall()
+    odds_map: dict[int, float] = {
+        r["horse_number"]: r["win_odds"] or 0.0 for r in odds_rows
+    }
+
+    seen: set[int] = set()
+    result: list[dict[str, Any]] = []
+    for h in hit_items:
+        ev, horse_nums = pred_map.get(h.prediction_id, (0.0, []))
+        if not horse_nums:
+            continue
+        main_horse = int(horse_nums[0])
+        if main_horse in seen:
+            continue
+        seen.add(main_horse)
+        odds = odds_map.get(main_horse, 0.0)
+        gap = ev - (1.0 / odds) if odds > 0 else 0.0
+        result.append({"horse_number": main_horse, "odds": odds, "ev": ev, "gap": gap})
+
+    return result
 
 
 def _post_note_draft(data: WinReportData, predictions: list[dict[str, Any]]) -> None:
