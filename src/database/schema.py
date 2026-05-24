@@ -691,4 +691,54 @@ CREATE TABLE IF NOT EXISTS odds_timeseries (
     """,
     "CREATE INDEX IF NOT EXISTS idx_ots_race_horse ON odds_timeseries(race_id, horse_number)",
     "CREATE INDEX IF NOT EXISTS idx_ots_recorded_at ON odds_timeseries(recorded_at)",
+    # ── umasugi_engine Phase3: パドック気配メモ ──────────────────────────────────
+    """
+CREATE TABLE IF NOT EXISTS paddock_notes (
+    id            INTEGER PRIMARY KEY AUTOINCREMENT,
+    race_id       TEXT    NOT NULL,
+    horse_number  INTEGER,            -- NULL = レース全体へのメモ
+    comment       TEXT    NOT NULL,
+    boost_factor  REAL    NOT NULL DEFAULT 0.0,  -- -0.05〜+0.05 (キーワード解析結果)
+    source        TEXT    NOT NULL DEFAULT 'discord',
+    created_at    TEXT    NOT NULL DEFAULT (datetime('now','localtime'))
+)
+    """,
+    "CREATE INDEX IF NOT EXISTS idx_pn_race_id      ON paddock_notes(race_id)",
+    "CREATE INDEX IF NOT EXISTS idx_pn_race_horse   ON paddock_notes(race_id, horse_number)",
+    # ── umasugi_engine Phase3: 騎手コース別成績 ─────────────────────────────────
+    """
+CREATE TABLE IF NOT EXISTS jockey_stats (
+    jockey_name       TEXT    NOT NULL,
+    venue             TEXT    NOT NULL,  -- 東京 / 中山 / 阪神 等
+    surface           TEXT    NOT NULL,  -- 芝 / ダート
+    total_races       INTEGER NOT NULL DEFAULT 0,
+    wins              INTEGER NOT NULL DEFAULT 0,
+    win_rate          REAL    NOT NULL DEFAULT 0.0,
+    place_rate        REAL    NOT NULL DEFAULT 0.0,  -- 3着内率
+    last_30d_races    INTEGER NOT NULL DEFAULT 0,
+    last_30d_wins     INTEGER NOT NULL DEFAULT 0,
+    last_30d_win_rate REAL    NOT NULL DEFAULT 0.0,
+    updated_at        TEXT    NOT NULL DEFAULT (date('now')),
+    PRIMARY KEY (jockey_name, venue, surface)
+)
+    """,
+    "CREATE INDEX IF NOT EXISTS idx_js_jockey ON jockey_stats(jockey_name)",
+    # ── umasugi_engine Phase3: 調教師コース別成績 ────────────────────────────────
+    """
+CREATE TABLE IF NOT EXISTS trainer_stats (
+    trainer_name      TEXT    NOT NULL,
+    venue             TEXT    NOT NULL,
+    surface           TEXT    NOT NULL,
+    total_races       INTEGER NOT NULL DEFAULT 0,
+    wins              INTEGER NOT NULL DEFAULT 0,
+    win_rate          REAL    NOT NULL DEFAULT 0.0,
+    place_rate        REAL    NOT NULL DEFAULT 0.0,
+    last_30d_races    INTEGER NOT NULL DEFAULT 0,
+    last_30d_wins     INTEGER NOT NULL DEFAULT 0,
+    last_30d_win_rate REAL    NOT NULL DEFAULT 0.0,
+    updated_at        TEXT    NOT NULL DEFAULT (date('now')),
+    PRIMARY KEY (trainer_name, venue, surface)
+)
+    """,
+    "CREATE INDEX IF NOT EXISTS idx_ts_trainer ON trainer_stats(trainer_name)",
 ]

@@ -162,6 +162,7 @@ def init_db(db_path: Path | None = None) -> sqlite3.Connection:
     _migrate_create_win5_results(conn)           # 13. win5_results テーブル作成
     _migrate_create_x_accounts_history(conn)     # 14. x_accounts_history テーブル作成
     _migrate_add_ev_indexes(conn)                # 15. EV 複合インデックス追加
+    _migrate_create_paddock_jockey_trainer(conn) # 16. paddock_notes / jockey_stats / trainer_stats
 
     logger.info("DB 初期化完了: %s", path)
     return conn
@@ -765,6 +766,65 @@ def _migrate_add_ev_indexes(conn: sqlite3.Connection) -> None:
         for name, ddl in indexes:
             conn.execute(ddl)
             logger.info("マイグレーション #15: インデックス %s を作成（または確認）しました", name)
+
+
+def _migrate_create_paddock_jockey_trainer(conn: sqlite3.Connection) -> None:
+    """マイグレーション #16: paddock_notes / jockey_stats / trainer_stats テーブルを作成する。"""
+    tables = {
+        "paddock_notes": """
+            CREATE TABLE IF NOT EXISTS paddock_notes (
+                id            INTEGER PRIMARY KEY AUTOINCREMENT,
+                race_id       TEXT    NOT NULL,
+                horse_number  INTEGER,
+                comment       TEXT    NOT NULL,
+                boost_factor  REAL    NOT NULL DEFAULT 0.0,
+                source        TEXT    NOT NULL DEFAULT 'discord',
+                created_at    TEXT    NOT NULL DEFAULT (datetime('now','localtime'))
+            )""",
+        "jockey_stats": """
+            CREATE TABLE IF NOT EXISTS jockey_stats (
+                jockey_name       TEXT    NOT NULL,
+                venue             TEXT    NOT NULL,
+                surface           TEXT    NOT NULL,
+                total_races       INTEGER NOT NULL DEFAULT 0,
+                wins              INTEGER NOT NULL DEFAULT 0,
+                win_rate          REAL    NOT NULL DEFAULT 0.0,
+                place_rate        REAL    NOT NULL DEFAULT 0.0,
+                last_30d_races    INTEGER NOT NULL DEFAULT 0,
+                last_30d_wins     INTEGER NOT NULL DEFAULT 0,
+                last_30d_win_rate REAL    NOT NULL DEFAULT 0.0,
+                updated_at        TEXT    NOT NULL DEFAULT (date('now')),
+                PRIMARY KEY (jockey_name, venue, surface)
+            )""",
+        "trainer_stats": """
+            CREATE TABLE IF NOT EXISTS trainer_stats (
+                trainer_name      TEXT    NOT NULL,
+                venue             TEXT    NOT NULL,
+                surface           TEXT    NOT NULL,
+                total_races       INTEGER NOT NULL DEFAULT 0,
+                wins              INTEGER NOT NULL DEFAULT 0,
+                win_rate          REAL    NOT NULL DEFAULT 0.0,
+                place_rate        REAL    NOT NULL DEFAULT 0.0,
+                last_30d_races    INTEGER NOT NULL DEFAULT 0,
+                last_30d_wins     INTEGER NOT NULL DEFAULT 0,
+                last_30d_win_rate REAL    NOT NULL DEFAULT 0.0,
+                updated_at        TEXT    NOT NULL DEFAULT (date('now')),
+                PRIMARY KEY (trainer_name, venue, surface)
+            )""",
+    }
+    indexes = [
+        "CREATE INDEX IF NOT EXISTS idx_pn_race_id    ON paddock_notes(race_id)",
+        "CREATE INDEX IF NOT EXISTS idx_pn_race_horse ON paddock_notes(race_id, horse_number)",
+        "CREATE INDEX IF NOT EXISTS idx_js_jockey     ON jockey_stats(jockey_name)",
+        "CREATE INDEX IF NOT EXISTS idx_ts_trainer    ON trainer_stats(trainer_name)",
+    ]
+    with conn:
+        for tname, ddl in tables.items():
+            conn.execute(ddl)
+            logger.info("マイグレーション #16: テーブル %s を作成（または確認）しました", tname)
+        for idx_ddl in indexes:
+            conn.execute(idx_ddl)
+    logger.info("マイグレーション #16: paddock_notes / jockey_stats / trainer_stats 完了")
 
 
 def insert_race(conn: sqlite3.Connection, race: "RaceInfo") -> None:  # type: ignore[name-defined]

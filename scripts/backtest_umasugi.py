@@ -21,6 +21,11 @@ import pandas as pd
 sys.stdout.reconfigure(encoding="utf-8")
 sys.path.insert(0, ".")
 
+from src.umasugi_engine.factors.jockey_trainer import (
+    calc_jockey_course_score,
+    calc_trainer_course_score,
+)
+from src.umasugi_engine.factors.paddock import calc_paddock_score
 from src.umasugi_engine.factors.track_style import calc_track_style_score
 from src.umasugi_engine.factors.training_grade import calc_training_grade_score
 from src.umasugi_engine.factors.turf_type import calc_turf_type_score
@@ -69,9 +74,10 @@ def _compute_umasugi_scores(
     """
     (race_id, horse_id) ペアのリストに対して umasugi_score を返す。
 
-    Phase2 ウェイト（2026-05-24 データ拡張後）:
-      legacy 0.57固定 / track 0.10 / turf 0.15 / training_grade 0.08
-      / odds_momentum 0.05固定(リアルタイムのためbacktest除外) / crowd 0.05固定
+    Phase3 ウェイト（2026-05-24 フル統合後）:
+      legacy 0.50固定 / track 0.10 / turf 0.15 / training_grade 0.07
+      / odds_momentum 0.05固定(リアルタイムのためbacktest除外)
+      / crowd 0.05固定 / paddock 0.03固定 / jockey_course 0.03 / trainer_course 0.02
     """
     if not race_horse_pairs:
         return {}
@@ -79,18 +85,38 @@ def _compute_umasugi_scores(
     df = pd.DataFrame(race_horse_pairs, columns=["race_id", "horse_id"])
     df = df.drop_duplicates()
 
+    # jockey/trainer の紐付け（race_results から取得）
+    race_ids = df["race_id"].unique().tolist()
+    ph = ",".join("?" * len(race_ids))
+    jt_rows = conn.execute(
+        f"""
+        SELECT race_id, horse_id, jockey, trainer
+        FROM race_results
+        WHERE race_id IN ({ph}) AND horse_id IS NOT NULL
+        """,
+        race_ids,
+    ).fetchall()
+    jt_df = pd.DataFrame(jt_rows, columns=["race_id", "horse_id", "jockey", "trainer"])
+    df = df.merge(jt_df, on=["race_id", "horse_id"], how="left")
+
     df = calc_track_style_score(df, conn)
     df = calc_turf_type_score(df, conn)
     df = calc_training_grade_score(df, conn)
-    # odds_momentum はリアルタイムのため backtest では 0.5 固定
+    df = calc_paddock_score(df, conn)
+    df = calc_jockey_course_score(df, conn)
+    df = calc_trainer_course_score(df, conn)
+    # odds_momentum / crowd はリアルタイムのため backtest では 0.5 固定
 
     df["umasugi_score"] = (
-        0.57 * 0.5                                           # legacy 固定
+        0.50 * 0.5                                            # legacy 固定
         + 0.10 * df["track_style_score"].fillna(0.5)
         + 0.15 * df["turf_type_score"].fillna(0.5)
-        + 0.08 * df["training_grade_score"].fillna(0.5)
-        + 0.05 * 0.5                                         # odds_momentum 固定
-        + 0.05 * 0.5                                         # crowd 固定
+        + 0.07 * df["training_grade_score"].fillna(0.5)
+        + 0.05 * 0.5                                          # odds_momentum 固定
+        + 0.05 * 0.5                                          # crowd 固定
+        + 0.03 * df["paddock_score"].fillna(0.5)
+        + 0.03 * df["jockey_course_score"].fillna(0.5)
+        + 0.02 * df["trainer_course_score"].fillna(0.5)
     ).clip(0.0, 1.0)
 
     return {
