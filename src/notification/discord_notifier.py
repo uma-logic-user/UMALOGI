@@ -389,8 +389,12 @@ class DiscordNotifier(BaseNotifier):
                 n_combos  = len(combos)
                 cost_str  = f"¥100×{n_combos}点=¥{n_combos * 100:,}" if n_combos > 0 else f"¥{rec_bet:,}"
 
+                # 本命×三連単 (EV≥1.5で条件付き許可) は識別マークを付与
+                model_type = getattr(rb, "model_type", "")
+                cond_badge = " ⚡条件付" if ("本命" in model_type and bet_type == "三連単" and ev >= 1.5) else ""
+
                 # フィールド name: "🔥 三連複  EV=2.13 | ¥100×4点=¥400"
-                field_name = f"{fire} {bet_type}  EV={ev:.2f} | {cost_str}"
+                field_name = f"{fire} {bet_type}{cond_badge}  EV={ev:.2f} | {cost_str}"
 
                 # フィールド value: 馬番+馬名 カード形式
                 field_value = _format_combo_card(bet)
@@ -409,13 +413,13 @@ class DiscordNotifier(BaseNotifier):
             return
 
         invest_str   = f"¥{int(total_invest):,}" if total_invest > 0 else "なし"
-        footer_text  = f"EV≥1.0 推奨投資 {invest_str}"
+        footer_text  = f"🤖 AIウマスギフィルター適用済み | EV≥1.0 推奨投資 {invest_str}"
         if dashboard_url:
             footer_text += f" | 詳細 → {dashboard_url}"
 
         embed: dict[str, Any] = {
             "title":       _s(f"🏇  {label}  直前予想"),
-            "description": _s(f"最高EV: **{max_ev:.2f}**  |  モデル3系統独立稼働"),
+            "description": _s(f"最高EV: **{max_ev:.2f}**  |  モデル3系統独立稼働  |  🤖 ROIフィルター適用済み"),
             "color":       color,
             "fields":      fields,
             "footer":      {"text": footer_text},

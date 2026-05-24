@@ -579,8 +579,15 @@ def _prerace_pipeline_inner(
         gen = BetGenerator(
             conn=conn, config=BetConfig(bankroll=current_bankroll, provisional=provisional)
         )
+    # ── AIウマスギフィルター統合済み ─────────────────────────────────────────
+    # generate_honmei() / generate_alpha_trifecta() は内部で _apply_roi_filter() を呼び出す。
+    # 本命: 単勝/複勝 + 三連単(EV≥1.5のみ) / 卍: 三連単除外 / Alpha: 三連単除外
     honmei_bets = gen.generate_honmei(race_id, df, honmei_scores)
     manji_bets = gen.generate_manji(race_id, df, ev_scores)
+    logger.info(
+        "[AIウマスギ] ROIフィルター適用完了: %s  本命=%d件 卍=%d件",
+        race_id, len(honmei_bets.bets), len(manji_bets.bets),
+    )
 
     # Step 4b: Alpha-Payout 複勝+三連系シグナル（直前のみ）
     alpha_bets = None

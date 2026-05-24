@@ -333,11 +333,11 @@ function buildXText(
     betLine = `\n本命◎${top.horse_number}番${top.horse_name}  EV${top.ev_score.toFixed(2)}`
   }
 
-  const full = `【UMALOGI直前AI予想】${venue}${raceNum}R「${name}」${betLine}\n🆓1レース目無料 📲Discord/NOTEで全買い目公開\n${hashtags}`
+  const full = `【UMALOGI直前AI予想】${venue}${raceNum}R「${name}」${betLine}\n🤖フィルター済 🆓1レース目無料 📲Discord/NOTEで全買い目公開\n${hashtags}`
   if (full.length <= 280) return full
 
   // 280字を超えたら簡略版
-  const brief = `【UMALOGI AI予想】${venue}${raceNum}R${betLine ? '\n' + betLine.trim() : ''}\n${hashtags}`
+  const brief = `【UMALOGI AI予想】${venue}${raceNum}R${betLine ? '\n' + betLine.trim() : ''}\n🤖フィルター済\n${hashtags}`
   return brief.slice(0, 280)
 }
 
@@ -355,6 +355,7 @@ function buildNoteText(
   const lines: string[] = [
     `## 🏇 ${venue} ${raceNum}R「${name}」— AI厳選予想`,
     `> ${date}　${surf}　馬場: ${race.condition || '—'}`,
+    `> 🤖 **AIウマスギROIフィルター適用済み**（EV≥1.5のみ発注 · 本命三連単は条件付き許可）`,
     '',
   ]
 

@@ -300,6 +300,14 @@ function MobilePredCard({
                 padding: '0 4px', fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.05em',
               }}>⏳ 暫定</span>
             )}
+            {/* 本命×三連単 かつ EV≥1.5 → 条件付き許可バッジ */}
+            {pred.model_type?.includes('本命') && pred.bet_type === '三連単' && (pred.expected_value ?? 0) >= 1.5 && (
+              <span title="ROIフィルター: EV≥1.5 条件を満たし許可" style={{
+                display: 'inline-block', background: 'rgba(0,255,180,0.13)', color: '#00FFB4',
+                border: '1px solid rgba(0,255,180,0.45)', borderRadius: 3,
+                padding: '0 5px', fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.04em',
+              }}>⚡条件付許可</span>
+            )}
           </div>
           {/* レース名（複数レース表示の場合） */}
           {pred.race_name && (
@@ -546,6 +554,19 @@ export default function PredictionsPanel({
 
   return (
     <>
+      {/* ── AIウマスギフィルターバナー ────────────────────────────── */}
+      <div style={{
+        display: 'flex', alignItems: 'center', gap: 8,
+        padding: '6px 12px', marginBottom: 8, borderRadius: 6,
+        background: 'rgba(0,255,180,0.07)', border: '1px solid rgba(0,255,180,0.25)',
+        fontSize: '0.72rem', color: '#00FFB4',
+      }}>
+        <span style={{ fontWeight: 700, letterSpacing: '0.05em' }}>🤖 AIウマスギフィルター適用済み</span>
+        <span style={{ opacity: 0.65 }}>
+          — 本命: 単勝/複勝 + 三連単(EV≥1.5)  ·  卍: 三連単除外  ·  Alpha: 三連単除外
+        </span>
+      </div>
+
       {/* ── デスクトップ: テーブル表示 ─────────────────────────────── */}
       <div className="hidden md:block">
         <div className="neon-card overflow-hidden">
@@ -601,7 +622,16 @@ export default function PredictionsPanel({
                           </div>
                         ) : (
                           <>
-                            <div>{pred.bet_form ?? pred.bet_type}</div>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 5, flexWrap: 'wrap' }}>
+                              <span>{pred.bet_form ?? pred.bet_type}</span>
+                              {pred.model_type?.includes('本命') && pred.bet_type === '三連単' && (pred.expected_value ?? 0) >= 1.5 && (
+                                <span title="ROIフィルター: EV≥1.5 条件付き許可" style={{
+                                  background: 'rgba(0,255,180,0.13)', color: '#00FFB4',
+                                  border: '1px solid rgba(0,255,180,0.45)', borderRadius: 3,
+                                  padding: '0 4px', fontSize: '0.55rem', fontWeight: 700,
+                                }}>⚡条件付</span>
+                              )}
+                            </div>
                             {pred.n_tickets > 0 && <div className="text-xs opacity-60">{pred.n_tickets}点</div>}
                           </>
                         )}

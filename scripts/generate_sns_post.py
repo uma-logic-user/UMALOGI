@@ -186,19 +186,19 @@ def generate_pattern_a(
         (
             f"🎯【AI競馬予想】{date_disp} {race_name}{cond_str}\n"
             f"UMALOGIが{ev_str}の高期待値買い目を算出！\n"
-            f"JRA-VANデータ×LightGBM AIの本命予想をnoteで公開中。\n"
+            f"🤖ROIフィルター適用済み · JRA-VANデータ×LightGBM AIの本命予想をnoteで公開中。\n"
             f"{_TAGS_PRE}{url_part}"
         ),
         (
             f"📊 {date_disp} {race_name} AI予想公開\n"
             f"期待値{ev_str}の穴馬を狙い打ち。\n"
-            f"的中率・回収率データ付きの詳細根拠はnoteをチェック！\n"
+            f"🤖AIウマスギフィルター適用 · 的中率・回収率データ付き詳細根拠はnoteをチェック！\n"
             f"{_TAGS_PRE}{url_part}"
         ),
         (
             f"🤖 UMALOGI AI予想｜{race_name}（{date_disp}）\n"
             f"JRA公式データのみを学習したAIが{ev_str}の買い目を算出。\n"
-            f"根拠・買い目・金額すべてnoteで公開中！\n"
+            f"ROIフィルター適用済み · 根拠・買い目・金額すべてnoteで公開中！\n"
             f"{_TAGS_PRE}{url_part}"
         ),
     ]
