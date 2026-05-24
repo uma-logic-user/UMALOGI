@@ -4,6 +4,7 @@
 
 | 日付 | 変更内容 |
 |------|---------|
+| 2026-05-24 | 【AIウマスギフィルター全出力先統合】`prerace_pipeline()` のStep4後に `[AIウマスギ] ROIフィルター適用完了` ログを追加。Discord通知に「🤖 AIウマスギフィルター適用済み」記述 + 本命三連単に「⚡条件付」バッジ。Discord: `notify_prerace_result()` の description/footer 更新。影響: `src/pipeline/prediction.py`, `src/notification/discord_notifier.py` |
 | 2026-05-24 | 【ROIフィルター条件付き部分開放】本命モデルの三連単を「完全除外」→「個別EV≥1.5 の場合のみ許可」に変更。`_HONMEI_SANRENTAN_EV_MIN=1.5` 定数を追加。`_apply_roi_filter()` 内で `is_honmei + bet_type=="三連単"` の場合は `_ALLOWED_BET_TYPES` を経由せず EV 値で個別判定。許可時は「条件付き許可」ログを出力。根拠: 5月本番データで本命三連単 ROI272.7%（損失原因は廃止済み Oracle/HitFocus）。影響: `src/ml/bet_generator.py` |
 | 2026-05-24 | 【ROIフィルター + 動的Kelly実装】本番実績ROI（2026-04〜05データ）分析結果を反映。`_ALLOWED_BET_TYPES` で本命モデルの馬単/馬連/ワイドを除外、単勝/複勝のみ許可（三連単は個別EV判定）。`get_dynamic_kelly_fraction()` 新設（ROI300%超=1/4Kelly、ROI200-300%=1/5Kelly、ROI100-200%=1/10Kelly、ROI<100%=購入禁止）。`get_model_bet_roi()` でDB照会ベースの ROI 算出関数追加。`BetGenerator._apply_roi_filter()` が `generate_honmei()` `generate_alpha_trifecta()` を自動フィルタリング。影響: `src/ml/bet_generator.py` |
 | 2026-05-10 | 初版作成。ALPHA/卍/本命 3モデル並列稼働・三連系生成ロジックを記述 |
