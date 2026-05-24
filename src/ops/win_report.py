@@ -113,9 +113,62 @@ def generate_win_report_file(data: WinReportData) -> Path:
     return path
 
 
-# Task 2〜4 で実装する関数のスタブ（テストが import エラーにならないよう）
-def build_note_draft(data: WinReportData, predictions: list[dict]) -> tuple[str, str]:
-    raise NotImplementedError
+def build_note_draft(
+    data: WinReportData,
+    predictions: list[dict],
+) -> tuple[str, str]:
+    """(note_title, note_body) の Markdown を返す。"""
+    ymd = data.date_str.replace("-", "/")
+    title = (
+        f"【的中実績】{ymd} {data.venue}{data.race_number}R"
+        f"「{data.race_name}」— EV期待値アルゴリズム選別成功"
+    )
+
+    h = data.hit_items[0]
+    combo_str = "-".join(str(c) for c in h.combination) if h.combination else "?"
+
+    top_model = "AIモデル"
+    if predictions:
+        best = max(predictions, key=lambda p: p.get("expected_value") or 0.0)
+        top_model = best.get("model_type") or "AIモデル"
+
+    if data.ev_vs_odds:
+        odds_rows = "\n".join(
+            f"| {e['horse_number']} | {e['odds']:.1f}倍 | {e['ev']:.2f} | {e['gap']:+.2f} |"
+            for e in data.ev_vs_odds
+        )
+    else:
+        odds_rows = "| — | — | — | — |"
+
+    body = (
+        f"# 【的中実績】{ymd} {data.venue}{data.race_number}R"
+        f"「{data.race_name}」— EV期待値アルゴリズム選別成功\n\n"
+        f"## 的中サマリー\n"
+        f"| 項目 | 内容 |\n"
+        f"|------|------|\n"
+        f"| 買い目 | {h.bet_type} {combo_str} |\n"
+        f"| 投資 | ¥{int(data.total_invested):,} |\n"
+        f"| 払戻 | ¥{int(data.total_payout):,} |\n"
+        f"| ROI | {data.roi:.1f}% |\n\n"
+        f"## なぜこのレースを選んだか\n"
+        f"本日、{data.venue}{data.race_number}R「{data.race_name}」において、"
+        f"アルゴリズムが市場の歪みを捉え的中を達成しました。\n"
+        f"推奨根拠：対象馬のEV値は{data.top_ev:.2f}であり、"
+        f"ROIフィルター通過後の確実な選別を行いました。\n\n"
+        f"## 市場オッズ vs AIスコア（比較データ）\n"
+        f"| 馬番 | 市場オッズ | AI推奨EV | 乖離スコア |\n"
+        f"|------|----------|---------|----------|\n"
+        f"{odds_rows}\n\n"
+        f"## フィルター貢献度\n"
+        f"- {top_model}: EV={data.top_ev:.2f} で最高スコア\n"
+        f"- ROIフィルター: 通過（EV > 1.0）\n"
+        f"- ウマスギフィルター: 適用済み\n\n"
+        f"## 免責事項\n"
+        f"本記事は統計的期待値に基づく投資記録であり、的中を保証するものではありません。\n"
+        f"投資は自己責任でお願いします。\n\n"
+        f"*UMALOGI — AI 競馬予測プラットフォーム*"
+    )
+    return title, body
 
 
 def _fetch_ev_vs_odds(
