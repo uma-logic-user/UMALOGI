@@ -4,6 +4,7 @@
 
 | 日付 | 変更内容 |
 |------|---------|
+| 2026-05-24 | 【的中報告レポートパイプライン追加】`src/ops/win_report.py` 新設。的中確認後に `data/results/YYYYMMDD/{race_id}_win_report.txt` 生成・Discord 予想ch へ Embed + X投稿テキスト送信・note.com 下書き保存を自動実行。`scripts/fetch_race_result.py` に `_try_publish_win_report()` を追加し `fetch_single_race()`・`fetch_for_date()` から呼び出す。影響ファイル: `src/ops/win_report.py`（新規）, `scripts/fetch_race_result.py` |
 | 2026-05-24 | 【umasugi_engine Phase2完了】調教グレード (S〜E, 8%) + オッズモメンタム (5%) を追加。正規化JOINキー(horse_id[:4]+horse_id[4:9])によりtraining_times結合率45.6%達成。ウェイト再編: legacy 0.65→0.57 / turf 0.15 / track 0.10 / grade 0.08 / momentum 0.05 / crowd 0.05。`odds_timeseries` テーブル新設・毎分記録ジョブをschedulerに統合。バックテスト: ROI73.7%(閾値0.50/30日)。影響: `src/umasugi_engine/scorer.py` `src/umasugi_engine/factors/training_grade.py` `src/umasugi_engine/factors/odds_momentum.py` `scripts/record_odds_timeseries.py` `scripts/compute_training_grades.py` |
 | 2026-05-24 | 【umasugi_engine Phase1・API・バックテスト完了】`src/umasugi_engine/` に小回り/洋芝/世論分析フィルターを実装。世論分析は legacy の正の相関を逆転させた負の相関（EV × (1−penalty)）で実装。バックテスト結果: Legacy 68.2% → Umasugi 73.6% (閾値0.50/30日)。最適ウェイト確定（turf=0.15/track=0.10）。`/api/compare/[race_id]` エンドポイント新設。影響: `src/umasugi_engine/*` `web/src/app/api/compare/[race_id]/route.ts` `scripts/backtest_umasugi.py` |
 | 2026-05-24 | 【AIウマスギフィルター全出力先統合】`prerace_pipeline()` のStep4後に `[AIウマスギ] ROIフィルター適用完了` ログを追加。Discord通知に「🤖 AIウマスギフィルター適用済み」記述 + 本命三連単に「⚡条件付」バッジ。Discord: `notify_prerace_result()` の description/footer 更新。影響: `src/pipeline/prediction.py`, `src/notification/discord_notifier.py` |
