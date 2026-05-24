@@ -42,6 +42,51 @@ function isValidPayout(p: RacePayout): boolean {
 // odds_velocity がこの値以上で🔥シグナル
 const VELOCITY_THRESHOLD = 0.05
 
+// ── 的中結果マッチング用ヘルパー ─────────────────────────────
+function parsePayoutCombo(combination: string): number[] {
+  return combination.replace(/→/g, '-').split('-').map(Number)
+}
+
+function parsePredComboJson(combinationJson: string | null): number[][] {
+  if (!combinationJson) return []
+  try {
+    const parsed = JSON.parse(combinationJson)
+    if (!Array.isArray(parsed) || parsed.length === 0) return []
+    return Array.isArray(parsed[0]) ? (parsed as number[][]) : [(parsed as number[])]
+  } catch { return [] }
+}
+
+function comboMatches(payoutNums: number[], predNums: number[], betType: string): boolean {
+  if (payoutNums.length !== predNums.length) return false
+  const ordered = betType === '三連単' || betType === '馬単'
+  if (ordered) return payoutNums.every((n, i) => n === predNums[i])
+  const sp = [...payoutNums].sort((a, b) => a - b)
+  const sd = [...predNums].sort((a, b) => a - b)
+  return sp.every((n, i) => n === sd[i])
+}
+
+function getHitPayouts(predictions: Prediction[], allPayouts: RacePayout[]): RacePayout[] {
+  const hitPreds = predictions.filter(p => p.is_hit === 1)
+  if (hitPreds.length === 0) return []
+  const result: RacePayout[] = []
+  const seen = new Set<string>()
+  for (const pred of hitPreds) {
+    const predCombos = parsePredComboJson(pred.combination_json)
+    for (const payout of allPayouts) {
+      if (payout.bet_type !== pred.bet_type) continue
+      if (!isValidPayout(payout)) continue
+      const payoutNums = parsePayoutCombo(payout.combination)
+      for (const predNums of predCombos) {
+        if (comboMatches(payoutNums, predNums, pred.bet_type)) {
+          const key = `${payout.bet_type}:${payout.combination}`
+          if (!seen.has(key)) { seen.add(key); result.push(payout) }
+        }
+      }
+    }
+  }
+  return result
+}
+
 interface Props {
   race:        RaceEntry & {
     prerace?: {
@@ -70,11 +115,20 @@ export default function RaceDetail({ race, predictions }: Props) {
   const hasPayouts     = betTypes.length > 0
   const hasPredictions = predictions.length > 0
 
+  const hitPayouts = getHitPayouts(predictions, race.payouts ?? [])
+  const hitPayoutsByType = hitPayouts.reduce<Record<string, RacePayout[]>>(
+    (acc, p) => { (acc[p.bet_type] ??= []).push(p); return acc },
+    {},
+  )
+  const hitBetTypes = Object.keys(hitPayoutsByType).sort(
+    (a, b) => (BET_ORDER[a] ?? 99) - (BET_ORDER[b] ?? 99),
+  )
+
   const tabs: { key: Tab; label: string; count?: number }[] = [
     { key: 'race_card',   label: '出馬表' },
     { key: 'results',     label: 'レース結果' },
     { key: 'predictions', label: 'AI予想', count: hasPredictions ? predictions.length : undefined },
-    { key: 'payouts',     label: '的中結果', count: hasPayouts ? betTypes.length : undefined },
+    { key: 'payouts',     label: '的中結果', count: hitPayouts.length > 0 ? hitPayouts.length : undefined },
   ]
 
   return (
@@ -167,7 +221,7 @@ export default function RaceDetail({ race, predictions }: Props) {
 
       {/* ── レース結果タブ ─────────────────────────── */}
       {tab === 'results' && (
-        <ResultsTable results={race.results ?? []} />
+        <ResultsTable results={race.results ?? []} payouts={race.payouts ?? []} />
       )}
 
       {/* ── AI予想タブ ────────────────────────────── */}
@@ -198,20 +252,20 @@ export default function RaceDetail({ race, predictions }: Props) {
 
       {/* ── 的中結果タブ ──────────────────────────── */}
       {tab === 'payouts' && (
-        hasPayouts
+        hitPayouts.length > 0
           ? (
             <div className="neon-card overflow-hidden">
               <div className="px-4 py-3 border-b border-[rgba(0,200,255,0.12)]">
                 <span className="text-sm neon-text tracking-[0.2em] font-semibold">
-                  PAYOUTS — 払戻金
+                  AI的中結果 — {hitPayouts.length}件
                 </span>
               </div>
               <div className="p-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
-                {betTypes.map(betType => (
+                {hitBetTypes.map(betType => (
                   <PayoutCard
                     key={betType}
                     betType={betType}
-                    payouts={payoutsByType[betType]}
+                    payouts={hitPayoutsByType[betType]}
                   />
                 ))}
               </div>
@@ -220,8 +274,15 @@ export default function RaceDetail({ race, predictions }: Props) {
           : (
             <div className="neon-card p-12 text-center">
               <div className="text-[var(--text-muted)] text-base tracking-widest">
-                払戻データはありません
+                {hasPredictions
+                  ? 'このレースのAI買い目に的中はありませんでした'
+                  : '予想データがないため的中結果を表示できません'}
               </div>
+              {hasPayouts && !hasPredictions && (
+                <div className="mt-3 text-xs text-[var(--text-muted)] opacity-60">
+                  払戻情報は「レース結果」タブでご確認いただけます
+                </div>
+              )}
             </div>
           )
       )}
@@ -761,7 +822,16 @@ function PreraceTable({ results }: { results: RaceResult[] }) {
 }
 
 // ── レース結果テーブル ─────────────────────────────────────
-function ResultsTable({ results }: { results: RaceResult[] }) {
+function ResultsTable({ results, payouts }: { results: RaceResult[]; payouts: RacePayout[] }) {
+  const validPayouts = payouts.filter(isValidPayout)
+  const payoutsByType = validPayouts.reduce<Record<string, RacePayout[]>>(
+    (acc, p) => { (acc[p.bet_type] ??= []).push(p); return acc },
+    {},
+  )
+  const payoutBetTypes = Object.keys(payoutsByType).sort(
+    (a, b) => (BET_ORDER[a] ?? 99) - (BET_ORDER[b] ?? 99),
+  )
+
   return (
     <div className="neon-card overflow-hidden">
       <div className="px-4 py-3 border-b border-[rgba(0,200,255,0.12)]">
@@ -934,6 +1004,22 @@ function ResultsTable({ results }: { results: RaceResult[] }) {
         })}
         </div>
       </div>
+
+      {/* ── 払戻金セクション（結果と同じカード内に統合） ── */}
+      {payoutBetTypes.length > 0 && (
+        <div className="border-t border-[rgba(0,200,255,0.12)]">
+          <div className="px-4 py-3 border-b border-[rgba(0,200,255,0.12)]">
+            <span className="text-sm neon-text tracking-[0.2em] font-semibold">
+              PAYOUTS — 払戻金
+            </span>
+          </div>
+          <div className="p-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
+            {payoutBetTypes.map(betType => (
+              <PayoutCard key={betType} betType={betType} payouts={payoutsByType[betType]} />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   )
 }
