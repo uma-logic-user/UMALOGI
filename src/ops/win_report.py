@@ -1,0 +1,130 @@
+"""
+src/ops/win_report.py
+
+的中報告レポート生成パイプライン。
+
+使用例（fetch_race_result.py から）:
+    from src.ops.win_report import publish_win_report
+    publish_win_report(result, race_id, conn)
+"""
+from __future__ import annotations
+
+import json
+import logging
+import os
+import sqlite3
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Any
+
+logger = logging.getLogger(__name__)
+
+_ROOT = Path(__file__).resolve().parents[2]
+_RESULTS_DIR = _ROOT / "data" / "results"
+
+
+@dataclass
+class WinReportData:
+    race_id:        str
+    race_name:      str
+    venue:          str
+    race_number:    int
+    date_str:       str           # YYYY-MM-DD
+    hit_items:      list[Any]     # BetHitDetail リスト（is_hit=True のもの）
+    total_invested: float
+    total_payout:   float
+    roi:            float
+    top_ev:         float         # 的中した買い目の中で最高の expected_value
+    ev_vs_odds:     list[dict]    # [{horse_number, odds, ev, gap}, ...]
+
+
+def build_x_post(data: WinReportData) -> str:
+    """280字以内の X 投稿テキストを返す。"""
+    h = data.hit_items[0]
+    race_name = data.race_name
+    hashtags_full  = f"#競馬予想 #期待値アルゴリズム #的中実績 #{race_name}"
+    hashtags_short = "#競馬予想 #期待値アルゴリズム #的中実績"
+
+    base = (
+        f"🎉【的中】{data.venue}{data.race_number}R {race_name}\n"
+        f"EV={data.top_ev:.2f}の歪みを捉えて{h.bet_type}的中\n\n"
+        f"投資¥{int(data.total_invested):,} → 払戻¥{int(data.total_payout):,}"
+        f"（ROI {data.roi:.0f}%）\n\n"
+        "期待値アルゴリズムが市場の非効率を見抜きました📊\n\n"
+    )
+    for tags in (hashtags_full, hashtags_short):
+        candidate = base + tags
+        if len(candidate) <= 280:
+            return candidate
+
+    short_base = (
+        f"🎉【的中】{data.venue}{data.race_number}R {race_name}\n"
+        f"投資¥{int(data.total_invested):,} → 払戻¥{int(data.total_payout):,}"
+        f"（ROI {data.roi:.0f}%）\n\n"
+        "期待値アルゴリズムが的中を導きました📊\n\n"
+    )
+    return (short_base + hashtags_short)[:280]
+
+
+def generate_win_report_file(data: WinReportData) -> Path:
+    """data/results/YYYYMMDD/{race_id}_win_report.txt を生成して Path を返す。"""
+    date_nodash = data.date_str.replace("-", "")
+    out_dir = _RESULTS_DIR / date_nodash
+    out_dir.mkdir(parents=True, exist_ok=True)
+    path = out_dir / f"{data.race_id}_win_report.txt"
+
+    hit_lines: list[str] = []
+    for h in data.hit_items:
+        combo_str = "-".join(str(c) for c in h.combination) if h.combination else "?"
+        sign = "+" if h.profit >= 0 else ""
+        hit_lines.append(
+            f"  {h.bet_type}  {combo_str}  "
+            f"¥{int(h.payout):,} 払戻"
+            f"（投資¥{int(h.invested):,} / 利益{sign}¥{int(h.profit):,}）"
+        )
+    hit_text = "\n".join(hit_lines)
+
+    if data.ev_vs_odds:
+        odds_lines = [
+            f"  馬番{e['horse_number']}  "
+            f"市場オッズ {e['odds']:.1f}倍 / AI推奨EV {e['ev']:.2f} / 乖離スコア {e['gap']:+.2f}"
+            for e in data.ev_vs_odds
+        ]
+        odds_text = "\n".join(odds_lines)
+    else:
+        odds_text = "  (データなし)"
+
+    title = "【的中実績】期待値最適化アルゴリズムによる選別成功"
+    body = (
+        f"本日、{data.venue}{data.race_number}R「{data.race_name}」において、"
+        f"アルゴリズムが市場の歪みを捉え的中を達成しました。\n\n"
+        f"推奨根拠：対象馬のEV値は{data.top_ev:.2f}であり、"
+        f"ROIフィルター通過後の確実な選別を行いました。\n\n"
+        f"■ 的中買い目\n{hit_text}\n\n"
+        f"本日の合計ROI：{data.roi:.1f}％\n\n"
+        f"■ 市場オッズ vs AIスコア（検証データ）\n{odds_text}"
+    )
+    x_post = build_x_post(data)
+
+    content = f"=== TITLE ===\n{title}\n\n=== BODY ===\n{body}\n\n=== X_POST ===\n{x_post}\n"
+    path.write_text(content, encoding="utf-8")
+    return path
+
+
+# Task 2〜4 で実装する関数のスタブ（テストが import エラーにならないよう）
+def build_note_draft(data: WinReportData, predictions: list[dict]) -> tuple[str, str]:
+    raise NotImplementedError
+
+
+def _fetch_ev_vs_odds(
+    conn: sqlite3.Connection, race_id: str, hit_items: list[Any]
+) -> list[dict]:
+    raise NotImplementedError
+
+
+def _post_note_draft(title: str, body: str) -> None:
+    raise NotImplementedError
+
+
+def publish_win_report(result: Any, race_id: str, conn: sqlite3.Connection) -> None:
+    raise NotImplementedError
