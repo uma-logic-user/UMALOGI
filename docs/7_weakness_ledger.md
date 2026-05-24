@@ -21,6 +21,7 @@
 | 2026-05-21 | 【W-031 完了】V1 vs V2 A/B テスト週次レポート自動化: `generate_ab_report.py` 完全実装（`build_ab_report()` Markdown生成 + `_send_summary_to_discord()` Embed プッシュ送信）。`scheduler.py` 日曜18:00 自動配信・取りこぼし4時間窓。エラーハンドリング: HTTPError/OSError は WARNING ログ止まり・例外伝播なし。テスト17件 PASS。W-024 を 🟡 対応中 に昇格（週次 ROI レポートが監視要件を部分充足）。実測: V1 ROI=64.1%/純利益 ¥-2,300,518 / V2=0件（V2稼働前）|
 | 2026-05-23 | 【W-032 新規登録】スケジューラークロスデイ回収バグ: `_recover_missed_jobs()` が当日曜日のジョブしか確認しないため、前日のジョブ（job_friday_sync の 16h 窓など）が土曜朝起動時に完全スキップされる脆弱性。`day_delta in (0, -1)` ループで前日チェックを追加し修正済み（2026-05-23完了）。影響: scripts/scheduler.py |
 | 2026-05-23 | 【note完全自動化ルーティン完成・W-033 新規登録→即完了】`job_note_daily_article()` を scheduler.py に追加（土日10:30）。4ステップ自動実行（記事生成→Discord転送→Embed送信→note.com下書き）。`NOTE_DRAFT_AUTO_POST=0`（デフォルト）でPlaywright未起動でも安全完走。`NOTE_DRAFT_AUTO_POST=1` + `.note_session.json` 存在時のみ Playwright 自動保存。テスト15件PASS / 全560件GREEN。影響: scripts/scheduler.py, tests/test_scheduler_note_article.py(新規), .env(NOTE_DRAFT_AUTO_POST=0追加) |
+| 2026-05-24 | 【W-035 新規登録】training_hillwork 坂路データ 0 件問題: JVLink WOOD に WH レコード不含（仕様）＋ netkeiba 調教ページはレース後404 → 歴史バックフィル不可を確認。`job_training_hillwork_scrape()` を scheduler.py に追加（木曜20:00・金曜18:00）し今週末以降のレースから自動収集開始。 |
 | 2026-05-24 | 【umasugi_engine Phase2 完了】調教グレード(8%) + オッズモメンタム(5%) を追加。正規化JOINキー(horse_id[:4]+horse_id[4:9])でtraining_times接続率45.6%達成。`odds_timeseries`テーブル新設・毎分記録ジョブをschedulerに統合。バックテスト ROI73.7%(閾値0.50)。影響: `src/umasugi_engine/scorer.py` `src/umasugi_engine/factors/training_grade.py` `src/umasugi_engine/factors/odds_momentum.py` `scripts/record_odds_timeseries.py` |
 | 2026-05-24 | 【umasugi_engine Phase1 実装完了】`src/umasugi_engine/` 新設（ラッパー型）。小回り適性(track_style)・野芝/洋芝(turf_type)・世論分析フィルター(crowd_opinion)を実装。バックテスト: Legacy ROI 68.2% → Umasugi ROI 73.6% (閾値0.50)。ウェイト: turf=0.15(洋芝不得意馬の的中率0%を検出)/track=0.10/crowd=EV直接適用。`/api/compare/[race_id]` エンドポイント追加。設計書: docs/superpowers/specs/2026-05-24-umasugi-engine-design.md |
 | 2026-05-24 | 【W-022 追加対応・Kelly完全統合】`calc_kelly_stake()` 公開関数新設・`_KELLY_TYPE_CAPS` 券種別上限辞書追加（複勝3%/馬連1.5%/三連複1%）。ManjiGenerator/HonmeiStrategy/AlphaTrifectaStrategy の `recommended_bet` を ¥100固定→Kelly動的算出に全面移行。WF実証 Alpha-Payout ROI 129.2%（¥100固定64%から+65.2pt改善）。`data_validator.py` 新設でパイプライン先頭での win_odds≥500 センチネル除外を実施。UIに Kelly理論 vs ¥100固定 比較パネル追加。影響: src/ml/bet_generator.py, src/ml/data_validator.py, web/src/components/FinancialDashboard.tsx |
@@ -432,6 +433,20 @@ Phase 2-C+B完了後: 30因子 ← 社長ビジョン達成
 
 ---
 
+#### W-035: training_hillwork 歴史バックフィル不可（坂路データ空）
+
+| 項目 | 内容 |
+|------|------|
+| **ID** | W-035 |
+| **優先度** | 中 |
+| **ステータス** | 🟡 対応中（今後のレースは自動収集、歴史データは取得不可）|
+| **影響** | `training_hillwork` テーブルが 0 件のため坂路スピード指数（U score 因子 #15）がデフォルト値しか返せず、umasugi_engine の training_grade スコアに坂路成分が反映されない |
+| **根本原因** | ① JVLink WOOD dataspec に WH（坂路）レコードが含まれない（仕様）。② netkeiba 調教ページ（training.html）はレース前にのみ公開されており、レース終了後は 404 を返す。過去30日のレースで全て 404 確認済み（2026-05-24） |
+| **対応方針** | 歴史バックフィルは不可。今後のレースは木曜20:00・金曜18:00に `job_training_hillwork_scrape()` でスクレイプし、今週末以降の坂路データから順次蓄積する |
+| **実装** | `src/scraper/training_scraper.py`（スクレイパー本体）、`scripts/backfill_training_hillwork.py`（バッチ）、`scripts/scheduler.py` に `job_training_hillwork_scrape()` ジョブ登録済み |
+
+---
+
 ## 改善ロードマップ（優先順）
 
 > **2026-05-21 更新: Week1-4 商用化フェーズ完了。本番稼働フェーズ移行。**
@@ -453,6 +468,7 @@ Phase 2-C+B完了後: 30因子 ← 社長ビジョン達成
   W-002  PCI ペース変動指数                    🔴 未着手
   W-020  FukushoElite 本番統合                🔴 未着手
   W-023  破産確率 UI (Monte Carlo)             🔴 未着手
+  W-035  training_hillwork 坂路データ蓄積中    🟡 対応中（木金自動収集・今週末以降）
 
 【中長期（歴史データ大規模取得後）】
   Phase 2-B (W-003/W-008/W-010: 不完全燃焼・馬場脚質・相手関係)

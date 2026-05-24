@@ -294,15 +294,32 @@ class FeatureBuilder:
         # オッズ時系列特徴量（prerace 時に realtime_odds が複数スナップショットある場合に有効）
         odds_trend = self._get_odds_trend(race_id)
 
+        # horse_weight は entries が NULL の場合、直近 race_results から補完する
         entries = self._conn.execute(
             """
-            SELECT horse_number, horse_id, horse_name, sex_age,
-                   weight_carried, horse_weight, gate_number,
-                   horse_weight_diff, jockey, trainer
-            FROM entries
-            WHERE race_id = ?
-              AND horse_number > 0
-            ORDER BY horse_number
+            SELECT
+                e.horse_number, e.horse_id, e.horse_name, e.sex_age,
+                e.weight_carried,
+                COALESCE(
+                    e.horse_weight,
+                    (SELECT rr.horse_weight FROM race_results rr
+                     WHERE rr.horse_id = e.horse_id
+                       AND rr.horse_weight IS NOT NULL AND rr.horse_weight > 0
+                     ORDER BY rr.race_id DESC LIMIT 1)
+                ) AS horse_weight,
+                e.gate_number,
+                COALESCE(
+                    e.horse_weight_diff,
+                    (SELECT rr.horse_weight_diff FROM race_results rr
+                     WHERE rr.horse_id = e.horse_id
+                       AND rr.horse_weight IS NOT NULL AND rr.horse_weight > 0
+                     ORDER BY rr.race_id DESC LIMIT 1)
+                ) AS horse_weight_diff,
+                e.jockey, e.trainer
+            FROM entries e
+            WHERE e.race_id = ?
+              AND e.horse_number > 0
+            ORDER BY e.horse_number
             """,
             (race_id,),
         ).fetchall()

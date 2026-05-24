@@ -1529,6 +1529,51 @@ def job_weekly_backup() -> None:
         logger.error("週次バックアップ失敗: %s", exc)
 
 
+def job_training_hillwork_scrape() -> None:
+    """木・金曜 20:00: 今週末レースの坂路調教データを netkeiba から取得する。"""
+    try:
+        import sqlite3
+        from datetime import date, timedelta
+
+        conn = sqlite3.connect(str(_ROOT / "data" / "umalogi.db"))
+        # 今週末（土・日）の race_id を取得
+        today = date.today()
+        days_until_sat = (5 - today.weekday()) % 7
+        days_until_sun = (6 - today.weekday()) % 7
+        # 木曜実行なら +2(土)/+3(日)、金曜実行なら +1(土)/+2(日)
+        target_dates = [
+            (today + timedelta(days=days_until_sat)).isoformat(),
+            (today + timedelta(days=days_until_sun)).isoformat(),
+        ]
+        race_ids: list[str] = []
+        for d in target_dates:
+            rows = conn.execute(
+                "SELECT DISTINCT race_id FROM races WHERE date = ?", (d,)
+            ).fetchall()
+            race_ids.extend(r[0] for r in rows)
+        conn.close()
+
+        if not race_ids:
+            logger.info("training_hillwork_scrape: 対象レースなし")
+            return
+
+        logger.info(
+            "training_hillwork_scrape: %d レースの坂路データ取得開始", len(race_ids)
+        )
+        _run(
+            _PY64
+            + [
+                "scripts/backfill_training_hillwork.py",
+                "--days",
+                "3",
+            ],
+            "坂路調教スクレイプ",
+            timeout=600,
+        )
+    except Exception as exc:
+        logger.error("training_hillwork_scrape 失敗: %s", exc)
+
+
 def job_record_odds_timeseries() -> None:
     """毎分: realtime_odds → odds_timeseries へコピー記録（5:00〜17:59 のみ）"""
     now = datetime.now()
@@ -1556,6 +1601,10 @@ def register_schedules() -> None:
         raise RuntimeError("schedule ライブラリが必要です: pip install schedule")
 
     # 金曜夜: JVLink同期(32bit) → 暫定予想(64bit) → Discord通知（土曜分）
+    # 木・金曜夜: 今週末レースの坂路調教データをnetkeiba先行取得
+    schedule.every().thursday.at("20:00").do(job_training_hillwork_scrape)
+    schedule.every().friday.at("18:00").do(job_training_hillwork_scrape)
+
     schedule.every().friday.at("20:00").do(job_friday_sync)
     # 土曜夜: JVLink同期(32bit) → 暫定予想(64bit) → Discord通知（日曜分）
     schedule.every().saturday.at("20:00").do(job_friday_sync)
@@ -1692,8 +1741,9 @@ def run_daemon() -> None:
 
 # リカバリー用フルマップ（関数名 → 関数オブジェクト）
 _JOB_MAP_FULL: dict[str, object] = {
-    "job_friday_sync":          job_friday_sync,
-    "job_morning_wood":         job_morning_wood,
+    "job_friday_sync":              job_friday_sync,
+    "job_training_hillwork_scrape": job_training_hillwork_scrape,
+    "job_morning_wood":             job_morning_wood,
     "job_weekend_batch_pre":    job_weekend_batch_pre,
     "job_today_auto_runner":    job_today_auto_runner,
     "job_win5_prediction":      job_win5_prediction,
@@ -1709,8 +1759,9 @@ _JOB_MAP_FULL: dict[str, object] = {
 
 # CLI --run-now 用マップ（短縮名 → 関数）
 _JOB_MAP: dict[str, object] = {
-    "friday":         job_friday_sync,
-    "wood":           job_morning_wood,
+    "friday":               job_friday_sync,
+    "training_hillwork":    job_training_hillwork_scrape,
+    "wood":                 job_morning_wood,
     "batch_pre":      job_weekend_batch_pre,
     "batch_post":     job_weekend_batch_post,
     "win5":           job_win5_prediction,

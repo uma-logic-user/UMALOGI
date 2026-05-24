@@ -255,13 +255,44 @@ def _parse_race_header(soup: BeautifulSoup) -> tuple[str, int, str, str, str, st
     return race_name, distance, surface, track_direction, weather, condition
 
 
+def _find_weight_cell(cells: list, horse_name: str) -> tuple[int | None, int | None]:
+    """
+    cells リストから馬体重セルを探してパースする。
+
+    Strategy:
+      1. class="Weight" の td を優先探索（最も信頼性が高い）
+      2. フォールバック: cells[8] のインデックスアクセス（旧仕様）
+      3. 最後の手段: 3桁数値パターンを含むセルをスキャン
+    """
+    # Strategy 1: class属性でクラスが "Weight" の td
+    for cell in cells:
+        classes = cell.get("class", [])
+        if any("Weight" in c for c in classes):
+            return _parse_weight(cell.get_text(" ", strip=True))
+
+    # Strategy 2: cells[8] インデックスアクセス
+    if len(cells) >= 9:
+        text = cells[8].get_text(" ", strip=True)
+        hw, hd = _parse_weight(text)
+        if hw is not None:
+            return hw, hd
+
+    # Strategy 3: 後ろから走査して "NNN (+/-N)" パターンを探す
+    for cell in reversed(cells):
+        text = cell.get_text(" ", strip=True)
+        if re.search(r"\d{3}\s*\([+\-]?\d+\)", text):
+            return _parse_weight(text)
+
+    return None, None
+
+
 def _parse_entry_rows(soup: BeautifulSoup) -> list[EntryHorse]:
     """
     出馬表 HTML（BeautifulSoup 解析済み）から EntryHorse のリストを返す。
 
     列マッピング（Shutuba_Table の td インデックス）:
       [0] 枠番  [1] 馬番  [3] 馬名 / horse_id  [4] 性齢
-      [5] 斤量  [6] 騎手  [7] 調教師  [8] 馬体重
+      [5] 斤量  [6] 騎手  [7] 調教師  [8] 馬体重（追加列により変動の可能性）
     """
     entries: list[EntryHorse] = []
     rows = soup.select("table.Shutuba_Table tr.HorseList")
@@ -291,8 +322,8 @@ def _parse_entry_rows(soup: BeautifulSoup) -> list[EntryHorse]:
         jockey         = cells[6].get_text(strip=True)
         trainer        = cells[7].get_text(strip=True)
 
-        weight_text = cells[8].get_text(" ", strip=True)
-        horse_weight, horse_weight_diff = _parse_weight(weight_text)
+        # 馬体重: 複数セレクタ戦略でHTML構造変更に対応
+        horse_weight, horse_weight_diff = _find_weight_cell(cells, horse_name or "")
 
         if horse_number < 1:
             logger.debug("horse_number < 1 の行をスキップ (gate=%d, name=%r)", gate_number, horse_name)

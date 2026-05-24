@@ -4,6 +4,8 @@
 
 | 日付 | 変更内容 |
 |------|---------|
+| 2026-05-24 | 【training_hillwork 取得方針確定】JVLink WOOD dataspec に WH（坂路）レコードが含まれないことを診断スクリプト（scripts/diagnose_wood_wh.py）で確認済み。代替として netkeiba 調教ページスクレイパー（src/scraper/training_scraper.py）を実装。ただし調教ページはレース前のみ公開のため歴史バックフィルは不可。scheduler.py に木曜20:00・金曜18:00のジョブ（job_training_hillwork_scrape）を追加し、今週末以降のレースから収集開始。影響: src/scraper/training_scraper.py, scripts/backfill_training_hillwork.py, scripts/scheduler.py |
+| 2026-05-24 | 【entries.horse_weight バックフィル】scripts/backfill_horse_weight.py で race_results → entries への馬体重コピーを実行、8,638件更新。4月以降カバレッジ 99〜100% 達成。src/ml/features.py に race_results フォールバック COALESCE を追加。src/scraper/entry_table.py に _find_weight_cell()（3戦略セレクタ）を追加。影響: scripts/backfill_horse_weight.py, src/ml/features.py, src/scraper/entry_table.py |
 | 2026-05-20 | 【EV 複合インデックス Phase 2 適用】schema.py DDL_STATEMENTS に 6 本追加（idx_pred_model_ev/idx_pred_race_model/idx_tc_horse_date/idx_hc_horse_date/idx_rr_horse_race/idx_pr_pred_hit）、init_db.py マイグレーション #15 _migrate_add_ev_indexes() 追加・実行済み。EXPLAIN QUERY PLAN でフルスキャン 0 件確認。影響: src/database/schema.py, src/database/init_db.py |
 | 2026-05-20 | 【insert_prediction バリデーション拡張】`_VALID_BASE_TYPES` に `卍V2`/`本命V2`/`OracleV2`/`HitFocusV2` を追加。`reconcile.py` モデル成績再集計を `("卍","卍V2","本命","本命V2")` に拡張。影響: `src/database/init_db.py`, `src/ml/reconcile.py` |
 | 2026-05-18 | 【x_accounts / x_signals テーブル追加】X 世論分析 Phase A として 2 テーブルを schema.py に追加・DB 作成確認済み。x_accounts: 監視アカウントマスタ（screen_name/weight/hit_rate_30d 等）。x_signals: 予想家ポストから抽出した馬番シグナル（tweet_id UNIQUE/race_id FK/signal_type/confidence/parsed フラグ）。インデックス 4 件追加。影響: src/database/schema.py |
