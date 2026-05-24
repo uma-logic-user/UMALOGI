@@ -4,8 +4,9 @@ import { useState } from 'react'
 import type { RaceEntry, Prediction, RacePayout, RaceResult, TrainingEval, RaceBias, EvRecommend } from '@/types/race'
 import PredictionsPanel from './PredictionsPanel'
 import BiasPanel from './BiasPanel'
+import { TodayBuyPanel } from './TodayBuyPanel'
 
-type Tab = 'race_card' | 'results' | 'predictions' | 'payouts'
+type Tab = 'race_card' | 'results' | 'predictions' | 'payouts' | 'today_buy'
 
 const MEDAL: Record<number, string> = { 1: '🥇', 2: '🥈', 3: '🥉' }
 
@@ -129,7 +130,14 @@ export default function RaceDetail({ race, predictions }: Props) {
     { key: 'results',     label: 'レース結果' },
     { key: 'predictions', label: 'AI予想', count: hasPredictions ? predictions.length : undefined },
     { key: 'payouts',     label: '的中結果', count: hitPayouts.length > 0 ? hitPayouts.length : undefined },
+    { key: 'today_buy',   label: '当日購入' },
   ]
+
+  const winOddsMap = Object.fromEntries(
+    (race.results ?? [])
+      .filter(r => r.horse_number != null && r.win_odds != null)
+      .map(r => [r.horse_number!, r.win_odds!])
+  ) as Record<number, number>
 
   return (
     <div className="p-4 space-y-4 max-w-[1400px]">
@@ -285,6 +293,14 @@ export default function RaceDetail({ race, predictions }: Props) {
               )}
             </div>
           )
+      )}
+
+      {/* ── 当日購入タブ ──────────────────────────── */}
+      {tab === 'today_buy' && (
+        <TodayBuyPanel
+          predictions={predictions}
+          winOddsMap={winOddsMap}
+        />
       )}
     </div>
   )
