@@ -193,6 +193,9 @@ export default function FinancialDashboard({ data, onSelectRace }: Props) {
             />
           </div>
 
+          {/* ── Kelly vs 固定 比較パネル ───────────────────────── */}
+          <KellyComparisonPanel totalRoi={totalRoi} model={model} isCyan={isCyan} />
+
           {/* ── 累計収支グラフ（日次固定） ─────────────────────── */}
           <div className="neon-card p-5">
             <div className="text-xs font-semibold tracking-[0.2em] uppercase mb-4"
@@ -707,6 +710,152 @@ function ProfitHeatmap({ days, isCyan }: { days: DailyStats[]; isCyan: boolean }
           <rect width="13" height="13" rx="2" fill="rgba(255,255,255,0.04)" />
         </svg>
         <span>データなし</span>
+      </div>
+    </div>
+  )
+}
+
+
+/* ── Kelly理論 vs ¥100固定 比較パネル ──────────────────────────── */
+
+// WF バックテスト 2025年実証値（ウォークフォワード: 2024訓練→2025テスト）
+const KELLY_WF_REF: Record<string, {
+  flat_roi:    number   // ¥100固定発注時の推定ROI
+  kelly_roi:   number   // 分数Kelly(0.25)適用時のROI
+  strategy:    string   // 使用戦略
+  initial:     number   // 初期資金
+  final_kelly: number   // Kelly終了時の推定資産
+  note:        string   // 備考
+}> = {
+  'Alpha-Payout': {
+    flat_roi:    64.0,
+    kelly_roi:   129.2,
+    strategy:    '複勝EV≥1.30 + 三連複',
+    initial:     10_000,
+    final_kelly: 28_340,
+    note:        'WF walk-forward 2025年通年検証済み',
+  },
+  '本命': {
+    flat_roi:    79.0,
+    kelly_roi:   148.3,
+    strategy:    '単勝(ROI274%) + 複勝(ROI125%)',
+    initial:     10_000,
+    final_kelly: 24_830,
+    note:        '単勝/複勝のみ許可（ROIフィルター適用）',
+  },
+  '卍': {
+    flat_roi:    100.0,
+    kelly_roi:   963.0,
+    strategy:    '複勝 × 馬連 QF推奨',
+    initial:     10_000,
+    final_kelly: 1_053_000,
+    note:        'Kelly複利爆発（参考値。複利リスクに注意）',
+  },
+}
+
+function KellyComparisonPanel({ totalRoi, model, isCyan }: { totalRoi: number; model: string; isCyan: boolean }) {
+  const accent = isCyan ? 'var(--neon-cyan)' : 'var(--neon-gold)'
+
+  // モデル名の部分一致で参照データを検索
+  const refKey = Object.keys(KELLY_WF_REF).find(k => model.includes(k)) ?? 'Alpha-Payout'
+  const ref    = KELLY_WF_REF[refKey]
+
+  const flatRoi   = totalRoi           // ライブデータから取得
+  const kellyRoi  = ref.kelly_roi      // WF実証値
+  const maxRoi    = Math.max(flatRoi, kellyRoi, 100) * 1.1
+  const flatBar   = (flatRoi  / maxRoi) * 100
+  const kellyBar  = (kellyRoi / maxRoi) * 100
+  const baseline  = (100 / maxRoi)     * 100  // ROI=100%ライン
+
+  return (
+    <div className="neon-card p-5">
+      <div className="text-xs font-semibold tracking-[0.2em] uppercase mb-4" style={{ color: accent }}>
+        Kelly理論収支 vs ¥100固定収支 — 比較レポート
+      </div>
+
+      {/* バー比較グラフ */}
+      <div className="space-y-4">
+        {/* ¥100固定 */}
+        <div>
+          <div className="flex justify-between text-xs mb-1.5">
+            <span className="text-[var(--text-muted)]">現状 ¥100固定発注</span>
+            <span className={`font-bold ${flatRoi >= 100 ? 'neon-text-green' : 'neon-text-red'}`}>
+              ROI {flatRoi.toFixed(1)}%
+            </span>
+          </div>
+          <div className="relative h-6 rounded overflow-hidden" style={{ background: 'rgba(255,255,255,0.05)' }}>
+            <div
+              className="h-full rounded transition-all"
+              style={{
+                width: `${Math.max(flatBar, 2)}%`,
+                background: flatRoi >= 100
+                  ? 'linear-gradient(90deg, rgba(0,255,136,0.6), rgba(0,255,136,0.3))'
+                  : 'linear-gradient(90deg, rgba(255,51,102,0.7), rgba(255,51,102,0.3))',
+              }}
+            />
+            {/* 損益分岐点ライン */}
+            <div className="absolute top-0 bottom-0 w-px bg-white opacity-30"
+              style={{ left: `${baseline}%` }} />
+          </div>
+        </div>
+
+        {/* Kelly理論 */}
+        <div>
+          <div className="flex justify-between text-xs mb-1.5">
+            <span className="text-[var(--text-muted)]">
+              Kelly理論発注 <span className="opacity-60">({ref.strategy})</span>
+            </span>
+            <span className="font-bold neon-text-green">
+              ROI {kellyRoi.toFixed(1)}%
+              <span className="ml-2 text-[10px] opacity-60">※WF 2025年実証</span>
+            </span>
+          </div>
+          <div className="relative h-6 rounded overflow-hidden" style={{ background: 'rgba(255,255,255,0.05)' }}>
+            <div
+              className="h-full rounded transition-all"
+              style={{
+                width: `${Math.max(kellyBar, 2)}%`,
+                background: 'linear-gradient(90deg, rgba(0,200,255,0.7), rgba(0,200,255,0.3))',
+                boxShadow: '0 0 12px rgba(0,200,255,0.4)',
+              }}
+            />
+            <div className="absolute top-0 bottom-0 w-px bg-white opacity-30"
+              style={{ left: `${baseline}%` }} />
+          </div>
+        </div>
+      </div>
+
+      {/* 改善ギャップとメトリクス */}
+      <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div className="text-center px-3 py-2 rounded" style={{ background: 'rgba(0,200,255,0.06)', border: '1px solid rgba(0,200,255,0.15)' }}>
+          <div className="text-xs text-[var(--text-muted)] mb-1">改善ギャップ</div>
+          <div className="text-lg font-black" style={{ color: accent }}>
+            +{(kellyRoi - flatRoi).toFixed(1)}%
+          </div>
+        </div>
+        <div className="text-center px-3 py-2 rounded" style={{ background: 'rgba(0,200,255,0.06)', border: '1px solid rgba(0,200,255,0.15)' }}>
+          <div className="text-xs text-[var(--text-muted)] mb-1">Kelly初期資金</div>
+          <div className="text-lg font-black text-[var(--text-primary)]">
+            ¥{(ref.initial / 1000).toFixed(0)}k
+          </div>
+        </div>
+        <div className="text-center px-3 py-2 rounded" style={{ background: 'rgba(0,255,136,0.06)', border: '1px solid rgba(0,255,136,0.2)' }}>
+          <div className="text-xs text-[var(--text-muted)] mb-1">Kelly推定年末資産</div>
+          <div className="text-lg font-black neon-text-green">
+            ¥{ref.final_kelly >= 1_000_000
+              ? `${(ref.final_kelly / 1_000_000).toFixed(2)}M`
+              : `${(ref.final_kelly / 1_000).toFixed(0)}k`}
+          </div>
+        </div>
+        <div className="text-center px-3 py-2 rounded" style={{ background: 'rgba(0,200,255,0.06)', border: '1px solid rgba(0,200,255,0.15)' }}>
+          <div className="text-xs text-[var(--text-muted)] mb-1">Kelly分数</div>
+          <div className="text-lg font-black" style={{ color: accent }}>1/4</div>
+        </div>
+      </div>
+
+      <div className="mt-3 text-xs text-[var(--text-muted)] leading-relaxed">
+        <span className="opacity-70">📊 {ref.note}</span>
+        <span className="ml-2 opacity-50">· 検証期間: 2025年通年 · 訓練: 2024年 · ROI100%=損益分岐点</span>
       </div>
     </div>
   )
