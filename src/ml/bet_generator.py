@@ -96,6 +96,58 @@ def get_dynamic_kelly_fraction(
             return fraction
     return 0.0
 
+
+# ─── Kelly 券種別バンクロール上限（WFバックテスト黄金パラメーター）──────────
+# Alpha-Payout WF ROI 129.2% を実現したパラメーター。
+# バンクロールの最大X% を1ベット種（複数コンボ合計）に使用する上限。
+_KELLY_TYPE_CAPS: dict[str, float] = {
+    "単勝":   0.020,   # 最大2%
+    "複勝":   0.030,   # 最大3%
+    "馬連":   0.015,   # 最大1.5%
+    "ワイド": 0.020,   # 最大2%
+    "馬単":   0.010,   # 最大1%
+    "三連複": 0.010,   # 最大1%
+    "三連単": 0.005,   # 最大0.5%
+}
+
+
+def calc_kelly_stake(
+    bankroll: float,
+    ev: float,
+    win_odds: float,
+    bet_type: str,
+    kelly_fraction: float = KELLY_FRACTION,
+    n_combos: int = 1,
+) -> int:
+    """分数Kelly賭け金算出。券種別バンクロール上限付き。
+
+    formula: f* = (EV-1)/(odds-1), stake = bankroll × min(f*, cap) × kelly_fraction
+
+    Args:
+        bankroll:       現在の資金残高（円）
+        ev:             期待値スコア（EV > 1.0 が買い推奨）
+        win_odds:       軸馬の単勝オッズ（スケール係数として使用）
+        bet_type:       券種（キャップ参照用）
+        kelly_fraction: フラクション倍率（デフォルト 1/4 Kelly = 0.25）
+        n_combos:       点数（総投資 = per_combo × n_combos で返す）
+
+    Returns:
+        推奨総投資額（100円単位。最低 n_combos × 100円）
+    """
+    n = max(n_combos, 1)
+    min_total = _BASE_BET * n
+    if win_odds <= 1.0 or ev <= 1.0:
+        return min_total
+    b = win_odds - 1.0
+    f_star = (ev - 1.0) / b
+    cap = _KELLY_TYPE_CAPS.get(bet_type, 0.020)
+    f_adj = min(f_star * kelly_fraction, cap)
+    if f_adj <= 0:
+        return min_total
+    total_raw = bankroll * f_adj
+    per_combo = max(int(total_raw / n // 100) * 100, _BASE_BET)
+    return per_combo * n
+
 def _crowd_bias_ev_multiplier(crowd_bias_ratio: float) -> float:
     """W-004: 大衆心理乖離比率からEV倍率を算出する。
 
@@ -705,7 +757,10 @@ class ManjiStrategy:
             horse_names=[names.get(n, str(n)) for n in top_nums],
             expected_value=float(pos_ev["ev_score"].mean()),
             model_score=float(pos_ev["ev_score"].mean()),
-            recommended_bet=_BASE_BET * len(top_nums),
+            recommended_bet=calc_kelly_stake(
+                bankroll, float(pos_ev["ev_score"].mean()), odds_top, "複勝",
+                n_combos=len(top_nums),
+            ),
             confidence=0.6,
             notes=f"確率上位{len(top_nums)}頭を複勝",
         ))
@@ -744,7 +799,10 @@ class ManjiStrategy:
                                  for combo in umaren_combos for n in combo],
                     expected_value=ev_mean,
                     model_score=best_q,
-                    recommended_bet=_BASE_BET * len(umaren_combos),
+                    recommended_bet=calc_kelly_stake(
+                        bankroll, ev_mean, axis_odds, "馬連",
+                        n_combos=len(umaren_combos),
+                    ),
                     confidence=min(best_q * 5, 1.0),
                     notes=(
                         f"軸{n_axis}番×相手{len(umaren_combos)}頭フォーメーション "
@@ -761,7 +819,10 @@ class ManjiStrategy:
                                  for combo in umaren_combos for n in combo],
                     expected_value=wide_best_q,
                     model_score=best_q,
-                    recommended_bet=_BASE_BET * len(umaren_combos),
+                    recommended_bet=calc_kelly_stake(
+                        bankroll, wide_best_q, axis_odds, "ワイド",
+                        n_combos=len(umaren_combos),
+                    ),
                     confidence=min(best_q * 6, 1.0),
                     notes=(
                         f"軸{n_axis}番×相手{len(umaren_combos)}頭ワイド "
@@ -790,7 +851,10 @@ class ManjiStrategy:
                                      for combo in umatan_combos for n in combo],
                         expected_value=umatan_ev,
                         model_score=best_ep,
-                        recommended_bet=_BASE_BET * len(umatan_combos),
+                        recommended_bet=calc_kelly_stake(
+                            bankroll, umatan_ev, axis_odds, "馬単",
+                            n_combos=len(umatan_combos),
+                        ),
                         confidence=min(best_ep * 8, 1.0),
                         notes=(
                             f"軸{n_axis}番→相手{len(umatan_combos)}頭フォーメーション "
@@ -839,7 +903,9 @@ class ManjiStrategy:
                     horse_names=hnames3,
                     expected_value=ev_c,
                     model_score=tp,
-                    recommended_bet=_BASE_BET * 3,
+                    recommended_bet=calc_kelly_stake(
+                        bankroll, ev_c, axis_odds_s, "三連複", n_combos=1
+                    ),
                     confidence=min(tp * 15, 1.0),
                     notes=f"合成EV={ev_c:.2f} Harville={tp:.4f} 馬番={combo3}",
                 ))
@@ -945,13 +1011,16 @@ class HonmeiStrategy:
         ))
 
         # ── 複勝（上位3頭）───────────────────────────────────────
+        _fuku_ev = min(float(top["honmei_score"].sum()), OddsEstimator._EV_MAX["複勝"])
         result.bets.append(BetRecommendation(
             bet_type="複勝",
             combinations=[(num,) for num in top_nums],
             horse_names=[names.get(num, str(num)) for num in top_nums],
-            expected_value=float(top["honmei_score"].sum()),
+            expected_value=_fuku_ev,
             model_score=float(top["honmei_score"].mean()),
-            recommended_bet=_BASE_BET * n,
+            recommended_bet=calc_kelly_stake(
+                bankroll, _fuku_ev, odds1, "複勝", n_combos=n,
+            ),
             confidence=float(top["honmei_score"].mean()),
             notes=f"上位{n}頭を複勝",
         ))
@@ -987,7 +1056,10 @@ class HonmeiStrategy:
                                  for combo in umaren2_combos for n in combo],
                     expected_value=ev2,
                     model_score=best_q2,
-                    recommended_bet=_BASE_BET * len(umaren2_combos),
+                    recommended_bet=calc_kelly_stake(
+                        bankroll, ev2, axis_odds2, "馬連",
+                        n_combos=len(umaren2_combos),
+                    ),
                     confidence=best_q2,
                     notes=(
                         f"★QF推奨 軸{n_axis2}番×相手{len(umaren2_combos)}頭フォーメーション "
@@ -1003,7 +1075,10 @@ class HonmeiStrategy:
                                  for combo in umaren2_combos for n in combo],
                     expected_value=wide2_ev,
                     model_score=best_q2,
-                    recommended_bet=_BASE_BET * len(umaren2_combos),
+                    recommended_bet=calc_kelly_stake(
+                        bankroll, wide2_ev, axis_odds2, "ワイド",
+                        n_combos=len(umaren2_combos),
+                    ),
                     confidence=min(best_q2 * 1.3, 1.0),
                     notes=(
                         f"★QF推奨 軸{n_axis2}番×相手{len(umaren2_combos)}頭ワイド "
@@ -1031,7 +1106,10 @@ class HonmeiStrategy:
                                      for combo in umatan2_combos for n in combo],
                         expected_value=umatan2_ev,
                         model_score=best_ep2,
-                        recommended_bet=_BASE_BET * len(umatan2_combos),
+                        recommended_bet=calc_kelly_stake(
+                            bankroll, umatan2_ev, axis_odds2, "馬単",
+                            n_combos=len(umatan2_combos),
+                        ),
                         confidence=min(best_ep2 * 8, 1.0),
                         notes=(
                             f"軸{n_axis2}番→相手{len(umatan2_combos)}頭フォーメーション "
@@ -1091,7 +1169,10 @@ class HonmeiStrategy:
                 horse_names=trio_names5,
                 expected_value=trio_ev5_best,
                 model_score=trio_tp5_best,
-                recommended_bet=_BASE_BET * 3 * len(trio_combos5),
+                recommended_bet=calc_kelly_stake(
+                    bankroll, trio_ev5_best, axis_odds5, "三連複",
+                    n_combos=len(trio_combos5),
+                ),
                 confidence=min(trio_tp5_best * 12, 1.0),
                 notes=f"合成EV最大={trio_ev5_best:.2f} {len(trio_combos5)}点 馬番={trio_combos5}",
             ))
@@ -1860,7 +1941,10 @@ class AlphaTrifectaStrategy:
                 horse_names=[names.get(n, str(n)) for n in best_combos[0]],
                 expected_value=best_ev,
                 model_score=best_prob,
-                recommended_bet=float(_BASE_BET * len(best_combos)),
+                recommended_bet=float(calc_kelly_stake(
+                    bankroll, best_ev, axis_odds, "三連複",
+                    n_combos=len(best_combos),
+                )),
                 confidence=min(best_ev / 3.0, 1.0),
                 notes=(
                     f"Alpha EV={best_ev:.2f} 軸{axis}番 "
@@ -2132,16 +2216,21 @@ class BetGenerator:
         if not self._config.use_roi_filter:
             return
         before = len(bets.bets)
+        removed_bets = [
+            b for b in bets.bets
+            if not _is_allowed_bet_type(bets.model_type, b.bet_type)
+        ]
         bets.bets = [
             b for b in bets.bets
             if _is_allowed_bet_type(bets.model_type, b.bet_type)
         ]
         removed = before - len(bets.bets)
         if removed > 0:
+            removed_types = sorted({b.bet_type for b in removed_bets})
             logger.info(
                 "ROIフィルター: %s — %d件除外（残%d件）除外券種=%s",
                 bets.race_id, removed, len(bets.bets),
-                [b.bet_type for b in bets.bets],
+                removed_types,
             )
 
     def generate_honmei(
