@@ -253,3 +253,43 @@ def test_publish_win_report_handles_playwright_failure_gracefully(
     with patch("src.ops.win_report._post_note_draft", side_effect=RuntimeError("Playwright 失敗")):
         # 例外が publish_win_report の外に漏れないことを確認
         publish_win_report(result, "202605021011", conn)  # 例外なし
+
+
+def test_publish_win_report_calls_alert_on_note_failure(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """Note 投稿失敗時に _alert_note_failure が呼ばれることを確認する。"""
+    monkeypatch.setattr(wr, "_RESULTS_DIR", tmp_path / "results")
+    monkeypatch.setenv("DISCORD_WEBHOOK_URL", "")
+    monkeypatch.setenv("DISCORD_SYSTEM_WEBHOOK_URL", "")
+
+    conn = _make_mem_db()
+    conn.execute(
+        "INSERT INTO races VALUES (?, ?, ?, ?, ?)",
+        ("202605021011", "優駿牝馬", "2026-05-24", "東京", 11),
+    )
+    conn.execute(
+        "INSERT INTO predictions VALUES (?, ?, ?, ?, ?)",
+        (1, "202605021011", "卍", 10.44, json.dumps([[6]])),
+    )
+    conn.commit()
+
+    hit = _make_hit(pred_id=1)
+    result = _FakeResult(
+        race_id="202605021011",
+        race_name="優駿牝馬",
+        date="2026-05-24",
+        hits=[hit],
+        total_invested=500.0,
+        total_payout=1200.0,
+        roi=240.0,
+    )
+
+    alert_called: list[str] = []
+    with (
+        patch("src.ops.win_report._post_note_draft", side_effect=RuntimeError("Note失敗")),
+        patch("src.ops.win_report._alert_note_failure", side_effect=lambda d: alert_called.append("alert")),
+    ):
+        publish_win_report(result, "202605021011", conn)
+
+    assert alert_called == ["alert"], "_post_note_draft 失敗時に _alert_note_failure が呼ばれなかった"
