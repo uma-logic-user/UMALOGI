@@ -4,6 +4,8 @@
 
 | 日付 | 変更内容 |
 |------|---------|
+| 2026-05-24 | 【X投稿文 note誘導テンプレート化】`post_x_drafts_to_discord.py` の `_build_x_post()` を280字特化・note誘導型に全面刷新。「買い目詳細 → EV値 + note誘導リンク」へ変更。EV≥10.0 に `【重要】` タグ・🔥 ゴールド embed 付与。`NOTE_PROFILE_URL` 環境変数 / `--note-url` 引数対応。`.env.example` に `NOTE_PROFILE_URL` 追加。影響: `scripts/post_x_drafts_to_discord.py`, `.env.example` |
+| 2026-05-24 | 【Note下書き一括投稿スクリプト新設】`scripts/batch_post_note_drafts_today.py` を新設。`data/drafts/YYYYMMDD/*.txt` から本日のEV上位N件（デフォルト5）を読み込み、Playwright `save_draft()` で note.com に下書き投稿。EV≥5.0 のレースには `【重要：期待値選別・推奨】` バナーを自動付与。投稿間隔15秒（Bot検知回避）。完了後 Discord#システムへ結果サマリーを送信。`--dry-run` / `--all` / `--top N` オプション対応。影響: `scripts/batch_post_note_drafts_today.py`（新設） |
 | 2026-05-24 | 【RaceTree発走時刻+カウントダウン表示】`RaceTree.tsx` に `estimatePostTime()`（R1=10:00 JST +30分/R）・`formatCountdown()`・`todayJST()` を追加。各レースボタンに推定発走時刻（HH:MM形式・グレー）を右端に表示。当日レースで未発走のものにカウントダウン（X時間Y分後）を緑/黄色で表示（30分以内は黄色 `#FFD700`）。60秒ごとに `setInterval` で自動更新。マウスオーバーで「発走 HH:MM JST」をツールチップ表示。影響: `web/src/components/RaceTree.tsx` |
 | 2026-05-24 | 【Kelly vs フラット比較パネル追加】`FinancialDashboard.tsx` に `KellyComparisonPanel` コンポーネントを追加。WF 2025年バックテスト実証値（Alpha-Payout: flat=64%/kelly=129.2%、本命: flat=79%/kelly=148.3%、卍: flat=100%/kelly=963%）を SVG 比較バー形式で表示。KPI カードと利益チャートの間に配置。バンクロールと現在モデルに連動して動的ハイライト。影響: `web/src/components/FinancialDashboard.tsx` |
 | 2026-05-24 | 【AIウマスギフィルターUI統合】`PredictionsPanel.tsx` 先頭に「🤖 AIウマスギフィルター適用済み」バナーを追加（本命:単勝/複勝/三連単EV≥1.5、卍:三連単除外、Alpha:三連単除外）。本命×三連単(EV≥1.5)に「⚡条件付許可」バッジをモバイル・デスクトップ両対応で追加（ツールチップあり）。`buildXText()`/`buildNoteText()` に「🤖フィルター済」追記。`generate_sns_post.py` パターンA全バリアントにROIフィルター適用済みを追記。影響: `web/src/components/PredictionsPanel.tsx`, `web/src/components/RaceDetail.tsx`, `scripts/generate_sns_post.py` |

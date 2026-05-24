@@ -3,12 +3,19 @@ UMALOGI X（Twitter）用投稿文生成 → Discord 一括転送スクリプト
 
 使用方法:
     py scripts/post_x_drafts_to_discord.py --webhook URL [--date 20260524] [--dry-run]
+    py scripts/post_x_drafts_to_discord.py --webhook URL --note-url https://note.com/yourpage
 
-処理フロー:
-    1. DB から本日のレース + EV 推奨買い目を取得
-    2. 各レースの X 用投稿文を 280 字以内で生成（ハッシュタグ付き）
-    3. 指定 Discord Webhook へ転送
-    4. 完了通知
+テンプレート（280 字特化・note 誘導型）:
+    【推奨：会場NR】 または 【重要：会場NR】（EV高）
+    AIによる期待値選別結果：EV XX.XX
+    市場の歪みを捉えた勝算のある買い目のみを抽出しました。
+    詳細はnoteで公開中。
+    買い目・推奨理由はコチラ👇
+    https://note.com/...
+    #競馬予想 #期待値アルゴリズム #レース名 #開催地
+
+環境変数:
+    NOTE_PROFILE_URL  — note.com プロフィールページ URL（.env で設定可）
 """
 
 from __future__ import annotations
@@ -45,67 +52,61 @@ logger = logging.getLogger(__name__)
 # 定数
 # ──────────────────────────────────────────────
 _MAX_X_CHARS = 280
-_IMPORTANT_EV_THRESHOLD = 5.0   # 【重要推奨】を付与する最高EV閾値
+_IMPORTANT_EV_THRESHOLD = 10.0  # 【重要】タグを付与する最高EV閾値
 _MIN_POST_EV = 1.0               # Discord 転送対象の最低EV
 _DISCORD_RATE_LIMIT_SEC = 1.0   # Discord レート制限対策（秒）
 
-
-def _fmt_combos(combinations: list[list[int]], max_show: int = 3) -> str:
-    """買い目リストを短縮表記する（例: 4-1-2/4-2-1/...）。"""
-    shown = ["-".join(map(str, c)) for c in combinations[:max_show]]
-    suffix = f"他{len(combinations) - max_show}点" if len(combinations) > max_show else ""
-    return "/".join(shown) + (f" {suffix}" if suffix else "")
+_NOTE_PROFILE_URL: str = os.environ.get("NOTE_PROFILE_URL", "https://note.com/umalogi")
 
 
 def _build_x_post(
     race_name: str,
     venue: str,
     race_number: int,
-    bets: list[dict],
     max_ev: float,
+    note_url: str = "",
 ) -> str:
-    """X 用投稿文を 280 字以内で生成する。"""
+    """X 用投稿文を 280 字以内で生成する（note 誘導型テンプレート）。
+
+    テンプレート:
+        【重要：会場NR】  ← EV>=_IMPORTANT_EV_THRESHOLD の場合
+        AIによる期待値選別結果：EV XX.XX
+        市場の歪みを捉えた勝算のある買い目のみを抽出しました。
+        詳細はnoteで公開中。
+        買い目・推奨理由はコチラ👇
+        https://note.com/...
+        #競馬予想 #期待値アルゴリズム #レース名 #開催地
+    """
     is_important = max_ev >= _IMPORTANT_EV_THRESHOLD
-    prefix = "【重要推奨】\n" if is_important else ""
+    tag = "【重要】" if is_important else "【推奨】"
+    label = f"{tag}{venue}{race_number}R"
 
-    header = f"{prefix}📊 {venue}{race_number}R / {race_name}\n\n"
-    body_lines: list[str] = ["統計アルゴリズム選別の期待値推奨買い目："]
+    url = note_url or _NOTE_PROFILE_URL
+    # レース名の長さによってタグを省略しスペースを節約
+    short_name = race_name.replace(" ", "").replace("　", "")[:10]
 
-    # EV>=_MIN_POST_EV の上位3買い目を記載
-    ev_bets = sorted(
-        [b for b in bets if (b.get("expected_value") or 0) >= _MIN_POST_EV],
-        key=lambda b: b.get("expected_value") or 0,
-        reverse=True,
-    )[:3]
+    hashtags = f"#競馬予想 #期待値アルゴリズム #{short_name} #{venue}"
 
-    for bet in ev_bets:
-        bet_type = bet["bet_type"]
-        ev = bet.get("expected_value") or 0.0
-        combos = bet.get("combinations") or []
-        recommended = int(bet.get("recommended_bet") or 100)
-        combo_str = _fmt_combos(combos)
-        body_lines.append(f"▶ {bet_type}: {combo_str}（EV={ev:.1f}）¥{recommended:,}")
+    lines = [
+        label,
+        f"AIによる期待値選別結果：EV {max_ev:.2f}",
+        "",
+        "市場の歪みを捉えた勝算のある買い目のみを抽出しました。",
+        "詳細はnoteで公開中。",
+        "",
+        "買い目・推奨理由はコチラ👇",
+        url,
+        hashtags,
+    ]
+    post = "\n".join(lines)
 
-    # ハッシュタグ
-    hashtags = (
-        f"#競馬予想 #期待値アルゴリズム "
-        f"#{race_name.replace(' ', '')} #JRA "
-        f"#{venue}R{race_number}"
-    )
-    footer = f"\n{hashtags}"
+    # 280 字を超える場合はハッシュタグを削減して調整
+    if len(post) > _MAX_X_CHARS:
+        hashtags = f"#競馬予想 #期待値アルゴリズム #{venue}"
+        lines[-1] = hashtags
+        post = "\n".join(lines)
 
-    body = "\n".join(body_lines)
-    full = header + body + footer
-
-    # 280字オーバー時は本文を短縮
-    if len(full) > _MAX_X_CHARS:
-        # body_lines を削って調整
-        while len(header + "\n".join(body_lines) + footer) > _MAX_X_CHARS and len(body_lines) > 1:
-            body_lines.pop()
-        body = "\n".join(body_lines)
-        full = header + body + footer
-
-    return full
+    return post[:_MAX_X_CHARS]
 
 
 def _build_discord_message(
@@ -219,7 +220,7 @@ def _fetch_bets_for_race(conn, race_id: str) -> list[dict]:
     return result
 
 
-def run(date_str: str, webhook_url: str, dry_run: bool = False) -> None:
+def run(date_str: str, webhook_url: str, note_url: str = "", dry_run: bool = False) -> None:
     """メイン処理: 全レース X 投稿文生成 → Discord 転送。"""
     conn = init_db()
     races = _fetch_today_races(conn, date_str)
@@ -241,13 +242,8 @@ def run(date_str: str, webhook_url: str, dry_run: bool = False) -> None:
         race_number = race["race_number"]
         max_ev = race["max_ev"]
 
-        bets = _fetch_bets_for_race(conn, race_id)
-        if not bets:
-            logger.debug("買い目なし: %s", race_id)
-            continue
-
-        # X 用投稿文生成
-        x_post = _build_x_post(race_name, venue, race_number, bets, max_ev)
+        # X 用投稿文生成（note 誘導テンプレート）
+        x_post = _build_x_post(race_name, venue, race_number, max_ev, note_url=note_url)
 
         # Discord embed 構築
         payload = _build_discord_message(race_name, venue, race_number, x_post, max_ev, race_id)
@@ -293,12 +289,19 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="X用投稿文生成 → Discord 一括転送")
     parser.add_argument("--webhook", required=True, help="Discord Webhook URL")
     parser.add_argument("--date", default=None, help="対象日 YYYYMMDD（省略時=本日）")
+    parser.add_argument(
+        "--note-url",
+        default="",
+        help="note.com の URL（省略時は NOTE_PROFILE_URL 環境変数、またはデフォルト）",
+    )
     parser.add_argument("--dry-run", action="store_true", help="Discord 送信を行わない")
     args = parser.parse_args()
 
     date_str = args.date or date.today().strftime("%Y%m%d")
-    logger.info("=== X投稿文生成 → Discord転送 date=%s dry_run=%s ===", date_str, args.dry_run)
-    run(date_str=date_str, webhook_url=args.webhook, dry_run=args.dry_run)
+    note_url = args.note_url or _NOTE_PROFILE_URL
+    logger.info("=== X投稿文生成 → Discord転送 date=%s note_url=%s dry_run=%s ===",
+                date_str, note_url, args.dry_run)
+    run(date_str=date_str, webhook_url=args.webhook, note_url=note_url, dry_run=args.dry_run)
 
 
 if __name__ == "__main__":
