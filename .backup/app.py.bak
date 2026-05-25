@@ -703,66 +703,55 @@ def render_prerace_table(df: pd.DataFrame) -> None:
     display["win_odds"]        = pd.to_numeric(display.get("win_odds"),        errors="coerce")
     display["expected_value"]  = pd.to_numeric(display.get("expected_value"),  errors="coerce")
 
-    # ── ベクトル化列生成（apply(axis=1) を廃止） ───────────────────
-    # EV 数値列（expected_value → ev_score フォールバック）
-    _ev_num = (
-        display["expected_value"]
-        .fillna(display["ev_score"].fillna(0))
+    def _kelly_label(row: pd.Series) -> str:
+        bet = row.get("recommended_bet")
+        ev  = row.get("expected_value") or row.get("ev_score")
+        if pd.isna(bet) if isinstance(bet, float) else bet is None:
+            return "—"
+        bet = float(bet)
+        ev_val = float(ev) if ev is not None and not (isinstance(ev, float) and pd.isna(ev)) else 0.0
+        if bet <= 0 or ev_val < 1.0:
+            return "—"
+        return f"¥{int(bet):,}"
+
+    display["kelly_bet"] = display.apply(_kelly_label, axis=1)
+    display["調教"]      = display.get("eval_grade", pd.Series(dtype=str)).apply(_eval_badge)
+
+    def _ev_label(row: pd.Series) -> str:
+        ev = row.get("expected_value")
+        if ev is None or (isinstance(ev, float) and pd.isna(ev)):
+            ev = row.get("ev_score")
+        if ev is None or (isinstance(ev, float) and pd.isna(ev)):
+            return "—"
+        return f"🔥 {ev:.2f}" if float(ev) >= 1.0 else f"{ev:.2f}"
+
+    display["EV"]      = display.apply(_ev_label, axis=1)
+    display["_ev_num"] = (
+        pd.to_numeric(display.get("expected_value"), errors="coerce")
+        .fillna(pd.to_numeric(display.get("ev_score"), errors="coerce").fillna(0))
     )
-    _bet = display["recommended_bet"]
 
-    # kelly_bet: EV>=1.0 かつ bet>0 の行だけ金額文字列、それ以外 "—"
-    _kelly_mask = (_bet > 0) & pd.notna(_bet) & (_ev_num >= 1.0)
-    _kelly_vals = pd.Series("—", index=display.index, dtype=object)
-    if _kelly_mask.any():
-        _kelly_vals[_kelly_mask] = _bet[_kelly_mask].astype(int).map(lambda x: f"¥{x:,}")
-    display["kelly_bet"] = _kelly_vals
-
-    display["調教"] = display.get("eval_grade", pd.Series(dtype=str)).apply(_eval_badge)
-
-    # EV 表示列: NA は "—"、>=1.0 は 🔥 prefix
-    _ev_raw_na = pd.isna(display["expected_value"]) & pd.isna(display["ev_score"])
-    display["EV"] = np.where(
-        _ev_raw_na,
-        "—",
-        np.where(
-            _ev_num >= 1.0,
-            _ev_num.map(lambda x: f"🔥 {x:.2f}"),
-            _ev_num.map(lambda x: f"{x:.2f}"),
-        ),
-    )
-    display["_ev_num"] = _ev_num
-
-    # 本命% / 単勝: Series.map（単列演算・apply より高速）
-    display["本命%"] = display["model_score"].map(
+    display["本命%"] = display["model_score"].apply(
         lambda x: f"{x*100:.1f}%" if pd.notna(x) else "—"
     )
-    display["単勝"] = display["win_odds"].map(
+    display["単勝"] = display["win_odds"].apply(
         lambda x: f"{x:.1f}" if pd.notna(x) else "—"
     )
 
-    # 体重: np.where で NaN 判定 → 文字列結合（apply(axis=1) を廃止）
-    _w = pd.to_numeric(
-        display.get("horse_weight",      pd.Series(np.nan, index=display.index)),
-        errors="coerce",
-    )
-    _d = pd.to_numeric(
-        display.get("horse_weight_diff", pd.Series(np.nan, index=display.index)),
-        errors="coerce",
-    )
-    _w_has  = pd.notna(_w)
-    _d_suf  = pd.Series("", index=display.index, dtype=object)
-    _d_has  = pd.notna(_d)
-    if _d_has.any():
-        _d_suf[_d_has] = _d[_d_has].astype(int).map(lambda x: f"({x:+d})")
-    display["体重"] = np.where(
-        _w_has,
-        _w.where(_w_has).fillna(0).astype(int).astype(str) + _d_suf,
-        "—",
-    )
+    def _weight_str(row: pd.Series) -> str:
+        w = row.get("horse_weight")
+        d = row.get("horse_weight_diff")
+        if w is None or (isinstance(w, float) and pd.isna(w)):
+            return "—"
+        s = str(int(w))
+        if d is not None and not (isinstance(d, float) and pd.isna(d)):
+            sign = "+" if int(d) > 0 else ""
+            s += f"({sign}{int(d)})"
+        return s
 
-    display["着順"] = display.get("rank", pd.Series(dtype=str)).map(
-        lambda x: f"{int(x)}着" if pd.notna(x) else "—"
+    display["体重"] = display.apply(_weight_str, axis=1)
+    display["着順"] = display.get("rank", pd.Series(dtype=str)).apply(
+        lambda x: f"{int(x)}着" if pd.notna(x) and x is not None else "—"
     )
 
     col_map = {
@@ -1259,14 +1248,11 @@ def render_hit_performance() -> None:
     # テーブル表示
     disp = df.copy()
     disp["venue"] = disp["venue_code"].map(lambda c: _JYO.get(c, c))
-    disp["結果"] = np.where(disp["is_hit"] == 1, "✅ 的中", "❌ 外れ")
-    # payout_str: 的中かつ payout あり → 金額文字列、それ以外 "—"
-    _payout_mask = (disp["is_hit"] == 1) & pd.notna(disp["payout"])
-    disp["payout_str"] = "—"
-    if _payout_mask.any():
-        disp.loc[_payout_mask, "payout_str"] = (
-            disp.loc[_payout_mask, "payout"].astype(int).map(lambda x: f"¥{x:,}")
-        )
+    disp["結果"]  = disp["is_hit"].apply(lambda x: "✅ 的中" if x == 1 else "❌ 外れ")
+    disp["payout_str"] = disp.apply(
+        lambda r: f"¥{int(r['payout']):,}" if r["is_hit"] == 1 and pd.notna(r["payout"]) else "—",
+        axis=1,
+    )
     disp["bet_str"] = disp["recommended_bet"].apply(
         lambda x: f"¥{int(x):,}" if pd.notna(x) else "—"
     )
@@ -1371,15 +1357,15 @@ def main() -> None:
                         st.warning("レースデータなし")
                     st.markdown('</div>', unsafe_allow_html=True)
                 else:
-                    # _race_label を apply(axis=1) から列演算に変換
-                    _rn     = races_df["race_number"].astype(int).map(lambda x: f"{x:02d}R")
-                    _rname  = races_df["race_name"].map(_safe_race_name)
-                    _labels = np.where(
-                        _rname.notna() & (_rname != ""),
-                        _rn + "  " + _rname.fillna(""),
-                        _rn,
-                    )
-                    race_options = dict(zip(_labels, races_df["race_id"]))
+                    def _race_label(row) -> str:
+                        rn   = int(row["race_number"])
+                        name = _safe_race_name(row.get("race_name"))
+                        return f"{rn:02d}R  {name}" if name else f"{rn:02d}R"
+
+                    race_options = dict(zip(
+                        races_df.apply(_race_label, axis=1),
+                        races_df["race_id"],
+                    ))
                     with nav_c3:
                         selected_race_label = st.selectbox("🏁 レース", list(race_options.keys()))
                     selected_race_id = race_options[selected_race_label]
