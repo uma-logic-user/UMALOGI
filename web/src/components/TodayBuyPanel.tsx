@@ -56,29 +56,38 @@ export function TodayBuyPanel({ predictions, winOddsMap }: TodayBuyPanelProps) {
 
   const rows = useMemo(() => {
     return predictions.map(p => {
-      const ev   = p.expected_value ?? 0
-      const hn   = extractFirstHorseNum(p.combination_json)
-      const odds = hn != null ? (winOddsMap[hn] ?? 0) : 0
-      const stake = (ev > 0 && odds > 1)
-        ? calcKellyStake(ev, odds, bankroll, kellyFrac)
-        : 0
-      const f = (ev > 0 && odds > 1) ? calcKellyFraction(ev, odds) : 0
+      const ev      = p.expected_value ?? 0
+      const betType = p.bet_type
+
+      // 単勝以外は組み合わせオッズが存在しないため、単勝オッズ流用を禁止する。
+      // 誤ったオッズでケリー計算すると過剰賭けによる破産リスクが生じる。
+      const isWin   = betType === '単勝'
+      const noOdds  = !isWin  // 単勝以外は正確なオッズ不明 → ケリー計算スキップ
+
+      const hn   = isWin ? extractFirstHorseNum(p.combination_json) : null
+      const odds = (hn != null && isWin) ? (winOddsMap[hn] ?? 0) : 0
+
+      const canCalc = isWin && ev > 0 && odds > 1
+      const stake   = canCalc ? calcKellyStake(ev, odds, bankroll, kellyFrac) : 0
+      const f       = canCalc ? calcKellyFraction(ev, odds) : 0
 
       return {
         id:        p.prediction_id,
-        betType:   p.bet_type,
+        betType,
         horseNums: formatHorseNums(p.combination_json),
         odds,
         ev,
         f,
         stake,
-        skip:      stake === 0,
+        noOdds,                    // 正確なオッズが取得できない券種
+        skip:      !noOdds && stake === 0,  // EV<1.0 で購入見送り（単勝のみ）
       }
     })
   }, [predictions, winOddsMap, bankroll, kellyFrac])
 
   const totalStake  = useMemo(() => rows.reduce((s, r) => s + r.stake, 0), [rows])
-  const activeCount = rows.filter(r => !r.skip).length
+  // 推奨購入あり = 単勝かつ stake > 0（オッズ確認要は集計から除外）
+  const activeCount = rows.filter(r => !r.noOdds && !r.skip && r.stake > 0).length
 
   if (predictions.length === 0) {
     return (
@@ -144,14 +153,18 @@ export function TodayBuyPanel({ predictions, winOddsMap }: TodayBuyPanelProps) {
             {rows.map(row => (
               <tr
                 key={row.id}
-                className={row.skip ? 'opacity-40' : 'hover:bg-[rgba(0,200,255,0.04)]'}
+                className={
+                  row.skip
+                    ? 'opacity-40'
+                    : 'hover:bg-[rgba(0,200,255,0.04)]'
+                }
               >
                 <td className="px-4 py-3 font-semibold text-[var(--text-primary)]">
                   {row.betType}
                 </td>
                 <td className="px-4 py-3 text-[var(--text-secondary)]">{row.horseNums}</td>
                 <td className="px-4 py-3 text-right text-[var(--text-secondary)] font-mono">
-                  {row.odds > 0 ? `${row.odds.toFixed(1)}倍` : '—'}
+                  {row.noOdds ? '—' : row.odds > 0 ? `${row.odds.toFixed(1)}倍` : '—'}
                 </td>
                 <td className={`px-4 py-3 text-right font-mono font-semibold ${
                   row.ev >= 1.0 ? 'text-green-400' : 'text-[var(--text-muted)]'
@@ -159,13 +172,15 @@ export function TodayBuyPanel({ predictions, winOddsMap }: TodayBuyPanelProps) {
                   {row.ev > 0 ? row.ev.toFixed(2) : '—'}
                 </td>
                 <td className="px-4 py-3 text-right font-mono text-xs text-[var(--text-muted)]">
-                  {row.f > 0 ? `${(row.f * 100).toFixed(1)}%` : '—'}
+                  {row.noOdds ? '—' : row.f > 0 ? `${(row.f * 100).toFixed(1)}%` : '—'}
                 </td>
                 <td className="px-4 py-3 text-right">
-                  {row.skip ? (
+                  {row.noOdds ? (
+                    <span className="text-xs text-orange-400 opacity-80">オッズ確認要</span>
+                  ) : row.skip ? (
                     <span className="text-xs text-[var(--text-muted)] opacity-60">購入見送り</span>
                   ) : (
-                    <span className="font-bold text-yellow-400 neon-text-yellow">
+                    <span className="font-bold text-yellow-400">
                       ¥{row.stake.toLocaleString()}
                     </span>
                   )}
@@ -192,9 +207,9 @@ export function TodayBuyPanel({ predictions, winOddsMap }: TodayBuyPanelProps) {
 
       {/* ── 注釈 ──────────────────────────────────────── */}
       <p className="text-xs text-[var(--text-muted)] opacity-60 leading-relaxed px-1">
-        ※ ケリー基準 f* = (EV−1)÷(オッズ−1)。EV&lt;1.0 の買い目は購入見送り。
-        推奨額 = 総資金 × ケリー係数 × f*（100円切り捨て）。オッズは単勝オッズを使用。
-        投資はご自身の判断でお願いします。
+        ※ ケリー基準 f* = (EV−1)÷(オッズ−1)。<strong className="text-orange-400 opacity-100">単勝のみ</strong>計算対象。
+        馬連・ワイド・三連複等は組み合わせオッズが不明のため「オッズ確認要」と表示し計算をスキップします（誤った金額提示による過剰賭けを防止）。
+        EV&lt;1.0 の単勝は「購入見送り」。推奨額 = 総資金 × ケリー係数 × f*（100円切り捨て）。投資はご自身の判断でお願いします。
       </p>
     </div>
   )
