@@ -31,7 +31,15 @@ _BRANCH = os.environ.get("GIT_BRANCH", "master")
 
 
 def _run(cmd: list[str], *, cwd: Path = _ROOT) -> tuple[int, str, str]:
-    """サブプロセスを実行して (returncode, stdout, stderr) を返す。"""
+    """サブプロセスを実行して (returncode, stdout, stderr) を返す。
+
+    Args:
+        cmd: 実行するコマンドとその引数のリスト。
+        cwd: コマンドを実行するカレントディレクトリ。省略時はプロジェクトルート。
+
+    Returns:
+        (returncode, stdout 文字列, stderr 文字列) のタプル。
+    """
     result = subprocess.run(
         cmd,
         cwd=str(cwd),
@@ -44,7 +52,11 @@ def _run(cmd: list[str], *, cwd: Path = _ROOT) -> tuple[int, str, str]:
 
 
 def _configure_git() -> None:
-    """必要に応じて git user.name / user.email を設定する。"""
+    """必要に応じて git user.name / user.email を設定する。
+
+    GIT_USER_NAME / GIT_USER_EMAIL 環境変数が設定されている場合に限り
+    ローカルの git config を更新する。未設定時は何もしない。
+    """
     name  = os.environ.get("GIT_USER_NAME")
     email = os.environ.get("GIT_USER_EMAIL")
     if name:
@@ -54,13 +66,21 @@ def _configure_git() -> None:
 
 
 def status() -> str:
-    """git status の出力を返す。"""
+    """git status の短縮出力を返す。
+
+    Returns:
+        `git status --short` の標準出力文字列。変更なしの場合は空文字列。
+    """
     _, out, _ = _run(["git", "status", "--short"])
     return out
 
 
 def has_changes() -> bool:
-    """コミットすべき変更があるかどうかを返す。"""
+    """コミットすべき変更があるかどうかを返す。
+
+    Returns:
+        ステージング・未ステージングを問わず変更が存在する場合 True。
+    """
     return bool(status())
 
 
@@ -136,7 +156,14 @@ def auto_tag(tag_prefix: str = "weekly") -> str | None:
 
 
 def weekly_auto_commit() -> bool:
-    """週次の自動コミット・プッシュ。scheduler.py から呼び出す。"""
+    """週次の自動コミット・プッシュ。scheduler.py から呼び出す。
+
+    コミットメッセージに `[skip ci]` を付与して CI を抑制する。
+    コミット成功時に日付タグも自動生成する。
+
+    Returns:
+        True = コミット・プッシュ成功、False = 失敗またはスキップ。
+    """
     msg = f"chore: weekly auto-commit {datetime.now().strftime('%Y-%m-%d')} [skip ci]"
     success = commit_and_push(message=msg)
     if success:

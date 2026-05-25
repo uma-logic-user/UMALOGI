@@ -1,4 +1,9 @@
-"""umasugi_engine 拡張因子パッケージ"""
+"""umasugi_engine 拡張因子パッケージ。
+
+各モジュールは DataFrame に対してスコア列を追加するファクター関数を提供する。
+すべての calc_* 関数は (df: pd.DataFrame, conn: sqlite3.Connection) → pd.DataFrame
+のシグネチャを持ち、元の DataFrame をコピーした上でスコア列を追加して返す。
+"""
 
 from .jockey_trainer import calc_jockey_course_score, calc_trainer_course_score
 from .odds_momentum import calc_odds_momentum_score

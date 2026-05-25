@@ -48,7 +48,14 @@ _DEBUG_DIR.mkdir(parents=True, exist_ok=True)
 # ── 環境変数ロード ──────────────────────────────────────────────────
 
 def _load_env() -> tuple[str, str]:
-    """UMANITY_EMAIL / UMANITY_PASSWORD を環境変数から取得する。"""
+    """UMANITY_EMAIL / UMANITY_PASSWORD を環境変数（.env）から取得する。
+
+    Returns:
+        (email, password) のタプル。
+
+    Raises:
+        EnvironmentError: UMANITY_EMAIL または UMANITY_PASSWORD が未設定の場合。
+    """
     try:
         from dotenv import load_dotenv
         load_dotenv(dotenv_path=_ROOT / ".env", override=False)
@@ -68,12 +75,21 @@ def _load_env() -> tuple[str, str]:
 
 # ── DB から本日の予想を取得 ────────────────────────────────────────
 
-def _fetch_today_predictions(target_date: str) -> list[dict]:
-    """
-    指定日の predictions + races を結合して返す。
+def _fetch_today_predictions(target_date: str) -> list[dict[str, object]]:
+    """指定日の predictions + races を結合して返す。
 
     1レースにつき EV 最高の予想 1件のみを返す（重複排除）。
+    卍複勝を優先し、次に expected_value 降順で選択する。
     races.date も含めて Umanity ID 変換に使用する。
+
+    Args:
+        target_date: 対象日 YYYYMMDD 形式。
+
+    Returns:
+        予想情報の辞書リスト（race_id 昇順）。
+
+    Raises:
+        FileNotFoundError: umalogi.db が見つからない場合。
     """
     db_path = _ROOT / "data" / "umalogi.db"
     if not db_path.exists():
@@ -179,6 +195,14 @@ class UmanityUploader:
         headless:  bool  = True,
         delay_sec: float = 1.5,
     ) -> None:
+        """UmanityUploader を初期化する。
+
+        Args:
+            email:     ウマニティ登録メールアドレス。
+            password:  ウマニティパスワード。
+            headless:  True の場合ブラウザをヘッドレスモードで起動する。
+            delay_sec: リクエスト間の待機秒数。
+        """
         self._email    = email
         self._password = password
         self._headless = headless
@@ -189,6 +213,11 @@ class UmanityUploader:
         self._pw       = None
 
     def __enter__(self) -> "UmanityUploader":
+        """コンテキストマネージャー開始: Playwright ブラウザを起動してページを準備する。
+
+        Returns:
+            自分自身（UmanityUploader インスタンス）。
+        """
         from playwright.sync_api import sync_playwright  # type: ignore[import]
         self._pw_cm  = sync_playwright()
         self._pw     = self._pw_cm.__enter__()
@@ -205,6 +234,7 @@ class UmanityUploader:
         return self
 
     def __exit__(self, *_: object) -> None:
+        """コンテキストマネージャー終了: ブラウザと Playwright を安全にクリーンアップする。"""
         if self._browser:
             try:
                 self._browser.close()
@@ -217,7 +247,14 @@ class UmanityUploader:
                 pass
 
     def _save_screenshot(self, name: str) -> Path:
-        """スクリーンショットを outputs/debug/ に保存して Path を返す。"""
+        """スクリーンショットを outputs/debug/ に保存して Path を返す。
+
+        Args:
+            name: ファイル名に使うラベル文字列（例: "login_fail"）。
+
+        Returns:
+            保存した PNG ファイルのパス。スクリーンショット取得失敗時もパスを返す。
+        """
         path = _DEBUG_DIR / f"umanity_{name}.png"
         try:
             self._page.screenshot(path=str(path))
@@ -226,7 +263,13 @@ class UmanityUploader:
         return path
 
     def _notify_error(self, step: str, error: str, ss_path: Path | None = None) -> None:
-        """エラー時に Discord に手動介入要請を送信する。"""
+        """エラー時に Discord へ手動介入要請を送信する（例外は握り潰す）。
+
+        Args:
+            step:    エラーが発生したステップ名（例: "ウマニティ ログイン"）。
+            error:   エラーメッセージ。
+            ss_path: 添付するスクリーンショットの Path。省略可。
+        """
         try:
             from src.notification.discord_notifier import DiscordNotifier
             DiscordNotifier().notify_intervention_required(
@@ -510,7 +553,17 @@ class UmanityUploader:
         notes: str | None,
         expected_value: float | None,
     ) -> str:
-        """AI予想テキストを生成する。"""
+        """ウマニティへの投稿用 AI 予想テキストを生成する。
+
+        Args:
+            bet_type:         券種名（"複勝" / "馬連" 等）。
+            combination_json: 買い目の JSON 文字列（例: [[5, 3], ...]）。
+            notes:            予想根拠テキスト。省略可。
+            expected_value:   期待値。省略可。
+
+        Returns:
+            投稿用テキスト文字列（500文字以内を想定）。
+        """
         combos: list = []
         if combination_json:
             try:

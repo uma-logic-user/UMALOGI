@@ -86,10 +86,21 @@ class HorseOdds:
     reraise=True,
 )
 def _http_get(url: str, params: dict | None, timeout: int) -> requests.Response:
-    """
-    tenacity リトライ付き HTTP GET。
+    """tenacity リトライ付き HTTP GET。
+
     最大3回、指数バックオフ（2秒 → 4秒 → 8秒 → 上限30秒）でリトライする。
     3回失敗した場合は最後の requests.RequestException を再送出する。
+
+    Args:
+        url:     取得先 URL。
+        params:  クエリパラメータ。
+        timeout: HTTP タイムアウト秒数。
+
+    Returns:
+        取得成功した requests.Response。
+
+    Raises:
+        requests.RequestException: 3回リトライ後も失敗した場合。
     """
     resp = requests.get(url, params=params, headers=_HEADERS, timeout=timeout)
     resp.raise_for_status()
@@ -131,9 +142,13 @@ def _fetch(
 
 
 def _parse_weight(text: str) -> tuple[int | None, int | None]:
-    """
-    "482 (+2)" → (482, 2)
-    "計不" や空文字 → (None, None)
+    """馬体重テキストを (体重, 増減) にパースする。
+
+    Args:
+        text: 馬体重テキスト（例: "482 (+2)"）。
+
+    Returns:
+        (体重kg, 増減kg) のタプル。"計不" や空文字は (None, None)。
     """
     m = re.search(r"(\d+)\s*\(([+\-]?\d+)\)", text)
     if m:
@@ -145,6 +160,14 @@ def _parse_weight(text: str) -> tuple[int | None, int | None]:
 
 
 def _safe_float(text: str) -> float | None:
+    """文字列を float に変換する。0 以下は None を返す。
+
+    Args:
+        text: 変換対象の文字列。
+
+    Returns:
+        変換後の正の浮動小数点数。変換不可または 0 以下は None。
+    """
     try:
         v = float(text.strip())
         return v if v > 0 else None
@@ -153,6 +176,14 @@ def _safe_float(text: str) -> float | None:
 
 
 def _safe_int(text: str) -> int | None:
+    """文字列を int に変換する。変換不可は None を返す。
+
+    Args:
+        text: 変換対象の文字列。
+
+    Returns:
+        変換後の整数。変換不可は None。
+    """
     try:
         return int(text.strip())
     except (ValueError, AttributeError):

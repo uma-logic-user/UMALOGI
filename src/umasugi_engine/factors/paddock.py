@@ -39,12 +39,17 @@ _RE_NEGATIVE = re.compile("|".join(re.escape(k) for k in _NEGATIVE_KEYWORDS))
 
 
 def analyze_comment(comment: str) -> float:
-    """
-    コメントをキーワード解析して boost_factor を返す。
+    """コメントをキーワード解析して boost_factor を返す。
 
-    Returns
-    -------
-    float: -0.05 〜 +0.05 の値（複数キーワードは累積しない）
+    ポジティブキーワードとネガティブキーワードを照合し、
+    一方のみ含む場合にブースト値を返す。両方含む場合と
+    どちらも含まない場合は中立（0.0）を返す。
+
+    Args:
+        comment: パドックコメント文字列。
+
+    Returns:
+        ブースト値（-0.05〜+0.05）。複数キーワードは累積しない。
     """
     pos = len(_RE_POSITIVE.findall(comment)) > 0
     neg = len(_RE_NEGATIVE.findall(comment)) > 0
@@ -60,17 +65,19 @@ def analyze_comment(comment: str) -> float:
 def calc_paddock_score(
     df: pd.DataFrame, conn: sqlite3.Connection
 ) -> pd.DataFrame:
-    """
-    パドック気配スコアを DataFrame に追加して返す。
+    """パドック気配スコアを DataFrame に追加して返す。
 
-    Parameters
-    ----------
-    df : DataFrame  (必須列: race_id, horse_number)
-    conn : sqlite3.Connection
+    paddock_notes テーブルから boost_factor を取得し、
+    馬番一致 → レース全体メモの優先順でスコアを割り当てる。
+    複数メモがある場合は平均値を使用する。
 
-    Returns
-    -------
-    df + paddock_score 列 (0.0〜1.0)
+    Args:
+        df: 必須列として race_id, horse_number を含む DataFrame。
+        conn: umalogi.db 接続。
+
+    Returns:
+        元 df に paddock_score 列（0.0〜1.0、データなし = 0.5）を
+        追加した DataFrame。
     """
     if df.empty:
         df["paddock_score"] = pd.Series(dtype=float)
@@ -121,12 +128,17 @@ def save_paddock_note(
     comment: str,
     source: str = "discord",
 ) -> float:
-    """
-    パドックコメントを DB に保存する。
+    """パドックコメントを paddock_notes テーブルに保存する。
 
-    Returns
-    -------
-    float: 計算した boost_factor
+    Args:
+        conn: umalogi.db 接続。
+        race_id: 対象レース ID（YYYYMMDDJJRR 形式）。
+        horse_number: 馬番。None の場合はレース全体メモとして保存する。
+        comment: パドックコメント文字列。
+        source: コメントソース識別子。デフォルトは "discord"。
+
+    Returns:
+        analyze_comment() が算出した boost_factor（-0.05〜+0.05）。
     """
     boost = analyze_comment(comment)
     conn.execute(

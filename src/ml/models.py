@@ -143,6 +143,12 @@ def _safe_feature_matrix(df: pd.DataFrame) -> pd.DataFrame:
 
     KeyError を防ぎ、列追加・削除があっても推論全体が落ちないようにする。
     欠損補填された列は警告ログを出す。
+
+    Args:
+        df: 出走馬特徴量 DataFrame。
+
+    Returns:
+        FEATURE_COLS 順に列を揃え、欠損を -1 で補填した float 型 DataFrame。
     """
     missing = [c for c in FEATURE_COLS if c not in df.columns]
     if missing:
@@ -288,14 +294,21 @@ def _temporal_cv_split(
     df_sorted: pd.DataFrame,
     n_splits: int = 5,
 ) -> list[tuple[np.ndarray, np.ndarray]]:
-    """
-    時系列順に race_id を均等分割した CV スプリットを返す。
+    """時系列順に race_id を均等分割した CV スプリットを返す。
 
     GroupKFold と異なり「val fold のデータが train に混入しない（未来情報リークなし）」
     ことを保証する。df_sorted は race_id 昇順ソート済みを前提とする。
 
     先頭 1 fold は常に最初の train 専用（先頭データのみでの val は学習サンプル不足）。
     有効な (train_indices, val_indices) ペアを最大 n_splits-1 個返す。
+
+    Args:
+        df_sorted: race_id 昇順ソート済みの学習 DataFrame。
+        n_splits:  CV 分割数。デフォルト 5。
+
+    Returns:
+        (train_indices, val_indices) タプルのリスト（NumPy 整数配列）。
+        レース数が n_splits 未満の場合は空リストを返す。
     """
     unique_races: np.ndarray = pd.unique(df_sorted["race_id"])
     n_races = len(unique_races)
@@ -337,7 +350,14 @@ class _IsotonicModel:
     iso: IsotonicRegression
 
     def predict_proba(self, X: Any) -> np.ndarray:
-        """Isotonic calibrated P(win) を返す。shape=(n,2) — [:, 1] が P(win)。"""
+        """Isotonic キャリブレーション済み 1着確率を返す。
+
+        Args:
+            X: 特徴量行列（DataFrame または NumPy 配列）。
+
+        Returns:
+            shape=(n, 2) の確率配列。[:, 1] が P(win)。
+        """
         raw = self.base.predict_proba(X)[:, 1]
         calibrated = self.iso.predict(raw).astype(float)
         calibrated = np.clip(calibrated, 0.0, 1.0)
@@ -382,7 +402,14 @@ class _PlattModel:
     platt: LogisticRegression
 
     def predict_proba(self, X: Any) -> np.ndarray:
-        """calibrated P(win) を返す。shape=(n,2) — [:, 1] が P(win)。"""
+        """Platt Scaling キャリブレーション済み 1着確率を返す。
+
+        Args:
+            X: 特徴量行列（DataFrame または NumPy 配列）。
+
+        Returns:
+            shape=(n, 2) の確率配列。[:, 1] が P(win)。
+        """
         scores = self.base.predict_proba(X)[:, 1].reshape(-1, 1)
         return self.platt.predict_proba(scores)
 
@@ -417,7 +444,14 @@ class _BaseModel:
     _trained: bool = False
 
     def save(self, path: Path | None = None) -> Path:
-        """モデルを pickle で保存する。"""
+        """モデルを pickle で保存する。
+
+        Args:
+            path: 保存先パス。省略時は data/models/<_filename>.pkl。
+
+        Returns:
+            実際に保存したファイルパス。
+        """
         save_path = path or (_MODEL_DIR / f"{self._filename}.pkl")
         save_path.parent.mkdir(parents=True, exist_ok=True)
         with open(save_path, "wb") as f:
@@ -426,7 +460,14 @@ class _BaseModel:
         return save_path
 
     def load(self, path: Path | None = None) -> None:
-        """保存済みモデルを読み込む。"""
+        """保存済みモデルを読み込む。
+
+        Args:
+            path: 読み込みパス。省略時は data/models/<_filename>.pkl。
+
+        Raises:
+            FileNotFoundError: 指定パスにファイルが存在しない場合。
+        """
         load_path = path or (_MODEL_DIR / f"{self._filename}.pkl")
         if not load_path.exists():
             raise FileNotFoundError(f"モデルファイルが見つかりません: {load_path}")
@@ -440,9 +481,15 @@ class _BaseModel:
         return self._trained
 
     def _fallback_predict(self, df: pd.DataFrame) -> pd.Series:
-        """
-        訓練済みモデルがない場合のフォールバック。
-        win_odds を反転して確率風スコアを返す（低オッズ馬 → 最高スコア）。
+        """訓練済みモデルがない場合のフォールバック予測を返す。
+
+        win_odds を反転して確率風スコアを計算する（低オッズ馬 → 最高スコア）。
+
+        Args:
+            df: 出走馬特徴量 DataFrame。win_odds 列を使用する。
+
+        Returns:
+            オッズ逆数を正規化した擬似確率 Series（合計 1.0 または生スコア）。
         """
         odds = df["win_odds"].fillna(100.0).clip(lower=1.0)
         score = 1.0 / odds
@@ -726,7 +773,17 @@ class PlaceModel(_BaseModel):
         conn: sqlite3.Connection,
         train_until: int | None = None,
     ) -> dict[str, Any]:
-        """`is_placed`（rank ≤ 3 = 1）を目的変数として訓練する。"""
+        """`is_placed`（rank ≤ 3 = 1）を目的変数として訓練する。
+
+        Args:
+            conn:        DB 接続。
+            train_until: 学習に使う最終年。None の場合は全期間を使用。
+
+        Returns:
+            {"n_races": 学習レース数, "n_samples": 学習サンプル数,
+             "cv_auc_mean": CV 平均 AUC, "cv_auc_std": CV AUC 標準偏差,
+             "train_until": 使用した最終年}
+        """
         df = _build_train_df(conn, train_until=train_until)
         if df.empty:
             logger.warning("学習データが0件のため複勝モデル訓練をスキップします")
@@ -881,7 +938,17 @@ def train_all(
     conn: sqlite3.Connection,
     train_until: int | None = None,
 ) -> dict[str, dict]:
-    """本命・複勝・卍モデルを訓練して data/models/ に保存する。"""
+    """本命・複勝・卍モデルを訓練して data/models/ に保存する。
+
+    Args:
+        conn:        DB 接続。
+        train_until: 学習に使う最終年。None の場合は全期間を使用。
+
+    Returns:
+        {"honmei": HonmeiModel.train() の戻り値,
+         "place":  PlaceModel.train() の戻り値,
+         "manji":  ManjiModel.train() の戻り値}
+    """
     honmei = HonmeiModel()
     place  = PlaceModel()
     manji  = ManjiModel()

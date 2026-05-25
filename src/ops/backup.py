@@ -253,7 +253,14 @@ def backup_db(
 
 
 def list_backups(backup_dir: Path | None = None) -> list[Path]:
-    """バックアップファイルの一覧を返す（新しい順）。"""
+    """バックアップファイルの一覧を返す（新しい順）。
+
+    Args:
+        backup_dir: バックアップ保存ディレクトリ。省略時は data/backups/。
+
+    Returns:
+        バックアップファイルのパスリスト（更新日時の降順）。
+    """
     backup_dir = backup_dir or _BACKUP_DIR
     if not backup_dir.exists():
         return []
@@ -265,6 +272,10 @@ def list_backups(backup_dir: Path | None = None) -> list[Path]:
 # ────────────────────────────────────────────────────────────────────────────
 
 def main() -> None:
+    """バックアップユーティリティの CLI エントリーポイント。
+
+    --list でバックアップ一覧を表示、通常実行で即時バックアップを実行する。
+    """
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s %(levelname)s %(message)s",

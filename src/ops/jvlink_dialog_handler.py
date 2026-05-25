@@ -126,13 +126,30 @@ _thread: threading.Thread | None = None
 # ── ウィンドウ判定 ─────────────────────────────────────────────────────────────
 
 def _is_target_window(title: str) -> bool:
-    """タイトルがダイアログ対象パターンに一致するか判定する。"""
+    """タイトルがダイアログ対象パターンに一致するか判定する。
+
+    Args:
+        title: ウィンドウのタイトル文字列。
+
+    Returns:
+        _TARGET_TITLE_PATTERNS のいずれかとマッチする場合 True。
+    """
     t = title.lower()
     return any(p in t for p in _TARGET_TITLE_PATTERNS)
 
 
 def _is_setup_dialog(title: str) -> bool:
-    """タイトルがセットアップダイアログかどうかを判定する。"""
+    """タイトルがセットアップダイアログかどうかを判定する。
+
+    セットアップダイアログは2段階突破（ラジオ選択 + OK クリック）が必要なため
+    通常のダイアログと区別する。
+
+    Args:
+        title: ウィンドウのタイトル文字列。
+
+    Returns:
+        _SETUP_TITLE_PATTERNS のいずれかとマッチする場合 True。
+    """
     t = title.lower()
     return any(p in t for p in _SETUP_TITLE_PATTERNS)
 
@@ -380,6 +397,11 @@ def _scan_windows() -> None:
 # ── メインループ ─────────────────────────────────────────────────────────────
 
 def _handler_loop(interval: float) -> None:
+    """ダイアログ監視のメインループ。_running が False になるまで継続する。
+
+    Args:
+        interval: ウィンドウスキャン間隔（秒）。
+    """
     logger.info(
         "[DialogHandler] 起動 — JVLink/設定ダイアログを %.1f 秒間隔で監視中",
         interval,
@@ -436,7 +458,11 @@ def start_dialog_handler(interval: float = 0.3) -> threading.Thread:
 
 
 def stop_dialog_handler() -> None:
-    """ダイアログハンドラーを停止する（テスト・シャットダウン用）。"""
+    """ダイアログハンドラーを停止する（テスト・シャットダウン用）。
+
+    _running フラグを False に設定してループを抜けさせる。
+    スレッドの終了を待機しないため、呼び出し直後にスレッドが即座に停止するとは限らない。
+    """
     global _running
     _running = False
 

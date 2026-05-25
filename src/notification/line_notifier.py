@@ -24,7 +24,10 @@ _LINE_NOTIFY_URL = "https://notify-api.line.me/api/notify"
 
 
 class LineNotifier(BaseNotifier):
-    """LINE Notify を通じて通知を送る。"""
+    """LINE Notify を通じて通知を送る。
+
+    画像は PNG/JPG ファイルパスを渡すと multipart/form-data で送信する。
+    """
 
     def __init__(
         self,
@@ -32,12 +35,27 @@ class LineNotifier(BaseNotifier):
         token: str | None = None,
         enabled: bool = True,
     ) -> None:
+        """初期化。
+
+        Args:
+            token: LINE Notify のアクセストークン。
+                   未指定時は LINE_NOTIFY_TOKEN 環境変数を使用。
+            enabled: False に設定すると全送信をスキップする。
+        """
         super().__init__(enabled=enabled)
         self._token = token or os.environ.get("LINE_NOTIFY_TOKEN", "")
         if enabled and not self._token:
             logger.warning("LINE_NOTIFY_TOKEN が設定されていません")
 
     def _send(self, message: NotifyMessage) -> bool:
+        """LINE Notify API にメッセージを送信する。
+
+        Args:
+            message: 送信するメッセージ。image_path が指定された場合は画像も添付。
+
+        Returns:
+            True = 送信成功 (HTTP 200), False = トークン未設定または送信失敗。
+        """
         if not self._token:
             return False
 

@@ -63,12 +63,26 @@ _MIN_SCORE = 2.0
 # ── DB ヘルパー ──────────────────────────────────────────────────
 
 def _db() -> sqlite3.Connection:
+    """umalogi.db への接続を返す（Row ファクトリ設定済み）。
+
+    Returns:
+        sqlite3.Row をロウファクトリとした Connection オブジェクト。
+    """
     conn = sqlite3.connect(str(_DB_PATH))
     conn.row_factory = sqlite3.Row
     return conn
 
 
 def _fetch_race_ids(conn: sqlite3.Connection, date_str: str) -> list[str]:
+    """指定日の race_id リストを会場・レース番号順で返す。
+
+    Args:
+        conn:     DB コネクション。
+        date_str: 対象日（YYYY-MM-DD 形式）。
+
+    Returns:
+        race_id 文字列のリスト。
+    """
     rows = conn.execute(
         "SELECT race_id FROM races WHERE date = ? ORDER BY venue, race_number",
         (date_str,),
@@ -77,6 +91,15 @@ def _fetch_race_ids(conn: sqlite3.Connection, date_str: str) -> list[str]:
 
 
 def _fetch_race(conn: sqlite3.Connection, race_id: str) -> dict[str, Any]:
+    """races テーブルから1レースの基本情報を辞書で返す。
+
+    Args:
+        conn:    DB コネクション。
+        race_id: 取得するレース ID。
+
+    Returns:
+        レース情報の辞書。レコードが存在しない場合は空辞書。
+    """
     row = conn.execute(
         """SELECT race_id, race_name, date, venue, race_number,
                   distance, surface, weather, condition, track_direction
@@ -87,6 +110,15 @@ def _fetch_race(conn: sqlite3.Connection, race_id: str) -> dict[str, Any]:
 
 
 def _fetch_entries(conn: sqlite3.Connection, race_id: str) -> list[dict[str, Any]]:
+    """entries テーブルから出走馬一覧をリアルタイムオッズ付きで返す。
+
+    Args:
+        conn:    DB コネクション。
+        race_id: 取得するレース ID。
+
+    Returns:
+        馬番昇順の出走馬情報リスト。realtime_odds が未登録の馬はオッズ NULL。
+    """
     rows = conn.execute(
         """SELECT e.horse_number, e.gate_number, e.horse_name, e.sex_age,
                   e.weight_carried, e.jockey, e.trainer,
@@ -307,10 +339,28 @@ def _fmt_combo(combo: list[list[int]], bet_type: str, max_show: int = 8) -> str:
 
 
 def _star_rating(consensus: int) -> str:
+    """合意モデル数を⭐/☆の4段階評価文字列に変換する。
+
+    Args:
+        consensus: EV≥1.0 のモデル数（0〜3）。
+
+    Returns:
+        最大4つの⭐と残り☆の組み合わせ文字列（例: "⭐⭐☆☆"）。
+    """
     return "⭐" * min(consensus, 4) + ("☆" * (4 - min(consensus, 4)))
 
 
 def _surface_str(surface: str, distance: int, direction: str) -> str:
+    """馬場・距離・方向を日本語の表示文字列に変換する。
+
+    Args:
+        surface:   馬場種別（"芝" / "ダート" / "turf" 等）。
+        distance:  距離（メートル）。0 の場合は省略。
+        direction: 回り方向（"右" / "左" 等）。空文字の場合は省略。
+
+    Returns:
+        "芝1600m（右回り）" 形式の文字列。
+    """
     s = _SURFACE_JP.get(surface, surface or "芝")
     d = f"{distance}m" if distance else ""
     dr = f"（{direction}回り）" if direction else ""
@@ -318,19 +368,50 @@ def _surface_str(surface: str, distance: int, direction: str) -> str:
 
 
 def _condition_str(cond: str) -> str:
+    """馬場状態コードを日本語表示に変換する。
+
+    Args:
+        cond: 馬場状態（"良" / "稍" / "firm" 等）。
+
+    Returns:
+        日本語の馬場状態文字列。未知の値はそのまま返す。
+    """
     return _CONDITION_JP.get(cond, cond or "良")
 
 
 def _start_time(race_number: int) -> str:
+    """レース番号から標準発走時刻文字列を返す。
+
+    Args:
+        race_number: レース番号（1〜12）。
+
+    Returns:
+        "HH:MM" 形式の発走時刻。テーブルにない場合は "RN" 形式を返す。
+    """
     return _START_TIMES.get(race_number, f"R{race_number}")
 
 
 def _mark_horse(rank: int) -> str:
+    """本命スコア順位を予想印に変換する。
+
+    Args:
+        rank: 0始まりの順位（0=◎, 1=○, 2=▲, ...）。
+
+    Returns:
+        対応する予想印文字列。インデックス範囲外の場合は "△"。
+    """
     return _MARKS[rank] if rank < len(_MARKS) else "△"
 
 
 def _ev_bar(ev: float) -> str:
-    """EV を絵文字バーで視覚化する。"""
+    """EV を絵文字バーで視覚化した文字列を返す。
+
+    Args:
+        ev: 期待値（Expected Value）。1.0 未満は参考値扱い。
+
+    Returns:
+        EV の高さに応じた絵文字ラベル文字列。
+    """
     if ev >= 3.0:  return "🔥🔥🔥 超高EV"
     if ev >= 2.0:  return "🔥🔥 高EV"
     if ev >= 1.5:  return "🔥 EV良好"
@@ -345,8 +426,15 @@ def _build_race_section(
     sc: dict[str, Any],
     rank: int,
 ) -> list[str]:
-    """
-    1レース分の Markdown ブロックを生成する。
+    """1レース分の Markdown ブロックを生成する。
+
+    Args:
+        conn: DB コネクション。
+        sc:   _score_race() が返すスコア辞書。
+        rank: 推奨順位（1始まり）。
+
+    Returns:
+        Markdown 行のリスト。
     """
     race_id = sc["race_id"]
     race    = _fetch_race(conn, race_id)
@@ -472,7 +560,18 @@ def _build_bet_summary(
     sc: dict[str, Any],
     entries: list[dict[str, Any]],
 ) -> list[str]:
-    """4モデルの結果を統合して「推奨買い目」箇条書きを生成する。"""
+    """4モデルの結果を統合して「推奨買い目」箇条書きを生成する。
+
+    EV ≥ 1.0 のシグナルを卍・ALPHA の順に列挙する。
+    シグナルがない場合は参考コメントのみ返す。
+
+    Args:
+        sc:      _score_race() が返すスコア辞書。
+        entries: 出走馬エントリーのリスト。
+
+    Returns:
+        Markdown 行のリスト（各行が1買い目の説明）。
+    """
     lines: list[str] = []
     order = 1
 
@@ -545,7 +644,15 @@ def _build_horse_table(
     entries: list[dict[str, Any]],
     honmei_preds: list[dict[str, Any]],
 ) -> list[str]:
-    """出走馬テーブルを生成する。"""
+    """出走馬テーブルを Markdown 形式で生成する。
+
+    Args:
+        entries:      出走馬エントリーのリスト（馬番昇順）。
+        honmei_preds: 本命モデルの予想リスト（confidence 降順）。予想印の付与に使用。
+
+    Returns:
+        Markdown テーブル行のリスト（ヘッダー行含む）。
+    """
     # honmei スコアを馬番→rank にマッピング
     rank_map: dict[int, int] = {}
     for i, p in enumerate(honmei_preds):
@@ -577,7 +684,16 @@ def _build_horse_table(
 
 
 def _calc_rec_bet(ev: float) -> int:
-    """EV に基づく推奨ベット額（軍資金1万円あたり）を返す。"""
+    """EV に基づく推奨ベット額（軍資金1万円あたり）を Kelly 基準で算出する。
+
+    Kelly 基準を最大 25% でキャップし、100円単位に丸める。
+
+    Args:
+        ev: 期待値（Expected Value）。
+
+    Returns:
+        推奨ベット額（100円単位）。最低 100 円。
+    """
     kelly = max(0, (ev - 1) / (ev if ev > 0 else 1))
     kelly = min(kelly, 0.25)   # 最大 Kelly 25% キャップ
     amount = int(10000 * kelly / 100) * 100  # 100円単位
@@ -612,7 +728,15 @@ def _build_paywall_separator() -> list[str]:
 
 
 def _build_header(date_str: str, n_races: int) -> list[str]:
-    """記事の冒頭部分（note 記事トップ）を生成する。"""
+    """記事の冒頭部分（note 記事トップ）を生成する。
+
+    Args:
+        date_str: 対象日 YYYYMMDD 形式。
+        n_races:  厳選レース数。
+
+    Returns:
+        Markdown 行のリスト。
+    """
     y, m, d = date_str[:4], date_str[4:6], date_str[6:]
     disp = f"{y}年{m}月{d}日"
     return [
@@ -633,6 +757,14 @@ def _build_header(date_str: str, n_races: int) -> list[str]:
 
 
 def _build_footer(date_str: str) -> list[str]:
+    """記事のフッター部分（免責事項 + クレジット）を生成する。
+
+    Args:
+        date_str: 対象日 YYYYMMDD 形式。
+
+    Returns:
+        Markdown 行のリスト。
+    """
     return [
         "## 📌 免責事項",
         "",
@@ -717,6 +849,11 @@ def generate(
 # ── CLI ─────────────────────────────────────────────────────────
 
 def _cli() -> None:
+    """note 記事生成ツールの CLI エントリーポイント。
+
+    --date で対象日を指定し、--top で最大推奨レース数を指定できる。
+    --stdout を指定すると Markdown をターミナルにも出力する。
+    """
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s %(levelname)s: %(message)s",

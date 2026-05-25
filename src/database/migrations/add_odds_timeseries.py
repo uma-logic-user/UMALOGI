@@ -1,4 +1,13 @@
-"""odds_timeseries テーブルを新設するマイグレーション"""
+"""odds_timeseries テーブルを新設するマイグレーション。
+
+umasugi_engine Phase2 で追加されたオッズ時系列テーブル。
+既に schema.py / init_db.py に同 DDL が組み込まれているため、
+このスクリプトは単独実行・スタンドアロン用として残す。
+
+使用例:
+    python -m src.database.migrations.add_odds_timeseries
+    python -m src.database.migrations.add_odds_timeseries data/umalogi.db
+"""
 
 from __future__ import annotations
 
@@ -22,6 +31,11 @@ CREATE INDEX IF NOT EXISTS idx_ots_recorded_at ON odds_timeseries(recorded_at)
 
 
 def migrate(db_path: str = "data/umalogi.db") -> None:
+    """odds_timeseries テーブルとインデックスを作成する（冪等）。
+
+    Args:
+        db_path: SQLite DB ファイルパス。デフォルトは ``"data/umalogi.db"``。
+    """
     conn = sqlite3.connect(db_path)
     for stmt in DDL.strip().split(";"):
         stmt = stmt.strip()

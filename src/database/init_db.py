@@ -35,6 +35,8 @@ SQLite データベース初期化スクリプト
 import logging
 import os
 import sqlite3
+from dataclasses import dataclass, field
+from datetime import datetime
 from pathlib import Path
 
 from src.utils.text import ensure_clean
@@ -98,7 +100,11 @@ def normalize_race_date(date_str: str) -> str:
 # ================================================================
 
 def get_db_path() -> Path:
-    """環境変数 DB_PATH を優先し、なければデフォルトパスを返す。"""
+    """環境変数 DB_PATH を優先し、なければデフォルトパスを返す。
+
+    Returns:
+        解決済みの DB ファイルパス。
+    """
     env_path = os.environ.get("DB_PATH")
     return Path(env_path) if env_path else DEFAULT_DB_PATH
 
@@ -163,13 +169,18 @@ def init_db(db_path: Path | None = None) -> sqlite3.Connection:
     _migrate_create_x_accounts_history(conn)     # 14. x_accounts_history テーブル作成
     _migrate_add_ev_indexes(conn)                # 15. EV 複合インデックス追加
     _migrate_create_paddock_jockey_trainer(conn) # 16. paddock_notes / jockey_stats / trainer_stats
+    _migrate_create_multi_odds(conn)             # 17. multi_odds テーブル
 
     logger.info("DB 初期化完了: %s", path)
     return conn
 
 
 def _migrate_add_combination_json(conn: sqlite3.Connection) -> None:
-    """predictions に combination_json 列を追加する（既存 DB マイグレーション）。"""
+    """predictions に combination_json 列を追加する（既存 DB マイグレーション）。
+
+    Args:
+        conn: アクティブな DB コネクション。
+    """
     cols = [row[1] for row in conn.execute("PRAGMA table_info(predictions)").fetchall()]
     if "combination_json" not in cols:
         with conn:
@@ -178,7 +189,11 @@ def _migrate_add_combination_json(conn: sqlite3.Connection) -> None:
 
 
 def _migrate_races_new_columns(conn: sqlite3.Connection) -> None:
-    """races に track_direction 列を追加する（既存 DB マイグレーション）。"""
+    """races に track_direction 列を追加する（既存 DB マイグレーション）。
+
+    Args:
+        conn: アクティブな DB コネクション。
+    """
     cols = [row[1] for row in conn.execute("PRAGMA table_info(races)").fetchall()]
     if "track_direction" not in cols:
         with conn:
@@ -189,7 +204,11 @@ def _migrate_races_new_columns(conn: sqlite3.Connection) -> None:
 
 
 def _migrate_create_win5_results(conn: sqlite3.Connection) -> None:
-    """win5_results テーブルが存在しない場合に作成する。"""
+    """win5_results テーブルが存在しない場合に作成する。
+
+    Args:
+        conn: アクティブな DB コネクション。
+    """
     tables = [r[0] for r in conn.execute("SELECT name FROM sqlite_master WHERE type='table'").fetchall()]
     if "win5_results" not in tables:
         with conn:
@@ -208,7 +227,11 @@ def _migrate_create_win5_results(conn: sqlite3.Connection) -> None:
 
 
 def _migrate_create_x_accounts_history(conn: sqlite3.Connection) -> None:
-    """x_accounts_history テーブルが存在しない場合に作成する（Phase C 2026-05-20）。"""
+    """x_accounts_history テーブルが存在しない場合に作成する（Phase C 2026-05-20）。
+
+    Args:
+        conn: アクティブな DB コネクション。
+    """
     tables = {
         r[0] for r in conn.execute(
             "SELECT name FROM sqlite_master WHERE type='table'"
@@ -251,7 +274,11 @@ def _migrate_create_x_accounts_history(conn: sqlite3.Connection) -> None:
 
 
 def _migrate_recreate_analytics_view(conn: sqlite3.Connection) -> None:
-    """v_analytics ビューを DROP → CREATE で最新定義に再構築する。"""
+    """v_analytics ビューを DROP → CREATE で最新定義に再構築する。
+
+    Args:
+        conn: アクティブな DB コネクション。
+    """
     analytics_ddl = next(
         (ddl for ddl in DDL_STATEMENTS if "v_analytics" in ddl and "CREATE VIEW" in ddl),
         None,
@@ -270,6 +297,9 @@ def _migrate_recreate_mart_view(conn: sqlite3.Connection) -> None:
     DDL_STATEMENTS 内の v_race_mart CREATE 文を正として、既存ビューを
     無条件に上書きする。init_db() から毎回呼ばれるため、DDL を変更した
     だけで既存 DB に自動反映される。
+
+    Args:
+        conn: アクティブな DB コネクション。
     """
     mart_ddl = next(
         ddl for ddl in DDL_STATEMENTS
@@ -286,6 +316,9 @@ def _migrate_relax_model_type_check(conn: sqlite3.Connection) -> None:
 
     CHECK(model_type IN ('卍', '本命')) が残っていると (暫定)/(直前) suffix を
     持つ値を INSERT できないため、RENAME/CREATE で安全にスキーマを再構築する。
+
+    Args:
+        conn: アクティブな DB コネクション。
     """
     needs_fix = False
     for table in ("predictions", "model_performance"):
@@ -388,7 +421,11 @@ def _migrate_relax_model_type_check(conn: sqlite3.Connection) -> None:
 
 
 def _migrate_race_results_new_columns(conn: sqlite3.Connection) -> None:
-    """race_results に gate_number / horse_number / trainer / horse_weight_diff / blood_id を追加する。"""
+    """race_results に gate_number / horse_number / trainer / horse_weight_diff / blood_id を追加する。
+
+    Args:
+        conn: アクティブな DB コネクション。
+    """
     cols = [row[1] for row in conn.execute("PRAGMA table_info(race_results)").fetchall()]
     additions = [
         ("gate_number",       "ALTER TABLE race_results ADD COLUMN gate_number       INTEGER"),
@@ -412,6 +449,9 @@ def _migrate_predictions_unique_constraint(conn: sqlite3.Connection) -> None:
     重複行は id が最大（最新）のものを残し、孤立した prediction_horses /
     prediction_results 行も合わせて削除する。prediction_id は保持されるため
     FK 参照は維持される。
+
+    Args:
+        conn: アクティブな DB コネクション。
     """
     schema = conn.execute(
         "SELECT sql FROM sqlite_master WHERE type='table' AND name='predictions'"
@@ -514,6 +554,9 @@ def _migrate_standardize_race_dates(conn: sqlite3.Connection) -> None:
       - date が YYYY-MM-DD 形式にならない（変換後も不正）
       - 会場コード (race_id[4:6]) が ``'01'`` 〜 ``'10'`` の範囲外
         ※ 地方競馬(NAR)の会場コード32/62/72/82等を除外する
+
+    Args:
+        conn: アクティブな DB コネクション。
     """
     conn.execute("PRAGMA foreign_keys = OFF")
     try:
@@ -586,6 +629,9 @@ def _migrate_standardize_training_dates(conn: sqlite3.Connection) -> None:
 
     UNIQUE 制約 (horse_id, training_date, ...) は同一論理日の変換では衝突しないため
     DROP/RENAME 不要。UPDATE のみで完結する。
+
+    Args:
+        conn: アクティブな DB コネクション。
     """
     for table in ("training_times", "training_hillwork"):
         count: int = conn.execute(
@@ -607,13 +653,14 @@ def _migrate_standardize_training_dates(conn: sqlite3.Connection) -> None:
 
 
 def _migrate_fix_prediction_results_fk(conn: sqlite3.Connection) -> None:
-    """
-    prediction_results の FOREIGN KEY が _predictions_old を参照している場合に
-    predictions を参照するよう再作成する。
+    """prediction_results の FK が _predictions_old を参照している場合に修正する。
 
     _migrate_predictions_unique_constraint() で predictions が
     Drop-and-Rename された際、prediction_results の FK 参照先が
     旧テーブル名 (_predictions_old) に追従してしまう SQLite の挙動を修正する。
+
+    Args:
+        conn: アクティブな DB コネクション。
     """
     fk_rows = conn.execute("PRAGMA foreign_key_list(prediction_results)").fetchall()
     # fk_rows[i] = (id, seq, table, from, to, on_update, on_delete, match)
@@ -670,6 +717,9 @@ def _migrate_add_rank_guard_triggers(conn: sqlite3.Connection) -> None:
 
     JV-Link の HR（払戻）レコードを SE（馬毎レース）として誤認識した場合、
     rank が払戻券種コード（10/20/30/.../90）になる。このトリガーでそれを防ぐ。
+
+    Args:
+        conn: アクティブな DB コネクション。
     """
     existing = {
         row[0]
@@ -716,6 +766,9 @@ def _migrate_purge_binary_horse_names(conn: sqlite3.Connection) -> None:
     制御文字が混入したレコードを一掃する。
 
     SQLite の LIKE/GLOB は NUL 文字を正しく扱えないため Python 側で判定する。
+
+    Args:
+        conn: アクティブな DB コネクション。
     """
     rows = conn.execute("SELECT id, horse_name FROM race_results").fetchall()
     bad_ids: list[int] = []
@@ -747,7 +800,11 @@ def _migrate_purge_binary_horse_names(conn: sqlite3.Connection) -> None:
 
 
 def _migrate_add_ev_indexes(conn: sqlite3.Connection) -> None:
-    """マイグレーション #15: EV 複合インデックス6本を追加（等値述語列レフトモスト準拠）。"""
+    """マイグレーション #15: EV 複合インデックス6本を追加（等値述語列レフトモスト準拠）。
+
+    Args:
+        conn: アクティブな DB コネクション。
+    """
     indexes = [
         ("idx_pred_model_ev",
          "CREATE INDEX IF NOT EXISTS idx_pred_model_ev   ON predictions(model_type, expected_value DESC)"),
@@ -769,7 +826,11 @@ def _migrate_add_ev_indexes(conn: sqlite3.Connection) -> None:
 
 
 def _migrate_create_paddock_jockey_trainer(conn: sqlite3.Connection) -> None:
-    """マイグレーション #16: paddock_notes / jockey_stats / trainer_stats テーブルを作成する。"""
+    """マイグレーション #16: paddock_notes / jockey_stats / trainer_stats テーブルを作成する。
+
+    Args:
+        conn: アクティブな DB コネクション。
+    """
     tables = {
         "paddock_notes": """
             CREATE TABLE IF NOT EXISTS paddock_notes (
@@ -827,9 +888,103 @@ def _migrate_create_paddock_jockey_trainer(conn: sqlite3.Connection) -> None:
     logger.info("マイグレーション #16: paddock_notes / jockey_stats / trainer_stats 完了")
 
 
-def insert_race(conn: sqlite3.Connection, race: "RaceInfo") -> None:  # type: ignore[name-defined]
+def _migrate_create_multi_odds(conn: sqlite3.Connection) -> None:
+    """マイグレーション #17: multi_odds テーブルを作成する。
+
+    Args:
+        conn: アクティブな DB コネクション。
     """
-    RaceInfo をトランザクション内で races / horses / race_results に保存する。
+    with conn:
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS multi_odds (
+                id           INTEGER PRIMARY KEY AUTOINCREMENT,
+                race_id      TEXT    NOT NULL,
+                bet_type     TEXT    NOT NULL
+                             CHECK (bet_type IN ('枠連','馬連','ワイド','馬単','三連複','三連単')),
+                combination  TEXT    NOT NULL,
+                odds         REAL,
+                odds_max     REAL,
+                popularity   INTEGER,
+                recorded_at  TEXT    NOT NULL DEFAULT (datetime('now','localtime')),
+                UNIQUE (race_id, bet_type, combination, recorded_at)
+            )
+        """)
+        conn.execute(
+            "CREATE INDEX IF NOT EXISTS idx_mo_race_bet ON multi_odds(race_id, bet_type)"
+        )
+        conn.execute(
+            "CREATE INDEX IF NOT EXISTS idx_mo_race_id  ON multi_odds(race_id)"
+        )
+    logger.info("マイグレーション #17: multi_odds 完了")
+
+
+@dataclass
+class MultiOddsEntry:
+    """マルチ券種オッズの 1 レコードを表す値オブジェクト。
+
+    Attributes:
+        race_id:     netkeiba の race_id (12 桁)。
+        bet_type:    券種名（枠連 / 馬連 / ワイド / 馬単 / 三連複 / 三連単）。
+        combination: 買い目文字列（例: "1-3", "2→5", "1-2-4"）。
+        odds:        最低オッズ（ワイドは下限）。
+        odds_max:    ワイドの上限オッズ。それ以外は None。
+        popularity:  人気順位。
+        recorded_at: 取得時刻（YYYY-MM-DD HH:MM:SS）。省略時は挿入時刻。
+    """
+
+    race_id: str
+    bet_type: str
+    combination: str
+    odds: float | None = None
+    odds_max: float | None = None
+    popularity: int | None = None
+    recorded_at: str = field(
+        default_factory=lambda: datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    )
+
+
+def insert_multi_odds(
+    conn: sqlite3.Connection,
+    entries: list[MultiOddsEntry],
+) -> int:
+    """multi_odds テーブルに UPSERT する。
+
+    同一 (race_id, bet_type, combination, recorded_at) が既に存在する場合は
+    INSERT OR IGNORE でスキップする。
+
+    Args:
+        conn: アクティブな DB コネクション。
+        entries: 挿入する MultiOddsEntry のリスト。
+
+    Returns:
+        実際に挿入された行数。
+    """
+    inserted = 0
+    with conn:
+        for e in entries:
+            cur = conn.execute(
+                """
+                INSERT OR IGNORE INTO multi_odds
+                    (race_id, bet_type, combination, odds, odds_max, popularity, recorded_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+                """,
+                (e.race_id, e.bet_type, e.combination,
+                 e.odds, e.odds_max, e.popularity, e.recorded_at),
+            )
+            inserted += cur.rowcount
+    first_race = entries[0].race_id if entries else "N/A"
+    logger.debug("multi_odds: %d 件挿入 (race_id=%s)", inserted, first_race)
+    return inserted
+
+
+def insert_race(conn: sqlite3.Connection, race: "RaceInfo") -> None:  # type: ignore[name-defined]
+    """RaceInfo をトランザクション内で races / horses / race_results に保存する。
+
+    不正な日付フォーマットを持つ race は WARNING を出力してスキップする。
+
+    Args:
+        conn: アクティブな DB コネクション。
+        race: 保存対象のレース情報オブジェクト。
     """
     try:
         normalized_date = normalize_race_date(race.date)
@@ -913,23 +1068,28 @@ def insert_prediction(
     notes: str | None = None,
     combination_json: str | None = None,
 ) -> int:
-    """
-    予想を predictions + prediction_horses に保存して prediction_id を返す。
+    """予想を predictions + prediction_horses に保存して prediction_id を返す。
 
     Args:
-        race_id:          対象レース ID
-        model_type:       '卍' または '本命'
-        bet_type:         '単勝' / '馬連' / '三連複' / 'WIN5' 等
-        horses:           [{"horse_id": ..., "horse_name": ...,
-                            "predicted_rank": 1, "model_score": 0.85,
-                            "ev_score": 1.23}, ...]
-        confidence:       モデル信頼度 0.0〜1.0
-        expected_value:   期待値（卍モデルの主指標）
-        recommended_bet:  推奨購入金額（円）
-        notes:            根拠メモ
+        conn:             アクティブな DB コネクション。
+        race_id:          対象レース ID。
+        model_type:       '卍' または '本命'。
+        bet_type:         '単勝' / '馬連' / '三連複' / 'WIN5' 等。
+        horses:           馬情報の辞書リスト。各要素は
+                          ``{"horse_id": ..., "horse_name": ...,
+                          "predicted_rank": 1, "model_score": 0.85,
+                          "ev_score": 1.23}`` 形式。
+        confidence:       モデル信頼度 0.0〜1.0。
+        expected_value:   期待値（卍モデルの主指標）。
+        recommended_bet:  推奨購入金額（円）。
+        notes:            根拠メモ（血統・オッズ歪み等）。
+        combination_json: 買い目組合せ JSON 文字列。
 
     Returns:
-        新規 prediction.id
+        保存した predictions.id（整数）。
+
+    Raises:
+        ValueError: model_type のベース部分が許可済みリストに含まれない場合。
     """
     _VALID_BASE_TYPES = {
         "卍", "卍V2", "本命", "本命V2",
@@ -994,14 +1154,14 @@ def record_prediction_result(
     payout: float = 0.0,
     recommended_bet: float | None = None,
 ) -> None:
-    """
-    予想の的中・払戻実績を prediction_results に記録する。
+    """予想の的中・払戻実績を prediction_results に記録する。
 
     Args:
-        prediction_id:    対象 prediction.id
-        is_hit:           的中したか
-        payout:           払戻金額（円）
-        recommended_bet:  購入金額（None の場合 predictions.recommended_bet を参照）
+        conn:             アクティブな DB コネクション。
+        prediction_id:    対象 prediction.id。
+        is_hit:           的中したか。
+        payout:           払戻金額（円）。
+        recommended_bet:  購入金額（円）。``None`` の場合は predictions.recommended_bet を参照。
     """
     if recommended_bet is None:
         row = conn.execute(
@@ -1038,15 +1198,15 @@ def refresh_model_performance(
     venue: str | None = None,
     bet_type: str = "ALL",
 ) -> None:
-    """
-    model_performance テーブルを集計・更新する。
+    """model_performance テーブルを集計・更新する。
 
     Args:
+        conn:       アクティブな DB コネクション。
         model_type: '卍' または '本命'
         year:       集計対象年
-        month:      集計対象月（None = 年間集計）
-        venue:      開催場所（None = 全場集計）
-        bet_type:   馬券種（'ALL' = 全種別合算）
+        month:      集計対象月。``None`` の場合は年間集計。
+        venue:      開催場所。``None`` の場合は全場集計。
+        bet_type:   馬券種。``'ALL'`` の場合は全種別合算。
     """
     # 集計クエリ
     # None → センチネル値（0 / ''）に正規化してクエリ・UPSERT 両方で統一

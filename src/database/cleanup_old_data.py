@@ -28,6 +28,7 @@ from __future__ import annotations
 import argparse
 import logging
 import os
+import sqlite3
 import sys
 import time
 from pathlib import Path
@@ -46,16 +47,18 @@ _BAD_NAMES = ("本命", "卍")
 
 # ── 対象レコード集計 ──────────────────────────────────────────────
 
-def _count_targets(conn) -> dict[str, int]:
-    """
-    削除対象の件数を集計して返す。
+def _count_targets(conn: sqlite3.Connection) -> dict[str, int]:
+    """削除対象の件数を集計して返す。
+
+    Args:
+        conn: アクティブな DB コネクション。
 
     Returns:
-        {
-          "predictions":        削除対象 predictions 数,
-          "prediction_horses":  連動削除される prediction_horses 数,
-          "prediction_results": 連動削除される prediction_results 数,
-        }
+        以下のキーを持つ辞書。
+
+        - ``predictions``: 削除対象の predictions 件数。
+        - ``prediction_horses``: 連動削除される prediction_horses 件数。
+        - ``prediction_results``: 連動削除される prediction_results 件数。
     """
     # 削除対象の predictions.id を特定するサブクエリ
     _target_sql = """
@@ -97,8 +100,16 @@ def _count_targets(conn) -> dict[str, int]:
     }
 
 
-def _count_all(conn) -> dict[str, int]:
-    """削除前の全テーブル件数を返す。"""
+def _count_all(conn: sqlite3.Connection) -> dict[str, int]:
+    """削除前の全テーブル件数を返す。
+
+    Args:
+        conn: アクティブな DB コネクション。
+
+    Returns:
+        predictions / prediction_horses / prediction_results それぞれの
+        現在の件数を格納した辞書。
+    """
     return {
         "predictions":        conn.execute("SELECT COUNT(*) FROM predictions").fetchone()[0],
         "prediction_horses":  conn.execute("SELECT COUNT(*) FROM prediction_horses").fetchone()[0],
@@ -108,10 +119,16 @@ def _count_all(conn) -> dict[str, int]:
 
 # ── 削除処理 ─────────────────────────────────────────────────────
 
-def _delete_targets(conn) -> int:
-    """
-    対象 predictions を削除し、削除件数を返す。
+def _delete_targets(conn: sqlite3.Connection) -> int:
+    """対象 predictions を削除し、削除件数を返す。
+
     CASCADE により prediction_horses / prediction_results も自動削除される。
+
+    Args:
+        conn: アクティブな DB コネクション。
+
+    Returns:
+        削除した predictions の行数。
     """
     with conn:
         cur = conn.execute(
@@ -131,12 +148,14 @@ def _delete_targets(conn) -> int:
     return cur.rowcount
 
 
-def _run_vacuum(conn) -> tuple[int, int]:
-    """
-    VACUUM を実行してファイルサイズを最適化する。
+def _run_vacuum(conn: sqlite3.Connection) -> tuple[int, int]:
+    """VACUUM を実行してファイルサイズを最適化する。
+
+    Args:
+        conn: アクティブな DB コネクション。VACUUM 実行のため autocommit に切り替える。
 
     Returns:
-        (before_bytes, after_bytes)
+        ``(before_bytes, after_bytes)`` — VACUUM 前後の DB ファイルサイズ（バイト単位）。
     """
     db_path = Path(conn.execute("PRAGMA database_list").fetchone()[2])
 
@@ -161,16 +180,21 @@ def _run_vacuum(conn) -> tuple[int, int]:
 
 # ── メイン ───────────────────────────────────────────────────────
 
-def cleanup(*, dry_run: bool = False, force: bool = False) -> dict:
-    """
-    旧予測データを削除して DB を最適化する。
+def cleanup(*, dry_run: bool = False, force: bool = False) -> dict[str, object]:
+    """旧予測データを削除して DB を最適化する。
 
     Args:
-        dry_run: True なら削除せず件数確認のみ
-        force:   True なら確認プロンプトをスキップ
+        dry_run: ``True`` の場合、削除せず件数確認のみ行う。
+        force:   ``True`` の場合、確認プロンプトをスキップして即削除する。
 
     Returns:
-        実行結果を格納した dict
+        実行結果を格納した辞書。主なキー:
+
+        - ``deleted``: 実際に削除した predictions 件数。
+        - ``vacuumed``: VACUUM が成功したか。
+        - ``before_bytes``: VACUUM 前のファイルサイズ（バイト）。
+        - ``after_bytes``: VACUUM 後のファイルサイズ（バイト）。
+        - ``targets``: 削除対象件数の内訳辞書（dry_run 時も返却）。
     """
     conn = init_db()
 
@@ -258,6 +282,11 @@ def cleanup(*, dry_run: bool = False, force: bool = False) -> dict:
 # ── CLI ──────────────────────────────────────────────────────────
 
 def _parse_args() -> argparse.Namespace:
+    """CLI 引数を解析して Namespace を返す。
+
+    Returns:
+        解析済みの ``argparse.Namespace``。
+    """
     parser = argparse.ArgumentParser(
         description="旧予測データ（horse_name が '本命'/'卍' のみ）を削除して DB を最適化する",
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -280,6 +309,7 @@ def _parse_args() -> argparse.Namespace:
 
 
 def main() -> None:
+    """CLI エントリーポイント。引数を解析して cleanup() を呼び出す。"""
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s %(levelname)s %(name)s: %(message)s",

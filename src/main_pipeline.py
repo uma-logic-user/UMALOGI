@@ -46,6 +46,14 @@ __all__ = [
 
 
 def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
+    """CLI 引数をパースして Namespace を返す。
+
+    Args:
+        argv: パース対象の引数リスト。``None`` の場合は ``sys.argv[1:]`` を使用。
+
+    Returns:
+        サブコマンド名と各オプションを属性に持つ Namespace オブジェクト。
+    """
     parser = argparse.ArgumentParser(
         description="UMALOGI 自動予想パイプライン",
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -91,6 +99,14 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 
 
 def main(argv: list[str] | None = None) -> None:
+    """UMALOGI 自動予想パイプラインの CLI エントリポイント。
+
+    サブコマンド（friday / provisional / prerace / simulate / win5 / train）に
+    応じて対応するパイプライン関数を呼び出し、結果を標準出力に表示する。
+
+    Args:
+        argv: パース対象の引数リスト。``None`` の場合は ``sys.argv[1:]`` を使用。
+    """
     sys.stdout.reconfigure(encoding="utf-8")  # type: ignore[attr-defined]
     logging.basicConfig(
         level=logging.INFO,

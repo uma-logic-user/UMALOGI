@@ -151,16 +151,22 @@ def _fetch_html(
     delay: float = 1.5,
     timeout: tuple[int, int] = (8, 20),
 ) -> str:
-    """
-    URL を取得して HTML 文字列を返す。
+    """URL を取得して HTML 文字列を返す。
 
     失敗時はエクスポネンシャルバックオフでリトライする。
 
     Args:
-        session: 再利用する requests.Session（None の場合は都度 requests.get）
+        url:         取得先 URL。
+        session:     再利用する requests.Session（None の場合は都度 requests.get）。
+        max_retries: 最大リトライ回数。
+        delay:       初回待機秒数（リトライごとに指数的に増加）。
+        timeout:     (接続タイムアウト秒, 読み取りタイムアウト秒)。
+
+    Returns:
+        レスポンス本文の HTML 文字列。
 
     Raises:
-        requests.RequestException: max_retries 回失敗した場合
+        requests.RequestException: max_retries 回失敗した場合。
     """
     time.sleep(delay)
 
@@ -192,13 +198,27 @@ def _fetch_html(
 # パーサー共通ユーティリティ
 # ---------------------------------------------------------------------------
 def _parse_rank(raw: str) -> Optional[int]:
-    """着順文字列を int に変換。失格・除外等は None を返す。"""
+    """着順文字列を int に変換する。失格・除外等は None を返す。
+
+    Args:
+        raw: 着順テキスト（例: "1"、"除"）。
+
+    Returns:
+        整数の着順。数字以外は None。
+    """
     raw = raw.strip()
     return int(raw) if raw.isdigit() else None
 
 
 def _parse_float(raw: str) -> Optional[float]:
-    """数値文字列を float に変換。変換不可は None を返す。"""
+    """数値文字列を float に変換する。変換不可は None を返す。
+
+    Args:
+        raw: 数値テキスト（例: "3.8", "1,380"）。
+
+    Returns:
+        変換後の浮動小数点数。変換不可は None。
+    """
     try:
         return float(raw.strip().replace(",", ""))
     except ValueError:
@@ -206,7 +226,14 @@ def _parse_float(raw: str) -> Optional[float]:
 
 
 def _parse_int(raw: str) -> Optional[int]:
-    """数値文字列（馬体重等）を int に変換。"480(+2)" → 480"""
+    """数値文字列（馬体重等）を int に変換する。"480(+2)" → 480。
+
+    Args:
+        raw: 数値テキスト（例: "480(+2)", "14"）。
+
+    Returns:
+        括弧前の整数部分。変換不可は None。
+    """
     try:
         return int(raw.strip().split("(")[0])
     except (ValueError, IndexError):
@@ -214,7 +241,14 @@ def _parse_int(raw: str) -> Optional[int]:
 
 
 def _parse_weight_diff(raw: str) -> Optional[int]:
-    """馬体重増減を抽出。"480(+2)" → 2、"480(-4)" → -4、"480" → None"""
+    """馬体重増減を抽出する。"480(+2)" → 2、"480(-4)" → -4、"480" → None。
+
+    Args:
+        raw: 馬体重テキスト（例: "480(+2)"）。
+
+    Returns:
+        符号付き増減値。括弧がない場合は None。
+    """
     m = re.search(r"\(([+-]?\d+)\)", raw)
     return int(m.group(1)) if m else None
 
@@ -543,7 +577,16 @@ _BET_MAX_NUM: dict[str, int] = {
 
 
 def _normalize_combination(raw: str) -> str:
-    """払戻組み合わせ文字列を "7-14" / "14→7" 形式に正規化する。"""
+    """払戻組み合わせ文字列を "7-14" / "14→7" 形式に正規化する。
+
+    全角数字・全角スペースを半角に変換し、区切り文字周囲の空白を除去する。
+
+    Args:
+        raw: 生の組み合わせ文字列。
+
+    Returns:
+        正規化後の組み合わせ文字列。
+    """
     raw = raw.translate(str.maketrans("０１２３４５６７８９　", "0123456789 "))
     raw = re.sub(r"\s*→\s*", "→", raw)
     raw = re.sub(r"\s*-\s*", "-", raw)
@@ -551,7 +594,14 @@ def _normalize_combination(raw: str) -> str:
 
 
 def _parse_payout_int(raw: str) -> Optional[int]:
-    """"1,380" / "250円" / "1,450円" → 1380 / 250 / 1450"""
+    """"1,380" / "250円" / "1,450円" → 1380 / 250 / 1450 に変換する。
+
+    Args:
+        raw: 払戻金テキスト。
+
+    Returns:
+        払戻金の整数値。変換不可は None。
+    """
     numeric = re.sub(r"[^\d,]", "", raw.strip())
     if not numeric:
         return None

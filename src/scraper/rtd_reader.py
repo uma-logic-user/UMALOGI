@@ -63,13 +63,18 @@ class RtdRaceInfo:
 
 
 def _race_id_from_filename(stem: str) -> str:
-    """
-    ファイルのステム名から race_id を導出する。
+    """ファイルのステム名から race_id を導出する。
 
     旧フォーマット (20文字): "0B30{YYYYMMDD}{JYO}{KAI}{NICHI}{RACE}"
       → "{YYYY}{JYO}{KAI}{NICHI}{RACE}"
     新フォーマット (16文字): "0B12{YYYYMMDD}{JYO}{RACE}"
       → KAI/NICHI 不明のため "{YYYY}{JYO}0000{RACE}" (DB 突合で補完)
+
+    Args:
+        stem: RTD ファイルの拡張子なしファイル名。
+
+    Returns:
+        12桁の race_id 文字列。
     """
     if len(stem) == 16:  # 新フォーマット: 0BXX + YYYYMMDD(8) + JYO(2) + RACE(2)
         year = stem[4:8]
@@ -233,11 +238,16 @@ def read_all_rtd_for_date(target_date: str) -> dict[str, RtdRaceInfo]:
     return result
 
 
-def rtd_odds_to_horse_odds(rtd_info: RtdRaceInfo) -> list:
-    """
-    RtdRaceInfo を entry_table.HorseOdds のリストに変換する。
+def rtd_odds_to_horse_odds(rtd_info: RtdRaceInfo) -> list["HorseOdds"]:
+    """RtdRaceInfo を entry_table.HorseOdds のリストに変換する。
 
     prerace_pipeline で insert_realtime_odds に渡すために使用。
+
+    Args:
+        rtd_info: RTD ファイルから読み込んだレース情報。
+
+    Returns:
+        HorseOdds のリスト（horse_number > 0 の馬のみ）。
     """
     from src.scraper.entry_table import HorseOdds
     return [

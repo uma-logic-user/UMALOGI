@@ -62,8 +62,16 @@ _PROFILE_BIO  = (
 
 # ─── 証拠保全・ブロック検知 ─────────────────────────────────────────────────
 
-def _dump_evidence(page, label: str) -> Path:
-    """スクリーンショット + HTML ソースを保存して解析結果を返す。"""
+def _dump_evidence(page: "Page", label: str) -> Path:  # type: ignore[name-defined]
+    """スクリーンショット + HTML ソースを outputs/debug/ に保存する。
+
+    Args:
+        page:  Playwright の Page オブジェクト。
+        label: ファイル名に使うラベル文字列（例: "login_block"）。
+
+    Returns:
+        保存したスクリーンショットの Path。
+    """
     ss_path = _DEBUG_DIR / f"note_{label}.png"
     html_path = _DEBUG_DIR / f"note_{label}.html"
     try:
@@ -83,13 +91,15 @@ def _dump_evidence(page, label: str) -> Path:
     return ss_path
 
 
-def _detect_block(page) -> str | None:
-    """
-    ページが WAF / Bot検知 / note障害ページかを判定する。
+def _detect_block(page: "Page") -> str | None:  # type: ignore[name-defined]
+    """ページが WAF / Bot検知 / note障害ページかを判定する。
+
+    Args:
+        page: Playwright の Page オブジェクト。
 
     Returns:
-        None        = 正常
-        "cloudflare" / "imperva" / "akamai" / "note_bot_page" = ブロック種別
+        正常の場合 None。ブロック検知時は "cloudflare" / "imperva" / "akamai" /
+        "note_bot_page" のいずれかを返す。
     """
     try:
         html = page.content().lower()
@@ -102,8 +112,14 @@ def _detect_block(page) -> str | None:
     return None
 
 
-def _log_block(kind: str, url: str, page) -> None:
-    """ブロック種別に応じた詳細ログを出力する。"""
+def _log_block(kind: str, url: str, page: "Page") -> None:  # type: ignore[name-defined]
+    """ブロック種別に応じた詳細ログを出力する。
+
+    Args:
+        kind: ブロック種別文字列（"cloudflare" / "imperva" / "akamai" / "note_bot_page"）。
+        url:  アクセス中だった URL。
+        page: Playwright の Page オブジェクト（将来の拡張用）。
+    """
     if kind == "cloudflare":
         logger.error(
             "[note] Cloudflare Bot 検知ブロック — url=%s\n"
@@ -127,7 +143,13 @@ def _log_block(kind: str, url: str, page) -> None:
 # ─── ステルス Playwright コンテキスト ───────────────────────────────────────
 
 def _build_stealth() -> "Stealth":  # type: ignore[name-defined]
-    """playwright-stealth の Stealth インスタンスを構築する。"""
+    """playwright-stealth の Stealth インスタンスを構築する。
+
+    UA・言語・プラットフォーム・ベンダーを Windows Chrome に偽装する。
+
+    Returns:
+        設定済みの Stealth インスタンス。
+    """
     from playwright_stealth import Stealth
     return Stealth(
         navigator_user_agent_override=_UA,
@@ -137,8 +159,12 @@ def _build_stealth() -> "Stealth":  # type: ignore[name-defined]
     )
 
 
-def _browser_opts() -> dict:
-    """共通の browser launch オプション。常に headless=False。"""
+def _browser_opts() -> dict[str, object]:
+    """共通の browser launch オプションを返す。常に headless=False。
+
+    Returns:
+        Playwright の chromium.launch() に渡すオプション辞書。
+    """
     return dict(
         headless=False,
         slow_mo=random.randint(40, 90),
@@ -152,8 +178,15 @@ def _browser_opts() -> dict:
     )
 
 
-def _ctx_opts(session: bool = False) -> dict:
-    """共通の BrowserContext オプション。"""
+def _ctx_opts(session: bool = False) -> dict[str, object]:
+    """共通の BrowserContext オプションを返す。
+
+    Args:
+        session: True の場合、保存済みセッションファイルを storage_state として読み込む。
+
+    Returns:
+        Playwright の new_context() に渡すオプション辞書。
+    """
     w = random.choice([1280, 1366, 1440, 1920])
     h = random.choice([768, 900, 1024, 1080])
     opts = dict(
@@ -177,6 +210,14 @@ def _ctx_opts(session: bool = False) -> dict:
 # ─── 認証情報 ────────────────────────────────────────────────────────────────
 
 def _load_credentials() -> tuple[str, str]:
+    """NOTE_EMAIL / NOTE_PASSWORD を環境変数（.env）から読み込む。
+
+    Returns:
+        (email, password) のタプル。
+
+    Raises:
+        EnvironmentError: NOTE_EMAIL または NOTE_PASSWORD が未設定の場合。
+    """
     try:
         from dotenv import load_dotenv
         load_dotenv(_ROOT / ".env", override=False)
@@ -192,11 +233,25 @@ def _load_credentials() -> tuple[str, str]:
 # ─── 操作ヘルパー ────────────────────────────────────────────────────────────
 
 def _human_delay(lo: float = 0.3, hi: float = 0.8) -> None:
+    """ランダムな人間らしい遅延をかける（Bot検知回避）。
+
+    Args:
+        lo: 最小待機秒数。デフォルト 0.3 秒。
+        hi: 最大待機秒数。デフォルト 0.8 秒。
+    """
     time.sleep(random.uniform(lo, hi))
 
 
-def _clipboard_paste(page, text: str) -> None:
-    """クリップボード経由でエディタにペーストする。"""
+def _clipboard_paste(page: "Page", text: str) -> None:  # type: ignore[name-defined]
+    """クリップボード経由でエディタにテキストをペーストする。
+
+    navigator.clipboard API でテキストをクリップボードに書き込み、
+    Ctrl+A → Ctrl+V でエディタに貼り付ける。
+
+    Args:
+        page: Playwright の Page オブジェクト。
+        text: ペーストするテキスト。
+    """
     escaped = text.replace("\\", "\\\\").replace("`", "\\`").replace("$", "\\$")
     page.evaluate(f"async () => {{ await navigator.clipboard.writeText(`{escaped}`); }}")
     _human_delay(0.2, 0.5)
@@ -205,8 +260,17 @@ def _clipboard_paste(page, text: str) -> None:
     _human_delay(0.3, 0.6)
 
 
-def _try_autofill_login(page, email: str, password: str) -> None:
-    """メールアドレス・パスワードを自動入力してログインを試みる。"""
+def _try_autofill_login(page: "Page", email: str, password: str) -> None:  # type: ignore[name-defined]
+    """メールアドレス・パスワードをフォームに自動入力してログインを試みる。
+
+    複数のセレクタを順番に試して最初にヒットしたフィールドに入力する。
+    フィールドが見つからない場合は警告ログのみ出力して処理を継続する。
+
+    Args:
+        page:     Playwright の Page オブジェクト。
+        email:    note.com のメールアドレス（または note ID）。
+        password: note.com のパスワード。
+    """
     # note.com のメール欄は type="text"（email IDと共用）
     email_selectors = [
         'input[type="text"]',
@@ -284,8 +348,17 @@ def _try_autofill_login(page, email: str, password: str) -> None:
             continue
 
 
-def _wait_for_login(page) -> bool:
-    """ログイン完了（/login 離脱）を最大8分ポーリングで検知する。"""
+def _wait_for_login(page: "Page") -> bool:  # type: ignore[name-defined]
+    """ログイン完了（/login URL からの離脱）を最大8分ポーリングで検知する。
+
+    reCAPTCHA や二段階認証による手動操作を考慮して長めのタイムアウトを設定している。
+
+    Args:
+        page: Playwright の Page オブジェクト。
+
+    Returns:
+        ログイン完了を検出できた場合 True、タイムアウトの場合 False。
+    """
     print("  ★ブラウザでログインが完了するまで待機中（最大8分）...")
     deadline = time.time() + 480
     while time.time() < deadline:
@@ -638,7 +711,17 @@ def save_draft(
 
 
 def update_profile(*, headless: bool = False) -> bool:
-    """note.com のプロフィールを「なおふみ | UMALOGI開発者」に更新する。"""
+    """note.com のプロフィールを「なおふみ | UMALOGI開発者」に更新する。
+
+    _PROFILE_NAME と _PROFILE_BIO の定数値でニックネームと自己紹介を上書きする。
+    セッションファイルが存在しない場合は即座に False を返す。
+
+    Args:
+        headless: ブラウザをヘッドレスモードで起動するか。Bot検知回避のため False 推奨。
+
+    Returns:
+        プロフィール更新成功の場合 True、失敗の場合 False。
+    """
     try:
         from playwright.sync_api import sync_playwright
     except ImportError:
@@ -715,6 +798,13 @@ def update_profile(*, headless: bool = False) -> bool:
 
 
 def _notify_discord(step: str, error: str, screenshot_path: Path | None = None) -> None:
+    """Discord に手動介入要請の通知を送る（例外は握り潰す）。
+
+    Args:
+        step:            エラーが発生したステップ名（例: "note 下書き保存"）。
+        error:           エラーメッセージ。
+        screenshot_path: 添付するスクリーンショットの Path。省略可。
+    """
     try:
         from src.notification.discord_notifier import DiscordNotifier
         DiscordNotifier().notify_intervention_required(

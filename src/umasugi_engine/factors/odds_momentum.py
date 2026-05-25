@@ -31,13 +31,18 @@ _SPIKE_STRONG_BONUS = 0.20
 
 
 def _detect_spike(odds_asc: list[float]) -> float:
-    """
-    時系列昇順のオッズリストからスパイクボーナスを返す。
+    """時系列昇順のオッズリストからスパイクボーナスを返す。
 
-    最高値から現在値への下落率を計算:
-      drop_rate = (peak - current) / peak
-      15% 以上  → +0.10
-      25% 以上  → +0.20
+    最高値から現在値への下落率を計算し、閾値に応じてボーナスを返す。
+
+    Args:
+        odds_asc: 時系列昇順（古い順）のオッズリスト。
+
+    Returns:
+        スパイクボーナス値。
+        25% 以上下落: _SPIKE_STRONG_BONUS (0.20)。
+        15% 以上下落: _SPIKE_MILD_BONUS (0.10)。
+        閾値未満またはデータ不足: 0.0。
     """
     if len(odds_asc) < 2:
         return 0.0
@@ -56,17 +61,18 @@ def _detect_spike(odds_asc: list[float]) -> float:
 def calc_odds_momentum_score(
     df: pd.DataFrame, conn: sqlite3.Connection
 ) -> pd.DataFrame:
-    """
-    オッズ変動スコア（モメンタム + スパイク）を DataFrame に追加して返す。
+    """オッズ変動スコア（モメンタム + スパイク）を DataFrame に追加して返す。
 
-    Parameters
-    ----------
-    df : DataFrame  (必須列: race_id, horse_number)
-    conn : sqlite3.Connection
+    odds_timeseries テーブルから直近 _WINDOW 点のオッズを取得し、
+    線形回帰傾きによるモメンタムスコアとスパイクボーナスを合算する。
 
-    Returns
-    -------
-    df + odds_momentum_score 列 (0.0〜1.0)
+    Args:
+        df: 必須列として race_id, horse_number を含む DataFrame。
+        conn: umalogi.db 接続。
+
+    Returns:
+        元 df に odds_momentum_score 列（0.0〜1.0、データなし = 0.5）を
+        追加した DataFrame。
     """
     if df.empty:
         df["odds_momentum_score"] = pd.Series(dtype=float)

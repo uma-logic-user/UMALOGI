@@ -80,6 +80,14 @@ _JVINIT_CODES: dict[int, str] = {
 
 
 def _jvinit_msg(code: int) -> str:
+    """JVInit の戻りコードに対応する日本語メッセージを返す。
+
+    Args:
+        code: ``jvl.JVInit()`` の戻り値。
+
+    Returns:
+        対応するメッセージ文字列。未定義のコードの場合は ``"❓ 不明 (code=N)"`` 形式。
+    """
     return _JVINIT_CODES.get(code, f"❓ 不明 (code={code})")
 
 
@@ -230,6 +238,15 @@ def run_check(sid: str, timeout: int = 15, verbose: bool = False) -> int:
 
 
 def main() -> None:
+    """JRA-VAN JVLink CLI 初期化ツールのエントリポイント。
+
+    32bit Python での実行を強制し、環境変数 ``JRAVAN_SID`` を読み込んで
+    ``run_check`` を呼び出す。
+
+    Raises:
+        SystemExit: 64bit Python で実行された場合、または ``JRAVAN_SID`` が未設定の場合は
+            exit code 1 で終了。``run_check`` の戻り値（0〜3）で終了。
+    """
     if sys.maxsize > 2**32:
         print("ERROR: 32bit Python で実行してください。", file=sys.stderr, flush=True)
         print("  py -3.14-32 -m src.utils.jravan_cli_initializer", file=sys.stderr, flush=True)

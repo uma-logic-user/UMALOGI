@@ -29,11 +29,16 @@ def simulate_pipeline(race_id: str) -> dict:
       - 統計計算で対象レース自身を除外 (exclude_race_id)
       - predictions.notes に "[SIMULATE]" を付与して実予想と区別
 
+    払戻データが存在する場合は reconcile() で的中照合を実行し、
+    結果ペイロードの "reconcile" キーに統計を含める。
+
     Args:
-        race_id: シミュレーション対象の過去レース ID
+        race_id: シミュレーション対象の過去レース ID。
 
     Returns:
-        UI 用 JSON データ（dict）
+        UI 用 JSON ペイロード（dict）。レースが DB に存在しない場合は
+        {"error": ..., "race_id": ...} を返す。
+        "simulate": True キーが必ず含まれる。
     """
     logger.info("[SIMULATE] パイプライン開始: race_id=%s", race_id)
 

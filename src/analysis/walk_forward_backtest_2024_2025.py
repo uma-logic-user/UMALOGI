@@ -119,6 +119,14 @@ Pattern: TypeAlias = tuple[str, float]
 
 # ── ユーティリティ ─────────────────────────────────────────────────────────────
 def _encode_sire(sire: str | None) -> int:
+    """父馬名を整数コードに変換する（モジュールキャッシュ利用）。
+
+    Args:
+        sire: 父馬名。None または空文字の場合は "" として扱う。
+
+    Returns:
+        初登場の父馬には連番を割り当て、既出の場合はキャッシュ値を返す。
+    """
     s = sire or ""
     if s not in _SIRE_CACHE:
         _SIRE_CACHE[s] = len(_SIRE_CACHE)
@@ -126,6 +134,15 @@ def _encode_sire(sire: str | None) -> int:
 
 
 def _dist_band(distance: int) -> str:
+    """距離バンド文字列を返す。
+
+    Args:
+        distance: レース距離（メートル）。
+
+    Returns:
+        "s" (短距離 <1400m) / "m" (マイル 1400-1800m) /
+        "i" (中距離 1800-2200m) / "l" (長距離 2200m+)。
+    """
     for name, (lo, hi) in _DIST_BANDS.items():
         if lo <= distance < hi:
             return name
@@ -138,6 +155,14 @@ _TRN_MAP: dict[str, float] = {}
 
 
 def build_jockey_trainer_maps(conn: sqlite3.Connection) -> None:
+    """騎手・調教師の勝率マップをモジュールグローバルに構築する。
+
+    TRAIN_FROM〜TRAIN_TO 期間の race_results から、5戦以上の騎手・調教師の
+    勝率を集計して _JKY_MAP / _TRN_MAP を更新する。
+
+    Args:
+        conn: DB コネクション。
+    """
     rows = conn.execute(
         """
         SELECT rr.jockey,
@@ -180,6 +205,19 @@ def _horse_stats(
     surface: str,
     distance: int,
 ) -> dict[str, float]:
+    """馬別の過去成績統計を返す（データリーク防止のため race_date 前のみ集計）。
+
+    Args:
+        conn: DB コネクション。
+        horse_id: 馬 ID。
+        race_date: 対象レース日付（"YYYY-MM-DD"）。この日付より前のレースのみ使用。
+        surface: レース馬場（"芝" / "ダート" / "障害"）。
+        distance: レース距離（メートル）。
+
+    Returns:
+        win_rate_all / win_rate_surface / win_rate_distance_band /
+        recent_rank_mean の 4 キーを持つ辞書。過去成績なしの場合はゼロ値。
+    """
     band = _dist_band(distance)
     rows = conn.execute(
         """

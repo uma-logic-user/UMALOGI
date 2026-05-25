@@ -25,7 +25,12 @@ def try_win5(conn: sqlite3.Connection, race_id: str) -> None:
     """同日に5レース以上存在する場合に WIN5 予測を実行して DB に保存する。
 
     直前予想パイプライン（prerace_pipeline）の内部から呼ばれる。
-    既に WIN5 予想が保存済みの場合はスキップ。
+    同日の先頭 race_id に対して既に WIN5 予想が保存済みの場合はスキップする。
+    予測結果は Discord への通知も行う。例外発生時はログ警告のみで継続する。
+
+    Args:
+        conn: SQLite 接続オブジェクト（呼び出し元が管理する）。
+        race_id: トリガーとなったレース ID（日付部分の抽出に使用）。
     """
     date_str  = race_id[:8]
     formatted = f"{date_str[:4]}-{date_str[4:6]}-{date_str[6:8]}"

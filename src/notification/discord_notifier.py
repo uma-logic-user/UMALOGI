@@ -51,7 +51,14 @@ _NONE = "　"  # 全角スペース（モノスペース揃え用）
 
 
 def _format_race_label(race_id: str) -> str:
-    """race_id → '東京 11R' 形式の表示文字列。"""
+    """race_id を '東京 11R' 形式の表示文字列に変換する。
+
+    Args:
+        race_id: 12桁のレース ID（例: 202608031001）。
+
+    Returns:
+        '競馬場名 NNR' 形式の文字列（例: '東京 11R'）。
+    """
     venue_code = race_id[4:6] if len(race_id) >= 6 else "??"
     venue = _JYO.get(venue_code, venue_code)
     race_num = str(int(race_id[10:12])) + "R" if len(race_id) >= 12 else race_id
@@ -59,7 +66,14 @@ def _format_race_label(race_id: str) -> str:
 
 
 def _s(text: str) -> str:
-    """制御文字を除去して Discord 送信安全な文字列を返す。"""
+    """制御文字を除去して Discord 送信安全な文字列を返す。
+
+    Args:
+        text: サニタイズ対象の文字列。
+
+    Returns:
+        制御文字を除去した文字列。
+    """
     return sanitize_str(text)
 
 
@@ -83,6 +97,18 @@ class DiscordNotifier(BaseNotifier):
         enabled: bool = True,
         channel_label:  str = "予想",
     ) -> None:
+        """初期化。
+
+        Args:
+            webhook_url: 予想チャンネルの Webhook URL。
+                         未指定時は DISCORD_WEBHOOK_URL 環境変数を使用。
+            system_url: システムチャンネルの Webhook URL。
+                        未指定時は DISCORD_SYSTEM_WEBHOOK_URL 環境変数を使用。
+            hit_flash_url: 的中速報チャンネルの Webhook URL。
+                           未指定時は DISCORD_WEBHOOK_HIT_FLASH 環境変数を使用。
+            enabled: False に設定すると全送信をスキップする。
+            channel_label: ログ出力に使用するチャンネルラベル。
+        """
         super().__init__(enabled=enabled)
         self._url           = webhook_url   or os.environ.get("DISCORD_WEBHOOK_URL", "")
         self._system_url    = system_url    or os.environ.get("DISCORD_SYSTEM_WEBHOOK_URL", "")
@@ -98,11 +124,27 @@ class DiscordNotifier(BaseNotifier):
     # ────────────────────────────────────────────────────────────────────────
 
     def _sanitize(self, s: str) -> str:
-        """文字列を Discord 送信用にサニタイズする（null バイト除去・前後空白除去）。"""
+        """文字列を Discord 送信用にサニタイズする（null バイト除去・前後空白除去）。
+
+        Args:
+            s: サニタイズ対象の文字列。
+
+        Returns:
+            制御文字を除去した文字列。
+        """
         return _s(s)
 
     def _post(self, url: str, payload: dict[str, Any], image_path: str | None = None) -> bool:
-        """指定 URL に payload を POST する。失敗しても例外を外に出さない。"""
+        """指定 URL に payload を POST する。失敗しても例外を外に出さない。
+
+        Args:
+            url: Discord Webhook の URL。
+            payload: 送信する JSON ペイロード。
+            image_path: 添付する画像ファイルのパス（任意）。
+
+        Returns:
+            True = 送信成功 (HTTP 200/204), False = 失敗またはURL未設定。
+        """
         if not url:
             return False
         try:
@@ -126,7 +168,11 @@ class DiscordNotifier(BaseNotifier):
         return False
 
     def _sys_url(self) -> str:
-        """システム通知先 URL。SYSTEM_URL 未設定時は予想チャンネルへ fallback。"""
+        """システム通知先 URL を返す。SYSTEM_URL 未設定時は予想チャンネルへ fallback。
+
+        Returns:
+            システムチャンネル URL。未設定の場合は予想チャンネル URL。
+        """
         return self._system_url or self._url
 
     # ────────────────────────────────────────────────────────────────────────
@@ -134,6 +180,17 @@ class DiscordNotifier(BaseNotifier):
     # ────────────────────────────────────────────────────────────────────────
 
     def _send(self, message: NotifyMessage) -> bool:
+        """BaseNotifier の抽象メソッド実装。予想チャンネルへ Embed を送信する。
+
+        タイトルに「万馬券」「爆裂」が含まれる場合は赤橙、「高配当」は金色、
+        それ以外はシアン色の Embed を送信する。
+
+        Args:
+            message: 送信するメッセージ。
+
+        Returns:
+            True = 送信成功, False = 失敗。
+        """
         color = (
             _COLOR_JACKPOT if "万馬券" in message.title or "爆裂" in message.title
             else _COLOR_BIG if "高配当" in message.title
@@ -153,7 +210,14 @@ class DiscordNotifier(BaseNotifier):
     # ────────────────────────────────────────────────────────────────────────
 
     def send_text(self, text: str) -> None:
-        """プレーンテキストを送信する。ログラベルは channel_label に従う。"""
+        """プレーンテキストを予想チャンネルへ送信する。
+
+        ログラベルは channel_label に従う。
+        DISCORD_WEBHOOK_URL 未設定時は警告ログを出してスキップする。
+
+        Args:
+            text: 送信するプレーンテキスト。
+        """
         if not self._url:
             logger.warning("DISCORD_WEBHOOK_URL 未設定のため送信スキップ")
             return
@@ -161,7 +225,11 @@ class DiscordNotifier(BaseNotifier):
         logger.info("[Discord:%s] 送信: %s", self._label, text[:60])
 
     def send_prediction_embed(self, embeds: list[dict[str, Any]]) -> None:
-        """予想チャンネルに生 embed リストを送信する（scheduler の週次サマリー用）。"""
+        """予想チャンネルに生 embed リストを送信する（scheduler の週次サマリー用）。
+
+        Args:
+            embeds: Discord embed オブジェクトのリスト。
+        """
         if not self._url:
             return
         self._post(self._url, {"embeds": embeds})
@@ -171,7 +239,13 @@ class DiscordNotifier(BaseNotifier):
     # ────────────────────────────────────────────────────────────────────────
 
     def send_system_text(self, text: str) -> None:
-        """システムチャンネルにプレーンテキストを送信する。"""
+        """システムチャンネルにプレーンテキストを送信する。
+
+        DISCORD_SYSTEM_WEBHOOK_URL 未設定時は予想チャンネルへ fallback する。
+
+        Args:
+            text: 送信するプレーンテキスト。
+        """
         url = self._sys_url()
         if not url:
             logger.warning("Discord URL 未設定のためシステム通知スキップ")
@@ -183,11 +257,19 @@ class DiscordNotifier(BaseNotifier):
         self,
         title:       str,
         description: str,
-        color:       int       = _COLOR_SYSTEM,
+        color:       int        = _COLOR_SYSTEM,
         fields:      list[dict] | None = None,
         footer:      str | None = None,
     ) -> None:
-        """システムチャンネルに Embed を送信する。"""
+        """システムチャンネルに Embed を送信する。
+
+        Args:
+            title: Embed のタイトル。
+            description: Embed の本文。
+            color: Embed の左端カラー（16進数整数）。デフォルトは Discord Blurple。
+            fields: 追加フィールドのリスト。各要素は ``name``/``value``/``inline`` キーを持つ dict。
+            footer: Embed のフッターテキスト（任意）。
+        """
         url = self._sys_url()
         if not url:
             return
@@ -211,6 +293,12 @@ class DiscordNotifier(BaseNotifier):
     # ────────────────────────────────────────────────────────────────────────
 
     def notify_skip(self, race_id: str, reason: str) -> None:
+        """予想見送りをログに記録する（Discord への送信は行わない）。
+
+        Args:
+            race_id: 見送り対象のレース ID。
+            reason: 見送り理由。
+        """
         label = _format_race_label(race_id)
         logger.warning("[見送り] %s (%s): %s", label, race_id, reason)
 
@@ -219,7 +307,12 @@ class DiscordNotifier(BaseNotifier):
     # ────────────────────────────────────────────────────────────────────────
 
     def notify_scraping_alert(self, race_id: str, detail: str) -> None:
-        """スクレイピング異常をシステムチャンネルに緊急通知する。"""
+        """スクレイピング異常をシステムチャンネルに緊急通知する。
+
+        Args:
+            race_id: 異常が発生したレース ID。
+            detail: 異常の詳細説明。
+        """
         label = _format_race_label(race_id)
         logger.error("[スクレイピング異常] %s: %s", race_id, detail)
         self.send_system_embed(
@@ -239,7 +332,14 @@ class DiscordNotifier(BaseNotifier):
         action:          str,
         screenshot_path: Path | None = None,
     ) -> None:
-        """手動介入要請をシステムチャンネルに送信する。"""
+        """手動介入要請をシステムチャンネルに送信する。
+
+        Args:
+            step: 失敗したステップ名（例: 'エントリー取得'）。
+            error: エラーの詳細文字列（400文字以内に切り詰め）。
+            action: 推奨される対応アクション。
+            screenshot_path: スクリーンショット画像のパス（任意）。
+        """
         url = self._sys_url()
         if not url:
             logger.warning("Discord URL 未設定のため介入要請通知スキップ: %s", step)
@@ -265,7 +365,11 @@ class DiscordNotifier(BaseNotifier):
         logger.info("[Discord:システム] 介入要請 %s: %s", "送信完了" if ok else "送信失敗", step)
 
     def notify_ror_warning(self, warning_text: str) -> None:
-        """RoR 警告をシステムチャンネルに送信する。"""
+        """RoR（破産確率）警告をシステムチャンネルに送信する。
+
+        Args:
+            warning_text: 警告の詳細テキスト。
+        """
         self.send_system_embed(
             title="⚠️ UMALOGI 資金管理警告",
             description=warning_text,
@@ -285,7 +389,15 @@ class DiscordNotifier(BaseNotifier):
         cumulative_pnl:       int,
         monthly_progress_pct: float,
     ) -> None:
-        """的中サマリーを予想チャンネルに送信する。"""
+        """的中サマリーを予想チャンネルに送信する。
+
+        Args:
+            date_str: 対象日付の文字列（例: '2026-05-25'）。
+            hit_count: 当日の的中件数。
+            total_count: 当日の全買い目件数。
+            cumulative_pnl: 累積損益（円）。
+            monthly_progress_pct: 月次目標進捗率（%）。
+        """
         if not self._url:
             return
         color    = _COLOR_BIG if hit_count > 0 else _COLOR_NORMAL
@@ -320,11 +432,18 @@ class DiscordNotifier(BaseNotifier):
         alpha_bets:    object | None = None,
         dashboard_url: str = "",
     ) -> None:
-        """
-        直前予想を「🟦 ALPHA / 🟩 卍 / 🟥 本命」の3セクション分離 Embed で送信する。
+        """直前予想を「🟦 ALPHA / 🟩 卍 / 🟥 本命」の3セクション分離 Embed で送信する。
 
         各モデルは完全独立セクションとして表示。馬番+馬名を必ず明示。
         スマホでも一行ずつ読めるカード形式。文字数超過時は自動折りたたみ。
+        全モデルで EV <= 0 の場合は送信をスキップする。
+
+        Args:
+            race_id: 対象レースの ID（12桁）。
+            honmei_bets: 本命モデルの RaceBets オブジェクト。
+            manji_bets: 卍モデルの RaceBets オブジェクト。
+            alpha_bets: ALPHA モデルの RaceBets オブジェクト（任意）。
+            dashboard_url: ダッシュボードの URL（フッターに付与）。
         """
         if not self._url:
             logger.warning("DISCORD_WEBHOOK_URL 未設定のため通知スキップ: %s", race_id)
@@ -439,25 +558,25 @@ class DiscordNotifier(BaseNotifier):
 # ────────────────────────────────────────────────────────────────────────────
 
 def _format_combo_card(bet: object) -> str:
-    """
-    買い目をスマホ対応カード形式にフォーマット。馬番を省略せず全表示。
+    """買い目をスマホ対応カード形式にフォーマットする。馬番を省略せず全表示。
 
-    出力例:
-      複勝:
-        ⬛ 5番 アーバンシック
-        ⬛ 9番 キタノオウジ
+    券種に応じて以下の形式で出力する:
+    - 単勝/複勝: 「⬛ N番 馬名」の行リスト
+    - 三連単/馬単: 軸マルチ/1着固定/ベタ展開を自動判定
+    - 馬連/ワイド/三連複: 軸流し/ボックスを自動判定
 
-      三連複 (軸1頭流し):
+    出力例（三連複 軸1頭流し）::
+
         【推奨: 三連複流し 軸5 - 相手3,7,9,12】
         ▶ 軸: 5番 アーバンシック
           相手: 3番 / 7番 / 9番 / 12番
           計4点
 
-      三連単:
-        ▶ 5→9→3
-        ▶ 5→3→9
-        ▶ 5→7→3
-        ▶ 5→7→9
+    Args:
+        bet: RaceBet オブジェクト（bet_type / combinations / horse_names 属性を持つ）。
+
+    Returns:
+        Discord field.value として使用できる書式化済み文字列（最大 ~900 文字）。
     """
     from collections import Counter
 
@@ -585,5 +704,12 @@ def _format_combo_card(bet: object) -> str:
 
 
 def _summarize_combos(bet: object) -> str:
-    """後方互換: _format_combo_card の旧名エイリアス。"""
+    """後方互換エイリアス: _format_combo_card に委譲する。
+
+    Args:
+        bet: RaceBet オブジェクト。
+
+    Returns:
+        _format_combo_card の戻り値と同一。
+    """
     return _format_combo_card(bet)

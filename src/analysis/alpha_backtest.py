@@ -66,7 +66,16 @@ _TICKET_PARAMS: dict[str, dict] = {
 # 各エントリ: (設定名, {券種: {payout_multiple, kelly_fraction, max_pct, ev_threshold}})
 # 含まれない券種は投資対象から除外される。
 def _build_search_space() -> list[tuple[str, dict[str, dict]]]:
-    """~25 設定の探索空間を生成する。"""
+    """約25設定のパラメーター探索空間を生成する。
+
+    Group A: 複勝除外（馬連+三連複特化）
+    Group B: 複勝 EV 閾値引き上げバリエーション（7段階）
+    Group C: 複勝 Kelly 係数低減バリエーション（5段階）
+    Group D: 複勝 閾値+Kelly 組み合わせ（6パターン）
+
+    Returns:
+        (設定名, ticket_cfg) のタプルリスト。
+    """
     BASE_UMA  = {"payout_multiple": 7.22, "kelly_fraction": 0.25, "max_pct": 0.015, "ev_threshold": None}
     BASE_SAN  = {"payout_multiple": 9.87, "kelly_fraction": 0.25, "max_pct": 0.010, "ev_threshold": None}
     BASE_FUKU = {"payout_multiple": 2.59, "kelly_fraction": 0.25, "max_pct": 0.030, "ev_threshold": None}
@@ -150,7 +159,18 @@ def _bet_size(
     ticket_cfg: dict[str, dict],
     kelly_override: float | None = None,
 ) -> int:
-    """内部共通ベット額計算 (任意の ticket_cfg で動作)。"""
+    """内部共通ベット額計算（任意の ticket_cfg で動作）。
+
+    Args:
+        balance: 現在の残高（円）。
+        pred_ev: AlphaPayoutModel の予測 EV 値。
+        ticket_type: 券種名（"複勝" / "馬連" / "三連複"）。
+        ticket_cfg: 券種別パラメーター辞書。
+        kelly_override: Kelly 安全係数の上書き値。None の場合は ticket_cfg の値を使用。
+
+    Returns:
+        最適賭け金（100円単位）。シグナル不足または EV≤1.0 の場合は 0。
+    """
     params = ticket_cfg.get(ticket_type)
     if params is None or pred_ev <= 1.0 or balance < _MIN_BET:
         return 0
@@ -172,10 +192,29 @@ def _bet_size(
 # ── コンビネーションキー ────────────────────────────────────────────────
 
 def _umaren_key(h1: int, h2: int) -> str:
+    """馬連コンビネーションキーを返す（昇順 "-" 区切り）。
+
+    Args:
+        h1: 馬番1。
+        h2: 馬番2。
+
+    Returns:
+        例: "3-7"（小さい馬番が前）。
+    """
     return f"{min(h1,h2)}-{max(h1,h2)}"
 
 
 def _sanrenpuku_key(h1: int, h2: int, h3: int) -> str:
+    """三連複コンビネーションキーを返す（昇順 "-" 区切り）。
+
+    Args:
+        h1: 馬番1。
+        h2: 馬番2。
+        h3: 馬番3。
+
+    Returns:
+        例: "3-7-11"（昇順ソート）。
+    """
     nums = sorted([h1, h2, h3])
     return f"{nums[0]}-{nums[1]}-{nums[2]}"
 
@@ -187,6 +226,16 @@ def _build_payout_map(
     min_date: str,
     max_date: str,
 ) -> dict[str, dict[str, dict[str, float]]]:
+    """期間内の払戻マップを構築する。
+
+    Args:
+        conn: DB コネクション。
+        min_date: 開始日（"YYYY-MM-DD"）。
+        max_date: 終了日（"YYYY-MM-DD"）。
+
+    Returns:
+        {race_id: {bet_type: {combination: payout}}} の三層辞書。
+    """
     rows = conn.execute(
         """
         SELECT rp.race_id, rp.bet_type, rp.combination, rp.payout
@@ -206,6 +255,17 @@ def _build_payout_map(
 
 
 def _get_pay(pmap: dict, race_id: str, bt: str, combo: str) -> float:
+    """払戻マップから払戻金額を取得する。
+
+    Args:
+        pmap: _build_payout_map() が返す三層辞書。
+        race_id: レース ID。
+        bt: 券種名。
+        combo: コンビネーション文字列（例: "3-7"）。
+
+    Returns:
+        払戻金額（円/100円）。見つからない場合は 0.0。
+    """
     return pmap.get(race_id, {}).get(bt, {}).get(combo, 0.0)
 
 
@@ -219,6 +279,19 @@ def _train_and_predict(
     n_optuna: int,
     research_db: Path | None,
 ) -> tuple[pd.DataFrame, float]:
+    """AlphaPayoutModel を学習しテストデータに予測 EV を付与して返す。
+
+    Args:
+        conn: DB コネクション。
+        train_years: 学習に使用する年のリスト（例: [2024, 2025]）。
+        test_min: テスト期間開始日（"YYYY-MM-DD"）。
+        test_max: テスト期間終了日（"YYYY-MM-DD"）。
+        n_optuna: Optuna のトライアル数。
+        research_db: netkeiba_research.db のパス。None の場合は使用しない。
+
+    Returns:
+        (pred_ev 列付きテスト DataFrame, モデル EV 閾値) のタプル。
+    """
     from src.ml.alpha_payout_model import AlphaPayoutModel
 
     model = AlphaPayoutModel()
@@ -253,9 +326,20 @@ def _build_signals(
     global_threshold: float,
     ticket_cfg: dict[str, dict],
 ) -> pd.DataFrame:
-    """
-    ticket_cfg に含まれる券種のシグナルのみ生成。
-    各券種に ev_threshold が設定されている場合は、それも適用。
+    """ticket_cfg に含まれる券種のシグナルのみ生成する。
+
+    各券種に ev_threshold が設定されている場合は、それも適用する。
+    複勝は top-1、馬連は top-1×top-2、三連複は top-1×top-2×top-3 で購入。
+
+    Args:
+        test_df: AlphaPayoutModel の予測 EV を含む DataFrame。
+        pmap: _build_payout_map() が返す三層払戻辞書。
+        global_threshold: モデルが算出した EV 閾値（全券種共通の最低基準）。
+        ticket_cfg: 券種別パラメーター辞書。含まれない券種は生成しない。
+
+    Returns:
+        シグナル DataFrame（date / race_id / bet_type / combo / max_ev /
+        actual_payout / is_hit 列を含む）。シグナルなしの場合は空 DataFrame。
     """
     signals: list[dict] = []
     sorted_df = test_df.sort_values("pred_ev", ascending=False)
@@ -344,7 +428,22 @@ def _simulate(
     train_label: str = "",
     test_label: str = "",
 ) -> WindowResult:
-    """任意の ticket_cfg で分数ケリーシミュレーションを実行。"""
+    """任意の ticket_cfg で分数ケリーシミュレーションを実行する。
+
+    レースごとに _bet_size() でベット金額を算出し、残高を更新する。
+    残高が _MIN_BET 未満になった時点でシミュレーションを終了する。
+
+    Args:
+        sig_df: _build_signals() が返すシグナル DataFrame。
+        start_balance: 開始残高（円）。
+        ticket_cfg: 券種別パラメーター辞書。
+        label: ウィンドウラベル（レポート表示用）。
+        train_label: 学習期間ラベル（レポート表示用）。
+        test_label: テスト期間ラベル（レポート表示用）。
+
+    Returns:
+        シミュレーション結果の WindowResult。
+    """
     balance = float(start_balance)
     peak    = float(start_balance)
     max_dd  = 0.0
@@ -519,6 +618,12 @@ def _run_auto_search(
 # ── レポート ──────────────────────────────────────────────────────────
 
 def _print_window(wr: WindowResult, show_detail: bool) -> None:
+    """ウィンドウ単位の詳細レポートを標準出力に表示する。
+
+    Args:
+        wr: シミュレーション結果の WindowResult。
+        show_detail: True の場合、月別成績テーブルも表示する。
+    """
     bankrupt = wr.final_balance < 1_000
     sign = "💀" if bankrupt else ("📈" if wr.net_profit > 0 else "📉")
     print()
@@ -569,6 +674,11 @@ def _print_window(wr: WindowResult, show_detail: bool) -> None:
 
 
 def _print_asset_curve(windows: list[WindowResult]) -> None:
+    """全ウィンドウの月次残高推移カーブを ASCII グラフで表示する。
+
+    Args:
+        windows: シミュレーション結果の WindowResult リスト（時系列順）。
+    """
     all_months: list[tuple[str, float]] = []
     for wr in windows:
         for _, row in wr.monthly.iterrows():
@@ -597,6 +707,13 @@ def _print_final_summary(
     best_name: str,
     best_cfg: dict[str, dict],
 ) -> None:
+    """2年半通算の最終サマリーテーブルを標準出力に表示する。
+
+    Args:
+        windows: 全ウィンドウの WindowResult リスト（時系列順）。
+        best_name: 自動最適化ループで選ばれた黄金設定名。
+        best_cfg: 黄金設定の ticket_cfg 辞書。
+    """
     final  = windows[-1].final_balance
     start  = windows[0].start_balance
     total_gain = final - start
@@ -686,6 +803,11 @@ def _print_final_summary(
 
 
 def _print_ipat_guide(best_cfg: dict[str, dict]) -> None:
+    """IPAT 自動発注連携用の get_optimal_bet_size() 使い方ガイドを表示する。
+
+    Args:
+        best_cfg: 黄金設定の ticket_cfg 辞書。
+    """
     print("=" * 72)
     print("  📡 IPAT自動発注連携 — get_optimal_bet_size() 使い方")
     print("  ※ _TICKET_PARAMS は最適化後の黄金パラメーターに更新済み")
@@ -723,7 +845,14 @@ def _print_ipat_guide(best_cfg: dict[str, dict]) -> None:
 # ── _TICKET_PARAMS を最適設定で更新 ──────────────────────────────────
 
 def _apply_best_cfg(best_cfg: dict[str, dict]) -> None:
-    """最適設定を _TICKET_PARAMS と get_optimal_bet_size に反映。"""
+    """最適設定を _TICKET_PARAMS と get_optimal_bet_size に反映する。
+
+    モジュールレベルの _TICKET_PARAMS を更新することで、
+    以降の get_optimal_bet_size() 呼び出しに黄金パラメーターが適用される。
+
+    Args:
+        best_cfg: 自動最適化ループで選ばれた黄金設定の ticket_cfg 辞書。
+    """
     global _TICKET_PARAMS
     _TICKET_PARAMS = {k: dict(v) for k, v in best_cfg.items()}
 
@@ -731,6 +860,11 @@ def _apply_best_cfg(best_cfg: dict[str, dict]) -> None:
 # ── main ──────────────────────────────────────────────────────────────
 
 def main() -> None:
+    """Alpha-Payout 自動最適化 2年半バックテストのエントリーポイント。
+
+    Phase 1 でウィンドウごとのモデル学習と予測を実行し、
+    Phase 2 で探索空間全体を高速スイープして黄金パラメーターを選出する。
+    """
     ap = argparse.ArgumentParser(description="Alpha-Payout 最適バランス長期バックテスト")
     ap.add_argument("--optuna-trials", type=int, default=20)
     ap.add_argument("--no-optuna",    action="store_true")

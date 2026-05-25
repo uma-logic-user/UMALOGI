@@ -1,0 +1,20 @@
+{
+  "_comment": "監視対象の凄腕競馬予想家アカウントリスト。weight は直近的中率で自動更新される。",
+  "accounts": [
+    {
+      "screen_name": "PLACEHOLDER_ACCOUNT_1",
+      "display_name": "（社長が実アカウントを追加してください）",
+      "follower_min": 10000,
+      "weight": 1.0,
+      "is_active": false,
+      "note": "フォロワー1万人超・的中実績公開アカウントを追加"
+    }
+  ],
+  "config": {
+    "scrape_window_hours_before": 18,
+    "scrape_window_hours_after": 10,
+    "rate_limit_requests_per_hour": 15,
+    "min_followers": 10000,
+    "target_keywords": ["◎", "○", "▲", "△", "本命", "対抗", "穴", "消し", "軸", "R", "レース"]
+  }
+}

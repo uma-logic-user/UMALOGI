@@ -67,10 +67,12 @@ class EvaluationResult:
 
     @property
     def net_profit(self) -> float:
+        """純利益（払戻合計 - 投資合計）を返す。"""
         return self.total_payout - self.total_invested
 
     @property
     def hit_count(self) -> int:
+        """的中件数を返す。"""
         return sum(1 for h in self.hits if h.is_hit)
 
 
@@ -79,6 +81,18 @@ class EvaluationResult:
 # ================================================================
 
 def _fetch_race_meta(conn: sqlite3.Connection, race_id: str) -> dict:
+    """レース基本情報（race_name / date / 出走頭数）を取得する。
+
+    Args:
+        conn: DB コネクション。
+        race_id: レース ID。
+
+    Returns:
+        {"race_name": str, "date": str, "n_horses": int} の辞書。
+
+    Raises:
+        ValueError: race_id が races テーブルに存在しない場合。
+    """
     row = conn.execute(
         """
         SELECT r.race_name, r.date,
@@ -97,7 +111,15 @@ def _fetch_race_meta(conn: sqlite3.Connection, race_id: str) -> dict:
 
 
 def _fetch_results(conn: sqlite3.Connection, race_id: str) -> dict[str, int | None]:
-    """馬名 → 着順 のマップを返す。rank=NULL は未着(0扱い)。"""
+    """馬名 → 着順 のマップを返す。rank=NULL は未着(0扱い)。
+
+    Args:
+        conn: DB コネクション。
+        race_id: レース ID。
+
+    Returns:
+        {horse_name: rank | None} の辞書。rank=NULL の馬は None。
+    """
     rows = conn.execute(
         "SELECT horse_name, rank FROM race_results WHERE race_id = ?", (race_id,)
     ).fetchall()
@@ -105,7 +127,15 @@ def _fetch_results(conn: sqlite3.Connection, race_id: str) -> dict[str, int | No
 
 
 def _fetch_horse_numbers(conn: sqlite3.Connection, race_id: str) -> dict[str, int]:
-    """馬名 → 馬番 のマップ。"""
+    """馬名 → 馬番 のマップを返す。
+
+    Args:
+        conn: DB コネクション。
+        race_id: レース ID。
+
+    Returns:
+        {horse_name: horse_number} の辞書。horse_number=NULL の馬は除外。
+    """
     rows = conn.execute(
         "SELECT horse_name, horse_number FROM race_results WHERE race_id = ?",
         (race_id,),
@@ -114,7 +144,15 @@ def _fetch_horse_numbers(conn: sqlite3.Connection, race_id: str) -> dict[str, in
 
 
 def _fetch_payouts(conn: sqlite3.Connection, race_id: str) -> dict[tuple[str, str], int]:
-    """(bet_type, combination) → payout のマップ。"""
+    """(bet_type, combination) → payout のマップを返す。
+
+    Args:
+        conn: DB コネクション。
+        race_id: レース ID。
+
+    Returns:
+        {(bet_type, combination): payout} の辞書。payout 単位は円/100円。
+    """
     rows = conn.execute(
         "SELECT bet_type, combination, payout FROM race_payouts WHERE race_id = ?",
         (race_id,),
@@ -123,7 +161,15 @@ def _fetch_payouts(conn: sqlite3.Connection, race_id: str) -> dict[tuple[str, st
 
 
 def _fetch_refund_numbers(conn: sqlite3.Connection, race_id: str) -> set[int]:
-    """返還対象の馬番セット。"""
+    """返還対象の馬番セットを返す。
+
+    Args:
+        conn: DB コネクション。
+        race_id: レース ID。
+
+    Returns:
+        返還対象の馬番整数の集合。返還なしの場合は空集合。
+    """
     rows = conn.execute(
         "SELECT combination FROM race_payouts WHERE race_id = ? AND bet_type = '返還'",
         (race_id,),
@@ -140,7 +186,16 @@ def _fetch_refund_numbers(conn: sqlite3.Connection, race_id: str) -> set[int]:
 def _fetch_predictions(
     conn: sqlite3.Connection, race_id: str
 ) -> list[dict]:
-    """predictions + prediction_horses を結合して返す。"""
+    """predictions + prediction_horses を結合して返す。
+
+    Args:
+        conn: DB コネクション。
+        race_id: レース ID。
+
+    Returns:
+        各 prediction の dict リスト。各要素は prediction_id / model_type /
+        bet_type / recommended_bet / combination_json / horses キーを持つ。
+    """
     preds = conn.execute(
         """
         SELECT p.id, p.model_type, p.bet_type, p.recommended_bet,
@@ -219,7 +274,16 @@ def _lookup_payout(
     combination_key: str | None,
     payouts: dict[tuple[str, str], int],
 ) -> int:
-    """払戻テーブルから金額（円/100円）を返す。見つからなければ 0。"""
+    """払戻テーブルから金額（円/100円）を返す。
+
+    Args:
+        bet_type: 券種名。
+        combination_key: race_payouts.combination 形式の文字列。None の場合は 0 を返す。
+        payouts: _fetch_payouts() が返す {(bet_type, combination): payout} 辞書。
+
+    Returns:
+        払戻金額（円/100円）。見つからなければ 0。
+    """
     if combination_key is None:
         return 0
     return payouts.get((bet_type, combination_key), 0)
@@ -233,7 +297,15 @@ def _winners_for_bet(
     bet_type: str,
     result_map: dict[str, int | None],
 ) -> list[str]:
-    """bet_type に応じた着順優先馬名リスト（的中判定の基準）を返す。"""
+    """bet_type に応じた着順優先馬名リストを返す。
+
+    Args:
+        bet_type: 券種名（単勝・複勝・馬連・ワイド・馬単・三連複・三連単）。
+        result_map: _fetch_results() が返す {horse_name: rank | None} 辞書。
+
+    Returns:
+        的中判定の基準となる馬名リスト（着順昇順）。
+    """
     ranked = sorted(
         [(name, rank) for name, rank in result_map.items() if rank and rank > 0],
         key=lambda x: x[1],
@@ -257,7 +329,18 @@ def _is_hit(
     predicted_names: list[str],
     result_map: dict[str, int | None],
 ) -> bool:
-    """予想の的中判定。"""
+    """予想の的中判定を行う。
+
+    同着・返還の例外ケースに対応する。馬連は両方 rank=2 の場合を不可とする。
+
+    Args:
+        bet_type: 券種名。
+        predicted_names: 予想馬名リスト（着順または購入順）。
+        result_map: _fetch_results() が返す {horse_name: rank | None} 辞書。
+
+    Returns:
+        的中の場合 True、不的中の場合 False。
+    """
     pset = set(predicted_names)
     if not pset:
         return False
@@ -328,7 +411,17 @@ def _is_hit_by_numbers(
     rank_by_number: dict[int, int],
     place_ranks: set[int] = _PLACE_RANKS,
 ) -> bool:
-    """馬番整数のみによる厳格な的中判定（文字列比較なし）。"""
+    """馬番整数のみによる厳格な的中判定（文字列比較なし）。
+
+    Args:
+        bet_type: 券種名。
+        predicted_numbers: 予想馬番の整数リスト。
+        rank_by_number: {horse_number: rank} の辞書。
+        place_ranks: 複勝・ワイドの圏内着順セット。デフォルトは {1, 2, 3}。
+
+    Returns:
+        的中の場合 True、不的中の場合 False。
+    """
     pnums = [n for n in predicted_numbers if n > 0]
     if not pnums:
         return False
@@ -380,7 +473,16 @@ def _has_refund(
     horse_numbers: dict[str, int],
     refund_numbers: set[int],
 ) -> bool:
-    """予想に含まれる馬番が返還対象かどうかを判定。"""
+    """予想に含まれる馬番が返還対象かどうかを判定する。
+
+    Args:
+        horse_names: 予想馬名リスト。
+        horse_numbers: _fetch_horse_numbers() が返す {horse_name: horse_number} 辞書。
+        refund_numbers: _fetch_refund_numbers() が返す返還対象馬番の集合。
+
+    Returns:
+        予想馬のいずれかが返還対象の場合 True。
+    """
     for name in horse_names:
         n = horse_numbers.get(name)
         if n is not None and n in refund_numbers:
@@ -391,7 +493,15 @@ def _has_refund(
 
 
 def _parse_combination_json(combo_json: str) -> list[tuple[int, ...]]:
-    """combination_json を [(馬番, ...), ...] に変換する。"""
+    """combination_json を [(馬番, ...), ...] に変換する。
+
+    Args:
+        combo_json: predictions.combination_json の JSON 文字列。
+                    [[1,5],[3,7]] 形式または [1,5] 形式に対応。
+
+    Returns:
+        馬番タプルのリスト。空文字列・パースエラーの場合は空リスト。
+    """
     if not combo_json:
         return []
     try:
@@ -444,7 +554,15 @@ def _validate_investment(bet_type: str, n_tickets: int, invested: float) -> None
 
 
 def _combo_to_payout_key(bet_type: str, combo: tuple[int, ...]) -> str | None:
-    """馬番タプル → race_payouts.combination 文字列に変換。"""
+    """馬番タプル → race_payouts.combination 文字列に変換する。
+
+    Args:
+        bet_type: 券種名。
+        combo: 馬番の整数タプル。
+
+    Returns:
+        race_payouts.combination に対応する文字列。変換不可の場合は None。
+    """
     if not combo:
         return None
     arrow = "→"
@@ -696,7 +814,18 @@ class Evaluator:
         profit: float,
         roi: float,
     ) -> None:
-        """prediction_results に結果を upsert する。"""
+        """prediction_results に結果を upsert する。
+
+        既存レコードがある場合は UPDATE、ない場合は INSERT する。
+
+        Args:
+            conn: DB コネクション。
+            prediction_id: predictions テーブルの主キー。
+            is_hit: 的中フラグ。
+            payout: 払戻金額（円）。
+            profit: 純利益（円）= payout - invested。
+            roi: 回収率 (%) = payout / invested × 100。
+        """
         try:
             with conn:
                 updated = conn.execute(
@@ -727,11 +856,15 @@ class Evaluator:
         *,
         dry_run: bool = False,
     ) -> list[EvaluationResult]:
-        """
-        指定日の全レースを評価する。
+        """指定日の全レースを評価する。
 
         Args:
-            date: "YYYY-MM-DD" 形式 (ISO 8601)
+            conn: DB コネクション。
+            date: 評価対象日付。"YYYY-MM-DD" 形式 (ISO 8601)。
+            dry_run: True の場合 prediction_results への書き込みをスキップ。
+
+        Returns:
+            評価対象レースの EvaluationResult リスト。
         """
         race_ids = [
             r[0] for r in conn.execute(

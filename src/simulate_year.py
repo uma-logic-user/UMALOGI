@@ -15,6 +15,7 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+import sqlite3
 import sys
 from pathlib import Path
 
@@ -33,10 +34,17 @@ from src.main_pipeline import simulate_pipeline
 
 # ── レース一覧取得 ────────────────────────────────────────────────
 
-def _get_race_ids(conn, year: int) -> list[str]:
-    """
-    指定年の race_results が存在するレース ID を日付昇順で返す。
+def _get_race_ids(conn: sqlite3.Connection, year: int) -> list[str]:
+    """指定年の race_results が存在するレース ID を日付昇順で返す。
+
     race_results のない race_id はシミュレーション不能なので除外する。
+
+    Args:
+        conn: オープン済みの SQLite 接続オブジェクト。
+        year: 対象年（例: 2024）。
+
+    Returns:
+        race_id の文字列リスト（日付・race_id 昇順）。
     """
     rows = conn.execute(
         """
@@ -51,10 +59,17 @@ def _get_race_ids(conn, year: int) -> list[str]:
     return [r[0] for r in rows]
 
 
-def _get_simulated_ids(conn, year: int) -> set[str]:
-    """
-    すでに predictions テーブルに予想が存在するレース ID を返す。
-    [SIMULATE] notes を持つものだけを対象にする。
+def _get_simulated_ids(conn: sqlite3.Connection, year: int) -> set[str]:
+    """すでに predictions テーブルに予想が存在するレース ID を返す。
+
+    ``[SIMULATE]`` プレフィックスを持つ notes のレコードだけを対象にする。
+
+    Args:
+        conn: オープン済みの SQLite 接続オブジェクト。
+        year: 対象年（例: 2024）。
+
+    Returns:
+        既に予想済みの race_id の集合。
     """
     rows = conn.execute(
         """
@@ -70,8 +85,13 @@ def _get_simulated_ids(conn, year: int) -> set[str]:
 
 # ── 成績再集計 ────────────────────────────────────────────────────
 
-def _refresh_performance(conn, year: int) -> None:
-    """卍・本命モデルの年間成績を再集計する。"""
+def _refresh_performance(conn: sqlite3.Connection, year: int) -> None:
+    """卍・本命モデルの年間・月別成績を再集計する。
+
+    Args:
+        conn: オープン済みの SQLite 接続オブジェクト。
+        year: 再集計対象年（例: 2024）。
+    """
     for model in ("卍", "本命"):
         refresh_model_performance(conn, model_type=model, year=year)
         # 月別も再集計（1〜12月）
@@ -83,7 +103,11 @@ def _refresh_performance(conn, year: int) -> None:
 # ── Web データ書き出し ────────────────────────────────────────────
 
 def _export_web_data() -> None:
-    """web/generate_data.py と同等のエクスポート処理を実行する。"""
+    """web/generate_data.py と同等のエクスポート処理を実行する。
+
+    ``web/generate_data.py`` が存在しない場合は警告ログを出力してスキップする。
+    エクスポート中に例外が発生した場合もエラーログを出力して処理を継続する。
+    """
     import importlib.util
 
     gen_path = _ROOT / "web" / "generate_data.py"
@@ -205,6 +229,11 @@ def simulate_year(
 # ── CLI ──────────────────────────────────────────────────────────
 
 def _parse_args() -> argparse.Namespace:
+    """CLI 引数をパースして Namespace を返す。
+
+    Returns:
+        ``--year`` と ``--force`` を属性に持つ Namespace オブジェクト。
+    """
     parser = argparse.ArgumentParser(
         description="年間一括シミュレーションバッチ",
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -226,6 +255,10 @@ def _parse_args() -> argparse.Namespace:
 
 
 def main() -> None:
+    """年間一括シミュレーションバッチの CLI エントリポイント。
+
+    CLI 引数をパースして ``simulate_year`` を実行し、結果サマリーを標準出力に表示する。
+    """
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s %(levelname)s %(name)s: %(message)s",

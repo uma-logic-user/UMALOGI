@@ -59,6 +59,14 @@ _CONDITION_CODE: dict[str, int] = {"良": 0, "稍重": 1, "重": 2, "不良": 3}
 
 
 def _distance_band(distance: int) -> str:
+    """距離（m）を距離帯ラベルに変換する。
+
+    Args:
+        distance: レース距離（メートル）。
+
+    Returns:
+        距離帯ラベル文字列（"sprint" / "mile" / "intermediate" / "long"）。
+    """
     for lo, hi, label in _DISTANCE_BANDS:
         if lo <= distance < hi:
             return label
@@ -66,7 +74,16 @@ def _distance_band(distance: int) -> str:
 
 
 def _parse_sex(sex_age: str) -> str:
-    """'牡3' → '牡'"""
+    """性齢文字列から性別コードを抽出する。
+
+    '牡3' → '牡' のように先頭の性別文字のみを返す。
+
+    Args:
+        sex_age: 性齢文字列（例: "牡3"、"牝4"、"セ5"）。
+
+    Returns:
+        性別文字（"牡"/"牝"/"セ"）。マッチしない場合は空文字列。
+    """
     m = re.match(r"([牡牝セ])", sex_age)
     return m.group(1) if m else ""
 
@@ -94,7 +111,11 @@ class FeatureBuilder:
 
     @staticmethod
     def _load_sire_map() -> dict[str, int]:
-        """label_encoders.pkl から sire_map を読み込む。ファイルがなければ空 dict。"""
+        """label_encoders.pkl から sire_map を読み込む。ファイルがなければ空 dict。
+
+        Returns:
+            父名→整数コードのマッピング辞書。ファイル不在または読み込み失敗時は空辞書。
+        """
         try:
             if _SIRE_MAP_PKL.exists():
                 with open(_SIRE_MAP_PKL, "rb") as f:
@@ -425,11 +446,16 @@ class FeatureBuilder:
     # ── U Score 統合 ───────────────────────────────────────────
 
     def _add_u_score(self, df: pd.DataFrame) -> pd.DataFrame:
-        """
-        UScoreEngine を呼び出して 18 因子 + u_score を DataFrame に追加する。
+        """UScoreEngine を呼び出して 18 因子 + u_score を DataFrame に追加する。
 
         インポートエラーや計算エラーが起きても元の df をそのまま返すため、
         U score 未対応の環境でも既存パイプラインは正常稼働する。
+
+        Args:
+            df: FeatureBuilder が生成した出走馬特徴量 DataFrame。
+
+        Returns:
+            U score 因子列が追加された DataFrame。エラー時は入力 df をそのまま返す。
         """
         try:
             from src.ml.u_score import UScoreEngine
@@ -633,8 +659,7 @@ class FeatureBuilder:
         }
 
     def _add_intra_race_features(self, df: pd.DataFrame) -> pd.DataFrame:
-        """
-        レース内相対特徴量（順位・偏差）を追加する。
+        """レース内相対特徴量（順位・偏差）を追加する。
 
         全馬のデータが揃った DataFrame に対して groupby なしで適用する
         （呼び出し元が 1レース分の DataFrame を渡す前提）。
@@ -642,6 +667,12 @@ class FeatureBuilder:
         - rank:   1 = レース内最良（勝率高・着順低・調教タイム速）
         - zscore: (値 - mean) / std。速さ系は符号反転して高いほど良い方向に揃える。
         値がすべて NaN の場合は NaN のまま残す（LightGBM が欠損として扱う）。
+
+        Args:
+            df: 1レース分の出走馬特徴量 DataFrame。
+
+        Returns:
+            レース内ランク・偏差列が追加された DataFrame。空の場合はそのまま返す。
         """
         if df.empty:
             return df
@@ -907,7 +938,14 @@ class FeatureBuilder:
         return result
 
     def _get_sire(self, horse_id: str | None) -> str | None:
-        """horses テーブルから父名を取得する。"""
+        """horses テーブルから父名を取得する。
+
+        Args:
+            horse_id: 馬 ID 文字列。None の場合は None を返す。
+
+        Returns:
+            父馬名文字列。テーブルに存在しない場合は None。
+        """
         if not horse_id:
             return None
         row = self._conn.execute(
@@ -916,7 +954,14 @@ class FeatureBuilder:
         return row[0] if row else None
 
     def _get_sire_bulk(self, horse_ids: list[str | None]) -> dict[str | None, str | None]:
-        """複数馬の父名を1クエリで一括取得する。"""
+        """複数馬の父名を1クエリで一括取得する。
+
+        Args:
+            horse_ids: 馬 ID 文字列のリスト（None を含んでよい）。
+
+        Returns:
+            {horse_id: sire_name} マッピング辞書。horses テーブルに存在しない場合は None。
+        """
         valid = [h for h in horse_ids if h]
         if not valid:
             return {h: None for h in horse_ids}
@@ -1137,9 +1182,15 @@ class FeatureBuilder:
         return result
 
     def _encode_sire(self, sire: str | None) -> int:
-        """
-        父名をラベルエンコードする。
+        """父名をラベルエンコードする。
+
         同一セッション内で一貫した整数を返し、未知は新規割り当て。
+
+        Args:
+            sire: 父馬名文字列。None または空文字列の場合は -1 を返す。
+
+        Returns:
+            整数コード。None/空文字列の場合は -1。
         """
         if not sire:
             return -1
@@ -1148,9 +1199,11 @@ class FeatureBuilder:
         return self._sire_map[sire]
 
     def _load_jockey_codes(self) -> dict[str, int]:
-        """
-        jockeys マスタから {jockey_name: int(jockey_code)} のマップを生成する。
-        テーブルが空または存在しない場合は空 dict を返す。
+        """jockeys マスタから騎手名→コードのマップを生成する。
+
+        Returns:
+            騎手名から整数コードへのマッピング辞書。テーブルが空または
+            存在しない場合は空辞書を返す。
         """
         try:
             rows = self._conn.execute(
@@ -1162,9 +1215,11 @@ class FeatureBuilder:
             return {}
 
     def _load_trainer_codes(self) -> dict[str, int]:
-        """
-        trainers マスタから {trainer_name: int(trainer_code)} のマップを生成する。
-        テーブルが空または存在しない場合は空 dict を返す。
+        """trainers マスタから調教師名→コードのマップを生成する。
+
+        Returns:
+            調教師名から整数コードへのマッピング辞書。テーブルが空または
+            存在しない場合は空辞書を返す。
         """
         try:
             rows = self._conn.execute(
@@ -1176,20 +1231,26 @@ class FeatureBuilder:
             return {}
 
     def _encode_jockey(self, jockey_key: str | None) -> int:
-        """
-        jockeys マスタの固定コードで騎手をエンコードする。
-        マスタに存在しない騎手（名前の揺れ・マスタ未投入）は 0 を返す。
-        空文字・None は -1 を返す。
+        """jockeys マスタの固定コードで騎手名をエンコードする。
+
+        Args:
+            jockey_key: 騎手名文字列。None または空文字列の場合は -1 を返す。
+
+        Returns:
+            整数コード。マスタに存在しない騎手は 0、None/空文字列は -1。
         """
         if not jockey_key:
             return -1
         return self._jockey_code_map.get(jockey_key, 0)
 
     def _encode_trainer(self, trainer_key: str | None) -> int:
-        """
-        trainers マスタの固定コードで調教師をエンコードする。
-        マスタに存在しない調教師は 0 を返す。
-        空文字・None は -1 を返す。
+        """trainers マスタの固定コードで調教師名をエンコードする。
+
+        Args:
+            trainer_key: 調教師名文字列。None または空文字列の場合は -1 を返す。
+
+        Returns:
+            整数コード。マスタに存在しない調教師は 0、None/空文字列は -1。
         """
         if not trainer_key:
             return -1
@@ -1199,31 +1260,25 @@ class FeatureBuilder:
         self,
         race_id: str,
     ) -> dict[int, dict[str, float | None]]:
-        """
-        realtime_odds テーブルの時系列から馬別のオッズ変動特徴量を算出する。
+        """realtime_odds テーブルの時系列から馬別のオッズ変動特徴量を算出する。
 
-        **大口投票シグナルの検知ロジック**
+        大口投票シグナルの検知ロジック:
 
-        odds_vs_morning（朝一比率）:
-          - latest_odds / morning_odds で算出
-          - 1.0 未満: 直前が朝一より低い = 人気上昇（大口が入った可能性）
-          - 1.0 超:   直前が朝一より高い = 人気低下（嫌われている）
-          - 例: 朝一 10.0 → 直前 5.0 → odds_vs_morning = 0.50
+        - odds_vs_morning（朝一比率）: latest_odds / morning_odds で算出。
+          1.0 未満は人気上昇（大口流入の可能性）、1.0 超は人気低下を示す。
+        - odds_velocity（下落速度、オッズ/分）: (past_odds - latest_odds) /
+          elapsed_minutes で算出。正値は資金流入加速、負値は資金流出を示す。
 
-        odds_velocity（下落速度、オッズ/分）:
-          - (past_odds - latest_odds) / elapsed_minutes で算出
-          - 正値: 直近1時間でオッズが下落中 = 資金流入が加速している
-          - 負値: 直近1時間でオッズが上昇中 = 資金が抜けている
-          - 約0: 変動なし
+        データ不足（スナップショット1点以下等）の場合は None を返す。
+        主に prerace_pipeline で realtime_odds が複数時点記録済みの場合に有効。
 
-        データが不足している場合（スナップショットが1点以下等）は None を返す。
-        主に prerace_pipeline で realtime_odds が複数時点で記録されている場合に有効。
+        Args:
+            race_id: レース ID 文字列。
 
         Returns:
-            {horse_number: {
-                "odds_vs_morning": float | None,
-                "odds_velocity":   float | None,
-            }}
+            馬番をキー、オッズ変動特徴量辞書を値とするマッピング。
+            各値辞書は "odds_vs_morning" と "odds_velocity" を持ち、
+            データ不足の場合は None となる。
         """
         rows = self._conn.execute(
             """
@@ -1289,9 +1344,14 @@ class FeatureBuilder:
         return result
 
     def _latest_odds_map(self, race_id: str) -> dict[int, dict]:
-        """
-        realtime_odds から各馬の最新オッズを {馬番: {win_odds, popularity}} で返す。
-        レコードがなければ空辞書を返す。
+        """realtime_odds から各馬の最新オッズを取得する。
+
+        Args:
+            race_id: レース ID 文字列。
+
+        Returns:
+            馬番をキー、{"win_odds": ..., "popularity": ...} 辞書を値とするマッピング。
+            レコードが存在しない場合は空辞書を返す。
         """
         rows = self._conn.execute(
             """

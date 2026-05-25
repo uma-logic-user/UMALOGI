@@ -36,6 +36,15 @@ logger = logging.getLogger(__name__)
 
 
 class NotifyLevel(Enum):
+    """通知レベルの列挙型。
+
+    Attributes:
+        MISS: 不的中（通知なし）。
+        NORMAL: 的中 + ROI >= 100%（Discord/LINE のみ）。
+        BIG: 払戻 >= 10,000 円 または ROI >= 300%（全チャンネル）。
+        JACKPOT: 払戻 >= 100,000 円 または ROI >= 500%（全チャンネル・画像付き）。
+    """
+
     MISS    = auto()
     NORMAL  = auto()
     BIG     = auto()
@@ -43,7 +52,14 @@ class NotifyLevel(Enum):
 
 
 def _classify(hit: BetHitDetail) -> NotifyLevel:
-    """1買い目の払戻・ROI から通知レベルを判定する。"""
+    """1買い目の払戻・ROI から通知レベルを判定する。
+
+    Args:
+        hit: 評価済みの買い目詳細。
+
+    Returns:
+        対応する NotifyLevel。的中でも ROI < 100% は MISS を返す。
+    """
     if not hit.is_hit:
         return NotifyLevel.MISS
     if hit.payout >= 100_000 or hit.roi >= 500:
@@ -56,6 +72,15 @@ def _classify(hit: BetHitDetail) -> NotifyLevel:
 
 
 def _build_body(result: EvaluationResult, hit: BetHitDetail) -> str:
+    """通知本文を組み立てる。
+
+    Args:
+        result: レース評価結果。
+        hit: 的中買い目の詳細。
+
+    Returns:
+        Discord/LINE/X に送信する本文文字列。
+    """
     lines = [
         f"🏇 {result.race_name}  {result.date}",
         f"📋 券種: {hit.bet_type}",
@@ -72,6 +97,15 @@ def _build_body(result: EvaluationResult, hit: BetHitDetail) -> str:
 
 
 def _build_title(hit: BetHitDetail, level: NotifyLevel) -> str:
+    """通知レベルに応じたタイトル文字列を生成する。
+
+    Args:
+        hit: 的中買い目の詳細。
+        level: 通知レベル。
+
+    Returns:
+        通知タイトル文字列。
+    """
     if level == NotifyLevel.JACKPOT:
         return f"🎆 爆裂的中！ {hit.bet_type}  ROI {hit.roi:.0f}%"
     if level == NotifyLevel.BIG:
@@ -110,6 +144,15 @@ class NotificationDispatcher:
 
     @staticmethod
     def _auto_notifiers() -> list[BaseNotifier]:
+        """環境変数に基づきノーティファイアリストを自動構築する。
+
+        NOTIFY_DISCORD=1 (デフォルト) → DiscordNotifier
+        NOTIFY_LINE=1 → LineNotifier
+        NOTIFY_TWITTER=1 → TwitterNotifier
+
+        Returns:
+            有効なノーティファイアのリスト。
+        """
         notifiers: list[BaseNotifier] = []
         if os.environ.get("NOTIFY_DISCORD", "1") == "1":
             notifiers.append(DiscordNotifier())

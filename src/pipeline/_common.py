@@ -28,7 +28,15 @@ JYO: dict[str, str] = {
 
 
 def format_race_label(race_id: str) -> str:
-    """race_id から "東京 11R" のような表示文字列を生成する。"""
+    """race_id から "東京 11R" のような表示文字列を生成する。
+
+    Args:
+        race_id: 12 桁のレース ID 文字列（例: "202605050512"）。
+
+    Returns:
+        "競馬場名 NR" 形式の表示文字列（例: "東京 5R"）。
+        会場コードが未定義の場合はコードをそのまま使用する。
+    """
     venue_code = race_id[4:6] if len(race_id) >= 6 else "??"
     venue = JYO.get(venue_code, venue_code)
     race_num = str(int(race_id[10:12])) + "R" if len(race_id) >= 12 else race_id
@@ -39,12 +47,13 @@ def kelly_fraction(p_win: float, odds: float, multiplier: float = 0.1) -> float:
     """1/10 ケリー基準による最適賭け比率を返す。
 
     Args:
-        p_win:      勝利確率 (0〜1)
-        odds:       単勝オッズ（例: 3.5倍）
-        multiplier: ケリー乗数（デフォルト 0.1 = 1/10 Kelly）
+        p_win: 勝利確率（0〜1 の実数）。
+        odds: 単勝オッズ（例: 3.5倍）。
+        multiplier: ケリー乗数。デフォルトは 0.1（= 1/10 Kelly）。
 
     Returns:
-        総資金に対する推奨賭け比率 (0〜1)。期待値 < 1.0 の場合は 0.0。
+        総資金に対する推奨賭け比率（0〜1 の実数）。
+        期待値が 1.0 未満の場合は 0.0 を返す。
     """
     if odds <= 1.0 or p_win <= 0.0:
         return 0.0
@@ -69,11 +78,27 @@ def build_output_json(
     各馬に honmei_score / ev_score / kelly_fraction / manji_ev を付与する。
     provisional=True の場合はオッズ非依存スコアのみ有効とし、
     ev_recommend は空にして EV 基準の買い推奨を出力しない。
+
+    Args:
+        race_id: 対象レース ID。
+        df: 出走馬の特徴量 DataFrame（horse_number / horse_name 等を含む）。
+        honmei_scores: 本命モデルの勝利確率スコア系列（df 行と同順）。
+        honmei_ev_scores: 本命モデルの EV スコア系列（df 行と同順）。
+        ev_scores: 卍モデルの EV スコア系列（df 行と同順）。
+        honmei_bets: 本命買い目（RaceBets 互換オブジェクト、to_dict() を持つ）。
+        manji_bets: 卍買い目（RaceBets 互換オブジェクト、to_dict() を持つ）。
+        provisional: True の場合は暫定モード。ev_recommend を空にする。
+
+    Returns:
+        フロントエンドに渡す JSON ペイロード（dict）。
+        キー: race_id / generated_at / bias / horses / ev_recommend / honmei_bets / manji_bets。
     """
     def _int_or_none(v: object) -> int | None:
+        """値を int に変換する。None・NaN・0 の場合は None を返す。"""
         return int(v) if (v is not None and pd.notna(v) and v != 0) else None  # type: ignore[arg-type]
 
     def _float_or_none(v: object) -> float | None:
+        """値を float に変換する。None・NaN の場合は None を返す。"""
         return float(v) if (v is not None and pd.notna(v)) else None  # type: ignore[arg-type]
 
     df_reset = df.reset_index(drop=True)
@@ -136,7 +161,15 @@ def build_output_json(
 
 
 def save_json(race_id: str, payload: dict) -> Path:
-    """UI 用 JSON を data/predictions/<race_id>.json に書き出す。"""
+    """UI 用 JSON を data/predictions/<race_id>.json に書き出す。
+
+    Args:
+        race_id: 対象レース ID。ファイル名のベース部分に使用される。
+        payload: JSON シリアライズ可能な辞書ペイロード。
+
+    Returns:
+        書き出したファイルの Path オブジェクト。
+    """
     JSON_OUT_DIR.mkdir(parents=True, exist_ok=True)
     out = JSON_OUT_DIR / f"{race_id}.json"
     out.write_text(

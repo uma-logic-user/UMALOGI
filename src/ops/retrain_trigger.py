@@ -19,6 +19,7 @@ from __future__ import annotations
 import logging
 import sqlite3
 from pathlib import Path
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -29,7 +30,7 @@ def post_race_pipeline(
     *,
     notify: bool = True,
     dry_run: bool = False,
-) -> dict:
+) -> dict[str, Any]:
     """
     レース確定後の一連処理を実行する。
 
@@ -48,7 +49,7 @@ def post_race_pipeline(
         {"evaluation": EvaluationResult, "notified": [...], "model": {...}}
     """
     import sys
-    from pathlib import Path
+
     root = Path(__file__).resolve().parents[3]
     if str(root) not in sys.path:
         sys.path.insert(0, str(root))
@@ -57,7 +58,7 @@ def post_race_pipeline(
     from src.notification.dispatcher import NotificationDispatcher
     from src.ml.incremental import IncrementalTrainer
 
-    result: dict = {}
+    result: dict[str, Any] = {}
 
     # ── Step 1: 的中評価 ─────────────────────────────────────────
     evaluator = Evaluator()
@@ -98,7 +99,7 @@ def weekly_retrain(
     conn: sqlite3.Connection,
     *,
     validate: bool = True,
-) -> dict:
+) -> dict[str, str]:
     """
     週次全件再学習を実行する。
 
@@ -121,18 +122,27 @@ def batch_evaluate_date(
     *,
     notify: bool = True,
     dry_run: bool = False,
-) -> list[dict]:
-    """
-    指定日の全確定レースを一括評価・通知する。
+) -> list[dict[str, Any]]:
+    """指定日の全確定レースを一括評価・通知する。
 
     Args:
-        date: "YYYY-MM-DD" 形式 (ISO 8601)
+        conn:     DB コネクション。
+        date:     対象日 "YYYY-MM-DD" 形式 (ISO 8601)。
+        notify:   SNS 通知を送信するか。
+        dry_run:  DB 書き込み・SNS 送信をスキップするか。
+
+    Returns:
+        各レースの post_race_pipeline() 結果辞書のリスト。
     """
     race_ids = [
-        r[0] for r in conn.execute(
+        r[0]
+        for r in conn.execute(
             "SELECT race_id FROM races WHERE date = ? ORDER BY race_id",
             (date,),
         ).fetchall()
     ]
     logger.info("一括評価: %s の %d レース", date, len(race_ids))
-    return [post_race_pipeline(conn, rid, notify=notify, dry_run=dry_run) for rid in race_ids]
+    return [
+        post_race_pipeline(conn, rid, notify=notify, dry_run=dry_run)
+        for rid in race_ids
+    ]

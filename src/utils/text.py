@@ -52,29 +52,50 @@ _RECOVERY_PATHS: list[tuple[str, str]] = [
 
 
 def sanitize(v: object) -> object:
-    """Remove control chars and strip. Pass through non-strings unchanged."""
+    """制御文字を除去してストリップする。文字列以外はそのまま返す。
+
+    Args:
+        v: サニタイズ対象の値。文字列以外の型はそのまま返す。
+
+    Returns:
+        文字列の場合は制御文字除去・strip 済みの文字列。それ以外は入力値をそのまま返す。
+    """
     if not isinstance(v, str):
         return v
     return _CTRL_RE.sub("", v).strip()
 
 
 def sanitize_str(v: str, fallback: str = "") -> str:
-    """str-only version. Returns fallback for None/empty."""
+    """文字列専用のサニタイズ関数。None または空の場合は fallback を返す。
+
+    Args:
+        v: サニタイズ対象の文字列。
+        fallback: ``v`` が None または空文字の場合に返すデフォルト値。デフォルトは空文字列。
+
+    Returns:
+        制御文字除去・strip 済みの文字列。空になった場合は ``fallback`` を返す。
+    """
     if not v:
         return fallback
     return _CTRL_RE.sub("", v).strip() or fallback
 
 
 def is_garbled(s: str) -> bool:
-    """
-    Return True if the string appears to be garbled text.
+    """文字列が文字化けしているかどうかを判定する。
 
-    Detects:
-      - 2+ consecutive Greek characters (mac_greek->euc-jp misread artifact)
-      - 2+ consecutive special punctuation like bullet/curly-quotes (mac_roman artifact)
-      - "?X?X?X" pattern where '?' replaced Shift-JIS lead bytes (JVLink CP932 bug)
-      - Rare CJK chars that appear only from incorrect encoding recovery
-      - >30% of chars in U+0300-U+04FF / U+2000-U+21FF range
+    以下のパターンを検出する:
+
+    - ギリシャ文字 2 文字以上の連続（mac_greek → euc-jp 誤読アーティファクト）
+    - 箇条書き記号・カーリークォート等の特殊句読点 2 文字以上の連続（mac_roman アーティファクト）
+    - ``?X?X?X`` パターン（JVLink CP932 リードバイトが ``?`` に置換されたバグ）
+    - 不正な encoding 回復処理によってのみ出現する稀な CJK 文字
+    - U+0300-U+04FF / U+2000-U+21FF 範囲の文字が 30% 超
+
+    Args:
+        s: 判定対象の文字列。
+
+    Returns:
+        文字化けが疑われる場合は ``True``、それ以外は ``False``。
     """
     if not s:
         return False
@@ -93,16 +114,20 @@ def is_garbled(s: str) -> bool:
 
 
 def try_recover_encoding(s: str) -> str:
-    """
-    Attempt to recover a garbled string by trying multiple encoding paths.
+    """複数のエンコーディングパスを試して文字化け文字列の回復を試みる。
 
-    Tries each (wrong_encoding, correct_encoding) pair. Accepts a recovery only
-    when:
-      - The result contains no replacement character U+FFFD
-      - The result contains at least 2 Japanese characters
-      - The result itself is not garbled
+    ``_RECOVERY_PATHS`` に定義された ``(誤エンコード, 正エンコード)`` の各ペアを試す。
+    以下の条件をすべて満たす場合のみ回復結果として採用する:
 
-    Returns the best recovery found, or empty string if none works.
+    - 結果に置換文字 U+FFFD が含まれない
+    - 結果に日本語文字が 2 文字以上含まれる
+    - 回復結果自体が文字化けしていない
+
+    Args:
+        s: 回復対象の文字列。文字化けしていない場合はそのまま返す。
+
+    Returns:
+        回復に成功した場合は回復済み文字列。失敗した場合は空文字列。
     """
     if not s or not is_garbled(s):
         return s
@@ -130,11 +155,20 @@ def try_recover_encoding(s: str) -> str:
 
 
 def ensure_clean(s: str | None, fallback: str = "") -> str:
-    """
-    Final gate before DB insertion.
-    1. None / empty -> fallback
-    2. Strip control characters
-    3. If garbled: attempt recovery; if unrecoverable -> fallback
+    """DB 挿入前の最終ゲート処理を行う。
+
+    以下の順序で処理する:
+
+    1. ``None`` または空文字の場合は ``fallback`` を返す。
+    2. 制御文字を除去して strip する。
+    3. 文字化けが検出された場合は回復を試みる。回復不能な場合は ``fallback`` を返す。
+
+    Args:
+        s: クリーニング対象の文字列。``None`` も受け付ける。
+        fallback: 空・文字化け不能時に返すデフォルト値。デフォルトは空文字列。
+
+    Returns:
+        クリーニング済みの文字列、または回復不能な場合は ``fallback``。
     """
     if not s:
         return fallback
@@ -148,11 +182,16 @@ def ensure_clean(s: str | None, fallback: str = "") -> str:
 
 
 def try_recover_sjis(raw_bytes: bytes) -> str:
-    """
-    Attempt to recover SJIS data that was incorrectly stored as latin-1.
+    """latin-1 として誤保存された SJIS データを CP932 としてデコードして回復する。
 
-    JV-Link COM string -> latin-1 bytes -> cp932 decode
-    Unrecoverable characters are replaced with the substitution character.
+    JV-Link COM 文字列 → latin-1 バイト列 → cp932 デコードのパスを想定する。
+    回復不能な文字は置換文字（U+FFFD）に置き換えられる。
+
+    Args:
+        raw_bytes: latin-1 として保存された CP932 バイト列。
+
+    Returns:
+        CP932 デコード済みの文字列（strip 済み）。デコード失敗時は空文字列。
     """
     try:
         return raw_bytes.decode("cp932", errors="replace").strip()

@@ -31,7 +31,17 @@ _DEFAULT = 0.5  # データなし時の中立値
 
 
 def _to_tc_key(horse_id: str) -> str:
-    """race_results.horse_id (10桁) → training_times の正規化キー (9桁)"""
+    """race_results.horse_id (10桁) を training_times の正規化キー (9桁) に変換する。
+
+    race_results: YYYY+SSSSSS (10桁) → 先頭4桁 + 5〜9桁目 = 9桁キー。
+
+    Args:
+        horse_id: race_results テーブルの horse_id 文字列（10桁）。
+
+    Returns:
+        training_times の substr(horse_id,2,9) と照合できる 9桁のキー文字列。
+        入力が 9桁未満の場合はそのまま返す。
+    """
     if len(horse_id) >= 9:
         return horse_id[:4] + horse_id[4:9]
     return horse_id
@@ -40,17 +50,18 @@ def _to_tc_key(horse_id: str) -> str:
 def calc_training_grade_score(
     df: pd.DataFrame, conn: sqlite3.Connection
 ) -> pd.DataFrame:
-    """
-    各馬の直近調教グレードスコアを算出して DataFrame に追加する。
+    """各馬の直近調教グレードスコアを算出して DataFrame に追加する。
 
-    Parameters
-    ----------
-    df : DataFrame  (必須列: race_id, horse_id)
-    conn : sqlite3.Connection
+    training_times テーブルから基準日以前の最新調教グレードを取得し、
+    _GRADE_SCORE マッピング（S=1.0〜E=0.17）でスコア化する。
 
-    Returns
-    -------
-    df + training_grade_score 列 (0.0〜1.0)
+    Args:
+        df: 必須列として race_id, horse_id を含む DataFrame。
+        conn: umalogi.db 接続。
+
+    Returns:
+        元 df に training_grade_score 列（0.0〜1.0、データなし = 0.5）を
+        追加した DataFrame。
     """
     if df.empty:
         df["training_grade_score"] = pd.Series(dtype=float)
@@ -101,6 +112,15 @@ def calc_training_grade_score(
 
 
 def _earliest_race_date(df: pd.DataFrame) -> str:
+    """df 内の最古の race_id から 'YYYY-MM-DD' 基準日を返す（時系列リーク防止）。
+
+    Args:
+        df: race_id 列を含む DataFrame。
+
+    Returns:
+        最古の race_id 先頭 8 文字から生成した 'YYYY-MM-DD' 形式の日付文字列。
+        変換に失敗した場合は '9999-12-31' を返す。
+    """
     try:
         rid = df["race_id"].min()
         return f"{rid[:4]}-{rid[4:6]}-{rid[6:8]}"

@@ -491,7 +491,16 @@ def _to_bytes(com_str: str) -> bytes:
 
 
 def _str(raw: bytes, sl: slice, encoding: str = 'ascii') -> str:
-    """指定スライスをデコードして空白トリムして返す。制御文字は全除去。"""
+    """指定スライスをデコードして空白トリムして返す。制御文字は全除去。
+
+    Args:
+        raw:      元バイト列。
+        sl:       抽出するスライス。
+        encoding: デコードに使う文字エンコーディング。
+
+    Returns:
+        デコード・トリム・制御文字除去後の文字列。エラー時は空文字列。
+    """
     try:
         from src.utils.text import sanitize_str
         return sanitize_str(raw[sl].decode(encoding, errors='replace'))
@@ -501,7 +510,15 @@ def _str(raw: bytes, sl: slice, encoding: str = 'ascii') -> str:
 
 
 def _sjis(raw: bytes, sl: slice) -> str:
-    """Shift-JIS (cp932) フィールド用デコード。制御文字は全除去。"""
+    """Shift-JIS (cp932) フィールド用デコード。制御文字は全除去。
+
+    Args:
+        raw: 元バイト列。
+        sl:  抽出するスライス。
+
+    Returns:
+        cp932 デコード・トリム後の文字列。
+    """
     return _str(raw, sl, 'cp932')
 
 
@@ -520,6 +537,16 @@ def _safe_int_val(val: object, default: int = 0) -> int:
 
 
 def _int(raw: bytes, sl: slice, default: int = 0) -> int:
+    """指定スライスを ASCII 整数としてパースする。
+
+    Args:
+        raw:     元バイト列。
+        sl:      抽出するスライス。
+        default: パース失敗時のデフォルト値。
+
+    Returns:
+        パース結果の整数。失敗時は default。
+    """
     try:
         s = raw[sl].decode('ascii', errors='replace').strip()
         return int(s) if s else default
@@ -528,7 +555,16 @@ def _int(raw: bytes, sl: slice, default: int = 0) -> int:
 
 
 def _float(raw: bytes, sl: slice, divisor: float = 1.0) -> Optional[float]:
-    """整数として読んで divisor で割る。0 は None 扱い。"""
+    """整数として読んで divisor で割る。0 は None 扱い。
+
+    Args:
+        raw:     元バイト列。
+        sl:      抽出するスライス。
+        divisor: 除数（例: 10.0 → × 0.1 変換）。
+
+    Returns:
+        変換後の浮動小数点数。0 または変換不可は None。
+    """
     try:
         s = raw[sl].decode('ascii', errors='replace').strip()
         v = int(s) if s else 0
@@ -538,7 +574,15 @@ def _float(raw: bytes, sl: slice, divisor: float = 1.0) -> Optional[float]:
 
 
 def _tenths_to_time(raw: bytes, sl: slice) -> Optional[str]:
-    """× 10 秒整数 → "M:SS.s" 文字列。0 または空白は None。"""
+    """× 10 秒整数 → "M:SS.s" 文字列。0 または空白は None。
+
+    Args:
+        raw: 元バイト列。
+        sl:  抽出するスライス。
+
+    Returns:
+        "M:SS.s" または "SS.s" 形式のタイム文字列。0 または空は None。
+    """
     try:
         s = raw[sl].decode('ascii', errors='replace').strip()
         if not s:
@@ -554,7 +598,15 @@ def _tenths_to_time(raw: bytes, sl: slice) -> Optional[str]:
 
 
 def _signed_int(raw: bytes, sl: slice) -> Optional[int]:
-    """"+4 " / "-12" 形式のバイト列を符号付き整数に変換。"""
+    """"+4 " / "-12" 形式のバイト列を符号付き整数に変換。
+
+    Args:
+        raw: 元バイト列。
+        sl:  抽出するスライス。
+
+    Returns:
+        符号付き整数。空文字列または変換不可は None。
+    """
     try:
         s = raw[sl].decode('ascii', errors='replace').strip()
         return int(s) if s else None
@@ -582,7 +634,14 @@ def _make_race_id(raw: bytes) -> str:
 
 
 def _kaisai_date_to_db(raw: bytes) -> str:
-    """YYYYMMDD → YYYY-MM-DD (ISO 8601)"""
+    """開催年月日バイト列を ISO 8601 形式に変換する。
+
+    Args:
+        raw: レースキーを含む元バイト列。
+
+    Returns:
+        "YYYY-MM-DD" 形式の日付文字列。パース失敗時は空文字列。
+    """
     d = _str(raw, _RK_KAISAI_DT)
     return f"{d[:4]}-{d[4:6]}-{d[6:8]}" if len(d) == 8 else ''
 
@@ -780,7 +839,11 @@ class JVLinkClient:
         )
 
     def _reconnect(self) -> None:
-        """セッション切れ時に JVClose → JVInit を再実行して接続を回復する。"""
+        """セッション切れ時に JVClose → JVInit を再実行して接続を回復する。
+
+        Raises:
+            RuntimeError: JVInit が全リトライ後も失敗した場合。
+        """
         logger.info("JVLink 再接続を試みます...")
         try:
             if self._jvl is not None:
@@ -930,7 +993,10 @@ class JVLinkClient:
     # ── JVClose ─────────────────────────────────────────────────
 
     def close(self) -> None:
-        """JVClose を呼び出してストリームをクローズする。"""
+        """JVClose を呼び出してストリームをクローズする。
+
+        エラーが発生しても例外は送出せず警告ログのみ出力する。
+        """
         if self._jvl is not None:
             try:
                 self._jvl.JVClose()
@@ -941,7 +1007,11 @@ class JVLinkClient:
     # ── ステータス確認 ──────────────────────────────────────────
 
     def status(self) -> dict:
-        """JVStatus を呼び出してダウンロード進捗を返す。"""
+        """JVStatus を呼び出してダウンロード進捗を返す。
+
+        Returns:
+            {"raw": JVStatus 戻り値} または {"error": エラーメッセージ}。
+        """
         try:
             result = self._jvl.JVStatus()
             return {"raw": result}
@@ -1024,7 +1094,14 @@ def parse_record(raw: bytes, debug: bool = False) -> Optional[dict]:
 # ── RA: レース詳細 ──────────────────────────────────────────────
 
 def _parse_ra(raw: bytes) -> Optional[dict]:
-    """RA レース詳細レコードをパースして races テーブル用 dict を返す。"""
+    """RA レース詳細レコードをパースして races テーブル用 dict を返す。
+
+    Args:
+        raw: JVRead で取得した生バイト列。
+
+    Returns:
+        races テーブル用フィールドを含む dict。パース失敗・無効データは None。
+    """
     if len(raw) < 29:
         return None
 
@@ -1078,7 +1155,15 @@ def _parse_ra(raw: bytes) -> Optional[dict]:
 # ── SE: 馬毎レース情報 ─────────────────────────────────────────
 
 def _parse_se(raw: bytes) -> Optional[dict]:
-    """SE 馬毎レース情報をパースして race_results + horses 用 dict を返す。"""
+    """SE 馬毎レース情報をパースして race_results + horses 用 dict を返す。
+
+    Args:
+        raw: JVRead で取得した生バイト列。
+
+    Returns:
+        race_results / horses テーブル用フィールドを含む dict。
+        パース失敗・無効データは None。
+    """
     if len(raw) < 42:
         return None
 
@@ -1151,7 +1236,14 @@ _JG_BLOOD_ID   = slice(27, 37)
 
 
 def _make_race_id_jg(raw: bytes) -> str:
-    """JGレコード専用の race_id 生成 (YEAR+JYO+KAI+NICHI+RACE_NO)。"""
+    """JGレコード専用の race_id 生成 (YEAR+JYO+KAI+NICHI+RACE_NO)。
+
+    Args:
+        raw: JGレコードの生バイト列。
+
+    Returns:
+        12桁の race_id 文字列。
+    """
     d8      = _str(raw, _JG_KAISAI_DT)   # YYYYMMDD
     year    = d8[:4]
     jyo     = _str(raw, _JG_JYO)
@@ -1268,7 +1360,15 @@ def _parse_payout(raw: bytes, rec_type: str) -> Optional[dict]:
 
 def _parse_wc(raw: bytes) -> Optional[dict]:
     """WC 調教タイムレコードをパースして training_times テーブル用 dict を返す。
+
     実データ確認済みオフセット使用。タイムは ×0.01秒単位（推定）。
+
+    Args:
+        raw: JVRead で取得した生バイト列。
+
+    Returns:
+        training_times テーブル用フィールドを含む dict。
+        horse_id 未存在・日付不正は None。
     """
     if len(raw) < 64:
         return None
@@ -1308,7 +1408,15 @@ def _parse_wc(raw: bytes) -> Optional[dict]:
 
 def _parse_wh(raw: bytes) -> Optional[dict]:
     """WH 坂路調教レコードをパースして training_hillwork テーブル用 dict を返す。
+
     WH レコードは WC と同様のヘッダー構造と推定。
+
+    Args:
+        raw: JVRead で取得した生バイト列。
+
+    Returns:
+        training_hillwork テーブル用フィールドを含む dict。
+        horse_id 未存在・日付不正は None。
     """
     if len(raw) < 64:
         return None
@@ -1345,7 +1453,15 @@ def _parse_wh(raw: bytes) -> Optional[dict]:
 # ── TC/HC: 旧レコードタイプ（現在の JVLink では発生しないが後方互換）──
 
 def _parse_tc(raw: bytes) -> Optional[dict]:
-    """TC 調教タイムレコード（旧形式）をパースする。"""
+    """TC 調教タイムレコード（旧形式）をパースする。
+
+    Args:
+        raw: JVRead で取得した生バイト列（旧 TC 形式）。
+
+    Returns:
+        training_times テーブル用フィールドを含む dict。
+        horse_id 未存在は None。
+    """
     if len(raw) < 90:
         return None
     horse_id = _str(raw, _TC_HORSE_ID)
@@ -1378,7 +1494,15 @@ def _parse_tc(raw: bytes) -> Optional[dict]:
 # ── HC: 坂路調教（旧レコードタイプ、後方互換）──────────────────
 
 def _parse_hc(raw: bytes) -> Optional[dict]:
-    """HC 坂路調教レコード（旧形式）をパースする。"""
+    """HC 坂路調教レコード（旧形式）をパースする。
+
+    Args:
+        raw: JVRead で取得した生バイト列（旧 HC 形式）。
+
+    Returns:
+        training_hillwork テーブル用フィールドを含む dict。
+        horse_id 未存在は None。
+    """
     if len(raw) < 90:
         return None
     horse_id = _str(raw, _HC_HORSE_ID)
@@ -1409,7 +1533,15 @@ def _parse_hc(raw: bytes) -> Optional[dict]:
 # ── BT: 繁殖馬マスタ ──────────────────────────────────────────
 
 def _parse_bt(raw: bytes) -> Optional[dict]:
-    """BT 繁殖馬マスタをパースして breeding_horses テーブル用 dict を返す。"""
+    """BT 繁殖馬マスタをパースして breeding_horses テーブル用 dict を返す。
+
+    Args:
+        raw: JVRead で取得した生バイト列。
+
+    Returns:
+        breeding_horses テーブル用フィールドを含む dict。
+        horse_id 未存在は None。
+    """
     if len(raw) < 20:
         return None
     horse_id = _str(raw, _BT_HORSE_ID)
@@ -1436,7 +1568,14 @@ def _parse_bt(raw: bytes) -> Optional[dict]:
 # ── HN: 産駒マスタ ────────────────────────────────────────────
 
 def _parse_hn(raw: bytes) -> Optional[dict]:
-    """HN 産駒マスタをパースして foals テーブル用 dict を返す。"""
+    """HN 産駒マスタをパースして foals テーブル用 dict を返す。
+
+    Args:
+        raw: JVRead で取得した生バイト列。
+
+    Returns:
+        foals テーブル用フィールドを含む dict。horse_id 未存在は None。
+    """
     if len(raw) < 20:
         return None
     horse_id = _str(raw, _HN_HORSE_ID)
@@ -1461,7 +1600,14 @@ def _parse_hn(raw: bytes) -> Optional[dict]:
 # ── UM: 競走馬マスタ ──────────────────────────────────────────
 
 def _parse_um(raw: bytes) -> Optional[dict]:
-    """UM 競走馬マスタをパースして racehorses テーブル用 dict を返す。"""
+    """UM 競走馬マスタをパースして racehorses テーブル用 dict を返す。
+
+    Args:
+        raw: JVRead で取得した生バイト列。
+
+    Returns:
+        racehorses テーブル用フィールドを含む dict。horse_id 未存在は None。
+    """
     if len(raw) < 20:
         return None
     horse_id = _str(raw, _UM_HORSE_ID)
@@ -1495,7 +1641,14 @@ def _parse_um(raw: bytes) -> Optional[dict]:
 # ── KS: 騎手マスタ ────────────────────────────────────────────
 
 def _parse_ks(raw: bytes) -> Optional[dict]:
-    """KS 騎手マスタをパースして jockeys テーブル用 dict を返す。"""
+    """KS 騎手マスタをパースして jockeys テーブル用 dict を返す。
+
+    Args:
+        raw: JVRead で取得した生バイト列。
+
+    Returns:
+        jockeys テーブル用フィールドを含む dict。jockey_code 未存在は None。
+    """
     if len(raw) < 15:
         return None
     jockey_code = _str(raw, _KS_CODE)
@@ -1524,7 +1677,14 @@ def _parse_ks(raw: bytes) -> Optional[dict]:
 # ── CH: 調教師マスタ ──────────────────────────────────────────
 
 def _parse_ch(raw: bytes) -> Optional[dict]:
-    """CH 調教師マスタをパースして trainers テーブル用 dict を返す。"""
+    """CH 調教師マスタをパースして trainers テーブル用 dict を返す。
+
+    Args:
+        raw: JVRead で取得した生バイト列。
+
+    Returns:
+        trainers テーブル用フィールドを含む dict。trainer_code 未存在は None。
+    """
     if len(raw) < 15:
         return None
     trainer_code = _str(raw, _CH_CODE)
@@ -1626,6 +1786,12 @@ def save_records_to_db(
 
 
 def _save_ra(conn: sqlite3.Connection, r: dict) -> None:
+    """RA パース結果を races テーブルに UPSERT する。
+
+    Args:
+        conn: SQLite コネクション。
+        r:    _parse_ra() が返した dict。
+    """
     with conn:
         conn.execute(
             """
@@ -1640,6 +1806,12 @@ def _save_ra(conn: sqlite3.Connection, r: dict) -> None:
 
 
 def _save_se(conn: sqlite3.Connection, r: dict) -> None:
+    """SE パース結果を race_results / horses / entries テーブルに UPSERT する。
+
+    Args:
+        conn: SQLite コネクション。
+        r:    _parse_se() が返した dict。
+    """
     with conn:
         # horses テーブル (horse_id がある場合のみ)
         if r.get('horse_id'):
@@ -1776,6 +1948,12 @@ def _save_jg(conn: sqlite3.Connection, r: dict) -> None:
 
 
 def _save_payout(conn: sqlite3.Connection, r: dict) -> None:
+    """払戻パース結果を race_payouts テーブルに UPSERT する。
+
+    Args:
+        conn: SQLite コネクション。
+        r:    _parse_payout() が返した dict（'payouts' キーにリストを持つ）。
+    """
     with conn:
         for p in r.get('payouts', []):
             conn.execute(
@@ -1791,6 +1969,12 @@ def _save_payout(conn: sqlite3.Connection, r: dict) -> None:
 
 
 def _save_tc(conn: sqlite3.Connection, r: dict) -> None:
+    """TC/WC パース結果を training_times テーブルに UPSERT する。
+
+    Args:
+        conn: SQLite コネクション。
+        r:    _parse_tc() または _parse_wc() が返した dict。
+    """
     with conn:
         conn.execute(
             """
@@ -1816,6 +2000,12 @@ def _save_tc(conn: sqlite3.Connection, r: dict) -> None:
 
 
 def _save_hc(conn: sqlite3.Connection, r: dict) -> None:
+    """HC/WH パース結果を training_hillwork テーブルに UPSERT する。
+
+    Args:
+        conn: SQLite コネクション。
+        r:    _parse_hc() または _parse_wh() が返した dict。
+    """
     with conn:
         conn.execute(
             """
@@ -1840,6 +2030,12 @@ def _save_hc(conn: sqlite3.Connection, r: dict) -> None:
 
 
 def _save_bt(conn: sqlite3.Connection, r: dict) -> None:
+    """BT パース結果を breeding_horses テーブルに UPSERT する。
+
+    Args:
+        conn: SQLite コネクション。
+        r:    _parse_bt() が返した dict。
+    """
     with conn:
         conn.execute(
             """
@@ -1872,6 +2068,12 @@ def _save_bt(conn: sqlite3.Connection, r: dict) -> None:
 
 
 def _save_hn(conn: sqlite3.Connection, r: dict) -> None:
+    """HN パース結果を foals テーブルに UPSERT する。
+
+    Args:
+        conn: SQLite コネクション。
+        r:    _parse_hn() が返した dict。
+    """
     with conn:
         conn.execute(
             """
@@ -1901,6 +2103,12 @@ def _save_hn(conn: sqlite3.Connection, r: dict) -> None:
 
 
 def _save_um(conn: sqlite3.Connection, r: dict) -> None:
+    """UM パース結果を racehorses テーブルに UPSERT する。
+
+    Args:
+        conn: SQLite コネクション。
+        r:    _parse_um() が返した dict。
+    """
     with conn:
         conn.execute(
             """
@@ -1947,6 +2155,12 @@ def _save_um(conn: sqlite3.Connection, r: dict) -> None:
 
 
 def _save_ks(conn: sqlite3.Connection, r: dict) -> None:
+    """KS パース結果を jockeys テーブルに UPSERT する。
+
+    Args:
+        conn: SQLite コネクション。
+        r:    _parse_ks() が返した dict。
+    """
     with conn:
         conn.execute(
             """
@@ -1970,6 +2184,12 @@ def _save_ks(conn: sqlite3.Connection, r: dict) -> None:
 
 
 def _save_ch(conn: sqlite3.Connection, r: dict) -> None:
+    """CH パース結果を trainers テーブルに UPSERT する。
+
+    Args:
+        conn: SQLite コネクション。
+        r:    _parse_ch() が返した dict。
+    """
     with conn:
         conn.execute(
             """
@@ -2204,6 +2424,11 @@ class JVDataLoader:
         self._debug   = debug
 
     def _get_conn(self) -> sqlite3.Connection:
+        """DB コネクションを初期化してスキーマを拡張して返す。
+
+        Returns:
+            スキーマ拡張済みの SQLite コネクション。
+        """
         from src.database.init_db import init_db
         conn = init_db(self._db_path)
         extend_db_schema(conn)
@@ -2351,19 +2576,51 @@ class JVDataLoader:
         return stats
 
     def load_race(self, fromtime: str, option: int = OPT_NORMAL) -> dict:
-        """レース系データ (RA/SE/払戻) を取得・保存する。"""
+        """レース系データ (RA/SE/払戻) を取得・保存する。
+
+        Args:
+            fromtime: 開始日時 "YYYYMMDD" または "YYYYMMDDhhmmss"。
+            option:   OPT_NORMAL / OPT_SETUP / OPT_TODAY / OPT_STORED。
+
+        Returns:
+            保存件数統計 dict（load() の戻り値と同形式）。
+        """
         return self.load(DATASPEC_RACE, fromtime, option)
 
     def load_training(self, fromtime: str, option: int = OPT_NORMAL) -> dict:
-        """調教データ (TC/HC) を取得・保存する。"""
+        """調教データ (TC/HC) を取得・保存する。
+
+        Args:
+            fromtime: 開始日時 "YYYYMMDD" または "YYYYMMDDhhmmss"。
+            option:   OPT_NORMAL / OPT_SETUP / OPT_TODAY / OPT_STORED。
+
+        Returns:
+            保存件数統計 dict（load() の戻り値と同形式）。
+        """
         return self.load(DATASPEC_WOOD, fromtime, option)
 
     def load_blod(self, fromtime: str, option: int = OPT_NORMAL) -> dict:
-        """血統データ (BT/HN) を取得・保存する。"""
+        """血統データ (BT/HN) を取得・保存する。
+
+        Args:
+            fromtime: 開始日時 "YYYYMMDD" または "YYYYMMDDhhmmss"。
+            option:   OPT_NORMAL / OPT_SETUP / OPT_TODAY / OPT_STORED。
+
+        Returns:
+            保存件数統計 dict（load() の戻り値と同形式）。
+        """
         return self.load(DATASPEC_BLOD, fromtime, option)
 
     def load_difn(self, fromtime: str, option: int = OPT_NORMAL) -> dict:
-        """マスタデータ (UM/KS/CH) を取得・保存する。"""
+        """マスタデータ (UM/KS/CH) を取得・保存する。
+
+        Args:
+            fromtime: 開始日時 "YYYYMMDD" または "YYYYMMDDhhmmss"。
+            option:   OPT_NORMAL / OPT_SETUP / OPT_TODAY / OPT_STORED。
+
+        Returns:
+            保存件数統計 dict（load() の戻り値と同形式）。
+        """
         return self.load(DATASPEC_DIFN, fromtime, option)
 
 
@@ -2371,7 +2628,54 @@ class JVDataLoader:
 # CLI
 # ────────────────────────────────────────────────────────────────────────────
 
+def main() -> None:
+    """CLI エントリポイント。引数を解析して JVDataLoader を実行する。"""
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s %(levelname)s %(name)s: %(message)s',
+        datefmt='%H:%M:%S',
+    )
+
+    # 32bit チェック
+    if sys.maxsize > 2**32:
+        logger.warning(
+            "64bit Python で実行されています。"
+            "JV-Link は 32bit COM のため動作しません。\n"
+            "  py -3.14-32 -m src.scraper.jravan_client で再実行してください。"
+        )
+
+    args = _parse_args()
+
+    loader = JVDataLoader(
+        sid=args.sid,
+        debug=args.debug,
+    )
+
+    logger.info(
+        "取得開始: dataspec=%s fromtime=%s option=%d",
+        args.dataspec, args.fromtime, args.option,
+    )
+
+    stats = loader.load(args.dataspec, args.fromtime, args.option)
+
+    print(
+        f"\n取得完了:\n"
+        f"  読み込みレコード数 : {stats.get('total_read', 0):,}\n"
+        f"  RA (レース)       : {stats['ra']:,}\n"
+        f"  SE (馬毎結果)     : {stats['se']:,}\n"
+        f"  払戻              : {stats['payout']:,}\n"
+        f"  TC (調教タイム)   : {stats['tc']:,}\n"
+        f"  HC (坂路調教)     : {stats['hc']:,}\n"
+        f"  スキップ          : {stats['skipped']:,}"
+    )
+
+
 def _parse_args() -> argparse.Namespace:
+    """CLI 引数をパースして Namespace を返す。
+
+    Returns:
+        解析済みの argparse.Namespace。
+    """
     parser = argparse.ArgumentParser(
         description=(
             "JRA-VAN Data Lab. (JV-Link) データ取得ツール\n"
@@ -2445,47 +2749,6 @@ def _parse_args() -> argparse.Namespace:
         help='生レコードの先頭80バイトをダンプする (バイトオフセット確認用)',
     )
     return parser.parse_args()
-
-
-def main() -> None:
-    logging.basicConfig(
-        level=logging.INFO,
-        format='%(asctime)s %(levelname)s %(name)s: %(message)s',
-        datefmt='%H:%M:%S',
-    )
-
-    # 32bit チェック
-    if sys.maxsize > 2**32:
-        logger.warning(
-            "64bit Python で実行されています。"
-            "JV-Link は 32bit COM のため動作しません。\n"
-            "  py -3.14-32 -m src.scraper.jravan_client で再実行してください。"
-        )
-
-    args = _parse_args()
-
-    loader = JVDataLoader(
-        sid=args.sid,
-        debug=args.debug,
-    )
-
-    logger.info(
-        "取得開始: dataspec=%s fromtime=%s option=%d",
-        args.dataspec, args.fromtime, args.option,
-    )
-
-    stats = loader.load(args.dataspec, args.fromtime, args.option)
-
-    print(
-        f"\n取得完了:\n"
-        f"  読み込みレコード数 : {stats.get('total_read', 0):,}\n"
-        f"  RA (レース)       : {stats['ra']:,}\n"
-        f"  SE (馬毎結果)     : {stats['se']:,}\n"
-        f"  払戻              : {stats['payout']:,}\n"
-        f"  TC (調教タイム)   : {stats['tc']:,}\n"
-        f"  HC (坂路調教)     : {stats['hc']:,}\n"
-        f"  スキップ          : {stats['skipped']:,}"
-    )
 
 
 if __name__ == '__main__':

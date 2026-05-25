@@ -38,17 +38,39 @@ from src.scraper.netkeiba import fetch_race_payouts
     retry=retry_if_exception_type(Exception),
     reraise=True,
 )
-def _fetch_with_retry(race_id: str, delay: float) -> list:
-    """fetch_race_payouts を最大3回・指数バックオフでリトライする。"""
+def _fetch_with_retry(race_id: str, delay: float) -> list[dict]:
+    """fetch_race_payouts を最大3回・指数バックオフでリトライする。
+
+    Args:
+        race_id: netkeiba の race_id（12桁）。
+        delay:   リクエスト間隔秒数。
+
+    Returns:
+        払戻データの dict リスト。
+
+    Raises:
+        Exception: 3回リトライ後も失敗した場合。
+    """
     return fetch_race_payouts(race_id, delay=delay)
 
 
-def _get_races_without_payouts(conn, year: int | None, refetch: bool = False) -> list[str]:
-    """
-    race_results は存在するが race_payouts が未取得のレース ID を返す。
+def _get_races_without_payouts(
+    conn: "sqlite3.Connection",
+    year: int | None,
+    refetch: bool = False,
+) -> list[str]:
+    """race_results は存在するが race_payouts が未取得のレース ID を返す。
 
     refetch=True の場合は、払戻データが存在しても有効な三連単（X→Y→Z 形式）が
     ないレースも対象に含める。JV-Link corrupt データしか入っていない場合に使う。
+
+    Args:
+        conn:    DB コネクション。
+        year:    対象年（None の場合は全期間）。
+        refetch: True の場合は有効な三連単がないレースも再取得対象に含める。
+
+    Returns:
+        race_id のリスト（日付・race_id 昇順）。
     """
     year_filter = "AND substr(r.date,1,4) = ?" if year else ""
     params = [str(year)] if year else []

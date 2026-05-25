@@ -35,7 +35,17 @@ _MUTED   = (74, 122, 150)
 
 
 def _load_font(size: int) -> "ImageFont.FreeTypeFont | ImageFont.ImageFont":
-    """日本語フォント（NotoSansCJK / Meiryo）を探して返す。なければデフォルト。"""
+    """日本語フォント（NotoSansCJK / Meiryo）を探して返す。
+
+    Windows と Linux の代表的なフォントパスを順に試し、最初に読み込めたものを返す。
+    すべて失敗した場合は Pillow のデフォルトフォントを返す。
+
+    Args:
+        size: フォントサイズ（ポイント）。
+
+    Returns:
+        読み込んだフォントオブジェクト。
+    """
     candidates = [
         "C:/Windows/Fonts/meiryo.ttc",
         "C:/Windows/Fonts/YuGothR.ttc",
@@ -60,11 +70,23 @@ def build_hit_image(
     invested: float,
     out_path: Path,
 ) -> Path | None:
-    """
-    的中証拠画像を生成して out_path に保存する。
+    """的中証拠画像を生成して out_path に保存する。
+
+    800×500px のダークサイバーパンク風デザインで、払戻金・回収率・組み合わせを
+    視覚的に表示する PNG 画像を生成する。
+
+    Args:
+        race_name: レース名（例: '東京11R ヴィクトリアマイル'）。
+        date: 開催日文字列（例: '2026-05-25'）。
+        bet_type: 馬券種（例: '三連複'）。
+        combination: 的中組み合わせのリスト（例: ['5', '9', '3']）。
+        payout: 払戻金額（円）。
+        roi: 回収率（%）。
+        invested: 購入金額（円）。
+        out_path: 保存先のファイルパス（親ディレクトリが存在しない場合は自動作成）。
 
     Returns:
-        保存したパス、または Pillow 未インストール時は None
+        保存したファイルパス、または Pillow 未インストール時は None。
     """
     if not _PIL_AVAILABLE:
         return None

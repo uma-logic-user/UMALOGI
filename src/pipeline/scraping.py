@@ -88,7 +88,16 @@ def friday_batch(target_date: str | None = None) -> list[str]:
 
 
 def ensure_race_record(conn: sqlite3.Connection, race_id: str, date_str: str) -> None:
-    """races テーブルにレコードがなければ仮登録する。"""
+    """races テーブルにレコードがなければ仮登録する。
+
+    distance=0 / surface="未定" 等のプレースホルダー値で INSERT OR IGNORE する。
+    後続の JVLink 同期や update_race_details_from_entry() で正式値に上書きされる。
+
+    Args:
+        conn: SQLite 接続オブジェクト。
+        race_id: 対象レース ID。
+        date_str: レース開催日を "YYYYMMDD" 形式で表した文字列。
+    """
     exists = conn.execute("SELECT 1 FROM races WHERE race_id=?", (race_id,)).fetchone()
     if not exists:
         try:
@@ -121,8 +130,16 @@ def ensure_race_record(conn: sqlite3.Connection, race_id: str, date_str: str) ->
 def update_race_details_from_entry(conn: sqlite3.Connection, tbl: object) -> bool:
     """EntryTable に含まれる distance/surface/race_name で races テーブルを更新する。
 
-    distance > 0 かつ surface が取得できた場合のみ更新する（空値による上書きを防ぐ）。
-    Returns True if races table was updated.
+    distance > 0 かつ surface が空でない場合のみ UPDATE を実行する（空値による上書きを防ぐ）。
+    race_name は既存値が空または "レース" で始まる場合のみ上書きする。
+
+    Args:
+        conn: SQLite 接続オブジェクト。
+        tbl: EntryTable 互換オブジェクト（distance / surface / race_name /
+             track_direction / weather / condition / race_id 属性を持つ）。
+
+    Returns:
+        races テーブルを更新した場合は True、スキップした場合は False。
     """
     dist    = getattr(tbl, "distance", 0)
     surf    = getattr(tbl, "surface", "")
@@ -167,6 +184,17 @@ def save_entries_to_db(conn: sqlite3.Connection, tbl: object) -> int:
 
     horse_id は JVLink と netkeiba で形式が異なるため NULL で保存し、
     後続の JVLink 同期で上書きされることを想定する。
+    保存前に update_race_details_from_entry() を呼び出して races テーブルも更新する。
+
+    Args:
+        conn: SQLite 接続オブジェクト。
+        tbl: EntryTable 互換オブジェクト（race_id / entries 属性を持つ）。
+             entries は horse_number / gate_number / horse_name / sex_age /
+             weight_carried / jockey / trainer / horse_weight / horse_weight_diff
+             属性を持つオブジェクトのリスト。
+
+    Returns:
+        entries テーブルへの保存に成功した頭数。
     """
     # EntryTable に race details が含まれている場合は races テーブルも更新
     update_race_details_from_entry(conn, tbl)
@@ -273,7 +301,15 @@ def fetch_and_save_odds(conn: sqlite3.Connection, race_id: str) -> int:
 
 
 def _fetch_odds_netkeiba(race_id: str) -> list | None:
-    """netkeiba オッズ API からオッズリストを返す（RTD失敗時フォールバック）。失敗時は None。"""
+    """netkeiba オッズ API からオッズリストを返す。RTD 失敗時のフォールバック用。
+
+    Args:
+        race_id: 対象レース ID。
+
+    Returns:
+        HorseOdds オブジェクトのリスト。オッズが空の場合は空リスト。
+        例外発生時は None を返す。
+    """
     try:
         from src.scraper.entry_table import fetch_realtime_odds
 
@@ -288,7 +324,18 @@ def _fetch_odds_netkeiba(race_id: str) -> list | None:
 
 
 def _fetch_odds_rtd(race_id: str) -> list | None:
-    """JRA-VAN RTD キャッシュからオッズリストを返す。失敗時は None。"""
+    """JRA-VAN RTD キャッシュからオッズリストを返す。
+
+    rtd_reader.read_rtd_for_race() を呼び出し、
+    rtd_odds_to_horse_odds() で HorseOdds 形式に変換して返す。
+
+    Args:
+        race_id: 対象レース ID。
+
+    Returns:
+        HorseOdds オブジェクトのリスト。RTD にオッズがなければ空リスト。
+        例外発生時は None を返す。
+    """
     try:
         from src.scraper.rtd_reader import read_rtd_for_race, rtd_odds_to_horse_odds
 

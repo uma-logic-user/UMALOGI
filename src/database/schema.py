@@ -741,4 +741,20 @@ CREATE TABLE IF NOT EXISTS trainer_stats (
 )
     """,
     "CREATE INDEX IF NOT EXISTS idx_ts_trainer ON trainer_stats(trainer_name)",
+    # ── マルチ券種オッズ履歴 ─────────────────────────────────────────────
+    """
+CREATE TABLE IF NOT EXISTS multi_odds (
+    id           INTEGER PRIMARY KEY AUTOINCREMENT,
+    race_id      TEXT    NOT NULL,
+    bet_type     TEXT    NOT NULL CHECK (bet_type IN ('枠連','馬連','ワイド','馬単','三連複','三連単')),
+    combination  TEXT    NOT NULL,
+    odds         REAL,
+    odds_max     REAL,
+    popularity   INTEGER,
+    recorded_at  TEXT    NOT NULL DEFAULT (datetime('now','localtime')),
+    UNIQUE (race_id, bet_type, combination, recorded_at)
+)
+    """,
+    "CREATE INDEX IF NOT EXISTS idx_mo_race_bet ON multi_odds(race_id, bet_type)",
+    "CREATE INDEX IF NOT EXISTS idx_mo_race_id  ON multi_odds(race_id)",
 ]

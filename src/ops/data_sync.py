@@ -46,13 +46,25 @@ except ImportError:
 
 
 def _get_conn() -> sqlite3.Connection:
+    """初期化済みの SQLite DB コネクションを返す。
+
+    Returns:
+        umalogi.db への接続済み Connection オブジェクト。
+    """
     from src.database.init_db import init_db
 
     return init_db()
 
 
 def _count_races_for_date(target_date: str) -> int:
-    """races テーブルに対象日のレコードが何件あるか返す。"""
+    """races テーブルに対象日のレコードが何件あるか返す。
+
+    Args:
+        target_date: 対象日 YYYYMMDD 形式。
+
+    Returns:
+        races テーブル内の対象日のレコード件数。
+    """
     formatted = f"{target_date[:4]}-{target_date[4:6]}-{target_date[6:8]}"
     conn = _get_conn()
     count: int = conn.execute(
@@ -63,7 +75,14 @@ def _count_races_for_date(target_date: str) -> int:
 
 
 def _count_race_results_for_date(target_date: str) -> int:
-    """race_results テーブルに対象日のレコードが何件あるか返す。"""
+    """race_results テーブルに対象日のレコードが何件あるか返す。
+
+    Args:
+        target_date: 対象日 YYYYMMDD 形式。
+
+    Returns:
+        race_results テーブル内の対象日のレコード件数。
+    """
     formatted = f"{target_date[:4]}-{target_date[4:6]}-{target_date[6:8]}"
     conn = _get_conn()
     count: int = conn.execute(
@@ -349,8 +368,13 @@ def sync_race_results(from_date: str | None = None, stored: bool = False) -> int
 
 
 def sync_wood() -> int:
-    """
-    JRA-VAN WOOD dataspec から調教タイムを取得して保存する。
+    """JRA-VAN WOOD dataspec から調教タイムを取得して保存する。
+
+    直近7日分のデータを JVLink OPT_NORMAL で取得する。
+    土日の朝バッチから呼び出される。
+
+    Returns:
+        保存したレコード数。
     """
     from src.scraper.jravan_client import JVDataLoader, DATASPEC_WOOD
 
@@ -503,11 +527,13 @@ def sync_results_from_netkeiba(target_date: str, delay: float = 1.5) -> int:
 
 
 def sync_masters(full: bool = False) -> int:
-    """
-    マスタデータを同期する。
+    """マスタデータを同期する。
 
     Args:
-        full: True の場合 SETUP (全件)、False の場合 DIFN + BLOD (差分)
+        full: True の場合 SETUP（全件取得）、False の場合 DIFN + BLOD（差分取得）。
+
+    Returns:
+        保存したレコード数の合計。
     """
     from src.scraper.jravan_client import (
         JVDataLoader,
@@ -540,6 +566,10 @@ def sync_masters(full: bool = False) -> int:
 
 
 def main() -> None:
+    """データ同期 CLI のエントリーポイント。
+
+    サブコマンドで金曜バッチ・結果取得・調教・マスタ等を個別に実行できる。
+    """
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s %(levelname)s %(message)s",

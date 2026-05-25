@@ -50,20 +50,21 @@ assert abs(
 
 
 def calc_umasugi_score(df: pd.DataFrame, conn: sqlite3.Connection) -> pd.DataFrame:
-    """
-    umasugi_score を DataFrame に追加して返す。
+    """umasugi_score を DataFrame に追加して返す。
 
-    Parameters
-    ----------
-    df : DataFrame
-        UScoreEngine.calc() 適用済みの DataFrame。
-        必須列: u_score, race_id, horse_id
-    conn : sqlite3.Connection
-        umalogi.db 接続。
+    各拡張因子関数を順番に呼び出し、ウェイト付き加重和で umasugi_score を算出する。
+    空の DataFrame が渡された場合はスコア列を float 型で初期化して即返す。
 
-    Returns
-    -------
-    df : DataFrame  (元 df + 各拡張スコア列 + umasugi_score 列)
+    Args:
+        df: UScoreEngine.calc() 適用済みの DataFrame。
+            必須列: u_score, race_id, horse_id。
+        conn: umalogi.db 接続。
+
+    Returns:
+        元 df に各拡張スコア列（track_style_score, turf_type_score,
+        training_grade_score, odds_momentum_score, paddock_score,
+        jockey_course_score, trainer_course_score）と umasugi_score 列を
+        追加した DataFrame。
     """
     from .factors.jockey_trainer import (
         calc_jockey_course_score,

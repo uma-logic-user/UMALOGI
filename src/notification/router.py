@@ -53,7 +53,15 @@ _LEGACY_MAP: dict[str, str] = {
 def _chunk_text(text: str, max_len: int = _CHUNK_MAX) -> list[str]:
     """テキストを max_len 文字以下のチャンクに分割して返す。
 
-    分割優先順位: ダブル改行 → 単一改行 → ハードカット
+    分割優先順位: ダブル改行 → 単一改行 → ハードカット。
+    Discord のメッセージ上限（2000文字）に対してデフォルト 1800 文字で制限する。
+
+    Args:
+        text: 分割対象のテキスト。
+        max_len: チャンクの最大文字数。デフォルトは 1800。
+
+    Returns:
+        max_len 文字以下に分割されたチャンクのリスト。
     """
     if len(text) <= max_len:
         return [text]
@@ -85,7 +93,18 @@ def _chunk_text(text: str, max_len: int = _CHUNK_MAX) -> list[str]:
 
 
 def _generate_x_post(title: str, body: str) -> str:
-    """note 記事から X（Twitter）告知ポスト（140文字以内）を生成する。"""
+    """note 記事から X（Twitter）告知ポスト（140文字以内）を生成する。
+
+    タイトルの絵文字プレフィックスを除去し、本文の最初の ## 見出しを抽出して
+    ハッシュタグ付きのコンパクトなポスト文を生成する。
+
+    Args:
+        title: note 記事のタイトル。
+        body: note 記事の本文（Markdown 形式）。
+
+    Returns:
+        140文字以内の X 投稿テキスト。
+    """
     hashtags = "#競馬 #AI予想 #UMALOGI #JRA"
     suffix = f"\n\nnoteで全モデル成績公開中📊\n\n{hashtags}"
 
@@ -106,10 +125,17 @@ def _generate_x_post(title: str, body: str) -> str:
 
 
 def _format_buying_guide(predictions: dict) -> str | None:
-    """
-    honmei/manji/alpha の予想結果から推奨買い方テンプレートを生成する。
-    bet_type が存在しない場合はそのセクションをスキップ。
-    すべて空なら None を返す。
+    """honmei/manji/alpha の予想結果から推奨買い方テンプレートを生成する。
+
+    各モデルの bet_type に応じて単複・馬連・三連複のセクションを生成する。
+    bet_type が存在しないセクションはスキップする。
+
+    Args:
+        predictions: モデル名をキーとする RaceBets リストの辞書。
+                     キー: 'honmei' / 'manji' / 'alpha'。
+
+    Returns:
+        推奨買い方テンプレート文字列、またはすべて空の場合は None。
     """
     lines: list[str] = []
 
@@ -183,13 +209,21 @@ def _format_buying_guide(predictions: dict) -> str | None:
 # ── NotificationRouter ────────────────────────────────────────────────────────
 
 class NotificationRouter:
-    """
-    マルチ Webhook ルーティング層。
+    """マルチ Webhook ルーティング層。
+
     チャンネル別に DiscordNotifier インスタンスを保持し、
     用途別のフォールバック制御を担う。
+
+    チャンネルマップ:
+        prediction: 買い目・結果の主要チャンネル。
+        system:     システムログ・エラー通知。
+        ev_alert:   EV >= EV_ALERT_THRESHOLD の激熱レース専用。
+        ab_test:    V1/V2 成績比較レポート。
+        note_draft: note 下書き出力用。
     """
 
     def __init__(self) -> None:
+        """初期化。環境変数からチャンネル Notifier を構築する。"""
         self._channels: dict[str, DiscordNotifier] = {}
         self._build_channels()
 
@@ -203,7 +237,12 @@ class NotificationRouter:
     }
 
     def _build_channels(self) -> None:
-        """環境変数からチャンネル → DiscordNotifier を構築する。"""
+        """環境変数からチャンネル名 → DiscordNotifier の辞書を構築する。
+
+        CHANNEL_ENV マップを走査し、URL が設定されているチャンネルのみ
+        DiscordNotifier インスタンスを生成する。
+        system チャンネルは旧変数名 DISCORD_SYSTEM_WEBHOOK_URL も後方互換で参照する。
+        """
         for channel, env_key in CHANNEL_ENV.items():
             url = os.environ.get(env_key, "").strip()
             # 後方互換: system チャンネルは旧変数名も読む
@@ -221,7 +260,15 @@ class NotificationRouter:
             )
 
     def _get(self, channel: str) -> DiscordNotifier | None:
-        """チャンネルの Notifier を返す。未設定なら prediction へフォールバック。"""
+        """チャンネルの Notifier を返す。未設定なら prediction チャンネルへフォールバック。
+
+        Args:
+            channel: チャンネル識別子（'prediction' / 'system' / 'ev_alert' 等）。
+
+        Returns:
+            対応する DiscordNotifier、または prediction フォールバック。
+            両方とも未設定の場合は None。
+        """
         return self._channels.get(channel) or self._channels.get("prediction")
 
     # ── prediction チャンネル ────────────────────────────────────────────────
@@ -288,13 +335,21 @@ class NotificationRouter:
         )
 
     def send_text(self, text: str) -> None:
-        """予想チャンネルにプレーンテキストを送信する。"""
+        """予想チャンネルにプレーンテキストを送信する。
+
+        Args:
+            text: 送信するプレーンテキスト。
+        """
         n = self._get("prediction")
         if n:
             n.send_text(text)
 
     def send_prediction_embed(self, embeds: list[dict]) -> None:
-        """予想チャンネルに生 embed リストを送信する（scheduler 週次サマリー用）。"""
+        """予想チャンネルに生 embed リストを送信する（scheduler 週次サマリー用）。
+
+        Args:
+            embeds: Discord embed オブジェクトのリスト。
+        """
         n = self._get("prediction")
         if n:
             n.send_prediction_embed(embeds)
@@ -310,6 +365,11 @@ class NotificationRouter:
         """EV >= EV_ALERT_THRESHOLD の激熱レースを @everyone 付きで ev_alert チャンネルへ送信する。
 
         ev_alert チャンネルが未設定の場合は何もしない（prediction への二重送信を防ぐ）。
+
+        Args:
+            race_id: 対象レースの ID。
+            max_ev: 最大期待値。
+            bets_summary: 買い目サマリーテキスト。
         """
         ev_notifier = self._channels.get("ev_alert")  # fallback 経由しない
         if ev_notifier is None:
@@ -329,6 +389,15 @@ class NotificationRouter:
         cumulative_pnl: int,
         monthly_progress_pct: float,
     ) -> None:
+        """的中サマリーを予想チャンネルへ委譲送信する。
+
+        Args:
+            date_str: 対象日付の文字列（例: '2026-05-25'）。
+            hit_count: 当日の的中件数。
+            total_count: 当日の全買い目件数。
+            cumulative_pnl: 累積損益（円）。
+            monthly_progress_pct: 月次目標進捗率（%）。
+        """
         n = self._get("prediction")
         if n:
             n.notify_hit_summary(
@@ -337,6 +406,12 @@ class NotificationRouter:
             )
 
     def notify_skip(self, race_id: str, reason: str) -> None:
+        """予想見送りを予想チャンネルの Notifier に委譲する。
+
+        Args:
+            race_id: 見送り対象のレース ID。
+            reason: 見送り理由。
+        """
         n = self._get("prediction")
         if n:
             n.notify_skip(race_id, reason)
@@ -344,7 +419,11 @@ class NotificationRouter:
     # ── system チャンネル ────────────────────────────────────────────────────
 
     def send_system_text(self, text: str) -> None:
-        """システムチャンネルにプレーンテキストを送信する。"""
+        """システムチャンネルにプレーンテキストを送信する。
+
+        Args:
+            text: 送信するプレーンテキスト。
+        """
         n = self._get("system")
         if n:
             n.send_text(text)
@@ -355,11 +434,25 @@ class NotificationRouter:
         description: str,
         **kwargs: Any,
     ) -> None:
+        """システムチャンネルに Embed を送信する。
+
+        Args:
+            title: Embed のタイトル。
+            description: Embed の本文。
+            **kwargs: DiscordNotifier.send_system_embed に渡す追加キーワード引数
+                      （color / fields / footer）。
+        """
         n = self._get("system")
         if n:
             n.send_system_embed(title, description, **kwargs)
 
     def notify_scraping_alert(self, race_id: str, detail: str) -> None:
+        """スクレイピング異常をシステムチャンネルへ委譲送信する。
+
+        Args:
+            race_id: 異常が発生したレース ID。
+            detail: 異常の詳細説明。
+        """
         n = self._get("system")
         if n:
             n.notify_scraping_alert(race_id, detail)
@@ -371,11 +464,24 @@ class NotificationRouter:
         action: str,
         screenshot_path: Any = None,
     ) -> None:
+        """手動介入要請をシステムチャンネルへ委譲送信する。
+
+        Args:
+            step: 失敗したステップ名。
+            error: エラーの詳細文字列。
+            action: 推奨される対応アクション。
+            screenshot_path: スクリーンショット画像のパス（任意）。
+        """
         n = self._get("system")
         if n:
             n.notify_intervention_required(step, error, action, screenshot_path)
 
     def notify_ror_warning(self, warning_text: str) -> None:
+        """RoR 警告をシステムチャンネルへ委譲送信する。
+
+        Args:
+            warning_text: 警告の詳細テキスト。
+        """
         n = self._get("system")
         if n:
             n.notify_ror_warning(warning_text)
@@ -383,7 +489,14 @@ class NotificationRouter:
     # ── ab_test チャンネル ───────────────────────────────────────────────────
 
     def send_ab_report(self, report_md: str) -> None:
-        """V1/V2 週次 A/B 比較レポートを ab_test チャンネルへ送信する。"""
+        """V1/V2 週次 A/B 比較レポートを ab_test チャンネルへ送信する。
+
+        テキストを _chunk_text で分割し、各チャンクを Markdown コードブロックで送信する。
+        DISCORD_WEBHOOK_AB_TEST 未設定時は警告ログを出してスキップする。
+
+        Args:
+            report_md: Markdown 形式のレポート本文。
+        """
         n = self._get("ab_test")
         if n is None:
             logger.warning("DISCORD_WEBHOOK_AB_TEST 未設定 — A/B レポート送信スキップ")

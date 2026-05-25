@@ -55,7 +55,15 @@ except ImportError:
 
 
 def run_bot() -> None:
-    """Discord ボットを起動する。"""
+    """Discord ボットを起動する。
+
+    DISCORD_BOT_TOKEN 環境変数からトークンを読み込み、discord.py クライアントを
+    初期化して /paddock スラッシュコマンドを登録・起動する。
+    discord.py 未インストール時または TOKEN 未設定時は sys.exit(1) で終了する。
+
+    Raises:
+        SystemExit: discord.py 未インストール時または TOKEN 未設定時。
+    """
     if not _DISCORD_AVAILABLE:
         logger.error("discord.py をインストールしてください: pip install 'discord.py>=2.3'")
         sys.exit(1)

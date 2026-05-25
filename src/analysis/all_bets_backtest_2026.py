@@ -133,12 +133,29 @@ _DIST_BANDS = {
 _SIRE_CACHE: dict[str, int] = {}
 
 def _encode_sire(sire: str | None) -> int:
+    """父馬名を整数コードに変換する（モジュールキャッシュ利用）。
+
+    Args:
+        sire: 父馬名。None または空文字の場合は "" として扱う。
+
+    Returns:
+        初登場の父馬には連番を割り当て、既出の場合はキャッシュ値を返す。
+    """
     s = sire or ""
     if s not in _SIRE_CACHE:
         _SIRE_CACHE[s] = len(_SIRE_CACHE)
     return _SIRE_CACHE[s]
 
 def _dist_band(distance: int) -> str:
+    """距離バンド文字列を返す。
+
+    Args:
+        distance: レース距離（メートル）。
+
+    Returns:
+        "s" (短距離 <1400m) / "m" (マイル 1400-1800m) /
+        "i" (中距離 1800-2200m) / "l" (長距離 2200m+)。
+    """
     for name, (lo, hi) in _DIST_BANDS.items():
         if lo <= distance < hi:
             return name
@@ -149,6 +166,14 @@ _JKY_MAP: dict[str, float] = {}
 _TRN_MAP: dict[str, float] = {}
 
 def build_jockey_trainer_maps(conn: sqlite3.Connection) -> None:
+    """騎手・調教師の勝率マップをモジュールグローバルに構築する。
+
+    TRAIN_FROM〜TRAIN_TO 期間の race_results から、5戦以上の騎手・調教師の
+    勝率を集計して _JKY_MAP / _TRN_MAP を更新する。
+
+    Args:
+        conn: DB コネクション。
+    """
     rows = conn.execute(
         """
         SELECT rr.jockey,
@@ -191,6 +216,19 @@ def _horse_stats(
     surface: str,
     distance: int,
 ) -> dict[str, float]:
+    """馬別の過去成績統計を返す（データリーク防止のため race_date 前のみ集計）。
+
+    Args:
+        conn: DB コネクション。
+        horse_id: 馬 ID。
+        race_date: 対象レース日付（"YYYY-MM-DD"）。この日付より前のレースのみ使用。
+        surface: レース馬場（"芝" / "ダート" / "障害"）。
+        distance: レース距離（メートル）。
+
+    Returns:
+        win_rate_all / win_rate_surface / win_rate_distance_band /
+        recent_rank_mean の 4 キーを持つ辞書。過去成績なしの場合はゼロ値。
+    """
     band = _dist_band(distance)
     rows = conn.execute(
         """
@@ -240,9 +278,21 @@ def build_race_df(
     include_rank: bool = False,
     test_mode: bool = False,
 ) -> pd.DataFrame | None:
-    """
-    test_mode=True: rank フィルタなしで全出走馬を含める（データリーク防止）。
-    test_mode=False (train時): rank IS NOT NULL AND rank > 0 で確定着順馬のみ。
+    """1レース分の特徴量 DataFrame を構築する。
+
+    test_mode=True の場合は entries テーブルを優先して出走馬全頭を含め、
+    rank は race_results から補完する（データリーク防止）。
+    test_mode=False の場合は rank IS NOT NULL AND rank > 0 の確定着順馬のみ。
+
+    Args:
+        conn: DB コネクション。
+        race_id: レース ID。
+        race_date: レース日付（"YYYY-MM-DD"）。_horse_stats の基準日として使用。
+        include_rank: True の場合、rank 列を DataFrame に含める。
+        test_mode: True の場合、entries テーブルを使いデータリークを防ぐ。
+
+    Returns:
+        特徴量 DataFrame（2頭未満の場合は None）。
     """
     race_row = conn.execute(
         "SELECT distance, surface, venue, condition FROM races WHERE race_id = ?",
@@ -367,6 +417,20 @@ def build_race_df(
 def train_model(
     conn: sqlite3.Connection,
 ) -> tuple:
+    """2024〜2025年データで LightGBM+Isotonic モデルを訓練する。
+
+    GroupKFold (5分割) で OOF 予測を生成し Isotonic 校正を行った後、
+    全訓練データで最終モデルを構築する。
+
+    Args:
+        conn: DB コネクション。
+
+    Returns:
+        (final_clf, iso, feat_cols, cv_auc) のタプル。
+
+    Raises:
+        RuntimeError: 訓練データが 0 件の場合。
+    """
     logger.info("Train セット構築中 (%s ～ %s)...", TRAIN_FROM, TRAIN_TO)
 
     race_list = conn.execute(
@@ -423,6 +487,17 @@ def train_model(
 
 
 def predict_win_prob(model, iso, feat_cols: list[str], df: pd.DataFrame) -> np.ndarray:
+    """各馬の単勝確率を予測する（Isotonic 校正済み）。
+
+    Args:
+        model: 訓練済み LGBMClassifier。
+        iso: 訓練済み IsotonicRegression。
+        feat_cols: 使用する特徴量列名リスト。
+        df: build_race_df() が返す特徴量 DataFrame。
+
+    Returns:
+        各馬の単勝確率の numpy 配列（長さ = len(df)）。
+    """
     X   = df[feat_cols].astype(float).fillna(-1)
     raw = model.predict_proba(X)[:, 1]
     return iso.predict(raw)
@@ -430,6 +505,17 @@ def predict_win_prob(model, iso, feat_cols: list[str], df: pd.DataFrame) -> np.n
 
 # ── 払戻データ取得 ──────────────────────────────────────────────────────────────
 def get_payouts(conn: sqlite3.Connection, race_id: str) -> dict[str, dict]:
+    """払戻データを {bet_type: {combination: payout}} の辞書で返す。
+
+    HEX 変換による bet_type マッピングを使用して日本語券種名に変換する。
+
+    Args:
+        conn: DB コネクション。
+        race_id: レース ID。
+
+    Returns:
+        {bet_type: {combination: payout}} の辞書。BET_TYPE_HEX 外の券種は除外。
+    """
     rows = conn.execute(
         "SELECT hex(bet_type), combination, payout FROM race_payouts WHERE race_id = ?",
         (race_id,),
@@ -462,7 +548,16 @@ def _get_race_odds_map(conn: sqlite3.Connection, race_id: str) -> dict[int, floa
 
 # ── Harville 確率 ──────────────────────────────────────────────────────────────
 def _harville_quinella(probs: list[float], i: int, j: int) -> float:
-    """P(i と j が 1着・2着に入る = 馬連)"""
+    """P(i と j が 1着・2着に入る = 馬連) を Harville 公式で推定する。
+
+    Args:
+        probs: 各馬の単勝確率リスト（インデックスは馬の位置）。
+        i: 馬1のインデックス。
+        j: 馬2のインデックス。
+
+    Returns:
+        馬連確率（0.0〜0.99）。
+    """
     pi, pj = probs[i], probs[j]
     q  = pi * pj / (1.0 - pi) if pi < 1.0 else 0.0
     q += pj * pi / (1.0 - pj) if pj < 1.0 else 0.0
@@ -470,7 +565,16 @@ def _harville_quinella(probs: list[float], i: int, j: int) -> float:
 
 
 def _harville_exacta(probs: list[float], i: int, j: int) -> float:
-    """P(i が 1着, j が 2着 = 馬単)"""
+    """P(i が 1着, j が 2着 = 馬単) を Harville 公式で推定する。
+
+    Args:
+        probs: 各馬の単勝確率リスト。
+        i: 1着馬のインデックス。
+        j: 2着馬のインデックス。
+
+    Returns:
+        馬単確率（0.0〜0.99）。
+    """
     pi, pj = probs[i], probs[j]
     d1 = 1.0 - pi
     if d1 <= 0:
@@ -479,7 +583,19 @@ def _harville_exacta(probs: list[float], i: int, j: int) -> float:
 
 
 def _harville_trio(probs: list[float], i: int, j: int, k: int) -> float:
-    """P(i, j, k が 1-3着 = 三連複)"""
+    """P(i, j, k が 1-3着 = 三連複) を Harville 公式で推定する。
+
+    全 3! = 6 通りの順列の確率を合計して返す。
+
+    Args:
+        probs: 各馬の単勝確率リスト。
+        i: 馬1のインデックス。
+        j: 馬2のインデックス。
+        k: 馬3のインデックス。
+
+    Returns:
+        三連複確率（0.0〜0.99）。
+    """
     total = 0.0
     for a, b, c in itertools.permutations([i, j, k]):
         pa, pb, pc = probs[a], probs[b], probs[c]
@@ -491,7 +607,17 @@ def _harville_trio(probs: list[float], i: int, j: int, k: int) -> float:
 
 
 def _harville_trifecta(probs: list[float], i: int, j: int, k: int) -> float:
-    """P(i が 1着, j が 2着, k が 3着 = 三連単)"""
+    """P(i が 1着, j が 2着, k が 3着 = 三連単) を Harville 公式で推定する。
+
+    Args:
+        probs: 各馬の単勝確率リスト。
+        i: 1着馬のインデックス。
+        j: 2着馬のインデックス。
+        k: 3着馬のインデックス。
+
+    Returns:
+        三連単確率（0.0〜0.99）。
+    """
     pi, pj, pk = probs[i], probs[j], probs[k]
     d1 = 1.0 - pi
     d2 = 1.0 - pi - pj
@@ -501,8 +627,18 @@ def _harville_trifecta(probs: list[float], i: int, j: int, k: int) -> float:
 
 
 def _harville_wide(probs: list[float], i: int, j: int) -> float:
-    """P(i と j が 1-3着に入る = ワイド)
-    = Σ_{k≠i,j} P({i,j,k} が 1-3着)"""
+    """P(i と j が 1-3着に入る = ワイド) を Harville 公式で推定する。
+
+    = Σ_{k≠i,j} P({i,j,k} が 1-3着)
+
+    Args:
+        probs: 各馬の単勝確率リスト。
+        i: 馬1のインデックス。
+        j: 馬2のインデックス。
+
+    Returns:
+        ワイド確率（0.0〜0.99）。
+    """
     total = sum(
         _harville_trio(probs, i, j, k)
         for k in range(len(probs))
@@ -513,9 +649,16 @@ def _harville_wide(probs: list[float], i: int, j: int) -> float:
 
 # ── 黄金ゾーン判定（単勝専用）─────────────────────────────────────────────────
 def _in_golden_zone(edge: float) -> bool:
-    """単勝 edge が発注許可ゾーン内かどうか。
+    """単勝 edge が発注許可ゾーン（黄金ゾーン）内かどうかを判定する。
+
     許可: [1.2, 1.5] OR [5.0, ∞)
     禁止（過熱ゾーン）: (1.5, 5.0)
+
+    Args:
+        edge: モデル edge 値（= p_top / base_rate）。
+
+    Returns:
+        発注許可ゾーン内の場合 True。
     """
     for lo, hi in EDGE_GOLDEN_ZONES:
         if lo <= edge <= hi:
@@ -589,9 +732,25 @@ def kelly_bet(
 
 # ── コンビネーション文字列生成 ─────────────────────────────────────────────────
 def _combo_unordered(*nums: int) -> str:
+    """複数馬番を昇順 "-" 区切りで結合する（馬連・ワイド・三連複用）。
+
+    Args:
+        *nums: 馬番の可変長引数。
+
+    Returns:
+        例: "3-7-11"（昇順ソート済み）。
+    """
     return "-".join(str(n) for n in sorted(nums))
 
 def _combo_ordered(*nums: int) -> str:
+    """複数馬番を入力順 ARROW 区切りで結合する（馬単・三連単用）。
+
+    Args:
+        *nums: 馬番の可変長引数（順序が重要）。
+
+    Returns:
+        例: "7→14"（入力順）。
+    """
     return ARROW.join(str(n) for n in nums)
 
 
@@ -605,6 +764,23 @@ def simulate_race(
     bankroll: float,
     odds_map: dict[int, float] | None = None,
 ) -> tuple[list[dict], float]:
+    """1レースのベットをシミュレートしてベット記録と純損益を返す。
+
+    単勝・複勝のみ発注（COMBO_BET_MODE="disabled" の場合はワイド/馬連/三連複を除外）。
+    実際の単勝オッズが取得できる馬は kelly_bet の精度が向上する。
+
+    Args:
+        race_id: レース ID。
+        race_date: レース日付（"YYYY-MM-DD"）。
+        race_df: build_race_df() が返す特徴量 DataFrame。
+        probs: predict_win_prob() が返す単勝確率 numpy 配列。
+        payouts: get_payouts() が返す {bet_type: {combo: payout}} 辞書。
+        bankroll: 現在の残高（円）。
+        odds_map: {horse_number: win_odds} の辞書。None の場合は TYPICAL_ODDS を使用。
+
+    Returns:
+        (ベット記録リスト, レース純損益（円）) のタプル。
+    """
     n          = len(race_df)
     horse_nums = list(race_df["horse_number"].astype(int))
     prob_list  = list(probs)
@@ -701,6 +877,21 @@ def run_simulation(
     iso,
     feat_cols: list[str],
 ) -> pd.DataFrame:
+    """2026年テスト期間の全レースをシミュレートする。
+
+    TEST_FROM〜TEST_TO の全レースに対して simulate_race() を呼び出し、
+    結果を DataFrame に集約する。df.attrs に final_bankroll / peak_bankroll /
+    bankroll_history を格納する。
+
+    Args:
+        conn: DB コネクション。
+        model: 訓練済み LGBMClassifier。
+        iso: 訓練済み IsotonicRegression。
+        feat_cols: 使用する特徴量列名リスト。
+
+    Returns:
+        全ベット記録の DataFrame（bankroll_after 列含む）。ベットなしの場合は空 DataFrame。
+    """
     race_list = conn.execute(
         """
         SELECT DISTINCT r.race_id, r.date
@@ -780,6 +971,14 @@ def run_simulation(
 
 # ── 最大ドローダウン ───────────────────────────────────────────────────────────
 def calc_max_drawdown(history: list[dict]) -> float:
+    """残高履歴から最大ドローダウン（%）を計算する。
+
+    Args:
+        history: {"bankroll": float, ...} の辞書リスト（run_simulation の bl_history）。
+
+    Returns:
+        最大ドローダウン (%)。履歴が空の場合は 0.0。
+    """
     if not history:
         return 0.0
     peak  = history[0]["bankroll"]
@@ -794,6 +993,16 @@ def calc_max_drawdown(history: list[dict]) -> float:
 
 # ── 払戻合計ヘルパー ───────────────────────────────────────────────────────────
 def _payout_sum(df: pd.DataFrame) -> float:
+    """ベット記録 DataFrame から実際の払戻合計（円）を計算する。
+
+    payout_per100 は 100円投資あたりの払戻金額のため、bet_amount と比例計算する。
+
+    Args:
+        df: run_simulation() が返す全ベット記録 DataFrame。
+
+    Returns:
+        払戻合計（円）。DataFrame が空の場合は 0.0。
+    """
     if df.empty:
         return 0.0
     return float(df.apply(
@@ -806,6 +1015,15 @@ def _payout_sum(df: pd.DataFrame) -> float:
 SEP = "=" * 82
 
 def print_report(df: pd.DataFrame, cv_auc: float) -> None:
+    """バックテスト結果の詳細レポートを標準出力に表示する。
+
+    資金曲線サマリー・ベット全体サマリー・券種別 ROI・月次推移・
+    edge 強度別 ROI の各テーブルを含む。
+
+    Args:
+        df: run_simulation() が返す全ベット記録 DataFrame（attrs に残高情報含む）。
+        cv_auc: train_model() が返す CV AUC 値。
+    """
     final_bl  = df.attrs.get("final_bankroll", 0.0)
     peak_bl   = df.attrs.get("peak_bankroll",  0.0)
     history   = df.attrs.get("bankroll_history", [])
@@ -934,6 +1152,15 @@ def print_report(df: pd.DataFrame, cv_auc: float) -> None:
 
 # ── JSON 保存 ──────────────────────────────────────────────────────────────────
 def save_json(df: pd.DataFrame, cv_auc: float) -> None:
+    """バックテスト結果を JSON ファイルに保存する。
+
+    OUT_JSON に設定・AUC・最終残高・券種別成績・残高推移（10レースごと）を出力する。
+    DataFrame が空の場合は何もしない。
+
+    Args:
+        df: run_simulation() が返す全ベット記録 DataFrame（attrs に残高情報含む）。
+        cv_auc: train_model() が返す CV AUC 値。
+    """
     if df.empty:
         return
     history = df.attrs.get("bankroll_history", [])
@@ -981,6 +1208,13 @@ def save_json(df: pd.DataFrame, cv_auc: float) -> None:
 
 # ── メイン ─────────────────────────────────────────────────────────────────────
 def main() -> None:
+    """本命直前モデル 2026年全券種バックテストのエントリーポイント。
+
+    Step 1: 騎手/調教師勝率マップ構築
+    Step 2: モデル訓練（2024+2025年データ）
+    Step 3: 2026年 walk-forward シミュレーション
+    Step 4: レポート出力・JSON 保存
+    """
     logger.info("=== 本命直前モデル 2026年 全券種バックテスト 開始 ===")
     conn = sqlite3.connect(str(DB_PATH))
     conn.row_factory = sqlite3.Row

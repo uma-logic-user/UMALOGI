@@ -39,8 +39,11 @@ _discord = NotificationRouter()
 def _check_data_quality(df: pd.DataFrame) -> tuple[bool, str]:
     """出馬表 DataFrame のデータ品質チェック。
 
+    Args:
+        df: 出馬表の特徴量 DataFrame（win_odds / horse_weight 列を含む）。
+
     Returns:
-        (True, "OK") or (False, "見送り理由")
+        品質が問題なければ (True, "OK")、見送り基準を超えた場合は (False, 理由文字列)。
     """
     n = len(df)
     if n == 0:
@@ -69,13 +72,29 @@ def _check_data_quality(df: pd.DataFrame) -> tuple[bool, str]:
 
 
 def _estimate_race_start_jst(race_number: int, race_date: str) -> datetime:
-    """R1=10:00 JST、以降 30 分間隔で発走時刻を推定する。"""
+    """R1=10:00 JST、以降 30 分間隔で発走時刻を推定する。
+
+    Args:
+        race_number: レース番号（1〜12）。
+        race_date: レース開催日を "YYYYMMDD" 形式で表した文字列。
+
+    Returns:
+        推定発走時刻（JST・タイムゾーン情報なし）の datetime オブジェクト。
+    """
     base = datetime.strptime(race_date, "%Y%m%d").replace(hour=10, minute=0)
     return base + timedelta(minutes=(race_number - 1) * 30)
 
 
 def _check_race_deadline(conn: sqlite3.Connection, race_id: str) -> None:
-    """締め切り 15 分前を過ぎていれば Discord に遅延警告を送る。"""
+    """締め切り 15 分前を過ぎていれば Discord に遅延警告を送る。
+
+    races テーブルから発走時刻を推定し、締め切り（発走 -15 分）を超過している場合は
+    NotificationRouter 経由でシステムチャンネルに警告テキストを送信する。
+
+    Args:
+        conn: SQLite 接続オブジェクト。races テーブルへの参照に使用する。
+        race_id: 対象レース ID。
+    """
     try:
         row = conn.execute(
             "SELECT date, race_number FROM races WHERE race_id = ?", (race_id,)
@@ -123,7 +142,25 @@ def _save_predictions(
     manji_bets: object,
     suffix: str,
 ) -> dict[str, list[int]]:
-    """本命・卍 買い目と全馬スコアを DB に保存する。"""
+    """本命・卍 買い目と全馬スコアを DB に保存する。
+
+    insert_prediction を呼び出して predictions テーブルへ INSERT する。
+    全馬スコアは "馬分析" bet_type として別途 1 レコード保存される。
+
+    Args:
+        conn: SQLite 接続オブジェクト。
+        race_id: 対象レース ID。
+        df: 出走馬の特徴量 DataFrame。
+        honmei_scores: 本命モデルの勝利確率スコア系列。
+        honmei_ev_scores: 本命モデルの EV スコア系列。
+        ev_scores: 卍モデルの EV スコア系列。
+        honmei_bets: 本命モデルの買い目（RaceBets 互換オブジェクト）。
+        manji_bets: 卍モデルの買い目（RaceBets 互換オブジェクト）。
+        suffix: model_type に付与するサフィックス（例: "(直前)" / "V2(暫定)"）。
+
+    Returns:
+        保存した prediction_id の辞書 {"本命": [...], "卍": [...]}。
+    """
     prediction_ids: dict[str, list[int]] = {"本命": [], "卍": []}
 
     for race_bets in (honmei_bets, manji_bets):
@@ -214,12 +251,19 @@ def _run_alpha_payout(
     df: pd.DataFrame,
     bankroll: float,
 ) -> "RaceBets | None":
-    """
-    Alpha-Payout 複勝シグナル + 三連複・三連単を生成して DB に保存し
-    RaceBets を返す（Discord 通知用）。
+    """Alpha-Payout 複勝シグナル + 三連複・三連単を生成して DB に保存し RaceBets を返す。
 
     モデルファイル (data/models/alpha_payout/alpha_payout_model.pkl) が
-    存在しない場合は None を返す。
+    存在しない場合は None を返す。買いシグナルがゼロ件の場合も None を返す。
+
+    Args:
+        conn: SQLite 接続オブジェクト。predictions テーブルへの INSERT に使用する。
+        race_id: 対象レース ID。
+        df: 出走馬の特徴量 DataFrame。
+        bankroll: 現在の総資金（円）。Kelly 賭け額の計算基準。
+
+    Returns:
+        Discord 通知用の RaceBets オブジェクト。モデル未存在またはシグナルなしの場合は None。
     """
     try:
         from src.ml.alpha_payout_model import AlphaPayoutModel, _MODEL_PATH
@@ -433,7 +477,23 @@ def _prerace_pipeline_inner(
     model_version: str,
     mode_label: str,
 ) -> dict:
-    """prerace_pipeline の内部実装。conn は呼び出し元で finally close される。"""
+    """prerace_pipeline の内部実装。conn は呼び出し元で finally close される。
+
+    締め切りチェック → エントリ取得 → オッズ取得 → 特徴量生成 →
+    モデル予測 → 買い目生成 → DB 保存 → JSON 出力 → Discord 通知
+    の順で処理を実行する。
+
+    Args:
+        conn: SQLite 接続オブジェクト（呼び出し元が finally で close する）。
+        race_id: 対象レース ID。
+        provisional: True の場合は暫定モード（オッズ欠損を許容）。
+        model_version: "v1" または "v2"。
+        mode_label: ログ表示用のモードラベル（"直前" または "暫定"）。
+
+    Returns:
+        UI 用 JSON ペイロード（dict）。スキップ時は {"skipped": True, ...}、
+        エラー時は {"error": ..., ...} を返す。
+    """
     # Step 0: 締め切りチェック（直前のみ）
     if not provisional:
         _check_race_deadline(conn, race_id)

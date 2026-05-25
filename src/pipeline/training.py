@@ -14,7 +14,14 @@ logger = logging.getLogger(__name__)
 
 
 def train_pipeline() -> None:
-    """DB の全データでモデルを学習・保存する。"""
+    """DB の全データでモデルを学習・保存する。
+
+    学習前に data/backups/ へのバックアップを試みる（失敗しても学習は継続）。
+    train_all() の結果は標準出力に JSON 形式で出力される。
+
+    Raises:
+        Exception: train_all() または init_db() が失敗した場合。
+    """
     from src.database.init_db import init_db
     from src.ml.models import train_all
 

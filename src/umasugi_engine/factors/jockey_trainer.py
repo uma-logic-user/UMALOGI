@@ -35,10 +35,22 @@ def _fetch_stats(
     venues: list[str],
     surfaces: list[str],
 ) -> dict[tuple[str, str, str], float]:
-    """
-    (name, venue, surface) → スコア値 辞書を返す。
+    """(name, venue, surface) → スコア値の辞書を返す。
 
-    スコア = win_rate×0.6 + last_30d_win_rate×0.4
+    スコア = win_rate × 0.6 + last_30d_win_rate × 0.4。
+    win_rate は _WINRATE_CAP (0.50) でクリップされる。
+
+    Args:
+        conn: umalogi.db 接続。
+        table: 検索対象テーブル名（jockey_stats / trainer_stats）。
+        name_col: 名前カラム名（jockey_name / trainer_name）。
+        names: 対象の騎手名または調教師名リスト。
+        venues: 対象の開催場所リスト。
+        surfaces: 対象の馬場種別リスト。
+
+    Returns:
+        (名前, 開催場所, 馬場種別) をキーとし、スコア値を値とする辞書。
+        names が空の場合は空の辞書を返す。
     """
     if not names:
         return {}
@@ -70,7 +82,17 @@ def _fetch_stats(
 
 
 def _normalize_scores(series: pd.Series) -> pd.Series:
-    """ランク正規化: 同一レース内で 0〜1 に変換する（データなしは 0.5）."""
+    """ランク正規化: 同一レース内のスコアを 0〜1 に変換する。
+
+    _DEFAULT (0.5) の行はデータなしとみなし変換対象から除外する。
+    有効データが 1 件以下の場合は元の Series をそのまま返す。
+
+    Args:
+        series: スコア値を持つ Series（_DEFAULT はデータなしを意味する）。
+
+    Returns:
+        ランク正規化後の Series（0.0〜1.0 にクリップ済み）。
+    """
     valid_mask = series != _DEFAULT
     if valid_mask.sum() < 2:
         return series
@@ -87,17 +109,19 @@ def _normalize_scores(series: pd.Series) -> pd.Series:
 def calc_jockey_course_score(
     df: pd.DataFrame, conn: sqlite3.Connection
 ) -> pd.DataFrame:
-    """
-    騎手コース別成績スコアを DataFrame に追加して返す。
+    """騎手コース別成績スコアを DataFrame に追加して返す。
 
-    Parameters
-    ----------
-    df : DataFrame  (必須列: race_id, jockey, venue, surface)
-    conn : sqlite3.Connection
+    jockey_stats テーブルからコース（venue × surface）別の勝率を取得し、
+    レース内ランク正規化を経て jockey_course_score 列を追加する。
 
-    Returns
-    -------
-    df + jockey_course_score 列 (0.0〜1.0)
+    Args:
+        df: 必須列として race_id, jockey, venue, surface を含む DataFrame。
+            venue / surface が欠損している場合は races テーブルから補完する。
+        conn: umalogi.db 接続。
+
+    Returns:
+        元 df に jockey_course_score 列（0.0〜1.0、データなし = 0.5）を
+        追加した DataFrame。
     """
     if df.empty:
         df["jockey_course_score"] = pd.Series(dtype=float)
@@ -136,17 +160,19 @@ def calc_jockey_course_score(
 def calc_trainer_course_score(
     df: pd.DataFrame, conn: sqlite3.Connection
 ) -> pd.DataFrame:
-    """
-    調教師コース別成績スコアを DataFrame に追加して返す。
+    """調教師コース別成績スコアを DataFrame に追加して返す。
 
-    Parameters
-    ----------
-    df : DataFrame  (必須列: race_id, trainer, venue, surface)
-    conn : sqlite3.Connection
+    trainer_stats テーブルからコース（venue × surface）別の勝率を取得し、
+    レース内ランク正規化を経て trainer_course_score 列を追加する。
 
-    Returns
-    -------
-    df + trainer_course_score 列 (0.0〜1.0)
+    Args:
+        df: 必須列として race_id, trainer, venue, surface を含む DataFrame。
+            venue / surface が欠損している場合は races テーブルから補完する。
+        conn: umalogi.db 接続。
+
+    Returns:
+        元 df に trainer_course_score 列（0.0〜1.0、データなし = 0.5）を
+        追加した DataFrame。
     """
     if df.empty:
         df["trainer_course_score"] = pd.Series(dtype=float)
@@ -181,7 +207,15 @@ def calc_trainer_course_score(
 
 
 def _join_race_info(df: pd.DataFrame, conn: sqlite3.Connection) -> pd.DataFrame:
-    """races テーブルから venue / surface を df に LEFT JOIN する。"""
+    """races テーブルから venue / surface 列を df に LEFT JOIN して返す。
+
+    Args:
+        df: race_id 列を含む DataFrame。
+        conn: umalogi.db 接続。
+
+    Returns:
+        venue / surface 列を追加した DataFrame。
+    """
     race_ids = df["race_id"].unique().tolist()
     ph = ",".join("?" * len(race_ids))
     race_info = conn.execute(

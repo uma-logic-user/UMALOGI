@@ -33,7 +33,11 @@ TARGET_RACE_ID = "202506050811"  # 2025年 有馬記念（中山11R）
 # 件数表示
 # -----------------------------------------------------------------------
 def print_table_counts(conn: sqlite3.Connection) -> None:
-    """races / horses / race_results の件数をターミナルに表示する。"""
+    """races / horses / race_results の件数をターミナルに表示する。
+
+    Args:
+        conn: オープン済みの SQLite 接続オブジェクト。
+    """
     tables = ["races", "horses", "race_results"]
     print("\n" + "=" * 50)
     print("  DB 件数サマリー")
@@ -45,7 +49,11 @@ def print_table_counts(conn: sqlite3.Connection) -> None:
 
 
 def print_race_summary(race: RaceInfo) -> None:
-    """取得したレース結果をターミナルに表示する。"""
+    """取得したレース結果をターミナルに表示する。
+
+    Args:
+        race: netkeiba から取得済みの RaceInfo オブジェクト。
+    """
     print("\n" + "=" * 60)
     print(f"  {race.race_name}  ({race.date}  {race.venue})")
     print(f"  {race.surface}{race.distance}m  天候:{race.weather}  馬場:{race.condition}")
@@ -67,6 +75,11 @@ def print_race_summary(race: RaceInfo) -> None:
 # メイン処理
 # -----------------------------------------------------------------------
 def main() -> None:
+    """DB 初期化・レース取得・保存・件数表示を一連で実行するエントリポイント。
+
+    Raises:
+        SystemExit: レース取得または DB 保存でエラーが発生した場合、exit code 1 で終了。
+    """
     db_path = get_db_path()
     logger.info("DB パス: %s", db_path)
 
