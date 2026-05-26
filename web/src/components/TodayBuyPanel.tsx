@@ -72,15 +72,17 @@ export function TodayBuyPanel({ predictions, winOddsMap }: TodayBuyPanelProps) {
       const f       = canCalc ? calcKellyFraction(ev, odds) : 0
 
       return {
-        id:        p.prediction_id,
+        id:         p.prediction_id,
         betType,
-        horseNums: formatHorseNums(p.combination_json),
+        horseNums:  formatHorseNums(p.combination_json),
         odds,
         ev,
         f,
         stake,
-        noOdds,                    // 正確なオッズが取得できない券種
-        skip:      !noOdds && stake === 0,  // EV<1.0 で購入見送り（単勝のみ）
+        noOdds,                              // 正確なオッズが取得できない券種
+        skip:       !noOdds && stake === 0,  // EV<1.0 で購入見送り（単勝のみ）
+        isHit:      p.is_hit,                // null=未確定, 1=的中, 0=外れ
+        hitPayout:  p.payout,               // 確定払い戻し額（的中時のみ存在）
       }
     })
   }, [predictions, winOddsMap, bankroll, kellyFrac])
@@ -88,6 +90,18 @@ export function TodayBuyPanel({ predictions, winOddsMap }: TodayBuyPanelProps) {
   const totalStake  = useMemo(() => rows.reduce((s, r) => s + r.stake, 0), [rows])
   // 推奨購入あり = 単勝かつ stake > 0（オッズ確認要は集計から除外）
   const activeCount = rows.filter(r => !r.noOdds && !r.skip && r.stake > 0).length
+
+  // 結果確定済み行のサマリー集計
+  const confirmedRows    = useMemo(() => rows.filter(r => r.isHit !== null && r.isHit !== undefined), [rows])
+  const hasConfirmed     = confirmedRows.length > 0
+  // 投資額: Kelly推奨額の合計（確定済み行のみ。未確定行は実績に含めない）
+  const confirmedInvest  = useMemo(() => confirmedRows.reduce((s, r) => s + r.stake, 0), [confirmedRows])
+  // 払い戻し: 的中行の payout 合計
+  const confirmedPayout  = useMemo(
+    () => confirmedRows.filter(r => r.isHit === 1).reduce((s, r) => s + (r.hitPayout ?? 0), 0),
+    [confirmedRows],
+  )
+  const roi = confirmedInvest > 0 ? (confirmedPayout / confirmedInvest) * 100 : null
 
   if (predictions.length === 0) {
     return (
@@ -101,6 +115,34 @@ export function TodayBuyPanel({ predictions, winOddsMap }: TodayBuyPanelProps) {
 
   return (
     <div className="space-y-4">
+
+      {/* ── 結果サマリー（確定済み行がある場合のみ表示） ─── */}
+      {hasConfirmed && (
+        <div className="neon-card p-4 grid grid-cols-3 gap-4 text-center">
+          <div>
+            <p className="text-[10px] text-[var(--text-muted)] tracking-widest mb-1">合計投資額</p>
+            <p className="text-base font-bold text-yellow-400">
+              {confirmedInvest > 0 ? `¥${confirmedInvest.toLocaleString()}` : '—'}
+            </p>
+          </div>
+          <div>
+            <p className="text-[10px] text-[var(--text-muted)] tracking-widest mb-1">合計払い戻し額</p>
+            <p className={`text-base font-bold ${confirmedPayout > 0 ? 'text-green-400' : 'text-[var(--text-muted)]'}`}>
+              {confirmedPayout > 0 ? `¥${confirmedPayout.toLocaleString()}` : '¥0'}
+            </p>
+          </div>
+          <div>
+            <p className="text-[10px] text-[var(--text-muted)] tracking-widest mb-1">回収率</p>
+            <p className={`text-base font-bold ${
+              roi === null ? 'text-[var(--text-muted)]'
+                : roi >= 100 ? 'text-green-400'
+                : 'text-red-400'
+            }`}>
+              {roi !== null ? `${roi.toFixed(1)}%` : '—'}
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* ── 設定パネル ─────────────────────────────────── */}
       <div className="neon-card p-4 flex flex-wrap gap-4 items-center">
@@ -147,46 +189,64 @@ export function TodayBuyPanel({ predictions, winOddsMap }: TodayBuyPanelProps) {
               <th className="px-4 py-3 text-right">EV</th>
               <th className="px-4 py-3 text-right">f*</th>
               <th className="px-4 py-3 text-right">推奨購入額</th>
+              {hasConfirmed && <th className="px-4 py-3 text-right">結果</th>}
             </tr>
           </thead>
           <tbody className="divide-y divide-[rgba(0,200,255,0.08)]">
-            {rows.map(row => (
-              <tr
-                key={row.id}
-                className={
-                  row.skip
-                    ? 'opacity-40'
-                    : 'hover:bg-[rgba(0,200,255,0.04)]'
-                }
-              >
-                <td className="px-4 py-3 font-semibold text-[var(--text-primary)]">
-                  {row.betType}
-                </td>
-                <td className="px-4 py-3 text-[var(--text-secondary)]">{row.horseNums}</td>
-                <td className="px-4 py-3 text-right text-[var(--text-secondary)] font-mono">
-                  {row.noOdds ? '—' : row.odds > 0 ? `${row.odds.toFixed(1)}倍` : '—'}
-                </td>
-                <td className={`px-4 py-3 text-right font-mono font-semibold ${
-                  row.ev >= 1.0 ? 'text-green-400' : 'text-[var(--text-muted)]'
-                }`}>
-                  {row.ev > 0 ? row.ev.toFixed(2) : '—'}
-                </td>
-                <td className="px-4 py-3 text-right font-mono text-xs text-[var(--text-muted)]">
-                  {row.noOdds ? '—' : row.f > 0 ? `${(row.f * 100).toFixed(1)}%` : '—'}
-                </td>
-                <td className="px-4 py-3 text-right">
-                  {row.noOdds ? (
-                    <span className="text-xs text-orange-400 opacity-80">オッズ確認要</span>
-                  ) : row.skip ? (
-                    <span className="text-xs text-[var(--text-muted)] opacity-60">購入見送り</span>
-                  ) : (
-                    <span className="font-bold text-yellow-400">
-                      ¥{row.stake.toLocaleString()}
-                    </span>
+            {rows.map(row => {
+              const rowClass =
+                row.isHit === 1
+                  ? 'bg-[rgba(220,80,80,0.15)]'         // 的中: 薄い赤ハイライト
+                  : row.isHit === 0
+                  ? 'opacity-40'                         // 外れ: グレーダウン
+                  : row.skip
+                  ? 'opacity-40'
+                  : 'hover:bg-[rgba(0,200,255,0.04)]'
+
+              return (
+                <tr key={row.id} className={rowClass}>
+                  <td className="px-4 py-3 font-semibold text-[var(--text-primary)]">
+                    {row.betType}
+                  </td>
+                  <td className="px-4 py-3 text-[var(--text-secondary)]">{row.horseNums}</td>
+                  <td className="px-4 py-3 text-right text-[var(--text-secondary)] font-mono">
+                    {row.noOdds ? '—' : row.odds > 0 ? `${row.odds.toFixed(1)}倍` : '—'}
+                  </td>
+                  <td className={`px-4 py-3 text-right font-mono font-semibold ${
+                    row.ev >= 1.0 ? 'text-green-400' : 'text-[var(--text-muted)]'
+                  }`}>
+                    {row.ev > 0 ? row.ev.toFixed(2) : '—'}
+                  </td>
+                  <td className="px-4 py-3 text-right font-mono text-xs text-[var(--text-muted)]">
+                    {row.noOdds ? '—' : row.f > 0 ? `${(row.f * 100).toFixed(1)}%` : '—'}
+                  </td>
+                  <td className="px-4 py-3 text-right">
+                    {row.noOdds ? (
+                      <span className="text-xs text-orange-400 opacity-80">オッズ確認要</span>
+                    ) : row.skip ? (
+                      <span className="text-xs text-[var(--text-muted)] opacity-60">購入見送り</span>
+                    ) : (
+                      <span className="font-bold text-yellow-400">
+                        ¥{row.stake.toLocaleString()}
+                      </span>
+                    )}
+                  </td>
+                  {hasConfirmed && (
+                    <td className="px-4 py-3 text-right">
+                      {row.isHit === 1 ? (
+                        <span className="text-xs font-bold text-red-400">
+                          ✓ 的中{row.hitPayout != null ? `  ¥${row.hitPayout.toLocaleString()}` : ''}
+                        </span>
+                      ) : row.isHit === 0 ? (
+                        <span className="text-xs text-[var(--text-muted)]">✗ 外れ</span>
+                      ) : (
+                        <span className="text-xs text-[var(--text-muted)] opacity-40">—</span>
+                      )}
+                    </td>
                   )}
-                </td>
-              </tr>
-            ))}
+                </tr>
+              )
+            })}
           </tbody>
         </table>
       </div>
