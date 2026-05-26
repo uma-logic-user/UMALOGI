@@ -9,7 +9,9 @@
     "type-check": "tsc --noEmit",
     "gen": "python ../web/generate_data.py",
     "dev:mobile": "next dev -H 0.0.0.0 --port 3000",
-    "public": "npm run build && npm start"
+    "public": "npm run build && npm start",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@types/better-sqlite3": "^7.6.13",
@@ -20,9 +22,15 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.0",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/jest": "^30.0.0",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "jest": "^30.4.2",
+    "jest-environment-jsdom": "^30.4.1",
     "postcss": "^8.5.0",
     "tailwindcss": "^4.1.0",
     "typescript": "^5.7.0"
