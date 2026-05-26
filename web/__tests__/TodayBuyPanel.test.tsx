@@ -14,7 +14,7 @@ import type { RacePrediction } from '@/types/race'
 // ── ヘルパー ───────────────────────────────────────────────────────────
 
 /** 最小限のRacePrediction モックファクトリ */
-function makePred(overrides: Partial<RacePrediction> & { prediction_id: string }): RacePrediction {
+function makePred(overrides: Partial<RacePrediction> & { prediction_id: number }): RacePrediction {
   return {
     model_type:        '本命',
     bet_type:          '単勝',
@@ -66,8 +66,8 @@ function getSummaryValue(labelText: string): string | null {
 describe('サマリーカード表示制御', () => {
   test('全予想が is_hit=null の場合、サマリーカードは表示されない', () => {
     const preds = [
-      makePred({ prediction_id: 'p1', is_hit: null }),
-      makePred({ prediction_id: 'p2', is_hit: null, bet_type: '複勝', combination_json: '[7]' }),
+      makePred({ prediction_id: 1, is_hit: null }),
+      makePred({ prediction_id: 2, is_hit: null, bet_type: '複勝', combination_json: '[7]' }),
     ]
 
     render(<TodayBuyPanel predictions={preds} winOddsMap={WIN_ODDS_MAP} />)
@@ -84,8 +84,8 @@ describe('サマリーカード表示制御', () => {
 
   test('is_hit が1件でも確定していればサマリーカードが表示される', () => {
     const preds = [
-      makePred({ prediction_id: 'hit', is_hit: 1, payout: 2000 }),
-      makePred({ prediction_id: 'pend', is_hit: null }),
+      makePred({ prediction_id: 71, is_hit: 1, payout: 2000 }),
+      makePred({ prediction_id: 51, is_hit: null }),
     ]
 
     render(<TodayBuyPanel predictions={preds} winOddsMap={WIN_ODDS_MAP} />)
@@ -101,8 +101,8 @@ describe('サマリーカード表示制御', () => {
 describe('サマリーKPI計算（確定済み行あり）', () => {
   test('的中1件・外れ1件の場合、投資額・払い戻し・回収率が正しく表示される', () => {
     const preds = [
-      makePred({ prediction_id: 'hit1', expected_value: 1.5, is_hit: 1, payout: 3_000 }),
-      makePred({ prediction_id: 'miss1', expected_value: 1.5, is_hit: 0, payout: null }),
+      makePred({ prediction_id: 11, expected_value: 1.5, is_hit: 1, payout: 3_000 }),
+      makePred({ prediction_id: 21, expected_value: 1.5, is_hit: 0, payout: null }),
     ]
 
     render(<TodayBuyPanel predictions={preds} winOddsMap={WIN_ODDS_MAP} />)
@@ -123,8 +123,8 @@ describe('サマリーKPI計算（確定済み行あり）', () => {
 
   test('全件外れの場合、払い戻しは¥0・回収率は0.0%を表示する', () => {
     const preds = [
-      makePred({ prediction_id: 'miss1', expected_value: 1.5, is_hit: 0, payout: null }),
-      makePred({ prediction_id: 'miss2', expected_value: 1.5, is_hit: 0, payout: null }),
+      makePred({ prediction_id: 21, expected_value: 1.5, is_hit: 0, payout: null }),
+      makePred({ prediction_id: 22, expected_value: 1.5, is_hit: 0, payout: null }),
     ]
 
     render(<TodayBuyPanel predictions={preds} winOddsMap={WIN_ODDS_MAP} />)
@@ -136,7 +136,7 @@ describe('サマリーKPI計算（確定済み行あり）', () => {
   test('回収率 ≥ 100% の場合は緑色テキストが適用される', () => {
     // payout 20,000 / invest 5,000 → ROI=400% > 100
     const preds = [
-      makePred({ prediction_id: 'bigwin', expected_value: 1.5, is_hit: 1, payout: 20_000 }),
+      makePred({ prediction_id: 31, expected_value: 1.5, is_hit: 1, payout: 20_000 }),
     ]
     render(<TodayBuyPanel predictions={preds} winOddsMap={WIN_ODDS_MAP} />)
 
@@ -147,7 +147,7 @@ describe('サマリーKPI計算（確定済み行あり）', () => {
 
   test('回収率 < 100% の場合は赤色テキストが適用される', () => {
     const preds = [
-      makePred({ prediction_id: 'miss', expected_value: 1.5, is_hit: 0, payout: null }),
+      makePred({ prediction_id: 81, expected_value: 1.5, is_hit: 0, payout: null }),
     ]
     render(<TodayBuyPanel predictions={preds} winOddsMap={WIN_ODDS_MAP} />)
 
@@ -158,8 +158,8 @@ describe('サマリーKPI計算（確定済み行あり）', () => {
 
   test('is_hit=null の行は投資額の計算に含まれない', () => {
     const preds = [
-      makePred({ prediction_id: 'hit1', expected_value: 1.5, is_hit: 1, payout: 2_000 }),
-      makePred({ prediction_id: 'pend', is_hit: null }),  // 未確定 → 除外
+      makePred({ prediction_id: 11, expected_value: 1.5, is_hit: 1, payout: 2_000 }),
+      makePred({ prediction_id: 51, is_hit: null }),  // 未確定 → 除外
     ]
 
     render(<TodayBuyPanel predictions={preds} winOddsMap={WIN_ODDS_MAP} />)
@@ -171,7 +171,7 @@ describe('サマリーKPI計算（確定済み行あり）', () => {
   test('単勝以外(noOdds=true)の確定行は投資額が0なので「—」を表示する', () => {
     const preds = [
       makePred({
-        prediction_id:   'hit-fukusho',
+        prediction_id:   41,
         bet_type:         '複勝',    // noOdds=true → stake=0
         combination_json: '[7]',
         expected_value:   1.5,
@@ -195,7 +195,7 @@ describe('サマリーKPI計算（確定済み行あり）', () => {
 
 describe('行スタイリング（的中 / 外れ / 未確定）', () => {
   function renderAndGetRow(overrides: Partial<RacePrediction>): Element {
-    const preds = [makePred({ prediction_id: 'r1', ...overrides })]
+    const preds = [makePred({ prediction_id: 61, ...overrides })]
     render(<TodayBuyPanel predictions={preds} winOddsMap={WIN_ODDS_MAP} />)
     return document.querySelector('tbody tr')!
   }
@@ -222,7 +222,7 @@ describe('行スタイリング（的中 / 外れ / 未確定）', () => {
 
   test('的中行の「結果」列に「✓ 的中」と払い戻し額が表示される', () => {
     const preds = [
-      makePred({ prediction_id: 'hit', is_hit: 1, payout: 7_800, expected_value: 1.5 }),
+      makePred({ prediction_id: 71, is_hit: 1, payout: 7_800, expected_value: 1.5 }),
     ]
     render(<TodayBuyPanel predictions={preds} winOddsMap={WIN_ODDS_MAP} />)
     expect(screen.getByText(/✓ 的中/)).toBeInTheDocument()
@@ -233,14 +233,14 @@ describe('行スタイリング（的中 / 外れ / 未確定）', () => {
 
   test('外れ行の「結果」列に「✗ 外れ」が表示される', () => {
     const preds = [
-      makePred({ prediction_id: 'miss', is_hit: 0, payout: null, expected_value: 1.5 }),
+      makePred({ prediction_id: 81, is_hit: 0, payout: null, expected_value: 1.5 }),
     ]
     render(<TodayBuyPanel predictions={preds} winOddsMap={WIN_ODDS_MAP} />)
     expect(screen.getByText('✗ 外れ')).toBeInTheDocument()
   })
 
   test('is_hit=null のみの場合、thead に「結果」列ヘッダーが表示されない', () => {
-    const preds = [makePred({ prediction_id: 'pend', is_hit: null })]
+    const preds = [makePred({ prediction_id: 51, is_hit: null })]
     render(<TodayBuyPanel predictions={preds} winOddsMap={WIN_ODDS_MAP} />)
     const thead = document.querySelector('thead')!
     expect(within(thead).queryByText('結果')).toBeNull()
@@ -248,7 +248,7 @@ describe('行スタイリング（的中 / 外れ / 未確定）', () => {
 
   test('確定済み行がある場合、thead に「結果」列ヘッダーが表示される', () => {
     const preds = [
-      makePred({ prediction_id: 'hit', is_hit: 1, payout: 1_000, expected_value: 1.5 }),
+      makePred({ prediction_id: 71, is_hit: 1, payout: 1_000, expected_value: 1.5 }),
     ]
     render(<TodayBuyPanel predictions={preds} winOddsMap={WIN_ODDS_MAP} />)
     const thead = document.querySelector('thead')!
@@ -260,14 +260,14 @@ describe('行スタイリング（的中 / 外れ / 未確定）', () => {
 
 describe('単勝以外のオッズ確認要表示', () => {
   test('bet_type=複勝 の行は「オッズ確認要」と表示する', () => {
-    const preds = [makePred({ prediction_id: 'f1', bet_type: '複勝', is_hit: null })]
+    const preds = [makePred({ prediction_id: 91, bet_type: '複勝', is_hit: null })]
     render(<TodayBuyPanel predictions={preds} winOddsMap={WIN_ODDS_MAP} />)
     expect(screen.getByText('オッズ確認要')).toBeInTheDocument()
   })
 
   test('bet_type=馬連 の行も「オッズ確認要」と表示する', () => {
     const preds = [
-      makePred({ prediction_id: 'ur', bet_type: '馬連', combination_json: '[[5,7]]', is_hit: null }),
+      makePred({ prediction_id: 92, bet_type: '馬連', combination_json: '[[5,7]]', is_hit: null }),
     ]
     render(<TodayBuyPanel predictions={preds} winOddsMap={WIN_ODDS_MAP} />)
     expect(screen.getByText('オッズ確認要')).toBeInTheDocument()
@@ -275,7 +275,7 @@ describe('単勝以外のオッズ確認要表示', () => {
 
   test('単勝で EV<1.0 の行は「購入見送り」と表示する', () => {
     const preds = [
-      makePred({ prediction_id: 'low', bet_type: '単勝', expected_value: 0.8, is_hit: null }),
+      makePred({ prediction_id: 93, bet_type: '単勝', expected_value: 0.8, is_hit: null }),
     ]
     render(<TodayBuyPanel predictions={preds} winOddsMap={WIN_ODDS_MAP} />)
     expect(screen.getByText('購入見送り')).toBeInTheDocument()

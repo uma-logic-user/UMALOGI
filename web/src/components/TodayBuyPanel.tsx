@@ -118,22 +118,22 @@ export function TodayBuyPanel({ predictions, winOddsMap }: TodayBuyPanelProps) {
 
       {/* ── 結果サマリー（確定済み行がある場合のみ表示） ─── */}
       {hasConfirmed && (
-        <div className="neon-card p-4 grid grid-cols-3 gap-4 text-center">
-          <div>
-            <p className="text-[10px] text-[var(--text-muted)] tracking-widest mb-1">合計投資額</p>
-            <p className="text-base font-bold text-yellow-400">
+        <div className="neon-card grid grid-cols-3 divide-x divide-[rgba(0,200,255,0.12)] text-center">
+          <div className="py-3 px-2 sm:px-4">
+            <p className="text-[9px] sm:text-[10px] text-[var(--text-muted)] tracking-widest mb-1 truncate">合計投資額</p>
+            <p className="text-sm sm:text-base font-bold text-yellow-400 tabular-nums">
               {confirmedInvest > 0 ? `¥${confirmedInvest.toLocaleString()}` : '—'}
             </p>
           </div>
-          <div>
-            <p className="text-[10px] text-[var(--text-muted)] tracking-widest mb-1">合計払い戻し額</p>
-            <p className={`text-base font-bold ${confirmedPayout > 0 ? 'text-green-400' : 'text-[var(--text-muted)]'}`}>
+          <div className="py-3 px-2 sm:px-4">
+            <p className="text-[9px] sm:text-[10px] text-[var(--text-muted)] tracking-widest mb-1 truncate">合計払い戻し額</p>
+            <p className={`text-sm sm:text-base font-bold tabular-nums ${confirmedPayout > 0 ? 'text-green-400' : 'text-[var(--text-muted)]'}`}>
               {confirmedPayout > 0 ? `¥${confirmedPayout.toLocaleString()}` : '¥0'}
             </p>
           </div>
-          <div>
-            <p className="text-[10px] text-[var(--text-muted)] tracking-widest mb-1">回収率</p>
-            <p className={`text-base font-bold ${
+          <div className="py-3 px-2 sm:px-4">
+            <p className="text-[9px] sm:text-[10px] text-[var(--text-muted)] tracking-widest mb-1 truncate">回収率</p>
+            <p className={`text-sm sm:text-base font-bold tabular-nums ${
               roi === null ? 'text-[var(--text-muted)]'
                 : roi >= 100 ? 'text-green-400'
                 : 'text-red-400'
@@ -145,13 +145,13 @@ export function TodayBuyPanel({ predictions, winOddsMap }: TodayBuyPanelProps) {
       )}
 
       {/* ── 設定パネル ─────────────────────────────────── */}
-      <div className="neon-card p-4 flex flex-wrap gap-4 items-center">
-        <div className="flex items-center gap-2">
-          <span className="text-xs text-[var(--text-muted)] tracking-wider">総資金</span>
+      <div className="neon-card p-3 sm:p-4 flex flex-wrap gap-2 sm:gap-4 items-center">
+        <div className="flex items-center gap-2 flex-1 sm:flex-none min-w-0">
+          <span className="text-xs text-[var(--text-muted)] tracking-wider whitespace-nowrap">総資金</span>
           <select
             value={bankroll}
             onChange={e => setBankroll(Number(e.target.value))}
-            className="rounded bg-[var(--bg-card)] border border-[rgba(0,200,255,0.2)] px-2 py-1 text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--neon-cyan)]"
+            className="flex-1 sm:flex-none rounded bg-[var(--bg-card)] border border-[rgba(0,200,255,0.2)] px-2 py-1 text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--neon-cyan)] min-w-0"
           >
             {BANKROLL_OPTIONS.map(v => (
               <option key={v} value={v}>¥{v.toLocaleString()}</option>
@@ -159,12 +159,12 @@ export function TodayBuyPanel({ predictions, winOddsMap }: TodayBuyPanelProps) {
           </select>
         </div>
 
-        <div className="flex items-center gap-2">
-          <span className="text-xs text-[var(--text-muted)] tracking-wider">ケリー係数</span>
+        <div className="flex items-center gap-2 flex-1 sm:flex-none min-w-0">
+          <span className="text-xs text-[var(--text-muted)] tracking-wider whitespace-nowrap">Kelly</span>
           <select
             value={kellyFrac}
             onChange={e => setKellyFrac(Number(e.target.value))}
-            className="rounded bg-[var(--bg-card)] border border-[rgba(0,200,255,0.2)] px-2 py-1 text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--neon-cyan)]"
+            className="flex-1 sm:flex-none rounded bg-[var(--bg-card)] border border-[rgba(0,200,255,0.2)] px-2 py-1 text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--neon-cyan)] min-w-0"
           >
             {KELLY_OPTIONS.map(({ value, label }) => (
               <option key={value} value={value}>{label}</option>
@@ -172,83 +172,87 @@ export function TodayBuyPanel({ predictions, winOddsMap }: TodayBuyPanelProps) {
           </select>
         </div>
 
-        <div className="ml-auto text-xs text-[var(--text-muted)]">
+        <div className="w-full sm:w-auto sm:ml-auto text-xs text-[var(--text-muted)] text-right sm:text-left">
           推奨購入あり:&nbsp;
           <span className="font-semibold text-[var(--text-primary)]">{activeCount}件</span>
         </div>
       </div>
 
-      {/* ── テーブル ────────────────────────────────────── */}
+      {/* ── テーブル（横スクロール対応） ─────────────────── */}
       <div className="neon-card overflow-hidden">
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="border-b border-[rgba(0,200,255,0.12)] text-[var(--text-muted)] text-xs tracking-wider">
-              <th className="px-4 py-3 text-left">買い目種別</th>
-              <th className="px-4 py-3 text-left">馬番</th>
-              <th className="px-4 py-3 text-right">オッズ</th>
-              <th className="px-4 py-3 text-right">EV</th>
-              <th className="px-4 py-3 text-right">f*</th>
-              <th className="px-4 py-3 text-right">推奨購入額</th>
-              {hasConfirmed && <th className="px-4 py-3 text-right">結果</th>}
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-[rgba(0,200,255,0.08)]">
-            {rows.map(row => {
-              const rowClass =
-                row.isHit === 1
-                  ? 'bg-[rgba(220,80,80,0.15)]'         // 的中: 薄い赤ハイライト
-                  : row.isHit === 0
-                  ? 'opacity-40'                         // 外れ: グレーダウン
-                  : row.skip
-                  ? 'opacity-40'
-                  : 'hover:bg-[rgba(0,200,255,0.04)]'
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[480px] text-sm">
+            <thead>
+              <tr className="border-b border-[rgba(0,200,255,0.12)] text-[var(--text-muted)] text-xs tracking-wider">
+                <th className="px-3 sm:px-4 py-2 sm:py-3 text-left whitespace-nowrap">種別</th>
+                <th className="px-3 sm:px-4 py-2 sm:py-3 text-left whitespace-nowrap">馬番</th>
+                <th className="px-3 sm:px-4 py-2 sm:py-3 text-right whitespace-nowrap">オッズ</th>
+                <th className="px-3 sm:px-4 py-2 sm:py-3 text-right whitespace-nowrap">EV</th>
+                <th className="px-3 sm:px-4 py-2 sm:py-3 text-right whitespace-nowrap">f*</th>
+                <th className="px-3 sm:px-4 py-2 sm:py-3 text-right whitespace-nowrap">推奨購入額</th>
+                {hasConfirmed && <th className="px-3 sm:px-4 py-2 sm:py-3 text-right whitespace-nowrap">結果</th>}
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-[rgba(0,200,255,0.08)]">
+              {rows.map(row => {
+                const rowClass =
+                  row.isHit === 1
+                    ? 'bg-[rgba(220,80,80,0.15)]'
+                    : row.isHit === 0
+                    ? 'opacity-40'
+                    : row.skip
+                    ? 'opacity-40'
+                    : 'hover:bg-[rgba(0,200,255,0.04)]'
 
-              return (
-                <tr key={row.id} className={rowClass}>
-                  <td className="px-4 py-3 font-semibold text-[var(--text-primary)]">
-                    {row.betType}
-                  </td>
-                  <td className="px-4 py-3 text-[var(--text-secondary)]">{row.horseNums}</td>
-                  <td className="px-4 py-3 text-right text-[var(--text-secondary)] font-mono">
-                    {row.noOdds ? '—' : row.odds > 0 ? `${row.odds.toFixed(1)}倍` : '—'}
-                  </td>
-                  <td className={`px-4 py-3 text-right font-mono font-semibold ${
-                    row.ev >= 1.0 ? 'text-green-400' : 'text-[var(--text-muted)]'
-                  }`}>
-                    {row.ev > 0 ? row.ev.toFixed(2) : '—'}
-                  </td>
-                  <td className="px-4 py-3 text-right font-mono text-xs text-[var(--text-muted)]">
-                    {row.noOdds ? '—' : row.f > 0 ? `${(row.f * 100).toFixed(1)}%` : '—'}
-                  </td>
-                  <td className="px-4 py-3 text-right">
-                    {row.noOdds ? (
-                      <span className="text-xs text-orange-400 opacity-80">オッズ確認要</span>
-                    ) : row.skip ? (
-                      <span className="text-xs text-[var(--text-muted)] opacity-60">購入見送り</span>
-                    ) : (
-                      <span className="font-bold text-yellow-400">
-                        ¥{row.stake.toLocaleString()}
-                      </span>
-                    )}
-                  </td>
-                  {hasConfirmed && (
-                    <td className="px-4 py-3 text-right">
-                      {row.isHit === 1 ? (
-                        <span className="text-xs font-bold text-red-400">
-                          ✓ 的中{row.hitPayout != null ? `  ¥${row.hitPayout.toLocaleString()}` : ''}
-                        </span>
-                      ) : row.isHit === 0 ? (
-                        <span className="text-xs text-[var(--text-muted)]">✗ 外れ</span>
+                return (
+                  <tr key={row.id} className={rowClass}>
+                    <td className="px-3 sm:px-4 py-2 sm:py-3 font-semibold text-[var(--text-primary)] whitespace-nowrap">
+                      {row.betType}
+                    </td>
+                    <td className="px-3 sm:px-4 py-2 sm:py-3 text-[var(--text-secondary)] font-mono text-xs sm:text-sm">
+                      {row.horseNums}
+                    </td>
+                    <td className="px-3 sm:px-4 py-2 sm:py-3 text-right text-[var(--text-secondary)] font-mono whitespace-nowrap">
+                      {row.noOdds ? '—' : row.odds > 0 ? `${row.odds.toFixed(1)}倍` : '—'}
+                    </td>
+                    <td className={`px-3 sm:px-4 py-2 sm:py-3 text-right font-mono font-semibold whitespace-nowrap ${
+                      row.ev >= 1.0 ? 'text-green-400' : 'text-[var(--text-muted)]'
+                    }`}>
+                      {row.ev > 0 ? row.ev.toFixed(2) : '—'}
+                    </td>
+                    <td className="px-3 sm:px-4 py-2 sm:py-3 text-right font-mono text-xs text-[var(--text-muted)] whitespace-nowrap">
+                      {row.noOdds ? '—' : row.f > 0 ? `${(row.f * 100).toFixed(1)}%` : '—'}
+                    </td>
+                    <td className="px-3 sm:px-4 py-2 sm:py-3 text-right whitespace-nowrap">
+                      {row.noOdds ? (
+                        <span className="text-xs text-orange-400 opacity-80">オッズ確認要</span>
+                      ) : row.skip ? (
+                        <span className="text-xs text-[var(--text-muted)] opacity-60">購入見送り</span>
                       ) : (
-                        <span className="text-xs text-[var(--text-muted)] opacity-40">—</span>
+                        <span className="font-bold text-yellow-400">
+                          ¥{row.stake.toLocaleString()}
+                        </span>
                       )}
                     </td>
-                  )}
-                </tr>
-              )
-            })}
-          </tbody>
-        </table>
+                    {hasConfirmed && (
+                      <td className="px-3 sm:px-4 py-2 sm:py-3 text-right whitespace-nowrap">
+                        {row.isHit === 1 ? (
+                          <span className="text-xs font-bold text-red-400">
+                            ✓ 的中{row.hitPayout != null ? `  ¥${row.hitPayout.toLocaleString()}` : ''}
+                          </span>
+                        ) : row.isHit === 0 ? (
+                          <span className="text-xs text-[var(--text-muted)]">✗ 外れ</span>
+                        ) : (
+                          <span className="text-xs text-[var(--text-muted)] opacity-40">—</span>
+                        )}
+                      </td>
+                    )}
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
 
       {/* ── 合計 ──────────────────────────────────────── */}

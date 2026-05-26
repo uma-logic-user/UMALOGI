@@ -1,0 +1,35 @@
+# ── Streamlit 分析ダッシュボード Dockerfile ───────────────────────────
+# JVLink COM（Windows 専用）は Docker では動作しないため、
+# Streamlit は DB の読み取り専用ビューアとして稼働する。
+
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# ビルドツール（LightGBM / scikit-learn コンパイル用）
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# 依存インストール（playwright は Docker 不要のため除外）
+COPY requirements.txt ./
+RUN pip install --no-cache-dir \
+    $(grep -v "playwright" requirements.txt | grep -v "pywin32" | grep -v "#" | tr '\n' ' ')
+
+# アプリケーションコード
+COPY src/        ./src/
+COPY web_streamlit/ ./web_streamlit/
+
+# data/ は volume マウントで提供（DB・モデルは永続ストレージ側に保持）
+# streamlit は process.cwd() = /app から sqlite3.connect('data/umalogi.db') を参照
+
+EXPOSE 8501
+
+HEALTHCHECK --interval=30s --timeout=10s --retries=3 \
+  CMD curl -f http://localhost:8501/_stcore/health || exit 1
+
+CMD ["python", "-m", "streamlit", "run", "web_streamlit/app.py", \
+     "--server.address=0.0.0.0", \
+     "--server.port=8501", \
+     "--server.headless=true", \
+     "--browser.gatherUsageStats=false"]

@@ -1,0 +1,37 @@
+services:
+
+  # ── Next.js フロントエンド（ユーザー向け・Port 3000）──────────────
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      # DB を読み取り専用でマウント（/data/umalogi.db として参照される）
+      - ./data:/data:ro
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+
+  # ── Streamlit ダッシュボード（運用者向け・Port 8501）─────────────
+  streamlit:
+    build:
+      context: .
+      dockerfile: Dockerfile.streamlit
+    ports:
+      - "8501:8501"
+    volumes:
+      # DB・モデルを読み取り専用でマウント
+      - ./data:/app/data:ro
+    environment:
+      - PYTHONIOENCODING=utf-8
+      # Discord 通知等は .env から読み込む
+      - DISCORD_WEBHOOK_URL=${DISCORD_WEBHOOK_URL:-}
+      - DISCORD_SYSTEM_WEBHOOK_URL=${DISCORD_SYSTEM_WEBHOOK_URL:-}
+    restart: unless-stopped
+
+# ── 注意 ──────────────────────────────────────────────────────────────
+# JVLink COM（データ取得・モデル再学習）は Windows 専用のため Docker 外で実行すること。
+# DB（data/umalogi.db）はホスト側の scheduler.py / pipeline が書き込み、
+# Docker コンテナは読み取り専用でアクセスする。

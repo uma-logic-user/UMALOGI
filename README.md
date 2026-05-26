@@ -240,6 +240,32 @@ npm start              # → http://0.0.0.0:3000（LAN 公開）
 npm run dev:mobile     # → http://0.0.0.0:3000
 ```
 
+### Docker で一括起動（オプション）
+
+> **前提:** Docker Desktop がインストール済みであること。  
+> **注意:** JVLink COM（データ取得・再学習）は Windows 専用のため Docker 外で実行。  
+> Docker コンテナは DB を読み取り専用でマウントし、フロントエンド表示のみ担当する。
+
+```bash
+# Next.js (Port 3000) + Streamlit (Port 8501) を一括起動
+docker compose up -d
+
+# ビルドから再実行（コード変更後）
+docker compose up -d --build
+
+# 停止
+docker compose down
+
+# ログ確認
+docker compose logs -f web        # Next.js ログ
+docker compose logs -f streamlit  # Streamlit ログ
+```
+
+`docker-compose.yml` は `./data/` ディレクトリをコンテナに読み取り専用マウントする。  
+DB（`data/umalogi.db`）はホスト側の `scheduler.py` が書き込み、コンテナは参照のみ。
+
+---
+
 ### Streamlit ダッシュボード 起動
 
 ```bash

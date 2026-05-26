@@ -1,0 +1,76 @@
+name: CI — 自動テスト
+
+on:
+  push:
+    branches: [master, main, "feature/**", "fix/**"]
+  pull_request:
+    branches: [master, main]
+
+# ジョブが並列実行されるため、同一ブランチへの連続 push は後勝ちでキャンセル
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ──────────────────────────────────────────────────────────────
+  # Job 1: Python バックエンド pytest
+  # ──────────────────────────────────────────────────────────────
+  python-test:
+    name: Python Tests (pytest)
+    # self-hosted Windows runner を使用（JVLink COM / SQLite DB / モデルが常駐）
+    runs-on: [self-hosted, Windows, umalogi]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt --quiet
+
+      - name: Run pytest
+        run: |
+          py -m pytest tests/ `
+            --ignore=tests/test_pipeline_scraping.py `
+            --ignore=tests/test_netkeiba.py `
+            --ignore=tests/test_multi_odds_scraper.py `
+            -q --tb=short -x `
+            --timeout=60
+        shell: pwsh
+        env:
+          PYTHONIOENCODING: utf-8
+
+  # ──────────────────────────────────────────────────────────────
+  # Job 2: Next.js フロントエンド Jest
+  # ──────────────────────────────────────────────────────────────
+  frontend-test:
+    name: Frontend Tests (Jest)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Install dependencies
+        working-directory: web
+        run: npm ci
+
+      - name: TypeScript type check
+        working-directory: web
+        run: npm run type-check
+
+      - name: Run Jest
+        working-directory: web
+        run: npm test -- --no-coverage --passWithNoTests
