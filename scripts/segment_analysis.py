@@ -628,3 +628,114 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  predictions × prediction_results × races ベースのセグメント分析 API
+#  （券種 / 会場 / 馬場状態 / コース種別 / モデル / 距離帯 で ROI 集計）
+# ─────────────────────────────────────────────────────────────────────────────
+
+_GROUP_SQL: dict[str, str] = {
+    "bet_type":  "p.bet_type",
+    "venue":     "r.venue",
+    "surface":   "r.surface",
+    "condition": "r.condition",
+    "model":     "p.model_type",
+    "distance":  """CASE
+                     WHEN r.distance <= 1400 THEN '短距離(~1400)'
+                     WHEN r.distance <= 1800 THEN '中距離(1401-1800)'
+                     WHEN r.distance <= 2200 THEN '中長距離(1801-2200)'
+                     ELSE '長距離(2201~)'
+                   END""",
+}
+
+_SEGMENT_BASE_QUERY = """
+SELECT
+    {group_expr}           AS segment,
+    COUNT(*)               AS n_bets,
+    SUM(CASE WHEN pr.is_hit=1 THEN 1 ELSE 0 END) AS hits,
+    SUM(COALESCE(pr.payout,0) - COALESCE(pr.profit,0)) AS total_invest,
+    SUM(COALESCE(pr.payout,0))                          AS total_payout,
+    ROUND(
+        100.0 * SUM(COALESCE(pr.payout,0))
+        / NULLIF(SUM(COALESCE(pr.payout,0) - COALESCE(pr.profit,0)), 0),
+        1
+    ) AS roi
+FROM predictions p
+JOIN prediction_results pr ON pr.prediction_id = p.id
+JOIN races r ON r.race_id = p.race_id
+GROUP BY {group_expr}
+ORDER BY roi ASC
+"""
+
+
+def analyze_by_segment(
+    db_path: str = "data/umalogi.db",
+    group_by: str = "bet_type",
+    min_bets: int = 1,
+) -> list[dict]:
+    """指定セグメントで ROI を集計して返す。
+
+    predictions / prediction_results / races テーブルを結合し、
+    指定した集計軸ごとの ROI・ベット数・投資額・回収額を算出する。
+
+    Args:
+        db_path:  SQLite パス
+        group_by: "bet_type" | "venue" | "surface" | "condition" | "model" | "distance"
+        min_bets: この件数未満のセグメントは結果から除外
+
+    Returns:
+        {"segment", "n_bets", "hits", "total_invest", "total_payout", "roi"} のリスト
+    """
+    if group_by not in _GROUP_SQL:
+        raise ValueError(
+            f"group_by は {list(_GROUP_SQL)} のいずれかを指定してください"
+        )
+
+    group_expr = _GROUP_SQL[group_by]
+    sql = _SEGMENT_BASE_QUERY.format(group_expr=group_expr)
+
+    conn = sqlite3.connect(db_path)
+    conn.row_factory = sqlite3.Row
+    rows = conn.execute(sql).fetchall()
+    conn.close()
+
+    return [dict(r) for r in rows if (r["n_bets"] or 0) >= min_bets]
+
+
+def _print_segment_table(rows: list[dict], group_by: str) -> None:
+    """結果をマークダウンテーブルで標準出力に出力する。"""
+    print(f"\n## セグメント分析: {group_by}\n")
+    print("| セグメント | ベット数 | 的中数 | 投資額 | 回収額 | ROI% |")
+    print("|---|---|---|---|---|---|")
+    for r in rows:
+        invest = r["total_invest"] or 0
+        payout = r["total_payout"] or 0
+        roi_val = r["roi"] if r["roi"] is not None else 0.0
+        print(
+            f"| {r['segment']} | {r['n_bets']} | {r['hits']} "
+            f"| ¥{invest:,} | ¥{payout:,} | {roi_val:.1f}% |"
+        )
+
+
+def main_segment() -> None:
+    """CLI エントリポイント: 全セグメントまたは指定セグメントを出力する。"""
+    import argparse
+
+    parser = argparse.ArgumentParser(description="UMALOGI セグメント別 ROI 分析")
+    parser.add_argument(
+        "--group",
+        choices=list(_GROUP_SQL.keys()),
+        default=None,
+        help="集計軸（省略時は全軸を出力）",
+    )
+    parser.add_argument(
+        "--min-bets", type=int, default=20, help="最小ベット数フィルター（デフォルト20）"
+    )
+    parser.add_argument("--db", default="data/umalogi.db", help="SQLite パス")
+    args = parser.parse_args()
+
+    groups = [args.group] if args.group else list(_GROUP_SQL.keys())
+    for g in groups:
+        rows = analyze_by_segment(db_path=args.db, group_by=g, min_bets=args.min_bets)
+        _print_segment_table(rows, g)
