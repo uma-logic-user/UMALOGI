@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import type { RaceEntry, Prediction, ActualWinner } from '@/types/race'
+import type { RaceEntry, Prediction, ActualWinner, RacePayout } from '@/types/race'
 import RaceHeader    from './RaceHeader'
 import StatCards     from './StatCards'
 import RaceTable     from './RaceTable'
@@ -9,6 +9,30 @@ import PedigreeChart from './PedigreeChart'
 import PredictionsPanel from './PredictionsPanel'
 
 type Tab = 'dashboard' | 'results' | 'predictions' | 'hit_results'
+
+const BET_ORDER: Record<string, number> = {
+  '単勝': 1, '複勝': 2, '枠連': 3, '馬連': 4,
+  'ワイド': 5, '馬単': 6, '三連複': 7, '三連単': 8,
+}
+const BET_COMBO_SIZES: Record<string, [number, number]> = {
+  '単勝': [1,1], '複勝': [1,1], '枠連': [2,2],
+  '馬連': [2,2], 'ワイド': [2,2], '馬単': [2,2],
+  '三連複': [3,3], '三連単': [3,3],
+}
+const BET_MAX_NUM: Record<string, number> = {
+  '単勝': 18, '複勝': 18, '枠連': 8,
+  '馬連': 18, 'ワイド': 18, '馬単': 18,
+  '三連複': 18, '三連単': 18,
+}
+function isValidPayout(p: RacePayout): boolean {
+  if (!p.combination || p.payout < 100) return false
+  const sizes = BET_COMBO_SIZES[p.bet_type]
+  const maxNum = BET_MAX_NUM[p.bet_type] ?? 18
+  if (!sizes) return true
+  const parts = p.combination.replace(/→/g, '-').split('-')
+  if (parts.length < sizes[0] || parts.length > sizes[1]) return false
+  return parts.every(pt => /^\d+$/.test(pt) && Number(pt) >= 1 && Number(pt) <= maxNum)
+}
 
 interface Props {
   races:       RaceEntry[]
@@ -127,6 +151,32 @@ export default function TabView({ races, predictions, hitsData, summary }: Props
             <>
               <RaceHeader race={featured} />
               <RaceTable  results={featured.results} />
+              {/* 払戻金セクション — 着順テーブルの直下に統合 */}
+              {(() => {
+                const validPayouts = featured.payouts.filter(isValidPayout)
+                const betTypes = [...new Set(validPayouts.map(p => p.bet_type))]
+                  .sort((a, b) => (BET_ORDER[a] ?? 99) - (BET_ORDER[b] ?? 99))
+                if (betTypes.length === 0) return null
+                const byType: Record<string, RacePayout[]> = {}
+                for (const p of validPayouts) {
+                  if (!byType[p.bet_type]) byType[p.bet_type] = []
+                  byType[p.bet_type].push(p)
+                }
+                return (
+                  <div className="neon-card overflow-hidden">
+                    <div className="px-4 py-3 border-b border-[var(--border)]">
+                      <span className="text-sm neon-text tracking-[0.2em] font-semibold">
+                        PAYOUTS — 払戻金
+                      </span>
+                    </div>
+                    <div className="p-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
+                      {betTypes.map(betType => (
+                        <PayoutCard key={betType} betType={betType} payouts={byType[betType]} />
+                      ))}
+                    </div>
+                  </div>
+                )
+              })()}
             </>
           ) : (
             <NoData />
@@ -156,7 +206,16 @@ export default function TabView({ races, predictions, hitsData, summary }: Props
             )}
           </div>
           {hasPredictions ? (
-            <PredictionsPanel predictions={predictions} payouts={allPayouts} limit={500} />
+            <PredictionsPanel
+              predictions={predictions.filter(p =>
+                !p.is_provisional &&
+                p.combination_json != null &&
+                p.combination_json !== '[]' &&
+                p.combination_json !== ''
+              )}
+              payouts={allPayouts}
+              limit={500}
+            />
           ) : (
             <div className="neon-card p-12 text-center">
               <div className="text-[var(--text-muted)] text-base tracking-widest">NO PREDICTIONS AVAILABLE</div>
@@ -173,7 +232,7 @@ export default function TabView({ races, predictions, hitsData, summary }: Props
           ════════════════════════════════════════════════════════ */}
       {activeTab === 'hit_results' && (
         <div className="space-y-4 slide-in">
-          <HitResultsTab hits={hitsData} />
+          <HitResultsTab hits={hitsData.filter(h => h.is_hit === 1)} />
         </div>
       )}
 
@@ -188,6 +247,41 @@ export default function TabView({ races, predictions, hitsData, summary }: Props
 
 
 /* ── 共通サブコンポーネント ──────────────────────────────────── */
+
+function PayoutCard({ betType, payouts }: { betType: string; payouts: RacePayout[] }) {
+  const isBig = payouts.some(p => p.payout >= 10000)
+  return (
+    <div
+      className="rounded-lg p-3 space-y-1.5"
+      style={{
+        background: isBig ? 'rgba(184,134,11,0.07)' : 'rgba(200,168,130,0.04)',
+        border: `1px solid ${isBig ? 'rgba(184,134,11,0.25)' : 'rgba(200,168,130,0.15)'}`,
+      }}
+    >
+      <div className="text-xs font-bold tracking-widest mb-2" style={{
+        color: isBig ? 'var(--neon-gold)' : 'var(--neon-cyan)',
+      }}>
+        {betType}
+      </div>
+      {payouts.map((p, i) => (
+        <div key={i} className="flex items-center justify-between gap-2">
+          <span className="font-mono text-sm text-[var(--text-primary)]">{p.combination}</span>
+          <span className={`font-bold font-mono text-sm ${
+            p.payout >= 100000 ? 'neon-text-gold' :
+            p.payout >= 10000  ? 'text-[var(--neon-gold)]' :
+            p.payout >= 3000   ? 'neon-text-green' :
+            'text-[var(--text-primary)]'
+          }`}>
+            ¥{p.payout.toLocaleString()}
+          </span>
+          {p.popularity != null && (
+            <span className="text-[10px] text-[var(--text-muted)]">{p.popularity}番人気</span>
+          )}
+        </div>
+      ))}
+    </div>
+  )
+}
 
 function SummaryBadge({
   label, value, dim = false,
