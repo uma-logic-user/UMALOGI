@@ -358,11 +358,60 @@ def _write_markdown_report(
     print(f"\n  レポート出力: {out_path}")
 
 
+def calc_flat_roi(bets: list[dict]) -> float:
+    """フラットベット（全ベット¥100固定）での ROI% を計算する。
+
+    Args:
+        bets: {"is_hit": int, "payout": int, "invest": int} のリスト
+
+    Returns:
+        ROI パーセント（0除算時は 0.0）
+    """
+    total_invest = sum(b["invest"] for b in bets) or 0
+    total_payout = sum(b["payout"] for b in bets)
+    if total_invest == 0:
+        return 0.0
+    return round(total_payout / total_invest * 100, 1)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description="2024-2025-2026 フルバックテスト")
     ap.add_argument("--year", default=None, help="単年のみ実行 (例: 2025)")
     ap.add_argument("--skip-restore", action="store_true", help="復元ステップをスキップ")
+    ap.add_argument(
+        "--mode",
+        choices=["kelly", "flat"],
+        default="kelly",
+        help="backtest mode: 'kelly' (default, compound Kelly) or 'flat' (100円 fixed bet, no compounding)",
+    )
     args = ap.parse_args()
+
+    if args.mode == "flat":
+        logger.info("フラットベットモード: Kelly複利を無効化して集計します")
+        import sqlite3
+
+        conn = sqlite3.connect("data/umalogi.db")
+        bets_raw = conn.execute("""
+            SELECT pr.is_hit,
+                   COALESCE(pr.payout, 0) as payout,
+                   100 as invest
+            FROM prediction_results pr
+            JOIN predictions p ON pr.prediction_id = p.id
+            JOIN races r ON r.race_id = p.race_id
+            WHERE r.date >= '2024-01-01' AND r.date <= '2026-12-31'
+        """).fetchall()
+        conn.close()
+        bets = [{"is_hit": b[0], "payout": b[1], "invest": b[2]} for b in bets_raw]
+        if not bets:
+            logger.warning("フラットベットモード: ベットデータなし")
+            return
+        roi = calc_flat_roi(bets)
+        hits = sum(b["is_hit"] for b in bets)
+        logger.info(
+            "フラットベット ROI=%.1f%% / 的中率=%.1f%% / ベット数=%d",
+            roi, hits / len(bets) * 100, len(bets)
+        )
+        return
 
     if not args.skip_restore:
         print("=" * 60)
