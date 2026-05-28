@@ -4,6 +4,8 @@
 
 | 日付 | 変更内容 |
 |------|---------|
+| 2026-05-29 | 全モデル横断2年間バックテスト機能を追加。影響ファイル: scripts/backtest_all_models.py |
+| 2026-05-27 | 【発走15分前アラート実装】`src/notification/prerace_alert.py` 新設。土日レース日の各レース発走14〜16分前（毎分チェック）に EV >= PRERACE_ALERT_EV_THRESHOLD（デフォルト1.2、環境変数で調整可）の予想を Discord ev_alert チャンネルへ @everyone 付きで通知。in-memory set で重複通知防止（日付変わりで自動リセット）。推奨投資額（recommended_bet を100円単位で整形）をメッセージに含める。`scripts/scheduler.py` に `job_prerace_15min_alert()` 追加・毎分ジョブとして登録（8:30〜16:30 のみ実際に送信）。`NotificationRouter.notify_prerace_15min()` を新設（ev_alert → prediction フォールバック有）。`tests/test_prerace_alert.py` 27件 ALL PASS。影響: `src/notification/prerace_alert.py`（新規）, `src/notification/router.py`, `scripts/scheduler.py` |
 | 2026-05-24 | 坂路調教スクレイプジョブ追加: `job_training_hillwork_scrape()` を scheduler.py に追加。木曜20:00・金曜18:00に今週末レースの race_id を取得し netkeiba 調教ページ（training.html）をスクレイプ。JVLink WOOD dataspec に WH レコードが含まれないため netkeiba で補完。既存バックフィルは調教ページがレース後削除のため不可（W-026 参照）。影響: scripts/scheduler.py, scripts/backfill_training_hillwork.py(新規) |
 | 2026-05-23 | `job_friday_sync` を土曜20:00にも追加（日曜暫定予想の取りこぼし修正）: `register_schedules()` に `schedule.every().saturday.at("20:00").do(job_friday_sync)` を追加。`_JOB_SCHEDULES["job_friday_sync"]` に `(5, 20, 0)` を追記。`docs/automation_schedule.md` を新規作成（Claude Codeへの絶対指示付き）。影響: `scripts/scheduler.py`, `docs/automation_schedule.md`(新規) |
 | 2026-05-23 | Oracle/HitFocus廃止: `prerace_pipeline()`からOracle/HitFocus生成呼び出し削除。`_save_predictions()`のOracle/HitFocusブロック削除。`notify_prerace_result()`のoracle_bets/hit_focus_bets引数削除。note_generatorを3モデル（本命・卍・ALPHA）合意スコアに変更。テスト573件PASS。影響: src/pipeline/prediction.py, src/notification/discord_notifier.py, src/notification/router.py, src/ops/note_generator.py |
@@ -178,3 +180,22 @@ self_healing_monitor.py (独立デーモン、5分ループ)
   - タスクスケジューラ登録 (install_autostart.py / install_watchdog_task.py)
   - PC 再起動時の自動起動
 ```
+
+---
+
+## 7. 手動分析スクリプト
+
+### backtest_all_models.py — 全モデル横断 2年間バックテスト
+
+```bash
+# 標準実行（2024学習 → 2025テスト、全4モデル横断比較）
+py scripts/backtest_all_models.py
+
+# オプション
+py scripts/backtest_all_models.py --dry-run    # データ件数確認のみ
+py scripts/backtest_all_models.py --csv        # results/backtest_YYYYMMDD.csv を出力
+py scripts/backtest_all_models.py --verbose    # 各レースの進捗表示 + 会場別内訳
+py scripts/backtest_all_models.py --cleanup    # 実行後に一時モデルを削除
+```
+
+対象モデル: 本命（単勝/馬連/三連複）・卍（単勝/複勝）・複勝（Top1/Top3）・ALPHA（単勝/複勝）

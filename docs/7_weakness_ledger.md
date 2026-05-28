@@ -10,6 +10,7 @@
 
 | 日付 | 更新内容 |
 |------|---------|
+| 2026-05-29 | 【W-046 新規登録→即完了】全モデル横断バックテスト未統合: 本命・卍・複勝・ALPHA の全4モデルを2年間データで横断比較する `scripts/backtest_all_models.py` を新規作成。影響ファイル: scripts/backtest_all_models.py, tests/test_backtest_all_models.py |
 | 2026-05-18 | 初版作成。社長指令「ビジョン再監査」を受け、U score ギャップ・インフラ・データ弱点を全面棚卸し |
 | 2026-05-18 | 【W-004 実装完了】大衆心理乖離スコア (crowd_bias_ratio / uf_crowd_bias) を u_score.py・models.py・bet_generator.py に追加。ManjiGenerator・HonmeiGenerator の EV 調整まで統合完了 |
 | 2026-05-19 | 【W-026 完了確認】_IsotonicModel プロキシ追加により増分学習 E2E 動作確認済み。フルモード WF バックテスト完走（OOM回避: expanding window + float32 + max_bin=127）。全21組み合わせ ROI 100%超。★QF推奨戦略（本命×ワイド ROI=805%/複勝×馬連 ROI=963%）を bet_generator.py・notify_discord.py に実装。W-022 部分対応: QF推奨 EV≥1.3 フィルタを実質的に適用 |
@@ -25,6 +26,11 @@
 | 2026-05-28 | 【卍×三連複 ROI=46.7% 損失対応完了】`ManjiStrategy.generate()` の `_TRIO_EV_MIN=1.0` EVゲートを復活（EVゲート撤廃コメントを削除）。TDDで `tests/test_bet_generator_ev_gate.py` 3件追加・全PASS確認済み。影響: `src/ml/bet_generator.py`, `tests/test_bet_generator_ev_gate.py` |
 | 2026-05-28 | 【W-038 完了】卍モデル三連複EVゲート復活: `_TRIO_EV_MIN = 1.0` を ManjiGenerator に追加。本番実績 ROI 46.7% の三連複買い目を撤廃。影響: `src/ml/bet_generator.py` |
 | 2026-05-28 | 【W-039 完了】バックテスト評価品質改善: `--mode flat` フラグを `scripts/backtest_2024_2025.py` に追加。Kelly複利ROI膨張（最大15000%）なしの実態値を算出可能に。影響: `scripts/backtest_2024_2025.py` |
+| 2026-05-28 | 【W-043 新規登録】日次損失サーキットブレーカー欠如: ドローダウン中でも予測・投票が継続する。`scheduler.py` に当日P&Lチェックと停止フラグを実装予定 |
+| 2026-05-28 | 【W-044 新規登録】今日の自動運行リトライ無限ループ: `job_today_auto_runner` 内 `_run_loop()` に最大クラッシュ数制限がない。max_crashes=10 を追加予定 |
+| 2026-05-28 | 【W-045 新規登録】shap_json スキーマドリフト: migration追加のみでschema.pyのCREATE TABLEに未反映。次期改修時に統合予定 |
+| 2026-05-28 | 【W-042 新規登録→即完了】NaN確率/EV → Kelly最大分数誘発バグ: `_kelly_bet(NaN, ...)` および `calc_kelly_stake(_, NaN, ...)` で `float('nan') <= 0.0` が Pythonで False を返しガードをスルーする問題を `math.isnan()` 先頭チェックで修正。`HonmeiModel/PlaceModel/ManjiModel.predict()` に `np.nan_to_num(nan=0.0)` NaN補完を追加。影響: src/ml/bet_generator.py, src/ml/models.py |
+| 2026-05-28 | 【W-041 新規登録→即完了】JVDataLoader.load() RuntimeError 未リトライ + DB コネクションリーク: `except (TimeoutError, RuntimeError)` 統合 + `try/finally: conn.close()` 追加。`sync_wood()` に OPT_STORED フォールバック追加。影響: src/scraper/jravan_client.py, src/ops/data_sync.py |
 | 2026-05-28 | 【W-040 完了】セグメント分析基盤新設: `scripts/segment_analysis.py` で券種×会場×馬場状態別ROIを自動集計。月曜07:30 Discord自動配信開始。影響: `scripts/segment_analysis.py`, `scripts/scheduler.py` |
 | 2026-05-27 | 【W-037 完了】動的セーフティ実装: `calc_kelly_stake()` に `GLOBAL_BALANCE_CAP_PCT=0.05`・`_dynamic_kelly_fraction()`・最低保証額廃止の3機能を追加。Monte Carlo 10,000試行で1/4Kelly破産率 75.97%→**0.00%** 達成（目標<10% クリア）。中央最終残高 ¥831,505。W-037 🟢完了。影響: `src/ml/bet_generator.py`, `scripts/calibration_kelly_audit.py` |
 | 2026-05-27 | 【W-036/W-037 新規登録・キャリブレーション&Kelly監査実施】`scripts/calibration_kelly_audit.py` 新設。① 本命(直前)モデルのキャリブレーション: model_score が全 bin で実績的中率を下回る（補正倍率 avg=1.91）→ EV 過小評価状態（守保的設計としては良好だが改善余地あり）。② Kelly Monte Carlo (10,000試行): recommended_bet 基準の真ROI=119.8%、純損益=+¥864,650 で黒字確認。ただし破産率54-93%（全Kelly係数）→ 初期資金¥100K では三連単高額ベットによる連敗で ¥10K ラインを割るリスクが高い。推奨: 運用資金を ¥300K〜¥500K 以上に引き上げ or バランス比率に応じた動的Kelly圧縮を実装。結果は `data/calibration_kelly_audit.json` に保存。 |
@@ -478,6 +484,7 @@ Phase 2-C+B完了後: 30因子 ← 社長ビジョン達成
   W-035  training_hillwork 坂路データ蓄積中    🟡 対応中（木金自動収集・今週末以降）
   W-036  モデルキャリブレーション補正実装      🟢 完了（src/ml/calibration.py新設・HonmeiStrategy統合・2026-05-27）
   W-037  運用資金¥100K不足リスク              🟢 完了（動的Kelly実装・1/4Kelly破産率75.97%→0.00%達成・2026-05-27）
+  W-046  全モデル横断バックテスト機能      🟢 完了
 
 【中長期（歴史データ大規模取得後）】
   Phase 2-B (W-003/W-008/W-010: 不完全燃焼・馬場脚質・相手関係)
@@ -519,6 +526,68 @@ Phase 2-C+B完了後: 30因子 ← 社長ビジョン達成
 | 影響 | どの会場・馬場・券種で赤字か分からず `_ALLOWED_BET_TYPES` の見直しが勘になっている |
 | 対応方針 | `scripts/segment_analysis.py` 新設、月曜07:30 Discord 自動配信 |
 | 担当フェーズ | 実装完了 |
+
+---
+
+### W-042: NaN確率/EV → Kelly最大分数誘発バグ（安全性脅威）
+
+| 項目 | 内容 |
+|------|------|
+| ID | W-042 |
+| ステータス | 🟢 完了（2026-05-28） |
+| 優先度 | 高 |
+| 影響 | LightGBMがNaN確率を返した場合、`float('nan') <= 0.0 = False` でKellyガードをスルーし `calc_kelly_stake` で `int(nan//100)` がValueErrorクラッシュ、`_kelly_bet` では `min(nan, cap)` がPythonでNaNを返し最終的に最低賭け金（¥100）が誤って計上される |
+| 対応方針 | `_kelly_bet()` / `calc_kelly_stake()` 先頭に `math.isnan()/isinf()` ガード追加。モデル3種の `predict()` に `np.nan_to_num(nan=0.0)` 補完追加 |
+| 担当フェーズ | 実装完了 |
+
+### W-043: 日次損失サーキットブレーカーの欠如
+
+| 項目 | 内容 |
+|------|------|
+| ID | W-043 |
+| ステータス | 🔴 未着手 |
+| 優先度 | 高 |
+| 影響 | モデルが連続ドローダウン中でも買い目を出し続ける。当日の損失合計が閾値を超えても自動停止しない |
+| 対応方針 | `scheduler.py` の予想生成前に当日の `prediction_results` を集計し、損失が初期資金の10%を超えたら Discord 警告 + その日の投票停止フラグを立てる |
+| 担当フェーズ | 未実装 |
+
+---
+
+### W-044: today_auto_runner 無限リトライループ
+
+| 項目 | 内容 |
+|------|------|
+| ID | W-044 |
+| ステータス | 🔴 未着手 |
+| 優先度 | 中 |
+| 影響 | `scripts/scheduler.py:job_today_auto_runner` の内部 `_run_loop()` は例外を捕捉してsleep(30)後に再試行を繰り返すが、最大リトライ数がなく、サブプロセスが常にクラッシュする状況では無限ループになる |
+| 対応方針 | `_run_loop()` に `max_crashes=10` カウンタを追加し超過時は Discord 警告 + スレッド終了 |
+| 担当フェーズ | 未実装 |
+
+---
+
+### W-045: shap_json カラムのスキーマドリフト
+
+| 項目 | 内容 |
+|------|------|
+| ID | W-045 |
+| ステータス | 🟡 対応中 |
+| 優先度 | 低 |
+| 影響 | `src/database/init_db.py` の `_migrate_add_shap_json()` でカラムを追加しているが `schema.py` の CREATE TABLE 定義に `shap_json` が含まれていない。フレッシュインストール時はマイグレーション実行までカラムが存在しない可能性がある |
+| 対応方針 | `schema.py` の `CREATE TABLE prediction_horses` に `shap_json TEXT` カラムを追記する |
+| 担当フェーズ | 次期改修時に対応 |
+
+---
+
+### W-046: 全モデル横断バックテスト機能の欠如
+
+| 項目 | 内容 |
+|------|------|
+| **優先度** | 🟡 中 |
+| **ステータス** | 🟢 完了（2026-05-29） |
+| **影響** | 本命・卍・複勝・ALPHA の4モデルを同一データ期間で横断比較できなかった。モデル間のROI・的中率差分が定量評価不可能だった |
+| **対応方針** | `scripts/backtest_all_models.py` を新規作成。Train:2024 → Test:2025 の時系列分割でリーク防止。9戦略横断のROI比較テーブル・月別ROI推移・会場別内訳を出力 |
+| **対応完了** | 2026-05-29  `scripts/backtest_all_models.py` で統合。commits: b8619a3c(spec)→03f6a83d(plan)→fd68f285(impl) |
 
 ---
 
