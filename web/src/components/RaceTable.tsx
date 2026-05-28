@@ -31,7 +31,7 @@ export default function RaceTable({ results }: Props) {
       <th
         className="cursor-pointer select-none"
         onClick={() => handleSort(col)}
-        style={{ color: active ? 'var(--neon-cyan)' : undefined }}
+        style={{ color: active ? 'var(--neon-cyan)' : 'var(--text-muted)' }}
       >
         <span className="flex items-center gap-1">
           {label}
@@ -43,8 +43,8 @@ export default function RaceTable({ results }: Props) {
 
   return (
     <div className="neon-card slide-in" style={{ animationDelay: '0.25s' }}>
-      <div className="flex items-center justify-between px-4 py-3 border-b border-[rgba(0,200,255,0.12)]">
-        <span className="text-sm neon-text tracking-[0.2em] font-semibold">RACE RESULTS</span>
+      <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--border)]">
+        <span className="text-sm font-semibold" style={{ color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>レース結果</span>
         <span className="text-sm text-[var(--text-muted)]">
           {results.length} runners
           <span className="hidden md:inline"> &nbsp;·&nbsp; click header to sort</span>
