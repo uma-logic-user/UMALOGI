@@ -76,3 +76,93 @@ def test_strategy_stats_summary_row_loss():
     assert row[5] == "0"
     assert row[6] == "0.0%"
     assert row[7] == "×"              # 赤字フラグ
+
+
+# ── _select_horses テスト ────────────────────────────────────
+import pandas as pd
+import numpy as np
+from unittest.mock import MagicMock
+from scripts.backtest_all_models import _select_horses, STRATEGIES
+
+
+def _make_df(n: int = 6) -> pd.DataFrame:
+    """FeatureBuilder が返す形式を模したダミーDataFrame。"""
+    return pd.DataFrame({
+        "horse_name": [f"馬{i}" for i in range(n)],
+        "win_odds":   [float(i * 2 + 1) for i in range(n)],
+        "popularity": list(range(1, n + 1)),
+    })
+
+
+def _make_honmei(scores: list[float]) -> MagicMock:
+    m = MagicMock()
+    m.predict.return_value = pd.Series(scores)
+    return m
+
+
+def _make_place(scores: list[float]) -> MagicMock:
+    m = MagicMock()
+    m.predict.return_value = pd.Series(scores)
+    return m
+
+
+def _make_manji(ev_scores: list[float]) -> MagicMock:
+    m = MagicMock()
+    m.ev_score.return_value = pd.Series(ev_scores)
+    return m
+
+
+def test_select_horses_honmei_top1():
+    df     = _make_df(6)
+    scores = [0.1, 0.5, 0.3, 0.8, 0.2, 0.6]
+    honmei = _make_honmei(scores)
+    place  = _make_place([0.0] * 6)
+    manji  = _make_manji([0.0] * 6)
+    picks  = _select_horses(df, STRATEGIES["honmei_tansho"], honmei, place, manji)
+    assert picks == ["馬3"]   # index 3 のスコア 0.8 が最高
+
+
+def test_select_horses_honmei_top3_insufficient():
+    """頭数不足（3頭未満）の場合は空リストを返す。"""
+    df     = _make_df(2)
+    honmei = _make_honmei([0.5, 0.8])
+    place  = _make_place([0.0, 0.0])
+    manji  = _make_manji([0.0, 0.0])
+    picks  = _select_horses(df, STRATEGIES["honmei_sanrenpuku"], honmei, place, manji)
+    assert picks == []
+
+
+def test_select_horses_manji_ev_filter_pass():
+    """EV > 1.0 の馬が1頭以上なら picks を返す。"""
+    df    = _make_df(4)
+    manji = _make_manji([0.8, 1.2, 0.9, 1.5])  # index 1 と 3 が EV>1
+    picks = _select_horses(df, STRATEGIES["manji_tansho"],
+                           _make_honmei([0.0]*4), _make_place([0.0]*4), manji)
+    assert "馬3" in picks    # 最高EV=1.5
+
+
+def test_select_horses_manji_ev_filter_no_pass():
+    """EV>1.0 が0頭のとき空リストを返す。"""
+    df    = _make_df(4)
+    manji = _make_manji([0.5, 0.6, 0.7, 0.8])  # 全員 EV<1
+    picks = _select_horses(df, STRATEGIES["manji_tansho"],
+                           _make_honmei([0.0]*4), _make_place([0.0]*4), manji)
+    assert picks == []
+
+
+def test_select_horses_place_top3():
+    df    = _make_df(6)
+    place = _make_place([0.1, 0.6, 0.9, 0.4, 0.7, 0.3])
+    picks = _select_horses(df, STRATEGIES["place_fukusho_top3"],
+                           _make_honmei([0.0]*6), place, _make_manji([0.0]*6))
+    assert len(picks) == 3
+    assert "馬2" in picks  # score 0.9 が最高
+
+
+def test_strategies_all_keys_present():
+    expected = {
+        "honmei_tansho", "honmei_umaren", "honmei_sanrenpuku",
+        "manji_tansho", "manji_fukusho",
+        "place_fukusho", "place_fukusho_top3",
+    }
+    assert expected.issubset(set(STRATEGIES.keys()))

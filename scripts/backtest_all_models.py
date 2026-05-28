@@ -86,6 +86,109 @@ class StrategyStats:
         ]
 
 
+# ── 戦略定義 ─────────────────────────────────────────────────────
+STRATEGIES: dict[str, dict] = {
+    "honmei_tansho": {
+        "label":    "本命・単勝(Top1)",
+        "model":    "honmei",
+        "bet_type": "単勝",
+        "n_picks":  1,
+    },
+    "honmei_umaren": {
+        "label":    "本命・馬連(Top2)",
+        "model":    "honmei",
+        "bet_type": "馬連",
+        "n_picks":  2,
+    },
+    "honmei_sanrenpuku": {
+        "label":    "本命・三連複(Top3)",
+        "model":    "honmei",
+        "bet_type": "三連複",
+        "n_picks":  3,
+    },
+    "manji_tansho": {
+        "label":    "卍・単勝(EV>1.0)",
+        "model":    "manji",
+        "bet_type": "単勝",
+        "n_picks":  1,
+        "ev_filter": True,
+    },
+    "manji_fukusho": {
+        "label":    "卍・複勝(EV>1.0)",
+        "model":    "manji",
+        "bet_type": "複勝",
+        "n_picks":  1,
+        "ev_filter": True,
+    },
+    "place_fukusho": {
+        "label":    "複勝・複勝(Top1)",
+        "model":    "place",
+        "bet_type": "複勝",
+        "n_picks":  1,
+    },
+    "place_fukusho_top3": {
+        "label":    "複勝・複勝(Top3流し)",
+        "model":    "place",
+        "bet_type": "複勝",
+        "n_picks":  3,
+    },
+}
+
+
+def _select_horses(
+    df: "pd.DataFrame",
+    strategy: dict,
+    honmei: Any,
+    place: Any,
+    manji: Any,
+) -> list[str]:
+    """
+    戦略に応じて予想馬名リストを返す。
+
+    Args:
+        df: 出走馬情報（horse_name, win_odds, popularity 等を含む）
+        strategy: STRATEGIES 辞書から取得した戦略
+        honmei: 本命モデル（.predict(df) → pd.Series）
+        place: 複勝モデル（.predict(df) → pd.Series）
+        manji: 卍モデル（.ev_score(df) → pd.Series）
+
+    Returns:
+        推奨馬名リスト。条件未達の場合は空リスト。
+    """
+    if df.empty:
+        return []
+
+    model_key = strategy["model"]
+    n_picks   = strategy.get("n_picks", 1)
+    ev_filter = strategy.get("ev_filter", False)
+
+    if model_key == "honmei":
+        scores = honmei.predict(df)
+    elif model_key == "place":
+        scores = place.predict(df)
+    elif model_key == "manji":
+        scores = manji.ev_score(df)
+    else:
+        return []
+
+    df2 = df.copy()
+    df2["_score"] = scores.values
+
+    if ev_filter:
+        df2 = df2[df2["_score"] > 1.0]
+        if df2.empty:
+            return []
+
+    df2 = df2.sort_values("_score", ascending=False)
+    top = df2.head(n_picks)
+
+    # 組み合わせ馬券（馬連・三連複）は n_picks 頭に満たない場合は不成立
+    if strategy["bet_type"] in ("馬連", "三連複") and len(top) < n_picks:
+        return []
+
+    return top["horse_name"].tolist()
+
+
 def _banner(text: str) -> None:
     border = "=" * _WIDTH
     inner  = f"  {text}  "
