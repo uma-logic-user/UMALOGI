@@ -524,7 +524,7 @@ function SnsButtons({
         onClick={handleX}
         className={`px-3 py-2 text-xs font-semibold rounded-md tracking-wider transition-all ${
           xCopied
-            ? 'bg-[rgba(0,200,100,0.2)] text-[var(--neon-green)] border border-[rgba(0,200,100,0.4)]'
+            ? 'bg-[rgba(91,138,91,0.15)] text-[var(--neon-green)] border border-[rgba(91,138,91,0.35)]'
             : 'bg-[rgba(200,168,130,0.08)] text-[var(--neon-cyan)] border border-[var(--border)] hover:bg-[rgba(200,168,130,0.15)]'
         }`}
       >
@@ -535,8 +535,8 @@ function SnsButtons({
         onClick={handleNote}
         className={`px-3 py-2 text-xs font-semibold rounded-md tracking-wider transition-all ${
           noteCopied
-            ? 'bg-[rgba(0,200,100,0.2)] text-[var(--neon-green)] border border-[rgba(0,200,100,0.4)]'
-            : 'bg-[rgba(255,180,0,0.08)] text-[rgba(255,200,60,0.9)] border border-[rgba(255,180,0,0.25)] hover:bg-[rgba(255,180,0,0.18)]'
+            ? 'bg-[rgba(91,138,91,0.15)] text-[var(--neon-green)] border border-[rgba(91,138,91,0.35)]'
+            : 'bg-[rgba(184,134,11,0.08)] text-[var(--neon-gold)] border border-[rgba(184,134,11,0.25)] hover:bg-[rgba(184,134,11,0.15)]'
         }`}
       >
         {noteCopied ? '✅ コピー完了' : '📝 NOTE用コピー（Markdown）'}
@@ -749,9 +749,9 @@ function PreraceTable({ results }: { results: RaceResult[] }) {
               {/* 左: 馬番サークル */}
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, paddingTop: 2 }}>
                 <span className="horse-num-lg" style={{
-                  background: isHot ? 'rgba(255,51,102,0.18)' : undefined,
+                  background: isHot ? 'rgba(196,64,64,0.15)' : undefined,
                   color: isHot ? 'var(--neon-red)' : undefined,
-                  borderColor: isHot ? 'rgba(255,51,102,0.5)' : undefined,
+                  borderColor: isHot ? 'rgba(196,64,64,0.45)' : undefined,
                 }}>
                   {r.horse_number}
                 </span>
@@ -781,7 +781,7 @@ function PreraceTable({ results }: { results: RaceResult[] }) {
                       <div style={{
                         fontFamily: 'monospace', fontWeight: 900, fontSize: '1.5rem', lineHeight: 1,
                         color: ev >= 1.0 ? 'var(--neon-red)' : ev >= 0.8 ? 'var(--neon-gold)' : 'var(--text-muted)',
-                        textShadow: ev >= 1.0 ? '0 0 10px rgba(255,51,102,0.7)' : ev >= 0.8 ? '0 0 10px rgba(255,215,0,0.7)' : 'none',
+                        textShadow: 'none',
                       }}>{ev.toFixed(2)}</div>
                     </div>
                   )}
@@ -1113,7 +1113,7 @@ function OddsCell({ odds }: { odds: number | null }) {
     odds <= 3  ? 'var(--neon-green)' :
     odds <= 10 ? 'var(--neon-cyan)'  :
     odds <= 30 ? 'var(--neon-gold)'  : 'var(--neon-red)'
-  return <span style={{ color, textShadow: `0 0 6px ${color}55` }}>{odds.toFixed(1)}</span>
+  return <span style={{ color }}>{odds.toFixed(1)}</span>
 }
 
 // ── 人気バッジ ─────────────────────────────────────────────

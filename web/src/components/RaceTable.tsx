@@ -77,7 +77,7 @@ export default function RaceTable({ results }: Props) {
                   ${r.rank === 1 ? 'row-rank-1' : ''}
                   ${r.rank === 2 ? 'row-rank-2' : ''}
                   ${r.rank === 3 ? 'row-rank-3' : ''}
-                  ${highlight === r.horse_name ? 'outline outline-1 outline-[rgba(0,200,255,0.3)]' : ''}
+                  ${highlight === r.horse_name ? 'outline outline-1 outline-[rgba(200,168,130,0.4)]' : ''}
                 `}
                 onClick={() => setHighlight(h => h === r.horse_name ? null : r.horse_name)}
               >
@@ -129,7 +129,7 @@ export default function RaceTable({ results }: Props) {
           return (
             <div
               key={r.horse_name}
-              className={`horse-row-card ${rankClass} ${highlight === r.horse_name ? 'outline outline-1 outline-[rgba(0,200,255,0.3)]' : ''}`}
+              className={`horse-row-card ${rankClass} ${highlight === r.horse_name ? 'outline outline-1 outline-[rgba(200,168,130,0.4)]' : ''}`}
               onClick={() => setHighlight(h => h === r.horse_name ? null : r.horse_name)}
               style={{ cursor: 'pointer', userSelect: 'none' }}
             >
@@ -203,7 +203,7 @@ function OddsCell({ odds }: { odds: number | null }) {
     odds <= 20  ? 'var(--neon-cyan)'  :
     odds <= 50  ? 'var(--neon-gold)'  : 'var(--neon-red)'
   return (
-    <span style={{ color, textShadow: `0 0 6px ${color}66` }}>
+    <span style={{ color }}>
       {odds.toFixed(1)}
     </span>
   )
@@ -212,9 +212,9 @@ function OddsCell({ odds }: { odds: number | null }) {
 function PopularityBadge({ pop }: { pop: number | null }) {
   if (pop == null) return <span className="text-[var(--text-muted)]">—</span>
   const bg =
-    pop === 1 ? 'rgba(0,255,136,0.15)' :
-    pop <= 3  ? 'rgba(0,200,255,0.10)' :
-    pop <= 6  ? 'rgba(0,100,255,0.08)' : 'transparent'
+    pop === 1 ? 'rgba(91,138,91,0.15)' :
+    pop <= 3  ? 'rgba(200,168,130,0.12)' :
+    pop <= 6  ? 'rgba(200,168,130,0.06)' : 'transparent'
   const col =
     pop === 1 ? 'var(--neon-green)' :
     pop <= 3  ? 'var(--neon-cyan)'  :
