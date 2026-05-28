@@ -201,6 +201,9 @@ def _train_three_models(
     本番モデル（data/models/）は一切上書きしない。
     再訓練済みモデルをインメモリのまま返す。
 
+    NOTE: HonmeiModel.train() reads data/models/honmei.pkl for Champion/Challenger
+    comparison. This is read-only; no production model files are written.
+
     Returns:
         (honmei, place, manji) の訓練済みインスタンス
     """
@@ -212,22 +215,34 @@ def _train_three_models(
     place  = PlaceModel()
     manji  = ManjiModel()
 
-    h_metrics = honmei.train(conn, train_until=train_until)
-    print(
-        f"  [OK] 本命  AUC={h_metrics.get('cv_auc_mean', float('nan')):.3f}"
-        f"  n_races={h_metrics.get('n_races', '?')}"
-    )
+    try:
+        h_metrics = honmei.train(conn, train_until=train_until)
+        print(
+            f"  [OK] 本命  AUC={h_metrics.get('cv_auc_mean', float('nan')):.3f}"
+            f"  n_races={h_metrics.get('n_races', '?')}"
+        )
+    except Exception as exc:
+        logger.error("本命モデル訓練失敗: %s", exc)
+        raise
 
-    p_metrics = place.train(conn, train_until=train_until)
-    print(
-        f"  [OK] 複勝  AUC={p_metrics.get('cv_auc_mean', float('nan')):.3f}"
-        f"  n_races={p_metrics.get('n_races', '?')}"
-    )
+    try:
+        p_metrics = place.train(conn, train_until=train_until)
+        print(
+            f"  [OK] 複勝  AUC={p_metrics.get('cv_auc_mean', float('nan')):.3f}"
+            f"  n_races={p_metrics.get('n_races', '?')}"
+        )
+    except Exception as exc:
+        logger.error("複勝モデル訓練失敗: %s", exc)
+        raise
 
-    m_metrics = manji.train(conn, train_until=train_until)
-    print(
-        f"  [OK] 卍    n_races={m_metrics.get('n_races', '?')}"
-    )
+    try:
+        m_metrics = manji.train(conn, train_until=train_until)
+        print(
+            f"  [OK] 卍    n_races={m_metrics.get('n_races', '?')}"
+        )
+    except Exception as exc:
+        logger.error("卍モデル訓練失敗: %s", exc)
+        raise
 
     return honmei, place, manji
 
