@@ -156,9 +156,9 @@ export default function Win5Panel({ data }: Props) {
                             className={`flex items-center gap-1 px-1.5 py-0.5 rounded text-xs ${RANK_BG[h.rank]}`}
                             style={
                               isActual
-                                ? { boxShadow: '0 0 8px rgba(255,215,0,0.7)', outline: '2px solid rgba(255,215,0,0.8)' }
+                                ? { outline: '2px solid rgba(184,134,11,0.8)' }
                                 : isSel
-                                  ? { boxShadow: '0 0 6px rgba(0,200,255,0.5)', outline: '1px solid rgba(0,200,255,0.5)' }
+                                  ? { outline: '1px solid rgba(200,168,130,0.5)' }
                                   : {}
                             }
                           >
