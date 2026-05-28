@@ -388,7 +388,7 @@ def _run_alpha_backtest(
                 verbose=False,
             )
             results.append(result)
-            label = "ALPHA・" + ("単勝" if bet_type == "単勝" else "複勝")
+            label = f"ALPHA・{bet_type}"
             print(
                 f"  [OK] {label}  "
                 f"シグナル={result.num_bets:,}  "
@@ -396,7 +396,9 @@ def _run_alpha_backtest(
                 f"ROI={result.roi:.1f}%"
             )
         except Exception as exc:
-            logger.warning("ALPHA %s バックテスト失敗: %s", bet_type, exc)
+            logger.warning(
+                "ALPHA %s バックテスト失敗: %s", bet_type, exc, exc_info=True
+            )
     return results
 
 
@@ -443,20 +445,22 @@ def _print_three_model_summary(overall: dict[str, StrategyStats], title: str) ->
 
 def _print_alpha_summary(alpha_results: list[Any]) -> None:
     _section("ALPHA モデル結果")
+    rows = []
     for r in alpha_results:
-        label = f"ALPHA・{'単勝' if r.bet_type == '単勝' else '複勝'}(EV>{r.ev_threshold:.1f})"
-        invested = r.num_bets * _BET_AMOUNT
-        row = [
-            label,
-            f"{r.num_bets:,}",
-            f"{r.num_hits:,}",
-            f"{r.hit_rate:.1f}%",
-            f"{invested:,}",
-            f"{r.total_payout:,.0f}",
-            f"{r.roi:.1f}%",
-            "○" if r.roi >= 100 else "×",
-        ]
-        _print_table(_SUMMARY_HEADERS, [row])
+        label = f"ALPHA・{r.bet_type}(EV>{r.ev_threshold:.1f})"
+        rows.append(
+            [
+                label,
+                f"{r.num_bets:,}",
+                f"{r.num_hits:,}",
+                f"{r.hit_rate:.1f}%",
+                f"{r.total_investment:,}",
+                f"{r.total_payout:,.0f}",
+                f"{r.roi:.1f}%",
+                "○" if r.roi >= 100 else "×",
+            ]
+        )
+    _print_table(_SUMMARY_HEADERS, rows)
 
 
 def _print_monthly_breakdown(
@@ -501,25 +505,24 @@ def _write_csv(
                     s.races,
                     s.hits,
                     round(s.hit_rate, 2),
-                    int(s.invested),
-                    int(s.payout),
+                    round(s.invested),
+                    round(s.payout),
                     round(s.roi, 2),
                     int(s.profit),
                 ]
             )
         for r in alpha_results:
-            invested = r.num_bets * _BET_AMOUNT
-            label = f"ALPHA・{'単勝' if r.bet_type == '単勝' else '複勝'}(EV>{r.ev_threshold:.1f})"
+            label = f"ALPHA・{r.bet_type}(EV>{r.ev_threshold:.1f})"
             w.writerow(
                 [
                     label,
                     r.num_bets,
                     r.num_hits,
                     round(r.hit_rate, 2),
-                    invested,
+                    r.total_investment,
                     round(r.total_payout, 0),
                     round(r.roi, 2),
-                    round(r.total_payout - invested, 0),
+                    round(r.profit, 0),
                 ]
             )
     print(f"\n  CSV 保存: {out_path}")
@@ -689,10 +692,7 @@ def main() -> int:
     # 総評
     _section("総評")
     all_rois = [(s.label, s.roi) for s in overall.values()]
-    all_rois += [
-        (f"ALPHA・{'単勝' if r.bet_type == '単勝' else '複勝'}", r.roi)
-        for r in alpha_results
-    ]
+    all_rois += [(f"ALPHA・{r.bet_type}", r.roi) for r in alpha_results]
     best_label, best_roi = max(all_rois, key=lambda t: t[1])
     print(f"  最高ROI戦略: {best_label}  ROI={best_roi:.1f}%")
     black = [lbl for lbl, roi in all_rois if roi >= 100]
