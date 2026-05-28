@@ -15,17 +15,17 @@ Test:  2025年全データで本命・卍・複勝・ALPHA を横断評価
 from __future__ import annotations
 
 import argparse
-import csv
+import csv  # noqa: F401
 import logging
-import math
-import shutil
+import math  # noqa: F401
+import shutil  # noqa: F401
 import sqlite3
 import sys
-import time
-from collections import defaultdict
-from datetime import datetime
+import time  # noqa: F401
+from collections import defaultdict  # noqa: F401
+from datetime import datetime  # noqa: F401
 from pathlib import Path
-from typing import Any
+from typing import Any  # noqa: F401
 
 _ROOT = Path(__file__).resolve().parents[1]
 if str(_ROOT) not in sys.path:
@@ -110,6 +110,8 @@ def main() -> int:
 
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    if hasattr(sys.stderr, "reconfigure"):
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 
     logging.basicConfig(
         level=logging.DEBUG if args.verbose else logging.INFO,
@@ -123,11 +125,11 @@ def main() -> int:
     print(f"  Train: {_TRAIN_YEAR}年  →  Test: {_TEST_YEAR}年")
 
     db_path = args.db or get_db_path()
+    print(f"  DB  : {db_path}")
     if not Path(db_path).exists():
         print(f"\n  [NG] DB が見つかりません: {db_path}")
         return 1
     conn = init_db(db_path=Path(db_path))
-    print(f"  DB  : {db_path}")
 
     _print_data_stats(conn)
 
