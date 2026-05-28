@@ -1,13 +1,21 @@
 export default function NavBar() {
   return (
-    <header className="relative z-10 flex items-center justify-between px-3 py-3 sm:px-6 sm:py-4 border-b border-[rgba(0,200,255,0.15)]">
+    <header
+      className="relative z-10 flex items-center justify-between px-3 py-3 sm:px-6 sm:py-4 border-b border-[var(--border)]"
+      style={{ background: 'var(--bg-surface)' }}
+    >
       {/* ロゴ */}
       <div className="flex items-center gap-3">
-        <div className="w-8 h-8 rounded border border-[rgba(0,200,255,0.5)] flex items-center justify-center"
-          style={{ boxShadow: '0 0 12px rgba(0,200,255,0.4)' }}>
+        <div
+          className="w-8 h-8 rounded border border-[var(--border)] flex items-center justify-center"
+          style={{ background: 'var(--bg-muted)' }}
+        >
           <span className="text-xs neon-text font-bold">U</span>
         </div>
-        <span className="text-lg font-bold tracking-[0.25em] neon-text scanlines">
+        <span
+          className="text-lg font-bold tracking-[0.15em] neon-text"
+          style={{ fontFamily: 'Georgia, serif' }}
+        >
           UMALOGI
         </span>
         <span className="text-xs text-[var(--text-muted)] tracking-widest">v0.1</span>
@@ -18,15 +26,14 @@ export default function NavBar() {
         <span className="neon-text border-b border-[var(--neon-cyan)] pb-0.5 cursor-pointer">
           RACES
         </span>
-        <span className="hover:text-[var(--neon-cyan)] transition-colors cursor-pointer">PEDIGREE</span>
-        <span className="hover:text-[var(--neon-cyan)] transition-colors cursor-pointer">WIN5</span>
-        <span className="hover:text-[var(--neon-cyan)] transition-colors cursor-pointer">ANALYTICS</span>
+        <span className="hover:text-[var(--text-primary)] transition-colors cursor-pointer">PEDIGREE</span>
+        <span className="hover:text-[var(--text-primary)] transition-colors cursor-pointer">WIN5</span>
+        <span className="hover:text-[var(--text-primary)] transition-colors cursor-pointer">ANALYTICS</span>
       </nav>
 
       {/* ステータス */}
       <div className="flex items-center gap-2">
-        <span className="w-2 h-2 rounded-full bg-[var(--neon-green)] pulse-neon"
-          style={{ boxShadow: '0 0 8px var(--neon-green)' }} />
+        <span className="w-2 h-2 rounded-full bg-[var(--neon-green)] pulse-neon" />
         <span className="text-xs text-[var(--text-muted)] tracking-wider hidden sm:inline">LIVE DB</span>
       </div>
     </header>
