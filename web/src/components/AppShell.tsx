@@ -136,8 +136,11 @@ export default function AppShell() {
     return (
       <div className="flex items-center justify-center h-screen">
         <div className="text-center">
-          <div className="neon-text text-xl tracking-[0.3em] animate-pulse">UMALOGI</div>
-          <div className="text-sm text-[var(--text-muted)] mt-3 tracking-widest">Loading...</div>
+          <div
+            className="text-xl tracking-[0.2em] animate-pulse neon-text"
+            style={{ fontFamily: 'Georgia, serif' }}
+          >UMALOGI</div>
+          <div className="text-sm mt-3 tracking-widest" style={{ color: 'var(--text-muted)' }}>データを読み込み中...</div>
         </div>
       </div>
     )
@@ -164,16 +167,12 @@ export default function AppShell() {
       {/* ── Sidebar ─────────────────────────────────── */}
       <aside className="app-sidebar">
         {/* 特別ボタン群 */}
-        <div className="border-b border-[rgba(0,200,255,0.1)] py-1">
+        <div className="border-b border-[var(--border)] py-1">
           <button
             className={`sidebar-special-btn ${view === 'hits' ? 'active' : ''}`}
             onClick={() => setView('hits')}
           >
-            <span style={{
-              color: 'var(--neon-gold)',
-              textShadow: '0 0 8px rgba(255,215,0,0.7)',
-              fontSize: '1rem',
-            }}>★</span>
+            <span style={{ color: 'var(--neon-gold)', fontSize: '1rem' }}>★</span>
             <span style={{ color: view === 'hits' ? 'var(--neon-gold)' : 'var(--text-primary)' }}>
               的中実績
             </span>
@@ -181,9 +180,9 @@ export default function AppShell() {
               <span
                 className="ml-auto text-xs font-bold px-1.5 py-0.5 rounded"
                 style={{
-                  background: 'rgba(255,215,0,0.15)',
+                  background: 'rgba(184,134,11,0.12)',
                   color: 'var(--neon-gold)',
-                  border: '1px solid rgba(255,215,0,0.3)',
+                  border: '1px solid rgba(184,134,11,0.3)',
                 }}
               >
                 {hits.length}
@@ -227,7 +226,7 @@ export default function AppShell() {
             </span>
             {gachiHits.filter((h: { is_hit: number }) => h.is_hit === 1).length > 0 && (
               <span className="ml-auto text-xs font-bold px-1.5 py-0.5 rounded"
-                    style={{ background: 'rgba(255,71,87,0.15)', color: '#ff4757', border: '1px solid rgba(255,71,87,0.3)' }}>
+                    style={{ background: 'rgba(196,64,64,0.12)', color: 'var(--neon-red)', border: '1px solid rgba(196,64,64,0.3)' }}>
                 {gachiHits.filter((h: { is_hit: number }) => h.is_hit === 1).length}
               </span>
             )}
