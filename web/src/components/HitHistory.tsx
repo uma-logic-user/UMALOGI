@@ -139,7 +139,7 @@ export default function HitHistory({ predictions }: Props) {
           className="text-xl font-bold tracking-wider"
           style={{
             color: 'var(--neon-gold)',
-            textShadow: '0 0 16px rgba(255,215,0,0.7), 0 0 32px rgba(255,215,0,0.3)',
+            textShadow: 'none',
           }}
         >
           ★ 的中実績 HIT HISTORY
@@ -192,14 +192,14 @@ export default function HitHistory({ predictions }: Props) {
             className="px-3 py-1.5 rounded text-xs font-semibold tracking-wider transition-all"
             style={{
               background: filter === f.key
-                ? f.key === 'jackpot' ? 'rgba(255,140,0,0.2)' : 'rgba(255,215,0,0.15)'
-                : 'rgba(0,200,255,0.04)',
+                ? f.key === 'jackpot' ? 'rgba(255,140,0,0.2)' : 'rgba(184,134,11,0.15)'
+                : 'rgba(200,168,130,0.04)',
               color: filter === f.key
                 ? f.key === 'jackpot' ? '#ffaa00' : 'var(--neon-gold)'
                 : 'var(--text-muted)',
               border: `1px solid ${filter === f.key
-                ? f.key === 'jackpot' ? 'rgba(255,140,0,0.5)' : 'rgba(255,215,0,0.4)'
-                : 'rgba(0,200,255,0.1)'}`,
+                ? f.key === 'jackpot' ? 'rgba(255,140,0,0.5)' : 'rgba(184,134,11,0.4)'
+                : 'rgba(200,168,130,0.1)'}`,
             }}
           >
             {f.label}
@@ -223,14 +223,14 @@ export default function HitHistory({ predictions }: Props) {
               className="px-2 py-1 sm:px-3 sm:py-1.5 rounded text-xs font-semibold transition-all"
               style={{
                 background: modelFilter === key
-                  ? (cyan ? 'rgba(0,200,255,0.12)' : 'rgba(255,215,0,0.10)')
-                  : 'rgba(0,200,255,0.03)',
+                  ? (cyan ? 'rgba(200,168,130,0.12)' : 'rgba(184,134,11,0.10)')
+                  : 'rgba(200,168,130,0.03)',
                 color: modelFilter === key
                   ? (cyan ? 'var(--neon-cyan)' : 'var(--neon-gold)')
                   : 'var(--text-muted)',
                 border: `1px solid ${modelFilter === key
-                  ? (cyan ? 'rgba(0,200,255,0.3)' : 'rgba(255,215,0,0.3)')
-                  : 'rgba(0,200,255,0.08)'}`,
+                  ? (cyan ? 'rgba(200,168,130,0.3)' : 'rgba(184,134,11,0.3)')
+                  : 'rgba(200,168,130,0.08)'}`,
               }}
             >
               {label}
@@ -241,7 +241,7 @@ export default function HitHistory({ predictions }: Props) {
 
       {/* ── テーブル ────────────────────────────────────── */}
       <div className="neon-card">
-        <div className="px-4 py-3 border-b border-[rgba(0,200,255,0.12)] flex items-center justify-between">
+        <div className="px-4 py-3 border-b border-[rgba(200,168,130,0.12)] flex items-center justify-between">
           <span className="text-sm neon-text-gold tracking-[0.2em] font-semibold">
             HIT RECORDS — {sorted.length} 件
           </span>
@@ -343,7 +343,7 @@ function StatCard({
       } : undefined}
     >
       <div className="text-xs text-[var(--text-muted)] tracking-wider mb-2 uppercase">{label}</div>
-      <div className="text-2xl font-bold" style={{ color, textShadow: `0 0 10px ${color}88` }}>
+      <div className="text-2xl font-bold" style={{ color }}>
         {value}
       </div>
       <div className="text-xs text-[var(--text-muted)] mt-1">{sub}</div>

@@ -49,8 +49,8 @@ function Badge({
     <div
       className="flex items-center gap-2 px-3 py-1.5 rounded text-xs"
       style={{
-        background: 'rgba(0,200,255,0.06)',
-        border: '1px solid rgba(0,200,255,0.2)',
+        background: 'rgba(200,168,130,0.06)',
+        border: '1px solid rgba(200,168,130,0.2)',
       }}
     >
       <span className="text-[var(--text-muted)] tracking-wider">{label}</span>

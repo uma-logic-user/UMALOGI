@@ -29,15 +29,15 @@ export default function PedigreeChart({ results }: Props) {
             </div>
             {/* バー */}
             <div className="flex-1 relative h-5 rounded overflow-hidden"
-              style={{ background: 'rgba(0,200,255,0.05)', border: '1px solid rgba(0,200,255,0.1)' }}>
+              style={{ background: 'rgba(200,168,130,0.05)', border: '1px solid rgba(200,168,130,0.1)' }}>
               <div
                 className="absolute inset-y-0 left-0 rounded transition-all"
                 style={{
                   width: `${(count / maxCount) * 100}%`,
                   background: placings > 0
-                    ? 'linear-gradient(90deg, rgba(0,200,255,0.3), rgba(0,200,255,0.1))'
-                    : 'rgba(0,200,255,0.08)',
-                  boxShadow: placings > 0 ? 'inset 0 0 8px rgba(0,200,255,0.2)' : 'none',
+                    ? 'linear-gradient(90deg, rgba(200,168,130,0.3), rgba(200,168,130,0.1))'
+                    : 'rgba(200,168,130,0.08)',
+                  boxShadow: 'none',
                 }}
               />
               <div className="absolute inset-y-0 left-2 flex items-center text-[10px] font-mono"

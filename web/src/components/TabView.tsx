@@ -65,7 +65,7 @@ export default function TabView({ races, predictions, hitsData, summary }: Props
       </div>
 
       {/* ── タブバー ────────────────────────────────────────── */}
-      <div className="flex gap-0 border-b border-[rgba(0,200,255,0.18)] overflow-x-auto"
+      <div className="flex gap-0 border-b border-[rgba(200,168,130,0.18)] overflow-x-auto"
         style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none' }}>
         {TABS.map(tab => (
           <button
@@ -84,7 +84,7 @@ export default function TabView({ races, predictions, hitsData, summary }: Props
             {activeTab === tab.id && (
               <span
                 className="absolute bottom-0 inset-x-0 h-[2px] bg-[var(--neon-cyan)]"
-                style={{ boxShadow: '0 0 8px rgba(0,200,255,0.9)' }}
+                style={{ boxShadow: 'none' }}
               />
             )}
           </button>
@@ -178,7 +178,7 @@ export default function TabView({ races, predictions, hitsData, summary }: Props
       )}
 
       {/* ── フッター ────────────────────────────────────────── */}
-      <footer className="text-center text-sm text-[var(--text-muted)] tracking-widest pt-4 pb-2 border-t border-[rgba(0,200,255,0.08)]">
+      <footer className="text-center text-sm text-[var(--text-muted)] tracking-widest pt-4 pb-2 border-t border-[rgba(200,168,130,0.08)]">
         UMALOGI &nbsp;·&nbsp; データソース: JRA-VAN
         {featured && <>&nbsp;·&nbsp; 最終更新: {featured.date}</>}
       </footer>
@@ -196,8 +196,8 @@ function SummaryBadge({
     <div
       className="flex items-center gap-2 px-3 py-1.5 rounded text-sm"
       style={{
-        background: 'rgba(0,200,255,0.04)',
-        border: `1px solid rgba(0,200,255,${dim ? '0.08' : '0.2'})`,
+        background: 'rgba(200,168,130,0.04)',
+        border: `1px solid rgba(200,168,130,${dim ? '0.08' : '0.2'})`,
         opacity: dim ? 0.5 : 1,
       }}
     >
@@ -263,12 +263,12 @@ function PredictionSummaryCard({
               <span className="text-[var(--text-muted)]">総合的中率</span>
               <span className="neon-text font-bold text-base">{hitRate?.toFixed(1)}%</span>
             </div>
-            <div className="h-2.5 rounded-full bg-[rgba(0,200,255,0.1)] overflow-hidden">
+            <div className="h-2.5 rounded-full bg-[rgba(200,168,130,0.1)] overflow-hidden">
               <div
                 className="h-full rounded-full bg-[var(--neon-cyan)]"
                 style={{
                   width: `${Math.min(hitRate ?? 0, 100)}%`,
-                  boxShadow: '0 0 10px rgba(0,200,255,0.6)',
+                  boxShadow: 'none',
                   transition: 'width 0.6s ease',
                 }}
               />
@@ -292,13 +292,13 @@ function PredictionSummaryCard({
                     <span className="text-xs ml-2 opacity-60">({s.hits} / {s.total})</span>
                   </span>
                 </div>
-                <div className="h-1.5 rounded-full bg-[rgba(0,200,255,0.08)] overflow-hidden">
+                <div className="h-1.5 rounded-full bg-[rgba(200,168,130,0.08)] overflow-hidden">
                   <div
                     className="h-full rounded-full"
                     style={{
                       width: `${Math.min(s.rate ?? 0, 100)}%`,
                       background:  s.model === '卍' ? 'var(--neon-cyan)' : 'var(--neon-gold)',
-                      boxShadow:   `0 0 6px ${s.model === '卍' ? 'rgba(0,200,255,0.5)' : 'rgba(255,215,0,0.5)'}`,
+                      boxShadow:   'none',
                       transition: 'width 0.6s ease',
                     }}
                   />
@@ -309,12 +309,12 @@ function PredictionSummaryCard({
 
           {/* キースタッツ */}
           <div className="grid grid-cols-2 gap-3">
-            <div className="bg-[rgba(255,215,0,0.05)] border border-[rgba(255,215,0,0.15)] rounded-lg p-3 text-center">
+            <div className="bg-[rgba(184,134,11,0.05)] border border-[rgba(184,134,11,0.15)] rounded-lg p-3 text-center">
               <div className="text-xs text-[var(--text-muted)] mb-1 tracking-wider">高配当的中</div>
               <div className="text-3xl font-bold neon-text-gold">{bigHits}</div>
               <div className="text-xs text-[var(--text-muted)] mt-0.5">ROI 200%超</div>
             </div>
-            <div className="bg-[rgba(0,255,136,0.05)] border border-[rgba(0,255,136,0.15)] rounded-lg p-3 text-center">
+            <div className="bg-[rgba(91,138,91,0.05)] border border-[rgba(91,138,91,0.15)] rounded-lg p-3 text-center">
               <div className="text-xs text-[var(--text-muted)] mb-1 tracking-wider">最高ROI</div>
               <div className="text-3xl font-bold neon-text-green">
                 {maxRoi !== null ? `${maxRoi.toFixed(0)}%` : '—'}
@@ -335,15 +335,15 @@ function PredictionSummaryCard({
                     style={{
                       background: p.is_hit
                         ? (p.roi ?? 0) >= 200
-                          ? 'rgba(255,215,0,0.15)'
-                          : 'rgba(0,255,136,0.15)'
-                        : 'rgba(255,51,102,0.10)',
+                          ? 'rgba(184,134,11,0.15)'
+                          : 'rgba(91,138,91,0.15)'
+                        : 'rgba(196,64,64,0.10)',
                       color: p.is_hit
                         ? (p.roi ?? 0) >= 200 ? 'var(--neon-gold)' : 'var(--neon-green)'
                         : 'var(--neon-red)',
                       border: `1px solid ${p.is_hit
-                        ? (p.roi ?? 0) >= 200 ? 'rgba(255,215,0,0.3)' : 'rgba(0,255,136,0.3)'
-                        : 'rgba(255,51,102,0.2)'}`,
+                        ? (p.roi ?? 0) >= 200 ? 'rgba(184,134,11,0.3)' : 'rgba(91,138,91,0.3)'
+                        : 'rgba(196,64,64,0.2)'}`,
                     }}
                     title={`${p.race_name} ${p.bet_type}`}
                   >
@@ -364,7 +364,7 @@ function PredictionSummaryCard({
 function AllRacesTable({ races }: { races: RaceEntry[] }) {
   return (
     <div className="neon-card min-w-0">
-      <div className="px-4 py-3 border-b border-[rgba(0,200,255,0.12)]">
+      <div className="px-4 py-3 border-b border-[rgba(200,168,130,0.12)]">
         <span className="text-sm neon-text tracking-[0.2em] font-semibold">
           ALL RACES — {races.length} RECORDS
         </span>
@@ -493,8 +493,8 @@ function HitResultsTab({ hits }: { hits: Prediction[] }) {
             onClick={() => setModelFilter(m)}
             className="px-3 py-1 rounded text-xs font-semibold transition-all"
             style={{
-              background: modelFilter === m ? 'rgba(0,200,255,0.15)' : 'transparent',
-              border: `1px solid ${modelFilter === m ? 'rgba(0,200,255,0.5)' : 'rgba(0,200,255,0.15)'}`,
+              background: modelFilter === m ? 'rgba(200,168,130,0.15)' : 'transparent',
+              border: `1px solid ${modelFilter === m ? 'rgba(200,168,130,0.5)' : 'rgba(200,168,130,0.15)'}`,
               color: modelFilter === m ? 'var(--neon-cyan)' : 'var(--text-muted)',
             }}
           >
@@ -508,8 +508,8 @@ function HitResultsTab({ hits }: { hits: Prediction[] }) {
             onClick={() => setSortKey(key)}
             className="px-3 py-1 rounded text-xs font-semibold transition-all"
             style={{
-              background: sortKey === key ? 'rgba(0,200,255,0.15)' : 'transparent',
-              border: `1px solid ${sortKey === key ? 'rgba(0,200,255,0.5)' : 'rgba(0,200,255,0.15)'}`,
+              background: sortKey === key ? 'rgba(200,168,130,0.15)' : 'transparent',
+              border: `1px solid ${sortKey === key ? 'rgba(200,168,130,0.5)' : 'rgba(200,168,130,0.15)'}`,
               color: sortKey === key ? 'var(--neon-cyan)' : 'var(--text-muted)',
             }}
           >
@@ -520,7 +520,7 @@ function HitResultsTab({ hits }: { hits: Prediction[] }) {
 
       {/* テーブル */}
       <div className="neon-card min-w-0">
-        <div className="px-4 py-3 border-b border-[rgba(0,200,255,0.12)]">
+        <div className="px-4 py-3 border-b border-[rgba(200,168,130,0.12)]">
           <span className="text-sm neon-text tracking-[0.2em] font-semibold">
             HIT RESULTS — {sorted.length} 件
           </span>
@@ -568,7 +568,7 @@ function HitResultsTab({ hits }: { hits: Prediction[] }) {
                     </td>
                     <td className="whitespace-nowrap">
                       <span className="text-xs px-1.5 py-0.5 rounded"
-                            style={{ background: 'rgba(0,200,255,0.08)', border: '1px solid rgba(0,200,255,0.2)' }}>
+                            style={{ background: 'rgba(200,168,130,0.08)', border: '1px solid rgba(200,168,130,0.2)' }}>
                         {h.bet_type}
                       </span>
                     </td>
