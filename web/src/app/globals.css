@@ -1,123 +1,80 @@
 @import "tailwindcss";
 
-/* ─── カラー変数 ─────────────────────────────────────── */
+/* ─── Tailwind v4 テーマトークン ──────────────────────── */
+@theme {
+  --color-bg-base:         #F9F8F6;
+  --color-bg-surface:      #FDFCFB;
+  --color-bg-muted:        #F0EDE6;
+  --color-text-primary:    #2D2C28;
+  --color-text-muted:      #6B6960;
+  --color-text-subtle:     #9E9B93;
+  --color-accent:          #C8A882;
+  --color-accent-light:    #FEF3E2;
+  --color-border:          #E5E3DB;
+  --color-border-strong:   #D4D0C8;
+  --color-hit-green:       #5B8A5B;
+  --color-hit-amber:       #B8860B;
+  --color-hit-red:         #C44040;
+}
+
+/* ─── カラー変数（後方互換マッピング）──────────────────── */
 :root {
-  --bg-base:      #02060e;
-  --bg-surface:   #060f1e;
-  --bg-card:      #081526;
-  --neon-cyan:    #00c8ff;
-  --neon-blue:    #0066ff;
-  --neon-green:   #00ff88;
-  --neon-red:     #ff3366;
-  --neon-gold:    #ffd700;
-  --text-primary: #e0f4ff;
-  --text-muted:   #4a7a96;
-  --border:       rgba(0, 200, 255, 0.18);
+  --bg-base:      #F9F8F6;
+  --bg-surface:   #FDFCFB;
+  --bg-card:      #FDFCFB;
+  --neon-cyan:    #C8A882;
+  --neon-blue:    #8B7355;
+  --neon-green:   #5B8A5B;
+  --neon-red:     #C44040;
+  --neon-gold:    #B8860B;
+  --text-primary: #2D2C28;
+  --text-muted:   #6B6960;
+  --border:       #E5E3DB;
+  --bg-muted:     #F0EDE6;
 }
 
 /* ─── ベース ─────────────────────────────────────────── */
 html {
   font-size: 110%;
-  overflow-x: hidden;   /* Blowout防止: ページ全体の横スクロールを封じる */
+  overflow-x: hidden;
 }
 
 body {
   background-color: var(--bg-base);
   color: var(--text-primary);
-  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  font-family: system-ui, -apple-system, 'Helvetica Neue', sans-serif;
 }
 
-/* グリッドパターン背景 */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(0, 200, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 200, 255, 0.025) 1px, transparent 1px);
-  background-size: 48px 48px;
-  z-index: 0;
-}
-
-/* ─── ネオン系ユーティリティ ─────────────────────────── */
-.neon-text {
-  color: var(--neon-cyan);
-  text-shadow:
-    0 0 6px  rgba(0, 200, 255, 0.9),
-    0 0 14px rgba(0, 200, 255, 0.5),
-    0 0 32px rgba(0, 200, 255, 0.25);
-}
-
-.neon-text-gold {
-  color: var(--neon-gold);
-  text-shadow:
-    0 0 6px  rgba(255, 215, 0, 0.9),
-    0 0 14px rgba(255, 215, 0, 0.4);
-}
-
-.neon-text-green {
-  color: var(--neon-green);
-  text-shadow: 0 0 8px rgba(0, 255, 136, 0.7);
-}
-
-.neon-text-red {
-  color: var(--neon-red);
-  text-shadow: 0 0 8px rgba(255, 51, 102, 0.7);
-}
+/* ─── ウォーム系ユーティリティ（neon- クラス名を維持）── */
+.neon-text       { color: var(--neon-cyan); }
+.neon-text-gold  { color: var(--neon-gold); }
+.neon-text-green { color: var(--neon-green); }
+.neon-text-red   { color: var(--neon-red); }
 
 .neon-border {
   border: 1px solid var(--border);
-  box-shadow:
-    0 0 12px rgba(0, 200, 255, 0.07),
-    inset 0 0 12px rgba(0, 200, 255, 0.04);
 }
 
 .neon-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
-  box-shadow:
-    0 0 20px rgba(0, 200, 255, 0.07),
-    0 4px 24px rgba(0, 0, 0, 0.5),
-    inset 0 0 20px rgba(0, 200, 255, 0.03);
-  border-radius: 8px;
-  /* グリッド/フレックスの子要素として幅が膨張しないよう封じる */
+  box-shadow: 0 1px 4px rgba(45,44,40,0.06);
+  border-radius: 12px;
   min-width: 0;
   overflow: hidden;
 }
 
 .neon-card-bright {
-  background: linear-gradient(135deg, #081e38 0%, #04111f 100%);
-  border: 1px solid rgba(0, 200, 255, 0.35);
-  box-shadow:
-    0 0 30px rgba(0, 200, 255, 0.12),
-    0 0 60px rgba(0, 100, 255, 0.06),
-    0 4px 32px rgba(0, 0, 0, 0.6),
-    inset 0 0 30px rgba(0, 200, 255, 0.05);
-  border-radius: 10px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 8px rgba(45,44,40,0.08);
+  border-radius: 12px;
 }
 
-/* ─── ロゴ用スキャンライン ────────────────────────────── */
-.scanlines {
-  position: relative;
-  overflow: hidden;
-}
-.scanlines::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent 3px,
-    rgba(0, 0, 0, 0.12) 3px,
-    rgba(0, 0, 0, 0.12) 4px
-  );
-  pointer-events: none;
-}
+/* scanlines → 無効化（後方互換のみ） */
+.scanlines { position: relative; }
 
 /* ─── テーブルスクロールコンテナ ──────────────────────── */
-/* 注: 収支管理など高さを制限したくないテーブルは直接 overflow-x-auto を使うこと */
 .table-scroll {
   overflow-x: auto;
   overflow-y: auto;
@@ -127,105 +84,68 @@ body::before {
   -webkit-overflow-scrolling: touch;
 }
 
-
 /* ─── テーブル ───────────────────────────────────────── */
 .race-table th {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: var(--bg-card);
-  color: var(--neon-cyan);
+  background: var(--bg-surface);
+  color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 0.85rem;
-  padding: 11px 14px;
-  border-bottom: 1px solid rgba(0, 200, 255, 0.25);
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
   white-space: nowrap;
-  box-shadow: 0 1px 0 rgba(0, 200, 255, 0.15);
 }
 
 .race-table td {
-  padding: 12px 14px;
-  border-bottom: 1px solid rgba(0, 200, 255, 0.06);
-  font-size: 0.95rem;
+  padding: 11px 14px;
+  border-bottom: 1px solid rgba(229,227,219,0.7);
+  font-size: 0.9rem;
   white-space: nowrap;
 }
 
-.race-table tr:hover td {
-  background: rgba(0, 200, 255, 0.04);
-}
+.race-table tr:hover td { background: rgba(240,237,230,0.5); }
 
-/* 上位3着の行強調 */
-.row-rank-1 td { background: rgba(255, 215, 0,  0.05); }
-.row-rank-2 td { background: rgba(180, 180, 255, 0.04); }
-.row-rank-3 td { background: rgba(200, 140, 100, 0.04); }
+.row-rank-1 td { background: rgba(184,134,11,0.04); }
+.row-rank-2 td { background: rgba(160,160,160,0.03); }
+.row-rank-3 td { background: rgba(139,94,60,0.03); }
 
 /* ─── アニメーション ─────────────────────────────────── */
-@keyframes pulse-neon {
+@keyframes pulse-warm {
   0%, 100% { opacity: 1; }
-  50%       { opacity: 0.7; }
+  50%       { opacity: 0.65; }
 }
+.pulse-neon { animation: pulse-warm 3s ease-in-out infinite; }
 
-.pulse-neon { animation: pulse-neon 3s ease-in-out infinite; }
+@keyframes odds-flash {
+  0%   { background-color: rgba(200,168,130,0.18); }
+  100% { background-color: transparent; }
+}
+.odds-flash { animation: odds-flash 2s ease-out forwards; }
 
 @keyframes slide-in {
-  from { opacity: 0; transform: translateY(12px); }
+  from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+.slide-in { animation: slide-in 0.35s ease-out both; }
 
-.slide-in { animation: slide-in 0.4s ease-out both; }
-
-/* ─── 予想的中ハイライト ─────────────────────────────── */
-
-/* 基本的中: 緑のグロー */
+/* ─── 的中ハイライト ─────────────────────────────────── */
 .hit-normal {
-  background: rgba(0, 255, 136, 0.06) !important;
+  background: rgba(91,138,91,0.05) !important;
   border-left: 2px solid var(--neon-green);
 }
-
-/* 高配当的中 (ROI 200%超): 金色ハイライト */
 .hit-big {
-  background: linear-gradient(
-    90deg,
-    rgba(255, 215, 0, 0.10) 0%,
-    rgba(255, 215, 0, 0.04) 100%
-  ) !important;
+  background: rgba(184,134,11,0.05) !important;
   border-left: 2px solid var(--neon-gold);
-  box-shadow: 0 0 12px rgba(255, 215, 0, 0.15);
 }
-
-/* 爆発的高配当 (ROI 500%超): 爆裂ゴールドアニメーション */
 .hit-explosion {
-  background: linear-gradient(
-    90deg,
-    rgba(255, 215, 0, 0.18) 0%,
-    rgba(255, 140, 0, 0.10) 50%,
-    rgba(255, 215, 0, 0.08) 100%
-  ) !important;
-  border-left: 3px solid #ffaa00;
-  box-shadow:
-    0 0 20px rgba(255, 200, 0, 0.30),
-    inset 0 0 20px rgba(255, 200, 0, 0.05);
-  animation: explosion-pulse 2s ease-in-out infinite;
+  background: rgba(184,134,11,0.09) !important;
+  border-left: 3px solid var(--neon-gold);
 }
-
-@keyframes explosion-pulse {
-  0%, 100% {
-    box-shadow:
-      0 0 20px rgba(255, 200, 0, 0.30),
-      inset 0 0 20px rgba(255, 200, 0, 0.05);
-  }
-  50% {
-    box-shadow:
-      0 0 35px rgba(255, 200, 0, 0.55),
-      inset 0 0 30px rgba(255, 200, 0, 0.10);
-  }
-}
-
-/* 外れ: 薄い赤 */
-.hit-miss {
-  opacity: 0.55;
-}
+.hit-miss { opacity: 0.5; }
 
 /* 払戻額バッジ */
 .payout-badge {
@@ -234,33 +154,28 @@ body::before {
   border-radius: 4px;
   font-size: 0.82rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
 }
-
 .payout-badge-normal {
-  background: rgba(0, 255, 136, 0.15);
+  background: rgba(91,138,91,0.12);
   color: var(--neon-green);
-  border: 1px solid rgba(0, 255, 136, 0.3);
+  border: 1px solid rgba(91,138,91,0.3);
 }
-
 .payout-badge-big {
-  background: rgba(255, 215, 0, 0.15);
+  background: rgba(184,134,11,0.12);
   color: var(--neon-gold);
-  border: 1px solid rgba(255, 215, 0, 0.4);
+  border: 1px solid rgba(184,134,11,0.35);
 }
-
 .payout-badge-explosion {
-  background: rgba(255, 140, 0, 0.20);
-  color: #ffcc00;
-  border: 1px solid rgba(255, 200, 0, 0.6);
-  animation: explosion-pulse 2s ease-in-out infinite;
+  background: rgba(184,134,11,0.18);
+  color: var(--neon-gold);
+  border: 1px solid rgba(184,134,11,0.5);
 }
 
-/* ─── アプリシェル（2ペインレイアウト） ────────────────── */
+/* ─── アプリシェル ──────────────────────────────────── */
 .app-shell {
   display: grid;
   grid-template-rows: auto 1fr;
-  /* minmax(0,1fr) で子要素が 1fr 列を押し広げるのを防ぐ */
   grid-template-columns: 260px minmax(0, 1fr);
   height: 100vh;
   max-height: 100vh;
@@ -277,29 +192,29 @@ body::before {
   overflow-y: auto;
   overflow-x: hidden;
   border-right: 1px solid var(--border);
-  background: var(--bg-surface);
+  background: #F0EDE6;
 }
 .app-main {
   grid-column: 2;
   grid-row: 2;
   overflow-y: auto;
-  overflow-x: hidden;  /* 横はみ出しを封じる: 内部コンテンツは各自でoverflow-x:autoを持つこと */
-  min-width: 0;        /* CSS Grid min-width fix: これがないと1fr列がコンテンツで押し広げられる */
+  overflow-x: hidden;
+  min-width: 0;
   width: 100%;
   max-width: 100%;
   background: var(--bg-base);
 }
 
-/* ─── サイドバーツリー ─────────────────────────────────── */
+/* ─── サイドバーツリー ─────────────────────────────── */
 .tree-section-btn {
   width: 100%;
   text-align: left;
   padding: 8px 12px;
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--neon-cyan);
+  color: var(--text-muted);
   background: transparent;
   border: none;
   cursor: pointer;
@@ -308,7 +223,7 @@ body::before {
   gap: 6px;
   transition: background 0.15s;
 }
-.tree-section-btn:hover { background: rgba(0,200,255,0.05); }
+.tree-section-btn:hover { background: rgba(200,168,130,0.08); }
 
 .tree-year-btn {
   width: 100%;
@@ -316,7 +231,7 @@ body::before {
   padding: 7px 14px;
   font-size: 0.82rem;
   font-weight: 600;
-  color: var(--neon-cyan);
+  color: var(--text-primary);
   background: transparent;
   border: none;
   cursor: pointer;
@@ -325,7 +240,7 @@ body::before {
   gap: 5px;
   transition: background 0.15s;
 }
-.tree-year-btn:hover { background: rgba(0,200,255,0.06); }
+.tree-year-btn:hover { background: rgba(200,168,130,0.06); }
 
 .tree-date-btn {
   width: 100%;
@@ -341,7 +256,7 @@ body::before {
   gap: 5px;
   transition: background 0.15s;
 }
-.tree-date-btn:hover { background: rgba(0,200,255,0.05); }
+.tree-date-btn:hover { background: rgba(200,168,130,0.06); }
 
 .tree-venue-label {
   padding: 4px 32px;
@@ -365,22 +280,22 @@ body::before {
   text-overflow: ellipsis;
   transition: color 0.15s, background 0.15s;
 }
-.tree-race-btn:hover { color: var(--text-primary); background: rgba(0,200,255,0.04); }
+.tree-race-btn:hover { color: var(--text-primary); background: rgba(200,168,130,0.06); }
 .tree-race-btn.active {
   color: var(--neon-cyan);
-  background: rgba(0,200,255,0.08);
+  background: rgba(200,168,130,0.10);
   border-left: 2px solid var(--neon-cyan);
   padding-left: 38px;
 }
 
-/* ─── サイドバー特別ボタン ───────────────────────────────── */
+/* ─── サイドバー特別ボタン ─────────────────────────── */
 .sidebar-special-btn {
   width: 100%;
   text-align: left;
   padding: 10px 16px;
   font-size: 0.8rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.06em;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -388,54 +303,16 @@ body::before {
   align-items: center;
   gap: 8px;
   transition: background 0.15s;
-  border-bottom: 1px solid rgba(0,200,255,0.08);
+  border-bottom: 1px solid var(--border);
+  color: var(--text-primary);
 }
-.sidebar-special-btn:hover { background: rgba(0,200,255,0.06); }
-.sidebar-special-btn.active { background: rgba(0,200,255,0.10); }
+.sidebar-special-btn:hover  { background: rgba(200,168,130,0.08); }
+.sidebar-special-btn.active { background: rgba(200,168,130,0.14); }
 
-/* ─── 的中実績 / HitHistory ──────────────────────────────── */
-@keyframes gold-pulse {
-  0%, 100% {
-    box-shadow:
-      0 0 12px rgba(255,215,0,0.4),
-      inset 0 0 12px rgba(255,215,0,0.06);
-  }
-  50% {
-    box-shadow:
-      0 0 28px rgba(255,215,0,0.7),
-      inset 0 0 20px rgba(255,215,0,0.12);
-  }
-}
-@keyframes rainbow-shift {
-  0%   { background-position: 0% 50%;   }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%;   }
-}
-
-.hit-row-normal {
-  background: rgba(0, 255, 136, 0.04);
-  border-left: 3px solid var(--neon-green);
-}
-.hit-row-big {
-  background: linear-gradient(90deg, rgba(255,215,0,0.10) 0%, rgba(255,215,0,0.03) 100%);
-  border-left: 3px solid var(--neon-gold);
-  animation: gold-pulse 3s ease-in-out infinite;
-}
-.hit-row-jackpot {
-  background: linear-gradient(
-    270deg,
-    rgba(255,50,50,0.12),
-    rgba(255,165,0,0.15),
-    rgba(255,215,0,0.18),
-    rgba(255,165,0,0.15),
-    rgba(255,50,50,0.12)
-  );
-  background-size: 400% 400%;
-  border-left: 4px solid #ffaa00;
-  animation:
-    rainbow-shift 3s ease infinite,
-    explosion-pulse 2s ease-in-out infinite;
-}
+/* ─── 的中履歴 / HitHistory ────────────────────────── */
+.hit-row-normal  { background: rgba(91,138,91,0.04);   border-left: 3px solid var(--neon-green); }
+.hit-row-big     { background: rgba(184,134,11,0.05);  border-left: 3px solid var(--neon-gold); }
+.hit-row-jackpot { background: rgba(184,134,11,0.09);  border-left: 4px solid var(--neon-gold); }
 
 .roi-badge {
   display: inline-block;
@@ -443,55 +320,27 @@ body::before {
   border-radius: 6px;
   font-size: 0.82rem;
   font-weight: 800;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
 }
-.roi-badge-normal {
-  background: rgba(0,255,136,0.15);
-  color: var(--neon-green);
-  border: 1px solid rgba(0,255,136,0.35);
-}
-.roi-badge-big {
-  background: rgba(255,215,0,0.18);
-  color: var(--neon-gold);
-  border: 1px solid rgba(255,215,0,0.5);
-}
-.roi-badge-jackpot {
-  background: linear-gradient(135deg, #ff8c00, #ffd700, #ff8c00);
-  background-size: 200% 200%;
-  color: #000;
-  border: none;
-  animation: rainbow-shift 2s ease infinite;
-  text-shadow: none;
-}
+.roi-badge-normal  { background: rgba(91,138,91,0.12);  color: var(--neon-green); border: 1px solid rgba(91,138,91,0.3); }
+.roi-badge-big     { background: rgba(184,134,11,0.12); color: var(--neon-gold);  border: 1px solid rgba(184,134,11,0.35); }
+.roi-badge-jackpot { background: linear-gradient(135deg,var(--neon-gold),var(--neon-cyan)); color: #fff; }
 
-/* 払戻金テーブル */
-.payout-table td {
-  padding: 8px 12px;
-  font-size: 0.85rem;
-  border-bottom: 1px solid rgba(0,200,255,0.05);
-}
+.payout-table td { padding: 8px 12px; font-size: 0.85rem; border-bottom: 1px solid rgba(229,227,219,0.6); }
 .payout-table th {
   padding: 9px 12px;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   letter-spacing: 0.08em;
-  color: var(--neon-cyan);
+  color: var(--text-muted);
   text-transform: uppercase;
-  border-bottom: 1px solid rgba(0,200,255,0.2);
+  border-bottom: 1px solid var(--border);
   white-space: nowrap;
 }
 
-/* ─── 激アツ推奨馬（EV >= 1.0）ハイライト行 ─────────────────── */
-.row-hot td {
-  background: rgba(255, 51, 102, 0.06) !important;
-}
-.row-hot:hover td {
-  background: rgba(255, 51, 102, 0.10) !important;
-}
+/* ─── EV推奨馬バッジ ────────────────────────────────── */
+.row-hot td { background: rgba(200,168,130,0.06) !important; }
+.row-hot:hover td { background: rgba(200,168,130,0.10) !important; }
 
-@keyframes hot-pulse {
-  0%, 100% { box-shadow: 0 0 0 rgba(255,51,102,0); }
-  50%       { box-shadow: 0 0 16px rgba(255,51,102,0.4); }
-}
 .badge-hot {
   display: inline-flex;
   align-items: center;
@@ -499,15 +348,14 @@ body::before {
   padding: 2px 8px;
   border-radius: 4px;
   font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  background: rgba(255, 51, 102, 0.18);
-  color: var(--neon-red);
-  border: 1px solid rgba(255, 51, 102, 0.45);
-  animation: hot-pulse 2s ease-in-out infinite;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  background: rgba(200,168,130,0.15);
+  color: var(--neon-cyan);
+  border: 1px solid rgba(200,168,130,0.4);
 }
 
-/* ─── 調教グレードバッジ ─────────────────────────────────────── */
+/* ─── 調教グレードバッジ ────────────────────────────── */
 .eval-badge {
   display: inline-flex;
   align-items: center;
@@ -517,63 +365,25 @@ body::before {
   border-radius: 4px;
   font-size: 0.72rem;
   font-weight: 900;
-  letter-spacing: 0;
   cursor: default;
-  position: relative;
 }
-.eval-badge-A {
-  background: rgba(255, 105, 180, 0.25);
-  color: #ff69b4;
-  border: 1px solid rgba(255, 105, 180, 0.5);
-}
-.eval-badge-B {
-  background: rgba(255, 140, 0, 0.2);
-  color: #ff8c00;
-  border: 1px solid rgba(255, 140, 0, 0.4);
-}
-.eval-badge-C {
-  background: rgba(0, 200, 255, 0.12);
-  color: var(--neon-cyan);
-  border: 1px solid rgba(0, 200, 255, 0.3);
-}
-.eval-badge-D {
-  background: rgba(74, 122, 150, 0.15);
-  color: var(--text-muted);
-  border: 1px solid rgba(74, 122, 150, 0.25);
-}
+.eval-badge-A { background: rgba(196,64,64,0.12);  color: var(--neon-red);   border: 1px solid rgba(196,64,64,0.3); }
+.eval-badge-B { background: rgba(184,134,11,0.12); color: var(--neon-gold);  border: 1px solid rgba(184,134,11,0.3); }
+.eval-badge-C { background: rgba(200,168,130,0.12);color: var(--neon-cyan);  border: 1px solid rgba(200,168,130,0.3); }
+.eval-badge-D { background: rgba(107,105,96,0.10); color: var(--text-muted); border: 1px solid rgba(107,105,96,0.2); }
 
-/* ─── バイアスパネル ─────────────────────────────────────────── */
-.bias-meter-bar {
-  height: 6px;
-  border-radius: 3px;
-  transition: width 0.6s ease;
-}
+/* ─── バイアスメーター ──────────────────────────────── */
+.bias-meter-bar { height: 6px; border-radius: 3px; transition: width 0.6s ease; }
 
-/* ─── 大口シグナル（odds_velocity が高い馬）────────────────── */
-@keyframes fire-flicker {
-  0%, 100% { opacity: 1;   transform: scale(1); }
-  50%       { opacity: 0.8; transform: scale(1.15); }
-}
-.signal-fire {
-  display: inline-block;
-  animation: fire-flicker 0.8s ease-in-out infinite;
-  font-size: 0.9rem;
-  line-height: 1;
-}
-
-/* ─── モバイル予想カード（ベットスリップスタイル）─────────────────── */
-
-/* モデルタブバー */
+/* ─── モデルタブバー ────────────────────────────────── */
 .model-tabs {
   display: flex;
-  gap: 0;
   background: var(--bg-surface);
-  border-bottom: 1px solid rgba(0,200,255,0.18);
+  border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
   z-index: 5;
 }
-
 .model-tab-btn {
   flex: 1;
   min-height: 44px;
@@ -583,8 +393,8 @@ body::before {
   justify-content: center;
   gap: 2px;
   font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   color: var(--text-muted);
   background: transparent;
   border: none;
@@ -594,10 +404,7 @@ body::before {
   transition: color 0.15s, border-color 0.15s, background 0.15s;
   padding: 6px 4px;
 }
-.model-tab-btn:hover {
-  color: var(--text-primary);
-  background: rgba(255,255,255,0.03);
-}
+.model-tab-btn:hover { color: var(--text-primary); background: rgba(200,168,130,0.06); }
 .model-tab-btn.tab-active-alpha  { color: var(--neon-cyan);  border-bottom-color: var(--neon-cyan); }
 .model-tab-btn.tab-active-manzai { color: var(--neon-gold);  border-bottom-color: var(--neon-gold); }
 .model-tab-btn.tab-active-honmei { color: var(--neon-green); border-bottom-color: var(--neon-green); }
@@ -613,58 +420,47 @@ body::before {
   border-radius: 9px;
   font-size: 0.62rem;
   font-weight: 900;
-  letter-spacing: 0;
-  background: rgba(255,255,255,0.08);
+  background: rgba(45,44,40,0.07);
   color: var(--text-muted);
 }
-.tab-active-alpha  .model-tab-count { background: rgba(0,200,255,0.18);  color: var(--neon-cyan); }
-.tab-active-manzai .model-tab-count { background: rgba(255,215,0,0.18);  color: var(--neon-gold); }
-.tab-active-honmei .model-tab-count { background: rgba(0,255,136,0.18);  color: var(--neon-green); }
+.tab-active-alpha  .model-tab-count { background: rgba(200,168,130,0.18); color: var(--neon-cyan); }
+.tab-active-manzai .model-tab-count { background: rgba(184,134,11,0.18);  color: var(--neon-gold); }
+.tab-active-honmei .model-tab-count { background: rgba(91,138,91,0.18);   color: var(--neon-green); }
 
-/* 予想カード（ベットスリップ） */
+/* ─── 予想カード ────────────────────────────────────── */
 .pred-card {
-  background: var(--bg-card);
-  border: 1px solid rgba(0,200,255,0.10);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
   border-left: 3px solid var(--neon-cyan);
-  border-radius: 6px;
+  border-radius: 10px;
   padding: 12px 14px;
   position: relative;
   overflow: hidden;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
-.pred-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, rgba(0,200,255,0.3) 0%, transparent 70%);
-}
 .pred-card-alpha  { border-left-color: var(--neon-cyan); }
 .pred-card-manzai { border-left-color: var(--neon-gold); }
 .pred-card-honmei { border-left-color: var(--neon-green); }
 .pred-card-hit {
-  background: rgba(255,215,0,0.04);
-  border-color: rgba(255,215,0,0.25);
-  box-shadow: 0 0 16px rgba(255,215,0,0.10);
+  background: rgba(184,134,11,0.04);
+  border-color: rgba(184,134,11,0.25);
+  box-shadow: 0 1px 8px rgba(184,134,11,0.08);
 }
-.pred-card-hit.pred-card-alpha  { border-left-color: var(--neon-gold); }
-.pred-card-hit.pred-card-manzai { border-left-color: var(--neon-gold); }
-.pred-card-hit.pred-card-honmei { border-left-color: var(--neon-gold); }
 
 /* EV 大型表示 */
 .ev-display-large {
-  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  font-family: system-ui, sans-serif;
   font-size: 2rem;
   font-weight: 900;
   line-height: 1;
   letter-spacing: -0.02em;
 }
-.ev-display-cyan  { color: var(--neon-cyan);  text-shadow: 0 0 14px rgba(0,200,255,0.85); }
-.ev-display-gold  { color: var(--neon-gold);  text-shadow: 0 0 14px rgba(255,215,0,0.85); }
-.ev-display-red   { color: var(--neon-red);   text-shadow: 0 0 14px rgba(255,51,102,0.85); }
+.ev-display-cyan  { color: var(--neon-cyan); }
+.ev-display-gold  { color: var(--neon-gold); }
+.ev-display-red   { color: var(--neon-red); }
 .ev-display-muted { color: var(--text-muted); }
 
-/* 馬番サークル（モバイル用大型） */
+/* 馬番サークル */
 .horse-num-lg {
   display: inline-flex;
   align-items: center;
@@ -672,24 +468,22 @@ body::before {
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: rgba(255,215,0,0.12);
-  color: var(--neon-gold);
+  background: rgba(200,168,130,0.12);
+  color: var(--neon-cyan);
   font-weight: 900;
   font-size: 1rem;
-  font-family: monospace;
-  border: 1.5px solid rgba(255,215,0,0.45);
+  border: 1.5px solid rgba(200,168,130,0.4);
   flex-shrink: 0;
-  transition: transform 0.15s;
 }
-.horse-num-lg.medal-1 { background: #FFD700; color: #000; border: none; }
-.horse-num-lg.medal-2 { background: #C0C0C0; color: #222; border: none; }
-.horse-num-lg.medal-3 { background: #CD7F32; color: #fff; border: none; }
+.horse-num-lg.medal-1 { background: #B8860B; color: #fff; border: none; }
+.horse-num-lg.medal-2 { background: #A0A0A0; color: #fff; border: none; }
+.horse-num-lg.medal-3 { background: #8B5E3C; color: #fff; border: none; }
 
-/* 馬カード（結果/直前テーブルのモバイル表示） */
+/* 馬カード（モバイル） */
 .horse-row-card {
-  background: var(--bg-card);
-  border: 1px solid rgba(0,200,255,0.08);
-  border-radius: 6px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
   padding: 10px 12px;
   display: grid;
   grid-template-columns: 42px 1fr;
@@ -698,57 +492,45 @@ body::before {
   position: relative;
   overflow: hidden;
 }
-.horse-row-card::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 2px;
-}
-.horse-row-card.rank-1 {
-  background: rgba(255,215,0,0.05);
-  border-color: rgba(255,215,0,0.2);
-}
-.horse-row-card.rank-1::before  { background: var(--neon-gold); }
-.horse-row-card.rank-2::before  { background: #c0c0c0; }
-.horse-row-card.rank-3::before  { background: #cd7f32; }
-.horse-row-card.hot-card {
-  background: rgba(255,51,102,0.04);
-  border-color: rgba(255,51,102,0.2);
-}
-.horse-row-card.hot-card::before { background: var(--neon-red); }
+.horse-row-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; }
+.horse-row-card.rank-1 { background: rgba(184,134,11,0.04); border-color: rgba(184,134,11,0.2); }
+.horse-row-card.rank-1::before { background: var(--neon-gold); }
+.horse-row-card.rank-2::before { background: #A0A0A0; }
+.horse-row-card.rank-3::before { background: #8B5E3C; }
+.horse-row-card.hot-card { background: rgba(200,168,130,0.06); border-color: rgba(200,168,130,0.25); }
+.horse-row-card.hot-card::before { background: var(--neon-cyan); }
 
-/* ─── モバイル対応（スマホ縦向き）─────────────────────────────── */
+/* 大口シグナル */
+@keyframes fire-flicker {
+  0%, 100% { opacity: 1;   transform: scale(1); }
+  50%       { opacity: 0.8; transform: scale(1.1); }
+}
+.signal-fire { display: inline-block; animation: fire-flicker 0.8s ease-in-out infinite; font-size: 0.9rem; line-height: 1; }
+
+/* ─── モバイル（スマホ縦向き）────────────────────────── */
 @media (max-width: 768px) {
   html { font-size: 100%; }
 
-  /* アプリシェル: 縦積みレイアウトに変更 */
   .app-shell {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto 1fr;
     height: 100dvh;
     max-height: 100dvh;
-    overflow: hidden;          /* ← 横揺れ防止: ページ全体の横スクロールを封じる */
-  }
-  .app-navbar  {
-    grid-column: 1;
-    grid-row: 1;
-    min-width: 0;              /* ← CSS Grid min-width fix */
-    max-width: 100vw;
     overflow: hidden;
   }
+  .app-navbar  { grid-column: 1; grid-row: 1; min-width: 0; max-width: 100vw; overflow: hidden; }
   .app-sidebar {
     grid-column: 1;
     grid-row: 2;
-    min-width: 0;              /* ← CSS Grid min-width fix */
+    min-width: 0;
     max-width: 100vw;
-    /* 横スクロール可能な水平ナビバーに変換 */
     display: flex;
     flex-direction: row;
     overflow-x: auto;
     overflow-y: hidden;
     border-right: none;
     border-bottom: 1px solid var(--border);
-    background: var(--bg-surface);
+    background: #F0EDE6;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     min-height: 52px;
@@ -761,22 +543,19 @@ body::before {
     grid-column: 1;
     grid-row: 3;
     overflow-y: auto;
-    overflow-x: hidden;        /* ← ページ全体の横揺れを防ぎ、子要素を clip */
-    min-width: 0;              /* ← CSS Grid min-width fix（最重要）*/
+    overflow-x: hidden;
+    min-width: 0;
     max-width: 100vw;
   }
 
-  /* サイドバー内のレースツリーはモバイルで非表示 */
   .app-sidebar .py-1:last-child { display: none; }
 
-  /* 特別ボタンを横並びコンパクト表示 */
   .app-sidebar .border-b {
     display: flex;
     flex-direction: row;
     border: none;
     flex-shrink: 0;
     padding: 0;
-    /* ボタン合計幅 > ビューポート幅なのでこの div 自体もスクロール可能にする */
     overflow-x: visible;
   }
   .sidebar-special-btn {
@@ -785,26 +564,19 @@ body::before {
     justify-content: center;
     padding: 6px 10px;
     font-size: 0.68rem;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.04em;
     white-space: nowrap;
     border-bottom: none;
-    border-right: 1px solid rgba(0,200,255,0.08);
+    border-right: 1px solid var(--border);
     min-width: 60px;
-    flex-shrink: 0;  /* ← これがないとボタンが押しつぶされる */
+    flex-shrink: 0;
     gap: 2px;
   }
   .sidebar-special-btn .ml-auto { display: none; }
-
-  /* テーブルスクロール */
   .table-scroll { max-height: 60vh; }
 
-  /* WIN5パネル: 馬タグを小さく */
   @media (max-width: 480px) {
     .app-sidebar { max-height: 48px; min-height: 48px; }
-    .sidebar-special-btn {
-      min-width: 56px;
-      font-size: 0.62rem;
-      padding: 4px 6px;
-    }
+    .sidebar-special-btn { min-width: 56px; font-size: 0.62rem; padding: 4px 6px; }
   }
 }
