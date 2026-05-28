@@ -21,6 +21,10 @@
 | 2026-05-21 | 【W-031 完了】V1 vs V2 A/B テスト週次レポート自動化: `generate_ab_report.py` 完全実装（`build_ab_report()` Markdown生成 + `_send_summary_to_discord()` Embed プッシュ送信）。`scheduler.py` 日曜18:00 自動配信・取りこぼし4時間窓。エラーハンドリング: HTTPError/OSError は WARNING ログ止まり・例外伝播なし。テスト17件 PASS。W-024 を 🟡 対応中 に昇格（週次 ROI レポートが監視要件を部分充足）。実測: V1 ROI=64.1%/純利益 ¥-2,300,518 / V2=0件（V2稼働前）|
 | 2026-05-23 | 【W-032 新規登録】スケジューラークロスデイ回収バグ: `_recover_missed_jobs()` が当日曜日のジョブしか確認しないため、前日のジョブ（job_friday_sync の 16h 窓など）が土曜朝起動時に完全スキップされる脆弱性。`day_delta in (0, -1)` ループで前日チェックを追加し修正済み（2026-05-23完了）。影響: scripts/scheduler.py |
 | 2026-05-23 | 【note完全自動化ルーティン完成・W-033 新規登録→即完了】`job_note_daily_article()` を scheduler.py に追加（土日10:30）。4ステップ自動実行（記事生成→Discord転送→Embed送信→note.com下書き）。`NOTE_DRAFT_AUTO_POST=0`（デフォルト）でPlaywright未起動でも安全完走。`NOTE_DRAFT_AUTO_POST=1` + `.note_session.json` 存在時のみ Playwright 自動保存。テスト15件PASS / 全560件GREEN。影響: scripts/scheduler.py, tests/test_scheduler_note_article.py(新規), .env(NOTE_DRAFT_AUTO_POST=0追加) |
+| 2026-05-27 | 【W-036 完了】キャリブレーション補正: `src/ml/calibration.py` 新設。bin別補正倍率(avg×2.77)を `HonmeiStrategy.generate()` に統合。補正前EV=0.80(採用不可)→補正後EV=1.53(採用可)の隠れ優良レースが発見可能に。ユニットテスト20件 PASS。W-036 🟢完了。影響: `src/ml/calibration.py`, `src/ml/bet_generator.py` |
+| 2026-05-28 | 【卍×三連複 ROI=46.7% 損失対応完了】`ManjiStrategy.generate()` の `_TRIO_EV_MIN=1.0` EVゲートを復活（EVゲート撤廃コメントを削除）。TDDで `tests/test_bet_generator_ev_gate.py` 3件追加・全PASS確認済み。影響: `src/ml/bet_generator.py`, `tests/test_bet_generator_ev_gate.py` |
+| 2026-05-27 | 【W-037 完了】動的セーフティ実装: `calc_kelly_stake()` に `GLOBAL_BALANCE_CAP_PCT=0.05`・`_dynamic_kelly_fraction()`・最低保証額廃止の3機能を追加。Monte Carlo 10,000試行で1/4Kelly破産率 75.97%→**0.00%** 達成（目標<10% クリア）。中央最終残高 ¥831,505。W-037 🟢完了。影響: `src/ml/bet_generator.py`, `scripts/calibration_kelly_audit.py` |
+| 2026-05-27 | 【W-036/W-037 新規登録・キャリブレーション&Kelly監査実施】`scripts/calibration_kelly_audit.py` 新設。① 本命(直前)モデルのキャリブレーション: model_score が全 bin で実績的中率を下回る（補正倍率 avg=1.91）→ EV 過小評価状態（守保的設計としては良好だが改善余地あり）。② Kelly Monte Carlo (10,000試行): recommended_bet 基準の真ROI=119.8%、純損益=+¥864,650 で黒字確認。ただし破産率54-93%（全Kelly係数）→ 初期資金¥100K では三連単高額ベットによる連敗で ¥10K ラインを割るリスクが高い。推奨: 運用資金を ¥300K〜¥500K 以上に引き上げ or バランス比率に応じた動的Kelly圧縮を実装。結果は `data/calibration_kelly_audit.json` に保存。 |
 | 2026-05-24 | 【W-035 新規登録】training_hillwork 坂路データ 0 件問題: JVLink WOOD に WH レコード不含（仕様）＋ netkeiba 調教ページはレース後404 → 歴史バックフィル不可を確認。`job_training_hillwork_scrape()` を scheduler.py に追加（木曜20:00・金曜18:00）し今週末以降のレースから自動収集開始。 |
 | 2026-05-24 | 【umasugi_engine Phase2 完了】調教グレード(8%) + オッズモメンタム(5%) を追加。正規化JOINキー(horse_id[:4]+horse_id[4:9])でtraining_times接続率45.6%達成。`odds_timeseries`テーブル新設・毎分記録ジョブをschedulerに統合。バックテスト ROI73.7%(閾値0.50)。影響: `src/umasugi_engine/scorer.py` `src/umasugi_engine/factors/training_grade.py` `src/umasugi_engine/factors/odds_momentum.py` `scripts/record_odds_timeseries.py` |
 | 2026-05-24 | 【umasugi_engine Phase1 実装完了】`src/umasugi_engine/` 新設（ラッパー型）。小回り適性(track_style)・野芝/洋芝(turf_type)・世論分析フィルター(crowd_opinion)を実装。バックテスト: Legacy ROI 68.2% → Umasugi ROI 73.6% (閾値0.50)。ウェイト: turf=0.15(洋芝不得意馬の的中率0%を検出)/track=0.10/crowd=EV直接適用。`/api/compare/[race_id]` エンドポイント追加。設計書: docs/superpowers/specs/2026-05-24-umasugi-engine-design.md |
@@ -467,8 +471,10 @@ Phase 2-C+B完了後: 30因子 ← 社長ビジョン達成
   W-001  加速力スコア (上がり3F)               🔴 未着手
   W-002  PCI ペース変動指数                    🔴 未着手
   W-020  FukushoElite 本番統合                🔴 未着手
-  W-023  破産確率 UI (Monte Carlo)             🔴 未着手
+  W-023  破産確率 UI (Monte Carlo)             🟡 対応中（calibration_kelly_audit.py 実装済み・JSON出力あり）
   W-035  training_hillwork 坂路データ蓄積中    🟡 対応中（木金自動収集・今週末以降）
+  W-036  モデルキャリブレーション補正実装      🟢 完了（src/ml/calibration.py新設・HonmeiStrategy統合・2026-05-27）
+  W-037  運用資金¥100K不足リスク              🟢 完了（動的Kelly実装・1/4Kelly破産率75.97%→0.00%達成・2026-05-27）
 
 【中長期（歴史データ大規模取得後）】
   Phase 2-B (W-003/W-008/W-010: 不完全燃焼・馬場脚質・相手関係)

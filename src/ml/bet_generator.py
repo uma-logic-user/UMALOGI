@@ -117,6 +117,32 @@ _KELLY_TYPE_CAPS: dict[str, float] = {
     "三連単": 0.005,   # 最大0.5%
 }
 
+# W-037: 残高ベースの絶対上限（1レースあたり残高の5%を超えない）
+GLOBAL_BALANCE_CAP_PCT: float = 0.05
+
+# W-037: 動的Kelly縮小の初期残高デフォルト（環境変数 INITIAL_BANKROLL で上書き可能）
+_DEFAULT_INITIAL_BANKROLL: float = 100_000.0
+
+
+def _dynamic_kelly_fraction(
+    bankroll: float,
+    initial_bankroll: float,
+    base_kelly: float,
+) -> float:
+    """残高比率に応じて Kelly 分数を動的調整する（W-037）。
+
+    残高が初期資金の100%以上: base_kelly（標準・1/4 Kelly）
+    残高が初期資金の 50〜100%: base_kelly × 0.5（1/8 Kelly）
+    残高が初期資金の 50% 未満: base_kelly / 3.0（約1/12 Kelly・危険域）
+    """
+    ratio = bankroll / max(initial_bankroll, 1.0)
+    if ratio >= 1.0:
+        return base_kelly
+    elif ratio >= 0.5:
+        return base_kelly * 0.5
+    else:
+        return base_kelly / 3.0
+
 
 def calc_kelly_stake(
     bankroll: float,
@@ -125,35 +151,46 @@ def calc_kelly_stake(
     bet_type: str,
     kelly_fraction: float = KELLY_FRACTION,
     n_combos: int = 1,
+    initial_bankroll: float = _DEFAULT_INITIAL_BANKROLL,
 ) -> int:
-    """分数Kelly賭け金算出。券種別バンクロール上限付き。
+    """分数Kelly賭け金算出。券種別上限・動的Kelly・残高5%キャップ付き（W-037）。
 
-    formula: f* = (EV-1)/(odds-1), stake = bankroll × min(f*, cap) × kelly_fraction
+    formula: f* = (EV-1)/(odds-1), stake = bankroll × min(f*, cap) × dynamic_kelly
 
     Args:
-        bankroll:       現在の資金残高（円）
-        ev:             期待値スコア（EV > 1.0 が買い推奨）
-        win_odds:       軸馬の単勝オッズ（スケール係数として使用）
-        bet_type:       券種（キャップ参照用）
-        kelly_fraction: フラクション倍率（デフォルト 1/4 Kelly = 0.25）
-        n_combos:       点数（総投資 = per_combo × n_combos で返す）
+        bankroll:         現在の資金残高（円）
+        ev:               期待値スコア（EV > 1.0 が買い推奨）
+        win_odds:         軸馬の単勝オッズ（スケール係数として使用）
+        bet_type:         券種（キャップ参照用）
+        kelly_fraction:   フラクション基準値（デフォルト 1/4 Kelly = 0.25）
+        n_combos:         点数（総投資 = per_combo × n_combos で返す）
+        initial_bankroll: 初期資金（残高比率算出に使用。W-037動的Kelly用）
 
     Returns:
-        推奨総投資額（100円単位。最低 n_combos × 100円）
+        推奨総投資額（100円単位）。EV不良・Kelly計算が最低賭け単位未満なら 0 を返す。
     """
     n = max(n_combos, 1)
-    min_total = _BASE_BET * n
+    # EV・オッズが条件未満は賭け禁止（最低保証額への強制ベットを廃止）
     if win_odds <= 1.0 or ev <= 1.0:
-        return min_total
+        return 0
     b = win_odds - 1.0
     f_star = (ev - 1.0) / b
     cap = _KELLY_TYPE_CAPS.get(bet_type, 0.020)
-    f_adj = min(f_star * kelly_fraction, cap)
+    # W-037: 残高比率に応じてKelly分数を動的縮小
+    effective_kelly = _dynamic_kelly_fraction(bankroll, initial_bankroll, kelly_fraction)
+    f_adj = min(f_star * effective_kelly, cap)
     if f_adj <= 0:
-        return min_total
+        return 0
     total_raw = bankroll * f_adj
-    per_combo = max(int(total_raw / n // 100) * 100, _BASE_BET)
-    return per_combo * n
+    # W-037: 絶対上限として残高の GLOBAL_BALANCE_CAP_PCT（5%）を超えない
+    balance_cap = bankroll * GLOBAL_BALANCE_CAP_PCT
+    total_capped = min(total_raw, balance_cap)
+    # 100円単位に切り捨て（コンボ数で割ってper_combo算出、下限は設けない）
+    total_100 = int(total_capped // 100) * 100
+    # n_combos × 100円未満なら賭けない（三連単など多コンボで過剰賭け防止）
+    if total_100 < _BASE_BET * n:
+        return 0
+    return total_100
 
 def _crowd_bias_ev_multiplier(crowd_bias_ratio: float) -> float:
     """W-004: 大衆心理乖離比率からEV倍率を算出する。
@@ -900,11 +937,12 @@ class ManjiStrategy:
                         ),
                     ))
 
-        # ── 三連複（合成EV上位3点まで）──────────────────────────
-        # 候補: EV > 0.8 の全馬を対象に全3頭組み合わせを列挙し
-        # 確率至上主義: EVゲート撤廃 → 上位5頭から三連複組み合わせを探索
-        _MIN_TRIO_PROB  = 0.003 # Harville確率の最低フィルター
-        _MAX_SANREN     = 3     # 最大推奨点数
+        # ── 三連複（EV ≥ 1.0 ゲート付き・合成EV上位3点まで）────────
+        # 候補: 上位5頭から全3頭組み合わせを列挙し、合成EV ≥ 1.0 の組み合わせのみ推奨
+        # 本番実績: 卍×三連複 ROI=46.7% → EVゲートを復活させて損失組み合わせを除外
+        _MIN_TRIO_PROB  = 0.003  # Harville確率の最低フィルター
+        _MAX_SANREN     = 3      # 最大推奨点数
+        _TRIO_EV_MIN    = 1.0   # EVゲート: 期待値1.0未満の三連複は推奨しない
 
         cand_ev = scored.head(min(5, len(scored)))
         if len(cand_ev) >= 3:
@@ -932,6 +970,8 @@ class ManjiStrategy:
 
             seen_combos: set[tuple] = set()
             for ev_c, tp, combo3, hnames3 in trio_candidates[:_MAX_SANREN]:
+                if ev_c < _TRIO_EV_MIN:
+                    continue
                 if combo3 in seen_combos:
                     continue
                 seen_combos.add(combo3)
@@ -981,22 +1021,36 @@ class HonmeiStrategy:
         """
         本命モデルのスコアから全券種の買い目を生成する。
 
+        W-036: キャリブレーション補正を適用し EV・Kelly 計算に使用する。
+        DB 保存用の model_score は RAW スコアを維持する。
+
         Args:
             race_id:        レース ID
             df:             特徴量 DataFrame
-            honmei_scores:  HonmeiModel.predict() の出力
+            honmei_scores:  HonmeiModel.predict() の生出力（RAW）
             bankroll:       現在のバンクロール（円）。get_current_bankroll() で動的取得推奨。
 
         Returns:
             RaceBets
         """
+        from src.ml.calibration import apply_calibration_to_series
+
         result = RaceBets(race_id=race_id, model_type="本命")
         names = _name_map(df)
 
+        # W-036: 補正済みスコアを EV・Kelly 計算に使用（RAW は model_score として保存）
+        honmei_scores_raw = honmei_scores  # DB保存用（変更しない）
+        honmei_scores_cal = apply_calibration_to_series(honmei_scores, log_prefix=race_id)
+
         scored = df.copy()
         scored["honmei_score"] = (
-            honmei_scores.values if len(honmei_scores) == len(scored)
-            else honmei_scores.reindex(scored.index).values
+            honmei_scores_cal.values if len(honmei_scores_cal) == len(scored)
+            else honmei_scores_cal.reindex(scored.index).values
+        )
+        # RAWスコアを別カラムとして保持（model_score 用）
+        scored["honmei_score_raw"] = (
+            honmei_scores_raw.values if len(honmei_scores_raw) == len(scored)
+            else honmei_scores_raw.reindex(scored.index).values
         )
 
         scored = scored.sort_values("honmei_score", ascending=False)
@@ -1014,7 +1068,8 @@ class HonmeiStrategy:
         n = min(self.TOP_N_COMBO, len(scored_for_top))
         top = scored_for_top.head(n)
         top_nums   = [int(r["horse_number"]) for _, r in top.iterrows()]
-        top_scores = [float(r["honmei_score"]) for _, r in top.iterrows()]
+        top_scores = [float(r["honmei_score"]) for _, r in top.iterrows()]      # W-036 補正済み
+        top_scores_raw = [float(r["honmei_score_raw"]) for _, r in top.iterrows()]  # DB保存用RAW
 
         # 全馬スコアリスト（Harville 計算用）
         # Platt確率の過大評価防止: 市場オッズが示す公平確率の4倍を上限にクリップする
@@ -1032,30 +1087,34 @@ class HonmeiStrategy:
             return result
 
         # ── 単勝（確率1位を無条件推奨）────────────────────────────
-        num1  = top_nums[0]
-        sc1   = top_scores[0]
+        num1    = top_nums[0]
+        sc1     = top_scores[0]      # W-036 補正済み確率（EV・Kelly計算用）
+        sc1_raw = top_scores_raw[0]  # RAW確率（DB保存・notes表示用）
         odds1 = float(scored.iloc[0].get("win_odds") or 1.0)
         ev1   = min(sc1 * odds1, OddsEstimator._EV_MAX["単勝"])
-        bet1  = _kelly_bet(sc1, odds1, bankroll=bankroll)
         result.bets.append(BetRecommendation(
             bet_type="単勝",
             combinations=[(num1,)],
             horse_names=[names.get(num1, str(num1))],
             expected_value=ev1,
-            model_score=sc1,
-            recommended_bet=max(bet1, _BASE_BET),
+            model_score=sc1_raw,  # DB保存はRAWスコア（W-036監査追跡用）
+            recommended_bet=calc_kelly_stake(
+                bankroll, ev1, odds1, "単勝",
+            ),
             confidence=sc1,
-            notes=f"確率1位 P(win)={sc1:.2f} odds={odds1:.1f} EV={ev1:.2f}",
+            notes=f"確率1位 P(win)={sc1_raw:.3f}→{sc1:.3f}(cal) odds={odds1:.1f} EV={ev1:.2f}",
         ))
 
         # ── 複勝（上位3頭）───────────────────────────────────────
+        # W-036: 補正済みスコアの合計を EV に使用、RAWスコアを model_score に保存
         _fuku_ev = min(float(top["honmei_score"].sum()), OddsEstimator._EV_MAX["複勝"])
+        _fuku_model_score_raw = float(top["honmei_score_raw"].mean())
         result.bets.append(BetRecommendation(
             bet_type="複勝",
             combinations=[(num,) for num in top_nums],
             horse_names=[names.get(num, str(num)) for num in top_nums],
             expected_value=_fuku_ev,
-            model_score=float(top["honmei_score"].mean()),
+            model_score=_fuku_model_score_raw,
             recommended_bet=calc_kelly_stake(
                 bankroll, _fuku_ev, odds1, "複勝", n_combos=n,
             ),
@@ -2233,6 +2292,8 @@ class BetGenerator:
         max_total = self._config.max_race_bet
 
         for b in bets.bets:
+            if b.recommended_bet <= 0:
+                continue  # W-037: 0は「賭けない」シグナル — 強制上乗せしない
             b.recommended_bet = max(
                 min(b.recommended_bet, max_per_combo),
                 float(_BASE_BET),
@@ -2242,8 +2303,20 @@ class BetGenerator:
         if total > max_total and total > 0:
             ratio = max_total / total
             for b in bets.bets:
+                if b.recommended_bet <= 0:
+                    continue
                 raw = b.recommended_bet * ratio
                 b.recommended_bet = float(max(round(raw / 100) * 100, _BASE_BET))
+
+        # W-037: 0円ベットを最終除去（calc_kelly_stakeが0を返したもの）
+        before_zero = len(bets.bets)
+        bets.bets = [b for b in bets.bets if b.recommended_bet > 0]
+        removed_zero = before_zero - len(bets.bets)
+        if removed_zero > 0:
+            logger.info(
+                "[W-037] %s: 推奨額0円の買い目を除去 %d件（残%d件）",
+                bets.race_id, removed_zero, len(bets.bets),
+            )
 
     def _apply_roi_filter(self, bets: RaceBets) -> None:
         """ROI実績100%未満の券種を in-place で除外する。
