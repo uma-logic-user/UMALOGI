@@ -215,7 +215,6 @@ export default function RaceDetail({ race, predictions }: Props) {
             {tab === t.key && (
               <span
                 className="absolute bottom-0 inset-x-0 h-[2px] bg-[var(--neon-cyan)]"
-                style={{ boxShadow: '0 0 8px rgba(0,200,255,0.9)' }}
               />
             )}
           </button>
@@ -984,7 +983,7 @@ function ResultsTable({ results, payouts }: { results: RaceResult[]; payouts: Ra
                     <span style={{
                       fontFamily: 'monospace', fontWeight: 700, fontSize: '0.82rem',
                       color: r.rank === 1 ? 'var(--neon-cyan)' : 'var(--text-primary)',
-                      textShadow: r.rank === 1 ? '0 0 8px rgba(0,200,255,0.6)' : 'none',
+                      textShadow: 'none',
                     }}>{r.finish_time}</span>
                   )}
                   {(r.margin || r.rank === 1) && (
@@ -1048,8 +1047,8 @@ function PayoutCard({ betType, payouts }: { betType: string; payouts: RacePayout
     <div
       className="rounded-lg p-3 space-y-1.5"
       style={{
-        background: isBig ? 'rgba(255,215,0,0.07)' : 'rgba(0,200,255,0.04)',
-        border: `1px solid ${isBig ? 'rgba(255,215,0,0.25)' : 'rgba(0,200,255,0.15)'}`,
+        background: isBig ? 'rgba(184,134,11,0.07)' : 'rgba(200,168,130,0.04)',
+        border: `1px solid ${isBig ? 'rgba(184,134,11,0.25)' : 'rgba(200,168,130,0.15)'}`,
       }}
     >
       <div className="text-xs font-bold tracking-widest mb-2" style={{
@@ -1082,7 +1081,7 @@ function AttrBadge({ label, value, highlight = false }: { label: string; value: 
   return (
     <div
       className="flex items-center gap-1.5 px-2.5 py-1 rounded text-xs"
-      style={{ background: 'rgba(0,200,255,0.05)', border: '1px solid rgba(0,200,255,0.18)' }}
+      style={{ background: 'rgba(200,168,130,0.05)', border: '1px solid rgba(200,168,130,0.18)' }}
     >
       <span className="text-[var(--text-muted)]">{label}</span>
       <span className={`font-semibold ${highlight ? 'neon-text-green' : 'text-[var(--text-primary)]'}`}>
@@ -1120,7 +1119,7 @@ function OddsCell({ odds }: { odds: number | null }) {
 // ── 人気バッジ ─────────────────────────────────────────────
 function PopBadge({ pop }: { pop: number | null }) {
   if (pop == null) return <span className="text-[var(--text-muted)]">—</span>
-  const bg  = pop === 1 ? 'rgba(0,255,136,0.2)' : pop <= 3 ? 'rgba(0,200,255,0.12)' : 'transparent'
+  const bg  = pop === 1 ? 'rgba(91,138,91,0.2)' : pop <= 3 ? 'rgba(200,168,130,0.12)' : 'transparent'
   const col = pop === 1 ? 'var(--neon-green)' : pop <= 3 ? 'var(--neon-cyan)' : 'var(--text-muted)'
   return (
     <span className="inline-flex items-center justify-center w-6 h-6 rounded font-bold"
