@@ -220,7 +220,7 @@ export default function AppShell() {
             className={`sidebar-special-btn ${view === 'gachi' ? 'active' : ''}`}
             onClick={() => setView('gachi')}
           >
-            <span style={{ color: '#ff4757', fontSize: '0.9rem', textShadow: '0 0 8px rgba(255,71,87,0.8)' }}>🎯</span>
+            <span style={{ color: 'var(--neon-red)', fontSize: '0.9rem' }}>🎯</span>
             <span style={{ color: view === 'gachi' ? '#ff4757' : 'var(--text-primary)' }}>
               ガチ予想実績
             </span>
