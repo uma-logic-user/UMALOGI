@@ -16,17 +16,16 @@ Test:  2025年全データで本命・卍・複勝・ALPHA を横断評価
 from __future__ import annotations
 
 import argparse
-import csv  # noqa: F401
+import csv
 import logging
-import math  # noqa: F401
-import shutil  # noqa: F401
+import shutil
 import sqlite3
 import sys
-import time  # noqa: F401
+import time
 from collections import defaultdict
-from datetime import datetime  # noqa: F401
+from datetime import datetime
 from pathlib import Path
-from typing import Any  # noqa: F401
+from typing import Any
 
 import pandas as pd
 
@@ -358,6 +357,174 @@ def _run_three_model_backtest(
     return overall, dict(monthly), dict(by_venue)
 
 
+def _run_alpha_backtest(
+    conn: sqlite3.Connection,
+    train_years: list[int],
+    test_years: list[int],
+) -> list[Any]:
+    """
+    ALPHA モデルのバックテストを実行する（単勝・複勝の2種類）。
+
+    alpha_model.run_backtest() は内部でデータロード・訓練・評価を完結させる。
+
+    Returns:
+        [AlphaBacktestResult(単勝), AlphaBacktestResult(複勝)]
+    """
+    from src.ml.alpha_model import (
+        run_backtest as alpha_run_backtest,
+        ALPHA_EV_THRESHOLD,
+    )
+
+    print(f"\n  [ALPHA] {train_years} 学習 → {test_years} テスト中...")
+    results = []
+    for bet_type in ("単勝", "複勝"):
+        try:
+            result = alpha_run_backtest(
+                conn,
+                train_years=train_years,
+                test_years=test_years,
+                bet_type=bet_type,
+                ev_threshold=ALPHA_EV_THRESHOLD,
+                verbose=False,
+            )
+            results.append(result)
+            label = "ALPHA・" + ("単勝" if bet_type == "単勝" else "複勝")
+            print(
+                f"  [OK] {label}  "
+                f"シグナル={result.num_bets:,}  "
+                f"的中={result.num_hits:,}  "
+                f"ROI={result.roi:.1f}%"
+            )
+        except Exception as exc:
+            logger.warning("ALPHA %s バックテスト失敗: %s", bet_type, exc)
+    return results
+
+
+_SUMMARY_HEADERS = [
+    "戦略",
+    "買い目数",
+    "的中",
+    "的中率",
+    "投資(円)",
+    "回収(円)",
+    "ROI",
+    "黒字",
+]
+
+
+def _print_table(headers: list[str], rows: list[list[str]], title: str = "") -> None:
+    if not rows:
+        return
+    if title:
+        print(f"\n  {title}")
+    widths = [
+        max(len(h), max(len(r[i]) for r in rows)) + 2 for i, h in enumerate(headers)
+    ]
+    sep = "  +" + "+".join("-" * w for w in widths) + "+"
+    hdr = "  |" + "|".join(f" {h:<{w - 2}} " for h, w in zip(headers, widths)) + "|"
+    print(sep)
+    print(hdr)
+    print(sep)
+    for row in rows:
+        print("  |" + "|".join(f" {c:<{w - 2}} " for c, w in zip(row, widths)) + "|")
+    print(sep)
+
+
+def _print_three_model_summary(overall: dict[str, StrategyStats], title: str) -> None:
+    _section(title)
+    rows = [s.summary_row() for s in overall.values()]
+    _print_table(_SUMMARY_HEADERS, rows)
+    winners = [s.label for s in overall.values() if s.roi >= 100]
+    if winners:
+        print(f"\n  ★ 黒字戦略: {', '.join(winners)}")
+    else:
+        print("\n  -- 黒字戦略なし")
+
+
+def _print_alpha_summary(alpha_results: list[Any]) -> None:
+    _section("ALPHA モデル結果")
+    for r in alpha_results:
+        label = f"ALPHA・{'単勝' if r.bet_type == '単勝' else '複勝'}(EV>{r.ev_threshold:.1f})"
+        invested = r.num_bets * _BET_AMOUNT
+        row = [
+            label,
+            f"{r.num_bets:,}",
+            f"{r.num_hits:,}",
+            f"{r.hit_rate:.1f}%",
+            f"{invested:,}",
+            f"{r.total_payout:,.0f}",
+            f"{r.roi:.1f}%",
+            "○" if r.roi >= 100 else "×",
+        ]
+        _print_table(_SUMMARY_HEADERS, [row])
+
+
+def _print_monthly_breakdown(
+    monthly: dict[str, dict[str, StrategyStats]],
+    strat_keys: list[str],
+) -> None:
+    _section("月別 ROI 推移（本命・卍・複勝）")
+    for month in sorted(monthly.keys()):
+        parts = []
+        for k in strat_keys:
+            if k in monthly[month]:
+                s = monthly[month][k]
+                label_short = s.label.split("(")[0].replace("・", "/")
+                parts.append(f"{label_short}={s.roi:.0f}%")
+        print(f"  {month}: " + "  ".join(parts))
+
+
+def _write_csv(
+    overall: dict[str, StrategyStats],
+    alpha_results: list[Any],
+    out_path: Path,
+) -> None:
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(out_path, "w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(
+            [
+                "strategy",
+                "bets",
+                "hits",
+                "hit_rate_pct",
+                "invested",
+                "payout",
+                "roi_pct",
+                "profit",
+            ]
+        )
+        for s in overall.values():
+            w.writerow(
+                [
+                    s.label,
+                    s.races,
+                    s.hits,
+                    round(s.hit_rate, 2),
+                    int(s.invested),
+                    int(s.payout),
+                    round(s.roi, 2),
+                    int(s.profit),
+                ]
+            )
+        for r in alpha_results:
+            invested = r.num_bets * _BET_AMOUNT
+            label = f"ALPHA・{'単勝' if r.bet_type == '単勝' else '複勝'}(EV>{r.ev_threshold:.1f})"
+            w.writerow(
+                [
+                    label,
+                    r.num_bets,
+                    r.num_hits,
+                    round(r.hit_rate, 2),
+                    invested,
+                    round(r.total_payout, 0),
+                    round(r.roi, 2),
+                    round(r.total_payout - invested, 0),
+                ]
+            )
+    print(f"\n  CSV 保存: {out_path}")
+
+
 def _banner(text: str) -> None:
     border = "=" * _WIDTH
     inner = f"  {text}  "
@@ -453,7 +620,88 @@ def main() -> int:
         conn.close()
         return 0
 
+    # ── Phase 2-4: 3モデル再訓練 + 2025年評価 ───────────────────
+    wall_start = time.perf_counter()
+
+    honmei, place, manji = _train_three_models(conn, train_until=int(_TRAIN_YEAR))
+
+    overall, monthly, by_venue = _run_three_model_backtest(
+        conn=conn,
+        test_year=_TEST_YEAR,
+        honmei=honmei,
+        place=place,
+        manji=manji,
+        strategies=STRATEGIES,
+        verbose=args.verbose,
+    )
+
+    # ── Phase 3': ALPHA バックテスト ────────────────────────────
+    alpha_results = _run_alpha_backtest(
+        conn,
+        train_years=[int(_TRAIN_YEAR)],
+        test_years=[int(_TEST_YEAR)],
+    )
+
     conn.close()
+
+    elapsed = time.perf_counter() - wall_start
+    mins, secs = divmod(int(elapsed), 60)
+
+    # ── 結果表示 ─────────────────────────────────────────────────
+    _banner(
+        f"Backtest Results  Train:{_TRAIN_YEAR} / Test:{_TEST_YEAR}  "
+        f"({mins}m{secs:02d}s)"
+    )
+
+    _print_three_model_summary(
+        overall, "2025年 アウト・オブ・サンプル（本命・卍・複勝）"
+    )
+    _print_alpha_summary(alpha_results)
+
+    strat_keys = list(STRATEGIES.keys())
+    _print_monthly_breakdown(monthly, strat_keys)
+
+    # 会場別（verbose 時のみ表示）
+    if args.verbose:
+        _section("会場別（本命・卍・複勝）")
+        for venue in sorted(by_venue.keys()):
+            rows = [
+                by_venue[venue][k].summary_row()
+                for k in strat_keys
+                if k in by_venue[venue]
+            ]
+            if rows:
+                _print_table(_SUMMARY_HEADERS, rows, title=f"  [{venue}]")
+
+    # CSV
+    if args.csv:
+        ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+        csv_dir = _ROOT / "results"
+        _write_csv(overall, alpha_results, csv_dir / f"backtest_{ts}.csv")
+
+    # クリーンアップ
+    if args.cleanup:
+        tmp_dir = _ROOT / "data" / "models" / "backtest_tmp"
+        if tmp_dir.exists():
+            shutil.rmtree(tmp_dir)
+            print(f"  [cleanup] {tmp_dir} を削除しました。")
+
+    # 総評
+    _section("総評")
+    all_rois = [(s.label, s.roi) for s in overall.values()]
+    all_rois += [
+        (f"ALPHA・{'単勝' if r.bet_type == '単勝' else '複勝'}", r.roi)
+        for r in alpha_results
+    ]
+    best_label, best_roi = max(all_rois, key=lambda t: t[1])
+    print(f"  最高ROI戦略: {best_label}  ROI={best_roi:.1f}%")
+    black = [lbl for lbl, roi in all_rois if roi >= 100]
+    if black:
+        print(f"  ★ 黒字戦略: {', '.join(black)}")
+    else:
+        print("  -- 全戦略が赤字です。")
+    print()
+
     return 0
 
 
