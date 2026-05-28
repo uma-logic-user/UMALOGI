@@ -53,7 +53,7 @@ class StrategyStats:
         self.hits     = 0
         self.invested = 0.0
         self.payout   = 0.0
-        self.skipped  = 0
+        self.skipped  = 0   # EVフィルタ等で見送ったレース数（評価ループで加算）
 
     def add(self, hit: bool, payout: float) -> None:
         self.races    += 1
@@ -79,8 +79,8 @@ class StrategyStats:
             f"{self.races:,}",
             f"{self.hits:,}",
             f"{self.hit_rate:.1f}%",
-            f"{int(self.invested):,}",
-            f"{int(self.payout):,}",
+            f"{round(self.invested):,}",
+            f"{round(self.payout):,}",
             f"{self.roi:.1f}%",
             "○" if self.roi >= 100 else "×",
         ]
