@@ -108,6 +108,7 @@ _CATCHUP_HOURS: dict[str, int] = {
     "job_weekend_batch_post":    4,  # 18:30 → 22:30 まで
     "job_monday_masters":       12,  # 06:00 → 18:00 まで
     "job_weekly_retrain":       12,  # 07:00 → 19:00 まで
+    "job_segment_analysis":      4,  # 07:30 → 11:30 まで
     "job_git_push":             12,  # 08:00 → 20:00 まで
 }
 
@@ -125,6 +126,7 @@ _JOB_SCHEDULES: dict[str, list[tuple[int, int, int]]] = {
     "job_weekend_batch_post":   [(5, 18, 30), (6, 18, 30)],
     "job_monday_masters":       [(0,  6,  0)],
     "job_weekly_retrain":       [(0,  7,  0)],
+    "job_segment_analysis":     [(0,  7, 30)],
     "job_git_push":             [(0,  8,  0)],
 }
 
@@ -1590,6 +1592,57 @@ def job_record_odds_timeseries() -> None:
         logger.warning("odds_timeseries 記録失敗: %s", exc)
 
 
+def job_prerace_15min_alert() -> None:
+    """毎分: 発走15分前の EV 激熱レースを Discord ev_alert へ通知する（8:30〜16:30 のみ）。
+
+    土日にレースがある場合、各レースの発走14〜16分前の1回だけ通知する。
+    in-memory の既通知セットで重複送信を防ぐ。
+    EV 閾値は環境変数 PRERACE_ALERT_EV_THRESHOLD（デフォルト 1.2）で調整可能。
+    """
+    now = datetime.now()
+    # 朝8:30〜夕方16:30 の間のみ実行（最終R12 = 15:30 発走 + バッファ）
+    if not (8 * 60 + 30 <= now.hour * 60 + now.minute <= 16 * 60 + 30):
+        return
+    try:
+        from src.notification.prerace_alert import check_and_send_prerace_alerts
+        count = check_and_send_prerace_alerts()
+        if count > 0:
+            logger.info("[発走前アラート] %d件の通知を送信しました", count)
+    except Exception as exc:
+        logger.warning("[発走前アラート] 実行エラー（続行）: %s", exc)
+
+
+def job_segment_analysis() -> None:
+    """月曜07:30: セグメント別ROI分析を実行しDiscordに送信する。"""
+    try:
+        from scripts.segment_analysis import analyze_by_segment, _print_segment_table
+        import io
+        import sys as _sys
+
+        buf = io.StringIO()
+        _orig = _sys.stdout
+        _sys.stdout = buf
+
+        try:
+            for group in ["bet_type", "venue", "condition", "model"]:
+                rows = analyze_by_segment(db_path="data/umalogi.db", group_by=group, min_bets=30)
+                _print_segment_table(rows, group)
+        finally:
+            _sys.stdout = _orig
+
+        report = buf.getvalue()
+
+        # Discord に送信（1800字ずつ分割）
+        chunks = [report[i:i+1800] for i in range(0, len(report), 1800)]
+        for chunk in chunks:
+            _send_discord(f"📊 週次セグメントROI分析\n```\n{chunk}\n```")
+
+        logger.info("job_segment_analysis: 完了 %d文字", len(report))
+    except Exception as exc:  # noqa: BLE001
+        logger.exception("job_segment_analysis 失敗: %s", exc)
+        _send_discord(f"⚠️ segment_analysis 失敗: {exc}")
+
+
 # ================================================================
 # スケジューラー本体
 # ================================================================
@@ -1658,6 +1711,10 @@ def register_schedules() -> None:
     schedule.every().monday.at("05:00").do(job_weekly_backup)
     schedule.every().monday.at("06:00").do(job_monday_masters)
     schedule.every().monday.at("07:00").do(job_weekly_retrain)
+
+    # 月曜 07:30: セグメント別ROI分析
+    schedule.every().monday.at("07:30").do(job_segment_analysis)
+
     schedule.every().monday.at("08:00").do(job_git_push)
 
     # 月曜 08:30 — 直近28日実績サマリーを Discord へ自動送信
@@ -1677,6 +1734,9 @@ def register_schedules() -> None:
 
     # 毎分: オッズ時系列記録（5:00〜17:59 のみ実際に記録）
     schedule.every(1).minutes.do(job_record_odds_timeseries)
+
+    # 毎分: 発走15分前アラート（8:30〜16:30 のみ実際に送信）
+    schedule.every(1).minutes.do(job_prerace_15min_alert)
 
     logger.info("スケジュール登録完了: %d ジョブ", len(schedule.jobs))
     for job in schedule.jobs:
@@ -1754,6 +1814,7 @@ _JOB_MAP_FULL: dict[str, object] = {
     "job_weekend_batch_post":   job_weekend_batch_post,
     "job_monday_masters":       job_monday_masters,
     "job_weekly_retrain":       job_weekly_retrain,
+    "job_segment_analysis":     job_segment_analysis,
     "job_git_push":             job_git_push,
 }
 
@@ -1775,6 +1836,7 @@ _JOB_MAP: dict[str, object] = {
     "masters":        job_monday_masters,
     "retrain":        job_weekly_retrain,
     "git":            job_git_push,
+    "prerace_alert":  job_prerace_15min_alert,
 }
 
 

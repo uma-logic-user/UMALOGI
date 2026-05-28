@@ -23,6 +23,9 @@
 | 2026-05-23 | 【note完全自動化ルーティン完成・W-033 新規登録→即完了】`job_note_daily_article()` を scheduler.py に追加（土日10:30）。4ステップ自動実行（記事生成→Discord転送→Embed送信→note.com下書き）。`NOTE_DRAFT_AUTO_POST=0`（デフォルト）でPlaywright未起動でも安全完走。`NOTE_DRAFT_AUTO_POST=1` + `.note_session.json` 存在時のみ Playwright 自動保存。テスト15件PASS / 全560件GREEN。影響: scripts/scheduler.py, tests/test_scheduler_note_article.py(新規), .env(NOTE_DRAFT_AUTO_POST=0追加) |
 | 2026-05-27 | 【W-036 完了】キャリブレーション補正: `src/ml/calibration.py` 新設。bin別補正倍率(avg×2.77)を `HonmeiStrategy.generate()` に統合。補正前EV=0.80(採用不可)→補正後EV=1.53(採用可)の隠れ優良レースが発見可能に。ユニットテスト20件 PASS。W-036 🟢完了。影響: `src/ml/calibration.py`, `src/ml/bet_generator.py` |
 | 2026-05-28 | 【卍×三連複 ROI=46.7% 損失対応完了】`ManjiStrategy.generate()` の `_TRIO_EV_MIN=1.0` EVゲートを復活（EVゲート撤廃コメントを削除）。TDDで `tests/test_bet_generator_ev_gate.py` 3件追加・全PASS確認済み。影響: `src/ml/bet_generator.py`, `tests/test_bet_generator_ev_gate.py` |
+| 2026-05-28 | 【W-038 完了】卍モデル三連複EVゲート復活: `_TRIO_EV_MIN = 1.0` を ManjiGenerator に追加。本番実績 ROI 46.7% の三連複買い目を撤廃。影響: `src/ml/bet_generator.py` |
+| 2026-05-28 | 【W-039 完了】バックテスト評価品質改善: `--mode flat` フラグを `scripts/backtest_2024_2025.py` に追加。Kelly複利ROI膨張（最大15000%）なしの実態値を算出可能に。影響: `scripts/backtest_2024_2025.py` |
+| 2026-05-28 | 【W-040 完了】セグメント分析基盤新設: `scripts/segment_analysis.py` で券種×会場×馬場状態別ROIを自動集計。月曜07:30 Discord自動配信開始。影響: `scripts/segment_analysis.py`, `scripts/scheduler.py` |
 | 2026-05-27 | 【W-037 完了】動的セーフティ実装: `calc_kelly_stake()` に `GLOBAL_BALANCE_CAP_PCT=0.05`・`_dynamic_kelly_fraction()`・最低保証額廃止の3機能を追加。Monte Carlo 10,000試行で1/4Kelly破産率 75.97%→**0.00%** 達成（目標<10% クリア）。中央最終残高 ¥831,505。W-037 🟢完了。影響: `src/ml/bet_generator.py`, `scripts/calibration_kelly_audit.py` |
 | 2026-05-27 | 【W-036/W-037 新規登録・キャリブレーション&Kelly監査実施】`scripts/calibration_kelly_audit.py` 新設。① 本命(直前)モデルのキャリブレーション: model_score が全 bin で実績的中率を下回る（補正倍率 avg=1.91）→ EV 過小評価状態（守保的設計としては良好だが改善余地あり）。② Kelly Monte Carlo (10,000試行): recommended_bet 基準の真ROI=119.8%、純損益=+¥864,650 で黒字確認。ただし破産率54-93%（全Kelly係数）→ 初期資金¥100K では三連単高額ベットによる連敗で ¥10K ラインを割るリスクが高い。推奨: 運用資金を ¥300K〜¥500K 以上に引き上げ or バランス比率に応じた動的Kelly圧縮を実装。結果は `data/calibration_kelly_audit.json` に保存。 |
 | 2026-05-24 | 【W-035 新規登録】training_hillwork 坂路データ 0 件問題: JVLink WOOD に WH レコード不含（仕様）＋ netkeiba 調教ページはレース後404 → 歴史バックフィル不可を確認。`job_training_hillwork_scrape()` を scheduler.py に追加（木曜20:00・金曜18:00）し今週末以降のレースから自動収集開始。 |
@@ -481,6 +484,41 @@ Phase 2-C+B完了後: 30因子 ← 社長ビジョン達成
   W-015  ラップタイム DB 格納
   W-016  2025年着順データ補完（netkeiba 一括）
 ```
+
+---
+
+### W-038: 卍モデル三連複 EV ゲート廃止による損失
+
+| 項目 | 内容 |
+|------|------|
+| ID | W-038 |
+| ステータス | 🟢 完了（2026-05-28） |
+| 優先度 | 高 |
+| 影響 | 本番実績: 卍×三連複 ROI=46.7%（損失確定）。コード上は `# EVゲート撤廃` として EV < 1.0 の三連複も推奨していた |
+| 対応方針 | `ManjiGenerator` に `_TRIO_EV_MIN = 1.0` ゲートを追加して EV < 1.0 の三連複を除外 |
+| 担当フェーズ | 実装完了 |
+
+### W-039: バックテスト指標の Kelly 複利膨張
+
+| 項目 | 内容 |
+|------|------|
+| ID | W-039 |
+| ステータス | 🟢 完了（2026-05-28） |
+| 優先度 | 中 |
+| 影響 | WF バックテストが 2025-08 以降に ROI 1000〜15000% に膨張。経営判断に使えない数字が蓄積している |
+| 対応方針 | `--mode flat` フラグ追加で Kelly 複利なしのフラット ROI を算出 |
+| 担当フェーズ | 実装完了 |
+
+### W-040: 券種×会場×馬場状態別セグメント分析の欠如
+
+| 項目 | 内容 |
+|------|------|
+| ID | W-040 |
+| ステータス | 🟢 完了（2026-05-28） |
+| 優先度 | 中 |
+| 影響 | どの会場・馬場・券種で赤字か分からず `_ALLOWED_BET_TYPES` の見直しが勘になっている |
+| 対応方針 | `scripts/segment_analysis.py` 新設、月曜07:30 Discord 自動配信 |
+| 担当フェーズ | 実装完了 |
 
 ---
 
