@@ -43,6 +43,49 @@ _TRAIN_YEAR = "2024"
 _TEST_YEAR  = "2025"
 
 
+class StrategyStats:
+    """1戦略の集計状態。"""
+
+    def __init__(self, label: str, bet_type: str) -> None:
+        self.label    = label
+        self.bet_type = bet_type
+        self.races    = 0
+        self.hits     = 0
+        self.invested = 0.0
+        self.payout   = 0.0
+        self.skipped  = 0
+
+    def add(self, hit: bool, payout: float) -> None:
+        self.races    += 1
+        self.hits     += int(hit)
+        self.invested += _BET_AMOUNT
+        self.payout   += payout
+
+    @property
+    def roi(self) -> float:
+        return (self.payout / self.invested * 100) if self.invested > 0 else 0.0
+
+    @property
+    def hit_rate(self) -> float:
+        return (self.hits / self.races * 100) if self.races > 0 else 0.0
+
+    @property
+    def profit(self) -> float:
+        return self.payout - self.invested
+
+    def summary_row(self) -> list[str]:
+        return [
+            self.label,
+            f"{self.races:,}",
+            f"{self.hits:,}",
+            f"{self.hit_rate:.1f}%",
+            f"{int(self.invested):,}",
+            f"{int(self.payout):,}",
+            f"{self.roi:.1f}%",
+            "○" if self.roi >= 100 else "×",
+        ]
+
+
 def _banner(text: str) -> None:
     border = "=" * _WIDTH
     inner  = f"  {text}  "
