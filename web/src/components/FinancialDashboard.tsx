@@ -147,10 +147,9 @@ export default function FinancialDashboard({ data, onSelectRace }: Props) {
               <button key={m} onClick={() => switchModel(m)}
                 className="px-2 py-1 sm:px-4 sm:py-2 text-xs sm:text-sm font-bold rounded tracking-wide sm:tracking-wider transition-all"
                 style={active ? {
-                  background: cyan ? 'rgba(0,200,255,0.15)' : 'rgba(255,215,0,0.15)',
+                  background: cyan ? 'rgba(200,168,130,0.15)' : 'rgba(184,134,11,0.15)',
                   border: `1px solid ${cyan ? 'var(--neon-cyan)' : 'var(--neon-gold)'}`,
                   color:  cyan ? 'var(--neon-cyan)' : 'var(--neon-gold)',
-                  boxShadow: `0 0 14px ${cyan ? 'rgba(0,200,255,0.35)' : 'rgba(255,215,0,0.35)'}`,
                 } : {
                   background: 'rgba(255,255,255,0.03)',
                   border: '1px solid rgba(255,255,255,0.12)',
@@ -218,18 +217,17 @@ export default function FinancialDashboard({ data, onSelectRace }: Props) {
           {/* overflow-hidden を除去: 子のoverflow-x-autoを完全に機能させる */}
           <div className="neon-card">
             {/* ヘッダー行：トグル＋累計損益 */}
-            <div className="px-3 sm:px-5 py-3 border-b border-[rgba(0,200,255,0.12)] flex items-center justify-between gap-2 sm:gap-4 flex-wrap">
+            <div className="px-3 sm:px-5 py-3 border-b border-[rgba(200,168,130,0.12)] flex items-center justify-between gap-2 sm:gap-4 flex-wrap">
               {/* 粒度トグル */}
               <div className="flex gap-0.5 sm:gap-1 p-0.5 sm:p-1 rounded"
-                style={{ background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(0,200,255,0.12)' }}>
+                style={{ background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(200,168,130,0.12)' }}>
                 {GRAN_LABELS.map(g => (
                   <button key={g.id}
                     onClick={() => { setGranularity(g.id); setExpKey(null); setExpBet(null) }}
                     className="px-2 py-1 sm:px-4 sm:py-1.5 text-xs sm:text-sm font-bold rounded transition-all"
                     style={granularity === g.id ? {
-                      background: isCyan ? 'rgba(0,200,255,0.2)' : 'rgba(255,215,0,0.2)',
+                      background: isCyan ? 'rgba(200,168,130,0.2)' : 'rgba(184,134,11,0.2)',
                       color: accent,
-                      boxShadow: `0 0 8px ${isCyan ? 'rgba(0,200,255,0.3)' : 'rgba(255,215,0,0.3)'}`,
                     } : {
                       color: 'var(--text-muted)',
                     }}>
@@ -265,7 +263,7 @@ export default function FinancialDashboard({ data, onSelectRace }: Props) {
                         {/* 集計行 */}
                         <tr
                           className="cursor-pointer"
-                          style={{ background: expandedKey === key ? 'rgba(0,200,255,0.06)' : undefined }}
+                          style={{ background: expandedKey === key ? 'rgba(200,168,130,0.06)' : undefined }}
                           onClick={() => toggleKey(key)}
                         >
                           <td className="text-center text-[var(--text-muted)] whitespace-nowrap">
@@ -297,7 +295,7 @@ export default function FinancialDashboard({ data, onSelectRace }: Props) {
                         {/* 券種ドリルダウン */}
                         {expandedKey === key && (
                           <tr key={`${key}-detail`}>
-                            <td colSpan={8} style={{ padding: 0, background: 'rgba(0,200,255,0.02)' }}>
+                            <td colSpan={8} style={{ padding: 0, background: 'rgba(200,168,130,0.02)' }}>
                               <BetTypeBreakdown
                                 stats={item.by_bet_type}
                                 expandedBet={expandedBet}
@@ -336,7 +334,7 @@ function BetTypeBreakdown({
   const accent = isCyan ? 'var(--neon-cyan)' : 'var(--neon-gold)'
   return (
     <div className="px-2 sm:px-4 py-3 space-y-1.5">
-      <div className="text-xs text-[var(--text-muted)] tracking-[0.15em] pb-1.5 border-b border-[rgba(0,200,255,0.08)]">
+      <div className="text-xs text-[var(--text-muted)] tracking-[0.15em] pb-1.5 border-b border-[rgba(200,168,130,0.08)]">
         券種別内訳{onSelectRace ? ' — レース行をクリックで詳細表示' : ''}
       </div>
       {stats.map(bt => (
@@ -347,8 +345,8 @@ function BetTypeBreakdown({
             className="flex items-center gap-2 px-2 py-2 rounded cursor-pointer transition-all"
             style={{
               minWidth: '440px',
-              background: expandedBet === bt.bet_type ? 'rgba(0,200,255,0.08)' : 'rgba(0,200,255,0.02)',
-              border: `1px solid ${expandedBet === bt.bet_type ? 'rgba(0,200,255,0.2)' : 'transparent'}`,
+              background: expandedBet === bt.bet_type ? 'rgba(200,168,130,0.08)' : 'rgba(200,168,130,0.02)',
+              border: `1px solid ${expandedBet === bt.bet_type ? 'rgba(200,168,130,0.2)' : 'transparent'}`,
             }}
             onClick={() => onToggleBet(bt.bet_type)}
           >
@@ -369,7 +367,7 @@ function BetTypeBreakdown({
             </span>
             {bt.hits > 0 && (
               <span className="text-xs px-1.5 py-0.5 rounded font-bold shrink-0"
-                style={{ background: 'rgba(0,255,136,0.15)', color: 'var(--neon-green)', border: '1px solid rgba(0,255,136,0.3)' }}>
+                style={{ background: 'rgba(91,138,91,0.15)', color: 'var(--neon-green)', border: '1px solid rgba(91,138,91,0.3)' }}>
                 HIT
               </span>
             )}
@@ -402,13 +400,13 @@ function RaceList({
   const hitRaces = races.filter(r => r.is_hit === 1)
   if (hitRaces.length === 0) {
     return (
-      <div className="ml-6 mt-1 mb-2 px-3 py-2 text-xs text-[var(--text-muted)] rounded border border-[rgba(0,200,255,0.06)]">
+      <div className="ml-6 mt-1 mb-2 px-3 py-2 text-xs text-[var(--text-muted)] rounded border border-[rgba(200,168,130,0.06)]">
         この券種の的中レースはありません
       </div>
     )
   }
   return (
-    <div className="ml-6 mt-1 mb-2 rounded border border-[rgba(0,200,255,0.08)] overflow-x-auto w-full" style={{ WebkitOverflowScrolling: 'touch' }}>
+    <div className="ml-6 mt-1 mb-2 rounded border border-[rgba(200,168,130,0.08)] overflow-x-auto w-full" style={{ WebkitOverflowScrolling: 'touch' }}>
       <table style={{ fontSize: '0.8rem', minWidth: '480px', width: '100%' }}>
         <thead>
           <tr style={{ background: 'rgba(0,0,0,0.3)' }}>
@@ -424,7 +422,7 @@ function RaceList({
         <tbody>
           {hitRaces.map((r, i) => (
             <tr key={r.race_id + i}
-              style={{ borderTop: '1px solid rgba(0,200,255,0.05)' }}
+              style={{ borderTop: '1px solid rgba(200,168,130,0.05)' }}
               className="hit-normal"
             >
               <td className="px-3 py-1.5 text-[var(--text-muted)]">{r.venue}</td>
@@ -438,7 +436,7 @@ function RaceList({
               </td>
               <td className="px-3 py-1.5 text-center">
                 <span className="text-xs font-bold px-1.5 py-0.5 rounded"
-                  style={{ background: 'rgba(0,255,136,0.2)', color: 'var(--neon-green)', border: '1px solid rgba(0,255,136,0.4)' }}>
+                  style={{ background: 'rgba(91,138,91,0.2)', color: 'var(--neon-green)', border: '1px solid rgba(91,138,91,0.4)' }}>
                   ◎的中
                 </span>
               </td>
@@ -450,8 +448,8 @@ function RaceList({
                   <button onClick={() => onSelectRace(r.race_id)}
                     className="text-xs px-2 py-0.5 rounded transition-all"
                     style={{
-                      background: 'rgba(0,200,255,0.08)',
-                      border: '1px solid rgba(0,200,255,0.2)',
+                      background: 'rgba(200,168,130,0.08)',
+                      border: '1px solid rgba(200,168,130,0.2)',
                       color: 'var(--neon-cyan)',
                     }}>
                     詳細→
@@ -477,7 +475,7 @@ function KpiCard({
   positive: boolean | null
   color:    'cyan' | 'gold' | 'muted'
 }) {
-  const accent = { cyan: '#00c8ff', gold: '#ffd700', muted: '#4a7a96' }[color]
+  const accent = { cyan: '#C8A882', gold: '#B8860B', muted: '#4a7a96' }[color]
   const valueColor = positive === true  ? 'var(--neon-green)'
     : positive === false ? 'var(--neon-red)'
     : accent
@@ -485,7 +483,7 @@ function KpiCard({
     <div className="neon-card p-5 flex flex-col gap-2 min-w-0" style={{ borderColor: `${accent}44` }}>
       <div className="text-sm text-[var(--text-muted)] tracking-wider">{label}</div>
       <div className="text-3xl font-black leading-none"
-        style={{ color: valueColor, textShadow: `0 0 20px ${valueColor}80, 0 0 40px ${valueColor}30` }}>
+        style={{ color: valueColor }}>
         {value}
       </div>
     </div>
@@ -522,8 +520,8 @@ function ProfitChart({ days, isCyan }: { days: DailyStats[]; isCyan: boolean }) 
   const pts     = days.map((d, i) => `${toX(i)},${toY(d.cumulative_profit)}`).join(' ')
   const fillPts = `${toX(0)},${zeroY} ${pts} ${toX(days.length - 1)},${zeroY}`
 
-  const color    = isCyan ? '#00c8ff' : '#ffd700'
-  const colorRgb = isCyan ? '0,200,255' : '255,215,0'
+  const color    = isCyan ? '#C8A882' : '#B8860B'
+  const colorRgb = isCyan ? '200,168,130' : '184,134,11'
 
   const step = Math.max(1, Math.floor((days.length - 1) / 4))
   const labelIdxs: number[] = []
@@ -541,11 +539,9 @@ function ProfitChart({ days, isCyan }: { days: DailyStats[]; isCyan: boolean }) 
       <line x1={PAD.left} y1={zeroY} x2={W - PAD.right} y2={zeroY}
         stroke="rgba(255,255,255,0.2)" strokeWidth="1" strokeDasharray="5 4" />
       <polygon points={fillPts} fill={`rgba(${colorRgb},0.07)`} />
-      <polyline points={pts} fill="none" stroke={color} strokeWidth="2.5"
-        style={{ filter: `drop-shadow(0 0 6px ${color})` }} />
+      <polyline points={pts} fill="none" stroke={color} strokeWidth="2.5" />
       {days.length <= 60 && days.map((d, i) => (
-        <circle key={i} cx={toX(i)} cy={toY(d.cumulative_profit)} r="3" fill={color}
-          style={{ filter: `drop-shadow(0 0 4px ${color})` }} />
+        <circle key={i} cx={toX(i)} cy={toY(d.cumulative_profit)} r="3" fill={color} />
       ))}
       {labelIdxs.map(i => (
         <text key={i} x={toX(i)} y={H - 6} textAnchor="middle"
@@ -599,11 +595,11 @@ function ProfitHeatmap({ days, isCyan }: { days: DailyStats[]; isCyan: boolean }
     if (p > 0) {
       // 利益: 緑グラデーション
       const alphas = [0.25, 0.45, 0.70, 0.95]
-      return `rgba(0,255,136,${alphas[lvl - 1]})`
+      return `rgba(91,138,91,${alphas[lvl - 1]})`
     } else {
       // 損失: 赤グラデーション
       const alphas = [0.2, 0.4, 0.65, 0.9]
-      return `rgba(255,51,102,${alphas[lvl - 1]})`
+      return `rgba(196,64,64,${alphas[lvl - 1]})`
     }
   }
 
@@ -696,13 +692,13 @@ function ProfitHeatmap({ days, isCyan }: { days: DailyStats[]; isCyan: boolean }
         <span>損失</span>
         {[0.2, 0.4, 0.65, 0.9].map(a => (
           <svg key={a} width="13" height="13" style={{ display: 'inline' }}>
-            <rect width="13" height="13" rx="2" fill={`rgba(255,51,102,${a})`} />
+            <rect width="13" height="13" rx="2" fill={`rgba(196,64,64,${a})`} />
           </svg>
         ))}
         <span className="mx-1">|</span>
         {[0.25, 0.45, 0.7, 0.95].map(a => (
           <svg key={a} width="13" height="13" style={{ display: 'inline' }}>
-            <rect width="13" height="13" rx="2" fill={`rgba(0,255,136,${a})`} />
+            <rect width="13" height="13" rx="2" fill={`rgba(91,138,91,${a})`} />
           </svg>
         ))}
         <span>利益</span>
@@ -789,8 +785,8 @@ function KellyComparisonPanel({ totalRoi, model, isCyan }: { totalRoi: number; m
               style={{
                 width: `${Math.max(flatBar, 2)}%`,
                 background: flatRoi >= 100
-                  ? 'linear-gradient(90deg, rgba(0,255,136,0.6), rgba(0,255,136,0.3))'
-                  : 'linear-gradient(90deg, rgba(255,51,102,0.7), rgba(255,51,102,0.3))',
+                  ? 'linear-gradient(90deg, rgba(91,138,91,0.6), rgba(91,138,91,0.3))'
+                  : 'linear-gradient(90deg, rgba(196,64,64,0.7), rgba(196,64,64,0.3))',
               }}
             />
             {/* 損益分岐点ライン */}
@@ -815,8 +811,7 @@ function KellyComparisonPanel({ totalRoi, model, isCyan }: { totalRoi: number; m
               className="h-full rounded transition-all"
               style={{
                 width: `${Math.max(kellyBar, 2)}%`,
-                background: 'linear-gradient(90deg, rgba(0,200,255,0.7), rgba(0,200,255,0.3))',
-                boxShadow: '0 0 12px rgba(0,200,255,0.4)',
+                background: 'linear-gradient(90deg, rgba(200,168,130,0.7), rgba(200,168,130,0.3))',
               }}
             />
             <div className="absolute top-0 bottom-0 w-px bg-white opacity-30"
@@ -827,19 +822,19 @@ function KellyComparisonPanel({ totalRoi, model, isCyan }: { totalRoi: number; m
 
       {/* 改善ギャップとメトリクス */}
       <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <div className="text-center px-3 py-2 rounded" style={{ background: 'rgba(0,200,255,0.06)', border: '1px solid rgba(0,200,255,0.15)' }}>
+        <div className="text-center px-3 py-2 rounded" style={{ background: 'rgba(200,168,130,0.06)', border: '1px solid rgba(200,168,130,0.15)' }}>
           <div className="text-xs text-[var(--text-muted)] mb-1">改善ギャップ</div>
           <div className="text-lg font-black" style={{ color: accent }}>
             +{(kellyRoi - flatRoi).toFixed(1)}%
           </div>
         </div>
-        <div className="text-center px-3 py-2 rounded" style={{ background: 'rgba(0,200,255,0.06)', border: '1px solid rgba(0,200,255,0.15)' }}>
+        <div className="text-center px-3 py-2 rounded" style={{ background: 'rgba(200,168,130,0.06)', border: '1px solid rgba(200,168,130,0.15)' }}>
           <div className="text-xs text-[var(--text-muted)] mb-1">Kelly初期資金</div>
           <div className="text-lg font-black text-[var(--text-primary)]">
             ¥{(ref.initial / 1000).toFixed(0)}k
           </div>
         </div>
-        <div className="text-center px-3 py-2 rounded" style={{ background: 'rgba(0,255,136,0.06)', border: '1px solid rgba(0,255,136,0.2)' }}>
+        <div className="text-center px-3 py-2 rounded" style={{ background: 'rgba(91,138,91,0.06)', border: '1px solid rgba(91,138,91,0.2)' }}>
           <div className="text-xs text-[var(--text-muted)] mb-1">Kelly推定年末資産</div>
           <div className="text-lg font-black neon-text-green">
             ¥{ref.final_kelly >= 1_000_000
@@ -847,7 +842,7 @@ function KellyComparisonPanel({ totalRoi, model, isCyan }: { totalRoi: number; m
               : `${(ref.final_kelly / 1_000).toFixed(0)}k`}
           </div>
         </div>
-        <div className="text-center px-3 py-2 rounded" style={{ background: 'rgba(0,200,255,0.06)', border: '1px solid rgba(0,200,255,0.15)' }}>
+        <div className="text-center px-3 py-2 rounded" style={{ background: 'rgba(200,168,130,0.06)', border: '1px solid rgba(200,168,130,0.15)' }}>
           <div className="text-xs text-[var(--text-muted)] mb-1">Kelly分数</div>
           <div className="text-lg font-black" style={{ color: accent }}>1/4</div>
         </div>

@@ -61,8 +61,8 @@ export default function BiasPanel({ bias, condition }: Props) {
     <div
       className="rounded-lg px-5 py-4 mb-4"
       style={{
-        background: 'rgba(0,200,255,0.03)',
-        border: '1px solid rgba(0,200,255,0.15)',
+        background: 'rgba(200,168,130,0.03)',
+        border: '1px solid rgba(200,168,130,0.15)',
       }}
     >
       {/* ヘッダー */}
@@ -94,10 +94,10 @@ export default function BiasPanel({ bias, condition }: Props) {
               style={{
                 width: `${innerPct}%`,
                 background: innerPct > 55
-                  ? 'linear-gradient(90deg, rgba(0,255,136,0.3), rgba(0,255,136,0.8))'
+                  ? 'linear-gradient(90deg, rgba(91,138,91,0.3), rgba(91,138,91,0.8))'
                   : innerPct < 45
-                  ? 'linear-gradient(90deg, rgba(0,200,255,0.8), rgba(0,200,255,0.3))'
-                  : 'linear-gradient(90deg, rgba(0,200,255,0.5), rgba(0,255,136,0.5))',
+                  ? 'linear-gradient(90deg, rgba(200,168,130,0.8), rgba(200,168,130,0.3))'
+                  : 'linear-gradient(90deg, rgba(200,168,130,0.5), rgba(91,138,91,0.5))',
               }}
             />
             {/* センターライン */}
@@ -129,10 +129,10 @@ export default function BiasPanel({ bias, condition }: Props) {
               style={{
                 width: `${frontPct}%`,
                 background: frontPct > 60
-                  ? 'linear-gradient(90deg, rgba(255,215,0,0.3), rgba(255,215,0,0.9))'
+                  ? 'linear-gradient(90deg, rgba(184,134,11,0.3), rgba(184,134,11,0.9))'
                   : frontPct < 35
-                  ? 'linear-gradient(90deg, rgba(0,200,255,0.8), rgba(0,200,255,0.3))'
-                  : 'linear-gradient(90deg, rgba(0,200,255,0.4), rgba(255,215,0,0.4))',
+                  ? 'linear-gradient(90deg, rgba(200,168,130,0.8), rgba(200,168,130,0.3))'
+                  : 'linear-gradient(90deg, rgba(200,168,130,0.4), rgba(184,134,11,0.4))',
               }}
             />
           </div>
@@ -153,9 +153,9 @@ export default function BiasPanel({ bias, condition }: Props) {
               <div
                 className="px-2 py-1 rounded text-[10px] font-bold"
                 style={{
-                  background: 'rgba(255,51,102,0.15)',
+                  background: 'rgba(196,64,64,0.15)',
                   color: 'var(--neon-red)',
-                  border: '1px solid rgba(255,51,102,0.35)',
+                  border: '1px solid rgba(196,64,64,0.35)',
                 }}
               >
                 ⚠ バイアス強
@@ -176,10 +176,10 @@ export default function BiasPanel({ bias, condition }: Props) {
 
 function ConditionBadge({ condition }: { condition: string }) {
   const [bg, color, border] =
-    condition === '良'   ? ['rgba(0,255,136,0.12)', 'var(--neon-green)', 'rgba(0,255,136,0.35)'] :
-    condition === '稍重' ? ['rgba(255,215,0,0.12)',  'var(--neon-gold)',  'rgba(255,215,0,0.35)']  :
-    condition === '重'   ? ['rgba(0,200,255,0.12)',  'var(--neon-cyan)',  'rgba(0,200,255,0.35)']  :
-                           ['rgba(255,51,102,0.12)', 'var(--neon-red)',   'rgba(255,51,102,0.35)']
+    condition === '良'   ? ['rgba(91,138,91,0.12)',   'var(--neon-green)', 'rgba(91,138,91,0.35)']   :
+    condition === '稍重' ? ['rgba(184,134,11,0.12)',  'var(--neon-gold)',  'rgba(184,134,11,0.35)']  :
+    condition === '重'   ? ['rgba(200,168,130,0.12)', 'var(--neon-cyan)',  'rgba(200,168,130,0.35)'] :
+                           ['rgba(196,64,64,0.12)',   'var(--neon-red)',   'rgba(196,64,64,0.35)']
 
   return (
     <div

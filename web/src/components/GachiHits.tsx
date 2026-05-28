@@ -28,7 +28,7 @@ const RANK_STYLE: Record<string, { bg: string; border: string; text: string; lab
   S: { bg: 'rgba(255,71,87,0.15)',   border: 'rgba(255,71,87,0.5)',   text: '#ff4757', label: '💎 SUPER HIT' },
   A: { bg: 'rgba(255,165,2,0.15)',   border: 'rgba(255,165,2,0.5)',   text: '#ffa502', label: '🥇 BIG HIT'   },
   B: { bg: 'rgba(46,213,115,0.12)',  border: 'rgba(46,213,115,0.4)',  text: '#2ed573', label: '🎯 HIT'       },
-  C: { bg: 'rgba(0,200,255,0.08)',   border: 'rgba(0,200,255,0.3)',   text: '#00c8ff', label: '✓ 的中'       },
+  C: { bg: 'rgba(200,168,130,0.08)', border: 'rgba(200,168,130,0.3)', text: '#C8A882', label: '✓ 的中'       },
 }
 
 const ORDERED_TYPES = new Set(['馬単', '三連単'])
@@ -63,9 +63,9 @@ function AxisBadge() {
   return (
     <span style={{
       display:       'inline-block',
-      background:    'rgba(255,215,0,0.2)',
+      background:    'rgba(184,134,11,0.2)',
       color:         '#FFD700',
-      border:        '1px solid rgba(255,215,0,0.6)',
+      border:        '1px solid rgba(184,134,11,0.6)',
       borderRadius:  3,
       padding:       '0 4px',
       fontSize:      '0.6rem',
@@ -88,12 +88,12 @@ function MedalCircle({ num, pos, isOrdered }: { num: number; pos: number; isOrde
         width:          26,
         height:         26,
         borderRadius:   '50%',
-        background:     medal ? MEDAL_BG[pos]  : 'rgba(255,215,0,0.15)',
+        background:     medal ? MEDAL_BG[pos]  : 'rgba(184,134,11,0.15)',
         color:          medal ? MEDAL_CLR[pos] : '#FFD700',
         fontWeight:     'bold',
         fontSize:       '0.85rem',
         fontFamily:     'monospace',
-        border:         medal ? 'none' : '1px solid rgba(255,215,0,0.4)',
+        border:         medal ? 'none' : '1px solid rgba(184,134,11,0.4)',
         flexShrink:     0,
       }}
     >{num}</span>
@@ -139,10 +139,9 @@ function ComboBadge({
                 fontWeight: 'bold',
                 fontSize:   '1rem',
                 color:      '#FFD700',
-                textShadow: '0 0 8px rgba(255,215,0,0.6)',
               }} title={name(ax) ?? undefined}>{ax}番</span>
               {name(ax) && (
-                <span style={{ color: 'rgba(255,215,0,0.6)', fontSize: '0.7rem' }}>
+                <span style={{ color: 'rgba(184,134,11,0.6)', fontSize: '0.7rem' }}>
                   {name(ax)}
                 </span>
               )}
@@ -185,12 +184,12 @@ export default function GachiHits({ data }: Props) {
       <div className="flex items-center gap-2 mb-2">
         <span className="text-xl">🎯</span>
         <h2 className="text-lg font-bold"
-            style={{ color: 'var(--neon-gold)', textShadow: '0 0 10px rgba(255,215,0,0.5)' }}>
+            style={{ color: 'var(--neon-gold)' }}>
           AIガチ予想・的中実績
         </h2>
         {hits.length > 0 && (
           <span className="ml-auto text-sm font-bold px-2 py-1 rounded"
-                style={{ background: 'rgba(255,215,0,0.15)', color: 'var(--neon-gold)', border: '1px solid rgba(255,215,0,0.3)' }}>
+                style={{ background: 'rgba(184,134,11,0.15)', color: 'var(--neon-gold)', border: '1px solid rgba(184,134,11,0.3)' }}>
             {hits.length}件的中
           </span>
         )}
@@ -285,12 +284,12 @@ export default function GachiHits({ data }: Props) {
                         <span key={i} style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                           <MedalCircle num={num} pos={i} isOrdered={isOrdered} />
                           {i < combos[0].length - 1 && (
-                            <span style={{ color: 'rgba(255,215,0,0.45)', fontSize: '0.7rem' }}>{sep}</span>
+                            <span style={{ color: 'rgba(184,134,11,0.45)', fontSize: '0.7rem' }}>{sep}</span>
                           )}
                         </span>
                       ))}
                       {combos[0].some(n => nameMap[String(n)]) && (
-                        <span style={{ color: 'rgba(255,215,0,0.55)', fontSize: '0.65rem', marginLeft: 4 }}>
+                        <span style={{ color: 'rgba(184,134,11,0.55)', fontSize: '0.65rem', marginLeft: 4 }}>
                           {combos[0].map(n => nameMap[String(n)] ?? String(n)).join(sep)}
                         </span>
                       )}
@@ -302,7 +301,7 @@ export default function GachiHits({ data }: Props) {
               {/* 右: 払戻・ROI */}
               <div className="flex-shrink-0 sm:text-right">
                 <div className="text-xl sm:text-2xl font-black font-mono"
-                     style={{ color: style.text, textShadow: `0 0 15px ${style.border}` }}>
+                     style={{ color: style.text }}>
                   ¥{h.payout.toLocaleString()}
                 </div>
                 <div className="text-xs text-[var(--text-secondary)] mt-1">払戻</div>

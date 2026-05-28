@@ -61,9 +61,9 @@ function roiClass(roi: number | null): string {
 
 function roiBg(roi: number | null): string {
   if (roi === null) return ''
-  if (roi >= 200)   return 'bg-[rgba(255,215,0,0.07)]'
-  if (roi >= 100)   return 'bg-[rgba(0,255,136,0.06)]'
-  if (roi < 50)     return 'bg-[rgba(255,51,102,0.05)]'
+  if (roi >= 200)   return 'bg-[rgba(184,134,11,0.07)]'
+  if (roi >= 100)   return 'bg-[rgba(91,138,91,0.06)]'
+  if (roi < 50)     return 'bg-[rgba(196,64,64,0.05)]'
   return ''
 }
 
@@ -117,22 +117,22 @@ export default function ConditionAnalysis({ data }: Props) {
         </div>
         <div className="flex gap-3 text-xs text-[var(--text-muted)]">
           <span className="flex items-center gap-1">
-            <span className="inline-block w-2.5 h-2.5 rounded-sm bg-[rgba(255,215,0,0.4)]" />
+            <span className="inline-block w-2.5 h-2.5 rounded-sm bg-[rgba(184,134,11,0.4)]" />
             ROI≥200%
           </span>
           <span className="flex items-center gap-1">
-            <span className="inline-block w-2.5 h-2.5 rounded-sm bg-[rgba(0,255,136,0.4)]" />
+            <span className="inline-block w-2.5 h-2.5 rounded-sm bg-[rgba(91,138,91,0.4)]" />
             ROI≥100%
           </span>
           <span className="flex items-center gap-1">
-            <span className="inline-block w-2.5 h-2.5 rounded-sm bg-[rgba(255,51,102,0.3)]" />
+            <span className="inline-block w-2.5 h-2.5 rounded-sm bg-[rgba(196,64,64,0.3)]" />
             ROI&lt;50%
           </span>
         </div>
       </div>
 
       {/* タブバー */}
-      <div className="flex gap-0 border-b border-[rgba(0,200,255,0.18)]">
+      <div className="flex gap-0 border-b border-[rgba(200,168,130,0.18)]">
         {TABS.map(tab => (
           <button
             key={tab.id}
@@ -147,7 +147,6 @@ export default function ConditionAnalysis({ data }: Props) {
             {activeTab === tab.id && (
               <span
                 className="absolute bottom-0 inset-x-0 h-[2px] bg-[var(--neon-cyan)]"
-                style={{ boxShadow: '0 0 8px rgba(0,200,255,0.9)' }}
               />
             )}
           </button>
@@ -156,7 +155,7 @@ export default function ConditionAnalysis({ data }: Props) {
 
       {/* テーブル */}
       <div className="neon-card">
-        <div className="px-4 py-2.5 border-b border-[rgba(0,200,255,0.12)]">
+        <div className="px-4 py-2.5 border-b border-[rgba(200,168,130,0.12)]">
           <span className="text-xs text-[var(--text-muted)] tracking-wider">
             {GROUP_LABELS[activeTab]} — {rows.length} 件
           </span>
@@ -193,8 +192,8 @@ export default function ConditionAnalysis({ data }: Props) {
                       <td className="text-center">
                         <span className={`text-xs font-bold px-2 py-0.5 rounded ${
                           row.model_type === '卍'
-                            ? 'bg-[rgba(0,200,255,0.1)] text-[var(--neon-cyan)]'
-                            : 'bg-[rgba(255,215,0,0.1)] text-[var(--neon-gold)]'
+                            ? 'bg-[rgba(200,168,130,0.1)] text-[var(--neon-cyan)]'
+                            : 'bg-[rgba(184,134,11,0.1)] text-[var(--neon-gold)]'
                         }`}>
                           {row.model_type}
                         </span>
