@@ -191,6 +191,47 @@ def _select_horses(
     return top["horse_name"].tolist()
 
 
+def _train_three_models(
+    conn: sqlite3.Connection,
+    train_until: int = 2024,
+) -> tuple[Any, Any, Any]:
+    """
+    本命・複勝・卍モデルを train_until 年までのデータで再訓練する。
+
+    本番モデル（data/models/）は一切上書きしない。
+    再訓練済みモデルをインメモリのまま返す。
+
+    Returns:
+        (honmei, place, manji) の訓練済みインスタンス
+    """
+    from src.ml.models import HonmeiModel, PlaceModel, ManjiModel
+
+    print(f"\n  [訓練] 本命・複勝・卍モデルを {train_until} 年データで再訓練中...")
+
+    honmei = HonmeiModel()
+    place  = PlaceModel()
+    manji  = ManjiModel()
+
+    h_metrics = honmei.train(conn, train_until=train_until)
+    print(
+        f"  [OK] 本命  AUC={h_metrics.get('cv_auc_mean', float('nan')):.3f}"
+        f"  n_races={h_metrics.get('n_races', '?')}"
+    )
+
+    p_metrics = place.train(conn, train_until=train_until)
+    print(
+        f"  [OK] 複勝  AUC={p_metrics.get('cv_auc_mean', float('nan')):.3f}"
+        f"  n_races={p_metrics.get('n_races', '?')}"
+    )
+
+    m_metrics = manji.train(conn, train_until=train_until)
+    print(
+        f"  [OK] 卍    n_races={m_metrics.get('n_races', '?')}"
+    )
+
+    return honmei, place, manji
+
+
 def _banner(text: str) -> None:
     border = "=" * _WIDTH
     inner  = f"  {text}  "
