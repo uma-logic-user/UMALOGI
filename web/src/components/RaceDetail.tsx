@@ -157,7 +157,7 @@ export default function RaceDetail({ race, predictions }: Props) {
           </div>
           <div className="text-right shrink-0">
             <div className="text-[10px] text-[var(--text-muted)] mb-1 tracking-wider">RACE ID</div>
-            <div className="font-mono text-xs text-[var(--neon-cyan)] opacity-60">{race.race_id}</div>
+            <div className="font-mono text-xs opacity-40" style={{ color: 'var(--text-muted)' }}>{race.race_id}</div>
           </div>
         </div>
 
@@ -172,7 +172,7 @@ export default function RaceDetail({ race, predictions }: Props) {
 
         {/* EV推奨馬サマリー（prerace がある場合） */}
         {hasPrerace && race.prerace!.ev_recommend.length > 0 && (
-          <div className="mt-4 pt-3 border-t border-[rgba(0,200,255,0.12)]">
+          <div className="mt-4 pt-3 border-t border-[var(--border)]">
             <div className="text-[10px] text-[var(--text-muted)] tracking-[0.2em] mb-2 uppercase">
               激アツ推奨馬 — EV &gt;= 1.0
             </div>
@@ -197,7 +197,7 @@ export default function RaceDetail({ race, predictions }: Props) {
       </div>
 
       {/* ── タブ ───────────────────────────────────── */}
-      <div className="flex gap-0 border-b border-[rgba(0,200,255,0.18)]">
+      <div className="flex gap-0 border-b border-[var(--border)]">
         {tabs.map(t => (
           <button
             key={t.key}
@@ -263,7 +263,7 @@ export default function RaceDetail({ race, predictions }: Props) {
         hitPayouts.length > 0
           ? (
             <div className="neon-card overflow-hidden">
-              <div className="px-4 py-3 border-b border-[rgba(0,200,255,0.12)]">
+              <div className="px-4 py-3 border-b border-[var(--border)]">
                 <span className="text-sm neon-text tracking-[0.2em] font-semibold">
                   AI的中結果 — {hitPayouts.length}件
                 </span>
@@ -300,6 +300,7 @@ export default function RaceDetail({ race, predictions }: Props) {
         <TodayBuyPanel
           predictions={predictions}
           winOddsMap={winOddsMap}
+          raceId={race.race_id}
         />
       )}
     </div>
@@ -525,7 +526,7 @@ function SnsButtons({
         className={`px-3 py-2 text-xs font-semibold rounded-md tracking-wider transition-all ${
           xCopied
             ? 'bg-[rgba(0,200,100,0.2)] text-[var(--neon-green)] border border-[rgba(0,200,100,0.4)]'
-            : 'bg-[rgba(0,200,255,0.08)] text-[var(--neon-cyan)] border border-[rgba(0,200,255,0.25)] hover:bg-[rgba(0,200,255,0.18)]'
+            : 'bg-[rgba(200,168,130,0.08)] text-[var(--neon-cyan)] border border-[var(--border)] hover:bg-[rgba(200,168,130,0.15)]'
         }`}
       >
         {xCopied ? '✅ コピー完了' : '𝕏 X用コピー（≤280字）'}
@@ -551,7 +552,7 @@ function RaceCardTable({ results }: { results: RaceResult[] }) {
 
   return (
     <div className="neon-card overflow-hidden">
-      <div className="px-4 py-3 border-b border-[rgba(0,200,255,0.12)]">
+      <div className="px-4 py-3 border-b border-[var(--border)]">
         <span className="text-sm neon-text tracking-[0.2em] font-semibold">
           RACE CARD — 出馬表
         </span>
@@ -639,7 +640,7 @@ function PreraceTable({ results }: { results: RaceResult[] }) {
 
   return (
     <div className="neon-card overflow-hidden">
-      <div className="px-4 py-3 border-b border-[rgba(0,200,255,0.12)]">
+      <div className="px-4 py-3 border-b border-[var(--border)]">
         <span className="text-sm neon-text tracking-[0.2em] font-semibold">
           PRE-RACE ANALYSIS — 直前情報
         </span>
@@ -850,7 +851,7 @@ function ResultsTable({ results, payouts }: { results: RaceResult[]; payouts: Ra
 
   return (
     <div className="neon-card overflow-hidden">
-      <div className="px-4 py-3 border-b border-[rgba(0,200,255,0.12)]">
+      <div className="px-4 py-3 border-b border-[var(--border)]">
         <span className="text-sm neon-text tracking-[0.2em] font-semibold">
           RACE RESULTS — {results.length} runners
         </span>
@@ -1023,8 +1024,8 @@ function ResultsTable({ results, payouts }: { results: RaceResult[]; payouts: Ra
 
       {/* ── 払戻金セクション（結果と同じカード内に統合） ── */}
       {payoutBetTypes.length > 0 && (
-        <div className="border-t border-[rgba(0,200,255,0.12)]">
-          <div className="px-4 py-3 border-b border-[rgba(0,200,255,0.12)]">
+        <div className="border-t border-[var(--border)]">
+          <div className="px-4 py-3 border-b border-[var(--border)]">
             <span className="text-sm neon-text tracking-[0.2em] font-semibold">
               PAYOUTS — 払戻金
             </span>
