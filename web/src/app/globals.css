@@ -192,7 +192,7 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
   border-right: 1px solid var(--border);
-  background: #F0EDE6;
+  background: var(--bg-muted);
 }
 .app-main {
   grid-column: 2;
@@ -507,6 +507,13 @@ body {
 }
 .signal-fire { display: inline-block; animation: fire-flicker 0.8s ease-in-out infinite; font-size: 0.9rem; line-height: 1; }
 
+/* 的中ジャックポット用グラデーションアニメーション（後方互換） */
+@keyframes rainbow-shift {
+  0%   { background-position: 0% 50%;   }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%;   }
+}
+
 /* ─── モバイル（スマホ縦向き）────────────────────────── */
 @media (max-width: 768px) {
   html { font-size: 100%; }
@@ -530,7 +537,7 @@ body {
     overflow-y: hidden;
     border-right: none;
     border-bottom: 1px solid var(--border);
-    background: #F0EDE6;
+    background: var(--bg-muted);
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     min-height: 52px;
