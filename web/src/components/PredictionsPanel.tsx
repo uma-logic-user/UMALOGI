@@ -122,9 +122,9 @@ function AxisBadge() {
   return (
     <span style={{
       display: 'inline-block',
-      background: 'rgba(255,215,0,0.18)',
-      color: '#FFD700',
-      border: '1px solid rgba(255,215,0,0.55)',
+      background: 'rgba(184,134,11,0.18)',
+      color: 'var(--neon-gold)',
+      border: '1px solid rgba(184,134,11,0.55)',
       borderRadius: 3,
       padding: '0 4px',
       fontSize: '0.6rem',
@@ -135,13 +135,13 @@ function AxisBadge() {
   )
 }
 
-const MEDAL_BG  = ['#FFD700', '#C0C0C0', '#CD7F32'] as const
+const MEDAL_BG  = ['#B8860B', '#C0C0C0', '#CD7F32'] as const
 const MEDAL_CLR = ['#000000', '#000000', '#ffffff'] as const
 
 function HorseCircle({ num, pos, isOrdered }: { num: number; pos: number; isOrdered: boolean }) {
   const medal = isOrdered && pos >= 0 && pos < 3
-  const bg    = medal ? MEDAL_BG[pos]  : 'rgba(255,215,0,0.12)'
-  const clr   = medal ? MEDAL_CLR[pos] : '#FFD700'
+  const bg    = medal ? MEDAL_BG[pos]  : 'rgba(184,134,11,0.12)'
+  const clr   = medal ? MEDAL_CLR[pos] : 'var(--neon-gold)'
   return (
     <span
       title={medal ? `${pos + 1}着` : undefined}
@@ -150,7 +150,7 @@ function HorseCircle({ num, pos, isOrdered }: { num: number; pos: number; isOrde
         width: 24, height: 24, borderRadius: '50%',
         background: bg, color: clr,
         fontWeight: 'bold', fontSize: '0.8rem', fontFamily: 'monospace',
-        border: medal ? 'none' : '1px solid rgba(255,215,0,0.4)',
+        border: medal ? 'none' : '1px solid rgba(184,134,11,0.4)',
         flexShrink: 0,
       }}
     >{num}</span>
@@ -176,12 +176,12 @@ function ComboCell({
     <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
       {isHit && hitCombo && (
         <div style={{
-          background: 'rgba(255,215,0,0.10)', border: '1px solid rgba(255,215,0,0.45)',
+          background: 'rgba(184,134,11,0.10)', border: '1px solid rgba(184,134,11,0.45)',
           borderRadius: 6, padding: '5px 8px',
         }}>
           <div style={{ marginBottom: 4 }}>
             <span style={{
-              display: 'inline-block', background: '#FFD700', color: '#000',
+              display: 'inline-block', background: 'var(--neon-gold)', color: '#fff',
               borderRadius: 3, padding: '0 5px', fontSize: '0.6rem', fontWeight: 900, letterSpacing: '0.05em',
             }}>🏆 的中</span>
           </div>
@@ -190,13 +190,13 @@ function ComboCell({
               <span key={i} style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                 <HorseCircle num={num} pos={i} isOrdered={isOrdered} />
                 {i < hitCombo.length - 1 && (
-                  <span style={{ color: 'rgba(255,215,0,0.45)', fontSize: '0.65rem', fontFamily: 'monospace' }}>{sep}</span>
+                  <span style={{ color: 'rgba(184,134,11,0.45)', fontSize: '0.65rem', fontFamily: 'monospace' }}>{sep}</span>
                 )}
               </span>
             ))}
           </div>
           {hitCombo.some(n => name(n)) && (
-            <div style={{ marginTop: 2, color: 'rgba(255,215,0,0.55)', fontSize: '0.6rem', fontFamily: 'monospace' }}>
+            <div style={{ marginTop: 2, color: 'rgba(184,134,11,0.55)', fontSize: '0.6rem', fontFamily: 'monospace' }}>
               {hitCombo.map(n => name(n) ?? String(n)).join(sep)}
             </div>
           )}
@@ -205,8 +205,8 @@ function ComboCell({
 
       {isHit && !hitCombo && (
         <span style={{
-          display: 'inline-block', background: 'rgba(255,215,0,0.15)', color: '#FFD700',
-          border: '1px solid rgba(255,215,0,0.4)', borderRadius: 4, padding: '1px 6px',
+          display: 'inline-block', background: 'rgba(184,134,11,0.15)', color: 'var(--neon-gold)',
+          border: '1px solid rgba(184,134,11,0.4)', borderRadius: 4, padding: '1px 6px',
           fontSize: '0.65rem', fontWeight: 700,
         }}>🏆 的中</span>
       )}
@@ -219,9 +219,9 @@ function ComboCell({
                 <AxisBadge />
                 <span title={name(ax) ?? undefined} style={{
                   fontFamily: 'monospace', fontWeight: 'bold', fontSize: '0.9rem',
-                  color: '#FFD700', textShadow: '0 0 6px rgba(255,215,0,0.5)',
+                  color: 'var(--neon-gold)', textShadow: '0 0 6px rgba(184,134,11,0.5)',
                 }}>{ax}番</span>
-                {name(ax) && <span style={{ color: 'rgba(255,215,0,0.55)', fontSize: '0.65rem' }}>{name(ax)}</span>}
+                {name(ax) && <span style={{ color: 'rgba(184,134,11,0.55)', fontSize: '0.65rem' }}>{name(ax)}</span>}
               </span>
             ))}
           </div>
@@ -303,8 +303,8 @@ function MobilePredCard({
             {/* 本命×三連単 かつ EV≥1.5 → 条件付き許可バッジ */}
             {pred.model_type?.includes('本命') && pred.bet_type === '三連単' && (pred.expected_value ?? 0) >= 1.5 && (
               <span title="ROIフィルター: EV≥1.5 条件を満たし許可" style={{
-                display: 'inline-block', background: 'rgba(0,255,180,0.13)', color: '#00FFB4',
-                border: '1px solid rgba(0,255,180,0.45)', borderRadius: 3,
+                display: 'inline-block', background: 'rgba(91,138,91,0.13)', color: 'var(--neon-green)',
+                border: '1px solid rgba(91,138,91,0.45)', borderRadius: 3,
                 padding: '0 5px', fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.04em',
               }}>⚡条件付許可</span>
             )}
@@ -338,12 +338,12 @@ function MobilePredCard({
           {/* 的中コンボ（金銀銅サークル） */}
           {isHit && hitCombo && (
             <div style={{
-              background: 'rgba(255,215,0,0.10)', border: '1px solid rgba(255,215,0,0.45)',
+              background: 'rgba(184,134,11,0.10)', border: '1px solid rgba(184,134,11,0.45)',
               borderRadius: 6, padding: '7px 10px',
             }}>
               <div style={{ marginBottom: 5 }}>
                 <span style={{
-                  display: 'inline-block', background: '#FFD700', color: '#000',
+                  display: 'inline-block', background: 'var(--neon-gold)', color: '#fff',
                   borderRadius: 3, padding: '1px 7px', fontSize: '0.65rem', fontWeight: 900,
                 }}>🏆 的中</span>
               </div>
@@ -354,13 +354,13 @@ function MobilePredCard({
                       {num}
                     </span>
                     {i < hitCombo.length - 1 && (
-                      <span style={{ color: 'rgba(255,215,0,0.5)', fontSize: '0.8rem' }}>{sep}</span>
+                      <span style={{ color: 'rgba(184,134,11,0.5)', fontSize: '0.8rem' }}>{sep}</span>
                     )}
                   </span>
                 ))}
               </div>
               {hitCombo.some(n => name(n)) && (
-                <div style={{ marginTop: 4, fontSize: '0.65rem', color: 'rgba(255,215,0,0.6)', fontFamily: 'monospace' }}>
+                <div style={{ marginTop: 4, fontSize: '0.65rem', color: 'rgba(184,134,11,0.6)', fontFamily: 'monospace' }}>
                   {hitCombo.map(n => name(n) ?? String(n)).join(sep)}
                 </div>
               )}
@@ -372,8 +372,8 @@ function MobilePredCard({
             <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
                 <span style={{
-                  display: 'inline-block', background: 'rgba(255,215,0,0.18)', color: '#FFD700',
-                  border: '1px solid rgba(255,215,0,0.55)', borderRadius: 3,
+                  display: 'inline-block', background: 'rgba(184,134,11,0.18)', color: 'var(--neon-gold)',
+                  border: '1px solid rgba(184,134,11,0.55)', borderRadius: 3,
                   padding: '1px 5px', fontSize: '0.62rem', fontWeight: 800,
                 }}>軸</span>
                 <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
@@ -381,7 +381,7 @@ function MobilePredCard({
                     <span key={ax} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
                       <span className="horse-num-lg">{ax}</span>
                       {name(ax) && (
-                        <span style={{ fontSize: '0.75rem', color: 'rgba(255,215,0,0.7)' }}>{name(ax)}</span>
+                        <span style={{ fontSize: '0.75rem', color: 'rgba(184,134,11,0.7)' }}>{name(ax)}</span>
                       )}
                     </span>
                   ))}
@@ -405,7 +405,7 @@ function MobilePredCard({
                       <span key={j} style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                         <span className="horse-num-lg">{num}</span>
                         {j < c.length - 1 && (
-                          <span style={{ fontSize: '0.8rem', color: 'rgba(0,200,255,0.5)' }}>{sep}</span>
+                          <span style={{ fontSize: '0.8rem', color: 'rgba(200,168,130,0.5)' }}>{sep}</span>
                         )}
                       </span>
                     ))}
@@ -569,8 +569,8 @@ export default function PredictionsPanel({
       <div style={{
         display: 'flex', alignItems: 'center', gap: 8,
         padding: '6px 12px', marginBottom: 8, borderRadius: 6,
-        background: 'rgba(0,255,180,0.07)', border: '1px solid rgba(0,255,180,0.25)',
-        fontSize: '0.72rem', color: '#00FFB4',
+        background: 'rgba(91,138,91,0.07)', border: '1px solid rgba(91,138,91,0.25)',
+        fontSize: '0.72rem', color: 'var(--neon-green)',
       }}>
         <span style={{ fontWeight: 700, letterSpacing: '0.05em' }}>🤖 AIウマスギフィルター適用済み</span>
         <span style={{ opacity: 0.65 }}>
@@ -637,8 +637,8 @@ export default function PredictionsPanel({
                               <span>{pred.bet_form ?? pred.bet_type}</span>
                               {pred.model_type?.includes('本命') && pred.bet_type === '三連単' && (pred.expected_value ?? 0) >= 1.5 && (
                                 <span title="ROIフィルター: EV≥1.5 条件付き許可" style={{
-                                  background: 'rgba(0,255,180,0.13)', color: '#00FFB4',
-                                  border: '1px solid rgba(0,255,180,0.45)', borderRadius: 3,
+                                  background: 'rgba(91,138,91,0.13)', color: 'var(--neon-green)',
+                                  border: '1px solid rgba(91,138,91,0.45)', borderRadius: 3,
                                   padding: '0 4px', fontSize: '0.55rem', fontWeight: 700,
                                 }}>⚡条件付</span>
                               )}
