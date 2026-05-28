@@ -80,7 +80,6 @@ def test_strategy_stats_summary_row_loss():
 
 # ── _select_horses テスト ────────────────────────────────────
 import pandas as pd
-import numpy as np
 from unittest.mock import MagicMock
 from scripts.backtest_all_models import _select_horses, STRATEGIES
 
