@@ -10,6 +10,10 @@
 
 | 日付 | 更新内容 |
 |------|---------|
+| 2026-05-31 | 【W-049 🟢完了 / 優先度中】買い目精度向上フィルタの未実装差分を解消（オーナー特別承認による即時実装）。(a)単勝EVゲート: `TANSHO_EV_MIN=1.2` 未満の単勝を `_apply_odds_band_filter` で除外（卍単勝EV=0.88が実レース202605021201で正しく除外されることを確認）。(b)ワイド多点制限: `_limit_wide_points()` を新設しEV高い順に最大 `WIDE_MAX_POINTS=3` 点へ絞り込み（実レースでワイド5点→3点を確認）。テスト: 新規7件追加（計24件・bet系63件全PASS）。E2E: 実レースで推論→買い目抽出が完走し全買い目が単勝EV≥1.2/ワイド≤3点を満たすことを確認。影響: `src/ml/bet_generator.py`, `tests/test_bet_precision_filters.py`。※IPAT自動投票は引き続き未実装（手動投票運用を維持）。 |
+| 2026-05-29 | 【W-048 🟡対応中】卍モデル confidence=1.0 固定キャリブレーション破綻: 一時的対策として `DISABLE_MANJI_BETS=1` 環境変数フラグを `ManjiStrategy.generate()` に実装し `.env` に設定済み（投資完全停止中）。根本修正（Platt Scaling）は未実施。影響: `src/ml/bet_generator.py`, `.env` |
+| 2026-05-29 | 【W-048 新規登録】卍モデル confidence=1.0 固定キャリブレーション破綻: EV上位20件の実現ROI=26.9%（EV予測値11〜17に対し実現倍率1〜2倍）。根本原因: `confidence=1.0` 固定出力で `EV = confidence × odds` が odds の大小だけ反映。Platt Scaling / Isotonic Regression による出力確率のキャリブレーション修正が必要。修正完了まで卍モデルへの投資停止を推奨。影響: `src/ml/models.py`, `src/ml/bet_generator.py` |
+| 2026-05-29 | 【W-047 新規登録→即完了】job_post_race スレッドブロック: 5/23(土)17:30〜5/24(日)16:53（23時間）`job_post_race` がメインスレッドを占有し日曜バッチ（job_friday_sync）が未実行。バックグラウンドスレッド化で修正済み。影響: `scripts/scheduler.py` |
 | 2026-05-29 | 【W-046 新規登録→即完了】全モデル横断バックテスト未統合: 本命・卍・複勝・ALPHA の全4モデルを2年間データで横断比較する `scripts/backtest_all_models.py` を新規作成。影響ファイル: scripts/backtest_all_models.py, tests/test_backtest_all_models.py |
 | 2026-05-18 | 初版作成。社長指令「ビジョン再監査」を受け、U score ギャップ・インフラ・データ弱点を全面棚卸し |
 | 2026-05-18 | 【W-004 実装完了】大衆心理乖離スコア (crowd_bias_ratio / uf_crowd_bias) を u_score.py・models.py・bet_generator.py に追加。ManjiGenerator・HonmeiGenerator の EV 調整まで統合完了 |

@@ -15,9 +15,11 @@ from src.ml.bet_generator import (
     BetGenerator,
     BetRecommendation,
     RaceBets,
+    TANSHO_EV_MIN,
     TANSHO_ODDS_CEIL,
     TANSHO_ODDS_FLOOR,
     WIDE_EV_MIN,
+    WIDE_MAX_POINTS,
     _build_odds_map,
     should_skip_race_for_betting,
 )
@@ -158,3 +160,65 @@ class TestOddsBandFilter:
         rb.bets = [_wide(WIDE_EV_MIN)]
         BetGenerator()._apply_odds_band_filter(rb, {})
         assert len(rb.bets) == 1
+
+
+# ── W-049 #1 単勝EVゲート ───────────────────────────────────────────
+class TestTanshoEvGate:
+    def test_tansho_low_ev_excluded(self) -> None:
+        # EV < 1.2 はオッズが帯内でも除外
+        rb = RaceBets(race_id="r", model_type="本命")
+        rb.bets = [_tansho(1, ev=TANSHO_EV_MIN - 0.01)]
+        BetGenerator()._apply_odds_band_filter(rb, {1: 12.0})
+        assert rb.bets == []
+
+    def test_tansho_ev_excluded_even_without_odds(self) -> None:
+        # オッズ未取得でも EV ゲートは適用される
+        rb = RaceBets(race_id="r", model_type="本命")
+        rb.bets = [_tansho(1, ev=0.8)]
+        BetGenerator()._apply_odds_band_filter(rb, {})
+        assert rb.bets == []
+
+    def test_tansho_ev_boundary_kept(self) -> None:
+        # EV == 1.2 ちょうどは採用
+        rb = RaceBets(race_id="r", model_type="本命")
+        rb.bets = [_tansho(1, ev=TANSHO_EV_MIN)]
+        BetGenerator()._apply_odds_band_filter(rb, {1: 12.0})
+        assert len(rb.bets) == 1
+
+
+# ── W-049 #2 ワイド多点絞り込み ─────────────────────────────────────
+def _wide_multi(n_points: int, ev: float = 2.0) -> BetRecommendation:
+    """n_points 組（EV降順前提・horse_names は1組2頭でフラット）のワイドを作る。"""
+    combos = [(1, i + 2) for i in range(n_points)]
+    names: list[str] = []
+    for c in combos:
+        names.extend([str(c[0]), str(c[1])])
+    return BetRecommendation(
+        bet_type="ワイド",
+        combinations=combos,
+        horse_names=names,
+        expected_value=ev,
+        model_score=0.2,
+        recommended_bet=1000.0,
+        confidence=0.5,
+    )
+
+
+class TestWidePointLimit:
+    def test_trim_to_max_points(self) -> None:
+        rb = RaceBets(race_id="r", model_type="本命")
+        rb.bets = [_wide_multi(5)]
+        BetGenerator()._apply_odds_band_filter(rb, {})
+        assert len(rb.bets) == 1
+        wide = rb.bets[0]
+        assert len(wide.combinations) == WIDE_MAX_POINTS
+        # horse_names は 1組=2頭で同期して切り詰められる
+        assert len(wide.horse_names) == WIDE_MAX_POINTS * 2
+        # 先頭（高EV側）が保持される
+        assert wide.combinations[0] == (1, 2)
+
+    def test_no_trim_when_within_limit(self) -> None:
+        rb = RaceBets(race_id="r", model_type="本命")
+        rb.bets = [_wide_multi(WIDE_MAX_POINTS)]
+        BetGenerator()._apply_odds_band_filter(rb, {})
+        assert len(rb.bets[0].combinations) == WIDE_MAX_POINTS

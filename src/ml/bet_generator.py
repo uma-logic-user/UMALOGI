@@ -102,6 +102,10 @@ TANSHO_ODDS_FLOOR: float = 1.5  # これ以下の単勝は除外（過剰人気�
 TANSHO_ODDS_CEIL: float = 100.0  # これ以上の単勝は除外（大穴ノイズ）
 # #4 ワイド専用EVゲート: AIワイド的中率 × ワイド(下限)オッズ >= 1.2 の組のみ採用。
 WIDE_EV_MIN: float = 1.2
+# W-049 #1 単勝EVゲート: 期待値 1.2 未満の単勝は除外（モデル誤差を吸収する閾値）。
+TANSHO_EV_MIN: float = 1.2
+# W-049 #2 ワイド多点制限: 1レースあたりワイドはEV高い順に最大この点数へ絞る。
+WIDE_MAX_POINTS: int = 3
 
 
 def should_skip_race_for_betting(
@@ -2706,7 +2710,7 @@ class BetGenerator:
         bets: RaceBets,
         odds_map: dict[int, float],
     ) -> None:
-        """買い目精度向上フィルタを in-place で適用する（2026-05-31 スコープA）。
+        """買い目精度向上フィルタを in-place で適用する（2026-05-31 スコープA + W-049）。
 
         #2 単勝オッズ帯フィルタ:
             軸馬の単勝オッズが TANSHO_ODDS_FLOOR 以下 / TANSHO_ODDS_CEIL 以上の
@@ -2714,21 +2718,29 @@ class BetGenerator:
         #4 ワイド専用EVゲート:
             expected_value（= AIワイド的中率 × オッズ）が WIDE_EV_MIN 未満の
             ワイド買い目を除外する。
+        W-049 #1 単勝EVゲート:
+            expected_value が TANSHO_EV_MIN 未満の単勝を除外する（オッズに依存せず適用）。
+        W-049 #2 ワイド多点制限:
+            EVゲートを通過したワイドを、EV高い順に最大 WIDE_MAX_POINTS 点へ絞り込む。
 
-        odds_map が空（オッズ未取得）の場合、単勝の足切りはスキップする
-        （オッズ不明を理由に買い目を消さない）。ワイドEVゲートはオッズに依存せず常に適用。
+        odds_map が空（オッズ未取得）の場合、単勝のオッズ帯足切りはスキップする
+        （オッズ不明を理由に買い目を消さない）。EVゲート系はオッズに依存せず常に適用。
         """
         if not bets.bets:
             return
 
         def _keep(b: "BetRecommendation") -> bool:
-            if b.bet_type == "単勝" and b.combinations and odds_map:
-                num = b.combinations[0][0]
-                odds = odds_map.get(num)
-                if odds is not None and (
-                    odds <= TANSHO_ODDS_FLOOR or odds >= TANSHO_ODDS_CEIL
-                ):
+            if b.bet_type == "単勝":
+                # W-049 #1: 単勝EVゲート（EV < 1.2 を除外）
+                if b.expected_value < TANSHO_EV_MIN:
                     return False
+                # #2: 単勝オッズ帯足切り（オッズ既知時のみ）
+                if b.combinations and odds_map:
+                    odds = odds_map.get(b.combinations[0][0])
+                    if odds is not None and (
+                        odds <= TANSHO_ODDS_FLOOR or odds >= TANSHO_ODDS_CEIL
+                    ):
+                        return False
             if b.bet_type == "ワイド" and b.expected_value < WIDE_EV_MIN:
                 return False
             return True
@@ -2738,11 +2750,38 @@ class BetGenerator:
         bets.bets = [b for b in bets.bets if _keep(b)]
         if removed:
             logger.info(
-                "オッズ帯/ワイドEVフィルタ: %s — %d件除外（残%d件）除外券種=%s",
+                "オッズ帯/EVフィルタ: %s — %d件除外（残%d件）除外券種=%s",
                 bets.race_id,
                 before - len(bets.bets),
                 len(bets.bets),
                 sorted({b.bet_type for b in removed}),
+            )
+
+        # W-049 #2: ワイドの多点絞り込み（EV高い順に最大 WIDE_MAX_POINTS 点）
+        self._limit_wide_points(bets)
+
+    def _limit_wide_points(self, bets: RaceBets) -> None:
+        """ワイド買い目の組み合わせ点数を EV 高い順に最大 WIDE_MAX_POINTS へ絞る。
+
+        ワイドは1つの BetRecommendation に複数組（combinations）を束ねて保持し、
+        combinations はスコア（≒ワイド的中率＝EV）の降順で構築されている。
+        過剰な多点買いを防ぐため先頭 WIDE_MAX_POINTS 組へ切り詰め、
+        対応する horse_names（1組=2頭）も同期して切り詰める。
+        """
+        for b in bets.bets:
+            if b.bet_type != "ワイド":
+                continue
+            if len(b.combinations) <= WIDE_MAX_POINTS:
+                continue
+            n_before = len(b.combinations)
+            b.combinations = b.combinations[:WIDE_MAX_POINTS]
+            # horse_names は 1組=2頭でフラット格納されているため 2*N へ同期
+            b.horse_names = b.horse_names[: WIDE_MAX_POINTS * 2]
+            logger.info(
+                "ワイド多点制限: %s — %d点 → %d点へ絞込み",
+                bets.race_id,
+                n_before,
+                WIDE_MAX_POINTS,
             )
 
     def generate_honmei(
