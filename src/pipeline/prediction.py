@@ -14,8 +14,14 @@ import json as _json
 import logging
 import sqlite3
 from datetime import date, datetime, timedelta
+from typing import TYPE_CHECKING
 
 import pandas as pd
+
+if TYPE_CHECKING:
+    # 型注釈専用（from __future__ import annotations で実行時評価されない）。
+    from src.ml.models import HonmeiModel, ManjiModel, PlaceModel
+    from src.ml.pure_ev_edge import PureEVRaceBets
 
 from src.database.init_db import init_db, insert_prediction
 from src.ml.features import FeatureBuilder
@@ -413,7 +419,7 @@ def _run_alpha_payout(
 
         if not _MODEL_PATH.exists():
             logger.debug("Alpha-Payout モデルなし → スキップ (race_id=%s)", race_id)
-            return
+            return None
 
         ap = AlphaPayoutModel.load()
 
@@ -506,7 +512,7 @@ def _run_alpha_payout(
                 threshold,
                 race_id,
             )
-            return
+            return None
 
         combos = [[int(df_ap.iloc[i]["horse_number"])] for i, _ in buy_pairs]
         horses_payload: list[dict] = []
@@ -523,7 +529,9 @@ def _run_alpha_payout(
             )
 
         max_ev = buy_pairs[0][1]
-        total_kelly = sum(ap._kelly_bet(ev_val, bankroll) for _, ev_val in buy_pairs)
+        total_kelly: float = sum(
+            ap._kelly_bet(ev_val, bankroll) for _, ev_val in buy_pairs
+        )
 
         # 相対シグナルは kelly を 50% 割引（オッズ品質が低下しているため）
         if signal_type == "relative":
@@ -614,7 +622,7 @@ def _run_pure_ev_edge(
     place_scores: pd.Series,
     suffix: str,
     rdate: str | None = None,
-) -> "object | None":
+) -> "PureEVRaceBets | None":
     """黒字化専用バリアント Pure_EV_Edge（単複のみ）の買い目を生成・保存する。
 
     卍 Isotonic 較正確率ベースの EV>=1.15・1/10 Kelly・サーキットブレーカー付き。
@@ -929,6 +937,10 @@ def _prerace_pipeline_inner(
         logger.warning("data_validator 呼び出し失敗（続行）: %s", _ve)
 
     # Step 3: モデル予測（V1/V2 分岐）
+    # V2 系は V1 のサブクラス（HonmeiModelV2(HonmeiModel) 等）なので基底型で受ける。
+    honmei_model: HonmeiModel
+    _place_model: PlaceModel
+    manji_model: ManjiModel
     is_v2 = model_version == "v2"
     if is_v2:
         honmei_model, _place_model, manji_model = load_models_v2()

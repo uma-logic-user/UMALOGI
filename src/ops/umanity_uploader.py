@@ -34,6 +34,7 @@ import sys
 import time
 from datetime import date
 from pathlib import Path
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -78,7 +79,7 @@ def _load_env() -> tuple[str, str]:
 # ── DB から本日の予想を取得 ────────────────────────────────────────
 
 
-def _fetch_today_predictions(target_date: str) -> list[dict[str, object]]:
+def _fetch_today_predictions(target_date: str) -> list[dict[str, Any]]:
     """指定日の predictions + races を結合して返す。
 
     1レースにつき EV 最高の予想 1件のみを返す（重複排除）。
@@ -212,10 +213,12 @@ class UmanityUploader:
         self._password = password
         self._headless = headless
         self._delay = delay_sec
-        self._page = None
-        self._browser = None
-        self._pw_cm = None
-        self._pw = None
+        # Playwright 実体（未インストール環境では None のまま）。
+        # 実行時は __enter__ で各オブジェクトが入るため Any で型付けする。
+        self._page: Any = None
+        self._browser: Any = None
+        self._pw_cm: Any = None
+        self._pw: Any = None
 
     def __enter__(self) -> "UmanityUploader":
         """コンテキストマネージャー開始: Playwright ブラウザを起動してページを準備する。
@@ -752,7 +755,7 @@ def main() -> None:
         datefmt="%H:%M:%S",
         stream=sys.stdout,
     )
-    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stdout.reconfigure(encoding="utf-8")  # type: ignore[union-attr]
     args = _parse_args()
     target = args.date or date.today().strftime("%Y%m%d")
 

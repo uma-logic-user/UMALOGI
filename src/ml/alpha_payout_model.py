@@ -29,7 +29,7 @@ import pickle
 import sqlite3
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Optional
+from typing import Any, Optional
 
 import numpy as np
 import pandas as pd
@@ -526,7 +526,7 @@ class AlphaPayoutModel:
             return float(payout / invest * 100) if invest > 0 else 0.0
 
         def objective(trial: "optuna.Trial") -> float:
-            params = {
+            params: dict[str, Any] = {
                 "objective": "huber",
                 "alpha": trial.suggest_float("huber_alpha", 0.5, 4.0),
                 "n_estimators": trial.suggest_int("n_estimators", 300, 2000),
@@ -575,7 +575,7 @@ class AlphaPayoutModel:
         )
 
         # ── ベストパラメータで全データ学習 ──────────────────────────
-        final_params = {
+        final_params: dict[str, Any] = {
             "objective": "huber",
             "random_state": 42,
             "n_jobs": -1,

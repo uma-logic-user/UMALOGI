@@ -23,7 +23,7 @@ import pickle
 import sqlite3
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Optional
+from typing import Any, Optional
 
 import numpy as np
 import pandas as pd
@@ -468,7 +468,7 @@ class AlphaPlaceModel:
             from sklearn.model_selection import TimeSeriesSplit
             from sklearn.metrics import roc_auc_score
 
-            params = {
+            params: dict[str, Any] = {
                 "objective": "binary",
                 "n_estimators": trial.suggest_int("n_estimators", 500, 2000),
                 "learning_rate": trial.suggest_float(
@@ -518,7 +518,7 @@ class AlphaPlaceModel:
         )
 
         # ── ベストパラメータで最終学習 ──────────────────────────────
-        final_params = {
+        final_params: dict[str, Any] = {
             "objective": "binary",
             "scale_pos_weight": scale_pos_weight,
             "random_state": 42,

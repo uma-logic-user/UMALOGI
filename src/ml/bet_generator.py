@@ -717,7 +717,8 @@ class RaceBets:
     """1レースの全推奨買い目。"""
 
     race_id: str
-    model_type: Literal["卍", "本命", "HitFocus"]
+    # 実際に生成される全モデル種別（本命/卍/HitFocus 系列・Alpha-Payout・V2 世代）。
+    model_type: Literal["卍", "本命", "HitFocus", "Alpha-Payout", "卍V2", "本命V2"]
     bets: list[BetRecommendation] = field(default_factory=list)
 
     def to_dict(self) -> dict:
@@ -1530,7 +1531,8 @@ class HonmeiStrategy:
             aite_nums = [num for num in all_nums if num != axis_num][:_ST_AITE_N]
 
             # 全組み合わせを生成（軸は1着・2着・3着の任意位置）
-            all_tf_combos: list[tuple[int, int, int]] = []
+            # combinations の契約型は可変長 tuple[int, ...]（三連単=3要素）。
+            all_tf_combos: list[tuple[int, ...]] = []
             for pair in itertools.combinations(aite_nums, 2):
                 for perm in itertools.permutations((axis_num,) + pair):
                     all_tf_combos.append(perm)
@@ -3306,7 +3308,7 @@ def generate_elite_fukusho_bets(
         edges=flt.edges,
     )
 
-    combos = [(h,) for h in flt.selected_horses]
+    combos: list[tuple[int, ...]] = [(h,) for h in flt.selected_horses]
     rec = RaceBets(race_id=race_id, model_type="卍")
     rec.bets.append(
         BetRecommendation(
