@@ -104,6 +104,7 @@ _CATCHUP_HOURS: dict[str, int] = {
     "job_note_daily_article": 3,  # 10:30 → 13:30 まで
     "job_win5_result_fetch": 4,  # 17:15 → 21:15 まで
     "job_post_race": 4,  # 17:30 → 21:30 まで
+    "job_health_report": 4,  # 17:50 → 21:50 まで（W-058 日次ヘルスレポート）
     "job_ab_report": 4,  # 18:00 → 22:00 まで
     "job_weekend_batch_post": 4,  # 18:30 → 22:30 まで
     "job_monday_masters": 12,  # 06:00 → 18:00 まで
@@ -125,6 +126,7 @@ _JOB_SCHEDULES: dict[str, list[tuple[int, int, int]]] = {
     "job_note_daily_article": [(5, 10, 30), (6, 10, 30)],  # 土日 10:30
     "job_win5_result_fetch": [(5, 17, 15), (6, 17, 15)],
     "job_post_race": [(5, 17, 30), (6, 17, 30)],
+    "job_health_report": [(5, 17, 50), (6, 17, 50)],  # 土日 17:50（W-058）
     "job_ab_report": [(6, 18, 0)],  # 日曜18:00
     "job_weekend_batch_post": [(5, 18, 30), (6, 18, 30)],
     "job_monday_masters": [(0, 6, 0)],
@@ -1774,6 +1776,31 @@ def job_segment_analysis() -> None:
 # ================================================================
 
 
+def job_health_report() -> None:
+    """土日夕方: 日次ヘルスレポートを Discord #system へ送信する（W-058・可観測性）。
+
+    予想カバー率・オッズ時系列健全性（最低2点取得率）・結果欠損・通知エラーを集計し、
+    劣化を人間が即座に検知できるようにする。
+    """
+    logger.info("=== [ヘルスレポート] 開始 ===")
+    try:
+        from src.ops.health_reporter import send_health_report
+
+        report = send_health_report()
+        logger.info(
+            "[ヘルスレポート] 送信完了: 予想 %d/%d 直前 %d オッズ2点+ %d 結果欠損 %d 通知err %d",
+            report.n_predicted,
+            report.n_races,
+            report.n_chokuzen,
+            report.n_odds_ge2,
+            report.n_results_missing,
+            report.n_discord_errors,
+        )
+    except Exception as exc:
+        logger.error("[ヘルスレポート] 失敗: %s", exc, exc_info=True)
+    _mark_job_done("job_health_report")
+
+
 def register_schedules() -> None:
     """全ジョブをスケジュールに登録する。"""
     if not _SCHEDULE_AVAILABLE:
@@ -1825,6 +1852,10 @@ def register_schedules() -> None:
     # 土日夕方: 払戻確定後のレース後処理（全レース終了後・OPT_STORED で確実取得）
     schedule.every().saturday.at("17:30").do(job_post_race)
     schedule.every().sunday.at("17:30").do(job_post_race)
+
+    # 土日 17:50 — 日次ヘルスレポート（post_race後・可観測性 W-058）
+    schedule.every().saturday.at("17:50").do(job_health_report)
+    schedule.every().sunday.at("17:50").do(job_health_report)
 
     # 日曜 18:00 — V1/V2 A/B 週次成績比較レポート（日曜のみ）
     schedule.every().sunday.at("18:00").do(job_ab_report)
