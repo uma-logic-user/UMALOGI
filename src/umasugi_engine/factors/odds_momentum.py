@@ -1,7 +1,7 @@
 """
 オッズ変動スコア — AIウマスギ拡張因子 (Phase3 スパイク検知追加)
 
-odds_timeseries の直近 N スナップショットからオッズのモメンタム（傾き）と
+realtime_odds の直近 N スナップショットからオッズのモメンタム（傾き）と
 「直前10分以内の急落スパイク」を合算して算出する。
 
 モメンタム: 線形回帰傾き → 下落ほど高スコア
@@ -9,6 +9,7 @@ odds_timeseries の直近 N スナップショットからオッズのモメン�
 
 出力列: odds_momentum_score (0.0〜1.0, 0.5 = 中立)
 """
+
 from __future__ import annotations
 
 import logging
@@ -19,14 +20,14 @@ import pandas as pd
 
 logger = logging.getLogger(__name__)
 
-_WINDOW          = 10   # 直近スナップショット数 (スパイク含め10点に拡張)
-_MOMENTUM_WINDOW = 5    # 線形回帰に使う点数
-_DEFAULT         = 0.5
+_WINDOW = 10  # 直近スナップショット数 (スパイク含め10点に拡張)
+_MOMENTUM_WINDOW = 5  # 線形回帰に使う点数
+_DEFAULT = 0.5
 
 # スパイク閾値
-_SPIKE_MILD_THRESH  = 0.15   # 15%以上急落 → mild spike bonus
+_SPIKE_MILD_THRESH = 0.15  # 15%以上急落 → mild spike bonus
 _SPIKE_STRONG_THRESH = 0.25  # 25%以上急落 → strong spike bonus
-_SPIKE_MILD_BONUS   = 0.10
+_SPIKE_MILD_BONUS = 0.10
 _SPIKE_STRONG_BONUS = 0.20
 
 
@@ -46,7 +47,7 @@ def _detect_spike(odds_asc: list[float]) -> float:
     """
     if len(odds_asc) < 2:
         return 0.0
-    peak    = max(odds_asc)
+    peak = max(odds_asc)
     current = odds_asc[-1]
     if peak <= 0:
         return 0.0
@@ -63,7 +64,7 @@ def calc_odds_momentum_score(
 ) -> pd.DataFrame:
     """オッズ変動スコア（モメンタム + スパイク）を DataFrame に追加して返す。
 
-    odds_timeseries テーブルから直近 _WINDOW 点のオッズを取得し、
+    realtime_odds テーブルから直近 _WINDOW 点のオッズを取得し、
     線形回帰傾きによるモメンタムスコアとスパイクボーナスを合算する。
 
     Args:
@@ -85,7 +86,7 @@ def calc_odds_momentum_score(
     rows = conn.execute(
         f"""
         SELECT race_id, horse_number, win_odds, recorded_at
-        FROM odds_timeseries
+        FROM realtime_odds
         WHERE race_id IN ({ph})
           AND win_odds IS NOT NULL AND win_odds > 0
         ORDER BY race_id, horse_number, recorded_at DESC

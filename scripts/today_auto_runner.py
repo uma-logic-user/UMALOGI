@@ -36,6 +36,7 @@ import argparse
 import datetime
 import logging
 import os
+import re
 import subprocess
 import sys
 import time
@@ -219,12 +220,24 @@ def _next_friday_evening(from_dt: datetime.datetime) -> datetime.datetime:
     return target
 
 
-def _estimate_start(race_date_str: str, race_number: int) -> datetime.datetime:
-    """レース発走時刻を推定して返す（JST, tzinfo なし）。"""
-    base = datetime.datetime.strptime(race_date_str, "%Y-%m-%d").replace(
-        hour=_R1_HOUR, minute=_R1_MINUTE
+def _estimate_start(
+    race_date_str: str, race_number: int, post_time: str = ""
+) -> datetime.datetime:
+    """レース発走時刻を返す（JST, tzinfo なし）。
+
+    races.post_time（実発走時刻 "HH:MM"）があればそれを使い、
+    無ければ R1=10:00＋30分間隔のハードコード推定にフォールバックする（P1-5）。
+    """
+    base_date = datetime.datetime.strptime(race_date_str, "%Y-%m-%d")
+    pt = (post_time or "").strip()
+    m = re.fullmatch(r"(\d{1,2}):(\d{2})", pt)
+    if m:
+        hh, mm = int(m.group(1)), int(m.group(2))
+        if 0 <= hh <= 23 and 0 <= mm <= 59:
+            return base_date.replace(hour=hh, minute=mm)
+    return base_date.replace(hour=_R1_HOUR, minute=_R1_MINUTE) + datetime.timedelta(
+        minutes=(race_number - 1) * _INTERVAL_MIN
     )
-    return base + datetime.timedelta(minutes=(race_number - 1) * _INTERVAL_MIN)
 
 
 def _wait_until(target: datetime.datetime, dry_run: bool = False) -> None:
@@ -248,8 +261,8 @@ def _wait_until(target: datetime.datetime, dry_run: bool = False) -> None:
 # ─────────────────────────────────────────────────────────────────────────────
 
 
-def _fetch_today_races(target_date: str) -> list[tuple[str, str, int]]:
-    """DB から当日の (race_id, date, race_number) を返す。"""
+def _fetch_today_races(target_date: str) -> list[tuple[str, str, int, str]]:
+    """DB から当日の (race_id, date, race_number, post_time) を返す。"""
     from src.database.init_db import init_db
 
     formatted = f"{target_date[:4]}-{target_date[4:6]}-{target_date[6:8]}"
@@ -258,7 +271,8 @@ def _fetch_today_races(target_date: str) -> list[tuple[str, str, int]]:
         """
         SELECT race_id,
                COALESCE(date, ?) AS date,
-               CAST(SUBSTR(race_id, 11, 2) AS INTEGER) AS race_number
+               CAST(SUBSTR(race_id, 11, 2) AS INTEGER) AS race_number,
+               COALESCE(post_time, '') AS post_time
         FROM races
         WHERE date = ?
         ORDER BY race_id
@@ -266,7 +280,7 @@ def _fetch_today_races(target_date: str) -> list[tuple[str, str, int]]:
         (formatted, formatted),
     ).fetchall()
     conn.close()
-    return [(r[0], r[1], r[2]) for r in rows]
+    return [(r[0], r[1], r[2], r[3]) for r in rows]
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -803,8 +817,8 @@ def _run_one_day(
 
     date_str = f"{target_date[:4]}-{target_date[4:6]}-{target_date[6:8]}"
     schedule: list[tuple[datetime.datetime, str, int, str]] = []
-    for race_id, race_date, race_number in races:
-        start = _estimate_start(race_date or date_str, race_number)
+    for race_id, race_date, race_number, post_time in races:
+        start = _estimate_start(race_date or date_str, race_number, post_time)
         schedule.append((start - fire_ahead, race_id, race_number, "prerace"))
         # ステップ2-3: 発走 recheck_ahead 前に異常検知→再推論（prerace より後に発火）
         if recheck_ahead is not None and recheck_ahead < fire_ahead:

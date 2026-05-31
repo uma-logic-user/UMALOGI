@@ -25,7 +25,7 @@ def test_falling_odds_gives_high_score():
     tmp = tempfile.mktemp(suffix=".db")
     conn = sqlite3.connect(tmp)
     conn.execute("""
-        CREATE TABLE odds_timeseries (
+        CREATE TABLE realtime_odds (
             id INTEGER PRIMARY KEY, race_id TEXT, horse_number INTEGER,
             win_odds REAL, place_odds_min REAL, place_odds_max REAL,
             popularity INTEGER, recorded_at TEXT
@@ -34,7 +34,7 @@ def test_falling_odds_gives_high_score():
     # 5分間でオッズが 10.0 → 5.0 に下落（買い圧力）
     for i, odds in enumerate([10.0, 9.0, 8.0, 6.0, 5.0]):
         conn.execute(
-            "INSERT INTO odds_timeseries VALUES (?,?,?,?,?,?,?,?)",
+            "INSERT INTO realtime_odds VALUES (?,?,?,?,?,?,?,?)",
             (i + 1, "RACE001", 1, odds, None, None, 3, f"2026-05-24 10:0{i}:00"),
         )
     conn.commit()

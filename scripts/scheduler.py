@@ -1693,20 +1693,26 @@ def job_training_hillwork_scrape() -> None:
 
 
 def job_record_odds_timeseries() -> None:
-    """毎分: realtime_odds → odds_timeseries へコピー記録（5:00〜17:59 のみ）"""
+    """10分毎: 発走前レースのオッズを realtime_odds へ実取得（時系列蓄積・8:00〜17:59）。
+
+    P0-1: 単一ソース統一。旧「odds_timeseries へコピー」を廃し、
+    record_odds_timeseries.capture_today_odds() が発走前ウィンドウのレースに対し
+    fetch_and_save_odds を実行して realtime_odds に新スナップショットを追記する。
+    これで odds_drift / odds_momentum が「最低2点」を確実に得る。
+    """
     now = datetime.now()
-    if not (5 <= now.hour < 18):
+    if not (8 <= now.hour < 18):
         return
     try:
         import subprocess
 
         subprocess.run(
             [_PY64[0], "scripts/record_odds_timeseries.py"],
-            timeout=30,
+            timeout=180,
             encoding="utf-8",
         )
     except Exception as exc:
-        logger.warning("odds_timeseries 記録失敗: %s", exc)
+        logger.warning("オッズ時系列取得失敗: %s", exc)
 
 
 def job_prerace_15min_alert() -> None:
@@ -1852,8 +1858,8 @@ def register_schedules() -> None:
     # 毎日23:00: DB バックアップ（5世代ローテーション）
     schedule.every().day.at("23:00").do(job_daily_backup)
 
-    # 毎分: オッズ時系列記録（5:00〜17:59 のみ実際に記録）
-    schedule.every(1).minutes.do(job_record_odds_timeseries)
+    # 10分毎: 発走前レースのオッズを realtime_odds へ実取得（時系列蓄積・8:00〜17:59 のみ）
+    schedule.every(10).minutes.do(job_record_odds_timeseries)
 
     # 毎分: 発走15分前アラート（8:30〜16:30 のみ実際に送信）
     schedule.every(1).minutes.do(job_prerace_15min_alert)

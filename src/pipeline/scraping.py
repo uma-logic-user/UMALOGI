@@ -177,6 +177,7 @@ def update_race_details_from_entry(conn: sqlite3.Connection, tbl: object) -> boo
     tdir = _safe_text(getattr(tbl, "track_direction", ""))
     weather = _safe_text(getattr(tbl, "weather", ""))
     cond = _safe_text(getattr(tbl, "condition", ""))
+    ptime = _safe_text(getattr(tbl, "post_time", ""))
 
     if dist <= 0 or not surf:
         return False
@@ -190,6 +191,7 @@ def update_race_details_from_entry(conn: sqlite3.Connection, tbl: object) -> boo
                 track_direction = CASE WHEN ? != '' THEN ? ELSE track_direction END,
                 weather         = CASE WHEN ? != '' THEN ? ELSE weather END,
                 condition       = CASE WHEN ? != '' THEN ? ELSE condition END,
+                post_time       = CASE WHEN ? != '' THEN ? ELSE post_time END,
                 race_name       = CASE WHEN ? != '' AND (race_name = '' OR race_name LIKE 'レース%') THEN ? ELSE race_name END
             WHERE race_id = ?
             """,
@@ -202,6 +204,8 @@ def update_race_details_from_entry(conn: sqlite3.Connection, tbl: object) -> boo
                 weather,
                 cond,
                 cond,
+                ptime,
+                ptime,
                 rname,
                 rname,
                 tbl.race_id,  # type: ignore[attr-defined]

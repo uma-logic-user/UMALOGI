@@ -42,17 +42,18 @@ _HEADERS = {
 
 # ── データクラス ───────────────────────────────────────────────────
 
+
 @dataclass
 class EntryHorse:
-    horse_number: int           # 馬番
-    gate_number: int            # 枠番
-    horse_id: str | None        # horse_id（netkeiba）
-    horse_name: str             # 馬名
-    sex_age: str                # 性齢 例 "牡3"
-    weight_carried: float       # 斤量
-    jockey: str                 # 騎手名
-    trainer: str                # 調教師名
-    horse_weight: int | None    # 馬体重（kg）
+    horse_number: int  # 馬番
+    gate_number: int  # 枠番
+    horse_id: str | None  # horse_id（netkeiba）
+    horse_name: str  # 馬名
+    sex_age: str  # 性齢 例 "牡3"
+    weight_carried: float  # 斤量
+    jockey: str  # 騎手名
+    trainer: str  # 調教師名
+    horse_weight: int | None  # 馬体重（kg）
     horse_weight_diff: int | None  # 前走比（+2 / -4 / 0）
 
 
@@ -66,18 +67,20 @@ class EntryTable:
     track_direction: str = ""
     weather: str = ""
     condition: str = ""
+    post_time: str = ""  # 実発走時刻 "HH:MM"
 
 
 @dataclass
 class HorseOdds:
     horse_number: int
-    win_odds: float | None          # 単勝オッズ
-    place_odds_min: float | None    # 複勝オッズ（下限）
-    place_odds_max: float | None    # 複勝オッズ（上限）
-    popularity: int | None          # 人気順
+    win_odds: float | None  # 単勝オッズ
+    place_odds_min: float | None  # 複勝オッズ（下限）
+    place_odds_max: float | None  # 複勝オッズ（上限）
+    popularity: int | None  # 人気順
 
 
 # ── 内部ユーティリティ ────────────────────────────────────────────
+
 
 def _http_get(
     url: str,
@@ -127,10 +130,16 @@ def _http_get(
                 )
                 raise
             ra = retry_after_seconds(getattr(exc, "response", None))
-            wait = ra if ra is not None else backoff_seconds(attempt, base_delay, status)
+            wait = (
+                ra if ra is not None else backoff_seconds(attempt, base_delay, status)
+            )
             logger.warning(
                 "リクエスト失敗 (試行 %d/%d, HTTP %s): %s — %.1f秒後にリトライ",
-                attempt, max_retries, status, url, wait,
+                attempt,
+                max_retries,
+                status,
+                url,
+                wait,
             )
             if attempt < max_retries:
                 time.sleep(wait)
@@ -139,7 +148,11 @@ def _http_get(
             wait = backoff_seconds(attempt, base_delay, None)
             logger.warning(
                 "リクエスト失敗 (試行 %d/%d, %s): %s — %.1f秒後にリトライ",
-                attempt, max_retries, type(exc).__name__, url, wait,
+                attempt,
+                max_retries,
+                type(exc).__name__,
+                url,
+                wait,
             )
             if attempt < max_retries:
                 time.sleep(wait)
@@ -233,6 +246,7 @@ def _safe_int(text: str) -> int | None:
 
 # ── 出馬表スクレイパー ───────────────────────────────────────────
 
+
 def _parse_race_condition(soup: BeautifulSoup) -> str | None:
     """
     出馬表ページ（shutuba.html）から馬場状態を抽出する。
@@ -245,7 +259,12 @@ def _parse_race_condition(soup: BeautifulSoup) -> str | None:
         "良" / "稍重" / "重" / "不良" / None（未発表・取得不可）
     """
     # 優先順に複数セレクタを試みる
-    for selector in ("div.RaceData01", "div.RaceData02", "dl.racedata", "div.mainrace_data"):
+    for selector in (
+        "div.RaceData01",
+        "div.RaceData02",
+        "dl.racedata",
+        "div.mainrace_data",
+    ):
         tag = soup.select_one(selector)
         if not tag:
             continue
@@ -257,18 +276,19 @@ def _parse_race_condition(soup: BeautifulSoup) -> str | None:
     return None
 
 
-def _parse_race_header(soup: BeautifulSoup) -> tuple[str, int, str, str, str, str]:
+def _parse_race_header(soup: BeautifulSoup) -> tuple[str, int, str, str, str, str, str]:
     """
     出馬表ページ（shutuba.html）からレース基本情報を抽出する。
 
     Returns:
-        (race_name, distance, surface, track_direction, weather, condition)
+        (race_name, distance, surface, track_direction, weather, condition, post_time)
         - race_name: レース名（例: "3歳未勝利"）
         - distance: 距離 m（例: 1800）、未取得時は 0
         - surface: "芝" / "ダート" / "障害" / ""
         - track_direction: "右" / "左" / "直線" / ""
         - weather: "晴" / "曇" / "雨" / ""
         - condition: "良" / "稍重" / "重" / "不良" / ""
+        - post_time: 実発走時刻 "HH:MM"（例: "09:50"）、未取得時は ""
     """
     race_name = ""
     distance = 0
@@ -276,6 +296,7 @@ def _parse_race_header(soup: BeautifulSoup) -> tuple[str, int, str, str, str, st
     track_direction = ""
     weather = ""
     condition = ""
+    post_time = ""
 
     # --- レース名 ---
     for sel in ("div.RaceName", "h1.RaceName", "span.RaceName"):
@@ -324,7 +345,18 @@ def _parse_race_header(soup: BeautifulSoup) -> tuple[str, int, str, str, str, st
         if mc:
             condition = mc.group(1)
 
-    return race_name, distance, surface, track_direction, weather, condition
+    # --- 発走時刻 "HH:MM発走" を RaceData01 / RaceList_Item02 から抽出 ---
+    for sel in ("div.RaceData01", "div.RaceList_Item02"):
+        tag = soup.select_one(sel)
+        if not tag:
+            continue
+        mt = re.search(r"(\d{1,2}:\d{2})\s*発走", tag.get_text(" ", strip=True))
+        if mt:
+            h, m = mt.group(1).split(":")
+            post_time = f"{int(h):02d}:{int(m):02d}"
+            break
+
+    return race_name, distance, surface, track_direction, weather, condition, post_time
 
 
 def _find_weight_cell(cells: list, horse_name: str) -> tuple[int | None, int | None]:
@@ -374,7 +406,7 @@ def _parse_entry_rows(soup: BeautifulSoup) -> list[EntryHorse]:
         if len(cells) < 9:
             continue
 
-        gate_number  = _safe_int(cells[0].get_text(strip=True)) or 0
+        gate_number = _safe_int(cells[0].get_text(strip=True)) or 0
         horse_number = _safe_int(cells[1].get_text(strip=True)) or 0
 
         # 馬名・horse_id: <td class="HorseInfo"> の <a> リンク
@@ -389,16 +421,20 @@ def _parse_entry_rows(soup: BeautifulSoup) -> list[EntryHorse]:
             horse_name = horse_info_td.get_text(strip=True)
             horse_id = None
 
-        sex_age        = cells[4].get_text(strip=True)
+        sex_age = cells[4].get_text(strip=True)
         weight_carried = _safe_float(cells[5].get_text(strip=True)) or 0.0
-        jockey         = cells[6].get_text(strip=True)
-        trainer        = cells[7].get_text(strip=True)
+        jockey = cells[6].get_text(strip=True)
+        trainer = cells[7].get_text(strip=True)
 
         # 馬体重: 複数セレクタ戦略でHTML構造変更に対応
         horse_weight, horse_weight_diff = _find_weight_cell(cells, horse_name or "")
 
         if horse_number < 1:
-            logger.debug("horse_number < 1 の行をスキップ (gate=%d, name=%r)", gate_number, horse_name)
+            logger.debug(
+                "horse_number < 1 の行をスキップ (gate=%d, name=%r)",
+                gate_number,
+                horse_name,
+            )
             continue
 
         entries.append(
@@ -418,13 +454,15 @@ def _parse_entry_rows(soup: BeautifulSoup) -> list[EntryHorse]:
 
     if not entries:
         # 0頭はHTML構造変更の可能性が高いため診断情報を出力する
-        tables_found  = soup.find_all("table", class_="Shutuba_Table")
+        tables_found = soup.find_all("table", class_="Shutuba_Table")
         all_horse_rows = soup.find_all("tr", class_="HorseList")
         logger.warning(
             "⚠️ 出馬表の取得結果が 0 頭です。HTML 構造変更の可能性があります。"
             " Shutuba_Table=%d件 tr.HorseList(全テーブル合計)=%d件 "
             "tr.HorseList(対象rows)=%d件",
-            len(tables_found), len(all_horse_rows), len(rows),
+            len(tables_found),
+            len(all_horse_rows),
+            len(rows),
         )
 
     return entries
@@ -457,14 +495,15 @@ def fetch_entry_table(
     table = EntryTable(race_id=race_id)
     table.entries = _parse_entry_rows(soup)
 
-    # レース基本情報（距離・馬場・馬場状態）を同一ページから取得
-    rname, dist, surf, tdir, weather, cond = _parse_race_header(soup)
-    table.race_name      = rname
-    table.distance       = dist
-    table.surface        = surf
+    # レース基本情報（距離・馬場・馬場状態・発走時刻）を同一ページから取得
+    rname, dist, surf, tdir, weather, cond, ptime = _parse_race_header(soup)
+    table.race_name = rname
+    table.distance = dist
+    table.surface = surf
     table.track_direction = tdir
-    table.weather        = weather
-    table.condition      = cond
+    table.weather = weather
+    table.condition = cond
+    table.post_time = ptime
 
     if len(table.entries) == 0:
         logger.error(
@@ -474,7 +513,10 @@ def fetch_entry_table(
     else:
         logger.info(
             "出馬表 race_id=%s: %d 頭取得 (dist=%dm surface=%s)",
-            race_id, len(table.entries), dist, surf,
+            race_id,
+            len(table.entries),
+            dist,
+            surf,
         )
     return table
 
@@ -510,17 +552,20 @@ def fetch_live_race_info(
         delay=delay,
         max_retries=max_retries,
     )
-    soup      = BeautifulSoup(html, "lxml")
+    soup = BeautifulSoup(html, "lxml")
     condition = _parse_race_condition(soup)
-    entries   = _parse_entry_rows(soup)
+    entries = _parse_entry_rows(soup)
     logger.info(
         "ライブ情報取得 race_id=%s: 馬場=%s 馬体重=%d頭",
-        race_id, condition or "未発表", len(entries),
+        race_id,
+        condition or "未発表",
+        len(entries),
     )
     return condition, entries
 
 
 # ── オッズ API クライアント ──────────────────────────────────────
+
 
 def fetch_realtime_odds(
     race_id: str,

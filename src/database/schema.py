@@ -26,6 +26,7 @@ DDL_STATEMENTS: list[str] = [
         track_direction TEXT    NOT NULL DEFAULT '',  -- 右 / 左 / 右外 / 左外 / 直線
         weather         TEXT    NOT NULL DEFAULT '',
         condition       TEXT    NOT NULL DEFAULT '',
+        post_time       TEXT    NOT NULL DEFAULT '',  -- 実発走時刻 HH:MM（空=推定にフォールバック）
         created_at      TEXT    NOT NULL DEFAULT (datetime('now', 'localtime'))
     )
     """,
@@ -121,6 +122,7 @@ DDL_STATEMENTS: list[str] = [
         recommended_bet REAL,               -- 推奨購入金額（Kelly最適化後）
         notes           TEXT,               -- 根拠メモ（血統・オッズ歪み等）
         combination_json TEXT,              -- 買い目組合せ JSON [[1,5],[1,7],...]
+        is_superseded   INTEGER NOT NULL DEFAULT 0,  -- 1=再推論で論理無効化（評価/ROI除外）
         created_at      TEXT    NOT NULL DEFAULT (datetime('now', 'localtime')),
         UNIQUE(race_id, model_type, bet_type)
     )

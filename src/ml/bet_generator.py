@@ -34,6 +34,12 @@ _MANJI_DISABLED: bool = os.getenv("DISABLE_MANJI_BETS", "0") == "1"
 
 import pandas as pd
 
+from src.ml.bet_policy import is_live_bet  # 実弾(単勝/複勝)単一真実源
+from src.ml.manji_calibration import (  # 卍 confidence 較正(W-048/P0-3)
+    calibrate_combo_prob,
+    calibrate_win_prob,
+)
+
 logger = logging.getLogger(__name__)
 
 BetType = Literal["単勝", "複勝", "馬連", "ワイド", "馬単", "三連複", "三連単", "WIN5"]
@@ -65,32 +71,27 @@ _TRACK_TAKE: dict[str, float] = {
 # 本命: 三連単 → 条件付き部分開放（個別EV≥1.5 の場合のみ許可）
 # 本命: 馬単/馬連/ワイド → 引き続き除外
 # 卍  : 全券種がROI100%超 → 全許可（単勝1459%/三連複1198%/馬単692%）
-# Alpha: 三連単(32%) → 除外、三連複(74%) → 複勝のみ維持
-
+# 【2026-05-31 単複限定ロック】確定実績分析（真ROI）で「単複に実エッジ・三連系/多点買いが
+# 全利益を食い潰す」構造が判明したため、実弾は単勝・複勝のみに完全ロックする。
+# 許可判定は src/ml/bet_policy.is_live_bet() を唯一の真実源とする（三連単の条件付き許可は撤廃）。
 _ALLOWED_BET_TYPES: dict[str, set[str]] = {
-    "本命": {"単勝", "複勝"},  # 三連単は_apply_roi_filterで個別EV判定
-    "卍": {"単勝", "複勝", "馬連", "ワイド", "馬単", "三連複"},  # 全部ROI>100%
-    "Alpha-Payout": {"複勝", "三連複"},  # 三連単(32%)除外
+    "本命": {"単勝", "複勝"},
+    "卍": {"単勝", "複勝"},
+    "Alpha-Payout": {"複勝"},  # Alpha は単勝を生成しないため実質複勝のみ
 }
 
-# 本命モデルの三連単を条件付き許可する個別EV閾値
-_HONMEI_SANRENTAN_EV_MIN: float = 1.5
+# （廃止）本命三連単の条件付き許可閾値。単複ロックにより三連単は実弾から完全除外。
+_HONMEI_SANRENTAN_EV_MIN: float = 1.5  # 後方互換のため残置（未使用）
 
 
 def _is_allowed_bet_type(model_type: str, bet_type: str) -> bool:
-    """モデルと券種の組み合わせが ROI実績ベースで購入許可されているか判定する。
+    """実弾として購入してよい (モデル, 券種) かを判定する。
 
-    本命モデルの三連単は _apply_roi_filter() 側で EV 条件を個別判定するため
-    このルックアップを経由しない。
-
-    Returns:
-        True = 購入してよい（ROI実績 >= 100% の組み合わせ）
-        False = スキップ（ROI実績 < 100% の損失確定パターン）
+    単一真実源 src/ml/bet_policy.is_live_bet() に委譲する。
+    実弾モデル(本命/卍/Alpha-Payout) × 単勝/複勝 のみ True。
+    三連系・馬連・馬単・ワイド、および Oracle/HitFocus は常に False。
     """
-    for key, allowed in _ALLOWED_BET_TYPES.items():
-        if key in model_type:
-            return bet_type in allowed
-    return True  # 未知モデルはデフォルト許可
+    return is_live_bet(model_type, bet_type)
 
 
 # ─── 買い目精度向上フィルタ定数（2026-05-31 オーナー特別承認 スコープA）─────────
@@ -952,12 +953,9 @@ class ManjiStrategy:
         num_top = int(top_row["horse_number"])
         ev_top = float(top_row["ev_score"])
         odds_top = float(top_row.get("win_odds") or 1.0)
-        # EV = P × odds なので implied P = EV / odds。ただし odds=1.0デフォルト時は信頼度低
-        prob_top = (
-            min(ev_top / max(odds_top, 1.0), 1.0)
-            if odds_top > 1.0
-            else min(ev_top / 10.0, 1.0)
-        )
+        # W-048修正(P0-3): confidence=1.0飽和を解消。Isotonic較正済みP(win)を使う
+        # （学習済み較正器が無ければ係数膨張を排した保守フォールバック）。
+        prob_top = calibrate_win_prob(ev_top, odds_top)
         bet_top = _kelly_bet(prob_top, odds_top, bankroll=bankroll) or _BASE_BET
         result.bets.append(
             BetRecommendation(
@@ -1038,7 +1036,7 @@ class ManjiStrategy:
                             "馬連",
                             n_combos=len(umaren_combos),
                         ),
-                        confidence=min(best_q * 5, 1.0),
+                        confidence=calibrate_combo_prob(best_q),
                         notes=(
                             f"軸{n_axis}番×相手{len(umaren_combos)}頭フォーメーション "
                             f"Harville最大={best_q:.3f}"
@@ -1066,7 +1064,7 @@ class ManjiStrategy:
                             "ワイド",
                             n_combos=len(umaren_combos),
                         ),
-                        confidence=min(best_q * 6, 1.0),
+                        confidence=calibrate_combo_prob(best_q),
                         notes=(
                             f"軸{n_axis}番×相手{len(umaren_combos)}頭ワイド "
                             f"Harville最大={best_q:.3f}"
@@ -1106,7 +1104,7 @@ class ManjiStrategy:
                                 "馬単",
                                 n_combos=len(umatan_combos),
                             ),
-                            confidence=min(best_ep * 8, 1.0),
+                            confidence=calibrate_combo_prob(best_ep),
                             notes=(
                                 f"軸{n_axis}番→相手{len(umatan_combos)}頭フォーメーション "
                                 f"Harville最大={best_ep:.3f}"
@@ -1167,7 +1165,7 @@ class ManjiStrategy:
                         recommended_bet=calc_kelly_stake(
                             bankroll, ev_c, axis_odds_s, "三連複", n_combos=1
                         ),
-                        confidence=min(tp * 15, 1.0),
+                        confidence=calibrate_combo_prob(tp),
                         notes=f"合成EV={ev_c:.2f} Harville={tp:.4f} 馬番={combo3}",
                     )
                 )
@@ -2662,21 +2660,16 @@ class BetGenerator:
             )
 
     def _apply_roi_filter(self, bets: RaceBets) -> None:
-        """ROI実績100%未満の券種を in-place で除外する。
+        """実弾券種（単勝・複勝）以外を in-place で除外する（単複限定ロック）。
 
-        `_ALLOWED_BET_TYPES` に定義したモデル別の許可券種リストに基づいてフィルタリング。
-        本命モデルの三連単のみ「個別EV≥1.5」の場合に条件付き許可（部分開放）。
+        単一真実源 `bet_policy.is_live_bet()` に従い、実弾モデル × 単勝/複勝 のみ残す。
+        三連系・馬連・馬単・ワイドは確定実績ROI<100%のため全除外。
         `config.use_roi_filter = False` の場合はスキップ（バックテスト用）。
         """
         if not self._config.use_roi_filter:
             return
 
-        is_honmei = "本命" in bets.model_type
-
         def _should_keep(b: "BetRecommendation") -> bool:
-            # 本命モデルの三連単: EV≥1.5 の場合のみ条件付き許可
-            if is_honmei and b.bet_type == "三連単":
-                return b.expected_value >= _HONMEI_SANRENTAN_EV_MIN
             return _is_allowed_bet_type(bets.model_type, b.bet_type)
 
         before = len(bets.bets)
@@ -2687,23 +2680,12 @@ class BetGenerator:
         if removed > 0:
             removed_types = sorted({b.bet_type for b in removed_bets})
             logger.info(
-                "ROIフィルター: %s — %d件除外（残%d件）除外券種=%s",
+                "実弾フィルター(単複限定): %s — %d件除外（残%d件）除外券種=%s",
                 bets.race_id,
                 removed,
                 len(bets.bets),
                 removed_types,
             )
-
-        if is_honmei:
-            kept_sanrentan = [b for b in bets.bets if b.bet_type == "三連単"]
-            if kept_sanrentan:
-                ev_vals = [f"EV{b.expected_value:.2f}" for b in kept_sanrentan]
-                logger.info(
-                    "ROIフィルター[条件付き許可]: %s — 本命三連単 %d件 発注承認 %s",
-                    bets.race_id,
-                    len(kept_sanrentan),
-                    ev_vals,
-                )
 
     def _apply_odds_band_filter(
         self,
@@ -2812,6 +2794,7 @@ class BetGenerator:
         bets = self._manji.generate(
             race_id, df, ev_scores, bankroll=self._config.bankroll
         )
+        self._apply_roi_filter(bets)  # 単複限定ロック（卍の三連系を実弾から除外）
         self._apply_odds_band_filter(bets, _build_odds_map(df))
         self._apply_caps(bets)
         return bets
@@ -2894,6 +2877,7 @@ class BetGenerator:
         bets = self._hybrid.generate(
             race_id, df, win_probs, bankroll=self._config.bankroll
         )
+        self._apply_roi_filter(bets)  # 単複限定ロック
         self._apply_odds_band_filter(bets, _build_odds_map(df))
         self._apply_caps(bets)
         return bets
@@ -3017,6 +3001,7 @@ class BetGeneratorV2(BetGenerator):
         bets = self._honmei.generate(
             race_id, df, honmei_scores, bankroll=self._config.bankroll
         )
+        self._apply_roi_filter(bets)  # 単複限定ロック（V2）
         self._apply_odds_band_filter(bets, _build_odds_map(df))
         self._apply_caps(bets)
         return bets
@@ -3033,6 +3018,7 @@ class BetGeneratorV2(BetGenerator):
         bets = self._manji.generate(
             race_id, df, ev_scores, bankroll=self._config.bankroll
         )
+        self._apply_roi_filter(bets)  # 単複限定ロック（V2）
         self._apply_odds_band_filter(bets, _build_odds_map(df))
         self._apply_caps(bets)
         return bets

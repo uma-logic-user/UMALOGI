@@ -38,7 +38,8 @@ def mem_db() -> sqlite3.Connection:
             surface TEXT NOT NULL DEFAULT '',
             track_direction TEXT NOT NULL DEFAULT '',
             weather TEXT NOT NULL DEFAULT '',
-            condition TEXT NOT NULL DEFAULT ''
+            condition TEXT NOT NULL DEFAULT '',
+            post_time TEXT NOT NULL DEFAULT ''
         );
         CREATE TABLE entries (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
