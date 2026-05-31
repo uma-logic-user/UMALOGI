@@ -900,6 +900,14 @@ def _migrate_add_ev_indexes(conn: sqlite3.Connection) -> None:
                 "マイグレーション #15: インデックス %s を作成（または確認）しました",
                 name,
             )
+        # ANALYZE: プランナの統計(sqlite_stat1)を更新する。
+        # 実測(EXPLAIN QUERY PLAN)で、統計が無いと SUM(profit) 集計が
+        # idx_pr_pred_hit(profit非内包→行アクセス発生)を選び、COVERING な
+        # idx_pred_r_cover(prediction_id,payout,profit,is_hit)を活かせていなかった。
+        # ANALYZE 後はプランナが COVERING INDEX を選択しテーブルアクセスがゼロになる。
+        # 非破壊・冪等。P&L集計(get_period_pnl)・A/B検証・会計の高速化に直結。
+        conn.execute("ANALYZE")
+        logger.info("マイグレーション #15: ANALYZE 実行（プランナ統計を更新）")
 
 
 def _migrate_create_paddock_jockey_trainer(conn: sqlite3.Connection) -> None:
