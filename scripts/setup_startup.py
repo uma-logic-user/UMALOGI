@@ -16,6 +16,7 @@ scripts/setup_startup.py — Windows スタートアップへ UMALOGI_SCHEDULER.
 Windows スタートアップフォルダ:
   %APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Startup
 """
+
 from __future__ import annotations
 
 import os
@@ -27,27 +28,26 @@ sys.stdout.reconfigure(encoding="utf-8")
 # ── パス定義 ──────────────────────────────────────────────────────────────────
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-BAT_PATH  = REPO_ROOT / "UMALOGI_SCHEDULER.bat"
+BAT_PATH = REPO_ROOT / "UMALOGI_SCHEDULER.bat"
 
-STARTUP_DIR = Path(os.path.expandvars(
-    r"%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup"
-))
+STARTUP_DIR = Path(
+    os.path.expandvars(r"%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup")
+)
 VBS_NAME = "UMALOGI_Scheduler.vbs"
 VBS_PATH = STARTUP_DIR / VBS_NAME
 
 
 # ── VBScript テンプレート ──────────────────────────────────────────────────────
 
+
 def _vbs_content(bat_path: Path) -> str:
     """BAT を最小化（windowStyle=7）で起動する VBScript を生成する。"""
     # 7 = Minimized / False = ウィンドウ完了を待たない（非同期）
-    return (
-        f'Set oShell = CreateObject("WScript.Shell")\r\n'
-        f'oShell.Run """{ bat_path }""", 7, False\r\n'
-    )
+    return f'Set oShell = CreateObject("WScript.Shell")\r\noShell.Run """{bat_path}""", 7, False\r\n'
 
 
 # ── サブコマンド ──────────────────────────────────────────────────────────────
+
 
 def install() -> None:
     """VBScript をスタートアップフォルダへ配置する。"""

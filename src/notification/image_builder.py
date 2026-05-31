@@ -10,28 +10,28 @@
 from __future__ import annotations
 
 import logging
-import math
 from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
 try:
     from PIL import Image, ImageDraw, ImageFont  # type: ignore[import-untyped]
+
     _PIL_AVAILABLE = True
 except ImportError:
     _PIL_AVAILABLE = False
     logger.warning("Pillow がインストールされていません: pip install pillow")
 
 # ── 設計定数 ─────────────────────────────────────────────────────
-_W, _H   = 800, 500
-_BG      = (2, 6, 14)        # #02060e
-_SURFACE = (8, 21, 38)       # #081526
-_CYAN    = (0, 200, 255)
-_GOLD    = (255, 215, 0)
-_GREEN   = (0, 255, 136)
-_RED     = (255, 51, 102)
-_WHITE   = (224, 244, 255)
-_MUTED   = (74, 122, 150)
+_W, _H = 800, 500
+_BG = (2, 6, 14)  # #02060e
+_SURFACE = (8, 21, 38)  # #081526
+_CYAN = (0, 200, 255)
+_GOLD = (255, 215, 0)
+_GREEN = (0, 255, 136)
+_RED = (255, 51, 102)
+_WHITE = (224, 244, 255)
+_MUTED = (74, 122, 150)
 
 
 def _load_font(size: int) -> "ImageFont.FreeTypeFont | ImageFont.ImageFont":
@@ -91,7 +91,7 @@ def build_hit_image(
     if not _PIL_AVAILABLE:
         return None
 
-    img  = Image.new("RGB", (_W, _H), _BG)
+    img = Image.new("RGB", (_W, _H), _BG)
     draw = ImageDraw.Draw(img)
 
     # ── グリッドライン ──────────────────────────────────────────
@@ -104,10 +104,10 @@ def build_hit_image(
     draw.rectangle([(0, 0), (_W, 72)], fill=_SURFACE)
     draw.line([(0, 72), (_W, 72)], fill=_CYAN, width=1)
 
-    fn_title  = _load_font(28)
-    fn_label  = _load_font(16)
-    fn_value  = _load_font(36)
-    fn_small  = _load_font(13)
+    fn_title = _load_font(28)
+    fn_label = _load_font(16)
+    fn_value = _load_font(36)
+    fn_small = _load_font(13)
 
     # ロゴ
     draw.text((24, 20), "UMA-LOGI AI", font=fn_title, fill=_CYAN)

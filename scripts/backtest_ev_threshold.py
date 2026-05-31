@@ -14,7 +14,6 @@ predictions + prediction_results を使い、EV閾値・Harville最小確率を
 from __future__ import annotations
 
 import argparse
-import itertools
 import json
 import sys
 from pathlib import Path
@@ -34,10 +33,11 @@ from src.database.init_db import init_db
 # データ読み込み
 # ================================================================
 
+
 def load_results(
     conn,
     date_from: str | None = None,
-    date_to:   str | None = None,
+    date_to: str | None = None,
 ) -> pd.DataFrame:
     """
     predictions と prediction_results を結合して返す。
@@ -89,15 +89,16 @@ def load_results(
 # メトリクス計算
 # ================================================================
 
+
 class BetStats(NamedTuple):
-    n_bets:       int
-    n_hits:       int
-    hit_rate:     float   # %
-    total_bet:    float   # 円
-    total_payout: float   # 円
-    roi:          float   # 回収率 %
-    profit:       float   # 純損益
-    sharpe:       float   # シャープレシオ（レース単位）
+    n_bets: int
+    n_hits: int
+    hit_rate: float  # %
+    total_bet: float  # 円
+    total_payout: float  # 円
+    roi: float  # 回収率 %
+    profit: float  # 純損益
+    sharpe: float  # シャープレシオ（レース単位）
 
 
 def _calc_stats(subset: pd.DataFrame, unit_bet: int = 100) -> BetStats:
@@ -105,12 +106,12 @@ def _calc_stats(subset: pd.DataFrame, unit_bet: int = 100) -> BetStats:
     if subset.empty:
         return BetStats(0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
 
-    n     = len(subset)
-    hits  = int(subset["is_hit"].sum())
-    bet   = n * unit_bet
+    n = len(subset)
+    hits = int(subset["is_hit"].sum())
+    bet = n * unit_bet
     # payout は払戻総額（既に円建て）
-    pay   = float(subset.loc[subset["is_hit"] == 1, "payout"].sum())
-    roi   = pay / bet * 100 if bet > 0 else 0.0
+    pay = float(subset.loc[subset["is_hit"] == 1, "payout"].sum())
+    roi = pay / bet * 100 if bet > 0 else 0.0
 
     # シャープレシオ: レースごとの損益の平均/標準偏差
     per_race = subset["payout"].where(subset["is_hit"] == 1, 0) - unit_bet
@@ -132,12 +133,13 @@ def _calc_stats(subset: pd.DataFrame, unit_bet: int = 100) -> BetStats:
 # グリッドサーチ
 # ================================================================
 
+
 def grid_search(
     df: pd.DataFrame,
-    ev_thresholds:    list[float],
-    model_filter:     str | None = None,
-    bet_type_filter:  str | None = None,
-    unit_bet:         int = 100,
+    ev_thresholds: list[float],
+    model_filter: str | None = None,
+    bet_type_filter: str | None = None,
+    unit_bet: int = 100,
 ) -> pd.DataFrame:
     """
     EV閾値のグリッドサーチを実行して結果 DataFrame を返す。
@@ -168,19 +170,21 @@ def grid_search(
         for ev_thr in ev_thresholds:
             subset = grp[grp["expected_value"] >= ev_thr]
             stats = _calc_stats(subset, unit_bet)
-            records.append({
-                "ev_threshold": ev_thr,
-                "model_type":   model,
-                "bet_type":     bet_type,
-                "n_bets":       stats.n_bets,
-                "n_hits":       stats.n_hits,
-                "hit_rate":     round(stats.hit_rate, 2),
-                "total_bet":    stats.total_bet,
-                "total_payout": stats.total_payout,
-                "roi":          round(stats.roi, 2),
-                "profit":       round(stats.profit, 0),
-                "sharpe":       round(stats.sharpe, 3),
-            })
+            records.append(
+                {
+                    "ev_threshold": ev_thr,
+                    "model_type": model,
+                    "bet_type": bet_type,
+                    "n_bets": stats.n_bets,
+                    "n_hits": stats.n_hits,
+                    "hit_rate": round(stats.hit_rate, 2),
+                    "total_bet": stats.total_bet,
+                    "total_payout": stats.total_payout,
+                    "roi": round(stats.roi, 2),
+                    "profit": round(stats.profit, 0),
+                    "sharpe": round(stats.sharpe, 3),
+                }
+            )
 
     return pd.DataFrame(records)
 
@@ -188,6 +192,7 @@ def grid_search(
 # ================================================================
 # 最適点の抽出
 # ================================================================
+
 
 def find_optimal(
     result: pd.DataFrame,
@@ -210,14 +215,17 @@ def find_optimal(
         return filtered
 
     idx = filtered.groupby(["model_type", "bet_type"])[metric].idxmax()
-    return filtered.loc[idx].reset_index(drop=True).sort_values(
-        ["model_type", "bet_type", metric], ascending=[True, True, False]
+    return (
+        filtered.loc[idx]
+        .reset_index(drop=True)
+        .sort_values(["model_type", "bet_type", metric], ascending=[True, True, False])
     )
 
 
 # ================================================================
 # レポート表示
 # ================================================================
+
 
 def print_report(result: pd.DataFrame, optimal: pd.DataFrame) -> None:
     """グリッドサーチ結果と最適点をコンソールに表示する。"""
@@ -231,7 +239,9 @@ def print_report(result: pd.DataFrame, optimal: pd.DataFrame) -> None:
 
     for (model, bet_type), grp in result.groupby(["model_type", "bet_type"]):
         print(f"\n  [{model}] {bet_type}")
-        print(f"  {'EV>=':>6}  {'N件':>5}  {'的中率%':>7}  {'回収率%':>7}  {'純損益':>10}  {'Sharpe':>7}")
+        print(
+            f"  {'EV>=':>6}  {'N件':>5}  {'的中率%':>7}  {'回収率%':>7}  {'純損益':>10}  {'Sharpe':>7}"
+        )
         print("  " + "-" * 55)
         for _, row in grp.iterrows():
             marker = " ★" if row["roi"] >= 100 else ""
@@ -249,7 +259,9 @@ def print_report(result: pd.DataFrame, optimal: pd.DataFrame) -> None:
         print("\n" + "=" * 80)
         print("  最適 EV 閾値サマリー（ROI最大・N>=10）")
         print("=" * 80)
-        print(f"  {'モデル':<14}  {'券種':<8}  {'最適EV':>6}  {'N件':>5}  {'回収率%':>7}  {'Sharpe':>7}")
+        print(
+            f"  {'モデル':<14}  {'券種':<8}  {'最適EV':>6}  {'N件':>5}  {'回収率%':>7}  {'Sharpe':>7}"
+        )
         print("  " + "-" * 60)
         for _, row in optimal.iterrows():
             print(
@@ -267,6 +279,7 @@ def print_report(result: pd.DataFrame, optimal: pd.DataFrame) -> None:
 # CLI
 # ================================================================
 
+
 def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="EV閾値・Harville最適化バックテスト",
@@ -281,18 +294,35 @@ def _parse_args() -> argparse.Namespace:
   python scripts/backtest_ev_threshold.py --output results/ev_backtest.csv
 """,
     )
-    parser.add_argument("--date-from",  help="集計開始日 YYYY-MM-DD")
-    parser.add_argument("--date-to",    help="集計終了日 YYYY-MM-DD")
-    parser.add_argument("--model",      help="モデル名フィルタ（部分一致）例: 卍(直前)")
-    parser.add_argument("--bet-type",   help="券種フィルタ 例: 単勝")
-    parser.add_argument("--ev-min",     type=float, default=0.5, help="EV閾値 最小 (default: 0.5)")
-    parser.add_argument("--ev-max",     type=float, default=3.0, help="EV閾値 最大 (default: 3.0)")
-    parser.add_argument("--ev-step",    type=float, default=0.1, help="EV閾値 ステップ (default: 0.1)")
-    parser.add_argument("--unit-bet",   type=int, default=100, help="1点あたり賭け金円 (default: 100)")
-    parser.add_argument("--min-bets",   type=int, default=10,  help="最適点抽出の最低賭け件数 (default: 10)")
-    parser.add_argument("--metric",     choices=["roi", "sharpe", "profit"], default="roi",
-                        help="最適化指標 (default: roi)")
-    parser.add_argument("--output",     help="CSV 出力先パス（省略時はコンソールのみ）")
+    parser.add_argument("--date-from", help="集計開始日 YYYY-MM-DD")
+    parser.add_argument("--date-to", help="集計終了日 YYYY-MM-DD")
+    parser.add_argument("--model", help="モデル名フィルタ（部分一致）例: 卍(直前)")
+    parser.add_argument("--bet-type", help="券種フィルタ 例: 単勝")
+    parser.add_argument(
+        "--ev-min", type=float, default=0.5, help="EV閾値 最小 (default: 0.5)"
+    )
+    parser.add_argument(
+        "--ev-max", type=float, default=3.0, help="EV閾値 最大 (default: 3.0)"
+    )
+    parser.add_argument(
+        "--ev-step", type=float, default=0.1, help="EV閾値 ステップ (default: 0.1)"
+    )
+    parser.add_argument(
+        "--unit-bet", type=int, default=100, help="1点あたり賭け金円 (default: 100)"
+    )
+    parser.add_argument(
+        "--min-bets",
+        type=int,
+        default=10,
+        help="最適点抽出の最低賭け件数 (default: 10)",
+    )
+    parser.add_argument(
+        "--metric",
+        choices=["roi", "sharpe", "profit"],
+        default="roi",
+        help="最適化指標 (default: roi)",
+    )
+    parser.add_argument("--output", help="CSV 出力先パス（省略時はコンソールのみ）")
     return parser.parse_args()
 
 
@@ -310,12 +340,18 @@ def main() -> None:
     conn.close()
 
     if df.empty:
-        print("ERROR: prediction_results が 0 件です。reconcile を先に実行してください。")
+        print(
+            "ERROR: prediction_results が 0 件です。reconcile を先に実行してください。"
+        )
         print("  py -m src.ml.reconcile")
         sys.exit(1)
 
-    print(f"読み込み完了: {len(df)} 件 ({df['race_date'].min()} 〜 {df['race_date'].max()})")
-    print(f"EV閾値: {ev_thresholds[0]:.2f} 〜 {ev_thresholds[-1]:.2f} ({len(ev_thresholds)} 通り)")
+    print(
+        f"読み込み完了: {len(df)} 件 ({df['race_date'].min()} 〜 {df['race_date'].max()})"
+    )
+    print(
+        f"EV閾値: {ev_thresholds[0]:.2f} 〜 {ev_thresholds[-1]:.2f} ({len(ev_thresholds)} 通り)"
+    )
     print(f"モデル: {sorted(df['model_type'].unique())}")
     print(f"券種: {sorted(df['bet_type'].unique())}")
 
@@ -342,11 +378,22 @@ def main() -> None:
     # 最適値をJSON形式でも出力（他スクリプトからの呼び出し用）
     if not optimal.empty:
         print("\n最適閾値 (JSON):")
-        print(json.dumps(
-            optimal[["model_type", "bet_type", "ev_threshold", "roi", "n_bets", "sharpe"]]
-            .to_dict(orient="records"),
-            ensure_ascii=False, indent=2
-        ))
+        print(
+            json.dumps(
+                optimal[
+                    [
+                        "model_type",
+                        "bet_type",
+                        "ev_threshold",
+                        "roi",
+                        "n_bets",
+                        "sharpe",
+                    ]
+                ].to_dict(orient="records"),
+                ensure_ascii=False,
+                indent=2,
+            )
+        )
 
 
 if __name__ == "__main__":

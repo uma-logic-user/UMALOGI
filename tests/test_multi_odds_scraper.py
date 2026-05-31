@@ -8,9 +8,9 @@ multi_odds_scraper.py の単体テスト。
   4. ワイドの odds_max が正しく設定されること
   5. 不正なキーがスキップされること
 """
+
 from __future__ import annotations
 
-import os
 
 import pytest
 
@@ -45,8 +45,12 @@ class TestFormatCombination:
 
 
 class TestParseOddsDict:
-    def _run(self, raw: dict, bet_type: str = "馬連", fmt: str = "unordered") -> list[MultiOddsEntry]:
-        return _parse_odds_dict(raw, bet_type, fmt, "202404010101", "2024-04-01 10:00:00")
+    def _run(
+        self, raw: dict, bet_type: str = "馬連", fmt: str = "unordered"
+    ) -> list[MultiOddsEntry]:
+        return _parse_odds_dict(
+            raw, bet_type, fmt, "202404010101", "2024-04-01 10:00:00"
+        )
 
     def test_basic_parse(self) -> None:
         raw = {"01-02": ["15.4", "3"], "01-03": ["8.2", "1"]}
@@ -66,7 +70,7 @@ class TestParseOddsDict:
     def test_wide_odds_max(self) -> None:
         raw = {"01-02": ["3.5", "5.2", "2"]}
         entries = self._run(raw, bet_type="ワイド")
-        assert entries[0].odds     == pytest.approx(3.5)
+        assert entries[0].odds == pytest.approx(3.5)
         assert entries[0].odds_max == pytest.approx(5.2)
         assert entries[0].popularity == 2
 

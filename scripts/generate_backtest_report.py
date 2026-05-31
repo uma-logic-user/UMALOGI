@@ -27,43 +27,52 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 # 統計
 # ─────────────────────────────────────────────────────────────────
 
+
 class Stats(NamedTuple):
-    n_bets:   int
-    n_hits:   int
+    n_bets: int
+    n_hits: int
     hit_rate: float
     invested: float
-    payout:   float
-    profit:   float
-    roi:      float
-    max_hit:  float
+    payout: float
+    profit: float
+    roi: float
+    max_hit: float
 
 
 def _stats(rows: list[dict]) -> Stats:
-    n        = len(rows)
-    hits     = sum(1 for r in rows if r["is_hit"])
+    n = len(rows)
+    hits = sum(1 for r in rows if r["is_hit"])
     invested = sum(r["invested"] or 100 for r in rows)
-    payout   = sum(r["payout"]   or 0   for r in rows)
-    profit   = payout - invested
-    roi      = payout / invested * 100 if invested > 0 else 0.0
-    max_hit  = max((r["payout"] or 0 for r in rows), default=0)
+    payout = sum(r["payout"] or 0 for r in rows)
+    profit = payout - invested
+    roi = payout / invested * 100 if invested > 0 else 0.0
+    max_hit = max((r["payout"] or 0 for r in rows), default=0)
     return Stats(
-        n_bets=n, n_hits=hits,
+        n_bets=n,
+        n_hits=hits,
         hit_rate=hits / n * 100 if n > 0 else 0.0,
-        invested=invested, payout=payout,
-        profit=profit, roi=roi, max_hit=max_hit,
+        invested=invested,
+        payout=payout,
+        profit=profit,
+        roi=roi,
+        max_hit=max_hit,
     )
 
 
 def _roi_emoji(roi: float) -> str:
-    if roi >= 120: return "🏆"
-    if roi >= 100: return "🟢"
-    if roi >= 75:  return "🟡"
+    if roi >= 120:
+        return "🏆"
+    if roi >= 100:
+        return "🟢"
+    if roi >= 75:
+        return "🟡"
     return "🔴"
 
 
 # ─────────────────────────────────────────────────────────────────
 # データ読み込み
 # ─────────────────────────────────────────────────────────────────
+
 
 def load_rows(conn: sqlite3.Connection, date_from: str, date_to: str) -> list[dict]:
     sql = """
@@ -96,20 +105,30 @@ def data_quality(conn: sqlite3.Connection, year: int) -> dict:
     prefix = f"{year}%"
     cur.execute("SELECT COUNT(*) FROM races WHERE date LIKE ?", (prefix,))
     n_races = cur.fetchone()[0]
-    cur.execute("SELECT COUNT(*) FROM race_results WHERE race_id LIKE ? AND rank=1", (prefix,))
+    cur.execute(
+        "SELECT COUNT(*) FROM race_results WHERE race_id LIKE ? AND rank=1", (prefix,)
+    )
     n_rank1 = cur.fetchone()[0]
-    cur.execute("SELECT COUNT(*) FROM race_results WHERE race_id LIKE ? AND rank=2", (prefix,))
+    cur.execute(
+        "SELECT COUNT(*) FROM race_results WHERE race_id LIKE ? AND rank=2", (prefix,)
+    )
     n_rank2 = cur.fetchone()[0]
     cur.execute("SELECT COUNT(*) FROM race_payouts WHERE race_id LIKE ?", (prefix,))
     n_pay = cur.fetchone()[0]
-    cur.execute("SELECT COUNT(*) FROM predictions p JOIN races r ON p.race_id=r.race_id WHERE r.date LIKE ?", (prefix,))
+    cur.execute(
+        "SELECT COUNT(*) FROM predictions p JOIN races r ON p.race_id=r.race_id WHERE r.date LIKE ?",
+        (prefix,),
+    )
     n_pred = cur.fetchone()[0]
-    cur.execute("""
+    cur.execute(
+        """
         SELECT COUNT(*) FROM prediction_results pr
         JOIN predictions p ON p.id=pr.prediction_id
         JOIN races r ON p.race_id=r.race_id
         WHERE r.date LIKE ?
-    """, (prefix,))
+    """,
+        (prefix,),
+    )
     n_res = cur.fetchone()[0]
     return {
         "year": year,
@@ -127,7 +146,14 @@ def data_quality(conn: sqlite3.Connection, year: int) -> dict:
 # ─────────────────────────────────────────────────────────────────
 
 BET_ORDER = ["単勝", "複勝", "馬連", "ワイド", "馬単", "三連複", "三連単"]
-MODEL_ORDER = ["卍(暫定)", "卍(直前)", "本命(暫定)", "本命(直前)", "Oracle(暫定)", "Oracle(直前)"]
+MODEL_ORDER = [
+    "卍(暫定)",
+    "卍(直前)",
+    "本命(暫定)",
+    "本命(直前)",
+    "Oracle(暫定)",
+    "Oracle(直前)",
+]
 
 
 def generate_report(
@@ -137,18 +163,18 @@ def generate_report(
     out_path: Path,
 ) -> None:
     rows = load_rows(conn, date_from, date_to)
-    q24  = data_quality(conn, 2024)
-    q25  = data_quality(conn, 2025)
+    q24 = data_quality(conn, 2024)
+    q25 = data_quality(conn, 2025)
 
     lines: list[str] = []
     now = datetime.now().strftime("%Y-%m-%d %H:%M")
 
     lines += [
-        f"# UMALOGI バックテストレポート 2024-2025",
-        f"",
+        "# UMALOGI バックテストレポート 2024-2025",
+        "",
         f"> 生成日時: {now}  ",
         f"> 対象期間: {date_from} 〜 {date_to}",
-        f"",
+        "",
         "---",
         "",
     ]
@@ -265,7 +291,8 @@ def generate_report(
     # ── 高額的中 ─────────────────────────────────
     big_hits = sorted(
         [r for r in rows if r["is_hit"] and r["payout"] >= 10000],
-        key=lambda r: r["payout"], reverse=True
+        key=lambda r: r["payout"],
+        reverse=True,
     )[:20]
 
     if big_hits:
@@ -315,14 +342,16 @@ def generate_report(
 # エントリポイント
 # ─────────────────────────────────────────────────────────────────
 
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--date-from", default="2024-01-01")
-    ap.add_argument("--date-to",   default="2025-12-31")
+    ap.add_argument("--date-to", default="2025-12-31")
     ap.add_argument("--out", default="docs/backtest_2024_2025_report.md")
     args = ap.parse_args()
 
     from src.database.init_db import init_db
+
     conn = init_db()
     try:
         generate_report(conn, args.date_from, args.date_to, Path(args.out))

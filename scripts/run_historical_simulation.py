@@ -44,6 +44,7 @@ logger = logging.getLogger("hist_sim")
 # DB ヘルパー
 # ─────────────────────────────────────────────────────────────────
 
+
 def get_race_ids(conn: sqlite3.Connection, date_from: str, date_to: str) -> list[str]:
     """対象期間の全レースIDを取得（race_results が存在するものだけ）。"""
     cur = conn.execute(
@@ -64,7 +65,9 @@ def get_race_ids(conn: sqlite3.Connection, date_from: str, date_to: str) -> list
     return [row[0] for row in cur.fetchall()]
 
 
-def get_simulated_ids(conn: sqlite3.Connection, date_from: str, date_to: str) -> set[str]:
+def get_simulated_ids(
+    conn: sqlite3.Connection, date_from: str, date_to: str
+) -> set[str]:
     """既に予想が存在するレースIDのセット。"""
     cur = conn.execute(
         """
@@ -79,7 +82,9 @@ def get_simulated_ids(conn: sqlite3.Connection, date_from: str, date_to: str) ->
     return {row[0] for row in cur.fetchall()}
 
 
-def get_evaluated_ids(conn: sqlite3.Connection, date_from: str, date_to: str) -> set[str]:
+def get_evaluated_ids(
+    conn: sqlite3.Connection, date_from: str, date_to: str
+) -> set[str]:
     """既に prediction_results が存在するレースIDのセット。"""
     cur = conn.execute(
         """
@@ -98,6 +103,7 @@ def get_evaluated_ids(conn: sqlite3.Connection, date_from: str, date_to: str) ->
 # メイン処理
 # ─────────────────────────────────────────────────────────────────
 
+
 def run_simulation(
     date_from: str,
     date_to: str,
@@ -113,11 +119,15 @@ def run_simulation(
     conn.close()
 
     todo = [rid for rid in race_ids if rid not in already_done]
-    total   = len(race_ids)
+    total = len(race_ids)
     skipped = total - len(todo)
 
-    logger.info("シミュレーション対象: %d件 / スキップ済み: %d件 / 新規実行: %d件",
-                total, skipped, len(todo))
+    logger.info(
+        "シミュレーション対象: %d件 / スキップ済み: %d件 / 新規実行: %d件",
+        total,
+        skipped,
+        len(todo),
+    )
 
     stats = {"simulated": 0, "errors": 0, "skipped": skipped}
     t0 = time.time()
@@ -126,7 +136,9 @@ def run_simulation(
         try:
             result = simulate_pipeline(race_id)
             if "error" in result:
-                logger.warning("[%d/%d] エラー %s: %s", i, len(todo), race_id, result["error"])
+                logger.warning(
+                    "[%d/%d] エラー %s: %s", i, len(todo), race_id, result["error"]
+                )
                 stats["errors"] += 1
             else:
                 stats["simulated"] += 1
@@ -140,13 +152,19 @@ def run_simulation(
             remaining = (len(todo) - i) / rate if rate > 0 else 0
             logger.info(
                 "進捗: %d/%d (%.1f件/秒) 残り約%.0f分",
-                i, len(todo), rate, remaining / 60,
+                i,
+                len(todo),
+                rate,
+                remaining / 60,
             )
 
     elapsed_total = time.time() - t0
     logger.info(
         "シミュレーション完了: 実行=%d 스킵=%d エラー=%d 所要%.0f分",
-        stats["simulated"], stats["skipped"], stats["errors"], elapsed_total / 60,
+        stats["simulated"],
+        stats["skipped"],
+        stats["errors"],
+        elapsed_total / 60,
     )
     return stats
 
@@ -199,16 +217,20 @@ def run_evaluation(
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--year",       type=int, help="対象年（--date-from/to より優先）")
-    ap.add_argument("--date-from",  default="2024-01-01")
-    ap.add_argument("--date-to",    default="2025-12-31")
-    ap.add_argument("--force",      action="store_true", help="既存予想を上書き")
-    ap.add_argument("--sim-only",   action="store_true", help="シミュレーションのみ（精算スキップ）")
-    ap.add_argument("--eval-only",  action="store_true", help="精算のみ（シミュレーションスキップ）")
+    ap.add_argument("--year", type=int, help="対象年（--date-from/to より優先）")
+    ap.add_argument("--date-from", default="2024-01-01")
+    ap.add_argument("--date-to", default="2025-12-31")
+    ap.add_argument("--force", action="store_true", help="既存予想を上書き")
+    ap.add_argument(
+        "--sim-only", action="store_true", help="シミュレーションのみ（精算スキップ）"
+    )
+    ap.add_argument(
+        "--eval-only", action="store_true", help="精算のみ（シミュレーションスキップ）"
+    )
     args = ap.parse_args()
 
     date_from = f"{args.year}-01-01" if args.year else args.date_from
-    date_to   = f"{args.year}-12-31" if args.year else args.date_to
+    date_to = f"{args.year}-12-31" if args.year else args.date_to
 
     logger.info("=" * 60)
     logger.info("ヒストリカルシミュレーション開始: %s 〜 %s", date_from, date_to)

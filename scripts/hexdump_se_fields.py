@@ -9,8 +9,11 @@ SEレコードの生バイト構造を解析してフィールド境界を特定
 
 実行: py -3.14-32 scripts/hexdump_se_fields.py
 """
+
 from __future__ import annotations
-import os, sys, time
+import os
+import sys
+import time
 from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")  # type: ignore[attr-defined]
@@ -20,8 +23,11 @@ if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
 from src.scraper.jravan_client import (
-    JVLinkClient, OPT_NORMAL,
-    JVREAD_EOF, JVREAD_FILECHANGE, JVREAD_DOWNLOADING,
+    JVLinkClient,
+    OPT_NORMAL,
+    JVREAD_EOF,
+    JVREAD_FILECHANGE,
+    JVREAD_DOWNLOADING,
     _make_race_id,
 )
 
@@ -48,18 +54,18 @@ def hexdump_region(raw: bytes, start: int, end: int, label: str = "") -> None:
 def analyze_se(raw: bytes, se_index: int) -> None:
     cat = chr(raw[2])
     race_id = _make_race_id(raw)
-    print(f"\n{'='*70}")
+    print(f"\n{'=' * 70}")
     print(f"SE #{se_index}  race_id={race_id}  cat={cat}  len={len(raw)}")
-    print(f"{'='*70}")
+    print(f"{'=' * 70}")
 
     # ── 確定済みフィールド ──────────────────────────────────────
-    hexdump_region(raw, 27, 28,  "枠番 [確定]")
-    hexdump_region(raw, 28, 30,  "馬番 [確定]")
-    hexdump_region(raw, 30, 40,  "血統ID [確定]")
-    hexdump_region(raw, 40, 76,  "馬名SJIS [確定]")
-    hexdump_region(raw, 76, 77,  "性別 [確定]")
-    hexdump_region(raw, 77, 79,  "馬齢 [確定]")
-    hexdump_region(raw, 79, 84,  "騎手コード [確定]")
+    hexdump_region(raw, 27, 28, "枠番 [確定]")
+    hexdump_region(raw, 28, 30, "馬番 [確定]")
+    hexdump_region(raw, 30, 40, "血統ID [確定]")
+    hexdump_region(raw, 40, 76, "馬名SJIS [確定]")
+    hexdump_region(raw, 76, 77, "性別 [確定]")
+    hexdump_region(raw, 77, 79, "馬齢 [確定]")
+    hexdump_region(raw, 79, 84, "騎手コード [確定]")
     hexdump_region(raw, 84, 104, "騎手名SJIS [確定]")
 
     # ── 推定フィールド ──────────────────────────────────────────
@@ -79,7 +85,7 @@ def analyze_se(raw: bytes, se_index: int) -> None:
     print("\n  -- 着順候補領域 [225+] --")
     for off in [225, 227, 229, 233, 235, 237, 241, 243, 245]:
         if off + 4 <= len(raw):
-            hexdump_region(raw, off, off+4, f"offset {off}")
+            hexdump_region(raw, off, off + 4, f"offset {off}")
 
     # 既存オフセット (現在の推定値)
     print("\n  -- 現在の推定値との比較 --")
@@ -93,7 +99,7 @@ def analyze_se(raw: bytes, se_index: int) -> None:
     print("\n  -- 全体 (64バイト単位) --")
     total = len(raw)
     for start in range(0, total, 64):
-        chunk = raw[start:start+64]
+        chunk = raw[start : start + 64]
         asc = "".join(chr(b) if 0x20 <= b < 0x7F else "·" for b in chunk)
         print(f"  [{start:3d}] {asc!r}")
 
@@ -108,7 +114,8 @@ def main() -> None:
 
     sid = os.environ.get("JRAVAN_SID", "")
     if not sid:
-        print("ERROR: JRAVAN_SID 未設定"); sys.exit(1)
+        print("ERROR: JRAVAN_SID 未設定")
+        sys.exit(1)
 
     se_samples: list[bytes] = []
     hr_samples: list[bytes] = []
@@ -120,7 +127,8 @@ def main() -> None:
         ret = client.open("RACE", "20250101", OPT_NORMAL)
         print(f"JVOpen ret={ret}")
         if ret < 0:
-            print("JVOpen失敗"); return
+            print("JVOpen失敗")
+            return
 
         for _ in range(5_000_000):
             code, data = client.read_record()
@@ -129,7 +137,8 @@ def main() -> None:
             if code == JVREAD_FILECHANGE:
                 continue
             if code == JVREAD_DOWNLOADING:
-                time.sleep(1); continue
+                time.sleep(1)
+                continue
             if code < 0:
                 break
             if not data or len(data) < 50:
@@ -156,7 +165,7 @@ def main() -> None:
         for i, hr in enumerate(hr_samples):
             race_id = _make_race_id(hr)
             cat = chr(hr[2])
-            print(f"HR #{i+1} race_id={race_id} cat={cat}")
+            print(f"HR #{i + 1} race_id={race_id} cat={cat}")
             hexdump_region(hr, 27, 29, "単勝combo[27:29]")
             hexdump_region(hr, 29, 34, "単勝払戻[29:34]")
 

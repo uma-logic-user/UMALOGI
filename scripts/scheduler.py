@@ -1052,7 +1052,8 @@ def _job_post_race_body(target_date: str) -> None:
 
     # Step 4: ダッシュボード JSON 再生成（エラーでも実行）
     try:
-        import subprocess as _sp, sys as _sys
+        import subprocess as _sp
+        import sys as _sys
 
         _web_gen = str(Path(__file__).resolve().parents[1] / "web" / "generate_data.py")
         _sp.run([_sys.executable, _web_gen], check=True, timeout=120)
@@ -1162,7 +1163,8 @@ def _job_weekly_retrain_body() -> None:
 
     # 再学習後に summary / financial.json を更新
     try:
-        import subprocess as _sp, sys as _sys
+        import subprocess as _sp
+        import sys as _sys
 
         _web_gen = str(Path(__file__).resolve().parents[1] / "web" / "generate_data.py")
         _sp.run([_sys.executable, _web_gen, "--no-detail"], check=True, timeout=120)
@@ -1969,8 +1971,7 @@ def run_daemon() -> None:
             except Exception as e:
                 logger.critical("スケジューラー未処理例外: %s", e, exc_info=True)
                 _send_discord(
-                    f"🚨 [UMALOGI] スケジューラー例外 — デーモンは継続中\n"
-                    f"`{type(e).__name__}: {e}`"
+                    f"🚨 [UMALOGI] スケジューラー例外 — デーモンは継続中\n`{type(e).__name__}: {e}`"
                 )
             time.sleep(30)
     except KeyboardInterrupt:

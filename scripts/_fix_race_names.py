@@ -1,4 +1,5 @@
 """race_name の賞金等級プレフィックス・末尾ゴミ除去 + prediction_horses 洗浄"""
+
 import re
 import sqlite3
 import sys
@@ -6,9 +7,9 @@ import sys
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")  # type: ignore[attr-defined]
 
 CTRL_RE = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\x9f]")
-REPL_RE = re.compile(r"�")          # 置換文字
+REPL_RE = re.compile(r"�")  # 置換文字
 FWSP_RE = re.compile(r"[　　\s]+$")  # 末尾の全角スペース
-QAT_RE  = re.compile(r"(\?@)+")          # SJIS全角スペース誤デコード ?@ パターン
+QAT_RE = re.compile(r"(\?@)+")  # SJIS全角スペース誤デコード ?@ パターン
 
 
 def clean_race_name(v: str) -> str:
@@ -36,7 +37,8 @@ def main() -> None:
     ).fetchall()
 
     need_fix = [
-        (rid, v) for rid, v in rows
+        (rid, v)
+        for rid, v in rows
         if re.match(r"^\d{5}", v or "")
         or "�" in (v or "")
         or "　" in (v or "")
@@ -53,18 +55,15 @@ def main() -> None:
         "SELECT id, horse_name FROM prediction_horses WHERE horse_name IS NOT NULL"
     ).fetchall()
     bad2 = [
-        (i, v) for i, v in rows2
-        if isinstance(v, str) and (
-            CTRL_RE.search(v) or "�" in v or "　" in v
-        )
+        (i, v)
+        for i, v in rows2
+        if isinstance(v, str) and (CTRL_RE.search(v) or "�" in v or "　" in v)
     ]
     print(f"prediction_horses.horse_name: {len(bad2)} 件を修正")
 
     for i, v in bad2:
         new_v = CTRL_RE.sub("", REPL_RE.sub("", v)).strip()
-        conn.execute(
-            "UPDATE prediction_horses SET horse_name=? WHERE id=?", (new_v, i)
-        )
+        conn.execute("UPDATE prediction_horses SET horse_name=? WHERE id=?", (new_v, i))
 
     conn.commit()
 

@@ -19,7 +19,7 @@ import time
 from datetime import datetime
 from pathlib import Path
 
-ROOT   = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent
 DB_PATH = ROOT / "data" / "umalogi.db"
 INTERVAL = 60  # 秒
 
@@ -29,7 +29,9 @@ def is_pid_alive(pid: int) -> bool:
     try:
         result = subprocess.run(
             ["tasklist", "/FI", f"PID eq {pid}", "/NH", "/FO", "CSV"],
-            capture_output=True, text=True, timeout=10,
+            capture_output=True,
+            text=True,
+            timeout=10,
         )
         # tasklist は該当なしでも exit 0 を返す。出力に PID 文字列が含まれるか確認。
         return str(pid) in result.stdout
@@ -51,10 +53,10 @@ def get_count() -> int:
 def run_training() -> int:
     """py scripts/run_train.py を実行し、returncode を返す。"""
     cmd = [sys.executable, str(ROOT / "scripts" / "run_train.py")]
-    print(f"\n{'='*60}")
+    print(f"\n{'=' * 60}")
     print("データ取得完了。学習を開始します")
     print(f"コマンド: {' '.join(cmd)}")
-    print(f"{'='*60}\n")
+    print(f"{'=' * 60}\n")
     result = subprocess.run(cmd, cwd=str(ROOT))
     return result.returncode
 
@@ -63,23 +65,23 @@ def monitor(pid: int) -> None:
     prev_count = get_count()
     start_time = datetime.now()
 
-    print(f"{'='*60}")
+    print(f"{'=' * 60}")
     print(f"監視開始: PID={pid}  開始時刻={start_time.strftime('%H:%M:%S')}")
     print(f"DB: {DB_PATH}")
     print(f"チェック間隔: {INTERVAL} 秒")
-    print(f"{'='*60}")
+    print(f"{'=' * 60}")
     print(f"  初期件数: training_times = {prev_count:,} 件\n")
 
     while True:
         time.sleep(INTERVAL)
 
-        now   = datetime.now()
+        now = datetime.now()
         count = get_count()
-        diff  = count - prev_count if prev_count >= 0 else 0
+        diff = count - prev_count if prev_count >= 0 else 0
 
         elapsed = int((now - start_time).total_seconds())
-        h, rem  = divmod(elapsed, 3600)
-        m, s    = divmod(rem, 60)
+        h, rem = divmod(elapsed, 3600)
+        m, s = divmod(rem, 60)
 
         print(
             f"[{now.strftime('%H:%M:%S')}] "

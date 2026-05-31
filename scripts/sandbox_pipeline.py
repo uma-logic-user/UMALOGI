@@ -55,17 +55,17 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-ROOT        = Path(__file__).resolve().parent.parent
-MAIN_DB     = ROOT / "data" / "umalogi.db"
+ROOT = Path(__file__).resolve().parent.parent
+MAIN_DB = ROOT / "data" / "umalogi.db"
 RESEARCH_DB = ROOT / "data" / "netkeiba_research.db"
 SANDBOX_DIR = ROOT / "data" / "models" / "sandbox"
-DOCS_DIR    = ROOT / "docs"
+DOCS_DIR = ROOT / "docs"
 
 SANDBOX_DIR.mkdir(parents=True, exist_ok=True)
 DOCS_DIR.mkdir(parents=True, exist_ok=True)
 
 TRAIN_YEAR = "2024"
-TEST_YEAR  = "2025"
+TEST_YEAR = "2025"
 
 ALL_BET_TYPES = ["単勝", "複勝", "枠連", "馬連", "ワイド", "馬単", "三連複", "三連単"]
 
@@ -73,12 +73,19 @@ AUTO_IMPLEMENT_ROI_THRESHOLD = 120.0
 MIN_BETS_FOR_IMPLEMENT = 200
 
 # ── 静的エンコーダー ──────────────────────────────────────────────
-_SURFACE_MAP   = {"芝": 0, "ダート": 1, "障害": 2}
+_SURFACE_MAP = {"芝": 0, "ダート": 1, "障害": 2}
 _CONDITION_MAP = {"良": 0, "稍重": 1, "重": 2, "不良": 3}
-_VENUE_MAP     = {
-    "札幌": 0, "函館": 1, "福島": 2, "新潟": 3,
-    "東京": 4, "中山": 5, "中京": 6, "京都": 7,
-    "阪神": 8, "小倉": 9,
+_VENUE_MAP = {
+    "札幌": 0,
+    "函館": 1,
+    "福島": 2,
+    "新潟": 3,
+    "東京": 4,
+    "中山": 5,
+    "中京": 6,
+    "京都": 7,
+    "阪神": 8,
+    "小倉": 9,
 }
 
 # LightGBM 共通設定
@@ -102,23 +109,24 @@ _LGB_BASE: dict[str, Any] = {
 SANDBOX_FEATURE_COLS = [
     # ★ netkeiba オッズ特徴量（今回の特例: 通常は除外）
     # NOTE: horse_odds.rank は着順（カラーデータリーク）のため除外済み
-    "nb_win_odds",       # 単勝オッズ（レース前公開情報）
-    "nb_implied_prob",   # implied probability = (1/odds) / Σ(1/odds)
-    "nb_log_odds",       # log1p(odds)  — 非線形性キャプチャ
+    "nb_win_odds",  # 単勝オッズ（レース前公開情報）
+    "nb_implied_prob",  # implied probability = (1/odds) / Σ(1/odds)
+    "nb_log_odds",  # log1p(odds)  — 非線形性キャプチャ
     # レース公開情報
-    "venue_code",        # 開催場コード
-    "surface_code",      # 馬場コード (芝/ダート/障害)
-    "condition_code",    # 馬場状態コード (良〜不良)
-    "distance",          # 距離 (m)
-    "race_number",       # レース番号 (1-12)
-    "month",             # 開催月 (季節性)
-    "race_n_horses",     # 頭数 (フィールドサイズ)
+    "venue_code",  # 開催場コード
+    "surface_code",  # 馬場コード (芝/ダート/障害)
+    "condition_code",  # 馬場状態コード (良〜不良)
+    "distance",  # 距離 (m)
+    "race_number",  # レース番号 (1-12)
+    "month",  # 開催月 (季節性)
+    "race_n_horses",  # 頭数 (フィールドサイズ)
 ]
 
 
 # ─────────────────────────────────────────────────────────────────
 #  Phase 1: 統合特徴量構築
 # ─────────────────────────────────────────────────────────────────
+
 
 def build_sandbox_df(
     conn: sqlite3.Connection,
@@ -152,7 +160,9 @@ def build_sandbox_df(
         logger.warning("horse_odds にデータがありません: year=%s", year_prefix)
         return pd.DataFrame(), encoders or {}
 
-    df = pd.DataFrame(odds_rows, columns=["race_id", "horse_number", "nb_win_odds", "nb_popularity"])
+    df = pd.DataFrame(
+        odds_rows, columns=["race_id", "horse_number", "nb_win_odds", "nb_popularity"]
+    )
     logger.info("  horse_odds: %d行 / %d レース", len(df), df["race_id"].nunique())
 
     # ── 2. races テーブルからレース情報を JOIN ────────────────────
@@ -166,7 +176,15 @@ def build_sandbox_df(
     ).fetchall()
     race_df = pd.DataFrame(
         race_rows,
-        columns=["race_id", "date", "venue", "surface", "condition", "distance", "race_number"],
+        columns=[
+            "race_id",
+            "date",
+            "venue",
+            "surface",
+            "condition",
+            "distance",
+            "race_number",
+        ],
     )
     df = df.merge(race_df, on="race_id", how="inner")
 
@@ -188,8 +206,14 @@ def build_sandbox_df(
 
     result_df = pd.DataFrame(
         result_rows,
-        columns=["race_id", "horse_number", "rank", "gate_number",
-                 "payout_is_win", "payout_is_place"],
+        columns=[
+            "race_id",
+            "horse_number",
+            "rank",
+            "gate_number",
+            "payout_is_win",
+            "payout_is_place",
+        ],
     )
     # race_results に payout_is_win/place カラムがない場合の fallback
     result_rows_simple = conn.execute(
@@ -216,7 +240,9 @@ def build_sandbox_df(
         """,
         (f"{year_prefix}%",),
     ).fetchall()
-    payout_df = pd.DataFrame(payout_rows, columns=["race_id", "bet_type", "combination", "payout"])
+    payout_df = pd.DataFrame(
+        payout_rows, columns=["race_id", "bet_type", "combination", "payout"]
+    )
 
     # 単勝払戻 (race_id → payout)
     tansho = (
@@ -233,9 +259,9 @@ def build_sandbox_df(
 
     for _, row in result_df.iterrows():
         rid = row["race_id"]
-        hn  = int(row["horse_number"])
-        rk  = int(row["rank"])
-        gn  = int(row["gate_number"]) if pd.notna(row["gate_number"]) else 0
+        hn = int(row["horse_number"])
+        rk = int(row["rank"])
+        gn = int(row["gate_number"]) if pd.notna(row["gate_number"]) else 0
         gate_map[(rid, hn)] = gn
         rank_map[(rid, hn)] = rk
         if rk == 1:
@@ -246,7 +272,9 @@ def build_sandbox_df(
         axis=1,
     )
     df["is_placed"] = df.apply(
-        lambda r: 1 if rank_map.get((r["race_id"], int(r["horse_number"])), 99) <= 3 else 0,
+        lambda r: (
+            1 if rank_map.get((r["race_id"], int(r["horse_number"])), 99) <= 3 else 0
+        ),
         axis=1,
     )
     df["gate_number"] = df.apply(
@@ -257,14 +285,14 @@ def build_sandbox_df(
     df["ev_target"] = df["is_winner"] * df["payout_tansho"]
 
     # ── 5. 特徴量エンジニアリング ─────────────────────────────────
-    df["nb_win_odds"]   = pd.to_numeric(df["nb_win_odds"], errors="coerce")
+    df["nb_win_odds"] = pd.to_numeric(df["nb_win_odds"], errors="coerce")
     df["nb_popularity"] = pd.to_numeric(df["nb_popularity"], errors="coerce")
 
     # implied_prob (per race 正規化)
     df["nb_implied_prob"] = np.nan
-    df["nb_log_odds"]     = np.nan
-    df["nb_inv_pop"]      = np.nan
-    df["race_n_horses"]   = 0
+    df["nb_log_odds"] = np.nan
+    df["nb_inv_pop"] = np.nan
+    df["race_n_horses"] = 0
 
     for race_id, grp in df.groupby("race_id"):
         idx = grp.index
@@ -277,21 +305,23 @@ def build_sandbox_df(
             df.loc[idx, "nb_log_odds"] = np.log1p(grp["nb_win_odds"])
 
         valid_pop = grp["nb_popularity"].dropna()
-        df.loc[idx[grp["nb_popularity"].notna()], "nb_inv_pop"] = (
-            1.0 / grp["nb_popularity"].clip(lower=1.0)
-        )
+        df.loc[idx[grp["nb_popularity"].notna()], "nb_inv_pop"] = 1.0 / grp[
+            "nb_popularity"
+        ].clip(lower=1.0)
 
     # カテゴリエンコード
-    df["surface_code"]   = df["surface"].map(_SURFACE_MAP).fillna(-1).astype(int)
+    df["surface_code"] = df["surface"].map(_SURFACE_MAP).fillna(-1).astype(int)
     df["condition_code"] = df["condition"].map(_CONDITION_MAP).fillna(-1).astype(int)
-    df["venue_code"]     = df["venue"].map(_VENUE_MAP).fillna(-1).astype(int)
-    df["distance"]       = pd.to_numeric(df["distance"], errors="coerce").fillna(1600)
-    df["race_number"]    = pd.to_numeric(df["race_number"], errors="coerce").fillna(6)
-    df["month"]          = df["date"].str[5:7].astype(int, errors="ignore")
+    df["venue_code"] = df["venue"].map(_VENUE_MAP).fillna(-1).astype(int)
+    df["distance"] = pd.to_numeric(df["distance"], errors="coerce").fillna(1600)
+    df["race_number"] = pd.to_numeric(df["race_number"], errors="coerce").fillna(6)
+    df["month"] = df["date"].str[5:7].astype(int, errors="ignore")
 
     logger.info(
         "  勝ち馬ラベル付与: is_winner=%d / %d行 / %d レース",
-        df["is_winner"].sum(), len(df), df["race_id"].nunique(),
+        df["is_winner"].sum(),
+        len(df),
+        df["race_id"].nunique(),
     )
     logger.info(
         "  オッズカバレッジ: %.1f%%",
@@ -304,28 +334,29 @@ def build_sandbox_df(
 #  Phase 2: サンドボックスモデル学習
 # ─────────────────────────────────────────────────────────────────
 
+
 class SandboxModels:
     """honmei (勝ち確率) / place (連対確率) / ev (期待払戻) 3モデルのコンテナ。"""
 
     def __init__(self) -> None:
         self.honmei: LGBMClassifier | None = None
-        self.place:  LGBMClassifier | None = None
-        self.ev:     LGBMRegressor  | None = None
+        self.place: LGBMClassifier | None = None
+        self.ev: LGBMRegressor | None = None
 
     def train(self, train_df: pd.DataFrame) -> None:
         avail_feats = [c for c in SANDBOX_FEATURE_COLS if c in train_df.columns]
-        X       = train_df[avail_feats].copy()
-        y_win   = train_df["is_winner"].values
+        X = train_df[avail_feats].copy()
+        y_win = train_df["is_winner"].values
         y_place = train_df["is_placed"].values
-        y_ev    = train_df["ev_target"].values
+        y_ev = train_df["ev_target"].values
 
         logger.info(
             "  学習: %d行 / %d レース  特徴量=%d",
-            len(X), train_df["race_id"].nunique(), len(avail_feats),
+            len(X),
+            train_df["race_id"].nunique(),
+            len(avail_feats),
         )
-        logger.info(
-            "  正例: 単勝=%d / 複勝=%d", y_win.sum(), y_place.sum()
-        )
+        logger.info("  正例: 単勝=%d / 複勝=%d", y_win.sum(), y_place.sum())
 
         self.honmei = LGBMClassifier(**_LGB_BASE)
         self.honmei.fit(X, y_win)
@@ -343,11 +374,12 @@ class SandboxModels:
         avail_feats = [c for c in SANDBOX_FEATURE_COLS if c in df.columns]
         X = df[avail_feats].copy()
 
-        out = df[["race_id", "horse_number", "gate_number",
-                   "is_winner", "is_placed"]].copy()
-        out["win_prob"]   = self.honmei.predict_proba(X)[:, 1] if self.honmei else 0.0
-        out["place_prob"] = self.place.predict_proba(X)[:, 1]  if self.place  else 0.0
-        out["ev_score"]   = np.clip(self.ev.predict(X), 0, None) if self.ev else 0.0
+        out = df[
+            ["race_id", "horse_number", "gate_number", "is_winner", "is_placed"]
+        ].copy()
+        out["win_prob"] = self.honmei.predict_proba(X)[:, 1] if self.honmei else 0.0
+        out["place_prob"] = self.place.predict_proba(X)[:, 1] if self.place else 0.0
+        out["ev_score"] = np.clip(self.ev.predict(X), 0, None) if self.ev else 0.0
         return out
 
     def save(self) -> None:
@@ -363,8 +395,8 @@ class SandboxModels:
         with open(path, "rb") as f:
             data = pickle.load(f)
         self.honmei = data.get("honmei")
-        self.place  = data.get("place")
-        self.ev     = data.get("ev")
+        self.place = data.get("place")
+        self.ev = data.get("ev")
         logger.info("  モデルロード: %s", path)
         return True
 
@@ -372,6 +404,7 @@ class SandboxModels:
 # ─────────────────────────────────────────────────────────────────
 #  Phase 3: 全8券種バックテスト
 # ─────────────────────────────────────────────────────────────────
+
 
 def _parse_combo(bet_type: str, combination: str) -> tuple[int, ...]:
     """race_payouts の combination 文字列を int tuple に変換。"""
@@ -551,27 +584,29 @@ def run_backtest(
 
         # gate_number をより広い情報源から補完
         gate_map = gate_by_race.get(race_id, {})
-        race_pred["gate_number"] = race_pred["horse_number"].astype(int).map(
-            lambda x: gate_map.get(x, 0)
+        race_pred["gate_number"] = (
+            race_pred["horse_number"].astype(int).map(lambda x: gate_map.get(x, 0))
         )
 
         # ── 3モデル × 8券種 ─────────────────────────────────────
         for model_key, score_col in [
             ("sandbox_honmei", "win_prob"),
-            ("sandbox_place",  "place_prob"),
-            ("sandbox_ev",     "ev_score"),
+            ("sandbox_place", "place_prob"),
+            ("sandbox_ev", "ev_score"),
         ]:
             rp = race_pred.copy()
             rp["score"] = rp[score_col]
             sim = _simulate_one_race(rp, payouts)
             for bet_type, (inv, ret) in sim.items():
-                records.append({
-                    "race_id": race_id,
-                    "bet_type": bet_type,
-                    "model": model_key,
-                    "invested": inv,
-                    "returned": ret,
-                })
+                records.append(
+                    {
+                        "race_id": race_id,
+                        "bet_type": bet_type,
+                        "model": model_key,
+                        "invested": inv,
+                        "returned": ret,
+                    }
+                )
 
     logger.info("バックテスト完了: %d 件のレコード", len(records))
     return pd.DataFrame(records)
@@ -581,26 +616,29 @@ def run_backtest(
 #  Phase 4: ROI マトリクス集計
 # ─────────────────────────────────────────────────────────────────
 
+
 def compute_roi_matrix(bt: pd.DataFrame) -> pd.DataFrame:
     rows = []
     for (model, bet_type), grp in bt.groupby(["model", "bet_type"]):
-        n_races  = len(grp)
+        n_races = len(grp)
         invested = grp["invested"].sum()
         returned = grp["returned"].sum()
-        n_hits   = (grp["returned"] > 0).sum()
-        roi      = returned / invested * 100 if invested > 0 else 0.0
+        n_hits = (grp["returned"] > 0).sum()
+        roi = returned / invested * 100 if invested > 0 else 0.0
         hit_rate = n_hits / n_races * 100 if n_races > 0 else 0.0
-        avg_ret  = returned / n_hits if n_hits > 0 else 0.0
-        rows.append({
-            "model": model,
-            "bet_type": bet_type,
-            "n_races": n_races,
-            "invested": int(invested),
-            "returned": int(returned),
-            "roi_pct": round(roi, 1),
-            "hit_rate": round(hit_rate, 1),
-            "avg_return": round(avg_ret, 0),
-        })
+        avg_ret = returned / n_hits if n_hits > 0 else 0.0
+        rows.append(
+            {
+                "model": model,
+                "bet_type": bet_type,
+                "n_races": n_races,
+                "invested": int(invested),
+                "returned": int(returned),
+                "roi_pct": round(roi, 1),
+                "hit_rate": round(hit_rate, 1),
+                "avg_return": round(avg_ret, 0),
+            }
+        )
     df = pd.DataFrame(rows)
     if df.empty:
         return df
@@ -624,7 +662,8 @@ def auto_implement(roi_df: pd.DataFrame) -> list[str]:
     if profitable.empty:
         logger.info(
             "ROI≥%.0f%% 且つ %d件以上の券種なし — 本番実装スキップ",
-            AUTO_IMPLEMENT_ROI_THRESHOLD, MIN_BETS_FOR_IMPLEMENT,
+            AUTO_IMPLEMENT_ROI_THRESHOLD,
+            MIN_BETS_FOR_IMPLEMENT,
         )
         return []
 
@@ -657,26 +696,26 @@ def auto_implement(roi_df: pd.DataFrame) -> list[str]:
     ]
 
     strategies = {
-        "単勝":  "score上位1頭を単勝購入（100円）",
-        "複勝":  "score上位3頭を複勝購入（各100円/計300円）",
-        "馬連":  "score上位2頭の馬連（100円）",
+        "単勝": "score上位1頭を単勝購入（100円）",
+        "複勝": "score上位3頭を複勝購入（各100円/計300円）",
+        "馬連": "score上位2頭の馬連（100円）",
         "ワイド": "score上位3頭からC(3,2)=3点ワイド（各100円/計300円）",
-        "枠連":  "score上位2頭の枠番組み合わせ（100円）",
-        "馬単":  "score1位→2位の馬単（100円）",
+        "枠連": "score上位2頭の枠番組み合わせ（100円）",
+        "馬単": "score1位→2位の馬単（100円）",
         "三連複": "score上位3頭の三連複（100円）",
         "三連単": "score1位→2位→3位の三連単（100円）",
     }
 
     for _, row in profitable.iterrows():
-        model    = row["model"]
+        model = row["model"]
         bet_type = row["bet_type"]
-        roi      = row["roi_pct"]
-        hit      = row["hit_rate"]
-        n_r      = int(row["n_races"])
-        inv      = int(row["invested"])
-        ret      = int(row["returned"])
-        profit   = ret - inv
-        strat    = strategies.get(bet_type, "")
+        roi = row["roi_pct"]
+        hit = row["hit_rate"]
+        n_r = int(row["n_races"])
+        inv = int(row["invested"])
+        ret = int(row["returned"])
+        profit = ret - inv
+        strat = strategies.get(bet_type, "")
         note_str = (
             f"ROI={roi}% 的中率={hit}% n={n_r}R "
             f"投={inv:,}円 回={ret:,}円 P&L=+{profit:,}円 // {strat}"
@@ -715,11 +754,20 @@ def auto_implement(roi_df: pd.DataFrame) -> list[str]:
 #  レポート生成
 # ─────────────────────────────────────────────────────────────────
 
+
 def generate_report(roi_df: pd.DataFrame, implemented: list[str]) -> Path:
     today = datetime.now().strftime("%Y%m%d")
     report_path = DOCS_DIR / f"sandbox_report_{today}.md"
-    jra_take = {"単勝": 20, "複勝": 20, "枠連": 22.5, "馬連": 22.5,
-                "ワイド": 22.5, "馬単": 25, "三連複": 25, "三連単": 27.5}
+    jra_take = {
+        "単勝": 20,
+        "複勝": 20,
+        "枠連": 22.5,
+        "馬連": 22.5,
+        "ワイド": 22.5,
+        "馬単": 25,
+        "三連複": 25,
+        "三連単": 27.5,
+    }
 
     lines: list[str] = [
         "# UMALOGI サンドボックス全券種シミュレーションレポート",
@@ -745,7 +793,7 @@ def generate_report(roi_df: pd.DataFrame, implemented: list[str]) -> Path:
         "|------|-----------|------------|",
     ]
     for bt, take in jra_take.items():
-        lines.append(f"| {bt} | {take}% | {100-take}% |")
+        lines.append(f"| {bt} | {take}% | {100 - take}% |")
 
     lines += [
         "",
@@ -807,7 +855,7 @@ def generate_report(roi_df: pd.DataFrame, implemented: list[str]) -> Path:
             "",
             "## 自動実装済み戦略",
             "",
-            f"以下の (モデル, 券種) を `src/ml/bet_generator.py` に追記しました。",
+            "以下の (モデル, 券種) を `src/ml/bet_generator.py` に追記しました。",
             "",
         ]
         for key in implemented:
@@ -841,23 +889,28 @@ def generate_report(roi_df: pd.DataFrame, implemented: list[str]) -> Path:
 #  main
 # ─────────────────────────────────────────────────────────────────
 
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="特例サンドボックス — netkeiba×JVLink統合・全8券種シミュレーション"
     )
-    parser.add_argument("--skip-train",  action="store_true", help="学習スキップ（保存済みモデル使用）")
-    parser.add_argument("--report-only", action="store_true", help="既存結果からレポートのみ")
+    parser.add_argument(
+        "--skip-train", action="store_true", help="学習スキップ（保存済みモデル使用）"
+    )
+    parser.add_argument(
+        "--report-only", action="store_true", help="既存結果からレポートのみ"
+    )
     args = parser.parse_args()
 
     start = datetime.now()
-    print(f"\n{'='*65}")
+    print(f"\n{'=' * 65}")
     print("  UMALOGI サンドボックスパイプライン — 特例全券種シミュレーション")
     print(f"  開始: {start.strftime('%Y-%m-%d %H:%M:%S')}")
     print(f"  学習: {TRAIN_YEAR}  テスト: {TEST_YEAR}")
-    print(f"  特徴量: netkeiba win_odds + JVLink 公開情報 (特例)")
-    print(f"{'='*65}\n")
+    print("  特徴量: netkeiba win_odds + JVLink 公開情報 (特例)")
+    print(f"{'=' * 65}\n")
 
-    conn     = sqlite3.connect(str(MAIN_DB))
+    conn = sqlite3.connect(str(MAIN_DB))
     res_conn = sqlite3.connect(str(RESEARCH_DB))
 
     bt_cache = SANDBOX_DIR / "backtest_results.pkl"
@@ -871,60 +924,64 @@ def main() -> None:
         if args.skip_train and models.load():
             logger.info("保存済みサンドボックスモデルをロード")
         else:
-            print(f"\n{'─'*55}")
+            print(f"\n{'─' * 55}")
             print(f"  Phase 1: 特徴量構築 (学習 {TRAIN_YEAR})")
-            print(f"{'─'*55}")
-            train_df, _ = build_sandbox_df(conn, res_conn, TRAIN_YEAR, fit_encoders=True)
+            print(f"{'─' * 55}")
+            train_df, _ = build_sandbox_df(
+                conn, res_conn, TRAIN_YEAR, fit_encoders=True
+            )
             if train_df.empty:
-                print("[ERROR] 学習データが空です"); return
+                print("[ERROR] 学習データが空です")
+                return
 
-            print(f"\n{'─'*55}")
+            print(f"\n{'─' * 55}")
             print("  Phase 2: サンドボックスモデル学習")
-            print(f"{'─'*55}")
+            print(f"{'─' * 55}")
             models.train(train_df)
             models.save()
 
-        print(f"\n{'─'*55}")
+        print(f"\n{'─' * 55}")
         print(f"  Phase 1 (test): 特徴量構築 (テスト {TEST_YEAR})")
-        print(f"{'─'*55}")
+        print(f"{'─' * 55}")
         test_df, _ = build_sandbox_df(conn, res_conn, TEST_YEAR, fit_encoders=False)
         if test_df.empty:
-            print("[ERROR] テストデータが空です"); return
+            print("[ERROR] テストデータが空です")
+            return
 
-        print(f"\n{'─'*55}")
+        print(f"\n{'─' * 55}")
         print("  Phase 3: 全8券種バックテスト")
-        print(f"{'─'*55}")
+        print(f"{'─' * 55}")
         bt_df = run_backtest(models, test_df, conn)
         bt_df.to_pickle(bt_cache)
 
-    print(f"\n{'─'*55}")
+    print(f"\n{'─' * 55}")
     print("  Phase 4: ROI マトリクス集計")
-    print(f"{'─'*55}")
+    print(f"{'─' * 55}")
     roi_df = compute_roi_matrix(bt_df)
     print("\n■ ROI マトリクス（全モデル × 全8券種）\n")
     pd.set_option("display.max_rows", 100)
     pd.set_option("display.width", 120)
     print(roi_df.to_string(index=False))
 
-    print(f"\n{'─'*55}")
+    print(f"\n{'─' * 55}")
     print("  Phase 5: 黒字券種の自動実装")
-    print(f"{'─'*55}")
+    print(f"{'─' * 55}")
     implemented = auto_implement(roi_df)
 
-    print(f"\n{'─'*55}")
+    print(f"\n{'─' * 55}")
     print("  レポート生成")
-    print(f"{'─'*55}")
+    print(f"{'─' * 55}")
     report_path = generate_report(roi_df, implemented)
 
     elapsed = (datetime.now() - start).total_seconds() / 60
-    print(f"\n{'='*65}")
+    print(f"\n{'=' * 65}")
     print(f"  完了  経過={elapsed:.1f}分")
     print(f"  レポート: {report_path}")
     if implemented:
         print(f"  実装済み: {len(implemented)}件")
         for key in implemented[:10]:
             print(f"    ✅ {key}")
-    print(f"{'='*65}\n")
+    print(f"{'=' * 65}\n")
 
     conn.close()
     res_conn.close()

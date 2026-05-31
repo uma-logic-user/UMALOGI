@@ -22,7 +22,7 @@ import logging
 import threading
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from datetime import date, datetime, timedelta
+from datetime import date, timedelta
 from pathlib import Path
 import sys
 
@@ -31,6 +31,7 @@ from bs4 import BeautifulSoup
 
 try:
     from tqdm import tqdm as _tqdm
+
     _HAS_TQDM = True
 except ImportError:
     _HAS_TQDM = False
@@ -62,18 +63,25 @@ _HEADERS = {
 
 # 会場コード（netkeiba race_id の YYYY[VV]DD NN 形式）
 _VENUE_CODES = {
-    "01": "札幌", "02": "函館", "03": "福島", "04": "新潟",
-    "05": "東京", "06": "中山", "07": "中京", "08": "京都",
-    "09": "阪神", "10": "小倉",
+    "01": "札幌",
+    "02": "函館",
+    "03": "福島",
+    "04": "新潟",
+    "05": "東京",
+    "06": "中山",
+    "07": "中京",
+    "08": "京都",
+    "09": "阪神",
+    "10": "小倉",
 }
 
 # グレードフィルタ
 _GRADE_FILTER = {
-    "gi":   ["GⅠ"],
-    "gii":  ["GⅡ"],
+    "gi": ["GⅠ"],
+    "gii": ["GⅡ"],
     "giii": ["GⅢ"],
-    "g":    ["GⅠ", "GⅡ", "GⅢ"],
-    "all":  [],  # 全クラス
+    "g": ["GⅠ", "GⅡ", "GⅢ"],
+    "all": [],  # 全クラス
 }
 
 # ── スレッドローカル Session ──────────────────────────────────────
@@ -91,6 +99,7 @@ def _get_session() -> requests.Session:
 
 
 # ── 日別レース ID 取得 ────────────────────────────────────────────
+
 
 def fetch_race_ids_for_date(
     date_str: str,
@@ -136,6 +145,7 @@ def fetch_race_ids_for_date(
 def _extract_race_id(href: str) -> str | None:
     """URL から race_id（12桁の数字列）を抽出する。"""
     import re
+
     m = re.search(r"race_id=(\d{12})", href)
     if m:
         return m.group(1)
@@ -146,6 +156,7 @@ def _extract_race_id(href: str) -> str | None:
 
 
 # ── 年月別 GI/重賞 レース ID 取得 ────────────────────────────────
+
 
 def fetch_race_ids_by_month(
     year: int,
@@ -200,6 +211,7 @@ def fetch_race_ids_by_month(
 
 # ── ワーカー関数 ──────────────────────────────────────────────────
 
+
 def _fetch_and_save_one(
     race_id: str,
     *,
@@ -250,6 +262,7 @@ def _fetch_and_save_one(
 
 
 # ── バルク取得 ────────────────────────────────────────────────────
+
 
 def fetch_and_save_range(
     start_date: date,
@@ -316,8 +329,9 @@ def fetch_and_save_range(
             else:
                 cursor = date(cursor.year, cursor.month + 1, 1)
 
-    logger.info("対象レース総数: %d 件 (%s 〜 %s)",
-                len(all_race_ids), start_date, end_date)
+    logger.info(
+        "対象レース総数: %d 件 (%s 〜 %s)", len(all_race_ids), start_date, end_date
+    )
 
     db_lock = threading.Lock()
     _run_parallel(
@@ -373,6 +387,7 @@ def fetch_and_save_date(
     if stats["saved"] > 0:
         try:
             from utils.backup import make_backup
+
             make_backup()
         except Exception as exc:
             logger.warning("バックアップ失敗（処理は継続）: %s", exc)
@@ -381,6 +396,7 @@ def fetch_and_save_date(
 
 
 # ── 並列実行コア ──────────────────────────────────────────────────
+
 
 def _run_parallel(
     race_ids: list[str],
@@ -399,7 +415,9 @@ def _run_parallel(
     total = len(race_ids)
 
     if _HAS_TQDM:
-        progress = _tqdm(total=total, desc="レース取得", unit="race", dynamic_ncols=True)
+        progress = _tqdm(
+            total=total, desc="レース取得", unit="race", dynamic_ncols=True
+        )
     else:
         progress = None
 
@@ -438,8 +456,13 @@ def _run_parallel(
                 done = stats["saved"] + stats["skipped"] + stats["errors"]
                 logger.info(
                     "[%d/%d] %s → %s (保存:%d スキップ:%d エラー:%d)",
-                    done, total, race_id, result,
-                    stats["saved"], stats["skipped"], stats["errors"],
+                    done,
+                    total,
+                    race_id,
+                    result,
+                    stats["saved"],
+                    stats["skipped"],
+                    stats["errors"],
                 )
 
     if progress is not None:
@@ -483,7 +506,9 @@ def _collect_race_ids_by_weekends(
                 logger.warning("日別ID取得失敗 %s: %s", date_str, exc)
         cursor += timedelta(days=1)
 
-    logger.info("土日スキャン完了 (%s 〜 %s): %d 件", start_date, end_date, len(all_ids))
+    logger.info(
+        "土日スキャン完了 (%s 〜 %s): %d 件", start_date, end_date, len(all_ids)
+    )
     return all_ids
 
 
@@ -523,19 +548,24 @@ def _fetch(
                 raise
             if attempt == max_retries - 1:
                 raise
-            wait = delay * (2 ** attempt)
-            logger.warning("リトライ %d/%d (%s) %.1f秒後", attempt + 1, max_retries, exc, wait)
+            wait = delay * (2**attempt)
+            logger.warning(
+                "リトライ %d/%d (%s) %.1f秒後", attempt + 1, max_retries, exc, wait
+            )
             time.sleep(wait)
         except requests.RequestException as exc:
             if attempt == max_retries - 1:
                 raise
-            wait = delay * (2 ** attempt)
-            logger.warning("リトライ %d/%d (%s) %.1f秒後", attempt + 1, max_retries, exc, wait)
+            wait = delay * (2**attempt)
+            logger.warning(
+                "リトライ %d/%d (%s) %.1f秒後", attempt + 1, max_retries, exc, wait
+            )
             time.sleep(wait)
     raise RuntimeError("到達不能コード")  # pragma: no cover
 
 
 # ── CLI ──────────────────────────────────────────────────────────
+
 
 def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
@@ -556,17 +586,21 @@ def _parse_args() -> argparse.Namespace:
   python -m src.scraper.fetch_historical --date 20251228 --grade all
 """,
     )
-    parser.add_argument("--date",  metavar="YYYYMMDD", help="特定日のレースを取得")
-    parser.add_argument("--year",  type=int, help="特定年のレースを取得")
-    parser.add_argument("--years", type=int, default=5, help="過去N年分を取得（デフォルト5）")
+    parser.add_argument("--date", metavar="YYYYMMDD", help="特定日のレースを取得")
+    parser.add_argument("--year", type=int, help="特定年のレースを取得")
+    parser.add_argument(
+        "--years", type=int, default=5, help="過去N年分を取得（デフォルト5）"
+    )
     parser.add_argument(
         "--grade",
         choices=["gi", "gii", "giii", "g", "all"],
         default="gi",
         help="取得グレード (デフォルト: gi)",
     )
-    parser.add_argument("--delay",   type=float, default=2.5, help="リクエスト間隔秒数")
-    parser.add_argument("--workers", type=int,   default=4,   help="並列スレッド数（デフォルト: 4）")
+    parser.add_argument("--delay", type=float, default=2.5, help="リクエスト間隔秒数")
+    parser.add_argument(
+        "--workers", type=int, default=4, help="並列スレッド数（デフォルト: 4）"
+    )
     parser.add_argument("--no-skip", action="store_true", help="既存レースも再取得")
     return parser.parse_args()
 
@@ -591,23 +625,33 @@ def main() -> None:
     elif args.year:
         # 特定年モード
         start = date(args.year, 1, 1)
-        end   = date(args.year, 12, 31)
+        end = date(args.year, 12, 31)
         stats = fetch_and_save_range(
-            start, end, grade=args.grade,
-            delay=args.delay, skip_existing=skip, max_workers=workers,
+            start,
+            end,
+            grade=args.grade,
+            delay=args.delay,
+            skip_existing=skip,
+            max_workers=workers,
         )
 
     else:
         # 過去N年モード（デフォルト5年）
         today = date.today()
         start = date(today.year - args.years, 1, 1)
-        end   = today
+        end = today
         stats = fetch_and_save_range(
-            start, end, grade=args.grade,
-            delay=args.delay, skip_existing=skip, max_workers=workers,
+            start,
+            end,
+            grade=args.grade,
+            delay=args.delay,
+            skip_existing=skip,
+            max_workers=workers,
         )
 
-    print(f"\n取得完了: 保存={stats['saved']} スキップ={stats['skipped']} エラー={stats['errors']}")
+    print(
+        f"\n取得完了: 保存={stats['saved']} スキップ={stats['skipped']} エラー={stats['errors']}"
+    )
 
 
 if __name__ == "__main__":

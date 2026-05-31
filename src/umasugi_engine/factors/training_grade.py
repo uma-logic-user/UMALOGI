@@ -10,6 +10,7 @@ horse_id フォーマット注意:
   正規化キー(9桁): race_results → horse_id[:4]+horse_id[4:9]
                   training_times → substr(horse_id,2,9)
 """
+
 from __future__ import annotations
 
 import logging

@@ -36,6 +36,7 @@ sys.path.insert(0, str(_ROOT))
 
 try:
     from dotenv import load_dotenv
+
     load_dotenv(_ROOT / ".env", override=False)
 except ImportError:
     pass
@@ -49,8 +50,8 @@ logger = logging.getLogger("watchdog")
 
 # ── 定数 ──────────────────────────────────────────────────────────────────────
 
-_DB_PATH        = _ROOT / "data" / "umalogi.db"
-_SYNC_CMD_32    = [sys.executable.replace("python.exe", "python.exe"), "-3-32"]
+_DB_PATH = _ROOT / "data" / "umalogi.db"
+_SYNC_CMD_32 = [sys.executable.replace("python.exe", "python.exe"), "-3-32"]
 # 32bit Python のパス候補（環境によって異なる）
 _PY32_CANDIDATES = [
     r"C:\Python311-32\python.exe",
@@ -61,13 +62,13 @@ _PY32_CANDIDATES = [
 ]
 
 # 修復試行間の最小インターバル（秒）
-_SOFT_RETRY_WAIT   = 120   # ソフト修復後 2 分待つ
-_HARD_RETRY_WAIT   = 180   # ハード修復後 3 分待つ
-_JVLINK_KILL_WAIT  =  10   # taskkill 後の待機（秒）
-_SYNC_TIMEOUT      = 300   # data_sync タイムアウト（秒）
+_SOFT_RETRY_WAIT = 120  # ソフト修復後 2 分待つ
+_HARD_RETRY_WAIT = 180  # ハード修復後 3 分待つ
+_JVLINK_KILL_WAIT = 10  # taskkill 後の待機（秒）
+_SYNC_TIMEOUT = 300  # data_sync タイムアウト（秒）
 
 # 1 レースあたりの NaN 検知しきい値（割合）
-_NAN_RATIO_THRESHOLD = 0.5   # 50% 以上が NaN なら修復トリガー
+_NAN_RATIO_THRESHOLD = 0.5  # 50% 以上が NaN なら修復トリガー
 
 _shutdown_flag = False
 
@@ -78,25 +79,26 @@ def _signal_handler(sig: int, frame: object) -> None:
     _shutdown_flag = True
 
 
-signal.signal(signal.SIGINT,  _signal_handler)
+signal.signal(signal.SIGINT, _signal_handler)
 signal.signal(signal.SIGTERM, _signal_handler)
 
 
 # ── Discord 通知 ────────────────────────────────────────────────────────────
 
+
 def _discord(msg: str) -> None:
     """Discord システムチャンネルにメッセージを送信。失敗しても例外を握り潰す。
     DISCORD_SYSTEM_WEBHOOK_URL を優先し、未設定時は DISCORD_WEBHOOK_URL へ fallback する。
     """
-    webhook_url = (
-        os.getenv("DISCORD_SYSTEM_WEBHOOK_URL", "")
-        or os.getenv("DISCORD_WEBHOOK_URL", "")
+    webhook_url = os.getenv("DISCORD_SYSTEM_WEBHOOK_URL", "") or os.getenv(
+        "DISCORD_WEBHOOK_URL", ""
     )
     if not webhook_url:
         logger.debug("Discord URL 未設定 — 通知スキップ")
         return
     try:
         import requests
+
         resp = requests.post(webhook_url, json={"content": msg}, timeout=10)
         if resp.status_code not in (200, 204):
             logger.warning("Discord 送信失敗: HTTP %d", resp.status_code)
@@ -105,6 +107,7 @@ def _discord(msg: str) -> None:
 
 
 # ── DB チェック ─────────────────────────────────────────────────────────────
+
 
 def _get_today_races(target_date: str) -> list[str]:
     """本日の race_id 一覧を返す（発走前のレースのみ）。"""
@@ -166,7 +169,10 @@ def _has_sufficient_odds(race_ids: list[str]) -> bool:
     nan_ratio = nan_count / total if total > 0 else 1.0
     logger.info(
         "オッズ状況: race_results=%d NaN=%d (%.0f%%) realtime_odds=%d件",
-        total, nan_count, nan_ratio * 100, rtd_count,
+        total,
+        nan_count,
+        nan_ratio * 100,
+        rtd_count,
     )
     # realtime_odds があれば OK、または race_results の半数以上にオッズあれば OK
     return rtd_count > 0 or nan_ratio < _NAN_RATIO_THRESHOLD
@@ -174,13 +180,16 @@ def _has_sufficient_odds(race_ids: list[str]) -> bool:
 
 # ── 修復ロジック ─────────────────────────────────────────────────────────────
 
+
 def _find_py32() -> str | None:
     """32bit Python 実行ファイルを探す。"""
     # py launcher で -3-32 フラグを試す
     try:
         result = subprocess.run(
             ["py", "-3-32", "-c", "import sys; print(sys.version)"],
-            capture_output=True, timeout=10, encoding="utf-8",
+            capture_output=True,
+            timeout=10,
+            encoding="utf-8",
         )
         if result.returncode == 0:
             return "py"
@@ -292,7 +301,11 @@ def _soft_repair(target_date: str, py32_cmd: str, race_ids_to_fix: list[str]) ->
     RTD が死んでいても netkeiba から取得できれば復旧可能。
     Returns: 保存できたレース数
     """
-    logger.info("▶ ソフト修復開始: netkeiba Backfill (%s, %d レース)", target_date, len(race_ids_to_fix))
+    logger.info(
+        "▶ ソフト修復開始: netkeiba Backfill (%s, %d レース)",
+        target_date,
+        len(race_ids_to_fix),
+    )
     _discord(
         f"⚠️ **UMALOGI watchdog**: オッズ欠損を検知しました。\n"
         f"修復プロセスを開始します... (netkeiba backfill / {target_date})"
@@ -330,7 +343,9 @@ def _backfill_odds_from_netkeiba(race_ids: list[str]) -> int:
             # HorseOdds は place_odds_min/max を持つため insert_realtime_odds と完全互換
             n = insert_realtime_odds(conn, race_id, nb_odds, name_map)
             if n > 0:
-                logger.info("Backfill 成功 [netkeiba]: %d 頭保存 (race_id=%s)", n, race_id)
+                logger.info(
+                    "Backfill 成功 [netkeiba]: %d 頭保存 (race_id=%s)", n, race_id
+                )
                 saved_races += 1
             time.sleep(0.3)  # レート制限対策
         except Exception as exc:
@@ -415,7 +430,10 @@ def _rerun_prerace_for_races(race_ids: list[str]) -> int:
 
 # ── メインループ ─────────────────────────────────────────────────────────────
 
-def _check_and_repair(target_date: str, py32_cmd: str, repair_counts: dict[str, int]) -> None:
+
+def _check_and_repair(
+    target_date: str, py32_cmd: str, repair_counts: dict[str, int]
+) -> None:
     """1 回のチェックサイクルを実行する。"""
     race_ids = _get_today_races(target_date)
     if not race_ids:
@@ -439,7 +457,9 @@ def _check_and_repair(target_date: str, py32_cmd: str, repair_counts: dict[str, 
     # 連続修復試行回数チェック（1日あたり最大20回でAlertのみ）
     if total_repairs >= 20 and repair_counts.get("over_limit_notified") != target_date:
         repair_counts["over_limit_notified"] = target_date
-        logger.warning("修復試行 %d 回超過 — 継続しますが Discord に警告を送ります", total_repairs)
+        logger.warning(
+            "修復試行 %d 回超過 — 継続しますが Discord に警告を送ります", total_repairs
+        )
         _discord(
             f"⚠️ **UMALOGI watchdog**: 自動修復を {total_repairs} 回試みています。\n"
             "継続監視中ですが、JVLink や netkeiba への接続を手動確認することを推奨します。"
@@ -497,10 +517,16 @@ def _check_and_repair(target_date: str, py32_cmd: str, repair_counts: dict[str, 
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="UMALOGI オッズ欠損監視・自動修復デーモン")
-    parser.add_argument("--interval", type=int, default=5, help="チェック間隔（分, デフォルト=5）")
+    parser = argparse.ArgumentParser(
+        description="UMALOGI オッズ欠損監視・自動修復デーモン"
+    )
+    parser.add_argument(
+        "--interval", type=int, default=5, help="チェック間隔（分, デフォルト=5）"
+    )
     parser.add_argument("--once", action="store_true", help="1 回チェックして終了")
-    parser.add_argument("--date", default=None, help="監視対象日 YYYYMMDD (デフォルト: 今日)")
+    parser.add_argument(
+        "--date", default=None, help="監視対象日 YYYYMMDD (デフォルト: 今日)"
+    )
     args = parser.parse_args()
 
     target_date_raw = args.date or date.today().strftime("%Y%m%d")
@@ -521,7 +547,9 @@ def main() -> None:
 
     logger.info(
         "watchdog 起動: 対象日=%s チェック間隔=%d 分 32bitPy=%s",
-        target_date, args.interval, py32_cmd or "N/A",
+        target_date,
+        args.interval,
+        py32_cmd or "N/A",
     )
     if not args.once:
         _discord(

@@ -27,12 +27,13 @@ def train_pipeline() -> None:
 
     try:
         from utils.backup import make_backup
+
         make_backup()
         logger.info("学習前バックアップ完了")
     except Exception as exc:
         logger.warning("バックアップ失敗（学習は継続）: %s", exc)
 
-    conn   = init_db()
+    conn = init_db()
     result = train_all(conn)
     conn.close()
     logger.info("学習結果: %s", result)

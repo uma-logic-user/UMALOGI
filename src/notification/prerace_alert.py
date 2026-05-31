@@ -7,6 +7,7 @@ Discord ev_alert チャンネルへ @everyone 付きで通知する。
 重複通知防止: in-memory set で当日既通知の race_id を管理する。
 日付変わりでリセット。
 """
+
 from __future__ import annotations
 
 import logging
@@ -65,7 +66,9 @@ def _estimate_start(race_date: str, race_number: int) -> datetime:
     """
     d = race_date.replace("/", "-")
     base_date = date.fromisoformat(d)
-    base = datetime(base_date.year, base_date.month, base_date.day, _R1_HOUR, _R1_MINUTE)
+    base = datetime(
+        base_date.year, base_date.month, base_date.day, _R1_HOUR, _R1_MINUTE
+    )
     return base + timedelta(minutes=(race_number - 1) * _INTERVAL_MIN)
 
 
@@ -102,7 +105,7 @@ def _build_alert_message(
     if race_name:
         label += f"（{race_name}）"
 
-    max_ev = max(p["expected_value"] for p in preds)
+    max(p["expected_value"] for p in preds)
 
     lines = []
     for p in preds:
@@ -186,7 +189,9 @@ def check_and_send_prerace_alerts(
             if not preds:
                 logger.debug(
                     "[発走前アラート] %s %sR: EV>=%.1f の予想なし → スキップ",
-                    row["venue"], race_number, PRERACE_ALERT_EV_THRESHOLD,
+                    row["venue"],
+                    race_number,
+                    PRERACE_ALERT_EV_THRESHOLD,
                 )
                 continue
 
@@ -199,7 +204,10 @@ def check_and_send_prerace_alerts(
             sent_count += 1
             logger.info(
                 "[発走前アラート] %s %sR → %d件通知 (max_ev=%.2f)",
-                row["venue"], race_number, len(pred_list), max_ev,
+                row["venue"],
+                race_number,
+                len(pred_list),
+                max_ev,
             )
 
         conn.close()
@@ -216,6 +224,7 @@ def _dispatch_alert(race_id: str, max_ev: float, message: str) -> None:
     """
     try:
         from src.notification.router import NotificationRouter
+
         router = NotificationRouter()
         router.notify_prerace_15min(race_id=race_id, max_ev=max_ev, message=message)
     except Exception as exc:

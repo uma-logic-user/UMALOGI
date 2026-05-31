@@ -45,38 +45,39 @@ _DB_PATH = _ROOT / "data" / "umalogi.db"
 _OUT_DIR = _ROOT / "docs" / "note_drafts"
 
 _EV_PICK_THRESHOLD = 1.5
-_FREE_PICK_LIMIT   = 3
+_FREE_PICK_LIMIT = 3
 
 # 万馬券・高配当の閾値
 _TOKUDAI_THRESHOLD = 100_000  # 特大万馬券（10万円超）
 _MANBAIKEN_THRESHOLD = 10_000  # 万馬券
-_KODAI_THRESHOLD  = 5_000    # 高配当
+_KODAI_THRESHOLD = 5_000  # 高配当
 
 # セグメント勝利判定 ROI 閾値
-_WINNER_ROI_THRESHOLD = 100.0   # ROI 100%超 = プラス運用
-_MINIMUM_BETS_FOR_SEGMENT = 3   # 最低買い目数（統計的有意性）
+_WINNER_ROI_THRESHOLD = 100.0  # ROI 100%超 = プラス運用
+_MINIMUM_BETS_FOR_SEGMENT = 3  # 最低買い目数（統計的有意性）
 
 # モデルベース名 → 表示名マッピング
 _MODEL_DISPLAY: dict[str, str] = {
-    "本命":         "本命モデル",
-    "卍":           "卍モデル",
+    "本命": "本命モデル",
+    "卍": "卍モデル",
     "Alpha-Payout": "ALPHAモデル",
-    "HitFocus":     "HitFocusモデル",
-    "Oracle":       "Oracleモデル",
-    "本命v2":       "本命モデル（V2）",
-    "卍v2":         "卍モデル（V2）",
-    "本命V2":       "本命モデル（V2）",
-    "卍V2":         "卍モデル（V2）",
+    "HitFocus": "HitFocusモデル",
+    "Oracle": "Oracleモデル",
+    "本命v2": "本命モデル（V2）",
+    "卍v2": "卍モデル（V2）",
+    "本命V2": "本命モデル（V2）",
+    "卍V2": "卍モデル（V2）",
 }
 
 _QF_BET_TYPES: set[str] = {"ワイド", "馬連"}
 
 # バックテスト確定値（セールス用）
-_BT_ROI  = 95.4
+_BT_ROI = 95.4
 _BT_SIGS = 45313
 
 
 # ── 日付レンジ ─────────────────────────────────────────────────────
+
 
 def _last_week_range(week_offset: int = 1) -> tuple[str, str]:
     today = date.today()
@@ -95,6 +96,7 @@ def _this_week_range() -> tuple[str, str]:
 
 # ── モデル名正規化 ─────────────────────────────────────────────────
 
+
 def _model_base(model_type: str) -> str:
     """'本命(直前)' → '本命'"""
     return re.sub(r"\s*\((暫定|直前)\)\s*$", "", model_type).strip()
@@ -110,6 +112,7 @@ def _model_display(model_type: str) -> str:
 
 
 # ── DB クエリ ──────────────────────────────────────────────────────
+
 
 def _fetch_all_model_stats(
     conn: sqlite3.Connection,
@@ -141,21 +144,23 @@ def _fetch_all_model_stats(
         total, hits, payout, profit = row[2], row[3] or 0, row[4], row[5]
         investment = payout - profit if payout > profit else total * 100
         roi = payout / investment * 100 if investment > 0 else 0.0
-        result.append({
-            "model_type": model_type,
-            "model_base": _model_base(model_type),
-            "model_display": _model_display(model_type),
-            "bet_type": bet_type,
-            "total": total,
-            "hits": hits,
-            "hit_rate": hits / total * 100 if total else 0.0,
-            "payout": int(payout),
-            "profit": int(profit),
-            "investment": int(investment),
-            "roi": roi,
-            "is_v2": _is_v2(model_type),
-            "is_qf": bet_type in _QF_BET_TYPES,
-        })
+        result.append(
+            {
+                "model_type": model_type,
+                "model_base": _model_base(model_type),
+                "model_display": _model_display(model_type),
+                "bet_type": bet_type,
+                "total": total,
+                "hits": hits,
+                "hit_rate": hits / total * 100 if total else 0.0,
+                "payout": int(payout),
+                "profit": int(profit),
+                "investment": int(investment),
+                "roi": roi,
+                "is_v2": _is_v2(model_type),
+                "is_qf": bet_type in _QF_BET_TYPES,
+            }
+        )
     return result
 
 
@@ -225,11 +230,11 @@ def _fetch_manbaiken_hits(
 
         # 種別判定
         if payout >= _TOKUDAI_THRESHOLD:
-            grade = "tokudai"    # 特大万馬券
+            grade = "tokudai"  # 特大万馬券
         elif payout >= _MANBAIKEN_THRESHOLD:
             grade = "manbaiken"  # 万馬券
         else:
-            grade = "kodai"      # 高配当
+            grade = "kodai"  # 高配当
 
         # 着順取得
         placed = conn.execute(
@@ -242,17 +247,23 @@ def _fetch_manbaiken_hits(
             (race_id,),
         ).fetchall()
 
-        results.append({
-            "date": row[1], "venue": row[2], "race_number": row[3],
-            "race_name": row[4] or f"{row[2]}{row[3]}R",
-            "model_type": row[5], "bet_type": bet_type,
-            "payout": payout, "profit": profit,
-            "grade": grade,
-            "placed": [
-                {"number": p[0], "name": p[1] or f"{p[0]}番", "rank": p[2]}
-                for p in placed
-            ],
-        })
+        results.append(
+            {
+                "date": row[1],
+                "venue": row[2],
+                "race_number": row[3],
+                "race_name": row[4] or f"{row[2]}{row[3]}R",
+                "model_type": row[5],
+                "bet_type": bet_type,
+                "payout": payout,
+                "profit": profit,
+                "grade": grade,
+                "placed": [
+                    {"number": p[0], "name": p[1] or f"{p[0]}番", "rank": p[2]}
+                    for p in placed
+                ],
+            }
+        )
     return results
 
 
@@ -298,17 +309,22 @@ def _fetch_top_hits(
             """,
             (race_id,),
         ).fetchall()
-        results.append({
-            "date": row[1], "venue": row[2], "race_number": row[3],
-            "race_name": row[4] or f"{row[2]}{row[3]}R",
-            "model_type": row[5], "bet_type": bet_type,
-            "payout": int(row[7]) if row[7] else 0,
-            "profit": int(row[8]) if row[8] else 0,
-            "placed": [
-                {"number": p[0], "name": p[1] or f"{p[0]}番", "rank": p[2]}
-                for p in placed
-            ],
-        })
+        results.append(
+            {
+                "date": row[1],
+                "venue": row[2],
+                "race_number": row[3],
+                "race_name": row[4] or f"{row[2]}{row[3]}R",
+                "model_type": row[5],
+                "bet_type": bet_type,
+                "payout": int(row[7]) if row[7] else 0,
+                "profit": int(row[8]) if row[8] else 0,
+                "placed": [
+                    {"number": p[0], "name": p[1] or f"{p[0]}番", "rank": p[2]}
+                    for p in placed
+                ],
+            }
+        )
         if len(results) >= limit:
             break
     return results
@@ -368,22 +384,35 @@ def _fetch_qf_picks(
                 [race_id] + horse_nums,
             ).fetchall()
             horses = [
-                {"number": h[0], "name": h[1] or f"{h[0]}番",
-                 "jockey": h[2] or "—", "odds": h[3], "popularity": h[4]}
+                {
+                    "number": h[0],
+                    "name": h[1] or f"{h[0]}番",
+                    "jockey": h[2] or "—",
+                    "odds": h[3],
+                    "popularity": h[4],
+                }
                 for h in hr
             ]
 
         qf_types = ["複勝"] + (["ワイド", "馬連"] if len(horse_nums) >= 2 else [])
-        picks.append({
-            "race_id": race_id, "date": row[1], "venue": row[2],
-            "race_number": row[3],
-            "race_name": row[4] or f"{row[2]}{row[3]}R",
-            "surface": row[5], "distance": row[6], "condition": row[7],
-            "ev": ev,
-            "recommended_bet": int(rec_bet) if rec_bet else 300,
-            "horse_nums": horse_nums, "horses": horses,
-            "qf_bet_types": qf_types, "model_type": model_type,
-        })
+        picks.append(
+            {
+                "race_id": race_id,
+                "date": row[1],
+                "venue": row[2],
+                "race_number": row[3],
+                "race_name": row[4] or f"{row[2]}{row[3]}R",
+                "surface": row[5],
+                "distance": row[6],
+                "condition": row[7],
+                "ev": ev,
+                "recommended_bet": int(rec_bet) if rec_bet else 300,
+                "horse_nums": horse_nums,
+                "horses": horses,
+                "qf_bet_types": qf_types,
+                "model_type": model_type,
+            }
+        )
         if len(picks) >= limit:
             break
     return picks
@@ -391,15 +420,22 @@ def _fetch_qf_picks(
 
 # ── テキスト整形 ────────────────────────────────────────────────────
 
+
 def _surface_jp(s: str | None) -> str:
-    return {"T": "芝", "D": "ダート", "芝": "芝", "ダート": "ダート"}.get(s or "", s or "芝")
+    return {"T": "芝", "D": "ダート", "芝": "芝", "ダート": "ダート"}.get(
+        s or "", s or "芝"
+    )
 
 
 def _dist_cat(d: int | None) -> str:
-    if not d:       return "中距離"
-    if d < 1400:    return "短距離"
-    if d < 1800:    return "マイル"
-    if d < 2200:    return "中距離"
+    if not d:
+        return "中距離"
+    if d < 1400:
+        return "短距離"
+    if d < 1800:
+        return "マイル"
+    if d < 2200:
+        return "中距離"
     return "長距離"
 
 
@@ -414,16 +450,18 @@ def _pnl_str(n: int) -> str:
 
 
 def _roi_icon(roi: float) -> str:
-    if roi >= 100: return "🟢"
-    if roi >= 80:  return "🟡"
+    if roi >= 100:
+        return "🟢"
+    if roi >= 80:
+        return "🟡"
     return "🔴"
 
 
 def _grade_badge(grade: str) -> str:
     return {
-        "tokudai":   "🎊【特大万馬券的中！】",
+        "tokudai": "🎊【特大万馬券的中！】",
         "manbaiken": "💰【万馬券的中！】",
-        "kodai":     "🎯【高配当的中！】",
+        "kodai": "🎯【高配当的中！】",
     }.get(grade, "✅")
 
 
@@ -437,6 +475,7 @@ def _grade_label(grade: str, payout: int) -> str:
 
 
 # ── セクション生成 ─────────────────────────────────────────────────
+
 
 def _build_manbaiken_section(hits: list[dict]) -> list[str]:
     """万馬券・高配当的中セクションを構築する。ヒーロー最上位に配置。"""
@@ -476,10 +515,13 @@ def _build_manbaiken_section(hits: list[dict]) -> list[str]:
     for hit in hits:
         badge = _grade_badge(hit["grade"])
         label = _grade_label(hit["grade"], hit["payout"])
-        placed_str = "　".join(
-            f"{medals.get(p['rank'], '■')}{p['rank']}着 **{p['number']}番 {p['name']}**"
-            for p in hit["placed"]
-        ) or "—"
+        placed_str = (
+            "　".join(
+                f"{medals.get(p['rank'], '■')}{p['rank']}着 **{p['number']}番 {p['name']}**"
+                for p in hit["placed"]
+            )
+            or "—"
+        )
         model_label = _model_display(hit["model_type"])
 
         lines += [
@@ -487,8 +529,8 @@ def _build_manbaiken_section(hits: list[dict]) -> list[str]:
             "",
             f"> {label}",
             "",
-            f"| 項目 | 内容 |",
-            f"|---|---|",
+            "| 項目 | 内容 |",
+            "|---|---|",
             f"| 開催 | {hit['date']}　{hit['venue']} {hit['race_number']}R |",
             f"| 券種 | **{hit['bet_type']}** |",
             f"| 的中馬 | {placed_str} |",
@@ -558,13 +600,13 @@ def _build_winning_segments_section(
         best = segments[0]
         lines += [
             f"> 🎉 **{best['model_display']} × {best['bet_type']} が今週ROI {best['roi']:.1f}%を達成！**",
-            f"> 投資額を上回る払戻を実現しました。",
+            "> 投資額を上回る払戻を実現しました。",
             "",
         ]
     else:
         best = segments[0]
         lines += [
-            f"> 💡 今週は全セグメントで苦しい週となりましたが、",
+            "> 💡 今週は全セグメントで苦しい週となりましたが、",
             f"> **{best['model_display']} × {best['bet_type']}** が最も高いROI {best['roi']:.1f}% で健闘しました。",
             "> バックテスト長期通算では回収率100%超を達成しており、",
             "> 短期の振れ幅として許容しながら運用を継続します。",
@@ -636,10 +678,10 @@ def generate_weekly_note(
     this_from, this_to = _this_week_range()
 
     # ── データ取得 ──────────────────────────────────────────────────
-    all_stats   = _fetch_all_model_stats(conn, last_from, last_to)
-    manbaiken   = _fetch_manbaiken_hits(conn, last_from, last_to)
-    top_hits    = _fetch_top_hits(conn, last_from, last_to, limit=3)
-    picks       = _fetch_qf_picks(conn, this_from, this_to) if include_picks else []
+    all_stats = _fetch_all_model_stats(conn, last_from, last_to)
+    manbaiken = _fetch_manbaiken_hits(conn, last_from, last_to)
+    top_hits = _fetch_top_hits(conn, last_from, last_to, limit=3)
+    picks = _fetch_qf_picks(conn, this_from, this_to) if include_picks else []
 
     # 勝利セグメントピックアップ
     win_segs, is_true_winner = _fetch_winning_segments(all_stats)
@@ -647,13 +689,15 @@ def generate_weekly_note(
     # V1/V2 分離（V2稼働確認用）
     has_v2 = any(_is_v2(r["model_type"]) for r in all_stats)
 
-    issue_date  = today.strftime("%Y-%m-%d")
-    last_label  = f"{last_from}〜{last_to}"
+    issue_date = today.strftime("%Y-%m-%d")
+    last_label = f"{last_from}〜{last_to}"
 
     lines: list[str] = []
 
     # ── タイトル ──────────────────────────────────────────────────
-    manbaiken_count = sum(1 for h in manbaiken if h["grade"] in ("tokudai", "manbaiken"))
+    manbaiken_count = sum(
+        1 for h in manbaiken if h["grade"] in ("tokudai", "manbaiken")
+    )
     if manbaiken_count > 0:
         subtitle = f"今週の万馬券{manbaiken_count}本的中 ＆ AI厳選予想"
     else:
@@ -687,8 +731,7 @@ def generate_weekly_note(
     # 万馬券リストに含まれていない top_hits のみを表示
     manbaiken_keys = {f"{h['date']}:{h['bet_type']}" for h in manbaiken}
     notable_hits = [
-        h for h in top_hits
-        if f"{h['date']}:{h['bet_type']}" not in manbaiken_keys
+        h for h in top_hits if f"{h['date']}:{h['bet_type']}" not in manbaiken_keys
     ]
 
     if notable_hits:
@@ -698,10 +741,13 @@ def generate_weekly_note(
         ]
         medals = {1: "🥇", 2: "🥈", 3: "🥉"}
         for ex in notable_hits:
-            placed_str = "　".join(
-                f"{medals.get(p['rank'], '✅')}{p['rank']}着 **{p['number']}番 {p['name']}**"
-                for p in ex["placed"]
-            ) or "—"
+            placed_str = (
+                "　".join(
+                    f"{medals.get(p['rank'], '✅')}{p['rank']}着 **{p['number']}番 {p['name']}**"
+                    for p in ex["placed"]
+                )
+                or "—"
+            )
             model_label = _model_display(ex["model_type"])
             qf_badge = " ⭐QF" if ex["bet_type"] in _QF_BET_TYPES else ""
             lines += [
@@ -830,14 +876,19 @@ def generate_weekly_note(
 
 # ── メイン ────────────────────────────────────────────────────────
 
+
 def main() -> None:
     p = argparse.ArgumentParser(description="note.com 週次まとめ記事を自動生成する")
-    p.add_argument("--week-offset", type=int, default=1,
-                   help="何週前を振り返るか（デフォルト1=先週）")
-    p.add_argument("--no-picks", action="store_true",
-                   help="Part2（今週の無料予想）を省略する")
-    p.add_argument("--stdout", action="store_true",
-                   help="ファイル保存せず標準出力のみ")
+    p.add_argument(
+        "--week-offset",
+        type=int,
+        default=1,
+        help="何週前を振り返るか（デフォルト1=先週）",
+    )
+    p.add_argument(
+        "--no-picks", action="store_true", help="Part2（今週の無料予想）を省略する"
+    )
+    p.add_argument("--stdout", action="store_true", help="ファイル保存せず標準出力のみ")
     p.add_argument("--output", help=f"出力ディレクトリ（省略時: {_OUT_DIR}）")
     args = p.parse_args()
 

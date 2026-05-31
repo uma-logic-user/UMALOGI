@@ -7,6 +7,7 @@ training_hillwork テーブルに保存する。
 
 URL: https://race.netkeiba.com/race/training.html?race_id=<race_id>
 """
+
 from __future__ import annotations
 
 import logging
@@ -42,18 +43,18 @@ _COURSE_TYPE_MAP = {
 
 @dataclass
 class TrainingRecord:
-    horse_id: str           # netkeiba horse_id (血統ID形式)
+    horse_id: str  # netkeiba horse_id (血統ID形式)
     horse_name: str
-    training_date: str      # YYYY-MM-DD
-    course_type: str        # 坂路 / 南W / 北W / W / C / D
+    training_date: str  # YYYY-MM-DD
+    course_type: str  # 坂路 / 南W / 北W / W / C / D
     time_4f: float | None
     time_3f: float | None
     time_2f: float | None
     time_1f: float | None
     lap_time: float | None
-    gear: str               # 馬なり / 一杯 / 強め 等
+    gear: str  # 馬なり / 一杯 / 強め 等
     jockey_name: str
-    is_hillwork: bool       # True = 坂路
+    is_hillwork: bool  # True = 坂路
 
 
 def _safe_float_time(text: str) -> float | None:
@@ -169,10 +170,12 @@ def _parse_training_page(soup: BeautifulSoup, race_id: str) -> list[TrainingReco
                 continue
 
             # 列解析: 日付 / コース / タイム群 / 脚色 / 乗り役
-            date_text   = cells[0].get_text(strip=True)
+            date_text = cells[0].get_text(strip=True)
             course_text = cells[1].get_text(strip=True) if len(cells) > 1 else ""
-            times_text  = [cells[i].get_text(strip=True) for i in range(2, min(7, len(cells)))]
-            gear_text   = cells[-2].get_text(strip=True) if len(cells) >= 2 else ""
+            times_text = [
+                cells[i].get_text(strip=True) for i in range(2, min(7, len(cells)))
+            ]
+            gear_text = cells[-2].get_text(strip=True) if len(cells) >= 2 else ""
             jockey_text = cells[-1].get_text(strip=True) if len(cells) >= 1 else ""
 
             # 日付パース (MM/DD or YYYY/MM/DD)
@@ -187,30 +190,36 @@ def _parse_training_page(soup: BeautifulSoup, race_id: str) -> list[TrainingReco
             t1f = _safe_float_time(times_text[3]) if len(times_text) > 3 else None
             lap = _safe_float_time(times_text[4]) if len(times_text) > 4 else None
 
-            records.append(TrainingRecord(
-                horse_id=horse_id,
-                horse_name=horse_name,
-                training_date=training_date,
-                course_type=course_type,
-                time_4f=t4f,
-                time_3f=t3f,
-                time_2f=t2f,
-                time_1f=t1f,
-                lap_time=lap,
-                gear=gear_text,
-                jockey_name=jockey_text,
-                is_hillwork=is_hillwork,
-            ))
+            records.append(
+                TrainingRecord(
+                    horse_id=horse_id,
+                    horse_name=horse_name,
+                    training_date=training_date,
+                    course_type=course_type,
+                    time_4f=t4f,
+                    time_3f=t3f,
+                    time_2f=t2f,
+                    time_1f=t1f,
+                    lap_time=lap,
+                    gear=gear_text,
+                    jockey_name=jockey_text,
+                    is_hillwork=is_hillwork,
+                )
+            )
 
     return records
 
 
-def _parse_training_table_layout(soup: BeautifulSoup, race_id: str) -> list[TrainingRecord]:
+def _parse_training_table_layout(
+    soup: BeautifulSoup, race_id: str
+) -> list[TrainingRecord]:
     """
     テーブル一体型レイアウト（全馬を1テーブルに表示）のフォールバックパーサー。
     """
     records: list[TrainingRecord] = []
-    tables = soup.select("table.TrainingTime, table[class*='training'], table[class*='Training']")
+    tables = soup.select(
+        "table.TrainingTime, table[class*='training'], table[class*='Training']"
+    )
 
     current_horse_id = ""
     current_horse_name = ""
@@ -233,10 +242,12 @@ def _parse_training_table_layout(soup: BeautifulSoup, race_id: str) -> list[Trai
             if len(cells) < 3:
                 continue
 
-            date_text   = cells[0].get_text(strip=True)
+            date_text = cells[0].get_text(strip=True)
             course_text = cells[1].get_text(strip=True) if len(cells) > 1 else ""
-            times_text  = [cells[i].get_text(strip=True) for i in range(2, min(7, len(cells)))]
-            gear_text   = cells[-2].get_text(strip=True) if len(cells) >= 2 else ""
+            times_text = [
+                cells[i].get_text(strip=True) for i in range(2, min(7, len(cells)))
+            ]
+            gear_text = cells[-2].get_text(strip=True) if len(cells) >= 2 else ""
             jockey_text = cells[-1].get_text(strip=True) if len(cells) >= 1 else ""
 
             training_date = _parse_date(date_text, race_id)
@@ -250,20 +261,22 @@ def _parse_training_table_layout(soup: BeautifulSoup, race_id: str) -> list[Trai
             t1f = _safe_float_time(times_text[3]) if len(times_text) > 3 else None
             lap = _safe_float_time(times_text[4]) if len(times_text) > 4 else None
 
-            records.append(TrainingRecord(
-                horse_id=current_horse_id,
-                horse_name=current_horse_name,
-                training_date=training_date,
-                course_type=course_type,
-                time_4f=t4f,
-                time_3f=t3f,
-                time_2f=t2f,
-                time_1f=t1f,
-                lap_time=lap,
-                gear=gear_text,
-                jockey_name=jockey_text,
-                is_hillwork=is_hillwork,
-            ))
+            records.append(
+                TrainingRecord(
+                    horse_id=current_horse_id,
+                    horse_name=current_horse_name,
+                    training_date=training_date,
+                    course_type=course_type,
+                    time_4f=t4f,
+                    time_3f=t3f,
+                    time_2f=t2f,
+                    time_1f=t1f,
+                    lap_time=lap,
+                    gear=gear_text,
+                    jockey_name=jockey_text,
+                    is_hillwork=is_hillwork,
+                )
+            )
 
     return records
 
@@ -319,9 +332,18 @@ def save_training_records(
                         gear       = COALESCE(NULLIF(excluded.gear,''), training_hillwork.gear),
                         jockey_name = COALESCE(NULLIF(excluded.jockey_name,''), training_hillwork.jockey_name)
                     """,
-                    (rec.horse_id, rec.horse_name, rec.training_date,
-                     rec.time_4f, rec.time_3f, rec.time_2f, rec.time_1f, rec.lap_time,
-                     rec.gear, rec.jockey_name),
+                    (
+                        rec.horse_id,
+                        rec.horse_name,
+                        rec.training_date,
+                        rec.time_4f,
+                        rec.time_3f,
+                        rec.time_2f,
+                        rec.time_1f,
+                        rec.lap_time,
+                        rec.gear,
+                        rec.jockey_name,
+                    ),
                 )
                 hillwork_saved += 1
             except Exception as exc:
@@ -337,9 +359,17 @@ def save_training_records(
                              time_4f, time_3f, time_2f, time_1f, lap_time, gear)
                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
                         """,
-                        (rec.horse_id, rec.training_date, rec.course_type,
-                         rec.time_4f, rec.time_3f, rec.time_2f, rec.time_1f,
-                         rec.lap_time, rec.gear),
+                        (
+                            rec.horse_id,
+                            rec.training_date,
+                            rec.course_type,
+                            rec.time_4f,
+                            rec.time_3f,
+                            rec.time_2f,
+                            rec.time_1f,
+                            rec.lap_time,
+                            rec.gear,
+                        ),
                     )
                     times_saved += 1
                 except Exception as exc:

@@ -55,7 +55,6 @@ def compute_live_roi(
         params,
     ).fetchall()
 
-    agg: dict[str, list[float]] = {}  # key -> [n, cost, payout, profit, hits]
     by_model: dict[str, list[float]] = {}
     by_bet: dict[str, list[float]] = {}
 

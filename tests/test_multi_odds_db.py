@@ -7,6 +7,7 @@ multi_odds テーブルの DB 操作テスト。
   3. INSERT OR IGNORE が重複をスキップすること
   4. MultiOddsEntry.recorded_at のデフォルト値が設定されること
 """
+
 from __future__ import annotations
 
 import sqlite3
@@ -25,8 +26,13 @@ def conn(tmp_path):
     c.close()
 
 
-def _entry(race_id: str = "202404010101", combo: str = "1-2", bet_type: str = "馬連",
-           odds: float = 15.4, recorded_at: str = "2024-04-01 10:00:00") -> MultiOddsEntry:
+def _entry(
+    race_id: str = "202404010101",
+    combo: str = "1-2",
+    bet_type: str = "馬連",
+    odds: float = 15.4,
+    recorded_at: str = "2024-04-01 10:00:00",
+) -> MultiOddsEntry:
     return MultiOddsEntry(
         race_id=race_id,
         bet_type=bet_type,
@@ -51,9 +57,11 @@ class TestMigration:
         ).fetchall()
         index_names = {r[0] for r in rows}
         assert "idx_mo_race_bet" in index_names
-        assert "idx_mo_race_id"  in index_names
+        assert "idx_mo_race_id" in index_names
 
-    def test_check_constraint_rejects_invalid_bet_type(self, conn: sqlite3.Connection) -> None:
+    def test_check_constraint_rejects_invalid_bet_type(
+        self, conn: sqlite3.Connection
+    ) -> None:
         with pytest.raises(sqlite3.IntegrityError):
             conn.execute(
                 "INSERT INTO multi_odds (race_id, bet_type, combination, recorded_at) "
@@ -117,8 +125,12 @@ class TestInsertMultiOdds:
         assert e.recorded_at != ""
         assert len(e.recorded_at) == 19  # "YYYY-MM-DD HH:MM:SS"
 
-    @pytest.mark.parametrize("bet_type", ["枠連", "馬連", "ワイド", "馬単", "三連複", "三連単"])
-    def test_all_valid_bet_types_accepted(self, conn: sqlite3.Connection, bet_type: str) -> None:
+    @pytest.mark.parametrize(
+        "bet_type", ["枠連", "馬連", "ワイド", "馬単", "三連複", "三連単"]
+    )
+    def test_all_valid_bet_types_accepted(
+        self, conn: sqlite3.Connection, bet_type: str
+    ) -> None:
         e = MultiOddsEntry(
             race_id="202404010101",
             bet_type=bet_type,

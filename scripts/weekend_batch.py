@@ -28,7 +28,7 @@ import json
 import logging
 import sqlite3
 import sys
-from datetime import date, datetime
+from datetime import date
 from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8")
@@ -39,6 +39,7 @@ if str(_ROOT) not in sys.path:
 
 try:
     from dotenv import load_dotenv
+
     load_dotenv(_ROOT / ".env", override=False)
 except ImportError:
     pass
@@ -56,15 +57,23 @@ _OUT_DIR = _ROOT / "outputs"
 
 # 競馬場コード → 名称
 _VENUE_NAMES: dict[str, str] = {
-    "01": "札幌", "02": "函館", "03": "福島", "04": "新潟",
-    "05": "東京", "06": "中山", "07": "中京", "08": "京都",
-    "09": "阪神", "10": "小倉",
+    "01": "札幌",
+    "02": "函館",
+    "03": "福島",
+    "04": "新潟",
+    "05": "東京",
+    "06": "中山",
+    "07": "中京",
+    "08": "京都",
+    "09": "阪神",
+    "10": "小倉",
 }
 
 
 # ================================================================
 # ── DB ヘルパー ────────────────────────────────────────────────
 # ================================================================
+
 
 def _connect() -> sqlite3.Connection:
     if not _DB_PATH.exists():
@@ -182,6 +191,7 @@ def _upsert_batch_run(
 # ── Pre フェーズ ───────────────────────────────────────────────
 # ================================================================
 
+
 def run_pre(run_date: str, *, dry_run: bool, headless: bool) -> dict[str, int]:
     """07:00 フェーズ: note 下書き + ウマニティ投稿 + X 告知。"""
     logger.info("=" * 55)
@@ -198,8 +208,16 @@ def run_pre(run_date: str, *, dry_run: bool, headless: bool) -> dict[str, int]:
     if not preds:
         logger.info("予想なし。Pre フェーズをスキップします。")
         conn.close()
-        _upsert_batch_run(conn if not conn else _connect(), run_date, "pre",
-                          "success", 0, 0, 0, "予想なし")
+        _upsert_batch_run(
+            conn if not conn else _connect(),
+            run_date,
+            "pre",
+            "success",
+            0,
+            0,
+            0,
+            "予想なし",
+        )
         return stats
 
     # ── 1. note 下書き保存 ────────────────────────────────────
@@ -220,9 +238,16 @@ def run_pre(run_date: str, *, dry_run: bool, headless: bool) -> dict[str, int]:
     # ── ログ記録 ──────────────────────────────────────────────
     conn2 = _connect()
     status = "success" if not errors else "partial"
-    _upsert_batch_run(conn2, run_date, "pre", status,
-                      stats["note_ok"], stats["umanity_ok"], stats["x_ok"],
-                      "; ".join(errors) if errors else None)
+    _upsert_batch_run(
+        conn2,
+        run_date,
+        "pre",
+        status,
+        stats["note_ok"],
+        stats["umanity_ok"],
+        stats["x_ok"],
+        "; ".join(errors) if errors else None,
+    )
     conn2.close()
     conn.close()
 
@@ -257,12 +282,15 @@ def _run_note_draft(
         combo_str = ""
         if combos:
             first = combos[0]
-            combo_str = "-".join(str(n) for n in first) if isinstance(first, list) else str(first)
+            combo_str = (
+                "-".join(str(n) for n in first)
+                if isinstance(first, list)
+                else str(first)
+            )
         venue = _VENUE_NAMES.get(str(p["race_id"])[4:6], "")
         ev_val = p["expected_value"] or 0.0
         free_lines.append(
-            f"◆ {venue} {p['race_number']}R  "
-            f"{p['bet_type']} {combo_str}  EV={ev_val:.2f}"
+            f"◆ {venue} {p['race_number']}R  {p['bet_type']} {combo_str}  EV={ev_val:.2f}"
         )
 
     body = (
@@ -277,7 +305,10 @@ def _run_note_draft(
     )
 
     if dry_run:
-        logger.info("[Pre][DRY-RUN] note 下書き保存をスキップ (title=%s)", f"UMALOGI {date_label}")
+        logger.info(
+            "[Pre][DRY-RUN] note 下書き保存をスキップ (title=%s)",
+            f"UMALOGI {date_label}",
+        )
         return True
 
     return save_draft(
@@ -291,6 +322,7 @@ def _run_umanity(run_date: str, dry_run: bool, headless: bool) -> int:
     """ウマニティ コロシアムに投稿し、成功件数を返す。"""
     try:
         from src.ops.umanity_uploader import run_upload
+
         stats = run_upload(
             target_date=run_date,
             dry_run=dry_run,
@@ -312,6 +344,7 @@ def _post_x_pre_announcement(
     """X に本日予想のお知らせを投稿する。"""
     try:
         from src.notification.twitter_notifier import TwitterNotifier
+
         notifier = TwitterNotifier()
     except Exception as e:
         logger.error("[Pre] TwitterNotifier 初期化失敗: %s", e)
@@ -347,6 +380,7 @@ def _post_x_pre_announcement(
 # ── Post フェーズ ──────────────────────────────────────────────
 # ================================================================
 
+
 def run_post(run_date: str, *, dry_run: bool) -> dict[str, int | float]:
     """18:30 フェーズ: 結果取得 + 的中画像生成 + X 報告。"""
     logger.info("=" * 55)
@@ -354,7 +388,11 @@ def run_post(run_date: str, *, dry_run: bool) -> dict[str, int | float]:
     logger.info("=" * 55)
 
     stats: dict[str, int | float] = {
-        "hits": 0, "total": 0, "payout": 0.0, "bet": 0.0, "x_ok": 0,
+        "hits": 0,
+        "total": 0,
+        "payout": 0.0,
+        "bet": 0.0,
+        "x_ok": 0,
     }
     errors: list[str] = []
 
@@ -370,20 +408,24 @@ def run_post(run_date: str, *, dry_run: bool) -> dict[str, int | float]:
 
     # ── 集計 ──────────────────────────────────────────────────
     hits = [r for r in results if r["is_hit"]]
-    total_bet    = sum(r["bet_amount"] or 0 for r in results)
+    total_bet = sum(r["bet_amount"] or 0 for r in results)
     total_payout = sum(r["payout"] or 0 for r in results)
     roi = total_payout / total_bet * 100 if total_bet > 0 else 0.0
     profit = total_payout - total_bet
 
-    stats["hits"]   = len(hits)
-    stats["total"]  = len(results)
+    stats["hits"] = len(hits)
+    stats["total"] = len(results)
     stats["payout"] = total_payout
-    stats["bet"]    = total_bet
+    stats["bet"] = total_bet
 
     logger.info(
         "集計: 的中 %d/%d  払戻 ¥%s  投資 ¥%s  ROI=%.1f%%  損益=¥%s",
-        len(hits), len(results),
-        f"{total_payout:,.0f}", f"{total_bet:,.0f}", roi, f"{profit:+,.0f}",
+        len(hits),
+        len(results),
+        f"{total_payout:,.0f}",
+        f"{total_bet:,.0f}",
+        roi,
+        f"{profit:+,.0f}",
     )
 
     # ── 的中証拠画像生成 ───────────────────────────────────────
@@ -406,9 +448,16 @@ def run_post(run_date: str, *, dry_run: bool) -> dict[str, int | float]:
     # ── ログ記録 ──────────────────────────────────────────────
     conn2 = _connect()
     status = "success" if not errors else "partial"
-    _upsert_batch_run(conn2, run_date, "post", status,
-                      0, 0, stats["x_ok"],  # type: ignore[arg-type]
-                      "; ".join(errors) if errors else None)
+    _upsert_batch_run(
+        conn2,
+        run_date,
+        "post",
+        status,
+        0,
+        0,
+        stats["x_ok"],  # type: ignore[arg-type]
+        "; ".join(errors) if errors else None,
+    )
     conn2.close()
     conn.close()
 
@@ -431,16 +480,16 @@ def _generate_hit_cards(
         venue = _VENUE_NAMES.get(str(r["race_id"])[4:6], "")
         out_path = out_dir / f"{r['race_id']}_{r['bet_type']}.png"
 
-        payout   = float(r["payout"] or 0)
+        payout = float(r["payout"] or 0)
         invested = float(r["bet_amount"] or 100)
-        roi_val  = payout / invested * 100 if invested > 0 else 0.0
+        roi_val = payout / invested * 100 if invested > 0 else 0.0
 
         # combination_json から文字列リストを生成
         combo_strs: list[str] = []
         if r["combination_json"]:
             try:
                 raw = json.loads(r["combination_json"])
-                for entry in (raw if raw else []):
+                for entry in raw if raw else []:
                     if isinstance(entry, list):
                         combo_strs.append("-".join(str(n) for n in entry))
                     else:
@@ -481,6 +530,7 @@ def _post_x_post_report(
     """X に本日 P&L 結果を投稿する。"""
     try:
         from src.notification.twitter_notifier import TwitterNotifier
+
         notifier = TwitterNotifier()
     except Exception as e:
         logger.error("[Post] TwitterNotifier 初期化失敗: %s", e)
@@ -525,6 +575,7 @@ def _post_x_post_report(
 # ── CLI ────────────────────────────────────────────────────────
 # ================================================================
 
+
 def _parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(
         description="UMALOGI 週末バッチ (Pre/Post)",
@@ -538,20 +589,31 @@ def _parse_args() -> argparse.Namespace:
   py scripts/weekend_batch.py --phase pre  --no-headless
 """,
     )
-    p.add_argument("--phase",       required=True, choices=["pre", "post"], help="実行フェーズ")
-    p.add_argument("--date",        help="対象日 YYYYMMDD（省略=今日）")
-    p.add_argument("--dry-run",     action="store_true", help="実際の投稿/保存なし")
-    p.add_argument("--no-headless", action="store_true", help="ブラウザ画面を表示する（デバッグ用）")
+    p.add_argument(
+        "--phase", required=True, choices=["pre", "post"], help="実行フェーズ"
+    )
+    p.add_argument("--date", help="対象日 YYYYMMDD（省略=今日）")
+    p.add_argument("--dry-run", action="store_true", help="実際の投稿/保存なし")
+    p.add_argument(
+        "--no-headless",
+        action="store_true",
+        help="ブラウザ画面を表示する（デバッグ用）",
+    )
     return p.parse_args()
 
 
 def main() -> None:
     args = _parse_args()
     run_date = args.date or date.today().strftime("%Y%m%d")
-    headless  = not args.no_headless
+    headless = not args.no_headless
 
-    logger.info("UMALOGI Weekend Batch  phase=%s  date=%s  dry=%s  headless=%s",
-                args.phase, run_date, args.dry_run, headless)
+    logger.info(
+        "UMALOGI Weekend Batch  phase=%s  date=%s  dry=%s  headless=%s",
+        args.phase,
+        run_date,
+        args.dry_run,
+        headless,
+    )
 
     if args.phase == "pre":
         stats = run_pre(run_date, dry_run=args.dry_run, headless=headless)

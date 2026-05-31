@@ -34,23 +34,28 @@ sys.path.insert(0, str(_ROOT))
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 
 from dotenv import load_dotenv
+
 load_dotenv(_ROOT / ".env", override=False)
 
 logging.basicConfig(level=logging.WARNING)
 
 # ───────────────────────────────────────────────────────────────────
 TRAIN_FROM = "2024-01-01"
-TRAIN_TO   = "2024-12-31"
-TEST_FROM  = "2025-01-01"
-TEST_TO    = "2025-12-31"
+TRAIN_TO = "2024-12-31"
+TEST_FROM = "2025-01-01"
+TEST_TO = "2025-12-31"
 
-BASE_BET   = 100   # 1点あたり購入単位（円）
+BASE_BET = 100  # 1点あたり購入単位（円）
 
 # JRA 控除率（払戻倍率スケール用）
 _TRACK_TAKE: dict[str, float] = {
-    "単勝": 0.200, "複勝": 0.200,
-    "馬連": 0.225, "ワイド": 0.225, "馬単": 0.250,
-    "三連複": 0.250, "三連単": 0.275,
+    "単勝": 0.200,
+    "複勝": 0.200,
+    "馬連": 0.225,
+    "ワイド": 0.225,
+    "馬単": 0.250,
+    "三連複": 0.250,
+    "三連単": 0.275,
 }
 # ───────────────────────────────────────────────────────────────────
 
@@ -85,11 +90,21 @@ def _get_race_ids(conn: sqlite3.Connection, date_from: str, date_to: str) -> lis
 # ───────────────────────────────────────────────────────────────────
 
 FEATURE_COLS = [
-    "weight_carried", "horse_weight", "horse_weight_diff",
-    "win_odds", "gate_number", "distance",
-    "surface_code", "sex_code", "venue_code", "condition_code",
-    "win_rate_all", "win_rate_surface", "win_rate_distance_band",
-    "recent_rank_mean", "sire_code",
+    "weight_carried",
+    "horse_weight",
+    "horse_weight_diff",
+    "win_odds",
+    "gate_number",
+    "distance",
+    "surface_code",
+    "sex_code",
+    "venue_code",
+    "condition_code",
+    "win_rate_all",
+    "win_rate_surface",
+    "win_rate_distance_band",
+    "recent_rank_mean",
+    "sire_code",
 ]
 
 
@@ -118,17 +133,25 @@ def _compute_horse_stats(
     ).fetchall()
 
     if not rows:
-        return {"win_rate_all": 0.0, "win_rate_surface": 0.0,
-                "win_rate_distance_band": 0.0, "recent_rank_mean": 10.0}
+        return {
+            "win_rate_all": 0.0,
+            "win_rate_surface": 0.0,
+            "win_rate_distance_band": 0.0,
+            "recent_rank_mean": 10.0,
+        }
 
-    ranks_all  = [r[0] for r in rows]
-    win_all    = sum(1 for r in ranks_all if r == 1) / len(ranks_all)
-    surf_rows  = [r for r in rows if r[1] == surface]
-    win_surf   = (sum(1 for r in surf_rows if r[0] == 1) / len(surf_rows)) if surf_rows else 0.0
-    dist_rows  = [r for r in rows if _BANDS[band][0] <= r[2] < _BANDS[band][1]]
-    win_dist   = (sum(1 for r in dist_rows if r[0] == 1) / len(dist_rows)) if dist_rows else 0.0
-    recent5    = ranks_all[:5]
-    rank_mean  = float(np.mean(recent5))
+    ranks_all = [r[0] for r in rows]
+    win_all = sum(1 for r in ranks_all if r == 1) / len(ranks_all)
+    surf_rows = [r for r in rows if r[1] == surface]
+    win_surf = (
+        (sum(1 for r in surf_rows if r[0] == 1) / len(surf_rows)) if surf_rows else 0.0
+    )
+    dist_rows = [r for r in rows if _BANDS[band][0] <= r[2] < _BANDS[band][1]]
+    win_dist = (
+        (sum(1 for r in dist_rows if r[0] == 1) / len(dist_rows)) if dist_rows else 0.0
+    )
+    recent5 = ranks_all[:5]
+    rank_mean = float(np.mean(recent5))
 
     return {
         "win_rate_all": win_all,
@@ -142,9 +165,16 @@ _SIRE_MAP: dict[str, int] = {}
 _SURFACE_CODE = {"芝": 0, "ダート": 1, "障害": 2}
 _SEX_CODE = {"牡": 0, "牝": 1, "セ": 2}
 _VENUE_CODE = {
-    "札幌": 0, "函館": 1, "福島": 2, "新潟": 3,
-    "東京": 4, "中山": 5, "中京": 6, "京都": 7,
-    "阪神": 8, "小倉": 9,
+    "札幌": 0,
+    "函館": 1,
+    "福島": 2,
+    "新潟": 3,
+    "東京": 4,
+    "中山": 5,
+    "中京": 6,
+    "京都": 7,
+    "阪神": 8,
+    "小倉": 9,
 }
 _COND_CODE = {"良": 0, "稍重": 1, "重": 2, "不良": 3}
 
@@ -190,32 +220,43 @@ def build_race_df(
         return None
 
     records = []
-    for (horse_id, horse_name, rank,
-         weight_carried, horse_weight, hw_diff,
-         win_odds, gate_number, horse_number, sex_age, sire) in rr_rows:
-
+    for (
+        horse_id,
+        horse_name,
+        rank,
+        weight_carried,
+        horse_weight,
+        hw_diff,
+        win_odds,
+        gate_number,
+        horse_number,
+        sex_age,
+        sire,
+    ) in rr_rows:
         stats = _compute_horse_stats(conn, horse_id or "", race_id, surface, distance)
 
         sex_str = sex_age[:1] if sex_age else ""
-        records.append({
-            "race_id":       race_id,
-            "horse_id":      horse_id or "",
-            "horse_name":    horse_name,
-            "horse_number":  horse_number or 0,
-            "rank":          rank,
-            "weight_carried": weight_carried or 55.0,
-            "horse_weight":  horse_weight or 480.0,
-            "horse_weight_diff": hw_diff or 0.0,
-            "win_odds":      win_odds or 10.0,
-            "gate_number":   gate_number or 0,
-            "distance":      distance or 1600,
-            "surface_code":  _SURFACE_CODE.get(surface, -1),
-            "sex_code":      _SEX_CODE.get(sex_str, -1),
-            "venue_code":    _VENUE_CODE.get(venue, 10),
-            "condition_code": _COND_CODE.get(condition or "", 0),
-            "sire_code":     _encode_sire(sire),
-            **stats,
-        })
+        records.append(
+            {
+                "race_id": race_id,
+                "horse_id": horse_id or "",
+                "horse_name": horse_name,
+                "horse_number": horse_number or 0,
+                "rank": rank,
+                "weight_carried": weight_carried or 55.0,
+                "horse_weight": horse_weight or 480.0,
+                "horse_weight_diff": hw_diff or 0.0,
+                "win_odds": win_odds or 10.0,
+                "gate_number": gate_number or 0,
+                "distance": distance or 1600,
+                "surface_code": _SURFACE_CODE.get(surface, -1),
+                "sex_code": _SEX_CODE.get(sex_str, -1),
+                "venue_code": _VENUE_CODE.get(venue, 10),
+                "condition_code": _COND_CODE.get(condition or "", 0),
+                "sire_code": _encode_sire(sire),
+                **stats,
+            }
+        )
 
     return pd.DataFrame(records) if records else None
 
@@ -223,6 +264,7 @@ def build_race_df(
 # ───────────────────────────────────────────────────────────────────
 # モデル（スタンドアロン LightGBM + Isotonic）
 # ───────────────────────────────────────────────────────────────────
+
 
 def train_model(train_df: pd.DataFrame) -> tuple:
     """学習 DF から LightGBM + Isotonic モデルを訓練して返す。"""
@@ -237,10 +279,16 @@ def train_model(train_df: pd.DataFrame) -> tuple:
     n_splits = min(5, n_races)
 
     LGBM_PARAMS = dict(
-        n_estimators=400, learning_rate=0.05, max_depth=6,
-        num_leaves=63, min_child_samples=20, subsample=0.8,
-        colsample_bytree=0.8, class_weight="balanced",
-        random_state=42, verbose=-1,
+        n_estimators=400,
+        learning_rate=0.05,
+        max_depth=6,
+        num_leaves=63,
+        min_child_samples=20,
+        subsample=0.8,
+        colsample_bytree=0.8,
+        class_weight="balanced",
+        random_state=42,
+        verbose=-1,
     )
 
     oof_preds = np.zeros(len(X), dtype=float)
@@ -284,6 +332,7 @@ def predict_proba(model, iso, feat_cols: list[str], df: pd.DataFrame) -> np.ndar
 # 払戻データ取得
 # ───────────────────────────────────────────────────────────────────
 
+
 def get_payouts(conn: sqlite3.Connection, race_id: str) -> dict[str, dict]:
     """race_payouts → {bet_type: {combination_str: payout}}"""
     rows = conn.execute(
@@ -300,6 +349,7 @@ def get_payouts(conn: sqlite3.Connection, race_id: str) -> dict[str, dict]:
 # Harville 確率
 # ───────────────────────────────────────────────────────────────────
 
+
 def _harville_exacta(probs: list[float], i: int, j: int) -> float:
     pi, pj = probs[i], probs[j]
     return pi * pj / (1 - pi) if pi < 1 else 0.0
@@ -311,8 +361,8 @@ def _harville_quinella(probs: list[float], i: int, j: int) -> float:
 
 def _harville_trio(probs: list[float], i: int, j: int, k: int) -> float:
     pi, pj, pk = probs[i], probs[j], probs[k]
-    denom_ij = (1 - pi)
-    denom_ijk = (1 - pi - pj)
+    denom_ij = 1 - pi
+    denom_ijk = 1 - pi - pj
     if denom_ij <= 0 or denom_ijk <= 0:
         return 0.0
     return pi * pj / denom_ij * pk / denom_ijk
@@ -343,8 +393,8 @@ def simulate_race_bets(
         return records
 
     horse_nums = list(race_df["horse_number"].astype(int))
-    ranks      = list(race_df["rank"].astype(int))
-    prob_list  = list(probs)
+    ranks = list(race_df["rank"].astype(int))
+    prob_list = list(probs)
 
     # 馬番→インデックス
     num2idx = {h: i for i, h in enumerate(horse_nums)}
@@ -353,21 +403,26 @@ def simulate_race_bets(
 
     # EV 計算用のスケール（OddsEstimator の平均スケールを固定値で近似）
     _DEFAULT_SCALE = {
-        "単勝": 1.0, "複勝": 0.33,
-        "馬連": 6.0, "ワイド": 2.5,
-        "馬単": 12.0, "三連複": 30.0, "三連単": 150.0,
+        "単勝": 1.0,
+        "複勝": 0.33,
+        "馬連": 6.0,
+        "ワイド": 2.5,
+        "馬単": 12.0,
+        "三連複": 30.0,
+        "三連単": 150.0,
     }
 
     # 軸馬（最高スコア）の単勝オッズ
-    top_idx    = int(np.argmax(prob_list))
-    top_odds   = float(race_df.iloc[top_idx]["win_odds"] or 10.0)
+    top_idx = int(np.argmax(prob_list))
+    top_odds = float(race_df.iloc[top_idx]["win_odds"] or 10.0)
 
     def ev_est(prob: float, bet_type: str) -> float:
         scale = _DEFAULT_SCALE.get(bet_type, 1.0)
         return prob * top_odds * scale
 
-    def make_record(bt: str, combo_str: str, prob: float,
-                    invested: float = BASE_BET) -> dict:
+    def make_record(
+        bt: str, combo_str: str, prob: float, invested: float = BASE_BET
+    ) -> dict:
         """払戻テーブルと照合して的中判定。"""
         pmap = payouts.get(bt, {})
         payout_amt = float(pmap.get(combo_str, 0))
@@ -393,7 +448,7 @@ def simulate_race_bets(
     top3_idx = sorted(range(n), key=lambda i: -prob_list[i])[:3]
     for idx in top3_idx:
         hnum = horse_nums[idx]
-        pr   = prob_list[idx]
+        pr = prob_list[idx]
         records.append(make_record("複勝", str(hnum), pr * 0.33))
 
     # ── 馬連・ワイド・馬単（上位2頭） ─────────────────────────
@@ -402,7 +457,7 @@ def simulate_race_bets(
         i0, i1 = top2_idx[0], top2_idx[1]
         n0, n1 = horse_nums[i0], horse_nums[i1]
         p0, p1 = prob_list[i0], prob_list[i1]
-        q_prob  = _harville_quinella(prob_list, i0, i1)
+        q_prob = _harville_quinella(prob_list, i0, i1)
 
         # 馬連 (小さい馬番 - 大きい馬番)
         low, high = (n0, n1) if n0 < n1 else (n1, n0)
@@ -412,8 +467,9 @@ def simulate_race_bets(
         records.append(make_record("ワイド", f"{low}-{high}", q_prob))
 
         # 馬単（高確率が1着）
-        records.append(make_record("馬単", f"{n0}-{n1}",
-                                   _harville_exacta(prob_list, i0, i1)))
+        records.append(
+            make_record("馬単", f"{n0}-{n1}", _harville_exacta(prob_list, i0, i1))
+        )
 
     # ── 三連複・三連単（上位3頭） ──────────────────────────────
     if n >= 3:
@@ -423,8 +479,8 @@ def simulate_race_bets(
 
         # 三連複（昇順）
         trio_sorted = sorted([n0, n1, n2])
-        trio_str    = f"{trio_sorted[0]}-{trio_sorted[1]}-{trio_sorted[2]}"
-        trio_prob   = sum(
+        trio_str = f"{trio_sorted[0]}-{trio_sorted[1]}-{trio_sorted[2]}"
+        trio_prob = sum(
             _harville_trio(prob_list, a, b, c)
             for a, b, c in itertools.permutations([i0, i1, i2])
         )
@@ -432,8 +488,9 @@ def simulate_race_bets(
 
         # 三連単（最高確率順）
         tan3_str = f"{n0}-{n1}-{n2}"
-        records.append(make_record("三連単", tan3_str,
-                                   _harville_trio(prob_list, i0, i1, i2)))
+        records.append(
+            make_record("三連単", tan3_str, _harville_trio(prob_list, i0, i1, i2))
+        )
 
     return records
 
@@ -441,6 +498,7 @@ def simulate_race_bets(
 # ───────────────────────────────────────────────────────────────────
 # レポート出力
 # ───────────────────────────────────────────────────────────────────
+
 
 def print_report(df: pd.DataFrame, cv_auc: float) -> None:
     sep = "=" * 72
@@ -456,15 +514,19 @@ def print_report(df: pd.DataFrame, cv_auc: float) -> None:
     total_inv = df["invested"].sum()
     total_pay = df["payout_amount"].sum()
     total_hit = df["is_hit"].sum()
-    roi_all   = total_pay / total_inv * 100 if total_inv else 0
-    print(f"\n■ 全体サマリー")
-    print(f"  件数={len(df):,}  的中={total_hit:,}({total_hit/len(df)*100:.1f}%)"
-          f"  投資¥{total_inv:,.0f}  払戻¥{total_pay:,.0f}  ROI={roi_all:.1f}%"
-          f"  損益¥{total_pay-total_inv:,.0f}")
+    roi_all = total_pay / total_inv * 100 if total_inv else 0
+    print("\n■ 全体サマリー")
+    print(
+        f"  件数={len(df):,}  的中={total_hit:,}({total_hit / len(df) * 100:.1f}%)"
+        f"  投資¥{total_inv:,.0f}  払戻¥{total_pay:,.0f}  ROI={roi_all:.1f}%"
+        f"  損益¥{total_pay - total_inv:,.0f}"
+    )
 
     # ── 券種別 ──
-    print(f"\n■ 券種別 ROI")
-    print(f"{'券種':<8}{'件数':>5}{'的中':>5}{'的中率':>7}{'投資':>9}{'払戻':>9}{'ROI':>7}{'損益':>10}")
+    print("\n■ 券種別 ROI")
+    print(
+        f"{'券種':<8}{'件数':>5}{'的中':>5}{'的中率':>7}{'投資':>9}{'払戻':>9}{'ROI':>7}{'損益':>10}"
+    )
     print("-" * 60)
     bet_types_order = ["単勝", "複勝", "馬連", "ワイド", "馬単", "三連複", "三連単"]
     for bt in bet_types_order:
@@ -476,12 +538,16 @@ def print_report(df: pd.DataFrame, cv_auc: float) -> None:
         hit = sub["is_hit"].sum()
         roi = pay / inv * 100 if inv else 0
         mark = " ★" if roi >= 100 else ("  ▲" if roi >= 70 else "")
-        print(f"{bt:<8}{len(sub):>5,}{hit:>5,}{hit/len(sub)*100:>6.1f}%"
-              f"{inv:>9,.0f}{pay:>9,.0f}{roi:>6.1f}%{pay-inv:>10,.0f}{mark}")
+        print(
+            f"{bt:<8}{len(sub):>5,}{hit:>5,}{hit / len(sub) * 100:>6.1f}%"
+            f"{inv:>9,.0f}{pay:>9,.0f}{roi:>6.1f}%{pay - inv:>10,.0f}{mark}"
+        )
 
     # ── EV 閾値別（全体） ──
-    print(f"\n■ EV 閾値別 ROI（全券種）")
-    print(f"{'EV≥':>6}{'件数':>6}{'的中':>5}{'投資':>10}{'払戻':>10}{'ROI':>7}{'損益':>10}")
+    print("\n■ EV 閾値別 ROI（全券種）")
+    print(
+        f"{'EV≥':>6}{'件数':>6}{'的中':>5}{'投資':>10}{'払戻':>10}{'ROI':>7}{'損益':>10}"
+    )
     print("-" * 58)
     for thr in [0.0, 0.5, 0.8, 1.0, 1.1, 1.2, 1.5, 2.0, 3.0]:
         sub = df[df["ev"] >= thr]
@@ -492,10 +558,12 @@ def print_report(df: pd.DataFrame, cv_auc: float) -> None:
         roi = pay / inv * 100 if inv else 0
         hit = sub["is_hit"].sum()
         mark = " ★" if roi >= 100 else ("  ▲" if roi >= 70 else "")
-        print(f"{thr:>6.1f}{len(sub):>6,}{hit:>5,}{inv:>10,.0f}{pay:>10,.0f}{roi:>6.1f}%{pay-inv:>10,.0f}{mark}")
+        print(
+            f"{thr:>6.1f}{len(sub):>6,}{hit:>5,}{inv:>10,.0f}{pay:>10,.0f}{roi:>6.1f}%{pay - inv:>10,.0f}{mark}"
+        )
 
     # ── 券種 × EV 閾値 クロス ──
-    print(f"\n■ 券種 × EV 閾値クロス ROI")
+    print("\n■ 券種 × EV 閾値クロス ROI")
     thrs = [0.0, 1.0, 1.2, 1.5, 2.0]
     print(f"{'券種':<8}" + "".join(f"  EV≥{t:.1f}      " for t in thrs))
     print("-" * 72)
@@ -517,8 +585,10 @@ def print_report(df: pd.DataFrame, cv_auc: float) -> None:
         print(row_str)
 
     # ── 月別資産推移 ──
-    print(f"\n■ 月別 ROI 推移（全券種）")
-    print(f"{'月':>8}{'件数':>6}{'的中':>5}{'投資':>9}{'払戻':>9}{'ROI':>7}{'損益':>10}")
+    print("\n■ 月別 ROI 推移（全券種）")
+    print(
+        f"{'月':>8}{'件数':>6}{'的中':>5}{'投資':>9}{'払戻':>9}{'ROI':>7}{'損益':>10}"
+    )
     print("-" * 58)
     cumulative = 0.0
     for month, grp in df.groupby("month"):
@@ -527,11 +597,13 @@ def print_report(df: pd.DataFrame, cv_auc: float) -> None:
         hit = grp["is_hit"].sum()
         roi = pay / inv * 100 if inv else 0
         cumulative += pay - inv
-        print(f"{month:>8}{len(grp):>6,}{hit:>5,}{inv:>9,.0f}{pay:>9,.0f}{roi:>6.1f}%"
-              f"{pay-inv:>10,.0f}  累計損益¥{cumulative:,.0f}")
+        print(
+            f"{month:>8}{len(grp):>6,}{hit:>5,}{inv:>9,.0f}{pay:>9,.0f}{roi:>6.1f}%"
+            f"{pay - inv:>10,.0f}  累計損益¥{cumulative:,.0f}"
+        )
 
     # ── 月別・券種別 ──
-    print(f"\n■ 月別・券種別 ROI")
+    print("\n■ 月別・券種別 ROI")
     pivot_data: dict[str, dict[str, str]] = {}
     months_list = sorted(df["month"].unique())
     for bt in bet_types_order:
@@ -552,12 +624,16 @@ def print_report(df: pd.DataFrame, cv_auc: float) -> None:
     print(hdr)
     print("-" * (8 + 10 * len(months_list)))
     for bt in bet_types_order:
-        row = f"{bt:<8}" + "".join(f" {pivot_data[bt].get(m,'---'):>9}" for m in months_list)
+        row = f"{bt:<8}" + "".join(
+            f" {pivot_data[bt].get(m, '---'):>9}" for m in months_list
+        )
         print(row)
 
     # ── EV 分布（的中馬券と非的中馬券の EV 比較） ──
-    print(f"\n■ EV 分布（的中 vs 非的中）")
-    print(f"{'券種':<8}{'非的中EV平均':>13}{'的中EV平均':>12}{'全EV中央':>10}{'EV最大':>10}")
+    print("\n■ EV 分布（的中 vs 非的中）")
+    print(
+        f"{'券種':<8}{'非的中EV平均':>13}{'的中EV平均':>12}{'全EV中央':>10}{'EV最大':>10}"
+    )
     print("-" * 55)
     for bt in bet_types_order:
         grp = df[df["bet_type"] == bt]
@@ -565,24 +641,40 @@ def print_report(df: pd.DataFrame, cv_auc: float) -> None:
             continue
         miss = grp[grp["is_hit"] == 0]["ev"]
         hits = grp[grp["is_hit"] == 1]["ev"]
-        print(f"{bt:<8}{miss.mean():>13.3f}{hits.mean() if len(hits) else float('nan'):>12.3f}"
-              f"{grp['ev'].median():>10.3f}{grp['ev'].max():>10.3f}")
+        print(
+            f"{bt:<8}{miss.mean():>13.3f}{hits.mean() if len(hits) else float('nan'):>12.3f}"
+            f"{grp['ev'].median():>10.3f}{grp['ev'].max():>10.3f}"
+        )
 
     # ── 最適戦略シミュレーション ──
-    print(f"\n■ 最適戦略シミュレーション")
-    print(f"{'戦略':<32}{'件数':>5}{'的中':>5}{'投資':>9}{'払戻':>9}{'ROI':>7}{'損益':>10}")
+    print("\n■ 最適戦略シミュレーション")
+    print(
+        f"{'戦略':<32}{'件数':>5}{'的中':>5}{'投資':>9}{'払戻':>9}{'ROI':>7}{'損益':>10}"
+    )
     print("-" * 78)
 
     strategies = [
-        ("現状（全件）",             df,                                            ""),
-        ("単勝+複勝 全件",           df[df["bet_type"].isin(["単勝","複勝"])],      ""),
-        ("複勝 全件",                df[df["bet_type"]=="複勝"],                    ""),
-        ("単勝 EV≥1.0",              df[(df["bet_type"]=="単勝")&(df["ev"]>=1.0)],  ""),
-        ("単勝 EV≥1.5",              df[(df["bet_type"]=="単勝")&(df["ev"]>=1.5)],  ""),
-        ("複勝 EV≥1.0",              df[(df["bet_type"]=="複勝")&(df["ev"]>=1.0)],  ""),
-        ("単勝+複勝 EV≥1.0",         df[df["bet_type"].isin(["単勝","複勝"])&(df["ev"]>=1.0)], ""),
-        ("単勝+複勝+ワイド EV≥1.0",  df[df["bet_type"].isin(["単勝","複勝","ワイド"])&(df["ev"]>=1.0)], ""),
-        ("馬連+三連複 EV≥1.0",       df[df["bet_type"].isin(["馬連","三連複"])&(df["ev"]>=1.0)], ""),
+        ("現状（全件）", df, ""),
+        ("単勝+複勝 全件", df[df["bet_type"].isin(["単勝", "複勝"])], ""),
+        ("複勝 全件", df[df["bet_type"] == "複勝"], ""),
+        ("単勝 EV≥1.0", df[(df["bet_type"] == "単勝") & (df["ev"] >= 1.0)], ""),
+        ("単勝 EV≥1.5", df[(df["bet_type"] == "単勝") & (df["ev"] >= 1.5)], ""),
+        ("複勝 EV≥1.0", df[(df["bet_type"] == "複勝") & (df["ev"] >= 1.0)], ""),
+        (
+            "単勝+複勝 EV≥1.0",
+            df[df["bet_type"].isin(["単勝", "複勝"]) & (df["ev"] >= 1.0)],
+            "",
+        ),
+        (
+            "単勝+複勝+ワイド EV≥1.0",
+            df[df["bet_type"].isin(["単勝", "複勝", "ワイド"]) & (df["ev"] >= 1.0)],
+            "",
+        ),
+        (
+            "馬連+三連複 EV≥1.0",
+            df[df["bet_type"].isin(["馬連", "三連複"]) & (df["ev"] >= 1.0)],
+            "",
+        ),
     ]
     for name, sub, _ in strategies:
         if sub.empty:
@@ -593,12 +685,14 @@ def print_report(df: pd.DataFrame, cv_auc: float) -> None:
         roi = pay / inv * 100 if inv else 0
         hit = sub["is_hit"].sum()
         mark = " ★" if roi >= 100 else ("  ▲" if roi >= 70 else "")
-        print(f"{name:<32}{len(sub):>5,}{hit:>5,}{inv:>9,.0f}{pay:>9,.0f}{roi:>6.1f}%{pay-inv:>10,.0f}{mark}")
+        print(
+            f"{name:<32}{len(sub):>5,}{hit:>5,}{inv:>9,.0f}{pay:>9,.0f}{roi:>6.1f}%{pay - inv:>10,.0f}{mark}"
+        )
 
-    print(f"\n★ = ROI 100%超え  ▲ = ROI 70%超え")
+    print("\n★ = ROI 100%超え  ▲ = ROI 70%超え")
 
     # ── 月別 JSON データ（グラフ用） ──
-    print(f"\n■ 月別資産推移 JSON（グラフ用）")
+    print("\n■ 月別資産推移 JSON（グラフ用）")
     monthly_json = []
     cum = 0.0
     for month, grp in df.groupby("month"):
@@ -606,20 +700,24 @@ def print_report(df: pd.DataFrame, cv_auc: float) -> None:
         pay = grp["payout_amount"].sum()
         roi = pay / inv * 100 if inv else 0
         cum += pay - inv
-        monthly_json.append({
-            "month": month,
-            "roi": round(roi, 1),
-            "profit": round(pay - inv, 0),
-            "cumulative_profit": round(cum, 0),
-            "invested": round(inv, 0),
-            "payout": round(pay, 0),
-            "hits": int(grp["is_hit"].sum()),
-            "total": len(grp),
-        })
+        monthly_json.append(
+            {
+                "month": month,
+                "roi": round(roi, 1),
+                "profit": round(pay - inv, 0),
+                "cumulative_profit": round(cum, 0),
+                "invested": round(inv, 0),
+                "payout": round(pay, 0),
+                "hits": int(grp["is_hit"].sum()),
+                "total": len(grp),
+            }
+        )
 
     def _to_py(v):
-        if isinstance(v, (np.integer,)): return int(v)
-        if isinstance(v, (np.floating,)): return float(v)
+        if isinstance(v, (np.integer,)):
+            return int(v)
+        if isinstance(v, (np.floating,)):
+            return float(v)
         return v
 
     safe_json = [{k: _to_py(v) for k, v in row.items()} for row in monthly_json]
@@ -629,6 +727,7 @@ def print_report(df: pd.DataFrame, cv_auc: float) -> None:
 # ───────────────────────────────────────────────────────────────────
 # メイン
 # ───────────────────────────────────────────────────────────────────
+
 
 def main() -> None:
     conn = _get_conn()
@@ -646,7 +745,7 @@ def main() -> None:
         if df is not None and not df.empty:
             train_frames.append(df)
         if (i + 1) % 100 == 0:
-            print(f"  ... {i+1}/{len(train_race_ids)} レース処理中", end="\r")
+            print(f"  ... {i + 1}/{len(train_race_ids)} レース処理中", end="\r")
 
     if not train_frames:
         print("ERROR: 訓練データが空です")
@@ -654,8 +753,9 @@ def main() -> None:
         return
 
     train_df = pd.concat(train_frames, ignore_index=True)
-    print(f"\n  訓練データ: {len(train_df):,} サンプル  "
-          f"({train_df['race_id'].nunique():,} レース)")
+    print(
+        f"\n  訓練データ: {len(train_df):,} サンプル  ({train_df['race_id'].nunique():,} レース)"
+    )
 
     print("\nSTEP 2: モデル訓練")
     model, iso, feat_cols, cv_auc = train_model(train_df)
@@ -667,8 +767,12 @@ def main() -> None:
     print(f"  対象レース: {len(test_race_ids):,}")
 
     if not test_race_ids:
-        print("ERROR: テスト対象レースが0件です（race_results + race_payouts が揃っているレースなし）")
-        print("  → JV-Link RACE データ（SEレコード + HRレコード）のインポートを確認してください")
+        print(
+            "ERROR: テスト対象レースが0件です（race_results + race_payouts が揃っているレースなし）"
+        )
+        print(
+            "  → JV-Link RACE データ（SEレコード + HRレコード）のインポートを確認してください"
+        )
         conn.close()
         return
 
@@ -686,17 +790,21 @@ def main() -> None:
             continue
 
         # 月を取得（races テーブルの date カラムから）
-        date_row = conn.execute("SELECT date FROM races WHERE race_id=?", (race_id,)).fetchone()
-        month_str = (date_row[0][:7] if date_row else "unknown")
+        date_row = conn.execute(
+            "SELECT date FROM races WHERE race_id=?", (race_id,)
+        ).fetchone()
+        month_str = date_row[0][:7] if date_row else "unknown"
 
         records = simulate_race_bets(race_df, probs, payouts, month_str)
         all_records.extend(records)
         ok_races += 1
 
         if (i + 1) % 50 == 0:
-            print(f"  ... {i+1}/{len(test_race_ids)} レース処理中", end="\r")
+            print(f"  ... {i + 1}/{len(test_race_ids)} レース処理中", end="\r")
 
-    print(f"\n  シミュレーション完了: {ok_races:,} レース / {len(all_records):,} 買い目")
+    print(
+        f"\n  シミュレーション完了: {ok_races:,} レース / {len(all_records):,} 買い目"
+    )
 
     if not all_records:
         print("ERROR: テスト結果が空です")

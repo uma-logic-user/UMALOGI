@@ -93,7 +93,9 @@ def main() -> None:
 def _build_response(race_id: str, horses: list[dict]) -> dict:
     """レスポンス JSON を組み立てる。"""
     total = len(horses)
-    umasugi_better = sum(1 for h in horses if h.get("recommendation") == "umasugi_better")
+    umasugi_better = sum(
+        1 for h in horses if h.get("recommendation") == "umasugi_better"
+    )
     legacy_better = sum(1 for h in horses if h.get("recommendation") == "legacy_better")
     agree = sum(1 for h in horses if h.get("recommendation") == "agree")
 
@@ -118,12 +120,14 @@ def _exit_error(msg: str, code: int = 1) -> None:
 
 # ── 型変換ヘルパー ──────────────────────────────────────────────────────────
 
+
 def _float_or_none(v: object) -> float | None:
     if v is None:
         return None
     try:
         f = float(v)  # type: ignore[arg-type]
         import math
+
         return None if math.isnan(f) or math.isinf(f) else round(f, 4)
     except (TypeError, ValueError):
         return None

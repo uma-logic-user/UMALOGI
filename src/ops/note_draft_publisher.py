@@ -31,7 +31,7 @@ _ROOT = Path(__file__).resolve().parents[2]
 _DEBUG_DIR = _ROOT / "outputs" / "debug"
 _DEBUG_DIR.mkdir(parents=True, exist_ok=True)
 
-_LOGIN_URL    = "https://note.com/login"
+_LOGIN_URL = "https://note.com/login"
 _NEW_POST_URL = "https://note.com/notes/new"
 _SETTINGS_URL = "https://note.com/settings/profile"
 _SESSION_FILE = _ROOT / ".note_session.json"
@@ -45,15 +45,23 @@ _UA = (
 
 # ボット検知・WAF の特徴的 HTML パターン
 _BOT_SIGNATURES = [
-    ("cloudflare",    ["cf-browser-verification", "Checking your browser", "_cf_chl_", "cf_clearance"]),
-    ("imperva",       ["_Incapsula_Resource", "visid_incap_", "incap_ses_"]),
-    ("akamai",        ["akamai-bot-manager", "__utmzzses"]),
+    (
+        "cloudflare",
+        [
+            "cf-browser-verification",
+            "Checking your browser",
+            "_cf_chl_",
+            "cf_clearance",
+        ],
+    ),
+    ("imperva", ["_Incapsula_Resource", "visid_incap_", "incap_ses_"]),
+    ("akamai", ["akamai-bot-manager", "__utmzzses"]),
     ("note_bot_page", ["申し訳ありません、ただ今障害が発生しております"]),
 ]
 
 # なおふみブランドのプロフィール固定値
 _PROFILE_NAME = "なおふみ | UMALOGI開発者"
-_PROFILE_BIO  = (
+_PROFILE_BIO = (
     "世界最高峰の Python/SQL エンジニア。17年の実務経験と最新AI（Claude Code 等）を駆使し、"
     "5カ年分の全 JRA データを解析する競馬投資AI『UMALOGI』を開発。"
     "単なる予想ではなく、1円単位の ROI を追求する投資ロジックを提唱。"
@@ -61,6 +69,7 @@ _PROFILE_BIO  = (
 
 
 # ─── 証拠保全・ブロック検知 ─────────────────────────────────────────────────
+
 
 def _dump_evidence(page: "Page", label: str) -> Path:  # type: ignore[name-defined]
     """スクリーンショット + HTML ソースを outputs/debug/ に保存する。
@@ -142,6 +151,7 @@ def _log_block(kind: str, url: str, page: "Page") -> None:  # type: ignore[name-
 
 # ─── ステルス Playwright コンテキスト ───────────────────────────────────────
 
+
 def _build_stealth() -> "Stealth":  # type: ignore[name-defined]
     """playwright-stealth の Stealth インスタンスを構築する。
 
@@ -151,6 +161,7 @@ def _build_stealth() -> "Stealth":  # type: ignore[name-defined]
         設定済みの Stealth インスタンス。
     """
     from playwright_stealth import Stealth
+
     return Stealth(
         navigator_user_agent_override=_UA,
         navigator_languages_override=("ja-JP", "ja", "en-US", "en"),
@@ -209,6 +220,7 @@ def _ctx_opts(session: bool = False) -> dict[str, object]:
 
 # ─── 認証情報 ────────────────────────────────────────────────────────────────
 
+
 def _load_credentials() -> tuple[str, str]:
     """NOTE_EMAIL / NOTE_PASSWORD を環境変数（.env）から読み込む。
 
@@ -220,17 +232,21 @@ def _load_credentials() -> tuple[str, str]:
     """
     try:
         from dotenv import load_dotenv
+
         load_dotenv(_ROOT / ".env", override=False)
     except ImportError:
         pass
-    email    = os.environ.get("NOTE_EMAIL", "")
+    email = os.environ.get("NOTE_EMAIL", "")
     password = os.environ.get("NOTE_PASSWORD", "")
     if not email or not password:
-        raise EnvironmentError("NOTE_EMAIL / NOTE_PASSWORD が .env に設定されていません。")
+        raise EnvironmentError(
+            "NOTE_EMAIL / NOTE_PASSWORD が .env に設定されていません。"
+        )
     return email, password
 
 
 # ─── 操作ヘルパー ────────────────────────────────────────────────────────────
+
 
 def _human_delay(lo: float = 0.3, hi: float = 0.8) -> None:
     """ランダムな人間らしい遅延をかける（Bot検知回避）。
@@ -253,7 +269,9 @@ def _clipboard_paste(page: "Page", text: str) -> None:  # type: ignore[name-defi
         text: ペーストするテキスト。
     """
     escaped = text.replace("\\", "\\\\").replace("`", "\\`").replace("$", "\\$")
-    page.evaluate(f"async () => {{ await navigator.clipboard.writeText(`{escaped}`); }}")
+    page.evaluate(
+        f"async () => {{ await navigator.clipboard.writeText(`{escaped}`); }}"
+    )
     _human_delay(0.2, 0.5)
     page.keyboard.press("Control+a")
     page.keyboard.press("Control+v")
@@ -293,7 +311,11 @@ def _try_autofill_login(page: "Page", email: str, password: str) -> None:  # typ
                     _human_delay()
                     val = loc.input_value()
                     if email in val or val in email:
-                        logger.info("[note] メールアドレス自動入力: %s (selector=%s)", email, sel)
+                        logger.info(
+                            "[note] メールアドレス自動入力: %s (selector=%s)",
+                            email,
+                            sel,
+                        )
                         email_filled = True
                         break
         except Exception:
@@ -302,7 +324,9 @@ def _try_autofill_login(page: "Page", email: str, password: str) -> None:  # typ
             break
 
     if not email_filled:
-        logger.warning("[note] メールアドレス入力フィールドが見つかりません — 手動入力してください")
+        logger.warning(
+            "[note] メールアドレス入力フィールドが見つかりません — 手動入力してください"
+        )
 
     _human_delay()
 
@@ -327,7 +351,9 @@ def _try_autofill_login(page: "Page", email: str, password: str) -> None:  # typ
             continue
 
     if not pw_filled:
-        logger.warning("[note] パスワード入力フィールドが見つかりません — 手動入力してください")
+        logger.warning(
+            "[note] パスワード入力フィールドが見つかりません — 手動入力してください"
+        )
 
     _human_delay()
 
@@ -376,7 +402,10 @@ def _wait_for_login(page: "Page") -> bool:  # type: ignore[name-defined]
                 return window.location.pathname !== '/login' || (!hasPassword && !hasLoginTitle);
             }""")
             if dom_ok:
-                logger.info("[note] DOM でログイン完了を検出: %s", page.evaluate("() => window.location.href"))
+                logger.info(
+                    "[note] DOM でログイン完了を検出: %s",
+                    page.evaluate("() => window.location.href"),
+                )
                 return True
         except Exception:
             pass
@@ -391,11 +420,14 @@ def _wait_for_login(page: "Page") -> bool:  # type: ignore[name-defined]
         logger.info("[note] タイムアウト後にログイン完了を確認: %s", current)
         return True
 
-    logger.error("[note] ログイン完了を検出できませんでした（タイムアウト、url=%s）", current)
+    logger.error(
+        "[note] ログイン完了を検出できませんでした（タイムアウト、url=%s）", current
+    )
     return False
 
 
 # ─── 公開 API ────────────────────────────────────────────────────────────────
+
 
 def login_and_save_session() -> bool:
     """
@@ -408,7 +440,9 @@ def login_and_save_session() -> bool:
     try:
         from playwright.sync_api import sync_playwright
     except ImportError:
-        logger.error("[note] Playwright がインストールされていません。pip install playwright")
+        logger.error(
+            "[note] Playwright がインストールされていません。pip install playwright"
+        )
         return False
 
     try:
@@ -418,7 +452,7 @@ def login_and_save_session() -> bool:
         logger.error("[note] %s", e)
         email, password = "", ""
 
-    print(f"\n{'='*55}")
+    print(f"\n{'=' * 55}")
     print("  note.com ログイン — ブラウザが開きます (Stealth mode)")
     if email:
         print(f"  メールアドレス・パスワードを自動入力します: {email}")
@@ -426,7 +460,7 @@ def login_and_save_session() -> bool:
     else:
         print("  NOTE_EMAIL/NOTE_PASSWORD 未設定 — 手動でログインしてください。")
     print("  ログイン完了後、このプログラムが自動で続行します。")
-    print(f"{'='*55}\n")
+    print(f"{'=' * 55}\n")
 
     stealth = _build_stealth()
     with stealth.use_sync(sync_playwright()) as pw:
@@ -486,16 +520,22 @@ def save_draft(
     try:
         from playwright.sync_api import sync_playwright
     except ImportError:
-        logger.error("[note] Playwright がインストールされていません。pip install playwright")
+        logger.error(
+            "[note] Playwright がインストールされていません。pip install playwright"
+        )
         return False
 
     if not _SESSION_FILE.exists():
-        logger.error("[note] セッションファイルが見つかりません。先に --login-only を実行してください。")
+        logger.error(
+            "[note] セッションファイルが見つかりません。先に --login-only を実行してください。"
+        )
         return False
 
     # headless 引数は受け取るが Bot検知回避のため常に False を推奨
     if headless:
-        logger.warning("[note] headless=True はBot検知されやすいため headless=False に強制します")
+        logger.warning(
+            "[note] headless=True はBot検知されやすいため headless=False に強制します"
+        )
         headless = False
 
     stealth = _build_stealth()
@@ -522,10 +562,12 @@ def save_draft(
                 browser.close()
                 return False
 
-            ss = _dump_evidence(page, "after_login")
+            _dump_evidence(page, "after_login")  # 証跡ダンプ（戻り値は未使用）
             current_url = page.evaluate("() => window.location.href")
             if "/login" in current_url:
-                logger.error("[note] セッション期限切れ — 再ログインが必要: %s", current_url)
+                logger.error(
+                    "[note] セッション期限切れ — 再ログインが必要: %s", current_url
+                )
                 browser.close()
                 return False
 
@@ -566,7 +608,7 @@ def save_draft(
             '[contenteditable="true"][data-placeholder*="タイトル"]',
             '[contenteditable="true"][aria-label*="タイトル"]',
             'h1[contenteditable="true"]',
-            '.title-input',
+            ".title-input",
         ]
         title_filled = False
         for sel in title_selectors:
@@ -577,19 +619,23 @@ def save_draft(
                     _human_delay()
                     loc.fill(title)
                     title_filled = True
-                    logger.info("[note] タイトル入力: %r (selector=%s)", title[:30], sel)
+                    logger.info(
+                        "[note] タイトル入力: %r (selector=%s)", title[:30], sel
+                    )
                     break
             except Exception:
                 continue
 
         if not title_filled:
-            logger.warning("[note] タイトル入力フィールドが見つかりません — エディタが未ロードの可能性")
+            logger.warning(
+                "[note] タイトル入力フィールドが見つかりません — エディタが未ロードの可能性"
+            )
 
         _human_delay(0.8, 1.5)
 
         # ── Step 4: 本文入力（クリップボード経由）────────────────
         body_selectors = [
-            '.ProseMirror',
+            ".ProseMirror",
             '[contenteditable="true"].ProseMirror',
             '[role="textbox"][contenteditable="true"]',
             '[contenteditable="true"][data-placeholder*="本文"]',
@@ -617,11 +663,20 @@ def save_draft(
                     try:
                         _clipboard_paste(page, body)
                         body_filled = True
-                        logger.info("[note] 本文ペースト完了 (%d 文字, selector=%s)", len(body), sel)
+                        logger.info(
+                            "[note] 本文ペースト完了 (%d 文字, selector=%s)",
+                            len(body),
+                            sel,
+                        )
                         break
                     except Exception as ce:
-                        logger.warning("[note] clipboard_paste 失敗: %s — type() フォールバック", ce)
-                        truncated = body[:3000] + "\n\n[以下省略]" if len(body) > 3000 else body
+                        logger.warning(
+                            "[note] clipboard_paste 失敗: %s — type() フォールバック",
+                            ce,
+                        )
+                        truncated = (
+                            body[:3000] + "\n\n[以下省略]" if len(body) > 3000 else body
+                        )
                         page.keyboard.type(truncated, delay=0)
                         body_filled = True
                         break
@@ -725,11 +780,15 @@ def update_profile(*, headless: bool = False) -> bool:
     try:
         from playwright.sync_api import sync_playwright
     except ImportError:
-        logger.error("[note] Playwright がインストールされていません。pip install playwright")
+        logger.error(
+            "[note] Playwright がインストールされていません。pip install playwright"
+        )
         return False
 
     if not _SESSION_FILE.exists():
-        logger.error("[note] セッションファイルが見つかりません。先に login_and_save_session() を実行してください。")
+        logger.error(
+            "[note] セッションファイルが見つかりません。先に login_and_save_session() を実行してください。"
+        )
         return False
 
     stealth = _build_stealth()
@@ -737,12 +796,16 @@ def update_profile(*, headless: bool = False) -> bool:
         browser = pw.chromium.launch(**_browser_opts())
         ctx = browser.new_context(**_ctx_opts(session=True))
         page = ctx.new_page()
-        page.add_init_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined});")
+        page.add_init_script(
+            "Object.defineProperty(navigator, 'webdriver', {get: () => undefined});"
+        )
 
         page.goto("https://note.com/", wait_until="domcontentloaded", timeout=20000)
         _human_delay(2.0, 3.0)
         if "/login" in page.evaluate("() => window.location.href"):
-            logger.error("[note] セッション期限切れ。再度 login_and_save_session() を実行してください。")
+            logger.error(
+                "[note] セッション期限切れ。再度 login_and_save_session() を実行してください。"
+            )
             browser.close()
             return False
 
@@ -775,7 +838,11 @@ def update_profile(*, headless: bool = False) -> bool:
         _human_delay(0.5, 1.0)
 
         saved = False
-        for sel in ['button:has-text("保存")', 'button:has-text("変更を保存")', 'button[type="submit"]']:
+        for sel in [
+            'button:has-text("保存")',
+            'button:has-text("変更を保存")',
+            'button[type="submit"]',
+        ]:
             try:
                 loc = page.locator(sel).first
                 if loc.count() > 0 and loc.is_visible(timeout=2000):
@@ -807,6 +874,7 @@ def _notify_discord(step: str, error: str, screenshot_path: Path | None = None) 
     """
     try:
         from src.notification.discord_notifier import DiscordNotifier
+
         DiscordNotifier().notify_intervention_required(
             step=step,
             error=error,

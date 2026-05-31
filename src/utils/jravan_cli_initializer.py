@@ -61,6 +61,7 @@ if str(_ROOT) not in sys.path:
 
 try:
     from dotenv import load_dotenv
+
     load_dotenv(_ROOT / ".env", override=False)
 except ImportError:
     pass
@@ -68,13 +69,13 @@ except ImportError:
 logger = logging.getLogger(__name__)
 
 _JVINIT_CODES: dict[int, str] = {
-    0:    "✅ 成功",
-    -1:   "❌ COM エラー（JVLink未インストール？）",
-    -2:   "❌ SID が空またはフォーマット不正",
-    -3:   "❌ SID 未登録（利用キー設定が必要）",
-    -4:   "❌ TARGET frontier JV 未起動/未ログイン",
-    -5:   "❌ JVLink バージョン古い",
-    -9:   "❌ ライセンスエラー",
+    0: "✅ 成功",
+    -1: "❌ COM エラー（JVLink未インストール？）",
+    -2: "❌ SID が空またはフォーマット不正",
+    -3: "❌ SID 未登録（利用キー設定が必要）",
+    -4: "❌ TARGET frontier JV 未起動/未ログイン",
+    -5: "❌ JVLink バージョン古い",
+    -9: "❌ ライセンスエラー",
     -202: "❌ サービス未登録",
 }
 
@@ -116,7 +117,10 @@ def run_check(sid: str, timeout: int = 15, verbose: bool = False) -> int:
     print("=" * 60, flush=True)
     print("JRA-VAN JVLink CLI 初期化ツール（ブラウザ不要版）", flush=True)
     print("=" * 60, flush=True)
-    print(f"SID    : {'*' * max(0, len(sid) - 4) + sid[-4:] if sid else '（未設定）'}", flush=True)
+    print(
+        f"SID    : {'*' * max(0, len(sid) - 4) + sid[-4:] if sid else '（未設定）'}",
+        flush=True,
+    )
     print(f"Timeout: {timeout}s", flush=True)
     print(flush=True)
 
@@ -124,6 +128,7 @@ def run_check(sid: str, timeout: int = 15, verbose: bool = False) -> int:
     print("[1/4] ダイアログハンドラー起動...", flush=True)
     try:
         from src.ops.jvlink_dialog_handler import start_dialog_handler
+
         start_dialog_handler(interval=0.3)
         print("      OK — Win32 ダイアログを自動突破します", flush=True)
     except Exception as e:
@@ -192,9 +197,15 @@ def run_check(sid: str, timeout: int = 15, verbose: bool = False) -> int:
         print(f"      JVSetAutoDownload(True): SKIP ({e})", flush=True)
 
     if suppressed_count == 0:
-        print("      ⚠️  ダイアログ抑制API がすべて非対応です。ダイアログが表示される可能性があります。", flush=True)
+        print(
+            "      ⚠️  ダイアログ抑制API がすべて非対応です。ダイアログが表示される可能性があります。",
+            flush=True,
+        )
     else:
-        print(f"      ✅ {suppressed_count} 個のダイアログ抑制API を設定しました。", flush=True)
+        print(
+            f"      ✅ {suppressed_count} 個のダイアログ抑制API を設定しました。",
+            flush=True,
+        )
     print(flush=True)
 
     # ── Step 4: JVInit（リトライ付き） ──────────────────────────────────────
@@ -206,7 +217,10 @@ def run_check(sid: str, timeout: int = 15, verbose: bool = False) -> int:
 
     for attempt in range(1, max_attempts + 1):
         if time.monotonic() > deadline:
-            print(f"      タイムアウト — JVInit が {timeout}s 以内に完了しませんでした", flush=True)
+            print(
+                f"      タイムアウト — JVInit が {timeout}s 以内に完了しませんでした",
+                flush=True,
+            )
             break
         ret = jvl.JVInit(sid)
         msg = _jvinit_msg(ret)
@@ -214,7 +228,10 @@ def run_check(sid: str, timeout: int = 15, verbose: bool = False) -> int:
         if ret == 0:
             break
         if ret == -4:
-            print("      → TARGET frontier JV を起動してログインし、再実行してください。", flush=True)
+            print(
+                "      → TARGET frontier JV を起動してログインし、再実行してください。",
+                flush=True,
+            )
             break
         if ret in (-2, -3, -9, -202):
             print("      → SID または JRA-VAN 登録状態を確認してください。", flush=True)
@@ -249,18 +266,25 @@ def main() -> None:
     """
     if sys.maxsize > 2**32:
         print("ERROR: 32bit Python で実行してください。", file=sys.stderr, flush=True)
-        print("  py -3.14-32 -m src.utils.jravan_cli_initializer", file=sys.stderr, flush=True)
+        print(
+            "  py -3.14-32 -m src.utils.jravan_cli_initializer",
+            file=sys.stderr,
+            flush=True,
+        )
         sys.exit(1)
 
     parser = argparse.ArgumentParser(
         description="JRA-VAN JVLink CLI 初期化ツール（ブラウザ不要版）"
     )
     parser.add_argument(
-        "--timeout", type=int, default=15,
+        "--timeout",
+        type=int,
+        default=15,
         help="JVInit の最大待機秒数（デフォルト: 15）",
     )
     parser.add_argument(
-        "--verbose", action="store_true",
+        "--verbose",
+        action="store_true",
         help="詳細ログを出力する",
     )
     args = parser.parse_args()

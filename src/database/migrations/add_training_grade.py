@@ -4,6 +4,7 @@
     python -m src.database.migrations.add_training_grade
     python -m src.database.migrations.add_training_grade data/umalogi.db
 """
+
 from __future__ import annotations
 
 import sqlite3
@@ -21,7 +22,9 @@ def migrate(db_path: str = "data/umalogi.db") -> None:
     conn = sqlite3.connect(db_path)
     cols = [r[1] for r in conn.execute("PRAGMA table_info(training_times)").fetchall()]
     if "training_grade" not in cols:
-        conn.execute("ALTER TABLE training_times ADD COLUMN training_grade TEXT DEFAULT ''")
+        conn.execute(
+            "ALTER TABLE training_times ADD COLUMN training_grade TEXT DEFAULT ''"
+        )
         conn.commit()
         print("training_grade カラムを追加しました")
     else:

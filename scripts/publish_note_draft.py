@@ -40,28 +40,47 @@ def _extract_title(content: str) -> str:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Markdown ファイルを note.com に下書き保存する")
-    parser.add_argument("--file",  help="保存する Markdown ファイルパス")
-    parser.add_argument("--tags",  nargs="*", default=["競馬", "UMALOGI", "AI予想", "複勝"],
-                        help="タグ（スペース区切り、最大5個）")
-    parser.add_argument("--visible", action="store_true",
-                        help="ブラウザを表示して実行（デバッグ用、デフォルト: ヘッドレス）")
-    parser.add_argument("--update-profile", action="store_true",
-                        help="下書き保存の前に「なおふみ | UMALOGI開発者」プロフィールへ更新する")
-    parser.add_argument("--login", action="store_true",
-                        help="可視ブラウザで手動ログイン → .note_session.json に保存（初回・セッション切れ時）")
+    parser = argparse.ArgumentParser(
+        description="Markdown ファイルを note.com に下書き保存する"
+    )
+    parser.add_argument("--file", help="保存する Markdown ファイルパス")
+    parser.add_argument(
+        "--tags",
+        nargs="*",
+        default=["競馬", "UMALOGI", "AI予想", "複勝"],
+        help="タグ（スペース区切り、最大5個）",
+    )
+    parser.add_argument(
+        "--visible",
+        action="store_true",
+        help="ブラウザを表示して実行（デバッグ用、デフォルト: ヘッドレス）",
+    )
+    parser.add_argument(
+        "--update-profile",
+        action="store_true",
+        help="下書き保存の前に「なおふみ | UMALOGI開発者」プロフィールへ更新する",
+    )
+    parser.add_argument(
+        "--login",
+        action="store_true",
+        help="可視ブラウザで手動ログイン → .note_session.json に保存（初回・セッション切れ時）",
+    )
     args = parser.parse_args()
 
     if not args.file and not args.update_profile and not args.login:
-        print("[ERROR] --file / --update-profile / --login のいずれかを指定してください")
+        print(
+            "[ERROR] --file / --update-profile / --login のいずれかを指定してください"
+        )
         sys.exit(1)
 
     from dotenv import load_dotenv
+
     load_dotenv(_ROOT / ".env", override=False)
 
     # ── セッション保存（初回ログイン）─────────────────────────────
     if args.login:
         from src.ops.note_draft_publisher import login_and_save_session
+
         print("[INFO] 手動ログインモードを開始します...")
         print("[INFO] ブラウザが開いたら note.com にログインしてください。")
         print("[INFO] reCAPTCHA を解決し「ログイン」ボタンを押すと自動で続行します。")
@@ -80,8 +99,9 @@ def main() -> None:
     # ── プロフィール更新（オプション）──────────────────────────────
     if args.update_profile:
         from src.ops.note_draft_publisher import update_profile
+
         print("[INFO] プロフィール更新を開始します...")
-        print(f"[INFO]   名前: なおふみ | UMALOGI開発者")
+        print("[INFO]   名前: なおふみ | UMALOGI開発者")
         print()
         ok_profile = update_profile(headless=not args.visible)
         if ok_profile:
@@ -103,7 +123,7 @@ def main() -> None:
         sys.exit(1)
 
     content = md_path.read_text(encoding="utf-8")
-    title   = _extract_title(content)
+    title = _extract_title(content)
 
     print(f"[INFO] タイトル : {title}")
     print(f"[INFO] 文字数   : {len(content):,} 文字")
@@ -112,6 +132,7 @@ def main() -> None:
     print()
 
     from src.ops.note_draft_publisher import save_draft
+
     ok = save_draft(
         title=title,
         body=content,
@@ -124,7 +145,7 @@ def main() -> None:
         print("  → note.com を開いて下書き一覧を確認してください")
         print("  → スクリーンショット: outputs/debug/note_draft_saved.png")
     else:
-        print(f"\n❌ 下書き保存失敗")
+        print("\n❌ 下書き保存失敗")
         print("  → outputs/debug/ のスクリーンショットで原因を確認してください")
         sys.exit(1)
 

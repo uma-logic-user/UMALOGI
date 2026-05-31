@@ -50,7 +50,11 @@ _ROOT = Path(__file__).resolve().parents[2]
 if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
-from src.database.init_db import init_db, record_prediction_result, refresh_model_performance
+from src.database.init_db import (
+    init_db,
+    record_prediction_result,
+    refresh_model_performance,
+)
 
 # notes から odds を抽出する正規表現（旧データ互換）
 _ODDS_RE = re.compile(r"odds=([\d.]+)")
@@ -63,6 +67,7 @@ _SANTAN_BOX_3 = len(list(itertools.permutations(range(3))))  # 6
 
 
 # ── combination_json パーサー ────────────────────────────────────
+
 
 def _parse_combinations(combination_json: str | None) -> list[list[int]] | None:
     """
@@ -116,7 +121,7 @@ def _n_combos_from_json(combination_json: str | None, bet_type: str) -> int:
     # combination_json なし → bet_type の既定値
     defaults = {
         "単勝": 1,
-        "複勝": 0,       # 複数馬名ぶん → 呼び出し側で決定
+        "複勝": 0,  # 複数馬名ぶん → 呼び出し側で決定
         "馬連": 1,
         "ワイド": 1,
         "馬単": 1,
@@ -127,6 +132,7 @@ def _n_combos_from_json(combination_json: str | None, bet_type: str) -> int:
 
 
 # ── DB 参照ユーティリティ ─────────────────────────────────────────
+
 
 def _get_payout_map(
     conn: sqlite3.Connection,
@@ -175,7 +181,9 @@ def _get_refund_set(conn: sqlite3.Connection, race_id: str) -> set[str]:
         "SELECT horse_name, horse_number FROM race_results WHERE race_id = ?",
         (race_id,),
     ).fetchall()
-    return {name for name, num in result_rows if num is not None and int(num) in refund_nums}
+    return {
+        name for name, num in result_rows if num is not None and int(num) in refund_nums
+    }
 
 
 def _find_winner(conn: sqlite3.Connection, race_id: str) -> dict | None:
@@ -218,6 +226,7 @@ def _parse_odds_from_notes(notes: str | None) -> float | None:
 
 
 # ── 馬名ベース照合 ─────────────────────────────────────────────────
+
 
 def _get_predicted_horse_names(
     conn: sqlite3.Connection,
@@ -332,18 +341,22 @@ def _reconcile_by_names(
 
     if bet_type == "単勝":
         # 予想馬が rank=1 か
-        is_hit = (rank_map.get(horse_names[0]) == 1)
+        is_hit = rank_map.get(horse_names[0]) == 1
         if is_hit:
             total_payout = (_payout_for_hit(payout_map) / 100.0) * recommended_bet
 
     elif bet_type == "複勝":
         # 各予想馬が top3 に入ったか（1頭ずつ独立判定）
         placed_count = sum(
-            1 for n in horse_names if rank_map.get(n) is not None and 1 <= rank_map[n] <= 3
+            1
+            for n in horse_names
+            if rank_map.get(n) is not None and 1 <= rank_map[n] <= 3
         )
         if placed_count > 0:
             is_hit = True
-            total_payout = (_payout_for_hit(payout_map, placed_count) / 100.0) * bet_per_combo
+            total_payout = (
+                _payout_for_hit(payout_map, placed_count) / 100.0
+            ) * bet_per_combo
 
     elif bet_type in ("馬連", "枠連"):
         # 予想2頭が rank 1,2 を占めるか（順不同・同着対応）
@@ -352,10 +365,7 @@ def _reconcile_by_names(
         if len(horse_names) >= 2:
             r0 = rank_map.get(horse_names[0])
             r1 = rank_map.get(horse_names[1])
-            is_hit = (
-                r0 in {1, 2} and r1 in {1, 2}
-                and not (r0 == 2 and r1 == 2)
-            )
+            is_hit = r0 in {1, 2} and r1 in {1, 2} and not (r0 == 2 and r1 == 2)
             if is_hit:
                 total_payout = (_payout_for_hit(payout_map) / 100.0) * recommended_bet
 
@@ -369,7 +379,9 @@ def _reconcile_by_names(
     elif bet_type == "馬単":
         # 予想1着→2着が rank 1→2 か（順序あり）
         if len(horse_names) >= 2:
-            is_hit = (rank_map.get(horse_names[0]) == 1 and rank_map.get(horse_names[1]) == 2)
+            is_hit = (
+                rank_map.get(horse_names[0]) == 1 and rank_map.get(horse_names[1]) == 2
+            )
             if is_hit:
                 total_payout = (_payout_for_hit(payout_map) / 100.0) * recommended_bet
 
@@ -377,7 +389,7 @@ def _reconcile_by_names(
         # 予想3頭が top3 を占めるか（順不同）
         if len(horse_names) >= 3:
             pred_set = set(horse_names[:3])
-            is_hit = (len(pred_set) == 3 and pred_set.issubset(top3_names))
+            is_hit = len(pred_set) == 3 and pred_set.issubset(top3_names)
             if is_hit:
                 total_payout = (_payout_for_hit(payout_map) / 100.0) * recommended_bet
 
@@ -386,13 +398,17 @@ def _reconcile_by_names(
         # どれか1通りが的中 → 1組み合わせ分の払戻
         if len(horse_names) >= 3:
             pred_set = set(horse_names[:3])
-            is_hit = (len(pred_set) == 3 and pred_set.issubset(top3_names))
+            is_hit = len(pred_set) == 3 and pred_set.issubset(top3_names)
             if is_hit:
                 total_payout = (_payout_for_hit(payout_map) / 100.0) * bet_per_combo
 
     logger.debug(
         "照合: prediction_id=%d race_id=%s bet_type=%s is_hit=%s payout=%.0f",
-        prediction_id, race_id, bet_type, is_hit, total_payout,
+        prediction_id,
+        race_id,
+        bet_type,
+        is_hit,
+        total_payout,
     )
 
     if not dry_run:
@@ -408,6 +424,7 @@ def _reconcile_by_names(
 
 
 # ── 払戻データなし時の単勝フォールバック ──────────────────────────
+
 
 def _reconcile_tansho_fallback(
     conn: sqlite3.Connection,
@@ -440,12 +457,13 @@ def _reconcile_tansho_fallback(
     if predicted_name is None:
         logger.warning(
             "予想馬を特定できませんでした: prediction_id=%d race_id=%s",
-            prediction_id, race_id,
+            prediction_id,
+            race_id,
         )
         return "skip"
 
-    is_hit  = (predicted_name == winner_name)
-    payout  = (winner_odds * recommended_bet) if is_hit else 0.0
+    is_hit = predicted_name == winner_name
+    payout = (winner_odds * recommended_bet) if is_hit else 0.0
 
     if not dry_run:
         record_prediction_result(
@@ -459,6 +477,7 @@ def _reconcile_tansho_fallback(
 
 
 # ── メイン照合ロジック ────────────────────────────────────────────
+
 
 def _reconcile_prediction(
     conn: sqlite3.Connection,
@@ -484,7 +503,9 @@ def _reconcile_prediction(
         horse_names_for_refund = _get_predicted_horse_names(
             conn, prediction_id, race_id, bet_type, notes, ph_horse_name
         )
-        if horse_names_for_refund and any(n in refund_names for n in horse_names_for_refund):
+        if horse_names_for_refund and any(
+            n in refund_names for n in horse_names_for_refund
+        ):
             if not dry_run:
                 record_prediction_result(
                     conn,
@@ -503,8 +524,13 @@ def _reconcile_prediction(
         if bet_type == "単勝":
             # 単勝のみ race_results.win_odds で推定
             return _reconcile_tansho_fallback(
-                conn, prediction_id, race_id, recommended_bet,
-                notes, ph_horse_name, dry_run,
+                conn,
+                prediction_id,
+                race_id,
+                recommended_bet,
+                notes,
+                ph_horse_name,
+                dry_run,
             )
         return "no_payout"
 
@@ -535,6 +561,7 @@ def _reconcile_prediction(
 
 
 # ── バッチ処理 ────────────────────────────────────────────────────
+
 
 def reconcile(
     conn: sqlite3.Connection,
@@ -598,18 +625,25 @@ def reconcile(
     logger.info("照合対象: %d 件 (year=%s)", len(rows), year or "all")
 
     stats: dict[str, int] = {
-        "total":     len(rows),
-        "hit":       0,
-        "miss":      0,
-        "skip":      0,
+        "total": len(rows),
+        "hit": 0,
+        "miss": 0,
+        "skip": 0,
         "no_result": 0,
         "no_payout": 0,
-        "refund":    0,
+        "refund": 0,
     }
 
     for row in rows:
-        (prediction_id, race_id, bet_type, recommended_bet,
-         notes, combination_json, ph_horse_name) = row
+        (
+            prediction_id,
+            race_id,
+            bet_type,
+            recommended_bet,
+            notes,
+            combination_json,
+            ph_horse_name,
+        ) = row
 
         try:
             status = _reconcile_prediction(
@@ -626,7 +660,10 @@ def reconcile(
         except Exception as exc:
             logger.error(
                 "照合中に例外: prediction_id=%d race_id=%s bet_type=%s: %s",
-                prediction_id, race_id, bet_type, exc,
+                prediction_id,
+                race_id,
+                bet_type,
+                exc,
             )
             stats["skip"] += 1
             continue
@@ -656,6 +693,7 @@ def reconcile(
 
 # ── CLI ──────────────────────────────────────────────────────────
 
+
 def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="全券種予想の的中照合バッチ",
@@ -667,8 +705,10 @@ def _parse_args() -> argparse.Namespace:
   python -m src.ml.reconcile --dry-run        # 書き込みなしで確認
 """,
     )
-    parser.add_argument("--year",    type=int, help="対象年（省略時=全期間）")
-    parser.add_argument("--dry-run", action="store_true", help="DB 書き込みなし（確認用）")
+    parser.add_argument("--year", type=int, help="対象年（省略時=全期間）")
+    parser.add_argument(
+        "--dry-run", action="store_true", help="DB 書き込みなし（確認用）"
+    )
     return parser.parse_args()
 
 
@@ -685,12 +725,12 @@ def main() -> None:
     conn.close()
 
     reconciled = stats["hit"] + stats["miss"]
-    hit_rate   = (stats["hit"] / reconciled * 100) if reconciled > 0 else 0.0
+    hit_rate = (stats["hit"] / reconciled * 100) if reconciled > 0 else 0.0
 
     mode = "[DRY-RUN]" if args.dry_run else ""
-    print(f"\n{'='*60} {mode}")
+    print(f"\n{'=' * 60} {mode}")
     print(f"  全券種照合結果 (year={args.year or 'all'})")
-    print(f"{'='*60}")
+    print(f"{'=' * 60}")
     print(f"  照合対象          : {stats['total']:6d} 件")
     print(f"  的中              : {stats['hit']:6d} 件")
     print(f"  外れ              : {stats['miss']:6d} 件")
@@ -699,7 +739,7 @@ def main() -> None:
     print(f"  結果データなし    : {stats['no_result']:6d} 件")
     print(f"  払戻データなし    : {stats['no_payout']:6d} 件")
     print(f"  的中率            : {hit_rate:6.1f} %")
-    print(f"{'='*60}")
+    print(f"{'=' * 60}")
 
 
 if __name__ == "__main__":

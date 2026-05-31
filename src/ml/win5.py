@@ -24,10 +24,9 @@ from __future__ import annotations
 import itertools
 import logging
 import sqlite3
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-import pandas as pd
 
 if TYPE_CHECKING:
     from .models import HonmeiModel
@@ -54,23 +53,25 @@ _EV_THRESHOLD = 1.0
 @dataclass
 class Win5HorsePick:
     """1レースで選んだ1頭の情報。"""
-    race_id:     str
-    horse_name:  str
+
+    race_id: str
+    horse_name: str
     horse_number: int
-    win_odds:    float
-    market_prob: float    # オッズ逆数正規化後の確率
-    model_prob:  float    # モデル予測の勝率
-    blend_prob:  float    # ブレンド後の勝率
+    win_odds: float
+    market_prob: float  # オッズ逆数正規化後の確率
+    model_prob: float  # モデル予測の勝率
+    blend_prob: float  # ブレンド後の勝率
 
 
 @dataclass
 class Win5Combination:
     """5レース×1頭の買い目組み合わせ。"""
-    picks:            list[Win5HorsePick]      # race_id の順に並ぶ
-    combined_prob:    float                    # 5頭の勝率の積
-    estimated_payout: float                   # 推定払戻（100円ベース）
-    expected_value:   float                   # 期待値 = prob × payout / 100
-    recommended_bet:  float = 100.0
+
+    picks: list[Win5HorsePick]  # race_id の順に並ぶ
+    combined_prob: float  # 5頭の勝率の積
+    estimated_payout: float  # 推定払戻（100円ベース）
+    expected_value: float  # 期待値 = prob × payout / 100
+    recommended_bet: float = 100.0
 
     def __str__(self) -> str:
         horses = " / ".join(f"{p.horse_name}({p.win_odds:.1f}倍)" for p in self.picks)
@@ -95,14 +96,14 @@ class Win5Engine:
         self,
         model: "HonmeiModel | None" = None,
         *,
-        max_bets:     int   = _DEFAULT_MAX_BETS,
+        max_bets: int = _DEFAULT_MAX_BETS,
         ev_threshold: float = _EV_THRESHOLD,
-        model_blend:  float = _MODEL_BLEND,
+        model_blend: float = _MODEL_BLEND,
     ) -> None:
-        self._model       = model
-        self._max_bets    = max_bets
+        self._model = model
+        self._max_bets = max_bets
         self._ev_threshold = ev_threshold
-        self._model_blend  = model_blend
+        self._model_blend = model_blend
         self._market_blend = 1.0 - model_blend
 
     # ── パブリック API ────────────────────────────────────────────
@@ -141,7 +142,9 @@ class Win5Engine:
         filtered = [c for c in combinations if c.expected_value >= self._ev_threshold]
         logger.info(
             "WIN5 候補: 全%d件 / EV>=%.1f: %d件",
-            len(combinations), self._ev_threshold, len(filtered),
+            len(combinations),
+            self._ev_threshold,
+            len(filtered),
         )
         return filtered[: self._max_bets]
 
@@ -208,11 +211,11 @@ class Win5Engine:
             return []
 
         # 市場確率: 1/odds を正規化
-        names    = [r[0] for r in rows]
-        numbers  = [r[1] for r in rows]
+        names = [r[0] for r in rows]
+        numbers = [r[1] for r in rows]
         odds_arr = [max(float(r[2]), _MIN_ODDS) for r in rows]
         raw_probs = [1.0 / o for o in odds_arr]
-        total     = sum(raw_probs)
+        total = sum(raw_probs)
         market_probs = [p / total for p in raw_probs]
 
         # モデル予測確率（未訓練の場合は市場確率をそのまま使用）
@@ -223,15 +226,17 @@ class Win5Engine:
             names, numbers, odds_arr, market_probs, model_probs
         ):
             blend = self._model_blend * mdp + self._market_blend * mp
-            picks.append(Win5HorsePick(
-                race_id=race_id,
-                horse_name=name,
-                horse_number=number,
-                win_odds=odds,
-                market_prob=mp,
-                model_prob=mdp,
-                blend_prob=blend,
-            ))
+            picks.append(
+                Win5HorsePick(
+                    race_id=race_id,
+                    horse_name=name,
+                    horse_number=number,
+                    win_odds=odds,
+                    market_prob=mp,
+                    model_prob=mdp,
+                    blend_prob=blend,
+                )
+            )
         return picks
 
     def _get_model_probs(
@@ -253,6 +258,7 @@ class Win5Engine:
 
         try:
             from .features import FeatureBuilder
+
             fb = FeatureBuilder(conn)
             df = fb.build_race_features(race_id)
             if df.empty:
@@ -261,7 +267,9 @@ class Win5Engine:
             scores = self._model.predict(df)
             # horse_name でインデックス合わせ
             score_map = dict(zip(df["horse_name"].tolist(), scores.tolist()))
-            raw = [max(float(score_map.get(name, 1.0 / n)), 1e-6) for name in horse_names]
+            raw = [
+                max(float(score_map.get(name, 1.0 / n)), 1e-6) for name in horse_names
+            ]
             total = sum(raw)
             return [v / total for v in raw]
         except Exception as e:
@@ -311,10 +319,12 @@ class Win5Engine:
             # model_prob > market_prob → EV > 払戻率 → エッジあり
             ev = model_prob * estimated_payout / 100.0
 
-            combos.append(Win5Combination(
-                picks=list(picks_combo),
-                combined_prob=model_prob,
-                estimated_payout=estimated_payout,
-                expected_value=ev,
-            ))
+            combos.append(
+                Win5Combination(
+                    picks=list(picks_combo),
+                    combined_prob=model_prob,
+                    estimated_payout=estimated_payout,
+                    expected_value=ev,
+                )
+            )
         return combos

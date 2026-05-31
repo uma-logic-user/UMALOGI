@@ -9,6 +9,7 @@ scripts/sandbox_yearly_analysis.py — サンドボックス年別ウォーク�
 使い方:
   py scripts/sandbox_yearly_analysis.py
 """
+
 from __future__ import annotations
 
 import logging
@@ -18,7 +19,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
-from lightgbm import LGBMClassifier, LGBMRegressor
+from lightgbm import LGBMRegressor
 
 sys.stdout.reconfigure(encoding="utf-8")
 logging.basicConfig(
@@ -28,16 +29,23 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-ROOT        = Path(__file__).resolve().parent.parent
-MAIN_DB     = ROOT / "data" / "umalogi.db"
+ROOT = Path(__file__).resolve().parent.parent
+MAIN_DB = ROOT / "data" / "umalogi.db"
 RESEARCH_DB = ROOT / "data" / "netkeiba_research.db"
 
-_SURFACE_MAP   = {"芝": 0, "ダート": 1, "障害": 2}
+_SURFACE_MAP = {"芝": 0, "ダート": 1, "障害": 2}
 _CONDITION_MAP = {"良": 0, "稍重": 1, "重": 2, "不良": 3}
-_VENUE_MAP     = {
-    "札幌": 0, "函館": 1, "福島": 2, "新潟": 3,
-    "東京": 4, "中山": 5, "中京": 6, "京都": 7,
-    "阪神": 8, "小倉": 9,
+_VENUE_MAP = {
+    "札幌": 0,
+    "函館": 1,
+    "福島": 2,
+    "新潟": 3,
+    "東京": 4,
+    "中山": 5,
+    "中京": 6,
+    "京都": 7,
+    "阪神": 8,
+    "小倉": 9,
 }
 
 SANDBOX_FEATURE_COLS = [
@@ -72,6 +80,7 @@ TARGET_BET_TYPES = ["三連単", "馬単", "馬連", "三連複"]
 
 # ─── 特徴量構築（horse_odds.rankをラベルとして使用） ───────────────────────
 
+
 def build_df(
     conn: sqlite3.Connection,
     res_conn: sqlite3.Connection,
@@ -98,7 +107,9 @@ def build_df(
             logger.warning("horse_odds なし: year=%s", year_prefix)
             continue
 
-        df = pd.DataFrame(rows, columns=["race_id", "horse_number", "nb_win_odds", "finish_rank"])
+        df = pd.DataFrame(
+            rows, columns=["race_id", "horse_number", "nb_win_odds", "finish_rank"]
+        )
 
         # races テーブルからレース情報
         race_rows = conn.execute(
@@ -108,7 +119,18 @@ def build_df(
         if not race_rows:
             logger.warning("races なし: year=%s", year_prefix)
             continue
-        race_df = pd.DataFrame(race_rows, columns=["race_id", "date", "venue", "surface", "condition", "distance", "race_number"])
+        race_df = pd.DataFrame(
+            race_rows,
+            columns=[
+                "race_id",
+                "date",
+                "venue",
+                "surface",
+                "condition",
+                "distance",
+                "race_number",
+            ],
+        )
         df = df.merge(race_df, on="race_id", how="inner")
 
         # gate_number は race_results から取得（2024以降のみ存在）
@@ -122,8 +144,8 @@ def build_df(
 
         # ラベル付与（horse_odds.rank から）
         df["finish_rank"] = pd.to_numeric(df["finish_rank"], errors="coerce")
-        df["is_winner"]   = (df["finish_rank"] == 1).astype(int)
-        df["is_placed"]   = (df["finish_rank"] <= 3).astype(int)
+        df["is_winner"] = (df["finish_rank"] == 1).astype(int)
+        df["is_placed"] = (df["finish_rank"] <= 3).astype(int)
 
         # 単勝払戻 (EV target 用) — 存在する場合のみ
         payout_rows = conn.execute(
@@ -132,7 +154,7 @@ def build_df(
         ).fetchall()
         tansho = {rid: payout for rid, combo, payout in payout_rows}
         df["payout_tansho"] = df["race_id"].map(tansho).fillna(0.0)
-        df["ev_target"]     = df["is_winner"] * df["payout_tansho"]
+        df["ev_target"] = df["is_winner"] * df["payout_tansho"]
 
         # gate_number (inference用: テスト年のみ有効)
         df["gate_number"] = df.apply(
@@ -141,10 +163,10 @@ def build_df(
         )
 
         # 特徴量エンジニアリング
-        df["nb_win_odds"]     = pd.to_numeric(df["nb_win_odds"], errors="coerce")
+        df["nb_win_odds"] = pd.to_numeric(df["nb_win_odds"], errors="coerce")
         df["nb_implied_prob"] = np.nan
-        df["nb_log_odds"]     = np.nan
-        df["race_n_horses"]   = 0
+        df["nb_log_odds"] = np.nan
+        df["race_n_horses"] = 0
 
         for race_id, grp in df.groupby("race_id"):
             idx = grp.index
@@ -152,19 +174,26 @@ def build_df(
             valid = grp["nb_win_odds"].dropna()
             if len(valid) > 0:
                 inv = 1.0 / valid.clip(lower=1.0)
-                df.loc[idx[grp["nb_win_odds"].notna()], "nb_implied_prob"] = inv / inv.sum()
+                df.loc[idx[grp["nb_win_odds"].notna()], "nb_implied_prob"] = (
+                    inv / inv.sum()
+                )
                 df.loc[idx, "nb_log_odds"] = np.log1p(grp["nb_win_odds"])
 
-        df["surface_code"]   = df["surface"].map(_SURFACE_MAP).fillna(-1).astype(int)
-        df["condition_code"] = df["condition"].map(_CONDITION_MAP).fillna(-1).astype(int)
-        df["venue_code"]     = df["venue"].map(_VENUE_MAP).fillna(-1).astype(int)
-        df["distance"]       = pd.to_numeric(df["distance"], errors="coerce").fillna(1600)
-        df["race_number"]    = pd.to_numeric(df["race_number"], errors="coerce").fillna(6)
-        df["month"]          = df["date"].str[5:7].astype(int, errors="ignore")
+        df["surface_code"] = df["surface"].map(_SURFACE_MAP).fillna(-1).astype(int)
+        df["condition_code"] = (
+            df["condition"].map(_CONDITION_MAP).fillna(-1).astype(int)
+        )
+        df["venue_code"] = df["venue"].map(_VENUE_MAP).fillna(-1).astype(int)
+        df["distance"] = pd.to_numeric(df["distance"], errors="coerce").fillna(1600)
+        df["race_number"] = pd.to_numeric(df["race_number"], errors="coerce").fillna(6)
+        df["month"] = df["date"].str[5:7].astype(int, errors="ignore")
 
         logger.info(
             "  %s: %d行 / %d レース / winner=%d",
-            year_prefix, len(df), df["race_id"].nunique(), df["is_winner"].sum(),
+            year_prefix,
+            len(df),
+            df["race_id"].nunique(),
+            df["is_winner"].sum(),
         )
         all_dfs.append(df)
 
@@ -172,6 +201,7 @@ def build_df(
 
 
 # ─── payout lookup ────────────────────────────────────────────────────────────
+
 
 def _parse_combo(bet_type: str, combination: str) -> tuple[int, ...]:
     combination = str(combination).strip()
@@ -185,7 +215,9 @@ def _parse_combo(bet_type: str, combination: str) -> tuple[int, ...]:
     return tuple(sorted(parts))
 
 
-def _lookup_payout(payout_df: pd.DataFrame, bet_type: str, selected: tuple[int, ...]) -> float:
+def _lookup_payout(
+    payout_df: pd.DataFrame, bet_type: str, selected: tuple[int, ...]
+) -> float:
     rows = payout_df[payout_df["bet_type"] == bet_type]
     for _, row in rows.iterrows():
         try:
@@ -203,7 +235,9 @@ def simulate_one_race(
     """EV上位予測で全TARGET券種をシミュレート。{bet_type: (invested, returned)}"""
     pred_sorted = pred_df.sort_values("ev_score", ascending=False)
     top3 = [int(r["horse_number"]) for _, r in pred_sorted.head(3).iterrows()]
-    gate_map = dict(zip(pred_df["horse_number"].astype(int), pred_df["gate_number"].astype(int)))
+    gate_map = dict(
+        zip(pred_df["horse_number"].astype(int), pred_df["gate_number"].astype(int))
+    )
 
     results: dict[str, tuple[float, float]] = {}
 
@@ -230,6 +264,7 @@ def simulate_one_race(
 
 # ─── 年別集計 ──────────────────────────────────────────────────────────────
 
+
 def calc_max_drawdown(invested: pd.Series, returned: pd.Series) -> float:
     pnl_series = (returned - invested).cumsum()
     running_max = pnl_series.cummax()
@@ -242,29 +277,34 @@ def year_stats(records: list[dict], year: str, bet_type: str) -> dict:
         return {}
 
     df = pd.DataFrame(rows).sort_values("race_id")
-    n        = len(df)
+    n = len(df)
     invested = df["invested"].sum()
     returned = df["returned"].sum()
-    hits     = (df["returned"] > 0).sum()
-    roi      = returned / invested * 100 if invested else 0.0
+    hits = (df["returned"] > 0).sum()
+    roi = returned / invested * 100 if invested else 0.0
     hit_rate = hits / n * 100
-    max_dd   = calc_max_drawdown(df["invested"], df["returned"])
+    max_dd = calc_max_drawdown(df["invested"], df["returned"])
 
     # 外れ値分析
-    top1_ret   = float(df["returned"].max())
-    top1_race  = df.loc[df["returned"].idxmax(), "race_id"]
-    ret_ex     = returned - top1_ret
-    roi_ex     = ret_ex / invested * 100 if invested else 0.0
-    top1_pct   = top1_ret / returned * 100 if returned else 0.0
+    top1_ret = float(df["returned"].max())
+    top1_race = df.loc[df["returned"].idxmax(), "race_id"]
+    ret_ex = returned - top1_ret
+    roi_ex = ret_ex / invested * 100 if invested else 0.0
+    top1_pct = top1_ret / returned * 100 if returned else 0.0
 
     return {
-        "year": year, "bet_type": bet_type,
-        "n_races": n, "n_hits": int(hits),
+        "year": year,
+        "bet_type": bet_type,
+        "n_races": n,
+        "n_hits": int(hits),
         "hit_rate": round(hit_rate, 1),
-        "invested": int(invested), "returned": int(returned),
-        "pnl": int(returned - invested), "roi": round(roi, 1),
+        "invested": int(invested),
+        "returned": int(returned),
+        "pnl": int(returned - invested),
+        "roi": round(roi, 1),
         "max_dd": round(max_dd, 0),
-        "top1_ret": int(top1_ret), "top1_race": top1_race,
+        "top1_ret": int(top1_ret),
+        "top1_race": top1_race,
         "roi_ex_top1": round(roi_ex, 1),
         "top1_contribution_pct": round(top1_pct, 1),
     }
@@ -272,13 +312,14 @@ def year_stats(records: list[dict], year: str, bet_type: str) -> dict:
 
 # ─── main ─────────────────────────────────────────────────────────────────
 
+
 def main() -> None:
-    conn     = sqlite3.connect(str(MAIN_DB))
+    conn = sqlite3.connect(str(MAIN_DB))
     res_conn = sqlite3.connect(str(RESEARCH_DB))
 
     # 有効フォールド（race_payoutsが存在する2024・2025のみ）
     folds = [
-        (["2022", "2023"],         "2024"),
+        (["2022", "2023"], "2024"),
         (["2022", "2023", "2024"], "2025"),
     ]
 
@@ -286,18 +327,18 @@ def main() -> None:
 
     for train_years, test_year in folds:
         label = "+".join(train_years)
-        logger.info("="*60)
+        logger.info("=" * 60)
         logger.info("フォールド: 学習=%s → テスト=%s", label, test_year)
 
         train_df = build_df(conn, res_conn, train_years)
-        test_df  = build_df(conn, res_conn, [test_year])
+        test_df = build_df(conn, res_conn, [test_year])
 
         if train_df.empty or test_df.empty:
             logger.warning("データ不足: スキップ")
             continue
 
         train_clean = train_df.dropna(subset=SANDBOX_FEATURE_COLS)
-        test_clean  = test_df.dropna(subset=SANDBOX_FEATURE_COLS)
+        test_clean = test_df.dropna(subset=SANDBOX_FEATURE_COLS)
 
         # EV target が全0の場合は複勝払戻 × is_placed に fallback
         if train_clean["ev_target"].sum() == 0:
@@ -308,8 +349,16 @@ def main() -> None:
             train_clean = train_clean.copy()
             train_clean["ev_target"] = train_clean["is_winner"].astype(float)
 
-        logger.info("  学習: %d行 / %d レース", len(train_clean), train_clean["race_id"].nunique())
-        logger.info("  テスト: %d行 / %d レース", len(test_clean), test_clean["race_id"].nunique())
+        logger.info(
+            "  学習: %d行 / %d レース",
+            len(train_clean),
+            train_clean["race_id"].nunique(),
+        )
+        logger.info(
+            "  テスト: %d行 / %d レース",
+            len(test_clean),
+            test_clean["race_id"].nunique(),
+        )
 
         X_tr = train_clean[SANDBOX_FEATURE_COLS]
         mdl_ev = LGBMRegressor(**_LGB_BASE)
@@ -325,24 +374,28 @@ def main() -> None:
             "SELECT race_id, bet_type, combination, payout FROM race_payouts WHERE race_id LIKE ?",
             (f"{test_year}%",),
         ).fetchall()
-        payout_global = pd.DataFrame(payout_rows, columns=["race_id", "bet_type", "combination", "payout"])
+        payout_global = pd.DataFrame(
+            payout_rows, columns=["race_id", "bet_type", "combination", "payout"]
+        )
 
         race_ids = test_clean["race_id"].unique()
         logger.info("  バックテスト: %d レース", len(race_ids))
 
         for i, race_id in enumerate(race_ids):
-            race_pred   = test_clean[test_clean["race_id"] == race_id]
+            race_pred = test_clean[test_clean["race_id"] == race_id]
             race_payout = payout_global[payout_global["race_id"] == race_id]
             if race_pred.empty or race_payout.empty:
                 continue
             for bt, (inv, ret) in simulate_one_race(race_pred, race_payout).items():
-                all_records.append({
-                    "year": test_year,
-                    "race_id": race_id,
-                    "bet_type": bt,
-                    "invested": inv,
-                    "returned": ret,
-                })
+                all_records.append(
+                    {
+                        "year": test_year,
+                        "race_id": race_id,
+                        "bet_type": bt,
+                        "invested": inv,
+                        "returned": ret,
+                    }
+                )
             if (i + 1) % 500 == 0:
                 logger.info("    %d / %d", i + 1, len(race_ids))
 
@@ -359,10 +412,10 @@ def main() -> None:
 
     tested_years = ["2024", "2025"]
 
-    print("\n" + "="*80)
+    print("\n" + "=" * 80)
     print("  サンドボックス 年別ウォークフォワード分析")
     print("  ラベル: horse_odds.rank (netkeiba R&D) | 払戻: umalogi.db")
-    print("="*80)
+    print("=" * 80)
 
     all_stats: dict[tuple[str, str], dict] = {}
     for y in tested_years:
@@ -395,7 +448,9 @@ def main() -> None:
 
     # ── 2. 外れ値分析 ─────────────────────────────────────────────────────────
     print("\n■ 【2】外れ値（年間TOP1的中払戻）除外時のROI\n")
-    print(f"{'年度':<6} {'券種':<6} {'TOP1払戻':>12} {'TOP1寄与':>10} {'除外ROI':>10} {'通常ROI':>10}")
+    print(
+        f"{'年度':<6} {'券種':<6} {'TOP1払戻':>12} {'TOP1寄与':>10} {'除外ROI':>10} {'通常ROI':>10}"
+    )
     print("-" * 60)
     for y in tested_years:
         for bt in TARGET_BET_TYPES:
@@ -413,14 +468,14 @@ def main() -> None:
         print()
 
     # ── 3. 客観評価 ────────────────────────────────────────────────────────────
-    print("\n" + "="*80)
+    print("\n" + "=" * 80)
     print("■ 【3】AIデータサイエンティストによる客観的堅牢性評価（忖度なし）")
-    print("="*80)
+    print("=" * 80)
 
     for bt in TARGET_BET_TYPES:
         stats_list = [all_stats.get((y, bt), {}) for y in tested_years]
-        rois     = [s.get("roi", None) for s in stats_list if s]
-        ex_rois  = [s.get("roi_ex_top1", None) for s in stats_list if s]
+        rois = [s.get("roi", None) for s in stats_list if s]
+        ex_rois = [s.get("roi_ex_top1", None) for s in stats_list if s]
         contribs = [s.get("top1_contribution_pct", 0) for s in stats_list if s]
 
         print(f"\n── {bt} ──")
@@ -428,7 +483,9 @@ def main() -> None:
             s = all_stats.get((y, bt), {})
             if s:
                 flag = "✅" if s["roi"] >= 100 else "❌"
-                print(f"  {y}: ROI={s['roi']:8.1f}%  除外ROI={s['roi_ex_top1']:8.1f}%  TOP1寄与={s['top1_contribution_pct']:5.1f}%  {flag}")
+                print(
+                    f"  {y}: ROI={s['roi']:8.1f}%  除外ROI={s['roi_ex_top1']:8.1f}%  TOP1寄与={s['top1_contribution_pct']:5.1f}%  {flag}"
+                )
 
         valid_rois = [r for r in rois if r is not None]
         if not valid_rois:
@@ -436,11 +493,13 @@ def main() -> None:
 
         avg_roi = np.mean(valid_rois)
         std_roi = np.std(valid_rois)
-        avg_ex  = np.mean([r for r in ex_rois if r is not None]) if ex_rois else 0
+        avg_ex = np.mean([r for r in ex_rois if r is not None]) if ex_rois else 0
         profit_years = sum(1 for r in valid_rois if r >= 100)
         max_contrib = max(contribs) if contribs else 0
 
-        print(f"\n  集計: 平均ROI={avg_roi:.1f}%  標準偏差={std_roi:.1f}%  黒字={profit_years}/{len(valid_rois)}年")
+        print(
+            f"\n  集計: 平均ROI={avg_roi:.1f}%  標準偏差={std_roi:.1f}%  黒字={profit_years}/{len(valid_rois)}年"
+        )
 
         issues: list[str] = []
         if profit_years < len(valid_rois):

@@ -144,7 +144,8 @@ def sync_friday(target_date: str | None = None) -> int:
         stats = loader.load(dataspec=DATASPEC_RACE, fromtime=from_dt, option=OPT_NORMAL)
     except RuntimeError as e:
         logger.warning(
-            "Stage1 OPT_NORMAL で RuntimeError (%s) → Stage2 OPT_STORED にフォールバック", e
+            "Stage1 OPT_NORMAL で RuntimeError (%s) → Stage2 OPT_STORED にフォールバック",
+            e,
         )
         stats = {}
     if _count_races_for_date(target_date) > 0:
@@ -159,10 +160,13 @@ def sync_friday(target_date: str | None = None) -> int:
             stats.get("open_code", 0),
         )
         try:
-            stats = loader.load(dataspec=DATASPEC_RACE, fromtime=from_dt, option=OPT_STORED)
+            stats = loader.load(
+                dataspec=DATASPEC_RACE, fromtime=from_dt, option=OPT_STORED
+            )
         except RuntimeError as e:
             logger.warning(
-                "Stage2 OPT_STORED で RuntimeError (%s) → Stage3 OPT_SETUP にフォールバック", e
+                "Stage2 OPT_STORED で RuntimeError (%s) → Stage3 OPT_SETUP にフォールバック",
+                e,
             )
             stats = {}
 
@@ -272,10 +276,13 @@ def sync_race_results(from_date: str | None = None, stored: bool = False) -> int
         # ── Stage 1: OPT_NORMAL (差分ダウンロード) ──────────────────
         # RuntimeError (-503 等) は OPT_NORMAL ポインタ消費済みの既知パターン → Stage 2 へ
         try:
-            stats = loader.load(dataspec=DATASPEC_RACE, fromtime=from_dt, option=OPT_NORMAL)
+            stats = loader.load(
+                dataspec=DATASPEC_RACE, fromtime=from_dt, option=OPT_NORMAL
+            )
         except RuntimeError as e:
             logger.warning(
-                "Stage1 OPT_NORMAL で RuntimeError (%s) → Stage2 OPT_STORED にフォールバック", e
+                "Stage1 OPT_NORMAL で RuntimeError (%s) → Stage2 OPT_STORED にフォールバック",
+                e,
             )
             stats = {"total_read": 0, "open_code": -1}
 
@@ -402,7 +409,10 @@ def sync_wood() -> int:
         logger.warning("WOOD JVLink 失敗 (%s) → OPT_STORED にフォールバック", e)
         try:
             from src.scraper.jravan_client import OPT_STORED
-            stats = loader.load(dataspec=DATASPEC_WOOD, fromtime=from_dt, option=OPT_STORED)
+
+            stats = loader.load(
+                dataspec=DATASPEC_WOOD, fromtime=from_dt, option=OPT_STORED
+            )
         except Exception as e2:
             logger.error("WOOD OPT_STORED も失敗: %s — 調教タイム取得をスキップ", e2)
             return 0

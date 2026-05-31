@@ -1,4 +1,4 @@
-"""  # noqa: E501
+"""# noqa: E501
 scripts/calibration_kelly_audit.py
 ===================================
 Step 1: 本命(直前)モデルのキャリブレーション分析
@@ -15,6 +15,7 @@ Usage:
   py scripts/calibration_kelly_audit.py [--db data/umalogi.db] [--trials 10000]
   py scripts/calibration_kelly_audit.py --out data/calibration_kelly_audit.json
 """
+
 from __future__ import annotations
 
 import argparse
@@ -36,21 +37,22 @@ sys.path.insert(0, str(_ROOT))
 MT_HONMEI_IMMEDIATE = "本命(直前)"
 
 # Monte Carlo パラメーター
-INITIAL_BALANCE: float = 100_000.0    # 初期資金 (円)
-BANKRUPT_THRESHOLD: float = 0.10      # 破産ライン = 初期資金の 10%
+INITIAL_BALANCE: float = 100_000.0  # 初期資金 (円)
+BANKRUPT_THRESHOLD: float = 0.10  # 破産ライン = 初期資金の 10%
 DEFAULT_TRIALS: int = 10_000
 KELLY_SCALES: dict[str, float] = {
     "1/8 Kelly": 0.5,
-    "1/4 Kelly": 1.0,   # recommended_bet はこの基準
+    "1/4 Kelly": 1.0,  # recommended_bet はこの基準
     "1/2 Kelly": 2.0,
     "Full Kelly": 4.0,
 }
-BIN_WIDTH: float = 0.05              # キャリブレーション bin 幅
+BIN_WIDTH: float = 0.05  # キャリブレーション bin 幅
 
 
 # ══════════════════════════════════════════════════════════════════════════════
 # Step 1: キャリブレーション分析
 # ══════════════════════════════════════════════════════════════════════════════
+
 
 def _load_calibration_data(conn: sqlite3.Connection) -> list[tuple[float, int]]:
     """(model_score, is_winner) ペアをすべて取得する。
@@ -144,7 +146,9 @@ def _print_calibration(cal_table: list[dict], correction: list[dict]) -> None:
     print("\n" + "=" * 65)
     print("  Step 1: 本命(直前) モデル キャリブレーション分析")
     print("=" * 65)
-    print(f"{'bin':>10}  {'予測確率':>8}  {'実的中率':>8}  {'件数':>6}  {'乖離':>7}  {'バー'}")
+    print(
+        f"{'bin':>10}  {'予測確率':>8}  {'実的中率':>8}  {'件数':>6}  {'乖離':>7}  {'バー'}"
+    )
     print("-" * 65)
     for row in cal_table:
         gap = row["gap"]
@@ -169,7 +173,9 @@ def _print_calibration(cal_table: list[dict], correction: list[dict]) -> None:
     print(f"  平均絶対誤差 (MAE): {total_gap:.4f}")
     print()
     print("  【補正テーブル（actual/predicted）】")
-    print(f"  {'bin_center':>10}  {'予測':>7}  {'実績':>7}  {'補正倍率':>8}  {'件数':>6}")
+    print(
+        f"  {'bin_center':>10}  {'予測':>7}  {'実績':>7}  {'補正倍率':>8}  {'件数':>6}"
+    )
     print("  " + "-" * 50)
     for row in correction:
         flag = " [!]" if abs(row["correction_factor"] - 1.0) > 0.3 else ""
@@ -196,6 +202,7 @@ def _print_calibration(cal_table: list[dict], correction: list[dict]) -> None:
 # ══════════════════════════════════════════════════════════════════════════════
 # Step 2: Kelly Monte Carlo シミュレーション
 # ══════════════════════════════════════════════════════════════════════════════
+
 
 def _load_kelly_data(conn: sqlite3.Connection) -> tuple[np.ndarray, float, float]:
     """recommended_bet 基準の実績利益を計算して返す。
@@ -239,7 +246,7 @@ def _load_kelly_data(conn: sqlite3.Connection) -> tuple[np.ndarray, float, float
             n_combos = 1
 
         eval_invested = n_combos * 100.0  # evaluator が使う投資額
-        scale = rec_bet / eval_invested   # recommended_bet 基準のスケール
+        scale = rec_bet / eval_invested  # recommended_bet 基準のスケール
 
         if is_hit:
             actual_payout = float(payout_eval) * scale
@@ -326,20 +333,22 @@ def _run_monte_carlo(
         "bankruptcy_rate": round(bankruptcy_count / n_trials * 100, 3),
         "bankruptcy_count": bankruptcy_count,
         "avg_first_bankrupt_step": (
-            round(float(np.mean(first_bankrupt_steps)), 1) if first_bankrupt_steps else None
+            round(float(np.mean(first_bankrupt_steps)), 1)
+            if first_bankrupt_steps
+            else None
         ),
         "final_balance": {
-            "mean":   round(float(fb.mean()), 0),
+            "mean": round(float(fb.mean()), 0),
             "median": round(float(np.median(fb)), 0),
-            "p5":     round(float(np.percentile(fb, 5)), 0),
-            "p25":    round(float(np.percentile(fb, 25)), 0),
-            "p75":    round(float(np.percentile(fb, 75)), 0),
-            "p95":    round(float(np.percentile(fb, 95)), 0),
+            "p5": round(float(np.percentile(fb, 5)), 0),
+            "p25": round(float(np.percentile(fb, 25)), 0),
+            "p75": round(float(np.percentile(fb, 75)), 0),
+            "p95": round(float(np.percentile(fb, 95)), 0),
         },
         "max_drawdown_pct": {
-            "mean":   round(float(dd.mean() * 100), 2),
+            "mean": round(float(dd.mean() * 100), 2),
             "median": round(float(np.median(dd) * 100), 2),
-            "p95":    round(float(np.percentile(dd, 95) * 100), 2),
+            "p95": round(float(np.percentile(dd, 95) * 100), 2),
         },
     }
 
@@ -364,9 +373,9 @@ def _run_monte_carlo_w037(
         balance_cap_pct: 残高上限比率（W-037: 5%）
     """
     n_bets = len(bets)
-    original_bets = bets[:, 0]   # 元の recommended_bet
-    base_profits  = bets[:, 1]   # recommended_bet 全額での利益
-    n_combos_arr  = bets[:, 2]   # コンボ数
+    original_bets = bets[:, 0]  # 元の recommended_bet
+    base_profits = bets[:, 1]  # recommended_bet 全額での利益
+    n_combos_arr = bets[:, 2]  # コンボ数
 
     final_balances: list[float] = []
     max_drawdowns: list[float] = []
@@ -445,20 +454,22 @@ def _run_monte_carlo_w037(
         "bankruptcy_count": bankruptcy_count,
         "skipped_bets_per_trial": round(skipped_bets_total / n_trials, 1),
         "avg_first_bankrupt_step": (
-            round(float(np.mean(first_bankrupt_steps)), 1) if first_bankrupt_steps else None
+            round(float(np.mean(first_bankrupt_steps)), 1)
+            if first_bankrupt_steps
+            else None
         ),
         "final_balance": {
-            "mean":   round(float(fb.mean()), 0),
+            "mean": round(float(fb.mean()), 0),
             "median": round(float(np.median(fb)), 0),
-            "p5":     round(float(np.percentile(fb, 5)), 0),
-            "p25":    round(float(np.percentile(fb, 25)), 0),
-            "p75":    round(float(np.percentile(fb, 75)), 0),
-            "p95":    round(float(np.percentile(fb, 95)), 0),
+            "p5": round(float(np.percentile(fb, 5)), 0),
+            "p25": round(float(np.percentile(fb, 25)), 0),
+            "p75": round(float(np.percentile(fb, 75)), 0),
+            "p95": round(float(np.percentile(fb, 95)), 0),
         },
         "max_drawdown_pct": {
-            "mean":   round(float(dd.mean() * 100), 2),
+            "mean": round(float(dd.mean() * 100), 2),
             "median": round(float(np.median(dd) * 100), 2),
-            "p95":    round(float(np.percentile(dd, 95) * 100), 2),
+            "p95": round(float(np.percentile(dd, 95) * 100), 2),
         },
     }
 
@@ -481,16 +492,14 @@ def _print_monte_carlo(results: dict[str, dict], initial_balance: float) -> None
 
         br_flag = " [!]" if br > 1.0 else "    "
         print(
-            f"  {label:>12}"
-            f"  {br:7.2f}%{br_flag}"
-            f"  ¥{med:>9,.0f}"
-            f"  {dd_med:>10.1f}%"
-            f"  {dd_95:>11.1f}%"
+            f"  {label:>12}  {br:7.2f}%{br_flag}  ¥{med:>9,.0f}  {dd_med:>10.1f}%  {dd_95:>11.1f}%"
         )
 
     print()
     print("  【パーセンタイル詳細】")
-    print(f"  {'Kelly':>12}  {'P5残高':>10}  {'P25残高':>10}  {'P75残高':>10}  {'P95残高':>10}")
+    print(
+        f"  {'Kelly':>12}  {'P5残高':>10}  {'P25残高':>10}  {'P75残高':>10}  {'P95残高':>10}"
+    )
     print("  " + "-" * 58)
     for label, res in results.items():
         fb = res["final_balance"]
@@ -504,8 +513,8 @@ def _print_monte_carlo(results: dict[str, dict], initial_balance: float) -> None
 
     print()
     print("  【判定基準】")
-    print(f"  破産ライン: 初期資金の {int(BANKRUPT_THRESHOLD*100)}% 以下")
-    print(f"  安全目安: 破産率 < 0.1%、最大DD(95%ile) < 50%")
+    print(f"  破産ライン: 初期資金の {int(BANKRUPT_THRESHOLD * 100)}% 以下")
+    print("  安全目安: 破産率 < 0.1%、最大DD(95%ile) < 50%")
 
     print()
     print("  【推奨 Kelly 係数】")
@@ -517,12 +526,15 @@ def _print_monte_carlo(results: dict[str, dict], initial_balance: float) -> None
     if safe:
         print(f"  [OK] {', '.join(safe)} が安全基準を満たします。")
     else:
-        print("  [!] いずれの係数も安全基準を満たしません。投資上限の見直しを推奨します。")
+        print(
+            "  [!] いずれの係数も安全基準を満たしません。投資上限の見直しを推奨します。"
+        )
 
 
 # ══════════════════════════════════════════════════════════════════════════════
 # Step 3: W-036 キャリブレーション補正効果試算
 # ══════════════════════════════════════════════════════════════════════════════
+
 
 def _estimate_calibration_impact(
     conn: sqlite3.Connection,
@@ -548,6 +560,7 @@ def _estimate_calibration_impact(
         }
     """
     import sys
+
     _root = Path(__file__).resolve().parents[1]
     if str(_root) not in sys.path:
         sys.path.insert(0, str(_root))
@@ -589,15 +602,13 @@ def _estimate_calibration_impact(
 
     # 元の実績ROI
     original_invested = bets[:, 0].sum()
-    original_payout = sum(
-        p + b for b, p in zip(bets[:, 0], bets[:, 1]) if p > 0
-    )
+    original_payout = sum(p + b for b, p in zip(bets[:, 0], bets[:, 1]) if p > 0)
     base_roi = (original_payout / max(original_invested, 1.0)) * 100
 
     # W-037 + W-036 合算 Monte Carlo (1/4 Kelly)
     result_w037_w036 = _run_monte_carlo_w037(
         corrected_bets,
-        base_scale=1.0,   # 1/4 Kelly
+        base_scale=1.0,  # 1/4 Kelly
         n_trials=n_trials,
         initial_balance=initial_balance,
         bankrupt_threshold=BANKRUPT_THRESHOLD,
@@ -632,52 +643,76 @@ def _print_calibration_impact(impact: dict, initial_balance: float) -> None:
     print(f"  対象サンプル数  : {n:,}件 (prediction_horses × 本命(直前))")
     print(f"  平均補正倍率    : ×{avg_f:.3f}")
     print(f"    → 現在 EV 計算の真値は平均 {avg_f:.1f}倍高い可能性がある")
-    print(f"    → bin別: 低確率馬(0-5%)×3.1 / 中確率馬(5-15%)×1.9-2.1 / 高確率馬(15-25%)×1.1-1.4")
+    print(
+        "    → bin別: 低確率馬(0-5%)×3.1 / 中確率馬(5-15%)×1.9-2.1 / 高確率馬(15-25%)×1.1-1.4"
+    )
     print()
-    print(f"  【W-036 実装による期待効果】")
-    print(f"  現在のシステム: honmei_score そのまま → EV = score × odds")
-    print(f"  W-036適用後  : honmei_score × 補正倍率 → EV' = corrected × odds")
+    print("  【W-036 実装による期待効果】")
+    print("  現在のシステム: honmei_score そのまま → EV = score × odds")
+    print("  W-036適用後  : honmei_score × 補正倍率 → EV' = corrected × odds")
     print()
-    print(f"  本命単勝の例（score=0.10, odds=8.0）:")
+    print("  本命単勝の例（score=0.10, odds=8.0）:")
     from src.ml.calibration import correct_honmei_score, correction_factor_for
+
     raw_score = 0.10
     cal_score = correct_honmei_score(raw_score)
     factor = correction_factor_for(raw_score)
-    print(f"    補正前: EV = {raw_score:.2f} × 8.0 = {raw_score*8:.2f} (閾値1.2未満→不採用 [!])")
-    print(f"    補正後: EV = {cal_score:.3f} × 8.0 = {cal_score*8:.2f} (閾値超え→採用 [OK])")
+    print(
+        f"    補正前: EV = {raw_score:.2f} × 8.0 = {raw_score * 8:.2f} (閾値1.2未満→不採用 [!])"
+    )
+    print(
+        f"    補正後: EV = {cal_score:.3f} × 8.0 = {cal_score * 8:.2f} (閾値超え→採用 [OK])"
+    )
     print()
-    print(f"  本命単勝の例（score=0.15, odds=5.0）:")
+    print("  本命単勝の例（score=0.15, odds=5.0）:")
     raw2 = 0.15
     cal2 = correct_honmei_score(raw2)
-    print(f"    補正前: EV = {raw2:.2f} × 5.0 = {raw2*5:.2f} (採用)")
-    print(f"    補正後: EV = {cal2:.3f} × 5.0 = {cal2*5:.2f} (Kelly額が{correction_factor_for(raw2):.1f}倍に拡大)")
+    print(f"    補正前: EV = {raw2:.2f} × 5.0 = {raw2 * 5:.2f} (採用)")
+    print(
+        f"    補正後: EV = {cal2:.3f} × 5.0 = {cal2 * 5:.2f} (Kelly額が{correction_factor_for(raw2):.1f}倍に拡大)"
+    )
     print()
-    print(f"  ※ 理論的ROI改善推計（一次近似）:")
+    print("  ※ 理論的ROI改善推計（一次近似）:")
     print(f"     補正前 基準ROI : ~{base_roi:.0f}%")
     print(f"     補正後 推定ROI : ~{est_roi:.0f}% （EV上昇によるKelly増加の楽観推計）")
     print()
-    print(f"  ⚠ 注意: W-036 は本命モデルのみに適用。卍・Alpha は対象外。")
-    print(f"         高額投資増加に伴い推奨資金は ¥300K〜¥500K 以上を維持すること（W-037と同様）。")
+    print("  ⚠ 注意: W-036 は本命モデルのみに適用。卍・Alpha は対象外。")
+    print(
+        "         高額投資増加に伴い推奨資金は ¥300K〜¥500K 以上を維持すること（W-037と同様）。"
+    )
 
 
 # ══════════════════════════════════════════════════════════════════════════════
 # エントリーポイント
 # ══════════════════════════════════════════════════════════════════════════════
 
+
 def main(argv: list[str] | None = None) -> None:
-    parser = argparse.ArgumentParser(description="キャリブレーション & Kelly Monte Carlo 監査")
-    parser.add_argument("--db", default=str(_ROOT / "data" / "umalogi.db"), help="SQLite パス")
-    parser.add_argument("--trials", type=int, default=DEFAULT_TRIALS, help="Monte Carlo 試行回数")
-    parser.add_argument("--initial", type=float, default=INITIAL_BALANCE, help="初期資金 (円)")
+    parser = argparse.ArgumentParser(
+        description="キャリブレーション & Kelly Monte Carlo 監査"
+    )
+    parser.add_argument(
+        "--db", default=str(_ROOT / "data" / "umalogi.db"), help="SQLite パス"
+    )
+    parser.add_argument(
+        "--trials", type=int, default=DEFAULT_TRIALS, help="Monte Carlo 試行回数"
+    )
+    parser.add_argument(
+        "--initial", type=float, default=INITIAL_BALANCE, help="初期資金 (円)"
+    )
     parser.add_argument("--seed", type=int, default=42, help="乱数シード")
-    parser.add_argument("--out", default=None, help="JSON 出力パス（省略時は標準出力のみ）")
+    parser.add_argument(
+        "--out", default=None, help="JSON 出力パス（省略時は標準出力のみ）"
+    )
     args = parser.parse_args(argv)
 
     conn = sqlite3.connect(args.db)
     rng = np.random.default_rng(args.seed)
 
     # ── Step 1: キャリブレーション ──────────────────────────────────────────
-    print(f"\n[Step 1] キャリブレーションデータ取得中… (model_type={MT_HONMEI_IMMEDIATE})")
+    print(
+        f"\n[Step 1] キャリブレーションデータ取得中… (model_type={MT_HONMEI_IMMEDIATE})"
+    )
     cal_data = _load_calibration_data(conn)
     print(f"  → {len(cal_data)} 件の (model_score, is_winner) ペアを取得")
 
@@ -686,7 +721,7 @@ def main(argv: list[str] | None = None) -> None:
     _print_calibration(cal_table, correction)
 
     # ── Step 2: Kelly Monte Carlo ─────────────────────────────────────────
-    print(f"\n[Step 2] Kelly ベットデータ取得中…")
+    print("\n[Step 2] Kelly ベットデータ取得中…")
     kelly_data, total_invested, total_actual_payout = _load_kelly_data(conn)
     total_net = kelly_data[:, 1].sum()
     true_roi = total_actual_payout / total_invested * 100 if total_invested > 0 else 0
@@ -696,8 +731,12 @@ def main(argv: list[str] | None = None) -> None:
     print(f"  → 純損益:                     ¥{total_net:+,.0f}")
     print(f"  → 真のROI:                    {true_roi:.1f}%")
     if true_roi < 100:
-        print(f"  [!] ROI < 100% のためいかなるKelly係数でも長期的な破産は避けられません。")
-        print(f"      シミュレーションはドローダウン耐性と破産到達速度の比較として参照してください。")
+        print(
+            "  [!] ROI < 100% のためいかなるKelly係数でも長期的な破産は避けられません。"
+        )
+        print(
+            "      シミュレーションはドローダウン耐性と破産到達速度の比較として参照してください。"
+        )
 
     conn.close()
 
@@ -747,7 +786,8 @@ def main(argv: list[str] | None = None) -> None:
     conn2 = sqlite3.connect(args.db)
     rng2 = np.random.default_rng(args.seed + 1)
     cal_impact = _estimate_calibration_impact(
-        conn2, kelly_data,
+        conn2,
+        kelly_data,
         initial_balance=args.initial,
         n_trials=args.trials,
         rng=rng2,
@@ -779,7 +819,9 @@ def main(argv: list[str] | None = None) -> None:
     if args.out:
         out_path = Path(args.out)
         out_path.parent.mkdir(parents=True, exist_ok=True)
-        out_path.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
+        out_path.write_text(
+            json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8"
+        )
         print(f"\n  → 結果を {out_path} に保存しました。")
     else:
         print("\n  （--out でパスを指定すると JSON 出力されます）")

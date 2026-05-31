@@ -49,32 +49,48 @@ def validate_race_df(
 
     if n_total == 0:
         return ValidationResult(
-            is_valid=False, n_total=0, n_valid_odds=0,
-            n_sentinel=0, warnings=["エントリーが空（0頭）"]
+            is_valid=False,
+            n_total=0,
+            n_valid_odds=0,
+            n_sentinel=0,
+            warnings=["エントリーが空（0頭）"],
         )
 
     if "win_odds" not in df.columns:
         return ValidationResult(
-            is_valid=False, n_total=n_total, n_valid_odds=0,
-            n_sentinel=0, warnings=["win_oddsカラムが存在しない"]
+            is_valid=False,
+            n_total=n_total,
+            n_valid_odds=0,
+            n_sentinel=0,
+            warnings=["win_oddsカラムが存在しない"],
         )
 
     # センチネル値カウント
     sentinel_mask = df["win_odds"].apply(
-        lambda v: v is not None and float(v) >= ODDS_SENTINEL_THRESHOLD
-        if v is not None else False
+        lambda v: (
+            v is not None and float(v) >= ODDS_SENTINEL_THRESHOLD
+            if v is not None
+            else False
+        )
     )
     n_sentinel = int(sentinel_mask.sum())
     n_valid_odds = n_total - n_sentinel
 
     if n_sentinel > 0:
-        sentinel_nums = df[sentinel_mask]["horse_number"].tolist() if "horse_number" in df.columns else []
+        sentinel_nums = (
+            df[sentinel_mask]["horse_number"].tolist()
+            if "horse_number" in df.columns
+            else []
+        )
         warnings.append(
             f"センチネルオッズ（≥{ODDS_SENTINEL_THRESHOLD}）: {n_sentinel}頭 馬番={sentinel_nums}"
         )
         logger.warning(
             "データ検証: %s — センチネルオッズ %d頭 (計%d頭) 馬番=%s",
-            race_id or "?", n_sentinel, n_total, sentinel_nums,
+            race_id or "?",
+            n_sentinel,
+            n_total,
+            sentinel_nums,
         )
 
     if n_valid_odds < MIN_VALID_HORSES:
@@ -83,7 +99,9 @@ def validate_race_df(
         )
         logger.warning(
             "データ検証: %s — 有効馬 %d頭 < 最低必要 %d頭 → ベット生成スキップ推奨",
-            race_id or "?", n_valid_odds, MIN_VALID_HORSES,
+            race_id or "?",
+            n_valid_odds,
+            MIN_VALID_HORSES,
         )
 
     is_valid = n_valid_odds >= MIN_VALID_HORSES
@@ -116,15 +134,18 @@ def filter_sentinel_horses(
         return df
 
     valid_mask = df["win_odds"].apply(
-        lambda v: v is None or float(v) < ODDS_SENTINEL_THRESHOLD
-        if v is not None else True
+        lambda v: (
+            v is None or float(v) < ODDS_SENTINEL_THRESHOLD if v is not None else True
+        )
     )
     filtered = df[valid_mask].copy()
     n_removed = len(df) - len(filtered)
     if n_removed > 0:
         logger.info(
             "filter_sentinel_horses: %s — %d頭除外 → %d頭残存",
-            race_id or "?", n_removed, len(filtered),
+            race_id or "?",
+            n_removed,
+            len(filtered),
         )
     return filtered
 
@@ -167,10 +188,17 @@ def validate_race_meta(
 
     if not distance or int(distance) <= 0:
         warnings.append(f"距離0m（未取得）: race_id={race_id}")
-        logger.warning("レースメタ検証: 距離0m race_id=%s → エントリー取得が必要", race_id)
+        logger.warning(
+            "レースメタ検証: 距離0m race_id=%s → エントリー取得が必要", race_id
+        )
 
     if n_entries < MIN_VALID_HORSES:
         warnings.append(f"エントリー頭数不足: {n_entries}頭 < {MIN_VALID_HORSES}頭")
-        logger.warning("レースメタ検証: race_id=%s エントリー %d頭 < 必要%d頭", race_id, n_entries, MIN_VALID_HORSES)
+        logger.warning(
+            "レースメタ検証: race_id=%s エントリー %d頭 < 必要%d頭",
+            race_id,
+            n_entries,
+            MIN_VALID_HORSES,
+        )
 
     return len(warnings) == 0, warnings

@@ -7,7 +7,7 @@ DB・モデル・外部 I/O はすべてモックし、パイプラインのロ�
 from __future__ import annotations
 
 import sqlite3
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 import pandas as pd
 import pytest
@@ -25,11 +25,13 @@ from src.pipeline.prediction import (
 def _make_df(n: int = 8, odds_nan: int = 0, weight_nan: int = 0) -> pd.DataFrame:
     rows = []
     for i in range(n):
-        rows.append({
-            "horse_number": i + 1,
-            "win_odds":    None if i < odds_nan else float(i + 1) * 3.0,
-            "horse_weight": None if i < weight_nan else 450 + i * 2,
-        })
+        rows.append(
+            {
+                "horse_number": i + 1,
+                "win_odds": None if i < odds_nan else float(i + 1) * 3.0,
+                "horse_weight": None if i < weight_nan else 450 + i * 2,
+            }
+        )
     return pd.DataFrame(rows)
 
 
@@ -53,7 +55,9 @@ def test_check_data_quality_high_odds_missing() -> None:
     assert "オッズ" in reason
 
 
-def test_check_data_quality_weight_warning_but_ok(caplog: pytest.LogCaptureFixture) -> None:
+def test_check_data_quality_weight_warning_but_ok(
+    caplog: pytest.LogCaptureFixture,
+) -> None:
     df = _make_df(n=8, weight_nan=8, odds_nan=0)  # 馬体重全欠損だが続行
     with caplog.at_level("WARNING"):
         ok, _ = _check_data_quality(df)
@@ -112,6 +116,7 @@ def test_check_race_deadline_logs_warning_when_late(
 ) -> None:
     """締め切り後に呼ばれた場合、Discord 通知を送ろうとする（URL 未設定なのでスキップ）。"""
     from datetime import datetime
+
     fake_now = datetime(2025, 6, 5, 13, 30)  # R7 発走推定 13:00 → 締切 12:45 を超過
     with (
         patch("src.pipeline.prediction.datetime") as mock_dt,
@@ -129,6 +134,7 @@ def test_check_race_deadline_no_warning_when_early(
 ) -> None:
     """締め切り前なら Discord には送信されない。"""
     from datetime import datetime
+
     fake_now = datetime(2025, 6, 5, 10, 0)  # R7=13:00 → 締切 12:45 まで余裕あり
     with (
         patch("src.pipeline.prediction.datetime") as mock_dt,

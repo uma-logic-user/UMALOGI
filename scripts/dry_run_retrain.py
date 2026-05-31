@@ -3,6 +3,7 @@ U score 統合モデルのドライラン再学習スクリプト
 実行: py scripts/dry_run_retrain.py
 結果: data/dry_run_result.json に保存
 """
+
 from __future__ import annotations
 
 import json
@@ -56,14 +57,16 @@ def main() -> None:
         versions = weekly_retrain(conn, validate=True)
         elapsed = time.time() - t0
 
-        result.update({
-            "status": "success",
-            "elapsed_sec": round(elapsed, 1),
-            "n_races": n_races,
-            "n_samples": n_samples,
-            "models": {k: str(v) for k, v in versions.items()},
-            "finished_at": time.strftime("%Y-%m-%d %H:%M:%S"),
-        })
+        result.update(
+            {
+                "status": "success",
+                "elapsed_sec": round(elapsed, 1),
+                "n_races": n_races,
+                "n_samples": n_samples,
+                "models": {k: str(v) for k, v in versions.items()},
+                "finished_at": time.strftime("%Y-%m-%d %H:%M:%S"),
+            }
+        )
         logger.info("=== 再学習完了 (%.0f秒) ===", elapsed)
         logger.info("モデル: %s", result["models"])
 
@@ -72,7 +75,9 @@ def main() -> None:
         logger.error("再学習失敗: %s", e, exc_info=True)
     finally:
         conn.close()
-        out_path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
+        out_path.write_text(
+            json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8"
+        )
         logger.info("結果を %s に保存", out_path)
 
 

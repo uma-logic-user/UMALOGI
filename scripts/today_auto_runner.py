@@ -973,8 +973,7 @@ def _run_one_day(
             "[recheck] R%02d %s 異常検知 → 再推論: %s", race_number, race_id, summary
         )
         _send_discord_race(
-            f"🔁 **[UMALOGI] R{race_number:02d} 直前異常検知 → 自動再推論**\n"
-            f"`{race_id}`  {summary}"
+            f"🔁 **[UMALOGI] R{race_number:02d} 直前異常検知 → 自動再推論**\n`{race_id}`  {summary}"
         )
         rc = _run_prerace(race_id, dry_run)
         if rc == 0:

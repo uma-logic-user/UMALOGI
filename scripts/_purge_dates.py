@@ -1,4 +1,5 @@
 """5/2・5/3 のデータを完全パージして件数を報告する。"""
+
 import sqlite3
 import sys
 from pathlib import Path
@@ -38,9 +39,13 @@ pred_ids = [
 ]
 if pred_ids:
     ph2 = ",".join("?" * len(pred_ids))
-    c = conn.execute(f"DELETE FROM prediction_results WHERE prediction_id IN ({ph2})", pred_ids)
+    c = conn.execute(
+        f"DELETE FROM prediction_results WHERE prediction_id IN ({ph2})", pred_ids
+    )
     totals["prediction_results"] = c.rowcount
-    c = conn.execute(f"DELETE FROM prediction_horses WHERE prediction_id IN ({ph2})", pred_ids)
+    c = conn.execute(
+        f"DELETE FROM prediction_horses WHERE prediction_id IN ({ph2})", pred_ids
+    )
     totals["prediction_horses"] = c.rowcount
     c = conn.execute(f"DELETE FROM predictions WHERE id IN ({ph2})", pred_ids)
     totals["predictions"] = c.rowcount
@@ -53,9 +58,7 @@ for table in ("race_payouts", "race_results", "entries"):
         totals[table] = -1
         print(f"  {table}: {e}")
 
-c = conn.execute(
-    f"DELETE FROM races WHERE race_id IN ({ph})", race_ids
-)
+c = conn.execute(f"DELETE FROM races WHERE race_id IN ({ph})", race_ids)
 totals["races"] = c.rowcount
 
 conn.commit()

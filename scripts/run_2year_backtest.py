@@ -10,6 +10,7 @@ Pattern C: 1日購入上限 + EV閾値 (daily top-N by EV, EV >= threshold)
     py scripts/run_2year_backtest.py --output results/backtest_grid.csv
     py scripts/run_2year_backtest.py --model honmei --bet-type win
 """
+
 from __future__ import annotations
 
 import argparse
@@ -107,7 +108,8 @@ def _run_pattern_b(
     bet_type: str,
 ) -> _BacktestRow:
     filtered = [
-        r for r in rows
+        r
+        for r in rows
         if (r["expected_value"] or 0.0) >= ev_thresh
         and odds_lo <= (r["payout"] / 100.0 if r["payout"] else 0.0) <= odds_hi
     ]
@@ -144,7 +146,9 @@ def _run_pattern_c(
             by_date[r["race_date"] or "unknown"].append(r)
     selected: list[dict] = []
     for date_rows in by_date.values():
-        sorted_rows = sorted(date_rows, key=lambda x: x["expected_value"] or 0.0, reverse=True)
+        sorted_rows = sorted(
+            date_rows, key=lambda x: x["expected_value"] or 0.0, reverse=True
+        )
         selected.extend(sorted_rows[:daily_limit])
     n_bets = len(selected)
     n_hits = sum(r["is_hit"] for r in selected)
@@ -169,13 +173,17 @@ def _run_pattern_c(
 def _print_summary(results: list[_BacktestRow]) -> None:
     print()
     print("=" * 90)
-    print(f"{'Pattern':<8} {'Params':<30} {'Model':<8} {'BetType':<8} "
-          f"{'Bets':>6} {'Hits':>5} {'ROI':>7} {'HitRate':>8}")
+    print(
+        f"{'Pattern':<8} {'Params':<30} {'Model':<8} {'BetType':<8} "
+        f"{'Bets':>6} {'Hits':>5} {'ROI':>7} {'HitRate':>8}"
+    )
     print("-" * 90)
     for r in sorted(results, key=lambda x: x.roi, reverse=True):
         flag = "★" if r.roi >= 1.0 and r.n_bets >= 10 else " "
-        print(f"{flag}{r.pattern:<7} {r.params:<30} {r.model_type:<8} {r.bet_type:<8} "
-              f"{r.n_bets:>6} {r.n_hits:>5} {r.roi:>7.1%} {r.hit_rate:>8.1%}")
+        print(
+            f"{flag}{r.pattern:<7} {r.params:<30} {r.model_type:<8} {r.bet_type:<8} "
+            f"{r.n_bets:>6} {r.n_hits:>5} {r.roi:>7.1%} {r.hit_rate:>8.1%}"
+        )
     print("=" * 90)
     winners = [r for r in results if r.roi >= 1.0 and r.n_bets >= 10]
     print(f"\n★ ROI >= 100% かつ Bets >= 10 の組み合わせ: {len(winners)} 件")
@@ -185,18 +193,43 @@ def _save_csv(results: list[_BacktestRow], path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
-        w.writerow(["pattern", "params", "model_type", "bet_type",
-                    "n_bets", "n_hits", "total_cost", "total_payout", "roi", "hit_rate"])
+        w.writerow(
+            [
+                "pattern",
+                "params",
+                "model_type",
+                "bet_type",
+                "n_bets",
+                "n_hits",
+                "total_cost",
+                "total_payout",
+                "roi",
+                "hit_rate",
+            ]
+        )
         for r in results:
-            w.writerow([r.pattern, r.params, r.model_type, r.bet_type,
-                        r.n_bets, r.n_hits, r.total_cost, r.total_payout,
-                        f"{r.roi:.4f}", f"{r.hit_rate:.4f}"])
+            w.writerow(
+                [
+                    r.pattern,
+                    r.params,
+                    r.model_type,
+                    r.bet_type,
+                    r.n_bets,
+                    r.n_hits,
+                    r.total_cost,
+                    r.total_payout,
+                    f"{r.roi:.4f}",
+                    f"{r.hit_rate:.4f}",
+                ]
+            )
     print(f"\n📊 CSV 保存: {path}")
 
 
 def main() -> None:
     p = argparse.ArgumentParser(description="2カ年厳選黒字化シミュレーター")
-    p.add_argument("--model", default="honmei", help="モデルタイプ (honmei/manji/alpha)")
+    p.add_argument(
+        "--model", default="honmei", help="モデルタイプ (honmei/manji/alpha)"
+    )
     p.add_argument("--bet-type", default="win", help="券種 (win/place/quinella/trio)")
     p.add_argument("--output", default="", help="CSV 出力先パス（省略時は出力なし）")
     args = p.parse_args()
@@ -212,7 +245,9 @@ def main() -> None:
         print(f"⚠️  データなし: model={args.model}, bet_type={args.bet_type}")
         sys.exit(0)
 
-    print(f"🔍 対象データ: {len(rows)} 件 (model={args.model}, bet_type={args.bet_type})")
+    print(
+        f"🔍 対象データ: {len(rows)} 件 (model={args.model}, bet_type={args.bet_type})"
+    )
 
     results: list[_BacktestRow] = []
 

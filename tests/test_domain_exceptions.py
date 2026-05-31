@@ -20,8 +20,6 @@ from src.evaluation.evaluator import _has_refund, _is_hit
 from src.ml.bet_generator import (
     BetConfig,
     BetGenerator,
-    HonmeiStrategy,
-    ManjiStrategy,
     OddsEstimator,
 )
 from src.ml.models import FEATURE_COLS
@@ -31,6 +29,7 @@ from src.ml.reconcile import _get_refund_set
 # ================================================================
 # ヘルパー: 着順マップ
 # ================================================================
+
 
 def _normal_result() -> dict[str, int | None]:
     """通常着順（同着なし）。"""
@@ -61,6 +60,7 @@ def _with_scratch() -> dict[str, int | None]:
 # 1. OddsEstimator テスト
 # ================================================================
 
+
 class TestOddsEstimator:
     """DB統計学習と EV 算出の検証。"""
 
@@ -68,7 +68,9 @@ class TestOddsEstimator:
         est = OddsEstimator(conn=None)
         assert est.scale("単勝") == pytest.approx(OddsEstimator._DEFAULT_SCALE["単勝"])
         assert est.scale("馬連") == pytest.approx(OddsEstimator._DEFAULT_SCALE["馬連"])
-        assert est.scale("三連複") == pytest.approx(OddsEstimator._DEFAULT_SCALE["三連複"])
+        assert est.scale("三連複") == pytest.approx(
+            OddsEstimator._DEFAULT_SCALE["三連複"]
+        )
 
     def test_データ不足でフォールバック(self) -> None:
         """MIN_SAMPLES 未満のデータはデフォルトスケールを使用する。"""
@@ -154,26 +156,29 @@ class TestOddsEstimator:
 # 2. BetConfig / ケリーキャップ テスト
 # ================================================================
 
+
 def _make_df(n: int = 6, base_odds: float = 3.0) -> pd.DataFrame:
     rows = []
     for i in range(1, n + 1):
         row: dict = {col: 0.5 for col in FEATURE_COLS}
-        row.update({
-            "horse_number": i,
-            "horse_id":     f"h{i:02d}",
-            "horse_name":   f"馬{i:02d}",
-            "sex_age":      "牡3",
-            "weight_carried": 56.0,
-            "horse_weight": 500,
-            "popularity":   i,
-            "win_odds":     float(i * base_odds),
-            "surface_code": 0,
-            "sex_code":     0,
-            "venue_encoded": 4,
-            "sire_encoded": i,
-            "distance":     1600,
-            "dist_band":    "mile",
-        })
+        row.update(
+            {
+                "horse_number": i,
+                "horse_id": f"h{i:02d}",
+                "horse_name": f"馬{i:02d}",
+                "sex_age": "牡3",
+                "weight_carried": 56.0,
+                "horse_weight": 500,
+                "popularity": i,
+                "win_odds": float(i * base_odds),
+                "surface_code": 0,
+                "sex_code": 0,
+                "venue_encoded": 4,
+                "sire_encoded": i,
+                "distance": 1600,
+                "dist_band": "mile",
+            }
+        )
         rows.append(row)
     return pd.DataFrame(rows)
 
@@ -184,8 +189,8 @@ class TestBetCap:
     def test_per_combo_キャップが全買い目に適用される(self) -> None:
         config = BetConfig(
             bankroll=1_000_000.0,
-            max_bet_fraction=1.0,        # レース合計キャップは実質無効
-            max_bet_per_combo=300.0,     # 1点 ≤ ¥300
+            max_bet_fraction=1.0,  # レース合計キャップは実質無効
+            max_bet_per_combo=300.0,  # 1点 ≤ ¥300
         )
         gen = BetGenerator(config=config)
         df = _make_df()
@@ -199,8 +204,8 @@ class TestBetCap:
     def test_per_race_合計キャップが適用される(self) -> None:
         config = BetConfig(
             bankroll=10_000.0,
-            max_bet_fraction=0.05,       # max_race = ¥500
-            max_bet_per_combo=100_000.0, # 1点キャップは実質無効
+            max_bet_fraction=0.05,  # max_race = ¥500
+            max_bet_per_combo=100_000.0,  # 1点キャップは実質無効
         )
         gen = BetGenerator(config=config)
         df = _make_df()
@@ -216,19 +221,19 @@ class TestBetCap:
 
     def test_キャップなしより賭け金が小さいか等しい(self) -> None:
         default_gen = BetGenerator()
-        capped_gen  = BetGenerator(config=BetConfig(max_bet_per_combo=200.0))
+        capped_gen = BetGenerator(config=BetConfig(max_bet_per_combo=200.0))
         df = _make_df()
         scores = pd.Series([1.0 / i for i in range(1, 7)], index=df.index)
 
         bets_default = default_gen.generate_honmei("r001", df, scores)
-        bets_capped  = capped_gen.generate_honmei("r001", df, scores)
+        bets_capped = capped_gen.generate_honmei("r001", df, scores)
 
         for bd, bc in zip(bets_default.bets, bets_capped.bets):
             assert bc.recommended_bet <= bd.recommended_bet + 0.01
 
     def test_最低購入額100円を下回らない(self) -> None:
         config = BetConfig(
-            bankroll=1.0,               # 極端に小さい資金
+            bankroll=1.0,  # 極端に小さい資金
             max_bet_fraction=0.001,
             max_bet_per_combo=0.01,
         )
@@ -245,6 +250,7 @@ class TestBetCap:
 # ================================================================
 # 3. 同着（Dead Heat）テスト — evaluator._is_hit()
 # ================================================================
+
 
 class TestDeadHeat:
     """同着ケースの的中判定。"""
@@ -312,6 +318,7 @@ class TestDeadHeat:
 # 4. 返還（Refund）テスト
 # ================================================================
 
+
 @pytest.fixture
 def refund_db() -> sqlite3.Connection:
     """返還馬を含むインメモリ DB。"""
@@ -339,7 +346,9 @@ def refund_db() -> sqlite3.Connection:
 class TestRefund:
     """返還判定の検証。"""
 
-    def test_返還馬名セットが正しく取得される(self, refund_db: sqlite3.Connection) -> None:
+    def test_返還馬名セットが正しく取得される(
+        self, refund_db: sqlite3.Connection
+    ) -> None:
         refund_set = _get_refund_set(refund_db, "r001")
         assert "馬C" in refund_set
 

@@ -17,6 +17,7 @@ UMALOGI watchdog を Windows タスクスケジューラに登録する。
   - 実行権限    : 管理者ありの場合 = HighestAvailable、なし = CurrentUser
   - 失敗時再起動: 1分後に最大 999 回
 """
+
 from __future__ import annotations
 
 import ctypes
@@ -29,10 +30,10 @@ from pathlib import Path
 sys.stdout.reconfigure(encoding="utf-8")  # type: ignore[attr-defined]
 sys.stderr.reconfigure(encoding="utf-8")  # type: ignore[attr-defined]
 
-_ROOT    = Path(__file__).resolve().parents[1]
-_PYTHON  = sys.executable
-_SCRIPT  = _ROOT / "scripts" / "watchdog.py"
-_TASK    = "UMALOGI_Watchdog"
+_ROOT = Path(__file__).resolve().parents[1]
+_PYTHON = sys.executable
+_SCRIPT = _ROOT / "scripts" / "watchdog.py"
+_TASK = "UMALOGI_Watchdog"
 _LOG_DIR = _ROOT / "logs"
 _LOG_DIR.mkdir(exist_ok=True)
 
@@ -47,21 +48,30 @@ def _is_admin() -> bool:
 def _register_via_schtasks(highest: bool) -> bool:
     """schtasks コマンドでタスクを登録する。"""
     import datetime
+
     now = datetime.datetime.now().strftime("%H:%M")
 
     # 既存タスクを削除
     subprocess.run(
         ["schtasks", "/Delete", "/TN", _TASK, "/F"],
-        capture_output=True, encoding="cp932", errors="replace",
+        capture_output=True,
+        encoding="cp932",
+        errors="replace",
     )
 
     cmd = [
-        "schtasks", "/Create",
-        "/TN", _TASK,
-        "/SC", "MINUTE",
-        "/MO", "5",
-        "/ST", now,
-        "/TR", f'{_PYTHON} "{_SCRIPT}" --interval 5',
+        "schtasks",
+        "/Create",
+        "/TN",
+        _TASK,
+        "/SC",
+        "MINUTE",
+        "/MO",
+        "5",
+        "/ST",
+        now,
+        "/TR",
+        f'{_PYTHON} "{_SCRIPT}" --interval 5',
         "/F",
     ]
     if highest:
@@ -69,7 +79,10 @@ def _register_via_schtasks(highest: bool) -> bool:
 
     result = subprocess.run(
         cmd,
-        capture_output=True, encoding="cp932", errors="replace", timeout=20,
+        capture_output=True,
+        encoding="cp932",
+        errors="replace",
+        timeout=20,
     )
     if result.returncode == 0:
         print(f"  schtasks 登録成功 (最上位権限={highest})")
@@ -123,7 +136,10 @@ def _register_via_powershell() -> bool:
 </Task>"""
 
     with tempfile.NamedTemporaryFile(
-        suffix=".xml", delete=False, mode="w", encoding="utf-16",
+        suffix=".xml",
+        delete=False,
+        mode="w",
+        encoding="utf-16",
     ) as f:
         f.write(xml)
         tmp_path = f.name
@@ -131,13 +147,21 @@ def _register_via_powershell() -> bool:
     try:
         # 既存タスク削除
         subprocess.run(
-            ["powershell", "-NonInteractive", "-Command",
-             f'Unregister-ScheduledTask -TaskName "{_TASK}" -Confirm:$false -ErrorAction SilentlyContinue'],
-            capture_output=True, timeout=15,
+            [
+                "powershell",
+                "-NonInteractive",
+                "-Command",
+                f'Unregister-ScheduledTask -TaskName "{_TASK}" -Confirm:$false -ErrorAction SilentlyContinue',
+            ],
+            capture_output=True,
+            timeout=15,
         )
         result = subprocess.run(
             ["schtasks", "/Create", "/TN", _TASK, "/XML", tmp_path, "/F"],
-            capture_output=True, encoding="cp932", errors="replace", timeout=30,
+            capture_output=True,
+            encoding="cp932",
+            errors="replace",
+            timeout=30,
         )
         if result.returncode == 0:
             print("  XML登録成功 (BootTrigger + 5分おき Repetition)")
@@ -157,7 +181,9 @@ def main() -> None:
     print(f"  Python  : {_PYTHON}")
     print(f"  Script  : {_SCRIPT}")
     print(f"  WorkDir : {_ROOT}")
-    print(f"  管理者  : {'はい (最上位権限で登録)' if admin else 'いいえ (標準権限で登録)'}")
+    print(
+        f"  管理者  : {'はい (最上位権限で登録)' if admin else 'いいえ (標準権限で登録)'}"
+    )
     print()
 
     # 管理者ありなら XML+BootTrigger で完全版を試みる
@@ -178,7 +204,10 @@ def main() -> None:
     # 即時起動
     run_result = subprocess.run(
         ["schtasks", "/Run", "/TN", _TASK],
-        capture_output=True, encoding="cp932", errors="replace", timeout=15,
+        capture_output=True,
+        encoding="cp932",
+        errors="replace",
+        timeout=15,
     )
     if run_result.returncode == 0:
         print("  watchdog を即時起動しました ✓")
@@ -200,7 +229,10 @@ def main() -> None:
     # 登録確認
     query = subprocess.run(
         ["schtasks", "/Query", "/TN", _TASK, "/FO", "LIST"],
-        capture_output=True, encoding="cp932", errors="replace", timeout=10,
+        capture_output=True,
+        encoding="cp932",
+        errors="replace",
+        timeout=10,
     )
     if query.returncode == 0:
         for line in query.stdout.splitlines()[:8]:

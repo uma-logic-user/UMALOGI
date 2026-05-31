@@ -10,7 +10,7 @@ import sys
 import threading
 import time
 import types
-from unittest.mock import MagicMock, call, patch
+from unittest.mock import MagicMock
 
 
 # ── win32 モジュールのスタブをシステムに注入 ─────────────────────────────────
@@ -19,21 +19,21 @@ def _make_win32_stubs() -> None:
 
     # win32con 定数
     win32con = types.ModuleType("win32con")
-    win32con.BM_CLICK    = 0x00F5
-    win32con.WM_COMMAND  = 0x0111
-    win32con.WM_KEYDOWN  = 0x0100
-    win32con.WM_KEYUP    = 0x0101
-    win32con.IDOK        = 1
-    win32con.VK_RETURN   = 0x0D
+    win32con.BM_CLICK = 0x00F5
+    win32con.WM_COMMAND = 0x0111
+    win32con.WM_KEYDOWN = 0x0100
+    win32con.WM_KEYUP = 0x0101
+    win32con.IDOK = 1
+    win32con.VK_RETURN = 0x0D
     sys.modules.setdefault("win32con", win32con)
 
     win32gui = types.ModuleType("win32gui")
-    win32gui.EnumWindows       = MagicMock()
-    win32gui.IsWindowVisible   = MagicMock(return_value=True)
-    win32gui.GetWindowText     = MagicMock(return_value="")
-    win32gui.GetClassName      = MagicMock(return_value="")
-    win32gui.EnumChildWindows  = MagicMock()
-    win32gui.SendMessage       = MagicMock()
+    win32gui.EnumWindows = MagicMock()
+    win32gui.IsWindowVisible = MagicMock(return_value=True)
+    win32gui.GetWindowText = MagicMock(return_value="")
+    win32gui.GetClassName = MagicMock(return_value="")
+    win32gui.EnumChildWindows = MagicMock()
+    win32gui.SendMessage = MagicMock()
     sys.modules.setdefault("win32gui", win32gui)
 
     win32api = types.ModuleType("win32api")
@@ -55,23 +55,26 @@ def _fresh() -> types.ModuleType:
     mod._last_click.clear()
     mod._first_seen.clear()
     mod.stats["dialogs_dismissed"] = 0
-    mod.stats["click_attempts"]    = 0
-    mod.stats["stubborn_dialogs"]  = 0
+    mod.stats["click_attempts"] = 0
+    mod.stats["stubborn_dialogs"] = 0
 
     # 共有スタブのモック状態を毎回リセット（side_effect の汚染を防ぐ）
-    import win32gui as _wg, win32api as _wa
-    _wg.EnumWindows       = MagicMock()
-    _wg.IsWindowVisible   = MagicMock(return_value=True)
-    _wg.GetWindowText     = MagicMock(return_value="")
-    _wg.GetClassName      = MagicMock(return_value="")
-    _wg.EnumChildWindows  = MagicMock()
-    _wg.SendMessage       = MagicMock()
-    _wa.PostMessage       = MagicMock()
+    import win32gui as _wg
+    import win32api as _wa
+
+    _wg.EnumWindows = MagicMock()
+    _wg.IsWindowVisible = MagicMock(return_value=True)
+    _wg.GetWindowText = MagicMock(return_value="")
+    _wg.GetClassName = MagicMock(return_value="")
+    _wg.EnumChildWindows = MagicMock()
+    _wg.SendMessage = MagicMock()
+    _wa.PostMessage = MagicMock()
 
     return mod
 
 
 # ── _is_target_window ─────────────────────────────────────────────────────────
+
 
 class TestIsTargetWindow:
     def test_jvlink_title(self) -> None:
@@ -112,6 +115,7 @@ class TestIsTargetWindow:
 
 
 # ── _find_best_button ─────────────────────────────────────────────────────────
+
 
 class TestFindBestButton:
     def test_ok_button_found(self) -> None:
@@ -169,10 +173,12 @@ class TestFindBestButton:
 
 # ── _dismiss_dialog ───────────────────────────────────────────────────────────
 
+
 class TestDismissDialog:
     def test_bm_click_success(self) -> None:
         mod = _fresh()
-        import win32gui, win32con
+        import win32gui
+        import win32con
 
         win32gui.EnumChildWindows.side_effect = lambda hwnd, cb, ex: cb(50, None)
         win32gui.GetClassName.return_value = "Button"
@@ -189,6 +195,7 @@ class TestDismissDialog:
         mod._last_click[999] = time.monotonic()  # 今クリック済みとみなす
 
         import win32gui
+
         win32gui.SendMessage.reset_mock()
 
         result = mod._dismiss_dialog(999, "JVLink 設定")
@@ -197,7 +204,9 @@ class TestDismissDialog:
 
     def test_fallback_to_wm_command(self) -> None:
         mod = _fresh()
-        import win32api, win32con, win32gui
+        import win32api
+        import win32con
+        import win32gui
 
         # ボタン見つからない
         win32gui.EnumChildWindows.side_effect = lambda hwnd, cb, ex: None
@@ -211,7 +220,9 @@ class TestDismissDialog:
 
     def test_fallback_to_vk_return_when_wm_command_raises(self) -> None:
         mod = _fresh()
-        import win32api, win32con, win32gui
+        import win32api
+        import win32con
+        import win32gui
 
         win32gui.EnumChildWindows.side_effect = lambda hwnd, cb, ex: None
 
@@ -231,7 +242,8 @@ class TestDismissDialog:
 
     def test_stubborn_dialog_warning(self) -> None:
         mod = _fresh()
-        import win32gui, win32api, win32con
+        import win32gui
+        import win32api
 
         # 初回検出を 5 秒前に設定してすぐ頑固扱いにする
         mod._first_seen[555] = time.monotonic() - 5.0
@@ -247,17 +259,21 @@ class TestDismissDialog:
 
 # ── _scan_windows ─────────────────────────────────────────────────────────────
 
+
 class TestScanWindows:
     def test_target_window_dismissed(self) -> None:
         mod = _fresh()
-        import win32gui, win32api, win32con
+        import win32gui
+        import win32api
 
         def _enum_top(cb, extra: object) -> None:
             cb(1001, None)
 
         win32gui.EnumWindows.side_effect = _enum_top
         win32gui.IsWindowVisible.return_value = True
-        win32gui.GetWindowText.side_effect = lambda h: "JVLink 設定" if h == 1001 else ""
+        win32gui.GetWindowText.side_effect = lambda h: (
+            "JVLink 設定" if h == 1001 else ""
+        )
         win32gui.EnumChildWindows.side_effect = lambda hwnd, cb, ex: None
         win32api.PostMessage.reset_mock()
 
@@ -295,6 +311,7 @@ class TestScanWindows:
     def test_enum_windows_exception_does_not_crash(self) -> None:
         mod = _fresh()
         import win32gui
+
         win32gui.EnumWindows.side_effect = OSError("access denied")
 
         # 例外が伝播しないことを確認
@@ -302,6 +319,7 @@ class TestScanWindows:
 
 
 # ── start_dialog_handler / stop_dialog_handler ───────────────────────────────
+
 
 class TestStartStopHandler:
     def test_start_returns_thread(self) -> None:
@@ -324,6 +342,7 @@ class TestStartStopHandler:
         mod = _fresh()
 
         import win32gui
+
         win32gui.EnumWindows.side_effect = lambda cb, ex: None  # 何もしない
 
         t = mod.start_dialog_handler(interval=0.05)
@@ -348,6 +367,7 @@ class TestStartStopHandler:
 
 # ── _is_setup_dialog ──────────────────────────────────────────────────────────
 
+
 class TestIsSetupDialog:
     def test_katakana_setup_title(self) -> None:
         mod = _fresh()
@@ -368,6 +388,7 @@ class TestIsSetupDialog:
 
 # ── _select_no_startkit_radio ─────────────────────────────────────────────────
 
+
 class TestSelectNoStartkitRadio:
     def test_radio_found_by_持っていない(self) -> None:
         mod = _fresh()
@@ -378,7 +399,9 @@ class TestSelectNoStartkitRadio:
 
         win32gui.EnumChildWindows.side_effect = _fake_enum
         win32gui.GetClassName.return_value = "Button"
-        win32gui.GetWindowText.return_value = "スタートキット（CD/DVD-ROM）を持っていない"
+        win32gui.GetWindowText.return_value = (
+            "スタートキット（CD/DVD-ROM）を持っていない"
+        )
         win32gui.SendMessage.reset_mock()
 
         result = mod._select_no_startkit_radio(999)
@@ -435,6 +458,7 @@ class TestSelectNoStartkitRadio:
     def test_enum_exception_returns_false(self) -> None:
         mod = _fresh()
         import win32gui
+
         win32gui.EnumChildWindows.side_effect = OSError("access denied")
 
         result = mod._select_no_startkit_radio(999)
@@ -443,11 +467,13 @@ class TestSelectNoStartkitRadio:
 
 # ── _dismiss_dialog (セットアップ専用) ───────────────────────────────────────
 
+
 class TestDismissSetupDialog:
     def test_setup_dialog_selects_radio_then_clicks_ok(self) -> None:
         """セットアップダイアログはラジオ選択 → OK クリックの2段階で突破する。"""
         mod = _fresh()
-        import win32gui, win32con
+        import win32gui
+        import win32con
 
         radio_selected: list[int] = []
         ok_clicked: list[int] = []
@@ -457,7 +483,9 @@ class TestDismissSetupDialog:
 
         win32gui.EnumChildWindows.side_effect = _fake_enum
         win32gui.GetClassName.return_value = "Button"
-        win32gui.GetWindowText.return_value = "スタートキット（CD/DVD-ROM）を持っていない"
+        win32gui.GetWindowText.return_value = (
+            "スタートキット（CD/DVD-ROM）を持っていない"
+        )
 
         def _send_msg(h, msg, wp, lp):
             if msg == mod.BM_SETCHECK:
@@ -475,7 +503,8 @@ class TestDismissSetupDialog:
     def test_setup_dialog_no_radio_still_clicks_ok(self) -> None:
         """ラジオボタンが見つからなくても OK クリックは試みる（フォールバック）。"""
         mod = _fresh()
-        import win32api, win32gui
+        import win32api
+        import win32gui
 
         win32gui.EnumChildWindows.side_effect = lambda hwnd, cb, ex: None
         win32api.PostMessage.reset_mock()
@@ -486,11 +515,13 @@ class TestDismissSetupDialog:
 
 # ── jvlink_guard ──────────────────────────────────────────────────────────────
 
+
 class TestJvlinkGuard:
     def test_guard_starts_handler(self) -> None:
         """with jvlink_guard(): ブロック内でハンドラーが起動している。"""
         mod = _fresh()
         import win32gui
+
         win32gui.EnumWindows.side_effect = lambda cb, ex: None
 
         with mod.jvlink_guard(interval=0.05) as t:
@@ -502,6 +533,7 @@ class TestJvlinkGuard:
         """入れ子の jvlink_guard() は同一スレッドを返す（多重起動しない）。"""
         mod = _fresh()
         import win32gui
+
         win32gui.EnumWindows.side_effect = lambda cb, ex: None
 
         with mod.jvlink_guard(interval=0.05) as t1:

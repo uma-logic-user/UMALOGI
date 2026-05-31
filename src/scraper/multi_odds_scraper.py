@@ -24,7 +24,6 @@ import os
 import time
 from datetime import datetime
 from pathlib import Path
-from typing import Iterator
 
 import requests
 
@@ -45,18 +44,22 @@ _HEADERS = {
 
 # netkeiba の type 番号 → 券種名 / 組み合わせフォーマット
 _BET_TYPES: dict[int, tuple[str, str]] = {
-    3: ("枠連",   "unordered"),   # "1-2"
-    4: ("馬連",   "unordered"),   # "1-2"
-    5: ("ワイド", "unordered"),   # "1-2"  (odds=min, odds_max=max)
-    6: ("馬単",   "ordered"),     # "1→2"
-    7: ("三連複", "unordered"),   # "1-2-3"
-    8: ("三連単", "ordered"),     # "1→2→3"
+    3: ("枠連", "unordered"),  # "1-2"
+    4: ("馬連", "unordered"),  # "1-2"
+    5: ("ワイド", "unordered"),  # "1-2"  (odds=min, odds_max=max)
+    6: ("馬単", "ordered"),  # "1→2"
+    7: ("三連複", "unordered"),  # "1-2-3"
+    8: ("三連単", "ordered"),  # "1→2→3"
 }
 
 # モックデータ（UMALOGI_MOCK_MULTI_ODDS=1 のとき使用）
 _MOCK_DATA: dict[int, dict[str, list[str]]] = {
     4: {"01-02": ["15.4", "3"], "01-03": ["8.2", "1"], "02-03": ["22.1", "5"]},
-    5: {"01-02": ["3.5", "5.2", "2"], "01-03": ["2.1", "3.8", "1"], "02-03": ["6.0", "9.5", "4"]},
+    5: {
+        "01-02": ["3.5", "5.2", "2"],
+        "01-03": ["2.1", "3.8", "1"],
+        "02-03": ["6.0", "9.5", "4"],
+    },
     6: {"01-02": ["30.1", "4"], "02-01": ["18.5", "2"]},
     7: {"01-02-03": ["55.2", "1"], "01-02-04": ["120.0", "3"]},
     8: {"01-02-03": ["110.0", "2"], "03-01-02": ["250.0", "6"]},
@@ -129,7 +132,9 @@ def _fetch_odds_json(race_id: str, odds_type: int, delay: float = 1.0) -> dict:
         resp.raise_for_status()
         data = resp.json()
     except requests.RequestException as exc:
-        logger.warning("multi_odds fetch 失敗 type=%d race_id=%s: %s", odds_type, race_id, exc)
+        logger.warning(
+            "multi_odds fetch 失敗 type=%d race_id=%s: %s", odds_type, race_id, exc
+        )
         return {}
     except (json.JSONDecodeError, ValueError) as exc:
         logger.warning("multi_odds JSON パース失敗 type=%d: %s", odds_type, exc)
@@ -171,29 +176,31 @@ def _parse_odds_dict(
         combo = _format_combination(raw_key, fmt)
         if is_wide:
             # ワイド: [odds_min, odds_max, popularity]
-            odds_val  = _safe_float(vals[0]) if len(vals) > 0 else None
-            odds_max  = _safe_float(vals[1]) if len(vals) > 1 else None
-            pop       = _safe_int(vals[2])   if len(vals) > 2 else None
+            odds_val = _safe_float(vals[0]) if len(vals) > 0 else None
+            odds_max = _safe_float(vals[1]) if len(vals) > 1 else None
+            pop = _safe_int(vals[2]) if len(vals) > 2 else None
         else:
             # 実 API: [odds, 0.0, popularity]  モック: [odds, popularity]
-            odds_val  = _safe_float(vals[0]) if len(vals) > 0 else None
-            odds_max  = None
+            odds_val = _safe_float(vals[0]) if len(vals) > 0 else None
+            odds_max = None
             if len(vals) > 2:
-                pop = _safe_int(vals[2])   # 実 API 形式
+                pop = _safe_int(vals[2])  # 実 API 形式
             elif len(vals) > 1:
-                pop = _safe_int(vals[1])   # 2 要素のモック形式
+                pop = _safe_int(vals[1])  # 2 要素のモック形式
             else:
                 pop = None
 
-        results.append(MultiOddsEntry(
-            race_id=race_id,
-            bet_type=bet_type_name,
-            combination=combo,
-            odds=odds_val,
-            odds_max=odds_max,
-            popularity=pop,
-            recorded_at=recorded_at,
-        ))
+        results.append(
+            MultiOddsEntry(
+                race_id=race_id,
+                bet_type=bet_type_name,
+                combination=combo,
+                odds=odds_val,
+                odds_max=odds_max,
+                popularity=pop,
+                recorded_at=recorded_at,
+            )
+        )
     return results
 
 

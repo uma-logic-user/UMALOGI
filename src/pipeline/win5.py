@@ -32,7 +32,7 @@ def try_win5(conn: sqlite3.Connection, race_id: str) -> None:
         conn: SQLite 接続オブジェクト（呼び出し元が管理する）。
         race_id: トリガーとなったレース ID（日付部分の抽出に使用）。
     """
-    date_str  = race_id[:8]
+    date_str = race_id[:8]
     formatted = f"{date_str[:4]}-{date_str[4:6]}-{date_str[6:8]}"
 
     rows = conn.execute(
@@ -55,26 +55,29 @@ def try_win5(conn: sqlite3.Connection, race_id: str) -> None:
 
     try:
         from src.ml.win5 import Win5Engine
+
         honmei_model, _place, _manji = load_models()
-        engine       = Win5Engine(model=honmei_model)
+        engine = Win5Engine(model=honmei_model)
         combinations = engine.predict_top_n(conn, win5_race_ids)
 
         if not combinations:
-            logger.info("WIN5: EV >= 1.0 の組み合わせなし（当日レース: %s）", win5_race_ids)
+            logger.info(
+                "WIN5: EV >= 1.0 の組み合わせなし（当日レース: %s）", win5_race_ids
+            )
             return
 
         best = combinations[0]
         horses_payload = [
             {
-                "horse_name":     p.horse_name,
-                "horse_number":   p.horse_number,
+                "horse_name": p.horse_name,
+                "horse_number": p.horse_number,
                 "predicted_rank": idx + 1,
-                "model_score":    p.blend_prob,
-                "ev_score":       best.expected_value,
+                "model_score": p.blend_prob,
+                "ev_score": best.expected_value,
             }
             for idx, p in enumerate(best.picks)
         ]
-        combo_json      = json.dumps([[p.horse_number] for p in best.picks])
+        combo_json = json.dumps([[p.horse_number] for p in best.picks])
         horse_names_str = " / ".join(p.horse_name for p in best.picks)
 
         insert_prediction(
@@ -91,7 +94,9 @@ def try_win5(conn: sqlite3.Connection, race_id: str) -> None:
         )
         logger.info(
             "WIN5 予測保存: EV=%.3f 推定払戻=¥%s [%s]",
-            best.expected_value, f"{best.estimated_payout:,.0f}", horse_names_str,
+            best.expected_value,
+            f"{best.estimated_payout:,.0f}",
+            horse_names_str,
         )
         _discord.send_text(
             f"[WIN5] 推奨買い目 EV={best.expected_value:.3f} "
@@ -144,28 +149,34 @@ def win5_batch(target_date: str | None = None) -> dict:
 
     try:
         from src.ml.win5 import Win5Engine
+
         honmei_model, _place, _manji = load_models()
-        engine       = Win5Engine(model=honmei_model)
+        engine = Win5Engine(model=honmei_model)
         combinations = engine.predict_top_n(conn, win5_race_ids)
 
         if not combinations:
             logger.info("WIN5: EV >= 1.0 の組み合わせなし")
             _discord.send_text("[WIN5] 本日は推奨買い目なし（全組み合わせ EV < 1.0）")
             conn.close()
-            return {"date": target_date, "win5_races": win5_race_ids, "skipped": False, "combinations": 0}
+            return {
+                "date": target_date,
+                "win5_races": win5_race_ids,
+                "skipped": False,
+                "combinations": 0,
+            }
 
         best = combinations[0]
         horses_payload = [
             {
-                "horse_name":     p.horse_name,
-                "horse_number":   p.horse_number,
+                "horse_name": p.horse_name,
+                "horse_number": p.horse_number,
                 "predicted_rank": idx + 1,
-                "model_score":    p.blend_prob,
-                "ev_score":       best.expected_value,
+                "model_score": p.blend_prob,
+                "ev_score": best.expected_value,
             }
             for idx, p in enumerate(best.picks)
         ]
-        combo_json      = json.dumps([[p.horse_number] for p in best.picks])
+        combo_json = json.dumps([[p.horse_number] for p in best.picks])
         horse_names_str = " / ".join(p.horse_name for p in best.picks)
 
         insert_prediction(
@@ -182,7 +193,9 @@ def win5_batch(target_date: str | None = None) -> dict:
         )
         logger.info(
             "WIN5 予測保存: EV=%.3f 推定払戻=¥%s [%s]",
-            best.expected_value, f"{best.estimated_payout:,.0f}", horse_names_str,
+            best.expected_value,
+            f"{best.estimated_payout:,.0f}",
+            horse_names_str,
         )
         _discord.send_text(
             f"🎯 **[WIN5] 本日推奨買い目**\n"

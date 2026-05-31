@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """本日のracesテーブルにレース名・距離・コースを補完する（netkeiba scrape）"""
+
 import re
 import sys
 import time
@@ -25,8 +26,8 @@ SHUTUBA_URL = "https://race.netkeiba.com/race/shutuba.html"
 
 def parse_meta(soup: BeautifulSoup) -> tuple[str, int, str, str]:
     race_name = ""
-    distance  = 0
-    surface   = ""
+    distance = 0
+    surface = ""
     direction = ""
 
     # タイトルからレース名 ("3歳未勝利 | 2026年4月25日 福島1R..." → "3歳未勝利")
@@ -88,7 +89,9 @@ def main() -> None:
             )
             conn.commit()
             updated += 1
-            print(f"  [{i+1:02d}/36] {rid}: 【{race_name}】{surface}{distance}m {direction}")
+            print(
+                f"  [{i + 1:02d}/36] {rid}: 【{race_name}】{surface}{distance}m {direction}"
+            )
             time.sleep(0.7)
         except Exception as e:
             errors += 1

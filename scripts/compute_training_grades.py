@@ -1,4 +1,5 @@
 """training_times 全行に training_grade を計算して更新するバッチスクリプト"""
+
 from __future__ import annotations
 
 import sqlite3
@@ -45,14 +46,18 @@ def run(db_path: str = "data/umalogi.db") -> None:
     df["training_grade"] = df.apply(
         lambda r: assign_grade(
             r["time_4f"],
-            thresholds_by_course.get(str(r["course_type"]), {k: 999 for k in GRADE_QUANTILES}),
+            thresholds_by_course.get(
+                str(r["course_type"]), {k: 999 for k in GRADE_QUANTILES}
+            ),
         ),
         axis=1,
     )
 
     # バッチ UPDATE
     updates = list(zip(df["training_grade"].tolist(), df["id"].tolist()))
-    conn.executemany("UPDATE training_times SET training_grade = ? WHERE id = ?", updates)
+    conn.executemany(
+        "UPDATE training_times SET training_grade = ? WHERE id = ?", updates
+    )
     conn.commit()
 
     grade_dist = df["training_grade"].value_counts().sort_index()

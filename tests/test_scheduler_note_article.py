@@ -11,9 +11,8 @@ import os
 import sys
 import types
 from pathlib import Path
-from unittest.mock import MagicMock, patch, call
+from unittest.mock import MagicMock, patch
 
-import pytest
 
 _ROOT = Path(__file__).resolve().parents[1]
 if str(_ROOT) not in sys.path:
@@ -21,6 +20,7 @@ if str(_ROOT) not in sys.path:
 
 
 # ── scheduler をインポートできるよう schedule スタブを差し込む ─────────────────
+
 
 def _ensure_schedule_stub() -> None:
     if "schedule" not in sys.modules:
@@ -38,42 +38,51 @@ import scripts.scheduler as sched
 
 # ── テスト用フィクスチャ ────────────────────────────────────────────────────────
 
+
 def _make_recommended(n: int = 3) -> list[dict]:
     """ダミーの推奨レースリストを生成する。"""
     result = []
     for i in range(1, n + 1):
-        result.append({
-            "race_id":      f"202605230101010{i}",
-            "score":        float(40 - i * 2),
-            "alpha_ev":     float(3 - i * 0.5),
-            "manji_ev":     float(5 - i),
-            "oracle_count": 3,
-            "honmei_conf":  0.8,
-            "consensus":    4,
-            "alpha_preds":  [],
-            "manji_preds":  [],
-            "oracle_preds": [],
-            "honmei_preds": [],
-        })
+        result.append(
+            {
+                "race_id": f"202605230101010{i}",
+                "score": float(40 - i * 2),
+                "alpha_ev": float(3 - i * 0.5),
+                "manji_ev": float(5 - i),
+                "oracle_count": 3,
+                "honmei_conf": 0.8,
+                "consensus": 4,
+                "alpha_preds": [],
+                "manji_preds": [],
+                "oracle_preds": [],
+                "honmei_preds": [],
+            }
+        )
     return result
 
 
 # ── _notify_note_article_summary ───────────────────────────────────────────────
+
 
 class TestNotifyNoteArticleSummary:
     def test_sends_embed_via_send_discord_embed(self) -> None:
         """_send_discord_embed が1回呼ばれること。"""
         recommended = _make_recommended(3)
 
-        import sqlite3 as _sqlite3
         mock_conn = MagicMock()
         mock_conn.execute.return_value.fetchone.return_value = {
-            "venue": "東京", "race_number": 6, "race_name": "テストレース"
+            "venue": "東京",
+            "race_number": 6,
+            "race_name": "テストレース",
         }
 
-        with patch("scripts.scheduler._send_discord_embed") as mock_embed, \
-             patch("sqlite3.connect", return_value=mock_conn):
-            sched._notify_note_article_summary(recommended, "20260523", discord_sent=True)
+        with (
+            patch("scripts.scheduler._send_discord_embed") as mock_embed,
+            patch("sqlite3.connect", return_value=mock_conn),
+        ):
+            sched._notify_note_article_summary(
+                recommended, "20260523", discord_sent=True
+            )
 
         mock_embed.assert_called_once()
         embed_list = mock_embed.call_args[0][0]
@@ -89,9 +98,13 @@ class TestNotifyNoteArticleSummary:
         mock_conn = MagicMock()
         mock_conn.execute.return_value.fetchone.return_value = None
 
-        with patch("scripts.scheduler._send_discord_embed") as mock_embed, \
-             patch("sqlite3.connect", return_value=mock_conn):
-            sched._notify_note_article_summary(recommended, "20260601", discord_sent=False)
+        with (
+            patch("scripts.scheduler._send_discord_embed") as mock_embed,
+            patch("sqlite3.connect", return_value=mock_conn),
+        ):
+            sched._notify_note_article_summary(
+                recommended, "20260601", discord_sent=False
+            )
 
         embed = mock_embed.call_args[0][0][0]
         discord_field = next(f for f in embed["fields"] if "Discord" in f["name"])
@@ -99,8 +112,10 @@ class TestNotifyNoteArticleSummary:
 
     def test_empty_recommended_shows_placeholder(self) -> None:
         mock_conn = MagicMock()
-        with patch("scripts.scheduler._send_discord_embed") as mock_embed, \
-             patch("sqlite3.connect", return_value=mock_conn):
+        with (
+            patch("scripts.scheduler._send_discord_embed") as mock_embed,
+            patch("sqlite3.connect", return_value=mock_conn),
+        ):
             sched._notify_note_article_summary([], "20260601", discord_sent=True)
 
         embed = mock_embed.call_args[0][0][0]
@@ -109,12 +124,15 @@ class TestNotifyNoteArticleSummary:
 
     def test_sqlite_error_does_not_crash(self) -> None:
         """DB 接続失敗でも例外を出さないこと。"""
-        with patch("scripts.scheduler._send_discord_embed"), \
-             patch("sqlite3.connect", side_effect=OSError("DB error")):
+        with (
+            patch("scripts.scheduler._send_discord_embed"),
+            patch("sqlite3.connect", side_effect=OSError("DB error")),
+        ):
             sched._notify_note_article_summary(_make_recommended(2), "20260601", True)
 
 
 # ── job_note_daily_article ─────────────────────────────────────────────────────
+
 
 class TestJobNoteDailyArticle:
     """job_note_daily_article() の動作を各シナリオで検証する。"""
@@ -125,9 +143,11 @@ class TestJobNoteDailyArticle:
         """共通パッチをコンテキストマネージャとして返す。"""
         return [
             patch("src.ops.note_generator.generate", return_value=self._MOCK_MD),
-            patch("src.ops.note_generator._db",       return_value=MagicMock()),
-            patch("src.ops.note_generator.select_recommended_races",
-                  return_value=_make_recommended(5)),
+            patch("src.ops.note_generator._db", return_value=MagicMock()),
+            patch(
+                "src.ops.note_generator.select_recommended_races",
+                return_value=_make_recommended(5),
+            ),
             patch("scripts.scheduler._notify_note_article_summary"),
             patch("scripts.scheduler._send_discord"),
             patch("scripts.scheduler._send_discord_embed"),
@@ -138,16 +158,21 @@ class TestJobNoteDailyArticle:
         mock_router = MagicMock()
         mock_router.send_note_draft.return_value = True
 
-        with patch("src.ops.note_generator.generate", return_value=self._MOCK_MD), \
-             patch("src.ops.note_generator._db", return_value=MagicMock()), \
-             patch("src.ops.note_generator.select_recommended_races",
-                   return_value=_make_recommended(5)), \
-             patch("scripts.scheduler._notify_note_article_summary"), \
-             patch("scripts.scheduler._send_discord"), \
-             patch("scripts.scheduler._mark_job_done") as mock_done, \
-             patch("src.notification.router.NotificationRouter",
-                   return_value=mock_router), \
-             patch.dict(os.environ, {"NOTE_DRAFT_AUTO_POST": ""}, clear=False):
+        with (
+            patch("src.ops.note_generator.generate", return_value=self._MOCK_MD),
+            patch("src.ops.note_generator._db", return_value=MagicMock()),
+            patch(
+                "src.ops.note_generator.select_recommended_races",
+                return_value=_make_recommended(5),
+            ),
+            patch("scripts.scheduler._notify_note_article_summary"),
+            patch("scripts.scheduler._send_discord"),
+            patch("scripts.scheduler._mark_job_done") as mock_done,
+            patch(
+                "src.notification.router.NotificationRouter", return_value=mock_router
+            ),
+            patch.dict(os.environ, {"NOTE_DRAFT_AUTO_POST": ""}, clear=False),
+        ):
             sched.job_note_daily_article()
 
         mock_done.assert_called_once_with("job_note_daily_article")
@@ -158,17 +183,22 @@ class TestJobNoteDailyArticle:
         mock_router = MagicMock()
         mock_router.send_note_draft.return_value = True
 
-        with patch("src.ops.note_generator.generate", return_value=self._MOCK_MD), \
-             patch("src.ops.note_generator._db", return_value=MagicMock()), \
-             patch("src.ops.note_generator.select_recommended_races",
-                   return_value=_make_recommended(3)), \
-             patch("scripts.scheduler._notify_note_article_summary"), \
-             patch("scripts.scheduler._send_discord"), \
-             patch("scripts.scheduler._mark_job_done"), \
-             patch("src.notification.router.NotificationRouter",
-                   return_value=mock_router), \
-             patch("src.ops.note_draft_publisher.save_draft") as mock_save, \
-             patch.dict(os.environ, {"NOTE_DRAFT_AUTO_POST": ""}, clear=False):
+        with (
+            patch("src.ops.note_generator.generate", return_value=self._MOCK_MD),
+            patch("src.ops.note_generator._db", return_value=MagicMock()),
+            patch(
+                "src.ops.note_generator.select_recommended_races",
+                return_value=_make_recommended(3),
+            ),
+            patch("scripts.scheduler._notify_note_article_summary"),
+            patch("scripts.scheduler._send_discord"),
+            patch("scripts.scheduler._mark_job_done"),
+            patch(
+                "src.notification.router.NotificationRouter", return_value=mock_router
+            ),
+            patch("src.ops.note_draft_publisher.save_draft") as mock_save,
+            patch.dict(os.environ, {"NOTE_DRAFT_AUTO_POST": ""}, clear=False),
+        ):
             sched.job_note_daily_article()
 
         mock_save.assert_not_called()
@@ -178,18 +208,23 @@ class TestJobNoteDailyArticle:
         mock_router = MagicMock()
         mock_router.send_note_draft.return_value = True
 
-        with patch("src.ops.note_generator.generate", return_value=self._MOCK_MD), \
-             patch("src.ops.note_generator._db", return_value=MagicMock()), \
-             patch("src.ops.note_generator.select_recommended_races",
-                   return_value=_make_recommended(3)), \
-             patch("scripts.scheduler._notify_note_article_summary"), \
-             patch("scripts.scheduler._send_discord"), \
-             patch("scripts.scheduler._mark_job_done"), \
-             patch("src.notification.router.NotificationRouter",
-                   return_value=mock_router), \
-             patch("src.ops.note_draft_publisher.save_draft") as mock_save, \
-             patch.object(sched, "_ROOT", tmp_path), \
-             patch.dict(os.environ, {"NOTE_DRAFT_AUTO_POST": "1"}, clear=False):
+        with (
+            patch("src.ops.note_generator.generate", return_value=self._MOCK_MD),
+            patch("src.ops.note_generator._db", return_value=MagicMock()),
+            patch(
+                "src.ops.note_generator.select_recommended_races",
+                return_value=_make_recommended(3),
+            ),
+            patch("scripts.scheduler._notify_note_article_summary"),
+            patch("scripts.scheduler._send_discord"),
+            patch("scripts.scheduler._mark_job_done"),
+            patch(
+                "src.notification.router.NotificationRouter", return_value=mock_router
+            ),
+            patch("src.ops.note_draft_publisher.save_draft") as mock_save,
+            patch.object(sched, "_ROOT", tmp_path),
+            patch.dict(os.environ, {"NOTE_DRAFT_AUTO_POST": "1"}, clear=False),
+        ):
             sched.job_note_daily_article()
 
         mock_save.assert_not_called()
@@ -204,19 +239,25 @@ class TestJobNoteDailyArticle:
         mock_router = MagicMock()
         mock_router.send_note_draft.return_value = True
 
-        with patch("src.ops.note_generator.generate", return_value=self._MOCK_MD), \
-             patch("src.ops.note_generator._db", return_value=MagicMock()), \
-             patch("src.ops.note_generator.select_recommended_races",
-                   return_value=_make_recommended(3)), \
-             patch("scripts.scheduler._notify_note_article_summary"), \
-             patch("scripts.scheduler._send_discord"), \
-             patch("scripts.scheduler._mark_job_done"), \
-             patch("src.notification.router.NotificationRouter",
-                   return_value=mock_router), \
-             patch("src.ops.note_draft_publisher.save_draft",
-                   return_value=True) as mock_save, \
-             patch.object(sched, "_ROOT", tmp_path), \
-             patch.dict(os.environ, {"NOTE_DRAFT_AUTO_POST": "1"}, clear=False):
+        with (
+            patch("src.ops.note_generator.generate", return_value=self._MOCK_MD),
+            patch("src.ops.note_generator._db", return_value=MagicMock()),
+            patch(
+                "src.ops.note_generator.select_recommended_races",
+                return_value=_make_recommended(3),
+            ),
+            patch("scripts.scheduler._notify_note_article_summary"),
+            patch("scripts.scheduler._send_discord"),
+            patch("scripts.scheduler._mark_job_done"),
+            patch(
+                "src.notification.router.NotificationRouter", return_value=mock_router
+            ),
+            patch(
+                "src.ops.note_draft_publisher.save_draft", return_value=True
+            ) as mock_save,
+            patch.object(sched, "_ROOT", tmp_path),
+            patch.dict(os.environ, {"NOTE_DRAFT_AUTO_POST": "1"}, clear=False),
+        ):
             sched.job_note_daily_article()
 
         mock_save.assert_called_once()
@@ -233,19 +274,23 @@ class TestJobNoteDailyArticle:
         mock_router = MagicMock()
         mock_router.send_note_draft.return_value = True
 
-        with patch("src.ops.note_generator.generate", return_value=self._MOCK_MD), \
-             patch("src.ops.note_generator._db", return_value=MagicMock()), \
-             patch("src.ops.note_generator.select_recommended_races",
-                   return_value=_make_recommended(3)), \
-             patch("scripts.scheduler._notify_note_article_summary"), \
-             patch("scripts.scheduler._send_discord") as mock_discord, \
-             patch("scripts.scheduler._mark_job_done"), \
-             patch("src.notification.router.NotificationRouter",
-                   return_value=mock_router), \
-             patch("src.ops.note_draft_publisher.save_draft",
-                   return_value=False), \
-             patch.object(sched, "_ROOT", tmp_path), \
-             patch.dict(os.environ, {"NOTE_DRAFT_AUTO_POST": "1"}, clear=False):
+        with (
+            patch("src.ops.note_generator.generate", return_value=self._MOCK_MD),
+            patch("src.ops.note_generator._db", return_value=MagicMock()),
+            patch(
+                "src.ops.note_generator.select_recommended_races",
+                return_value=_make_recommended(3),
+            ),
+            patch("scripts.scheduler._notify_note_article_summary"),
+            patch("scripts.scheduler._send_discord") as mock_discord,
+            patch("scripts.scheduler._mark_job_done"),
+            patch(
+                "src.notification.router.NotificationRouter", return_value=mock_router
+            ),
+            patch("src.ops.note_draft_publisher.save_draft", return_value=False),
+            patch.object(sched, "_ROOT", tmp_path),
+            patch.dict(os.environ, {"NOTE_DRAFT_AUTO_POST": "1"}, clear=False),
+        ):
             sched.job_note_daily_article()
 
         # 失敗時の Discord 通知が呼ばれること
@@ -254,10 +299,13 @@ class TestJobNoteDailyArticle:
 
     def test_generator_error_sends_sos_and_returns_early(self) -> None:
         """generate() が例外を上げたら Discord SOS を送信して return すること。"""
-        with patch("src.ops.note_generator.generate",
-                   side_effect=RuntimeError("DB locked")), \
-             patch("scripts.scheduler._send_discord") as mock_discord, \
-             patch("scripts.scheduler._mark_job_done") as mock_done:
+        with (
+            patch(
+                "src.ops.note_generator.generate", side_effect=RuntimeError("DB locked")
+            ),
+            patch("scripts.scheduler._send_discord") as mock_discord,
+            patch("scripts.scheduler._mark_job_done") as mock_done,
+        ):
             sched.job_note_daily_article()
 
         mock_discord.assert_called_once()
@@ -273,19 +321,25 @@ class TestJobNoteDailyArticle:
         mock_router.send_note_draft.return_value = True
 
         # save_draft の import が ImportError を上げるシナリオ
-        with patch("src.ops.note_generator.generate", return_value=self._MOCK_MD), \
-             patch("src.ops.note_generator._db", return_value=MagicMock()), \
-             patch("src.ops.note_generator.select_recommended_races",
-                   return_value=_make_recommended(3)), \
-             patch("scripts.scheduler._notify_note_article_summary"), \
-             patch("scripts.scheduler._send_discord"), \
-             patch("scripts.scheduler._mark_job_done"), \
-             patch("src.notification.router.NotificationRouter",
-                   return_value=mock_router), \
-             patch.object(sched, "_ROOT", tmp_path), \
-             patch.dict(os.environ, {"NOTE_DRAFT_AUTO_POST": "1"}, clear=False):
+        with (
+            patch("src.ops.note_generator.generate", return_value=self._MOCK_MD),
+            patch("src.ops.note_generator._db", return_value=MagicMock()),
+            patch(
+                "src.ops.note_generator.select_recommended_races",
+                return_value=_make_recommended(3),
+            ),
+            patch("scripts.scheduler._notify_note_article_summary"),
+            patch("scripts.scheduler._send_discord"),
+            patch("scripts.scheduler._mark_job_done"),
+            patch(
+                "src.notification.router.NotificationRouter", return_value=mock_router
+            ),
+            patch.object(sched, "_ROOT", tmp_path),
+            patch.dict(os.environ, {"NOTE_DRAFT_AUTO_POST": "1"}, clear=False),
+        ):
             # save_draft をインポートしようとしたら ImportError
             import builtins
+
             real_import = builtins.__import__
 
             def _mock_import(name, *args, **kwargs):
@@ -298,6 +352,7 @@ class TestJobNoteDailyArticle:
 
 
 # ── スケジュール登録確認 ───────────────────────────────────────────────────────
+
 
 class TestScheduleRegistration:
     def test_job_note_daily_article_in_catchup_hours(self) -> None:
@@ -313,7 +368,10 @@ class TestScheduleRegistration:
 
     def test_job_note_daily_article_in_job_map_full(self) -> None:
         assert "job_note_daily_article" in sched._JOB_MAP_FULL
-        assert sched._JOB_MAP_FULL["job_note_daily_article"] is sched.job_note_daily_article
+        assert (
+            sched._JOB_MAP_FULL["job_note_daily_article"]
+            is sched.job_note_daily_article
+        )
 
     def test_note_article_in_cli_job_map(self) -> None:
         assert "note_article" in sched._JOB_MAP

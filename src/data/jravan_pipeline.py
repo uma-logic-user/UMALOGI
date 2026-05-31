@@ -212,7 +212,10 @@ def sync_odds(
                 race_id,
             )
             return SyncResult(
-                ok=False, race_id=race_id, n_records=0, detail="取得後も realtime_odds 空"
+                ok=False,
+                race_id=race_id,
+                n_records=0,
+                detail="取得後も realtime_odds 空",
             )
     return SyncResult(ok=True, race_id=race_id, n_records=n, detail="OK")
 

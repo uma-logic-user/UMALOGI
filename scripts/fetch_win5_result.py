@@ -28,6 +28,7 @@ if str(_ROOT) not in sys.path:
 
 try:
     from dotenv import load_dotenv
+
     load_dotenv(_ROOT / ".env", override=False)
 except ImportError:
     pass
@@ -38,7 +39,13 @@ logging.basicConfig(
     datefmt="%H:%M:%S",
     handlers=[
         logging.StreamHandler(
-            open(sys.stdout.fileno(), mode="w", encoding="utf-8", errors="replace", closefd=False)
+            open(
+                sys.stdout.fileno(),
+                mode="w",
+                encoding="utf-8",
+                errors="replace",
+                closefd=False,
+            )
         ),
     ],
 )
@@ -112,7 +119,11 @@ def fetch_win5_result(target_date: str | None = None) -> dict:
     if len(win5_race_ids) < 5:
         logger.warning("WIN5結果取得スキップ: レース不足 %d 件", len(win5_race_ids))
         conn.close()
-        return {"date": target_date, "skipped": True, "reason": f"only {len(win5_race_ids)} races"}
+        return {
+            "date": target_date,
+            "skipped": True,
+            "reason": f"only {len(win5_race_ids)} races",
+        }
 
     logger.info("WIN5対象レース: %s", win5_race_ids)
 
@@ -138,7 +149,9 @@ def fetch_win5_result(target_date: str | None = None) -> dict:
                     payout_amount = win5_entry["payout"]
                     logger.info(
                         "WIN5結果発見: race_id=%s combination=%s payout=¥%d",
-                        race_id, combo_str, payout_amount,
+                        race_id,
+                        combo_str,
+                        payout_amount,
                     )
                     break
                 else:
@@ -172,7 +185,9 @@ def fetch_win5_result(target_date: str | None = None) -> dict:
         )
     logger.info(
         "WIN5結果保存完了: date=%s 的中馬番=%s 払戻=¥%d",
-        formatted, winning_numbers, payout_amount,
+        formatted,
+        winning_numbers,
+        payout_amount,
     )
 
     conn.close()

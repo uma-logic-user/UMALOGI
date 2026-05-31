@@ -25,13 +25,12 @@ _ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(_ROOT))
 
 from src.ml.alpha_place_model import (
-    DEFAULT_EV_THRESHOLD,
     PlaceBacktestResult,
     run_place_backtest,
 )
 
-_DB_PATH       = _ROOT / "data" / "umalogi.db"
-_RESEARCH_DB   = _ROOT / "data" / "netkeiba_research.db"
+_DB_PATH = _ROOT / "data" / "umalogi.db"
+_RESEARCH_DB = _ROOT / "data" / "netkeiba_research.db"
 _MODEL_SAVE_DIR = _ROOT / "data" / "models" / "alpha_place"
 
 
@@ -58,21 +57,38 @@ def _print_result(r: PlaceBacktestResult) -> None:
     print(f"    最大DD         : ¥{r.max_drawdown:,.0f}")
 
 
-def _aggregate_results(results: list[PlaceBacktestResult]) -> tuple[float, float, float]:
-    total_inv  = sum(r.total_investment for r in results)
-    total_pay  = sum(r.total_payout     for r in results)
-    total_roi  = total_pay / total_inv * 100 if total_inv > 0 else 0.0
+def _aggregate_results(
+    results: list[PlaceBacktestResult],
+) -> tuple[float, float, float]:
+    total_inv = sum(r.total_investment for r in results)
+    total_pay = sum(r.total_payout for r in results)
+    total_roi = total_pay / total_inv * 100 if total_inv > 0 else 0.0
     return total_inv, total_pay, total_roi
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Alpha-Place ウォークフォワードバックテスト")
-    parser.add_argument("--trials",          type=int,   default=30,   help="Optuna トライアル数")
-    parser.add_argument("--no-research-db",  action="store_true",       help="netkeiba_research.db を使わない")
-    parser.add_argument("--save-model",      action="store_true",       help="学習済みモデルを保存する")
-    parser.add_argument("--no-venue-opt",    action="store_true",       help="会場別EV閾値最適化を無効化")
-    parser.add_argument("--no-calibrate",    action="store_true",       help="Isotonic calibration を無効化")
-    parser.add_argument("--ev-threshold",    type=float, default=None,  help="固定EV閾値（デフォルト: DEFAULT_EV_THRESHOLD）")
+    parser = argparse.ArgumentParser(
+        description="Alpha-Place ウォークフォワードバックテスト"
+    )
+    parser.add_argument("--trials", type=int, default=30, help="Optuna トライアル数")
+    parser.add_argument(
+        "--no-research-db", action="store_true", help="netkeiba_research.db を使わない"
+    )
+    parser.add_argument(
+        "--save-model", action="store_true", help="学習済みモデルを保存する"
+    )
+    parser.add_argument(
+        "--no-venue-opt", action="store_true", help="会場別EV閾値最適化を無効化"
+    )
+    parser.add_argument(
+        "--no-calibrate", action="store_true", help="Isotonic calibration を無効化"
+    )
+    parser.add_argument(
+        "--ev-threshold",
+        type=float,
+        default=None,
+        help="固定EV閾値（デフォルト: DEFAULT_EV_THRESHOLD）",
+    )
     args = parser.parse_args()
 
     research_db: Path | None = None
@@ -93,22 +109,25 @@ def main() -> None:
     all_results: list[PlaceBacktestResult] = []
 
     from src.ml.alpha_place_model import DEFAULT_EV_THRESHOLD as _DEF_EV
-    _use_venue_opt = not args.no_venue_opt
-    _calibrate     = not args.no_calibrate
-    _ev_threshold  = args.ev_threshold if args.ev_threshold is not None else _DEF_EV
 
-    calib_label  = "Isotonic(prefit)" if _calibrate else "なし"
-    venue_label  = "会場別最適化" if _use_venue_opt else f"固定EV>{_ev_threshold:.2f}"
+    _use_venue_opt = not args.no_venue_opt
+    _calibrate = not args.no_calibrate
+    _ev_threshold = args.ev_threshold if args.ev_threshold is not None else _DEF_EV
+
+    calib_label = "Isotonic(prefit)" if _calibrate else "なし"
+    venue_label = "会場別最適化" if _use_venue_opt else f"固定EV>{_ev_threshold:.2f}"
 
     _print_separator()
     print("  Alpha-Place ウォークフォワードバックテスト（複勝特化）")
-    print(f"  Optuna {args.trials}試行 / キャリブレーション:{calib_label} / {venue_label}")
+    print(
+        f"  Optuna {args.trials}試行 / キャリブレーション:{calib_label} / {venue_label}"
+    )
     _print_separator()
 
     for train_years, test_years in walk_forward_pairs:
-        print(f"\n{'─'*72}")
+        print(f"\n{'─' * 72}")
         print(f"  [WF] 学習: {train_years}  →  テスト: {test_years}")
-        print(f"{'─'*72}")
+        print(f"{'─' * 72}")
 
         try:
             result = run_place_backtest(
@@ -127,6 +146,7 @@ def main() -> None:
             if args.save_model:
                 # 最新モデルをモデルディレクトリに保存（年次サフィックス付き）
                 from src.ml.alpha_place_model import AlphaPlaceModel
+
                 m = AlphaPlaceModel()
                 # run_place_backtestは内部でモデルを作るので再学習は不要
                 # ここでは保存スキップ（run_place_backtest の戻り値はResultのみ）
@@ -137,6 +157,7 @@ def main() -> None:
         except Exception as exc:
             print(f"\n  [ERROR] 年次 {test_years}: {exc}")
             import traceback
+
             traceback.print_exc()
             continue
 
@@ -176,9 +197,11 @@ def main() -> None:
     _print_separator()
 
     mark = "✅" if total_roi >= 110 else ("⚠️ " if total_roi >= 100 else "❌")
-    print(f"\n  複勝  通算ROI={total_roi:.1f}% {mark}  "
-          f"(ROI110%超: {years_above}/{len(all_results)}年)  "
-          f"投資¥{total_inv:,}  払戻¥{total_pay:,.0f}")
+    print(
+        f"\n  複勝  通算ROI={total_roi:.1f}% {mark}  "
+        f"(ROI110%超: {years_above}/{len(all_results)}年)  "
+        f"投資¥{total_inv:,}  払戻¥{total_pay:,.0f}"
+    )
 
     _print_separator()
     print("  Alpha-Place STRATEGY 推奨判定")
@@ -192,8 +215,10 @@ def main() -> None:
         print("   3. 月次で optimize_venue_thresholds() を再実行")
     elif total_roi >= 100:
         print(f"\n  複勝: 【条件付き採用】ROI={total_roi:.1f}% ≥ 100% — 試験運用可")
-        print("       注意: 目標 ROI 110% まで残り"
-              f"{110 - total_roi:.1f}pp。EV閾値を上げて絞り込みを推奨。")
+        print(
+            "       注意: 目標 ROI 110% まで残り"
+            f"{110 - total_roi:.1f}pp。EV閾値を上げて絞り込みを推奨。"
+        )
     else:
         print(f"\n  複勝: 【不採用】ROI={total_roi:.1f}% < 100% — さらなる改善が必要")
         print("\n  改善候補:")

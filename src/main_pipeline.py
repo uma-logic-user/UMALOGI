@@ -26,13 +26,14 @@ if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
 from dotenv import load_dotenv
+
 load_dotenv(_ROOT / ".env", override=False)
 
 # パイプライン各モジュールを re-export（既存 import の互換性維持）
-from src.pipeline.scraping import friday_batch, save_entries_to_db, fetch_and_save_odds
+from src.pipeline.scraping import friday_batch
 from src.pipeline.prediction import prerace_pipeline, provisional_batch
 from src.pipeline.simulation import simulate_pipeline
-from src.pipeline.win5 import win5_batch, try_win5
+from src.pipeline.win5 import win5_batch
 from src.pipeline.training import train_pipeline
 
 __all__ = [
@@ -82,7 +83,9 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     p_pre.add_argument("race_id")
     p_pre.add_argument("--provisional", action="store_true")
     p_pre.add_argument(
-        "--model-version", dest="model_version", default="v1",
+        "--model-version",
+        dest="model_version",
+        default="v1",
         choices=["v1", "v2"],
         help="モデルバージョン: v1=既存(固定EV閾値) / v2=強化版(W-004+動的EV+Kelly)",
     )
@@ -129,9 +132,9 @@ def main(argv: list[str] | None = None) -> None:
             print(f"  {r}")
 
     elif args.command == "prerace":
-        prov    = getattr(args, "provisional", False)
-        ver     = getattr(args, "model_version", "v1")
-        result  = prerace_pipeline(args.race_id, provisional=prov, model_version=ver)
+        prov = getattr(args, "provisional", False)
+        ver = getattr(args, "model_version", "v1")
+        result = prerace_pipeline(args.race_id, provisional=prov, model_version=ver)
         print(json.dumps(result, ensure_ascii=False, indent=2))
 
     elif args.command == "simulate":

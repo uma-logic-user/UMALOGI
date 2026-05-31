@@ -67,19 +67,19 @@ LOG_DIR.mkdir(parents=True, exist_ok=True)
 # 設定
 # ────────────────────────────────────────────────────────────────────────────
 
-PY32 = "py"           # 32bit Python 呼び出しコマンド
+PY32 = "py"  # 32bit Python 呼び出しコマンド
 PY32_FLAGS = ["-3.14-32"]  # 32bit フラグ
 
 # 取得対象年 (fromtime は各年1月1日)
 DEFAULT_FROM_YEAR = 2021
-DEFAULT_TO_YEAR   = 2025
+DEFAULT_TO_YEAR = 2025
 
 # 32bit サブプロセスのタイムアウト
-TIMEOUT_MASTERS  = 7200   # マスタ: 2時間
-TIMEOUT_RACE     = 10800  # RACE/年: 3時間（OPT_SETUP はサーバー全量取得のため長め）
-TIMEOUT_WOOD     = 3600   # WOOD/年: 1時間
+TIMEOUT_MASTERS = 7200  # マスタ: 2時間
+TIMEOUT_RACE = 10800  # RACE/年: 3時間（OPT_SETUP はサーバー全量取得のため長め）
+TIMEOUT_WOOD = 3600  # WOOD/年: 1時間
 
-MAX_RETRIES  = 3
+MAX_RETRIES = 3
 BACKOFF_BASE = 60  # 秒
 
 LOG_FORMAT = "%(asctime)s [%(levelname)s] %(message)s"
@@ -87,6 +87,7 @@ LOG_FORMAT = "%(asctime)s [%(levelname)s] %(message)s"
 # ────────────────────────────────────────────────────────────────────────────
 # ロガー設定
 # ────────────────────────────────────────────────────────────────────────────
+
 
 def _setup_logger() -> logging.Logger:
     log_path = LOG_DIR / "import_historical.log"
@@ -109,6 +110,7 @@ logger = _setup_logger()
 # ────────────────────────────────────────────────────────────────────────────
 # JVLink 呼び出しヘルパー
 # ────────────────────────────────────────────────────────────────────────────
+
 
 def _run_jvlink(
     dataspec: str,
@@ -134,11 +136,16 @@ def _run_jvlink(
         成功した場合 True
     """
     cmd = [
-        PY32, *PY32_FLAGS,
-        "-m", "src.scraper.jravan_client",
-        "--fromtime", fromtime,
-        "--dataspec", dataspec,
-        "--option",   str(option),
+        PY32,
+        *PY32_FLAGS,
+        "-m",
+        "src.scraper.jravan_client",
+        "--fromtime",
+        fromtime,
+        "--dataspec",
+        dataspec,
+        "--option",
+        str(option),
     ]
 
     logger.info("=" * 64)
@@ -164,12 +171,17 @@ def _run_jvlink(
             if result.returncode == 0:
                 logger.info(
                     "[%s] 完了 (試行 %d, 経過 %.0f 秒)",
-                    label, attempt, elapsed,
+                    label,
+                    attempt,
+                    elapsed,
                 )
                 return True
             logger.warning(
                 "[%s] returncode=%d (試行 %d, 経過 %.0f 秒)",
-                label, result.returncode, attempt, elapsed,
+                label,
+                result.returncode,
+                attempt,
+                elapsed,
             )
         except subprocess.TimeoutExpired:
             logger.error("[%s] タイムアウト (%d 秒)", label, timeout)
@@ -189,16 +201,25 @@ def _run_jvlink(
 # DB 状態確認
 # ────────────────────────────────────────────────────────────────────────────
 
+
 def _db_counts() -> dict[str, int]:
     """現在の DB のレコード数を返す。"""
     try:
         sys.path.insert(0, str(ROOT))
         from src.database.init_db import init_db
+
         conn = init_db()
         counts = {}
-        for tbl in ["races", "race_results", "race_payouts",
-                    "jockeys", "trainers", "racehorses",
-                    "training_times", "training_hillwork"]:
+        for tbl in [
+            "races",
+            "race_results",
+            "race_payouts",
+            "jockeys",
+            "trainers",
+            "racehorses",
+            "training_times",
+            "training_hillwork",
+        ]:
             try:
                 n = conn.execute(f"SELECT COUNT(*) FROM {tbl}").fetchone()[0]
                 counts[tbl] = n
@@ -223,6 +244,7 @@ def _print_db_status(phase: str) -> None:
 # フェーズ別取得ロジック
 # ────────────────────────────────────────────────────────────────────────────
 
+
 def step_masters(mode: str, dry_run: bool) -> bool:
     """
     Step 1: マスタ一括初期取得
@@ -237,8 +259,8 @@ def step_masters(mode: str, dry_run: bool) -> bool:
     # SETUP (全マスタ一括)
     ok = _run_jvlink(
         dataspec="SETUP",
-        fromtime="20200101",   # SETUP はマスタ全量のため fromtime は参考値
-        option=2,              # OPT_SETUP 固定
+        fromtime="20200101",  # SETUP はマスタ全量のため fromtime は参考値
+        option=2,  # OPT_SETUP 固定
         timeout=TIMEOUT_MASTERS,
         label="SETUP 全マスタ一括",
         dry_run=dry_run,
@@ -249,7 +271,7 @@ def step_masters(mode: str, dry_run: bool) -> bool:
     ok = _run_jvlink(
         dataspec="DIFN",
         fromtime="20210101",
-        option=1,              # OPT_NORMAL: 差分
+        option=1,  # OPT_NORMAL: 差分
         timeout=TIMEOUT_MASTERS,
         label="DIFN マスタ差分 2021-",
         dry_run=dry_run,
@@ -268,7 +290,11 @@ def step_masters(mode: str, dry_run: bool) -> bool:
     results.append(ok)
 
     success = sum(results)
-    logger.info("━━━ STEP 1 完了: %d/%d 成功 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━", success, len(results))
+    logger.info(
+        "━━━ STEP 1 完了: %d/%d 成功 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+        success,
+        len(results),
+    )
     return all(results)
 
 
@@ -285,11 +311,15 @@ def step_races(from_year: int, to_year: int, mode: str, dry_run: bool) -> bool:
     """
     option_map = {"setup": 2, "stored": 4, "normal": 1}
     option = option_map.get(mode, 2)
-    option_label = {1: "OPT_NORMAL", 2: "OPT_SETUP", 4: "OPT_STORED"}.get(option, str(option))
+    option_label = {1: "OPT_NORMAL", 2: "OPT_SETUP", 4: "OPT_STORED"}.get(
+        option, str(option)
+    )
 
     logger.info(
         "━━━ STEP 2: RACE 一括取得 %d〜%d年 [%s] ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
-        from_year, to_year, option_label,
+        from_year,
+        to_year,
+        option_label,
     )
     logger.info(
         "  取得方針: netkeiba スクレイピング 0件 / JVLink (%s) のみ使用",
@@ -319,7 +349,7 @@ def step_races(from_year: int, to_year: int, mode: str, dry_run: bool) -> bool:
                 ok_fb = _run_jvlink(
                     dataspec="RACE",
                     fromtime=fromtime,
-                    option=4,   # OPT_STORED
+                    option=4,  # OPT_STORED
                     timeout=TIMEOUT_RACE,
                     label=f"RACE {year}年 [OPT_STORED fallback]",
                     dry_run=dry_run,
@@ -337,7 +367,10 @@ def step_races(from_year: int, to_year: int, mode: str, dry_run: bool) -> bool:
             logger.info("次の年の取得前に 10 秒待機...")
             time.sleep(10)
 
-    logger.info("━━━ STEP 2 完了: %s ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━", "全成功" if all_ok else "一部失敗あり")
+    logger.info(
+        "━━━ STEP 2 完了: %s ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+        "全成功" if all_ok else "一部失敗あり",
+    )
     return all_ok
 
 
@@ -350,7 +383,8 @@ def step_wood(from_year: int, to_year: int, dry_run: bool) -> bool:
     """
     logger.info(
         "━━━ STEP 3: WOOD 調教データ取得 %d〜%d年 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
-        from_year, to_year,
+        from_year,
+        to_year,
     )
 
     all_ok = True
@@ -359,7 +393,7 @@ def step_wood(from_year: int, to_year: int, dry_run: bool) -> bool:
         ok = _run_jvlink(
             dataspec="WOOD",
             fromtime=fromtime,
-            option=1,   # WOOD は OPT_NORMAL のみ
+            option=1,  # WOOD は OPT_NORMAL のみ
             timeout=TIMEOUT_WOOD,
             label=f"WOOD {year}年",
             dry_run=dry_run,
@@ -369,13 +403,17 @@ def step_wood(from_year: int, to_year: int, dry_run: bool) -> bool:
         if year < to_year and not dry_run:
             time.sleep(5)
 
-    logger.info("━━━ STEP 3 完了: %s ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━", "全成功" if all_ok else "一部失敗あり")
+    logger.info(
+        "━━━ STEP 3 完了: %s ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+        "全成功" if all_ok else "一部失敗あり",
+    )
     return all_ok
 
 
 # ────────────────────────────────────────────────────────────────────────────
 # generate_data.py 呼び出し
 # ────────────────────────────────────────────────────────────────────────────
+
 
 def _refresh_dashboard(dry_run: bool) -> None:
     """web/generate_data.py を実行してダッシュボード JSON を更新する。"""
@@ -400,6 +438,7 @@ def _refresh_dashboard(dry_run: bool) -> None:
 # メイン
 # ────────────────────────────────────────────────────────────────────────────
 
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description=(
@@ -418,11 +457,15 @@ def main() -> None:
 """,
     )
     parser.add_argument(
-        "--from-year", type=int, default=DEFAULT_FROM_YEAR,
+        "--from-year",
+        type=int,
+        default=DEFAULT_FROM_YEAR,
         help=f"取得開始年 (デフォルト: {DEFAULT_FROM_YEAR})",
     )
     parser.add_argument(
-        "--to-year", type=int, default=DEFAULT_TO_YEAR,
+        "--to-year",
+        type=int,
+        default=DEFAULT_TO_YEAR,
         help=f"取得終了年 (デフォルト: {DEFAULT_TO_YEAR})",
     )
     parser.add_argument(
@@ -438,42 +481,55 @@ def main() -> None:
         ),
     )
     parser.add_argument(
-        "--only-masters", action="store_true",
+        "--only-masters",
+        action="store_true",
         help="STEP 1 (マスタ取得) のみ実行",
     )
     parser.add_argument(
-        "--only-races", action="store_true",
+        "--only-races",
+        action="store_true",
         help="STEP 2 (レース結果取得) のみ実行",
     )
     parser.add_argument(
-        "--only-wood", action="store_true",
+        "--only-wood",
+        action="store_true",
         help="STEP 3 (調教タイム取得) のみ実行",
     )
     parser.add_argument(
-        "--skip-wood", action="store_true",
+        "--skip-wood",
+        action="store_true",
         help="STEP 3 (調教タイム) をスキップ（速度優先）",
     )
     parser.add_argument(
-        "--dry-run", action="store_true",
+        "--dry-run",
+        action="store_true",
         help="コマンドを表示するだけで実行しない",
     )
     args = parser.parse_args()
 
     try:
         from src.ops.jvlink_dialog_handler import start_dialog_handler
+
         start_dialog_handler(interval=0.3)
     except Exception:
         pass
 
     # ── 実行前チェック ───────────────────────────────────────────
     if args.from_year > args.to_year:
-        logger.error("--from-year (%d) > --to-year (%d) は不正です", args.from_year, args.to_year)
+        logger.error(
+            "--from-year (%d) > --to-year (%d) は不正です", args.from_year, args.to_year
+        )
         sys.exit(1)
 
     logger.info("=" * 64)
     logger.info("  UMALOGI 過去データ一括インポート")
-    logger.info("  対象: %d〜%d年  モード: %s  dry_run: %s",
-                args.from_year, args.to_year, args.mode, args.dry_run)
+    logger.info(
+        "  対象: %d〜%d年  モード: %s  dry_run: %s",
+        args.from_year,
+        args.to_year,
+        args.mode,
+        args.dry_run,
+    )
     logger.info("=" * 64)
     logger.info("  ⚠️  netkeiba スクレイピング: 絶対禁止（IP BAN 防止）")
     logger.info("  ✅  JVLink (JRA-VAN 公式 COM API) のみ使用")
@@ -514,8 +570,11 @@ def main() -> None:
     # ── 完了サマリー ─────────────────────────────────────────────
     elapsed_total = time.time() - total_start
     logger.info("=" * 64)
-    logger.info("  一括インポート完了 (経過時間: %.0f 秒 / %.1f 分)",
-                elapsed_total, elapsed_total / 60)
+    logger.info(
+        "  一括インポート完了 (経過時間: %.0f 秒 / %.1f 分)",
+        elapsed_total,
+        elapsed_total / 60,
+    )
     logger.info("  ステップ別結果:")
     all_ok = True
     for step, ok in results.items():
@@ -531,7 +590,9 @@ def main() -> None:
     if all_ok:
         logger.info("次のステップ:")
         logger.info("  フルリトレイン  : py -m src.ops.retrain_trigger")
-        logger.info("  EV閾値バックテスト: py scripts/backtest_ev_threshold.py --bet-type 単勝")
+        logger.info(
+            "  EV閾値バックテスト: py scripts/backtest_ev_threshold.py --bet-type 単勝"
+        )
     else:
         logger.warning("一部のステップが失敗しました。ログを確認してください。")
 

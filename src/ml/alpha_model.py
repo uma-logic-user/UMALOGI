@@ -83,21 +83,21 @@ BASE_FEATURES: list[str] = [
 
 # ALPHA 追加特徴量（オッズ歪み検知）— _add_alpha_features() で計算
 ALPHA_EXTRA_FEATURES: list[str] = [
-    "log_win_odds",           # log(単勝オッズ) — 対数スケールで歪み検知
-    "inv_odds",               # 1/単勝オッズ = 市場の implied 確率
+    "log_win_odds",  # log(単勝オッズ) — 対数スケールで歪み検知
+    "inv_odds",  # 1/単勝オッズ = 市場の implied 確率
     "odds_popularity_ratio",  # オッズ / 人気順位 (高=人気薄のオッズが高い = 歪みポテンシャル)
-    "field_size",             # 出走頭数（多頭数ほど高配当チャンス）
-    "mean_field_odds",        # レース内平均オッズ
-    "odds_vs_field",          # win_odds / mean_field_odds (1より大=人気薄)
-    "market_prob",            # 市場確率 = inv_odds / sum(inv_odds) in race
-    "log_market_prob",        # log(市場確率)
+    "field_size",  # 出走頭数（多頭数ほど高配当チャンス）
+    "mean_field_odds",  # レース内平均オッズ
+    "odds_vs_field",  # win_odds / mean_field_odds (1より大=人気薄)
+    "market_prob",  # 市場確率 = inv_odds / sum(inv_odds) in race
+    "log_market_prob",  # log(市場確率)
     # ── ハイブリッド特徴量（netkeiba × JVLink 乖離）─────────────────
-    "nb_win_odds",            # netkeiba 単勝オッズ（独立ソース）
-    "log_nb_win_odds",        # log(nb_win_odds)
-    "nb_market_prob",         # 市場確率（netkeiba 基準）
-    "nb_log_market_prob",     # log(nb 市場確率)
-    "odds_discrepancy_ratio", # nb_win_odds / jvlink_win_odds（乖離度: 1=一致）
-    "nb_vs_field",            # nb_win_odds / レース内平均 nb_win_odds
+    "nb_win_odds",  # netkeiba 単勝オッズ（独立ソース）
+    "log_nb_win_odds",  # log(nb_win_odds)
+    "nb_market_prob",  # 市場確率（netkeiba 基準）
+    "nb_log_market_prob",  # log(nb 市場確率)
+    "odds_discrepancy_ratio",  # nb_win_odds / jvlink_win_odds（乖離度: 1=一致）
+    "nb_vs_field",  # nb_win_odds / レース内平均 nb_win_odds
 ]
 
 ALL_ALPHA_FEATURES: list[str] = BASE_FEATURES + ALPHA_EXTRA_FEATURES
@@ -106,6 +106,7 @@ ALL_ALPHA_FEATURES: list[str] = BASE_FEATURES + ALPHA_EXTRA_FEATURES
 @dataclass
 class AlphaBacktestResult:
     """バックテスト結果コンテナ"""
+
     year: str | int
     total_investment: int
     total_payout: float
@@ -162,7 +163,11 @@ class AlphaModel:
         """
         logger.info(
             "EV学習データ生成: years=%s bet_type=%s min_date=%s max_date=%s research_db=%s",
-            years, bet_type, min_date, max_date, research_db_path,
+            years,
+            bet_type,
+            min_date,
+            max_date,
+            research_db_path,
         )
 
         if bet_type == BET_TYPE_TANSHO:
@@ -172,7 +177,7 @@ class AlphaModel:
         hit_expr = "CASE WHEN CAST(rp_hit.combination AS INTEGER) = rr.horse_number THEN 1 ELSE 0 END"
 
         # 日付フィルタ構築（CTE内部は無エイリアス、外部クエリはエイリアス r を使用）
-        cte_filters: list[str] = []   # CTE内 races テーブル（エイリアスなし）
+        cte_filters: list[str] = []  # CTE内 races テーブル（エイリアスなし）
         params: list = []
 
         if years:
@@ -250,7 +255,9 @@ class AlphaModel:
             "ロード完了: %d 行, is_hit=%d (%.1f%%)",
             len(df),
             int(df["is_hit"].sum()) if "is_hit" in df.columns else 0,
-            float(df["is_hit"].mean()) * 100 if "is_hit" in df.columns and len(df) > 0 else 0,
+            float(df["is_hit"].mean()) * 100
+            if "is_hit" in df.columns and len(df) > 0
+            else 0,
         )
         return df
 
@@ -277,7 +284,7 @@ class AlphaModel:
         merged = df.merge(odds_df, on=["race_id", "horse_number"], how="left")
 
         # dtype を float64 に統一してから補完（FutureWarning 回避）
-        merged["win_odds"]   = pd.to_numeric(merged["win_odds"],   errors="coerce")
+        merged["win_odds"] = pd.to_numeric(merged["win_odds"], errors="coerce")
         merged["nb_win_odds"] = pd.to_numeric(merged["nb_win_odds"], errors="coerce")
 
         # JVLink の win_odds が NULL → nb_win_odds で補完
@@ -316,9 +323,16 @@ class AlphaModel:
 
         # 会場コード
         venue_map = {
-            "札幌": 0, "函館": 1, "福島": 2, "新潟": 3,
-            "東京": 4, "中山": 5, "中京": 6, "京都": 7,
-            "阪神": 8, "小倉": 9,
+            "札幌": 0,
+            "函館": 1,
+            "福島": 2,
+            "新潟": 3,
+            "東京": 4,
+            "中山": 5,
+            "中京": 6,
+            "京都": 7,
+            "阪神": 8,
+            "小倉": 9,
         }
         if "venue" in df.columns:
             df["venue_encoded"] = df["venue"].map(venue_map).fillna(-1).astype(int)
@@ -329,13 +343,20 @@ class AlphaModel:
             df["condition_code"] = df["condition"].map(cond_map).fillna(-1).astype(int)
 
         # 騎手・調教師ラベルエンコード
-        for col, out_col in [("jockey", "jockey_encoded"), ("trainer", "trainer_encoded")]:
+        for col, out_col in [
+            ("jockey", "jockey_encoded"),
+            ("trainer", "trainer_encoded"),
+        ]:
             if col in df.columns and out_col not in df.columns:
                 if self._label_encoders.get(out_col) is not None:
                     le = self._label_encoders[out_col]
                     known = set(le.classes_)
-                    df[out_col] = df[col].astype(str).apply(
-                        lambda x: int(le.transform([x])[0]) if x in known else -1
+                    df[out_col] = (
+                        df[col]
+                        .astype(str)
+                        .apply(
+                            lambda x: int(le.transform([x])[0]) if x in known else -1
+                        )
                     )
                 else:
                     # fit時はここでエンコード（_encode_categoricals で対応）
@@ -348,7 +369,9 @@ class AlphaModel:
         df["log_win_odds"] = np.log(df["win_odds"])
         df["inv_odds"] = 1.0 / df["win_odds"]
 
-        pop = pd.to_numeric(df.get("popularity"), errors="coerce").fillna(9).clip(lower=1)
+        pop = (
+            pd.to_numeric(df.get("popularity"), errors="coerce").fillna(9).clip(lower=1)
+        )
         df["odds_popularity_ratio"] = df["win_odds"] / pop
 
         # レース内の統計量（グループ集計）
@@ -394,9 +417,13 @@ class AlphaModel:
     def _encode_categoricals(self, df: pd.DataFrame, fit: bool = True) -> pd.DataFrame:
         """騎手・調教師をラベルエンコードする。"""
         from sklearn.preprocessing import LabelEncoder
+
         df = df.copy()
 
-        for src_col, out_col in [("jockey", "jockey_encoded"), ("trainer", "trainer_encoded")]:
+        for src_col, out_col in [
+            ("jockey", "jockey_encoded"),
+            ("trainer", "trainer_encoded"),
+        ]:
             if src_col not in df.columns:
                 df[out_col] = -1
                 continue
@@ -408,8 +435,12 @@ class AlphaModel:
                 le = self._label_encoders.get(out_col)
                 if le:
                     known = set(le.classes_)
-                    df[out_col] = df[src_col].astype(str).apply(
-                        lambda x: int(le.transform([x])[0]) if x in known else -1
+                    df[out_col] = (
+                        df[src_col]
+                        .astype(str)
+                        .apply(
+                            lambda x: int(le.transform([x])[0]) if x in known else -1
+                        )
                     )
                 else:
                     df[out_col] = -1
@@ -430,7 +461,7 @@ class AlphaModel:
         df = self._add_alpha_features(df)
         df = self._encode_categoricals(df, fit=fit)
 
-        available = [c for c in ALL_ALPHA_FEATURES if c in df.columns]
+        [c for c in ALL_ALPHA_FEATURES if c in df.columns]
         missing = [c for c in ALL_ALPHA_FEATURES if c not in df.columns]
         if missing:
             logger.debug("特徴量欠損 (%d列): %s", len(missing), missing[:5])
@@ -492,13 +523,15 @@ class AlphaModel:
             callbacks.append(cb)
 
         self._model.fit(
-            X_tr, y_tr,
+            X_tr,
+            y_tr,
             eval_set=[(X_val, y_val)],
             callbacks=callbacks or None,
         )
 
         win_prob_val = self._model.predict_proba(X_val)[:, 1]
         from sklearn.metrics import log_loss, roc_auc_score
+
         try:
             logloss = float(log_loss(y_val, win_prob_val))
             auc = float(roc_auc_score(y_val, win_prob_val))
@@ -506,7 +539,12 @@ class AlphaModel:
             logloss, auc = 0.0, 0.0
 
         self._is_trained = True
-        metrics = {"logloss": logloss, "auc": auc, "n_train": len(X_tr), "n_val": len(X_val)}
+        metrics = {
+            "logloss": logloss,
+            "auc": auc,
+            "n_train": len(X_tr),
+            "n_val": len(X_val),
+        }
         logger.info("学習完了: %s", metrics)
         return metrics
 
@@ -528,7 +566,9 @@ class AlphaModel:
         EV > 1.5: 50%以上の価値超過（ALPHA のデフォルト閾値）
         """
         win_prob = self.predict_win_prob(df)
-        odds = pd.to_numeric(df["win_odds"], errors="coerce").fillna(50.0).clip(lower=1.01)
+        odds = (
+            pd.to_numeric(df["win_odds"], errors="coerce").fillna(50.0).clip(lower=1.01)
+        )
         ev = win_prob * odds
         return ev.clip(lower=0.0)
 
@@ -549,8 +589,8 @@ class AlphaModel:
         if ev_pred <= 0 or win_odds <= 1.1:
             return 0
         b = win_odds - 1.0
-        p = ev_pred / win_odds   # EV から implied prob を逆算
-        p = min(p, 0.95)         # 上限 95%
+        p = ev_pred / win_odds  # EV から implied prob を逆算
+        p = min(p, 0.95)  # 上限 95%
         q = 1.0 - p
         f = (b * p - q) / b
         if f <= 0:
@@ -576,7 +616,9 @@ class AlphaModel:
         results["ev_pred"] = ev_pred.values
         results["kelly_bet"] = results.apply(
             lambda row: self.calc_kelly_bet(
-                row["ev_pred"], float(row["win_odds"]) if row["win_odds"] else 50, bankroll
+                row["ev_pred"],
+                float(row["win_odds"]) if row["win_odds"] else 50,
+                bankroll,
             ),
             axis=1,
         )
@@ -589,7 +631,9 @@ class AlphaModel:
         path = path or _MODEL_PATH
         path.parent.mkdir(parents=True, exist_ok=True)
         with open(path, "wb") as f:
-            pickle.dump({"model": self._model, "label_encoders": self._label_encoders}, f)
+            pickle.dump(
+                {"model": self._model, "label_encoders": self._label_encoders}, f
+            )
         logger.info("ALPHA モデル保存: %s", path)
 
     @classmethod
@@ -606,6 +650,7 @@ class AlphaModel:
 
 
 # ── バックテスト ─────────────────────────────────────────────────────
+
 
 def run_backtest(
     conn: sqlite3.Connection,
@@ -646,22 +691,22 @@ def run_backtest(
         conn, test_years, bet_type, research_db_path=research_db_path
     )
 
-    holdout_mode = False
     if len(test_df) < 100:
         # テストデータ不足 → 訓練データの末尾をホールドアウトに転用
         split_idx = int(len(all_train_df) * (1.0 - holdout_ratio))
         train_df = all_train_df.iloc[:split_idx].copy()
         test_df = all_train_df.iloc[split_idx:].copy()
-        holdout_mode = True
-        test_label = f"{train_years[0]}(holdout={int(holdout_ratio*100)}%)"
+        test_label = f"{train_years[0]}(holdout={int(holdout_ratio * 100)}%)"
         logger.warning(
             "テストデータ不足 → %s末尾%d%%をホールドアウトとして使用 (%d行)",
-            train_years, int(holdout_ratio * 100), len(test_df),
+            train_years,
+            int(holdout_ratio * 100),
+            len(test_df),
         )
         if verbose:
             print(
                 f"[警告] {test_years}のテストデータが不足。"
-                f"{train_years}データの末尾{int(holdout_ratio*100)}%({len(test_df)}行)を代用。"
+                f"{train_years}データの末尾{int(holdout_ratio * 100)}%({len(test_df)}行)を代用。"
             )
     else:
         train_df = all_train_df
@@ -672,7 +717,9 @@ def run_backtest(
 
     metrics = model.train(train_df)
     if verbose:
-        print(f"[学習] n={metrics['n_train']} LogLoss={metrics['logloss']:.4f} AUC={metrics['auc']:.3f}")
+        print(
+            f"[学習] n={metrics['n_train']} LogLoss={metrics['logloss']:.4f} AUC={metrics['auc']:.3f}"
+        )
 
     test_df["ev_pred"] = model.predict_ev(test_df).values
 
@@ -684,9 +731,17 @@ def run_backtest(
     if len(bets_df) == 0:
         logger.warning("買いシグナルなし (threshold=%.2f)", ev_threshold)
         return AlphaBacktestResult(
-            year=test_label, total_investment=0, total_payout=0,
-            profit=0, roi=0, num_bets=0, num_hits=0, hit_rate=0,
-            max_drawdown=0, best_single_payout=0, bet_type=bet_type,
+            year=test_label,
+            total_investment=0,
+            total_payout=0,
+            profit=0,
+            roi=0,
+            num_bets=0,
+            num_hits=0,
+            hit_rate=0,
+            max_drawdown=0,
+            best_single_payout=0,
+            bet_type=bet_type,
             ev_threshold=ev_threshold,
             notes=["買いシグナルなし"],
         )
@@ -704,7 +759,12 @@ def run_backtest(
     bets_df["fixed_bet"] = 100
 
     # 払戻計算
-    bets_df["payout_kelly"] = bets_df["is_hit"] * bets_df["actual_payout"].fillna(0) * bets_df["kelly_bet"] / 100
+    bets_df["payout_kelly"] = (
+        bets_df["is_hit"]
+        * bets_df["actual_payout"].fillna(0)
+        * bets_df["kelly_bet"]
+        / 100
+    )
     bets_df["payout_fixed"] = bets_df["is_hit"] * bets_df["actual_payout"].fillna(0)
 
     total_investment = int(bets_df["kelly_bet"].sum())
@@ -718,7 +778,9 @@ def run_backtest(
 
     # 最大ドローダウン計算
     bets_df_sorted = bets_df.sort_values(["date", "race_id", "horse_number"])
-    cumulative_pnl = (bets_df_sorted["payout_kelly"] - bets_df_sorted["kelly_bet"]).cumsum()
+    cumulative_pnl = (
+        bets_df_sorted["payout_kelly"] - bets_df_sorted["kelly_bet"]
+    ).cumsum()
     running_max = cumulative_pnl.cummax()
     drawdown_series = running_max - cumulative_pnl
     max_drawdown = float(drawdown_series.max()) if len(drawdown_series) > 0 else 0
@@ -757,10 +819,12 @@ def run_backtest(
 
 # ── ユーティリティ ────────────────────────────────────────────────────
 
+
 def lgb_early_stopping(stopping_rounds: int, verbose: bool = True):
     """LightGBM の early stopping コールバック（バージョン差異吸収）。"""
     try:
         from lightgbm import early_stopping as _es
+
         return _es(stopping_rounds, verbose=verbose)
     except ImportError:
         return None

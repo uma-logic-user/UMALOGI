@@ -7,6 +7,7 @@ JVLink OPT_STORED=4 を使用して JRA-VAN ローカルキャッシュから
 実行コマンド (32bit Python 必須):
     py -3.14-32 scripts/refetch_20260503.py
 """
+
 from __future__ import annotations
 
 import os
@@ -20,24 +21,39 @@ sys.stdout.reconfigure(encoding="utf-8")
 
 try:
     from dotenv import load_dotenv
+
     load_dotenv(_ROOT / ".env", override=False)
 except ImportError:
     pass
 
-from src.scraper.jravan_client import JVDataLoader, OPT_STORED, DATASPEC_RACE
+from src.scraper.jravan_client import JVDataLoader, OPT_STORED
 from src.database.init_db import init_db
 
 
 TARGET_DATE = "20260503"
 TARGET_RACES = [
     # 新潟 R10-R12
-    "202604010210", "202604010211", "202604010212",
+    "202604010210",
+    "202604010211",
+    "202604010212",
     # 東京 R05-R12
-    "202605020405", "202605020406", "202605020407", "202605020408",
-    "202605020409", "202605020410", "202605020411", "202605020412",
+    "202605020405",
+    "202605020406",
+    "202605020407",
+    "202605020408",
+    "202605020409",
+    "202605020410",
+    "202605020411",
+    "202605020412",
     # 京都 R05-R12
-    "202608030405", "202608030406", "202608030407", "202608030408",
-    "202608030409", "202608030410", "202608030411", "202608030412",
+    "202608030405",
+    "202608030406",
+    "202608030407",
+    "202608030408",
+    "202608030409",
+    "202608030410",
+    "202608030411",
+    "202608030412",
 ]
 
 
@@ -55,7 +71,10 @@ def check_payouts(conn: sqlite3.Connection) -> dict[str, int]:
 def main() -> None:
     sid = os.environ.get("JRAVAN_SID", "")
     if not sid:
-        print("ERROR: 環境変数 JRAVAN_SID が未設定です。.env を確認してください。", flush=True)
+        print(
+            "ERROR: 環境変数 JRAVAN_SID が未設定です。.env を確認してください。",
+            flush=True,
+        )
         sys.exit(1)
 
     conn = init_db()
@@ -71,8 +90,11 @@ def main() -> None:
     print(f"\n=== JVLink OPT_STORED 再取得 (fromtime={TARGET_DATE}) ===", flush=True)
     loader = JVDataLoader(sid=sid)
     stats = loader.load_race(fromtime=TARGET_DATE, option=OPT_STORED)
-    print(f"取得結果: SE={stats.get('se', 0)} payout={stats.get('payout', 0)} "
-          f"read={stats.get('total_read', 0)} open_code={stats.get('open_code', '?')}", flush=True)
+    print(
+        f"取得結果: SE={stats.get('se', 0)} payout={stats.get('payout', 0)} "
+        f"read={stats.get('total_read', 0)} open_code={stats.get('open_code', '?')}",
+        flush=True,
+    )
 
     conn = init_db()
     print("\n=== 取得後 払戻件数 ===", flush=True)
@@ -88,8 +110,10 @@ def main() -> None:
             status = f"  OK({cnt}件)"
         print(f"  {race_id}: {status}", flush=True)
 
-    print(f"\n補完結果: {missing_before - missing_after} レース修復 "
-          f"/ 残欠損 {missing_after} レース", flush=True)
+    print(
+        f"\n補完結果: {missing_before - missing_after} レース修復 / 残欠損 {missing_after} レース",
+        flush=True,
+    )
     conn.close()
 
 

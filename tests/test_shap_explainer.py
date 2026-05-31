@@ -3,10 +3,10 @@
 src/ml/shap_explainer.py のユニットテスト。
 shap パッケージは存在しても存在しなくても動作することを検証する。
 """
+
 from __future__ import annotations
 
 import json
-from types import SimpleNamespace
 from unittest.mock import MagicMock, patch
 
 import numpy as np
@@ -48,6 +48,7 @@ def _make_model(shap_values: np.ndarray) -> MagicMock:
 
 # ── feature_label ───────────────────────────────────────────────
 
+
 def test_feature_label_known() -> None:
     assert feature_label("jockey_win_rate_90d") == "騎手直近90日勝率"
 
@@ -63,6 +64,7 @@ def test_feature_label_jp_covers_common_features() -> None:
 
 # ── shap_to_json ─────────────────────────────────────────────────
 
+
 def test_shap_to_json_normal() -> None:
     d = {"feat_a": 0.3, "feat_b": -0.1}
     result = shap_to_json(d)
@@ -77,6 +79,7 @@ def test_shap_to_json_empty_returns_none() -> None:
 
 
 # ── compute_shap_top ─────────────────────────────────────────────
+
 
 def test_compute_shap_top_shap_not_installed() -> None:
     """shap がインポートできない環境では空辞書リストを返す。"""
@@ -95,7 +98,7 @@ def test_compute_shap_top_shap_not_installed() -> None:
 def test_compute_shap_top_no_inner_model() -> None:
     """_model 属性が存在しないモデルは空辞書を返す。"""
     X = _make_X(2)
-    model = MagicMock(spec=[])          # _model 属性を持たない
+    model = MagicMock(spec=[])  # _model 属性を持たない
     result = compute_shap_top(model, X, top_n=3)
     assert len(result) == 2
     assert all(r == {} for r in result)
@@ -105,7 +108,7 @@ def test_compute_shap_top_no_booster() -> None:
     """booster_ が存在しない場合も空辞書を返す。"""
     X = _make_X(2)
     model = MagicMock()
-    model._model = MagicMock(spec=[])   # booster_ を持たない
+    model._model = MagicMock(spec=[])  # booster_ を持たない
     result = compute_shap_top(model, X, top_n=3)
     assert len(result) == 2
     assert all(r == {} for r in result)
@@ -116,11 +119,13 @@ def test_compute_shap_top_2d_array() -> None:
     n, f = 3, 4
     X = _make_X(n)
     # 固定 SHAP 値（行 0: feat_b=0.5 が最大）
-    sv = np.array([
-        [0.1, 0.5, -0.3, 0.05],
-        [0.2, -0.1, 0.4, 0.0],
-        [-0.4, 0.3, 0.2, 0.1],
-    ])
+    sv = np.array(
+        [
+            [0.1, 0.5, -0.3, 0.05],
+            [0.2, -0.1, 0.4, 0.0],
+            [-0.4, 0.3, 0.2, 0.1],
+        ]
+    )
     model = MagicMock()
     model._model = MagicMock()
     model._model.booster_ = MagicMock()
@@ -128,7 +133,9 @@ def test_compute_shap_top_2d_array() -> None:
     mock_explainer = MagicMock()
     mock_explainer.shap_values.return_value = sv
 
-    with patch.dict("sys.modules", {"shap": MagicMock(TreeExplainer=lambda b: mock_explainer)}):
+    with patch.dict(
+        "sys.modules", {"shap": MagicMock(TreeExplainer=lambda b: mock_explainer)}
+    ):
         result = compute_shap_top(model, X, top_n=2)
 
     assert len(result) == 3
@@ -145,10 +152,12 @@ def test_compute_shap_top_binary_classification_list() -> None:
     n, f = 2, 4
     X = _make_X(n)
     sv_class0 = np.zeros((n, f))
-    sv_class1 = np.array([
-        [0.9, 0.1, -0.05, 0.02],
-        [0.0, -0.8, 0.6,  0.3],
-    ])
+    sv_class1 = np.array(
+        [
+            [0.9, 0.1, -0.05, 0.02],
+            [0.0, -0.8, 0.6, 0.3],
+        ]
+    )
     model = MagicMock()
     model._model = MagicMock()
     model._model.booster_ = MagicMock()
@@ -156,7 +165,9 @@ def test_compute_shap_top_binary_classification_list() -> None:
     mock_explainer = MagicMock()
     mock_explainer.shap_values.return_value = [sv_class0, sv_class1]
 
-    with patch.dict("sys.modules", {"shap": MagicMock(TreeExplainer=lambda b: mock_explainer)}):
+    with patch.dict(
+        "sys.modules", {"shap": MagicMock(TreeExplainer=lambda b: mock_explainer)}
+    ):
         result = compute_shap_top(model, X, top_n=2)
 
     assert len(result) == 2
@@ -175,7 +186,9 @@ def test_compute_shap_top_exception_returns_empty() -> None:
     broken_explainer = MagicMock()
     broken_explainer.shap_values.side_effect = RuntimeError("boom")
 
-    with patch.dict("sys.modules", {"shap": MagicMock(TreeExplainer=lambda b: broken_explainer)}):
+    with patch.dict(
+        "sys.modules", {"shap": MagicMock(TreeExplainer=lambda b: broken_explainer)}
+    ):
         result = compute_shap_top(model, X, top_n=2)
 
     assert len(result) == 2
@@ -184,20 +197,25 @@ def test_compute_shap_top_exception_returns_empty() -> None:
 
 # ── build_shap_map ───────────────────────────────────────────────
 
+
 def test_build_shap_map_maps_horse_number_to_json() -> None:
     """horse_number をキーにした shap_json 辞書が返る。"""
     n = 3
     X = _make_X(n)
-    df = pd.DataFrame({
-        "horse_number": [3, 7, 11],
-        "horse_name":   ["馬A", "馬B", "馬C"],
-    })
+    df = pd.DataFrame(
+        {
+            "horse_number": [3, 7, 11],
+            "horse_name": ["馬A", "馬B", "馬C"],
+        }
+    )
 
-    sv = np.array([
-        [0.5, -0.2, 0.1, 0.0],
-        [0.0,  0.3, 0.4, 0.05],
-        [-0.6, 0.1, 0.2, 0.05],
-    ])
+    sv = np.array(
+        [
+            [0.5, -0.2, 0.1, 0.0],
+            [0.0, 0.3, 0.4, 0.05],
+            [-0.6, 0.1, 0.2, 0.05],
+        ]
+    )
     model = MagicMock()
     model._model = MagicMock()
     model._model.booster_ = MagicMock()
@@ -205,21 +223,23 @@ def test_build_shap_map_maps_horse_number_to_json() -> None:
     mock_explainer = MagicMock()
     mock_explainer.shap_values.return_value = sv
 
-    with patch.dict("sys.modules", {"shap": MagicMock(TreeExplainer=lambda b: mock_explainer)}):
+    with patch.dict(
+        "sys.modules", {"shap": MagicMock(TreeExplainer=lambda b: mock_explainer)}
+    ):
         result = build_shap_map(model, X, df, top_n=2)
 
     assert set(result.keys()) == {3, 7, 11}
     # 馬番 3 の shap_json は有効な JSON 文字列
     assert result[3] is not None
     parsed = json.loads(result[3])  # type: ignore[arg-type]
-    assert "feat_a" in parsed       # |0.5| が最大
+    assert "feat_a" in parsed  # |0.5| が最大
 
 
 def test_build_shap_map_empty_shap_gives_none() -> None:
     """SHAP 計算が空辞書を返した場合、shap_json は None になる。"""
     X = _make_X(2)
     df = pd.DataFrame({"horse_number": [1, 2], "horse_name": ["馬A", "馬B"]})
-    model = MagicMock(spec=[])   # _model なし → 常に空辞書
+    model = MagicMock(spec=[])  # _model なし → 常に空辞書
 
     result = build_shap_map(model, X, df, top_n=3)
     assert result[1] is None

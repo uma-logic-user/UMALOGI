@@ -31,7 +31,9 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(message)s",
     handlers=[
         logging.StreamHandler(sys.stdout),
-        logging.FileHandler(ROOT / "data" / "repair_rank_log.txt", encoding="utf-8", mode="a"),
+        logging.FileHandler(
+            ROOT / "data" / "repair_rank_log.txt", encoding="utf-8", mode="a"
+        ),
     ],
 )
 logger = logging.getLogger(__name__)
@@ -39,10 +41,10 @@ logger = logging.getLogger(__name__)
 DB_PATH = ROOT / "data" / "umalogi.db"
 CHECKPOINT_PATH = ROOT / "data" / "repair_rank_checkpoint.txt"
 
-DELAY_SEC = 2.0          # レース間インターバル
-RETRY_DELAY_SEC = 1.5    # fetch_race_results 内リトライ間隔
-COOLDOWN_THRESHOLD = 5   # 連続失敗 N 件でクールダウン
-COOLDOWN_SEC = 60        # クールダウン待機秒数
+DELAY_SEC = 2.0  # レース間インターバル
+RETRY_DELAY_SEC = 1.5  # fetch_race_results 内リトライ間隔
+COOLDOWN_THRESHOLD = 5  # 連続失敗 N 件でクールダウン
+COOLDOWN_SEC = 60  # クールダウン待機秒数
 
 
 def _load_checkpoint() -> set[str]:
@@ -138,7 +140,9 @@ def main() -> None:
             consecutive_failures += 1
             if consecutive_failures >= COOLDOWN_THRESHOLD:
                 logger.warning(
-                    "連続失敗 %d 件 → %d 秒クールダウン", consecutive_failures, COOLDOWN_SEC
+                    "連続失敗 %d 件 → %d 秒クールダウン",
+                    consecutive_failures,
+                    COOLDOWN_SEC,
                 )
                 time.sleep(COOLDOWN_SEC)
                 consecutive_failures = 0
@@ -157,8 +161,12 @@ def main() -> None:
     conn.close()
 
     logger.info("=== 完了 ===")
-    logger.info("処理レース: %d / 成功チェックポイント: %d / 更新行数: %d",
-                len(todo), len(done), total_updated)
+    logger.info(
+        "処理レース: %d / 成功チェックポイント: %d / 更新行数: %d",
+        len(todo),
+        len(done),
+        total_updated,
+    )
 
 
 if __name__ == "__main__":

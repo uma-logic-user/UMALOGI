@@ -1,8 +1,7 @@
 """segment_analysis.py のテスト。"""
+
 from __future__ import annotations
 import sqlite3
-import tempfile
-import pytest
 from pathlib import Path
 
 
@@ -45,6 +44,7 @@ class TestSegmentAnalysis:
         db = str(tmp_path / "test.db")
         _make_test_db(db)
         from scripts.segment_analysis import analyze_by_segment
+
         rows = analyze_by_segment(db, group_by="bet_type")
         bet_types = {r["segment"]: r for r in rows}
         assert "単勝" in bet_types
@@ -56,6 +56,7 @@ class TestSegmentAnalysis:
         db = str(tmp_path / "test.db")
         _make_test_db(db)
         from scripts.segment_analysis import analyze_by_segment
+
         rows = analyze_by_segment(db, group_by="venue")
         assert len(rows) > 0
         assert all("roi" in r and "n_bets" in r and "segment" in r for r in rows)
@@ -65,6 +66,7 @@ class TestSegmentAnalysis:
         db = str(tmp_path / "test.db")
         _make_test_db(db)
         from scripts.segment_analysis import analyze_by_segment
+
         rows = analyze_by_segment(db, group_by="condition")
         conditions = {r["segment"] for r in rows}
         assert "良" in conditions or "稍重" in conditions

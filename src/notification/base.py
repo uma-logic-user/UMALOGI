@@ -25,10 +25,10 @@ class NotifyMessage:
         url: レース結果 URL（任意）。
     """
 
-    title:      str
-    body:       str
-    image_path: Path | None = None   # 証拠画像（任意）
-    url:        str | None = None    # レース結果 URL（任意）
+    title: str
+    body: str
+    image_path: Path | None = None  # 証拠画像（任意）
+    url: str | None = None  # レース結果 URL（任意）
 
 
 class BaseNotifier(abc.ABC):

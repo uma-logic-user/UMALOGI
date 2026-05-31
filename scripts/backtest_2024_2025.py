@@ -10,6 +10,7 @@ docs/backtest_2024_2025_complete_report.md に結果を書き出す。
     py scripts/backtest_2024_2025.py --skip-restore   # 復元済みの場合スキップ
     py scripts/backtest_2024_2025.py --year 2025      # 単年のみ
 """
+
 from __future__ import annotations
 
 import argparse
@@ -152,7 +153,7 @@ def _write_markdown_report(
         "# UMALOGI 2024-2025-2026 完全バックテスト レポート",
         "",
         f"**生成日時**: {now_str}",
-        f"**生成スクリプト**: `scripts/backtest_2024_2025.py`",
+        "**生成スクリプト**: `scripts/backtest_2024_2025.py`",
         "",
         "---",
         "",
@@ -234,7 +235,7 @@ def _write_markdown_report(
             profit = pay - inv
             sign = "+" if profit >= 0 else ""
             lines.append(
-                f"| {bt} | {n:,} | {h} | {h/n*100:.1f}% | {roi:.1f}% | {sign}¥{profit:,.0f} |"
+                f"| {bt} | {n:,} | {h} | {h / n * 100:.1f}% | {roi:.1f}% | {sign}¥{profit:,.0f} |"
             )
         lines.append("")
 
@@ -243,7 +244,7 @@ def _write_markdown_report(
             hits_w5 = [r for r in w5 if r["is_hit"]]
             lines += [
                 f"**WIN5**: {len(w5)}開催 / {len(hits_w5)}全的中 "
-                f"({len(hits_w5)/len(w5)*100:.1f}%)",
+                f"({len(hits_w5) / len(w5) * 100:.1f}%)",
                 "",
             ]
 
@@ -292,7 +293,7 @@ def _write_markdown_report(
             profit = pay - inv
             sign = "+" if profit >= 0 else ""
             lines.append(
-                f"| {bt} | {n:,} | {h} | {h/n*100:.1f}% | {roi:.1f}% | {sign}¥{profit:,.0f} |"
+                f"| {bt} | {n:,} | {h} | {h / n * 100:.1f}% | {roi:.1f}% | {sign}¥{profit:,.0f} |"
             )
         lines.append("")
 
@@ -300,7 +301,7 @@ def _write_markdown_report(
             hits_w5_all = [r for r in w5_all if r["is_hit"]]
             lines += [
                 f"**WIN5 (3年合算)**: {len(w5_all)}開催 / {len(hits_w5_all)}全的中 "
-                f"({len(hits_w5_all)/len(w5_all)*100:.1f}%)",
+                f"({len(hits_w5_all) / len(w5_all) * 100:.1f}%)",
                 "",
             ]
 
@@ -377,7 +378,9 @@ def calc_flat_roi(bets: list[dict]) -> float:
 def main() -> None:
     ap = argparse.ArgumentParser(description="2024-2025-2026 フルバックテスト")
     ap.add_argument("--year", default=None, help="単年のみ実行 (例: 2025)")
-    ap.add_argument("--skip-restore", action="store_true", help="復元ステップをスキップ")
+    ap.add_argument(
+        "--skip-restore", action="store_true", help="復元ステップをスキップ"
+    )
     ap.add_argument(
         "--mode",
         choices=["kelly", "flat"],
@@ -409,7 +412,9 @@ def main() -> None:
         hits = sum(b["is_hit"] for b in bets)
         logger.info(
             "フラットベット ROI=%.1f%% / 的中率=%.1f%% / ベット数=%d",
-            roi, hits / len(bets) * 100, len(bets)
+            roi,
+            hits / len(bets) * 100,
+            len(bets),
         )
         return
 

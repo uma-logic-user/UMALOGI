@@ -5,7 +5,6 @@ src/ml/bet_generator.py のユニットテスト。
 from __future__ import annotations
 
 import pandas as pd
-import pytest
 
 from src.ml.bet_generator import (
     BetGenerator,
@@ -22,26 +21,29 @@ from src.ml.models import FEATURE_COLS
 
 # ── フィクスチャ ──────────────────────────────────────────────────
 
+
 def _make_df(n: int = 6, odds: list[float] | None = None) -> pd.DataFrame:
     rows = []
     for i in range(1, n + 1):
         row: dict = {col: 0.5 for col in FEATURE_COLS}
-        row.update({
-            "horse_number": i,
-            "horse_id":     f"h{i:02d}",
-            "horse_name":   f"馬{i:02d}",
-            "sex_age":      "牡3",
-            "weight_carried": 56.0,
-            "horse_weight": 500,
-            "popularity":   i,
-            "win_odds":     (odds[i - 1] if odds else float(i * 3)),
-            "surface_code": 0,
-            "sex_code":     0,
-            "venue_encoded": 4,
-            "sire_encoded": i,
-            "distance":     1600,
-            "dist_band":    "mile",
-        })
+        row.update(
+            {
+                "horse_number": i,
+                "horse_id": f"h{i:02d}",
+                "horse_name": f"馬{i:02d}",
+                "sex_age": "牡3",
+                "weight_carried": 56.0,
+                "horse_weight": 500,
+                "popularity": i,
+                "win_odds": (odds[i - 1] if odds else float(i * 3)),
+                "surface_code": 0,
+                "sex_code": 0,
+                "venue_encoded": 4,
+                "sire_encoded": i,
+                "distance": 1600,
+                "dist_band": "mile",
+            }
+        )
         rows.append(row)
     return pd.DataFrame(rows)
 
@@ -72,6 +74,7 @@ def _make_low_ev_scores(df: pd.DataFrame) -> pd.Series:
 
 # ── _kelly_bet ────────────────────────────────────────────────────
 
+
 class TestKellyBet:
     def test_正の賭け金を返す(self) -> None:
         bet = _kelly_bet(win_prob=0.3, odds=5.0, max_bet=1000)
@@ -90,6 +93,7 @@ class TestKellyBet:
 
 
 # ── ManjiStrategy ─────────────────────────────────────────────────
+
 
 class TestManjiStrategy:
     def test_EV高い馬の単勝が生成される(self) -> None:
@@ -122,6 +126,7 @@ class TestManjiStrategy:
 
     def test_to_dictがシリアライズ可能(self) -> None:
         import json
+
         df = _make_df()
         ev = _make_ev_scores(df)
         bets = ManjiStrategy().generate("test001", df, ev)
@@ -130,6 +135,7 @@ class TestManjiStrategy:
 
 
 # ── HonmeiStrategy ────────────────────────────────────────────────
+
 
 class TestHonmeiStrategy:
     def test_単勝が含まれる(self) -> None:
@@ -175,23 +181,25 @@ class TestHonmeiStrategy:
 
 # ── BetGenerator ファサード ───────────────────────────────────────
 
+
 class TestBetGenerator:
     def test_generate_honmeiが動作する(self) -> None:
         gen = BetGenerator()
-        df  = _make_df()
-        sc  = _make_honmei_scores(df)
+        df = _make_df()
+        sc = _make_honmei_scores(df)
         bets = gen.generate_honmei("r001", df, sc)
         assert bets.model_type == "本命"
 
     def test_generate_manjiが動作する(self) -> None:
         gen = BetGenerator()
-        df  = _make_df()
-        ev  = _make_ev_scores(df)
+        df = _make_df()
+        ev = _make_ev_scores(df)
         bets = gen.generate_manji("r001", df, ev)
         assert bets.model_type == "卍"
 
 
 # ── WIN5 ─────────────────────────────────────────────────────────
+
 
 class TestWin5:
     def _make_five_races(self) -> tuple[dict, dict]:
@@ -225,6 +233,7 @@ class TestWin5:
 
     def test_to_dictがシリアライズ可能(self) -> None:
         import json
+
         races, scores = self._make_five_races()
         rec = generate_win5(races, scores)
         assert rec is not None
@@ -232,6 +241,7 @@ class TestWin5:
 
 
 # ── HitFocusStrategy ──────────────────────────────────────────────
+
 
 class TestHitFocusStrategy:
     """

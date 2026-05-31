@@ -20,6 +20,7 @@ if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
 from dotenv import load_dotenv
+
 load_dotenv(_ROOT / ".env", override=False)
 
 sys.stdout.reconfigure(encoding="utf-8")
@@ -27,33 +28,34 @@ sys.stdout.reconfigure(encoding="utf-8")
 
 # ── BetHitDetail / EvaluationResult の最小モック ──────────────────────────
 
+
 @dataclass
 class _BetHitDetail:
     prediction_id: int
-    bet_type:       str
-    is_hit:         bool
-    is_refund:      bool
-    payout:         float
-    invested:       float
-    profit:         float
-    roi:            float
-    combination:    list[str]
+    bet_type: str
+    is_hit: bool
+    is_refund: bool
+    payout: float
+    invested: float
+    profit: float
+    roi: float
+    combination: list[str]
     actual_winners: list[str]
 
 
 @dataclass
 class _EvaluationResult:
-    race_id:        str
-    race_name:      str
-    date:           str
-    hits:           list[_BetHitDetail]
+    race_id: str
+    race_name: str
+    date: str
+    hits: list[_BetHitDetail]
     total_invested: float
-    total_payout:   float
-    roi:            float
-    has_manbaken:   bool
+    total_payout: float
+    roi: float
+    has_manbaken: bool
     max_single_roi: float
     is_refund_race: bool
-    errors:         list[str] = field(default_factory=list)
+    errors: list[str] = field(default_factory=list)
 
     @property
     def hit_count(self) -> int:
@@ -65,6 +67,7 @@ class _EvaluationResult:
 
 
 # ── テストケース定義 ───────────────────────────────────────────────────────
+
 
 def _case_manbaken() -> tuple[_EvaluationResult, str]:
     """万馬券的中シナリオ（¥100,000超）"""
@@ -78,8 +81,16 @@ def _case_manbaken() -> tuple[_EvaluationResult, str]:
             invested=500,
             profit=127_900,
             roi=25_680.0,
-            combination=["5番 ダイヤモンドノット", "9番 カヴァレリッツォ", "3番 シルバーステップ"],
-            actual_winners=["5番 ダイヤモンドノット", "9番 カヴァレリッツォ", "3番 シルバーステップ"],
+            combination=[
+                "5番 ダイヤモンドノット",
+                "9番 カヴァレリッツォ",
+                "3番 シルバーステップ",
+            ],
+            actual_winners=[
+                "5番 ダイヤモンドノット",
+                "9番 カヴァレリッツォ",
+                "3番 シルバーステップ",
+            ],
         ),
         _BetHitDetail(
             prediction_id=2,
@@ -176,8 +187,16 @@ def _case_miss() -> tuple[_EvaluationResult, str]:
             invested=600,
             profit=-600,
             roi=0.0,
-            combination=["2番 アシストブレイズ", "7番 コーラルウィンド", "11番 ナイトリペア"],
-            actual_winners=["5番 ダイヤモンドノット", "9番 カヴァレリッツォ", "3番 シルバーステップ"],
+            combination=[
+                "2番 アシストブレイズ",
+                "7番 コーラルウィンド",
+                "11番 ナイトリペア",
+            ],
+            actual_winners=[
+                "5番 ダイヤモンドノット",
+                "9番 カヴァレリッツォ",
+                "3番 シルバーステップ",
+            ],
         ),
     ]
     result = _EvaluationResult(
@@ -197,9 +216,11 @@ def _case_miss() -> tuple[_EvaluationResult, str]:
 
 # ── エントリポイント ───────────────────────────────────────────────────────
 
+
 def main() -> None:
     # fetch_race_result の _send_hit_flash を直接インポート
     import importlib.util
+
     spec = importlib.util.spec_from_file_location(
         "fetch_race_result",
         _ROOT / "scripts" / "fetch_race_result.py",

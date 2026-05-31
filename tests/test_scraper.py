@@ -25,7 +25,6 @@ import pytest
 
 from src.scraper.netkeiba import (
     HorseResult,
-    PedigreeInfo,
     RaceInfo,
     _parse_race_info,
     fetch_race_results,
@@ -35,6 +34,7 @@ from src.scraper.netkeiba import (
 # ---------------------------------------------------------------------------
 # テスト用 HTML ファクトリ
 # ---------------------------------------------------------------------------
+
 
 def _make_race_html(
     data01_text: str = "09:45発走 / 芝右2000m / 天候:晴 / 馬場:良",
@@ -95,6 +95,7 @@ def _make_race_html(
 def _parse(data01_text: str) -> RaceInfo:
     """data01_text だけを変えて _parse_race_info を呼ぶヘルパー。"""
     from bs4 import BeautifulSoup
+
     html = _make_race_html(data01_text=data01_text)
     soup = BeautifulSoup(html, "lxml")
     return _parse_race_info(soup, "202304050601")

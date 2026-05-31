@@ -15,7 +15,6 @@ from __future__ import annotations
 
 import logging
 
-import numpy as np
 import pandas as pd
 
 from .factors.crowd_opinion import calc_crowd_opinion_score
@@ -47,7 +46,7 @@ def apply_ev_filter(df: pd.DataFrame) -> pd.DataFrame:
     ev_col = _detect_ev_col(df)
     if ev_col is None:
         logger.warning("EV 列が見つかりません。umasugi_ev = ev = 0.0 で初期化します。")
-        df["legacy_ev"]  = 0.0
+        df["legacy_ev"] = 0.0
         df["umasugi_ev"] = 0.0
         return df
 
@@ -58,7 +57,7 @@ def apply_ev_filter(df: pd.DataFrame) -> pd.DataFrame:
 
     # EV は 0 を下限とする（マイナス EV の増幅は行わない）
     df["umasugi_ev"] = df["umasugi_ev"].clip(lower=0.0)
-    df["ev_delta"]   = df["umasugi_ev"] - df["legacy_ev"]
+    df["ev_delta"] = df["umasugi_ev"] - df["legacy_ev"]
 
     logger.debug(
         "EV フィルター適用: %d 頭 / 平均ペナルティ %.3f / 平均ΔEV %.3f",

@@ -44,20 +44,22 @@ logger = logging.getLogger("umanity_dryrun")
 _OUT_DIR = _ROOT / "outputs" / "debug"
 _OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-_LOGIN_URL     = "https://umanity.jp/"
+_LOGIN_URL = "https://umanity.jp/"
 _RACE_LIST_URL = "https://umanity.jp/racedata/race.php"
-_DUMMY_HORSE   = 3  # DOM テスト用ダミー馬番
+_DUMMY_HORSE = 3  # DOM テスト用ダミー馬番
 
 
 # ── 認証情報ロード ─────────────────────────────────────────────────────
 
+
 def _load_credentials() -> tuple[str, str]:
     try:
         from dotenv import load_dotenv
+
         load_dotenv(_ROOT / ".env", override=False)
     except ImportError:
         pass
-    email    = os.environ.get("UMANITY_EMAIL", "")
+    email = os.environ.get("UMANITY_EMAIL", "")
     password = os.environ.get("UMANITY_PASSWORD", "")
     if not email or not password:
         raise EnvironmentError(
@@ -68,9 +70,11 @@ def _load_credentials() -> tuple[str, str]:
 
 # ── Discord エラー通知 ─────────────────────────────────────────────────
 
+
 def _notify_discord(step: str, error: str, screenshot_path: Path | None = None) -> None:
     try:
         from src.notification.discord_notifier import DiscordNotifier
+
         notifier = DiscordNotifier()
         notifier.notify_intervention_required(
             step=step,
@@ -83,6 +87,7 @@ def _notify_discord(step: str, error: str, screenshot_path: Path | None = None) 
 
 
 # ── ドライラン本体 ─────────────────────────────────────────────────────
+
 
 def run_dryrun(
     race_code: str | None = None,
@@ -141,7 +146,7 @@ def run_dryrun(
             logger.info("  📸 スクリーンショット: %s", ss1.name)
 
             # ログインリンク（右上）をクリックしてモーダルを開く
-            page.click('text=ログイン', timeout=10000)
+            page.click("text=ログイン", timeout=10000)
             time.sleep(1.0)
 
             page.wait_for_selector('input[name="userid"]', timeout=8000)
@@ -176,7 +181,9 @@ def run_dryrun(
                 result["login_success"] = True
                 logger.info("  ✅ ログイン成功")
             else:
-                err = f"ログイン後のページに認証成功マーカーがありません (url={page.url})"
+                err = (
+                    f"ログイン後のページに認証成功マーカーがありません (url={page.url})"
+                )
                 logger.error("  ❌ %s", err)
                 ss_fail = _OUT_DIR / f"{ts}_01_login_fail.png"
                 page.screenshot(path=str(ss_fail))
@@ -238,7 +245,9 @@ def run_dryrun(
                      .slice(0, 50)
             """)
             result["dom_links"] = links
-            yosou_links = [l for l in links if "予想" in l["text"] or "yosou" in l["href"]]
+            yosou_links = [
+                l for l in links if "予想" in l["text"] or "yosou" in l["href"]
+            ]
             logger.info("  予想関連リンク: %s", yosou_links[:10])
 
         except Exception as e:
@@ -262,7 +271,7 @@ def run_dryrun(
             'a:has-text("予想する")',
             'button:has-text("予想する")',
             'input[value="予想する"]',
-            '.predict_btn',
+            ".predict_btn",
             'a[href*="yosou"]',
             '[class*="yosou"]',
             'a:has-text("予想を投稿")',
@@ -275,7 +284,9 @@ def run_dryrun(
             try:
                 count = page.locator(sel).count()
                 if count > 0:
-                    logger.info("  ✅ 予想ボタン発見: selector='%s' count=%d", sel, count)
+                    logger.info(
+                        "  ✅ 予想ボタン発見: selector='%s' count=%d", sel, count
+                    )
                     form_found = True
                     clicked_selector = sel
                     page.locator(sel).first.click(timeout=5000)
@@ -290,8 +301,7 @@ def run_dryrun(
 
         if not form_found:
             logger.warning(
-                "  ⚠️ 「予想する」ボタンが見つかりません "
-                "（平日・レース未開催の可能性が高い）"
+                "  ⚠️ 「予想する」ボタンが見つかりません （平日・レース未開催の可能性が高い）"
             )
             # フォーム要素を収集して DOM 構造を記録する
             all_inputs: list[dict[str, str]] = page.evaluate("""
@@ -326,14 +336,18 @@ def run_dryrun(
                 try:
                     if page.locator(sel).count() > 0:
                         page.locator(sel).first.check()
-                        logger.info("  ✅ 馬番 %d の入力成功: selector='%s'", _DUMMY_HORSE, sel)
+                        logger.info(
+                            "  ✅ 馬番 %d の入力成功: selector='%s'", _DUMMY_HORSE, sel
+                        )
                         horse_input_found = True
                         break
                 except Exception as ex:
                     logger.debug("  馬番セレクタ '%s' → 失敗: %s", sel, ex)
 
             if not horse_input_found:
-                logger.warning("  ⚠️ 馬番入力フィールドが見つかりません（セレクタ要修正）")
+                logger.warning(
+                    "  ⚠️ 馬番入力フィールドが見つかりません（セレクタ要修正）"
+                )
 
             result["horse_input_found"] = horse_input_found
         else:
@@ -344,7 +358,9 @@ def run_dryrun(
         final_ss = _OUT_DIR / "umanity_test.png"
         page.screenshot(path=str(final_ss), full_page=True)
         result["screenshot_path"] = str(final_ss)
-        logger.info("[Step 5] ✅ 最終スクリーンショット保存: outputs/debug/umanity_test.png")
+        logger.info(
+            "[Step 5] ✅ 最終スクリーンショット保存: outputs/debug/umanity_test.png"
+        )
 
         browser.close()
 
@@ -352,6 +368,7 @@ def run_dryrun(
 
 
 # ── エントリポイント ──────────────────────────────────────────────────
+
 
 def _parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="ウマニティ DOM 動作確認ドライラン")
@@ -364,7 +381,11 @@ def main() -> None:
     args = _parse_args()
     logger.info("=" * 60)
     logger.info("ウマニティ DOM ドライラン開始")
-    logger.info("headless=%s  race_code=%s", not args.no_headless, args.race_code or "（なし → race.php）")
+    logger.info(
+        "headless=%s  race_code=%s",
+        not args.no_headless,
+        args.race_code or "（なし → race.php）",
+    )
     logger.info("=" * 60)
 
     try:
@@ -379,8 +400,13 @@ def main() -> None:
     logger.info("")
     logger.info("=" * 60)
     logger.info("ドライラン完了サマリー")
-    logger.info("  ① ログイン成功:         %s", "✅" if result["login_success"] else "❌ FAILED")
-    logger.info("  ② ページ遷移成功:       %s", "✅" if result["navigation_success"] else "❌ FAILED")
+    logger.info(
+        "  ① ログイン成功:         %s", "✅" if result["login_success"] else "❌ FAILED"
+    )
+    logger.info(
+        "  ② ページ遷移成功:       %s",
+        "✅" if result["navigation_success"] else "❌ FAILED",
+    )
     logger.info(
         "  ③ 予想ボタン発見:       %s",
         "✅" if result["form_found"] else "⚠️  平日のためレース未開催（週末に再テスト）",

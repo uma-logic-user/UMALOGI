@@ -135,15 +135,15 @@ def main() -> None:
     conn.execute("PRAGMA journal_mode = WAL")
 
     targets: list[tuple[str, list[str], str]] = [
-        ("races",        ["race_name", "venue", "surface", "weather", "condition"], "race_id"),
-        ("race_results", ["horse_name", "jockey", "trainer"],                        "id"),
-        ("race_payouts", ["bet_type", "combination"],                                 "id"),
+        ("races", ["race_name", "venue", "surface", "weather", "condition"], "race_id"),
+        ("race_results", ["horse_name", "jockey", "trainer"], "id"),
+        ("race_payouts", ["bet_type", "combination"], "id"),
         # horses.horse_name は raw SJIS bytes を latin-1 誤解釈した根本破損(63K行)。
         # strip しても半角カナガラベが残るだけで回復不能。
         # 正しい修正は JV-Link DIFN:UM マスタの完全再インポート（別タスク）。
         # sire/dam/dam_sire は正常(0件汚染)のため除外。
-        ("horses",       ["sire", "dam", "dam_sire"],                                "horse_id"),
-        ("predictions",  ["model_type", "bet_type"],                                 "id"),
+        ("horses", ["sire", "dam", "dam_sire"], "horse_id"),
+        ("predictions", ["model_type", "bet_type"], "id"),
     ]
 
     total_fixed = 0
@@ -152,13 +152,13 @@ def main() -> None:
         result = scan_and_fix(conn, table, cols, pk, dry_run=args.dry_run)
         total_fixed += sum(result.values())
 
-    print(f"\n--- predictions.combination_json ---")
+    print("\n--- predictions.combination_json ---")
     broken_json = fix_combination_json(conn, dry_run=args.dry_run)
     total_fixed += broken_json
 
     if not args.dry_run:
         conn.commit()
-        print(f"\n  COMMIT 完了")
+        print("\n  COMMIT 完了")
 
     conn.close()
 

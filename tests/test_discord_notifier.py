@@ -31,12 +31,15 @@ def _mock_response(status: int = 204) -> MagicMock:
 # ── _format_race_label ────────────────────────────────────────────
 
 
-@pytest.mark.parametrize("race_id,expected", [
-    # race_id[4:6] が会場コード、race_id[10:12] がレース番号
-    ("202505050701", "東京 1R"),     # 05=東京, race_num=01
-    ("202509050911", "阪神 11R"),   # 09=阪神, race_num=11
-    ("202501010101", "札幌 1R"),    # 01=札幌, race_num=01
-])
+@pytest.mark.parametrize(
+    "race_id,expected",
+    [
+        # race_id[4:6] が会場コード、race_id[10:12] がレース番号
+        ("202505050701", "東京 1R"),  # 05=東京, race_num=01
+        ("202509050911", "阪神 11R"),  # 09=阪神, race_num=11
+        ("202501010101", "札幌 1R"),  # 01=札幌, race_num=01
+    ],
+)
 def test_format_race_label(race_id: str, expected: str) -> None:
     assert _format_race_label(race_id) == expected
 
@@ -59,7 +62,9 @@ def test_sanitize_strips_whitespace() -> None:
 
 def test_send_text_calls_post() -> None:
     n = _make_notifier()
-    with patch("src.notification.discord_notifier.requests.post", return_value=_mock_response()) as mock_post:
+    with patch(
+        "src.notification.discord_notifier.requests.post", return_value=_mock_response()
+    ) as mock_post:
         n.send_text("テストメッセージ")
     mock_post.assert_called_once()
     payload = mock_post.call_args[1]["json"]
@@ -67,7 +72,11 @@ def test_send_text_calls_post() -> None:
 
 
 def test_send_text_no_url_skips(caplog: pytest.LogCaptureFixture) -> None:
-    with patch.dict("os.environ", {"DISCORD_WEBHOOK_URL": "", "DISCORD_SYSTEM_WEBHOOK_URL": ""}, clear=False):
+    with patch.dict(
+        "os.environ",
+        {"DISCORD_WEBHOOK_URL": "", "DISCORD_SYSTEM_WEBHOOK_URL": ""},
+        clear=False,
+    ):
         n = DiscordNotifier(enabled=False)  # enabled=False でコンストラクタ警告を抑制
     with caplog.at_level("WARNING", logger="src.notification.discord_notifier"):
         n.send_text("this should be skipped")
@@ -91,7 +100,9 @@ def test_notify_skip_logs_only(caplog: pytest.LogCaptureFixture) -> None:
 
 def test_notify_scraping_alert_sends_emergency_text() -> None:
     n = _make_notifier()
-    with patch("src.notification.discord_notifier.requests.post", return_value=_mock_response()) as mock_post:
+    with patch(
+        "src.notification.discord_notifier.requests.post", return_value=_mock_response()
+    ) as mock_post:
         n.notify_scraping_alert("202505050701", "0頭取得")
     mock_post.assert_called_once()
     payload = mock_post.call_args[1]["json"]
@@ -108,7 +119,7 @@ def _make_mock_bets(model_type: str, ev: float = 0.5) -> MagicMock:
     bet = MagicMock()
     bet.bet_type = "単勝"
     bet.combinations = [[3]]
-    bet.horse_names  = ["テスト馬"]
+    bet.horse_names = ["テスト馬"]
     bet.expected_value = ev
     bet.recommended_bet = 1000
     bet.model_score = 0.3
@@ -118,10 +129,12 @@ def _make_mock_bets(model_type: str, ev: float = 0.5) -> MagicMock:
     return bets_obj
 
 
-def test_notify_prerace_result_all_ev_zero_skips(caplog: pytest.LogCaptureFixture) -> None:
+def test_notify_prerace_result_all_ev_zero_skips(
+    caplog: pytest.LogCaptureFixture,
+) -> None:
     n = _make_notifier()
     honmei = _make_mock_bets("本命", ev=0.0)
-    manji  = _make_mock_bets("卍",   ev=0.0)
+    manji = _make_mock_bets("卍", ev=0.0)
     with caplog.at_level("INFO"):
         n.notify_prerace_result("202505050701", honmei, manji)
     assert "スキップ" in caplog.text or "skip" in caplog.text.lower()
@@ -130,8 +143,10 @@ def test_notify_prerace_result_all_ev_zero_skips(caplog: pytest.LogCaptureFixtur
 def test_notify_prerace_result_sends_embed() -> None:
     n = _make_notifier()
     honmei = _make_mock_bets("本命", ev=1.5)
-    manji  = _make_mock_bets("卍",   ev=2.0)
-    with patch("src.notification.discord_notifier.requests.post", return_value=_mock_response()) as mock_post:
+    manji = _make_mock_bets("卍", ev=2.0)
+    with patch(
+        "src.notification.discord_notifier.requests.post", return_value=_mock_response()
+    ) as mock_post:
         n.notify_prerace_result("202505050701", honmei, manji)
     mock_post.assert_called_once()
     body = mock_post.call_args[1]["json"]

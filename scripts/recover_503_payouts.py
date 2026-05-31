@@ -22,7 +22,10 @@ import sys
 import time
 from pathlib import Path
 
-if hasattr(sys.stdout, "buffer") and sys.stdout.encoding.lower() not in ("utf-8", "utf8"):
+if hasattr(sys.stdout, "buffer") and sys.stdout.encoding.lower() not in (
+    "utf-8",
+    "utf8",
+):
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
 
@@ -32,27 +35,45 @@ if str(_ROOT) not in sys.path:
 
 try:
     from dotenv import load_dotenv
+
     load_dotenv(_ROOT / ".env", override=False)
 except ImportError:
     pass
 
 _MISSING_RACES = {
-    "202604010210", "202604010211", "202604010212",
-    "202605020405", "202605020406", "202605020407", "202605020408",
-    "202605020409", "202605020410", "202605020411", "202605020412",
-    "202608030405", "202608030406", "202608030407", "202608030408",
-    "202608030409", "202608030410", "202608030411", "202608030412",
+    "202604010210",
+    "202604010211",
+    "202604010212",
+    "202605020405",
+    "202605020406",
+    "202605020407",
+    "202605020408",
+    "202605020409",
+    "202605020410",
+    "202605020411",
+    "202605020412",
+    "202608030405",
+    "202608030406",
+    "202608030407",
+    "202608030408",
+    "202608030409",
+    "202608030410",
+    "202608030411",
+    "202608030412",
 }
 
 # 明らかなプレースホルダー値を除外 (16000は特異値として既知)
 _PLACEHOLDER_AMOUNTS = {16000, 0}
-_MAX_SANSHO_PAYOUT   = 10_000_000  # 三連単上限
+_MAX_SANSHO_PAYOUT = 10_000_000  # 三連単上限
 
 from src.scraper.jravan_client import (
-    JVREAD_DOWNLOADING, JVREAD_EOF, JVREAD_FILECHANGE,
-    JVLinkClient, OPT_NORMAL,
-    _parse_payout,   # type: ignore[attr-defined]
-    _PAYOUT_SPECS,   # type: ignore[attr-defined]
+    JVREAD_DOWNLOADING,
+    JVREAD_EOF,
+    JVREAD_FILECHANGE,
+    JVLinkClient,
+    OPT_NORMAL,
+    _parse_payout,  # type: ignore[attr-defined]
+    _PAYOUT_SPECS,  # type: ignore[attr-defined]
 )
 from src.database.init_db import init_db
 
@@ -68,7 +89,8 @@ def _parse_payout_guarded(raw: bytes, rec_type: str) -> dict | None:
     # 払戻額が明らかなプレースホルダーなら捨てる
     entries = result.get("payouts", [])
     valid = [
-        e for e in entries
+        e
+        for e in entries
         if e.get("payout") not in _PLACEHOLDER_AMOUNTS
         and (e.get("payout") or 0) <= _MAX_SANSHO_PAYOUT
     ]
@@ -92,8 +114,13 @@ def _save_payouts(conn: sqlite3.Connection, rec: dict) -> int:
                     payout     = excluded.payout,
                     popularity = excluded.popularity
                 """,
-                (race_id, e["bet_type"], e.get("combination", ""),
-                 e["payout"], e.get("popularity")),
+                (
+                    race_id,
+                    e["bet_type"],
+                    e.get("combination", ""),
+                    e["payout"],
+                    e.get("popularity"),
+                ),
             )
             saved += 1
     return saved
@@ -138,7 +165,7 @@ def main() -> int:
                     continue
 
                 rec_type = data[:2].decode("ascii", errors="replace")
-                data_cat  = chr(data[2])
+                data_cat = chr(data[2])
 
                 # HR/WH系のみ、速報(data_cat='2')も許可
                 if rec_type not in _PAYOUT_SPECS:

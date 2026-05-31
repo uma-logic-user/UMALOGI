@@ -10,6 +10,7 @@ Usage:
     py -3 scripts/reevaluate_predictions.py --dry-run  # 変化量確認のみ
     py -3 scripts/reevaluate_predictions.py            # 実際に更新
 """
+
 from __future__ import annotations
 
 import argparse
@@ -22,6 +23,7 @@ _ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(_ROOT))
 
 from dotenv import load_dotenv
+
 load_dotenv(_ROOT / ".env", override=False)
 
 from src.database.init_db import init_db
@@ -43,7 +45,9 @@ def _get_evaluatable_races(conn) -> list[str]:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="全 prediction_results を再評価する")
-    parser.add_argument("--dry-run", action="store_true", help="変化量を表示するのみ（DB 更新なし）")
+    parser.add_argument(
+        "--dry-run", action="store_true", help="変化量を表示するのみ（DB 更新なし）"
+    )
     args = parser.parse_args()
 
     conn = init_db()
@@ -52,9 +56,9 @@ def main() -> None:
     race_ids = _get_evaluatable_races(conn)
     print(f"[再評価] 対象レース数: {len(race_ids)}")
 
-    total_preds  = 0
+    total_preds = 0
     roi_improved = 0
-    errors       = 0
+    errors = 0
 
     for i, race_id in enumerate(race_ids, 1):
         try:
@@ -76,7 +80,9 @@ def main() -> None:
             print(f"  [{i}/{len(race_ids)}] 処理中...")
 
     print()
-    print(f"[完了] レース={len(race_ids)} 予想={total_preds} 的中再計算={roi_improved} エラー={errors}")
+    print(
+        f"[完了] レース={len(race_ids)} 予想={total_preds} 的中再計算={roi_improved} エラー={errors}"
+    )
     if args.dry_run:
         print("  --dry-run: DB は更新されていません")
     conn.close()

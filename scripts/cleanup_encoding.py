@@ -22,7 +22,7 @@ from __future__ import annotations
 import sys
 import logging
 import sqlite3
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8")
@@ -48,15 +48,20 @@ from src.database.init_db import get_db_path  # noqa: E402
 # (table_name, pk_column, text_columns, nullable_columns)
 _TARGETS: list[tuple[str, str, list[str], set[str]]] = [
     # horses: sire/dam/dam_sire は NULL 可。horse_name は UNIQUE だが単独 PK なので安全
-    ("horses",       "horse_id",   ["horse_name", "sire", "dam", "dam_sire"],  {"sire", "dam", "dam_sire"}),
+    (
+        "horses",
+        "horse_id",
+        ["horse_name", "sire", "dam", "dam_sire"],
+        {"sire", "dam", "dam_sire"},
+    ),
     # race_results: horse_name は (race_id, horse_name) UNIQUE のため除外。jockey/trainer は安全
-    ("race_results", "rowid",      ["jockey", "trainer"],                       set()),
-    ("races",        "race_id",    ["race_name", "venue"],                      set()),
+    ("race_results", "rowid", ["jockey", "trainer"], set()),
+    ("races", "race_id", ["race_name", "venue"], set()),
     # entries: horse_name は UNIQUE 制約あり → 除外。jockey/trainer のみ
-    ("entries",      "rowid",      ["jockey", "trainer"],                       set()),
-    ("jockeys",      "jockey_code",  ["jockey_name"],                           set()),
-    ("trainers",     "trainer_code", ["trainer_name"],                          set()),
-    ("racehorses",   "horse_id",   ["horse_name", "trainer_name"],              set()),
+    ("entries", "rowid", ["jockey", "trainer"], set()),
+    ("jockeys", "jockey_code", ["jockey_name"], set()),
+    ("trainers", "trainer_code", ["trainer_name"], set()),
+    ("racehorses", "horse_id", ["horse_name", "trainer_name"], set()),
 ]
 
 
@@ -91,8 +96,7 @@ def _clean_column(
     # rowid を使う場合は特殊扱い
     select_pk = "rowid" if pk == "rowid" else pk
     cur.execute(
-        f"SELECT {select_pk}, {col} FROM {table} "
-        f"WHERE {col} IS NOT NULL AND {col} != ''"
+        f"SELECT {select_pk}, {col} FROM {table} WHERE {col} IS NOT NULL AND {col} != ''"
     )
     rows = cur.fetchall()
     report.scanned = len(rows)
@@ -109,7 +113,11 @@ def _clean_column(
             report.recovered += 1
             logger.info(
                 "回復 %s.%s [%s]: %r → %r",
-                table, col, row_pk, val[:30], recovered[:30],
+                table,
+                col,
+                row_pk,
+                val[:30],
+                recovered[:30],
             )
         else:
             new_val: str | None = None if nullable else ""
@@ -117,7 +125,10 @@ def _clean_column(
             report.cleared += 1
             logger.warning(
                 "クリア %s.%s [%s]: %r (回復不可)",
-                table, col, row_pk, val[:30],
+                table,
+                col,
+                row_pk,
+                val[:30],
             )
 
     if updates:
@@ -176,9 +187,9 @@ def main() -> None:
 
     reports = run_cleanup(db_path)
 
-    total_garbled  = sum(r.garbled   for r in reports)
+    total_garbled = sum(r.garbled for r in reports)
     total_recovered = sum(r.recovered for r in reports)
-    total_cleared  = sum(r.cleared   for r in reports)
+    total_cleared = sum(r.cleared for r in reports)
 
     print("\n" + "=" * 60)
     print("【エンコーディングクレンジング結果】")
@@ -197,7 +208,9 @@ def main() -> None:
     else:
         logger.info(
             "クレンジング完了: 文字化け=%d 回復=%d クリア=%d",
-            total_garbled, total_recovered, total_cleared,
+            total_garbled,
+            total_recovered,
+            total_cleared,
         )
 
 

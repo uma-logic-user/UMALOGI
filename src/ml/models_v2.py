@@ -15,11 +15,11 @@ A/Bテスト設計:
   - V1 再学習: retrain_trigger.weekly_retrain(model_version="v1") で V1 pkl を更新
   - 両方独立して運用し、月次で ROI を比較して主戦略を決定する。
 """
+
 from __future__ import annotations
 
 import logging
 import shutil
-from pathlib import Path
 
 from src.ml.models import HonmeiModel, ManjiModel, PlaceModel, _MODEL_DIR
 
@@ -58,8 +58,8 @@ def _ensure_v2_pkls() -> None:
     """
     pairs = [
         ("honmei_model", "honmei_model_v2"),
-        ("manji_model",  "manji_model_v2"),
-        ("place_model",  "place_model_v2"),
+        ("manji_model", "manji_model_v2"),
+        ("place_model", "place_model_v2"),
     ]
     for v1_name, v2_name in pairs:
         v1_path = _MODEL_DIR / f"{v1_name}.pkl"

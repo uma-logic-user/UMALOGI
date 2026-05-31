@@ -652,8 +652,7 @@ def main() -> int:
 
     # ── 結果表示 ─────────────────────────────────────────────────
     _banner(
-        f"Backtest Results  Train:{_TRAIN_YEAR} / Test:{_TEST_YEAR}  "
-        f"({mins}m{secs:02d}s)"
+        f"Backtest Results  Train:{_TRAIN_YEAR} / Test:{_TEST_YEAR}  ({mins}m{secs:02d}s)"
     )
 
     _print_three_model_summary(

@@ -100,8 +100,8 @@ def calc_track_style_score(
     }
 
     # ── 対象レースごとの小回り判定 ───────────────────────────────────────
-    df["_venue"]    = df["race_id"].map(lambda x: race_map.get(x, ("", "", 0))[0])
-    df["_surface"]  = df["race_id"].map(lambda x: race_map.get(x, ("", "", 0))[1])
+    df["_venue"] = df["race_id"].map(lambda x: race_map.get(x, ("", "", 0))[0])
+    df["_surface"] = df["race_id"].map(lambda x: race_map.get(x, ("", "", 0))[1])
     df["_distance"] = df["race_id"].map(lambda x: race_map.get(x, ("", "", 0))[2])
     df["_is_komawari"] = df.apply(
         lambda row: _is_komawari(row["_venue"], row["_surface"], row["_distance"]),
@@ -185,6 +185,7 @@ def calc_track_style_score(
 
 
 # ── ヘルパー ──────────────────────────────────────────────────────────────
+
 
 def _earliest_race_date(df: pd.DataFrame) -> str:
     """df 内の最古の race_id から 'YYYY-MM-DD' 基準日を返す（時系列リーク防止）。

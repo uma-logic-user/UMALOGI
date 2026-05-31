@@ -38,7 +38,6 @@ import re
 import sqlite3
 import sys
 from dataclasses import dataclass, field
-from datetime import date, datetime
 from pathlib import Path
 from typing import Any
 
@@ -52,38 +51,46 @@ if hasattr(sys.stderr, "reconfigure"):
 
 try:
     from dotenv import load_dotenv
+
     load_dotenv(_ROOT / ".env", override=False)
 except ImportError:
     pass
 
 logger = logging.getLogger(__name__)
 
-_BATCH_SIZE = 10           # 1回の Haiku 呼び出しで処理するツイート数
+_BATCH_SIZE = 10  # 1回の Haiku 呼び出しで処理するツイート数
 _HAIKU_MODEL = "claude-haiku-4-5-20251001"
-_MAX_TOKENS  = 2048
+_MAX_TOKENS = 2048
 
 # 会場コード → 競馬場名（race_id[4:6] と対応）
 _JYO: dict[str, str] = {
-    "01": "札幌", "02": "函館", "03": "福島", "04": "新潟",
-    "05": "東京", "06": "中山", "07": "中京", "08": "京都",
-    "09": "阪神", "10": "小倉",
+    "01": "札幌",
+    "02": "函館",
+    "03": "福島",
+    "04": "新潟",
+    "05": "東京",
+    "06": "中山",
+    "07": "中京",
+    "08": "京都",
+    "09": "阪神",
+    "10": "小倉",
 }
 # 逆引き: 競馬場名 → コード
 _VENUE_TO_CODE: dict[str, str] = {v: k for k, v in _JYO.items()}
 
 # ルールベースフォールバック用
 _RE_HORSE_NUM = re.compile(r"(?<!\d)([1-9][0-9]?)(?:番|枠)")
-_RE_RACE_REF  = re.compile(
+_RE_RACE_REF = re.compile(
     r"(札幌|函館|福島|新潟|東京|中山|中京|京都|阪神|小倉)"
     r"[\s　]*(\d{1,2})[ＲRr]"
 )
 _SIGNAL_PRIORITY: dict[str, tuple[str, float]] = {
     "◎": ("honmei", 1.0),
     "○": ("honmei", 0.8),
-    "▲": ("ana",    0.7),
-    "△": ("ana",    0.5),
-    "×": ("keshi",  0.6),
-    "✕": ("keshi",  0.6),
+    "▲": ("ana", 0.7),
+    "△": ("ana", 0.5),
+    "×": ("keshi", 0.6),
+    "✕": ("keshi", 0.6),
 }
 
 
@@ -91,31 +98,32 @@ _SIGNAL_PRIORITY: dict[str, tuple[str, float]] = {
 class ParsedSignal:
     """Haiku またはルールベースの解析結果（1ツイート1件）。"""
 
-    signal_id:    int
-    tweet_id:     str
-    race_id:      str | None      = None
-    horse_number: int | None      = None
-    signal_type:  str | None      = None
-    confidence:   float           = 0.5
-    race_name_raw: str | None     = None
-    raw_reason:   str             = ""
+    signal_id: int
+    tweet_id: str
+    race_id: str | None = None
+    horse_number: int | None = None
+    signal_type: str | None = None
+    confidence: float = 0.5
+    race_name_raw: str | None = None
+    raw_reason: str = ""
 
 
 @dataclass
 class _RaceInfo:
     """race_id と表示用文字列のペア。"""
 
-    race_id:      str
-    venue_code:   str
-    venue_name:   str
-    race_number:  int
-    display:      str = field(init=False)
+    race_id: str
+    venue_code: str
+    venue_name: str
+    race_number: int
+    display: str = field(init=False)
 
     def __post_init__(self) -> None:
         self.display = f"{self.venue_name}{self.race_number}R"
 
 
 # ── レース一覧取得 ─────────────────────────────────────────────────────
+
 
 def _get_races_on_date(conn: sqlite3.Connection, target_date: str) -> list[_RaceInfo]:
     """指定日の全レース情報を取得する。"""
@@ -127,12 +135,14 @@ def _get_races_on_date(conn: sqlite3.Connection, target_date: str) -> list[_Race
     for race_id, race_number in rows:
         code = race_id[4:6]
         name = _JYO.get(code, code)
-        result.append(_RaceInfo(
-            race_id=race_id,
-            venue_code=code,
-            venue_name=name,
-            race_number=int(race_number or 0),
-        ))
+        result.append(
+            _RaceInfo(
+                race_id=race_id,
+                venue_code=code,
+                venue_name=name,
+                race_number=int(race_number or 0),
+            )
+        )
     return result
 
 
@@ -155,11 +165,12 @@ def _match_race_id(
 
 # ── ルールベースパーサー（Haiku API 不使用時のフォールバック） ─────────
 
+
 def _rule_based_parse(
     signal_id: int,
-    tweet_id:  str,
-    raw_text:  str,
-    races:     list[_RaceInfo],
+    tweet_id: str,
+    raw_text: str,
+    races: list[_RaceInfo],
 ) -> ParsedSignal:
     """正規表現ベースで馬番・シグナルタイプ・レース名を抽出する。"""
     result = ParsedSignal(signal_id=signal_id, tweet_id=tweet_id)
@@ -168,25 +179,23 @@ def _rule_based_parse(
     m_race = _RE_RACE_REF.search(raw_text)
     if m_race:
         result.race_name_raw = m_race.group(0)
-        result.race_id = _match_race_id(
-            m_race.group(1), int(m_race.group(2)), races
-        )
+        result.race_id = _match_race_id(m_race.group(1), int(m_race.group(2)), races)
 
     # 最優先シグナル記号を探す
     best_mark: str | None = None
-    best_pos:  int = len(raw_text) + 1
+    best_pos: int = len(raw_text) + 1
     for mark in _SIGNAL_PRIORITY:
         idx = raw_text.find(mark)
         if idx != -1 and idx < best_pos:
-            best_pos  = idx
+            best_pos = idx
             best_mark = mark
 
     if best_mark:
         sig_type, conf = _SIGNAL_PRIORITY[best_mark]
         result.signal_type = sig_type
-        result.confidence  = conf
+        result.confidence = conf
         # シグナル記号の直後の馬番を探す（番/枠なしの裸数字も許容）
-        after = raw_text[best_pos + 1: best_pos + 10]
+        after = raw_text[best_pos + 1 : best_pos + 10]
         # 「◎7番」「◎7枠」「◎7」どれも対応。0番は JRA に存在しないため除外。
         m_num = re.search(r"([1-9][0-9]?)(?:番|枠)?", after)
         if m_num:
@@ -194,7 +203,7 @@ def _rule_based_parse(
     elif m := _RE_HORSE_NUM.search(raw_text):
         # シグナル記号なしで馬番だけ言及されている場合
         result.horse_number = int(m.group(1))
-        result.confidence   = 0.4
+        result.confidence = 0.4
 
     result.raw_reason = "rule-based"
     return result
@@ -202,9 +211,10 @@ def _rule_based_parse(
 
 # ── Haiku API パーサー ────────────────────────────────────────────────
 
+
 def _build_haiku_prompt(
     tweets: list[dict[str, Any]],
-    races:  list[_RaceInfo],
+    races: list[_RaceInfo],
 ) -> str:
     races_ctx = "\n".join(f"  - {r.display} (race_id: {r.race_id})" for r in races)
     if not races_ctx:
@@ -212,7 +222,9 @@ def _build_haiku_prompt(
 
     lines = []
     for i, t in enumerate(tweets):
-        lines.append(f"[{i}] tweet_id={t['tweet_id']}\n    投稿者: @{t['screen_name']}\n    本文: {t['raw_text']}")
+        lines.append(
+            f"[{i}] tweet_id={t['tweet_id']}\n    投稿者: @{t['screen_name']}\n    本文: {t['raw_text']}"
+        )
     tweets_ctx = "\n\n".join(lines)
 
     return f"""あなたは競馬予想テキスト解析の専門家です。
@@ -226,7 +238,7 @@ def _build_haiku_prompt(
 
 【出力ルール】
 - 必ず配列 JSON のみを出力してください（コードブロック不要）。
-- 配列の要素数は投稿数と一致させてください（[0]〜[{len(tweets)-1}]）。
+- 配列の要素数は投稿数と一致させてください（[0]〜[{len(tweets) - 1}]）。
 - 各要素のフィールド:
   - "idx"          : 投稿の番号（0始まり整数）
   - "tweet_id"     : そのままコピー
@@ -250,6 +262,7 @@ def _build_haiku_prompt(
 def _call_haiku(prompt: str, api_key: str) -> list[dict[str, Any]]:
     """Claude Haiku API を呼び出して JSON リストを返す。"""
     import anthropic
+
     client = anthropic.Anthropic(api_key=api_key)
     msg = client.messages.create(
         model=_HAIKU_MODEL,
@@ -275,9 +288,7 @@ def _haiku_batch_parse(
     except Exception as exc:
         logger.error("Haiku API 呼び出し失敗: %s → ルールベースにフォールバック", exc)
         return [
-            _rule_based_parse(
-                t["signal_id"], t["tweet_id"], t["raw_text"], races
-            )
+            _rule_based_parse(t["signal_id"], t["tweet_id"], t["raw_text"], races)
             for t in batch
         ]
 
@@ -305,6 +316,7 @@ def _haiku_batch_parse(
 # メインクラス
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+
 class XSignalParser:
     """
     未解析の x_signals レコードを Haiku API（またはルールベース）で
@@ -319,12 +331,12 @@ class XSignalParser:
 
     def __init__(
         self,
-        conn:    sqlite3.Connection,
+        conn: sqlite3.Connection,
         *,
         api_key: str | None = None,
         dry_run: bool = False,
     ) -> None:
-        self._conn    = conn
+        self._conn = conn
         self._api_key = api_key or os.getenv("ANTHROPIC_API_KEY")
         self._dry_run = dry_run
 
@@ -353,8 +365,11 @@ class XSignalParser:
             logger.info("[XParser] 未解析シグナルなし")
             return {"parsed": 0, "skipped": 0, "errors": 0}
 
-        logger.info("[XParser] 未解析: %d 件 / モード: %s",
-                    len(rows), "Haiku" if self._api_key else "ルールベース")
+        logger.info(
+            "[XParser] 未解析: %d 件 / モード: %s",
+            len(rows),
+            "Haiku" if self._api_key else "ルールベース",
+        )
 
         # 投稿日別にレース一覧をキャッシュ
         races_cache: dict[str, list[_RaceInfo]] = {}
@@ -381,19 +396,21 @@ class XSignalParser:
         current_date: str | None = None
         for row in rows:
             posted_at = row["posted_at"]
-            row_date  = posted_at[:10]  # "YYYY-MM-DD"
+            row_date = posted_at[:10]  # "YYYY-MM-DD"
 
             if row_date != current_date and batch:
                 _flush(batch, current_date)  # type: ignore[arg-type]
                 batch = []
 
             current_date = row_date
-            batch.append({
-                "signal_id":   row["signal_id"],
-                "tweet_id":    row["tweet_id"],
-                "screen_name": row["screen_name"],
-                "raw_text":    row["raw_text"],
-            })
+            batch.append(
+                {
+                    "signal_id": row["signal_id"],
+                    "tweet_id": row["tweet_id"],
+                    "screen_name": row["screen_name"],
+                    "raw_text": row["raw_text"],
+                }
+            )
 
             if len(batch) >= _BATCH_SIZE:
                 _flush(batch, current_date)  # type: ignore[arg-type]
@@ -432,14 +449,18 @@ class XSignalParser:
 
     def _update_signal(
         self,
-        ps:    ParsedSignal,
+        ps: ParsedSignal,
         stats: dict[str, int],
     ) -> None:
         if self._dry_run:
             logger.info(
                 "[DRY-RUN] signal_id=%d race_id=%s horse=%s type=%s conf=%.2f  %s",
-                ps.signal_id, ps.race_id, ps.horse_number,
-                ps.signal_type, ps.confidence, ps.raw_reason,
+                ps.signal_id,
+                ps.race_id,
+                ps.horse_number,
+                ps.signal_type,
+                ps.confidence,
+                ps.raw_reason,
             )
             stats["parsed"] += 1
             return
@@ -475,8 +496,9 @@ class XSignalParser:
 # 特徴量統合インターフェース（Phase C で FEATURE_COLS に追加）
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+
 def get_x_consensus_score(
-    conn:    sqlite3.Connection,
+    conn: sqlite3.Connection,
     race_id: str,
 ) -> dict[int, float]:
     """
@@ -525,8 +547,7 @@ def get_x_consensus_score(
         agg[horse_number][1] += weight
 
     return {
-        hn: (wsum / wtotal if wtotal > 0 else 0.0)
-        for hn, (wsum, wtotal) in agg.items()
+        hn: (wsum / wtotal if wtotal > 0 else 0.0) for hn, (wsum, wtotal) in agg.items()
     }
 
 
@@ -534,12 +555,15 @@ def get_x_consensus_score(
 # CLI
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+
 def _parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="X シグナル構造化パーサー (Phase B)")
-    p.add_argument("--date",    metavar="YYYY-MM-DD", help="対象日（デフォルト: 全件）")
-    p.add_argument("--limit",   type=int,             help="処理件数上限")
-    p.add_argument("--dry-run", action="store_true",  help="DB 更新をスキップ")
-    p.add_argument("--status",  action="store_true",  help="x_signals の件数を表示して終了")
+    p.add_argument("--date", metavar="YYYY-MM-DD", help="対象日（デフォルト: 全件）")
+    p.add_argument("--limit", type=int, help="処理件数上限")
+    p.add_argument("--dry-run", action="store_true", help="DB 更新をスキップ")
+    p.add_argument(
+        "--status", action="store_true", help="x_signals の件数を表示して終了"
+    )
     return p.parse_args()
 
 
@@ -553,12 +577,15 @@ def main() -> None:
     args = _parse_args()
 
     from src.database.init_db import init_db
+
     conn = init_db()
     conn.row_factory = sqlite3.Row
 
     if args.status:
-        total   = conn.execute("SELECT COUNT(*) FROM x_signals").fetchone()[0]
-        parsed  = conn.execute("SELECT COUNT(*) FROM x_signals WHERE parsed=1").fetchone()[0]
+        total = conn.execute("SELECT COUNT(*) FROM x_signals").fetchone()[0]
+        parsed = conn.execute(
+            "SELECT COUNT(*) FROM x_signals WHERE parsed=1"
+        ).fetchone()[0]
         pending = total - parsed
         accounts = conn.execute(
             "SELECT COUNT(*) FROM x_accounts WHERE is_active=1"

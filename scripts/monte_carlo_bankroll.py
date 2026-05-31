@@ -15,7 +15,6 @@ Usage:
 from __future__ import annotations
 
 import sys
-from typing import NamedTuple
 
 import numpy as np
 
@@ -28,15 +27,15 @@ sys.stdout.reconfigure(encoding="utf-8")
 N_SIMS: int = 10_000
 N_RACES: int = 50
 HIT_RATE: float = 0.45
-AVG_RETURN: float = 2.5        # 払戻倍率（元本含む）
+AVG_RETURN: float = 2.5  # 払戻倍率（元本含む）
 NET_WIN: float = AVG_RETURN - 1  # 純利倍率 = 1.5
 
 FIXED_BETS: list[int] = [5_000, 10_000, 15_000]
 BANKROLLS: list[int] = [100_000, 200_000, 300_000]
-KELLY_FRACTION: float = 0.25   # フルケリーの 1/4 を使用
-MONTHS_FOR_RUIN: int = 12      # 破産確率の観測期間
+KELLY_FRACTION: float = 0.25  # フルケリーの 1/4 を使用
+MONTHS_FOR_RUIN: int = 12  # 破産確率の観測期間
 
-TARGET_PROFIT: int = 100_000   # 月間目標純利
+TARGET_PROFIT: int = 100_000  # 月間目標純利
 
 rng = np.random.default_rng(seed=42)
 
@@ -132,11 +131,13 @@ def print_fixed_bet_results(bet: int, pnl: np.ndarray) -> None:
     prob_loss_20 = (pnl < -20_000).mean()
 
     print(f"\n  ■ 1レース {bet:,}円固定ベット")
-    print(f"    理論期待値 (月間)   : {fmt(N_RACES * (HIT_RATE * NET_WIN - (1 - HIT_RATE)) * bet)}")
+    print(
+        f"    理論期待値 (月間)   : {fmt(N_RACES * (HIT_RATE * NET_WIN - (1 - HIT_RATE)) * bet)}"
+    )
     print(f"    MC 平均月間収支     : {fmt(ev)}")
     print(f"    標準偏差            : ¥{int(sd):,}")
     print(f"    中央値              : {fmt(median)}")
-    print(f"    10th 〜 90th パーセンタイル")
+    print("    10th 〜 90th パーセンタイル")
     print(f"      最悪10%           : {fmt(p10)} 以下")
     print(f"      下位25%           : {fmt(p25)} 以下")
     print(f"      上位25%           : {fmt(p75)} 以上")
@@ -152,12 +153,12 @@ def main() -> None:
     print("  複勝エリート戦略 × 月10万円純利 最適化レポート")
     print("★" * 64)
 
-    print(f"\n  【前提条件】")
+    print("\n  【前提条件】")
     print(f"    的中率           : {HIT_RATE * 100:.0f}%（複勝）")
     print(f"    平均配当         : {AVG_RETURN}倍")
     print(f"    月間レース数     : {N_RACES}レース")
     print(f"    シミュレーション : {N_SIMS:,}回")
-    print(f"    Kelly分数        : 1/{int(1/KELLY_FRACTION)}（フルケリーの25%）")
+    print(f"    Kelly分数        : 1/{int(1 / KELLY_FRACTION)}（フルケリーの25%）")
 
     # ────────────────────────────────────────────────────────────
     # 1. 固定ベット シミュレーション
@@ -175,11 +176,11 @@ def main() -> None:
     # ────────────────────────────────────────────────────────────
     print_section("2. 破産確率（Risk of Ruin） — 12ヶ月以内")
 
-    print(f"\n  ※ ベット額 = 5,000円固定（保守的見積もり）")
-    print(f"  ※ 破産 = バンクが1ベット（5,000円）未満に枯渇")
+    print("\n  ※ ベット額 = 5,000円固定（保守的見積もり）")
+    print("  ※ 破産 = バンクが1ベット（5,000円）未満に枯渇")
     print()
     print(f"  {'バンク':>12s}  {'RoR':>8s}  {'判定':}")
-    print(f"  {'-'*12}  {'-'*8}  {'-'*20}")
+    print(f"  {'-' * 12}  {'-' * 8}  {'-' * 20}")
 
     ror_5k: dict[int, float] = {}
     for bank in BANKROLLS:
@@ -189,10 +190,10 @@ def main() -> None:
         print(f"  {bank:>12,}円  {pct(ror):>8s}  {rating}")
 
     print()
-    print(f"  ※ ベット額 = 10,000円固定")
+    print("  ※ ベット額 = 10,000円固定")
     print()
     print(f"  {'バンク':>12s}  {'RoR':>8s}  {'判定':}")
-    print(f"  {'-'*12}  {'-'*8}  {'-'*20}")
+    print(f"  {'-' * 12}  {'-' * 8}  {'-' * 20}")
 
     ror_10k: dict[int, float] = {}
     for bank in BANKROLLS:
@@ -202,10 +203,10 @@ def main() -> None:
         print(f"  {bank:>12,}円  {pct(ror):>8s}  {rating}")
 
     print()
-    print(f"  ※ ベット額 = 15,000円固定")
+    print("  ※ ベット額 = 15,000円固定")
     print()
     print(f"  {'バンク':>12s}  {'RoR':>8s}  {'判定':}")
-    print(f"  {'-'*12}  {'-'*8}  {'-'*20}")
+    print(f"  {'-' * 12}  {'-' * 8}  {'-' * 20}")
 
     ror_15k: dict[int, float] = {}
     for bank in BANKROLLS:
@@ -223,11 +224,11 @@ def main() -> None:
     full_kelly = (HIT_RATE * AVG_RETURN - 1.0) / NET_WIN
     qk = full_kelly * KELLY_FRACTION
 
-    print(f"\n  ■ Kelly 基準の計算")
+    print("\n  ■ Kelly 基準の計算")
     print(f"    フルケリー分数   : {full_kelly * 100:.2f}% of bankroll")
     print(f"    クォーターケリー : {qk * 100:.2f}% of bankroll")
     print()
-    print(f"  ■ バンク別 クォーターケリー 初期ベット額")
+    print("  ■ バンク別 クォーターケリー 初期ベット額")
     for bank in BANKROLLS:
         initial_bet = int(bank * qk)
         print(f"    バンク {bank:>9,}円  → 初期ベット {initial_bet:,}円/レース")
@@ -240,7 +241,7 @@ def main() -> None:
 
     print(f"  ■ バンク {KELLY_BANK:,}円 クォーターケリー vs 固定10,000円 比較")
     print(f"  {'指標':20s}  {'Kelly':>14s}  {'固定10k':>14s}")
-    print(f"  {'-'*20}  {'-'*14}  {'-'*14}")
+    print(f"  {'-' * 20}  {'-' * 14}  {'-' * 14}")
 
     def row(label: str, k_val: float, f_val: float) -> None:
         print(f"  {label:20s}  {fmt(k_val):>14s}  {fmt(f_val):>14s}")
@@ -248,13 +249,21 @@ def main() -> None:
     def rowp(label: str, k_val: float, f_val: float) -> None:
         print(f"  {label:20s}  {pct(k_val):>14s}  {pct(f_val):>14s}")
 
-    row("MC 平均月間収支",    kelly_pnl.mean(),            fixed_10k_pnl.mean())
-    row("中央値",             np.median(kelly_pnl),        np.median(fixed_10k_pnl))
-    row("標準偏差",           kelly_pnl.std(),             fixed_10k_pnl.std())
-    row("最悪10% ライン",     np.percentile(kelly_pnl,10), np.percentile(fixed_10k_pnl,10))
-    row("最良10% ライン",     np.percentile(kelly_pnl,90), np.percentile(fixed_10k_pnl,90))
-    rowp("プラス確率",        (kelly_pnl > 0).mean(),      (fixed_10k_pnl > 0).mean())
-    rowp("月10万達成確率",    (kelly_pnl >= TARGET_PROFIT).mean(), (fixed_10k_pnl >= TARGET_PROFIT).mean())
+    row("MC 平均月間収支", kelly_pnl.mean(), fixed_10k_pnl.mean())
+    row("中央値", np.median(kelly_pnl), np.median(fixed_10k_pnl))
+    row("標準偏差", kelly_pnl.std(), fixed_10k_pnl.std())
+    row(
+        "最悪10% ライン", np.percentile(kelly_pnl, 10), np.percentile(fixed_10k_pnl, 10)
+    )
+    row(
+        "最良10% ライン", np.percentile(kelly_pnl, 90), np.percentile(fixed_10k_pnl, 90)
+    )
+    rowp("プラス確率", (kelly_pnl > 0).mean(), (fixed_10k_pnl > 0).mean())
+    rowp(
+        "月10万達成確率",
+        (kelly_pnl >= TARGET_PROFIT).mean(),
+        (fixed_10k_pnl >= TARGET_PROFIT).mean(),
+    )
 
     # ────────────────────────────────────────────────────────────
     # 4. UMALOGI 向け 1レースあたりのベット金額指示ロジック
@@ -287,9 +296,15 @@ def main() -> None:
 
     bank_ex = 200_000
     ev_examples = [
-        (1.05, 2.5), (1.10, 2.5), (1.20, 2.5), (1.30, 2.5),
-        (1.10, 3.0), (1.20, 3.0), (1.30, 3.0),
-        (1.20, 4.0), (1.30, 4.0),
+        (1.05, 2.5),
+        (1.10, 2.5),
+        (1.20, 2.5),
+        (1.30, 2.5),
+        (1.10, 3.0),
+        (1.20, 3.0),
+        (1.30, 3.0),
+        (1.20, 4.0),
+        (1.30, 4.0),
     ]
     for ev, odds in ev_examples:
         p_m = ev / odds

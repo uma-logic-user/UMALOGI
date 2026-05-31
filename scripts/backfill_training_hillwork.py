@@ -10,6 +10,7 @@ training_hillwork テーブルに保存する。
     py scripts/backfill_training_hillwork.py --race-id 202604010601  # 単体テスト
     py scripts/backfill_training_hillwork.py --dry-run    # 保存なしでパースのみ
 """
+
 from __future__ import annotations
 
 import argparse
@@ -125,7 +126,9 @@ def run_backfill(
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--days", type=int, default=30, help="取得対象日数 (デフォルト30)")
+    parser.add_argument(
+        "--days", type=int, default=30, help="取得対象日数 (デフォルト30)"
+    )
     parser.add_argument("--race-id", default="", help="単体テスト用 race_id")
     parser.add_argument("--dry-run", action="store_true", help="パースのみ(DB保存なし)")
     parser.add_argument("--db", default=DB_PATH)

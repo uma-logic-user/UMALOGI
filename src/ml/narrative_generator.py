@@ -33,6 +33,8 @@ def _isnan(v: Any) -> bool:
         return bool(np.isnan(float(v)))
     except (TypeError, ValueError):
         return True
+
+
 _MODEL_DIR = _ROOT / "data" / "models"
 
 # ── 特徴量 → 日本語説明テンプレート ──────────────────────────────────
@@ -40,50 +42,50 @@ _MODEL_DIR = _ROOT / "data" / "models"
 #   good_direction: "low" = 値が小さいほど良い, "high" = 大きいほど良い
 _FEATURE_META: dict[str, tuple[str, str]] = {
     # 馬能力
-    "win_rate_all":              ("通算勝率",           "high"),
-    "win_rate_surface":          ("馬場別勝率",         "high"),
-    "win_rate_distance_band":    ("距離帯別勝率",       "high"),
-    "recent_rank_mean":          ("直近5走平均着順",    "low"),   # 小さい=好調
-    "win_rate_all_rank":         ("通算勝率レース内ランク", "low"),
-    "win_rate_all_zscore":       ("勝率偏差スコア",     "high"),
-    "win_rate_surface_rank":     ("馬場別勝率ランク",   "low"),
+    "win_rate_all": ("通算勝率", "high"),
+    "win_rate_surface": ("馬場別勝率", "high"),
+    "win_rate_distance_band": ("距離帯別勝率", "high"),
+    "recent_rank_mean": ("直近5走平均着順", "low"),  # 小さい=好調
+    "win_rate_all_rank": ("通算勝率レース内ランク", "low"),
+    "win_rate_all_zscore": ("勝率偏差スコア", "high"),
+    "win_rate_surface_rank": ("馬場別勝率ランク", "low"),
     "win_rate_distance_band_rank": ("距離帯別勝率ランク", "low"),
-    "recent_rank_mean_rank":     ("直近着順レース内ランク", "low"),
-    "recent_rank_mean_zscore":   ("直近着順偏差スコア", "high"),
+    "recent_rank_mean_rank": ("直近着順レース内ランク", "low"),
+    "recent_rank_mean_zscore": ("直近着順偏差スコア", "high"),
     # 調教
-    "tc_4f":                     ("調教4Fタイム(ウッド)", "low"),
-    "tc_lap":                    ("調教ラスト1F(ウッド)", "low"),
-    "tc_accel_flag":             ("調教加速ラップ",     "high"),
-    "tc_4f_diff":                ("調教タイム前走比",   "low"),
-    "tc_4f_rank":                ("調教タイムランク(ウッド)", "low"),
-    "tc_4f_zscore":              ("調教4F偏差スコア",   "high"),
-    "hc_4f":                     ("調教4Fタイム(坂路)", "low"),
-    "hc_lap":                    ("坂路ラスト1F",       "low"),
-    "hc_accel_flag":             ("坂路加速ラップ",     "high"),
-    "hc_4f_diff":                ("坂路タイム前走比",   "low"),
+    "tc_4f": ("調教4Fタイム(ウッド)", "low"),
+    "tc_lap": ("調教ラスト1F(ウッド)", "low"),
+    "tc_accel_flag": ("調教加速ラップ", "high"),
+    "tc_4f_diff": ("調教タイム前走比", "low"),
+    "tc_4f_rank": ("調教タイムランク(ウッド)", "low"),
+    "tc_4f_zscore": ("調教4F偏差スコア", "high"),
+    "hc_4f": ("調教4Fタイム(坂路)", "low"),
+    "hc_lap": ("坂路ラスト1F", "low"),
+    "hc_accel_flag": ("坂路加速ラップ", "high"),
+    "hc_4f_diff": ("坂路タイム前走比", "low"),
     # 騎手・調教師
-    "jockey_code_encoded":       ("騎手実績スコア",     "high"),
-    "trainer_code_encoded":      ("調教師実績スコア",   "high"),
+    "jockey_code_encoded": ("騎手実績スコア", "high"),
+    "trainer_code_encoded": ("調教師実績スコア", "high"),
     # 枠・馬場
-    "gate_number":               ("枠番",               ""),
-    "condition_code":            ("馬場状態",           ""),
-    "today_inner_bias":          ("内枠バイアス",       ""),
-    "today_gate_match":          ("枠バイアス適合スコア", "high"),
-    "today_front_bias":          ("展開安定度",         "high"),
+    "gate_number": ("枠番", ""),
+    "condition_code": ("馬場状態", ""),
+    "today_inner_bias": ("内枠バイアス", ""),
+    "today_gate_match": ("枠バイアス適合スコア", "high"),
+    "today_front_bias": ("展開安定度", "high"),
     # オッズ
-    "odds_vs_morning":           ("オッズ短縮率",       "low"),
-    "odds_velocity":             ("オッズ資金流入速度", "high"),
+    "odds_vs_morning": ("オッズ短縮率", "low"),
+    "odds_velocity": ("オッズ資金流入速度", "high"),
     # その他
-    "weight_carried":            ("斤量",               "low"),
-    "horse_weight":              ("馬体重",             ""),
-    "horse_weight_diff":         ("馬体重増減",         ""),
-    "sex_code":                  ("性別",               ""),
-    "surface_code":              ("馬場種別",           ""),
-    "venue_encoded":             ("開催場",             ""),
-    "sire_encoded":              ("父馬実績スコア",     "high"),
-    "distance":                  ("距離",               ""),
-    "race_number":               ("レース番号",         ""),
-    "today_race_count":          ("バイアス信頼度",     ""),
+    "weight_carried": ("斤量", "low"),
+    "horse_weight": ("馬体重", ""),
+    "horse_weight_diff": ("馬体重増減", ""),
+    "sex_code": ("性別", ""),
+    "surface_code": ("馬場種別", ""),
+    "venue_encoded": ("開催場", ""),
+    "sire_encoded": ("父馬実績スコア", "high"),
+    "distance": ("距離", ""),
+    "race_number": ("レース番号", ""),
+    "today_race_count": ("バイアス信頼度", ""),
 }
 
 # ── 文章テンプレート (特徴量カテゴリ別) ─────────────────────────────
@@ -123,7 +125,7 @@ class NarrativeGenerator:
         self._place_model: Any = None
         self._honmei_model: Any = None
         self._feature_cols: list[str] | None = None
-        self._feat_cache: dict[str, pd.DataFrame] = {}   # race_id → DataFrame
+        self._feat_cache: dict[str, pd.DataFrame] = {}  # race_id → DataFrame
 
     # ── モデル・特徴量列ロード ────────────────────────────────────────
 
@@ -149,9 +151,12 @@ class NarrativeGenerator:
         # FEATURE_COLS をモデルの feature_name_ から取得（順序保証）
         try:
             from src.ml.models import FEATURE_COLS
+
             self._feature_cols = FEATURE_COLS
         except ImportError:
-            self._feature_cols = list(self._manji_model.feature_name_) if self._manji_model else []
+            self._feature_cols = (
+                list(self._manji_model.feature_name_) if self._manji_model else []
+            )
 
     # ── 特徴量を DB から構築 ──────────────────────────────────────────
 
@@ -161,6 +166,7 @@ class NarrativeGenerator:
             return self._feat_cache[race_id]
         try:
             from src.ml.features import FeatureBuilder
+
             fb = FeatureBuilder(self._conn)
             df = fb.build_race_features_for_simulate(race_id)
             result = df if not df.empty else None
@@ -172,9 +178,7 @@ class NarrativeGenerator:
 
     # ── SHAP 値計算 ───────────────────────────────────────────────────
 
-    def _compute_shap(
-        self, model: Any, df: pd.DataFrame
-    ) -> np.ndarray | None:
+    def _compute_shap(self, model: Any, df: pd.DataFrame) -> np.ndarray | None:
         """
         LightGBM 内蔵 SHAP (pred_contrib=True) で各馬の特徴量貢献度を返す。
 
@@ -218,16 +222,16 @@ class NarrativeGenerator:
         if row is None:
             return {}
         return {
-            "horse_name":       row[0] or f"{horse_number}番",
-            "jockey":           row[1] or "不明",
-            "trainer":          row[2] or "不明",
-            "win_odds":         row[3],
-            "weight_carried":   row[4],
-            "horse_weight":     row[5],
+            "horse_name": row[0] or f"{horse_number}番",
+            "jockey": row[1] or "不明",
+            "trainer": row[2] or "不明",
+            "win_odds": row[3],
+            "weight_carried": row[4],
+            "horse_weight": row[5],
             "horse_weight_diff": row[6],
-            "gate_number":      row[7],
-            "sex_age":          row[8] or "",
-            "popularity":       row[9],
+            "gate_number": row[7],
+            "sex_age": row[8] or "",
+            "popularity": row[9],
         }
 
     def _fetch_race_info(self, race_id: str) -> dict:
@@ -239,12 +243,12 @@ class NarrativeGenerator:
             return {}
         return {
             "race_name": row[0] or "",
-            "venue":     row[1] or "",
-            "distance":  row[2] or 0,
-            "surface":   row[3] or "",
+            "venue": row[1] or "",
+            "distance": row[2] or 0,
+            "surface": row[3] or "",
             "condition": row[4] or "",
             "race_number": row[5] or 0,
-            "date":      row[6] or "",
+            "date": row[6] or "",
         }
 
     # ── SHAP → 根拠文生成 ────────────────────────────────────────────
@@ -267,24 +271,28 @@ class NarrativeGenerator:
         top_indices = np.argsort(abs_shap)[::-1][:8]
 
         horse_name = horse_info.get("horse_name", "この馬")
-        jockey     = horse_info.get("jockey", "")
-        trainer    = horse_info.get("trainer", "")
-        venue      = race_info.get("venue", "")
-        gate       = horse_info.get("gate_number")
+        jockey = horse_info.get("jockey", "")
+        trainer = horse_info.get("trainer", "")
+        venue = race_info.get("venue", "")
+        gate = horse_info.get("gate_number")
 
         used_categories: set[str] = set()
 
         for idx in top_indices:
             if idx >= len(feature_cols):
                 continue
-            feat_name  = feature_cols[idx]
-            shap_val   = shap_row[idx]
-            feat_val   = feat_row.get(feat_name, np.nan)
-            meta       = _FEATURE_META.get(feat_name, (feat_name, ""))
+            feat_name = feature_cols[idx]
+            shap_val = shap_row[idx]
+            feat_val = feat_row.get(feat_name, np.nan)
+            meta = _FEATURE_META.get(feat_name, (feat_name, ""))
             label, direction = meta
 
             # ── 通算・馬場・距離帯勝率 ───────────────────────────────
-            if feat_name in ("win_rate_all", "win_rate_surface", "win_rate_distance_band") and "ability" not in used_categories:
+            if (
+                feat_name
+                in ("win_rate_all", "win_rate_surface", "win_rate_distance_band")
+                and "ability" not in used_categories
+            ):
                 if shap_val > 0 and not _isnan(feat_val):
                     sentences.append(
                         f"{horse_name}の{label}は{feat_val:.1%}。"
@@ -293,9 +301,12 @@ class NarrativeGenerator:
                     used_categories.add("ability")
 
             # ── 直近着順 ──────────────────────────────────────────────
-            elif feat_name in ("recent_rank_mean", "recent_rank_mean_rank") and "recent" not in used_categories:
+            elif (
+                feat_name in ("recent_rank_mean", "recent_rank_mean_rank")
+                and "recent" not in used_categories
+            ):
                 if not _isnan(feat_val):
-                    val_display = feat_val if feat_name == "recent_rank_mean" else f"レース内{int(feat_val)}"
+                    feat_val if feat_name == "recent_rank_mean" else f"レース内{int(feat_val)}"
                     if shap_val > 0:
                         sentences.append(
                             f"直近5走の平均着順は{feat_val:.1f}位と好調をキープ。"
@@ -304,20 +315,39 @@ class NarrativeGenerator:
                     used_categories.add("recent")
 
             # ── ウッド調教 ────────────────────────────────────────────
-            elif feat_name in ("tc_4f", "tc_4f_rank", "tc_accel_flag", "tc_4f_diff") and "training_wood" not in used_categories:
-                if feat_name == "tc_4f_rank" and not _isnan(feat_val) and feat_val <= 3 and shap_val > 0:
+            elif (
+                feat_name in ("tc_4f", "tc_4f_rank", "tc_accel_flag", "tc_4f_diff")
+                and "training_wood" not in used_categories
+            ):
+                if (
+                    feat_name == "tc_4f_rank"
+                    and not _isnan(feat_val)
+                    and feat_val <= 3
+                    and shap_val > 0
+                ):
                     sentences.append(
                         f"最終追い切り(ウッド)はメンバー内{int(feat_val)}位の好時計。"
                         "仕上がりの良さが数値に表れている。"
                     )
                     used_categories.add("training_wood")
-                elif feat_name == "tc_accel_flag" and feat_val == 1 and shap_val > 0 and "training_wood" not in used_categories:
+                elif (
+                    feat_name == "tc_accel_flag"
+                    and feat_val == 1
+                    and shap_val > 0
+                    and "training_wood" not in used_categories
+                ):
                     sentences.append(
                         "ウッド調教でラスト1Fが加速するスパート型のフォームを披露。"
                         "本番での末脚発揮に期待が持てる。"
                     )
                     used_categories.add("training_wood")
-                elif feat_name == "tc_4f_diff" and not _isnan(feat_val) and feat_val < 0 and shap_val > 0 and "training_wood" not in used_categories:
+                elif (
+                    feat_name == "tc_4f_diff"
+                    and not _isnan(feat_val)
+                    and feat_val < 0
+                    and shap_val > 0
+                    and "training_wood" not in used_categories
+                ):
                     sentences.append(
                         f"ウッド調教タイムが前回比{abs(feat_val):.2f}秒改善。"
                         "仕上がりの上向きをデータが示している。"
@@ -325,14 +355,22 @@ class NarrativeGenerator:
                     used_categories.add("training_wood")
 
             # ── 坂路調教 ──────────────────────────────────────────────
-            elif feat_name in ("hc_4f", "hc_accel_flag", "hc_4f_diff") and "training_hill" not in used_categories:
+            elif (
+                feat_name in ("hc_4f", "hc_accel_flag", "hc_4f_diff")
+                and "training_hill" not in used_categories
+            ):
                 if feat_name == "hc_accel_flag" and feat_val == 1 and shap_val > 0:
                     sentences.append(
                         "坂路調教でも加速ラップを記録。"
                         "ウッドとの2本立て調教でピーク状態を示している。"
                     )
                     used_categories.add("training_hill")
-                elif feat_name == "hc_4f" and not _isnan(feat_val) and shap_val > 0 and "training_hill" not in used_categories:
+                elif (
+                    feat_name == "hc_4f"
+                    and not _isnan(feat_val)
+                    and shap_val > 0
+                    and "training_hill" not in used_categories
+                ):
                     sentences.append(
                         f"坂路4Fタイム{feat_val:.1f}秒と本追い切りから動きが良く、"
                         "状態面に不安はない。"
@@ -349,7 +387,9 @@ class NarrativeGenerator:
                     used_categories.add("jockey")
 
             # ── 調教師 ────────────────────────────────────────────────
-            elif feat_name == "trainer_code_encoded" and "trainer" not in used_categories:
+            elif (
+                feat_name == "trainer_code_encoded" and "trainer" not in used_categories
+            ):
                 if shap_val > 0 and trainer:
                     sentences.append(
                         f"管理する{trainer}師は今季の連対率・複勝率ともに高水準。"
@@ -371,7 +411,10 @@ class NarrativeGenerator:
                             f"本日の{venue}の馬場傾向と{gate}枠の脚質が合致していると判断された。"
                         )
                     used_categories.add("bias")
-            elif feat_name in ("today_inner_bias", "today_front_bias") and "bias" not in used_categories:
+            elif (
+                feat_name in ("today_inner_bias", "today_front_bias")
+                and "bias" not in used_categories
+            ):
                 if shap_val > 0 and venue:
                     label_v = "内枠有利" if "inner" in feat_name else "先行有利"
                     sentences.append(
@@ -414,10 +457,19 @@ class NarrativeGenerator:
                     used_categories.add("weight")
 
             # ── 汎用フォールバック（大きいSHAP値だが既存カテゴリ未対応）──
-            elif shap_val > 0 and feat_name not in (
-                "venue_encoded", "surface_code", "race_number",
-                "sex_code", "today_race_count", "distance",
-            ) and "generic" not in used_categories:
+            elif (
+                shap_val > 0
+                and feat_name
+                not in (
+                    "venue_encoded",
+                    "surface_code",
+                    "race_number",
+                    "sex_code",
+                    "today_race_count",
+                    "distance",
+                )
+                and "generic" not in used_categories
+            ):
                 if direction in ("high", "low") and not _isnan(feat_val):
                     better = "高い" if direction == "high" else "低い"
                     sentences.append(
@@ -431,7 +483,9 @@ class NarrativeGenerator:
 
         # 最低1文は出力する（どの条件も合わなかった場合のキャッチオール）
         if not sentences:
-            top_feat = feature_cols[top_indices[0]] if top_indices.size > 0 else "スコア総合"
+            top_feat = (
+                feature_cols[top_indices[0]] if top_indices.size > 0 else "スコア総合"
+            )
             meta = _FEATURE_META.get(top_feat, (top_feat, ""))
             label = meta[0]
             sentences.append(
@@ -451,16 +505,16 @@ class NarrativeGenerator:
         horse_number: int,
     ) -> str:
         """SHAP 計算不可時のテンプレートベース根拠文。"""
-        horse_name  = horse_info.get("horse_name", f"{horse_number}番")
-        jockey      = horse_info.get("jockey", "")
-        trainer     = horse_info.get("trainer", "")
-        win_odds    = horse_info.get("win_odds")
-        gate        = horse_info.get("gate_number")
-        venue       = race_info.get("venue", "")
-        surface     = race_info.get("surface", "芝")
-        distance    = race_info.get("distance", 0)
+        horse_name = horse_info.get("horse_name", f"{horse_number}番")
+        jockey = horse_info.get("jockey", "")
+        trainer = horse_info.get("trainer", "")
+        win_odds = horse_info.get("win_odds")
+        gate = horse_info.get("gate_number")
+        venue = race_info.get("venue", "")
+        surface = race_info.get("surface", "芝")
+        distance = race_info.get("distance", 0)
         surface_str = surface or "芝"
-        dist_str    = f"{distance}m" if distance else "中距離"
+        dist_str = f"{distance}m" if distance else "中距離"
 
         lines = [
             f"▶ {horse_name}（{gate}枠）",
@@ -484,10 +538,10 @@ class NarrativeGenerator:
 
     def generate(
         self,
-        race_id:      str,
+        race_id: str,
         horse_number: int,
-        ev:           float = 1.0,
-        model_type:   str  = "manji",
+        ev: float = 1.0,
+        model_type: str = "manji",
     ) -> str:
         """
         指定馬の予想根拠文を生成する。
@@ -503,7 +557,7 @@ class NarrativeGenerator:
         """
         self._load_models()
         horse_info = self._fetch_horse_info(race_id, horse_number)
-        race_info  = self._fetch_race_info(race_id)
+        race_info = self._fetch_race_info(race_id)
 
         # 特徴量・SHAP 計算を試みる
         df_feat = self._build_features(race_id)
@@ -532,9 +586,11 @@ class NarrativeGenerator:
 
         if shap_sentences:
             horse_name = horse_info.get("horse_name", f"{horse_number}番")
-            jockey     = horse_info.get("jockey", "")
-            gate       = horse_info.get("gate_number", horse_number)
-            model_label = {"honmei": "本命", "place": "複勝", "manji": "卍"}.get(model_type, "卍")
+            jockey = horse_info.get("jockey", "")
+            gate = horse_info.get("gate_number", horse_number)
+            model_label = {"honmei": "本命", "place": "複勝", "manji": "卍"}.get(
+                model_type, "卍"
+            )
             header = f"▶ {horse_number}番 {horse_name}（{gate}枠 / {jockey}騎手）"
             ev_line = f"📊 {model_label}モデル EV={ev:.2f} — 以下の要因でプラス評価：\n"
             body = "\n".join(f"• {s}" for s in shap_sentences)
@@ -563,10 +619,12 @@ def generate_race_narratives(
     gen = NarrativeGenerator(conn)
     result: dict[int, str] = {}
     for pick in picks:
-        hn         = pick["horse_number"]
-        ev         = pick.get("ev", 1.0)
+        hn = pick["horse_number"]
+        ev = pick.get("ev", 1.0)
         model_type = pick.get("model_type", "manji")
-        result[hn] = gen.generate(race_id=race_id, horse_number=hn, ev=ev, model_type=model_type)
+        result[hn] = gen.generate(
+            race_id=race_id, horse_number=hn, ev=ev, model_type=model_type
+        )
     return result
 
 
@@ -618,44 +676,52 @@ def generate_note_article_data(
                 hn = entry[0] if isinstance(entry, list) else entry
                 if hn not in seen_horses:
                     horse_info = gen._fetch_horse_info(race_id, hn)
-                    free_picks.append({
-                        "horse_number": hn,
-                        "horse_name":   horse_info.get("horse_name", f"{hn}番"),
-                        "popularity":   horse_info.get("popularity"),
-                        "win_odds":     horse_info.get("win_odds"),
-                        "bet_type":     bet_type,
-                        "ev":           ev,
-                        "model_type":   model_type or "manji",
-                    })
+                    free_picks.append(
+                        {
+                            "horse_number": hn,
+                            "horse_name": horse_info.get("horse_name", f"{hn}番"),
+                            "popularity": horse_info.get("popularity"),
+                            "win_odds": horse_info.get("win_odds"),
+                            "bet_type": bet_type,
+                            "ev": ev,
+                            "model_type": model_type or "manji",
+                        }
+                    )
                     seen_horses.add(hn)
 
     # SHAP 根拠文生成（有料エリア用）
     for pick in free_picks:
-        hn         = pick["horse_number"]
-        ev         = pick["ev"]
+        hn = pick["horse_number"]
+        ev = pick["ev"]
         model_type = pick.get("model_type", "manji")
-        narrative  = gen.generate(race_id=race_id, horse_number=hn, ev=ev, model_type=model_type)
-        paid_picks.append({
-            **pick,
-            "narrative": narrative,
-        })
+        narrative = gen.generate(
+            race_id=race_id, horse_number=hn, ev=ev, model_type=model_type
+        )
+        paid_picks.append(
+            {
+                **pick,
+                "narrative": narrative,
+            }
+        )
 
     # 全買い目推奨リスト（有料エリア用）
     bet_recommendations: list[dict] = []
     for bet_type, ev, rec_bet, combo_json, model_type in rows:
         combo = _json.loads(combo_json) if combo_json else []
-        bet_recommendations.append({
-            "bet_type":   bet_type,
-            "ev":         ev,
-            "rec_bet":    rec_bet or 0,
-            "combo":      combo,
-            "model_type": model_type or "manji",
-        })
+        bet_recommendations.append(
+            {
+                "bet_type": bet_type,
+                "ev": ev,
+                "rec_bet": rec_bet or 0,
+                "combo": combo,
+                "model_type": model_type or "manji",
+            }
+        )
 
     return {
-        "race_id":           race_id,
-        "race_info":         race_info,
-        "free_picks":        free_picks,
-        "paid_picks":        paid_picks,
+        "race_id": race_id,
+        "race_info": race_info,
+        "free_picks": free_picks,
+        "paid_picks": paid_picks,
         "bet_recommendations": bet_recommendations,
     }

@@ -56,6 +56,7 @@ def kelly_fraction(p_win: float, odds: float, multiplier: float = 0.1) -> float:
     f_star = (p_win * b - q) / b
     return max(0.0, f_star * multiplier)
 
+
 logger = logging.getLogger(__name__)
 
 _WIDTH = 62
@@ -71,47 +72,47 @@ _BET_AMOUNT = 100
 STRATEGIES: dict[str, dict] = {
     # 本命モデル: score 1位の馬の単勝
     "honmei_tansho": {
-        "label":    "本命・単勝  (Top1)",
-        "model":    "honmei",
+        "label": "本命・単勝  (Top1)",
+        "model": "honmei",
         "bet_type": "単勝",
-        "n_picks":  1,
+        "n_picks": 1,
     },
     # 本命モデル: score 1-2位の馬連
     "honmei_umaren": {
-        "label":    "本命・馬連  (Top2)",
-        "model":    "honmei",
+        "label": "本命・馬連  (Top2)",
+        "model": "honmei",
         "bet_type": "馬連",
-        "n_picks":  2,
+        "n_picks": 2,
     },
     # 本命モデル: score 1-3位の三連複
     "honmei_sanrenpuku": {
-        "label":    "本命・三連複 (Top3)",
-        "model":    "honmei",
+        "label": "本命・三連複 (Top3)",
+        "model": "honmei",
         "bet_type": "三連複",
-        "n_picks":  3,
+        "n_picks": 3,
     },
     # 卍モデル: ev_score > 1.0 の馬の単勝（最大1頭）
     "manji_tansho": {
-        "label":    "卍・単勝    (EV>1.0)",
-        "model":    "manji",
+        "label": "卍・単勝    (EV>1.0)",
+        "model": "manji",
         "bet_type": "単勝",
-        "n_picks":  1,
+        "n_picks": 1,
         "ev_filter": True,
     },
     # 卍モデル: ev_score > 1.0 の馬の複勝（最大1頭）
     "manji_fukusho": {
-        "label":    "卍・複勝    (EV>1.0)",
-        "model":    "manji",
+        "label": "卍・複勝    (EV>1.0)",
+        "model": "manji",
         "bet_type": "複勝",
-        "n_picks":  1,
+        "n_picks": 1,
         "ev_filter": True,
     },
     # EV戦略: EV = P(win)×odds >= 1.0 の馬の単勝（1/10ケリー）
     "ev_tansho": {
-        "label":    "EV・単勝   (p×odds≥1.0)",
-        "model":    "ev_honmei",
+        "label": "EV・単勝   (p×odds≥1.0)",
+        "model": "ev_honmei",
         "bet_type": "単勝",
-        "n_picks":  1,
+        "n_picks": 1,
         "ev_filter": True,
     },
 }
@@ -121,11 +122,12 @@ STRATEGIES: dict[str, dict] = {
 #  表示ユーティリティ
 # ════════════════════════════════════════════════════════════════
 
+
 def _banner(text: str) -> None:
-    inner  = f"  {text}  "
-    pad    = max(0, _WIDTH - 2 - len(inner))
-    left   = pad // 2
-    right  = pad - left
+    inner = f"  {text}  "
+    pad = max(0, _WIDTH - 2 - len(inner))
+    left = pad // 2
+    right = pad - left
     border = "=" * _WIDTH
     print(f"\n{border}")
     print(f"|{' ' * left}{inner}{' ' * right}|")
@@ -145,7 +147,7 @@ def _kv_table(rows: list[tuple[str, str]], title: str = "") -> None:
         print(f"\n  {title}")
     col_w = max(len(k) for k, _ in rows) + 2
     val_w = max(len(v) for _, v in rows) + 2
-    sep   = f"  +{'-' * col_w}+{'-' * val_w}+"
+    sep = f"  +{'-' * col_w}+{'-' * val_w}+"
     print(sep)
     for k, v in rows:
         print(f"  | {k:<{col_w - 2}} | {v:>{val_w - 2}} |")
@@ -162,19 +164,19 @@ def _result_table(
         return
     if title:
         print(f"\n  {title}")
-    widths = [max(len(h), max((len(r[i]) for r in rows), default=0)) + 2
-              for i, h in enumerate(headers)]
+    widths = [
+        max(len(h), max((len(r[i]) for r in rows), default=0)) + 2
+        for i, h in enumerate(headers)
+    ]
     sep = "  +" + "+".join("-" * w for w in widths) + "+"
-    header_line = "  |" + "|".join(
-        f" {h:<{w - 2}} " for h, w in zip(headers, widths)
-    ) + "|"
+    header_line = (
+        "  |" + "|".join(f" {h:<{w - 2}} " for h, w in zip(headers, widths)) + "|"
+    )
     print(sep)
     print(header_line)
     print(sep)
     for row in rows:
-        print("  |" + "|".join(
-            f" {c:<{w - 2}} " for c, w in zip(row, widths)
-        ) + "|")
+        print("  |" + "|".join(f" {c:<{w - 2}} " for c, w in zip(row, widths)) + "|")
     print(sep)
 
 
@@ -182,32 +184,33 @@ def _result_table(
 #  集計用データクラス
 # ════════════════════════════════════════════════════════════════
 
+
 class StrategyStats:
     """1戦略の集計状態。"""
 
     def __init__(self, label: str, bet_type: str) -> None:
-        self.label     = label
-        self.bet_type  = bet_type
-        self.races     = 0      # 買い目が発生したレース数
-        self.hits      = 0      # 的中数
-        self.invested  = 0.0   # 投資額計（円）
-        self.payout    = 0.0   # 回収額計（円）
-        self.skipped   = 0     # ev_filter で見送ったレース数
+        self.label = label
+        self.bet_type = bet_type
+        self.races = 0  # 買い目が発生したレース数
+        self.hits = 0  # 的中数
+        self.invested = 0.0  # 投資額計（円）
+        self.payout = 0.0  # 回収額計（円）
+        self.skipped = 0  # ev_filter で見送ったレース数
         # ケリー基準シミュレーション（初期資金 100,000円）
         self.kelly_bankroll = 100_000.0
         self.kelly_invested = 0.0
-        self.kelly_payout   = 0.0
+        self.kelly_payout = 0.0
 
     def add(self, hit: bool, payout: float, kelly_frac: float = 0.0) -> None:
-        self.races    += 1
-        self.hits     += int(hit)
+        self.races += 1
+        self.hits += int(hit)
         self.invested += _BET_AMOUNT
-        self.payout   += payout
+        self.payout += payout
         # ケリー基準（実際の賭け額 = kelly_frac × bankroll, 最低100円）
         bet_kelly = max(100.0, round(kelly_frac * self.kelly_bankroll / 100) * 100)
         self.kelly_invested += bet_kelly
         if hit:
-            self.kelly_payout   += bet_kelly * (payout / _BET_AMOUNT)
+            self.kelly_payout += bet_kelly * (payout / _BET_AMOUNT)
             self.kelly_bankroll += bet_kelly * (payout / _BET_AMOUNT - 1)
         else:
             self.kelly_bankroll -= bet_kelly
@@ -221,7 +224,11 @@ class StrategyStats:
         return (self.hits / self.races * 100) if self.races > 0 else 0.0
 
     def summary_row(self) -> list[str]:
-        kelly_roi = (self.kelly_payout / self.kelly_invested * 100) if self.kelly_invested > 0 else 0.0
+        kelly_roi = (
+            (self.kelly_payout / self.kelly_invested * 100)
+            if self.kelly_invested > 0
+            else 0.0
+        )
         return [
             self.label,
             f"{self.races:,}",
@@ -239,7 +246,10 @@ class StrategyStats:
 #  バックテストコア
 # ════════════════════════════════════════════════════════════════
 
-def _get_race_ids(conn, year: str, venue: str | None, surface: str | None) -> list[tuple]:
+
+def _get_race_ids(
+    conn, year: str, venue: str | None, surface: str | None
+) -> list[tuple]:
     """フィルタ条件に合うレース一覧を返す。"""
     clauses = ["r.race_id IS NOT NULL"]
     params: list[Any] = []
@@ -294,14 +304,14 @@ def _select_horses(
     if df.empty:
         return [], []
 
-    model_key   = strategy["model"]
-    n_picks     = strategy["n_picks"]
-    ev_filter   = strategy.get("ev_filter", False)
+    model_key = strategy["model"]
+    n_picks = strategy["n_picks"]
+    ev_filter = strategy.get("ev_filter", False)
 
     if model_key == "honmei":
         scores = honmei_model.predict(df)
     elif model_key == "ev_honmei":
-        scores = honmei_model.ev_predict(df)   # EV = P(win) × odds
+        scores = honmei_model.ev_predict(df)  # EV = P(win) × odds
     else:
         scores = manji_model.ev_score(df)
 
@@ -325,7 +335,11 @@ def _select_horses(
     kelly_fracs: list[float] = []
     for _, row in top.iterrows():
         try:
-            p   = float(honmei_model.predict(df2.loc[[row.name]]).iloc[0]) if model_key != "honmei" else float(row["_score"])
+            p = (
+                float(honmei_model.predict(df2.loc[[row.name]]).iloc[0])
+                if model_key != "honmei"
+                else float(row["_score"])
+            )
             odds = float(row.get("win_odds") or 0)
             kelly_fracs.append(kelly_fraction(p, odds))
         except Exception:
@@ -343,17 +357,17 @@ def _run_backtest(
     verbose: bool = False,
 ) -> tuple[
     dict[str, StrategyStats],
-    dict[str, dict[str, StrategyStats]],   # monthly
-    dict[str, dict[str, StrategyStats]],   # venue
-    dict[str, dict[str, StrategyStats]],   # dist_band
+    dict[str, dict[str, StrategyStats]],  # monthly
+    dict[str, dict[str, StrategyStats]],  # venue
+    dict[str, dict[str, StrategyStats]],  # dist_band
 ]:
     fb = FeatureBuilder(conn)
 
     # 集計コンテナ
-    overall:   dict[str, StrategyStats] = {}
-    monthly:   dict[str, dict[str, StrategyStats]] = defaultdict(dict)
-    by_venue:  dict[str, dict[str, StrategyStats]] = defaultdict(dict)
-    by_dist:   dict[str, dict[str, StrategyStats]] = defaultdict(dict)
+    overall: dict[str, StrategyStats] = {}
+    monthly: dict[str, dict[str, StrategyStats]] = defaultdict(dict)
+    by_venue: dict[str, dict[str, StrategyStats]] = defaultdict(dict)
+    by_dist: dict[str, dict[str, StrategyStats]] = defaultdict(dict)
 
     def _make_stats(strat_key: str) -> StrategyStats:
         s = strategies[strat_key]
@@ -367,7 +381,7 @@ def _run_backtest(
         if verbose or i % 100 == 0:
             print(f"  [{i:>4}/{total_races}] {race_id} {date} {venue}", flush=True)
 
-        month    = date[:7].replace("/", "-")  # "2024-01"
+        month = date[:7].replace("/", "-")  # "2024-01"
         dist_key = _distance_band(distance)
 
         # 特徴量構築（リーク除外）
@@ -381,7 +395,7 @@ def _run_backtest(
             continue
 
         # 払戻・馬番マップ
-        payouts       = _fetch_payouts(conn, race_id)
+        payouts = _fetch_payouts(conn, race_id)
         horse_numbers = _fetch_horse_numbers(conn, race_id)
 
         # horse_number が NULL のレース向けに popularity ベースの払戻マップも構築
@@ -402,12 +416,14 @@ def _run_backtest(
             for _, dfrow in df.iterrows():
                 pop = dfrow.get("popularity")
                 try:
-                    if pop is not None and not (isinstance(pop, float) and math.isnan(pop)):
+                    if pop is not None and not (
+                        isinstance(pop, float) and math.isnan(pop)
+                    ):
                         name_to_pop[dfrow["horse_name"]] = int(pop)
                 except (ValueError, TypeError):
                     pass
 
-        result_map    = {
+        result_map = {
             r[0]: r[1]
             for r in conn.execute(
                 "SELECT horse_name, rank FROM race_results WHERE race_id = ?",
@@ -424,7 +440,7 @@ def _run_backtest(
 
             bet_type = strat["bet_type"]
             comb_key = _build_combination_key(bet_type, picks, horse_numbers)
-            hit      = _is_hit(bet_type, picks, result_map)
+            hit = _is_hit(bet_type, picks, result_map)
 
             # 払戻取得: combo_key が None (horse_number 未登録) の場合は
             # 単勝/複勝 は popularity ベースで代替ルックアップ
@@ -461,7 +477,17 @@ def _run_backtest(
 #  結果表示
 # ════════════════════════════════════════════════════════════════
 
-_SUMMARY_HEADERS = ["戦略", "レース数", "的中", "的中率", "投資(円)", "回収(円)", "ROI", "Kelly残高", "Kelly-ROI"]
+_SUMMARY_HEADERS = [
+    "戦略",
+    "レース数",
+    "的中",
+    "的中率",
+    "投資(円)",
+    "回収(円)",
+    "ROI",
+    "Kelly残高",
+    "Kelly-ROI",
+]
 
 
 def _print_summary(overall: dict[str, StrategyStats]) -> None:
@@ -490,28 +516,48 @@ def _print_breakdown(
 #  エントリポイント
 # ════════════════════════════════════════════════════════════════
 
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description="UMALOGI AI オフライン・バックテスト",
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
-    parser.add_argument("--db",      type=Path, default=None,
-                        help="DB ファイルパス（デフォルト: DB_PATH 環境変数 or data/umalogi.db）")
-    parser.add_argument("--year",    type=str,  default="2024",
-                        help="バックテスト対象年 (default: 2024)")
-    parser.add_argument("--venue",   type=str,  default=None,
-                        help="会場フィルタ (例: 東京)")
-    parser.add_argument("--surface", type=str,  default=None,
-                        help="馬場フィルタ (例: 芝 / ダート)")
-    parser.add_argument("--bet",     type=str,  default=None,
-                        choices=list(STRATEGIES.keys()),
-                        help="単一戦略のみ実行（省略時は全戦略）")
-    parser.add_argument("--dry-run", action="store_true", dest="dry_run",
-                        help="DB 統計のみ表示して終了（予測なし）")
-    parser.add_argument("--verbose", action="store_true",
-                        help="各レースの進捗を表示する")
-    parser.add_argument("--force", action="store_true",
-                        help="強制実行フラグ（未学習モデルでも実行を続ける）")
+    parser.add_argument(
+        "--db",
+        type=Path,
+        default=None,
+        help="DB ファイルパス（デフォルト: DB_PATH 環境変数 or data/umalogi.db）",
+    )
+    parser.add_argument(
+        "--year", type=str, default="2024", help="バックテスト対象年 (default: 2024)"
+    )
+    parser.add_argument(
+        "--venue", type=str, default=None, help="会場フィルタ (例: 東京)"
+    )
+    parser.add_argument(
+        "--surface", type=str, default=None, help="馬場フィルタ (例: 芝 / ダート)"
+    )
+    parser.add_argument(
+        "--bet",
+        type=str,
+        default=None,
+        choices=list(STRATEGIES.keys()),
+        help="単一戦略のみ実行（省略時は全戦略）",
+    )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        dest="dry_run",
+        help="DB 統計のみ表示して終了（予測なし）",
+    )
+    parser.add_argument(
+        "--verbose", action="store_true", help="各レースの進捗を表示する"
+    )
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="強制実行フラグ（未学習モデルでも実行を続ける）",
+    )
     args = parser.parse_args()
 
     # Windows UTF-8 対応
@@ -543,8 +589,10 @@ def main() -> int:
 
     # 対象レース取得
     race_rows = _get_race_ids(conn, args.year, args.venue, args.surface)
-    n_races   = len(race_rows)
-    print(f"  対象 : {args.year}年  会場={args.venue or '全'}  馬場={args.surface or '全'}")
+    n_races = len(race_rows)
+    print(
+        f"  対象 : {args.year}年  会場={args.venue or '全'}  馬場={args.surface or '全'}"
+    )
     print(f"  レース数: {n_races:,}")
 
     if n_races == 0:
@@ -560,8 +608,12 @@ def main() -> int:
     # モデルロード
     print("\n  モデルをロード中 ...")
     honmei_model, manji_model = load_models()
-    print(f"  本命モデル: {'学習済み' if honmei_model.is_trained else 'フォールバック(未学習)'}")
-    print(f"  卍モデル  : {'学習済み' if manji_model.is_trained else 'フォールバック(未学習)'}")
+    print(
+        f"  本命モデル: {'学習済み' if honmei_model.is_trained else 'フォールバック(未学習)'}"
+    )
+    print(
+        f"  卍モデル  : {'学習済み' if manji_model.is_trained else 'フォールバック(未学習)'}"
+    )
 
     # 実行する戦略を絞り込む
     strategies = {args.bet: STRATEGIES[args.bet]} if args.bet else STRATEGIES
@@ -584,17 +636,18 @@ def main() -> int:
     _print_summary(overall)
 
     strat_keys = list(strategies.keys())
-    _print_breakdown(monthly,  "月別",   strat_keys)
+    _print_breakdown(monthly, "月別", strat_keys)
     _print_breakdown(by_venue, "会場別", strat_keys)
-    _print_breakdown(by_dist,  "距離帯別", strat_keys)
+    _print_breakdown(by_dist, "距離帯別", strat_keys)
 
     # 簡易総評
     _section("総評")
     best_roi_key = max(overall, key=lambda k: overall[k].roi)
     best = overall[best_roi_key]
     print(f"  最高ROI戦略: {best.label}")
-    print(f"    ROI={best.roi:.1f}%  的中率={best.hit_rate:.1f}%  "
-          f"レース数={best.races:,}")
+    print(
+        f"    ROI={best.roi:.1f}%  的中率={best.hit_rate:.1f}%  レース数={best.races:,}"
+    )
     if best.roi >= 100:
         print("  [OK] 黒字戦略が存在します。")
     else:

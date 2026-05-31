@@ -1,4 +1,5 @@
 """単複特化モデル修正のテスト: リーク排除・PlaceModel"""
+
 from __future__ import annotations
 import sqlite3
 import sys
@@ -54,13 +55,29 @@ def _make_restored_db() -> sqlite3.Connection:
         CREATE TABLE training_hillwork (horse_id TEXT, training_date TEXT, time_4f REAL, lap_time REAL);
     """)
     # 1レース: 5頭 rank=1/2/3のみ設定 (他はNULL) — 復元後の状態
-    conn.execute("INSERT INTO races VALUES ('R001','2025-06-01','東京',5,1600,'芝','良')")
+    conn.execute(
+        "INSERT INTO races VALUES ('R001','2025-06-01','東京',5,1600,'芝','良')"
+    )
     for i in range(1, 6):
         rank_val = i if i <= 3 else None
         conn.execute(
             "INSERT INTO race_results VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-            ('R001', i, None, f'馬{i}', '牡3', 55.0, i, 500.0, 0.0, '', '',
-             float(i * 5), i, rank_val)
+            (
+                "R001",
+                i,
+                None,
+                f"馬{i}",
+                "牡3",
+                55.0,
+                i,
+                500.0,
+                0.0,
+                "",
+                "",
+                float(i * 5),
+                i,
+                rank_val,
+            ),
         )
     conn.execute("INSERT INTO race_payouts VALUES ('R001','単勝','1',500)")
     conn.commit()
@@ -70,6 +87,7 @@ def _make_restored_db() -> sqlite3.Connection:
 def test_build_train_df_includes_all_horses_not_just_ranked() -> None:
     """_build_train_df が rank=NULL の馬も含んで is_winner=0 とすること。"""
     from src.ml.models import _build_train_df
+
     conn = _make_restored_db()
     df = _build_train_df(conn)
     # 5頭全員が含まれるはず (rank=NULL → is_winner=0)
@@ -80,12 +98,12 @@ def test_build_train_df_includes_all_horses_not_just_ranked() -> None:
 def test_build_train_df_ev_target_capped_at_10000() -> None:
     """ev_target が 10,000 を超えないこと。"""
     from src.ml.models import _build_train_df
+
     conn = _make_restored_db()
     # 超高オッズ馬を追加 (win_odds=150, rank=NULL)
     conn.execute(
         "INSERT INTO race_results VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-        ('R001', 6, None, '超穴馬', '牡3', 55.0, 6, 500.0, 0.0, '', '',
-         150.0, 6, None)
+        ("R001", 6, None, "超穴馬", "牡3", 55.0, 6, 500.0, 0.0, "", "", 150.0, 6, None),
     )
     conn.commit()
     df = _build_train_df(conn)
@@ -96,6 +114,7 @@ def test_build_train_df_ev_target_capped_at_10000() -> None:
 def test_build_train_df_is_placed_created() -> None:
     """is_placed 列（rank<=3=1）が存在すること。"""
     from src.ml.models import _build_train_df
+
     conn = _make_restored_db()
     df = _build_train_df(conn)
     assert "is_placed" in df.columns
@@ -106,6 +125,7 @@ def test_build_train_df_is_placed_created() -> None:
 def test_place_model_trains_on_is_placed() -> None:
     """PlaceModel が is_placed を学習できること。"""
     from src.ml.models import PlaceModel
+
     conn = _make_restored_db()
     model = PlaceModel()
     result = model.train(conn)
@@ -117,6 +137,7 @@ def test_place_model_predict_returns_series() -> None:
     """PlaceModel.predict() が pd.Series を返すこと。"""
     import pandas as pd
     from src.ml.models import PlaceModel, FEATURE_COLS
+
     conn = _make_restored_db()
     model = PlaceModel()
     model.train(conn)

@@ -1,0 +1,34 @@
+# UMALOGI ruff 設定（production-sane ルールセット）
+# 既存コード規約（規則6: UTF-8 / 規則1: 型ヒント）に整合させつつ、
+# 静的解析をクリーン運用するための選択・除外を定義する。
+# line-length は ruff format の既定(88)に合わせ、既存整形との差分(churn)を最小化する。
+line-length = 88
+target-version = "py311"
+
+[lint]
+# E=pycodestyle / F=pyflakes / W=warning
+# 注: isort(I) は scripts/ の `sys.path.insert` 後 import を先頭へ移動し実行時破壊の恐れが
+# あるため select しない（E402 を許容する設計と整合）。
+select = ["E", "F", "W"]
+ignore = [
+    "E402",  # module-import-not-at-top: scripts/ は sys.path 設定後に import するため不可避
+    "E741",  # ambiguous variable name (l/I/O): 一部の数式・確率記号で許容
+    "E501",  # line-too-long: ruff format が整形を担うため lint では非対象
+]
+
+[lint.per-file-ignores]
+# 診断・ワンショットスクリプトはワンライナー文/未使用変数を許容（本番ロジック外）
+"scripts/*" = ["E701", "E702", "F841", "E722"]
+# テストは未使用変数・ラムダ代入を許容（フィクスチャ・モック都合）
+"tests/*" = ["F841", "E731"]
+# F821(undefined-name): 下記は循環import回避のための「引用符付き前方参照アノテーション」
+# （例: "sqlite3.Connection" / "HorseOdds" / "RaceInfo" / "Page" / "date_type"）であり
+# from __future__ import annotations 下で実行時に評価されず安全。型のためだけに重い/循環する
+# import を張らない設計。実バグ(save_entries_to_db 未import 等)は別途修正済み。
+"src/database/init_db.py" = ["F821"]
+"src/scraper/rtd_reader.py" = ["F821"]
+"src/scraper/update_payouts.py" = ["F821"]
+"src/ops/note_draft_publisher.py" = ["F821"]
+"src/ml/u_score.py" = ["F821"]
+"scripts/test_notification.py" = ["F821"]
+"scripts/train_cascade.py" = ["F821"]

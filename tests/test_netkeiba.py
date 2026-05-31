@@ -208,7 +208,7 @@ class TestParseResultsTable:
         name, horse_id, cells = rows[0]
         assert name == "タスティエーラ"
         assert horse_id == "2020104451"
-        assert cells[0] == "1"   # 着順
+        assert cells[0] == "1"  # 着順
 
     def test_除外馬の着順セルが文字列(self) -> None:
         from bs4 import BeautifulSoup

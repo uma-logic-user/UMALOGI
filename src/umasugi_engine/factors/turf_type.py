@@ -89,12 +89,14 @@ def calc_turf_type_score(
         r[0]: (r[1] or "", r[2] or "") for r in race_info
     }
 
-    df["_venue"]   = df["race_id"].map(lambda x: race_map.get(x, ("", ""))[0])
+    df["_venue"] = df["race_id"].map(lambda x: race_map.get(x, ("", ""))[0])
     df["_surface"] = df["race_id"].map(lambda x: race_map.get(x, ("", ""))[1])
 
     # ダートレースには適用しない
     df["_is_yoshiba"] = df.apply(
-        lambda row: _is_yoshiba(row["_venue"]) if row["_surface"] == _TURF_SURFACE else None,
+        lambda row: (
+            _is_yoshiba(row["_venue"]) if row["_surface"] == _TURF_SURFACE else None
+        ),
         axis=1,
     )
 
@@ -179,6 +181,7 @@ def calc_turf_type_score(
 
 
 # ── ヘルパー ──────────────────────────────────────────────────────────────
+
 
 def _earliest_race_date(df: pd.DataFrame) -> str:
     """df 内の最古の race_id から 'YYYY-MM-DD' 基準日を返す（時系列リーク防止）。

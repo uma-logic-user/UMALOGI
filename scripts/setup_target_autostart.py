@@ -46,13 +46,18 @@ _KNOWN_PATHS: list[Path] = [
 
 _STARTUP_DIR = (
     Path(os.environ.get("APPDATA", ""))
-    / "Microsoft" / "Windows" / "Start Menu" / "Programs" / "Startup"
+    / "Microsoft"
+    / "Windows"
+    / "Start Menu"
+    / "Programs"
+    / "Startup"
 )
 
 
 # ─────────────────────────────────────────────────────────────────────
 # 探索
 # ─────────────────────────────────────────────────────────────────────
+
 
 def find_target_exe(override: str | None = None) -> Path | None:
     """TARGET frontier JV 実行ファイルを探索する。"""
@@ -73,10 +78,14 @@ def find_target_exe(override: str | None = None) -> Path | None:
     # レジストリから検索
     try:
         import winreg
+
         search_keys = [
             (winreg.HKEY_LOCAL_MACHINE, r"SOFTWARE\TARGET\TargetFrontierJV"),
-            (winreg.HKEY_LOCAL_MACHINE, r"SOFTWARE\WOW6432Node\TARGET\TargetFrontierJV"),
-            (winreg.HKEY_CURRENT_USER,  r"SOFTWARE\TARGET\TargetFrontierJV"),
+            (
+                winreg.HKEY_LOCAL_MACHINE,
+                r"SOFTWARE\WOW6432Node\TARGET\TargetFrontierJV",
+            ),
+            (winreg.HKEY_CURRENT_USER, r"SOFTWARE\TARGET\TargetFrontierJV"),
         ]
         for hive, key_path in search_keys:
             try:
@@ -101,7 +110,9 @@ def find_target_exe(override: str | None = None) -> Path | None:
     try:
         result = subprocess.run(
             ["where", "TargetFrontierJV.exe"],
-            capture_output=True, text=True, timeout=5,
+            capture_output=True,
+            text=True,
+            timeout=5,
         )
         if result.returncode == 0:
             p = Path(result.stdout.strip().splitlines()[0])
@@ -118,6 +129,7 @@ def find_target_exe(override: str | None = None) -> Path | None:
 # タスクスケジューラ登録
 # ─────────────────────────────────────────────────────────────────────
 
+
 def register_task_scheduler(exe: Path) -> bool:
     """Windows タスクスケジューラにログオン時自動起動を登録する（冪等）。"""
     print(f"\n[タスクスケジューラ] 登録中: {_TASK_NAME}")
@@ -130,12 +142,18 @@ def register_task_scheduler(exe: Path) -> bool:
 
     result = subprocess.run(
         [
-            "schtasks", "/Create",
-            "/TN", _TASK_NAME,
-            "/TR", str(exe),
-            "/SC", "ONLOGON",
-            "/RL", "HIGHEST",
-            "/DELAY", "0001:00",  # ログオン後1分待機（デスクトップ完全起動を待つ）
+            "schtasks",
+            "/Create",
+            "/TN",
+            _TASK_NAME,
+            "/TR",
+            str(exe),
+            "/SC",
+            "ONLOGON",
+            "/RL",
+            "HIGHEST",
+            "/DELAY",
+            "0001:00",  # ログオン後1分待機（デスクトップ完全起動を待つ）
             "/F",
         ],
         capture_output=True,
@@ -146,11 +164,13 @@ def register_task_scheduler(exe: Path) -> bool:
 
     if result.returncode == 0:
         print(f"[OK] タスクスケジューラ登録成功: {_TASK_NAME}")
-        print(f"     トリガー: ログオン時 / 遅延: 1分 / 権限: 最高")
+        print("     トリガー: ログオン時 / 遅延: 1分 / 権限: 最高")
         return True
     else:
         stderr = result.stderr.strip() or result.stdout.strip()
-        print(f"[WARN] タスクスケジューラ登録失敗 (管理者権限が必要な場合があります): {stderr}")
+        print(
+            f"[WARN] タスクスケジューラ登録失敗 (管理者権限が必要な場合があります): {stderr}"
+        )
         return False
 
 
@@ -174,6 +194,7 @@ def unregister_task_scheduler() -> bool:
 # スタートアップショートカット
 # ─────────────────────────────────────────────────────────────────────
 
+
 def create_startup_shortcut(exe: Path) -> bool:
     """Windows スタートアップフォルダにショートカットを配置する（二重保険）。"""
     print(f"\n[スタートアップ] ショートカット作成中: {_STARTUP_DIR}")
@@ -182,6 +203,7 @@ def create_startup_shortcut(exe: Path) -> bool:
     # win32com による .lnk 作成を試みる
     try:
         import win32com.client  # type: ignore[import-untyped]
+
         shortcut_path = str(_STARTUP_DIR / "TargetFrontierJV.lnk")
         shell = win32com.client.Dispatch("WScript.Shell")
         shortcut = shell.CreateShortCut(shortcut_path)
@@ -198,9 +220,7 @@ def create_startup_shortcut(exe: Path) -> bool:
     try:
         bat_path = _STARTUP_DIR / "start_target_jv.bat"
         bat_path.write_text(
-            f'@echo off\r\n'
-            f'timeout /t 60 /nobreak > NUL\r\n'
-            f'start "" "{exe}"\r\n',
+            f'@echo off\r\ntimeout /t 60 /nobreak > NUL\r\nstart "" "{exe}"\r\n',
             encoding="utf-8",
         )
         print(f"[OK] スタートアップ bat 作成: {bat_path}")
@@ -222,6 +242,7 @@ def remove_startup_shortcut() -> None:
 # ─────────────────────────────────────────────────────────────────────
 # .env への TARGET_JV_PATH 記録
 # ─────────────────────────────────────────────────────────────────────
+
 
 def save_exe_to_env(exe: Path) -> None:
     """TARGET_JV_PATH を .env に追記して scheduler.py のウォッチドッグが参照できるようにする。"""
@@ -254,6 +275,7 @@ def save_exe_to_env(exe: Path) -> None:
 # JVLink 疎通確認
 # ─────────────────────────────────────────────────────────────────────
 
+
 def check_jvlink(launch_if_needed: bool = False, exe: Path | None = None) -> int:
     """
     JVLink 疎通確認。
@@ -268,7 +290,9 @@ def check_jvlink(launch_if_needed: bool = False, exe: Path | None = None) -> int
     try:
         result = subprocess.run(
             [
-                "py", "-3.14-32", "-c",
+                "py",
+                "-3.14-32",
+                "-c",
                 (
                     "import win32com.client, sys;"
                     "jv=win32com.client.Dispatch('JVDTLab.JVLink.1');"
@@ -314,6 +338,7 @@ def check_jvlink(launch_if_needed: bool = False, exe: Path | None = None) -> int
 # メイン
 # ─────────────────────────────────────────────────────────────────────
 
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="TARGET frontier JV 自動起動完全セットアップ",
@@ -326,8 +351,12 @@ def main() -> None:
         ),
     )
     parser.add_argument("--path", help="TARGET JV 実行ファイルの明示パス")
-    parser.add_argument("--check-only", action="store_true", help="JVLink 疎通確認のみ実行")
-    parser.add_argument("--uninstall", action="store_true", help="自動起動登録を解除する")
+    parser.add_argument(
+        "--check-only", action="store_true", help="JVLink 疎通確認のみ実行"
+    )
+    parser.add_argument(
+        "--uninstall", action="store_true", help="自動起動登録を解除する"
+    )
     args = parser.parse_args()
 
     if args.uninstall:
@@ -369,9 +398,13 @@ def main() -> None:
     print("\n" + "=" * 62)
     print("  セットアップ結果")
     print("=" * 62)
-    print(f"  タスクスケジューラ登録 : {'✓ 成功' if ok_task else '✗ 失敗（手動設定が必要）'}")
+    print(
+        f"  タスクスケジューラ登録 : {'✓ 成功' if ok_task else '✗ 失敗（手動設定が必要）'}"
+    )
     print(f"  スタートアップ配置     : {'✓ 成功' if ok_startup else '✗ 失敗'}")
-    print(f"  JVLink 疎通             : {'✓ OK (JVInit=0)' if code == 0 else f'✗ 失敗 (code={code})'}")
+    print(
+        f"  JVLink 疎通             : {'✓ OK (JVInit=0)' if code == 0 else f'✗ 失敗 (code={code})'}"
+    )
     print()
 
     if ok_task or ok_startup:

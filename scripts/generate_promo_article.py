@@ -8,6 +8,7 @@ Usage:
     py scripts/generate_promo_article.py
     py scripts/generate_promo_article.py --stdout
 """
+
 from __future__ import annotations
 
 import argparse
@@ -23,9 +24,10 @@ if str(_ROOT) not in sys.path:
 sys.stdout.reconfigure(encoding="utf-8")
 
 from dotenv import load_dotenv
+
 load_dotenv(_ROOT / ".env", override=False)
 
-_DB_PATH    = _ROOT / "data" / "umalogi.db"
+_DB_PATH = _ROOT / "data" / "umalogi.db"
 _OUTPUT_DIR = _ROOT / "outputs" / "note"
 
 
@@ -50,7 +52,7 @@ def _fetch_latest_stats(conn: sqlite3.Connection) -> dict:
     return {
         "n_bets": row[0] or 0,
         "n_hits": row[1] or 0,
-        "roi":    row[2] or 0.0,
+        "roi": row[2] or 0.0,
     }
 
 
@@ -81,10 +83,10 @@ UMALOGI は、JRA-VAN 公式データ（出走・調教・血統・オッズ）�
 
 | 指標 | 実績値 |
 |------|-------|
-| 総ベット数 | {stats['n_bets']:,} 件 |
-| 的中数 | {stats['n_hits']:,} 件 |
+| 総ベット数 | {stats["n_bets"]:,} 件 |
+| 的中数 | {stats["n_hits"]:,} 件 |
 | 的中率 | {hit_rate:.1f}% |
-| **通算 ROI** | **{stats['roi']:.1f}%** |
+| **通算 ROI** | **{stats["roi"]:.1f}%** |
 
 > ※ JRA 控除率（単勝 80% / 複勝 75%）を上回る ROI を維持しています。
 
@@ -157,8 +159,12 @@ UMALOGI は、JRA-VAN 公式データ（出走・調教・血統・オッズ）�
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="note プロモーション固定記事を生成する")
-    parser.add_argument("--stdout", action="store_true", help="ファイル保存せずに標準出力へ")
+    parser = argparse.ArgumentParser(
+        description="note プロモーション固定記事を生成する"
+    )
+    parser.add_argument(
+        "--stdout", action="store_true", help="ファイル保存せずに標準出力へ"
+    )
     args = parser.parse_args()
 
     conn = sqlite3.connect(str(_DB_PATH))

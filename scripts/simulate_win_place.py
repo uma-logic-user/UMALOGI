@@ -14,6 +14,7 @@ HonmeiModel（単勝）・PlaceModel（複勝）の両方を使い、
     py scripts/simulate_win_place.py --year 2026
     py scripts/simulate_win_place.py --date-from 2024-01-01 --date-to 2026-12-31
 """
+
 from __future__ import annotations
 
 import argparse
@@ -30,6 +31,7 @@ if str(_ROOT) not in sys.path:
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")  # type: ignore[attr-defined]
 
 import logging
+
 logging.basicConfig(
     level=logging.WARNING,
     format="%(asctime)s %(levelname)s: %(message)s",
@@ -224,13 +226,13 @@ def simulate_win_place(
             if df is None or len(df) < 2:
                 continue
 
-            win_scores   = honmei.predict(df)
+            win_scores = honmei.predict(df)
             place_scores = place_model.predict(df)
 
-            win_top_idx   = win_scores.idxmax()
+            win_top_idx = win_scores.idxmax()
             place_top_idx = place_scores.idxmax()
 
-            win_horse_name   = df.loc[win_top_idx,   "horse_name"]
+            win_horse_name = df.loc[win_top_idx, "horse_name"]
             place_horse_name = df.loc[place_top_idx, "horse_name"]
 
             def _get_horse_num(name: str) -> int:
@@ -240,64 +242,69 @@ def simulate_win_place(
                 ).fetchone()
                 return row[0] if row else 0
 
-            win_horse_num   = _get_horse_num(win_horse_name)
+            win_horse_num = _get_horse_num(win_horse_name)
             place_horse_num = _get_horse_num(place_horse_name)
 
             # ── 単勝 ─────────────────────────────────────────────
             # race_payouts.payout は ¥100 ベース払戻なので bet_amount/100 倍してスケール
             win_invested = 0
-            win_payout   = 0
-            win_hit      = False
+            win_payout = 0
+            win_hit = False
             win_odds_val = 0.0
             if balance >= bet_amount:
                 win_key = f"{race_id}:{win_horse_num}"
                 raw_p = win_cache.get(win_key, 0)
-                win_hit      = raw_p > 0
-                win_payout   = int(raw_p * bet_amount / 100) if win_hit else 0
+                win_hit = raw_p > 0
+                win_payout = int(raw_p * bet_amount / 100) if win_hit else 0
                 win_invested = bet_amount
                 win_odds_val = float(df.loc[win_top_idx, "win_odds"] or 0.0)
-                balance      = balance - bet_amount + win_payout
+                balance = balance - bet_amount + win_payout
 
             # ── 複勝 ─────────────────────────────────────────────
-            place_invested  = 0
-            place_payout    = 0
-            place_hit       = False
-            place_odds_low  = 0.0
+            place_invested = 0
+            place_payout = 0
+            place_hit = False
+            place_odds_low = 0.0
             place_odds_high = 0.0
             if balance >= bet_amount:
                 place_pays = place_cache.get(race_id, {})
                 raw_p = place_pays.get(str(place_horse_num), 0)
-                place_hit      = raw_p > 0
-                place_payout   = int(raw_p * bet_amount / 100) if place_hit else 0
+                place_hit = raw_p > 0
+                place_payout = int(raw_p * bet_amount / 100) if place_hit else 0
                 place_invested = bet_amount
-                balance        = balance - bet_amount + place_payout
+                balance = balance - bet_amount + place_payout
                 if place_pays:
                     vals = list(place_pays.values())
-                    place_odds_low  = min(vals) / 100.0
+                    place_odds_low = min(vals) / 100.0
                     place_odds_high = max(vals) / 100.0
 
             balance = max(balance, 0.0)
 
-            result.records.append(RaceBetRecord(
-                race_id=race_id,
-                race_date=race_date,
-                win_predicted_horse=win_horse_num,
-                win_odds=win_odds_val,
-                win_hit=win_hit,
-                win_payout=win_payout,
-                win_invested=win_invested,
-                place_predicted_horse=place_horse_num,
-                place_odds_low=place_odds_low,
-                place_odds_high=place_odds_high,
-                place_hit=place_hit,
-                place_payout=place_payout,
-                place_invested=place_invested,
-                balance_after=balance,
-            ))
+            result.records.append(
+                RaceBetRecord(
+                    race_id=race_id,
+                    race_date=race_date,
+                    win_predicted_horse=win_horse_num,
+                    win_odds=win_odds_val,
+                    win_hit=win_hit,
+                    win_payout=win_payout,
+                    win_invested=win_invested,
+                    place_predicted_horse=place_horse_num,
+                    place_odds_low=place_odds_low,
+                    place_odds_high=place_odds_high,
+                    place_hit=place_hit,
+                    place_payout=place_payout,
+                    place_invested=place_invested,
+                    balance_after=balance,
+                )
+            )
 
             processed += 1
             if processed % 500 == 0:
-                print(f"  処理済: {processed}/{len(races)}レース  残高: ¥{balance:,.0f}", flush=True)
+                print(
+                    f"  処理済: {processed}/{len(races)}レース  残高: ¥{balance:,.0f}",
+                    flush=True,
+                )
 
         except Exception as e:
             logger.debug("race %s スキップ: %s", race_id, e)
@@ -313,6 +320,7 @@ def _write_report(
 ) -> None:
     """docs/win_place_simulation_report.md を生成する。"""
     from datetime import datetime
+
     now_str = datetime.now().strftime("%Y-%m-%d %H:%M")
 
     lines: list[str] = [
@@ -363,7 +371,9 @@ def _write_report(
         wpl = wp - wi
         wroi = wp / wi * 100 if wi > 0 else 0.0
         wsign = "+" if wpl >= 0 else ""
-        lines.append(f"| 単勝 | {wb:,} | {wh:,} | {wh/wb*100:.1f}% | {wroi:.1f}% | {wsign}¥{wpl:,.0f} |")
+        lines.append(
+            f"| 単勝 | {wb:,} | {wh:,} | {wh / wb * 100:.1f}% | {wroi:.1f}% | {wsign}¥{wpl:,.0f} |"
+        )
 
         pb = sim.n_place_bets
         ph = sim.n_place_hits
@@ -372,7 +382,9 @@ def _write_report(
         ppl = pp - pi
         proi = pp / pi * 100 if pi > 0 else 0.0
         psign = "+" if ppl >= 0 else ""
-        lines.append(f"| 複勝 | {pb:,} | {ph:,} | {ph/pb*100:.1f}% | {proi:.1f}% | {psign}¥{ppl:,.0f} |")
+        lines.append(
+            f"| 複勝 | {pb:,} | {ph:,} | {ph / pb * 100:.1f}% | {proi:.1f}% | {psign}¥{ppl:,.0f} |"
+        )
         lines.append("")
 
         lines += [
@@ -382,7 +394,7 @@ def _write_report(
             "|---|---|",
             f"| 初期資本 | ¥{sim.initial_capital:,.0f} |",
             f"| 最終残高 | ¥{sim.final_balance:,.0f} |",
-            f"| 損益 | {'+'  if sim.final_balance >= sim.initial_capital else ''}¥{(sim.final_balance - sim.initial_capital):,.0f} |",
+            f"| 損益 | {'+' if sim.final_balance >= sim.initial_capital else ''}¥{(sim.final_balance - sim.initial_capital):,.0f} |",
             f"| 最大ドローダウン | ¥{sim.max_drawdown:,.0f} |",
             f"| 最長連敗数 | {sim.max_consecutive_losses}レース |",
             f"| 残高<¥1万 発生件数 | {sum(1 for r in sim.records if r.balance_after < 10_000):,}件 |",
@@ -406,7 +418,7 @@ def _write_report(
                 "|---|---|---|",
                 f"| ベット数 | {wb:,} | {pb:,} |",
                 f"| 的中数 | {wh:,} | {ph:,} |",
-                f"| 的中率 | {wh/wb*100:.1f}% | {ph/pb*100:.1f}% |",
+                f"| 的中率 | {wh / wb * 100:.1f}% | {ph / pb * 100:.1f}% |",
                 f"| ROI | {sim.roi_win:.1f}% | {sim.roi_place:.1f}% |",
                 f"| 投資合計 | ¥{sim.total_invested_win:,} | ¥{sim.total_invested_place:,} |",
                 f"| 払戻合計 | ¥{sim.total_payout_win:,} | ¥{sim.total_payout_place:,} |",
@@ -449,13 +461,14 @@ def _write_report(
 def main() -> None:
     ap = argparse.ArgumentParser(description="単勝・複勝 3年間シミュレーション")
     ap.add_argument("--date-from", default="2024-01-01")
-    ap.add_argument("--date-to",   default="2026-12-31")
-    ap.add_argument("--year",      default=None, help="単年のみ (例: 2025)")
+    ap.add_argument("--date-to", default="2026-12-31")
+    ap.add_argument("--year", default=None, help="単年のみ (例: 2025)")
     ap.add_argument("--initial-capital", type=int, default=INITIAL_CAPITAL)
-    ap.add_argument("--bet-amount",      type=int, default=BET_AMOUNT)
+    ap.add_argument("--bet-amount", type=int, default=BET_AMOUNT)
     args = ap.parse_args()
 
     from src.database.init_db import init_db
+
     conn = init_db()
 
     print("=" * 60)
@@ -470,30 +483,36 @@ def main() -> None:
         print(f"\n[{label}] シミュレーション中...")
         t0 = time.time()
         results[label] = simulate_win_place(
-            conn, f"{label}-01-01", f"{label}-12-31",
+            conn,
+            f"{label}-01-01",
+            f"{label}-12-31",
             initial_capital=args.initial_capital,
             bet_amount=args.bet_amount,
         )
-        print(f"[{label}] 完了: {time.time()-t0:.1f}秒")
+        print(f"[{label}] 完了: {time.time() - t0:.1f}秒")
     else:
         for yr in ["2024", "2025", "2026"]:
             print(f"\n[{yr}] シミュレーション中...")
             t0 = time.time()
             results[yr] = simulate_win_place(
-                conn, f"{yr}-01-01", f"{yr}-12-31",
+                conn,
+                f"{yr}-01-01",
+                f"{yr}-12-31",
                 initial_capital=args.initial_capital,
                 bet_amount=args.bet_amount,
             )
-            print(f"[{yr}] 完了: {time.time()-t0:.1f}秒")
+            print(f"[{yr}] 完了: {time.time() - t0:.1f}秒")
 
-        print(f"\n[ALL 2024-2026] シミュレーション中...")
+        print("\n[ALL 2024-2026] シミュレーション中...")
         t0 = time.time()
         results["ALL"] = simulate_win_place(
-            conn, args.date_from, args.date_to,
+            conn,
+            args.date_from,
+            args.date_to,
             initial_capital=args.initial_capital,
             bet_amount=args.bet_amount,
         )
-        print(f"[ALL] 完了: {time.time()-t0:.1f}秒")
+        print(f"[ALL] 完了: {time.time() - t0:.1f}秒")
 
     conn.close()
 
@@ -506,11 +525,17 @@ def main() -> None:
             continue
         print(f"\n  [{label}] {len(sim.records):,}レース")
         if sim.n_win_bets > 0:
-            print(f"    単勝: {sim.n_win_hits:,}的中/{sim.n_win_bets:,}件 ROI={sim.roi_win:.1f}%")
+            print(
+                f"    単勝: {sim.n_win_hits:,}的中/{sim.n_win_bets:,}件 ROI={sim.roi_win:.1f}%"
+            )
         if sim.n_place_bets > 0:
-            print(f"    複勝: {sim.n_place_hits:,}的中/{sim.n_place_bets:,}件 ROI={sim.roi_place:.1f}%")
+            print(
+                f"    複勝: {sim.n_place_hits:,}的中/{sim.n_place_bets:,}件 ROI={sim.roi_place:.1f}%"
+            )
         print(f"    初期¥{sim.initial_capital:,.0f} → 最終¥{sim.final_balance:,.0f}")
-        print(f"    最大DD: ¥{sim.max_drawdown:,.0f}  最長連敗: {sim.max_consecutive_losses}レース")
+        print(
+            f"    最大DD: ¥{sim.max_drawdown:,.0f}  最長連敗: {sim.max_consecutive_losses}レース"
+        )
 
     out_path = _ROOT / "docs" / "win_place_simulation_report.md"
     _write_report(results, out_path)

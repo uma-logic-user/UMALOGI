@@ -16,7 +16,6 @@ from __future__ import annotations
 
 import argparse
 import logging
-import os
 import sqlite3
 import sys
 import zipfile
@@ -25,9 +24,9 @@ from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-_ROOT     = Path(__file__).resolve().parents[1]
-_BACKUP   = _ROOT / "data" / "backups"
-_KEEP_MAX = 12   # 直近12世代を保持
+_ROOT = Path(__file__).resolve().parents[1]
+_BACKUP = _ROOT / "data" / "backups"
+_KEEP_MAX = 12  # 直近12世代を保持
 
 logging.basicConfig(
     level=logging.INFO,
@@ -48,8 +47,11 @@ def _collect_targets() -> list[Path]:
 
     # ── ログファイル ────────────────────────────────────────────────────────
     for log_name in [
-        "auto_runner.log", "scheduler.log", "nextjs.log",
-        "self_healing.log", "tunnel.log",
+        "auto_runner.log",
+        "scheduler.log",
+        "nextjs.log",
+        "self_healing.log",
+        "tunnel.log",
     ]:
         p = _ROOT / "data" / log_name
         if p.exists():
@@ -105,7 +107,9 @@ def run_backup(dry_run: bool = False) -> Path | None:
     total_bytes = sum(t.stat().st_size for t in targets)
     logger.info(
         "バックアップ開始: %d ファイル / %.1f MB → %s",
-        len(targets), total_bytes / 1_048_576, zip_path.name,
+        len(targets),
+        total_bytes / 1_048_576,
+        zip_path.name,
     )
 
     if dry_run:
@@ -114,7 +118,9 @@ def run_backup(dry_run: bool = False) -> Path | None:
         return None
 
     # ZIP 圧縮
-    with zipfile.ZipFile(zip_path, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=6) as zf:
+    with zipfile.ZipFile(
+        zip_path, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=6
+    ) as zf:
         for target in targets:
             # ZIP 内パスをリポジトリ相対にする
             try:
@@ -128,7 +134,9 @@ def run_backup(dry_run: bool = False) -> Path | None:
     ratio = (1 - zip_size / max(total_bytes, 1)) * 100
     logger.info(
         "ZIP 作成完了: %.1f MB → %.1f MB (圧縮率 %.0f%%)",
-        total_bytes / 1_048_576, zip_size / 1_048_576, ratio,
+        total_bytes / 1_048_576,
+        zip_size / 1_048_576,
+        ratio,
     )
 
     _rotate_old_backups()
@@ -138,7 +146,9 @@ def run_backup(dry_run: bool = False) -> Path | None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="UMALOGI 週次バックアップ")
-    parser.add_argument("--dry-run", action="store_true", help="実際には書き込まずファイルリストを表示")
+    parser.add_argument(
+        "--dry-run", action="store_true", help="実際には書き込まずファイルリストを表示"
+    )
     args = parser.parse_args()
 
     result = run_backup(dry_run=args.dry_run)

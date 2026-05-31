@@ -3,10 +3,11 @@ src/notification/prerace_alert.py のユニットテスト。
 
 SQLite をインメモリ DB で代替し、実際の Discord 送信はモックする。
 """
+
 from __future__ import annotations
 
 import sqlite3
-from datetime import datetime, timedelta
+from datetime import datetime
 from unittest.mock import MagicMock, patch
 
 import pytest
@@ -16,20 +17,20 @@ from src.notification.prerace_alert import (
     _build_alert_message,
     _estimate_start,
     _format_stake,
-    _notified_races,
-    _reset_if_new_day,
     check_and_send_prerace_alerts,
 )
 
 
 # ── フィクスチャ ──────────────────────────────────────────────────────────────
 
+
 def _make_db(races: list[dict], predictions: list[dict]) -> str:
     """インメモリ SQLite にテストデータを投入して ':memory:' パスを返す。
 
     実際の関数に渡すため NamedTemporaryFile を使う。
     """
-    import tempfile, os
+    import tempfile
+
     tmp = tempfile.NamedTemporaryFile(suffix=".db", delete=False)
     tmp.close()
     conn = sqlite3.connect(tmp.name)
@@ -69,12 +70,24 @@ def _make_db(races: list[dict], predictions: list[dict]) -> str:
     for r in races:
         conn.execute(
             "INSERT INTO races (race_id, race_name, date, venue, race_number) VALUES (?,?,?,?,?)",
-            (r["race_id"], r.get("race_name", ""), r["date"], r.get("venue", "東京"), r["race_number"]),
+            (
+                r["race_id"],
+                r.get("race_name", ""),
+                r["date"],
+                r.get("venue", "東京"),
+                r["race_number"],
+            ),
         )
     for p in predictions:
         conn.execute(
             "INSERT INTO predictions (race_id, model_type, bet_type, expected_value, recommended_bet) VALUES (?,?,?,?,?)",
-            (p["race_id"], p.get("model_type", "本命"), p.get("bet_type", "単勝"), p["expected_value"], p.get("recommended_bet", 5000)),
+            (
+                p["race_id"],
+                p.get("model_type", "本命"),
+                p.get("bet_type", "単勝"),
+                p["expected_value"],
+                p.get("recommended_bet", 5000),
+            ),
         )
     conn.commit()
     conn.close()
@@ -83,6 +96,7 @@ def _make_db(races: list[dict], predictions: list[dict]) -> str:
 
 def _cleanup_db(path: str) -> None:
     import os
+
     try:
         os.unlink(path)
     except Exception:
@@ -93,6 +107,7 @@ def _cleanup_db(path: str) -> None:
 def reset_notified():
     """各テスト前後に _notified_races と _notified_date をリセットする。"""
     import src.notification.prerace_alert as m
+
     m._notified_races.clear()
     m._notified_date = ""
     yield
@@ -101,6 +116,7 @@ def reset_notified():
 
 
 # ── _estimate_start ────────────────────────────────────────────────────────────
+
 
 class TestEstimateStart:
     def test_r1_is_10_00(self):
@@ -131,6 +147,7 @@ class TestEstimateStart:
 
 # ── _format_stake ─────────────────────────────────────────────────────────────
 
+
 class TestFormatStake:
     def test_none_returns_dash(self):
         assert _format_stake(None) == "—"
@@ -153,17 +170,32 @@ class TestFormatStake:
 
 # ── _build_alert_message ──────────────────────────────────────────────────────
 
+
 class TestBuildAlertMessage:
     def test_contains_at_everyone(self):
         race_info = {"venue": "東京", "race_number": 11, "race_name": "東京優駿"}
-        preds = [{"model_type": "本命", "bet_type": "単勝", "expected_value": 1.5, "recommended_bet": 5000}]
+        preds = [
+            {
+                "model_type": "本命",
+                "bet_type": "単勝",
+                "expected_value": 1.5,
+                "recommended_bet": 5000,
+            }
+        ]
         start = datetime(2026, 6, 7, 15, 0)
         msg = _build_alert_message("202606070511", race_info, preds, start)
         assert "@everyone" in msg
 
     def test_contains_venue_and_race_number(self):
         race_info = {"venue": "中山", "race_number": 9, "race_name": ""}
-        preds = [{"model_type": "ALPHA", "bet_type": "複勝", "expected_value": 1.3, "recommended_bet": 3000}]
+        preds = [
+            {
+                "model_type": "ALPHA",
+                "bet_type": "複勝",
+                "expected_value": 1.3,
+                "recommended_bet": 3000,
+            }
+        ]
         start = datetime(2026, 6, 7, 14, 0)
         msg = _build_alert_message("202606060909", race_info, preds, start)
         assert "中山" in msg
@@ -171,7 +203,14 @@ class TestBuildAlertMessage:
 
     def test_contains_ev_and_stake(self):
         race_info = {"venue": "阪神", "race_number": 6, "race_name": ""}
-        preds = [{"model_type": "卍", "bet_type": "馬連", "expected_value": 1.85, "recommended_bet": 7000}]
+        preds = [
+            {
+                "model_type": "卍",
+                "bet_type": "馬連",
+                "expected_value": 1.85,
+                "recommended_bet": 7000,
+            }
+        ]
         start = datetime(2026, 6, 7, 12, 30)
         msg = _build_alert_message("202606060606", race_info, preds, start)
         assert "1.85" in msg
@@ -179,14 +218,28 @@ class TestBuildAlertMessage:
 
     def test_contains_start_time(self):
         race_info = {"venue": "東京", "race_number": 11, "race_name": ""}
-        preds = [{"model_type": "本命", "bet_type": "単勝", "expected_value": 2.0, "recommended_bet": 5000}]
+        preds = [
+            {
+                "model_type": "本命",
+                "bet_type": "単勝",
+                "expected_value": 2.0,
+                "recommended_bet": 5000,
+            }
+        ]
         start = datetime(2026, 6, 7, 15, 0)
         msg = _build_alert_message("202606070511", race_info, preds, start)
         assert "15:00" in msg
 
     def test_race_name_shown_when_present(self):
         race_info = {"venue": "東京", "race_number": 11, "race_name": "日本ダービー"}
-        preds = [{"model_type": "本命", "bet_type": "単勝", "expected_value": 1.5, "recommended_bet": 5000}]
+        preds = [
+            {
+                "model_type": "本命",
+                "bet_type": "単勝",
+                "expected_value": 1.5,
+                "recommended_bet": 5000,
+            }
+        ]
         start = datetime(2026, 6, 7, 15, 0)
         msg = _build_alert_message("202606070511", race_info, preds, start)
         assert "日本ダービー" in msg
@@ -194,10 +247,10 @@ class TestBuildAlertMessage:
 
 # ── check_and_send_prerace_alerts ─────────────────────────────────────────────
 
+
 class TestCheckAndSendPreraceAlerts:
     def _now_14min_before_r11(self, date_str: str = "2026-05-31") -> datetime:
         """R11 (15:00) の14分前 = 14:46"""
-        from datetime import date
         base = datetime.fromisoformat(date_str)
         return base.replace(hour=14, minute=46)
 
@@ -205,8 +258,21 @@ class TestCheckAndSendPreraceAlerts:
         """EV >= 閾値 の予想があり 14〜16 分前のレースを1件通知する。"""
         date_str = "2026-05-31"
         db_path = _make_db(
-            races=[{"race_id": "202605310511", "date": date_str, "race_number": 11, "venue": "東京"}],
-            predictions=[{"race_id": "202605310511", "expected_value": PRERACE_ALERT_EV_THRESHOLD + 0.1, "recommended_bet": 5000}],
+            races=[
+                {
+                    "race_id": "202605310511",
+                    "date": date_str,
+                    "race_number": 11,
+                    "venue": "東京",
+                }
+            ],
+            predictions=[
+                {
+                    "race_id": "202605310511",
+                    "expected_value": PRERACE_ALERT_EV_THRESHOLD + 0.1,
+                    "recommended_bet": 5000,
+                }
+            ],
         )
         now = self._now_14min_before_r11(date_str)
 
@@ -221,8 +287,21 @@ class TestCheckAndSendPreraceAlerts:
         """EV が閾値未満の予想しかないレースは通知しない。"""
         date_str = "2026-05-31"
         db_path = _make_db(
-            races=[{"race_id": "202605310511", "date": date_str, "race_number": 11, "venue": "東京"}],
-            predictions=[{"race_id": "202605310511", "expected_value": PRERACE_ALERT_EV_THRESHOLD - 0.1, "recommended_bet": 5000}],
+            races=[
+                {
+                    "race_id": "202605310511",
+                    "date": date_str,
+                    "race_number": 11,
+                    "venue": "東京",
+                }
+            ],
+            predictions=[
+                {
+                    "race_id": "202605310511",
+                    "expected_value": PRERACE_ALERT_EV_THRESHOLD - 0.1,
+                    "recommended_bet": 5000,
+                }
+            ],
         )
         now = self._now_14min_before_r11(date_str)
 
@@ -237,8 +316,21 @@ class TestCheckAndSendPreraceAlerts:
         """同じレースに対して2回目の呼び出しでは通知しない。"""
         date_str = "2026-05-31"
         db_path = _make_db(
-            races=[{"race_id": "202605310511", "date": date_str, "race_number": 11, "venue": "東京"}],
-            predictions=[{"race_id": "202605310511", "expected_value": PRERACE_ALERT_EV_THRESHOLD + 0.1, "recommended_bet": 5000}],
+            races=[
+                {
+                    "race_id": "202605310511",
+                    "date": date_str,
+                    "race_number": 11,
+                    "venue": "東京",
+                }
+            ],
+            predictions=[
+                {
+                    "race_id": "202605310511",
+                    "expected_value": PRERACE_ALERT_EV_THRESHOLD + 0.1,
+                    "recommended_bet": 5000,
+                }
+            ],
         )
         now = self._now_14min_before_r11(date_str)
 
@@ -255,8 +347,21 @@ class TestCheckAndSendPreraceAlerts:
         """発走まで17分以上あるレース（ウィンドウ外）は通知しない。"""
         date_str = "2026-05-31"
         db_path = _make_db(
-            races=[{"race_id": "202605310511", "date": date_str, "race_number": 11, "venue": "東京"}],
-            predictions=[{"race_id": "202605310511", "expected_value": PRERACE_ALERT_EV_THRESHOLD + 0.5, "recommended_bet": 5000}],
+            races=[
+                {
+                    "race_id": "202605310511",
+                    "date": date_str,
+                    "race_number": 11,
+                    "venue": "東京",
+                }
+            ],
+            predictions=[
+                {
+                    "race_id": "202605310511",
+                    "expected_value": PRERACE_ALERT_EV_THRESHOLD + 0.5,
+                    "recommended_bet": 5000,
+                }
+            ],
         )
         # R11 = 15:00、17分前 = 14:43 → ウィンドウ外
         now = datetime.fromisoformat(date_str).replace(hour=14, minute=43)
@@ -272,8 +377,21 @@ class TestCheckAndSendPreraceAlerts:
         """発走まで13分以下（ウィンドウ後）は通知しない。"""
         date_str = "2026-05-31"
         db_path = _make_db(
-            races=[{"race_id": "202605310511", "date": date_str, "race_number": 11, "venue": "東京"}],
-            predictions=[{"race_id": "202605310511", "expected_value": PRERACE_ALERT_EV_THRESHOLD + 0.5, "recommended_bet": 5000}],
+            races=[
+                {
+                    "race_id": "202605310511",
+                    "date": date_str,
+                    "race_number": 11,
+                    "venue": "東京",
+                }
+            ],
+            predictions=[
+                {
+                    "race_id": "202605310511",
+                    "expected_value": PRERACE_ALERT_EV_THRESHOLD + 0.5,
+                    "recommended_bet": 5000,
+                }
+            ],
         )
         # R11 = 15:00、12分前 = 14:48 → ウィンドウ後
         now = datetime.fromisoformat(date_str).replace(hour=14, minute=48)
@@ -302,11 +420,33 @@ class TestCheckAndSendPreraceAlerts:
         """EV >= 閾値 の予想が複数あっても、レース単位で1回だけ通知する。"""
         date_str = "2026-05-31"
         db_path = _make_db(
-            races=[{"race_id": "202605310511", "date": date_str, "race_number": 11, "venue": "東京"}],
+            races=[
+                {
+                    "race_id": "202605310511",
+                    "date": date_str,
+                    "race_number": 11,
+                    "venue": "東京",
+                }
+            ],
             predictions=[
-                {"race_id": "202605310511", "model_type": "本命", "expected_value": 1.8, "recommended_bet": 5000},
-                {"race_id": "202605310511", "model_type": "ALPHA", "expected_value": 1.5, "recommended_bet": 3000},
-                {"race_id": "202605310511", "model_type": "卍", "expected_value": 1.3, "recommended_bet": 2000},
+                {
+                    "race_id": "202605310511",
+                    "model_type": "本命",
+                    "expected_value": 1.8,
+                    "recommended_bet": 5000,
+                },
+                {
+                    "race_id": "202605310511",
+                    "model_type": "ALPHA",
+                    "expected_value": 1.5,
+                    "recommended_bet": 3000,
+                },
+                {
+                    "race_id": "202605310511",
+                    "model_type": "卍",
+                    "expected_value": 1.3,
+                    "recommended_bet": 2000,
+                },
             ],
         )
         now = self._now_14min_before_r11(date_str)
@@ -327,12 +467,30 @@ class TestCheckAndSendPreraceAlerts:
         date_str = "2026-05-31"
         db_path = _make_db(
             races=[
-                {"race_id": "202605310511", "date": date_str, "race_number": 11, "venue": "東京"},
-                {"race_id": "202605310611", "date": date_str, "race_number": 11, "venue": "中山"},
+                {
+                    "race_id": "202605310511",
+                    "date": date_str,
+                    "race_number": 11,
+                    "venue": "東京",
+                },
+                {
+                    "race_id": "202605310611",
+                    "date": date_str,
+                    "race_number": 11,
+                    "venue": "中山",
+                },
             ],
             predictions=[
-                {"race_id": "202605310511", "expected_value": 1.5, "recommended_bet": 5000},
-                {"race_id": "202605310611", "expected_value": 1.8, "recommended_bet": 6000},
+                {
+                    "race_id": "202605310511",
+                    "expected_value": 1.5,
+                    "recommended_bet": 5000,
+                },
+                {
+                    "race_id": "202605310611",
+                    "expected_value": 1.8,
+                    "recommended_bet": 6000,
+                },
             ],
         )
         now = self._now_14min_before_r11(date_str)
@@ -346,6 +504,7 @@ class TestCheckAndSendPreraceAlerts:
 
 
 # ── notify_prerace_15min (Router) ─────────────────────────────────────────────
+
 
 class TestNotifyPrerace15min:
     def test_sends_to_ev_alert_channel(self):

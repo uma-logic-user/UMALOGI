@@ -33,7 +33,7 @@ from src.umasugi_engine.factors.turf_type import calc_turf_type_score
 
 # ── 定数 ─────────────────────────────────────────────────────────────────────
 UMASUGI_THRESHOLD = 0.45  # このスコア未満の予想はフィルタリング
-_BATCH_SIZE = 200          # race_id をまとめてクエリする単位
+_BATCH_SIZE = 200  # race_id をまとめてクエリする単位
 
 
 def _parse_combo_horse_nums(combination_json: str | None) -> list[int]:
@@ -55,7 +55,9 @@ def _parse_combo_horse_nums(combination_json: str | None) -> list[int]:
         return []
 
 
-def _build_horse_map(conn: sqlite3.Connection, race_ids: list[str]) -> dict[tuple[str, int], str]:
+def _build_horse_map(
+    conn: sqlite3.Connection, race_ids: list[str]
+) -> dict[tuple[str, int], str]:
     """(race_id, horse_number) → horse_id マップを構築する。"""
     if not race_ids:
         return {}
@@ -108,12 +110,12 @@ def _compute_umasugi_scores(
     # odds_momentum / crowd はリアルタイムのため backtest では 0.5 固定
 
     df["umasugi_score"] = (
-        0.50 * 0.5                                            # legacy 固定
+        0.50 * 0.5  # legacy 固定
         + 0.10 * df["track_style_score"].fillna(0.5)
         + 0.15 * df["turf_type_score"].fillna(0.5)
         + 0.07 * df["training_grade_score"].fillna(0.5)
-        + 0.05 * 0.5                                          # odds_momentum 固定
-        + 0.05 * 0.5                                          # crowd 固定
+        + 0.05 * 0.5  # odds_momentum 固定
+        + 0.05 * 0.5  # crowd 固定
         + 0.03 * df["paddock_score"].fillna(0.5)
         + 0.03 * df["jockey_course_score"].fillna(0.5)
         + 0.02 * df["trainer_course_score"].fillna(0.5)
@@ -129,9 +131,9 @@ def run_backtest(days: int = 30, threshold: float = UMASUGI_THRESHOLD) -> None:
     conn = sqlite3.connect("data/umalogi.db")
 
     # ── Step 1: 対象 predictions を取得 ─────────────────────────────────────
-    print(f"\n{'='*60}")
+    print(f"\n{'=' * 60}")
     print(f" umasugi_engine バックテスト (直近 {days} 日 / 閾値 {threshold})")
-    print(f"{'='*60}")
+    print(f"{'=' * 60}")
 
     rows = conn.execute(
         f"""
@@ -148,11 +150,20 @@ def run_backtest(days: int = 30, threshold: float = UMASUGI_THRESHOLD) -> None:
         """,
     ).fetchall()
 
-    df = pd.DataFrame(rows, columns=[
-        "pred_id", "race_id", "bet_type", "combination_json",
-        "expected_value", "recommended_bet",
-        "is_hit", "profit", "payout",
-    ])
+    df = pd.DataFrame(
+        rows,
+        columns=[
+            "pred_id",
+            "race_id",
+            "bet_type",
+            "combination_json",
+            "expected_value",
+            "recommended_bet",
+            "is_hit",
+            "profit",
+            "payout",
+        ],
+    )
     print(f"\n対象予想数: {len(df):,} 件 / レース数: {df['race_id'].nunique():,}")
 
     # ── Step 2: 馬番 → horse_id マップ ───────────────────────────────────────
@@ -177,7 +188,9 @@ def run_backtest(days: int = 30, threshold: float = UMASUGI_THRESHOLD) -> None:
 
     # ── Step 4: umasugi_score を計算（バッチ処理） ────────────────────────────
     print("\numasugi_score を計算中...")
-    pairs = list(df[["race_id", "horse_id"]].drop_duplicates().itertuples(index=False, name=None))
+    pairs = list(
+        df[["race_id", "horse_id"]].drop_duplicates().itertuples(index=False, name=None)
+    )
     score_map = _compute_umasugi_scores(conn, pairs)
     df["umasugi_score"] = df.apply(
         lambda r: score_map.get((r["race_id"], r["horse_id"]), 0.5), axis=1
@@ -205,14 +218,14 @@ def run_backtest(days: int = 30, threshold: float = UMASUGI_THRESHOLD) -> None:
             "roi": round(roi, 1) if roi else None,
         }
 
-    legacy  = _roi(df)
+    legacy = _roi(df)
     umasugi = _roi(df[df["umasugi_score"] >= threshold])
     filtered_out = _roi(df[df["umasugi_score"] < threshold])
 
     # ── Step 6: 結果表示 ──────────────────────────────────────────────────────
-    print(f"\n{'─'*60}")
+    print(f"\n{'─' * 60}")
     print(f"{'指標':<20} {'Legacy':>12} {'Umasugi':>12} {'除外分':>12}")
-    print(f"{'─'*60}")
+    print(f"{'─' * 60}")
     for key, label in [
         ("count", "予想件数"),
         ("hits", "的中件数"),
@@ -225,29 +238,48 @@ def run_backtest(days: int = 30, threshold: float = UMASUGI_THRESHOLD) -> None:
         lv = legacy.get(key)
         um = umasugi.get(key)
         fo = filtered_out.get(key)
+
         def fmt(v: Any) -> str:
             if v is None:
                 return "  N/A"
             if isinstance(v, float):
                 return f"{v:>12.1f}"
             return f"{v:>12,}"
+
         print(f"{label:<20} {fmt(lv)} {fmt(um)} {fmt(fo)}")
-    print(f"{'─'*60}")
+    print(f"{'─' * 60}")
 
     # ── Step 7: umasugi_score 分布 ────────────────────────────────────────────
     print("\n【umasugi_score 分布】")
     bins = [0.0, 0.35, 0.40, 0.43, 0.45, 0.47, 0.50, 0.53, 0.55, 1.01]
-    labels_b = ["<0.35", "0.35-0.40", "0.40-0.43", "0.43-0.45",
-                "0.45-0.47", "0.47-0.50", "0.50-0.53", "0.53-0.55", "≥0.55"]
-    df["score_bin"] = pd.cut(df["umasugi_score"], bins=bins, labels=labels_b, right=False)
-    dist = df.groupby("score_bin", observed=True).agg(
-        count=("pred_id", "count"),
-        hit_rate=("is_hit", lambda x: x.mean() * 100),
-        avg_profit=("profit", "mean"),
-    ).reset_index()
+    labels_b = [
+        "<0.35",
+        "0.35-0.40",
+        "0.40-0.43",
+        "0.43-0.45",
+        "0.45-0.47",
+        "0.47-0.50",
+        "0.50-0.53",
+        "0.53-0.55",
+        "≥0.55",
+    ]
+    df["score_bin"] = pd.cut(
+        df["umasugi_score"], bins=bins, labels=labels_b, right=False
+    )
+    dist = (
+        df.groupby("score_bin", observed=True)
+        .agg(
+            count=("pred_id", "count"),
+            hit_rate=("is_hit", lambda x: x.mean() * 100),
+            avg_profit=("profit", "mean"),
+        )
+        .reset_index()
+    )
     print(f"{'スコア帯':<12} {'件数':>8} {'的中率':>8} {'平均損益':>12}")
     for _, r in dist.iterrows():
-        print(f"  {str(r['score_bin']):<10} {int(r['count']):>8,} {r['hit_rate']:>7.1f}% {r['avg_profit']:>12,.0f}")
+        print(
+            f"  {str(r['score_bin']):<10} {int(r['count']):>8,} {r['hit_rate']:>7.1f}% {r['avg_profit']:>12,.0f}"
+        )
 
     # ── Step 8: 改善が大きかった除外ケース（的中=0・除外正解） ──────────────
     print("\n【除外して正解だったケース TOP 5（損失回避）】")
@@ -260,7 +292,9 @@ def run_backtest(days: int = 30, threshold: float = UMASUGI_THRESHOLD) -> None:
         (df["umasugi_score"] < threshold) & (df["is_hit"] == 0)
     ].nsmallest(5, "profit")
     for _, r in avoided_losses.iterrows():
-        print(f"  race={r['race_id']} type={r['bet_type']} score={r['umasugi_score']:.3f} profit={r['profit']:,.0f}")
+        print(
+            f"  race={r['race_id']} type={r['bet_type']} score={r['umasugi_score']:.3f} profit={r['profit']:,.0f}"
+        )
 
     # ── Step 9: 閾値感度分析 ─────────────────────────────────────────────────
     print("\n【閾値感度分析】")

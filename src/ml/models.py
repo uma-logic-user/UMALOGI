@@ -14,18 +14,16 @@ import logging
 import math
 import pickle
 import sqlite3
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-import lightgbm as lgb
 import numpy as np
 import pandas as pd
 from lightgbm import LGBMClassifier, LGBMRegressor
 from sklearn.isotonic import IsotonicRegression
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import roc_auc_score
-from sklearn.preprocessing import LabelEncoder
 
 logger = logging.getLogger(__name__)
 
@@ -38,100 +36,100 @@ FEATURE_COLS: list[str] = [
     # ── 馬能力・レース条件特徴量 ──────────────────────────────────
     # オッズ系 (win_odds / market_prob / popularity) は除外:
     #   「市場の予想を覚える」だけになり真の予測力が測れないため。
-    "weight_carried",           # 斤量
-    "horse_weight",             # 馬体重
-    "win_rate_all",             # 通算勝率
-    "win_rate_surface",         # 馬場別勝率
-    "win_rate_distance_band",   # 距離帯別勝率
-    "recent_rank_mean",         # 直近5走平均着順
-    "surface_code",             # 馬場コード (芝=0, ダート=1, 障害=2)
-    "sex_code",                 # 性別コード (牡=0, 牝=1, セ=2)
-    "venue_encoded",            # 開催場コード
-    "sire_encoded",             # 父馬エンコード
-    "distance",                 # 距離
-    "horse_weight_diff",        # 前走比体重増減
-    "gate_number",              # 枠番
-    "condition_code",           # 馬場状態コード (良=0, 稍重=1, 重=2, 不良=3)
-    "race_number",              # レース番号（新馬戦 vs 条件戦の識別）
+    "weight_carried",  # 斤量
+    "horse_weight",  # 馬体重
+    "win_rate_all",  # 通算勝率
+    "win_rate_surface",  # 馬場別勝率
+    "win_rate_distance_band",  # 距離帯別勝率
+    "recent_rank_mean",  # 直近5走平均着順
+    "surface_code",  # 馬場コード (芝=0, ダート=1, 障害=2)
+    "sex_code",  # 性別コード (牡=0, 牝=1, セ=2)
+    "venue_encoded",  # 開催場コード
+    "sire_encoded",  # 父馬エンコード
+    "distance",  # 距離
+    "horse_weight_diff",  # 前走比体重増減
+    "gate_number",  # 枠番
+    "condition_code",  # 馬場状態コード (良=0, 稍重=1, 重=2, 不良=3)
+    "race_number",  # レース番号（新馬戦 vs 条件戦の識別）
     # ── 人的要素特徴量（真の予測力） ────────────────────────────
-    "jockey_code_encoded",      # 騎手コードエンコード（jockeys マスタ）
-    "trainer_code_encoded",     # 調教師コードエンコード（trainers マスタ）
+    "jockey_code_encoded",  # 騎手コードエンコード（jockeys マスタ）
+    "trainer_code_encoded",  # 調教師コードエンコード（trainers マスタ）
     # ── 調教特徴量（WOOD:TC ウッド調教） ────────────────────────
     # データ未取得時は fillna(-1) で -1 に統一されるため学習は正常続行。
     # WOOD データ取得後に再学習すると有効化される。
-    "tc_4f",            # ウッド直近4Fタイム（秒）— 小さいほど好時計
-    "tc_lap",           # ウッド直近ラスト1Fタイム（秒）
-    "tc_accel_flag",    # ウッド加速ラップ (1=ラスト加速=好調サイン, 0=失速)
-    "tc_4f_diff",       # ウッド前回比4Fタイム差（秒, 負=好転=状態上向き）
+    "tc_4f",  # ウッド直近4Fタイム（秒）— 小さいほど好時計
+    "tc_lap",  # ウッド直近ラスト1Fタイム（秒）
+    "tc_accel_flag",  # ウッド加速ラップ (1=ラスト加速=好調サイン, 0=失速)
+    "tc_4f_diff",  # ウッド前回比4Fタイム差（秒, 負=好転=状態上向き）
     # ── 調教特徴量（WOOD:HC 坂路調教） ──────────────────────────
-    "hc_4f",            # 坂路直近4Fタイム（秒）
-    "hc_lap",           # 坂路直近ラスト1Fタイム（秒）
-    "hc_accel_flag",    # 坂路加速ラップフラグ
-    "hc_4f_diff",       # 坂路前回比4Fタイム差（秒, 負=好転）
+    "hc_4f",  # 坂路直近4Fタイム（秒）
+    "hc_lap",  # 坂路直近ラスト1Fタイム（秒）
+    "hc_accel_flag",  # 坂路加速ラップフラグ
+    "hc_4f_diff",  # 坂路前回比4Fタイム差（秒, 負=好転）
     # ── レース内相対特徴量（groupby 的中率・調教強度の相対比較） ─
     # 1 = レース内最良。全馬 NaN の場合は欠損扱い（LightGBM がハンドル）。
-    "win_rate_all_rank",         # レース内通算勝率ランク (1=最高勝率)
-    "win_rate_all_zscore",       # レース内通算勝率偏差 (高=良)
-    "win_rate_surface_rank",     # レース内馬場別勝率ランク
+    "win_rate_all_rank",  # レース内通算勝率ランク (1=最高勝率)
+    "win_rate_all_zscore",  # レース内通算勝率偏差 (高=良)
+    "win_rate_surface_rank",  # レース内馬場別勝率ランク
     "win_rate_distance_band_rank",  # レース内距離帯別勝率ランク
-    "recent_rank_mean_rank",     # レース内直近着順ランク (1=最好調)
-    "recent_rank_mean_zscore",   # レース内直近着順偏差 (高=良)
-    "tc_4f_rank",                # レース内調教4Fタイムランク (1=最速)
-    "tc_4f_zscore",              # レース内調教4F偏差 (高=良)
+    "recent_rank_mean_rank",  # レース内直近着順ランク (1=最好調)
+    "recent_rank_mean_zscore",  # レース内直近着順偏差 (高=良)
+    "tc_4f_rank",  # レース内調教4Fタイムランク (1=最速)
+    "tc_4f_zscore",  # レース内調教4F偏差 (高=良)
     # ── 当日バイアス特徴量 ──────────────────────────────────────
     # レース当日の確定済み結果から算出（リーク防止: 当日レース番号より前のみ）。
     # 1Rは全て None → LightGBM の欠損扱い。完了レース数が増えるほど信頼度向上。
-    "today_inner_bias",   # 内枠(1-4)勝率 - 外枠(5-8)勝率（正=内枠有利）
-    "today_front_bias",   # 当日の人気1-3馬勝率（高=展開安定=先行バイアス代理変数）
-    "today_race_count",   # 集計対象レース数（モデルへの信頼度シグナル）
-    "today_gate_match",   # today_inner_bias × (内枠:+1 / 外枠:-1) = この馬の枠番との相性
+    "today_inner_bias",  # 内枠(1-4)勝率 - 外枠(5-8)勝率（正=内枠有利）
+    "today_front_bias",  # 当日の人気1-3馬勝率（高=展開安定=先行バイアス代理変数）
+    "today_race_count",  # 集計対象レース数（モデルへの信頼度シグナル）
+    "today_gate_match",  # today_inner_bias × (内枠:+1 / 外枠:-1) = この馬の枠番との相性
     # ── オッズ時系列特徴量（大口投票シグナル） ──────────────────
     # realtime_odds に複数スナップショットが記録されている場合のみ有効。
     # 訓練データ（シミュレーション）では常に NaN → 実際の prerace データで再学習後に有効化。
-    "odds_vs_morning",    # 直前オッズ / 朝一オッズ（1未満=短縮=大口流入の疑い）
-    "odds_velocity",      # 直近1時間のオッズ下落速度（オッズ/分、正値=資金流入中）
+    "odds_vs_morning",  # 直前オッズ / 朝一オッズ（1未満=短縮=大口流入の疑い）
+    "odds_velocity",  # 直近1時間のオッズ下落速度（オッズ/分、正値=資金流入中）
     # ── U Score 統合因子（u_score.py で算出・Phase 1: 18因子） ─────
     # 欠損時は _safe_feature_matrix が NaN → -1 で補填するため学習は継続する。
     # 再学習後に有効化される（モデルが因子の重要度を学習する）。
     # A: 能力指数
-    "uf_win_rate_all",          # 通算勝率スコア [0,1]
-    "uf_win_rate_surface",      # 馬場別勝率スコア [0,1]
-    "uf_win_rate_distance",     # 距離帯別勝率スコア [0,1]
-    "uf_recent_rank",           # 直近5走着順スコア [0,1]（1着=1.0）
-    "uf_rank_trend",            # 着順改善トレンド [0,1]（改善=高）
-    "uf_rest_days",             # 休養日数スコア [0,1]（28日ピーク・ガウス型）
+    "uf_win_rate_all",  # 通算勝率スコア [0,1]
+    "uf_win_rate_surface",  # 馬場別勝率スコア [0,1]
+    "uf_win_rate_distance",  # 距離帯別勝率スコア [0,1]
+    "uf_recent_rank",  # 直近5走着順スコア [0,1]（1着=1.0）
+    "uf_rank_trend",  # 着順改善トレンド [0,1]（改善=高）
+    "uf_rest_days",  # 休養日数スコア [0,1]（28日ピーク・ガウス型）
     # B: 人的要素
-    "uf_jockey_win_rate",       # 騎手直近90日勝率スコア [0,1]
-    "uf_trainer_win_rate",      # 調教師直近90日勝率スコア [0,1]
-    "uf_jockey_horse_combo",    # 騎手×馬コンビ勝率スコア [0,1]
-    "uf_jockey_venue",          # 騎手×会場勝率スコア [0,1]
+    "uf_jockey_win_rate",  # 騎手直近90日勝率スコア [0,1]
+    "uf_trainer_win_rate",  # 調教師直近90日勝率スコア [0,1]
+    "uf_jockey_horse_combo",  # 騎手×馬コンビ勝率スコア [0,1]
+    "uf_jockey_venue",  # 騎手×会場勝率スコア [0,1]
     # C: コース適性
-    "uf_gate_fit",              # 枠番×馬場×距離帯 統計勝率スコア [0,1]
-    "uf_venue_win_rate",        # 馬の当該会場過去勝率スコア [0,1]
-    "uf_east_west_match",       # 美浦/栗東一致フラグ (0 or 1)
+    "uf_gate_fit",  # 枠番×馬場×距離帯 統計勝率スコア [0,1]
+    "uf_venue_win_rate",  # 馬の当該会場過去勝率スコア [0,1]
+    "uf_east_west_match",  # 美浦/栗東一致フラグ (0 or 1)
     # D: 調教指数
-    "uf_tc_speed",              # ウッド4Fスピード指数スコア [0,1]
-    "uf_hc_speed",              # 坂路4Fスピード指数スコア [0,1]
+    "uf_tc_speed",  # ウッド4Fスピード指数スコア [0,1]
+    "uf_hc_speed",  # 坂路4Fスピード指数スコア [0,1]
     # E: 血統適性
-    "uf_sire_distance",         # 父馬距離帯別産駒勝率スコア [0,1]
-    "uf_bms_surface",           # 母父馬場別産駒勝率スコア [0,1]
-    "uf_father_sire",           # 父の父情報存在スコア [0.25|0.75]
+    "uf_sire_distance",  # 父馬距離帯別産駒勝率スコア [0,1]
+    "uf_bms_surface",  # 母父馬場別産駒勝率スコア [0,1]
+    "uf_father_sire",  # 父の父情報存在スコア [0.25|0.75]
     # F: 大衆心理乖離 [W-004]
-    "uf_crowd_bias",            # 大衆心理乖離スコア [0,1]（通算勝率/市場暗示確率 を正規化）
+    "uf_crowd_bias",  # 大衆心理乖離スコア [0,1]（通算勝率/市場暗示確率 を正規化）
     # 合成 U score
-    "u_score",                  # 加重合成スコア（A×38%+B×28.5%+C×19%+D×6.5%+E×3%+F×5%）[0,1]
+    "u_score",  # 加重合成スコア（A×38%+B×28.5%+C×19%+D×6.5%+E×3%+F×5%）[0,1]
     # 派生数値（EV計算の直接インプット）
-    "days_since_last_race",     # 前走からの日数
-    "jockey_win_rate_90d",      # 騎手直近90日勝率（生値）
-    "trainer_win_rate_90d",     # 調教師直近90日勝率（生値）
+    "days_since_last_race",  # 前走からの日数
+    "jockey_win_rate_90d",  # 騎手直近90日勝率（生値）
+    "trainer_win_rate_90d",  # 調教師直近90日勝率（生値）
     "jockey_horse_combo_rate",  # 騎手×馬コンビ勝率（生値）
-    "jockey_venue_win_rate",    # 騎手×会場勝率（生値）
-    "venue_win_rate",           # 馬の当該会場過去勝率（生値）
-    "tc_speed_index",           # ウッド4Fスピード指数（200/sec*100）
-    "hc_speed_index",           # 坂路4Fスピード指数
-    "crowd_bias_ratio",         # 大衆心理乖離比率（生値）[W-004]
+    "jockey_venue_win_rate",  # 騎手×会場勝率（生値）
+    "venue_win_rate",  # 馬の当該会場過去勝率（生値）
+    "tc_speed_index",  # ウッド4Fスピード指数（200/sec*100）
+    "hc_speed_index",  # 坂路4Fスピード指数
+    "crowd_bias_ratio",  # 大衆心理乖離比率（生値）[W-004]
     # ── X シグナル特徴量（Phase C）────────────────────────────────
-    "x_consensus_score",        # 凄腕予想家コンセンサス係数 [−1,1]（Phase B 出力）
+    "x_consensus_score",  # 凄腕予想家コンセンサス係数 [−1,1]（Phase B 出力）
 ]
 
 # 訓練に最低限必要なレース数
@@ -160,11 +158,13 @@ def _safe_feature_matrix(df: pd.DataFrame) -> pd.DataFrame:
         df_filled[col] = float("nan")
     return df_filled[FEATURE_COLS].astype(float).fillna(-1)
 
+
 # デフォルトモデル保存先
 _MODEL_DIR = Path(__file__).resolve().parents[2] / "data" / "models"
 
 
 # ── 学習データ構築 ─────────────────────────────────────────────────
+
 
 def _build_train_df(
     conn: sqlite3.Connection,
@@ -249,7 +249,9 @@ def _build_train_df(
         if not actual_rows:
             continue
 
-        actuals = pd.DataFrame(actual_rows, columns=["horse_name", "rank", "payout_tansho"])
+        actuals = pd.DataFrame(
+            actual_rows, columns=["horse_name", "rank", "payout_tansho"]
+        )
         # inner → left: rank=NULL の馬（復元データで上位3頭以外）も is_winner=0 として学習に含める
         df_feat = df_feat.merge(actuals, on="horse_name", how="left")
         df_feat["race_id"] = race_id
@@ -264,17 +266,23 @@ def _build_train_df(
     # rank corruption バグ（HR払戻レコードの誤挿入）や scraper 誤パースによる
     # 異常払戻（単勝500倍=50,000円超）を除外してManjiModel汚染を防ぐ。
     # ※ 払戻 NULL の馬（2着以下）は ev_target=0 として残すため除外しない。
-    _MAX_TANSHO_PAYOUT = 10_000   # 100倍上限（EV外れ値排除 — 旧: 500倍）
+    _MAX_TANSHO_PAYOUT = 10_000  # 100倍上限（EV外れ値排除 — 旧: 500倍）
     before_filter = len(df)
-    payout_ok = df["payout_tansho"].isna() | (df["payout_tansho"].astype(float) <= _MAX_TANSHO_PAYOUT)
+    payout_ok = df["payout_tansho"].isna() | (
+        df["payout_tansho"].astype(float) <= _MAX_TANSHO_PAYOUT
+    )
     df = df[payout_ok].copy()
     removed = before_filter - len(df)
     if removed > 0:
-        logger.warning("EV外れ値フィルタ: %d行を除外 (payout_tansho > %d)", removed, _MAX_TANSHO_PAYOUT)
+        logger.warning(
+            "EV外れ値フィルタ: %d行を除外 (payout_tansho > %d)",
+            removed,
+            _MAX_TANSHO_PAYOUT,
+        )
 
     # ── 目的変数 ──────────────────────────────────────────────────
     df["is_winner"] = (df["rank"] == 1).astype(int)
-    df["is_placed"]  = (df["rank"] <= 3).astype(int)
+    df["is_placed"] = (df["rank"] <= 3).astype(int)
     # ev_target: 実払戻が利用可能ならそれを優先し、未取得(NULL)かつ1着なら win_odds×100 で近似
     # np.where は mixed-type で object になるため明示的に float へキャスト
     df["ev_target"] = np.where(
@@ -437,6 +445,7 @@ class _PlattModel:
 
 # ── ベースクラス ──────────────────────────────────────────────────
 
+
 class _BaseModel:
     """本命・卍共通の基底クラス。"""
 
@@ -497,6 +506,7 @@ class _BaseModel:
 
 
 # ── 本命モデル ────────────────────────────────────────────────────
+
 
 class HonmeiModel(_BaseModel):
     """
@@ -573,16 +583,20 @@ class HonmeiModel(_BaseModel):
         if df.empty:
             logger.warning("学習データが0件のため訓練をスキップします")
             return {
-                "n_races": 0, "n_samples": 0,
-                "cv_auc_mean": float("nan"), "cv_auc_std": float("nan"),
-                "challenger_auc": float("nan"), "champion_auc": float("nan"),
+                "n_races": 0,
+                "n_samples": 0,
+                "cv_auc_mean": float("nan"),
+                "cv_auc_std": float("nan"),
+                "challenger_auc": float("nan"),
+                "champion_auc": float("nan"),
             }
 
         n_races = df["race_id"].nunique()
         if n_races < _MIN_TRAIN_RACES:
             logger.warning(
                 "学習レース数が少ないです (%d 件、推奨 %d 件以上)。精度が低い可能性があります。",
-                n_races, _MIN_TRAIN_RACES,
+                n_races,
+                _MIN_TRAIN_RACES,
             )
 
         # ── データ準備 ──────────────────────────────────────────
@@ -590,13 +604,13 @@ class HonmeiModel(_BaseModel):
         df_sorted = df.sort_values("race_id").reset_index(drop=True)
         n = len(df_sorted)
         cal_n = max(1, int(n * 0.2))
-        df_cal = df_sorted.iloc[n - cal_n :]          # ホールドアウト (20%)
+        df_cal = df_sorted.iloc[n - cal_n :]  # ホールドアウト (20%)
 
-        X_cal  = _safe_feature_matrix(df_cal)
-        y_cal  = df_cal["is_winner"]
-        X_all  = _safe_feature_matrix(df_sorted)
-        y_all  = df_sorted["is_winner"]
-        groups = df_sorted["race_id"]
+        X_cal = _safe_feature_matrix(df_cal)
+        y_cal = df_cal["is_winner"]
+        X_all = _safe_feature_matrix(df_sorted)
+        y_all = df_sorted["is_winner"]
+        df_sorted["race_id"]
 
         # ── 時系列 CV + OOF 予測収集 ─────────────────────────────
         # _temporal_cv_split: fold k の val は fold 0..k-1 の train より必ず未来になる。
@@ -606,7 +620,9 @@ class HonmeiModel(_BaseModel):
         n_splits = min(5, n_races)
         aucs: list[float] = []
         oof_preds = np.zeros(len(X_all), dtype=float)
-        oof_mask  = np.zeros(len(X_all), dtype=bool)   # 実際に val に入ったインデックスを記録
+        oof_mask = np.zeros(
+            len(X_all), dtype=bool
+        )  # 実際に val に入ったインデックスを記録
 
         ts_splits = _temporal_cv_split(df_sorted, n_splits=n_splits)
         for tr_idx, val_idx in ts_splits:
@@ -614,7 +630,7 @@ class HonmeiModel(_BaseModel):
             clone.fit(X_all.iloc[tr_idx], y_all.iloc[tr_idx])
             proba = clone.predict_proba(X_all.iloc[val_idx])[:, 1]
             oof_preds[val_idx] = proba
-            oof_mask[val_idx]  = True
+            oof_mask[val_idx] = True
             try:
                 aucs.append(roc_auc_score(y_all.iloc[val_idx], proba))
             except ValueError:
@@ -622,7 +638,7 @@ class HonmeiModel(_BaseModel):
                 pass
 
         cv_auc_mean = float(np.mean(aucs)) if aucs else float("nan")
-        cv_auc_std  = float(np.std(aucs))  if aucs else float("nan")
+        cv_auc_std = float(np.std(aucs)) if aucs else float("nan")
 
         # ── AUC サニティチェック ──────────────────────────────────────
         # AUC 0.85 超はターゲットリークの疑い。相互情報量 Top5 を出力して原因特定を促す。
@@ -630,12 +646,16 @@ class HonmeiModel(_BaseModel):
         if not math.isnan(cv_auc_mean) and cv_auc_mean > _AUC_SUSPICIOUS:
             logger.warning(
                 "⚠️ CV AUC=%.4f > %.2f — ターゲットリークの可能性。特徴量相互情報量を確認します",
-                cv_auc_mean, _AUC_SUSPICIOUS,
+                cv_auc_mean,
+                _AUC_SUSPICIOUS,
             )
             try:
                 from sklearn.feature_selection import mutual_info_classif
+
                 mi = mutual_info_classif(X_all, y_all, random_state=42, n_neighbors=3)
-                top5 = sorted(zip(FEATURE_COLS, mi.tolist()), key=lambda t: t[1], reverse=True)[:5]
+                top5 = sorted(
+                    zip(FEATURE_COLS, mi.tolist()), key=lambda t: t[1], reverse=True
+                )[:5]
                 logger.warning("【相互情報量 Top5】%s", top5)
             except Exception as _mi_err:
                 logger.debug("相互情報量計算スキップ: %s", _mi_err)
@@ -687,23 +707,27 @@ class HonmeiModel(_BaseModel):
                 champion_auc = float(roc_auc_score(y_cal, champ_proba))
                 logger.info(
                     "Champion/Challenger: champion AUC=%.4f / challenger AUC=%.4f",
-                    champion_auc, challenger_auc,
+                    champion_auc,
+                    challenger_auc,
                 )
             except Exception as e:
                 logger.warning("チャンピオンモデルの評価に失敗（スキップ）: %s", e)
 
         logger.info(
             "本命モデル訓練完了: %d レース / %d サンプル / CV AUC %.4f ±%.4f",
-            n_races, len(df), cv_auc_mean, cv_auc_std,
+            n_races,
+            len(df),
+            cv_auc_mean,
+            cv_auc_std,
         )
         return {
-            "n_races":        n_races,
-            "n_samples":      len(df),
-            "cv_auc_mean":    cv_auc_mean,
-            "cv_auc_std":     cv_auc_std,
+            "n_races": n_races,
+            "n_samples": len(df),
+            "cv_auc_mean": cv_auc_mean,
+            "cv_auc_std": cv_auc_std,
             "challenger_auc": challenger_auc,
-            "champion_auc":   champion_auc,
-            "train_until":    train_until,
+            "champion_auc": champion_auc,
+            "train_until": train_until,
         }
 
     def predict(self, df: pd.DataFrame) -> pd.Series:
@@ -739,11 +763,12 @@ class HonmeiModel(_BaseModel):
             pd.Series (index=df.index, values=EV 値)
         """
         p_win = self.predict(df)
-        odds  = df["win_odds"].astype(float, errors="ignore").fillna(0.0)
+        odds = df["win_odds"].astype(float, errors="ignore").fillna(0.0)
         return (p_win * odds).rename("ev_score")
 
 
 # ── 複勝モデル ────────────────────────────────────────────────────
+
 
 class PlaceModel(_BaseModel):
     """
@@ -798,14 +823,14 @@ class PlaceModel(_BaseModel):
             logger.warning("複勝モデル: 学習レース数が少ない (%d 件)", n_races)
 
         df_sorted = df.sort_values("race_id").reset_index(drop=True)
-        X_all  = _safe_feature_matrix(df_sorted)
-        y_all  = df_sorted["is_placed"]
-        groups = df_sorted["race_id"]
+        X_all = _safe_feature_matrix(df_sorted)
+        y_all = df_sorted["is_placed"]
+        df_sorted["race_id"]
 
         n_splits = min(5, n_races)
         aucs: list[float] = []
         oof_preds = np.zeros(len(X_all), dtype=float)
-        oof_mask  = np.zeros(len(X_all), dtype=bool)
+        oof_mask = np.zeros(len(X_all), dtype=bool)
 
         ts_splits = _temporal_cv_split(df_sorted, n_splits=n_splits)
         for tr_idx, val_idx in ts_splits:
@@ -813,14 +838,14 @@ class PlaceModel(_BaseModel):
             clone.fit(X_all.iloc[tr_idx], y_all.iloc[tr_idx])
             proba = clone.predict_proba(X_all.iloc[val_idx])[:, 1]
             oof_preds[val_idx] = proba
-            oof_mask[val_idx]  = True
+            oof_mask[val_idx] = True
             try:
                 aucs.append(roc_auc_score(y_all.iloc[val_idx], proba))
             except ValueError:
                 pass
 
         cv_auc_mean = float(np.mean(aucs)) if aucs else float("nan")
-        cv_auc_std  = float(np.std(aucs))  if aucs else float("nan")
+        cv_auc_std = float(np.std(aucs)) if aucs else float("nan")
 
         iso = IsotonicRegression(out_of_bounds="clip")
         if oof_mask.any():
@@ -835,7 +860,10 @@ class PlaceModel(_BaseModel):
 
         logger.info(
             "複勝モデル訓練完了: %d レース / %d サンプル / CV AUC %.4f ±%.4f",
-            n_races, len(df), cv_auc_mean, cv_auc_std,
+            n_races,
+            len(df),
+            cv_auc_mean,
+            cv_auc_std,
         )
         return {
             "n_races": n_races,
@@ -861,6 +889,7 @@ class PlaceModel(_BaseModel):
 
 
 # ── 卍モデル ──────────────────────────────────────────────────────
+
 
 class ManjiModel(_BaseModel):
     """
@@ -937,7 +966,9 @@ class ManjiModel(_BaseModel):
         if nan_cnt:
             logger.warning("ManjiModel predict NaN %d行検出 → 0.0で補完", nan_cnt)
             pred = np.nan_to_num(pred, nan=0.0)
-        return pd.Series(pred.clip(min=0, max=_MAX_EV_PRED), index=df.index, name="manji_score")
+        return pd.Series(
+            pred.clip(min=0, max=_MAX_EV_PRED), index=df.index, name="manji_score"
+        )
 
     def ev_score(self, df: pd.DataFrame) -> pd.Series:
         """predict() の値を 100 で割って EV 比率（1.0 基準）に変換する。"""
@@ -945,6 +976,7 @@ class ManjiModel(_BaseModel):
 
 
 # ── 学習エントリポイント ──────────────────────────────────────────
+
 
 def train_all(
     conn: sqlite3.Connection,
@@ -962,8 +994,8 @@ def train_all(
          "manji":  ManjiModel.train() の戻り値}
     """
     honmei = HonmeiModel()
-    place  = PlaceModel()
-    manji  = ManjiModel()
+    place = PlaceModel()
+    manji = ManjiModel()
 
     h_result = honmei.train(conn, train_until=train_until)
     p_result = place.train(conn, train_until=train_until)
@@ -972,7 +1004,7 @@ def train_all(
     # ── 本命モデル: Champion/Challenger 判定 ─────────────────────
     if honmei.is_trained:
         challenger_auc: float = h_result.get("challenger_auc", float("nan"))
-        champion_auc:   float = h_result.get("champion_auc",   float("nan"))
+        champion_auc: float = h_result.get("champion_auc", float("nan"))
 
         if np.isnan(champion_auc) or np.isnan(challenger_auc):
             honmei.save()
@@ -982,13 +1014,16 @@ def train_all(
             h_result["promoted"] = True
             logger.info(
                 "世代交代: challenger AUC=%.4f >= champion AUC=%.4f",
-                challenger_auc, champion_auc,
+                challenger_auc,
+                champion_auc,
             )
         else:
             h_result["promoted"] = False
             logger.warning(
                 "世代交代却下: challenger AUC=%.4f < champion AUC=%.4f (差=%.4f) — 既存モデルを維持",
-                challenger_auc, champion_auc, champion_auc - challenger_auc,
+                challenger_auc,
+                champion_auc,
+                champion_auc - challenger_auc,
             )
 
     if place.is_trained:
@@ -1017,8 +1052,8 @@ def load_models() -> tuple[HonmeiModel, PlaceModel, ManjiModel]:
         return _MODEL_CACHE[cache_key]
 
     honmei = HonmeiModel()
-    place  = PlaceModel()
-    manji  = ManjiModel()
+    place = PlaceModel()
+    manji = ManjiModel()
 
     try:
         honmei.load()

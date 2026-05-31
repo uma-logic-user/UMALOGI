@@ -26,18 +26,16 @@ if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
 from dotenv import load_dotenv
+
 load_dotenv(_ROOT / ".env", override=False)
 
 import sqlite3
-import pandas as pd
 from src.database.init_db import init_db
 from src.ml.alpha_model import (
     AlphaModel,
     AlphaBacktestResult,
     run_backtest,
     ALPHA_EV_THRESHOLD,
-    BET_TYPE_TANSHO,
-    BET_TYPE_FUKUSHO,
 )
 
 logging.basicConfig(
@@ -130,31 +128,61 @@ def sweep_thresholds(
         if roi > best_roi:
             best_roi = roi
             best_threshold = threshold
-        print(f"  {threshold:>4.1f} | {len(buy):>6,} | {hit_r:>6.1f}% | {roi:>7.1f}% | Y{profit:>+10,.0f}")
+        print(
+            f"  {threshold:>4.1f} | {len(buy):>6,} | {hit_r:>6.1f}% | {roi:>7.1f}% | Y{profit:>+10,.0f}"
+        )
 
     print(f"\n→ 最適閾値: {best_threshold:.1f} (ROI {best_roi:.1f}%)")
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="ALPHA モデル バックテスト")
-    parser.add_argument("--train", type=int, nargs="+", default=[2024],
-                        help="学習年（デフォルト: 2024）")
-    parser.add_argument("--test", type=int, nargs="+", default=[2025],
-                        help="テスト年（デフォルト: 2025）")
-    parser.add_argument("--bet-type", choices=["単勝", "複勝"], default="単勝",
-                        help="馬券種（デフォルト: 単勝）")
-    parser.add_argument("--threshold", type=float, default=ALPHA_EV_THRESHOLD,
-                        help=f"EV閾値（デフォルト: {ALPHA_EV_THRESHOLD}）")
-    parser.add_argument("--bankroll", type=int, default=100_000,
-                        help="仮想資金（デフォルト: 100,000円）")
-    parser.add_argument("--sweep", action="store_true",
-                        help="EV閾値スイープで最適値を探す")
-    parser.add_argument("--save", action="store_true",
-                        help="学習済みモデルを保存する")
-    parser.add_argument("--both-ways", action="store_true",
-                        help="順逆両方向でバックテスト（2024→2025 and 2025→2024）")
-    parser.add_argument("--research-db", default=None,
-                        help="Research DB パス（netkeiba win_odds 補完用）")
+    parser.add_argument(
+        "--train",
+        type=int,
+        nargs="+",
+        default=[2024],
+        help="学習年（デフォルト: 2024）",
+    )
+    parser.add_argument(
+        "--test",
+        type=int,
+        nargs="+",
+        default=[2025],
+        help="テスト年（デフォルト: 2025）",
+    )
+    parser.add_argument(
+        "--bet-type",
+        choices=["単勝", "複勝"],
+        default="単勝",
+        help="馬券種（デフォルト: 単勝）",
+    )
+    parser.add_argument(
+        "--threshold",
+        type=float,
+        default=ALPHA_EV_THRESHOLD,
+        help=f"EV閾値（デフォルト: {ALPHA_EV_THRESHOLD}）",
+    )
+    parser.add_argument(
+        "--bankroll",
+        type=int,
+        default=100_000,
+        help="仮想資金（デフォルト: 100,000円）",
+    )
+    parser.add_argument(
+        "--sweep", action="store_true", help="EV閾値スイープで最適値を探す"
+    )
+    parser.add_argument("--save", action="store_true", help="学習済みモデルを保存する")
+    parser.add_argument(
+        "--both-ways",
+        action="store_true",
+        help="順逆両方向でバックテスト（2024→2025 and 2025→2024）",
+    )
+    parser.add_argument(
+        "--research-db",
+        default=None,
+        help="Research DB パス（netkeiba win_odds 補完用）",
+    )
     args = parser.parse_args()
 
     conn = init_db()
@@ -170,13 +198,14 @@ def main() -> None:
         else:
             logger.warning("Research DB が見つかりません: %s", p)
 
-
     # ── メインバックテスト ───────────────────────────────────────────
     results = []
 
     # 順方向: 2024 → 2025
     try:
-        print(f"\n[バックテスト] 学習={args.train} テスト={args.test} 馬券={args.bet_type}")
+        print(
+            f"\n[バックテスト] 学習={args.train} テスト={args.test} 馬券={args.bet_type}"
+        )
         r = run_backtest(
             conn=conn,
             train_years=args.train,
@@ -245,7 +274,7 @@ def main() -> None:
         )
         model.train(train_df)
         model.save()
-        print(f"\nモデル保存完了: data/models/alpha/alpha_model.pkl")
+        print("\nモデル保存完了: data/models/alpha/alpha_model.pkl")
 
     conn.close()
 

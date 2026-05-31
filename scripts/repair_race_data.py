@@ -22,6 +22,7 @@ Usage:
     py -3 scripts/repair_race_data.py --all              # 全欠損レース
     py -3 scripts/repair_race_data.py --all --skip-results  # races のみ更新
 """
+
 from __future__ import annotations
 
 import argparse
@@ -38,42 +39,55 @@ _ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(_ROOT))
 
 from dotenv import load_dotenv
+
 load_dotenv(_ROOT / ".env", override=False)
 
 from src.database.init_db import init_db
-from src.scraper.netkeiba import fetch_race_results, fetch_race_payouts, RaceInfo, HorseResult
+from src.scraper.netkeiba import (
+    fetch_race_results,
+    fetch_race_payouts,
+    RaceInfo,
+    HorseResult,
+)
 
 
 # ── 定数 ──────────────────────────────────────────────────────────────
-_REQUEST_DELAY = 2.0   # 各レース間のウェイト（秒）
-_MAX_RETRIES   = 2
+_REQUEST_DELAY = 2.0  # 各レース間のウェイト（秒）
+_MAX_RETRIES = 2
 
 # 払戻組み合わせの期待馬番数（バリデーション用）
 _PAYOUT_COMBO_SIZES: dict[str, tuple[int, int]] = {
-    "単勝":   (1, 1),
-    "複勝":   (1, 1),
-    "枠連":   (2, 2),
-    "馬連":   (2, 2),
+    "単勝": (1, 1),
+    "複勝": (1, 1),
+    "枠連": (2, 2),
+    "馬連": (2, 2),
     "ワイド": (2, 2),
-    "馬単":   (2, 2),
+    "馬単": (2, 2),
     "三連複": (3, 3),
     "三連単": (3, 3),
 }
 _PAYOUT_MAX_NUM: dict[str, int] = {
-    "単勝":   18, "複勝": 18, "枠連": 8,
-    "馬連":   18, "ワイド": 18, "馬単": 18,
-    "三連複": 18, "三連単": 18,
+    "単勝": 18,
+    "複勝": 18,
+    "枠連": 8,
+    "馬連": 18,
+    "ワイド": 18,
+    "馬単": 18,
+    "三連複": 18,
+    "三連単": 18,
 }
 
 
 # ── DB ヘルパー ──────────────────────────────────────────────────────
 
+
 def _is_valid_combo(bet_type: str, combo: str) -> bool:
     """払戻組み合わせが有効かチェックする。"""
     import re
+
     max_num = _PAYOUT_MAX_NUM.get(bet_type, 18)
-    sizes   = _PAYOUT_COMBO_SIZES.get(bet_type, (1, 99))
-    parts   = re.split(r"[-→]", combo)
+    sizes = _PAYOUT_COMBO_SIZES.get(bet_type, (1, 99))
+    parts = re.split(r"[-→]", combo)
     if not (sizes[0] <= len(parts) <= sizes[1]):
         return False
     return all(p.isdigit() and 0 < int(p) <= max_num for p in parts)
@@ -87,7 +101,9 @@ def _get_missing_races(
     """
     distance=0 または surface='' のレースを (race_id, date, venue, race_number) で返す。
     """
-    where_clauses = ["(r.distance = 0 OR r.distance IS NULL OR r.surface = '' OR r.surface IS NULL)"]
+    where_clauses = [
+        "(r.distance = 0 OR r.distance IS NULL OR r.surface = '' OR r.surface IS NULL)"
+    ]
     params: list = []
 
     if target_date:
@@ -119,7 +135,6 @@ def _get_races_for_payout_repair(
     不正: combo が invalid（馬番 > 18 等）、payout < 100、
           単勝/複勝が2馬番以上、ワイド/馬連が1馬番のみ 等
     """
-    import re
 
     base_sql = """
         SELECT r.race_id, r.date, r.venue, r.race_number
@@ -178,7 +193,13 @@ def _repair_payouts(
                 payout     = excluded.payout,
                 popularity = excluded.popularity
             """,
-            (race_id, p["bet_type"], p["combination"], p["payout"], p.get("popularity")),
+            (
+                race_id,
+                p["bet_type"],
+                p["combination"],
+                p["payout"],
+                p.get("popularity"),
+            ),
         )
         saved += 1
     return saved
@@ -271,6 +292,7 @@ def _update_race_results(
 
 # ── メイン処理 ────────────────────────────────────────────────────────
 
+
 def repair(
     *,
     target_date: str | None = None,
@@ -293,7 +315,9 @@ def repair(
     session = requests.Session()
 
     if repair_payouts:
-        missing = _get_races_for_payout_repair(conn, target_date=target_date, limit=limit)
+        missing = _get_races_for_payout_repair(
+            conn, target_date=target_date, limit=limit
+        )
         print(f"[REPAIR] 払戻修復対象: {len(missing)} レース")
     else:
         missing = _get_missing_races(conn, target_date=target_date, limit=limit)
@@ -304,15 +328,19 @@ def repair(
         for race_id, date, venue, rno in missing[:30]:
             print(f"  {date} {venue} {rno}R  race_id={race_id}")
         if len(missing) > 30:
-            print(f"  ... 他 {len(missing)-30} 件")
+            print(f"  ... 他 {len(missing) - 30} 件")
         conn.close()
         return {"total": len(missing), "success": 0, "failed": 0}
 
     success = 0
-    failed  = 0
+    failed = 0
 
     for i, (race_id, date, venue, rno) in enumerate(missing):
-        print(f"[{i+1}/{len(missing)}] {date} {venue} {rno}R  race_id={race_id}", end=" ... ", flush=True)
+        print(
+            f"[{i + 1}/{len(missing)}] {date} {venue} {rno}R  race_id={race_id}",
+            end=" ... ",
+            flush=True,
+        )
 
         try:
             if repair_payouts:
@@ -357,7 +385,9 @@ def repair(
 
                 conn.commit()
                 success += 1
-                print(f"OK 距離={info.distance}m 馬場={info.surface} 状態={info.condition} 出走馬更新={n_updated}頭")
+                print(
+                    f"OK 距離={info.distance}m 馬場={info.surface} 状態={info.condition} 出走馬更新={n_updated}頭"
+                )
 
         except Exception as e:
             conn.rollback()
@@ -375,13 +405,19 @@ def repair(
 
 def _parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="netkeiba から欠損レースデータを補完する")
-    p.add_argument("--dry-run",        action="store_true", help="対象確認のみ（DB 更新なし）")
-    p.add_argument("--all",            action="store_true", help="全欠損レースを処理")
-    p.add_argument("--date",           default=None,        help="特定日 YYYY-MM-DD")
-    p.add_argument("--limit",          type=int, default=50, help="最大処理レース数（デフォルト 50）")
-    p.add_argument("--skip-results",   action="store_true", help="races のみ更新（race_results はスキップ）")
-    p.add_argument("--payouts",        action="store_true", help="払戻データ修復モード")
-    p.add_argument("--verbose",  "-v", action="store_true", help="詳細ログ")
+    p.add_argument("--dry-run", action="store_true", help="対象確認のみ（DB 更新なし）")
+    p.add_argument("--all", action="store_true", help="全欠損レースを処理")
+    p.add_argument("--date", default=None, help="特定日 YYYY-MM-DD")
+    p.add_argument(
+        "--limit", type=int, default=50, help="最大処理レース数（デフォルト 50）"
+    )
+    p.add_argument(
+        "--skip-results",
+        action="store_true",
+        help="races のみ更新（race_results はスキップ）",
+    )
+    p.add_argument("--payouts", action="store_true", help="払戻データ修復モード")
+    p.add_argument("--verbose", "-v", action="store_true", help="詳細ログ")
     return p.parse_args()
 
 

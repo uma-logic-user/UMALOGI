@@ -16,7 +16,10 @@ import sys
 import time
 from pathlib import Path
 
-if hasattr(sys.stdout, "buffer") and sys.stdout.encoding.lower() not in ("utf-8", "utf8"):
+if hasattr(sys.stdout, "buffer") and sys.stdout.encoding.lower() not in (
+    "utf-8",
+    "utf8",
+):
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
 
@@ -26,6 +29,7 @@ if str(_ROOT) not in sys.path:
 
 try:
     from dotenv import load_dotenv
+
     load_dotenv(_ROOT / ".env", override=False)
 except ImportError:
     pass
@@ -46,6 +50,7 @@ def main() -> int:
 
     try:
         from src.ops.jvlink_dialog_handler import start_dialog_handler
+
         start_dialog_handler(interval=0.3)
         print("[test] ダイアログハンドラー起動済み")
     except Exception as _dh_exc:
@@ -68,7 +73,8 @@ def main() -> int:
     print(f"[OK]   JVInit 完了 (code={ret})")
 
     # OPT_TODAY(3) で当日 RACE データを試みる
-    from src.scraper.jravan_client import OPT_TODAY, OPT_STORED
+    from src.scraper.jravan_client import OPT_TODAY
+
     today = time.strftime("%Y%m%d") + "000000"
 
     print(f"\n[test] JVOpen RACE fromtime={today} option=OPT_TODAY(3)...")
@@ -85,12 +91,14 @@ def main() -> int:
             return 1
 
     if code >= 0:
-        print(f"[OK]   JVOpen 成功 code={code} (files={result[1] if isinstance(result, (tuple,list)) and len(result)>1 else '?'})")
+        print(
+            f"[OK]   JVOpen 成功 code={code} (files={result[1] if isinstance(result, (tuple, list)) and len(result) > 1 else '?'})"
+        )
         jvl.JVClose()
         print("\n[RESULT] TARGET frontier なしで JVLink 認証・接続 成功")
         return 0
     elif code == -1:
-        print(f"[WARN] JVOpen code=-1 (本日は開催なし/データなし) — 認証自体は成功")
+        print("[WARN] JVOpen code=-1 (本日は開催なし/データなし) — 認証自体は成功")
         jvl.JVClose()
         print("\n[RESULT] TARGET frontier なしで JVLink 認証 成功（当日データなし）")
         return 0

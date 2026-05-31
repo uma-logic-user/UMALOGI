@@ -30,23 +30,33 @@ logger = logging.getLogger(__name__)
 # ── 因子グループ重み ──────────────────────────────────────────────────
 # W-004 追加: crowd 5% を確保し、他グループを比率 0.95 でスケールダウン
 _WEIGHTS: dict[str, float] = {
-    "ability":   0.38,
-    "human":     0.285,
-    "course":    0.19,
-    "training":  0.065,
+    "ability": 0.38,
+    "human": 0.285,
+    "course": 0.19,
+    "training": 0.065,
     "bloodline": 0.03,
-    "crowd":     0.05,   # F: 大衆心理乖離 [W-004]
+    "crowd": 0.05,  # F: 大衆心理乖離 [W-004]
 }
 
 _GROUP_FACTORS: dict[str, list[str]] = {
-    "ability":   ["uf_win_rate_all", "uf_win_rate_surface", "uf_win_rate_distance",
-                  "uf_recent_rank", "uf_rank_trend", "uf_rest_days"],
-    "human":     ["uf_jockey_win_rate", "uf_trainer_win_rate",
-                  "uf_jockey_horse_combo", "uf_jockey_venue"],
-    "course":    ["uf_gate_fit", "uf_venue_win_rate", "uf_east_west_match"],
-    "training":  ["uf_tc_speed", "uf_hc_speed"],
+    "ability": [
+        "uf_win_rate_all",
+        "uf_win_rate_surface",
+        "uf_win_rate_distance",
+        "uf_recent_rank",
+        "uf_rank_trend",
+        "uf_rest_days",
+    ],
+    "human": [
+        "uf_jockey_win_rate",
+        "uf_trainer_win_rate",
+        "uf_jockey_horse_combo",
+        "uf_jockey_venue",
+    ],
+    "course": ["uf_gate_fit", "uf_venue_win_rate", "uf_east_west_match"],
+    "training": ["uf_tc_speed", "uf_hc_speed"],
     "bloodline": ["uf_sire_distance", "uf_bms_surface", "uf_father_sire"],
-    "crowd":     ["uf_crowd_bias"],  # F: 大衆心理乖離スコア [W-004]
+    "crowd": ["uf_crowd_bias"],  # F: 大衆心理乖離スコア [W-004]
 }
 
 # 全因子リスト（models.py FEATURE_COLS へ追加する際に参照）
@@ -118,8 +128,10 @@ class UScoreEngine:
 
         # race_id 先頭8桁から基準日を導出（YYYY-MM-DD）
         df["_base_date"] = (
-            df["race_id"].str[:4] + "-"
-            + df["race_id"].str[4:6] + "-"
+            df["race_id"].str[:4]
+            + "-"
+            + df["race_id"].str[4:6]
+            + "-"
             + df["race_id"].str[6:8]
         )
 
@@ -128,7 +140,7 @@ class UScoreEngine:
         df = self._calc_course(df)
         df = self._calc_training(df)
         df = self._calc_bloodline(df)
-        df = self._calc_crowd_bias(df)   # F: 大衆心理乖離 [W-004]
+        df = self._calc_crowd_bias(df)  # F: 大衆心理乖離 [W-004]
         df = self._calc_composite(df)
 
         df.drop(columns=["_base_date"], errors="ignore", inplace=True)
@@ -185,6 +197,7 @@ class UScoreEngine:
         ).fetchall()
 
         from collections import defaultdict
+
         hist: dict[str, list[int]] = defaultdict(list)
         for hid, rank, _ in rows:
             if len(hist[hid]) < 6:
@@ -196,7 +209,7 @@ class UScoreEngine:
                 trend[hid] = 0.5
                 continue
             recent_avg = float(np.mean(ranks[:2]))
-            older_avg  = float(np.mean(ranks[2:5]))
+            older_avg = float(np.mean(ranks[2:5]))
             improvement = older_avg - recent_avg  # 正=改善
             trend[hid] = float(np.clip((improvement + 10) / 20, 0.0, 1.0))
 
@@ -227,6 +240,7 @@ class UScoreEngine:
         ).fetchall()
 
         from collections import defaultdict
+
         # horse_id -> [(date_str, race_id), ...]
         hist: dict[str, list[tuple[str, str]]] = defaultdict(list)
         for hid, d, rid in rows:
@@ -245,6 +259,7 @@ class UScoreEngine:
 
         def _to_date(s: str) -> "date_type":
             from datetime import date as _d
+
             return _d.fromisoformat(s.replace("/", "-"))
 
         result: dict[str, float] = {}
@@ -256,7 +271,9 @@ class UScoreEngine:
             if not cur_date_str or not prev_date_str:
                 continue
             try:
-                result[hid] = float((_to_date(cur_date_str) - _to_date(prev_date_str)).days)
+                result[hid] = float(
+                    (_to_date(cur_date_str) - _to_date(prev_date_str)).days
+                )
             except Exception:
                 pass
 
@@ -315,8 +332,7 @@ class UScoreEngine:
                 jockeys + [from_date, base_date],
             ).fetchall()
             rate_map = {
-                j: (w / t) if t >= self._min_samples else np.nan
-                for j, t, w in rows
+                j: (w / t) if t >= self._min_samples else np.nan for j, t, w in rows
             }
             idx = grp.index
             rates.loc[idx] = df.loc[idx, "jockey"].map(
@@ -403,11 +419,7 @@ class UScoreEngine:
             return rates
 
         for base_date, grp in df.groupby("_base_date"):
-            combos = (
-                grp[["jockey", "venue"]].dropna()
-                .drop_duplicates()
-                .values.tolist()
-            )
+            combos = grp[["jockey", "venue"]].dropna().drop_duplicates().values.tolist()
             for jockey, venue in combos:
                 result = self._conn.execute(
                     """
@@ -467,9 +479,7 @@ class UScoreEngine:
             HAVING total >= 20
             """,
         ).fetchall()
-        rate_map: dict[tuple, float] = {
-            (g, s, b): (w / t) for g, s, b, t, w in rows
-        }
+        rate_map: dict[tuple, float] = {(g, s, b): (w / t) for g, s, b, t, w in rows}
 
         def _dist_band(d: Any) -> str:
             d = float(d or 0)
@@ -514,8 +524,7 @@ class UScoreEngine:
         ).fetchall()
         # (horse_id, venue) → rate
         rate_map: dict[tuple, float] = {
-            (h, v): ((w / t) if t >= 2 else np.nan)
-            for h, v, t, w in rows
+            (h, v): ((w / t) if t >= 2 else np.nan) for h, v, t, w in rows
         }
 
         for idx, row in df.iterrows():
@@ -554,8 +563,8 @@ class UScoreEngine:
 
     def _calc_bloodline(self, df: pd.DataFrame) -> pd.DataFrame:
         df["uf_sire_distance"] = self._sire_distance_batch(df)
-        df["uf_bms_surface"]   = self._bms_surface_batch(df)
-        df["uf_father_sire"]   = self._father_sire_flag(df)
+        df["uf_bms_surface"] = self._bms_surface_batch(df)
+        df["uf_father_sire"] = self._father_sire_flag(df)
         return df
 
     def _sire_distance_batch(self, df: pd.DataFrame) -> pd.Series:
@@ -589,9 +598,7 @@ class UScoreEngine:
             """,
             sires,
         ).fetchall()
-        rate_map: dict[tuple, float] = {
-            (s, b): (w / t) for s, b, t, w in rows
-        }
+        rate_map: dict[tuple, float] = {(s, b): (w / t) for s, b, t, w in rows}
 
         def _dist_band(d: Any) -> str:
             d = float(d or 0)
@@ -601,14 +608,18 @@ class UScoreEngine:
             sire = row.get(sire_col, "")
             b = _dist_band(row.get("distance", 0))
             v = rate_map.get((sire, b), np.nan)
-            scores.at[idx] = float(v) if not (isinstance(v, float) and np.isnan(v)) else 0.5
+            scores.at[idx] = (
+                float(v) if not (isinstance(v, float) and np.isnan(v)) else 0.5
+            )
 
         return _clip_norm(scores, 0.0, 0.20)
 
     def _bms_surface_batch(self, df: pd.DataFrame) -> pd.Series:
         """母父産駒の馬場別勝率。"""
         scores = pd.Series(0.5, index=df.index, dtype=float)
-        bms_col = next((c for c in ["dam_sire", "grandsire_name"] if c in df.columns), None)
+        bms_col = next(
+            (c for c in ["dam_sire", "grandsire_name"] if c in df.columns), None
+        )
         if bms_col is None:
             return scores
 
@@ -631,15 +642,15 @@ class UScoreEngine:
             """,
             bms_list,
         ).fetchall()
-        rate_map: dict[tuple, float] = {
-            (b, s): (w / t) for b, s, t, w in rows
-        }
+        rate_map: dict[tuple, float] = {(b, s): (w / t) for b, s, t, w in rows}
 
         for idx, row in df.iterrows():
             bms = row.get(bms_col, "")
             surface = row.get("surface", "")
             v = rate_map.get((bms, surface), np.nan)
-            scores.at[idx] = float(v) if not (isinstance(v, float) and np.isnan(v)) else 0.5
+            scores.at[idx] = (
+                float(v) if not (isinstance(v, float) and np.isnan(v)) else 0.5
+            )
 
         return _clip_norm(scores, 0.0, 0.20)
 
@@ -665,7 +676,7 @@ class UScoreEngine:
         ただし features.py では market_prob = 1 / min(win_odds, 80) で算出済み。
         """
         win_rate_raw = df.get("win_rate_all")
-        market_raw   = df.get("market_prob")
+        market_raw = df.get("market_prob")
 
         # 列が存在しない（None）または スカラーの場合はニュートラルで埋める
         if win_rate_raw is None or not isinstance(win_rate_raw, pd.Series):
@@ -676,7 +687,7 @@ class UScoreEngine:
         if market_raw is None or not isinstance(market_raw, pd.Series):
             # market_prob がない場合はニュートラル（ratio=1.0）で補填
             df["crowd_bias_ratio"] = pd.Series(1.0, index=df.index, dtype=float)
-            df["uf_crowd_bias"]    = pd.Series(0.41, index=df.index, dtype=float)
+            df["uf_crowd_bias"] = pd.Series(0.41, index=df.index, dtype=float)
             return df
 
         market_p = pd.to_numeric(market_raw, errors="coerce")
@@ -698,9 +709,12 @@ class UScoreEngine:
             if not present:
                 g_score: pd.Series = pd.Series(0.5, index=df.index, dtype=float)
             else:
-                g_score = df[present].apply(
-                    pd.to_numeric, errors="coerce"
-                ).mean(axis=1).fillna(0.5)
+                g_score = (
+                    df[present]
+                    .apply(pd.to_numeric, errors="coerce")
+                    .mean(axis=1)
+                    .fillna(0.5)
+                )
             u += g_score * _WEIGHTS.get(group, 0.0)
 
         df["u_score"] = u.clip(0.0, 1.0)
@@ -712,11 +726,13 @@ class UScoreEngine:
     def _offset_date(base: str, days: int) -> str:
         """YYYY-MM-DD 文字列を days 日オフセットして返す。"""
         from datetime import date as _d, timedelta
+
         d = _d.fromisoformat(base)
         return (d + timedelta(days=days)).isoformat()
 
 
 # ── モジュールレベルユーティリティ ───────────────────────────────────
+
 
 def _clip_norm(s: pd.Series, lo: float, hi: float, fill: float = 0.5) -> pd.Series:
     """[lo, hi] でクリップして [0, 1] に線形正規化。欠損は fill で補填。"""

@@ -22,6 +22,7 @@ paddock_notes テーブルに保存する。
         例: /paddock race_id:202608031001 horse:7 comment:発汗気味 イライラ
         → 指定馬番コメントとして保存
 """
+
 from __future__ import annotations
 
 import logging
@@ -35,6 +36,7 @@ if str(_ROOT) not in sys.path:
 
 try:
     from dotenv import load_dotenv
+
     load_dotenv(_ROOT / ".env", override=False)
 except ImportError:
     pass
@@ -48,6 +50,7 @@ logging.basicConfig(
 try:
     import discord
     from discord import app_commands
+
     _DISCORD_AVAILABLE = True
 except ImportError:
     _DISCORD_AVAILABLE = False
@@ -65,7 +68,9 @@ def run_bot() -> None:
         SystemExit: discord.py 未インストール時または TOKEN 未設定時。
     """
     if not _DISCORD_AVAILABLE:
-        logger.error("discord.py をインストールしてください: pip install 'discord.py>=2.3'")
+        logger.error(
+            "discord.py をインストールしてください: pip install 'discord.py>=2.3'"
+        )
         sys.exit(1)
 
     token = os.environ.get("DISCORD_BOT_TOKEN", "")
@@ -76,8 +81,8 @@ def run_bot() -> None:
     guild_id_str = os.environ.get("DISCORD_GUILD_ID", "")
 
     intents = discord.Intents.default()
-    client  = discord.Client(intents=intents)
-    tree    = app_commands.CommandTree(client)
+    client = discord.Client(intents=intents)
+    tree = app_commands.CommandTree(client)
 
     guild: discord.Object | None = (
         discord.Object(id=int(guild_id_str)) if guild_id_str else None
@@ -109,10 +114,9 @@ def run_bot() -> None:
         horse: int | None = None,
     ) -> None:
         """パドックコメントを DB に保存するスラッシュコマンド。"""
-        import sqlite3
 
         from src.database.init_db import init_db
-        from src.umasugi_engine.factors.paddock import analyze_comment, save_paddock_note
+        from src.umasugi_engine.factors.paddock import save_paddock_note
 
         # race_id バリデーション（12桁数字）
         if not race_id.isdigit() or len(race_id) != 12:
@@ -134,8 +138,10 @@ def run_bot() -> None:
             return
 
         boost_label = (
-            f"🟢 +{boost*100:.0f}% ポジティブ" if boost > 0
-            else f"🔴 {boost*100:.0f}% ネガティブ" if boost < 0
+            f"🟢 +{boost * 100:.0f}% ポジティブ"
+            if boost > 0
+            else f"🔴 {boost * 100:.0f}% ネガティブ"
+            if boost < 0
             else "⚪ 中立"
         )
         horse_label = f"#{horse}番" if horse else "全馬共通"

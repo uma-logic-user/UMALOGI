@@ -55,6 +55,7 @@ _INTER_POST_SLEEP = 15
 
 # ── DB ヘルパー ──────────────────────────────────────────────────────────
 
+
 def _db() -> sqlite3.Connection:
     conn = sqlite3.connect(str(_DB_PATH))
     conn.row_factory = sqlite3.Row
@@ -63,7 +64,7 @@ def _db() -> sqlite3.Connection:
 
 def _fetch_top_races(
     conn: sqlite3.Connection,
-    date_str: str,   # 'YYYY-MM-DD'
+    date_str: str,  # 'YYYY-MM-DD'
     top_n: int,
 ) -> list[dict[str, Any]]:
     """EV 上位レースを返す。date_str は 'YYYY-MM-DD' 形式。"""
@@ -111,6 +112,7 @@ def _fetch_all_races(conn: sqlite3.Connection, date_str: str) -> list[dict[str, 
 
 # ── ドラフトファイル読み込み ─────────────────────────────────────────────
 
+
 def _find_draft_file(date_yyyymmdd: str, race_id: str) -> Path | None:
     """data/drafts/YYYYMMDD/ 以下から race_id に対応する txt を探す。"""
     draft_dir = _DRAFTS_DIR / date_yyyymmdd
@@ -144,7 +146,10 @@ def _parse_draft(path: Path) -> tuple[str, str]:
 
 # ── Note 記事フォーマット ─────────────────────────────────────────────────
 
-def _build_note_title(venue: str, race_number: int, race_name: str, date_str: str) -> str:
+
+def _build_note_title(
+    venue: str, race_number: int, race_name: str, date_str: str
+) -> str:
     """
     Note 投稿タイトルを生成する。
     例: 【AI予想】2026/05/24 東京11R 優駿牝馬｜UMALOGI期待値選別予想
@@ -161,11 +166,11 @@ def _build_note_body(
     is_high_ev: bool,
 ) -> str:
     """Note 本文を組み立てる。"""
-    venue       = race_info["venue"]
+    venue = race_info["venue"]
     race_number = race_info["race_number"]
-    race_name   = race_info["race_name"]
-    max_ev      = race_info["max_ev"]
-    d           = date_str.replace("-", "/")
+    race_name = race_info["race_name"]
+    max_ev = race_info["max_ev"]
+    d = date_str.replace("-", "/")
 
     parts: list[str] = []
 
@@ -198,6 +203,7 @@ def _build_note_body(
 
 # ── Discord 通知 ─────────────────────────────────────────────────────────
 
+
 def _notify_discord(
     results: list[dict[str, Any]],
     date_str: str,
@@ -206,6 +212,7 @@ def _notify_discord(
 ) -> None:
     try:
         from src.notification.discord_notifier import DiscordNotifier
+
         dn = DiscordNotifier()
         lines = [
             f"📝 **Note 下書き一括投稿完了** ({date_str})",
@@ -230,16 +237,23 @@ def _notify_discord(
 
 # ── メイン ───────────────────────────────────────────────────────────────
 
+
 def main() -> None:
-    p = argparse.ArgumentParser(description="本日の高EV予想を Note 下書きとして一括投稿")
-    p.add_argument("--date", default=None,
-                   help="対象日付 YYYYMMDD (省略時=本日)")
-    p.add_argument("--top", type=int, default=5,
-                   help="EV 上位 N レースを投稿 (デフォルト=5)")
-    p.add_argument("--all", action="store_true",
-                   help="当日全レースを投稿 (--top を無視)")
-    p.add_argument("--dry-run", action="store_true",
-                   help="実際には投稿しない (タイトル・本文をコンソールに出力)")
+    p = argparse.ArgumentParser(
+        description="本日の高EV予想を Note 下書きとして一括投稿"
+    )
+    p.add_argument("--date", default=None, help="対象日付 YYYYMMDD (省略時=本日)")
+    p.add_argument(
+        "--top", type=int, default=5, help="EV 上位 N レースを投稿 (デフォルト=5)"
+    )
+    p.add_argument(
+        "--all", action="store_true", help="当日全レースを投稿 (--top を無視)"
+    )
+    p.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="実際には投稿しない (タイトル・本文をコンソールに出力)",
+    )
     args = p.parse_args()
 
     # 日付決定
@@ -288,15 +302,21 @@ def main() -> None:
     success = 0
 
     for i, race in enumerate(races, 1):
-        race_id     = race["race_id"]
-        venue       = race["venue"]
+        race_id = race["race_id"]
+        venue = race["venue"]
         race_number = race["race_number"]
-        race_name   = race["race_name"]
-        max_ev      = race["max_ev"] or 0.0
+        race_name = race["race_name"]
+        max_ev = race["max_ev"] or 0.0
 
         logger.info(
             "[%d/%d] %s %sR%02d %s (max_ev=%.2f)",
-            i, len(races), race_id, venue, race_number, race_name, max_ev,
+            i,
+            len(races),
+            race_id,
+            venue,
+            race_number,
+            race_name,
+            max_ev,
         )
 
         # ドラフトファイル読み込み
@@ -309,15 +329,15 @@ def main() -> None:
         _, draft_body = _parse_draft(draft_path)
 
         # Note 記事組み立て
-        is_high_ev  = max_ev >= _HIGH_EV_THRESHOLD
-        note_title  = _build_note_title(venue, race_number, race_name, iso_date)
-        note_body   = _build_note_body(draft_body, race, iso_date, is_high_ev)
+        is_high_ev = max_ev >= _HIGH_EV_THRESHOLD
+        note_title = _build_note_title(venue, race_number, race_name, iso_date)
+        note_body = _build_note_body(draft_body, race, iso_date, is_high_ev)
 
         logger.info("  タイトル: %s", note_title)
         logger.info("  高EV推奨: %s (max_ev=%.2f)", is_high_ev, max_ev)
 
         if args.dry_run:
-            print(f"\n{'='*60}")
+            print(f"\n{'=' * 60}")
             print(f"TITLE: {note_title}")
             print(f"HIGH_EV: {is_high_ev}")
             print(f"BODY (先頭300文字):\n{note_body[:300]}")
@@ -351,11 +371,13 @@ def main() -> None:
             time.sleep(_INTER_POST_SLEEP)
 
     # サマリー
-    print(f"\n{'='*60}")
+    print(f"\n{'=' * 60}")
     print(f"投稿完了: {success}/{len(races)} 件")
     for r in results:
         mark = "✅" if r["ok"] else "❌"
-        print(f"  {mark} {r['venue']} R{r['race_number']:02d} {r['race_name']} EV={r['max_ev']:.1f}")
+        print(
+            f"  {mark} {r['venue']} R{r['race_number']:02d} {r['race_name']} EV={r['max_ev']:.1f}"
+        )
 
     # Discord 通知
     if not args.dry_run:

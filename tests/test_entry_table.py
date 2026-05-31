@@ -5,13 +5,11 @@ entry_table.py スクレイパーのユニットテスト（ネットワーク�
 from __future__ import annotations
 
 import json
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 import pytest
 
 from src.scraper.entry_table import (
-    EntryHorse,
-    HorseOdds,
     _parse_weight,
     fetch_entry_table,
     fetch_realtime_odds,
@@ -63,6 +61,7 @@ SAMPLE_SHUTUBA_HTML = """
 
 # ── _parse_weight ────────────────────────────────────────────────
 
+
 class TestParseWeight:
     def test_正常な体重とプラス差分(self) -> None:
         assert _parse_weight("502 (+2)") == (502, 2)
@@ -83,6 +82,7 @@ class TestParseWeight:
 
 
 # ── fetch_entry_table ────────────────────────────────────────────
+
 
 class TestFetchEntryTable:
     def test_出馬表を正しくパースする(self) -> None:
@@ -131,19 +131,23 @@ class TestFetchEntryTable:
 
 # ── fetch_realtime_odds ──────────────────────────────────────────
 
-WIN_ODDS_JSON = json.dumps({
-    "1": {
-        "01": ["3.8", "", "3"],
-        "02": ["5.1", "", "1"],
+WIN_ODDS_JSON = json.dumps(
+    {
+        "1": {
+            "01": ["3.8", "", "3"],
+            "02": ["5.1", "", "1"],
+        }
     }
-})
+)
 
-PLACE_ODDS_JSON = json.dumps({
-    "1": {
-        "01": ["2.0", "3.5", "3"],
-        "02": ["1.5", "2.8", "1"],
+PLACE_ODDS_JSON = json.dumps(
+    {
+        "1": {
+            "01": ["2.0", "3.5", "3"],
+            "02": ["1.5", "2.8", "1"],
+        }
     }
-})
+)
 
 
 class TestFetchRealtimeOdds:
@@ -152,7 +156,9 @@ class TestFetchRealtimeOdds:
         return WIN_ODDS_JSON if odds_type == 1 else PLACE_ODDS_JSON
 
     def test_単勝オッズを正しく取得する(self) -> None:
-        with patch("src.scraper.entry_table._fetch", side_effect=self._fetch_side_effect):
+        with patch(
+            "src.scraper.entry_table._fetch", side_effect=self._fetch_side_effect
+        ):
             odds = fetch_realtime_odds("202506050811")
 
         assert len(odds) == 2
@@ -161,7 +167,9 @@ class TestFetchRealtimeOdds:
         assert h1.popularity == 3
 
     def test_複勝オッズを正しく取得する(self) -> None:
-        with patch("src.scraper.entry_table._fetch", side_effect=self._fetch_side_effect):
+        with patch(
+            "src.scraper.entry_table._fetch", side_effect=self._fetch_side_effect
+        ):
             odds = fetch_realtime_odds("202506050811")
 
         h1 = next(o for o in odds if o.horse_number == 1)
@@ -169,7 +177,9 @@ class TestFetchRealtimeOdds:
         assert h1.place_odds_max == pytest.approx(3.5)
 
     def test_馬番昇順で返す(self) -> None:
-        with patch("src.scraper.entry_table._fetch", side_effect=self._fetch_side_effect):
+        with patch(
+            "src.scraper.entry_table._fetch", side_effect=self._fetch_side_effect
+        ):
             odds = fetch_realtime_odds("202506050811")
 
         numbers = [o.horse_number for o in odds]

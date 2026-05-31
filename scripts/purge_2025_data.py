@@ -6,6 +6,7 @@
     py scripts/purge_2025_data.py --dry-run   # 削除件数の確認のみ
     py scripts/purge_2025_data.py --year 2025 # 年を指定（デフォルト=2025）
 """
+
 from __future__ import annotations
 
 import argparse
@@ -27,7 +28,7 @@ def purge_year(conn: sqlite3.Connection, year: int, dry_run: bool) -> dict[str, 
     for table, join in [
         ("race_payouts", "JOIN races r ON race_payouts.race_id=r.race_id"),
         ("race_results", "JOIN races r ON race_results.race_id=r.race_id"),
-        ("races",        ""),
+        ("races", ""),
     ]:
         if join:
             cnt = conn.execute(
@@ -46,11 +47,17 @@ def purge_year(conn: sqlite3.Connection, year: int, dry_run: bool) -> dict[str, 
 
     # FK 無効化してから子テーブル→親テーブルの順で削除
     conn.execute("PRAGMA foreign_keys = OFF")
-    for child in ("race_payouts", "race_results", "predictions",
-                  "_predictions_old", "entries", "realtime_odds"):
+    for child in (
+        "race_payouts",
+        "race_results",
+        "predictions",
+        "_predictions_old",
+        "entries",
+        "realtime_odds",
+    ):
         conn.execute(
-            f"DELETE FROM {child} WHERE race_id IN "
-            "(SELECT race_id FROM races WHERE date LIKE ?)", (prefix,)
+            f"DELETE FROM {child} WHERE race_id IN (SELECT race_id FROM races WHERE date LIKE ?)",
+            (prefix,),
         )
     conn.execute("DELETE FROM races WHERE date LIKE ?", (prefix,))
     conn.execute("PRAGMA foreign_keys = ON")
@@ -62,11 +69,12 @@ def purge_year(conn: sqlite3.Connection, year: int, dry_run: bool) -> dict[str, 
 
 def main() -> None:
     ap = argparse.ArgumentParser(description="指定年の不良レースデータを削除する")
-    ap.add_argument("--year",    type=int, default=2025)
+    ap.add_argument("--year", type=int, default=2025)
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
 
     from src.database.init_db import init_db
+
     conn = init_db()
 
     print("=" * 60)

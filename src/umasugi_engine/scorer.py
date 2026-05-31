@@ -32,21 +32,31 @@ logger = logging.getLogger(__name__)
 # Phase3 フル統合 (2026-05-24):
 #   paddock (3%) / jockey_course (3%) / trainer_course (2%) を追加。
 #   legacy を 0.57 → 0.50 に削減、training_grade を 0.08 → 0.07 に微調整。
-_W_LEGACY          = 0.50
-_W_TRACK           = 0.10  # 小回り適性
-_W_TURF            = 0.15  # 野芝/洋芝適性（強力な除外シグナル）
-_W_TRAINING_GRADE  = 0.07  # 調教グレード (S〜E)
-_W_ODDS_MOMENTUM   = 0.05  # オッズ買い圧力 + スパイク検知
-_W_CROWD           = 0.05  # 世論分析（EV 直接適用のため scorer では中立固定）
-_W_PADDOCK         = 0.03  # パドック気配メモ
-_W_JOCKEY_COURSE   = 0.03  # 騎手コース別成績
-_W_TRAINER_COURSE  = 0.02  # 調教師コース別成績
+_W_LEGACY = 0.50
+_W_TRACK = 0.10  # 小回り適性
+_W_TURF = 0.15  # 野芝/洋芝適性（強力な除外シグナル）
+_W_TRAINING_GRADE = 0.07  # 調教グレード (S〜E)
+_W_ODDS_MOMENTUM = 0.05  # オッズ買い圧力 + スパイク検知
+_W_CROWD = 0.05  # 世論分析（EV 直接適用のため scorer では中立固定）
+_W_PADDOCK = 0.03  # パドック気配メモ
+_W_JOCKEY_COURSE = 0.03  # 騎手コース別成績
+_W_TRAINER_COURSE = 0.02  # 調教師コース別成績
 
-assert abs(
-    _W_LEGACY + _W_TRACK + _W_TURF + _W_TRAINING_GRADE
-    + _W_ODDS_MOMENTUM + _W_CROWD + _W_PADDOCK
-    + _W_JOCKEY_COURSE + _W_TRAINER_COURSE - 1.0
-) < 1e-9, "ウェイト合計が 1.0 ではありません"
+assert (
+    abs(
+        _W_LEGACY
+        + _W_TRACK
+        + _W_TURF
+        + _W_TRAINING_GRADE
+        + _W_ODDS_MOMENTUM
+        + _W_CROWD
+        + _W_PADDOCK
+        + _W_JOCKEY_COURSE
+        + _W_TRAINER_COURSE
+        - 1.0
+    )
+    < 1e-9
+), "ウェイト合計が 1.0 ではありません"
 
 
 def calc_umasugi_score(df: pd.DataFrame, conn: sqlite3.Connection) -> pd.DataFrame:
@@ -103,24 +113,34 @@ def calc_umasugi_score(df: pd.DataFrame, conn: sqlite3.Connection) -> pd.DataFra
     df = calc_trainer_course_score(df, conn)
 
     # ── 統合スコア ──────────────────────────────────────────────────────────
-    u_score         = df.get("u_score",                pd.Series(0.5, index=df.index)).fillna(0.5)
-    track_score     = df.get("track_style_score",      pd.Series(0.5, index=df.index)).fillna(0.5)
-    turf_score      = df.get("turf_type_score",        pd.Series(0.5, index=df.index)).fillna(0.5)
-    grade_score     = df.get("training_grade_score",   pd.Series(0.5, index=df.index)).fillna(0.5)
-    momentum_score  = df.get("odds_momentum_score",    pd.Series(0.5, index=df.index)).fillna(0.5)
-    paddock_score   = df.get("paddock_score",          pd.Series(0.5, index=df.index)).fillna(0.5)
-    jockey_score    = df.get("jockey_course_score",    pd.Series(0.5, index=df.index)).fillna(0.5)
-    trainer_score   = df.get("trainer_course_score",   pd.Series(0.5, index=df.index)).fillna(0.5)
+    u_score = df.get("u_score", pd.Series(0.5, index=df.index)).fillna(0.5)
+    track_score = df.get("track_style_score", pd.Series(0.5, index=df.index)).fillna(
+        0.5
+    )
+    turf_score = df.get("turf_type_score", pd.Series(0.5, index=df.index)).fillna(0.5)
+    grade_score = df.get("training_grade_score", pd.Series(0.5, index=df.index)).fillna(
+        0.5
+    )
+    momentum_score = df.get(
+        "odds_momentum_score", pd.Series(0.5, index=df.index)
+    ).fillna(0.5)
+    paddock_score = df.get("paddock_score", pd.Series(0.5, index=df.index)).fillna(0.5)
+    jockey_score = df.get("jockey_course_score", pd.Series(0.5, index=df.index)).fillna(
+        0.5
+    )
+    trainer_score = df.get(
+        "trainer_course_score", pd.Series(0.5, index=df.index)
+    ).fillna(0.5)
 
     df["umasugi_score"] = (
-        _W_LEGACY          * u_score
-        + _W_TRACK         * track_score
-        + _W_TURF          * turf_score
+        _W_LEGACY * u_score
+        + _W_TRACK * track_score
+        + _W_TURF * turf_score
         + _W_TRAINING_GRADE * grade_score
-        + _W_ODDS_MOMENTUM  * momentum_score
-        + _W_CROWD          * 0.5           # crowd は ev_filter で直接 EV 調整
-        + _W_PADDOCK        * paddock_score
-        + _W_JOCKEY_COURSE  * jockey_score
+        + _W_ODDS_MOMENTUM * momentum_score
+        + _W_CROWD * 0.5  # crowd は ev_filter で直接 EV 調整
+        + _W_PADDOCK * paddock_score
+        + _W_JOCKEY_COURSE * jockey_score
         + _W_TRAINER_COURSE * trainer_score
     ).clip(0.0, 1.0)
 

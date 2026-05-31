@@ -3,8 +3,10 @@ OPT_NORMAL で差分 SE レコードを取得して rank を補完するスク�
 
 py -3.14-32 scripts/fetch_normal_se.py
 """
+
 from __future__ import annotations
-import os, sys
+import os
+import sys
 from pathlib import Path
 
 _ROOT = Path(__file__).resolve().parents[1]
@@ -13,6 +15,7 @@ sys.stdout.reconfigure(encoding="utf-8")
 
 try:
     from dotenv import load_dotenv
+
     load_dotenv(_ROOT / ".env", override=False)
 except ImportError:
     pass
@@ -34,7 +37,8 @@ def count_nulls(conn) -> int:
 def main() -> None:
     sid = os.environ.get("JRAVAN_SID", "")
     if not sid:
-        print("ERROR: JRAVAN_SID 未設定", flush=True); sys.exit(1)
+        print("ERROR: JRAVAN_SID 未設定", flush=True)
+        sys.exit(1)
 
     conn = init_db()
     before = count_nulls(conn)
@@ -45,15 +49,15 @@ def main() -> None:
     # OPT_NORMAL: 前回フェッチ以降の差分を取得
     stats = loader.load_race(fromtime="20260501000000", option=OPT_NORMAL)
     print(
-        f"OPT_NORMAL 結果: RA={stats.get('ra',0)} SE={stats.get('se',0)} "
-        f"payout={stats.get('payout',0)} read={stats.get('total_read',0)}",
+        f"OPT_NORMAL 結果: RA={stats.get('ra', 0)} SE={stats.get('se', 0)} "
+        f"payout={stats.get('payout', 0)} read={stats.get('total_read', 0)}",
         flush=True,
     )
 
     conn = init_db()
     after = count_nulls(conn)
     conn.close()
-    print(f"=== 後: rank=NULL {after}件 (改善: {before-after}件) ===", flush=True)
+    print(f"=== 後: rank=NULL {after}件 (改善: {before - after}件) ===", flush=True)
 
 
 if __name__ == "__main__":

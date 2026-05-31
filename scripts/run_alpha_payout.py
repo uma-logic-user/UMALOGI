@@ -28,12 +28,11 @@ _ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(_ROOT))
 
 from src.ml.alpha_payout_model import (
-    DEFAULT_EV_THRESHOLD,
     PayoutBacktestResult,
     run_payout_backtest,
 )
 
-_DB_PATH     = _ROOT / "data" / "umalogi.db"
+_DB_PATH = _ROOT / "data" / "umalogi.db"
 _RESEARCH_DB = _ROOT / "data" / "netkeiba_research.db"
 
 # 旧 ALPHA 複勝 ROI（ベースライン: is_place バイナリ最良結果）
@@ -64,17 +63,30 @@ def _check_year_data(conn: sqlite3.Connection, year: int) -> int:
 
 def _aggregate(results: list[PayoutBacktestResult]) -> tuple[float, float, float]:
     inv = sum(r.total_investment for r in results)
-    pay = sum(r.total_payout     for r in results)
+    pay = sum(r.total_payout for r in results)
     roi = pay / inv * 100 if inv > 0 else 0.0
     return inv, pay, roi
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Alpha-Payout ウォークフォワードバックテスト")
-    parser.add_argument("--trials",         type=int,   default=30,   help="Optuna トライアル数")
-    parser.add_argument("--no-research-db", action="store_true",       help="netkeiba_research.db を使わない")
-    parser.add_argument("--ev-threshold",   type=float, default=None,  help="固定EV閾値（省略時: 学習データで自動最適化）")
-    parser.add_argument("--all-folds",      action="store_true",       help="3フォールド実行（デフォルト: 2フォールド）")
+    parser = argparse.ArgumentParser(
+        description="Alpha-Payout ウォークフォワードバックテスト"
+    )
+    parser.add_argument("--trials", type=int, default=30, help="Optuna トライアル数")
+    parser.add_argument(
+        "--no-research-db", action="store_true", help="netkeiba_research.db を使わない"
+    )
+    parser.add_argument(
+        "--ev-threshold",
+        type=float,
+        default=None,
+        help="固定EV閾値（省略時: 学習データで自動最適化）",
+    )
+    parser.add_argument(
+        "--all-folds",
+        action="store_true",
+        help="3フォールド実行（デフォルト: 2フォールド）",
+    )
     args = parser.parse_args()
 
     research_db: Path | None = None
@@ -108,7 +120,7 @@ def main() -> None:
 
     for i in range(len(available_years) - 1):
         train = [available_years[i]]
-        test  = [available_years[i + 1]]
+        test = [available_years[i + 1]]
         walk_forward_pairs.append((train, test))
 
     if args.all_folds and len(available_years) >= 3:
@@ -119,7 +131,9 @@ def main() -> None:
 
     _sep()
     print("  Alpha-Payout ウォークフォワードバックテスト（複勝ペイアウト回帰）")
-    print(f"  Optuna {args.trials}試行  /  EV閾値: {'自動最適化' if args.ev_threshold is None else f'固定>{args.ev_threshold:.2f}'}")
+    print(
+        f"  Optuna {args.trials}試行  /  EV閾値: {'自動最適化' if args.ev_threshold is None else f'固定>{args.ev_threshold:.2f}'}"
+    )
     print(f"  フォールド数: {len(walk_forward_pairs)}")
     print(f"  ベースライン（旧 ALPHA 複勝）: {_BASELINE_ROI:.1f}%")
     _sep()
@@ -127,9 +141,9 @@ def main() -> None:
     all_results: list[PayoutBacktestResult] = []
 
     for train_years, test_years in walk_forward_pairs:
-        print(f"\n{'─'*72}", flush=True)
+        print(f"\n{'─' * 72}", flush=True)
         print(f"  [WF] 学習: {train_years}  →  テスト: {test_years}", flush=True)
-        print(f"{'─'*72}", flush=True)
+        print(f"{'─' * 72}", flush=True)
 
         try:
             result = run_payout_backtest(
@@ -146,6 +160,7 @@ def main() -> None:
         except Exception as exc:
             print(f"\n  [ERROR] 年次 {test_years}: {exc}", flush=True)
             import traceback
+
             traceback.print_exc()
             continue
 
@@ -198,9 +213,13 @@ def main() -> None:
         f"\n  複勝 通算ROI = {total_roi:.1f}% {mark}"
         f"  ({diff_vs_baseline:+.1f}pp vs ベースライン {_BASELINE_ROI:.1f}%)"
     )
-    print(f"  ROI≥110%: {years_above_110}/{len(all_results)}年  "
-          f"ROI≥100%: {years_above_100}/{len(all_results)}年")
-    print(f"  総投資: ¥{total_inv:,}  総払戻: ¥{total_pay:,.0f}  損益: ¥{total_pay-total_inv:+,.0f}")
+    print(
+        f"  ROI≥110%: {years_above_110}/{len(all_results)}年  "
+        f"ROI≥100%: {years_above_100}/{len(all_results)}年"
+    )
+    print(
+        f"  総投資: ¥{total_inv:,}  総払戻: ¥{total_pay:,.0f}  損益: ¥{total_pay - total_inv:+,.0f}"
+    )
 
     # ── 推奨判定 ────────────────────────────────────────────────────────
     _sep()
@@ -208,17 +227,23 @@ def main() -> None:
     _sep()
 
     if total_roi >= 110 and diff_vs_baseline > 0:
-        print(f"\n  【採用】ROI={total_roi:.1f}% ≥ 110% かつ 旧ALPHA比 {diff_vs_baseline:+.1f}pp ✅")
+        print(
+            f"\n  【採用】ROI={total_roi:.1f}% ≥ 110% かつ 旧ALPHA比 {diff_vs_baseline:+.1f}pp ✅"
+        )
         print("\n  次のアクション:")
         print("   1. weekend_batch.py に AlphaPayoutModel を統合")
         print("   2. prediction_results テーブルで実績追跡を開始")
         print("   3. 月次で EV 閾値を再最適化")
     elif total_roi >= 100 and diff_vs_baseline > 0:
-        print(f"\n  【条件付き採用】ROI={total_roi:.1f}% ≥ 100%  旧ALPHA比 {diff_vs_baseline:+.1f}pp ⚠️")
+        print(
+            f"\n  【条件付き採用】ROI={total_roi:.1f}% ≥ 100%  旧ALPHA比 {diff_vs_baseline:+.1f}pp ⚠️"
+        )
         print(f"  目標ROI 110% まで残り {110 - total_roi:.1f}pp。")
         print("  EV 閾値を上げるか --trials を増やして精度向上を試みてください。")
     elif total_roi >= 100:
-        print(f"\n  【条件付き採用】ROI={total_roi:.1f}% ≥ 100%  ただしベースライン比 {diff_vs_baseline:+.1f}pp ⚠️")
+        print(
+            f"\n  【条件付き採用】ROI={total_roi:.1f}% ≥ 100%  ただしベースライン比 {diff_vs_baseline:+.1f}pp ⚠️"
+        )
         print("  旧 ALPHA を下回っているため改善が必要です。")
     else:
         print(f"\n  【不採用】ROI={total_roi:.1f}% < 100% ❌")

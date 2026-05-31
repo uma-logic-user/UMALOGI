@@ -9,6 +9,7 @@ JVLink SE レコードの着順オフセットが不明な場合、確定払戻�
     py scripts/infer_ranks_from_payouts.py --year 2025
     py scripts/infer_ranks_from_payouts.py --dry-run
 """
+
 from __future__ import annotations
 
 import argparse
@@ -39,8 +40,16 @@ def _parse_sanrentan(combo: str) -> tuple[int, int, int] | None:
     return None
 
 
-def infer_ranks(conn: sqlite3.Connection, year_filter: str | None, dry_run: bool) -> dict[str, int]:
-    stats = {"races_processed": 0, "rank1_set": 0, "rank2_set": 0, "rank3_set": 0, "skipped": 0}
+def infer_ranks(
+    conn: sqlite3.Connection, year_filter: str | None, dry_run: bool
+) -> dict[str, int]:
+    stats = {
+        "races_processed": 0,
+        "rank1_set": 0,
+        "rank2_set": 0,
+        "rank3_set": 0,
+        "skipped": 0,
+    }
 
     # 対象レース: rank=2 が未設定 かつ 払戻データがあるレース
     # （旧: rank が全て NULL のレースのみ → rank=1 が入っているレースをスキップするバグ）
@@ -69,7 +78,7 @@ def infer_ranks(conn: sqlite3.Connection, year_filter: str | None, dry_run: bool
 
         # ── 三連単から rank 1/2/3 を確定 ─────────────────────────
         # corrupt データ（2桁など不正 combination）を読み飛ばして最初に parse できた行を使う
-        for (combo, _payout) in conn.execute(
+        for combo, _payout in conn.execute(
             "SELECT combination, payout FROM race_payouts "
             "WHERE race_id=? AND bet_type='三連単' AND payout >= 100 "
             "ORDER BY payout ASC",
@@ -126,12 +135,15 @@ def infer_ranks(conn: sqlite3.Connection, year_filter: str | None, dry_run: bool
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description="払戻データから race_results.rank を補完する")
-    ap.add_argument("--year",    default=None, help="対象年 例: 2025")
+    ap = argparse.ArgumentParser(
+        description="払戻データから race_results.rank を補完する"
+    )
+    ap.add_argument("--year", default=None, help="対象年 例: 2025")
     ap.add_argument("--dry-run", action="store_true", help="DBへの書き込みを行わない")
     args = ap.parse_args()
 
     from src.database.init_db import init_db
+
     conn = init_db()
 
     print("=" * 60)

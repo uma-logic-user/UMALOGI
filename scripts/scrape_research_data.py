@@ -25,13 +25,10 @@ from __future__ import annotations
 import argparse
 import logging
 import random
-import re
 import sqlite3
 import sys
-import time
 from datetime import datetime
 from pathlib import Path
-from typing import Optional
 
 _ROOT = Path(__file__).resolve().parent.parent
 if str(_ROOT) not in sys.path:
@@ -44,12 +41,9 @@ from dotenv import load_dotenv
 load_dotenv(_ROOT / ".env", override=False)
 
 import requests
-from bs4 import BeautifulSoup
 
 from src.database.init_db import init_db
 from src.scraper.netkeiba import (
-    DEFAULT_HEADERS,
-    _fetch_html,
     fetch_race_results,
 )
 
@@ -106,6 +100,7 @@ CREATE TABLE IF NOT EXISTS win5_results (
 
 # ── DB 初期化 ──────────────────────────────────────────────────────────────
 
+
 def init_research_db(path: Path = _RESEARCH_DB_PATH) -> sqlite3.Connection:
     path.parent.mkdir(parents=True, exist_ok=True)
     conn = sqlite3.connect(str(path))
@@ -116,6 +111,7 @@ def init_research_db(path: Path = _RESEARCH_DB_PATH) -> sqlite3.Connection:
 
 
 # ── ヘルパー ───────────────────────────────────────────────────────────────
+
 
 def get_race_ids_from_main_db(
     main_conn: sqlite3.Connection,
@@ -186,6 +182,7 @@ def mark_race_error(
 
 # ── WIN5 スクレイプ（R12払戻ページ方式） ────────────────────────────────────
 
+
 def _get_win5_race_ids_from_db(
     main_conn: sqlite3.Connection,
     date_iso: str,
@@ -197,9 +194,16 @@ def _get_win5_race_ids_from_db(
     Returns: [(race_order, race_id), ...]  （1始まり）
     """
     _VENUE_PRIORITY = {
-        "東京": 1, "阪神": 2, "京都": 3, "中山": 4,
-        "中京": 5, "新潟": 6, "小倉": 7, "福島": 8,
-        "函館": 9, "札幌": 10,
+        "東京": 1,
+        "阪神": 2,
+        "京都": 3,
+        "中山": 4,
+        "中京": 5,
+        "新潟": 6,
+        "小倉": 7,
+        "福島": 8,
+        "函館": 9,
+        "札幌": 10,
     }
     rows = main_conn.execute(
         """
@@ -231,6 +235,7 @@ def _get_win5_race_ids_from_db(
 
 
 # ── オッズスクレイプ ────────────────────────────────────────────────────────
+
 
 def scrape_odds(
     min_date: str,
@@ -304,14 +309,14 @@ def scrape_odds(
 
     elapsed_total = (datetime.now() - start_time).total_seconds()
     print(
-        f"\n完了: 成功={success_count}, エラー={error_count}, "
-        f"経過={elapsed_total/60:.1f}分"
+        f"\n完了: 成功={success_count}, エラー={error_count}, 経過={elapsed_total / 60:.1f}分"
     )
     main_conn.close()
     research_conn.close()
 
 
 # ── WIN5 スクレイプ ─────────────────────────────────────────────────────────
+
 
 def scrape_win5(
     min_date: str,
@@ -331,7 +336,8 @@ def scrape_win5(
 
     # 対象の日曜日リスト
     sundays: list[str] = [
-        r[0] for r in main_conn.execute(
+        r[0]
+        for r in main_conn.execute(
             """
             SELECT DISTINCT date FROM races
             WHERE date BETWEEN ? AND ?
@@ -344,9 +350,8 @@ def scrape_win5(
 
     # 既取得済み週
     already_scraped: set[str] = {
-        r[0] for r in research_conn.execute(
-            "SELECT week_id FROM win5_results"
-        ).fetchall()
+        r[0]
+        for r in research_conn.execute("SELECT week_id FROM win5_results").fetchall()
     }
     pending = [d for d in sundays if d.replace("-", "") not in already_scraped]
 
@@ -395,18 +400,24 @@ def scrape_win5(
                     "INSERT OR REPLACE INTO win5_results (week_id, combination, payout, scraped_at) VALUES (?, ?, ?, ?)",
                     (week_id, combo, payout_val, now_str),
                 )
-                print(f"[{i:>3}/{len(pending)}] {date_iso}: R12={r12_race_id}, WIN5払戻={payout_val:,}円")
+                print(
+                    f"[{i:>3}/{len(pending)}] {date_iso}: R12={r12_race_id}, WIN5払戻={payout_val:,}円"
+                )
             else:
                 research_conn.execute(
                     "INSERT OR REPLACE INTO win5_results (week_id, combination, payout, scraped_at) VALUES (?, NULL, NULL, ?)",
                     (week_id, now_str),
                 )
-                print(f"[{i:>3}/{len(pending)}] {date_iso}: R12={r12_race_id}, WIN5払戻=未取得")
+                print(
+                    f"[{i:>3}/{len(pending)}] {date_iso}: R12={r12_race_id}, WIN5払戻=未取得"
+                )
 
             research_conn.commit()
 
         except requests.RequestException as exc:
-            logger.warning("[%d/%d] WIN5 %s 払戻取得失敗: %s", i, len(pending), date_iso, exc)
+            logger.warning(
+                "[%d/%d] WIN5 %s 払戻取得失敗: %s", i, len(pending), date_iso, exc
+            )
 
     print("WIN5 スクレイプ完了。")
     main_conn.close()
@@ -415,18 +426,24 @@ def scrape_win5(
 
 # ── WIN5 チェック（main DB） ────────────────────────────────────────────────
 
+
 def check_win5_in_main_db() -> None:
     """umalogi.db に WIN5 払戻データが存在するか確認する。"""
     conn = init_db()
 
     bet_types = [
-        r[0] for r in conn.execute(
+        r[0]
+        for r in conn.execute(
             "SELECT DISTINCT bet_type FROM race_payouts ORDER BY 1"
         ).fetchall()
     ]
     print("race_payouts の bet_type 一覧:", bet_types)
 
-    win5_like = [bt for bt in bet_types if "WIN" in bt.upper() or "WIN5" in bt.upper() or "Ｗ" in bt]
+    win5_like = [
+        bt
+        for bt in bet_types
+        if "WIN" in bt.upper() or "WIN5" in bt.upper() or "Ｗ" in bt
+    ]
     if win5_like:
         print("WIN5 系データ発見:", win5_like)
         rows = conn.execute(
@@ -446,6 +463,7 @@ def check_win5_in_main_db() -> None:
 
 # ── 進捗表示 ───────────────────────────────────────────────────────────────
 
+
 def show_status(research_db_path: Path = _RESEARCH_DB_PATH) -> None:
     """Research DB の取得進捗を表示する。"""
     if not research_db_path.exists():
@@ -454,14 +472,13 @@ def show_status(research_db_path: Path = _RESEARCH_DB_PATH) -> None:
 
     conn = sqlite3.connect(str(research_db_path))
 
-    total, ok, err = (
-        conn.execute("SELECT COUNT(*), SUM(status='ok'), SUM(status='error') FROM scraped_races").fetchone()
-        or (0, 0, 0)
-    )
+    total, ok, err = conn.execute(
+        "SELECT COUNT(*), SUM(status='ok'), SUM(status='error') FROM scraped_races"
+    ).fetchone() or (0, 0, 0)
     horse_count = conn.execute("SELECT COUNT(*) FROM horse_odds").fetchone()[0]
     win5_count = conn.execute("SELECT COUNT(*) FROM win5_results").fetchone()[0]
 
-    print(f"=== Research DB 進捗 ===")
+    print("=== Research DB 進捗 ===")
     print(f"  スクレイプ済みレース: {total}件 (OK={ok}, ERROR={err})")
     print(f"  horse_odds レコード: {horse_count:,}行")
     print(f"  WIN5 週: {win5_count}週")
@@ -470,7 +487,9 @@ def show_status(research_db_path: Path = _RESEARCH_DB_PATH) -> None:
         # umalogi.db を attach して実際のレース日で集計
         main_db = _ROOT / "data" / "umalogi.db"
         if main_db.exists():
-            conn.execute(f"ATTACH DATABASE '{str(main_db).replace(chr(92), '/')}' AS mdb")
+            conn.execute(
+                f"ATTACH DATABASE '{str(main_db).replace(chr(92), '/')}' AS mdb"
+            )
             rows = conn.execute(
                 """
                 SELECT strftime('%Y-%m', r.date) as ym, COUNT(*) as cnt
@@ -492,6 +511,7 @@ def show_status(research_db_path: Path = _RESEARCH_DB_PATH) -> None:
 
 # ── CLI ───────────────────────────────────────────────────────────────────
 
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="R&D スクレイパー — netkeiba からオッズ・WIN5情報を収集",
@@ -511,12 +531,24 @@ def main() -> None:
         default="status",
         help="動作モード (デフォルト: status)",
     )
-    parser.add_argument("--from", dest="from_date", default="2024-02-01", help="開始日 YYYY-MM-DD")
-    parser.add_argument("--to", dest="to_date", default="2025-12-31", help="終了日 YYYY-MM-DD")
-    parser.add_argument("--delay-min", type=float, default=1.0, help="最小待機秒数 (デフォルト: 1.0)")
-    parser.add_argument("--delay-max", type=float, default=2.0, help="最大待機秒数 (デフォルト: 2.0)")
-    parser.add_argument("--max-errors", type=int, default=30, help="エラー上限 (デフォルト: 30)")
-    parser.add_argument("--dry-run", action="store_true", help="ドライラン（実際のリクエストなし）")
+    parser.add_argument(
+        "--from", dest="from_date", default="2024-02-01", help="開始日 YYYY-MM-DD"
+    )
+    parser.add_argument(
+        "--to", dest="to_date", default="2025-12-31", help="終了日 YYYY-MM-DD"
+    )
+    parser.add_argument(
+        "--delay-min", type=float, default=1.0, help="最小待機秒数 (デフォルト: 1.0)"
+    )
+    parser.add_argument(
+        "--delay-max", type=float, default=2.0, help="最大待機秒数 (デフォルト: 2.0)"
+    )
+    parser.add_argument(
+        "--max-errors", type=int, default=30, help="エラー上限 (デフォルト: 30)"
+    )
+    parser.add_argument(
+        "--dry-run", action="store_true", help="ドライラン（実際のリクエストなし）"
+    )
     parser.add_argument("--db", default=str(_RESEARCH_DB_PATH), help="Research DB パス")
     args = parser.parse_args()
 

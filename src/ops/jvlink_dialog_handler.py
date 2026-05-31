@@ -56,16 +56,18 @@ _TARGET_TITLE_PATTERNS: tuple[str, ...] = (
 # これらのウィンドウクラスは Win32 ネイティブダイアログではなく、
 # JVLink と無関係のアプリ（ブラウザ・UWP）なので絶対に操作しない。
 #
-_EXCLUDED_WIN_CLASSES: frozenset[str] = frozenset({
-    "chrome_widgetwin_1",          # Google Chrome / Microsoft Edge (Chromium)
-    "chrome_widgetwin_0",          # Chrome / Edge サブウィンドウ
-    "mozillawindowclass",          # Mozilla Firefox メインウィンドウ
-    "mozilladialogclass",          # Firefox ダイアログ
-    "ieframe",                     # Internet Explorer / IE モード
-    "applicationframewindow",      # Windows 10/11 UWP ホスト
-    "windows.ui.core.corewindow",  # UWP コアウィンドウ
-    "msoswp",                      # Microsoft Office WebPane (IE内蔵)
-})
+_EXCLUDED_WIN_CLASSES: frozenset[str] = frozenset(
+    {
+        "chrome_widgetwin_1",  # Google Chrome / Microsoft Edge (Chromium)
+        "chrome_widgetwin_0",  # Chrome / Edge サブウィンドウ
+        "mozillawindowclass",  # Mozilla Firefox メインウィンドウ
+        "mozilladialogclass",  # Firefox ダイアログ
+        "ieframe",  # Internet Explorer / IE モード
+        "applicationframewindow",  # Windows 10/11 UWP ホスト
+        "windows.ui.core.corewindow",  # UWP コアウィンドウ
+        "msoswp",  # Microsoft Office WebPane (IE内蔵)
+    }
+)
 
 # ── ボタンテキスト優先順（小文字で部分一致）───────────────────────────────────
 _BUTTON_PRIORITY: tuple[str, ...] = (
@@ -114,8 +116,8 @@ _STUBBORN_THRESHOLD = 3.0
 # ── 統計カウンター ────────────────────────────────────────────────────────────
 stats: dict[str, int] = {
     "dialogs_dismissed": 0,
-    "click_attempts":    0,
-    "stubborn_dialogs":  0,
+    "click_attempts": 0,
+    "stubborn_dialogs": 0,
 }
 
 # ── スレッド制御 ──────────────────────────────────────────────────────────────
@@ -124,6 +126,7 @@ _thread: threading.Thread | None = None
 
 
 # ── ウィンドウ判定 ─────────────────────────────────────────────────────────────
+
 
 def _is_target_window(title: str) -> bool:
     """タイトルがダイアログ対象パターンに一致するか判定する。
@@ -203,6 +206,7 @@ def _select_no_startkit_radio(hwnd: int) -> bool:
 
 # ── ボタン検索 ────────────────────────────────────────────────────────────────
 
+
 def _find_best_button(hwnd: int) -> int | None:
     """
     子ウィンドウ中から最優先ボタンの HWND を返す。
@@ -237,6 +241,7 @@ def _find_best_button(hwnd: int) -> int | None:
 
 
 # ── ダイアログ閉じ処理 ────────────────────────────────────────────────────────
+
 
 def _dismiss_dialog(hwnd: int, title: str) -> bool:
     """
@@ -300,7 +305,9 @@ def _dismiss_dialog(hwnd: int, title: str) -> bool:
             win32gui.SendMessage(button_hwnd, win32con.BM_CLICK, 0, 0)
             logger.info(
                 "[DialogHandler] ✅ BM_CLICK: title=%r button=%r hwnd=%d",
-                title, btn_text, hwnd,
+                title,
+                btn_text,
+                hwnd,
             )
             stats["dialogs_dismissed"] += 1
             _first_seen.pop(hwnd, None)
@@ -311,9 +318,7 @@ def _dismiss_dialog(hwnd: int, title: str) -> bool:
     # 方法 2: WM_COMMAND IDOK をポスト
     try:
         win32api.PostMessage(hwnd, win32con.WM_COMMAND, win32con.IDOK, 0)
-        logger.info(
-            "[DialogHandler] ✅ WM_COMMAND IDOK: title=%r hwnd=%d", title, hwnd
-        )
+        logger.info("[DialogHandler] ✅ WM_COMMAND IDOK: title=%r hwnd=%d", title, hwnd)
         stats["dialogs_dismissed"] += 1
         _first_seen.pop(hwnd, None)
         return True
@@ -323,10 +328,8 @@ def _dismiss_dialog(hwnd: int, title: str) -> bool:
     # 方法 3: VK_RETURN キーをポスト
     try:
         win32api.PostMessage(hwnd, win32con.WM_KEYDOWN, win32con.VK_RETURN, 0)
-        win32api.PostMessage(hwnd, win32con.WM_KEYUP,   win32con.VK_RETURN, 0)
-        logger.info(
-            "[DialogHandler] ✅ VK_RETURN: title=%r hwnd=%d", title, hwnd
-        )
+        win32api.PostMessage(hwnd, win32con.WM_KEYUP, win32con.VK_RETURN, 0)
+        logger.info("[DialogHandler] ✅ VK_RETURN: title=%r hwnd=%d", title, hwnd)
         stats["dialogs_dismissed"] += 1
         _first_seen.pop(hwnd, None)
         return True
@@ -338,6 +341,7 @@ def _dismiss_dialog(hwnd: int, title: str) -> bool:
 
 # ── ウィンドウスキャン ────────────────────────────────────────────────────────
 
+
 def _is_browser_window(hwnd: int) -> bool:
     """ウィンドウクラスがブラウザ / UWP系かどうかを判定する。
 
@@ -346,6 +350,7 @@ def _is_browser_window(hwnd: int) -> bool:
     """
     try:
         import win32gui
+
         cls = win32gui.GetClassName(hwnd).lower()
         return cls in _EXCLUDED_WIN_CLASSES
     except Exception:
@@ -396,6 +401,7 @@ def _scan_windows() -> None:
 
 # ── メインループ ─────────────────────────────────────────────────────────────
 
+
 def _handler_loop(interval: float) -> None:
     """ダイアログ監視のメインループ。_running が False になるまで継続する。
 
@@ -416,6 +422,7 @@ def _handler_loop(interval: float) -> None:
 
 
 # ── 公開 API ─────────────────────────────────────────────────────────────────
+
 
 def start_dialog_handler(interval: float = 0.3) -> threading.Thread:
     """

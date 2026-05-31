@@ -16,10 +16,14 @@ from __future__ import annotations
 import argparse
 import logging
 import sys
-import time
 from pathlib import Path
 
-from tenacity import retry, retry_if_exception_type, stop_after_attempt, wait_exponential
+from tenacity import (
+    retry,
+    retry_if_exception_type,
+    stop_after_attempt,
+    wait_exponential,
+)
 from tqdm import tqdm
 
 logger = logging.getLogger(__name__)
@@ -128,7 +132,6 @@ def update_payouts_for_date(
     Returns:
         保存したレース数
     """
-    import sqlite3 as _sqlite3
     formatted = f"{target_date[:4]}-{target_date[4:6]}-{target_date[6:8]}"
     rows = conn.execute(
         """
@@ -220,12 +223,15 @@ def _parse_args() -> argparse.Namespace:
   python -m src.scraper.update_payouts --dry-run     # 書き込みなし確認
 """,
     )
-    parser.add_argument("--year",    type=int, help="対象年（省略時=全期間）")
-    parser.add_argument("--limit",   type=int, help="最大処理レース数")
-    parser.add_argument("--delay",   type=float, default=2.0, help="リクエスト間隔（秒）")
+    parser.add_argument("--year", type=int, help="対象年（省略時=全期間）")
+    parser.add_argument("--limit", type=int, help="最大処理レース数")
+    parser.add_argument("--delay", type=float, default=2.0, help="リクエスト間隔（秒）")
     parser.add_argument("--dry-run", action="store_true", help="DB 書き込みなし")
-    parser.add_argument("--refetch", action="store_true",
-                        help="有効な三連単(→形式)がないレースも再取得（JV-Link corrupt データ対策）")
+    parser.add_argument(
+        "--refetch",
+        action="store_true",
+        help="有効な三連単(→形式)がないレースも再取得（JV-Link corrupt データ対策）",
+    )
     return parser.parse_args()
 
 
@@ -247,14 +253,14 @@ def main() -> None:
     )
 
     mode = "[DRY-RUN]" if args.dry_run else ""
-    print(f"\n{'='*50} {mode}")
+    print(f"\n{'=' * 50} {mode}")
     print(f"  払戻取得結果 (year={args.year or 'all'})")
-    print(f"{'='*50}")
+    print(f"{'=' * 50}")
     print(f"  対象レース : {stats['total']:5d}")
     print(f"  保存成功  : {stats['saved']:5d}")
     print(f"  払戻なし  : {stats['empty']:5d}")
     print(f"  エラー    : {stats['errors']:5d}")
-    print(f"{'='*50}")
+    print(f"{'=' * 50}")
 
 
 if __name__ == "__main__":

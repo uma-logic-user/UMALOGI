@@ -2,6 +2,7 @@
 x_signal_parser.get_x_consensus_score() と
 FEATURE_COLS への x_consensus_score 追加の検証。
 """
+
 from __future__ import annotations
 
 import sqlite3
@@ -58,6 +59,7 @@ def test_x_consensus_score_aggregation(feature_db: sqlite3.Connection) -> None:
         score = (1.0*0.85*1.0 + 1.0*0.70*1.0) / (1.0+1.0) = 0.775
     """
     from src.ml.x_signal_parser import get_x_consensus_score
+
     scores = get_x_consensus_score(feature_db, race_id="202606050511")
     assert 5 in scores
     assert abs(scores[5] - 0.775) < 0.01
@@ -66,6 +68,7 @@ def test_x_consensus_score_aggregation(feature_db: sqlite3.Connection) -> None:
 def test_x_consensus_score_missing_race(feature_db: sqlite3.Connection) -> None:
     """x_signals にないレースは空 dict を返す。"""
     from src.ml.x_signal_parser import get_x_consensus_score
+
     scores = get_x_consensus_score(feature_db, race_id="000000000000")
     assert scores == {}
 
@@ -73,4 +76,5 @@ def test_x_consensus_score_missing_race(feature_db: sqlite3.Connection) -> None:
 def test_x_consensus_score_in_feature_cols() -> None:
     """x_consensus_score が FEATURE_COLS に含まれること。"""
     from src.ml.models import FEATURE_COLS
+
     assert "x_consensus_score" in FEATURE_COLS

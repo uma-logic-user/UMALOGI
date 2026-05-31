@@ -10,11 +10,11 @@ Usage:
     py -3 scripts/generate_result_card.py --date 20260503 --min-payout 10000
     py -3 scripts/generate_result_card.py --race-id 202604010203 --out outputs/cards/test.png
 """
+
 from __future__ import annotations
 
 import argparse
 import json
-import os
 import sqlite3
 import sys
 from datetime import date as dt_date
@@ -31,27 +31,27 @@ from dotenv import load_dotenv
 load_dotenv(_ROOT / ".env", override=False)
 
 # ── フォント設定 ──────────────────────────────────────────────────────
-_FONT_DIR   = Path("C:/Windows/Fonts")
-_FONT_BOLD  = str(_FONT_DIR / "NotoSansJP-VF.ttf")    # 見出し用（Variable Font）
-_FONT_REG   = str(_FONT_DIR / "NotoSansJP-VF.ttf")    # 本文用
-_FONT_YUGU  = str(_FONT_DIR / "YuGothB.ttc")           # フォールバック
+_FONT_DIR = Path("C:/Windows/Fonts")
+_FONT_BOLD = str(_FONT_DIR / "NotoSansJP-VF.ttf")  # 見出し用（Variable Font）
+_FONT_REG = str(_FONT_DIR / "NotoSansJP-VF.ttf")  # 本文用
+_FONT_YUGU = str(_FONT_DIR / "YuGothB.ttc")  # フォールバック
 
 # ── カードサイズ・カラーパレット ─────────────────────────────────────
 _W, _H = 1080, 1080
 
 # ダークグラデーション + アクセントカラー
 _C = {
-    "bg_top":     (10, 14, 28),       # ネイビーブラック
-    "bg_bot":     (18, 24, 48),       # 深い紺
-    "accent":     (255, 180, 0),      # ゴールド
-    "accent2":    (255, 120, 30),     # オレンジ
-    "white":      (255, 255, 255),
-    "silver":     (200, 210, 230),
-    "green":      (40, 210, 100),     # 的中グリーン
-    "red":        (255, 60, 60),
-    "border":     (255, 180, 0, 180), # ゴールド半透明
-    "card_bg":    (22, 30, 58, 220),  # カード内背景
-    "overlay":    (0, 0, 0, 80),
+    "bg_top": (10, 14, 28),  # ネイビーブラック
+    "bg_bot": (18, 24, 48),  # 深い紺
+    "accent": (255, 180, 0),  # ゴールド
+    "accent2": (255, 120, 30),  # オレンジ
+    "white": (255, 255, 255),
+    "silver": (200, 210, 230),
+    "green": (40, 210, 100),  # 的中グリーン
+    "red": (255, 60, 60),
+    "border": (255, 180, 0, 180),  # ゴールド半透明
+    "card_bg": (22, 30, 58, 220),  # カード内背景
+    "overlay": (0, 0, 0, 80),
 }
 
 _DEFAULT_OUT_DIR = _ROOT / "outputs" / "cards"
@@ -59,9 +59,11 @@ _DEFAULT_OUT_DIR = _ROOT / "outputs" / "cards"
 
 # ── フォントローダー ──────────────────────────────────────────────────
 
+
 def _load_font(size: int, bold: bool = False) -> Any:
     """Pillow ImageFont をロードする（フォールバック付き）。"""
     from PIL import ImageFont
+
     candidates = [_FONT_BOLD if bold else _FONT_REG, _FONT_YUGU]
     for path in candidates:
         try:
@@ -72,6 +74,7 @@ def _load_font(size: int, bold: bool = False) -> Any:
 
 
 # ── グラデーション背景生成 ─────────────────────────────────────────
+
 
 def _make_bg(w: int, h: int) -> Any:
     """上から下へのグラデーション + ノイズテクスチャ背景を生成する。"""
@@ -102,14 +105,16 @@ def _make_bg(w: int, h: int) -> Any:
 
 def _draw_rounded_rect(
     draw: Any,
-    x0: int, y0: int, x1: int, y1: int,
+    x0: int,
+    y0: int,
+    x1: int,
+    y1: int,
     radius: int = 20,
     fill: tuple = (0, 0, 0, 160),
     outline: tuple | None = None,
     outline_width: int = 2,
 ) -> None:
     """角丸矩形を描画する（RGBA 対応）。"""
-    from PIL import ImageDraw
     draw.rounded_rectangle(
         [(x0, y0), (x1, y1)],
         radius=radius,
@@ -122,12 +127,15 @@ def _draw_rounded_rect(
 def _draw_horizontal_gradient_line(
     img: Any,
     y: int,
-    x0: int, x1: int,
-    color_l: tuple, color_r: tuple,
+    x0: int,
+    x1: int,
+    color_l: tuple,
+    color_r: tuple,
     width: int = 3,
 ) -> None:
     """水平グラデーションラインを描画する。"""
     from PIL import ImageDraw
+
     draw = ImageDraw.Draw(img)
     length = x1 - x0
     for i in range(length):
@@ -140,6 +148,7 @@ def _draw_horizontal_gradient_line(
 
 
 # ── テキスト描画ユーティリティ ────────────────────────────────────────
+
 
 def _center_text(
     draw: Any,
@@ -156,15 +165,17 @@ def _center_text(
     tw = bbox[2] - bbox[0]
     x = (_W - tw) // 2
     if shadow:
-        draw.text((x + shadow_offset, y + shadow_offset), text,
-                  font=font, fill=shadow_color)
+        draw.text(
+            (x + shadow_offset, y + shadow_offset), text, font=font, fill=shadow_color
+        )
     draw.text((x, y), text, font=font, fill=fill)
 
 
 def _left_text(
     draw: Any,
     text: str,
-    x: int, y: int,
+    x: int,
+    y: int,
     font: Any,
     fill: tuple,
     shadow: bool = False,
@@ -177,7 +188,8 @@ def _left_text(
 def _right_text(
     draw: Any,
     text: str,
-    x_right: int, y: int,
+    x_right: int,
+    y: int,
     font: Any,
     fill: tuple,
 ) -> None:
@@ -187,6 +199,7 @@ def _right_text(
 
 
 # ── DB ヘルパー ───────────────────────────────────────────────────────
+
 
 def _fetch_hit_records(
     conn: sqlite3.Connection,
@@ -212,15 +225,17 @@ def _fetch_hit_records(
     result = []
     for row in rows:
         combo: list = json.loads(row[7]) if row[7] else []
-        result.append({
-            "payout":      row[1] or 0,
-            "profit":      row[2] or 0,
-            "model_type":  row[3] or "",
-            "bet_type":    row[4] or "",
-            "ev":          row[5] or 0.0,
-            "rec_bet":     row[6] or 0,
-            "combo":       combo,
-        })
+        result.append(
+            {
+                "payout": row[1] or 0,
+                "profit": row[2] or 0,
+                "model_type": row[3] or "",
+                "bet_type": row[4] or "",
+                "ev": row[5] or 0.0,
+                "rec_bet": row[6] or 0,
+                "combo": combo,
+            }
+        )
     return result
 
 
@@ -232,12 +247,12 @@ def _fetch_race_info(conn: sqlite3.Connection, race_id: str) -> dict:
     if not row:
         return {}
     return {
-        "race_name":   row[0] or "",
-        "venue":       row[1] or "",
+        "race_name": row[0] or "",
+        "venue": row[1] or "",
         "race_number": row[2] or 0,
-        "date":        row[3] or "",
-        "distance":    row[4] or 0,
-        "surface":     row[5] or "",
+        "date": row[3] or "",
+        "distance": row[4] or 0,
+        "surface": row[5] or "",
     }
 
 
@@ -267,7 +282,7 @@ def _fetch_top_hit_races(
 
 def _fetch_monthly_stats(conn: sqlite3.Connection, date_str: str) -> dict:
     """date_str の月の卍・本命モデル統計を返す。"""
-    month = date_str[:7]   # YYYY-MM
+    month = date_str[:7]  # YYYY-MM
     row = conn.execute(
         """
         SELECT COUNT(*) AS total,
@@ -287,16 +302,17 @@ def _fetch_monthly_stats(conn: sqlite3.Connection, date_str: str) -> dict:
     roi = (payout / bet * 100) if bet and bet > 0 else 0.0
     hit_rate = (hits / total * 100) if total and total > 0 else 0.0
     return {
-        "total":    total or 0,
-        "hits":     hits or 0,
-        "profit":   profit or 0,
-        "roi":      roi,
+        "total": total or 0,
+        "hits": hits or 0,
+        "profit": profit or 0,
+        "roi": roi,
         "hit_rate": hit_rate,
-        "month":    month,
+        "month": month,
     }
 
 
 # ── カード描画メイン ──────────────────────────────────────────────────
+
 
 def _combo_display(combo: list, bet_type: str, max_len: int = 3) -> str:
     """買い目の組み合わせを「14-3-11」形式で返す。"""
@@ -320,7 +336,7 @@ def generate_card(
     Returns:
         保存したファイルパス。的中なしの場合は None。
     """
-    from PIL import Image, ImageDraw, ImageFilter
+    from PIL import Image, ImageDraw
 
     race = _fetch_race_info(conn, race_id)
     hits = _fetch_hit_records(conn, race_id, min_payout=min_payout)
@@ -329,13 +345,13 @@ def generate_card(
         return None
 
     # 月間統計
-    date_str   = race.get("date", "")
-    venue      = race.get("venue", "")
-    race_no    = race.get("race_number", 0)
-    stats      = _fetch_monthly_stats(conn, date_str)
-    race_name  = race.get("race_name") or f"{venue}{race_no}R"
-    date_disp  = date_str.replace("-", "/") if date_str else ""
-    best_hit   = hits[0]   # 最大払戻
+    date_str = race.get("date", "")
+    venue = race.get("venue", "")
+    race_no = race.get("race_number", 0)
+    stats = _fetch_monthly_stats(conn, date_str)
+    race_name = race.get("race_name") or f"{venue}{race_no}R"
+    date_disp = date_str.replace("-", "/") if date_str else ""
+    best_hit = hits[0]  # 最大払戻
 
     # ── 背景 ─────────────────────────────────────────────────────────
     bg = _make_bg(_W, _H)
@@ -343,17 +359,15 @@ def generate_card(
     draw = ImageDraw.Draw(img)
 
     # ── フォント ──────────────────────────────────────────────────────
-    f_xl    = _load_font(80, bold=True)    # ロゴ・最大数値
-    f_lg    = _load_font(54, bold=True)    # 見出し
-    f_md    = _load_font(40, bold=True)    # サブ見出し
-    f_sm    = _load_font(30)               # 本文
-    f_xs    = _load_font(24)               # 補足
-    f_tag   = _load_font(20)              # タグ
+    f_xl = _load_font(80, bold=True)  # ロゴ・最大数値
+    f_lg = _load_font(54, bold=True)  # 見出し
+    f_md = _load_font(40, bold=True)  # サブ見出し
+    f_sm = _load_font(30)  # 本文
+    f_xs = _load_font(24)  # 補足
+    f_tag = _load_font(20)  # タグ
 
     # ── 装飾ライン（上部） ────────────────────────────────────────────
-    _draw_horizontal_gradient_line(
-        img, 0, 0, _W, _C["accent"], _C["accent2"], width=6
-    )
+    _draw_horizontal_gradient_line(img, 0, 0, _W, _C["accent"], _C["accent2"], width=6)
 
     # ── UMALOGI ロゴ ─────────────────────────────────────────────────
     _center_text(draw, "UMALOGI", 28, f_xl, _C["accent"], shadow=True)
@@ -364,8 +378,10 @@ def generate_card(
     badge_h = 80
     _draw_rounded_rect(
         draw,
-        _W // 2 - 200, badge_y,
-        _W // 2 + 200, badge_y + badge_h,
+        _W // 2 - 200,
+        badge_y,
+        _W // 2 + 200,
+        badge_y + badge_h,
         radius=40,
         fill=_C["green"] + (230,),
         outline=_C["white"],
@@ -381,36 +397,58 @@ def generate_card(
     # ── レース情報カード ─────────────────────────────────────────────
     card_x0, card_y0, card_x1, card_y1 = 50, 285, _W - 50, 460
     _draw_rounded_rect(
-        draw, card_x0, card_y0, card_x1, card_y1,
+        draw,
+        card_x0,
+        card_y0,
+        card_x1,
+        card_y1,
         radius=18,
         fill=(22, 30, 58, 200),
         outline=(_C["accent"][0], _C["accent"][1], _C["accent"][2], 150),
         outline_width=2,
     )
-    _center_text(draw, f"【 {race_name} 】", card_y0 + 20, f_md, _C["accent"], shadow=True)
-    _center_text(draw,
+    _center_text(
+        draw, f"【 {race_name} 】", card_y0 + 20, f_md, _C["accent"], shadow=True
+    )
+    _center_text(
+        draw,
         f"{date_disp}（{venue}）{race_no}R",
-        card_y0 + 78, f_sm, _C["silver"],
+        card_y0 + 78,
+        f_sm,
+        _C["silver"],
     )
 
     # ── 最大払戻ハイライト ────────────────────────────────────────────
     hl_y0, hl_y1 = 478, 650
     _draw_rounded_rect(
-        draw, 50, hl_y0, _W - 50, hl_y1,
+        draw,
+        50,
+        hl_y0,
+        _W - 50,
+        hl_y1,
         radius=18,
         fill=(40, 20, 0, 200),
         outline=(_C["accent2"][0], _C["accent2"][1], _C["accent2"][2], 200),
         outline_width=3,
     )
-    bet_type  = best_hit["bet_type"]
+    bet_type = best_hit["bet_type"]
     combo_str = _combo_display(best_hit["combo"], bet_type)
-    ev_str    = f"EV {best_hit['ev']:.2f}"
-    pay_val   = int(best_hit["payout"])
-    pay_str   = f"¥{pay_val:,}"
+    ev_str = f"EV {best_hit['ev']:.2f}"
+    pay_val = int(best_hit["payout"])
+    pay_str = f"¥{pay_val:,}"
 
-    _center_text(draw, f"{bet_type}  {combo_str}", hl_y0 + 18, f_md, _C["white"], shadow=True)
-    _center_text(draw, pay_str, hl_y0 + 68, f_xl, _C["accent"], shadow=True,
-                 shadow_color=(100, 60, 0))
+    _center_text(
+        draw, f"{bet_type}  {combo_str}", hl_y0 + 18, f_md, _C["white"], shadow=True
+    )
+    _center_text(
+        draw,
+        pay_str,
+        hl_y0 + 68,
+        f_xl,
+        _C["accent"],
+        shadow=True,
+        shadow_color=(100, 60, 0),
+    )
     _center_text(draw, f"払戻金額  /  {ev_str}", hl_y0 + 148, f_xs, _C["silver"])
 
     # ── 複数的中がある場合の追加行 ────────────────────────────────────
@@ -425,7 +463,11 @@ def generate_card(
     stat_y0 = 690
     stat_y1 = 920
     _draw_rounded_rect(
-        draw, 50, stat_y0, _W - 50, stat_y1,
+        draw,
+        50,
+        stat_y0,
+        _W - 50,
+        stat_y1,
         radius=18,
         fill=(18, 24, 48, 200),
         outline=(_C["accent"][0], _C["accent"][1], _C["accent"][2], 120),
@@ -436,25 +478,36 @@ def generate_card(
     _center_text(draw, month_label, stat_y0 + 16, f_sm, _C["accent"])
 
     # 区切り線
-    draw.line([(80, stat_y0 + 58), (_W - 80, stat_y0 + 58)],
-              fill=_C["accent"] + (80,), width=1)
+    draw.line(
+        [(80, stat_y0 + 58), (_W - 80, stat_y0 + 58)],
+        fill=_C["accent"] + (80,),
+        width=1,
+    )
 
     # 3列レイアウト
     cols = [
-        ("ROI",   f"{stats['roi']:.0f}%",   _C["green"] if stats["roi"] >= 100 else _C["accent"]),
-        ("月間純利", f"¥{int(stats['profit']):,}", _C["green"] if stats["profit"] >= 0 else _C["red"]),
-        ("的中率",  f"{stats['hit_rate']:.1f}%", _C["white"]),
+        (
+            "ROI",
+            f"{stats['roi']:.0f}%",
+            _C["green"] if stats["roi"] >= 100 else _C["accent"],
+        ),
+        (
+            "月間純利",
+            f"¥{int(stats['profit']):,}",
+            _C["green"] if stats["profit"] >= 0 else _C["red"],
+        ),
+        ("的中率", f"{stats['hit_rate']:.1f}%", _C["white"]),
     ]
     col_w = (_W - 100) // 3
     for i, (label, val, color) in enumerate(cols):
         cx = 50 + col_w * i + col_w // 2
         bbox = draw.textbbox((0, 0), val, font=f_lg)
-        tw   = bbox[2] - bbox[0]
+        tw = bbox[2] - bbox[0]
         # 値
         draw.text((cx - tw // 2, stat_y0 + 76), val, font=f_lg, fill=color)
         # ラベル
         bbox2 = draw.textbbox((0, 0), label, font=f_xs)
-        tw2   = bbox2[2] - bbox2[0]
+        tw2 = bbox2[2] - bbox2[0]
         draw.text((cx - tw2 // 2, stat_y0 + 152), label, font=f_xs, fill=_C["silver"])
 
     # 補足
@@ -462,7 +515,8 @@ def generate_card(
         draw,
         f"予想件数 {stats['total']} 件 / 的中 {stats['hits']} 件",
         stat_y0 + 198,
-        f_xs, _C["silver"],
+        f_xs,
+        _C["silver"],
     )
 
     # ── フッター ──────────────────────────────────────────────────────
@@ -472,7 +526,9 @@ def generate_card(
     _center_text(
         draw,
         "※本予想は情報提供のみ。馬券購入は自己責任で。JRA-VANデータ使用。",
-        _H - 52, f_tag, (120, 130, 150),
+        _H - 52,
+        f_tag,
+        (120, 130, 150),
     )
 
     # ── RGBA → RGB 変換して PNG 保存 ─────────────────────────────────
@@ -483,10 +539,11 @@ def generate_card(
     if out_path is None:
         safe_name = (race_name or race_id).replace("（", "(").replace("）", ")")
         import re
+
         safe_name = re.sub(r'[\\/:*?"<>|]', "_", safe_name)
-        date_raw  = (date_str or "").replace("-", "")
-        filename  = f"{date_raw}_R{race_no:02d}_{safe_name}.png"
-        out_path  = _DEFAULT_OUT_DIR / filename
+        date_raw = (date_str or "").replace("-", "")
+        filename = f"{date_raw}_R{race_no:02d}_{safe_name}.png"
+        out_path = _DEFAULT_OUT_DIR / filename
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
     final.save(str(out_path), "PNG", optimize=True)
@@ -495,15 +552,24 @@ def generate_card(
 
 # ── メイン ───────────────────────────────────────────────────────────
 
+
 def _parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="的中実績カード画像を生成する")
-    p.add_argument("--race-id",    help="対象レースID（指定時は --date より優先）")
-    p.add_argument("--date",       help="対象日 YYYYMMDD（省略時=本日）")
-    p.add_argument("--top",        type=int, default=3,
-                   help="日次で上位何レースを生成するか（デフォルト 3）")
-    p.add_argument("--min-payout", type=float, default=1000,
-                   help="最低払戻金額フィルタ（円、デフォルト 1000）")
-    p.add_argument("--out",        help="出力ファイルパス（単一レースのみ有効）")
+    p.add_argument("--race-id", help="対象レースID（指定時は --date より優先）")
+    p.add_argument("--date", help="対象日 YYYYMMDD（省略時=本日）")
+    p.add_argument(
+        "--top",
+        type=int,
+        default=3,
+        help="日次で上位何レースを生成するか（デフォルト 3）",
+    )
+    p.add_argument(
+        "--min-payout",
+        type=float,
+        default=1000,
+        help="最低払戻金額フィルタ（円、デフォルト 1000）",
+    )
+    p.add_argument("--out", help="出力ファイルパス（単一レースのみ有効）")
     return p.parse_args()
 
 
@@ -511,13 +577,12 @@ def main() -> None:
     args = _parse_args()
 
     from src.database.init_db import init_db
+
     conn = init_db()
 
     if args.race_id:
         race_ids = [args.race_id]
-        date_str = (
-            f"{args.race_id[2:6]}-{args.race_id[6:8]}-{args.race_id[8:10]}"
-        )
+        date_str = f"{args.race_id[2:6]}-{args.race_id[6:8]}-{args.race_id[8:10]}"
     else:
         raw = (args.date or dt_date.today().strftime("%Y%m%d")).replace("-", "")
         date_str = f"{raw[:4]}-{raw[4:6]}-{raw[6:8]}"
@@ -526,7 +591,9 @@ def main() -> None:
         )
 
     if not race_ids:
-        print(f"[CARD] 対象レースが見つかりません (date={date_str}, min_payout={args.min_payout})")
+        print(
+            f"[CARD] 対象レースが見つかりません (date={date_str}, min_payout={args.min_payout})"
+        )
         conn.close()
         return
 

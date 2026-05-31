@@ -27,13 +27,14 @@ sys.path.insert(0, str(_ROOT))
 
 try:
     from dotenv import load_dotenv
+
     load_dotenv(_ROOT / ".env", override=False)
 except ImportError:
     pass
 
 from src.ml.alpha_payout_model import AlphaPayoutModel, _MODEL_PATH
 
-_DB_PATH     = _ROOT / "data" / "umalogi.db"
+_DB_PATH = _ROOT / "data" / "umalogi.db"
 _RESEARCH_DB = _ROOT / "data" / "netkeiba_research.db"
 
 
@@ -51,7 +52,10 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Alpha-Payout 本番モデル訓練")
     parser.add_argument("--trials", type=int, default=30, help="Optuna トライアル数")
     parser.add_argument(
-        "--years", nargs="+", type=int, default=[2024, 2025],
+        "--years",
+        nargs="+",
+        type=int,
+        default=[2024, 2025],
         help="学習データ年 (デフォルト: 2024 2025)",
     )
     args = parser.parse_args()
@@ -96,18 +100,18 @@ def main() -> None:
 
     model.save(_MODEL_PATH)
 
-    print(f"\n{'='*60}", flush=True)
-    print(f"  Alpha-Payout 本番モデル 訓練完了", flush=True)
-    print(f"{'='*60}", flush=True)
+    print(f"\n{'=' * 60}", flush=True)
+    print("  Alpha-Payout 本番モデル 訓練完了", flush=True)
+    print(f"{'=' * 60}", flush=True)
     print(f"  学習年: {valid_years}", flush=True)
     print(f"  学習行: {metrics['n_train']:,}", flush=True)
     print(f"  EV 閾値: pred_ev > {metrics['threshold']:.2f}", flush=True)
     print(f"  検証 ROI: {metrics['val_roi']:.1f}%", flush=True)
     print(f"  訓練 ROI: {metrics['train_roi']:.1f}%", flush=True)
     print(f"  保存先: {_MODEL_PATH}", flush=True)
-    print(f"{'='*60}", flush=True)
-    print(f"\n  prerace_pipeline が自動的にこのモデルを使用します。", flush=True)
-    print(f"  月次再訓練推奨: py scripts/train_alpha_payout.py", flush=True)
+    print(f"{'=' * 60}", flush=True)
+    print("\n  prerace_pipeline が自動的にこのモデルを使用します。", flush=True)
+    print("  月次再訓練推奨: py scripts/train_alpha_payout.py", flush=True)
 
 
 if __name__ == "__main__":

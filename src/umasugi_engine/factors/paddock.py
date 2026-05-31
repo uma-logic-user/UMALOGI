@@ -9,6 +9,7 @@ Discord /paddock コマンド経由でコメントが保存された場合のみ
 
 出力列: paddock_score (0.0〜1.0, 0.5 = 中立)
 """
+
 from __future__ import annotations
 
 import logging
@@ -23,15 +24,40 @@ _DEFAULT = 0.5
 
 # ポジティブキーワード → +0.05
 _POSITIVE_KEYWORDS: list[str] = [
-    "気配良", "スムーズ", "落ち着き", "集中", "輝き", "汗なし", "デキ良",
-    "好気配", "毛艶", "覇気", "上昇", "力強", "リラックス", "余裕",
+    "気配良",
+    "スムーズ",
+    "落ち着き",
+    "集中",
+    "輝き",
+    "汗なし",
+    "デキ良",
+    "好気配",
+    "毛艶",
+    "覇気",
+    "上昇",
+    "力強",
+    "リラックス",
+    "余裕",
 ]
 
 # ネガティブキーワード → -0.05
 _NEGATIVE_KEYWORDS: list[str] = [
-    "イライラ", "発汗", "かかり", "ぼんやり", "元気なし", "煩い",
-    "行きたがり", "チャカつ", "落ち着かない", "消耗", "気難し",
-    "興奮", "暴れ", "汗だく", "ガリガリ", "疲れ",
+    "イライラ",
+    "発汗",
+    "かかり",
+    "ぼんやり",
+    "元気なし",
+    "煩い",
+    "行きたがり",
+    "チャカつ",
+    "落ち着かない",
+    "消耗",
+    "気難し",
+    "興奮",
+    "暴れ",
+    "汗だく",
+    "ガリガリ",
+    "疲れ",
 ]
 
 _RE_POSITIVE = re.compile("|".join(re.escape(k) for k in _POSITIVE_KEYWORDS))
@@ -62,9 +88,7 @@ def analyze_comment(comment: str) -> float:
     return 0.0
 
 
-def calc_paddock_score(
-    df: pd.DataFrame, conn: sqlite3.Connection
-) -> pd.DataFrame:
+def calc_paddock_score(df: pd.DataFrame, conn: sqlite3.Connection) -> pd.DataFrame:
     """パドック気配スコアを DataFrame に追加して返す。
 
     paddock_notes テーブルから boost_factor を取得し、
@@ -109,7 +133,7 @@ def calc_paddock_score(
 
     def _get_score(row: pd.Series) -> float:
         rid = str(row["race_id"])
-        hn  = int(row["horse_number"]) if pd.notna(row.get("horse_number")) else None
+        hn = int(row["horse_number"]) if pd.notna(row.get("horse_number")) else None
         # 馬番一致のメモを優先、なければレース全体メモ（horse_number=NULL）
         boosts = boost_map.get((rid, hn)) or boost_map.get((rid, None)) or []
         if not boosts:
@@ -151,6 +175,9 @@ def save_paddock_note(
     conn.commit()
     logger.info(
         "paddock_note 保存: race_id=%s horse=%s boost=%.2f comment=%r",
-        race_id, horse_number, boost, comment[:40],
+        race_id,
+        horse_number,
+        boost,
+        comment[:40],
     )
     return boost

@@ -7,6 +7,7 @@ JVLink から SE レコードを読み取り、実際のランクデータが
 実行コマンド (32bit Python 必須):
     py -3.14-32 scripts/probe_se_rank.py
 """
+
 from __future__ import annotations
 
 import os
@@ -19,15 +20,21 @@ sys.stdout.reconfigure(encoding="utf-8")
 
 try:
     from dotenv import load_dotenv
+
     load_dotenv(_ROOT / ".env", override=False)
 except ImportError:
     pass
 
 from src.scraper.jravan_client import (
-    JVLinkClient, OPT_SETUP, DATASPEC_RACE,
-    JVREAD_EOF, JVREAD_FILECHANGE, JVREAD_DOWNLOADING,
-    _str, _int, _make_race_id, _sjis,
-    _RK_KAISAI_DT,
+    JVLinkClient,
+    OPT_SETUP,
+    DATASPEC_RACE,
+    JVREAD_EOF,
+    JVREAD_FILECHANGE,
+    JVREAD_DOWNLOADING,
+    _int,
+    _make_race_id,
+    _sjis,
 )
 
 # 検証対象：天皇賞(春) 202608030411
@@ -35,8 +42,12 @@ TARGET_RACE = "202608030411"
 
 # 既知の着順付きレース（5/3 R1など早い回は確定済みの可能性）
 TARGET_RACES = {
-    "202608030101", "202608030102", "202608030103",
-    "202604010101", "202604010102", "202604010103",
+    "202608030101",
+    "202608030102",
+    "202608030103",
+    "202604010101",
+    "202604010102",
+    "202604010103",
     TARGET_RACE,
 }
 
@@ -65,7 +76,11 @@ def main() -> None:
             if code < 0 or not data:
                 continue
 
-            raw = data if isinstance(data, bytes) else data.encode("latin-1", errors="replace")
+            raw = (
+                data
+                if isinstance(data, bytes)
+                else data.encode("latin-1", errors="replace")
+            )
             rec_type = raw[:2].decode("ascii", errors="replace")
             if rec_type != "SE":
                 continue
@@ -84,14 +99,16 @@ def main() -> None:
     # 最初の SE レコードを詳細ダンプ
     race_id, uma_ban, raw = found[0]
     cat = raw[2:3].decode("ascii", errors="replace")
-    print(f"\n--- SE サンプル: race_id={race_id} 馬番={uma_ban} cat={cat} len={len(raw)} ---")
+    print(
+        f"\n--- SE サンプル: race_id={race_id} 馬番={uma_ban} cat={cat} len={len(raw)} ---"
+    )
     horse_name = _sjis(raw, slice(40, 76)).strip()
     print(f"馬名: {horse_name}")
 
     # オフセット 190-230 の値を scan して rank 候補を探す
     print("\n[オフセット 190-230 バイトダンプ]")
     for i in range(190, min(230, len(raw))):
-        chunk = raw[i:i+2]
+        chunk = raw[i : i + 2]
         try:
             val = int(chunk.decode("ascii", errors="replace").strip())
             if 1 <= val <= 18:
@@ -111,7 +128,7 @@ def main() -> None:
             print(f"  馬番={uma_ban} {horse_name} cat={cat}")
             # rank 候補オフセット
             for off in [202, 206, 210, 211, 213, 215]:
-                chunk = raw[off:off+2]
+                chunk = raw[off : off + 2]
                 try:
                     v = int(chunk.decode("ascii", errors="replace").strip())
                     print(f"    off={off}: {v}")

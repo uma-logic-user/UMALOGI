@@ -19,7 +19,6 @@ from __future__ import annotations
 import json
 import logging
 import os
-from calendar import monthrange
 from datetime import date
 from pathlib import Path
 
@@ -103,8 +102,10 @@ class _RateLimiter:
         """
         return self._data.get(self._key(), 0)
 
+
 try:
     import tweepy  # type: ignore[import-untyped]
+
     _TWEEPY_AVAILABLE = True
 except ImportError:
     _TWEEPY_AVAILABLE = False
@@ -126,10 +127,10 @@ class TwitterNotifier(BaseNotifier):
     def __init__(
         self,
         *,
-        api_key:              str | None = None,
-        api_secret:           str | None = None,
-        access_token:         str | None = None,
-        access_token_secret:  str | None = None,
+        api_key: str | None = None,
+        api_secret: str | None = None,
+        access_token: str | None = None,
+        access_token_secret: str | None = None,
         enabled: bool = True,
     ) -> None:
         """初期化。
@@ -143,13 +144,15 @@ class TwitterNotifier(BaseNotifier):
             enabled: False に設定すると全送信をスキップする。
         """
         super().__init__(enabled=enabled)
-        self._api_key             = api_key             or os.environ.get("X_API_KEY", "")
-        self._api_secret          = api_secret          or os.environ.get("X_API_SECRET", "")
-        self._access_token        = access_token        or os.environ.get("X_ACCESS_TOKEN", "")
-        self._access_token_secret = access_token_secret or os.environ.get("X_ACCESS_TOKEN_SECRET", "")
+        self._api_key = api_key or os.environ.get("X_API_KEY", "")
+        self._api_secret = api_secret or os.environ.get("X_API_SECRET", "")
+        self._access_token = access_token or os.environ.get("X_ACCESS_TOKEN", "")
+        self._access_token_secret = access_token_secret or os.environ.get(
+            "X_ACCESS_TOKEN_SECRET", ""
+        )
 
-        self._client:  "tweepy.Client | None"  = None
-        self._api_v1:  "tweepy.API | None"     = None  # 画像アップロード用
+        self._client: "tweepy.Client | None" = None
+        self._api_v1: "tweepy.API | None" = None  # 画像アップロード用
         self._rate_limiter = _RateLimiter()
 
         if enabled:
@@ -162,8 +165,14 @@ class TwitterNotifier(BaseNotifier):
         """
         if not _TWEEPY_AVAILABLE:
             return
-        if not all([self._api_key, self._api_secret,
-                    self._access_token, self._access_token_secret]):
+        if not all(
+            [
+                self._api_key,
+                self._api_secret,
+                self._access_token,
+                self._access_token_secret,
+            ]
+        ):
             logger.warning("X API 認証情報が不完全です")
             return
         try:
@@ -176,8 +185,10 @@ class TwitterNotifier(BaseNotifier):
             )
             # v1.1 API（メディアアップロード — v2 未対応のため）
             auth = tweepy.OAuth1UserHandler(
-                self._api_key, self._api_secret,
-                self._access_token, self._access_token_secret,
+                self._api_key,
+                self._api_secret,
+                self._access_token,
+                self._access_token_secret,
             )
             self._api_v1 = tweepy.API(auth)
             logger.info("[Twitter] クライアント初期化完了")
@@ -201,7 +212,8 @@ class TwitterNotifier(BaseNotifier):
         if not self._rate_limiter.can_post():
             logger.warning(
                 "[Twitter] 月次制限到達 (%d/%d)。投稿をスキップします。",
-                self._rate_limiter.current_count(), _MONTHLY_LIMIT,
+                self._rate_limiter.current_count(),
+                _MONTHLY_LIMIT,
             )
             return False
 
@@ -242,7 +254,8 @@ class TwitterNotifier(BaseNotifier):
     def post_text(self, text: str, image_path: str | None = None) -> bool:
         """プレーンテキストを X に投稿する（weekend_batch から直接呼ぶ用）。"""
         from .base import NotifyMessage
-        msg = NotifyMessage(title="", body=text, image_path=image_path or "")
+
+        NotifyMessage(title="", body=text, image_path=image_path or "")
         # title+body で重複改行が入るため text を直接使う
         if not _TWEEPY_AVAILABLE or self._client is None:
             return False

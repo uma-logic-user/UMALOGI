@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import sqlite3
 
-import pytest
 
 from src.data.jravan_pipeline import (
     MIN_HEALTHY_SNAPSHOTS,
@@ -48,9 +47,7 @@ def test_health_single_snapshot_is_unhealthy() -> None:
 
 
 def test_health_two_snapshots_is_healthy() -> None:
-    conn = _conn(
-        [("R1", 1, 5.0, "t1"), ("R1", 1, 4.0, "t2"), ("R1", 2, 3.0, "t1")]
-    )
+    conn = _conn([("R1", 1, 5.0, "t1"), ("R1", 1, 4.0, "t2"), ("R1", 2, 3.0, "t1")])
     h = odds_snapshot_health(conn, "R1")
     assert h.n_snapshots == 2 and h.is_healthy and h.status == "healthy"
     assert MIN_HEALTHY_SNAPSHOTS == 2
@@ -63,7 +60,8 @@ def test_coverage_detects_empty_and_single() -> None:
     conn = _conn(
         [
             # R1: 2点（健全）
-            ("R1", 1, 5.0, "t1"), ("R1", 1, 4.0, "t2"),
+            ("R1", 1, 5.0, "t1"),
+            ("R1", 1, 4.0, "t2"),
             # R2: 1点
             ("R2", 1, 6.0, "t1"),
             # R3: 0点（空）
@@ -86,8 +84,10 @@ def test_coverage_detects_empty_and_single() -> None:
 def test_coverage_all_healthy_is_ok() -> None:
     conn = _conn(
         [
-            ("R1", 1, 5.0, "t1"), ("R1", 1, 4.0, "t2"),
-            ("R2", 1, 6.0, "t1"), ("R2", 1, 5.5, "t2"),
+            ("R1", 1, 5.0, "t1"),
+            ("R1", 1, 4.0, "t2"),
+            ("R2", 1, 6.0, "t1"),
+            ("R2", 1, 5.5, "t2"),
         ]
     )
     for rid in ("R1", "R2"):

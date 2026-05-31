@@ -7,6 +7,7 @@ src/ops/win_report.py
     from src.ops.win_report import publish_win_report
     publish_win_report(result, race_id, conn)
 """
+
 from __future__ import annotations
 
 import json
@@ -25,17 +26,17 @@ _RESULTS_DIR = _ROOT / "data" / "results"
 
 @dataclass
 class WinReportData:
-    race_id:        str
-    race_name:      str
-    venue:          str
-    race_number:    int
-    date_str:       str           # YYYY-MM-DD
-    hit_items:      list[Any]     # BetHitDetail リスト（is_hit=True のもの）
+    race_id: str
+    race_name: str
+    venue: str
+    race_number: int
+    date_str: str  # YYYY-MM-DD
+    hit_items: list[Any]  # BetHitDetail リスト（is_hit=True のもの）
     total_invested: float
-    total_payout:   float
-    roi:            float
-    top_ev:         float         # 的中した買い目の中で最高の expected_value
-    ev_vs_odds:     list[dict[str, Any]]    # [{horse_number, odds, ev, gap}, ...]
+    total_payout: float
+    roi: float
+    top_ev: float  # 的中した買い目の中で最高の expected_value
+    ev_vs_odds: list[dict[str, Any]]  # [{horse_number, odds, ev, gap}, ...]
 
 
 def build_x_post(data: WinReportData) -> str:
@@ -44,7 +45,7 @@ def build_x_post(data: WinReportData) -> str:
         raise ValueError("hit_items must not be empty")
     h = data.hit_items[0]
     race_name = data.race_name
-    hashtags_full  = f"#競馬予想 #期待値アルゴリズム #的中実績 #{race_name}"
+    hashtags_full = f"#競馬予想 #期待値アルゴリズム #的中実績 #{race_name}"
     hashtags_short = "#競馬予想 #期待値アルゴリズム #的中実績"
 
     base = (
@@ -108,7 +109,9 @@ def generate_win_report_file(data: WinReportData) -> Path:
     )
     x_post = build_x_post(data)
 
-    content = f"=== TITLE ===\n{title}\n\n=== BODY ===\n{body}\n\n=== X_POST ===\n{x_post}\n"
+    content = (
+        f"=== TITLE ===\n{title}\n\n=== BODY ===\n{body}\n\n=== X_POST ===\n{x_post}\n"
+    )
     path.write_text(content, encoding="utf-8")
     return path
 
@@ -201,7 +204,9 @@ def _fetch_ev_vs_odds(
             combos = json.loads(p["combination_json"]) if p["combination_json"] else []
             horse_nums = list(combos[0]) if combos else []
         except (json.JSONDecodeError, IndexError, TypeError, ValueError) as exc:
-            logger.warning("[WinReport] combination_json パース失敗 id=%s: %s", p["id"], exc)
+            logger.warning(
+                "[WinReport] combination_json パース失敗 id=%s: %s", p["id"], exc
+            )
             horse_nums = []
         pred_map[p["id"]] = (p["expected_value"] or 0.0, horse_nums)
 
@@ -240,8 +245,10 @@ def _send_discord_report(data: WinReportData, report_path: Path | None) -> None:
         return
 
     color = (
-        0xFF4500 if data.total_payout >= 100_000
-        else 0xFFD700 if data.total_payout >= 10_000
+        0xFF4500
+        if data.total_payout >= 100_000
+        else 0xFFD700
+        if data.total_payout >= 10_000
         else 0x43B581
     )
 
@@ -264,11 +271,13 @@ def _send_discord_report(data: WinReportData, report_path: Path | None) -> None:
         {"name": "ROI", "value": f"{data.roi:.1f}%", "inline": True},
     ]
     if data.ev_vs_odds:
-        fields.append({
-            "name": "乖離スコア（主力馬）",
-            "value": f"{data.ev_vs_odds[0]['gap']:+.2f}",
-            "inline": True,
-        })
+        fields.append(
+            {
+                "name": "乖離スコア（主力馬）",
+                "value": f"{data.ev_vs_odds[0]['gap']:+.2f}",
+                "inline": True,
+            }
+        )
 
     embed = {
         "title": f"🏆 的中レポート  {data.venue}{data.race_number}R「{data.race_name}」",
@@ -280,16 +289,22 @@ def _send_discord_report(data: WinReportData, report_path: Path | None) -> None:
 
     resp = requests.post(webhook_url, json={"embeds": [embed]}, timeout=10)
     if resp.status_code not in (200, 204):
-        logger.warning("[WinReport] Discord Embed 送信失敗: status=%d", resp.status_code)
+        logger.warning(
+            "[WinReport] Discord Embed 送信失敗: status=%d", resp.status_code
+        )
 
     x_post = build_x_post(data)
     resp2 = requests.post(
         webhook_url,
-        json={"content": f"📋 X投稿テキスト（コピーしてそのまま貼り付けてください）\n\n```\n{x_post}\n```"},
+        json={
+            "content": f"📋 X投稿テキスト（コピーしてそのまま貼り付けてください）\n\n```\n{x_post}\n```"
+        },
         timeout=10,
     )
     if resp2.status_code not in (200, 204):
-        logger.warning("[WinReport] Discord X投稿テキスト送信失敗: status=%d", resp2.status_code)
+        logger.warning(
+            "[WinReport] Discord X投稿テキスト送信失敗: status=%d", resp2.status_code
+        )
 
 
 def _post_note_draft(data: WinReportData, predictions: list[dict[str, Any]]) -> None:
@@ -313,7 +328,9 @@ def _alert_note_failure(data: WinReportData) -> None:
 
         system_url = os.environ.get("DISCORD_SYSTEM_WEBHOOK_URL", "")
         if not system_url:
-            logger.warning("[WinReport] DISCORD_SYSTEM_WEBHOOK_URL 未設定 — Note失敗アラートをスキップ")
+            logger.warning(
+                "[WinReport] DISCORD_SYSTEM_WEBHOOK_URL 未設定 — Note失敗アラートをスキップ"
+            )
             return
         date_nodash = data.date_str.replace("-", "")
         msg = (
@@ -341,7 +358,7 @@ def publish_win_report(
         "SELECT venue, race_number FROM races WHERE race_id = ?",
         (race_id,),
     ).fetchone()
-    venue       = race_row["venue"]       if race_row else ""
+    venue = race_row["venue"] if race_row else ""
     race_number = race_row["race_number"] if race_row else 0
 
     pred_ids = [h.prediction_id for h in hit_items]

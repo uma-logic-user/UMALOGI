@@ -253,11 +253,15 @@ def _fetch_top_races_by_ev(
 ) -> list[str]:
     # 卍(直前) 優先、なければ 本命(暫定) でフォールバック（金曜暫定バッチ対応）
     candidates = [
-        ("卍%", "複勝", True),   # (model_pattern, bet_type, require_ev_ge1)
+        ("卍%", "複勝", True),  # (model_pattern, bet_type, require_ev_ge1)
         ("本命%", "複勝", False),  # 暫定モードはEV条件なし
     ]
     for model_pattern, bet_type, require_ev in candidates:
-        ev_clause = "AND (p.expected_value IS NULL OR p.expected_value >= 1.0)" if require_ev else ""
+        ev_clause = (
+            "AND (p.expected_value IS NULL OR p.expected_value >= 1.0)"
+            if require_ev
+            else ""
+        )
         rows = conn.execute(
             f"""
             SELECT p.race_id, MAX(p.expected_value) AS max_ev
@@ -652,8 +656,7 @@ def _build_sales_header(
         f"| 単勝 | {_BACKTEST_STATS['単勝']['n_signals']:,}件 | {_BACKTEST_STATS['単勝']['n_bets']:,}件 | {_BACKTEST_STATS['単勝']['roi']:.1f}% | 参考値 |",
         "",
         f"> JRAの複勝払戻平均は **{market_avg}%** です。",
-        f"> UMALOGIは **{roi_str}（{diff_str}）** を記録 — "
-        f"JRA公式データのみで検証済みの実力です。",
+        f"> UMALOGIは **{roi_str}（{diff_str}）** を記録 — JRA公式データのみで検証済みの実力です。",
         "",
     ]
 
@@ -764,8 +767,7 @@ def _build_bankroll_guide(ev: float, n_horses: int) -> list[str]:
         "",
         "## 💡 資金管理ガイドライン",
         "",
-        f"このレースのEV（期待値）: **{ev:.2f}**  "
-        f"（100円投資 → 約{int(100 * ev)}円回収期待）",
+        f"このレースのEV（期待値）: **{ev:.2f}**  （100円投資 → 約{int(100 * ev)}円回収期待）",
         "",
         "### 軍資金別 推奨投資額",
         "",
@@ -825,11 +827,20 @@ def generate_article(
     preds = _fetch_predictions(conn, race_id)
 
     # 暫定予想フラグを prerace JSON から取得
-    _prerace_json = _Path(__file__).resolve().parents[1] / "data" / "predictions" / f"{race_id}.json"
+    _prerace_json = (
+        _Path(__file__).resolve().parents[1]
+        / "data"
+        / "predictions"
+        / f"{race_id}.json"
+    )
     _is_provisional = False
     if _prerace_json.exists():
         try:
-            _is_provisional = bool(_json.loads(_prerace_json.read_text(encoding="utf-8")).get("provisional", False))
+            _is_provisional = bool(
+                _json.loads(_prerace_json.read_text(encoding="utf-8")).get(
+                    "provisional", False
+                )
+            )
         except Exception:
             pass
 
@@ -898,13 +909,17 @@ def generate_article(
     # ── ① タイトル（レース名は除去・会場+R番号のみ）───────────────
     # 暫定モードでは "AI厳選" バッジを抑制（オッズ未取得のため Edge 計算不可）
     elite_badge = ("🔥【AI厳選】" if elite_row else "") if not _is_provisional else ""
-    provisional_note = "\n> ⚠️ **※オッズ未確定（暫定予想）** — 直前予想バッチで更新予定。" if _is_provisional else ""
+    provisional_note = (
+        "\n> ⚠️ **※オッズ未確定（暫定予想）** — 直前予想バッチで更新予定。"
+        if _is_provisional
+        else ""
+    )
     lines += [
         f"# 🏇{elite_badge}【UMALOGI AI予想】{date_str} {venue}{race_no}R 複勝予想"
         + ("【暫定】" if _is_provisional else ""),
         "",
         f"> **{venue} {race_no}R｜{surface_jp}{dist_str}｜{cond_jp}**",
-        f"> JRA-VAN公式データ × LightGBM AI — 期待値（EV）1.0以上の買い目のみ公開",
+        "> JRA-VAN公式データ × LightGBM AI — 期待値（EV）1.0以上の買い目のみ公開",
         provisional_note,
         "",
     ]
@@ -1083,7 +1098,7 @@ def generate_article(
             "| 条件 | 内容 |",
             "|---|---|",
             f"| 競馬場 | {elite_row.get('venue', venue)}（新潟・東京・福島・京都 限定）|",
-            f"| 出走頭数 | {elite_row.get('n_horses', n_horses)}頭（13頭以上の多頭数戦）|",
+            f"| 出走頭数 | {elite_row.get('n_horses', '?')}頭（13頭以上の多頭数戦）|",
             f"| モデル Edge | {edges_str}（閾値 ≥ 1.1 を2頭以上が通過）|",
             "",
             "### 厳選馬番・結果",
@@ -1303,7 +1318,9 @@ def main() -> None:
             if max_ev >= ev_floor:
                 filtered.append(rid)
         if not filtered:
-            logger.info("--jackpot-only: EV≥%.1f のレースなし (date=%s)", ev_floor, target_date)
+            logger.info(
+                "--jackpot-only: EV≥%.1f のレースなし (date=%s)", ev_floor, target_date
+            )
             conn.close()
             return
         race_ids = filtered

@@ -47,6 +47,7 @@ _DEBUG_DIR.mkdir(parents=True, exist_ok=True)
 
 # ── 環境変数ロード ──────────────────────────────────────────────────
 
+
 def _load_env() -> tuple[str, str]:
     """UMANITY_EMAIL / UMANITY_PASSWORD を環境変数（.env）から取得する。
 
@@ -58,11 +59,12 @@ def _load_env() -> tuple[str, str]:
     """
     try:
         from dotenv import load_dotenv
+
         load_dotenv(dotenv_path=_ROOT / ".env", override=False)
     except ImportError:
         pass
 
-    email    = os.environ.get("UMANITY_EMAIL", "")
+    email = os.environ.get("UMANITY_EMAIL", "")
     password = os.environ.get("UMANITY_PASSWORD", "")
 
     if not email or not password:
@@ -74,6 +76,7 @@ def _load_env() -> tuple[str, str]:
 
 
 # ── DB から本日の予想を取得 ────────────────────────────────────────
+
 
 def _fetch_today_predictions(target_date: str) -> list[dict[str, object]]:
     """指定日の predictions + races を結合して返す。
@@ -139,6 +142,7 @@ def _fetch_today_predictions(target_date: str) -> list[dict[str, object]]:
 
 # ── ID 変換 ───────────────────────────────────────────────────────
 
+
 def umalogi_to_umanity_race_id(race_id: str, race_date: str) -> str:
     """
     UMALOGI race_id (12桁) → Umanity race_id (16桁) に変換。
@@ -161,16 +165,17 @@ def umalogi_to_umanity_race_id(race_id: str, race_date: str) -> str:
         mm = race_date[4:6]
         dd = race_date[6:8]
 
-    year  = race_id[:4]
+    year = race_id[:4]
     venue = race_id[4:6]
     round_ = race_id[6:8]
-    day   = race_id[8:10]
-    race  = race_id[10:12]
+    day = race_id[8:10]
+    race = race_id[10:12]
 
     return f"{year}{mm}{dd}{venue}{round_}{day}{race}"
 
 
 # ── Playwright セッション ─────────────────────────────────────────
+
 
 class UmanityUploader:
     """
@@ -183,16 +188,16 @@ class UmanityUploader:
          → 常時投稿可能。ランキング対象外だが可視性あり。
     """
 
-    LOGIN_URL        = "https://umanity.jp/"
-    COLISEUM_URL     = "https://umanity.jp/coliseum/registration_list.php"
-    ENROLLEE_URL     = "https://umanity.jp/coliseum/enrollee_list.php?race_id={race_id_16}"
-    RACE_BOARD_URL   = "https://umanity.jp/racedata/race_8.php?code={race_id_16}"
+    LOGIN_URL = "https://umanity.jp/"
+    COLISEUM_URL = "https://umanity.jp/coliseum/registration_list.php"
+    ENROLLEE_URL = "https://umanity.jp/coliseum/enrollee_list.php?race_id={race_id_16}"
+    RACE_BOARD_URL = "https://umanity.jp/racedata/race_8.php?code={race_id_16}"
 
     def __init__(
         self,
-        email:     str,
-        password:  str,
-        headless:  bool  = True,
+        email: str,
+        password: str,
+        headless: bool = True,
         delay_sec: float = 1.5,
     ) -> None:
         """UmanityUploader を初期化する。
@@ -203,14 +208,14 @@ class UmanityUploader:
             headless:  True の場合ブラウザをヘッドレスモードで起動する。
             delay_sec: リクエスト間の待機秒数。
         """
-        self._email    = email
+        self._email = email
         self._password = password
         self._headless = headless
-        self._delay    = delay_sec
-        self._page     = None
-        self._browser  = None
-        self._pw_cm    = None
-        self._pw       = None
+        self._delay = delay_sec
+        self._page = None
+        self._browser = None
+        self._pw_cm = None
+        self._pw = None
 
     def __enter__(self) -> "UmanityUploader":
         """コンテキストマネージャー開始: Playwright ブラウザを起動してページを準備する。
@@ -219,8 +224,9 @@ class UmanityUploader:
             自分自身（UmanityUploader インスタンス）。
         """
         from playwright.sync_api import sync_playwright  # type: ignore[import]
-        self._pw_cm  = sync_playwright()
-        self._pw     = self._pw_cm.__enter__()
+
+        self._pw_cm = sync_playwright()
+        self._pw = self._pw_cm.__enter__()
         self._browser = self._pw.chromium.launch(headless=self._headless)
         context = self._browser.new_context(
             user_agent=(
@@ -272,6 +278,7 @@ class UmanityUploader:
         """
         try:
             from src.notification.discord_notifier import DiscordNotifier
+
             DiscordNotifier().notify_intervention_required(
                 step=step,
                 error=error,
@@ -303,7 +310,7 @@ class UmanityUploader:
         page.goto(self.LOGIN_URL, wait_until="domcontentloaded", timeout=30000)
         time.sleep(self._delay)
 
-        page.click('text=ログイン', timeout=10000)
+        page.click("text=ログイン", timeout=10000)
         time.sleep(1.0)
 
         page.wait_for_selector('input[name="userid"]', timeout=8000)
@@ -334,7 +341,9 @@ class UmanityUploader:
                 f"認証後に「ログアウト」テキストが見つかりません (url={page.url})",
                 ss,
             )
-            raise RuntimeError("ウマニティログイン失敗。.env の認証情報を確認してください。")
+            raise RuntimeError(
+                "ウマニティログイン失敗。.env の認証情報を確認してください。"
+            )
 
         logger.info("[Umanity] ログイン成功")
 
@@ -342,12 +351,12 @@ class UmanityUploader:
 
     def post_coliseum_prediction(
         self,
-        race_id:    str,
-        race_date:  str,
-        bet_type:   str,
-        combos:     list[list[int]],
-        comment:    str,
-        dry_run:    bool = False,
+        race_id: str,
+        race_date: str,
+        bet_type: str,
+        combos: list[list[int]],
+        comment: str,
+        dry_run: bool = False,
     ) -> bool:
         """
         予想コロシアムに予想を登録する。
@@ -409,7 +418,9 @@ class UmanityUploader:
                 continue
 
         if not entry_found:
-            logger.info("[Umanity] 予想登録ボタン未表示（受付終了または平日）: %s", race_id)
+            logger.info(
+                "[Umanity] 予想登録ボタン未表示（受付終了または平日）: %s", race_id
+            )
             return False
 
         if dry_run:
@@ -435,7 +446,11 @@ class UmanityUploader:
                             continue
 
             # コメント入力
-            for sel in ['textarea[name="comment"]', 'textarea[name="memo"]', 'textarea']:
+            for sel in [
+                'textarea[name="comment"]',
+                'textarea[name="memo"]',
+                "textarea",
+            ]:
                 try:
                     if page.locator(sel).count() > 0:
                         page.fill(sel, comment[:200])
@@ -476,10 +491,10 @@ class UmanityUploader:
 
     def post_board_comment(
         self,
-        race_id:   str,
+        race_id: str,
         race_date: str,
-        comment:   str,
-        dry_run:   bool = False,
+        comment: str,
+        dry_run: bool = False,
     ) -> bool:
         """
         race_8.php の掲示板にAI予想コメントを投稿する（コロシアムのフォールバック）。
@@ -519,7 +534,9 @@ class UmanityUploader:
                 if textarea.count() > 0:
                     textarea.first.fill(comment[:500])
                 else:
-                    logger.warning("[Umanity] 掲示板テキストエリアが見つかりません: %s", e)
+                    logger.warning(
+                        "[Umanity] 掲示板テキストエリアが見つかりません: %s", e
+                    )
                     return False
             except Exception as e2:
                 logger.warning("[Umanity] 掲示板テキストエリア入力失敗: %s", e2)
@@ -592,10 +609,11 @@ class UmanityUploader:
 
 # ── バッチ処理 ─────────────────────────────────────────────────────
 
+
 def run_upload(
-    target_date:  str,
-    dry_run:      bool = False,
-    headless:     bool = True,
+    target_date: str,
+    dry_run: bool = False,
+    headless: bool = True,
     model_filter: str | None = None,
 ) -> dict[str, int]:
     """
@@ -608,13 +626,18 @@ def run_upload(
     predictions = _fetch_today_predictions(target_date)
 
     if model_filter:
-        predictions = [p for p in predictions if p["model_type"].startswith(model_filter)]
+        predictions = [
+            p for p in predictions if p["model_type"].startswith(model_filter)
+        ]
 
     # EV >= 1.0 の予想のみ投稿
     high_ev = [p for p in predictions if (p["expected_value"] or 0) >= 1.0]
     logger.info(
         "[Umanity] 投稿対象: %d 件 → EV>=1.0: %d 件 (date=%s model=%s)",
-        len(predictions), len(high_ev), target_date, model_filter or "all",
+        len(predictions),
+        len(high_ev),
+        target_date,
+        model_filter or "all",
     )
 
     stats: dict[str, int] = {
@@ -638,10 +661,10 @@ def run_upload(
             return stats
 
         for pred in high_ev:
-            race_id  = pred["race_id"]
+            race_id = pred["race_id"]
             race_date = pred["race_date"]  # "YYYY-MM-DD"
-            bet_type  = pred["bet_type"]
-            ev        = pred["expected_value"]
+            bet_type = pred["bet_type"]
+            ev = pred["expected_value"]
 
             comment = UmanityUploader._build_comment(
                 bet_type=bet_type,
@@ -690,7 +713,9 @@ def run_upload(
             except Exception as exc:
                 logger.error(
                     "[Umanity] 予想投稿中に例外: race_id=%s bet_type=%s: %s",
-                    race_id, bet_type, exc,
+                    race_id,
+                    bet_type,
+                    exc,
                 )
                 stats["error"] += 1
 
@@ -698,6 +723,7 @@ def run_upload(
 
 
 # ── CLI ────────────────────────────────────────────────────────────
+
 
 def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
@@ -712,9 +738,9 @@ def _parse_args() -> argparse.Namespace:
   python -m src.ops.umanity_uploader --no-headless     # ブラウザ画面を表示
 """,
     )
-    parser.add_argument("--date",        help="対象日 YYYYMMDD（省略時=今日）")
-    parser.add_argument("--dry-run",     action="store_true", help="実際の送信なし")
-    parser.add_argument("--model",       help="卍 / 本命 でフィルタ")
+    parser.add_argument("--date", help="対象日 YYYYMMDD（省略時=今日）")
+    parser.add_argument("--dry-run", action="store_true", help="実際の送信なし")
+    parser.add_argument("--model", help="卍 / 本命 でフィルタ")
     parser.add_argument("--no-headless", action="store_true", help="ブラウザを表示する")
     return parser.parse_args()
 
@@ -727,7 +753,7 @@ def main() -> None:
         stream=sys.stdout,
     )
     sys.stdout.reconfigure(encoding="utf-8")
-    args   = _parse_args()
+    args = _parse_args()
     target = args.date or date.today().strftime("%Y%m%d")
 
     stats = run_upload(
@@ -738,15 +764,15 @@ def main() -> None:
     )
 
     mode = "[DRY-RUN] " if args.dry_run else ""
-    print(f"\n{'='*55} {mode}")
+    print(f"\n{'=' * 55} {mode}")
     print(f"  ウマニティ投稿結果 (date={target})")
-    print(f"{'='*55}")
+    print(f"{'=' * 55}")
     print(f"  対象件数      : {stats['total']:5d} 件")
     print(f"  コロシアム成功: {stats['coliseum_ok']:5d} 件")
     print(f"  掲示板成功    : {stats['board_ok']:5d} 件")
     print(f"  スキップ      : {stats['skip']:5d} 件")
     print(f"  エラー        : {stats['error']:5d} 件")
-    print(f"{'='*55}")
+    print(f"{'=' * 55}")
 
 
 if __name__ == "__main__":

@@ -56,7 +56,9 @@ def print_race_summary(race: RaceInfo) -> None:
     """
     print("\n" + "=" * 60)
     print(f"  {race.race_name}  ({race.date}  {race.venue})")
-    print(f"  {race.surface}{race.distance}m  天候:{race.weather}  馬場:{race.condition}")
+    print(
+        f"  {race.surface}{race.distance}m  天候:{race.weather}  馬場:{race.condition}"
+    )
     print("=" * 60)
     print(f"  {'着順':>4}  {'馬名':<16}  {'父':<16}  {'タイム':>8}  {'単勝':>6}")
     print("-" * 60)
@@ -91,8 +93,8 @@ def main() -> None:
         logger.info("レース取得開始: race_id=%s", TARGET_RACE_ID)
         race: RaceInfo = fetch_race_results(
             TARGET_RACE_ID,
-            fetch_pedigree=True,   # 血統情報も取得
-            delay=1.5,             # サーバー負荷軽減のため各リクエストに 1.5 秒待機
+            fetch_pedigree=True,  # 血統情報も取得
+            delay=1.5,  # サーバー負荷軽減のため各リクエストに 1.5 秒待機
             max_retries=3,
         )
 

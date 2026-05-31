@@ -26,7 +26,10 @@ from pathlib import Path
 from typing import Optional
 
 # Windows CP932 端末対策
-if hasattr(sys.stdout, "buffer") and sys.stdout.encoding.lower() not in ("utf-8", "utf8"):
+if hasattr(sys.stdout, "buffer") and sys.stdout.encoding.lower() not in (
+    "utf-8",
+    "utf8",
+):
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
 
@@ -37,6 +40,7 @@ if str(_ROOT) not in sys.path:
 # .env から JRAVAN_SID を読み込む（TARGET frontier 不要）
 try:
     from dotenv import load_dotenv
+
     load_dotenv(_ROOT / ".env", override=False)
 except ImportError:
     pass
@@ -60,13 +64,14 @@ from src.database.init_db import init_db
 # 設定
 # ────────────────────────────────────────────────────────────────────────────
 
-DEFAULT_SID        = os.getenv("JRAVAN_SID", "UMALOGI00")
-DEFAULT_BATCH_SIZE = 5000   # この件数を超えたら強制コミット（安全ネット）
+DEFAULT_SID = os.getenv("JRAVAN_SID", "UMALOGI00")
+DEFAULT_BATCH_SIZE = 5000  # この件数を超えたら強制コミット（安全ネット）
 
 
 # ────────────────────────────────────────────────────────────────────────────
 # メイン処理
 # ────────────────────────────────────────────────────────────────────────────
+
 
 def _print_stats(
     label: str,
@@ -76,9 +81,9 @@ def _print_stats(
     if batch is not None:
         print(
             f"  [{label}] "
-            f"RA={batch.get('ra',0)} SE={batch.get('se',0)} "
-            f"payout={batch.get('payout',0)} TC={batch.get('tc',0)} "
-            f"HC={batch.get('hc',0)} skip={batch.get('skipped',0)}"
+            f"RA={batch.get('ra', 0)} SE={batch.get('se', 0)} "
+            f"payout={batch.get('payout', 0)} TC={batch.get('tc', 0)} "
+            f"HC={batch.get('hc', 0)} skip={batch.get('skipped', 0)}"
         )
     print(
         f"  [累計] RA={total['ra']} SE={total['se']} payout={total['payout']} "
@@ -110,13 +115,22 @@ def run(
 
     conn: sqlite3.Connection = init_db()
 
-    pending:    list[dict] = []
+    pending: list[dict] = []
     file_count: int = 0
     read_count: int = 0
     total: dict[str, int] = {
-        "ra": 0, "jg": 0, "se": 0, "payout": 0,
-        "tc": 0, "hc": 0, "bt": 0, "hn": 0,
-        "um": 0, "ks": 0, "ch": 0, "skipped": 0,
+        "ra": 0,
+        "jg": 0,
+        "se": 0,
+        "payout": 0,
+        "tc": 0,
+        "hc": 0,
+        "bt": 0,
+        "hn": 0,
+        "um": 0,
+        "ks": 0,
+        "ch": 0,
+        "skipped": 0,
     }
 
     def _flush_pending(label: str) -> None:
@@ -196,21 +210,34 @@ def run(
 # CLI
 # ────────────────────────────────────────────────────────────────────────────
 
+
 def _parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(
         description="JVLink ストリーミング強制インポートワーカー (32bit Python 専用)"
     )
-    p.add_argument("--sid",        default=DEFAULT_SID)
-    p.add_argument("--dataspec",   required=True,
-                   choices=["RACE", "WOOD", "BLOD", "DIFN", "SETUP"])
-    p.add_argument("--fromtime",   required=True,
-                   metavar="YYYYMMDD",
-                   help="取得開始日 (例: 20210101)")
-    p.add_argument("--option",     type=int, default=OPT_NORMAL,
-                   choices=[OPT_NORMAL, OPT_SETUP, OPT_TODAY, OPT_STORED],
-                   help="1=NORMAL(サーバー直取得) 2=SETUP 3=TODAY(当日) 4=STORED(キャッシュ) (デフォルト: 1)")
-    p.add_argument("--batch-size", type=int, default=DEFAULT_BATCH_SIZE,
-                   help=f"強制コミット件数 (デフォルト: {DEFAULT_BATCH_SIZE})")
+    p.add_argument("--sid", default=DEFAULT_SID)
+    p.add_argument(
+        "--dataspec", required=True, choices=["RACE", "WOOD", "BLOD", "DIFN", "SETUP"]
+    )
+    p.add_argument(
+        "--fromtime",
+        required=True,
+        metavar="YYYYMMDD",
+        help="取得開始日 (例: 20210101)",
+    )
+    p.add_argument(
+        "--option",
+        type=int,
+        default=OPT_NORMAL,
+        choices=[OPT_NORMAL, OPT_SETUP, OPT_TODAY, OPT_STORED],
+        help="1=NORMAL(サーバー直取得) 2=SETUP 3=TODAY(当日) 4=STORED(キャッシュ) (デフォルト: 1)",
+    )
+    p.add_argument(
+        "--batch-size",
+        type=int,
+        default=DEFAULT_BATCH_SIZE,
+        help=f"強制コミット件数 (デフォルト: {DEFAULT_BATCH_SIZE})",
+    )
     return p.parse_args()
 
 
@@ -218,10 +245,10 @@ if __name__ == "__main__":
     args = _parse_args()
     sys.exit(
         run(
-            dataspec   = args.dataspec,
-            fromtime   = args.fromtime,
-            option     = args.option,
-            batch_size = args.batch_size,
-            sid        = args.sid,
+            dataspec=args.dataspec,
+            fromtime=args.fromtime,
+            option=args.option,
+            batch_size=args.batch_size,
+            sid=args.sid,
         )
     )

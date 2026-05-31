@@ -34,7 +34,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger("post_weekly_note")
 
-_DB_PATH     = _ROOT / "data" / "umalogi.db"
+_DB_PATH = _ROOT / "data" / "umalogi.db"
 _SESSION_FILE = _ROOT / ".note_session.json"
 
 
@@ -46,13 +46,19 @@ def _generate_article(week_offset: int) -> tuple[str, str]:
     conn = sqlite3.connect(str(_DB_PATH))
     conn.row_factory = sqlite3.Row
     try:
-        _is_premium = os.environ.get("IS_PREMIUM_NOTE", os.environ.get("NOTE_IS_PREMIUM", "")).lower() in ("1", "true")
-        body = generate_weekly_note(conn, week_offset=week_offset, include_picks=True, is_premium=_is_premium)
+        _is_premium = os.environ.get(
+            "IS_PREMIUM_NOTE", os.environ.get("NOTE_IS_PREMIUM", "")
+        ).lower() in ("1", "true")
+        body = generate_weekly_note(
+            conn, week_offset=week_offset, include_picks=True, is_premium=_is_premium
+        )
     finally:
         conn.close()
 
     issue_date = date.today().strftime("%Y-%m-%d")
-    title = f"🏇【UMALOGI週次レポート】{issue_date}号 — 全モデル成績公開＆今週のAI厳選予想"
+    title = (
+        f"🏇【UMALOGI週次レポート】{issue_date}号 — 全モデル成績公開＆今週のAI厳選予想"
+    )
     return title, body
 
 
@@ -78,18 +84,30 @@ def _generate_x_post(title: str, body: str) -> str:
     base = f"🏇 {short_title}\n{sub}\n\nnoteで全モデル成績公開中📊\n\n{hashtags}"
     if len(base) > 140:
         trim_len = 140 - len(f"\n\nnoteで全モデル成績公開中📊\n\n{hashtags}") - 5
-        base = f"🏇 {short_title[:trim_len]}\n\nnoteで全モデル成績公開中📊\n\n{hashtags}"
+        base = (
+            f"🏇 {short_title[:trim_len]}\n\nnoteで全モデル成績公開中📊\n\n{hashtags}"
+        )
     return base
 
 
 def main() -> None:
-    p = argparse.ArgumentParser(description="週次まとめ記事を note.com に下書き投稿する")
-    p.add_argument("--week-offset", type=int, default=1,
-                   help="何週前を振り返るか（デフォルト1=先週）")
-    p.add_argument("--login-only", action="store_true",
-                   help="ログインのみ（下書き投稿はしない）")
-    p.add_argument("--no-headless", action="store_true",
-                   help="ブラウザ画面を表示する（デバッグ用）")
+    p = argparse.ArgumentParser(
+        description="週次まとめ記事を note.com に下書き投稿する"
+    )
+    p.add_argument(
+        "--week-offset",
+        type=int,
+        default=1,
+        help="何週前を振り返るか（デフォルト1=先週）",
+    )
+    p.add_argument(
+        "--login-only", action="store_true", help="ログインのみ（下書き投稿はしない）"
+    )
+    p.add_argument(
+        "--no-headless",
+        action="store_true",
+        help="ブラウザ画面を表示する（デバッグ用）",
+    )
     args = p.parse_args()
 
     headless = not args.no_headless
@@ -127,16 +145,20 @@ def main() -> None:
 
     # ── Step 3-A: Discord note_draft チャンネルへ転送 ──────────────
     from dotenv import load_dotenv
+
     load_dotenv(_ROOT / ".env", override=False)
 
     x_post = _generate_x_post(title, body)
     from src.notification.router import NotificationRouter
+
     router = NotificationRouter()
     discord_ok = router.send_note_draft(title, body, x_post=x_post)
     if discord_ok:
         logger.info("Discord note-draft 転送完了")
     else:
-        logger.info("Discord note-draft 転送スキップ（DISCORD_WEBHOOK_NOTE_DRAFT 未設定）")
+        logger.info(
+            "Discord note-draft 転送スキップ（DISCORD_WEBHOOK_NOTE_DRAFT 未設定）"
+        )
 
     # ── Step 3-B: Playwright 投稿（ENABLE_PLAYWRIGHT_POST トグル）────
     enable_pw = _should_publish_playwright()
@@ -154,7 +176,10 @@ def main() -> None:
         print()
         return
 
-    logger.info("note.com に下書き保存中 (headless=%s, ENABLE_PLAYWRIGHT_POST=True)...", headless)
+    logger.info(
+        "note.com に下書き保存中 (headless=%s, ENABLE_PLAYWRIGHT_POST=True)...",
+        headless,
+    )
     ok = save_draft(
         title=title,
         body=body,

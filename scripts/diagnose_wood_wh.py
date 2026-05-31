@@ -7,11 +7,11 @@ JVLink から小規模な WOOD データを取得し、実際に WH レコード
 使用方法:
     py scripts/diagnose_wood_wh.py
 """
+
 from __future__ import annotations
 
 import sqlite3
 import sys
-from pathlib import Path
 
 sys.path.insert(0, ".")
 sys.stdout.reconfigure(encoding="utf-8")
@@ -52,10 +52,12 @@ def check_jvlink_raw_record_types() -> None:
 
     try:
         import win32com.client  # type: ignore
+
         jv = win32com.client.Dispatch("JVDTLab.JVLink.1")
 
         # 短期間のみ取得（直近1週間）
         from datetime import datetime, timedelta
+
         fromtime = (datetime.now() - timedelta(days=7)).strftime("%Y%m%d%H%M%S")
 
         ret = jv.JVOpen("WOOD", fromtime, 1, 0, None, None)
@@ -99,14 +101,18 @@ def check_jvlink_raw_record_types() -> None:
         if "WH" not in rec_counts and "HC" not in rec_counts:
             print()
             print("⚠️  WH/HC レコードが存在しません")
-            print("   → WOOD dataspec では坂路調教(hillwork)データが配信されていない可能性")
+            print(
+                "   → WOOD dataspec では坂路調教(hillwork)データが配信されていない可能性"
+            )
             print("   → 対策: netkeiba の調教ページからスクレイピングが必要")
 
     except ImportError:
         print("win32com 未インストール (このスクリプトは 32bit JVLink 環境専用)")
     except Exception as exc:
         print(f"JVLink 接続エラー: {exc}")
-        print("64bit Python では JVLink COM に接続できません。32bit で実行してください。")
+        print(
+            "64bit Python では JVLink COM に接続できません。32bit で実行してください。"
+        )
 
 
 def suggest_netkeiba_scraper() -> None:

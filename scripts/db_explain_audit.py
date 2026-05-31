@@ -11,6 +11,7 @@ IMPORTANT: このスクリプトは READ ONLY です。
     py scripts/db_explain_audit.py --verbose    # 詳細 EXPLAIN 出力付き
     py scripts/db_explain_audit.py --db path/to/custom.db
 """
+
 from __future__ import annotations
 
 import argparse
@@ -104,8 +105,7 @@ _PROPOSED_INDEXES: list[tuple[str, str, str]] = [
     ),
     (
         "idx_pred_race_model",
-        "CREATE INDEX IF NOT EXISTS idx_pred_race_model "
-        "ON predictions(race_id, model_type)",
+        "CREATE INDEX IF NOT EXISTS idx_pred_race_model ON predictions(race_id, model_type)",
         "race_id（等値）+ model_type → prerace 通知の予想検索を高速化",
     ),
     (
@@ -122,14 +122,12 @@ _PROPOSED_INDEXES: list[tuple[str, str, str]] = [
     ),
     (
         "idx_rr_horse_race",
-        "CREATE INDEX IF NOT EXISTS idx_rr_horse_race "
-        "ON race_results(horse_id, race_id)",
+        "CREATE INDEX IF NOT EXISTS idx_rr_horse_race ON race_results(horse_id, race_id)",
         "horse_id（等値）+ race_id → 馬の過去成績履歴取得を高速化",
     ),
     (
         "idx_pr_pred_hit",
-        "CREATE INDEX IF NOT EXISTS idx_pr_pred_hit "
-        "ON prediction_results(prediction_id, is_hit)",
+        "CREATE INDEX IF NOT EXISTS idx_pr_pred_hit ON prediction_results(prediction_id, is_hit)",
         "prediction_id（等値）+ is_hit → 回収率・的中統計クエリを高速化",
     ),
 ]
@@ -138,6 +136,7 @@ _PROPOSED_INDEXES: list[tuple[str, str, str]] = [
 # ─────────────────────────────────────────────────────────────────────────────
 # 監査ユーティリティ
 # ─────────────────────────────────────────────────────────────────────────────
+
 
 def _get_existing_indexes(conn: sqlite3.Connection) -> dict[str, list[dict]]:
     """全テーブルのインデックス情報を取得する（非破壊・READ ONLY）。"""
@@ -154,12 +153,14 @@ def _get_existing_indexes(conn: sqlite3.Connection) -> dict[str, list[dict]]:
         for idx_row in idx_rows:
             idx_name = idx_row[1]
             idx_info = conn.execute(f"PRAGMA index_info('{idx_name}')").fetchall()
-            result[tbl].append({
-                "name":    idx_name,
-                "unique":  bool(idx_row[2]),
-                "origin":  idx_row[3],
-                "columns": [r[2] for r in idx_info if r[2] is not None],
-            })
+            result[tbl].append(
+                {
+                    "name": idx_name,
+                    "unique": bool(idx_row[2]),
+                    "origin": idx_row[3],
+                    "columns": [r[2] for r in idx_info if r[2] is not None],
+                }
+            )
     return result
 
 
@@ -216,6 +217,7 @@ def _estimate_table_sizes(conn: sqlite3.Connection) -> dict[str, int]:
 # メイン監査
 # ─────────────────────────────────────────────────────────────────────────────
 
+
 def run_audit(db_path: Path, verbose: bool = False) -> None:
     """非破壊 DB 監査を実行してレポートを標準出力に表示する。"""
     conn = sqlite3.connect(str(db_path))
@@ -261,7 +263,9 @@ def run_audit(db_path: Path, verbose: bool = False) -> None:
         total_full_scans += fs
 
     if total_full_scans > 0:
-        print(f"⚠️  合計フルスキャン: {total_full_scans} 件 — 下記インデックス追加を検討してください。\n")
+        print(
+            f"⚠️  合計フルスキャン: {total_full_scans} 件 — 下記インデックス追加を検討してください。\n"
+        )
     else:
         print("✅ フルスキャンなし — 現状のインデックスで網羅されています。\n")
 
@@ -293,19 +297,22 @@ def run_audit(db_path: Path, verbose: bool = False) -> None:
 # CLI
 # ─────────────────────────────────────────────────────────────────────────────
 
+
 def main() -> None:
     p = argparse.ArgumentParser(
         description="UMALOGI DB インデックス監査（READ ONLY・非破壊）"
     )
     p.add_argument("--verbose", action="store_true", help="詳細 EXPLAIN 出力")
-    p.add_argument("--db",      type=str,            help="DB パス（省略時: data/umalogi.db）")
+    p.add_argument("--db", type=str, help="DB パス（省略時: data/umalogi.db）")
     args = p.parse_args()
 
     db_path = Path(args.db) if args.db else _DB_PATH
     if not db_path.exists():
         print(f"⚠️  DB が見つかりません: {db_path}", file=sys.stderr)
-        print("   DB が存在しない場合はこのスクリプトを実行する前に DB を作成してください。",
-              file=sys.stderr)
+        print(
+            "   DB が存在しない場合はこのスクリプトを実行する前に DB を作成してください。",
+            file=sys.stderr,
+        )
         sys.exit(0)
 
     run_audit(db_path, verbose=args.verbose)

@@ -47,17 +47,23 @@ def install() -> None:
     # 既存タスクを削除してから再登録（べき等）
     _run_schtasks(["/Delete", "/TN", _TASK_NAME, "/F"])
 
-    rc, out = _run_schtasks([
-        "/Create",
-        "/TN", _TASK_NAME,
-        "/TR", f'"{_PY_CMD}" "{_SCRIPT}"',
-        "/SC", "ONLOGON",
-        "/RL", "HIGHEST",
-        "/F",
-    ])
+    rc, out = _run_schtasks(
+        [
+            "/Create",
+            "/TN",
+            _TASK_NAME,
+            "/TR",
+            f'"{_PY_CMD}" "{_SCRIPT}"',
+            "/SC",
+            "ONLOGON",
+            "/RL",
+            "HIGHEST",
+            "/F",
+        ]
+    )
 
     if rc == 0:
-        print(f"✅ 登録成功")
+        print("✅ 登録成功")
         print(f"   次回ログオン時に自動起動します: {_TASK_NAME}")
     else:
         print(f"❌ 登録失敗 (rc={rc})")

@@ -4,6 +4,7 @@ race_results.horse_name (信頼できるソース) で修復する。
 
 cp1252 逆変換も試みて horses テーブルを再洗浄する。
 """
+
 import re
 import sqlite3
 import sys
@@ -12,13 +13,12 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")  # type: ignore[attr-
 
 CTRL_RE = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\x9f]")
 REPL_RE = re.compile(r"[ï¿½�]")
-QAT_RE  = re.compile(r"(\?@)+")
+QAT_RE = re.compile(r"(\?@)+")
 
 
 def has_garbage(v: str) -> bool:
     return bool(
-        CTRL_RE.search(v) or "?" in v or "�" in v
-        or QAT_RE.search(v) or "ï" in v
+        CTRL_RE.search(v) or "?" in v or "�" in v or QAT_RE.search(v) or "ï" in v
     )
 
 
@@ -79,7 +79,9 @@ def main() -> None:
            OR horse_name LIKE '%?%'
            OR horse_name LIKE '%' || char(65533) || '%')
     """)
-    print(f"prediction_horses.horse_name: {result2.rowcount} 件を race_results から修復")
+    print(
+        f"prediction_horses.horse_name: {result2.rowcount} 件を race_results から修復"
+    )
 
     conn.commit()
 
@@ -96,7 +98,9 @@ def main() -> None:
         print(f"  name={repr(row[0])} score={row[1]:.4f}")
 
     print("\n=== horses.horse_name 修復後サンプル (先頭5件) ===")
-    for row in conn.execute("SELECT horse_id, horse_name FROM horses LIMIT 5").fetchall():
+    for row in conn.execute(
+        "SELECT horse_id, horse_name FROM horses LIMIT 5"
+    ).fetchall():
         print(f"  {row[0]}: {repr(row[1])}")
 
     conn.close()

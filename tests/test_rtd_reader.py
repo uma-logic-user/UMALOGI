@@ -1,4 +1,5 @@
 """RTD リーダーのファイルパターン修正テスト"""
+
 from __future__ import annotations
 
 import sys
@@ -6,7 +7,6 @@ import zlib
 from pathlib import Path
 from unittest.mock import patch
 
-import pytest
 
 _ROOT = Path(__file__).resolve().parent.parent
 if str(_ROOT) not in sys.path:
@@ -22,7 +22,19 @@ def _make_rtd(tmp_path: Path, filename: str) -> Path:
     """最小限のO1レコードを持つzlibファイルを生成する。"""
     # O1 + データ区分(1) + 作成日(8) + 開催日(8) + 場コード(2) + 開催回(2) + 日次(2)
     # + レース番号(2) + 登録頭数(2) + 出走頭数(2) + プール情報(12) = 先頭43文字
-    text = "O1" + "1" + "20260503" + "20260503" + "08" + "03" + "04" + "11" + "15" + "15" + "0" * 12
+    text = (
+        "O1"
+        + "1"
+        + "20260503"
+        + "20260503"
+        + "08"
+        + "03"
+        + "04"
+        + "11"
+        + "15"
+        + "15"
+        + "0" * 12
+    )
     raw = zlib.compress(text.encode("cp932"))
     p = tmp_path / filename
     p.write_bytes(raw)
@@ -40,9 +52,9 @@ class TestRaceIdFromFilename:
         """新フォーマット(0B12, 16文字) でjyo/raceを正しく抽出できる。"""
         stem = "0B12202605030812"
         assert len(stem) == 16
-        jyo  = stem[12:14]
+        jyo = stem[12:14]
         race = stem[14:16]
-        assert jyo == "08"   # 京都
+        assert jyo == "08"  # 京都
         assert race == "12"
 
 

@@ -26,6 +26,7 @@ from src.scraper.netkeiba import HorseResult, PedigreeInfo, RaceInfo
 
 # ── フィクスチャ ──────────────────────────────────────────────────
 
+
 def _make_race(race_id: str, n_horses: int = 6) -> RaceInfo:
     results = []
     for i in range(1, n_horses + 1):
@@ -34,7 +35,7 @@ def _make_race(race_id: str, n_horses: int = 6) -> RaceInfo:
                 rank=i,
                 horse_name=f"テスト馬{i:02d}",
                 horse_id=f"h{race_id}{i:02d}",
-                gate_number=((i - 1) // 2) + 1,   # 1〜8 の枠番を均等に割り当て
+                gate_number=((i - 1) // 2) + 1,  # 1〜8 の枠番を均等に割り当て
                 horse_number=i,
                 sex_age="牡3",
                 weight_carried=56.0,
@@ -100,28 +101,31 @@ def dummy_df() -> pd.DataFrame:
     rows = []
     for i in range(1, 7):
         row: dict = {col: 0.0 for col in FEATURE_COLS}
-        row.update({
-            "horse_number":   i,
-            "horse_id":       f"h{i:02d}",
-            "horse_name":     f"テスト馬{i:02d}",
-            "popularity":     i,
-            "win_odds":       float(i * 2),
-            "market_prob":    1.0 / float(i * 2),
-            "surface_code":   0,
-            "sex_code":       0,
-            "venue_encoded":  4,
-            "sire_encoded":   i,
-            "distance":       1600,
-            "dist_band":      "mile",
-            "gate_number":    ((i - 1) // 2) + 1,
-            "condition_code": 0,
-            "race_number":    i,
-        })
+        row.update(
+            {
+                "horse_number": i,
+                "horse_id": f"h{i:02d}",
+                "horse_name": f"テスト馬{i:02d}",
+                "popularity": i,
+                "win_odds": float(i * 2),
+                "market_prob": 1.0 / float(i * 2),
+                "surface_code": 0,
+                "sex_code": 0,
+                "venue_encoded": 4,
+                "sire_encoded": i,
+                "distance": 1600,
+                "dist_band": "mile",
+                "gate_number": ((i - 1) // 2) + 1,
+                "condition_code": 0,
+                "race_number": i,
+            }
+        )
         rows.append(row)
     return pd.DataFrame(rows)
 
 
 # ── FEATURE_COLS の整合性 ─────────────────────────────────────────
+
 
 class TestFeatureCols:
     def test_列数が39(self) -> None:
@@ -133,11 +137,12 @@ class TestFeatureCols:
         assert added.issubset(set(FEATURE_COLS))
 
     def test_オッズ列が除外されている(self) -> None:
-        assert "win_odds"    not in FEATURE_COLS
+        assert "win_odds" not in FEATURE_COLS
         assert "market_prob" not in FEATURE_COLS
 
 
 # ── _build_train_df ───────────────────────────────────────────────
+
 
 class TestBuildTrainDf:
     def test_データありで非空DataFrame(self, db_many: sqlite3.Connection) -> None:
@@ -168,7 +173,9 @@ class TestBuildTrainDf:
         df = _build_train_df(db_many)
         assert set(df["is_placed"].unique()).issubset({0, 1})
 
-    def test_is_winner_はis_placed_のサブセット(self, db_many: sqlite3.Connection) -> None:
+    def test_is_winner_はis_placed_のサブセット(
+        self, db_many: sqlite3.Connection
+    ) -> None:
         """1着馬は必ず3着以内でもある。"""
         df = _build_train_df(db_many)
         winners = df[df["is_winner"] == 1]
@@ -191,7 +198,9 @@ class TestBuildTrainDf:
         # payout_tansho=250 が存在するので ev_target=250
         assert float(winner["ev_target"].iloc[0]) == pytest.approx(250.0)
 
-    def test_ev_targetフォールバックはoddsx100(self, db_many: sqlite3.Connection) -> None:
+    def test_ev_targetフォールバックはoddsx100(
+        self, db_many: sqlite3.Connection
+    ) -> None:
         """払戻データなし & 1着の場合: ev_target = win_odds × 100。"""
         df = _build_train_df(db_many)
         winners = df[df["is_winner"] == 1]
@@ -210,7 +219,13 @@ class TestBuildTrainDf:
 
     def test_新特徴量がDataFrameに含まれる(self, db_many: sqlite3.Connection) -> None:
         df = _build_train_df(db_many)
-        for col in ["horse_weight_diff", "gate_number", "condition_code", "market_prob", "race_number"]:
+        for col in [
+            "horse_weight_diff",
+            "gate_number",
+            "condition_code",
+            "market_prob",
+            "race_number",
+        ]:
             assert col in df.columns, f"{col} が DataFrame に存在しない"
 
     def test_market_probはwin_oddsの逆数(self, db_many: sqlite3.Connection) -> None:
@@ -221,7 +236,9 @@ class TestBuildTrainDf:
         expected = (1.0 / valid["win_odds"].clip(upper=80.0)).values
         np.testing.assert_allclose(valid["market_prob"].values, expected, rtol=1e-5)
 
-    def test_リーク排除で未来成績が混入しない(self, db_many: sqlite3.Connection) -> None:
+    def test_リーク排除で未来成績が混入しない(
+        self, db_many: sqlite3.Connection
+    ) -> None:
         """
         新馬戦（最初のレースに出走した馬）の win_rate_all は None であるべき。
         _get_horse_stats(exclude_race_id=...) により、
@@ -236,6 +253,7 @@ class TestBuildTrainDf:
 
 
 # ── HonmeiModel ───────────────────────────────────────────────────
+
 
 class TestHonmeiModel:
     def test_初期状態は未訓練(self) -> None:
@@ -297,6 +315,7 @@ class TestHonmeiModel:
 
 # ── ManjiModel ────────────────────────────────────────────────────
 
+
 class TestManjiModel:
     def test_初期状態は未訓練(self) -> None:
         m = ManjiModel()
@@ -325,9 +344,13 @@ class TestManjiModel:
 
 # ── train_all ─────────────────────────────────────────────────────
 
+
 class TestTrainAll:
-    def test_結果にn_racesが含まれる(self, db_many: sqlite3.Connection, tmp_path) -> None:
+    def test_結果にn_racesが含まれる(
+        self, db_many: sqlite3.Connection, tmp_path
+    ) -> None:
         import src.ml.models as _mod
+
         orig = _mod._MODEL_DIR
         _mod._MODEL_DIR = tmp_path
         try:
@@ -343,6 +366,7 @@ class TestTrainAll:
         self, db_many: sqlite3.Connection, tmp_path
     ) -> None:
         import src.ml.models as _mod
+
         orig = _mod._MODEL_DIR
         _mod._MODEL_DIR = tmp_path
         try:
@@ -355,9 +379,11 @@ class TestTrainAll:
 
 # ── load_models ───────────────────────────────────────────────────
 
+
 class TestLoadModels:
     def test_モデルファイルなしでも例外なし(self, tmp_path) -> None:
         import src.ml.models as _mod
+
         orig = _mod._MODEL_DIR
         _mod._MODEL_DIR = tmp_path  # 空ディレクトリ → モデルファイルなし
         try:
@@ -367,11 +393,16 @@ class TestLoadModels:
         assert isinstance(honmei, HonmeiModel)
         assert isinstance(manji, ManjiModel)
 
-    def test_未訓練モデルでフォールバック動作(self, dummy_df: pd.DataFrame, tmp_path) -> None:
+    def test_未訓練モデルでフォールバック動作(
+        self, dummy_df: pd.DataFrame, tmp_path
+    ) -> None:
         """モデルファイルが存在しない場合、フォールバック予測が返ること。"""
         import src.ml.models as _mod
+
         orig = _mod._MODEL_DIR
-        _mod._MODEL_DIR = tmp_path  # 空ディレクトリ → モデルファイルなし → フォールバック
+        _mod._MODEL_DIR = (
+            tmp_path  # 空ディレクトリ → モデルファイルなし → フォールバック
+        )
         try:
             honmei, place, manji = load_models()
             h_scores = honmei.predict(dummy_df)

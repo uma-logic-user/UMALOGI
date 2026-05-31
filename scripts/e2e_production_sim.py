@@ -12,6 +12,7 @@ E2E 本番シミュレーション — Discord チャンネルルーティング
   [6] system      チャンネル  — send_system_text 送信確認
   [7] スループット計測 (Step 1〜6 合計)
 """
+
 from __future__ import annotations
 
 import json
@@ -37,7 +38,7 @@ logger = logging.getLogger("e2e_prod_sim")
 # ──────────────────────────────────────────────────────────────────────────────
 # テスト設定
 # ──────────────────────────────────────────────────────────────────────────────
-RACE_ID = "202604010201"     # DB に確実に存在するレース（新潟1R 2026-05-03 16頭）
+RACE_ID = "202604010201"  # DB に確実に存在するレース（新潟1R 2026-05-03 16頭）
 NOTE_TITLE = "【DRY RUN】2026年05月03日 UMALOGI AI 週末予想まとめ"
 NOTE_BODY = """# 2026年05月03日 UMALOGI AI 週末予想まとめ
 
@@ -68,10 +69,10 @@ NOTE_BODY = """# 2026年05月03日 UMALOGI AI 週末予想まとめ
 
 # Fake Webhook URL マップ（実際には送信されない）
 FAKE_URLS = {
-    "DISCORD_WEBHOOK_URL":        "https://discord.com/api/webhooks/FAKE_PREDICTION/token",
-    "DISCORD_WEBHOOK_SYSTEM":     "https://discord.com/api/webhooks/FAKE_SYSTEM/token",
-    "DISCORD_WEBHOOK_EV_ALERT":   "https://discord.com/api/webhooks/FAKE_EV_ALERT/token",
-    "DISCORD_WEBHOOK_AB_TEST":    "https://discord.com/api/webhooks/FAKE_AB_TEST/token",
+    "DISCORD_WEBHOOK_URL": "https://discord.com/api/webhooks/FAKE_PREDICTION/token",
+    "DISCORD_WEBHOOK_SYSTEM": "https://discord.com/api/webhooks/FAKE_SYSTEM/token",
+    "DISCORD_WEBHOOK_EV_ALERT": "https://discord.com/api/webhooks/FAKE_EV_ALERT/token",
+    "DISCORD_WEBHOOK_AB_TEST": "https://discord.com/api/webhooks/FAKE_AB_TEST/token",
     "DISCORD_WEBHOOK_NOTE_DRAFT": "https://discord.com/api/webhooks/FAKE_NOTE_DRAFT/token",
 }
 
@@ -80,19 +81,21 @@ FAKE_URLS = {
 # HTTP 傍受インフラ
 # ──────────────────────────────────────────────────────────────────────────────
 
-_captured_posts: list[dict] = []   # {url, payload}
+_captured_posts: list[dict] = []  # {url, payload}
 
 # チャンネル名 → fake URL のマッピング（CHANNEL_ENV の prediction → DISCORD_WEBHOOK_URL に対応）
 _CHAN_TO_URL: dict[str, str] = {
-    "prediction":  FAKE_URLS["DISCORD_WEBHOOK_URL"],
-    "system":      FAKE_URLS["DISCORD_WEBHOOK_SYSTEM"],
-    "ev_alert":    FAKE_URLS["DISCORD_WEBHOOK_EV_ALERT"],
-    "ab_test":     FAKE_URLS["DISCORD_WEBHOOK_AB_TEST"],
-    "note_draft":  FAKE_URLS["DISCORD_WEBHOOK_NOTE_DRAFT"],
+    "prediction": FAKE_URLS["DISCORD_WEBHOOK_URL"],
+    "system": FAKE_URLS["DISCORD_WEBHOOK_SYSTEM"],
+    "ev_alert": FAKE_URLS["DISCORD_WEBHOOK_EV_ALERT"],
+    "ab_test": FAKE_URLS["DISCORD_WEBHOOK_AB_TEST"],
+    "note_draft": FAKE_URLS["DISCORD_WEBHOOK_NOTE_DRAFT"],
 }
 
 
-def _fake_post(url: str, json: Any = None, timeout: int = 10, **_kwargs: Any) -> MagicMock:
+def _fake_post(
+    url: str, json: Any = None, timeout: int = 10, **_kwargs: Any
+) -> MagicMock:
     """requests.post を差し替えて POST ペイロードを記録するモック。"""
     _captured_posts.append({"url": url, "payload": json})
     resp = MagicMock()
@@ -110,9 +113,13 @@ def _assert_channel(chan: str, min_count: int = 1, label: str = "") -> bool:
     posts = _posts_to_channel(chan)
     ok = len(posts) >= min_count
     status = "✅ PASS" if ok else "❌ FAIL"
-    logger.info("  チャンネル %-12s: %s  (%d件%s)",
-                chan, status, len(posts),
-                f" — {label}" if label else "")
+    logger.info(
+        "  チャンネル %-12s: %s  (%d件%s)",
+        chan,
+        status,
+        len(posts),
+        f" — {label}" if label else "",
+    )
     return ok
 
 
@@ -147,14 +154,18 @@ with _intercept():
     elapsed = time.time() - t0
 
 keys = list(pipeline_result.keys())
-has_horses      = "horses"       in pipeline_result
-has_ev_recommend= "ev_recommend" in pipeline_result
-has_honmei_bets = "honmei_bets"  in pipeline_result
+has_horses = "horses" in pipeline_result
+has_ev_recommend = "ev_recommend" in pipeline_result
+has_honmei_bets = "honmei_bets" in pipeline_result
 ok1 = has_horses and has_ev_recommend and elapsed < 30.0
 
 logger.info("  完了: %.2f秒  キー=%s", elapsed, keys)
-logger.info("  horses=%s  ev_recommend=%s  honmei_bets=%s",
-            has_horses, has_ev_recommend, has_honmei_bets)
+logger.info(
+    "  horses=%s  ev_recommend=%s  honmei_bets=%s",
+    has_horses,
+    has_ev_recommend,
+    has_honmei_bets,
+)
 logger.info("  判定: %s (< 30秒 かつ 必須キー存在)", "✅ PASS" if ok1 else "❌ FAIL")
 results["step1_prerace_pipeline"] = {
     "elapsed_sec": round(elapsed, 2),
@@ -181,12 +192,12 @@ df = fb.build_race_features(RACE_ID)
 honmei_m, place_m, manji_m = load_models()
 
 honmei_scores = honmei_m.predict(df)
-ev_scores     = manji_m.ev_score(df)
-bankroll      = get_current_bankroll(conn)
+ev_scores = manji_m.ev_score(df)
+bankroll = get_current_bankroll(conn)
 
-gen           = BetGenerator(conn=conn, config=BetConfig(bankroll=bankroll))
-honmei_bets   = gen.generate_honmei(RACE_ID, df, honmei_scores)
-manji_bets    = gen.generate_manji(RACE_ID, df, ev_scores)
+gen = BetGenerator(conn=conn, config=BetConfig(bankroll=bankroll))
+honmei_bets = gen.generate_honmei(RACE_ID, df, honmei_scores)
+manji_bets = gen.generate_manji(RACE_ID, df, ev_scores)
 
 with _intercept():
     router = NotificationRouter()
@@ -237,10 +248,7 @@ with _intercept():
 ok4 = _assert_channel("ev_alert", min_count=1, label="JACKPOT EV=3.5")
 # JACKPOT 時は content に "@everyone" が含まれることも確認
 posts_ev = _posts_to_channel("ev_alert")
-jackpot_mention = any(
-    "@everyone" in str(p.get("payload", ""))
-    for p in posts_ev
-)
+jackpot_mention = any("@everyone" in str(p.get("payload", "")) for p in posts_ev)
 logger.info("  @everyone 含む: %s", "✅" if jackpot_mention else "❌")
 ok4 = ok4 and jackpot_mention
 results["step4_jackpot"] = {
@@ -264,9 +272,9 @@ with _intercept():
     )
 
 posts_nd = _posts_to_channel("note_draft")
-ok5_rt   = ok_ret is True
-ok5_post = len(posts_nd) >= 2   # note本文 + X告知 の最低2件
-ok5      = ok5_rt and ok5_post
+ok5_rt = ok_ret is True
+ok5_post = len(posts_nd) >= 2  # note本文 + X告知 の最低2件
+ok5 = ok5_rt and ok5_post
 
 logger.info("  send_note_draft() → %s", ok_ret)
 logger.info("  note_draft 受信件数: %d", len(posts_nd))
@@ -313,12 +321,13 @@ logger.info("=" * 60)
 all_passed = all(v.get("ok", False) for v in results.values())
 
 step_labels = {
-    "step1_prerace_pipeline": "prerace_pipeline (%.2f秒)" % results["step1_prerace_pipeline"]["elapsed_sec"],
-    "step2_prediction":       "prediction チャンネル routing",
-    "step3_ev_alert":         "ev_alert チャンネル routing (EV=3.2)",
-    "step4_jackpot":          "JACKPOT routing (EV=3.5) + @everyone 確認",
-    "step5_note_draft":       "note_draft チャンネル routing",
-    "step6_system":           "system チャンネル routing",
+    "step1_prerace_pipeline": "prerace_pipeline (%.2f秒)"
+    % results["step1_prerace_pipeline"]["elapsed_sec"],
+    "step2_prediction": "prediction チャンネル routing",
+    "step3_ev_alert": "ev_alert チャンネル routing (EV=3.2)",
+    "step4_jackpot": "JACKPOT routing (EV=3.5) + @everyone 確認",
+    "step5_note_draft": "note_draft チャンネル routing",
+    "step6_system": "system チャンネル routing",
 }
 for key, label in step_labels.items():
     r = results[key]
@@ -346,8 +355,14 @@ checklist = [
     ("✅", "prerace_pipeline E2E 動作確認"),
     ("✅", "prediction チャンネル routing 確認"),
     ("✅", "ev_alert チャンネル routing 確認 (EV≥1.5 閾値)"),
-    ("✅" if results["step4_jackpot"]["ok"] else "❌", "JACKPOT @everyone routing 確認 (EV≥3.0)"),
-    ("✅" if results["step5_note_draft"]["ok"] else "❌", "note_draft チャンネル routing 確認"),
+    (
+        "✅" if results["step4_jackpot"]["ok"] else "❌",
+        "JACKPOT @everyone routing 確認 (EV≥3.0)",
+    ),
+    (
+        "✅" if results["step5_note_draft"]["ok"] else "❌",
+        "note_draft チャンネル routing 確認",
+    ),
     ("✅" if results["step6_system"]["ok"] else "❌", "system チャンネル routing 確認"),
     ("⚠️", "本番 DISCORD_WEBHOOK_* URL を .env に設定 (別途確認)"),
     ("⚠️", "JVLink SID 有効期限の確認 (別途確認)"),
@@ -358,6 +373,7 @@ for icon, item in checklist:
 
 # JSON 保存
 import os
+
 os.makedirs("data", exist_ok=True)
 out = {
     "sim_elapsed_sec": round(total_elapsed, 2),

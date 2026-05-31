@@ -15,6 +15,7 @@ SEレコードの着順(rank)バイトオフセット確定スクリプト。
   候補オフセット → 一致率ランキングを表示
   最終行に推奨オフセットを表示
 """
+
 from __future__ import annotations
 
 import os
@@ -36,7 +37,6 @@ from src.scraper.jravan_client import (
     JVREAD_FILECHANGE,
     JVREAD_DOWNLOADING,
     _make_race_id,
-    _PAYOUT_SPECS,
 )
 
 # 2025年確定データを OPT_NORMAL (1) で取得する
@@ -49,7 +49,7 @@ FROMTIME = "20250101000000"
 # 現在の推定: slice(211, 213)
 # 探索範囲: 150〜280 (JV-Data 4.5.2 SE レコード後半の合理的な範囲)
 SEARCH_START = 150
-SEARCH_END   = 280
+SEARCH_END = 280
 
 # 調査するレース数の上限
 MAX_RACES = 500
@@ -60,7 +60,7 @@ def _extract_tan_winner(hr_data: bytes) -> int | None:
     if len(hr_data) < 34:
         return None
     try:
-        combo_raw  = hr_data[27:29]
+        combo_raw = hr_data[27:29]
         amount_raw = hr_data[29:34]
         amount = int(amount_raw.decode("ascii", errors="replace").strip())
         if amount <= 0:
@@ -81,19 +81,23 @@ def main() -> None:
 
     sid = os.environ.get("JRAVAN_SID", "")
     if not sid:
-        print("ERROR: JRAVAN_SID 未設定"); sys.exit(1)
+        print("ERROR: JRAVAN_SID 未設定")
+        sys.exit(1)
 
     # race_id → {winner_horse_num: int, se_records: list[bytes]}
     # SE レコードは HR より先にストリームに来ることがあるため全件バッファリング
     race_data: dict[str, dict] = {}
     all_se: dict[str, list[bytes]] = {}  # race_id → SE レコードリスト
 
-    print(f"JVLinkからデータ読み込み中 (OPT_NORMAL, fromtime={FROMTIME}, 最大{MAX_RACES}レース)...")
+    print(
+        f"JVLinkからデータ読み込み中 (OPT_NORMAL, fromtime={FROMTIME}, 最大{MAX_RACES}レース)..."
+    )
 
     with JVLinkClient(sid) as client:
         code = client.open("RACE", FROMTIME, OPT_NORMAL)
         if code < 0:
-            print(f"JVOpen 失敗 code={code}"); return
+            print(f"JVOpen 失敗 code={code}")
+            return
 
         scanned = 0
         for _ in range(10_000_000):
@@ -103,7 +107,8 @@ def main() -> None:
             if ret == JVREAD_FILECHANGE:
                 continue
             if ret == JVREAD_DOWNLOADING:
-                time.sleep(1); continue
+                time.sleep(1)
+                continue
             if ret < 0:
                 break
             if not data or len(data) < 10:
@@ -145,14 +150,15 @@ def main() -> None:
 
     # 有効レース (winner + SE 両方ある) を抽出
     valid_races = {
-        rid: v for rid, v in race_data.items()
-        if v.get("winner") and v.get("se_list")
+        rid: v for rid, v in race_data.items() if v.get("winner") and v.get("se_list")
     }
     print(f"有効レース数 (winner + SE 両方): {len(valid_races)}")
 
     if not valid_races:
         print("\n有効レースが0件。原因:")
-        print("  - cat='1' HR が0件 → OPT_NORMAL で fromtime 以降の確定データが存在しない可能性")
+        print(
+            "  - cat='1' HR が0件 → OPT_NORMAL で fromtime 以降の確定データが存在しない可能性"
+        )
         print("  - fromtime を過去に遡って再試行してください（例: 20241001000000）")
         print(f"  - all_se にあるレース数: {len(all_se)}")
         return
@@ -175,10 +181,10 @@ def main() -> None:
             except Exception:
                 continue
 
-            is_winner_horse = (uma_ban == winner)
+            is_winner_horse = uma_ban == winner
 
             for off in range(SEARCH_START, min(SEARCH_END, len(se) - 1)):
-                chunk = se[off:off+2]
+                chunk = se[off : off + 2]
                 try:
                     val_str = chunk.decode("ascii", errors="replace").strip()
                     if not val_str:
@@ -203,29 +209,33 @@ def main() -> None:
             results.append((rate, off, hits, total))
     results.sort(reverse=True)
 
-    print(f"\n{'='*60}")
-    print(f"オフセット別 着順一致率 TOP 20")
-    print(f"{'='*60}")
+    print(f"\n{'=' * 60}")
+    print("オフセット別 着順一致率 TOP 20")
+    print(f"{'=' * 60}")
     print(f"{'Offset':>8}  {'一致率':>8}  {'一致件数':>8}  {'総件数':>8}")
-    print(f"{'-'*60}")
+    print(f"{'-' * 60}")
     for rate, off, hits, total in results[:20]:
         marker = " ← 推奨" if off == results[0][1] else ""
-        print(f"  [{off:3d}:{off+2:3d}]  {rate:7.1f}%  {hits:>8}  {total:>8}{marker}")
+        print(f"  [{off:3d}:{off + 2:3d}]  {rate:7.1f}%  {hits:>8}  {total:>8}{marker}")
 
     if results:
         best_off = results[0][1]
         best_rate = results[0][0]
-        print(f"\n{'='*60}")
-        print(f"【推奨】_SE_RANK = slice({best_off}, {best_off+2})  一致率 {best_rate:.1f}%")
-        print(f"【現在】_SE_RANK = slice(211, 213)")
+        print(f"\n{'=' * 60}")
+        print(
+            f"【推奨】_SE_RANK = slice({best_off}, {best_off + 2})  一致率 {best_rate:.1f}%"
+        )
+        print("【現在】_SE_RANK = slice(211, 213)")
         if best_off == 211:
             print("→ 現在のオフセットが正しい。")
         else:
-            print(f"→ 現在値 slice(211,213) は不正確。slice({best_off},{best_off+2}) に修正が必要。")
-        print(f"{'='*60}")
+            print(
+                f"→ 現在値 slice(211,213) は不正確。slice({best_off},{best_off + 2}) に修正が必要。"
+            )
+        print(f"{'=' * 60}")
 
     # 実データサンプル確認（上位5レース）
-    print(f"\n=== 実データ確認（先頭5レース）===")
+    print("\n=== 実データ確認（先頭5レース）===")
     shown = 0
     for rid, v in list(valid_races.items())[:5]:
         winner = v["winner"]
@@ -237,10 +247,16 @@ def main() -> None:
                 continue
             if results:
                 best = results[0][1]
-                rank_raw = se[best:best+2].decode("ascii", "replace").strip()
-                rank_211 = se[211:213].decode("ascii", "replace").strip() if len(se) >= 213 else "??"
+                rank_raw = se[best : best + 2].decode("ascii", "replace").strip()
+                rank_211 = (
+                    se[211:213].decode("ascii", "replace").strip()
+                    if len(se) >= 213
+                    else "??"
+                )
                 marker = " ← 1着！" if uma_ban == winner else ""
-                print(f"    馬番={uma_ban:2d}  offset{best}={rank_raw!r:6s}  offset211={rank_211!r:6s}{marker}")
+                print(
+                    f"    馬番={uma_ban:2d}  offset{best}={rank_raw!r:6s}  offset211={rank_211!r:6s}{marker}"
+                )
         shown += 1
 
 

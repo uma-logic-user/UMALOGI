@@ -21,9 +21,16 @@ JSON_OUT_DIR = _ROOT / "data" / "predictions"
 
 # 競馬場コード → 名称
 JYO: dict[str, str] = {
-    "01": "札幌", "02": "函館", "03": "福島", "04": "新潟",
-    "05": "東京", "06": "中山", "07": "中京", "08": "京都",
-    "09": "阪神", "10": "小倉",
+    "01": "札幌",
+    "02": "函館",
+    "03": "福島",
+    "04": "新潟",
+    "05": "東京",
+    "06": "中山",
+    "07": "中京",
+    "08": "京都",
+    "09": "阪神",
+    "10": "小倉",
 }
 
 
@@ -93,6 +100,7 @@ def build_output_json(
         フロントエンドに渡す JSON ペイロード（dict）。
         キー: race_id / generated_at / bias / horses / ev_recommend / honmei_bets / manji_bets。
     """
+
     def _int_or_none(v: object) -> int | None:
         """値を int に変換する。None・NaN・0 の場合は None を返す。"""
         return int(v) if (v is not None and pd.notna(v) and v != 0) else None  # type: ignore[arg-type]
@@ -106,57 +114,59 @@ def build_output_json(
     ev_recommend: list[dict] = []
 
     for i, row in df_reset.iterrows():
-        num    = int(row["horse_number"])
-        p_win  = float(honmei_scores.iloc[i]) if i < len(honmei_scores) else 0.0
+        num = int(row["horse_number"])
+        p_win = float(honmei_scores.iloc[i]) if i < len(honmei_scores) else 0.0
         ev_val = float(honmei_ev_scores.iloc[i]) if i < len(honmei_ev_scores) else 0.0
-        odds   = float(row.get("win_odds") or 0.0)
-        kelly  = kelly_fraction(p_win, odds) if odds > 0 else 0.0
+        odds = float(row.get("win_odds") or 0.0)
+        kelly = kelly_fraction(p_win, odds) if odds > 0 else 0.0
 
         entry: dict = {
-            "horse_number":   num,
-            "horse_name":     str(row.get("horse_name", "")),
-            "horse_id":       str(row.get("horse_id", "") or ""),
-            "sex_age":        str(row.get("sex_age", "") or ""),
+            "horse_number": num,
+            "horse_name": str(row.get("horse_name", "")),
+            "horse_id": str(row.get("horse_id", "") or ""),
+            "sex_age": str(row.get("sex_age", "") or ""),
             "weight_carried": float(row.get("weight_carried") or 0),
-            "horse_weight":   _int_or_none(row.get("horse_weight")),
-            "win_odds":       _float_or_none(odds),
-            "popularity":     _int_or_none(row.get("popularity")),
-            "honmei_score":   round(p_win, 4),
-            "ev_score":       round(ev_val, 4),
+            "horse_weight": _int_or_none(row.get("horse_weight")),
+            "win_odds": _float_or_none(odds),
+            "popularity": _int_or_none(row.get("popularity")),
+            "honmei_score": round(p_win, 4),
+            "ev_score": round(ev_val, 4),
             "kelly_fraction": round(kelly, 4),
-            "manji_ev":       round(float(ev_scores.iloc[i]) if i < len(ev_scores) else 0, 4),
+            "manji_ev": round(float(ev_scores.iloc[i]) if i < len(ev_scores) else 0, 4),
             "odds_vs_morning": _float_or_none(row.get("odds_vs_morning")),
-            "odds_velocity":   _float_or_none(row.get("odds_velocity")),
+            "odds_velocity": _float_or_none(row.get("odds_velocity")),
         }
         horses.append(entry)
 
         # provisional モードではオッズ未取得のため EV 推奨は出力しない
         if not provisional and ev_val >= 1.0:
-            ev_recommend.append({
-                "horse_number":   num,
-                "horse_name":     entry["horse_name"],
-                "win_odds":       entry["win_odds"],
-                "ev_score":       entry["ev_score"],
-                "kelly_fraction": entry["kelly_fraction"],
-            })
+            ev_recommend.append(
+                {
+                    "horse_number": num,
+                    "horse_name": entry["horse_name"],
+                    "win_odds": entry["win_odds"],
+                    "ev_score": entry["ev_score"],
+                    "kelly_fraction": entry["kelly_fraction"],
+                }
+            )
 
     ev_recommend.sort(key=lambda x: x["ev_score"], reverse=True)
 
     first = df_reset.iloc[0] if not df_reset.empty else {}
     bias = {
-        "today_inner_bias":  _float_or_none(first.get("today_inner_bias")),
-        "today_front_bias":  _float_or_none(first.get("today_front_bias")),
-        "today_race_count":  _int_or_none(first.get("today_race_count")),
+        "today_inner_bias": _float_or_none(first.get("today_inner_bias")),
+        "today_front_bias": _float_or_none(first.get("today_front_bias")),
+        "today_race_count": _int_or_none(first.get("today_race_count")),
     }
 
     return {
-        "race_id":      race_id,
+        "race_id": race_id,
         "generated_at": datetime.now().isoformat(),
-        "bias":         bias,
-        "horses":       horses,
+        "bias": bias,
+        "horses": horses,
         "ev_recommend": ev_recommend,
-        "honmei_bets":  honmei_bets.to_dict(),  # type: ignore[attr-defined]
-        "manji_bets":   manji_bets.to_dict(),    # type: ignore[attr-defined]
+        "honmei_bets": honmei_bets.to_dict(),  # type: ignore[attr-defined]
+        "manji_bets": manji_bets.to_dict(),  # type: ignore[attr-defined]
     }
 
 

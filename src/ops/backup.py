@@ -34,11 +34,11 @@ from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
-_ROOT                  = Path(__file__).resolve().parents[2]
-_DB_PATH               = _ROOT / "data" / "umalogi.db"
-_BACKUP_DIR            = _ROOT / "data" / "backups"
-_MODELS_DIR            = _ROOT / "data" / "models"
-_MAX_GENERATIONS       = 5
+_ROOT = Path(__file__).resolve().parents[2]
+_DB_PATH = _ROOT / "data" / "umalogi.db"
+_BACKUP_DIR = _ROOT / "data" / "backups"
+_MODELS_DIR = _ROOT / "data" / "models"
+_MAX_GENERATIONS = 5
 _MAX_CLOUD_GENERATIONS = 3
 
 _AUTO = object()
@@ -47,6 +47,7 @@ _AUTO = object()
 # ────────────────────────────────────────────────────────────────────────────
 # Discord 通知
 # ────────────────────────────────────────────────────────────────────────────
+
 
 def _discord_notify(message: str) -> None:
     """Discord Webhook に通知を送る。環境変数未設定またはエラーは静かに無視する。"""
@@ -72,6 +73,7 @@ def _discord_notify(message: str) -> None:
 # SQLite ホットバックアップ
 # ────────────────────────────────────────────────────────────────────────────
 
+
 def _hot_backup(src_path: Path, dest_path: Path) -> None:
     """
     SQLite Online Backup API でトランザクションセーフなホットバックアップを取る。
@@ -79,7 +81,7 @@ def _hot_backup(src_path: Path, dest_path: Path) -> None:
     shutil.copy2 と異なり、DB 書き込み中でもページ単位で安全にコピーできる。
     WAL モードのチェックポイントも自動的に処理される。
     """
-    src  = sqlite3.connect(str(src_path))
+    src = sqlite3.connect(str(src_path))
     dest = sqlite3.connect(str(dest_path))
     try:
         # pages=-1 で全ページを一括コピー（最速）
@@ -93,6 +95,7 @@ def _hot_backup(src_path: Path, dest_path: Path) -> None:
 # クラウド同期
 # ────────────────────────────────────────────────────────────────────────────
 
+
 def _resolve_cloud_dir() -> Path | None:
     """環境変数 CLOUD_BACKUP_DIR からクラウドバックアップ先を取得する。未設定時はスキップ。"""
     raw = os.environ.get("CLOUD_BACKUP_DIR", "")
@@ -101,7 +104,9 @@ def _resolve_cloud_dir() -> Path | None:
 
 def _latest_model(models_dir: Path) -> Path | None:
     """data/models/ から更新日時が最も新しい .pkl ファイルを返す。"""
-    pkls = sorted(models_dir.glob("*.pkl"), key=lambda p: p.stat().st_mtime, reverse=True)
+    pkls = sorted(
+        models_dir.glob("*.pkl"), key=lambda p: p.stat().st_mtime, reverse=True
+    )
     return pkls[0] if pkls else None
 
 
@@ -139,7 +144,9 @@ def _cloud_sync(
             )
         logger.debug("[クラウド] チェックサム OK: %s", src_hash[:16])
         size_mb = cloud_db_path.stat().st_size / 1024 / 1024
-        logger.info("[クラウド] DB コピー完了: %s (%.1f MB)", cloud_db_path.name, size_mb)
+        logger.info(
+            "[クラウド] DB コピー完了: %s (%.1f MB)", cloud_db_path.name, size_mb
+        )
 
         # DB のローテーション
         existing_dbs = sorted(cloud_dir.glob("umalogi_*.db"))
@@ -154,7 +161,9 @@ def _cloud_sync(
             cloud_pkl = cloud_dir / latest_pkl.name
             shutil.copy2(latest_pkl, cloud_pkl)
             pkl_mb = cloud_pkl.stat().st_size / 1024 / 1024
-            logger.info("[クラウド] モデルコピー完了: %s (%.1f MB)", cloud_pkl.name, pkl_mb)
+            logger.info(
+                "[クラウド] モデルコピー完了: %s (%.1f MB)", cloud_pkl.name, pkl_mb
+            )
 
             existing_pkls = sorted(
                 cloud_dir.glob("*.pkl"), key=lambda p: p.stat().st_mtime
@@ -167,7 +176,12 @@ def _cloud_sync(
             logger.info("[クラウド] コピー対象モデルなし（%s）", models_dir)
 
         remaining = list(cloud_dir.glob("umalogi_*.db"))
-        logger.info("[クラウド] DB 世代数: %d / %d  保存先: %s", len(remaining), max_gen, cloud_dir)
+        logger.info(
+            "[クラウド] DB 世代数: %d / %d  保存先: %s",
+            len(remaining),
+            max_gen,
+            cloud_dir,
+        )
 
     except Exception as exc:
         logger.warning("[クラウド] バックアップ失敗（ローカルは正常）: %s", exc)
@@ -177,11 +191,12 @@ def _cloud_sync(
 # メインバックアップ関数
 # ────────────────────────────────────────────────────────────────────────────
 
+
 def backup_db(
-    db_path:    Path | None = None,
+    db_path: Path | None = None,
     backup_dir: Path | None = None,
-    max_gen:    int = _MAX_GENERATIONS,
-    cloud_dir:  object = _AUTO,
+    max_gen: int = _MAX_GENERATIONS,
+    cloud_dir: object = _AUTO,
 ) -> Path:
     """
     SQLite Online Backup API でアトミックなホットバックアップを行う。
@@ -202,7 +217,7 @@ def backup_db(
         FileNotFoundError: db_path が存在しない場合
         Exception:         バックアップ失敗時（Discord 通知後に再 raise）
     """
-    db_path    = db_path    or _DB_PATH
+    db_path = db_path or _DB_PATH
     backup_dir = backup_dir or _BACKUP_DIR
 
     if not db_path.exists():
@@ -213,7 +228,7 @@ def backup_db(
 
     backup_dir.mkdir(parents=True, exist_ok=True)
 
-    timestamp   = datetime.now().strftime("%Y%m%d_%H%M%S")
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     backup_path = backup_dir / f"umalogi_{timestamp}.db"
 
     try:
@@ -230,7 +245,9 @@ def backup_db(
         raise
 
     size_mb = backup_path.stat().st_size / 1024 / 1024
-    logger.info("バックアップ作成: %s (%.1f MB) [Online Backup API]", backup_path.name, size_mb)
+    logger.info(
+        "バックアップ作成: %s (%.1f MB) [Online Backup API]", backup_path.name, size_mb
+    )
 
     # 古い世代をローテーション削除
     existing = sorted(backup_dir.glob("umalogi_*.db"))
@@ -271,6 +288,7 @@ def list_backups(backup_dir: Path | None = None) -> list[Path]:
 # CLI
 # ────────────────────────────────────────────────────────────────────────────
 
+
 def main() -> None:
     """バックアップユーティリティの CLI エントリーポイント。
 
@@ -281,10 +299,16 @@ def main() -> None:
         format="%(asctime)s %(levelname)s %(message)s",
     )
     parser = argparse.ArgumentParser(description="DB バックアップユーティリティ")
-    parser.add_argument("--list",     action="store_true", help="バックアップ一覧を表示")
-    parser.add_argument("--max-gen",  type=int, default=_MAX_GENERATIONS,
-                        help=f"保持する最大世代数（デフォルト: {_MAX_GENERATIONS}）")
-    parser.add_argument("--no-cloud", action="store_true", help="クラウド同期をスキップ")
+    parser.add_argument("--list", action="store_true", help="バックアップ一覧を表示")
+    parser.add_argument(
+        "--max-gen",
+        type=int,
+        default=_MAX_GENERATIONS,
+        help=f"保持する最大世代数（デフォルト: {_MAX_GENERATIONS}）",
+    )
+    parser.add_argument(
+        "--no-cloud", action="store_true", help="クラウド同期をスキップ"
+    )
     args = parser.parse_args()
 
     if args.list:

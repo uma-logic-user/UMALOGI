@@ -86,5 +86,7 @@ class LineNotifier(BaseNotifier):
             logger.info("[LINE] 送信成功: %s", message.title)
             return True
         else:
-            logger.warning("[LINE] 送信失敗 status=%d: %s", resp.status_code, resp.text[:200])
+            logger.warning(
+                "[LINE] 送信失敗 status=%d: %s", resp.status_code, resp.text[:200]
+            )
             return False

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import io
 import sys
+
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 
 import requests
@@ -21,10 +22,12 @@ if data01:
     print("TEXT:", repr(txt[:300]))
     # Check each character around 'm'
     for i, ch in enumerate(txt):
-        if txt[i:i+1] in ("m", "ｍ"):
-            print(f"  pos {i}: ...{repr(txt[max(0,i-10):i+5])}...")
+        if txt[i : i + 1] in ("m", "ｍ"):
+            print(f"  pos {i}: ...{repr(txt[max(0, i - 10) : i + 5])}...")
 else:
     print("div.RaceData01 not found")
     # Try to find what's in the page
     for tag in soup.find_all(class_=lambda c: c and "Race" in c)[:10]:
-        print(f"  Found: {tag.name}.{tag.get('class')} -> {repr(tag.get_text(' ', strip=True)[:80])}")
+        print(
+            f"  Found: {tag.name}.{tag.get('class')} -> {repr(tag.get_text(' ', strip=True)[:80])}"
+        )

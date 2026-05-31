@@ -5,6 +5,7 @@ Discord デュアルチャンネル テスト送信スクリプト
 使い方:
     py scripts/test_discord_channels.py
 """
+
 from __future__ import annotations
 
 import sys
@@ -17,6 +18,7 @@ _ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(_ROOT))
 
 from dotenv import load_dotenv
+
 load_dotenv(_ROOT / ".env", override=False)
 
 from src.notification.discord_notifier import DiscordNotifier
@@ -28,15 +30,17 @@ def _make_dummy_bets(model_type: str, bets_data: list[dict]) -> object:
 
     bets = []
     for d in bets_data:
-        bets.append(SimpleNamespace(
-            bet_type=d["bet_type"],
-            expected_value=d["ev"],
-            recommended_bet=d["bet"],
-            n_tickets=d.get("n_tickets", 1),
-            combinations=d.get("combos", [[1, 3]]),
-            horse_names=d.get("names", ["テストホース1", "テストホース2"]),
-            model_score=d.get("score", 0.65),
-        ))
+        bets.append(
+            SimpleNamespace(
+                bet_type=d["bet_type"],
+                expected_value=d["ev"],
+                recommended_bet=d["bet"],
+                n_tickets=d.get("n_tickets", 1),
+                combinations=d.get("combos", [[1, 3]]),
+                horse_names=d.get("names", ["テストホース1", "テストホース2"]),
+                model_score=d.get("score", 0.65),
+            )
+        )
     return SimpleNamespace(model_type=model_type, bets=bets)
 
 
@@ -53,7 +57,11 @@ def test_system_channel(notifier: DiscordNotifier) -> None:
         fields=[
             {"name": "バージョン", "value": "UMALOGI Ver1.0", "inline": True},
             {"name": "チャンネル種別", "value": "SYSTEM", "inline": True},
-            {"name": "対象", "value": "監視ループ / JVLink / 暫定予想バッチ", "inline": False},
+            {
+                "name": "対象",
+                "value": "監視ループ / JVLink / 暫定予想バッチ",
+                "inline": False,
+            },
         ],
         footer="DISCORD_SYSTEM_WEBHOOK_URL へ送信されています",
     )
@@ -77,44 +85,70 @@ def test_prediction_channel(notifier: DiscordNotifier) -> None:
     print("\n[4] 予想チャンネル: 直前予想 Embed カード")
 
     # ダミー買い目データ
-    honmei = _make_dummy_bets("本命", [
-        {
-            "bet_type": "三連複",
-            "ev": 2.13,
-            "bet": 800,
-            "n_tickets": 6,
-            "combos": [[5, 12, 3], [5, 12, 7], [5, 12, 9], [5, 3, 7], [5, 3, 9], [5, 7, 9]],
-            "names": ["アーバンシック", "タスティエーラ", "ドウデュース", "リバティアイランド"],
-        },
-        {
-            "bet_type": "複勝",
-            "ev": 1.42,
-            "bet": 400,
-            "n_tickets": 1,
-            "combos": [[5]],
-            "names": ["アーバンシック"],
-        },
-    ])
-    manji = _make_dummy_bets("卍", [
-        {
-            "bet_type": "馬連",
-            "ev": 1.85,
-            "bet": 600,
-            "n_tickets": 4,
-            "combos": [[5, 12], [5, 3], [5, 7], [12, 3]],
-            "names": ["アーバンシック", "タスティエーラ", "ドウデュース", "リバティアイランド"],
-        },
-    ])
-    oracle = _make_dummy_bets("Oracle", [
-        {
-            "bet_type": "三連単",
-            "ev": 0.72,
-            "bet": 200,
-            "n_tickets": 1,
-            "combos": [[5, 12, 3]],
-            "names": ["アーバンシック", "タスティエーラ", "ドウデュース"],
-        },
-    ])
+    honmei = _make_dummy_bets(
+        "本命",
+        [
+            {
+                "bet_type": "三連複",
+                "ev": 2.13,
+                "bet": 800,
+                "n_tickets": 6,
+                "combos": [
+                    [5, 12, 3],
+                    [5, 12, 7],
+                    [5, 12, 9],
+                    [5, 3, 7],
+                    [5, 3, 9],
+                    [5, 7, 9],
+                ],
+                "names": [
+                    "アーバンシック",
+                    "タスティエーラ",
+                    "ドウデュース",
+                    "リバティアイランド",
+                ],
+            },
+            {
+                "bet_type": "複勝",
+                "ev": 1.42,
+                "bet": 400,
+                "n_tickets": 1,
+                "combos": [[5]],
+                "names": ["アーバンシック"],
+            },
+        ],
+    )
+    manji = _make_dummy_bets(
+        "卍",
+        [
+            {
+                "bet_type": "馬連",
+                "ev": 1.85,
+                "bet": 600,
+                "n_tickets": 4,
+                "combos": [[5, 12], [5, 3], [5, 7], [12, 3]],
+                "names": [
+                    "アーバンシック",
+                    "タスティエーラ",
+                    "ドウデュース",
+                    "リバティアイランド",
+                ],
+            },
+        ],
+    )
+    oracle = _make_dummy_bets(
+        "Oracle",
+        [
+            {
+                "bet_type": "三連単",
+                "ev": 0.72,
+                "bet": 200,
+                "n_tickets": 1,
+                "combos": [[5, 12, 3]],
+                "names": ["アーバンシック", "タスティエーラ", "ドウデュース"],
+            },
+        ],
+    )
 
     notifier.notify_prerace_result(
         race_id="202605090511",
@@ -136,16 +170,21 @@ def test_prediction_channel(notifier: DiscordNotifier) -> None:
 
 def main() -> None:
     import os
+
     notifier = DiscordNotifier()
 
-    pred_url   = os.getenv("DISCORD_WEBHOOK_URL",        "")
+    pred_url = os.getenv("DISCORD_WEBHOOK_URL", "")
     system_url = os.getenv("DISCORD_SYSTEM_WEBHOOK_URL", "")
 
     print("=" * 55)
     print("  UMALOGI Discord デュアルチャンネル テスト")
     print("=" * 55)
-    print(f"  予想チャンネル URL : {'設定済み ✓' if pred_url   else '未設定 ✗ (DISCORD_WEBHOOK_URL)'}")
-    print(f"  システムチャンネル URL: {'設定済み ✓' if system_url else '未設定 ✗ → 予想チャンネルへ fallback'}")
+    print(
+        f"  予想チャンネル URL : {'設定済み ✓' if pred_url else '未設定 ✗ (DISCORD_WEBHOOK_URL)'}"
+    )
+    print(
+        f"  システムチャンネル URL: {'設定済み ✓' if system_url else '未設定 ✗ → 予想チャンネルへ fallback'}"
+    )
     print()
 
     if not pred_url and not system_url:

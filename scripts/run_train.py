@@ -39,19 +39,20 @@ logger = logging.getLogger(__name__)
 
 # 本命モデルの CV AUC 目標値（ml_guidelines.md 準拠）
 _AUC_TARGET = 0.70
-_WIDTH      = 62
+_WIDTH = 62
 
 
 # ════════════════════════════════════════════════════════════════
 #  表示ユーティリティ（ASCII のみ使用 — Windows cp932 対応）
 # ════════════════════════════════════════════════════════════════
 
+
 def _banner(text: str) -> None:
     """タイトルバナーを表示する。"""
-    inner  = f"  {text}  "
-    pad    = max(0, _WIDTH - 2 - len(inner))
-    left   = pad // 2
-    right  = pad - left
+    inner = f"  {text}  "
+    pad = max(0, _WIDTH - 2 - len(inner))
+    left = pad // 2
+    right = pad - left
     border = "=" * _WIDTH
     print(f"\n{border}")
     print(f"|{' ' * left}{inner}{' ' * right}|")
@@ -71,7 +72,7 @@ def _kv_table(rows: list[tuple[str, str]], title: str = "") -> None:
         print(f"\n  {title}")
     col_w = max(len(k) for k, _ in rows) + 2
     val_w = max(len(v) for _, v in rows) + 2
-    sep   = f"  +{'-' * col_w}+{'-' * val_w}+"
+    sep = f"  +{'-' * col_w}+{'-' * val_w}+"
     print(sep)
     for i, (k, v) in enumerate(rows):
         # 最終行の前（達成フラグ行）に区切り線を入れる
@@ -85,10 +86,10 @@ def _feat_imp_table(pairs: list[tuple[str, int]], title: str = "") -> None:
     """特徴量重要度テーブルを表示する。"""
     if title:
         print(f"\n  {title}")
-    feat_w  = max(len(f) for f, _ in pairs) + 2
-    gain_w  = max(len(str(g)) for _, g in pairs) + 2
-    _BAR    = 20
-    max_g   = pairs[0][1] if pairs else 1
+    feat_w = max(len(f) for f, _ in pairs) + 2
+    gain_w = max(len(str(g)) for _, g in pairs) + 2
+    _BAR = 20
+    max_g = pairs[0][1] if pairs else 1
 
     header = f"  +{'- ' * 2}+{'-' * feat_w}+{'-' * gain_w}+{'-' * (_BAR + 2)}+"
     print(header)
@@ -98,7 +99,7 @@ def _feat_imp_table(pairs: list[tuple[str, int]], title: str = "") -> None:
     print(header)
     for i, (feat, gain) in enumerate(pairs, 1):
         bar_len = math.ceil(gain / max_g * _BAR) if max_g > 0 else 0
-        bar     = "#" * bar_len
+        bar = "#" * bar_len
         print(
             f"  | {i:>2} | {feat:<{feat_w - 2}} | {gain:>{gain_w - 2}} | {bar:<{_BAR}} |"
         )
@@ -109,9 +110,10 @@ def _feat_imp_table(pairs: list[tuple[str, int]], title: str = "") -> None:
 #  DB 統計
 # ════════════════════════════════════════════════════════════════
 
+
 def _db_stats(conn) -> dict[str, int]:
     """レース数・出走結果数などの基本統計を返す。"""
-    (n_races,)   = conn.execute("SELECT COUNT(*) FROM races").fetchone()
+    (n_races,) = conn.execute("SELECT COUNT(*) FROM races").fetchone()
     (n_results,) = conn.execute(
         "SELECT COUNT(*) FROM race_results WHERE rank IS NOT NULL"
     ).fetchone()
@@ -123,6 +125,7 @@ def _db_stats(conn) -> dict[str, int]:
 #  学習ルーティン
 # ════════════════════════════════════════════════════════════════
 
+
 def _train_honmei(
     conn,
     model_dir: Path,
@@ -130,7 +133,7 @@ def _train_honmei(
     train_until: int | None = None,
 ) -> tuple[HonmeiModel, dict]:
     """本命モデルを学習・保存し、結果 dict を返す。"""
-    print(f"\n[1/2] 本命モデル (HonmeiModel) を学習中 ...")
+    print("\n[1/2] 本命モデル (HonmeiModel) を学習中 ...")
     t0 = time.perf_counter()
 
     honmei = HonmeiModel()
@@ -152,18 +155,26 @@ def _train_honmei(
 
     # ── スコアサマリーテーブル ────────────────────────────
     cv_mean = result.get("cv_auc_mean", float("nan"))
-    cv_std  = result.get("cv_auc_std",  float("nan"))
-    ok      = (not math.isnan(cv_mean)) and cv_mean >= _AUC_TARGET
-    mark    = f"[OK] {cv_mean:.4f} >= {_AUC_TARGET}" if ok else f"[NG] {cv_mean:.4f} < {_AUC_TARGET} (目標未達)"
-    until_str = str(result.get("train_until")) if result.get("train_until") is not None else "全期間"
+    cv_std = result.get("cv_auc_std", float("nan"))
+    ok = (not math.isnan(cv_mean)) and cv_mean >= _AUC_TARGET
+    mark = (
+        f"[OK] {cv_mean:.4f} >= {_AUC_TARGET}"
+        if ok
+        else f"[NG] {cv_mean:.4f} < {_AUC_TARGET} (目標未達)"
+    )
+    until_str = (
+        str(result.get("train_until"))
+        if result.get("train_until") is not None
+        else "全期間"
+    )
 
     _kv_table(
         [
-            ("学習期間",           until_str + "年以前" if until_str != "全期間" else until_str),
-            ("学習レース数",       f"{result['n_races']:,}"),
-            ("学習サンプル数",     f"{result['n_samples']:,}"),
-            ("CV AUC (mean)",      f"{cv_mean:.4f}" if not math.isnan(cv_mean) else "N/A"),
-            ("CV AUC (std)",       f"{cv_std:.4f}"  if not math.isnan(cv_std)  else "N/A"),
+            ("学習期間", until_str + "年以前" if until_str != "全期間" else until_str),
+            ("学習レース数", f"{result['n_races']:,}"),
+            ("学習サンプル数", f"{result['n_samples']:,}"),
+            ("CV AUC (mean)", f"{cv_mean:.4f}" if not math.isnan(cv_mean) else "N/A"),
+            ("CV AUC (std)", f"{cv_std:.4f}" if not math.isnan(cv_std) else "N/A"),
             ("AUC 目標 (> 0.70)", mark),
         ],
         title="学習結果",
@@ -181,22 +192,29 @@ def _train_manji(
     train_until: int | None = None,
 ) -> tuple[ManjiModel, dict]:
     """卍モデルを学習・保存し、結果 dict を返す。"""
-    print(f"\n[2/2] 卍モデル (ManjiModel) を学習中 ...")
+    print("\n[2/2] 卍モデル (ManjiModel) を学習中 ...")
     t0 = time.perf_counter()
 
-    manji   = ManjiModel()
-    result  = manji.train(conn, train_until=train_until)
+    manji = ManjiModel()
+    result = manji.train(conn, train_until=train_until)
     elapsed = time.perf_counter() - t0
 
     if result["n_races"] == 0:
         print("  [!] 学習データが 0 件のためスキップしました。")
         return manji, result
 
-    until_str_m = str(result.get("train_until")) if result.get("train_until") is not None else "全期間"
+    until_str_m = (
+        str(result.get("train_until"))
+        if result.get("train_until") is not None
+        else "全期間"
+    )
     _kv_table(
         [
-            ("学習期間",       until_str_m + "年以前" if until_str_m != "全期間" else until_str_m),
-            ("学習レース数",   f"{result['n_races']:,}"),
+            (
+                "学習期間",
+                until_str_m + "年以前" if until_str_m != "全期間" else until_str_m,
+            ),
+            ("学習レース数", f"{result['n_races']:,}"),
             ("学習サンプル数", f"{result['n_samples']:,}"),
         ],
         title="学習結果",
@@ -213,10 +231,10 @@ def _train_place(
     train_until: int | None = None,
 ) -> tuple[PlaceModel, dict]:
     """複勝モデルを学習・保存し、結果 dict を返す。"""
-    print(f"\n[3/3] 複勝モデル (PlaceModel) を学習中 ...")
+    print("\n[3/3] 複勝モデル (PlaceModel) を学習中 ...")
     t0 = time.perf_counter()
 
-    place  = PlaceModel()
+    place = PlaceModel()
     result = place.train(conn, train_until=train_until)
     elapsed = time.perf_counter() - t0
 
@@ -225,11 +243,18 @@ def _train_place(
         return place, result
 
     cv_mean = result.get("cv_auc_mean", float("nan"))
-    until_str_p = str(result.get("train_until")) if result.get("train_until") is not None else "全期間"
+    until_str_p = (
+        str(result.get("train_until"))
+        if result.get("train_until") is not None
+        else "全期間"
+    )
     _kv_table(
         [
-            ("学習期間",       until_str_p + "年以前" if until_str_p != "全期間" else until_str_p),
-            ("学習レース数",   f"{result['n_races']:,}"),
+            (
+                "学習期間",
+                until_str_p + "年以前" if until_str_p != "全期間" else until_str_p,
+            ),
+            ("学習レース数", f"{result['n_races']:,}"),
             ("学習サンプル数", f"{result['n_samples']:,}"),
             ("CV AUC (mean)", f"{cv_mean:.4f}" if not math.isnan(cv_mean) else "N/A"),
         ],
@@ -244,6 +269,7 @@ def _train_place(
 # ════════════════════════════════════════════════════════════════
 #  エントリポイント
 # ════════════════════════════════════════════════════════════════
+
 
 def main() -> int:
     parser = argparse.ArgumentParser(
@@ -313,11 +339,13 @@ def main() -> int:
 
     if not Path(db_path).exists():
         print(f"\n  [NG] DB ファイルが見つかりません: {db_path}")
-        print("       先に fetch_all_masters.bat や src/scraper/ でデータを取得してください。")
+        print(
+            "       先に fetch_all_masters.bat や src/scraper/ でデータを取得してください。"
+        )
         return 1
 
-    conn   = init_db(db_path=Path(db_path))
-    stats  = _db_stats(conn)
+    conn = init_db(db_path=Path(db_path))
+    stats = _db_stats(conn)
     print(
         f"  Data: races={stats['races']:,} / results={stats['results']:,}"
         f" / payouts={stats['payouts']:,}"
@@ -345,7 +373,9 @@ def main() -> int:
     if args.train_until:
         print(f"  学習期間: {args.train_until}年以前（アウト・オブ・サンプル分割）")
     try:
-        _, h_result = _train_honmei(conn, model_dir, top_n=args.top_n, train_until=args.train_until)
+        _, h_result = _train_honmei(
+            conn, model_dir, top_n=args.top_n, train_until=args.train_until
+        )
     except Exception as exc:
         logger.exception("本命モデルの学習中にエラーが発生しました: %s", exc)
         conn.close()
@@ -371,8 +401,8 @@ def main() -> int:
 
     # ── 最終サマリー ─────────────────────────────────────
     elapsed_total = time.perf_counter() - wall_start
-    mins, secs    = divmod(int(elapsed_total), 60)
-    elapsed_str   = f"{mins}m {secs:02d}s" if mins else f"{secs}s"
+    mins, secs = divmod(int(elapsed_total), 60)
+    elapsed_str = f"{mins}m {secs:02d}s" if mins else f"{secs}s"
 
     _banner(f"Training Complete  (elapsed: {elapsed_str})")
 

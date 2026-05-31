@@ -26,6 +26,7 @@ src/ml/calibration.py — 本命モデルのキャリブレーション補正
   - 補正済みスコアは EV・Kelly 計算にのみ使用する。
   - 補正後の確率は 1.0 でキャップされる（確率の性質を保持）。
 """
+
 from __future__ import annotations
 
 import logging
@@ -102,7 +103,6 @@ def apply_calibration_to_series(
     Returns:
         補正済みスコアの新規 Series（元の Series は変更しない）
     """
-    import pandas as pd
 
     corrected = honmei_scores.apply(correct_honmei_score)
     if log_prefix and logger.isEnabledFor(logging.DEBUG):
@@ -110,6 +110,9 @@ def apply_calibration_to_series(
         cor_mean = corrected.mean()
         logger.debug(
             "[W-036 calibration] %s スコア補正: raw_mean=%.3f → corrected_mean=%.3f (ratio=×%.2f)",
-            log_prefix, raw_mean, cor_mean, cor_mean / max(raw_mean, 1e-9),
+            log_prefix,
+            raw_mean,
+            cor_mean,
+            cor_mean / max(raw_mean, 1e-9),
         )
     return corrected

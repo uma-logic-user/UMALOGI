@@ -2121,8 +2121,7 @@ class HitFocusStrategy:
                 recommended_bet=float(_BASE_BET * len(combos)),
                 confidence=min(best_prob * 5, 1.0),
                 notes=(
-                    f"2軸マルチ 軸={axis1},{axis2} 相手={aite} "
-                    f"Harville最大={best_prob:.4f}"
+                    f"2軸マルチ 軸={axis1},{axis2} 相手={aite} Harville最大={best_prob:.4f}"
                 ),
             )
         )
@@ -2180,8 +2179,7 @@ class HitFocusStrategy:
                 recommended_bet=float(_BASE_BET * len(combos)),
                 confidence=min(best_prob * 8, 1.0),
                 notes=(
-                    f"2軸マルチ 軸={axis1},{axis2} 相手={aite} "
-                    f"Harville最大={best_prob:.4f}"
+                    f"2軸マルチ 軸={axis1},{axis2} 相手={aite} Harville最大={best_prob:.4f}"
                 ),
             )
         )
@@ -3226,8 +3224,7 @@ class FukushoEliteFilter:
                 selected_horses=[hn for hn, _, _ in top3],
                 edges=[eg for _, _, eg in top3],
                 reason=(
-                    f"Edge >= {_FUKUSHO_ELITE_EDGE} を満たす馬が "
-                    f"{len(passing)}/3頭 (最低2頭必要)"
+                    f"Edge >= {_FUKUSHO_ELITE_EDGE} を満たす馬が {len(passing)}/3頭 (最低2頭必要)"
                 ),
             )
 

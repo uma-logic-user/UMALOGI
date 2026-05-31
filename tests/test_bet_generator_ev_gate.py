@@ -1,10 +1,10 @@
 """ManjiStrategy の三連複 EV ゲートテスト。"""
+
 from __future__ import annotations
 
 from unittest.mock import patch
 
 import pandas as pd
-import pytest
 
 from src.ml.bet_generator import ManjiStrategy, OddsEstimator
 from src.ml.models import FEATURE_COLS
@@ -15,22 +15,24 @@ def _make_df(n: int, win_odds: list[float]) -> pd.DataFrame:
     rows = []
     for i in range(n):
         row: dict = {col: 0.5 for col in FEATURE_COLS}
-        row.update({
-            "horse_number": i + 1,
-            "horse_id":     f"h{i+1:02d}",
-            "horse_name":   f"馬{i+1}",
-            "sex_age":      "牡3",
-            "weight_carried": 56.0,
-            "horse_weight": 500,
-            "popularity":   i + 1,
-            "win_odds":     win_odds[i],
-            "surface_code": 0,
-            "sex_code":     0,
-            "venue_encoded": 4,
-            "sire_encoded": i + 1,
-            "distance":     1600,
-            "dist_band":    "mile",
-        })
+        row.update(
+            {
+                "horse_number": i + 1,
+                "horse_id": f"h{i + 1:02d}",
+                "horse_name": f"馬{i + 1}",
+                "sex_age": "牡3",
+                "weight_carried": 56.0,
+                "horse_weight": 500,
+                "popularity": i + 1,
+                "win_odds": win_odds[i],
+                "surface_code": 0,
+                "sex_code": 0,
+                "venue_encoded": 4,
+                "sire_encoded": i + 1,
+                "distance": 1600,
+                "dist_band": "mile",
+            }
+        )
         rows.append(row)
     return pd.DataFrame(rows)
 
@@ -127,7 +129,11 @@ class TestManjiTrioEvGate:
         def mock_ev(harville_prob: float, bet_type: str, axis_odds: float) -> float:
             if bet_type != "三連複":
                 # 三連複以外は実際の計算を使用
-                return OddsEstimator._DEFAULT_SCALE.get(bet_type, 1.0) * harville_prob * axis_odds
+                return (
+                    OddsEstimator._DEFAULT_SCALE.get(bet_type, 1.0)
+                    * harville_prob
+                    * axis_odds
+                )
             val = ev_sequence[call_count["n"] % len(ev_sequence)]
             call_count["n"] += 1
             return val

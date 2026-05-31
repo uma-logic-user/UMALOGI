@@ -9,6 +9,7 @@ Usage:
     py scripts/generate_performance_report.py --days 7     # 直近7日
     py scripts/generate_performance_report.py --dry-run    # Discord 送信なし
 """
+
 from __future__ import annotations
 
 import argparse
@@ -24,6 +25,7 @@ if str(_ROOT) not in sys.path:
 sys.stdout.reconfigure(encoding="utf-8")
 
 from dotenv import load_dotenv
+
 load_dotenv(_ROOT / ".env", override=False)
 
 _DB_PATH = _ROOT / "data" / "umalogi.db"
@@ -79,15 +81,28 @@ def build_performance_report(conn: sqlite3.Connection, days: int = 28) -> str:
     total_payout_all = 0.0
 
     for row in rows:
-        bet_type, n_bets, n_hits, hit_rate, roi, net_profit, total_payout, total_invest = row
+        (
+            bet_type,
+            n_bets,
+            n_hits,
+            hit_rate,
+            roi,
+            net_profit,
+            total_payout,
+            total_invest,
+        ) = row
         hit_rate_s = f"{hit_rate:.1f}%" if hit_rate is not None else "-"
-        roi_s      = f"{roi:.1f}%" if roi is not None else "-"
-        profit_s   = f"¥{int(net_profit):+,}" if net_profit is not None else "-"
-        lines.append(f"| {bet_type} | {n_bets} | {n_hits} | {hit_rate_s} | {roi_s} | {profit_s} |")
+        roi_s = f"{roi:.1f}%" if roi is not None else "-"
+        profit_s = f"¥{int(net_profit):+,}" if net_profit is not None else "-"
+        lines.append(
+            f"| {bet_type} | {n_bets} | {n_hits} | {hit_rate_s} | {roi_s} | {profit_s} |"
+        )
         total_invest_all += total_invest or 0
         total_payout_all += total_payout or 0
 
-    overall_roi = (total_payout_all / total_invest_all * 100) if total_invest_all > 0 else 0.0
+    overall_roi = (
+        (total_payout_all / total_invest_all * 100) if total_invest_all > 0 else 0.0
+    )
     overall_profit = total_payout_all - total_invest_all
     lines += [
         "",
@@ -98,7 +113,9 @@ def build_performance_report(conn: sqlite3.Connection, days: int = 28) -> str:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="実績サマリーを Discord へ通知")
-    parser.add_argument("--days",    type=int, default=28, help="集計日数（デフォルト28日）")
+    parser.add_argument(
+        "--days", type=int, default=28, help="集計日数（デフォルト28日）"
+    )
     parser.add_argument("--dry-run", action="store_true", help="Discord 送信なし")
     args = parser.parse_args()
 
@@ -120,6 +137,7 @@ def main() -> None:
         return
 
     from src.notification.router import NotificationRouter
+
     router = NotificationRouter()
     router.send_ab_report(report)
     print("\n✅ Discord 送信完了")

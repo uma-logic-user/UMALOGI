@@ -4,6 +4,7 @@ tests/test_win_report.py — src/ops/win_report.py のユニットテスト
 requests.post / save_draft は全てモックし、実際の HTTP / Playwright は呼ばない。
 DB は sqlite3 インメモリを使用する。
 """
+
 from __future__ import annotations
 
 import json
@@ -26,6 +27,7 @@ from src.ops.win_report import (
 
 
 # ── テスト用フェイクオブジェクト ──────────────────────────────────────
+
 
 @dataclass
 class _FakeHit:
@@ -126,6 +128,7 @@ def _make_mem_db() -> sqlite3.Connection:
 
 # ── Task 1 テスト ────────────────────────────────────────────────────
 
+
 def test_generate_win_report_file_creates_correct_content(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
@@ -150,7 +153,9 @@ def test_build_x_post_under_280_chars() -> None:
 
 
 def test_build_x_post_under_280_chars_with_long_race_name() -> None:
-    data = _make_data(race_name="非常に長いレース名テスト用サンプルデータABCDEFGHIJKLMNOPQRSTUVWXYZ")
+    data = _make_data(
+        race_name="非常に長いレース名テスト用サンプルデータABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    )
     post = build_x_post(data)
     assert len(post) <= 280
 
@@ -165,18 +170,20 @@ def test_build_x_post_includes_required_hashtags() -> None:
 
 # ── Task 2 テスト ────────────────────────────────────────────────────
 
+
 def test_build_note_draft_contains_ev_and_roi() -> None:
     data = _make_data()
     predictions = [{"model_type": "卍", "expected_value": 10.44}]
     title, body = build_note_draft(data, predictions)
 
-    assert "10.44" in body           # EV値
-    assert "240.0" in body           # ROI
+    assert "10.44" in body  # EV値
+    assert "240.0" in body  # ROI
     assert "【的中実績】" in title
     assert "優駿牝馬" in title
 
 
 # ── Task 3 テスト ────────────────────────────────────────────────────
+
 
 def test_ev_vs_odds_table_populated_from_predictions() -> None:
     conn = _make_mem_db()
@@ -202,6 +209,7 @@ def test_ev_vs_odds_table_populated_from_predictions() -> None:
 
 # ── Task 4 テスト ────────────────────────────────────────────────────
 
+
 def test_publish_win_report_skips_when_no_hits() -> None:
     conn = _make_mem_db()
     result = _FakeResult(
@@ -215,7 +223,10 @@ def test_publish_win_report_skips_when_no_hits() -> None:
     )
 
     called: list[str] = []
-    with patch("src.ops.win_report.generate_win_report_file", side_effect=lambda d: called.append("file")):
+    with patch(
+        "src.ops.win_report.generate_win_report_file",
+        side_effect=lambda d: called.append("file"),
+    ):
         publish_win_report(result, "202605021011", conn)
 
     assert called == [], "的中なしなのにファイル生成が呼ばれた"
@@ -250,7 +261,10 @@ def test_publish_win_report_handles_playwright_failure_gracefully(
         roi=240.0,
     )
 
-    with patch("src.ops.win_report._post_note_draft", side_effect=RuntimeError("Playwright 失敗")):
+    with patch(
+        "src.ops.win_report._post_note_draft",
+        side_effect=RuntimeError("Playwright 失敗"),
+    ):
         # 例外が publish_win_report の外に漏れないことを確認
         publish_win_report(result, "202605021011", conn)  # 例外なし
 
@@ -287,9 +301,16 @@ def test_publish_win_report_calls_alert_on_note_failure(
 
     alert_called: list[str] = []
     with (
-        patch("src.ops.win_report._post_note_draft", side_effect=RuntimeError("Note失敗")),
-        patch("src.ops.win_report._alert_note_failure", side_effect=lambda d: alert_called.append("alert")),
+        patch(
+            "src.ops.win_report._post_note_draft", side_effect=RuntimeError("Note失敗")
+        ),
+        patch(
+            "src.ops.win_report._alert_note_failure",
+            side_effect=lambda d: alert_called.append("alert"),
+        ),
     ):
         publish_win_report(result, "202605021011", conn)
 
-    assert alert_called == ["alert"], "_post_note_draft 失敗時に _alert_note_failure が呼ばれなかった"
+    assert alert_called == ["alert"], (
+        "_post_note_draft 失敗時に _alert_note_failure が呼ばれなかった"
+    )

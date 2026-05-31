@@ -8,6 +8,7 @@ Test  : 2025-01-01 ～ 2025-12-31（全12ヶ月）
 全5券種 × EV閾値5段階 = 25パターン 成績マトリクス
 除外: HitFocus / Oracle / 暫定系 / WIN5 / 馬単 / 三連単
 """
+
 from __future__ import annotations
 
 import itertools
@@ -35,19 +36,19 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-ROOT      = Path(__file__).resolve().parents[2]
-DB_PATH   = ROOT / "data" / "umalogi.db"
-OUT_JSON  = ROOT / "data" / "walk_forward_backtest_2024_2025.json"
+ROOT = Path(__file__).resolve().parents[2]
+DB_PATH = ROOT / "data" / "umalogi.db"
+OUT_JSON = ROOT / "data" / "walk_forward_backtest_2024_2025.json"
 RULES_DIR = ROOT / ".claudecode" / "rules"
 
 # ── 期間 ──────────────────────────────────────────────────────────────────────
 TRAIN_FROM = "2024-01-01"
-TRAIN_TO   = "2024-05-31"
-TEST_FROM  = "2025-01-01"
-TEST_TO    = "2025-12-31"
+TRAIN_TO = "2024-05-31"
+TEST_FROM = "2025-01-01"
+TEST_TO = "2025-12-31"
 
 # ── パラメータスイープ設定 ────────────────────────────────────────────────────
-BET_TYPES:     list[str]   = ["単勝", "複勝", "ワイド", "馬連", "三連複"]
+BET_TYPES: list[str] = ["単勝", "複勝", "ワイド", "馬連", "三連複"]
 EV_THRESHOLDS: list[float] = [1.0, 1.1, 1.2, 1.3, 1.5]
 
 # ── 流し設定 ───────────────────────────────────────────────────────────────────
@@ -56,44 +57,52 @@ EV_THRESHOLDS: list[float] = [1.0, 1.1, 1.2, 1.3, 1.5]
 NAGASHI_AITE = 4
 
 # ── 資金管理 ──────────────────────────────────────────────────────────────────
-INITIAL_BANKROLL     = 10_000.0
-KELLY_FRACTION       = 0.05   # 1/20 Kelly（初期¥10,000でも破産しにくいよう控えめ）
-MAX_BET_RATE         = 0.05   # 1ベット最大 bankroll × 5%（相対上限）
-MAX_BET_ABS          = 15_000 # 1ベット物理上限 ¥15,000（JRAスリッページ対策）
-MAX_RACE_BUDGET_RATE = 0.15   # 1レース最大 bankroll × 15%（相対上限）
-MAX_RACE_BUDGET_ABS  = 50_000 # 1レース物理上限 ¥50,000（流動性上限）
-MIN_BET              = 100
+INITIAL_BANKROLL = 10_000.0
+KELLY_FRACTION = 0.05  # 1/20 Kelly（初期¥10,000でも破産しにくいよう控えめ）
+MAX_BET_RATE = 0.05  # 1ベット最大 bankroll × 5%（相対上限）
+MAX_BET_ABS = 15_000  # 1ベット物理上限 ¥15,000（JRAスリッページ対策）
+MAX_RACE_BUDGET_RATE = 0.15  # 1レース最大 bankroll × 15%（相対上限）
+MAX_RACE_BUDGET_ABS = 50_000  # 1レース物理上限 ¥50,000（流動性上限）
+MIN_BET = 100
 
 # ── 典型オッズ（Kelly / EV 計算用） ───────────────────────────────────────────
 TYPICAL_ODDS: dict[str, float] = {
-    "単勝":   5.0,
-    "複勝":   2.0,
-    "ワイド":  2.5,
-    "馬連":   5.0,
+    "単勝": 5.0,
+    "複勝": 2.0,
+    "ワイド": 2.5,
+    "馬連": 5.0,
     "三連複": 15.0,
 }
 
 # ── LightGBM パラメータ ────────────────────────────────────────────────────────
 LGBM_PARAMS: dict = {
-    "objective":        "binary",
-    "metric":           "auc",
-    "learning_rate":    0.05,
-    "num_leaves":       63,
+    "objective": "binary",
+    "metric": "auc",
+    "learning_rate": 0.05,
+    "num_leaves": 63,
     "min_data_in_leaf": 20,
     "feature_fraction": 0.8,
     "bagging_fraction": 0.8,
-    "bagging_freq":     5,
-    "lambda_l1":        0.1,
-    "lambda_l2":        0.1,
-    "n_estimators":     500,
-    "verbose":          -1,
+    "bagging_freq": 5,
+    "lambda_l1": 0.1,
+    "lambda_l2": 0.1,
+    "n_estimators": 500,
+    "verbose": -1,
 }
 
 FEATURE_COLS: list[str] = [
-    "weight_carried", "horse_weight", "horse_weight_diff",
-    "gate_number", "distance",
-    "surface_code", "sex_code", "venue_code", "condition_code",
-    "win_rate_all", "win_rate_surface", "win_rate_distance_band",
+    "weight_carried",
+    "horse_weight",
+    "horse_weight_diff",
+    "gate_number",
+    "distance",
+    "surface_code",
+    "sex_code",
+    "venue_code",
+    "condition_code",
+    "win_rate_all",
+    "win_rate_surface",
+    "win_rate_distance_band",
     "recent_rank_mean",
     "sire_code",
     "jockey_win_rate",
@@ -102,14 +111,25 @@ FEATURE_COLS: list[str] = [
 
 # ── コードマップ ──────────────────────────────────────────────────────────────
 _SURFACE_CODE = {"芝": 0, "ダート": 1, "障害": 2}
-_SEX_CODE     = {"牡": 0, "牝": 1, "セ": 2}
-_VENUE_CODE   = {
-    "札幌": 0, "函館": 1, "福島": 2, "新潟": 3, "東京": 4,
-    "中山": 5, "中京": 6, "京都": 7, "阪神": 8, "小倉": 9,
+_SEX_CODE = {"牡": 0, "牝": 1, "セ": 2}
+_VENUE_CODE = {
+    "札幌": 0,
+    "函館": 1,
+    "福島": 2,
+    "新潟": 3,
+    "東京": 4,
+    "中山": 5,
+    "中京": 6,
+    "京都": 7,
+    "阪神": 8,
+    "小倉": 9,
 }
 _COND_CODE = {"良": 0, "稍重": 1, "重": 2, "不良": 3}
 _DIST_BANDS = {
-    "s": (0, 1400), "m": (1400, 1800), "i": (1800, 2200), "l": (2200, 9999),
+    "s": (0, 1400),
+    "m": (1400, 1800),
+    "i": (1800, 2200),
+    "l": (2200, 9999),
 }
 _SIRE_CACHE: dict[str, int] = {}
 
@@ -240,17 +260,21 @@ def _horse_stats(
             "recent_rank_mean": 10.0,
         }
     ranks_all = [r[0] for r in rows]
-    win_all   = sum(1 for r in ranks_all if r == 1) / len(ranks_all)
+    win_all = sum(1 for r in ranks_all if r == 1) / len(ranks_all)
     surf_rows = [r for r in rows if r[1] == surface]
-    win_surf  = (sum(1 for r in surf_rows if r[0] == 1) / len(surf_rows)) if surf_rows else 0.0
-    lo, hi    = _DIST_BANDS[band]
+    win_surf = (
+        (sum(1 for r in surf_rows if r[0] == 1) / len(surf_rows)) if surf_rows else 0.0
+    )
+    lo, hi = _DIST_BANDS[band]
     dist_rows = [r for r in rows if lo <= r[2] < hi]
-    win_dist  = (sum(1 for r in dist_rows if r[0] == 1) / len(dist_rows)) if dist_rows else 0.0
+    win_dist = (
+        (sum(1 for r in dist_rows if r[0] == 1) / len(dist_rows)) if dist_rows else 0.0
+    )
     return {
-        "win_rate_all":           win_all,
-        "win_rate_surface":       win_surf,
+        "win_rate_all": win_all,
+        "win_rate_surface": win_surf,
         "win_rate_distance_band": win_dist,
-        "recent_rank_mean":       float(np.mean(ranks_all[:5])),
+        "recent_rank_mean": float(np.mean(ranks_all[:5])),
     }
 
 
@@ -288,35 +312,48 @@ def build_race_df(
         return None
 
     records = []
-    for (horse_id, horse_name, raw_rank,
-         weight_carried, horse_weight, hw_diff,
-         gate_number, horse_number,
-         sex_age, jockey, trainer, sire, win_odds) in rr_rows:
-        stats   = _horse_stats(conn, horse_id or "", race_date, surface, distance)
+    for (
+        horse_id,
+        horse_name,
+        raw_rank,
+        weight_carried,
+        horse_weight,
+        hw_diff,
+        gate_number,
+        horse_number,
+        sex_age,
+        jockey,
+        trainer,
+        sire,
+        win_odds,
+    ) in rr_rows:
+        stats = _horse_stats(conn, horse_id or "", race_date, surface, distance)
         sex_str = (sex_age or "")[:1]
-        rank    = int(raw_rank) if raw_rank and int(raw_rank) > 0 else 99
-        records.append({
-            "race_id":           race_id,
-            "race_date":         race_date,
-            "horse_id":          horse_id or "",
-            "horse_name":        horse_name or "",
-            "horse_number":      int(horse_number or 0),
-            "rank":              rank,
-            "win_odds":          float(win_odds) if win_odds else None,
-            "weight_carried":    float(weight_carried or 55.0),
-            "horse_weight":      float(horse_weight or 480.0),
-            "horse_weight_diff": float(hw_diff or 0.0),
-            "gate_number":       int(gate_number or 0),
-            "distance":          int(distance or 1600),
-            "surface_code":      _SURFACE_CODE.get(surface or "", -1),
-            "sex_code":          _SEX_CODE.get(sex_str, -1),
-            "venue_code":        _VENUE_CODE.get(venue or "", 10),
-            "condition_code":    _COND_CODE.get(condition or "", 0),
-            "sire_code":         _encode_sire(sire),
-            "jockey_win_rate":   _JKY_MAP.get(jockey or "", 0.05),
-            "trainer_win_rate":  _TRN_MAP.get(trainer or "", 0.05),
-            **stats,
-        })
+        rank = int(raw_rank) if raw_rank and int(raw_rank) > 0 else 99
+        records.append(
+            {
+                "race_id": race_id,
+                "race_date": race_date,
+                "horse_id": horse_id or "",
+                "horse_name": horse_name or "",
+                "horse_number": int(horse_number or 0),
+                "rank": rank,
+                "win_odds": float(win_odds) if win_odds else None,
+                "weight_carried": float(weight_carried or 55.0),
+                "horse_weight": float(horse_weight or 480.0),
+                "horse_weight_diff": float(hw_diff or 0.0),
+                "gate_number": int(gate_number or 0),
+                "distance": int(distance or 1600),
+                "surface_code": _SURFACE_CODE.get(surface or "", -1),
+                "sex_code": _SEX_CODE.get(sex_str, -1),
+                "venue_code": _VENUE_CODE.get(venue or "", 10),
+                "condition_code": _COND_CODE.get(condition or "", 0),
+                "sire_code": _encode_sire(sire),
+                "jockey_win_rate": _JKY_MAP.get(jockey or "", 0.05),
+                "trainer_win_rate": _TRN_MAP.get(trainer or "", 0.05),
+                **stats,
+            }
+        )
     df = pd.DataFrame(records)
     if not include_rank:
         df = df.drop(columns=["rank"])
@@ -364,12 +401,12 @@ def train_model(conn: sqlite3.Connection) -> tuple:
     train_df = pd.concat(all_dfs, ignore_index=True)
     logger.info("Train サンプル数: %d  (レース=%d)", len(train_df), len(all_dfs))
 
-    X      = train_df[FEATURE_COLS].astype(float).fillna(-1).values
-    y      = (train_df["rank"] == 1).astype(int).values
+    X = train_df[FEATURE_COLS].astype(float).fillna(-1).values
+    y = (train_df["rank"] == 1).astype(int).values
     groups = train_df["race_id"].values
 
-    cv        = GroupKFold(n_splits=5)
-    aucs:     list[float] = []
+    cv = GroupKFold(n_splits=5)
+    aucs: list[float] = []
     oof_preds = np.zeros(len(y))
     for fold, (tr_idx, va_idx) in enumerate(cv.split(X, y, groups)):
         clf = LGBMClassifier(**LGBM_PARAMS)
@@ -390,8 +427,10 @@ def train_model(conn: sqlite3.Connection) -> tuple:
     return final_clf, iso, cv_auc
 
 
-def predict_win_prob(model: LGBMClassifier, iso: IsotonicRegression, df: pd.DataFrame) -> np.ndarray:
-    X   = df[FEATURE_COLS].astype(float).fillna(-1)
+def predict_win_prob(
+    model: LGBMClassifier, iso: IsotonicRegression, df: pd.DataFrame
+) -> np.ndarray:
+    X = df[FEATURE_COLS].astype(float).fillna(-1)
     raw = model.predict_proba(X.values)[:, 1]
     return iso.predict(raw)
 
@@ -400,7 +439,7 @@ def predict_win_prob(model: LGBMClassifier, iso: IsotonicRegression, df: pd.Data
 def _harville_quinella(probs: list[float], i: int, j: int) -> float:
     """P(i と j が 1着・2着 = 馬連)"""
     pi, pj = probs[i], probs[j]
-    q  = pi * pj / (1.0 - pi) if pi < 1.0 else 0.0
+    q = pi * pj / (1.0 - pi) if pi < 1.0 else 0.0
     q += pj * pi / (1.0 - pj) if pj < 1.0 else 0.0
     return min(q, 0.99)
 
@@ -420,9 +459,7 @@ def _harville_trio(probs: list[float], i: int, j: int, k: int) -> float:
 def _harville_wide(probs: list[float], i: int, j: int) -> float:
     """P(i と j が 1-3着に入る = ワイド)"""
     total = sum(
-        _harville_trio(probs, i, j, k)
-        for k in range(len(probs))
-        if k != i and k != j
+        _harville_trio(probs, i, j, k) for k in range(len(probs)) if k != i and k != j
     )
     return min(total, 0.99)
 
@@ -448,6 +485,7 @@ def calculate_bet_combinations(
     単勝/複勝:                         1通り（流し非対応）
     """
     from math import comb as _comb
+
     if ticket_type in ("単勝", "複勝"):
         return 1
     total = jiku_count + aite_count
@@ -481,11 +519,11 @@ def kelly_bet(
 
     kelly_full = (p * odds - 1.0) / max(odds - 1.0, 1e-9)
     kelly_full = max(kelly_full, 0.0)
-    effective  = kelly_full * KELLY_FRACTION
+    effective = kelly_full * KELLY_FRACTION
 
     rel_cap = bankroll * MAX_BET_RATE
     abs_cap = float(MAX_BET_ABS)
-    bet     = min(bankroll * effective, rel_cap, abs_cap, race_budget_remaining)
+    bet = min(bankroll * effective, rel_cap, abs_cap, race_budget_remaining)
     if bet < MIN_BET:
         if kelly_full > 0 and race_budget_remaining >= MIN_BET:
             return float(MIN_BET)
@@ -496,12 +534,12 @@ def kelly_bet(
 # ── SimResult データクラス ─────────────────────────────────────────────────────
 @dataclass
 class SimResult:
-    bet_type:      str
-    ev_threshold:  float
-    bankroll:      float = field(default=INITIAL_BANKROLL)
+    bet_type: str
+    ev_threshold: float
+    bankroll: float = field(default=INITIAL_BANKROLL)
     peak_bankroll: float = field(default=INITIAL_BANKROLL)
-    records:       list[dict] = field(default_factory=list)
-    bl_history:    list[float] = field(default_factory=list)
+    records: list[dict] = field(default_factory=list)
+    bl_history: list[float] = field(default_factory=list)
 
     @property
     def key(self) -> Pattern:
@@ -520,11 +558,13 @@ def simulate_race_pattern(
     bankroll: float,
 ) -> list[dict]:
     """指定パターン（bet_type × ev_threshold）で1レースをシミュレートしてベット記録を返す"""
-    n          = len(race_df)
+    n = len(race_df)
     horse_nums = list(race_df["horse_number"].astype(int))
-    prob_list  = list(probs)
+    prob_list = list(probs)
     sorted_idx = sorted(range(n), key=lambda i: -prob_list[i])
-    race_budget = min(bankroll * MAX_RACE_BUDGET_RATE, bankroll, float(MAX_RACE_BUDGET_ABS))
+    race_budget = min(
+        bankroll * MAX_RACE_BUDGET_RATE, bankroll, float(MAX_RACE_BUDGET_ABS)
+    )
 
     records: list[dict] = []
     total_invested = 0.0
@@ -537,22 +577,24 @@ def simulate_race_pattern(
         bet = kelly_bet(bankroll, p_bet, bet_type, ev_threshold, remaining, w_odds)
         if bet <= 0:
             return
-        pmap     = payouts.get(bet_type, {})
+        pmap = payouts.get(bet_type, {})
         payout_a = float(pmap.get(combo, 0))
-        is_hit   = payout_a > 0
-        profit   = (payout_a / 100.0 * bet) - bet if is_hit else -bet
-        records.append({
-            "race_id":       race_id,
-            "date":          race_date,
-            "bet_type":      bet_type,
-            "ev_threshold":  ev_threshold,
-            "combo":         combo,
-            "p_bet":         p_bet,
-            "bet_amount":    bet,
-            "payout_per100": payout_a,
-            "is_hit":        int(is_hit),
-            "profit":        profit,
-        })
+        is_hit = payout_a > 0
+        profit = (payout_a / 100.0 * bet) - bet if is_hit else -bet
+        records.append(
+            {
+                "race_id": race_id,
+                "date": race_date,
+                "bet_type": bet_type,
+                "ev_threshold": ev_threshold,
+                "combo": combo,
+                "p_bet": p_bet,
+                "bet_amount": bet,
+                "payout_per100": payout_a,
+                "is_hit": int(is_hit),
+                "profit": profit,
+            }
+        )
         total_invested += bet
 
     i1 = sorted_idx[0]
@@ -571,9 +613,9 @@ def simulate_race_pattern(
 
     elif bet_type in ("ワイド", "馬連") and n >= 2:
         # 流し: 1軸(確率最上位) × 相手 NAGASHI_AITE 頭
-        n_aite    = min(NAGASHI_AITE, n - 1)
-        aite_idxs = sorted_idx[1:n_aite + 1]
-        n_combos  = calculate_bet_combinations(bet_type, 1, n_aite)
+        n_aite = min(NAGASHI_AITE, n - 1)
+        aite_idxs = sorted_idx[1 : n_aite + 1]
+        n_combos = calculate_bet_combinations(bet_type, 1, n_aite)
         remaining = race_budget - total_invested
         if remaining < MIN_BET * n_combos:
             return records  # 予算不足: 流し全体をスキップ
@@ -581,74 +623,88 @@ def simulate_race_pattern(
         # 各コンボの Harville 確率の平均で Kelly 算出
         p_fn = _harville_wide if bet_type == "ワイド" else _harville_quinella
         p_vals = [p_fn(prob_list, i1, ai) for ai in aite_idxs]
-        avg_p  = float(np.mean(p_vals))
+        avg_p = float(np.mean(p_vals))
 
         total_kelly = kelly_bet(bankroll, avg_p, bet_type, ev_threshold, remaining)
         if total_kelly <= 0:
             return records
 
         # Kelly 総額をコンボ数で均等配分（各¥100単位・物理上限キャップ）
-        per_combo = max(MIN_BET, min(MAX_BET_ABS, int(total_kelly / n_combos / 100) * 100))
+        per_combo = max(
+            MIN_BET, min(MAX_BET_ABS, int(total_kelly / n_combos / 100) * 100)
+        )
 
         pmap = payouts.get(bet_type, {})
         for ai in aite_idxs:
-            combo    = _combo_key(h1, horse_nums[ai])
+            combo = _combo_key(h1, horse_nums[ai])
             payout_a = float(pmap.get(combo, 0))
-            is_hit   = payout_a > 0
-            profit   = (payout_a / 100.0 * per_combo) - per_combo if is_hit else -per_combo
-            records.append({
-                "race_id":       race_id,
-                "date":          race_date,
-                "bet_type":      bet_type,
-                "ev_threshold":  ev_threshold,
-                "combo":         combo,
-                "p_bet":         avg_p,
-                "bet_amount":    per_combo,
-                "payout_per100": payout_a,
-                "is_hit":        int(is_hit),
-                "profit":        profit,
-            })
+            is_hit = payout_a > 0
+            profit = (
+                (payout_a / 100.0 * per_combo) - per_combo if is_hit else -per_combo
+            )
+            records.append(
+                {
+                    "race_id": race_id,
+                    "date": race_date,
+                    "bet_type": bet_type,
+                    "ev_threshold": ev_threshold,
+                    "combo": combo,
+                    "p_bet": avg_p,
+                    "bet_amount": per_combo,
+                    "payout_per100": payout_a,
+                    "is_hit": int(is_hit),
+                    "profit": profit,
+                }
+            )
             total_invested += per_combo
 
     elif bet_type == "三連複" and n >= 3:
         # 流し: 1軸(確率最上位) × 相手 NAGASHI_AITE 頭から2頭選択
-        n_aite    = min(NAGASHI_AITE, n - 1)
-        aite_idxs = sorted_idx[1:n_aite + 1]
-        n_combos  = calculate_bet_combinations(bet_type, 1, n_aite)
+        n_aite = min(NAGASHI_AITE, n - 1)
+        aite_idxs = sorted_idx[1 : n_aite + 1]
+        n_combos = calculate_bet_combinations(bet_type, 1, n_aite)
         if n_combos == 0:
             return records
         remaining = race_budget - total_invested
         if remaining < MIN_BET * n_combos:
             return records
 
-        pairs   = list(itertools.combinations(range(n_aite), 2))
-        p_vals  = [_harville_trio(prob_list, i1, aite_idxs[a], aite_idxs[b]) for a, b in pairs]
-        avg_p   = float(np.mean(p_vals))
+        pairs = list(itertools.combinations(range(n_aite), 2))
+        p_vals = [
+            _harville_trio(prob_list, i1, aite_idxs[a], aite_idxs[b]) for a, b in pairs
+        ]
+        avg_p = float(np.mean(p_vals))
 
         total_kelly = kelly_bet(bankroll, avg_p, bet_type, ev_threshold, remaining)
         if total_kelly <= 0:
             return records
 
-        per_combo = max(MIN_BET, min(MAX_BET_ABS, int(total_kelly / n_combos / 100) * 100))
+        per_combo = max(
+            MIN_BET, min(MAX_BET_ABS, int(total_kelly / n_combos / 100) * 100)
+        )
 
         pmap = payouts.get(bet_type, {})
         for a, b in pairs:
-            combo    = _combo_key(h1, horse_nums[aite_idxs[a]], horse_nums[aite_idxs[b]])
+            combo = _combo_key(h1, horse_nums[aite_idxs[a]], horse_nums[aite_idxs[b]])
             payout_a = float(pmap.get(combo, 0))
-            is_hit   = payout_a > 0
-            profit   = (payout_a / 100.0 * per_combo) - per_combo if is_hit else -per_combo
-            records.append({
-                "race_id":       race_id,
-                "date":          race_date,
-                "bet_type":      bet_type,
-                "ev_threshold":  ev_threshold,
-                "combo":         combo,
-                "p_bet":         avg_p,
-                "bet_amount":    per_combo,
-                "payout_per100": payout_a,
-                "is_hit":        int(is_hit),
-                "profit":        profit,
-            })
+            is_hit = payout_a > 0
+            profit = (
+                (payout_a / 100.0 * per_combo) - per_combo if is_hit else -per_combo
+            )
+            records.append(
+                {
+                    "race_id": race_id,
+                    "date": race_date,
+                    "bet_type": bet_type,
+                    "ev_threshold": ev_threshold,
+                    "combo": combo,
+                    "p_bet": avg_p,
+                    "bet_amount": per_combo,
+                    "payout_per100": payout_a,
+                    "is_hit": int(is_hit),
+                    "profit": profit,
+                }
+            )
             total_invested += per_combo
 
     return records
@@ -686,7 +742,7 @@ def run_simulation(
             continue
 
         feat_df = race_df_full.drop(columns=["rank"])
-        probs   = predict_win_prob(model, iso, feat_df)
+        probs = predict_win_prob(model, iso, feat_df)
         payouts = get_payouts(conn, race_id)
 
         for (bt, ev), sim in results.items():
@@ -694,12 +750,18 @@ def run_simulation(
                 sim.bl_history.append(0.0)
                 continue
             bets = simulate_race_pattern(
-                race_id, race_date, feat_df, probs, payouts,
-                bt, ev, sim.bankroll,
+                race_id,
+                race_date,
+                feat_df,
+                probs,
+                payouts,
+                bt,
+                ev,
+                sim.bankroll,
             )
             if bets:
                 net = sum(b["profit"] for b in bets)
-                sim.bankroll      = max(sim.bankroll + net, 0.0)
+                sim.bankroll = max(sim.bankroll + net, 0.0)
                 sim.peak_bankroll = max(sim.peak_bankroll, sim.bankroll)
                 sim.records.extend(bets)
             sim.bl_history.append(sim.bankroll)
@@ -721,37 +783,37 @@ def _payout_sum(records: list[dict]) -> float:
 def calc_max_drawdown(bl_history: list[float]) -> float:
     if not bl_history:
         return 0.0
-    peak   = bl_history[0]
+    peak = bl_history[0]
     max_dd = 0.0
     for bl in bl_history:
-        peak   = max(peak, bl)
+        peak = max(peak, bl)
         if peak > 0:
-            dd     = (peak - bl) / peak * 100.0
+            dd = (peak - bl) / peak * 100.0
             max_dd = max(max_dd, dd)
     return max_dd
 
 
 def summarize_pattern(sim: SimResult) -> dict:
-    recs      = sim.records
-    n_bets    = len(recs)
-    n_hits    = sum(r["is_hit"] for r in recs)
-    total_in  = sum(r["bet_amount"] for r in recs)
+    recs = sim.records
+    n_bets = len(recs)
+    n_hits = sum(r["is_hit"] for r in recs)
+    total_in = sum(r["bet_amount"] for r in recs)
     total_out = _payout_sum(recs)
-    roi       = total_out / total_in * 100 if total_in > 0 else 0.0
-    hit_rate  = n_hits / n_bets * 100 if n_bets > 0 else 0.0
-    profit    = total_out - total_in
-    mdd       = calc_max_drawdown(sim.bl_history)
+    roi = total_out / total_in * 100 if total_in > 0 else 0.0
+    hit_rate = n_hits / n_bets * 100 if n_bets > 0 else 0.0
+    profit = total_out - total_in
+    mdd = calc_max_drawdown(sim.bl_history)
     return {
-        "bet_type":       sim.bet_type,
-        "ev_threshold":   sim.ev_threshold,
-        "n_bets":         n_bets,
-        "n_hits":         n_hits,
-        "hit_rate":       round(hit_rate, 1),
-        "total_invest":   int(total_in),
-        "total_return":   int(total_out),
-        "net_profit":     int(profit),
-        "roi":            round(roi, 1),
-        "max_drawdown":   round(mdd, 1),
+        "bet_type": sim.bet_type,
+        "ev_threshold": sim.ev_threshold,
+        "n_bets": n_bets,
+        "n_hits": n_hits,
+        "hit_rate": round(hit_rate, 1),
+        "total_invest": int(total_in),
+        "total_return": int(total_out),
+        "net_profit": int(profit),
+        "roi": round(roi, 1),
+        "max_drawdown": round(mdd, 1),
         "final_bankroll": int(sim.bankroll),
     }
 
@@ -762,7 +824,11 @@ SEP = "=" * 100
 
 def print_matrix(results: dict[Pattern, SimResult], cv_auc: float) -> pd.DataFrame:
     rows = [summarize_pattern(sim) for sim in results.values()]
-    df   = pd.DataFrame(rows).sort_values(["bet_type", "ev_threshold"]).reset_index(drop=True)
+    df = (
+        pd.DataFrame(rows)
+        .sort_values(["bet_type", "ev_threshold"])
+        .reset_index(drop=True)
+    )
 
     print(SEP)
     print("【Walk-Forward Backtest 2024-2025 — 25パターン 成績マトリクス】")
@@ -786,7 +852,9 @@ def print_matrix(results: dict[Pattern, SimResult], cv_auc: float) -> pd.DataFra
 
     print()
     print("■ 最大ドローダウン(%) マトリクス")
-    pivot_mdd = df.pivot(index="bet_type", columns="ev_threshold", values="max_drawdown")
+    pivot_mdd = df.pivot(
+        index="bet_type", columns="ev_threshold", values="max_drawdown"
+    )
     pivot_mdd = pivot_mdd.reindex(BET_TYPES)
     print(pivot_mdd.to_string(float_format=lambda x: f"{x:7.1f}%"))
 
@@ -826,7 +894,9 @@ def recommend_portfolio(df: pd.DataFrame) -> str:
 
     if profitable.empty:
         lines.append("  ⚠️  ROI>100%かつ10件以上のパターンが存在しません。")
-        lines.append("  単勝・複勝のEV閾値を上げて（1.2〜1.3）絞り込み運用を推奨します。")
+        lines.append(
+            "  単勝・複勝のEV閾値を上げて（1.2〜1.3）絞り込み運用を推奨します。"
+        )
         best5 = df.sort_values("roi", ascending=False).head(5)
         lines.append("")
         lines.append("  ROI上位5パターン（参考）:")
@@ -838,13 +908,15 @@ def recommend_portfolio(df: pd.DataFrame) -> str:
         return "\n".join(lines)
 
     # ROI × (1 - max_drawdown/100) でスコアリング
-    profitable["score"]  = profitable["roi"] * (1.0 - profitable["max_drawdown"] / 100.0)
-    total_score          = profitable["score"].sum()
+    profitable["score"] = profitable["roi"] * (1.0 - profitable["max_drawdown"] / 100.0)
+    total_score = profitable["score"].sum()
     profitable["weight"] = (profitable["score"] / total_score * 100).round(1)
 
     lines.append("")
     lines.append("  ✅ 推奨パターン（ROI>100% かつ件数>=10 の全組み合わせ）:")
-    lines.append(f"  {'券種':<8}{'EV閾値':>7}{'ROI':>8}{'的中率':>8}{'最大DD':>8}{'推奨配分':>10}")
+    lines.append(
+        f"  {'券種':<8}{'EV閾値':>7}{'ROI':>8}{'的中率':>8}{'最大DD':>8}{'推奨配分':>10}"
+    )
     lines.append("  " + "-" * 52)
     for _, r in profitable.sort_values("score", ascending=False).iterrows():
         lines.append(
@@ -856,14 +928,20 @@ def recommend_portfolio(df: pd.DataFrame) -> str:
     best = profitable.sort_values("score", ascending=False).iloc[0]
     lines.append("")
     lines.append("  【ポートフォリオ構築方針】")
-    lines.append(f"  1. 主軸: {best['bet_type']} × EV≥{best['ev_threshold']:.1f} に資金の{best['weight']:.0f}%を投下")
-    lines.append(f"     ROI={best['roi']:.1f}%  的中率={best['hit_rate']:.1f}%  最大DD={best['max_drawdown']:.1f}%")
+    lines.append(
+        f"  1. 主軸: {best['bet_type']} × EV≥{best['ev_threshold']:.1f} に資金の{best['weight']:.0f}%を投下"
+    )
+    lines.append(
+        f"     ROI={best['roi']:.1f}%  的中率={best['hit_rate']:.1f}%  最大DD={best['max_drawdown']:.1f}%"
+    )
     lines.append("")
     lines.append("  2. リスク分散: 推奨パターンを「score比率」で資金を按分する。")
     lines.append("     score = ROI × (1 - 最大DD/100)  ← 利益性と安定性の積")
     lines.append("")
     lines.append("  3. 注意: EV閾値が高いほど件数が減り標準誤差が大きくなる。")
-    lines.append("     10件未満のパターンは統計的信頼性が低いため本番投資には使わない。")
+    lines.append(
+        "     10件未満のパターンは統計的信頼性が低いため本番投資には使わない。"
+    )
     lines.append("")
     lines.append("  4. 運用上の目安:")
     lines.append("     - 週末ごとに全レースのEVを計算し、閾値超えのみ発注")
@@ -878,13 +956,13 @@ def save_results(df: pd.DataFrame, cv_auc: float, portfolio_text: str) -> None:
     RULES_DIR.mkdir(parents=True, exist_ok=True)
     payload = {
         "meta": {
-            "train":            [TRAIN_FROM, TRAIN_TO],
-            "test":             [TEST_FROM,  TEST_TO],
-            "cv_auc":           cv_auc,
-            "kelly_fraction":   KELLY_FRACTION,
+            "train": [TRAIN_FROM, TRAIN_TO],
+            "test": [TEST_FROM, TEST_TO],
+            "cv_auc": cv_auc,
+            "kelly_fraction": KELLY_FRACTION,
             "initial_bankroll": INITIAL_BANKROLL,
-            "nagashi_aite":     NAGASHI_AITE,
-            "generated_at":     "2026-05-23",
+            "nagashi_aite": NAGASHI_AITE,
+            "generated_at": "2026-05-23",
         },
         "patterns": df.to_dict(orient="records"),
     }
@@ -896,18 +974,18 @@ def save_results(df: pd.DataFrame, cv_auc: float, portfolio_text: str) -> None:
 
     # ── ポートフォリオ戦略を恒久ルールとして保存 ──────────────────────────────
     strategy_path = RULES_DIR / "portfolio_strategy_2024_2025.md"
-    profitable = df[(df["roi"] > 100.0) & (df["n_bets"] >= 10)].copy()
+    df[(df["roi"] > 100.0) & (df["n_bets"] >= 10)].copy()
     top5 = df.sort_values("roi", ascending=False).head(5)
 
     lines = [
         "# ポートフォリオ戦略 2024-2025 Walk-Forward バックテスト結果",
         "",
-        f"**生成日**: 2026-05-23  ",
+        "**生成日**: 2026-05-23  ",
         f"**Train**: {TRAIN_FROM} ～ {TRAIN_TO}  ",
         f"**Test** : {TEST_FROM} ～ {TEST_TO}  ",
         f"**CV AUC**: {cv_auc:.4f}  ",
         f"**初期資金**: ¥{INITIAL_BANKROLL:,.0f}  ",
-        f"**Kelly分数**: {KELLY_FRACTION} (1/{int(1/KELLY_FRACTION)} Kelly)  ",
+        f"**Kelly分数**: {KELLY_FRACTION} (1/{int(1 / KELLY_FRACTION)} Kelly)  ",
         f"**流し相手頭数**: {NAGASHI_AITE}頭  ",
         "",
         "---",
@@ -946,9 +1024,9 @@ def save_results(df: pd.DataFrame, cv_auc: float, portfolio_text: str) -> None:
         "## 流し点数計算ルール（永続ルール）",
         "",
         "```",
-        f"ワイド/馬連 流し(1軸×{NAGASHI_AITE}頭): {NAGASHI_AITE}通り = ¥{100*NAGASHI_AITE}以上",
-        f"三連複 流し (1軸×{NAGASHI_AITE}頭):     {NAGASHI_AITE*(NAGASHI_AITE-1)//2}通り = "
-        f"¥{100*NAGASHI_AITE*(NAGASHI_AITE-1)//2}以上",
+        f"ワイド/馬連 流し(1軸×{NAGASHI_AITE}頭): {NAGASHI_AITE}通り = ¥{100 * NAGASHI_AITE}以上",
+        f"三連複 流し (1軸×{NAGASHI_AITE}頭):     {NAGASHI_AITE * (NAGASHI_AITE - 1) // 2}通り = "
+        f"¥{100 * NAGASHI_AITE * (NAGASHI_AITE - 1) // 2}以上",
         "実投資額 = ¥100 × 購入点数 × 単位数",
         "払戻: 的中コンボのみ払戻 / 非的中コンボは-¥100×単位数 の損失",
         "流動性チェック: 残予算 < ¥100×点数 の場合はスキップ",

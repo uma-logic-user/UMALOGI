@@ -24,6 +24,7 @@ _ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(_ROOT))
 
 from dotenv import load_dotenv
+
 load_dotenv(_ROOT / ".env", override=False)
 
 from src.database.init_db import init_db
@@ -96,7 +97,10 @@ def run(
     race_ids = _fetch_target_race_ids(conn, date_filter, force)
     logger.info(
         "評価対象: %d レース (date=%s, force=%s, dry_run=%s)",
-        len(race_ids), date_filter or "全件", force, dry_run,
+        len(race_ids),
+        date_filter or "全件",
+        force,
+        dry_run,
     )
 
     if not race_ids:
@@ -129,9 +133,14 @@ def run(
         roi_str = f"ROI={result.roi:.0f}%" if result.total_invested > 0 else "ROI=N/A"
         logger.info(
             "%s [%d/%d] %s %s %d/%d的中 %s",
-            status, i, len(race_ids),
-            race_id, result.race_name[:12],
-            n_hit, n_pred, roi_str,
+            status,
+            i,
+            len(race_ids),
+            race_id,
+            result.race_name[:12],
+            n_hit,
+            n_pred,
+            roi_str,
         )
         if result.errors:
             for err in result.errors:
@@ -142,8 +151,12 @@ def run(
     logger.info("=" * 60)
     logger.info(
         "完了: %d レース評価 | 的中 %d/%d | 投資¥%s | 払戻¥%s | ROI=%.1f%%",
-        len(race_ids), total_hit, total_pred,
-        f"{total_invest:,.0f}", f"{total_payout:,.0f}", overall_roi,
+        len(race_ids),
+        total_hit,
+        total_pred,
+        f"{total_invest:,.0f}",
+        f"{total_payout:,.0f}",
+        overall_roi,
     )
     if error_races:
         logger.warning("評価失敗 %d レース: %s", len(error_races), error_races[:10])
@@ -157,7 +170,9 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="全過去レース 一括的中評価バッチ")
     parser.add_argument("--date", default=None, help="YYYY-MM-DD 指定日のみ評価")
     parser.add_argument("--dry-run", action="store_true", help="DB書き込みをスキップ")
-    parser.add_argument("--force", action="store_true", help="既に記録済みの予想も再評価")
+    parser.add_argument(
+        "--force", action="store_true", help="既に記録済みの予想も再評価"
+    )
     args = parser.parse_args()
 
     run(date_filter=args.date, dry_run=args.dry_run, force=args.force)

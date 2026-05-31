@@ -13,7 +13,6 @@
 from __future__ import annotations
 
 import argparse
-import json
 import logging
 import sqlite3
 import sys
@@ -33,6 +32,7 @@ from src.main_pipeline import simulate_pipeline
 
 
 # ── レース一覧取得 ────────────────────────────────────────────────
+
 
 def _get_race_ids(conn: sqlite3.Connection, year: int) -> list[str]:
     """指定年の race_results が存在するレース ID を日付昇順で返す。
@@ -85,6 +85,7 @@ def _get_simulated_ids(conn: sqlite3.Connection, year: int) -> set[str]:
 
 # ── 成績再集計 ────────────────────────────────────────────────────
 
+
 def _refresh_performance(conn: sqlite3.Connection, year: int) -> None:
     """卍・本命モデルの年間・月別成績を再集計する。
 
@@ -101,6 +102,7 @@ def _refresh_performance(conn: sqlite3.Connection, year: int) -> None:
 
 
 # ── Web データ書き出し ────────────────────────────────────────────
+
 
 def _export_web_data() -> None:
     """web/generate_data.py と同等のエクスポート処理を実行する。
@@ -120,7 +122,7 @@ def _export_web_data() -> None:
     sys.argv = [str(gen_path)]
     try:
         spec = importlib.util.spec_from_file_location("generate_data", gen_path)
-        mod  = importlib.util.module_from_spec(spec)  # type: ignore[arg-type]
+        mod = importlib.util.module_from_spec(spec)  # type: ignore[arg-type]
         spec.loader.exec_module(mod)  # type: ignore[union-attr]
         mod.main()
         logger.info("Web データ書き出し完了")
@@ -131,6 +133,7 @@ def _export_web_data() -> None:
 
 
 # ── メインバッチ ──────────────────────────────────────────────────
+
 
 def simulate_year(
     year: int,
@@ -150,20 +153,24 @@ def simulate_year(
     """
     conn = init_db()
 
-    race_ids      = _get_race_ids(conn, year)
+    race_ids = _get_race_ids(conn, year)
     simulated_ids = set() if force else _get_simulated_ids(conn, year)
-    conn.close()   # simulate_pipeline が内部で connect するため一旦閉じる
+    conn.close()  # simulate_pipeline が内部で connect するため一旦閉じる
 
-    total   = len(race_ids)
-    stats   = {"total": total, "simulated": 0, "skipped": 0, "errors": 0}
+    total = len(race_ids)
+    stats = {"total": total, "simulated": 0, "skipped": 0, "errors": 0}
     errors: list[str] = []
 
     logger.info(
         "%d年 対象レース: %d件 / 既存スキップ: %d件",
-        year, total, len(simulated_ids),
+        year,
+        total,
+        len(simulated_ids),
     )
 
-    bar = tqdm(race_ids, desc=f"{year}年 シミュレーション", unit="race", dynamic_ncols=True)
+    bar = tqdm(
+        race_ids, desc=f"{year}年 シミュレーション", unit="race", dynamic_ncols=True
+    )
 
     for race_id in bar:
         # ── スキップ判定 ──────────────────────────────────────────
@@ -181,7 +188,9 @@ def simulate_year(
         try:
             result = simulate_pipeline(race_id)
             if "error" in result:
-                logger.warning("simulate エラー race_id=%s: %s", race_id, result["error"])
+                logger.warning(
+                    "simulate エラー race_id=%s: %s", race_id, result["error"]
+                )
                 stats["errors"] += 1
                 errors.append(f"{race_id}: {result['error']}")
             else:
@@ -216,7 +225,10 @@ def simulate_year(
     # ── 結果サマリー ──────────────────────────────────────────────
     logger.info(
         "%d年 バッチ完了: 実行=%d スキップ=%d エラー=%d",
-        year, stats["simulated"], stats["skipped"], stats["errors"],
+        year,
+        stats["simulated"],
+        stats["skipped"],
+        stats["errors"],
     )
     if errors:
         logger.warning("エラー一覧（最初の10件）:")
@@ -227,6 +239,7 @@ def simulate_year(
 
 
 # ── CLI ──────────────────────────────────────────────────────────
+
 
 def _parse_args() -> argparse.Namespace:
     """CLI 引数をパースして Namespace を返す。
@@ -244,11 +257,14 @@ def _parse_args() -> argparse.Namespace:
 """,
     )
     parser.add_argument(
-        "--year", type=int, required=True,
+        "--year",
+        type=int,
+        required=True,
         help="シミュレーション対象年（例: 2024）",
     )
     parser.add_argument(
-        "--force", action="store_true",
+        "--force",
+        action="store_true",
         help="既存の [SIMULATE] 予想を上書きする",
     )
     return parser.parse_args()
@@ -273,14 +289,14 @@ def main() -> None:
     args = _parse_args()
     stats = simulate_year(args.year, force=args.force)
 
-    print(f"\n{'='*50}")
+    print(f"\n{'=' * 50}")
     print(f"  {args.year}年 シミュレーション結果")
-    print(f"{'='*50}")
+    print(f"{'=' * 50}")
     print(f"  対象レース数  : {stats['total']:5d}")
     print(f"  実行          : {stats['simulated']:5d}")
     print(f"  スキップ      : {stats['skipped']:5d}")
     print(f"  エラー        : {stats['errors']:5d}")
-    print(f"{'='*50}")
+    print(f"{'=' * 50}")
 
 
 if __name__ == "__main__":

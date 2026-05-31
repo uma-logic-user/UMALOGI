@@ -44,7 +44,7 @@ from .models_v2 import HonmeiModelV2, ManjiModelV2
 
 logger = logging.getLogger(__name__)
 
-_MODEL_DIR   = Path(__file__).resolve().parents[2] / "data" / "models"
+_MODEL_DIR = Path(__file__).resolve().parents[2] / "data" / "models"
 _HISTORY_DIR = _MODEL_DIR / "history"
 
 # 増分学習の追加 boosting ラウンド数
@@ -67,10 +67,10 @@ class ModelVersion:
         cv_auc: float | None = None,
     ) -> None:
         self.model_type = model_type
-        self.n_races    = n_races
-        self.n_samples  = n_samples
+        self.n_races = n_races
+        self.n_samples = n_samples
         self.trained_at = trained_at
-        self.cv_auc     = cv_auc
+        self.cv_auc = cv_auc
 
     def __str__(self) -> str:
         auc_str = f" AUC={self.cv_auc:.4f}" if self.cv_auc else ""
@@ -93,7 +93,7 @@ def _cross_validate_auc(
     for train_idx, val_idx in gkf.split(X, y, groups=groups):
         X_tr, X_val = X.iloc[train_idx], X.iloc[val_idx]
         y_tr, y_val = y.iloc[train_idx], y.iloc[val_idx]
-        ds_tr  = lgb.Dataset(X_tr, label=y_tr)
+        ds_tr = lgb.Dataset(X_tr, label=y_tr)
         ds_val = lgb.Dataset(X_val, label=y_val, reference=ds_tr)
         booster = lgb.train(
             params,
@@ -104,6 +104,7 @@ def _cross_validate_auc(
         )
         pred = booster.predict(X_val)
         from sklearn.metrics import roc_auc_score
+
         try:
             aucs.append(roc_auc_score(y_val, pred))
         except ValueError:
@@ -150,7 +151,8 @@ class IncrementalTrainer:
         if force_full or self._new_race_count >= _FULL_RETRAIN_THRESHOLD:
             logger.info(
                 "全件再学習トリガー: 累積新規レース=%d (閾値=%d)",
-                self._new_race_count, _FULL_RETRAIN_THRESHOLD,
+                self._new_race_count,
+                _FULL_RETRAIN_THRESHOLD,
             )
             result = self.full_retrain(conn)
             self._new_race_count = 0
@@ -179,13 +181,20 @@ class IncrementalTrainer:
         try:
             model.load()
         except FileNotFoundError:
-            logger.info("%s: 既存モデルなし → スキップ（先に full_retrain を実行してください）", name)
+            logger.info(
+                "%s: 既存モデルなし → スキップ（先に full_retrain を実行してください）",
+                name,
+            )
             return None
 
         is_honmei = name == "honmei"
         target_col = "is_winner" if is_honmei else "ev_target"
         X_new = df_new[FEATURE_COLS].fillna(-1)
-        y_new = df_new[target_col] if target_col in df_new.columns else pd.Series(dtype=float)
+        y_new = (
+            df_new[target_col]
+            if target_col in df_new.columns
+            else pd.Series(dtype=float)
+        )
 
         if y_new.empty or len(y_new) < 5:
             logger.warning("%s: 増分データが少なすぎます (%d 件)", name, len(y_new))
@@ -194,11 +203,11 @@ class IncrementalTrainer:
         # 既存モデルを init_model として追加 boosting
         init_booster = model._model.booster_
         params = {
-            "objective":   "binary" if is_honmei else "regression",
-            "metric":      "auc"    if is_honmei else "rmse",
+            "objective": "binary" if is_honmei else "regression",
+            "metric": "auc" if is_honmei else "rmse",
             "learning_rate": 0.05,
-            "num_leaves":  31,
-            "verbose":     -1,
+            "num_leaves": 31,
+            "verbose": -1,
         }
         ds = lgb.Dataset(X_new, label=y_new)
 
@@ -250,7 +259,9 @@ class IncrementalTrainer:
 
         n_races = df_all["race_id"].nunique()
         if n_races < _MIN_TRAIN_RACES:
-            logger.warning("学習レース数が少なすぎます: %d < %d", n_races, _MIN_TRAIN_RACES)
+            logger.warning(
+                "学習レース数が少なすぎます: %d < %d", n_races, _MIN_TRAIN_RACES
+            )
             return {}
 
         results: dict[str, ModelVersion] = {}
@@ -264,8 +275,11 @@ class IncrementalTrainer:
         cv_auc: float | None = None
         if validate:
             params = {
-                "objective": "binary", "metric": "auc",
-                "num_leaves": 31, "learning_rate": 0.05, "verbose": -1,
+                "objective": "binary",
+                "metric": "auc",
+                "num_leaves": 31,
+                "learning_rate": 0.05,
+                "verbose": -1,
             }
             try:
                 cv_auc = _cross_validate_auc(X, y, groups, params)
@@ -338,7 +352,7 @@ class IncrementalTrainer:
         """指定 race_id のみの学習データを構築する。"""
         if not race_ids:
             return pd.DataFrame()
-        placeholders = ",".join("?" * len(race_ids))
+        ",".join("?" * len(race_ids))
         df_all = _build_train_df(conn)
         if df_all.empty:
             return df_all
@@ -351,7 +365,8 @@ class IncrementalTrainer:
     ) -> None:
         """現在のモデルファイルを history にコピーしてから上書き保存する。"""
         import shutil
-        ts  = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+        ts = datetime.now().strftime("%Y%m%d_%H%M%S")
         # モデルオブジェクトの _filename を使って正確なパスを参照 (V2 対応)
         filename = getattr(model, "_filename", f"{name}_model")
         src = _MODEL_DIR / f"{filename}.pkl"

@@ -1,4 +1,5 @@
 """tests/test_generate_performance_report.py — generate_performance_report 単体テスト"""
+
 from __future__ import annotations
 
 import importlib.util
@@ -7,11 +8,15 @@ from pathlib import Path
 
 import pytest
 
-_SCRIPT = Path(__file__).resolve().parents[1] / "scripts" / "generate_performance_report.py"
+_SCRIPT = (
+    Path(__file__).resolve().parents[1] / "scripts" / "generate_performance_report.py"
+)
 
 
 def _load_module():
-    spec = importlib.util.spec_from_file_location("generate_performance_report", _SCRIPT)
+    spec = importlib.util.spec_from_file_location(
+        "generate_performance_report", _SCRIPT
+    )
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     return mod

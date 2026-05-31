@@ -9,6 +9,7 @@ Markdown を生成し DISCORD_WEBHOOK_NOTE_DRAFT チャンネルへ送信する�
     py scripts/generate_result_note_draft.py --days 14   # 直近14日間
     py scripts/generate_result_note_draft.py --dry-run   # Discord 送信なし（標準出力のみ）
 """
+
 from __future__ import annotations
 
 import argparse
@@ -53,7 +54,9 @@ def _fetch_hits(conn: sqlite3.Connection, since: date) -> list[dict]:
       )
     ORDER BY pr.payout DESC
     """
-    rows = conn.execute(sql, (since.isoformat(), _PAYOUT_THRESHOLD, _ROI_THRESHOLD * 100)).fetchall()
+    rows = conn.execute(
+        sql, (since.isoformat(), _PAYOUT_THRESHOLD, _ROI_THRESHOLD * 100)
+    ).fetchall()
     return [dict(row) for row in rows]
 
 
@@ -108,7 +111,11 @@ def _build_markdown(hits: list[dict], since: date, until: date) -> str:
     for i, h in enumerate(hits, 1):
         bet_label = _BET_TYPE_LABELS.get(h["bet_type"] or "", h["bet_type"] or "")
         roi_single = h["payout"] / 100.0
-        ev_line = f"- **EV スコア**: {h['expected_value']:.2f}" if h.get("expected_value") else ""
+        ev_line = (
+            f"- **EV スコア**: {h['expected_value']:.2f}"
+            if h.get("expected_value")
+            else ""
+        )
         lines += [
             f"### {i}. {h['race_date']} {h['race_name'] or ''}（{h['venue'] or ''}）",
             "",
@@ -141,9 +148,15 @@ def _build_markdown(hits: list[dict], since: date, until: date) -> str:
 
 
 def main() -> None:
-    p = argparse.ArgumentParser(description="万馬券特化的中報告 Markdown を生成して Discord 転送")
-    p.add_argument("--days", type=int, default=7, help="直近N日間を対象（デフォルト7日）")
-    p.add_argument("--dry-run", action="store_true", help="Discord 送信なし（標準出力のみ）")
+    p = argparse.ArgumentParser(
+        description="万馬券特化的中報告 Markdown を生成して Discord 転送"
+    )
+    p.add_argument(
+        "--days", type=int, default=7, help="直近N日間を対象（デフォルト7日）"
+    )
+    p.add_argument(
+        "--dry-run", action="store_true", help="Discord 送信なし（標準出力のみ）"
+    )
     args = p.parse_args()
 
     until = date.today()
@@ -172,9 +185,11 @@ def main() -> None:
         return
 
     from dotenv import load_dotenv
+
     load_dotenv(_ROOT / ".env", override=False)
 
     from src.notification.router import NotificationRouter
+
     router = NotificationRouter()
     ok = router.send_note_draft(title, body)
     if ok:

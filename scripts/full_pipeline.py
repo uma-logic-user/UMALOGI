@@ -38,32 +38,36 @@ from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-_ROOT        = Path(__file__).resolve().parent.parent
-_MAIN_DB     = _ROOT / "data" / "umalogi.db"
+_ROOT = Path(__file__).resolve().parent.parent
+_MAIN_DB = _ROOT / "data" / "umalogi.db"
 _RESEARCH_DB = _ROOT / "data" / "netkeiba_research.db"
-_MODELS_DIR  = _ROOT / "data" / "models"
-_DOCS_DIR    = _ROOT / "docs"
-_ELITE_CSV   = _ROOT / "logs" / "fukusho_elite_monitor.csv"
+_MODELS_DIR = _ROOT / "data" / "models"
+_DOCS_DIR = _ROOT / "docs"
+_ELITE_CSV = _ROOT / "logs" / "fukusho_elite_monitor.csv"
 _ELITE_TARGET = 30
 
 # 2021取得ターゲット
 SCRAPE_2021_FROM = "2021-01-01"
-SCRAPE_2021_TO   = "2021-12-31"
+SCRAPE_2021_TO = "2021-12-31"
 
 if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
 from dotenv import load_dotenv
+
 load_dotenv(_ROOT / ".env", override=False)
 
 
 # ── ヘルパー ──────────────────────────────────────────────────────────────
 
-def _conn_main()     -> sqlite3.Connection:
+
+def _conn_main() -> sqlite3.Connection:
     return sqlite3.connect(str(_MAIN_DB))
+
 
 def _conn_research() -> sqlite3.Connection:
     return sqlite3.connect(str(_RESEARCH_DB))
+
 
 def _run(cmd: list[str], *, desc: str = "") -> bool:
     """サブプロセスを実行し、stdout をリアルタイムで表示する。失敗したら False。"""
@@ -82,6 +86,7 @@ def _run(cmd: list[str], *, desc: str = "") -> bool:
 
 
 # ── フェーズ 0: データステータス ─────────────────────────────────────────
+
 
 def phase0_status() -> dict:
     """
@@ -147,20 +152,26 @@ def phase0_status() -> dict:
     has_2021_research = "2021" in status["research"]
     status["missing_2021_research"] = not has_2021_research
     if not has_2021_research:
-        print("\n  ⚠  2021年データが netkeiba_research.db に存在しません → 取得が必要です")
+        print(
+            "\n  ⚠  2021年データが netkeiba_research.db に存在しません → 取得が必要です"
+        )
 
     # ── モデルファイル ───────────────────────────────────────────────
     print("\n[models/]")
     model_files = {
         "本命 (honmei_model.pkl)": _MODELS_DIR / "honmei_model.pkl",
-        "卍   (manji_model.pkl)":  _MODELS_DIR / "manji_model.pkl",
-        "複勝 (place_model.pkl)":  _MODELS_DIR / "place_model.pkl",
+        "卍   (manji_model.pkl)": _MODELS_DIR / "manji_model.pkl",
+        "複勝 (place_model.pkl)": _MODELS_DIR / "place_model.pkl",
         "ALPHA (alpha_model.pkl)": _MODELS_DIR / "alpha" / "alpha_model.pkl",
     }
     for label, path in model_files.items():
         exists = path.exists()
-        mtime  = datetime.fromtimestamp(path.stat().st_mtime).strftime("%Y-%m-%d %H:%M") if exists else "—"
-        mark   = "✓" if exists else "✗ 未生成"
+        mtime = (
+            datetime.fromtimestamp(path.stat().st_mtime).strftime("%Y-%m-%d %H:%M")
+            if exists
+            else "—"
+        )
+        mark = "✓" if exists else "✗ 未生成"
         print(f"  {mark}  {label}  ({mtime})")
         status["models"][label] = {"exists": exists, "mtime": mtime}
 
@@ -168,6 +179,7 @@ def phase0_status() -> dict:
 
 
 # ── フェーズ 1: 2021年データ取得 ─────────────────────────────────────────
+
 
 def phase1_scrape_2021(skip: bool = False) -> bool:
     """
@@ -217,17 +229,25 @@ def phase1_scrape_2021(skip: bool = False) -> bool:
         print("  ✓ 2021年は全件取得済みです")
         return True
 
-    print(f"\n  スクレイプを開始します (推定時間: {pending * 1.5 / 60:.0f}〜{pending * 2.5 / 60:.0f}分)...")
+    print(
+        f"\n  スクレイプを開始します (推定時間: {pending * 1.5 / 60:.0f}〜{pending * 2.5 / 60:.0f}分)..."
+    )
     ok = _run(
         [
             sys.executable,
             str(_ROOT / "scripts" / "scrape_research_data.py"),
-            "--mode",      "odds",
-            "--from",      SCRAPE_2021_FROM,
-            "--to",        SCRAPE_2021_TO,
-            "--delay-min", "1.0",
-            "--delay-max", "2.5",
-            "--max-errors","50",
+            "--mode",
+            "odds",
+            "--from",
+            SCRAPE_2021_FROM,
+            "--to",
+            SCRAPE_2021_TO,
+            "--delay-min",
+            "1.0",
+            "--delay-max",
+            "2.5",
+            "--max-errors",
+            "50",
         ],
         desc="scrape_research_data.py --mode odds --from 2021-01-01 --to 2021-12-31",
     )
@@ -237,10 +257,11 @@ def phase1_scrape_2021(skip: bool = False) -> bool:
     else:
         print("  ⚠ スクレイプに失敗しましたが続行します")
 
-    return True   # スクレイプ失敗でも後続フェーズを継続
+    return True  # スクレイプ失敗でも後続フェーズを継続
 
 
 # ── フェーズ 2: 全モデル再学習 ───────────────────────────────────────────
+
 
 def phase2_retrain_all(skip: bool = False) -> bool:
     """
@@ -266,14 +287,24 @@ def phase2_retrain_all(skip: bool = False) -> bool:
 
     # 2-B: ALPHA (全年度データで再学習 + 2025/2026テスト)
     print("\n  [2-B] ALPHA モデル再学習 (train=2021-2025, test=2026, --save)...")
-    research_args = ["--research-db", str(_RESEARCH_DB)] if _RESEARCH_DB.exists() else []
+    research_args = (
+        ["--research-db", str(_RESEARCH_DB)] if _RESEARCH_DB.exists() else []
+    )
     for bet_type in ("単勝", "複勝"):
         ok = _run(
             [
-                sys.executable, str(_ROOT / "scripts" / "alpha_backtest.py"),
-                "--train", "2021", "2022", "2023", "2024", "2025",
-                "--test",  "2026",
-                "--bet-type", bet_type,
+                sys.executable,
+                str(_ROOT / "scripts" / "alpha_backtest.py"),
+                "--train",
+                "2021",
+                "2022",
+                "2023",
+                "2024",
+                "2025",
+                "--test",
+                "2026",
+                "--bet-type",
+                bet_type,
                 "--save",
                 *research_args,
             ],
@@ -287,6 +318,7 @@ def phase2_retrain_all(skip: bool = False) -> bool:
 
 
 # ── フェーズ 3: ALPHA Walk-forward バックテスト ─────────────────────────
+
 
 def phase3_alpha_walkforward() -> list[dict]:
     """
@@ -308,11 +340,14 @@ def phase3_alpha_walkforward() -> list[dict]:
     # 取得済み年度を確認
     conn_r = _conn_research()
     try:
-        avail_years = sorted([
-            y for (y,) in conn_r.execute(
-                "SELECT DISTINCT substr(race_id,1,4) FROM horse_odds ORDER BY 1"
-            ).fetchall()
-        ])
+        avail_years = sorted(
+            [
+                y
+                for (y,) in conn_r.execute(
+                    "SELECT DISTINCT substr(race_id,1,4) FROM horse_odds ORDER BY 1"
+                ).fetchall()
+            ]
+        )
     finally:
         conn_r.close()
 
@@ -326,7 +361,7 @@ def phase3_alpha_walkforward() -> list[dict]:
     folds: list[tuple[list[str], str]] = []
     for i in range(1, len(avail_years)):
         train_years = avail_years[:i]
-        test_year   = avail_years[i]
+        test_year = avail_years[i]
         if len(train_years) >= 1:
             folds.append((train_years, test_year))
 
@@ -337,16 +372,22 @@ def phase3_alpha_walkforward() -> list[dict]:
         print(f"\n  Fold: train={'+'.join(train_years)} → test={test_year}")
         for bet_type in ("単勝", "複勝"):
             cmd = [
-                sys.executable, str(_ROOT / "scripts" / "alpha_backtest.py"),
-                "--train", *train_years,
-                "--test",  test_year,
-                "--bet-type", bet_type,
+                sys.executable,
+                str(_ROOT / "scripts" / "alpha_backtest.py"),
+                "--train",
+                *train_years,
+                "--test",
+                test_year,
+                "--bet-type",
+                bet_type,
                 *research_args,
             ]
             result = subprocess.run(
-                cmd, cwd=str(_ROOT),
+                cmd,
+                cwd=str(_ROOT),
                 capture_output=True,
-                encoding="utf-8", errors="replace",
+                encoding="utf-8",
+                errors="replace",
             )
             stdout = result.stdout + result.stderr
 
@@ -354,9 +395,13 @@ def phase3_alpha_walkforward() -> list[dict]:
             parsed = _parse_alpha_stdout(stdout, train_years, test_year, bet_type)
             all_results.append(parsed)
 
-            roi_str = f"{parsed['roi']:.1f}%" if parsed['roi'] is not None else "—"
-            hr_str  = f"{parsed['hit_rate']:.1f}%" if parsed['hit_rate'] is not None else "—"
-            print(f"    {bet_type}: ROI={roi_str}  的中率={hr_str}  買い={parsed['num_bets']}件")
+            roi_str = f"{parsed['roi']:.1f}%" if parsed["roi"] is not None else "—"
+            hr_str = (
+                f"{parsed['hit_rate']:.1f}%" if parsed["hit_rate"] is not None else "—"
+            )
+            print(
+                f"    {bet_type}: ROI={roi_str}  的中率={hr_str}  買い={parsed['num_bets']}件"
+            )
 
     return all_results
 
@@ -369,17 +414,18 @@ def _parse_alpha_stdout(
 ) -> dict:
     """alpha_backtest.py の出力テキストから指標をパースする。"""
     import re
+
     result: dict = {
         "train_years": train_years,
-        "test_year":   test_year,
-        "bet_type":    bet_type,
-        "roi":         None,
-        "hit_rate":    None,
-        "num_bets":    0,
-        "num_hits":    0,
-        "profit":      None,
-        "investment":  None,
-        "payout":      None,
+        "test_year": test_year,
+        "bet_type": bet_type,
+        "roi": None,
+        "hit_rate": None,
+        "num_bets": 0,
+        "num_hits": 0,
+        "profit": None,
+        "investment": None,
+        "payout": None,
     }
     for line in stdout.splitlines():
         if m := re.search(r"ROI\s*[:：]\s*([-\d.]+)%", line):
@@ -400,6 +446,7 @@ def _parse_alpha_stdout(
 
 
 # ── フェーズ 4: 本命/卍 Walk-forward バックテスト ────────────────────────
+
 
 def phase4_main_walkforward(run_slow: bool = False) -> list[dict]:
     """
@@ -441,26 +488,30 @@ def phase4_main_walkforward(run_slow: bool = False) -> list[dict]:
 
     for row in rows:
         model, bet, bets, hits, payout, profit, roi_sum = row
-        hits    = int(hits or 0)
-        payout  = float(payout or 0)
-        profit  = float(profit or 0)
+        hits = int(hits or 0)
+        payout = float(payout or 0)
+        profit = float(profit or 0)
         hit_rate = hits / bets * 100 if bets > 0 else 0.0
-        avg_roi  = roi_sum / bets if bets > 0 else 0.0
-        results.append({
-            "source":    "live_2026",
-            "model":     model,
-            "bet_type":  bet,
-            "test_year": "2026",
-            "bets":      bets,
-            "hits":      hits,
-            "hit_rate":  hit_rate,
-            "payout":    payout,
-            "profit":    profit,
-            "avg_roi":   avg_roi,
-        })
+        avg_roi = roi_sum / bets if bets > 0 else 0.0
+        results.append(
+            {
+                "source": "live_2026",
+                "model": model,
+                "bet_type": bet,
+                "test_year": "2026",
+                "bets": bets,
+                "hits": hits,
+                "hit_rate": hit_rate,
+                "payout": payout,
+                "profit": profit,
+                "avg_roi": avg_roi,
+            }
+        )
         hr_str = f"{hit_rate:.1f}%"
         roi_str = f"{avg_roi:.1f}%"
-        print(f"    {model:12s} {bet:5s} | {bets:4}件 hit={hr_str:6s} profit=¥{profit:>10,.0f} avgROI={roi_str}")
+        print(
+            f"    {model:12s} {bet:5s} | {bets:4}件 hit={hr_str:6s} profit=¥{profit:>10,.0f} avgROI={roi_str}"
+        )
 
     conn.close()
 
@@ -484,8 +535,11 @@ def _walkforward_main_models() -> list[dict]:
     """
     from src.database.init_db import init_db
     from src.ml.models import (
-        HonmeiModel, ManjiModel, PlaceModel,
-        _build_train_df, FEATURE_COLS,
+        HonmeiModel,
+        ManjiModel,
+        PlaceModel,
+        _build_train_df,
+        FEATURE_COLS,
     )
 
     folds: list[tuple[int, int]] = [(2024, 2025), (2025, 2026)]
@@ -503,9 +557,7 @@ def _walkforward_main_models() -> list[dict]:
             print(f"    ⚠ データなし: {test_year}")
             continue
 
-        df_test = df_all[
-            df_all["race_id"].str.startswith(str(test_year))
-        ].copy()
+        df_test = df_all[df_all["race_id"].str.startswith(str(test_year))].copy()
 
         if df_test.empty:
             print(f"    ⚠ テストデータなし: {test_year}")
@@ -515,17 +567,17 @@ def _walkforward_main_models() -> list[dict]:
         honmei = HonmeiModel()
         honmei.train(conn, train_until=train_until)
 
-        manji  = ManjiModel()
+        manji = ManjiModel()
         manji.train(conn, train_until=train_until)
 
-        place  = PlaceModel()
+        place = PlaceModel()
         place.train(conn, train_until=train_until)
 
         # 予測 + ベット評価
         for model_obj, model_name, target_col in [
             (honmei, "本命(WF)", "is_winner"),
-            (manji,  "卍(WF)",   "is_winner"),  # 的中判定は同じ
-            (place,  "複勝(WF)", "is_placed"),
+            (manji, "卍(WF)", "is_winner"),  # 的中判定は同じ
+            (place, "複勝(WF)", "is_placed"),
         ]:
             X = df_test[FEATURE_COLS].fillna(-1)
             if hasattr(model_obj, "_model") and model_obj._model is not None:
@@ -555,28 +607,29 @@ def _walkforward_main_models() -> list[dict]:
             payout_col = "payout_tansho"
             if payout_col in bets.columns:
                 payout = float(
-                    bets.loc[bets[target_col] == 1, payout_col]
-                    .fillna(0).sum()
+                    bets.loc[bets[target_col] == 1, payout_col].fillna(0).sum()
                 )
             else:
                 payout = 0.0
 
-            profit   = payout - invested
-            avg_roi  = payout / invested * 100 if invested > 0 else 0.0
+            profit = payout - invested
+            avg_roi = payout / invested * 100 if invested > 0 else 0.0
             hit_rate = hits / bets_n * 100 if bets_n > 0 else 0.0
 
-            results.append({
-                "source":    "walkforward",
-                "model":     model_name,
-                "bet_type":  "単勝(シミュ)",
-                "test_year": str(test_year),
-                "bets":      bets_n,
-                "hits":      hits,
-                "hit_rate":  hit_rate,
-                "payout":    payout,
-                "profit":    profit,
-                "avg_roi":   avg_roi,
-            })
+            results.append(
+                {
+                    "source": "walkforward",
+                    "model": model_name,
+                    "bet_type": "単勝(シミュ)",
+                    "test_year": str(test_year),
+                    "bets": bets_n,
+                    "hits": hits,
+                    "hit_rate": hit_rate,
+                    "payout": payout,
+                    "profit": profit,
+                    "avg_roi": avg_roi,
+                }
+            )
             print(
                 f"    {model_name:12s} 単勝 | test={test_year} "
                 f"{bets_n}件 hit={hit_rate:.1f}% profit=¥{profit:+,.0f} ROI={avg_roi:.1f}%"
@@ -591,11 +644,12 @@ def _walkforward_main_models() -> list[dict]:
 
 # ── フェーズ 5: Markdown レポート生成 ────────────────────────────────────
 
+
 def phase5_generate_report(
-    status:       dict,
+    status: dict,
     alpha_results: list[dict],
-    main_results:  list[dict],
-    output_path:  Path | None = None,
+    main_results: list[dict],
+    output_path: Path | None = None,
 ) -> Path:
     """全結果を統合した Markdown レポートを生成・保存する。"""
     print("\n" + "=" * 62)
@@ -608,117 +662,129 @@ def phase5_generate_report(
         output_path = _DOCS_DIR / f"umalogi_5year_report_{now.strftime('%Y%m%d')}.md"
 
     lines: list[str] = []
+
     def w(s: str = "") -> None:
         lines.append(s)
 
     # ── ヘッダー ────────────────────────────────────────────────────
-    w(f"# UMALOGI 5カ年総合評価レポート")
-    w(f"")
+    w("# UMALOGI 5カ年総合評価レポート")
+    w("")
     w(f"> 生成日時: {now.strftime('%Y-%m-%d %H:%M:%S')}")
-    w(f"")
-    w(f"---")
-    w(f"")
+    w("")
+    w("---")
+    w("")
 
     # ── データカバレッジ ─────────────────────────────────────────────
-    w(f"## 1. データカバレッジ")
-    w(f"")
-    w(f"### 1-1. umalogi.db (JVLink データ)")
-    w(f"")
-    w(f"| 年度 | レース数 | 着順確定 | 備考 |")
-    w(f"|------|--------|---------|------|")
+    w("## 1. データカバレッジ")
+    w("")
+    w("### 1-1. umalogi.db (JVLink データ)")
+    w("")
+    w("| 年度 | レース数 | 着順確定 | 備考 |")
+    w("|------|--------|---------|------|")
     for y, d in sorted(status.get("umalogi", {}).items()):
         res_n = d.get("results", 0)
-        note  = "✓ 学習可" if res_n > 0 else "✗ race_results 未取得"
+        note = "✓ 学習可" if res_n > 0 else "✗ race_results 未取得"
         w(f"| {y} | {d['races']:,} | {res_n:,} | {note} |")
-    w(f"")
-    w(f"> **注**: JVLink から取得できる race_results は直近2〜3年分が上限。")
-    w(f"> 2021〜2023年の着順データは JVLink 経由では取得できないため、")
-    w(f"> 本命/卍/複勝モデルの学習範囲は **2024〜2026年** に限定されます。")
-    w(f"")
+    w("")
+    w("> **注**: JVLink から取得できる race_results は直近2〜3年分が上限。")
+    w("> 2021〜2023年の着順データは JVLink 経由では取得できないため、")
+    w("> 本命/卍/複勝モデルの学習範囲は **2024〜2026年** に限定されます。")
+    w("")
 
-    w(f"### 1-2. netkeiba_research.db (R&D用オッズDB)")
-    w(f"")
-    w(f"| 年度 | レース数 | 行数 | 備考 |")
-    w(f"|------|--------|------|------|")
+    w("### 1-2. netkeiba_research.db (R&D用オッズDB)")
+    w("")
+    w("| 年度 | レース数 | 行数 | 備考 |")
+    w("|------|--------|------|------|")
     for y, d in sorted(status.get("research", {}).items()):
-        w(f"| {y} | {d.get('races',0):,} | {d.get('rows',0):,} | — |")
+        w(f"| {y} | {d.get('races', 0):,} | {d.get('rows', 0):,} | — |")
     if status.get("missing_2021_research"):
-        w(f"| 2021 | — | — | ⚠ **未取得** (要スクレイプ) |")
-    w(f"")
+        w("| 2021 | — | — | ⚠ **未取得** (要スクレイプ) |")
+    w("")
 
-    w(f"### 1-3. モデルファイル")
-    w(f"")
-    w(f"| モデル | 存在 | 最終更新 |")
-    w(f"|--------|------|---------|")
+    w("### 1-3. モデルファイル")
+    w("")
+    w("| モデル | 存在 | 最終更新 |")
+    w("|--------|------|---------|")
     for label, d in status.get("models", {}).items():
         mark = "✓" if d.get("exists") else "✗"
-        w(f"| {label} | {mark} | {d.get('mtime','—')} |")
-    w(f"")
+        w(f"| {label} | {mark} | {d.get('mtime', '—')} |")
+    w("")
 
     # ── ALPHA バックテスト ─────────────────────────────────────────
-    w(f"## 2. ALPHA モデル Walk-forward バックテスト")
-    w(f"")
-    w(f"> **実施条件**: netkeiba_research.db のオッズデータ (2022〜2025) を使用した時系列分割バックテスト。")
-    w(f"> 各フォールドでテスト期間の結果は学習に使用しない（カンニング防止済み）。")
-    w(f"")
+    w("## 2. ALPHA モデル Walk-forward バックテスト")
+    w("")
+    w(
+        "> **実施条件**: netkeiba_research.db のオッズデータ (2022〜2025) を使用した時系列分割バックテスト。"
+    )
+    w("> 各フォールドでテスト期間の結果は学習に使用しない（カンニング防止済み）。")
+    w("")
 
     if alpha_results:
-        w(f"| 学習期間 | テスト年 | 券種 | 買い件数 | 的中率 | 総投資 | 総払戻 | 損益 | ROI |")
-        w(f"|---------|---------|------|---------|-------|-------|-------|------|-----|")
+        w(
+            "| 学習期間 | テスト年 | 券種 | 買い件数 | 的中率 | 総投資 | 総払戻 | 損益 | ROI |"
+        )
+        w("|---------|---------|------|---------|-------|-------|-------|------|-----|")
         for r in alpha_results:
             train_str = "+".join(r.get("train_years", ["?"]))
-            test_str  = r.get("test_year", "?")
-            bet       = r.get("bet_type", "?")
-            bets      = r.get("num_bets", 0)
-            hr        = f"{r['hit_rate']:.1f}%" if r.get("hit_rate") is not None else "—"
-            inv       = f"¥{r['investment']:,.0f}" if r.get("investment") is not None else "—"
-            pay       = f"¥{r['payout']:,.0f}"    if r.get("payout")    is not None else "—"
-            pft       = f"¥{r['profit']:+,.0f}"   if r.get("profit")    is not None else "—"
-            roi       = f"{r['roi']:.1f}%"         if r.get("roi")       is not None else "—"
-            w(f"| {train_str} | {test_str} | {bet} | {bets:,} | {hr} | {inv} | {pay} | {pft} | {roi} |")
-        w(f"")
+            test_str = r.get("test_year", "?")
+            bet = r.get("bet_type", "?")
+            bets = r.get("num_bets", 0)
+            hr = f"{r['hit_rate']:.1f}%" if r.get("hit_rate") is not None else "—"
+            inv = f"¥{r['investment']:,.0f}" if r.get("investment") is not None else "—"
+            pay = f"¥{r['payout']:,.0f}" if r.get("payout") is not None else "—"
+            pft = f"¥{r['profit']:+,.0f}" if r.get("profit") is not None else "—"
+            roi = f"{r['roi']:.1f}%" if r.get("roi") is not None else "—"
+            w(
+                f"| {train_str} | {test_str} | {bet} | {bets:,} | {hr} | {inv} | {pay} | {pft} | {roi} |"
+            )
+        w("")
 
         # 通算集計
         alpha_non_none = [r for r in alpha_results if r.get("investment") is not None]
         if alpha_non_none:
-            total_inv  = sum(r.get("investment", 0) or 0 for r in alpha_non_none)
-            total_pay  = sum(r.get("payout",    0) or 0 for r in alpha_non_none)
-            total_pft  = total_pay - total_inv
+            total_inv = sum(r.get("investment", 0) or 0 for r in alpha_non_none)
+            total_pay = sum(r.get("payout", 0) or 0 for r in alpha_non_none)
+            total_pft = total_pay - total_inv
             overall_roi = total_pay / total_inv * 100 if total_inv > 0 else 0.0
-            w(f"**通算（全フォールド合計）**: 投資 ¥{total_inv:,.0f} → 払戻 ¥{total_pay:,.0f} | "
-              f"損益 ¥{total_pft:+,.0f} | ROI **{overall_roi:.1f}%**")
-            w(f"")
+            w(
+                f"**通算（全フォールド合計）**: 投資 ¥{total_inv:,.0f} → 払戻 ¥{total_pay:,.0f} | "
+                f"損益 ¥{total_pft:+,.0f} | ROI **{overall_roi:.1f}%**"
+            )
+            w("")
     else:
-        w(f"> ⚠ ALPHA バックテストデータなし（netkeiba_research.db が必要）")
-        w(f"")
+        w("> ⚠ ALPHA バックテストデータなし（netkeiba_research.db が必要）")
+        w("")
 
     # ── 本命/卍/複勝 実績 ────────────────────────────────────────────
-    w(f"## 3. 本命/卍/複勝 モデル実績")
-    w(f"")
-    w(f"> **データソース**: umalogi.db の prediction_results (2026年分の実ライブ予想）")
-    w(f"> および Walk-forward シミュレーション（--run-walk-forward 指定時）。")
-    w(f"")
+    w("## 3. 本命/卍/複勝 モデル実績")
+    w("")
+    w("> **データソース**: umalogi.db の prediction_results (2026年分の実ライブ予想）")
+    w("> および Walk-forward シミュレーション（--run-walk-forward 指定時）。")
+    w("")
 
     live_results = [r for r in main_results if r.get("source") == "live_2026"]
-    wf_results   = [r for r in main_results if r.get("source") == "walkforward"]
+    wf_results = [r for r in main_results if r.get("source") == "walkforward"]
 
     if live_results:
-        w(f"### 3-1. 2026年 ライブ予想実績")
-        w(f"")
-        w(f"| モデル | 券種 | 件数 | 的中率 | 払戻合計 | 損益合計 | 平均ROI |")
-        w(f"|--------|------|------|-------|---------|---------|--------|")
+        w("### 3-1. 2026年 ライブ予想実績")
+        w("")
+        w("| モデル | 券種 | 件数 | 的中率 | 払戻合計 | 損益合計 | 平均ROI |")
+        w("|--------|------|------|-------|---------|---------|--------|")
         for r in sorted(live_results, key=lambda x: (x["model"], x["bet_type"])):
-            hr   = f"{r['hit_rate']:.1f}%"
-            pay  = f"¥{r['payout']:,.0f}"
-            pft  = f"¥{r['profit']:+,.0f}"
+            hr = f"{r['hit_rate']:.1f}%"
+            pay = f"¥{r['payout']:,.0f}"
+            pft = f"¥{r['profit']:+,.0f}"
             aroi = f"{r['avg_roi']:.1f}%"
-            w(f"| {r['model']} | {r['bet_type']} | {r['bets']} | {hr} | {pay} | {pft} | {aroi} |")
-        w(f"")
+            w(
+                f"| {r['model']} | {r['bet_type']} | {r['bets']} | {hr} | {pay} | {pft} | {aroi} |"
+            )
+        w("")
 
         # 2026 サマリー: モデル別
-        w(f"**2026年モデル別損益サマリー**:")
-        w(f"")
+        w("**2026年モデル別損益サマリー**:")
+        w("")
         from collections import defaultdict
+
         model_pft: dict = defaultdict(float)
         model_inv: dict = defaultdict(float)
         for r in live_results:
@@ -729,62 +795,82 @@ def phase5_generate_report(
             inv = (r.get("payout", 0) or 0) - (r.get("profit", 0) or 0)
             model_inv[r["model"]] += inv
 
-        w(f"| モデル | 総投資（概算） | 総損益 | 推定ROI |")
-        w(f"|--------|--------------|-------|--------|")
+        w("| モデル | 総投資（概算） | 総損益 | 推定ROI |")
+        w("|--------|--------------|-------|--------|")
         for m in sorted(model_pft):
             inv = model_inv.get(m, 0)
             pft = model_pft[m]
             pay = inv + pft
             roi = pay / inv * 100 if inv > 0 else 0.0
             w(f"| {m} | ¥{inv:,.0f} | ¥{pft:+,.0f} | {roi:.1f}% |")
-        w(f"")
+        w("")
 
     if wf_results:
-        w(f"### 3-2. Walk-forward シミュレーション")
-        w(f"")
-        w(f"| モデル | 券種 | テスト年 | 件数 | 的中率 | 損益 | ROI |")
-        w(f"|--------|------|---------|------|-------|------|-----|")
+        w("### 3-2. Walk-forward シミュレーション")
+        w("")
+        w("| モデル | 券種 | テスト年 | 件数 | 的中率 | 損益 | ROI |")
+        w("|--------|------|---------|------|-------|------|-----|")
         for r in sorted(wf_results, key=lambda x: (x["model"], x["test_year"])):
-            hr  = f"{r['hit_rate']:.1f}%"
+            hr = f"{r['hit_rate']:.1f}%"
             pft = f"¥{r['profit']:+,.0f}"
             roi = f"{r['avg_roi']:.1f}%"
-            w(f"| {r['model']} | {r['bet_type']} | {r['test_year']} | {r['bets']} | {hr} | {pft} | {roi} |")
-        w(f"")
+            w(
+                f"| {r['model']} | {r['bet_type']} | {r['test_year']} | {r['bets']} | {hr} | {pft} | {roi} |"
+            )
+        w("")
 
     # ── 5カ年総評 ────────────────────────────────────────────────────
-    w(f"## 4. 5カ年総評・推奨改善ポイント")
-    w(f"")
-    w(f"### 4-1. データギャップの解消")
-    w(f"")
-    w(f"| 課題 | 状況 | 推奨アクション |")
-    w(f"|------|------|--------------|")
-    w(f"| 2021年オッズ | netkeiba_research.db に未取得 | `py scripts/full_pipeline.py` でスクレイプ実行 |")
-    w(f"| 2021-2023 race_results | JVLink 経由で取得不可 | JVLink 有料プランの歴史データ購入を検討 |")
-    w(f"| ALPHA 2026 テスト精度 | 2026年は部分データ | 年末時点で再評価推奨 |")
-    w(f"")
+    w("## 4. 5カ年総評・推奨改善ポイント")
+    w("")
+    w("### 4-1. データギャップの解消")
+    w("")
+    w("| 課題 | 状況 | 推奨アクション |")
+    w("|------|------|--------------|")
+    w(
+        "| 2021年オッズ | netkeiba_research.db に未取得 | `py scripts/full_pipeline.py` でスクレイプ実行 |"
+    )
+    w(
+        "| 2021-2023 race_results | JVLink 経由で取得不可 | JVLink 有料プランの歴史データ購入を検討 |"
+    )
+    w("| ALPHA 2026 テスト精度 | 2026年は部分データ | 年末時点で再評価推奨 |")
+    w("")
 
-    w(f"### 4-2. モデル改善の方向性")
-    w(f"")
-    w(f"| モデル | 現状の課題 | 推奨改善 |")
-    w(f"|--------|----------|---------|")
-    w(f"| 本命/卍/複勝 | 学習データが 2024-2026 の3年分のみ | 2021-2023 の JVLink 歴史データ追加で汎化性向上 |")
-    w(f"| ALPHA | 2021 オッズデータ未取得 | `scrape_research_data.py --from 2021-01-01` で補完 |")
-    w(f"| ALPHA | EV閾値の最適化 | `--sweep` オプションで EV 1.1〜2.0 グリッドサーチ推奨 |")
-    w(f"| Cascade | 三連単特化、データ少 | 2024〜 のレースが積み上がったら再学習 |")
-    w(f"")
+    w("### 4-2. モデル改善の方向性")
+    w("")
+    w("| モデル | 現状の課題 | 推奨改善 |")
+    w("|--------|----------|---------|")
+    w(
+        "| 本命/卍/複勝 | 学習データが 2024-2026 の3年分のみ | 2021-2023 の JVLink 歴史データ追加で汎化性向上 |"
+    )
+    w(
+        "| ALPHA | 2021 オッズデータ未取得 | `scrape_research_data.py --from 2021-01-01` で補完 |"
+    )
+    w(
+        "| ALPHA | EV閾値の最適化 | `--sweep` オプションで EV 1.1〜2.0 グリッドサーチ推奨 |"
+    )
+    w("| Cascade | 三連単特化、データ少 | 2024〜 のレースが積み上がったら再学習 |")
+    w("")
 
-    w(f"### 4-3. 現時点のベスト運用方針")
-    w(f"")
-    w(f"1. **ALPHA 単勝**: netkeiba_research.db (2022-2025) で実証済み。EV > 1.5 の馬に絞って購入。")
-    w(f"2. **本命 三連単**: 2026年ライブ実績で最高払戻を記録。軸馬精度を活かした1頭軸マルチが有効。")
-    w(f"3. **卍 単勝**: 2026年単勝 ROI が相対的に高い。回収率重視の場合に採用。")
-    w(f"4. **2021年データ取得**: スクレイプ完了後に ALPHA を再学習し、フォールド数を増やして統計的信頼性を高める。")
-    w(f"")
+    w("### 4-3. 現時点のベスト運用方針")
+    w("")
+    w(
+        "1. **ALPHA 単勝**: netkeiba_research.db (2022-2025) で実証済み。EV > 1.5 の馬に絞って購入。"
+    )
+    w(
+        "2. **本命 三連単**: 2026年ライブ実績で最高払戻を記録。軸馬精度を活かした1頭軸マルチが有効。"
+    )
+    w("3. **卍 単勝**: 2026年単勝 ROI が相対的に高い。回収率重視の場合に採用。")
+    w(
+        "4. **2021年データ取得**: スクレイプ完了後に ALPHA を再学習し、フォールド数を増やして統計的信頼性を高める。"
+    )
+    w("")
 
-    w(f"---")
-    w(f"")
-    w(f"*本レポートは `scripts/full_pipeline.py` により自動生成されました。*")
-    w(f"*次回更新: `py scripts/full_pipeline.py --skip-scrape --skip-train` で最新実績のみ再集計可能。*")
+    w("---")
+    w("")
+    w("*本レポートは `scripts/full_pipeline.py` により自動生成されました。*")
+    w(
+        "*次回更新: `py scripts/full_pipeline.py --skip-scrape --skip-train` で最新実績のみ再集計可能。*"
+    )
 
     # 書き出し
     report_text = "\n".join(lines)
@@ -795,6 +881,7 @@ def phase5_generate_report(
 
 
 # ── ステータス表示のみ ────────────────────────────────────────────────────
+
 
 def cmd_status() -> None:
     status = phase0_status()
@@ -810,46 +897,58 @@ def cmd_status() -> None:
     # ── エリート複勝モニター ─────────────────────────────────────────
     print("\n=== エリート複勝モニター (FukushoEliteFilter) ===")
     if not _ELITE_CSV.exists():
-        print(f"  蓄積進捗  : 0/{_ELITE_TARGET} レース（CSV未作成 — 初回ライブ予想で自動生成されます）")
+        print(
+            f"  蓄積進捗  : 0/{_ELITE_TARGET} レース（CSV未作成 — 初回ライブ予想で自動生成されます）"
+        )
         print(f"  CSV パス   : {_ELITE_CSV}")
         return
 
     try:
         from scripts.evaluate_elite_results import status_summary, _PROTOCOL_LOG
+
         s = status_summary()
     except Exception as e:
         print(f"  ⚠ ステータス取得エラー: {e}")
         return
 
-    n_acc    = s["n_total"]
-    n_done   = s["n_done"]
-    roi      = s["roi"]
-    pnl      = s["pnl"]
-    target   = s["target"]
+    n_acc = s["n_total"]
+    n_done = s["n_done"]
+    roi = s["roi"]
+    pnl = s["pnl"]
+    target = s["target"]
     bar_fill = int(n_acc / target * 20)
-    bar      = "█" * bar_fill + "░" * (20 - bar_fill)
+    bar = "█" * bar_fill + "░" * (20 - bar_fill)
     pnl_sign = "+" if pnl >= 0 else ""
-    pnl_str  = f"{pnl_sign}¥{abs(pnl):,}" if n_done > 0 else "—"
-    roi_str  = f"{roi:.1f}%" if n_done > 0 else "—"
+    pnl_str = f"{pnl_sign}¥{abs(pnl):,}" if n_done > 0 else "—"
+    roi_str = f"{roi:.1f}%" if n_done > 0 else "—"
 
-    print(f"  蓄積進捗  : {n_acc}/{target} レース [{bar}] {n_acc/max(target,1)*100:.0f}%")
+    print(
+        f"  蓄積進捗  : {n_acc}/{target} レース [{bar}] {n_acc / max(target, 1) * 100:.0f}%"
+    )
     print(f"  結果確定  : {n_done} / {n_acc} レース")
     print(f"  暫定 ROI  : {roi_str}  損益 {pnl_str}")
-    print(f"  的中率    : {s['hit_rate']:.1f}%  ({s['hit_rows']}/{n_done})" if n_done else "  的中率    : —")
+    print(
+        f"  的中率    : {s['hit_rate']:.1f}%  ({s['hit_rows']}/{n_done})"
+        if n_done
+        else "  的中率    : —"
+    )
 
     if n_acc < target:
         print(f"  OOS検証まで あと {target - n_acc} レース")
         if n_done > 0:
-            print(f"  ヒント    : 照合実行 → py scripts/evaluate_elite_results.py")
+            print("  ヒント    : 照合実行 → py scripts/evaluate_elite_results.py")
     elif n_done < target:
-        print(f"  ⚠ 蓄積完了・未照合あり → py scripts/evaluate_elite_results.py を実行してください")
+        print(
+            "  ⚠ 蓄積完了・未照合あり → py scripts/evaluate_elite_results.py を実行してください"
+        )
     else:
         # 30レース到達かつ全照合済み → 合否判定表示
         if s["protocol_approved"]:
             try:
                 import json as _json
+
                 proto = _json.loads(_PROTOCOL_LOG.read_text(encoding="utf-8"))
-                ts    = proto.get("timestamp", "")
+                ts = proto.get("timestamp", "")
                 print(f"\n  ✅ APPROVED — ROI {roi_str} > 100%  合格")
                 print(f"     公認プロトコル保存済み: {_PROTOCOL_LOG.name}  ({ts[:10]})")
             except Exception:
@@ -859,10 +958,13 @@ def cmd_status() -> None:
             print("     詳細分析 → py scripts/evaluate_elite_results.py")
         else:
             print(f"\n  ✅ APPROVED — ROI {roi_str} > 100%  合格")
-            print("     公認プロトコル確定 → py scripts/evaluate_elite_results.py で保存してください")
+            print(
+                "     公認プロトコル確定 → py scripts/evaluate_elite_results.py で保存してください"
+            )
 
 
 # ── main ─────────────────────────────────────────────────────────────────
+
 
 def main() -> None:
     parser = argparse.ArgumentParser(
@@ -870,18 +972,31 @@ def main() -> None:
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=__doc__,
     )
-    parser.add_argument("--skip-scrape",       action="store_true",
-                        help="2021年スクレイプをスキップ")
-    parser.add_argument("--skip-train",        action="store_true",
-                        help="全モデル再学習をスキップ")
-    parser.add_argument("--run-walk-forward",  action="store_true",
-                        help="本命/卍 Walk-forward シミュレーション実行（低速: 数時間）")
-    parser.add_argument("--status",            action="store_true",
-                        help="データステータス確認のみ")
-    parser.add_argument("--report-only",       action="store_true",
-                        help="レポート生成のみ（スクレイプ・再学習・バックテストをスキップ）")
-    parser.add_argument("--output",            type=Path, default=None,
-                        help="レポートの出力先 (default: docs/umalogi_5year_report_YYYYMMDD.md)")
+    parser.add_argument(
+        "--skip-scrape", action="store_true", help="2021年スクレイプをスキップ"
+    )
+    parser.add_argument(
+        "--skip-train", action="store_true", help="全モデル再学習をスキップ"
+    )
+    parser.add_argument(
+        "--run-walk-forward",
+        action="store_true",
+        help="本命/卍 Walk-forward シミュレーション実行（低速: 数時間）",
+    )
+    parser.add_argument(
+        "--status", action="store_true", help="データステータス確認のみ"
+    )
+    parser.add_argument(
+        "--report-only",
+        action="store_true",
+        help="レポート生成のみ（スクレイプ・再学習・バックテストをスキップ）",
+    )
+    parser.add_argument(
+        "--output",
+        type=Path,
+        default=None,
+        help="レポートの出力先 (default: docs/umalogi_5year_report_YYYYMMDD.md)",
+    )
     args = parser.parse_args()
 
     if args.status:
@@ -890,7 +1005,7 @@ def main() -> None:
 
     start_all = datetime.now()
     print(f"\n{'=' * 62}")
-    print(f"  UMALOGI — 5カ年全モデル再学習・バックテストパイプライン")
+    print("  UMALOGI — 5カ年全モデル再学習・バックテストパイプライン")
     print(f"  開始: {start_all.strftime('%Y-%m-%d %H:%M:%S')}")
     print(f"{'=' * 62}")
 
@@ -899,7 +1014,7 @@ def main() -> None:
 
     if args.report_only:
         alpha_results = []
-        main_results  = phase4_main_walkforward(run_slow=False)
+        main_results = phase4_main_walkforward(run_slow=False)
         phase5_generate_report(status, alpha_results, main_results, args.output)
         return
 
@@ -918,7 +1033,9 @@ def main() -> None:
     main_results = phase4_main_walkforward(run_slow=args.run_walk_forward)
 
     # Phase 5: レポート生成
-    report_path = phase5_generate_report(status, alpha_results, main_results, args.output)
+    report_path = phase5_generate_report(
+        status, alpha_results, main_results, args.output
+    )
 
     elapsed = (datetime.now() - start_all).total_seconds() / 60
     print(f"\n{'=' * 62}")

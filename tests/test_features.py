@@ -91,7 +91,9 @@ class TestLeakPrevention:
         assert not df.empty, "特徴量 DataFrame が空です"
         assert "rank" not in df.columns, "'rank' 列がリークしています"
 
-    def test_finish_time列が含まれない(self, db_single_leak: sqlite3.Connection) -> None:
+    def test_finish_time列が含まれない(
+        self, db_single_leak: sqlite3.Connection
+    ) -> None:
         fb = FeatureBuilder(db_single_leak)
         df = fb.build_race_features_for_simulate("2024010101")
         assert "finish_time" not in df.columns, "'finish_time' 列がリークしています"
@@ -143,6 +145,7 @@ class TestLeakPrevention:
 
 # ── フィクスチャ ──────────────────────────────────────────────────
 
+
 @pytest.fixture()
 def db() -> sqlite3.Connection:
     conn = init_db(db_path=Path(":memory:"))
@@ -166,31 +169,46 @@ def seeded_db(db: sqlite3.Connection) -> sqlite3.Connection:
         condition="良",
         results=[
             HorseResult(
-                rank=1, horse_name="ミュージアムマイル",
+                rank=1,
+                horse_name="ミュージアムマイル",
                 horse_id="2022105081",
-                gate_number=1, horse_number=1,
+                gate_number=1,
+                horse_number=1,
                 sex_age="牡3",
-                weight_carried=56.0, jockey="Ｃ．デム",
+                weight_carried=56.0,
+                jockey="Ｃ．デム",
                 trainer="国枝栄",
-                finish_time="2:31.5", margin=None,
-                popularity=3, win_odds=3.8, horse_weight=502,
+                finish_time="2:31.5",
+                margin=None,
+                popularity=3,
+                win_odds=3.8,
+                horse_weight=502,
                 horse_weight_diff=2,
-                pedigree=PedigreeInfo(sire="リオンディーズ",
-                                      dam="ミュージアムヒル",
-                                      dam_sire="ハーツクライ"),
+                pedigree=PedigreeInfo(
+                    sire="リオンディーズ",
+                    dam="ミュージアムヒル",
+                    dam_sire="ハーツクライ",
+                ),
             ),
             HorseResult(
-                rank=2, horse_name="レガレイラ",
+                rank=2,
+                horse_name="レガレイラ",
                 horse_id="2021105898",
-                gate_number=2, horse_number=2,
+                gate_number=2,
+                horse_number=2,
                 sex_age="牝4",
-                weight_carried=55.0, jockey="横山武史",
+                weight_carried=55.0,
+                jockey="横山武史",
                 trainer="木村哲也",
-                finish_time="2:31.7", margin="0.2",
-                popularity=1, win_odds=3.3, horse_weight=482,
+                finish_time="2:31.7",
+                margin="0.2",
+                popularity=1,
+                win_odds=3.3,
+                horse_weight=482,
                 horse_weight_diff=-4,
-                pedigree=PedigreeInfo(sire="スワーヴリチャード",
-                                      dam="ロカ", dam_sire="ハービンジャー"),
+                pedigree=PedigreeInfo(
+                    sire="スワーヴリチャード", dam="ロカ", dam_sire="ハービンジャー"
+                ),
             ),
         ],
     )
@@ -207,16 +225,39 @@ def seeded_db(db: sqlite3.Connection) -> sqlite3.Connection:
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
             [
-                ("202506050811", 1, 1, "2022105081", "ミュージアムマイル",
-                 "牡3", 56.0, "Ｃ．デム", "国枝栄", 502, 2),
-                ("202506050811", 2, 2, "2021105898", "レガレイラ",
-                 "牝4", 55.0, "横山武史", "木村哲也", 482, -4),
+                (
+                    "202506050811",
+                    1,
+                    1,
+                    "2022105081",
+                    "ミュージアムマイル",
+                    "牡3",
+                    56.0,
+                    "Ｃ．デム",
+                    "国枝栄",
+                    502,
+                    2,
+                ),
+                (
+                    "202506050811",
+                    2,
+                    2,
+                    "2021105898",
+                    "レガレイラ",
+                    "牝4",
+                    55.0,
+                    "横山武史",
+                    "木村哲也",
+                    482,
+                    -4,
+                ),
             ],
         )
     return db
 
 
 # ── ユーティリティ関数 ────────────────────────────────────────────
+
 
 class TestDistanceBand:
     def test_スプリント(self) -> None:
@@ -247,6 +288,7 @@ class TestParseSex:
 
 
 # ── FeatureBuilder ────────────────────────────────────────────────
+
 
 class TestFeatureBuilder:
     def test_DataFrameの行数は出走頭数(self, seeded_db: sqlite3.Connection) -> None:
@@ -279,7 +321,7 @@ class TestFeatureBuilder:
         df = fb.build_race_features("202506050811")
         sex_codes = df.set_index("horse_name")["sex_code"]
         assert sex_codes["ミュージアムマイル"] == 0  # 牡
-        assert sex_codes["レガレイラ"] == 1          # 牝
+        assert sex_codes["レガレイラ"] == 1  # 牝
 
     def test_win_rate_allが計算される(self, seeded_db: sqlite3.Connection) -> None:
         """過去成績がある馬は win_rate_all が 0〜1 の範囲。"""
@@ -294,14 +336,18 @@ class TestFeatureBuilder:
         with pytest.raises(ValueError, match="race_id"):
             fb.build_race_features("999999999999")
 
-    def test_sire_encodedが異なる父に異なる整数を返す(self, seeded_db: sqlite3.Connection) -> None:
+    def test_sire_encodedが異なる父に異なる整数を返す(
+        self, seeded_db: sqlite3.Connection
+    ) -> None:
         fb = FeatureBuilder(seeded_db)
         df = fb.build_race_features("202506050811")
         codes = df["sire_encoded"].tolist()
         # 2頭いて父が異なる → エンコード値も異なる
         assert codes[0] != codes[1]
 
-    def test_realtime_oddsなしでもwin_oddsはNone(self, seeded_db: sqlite3.Connection) -> None:
+    def test_realtime_oddsなしでもwin_oddsはNone(
+        self, seeded_db: sqlite3.Connection
+    ) -> None:
         fb = FeatureBuilder(seeded_db)
         df = fb.build_race_features("202506050811")
         # realtime_odds テーブルが空なので None になる
@@ -309,6 +355,7 @@ class TestFeatureBuilder:
 
 
 # ── insert_entries / insert_realtime_odds の DB テスト ──────────
+
 
 class TestInsertEntries:
     def test_出馬表を保存してカウントを返す(self, db: sqlite3.Connection) -> None:
@@ -324,10 +371,15 @@ class TestInsertEntries:
 
         entries = [
             EntryHorse(
-                horse_number=1, gate_number=1, horse_id=None,
-                horse_name="テスト馬A", sex_age="牡3",
-                weight_carried=56.0, jockey="テスト騎手",
-                trainer="テスト調教師", horse_weight=500,
+                horse_number=1,
+                gate_number=1,
+                horse_id=None,
+                horse_name="テスト馬A",
+                sex_age="牡3",
+                weight_carried=56.0,
+                jockey="テスト騎手",
+                trainer="テスト調教師",
+                horse_weight=500,
                 horse_weight_diff=0,
             ),
         ]
@@ -350,18 +402,30 @@ class TestInsertEntries:
         from src.scraper.entry_table import EntryHorse
 
         base = EntryHorse(
-            horse_number=1, gate_number=1, horse_id=None,
-            horse_name="テスト馬A", sex_age="牡3",
-            weight_carried=56.0, jockey="騎手A",
-            trainer="調教師A", horse_weight=500, horse_weight_diff=0,
+            horse_number=1,
+            gate_number=1,
+            horse_id=None,
+            horse_name="テスト馬A",
+            sex_age="牡3",
+            weight_carried=56.0,
+            jockey="騎手A",
+            trainer="調教師A",
+            horse_weight=500,
+            horse_weight_diff=0,
         )
         insert_entries(db, "test002", [base])
 
         updated = EntryHorse(
-            horse_number=1, gate_number=1, horse_id=None,
-            horse_name="テスト馬A", sex_age="牡3",
-            weight_carried=57.0, jockey="騎手B",
-            trainer="調教師A", horse_weight=500, horse_weight_diff=0,
+            horse_number=1,
+            gate_number=1,
+            horse_id=None,
+            horse_name="テスト馬A",
+            sex_age="牡3",
+            weight_carried=57.0,
+            jockey="騎手B",
+            trainer="調教師A",
+            horse_weight=500,
+            horse_weight_diff=0,
         )
         insert_entries(db, "test002", [updated])
 
@@ -370,7 +434,9 @@ class TestInsertEntries:
         ).fetchone()
         assert row[0] == 57.0
         assert row[1] == "騎手B"
-        count = db.execute("SELECT COUNT(*) FROM entries WHERE race_id='test002'").fetchone()[0]
+        count = db.execute(
+            "SELECT COUNT(*) FROM entries WHERE race_id='test002'"
+        ).fetchone()[0]
         assert count == 1  # 重複なし
 
 
@@ -386,13 +452,24 @@ class TestInsertRealtimeOdds:
         from src.scraper.entry_table import HorseOdds
 
         odds = [
-            HorseOdds(horse_number=1, win_odds=3.8, place_odds_min=2.0,
-                      place_odds_max=3.5, popularity=3),
-            HorseOdds(horse_number=2, win_odds=5.1, place_odds_min=1.5,
-                      place_odds_max=2.8, popularity=1),
+            HorseOdds(
+                horse_number=1,
+                win_odds=3.8,
+                place_odds_min=2.0,
+                place_odds_max=3.5,
+                popularity=3,
+            ),
+            HorseOdds(
+                horse_number=2,
+                win_odds=5.1,
+                place_odds_min=1.5,
+                place_odds_max=2.8,
+                popularity=1,
+            ),
         ]
-        count = insert_realtime_odds(db, "test003", odds,
-                                     horse_name_map={1: "馬A", 2: "馬B"})
+        count = insert_realtime_odds(
+            db, "test003", odds, horse_name_map={1: "馬A", 2: "馬B"}
+        )
         assert count == 2
 
         row = db.execute(
@@ -413,8 +490,15 @@ class TestInsertRealtimeOdds:
         from src.database.init_db import insert_realtime_odds
         from src.scraper.entry_table import HorseOdds
 
-        odds = [HorseOdds(horse_number=1, win_odds=3.8, place_odds_min=None,
-                          place_odds_max=None, popularity=1)]
+        odds = [
+            HorseOdds(
+                horse_number=1,
+                win_odds=3.8,
+                place_odds_min=None,
+                place_odds_max=None,
+                popularity=1,
+            )
+        ]
         insert_realtime_odds(db, "test004", odds)
         insert_realtime_odds(db, "test004", odds)  # 2 回目
 

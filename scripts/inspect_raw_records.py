@@ -24,14 +24,15 @@ if str(_ROOT) not in sys.path:
 
 try:
     from dotenv import load_dotenv
+
     load_dotenv(_ROOT / ".env", override=True)
 except ImportError:
     pass
 
 # ── 定数 ────────────────────────────────────────────────────────────
 TARGET_DATES = {"20260418", "20260419"}
-FROMTIME_DEFAULT = "20260404000000"   # 14 日前 (4/19 - 14d)
-MAX_RECORDS = 100_000                 # 無限ループ防止
+FROMTIME_DEFAULT = "20260404000000"  # 14 日前 (4/19 - 14d)
+MAX_RECORDS = 100_000  # 無限ループ防止
 
 # JVLink が保持する全レコード種別の既知一覧（JV-Data 仕様書より）
 KNOWN_TYPES = {
@@ -55,7 +56,7 @@ KNOWN_TYPES = {
     "TC": "調教タイム（旧）",
     "HC": "坂路調教（旧）",
     "WC": "調教タイム（実）",
-    "WH2":"坂路調教（実）",
+    "WH2": "坂路調教（実）",
     "CS": "特別競走登録",
     "YS": "レース変更",
     "O1": "単勝・複勝オッズ",
@@ -124,22 +125,35 @@ def _dump_hex(raw: bytes, label: str = "", max_bytes: int = 96) -> None:
     print(f"  ─── HEX DUMP {label} ({len(raw)} bytes) ───")
     data = raw[:max_bytes]
     for i in range(0, len(data), 16):
-        chunk = data[i:i + 16]
+        chunk = data[i : i + 16]
         hex_part = " ".join(f"{b:02x}" for b in chunk)
         asc_part = "".join(chr(b) if 0x20 <= b < 0x7F else "." for b in chunk)
         print(f"    {i:4d}  {hex_part:<48s}  {asc_part}")
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="JVLink 生データ調査 (32bit Python 専用)")
-    parser.add_argument("--option",   type=int, default=4,
-                        help="JVOpen オプション: 1=NORMAL, 2=SETUP, 3=TODAY, 4=STORED (デフォルト:4)")
-    parser.add_argument("--dataspec", default="RACE",
-                        help="データ種別 (デフォルト: RACE)")
-    parser.add_argument("--fromtime", default=FROMTIME_DEFAULT,
-                        help=f"from_time YYYYMMDD[hhmmss] (デフォルト: {FROMTIME_DEFAULT})")
-    parser.add_argument("--dump-target", action="store_true",
-                        help="TARGET_DATES に一致したレコードの HEX ダンプを出力する")
+    parser = argparse.ArgumentParser(
+        description="JVLink 生データ調査 (32bit Python 専用)"
+    )
+    parser.add_argument(
+        "--option",
+        type=int,
+        default=4,
+        help="JVOpen オプション: 1=NORMAL, 2=SETUP, 3=TODAY, 4=STORED (デフォルト:4)",
+    )
+    parser.add_argument(
+        "--dataspec", default="RACE", help="データ種別 (デフォルト: RACE)"
+    )
+    parser.add_argument(
+        "--fromtime",
+        default=FROMTIME_DEFAULT,
+        help=f"from_time YYYYMMDD[hhmmss] (デフォルト: {FROMTIME_DEFAULT})",
+    )
+    parser.add_argument(
+        "--dump-target",
+        action="store_true",
+        help="TARGET_DATES に一致したレコードの HEX ダンプを出力する",
+    )
     args = parser.parse_args()
 
     sid = os.getenv("JRAVAN_SID", "")
@@ -162,7 +176,10 @@ def main() -> None:
     try:
         import win32com.client  # type: ignore[import]
     except ImportError:
-        print("[ERROR] pywin32 が見つかりません。32bit Python で実行してください。", file=sys.stderr)
+        print(
+            "[ERROR] pywin32 が見つかりません。32bit Python で実行してください。",
+            file=sys.stderr,
+        )
         sys.exit(1)
 
     jvl = win32com.client.Dispatch("JVDTLab.JVLink.1")
@@ -172,7 +189,7 @@ def main() -> None:
         sys.exit(1)
 
     BUFF_SIZE = 1_000_000
-    buff  = " " * BUFF_SIZE
+    buff = " " * BUFF_SIZE
     fname = " " * 256
 
     # JVOpen
@@ -185,7 +202,9 @@ def main() -> None:
 
     print(f"\nJVOpen → code={open_code}")
     if open_code < 0:
-        print(f"[WARN] JVOpen が負値 ({open_code}) を返しました。データなし / -303 の可能性。")
+        print(
+            f"[WARN] JVOpen が負値 ({open_code}) を返しました。データなし / -303 の可能性。"
+        )
         jvl.JVClose()
         sys.exit(0)
 
@@ -205,19 +224,19 @@ def main() -> None:
         while read_count < MAX_RECORDS:
             result = jvl.JVRead(buff, BUFF_SIZE, fname)
             if isinstance(result, (tuple, list)):
-                code    = int(result[0])
+                code = int(result[0])
                 raw_str = result[1] if len(result) > 1 else buff
-                size    = int(result[2]) if len(result) > 2 else 0
+                size = int(result[2]) if len(result) > 2 else 0
             else:
-                code    = int(result)
+                code = int(result)
                 raw_str = buff
-                size    = 0
+                size = 0
 
-            if code == 0:    # EOF
+            if code == 0:  # EOF
                 break
-            if code == -1:   # ファイル切り替わり
+            if code == -1:  # ファイル切り替わり
                 continue
-            if code == -3:   # ダウンロード中
+            if code == -3:  # ダウンロード中
                 time.sleep(0.5)
                 continue
             if code < 0:
@@ -290,10 +309,10 @@ def main() -> None:
         # 再スキャン
         try:
             result2 = jvl.JVOpen(args.dataspec, from_time, args.option, 0, "")
-            open2   = result2[0] if isinstance(result2, (tuple, list)) else int(result2)
+            open2 = result2[0] if isinstance(result2, (tuple, list)) else int(result2)
         except Exception:
             result2 = jvl.JVOpen(args.dataspec, from_time, args.option)
-            open2   = result2[0] if isinstance(result2, (tuple, list)) else int(result2)
+            open2 = result2[0] if isinstance(result2, (tuple, list)) else int(result2)
 
         if open2 >= 0:
             dumped: set[str] = set()
@@ -304,7 +323,11 @@ def main() -> None:
                     if c2 <= 0:
                         break
                     raw2 = _to_bytes(r2[1] if isinstance(r2, (tuple, list)) else buff)
-                    sz2  = int(r2[2]) if isinstance(r2, (tuple, list)) and len(r2) > 2 else 0
+                    sz2 = (
+                        int(r2[2])
+                        if isinstance(r2, (tuple, list)) and len(r2) > 2
+                        else 0
+                    )
                     if sz2 > 0:
                         raw2 = raw2[:sz2]
                     raw2 = raw2.rstrip(b"\x00")

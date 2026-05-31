@@ -35,10 +35,11 @@ logger = logging.getLogger("fetch_netkeiba")
 
 def get_target_dates(year: int | None, date_from: str, date_to: str) -> list[str]:
     from src.database.init_db import init_db
+
     conn = init_db()
     if year:
         date_from = f"{year}-01-01"
-        date_to   = f"{year}-12-31"
+        date_to = f"{year}-12-31"
     rows = conn.execute(
         """
         SELECT DISTINCT r.date
@@ -55,6 +56,7 @@ def get_target_dates(year: int | None, date_from: str, date_to: str) -> list[str
 def get_missing_dates(date_from: str, date_to: str) -> list[str]:
     """race_results が 1件も存在しない日付だけ返す（再開用）。"""
     from src.database.init_db import init_db
+
     conn = init_db()
     rows = conn.execute(
         """
@@ -75,15 +77,15 @@ def get_missing_dates(date_from: str, date_to: str) -> list[str]:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--year",      type=int, help="対象年（例: 2024）")
+    ap.add_argument("--year", type=int, help="対象年（例: 2024）")
     ap.add_argument("--date-from", default="2024-01-01")
-    ap.add_argument("--date-to",   default="2025-12-31")
-    ap.add_argument("--delay",     type=float, default=1.5, help="リクエスト間隔秒")
-    ap.add_argument("--resume",    action="store_true", help="取得済み日付をスキップ")
+    ap.add_argument("--date-to", default="2025-12-31")
+    ap.add_argument("--delay", type=float, default=1.5, help="リクエスト間隔秒")
+    ap.add_argument("--resume", action="store_true", help="取得済み日付をスキップ")
     args = ap.parse_args()
 
     date_from = f"{args.year}-01-01" if args.year else args.date_from
-    date_to   = f"{args.year}-12-31" if args.year else args.date_to
+    date_to = f"{args.year}-12-31" if args.year else args.date_to
 
     if args.resume:
         dates = get_missing_dates(date_from, date_to)
@@ -112,15 +114,24 @@ def main() -> None:
 
         if i % 10 == 0 or i == len(dates):
             elapsed = time.time() - t0
-            rate    = i / elapsed
+            rate = i / elapsed
             remaining = (len(dates) - i) / rate if rate > 0 else 0
             logger.info(
                 "進捗: %d/%d日 保存=%d (%.2f日/秒, 残り%.0f分)",
-                i, len(dates), total_saved, rate, remaining / 60,
+                i,
+                len(dates),
+                total_saved,
+                rate,
+                remaining / 60,
             )
 
     elapsed_total = time.time() - t0
-    logger.info("完了: %d日処理, %d レース保存, 所要%.1f分", len(dates), total_saved, elapsed_total / 60)
+    logger.info(
+        "完了: %d日処理, %d レース保存, 所要%.1f分",
+        len(dates),
+        total_saved,
+        elapsed_total / 60,
+    )
 
 
 if __name__ == "__main__":

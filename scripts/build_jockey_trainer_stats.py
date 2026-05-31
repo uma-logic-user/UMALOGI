@@ -9,6 +9,7 @@ jockey_stats / trainer_stats テーブルを構築する。
     py scripts/build_jockey_trainer_stats.py --years 1  # 直近1年
     py scripts/build_jockey_trainer_stats.py --force     # 既存データをクリアして再構築
 """
+
 from __future__ import annotations
 
 import argparse
@@ -79,10 +80,10 @@ def _compute_stats(
     ).fetchall()
 
     # ── 調教師統計 ─────────────────────────────────────────────────────
-    sql_trainer = sql_jockey.replace("rr.jockey", "rr.trainer").replace(
-        "rr.jockey IS NOT NULL", "rr.trainer IS NOT NULL"
-    ).replace(
-        "rr.jockey != ''", "rr.trainer != ''"
+    sql_trainer = (
+        sql_jockey.replace("rr.jockey", "rr.trainer")
+        .replace("rr.jockey IS NOT NULL", "rr.trainer IS NOT NULL")
+        .replace("rr.jockey != ''", "rr.trainer != ''")
     )
     trainer_rows = conn.execute(
         sql_trainer,
@@ -99,7 +100,7 @@ def build_stats(
 ) -> None:
     conn = sqlite3.connect(db_path)
     cutoff_date = (date.today() - timedelta(days=365 * years)).isoformat()
-    cutoff_30d  = (date.today() - timedelta(days=30)).isoformat()
+    cutoff_30d = (date.today() - timedelta(days=30)).isoformat()
 
     if force:
         conn.execute("DELETE FROM jockey_stats")
@@ -157,7 +158,7 @@ def build_stats(
     ).fetchall()
     print("\n勝率トップ3（騎手・コース別）:")
     for r in top3:
-        print(f"  {r[0]} @ {r[1]} ({r[2]}) : {r[3]}戦 勝率{r[4]*100:.1f}%")
+        print(f"  {r[0]} @ {r[1]} ({r[2]}) : {r[3]}戦 勝率{r[4] * 100:.1f}%")
 
     conn.close()
 
@@ -165,7 +166,9 @@ def build_stats(
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--years", type=int, default=3, help="集計年数 (デフォルト3年)")
-    parser.add_argument("--force", action="store_true", help="既存データをクリアして再構築")
+    parser.add_argument(
+        "--force", action="store_true", help="既存データをクリアして再構築"
+    )
     parser.add_argument("--db", default=DB_PATH)
     args = parser.parse_args()
     build_stats(db_path=args.db, years=args.years, force=args.force)

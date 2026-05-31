@@ -13,6 +13,7 @@ scripts/ev_backtest_vectorized.py — EV 特化ベクトル化バックテスト
     py scripts/ev_backtest_vectorized.py --grid-search
     py scripts/ev_backtest_vectorized.py --grid-search --top-n 5
 """
+
 from __future__ import annotations
 
 import argparse
@@ -37,21 +38,22 @@ _DB_PATH = _ROOT / "data" / "umalogi.db"
 # バックテスト定数（変更はここだけ）
 # ─────────────────────────────────────────────────────────────────────────────
 
+
 class _BacktestConstants:
     """バックテストパラメータ定数（クラス定数で一元管理）。"""
 
-    KELLY_FRACTION:   float = 0.25      # フラクショナル Kelly の係数
-    KELLY_CAP:        float = 0.25      # Kelly 比率の上限
-    INITIAL_BANKROLL: float = 100_000.0 # 初期資金（円）
-    MIN_BET:          float = 100.0     # 最小賭け金（円）
-    MAX_BET:          float = 10_000.0  # 最大賭け金（円）
+    KELLY_FRACTION: float = 0.25  # フラクショナル Kelly の係数
+    KELLY_CAP: float = 0.25  # Kelly 比率の上限
+    INITIAL_BANKROLL: float = 100_000.0  # 初期資金（円）
+    MIN_BET: float = 100.0  # 最小賭け金（円）
+    MAX_BET: float = 10_000.0  # 最大賭け金（円）
 
     # JRA 控除率（単勝ベース）
-    JRA_WIN_TAKEOUT:  float = 0.20      # 単勝控除率 20%
+    JRA_WIN_TAKEOUT: float = 0.20  # 単勝控除率 20%
 
     # グリッドサーチ範囲
     GRID_EV_THRESHOLDS: list[float] = [1.0, 1.2, 1.5, 2.0]
-    GRID_KELLY_FRACS:   list[float] = [0.10, 0.25, 0.50]
+    GRID_KELLY_FRACS: list[float] = [0.10, 0.25, 0.50]
 
 
 _BC = _BacktestConstants()
@@ -60,6 +62,7 @@ _BC = _BacktestConstants()
 # ─────────────────────────────────────────────────────────────────────────────
 # データロード
 # ─────────────────────────────────────────────────────────────────────────────
+
 
 def load_ev_matrix(
     conn: sqlite3.Connection,
@@ -113,18 +116,23 @@ def load_ev_matrix(
     """
     df = pd.read_sql(sql, conn, params=params)
 
-    df["race_date"]       = pd.to_datetime(df.get("race_date"), errors="coerce")
-    df["expected_value"]  = pd.to_numeric(df["expected_value"],  errors="coerce").fillna(0.0)
-    df["win_odds"]        = pd.to_numeric(df["win_odds"],        errors="coerce").fillna(1.01)
-    df["payout"]          = pd.to_numeric(df["payout"],          errors="coerce").fillna(0.0)
-    df["recommended_bet"] = pd.to_numeric(df["recommended_bet"], errors="coerce").fillna(100.0)
-    df["is_hit"]          = pd.to_numeric(df["is_hit"],          errors="coerce").fillna(0.0)
+    df["race_date"] = pd.to_datetime(df.get("race_date"), errors="coerce")
+    df["expected_value"] = pd.to_numeric(df["expected_value"], errors="coerce").fillna(
+        0.0
+    )
+    df["win_odds"] = pd.to_numeric(df["win_odds"], errors="coerce").fillna(1.01)
+    df["payout"] = pd.to_numeric(df["payout"], errors="coerce").fillna(0.0)
+    df["recommended_bet"] = pd.to_numeric(
+        df["recommended_bet"], errors="coerce"
+    ).fillna(100.0)
+    df["is_hit"] = pd.to_numeric(df["is_hit"], errors="coerce").fillna(0.0)
     return df
 
 
 # ─────────────────────────────────────────────────────────────────────────────
 # EV ベクトル計算
 # ─────────────────────────────────────────────────────────────────────────────
+
 
 def compute_ev_vectorized(
     df: pd.DataFrame,
@@ -151,22 +159,24 @@ def compute_ev_vectorized(
         return prob * odds
     else:
         # expected_value が EV として保存済みのケース
-        return pd.to_numeric(df.get("expected_value", pd.Series([0.0] * len(df))),
-                             errors="coerce").fillna(0.0)
+        return pd.to_numeric(
+            df.get("expected_value", pd.Series([0.0] * len(df))), errors="coerce"
+        ).fillna(0.0)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Kelly シミュレーション（np.cumprod 専用実装・ループ禁止）
 # ─────────────────────────────────────────────────────────────────────────────
 
+
 def simulate_kelly_bankroll(
-    ev_series:         pd.Series,
-    is_hit_series:     pd.Series,
-    payout_series:     pd.Series,
-    win_odds_series:   pd.Series,
-    initial_bankroll:  float = _BC.INITIAL_BANKROLL,
-    kelly_fraction:    float = _BC.KELLY_FRACTION,
-    kelly_cap:         float = _BC.KELLY_CAP,
+    ev_series: pd.Series,
+    is_hit_series: pd.Series,
+    payout_series: pd.Series,
+    win_odds_series: pd.Series,
+    initial_bankroll: float = _BC.INITIAL_BANKROLL,
+    kelly_fraction: float = _BC.KELLY_FRACTION,
+    kelly_cap: float = _BC.KELLY_CAP,
 ) -> pd.Series:
     """Kelly 基準に基づく資金推移を np.cumprod で計算する。
 
@@ -193,9 +203,9 @@ def simulate_kelly_bankroll(
     Returns:
         資金推移 Series（index は入力と同一、値は絶対資金額）
     """
-    ev   = np.asarray(ev_series,        dtype=float)
-    hit  = np.asarray(is_hit_series,    dtype=float)
-    odds = np.asarray(win_odds_series,  dtype=float)
+    ev = np.asarray(ev_series, dtype=float)
+    hit = np.asarray(is_hit_series, dtype=float)
+    odds = np.asarray(win_odds_series, dtype=float)
     odds = np.where(odds < 1.01, 1.01, odds)
 
     b = odds - 1.0
@@ -204,8 +214,8 @@ def simulate_kelly_bankroll(
     kelly = np.clip(kelly_raw * kelly_fraction, 0.0, kelly_cap)
 
     # 各ベットの資金倍率
-    win_multiplier  = 1.0 + kelly * b   # 的中時
-    lose_multiplier = 1.0 - kelly       # 外れ時
+    win_multiplier = 1.0 + kelly * b  # 的中時
+    lose_multiplier = 1.0 - kelly  # 外れ時
 
     # np.cumprod で資金倍率を累積（ループなし）
     multiplier = np.where(hit > 0.5, win_multiplier, lose_multiplier)
@@ -218,6 +228,7 @@ def simulate_kelly_bankroll(
 # ─────────────────────────────────────────────────────────────────────────────
 # Sharpe レシオ・最大ドローダウン
 # ─────────────────────────────────────────────────────────────────────────────
+
 
 def compute_sharpe_ratio(
     bankroll: pd.Series,
@@ -266,10 +277,11 @@ def compute_max_drawdown(bankroll: pd.Series) -> float:
 # グリッドサーチ
 # ─────────────────────────────────────────────────────────────────────────────
 
+
 def grid_search_ev_threshold(
     df: pd.DataFrame,
     ev_thresholds: list[float] | None = None,
-    kelly_fracs:   list[float] | None = None,
+    kelly_fracs: list[float] | None = None,
 ) -> pd.DataFrame:
     """EV 閾値 × Kelly 係数 グリッドサーチを実行する。
 
@@ -285,7 +297,7 @@ def grid_search_ev_threshold(
         グリッドサーチ結果 DataFrame（Sharpe レシオ降順）
     """
     ev_thresholds = ev_thresholds or _BC.GRID_EV_THRESHOLDS
-    kelly_fracs   = kelly_fracs   or _BC.GRID_KELLY_FRACS
+    kelly_fracs = kelly_fracs or _BC.GRID_KELLY_FRACS
 
     results: list[dict] = []
 
@@ -296,22 +308,22 @@ def grid_search_ev_threshold(
 
         for kf in kelly_fracs:
             bankroll = simulate_kelly_bankroll(
-                ev_series        = subset["expected_value"],
-                is_hit_series    = subset["is_hit"],
-                payout_series    = subset["payout"],
-                win_odds_series  = subset["win_odds"].clip(lower=1.01),
-                kelly_fraction   = kf,
+                ev_series=subset["expected_value"],
+                is_hit_series=subset["is_hit"],
+                payout_series=subset["payout"],
+                win_odds_series=subset["win_odds"].clip(lower=1.01),
+                kelly_fraction=kf,
             )
 
-            n_bets       = len(subset)
-            n_hits       = int(subset["is_hit"].sum())
-            total_bet    = float(subset["recommended_bet"].clip(lower=100.0).sum())
+            n_bets = len(subset)
+            n_hits = int(subset["is_hit"].sum())
+            total_bet = float(subset["recommended_bet"].clip(lower=100.0).sum())
             total_payout = float(subset.loc[subset["is_hit"] > 0.5, "payout"].sum())
-            roi          = total_payout / total_bet if total_bet > 0 else 0.0
+            roi = total_payout / total_bet if total_bet > 0 else 0.0
 
             sharpe = compute_sharpe_ratio(bankroll)
-            mdd    = compute_max_drawdown(bankroll)
-            final  = float(bankroll.iloc[-1])
+            mdd = compute_max_drawdown(bankroll)
+            final = float(bankroll.iloc[-1])
 
             n_days = 365
             if "race_date" in subset.columns:
@@ -321,26 +333,38 @@ def grid_search_ev_threshold(
 
             ann_roi = (roi ** (365.0 / n_days)) - 1.0 if roi > 0 else 0.0
 
-            results.append({
-                "ev_threshold":   ev_thr,
-                "kelly_fraction": kf,
-                "n_bets":         n_bets,
-                "n_hits":         n_hits,
-                "hit_rate":       n_hits / n_bets if n_bets > 0 else 0.0,
-                "total_profit":   total_payout - total_bet,
-                "roi":            roi,
-                "sharpe_ratio":   sharpe,
-                "max_drawdown":   mdd,
-                "final_bankroll": final,
-                "annualized_roi": ann_roi,
-            })
+            results.append(
+                {
+                    "ev_threshold": ev_thr,
+                    "kelly_fraction": kf,
+                    "n_bets": n_bets,
+                    "n_hits": n_hits,
+                    "hit_rate": n_hits / n_bets if n_bets > 0 else 0.0,
+                    "total_profit": total_payout - total_bet,
+                    "roi": roi,
+                    "sharpe_ratio": sharpe,
+                    "max_drawdown": mdd,
+                    "final_bankroll": final,
+                    "annualized_roi": ann_roi,
+                }
+            )
 
     if not results:
-        return pd.DataFrame(columns=[
-            "ev_threshold", "kelly_fraction", "n_bets", "n_hits",
-            "hit_rate", "total_profit", "roi", "sharpe_ratio",
-            "max_drawdown", "final_bankroll", "annualized_roi",
-        ])
+        return pd.DataFrame(
+            columns=[
+                "ev_threshold",
+                "kelly_fraction",
+                "n_bets",
+                "n_hits",
+                "hit_rate",
+                "total_profit",
+                "roi",
+                "sharpe_ratio",
+                "max_drawdown",
+                "final_bankroll",
+                "annualized_roi",
+            ]
+        )
 
     return pd.DataFrame(results).sort_values("sharpe_ratio", ascending=False)
 
@@ -349,20 +373,24 @@ def grid_search_ev_threshold(
 # CLI
 # ─────────────────────────────────────────────────────────────────────────────
 
+
 def main() -> None:
     p = argparse.ArgumentParser(description="EV ベクトル化バックテストシミュレーター")
-    p.add_argument("--ev-min",         type=float, default=1.0,
-                   help="最小 EV 閾値（デフォルト: 1.0）")
-    p.add_argument("--kelly-fraction", type=float, default=_BC.KELLY_FRACTION,
-                   help="Kelly 係数（デフォルト: 0.25）")
-    p.add_argument("--model",          type=str,   default=None,
-                   help="モデルタイプフィルタ")
-    p.add_argument("--since",          type=str,   default=None,
-                   help="開始日 YYYY-MM-DD")
-    p.add_argument("--grid-search",    action="store_true",
-                   help="グリッドサーチモード")
-    p.add_argument("--top-n",          type=int,   default=10,
-                   help="グリッドサーチ表示件数（デフォルト: 10）")
+    p.add_argument(
+        "--ev-min", type=float, default=1.0, help="最小 EV 閾値（デフォルト: 1.0）"
+    )
+    p.add_argument(
+        "--kelly-fraction",
+        type=float,
+        default=_BC.KELLY_FRACTION,
+        help="Kelly 係数（デフォルト: 0.25）",
+    )
+    p.add_argument("--model", type=str, default=None, help="モデルタイプフィルタ")
+    p.add_argument("--since", type=str, default=None, help="開始日 YYYY-MM-DD")
+    p.add_argument("--grid-search", action="store_true", help="グリッドサーチモード")
+    p.add_argument(
+        "--top-n", type=int, default=10, help="グリッドサーチ表示件数（デフォルト: 10）"
+    )
     args = p.parse_args()
 
     if not _DB_PATH.exists():
@@ -417,17 +445,17 @@ def main() -> None:
             return
 
         bankroll = simulate_kelly_bankroll(
-            ev_series        = filtered["expected_value"],
-            is_hit_series    = filtered["is_hit"],
-            payout_series    = filtered["payout"],
-            win_odds_series  = filtered["win_odds"].clip(lower=1.01),
-            kelly_fraction   = args.kelly_fraction,
+            ev_series=filtered["expected_value"],
+            is_hit_series=filtered["is_hit"],
+            payout_series=filtered["payout"],
+            win_odds_series=filtered["win_odds"].clip(lower=1.01),
+            kelly_fraction=args.kelly_fraction,
         )
 
-        n_hits       = int(filtered["is_hit"].sum())
-        total_bet    = float(filtered["recommended_bet"].clip(lower=100.0).sum())
+        n_hits = int(filtered["is_hit"].sum())
+        total_bet = float(filtered["recommended_bet"].clip(lower=100.0).sum())
         total_payout = float(filtered.loc[filtered["is_hit"] > 0.5, "payout"].sum())
-        roi          = total_payout / total_bet if total_bet > 0 else 0.0
+        roi = total_payout / total_bet if total_bet > 0 else 0.0
 
         print(f"\n{'=' * 50}")
         print(f"  件数:             {len(filtered):,} 件")

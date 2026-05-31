@@ -19,6 +19,7 @@ Usage:
     py scripts/self_healing_monitor.py --interval 3 # チェック間隔を変更（分）
     py scripts/self_healing_monitor.py --date 20260510  # 対象日を指定
 """
+
 from __future__ import annotations
 
 import argparse
@@ -29,7 +30,7 @@ import sqlite3
 import subprocess
 import sys
 import time
-from datetime import date, datetime
+from datetime import date
 from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8", line_buffering=True)
@@ -40,6 +41,7 @@ sys.path.insert(0, str(_ROOT))
 
 try:
     from dotenv import load_dotenv
+
     load_dotenv(_ROOT / ".env", override=False)
 except ImportError:
     pass
@@ -53,20 +55,21 @@ logger = logging.getLogger("self_heal")
 
 # ── 定数 ───────────────────────────────────────────────────────────────────
 
-_DB_PATH            = _ROOT / "data" / "umalogi.db"
-_REPAIR_SCRIPT      = _ROOT / "scripts" / "repair_race_data.py"
-_SYNC_SCRIPT        = _ROOT / "scripts" / "data_sync.py"
-_PIPELINE_CMD       = [sys.executable, "-m", "src.main_pipeline", "prerace"]
-_REPAIR_CMD_BASE    = [sys.executable, str(_REPAIR_SCRIPT)]
-_SYNC_CMD_BASE      = [sys.executable, str(_SYNC_SCRIPT)]
+_DB_PATH = _ROOT / "data" / "umalogi.db"
+_REPAIR_SCRIPT = _ROOT / "scripts" / "repair_race_data.py"
+_SYNC_SCRIPT = _ROOT / "scripts" / "data_sync.py"
+_PIPELINE_CMD = [sys.executable, "-m", "src.main_pipeline", "prerace"]
+_REPAIR_CMD_BASE = [sys.executable, str(_REPAIR_SCRIPT)]
+_SYNC_CMD_BASE = [sys.executable, str(_SYNC_SCRIPT)]
 
-_REPAIR_TIMEOUT     = 300   # repair_race_data タイムアウト（秒）
-_PIPELINE_TIMEOUT   = 120   # prerace pipeline タイムアウト（秒）
-_COOLDOWN_SECS      = 180   # 同一 race_id への連続修復間隔（秒）
+_REPAIR_TIMEOUT = 300  # repair_race_data タイムアウト（秒）
+_PIPELINE_TIMEOUT = 120  # prerace pipeline タイムアウト（秒）
+_COOLDOWN_SECS = 180  # 同一 race_id への連続修復間隔（秒）
 
 # 文字化けパターン（"?" が1文字以上続く、または制御文字）
 import re
-_GARBLED_PATTERN = re.compile(r'\?[^\s\?]{0,4}\?|^\s*$')
+
+_GARBLED_PATTERN = re.compile(r"\?[^\s\?]{0,4}\?|^\s*$")
 
 _shutdown_flag = False
 
@@ -77,18 +80,18 @@ def _signal_handler(sig: int, frame: object) -> None:
     _shutdown_flag = True
 
 
-signal.signal(signal.SIGINT,  _signal_handler)
+signal.signal(signal.SIGINT, _signal_handler)
 signal.signal(signal.SIGTERM, _signal_handler)
 
 
 # ── Discord 通知 ───────────────────────────────────────────────────────────
 
+
 def _discord(msg: str, *, channel: str = "system") -> None:
     """Discord にメッセージ送信。channel='system' または 'pred'。"""
     if channel == "system":
-        webhook_url = (
-            os.getenv("DISCORD_SYSTEM_WEBHOOK_URL", "")
-            or os.getenv("DISCORD_WEBHOOK_URL", "")
+        webhook_url = os.getenv("DISCORD_SYSTEM_WEBHOOK_URL", "") or os.getenv(
+            "DISCORD_WEBHOOK_URL", ""
         )
     else:
         webhook_url = os.getenv("DISCORD_WEBHOOK_URL", "")
@@ -97,6 +100,7 @@ def _discord(msg: str, *, channel: str = "system") -> None:
         return
     try:
         import requests
+
         resp = requests.post(webhook_url, json={"content": msg}, timeout=10)
         if resp.status_code not in (200, 204):
             logger.warning("Discord 送信失敗: HTTP %d", resp.status_code)
@@ -105,6 +109,7 @@ def _discord(msg: str, *, channel: str = "system") -> None:
 
 
 # ── DB ヘルパー ────────────────────────────────────────────────────────────
+
 
 def _get_conn() -> sqlite3.Connection:
     conn = sqlite3.connect(str(_DB_PATH))
@@ -120,11 +125,12 @@ def _is_garbled(name: str | None) -> bool:
 
 # ── 監視ロジック ───────────────────────────────────────────────────────────
 
+
 class AnomalyReport:
     def __init__(self) -> None:
-        self.garbled_races:   list[str] = []   # race_id
-        self.metadata_races:  list[str] = []   # distance=0 or surface=''
-        self.no_pred_races:   list[str] = []   # predictions が 0 件
+        self.garbled_races: list[str] = []  # race_id
+        self.metadata_races: list[str] = []  # distance=0 or surface=''
+        self.no_pred_races: list[str] = []  # predictions が 0 件
 
     @property
     def has_anomaly(self) -> bool:
@@ -165,7 +171,7 @@ def check_today(target_date: str) -> AnomalyReport:
             for r in conn.execute(
                 f"""
                 SELECT race_id, COUNT(*) FROM predictions
-                WHERE race_id IN ({','.join('?'*len(race_ids))})
+                WHERE race_id IN ({",".join("?" * len(race_ids))})
                 GROUP BY race_id
                 """,
                 race_ids,
@@ -211,8 +217,11 @@ def heal_metadata(target_date: str, race_ids: list[str]) -> bool:
     logger.info("🔧 メタデータ修復実行: %s", " ".join(cmd))
     try:
         result = subprocess.run(
-            cmd, capture_output=True, text=True,
-            encoding="utf-8", timeout=_REPAIR_TIMEOUT,
+            cmd,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            timeout=_REPAIR_TIMEOUT,
             cwd=str(_ROOT),
         )
         if result.returncode == 0:
@@ -241,8 +250,11 @@ def heal_predictions(race_ids: list[str]) -> tuple[int, int]:
         logger.info("🔧 予想補完実行: %s", race_id)
         try:
             result = subprocess.run(
-                cmd, capture_output=True, text=True,
-                encoding="utf-8", timeout=_PIPELINE_TIMEOUT,
+                cmd,
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                timeout=_PIPELINE_TIMEOUT,
                 cwd=str(_ROOT),
             )
             if result.returncode == 0:
@@ -268,8 +280,11 @@ def heal_data_sync(target_date: str) -> bool:
     logger.info("🔧 data_sync 実行: %s", " ".join(cmd))
     try:
         result = subprocess.run(
-            cmd, capture_output=True, text=True,
-            encoding="utf-8", timeout=_REPAIR_TIMEOUT,
+            cmd,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            timeout=_REPAIR_TIMEOUT,
             cwd=str(_ROOT),
         )
         if result.returncode == 0:
@@ -285,6 +300,7 @@ def heal_data_sync(target_date: str) -> bool:
 
 # ── メインループ ───────────────────────────────────────────────────────────
 
+
 def run_once(target_date: str) -> AnomalyReport:
     """1 回チェックして、異常があれば修復する。結果の report を返す。"""
     logger.info("━━ チェック開始: %s ━━", target_date)
@@ -299,7 +315,8 @@ def run_once(target_date: str) -> AnomalyReport:
     if dirty:
         logger.warning(
             "⚠️ メタデータ異常検知: garbled=%d  metadata=%d",
-            len(report.garbled_races), len(report.metadata_races),
+            len(report.garbled_races),
+            len(report.metadata_races),
         )
         _discord(
             f"⚠️ **[自己修復]** メタデータ異常を検知しました\n"
@@ -334,10 +351,14 @@ def run_once(target_date: str) -> AnomalyReport:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="UMALOGI 自律型データ品質監視・自己修復エンジン")
-    parser.add_argument("--once",     action="store_true", help="1 回だけ実行して終了")
-    parser.add_argument("--interval", type=int, default=5, help="チェック間隔（分、デフォルト 5）")
-    parser.add_argument("--date",     default=None, help="対象日 YYYYMMDD（省略時=本日）")
+    parser = argparse.ArgumentParser(
+        description="UMALOGI 自律型データ品質監視・自己修復エンジン"
+    )
+    parser.add_argument("--once", action="store_true", help="1 回だけ実行して終了")
+    parser.add_argument(
+        "--interval", type=int, default=5, help="チェック間隔（分、デフォルト 5）"
+    )
+    parser.add_argument("--date", default=None, help="対象日 YYYYMMDD（省略時=本日）")
     args = parser.parse_args()
 
     target_date = args.date or date.today().strftime("%Y%m%d")

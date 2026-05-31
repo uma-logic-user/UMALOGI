@@ -6,8 +6,10 @@ cat='7' SE レコードの全バイトを走査し、値 1-18 が出現する AS
 
 py -3.14-32 scripts/probe_se_full.py
 """
+
 from __future__ import annotations
-import os, sys
+import os
+import sys
 from pathlib import Path
 
 _ROOT = Path(__file__).resolve().parents[1]
@@ -16,20 +18,29 @@ sys.stdout.reconfigure(encoding="utf-8")
 
 try:
     from dotenv import load_dotenv
+
     load_dotenv(_ROOT / ".env", override=False)
 except ImportError:
     pass
 
 from src.scraper.jravan_client import (
-    JVLinkClient, OPT_SETUP, DATASPEC_RACE,
-    JVREAD_EOF, JVREAD_FILECHANGE, JVREAD_DOWNLOADING,
-    _make_race_id, _sjis, _int,
+    JVLinkClient,
+    OPT_SETUP,
+    DATASPEC_RACE,
+    JVREAD_EOF,
+    JVREAD_FILECHANGE,
+    JVREAD_DOWNLOADING,
+    _make_race_id,
+    _sjis,
+    _int,
 )
+
 
 def main() -> None:
     sid = os.environ.get("JRAVAN_SID", "")
     if not sid:
-        print("ERROR: JRAVAN_SID 未設定", flush=True); sys.exit(1)
+        print("ERROR: JRAVAN_SID 未設定", flush=True)
+        sys.exit(1)
 
     samples: list[tuple[str, int, bytes]] = []
 
@@ -40,10 +51,17 @@ def main() -> None:
             return
         while len(samples) < 60:
             code, data = client.read_record()
-            if code == JVREAD_EOF: break
-            if code in (JVREAD_FILECHANGE, JVREAD_DOWNLOADING): continue
-            if code < 0 or not data: continue
-            raw = data if isinstance(data, bytes) else data.encode("latin-1", errors="replace")
+            if code == JVREAD_EOF:
+                break
+            if code in (JVREAD_FILECHANGE, JVREAD_DOWNLOADING):
+                continue
+            if code < 0 or not data:
+                continue
+            raw = (
+                data
+                if isinstance(data, bytes)
+                else data.encode("latin-1", errors="replace")
+            )
             if raw[:2].decode("ascii", errors="replace") != "SE":
                 continue
             rid = _make_race_id(raw)
@@ -69,11 +87,13 @@ def main() -> None:
     print("\n--- サンプル10件 ---")
     for rid, uma, raw in samples[:10]:
         cat = raw[2:3].decode("ascii", errors="replace")
-        nm  = _sjis(raw, slice(40, 76)).strip()
+        nm = _sjis(raw, slice(40, 76)).strip()
         print(f"  {rid} 馬番{uma:02d} cat={cat} 馬名={nm}")
 
     # R1のサンプルを拾って全オフセット 1-18 出現位置を列挙
-    r1_samples = [(rid, uma, raw) for rid, uma, raw in samples if rid.endswith("01")][:3]
+    r1_samples = [(rid, uma, raw) for rid, uma, raw in samples if rid.endswith("01")][
+        :3
+    ]
     if not r1_samples:
         r1_samples = samples[:3]
 
@@ -82,7 +102,7 @@ def main() -> None:
         nm = _sjis(raw, slice(40, 76)).strip()
         hits = []
         for i in range(27, min(420, len(raw) - 1)):
-            chunk = raw[i:i+2]
+            chunk = raw[i : i + 2]
             try:
                 v = int(chunk.decode("ascii", errors="replace").strip())
                 if 1 <= v <= 18:
@@ -103,7 +123,7 @@ def main() -> None:
         offset_vals: dict[int, list[int]] = {}
         for uma, raw in race_samps:
             for i in range(27, min(420, len(raw) - 1)):
-                chunk = raw[i:i+2]
+                chunk = raw[i : i + 2]
                 try:
                     v = int(chunk.decode("ascii", errors="replace").strip())
                     if 0 <= v <= 20:
@@ -117,7 +137,9 @@ def main() -> None:
             if len(vals) == n_horses:
                 unique = set(vals)
                 if len(unique) >= max(2, n_horses // 2):
-                    print(f"  offset={off:3d}: {sorted(vals)}  ← rank候補（ばらつきあり）")
+                    print(
+                        f"  offset={off:3d}: {sorted(vals)}  ← rank候補（ばらつきあり）"
+                    )
 
 
 if __name__ == "__main__":

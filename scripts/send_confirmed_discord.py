@@ -1,4 +1,5 @@
 """本日の確定予想をDiscordへ送信するワンショットスクリプト。"""
+
 from __future__ import annotations
 
 import os
@@ -11,6 +12,7 @@ sys.path.insert(0, str(_ROOT))
 sys.stdout.reconfigure(encoding="utf-8")  # type: ignore[attr-defined]
 
 from dotenv import load_dotenv
+
 load_dotenv(_ROOT / ".env", override=False)
 
 TARGET_DATE = "2026-05-09"
@@ -58,6 +60,7 @@ msg = "\n".join(lines)
 webhook_url = os.getenv("DISCORD_WEBHOOK_URL", "")
 if webhook_url:
     import requests  # type: ignore[import]
+
     resp = requests.post(webhook_url, json={"content": msg}, timeout=10)
     print(f"Discord送信: HTTP {resp.status_code}")
 else:

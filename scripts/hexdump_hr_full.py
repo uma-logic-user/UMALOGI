@@ -3,21 +3,34 @@
 
 実行: py -3.14-32 scripts/hexdump_hr_full.py
 """
+
 from __future__ import annotations
-import os, sys, time
-sys.stdout = open(sys.stdout.fileno(), mode="w", encoding="utf-8", errors="replace", closefd=False)
+import os
+import sys
+import time
+
+sys.stdout = open(
+    sys.stdout.fileno(), mode="w", encoding="utf-8", errors="replace", closefd=False
+)
 
 from pathlib import Path
+
 _ROOT = Path(__file__).resolve().parents[1]
 if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
-from src.scraper.jravan_client import JVLinkClient, OPT_NORMAL, JVREAD_EOF, JVREAD_FILECHANGE, JVREAD_DOWNLOADING
+from src.scraper.jravan_client import (
+    JVLinkClient,
+    OPT_NORMAL,
+    JVREAD_EOF,
+    JVREAD_FILECHANGE,
+    JVREAD_DOWNLOADING,
+)
 
 
 def hex_full(data: bytes) -> None:
     for i in range(0, len(data), 16):
-        chunk = data[i:i+16]
+        chunk = data[i : i + 16]
         hex_part = " ".join(f"{b:02X}" for b in chunk)
         asc_part = "".join(chr(b) if 0x20 <= b < 0x7F else "." for b in chunk)
         print(f"  {i:04X}  {hex_part:<47}  {asc_part}")
@@ -29,7 +42,7 @@ def is_complete_hr(data: bytes) -> bool:
     if len(data) < 200:
         return False
     try:
-        tan_amt = int(data[29:34].decode('ascii', 'strict'))
+        tan_amt = int(data[29:34].decode("ascii", "strict"))
         if tan_amt <= 0:
             return False
     except:
@@ -47,29 +60,38 @@ def decode_ascii_safe(data: bytes) -> str:
 def main() -> None:
     env_path = _ROOT / ".env"
     if env_path.exists():
-        for line in env_path.read_text('utf-8', errors='replace').splitlines():
+        for line in env_path.read_text("utf-8", errors="replace").splitlines():
             if "=" in line and not line.startswith("#"):
                 k, _, v = line.partition("=")
                 os.environ.setdefault(k.strip(), v.strip())
 
     sid = os.environ.get("JRAVAN_SID", "")
     if not sid:
-        print("JRAVAN_SID 未設定"); sys.exit(1)
+        print("JRAVAN_SID 未設定")
+        sys.exit(1)
 
     found = []
     with JVLinkClient(sid) as client:
         if client.open("RACE", "20250101000000", OPT_NORMAL) < 0:
-            print("JVOpen失敗"); return
+            print("JVOpen失敗")
+            return
 
         scan = 0
         for _ in range(500000):
             code, data = client.read_record()
-            if code == JVREAD_EOF: break
-            if code == JVREAD_FILECHANGE: continue
-            if code == JVREAD_DOWNLOADING: time.sleep(1); continue
-            if code < 0: break
-            if not data or len(data) < 2: continue
-            if data[:2].decode('ascii','replace') != 'HR': continue
+            if code == JVREAD_EOF:
+                break
+            if code == JVREAD_FILECHANGE:
+                continue
+            if code == JVREAD_DOWNLOADING:
+                time.sleep(1)
+                continue
+            if code < 0:
+                break
+            if not data or len(data) < 2:
+                continue
+            if data[:2].decode("ascii", "replace") != "HR":
+                continue
             scan += 1
             if is_complete_hr(data):
                 found.append(data)
@@ -80,16 +102,16 @@ def main() -> None:
     print(f"\n候補件数: {len(found)} / {scan} HR中")
 
     for idx, data in enumerate(found[:1]):
-        print(f"\n{'='*70}")
-        print(f"HR #{idx+1}  {len(data)} bytes")
-        print(f"race context: {data[11:27].decode('ascii','replace')}")
+        print(f"\n{'=' * 70}")
+        print(f"HR #{idx + 1}  {len(data)} bytes")
+        print(f"race context: {data[11:27].decode('ascii', 'replace')}")
         hex_full(data)
 
         # ASCII全体（印字可能部分）
         print("\n=== ASCII全体（ドットは非印字） ===")
         asc = decode_ascii_safe(data)
         for i in range(0, len(asc), 80):
-            print(f"  [{i:4d}] {asc[i:i+80]}")
+            print(f"  [{i:4d}] {asc[i : i + 80]}")
 
         # 有効エントリを数字のruns（連続数字10桁以上）で探す
         print("\n=== 連続数字ブロック（位置→内容）===")
@@ -100,7 +122,9 @@ def main() -> None:
                 while j < len(data) and (0x30 <= data[j] <= 0x39):
                     j += 1
                 if j - i >= 6:
-                    print(f"  [{i:4d}:{j:4d}] ({j-i:3d}桁) {data[i:j].decode('ascii')}")
+                    print(
+                        f"  [{i:4d}:{j:4d}] ({j - i:3d}桁) {data[i:j].decode('ascii')}"
+                    )
                 i = j
             else:
                 i += 1

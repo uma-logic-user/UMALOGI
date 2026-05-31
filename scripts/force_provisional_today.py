@@ -48,7 +48,8 @@ def main(target_date: str | None = None) -> None:
 
     conn = init_db()
     race_ids: list[str] = [
-        r[0] for r in conn.execute(
+        r[0]
+        for r in conn.execute(
             "SELECT race_id FROM races WHERE date = ? ORDER BY race_id",
             (formatted,),
         ).fetchall()
@@ -64,7 +65,9 @@ def main(target_date: str | None = None) -> None:
         )
         conn.commit()
         if deleted.rowcount:
-            logger.info("既存の暫定予想を削除: %d 件（再生成前クリーン）", deleted.rowcount)
+            logger.info(
+                "既存の暫定予想を削除: %d 件（再生成前クリーン）", deleted.rowcount
+            )
     conn.close()
 
     if not race_ids:
@@ -77,7 +80,7 @@ def main(target_date: str | None = None) -> None:
 
     logger.info("対象レース数: %d", len(race_ids))
     succeeded: list[str] = []
-    failed: list[str]    = []
+    failed: list[str] = []
 
     for race_id in race_ids:
         logger.info("暫定予想開始: %s", race_id)
@@ -95,7 +98,9 @@ def main(target_date: str | None = None) -> None:
                 ev_recs = result.get("ev_recommend", [])
                 logger.info(
                     "完了 %s: %d 頭予想 / EV>=1.0 推奨馬 %d 頭",
-                    race_id, len(horses), len(ev_recs),
+                    race_id,
+                    len(horses),
+                    len(ev_recs),
                 )
                 succeeded.append(race_id)
         except Exception as exc:
@@ -103,16 +108,16 @@ def main(target_date: str | None = None) -> None:
             failed.append(race_id)
 
     print(f"\n{'=' * 60}")
-    print(f"暫定予想強制生成 完了")
+    print("暫定予想強制生成 完了")
     print(f"  対象日  : {formatted}")
     print(f"  成功    : {len(succeeded)} レース")
     print(f"  失敗    : {len(failed)} レース")
     if succeeded:
-        print(f"\n成功レース:")
+        print("\n成功レース:")
         for r in succeeded:
             print(f"  [OK] {r}")
     if failed:
-        print(f"\n失敗レース:")
+        print("\n失敗レース:")
         for r in failed:
             print(f"  [NG] {r}")
     print("=" * 60)

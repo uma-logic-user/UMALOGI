@@ -14,11 +14,11 @@ Usage:
     py -3 scripts/generate_sns_post.py --race-id 202604010203 --note-url https://note.com/xxx
     py -3 scripts/generate_sns_post.py --date 20260503 --pattern b
 """
+
 from __future__ import annotations
 
 import argparse
 import json
-import os
 import random
 import sqlite3
 import sys
@@ -39,14 +39,15 @@ _CARDS_DIR = _ROOT / "outputs" / "cards"
 
 # ── ハッシュタグ定数 ────────────────────────────────────────────────
 _TAGS_COMMON = "#競馬予想 #AI競馬 #UMALOGI"
-_TAGS_HIT    = "#競馬的中 #万馬券 #競馬予想 #AI競馬 #UMALOGI"
-_TAGS_PRE    = "#競馬予想 #AI競馬 #穴馬 #期待値 #UMALOGI"
+_TAGS_HIT = "#競馬的中 #万馬券 #競馬予想 #AI競馬 #UMALOGI"
+_TAGS_PRE = "#競馬予想 #AI競馬 #穴馬 #期待値 #UMALOGI"
 
 # X の文字数制限（URL は 23 文字固定換算）
-_X_LIMIT = 280   # 英字換算。日本語は1文字=2相当なので実質~140文字
+_X_LIMIT = 280  # 英字換算。日本語は1文字=2相当なので実質~140文字
 
 
 # ── DB ヘルパー ──────────────────────────────────────────────────────
+
 
 def _fetch_race_info(conn: sqlite3.Connection, race_id: str) -> dict:
     row = conn.execute(
@@ -56,12 +57,12 @@ def _fetch_race_info(conn: sqlite3.Connection, race_id: str) -> dict:
     if not row:
         return {}
     return {
-        "race_name":   row[0] or "",
-        "venue":       row[1] or "",
+        "race_name": row[0] or "",
+        "venue": row[1] or "",
         "race_number": row[2] or 0,
-        "date":        row[3] or "",
-        "distance":    row[4] or 0,
-        "surface":     row[5] or "",
+        "date": row[3] or "",
+        "distance": row[4] or 0,
+        "surface": row[5] or "",
     }
 
 
@@ -83,11 +84,11 @@ def _fetch_best_hit(conn: sqlite3.Connection, race_id: str) -> dict | None:
         return None
     combo = json.loads(row[3]) if row[3] else []
     return {
-        "payout":     row[0] or 0,
-        "profit":     row[1] or 0,
-        "bet_type":   row[2] or "",
-        "combo":      combo,
-        "ev":         row[4] or 0.0,
+        "payout": row[0] or 0,
+        "profit": row[1] or 0,
+        "bet_type": row[2] or "",
+        "combo": combo,
+        "ev": row[4] or 0.0,
         "model_type": row[5] or "",
     }
 
@@ -108,9 +109,9 @@ def _fetch_top_ev_pick(conn: sqlite3.Connection, race_id: str) -> dict | None:
         return None
     combo = json.loads(row[2]) if row[2] else []
     return {
-        "ev":         row[0] or 0.0,
-        "bet_type":   row[1] or "",
-        "combo":      combo,
+        "ev": row[0] or 0.0,
+        "bet_type": row[1] or "",
+        "combo": combo,
         "model_type": row[3] or "",
     }
 
@@ -136,13 +137,14 @@ def _fetch_monthly_roi(conn: sqlite3.Connection, date_str: str) -> float:
 def _find_card_path(race_id: str) -> str | None:
     """race_id に対応する的中カード画像のパスを検索する。"""
     date_raw = f"{race_id[2:6]}{race_id[6:8]}{race_id[8:10]}"
-    race_no  = int(race_id[10:12])
-    pattern  = f"{date_raw}_R{race_no:02d}_*.png"
-    matches  = list(_CARDS_DIR.glob(pattern))
+    race_no = int(race_id[10:12])
+    pattern = f"{date_raw}_R{race_no:02d}_*.png"
+    matches = list(_CARDS_DIR.glob(pattern))
     return str(matches[0]) if matches else None
 
 
 # ── テキスト生成 ────────────────────────────────────────────────────
+
 
 def _combo_str(combo: list, bet_type: str) -> str:
     if not combo:
@@ -172,15 +174,17 @@ def generate_pattern_a(
     JRA-VANデータ分析・AI自動予想 #競馬予想 #AI競馬
     👇 note: https://note.com/xxx
     """
-    race_name  = race.get("race_name") or f"{race.get('venue','')}{race.get('race_number',0)}R"
-    date_disp  = (race.get("date") or "").replace("-", "/")
-    ev_str     = f"EV{pick['ev']:.1f}" if pick else "高期待値"
-    combo      = _combo_str(pick["combo"], pick["bet_type"]) if pick else ""
-    surface    = _surface_str(race.get("surface", ""))
-    dist       = f"{race.get('distance',0)}m" if race.get("distance") else ""
-    cond_str   = f"（{surface}{dist}）" if surface or dist else ""
+    race_name = (
+        race.get("race_name") or f"{race.get('venue', '')}{race.get('race_number', 0)}R"
+    )
+    date_disp = (race.get("date") or "").replace("-", "/")
+    ev_str = f"EV{pick['ev']:.1f}" if pick else "高期待値"
+    combo = _combo_str(pick["combo"], pick["bet_type"]) if pick else ""
+    surface = _surface_str(race.get("surface", ""))
+    dist = f"{race.get('distance', 0)}m" if race.get("distance") else ""
+    cond_str = f"（{surface}{dist}）" if surface or dist else ""
 
-    url_part   = f"\n👇 note: {note_url}" if note_url else ""
+    url_part = f"\n👇 note: {note_url}" if note_url else ""
 
     variants = [
         (
@@ -220,11 +224,13 @@ def generate_pattern_b(
     今月ROI 201%・純利 +¥77万
     来週の予想もお楽しみに！ #競馬的中 ...
     """
-    race_name  = race.get("race_name") or f"{race.get('venue','')}{race.get('race_number',0)}R"
-    date_disp  = (race.get("date") or "").replace("-", "/")
-    pay        = int(hit["payout"])
-    combo      = _combo_str(hit["combo"], hit["bet_type"])
-    roi_str    = f"{monthly_roi:.0f}%" if monthly_roi > 0 else "—"
+    race_name = (
+        race.get("race_name") or f"{race.get('venue', '')}{race.get('race_number', 0)}R"
+    )
+    date_disp = (race.get("date") or "").replace("-", "/")
+    pay = int(hit["payout"])
+    combo = _combo_str(hit["combo"], hit["bet_type"])
+    roi_str = f"{monthly_roi:.0f}%" if monthly_roi > 0 else "—"
 
     # ROI 別リアクション
     if pay >= 100000:
@@ -264,8 +270,10 @@ def generate_pattern_b(
 
 # ── 保存ユーティリティ ────────────────────────────────────────────
 
+
 def _safe_name(s: str) -> str:
     import re
+
     s = s.replace("（", "(").replace("）", ")")
     return re.sub(r'[\\/:*?"<>|]', "_", s).strip()
 
@@ -277,6 +285,7 @@ def _save_post(text: str, out_path: Path) -> None:
 
 
 # ── メイン処理 ────────────────────────────────────────────────────
+
 
 def generate_posts(
     conn: sqlite3.Connection,
@@ -290,12 +299,14 @@ def generate_posts(
     Returns:
         {"a": Path, "b": Path} — 生成したファイルのパス辞書
     """
-    race    = _fetch_race_info(conn, race_id)
+    race = _fetch_race_info(conn, race_id)
     date_str = race.get("date", "")
-    race_name = race.get("race_name") or f"{race.get('venue','')}{race.get('race_number',0)}R"
-    date_raw  = (date_str or "").replace("-", "")
-    race_no   = race.get("race_number", 0)
-    safe      = _safe_name(race_name)
+    race_name = (
+        race.get("race_name") or f"{race.get('venue', '')}{race.get('race_number', 0)}R"
+    )
+    date_raw = (date_str or "").replace("-", "")
+    race_no = race.get("race_number", 0)
+    safe = _safe_name(race_name)
 
     saved: dict[str, Path] = {}
 
@@ -309,7 +320,7 @@ def generate_posts(
     if "b" in patterns:
         hit = _fetch_best_hit(conn, race_id)
         if hit:
-            roi  = _fetch_monthly_roi(conn, date_str)
+            roi = _fetch_monthly_roi(conn, date_str)
             card = _find_card_path(race_id)
             text = generate_pattern_b(race, hit, monthly_roi=roi, card_path=card)
             path = _OUT_DIR / f"{date_raw}_R{race_no:02d}_{safe}_hit.txt"
@@ -323,16 +334,26 @@ def generate_posts(
 
 def _parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="X（Twitter）用投稿テキストを自動生成する")
-    p.add_argument("--race-id",   help="対象レースID（指定時は --date より優先）")
-    p.add_argument("--date",      help="対象日 YYYYMMDD（省略時=本日）")
-    p.add_argument("--top",       type=int, default=3,
-                   help="日次で上位何レースを処理するか（デフォルト 3）")
-    p.add_argument("--pattern",   default="ab",
-                   help="生成パターン a / b / ab（デフォルト ab）")
-    p.add_argument("--note-url",  default="",
-                   help="パターンA に埋め込む note 記事 URL（省略可）")
-    p.add_argument("--min-payout", type=float, default=0,
-                   help="パターンB の最低払戻フィルタ（円、デフォルト 0）")
+    p.add_argument("--race-id", help="対象レースID（指定時は --date より優先）")
+    p.add_argument("--date", help="対象日 YYYYMMDD（省略時=本日）")
+    p.add_argument(
+        "--top",
+        type=int,
+        default=3,
+        help="日次で上位何レースを処理するか（デフォルト 3）",
+    )
+    p.add_argument(
+        "--pattern", default="ab", help="生成パターン a / b / ab（デフォルト ab）"
+    )
+    p.add_argument(
+        "--note-url", default="", help="パターンA に埋め込む note 記事 URL（省略可）"
+    )
+    p.add_argument(
+        "--min-payout",
+        type=float,
+        default=0,
+        help="パターンB の最低払戻フィルタ（円、デフォルト 0）",
+    )
     return p.parse_args()
 
 
@@ -340,6 +361,7 @@ def main() -> None:
     args = _parse_args()
 
     from src.database.init_db import init_db
+
     conn = init_db()
 
     if args.race_id:

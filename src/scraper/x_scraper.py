@@ -47,9 +47,9 @@ if hasattr(sys.stderr, "reconfigure"):
 logger = logging.getLogger(__name__)
 
 _TARGETS_JSON = _ROOT / "scripts" / "x_targets.json"
-_RATE_LIMIT_PER_HOUR = 15      # X 利用規約上の安全マージン
+_RATE_LIMIT_PER_HOUR = 15  # X 利用規約上の安全マージン
 _REQUEST_INTERVAL_SEC = 3600 / _RATE_LIMIT_PER_HOUR  # 240秒 = 4分/リクエスト
-_JITTER_RATIO = 0.30           # ±30% のランダムジッター
+_JITTER_RATIO = 0.30  # ±30% のランダムジッター
 
 # ── ステルス用 User-Agent プール ──────────────────────────────────────
 _USER_AGENTS: list[str] = [
@@ -71,21 +71,22 @@ _VIEWPORTS: list[dict[str, int]] = [
 ]
 
 # ── 馬番・印・レース名の正規表現パターン ──────────────────────────────
-_RE_HORSE_NUM  = re.compile(r"(?:^|[^\d])([1-9][0-9]?)(?:番|枠|頭)(?:[目号])?")
-_RE_SIGNAL     = re.compile(r"[◎○▲△×☆]")
-_RE_RACE_NAME  = re.compile(
+_RE_HORSE_NUM = re.compile(r"(?:^|[^\d])([1-9][0-9]?)(?:番|枠|頭)(?:[目号])?")
+_RE_SIGNAL = re.compile(r"[◎○▲△×☆]")
+_RE_RACE_NAME = re.compile(
     r"(?:東京|中山|阪神|京都|中京|小倉|新潟|福島|函館|札幌)"
     r"[\d０-９]{1,2}[RrＲ]"
     r"|[^\s]{2,8}(?:ステークス|特別|賞|カップ|記念|マイルC|G[123]|GI)"
 )
-_RE_HONMEI     = re.compile(r"[◎本命]")
-_RE_ANA        = re.compile(r"[▲△穴]")
-_RE_KESHI      = re.compile(r"[×✕消]")
+_RE_HONMEI = re.compile(r"[◎本命]")
+_RE_ANA = re.compile(r"[▲△穴]")
+_RE_KESHI = re.compile(r"[×✕消]")
 
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # データクラス
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 
 class RawTweet:
     """スクレイピング結果の生ポスト。"""
@@ -94,22 +95,22 @@ class RawTweet:
 
     def __init__(
         self,
-        tweet_id:    str,
+        tweet_id: str,
         screen_name: str,
-        raw_text:    str,
-        posted_at:   str,
+        raw_text: str,
+        posted_at: str,
     ) -> None:
-        self.tweet_id    = tweet_id
+        self.tweet_id = tweet_id
         self.screen_name = screen_name
-        self.raw_text    = raw_text
-        self.posted_at   = posted_at
-        self.fetched_at  = datetime.now().isoformat(timespec="seconds")
+        self.raw_text = raw_text
+        self.posted_at = posted_at
+        self.fetched_at = datetime.now().isoformat(timespec="seconds")
 
     def is_racing_related(self) -> bool:
         """競馬関連ポストかどうかを簡易判定する。"""
         text = self.raw_text
-        has_signal  = bool(_RE_SIGNAL.search(text))
-        has_race    = bool(_RE_RACE_NAME.search(text))
+        has_signal = bool(_RE_SIGNAL.search(text))
+        has_race = bool(_RE_RACE_NAME.search(text))
         has_horse_n = bool(_RE_HORSE_NUM.search(text))
         return has_signal or has_race or has_horse_n
 
@@ -142,6 +143,7 @@ class RawTweet:
 # レートリミッター
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+
 class RateLimiter:
     """1アカウントあたり毎時 max_per_hour リクエスト以下に制限する。
 
@@ -154,20 +156,23 @@ class RateLimiter:
         max_per_hour: int = _RATE_LIMIT_PER_HOUR,
         jitter_ratio: float = _JITTER_RATIO,
     ) -> None:
-        self._interval    = 3600.0 / max_per_hour
-        self._jitter      = jitter_ratio
+        self._interval = 3600.0 / max_per_hour
+        self._jitter = jitter_ratio
         self._last: dict[str, float] = {}
 
     async def wait(self, key: str) -> None:
         import random
-        now  = time.monotonic()
+
+        now = time.monotonic()
         last = self._last.get(key, 0.0)
         base_wait = self._interval - (now - last)
         if base_wait > 0:
             # ±jitter_ratio のランダムブレを加算（Bot パターン回避）
             jitter = base_wait * self._jitter * (2 * random.random() - 1)
             actual = max(base_wait + jitter, 1.0)
-            logger.debug("[RateLimit] %s: %.1f秒待機 (jitter=%.1f秒)", key, actual, jitter)
+            logger.debug(
+                "[RateLimit] %s: %.1f秒待機 (jitter=%.1f秒)", key, actual, jitter
+            )
             await asyncio.sleep(actual)
         self._last[key] = time.monotonic()
 
@@ -175,6 +180,7 @@ class RateLimiter:
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # スクレイパー本体
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 
 class XScraper:
     """
@@ -202,12 +208,12 @@ class XScraper:
         *,
         dry_run: bool = False,
     ) -> None:
-        self._conn        = conn
-        self._targets     = self._load_targets(targets_path)
-        self._dry_run     = dry_run
+        self._conn = conn
+        self._targets = self._load_targets(targets_path)
+        self._dry_run = dry_run
         self._rate_limiter = RateLimiter()
-        self._saved       = 0
-        self._skipped     = 0
+        self._saved = 0
+        self._skipped = 0
 
     # ── ターゲット読み込み ────────────────────────────────────────────
 
@@ -249,21 +255,24 @@ class XScraper:
         # 取得ウィンドウ: 前夜 18:00 〜 当日 10:00
         window_start = datetime(
             target_date.year, target_date.month, target_date.day, 10, 0
-        ) - timedelta(hours=16)   # 前夜 18:00
+        ) - timedelta(hours=16)  # 前夜 18:00
         window_end = datetime(
             target_date.year, target_date.month, target_date.day, 10, 0
         )
 
         logger.info(
             "スクレイピング対象期間: %s 〜 %s",
-            window_start.isoformat(), window_end.isoformat(),
+            window_start.isoformat(),
+            window_end.isoformat(),
         )
 
         targets = self._targets
         if account_filter:
             targets = [t for t in targets if t["screen_name"] == account_filter]
             if not targets:
-                logger.warning("アカウント %r が x_targets.json に見つかりません", account_filter)
+                logger.warning(
+                    "アカウント %r が x_targets.json に見つかりません", account_filter
+                )
                 return {"saved": 0, "skipped": 0, "errors": 0}
 
         errors = 0
@@ -278,8 +287,8 @@ class XScraper:
 
         async with async_playwright() as pw:
             browser = await pw.chromium.launch(headless=True)
-            ctx     = await self._build_context(browser)
-            page    = await ctx.new_page()
+            ctx = await self._build_context(browser)
+            page = await ctx.new_page()
             await self._apply_stealth(page)
 
             for account in targets:
@@ -291,7 +300,9 @@ class XScraper:
                     self._save_tweets(tweets, sn)
                     logger.info(
                         "[%s] 取得: %d件 / 保存: %d件",
-                        sn, len(tweets), self._saved,
+                        sn,
+                        len(tweets),
+                        self._saved,
                     )
                 except Exception as exc:
                     logger.error("[%s] スクレイピング失敗: %s", sn, exc)
@@ -300,9 +311,9 @@ class XScraper:
             await browser.close()
 
         return {
-            "saved":   self._saved,
+            "saved": self._saved,
             "skipped": self._skipped,
-            "errors":  errors,
+            "errors": errors,
         }
 
     # ── Playwright コンテキスト ───────────────────────────────────────
@@ -313,7 +324,8 @@ class XScraper:
         UA・Viewport をセッションごとにランダム選択して Bot フィンガープリントを分散させる。
         """
         import random
-        ua       = random.choice(_USER_AGENTS)
+
+        ua = random.choice(_USER_AGENTS)
         viewport = random.choice(_VIEWPORTS)
 
         # Chrome バージョンを UA から抽出して Sec-Ch-Ua ヘッダーと同期させる
@@ -328,26 +340,31 @@ class XScraper:
         else:
             platform = "Linux"
 
-        logger.debug("[Stealth] UA=%s  Viewport=%sx%s", ua[:60], viewport["width"], viewport["height"])
+        logger.debug(
+            "[Stealth] UA=%s  Viewport=%sx%s",
+            ua[:60],
+            viewport["width"],
+            viewport["height"],
+        )
         return await browser.new_context(
             user_agent=ua,
             viewport=viewport,
             locale="ja-JP",
             timezone_id="Asia/Tokyo",
             extra_http_headers={
-                "Accept-Language":     "ja,en-US;q=0.9,en;q=0.8",
-                "Accept":              "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-                "Accept-Encoding":     "gzip, deflate, br",
-                "Sec-Ch-Ua":           f'"Chromium";v="{chrome_ver}", "Google Chrome";v="{chrome_ver}", "Not-A.Brand";v="99"',
-                "Sec-Ch-Ua-Mobile":    "?0",
-                "Sec-Ch-Ua-Platform":  f'"{platform}"',
-                "Sec-Fetch-Dest":      "document",
-                "Sec-Fetch-Mode":      "navigate",
-                "Sec-Fetch-Site":      "none",
-                "Sec-Fetch-User":      "?1",
+                "Accept-Language": "ja,en-US;q=0.9,en;q=0.8",
+                "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+                "Accept-Encoding": "gzip, deflate, br",
+                "Sec-Ch-Ua": f'"Chromium";v="{chrome_ver}", "Google Chrome";v="{chrome_ver}", "Not-A.Brand";v="99"',
+                "Sec-Ch-Ua-Mobile": "?0",
+                "Sec-Ch-Ua-Platform": f'"{platform}"',
+                "Sec-Fetch-Dest": "document",
+                "Sec-Fetch-Mode": "navigate",
+                "Sec-Fetch-Site": "none",
+                "Sec-Fetch-User": "?1",
                 "Upgrade-Insecure-Requests": "1",
-                "Cache-Control":       "max-age=0",
-                "DNT":                 "1",
+                "Cache-Control": "max-age=0",
+                "DNT": "1",
             },
         )
 
@@ -360,6 +377,7 @@ class XScraper:
         """
         try:
             from playwright_stealth import stealth_async  # type: ignore[import]
+
             await stealth_async(page)
             logger.debug("[Stealth] playwright-stealth 適用済み")
             return
@@ -459,7 +477,9 @@ class XScraper:
 
             # スクロールして次のバッチを読み込む
             prev_height = await page.evaluate("document.documentElement.scrollHeight")
-            await page.evaluate("window.scrollTo(0, document.documentElement.scrollHeight)")
+            await page.evaluate(
+                "window.scrollTo(0, document.documentElement.scrollHeight)"
+            )
             await asyncio.sleep(2.0)  # ロード待機
 
             new_height = await page.evaluate("document.documentElement.scrollHeight")
@@ -507,9 +527,11 @@ class XScraper:
                     continue
                 dt_str = await time_el.get_attribute("datetime") or ""
                 try:
-                    posted_dt = datetime.fromisoformat(
-                        dt_str.replace("Z", "+00:00")
-                    ).astimezone().replace(tzinfo=None)
+                    posted_dt = (
+                        datetime.fromisoformat(dt_str.replace("Z", "+00:00"))
+                        .astimezone()
+                        .replace(tzinfo=None)
+                    )
                 except ValueError:
                     continue
 
@@ -549,9 +571,11 @@ class XScraper:
         last = time_elements[-1]
         dt_str = await last.get_attribute("datetime") or ""
         try:
-            dt = datetime.fromisoformat(
-                dt_str.replace("Z", "+00:00")
-            ).astimezone().replace(tzinfo=None)
+            dt = (
+                datetime.fromisoformat(dt_str.replace("Z", "+00:00"))
+                .astimezone()
+                .replace(tzinfo=None)
+            )
             return dt < window_start
         except ValueError:
             return False
@@ -610,6 +634,7 @@ class XScraper:
 # CLI
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+
 def _parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(
         description="X（旧Twitter）競馬予想スクレイパー",
@@ -622,19 +647,25 @@ def _parse_args() -> argparse.Namespace:
             "  py src/scraper/x_scraper.py --check-only       # DB件数確認のみ\n"
         ),
     )
-    p.add_argument("--date",         help="取得対象日 (YYYY-MM-DD)。省略時は当日")
-    p.add_argument("--account",      help="特定アカウントのみ処理 (screen_name)")
-    p.add_argument("--dry-run",      action="store_true", help="DB書き込みをスキップ")
-    p.add_argument("--check-only",   action="store_true", help="DB の x_signals 件数を表示して終了")
+    p.add_argument("--date", help="取得対象日 (YYYY-MM-DD)。省略時は当日")
+    p.add_argument("--account", help="特定アカウントのみ処理 (screen_name)")
+    p.add_argument("--dry-run", action="store_true", help="DB書き込みをスキップ")
+    p.add_argument(
+        "--check-only", action="store_true", help="DB の x_signals 件数を表示して終了"
+    )
     return p.parse_args()
 
 
 def check_db_status(conn: sqlite3.Connection) -> None:
     """x_signals / x_accounts の現在の件数を表示する。"""
     try:
-        n_signals  = conn.execute("SELECT COUNT(*) FROM x_signals").fetchone()[0]
-        n_parsed   = conn.execute("SELECT COUNT(*) FROM x_signals WHERE parsed=1").fetchone()[0]
-        n_accounts = conn.execute("SELECT COUNT(*) FROM x_accounts WHERE is_active=1").fetchone()[0]
+        n_signals = conn.execute("SELECT COUNT(*) FROM x_signals").fetchone()[0]
+        n_parsed = conn.execute(
+            "SELECT COUNT(*) FROM x_signals WHERE parsed=1"
+        ).fetchone()[0]
+        n_accounts = conn.execute(
+            "SELECT COUNT(*) FROM x_accounts WHERE is_active=1"
+        ).fetchone()[0]
         print(f"x_signals  : {n_signals} 件 (うち解析済み {n_parsed} 件)")
         print(f"x_accounts : {n_accounts} 件（active）")
     except sqlite3.OperationalError as e:
@@ -649,6 +680,7 @@ def main() -> None:
     args = _parse_args()
 
     from src.database.init_db import init_db
+
     conn = init_db()
 
     try:
@@ -661,13 +693,11 @@ def main() -> None:
             target_date = date.fromisoformat(args.date)
 
         scraper = XScraper(conn, dry_run=args.dry_run)
-        result  = asyncio.run(
+        result = asyncio.run(
             scraper.run(target_date=target_date, account_filter=args.account)
         )
         print(
-            f"完了: saved={result['saved']} "
-            f"skipped={result['skipped']} "
-            f"errors={result['errors']}"
+            f"完了: saved={result['saved']} skipped={result['skipped']} errors={result['errors']}"
         )
     finally:
         conn.close()

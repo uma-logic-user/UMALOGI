@@ -32,14 +32,13 @@ import contextlib
 import logging
 import os
 import shutil
-import subprocess
 import sys
 import threading
 import traceback
 from pathlib import Path
 from subprocess import CompletedProcess
 from typing import Any
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 _ROOT = Path(__file__).resolve().parents[1]
 if str(_ROOT) not in sys.path:
@@ -61,6 +60,7 @@ _DB_TEST = _ROOT / "data" / "umalogi_test.db"
 # ================================================================
 # モック関数
 # ================================================================
+
 
 def _mock_run(cmd: list[str], label: str, timeout: int = 3600) -> int:
     logger.info("[MOCK _run] label=%s", label)
@@ -135,30 +135,66 @@ def _mock_subprocess_run(*args: Any, **kwargs: Any) -> CompletedProcess:
 
 # (キー, 表示ラベル, 関数名, kwargs)
 _WEEK_SCENARIO: list[tuple[str, str, str, dict]] = [
-    ("friday",      "金 20:00  金曜バッチ（JVLink同期→暫定予想→Discord通知）", "job_friday_sync",       {}),
-    ("sat_wood",    "土 07:30  朝調教同期",                                     "job_morning_wood",      {}),
-    ("sat_runner",  "土 08:30  直前予想ループ起動",                              "job_today_auto_runner", {}),
-    ("sat_win5",    "土 09:00  WIN5予測",                                        "job_win5_prediction",   {}),
-    ("sat_umanity", "土 13:00  Umanity投稿",                                     "job_umanity_upload",    {}),
-    ("sat_intra1",  "土 13:00  中間結果同期",                                    "job_intraday_sync",     {"target_date": "2026/05/02"}),
-    ("sat_intra2",  "土 15:30  中間結果同期",                                    "job_intraday_sync",     {"target_date": "2026/05/02"}),
-    ("sat_post",    "土 17:30  レース後処理（払戻同期→評価→増分学習→backup）",   "job_post_race",         {"target_date": "2026/05/02"}),
-    ("sun_wood",    "日 07:30  朝調教同期",                                      "job_morning_wood",      {}),
-    ("sun_runner",  "日 08:30  直前予想ループ起動",                               "job_today_auto_runner", {}),
-    ("sun_win5",    "日 09:00  WIN5予測",                                         "job_win5_prediction",   {}),
-    ("sun_umanity", "日 13:00  Umanity投稿",                                      "job_umanity_upload",    {}),
-    ("sun_intra1",  "日 13:00  中間結果同期",                                     "job_intraday_sync",     {"target_date": "2026/05/03"}),
-    ("sun_intra2",  "日 15:30  中間結果同期",                                     "job_intraday_sync",     {"target_date": "2026/05/03"}),
-    ("sun_post",    "日 17:30  レース後処理（払戻同期→評価→増分学習→backup）",    "job_post_race",         {"target_date": "2026/05/03"}),
-    ("mon_masters", "月 06:00  マスタデータ差分更新",                             "job_monday_masters",    {}),
-    ("mon_retrain", "月 07:00  週次全件再学習",                                   "job_weekly_retrain",    {}),
-    ("mon_git",     "月 08:00  GitHub 自動プッシュ",                              "job_git_push",          {}),
+    (
+        "friday",
+        "金 20:00  金曜バッチ（JVLink同期→暫定予想→Discord通知）",
+        "job_friday_sync",
+        {},
+    ),
+    ("sat_wood", "土 07:30  朝調教同期", "job_morning_wood", {}),
+    ("sat_runner", "土 08:30  直前予想ループ起動", "job_today_auto_runner", {}),
+    ("sat_win5", "土 09:00  WIN5予測", "job_win5_prediction", {}),
+    ("sat_umanity", "土 13:00  Umanity投稿", "job_umanity_upload", {}),
+    (
+        "sat_intra1",
+        "土 13:00  中間結果同期",
+        "job_intraday_sync",
+        {"target_date": "2026/05/02"},
+    ),
+    (
+        "sat_intra2",
+        "土 15:30  中間結果同期",
+        "job_intraday_sync",
+        {"target_date": "2026/05/02"},
+    ),
+    (
+        "sat_post",
+        "土 17:30  レース後処理（払戻同期→評価→増分学習→backup）",
+        "job_post_race",
+        {"target_date": "2026/05/02"},
+    ),
+    ("sun_wood", "日 07:30  朝調教同期", "job_morning_wood", {}),
+    ("sun_runner", "日 08:30  直前予想ループ起動", "job_today_auto_runner", {}),
+    ("sun_win5", "日 09:00  WIN5予測", "job_win5_prediction", {}),
+    ("sun_umanity", "日 13:00  Umanity投稿", "job_umanity_upload", {}),
+    (
+        "sun_intra1",
+        "日 13:00  中間結果同期",
+        "job_intraday_sync",
+        {"target_date": "2026/05/03"},
+    ),
+    (
+        "sun_intra2",
+        "日 15:30  中間結果同期",
+        "job_intraday_sync",
+        {"target_date": "2026/05/03"},
+    ),
+    (
+        "sun_post",
+        "日 17:30  レース後処理（払戻同期→評価→増分学習→backup）",
+        "job_post_race",
+        {"target_date": "2026/05/03"},
+    ),
+    ("mon_masters", "月 06:00  マスタデータ差分更新", "job_monday_masters", {}),
+    ("mon_retrain", "月 07:00  週次全件再学習", "job_weekly_retrain", {}),
+    ("mon_git", "月 08:00  GitHub 自動プッシュ", "job_git_push", {}),
 ]
 
 
 # ================================================================
 # テスト実行
 # ================================================================
+
 
 def _wait_auto_runner_thread(timeout: float = 10.0) -> None:
     """today_auto_runner バックグラウンドスレッドの終了を待つ。"""
@@ -184,19 +220,57 @@ def run_week_test(jobs_filter: set[str] | None = None) -> bool:
 
     with contextlib.ExitStack() as stack:
         # ── サブプロセス・通知モック ───────────────────────────
-        stack.enter_context(patch.object(sched, "_run",                    side_effect=_mock_run))
-        stack.enter_context(patch.object(sched, "_run_with_retry",         side_effect=_mock_run_with_retry))
-        stack.enter_context(patch.object(sched, "_send_discord",           side_effect=_mock_send_discord))
-        stack.enter_context(patch.object(sched, "_send_discord_embed",     side_effect=_mock_send_discord_embed))
-        stack.enter_context(patch.object(sched, "_notify_provisional_summary", side_effect=_mock_notify_provisional_summary))
+        stack.enter_context(patch.object(sched, "_run", side_effect=_mock_run))
+        stack.enter_context(
+            patch.object(sched, "_run_with_retry", side_effect=_mock_run_with_retry)
+        )
+        stack.enter_context(
+            patch.object(sched, "_send_discord", side_effect=_mock_send_discord)
+        )
+        stack.enter_context(
+            patch.object(
+                sched, "_send_discord_embed", side_effect=_mock_send_discord_embed
+            )
+        )
+        stack.enter_context(
+            patch.object(
+                sched,
+                "_notify_provisional_summary",
+                side_effect=_mock_notify_provisional_summary,
+            )
+        )
 
         # ── 外部サービス・ファイル操作モック ──────────────────
-        stack.enter_context(patch("src.ops.backup.backup_db",                       side_effect=_mock_backup_db))
-        stack.enter_context(patch("src.ops.retrain_trigger.weekly_retrain",          side_effect=_mock_weekly_retrain))
-        stack.enter_context(patch("src.ops.retrain_trigger.batch_evaluate_date",     side_effect=_mock_batch_evaluate_date))
-        stack.enter_context(patch("src.ops.git_ops.weekly_auto_commit",              side_effect=_mock_weekly_auto_commit))
-        stack.enter_context(patch("src.main_pipeline.win5_batch",                    side_effect=_mock_win5_batch))
-        stack.enter_context(patch("scripts.infer_ranks_from_payouts.infer_ranks",    side_effect=_mock_infer_ranks))
+        stack.enter_context(
+            patch("src.ops.backup.backup_db", side_effect=_mock_backup_db)
+        )
+        stack.enter_context(
+            patch(
+                "src.ops.retrain_trigger.weekly_retrain",
+                side_effect=_mock_weekly_retrain,
+            )
+        )
+        stack.enter_context(
+            patch(
+                "src.ops.retrain_trigger.batch_evaluate_date",
+                side_effect=_mock_batch_evaluate_date,
+            )
+        )
+        stack.enter_context(
+            patch(
+                "src.ops.git_ops.weekly_auto_commit",
+                side_effect=_mock_weekly_auto_commit,
+            )
+        )
+        stack.enter_context(
+            patch("src.main_pipeline.win5_batch", side_effect=_mock_win5_batch)
+        )
+        stack.enter_context(
+            patch(
+                "scripts.infer_ranks_from_payouts.infer_ranks",
+                side_effect=_mock_infer_ranks,
+            )
+        )
 
         # ── generate_data.py などの直接 subprocess.run 呼び出し ─
         stack.enter_context(patch("subprocess.run", side_effect=_mock_subprocess_run))
@@ -221,7 +295,9 @@ def run_week_test(jobs_filter: set[str] | None = None) -> bool:
             except Exception:
                 err = traceback.format_exc()
                 logger.error("❌ FAIL  %s\n%s", label, err)
-                results.append((key, "FAIL", err.splitlines()[-2] if err.splitlines() else ""))
+                results.append(
+                    (key, "FAIL", err.splitlines()[-2] if err.splitlines() else "")
+                )
 
     # ── サマリー出力 ──────────────────────────────────────────
     logger.info("")
@@ -245,6 +321,7 @@ def run_week_test(jobs_filter: set[str] | None = None) -> bool:
 # ================================================================
 # CLI エントリーポイント
 # ================================================================
+
 
 def main() -> None:
     parser = argparse.ArgumentParser(

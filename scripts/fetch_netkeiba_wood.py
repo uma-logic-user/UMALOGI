@@ -30,18 +30,18 @@ import sys
 import time
 from datetime import date, timedelta
 from pathlib import Path
-from typing import Optional
 
 from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeout
 from bs4 import BeautifulSoup
 
-ROOT    = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent
 DB_PATH = ROOT / "data" / "umalogi.db"
-SLEEP   = 1.5   # リクエスト間隔（秒）
+SLEEP = 1.5  # リクエスト間隔（秒）
 
 LOG_FORMAT = "%(asctime)s [%(levelname)s] %(message)s"
-logging.basicConfig(level=logging.INFO, format=LOG_FORMAT,
-                    handlers=[logging.StreamHandler(sys.stdout)])
+logging.basicConfig(
+    level=logging.INFO, format=LOG_FORMAT, handlers=[logging.StreamHandler(sys.stdout)]
+)
 logger = logging.getLogger(__name__)
 
 
@@ -74,11 +74,12 @@ def _ensure_table(conn: sqlite3.Connection) -> None:
 # 対象レース取得
 # ────────────────────────────────────────────────────────────────────────────
 
+
 def _get_target_races(conn: sqlite3.Connection, days: int) -> list[str]:
     """今日から days 日以内の未開催レースの race_id 一覧を返す。"""
-    today    = date.today()
+    today = date.today()
     deadline = today + timedelta(days=days)
-    today_str    = today.strftime("%Y/%m/%d")
+    today_str = today.strftime("%Y/%m/%d")
     deadline_str = deadline.strftime("%Y/%m/%d")
 
     rows = conn.execute(
@@ -105,6 +106,7 @@ def _already_fetched(conn: sqlite3.Connection, race_id: str) -> bool:
 # ────────────────────────────────────────────────────────────────────────────
 # Playwright スクレイピング
 # ────────────────────────────────────────────────────────────────────────────
+
 
 def _scrape_oikiri(page, race_id: str) -> list[dict]:
     """
@@ -154,7 +156,7 @@ def _scrape_oikiri(page, race_id: str) -> list[dict]:
         if not horse_link:
             continue
         horse_name = horse_link.get_text(strip=True)
-        horse_id   = horse_link["href"].split("/horse/")[-1].rstrip("/")
+        horse_id = horse_link["href"].split("/horse/")[-1].rstrip("/")
 
         # 評価テキスト（例: 動き上々）
         critic_td = row.find("td", class_="Training_Critic")
@@ -168,13 +170,15 @@ def _scrape_oikiri(page, race_id: str) -> list[dict]:
                 if cls.startswith("Rank_"):
                     eval_grade = td.get_text(strip=True)
 
-        results.append({
-            "horse_id":     horse_id,
-            "horse_name":   horse_name,
-            "horse_number": horse_number,
-            "eval_text":    eval_text,
-            "eval_grade":   eval_grade,
-        })
+        results.append(
+            {
+                "horse_id": horse_id,
+                "horse_name": horse_name,
+                "horse_number": horse_number,
+                "eval_text": eval_text,
+                "eval_grade": eval_grade,
+            }
+        )
 
     return results
 
@@ -183,17 +187,24 @@ def _scrape_oikiri(page, race_id: str) -> list[dict]:
 # DB 保存
 # ────────────────────────────────────────────────────────────────────────────
 
-def _save(conn: sqlite3.Connection, race_id: str,
-          records: list[dict], dry_run: bool) -> int:
+
+def _save(
+    conn: sqlite3.Connection, race_id: str, records: list[dict], dry_run: bool
+) -> int:
     if not records:
         return 0
     today = date.today().isoformat()
     saved = 0
     for rec in records:
         if dry_run:
-            logger.info("  [DRY] %s %s %s %s %s",
-                        race_id, rec["horse_number"], rec["horse_name"],
-                        rec["eval_text"], rec["eval_grade"])
+            logger.info(
+                "  [DRY] %s %s %s %s %s",
+                race_id,
+                rec["horse_number"],
+                rec["horse_name"],
+                rec["eval_text"],
+                rec["eval_grade"],
+            )
             saved += 1
             continue
         try:
@@ -208,9 +219,15 @@ def _save(conn: sqlite3.Connection, race_id: str,
                   eval_grade = excluded.eval_grade,
                   source_date = excluded.source_date
                 """,
-                (race_id, rec["horse_id"], rec["horse_name"],
-                 rec["horse_number"], rec["eval_text"],
-                 rec["eval_grade"], today),
+                (
+                    race_id,
+                    rec["horse_id"],
+                    rec["horse_name"],
+                    rec["horse_number"],
+                    rec["eval_text"],
+                    rec["eval_grade"],
+                    today,
+                ),
             )
             saved += 1
         except Exception as exc:
@@ -224,12 +241,18 @@ def _save(conn: sqlite3.Connection, race_id: str,
 # メイン
 # ────────────────────────────────────────────────────────────────────────────
 
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="netkeiba 調教評価スクレイパー")
-    parser.add_argument("--days",    type=int, default=7,
-                        help="今日から何日以内の未開催レースを対象にするか（デフォルト: 7）")
-    parser.add_argument("--dry-run", action="store_true",
-                        help="DB に保存せず結果を表示するだけ")
+    parser.add_argument(
+        "--days",
+        type=int,
+        default=7,
+        help="今日から何日以内の未開催レースを対象にするか（デフォルト: 7）",
+    )
+    parser.add_argument(
+        "--dry-run", action="store_true", help="DB に保存せず結果を表示するだけ"
+    )
     args = parser.parse_args()
 
     conn = sqlite3.connect(str(DB_PATH))
@@ -244,7 +267,7 @@ def main() -> None:
     logger.info("対象レース数: %d（今日から%d日以内）", len(race_ids), args.days)
 
     total_saved = 0
-    skipped     = 0
+    skipped = 0
 
     with sync_playwright() as pw:
         browser = pw.chromium.launch(headless=True)
@@ -267,7 +290,7 @@ def main() -> None:
 
             logger.info("[%d/%d] %s を処理中...", i, len(race_ids), race_id)
             records = _scrape_oikiri(page, race_id)
-            saved   = _save(conn, race_id, records, args.dry_run)
+            saved = _save(conn, race_id, records, args.dry_run)
             total_saved += saved
             logger.info("  → %d件 %s", saved, "（DRY）" if args.dry_run else "保存")
 

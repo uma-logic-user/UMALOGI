@@ -2,7 +2,7 @@
 文字化けentries再取得スクリプト
 netkeiba から正常なエントリーデータを取得してDBに保存する
 """
-import sqlite3
+
 import sys
 import time
 import logging
@@ -46,7 +46,9 @@ def refetch_entries(dates: list[str]) -> None:
             "SELECT COUNT(*) FROM entries WHERE race_id=?", (race_id,)
         ).fetchone()[0]
         if existing > 0:
-            logger.info("[%d/%d] %s: skip (既存%d件)", i + 1, len(race_ids), race_id, existing)
+            logger.info(
+                "[%d/%d] %s: skip (既存%d件)", i + 1, len(race_ids), race_id, existing
+            )
             skip_count += 1
             continue
 

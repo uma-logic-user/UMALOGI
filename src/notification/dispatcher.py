@@ -21,7 +21,6 @@ from __future__ import annotations
 
 import logging
 import os
-import tempfile
 from enum import Enum, auto
 from pathlib import Path
 
@@ -45,9 +44,9 @@ class NotifyLevel(Enum):
         JACKPOT: 払戻 >= 100,000 円 または ROI >= 500%（全チャンネル・画像付き）。
     """
 
-    MISS    = auto()
-    NORMAL  = auto()
-    BIG     = auto()
+    MISS = auto()
+    NORMAL = auto()
+    BIG = auto()
     JACKPOT = auto()
 
 
@@ -68,7 +67,7 @@ def _classify(hit: BetHitDetail) -> NotifyLevel:
         return NotifyLevel.BIG
     if hit.roi >= 100:
         return NotifyLevel.NORMAL
-    return NotifyLevel.MISS   # 的中でも回収率が100%未満なら通知不要
+    return NotifyLevel.MISS  # 的中でも回収率が100%未満なら通知不要
 
 
 def _build_body(result: EvaluationResult, hit: BetHitDetail) -> str:
@@ -86,7 +85,7 @@ def _build_body(result: EvaluationResult, hit: BetHitDetail) -> str:
         f"📋 券種: {hit.bet_type}",
         f"🎯 予想: {' / '.join(hit.combination)}",
         f"🏆 実績: {' / '.join(hit.actual_winners[:3])}",
-        f"",
+        "",
         f"💰 払戻: ¥{hit.payout:,.0f}",
         f"📈 回収率: {hit.roi:.1f}%",
         f"💸 購入: ¥{hit.invested:,.0f}  利益: ¥{hit.profit:,.0f}",
@@ -177,7 +176,7 @@ class NotificationDispatcher:
                 continue
 
             title = _build_title(hit, level)
-            body  = _build_body(result, hit)
+            body = _build_body(result, hit)
             image_path: Path | None = None
 
             # BIG / JACKPOT は証拠画像を生成
@@ -198,14 +197,20 @@ class NotificationDispatcher:
 
             for notifier in self._notifiers:
                 # NORMAL は画像なし、Twitter は BIG+ のみ
-                if isinstance(notifier, TwitterNotifier) and level == NotifyLevel.NORMAL:
+                if (
+                    isinstance(notifier, TwitterNotifier)
+                    and level == NotifyLevel.NORMAL
+                ):
                     continue
                 notifier.send(message)
 
             notified.append(hit)
             logger.info(
                 "通知送信: race=%s bet=%s ROI=%.1f%% level=%s",
-                result.race_id, hit.bet_type, hit.roi, level.name,
+                result.race_id,
+                hit.bet_type,
+                hit.roi,
+                level.name,
             )
 
         return notified

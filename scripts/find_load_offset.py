@@ -9,8 +9,11 @@ SE レコードで斤量(×10)と着順の正確なバイトオフセットを�
   - 斤量らしい "5xx"/"6xx" パターンを自動検出
   - 着順らしい "0x"/"1x" 2バイトパターンを検出
 """
+
 from __future__ import annotations
-import os, sys, time, re
+import os
+import sys
+import time
 from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")  # type: ignore[attr-defined]
@@ -20,8 +23,11 @@ if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
 from src.scraper.jravan_client import (
-    JVLinkClient, OPT_NORMAL,
-    JVREAD_EOF, JVREAD_FILECHANGE, JVREAD_DOWNLOADING,
+    JVLinkClient,
+    OPT_NORMAL,
+    JVREAD_EOF,
+    JVREAD_FILECHANGE,
+    JVREAD_DOWNLOADING,
     _make_race_id,
 )
 
@@ -46,24 +52,26 @@ def analyze(raw: bytes, idx: int) -> None:
     race_id = _make_race_id(raw)
     uma_ban = int(raw[28:30].decode("ascii", errors="replace").strip() or "0")
     horse_nm = sjis(raw[40:76])
-    print(f"\n{'='*72}")
-    print(f"SE #{idx}  race={race_id}  uma={uma_ban:02d}  horse='{horse_nm}'  len={len(raw)}")
+    print(f"\n{'=' * 72}")
+    print(
+        f"SE #{idx}  race={race_id}  uma={uma_ban:02d}  horse='{horse_nm}'  len={len(raw)}"
+    )
 
     # 確定フィールド
-    print(dump(raw, 27, 28,  "枠番[確定]"))
-    print(dump(raw, 28, 30,  "馬番[確定]"))
-    print(dump(raw, 78, 79,  "性別[実測確定]"))
-    print(dump(raw, 80, 82,  "馬齢[実測確定]"))
-    print(dump(raw, 84, 90,  "騎手CD[実測確定]"))
-    print(dump(raw, 90, 98,  "騎手名SJIS[実測確定]"))
+    print(dump(raw, 27, 28, "枠番[確定]"))
+    print(dump(raw, 28, 30, "馬番[確定]"))
+    print(dump(raw, 78, 79, "性別[実測確定]"))
+    print(dump(raw, 80, 82, "馬齢[実測確定]"))
+    print(dump(raw, 84, 90, "騎手CD[実測確定]"))
+    print(dump(raw, 90, 98, "騎手名SJIS[実測確定]"))
     print(dump(raw, 98, 104, "調教師CD[実測確定]"))
-    print(dump(raw, 104,124, "調教師名SJIS[実測確定]"))
+    print(dump(raw, 104, 124, "調教師名SJIS[実測確定]"))
 
     # 不明ゾーン (76-84, 82-86)
     print()
-    print(dump(raw, 76, 78,  "?? [76:78]"))
-    print(dump(raw, 79, 80,  "?? [79:80]"))
-    print(dump(raw, 82, 84,  "?? [82:84]"))
+    print(dump(raw, 76, 78, "?? [76:78]"))
+    print(dump(raw, 79, 80, "?? [79:80]"))
+    print(dump(raw, 82, 84, "?? [82:84]"))
 
     # 斤量候補: 調教師名直後 [124:135]
     print()
@@ -112,7 +120,8 @@ def main() -> None:
 
     sid = os.environ.get("JRAVAN_SID", "")
     if not sid:
-        print("ERROR: JRAVAN_SID 未設定"); sys.exit(1)
+        print("ERROR: JRAVAN_SID 未設定")
+        sys.exit(1)
 
     samples: list[bytes] = []
     TARGET = 5
@@ -122,7 +131,8 @@ def main() -> None:
         ret = client.open("RACE", "20260501", OPT_NORMAL)
         print(f"JVOpen ret={ret}")
         if ret < 0:
-            print("JVOpen失敗"); return
+            print("JVOpen失敗")
+            return
 
         for _ in range(5_000_000):
             code, data = client.read_record()
@@ -131,7 +141,8 @@ def main() -> None:
             if code == JVREAD_FILECHANGE:
                 continue
             if code == JVREAD_DOWNLOADING:
-                time.sleep(1); continue
+                time.sleep(1)
+                continue
             if code < 0:
                 break
             if not data or len(data) < 200:

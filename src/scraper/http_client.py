@@ -66,8 +66,7 @@ def build_headers(referer: str = "https://www.netkeiba.com/") -> dict[str, str]:
     return {
         "User-Agent": random.choice(USER_AGENTS),
         "Accept": (
-            "text/html,application/xhtml+xml,application/xml;q=0.9,"
-            "image/avif,image/webp,*/*;q=0.8"
+            "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8"
         ),
         "Accept-Language": "ja,en-US;q=0.9,en;q=0.8",
         "Accept-Encoding": "gzip, deflate, br",

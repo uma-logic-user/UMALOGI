@@ -47,7 +47,6 @@ JRA-VAN Data Lab. (JV-Link) Python クライアント
 from __future__ import annotations
 
 import argparse
-import io as _io
 import logging
 import os
 import re
@@ -1482,12 +1481,8 @@ def _parse_payout(raw: bytes, rec_type: str) -> Optional[dict]:
             if offset + entry_len > len(raw):
                 break
             combo_raw = raw[offset : offset + combo_bytes]
-            amount_raw = raw[
-                offset + combo_bytes : offset + combo_bytes + _PAYOUT_AMOUNT_BYTES
-            ]
-            pop_raw = raw[
-                offset + combo_bytes + _PAYOUT_AMOUNT_BYTES : offset + entry_len
-            ]
+            raw[offset + combo_bytes : offset + combo_bytes + _PAYOUT_AMOUNT_BYTES]
+            raw[offset + combo_bytes + _PAYOUT_AMOUNT_BYTES : offset + entry_len]
 
             combo = _format_combo(combo_raw, combo_bytes, chunk_size)
             amount = _int(
@@ -2794,8 +2789,6 @@ class JVDataLoader:
             "skipped": 0,
         }
 
-        last_error: Exception | None = None
-
         try:
             for attempt in range(self._MAX_RETRIES):
                 batch: list[dict] = []
@@ -2877,7 +2870,6 @@ class JVDataLoader:
                     break
 
                 except (TimeoutError, RuntimeError) as e:
-                    last_error = e
                     logger.warning(
                         "JVLink エラー (attempt %d/%d): %s",
                         attempt + 1,

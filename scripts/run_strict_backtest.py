@@ -21,6 +21,7 @@ Walk-Forward 設計:
   - AlphaModel: load_training_data(min_date, max_date) で日付境界を厳密管理
   - Honmei/Manji: v_race_mart から学習期間の終了日付でフィルタ
 """
+
 from __future__ import annotations
 
 import argparse
@@ -41,6 +42,7 @@ if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
 from dotenv import load_dotenv
+
 load_dotenv(_ROOT / ".env", override=False)
 
 logging.basicConfig(
@@ -51,7 +53,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-_MAIN_DB     = _ROOT / "data" / "umalogi.db"
+_MAIN_DB = _ROOT / "data" / "umalogi.db"
 _RESEARCH_DB = _ROOT / "data" / "netkeiba_research.db"
 
 # AlphaModel 半期 expanding-window（3窓）
@@ -66,16 +68,18 @@ _ALPHA_WINDOWS: list[tuple[str, str, str, str, str]] = [
 _EV_SWEEP: list[float] = [1.1, 1.2, 1.3, 1.5, 1.8, 2.0, 2.5]
 
 # デフォルト評価閾値
-_DEFAULT_ALPHA_THRESHOLD   = 1.5
-_DEFAULT_HONMEI_THRESHOLD  = 1.3   # EV = P(win) × win_odds
-_DEFAULT_MANJI_THRESHOLD   = 1.1   # 直接 ev_target を予測
+_DEFAULT_ALPHA_THRESHOLD = 1.5
+_DEFAULT_HONMEI_THRESHOLD = 1.3  # EV = P(win) × win_odds
+_DEFAULT_MANJI_THRESHOLD = 1.1  # 直接 ev_target を予測
 
 
 # ─── 結果コンテナ ─────────────────────────────────────────────────────
 
+
 @dataclass
 class WindowResult:
     """1バックテスト窓の結果"""
+
     model_name: str
     bet_type: str
     window_label: str
@@ -96,6 +100,7 @@ class WindowResult:
 
 # ─── Phase 1: データ品質チェック ──────────────────────────────────────
 
+
 @dataclass
 class DataQualityReport:
     garbled_race_ids: list[str]
@@ -104,27 +109,28 @@ class DataQualityReport:
     excluded_ids: set[str]
 
     def print_summary(self) -> None:
-        print(f"\n{'='*60}")
+        print(f"\n{'=' * 60}")
         print("  [データ品質チェック] 2024-2025年")
-        print(f"{'='*60}")
+        print(f"{'=' * 60}")
         print(f"  race_name 文字化け/空文字: {len(self.garbled_race_ids):>5,} 件")
-        print(f"    ※ ML特徴量未使用 → バックテスト除外は最小化")
+        print("    ※ ML特徴量未使用 → バックテスト除外は最小化")
         print(f"  rank 汚染レース           : {len(self.corrupt_rank_ids):>5,} 件")
         print(f"  オッズ欠損80%超            : {len(self.bad_odds_ids):>5,} 件")
-        print(f"    ※ research_db 補完後に再評価するため除外対象外")
+        print("    ※ research_db 補完後に再評価するため除外対象外")
         print(f"  ─── バックテスト除外 合計 : {len(self.excluded_ids):>5,} 件")
 
 
 def check_data_quality(
     conn: sqlite3.Connection,
     start: str = "2024-01-01",
-    end: str   = "2025-12-31",
+    end: str = "2025-12-31",
 ) -> DataQualityReport:
     """バックテスト対象期間の汚染 race_id を検出して返す。"""
 
     # 1. race_name 文字化け（?含む）—— 空文字は除外しない
     garbled = [
-        r[0] for r in conn.execute(
+        r[0]
+        for r in conn.execute(
             "SELECT race_id FROM races WHERE date BETWEEN ? AND ? AND race_name LIKE '%?%'",
             (start, end),
         ).fetchall()
@@ -132,7 +138,8 @@ def check_data_quality(
 
     # 2. rank 汚染（HR払戻レコードの誤挿入: 20,30,...90）
     corrupt_rank = [
-        r[0] for r in conn.execute(
+        r[0]
+        for r in conn.execute(
             """SELECT DISTINCT rr.race_id FROM race_results rr
                JOIN races r ON rr.race_id = r.race_id
                WHERE r.date BETWEEN ? AND ?
@@ -143,7 +150,8 @@ def check_data_quality(
 
     # 3. オッズ欠損率80%超（参考のみ: research_db で補完するため除外対象外）
     bad_odds = [
-        r[0] for r in conn.execute(
+        r[0]
+        for r in conn.execute(
             """SELECT rr.race_id
                FROM race_results rr JOIN races r ON rr.race_id = r.race_id
                WHERE r.date BETWEEN ? AND ?
@@ -165,6 +173,7 @@ def check_data_quality(
 
 
 # ─── Phase 2: AlphaModel Walk-Forward ────────────────────────────────
+
 
 def _backtest_alpha_window(
     conn: sqlite3.Connection,
@@ -200,7 +209,10 @@ def _backtest_alpha_window(
     if excluded_ids:
         train_df = train_df[~train_df["race_id"].isin(excluded_ids)]
     if len(train_df) < 300:
-        print(f"  [{window_label}] ⚠️ 学習データ不足: {len(train_df)}行 → スキップ", flush=True)
+        print(
+            f"  [{window_label}] ⚠️ 学習データ不足: {len(train_df)}行 → スキップ",
+            flush=True,
+        )
         return None
 
     test_df = model.load_training_data(
@@ -213,10 +225,17 @@ def _backtest_alpha_window(
     if excluded_ids:
         test_df = test_df[~test_df["race_id"].isin(excluded_ids)]
     if len(test_df) < 50:
-        print(f"  [{window_label}] ⚠️ テストデータ不足: {len(test_df)}行 → スキップ", flush=True)
+        print(
+            f"  [{window_label}] ⚠️ テストデータ不足: {len(test_df)}行 → スキップ",
+            flush=True,
+        )
         return None
 
-    print(f"  [{window_label}] 学習{len(train_df):,}行 → テスト{len(test_df):,}行", end="", flush=True)
+    print(
+        f"  [{window_label}] 学習{len(train_df):,}行 → テスト{len(test_df):,}行",
+        end="",
+        flush=True,
+    )
 
     metrics = model.train(train_df)
     print(f" | AUC={metrics['auc']:.3f}", flush=True)
@@ -227,10 +246,17 @@ def _backtest_alpha_window(
     bets = test_df[test_df["ev_pred"] >= ev_threshold].copy()
     if bets.empty:
         return WindowResult(
-            model_name=f"ALPHA({bet_type})", bet_type=bet_type,
-            window_label=window_label, ev_threshold=ev_threshold,
-            n_bets=0, n_hits=0, hit_rate=0.0,
-            total_invest=0, total_payout=0.0, roi=0.0, max_drawdown=0.0,
+            model_name=f"ALPHA({bet_type})",
+            bet_type=bet_type,
+            window_label=window_label,
+            ev_threshold=ev_threshold,
+            n_bets=0,
+            n_hits=0,
+            hit_rate=0.0,
+            total_invest=0,
+            total_payout=0.0,
+            roi=0.0,
+            max_drawdown=0.0,
             notes=["買いシグナルなし"],
         )
 
@@ -250,11 +276,17 @@ def _backtest_alpha_window(
     )
 
     return WindowResult(
-        model_name=f"ALPHA({bet_type})", bet_type=bet_type,
-        window_label=window_label, ev_threshold=ev_threshold,
-        n_bets=len(bets), n_hits=int(bets["is_hit"].sum()),
-        hit_rate=hit_rate, total_invest=invest, total_payout=payout,
-        roi=roi, max_drawdown=max_dd,
+        model_name=f"ALPHA({bet_type})",
+        bet_type=bet_type,
+        window_label=window_label,
+        ev_threshold=ev_threshold,
+        n_bets=len(bets),
+        n_hits=int(bets["is_hit"].sum()),
+        hit_rate=hit_rate,
+        total_invest=invest,
+        total_payout=payout,
+        roi=roi,
+        max_drawdown=max_dd,
     )
 
 
@@ -272,9 +304,12 @@ def run_alpha_walkforward(
         for tr_start, tr_end, te_start, te_end, label in _ALPHA_WINDOWS:
             r = _backtest_alpha_window(
                 conn=conn,
-                train_start=tr_start, train_end=tr_end,
-                test_start=te_start,  test_end=te_end,
-                window_label=label, bet_type=bet_type,
+                train_start=tr_start,
+                train_end=tr_end,
+                test_start=te_start,
+                test_end=te_end,
+                window_label=label,
+                bet_type=bet_type,
                 ev_threshold=ev_threshold,
                 excluded_ids=excluded_ids,
                 research_db_path=research_db_path,
@@ -288,11 +323,22 @@ def run_alpha_walkforward(
 # ─── Phase 3: 本命/卍/複勝 Walk-Forward (v_race_mart 高速版) ─────────
 
 _MART_FEATURE_COLS: list[str] = [
-    "weight_carried", "horse_weight", "horse_weight_diff",
-    "distance", "gate_number", "race_number",
-    "surface_code", "sex_code", "venue_encoded", "condition_code",
-    "jockey_code_encoded", "trainer_code_encoded",
-    "last_tc_4f", "last_tc_lap", "last_hc_4f", "last_hc_lap",
+    "weight_carried",
+    "horse_weight",
+    "horse_weight_diff",
+    "distance",
+    "gate_number",
+    "race_number",
+    "surface_code",
+    "sex_code",
+    "venue_encoded",
+    "condition_code",
+    "jockey_code_encoded",
+    "trainer_code_encoded",
+    "last_tc_4f",
+    "last_tc_lap",
+    "last_hc_4f",
+    "last_hc_lap",
     "tc_4f_rank",
 ]
 
@@ -345,20 +391,20 @@ def _load_mart_df(
         return df
 
     # ── エンコード ────────────────────────────────────────────────────
-    _surface_map  = {"芝": 0, "ダート": 1, "障害": 2}
+    _surface_map = {"芝": 0, "ダート": 1, "障害": 2}
     _condition_map = {"良": 0, "稍重": 1, "重": 2, "不良": 3}
-    _sex_map      = {"牡": 0, "牝": 1, "セ": 2}
+    _sex_map = {"牡": 0, "牝": 1, "セ": 2}
 
-    df["surface_code"]   = df["surface"].map(_surface_map).fillna(0).astype(int)
+    df["surface_code"] = df["surface"].map(_surface_map).fillna(0).astype(int)
     df["condition_code"] = df["condition"].map(_condition_map).fillna(0).astype(int)
-    df["sex_code"]       = df["sex_age"].str[:1].map(_sex_map).fillna(0).astype(int)
+    df["sex_code"] = df["sex_age"].str[:1].map(_sex_map).fillna(0).astype(int)
 
     venues = sorted(df["venue"].dropna().unique().tolist())
-    vmap   = {v: i for i, v in enumerate(venues)}
+    vmap = {v: i for i, v in enumerate(venues)}
     df["venue_encoded"] = df["venue"].map(vmap).fillna(-1).astype(int)
 
     for col, src in [
-        ("jockey_code_encoded",  "jockey_code"),
+        ("jockey_code_encoded", "jockey_code"),
         ("trainer_code_encoded", "trainer_code"),
     ]:
         vals = df[src].dropna().unique().tolist()
@@ -375,7 +421,7 @@ def _load_mart_df(
 
     # 目的変数
     df["is_winner"] = (df["rank"] == 1).astype(int)
-    df["is_placed"]  = (df["rank"] <= 3).astype(int)
+    df["is_placed"] = (df["rank"] <= 3).astype(int)
 
     df["ev_target"] = np.where(
         df["payout_tansho"].notna(),
@@ -413,7 +459,7 @@ def _fit_and_evaluate(
 
     X_train = train_df[feature_cols].astype(float)
     y_train = train_df[target_col].astype(float)
-    X_test  = test_df[feature_cols].astype(float)
+    X_test = test_df[feature_cols].astype(float)
 
     if len(X_train) < 200:
         return None
@@ -422,14 +468,22 @@ def _fit_and_evaluate(
 
     if is_classifier:
         from lightgbm import LGBMClassifier
+
         clf = LGBMClassifier(
-            n_estimators=800, learning_rate=0.03, num_leaves=63,
-            min_child_samples=20, subsample=0.8, colsample_bytree=0.8,
-            random_state=42, n_jobs=-1, verbose=-1,
+            n_estimators=800,
+            learning_rate=0.03,
+            num_leaves=63,
+            min_child_samples=20,
+            subsample=0.8,
+            colsample_bytree=0.8,
+            random_state=42,
+            n_jobs=-1,
+            verbose=-1,
         )
         split = int(len(X_train) * 0.85)
         clf.fit(
-            X_train.iloc[:split], y_train.iloc[:split],
+            X_train.iloc[:split],
+            y_train.iloc[:split],
             eval_set=[(X_train.iloc[split:], y_train.iloc[split:])],
             callbacks=[
                 lgb.early_stopping(50, verbose=False),
@@ -439,14 +493,22 @@ def _fit_and_evaluate(
         raw_pred = clf.predict_proba(X_test)[:, 1]
     else:
         from lightgbm import LGBMRegressor
+
         reg = LGBMRegressor(
-            n_estimators=800, learning_rate=0.03, num_leaves=63,
-            min_child_samples=20, subsample=0.8, colsample_bytree=0.8,
-            random_state=42, n_jobs=-1, verbose=-1,
+            n_estimators=800,
+            learning_rate=0.03,
+            num_leaves=63,
+            min_child_samples=20,
+            subsample=0.8,
+            colsample_bytree=0.8,
+            random_state=42,
+            n_jobs=-1,
+            verbose=-1,
         )
         split = int(len(X_train) * 0.85)
         reg.fit(
-            X_train.iloc[:split], y_train.iloc[:split],
+            X_train.iloc[:split],
+            y_train.iloc[:split],
             eval_set=[(X_train.iloc[split:], y_train.iloc[split:])],
             callbacks=[
                 lgb.early_stopping(50, verbose=False),
@@ -459,19 +521,23 @@ def _fit_and_evaluate(
     test_df["raw_pred"] = raw_pred
 
     if use_odds_for_ev:
-        odds = pd.to_numeric(test_df["win_odds"], errors="coerce").fillna(50.0).clip(lower=1.01)
+        odds = (
+            pd.to_numeric(test_df["win_odds"], errors="coerce")
+            .fillna(50.0)
+            .clip(lower=1.01)
+        )
         test_df["ev_pred"] = (test_df["raw_pred"] * odds).clip(lower=0.0)
     else:
         test_df["ev_pred"] = test_df["raw_pred"].clip(lower=0.0)
 
     # 馬券種に応じた払戻列を選択
     if bet_type == "複勝":
-        test_df["is_hit"]        = test_df["is_placed"]
+        test_df["is_hit"] = test_df["is_placed"]
         test_df["actual_payout"] = pd.to_numeric(
             test_df["payout_fukusho"], errors="coerce"
         ).fillna(0)
     else:  # 単勝
-        test_df["is_hit"]        = test_df["is_winner"]
+        test_df["is_hit"] = test_df["is_winner"]
         test_df["actual_payout"] = pd.to_numeric(
             test_df["payout_tansho"], errors="coerce"
         ).fillna(0)
@@ -479,20 +545,27 @@ def _fit_and_evaluate(
     bets = test_df[test_df["ev_pred"] >= ev_threshold].copy()
     if bets.empty:
         return WindowResult(
-            model_name=model_name, bet_type=bet_type,
-            window_label=window_label, ev_threshold=ev_threshold,
-            n_bets=0, n_hits=0, hit_rate=0.0,
-            total_invest=0, total_payout=0.0, roi=0.0, max_drawdown=0.0,
+            model_name=model_name,
+            bet_type=bet_type,
+            window_label=window_label,
+            ev_threshold=ev_threshold,
+            n_bets=0,
+            n_hits=0,
+            hit_rate=0.0,
+            total_invest=0,
+            total_payout=0.0,
+            roi=0.0,
+            max_drawdown=0.0,
             notes=["買いシグナルなし"],
         )
 
-    invest   = len(bets) * 100
-    payout   = float((bets["is_hit"] * bets["actual_payout"]).sum())
-    roi      = payout / invest * 100
+    invest = len(bets) * 100
+    payout = float((bets["is_hit"] * bets["actual_payout"]).sum())
+    roi = payout / invest * 100
     hit_rate = float(bets["is_hit"].mean() * 100)
-    pnl      = (bets["is_hit"] * bets["actual_payout"] - 100).values
-    cum      = np.cumsum(pnl)
-    max_dd   = float(np.max(np.maximum.accumulate(cum) - cum)) if len(cum) > 0 else 0.0
+    pnl = (bets["is_hit"] * bets["actual_payout"] - 100).values
+    cum = np.cumsum(pnl)
+    max_dd = float(np.max(np.maximum.accumulate(cum) - cum)) if len(cum) > 0 else 0.0
 
     mark = "✅" if roi >= 100 else "❌"
     print(
@@ -503,11 +576,17 @@ def _fit_and_evaluate(
     )
 
     return WindowResult(
-        model_name=model_name, bet_type=bet_type,
-        window_label=window_label, ev_threshold=ev_threshold,
-        n_bets=len(bets), n_hits=int(bets["is_hit"].sum()),
-        hit_rate=hit_rate, total_invest=invest, total_payout=payout,
-        roi=roi, max_drawdown=max_dd,
+        model_name=model_name,
+        bet_type=bet_type,
+        window_label=window_label,
+        ev_threshold=ev_threshold,
+        n_bets=len(bets),
+        n_hits=int(bets["is_hit"].sum()),
+        hit_rate=hit_rate,
+        total_invest=invest,
+        total_payout=payout,
+        roi=roi,
+        max_drawdown=max_dd,
     )
 
 
@@ -524,8 +603,11 @@ def run_legacy_walkforward(
 
     # 学習データ: 可能な限り過去のデータを活用
     train_df = _load_mart_df(conn, "2020-01-01", "2024-12-31", excluded_ids)
-    test_df  = _load_mart_df(conn, "2025-01-01", "2025-12-31", excluded_ids)
-    print(f"  v_race_mart 学習: {len(train_df):,}行 / テスト: {len(test_df):,}行", flush=True)
+    test_df = _load_mart_df(conn, "2025-01-01", "2025-12-31", excluded_ids)
+    print(
+        f"  v_race_mart 学習: {len(train_df):,}行 / テスト: {len(test_df):,}行",
+        flush=True,
+    )
 
     if len(train_df) < 500 or len(test_df) < 50:
         print("  ⚠️ データ不足のためスキップ")
@@ -536,7 +618,8 @@ def run_legacy_walkforward(
     # 本命モデル（単勝: P(win) × win_odds → EV > 1.3）
     print("  [本命モデル 単勝]", end=" ", flush=True)
     r = _fit_and_evaluate(
-        train_df, test_df,
+        train_df,
+        test_df,
         feature_cols=_MART_FEATURE_COLS,
         target_col="is_winner",
         model_name="本命",
@@ -551,7 +634,8 @@ def run_legacy_walkforward(
     # 複勝モデル（複勝: P(place) × place_odds → EV > 1.2）
     print("  [複勝モデル 複勝]", end=" ", flush=True)
     r = _fit_and_evaluate(
-        train_df, test_df,
+        train_df,
+        test_df,
         feature_cols=_MART_FEATURE_COLS,
         target_col="is_placed",
         model_name="PlaceModel",
@@ -566,7 +650,8 @@ def run_legacy_walkforward(
     # 卍モデル（ev_target = payout_tansho/100 を直接回帰）
     print("  [卍モデル 単勝]", end=" ", flush=True)
     r = _fit_and_evaluate(
-        train_df, test_df,
+        train_df,
+        test_df,
         feature_cols=_MANJI_FEATURE_COLS,
         target_col="ev_target",
         model_name="卍",
@@ -583,6 +668,7 @@ def run_legacy_walkforward(
 
 # ─── Phase 4: EV閾値スイープ (AlphaModel) ────────────────────────────
 
+
 def sweep_alpha_thresholds(
     conn: sqlite3.Connection,
     excluded_ids: set[str],
@@ -597,8 +683,11 @@ def sweep_alpha_thresholds(
 
     model = AlphaModel()
     train_df = model.load_training_data(
-        conn, min_date="2024-01-01", max_date="2024-12-31",
-        bet_type=bet_type, research_db_path=research_db_path,
+        conn,
+        min_date="2024-01-01",
+        max_date="2024-12-31",
+        bet_type=bet_type,
+        research_db_path=research_db_path,
     )
     if excluded_ids:
         train_df = train_df[~train_df["race_id"].isin(excluded_ids)]
@@ -606,8 +695,11 @@ def sweep_alpha_thresholds(
         return {"best_threshold": _DEFAULT_ALPHA_THRESHOLD, "best_roi": 0.0}
 
     test_df = model.load_training_data(
-        conn, min_date="2025-01-01", max_date="2025-12-31",
-        bet_type=bet_type, research_db_path=research_db_path,
+        conn,
+        min_date="2025-01-01",
+        max_date="2025-12-31",
+        bet_type=bet_type,
+        research_db_path=research_db_path,
     )
     if excluded_ids:
         test_df = test_df[~test_df["race_id"].isin(excluded_ids)]
@@ -620,7 +712,7 @@ def sweep_alpha_thresholds(
 
     print(f"\n  [{bet_type}] EV閾値スイープ (2024→2025 単一窓)")
     print(f"  {'閾値':>5} | {'件数':>6} | {'的中率':>7} | {'ROI':>8} | {'損益':>12}")
-    print(f"  {'-'*50}")
+    print(f"  {'-' * 50}")
 
     best_roi = 0.0
     best_threshold = _DEFAULT_ALPHA_THRESHOLD
@@ -631,10 +723,10 @@ def sweep_alpha_thresholds(
             continue
         invest = len(buy) * 100
         payout = float((buy["is_hit"] * buy["actual_payout"].fillna(0)).sum())
-        roi    = payout / invest * 100
-        hit_r  = buy["is_hit"].mean() * 100
+        roi = payout / invest * 100
+        hit_r = buy["is_hit"].mean() * 100
         profit = payout - invest
-        mark   = " ✅" if roi >= 100 else ""
+        mark = " ✅" if roi >= 100 else ""
         print(
             f"  {thr:>5.1f} | {len(buy):>6,} | {hit_r:>6.1f}% "
             f"| {roi:>7.1f}%{mark} | ¥{profit:>+10,.0f}"
@@ -648,6 +740,7 @@ def sweep_alpha_thresholds(
 
 
 # ─── Phase 5: 社長向け最終報告 ───────────────────────────────────────
+
 
 def print_final_report(
     all_results: list[WindowResult],
@@ -664,9 +757,14 @@ def print_final_report(
 
     rows = [
         dict(
-            model=r.model_name, bet_type=r.bet_type, window=r.window_label,
-            n_bets=r.n_bets, hit_rate=r.hit_rate,
-            invest=r.total_invest, payout=r.total_payout, roi=r.roi,
+            model=r.model_name,
+            bet_type=r.bet_type,
+            window=r.window_label,
+            n_bets=r.n_bets,
+            hit_rate=r.hit_rate,
+            invest=r.total_invest,
+            payout=r.total_payout,
+            roi=r.roi,
         )
         for r in all_results
         if r.n_bets > 0
@@ -691,18 +789,22 @@ def print_final_report(
     )
     agg["overall_roi"] = agg["total_payout"] / agg["total_invest"] * 100
 
-    profitable   = agg[agg["overall_roi"] >= 100].sort_values("overall_roi", ascending=False)
-    unprofitable = agg[agg["overall_roi"] < 100].sort_values("overall_roi", ascending=False)
+    profitable = agg[agg["overall_roi"] >= 100].sort_values(
+        "overall_roi", ascending=False
+    )
+    unprofitable = agg[agg["overall_roi"] < 100].sort_values(
+        "overall_roi", ascending=False
+    )
 
-    print(f"\n{'='*70}")
+    print(f"\n{'=' * 70}")
     print("  UMALOGI 厳密 Walk-Forward バックテスト — 社長向け最終報告")
-    print(f"  対象期間: 2024-01-01 〜 2025-12-31 (カンニングなし)")
-    print(f"  固定¥100ベット・全モデル比較")
-    print(f"{'='*70}")
+    print("  対象期間: 2024-01-01 〜 2025-12-31 (カンニングなし)")
+    print("  固定¥100ベット・全モデル比較")
+    print(f"{'=' * 70}")
 
-    print(f"\n{'─'*70}")
+    print(f"\n{'─' * 70}")
     print("  【✅ 年間ROI 100%超 — 採用候補モデル】")
-    print(f"{'─'*70}")
+    print(f"{'─' * 70}")
 
     if profitable.empty:
         print("  なし（全モデル ROI < 100%）")
@@ -717,17 +819,23 @@ def print_final_report(
             print(f"     通算ROI           : {row['overall_roi']:.1f}%")
             print(f"     平均的中率        : {row['avg_hit_rate']:.1f}%")
             if isinstance(opt_thr, float):
-                print(f"     最適EV閾値(スイープ): EV≥{opt_thr:.1f}  → ROI {opt_roi:.1f}%")
+                print(
+                    f"     最適EV閾値(スイープ): EV≥{opt_thr:.1f}  → ROI {opt_roi:.1f}%"
+                )
             else:
                 print(f"     最適EV閾値        : {opt_thr}")
             print(f"     投資合計          : ¥{int(row['total_invest']):,}")
             print(f"     払戻合計          : ¥{int(row['total_payout']):,}")
-            print(f"     損益              : ¥{int(row['total_payout']-row['total_invest']):+,}")
-            print(f"     ROI100%超 窓数    : {int(row['profitable_windows'])}/{int(row['windows'])}")
+            print(
+                f"     損益              : ¥{int(row['total_payout'] - row['total_invest']):+,}"
+            )
+            print(
+                f"     ROI100%超 窓数    : {int(row['profitable_windows'])}/{int(row['windows'])}"
+            )
 
-    print(f"\n{'─'*70}")
+    print(f"\n{'─' * 70}")
     print("  【❌ 年間ROI < 100% — 不採用モデル】")
-    print(f"{'─'*70}")
+    print(f"{'─' * 70}")
 
     if unprofitable.empty:
         print("  なし（全モデル ROI ≥ 100%）")
@@ -737,19 +845,23 @@ def print_final_report(
             if roi < 60:
                 reason = "致命的な精度不足。JRA控除率（単勝20%）を越えられず。特徴量の抜本的見直し必要。"
             elif roi < 85:
-                reason = "オッズ歪み検知が不十分。EV閾値の引き上げか、追加特徴量が必要。"
+                reason = (
+                    "オッズ歪み検知が不十分。EV閾値の引き上げか、追加特徴量が必要。"
+                )
             elif roi < 95:
-                reason = "惜しい水準。閾値微調整またはKellyサイジング導入で改善可能性あり。"
+                reason = (
+                    "惜しい水準。閾値微調整またはKellyサイジング導入で改善可能性あり。"
+                )
             else:
                 reason = "ROI95〜100%帯。JRA控除率の壁。より厳格な閾値（EV≥1.5+）で絞り込みを。"
             print(f"  ✗ {row['model']} ({row['bet_type']})  ROI={roi:.1f}% — {reason}")
 
-    print(f"\n{'='*70}")
+    print(f"\n{'=' * 70}")
     print("  【全モデル一覧】")
-    print(f"{'='*70}")
+    print(f"{'=' * 70}")
     header = f"  {'モデル':<20} {'馬券':>4}  {'ROI':>7}  {'的中率':>6}  {'総投資':>9}  {'窓':>3}"
     print(header)
-    print(f"  {'-'*60}")
+    print(f"  {'-' * 60}")
     for _, row in agg.sort_values("overall_roi", ascending=False).iterrows():
         mark = "✅" if row["overall_roi"] >= 100 else "❌"
         print(
@@ -759,25 +871,29 @@ def print_final_report(
             f"¥{int(row['total_invest']):>8,}  "
             f"{int(row['windows']):>2}窓"
         )
-    print(f"{'='*70}")
+    print(f"{'=' * 70}")
 
 
 # ─── main ────────────────────────────────────────────────────────────
+
 
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="厳密 Walk-Forward バックテスト (2024-2025)"
     )
     parser.add_argument(
-        "--alpha-only", action="store_true",
+        "--alpha-only",
+        action="store_true",
         help="AlphaModel のみ実行（高速・約5分）",
     )
     parser.add_argument(
-        "--no-sweep", action="store_true",
+        "--no-sweep",
+        action="store_true",
         help="EV閾値スイープをスキップ",
     )
     parser.add_argument(
-        "--research-db", default=None,
+        "--research-db",
+        default=None,
         help="Research DB パス（デフォルト: data/netkeiba_research.db）",
     )
     args = parser.parse_args()
@@ -789,12 +905,14 @@ def main() -> None:
     else:
         research_db = _RESEARCH_DB if _RESEARCH_DB.exists() else None
 
-    print(f"\n{'='*65}")
+    print(f"\n{'=' * 65}")
     print("  UMALOGI 厳密 Walk-Forward バックテスト")
-    print(f"  期間: 2024-01-01 〜 2025-12-31")
-    print(f"  固定¥100ベット / カンニング完全排除")
-    print(f"  Research DB: {'あり (' + str(research_db) + ')' if research_db else 'なし（win_odds 大幅制限）'}")
-    print(f"{'='*65}")
+    print("  期間: 2024-01-01 〜 2025-12-31")
+    print("  固定¥100ベット / カンニング完全排除")
+    print(
+        f"  Research DB: {'あり (' + str(research_db) + ')' if research_db else 'なし（win_odds 大幅制限）'}"
+    )
+    print(f"{'=' * 65}")
 
     conn = sqlite3.connect(str(_MAIN_DB))
     conn.execute("PRAGMA foreign_keys = ON")
@@ -808,7 +926,7 @@ def main() -> None:
     sweep_summary: dict[str, dict[str, float]] = {}
 
     # Phase 2: AlphaModel Walk-Forward
-    print(f"\n[Phase 2] AlphaModel Walk-Forward バックテスト (3窓×2馬券種)...")
+    print("\n[Phase 2] AlphaModel Walk-Forward バックテスト (3窓×2馬券種)...")
     alpha_results = run_alpha_walkforward(
         conn=conn,
         excluded_ids=dq.excluded_ids,
@@ -819,7 +937,7 @@ def main() -> None:
 
     # Phase 3: EV閾値スイープ
     if not args.no_sweep:
-        print(f"\n[Phase 3] EV閾値スイープ (AlphaModel 2024→2025)...")
+        print("\n[Phase 3] EV閾値スイープ (AlphaModel 2024→2025)...")
         for bt in ("単勝", "複勝"):
             result = sweep_alpha_thresholds(
                 conn, dq.excluded_ids, bt, research_db_path=research_db
@@ -828,7 +946,7 @@ def main() -> None:
 
     # Phase 4: 本命/卍/複勝 Walk-Forward
     if not args.alpha_only:
-        print(f"\n[Phase 4] 本命/卍/複勝モデル Walk-Forward バックテスト...")
+        print("\n[Phase 4] 本命/卍/複勝モデル Walk-Forward バックテスト...")
         legacy = run_legacy_walkforward(conn, dq.excluded_ids)
         all_results.extend(legacy)
 
@@ -836,7 +954,8 @@ def main() -> None:
 
     # JSON保存
     _save_results_json(
-        all_results, sweep_summary,
+        all_results,
+        sweep_summary,
         _ROOT / "data" / "strict_backtest_result.json",
     )
 
@@ -850,7 +969,8 @@ def _save_results_json(
     out_path: Path,
 ) -> None:
     """バックテスト結果を JSON に保存する（エンコード問題回避）。"""
-    import json, dataclasses
+    import json
+    import dataclasses
 
     data = {
         "results": [dataclasses.asdict(r) for r in all_results],

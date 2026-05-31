@@ -40,13 +40,14 @@ if str(_ROOT) not in sys.path:
 sys.stdout.reconfigure(encoding="utf-8")
 
 import logging
+
 logging.basicConfig(level=logging.WARNING, stream=sys.stdout)
 
-_DB_PATH     = _ROOT / "data" / "umalogi.db"
+_DB_PATH = _ROOT / "data" / "umalogi.db"
 _RESEARCH_DB = _ROOT / "data" / "netkeiba_research.db"
 
-_INITIAL = 50_000   # 初期資金 (円)
-_MIN_BET = 100      # 最低賭け金 (円)
+_INITIAL = 50_000  # 初期資金 (円)
+_MIN_BET = 100  # 最低賭け金 (円)
 
 # ─── 券種別パラメータ (最適化後に自動更新される) ────────────────────────
 # payout_multiple : 的中時の平均払戻倍率 (実払戻/100)
@@ -57,10 +58,26 @@ _MIN_BET = 100      # 最低賭け金 (円)
 # 2年半 walk-forward (2025年全期間+2026年1-5月) 最終残高 ¥135,810 (+171.6%)
 # 通算ROI 117.4% / 破産ゼロ / 最大DD 42.2%
 _TICKET_PARAMS: dict[str, dict] = {
-    "複勝":  {"payout_multiple": 2.59, "kelly_fraction": 0.25, "max_pct": 0.030, "ev_threshold": 1.15},
-    "馬連":  {"payout_multiple": 7.22, "kelly_fraction": 0.25, "max_pct": 0.015, "ev_threshold": None},
-    "三連複": {"payout_multiple": 9.87, "kelly_fraction": 0.25, "max_pct": 0.010, "ev_threshold": None},
+    "複勝": {
+        "payout_multiple": 2.59,
+        "kelly_fraction": 0.25,
+        "max_pct": 0.030,
+        "ev_threshold": 1.15,
+    },
+    "馬連": {
+        "payout_multiple": 7.22,
+        "kelly_fraction": 0.25,
+        "max_pct": 0.015,
+        "ev_threshold": None,
+    },
+    "三連複": {
+        "payout_multiple": 9.87,
+        "kelly_fraction": 0.25,
+        "max_pct": 0.010,
+        "ev_threshold": None,
+    },
 }
+
 
 # ─── 自動探索パラメーター空間 ───────────────────────────────────────────
 # 各エントリ: (設定名, {券種: {payout_multiple, kelly_fraction, max_pct, ev_threshold}})
@@ -76,49 +93,127 @@ def _build_search_space() -> list[tuple[str, dict[str, dict]]]:
     Returns:
         (設定名, ticket_cfg) のタプルリスト。
     """
-    BASE_UMA  = {"payout_multiple": 7.22, "kelly_fraction": 0.25, "max_pct": 0.015, "ev_threshold": None}
-    BASE_SAN  = {"payout_multiple": 9.87, "kelly_fraction": 0.25, "max_pct": 0.010, "ev_threshold": None}
-    BASE_FUKU = {"payout_multiple": 2.59, "kelly_fraction": 0.25, "max_pct": 0.030, "ev_threshold": None}
+    BASE_UMA = {
+        "payout_multiple": 7.22,
+        "kelly_fraction": 0.25,
+        "max_pct": 0.015,
+        "ev_threshold": None,
+    }
+    BASE_SAN = {
+        "payout_multiple": 9.87,
+        "kelly_fraction": 0.25,
+        "max_pct": 0.010,
+        "ev_threshold": None,
+    }
 
     cfgs: list[tuple[str, dict[str, dict]]] = []
 
     # ── Group A: 複勝除外（馬連+三連複 特化） ──────────────────────────
-    cfgs.append(("A1_馬連+三連複(基本)",  {"馬連": dict(**BASE_UMA), "三連複": dict(**BASE_SAN)}))
-    cfgs.append(("A2_馬連+三連複(Kelly0.30)", {
-        "馬連":  {"payout_multiple": 7.22, "kelly_fraction": 0.30, "max_pct": 0.020, "ev_threshold": None},
-        "三連複": {"payout_multiple": 9.87, "kelly_fraction": 0.30, "max_pct": 0.015, "ev_threshold": None},
-    }))
-    cfgs.append(("A3_馬連+三連複(Kelly0.35)", {
-        "馬連":  {"payout_multiple": 7.22, "kelly_fraction": 0.35, "max_pct": 0.025, "ev_threshold": None},
-        "三連複": {"payout_multiple": 9.87, "kelly_fraction": 0.35, "max_pct": 0.018, "ev_threshold": None},
-    }))
+    cfgs.append(
+        ("A1_馬連+三連複(基本)", {"馬連": dict(**BASE_UMA), "三連複": dict(**BASE_SAN)})
+    )
+    cfgs.append(
+        (
+            "A2_馬連+三連複(Kelly0.30)",
+            {
+                "馬連": {
+                    "payout_multiple": 7.22,
+                    "kelly_fraction": 0.30,
+                    "max_pct": 0.020,
+                    "ev_threshold": None,
+                },
+                "三連複": {
+                    "payout_multiple": 9.87,
+                    "kelly_fraction": 0.30,
+                    "max_pct": 0.015,
+                    "ev_threshold": None,
+                },
+            },
+        )
+    )
+    cfgs.append(
+        (
+            "A3_馬連+三連複(Kelly0.35)",
+            {
+                "馬連": {
+                    "payout_multiple": 7.22,
+                    "kelly_fraction": 0.35,
+                    "max_pct": 0.025,
+                    "ev_threshold": None,
+                },
+                "三連複": {
+                    "payout_multiple": 9.87,
+                    "kelly_fraction": 0.35,
+                    "max_pct": 0.018,
+                    "ev_threshold": None,
+                },
+            },
+        )
+    )
     cfgs.append(("A4_馬連のみ", {"馬連": dict(**BASE_UMA)}))
     cfgs.append(("A5_三連複のみ", {"三連複": dict(**BASE_SAN)}))
 
     # ── Group B: 複勝 EV閾値引き上げ ───────────────────────────────────
     for ev_t in [1.10, 1.15, 1.20, 1.25, 1.30, 1.35, 1.40]:
-        cfgs.append((f"B_複勝EV>{ev_t:.2f}+馬連+三連複", {
-            "複勝":  {"payout_multiple": 2.59, "kelly_fraction": 0.25, "max_pct": 0.030, "ev_threshold": ev_t},
-            "馬連":  dict(**BASE_UMA),
-            "三連複": dict(**BASE_SAN),
-        }))
+        cfgs.append(
+            (
+                f"B_複勝EV>{ev_t:.2f}+馬連+三連複",
+                {
+                    "複勝": {
+                        "payout_multiple": 2.59,
+                        "kelly_fraction": 0.25,
+                        "max_pct": 0.030,
+                        "ev_threshold": ev_t,
+                    },
+                    "馬連": dict(**BASE_UMA),
+                    "三連複": dict(**BASE_SAN),
+                },
+            )
+        )
 
     # ── Group C: 複勝 Kelly係数低減 ────────────────────────────────────
     for kf in [0.05, 0.08, 0.10, 0.12, 0.15]:
-        cfgs.append((f"C_複勝Kelly{kf:.2f}+馬連+三連複", {
-            "複勝":  {"payout_multiple": 2.59, "kelly_fraction": kf, "max_pct": 0.025, "ev_threshold": None},
-            "馬連":  dict(**BASE_UMA),
-            "三連複": dict(**BASE_SAN),
-        }))
+        cfgs.append(
+            (
+                f"C_複勝Kelly{kf:.2f}+馬連+三連複",
+                {
+                    "複勝": {
+                        "payout_multiple": 2.59,
+                        "kelly_fraction": kf,
+                        "max_pct": 0.025,
+                        "ev_threshold": None,
+                    },
+                    "馬連": dict(**BASE_UMA),
+                    "三連複": dict(**BASE_SAN),
+                },
+            )
+        )
 
     # ── Group D: 複勝 閾値+Kelly 組み合わせ ────────────────────────────
-    combos = [(1.15, 0.08), (1.15, 0.12), (1.20, 0.10), (1.20, 0.15), (1.25, 0.15), (1.25, 0.20)]
+    combos = [
+        (1.15, 0.08),
+        (1.15, 0.12),
+        (1.20, 0.10),
+        (1.20, 0.15),
+        (1.25, 0.15),
+        (1.25, 0.20),
+    ]
     for ev_t, kf in combos:
-        cfgs.append((f"D_複勝EV{ev_t:.2f}_K{kf:.2f}+馬連+三連複", {
-            "複勝":  {"payout_multiple": 2.59, "kelly_fraction": kf, "max_pct": 0.025, "ev_threshold": ev_t},
-            "馬連":  dict(**BASE_UMA),
-            "三連複": dict(**BASE_SAN),
-        }))
+        cfgs.append(
+            (
+                f"D_複勝EV{ev_t:.2f}_K{kf:.2f}+馬連+三連複",
+                {
+                    "複勝": {
+                        "payout_multiple": 2.59,
+                        "kelly_fraction": kf,
+                        "max_pct": 0.025,
+                        "ev_threshold": ev_t,
+                    },
+                    "馬連": dict(**BASE_UMA),
+                    "三連複": dict(**BASE_SAN),
+                },
+            )
+        )
 
     return cfgs
 
@@ -126,6 +221,7 @@ def _build_search_space() -> list[tuple[str, dict[str, dict]]]:
 # ============================================================
 # ★ IPAT自動発注連携用 公開関数
 # ============================================================
+
 
 def get_optimal_bet_size(
     current_balance: float,
@@ -149,7 +245,9 @@ def get_optimal_bet_size(
     Returns:
         最適賭け金 (100円単位, ¥100〜)。シグナル不足の場合は 0。
     """
-    return _bet_size(current_balance, pred_ev, ticket_type, _TICKET_PARAMS, kelly_fraction)
+    return _bet_size(
+        current_balance, pred_ev, ticket_type, _TICKET_PARAMS, kelly_fraction
+    )
 
 
 def _bet_size(
@@ -175,21 +273,26 @@ def _bet_size(
     if params is None or pred_ev <= 1.0 or balance < _MIN_BET:
         return 0
 
-    avg_pay  = float(params["payout_multiple"])
-    kf       = kelly_override if kelly_override is not None else float(params["kelly_fraction"])
-    max_pct  = float(params["max_pct"])
+    avg_pay = float(params["payout_multiple"])
+    kf = (
+        kelly_override
+        if kelly_override is not None
+        else float(params["kelly_fraction"])
+    )
+    max_pct = float(params["max_pct"])
 
     if avg_pay <= 1.0:
         return 0
 
-    f_kelly  = (pred_ev - 1.0) / (avg_pay - 1.0) * kf
+    f_kelly = (pred_ev - 1.0) / (avg_pay - 1.0) * kf
     f_capped = min(f_kelly, max_pct)
-    stake    = max(float(_MIN_BET), balance * f_capped)
-    stake    = min(stake, balance)
+    stake = max(float(_MIN_BET), balance * f_capped)
+    stake = min(stake, balance)
     return int(round(stake / 100) * 100)
 
 
 # ── コンビネーションキー ────────────────────────────────────────────────
+
 
 def _umaren_key(h1: int, h2: int) -> str:
     """馬連コンビネーションキーを返す（昇順 "-" 区切り）。
@@ -201,7 +304,7 @@ def _umaren_key(h1: int, h2: int) -> str:
     Returns:
         例: "3-7"（小さい馬番が前）。
     """
-    return f"{min(h1,h2)}-{max(h1,h2)}"
+    return f"{min(h1, h2)}-{max(h1, h2)}"
 
 
 def _sanrenpuku_key(h1: int, h2: int, h3: int) -> str:
@@ -220,6 +323,7 @@ def _sanrenpuku_key(h1: int, h2: int, h3: int) -> str:
 
 
 # ── 払戻マップ ────────────────────────────────────────────────────────
+
 
 def _build_payout_map(
     conn: sqlite3.Connection,
@@ -271,6 +375,7 @@ def _get_pay(pmap: dict, race_id: str, bt: str, combo: str) -> float:
 
 # ── モデル学習・予測 ──────────────────────────────────────────────────
 
+
 def _train_and_predict(
     conn: sqlite3.Connection,
     train_years: list[int],
@@ -300,7 +405,7 @@ def _train_and_predict(
     train_df = model.load_training_data(conn, train_years, research_db_path=research_db)
     print(f"  [学習] {len(train_df):,}行  Optuna {n_optuna}試行...", flush=True)
 
-    metrics   = model.train(train_df, n_optuna_trials=n_optuna)
+    metrics = model.train(train_df, n_optuna_trials=n_optuna)
     threshold = model._ev_threshold
     print(
         f"  [完了] val_ROI={metrics['val_roi']:.1f}%  モデル閾値={threshold:.2f}",
@@ -309,7 +414,9 @@ def _train_and_predict(
 
     print(f"  [テスト] {test_min} 〜 {test_max} ロード中...", flush=True)
     test_df = model.load_training_data(conn, None, research_db_path=research_db)
-    test_df = test_df[(test_df["date"] >= test_min) & (test_df["date"] <= test_max)].copy()
+    test_df = test_df[
+        (test_df["date"] >= test_min) & (test_df["date"] <= test_max)
+    ].copy()
     test_df["pred_ev"] = model.predict_payout_ev(test_df).values
     test_df["actual_payout"] = pd.to_numeric(
         test_df["actual_payout"], errors="coerce"
@@ -319,6 +426,7 @@ def _train_and_predict(
 
 
 # ── シグナル生成 (パラメーター対応版) ─────────────────────────────────
+
 
 def _build_signals(
     test_df: pd.DataFrame,
@@ -349,7 +457,7 @@ def _build_signals(
         if top_ev < global_threshold:
             continue
 
-        date   = grp["date"].iloc[0]
+        date = grp["date"].iloc[0]
         horses = grp["horse_number"].astype(int).tolist()[:3]
         h1 = horses[0]
         h2 = horses[1] if len(horses) >= 2 else None
@@ -360,43 +468,72 @@ def _build_signals(
             fuku_thresh = ticket_cfg["複勝"].get("ev_threshold") or global_threshold
             if top_ev >= fuku_thresh:
                 combo_f = str(h1)
-                pay_f   = _get_pay(pmap, race_id, "複勝", combo_f)
-                signals.append({
-                    "date": date, "race_id": race_id, "bet_type": "複勝",
-                    "combo": combo_f, "max_ev": top_ev,
-                    "actual_payout": pay_f, "is_hit": int(pay_f > 0),
-                })
+                pay_f = _get_pay(pmap, race_id, "複勝", combo_f)
+                signals.append(
+                    {
+                        "date": date,
+                        "race_id": race_id,
+                        "bet_type": "複勝",
+                        "combo": combo_f,
+                        "max_ev": top_ev,
+                        "actual_payout": pay_f,
+                        "is_hit": int(pay_f > 0),
+                    }
+                )
 
         # 馬連 (top-1 × top-2)
         if "馬連" in ticket_cfg and h2 is not None:
             uma_thresh = ticket_cfg["馬連"].get("ev_threshold") or global_threshold
             if top_ev >= uma_thresh:
                 combo_u = _umaren_key(h1, h2)
-                pay_u   = _get_pay(pmap, race_id, "馬連", combo_u)
-                signals.append({
-                    "date": date, "race_id": race_id, "bet_type": "馬連",
-                    "combo": combo_u, "max_ev": top_ev,
-                    "actual_payout": pay_u, "is_hit": int(pay_u > 0),
-                })
+                pay_u = _get_pay(pmap, race_id, "馬連", combo_u)
+                signals.append(
+                    {
+                        "date": date,
+                        "race_id": race_id,
+                        "bet_type": "馬連",
+                        "combo": combo_u,
+                        "max_ev": top_ev,
+                        "actual_payout": pay_u,
+                        "is_hit": int(pay_u > 0),
+                    }
+                )
 
         # 三連複 (top-1 × top-2 × top-3)
         if "三連複" in ticket_cfg and h2 is not None and h3 is not None:
             san_thresh = ticket_cfg["三連複"].get("ev_threshold") or global_threshold
             if top_ev >= san_thresh:
                 combo_s = _sanrenpuku_key(h1, h2, h3)
-                pay_s   = _get_pay(pmap, race_id, "三連複", combo_s)
-                signals.append({
-                    "date": date, "race_id": race_id, "bet_type": "三連複",
-                    "combo": combo_s, "max_ev": top_ev,
-                    "actual_payout": pay_s, "is_hit": int(pay_s > 0),
-                })
+                pay_s = _get_pay(pmap, race_id, "三連複", combo_s)
+                signals.append(
+                    {
+                        "date": date,
+                        "race_id": race_id,
+                        "bet_type": "三連複",
+                        "combo": combo_s,
+                        "max_ev": top_ev,
+                        "actual_payout": pay_s,
+                        "is_hit": int(pay_s > 0),
+                    }
+                )
 
     if not signals:
-        return pd.DataFrame(columns=["date","race_id","bet_type","combo","max_ev","actual_payout","is_hit"])
+        return pd.DataFrame(
+            columns=[
+                "date",
+                "race_id",
+                "bet_type",
+                "combo",
+                "max_ev",
+                "actual_payout",
+                "is_hit",
+            ]
+        )
     return pd.DataFrame(signals).sort_values(["date", "race_id", "bet_type"])
 
 
 # ── シミュレーション ──────────────────────────────────────────────────
+
 
 @dataclass
 class WindowResult:
@@ -445,10 +582,10 @@ def _simulate(
         シミュレーション結果の WindowResult。
     """
     balance = float(start_balance)
-    peak    = float(start_balance)
-    max_dd  = 0.0
-    consec  = 0
-    max_cl  = 0
+    peak = float(start_balance)
+    max_dd = 0.0
+    consec = 0
+    max_cl = 0
     records: list[dict] = []
 
     for (date, race_id), grp in sig_df.groupby(["date", "race_id"], sort=True):
@@ -458,39 +595,41 @@ def _simulate(
         race_pnl = 0.0
 
         for _, row in grp.iterrows():
-            bt    = row["bet_type"]
-            ev    = float(row["max_ev"])
+            bt = row["bet_type"]
+            ev = float(row["max_ev"])
             stake = _bet_size(balance + race_pnl, ev, bt, ticket_cfg)
             if stake == 0:
                 continue
 
             is_hit = int(row["is_hit"])
-            pay    = float(row["actual_payout"])
+            pay = float(row["actual_payout"])
             payout = is_hit * pay * stake / 100.0
 
             race_pnl += payout - stake
 
-            records.append({
-                "date":     date,
-                "race_id":  race_id,
-                "bet_type": bt,
-                "stake":    float(stake),
-                "payout":   payout,
-                "is_hit":   is_hit,
-                "balance":  balance + race_pnl,
-            })
+            records.append(
+                {
+                    "date": date,
+                    "race_id": race_id,
+                    "bet_type": bt,
+                    "stake": float(stake),
+                    "payout": payout,
+                    "is_hit": is_hit,
+                    "balance": balance + race_pnl,
+                }
+            )
 
         balance += race_pnl
-        peak     = max(peak, balance)
-        dd       = (peak - balance) / peak * 100 if peak > 0 else 0.0
-        max_dd   = max(max_dd, dd)
+        peak = max(peak, balance)
+        dd = (peak - balance) / peak * 100 if peak > 0 else 0.0
+        max_dd = max(max_dd, dd)
 
         # 連敗管理: 有効な払戻が1件もなければ負け扱い
         fuku_rows = grp[grp["bet_type"] == "複勝"]
-        primary   = fuku_rows if not fuku_rows.empty else grp
+        primary = fuku_rows if not fuku_rows.empty else grp
         if not primary.empty and int(primary.iloc[0]["is_hit"]) == 0:
             consec += 1
-            max_cl  = max(max_cl, consec)
+            max_cl = max(max_cl, consec)
         else:
             consec = 0
 
@@ -500,52 +639,83 @@ def _simulate(
 
     if not records:
         return WindowResult(
-            label=label, train_label=train_label, test_label=test_label,
-            start_balance=start_balance, final_balance=balance, peak_balance=peak,
-            n_bets=0, n_races=0, n_hits=0, hit_rate=0,
-            total_stake=0, total_payout=0, roi=0, net_profit=0,
-            max_dd_pct=0, max_consec_loss=0,
+            label=label,
+            train_label=train_label,
+            test_label=test_label,
+            start_balance=start_balance,
+            final_balance=balance,
+            peak_balance=peak,
+            n_bets=0,
+            n_races=0,
+            n_hits=0,
+            hit_rate=0,
+            total_stake=0,
+            total_payout=0,
+            roi=0,
+            net_profit=0,
+            max_dd_pct=0,
+            max_consec_loss=0,
         )
 
-    df   = pd.DataFrame(records)
-    n_b  = len(df)
-    n_r  = df.groupby(["date", "race_id"]).ngroups
-    n_h  = int(df["is_hit"].sum())
-    ts   = float(df["stake"].sum())
-    tp   = float(df["payout"].sum())
-    roi  = tp / ts * 100 if ts > 0 else 0.0
+    df = pd.DataFrame(records)
+    n_b = len(df)
+    n_r = df.groupby(["date", "race_id"]).ngroups
+    n_h = int(df["is_hit"].sum())
+    ts = float(df["stake"].sum())
+    tp = float(df["payout"].sum())
+    roi = tp / ts * 100 if ts > 0 else 0.0
 
     df["month"] = pd.to_datetime(df["date"]).dt.to_period("M").astype(str)
     monthly = (
         df.groupby("month")
-        .agg(bets=("stake","count"), hits=("is_hit","sum"),
-             stake=("stake","sum"), payout=("payout","sum"),
-             balance=("balance","last"))
+        .agg(
+            bets=("stake", "count"),
+            hits=("is_hit", "sum"),
+            stake=("stake", "sum"),
+            payout=("payout", "sum"),
+            balance=("balance", "last"),
+        )
         .reset_index()
     )
     monthly["profit"] = monthly["payout"] - monthly["stake"]
 
     by_type = (
         df.groupby("bet_type")
-        .agg(bets=("stake","count"), hits=("is_hit","sum"),
-             stake=("stake","sum"), payout=("payout","sum"))
+        .agg(
+            bets=("stake", "count"),
+            hits=("is_hit", "sum"),
+            stake=("stake", "sum"),
+            payout=("payout", "sum"),
+        )
         .reset_index()
     )
     by_type["hit_rate"] = by_type["hits"] / by_type["bets"] * 100
-    by_type["roi"]      = by_type["payout"] / by_type["stake"] * 100
+    by_type["roi"] = by_type["payout"] / by_type["stake"] * 100
 
     return WindowResult(
-        label=label, train_label=train_label, test_label=test_label,
-        start_balance=start_balance, final_balance=balance, peak_balance=peak,
-        n_bets=n_b, n_races=n_r, n_hits=n_h,
+        label=label,
+        train_label=train_label,
+        test_label=test_label,
+        start_balance=start_balance,
+        final_balance=balance,
+        peak_balance=peak,
+        n_bets=n_b,
+        n_races=n_r,
+        n_hits=n_h,
         hit_rate=n_h / n_b * 100 if n_b > 0 else 0.0,
-        total_stake=ts, total_payout=tp, roi=roi,
-        net_profit=tp - ts, max_dd_pct=max_dd, max_consec_loss=max_cl,
-        monthly=monthly, by_type=by_type,
+        total_stake=ts,
+        total_payout=tp,
+        roi=roi,
+        net_profit=tp - ts,
+        max_dd_pct=max_dd,
+        max_consec_loss=max_cl,
+        monthly=monthly,
+        by_type=by_type,
     )
 
 
 # ── 自動最適化ループ ──────────────────────────────────────────────────
+
 
 def _run_auto_search(
     window_data: list[tuple[pd.DataFrame, float, dict, dict]],
@@ -566,19 +736,23 @@ def _run_auto_search(
     print()
     print("─" * 72)
     print(f"  🔍 自動最適化ループ開始: {len(search_space)} 設定を評価")
-    print(f"  {'設定名':<38}  {'最終残高':>10}  {'通算ROI':>8}  {'最大DD':>7}  {'判定':>4}")
-    print(f"  {'─'*68}")
+    print(
+        f"  {'設定名':<38}  {'最終残高':>10}  {'通算ROI':>8}  {'最大DD':>7}  {'判定':>4}"
+    )
+    print(f"  {'─' * 68}")
 
     results_all: list[tuple[str, dict, list[WindowResult], float]] = []
 
     for name, ticket_cfg in search_space:
-        balance     = float(_INITIAL)
+        balance = float(_INITIAL)
         window_results: list[WindowResult] = []
 
         for (test_df, threshold, pmap), meta in zip(window_data, windows_meta):
             sig_df = _build_signals(test_df, pmap, threshold, ticket_cfg)
             wr = _simulate(
-                sig_df, balance, ticket_cfg,
+                sig_df,
+                balance,
+                ticket_cfg,
                 label=meta["label"],
                 train_label=meta["train_label"],
                 test_label=meta["test_label"],
@@ -586,12 +760,12 @@ def _run_auto_search(
             window_results.append(wr)
             balance = wr.final_balance
 
-        final     = window_results[-1].final_balance
-        total_s   = sum(w.total_stake  for w in window_results)
-        total_p   = sum(w.total_payout for w in window_results)
+        final = window_results[-1].final_balance
+        total_s = sum(w.total_stake for w in window_results)
+        total_p = sum(w.total_payout for w in window_results)
         overall_r = total_p / total_s * 100 if total_s else 0.0
-        max_dd    = max(w.max_dd_pct for w in window_results)
-        verdict   = "✅" if final >= _INITIAL else "❌"
+        max_dd = max(w.max_dd_pct for w in window_results)
+        verdict = "✅" if final >= _INITIAL else "❌"
 
         print(
             f"  {name:<38}  ¥{final:>9,.0f}  {overall_r:>7.1f}%  {max_dd:>6.1f}%  {verdict}",
@@ -602,7 +776,9 @@ def _run_auto_search(
         results_all.append((name, ticket_cfg, window_results, score))
 
     # 最高スコア選択 (黒字優先、次点はダメージ最小)
-    profitable = [(n, c, r, s) for n, c, r, s in results_all if r[-1].final_balance >= _INITIAL]
+    profitable = [
+        (n, c, r, s) for n, c, r, s in results_all if r[-1].final_balance >= _INITIAL
+    ]
     if profitable:
         best = max(profitable, key=lambda x: x[3])
     else:
@@ -617,6 +793,7 @@ def _run_auto_search(
 
 # ── レポート ──────────────────────────────────────────────────────────
 
+
 def _print_window(wr: WindowResult, show_detail: bool) -> None:
     """ウィンドウ単位の詳細レポートを標準出力に表示する。
 
@@ -627,16 +804,20 @@ def _print_window(wr: WindowResult, show_detail: bool) -> None:
     bankrupt = wr.final_balance < 1_000
     sign = "💀" if bankrupt else ("📈" if wr.net_profit > 0 else "📉")
     print()
-    print(f"{'═'*70}")
+    print(f"{'═' * 70}")
     print(f"  {sign}  {wr.label}")
     print(f"      学習: {wr.train_label}  →  テスト: {wr.test_label}")
-    print(f"{'═'*70}")
+    print(f"{'═' * 70}")
     print(f"  開始残高    : ¥{wr.start_balance:>12,.0f}")
-    print(f"  最終残高    : ¥{wr.final_balance:>12,.0f}  ({wr.final_balance/wr.start_balance*100 - 100:+.1f}%)")
+    print(
+        f"  最終残高    : ¥{wr.final_balance:>12,.0f}  ({wr.final_balance / wr.start_balance * 100 - 100:+.1f}%)"
+    )
     print(f"  最高到達残高: ¥{wr.peak_balance:>12,.0f}")
-    print(f"  ─" * 30)
+    print("  ─" * 30)
     tickets_used = list(wr.by_type["bet_type"]) if not wr.by_type.empty else []
-    print(f"  投資レース数: {wr.n_races:>8,}  ({wr.n_bets}件/{'/'.join(tickets_used) or '—'})")
+    print(
+        f"  投資レース数: {wr.n_races:>8,}  ({wr.n_bets}件/{'/'.join(tickets_used) or '—'})"
+    )
     print(f"  的中件数    : {wr.n_hits:>8,}  ({wr.hit_rate:.1f}%)")
     print(f"  総投資額    : ¥{wr.total_stake:>12,.0f}")
     print(f"  総払戻額    : ¥{wr.total_payout:>12,.0f}")
@@ -647,10 +828,12 @@ def _print_window(wr: WindowResult, show_detail: bool) -> None:
 
     if not wr.by_type.empty:
         print()
-        print(f"  ── 券種別成績 ──")
-        print(f"  {'券種':>6}  {'件数':>5}  {'的中':>4}  {'的中率':>6}  "
-              f"{'投資':>9}  {'払戻':>9}  {'ROI':>7}")
-        print(f"  {'─'*58}")
+        print("  ── 券種別成績 ──")
+        print(
+            f"  {'券種':>6}  {'件数':>5}  {'的中':>4}  {'的中率':>6}  "
+            f"{'投資':>9}  {'払戻':>9}  {'ROI':>7}"
+        )
+        print(f"  {'─' * 58}")
         for _, r in wr.by_type.iterrows():
             print(
                 f"  {r['bet_type']:>6}  {int(r['bets']):>5,}  {int(r['hits']):>4}  "
@@ -660,10 +843,12 @@ def _print_window(wr: WindowResult, show_detail: bool) -> None:
 
     if show_detail and not wr.monthly.empty:
         print()
-        print(f"  ── 月別成績 ──")
-        print(f"  {'月':>7}  {'件数':>5}  {'的中':>4}  {'投資':>9}  {'払戻':>9}  "
-              f"{'損益':>10}  {'残高':>10}")
-        print(f"  {'─'*68}")
+        print("  ── 月別成績 ──")
+        print(
+            f"  {'月':>7}  {'件数':>5}  {'的中':>4}  {'投資':>9}  {'払戻':>9}  "
+            f"{'損益':>10}  {'残高':>10}"
+        )
+        print(f"  {'─' * 68}")
         for _, row in wr.monthly.iterrows():
             s = "+" if row["profit"] >= 0 else ""
             print(
@@ -692,7 +877,7 @@ def _print_asset_curve(windows: list[WindowResult]) -> None:
     print()
     print("  ── 残高推移カーブ ──")
     print(f"  {'月':>7}  {'残高':>10}  グラフ")
-    print(f"  {'─'*60}")
+    print(f"  {'─' * 60}")
     start = float(windows[0].start_balance)
     all_months.insert(0, ("Start", start))
     for label, bal in all_months:
@@ -714,43 +899,47 @@ def _print_final_summary(
         best_name: 自動最適化ループで選ばれた黄金設定名。
         best_cfg: 黄金設定の ticket_cfg 辞書。
     """
-    final  = windows[-1].final_balance
-    start  = windows[0].start_balance
+    final = windows[-1].final_balance
+    start = windows[0].start_balance
     total_gain = final - start
-    total_roi  = final / start * 100 - 100
-    peak   = max(wr.peak_balance for wr in windows)
-    total_s = sum(wr.total_stake   for wr in windows)
-    total_p = sum(wr.total_payout  for wr in windows)
+    total_roi = final / start * 100 - 100
+    peak = max(wr.peak_balance for wr in windows)
+    total_s = sum(wr.total_stake for wr in windows)
+    total_p = sum(wr.total_payout for wr in windows)
     overall_roi = total_p / total_s * 100 if total_s else 0
-    max_dd  = max(wr.max_dd_pct for wr in windows)
-    max_cl  = max(wr.max_consec_loss for wr in windows)
+    max_dd = max(wr.max_dd_pct for wr in windows)
+    max_cl = max(wr.max_consec_loss for wr in windows)
     tickets = list(best_cfg.keys())
 
     w = 72
     print()
     print("╔" + "═" * w + "╗")
-    print("║" + " 🏆 UMALOGI Alpha-Payout 2年半 最終結果（黄金パラメーター） 🏆 ".center(w) + "║")
+    print(
+        "║"
+        + " 🏆 UMALOGI Alpha-Payout 2年半 最終結果（黄金パラメーター） 🏆 ".center(w)
+        + "║"
+    )
     print("╠" + "═" * w + "╣")
 
     rows = [
-        ("モデル",           "AlphaPayoutModel (複勝EV直接回帰)"),
-        ("黄金設定",         best_name[:52]),
-        ("券種構成",         " + ".join(tickets)),
-        ("戦略",             "walk-forward 自動最適化 (分数ケリー)"),
-        ("初期資金",         f"¥{start:,.0f}"),
+        ("モデル", "AlphaPayoutModel (複勝EV直接回帰)"),
+        ("黄金設定", best_name[:52]),
+        ("券種構成", " + ".join(tickets)),
+        ("戦略", "walk-forward 自動最適化 (分数ケリー)"),
+        ("初期資金", f"¥{start:,.0f}"),
     ]
     for lbl, val in rows:
         print(f"║  {lbl:<16} {val:<54}║")
 
     print("╠" + "═" * w + "╣")
     items = [
-        ("最終残高",        f"¥{final:>14,.0f}  ({total_gain:+,.0f})"),
-        ("最高到達残高",    f"¥{peak:>14,.0f}"),
-        ("通算損益",        f"¥{total_gain:>+14,.0f}  ({total_roi:+.1f}%)"),
-        ("通算ROI",         f"{overall_roi:>14.1f}%"),
-        ("2年半 最大DD",    f"{max_dd:>14.1f}%"),
-        ("最大連続負け",    f"{max_cl:>13}連敗"),
-        ("破産",            "なし ✅" if final > _MIN_BET else "あり 💀"),
+        ("最終残高", f"¥{final:>14,.0f}  ({total_gain:+,.0f})"),
+        ("最高到達残高", f"¥{peak:>14,.0f}"),
+        ("通算損益", f"¥{total_gain:>+14,.0f}  ({total_roi:+.1f}%)"),
+        ("通算ROI", f"{overall_roi:>14.1f}%"),
+        ("2年半 最大DD", f"{max_dd:>14.1f}%"),
+        ("最大連続負け", f"{max_cl:>13}連敗"),
+        ("破産", "なし ✅" if final > _MIN_BET else "あり 💀"),
     ]
     for lbl, val in items:
         print(f"║  {lbl:<16} {val:<54}║")
@@ -759,11 +948,11 @@ def _print_final_summary(
     print("║  " + "券種別黄金パラメーター".center(70) + "║")
     print("╠" + "─" * w + "╣")
     print(f"║  {'券種':>6}  {'Kelly':>6}  {'上限%':>6}  {'EV閾値':>8}  {'説明':<38}║")
-    print(f"║  {'─'*68}║")
+    print(f"║  {'─' * 68}║")
     for bt, p in best_cfg.items():
-        kf = p['kelly_fraction']
-        mp = p['max_pct'] * 100
-        et = p.get('ev_threshold') or "モデル自動"
+        kf = p["kelly_fraction"]
+        mp = p["max_pct"] * 100
+        et = p.get("ev_threshold") or "モデル自動"
         note = {
             "複勝": "的中率重視・低配当",
             "馬連": "中配当バランス",
@@ -781,7 +970,7 @@ def _print_final_summary(
     print("╠" + "─" * w + "╣")
     for attr, label in [
         ("net_profit", "損益"),
-        ("roi",        "ROI"),
+        ("roi", "ROI"),
         ("max_dd_pct", "最大DD"),
         ("max_consec_loss", "最大連負"),
     ]:
@@ -822,27 +1011,30 @@ def _print_ipat_guide(best_cfg: dict[str, dict]) -> None:
     print()
     print("  ケリー係数早見表 (残高¥100,000 / pred_ev=1.25 の場合):")
     print(f"  {'券種':>6}  {'stake':>8}  {'残高比':>6}  {'raw Kelly':>10}")
-    print(f"  {'─'*40}")
+    print(f"  {'─' * 40}")
     bal, ev = 100_000.0, 1.25
     for bt, p in best_cfg.items():
         avg_pay = p["payout_multiple"]
-        kf      = p["kelly_fraction"]
-        mp      = p["max_pct"]
-        f_k     = (ev - 1.0) / (avg_pay - 1.0)
-        f_used  = min(f_k * kf, mp)
-        s       = int(round(bal * f_used / 100) * 100)
-        print(f"  {bt:>6}  ¥{s:>7,}  {s/bal*100:>5.2f}%  {f_k*100:>8.2f}% raw")
+        kf = p["kelly_fraction"]
+        mp = p["max_pct"]
+        f_k = (ev - 1.0) / (avg_pay - 1.0)
+        f_used = min(f_k * kf, mp)
+        s = int(round(bal * f_used / 100) * 100)
+        print(f"  {bt:>6}  ¥{s:>7,}  {s / bal * 100:>5.2f}%  {f_k * 100:>8.2f}% raw")
     print()
     print("  上限（最適化済み）:")
     for bt, p in best_cfg.items():
         ev_t = p.get("ev_threshold")
         ev_str = f"EV>{ev_t:.2f}" if ev_t else "モデル閾値"
-        print(f"    {bt}: Kelly={p['kelly_fraction']:.2f}  上限={p['max_pct']*100:.1f}%  {ev_str}")
+        print(
+            f"    {bt}: Kelly={p['kelly_fraction']:.2f}  上限={p['max_pct'] * 100:.1f}%  {ev_str}"
+        )
     print("=" * 72)
     print()
 
 
 # ── _TICKET_PARAMS を最適設定で更新 ──────────────────────────────────
+
 
 def _apply_best_cfg(best_cfg: dict[str, dict]) -> None:
     """最適設定を _TICKET_PARAMS と get_optimal_bet_size に反映する。
@@ -859,16 +1051,19 @@ def _apply_best_cfg(best_cfg: dict[str, dict]) -> None:
 
 # ── main ──────────────────────────────────────────────────────────────
 
+
 def main() -> None:
     """Alpha-Payout 自動最適化 2年半バックテストのエントリーポイント。
 
     Phase 1 でウィンドウごとのモデル学習と予測を実行し、
     Phase 2 で探索空間全体を高速スイープして黄金パラメーターを選出する。
     """
-    ap = argparse.ArgumentParser(description="Alpha-Payout 最適バランス長期バックテスト")
+    ap = argparse.ArgumentParser(
+        description="Alpha-Payout 最適バランス長期バックテスト"
+    )
     ap.add_argument("--optuna-trials", type=int, default=20)
-    ap.add_argument("--no-optuna",    action="store_true")
-    ap.add_argument("--show-detail",  action="store_true")
+    ap.add_argument("--no-optuna", action="store_true")
+    ap.add_argument("--show-detail", action="store_true")
     args = ap.parse_args()
 
     n_optuna = 1 if args.no_optuna else args.optuna_trials
@@ -888,20 +1083,20 @@ def main() -> None:
 
     WINDOWS = [
         {
-            "label":       "Window 1: 2025年全期間",
+            "label": "Window 1: 2025年全期間",
             "train_label": "2024年 (12ヵ月)",
-            "test_label":  "2025年全期間 (Jan-Dec)",
+            "test_label": "2025年全期間 (Jan-Dec)",
             "train_years": [2024],
-            "test_min":    "2025-01-01",
-            "test_max":    "2025-12-31",
+            "test_min": "2025-01-01",
+            "test_max": "2025-12-31",
         },
         {
-            "label":       "Window 2: 2026年1-5月",
+            "label": "Window 2: 2026年1-5月",
             "train_label": "2024+2025年 (24ヵ月)",
-            "test_label":  "2026年 Jan 1 〜 May 23",
+            "test_label": "2026年 Jan 1 〜 May 23",
             "train_years": [2024, 2025],
-            "test_min":    "2026-01-01",
-            "test_max":    "2026-05-23",
+            "test_min": "2026-01-01",
+            "test_max": "2026-05-23",
         },
     ]
 
@@ -910,9 +1105,9 @@ def main() -> None:
     window_data: list[tuple[pd.DataFrame, float, dict]] = []
 
     for i, win in enumerate(WINDOWS):
-        print(f"\n{'━'*72}")
-        print(f"  [{i+1}/{len(WINDOWS)}] {win['label']}")
-        print(f"{'━'*72}")
+        print(f"\n{'━' * 72}")
+        print(f"  [{i + 1}/{len(WINDOWS)}] {win['label']}")
+        print(f"{'━' * 72}")
 
         test_df, threshold = _train_and_predict(
             conn,
@@ -937,9 +1132,9 @@ def main() -> None:
 
     # ── Step 3: 最優秀設定の詳細レポート ─────────────────────────────
     print()
-    print(f"{'═'*72}")
+    print(f"{'═' * 72}")
     print(f"  📋 黄金パラメーター詳細レポート: {best_name}")
-    print(f"{'═'*72}")
+    print(f"{'═' * 72}")
 
     for wr in best_results:
         _print_window(wr, show_detail=args.show_detail)

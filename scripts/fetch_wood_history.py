@@ -30,9 +30,9 @@ ROOT = Path(__file__).resolve().parent.parent
 # ────────────────────────────────────────────────────────────────────────────
 
 DEFAULT_FROMTIME = "20210101"
-MAX_RETRIES      = 5
-BACKOFF_BASE     = 60   # 秒（指数: 60, 120, 240, 480, 960）
-TIMEOUT_SEC      = 28800  # 8時間（SETUP モードは全量取得のため長めに設定）
+MAX_RETRIES = 5
+BACKOFF_BASE = 60  # 秒（指数: 60, 120, 240, 480, 960）
+TIMEOUT_SEC = 28800  # 8時間（SETUP モードは全量取得のため長めに設定）
 
 LOG_FORMAT = "%(asctime)s [%(levelname)s] %(message)s"
 logging.basicConfig(
@@ -54,11 +54,16 @@ logger = logging.getLogger(__name__)
 def fetch_with_retry(fromtime: str) -> bool:
     """WOOD データを fromtime から取得。エラー時は MAX_RETRIES 回リトライ。"""
     cmd = [
-        "py", "-3.14-32",
-        "-m", "src.scraper.jravan_client",
-        "--fromtime", fromtime,
-        "--dataspec", "WOOD",
-        "--option",   "1",  # WOOD は option=2(SETUP)非対応。option=1 で取得できる範囲が上限
+        "py",
+        "-3.14-32",
+        "-m",
+        "src.scraper.jravan_client",
+        "--fromtime",
+        fromtime,
+        "--dataspec",
+        "WOOD",
+        "--option",
+        "1",  # WOOD は option=2(SETUP)非対応。option=1 で取得できる範囲が上限
     ]
 
     logger.info("=" * 60)
@@ -96,13 +101,15 @@ def fetch_with_retry(fromtime: str) -> bool:
 def main() -> None:
     parser = argparse.ArgumentParser(description="WOOD データ一括取得（リトライ付き）")
     parser.add_argument(
-        "--fromtime", default=DEFAULT_FROMTIME,
+        "--fromtime",
+        default=DEFAULT_FROMTIME,
         help="取得開始日 YYYYMMDD（デフォルト: %(default)s）",
     )
     args = parser.parse_args()
 
     try:
         from src.ops.jvlink_dialog_handler import start_dialog_handler
+
         start_dialog_handler(interval=0.3)
     except Exception:
         pass

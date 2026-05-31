@@ -56,17 +56,17 @@ _BEST_PARAMS_PATH = _CASCADE_DIR / "best_params.json"
 # prefix "diff_" = 自馬の値 - 1着馬の値（Stage-2のみ）
 # prefix "diff2_" = 自馬の値 - 2着馬の値（Stage-3のみ）
 _DIFF_FEATURES_STAGE2: list[str] = [
-    "diff_win_rate_all",          # 1着馬との通算勝率差
-    "diff_recent_rank_mean",      # 1着馬との直近着順差（負=自馬が良好）
-    "diff_win_odds",              # 1着馬とのオッズ差
-    "diff_tc_4f",                 # 調教タイム差
-    "diff_weight_carried",        # 斤量差
-    "diff_horse_weight",          # 馬体重差
-    "winner_jockey_same",         # 1着馬と同じ騎手か (0/1)
-    "winner_trainer_same",        # 1着馬と同じ厩舎か (0/1)
-    "winner_sire_same",           # 1着馬と同じ父か (0/1)
-    "own_rank1_prob",             # Stage-1 が出力した1着確率（自馬）
-    "winner_rank1_prob",          # Stage-1 が出力した1着確率（1着馬）
+    "diff_win_rate_all",  # 1着馬との通算勝率差
+    "diff_recent_rank_mean",  # 1着馬との直近着順差（負=自馬が良好）
+    "diff_win_odds",  # 1着馬とのオッズ差
+    "diff_tc_4f",  # 調教タイム差
+    "diff_weight_carried",  # 斤量差
+    "diff_horse_weight",  # 馬体重差
+    "winner_jockey_same",  # 1着馬と同じ騎手か (0/1)
+    "winner_trainer_same",  # 1着馬と同じ厩舎か (0/1)
+    "winner_sire_same",  # 1着馬と同じ父か (0/1)
+    "own_rank1_prob",  # Stage-1 が出力した1着確率（自馬）
+    "winner_rank1_prob",  # Stage-1 が出力した1着確率（1着馬）
 ]
 
 _DIFF_FEATURES_STAGE3: list[str] = [
@@ -76,30 +76,51 @@ _DIFF_FEATURES_STAGE3: list[str] = [
     "diff_tc_4f",
     "diff_weight_carried",
     "diff_horse_weight",
-    "winner_jockey_same",         # 1着馬との比較
-    "second_jockey_same",         # 2着馬との比較
+    "winner_jockey_same",  # 1着馬との比較
+    "second_jockey_same",  # 2着馬との比較
     "winner_trainer_same",
     "second_trainer_same",
     "own_rank1_prob",
     "winner_rank1_prob",
-    "second_rank1_prob",          # Stage-1 の2着馬スコア
-    "own_rank2_prob",             # Stage-2 が出力した2着確率（自馬）
+    "second_rank1_prob",  # Stage-1 の2着馬スコア
+    "own_rank2_prob",  # Stage-2 が出力した2着確率（自馬）
 ]
 
 # ベース特徴量（Stage-1 と共通の基礎特徴）
 _BASE_FEATURES: list[str] = [
-    "weight_carried", "horse_weight", "horse_weight_diff",
-    "win_rate_all", "win_rate_surface", "win_rate_distance_band",
+    "weight_carried",
+    "horse_weight",
+    "horse_weight_diff",
+    "win_rate_all",
+    "win_rate_surface",
+    "win_rate_distance_band",
     "recent_rank_mean",
-    "surface_code", "sex_code", "venue_encoded", "sire_encoded",
-    "distance", "gate_number", "condition_code", "race_number",
-    "jockey_code_encoded", "trainer_code_encoded",
-    "tc_4f", "tc_lap", "tc_accel_flag", "tc_4f_diff",
-    "hc_4f", "hc_lap", "hc_accel_flag", "hc_4f_diff",
-    "win_rate_all_rank", "win_rate_all_zscore",
-    "win_rate_surface_rank", "win_rate_distance_band_rank",
-    "recent_rank_mean_rank", "recent_rank_mean_zscore",
-    "tc_4f_rank", "tc_4f_zscore",
+    "surface_code",
+    "sex_code",
+    "venue_encoded",
+    "sire_encoded",
+    "distance",
+    "gate_number",
+    "condition_code",
+    "race_number",
+    "jockey_code_encoded",
+    "trainer_code_encoded",
+    "tc_4f",
+    "tc_lap",
+    "tc_accel_flag",
+    "tc_4f_diff",
+    "hc_4f",
+    "hc_lap",
+    "hc_accel_flag",
+    "hc_4f_diff",
+    "win_rate_all_rank",
+    "win_rate_all_zscore",
+    "win_rate_surface_rank",
+    "win_rate_distance_band_rank",
+    "recent_rank_mean_rank",
+    "recent_rank_mean_zscore",
+    "tc_4f_rank",
+    "tc_4f_zscore",
 ]
 
 
@@ -122,6 +143,7 @@ _LGBM_PARAMS: dict = {
 
 # ── Optuna ハイパーパラメータ最適化 ──────────────────────────────────────────
 
+
 def _load_best_params(stage: str) -> dict:
     """best_params.json から指定ステージのパラメータを読み込む。ファイルがなければ _LGBM_PARAMS を返す。"""
     if _BEST_PARAMS_PATH.exists():
@@ -142,21 +164,22 @@ def _optuna_objective(
     """3-fold GroupKFold OOF AUC を最大化（-AUC を最小化）。"""
     params: dict = {
         **_LGBM_PARAMS,
-        "num_leaves":        trial.suggest_int("num_leaves", 15, 255),
-        "learning_rate":     trial.suggest_float("learning_rate", 0.005, 0.2, log=True),
-        "feature_fraction":  trial.suggest_float("feature_fraction", 0.4, 1.0),
+        "num_leaves": trial.suggest_int("num_leaves", 15, 255),
+        "learning_rate": trial.suggest_float("learning_rate", 0.005, 0.2, log=True),
+        "feature_fraction": trial.suggest_float("feature_fraction", 0.4, 1.0),
         "min_child_samples": trial.suggest_int("min_child_samples", 5, 100),
-        "subsample":         trial.suggest_float("subsample", 0.4, 1.0),
-        "reg_alpha":         trial.suggest_float("reg_alpha", 1e-4, 10.0, log=True),
-        "reg_lambda":        trial.suggest_float("reg_lambda", 1e-4, 10.0, log=True),
-        "n_estimators":      trial.suggest_int("n_estimators", 200, 1500),
+        "subsample": trial.suggest_float("subsample", 0.4, 1.0),
+        "reg_alpha": trial.suggest_float("reg_alpha", 1e-4, 10.0, log=True),
+        "reg_lambda": trial.suggest_float("reg_lambda", 1e-4, 10.0, log=True),
+        "n_estimators": trial.suggest_int("n_estimators", 200, 1500),
     }
     cv = GroupKFold(n_splits=3)
     aucs: list[float] = []
     for tr_idx, va_idx in cv.split(X, y, groups):
         model = LGBMClassifier(**params)
         model.fit(
-            X.iloc[tr_idx], y.iloc[tr_idx],
+            X.iloc[tr_idx],
+            y.iloc[tr_idx],
             eval_set=[(X.iloc[va_idx], y.iloc[va_idx])],
             callbacks=[lgb_early_stop(30, verbose=False)],
         )
@@ -194,7 +217,9 @@ def tune_stage(
 
     best_params = study.best_params
     best_auc = -study.best_value
-    logger.info("Optuna 完了: %s  best AUC=%.4f  params=%s", stage, best_auc, best_params)
+    logger.info(
+        "Optuna 完了: %s  best AUC=%.4f  params=%s", stage, best_auc, best_params
+    )
 
     _CASCADE_DIR.mkdir(parents=True, exist_ok=True)
     existing: dict = {}
@@ -211,6 +236,7 @@ def tune_stage(
 
 # ── データロード ─────────────────────────────────────────────────────────────
 
+
 def load_training_data(
     conn: "sqlite3.Connection",
     year_filter: str | None,
@@ -224,10 +250,13 @@ def load_training_data(
     Returns:
         (DataFrame[FEATURE_COLS + rank + race_id], sire_map) のタプル
     """
-    import sqlite3 as _sqlite3
     from src.ml.features import FeatureBuilder
 
-    year_sql = f"AND CAST(substr(r.date,1,4) AS INTEGER) = {year_filter}" if year_filter else ""
+    year_sql = (
+        f"AND CAST(substr(r.date,1,4) AS INTEGER) = {year_filter}"
+        if year_filter
+        else ""
+    )
     race_rows = conn.execute(
         f"""
         SELECT DISTINCT r.race_id
@@ -280,7 +309,9 @@ def load_training_data(
         return pd.DataFrame(), {}
 
     df = pd.concat(frames, ignore_index=True)
-    logger.info("学習データロード完了: %d 行 (%d レース)", len(df), df["race_id"].nunique())
+    logger.info(
+        "学習データロード完了: %d 行 (%d レース)", len(df), df["race_id"].nunique()
+    )
     return df, fb._sire_map
 
 
@@ -304,21 +335,40 @@ def build_stage2_features(df: pd.DataFrame, stage1_probs: pd.Series) -> pd.DataF
 
     result_rows = []
     for race_id, group in df.groupby("race_id"):
-        winner_row = group[group["rank"] == 1].iloc[0] if "rank" in group.columns else \
-                     group.loc[group["own_rank1_prob"].idxmax()]
+        winner_row = (
+            group[group["rank"] == 1].iloc[0]
+            if "rank" in group.columns
+            else group.loc[group["own_rank1_prob"].idxmax()]
+        )
 
         for _, row in group.iterrows():
             diff = {}
-            for feat in ["win_rate_all", "recent_rank_mean", "win_odds",
-                         "tc_4f", "weight_carried", "horse_weight"]:
+            for feat in [
+                "win_rate_all",
+                "recent_rank_mean",
+                "win_odds",
+                "tc_4f",
+                "weight_carried",
+                "horse_weight",
+            ]:
                 self_val = row.get(feat, np.nan)
                 win_val = winner_row.get(feat, np.nan)
-                diff[f"diff_{feat}"] = (self_val - win_val) if pd.notna(self_val) and pd.notna(win_val) else np.nan
+                diff[f"diff_{feat}"] = (
+                    (self_val - win_val)
+                    if pd.notna(self_val) and pd.notna(win_val)
+                    else np.nan
+                )
 
             diff["winner_rank1_prob"] = winner_row.get("own_rank1_prob", np.nan)
-            diff["winner_jockey_same"] = int(row.get("jockey", "") == winner_row.get("jockey", ""))
-            diff["winner_trainer_same"] = int(row.get("trainer", "") == winner_row.get("trainer", ""))
-            diff["winner_sire_same"] = int(row.get("sire_encoded", -1) == winner_row.get("sire_encoded", -1))
+            diff["winner_jockey_same"] = int(
+                row.get("jockey", "") == winner_row.get("jockey", "")
+            )
+            diff["winner_trainer_same"] = int(
+                row.get("trainer", "") == winner_row.get("trainer", "")
+            )
+            diff["winner_sire_same"] = int(
+                row.get("sire_encoded", -1) == winner_row.get("sire_encoded", -1)
+            )
             result_rows.append(diff)
 
     diff_df = pd.DataFrame(result_rows, index=df.index)
@@ -353,18 +403,36 @@ def build_stage3_features(
 
         for _, row in group.iterrows():
             diff = {}
-            for feat in ["win_rate_all", "recent_rank_mean", "win_odds",
-                         "tc_4f", "weight_carried", "horse_weight"]:
+            for feat in [
+                "win_rate_all",
+                "recent_rank_mean",
+                "win_odds",
+                "tc_4f",
+                "weight_carried",
+                "horse_weight",
+            ]:
                 self_val = row.get(feat, np.nan)
-                win_val  = winner_row.get(feat, np.nan)
-                diff[f"diff_{feat}"] = (self_val - win_val) if pd.notna(self_val) and pd.notna(win_val) else np.nan
+                win_val = winner_row.get(feat, np.nan)
+                diff[f"diff_{feat}"] = (
+                    (self_val - win_val)
+                    if pd.notna(self_val) and pd.notna(win_val)
+                    else np.nan
+                )
 
             diff["winner_rank1_prob"] = winner_row.get("own_rank1_prob", np.nan)
             diff["second_rank1_prob"] = second_row.get("own_rank1_prob", np.nan)
-            diff["winner_jockey_same"] = int(row.get("jockey", "") == winner_row.get("jockey", ""))
-            diff["second_jockey_same"] = int(row.get("jockey", "") == second_row.get("jockey", ""))
-            diff["winner_trainer_same"] = int(row.get("trainer", "") == winner_row.get("trainer", ""))
-            diff["second_trainer_same"] = int(row.get("trainer", "") == second_row.get("trainer", ""))
+            diff["winner_jockey_same"] = int(
+                row.get("jockey", "") == winner_row.get("jockey", "")
+            )
+            diff["second_jockey_same"] = int(
+                row.get("jockey", "") == second_row.get("jockey", "")
+            )
+            diff["winner_trainer_same"] = int(
+                row.get("trainer", "") == winner_row.get("trainer", "")
+            )
+            diff["second_trainer_same"] = int(
+                row.get("trainer", "") == second_row.get("trainer", "")
+            )
             result_rows.append(diff)
 
     diff_df = pd.DataFrame(result_rows, index=df.index)
@@ -372,6 +440,7 @@ def build_stage3_features(
 
 
 # ── 学習 ─────────────────────────────────────────────────────────────────────
+
 
 def train_stage2(
     df: pd.DataFrame,
@@ -396,13 +465,21 @@ def train_stage2(
     # 1着馬自身を学習対象から除外（自分が2着になれないため）
     feat_df_no1 = feat_df[feat_df[target_col] != 1].copy()
 
-    feature_cols = [c for c in (_BASE_FEATURES + list(_DIFF_FEATURES_STAGE2)) if c in feat_df_no1.columns]
+    feature_cols = [
+        c
+        for c in (_BASE_FEATURES + list(_DIFF_FEATURES_STAGE2))
+        if c in feat_df_no1.columns
+    ]
     X = feat_df_no1[feature_cols].fillna(-1)
     y = feat_df_no1["target_2"]
     groups = feat_df_no1["race_id"]
 
-    logger.info("Stage-2 学習データ: %d 行, %d 特徴量, 正例=%d",
-                len(X), len(feature_cols), y.sum())
+    logger.info(
+        "Stage-2 学習データ: %d 行, %d 特徴量, 正例=%d",
+        len(X),
+        len(feature_cols),
+        y.sum(),
+    )
 
     if dry_run:
         logger.info("[DRY-RUN] Stage-2 特徴量一覧: %s", feature_cols)
@@ -414,9 +491,12 @@ def train_stage2(
     oof_preds = np.zeros(len(X))
     for fold, (tr_idx, va_idx) in enumerate(cv.split(X, y, groups)):
         model = LGBMClassifier(**lgbm_params)
-        model.fit(X.iloc[tr_idx], y.iloc[tr_idx],
-                  eval_set=[(X.iloc[va_idx], y.iloc[va_idx])],
-                  callbacks=[lgb_early_stop(50, verbose=False)])
+        model.fit(
+            X.iloc[tr_idx],
+            y.iloc[tr_idx],
+            eval_set=[(X.iloc[va_idx], y.iloc[va_idx])],
+            callbacks=[lgb_early_stop(50, verbose=False)],
+        )
         oof_preds[va_idx] = model.predict_proba(X.iloc[va_idx])[:, 1]
         auc = roc_auc_score(y.iloc[va_idx], oof_preds[va_idx])
         logger.info("  Stage-2 fold=%d  AUC=%.4f", fold + 1, auc)
@@ -451,13 +531,21 @@ def train_stage3(
     feat_df["target_3"] = (feat_df[target_col] == 3).astype(int)
     feat_df = feat_df[~feat_df[target_col].isin([1, 2])].copy()
 
-    feature_cols = [c for c in (_BASE_FEATURES + list(_DIFF_FEATURES_STAGE3)) if c in feat_df.columns]
+    feature_cols = [
+        c
+        for c in (_BASE_FEATURES + list(_DIFF_FEATURES_STAGE3))
+        if c in feat_df.columns
+    ]
     X = feat_df[feature_cols].fillna(-1)
     y = feat_df["target_3"]
     groups = feat_df["race_id"]
 
-    logger.info("Stage-3 学習データ: %d 行, %d 特徴量, 正例=%d",
-                len(X), len(feature_cols), y.sum())
+    logger.info(
+        "Stage-3 学習データ: %d 行, %d 特徴量, 正例=%d",
+        len(X),
+        len(feature_cols),
+        y.sum(),
+    )
 
     if dry_run:
         logger.info("[DRY-RUN] Stage-3 特徴量一覧: %s", feature_cols)
@@ -469,9 +557,12 @@ def train_stage3(
     oof_preds = np.zeros(len(X))
     for fold, (tr_idx, va_idx) in enumerate(cv.split(X, y, groups)):
         model = LGBMClassifier(**lgbm_params)
-        model.fit(X.iloc[tr_idx], y.iloc[tr_idx],
-                  eval_set=[(X.iloc[va_idx], y.iloc[va_idx])],
-                  callbacks=[lgb_early_stop(50, verbose=False)])
+        model.fit(
+            X.iloc[tr_idx],
+            y.iloc[tr_idx],
+            eval_set=[(X.iloc[va_idx], y.iloc[va_idx])],
+            callbacks=[lgb_early_stop(50, verbose=False)],
+        )
         oof_preds[va_idx] = model.predict_proba(X.iloc[va_idx])[:, 1]
         auc = roc_auc_score(y.iloc[va_idx], oof_preds[va_idx])
         logger.info("  Stage-3 fold=%d  AUC=%.4f", fold + 1, auc)
@@ -489,10 +580,12 @@ def train_stage3(
 def lgb_early_stop(stopping_rounds: int, verbose: bool = True):
     """LightGBM early stopping コールバック（lgb.early_stopping のラッパー）。"""
     import lightgbm as lgb
+
     return lgb.early_stopping(stopping_rounds, verbose=verbose)
 
 
 # ── 推論ヘルパー ─────────────────────────────────────────────────────────────
+
 
 class CascadePredictor:
     """
@@ -540,9 +633,8 @@ class CascadePredictor:
         Returns:
             [(prob, (1着馬番, 2着馬番, 3着馬番)), ...] 確率降順
         """
-        import itertools
         nums = race_df["horse_number"].tolist()
-        s1   = stage1_probs.values
+        s1 = stage1_probs.values
 
         results = []
         for i1, winner_num in enumerate(nums):
@@ -554,22 +646,46 @@ class CascadePredictor:
             stage2_feats = []
             for _, row in race_df.iterrows():
                 diff = {}
-                for feat in ["win_rate_all", "recent_rank_mean", "win_odds",
-                             "tc_4f", "weight_carried", "horse_weight"]:
+                for feat in [
+                    "win_rate_all",
+                    "recent_rank_mean",
+                    "win_odds",
+                    "tc_4f",
+                    "weight_carried",
+                    "horse_weight",
+                ]:
                     a = row.get(feat, np.nan)
                     b = winner_row.get(feat, np.nan)
-                    if a is None: a = np.nan
-                    if b is None: b = np.nan
-                    diff[f"diff_{feat}"] = (a - b) if (pd.notna(a) and pd.notna(b)) else np.nan
+                    if a is None:
+                        a = np.nan
+                    if b is None:
+                        b = np.nan
+                    diff[f"diff_{feat}"] = (
+                        (a - b) if (pd.notna(a) and pd.notna(b)) else np.nan
+                    )
                 diff["winner_rank1_prob"] = s1[i1]
-                diff["own_rank1_prob"] = s1[list(nums).index(row["horse_number"])] if row["horse_number"] in nums else 0
-                diff["winner_jockey_same"] = int(row.get("jockey", "") == winner_row.get("jockey", ""))
-                diff["winner_trainer_same"] = int(row.get("trainer", "") == winner_row.get("trainer", ""))
-                diff["winner_sire_same"] = int(row.get("sire_encoded", -1) == winner_row.get("sire_encoded", -1))
+                diff["own_rank1_prob"] = (
+                    s1[list(nums).index(row["horse_number"])]
+                    if row["horse_number"] in nums
+                    else 0
+                )
+                diff["winner_jockey_same"] = int(
+                    row.get("jockey", "") == winner_row.get("jockey", "")
+                )
+                diff["winner_trainer_same"] = int(
+                    row.get("trainer", "") == winner_row.get("trainer", "")
+                )
+                diff["winner_sire_same"] = int(
+                    row.get("sire_encoded", -1) == winner_row.get("sire_encoded", -1)
+                )
                 stage2_feats.append(diff)
 
-            feat2_df = pd.concat([race_df, pd.DataFrame(stage2_feats, index=race_df.index)], axis=1)
-            cols2 = getattr(self.stage2, "feature_names_", _BASE_FEATURES + _DIFF_FEATURES_STAGE2)
+            feat2_df = pd.concat(
+                [race_df, pd.DataFrame(stage2_feats, index=race_df.index)], axis=1
+            )
+            cols2 = getattr(
+                self.stage2, "feature_names_", _BASE_FEATURES + _DIFF_FEATURES_STAGE2
+            )
             X2 = feat2_df[[c for c in cols2 if c in feat2_df.columns]].fillna(-1)
             s2 = self.stage2.predict_proba(X2)[:, 1]
 
@@ -582,13 +698,16 @@ class CascadePredictor:
                 for i3, third_num in enumerate(nums):
                     if third_num in (winner_num, second_num):
                         continue
-                    results.append((prob_combo * s1[i3], (winner_num, second_num, third_num)))
+                    results.append(
+                        (prob_combo * s1[i3], (winner_num, second_num, third_num))
+                    )
 
         results.sort(key=lambda x: -x[0])
         return results[:top_n]
 
 
 # ── メイン ───────────────────────────────────────────────────────────────────
+
 
 def main() -> None:
     logging.basicConfig(
@@ -605,14 +724,22 @@ def main() -> None:
   py scripts/train_cascade.py --dry-run       # 特徴量確認（学習なし）
 """,
     )
-    ap.add_argument("--year",     default=None, help="学習対象年（省略時=全期間）")
-    ap.add_argument("--dry-run",  action="store_true", help="特徴量確認のみ（モデル保存なし）")
-    ap.add_argument("--optuna",   action="store_true", help="Optunaでハイパーパラメータ最適化してから学習")
-    ap.add_argument("--n-trials", type=int, default=50, help="Optunaトライアル数（デフォルト: 50）")
+    ap.add_argument("--year", default=None, help="学習対象年（省略時=全期間）")
+    ap.add_argument(
+        "--dry-run", action="store_true", help="特徴量確認のみ（モデル保存なし）"
+    )
+    ap.add_argument(
+        "--optuna",
+        action="store_true",
+        help="Optunaでハイパーパラメータ最適化してから学習",
+    )
+    ap.add_argument(
+        "--n-trials", type=int, default=50, help="Optunaトライアル数（デフォルト: 50）"
+    )
     args = ap.parse_args()
 
     from src.database.init_db import init_db
-    from src.ml.models import HonmeiModel, FEATURE_COLS
+    from src.ml.models import HonmeiModel
 
     print("=" * 60)
     print("  Cascade Rank Prediction — 学習開始")
@@ -638,7 +765,9 @@ def main() -> None:
         stage1_probs = honmei.predict(df).rename("stage1_prob")
     except FileNotFoundError:
         logger.warning("HonmeiModel が見つかりません。ダミー確率（均等）を使用します。")
-        stage1_probs = pd.Series(np.ones(len(df)) / 18.0, index=df.index, name="stage1_prob")
+        stage1_probs = pd.Series(
+            np.ones(len(df)) / 18.0, index=df.index, name="stage1_prob"
+        )
 
     # ── Optuna チューニング ────────────────────────────────────────────────────
     params_stage2: dict | None = None
@@ -651,7 +780,11 @@ def main() -> None:
         feat2 = build_stage2_features(df, stage1_probs)
         feat2["target_2"] = (feat2["rank"] == 2).astype(int)
         feat2_no1 = feat2[feat2["rank"] != 1].copy()
-        cols2 = [c for c in (_BASE_FEATURES + list(_DIFF_FEATURES_STAGE2)) if c in feat2_no1.columns]
+        cols2 = [
+            c
+            for c in (_BASE_FEATURES + list(_DIFF_FEATURES_STAGE2))
+            if c in feat2_no1.columns
+        ]
         X2 = feat2_no1[cols2].fillna(-1)
         y2 = feat2_no1["target_2"]
         g2 = feat2_no1["race_id"]
@@ -663,7 +796,11 @@ def main() -> None:
         feat3 = build_stage3_features(df, stage1_probs, dummy_oof2)
         feat3["target_3"] = (feat3["rank"] == 3).astype(int)
         feat3 = feat3[~feat3["rank"].isin([1, 2])].copy()
-        cols3 = [c for c in (_BASE_FEATURES + list(_DIFF_FEATURES_STAGE3)) if c in feat3.columns]
+        cols3 = [
+            c
+            for c in (_BASE_FEATURES + list(_DIFF_FEATURES_STAGE3))
+            if c in feat3.columns
+        ]
         X3 = feat3[cols3].fillna(-1)
         y3 = feat3["target_3"]
         g3 = feat3["race_id"]
@@ -693,11 +830,11 @@ def main() -> None:
             pickle.dump({"sire_map": sire_map}, f)
         logger.info("label_encoders.pkl 保存: sire=%d 種", len(sire_map))
         print(f"\n  モデル保存完了: {_CASCADE_DIR}")
-        print(f"    stage2_model.pkl")
-        print(f"    stage3_model.pkl")
+        print("    stage2_model.pkl")
+        print("    stage3_model.pkl")
         print(f"    label_encoders.pkl  ({len(sire_map)} 種の父名)")
         if _BEST_PARAMS_PATH.exists():
-            print(f"    best_params.json")
+            print("    best_params.json")
     elif args.dry_run:
         print("\n  [DRY-RUN] モデルは保存されませんでした。")
 

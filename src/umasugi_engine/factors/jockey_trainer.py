@@ -12,6 +12,7 @@ jockey_stats / trainer_stats テーブルから当該騎手・調教師の
   jockey_course_score  (0.0〜1.0, 0.5 = 中立/データなし)
   trainer_course_score (0.0〜1.0, 0.5 = 中立/データなし)
 """
+
 from __future__ import annotations
 
 import logging
@@ -73,7 +74,7 @@ def _fetch_stats(
 
     result: dict[tuple[str, str, str], float] = {}
     for name, venue, surface, wr, last_wr in rows:
-        wr      = min(float(wr or 0.0), _WINRATE_CAP)
+        wr = min(float(wr or 0.0), _WINRATE_CAP)
         last_wr = min(float(last_wr or 0.0), _WINRATE_CAP)
         raw_score = wr * 0.6 + last_wr * 0.4
         result[(str(name), str(venue), str(surface))] = raw_score
@@ -96,7 +97,7 @@ def _normalize_scores(series: pd.Series) -> pd.Series:
     valid_mask = series != _DEFAULT
     if valid_mask.sum() < 2:
         return series
-    arr = series.values.copy()
+    series.values.copy()
     valid_idx = series[valid_mask].index
     ranks = rankdata(series[valid_mask].values, method="average")
     n = len(ranks)
@@ -133,11 +134,15 @@ def calc_jockey_course_score(
     if "venue" not in df.columns or "surface" not in df.columns:
         df = _join_race_info(df, conn)
 
-    jockeys  = df["jockey"].dropna().unique().tolist() if "jockey" in df.columns else []
-    venues   = df["venue"].dropna().unique().tolist()  if "venue"  in df.columns else []
-    surfaces = df["surface"].dropna().unique().tolist() if "surface" in df.columns else []
+    jockeys = df["jockey"].dropna().unique().tolist() if "jockey" in df.columns else []
+    venues = df["venue"].dropna().unique().tolist() if "venue" in df.columns else []
+    surfaces = (
+        df["surface"].dropna().unique().tolist() if "surface" in df.columns else []
+    )
 
-    score_map = _fetch_stats(conn, "jockey_stats", "jockey_name", jockeys, venues, surfaces)
+    score_map = _fetch_stats(
+        conn, "jockey_stats", "jockey_name", jockeys, venues, surfaces
+    )
 
     def _score(row: pd.Series) -> float:
         j = row.get("jockey")
@@ -150,10 +155,9 @@ def calc_jockey_course_score(
     df["jockey_course_score"] = df.apply(_score, axis=1)
     # レース内でランク正規化（同じレース内の相対評価へ変換）
     if "race_id" in df.columns:
-        df["jockey_course_score"] = (
-            df.groupby("race_id", group_keys=False)["jockey_course_score"]
-            .transform(_normalize_scores)
-        )
+        df["jockey_course_score"] = df.groupby("race_id", group_keys=False)[
+            "jockey_course_score"
+        ].transform(_normalize_scores)
     return df
 
 
@@ -183,11 +187,17 @@ def calc_trainer_course_score(
     if "venue" not in df.columns or "surface" not in df.columns:
         df = _join_race_info(df, conn)
 
-    trainers = df["trainer"].dropna().unique().tolist() if "trainer" in df.columns else []
-    venues   = df["venue"].dropna().unique().tolist()  if "venue"  in df.columns else []
-    surfaces = df["surface"].dropna().unique().tolist() if "surface" in df.columns else []
+    trainers = (
+        df["trainer"].dropna().unique().tolist() if "trainer" in df.columns else []
+    )
+    venues = df["venue"].dropna().unique().tolist() if "venue" in df.columns else []
+    surfaces = (
+        df["surface"].dropna().unique().tolist() if "surface" in df.columns else []
+    )
 
-    score_map = _fetch_stats(conn, "trainer_stats", "trainer_name", trainers, venues, surfaces)
+    score_map = _fetch_stats(
+        conn, "trainer_stats", "trainer_name", trainers, venues, surfaces
+    )
 
     def _score(row: pd.Series) -> float:
         t = row.get("trainer")
@@ -199,10 +209,9 @@ def calc_trainer_course_score(
 
     df["trainer_course_score"] = df.apply(_score, axis=1)
     if "race_id" in df.columns:
-        df["trainer_course_score"] = (
-            df.groupby("race_id", group_keys=False)["trainer_course_score"]
-            .transform(_normalize_scores)
-        )
+        df["trainer_course_score"] = df.groupby("race_id", group_keys=False)[
+            "trainer_course_score"
+        ].transform(_normalize_scores)
     return df
 
 

@@ -1,4 +1,5 @@
 """tests/test_ev_features.py — EVEnhancedFeatures / MarketProbabilityCalc / OddsAnomalyDetector テスト"""
+
 from __future__ import annotations
 
 from itertools import permutations
@@ -18,6 +19,7 @@ from src.ml.ev_features import (
 # ─────────────────────────────────────────────────────────────────────────────
 # JRATakeoutRates
 # ─────────────────────────────────────────────────────────────────────────────
+
 
 class TestJRATakeoutRates:
     def test_default_win_takeout(self) -> None:
@@ -47,6 +49,7 @@ class TestJRATakeoutRates:
 # ─────────────────────────────────────────────────────────────────────────────
 # MarketProbabilityCalc — Shin 確率
 # ─────────────────────────────────────────────────────────────────────────────
+
 
 class TestShinProbabilities:
     def setup_method(self) -> None:
@@ -98,6 +101,7 @@ class TestShinProbabilities:
 # MarketProbabilityCalc — Harville 法 複勝確率
 # ─────────────────────────────────────────────────────────────────────────────
 
+
 class TestHarvillePlaceProb:
     def setup_method(self) -> None:
         self.calc = MarketProbabilityCalc()
@@ -136,6 +140,7 @@ class TestHarvillePlaceProb:
 # MarketProbabilityCalc — 三連単確率
 # ─────────────────────────────────────────────────────────────────────────────
 
+
 class TestHarvilleTrifectaProb:
     def setup_method(self) -> None:
         self.calc = MarketProbabilityCalc()
@@ -172,26 +177,27 @@ class TestHarvilleTrifectaProb:
 # OddsAnomalyDetector
 # ─────────────────────────────────────────────────────────────────────────────
 
+
 class TestOddsAnomalyDetector:
     def setup_method(self) -> None:
         self.detector = OddsAnomalyDetector(steam_threshold=0.15)
 
     def test_steam_flag_detected(self) -> None:
         morning = pd.Series([4.0, 8.0, 12.0])
-        final = pd.Series([3.0, 8.5, 11.5])   # 馬0のみ 25% 急落
+        final = pd.Series([3.0, 8.5, 11.5])  # 馬0のみ 25% 急落
         flags = self.detector.detect_steam_move(morning, final)
         assert int(flags.iloc[0]) == 1
         assert int(flags.iloc[1]) == 0
 
     def test_no_steam_when_odds_rise(self) -> None:
         morning = pd.Series([3.0, 5.0])
-        final = pd.Series([4.0, 6.0])   # 全馬オッズ上昇
+        final = pd.Series([4.0, 6.0])  # 全馬オッズ上昇
         flags = self.detector.detect_steam_move(morning, final)
         assert int(flags.sum()) == 0
 
     def test_steam_exactly_at_threshold(self) -> None:
         morning = pd.Series([10.0])
-        final = pd.Series([8.5])   # 15% 下落 = ちょうど閾値
+        final = pd.Series([8.5])  # 15% 下落 = ちょうど閾値
         flags = self.detector.detect_steam_move(morning, final)
         assert int(flags.iloc[0]) == 1
 
@@ -205,10 +211,10 @@ class TestOddsAnomalyDetector:
     def test_odds_reversal_anticorrelated_higher_than_correlated(self) -> None:
         # 逆相関（高オッズなのに低人気番号）の方がスコアが高くなるべき
         odds = pd.Series([1.5, 3.0, 5.0, 10.0])
-        pop_corr  = pd.Series([1, 2, 3, 4])   # 一致: 低オッズ=高人気
-        pop_rev   = pd.Series([4, 3, 2, 1])   # 逆行: 低オッズ=低人気（異常）
+        pop_corr = pd.Series([1, 2, 3, 4])  # 一致: 低オッズ=高人気
+        pop_rev = pd.Series([4, 3, 2, 1])  # 逆行: 低オッズ=低人気（異常）
         score_corr = self.detector.detect_odds_reversal(odds, pop_corr).max()
-        score_rev  = self.detector.detect_odds_reversal(odds, pop_rev).max()
+        score_rev = self.detector.detect_odds_reversal(odds, pop_rev).max()
         assert float(score_rev) >= float(score_corr)
 
     def test_late_money_ratio_range(self) -> None:
@@ -230,14 +236,17 @@ class TestOddsAnomalyDetector:
 # EVEnhancedFeatures
 # ─────────────────────────────────────────────────────────────────────────────
 
+
 class TestEVEnhancedFeatures:
     def _make_race_df(self, n: int = 5) -> pd.DataFrame:
         rng = np.random.default_rng(42)
-        return pd.DataFrame({
-            "horse_number": range(1, n + 1),
-            "win_odds":     rng.uniform(1.5, 30.0, n),
-            "popularity":   range(1, n + 1),
-        })
+        return pd.DataFrame(
+            {
+                "horse_number": range(1, n + 1),
+                "win_odds": rng.uniform(1.5, 30.0, n),
+                "popularity": range(1, n + 1),
+            }
+        )
 
     def test_required_columns_added(self) -> None:
         engine = EVEnhancedFeatures()
@@ -305,4 +314,6 @@ class TestEVEnhancedFeatures:
         engine = EVEnhancedFeatures()
         df = self._make_race_df(8)
         result = engine.add_ev_features(df)
-        assert float(result["implied_prob_excess"].sum()) == pytest.approx(0.0, abs=1e-5)
+        assert float(result["implied_prob_excess"].sum()) == pytest.approx(
+            0.0, abs=1e-5
+        )

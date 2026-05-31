@@ -27,7 +27,6 @@ from __future__ import annotations
 
 import argparse
 import logging
-import os
 import sqlite3
 import sys
 import time
@@ -39,13 +38,14 @@ _ROOT = Path(__file__).resolve().parents[2]
 if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
-from src.database.init_db import init_db, get_db_path
+from src.database.init_db import init_db
 
 # 削除対象となるモデル種別名
 _BAD_NAMES = ("本命", "卍")
 
 
 # ── 対象レコード集計 ──────────────────────────────────────────────
+
 
 def _count_targets(conn: sqlite3.Connection) -> dict[str, int]:
     """削除対象の件数を集計して返す。
@@ -75,9 +75,7 @@ def _count_targets(conn: sqlite3.Connection) -> dict[str, int]:
         )
     """
 
-    pred_cnt = conn.execute(
-        f"SELECT COUNT(*) FROM ({_target_sql})"
-    ).fetchone()[0]
+    pred_cnt = conn.execute(f"SELECT COUNT(*) FROM ({_target_sql})").fetchone()[0]
 
     ph_cnt = conn.execute(
         f"""
@@ -94,8 +92,8 @@ def _count_targets(conn: sqlite3.Connection) -> dict[str, int]:
     ).fetchone()[0]
 
     return {
-        "predictions":        pred_cnt,
-        "prediction_horses":  ph_cnt,
+        "predictions": pred_cnt,
+        "prediction_horses": ph_cnt,
         "prediction_results": pr_cnt,
     }
 
@@ -111,13 +109,18 @@ def _count_all(conn: sqlite3.Connection) -> dict[str, int]:
         現在の件数を格納した辞書。
     """
     return {
-        "predictions":        conn.execute("SELECT COUNT(*) FROM predictions").fetchone()[0],
-        "prediction_horses":  conn.execute("SELECT COUNT(*) FROM prediction_horses").fetchone()[0],
-        "prediction_results": conn.execute("SELECT COUNT(*) FROM prediction_results").fetchone()[0],
+        "predictions": conn.execute("SELECT COUNT(*) FROM predictions").fetchone()[0],
+        "prediction_horses": conn.execute(
+            "SELECT COUNT(*) FROM prediction_horses"
+        ).fetchone()[0],
+        "prediction_results": conn.execute(
+            "SELECT COUNT(*) FROM prediction_results"
+        ).fetchone()[0],
     }
 
 
 # ── 削除処理 ─────────────────────────────────────────────────────
+
 
 def _delete_targets(conn: sqlite3.Connection) -> int:
     """対象 predictions を削除し、削除件数を返す。
@@ -160,8 +163,8 @@ def _run_vacuum(conn: sqlite3.Connection) -> tuple[int, int]:
     db_path = Path(conn.execute("PRAGMA database_list").fetchone()[2])
 
     # VACUUM は autocommit モードで実行する必要がある
-    conn.execute("COMMIT")          # 念のため未コミットトランザクションを閉じる
-    conn.isolation_level = None     # autocommit に切り替え
+    conn.execute("COMMIT")  # 念のため未コミットトランザクションを閉じる
+    conn.isolation_level = None  # autocommit に切り替え
 
     before = db_path.stat().st_size if db_path.exists() else 0
 
@@ -172,13 +175,14 @@ def _run_vacuum(conn: sqlite3.Connection) -> tuple[int, int]:
 
     after = db_path.stat().st_size if db_path.exists() else 0
 
-    conn.isolation_level = ""       # デフォルトに戻す
+    conn.isolation_level = ""  # デフォルトに戻す
     logger.info("VACUUM 完了: %.1f 秒", elapsed)
 
     return before, after
 
 
 # ── メイン ───────────────────────────────────────────────────────
+
 
 def cleanup(*, dry_run: bool = False, force: bool = False) -> dict[str, object]:
     """旧予測データを削除して DB を最適化する。
@@ -200,22 +204,22 @@ def cleanup(*, dry_run: bool = False, force: bool = False) -> dict[str, object]:
 
     # ── 削除前の全件数を記録 ──────────────────────────────────────
     before_all = _count_all(conn)
-    targets    = _count_targets(conn)
+    targets = _count_targets(conn)
 
     print()
-    print(f"{'='*58}")
+    print(f"{'=' * 58}")
     print("  旧予測データ クリーンアップ")
-    print(f"{'='*58}")
-    print(f"  現在の件数:")
+    print(f"{'=' * 58}")
+    print("  現在の件数:")
     print(f"    predictions       : {before_all['predictions']:8,} 件")
     print(f"    prediction_horses : {before_all['prediction_horses']:8,} 件")
     print(f"    prediction_results: {before_all['prediction_results']:8,} 件")
     print()
-    print(f"  削除対象（horse_name が '本命'/'卍' のみの予想）:")
+    print("  削除対象（horse_name が '本命'/'卍' のみの予想）:")
     print(f"    predictions       : {targets['predictions']:8,} 件")
     print(f"    prediction_horses : {targets['prediction_horses']:8,} 件 (CASCADE)")
     print(f"    prediction_results: {targets['prediction_results']:8,} 件 (CASCADE)")
-    print(f"{'='*58}")
+    print(f"{'=' * 58}")
 
     if targets["predictions"] == 0:
         print("  削除対象がありません。処理を終了します。")
@@ -230,9 +234,13 @@ def cleanup(*, dry_run: bool = False, force: bool = False) -> dict[str, object]:
     # ── 確認プロンプト ────────────────────────────────────────────
     if not force:
         print()
-        answer = input(
-            f"  上記 {targets['predictions']:,} 件の predictions を削除しますか？ [y/N]: "
-        ).strip().lower()
+        answer = (
+            input(
+                f"  上記 {targets['predictions']:,} 件の predictions を削除しますか？ [y/N]: "
+            )
+            .strip()
+            .lower()
+        )
         if answer not in ("y", "yes"):
             print("  キャンセルしました。")
             conn.close()
@@ -245,10 +253,16 @@ def cleanup(*, dry_run: bool = False, force: bool = False) -> dict[str, object]:
     logger.info("削除完了: %d 件", deleted)
 
     after_all = _count_all(conn)
-    print(f"  削除後の件数:")
-    print(f"    predictions       : {after_all['predictions']:8,} 件 (-{before_all['predictions'] - after_all['predictions']:,})")
-    print(f"    prediction_horses : {after_all['prediction_horses']:8,} 件 (-{before_all['prediction_horses'] - after_all['prediction_horses']:,})")
-    print(f"    prediction_results: {after_all['prediction_results']:8,} 件 (-{before_all['prediction_results'] - after_all['prediction_results']:,})")
+    print("  削除後の件数:")
+    print(
+        f"    predictions       : {after_all['predictions']:8,} 件 (-{before_all['predictions'] - after_all['predictions']:,})"
+    )
+    print(
+        f"    prediction_horses : {after_all['prediction_horses']:8,} 件 (-{before_all['prediction_horses'] - after_all['prediction_horses']:,})"
+    )
+    print(
+        f"    prediction_results: {after_all['prediction_results']:8,} 件 (-{before_all['prediction_results'] - after_all['prediction_results']:,})"
+    )
 
     # ── VACUUM ────────────────────────────────────────────────────
     print()
@@ -256,7 +270,9 @@ def cleanup(*, dry_run: bool = False, force: bool = False) -> dict[str, object]:
     try:
         before_bytes, after_bytes = _run_vacuum(conn)
         saved_mb = (before_bytes - after_bytes) / 1024 / 1024
-        print(f"  ファイルサイズ: {before_bytes/1024/1024:.1f} MB → {after_bytes/1024/1024:.1f} MB")
+        print(
+            f"  ファイルサイズ: {before_bytes / 1024 / 1024:.1f} MB → {after_bytes / 1024 / 1024:.1f} MB"
+        )
         print(f"  削減サイズ    : {saved_mb:.1f} MB")
         vacuumed = True
     except Exception as exc:
@@ -265,21 +281,22 @@ def cleanup(*, dry_run: bool = False, force: bool = False) -> dict[str, object]:
         before_bytes = after_bytes = 0
         vacuumed = False
 
-    print(f"{'='*58}")
+    print(f"{'=' * 58}")
     print("  クリーンアップ完了")
-    print(f"{'='*58}")
+    print(f"{'=' * 58}")
 
     conn.close()
     return {
-        "deleted":      deleted,
-        "vacuumed":     vacuumed,
+        "deleted": deleted,
+        "vacuumed": vacuumed,
         "before_bytes": before_bytes,
-        "after_bytes":  after_bytes,
-        "targets":      targets,
+        "after_bytes": after_bytes,
+        "targets": targets,
     }
 
 
 # ── CLI ──────────────────────────────────────────────────────────
+
 
 def _parse_args() -> argparse.Namespace:
     """CLI 引数を解析して Namespace を返す。
@@ -298,11 +315,13 @@ def _parse_args() -> argparse.Namespace:
 """,
     )
     parser.add_argument(
-        "--dry-run", action="store_true",
+        "--dry-run",
+        action="store_true",
         help="削除せず対象件数を表示するだけ",
     )
     parser.add_argument(
-        "--force", action="store_true",
+        "--force",
+        action="store_true",
         help="確認プロンプトをスキップして即削除",
     )
     return parser.parse_args()

@@ -8,6 +8,7 @@ web_streamlit/app.py パフォーマンス最適化のコードレベル検証�
   4. render_bias_panel の呼び出し重複排除（1 回のみ）
   5. iterrows 実コード残存ゼロ
 """
+
 from __future__ import annotations
 
 import ast
@@ -25,6 +26,7 @@ APP_PATH = ROOT / "web_streamlit" / "app.py"
 
 
 # ── Streamlit モック（インポート時のランタイム依存を排除） ──────────
+
 
 def _build_st_mock() -> types.ModuleType:
     """@st.cache_data / @st.cache_resource / @st.fragment をパススルーにするモック。"""
@@ -50,6 +52,7 @@ def _import_app() -> types.ModuleType:
     sys.modules["streamlit"] = _build_st_mock()  # type: ignore[assignment]
     try:
         import importlib.util
+
         spec = importlib.util.spec_from_file_location("web_streamlit.app", APP_PATH)
         assert spec is not None and spec.loader is not None
         mod = importlib.util.module_from_spec(spec)
@@ -75,6 +78,7 @@ def app():
 # ════════════════════════════════════════════════════════════════════
 #  1. ソースコード構造テスト（パース不要・テキスト解析）
 # ════════════════════════════════════════════════════════════════════
+
 
 class TestSourceStructure:
     """app.py のソーステキストレベルの構造検証。"""
@@ -110,50 +114,54 @@ class TestSourceStructure:
         """render_analytics の直前に @st.fragment があること。"""
         idx = self.src.find("def render_analytics(")
         assert idx > 0
-        preceding = self.src[max(0, idx - 60): idx]
+        preceding = self.src[max(0, idx - 60) : idx]
         assert "@st.fragment" in preceding
 
     def test_render_hit_performance_has_fragment(self):
         """render_hit_performance の直前に @st.fragment があること。"""
         idx = self.src.find("def render_hit_performance(")
         assert idx > 0
-        preceding = self.src[max(0, idx - 60): idx]
+        preceding = self.src[max(0, idx - 60) : idx]
         assert "@st.fragment" in preceding
 
-    @pytest.mark.parametrize("fn_name", [
-        "_kelly_simulate_core",
-        "_build_monthly_total",
-        "_build_kelly_series",
-        "_build_venue_stats",
-    ])
+    @pytest.mark.parametrize(
+        "fn_name",
+        [
+            "_kelly_simulate_core",
+            "_build_monthly_total",
+            "_build_kelly_series",
+            "_build_venue_stats",
+        ],
+    )
     def test_cache_functions_defined(self, fn_name: str):
         assert f"def {fn_name}(" in self.src
 
     def test_build_monthly_total_has_cache_data(self):
         idx = self.src.find("def _build_monthly_total(")
-        pre = self.src[max(0, idx - 80): idx]
+        pre = self.src[max(0, idx - 80) : idx]
         assert "@st.cache_data" in pre
 
     def test_build_kelly_series_has_cache_data(self):
         idx = self.src.find("def _build_kelly_series(")
-        pre = self.src[max(0, idx - 80): idx]
+        pre = self.src[max(0, idx - 80) : idx]
         assert "@st.cache_data" in pre
 
     def test_build_venue_stats_has_cache_data(self):
         idx = self.src.find("def _build_venue_stats(")
-        pre = self.src[max(0, idx - 80): idx]
+        pre = self.src[max(0, idx - 80) : idx]
         assert "@st.cache_data" in pre
 
     def test_bias_panel_placed_before_subtabs(self):
         """render_bias_panel がサブタブ宣言 (stab_prov) より前に来ること。"""
-        bias_idx  = self.src.find("render_bias_panel(selected_race_id)")
-        stab_idx  = self.src.find("stab_prov, stab_final")
+        bias_idx = self.src.find("render_bias_panel(selected_race_id)")
+        stab_idx = self.src.find("stab_prov, stab_final")
         assert bias_idx < stab_idx, "render_bias_panel がサブタブ宣言より後ろにある"
 
 
 # ════════════════════════════════════════════════════════════════════
 #  2. _kelly_simulate_core 純粋関数テスト
 # ════════════════════════════════════════════════════════════════════
+
 
 class TestKellySimulateCore:
     """numpy ベクトル化演算の精度・挙動を検証する。"""
@@ -173,10 +181,10 @@ class TestKellySimulateCore:
         n = len(bets)
         d = dates or ["2025-01-01"] * n
         return self.core(
-            bets_arr    = np.array(bets,    dtype=np.float64),
-            payouts_arr = np.array(payouts, dtype=np.float64),
-            hits_arr    = np.array(hits,    dtype=bool),
-            dates_arr   = np.array(d,       dtype=object),
+            bets_arr=np.array(bets, dtype=np.float64),
+            payouts_arr=np.array(payouts, dtype=np.float64),
+            hits_arr=np.array(hits, dtype=bool),
+            dates_arr=np.array(d, dtype=object),
             initial_bankroll=initial,
         )
 
@@ -261,7 +269,10 @@ class TestKellySimulateCore:
 
     def test_return_keys_complete(self):
         res = self._run([1000], [2000], [True])
-        assert all(k in res for k in ("empty", "series_df", "bankroll", "max_dd", "wins", "total"))
+        assert all(
+            k in res
+            for k in ("empty", "series_df", "bankroll", "max_dd", "wins", "total")
+        )
         assert res["empty"] is False
 
     # ── ゼロ以下ベット除外 ─────────────────────────────────────
@@ -278,6 +289,7 @@ class TestKellySimulateCore:
 #  3. 派生 DataFrame キャッシュ関数のインターフェース検証
 # ════════════════════════════════════════════════════════════════════
 
+
 class TestCacheFunctionInterfaces:
     """_build_* 関数がモック DB でも正しい型を返すことを検証する。"""
 
@@ -286,15 +298,26 @@ class TestCacheFunctionInterfaces:
         self.app = app
 
     def test_build_monthly_total_returns_tuple_of_dataframes(self, monkeypatch):
-        empty_df = pd.DataFrame(columns=["month", "model_type", "bet_type",
-                                          "bets", "hits", "invested", "payout"])
+        empty_df = pd.DataFrame(
+            columns=[
+                "month",
+                "model_type",
+                "bet_type",
+                "bets",
+                "hits",
+                "invested",
+                "payout",
+            ]
+        )
         monkeypatch.setattr(self.app, "fetch_monthly_roi", lambda kind: empty_df)
         result = self.app._build_monthly_total(kind="all")
         assert isinstance(result, tuple) and len(result) == 2
         assert all(isinstance(r, pd.DataFrame) for r in result)
 
     def test_build_kelly_series_returns_empty_dict_on_empty(self, monkeypatch):
-        empty_df = pd.DataFrame(columns=["recommended_bet", "payout", "is_hit", "created_at"])
+        empty_df = pd.DataFrame(
+            columns=["recommended_bet", "payout", "is_hit", "created_at"]
+        )
         monkeypatch.setattr(self.app, "fetch_kelly_simulation", lambda kind: empty_df)
         result = self.app._build_kelly_series(kind="all")
         assert result.get("empty") is True
@@ -306,15 +329,17 @@ class TestCacheFunctionInterfaces:
         assert isinstance(result, pd.DataFrame)
 
     def test_build_monthly_total_with_data(self, monkeypatch):
-        df = pd.DataFrame({
-            "month":      ["2025-04", "2025-04", "2025-05"],
-            "model_type": ["本命", "卍", "本命"],
-            "bet_type":   ["単勝", "複勝", "単勝"],
-            "bets":       [10, 5, 8],
-            "hits":       [3, 2, 4],
-            "invested":   [10_000, 5_000, 8_000],
-            "payout":     [15_000, 8_000, 20_000],
-        })
+        df = pd.DataFrame(
+            {
+                "month": ["2025-04", "2025-04", "2025-05"],
+                "model_type": ["本命", "卍", "本命"],
+                "bet_type": ["単勝", "複勝", "単勝"],
+                "bets": [10, 5, 8],
+                "hits": [3, 2, 4],
+                "invested": [10_000, 5_000, 8_000],
+                "payout": [15_000, 8_000, 20_000],
+            }
+        )
         monkeypatch.setattr(self.app, "fetch_monthly_roi", lambda kind: df)
         monthly_df, monthly_total = self.app._build_monthly_total(kind="all")
         assert "roi" in monthly_df.columns
@@ -323,12 +348,14 @@ class TestCacheFunctionInterfaces:
         assert len(monthly_total) == 2  # 2 月分に集約
 
     def test_build_kelly_series_with_data(self, monkeypatch):
-        df = pd.DataFrame({
-            "recommended_bet": [1000.0, 2000.0, 1500.0],
-            "payout":          [3000.0, 0.0,    4500.0],
-            "is_hit":          [1,      0,       1],
-            "created_at":      ["2025-04-01"] * 3,
-        })
+        df = pd.DataFrame(
+            {
+                "recommended_bet": [1000.0, 2000.0, 1500.0],
+                "payout": [3000.0, 0.0, 4500.0],
+                "is_hit": [1, 0, 1],
+                "created_at": ["2025-04-01"] * 3,
+            }
+        )
         monkeypatch.setattr(self.app, "fetch_kelly_simulation", lambda kind: df)
         result = self.app._build_kelly_series(kind="all")
         assert result["empty"] is False

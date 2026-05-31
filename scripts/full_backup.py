@@ -43,30 +43,50 @@ if str(_ROOT) not in sys.path:
 
 logger = logging.getLogger(__name__)
 
-_BACKUP_DIR   = _ROOT / "data" / "backups"
-_MODELS_DIR   = _ROOT / "data" / "models"
-_MAX_SRC_GEN  = 3   # ソース ZIP の最大保持世代数
-_MAX_MDL_GEN  = 3   # モデル ZIP の最大保持世代数
+_BACKUP_DIR = _ROOT / "data" / "backups"
+_MODELS_DIR = _ROOT / "data" / "models"
+_MAX_SRC_GEN = 3  # ソース ZIP の最大保持世代数
+_MAX_MDL_GEN = 3  # モデル ZIP の最大保持世代数
 
 # ── ZIP 除外パターン ──────────────────────────────────────────────────────
 _EXCLUDE_DIRS = {
-    ".git", "node_modules", "__pycache__", ".venv", "venv",
-    ".mypy_cache", ".ruff_cache", ".pytest_cache",
-    "backups", "raw", "processed",          # data/ 内の大容量ディレクトリ
-    "history",                              # data/models/history/
-    ".next", "out", "dist",                 # Next.js ビルド成果物
+    ".git",
+    "node_modules",
+    "__pycache__",
+    ".venv",
+    "venv",
+    ".mypy_cache",
+    ".ruff_cache",
+    ".pytest_cache",
+    "backups",
+    "raw",
+    "processed",  # data/ 内の大容量ディレクトリ
+    "history",  # data/models/history/
+    ".next",
+    "out",
+    "dist",  # Next.js ビルド成果物
 }
 
 _EXCLUDE_EXTS = {
-    ".pyc", ".pyo", ".log", ".png", ".jpg", ".jpeg",
-    ".db", ".db-shm", ".db-wal",            # DB 本体は除外 (別途ホットバックアップ)
-    ".pkl",                                 # モデルは別 ZIP
-    ".tmp", ".bak",
+    ".pyc",
+    ".pyo",
+    ".log",
+    ".png",
+    ".jpg",
+    ".jpeg",
+    ".db",
+    ".db-shm",
+    ".db-wal",  # DB 本体は除外 (別途ホットバックアップ)
+    ".pkl",  # モデルは別 ZIP
+    ".tmp",
+    ".bak",
 }
 
 _EXCLUDE_NAMES = {
-    "nul", "nul`", "powershell",            # 誤作成ファイル
-    ".env",                                 # 秘密情報は除外
+    "nul",
+    "nul`",
+    "powershell",  # 誤作成ファイル
+    ".env",  # 秘密情報は除外
 }
 
 
@@ -92,6 +112,7 @@ def _should_exclude(path: Path, root: Path) -> bool:
 
 # ── ソースコード ZIP ──────────────────────────────────────────────────────
 
+
 def backup_src(timestamp: str, dry_run: bool = False) -> Path:
     """
     プロジェクトルート以下のソースコードを ZIP 圧縮して保存する。
@@ -108,28 +129,40 @@ def backup_src(timestamp: str, dry_run: bool = False) -> Path:
             targets.append(p)
 
     total_bytes = sum(p.stat().st_size for p in targets)
-    logger.info("  対象ファイル: %d 件 / %.1f MB", len(targets), total_bytes / 1_048_576)
+    logger.info(
+        "  対象ファイル: %d 件 / %.1f MB", len(targets), total_bytes / 1_048_576
+    )
 
     if dry_run:
-        print(f"[DRY-RUN] ZIP 対象: {len(targets)} ファイル / {total_bytes/1_048_576:.1f} MB")
+        print(
+            f"[DRY-RUN] ZIP 対象: {len(targets)} ファイル / {total_bytes / 1_048_576:.1f} MB"
+        )
         for p in targets[:20]:
             print(f"  {p.relative_to(_ROOT)}")
         if len(targets) > 20:
-            print(f"  ... 他 {len(targets)-20} ファイル")
+            print(f"  ... 他 {len(targets) - 20} ファイル")
         return zip_path
 
     _BACKUP_DIR.mkdir(parents=True, exist_ok=True)
-    with zipfile.ZipFile(zip_path, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=6) as zf:
+    with zipfile.ZipFile(
+        zip_path, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=6
+    ) as zf:
         for p in targets:
             arcname = p.relative_to(_ROOT)
             zf.write(p, arcname)
 
     size_mb = zip_path.stat().st_size / 1_048_576
-    logger.info("  ソース ZIP 完了: %s (%.1f MB → %.1f MB 圧縮後)", zip_path.name, total_bytes / 1_048_576, size_mb)
+    logger.info(
+        "  ソース ZIP 完了: %s (%.1f MB → %.1f MB 圧縮後)",
+        zip_path.name,
+        total_bytes / 1_048_576,
+        size_mb,
+    )
     return zip_path
 
 
 # ── モデル ZIP ───────────────────────────────────────────────────────────
+
 
 def backup_models(timestamp: str, dry_run: bool = False) -> Path | None:
     """
@@ -145,16 +178,24 @@ def backup_models(timestamp: str, dry_run: bool = False) -> Path | None:
 
     zip_path = _BACKUP_DIR / f"umalogi_models_{timestamp}.zip"
     total_bytes = sum(p.stat().st_size for p in pkl_files)
-    logger.info("モデル ZIP 開始: %d ファイル / %.1f MB", len(pkl_files), total_bytes / 1_048_576)
+    logger.info(
+        "モデル ZIP 開始: %d ファイル / %.1f MB",
+        len(pkl_files),
+        total_bytes / 1_048_576,
+    )
 
     if dry_run:
-        print(f"[DRY-RUN] モデル ZIP 対象: {len(pkl_files)} ファイル / {total_bytes/1_048_576:.1f} MB")
+        print(
+            f"[DRY-RUN] モデル ZIP 対象: {len(pkl_files)} ファイル / {total_bytes / 1_048_576:.1f} MB"
+        )
         for p in pkl_files:
-            print(f"  {p.name}  ({p.stat().st_size/1_048_576:.1f} MB)")
+            print(f"  {p.name}  ({p.stat().st_size / 1_048_576:.1f} MB)")
         return zip_path
 
     _BACKUP_DIR.mkdir(parents=True, exist_ok=True)
-    with zipfile.ZipFile(zip_path, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=1) as zf:
+    with zipfile.ZipFile(
+        zip_path, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=1
+    ) as zf:
         for p in pkl_files:
             zf.write(p, p.name)
 
@@ -164,6 +205,7 @@ def backup_models(timestamp: str, dry_run: bool = False) -> Path | None:
 
 
 # ── 世代ローテーション ────────────────────────────────────────────────────
+
 
 def _rotate(pattern: str, max_gen: int) -> None:
     """glob パターンで一致する古いファイルを max_gen 世代以外削除する。"""
@@ -176,12 +218,13 @@ def _rotate(pattern: str, max_gen: int) -> None:
 
 # ── メイン ──────────────────────────────────────────────────────────────
 
+
 def run_full_backup(
     *,
-    src_only:    bool = False,
+    src_only: bool = False,
     models_only: bool = False,
-    no_cloud:    bool = False,
-    dry_run:     bool = False,
+    no_cloud: bool = False,
+    dry_run: bool = False,
 ) -> dict[str, Path | None]:
     """
     完全バックアップを実行する。
@@ -206,6 +249,7 @@ def run_full_backup(
             print(f"  サイズ: {db_size:.0f} MB → バックアップ後 同程度")
         else:
             from src.ops import backup as _bk_mod
+
             cloud = None if no_cloud else _bk_mod._AUTO
             results["db"] = backup_db(cloud_dir=cloud)
             logger.info("DB バックアップ完了: %s", results["db"].name)
@@ -244,10 +288,12 @@ def main() -> None:
   py scripts/full_backup.py --no-cloud      # クラウド同期スキップ
 """,
     )
-    parser.add_argument("--src-only",    action="store_true", help="ソースコードのみ ZIP")
+    parser.add_argument("--src-only", action="store_true", help="ソースコードのみ ZIP")
     parser.add_argument("--models-only", action="store_true", help="モデルのみ ZIP")
-    parser.add_argument("--no-cloud",    action="store_true", help="クラウド同期スキップ")
-    parser.add_argument("--dry-run",     action="store_true", help="対象ファイル確認のみ (DB/ZIP 作成なし)")
+    parser.add_argument("--no-cloud", action="store_true", help="クラウド同期スキップ")
+    parser.add_argument(
+        "--dry-run", action="store_true", help="対象ファイル確認のみ (DB/ZIP 作成なし)"
+    )
     args = parser.parse_args()
 
     print("=" * 60)
@@ -271,11 +317,17 @@ def main() -> None:
         if path is None:
             print(f"  {key:<10s}: スキップ")
         else:
-            size = path.stat().st_size / 1_048_576 if path.exists() and not args.dry_run else 0
+            size = (
+                path.stat().st_size / 1_048_576
+                if path.exists() and not args.dry_run
+                else 0
+            )
             print(f"  {key:<10s}: {path.name}  ({size:.1f} MB)")
 
     if not args.dry_run:
-        backups = sorted(_BACKUP_DIR.glob("*"), key=lambda p: p.stat().st_mtime, reverse=True)
+        backups = sorted(
+            _BACKUP_DIR.glob("*"), key=lambda p: p.stat().st_mtime, reverse=True
+        )
         print(f"\n  backups/ 現在: {len(backups)} ファイル")
         for p in backups[:6]:
             size_mb = p.stat().st_size / 1_048_576

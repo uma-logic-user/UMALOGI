@@ -28,15 +28,23 @@ from src.database.init_db import init_db
 
 # ── 会場コード → 名称 ────────────────────────────────────────────
 _JYO: dict[str, str] = {
-    "01": "札幌", "02": "函館", "03": "福島", "04": "新潟",
-    "05": "東京", "06": "中山", "07": "中京", "08": "京都",
-    "09": "阪神", "10": "小倉",
+    "01": "札幌",
+    "02": "函館",
+    "03": "福島",
+    "04": "新潟",
+    "05": "東京",
+    "06": "中山",
+    "07": "中京",
+    "08": "京都",
+    "09": "阪神",
+    "10": "小倉",
 }
 
 
 # ================================================================
 # 1. 月別 ROI
 # ================================================================
+
 
 def _monthly_roi(conn, months: int) -> list[dict[str, Any]]:
     """
@@ -80,19 +88,21 @@ def _monthly_roi(conn, months: int) -> list[dict[str, Any]]:
     results = []
     for r in rows:
         month, model_type, bet_type, bets, hits, invested, payout = r
-        roi      = payout / invested if invested > 0 else 0.0
+        roi = payout / invested if invested > 0 else 0.0
         hit_rate = hits / bets if bets > 0 else 0.0
-        results.append({
-            "month":      month,
-            "model_type": model_type,
-            "bet_type":   bet_type,
-            "bets":       bets,
-            "hits":       hits,
-            "invested":   invested,
-            "payout":     payout,
-            "roi":        roi,
-            "hit_rate":   hit_rate,
-        })
+        results.append(
+            {
+                "month": month,
+                "model_type": model_type,
+                "bet_type": bet_type,
+                "bets": bets,
+                "hits": hits,
+                "invested": invested,
+                "payout": payout,
+                "roi": roi,
+                "hit_rate": hit_rate,
+            }
+        )
     return results
 
 
@@ -106,25 +116,28 @@ def _print_monthly_roi(rows: list[dict[str, Any]]) -> None:
 
     # 月ごとに集計サマリーを先に出力
     from collections import defaultdict
+
     monthly: dict[str, dict[str, int | float]] = defaultdict(
         lambda: {"bets": 0, "hits": 0, "invested": 0, "payout": 0.0}
     )
     for r in rows:
         m = monthly[r["month"]]
-        m["bets"]     += r["bets"]
-        m["hits"]     += r["hits"]
-        m["invested"]  = int(m["invested"]) + r["invested"]
-        m["payout"]   += r["payout"]
+        m["bets"] += r["bets"]
+        m["hits"] += r["hits"]
+        m["invested"] = int(m["invested"]) + r["invested"]
+        m["payout"] += r["payout"]
 
     # ヘッダー
-    print(f"{'月':^8} {'総投資':>10} {'総回収':>10} {'ROI':>7} {'的中率':>8} {'件数':>6}")
+    print(
+        f"{'月':^8} {'総投資':>10} {'総回収':>10} {'ROI':>7} {'的中率':>8} {'件数':>6}"
+    )
     print("-" * 55)
     for month in sorted(monthly.keys(), reverse=True):
         m = monthly[month]
         inv = m["invested"]
         pay = m["payout"]
         roi = pay / inv if inv > 0 else 0.0
-        hr  = m["hits"] / m["bets"] if m["bets"] > 0 else 0.0
+        hr = m["hits"] / m["bets"] if m["bets"] > 0 else 0.0
         flag = " <<" if roi >= 1.0 else ""
         print(
             f"{month:^8} {inv:>10,} {pay:>10,.0f} {roi:>7.3f} {hr:>8.1%} {m['bets']:>6}{flag}"
@@ -133,7 +146,9 @@ def _print_monthly_roi(rows: list[dict[str, Any]]) -> None:
     # 詳細（モデル別・券種別）
     print()
     print("  ── 詳細（モデル別・券種別）──")
-    print(f"  {'月':^8} {'モデル':^6} {'券種':^6} {'投資':>8} {'回収':>8} {'ROI':>7} {'的中率':>8}")
+    print(
+        f"  {'月':^8} {'モデル':^6} {'券種':^6} {'投資':>8} {'回収':>8} {'ROI':>7} {'的中率':>8}"
+    )
     print("  " + "-" * 54)
     for r in rows:
         flag = " <<" if r["roi"] >= 1.0 else ""
@@ -147,6 +162,7 @@ def _print_monthly_roi(rows: list[dict[str, Any]]) -> None:
 # ================================================================
 # 2. 会場別的中率
 # ================================================================
+
 
 def _venue_stats(conn, months: int) -> list[dict[str, Any]]:
     sql = """
@@ -170,17 +186,19 @@ def _venue_stats(conn, months: int) -> list[dict[str, Any]]:
     results = []
     for r in rows:
         venue_code, bets, hits, invested, payout = r
-        roi      = payout / invested if invested > 0 else 0.0
+        roi = payout / invested if invested > 0 else 0.0
         hit_rate = hits / bets if bets > 0 else 0.0
-        results.append({
-            "venue":    _JYO.get(venue_code, venue_code),
-            "bets":     bets,
-            "hits":     hits,
-            "invested": invested,
-            "payout":   payout,
-            "roi":      roi,
-            "hit_rate": hit_rate,
-        })
+        results.append(
+            {
+                "venue": _JYO.get(venue_code, venue_code),
+                "bets": bets,
+                "hits": hits,
+                "invested": invested,
+                "payout": payout,
+                "roi": roi,
+                "hit_rate": hit_rate,
+            }
+        )
     return results
 
 
@@ -207,7 +225,10 @@ def _print_venue_stats(rows: list[dict[str, Any]]) -> None:
 # 3. ケリー基準 資金増減シミュレーション
 # ================================================================
 
-def _kelly_simulation(conn, months: int, initial_bankroll: int = 1_000_000) -> dict[str, Any]:
+
+def _kelly_simulation(
+    conn, months: int, initial_bankroll: int = 1_000_000
+) -> dict[str, Any]:
     """
     1/10 ケリー基準で各レースに賭けた場合の資金推移をシミュレートする。
 
@@ -245,22 +266,22 @@ def _kelly_simulation(conn, months: int, initial_bankroll: int = 1_000_000) -> d
     if not rows:
         return {
             "final_bankroll": initial_bankroll,
-            "total_return":   0.0,
-            "sharpe":         0.0,
-            "max_drawdown":   0.0,
-            "win_rate":       0.0,
+            "total_return": 0.0,
+            "sharpe": 0.0,
+            "max_drawdown": 0.0,
+            "win_rate": 0.0,
             "monthly_returns": [],
-            "total_bets":     0,
+            "total_bets": 0,
         }
 
     bankroll = float(initial_bankroll)
-    peak     = bankroll
-    max_dd   = 0.0
-    wins     = 0
-    total    = 0
+    peak = bankroll
+    max_dd = 0.0
+    wins = 0
+    total = 0
 
     # 月ごとに月初資金を記録し、月次損益を累積する
-    monthly_start:  dict[str, float] = {}
+    monthly_start: dict[str, float] = {}
     monthly_profit: dict[str, float] = {}
 
     for row in rows:
@@ -272,7 +293,7 @@ def _kelly_simulation(conn, months: int, initial_bankroll: int = 1_000_000) -> d
             continue
 
         if month not in monthly_start:
-            monthly_start[month]  = bankroll
+            monthly_start[month] = bankroll
             monthly_profit[month] = 0.0
 
         if is_hit:
@@ -281,8 +302,8 @@ def _kelly_simulation(conn, months: int, initial_bankroll: int = 1_000_000) -> d
         else:
             profit = -actual_bet
 
-        bankroll                += profit
-        monthly_profit[month]  += profit
+        bankroll += profit
+        monthly_profit[month] += profit
 
         if bankroll > peak:
             peak = bankroll
@@ -296,7 +317,7 @@ def _kelly_simulation(conn, months: int, initial_bankroll: int = 1_000_000) -> d
     monthly_returns: list[tuple[str, float]] = []
     for month in sorted(monthly_start.keys()):
         start = monthly_start[month]
-        ret   = monthly_profit[month] / start if start > 0 else 0.0
+        ret = monthly_profit[month] / start if start > 0 else 0.0
         monthly_returns.append((month, ret))
 
     # シャープレシオ（月次リターンの平均/標準偏差 × √12）
@@ -310,13 +331,13 @@ def _kelly_simulation(conn, months: int, initial_bankroll: int = 1_000_000) -> d
         sharpe = 0.0
 
     return {
-        "final_bankroll":  bankroll,
-        "total_return":    (bankroll - initial_bankroll) / initial_bankroll,
-        "sharpe":          sharpe,
-        "max_drawdown":    max_dd,
-        "win_rate":        wins / total if total > 0 else 0.0,
+        "final_bankroll": bankroll,
+        "total_return": (bankroll - initial_bankroll) / initial_bankroll,
+        "sharpe": sharpe,
+        "max_drawdown": max_dd,
+        "win_rate": wins / total if total > 0 else 0.0,
         "monthly_returns": monthly_returns,
-        "total_bets":      total,
+        "total_bets": total,
         "initial_bankroll": initial_bankroll,
     }
 
@@ -341,7 +362,9 @@ def _print_kelly_simulation(result: dict[str, Any]) -> None:
     print(f"  総リターン    : {sign}{total_ret:>+.2%}")
     print(f"  シャープレシオ: {result['sharpe']:>8.3f}")
     print(f"  最大ドローダウン: {result['max_drawdown']:>6.1%}")
-    print(f"  的中率        : {result['win_rate']:>8.1%}  ({result['total_bets']} ベット)")
+    print(
+        f"  的中率        : {result['win_rate']:>8.1%}  ({result['total_bets']} ベット)"
+    )
 
     # 月次推移
     monthly = result["monthly_returns"]
@@ -361,14 +384,19 @@ def _print_kelly_simulation(result: dict[str, Any]) -> None:
 # メイン
 # ================================================================
 
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="月次 ROI レポート生成")
     parser.add_argument(
-        "--months", type=int, default=3,
+        "--months",
+        type=int,
+        default=3,
         help="集計対象期間（月数）。デフォルト: 3ヶ月",
     )
     parser.add_argument(
-        "--bankroll", type=int, default=1_000_000,
+        "--bankroll",
+        type=int,
+        default=1_000_000,
         help="ケリーシミュレーションの初期資金（円）。デフォルト: 1,000,000",
     )
     args = parser.parse_args()

@@ -18,7 +18,6 @@ import re
 import sqlite3
 from collections import defaultdict
 from datetime import datetime, timedelta
-from functools import lru_cache
 from pathlib import Path
 from typing import TYPE_CHECKING
 
@@ -32,12 +31,15 @@ logger = logging.getLogger(__name__)
 # 学習時に保存した sire_map を推論時に自動ロードするためのパス
 _SIRE_MAP_PKL = (
     Path(__file__).resolve().parent.parent.parent
-    / "data" / "models" / "cascade" / "label_encoders.pkl"
+    / "data"
+    / "models"
+    / "cascade"
+    / "label_encoders.pkl"
 )
 
 # 距離バンドの境界（m）
 _DISTANCE_BANDS = [
-    (0,    1400, "sprint"),
+    (0, 1400, "sprint"),
     (1400, 1800, "mile"),
     (1800, 2200, "intermediate"),
     (2200, 9999, "long"),
@@ -49,9 +51,16 @@ _SEX_CODE: dict[str, int] = {"牡": 0, "牝": 1, "セ": 2}
 
 # 会場エンコーディング（JRA 10 場 + 地方/海外）
 _VENUE_CODE: dict[str, int] = {
-    "札幌": 0, "函館": 1, "福島": 2, "新潟": 3,
-    "東京": 4, "中山": 5, "中京": 6, "京都": 7,
-    "阪神": 8, "小倉": 9,
+    "札幌": 0,
+    "函館": 1,
+    "福島": 2,
+    "新潟": 3,
+    "東京": 4,
+    "中山": 5,
+    "中京": 6,
+    "京都": 7,
+    "阪神": 8,
+    "小倉": 9,
 }
 
 # 馬場状態エンコーディング
@@ -194,83 +203,136 @@ class FeatureBuilder:
         # バルク取得: 1レースあたり N×6クエリ → 7クエリに圧縮
         # race_date を渡して時系列リーク（未来レースの着順混入）を完全排除する
         horse_ids = [r[0] for r in rows]
-        stats_bulk    = self._get_horse_stats_bulk(
-            horse_ids, surface, distance,
-            exclude_race_id=race_id, race_date=race_date,
+        stats_bulk = self._get_horse_stats_bulk(
+            horse_ids,
+            surface,
+            distance,
+            exclude_race_id=race_id,
+            race_date=race_date,
         )
         training_bulk = self._get_training_stats_bulk(horse_ids, race_date)
-        sire_bulk     = self._get_sire_bulk(horse_ids)
+        sire_bulk = self._get_sire_bulk(horse_ids)
 
         records = []
-        for sim_num, (horse_id, horse_name, sex_age,
-                       weight_carried, jockey, horse_weight,
-                       win_odds, popularity,
-                       gate_number, horse_weight_diff,
-                       jockey_key, trainer_key) in enumerate(rows, start=1):
-            stats    = stats_bulk.get(horse_id, {"win_rate_all": None, "win_rate_surface": None,
-                                                  "win_rate_distance_band": None, "recent_rank_mean": None})
-            training = training_bulk.get(horse_id, {"tc_4f": None, "tc_lap": None, "tc_accel_flag": None,
-                                                      "tc_4f_diff": None, "hc_4f": None, "hc_lap": None,
-                                                      "hc_accel_flag": None, "hc_4f_diff": None})
+        for sim_num, (
+            horse_id,
+            horse_name,
+            sex_age,
+            weight_carried,
+            jockey,
+            horse_weight,
+            win_odds,
+            popularity,
+            gate_number,
+            horse_weight_diff,
+            jockey_key,
+            trainer_key,
+        ) in enumerate(rows, start=1):
+            stats = stats_bulk.get(
+                horse_id,
+                {
+                    "win_rate_all": None,
+                    "win_rate_surface": None,
+                    "win_rate_distance_band": None,
+                    "recent_rank_mean": None,
+                },
+            )
+            training = training_bulk.get(
+                horse_id,
+                {
+                    "tc_4f": None,
+                    "tc_lap": None,
+                    "tc_accel_flag": None,
+                    "tc_4f_diff": None,
+                    "hc_4f": None,
+                    "hc_lap": None,
+                    "hc_accel_flag": None,
+                    "hc_4f_diff": None,
+                },
+            )
 
             # オッズ→市場確率変換（アンチパターン: 生オッズ直接使用禁止）
             raw_odds = float(win_odds) if win_odds else None
             market_prob = (1.0 / min(raw_odds, 80.0)) if raw_odds else None
 
-            records.append({
-                "horse_number":           sim_num,
-                "horse_id":               horse_id,
-                "horse_name":             horse_name,
-                "weight_carried":         weight_carried,
-                "horse_weight":           horse_weight,
-                "win_odds":               win_odds,
-                "popularity":             popularity,
-                "win_rate_all":           stats["win_rate_all"],
-                "win_rate_surface":       stats["win_rate_surface"],
-                "win_rate_distance_band": stats["win_rate_distance_band"],
-                "recent_rank_mean":       stats["recent_rank_mean"],
-                "surface_code":           _SURFACE_CODE.get(surface, -1),
-                "sex_code":               _SEX_CODE.get(_parse_sex(sex_age or ""), -1),
-                "venue_encoded":          _VENUE_CODE.get(venue, len(_VENUE_CODE)),
-                "sire_encoded":           self._encode_sire(sire_bulk.get(horse_id)),
-                "distance":               distance,
-                "dist_band":              dist_band,
-                # ── 追加特徴量 ────────────────────────────────────
-                "horse_weight_diff":      horse_weight_diff,   # 前走比体重増減
-                "gate_number":            gate_number,          # 枠番
-                "condition_code":         _CONDITION_CODE.get(condition or "", -1),  # 馬場状態
-                "market_prob":            market_prob,          # 市場確率 1/odds.clip(max=80)
-                "race_number":            race_number,          # レース番号
-                # ── 人的要素特徴量 ───────────────────────────────
-                "jockey_code_encoded":    self._encode_jockey(jockey_key),    # 騎手名エンコード
-                "trainer_code_encoded":   self._encode_trainer(trainer_key),  # 調教師名エンコード
-                # ── 調教特徴量（WOOD:TC / WOOD:HC） ─────────────
-                "tc_4f":            training["tc_4f"],          # ウッド直近4Fタイム（秒）
-                "tc_lap":           training["tc_lap"],         # ウッド直近ラスト1Fタイム
-                "tc_accel_flag":    training["tc_accel_flag"],  # ウッド加速ラップ (1=好調)
-                "tc_4f_diff":       training["tc_4f_diff"],     # ウッド前回比タイム差（負=好転）
-                "hc_4f":            training["hc_4f"],          # 坂路直近4Fタイム（秒）
-                "hc_lap":           training["hc_lap"],         # 坂路直近ラスト1Fタイム
-                "hc_accel_flag":    training["hc_accel_flag"],  # 坂路加速ラップ (1=好調)
-                "hc_4f_diff":       training["hc_4f_diff"],     # 坂路前回比タイム差（負=好転）
-                # ── 当日バイアス特徴量 ────────────────────────────
-                # current_race_number より前の確定済みレースから算出（リーク排除済み）
-                "today_inner_bias": bias["today_inner_bias"],   # 内枠勝率 - 外枠勝率
-                "today_front_bias": bias["today_front_bias"],   # 当日・人気馬勝率（先行バイアス代理）
-                "today_race_count": bias["today_race_count"],   # 集計レース数（信頼度）
-                "today_gate_match": (                           # バイアス×枠番の相性スコア
-                    bias["today_inner_bias"] * (1.0 if (gate_number or 0) <= 4 else -1.0)
-                    if bias["today_inner_bias"] is not None else None
-                ),
-                # ── オッズ時系列特徴量（大口投票シグナル） ───────────
-                # シミュレーション時は realtime_odds が未記録のため全 None。
-                # prerace 時に複数スナップショットが記録されていれば有効。
-                "odds_vs_morning": odds_trend.get(sim_num, {}).get("odds_vs_morning"),
-                "odds_velocity":   odds_trend.get(sim_num, {}).get("odds_velocity"),
-                # 識別子（モデル学習には使わない）
-                "sex_age":                sex_age,
-                "jockey":                 jockey,
-            })
+            records.append(
+                {
+                    "horse_number": sim_num,
+                    "horse_id": horse_id,
+                    "horse_name": horse_name,
+                    "weight_carried": weight_carried,
+                    "horse_weight": horse_weight,
+                    "win_odds": win_odds,
+                    "popularity": popularity,
+                    "win_rate_all": stats["win_rate_all"],
+                    "win_rate_surface": stats["win_rate_surface"],
+                    "win_rate_distance_band": stats["win_rate_distance_band"],
+                    "recent_rank_mean": stats["recent_rank_mean"],
+                    "surface_code": _SURFACE_CODE.get(surface, -1),
+                    "sex_code": _SEX_CODE.get(_parse_sex(sex_age or ""), -1),
+                    "venue_encoded": _VENUE_CODE.get(venue, len(_VENUE_CODE)),
+                    "sire_encoded": self._encode_sire(sire_bulk.get(horse_id)),
+                    "distance": distance,
+                    "dist_band": dist_band,
+                    # ── 追加特徴量 ────────────────────────────────────
+                    "horse_weight_diff": horse_weight_diff,  # 前走比体重増減
+                    "gate_number": gate_number,  # 枠番
+                    "condition_code": _CONDITION_CODE.get(
+                        condition or "", -1
+                    ),  # 馬場状態
+                    "market_prob": market_prob,  # 市場確率 1/odds.clip(max=80)
+                    "race_number": race_number,  # レース番号
+                    # ── 人的要素特徴量 ───────────────────────────────
+                    "jockey_code_encoded": self._encode_jockey(
+                        jockey_key
+                    ),  # 騎手名エンコード
+                    "trainer_code_encoded": self._encode_trainer(
+                        trainer_key
+                    ),  # 調教師名エンコード
+                    # ── 調教特徴量（WOOD:TC / WOOD:HC） ─────────────
+                    "tc_4f": training["tc_4f"],  # ウッド直近4Fタイム（秒）
+                    "tc_lap": training["tc_lap"],  # ウッド直近ラスト1Fタイム
+                    "tc_accel_flag": training[
+                        "tc_accel_flag"
+                    ],  # ウッド加速ラップ (1=好調)
+                    "tc_4f_diff": training[
+                        "tc_4f_diff"
+                    ],  # ウッド前回比タイム差（負=好転）
+                    "hc_4f": training["hc_4f"],  # 坂路直近4Fタイム（秒）
+                    "hc_lap": training["hc_lap"],  # 坂路直近ラスト1Fタイム
+                    "hc_accel_flag": training[
+                        "hc_accel_flag"
+                    ],  # 坂路加速ラップ (1=好調)
+                    "hc_4f_diff": training[
+                        "hc_4f_diff"
+                    ],  # 坂路前回比タイム差（負=好転）
+                    # ── 当日バイアス特徴量 ────────────────────────────
+                    # current_race_number より前の確定済みレースから算出（リーク排除済み）
+                    "today_inner_bias": bias["today_inner_bias"],  # 内枠勝率 - 外枠勝率
+                    "today_front_bias": bias[
+                        "today_front_bias"
+                    ],  # 当日・人気馬勝率（先行バイアス代理）
+                    "today_race_count": bias[
+                        "today_race_count"
+                    ],  # 集計レース数（信頼度）
+                    "today_gate_match": (  # バイアス×枠番の相性スコア
+                        bias["today_inner_bias"]
+                        * (1.0 if (gate_number or 0) <= 4 else -1.0)
+                        if bias["today_inner_bias"] is not None
+                        else None
+                    ),
+                    # ── オッズ時系列特徴量（大口投票シグナル） ───────────
+                    # シミュレーション時は realtime_odds が未記録のため全 None。
+                    # prerace 時に複数スナップショットが記録されていれば有効。
+                    "odds_vs_morning": odds_trend.get(sim_num, {}).get(
+                        "odds_vs_morning"
+                    ),
+                    "odds_velocity": odds_trend.get(sim_num, {}).get("odds_velocity"),
+                    # 識別子（モデル学習には使わない）
+                    "sex_age": sex_age,
+                    "jockey": jockey,
+                }
+            )
 
         df = pd.DataFrame(records)
         df["race_id"] = race_id  # UScoreEngine が基準日導出に使用
@@ -280,7 +342,9 @@ class FeatureBuilder:
         df = self._add_x_consensus(df, race_id)
         logger.info(
             "[SIMULATE] 特徴量生成 race_id=%s: %d 頭 × %d 特徴量 (リーク除外済み)",
-            race_id, len(df), df.shape[1],
+            race_id,
+            len(df),
+            df.shape[1],
         )
         return df
 
@@ -349,87 +413,122 @@ class FeatureBuilder:
         odds_map = self._latest_odds_map(race_id)
 
         # バルク取得: 1レースあたり N×6クエリ → 7クエリに圧縮
-        horse_ids     = [r[1] for r in entries]   # index 1 = horse_id
-        stats_bulk    = self._get_horse_stats_bulk(horse_ids, surface or "", distance or 0)
+        horse_ids = [r[1] for r in entries]  # index 1 = horse_id
+        stats_bulk = self._get_horse_stats_bulk(horse_ids, surface or "", distance or 0)
         training_bulk = self._get_training_stats_bulk(horse_ids, race_date or "")
-        sire_bulk     = self._get_sire_bulk(horse_ids)
+        sire_bulk = self._get_sire_bulk(horse_ids)
 
         records = []
-        for (horse_number, horse_id, horse_name, sex_age,
-             weight_carried, horse_weight, gate_number,
-             horse_weight_diff, jockey, trainer) in entries:
-
-            stats    = stats_bulk.get(horse_id, {"win_rate_all": None, "win_rate_surface": None,
-                                                  "win_rate_distance_band": None, "recent_rank_mean": None})
-            training = training_bulk.get(horse_id, {"tc_4f": None, "tc_lap": None, "tc_accel_flag": None,
-                                                      "tc_4f_diff": None, "hc_4f": None, "hc_lap": None,
-                                                      "hc_accel_flag": None, "hc_4f_diff": None})
+        for (
+            horse_number,
+            horse_id,
+            horse_name,
+            sex_age,
+            weight_carried,
+            horse_weight,
+            gate_number,
+            horse_weight_diff,
+            jockey,
+            trainer,
+        ) in entries:
+            stats = stats_bulk.get(
+                horse_id,
+                {
+                    "win_rate_all": None,
+                    "win_rate_surface": None,
+                    "win_rate_distance_band": None,
+                    "recent_rank_mean": None,
+                },
+            )
+            training = training_bulk.get(
+                horse_id,
+                {
+                    "tc_4f": None,
+                    "tc_lap": None,
+                    "tc_accel_flag": None,
+                    "tc_4f_diff": None,
+                    "hc_4f": None,
+                    "hc_lap": None,
+                    "hc_accel_flag": None,
+                    "hc_4f_diff": None,
+                },
+            )
             odds = odds_map.get(horse_number, {})
 
-            jockey_key  = jockey  or ""
+            jockey_key = jockey or ""
             trainer_key = trainer or ""
 
             raw_odds_val = odds.get("win_odds")
-            market_prob  = (1.0 / min(float(raw_odds_val), 80.0)) if raw_odds_val else None
+            market_prob = (
+                (1.0 / min(float(raw_odds_val), 80.0)) if raw_odds_val else None
+            )
 
-            records.append({
-                # 識別子（モデル学習には使わない）
-                "horse_number": horse_number,
-                "horse_id":     horse_id,
-                "horse_name":   horse_name,
-                # 数値特徴量
-                "weight_carried":       weight_carried,
-                "horse_weight":         horse_weight,
-                "win_odds":             raw_odds_val,
-                "popularity":           odds.get("popularity"),
-                "market_prob":          market_prob,  # 市場確率 1/odds.clip(max=80) [W-004]
-                # 馬成績特徴量
-                "win_rate_all":             stats["win_rate_all"],
-                "win_rate_surface":         stats["win_rate_surface"],
-                "win_rate_distance_band":   stats["win_rate_distance_band"],
-                "recent_rank_mean":         stats["recent_rank_mean"],
-                # カテゴリ特徴量（整数エンコード）
-                "surface_code":   _SURFACE_CODE.get(surface or "", -1),
-                "sex_code":       _SEX_CODE.get(_parse_sex(sex_age or ""), -1),
-                "venue_encoded":  _VENUE_CODE.get(venue or "", len(_VENUE_CODE)),
-                "sire_encoded":   self._encode_sire(sire_bulk.get(horse_id)),
-                # レース情報
-                "distance":         distance or 0,
-                "dist_band":        dist_band,
-                "horse_weight_diff": horse_weight_diff,
-                "gate_number":       gate_number,
-                "condition_code":    _CONDITION_CODE.get(condition or "", -1),
-                "race_number":       race_number or 0,
-                # 人的要素特徴量
-                "jockey_code_encoded":  self._encode_jockey(jockey_key),
-                "trainer_code_encoded": self._encode_trainer(trainer_key),
-                # 調教特徴量（WOOD:TC / WOOD:HC）
-                "tc_4f":         training["tc_4f"],
-                "tc_lap":        training["tc_lap"],
-                "tc_accel_flag": training["tc_accel_flag"],
-                "tc_4f_diff":    training["tc_4f_diff"],
-                "hc_4f":         training["hc_4f"],
-                "hc_lap":        training["hc_lap"],
-                "hc_accel_flag": training["hc_accel_flag"],
-                "hc_4f_diff":    training["hc_4f_diff"],
-                # ── 当日バイアス特徴量 ────────────────────────────────
-                # race_number より前の確定済みレースから算出（リーク排除済み）
-                "today_inner_bias": bias["today_inner_bias"],
-                "today_front_bias": bias["today_front_bias"],
-                "today_race_count": bias["today_race_count"],
-                "today_gate_match": (
-                    bias["today_inner_bias"] * (1.0 if (gate_number or 0) <= 4 else -1.0)
-                    if bias["today_inner_bias"] is not None else None
-                ),
-                # ── オッズ時系列特徴量（大口投票シグナル） ───────────
-                # realtime_odds に複数スナップショットある場合のみ有効。
-                # スナップショットが1点以下の場合は None（LightGBM が欠損として扱う）。
-                "odds_vs_morning": odds_trend.get(horse_number, {}).get("odds_vs_morning"),
-                "odds_velocity":   odds_trend.get(horse_number, {}).get("odds_velocity"),
-                # 識別子
-                "sex_age": sex_age,
-                "jockey":  jockey,
-            })
+            records.append(
+                {
+                    # 識別子（モデル学習には使わない）
+                    "horse_number": horse_number,
+                    "horse_id": horse_id,
+                    "horse_name": horse_name,
+                    # 数値特徴量
+                    "weight_carried": weight_carried,
+                    "horse_weight": horse_weight,
+                    "win_odds": raw_odds_val,
+                    "popularity": odds.get("popularity"),
+                    "market_prob": market_prob,  # 市場確率 1/odds.clip(max=80) [W-004]
+                    # 馬成績特徴量
+                    "win_rate_all": stats["win_rate_all"],
+                    "win_rate_surface": stats["win_rate_surface"],
+                    "win_rate_distance_band": stats["win_rate_distance_band"],
+                    "recent_rank_mean": stats["recent_rank_mean"],
+                    # カテゴリ特徴量（整数エンコード）
+                    "surface_code": _SURFACE_CODE.get(surface or "", -1),
+                    "sex_code": _SEX_CODE.get(_parse_sex(sex_age or ""), -1),
+                    "venue_encoded": _VENUE_CODE.get(venue or "", len(_VENUE_CODE)),
+                    "sire_encoded": self._encode_sire(sire_bulk.get(horse_id)),
+                    # レース情報
+                    "distance": distance or 0,
+                    "dist_band": dist_band,
+                    "horse_weight_diff": horse_weight_diff,
+                    "gate_number": gate_number,
+                    "condition_code": _CONDITION_CODE.get(condition or "", -1),
+                    "race_number": race_number or 0,
+                    # 人的要素特徴量
+                    "jockey_code_encoded": self._encode_jockey(jockey_key),
+                    "trainer_code_encoded": self._encode_trainer(trainer_key),
+                    # 調教特徴量（WOOD:TC / WOOD:HC）
+                    "tc_4f": training["tc_4f"],
+                    "tc_lap": training["tc_lap"],
+                    "tc_accel_flag": training["tc_accel_flag"],
+                    "tc_4f_diff": training["tc_4f_diff"],
+                    "hc_4f": training["hc_4f"],
+                    "hc_lap": training["hc_lap"],
+                    "hc_accel_flag": training["hc_accel_flag"],
+                    "hc_4f_diff": training["hc_4f_diff"],
+                    # ── 当日バイアス特徴量 ────────────────────────────────
+                    # race_number より前の確定済みレースから算出（リーク排除済み）
+                    "today_inner_bias": bias["today_inner_bias"],
+                    "today_front_bias": bias["today_front_bias"],
+                    "today_race_count": bias["today_race_count"],
+                    "today_gate_match": (
+                        bias["today_inner_bias"]
+                        * (1.0 if (gate_number or 0) <= 4 else -1.0)
+                        if bias["today_inner_bias"] is not None
+                        else None
+                    ),
+                    # ── オッズ時系列特徴量（大口投票シグナル） ───────────
+                    # realtime_odds に複数スナップショットある場合のみ有効。
+                    # スナップショットが1点以下の場合は None（LightGBM が欠損として扱う）。
+                    "odds_vs_morning": odds_trend.get(horse_number, {}).get(
+                        "odds_vs_morning"
+                    ),
+                    "odds_velocity": odds_trend.get(horse_number, {}).get(
+                        "odds_velocity"
+                    ),
+                    # 識別子
+                    "sex_age": sex_age,
+                    "jockey": jockey,
+                }
+            )
 
         df = pd.DataFrame(records)
         df["race_id"] = race_id  # UScoreEngine が基準日導出に使用
@@ -439,7 +538,9 @@ class FeatureBuilder:
         df = self._add_ev_features(df)
         logger.info(
             "特徴量生成 race_id=%s: %d 頭 × %d 特徴量",
-            race_id, len(df), df.shape[1],
+            race_id,
+            len(df),
+            df.shape[1],
         )
         return df
 
@@ -459,6 +560,7 @@ class FeatureBuilder:
         """
         try:
             from src.ml.u_score import UScoreEngine
+
             engine = UScoreEngine(self._conn)
             return engine.calc(df)
         except Exception as exc:
@@ -487,12 +589,13 @@ class FeatureBuilder:
 
         n = len(df)
         # デフォルト: シグナルなし（0 = ニュートラル）
-        x_score   = pd.Series(0.0, index=df.index, dtype=float)
-        x_count   = pd.Series(0,   index=df.index, dtype=int)
+        x_score = pd.Series(0.0, index=df.index, dtype=float)
+        x_count = pd.Series(0, index=df.index, dtype=int)
 
         if not dry_run:
             try:
                 from src.ml.x_signal_parser import get_x_consensus_score
+
                 scores = get_x_consensus_score(self._conn, race_id)
                 if "horse_number" in df.columns:
                     for idx, row in df.iterrows():
@@ -519,7 +622,7 @@ class FeatureBuilder:
                 logger.warning("x_consensus_score 取得スキップ: %s", exc)
 
         df["x_consensus_score"] = x_score.clip(-1.0, 1.0)
-        df["x_signal_count"]    = x_count.clip(0, 50)
+        df["x_signal_count"] = x_count.clip(0, 50)
 
         # 複合特徴量: 専門家世論 × 市場乖離の積
         _crowd_raw = df.get("crowd_bias_ratio")
@@ -533,7 +636,10 @@ class FeatureBuilder:
 
         logger.debug(
             "[X-feature] race_id=%s: %d頭中%d頭にシグナルあり (dry_run=%s)",
-            race_id, n, int((x_score != 0.0).sum()), dry_run,
+            race_id,
+            n,
+            int((x_score != 0.0).sum()),
+            dry_run,
         )
         return df
 
@@ -556,6 +662,7 @@ class FeatureBuilder:
             return df
         try:
             from src.ml.ev_features import EVEnhancedFeatures
+
             engine = EVEnhancedFeatures()
             return engine.add_ev_features(df)
         except Exception as exc:
@@ -634,10 +741,21 @@ class FeatureBuilder:
         if row is None or (row[5] or 0) == 0:
             return _null
 
-        inner_wins, inner_horses, outer_wins, outer_horses, fav_wins, completed_races = row
+        (
+            inner_wins,
+            inner_horses,
+            outer_wins,
+            outer_horses,
+            fav_wins,
+            completed_races,
+        ) = row
 
-        inner_rate: float | None = (inner_wins / inner_horses) if (inner_horses or 0) > 0 else None
-        outer_rate: float | None = (outer_wins / outer_horses) if (outer_horses or 0) > 0 else None
+        inner_rate: float | None = (
+            (inner_wins / inner_horses) if (inner_horses or 0) > 0 else None
+        )
+        outer_rate: float | None = (
+            (outer_wins / outer_horses) if (outer_horses or 0) > 0 else None
+        )
 
         if inner_rate is not None and outer_rate is not None:
             today_inner_bias: float | None = inner_rate - outer_rate
@@ -683,22 +801,26 @@ class FeatureBuilder:
             """高いほど良い特徴量：rank=1 が最高値。全 NaN の場合は NaN 列を追加。"""
             if col not in df.columns or df[col].isna().all():
                 # 列が存在しない or 全欠損 → NaN 列を追加してモデルが欠損扱いにできるよう統一
-                df[f"{col}_rank"]   = float("nan")
+                df[f"{col}_rank"] = float("nan")
                 df[f"{col}_zscore"] = float("nan")
                 return
-            df[f"{col}_rank"]   = df[col].rank(ascending=False, na_option="bottom")
+            df[f"{col}_rank"] = df[col].rank(ascending=False, na_option="bottom")
             std = df[col].std()
-            df[f"{col}_zscore"] = ((df[col] - df[col].mean()) / std) if std and std > 0 else 0.0
+            df[f"{col}_zscore"] = (
+                ((df[col] - df[col].mean()) / std) if std and std > 0 else 0.0
+            )
 
         def _rank_asc_inv(col: str) -> None:
             """低いほど良い特徴量：rank=1 が最小値。zscore は符号反転で高=良に統一。全 NaN の場合は NaN 列を追加。"""
             if col not in df.columns or df[col].isna().all():
-                df[f"{col}_rank"]   = float("nan")
+                df[f"{col}_rank"] = float("nan")
                 df[f"{col}_zscore"] = float("nan")
                 return
-            df[f"{col}_rank"]   = df[col].rank(ascending=True, na_option="bottom")
+            df[f"{col}_rank"] = df[col].rank(ascending=True, na_option="bottom")
             std = df[col].std()
-            df[f"{col}_zscore"] = (-(df[col] - df[col].mean()) / std) if std and std > 0 else 0.0
+            df[f"{col}_zscore"] = (
+                (-(df[col] - df[col].mean()) / std) if std and std > 0 else 0.0
+            )
 
         # 高いほど良い特徴量
         _rank_desc("win_rate_all")
@@ -751,10 +873,10 @@ class FeatureBuilder:
 
         # exclude_race_id が指定された場合、そのレースを除外する句を追加
         excl_clause = "AND rr.race_id != ?" if exclude_race_id else ""
-        excl_param  = (exclude_race_id,) if exclude_race_id else ()
+        excl_param = (exclude_race_id,) if exclude_race_id else ()
         # 時系列リーク防止: race_date より後のレースを除外する
         date_clause = "AND r.date < ?" if race_date else ""
-        date_param  = (race_date,) if race_date else ()
+        date_param = (race_date,) if race_date else ()
 
         # 全成績（races テーブルを JOIN して日付フィルタを適用）
         row = self._conn.execute(
@@ -820,15 +942,14 @@ class FeatureBuilder:
             (horse_id, *excl_param, *date_param),
         ).fetchall()
         recent_rank_mean: float | None = (
-            sum(r[0] for r in rows_recent) / len(rows_recent)
-            if rows_recent else None
+            sum(r[0] for r in rows_recent) / len(rows_recent) if rows_recent else None
         )
 
         return {
-            "win_rate_all":           win_rate_all,
-            "win_rate_surface":       win_rate_surface,
+            "win_rate_all": win_rate_all,
+            "win_rate_surface": win_rate_surface,
             "win_rate_distance_band": win_rate_distance_band,
-            "recent_rank_mean":       recent_rank_mean,
+            "recent_rank_mean": recent_rank_mean,
         }
 
     def _get_training_stats(
@@ -863,14 +984,14 @@ class FeatureBuilder:
             }
         """
         _null: dict[str, float | None] = {
-            "tc_4f":         None,
-            "tc_lap":        None,
+            "tc_4f": None,
+            "tc_lap": None,
             "tc_accel_flag": None,
-            "tc_4f_diff":    None,
-            "hc_4f":         None,
-            "hc_lap":        None,
+            "tc_4f_diff": None,
+            "hc_4f": None,
+            "hc_lap": None,
             "hc_accel_flag": None,
-            "hc_4f_diff":    None,
+            "hc_4f_diff": None,
         }
         if not horse_id or not race_date:
             return _null
@@ -881,7 +1002,7 @@ class FeatureBuilder:
         #               = substr(tc.horse_id,2,9)
         if len(horse_id) != 10 or not horse_id.isdigit():
             return _null
-        tc_key = horse_id[:4] + horse_id[4:9]   # "YYYY" + 最初5桁の連番
+        tc_key = horse_id[:4] + horse_id[4:9]  # "YYYY" + 最初5桁の連番
 
         result = dict(_null)
 
@@ -901,7 +1022,7 @@ class FeatureBuilder:
 
         if tc_rows:
             tc_4f, tc_lap = tc_rows[0]
-            result["tc_4f"]  = tc_4f
+            result["tc_4f"] = tc_4f
             result["tc_lap"] = tc_lap
             # 加速ラップ: ラスト1F < 4F合計÷4 なら加速
             if tc_4f and tc_lap:
@@ -926,7 +1047,7 @@ class FeatureBuilder:
 
         if hc_rows:
             hc_4f, hc_lap = hc_rows[0]
-            result["hc_4f"]  = hc_4f
+            result["hc_4f"] = hc_4f
             result["hc_lap"] = hc_lap
             # 加速ラップ
             if hc_4f and hc_lap:
@@ -953,7 +1074,9 @@ class FeatureBuilder:
         ).fetchone()
         return row[0] if row else None
 
-    def _get_sire_bulk(self, horse_ids: list[str | None]) -> dict[str | None, str | None]:
+    def _get_sire_bulk(
+        self, horse_ids: list[str | None]
+    ) -> dict[str | None, str | None]:
         """複数馬の父名を1クエリで一括取得する。
 
         Args:
@@ -999,12 +1122,12 @@ class FeatureBuilder:
         if not valid:
             return {h: dict(_null) for h in horse_ids}
 
-        ph   = ", ".join("?" * len(valid))
+        ph = ", ".join("?" * len(valid))
         excl = "AND rr.race_id != ?" if exclude_race_id else ""
-        ep   = [exclude_race_id] if exclude_race_id else []
+        ep = [exclude_race_id] if exclude_race_id else []
         # 時系列リーク防止: race_date 以降のレースを除外（同日レースも含め除外）
         dfilt = "AND r.date < ?" if race_date else ""
-        dep   = [race_date] if race_date else []
+        dep = [race_date] if race_date else []
 
         dist_band = _distance_band(distance)
         lo, hi = next((l, hh) for l, hh, lab in _DISTANCE_BANDS if lab == dist_band)
@@ -1084,12 +1207,12 @@ class FeatureBuilder:
             at, aw = all_map.get(h, (0, 0))
             st, sw = sf_map.get(h, (0, 0))
             dt, dw = db_map.get(h, (0, 0))
-            rec    = recent_map.get(h, [])
+            rec = recent_map.get(h, [])
             result[h] = {
-                "win_rate_all":           (aw / at) if at else None,
-                "win_rate_surface":       (sw / st) if st else None,
+                "win_rate_all": (aw / at) if at else None,
+                "win_rate_surface": (sw / st) if st else None,
                 "win_rate_distance_band": (dw / dt) if dt else None,
-                "recent_rank_mean":       (sum(rec) / len(rec)) if rec else None,
+                "recent_rank_mean": (sum(rec) / len(rec)) if rec else None,
             }
         return result
 
@@ -1104,16 +1227,22 @@ class FeatureBuilder:
         ウィンドウ関数で馬別に直近2回分の調教記録を取得し、加速ラップ・タイム差を計算する。
         """
         _null: dict[str, float | None] = {
-            "tc_4f": None, "tc_lap": None, "tc_accel_flag": None, "tc_4f_diff": None,
-            "hc_4f": None, "hc_lap": None, "hc_accel_flag": None, "hc_4f_diff": None,
+            "tc_4f": None,
+            "tc_lap": None,
+            "tc_accel_flag": None,
+            "tc_4f_diff": None,
+            "hc_4f": None,
+            "hc_lap": None,
+            "hc_accel_flag": None,
+            "hc_4f_diff": None,
         }
-        result: dict[str | None, dict[str, float | None]] = {h: dict(_null) for h in horse_ids}
+        result: dict[str | None, dict[str, float | None]] = {
+            h: dict(_null) for h in horse_ids
+        }
 
         # 10桁数値 horse_id のみ対象（training_times の JOIN キー変換が可能なもの）
         valid: dict[str, str] = {
-            h: h[:4] + h[4:9]
-            for h in horse_ids
-            if h and len(h) == 10 and h.isdigit()
+            h: h[:4] + h[4:9] for h in horse_ids if h and len(h) == 10 and h.isdigit()
         }
         if not valid:
             return result
@@ -1302,9 +1431,9 @@ class FeatureBuilder:
         result: dict[int, dict[str, float | None]] = {}
 
         for horse_num, ts in horse_ts.items():
-            morning_odds = ts[0][1]   # 最初に記録されたオッズ（朝一）
-            latest_odds  = ts[-1][1]  # 最新オッズ
-            latest_str   = ts[-1][0]  # 最新 recorded_at 文字列
+            morning_odds = ts[0][1]  # 最初に記録されたオッズ（朝一）
+            latest_odds = ts[-1][1]  # 最新オッズ
+            latest_str = ts[-1][0]  # 最新 recorded_at 文字列
 
             # ── 朝一比率 ──────────────────────────────────────────
             odds_vs_morning: float | None = None
@@ -1316,11 +1445,11 @@ class FeatureBuilder:
             if len(ts) >= 2:
                 try:
                     t_latest = datetime.fromisoformat(latest_str)
-                    cutoff   = t_latest - timedelta(minutes=60)
+                    cutoff = t_latest - timedelta(minutes=60)
 
                     # cutoff 以前の最新スナップショットを探す
                     past: tuple[str, float] | None = None
-                    for t_str, o in ts[:-1]:   # 最新1点は除外
+                    for t_str, o in ts[:-1]:  # 最新1点は除外
                         try:
                             if datetime.fromisoformat(t_str) <= cutoff:
                                 past = (t_str, o)
@@ -1338,7 +1467,7 @@ class FeatureBuilder:
 
             result[horse_num] = {
                 "odds_vs_morning": odds_vs_morning,
-                "odds_velocity":   odds_velocity,
+                "odds_velocity": odds_velocity,
             }
 
         return result
@@ -1364,7 +1493,4 @@ class FeatureBuilder:
             """,
             (race_id, race_id),
         ).fetchall()
-        return {
-            r[0]: {"win_odds": r[1], "popularity": r[2]}
-            for r in rows
-        }
+        return {r[0]: {"win_odds": r[1], "popularity": r[2]} for r in rows}

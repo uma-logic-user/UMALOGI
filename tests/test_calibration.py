@@ -1,4 +1,5 @@
 """tests/test_calibration.py — src/ml/calibration.py のユニットテスト"""
+
 from __future__ import annotations
 
 import pytest
@@ -74,7 +75,9 @@ class TestCorrectHonmeiScore:
         # すべての対象 bin で補正後 > 補正前
         for raw in [0.01, 0.05, 0.10, 0.15, 0.20]:
             corrected = correct_honmei_score(raw)
-            assert corrected >= raw, f"raw={raw}: corrected={corrected} should be >= raw"
+            assert corrected >= raw, (
+                f"raw={raw}: corrected={corrected} should be >= raw"
+            )
 
 
 class TestCorrectionFactorFor:

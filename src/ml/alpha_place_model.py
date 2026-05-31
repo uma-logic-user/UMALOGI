@@ -51,6 +51,7 @@ DEFAULT_EV_THRESHOLD: float = 1.30
 
 # ── Harville 複勝確率 ────────────────────────────────────────────────
 
+
 def harville_place_probs(win_probs: np.ndarray) -> np.ndarray:
     """
     各馬の P(top 3 finish) を Harville 公式で計算する。
@@ -77,7 +78,7 @@ def harville_place_probs(win_probs: np.ndarray) -> np.ndarray:
 
     # P(2着): P(h 2着) = sum_{j≠h} p_j × p_h/(1-p_j)
     #                  = p_h × sum_{j≠h} p_j/(1-p_j)
-    contrib = p / one_minus_p          # p_j / (1-p_j) for all j
+    contrib = p / one_minus_p  # p_j / (1-p_j) for all j
     sum_contrib = contrib.sum()
     # sum_{j≠h} = total - contrib[h]
     result += p * (sum_contrib - contrib)
@@ -102,11 +103,20 @@ def harville_place_probs(win_probs: np.ndarray) -> np.ndarray:
 # ── 特徴量定義 ───────────────────────────────────────────────────────
 
 BASE_FEATURES: list[str] = [
-    "win_odds", "popularity",
-    "distance", "gate_number", "weight_carried",
-    "horse_weight", "horse_weight_diff", "race_number",
-    "surface_code", "sex_code", "venue_encoded", "condition_code",
-    "jockey_encoded", "trainer_encoded",
+    "win_odds",
+    "popularity",
+    "distance",
+    "gate_number",
+    "weight_carried",
+    "horse_weight",
+    "horse_weight_diff",
+    "race_number",
+    "surface_code",
+    "sex_code",
+    "venue_encoded",
+    "condition_code",
+    "jockey_encoded",
+    "trainer_encoded",
 ]
 
 PLACE_EXTRA_FEATURES: list[str] = [
@@ -116,12 +126,12 @@ PLACE_EXTRA_FEATURES: list[str] = [
     "field_size",
     "mean_field_odds",
     "odds_vs_field",
-    "market_prob",          # 単勝市場確率
+    "market_prob",  # 単勝市場確率
     "log_market_prob",
     # 複勝特化特徴量
-    "place_market_prob",    # Harville P(top3) — 複勝市場確率
+    "place_market_prob",  # Harville P(top3) — 複勝市場確率
     "log_place_market_prob",
-    "win_to_place_ratio",   # 単勝市場確率 / 複勝市場確率 (高=穴馬的)
+    "win_to_place_ratio",  # 単勝市場確率 / 複勝市場確率 (高=穴馬的)
     # ハイブリッド特徴量
     "nb_win_odds",
     "log_nb_win_odds",
@@ -134,6 +144,7 @@ ALL_PLACE_FEATURES: list[str] = BASE_FEATURES + PLACE_EXTRA_FEATURES
 
 
 # ── 結果コンテナ ─────────────────────────────────────────────────────
+
 
 @dataclass
 class PlaceBacktestResult:
@@ -153,6 +164,7 @@ class PlaceBacktestResult:
 
 # ── メインモデルクラス ────────────────────────────────────────────────
 
+
 class AlphaPlaceModel:
     """
     複勝特化型 AI モデル。
@@ -163,7 +175,7 @@ class AlphaPlaceModel:
 
     def __init__(self) -> None:
         self._model: Optional[LGBMClassifier] = None
-        self._calibrator = None          # sklearn calibrator
+        self._calibrator = None  # sklearn calibrator
         self._label_encoders: dict = {}
         self._best_params: dict = {}
         self._venue_thresholds: dict[str, float] = {}
@@ -257,14 +269,16 @@ class AlphaPlaceModel:
     @staticmethod
     def _merge_research_odds(df: pd.DataFrame, rdb: Path) -> pd.DataFrame:
         import sqlite3 as _sql
+
         rconn = _sql.connect(str(rdb))
         odds_df = pd.read_sql_query(
-            "SELECT race_id, horse_number, win_odds AS nb_win_odds FROM horse_odds", rconn
+            "SELECT race_id, horse_number, win_odds AS nb_win_odds FROM horse_odds",
+            rconn,
         )
         rconn.close()
 
         merged = df.merge(odds_df, on=["race_id", "horse_number"], how="left")
-        merged["win_odds"]    = pd.to_numeric(merged["win_odds"],    errors="coerce")
+        merged["win_odds"] = pd.to_numeric(merged["win_odds"], errors="coerce")
         merged["nb_win_odds"] = pd.to_numeric(merged["nb_win_odds"], errors="coerce")
 
         mask_jv = merged["win_odds"].isna() | (merged["win_odds"] <= 0)
@@ -289,9 +303,16 @@ class AlphaPlaceModel:
             df["sex_code"] = df["sex_age"].str[0].map(sex_map).fillna(-1).astype(int)
 
         venue_map = {
-            "札幌": 0, "函館": 1, "福島": 2, "新潟": 3,
-            "東京": 4, "中山": 5, "中京": 6, "京都": 7,
-            "阪神": 8, "小倉": 9,
+            "札幌": 0,
+            "函館": 1,
+            "福島": 2,
+            "新潟": 3,
+            "東京": 4,
+            "中山": 5,
+            "中京": 6,
+            "京都": 7,
+            "阪神": 8,
+            "小倉": 9,
         }
         if "venue" in df.columns:
             df["venue_encoded"] = df["venue"].map(venue_map).fillna(-1).astype(int)
@@ -306,20 +327,24 @@ class AlphaPlaceModel:
                 df[out] = -1
 
         # 基本オッズ特徴量
-        df["win_odds"] = pd.to_numeric(df["win_odds"], errors="coerce").fillna(50.0).clip(lower=1.01)
+        df["win_odds"] = (
+            pd.to_numeric(df["win_odds"], errors="coerce").fillna(50.0).clip(lower=1.01)
+        )
         df["log_win_odds"] = np.log(df["win_odds"])
         df["inv_odds"] = 1.0 / df["win_odds"]
 
-        pop = pd.to_numeric(df.get("popularity"), errors="coerce").fillna(9).clip(lower=1)
+        pop = (
+            pd.to_numeric(df.get("popularity"), errors="coerce").fillna(9).clip(lower=1)
+        )
         df["odds_popularity_ratio"] = df["win_odds"] / pop
 
         grp = df.groupby("race_id", group_keys=False)
-        df["field_size"]    = grp["horse_number"].transform("count")
+        df["field_size"] = grp["horse_number"].transform("count")
         df["mean_field_odds"] = grp["win_odds"].transform("mean")
         df["odds_vs_field"] = df["win_odds"] / df["mean_field_odds"].clip(lower=1.0)
 
         inv_sum = grp["inv_odds"].transform("sum").clip(lower=1e-8)
-        df["market_prob"]     = df["inv_odds"] / inv_sum
+        df["market_prob"] = df["inv_odds"] / inv_sum
         df["log_market_prob"] = np.log(df["market_prob"].clip(lower=1e-8))
 
         # ── 複勝特化: Harville P(top3) ──────────────────────────────
@@ -332,19 +357,22 @@ class AlphaPlaceModel:
         df["place_market_prob"] = place_probs_arr
         df["place_market_prob"] = df["place_market_prob"].clip(lower=1e-4, upper=0.9999)
         df["log_place_market_prob"] = np.log(df["place_market_prob"])
-        df["win_to_place_ratio"] = df["market_prob"] / df["place_market_prob"].clip(lower=1e-4)
+        df["win_to_place_ratio"] = df["market_prob"] / df["place_market_prob"].clip(
+            lower=1e-4
+        )
 
         # ── ハイブリッド特徴量 ───────────────────────────────────────
         if "nb_win_odds" in df.columns:
             df["nb_win_odds"] = (
                 pd.to_numeric(df["nb_win_odds"], errors="coerce")
-                .fillna(df["win_odds"]).clip(lower=1.01)
+                .fillna(df["win_odds"])
+                .clip(lower=1.01)
             )
         else:
             df["nb_win_odds"] = df["win_odds"]
 
         df["log_nb_win_odds"] = np.log(df["nb_win_odds"])
-        df["nb_market_prob"]  = 1.0 / df["nb_win_odds"]
+        df["nb_market_prob"] = 1.0 / df["nb_win_odds"]
 
         nb_inv_sum = grp["nb_market_prob"].transform("sum").clip(lower=1e-8)
         df["nb_market_prob"] = df["nb_market_prob"] / nb_inv_sum
@@ -359,6 +387,7 @@ class AlphaPlaceModel:
 
     def _encode_categoricals(self, df: pd.DataFrame, fit: bool = True) -> pd.DataFrame:
         from sklearn.preprocessing import LabelEncoder
+
         df = df.copy()
         for src, out in [("jockey", "jockey_encoded"), ("trainer", "trainer_encoded")]:
             if src not in df.columns:
@@ -372,8 +401,12 @@ class AlphaPlaceModel:
                 le = self._label_encoders.get(out)
                 if le:
                     known = set(le.classes_)
-                    df[out] = df[src].astype(str).apply(
-                        lambda x: int(le.transform([x])[0]) if x in known else -1
+                    df[out] = (
+                        df[src]
+                        .astype(str)
+                        .apply(
+                            lambda x: int(le.transform([x])[0]) if x in known else -1
+                        )
                     )
                 else:
                     df[out] = -1
@@ -414,6 +447,7 @@ class AlphaPlaceModel:
             metrics dict
         """
         import optuna
+
         optuna.logging.set_verbosity(optuna.logging.WARNING)
 
         X, y = self.prepare_features(df, fit=True)
@@ -422,8 +456,13 @@ class AlphaPlaceModel:
         pos_rate = float(y.mean())
         scale_pos_weight = (1.0 - pos_rate) / pos_rate if pos_rate > 0 else 1.0
 
-        logger.info("Alpha-Place Optuna 最適化開始: %d試行 %d行", n_optuna_trials, len(X))
-        print(f"  [Optuna] {n_optuna_trials}試行 開始 ({len(X):,}行, pos={pos_rate:.1%})", flush=True)
+        logger.info(
+            "Alpha-Place Optuna 最適化開始: %d試行 %d行", n_optuna_trials, len(X)
+        )
+        print(
+            f"  [Optuna] {n_optuna_trials}試行 開始 ({len(X):,}行, pos={pos_rate:.1%})",
+            flush=True,
+        )
 
         def objective(trial: "optuna.Trial") -> float:
             from sklearn.model_selection import TimeSeriesSplit
@@ -432,7 +471,9 @@ class AlphaPlaceModel:
             params = {
                 "objective": "binary",
                 "n_estimators": trial.suggest_int("n_estimators", 500, 2000),
-                "learning_rate": trial.suggest_float("learning_rate", 0.01, 0.08, log=True),
+                "learning_rate": trial.suggest_float(
+                    "learning_rate", 0.01, 0.08, log=True
+                ),
                 "num_leaves": trial.suggest_int("num_leaves", 31, 255),
                 "max_depth": trial.suggest_int("max_depth", 4, 10),
                 "min_child_samples": trial.suggest_int("min_child_samples", 10, 60),
@@ -454,8 +495,12 @@ class AlphaPlaceModel:
                 if y_val.nunique() < 2:
                     continue
                 m = LGBMClassifier(**params)
-                m.fit(X_tr, y_tr, eval_set=[(X_val, y_val)],
-                      callbacks=[_lgb_early_stopping(50)])
+                m.fit(
+                    X_tr,
+                    y_tr,
+                    eval_set=[(X_val, y_val)],
+                    callbacks=[_lgb_early_stopping(50)],
+                )
                 preds = m.predict_proba(X_val)[:, 1]
                 auc_scores.append(roc_auc_score(y_val, preds))
 
@@ -465,9 +510,12 @@ class AlphaPlaceModel:
         study.optimize(objective, n_trials=n_optuna_trials, show_progress_bar=False)
         self._best_params = study.best_params
         best_auc = study.best_value
-        print(f"  [Optuna] 完了 → best AUC={best_auc:.4f}  "
-              f"num_leaves={self._best_params.get('num_leaves')} "
-              f"lr={self._best_params.get('learning_rate', 0):.4f}", flush=True)
+        print(
+            f"  [Optuna] 完了 → best AUC={best_auc:.4f}  "
+            f"num_leaves={self._best_params.get('num_leaves')} "
+            f"lr={self._best_params.get('learning_rate', 0):.4f}",
+            flush=True,
+        )
 
         # ── ベストパラメータで最終学習 ──────────────────────────────
         final_params = {
@@ -480,23 +528,25 @@ class AlphaPlaceModel:
         }
         # 70% 学習 / 15% キャリブレーション / 15% 検証（時系列順）
         n = len(X)
-        train_end  = int(n * 0.70)
-        calib_end  = int(n * 0.85)
-        X_tr   = X.iloc[:train_end]
-        X_cal  = X.iloc[train_end:calib_end]
-        X_val  = X.iloc[calib_end:]
-        y_tr   = y.iloc[:train_end]
-        y_cal  = y.iloc[train_end:calib_end]
-        y_val  = y.iloc[calib_end:]
+        train_end = int(n * 0.70)
+        calib_end = int(n * 0.85)
+        X_tr = X.iloc[:train_end]
+        X_cal = X.iloc[train_end:calib_end]
+        X_val = X.iloc[calib_end:]
+        y_tr = y.iloc[:train_end]
+        y_cal = y.iloc[train_end:calib_end]
+        y_val = y.iloc[calib_end:]
 
         self._model = LGBMClassifier(**final_params)
         self._model.fit(
-            X_tr, y_tr,
+            X_tr,
+            y_tr,
             eval_set=[(X_val, y_val)],
             callbacks=[_lgb_early_stopping(50)],
         )
 
         from sklearn.metrics import roc_auc_score
+
         raw_probs = self._model.predict_proba(X_val)[:, 1]
         val_auc = float(roc_auc_score(y_val, raw_probs))
 
@@ -513,7 +563,10 @@ class AlphaPlaceModel:
             val_raw = self._model.predict_proba(X_val)[:, 1]
             calib_probs = iso.predict(val_raw)
             calib_auc = float(roc_auc_score(y_val, calib_probs))
-            print(f"  [校正] Isotonic calibration完了 val AUC: {val_auc:.4f} → {calib_auc:.4f}", flush=True)
+            print(
+                f"  [校正] Isotonic calibration完了 val AUC: {val_auc:.4f} → {calib_auc:.4f}",
+                flush=True,
+            )
         else:
             self._calibrator = None
             calib_auc = val_auc
@@ -553,7 +606,9 @@ class AlphaPlaceModel:
         """
         df = df.copy()
         df["_model_prob"] = place_probs.values
-        df["win_odds"] = pd.to_numeric(df["win_odds"], errors="coerce").fillna(50.0).clip(lower=1.01)
+        df["win_odds"] = (
+            pd.to_numeric(df["win_odds"], errors="coerce").fillna(50.0).clip(lower=1.01)
+        )
 
         market_probs_arr = np.empty(len(df), dtype=float)
         df_reset = df.reset_index(drop=True)
@@ -587,12 +642,14 @@ class AlphaPlaceModel:
             dict[venue_name, optimal_ev_threshold]
         """
         place_probs = self.predict_place_prob(df)
-        ev_series   = self.compute_ev(df, place_probs)
+        ev_series = self.compute_ev(df, place_probs)
 
         work = df.copy()
-        work["ev"]          = ev_series.values
-        work["actual_payout"] = pd.to_numeric(work["actual_payout"], errors="coerce").fillna(0)
-        work["is_place"]    = work["is_place"].astype(int)
+        work["ev"] = ev_series.values
+        work["actual_payout"] = pd.to_numeric(
+            work["actual_payout"], errors="coerce"
+        ).fillna(0)
+        work["is_place"] = work["is_place"].astype(int)
 
         thresholds = [
             round(ev_range[0] + i * ev_step, 3)
@@ -602,7 +659,7 @@ class AlphaPlaceModel:
         venue_thresholds: dict[str, float] = {}
 
         for venue, vdf in work.groupby("venue"):
-            best_roi    = -np.inf
+            best_roi = -np.inf
             best_thresh = DEFAULT_EV_THRESHOLD
 
             for t in thresholds:
@@ -616,7 +673,7 @@ class AlphaPlaceModel:
                 ).sum()
                 roi = payout / invest * 100
                 if roi > best_roi:
-                    best_roi    = roi
+                    best_roi = roi
                     best_thresh = t
 
             venue_thresholds[str(venue)] = best_thresh
@@ -641,7 +698,7 @@ class AlphaPlaceModel:
             race_id / horse_number / place_prob / ev / kelly_bet / win_odds
         """
         place_probs = self.predict_place_prob(df)
-        ev_series   = self.compute_ev(df, place_probs)
+        ev_series = self.compute_ev(df, place_probs)
 
         result = df[["race_id", "horse_number", "win_odds"]].copy()
         if "venue" in df.columns:
@@ -650,7 +707,11 @@ class AlphaPlaceModel:
         result["ev"] = ev_series.values
 
         if use_venue_thresholds and self._venue_thresholds:
-            venue_col = df["venue"].astype(str) if "venue" in df.columns else pd.Series([""] * len(df), index=df.index)
+            venue_col = (
+                df["venue"].astype(str)
+                if "venue" in df.columns
+                else pd.Series([""] * len(df), index=df.index)
+            )
             thresholds = venue_col.map(
                 lambda v: self._venue_thresholds.get(v, DEFAULT_EV_THRESHOLD)
             )
@@ -688,13 +749,16 @@ class AlphaPlaceModel:
         path = path or _MODEL_PATH
         path.parent.mkdir(parents=True, exist_ok=True)
         with open(path, "wb") as f:
-            pickle.dump({
-                "model":             self._model,
-                "calibrator":        self._calibrator,
-                "label_encoders":    self._label_encoders,
-                "best_params":       self._best_params,
-                "venue_thresholds":  self._venue_thresholds,
-            }, f)
+            pickle.dump(
+                {
+                    "model": self._model,
+                    "calibrator": self._calibrator,
+                    "label_encoders": self._label_encoders,
+                    "best_params": self._best_params,
+                    "venue_thresholds": self._venue_thresholds,
+                },
+                f,
+            )
         logger.info("Alpha-Place 保存: %s", path)
 
     @classmethod
@@ -703,17 +767,18 @@ class AlphaPlaceModel:
         obj = cls()
         with open(path, "rb") as f:
             data = pickle.load(f)
-        obj._model            = data["model"]
-        obj._calibrator       = data.get("calibrator")
-        obj._label_encoders   = data.get("label_encoders", {})
-        obj._best_params      = data.get("best_params", {})
+        obj._model = data["model"]
+        obj._calibrator = data.get("calibrator")
+        obj._label_encoders = data.get("label_encoders", {})
+        obj._best_params = data.get("best_params", {})
         obj._venue_thresholds = data.get("venue_thresholds", {})
-        obj._is_trained       = True
+        obj._is_trained = True
         logger.info("Alpha-Place ロード: %s", path)
         return obj
 
 
 # ── バックテスト ─────────────────────────────────────────────────────
+
 
 def run_place_backtest(
     conn: sqlite3.Connection,
@@ -744,10 +809,15 @@ def run_place_backtest(
     if len(train_df) < 500:
         raise ValueError(f"学習データ不足: {len(train_df)}行")
 
-    metrics = model.train(train_df, n_optuna_trials=n_optuna_trials, calibrate=calibrate)
-    print(f"  [学習完了] n_train={metrics['n_train']} n_calib={metrics.get('n_calib','?')} n_val={metrics['n_val']} "
-          f"Optuna AUC={metrics['optuna_auc']:.4f} "
-          f"Calib AUC={metrics['calib_auc']:.4f}", flush=True)
+    metrics = model.train(
+        train_df, n_optuna_trials=n_optuna_trials, calibrate=calibrate
+    )
+    print(
+        f"  [学習完了] n_train={metrics['n_train']} n_calib={metrics.get('n_calib', '?')} n_val={metrics['n_val']} "
+        f"Optuna AUC={metrics['optuna_auc']:.4f} "
+        f"Calib AUC={metrics['calib_auc']:.4f}",
+        flush=True,
+    )
 
     # 会場別閾値最適化（train データで）
     if use_venue_opt:
@@ -765,19 +835,21 @@ def run_place_backtest(
         raise ValueError(f"テストデータ不足: {len(test_df)}行")
 
     place_probs = model.predict_place_prob(test_df)
-    ev_series   = model.compute_ev(test_df, place_probs)
+    ev_series = model.compute_ev(test_df, place_probs)
 
     test_df = test_df.copy()
-    test_df["ev"]          = ev_series.values
-    test_df["place_prob"]  = place_probs.values
+    test_df["ev"] = ev_series.values
+    test_df["place_prob"] = place_probs.values
     test_df["actual_payout"] = pd.to_numeric(
         test_df["actual_payout"], errors="coerce"
     ).fillna(0)
 
     # EV 閾値でフィルタ（会場最適化 or 固定）
     if use_venue_opt and venue_thresh and "venue" in test_df.columns:
-        test_df["_threshold"] = test_df["venue"].astype(str).map(
-            lambda v: venue_thresh.get(v, ev_threshold)
+        test_df["_threshold"] = (
+            test_df["venue"]
+            .astype(str)
+            .map(lambda v: venue_thresh.get(v, ev_threshold))
         )
     else:
         test_df["_threshold"] = ev_threshold
@@ -791,17 +863,17 @@ def run_place_backtest(
     )
 
     total_investment = int(bets_df["kelly_bet"].sum())
-    total_payout     = float(bets_df["payout"].sum())
-    profit           = total_payout - total_investment
-    roi              = total_payout / total_investment * 100 if total_investment > 0 else 0.0
-    num_hits         = int(bets_df["is_place"].sum())
-    num_bets         = len(bets_df)
-    hit_rate         = num_hits / num_bets * 100 if num_bets > 0 else 0.0
+    total_payout = float(bets_df["payout"].sum())
+    profit = total_payout - total_investment
+    roi = total_payout / total_investment * 100 if total_investment > 0 else 0.0
+    num_hits = int(bets_df["is_place"].sum())
+    num_bets = len(bets_df)
+    hit_rate = num_hits / num_bets * 100 if num_bets > 0 else 0.0
 
     # 最大ドローダウン
     bets_sorted = bets_df.sort_values(["date", "race_id", "horse_number"])
-    cum_pnl     = (bets_sorted["payout"] - bets_sorted["kelly_bet"]).cumsum()
-    max_dd      = float((cum_pnl.cummax() - cum_pnl).max()) if len(cum_pnl) > 0 else 0.0
+    cum_pnl = (bets_sorted["payout"] - bets_sorted["kelly_bet"]).cumsum()
+    max_dd = float((cum_pnl.cummax() - cum_pnl).max()) if len(cum_pnl) > 0 else 0.0
 
     result = PlaceBacktestResult(
         year=str(test_years[0]) if len(test_years) == 1 else str(test_years),
@@ -831,9 +903,11 @@ def run_place_backtest(
 
 # ── ユーティリティ ────────────────────────────────────────────────────
 
+
 def _lgb_early_stopping(rounds: int):
     try:
         from lightgbm import early_stopping as _es
+
         return _es(rounds, verbose=False)
     except ImportError:
         return None

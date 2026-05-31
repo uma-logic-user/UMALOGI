@@ -9,6 +9,7 @@ Test : 2026-01-01 ～ 2026-05-23
 賭け金: 1/20 フラクショナルKelly + 現実的な流動性上限
 発注ゾーン: 単勝 edge 1.2〜1.5 倍 OR ≥5.0 倍（過熱ゾーン 1.5〜5.0 はスキップ）
 """
+
 from __future__ import annotations
 
 import itertools
@@ -40,24 +41,24 @@ OUT_JSON = ROOT / "data" / "all_bets_backtest_2026.json"
 
 # ── 期間 ──────────────────────────────────────────────────────────────────────
 TRAIN_FROM = "2024-01-01"
-TRAIN_TO   = "2025-12-31"
-TEST_FROM  = "2026-01-01"
-TEST_TO    = "2026-05-23"
+TRAIN_TO = "2025-12-31"
+TEST_FROM = "2026-01-01"
+TEST_TO = "2026-05-23"
 
 # ── 資金管理 ──────────────────────────────────────────────────────────────────
-INITIAL_BANKROLL     = 10_000.0
-KELLY_FRACTION       = 0.05          # 1/20 Kelly
-MAX_RACE_BUDGET_RATE = 0.10          # 1レース最大 bankroll × 10%（相対上限）
-MAX_BET_RATE         = 0.03          # 1ベット最大 bankroll × 3%（相対上限）
-MAX_RACE_BUDGET_ABS  = 50_000        # 1レース物理上限 ¥50,000（JRAスリッページ対策）
-MAX_BET_ABS          = 15_000        # 1ベット物理上限 ¥15,000（JRAスリッページ対策）
-MIN_BET              = 100
-EDGE_THRESHOLD       = 1.20          # 基本エッジ閾値
+INITIAL_BANKROLL = 10_000.0
+KELLY_FRACTION = 0.05  # 1/20 Kelly
+MAX_RACE_BUDGET_RATE = 0.10  # 1レース最大 bankroll × 10%（相対上限）
+MAX_BET_RATE = 0.03  # 1ベット最大 bankroll × 3%（相対上限）
+MAX_RACE_BUDGET_ABS = 50_000  # 1レース物理上限 ¥50,000（JRAスリッページ対策）
+MAX_BET_ABS = 15_000  # 1ベット物理上限 ¥15,000（JRAスリッページ対策）
+MIN_BET = 100
+EDGE_THRESHOLD = 1.20  # 基本エッジ閾値
 # コンボ系（ワイド/馬連/三連複）の発注モード:
 #   "disabled" — バックテスト期間中は全て発注しない（現在設定: ROI 35-60% で赤字確定のため）
 #   "filtered" — COMBO_EV_THRESHOLD 以上のみ発注（再校正後に切り替え）
-COMBO_BET_MODE       = "disabled"    # ワイド/馬連/三連複 の発注モード
-COMBO_EV_THRESHOLD   = 1.50          # "filtered" モード時の最低 EV 閾値
+COMBO_BET_MODE = "disabled"  # ワイド/馬連/三連複 の発注モード
+COMBO_EV_THRESHOLD = 1.50  # "filtered" モード時の最低 EV 閾値
 
 # 単勝 edge 黄金ゾーン: [1.2, 1.5] OR [5.0, ∞)
 # バックテスト上、1.5〜5.0 の過熱ゾーンは ROI が悪化するためスキップ
@@ -70,10 +71,10 @@ ARROW = "→"  # → (U+2192): 馬単・三連単のコンビネーション区�
 
 # ── 券種設定（馬単・三連単は除外）─────────────────────────────────────────────
 BET_TYPE_HEX: dict[str, str] = {
-    "単勝":  "E58D98E58B9D",
-    "複勝":  "E8A487E58B9D",
+    "単勝": "E58D98E58B9D",
+    "複勝": "E8A487E58B9D",
     "ワイド": "E383AFE382A4E38389",
-    "馬連":  "E9A6ACE980A3",
+    "馬連": "E9A6ACE980A3",
     # "馬単":  "E9A6ACE58D98",   # 除外: 赤字(ROI 0.3%)
     "三連複": "E4B889E980A3E8A487",
     # "三連単": "E4B889E980A3E58D98", # 除外: 赤字(ROI 1.1%)
@@ -84,34 +85,42 @@ BET_TYPE_HEX: dict[str, str] = {
 # ワイド/馬連: トップ2頭は人気馬ペアになりやすく実際払戻が市場平均より低い。
 # 三連複: トップ3頭 → 中位オッズ帯（35倍より実際は低い）。
 TYPICAL_ODDS: dict[str, float] = {
-    "単勝":  5.0,
-    "複勝":  2.0,
-    "ワイド": 2.5,   # 市場平均4.0 → 実態2.5（人気馬ペアのため低オッズ）
-    "馬連":  5.0,    # 市場平均12.0 → 実態5.0（同上）
+    "単勝": 5.0,
+    "複勝": 2.0,
+    "ワイド": 2.5,  # 市場平均4.0 → 実態2.5（人気馬ペアのため低オッズ）
+    "馬連": 5.0,  # 市場平均12.0 → 実態5.0（同上）
     "三連複": 15.0,  # 市場平均35.0 → 実態15.0（トップ3中位オッズ帯）
 }
 
 # ── LightGBM パラメータ ────────────────────────────────────────────────────────
 LGBM_PARAMS: dict = {
-    "objective":        "binary",
-    "metric":           "auc",
-    "learning_rate":    0.05,
-    "num_leaves":       63,
+    "objective": "binary",
+    "metric": "auc",
+    "learning_rate": 0.05,
+    "num_leaves": 63,
     "min_data_in_leaf": 30,
     "feature_fraction": 0.8,
     "bagging_fraction": 0.8,
-    "bagging_freq":     5,
-    "lambda_l1":        0.1,
-    "lambda_l2":        0.1,
-    "n_estimators":     500,
-    "verbose":          -1,
+    "bagging_freq": 5,
+    "lambda_l1": 0.1,
+    "lambda_l2": 0.1,
+    "n_estimators": 500,
+    "verbose": -1,
 }
 
 FEATURE_COLS: list[str] = [
-    "weight_carried", "horse_weight", "horse_weight_diff",
-    "gate_number", "distance",
-    "surface_code", "sex_code", "venue_code", "condition_code",
-    "win_rate_all", "win_rate_surface", "win_rate_distance_band",
+    "weight_carried",
+    "horse_weight",
+    "horse_weight_diff",
+    "gate_number",
+    "distance",
+    "surface_code",
+    "sex_code",
+    "venue_code",
+    "condition_code",
+    "win_rate_all",
+    "win_rate_surface",
+    "win_rate_distance_band",
     "recent_rank_mean",
     "sire_code",
     "jockey_win_rate",
@@ -120,17 +129,29 @@ FEATURE_COLS: list[str] = [
 
 # ── コードマップ ──────────────────────────────────────────────────────────────
 _SURFACE_CODE = {"芝": 0, "ダート": 1, "障害": 2}
-_SEX_CODE     = {"牡": 0, "牝": 1, "セ": 2}
-_VENUE_CODE   = {
-    "札幌": 0, "函館": 1, "福島": 2, "新潟": 3, "東京": 4,
-    "中山": 5, "中京": 6, "京都": 7, "阪神": 8, "小倉": 9,
+_SEX_CODE = {"牡": 0, "牝": 1, "セ": 2}
+_VENUE_CODE = {
+    "札幌": 0,
+    "函館": 1,
+    "福島": 2,
+    "新潟": 3,
+    "東京": 4,
+    "中山": 5,
+    "中京": 6,
+    "京都": 7,
+    "阪神": 8,
+    "小倉": 9,
 }
 _COND_CODE = {"良": 0, "稍重": 1, "重": 2, "不良": 3}
 _DIST_BANDS = {
-    "s": (0, 1400), "m": (1400, 1800), "i": (1800, 2200), "l": (2200, 9999),
+    "s": (0, 1400),
+    "m": (1400, 1800),
+    "i": (1800, 2200),
+    "l": (2200, 9999),
 }
 
 _SIRE_CACHE: dict[str, int] = {}
+
 
 def _encode_sire(sire: str | None) -> int:
     """父馬名を整数コードに変換する（モジュールキャッシュ利用）。
@@ -145,6 +166,7 @@ def _encode_sire(sire: str | None) -> int:
     if s not in _SIRE_CACHE:
         _SIRE_CACHE[s] = len(_SIRE_CACHE)
     return _SIRE_CACHE[s]
+
 
 def _dist_band(distance: int) -> str:
     """距離バンド文字列を返す。
@@ -161,9 +183,11 @@ def _dist_band(distance: int) -> str:
             return name
     return "l"
 
+
 # ── 騎手・調教師 勝率マップ ────────────────────────────────────────────────────
 _JKY_MAP: dict[str, float] = {}
 _TRN_MAP: dict[str, float] = {}
+
 
 def build_jockey_trainer_maps(conn: sqlite3.Connection) -> None:
     """騎手・調教師の勝率マップをモジュールグローバルに構築する。
@@ -253,20 +277,24 @@ def _horse_stats(
         }
 
     ranks_all = [r[0] for r in rows]
-    win_all   = sum(1 for r in ranks_all if r == 1) / len(ranks_all)
+    win_all = sum(1 for r in ranks_all if r == 1) / len(ranks_all)
 
     surf_rows = [r for r in rows if r[1] == surface]
-    win_surf  = (sum(1 for r in surf_rows if r[0] == 1) / len(surf_rows)) if surf_rows else 0.0
+    win_surf = (
+        (sum(1 for r in surf_rows if r[0] == 1) / len(surf_rows)) if surf_rows else 0.0
+    )
 
-    lo, hi    = _DIST_BANDS[band]
+    lo, hi = _DIST_BANDS[band]
     dist_rows = [r for r in rows if lo <= r[2] < hi]
-    win_dist  = (sum(1 for r in dist_rows if r[0] == 1) / len(dist_rows)) if dist_rows else 0.0
+    win_dist = (
+        (sum(1 for r in dist_rows if r[0] == 1) / len(dist_rows)) if dist_rows else 0.0
+    )
 
     return {
-        "win_rate_all":            win_all,
-        "win_rate_surface":        win_surf,
-        "win_rate_distance_band":  win_dist,
-        "recent_rank_mean":        float(np.mean(ranks_all[:5])),
+        "win_rate_all": win_all,
+        "win_rate_surface": win_surf,
+        "win_rate_distance_band": win_dist,
+        "recent_rank_mean": float(np.mean(ranks_all[:5])),
     }
 
 
@@ -369,12 +397,21 @@ def build_race_df(
         return None
 
     records = []
-    for (horse_id, horse_name, raw_rank,
-         weight_carried, horse_weight, hw_diff,
-         gate_number, horse_number,
-         sex_age, jockey, trainer, sire) in rr_rows:
-
-        stats   = _horse_stats(conn, horse_id or "", race_date, surface, distance)
+    for (
+        horse_id,
+        horse_name,
+        raw_rank,
+        weight_carried,
+        horse_weight,
+        hw_diff,
+        gate_number,
+        horse_number,
+        sex_age,
+        jockey,
+        trainer,
+        sire,
+    ) in rr_rows:
+        stats = _horse_stats(conn, horse_id or "", race_date, surface, distance)
         sex_str = (sex_age or "")[:1]
 
         # rank の決定: rank_source (entries 経由) > raw_rank > 99
@@ -385,27 +422,29 @@ def build_race_df(
         else:
             rank = 99  # 未確定・競走中止等
 
-        records.append({
-            "race_id":          race_id,
-            "race_date":        race_date,
-            "horse_id":         horse_id or "",
-            "horse_name":       horse_name or "",
-            "horse_number":     int(horse_number or 0),
-            "rank":             rank,
-            "weight_carried":   float(weight_carried or 55.0),
-            "horse_weight":     float(horse_weight or 480.0),
-            "horse_weight_diff": float(hw_diff or 0.0),
-            "gate_number":      int(gate_number or 0),
-            "distance":         int(distance or 1600),
-            "surface_code":     _SURFACE_CODE.get(surface or "", -1),
-            "sex_code":         _SEX_CODE.get(sex_str, -1),
-            "venue_code":       _VENUE_CODE.get(venue or "", 10),
-            "condition_code":   _COND_CODE.get(condition or "", 0),
-            "sire_code":        _encode_sire(sire),
-            "jockey_win_rate":  _JKY_MAP.get(jockey or "", 0.05),
-            "trainer_win_rate": _TRN_MAP.get(trainer or "", 0.05),
-            **stats,
-        })
+        records.append(
+            {
+                "race_id": race_id,
+                "race_date": race_date,
+                "horse_id": horse_id or "",
+                "horse_name": horse_name or "",
+                "horse_number": int(horse_number or 0),
+                "rank": rank,
+                "weight_carried": float(weight_carried or 55.0),
+                "horse_weight": float(horse_weight or 480.0),
+                "horse_weight_diff": float(hw_diff or 0.0),
+                "gate_number": int(gate_number or 0),
+                "distance": int(distance or 1600),
+                "surface_code": _SURFACE_CODE.get(surface or "", -1),
+                "sex_code": _SEX_CODE.get(sex_str, -1),
+                "venue_code": _VENUE_CODE.get(venue or "", 10),
+                "condition_code": _COND_CODE.get(condition or "", 0),
+                "sire_code": _encode_sire(sire),
+                "jockey_win_rate": _JKY_MAP.get(jockey or "", 0.05),
+                "trainer_win_rate": _TRN_MAP.get(trainer or "", 0.05),
+                **stats,
+            }
+        )
 
     df = pd.DataFrame(records)
     if not include_rank:
@@ -463,7 +502,7 @@ def train_model(
     y = (train_df["rank"] == 1).astype(int).values
     groups = train_df["race_id"].values
 
-    cv    = GroupKFold(n_splits=5)
+    cv = GroupKFold(n_splits=5)
     aucs: list[float] = []
     oof_preds = np.zeros(len(y))
 
@@ -498,7 +537,7 @@ def predict_win_prob(model, iso, feat_cols: list[str], df: pd.DataFrame) -> np.n
     Returns:
         各馬の単勝確率の numpy 配列（長さ = len(df)）。
     """
-    X   = df[feat_cols].astype(float).fillna(-1)
+    X = df[feat_cols].astype(float).fillna(-1)
     raw = model.predict_proba(X)[:, 1]
     return iso.predict(raw)
 
@@ -559,7 +598,7 @@ def _harville_quinella(probs: list[float], i: int, j: int) -> float:
         馬連確率（0.0〜0.99）。
     """
     pi, pj = probs[i], probs[j]
-    q  = pi * pj / (1.0 - pi) if pi < 1.0 else 0.0
+    q = pi * pj / (1.0 - pi) if pi < 1.0 else 0.0
     q += pj * pi / (1.0 - pj) if pj < 1.0 else 0.0
     return min(q, 0.99)
 
@@ -640,9 +679,7 @@ def _harville_wide(probs: list[float], i: int, j: int) -> float:
         ワイド確率（0.0〜0.99）。
     """
     total = sum(
-        _harville_trio(probs, i, j, k)
-        for k in range(len(probs))
-        if k != i and k != j
+        _harville_trio(probs, i, j, k) for k in range(len(probs)) if k != i and k != j
     )
     return min(total, 0.99)
 
@@ -669,6 +706,7 @@ def _in_golden_zone(edge: float) -> bool:
 # ── Kelly 賭け金算出 ────────────────────────────────────────────────────────────
 
 _SINGLE_BET_TYPES = {"単勝", "複勝"}
+
 
 def kelly_bet(
     bankroll: float,
@@ -701,12 +739,12 @@ def kelly_bet(
     else:
         typical_odds = TYPICAL_ODDS.get(bet_type, 5.0)
 
-    ev           = p * typical_odds
+    ev = p * typical_odds
     if ev < min_ev:
         return 0.0
 
     base_rate = 1.0 / max(field_size, 2)
-    edge      = p / base_rate
+    edge = p / base_rate
 
     if bet_type == "単勝":
         if not _in_golden_zone(edge):
@@ -715,13 +753,15 @@ def kelly_bet(
         if edge < edge_threshold:
             return 0.0
 
-    kelly_full      = (p * typical_odds - 1.0) / max(typical_odds - 1.0, 1e-9)
-    kelly_full      = max(kelly_full, 0.0)
+    kelly_full = (p * typical_odds - 1.0) / max(typical_odds - 1.0, 1e-9)
+    kelly_full = max(kelly_full, 0.0)
     effective_kelly = kelly_full * KELLY_FRACTION
 
     relative_cap = bankroll * MAX_BET_RATE
-    abs_cap      = float(MAX_BET_ABS)
-    bet_size     = min(bankroll * effective_kelly, relative_cap, abs_cap, race_budget_remaining)
+    abs_cap = float(MAX_BET_ABS)
+    bet_size = min(
+        bankroll * effective_kelly, relative_cap, abs_cap, race_budget_remaining
+    )
     if bet_size < MIN_BET:
         # 小残高フェーズでも正EV かつ予算がある場合は最小ベット(¥100)を保証
         if kelly_full > 0 and race_budget_remaining >= MIN_BET:
@@ -741,6 +781,7 @@ def _combo_unordered(*nums: int) -> str:
         例: "3-7-11"（昇順ソート済み）。
     """
     return "-".join(str(n) for n in sorted(nums))
+
 
 def _combo_ordered(*nums: int) -> str:
     """複数馬番を入力順 ARROW 区切りで結合する（馬単・三連単用）。
@@ -781,41 +822,41 @@ def simulate_race(
     Returns:
         (ベット記録リスト, レース純損益（円）) のタプル。
     """
-    n          = len(race_df)
+    n = len(race_df)
     horse_nums = list(race_df["horse_number"].astype(int))
-    prob_list  = list(probs)
+    prob_list = list(probs)
     # 1レース上限: bankroll×10% か ¥50,000 の小さい方
     race_budget = min(bankroll * MAX_RACE_BUDGET_RATE, float(MAX_RACE_BUDGET_ABS))
-    month       = race_date[5:7]
+    month = race_date[5:7]
 
     records: list[dict] = []
     total_invested = 0.0
 
     sorted_idx = sorted(range(n), key=lambda i: -prob_list[i])
-    top_idx    = sorted_idx[0]
-    p_top      = prob_list[top_idx]
-    h_top      = horse_nums[top_idx]
+    top_idx = sorted_idx[0]
+    p_top = prob_list[top_idx]
+    h_top = horse_nums[top_idx]
 
     base_rate = 1.0 / max(n, 2)
-    edge_top  = p_top / base_rate
+    edge_top = p_top / base_rate
 
     def make_record(bt: str, combo: str, p_bet: float, bet_amt: float) -> dict:
-        pmap      = payouts.get(bt, {})
-        payout_a  = float(pmap.get(combo, 0))
-        is_hit    = payout_a > 0
-        profit    = (payout_a / 100.0 * bet_amt) - bet_amt if is_hit else -bet_amt
+        pmap = payouts.get(bt, {})
+        payout_a = float(pmap.get(combo, 0))
+        is_hit = payout_a > 0
+        profit = (payout_a / 100.0 * bet_amt) - bet_amt if is_hit else -bet_amt
         return {
-            "race_id":       race_id,
-            "date":          race_date,
-            "month":         month,
-            "bet_type":      bt,
-            "combo":         combo,
-            "p_bet":         p_bet,
-            "edge":          edge_top,
-            "bet_amount":    bet_amt,
+            "race_id": race_id,
+            "date": race_date,
+            "month": month,
+            "bet_type": bt,
+            "combo": combo,
+            "p_bet": p_bet,
+            "edge": edge_top,
+            "bet_amount": bet_amt,
             "payout_per100": payout_a,
-            "is_hit":        int(is_hit),
-            "profit":        profit,
+            "is_hit": int(is_hit),
+            "profit": profit,
         }
 
     # 実際の単勝オッズ（馬番→オッズ）— race_results.win_odds から取得済み
@@ -833,8 +874,16 @@ def simulate_race(
         remaining = race_budget - total_invested
         if remaining < MIN_BET:
             return
-        bet = kelly_bet(bankroll, p_bet, bt, n, remaining, eth,
-                        actual_win_odds=win_odds, min_ev=min_ev)
+        bet = kelly_bet(
+            bankroll,
+            p_bet,
+            bt,
+            n,
+            remaining,
+            eth,
+            actual_win_odds=win_odds,
+            min_ev=min_ev,
+        )
         if bet > 0:
             records.append(make_record(bt, combo, p_bet, bet))
             total_invested += bet
@@ -852,17 +901,24 @@ def simulate_race(
     if COMBO_BET_MODE != "disabled":
         if n >= 2:
             i1, i2 = sorted_idx[0], sorted_idx[1]
-            h1, h2  = horse_nums[i1], horse_nums[i2]
-            p_wide  = _harville_wide(prob_list, i1, i2)
-            p_uma   = _harville_quinella(prob_list, i1, i2)
-            try_bet("ワイド", _combo_unordered(h1, h2), p_wide, min_ev=COMBO_EV_THRESHOLD)
-            try_bet("馬連",  _combo_unordered(h1, h2), p_uma,  min_ev=COMBO_EV_THRESHOLD)
+            h1, h2 = horse_nums[i1], horse_nums[i2]
+            p_wide = _harville_wide(prob_list, i1, i2)
+            p_uma = _harville_quinella(prob_list, i1, i2)
+            try_bet(
+                "ワイド", _combo_unordered(h1, h2), p_wide, min_ev=COMBO_EV_THRESHOLD
+            )
+            try_bet("馬連", _combo_unordered(h1, h2), p_uma, min_ev=COMBO_EV_THRESHOLD)
 
         if n >= 3:
             i1, i2, i3 = sorted_idx[0], sorted_idx[1], sorted_idx[2]
-            p_trio      = _harville_trio(prob_list, i1, i2, i3)
+            p_trio = _harville_trio(prob_list, i1, i2, i3)
             trio_sorted = sorted([horse_nums[i1], horse_nums[i2], horse_nums[i3]])
-            try_bet("三連複", _combo_unordered(*trio_sorted), p_trio, min_ev=COMBO_EV_THRESHOLD)
+            try_bet(
+                "三連複",
+                _combo_unordered(*trio_sorted),
+                p_trio,
+                min_ev=COMBO_EV_THRESHOLD,
+            )
 
     # 馬単・三連単は除外（赤字確定のためシミュレーション対象外）
 
@@ -906,23 +962,25 @@ def run_simulation(
     ).fetchall()
     logger.info("テストレース数: %d", len(race_list))
 
-    bankroll      = INITIAL_BANKROLL
+    bankroll = INITIAL_BANKROLL
     peak_bankroll = INITIAL_BANKROLL
-    all_records:  list[dict] = []
-    bl_history:   list[dict] = []
+    all_records: list[dict] = []
+    bl_history: list[dict] = []
     skipped = 0
     bet_races = 0
 
     for idx, (race_id, race_date) in enumerate(race_list):
         # test_mode=True: rank フィルタなし（データリーク防止）、include_rank=True で払戻照合用に保持
-        race_df_raw = build_race_df(conn, race_id, race_date, include_rank=True, test_mode=True)
+        race_df_raw = build_race_df(
+            conn, race_id, race_date, include_rank=True, test_mode=True
+        )
         if race_df_raw is None or len(race_df_raw) < 2:
             skipped += 1
             continue
 
         race_df = race_df_raw.drop(columns=["rank"])
-        probs    = predict_win_prob(model, iso, feat_cols, race_df)
-        payouts  = get_payouts(conn, race_id)
+        probs = predict_win_prob(model, iso, feat_cols, race_df)
+        payouts = get_payouts(conn, race_id)
         odds_map = _get_race_odds_map(conn, race_id)
 
         bets, net_profit = simulate_race(
@@ -930,8 +988,8 @@ def run_simulation(
         )
 
         if bets:
-            bankroll  += net_profit
-            bankroll   = max(bankroll, 0.0)
+            bankroll += net_profit
+            bankroll = max(bankroll, 0.0)
             bet_races += 1
 
         peak_bankroll = max(peak_bankroll, bankroll)
@@ -944,27 +1002,36 @@ def run_simulation(
             b["bankroll_after"] = bankroll
 
         all_records.extend(bets)
-        bl_history.append({
-            "date":     race_date,
-            "race_id":  race_id,
-            "bankroll": bankroll,
-            "peak":     peak_bankroll,
-        })
+        bl_history.append(
+            {
+                "date": race_date,
+                "race_id": race_id,
+                "bankroll": bankroll,
+                "peak": peak_bankroll,
+            }
+        )
 
         if (idx + 1) % 200 == 0:
             logger.info(
                 "進行 %d/%d レース (bet=%d)  残高=¥%d  ベット=%d件",
-                idx + 1, len(race_list), bet_races, int(bankroll), len(all_records)
+                idx + 1,
+                len(race_list),
+                bet_races,
+                int(bankroll),
+                len(all_records),
             )
 
     logger.info(
         "完了: %d レース (skip=%d, bet=%d)  最終残高=¥%d",
-        len(race_list), skipped, bet_races, int(bankroll)
+        len(race_list),
+        skipped,
+        bet_races,
+        int(bankroll),
     )
 
     df = pd.DataFrame(all_records) if all_records else pd.DataFrame()
-    df.attrs["final_bankroll"]   = bankroll
-    df.attrs["peak_bankroll"]    = peak_bankroll
+    df.attrs["final_bankroll"] = bankroll
+    df.attrs["peak_bankroll"] = peak_bankroll
     df.attrs["bankroll_history"] = bl_history
     return df
 
@@ -981,12 +1048,12 @@ def calc_max_drawdown(history: list[dict]) -> float:
     """
     if not history:
         return 0.0
-    peak  = history[0]["bankroll"]
+    peak = history[0]["bankroll"]
     max_dd = 0.0
     for h in history:
-        peak   = max(peak, h["bankroll"])
+        peak = max(peak, h["bankroll"])
         if peak > 0:
-            dd     = (peak - h["bankroll"]) / peak * 100.0
+            dd = (peak - h["bankroll"]) / peak * 100.0
             max_dd = max(max_dd, dd)
     return max_dd
 
@@ -1005,14 +1072,19 @@ def _payout_sum(df: pd.DataFrame) -> float:
     """
     if df.empty:
         return 0.0
-    return float(df.apply(
-        lambda r: r["payout_per100"] / 100.0 * r["bet_amount"] if r["is_hit"] else 0.0,
-        axis=1,
-    ).sum())
+    return float(
+        df.apply(
+            lambda r: (
+                r["payout_per100"] / 100.0 * r["bet_amount"] if r["is_hit"] else 0.0
+            ),
+            axis=1,
+        ).sum()
+    )
 
 
 # ── レポート出力 ───────────────────────────────────────────────────────────────
 SEP = "=" * 82
+
 
 def print_report(df: pd.DataFrame, cv_auc: float) -> None:
     """バックテスト結果の詳細レポートを標準出力に表示する。
@@ -1024,31 +1096,47 @@ def print_report(df: pd.DataFrame, cv_auc: float) -> None:
         df: run_simulation() が返す全ベット記録 DataFrame（attrs に残高情報含む）。
         cv_auc: train_model() が返す CV AUC 値。
     """
-    final_bl  = df.attrs.get("final_bankroll", 0.0)
-    peak_bl   = df.attrs.get("peak_bankroll",  0.0)
-    history   = df.attrs.get("bankroll_history", [])
-    max_dd    = calc_max_drawdown(history)
-    bankrupt  = "✅ ゼロ（破産なし）" if final_bl > 0 else "💀 破産"
+    final_bl = df.attrs.get("final_bankroll", 0.0)
+    peak_bl = df.attrs.get("peak_bankroll", 0.0)
+    history = df.attrs.get("bankroll_history", [])
+    max_dd = calc_max_drawdown(history)
+    bankrupt = "✅ ゼロ（破産なし）" if final_bl > 0 else "💀 破産"
 
     print(SEP)
     print("【本命直前モデル 2026年 全券種 カンニングなし walk-forward バックテスト】")
     print(f"  Train  : {TRAIN_FROM} ～ {TRAIN_TO}")
     print(f"  Test   : {TEST_FROM}  ～ {TEST_TO}")
     print(f"  CV AUC (2024-25年モデル) : {cv_auc:.4f}")
-    print(f"  Kelly 分数               : {KELLY_FRACTION} (1/{int(1/KELLY_FRACTION)} Kelly)")
+    print(
+        f"  Kelly 分数               : {KELLY_FRACTION} (1/{int(1 / KELLY_FRACTION)} Kelly)"
+    )
     print(f"  Edge 閾値（通常）          : {EDGE_THRESHOLD}×")
-    print(f"  単勝 発注ゾーン           : [1.2〜1.5×] OR [≥5.0×]（過熱ゾーン除外）")
-    print(f"  1レース最大投資            : bankroll × {MAX_RACE_BUDGET_RATE*100:.0f}%")
-    print(f"  1ベット最大投資            : bankroll × {MAX_BET_RATE*100:.0f}%")
-    print(f"  Kelly オッズ              : 単勝/複勝=race_results.win_odds 優先 (22.8%充填), それ以外=TYPICAL_ODDS")
-    print(f"  コンボ発注モード          : {COMBO_BET_MODE} (disabled=無効化, filtered=EV≥{COMBO_EV_THRESHOLD}×)")
+    print("  単勝 発注ゾーン           : [1.2〜1.5×] OR [≥5.0×]（過熱ゾーン除外）")
+    print(
+        f"  1レース最大投資            : bankroll × {MAX_RACE_BUDGET_RATE * 100:.0f}%"
+    )
+    print(f"  1ベット最大投資            : bankroll × {MAX_BET_RATE * 100:.0f}%")
+    print(
+        "  Kelly オッズ              : 単勝/複勝=race_results.win_odds 優先 (22.8%充填), それ以外=TYPICAL_ODDS"
+    )
+    print(
+        f"  コンボ発注モード          : {COMBO_BET_MODE} (disabled=無効化, filtered=EV≥{COMBO_EV_THRESHOLD}×)"
+    )
     if COMBO_BET_MODE == "disabled":
-        print("  ⚠️  ワイド/馬連/三連複: ROI 35-60% (赤字確定) のため無効化。複勝+単勝のみ発注")
+        print(
+            "  ⚠️  ワイド/馬連/三連複: ROI 35-60% (赤字確定) のため無効化。複勝+単勝のみ発注"
+        )
     print()
     print("  【特徴量リーク監査サマリー】")
-    print("  ✅ Oracle / HitFocus: 買い目生成戦略 (post-prediction), ML 特徴量ではない → リークなし")
-    print("  ✅ FEATURE_COLS (16列): 未来情報の混入なし (馬体重/騎手/調教師/血統/過去成績のみ)")
-    print("  ✅ 利益計算: race_payouts.payout を使用 (TYPICAL_ODDS は Kelly サイジングのみ)")
+    print(
+        "  ✅ Oracle / HitFocus: 買い目生成戦略 (post-prediction), ML 特徴量ではない → リークなし"
+    )
+    print(
+        "  ✅ FEATURE_COLS (16列): 未来情報の混入なし (馬体重/騎手/調教師/血統/過去成績のみ)"
+    )
+    print(
+        "  ✅ 利益計算: race_payouts.payout を使用 (TYPICAL_ODDS は Kelly サイジングのみ)"
+    )
     print("  ✅ データリーク修正済: build_race_df(test_mode=True) — rank フィルタ除去")
     print(SEP)
 
@@ -1056,63 +1144,65 @@ def print_report(df: pd.DataFrame, cv_auc: float) -> None:
         print("[ベットデータなし]")
         return
 
-    n_bets   = len(df)
-    n_races  = df["race_id"].nunique()
+    n_bets = len(df)
+    n_races = df["race_id"].nunique()
     total_in = float(df["bet_amount"].sum())
     total_out = _payout_sum(df)
-    n_hits   = int(df["is_hit"].sum())
-    roi_all  = total_out / total_in * 100 if total_in > 0 else 0.0
-    profit   = total_out - total_in
+    n_hits = int(df["is_hit"].sum())
+    roi_all = total_out / total_in * 100 if total_in > 0 else 0.0
+    profit = total_out - total_in
     gain_rate = (final_bl / INITIAL_BANKROLL - 1.0) * 100.0
 
-    print(f"\n■ 資金曲線サマリー")
+    print("\n■ 資金曲線サマリー")
     print(f"  初期資金          : ¥{INITIAL_BANKROLL:>12,.0f}")
-    print(f"  最高到達残高      : ¥{peak_bl:>12,.0f}  ({(peak_bl/INITIAL_BANKROLL-1)*100:+.1f}%)")
+    print(
+        f"  最高到達残高      : ¥{peak_bl:>12,.0f}  ({(peak_bl / INITIAL_BANKROLL - 1) * 100:+.1f}%)"
+    )
     print(f"  2026年末 最終残高 : ¥{final_bl:>12,.0f}  ({gain_rate:+.1f}%)")
     print(f"  最大ドローダウン  : {max_dd:.1f}%")
     print(f"  破産              : {bankrupt}")
 
-    print(f"\n■ ベット全体サマリー")
+    print("\n■ ベット全体サマリー")
     print(f"  発注レース数      : {n_races}")
     print(f"  総ベット件数      : {n_bets}")
-    print(f"  的中件数          : {n_hits}  ({n_hits/n_bets*100:.1f}%)")
+    print(f"  的中件数          : {n_hits}  ({n_hits / n_bets * 100:.1f}%)")
     print(f"  総投資額          : ¥{total_in:>10,.0f}")
     print(f"  総回収額          : ¥{total_out:>10,.0f}")
     print(f"  ROI               : {roi_all:.1f}%")
     print(f"  損益              : ¥{profit:>+10,.0f}")
 
     # 券種別
-    print(f"\n■ 券種別 ROI 詳細")
+    print("\n■ 券種別 ROI 詳細")
     bet_order = ["単勝", "複勝", "ワイド", "馬連", "三連複"]
     header = f"{'券種':<8}{'件数':>6}{'的中':>6}{'的中率':>7}{'投資額':>13}{'回収額':>13}{'ROI':>8}{'損益':>12}{'最大払戻':>10}"
     sep2 = "-" * 80
     print(header)
     print(sep2)
     best_roi = -9999.0
-    best_bt  = ""
+    best_bt = ""
     for bt in bet_order:
         sub = df[df["bet_type"] == bt]
         if sub.empty:
             continue
-        n_b  = len(sub)
-        n_h  = int(sub["is_hit"].sum())
+        n_b = len(sub)
+        n_h = int(sub["is_hit"].sum())
         t_in = float(sub["bet_amount"].sum())
         t_ou = _payout_sum(sub)
-        roi  = t_ou / t_in * 100 if t_in > 0 else 0.0
-        pnl  = t_ou - t_in
+        roi = t_ou / t_in * 100 if t_in > 0 else 0.0
+        pnl = t_ou - t_in
         maxp = int(sub["payout_per100"].max())
         star = " ★" if roi >= 100.0 else ""
         print(
-            f"{bt:<8}{n_b:>6}{n_h:>6}{n_h/n_b*100:>6.1f}%"
+            f"{bt:<8}{n_b:>6}{n_h:>6}{n_h / n_b * 100:>6.1f}%"
             f"{t_in:>13,.0f}{t_ou:>13,.0f}{roi:>7.1f}%{pnl:>+12,.0f}{maxp:>10}{star}"
         )
         if roi > best_roi:
             best_roi = roi
-            best_bt  = bt
+            best_bt = bt
     print(sep2)
 
     # 月次
-    print(f"\n■ 月次 ROI 推移")
+    print("\n■ 月次 ROI 推移")
     hdr2 = f"{'月':>5}{'ベット':>7}{'的中':>6}{'投資額':>13}{'ROI':>8}{'月次損益':>12}{'月末残高':>12}"
     print(hdr2)
     print("-" * 65)
@@ -1120,8 +1210,8 @@ def print_report(df: pd.DataFrame, cv_auc: float) -> None:
         ms = df[df["month"] == m]
         t_in2 = float(ms["bet_amount"].sum())
         t_ou2 = _payout_sum(ms)
-        roi2  = t_ou2 / t_in2 * 100 if t_in2 > 0 else 0.0
-        pnl2  = t_ou2 - t_in2
+        roi2 = t_ou2 / t_in2 * 100 if t_in2 > 0 else 0.0
+        pnl2 = t_ou2 - t_in2
         last_bl = ms["bankroll_after"].iloc[-1] if "bankroll_after" in ms.columns else 0
         print(
             f"  {m}月{len(ms):>7}{int(ms['is_hit'].sum()):>6}"
@@ -1129,7 +1219,7 @@ def print_report(df: pd.DataFrame, cv_auc: float) -> None:
         )
 
     # edge 強度別
-    print(f"\n■ Edge 強度別 ROI（単勝のみ）")
+    print("\n■ Edge 強度別 ROI（単勝のみ）")
     print(f"{'edge≥':>7}{'件数':>6}{'的中':>6}{'投資額':>13}{'ROI':>8}{'損益':>12}")
     print("-" * 53)
     tan = df[df["bet_type"] == "単勝"]
@@ -1139,13 +1229,13 @@ def print_report(df: pd.DataFrame, cv_auc: float) -> None:
             continue
         t_in3 = float(sub["bet_amount"].sum())
         t_ou3 = _payout_sum(sub)
-        roi3  = t_ou3 / t_in3 * 100 if t_in3 > 0 else 0.0
+        roi3 = t_ou3 / t_in3 * 100 if t_in3 > 0 else 0.0
         print(
             f"   {thr:.1f}×{len(sub):>6}{int(sub['is_hit'].sum()):>6}"
-            f"{t_in3:>13,.0f}{roi3:>7.1f}%{t_ou3-t_in3:>+12,.0f}"
+            f"{t_in3:>13,.0f}{roi3:>7.1f}%{t_ou3 - t_in3:>+12,.0f}"
         )
 
-    print(f"\n{'─'*82}")
+    print(f"\n{'─' * 82}")
     print(f"  利益貢献トップ券種 : {best_bt} (ROI {best_roi:.1f}%)")
     print(SEP)
 
@@ -1165,8 +1255,7 @@ def save_json(df: pd.DataFrame, cv_auc: float) -> None:
         return
     history = df.attrs.get("bankroll_history", [])
     # 10レースおきにサンプリング
-    sampled = [{"date": h["date"], "bankroll": h["bankroll"]}
-               for h in history[::10]]
+    sampled = [{"date": h["date"], "bankroll": h["bankroll"]} for h in history[::10]]
 
     by_type: dict[str, dict] = {}
     for bt in BET_TYPE_HEX:
@@ -1176,27 +1265,27 @@ def save_json(df: pd.DataFrame, cv_auc: float) -> None:
         t_in = float(sub["bet_amount"].sum())
         t_ou = _payout_sum(sub)
         by_type[bt] = {
-            "count":   len(sub),
-            "hits":    int(sub["is_hit"].sum()),
-            "invest":  t_in,
-            "return":  t_ou,
-            "roi":     round(t_ou / t_in * 100, 1) if t_in > 0 else 0.0,
+            "count": len(sub),
+            "hits": int(sub["is_hit"].sum()),
+            "invest": t_in,
+            "return": t_ou,
+            "roi": round(t_ou / t_in * 100, 1) if t_in > 0 else 0.0,
         }
 
     payload = {
         "config": {
             "train": [TRAIN_FROM, TRAIN_TO],
-            "test":  [TEST_FROM,  TEST_TO],
-            "kelly_fraction":     KELLY_FRACTION,
-            "edge_threshold":     EDGE_THRESHOLD,
+            "test": [TEST_FROM, TEST_TO],
+            "kelly_fraction": KELLY_FRACTION,
+            "edge_threshold": EDGE_THRESHOLD,
             "edge_golden_zones": EDGE_GOLDEN_ZONES,
-            "max_race_budget":    MAX_RACE_BUDGET_RATE,
-            "max_bet_rate":       MAX_BET_RATE,
+            "max_race_budget": MAX_RACE_BUDGET_RATE,
+            "max_bet_rate": MAX_BET_RATE,
         },
-        "cv_auc":         cv_auc,
+        "cv_auc": cv_auc,
         "final_bankroll": df.attrs.get("final_bankroll", 0.0),
-        "peak_bankroll":  df.attrs.get("peak_bankroll",  0.0),
-        "by_bet_type":    by_type,
+        "peak_bankroll": df.attrs.get("peak_bankroll", 0.0),
+        "by_bet_type": by_type,
         "bankroll_curve": sampled,
     }
     OUT_JSON.write_text(

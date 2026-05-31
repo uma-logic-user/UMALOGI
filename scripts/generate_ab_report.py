@@ -6,6 +6,7 @@ Usage:
     py scripts/generate_ab_report.py --days 28
     py scripts/generate_ab_report.py --dry-run    # Discord 送信なし
 """
+
 from __future__ import annotations
 
 import argparse
@@ -26,6 +27,7 @@ if str(_ROOT) not in sys.path:
 sys.stdout.reconfigure(encoding="utf-8")
 
 from dotenv import load_dotenv
+
 load_dotenv(_ROOT / ".env", override=False)
 
 _DB_PATH = _ROOT / "data" / "umalogi.db"
@@ -137,13 +139,21 @@ def _send_summary_to_discord(v1: dict, v2: dict, days: int) -> None:
         "title": f"📊 V1 vs V2 A/B サマリー（直近 {days} 日）",
         "color": color,
         "fields": [
-            {"name": "V1 ROI",    "value": f"`{v1['roi']:.1f}%`",         "inline": True},
-            {"name": "V2 ROI",    "value": f"`{v2['roi']:.1f}%`",         "inline": True},
-            {"name": "​",    "value": "​",                       "inline": True},
-            {"name": "V1 純利益", "value": f"`¥{v1['net_profit']:,.0f}`", "inline": True},
-            {"name": "V2 純利益", "value": f"`¥{v2['net_profit']:,.0f}`", "inline": True},
-            {"name": "​",    "value": "​",                       "inline": True},
-            {"name": "判定",      "value": verdict,                        "inline": False},
+            {"name": "V1 ROI", "value": f"`{v1['roi']:.1f}%`", "inline": True},
+            {"name": "V2 ROI", "value": f"`{v2['roi']:.1f}%`", "inline": True},
+            {"name": "​", "value": "​", "inline": True},
+            {
+                "name": "V1 純利益",
+                "value": f"`¥{v1['net_profit']:,.0f}`",
+                "inline": True,
+            },
+            {
+                "name": "V2 純利益",
+                "value": f"`¥{v2['net_profit']:,.0f}`",
+                "inline": True,
+            },
+            {"name": "​", "value": "​", "inline": True},
+            {"name": "判定", "value": verdict, "inline": False},
         ],
     }
     payload = json.dumps({"embeds": [embed]}, ensure_ascii=False).encode("utf-8")
@@ -179,7 +189,9 @@ def build_ab_report(conn: sqlite3.Connection, days: int = 7) -> str:
     def _fmt_sign(v: float, fmt: str = "+.1f") -> str:
         return f"{v:{fmt}}" if v >= 0 else f"{v:.1f}"
 
-    def _winner_badge(v1_val: float, v2_val: float, higher_is_better: bool = True) -> str:
+    def _winner_badge(
+        v1_val: float, v2_val: float, higher_is_better: bool = True
+    ) -> str:
         if higher_is_better:
             return "🔵 V2" if v2_val > v1_val else "🟠 V1"
         return "🔵 V2" if v2_val < v1_val else "🟠 V1"
@@ -192,10 +204,10 @@ def build_ab_report(conn: sqlite3.Connection, days: int = 7) -> str:
         "|-----|-----|-----|-----|------|",
         f"| 対象レース数 | {v1['n_races']} | {v2['n_races']} | {v2['n_races'] - v1['n_races']:+d} | — |",
         f"| ベット数 | {v1['n_bets']} | {v2['n_bets']} | {v2['n_bets'] - v1['n_bets']:+d} | — |",
-        f"| 的中率 | {v1['hit_rate']:.1f}% | {v2['hit_rate']:.1f}% | {v2['hit_rate']-v1['hit_rate']:+.1f}% | {_winner_badge(v1['hit_rate'], v2['hit_rate'])} |",
-        f"| 回収率 (ROI) | {v1['roi']:.1f}% | {v2['roi']:.1f}% | {v2['roi']-v1['roi']:+.1f}% | {_winner_badge(v1['roi'], v2['roi'])} |",
-        f"| 純利益 | ¥{v1['net_profit']:,.0f} | ¥{v2['net_profit']:,.0f} | ¥{v2['net_profit']-v1['net_profit']:+,.0f} | {_winner_badge(v1['net_profit'], v2['net_profit'])} |",
-        f"| EV乖離 (MAE) | {v1['ev_mae']:.3f} | {v2['ev_mae']:.3f} | {v2['ev_mae']-v1['ev_mae']:+.3f} | {_winner_badge(v1['ev_mae'], v2['ev_mae'], higher_is_better=False)} |",
+        f"| 的中率 | {v1['hit_rate']:.1f}% | {v2['hit_rate']:.1f}% | {v2['hit_rate'] - v1['hit_rate']:+.1f}% | {_winner_badge(v1['hit_rate'], v2['hit_rate'])} |",
+        f"| 回収率 (ROI) | {v1['roi']:.1f}% | {v2['roi']:.1f}% | {v2['roi'] - v1['roi']:+.1f}% | {_winner_badge(v1['roi'], v2['roi'])} |",
+        f"| 純利益 | ¥{v1['net_profit']:,.0f} | ¥{v2['net_profit']:,.0f} | ¥{v2['net_profit'] - v1['net_profit']:+,.0f} | {_winner_badge(v1['net_profit'], v2['net_profit'])} |",
+        f"| EV乖離 (MAE) | {v1['ev_mae']:.3f} | {v2['ev_mae']:.3f} | {v2['ev_mae'] - v1['ev_mae']:+.3f} | {_winner_badge(v1['ev_mae'], v2['ev_mae'], higher_is_better=False)} |",
         "",
     ]
 
@@ -207,16 +219,20 @@ def build_ab_report(conn: sqlite3.Connection, days: int = 7) -> str:
             "|-----------|------|---------|-------|-------|-----|",
         ]
         for ver, bet_type, n_bets, n_hits, hit_rate, net_profit, roi in detail:
-            hr_s  = f"{hit_rate:.1f}%" if hit_rate is not None else "-"
+            hr_s = f"{hit_rate:.1f}%" if hit_rate is not None else "-"
             roi_s = f"{roi:.1f}%" if roi is not None else "-"
-            np_s  = f"¥{net_profit:,.0f}" if net_profit is not None else "-"
-            lines.append(f"| {ver.upper()} | {bet_type} | {n_bets} | {hr_s} | {np_s} | {roi_s} |")
+            np_s = f"¥{net_profit:,.0f}" if net_profit is not None else "-"
+            lines.append(
+                f"| {ver.upper()} | {bet_type} | {n_bets} | {hr_s} | {np_s} | {roi_s} |"
+            )
         lines.append("")
 
     if v2["roi"] > v1["roi"]:
-        verdict = f"🏆 **V2 優勢** (ROI +{v2['roi']-v1['roi']:.1f}pt)"
+        verdict = f"🏆 **V2 優勢** (ROI +{v2['roi'] - v1['roi']:.1f}pt)"
     elif v1["roi"] > v2["roi"]:
-        verdict = f"📌 **V1 優勢** — V2 に改善余地あり (ROI −{v1['roi']-v2['roi']:.1f}pt)"
+        verdict = (
+            f"📌 **V1 優勢** — V2 に改善余地あり (ROI −{v1['roi'] - v2['roi']:.1f}pt)"
+        )
     else:
         verdict = "⚖️ V1/V2 同等"
 
@@ -227,8 +243,10 @@ def build_ab_report(conn: sqlite3.Connection, days: int = 7) -> str:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="V1 vs V2 A/B テスト比較レポートを Discord へ送信")
-    parser.add_argument("--days",    type=int, default=7, help="集計日数（デフォルト7日）")
+    parser = argparse.ArgumentParser(
+        description="V1 vs V2 A/B テスト比較レポートを Discord へ送信"
+    )
+    parser.add_argument("--days", type=int, default=7, help="集計日数（デフォルト7日）")
     parser.add_argument("--dry-run", action="store_true", help="Discord 送信なし")
     args = parser.parse_args()
 
@@ -247,6 +265,7 @@ def main() -> None:
         return
 
     from src.notification.router import NotificationRouter
+
     NotificationRouter().send_ab_report(report)
     _send_summary_to_discord(v1, v2, args.days)
     print("\n✅ Discord 送信完了")

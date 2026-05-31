@@ -39,7 +39,7 @@ logger = logging.getLogger(__name__)
 
 # ── 設定定数 ─────────────────────────────────────────────────────────
 
-_MODEL_DIR  = Path(__file__).resolve().parents[2] / "data" / "models" / "alpha_payout"
+_MODEL_DIR = Path(__file__).resolve().parents[2] / "data" / "models" / "alpha_payout"
 _MODEL_PATH = _MODEL_DIR / "alpha_payout_model.pkl"
 
 # JRA 複勝 テイクアウト率 22.5% → 払戻率 77.5%
@@ -59,6 +59,7 @@ HUBER_DELTA: float = 2.5
 
 
 # ── Harville 複勝確率 ────────────────────────────────────────────────
+
 
 def harville_place_probs(win_probs: np.ndarray) -> np.ndarray:
     """P(top-3 finish) を Harville 公式で計算する。"""
@@ -94,43 +95,62 @@ def harville_place_probs(win_probs: np.ndarray) -> np.ndarray:
 # ── 特徴量定義 ───────────────────────────────────────────────────────
 
 BASE_FEATURES: list[str] = [
-    "win_odds", "popularity",
-    "distance", "gate_number", "weight_carried",
-    "horse_weight", "horse_weight_diff", "race_number",
-    "surface_code", "sex_code", "venue_encoded", "condition_code",
-    "jockey_encoded", "trainer_encoded",
+    "win_odds",
+    "popularity",
+    "distance",
+    "gate_number",
+    "weight_carried",
+    "horse_weight",
+    "horse_weight_diff",
+    "race_number",
+    "surface_code",
+    "sex_code",
+    "venue_encoded",
+    "condition_code",
+    "jockey_encoded",
+    "trainer_encoded",
 ]
 
 PAYOUT_FEATURES: list[str] = [
     # 基本オッズ変換
-    "log_win_odds", "inv_odds", "odds_popularity_ratio",
+    "log_win_odds",
+    "inv_odds",
+    "odds_popularity_ratio",
     # フィールド相対
-    "field_size", "mean_field_odds", "odds_vs_field",
+    "field_size",
+    "mean_field_odds",
+    "odds_vs_field",
     # 市場確率
-    "market_prob", "log_market_prob",
+    "market_prob",
+    "log_market_prob",
     # Harville 複勝確率（市場）
-    "place_market_prob", "log_place_market_prob",
+    "place_market_prob",
+    "log_place_market_prob",
     "win_to_place_ratio",
     # 期待ペイアウト（市場 Harville から計算）
-    "expected_place_payout",       # 77.5 / place_market_prob
+    "expected_place_payout",  # 77.5 / place_market_prob
     "log_expected_place_payout",
     # nb_win_odds 完全統合
-    "nb_win_odds", "log_nb_win_odds", "inv_nb_odds",
-    "nb_market_prob", "log_nb_market_prob",
-    "nb_place_market_prob",        # nb_win_odds から Harville P(top3)
+    "nb_win_odds",
+    "log_nb_win_odds",
+    "inv_nb_odds",
+    "nb_market_prob",
+    "log_nb_market_prob",
+    "nb_place_market_prob",  # nb_win_odds から Harville P(top3)
     "log_nb_place_market_prob",
-    "nb_expected_place_payout",    # 77.5 / nb_place_market_prob
+    "nb_expected_place_payout",  # 77.5 / nb_place_market_prob
     "log_nb_expected_place_payout",
     # nb vs JV 乖離
-    "odds_discrepancy_ratio",      # nb_win_odds / win_odds
+    "odds_discrepancy_ratio",  # nb_win_odds / win_odds
     "nb_vs_field",
-    "payout_discrepancy",          # nb_expected_payout / jv_expected_payout
+    "payout_discrepancy",  # nb_expected_payout / jv_expected_payout
 ]
 
 ALL_PAYOUT_FEATURES: list[str] = BASE_FEATURES + PAYOUT_FEATURES
 
 
 # ── 結果コンテナ ─────────────────────────────────────────────────────
+
 
 @dataclass
 class PayoutBacktestResult:
@@ -149,6 +169,7 @@ class PayoutBacktestResult:
 
 
 # ── メインモデルクラス ────────────────────────────────────────────────
+
 
 class AlphaPayoutModel:
     """
@@ -245,24 +266,29 @@ class AlphaPayoutModel:
             df = df[df["win_odds"].notna() & (df["win_odds"] > 0)]
 
         pos_rate = float((df["ev_target_place"] > 0).mean())
-        mean_ev  = float(df.loc[df["ev_target_place"] > 0, "ev_target_place"].mean())
+        mean_ev = float(df.loc[df["ev_target_place"] > 0, "ev_target_place"].mean())
         logger.info(
             "ロード完了: %d行 着内=%d (%.1f%%) 平均EV=%.2f",
-            len(df), int((df["ev_target_place"] > 0).sum()), pos_rate * 100, mean_ev,
+            len(df),
+            int((df["ev_target_place"] > 0).sum()),
+            pos_rate * 100,
+            mean_ev,
         )
         return df
 
     @staticmethod
     def _merge_research_odds(df: pd.DataFrame, rdb: Path) -> pd.DataFrame:
         import sqlite3 as _sql
+
         rconn = _sql.connect(str(rdb))
         odds_df = pd.read_sql_query(
-            "SELECT race_id, horse_number, win_odds AS nb_win_odds FROM horse_odds", rconn
+            "SELECT race_id, horse_number, win_odds AS nb_win_odds FROM horse_odds",
+            rconn,
         )
         rconn.close()
 
         merged = df.merge(odds_df, on=["race_id", "horse_number"], how="left")
-        merged["win_odds"]    = pd.to_numeric(merged["win_odds"],    errors="coerce")
+        merged["win_odds"] = pd.to_numeric(merged["win_odds"], errors="coerce")
         merged["nb_win_odds"] = pd.to_numeric(merged["nb_win_odds"], errors="coerce")
 
         mask_jv = merged["win_odds"].isna() | (merged["win_odds"] <= 0)
@@ -278,35 +304,64 @@ class AlphaPayoutModel:
         df = df.copy()
 
         # カテゴリエンコーディング
-        df["surface_code"] = df.get("surface", pd.Series(dtype=str)).map(
-            {"芝": 0, "ダート": 1, "障害": 2}
-        ).fillna(-1).astype(int)
-        df["sex_code"] = df.get("sex_age", pd.Series(dtype=str)).str[0].map(
-            {"牡": 0, "牝": 1, "セ": 2}
-        ).fillna(-1).astype(int)
-        df["venue_encoded"] = df.get("venue", pd.Series(dtype=str)).map(
-            {"札幌": 0, "函館": 1, "福島": 2, "新潟": 3, "東京": 4,
-             "中山": 5, "中京": 6, "京都": 7, "阪神": 8, "小倉": 9}
-        ).fillna(-1).astype(int)
-        df["condition_code"] = df.get("condition", pd.Series(dtype=str)).map(
-            {"良": 0, "稍重": 1, "重": 2, "不良": 3}
-        ).fillna(-1).astype(int)
+        df["surface_code"] = (
+            df.get("surface", pd.Series(dtype=str))
+            .map({"芝": 0, "ダート": 1, "障害": 2})
+            .fillna(-1)
+            .astype(int)
+        )
+        df["sex_code"] = (
+            df.get("sex_age", pd.Series(dtype=str))
+            .str[0]
+            .map({"牡": 0, "牝": 1, "セ": 2})
+            .fillna(-1)
+            .astype(int)
+        )
+        df["venue_encoded"] = (
+            df.get("venue", pd.Series(dtype=str))
+            .map(
+                {
+                    "札幌": 0,
+                    "函館": 1,
+                    "福島": 2,
+                    "新潟": 3,
+                    "東京": 4,
+                    "中山": 5,
+                    "中京": 6,
+                    "京都": 7,
+                    "阪神": 8,
+                    "小倉": 9,
+                }
+            )
+            .fillna(-1)
+            .astype(int)
+        )
+        df["condition_code"] = (
+            df.get("condition", pd.Series(dtype=str))
+            .map({"良": 0, "稍重": 1, "重": 2, "不良": 3})
+            .fillna(-1)
+            .astype(int)
+        )
 
         # 基本オッズ
-        df["win_odds"] = pd.to_numeric(df["win_odds"], errors="coerce").fillna(50.0).clip(lower=1.01)
+        df["win_odds"] = (
+            pd.to_numeric(df["win_odds"], errors="coerce").fillna(50.0).clip(lower=1.01)
+        )
         df["log_win_odds"] = np.log(df["win_odds"])
         df["inv_odds"] = 1.0 / df["win_odds"]
 
-        pop = pd.to_numeric(df.get("popularity"), errors="coerce").fillna(9).clip(lower=1)
+        pop = (
+            pd.to_numeric(df.get("popularity"), errors="coerce").fillna(9).clip(lower=1)
+        )
         df["odds_popularity_ratio"] = df["win_odds"] / pop
 
         grp = df.groupby("race_id", group_keys=False)
-        df["field_size"]     = grp["horse_number"].transform("count")
+        df["field_size"] = grp["horse_number"].transform("count")
         df["mean_field_odds"] = grp["win_odds"].transform("mean")
-        df["odds_vs_field"]  = df["win_odds"] / df["mean_field_odds"].clip(lower=1.0)
+        df["odds_vs_field"] = df["win_odds"] / df["mean_field_odds"].clip(lower=1.0)
 
         inv_sum = grp["inv_odds"].transform("sum").clip(lower=1e-8)
-        df["market_prob"]     = df["inv_odds"] / inv_sum
+        df["market_prob"] = df["inv_odds"] / inv_sum
         df["log_market_prob"] = np.log(df["market_prob"].clip(lower=1e-8))
 
         # JV Harville 複勝確率
@@ -317,17 +372,24 @@ class AlphaPayoutModel:
             place_arr[g.index] = harville_place_probs(mp)
         df["place_market_prob"] = place_arr.clip(1e-4, 0.9999)
         df["log_place_market_prob"] = np.log(df["place_market_prob"])
-        df["win_to_place_ratio"] = df["market_prob"] / df["place_market_prob"].clip(lower=1e-4)
+        df["win_to_place_ratio"] = df["market_prob"] / df["place_market_prob"].clip(
+            lower=1e-4
+        )
 
         # 期待ペイアウト（JV）
-        df["expected_place_payout"] = FUKUSHO_PAYOUT_RATE * 100 / df["place_market_prob"]
-        df["log_expected_place_payout"] = np.log(df["expected_place_payout"].clip(lower=1.0))
+        df["expected_place_payout"] = (
+            FUKUSHO_PAYOUT_RATE * 100 / df["place_market_prob"]
+        )
+        df["log_expected_place_payout"] = np.log(
+            df["expected_place_payout"].clip(lower=1.0)
+        )
 
         # ── nb_win_odds 完全統合 ────────────────────────────────────
         if "nb_win_odds" in df.columns:
             df["nb_win_odds"] = (
                 pd.to_numeric(df["nb_win_odds"], errors="coerce")
-                .fillna(df["win_odds"]).clip(lower=1.01)
+                .fillna(df["win_odds"])
+                .clip(lower=1.01)
             )
         else:
             df["nb_win_odds"] = df["win_odds"]
@@ -348,8 +410,12 @@ class AlphaPayoutModel:
         df["nb_place_market_prob"] = nb_place_arr.clip(1e-4, 0.9999)
         df["log_nb_place_market_prob"] = np.log(df["nb_place_market_prob"])
 
-        df["nb_expected_place_payout"] = FUKUSHO_PAYOUT_RATE * 100 / df["nb_place_market_prob"]
-        df["log_nb_expected_place_payout"] = np.log(df["nb_expected_place_payout"].clip(lower=1.0))
+        df["nb_expected_place_payout"] = (
+            FUKUSHO_PAYOUT_RATE * 100 / df["nb_place_market_prob"]
+        )
+        df["log_nb_expected_place_payout"] = np.log(
+            df["nb_expected_place_payout"].clip(lower=1.0)
+        )
 
         # nb vs JV 乖離（市場の歪みシグナル）
         df["odds_discrepancy_ratio"] = (
@@ -367,6 +433,7 @@ class AlphaPayoutModel:
 
     def _encode_categoricals(self, df: pd.DataFrame, fit: bool = True) -> pd.DataFrame:
         from sklearn.preprocessing import LabelEncoder
+
         df = df.copy()
         for src, out in [("jockey", "jockey_encoded"), ("trainer", "trainer_encoded")]:
             if src not in df.columns:
@@ -380,8 +447,12 @@ class AlphaPayoutModel:
                 le = self._label_encoders.get(out)
                 if le:
                     known = set(le.classes_)
-                    df[out] = df[src].astype(str).apply(
-                        lambda x: int(le.transform([x])[0]) if x in known else -1
+                    df[out] = (
+                        df[src]
+                        .astype(str)
+                        .apply(
+                            lambda x: int(le.transform([x])[0]) if x in known else -1
+                        )
                     )
                 else:
                     df[out] = -1
@@ -399,7 +470,11 @@ class AlphaPayoutModel:
 
         X = df[ALL_PAYOUT_FEATURES].copy()
         X = X.apply(pd.to_numeric, errors="coerce").fillna(-1.0)
-        y = df["ev_target_place"].astype(float) if "ev_target_place" in df.columns else None
+        y = (
+            df["ev_target_place"].astype(float)
+            if "ev_target_place" in df.columns
+            else None
+        )
         return X, y
 
     # ── 学習 ──────────────────────────────────────────────────────────
@@ -415,20 +490,26 @@ class AlphaPayoutModel:
         検証ROI を直接最大化することで、AUC ではなく利益を直接最適化する。
         """
         import optuna
+
         optuna.logging.set_verbosity(optuna.logging.WARNING)
 
         X, y = self.prepare_features(df, fit=True)
         assert y is not None
 
         pos_rate = float((y > 0).mean())
-        mean_ev  = float(y[y > 0].mean()) if (y > 0).any() else 0.0
-        print(f"  [Optuna] {n_optuna_trials}試行 開始 ({len(X):,}行, pos={pos_rate:.1%}, mean_ev={mean_ev:.2f})", flush=True)
+        mean_ev = float(y[y > 0].mean()) if (y > 0).any() else 0.0
+        print(
+            f"  [Optuna] {n_optuna_trials}試行 開始 ({len(X):,}行, pos={pos_rate:.1%}, mean_ev={mean_ev:.2f})",
+            flush=True,
+        )
 
         n = len(X)
         train_end = int(n * 0.70)
         calib_end = int(n * 0.85)
-        X_tr  = X.iloc[:train_end];   y_tr  = y.iloc[:train_end]
-        X_val = X.iloc[calib_end:];   y_val = y.iloc[calib_end:]
+        X_tr = X.iloc[:train_end]
+        y_tr = y.iloc[:train_end]
+        X_val = X.iloc[calib_end:]
+        y_val = y.iloc[calib_end:]
 
         # バリデーション用: 実際のペイアウトと is_place
         df_val = df.iloc[calib_end:].copy()
@@ -449,7 +530,9 @@ class AlphaPayoutModel:
                 "objective": "huber",
                 "alpha": trial.suggest_float("huber_alpha", 0.5, 4.0),
                 "n_estimators": trial.suggest_int("n_estimators", 300, 2000),
-                "learning_rate": trial.suggest_float("learning_rate", 0.01, 0.10, log=True),
+                "learning_rate": trial.suggest_float(
+                    "learning_rate", 0.01, 0.10, log=True
+                ),
                 "num_leaves": trial.suggest_int("num_leaves", 31, 256),
                 "max_depth": trial.suggest_int("max_depth", 4, 10),
                 "min_child_samples": trial.suggest_int("min_child_samples", 10, 60),
@@ -462,9 +545,12 @@ class AlphaPayoutModel:
                 "verbose": -1,
             }
             m = LGBMRegressor(**params)
-            m.fit(X_tr, y_tr,
-                  eval_set=[(X_val, y_val)],
-                  callbacks=[_lgb_early_stopping(50)])
+            m.fit(
+                X_tr,
+                y_tr,
+                eval_set=[(X_val, y_val)],
+                callbacks=[_lgb_early_stopping(50)],
+            )
             preds = m.predict(X_val)
 
             # 最適閾値でROIを計算してOptuna指標とする
@@ -481,9 +567,12 @@ class AlphaPayoutModel:
         self._best_params = study.best_params
         best_roi = study.best_value
 
-        print(f"  [Optuna] 完了 → best 検証ROI={best_roi:.1f}%  "
-              f"num_leaves={self._best_params.get('num_leaves')} "
-              f"lr={self._best_params.get('learning_rate', 0):.4f}", flush=True)
+        print(
+            f"  [Optuna] 完了 → best 検証ROI={best_roi:.1f}%  "
+            f"num_leaves={self._best_params.get('num_leaves')} "
+            f"lr={self._best_params.get('learning_rate', 0):.4f}",
+            flush=True,
+        )
 
         # ── ベストパラメータで全データ学習 ──────────────────────────
         final_params = {
@@ -495,18 +584,19 @@ class AlphaPayoutModel:
         }
         self._model = LGBMRegressor(**final_params)
         self._model.fit(
-            X_tr, y_tr,
+            X_tr,
+            y_tr,
             eval_set=[(X_val, y_val)],
             callbacks=[_lgb_early_stopping(50)],
         )
 
         # ── 閾値最適化（訓練+検証データで最適化） ───────────────────
         X_opt = X.iloc[:calib_end]
-        y_opt = y.iloc[:calib_end]
+        y.iloc[:calib_end]
         df_opt = df.iloc[:calib_end].copy()
         preds_opt = self._model.predict(X_opt)
 
-        best_t   = DEFAULT_EV_THRESHOLD
+        best_t = DEFAULT_EV_THRESHOLD
         best_opt = 0.0
         for t in np.arange(1.0, 3.0, 0.05):
             mask = preds_opt >= t
@@ -520,24 +610,27 @@ class AlphaPayoutModel:
             roi = payout / invest * 100
             if roi > best_opt:
                 best_opt = roi
-                best_t   = round(t, 2)
+                best_t = round(t, 2)
 
         self._ev_threshold = best_t
         val_roi = _roi_from_preds(self._model.predict(X_val), best_t)
 
-        print(f"  [閾値] 最適閾値 pred_ev>{best_t:.2f} "
-              f"訓練ROI={best_opt:.1f}% 検証ROI={val_roi:.1f}%", flush=True)
+        print(
+            f"  [閾値] 最適閾値 pred_ev>{best_t:.2f} "
+            f"訓練ROI={best_opt:.1f}% 検証ROI={val_roi:.1f}%",
+            flush=True,
+        )
         self._is_trained = True
 
         return {
             "optuna_best_roi": best_roi,
-            "threshold":       best_t,
-            "train_roi":       best_opt,
-            "val_roi":         val_roi,
-            "n_train":         train_end,
-            "n_val":           n - calib_end,
-            "pos_rate":        pos_rate,
-            "mean_ev":         mean_ev,
+            "threshold": best_t,
+            "train_roi": best_opt,
+            "val_roi": val_roi,
+            "n_train": train_end,
+            "n_val": n - calib_end,
+            "pos_rate": pos_rate,
+            "mean_ev": mean_ev,
         }
 
     # ── 推論 ──────────────────────────────────────────────────────────
@@ -575,7 +668,7 @@ class AlphaPayoutModel:
     def _kelly_bet(pred_ev: float, bankroll: float) -> int:
         """Kelly Criterion: b = pred_ev - 1 (net odds)"""
         b = max(pred_ev - 1.0, 0.1)  # net odds = expected return - stake
-        p = FUKUSHO_PAYOUT_RATE       # 払戻率 = 胴元なしのなら的中確率に近い
+        p = FUKUSHO_PAYOUT_RATE  # 払戻率 = 胴元なしのなら的中確率に近い
         f = (b * p - (1.0 - p)) / b
         if f <= 0:
             return MIN_BET
@@ -589,12 +682,15 @@ class AlphaPayoutModel:
         path = path or _MODEL_PATH
         path.parent.mkdir(parents=True, exist_ok=True)
         with open(path, "wb") as f:
-            pickle.dump({
-                "model":          self._model,
-                "label_encoders": self._label_encoders,
-                "best_params":    self._best_params,
-                "ev_threshold":   self._ev_threshold,
-            }, f)
+            pickle.dump(
+                {
+                    "model": self._model,
+                    "label_encoders": self._label_encoders,
+                    "best_params": self._best_params,
+                    "ev_threshold": self._ev_threshold,
+                },
+                f,
+            )
         logger.info("Alpha-Payout 保存: %s", path)
 
     @classmethod
@@ -603,15 +699,16 @@ class AlphaPayoutModel:
         obj = cls()
         with open(path, "rb") as f:
             data = pickle.load(f)
-        obj._model          = data["model"]
+        obj._model = data["model"]
         obj._label_encoders = data.get("label_encoders", {})
-        obj._best_params    = data.get("best_params", {})
-        obj._ev_threshold   = data.get("ev_threshold", DEFAULT_EV_THRESHOLD)
-        obj._is_trained     = True
+        obj._best_params = data.get("best_params", {})
+        obj._ev_threshold = data.get("ev_threshold", DEFAULT_EV_THRESHOLD)
+        obj._is_trained = True
         return obj
 
 
 # ── バックテスト ─────────────────────────────────────────────────────
+
 
 def run_payout_backtest(
     conn: sqlite3.Connection,
@@ -638,8 +735,11 @@ def run_payout_backtest(
         raise ValueError(f"学習データ不足: {len(train_df)}行")
 
     metrics = model.train(train_df, n_optuna_trials=n_optuna_trials)
-    print(f"  [学習完了] n_train={metrics['n_train']} val_ROI={metrics['val_roi']:.1f}% "
-          f"閾値={metrics['threshold']:.2f}", flush=True)
+    print(
+        f"  [学習完了] n_train={metrics['n_train']} val_ROI={metrics['val_roi']:.1f}% "
+        f"閾値={metrics['threshold']:.2f}",
+        flush=True,
+    )
 
     threshold = ev_threshold if ev_threshold is not None else model._ev_threshold
 
@@ -649,7 +749,7 @@ def run_payout_backtest(
 
     pred_ev = model.predict_payout_ev(test_df)
     test_df = test_df.copy()
-    test_df["pred_ev"]      = pred_ev.values
+    test_df["pred_ev"] = pred_ev.values
     test_df["actual_payout"] = pd.to_numeric(
         test_df["actual_payout"], errors="coerce"
     ).fillna(0)
@@ -663,16 +763,16 @@ def run_payout_backtest(
     )
 
     total_investment = int(bets_df["kelly_bet"].sum())
-    total_payout     = float(bets_df["payout"].sum())
-    profit           = total_payout - total_investment
-    roi              = total_payout / total_investment * 100 if total_investment > 0 else 0.0
-    num_hits         = int(bets_df["is_place"].sum())
-    num_bets         = len(bets_df)
-    hit_rate         = num_hits / num_bets * 100 if num_bets > 0 else 0.0
+    total_payout = float(bets_df["payout"].sum())
+    profit = total_payout - total_investment
+    roi = total_payout / total_investment * 100 if total_investment > 0 else 0.0
+    num_hits = int(bets_df["is_place"].sum())
+    num_bets = len(bets_df)
+    hit_rate = num_hits / num_bets * 100 if num_bets > 0 else 0.0
 
     bets_sorted = bets_df.sort_values(["date", "race_id", "horse_number"])
     cum_pnl = (bets_sorted["payout"] - bets_sorted["kelly_bet"]).cumsum()
-    max_dd  = float((cum_pnl.cummax() - cum_pnl).max()) if len(cum_pnl) > 0 else 0.0
+    max_dd = float((cum_pnl.cummax() - cum_pnl).max()) if len(cum_pnl) > 0 else 0.0
 
     result = PayoutBacktestResult(
         year=str(test_years[0]) if len(test_years) == 1 else str(test_years),
@@ -703,9 +803,11 @@ def run_payout_backtest(
 
 # ── ユーティリティ ────────────────────────────────────────────────────
 
+
 def _lgb_early_stopping(rounds: int):
     try:
         from lightgbm import early_stopping as _es
+
         return _es(rounds, verbose=False)
     except ImportError:
         return None

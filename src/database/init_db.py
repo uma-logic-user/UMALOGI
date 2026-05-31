@@ -273,12 +273,10 @@ def _migrate_create_x_accounts_history(conn: sqlite3.Connection) -> None:
                 )
             """)
             conn.execute(
-                "CREATE INDEX IF NOT EXISTS idx_x_ah_screen_name"
-                " ON x_accounts_history(screen_name)"
+                "CREATE INDEX IF NOT EXISTS idx_x_ah_screen_name ON x_accounts_history(screen_name)"
             )
             conn.execute(
-                "CREATE INDEX IF NOT EXISTS idx_x_ah_race_id"
-                " ON x_accounts_history(race_id)"
+                "CREATE INDEX IF NOT EXISTS idx_x_ah_race_id ON x_accounts_history(race_id)"
             )
             conn.execute(
                 "CREATE INDEX IF NOT EXISTS idx_x_ah_evaluated"

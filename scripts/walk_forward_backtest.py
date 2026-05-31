@@ -22,7 +22,6 @@ import sqlite3
 import sys
 from pathlib import Path
 
-import numpy as np
 import pandas as pd
 
 sys.stdout.reconfigure(encoding="utf-8")
@@ -38,15 +37,16 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-_MAIN_DB     = _ROOT / "data" / "umalogi.db"
+_MAIN_DB = _ROOT / "data" / "umalogi.db"
 _RESEARCH_DB = _ROOT / "data" / "netkeiba_research.db"
-_EV_THRESHOLD_TANSHO  = 1.5
+_EV_THRESHOLD_TANSHO = 1.5
 _EV_THRESHOLD_FUKUSHO = 1.5
-_EV_THRESHOLD_MULTI   = 1.0  # 馬連・三連単は EV 1.0 超で buy
+_EV_THRESHOLD_MULTI = 1.0  # 馬連・三連単は EV 1.0 超で buy
 _BANKROLL = 100_000
 
 
 # ── Harville ユーティリティ ──────────────────────────────────────────────
+
 
 def _normalize(probs: list[float]) -> list[float]:
     total = sum(probs)
@@ -100,7 +100,9 @@ def _backtest_umaren(
     test_df = test_df.copy()
     test_df["win_prob"] = win_probs
     test_df["win_odds"] = (
-        pd.to_numeric(test_df["win_odds"], errors="coerce").fillna(50.0).clip(lower=1.01)
+        pd.to_numeric(test_df["win_odds"], errors="coerce")
+        .fillna(50.0)
+        .clip(lower=1.01)
     )
 
     # race_payouts から馬連払戻を取得（的中判定用）
@@ -142,7 +144,7 @@ def _backtest_umaren(
         market_probs = _normalize([1.0 / o for o in horses["win_odds"].tolist()])
 
         for idx_i, idx_j in itertools.combinations(range(len(horse_nums)), 2):
-            model_q  = _harville_quinella(model_probs,  idx_i, idx_j)
+            model_q = _harville_quinella(model_probs, idx_i, idx_j)
             market_q = max(_harville_quinella(market_probs, idx_i, idx_j), 1e-8)
 
             # EV = モデル確率 / 市場確率 × 払戻率（実際の払戻不使用）
@@ -185,12 +187,15 @@ def _backtest_umaren(
         max_drawdown=max_dd,
     )
     if verbose:
-        print(f"  馬連 : {n_bets:,}点 的中{n_hits}({hit_rate:.1f}%) "
-              f"投資¥{total_invest:,} → 払戻¥{total_payout:,.0f} ROI={roi:.1f}%")
+        print(
+            f"  馬連 : {n_bets:,}点 的中{n_hits}({hit_rate:.1f}%) "
+            f"投資¥{total_invest:,} → 払戻¥{total_payout:,.0f} ROI={roi:.1f}%"
+        )
     return result
 
 
 # ── 三連単バックテスト ────────────────────────────────────────────────────
+
 
 def _backtest_sanrentan(
     model,
@@ -211,7 +216,9 @@ def _backtest_sanrentan(
     test_df = test_df.copy()
     test_df["win_prob"] = win_probs
     test_df["win_odds"] = (
-        pd.to_numeric(test_df["win_odds"], errors="coerce").fillna(50.0).clip(lower=1.01)
+        pd.to_numeric(test_df["win_odds"], errors="coerce")
+        .fillna(50.0)
+        .clip(lower=1.01)
     )
 
     race_ids_str = ",".join(f"'{r}'" for r in test_df["race_id"].unique())
@@ -244,12 +251,14 @@ def _backtest_sanrentan(
             continue
         horses = horses.nlargest(top_n, "win_prob")
         horse_nums = horses["horse_number"].tolist()
-        model_probs  = _normalize(horses["win_prob"].tolist())
+        model_probs = _normalize(horses["win_prob"].tolist())
         market_probs = _normalize([1.0 / o for o in horses["win_odds"].tolist()])
 
         for idx_i, idx_j, idx_k in itertools.permutations(range(len(horse_nums)), 3):
-            model_tri  = _harville_trifecta(model_probs,  idx_i, idx_j, idx_k)
-            market_tri = max(_harville_trifecta(market_probs, idx_i, idx_j, idx_k), 1e-10)
+            model_tri = _harville_trifecta(model_probs, idx_i, idx_j, idx_k)
+            market_tri = max(
+                _harville_trifecta(market_probs, idx_i, idx_j, idx_k), 1e-10
+            )
 
             ev = model_tri / market_tri * _SANRENTAN_PAYOUT_RATE
             if ev < ev_threshold:
@@ -290,12 +299,15 @@ def _backtest_sanrentan(
         max_drawdown=max_dd,
     )
     if verbose:
-        print(f"  三連単: {n_bets:,}点 的中{n_hits}({hit_rate:.1f}%) "
-              f"投資¥{total_invest:,} → 払戻¥{total_payout:,.0f} ROI={roi:.1f}%")
+        print(
+            f"  三連単: {n_bets:,}点 的中{n_hits}({hit_rate:.1f}%) "
+            f"投資¥{total_invest:,} → 払戻¥{total_payout:,.0f} ROI={roi:.1f}%"
+        )
     return result
 
 
 # ── ウォークフォワードメイン ──────────────────────────────────────────────
+
 
 def run_walk_forward(
     bet_types: list[str],
@@ -307,7 +319,7 @@ def run_walk_forward(
 
     Returns: 全期間・全券種の結果リスト
     """
-    from src.ml.alpha_model import AlphaModel, BET_TYPE_TANSHO, BET_TYPE_FUKUSHO, run_backtest
+    from src.ml.alpha_model import AlphaModel, BET_TYPE_FUKUSHO, run_backtest
 
     conn = sqlite3.connect(str(_MAIN_DB))
     research_db = _RESEARCH_DB if _RESEARCH_DB.exists() else None
@@ -322,11 +334,11 @@ def run_walk_forward(
     all_test_years = [y for y in available_years if y >= 2022]
     results: list[dict] = []
 
-    print(f"\n{'='*65}")
-    print(f"  UMALOGI ハイブリッド ウォークフォワード検証")
+    print(f"\n{'=' * 65}")
+    print("  UMALOGI ハイブリッド ウォークフォワード検証")
     print(f"  train_window={train_window}年 | 券種: {', '.join(bet_types)}")
     print(f"  Research DB: {'あり' if research_db else 'なし'}")
-    print(f"{'='*65}\n")
+    print(f"{'=' * 65}\n")
 
     for test_year in all_test_years:
         # 学習データ: test_year 直前の train_window 年
@@ -335,16 +347,18 @@ def run_walk_forward(
         if not train_years:
             continue
 
-        print(f"{'─'*65}")
+        print(f"{'─' * 65}")
         print(f"  [{test_year}年テスト]  学習: {train_years}")
-        print(f"{'─'*65}")
+        print(f"{'─' * 65}")
 
         # 単勝・複勝は run_backtest() を再利用
         for bt in bet_types:
             if bt not in ("単勝", "複勝"):
                 continue
             try:
-                threshold = _EV_THRESHOLD_TANSHO if bt == "単勝" else _EV_THRESHOLD_FUKUSHO
+                threshold = (
+                    _EV_THRESHOLD_TANSHO if bt == "単勝" else _EV_THRESHOLD_FUKUSHO
+                )
                 r = run_backtest(
                     conn=conn,
                     train_years=train_years,
@@ -355,18 +369,20 @@ def run_walk_forward(
                     verbose=True,
                     research_db_path=research_db,
                 )
-                results.append({
-                    "test_year": test_year,
-                    "train_years": str(train_years),
-                    "bet_type": bt,
-                    "n_bets": r.num_bets,
-                    "n_hits": r.num_hits,
-                    "hit_rate": r.hit_rate,
-                    "total_invest": r.total_investment,
-                    "total_payout": r.total_payout,
-                    "roi": r.roi,
-                    "max_drawdown": r.max_drawdown,
-                })
+                results.append(
+                    {
+                        "test_year": test_year,
+                        "train_years": str(train_years),
+                        "bet_type": bt,
+                        "n_bets": r.num_bets,
+                        "n_hits": r.num_hits,
+                        "hit_rate": r.hit_rate,
+                        "total_invest": r.total_investment,
+                        "total_payout": r.total_payout,
+                        "roi": r.roi,
+                        "max_drawdown": r.max_drawdown,
+                    }
+                )
             except Exception as e:
                 print(f"  [{bt}] エラー: {e}")
 
@@ -377,34 +393,46 @@ def run_walk_forward(
             model = AlphaModel()
             try:
                 train_df = model.load_training_data(
-                    conn, train_years, BET_TYPE_FUKUSHO,
+                    conn,
+                    train_years,
+                    BET_TYPE_FUKUSHO,
                     research_db_path=research_db,
                 )
                 if len(train_df) < 500:
-                    print(f"  [馬連/三連単] 学習データ不足 ({len(train_df)}行) → スキップ")
+                    print(
+                        f"  [馬連/三連単] 学習データ不足 ({len(train_df)}行) → スキップ"
+                    )
                 else:
                     model.train(train_df)
                     test_df = model.load_training_data(
-                        conn, [test_year], BET_TYPE_FUKUSHO,
+                        conn,
+                        [test_year],
+                        BET_TYPE_FUKUSHO,
                         research_db_path=research_db,
                     )
                     if len(test_df) < 50:
-                        print(f"  [馬連/三連単] テストデータ不足 ({len(test_df)}行) → スキップ")
+                        print(
+                            f"  [馬連/三連単] テストデータ不足 ({len(test_df)}行) → スキップ"
+                        )
                     else:
                         if "馬連" in multi_types:
                             r2 = _backtest_umaren(model, test_df, conn, verbose=True)
-                            results.append({
-                                "test_year": test_year,
-                                "train_years": str(train_years),
-                                **r2,
-                            })
+                            results.append(
+                                {
+                                    "test_year": test_year,
+                                    "train_years": str(train_years),
+                                    **r2,
+                                }
+                            )
                         if "三連単" in multi_types:
                             r3 = _backtest_sanrentan(model, test_df, conn, verbose=True)
-                            results.append({
-                                "test_year": test_year,
-                                "train_years": str(train_years),
-                                **r3,
-                            })
+                            results.append(
+                                {
+                                    "test_year": test_year,
+                                    "train_years": str(train_years),
+                                    **r3,
+                                }
+                            )
             except Exception as e:
                 print(f"  [馬連/三連単] エラー: {e}")
 
@@ -414,12 +442,14 @@ def run_walk_forward(
             try:
                 all_years_so_far = [y for y in available_years if y < test_year]
                 df_all = model_final.load_training_data(
-                    conn, all_years_so_far, BET_TYPE_FUKUSHO,
+                    conn,
+                    all_years_so_far,
+                    BET_TYPE_FUKUSHO,
                     research_db_path=research_db,
                 )
                 model_final.train(df_all)
                 model_final.save()
-                print(f"\n  [保存] 最終モデル保存: data/models/alpha/alpha_model.pkl")
+                print("\n  [保存] 最終モデル保存: data/models/alpha/alpha_model.pkl")
             except Exception as e:
                 print(f"  [保存] エラー: {e}")
 
@@ -429,6 +459,7 @@ def run_walk_forward(
 
 # ── レポート出力 ─────────────────────────────────────────────────────────
 
+
 def print_report(results: list[dict]) -> None:
     if not results:
         print("[WARN] 結果なし")
@@ -436,19 +467,25 @@ def print_report(results: list[dict]) -> None:
 
     df = pd.DataFrame(results)
 
-    print(f"\n{'='*75}")
+    print(f"\n{'=' * 75}")
     print("  UMALOGI ハイブリッド ウォークフォワード 年別レポート")
-    print(f"{'='*75}")
+    print(f"{'=' * 75}")
 
     for bet_type in df["bet_type"].unique():
         sub = df[df["bet_type"] == bet_type]
         print(f"\n【{bet_type}】")
-        print(f"  {'年度':<6} {'学習年':<20} {'買い点':<8} {'的中率':<7} {'投資':>12} {'払戻':>12} {'ROI':>7} {'最大DD':>12}")
-        print(f"  {'-'*72}")
+        print(
+            f"  {'年度':<6} {'学習年':<20} {'買い点':<8} {'的中率':<7} {'投資':>12} {'払戻':>12} {'ROI':>7} {'最大DD':>12}"
+        )
+        print(f"  {'-' * 72}")
         for _, row in sub.iterrows():
             invest_str = f"¥{int(row['total_invest']):,}"
             payout_str = f"¥{int(row['total_payout']):,}"
-            dd_str = f"¥{int(row['max_drawdown']):,}" if pd.notna(row.get('max_drawdown')) else "—"
+            dd_str = (
+                f"¥{int(row['max_drawdown']):,}"
+                if pd.notna(row.get("max_drawdown"))
+                else "—"
+            )
             roi_mark = "✅" if row["roi"] >= 100 else "❌"
             print(
                 f"  {row['test_year']:<6} "
@@ -462,9 +499,9 @@ def print_report(results: list[dict]) -> None:
             )
 
     # 通算サマリー
-    print(f"\n{'='*75}")
+    print(f"\n{'=' * 75}")
     print("  通算サマリー")
-    print(f"{'='*75}")
+    print(f"{'=' * 75}")
     for bet_type in df["bet_type"].unique():
         sub = df[df["bet_type"] == bet_type]
         tot_inv = sub["total_invest"].sum()
@@ -480,9 +517,9 @@ def print_report(results: list[dict]) -> None:
         )
 
     # HYBRID_STRATEGY 推奨
-    print(f"\n{'='*75}")
+    print(f"\n{'=' * 75}")
     print("  UMALOGI_HYBRID_STRATEGY 推奨判定")
-    print(f"{'='*75}")
+    print(f"{'=' * 75}")
     for bet_type in df["bet_type"].unique():
         sub = df[df["bet_type"] == bet_type]
         tot_inv = sub["total_invest"].sum()
@@ -491,30 +528,39 @@ def print_report(results: list[dict]) -> None:
         years_ok = int((sub["roi"] >= 100).sum())
         total_y = len(sub)
         if tot_roi >= 110 and years_ok >= total_y // 2:
-            print(f"  {bet_type}: 【採用】全期間ROI={tot_roi:.1f}% ≥ 110% かつ {years_ok}/{total_y}年でROI100%超")
+            print(
+                f"  {bet_type}: 【採用】全期間ROI={tot_roi:.1f}% ≥ 110% かつ {years_ok}/{total_y}年でROI100%超"
+            )
         elif tot_roi >= 100:
-            print(f"  {bet_type}: 【条件付き採用】ROI={tot_roi:.1f}% (100-110%帯) — 慎重に運用")
+            print(
+                f"  {bet_type}: 【条件付き採用】ROI={tot_roi:.1f}% (100-110%帯) — 慎重に運用"
+            )
         else:
             print(f"  {bet_type}: 【不採用】ROI={tot_roi:.1f}% < 100% — 改善が必要")
 
 
 # ── main ─────────────────────────────────────────────────────────────────
 
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="年別ウォークフォワード検証 (2021-2025)"
     )
     parser.add_argument(
-        "--bet-types", nargs="*",
+        "--bet-types",
+        nargs="*",
         default=["単勝", "複勝", "馬連", "三連単"],
         help="検証する馬券種（スペース区切り）",
     )
     parser.add_argument(
-        "--train-window", type=int, default=3,
+        "--train-window",
+        type=int,
+        default=3,
         help="学習に使う年数（デフォルト: 3年）",
     )
     parser.add_argument(
-        "--save-model", action="store_true",
+        "--save-model",
+        action="store_true",
         help="最終期間のモデルを data/models/alpha/ に保存する",
     )
     args = parser.parse_args()

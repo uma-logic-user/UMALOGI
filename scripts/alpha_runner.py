@@ -17,7 +17,7 @@ import argparse
 import json
 import logging
 import sys
-from datetime import date, datetime
+from datetime import date
 from pathlib import Path
 
 _ROOT = Path(__file__).resolve().parent.parent
@@ -25,6 +25,7 @@ if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
 from dotenv import load_dotenv
+
 load_dotenv(_ROOT / ".env", override=False)
 
 import os
@@ -46,6 +47,7 @@ def _send_discord(msg: str) -> None:
     """Discord Webhook に ALPHA 予想を送信する。"""
     try:
         import requests
+
         url = os.getenv("DISCORD_WEBHOOK_URL", "")
         if url:
             requests.post(url, json={"content": msg[:2000]}, timeout=10)
@@ -102,8 +104,7 @@ def _format_alpha_prediction(
         horse_num = int(row["horse_number"]) if pd.notna(row["horse_number"]) else 0
         kelly = int(row.get("kelly_bet", 0))
         lines.append(
-            f"  ★ {horse_num:02d}番  オッズ {odds:.1f}倍  "
-            f"ALPHA-EV {ev:.2f}  推奨賭額 ¥{kelly:,}"
+            f"  ★ {horse_num:02d}番  オッズ {odds:.1f}倍  ALPHA-EV {ev:.2f}  推奨賭額 ¥{kelly:,}"
         )
 
     lines += ["", f"  ※ EV>{ALPHA_EV_THRESHOLD:.1f} の馬のみ表示"]
@@ -138,8 +139,7 @@ def _save_to_db(
                      expected_value, recommended_bet, notes, combination_json)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                 """,
-                (race_id, "ALPHA", "単勝", ev_pred,
-                 ev_pred, kelly, notes, combination),
+                (race_id, "ALPHA", "単勝", ev_pred, ev_pred, kelly, notes, combination),
             )
             saved += 1
         except Exception as e:
@@ -169,7 +169,9 @@ def run(
     model_path = _ROOT / "data" / "models" / "alpha" / "alpha_model.pkl"
     if not model_path.exists():
         logger.error("ALPHA モデルが見つかりません: %s", model_path)
-        logger.error("先に `python scripts/alpha_backtest.py --save` を実行してください")
+        logger.error(
+            "先に `python scripts/alpha_backtest.py --save` を実行してください"
+        )
         conn.close()
         return []
 
@@ -213,17 +215,22 @@ def run(
             )
             _send_discord(msg)
 
-        all_signals.append({
-            "race_id": race_id,
-            "race_name": race_name,
-            "venue": race_venue,
-            "race_number": race_num,
-            "signals": signals,
-        })
+        all_signals.append(
+            {
+                "race_id": race_id,
+                "race_name": race_name,
+                "venue": race_venue,
+                "race_number": race_num,
+                "signals": signals,
+            }
+        )
 
         logger.info(
             "ALPHA 予想: %s %dR → %d 頭 (EV>%.1f)",
-            race_venue, race_num, len(signals), ev_threshold,
+            race_venue,
+            race_num,
+            len(signals),
+            ev_threshold,
         )
 
     conn.close()
@@ -241,19 +248,29 @@ def run(
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="ALPHA モデル デイリーランナー")
-    parser.add_argument("--date", default=date.today().strftime("%Y-%m-%d"),
-                        metavar="YYYYMMDD or YYYY-MM-DD",
-                        help="対象日（デフォルト: 今日）")
-    parser.add_argument("--venue", default=None,
-                        help="会場絞り込み (例: 東京)")
-    parser.add_argument("--dry-run", action="store_true",
-                        help="DB保存・Discord通知なし")
-    parser.add_argument("--threshold", type=float, default=ALPHA_EV_THRESHOLD,
-                        help=f"EV閾値（デフォルト: {ALPHA_EV_THRESHOLD}）")
-    parser.add_argument("--bankroll", type=int, default=100_000,
-                        help="仮想資金（デフォルト: 100,000円）")
-    parser.add_argument("--no-notify", action="store_true",
-                        help="Discord 通知なし")
+    parser.add_argument(
+        "--date",
+        default=date.today().strftime("%Y-%m-%d"),
+        metavar="YYYYMMDD or YYYY-MM-DD",
+        help="対象日（デフォルト: 今日）",
+    )
+    parser.add_argument("--venue", default=None, help="会場絞り込み (例: 東京)")
+    parser.add_argument(
+        "--dry-run", action="store_true", help="DB保存・Discord通知なし"
+    )
+    parser.add_argument(
+        "--threshold",
+        type=float,
+        default=ALPHA_EV_THRESHOLD,
+        help=f"EV閾値（デフォルト: {ALPHA_EV_THRESHOLD}）",
+    )
+    parser.add_argument(
+        "--bankroll",
+        type=int,
+        default=100_000,
+        help="仮想資金（デフォルト: 100,000円）",
+    )
+    parser.add_argument("--no-notify", action="store_true", help="Discord 通知なし")
     args = parser.parse_args()
 
     # YYYYMMDD → YYYY-MM-DD 正規化
@@ -263,8 +280,12 @@ def main() -> None:
     else:
         target_date = args.date
 
-    logger.info("ALPHA ランナー開始: date=%s venue=%s dry_run=%s",
-                target_date, args.venue, args.dry_run)
+    logger.info(
+        "ALPHA ランナー開始: date=%s venue=%s dry_run=%s",
+        target_date,
+        args.venue,
+        args.dry_run,
+    )
 
     run(
         target_date=target_date,

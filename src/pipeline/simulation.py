@@ -67,13 +67,13 @@ def simulate_pipeline(race_id: str) -> dict:
         return {"error": "race_results が 0 件です", "race_id": race_id}
 
     honmei_model, _place_model, manji_model = load_models()
-    honmei_scores    = honmei_model.predict(df)
+    honmei_scores = honmei_model.predict(df)
     honmei_ev_scores = honmei_model.ev_predict(df)
-    ev_scores        = manji_model.ev_score(df)
+    ev_scores = manji_model.ev_score(df)
 
-    gen         = BetGenerator()
+    gen = BetGenerator()
     honmei_bets = gen.generate_honmei(race_id, df, honmei_scores)
-    manji_bets  = gen.generate_manji(race_id, df, ev_scores)
+    manji_bets = gen.generate_manji(race_id, df, ev_scores)
 
     sim_note = f"[SIMULATE] {race_date} {venue} {race_name}"
     prediction_ids: dict[str, list[int]] = {"本命": [], "卍": []}
@@ -82,12 +82,13 @@ def simulate_pipeline(race_id: str) -> dict:
         for bet in race_bets.bets:
             horses_payload = [
                 {
-                    "horse_number":   c[0] if len(c) == 1 else None,
-                    "horse_name":     bet.horse_names[i] if i < len(bet.horse_names)
-                                      else race_bets.model_type,
+                    "horse_number": c[0] if len(c) == 1 else None,
+                    "horse_name": bet.horse_names[i]
+                    if i < len(bet.horse_names)
+                    else race_bets.model_type,
                     "predicted_rank": i + 1,
-                    "model_score":    bet.model_score,
-                    "ev_score":       bet.expected_value,
+                    "model_score": bet.model_score,
+                    "ev_score": bet.expected_value,
                 }
                 for i, c in enumerate(bet.combinations[:5])
             ]
@@ -107,8 +108,12 @@ def simulate_pipeline(race_id: str) -> dict:
                 )
                 prediction_ids[race_bets.model_type].append(pid)
             except Exception as exc:
-                logger.error("[SIMULATE] 予想保存失敗 %s %s: %s",
-                             race_bets.model_type, bet.bet_type, exc)
+                logger.error(
+                    "[SIMULATE] 予想保存失敗 %s %s: %s",
+                    race_bets.model_type,
+                    bet.bet_type,
+                    exc,
+                )
 
     payout_count = conn.execute(
         "SELECT COUNT(*) FROM race_payouts WHERE race_id = ?", (race_id,)
@@ -124,11 +129,15 @@ def simulate_pipeline(race_id: str) -> dict:
         try:
             reconcile_stats = _reconcile(conn, race_id=race_id)
             reconciled = reconcile_stats["hit"] + reconcile_stats["miss"]
-            hit_rate = (reconcile_stats["hit"] / reconciled * 100) if reconciled > 0 else 0.0
+            hit_rate = (
+                (reconcile_stats["hit"] / reconciled * 100) if reconciled > 0 else 0.0
+            )
             logger.info(
                 "[SIMULATE] 照合完了: 的中=%d 外れ=%d skip=%d no_payout=%d 的中率=%.1f%%",
-                reconcile_stats["hit"], reconcile_stats["miss"],
-                reconcile_stats["skip"], reconcile_stats["no_payout"],
+                reconcile_stats["hit"],
+                reconcile_stats["miss"],
+                reconcile_stats["skip"],
+                reconcile_stats["no_payout"],
                 hit_rate,
             )
         except Exception as exc:
@@ -139,15 +148,17 @@ def simulate_pipeline(race_id: str) -> dict:
     payload = build_output_json(
         race_id, df, honmei_scores, honmei_ev_scores, ev_scores, honmei_bets, manji_bets
     )
-    payload["simulate"]   = True
-    payload["race_name"]  = race_name
-    payload["race_date"]  = race_date
+    payload["simulate"] = True
+    payload["race_name"] = race_name
+    payload["race_date"] = race_date
     if reconcile_stats is not None:
         payload["reconcile"] = reconcile_stats
     save_json(race_id, payload)
 
     logger.info(
         "[SIMULATE] 完了: race_id=%s 本命%d件 卍%d件",
-        race_id, len(prediction_ids["本命"]), len(prediction_ids["卍"]),
+        race_id,
+        len(prediction_ids["本命"]),
+        len(prediction_ids["卍"]),
     )
     return payload

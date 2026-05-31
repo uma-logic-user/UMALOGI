@@ -27,8 +27,12 @@ try:
     sys.stderr.reconfigure(encoding="utf-8", line_buffering=True)  # type: ignore[attr-defined]
 except Exception:
     try:
-        sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace", line_buffering=True)
-        sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace", line_buffering=True)
+        sys.stdout = io.TextIOWrapper(
+            sys.stdout.buffer, encoding="utf-8", errors="replace", line_buffering=True
+        )
+        sys.stderr = io.TextIOWrapper(
+            sys.stderr.buffer, encoding="utf-8", errors="replace", line_buffering=True
+        )
     except Exception:
         pass  # 最悪そのまま続行
 
@@ -51,6 +55,7 @@ if str(_ROOT) not in sys.path:
 
 try:
     from dotenv import load_dotenv  # type: ignore[import]
+
     load_dotenv(_ROOT / ".env", override=False)
 except ImportError:
     pass
@@ -60,6 +65,7 @@ _SID = os.getenv("JRAVAN_SID", "")
 # ── レジストリ探索パス ─────────────────────────────────────────────────────
 try:
     import winreg  # type: ignore[import]
+
     _HKCU = winreg.HKEY_CURRENT_USER
     _HKLM = winreg.HKEY_LOCAL_MACHINE
     _REG_PATHS = [
@@ -106,10 +112,7 @@ def _scan_registry() -> dict[str, dict[str, str]]:
 
 
 def _has_data(reg: dict[str, dict[str, str]]) -> bool:
-    return any(
-        bool(v) and not all(k.startswith("_") for k in v)
-        for v in reg.values()
-    )
+    return any(bool(v) and not all(k.startswith("_") for k in v) for v in reg.values())
 
 
 def _print_reg(reg: dict[str, dict[str, str]], label: str) -> None:
@@ -130,13 +133,13 @@ def _print_reg(reg: dict[str, dict[str, str]], label: str) -> None:
 
 def _jvinit_msg(code: int) -> str:
     return {
-        0:    "✅ 成功",
-        -1:   "❌ COM エラー（JVLink未インストール？）",
-        -2:   "❌ SID が空またはフォーマット不正",
-        -3:   "❌ SID 未登録（利用キー設定が必要）",
-        -4:   "❌ TARGET frontier JV 未起動/未ログイン",
-        -5:   "❌ JVLink バージョン古い",
-        -9:   "❌ ライセンスエラー",
+        0: "✅ 成功",
+        -1: "❌ COM エラー（JVLink未インストール？）",
+        -2: "❌ SID が空またはフォーマット不正",
+        -3: "❌ SID 未登録（利用キー設定が必要）",
+        -4: "❌ TARGET frontier JV 未起動/未ログイン",
+        -5: "❌ JVLink バージョン古い",
+        -9: "❌ ライセンスエラー",
         -202: "❌ サービス未登録",
     }.get(code, f"❓ 不明 (code={code})")
 
@@ -145,7 +148,9 @@ def main() -> None:
     _p("=" * 60)
     _p("JVLink 初期設定スクリプト v3")
     _p("=" * 60)
-    _p(f"Python : {sys.version.split()[0]} ({'32bit' if sys.maxsize <= 2**32 else '64bit(エラー)'})")
+    _p(
+        f"Python : {sys.version.split()[0]} ({'32bit' if sys.maxsize <= 2**32 else '64bit(エラー)'})"
+    )
     _p(f"SID    : {repr(_SID) if _SID else '（未設定）'}")
     _p()
 
@@ -170,13 +175,18 @@ def main() -> None:
     _p("─" * 60)
     _p("  COM 生成前にダイアログ自動突破ハンドラーを起動します。")
     _p("  ⚠️  注意: JVLink が「ブラウザ」を開く場合があります。")
-    _p("       → JRA-VAN 認証ページが開いたらログインを完了してブラウザを閉じてください。")
+    _p(
+        "       → JRA-VAN 認証ページが開いたらログインを完了してブラウザを閉じてください。"
+    )
     _p("       → 手動でブラウザを閉じた後、このターミナルで Enter を押してください。")
-    _p("       → UMALOGI ダッシュボードが表示中のブラウザは別ウィンドウにしておくと安全です。")
+    _p(
+        "       → UMALOGI ダッシュボードが表示中のブラウザは別ウィンドウにしておくと安全です。"
+    )
     _p()
     try:
         # sys.path にプロジェクトルートが入っていることを前提
         from src.ops.jvlink_dialog_handler import start_dialog_handler
+
         start_dialog_handler(interval=0.3)
         _p("  ダイアログハンドラー: 起動済み（Win32ダイアログを自動突破）")
     except Exception as _dh_exc:
@@ -194,7 +204,9 @@ def main() -> None:
         _p("  py -3.14-32 -m pip install pywin32")
         sys.exit(1)
 
-    _p("  JVDTLab.JVLink.1 を生成中...", )
+    _p(
+        "  JVDTLab.JVLink.1 を生成中...",
+    )
     try:
         jvl = win32com.client.Dispatch("JVDTLab.JVLink.1")
         _p("  COM 生成: OK")
@@ -224,7 +236,9 @@ def main() -> None:
     _p("─" * 60)
     _p("  Win32ダイアログが表示されたら操作を完了させてください。")
     _p("  ブラウザが開いた場合はログイン完了後にブラウザを閉じてください。")
-    _p(f"  JVInit(sid={sid!r}) 呼び出し中... ← ここで止まる場合はダイアログを操作してください")
+    _p(
+        f"  JVInit(sid={sid!r}) 呼び出し中... ← ここで止まる場合はダイアログを操作してください"
+    )
     _p()
 
     jvinit_ret = jvl.JVInit(sid)
@@ -242,7 +256,7 @@ def main() -> None:
         sys.exit(1)
     elif jvinit_ret != 0:
         _p()
-        _p(f"  ★ JVInit 失敗。原因を確認して再実行してください。")
+        _p("  ★ JVInit 失敗。原因を確認して再実行してください。")
         _p("    再実行: py -3.14-32 scripts/setup_jvlink.py")
         sys.exit(1)
 
@@ -259,8 +273,11 @@ def main() -> None:
     time.sleep(0.5)
     reg_after = _scan_registry()
     diffs = {
-        path: vals for path, vals in reg_after.items()
-        if vals != reg_before.get(path, {}) and vals and not all(k.startswith("_") for k in vals)
+        path: vals
+        for path, vals in reg_after.items()
+        if vals != reg_before.get(path, {})
+        and vals
+        and not all(k.startswith("_") for k in vals)
     }
     if diffs:
         _p("  ✅ レジストリに変化を検出:")
@@ -276,6 +293,7 @@ def main() -> None:
     jvlink_ok = False
     try:
         from datetime import date, timedelta
+
         fromtime = (date.today() - timedelta(days=14)).strftime("%Y%m%d000000")
         open_ret = jvl.JVOpen("RACE", fromtime, 4, 0, 0, "")
         _p(f"  JVOpen 戻り値: {open_ret}")
@@ -294,7 +312,9 @@ def main() -> None:
     if jvinit_ret == 0 and jvlink_ok:
         _p("✅ JVLink 初期設定 完了")
         _p()
-        _p("  次のステップ: .env の JVLINK_DISABLED=1 を削除または 0 に変更してください。")
+        _p(
+            "  次のステップ: .env の JVLINK_DISABLED=1 を削除または 0 に変更してください。"
+        )
         _p("  → その後 scheduler.py が自動的に JVLink を使用します。")
     elif jvinit_ret == 0 and not jvlink_ok:
         _p("ERROR: JVInit は成功しましたが JVOpen が失敗しました。")

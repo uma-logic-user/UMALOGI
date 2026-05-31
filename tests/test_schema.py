@@ -33,23 +33,34 @@ def test_required_tables_present() -> None:
     """主要テーブルの CREATE TABLE が含まれる。"""
     ddl_text = "\n".join(DDL_STATEMENTS)
     required = [
-        "races", "horses", "race_results", "entries", "realtime_odds",
-        "predictions", "prediction_horses", "prediction_results",
-        "race_payouts", "model_performance",
-        "training_times", "training_hillwork",
-        "jockeys", "trainers", "racehorses",
+        "races",
+        "horses",
+        "race_results",
+        "entries",
+        "realtime_odds",
+        "predictions",
+        "prediction_horses",
+        "prediction_results",
+        "race_payouts",
+        "model_performance",
+        "training_times",
+        "training_hillwork",
+        "jockeys",
+        "trainers",
+        "racehorses",
     ]
     for table in required:
-        assert re.search(
-            rf"CREATE TABLE IF NOT EXISTS {table}\b", ddl_text
-        ), f"テーブル {table!r} が DDL_STATEMENTS に見つかりません"
+        assert re.search(rf"CREATE TABLE IF NOT EXISTS {table}\b", ddl_text), (
+            f"テーブル {table!r} が DDL_STATEMENTS に見つかりません"
+        )
 
 
 def test_required_views_present() -> None:
     ddl_text = "\n".join(DDL_STATEMENTS)
     for view in ("v_prediction_summary", "v_model_annual_summary", "v_race_mart"):
-        assert f"CREATE VIEW IF NOT EXISTS {view}" in ddl_text, \
+        assert f"CREATE VIEW IF NOT EXISTS {view}" in ddl_text, (
             f"ビュー {view!r} が DDL_STATEMENTS に見つかりません"
+        )
 
 
 def test_partial_indexes_present() -> None:
@@ -83,11 +94,22 @@ def test_races_table_schema(mem_conn: sqlite3.Connection) -> None:
         if "CREATE TABLE IF NOT EXISTS races" in ddl:
             mem_conn.execute(ddl)
     cols = {row[1] for row in mem_conn.execute("PRAGMA table_info(races)").fetchall()}
-    assert {"race_id", "race_name", "date", "venue", "race_number",
-            "distance", "surface", "weather", "condition"} <= cols
+    assert {
+        "race_id",
+        "race_name",
+        "date",
+        "venue",
+        "race_number",
+        "distance",
+        "surface",
+        "weather",
+        "condition",
+    } <= cols
 
 
-def test_predictions_table_has_no_check_constraint(mem_conn: sqlite3.Connection) -> None:
+def test_predictions_table_has_no_check_constraint(
+    mem_conn: sqlite3.Connection,
+) -> None:
     """predictions テーブルに model_type の CHECK 制約が残っていないこと。"""
     for ddl in DDL_STATEMENTS:
         if "CREATE TABLE IF NOT EXISTS predictions" in ddl:

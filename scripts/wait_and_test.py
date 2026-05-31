@@ -44,12 +44,13 @@ _MAIN_DB = _ROOT / "data" / "umalogi.db"
 _REPORT_DIR = _ROOT / "outputs" / "reports"
 _REPORT_PATH = _REPORT_DIR / "final_backtest_2024_2025.md"
 
-POLL_INTERVAL = 60        # 進捗確認間隔（秒）
-STALL_SECONDS = 600       # 進捗停止→完了とみなすまでの秒数（10分）
+POLL_INTERVAL = 60  # 進捗確認間隔（秒）
+STALL_SECONDS = 600  # 進捗停止→完了とみなすまでの秒数（10分）
 MAX_WAIT_SECONDS = 28800  # 最長待機 8時間
 
 
 # ── 進捗確認ヘルパー ───────────────────────────────────────────────────
+
 
 def _get_scraped_count() -> int:
     conn = sqlite3.connect(str(_RESEARCH_DB))
@@ -65,14 +66,14 @@ def _get_target_count() -> int:
     conn = sqlite3.connect(str(_MAIN_DB))
     try:
         return conn.execute(
-            "SELECT COUNT(*) FROM races "
-            "WHERE date >= '2024-02-01' AND date <= '2025-12-31'"
+            "SELECT COUNT(*) FROM races WHERE date >= '2024-02-01' AND date <= '2025-12-31'"
         ).fetchone()[0]
     finally:
         conn.close()
 
 
 # ── フェーズ 1: スクレイピング完了待機 ────────────────────────────────
+
 
 def wait_for_scraping() -> int:
     """スクレイピング完了を監視し、完了時の取得件数を返す。"""
@@ -86,7 +87,9 @@ def wait_for_scraping() -> int:
     while True:
         elapsed = time.time() - start_time
         if elapsed > MAX_WAIT_SECONDS:
-            logger.warning("最長待機時間（8時間）超過。現状データでバックテストを開始します。")
+            logger.warning(
+                "最長待機時間（8時間）超過。現状データでバックテストを開始します。"
+            )
             break
 
         current = _get_scraped_count()
@@ -95,8 +98,7 @@ def wait_for_scraping() -> int:
         eta_min = (remaining * 1.6) / 60  # 1.6秒/レースで推定
 
         logger.info(
-            f"スクレイプ進捗: {current}/{target} ({pct:.1f}%) "
-            f"残り推定: {eta_min:.0f}分"
+            f"スクレイプ進捗: {current}/{target} ({pct:.1f}%) 残り推定: {eta_min:.0f}分"
         )
 
         if current != last_count:
@@ -123,6 +125,7 @@ def wait_for_scraping() -> int:
 
 
 # ── フェーズ 2: バックテスト実行 ─────────────────────────────────────
+
 
 def _run_command(cmd: list[str], label: str) -> str:
     """コマンドを実行し、stdout+stderr を返す。プログレスを逐次ログ出力。"""
@@ -158,28 +161,38 @@ def _run_command(cmd: list[str], label: str) -> str:
 
 def run_alpha_backtest() -> str:
     cmd = [
-        sys.executable, str(_ROOT / "scripts" / "alpha_backtest.py"),
-        "--train", "2024",
-        "--test", "2025",
-        "--research-db", str(_RESEARCH_DB),
+        sys.executable,
+        str(_ROOT / "scripts" / "alpha_backtest.py"),
+        "--train",
+        "2024",
+        "--test",
+        "2025",
+        "--research-db",
+        str(_RESEARCH_DB),
     ]
     return _run_command(cmd, "ALPHA モデル バックテスト（2024 学習 → 2025 テスト）")
 
 
 def run_win5_backtest() -> str:
     cmd = [
-        sys.executable, str(_ROOT / "scripts" / "win5_strategy.py"),
+        sys.executable,
+        str(_ROOT / "scripts" / "win5_strategy.py"),
         "--backtest",
-        "--start", "2025-01-01",
-        "--end", "2025-12-31",
-        "--research-db", str(_RESEARCH_DB),
-        "--max-combos", "5000",
+        "--start",
+        "2025-01-01",
+        "--end",
+        "2025-12-31",
+        "--research-db",
+        str(_RESEARCH_DB),
+        "--max-combos",
+        "5000",
         "--verbose",
     ]
     return _run_command(cmd, "WIN5 累積勝率カバー法 バックテスト（2025年）")
 
 
 # ── フェーズ 3: レポート保存 ─────────────────────────────────────────
+
 
 def save_report(alpha_output: str, win5_output: str, scraped_count: int) -> None:
     """バックテスト結果を Markdown レポートとして保存する。"""
@@ -192,13 +205,24 @@ def save_report(alpha_output: str, win5_output: str, scraped_count: int) -> None
     # === サマリー行を抽出 ===
     def _extract_lines(output: str, keywords: list[str]) -> str:
         return "\n".join(
-            line for line in output.splitlines()
-            if any(kw in line for kw in keywords)
+            line for line in output.splitlines() if any(kw in line for kw in keywords)
         )
 
     alpha_summary = _extract_lines(
         alpha_output,
-        ["ROI", "損益", "的中", "投資", "払戻", "NG", "OK", "!!", "通算", "AUC", "LogLoss"],
+        [
+            "ROI",
+            "損益",
+            "的中",
+            "投資",
+            "払戻",
+            "NG",
+            "OK",
+            "!!",
+            "通算",
+            "AUC",
+            "LogLoss",
+        ],
     )
     win5_summary = _extract_lines(
         win5_output,
@@ -263,6 +287,7 @@ def save_report(alpha_output: str, win5_output: str, scraped_count: int) -> None
 
 
 # ── メインエントリ ────────────────────────────────────────────────────
+
 
 def main() -> None:
     logger.info("=" * 60)

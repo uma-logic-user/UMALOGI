@@ -1445,7 +1445,9 @@ def _cli() -> None:
             print()
         return
 
-    md = generate(date_str=date_str, top_n=args.top, stdout=args.stdout)
+    generate(
+        date_str=date_str, top_n=args.top, stdout=args.stdout
+    )  # 生成副作用のみ（md未使用）
     out_path = _OUT_DIR / f"{date_str.replace('-', '')}_recommendations.md"
     print(f"\n✅ 生成完了 → {out_path}")
 

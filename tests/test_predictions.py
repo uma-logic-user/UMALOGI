@@ -20,6 +20,7 @@ from src.scraper.netkeiba import HorseResult, PedigreeInfo, RaceInfo
 
 # ── フィクスチャ ──────────────────────────────────────────────────
 
+
 @pytest.fixture()
 def db() -> sqlite3.Connection:
     conn = init_db(db_path=Path(":memory:"))
@@ -43,29 +44,46 @@ def seeded_db(db: sqlite3.Connection) -> sqlite3.Connection:
         condition="良",
         results=[
             HorseResult(
-                rank=1, horse_name="ミュージアムマイル",
-                horse_id="2022105081", sex_age="牡3",
-                gate_number=3, horse_number=5,
-                weight_carried=56.0, jockey="Ｃ．デム",
+                rank=1,
+                horse_name="ミュージアムマイル",
+                horse_id="2022105081",
+                sex_age="牡3",
+                gate_number=3,
+                horse_number=5,
+                weight_carried=56.0,
+                jockey="Ｃ．デム",
                 trainer="国枝栄",
-                finish_time="2:31.5", margin=None,
-                popularity=3, win_odds=3.8, horse_weight=502,
+                finish_time="2:31.5",
+                margin=None,
+                popularity=3,
+                win_odds=3.8,
+                horse_weight=502,
                 horse_weight_diff=2,
-                pedigree=PedigreeInfo(sire="リオンディーズ",
-                                      dam="ミュージアムヒル",
-                                      dam_sire="ハーツクライ"),
+                pedigree=PedigreeInfo(
+                    sire="リオンディーズ",
+                    dam="ミュージアムヒル",
+                    dam_sire="ハーツクライ",
+                ),
             ),
             HorseResult(
-                rank=4, horse_name="レガレイラ",
-                horse_id="2021105898", sex_age="牝4",
-                gate_number=7, horse_number=13,
-                weight_carried=55.0, jockey="横山武史",
+                rank=4,
+                horse_name="レガレイラ",
+                horse_id="2021105898",
+                sex_age="牝4",
+                gate_number=7,
+                horse_number=13,
+                weight_carried=55.0,
+                jockey="横山武史",
                 trainer="木村哲也",
-                finish_time="2:31.7", margin="2",
-                popularity=1, win_odds=3.3, horse_weight=482,
+                finish_time="2:31.7",
+                margin="2",
+                popularity=1,
+                win_odds=3.3,
+                horse_weight=482,
                 horse_weight_diff=-4,
-                pedigree=PedigreeInfo(sire="スワーヴリチャード",
-                                      dam="ロカ", dam_sire="ハービンジャー"),
+                pedigree=PedigreeInfo(
+                    sire="スワーヴリチャード", dam="ロカ", dam_sire="ハービンジャー"
+                ),
             ),
         ],
     )
@@ -75,6 +93,7 @@ def seeded_db(db: sqlite3.Connection) -> sqlite3.Connection:
 
 # ── insert_prediction ────────────────────────────────────────────
 
+
 class TestInsertPrediction:
     def test_予想を保存してIDを返す(self, seeded_db: sqlite3.Connection) -> None:
         pid = insert_prediction(
@@ -82,11 +101,15 @@ class TestInsertPrediction:
             race_id="202506050811",
             model_type="卍",
             bet_type="単勝",
-            horses=[{"horse_name": "ミュージアムマイル",
-                     "horse_id": "2022105081",
-                     "predicted_rank": 1,
-                     "model_score": 0.72,
-                     "ev_score": 1.45}],
+            horses=[
+                {
+                    "horse_name": "ミュージアムマイル",
+                    "horse_id": "2022105081",
+                    "predicted_rank": 1,
+                    "model_score": 0.72,
+                    "ev_score": 1.45,
+                }
+            ],
             confidence=0.72,
             expected_value=1.45,
             recommended_bet=1000.0,
@@ -94,15 +117,21 @@ class TestInsertPrediction:
         assert isinstance(pid, int)
         assert pid > 0
 
-    def test_prediction_horsesに馬が保存される(self, seeded_db: sqlite3.Connection) -> None:
+    def test_prediction_horsesに馬が保存される(
+        self, seeded_db: sqlite3.Connection
+    ) -> None:
         pid = insert_prediction(
             seeded_db,
             race_id="202506050811",
             model_type="本命",
             bet_type="馬連",
             horses=[
-                {"horse_name": "ミュージアムマイル", "predicted_rank": 1, "model_score": 0.80},
-                {"horse_name": "レガレイラ",         "predicted_rank": 2, "model_score": 0.65},
+                {
+                    "horse_name": "ミュージアムマイル",
+                    "predicted_rank": 1,
+                    "model_score": 0.80,
+                },
+                {"horse_name": "レガレイラ", "predicted_rank": 2, "model_score": 0.65},
             ],
         )
         rows = seeded_db.execute(
@@ -138,10 +167,14 @@ class TestInsertPrediction:
 
 # ── record_prediction_result ─────────────────────────────────────
 
+
 class TestRecordPredictionResult:
     def test_的中を記録できる(self, seeded_db: sqlite3.Connection) -> None:
         pid = insert_prediction(
-            seeded_db, "202506050811", "卍", "単勝",
+            seeded_db,
+            "202506050811",
+            "卍",
+            "単勝",
             horses=[{"horse_name": "ミュージアムマイル"}],
             recommended_bet=1000.0,
         )
@@ -153,12 +186,15 @@ class TestRecordPredictionResult:
         ).fetchone()
         assert row[0] == 1
         assert row[1] == pytest.approx(3800.0)
-        assert row[2] == pytest.approx(2800.0)   # 3800 - 1000
-        assert row[3] == pytest.approx(380.0)    # 3800/1000*100
+        assert row[2] == pytest.approx(2800.0)  # 3800 - 1000
+        assert row[3] == pytest.approx(380.0)  # 3800/1000*100
 
     def test_外れを記録できる(self, seeded_db: sqlite3.Connection) -> None:
         pid = insert_prediction(
-            seeded_db, "202506050811", "本命", "単勝",
+            seeded_db,
+            "202506050811",
+            "本命",
+            "単勝",
             horses=[{"horse_name": "レガレイラ"}],
             recommended_bet=500.0,
         )
@@ -171,9 +207,14 @@ class TestRecordPredictionResult:
         assert row[0] == 0
         assert row[1] == pytest.approx(-500.0)
 
-    def test_購入金額をpredictionsから自動取得(self, seeded_db: sqlite3.Connection) -> None:
+    def test_購入金額をpredictionsから自動取得(
+        self, seeded_db: sqlite3.Connection
+    ) -> None:
         pid = insert_prediction(
-            seeded_db, "202506050811", "卍", "単勝",
+            seeded_db,
+            "202506050811",
+            "卍",
+            "単勝",
             horses=[{"horse_name": "ミュージアムマイル"}],
             recommended_bet=2000.0,
         )
@@ -183,15 +224,21 @@ class TestRecordPredictionResult:
         row = seeded_db.execute(
             "SELECT profit FROM prediction_results WHERE prediction_id=?", (pid,)
         ).fetchone()
-        assert row[0] == pytest.approx(5600.0)   # 7600 - 2000
+        assert row[0] == pytest.approx(5600.0)  # 7600 - 2000
 
 
 # ── v_prediction_summary ビュー ───────────────────────────────────
 
+
 class TestPredictionSummaryView:
-    def test_ビューにレース名と結果が結合される(self, seeded_db: sqlite3.Connection) -> None:
+    def test_ビューにレース名と結果が結合される(
+        self, seeded_db: sqlite3.Connection
+    ) -> None:
         pid = insert_prediction(
-            seeded_db, "202506050811", "卍", "単勝",
+            seeded_db,
+            "202506050811",
+            "卍",
+            "単勝",
             horses=[{"horse_name": "ミュージアムマイル"}],
             recommended_bet=1000.0,
         )
@@ -210,33 +257,39 @@ class TestPredictionSummaryView:
 
 # ── refresh_model_performance ────────────────────────────────────
 
+
 class TestRefreshModelPerformance:
     def _seed_results(self, db: sqlite3.Connection) -> None:
         """的中1件・外れ1件のデータを投入する。
         bet_type を別々にする（同 race_id+model_type+bet_type は UNIQUE 制約で1件に絞られるため）。
         """
         for model, horse, bet_type, hit, payout in [
-            ("卍", "ミュージアムマイル", "単勝", True,  3800.0),
-            ("卍", "レガレイラ",        "複勝", False, 0.0),
+            ("卍", "ミュージアムマイル", "単勝", True, 3800.0),
+            ("卍", "レガレイラ", "複勝", False, 0.0),
         ]:
             pid = insert_prediction(
-                db, "202506050811", model, bet_type,
+                db,
+                "202506050811",
+                model,
+                bet_type,
                 horses=[{"horse_name": horse}],
                 recommended_bet=1000.0,
             )
             record_prediction_result(db, pid, is_hit=hit, payout=payout)
 
-    def test_回収率と的中率が正しく計算される(self, seeded_db: sqlite3.Connection) -> None:
+    def test_回収率と的中率が正しく計算される(
+        self, seeded_db: sqlite3.Connection
+    ) -> None:
         self._seed_results(seeded_db)
         refresh_model_performance(seeded_db, "卍", 2025)
 
         row = seeded_db.execute(
             "SELECT total_bets, hits, hit_rate, roi FROM model_performance WHERE model_type='卍' AND year=2025",
         ).fetchone()
-        assert row[0] == 2                        # 2回購入
-        assert row[1] == 1                        # 1回的中
-        assert row[2] == pytest.approx(50.0)      # 50%
-        assert row[3] == pytest.approx(190.0)     # 3800 / 2000 * 100
+        assert row[0] == 2  # 2回購入
+        assert row[1] == 1  # 1回的中
+        assert row[2] == pytest.approx(50.0)  # 50%
+        assert row[3] == pytest.approx(190.0)  # 3800 / 2000 * 100
 
     def test_再集計でUPSERTされる(self, seeded_db: sqlite3.Connection) -> None:
         self._seed_results(seeded_db)
@@ -246,4 +299,4 @@ class TestRefreshModelPerformance:
         count = seeded_db.execute(
             "SELECT COUNT(*) FROM model_performance WHERE model_type='卍' AND year=2025"
         ).fetchone()[0]
-        assert count == 1   # 重複しない
+        assert count == 1  # 重複しない

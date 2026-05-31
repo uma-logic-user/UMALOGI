@@ -15,6 +15,7 @@ Usage:
     py -3 scripts/expand_trifecta_combos.py --dry-run  # 変化量確認
     py -3 scripts/expand_trifecta_combos.py            # 実際に更新
 """
+
 from __future__ import annotations
 
 import argparse
@@ -30,6 +31,7 @@ _ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(_ROOT))
 
 from dotenv import load_dotenv
+
 load_dotenv(_ROOT / ".env", override=False)
 
 from src.database.init_db import init_db
@@ -84,8 +86,12 @@ def _infer_axis_and_opponents(
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="三連単combination_jsonを正しい1頭軸マルチに展開する")
-    parser.add_argument("--dry-run", action="store_true", help="変化量を表示するのみ（DB 更新なし）")
+    parser = argparse.ArgumentParser(
+        description="三連単combination_jsonを正しい1頭軸マルチに展開する"
+    )
+    parser.add_argument(
+        "--dry-run", action="store_true", help="変化量を表示するのみ（DB 更新なし）"
+    )
     args = parser.parse_args()
 
     conn = init_db()
@@ -96,12 +102,12 @@ def main() -> None:
 
     print(f"[展開] 三連単予想: {len(rows)}件")
 
-    target_count    = 0
-    skip_box        = 0
-    skip_no_axis    = 0
+    target_count = 0
+    skip_box = 0
+    skip_no_axis = 0
     skip_already_ok = 0
-    updated         = 0
-    errors          = 0
+    updated = 0
+    errors = 0
 
     for row in rows:
         pred_id = row[0]
@@ -166,14 +172,14 @@ def main() -> None:
         conn.commit()
 
     print()
-    print(f"[結果]")
+    print("[結果]")
     print(f"  展開対象 : {target_count}件")
     print(f"  ボックス除外: {skip_box}件")
     print(f"  軸推定不可 : {skip_no_axis}件")
     print(f"  正確な点数: {skip_already_ok}件")
     print(f"  エラー    : {errors}件")
     if args.dry_run:
-        print(f"  --dry-run: DB は更新されていません")
+        print("  --dry-run: DB は更新されていません")
     else:
         print(f"  更新済み  : {updated}件")
 

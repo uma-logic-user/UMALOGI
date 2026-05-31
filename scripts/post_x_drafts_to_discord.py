@@ -53,8 +53,8 @@ logger = logging.getLogger(__name__)
 # ──────────────────────────────────────────────
 _MAX_X_CHARS = 280
 _IMPORTANT_EV_THRESHOLD = 10.0  # 【重要】タグを付与する最高EV閾値
-_MIN_POST_EV = 1.0               # Discord 転送対象の最低EV
-_DISCORD_RATE_LIMIT_SEC = 1.0   # Discord レート制限対策（秒）
+_MIN_POST_EV = 1.0  # Discord 転送対象の最低EV
+_DISCORD_RATE_LIMIT_SEC = 1.0  # Discord レート制限対策（秒）
 
 _NOTE_PROFILE_URL: str = os.environ.get("NOTE_PROFILE_URL", "https://note.com/umalogi")
 
@@ -131,9 +131,7 @@ def _build_discord_message(
             "📝 Note下書き: 本日の予想記事に含まれます"
         ),
         "color": color,
-        "footer": {
-            "text": f"race_id: {race_id} | maxEV: {max_ev:.2f} | UMALOGI AI"
-        },
+        "footer": {"text": f"race_id: {race_id} | maxEV: {max_ev:.2f} | UMALOGI AI"},
     }
     return {"embeds": [embed]}
 
@@ -220,13 +218,17 @@ def _fetch_bets_for_race(conn, race_id: str) -> list[dict]:
     return result
 
 
-def run(date_str: str, webhook_url: str, note_url: str = "", dry_run: bool = False) -> None:
+def run(
+    date_str: str, webhook_url: str, note_url: str = "", dry_run: bool = False
+) -> None:
     """メイン処理: 全レース X 投稿文生成 → Discord 転送。"""
     conn = init_db()
     races = _fetch_today_races(conn, date_str)
 
     if not races:
-        logger.warning("対象日 %s に EV>=%.1f のレースが見つかりません", date_str, _MIN_POST_EV)
+        logger.warning(
+            "対象日 %s に EV>=%.1f のレースが見つかりません", date_str, _MIN_POST_EV
+        )
         conn.close()
         return
 
@@ -246,7 +248,9 @@ def run(date_str: str, webhook_url: str, note_url: str = "", dry_run: bool = Fal
         x_post = _build_x_post(race_name, venue, race_number, max_ev, note_url=note_url)
 
         # Discord embed 構築
-        payload = _build_discord_message(race_name, venue, race_number, x_post, max_ev, race_id)
+        payload = _build_discord_message(
+            race_name, venue, race_number, x_post, max_ev, race_id
+        )
 
         # 送信
         ok = _send_to_discord(webhook_url, payload, dry_run=dry_run)
@@ -256,7 +260,10 @@ def run(date_str: str, webhook_url: str, note_url: str = "", dry_run: bool = Fal
                 important_races.append(f"{venue}R{race_number}({race_name})")
             logger.info(
                 "転送完了: %s %sR%d EV=%.2f %s",
-                race_id, venue, race_number, max_ev,
+                race_id,
+                venue,
+                race_number,
+                max_ev,
                 "⭐重要" if max_ev >= _IMPORTANT_EV_THRESHOLD else "",
             )
         else:
@@ -276,8 +283,11 @@ def run(date_str: str, webhook_url: str, note_url: str = "", dry_run: bool = Fal
             f"📤 転送済み: **{success_count}件** / {len(races)}件\n"
             f"🔥 重要推奨レース(EV≥{_IMPORTANT_EV_THRESHOLD:.0f}): **{len(important_races)}件**\n"
             + (
-                "  " + " / ".join(important_races[:8]) + ("\n  ..." if len(important_races) > 8 else "")
-                if important_races else ""
+                "  "
+                + " / ".join(important_races[:8])
+                + ("\n  ..." if len(important_races) > 8 else "")
+                if important_races
+                else ""
             )
         )
     }
@@ -299,9 +309,18 @@ def main() -> None:
 
     date_str = args.date or date.today().strftime("%Y%m%d")
     note_url = args.note_url or _NOTE_PROFILE_URL
-    logger.info("=== X投稿文生成 → Discord転送 date=%s note_url=%s dry_run=%s ===",
-                date_str, note_url, args.dry_run)
-    run(date_str=date_str, webhook_url=args.webhook, note_url=note_url, dry_run=args.dry_run)
+    logger.info(
+        "=== X投稿文生成 → Discord転送 date=%s note_url=%s dry_run=%s ===",
+        date_str,
+        note_url,
+        args.dry_run,
+    )
+    run(
+        date_str=date_str,
+        webhook_url=args.webhook,
+        note_url=note_url,
+        dry_run=args.dry_run,
+    )
 
 
 if __name__ == "__main__":

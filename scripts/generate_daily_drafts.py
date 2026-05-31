@@ -230,16 +230,20 @@ def notify_complete(date_str: str, saved: list[Path], dry_run: bool) -> None:
     for venue, races in sorted(venue_groups.items()):
         venue_lines.append(f"  **{venue}** {', '.join(races)}")
 
-    msg_lines = [
-        "🏇 **本日の全レース予想準備完了**",
-        f"📅 対象日: {date_str[:4]}/{date_str[4:6]}/{date_str[6:8]}",
-        f"📝 EV推奨レース: **{len(saved)}件**（Kelly 1/4法・銀行¥100,000）",
-        "",
-    ] + venue_lines + [
-        "",
-        "✅ `data/drafts/` に SNS/NOTE 下書きを保存しました。",
-        "※ EV<1.0 のレースは掲載対象外です。",
-    ]
+    msg_lines = (
+        [
+            "🏇 **本日の全レース予想準備完了**",
+            f"📅 対象日: {date_str[:4]}/{date_str[4:6]}/{date_str[6:8]}",
+            f"📝 EV推奨レース: **{len(saved)}件**（Kelly 1/4法・銀行¥100,000）",
+            "",
+        ]
+        + venue_lines
+        + [
+            "",
+            "✅ `data/drafts/` に SNS/NOTE 下書きを保存しました。",
+            "※ EV<1.0 のレースは掲載対象外です。",
+        ]
+    )
     msg = "\n".join(msg_lines)
 
     if dry_run:
@@ -262,12 +266,20 @@ def notify_complete(date_str: str, saved: list[Path], dry_run: bool) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description="本日予想全件生成 + 下書き保存")
     parser.add_argument("--date", default=None, help="対象日 YYYYMMDD（省略時=本日）")
-    parser.add_argument("--dry-run", action="store_true", help="DB 書き込み・通知を行わない")
-    parser.add_argument("--skip-batch", action="store_true", help="provisional_batch を省略（予想再生成をスキップ）")
+    parser.add_argument(
+        "--dry-run", action="store_true", help="DB 書き込み・通知を行わない"
+    )
+    parser.add_argument(
+        "--skip-batch",
+        action="store_true",
+        help="provisional_batch を省略（予想再生成をスキップ）",
+    )
     args = parser.parse_args()
 
     date_str = args.date or date.today().strftime("%Y%m%d")
-    logger.info("=== UMALOGI 日次予想一括生成 date=%s dry_run=%s ===", date_str, args.dry_run)
+    logger.info(
+        "=== UMALOGI 日次予想一括生成 date=%s dry_run=%s ===", date_str, args.dry_run
+    )
 
     # Step 1: 全レース暫定予想を Kelly ロジックで再生成
     if not args.skip_batch:

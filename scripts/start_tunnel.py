@@ -10,6 +10,7 @@ cloudflared (Cloudflare Quick Tunnel) を優先使用。未インストール時
     py scripts/start_tunnel.py --port 3000
     py scripts/start_tunnel.py --tunnel-only   # Next.js は別途起動済みの場合
 """
+
 from __future__ import annotations
 
 import argparse
@@ -24,7 +25,7 @@ sys.stdout.reconfigure(encoding="utf-8")  # type: ignore[attr-defined]
 sys.stderr.reconfigure(encoding="utf-8")  # type: ignore[attr-defined]
 
 _ROOT = Path(__file__).resolve().parents[1]
-_BIN  = _ROOT / "bin"
+_BIN = _ROOT / "bin"
 _BIN.mkdir(exist_ok=True)
 
 _CLOUDFLARED_URL = (
@@ -53,9 +54,7 @@ def _find_cloudflared() -> Path | None:
     """PATH または bin/ から cloudflared を探す。"""
     for candidate in ["cloudflared", "cloudflared.exe"]:
         try:
-            r = subprocess.run(
-                [candidate, "--version"], capture_output=True, timeout=5
-            )
+            r = subprocess.run([candidate, "--version"], capture_output=True, timeout=5)
             if r.returncode == 0:
                 return Path(candidate)
         except (FileNotFoundError, subprocess.TimeoutExpired):
@@ -72,16 +71,15 @@ def start_tunnel(port: int) -> None:
         print("cloudflared が見つかりません。自動ダウンロードします...")
         exe = _download_cloudflared()
 
-    print(f"\n{'='*55}")
-    print(f"  UMALOGI トンネル起動")
+    print(f"\n{'=' * 55}")
+    print("  UMALOGI トンネル起動")
     print(f"  ローカル: http://localhost:{port}")
-    print(f"{'='*55}")
+    print(f"{'=' * 55}")
     print("Cloudflare Quick Tunnel を開通中...")
     print("(初回は10〜20秒かかります)\n")
 
     proc = subprocess.Popen(
-        [str(exe), "tunnel", "--url", f"http://localhost:{port}",
-         "--no-autoupdate"],
+        [str(exe), "tunnel", "--url", f"http://localhost:{port}", "--no-autoupdate"],
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
         encoding="utf-8",
@@ -123,12 +121,13 @@ def _print_qr(url: str) -> None:
     """QR コードをターミナルに ASCII 表示する（qrcode ライブラリがある場合）。"""
     try:
         import qrcode  # type: ignore[import]
+
         qr = qrcode.QRCode(border=1)
         qr.add_data(url)
         qr.make(fit=True)
         qr.print_ascii(tty=True)
     except ImportError:
-        print(f"  (qrcode ライブラリなし — ブラウザで直接入力してください)")
+        print("  (qrcode ライブラリなし — ブラウザで直接入力してください)")
 
 
 def start_nextjs(port: int) -> subprocess.Popen:
@@ -168,9 +167,12 @@ def main() -> None:
     parser = argparse.ArgumentParser(
         description="UMALOGI ダッシュボード トンネリング (Cloudflare Quick Tunnel)"
     )
-    parser.add_argument("--port",        type=int, default=3000, help="Next.js のポート番号")
-    parser.add_argument("--tunnel-only", action="store_true",
-                        help="Next.js を起動せず、トンネルのみ開通する")
+    parser.add_argument("--port", type=int, default=3000, help="Next.js のポート番号")
+    parser.add_argument(
+        "--tunnel-only",
+        action="store_true",
+        help="Next.js を起動せず、トンネルのみ開通する",
+    )
     args = parser.parse_args()
 
     nextjs_proc: subprocess.Popen | None = None

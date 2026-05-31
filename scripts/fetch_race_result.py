@@ -21,12 +21,10 @@ Usage:
 from __future__ import annotations
 
 import argparse
-import json
 import logging
 import os
 import subprocess
 import sys
-import time
 from pathlib import Path
 
 _ROOT = Path(__file__).resolve().parent.parent
@@ -34,6 +32,7 @@ if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
 from dotenv import load_dotenv
+
 load_dotenv(_ROOT / ".env", override=False)
 
 logging.basicConfig(
@@ -42,7 +41,13 @@ logging.basicConfig(
     datefmt="%H:%M:%S",
     handlers=[
         logging.StreamHandler(
-            open(sys.stdout.fileno(), mode="w", encoding="utf-8", errors="replace", closefd=False)
+            open(
+                sys.stdout.fileno(),
+                mode="w",
+                encoding="utf-8",
+                errors="replace",
+                closefd=False,
+            )
         ),
     ],
 )
@@ -72,11 +77,17 @@ def _run_jvlink_race_sync(race_date: str) -> bool:
     logger.info("JVLink RACE TODAY 同期開始: date=%s", race_date)
     try:
         proc = subprocess.run(
-            ["py", "-3.14-32",
-             str(_ROOT / "scripts" / "_jvlink_force_worker.py"),
-             "--dataspec", "RACE",
-             "--fromtime", race_date,
-             "--option", "3"],  # OPT_TODAY: 当日データ
+            [
+                "py",
+                "-3.14-32",
+                str(_ROOT / "scripts" / "_jvlink_force_worker.py"),
+                "--dataspec",
+                "RACE",
+                "--fromtime",
+                race_date,
+                "--option",
+                "3",
+            ],  # OPT_TODAY: 当日データ
             cwd=str(_ROOT),
             timeout=180,
             capture_output=True,
@@ -85,7 +96,9 @@ def _run_jvlink_race_sync(race_date: str) -> bool:
         )
         last_line = proc.stdout.splitlines()[-1] if proc.stdout else ""
         if proc.returncode != 0:
-            logger.warning("JVLink ワーカー rc=%d stderr=%s", proc.returncode, proc.stderr[:300])
+            logger.warning(
+                "JVLink ワーカー rc=%d stderr=%s", proc.returncode, proc.stderr[:300]
+            )
             return False
         logger.info("JVLink 同期完了: %s", last_line)
         return True
@@ -184,14 +197,18 @@ def _fetch_result_from_netkeiba(race_id: str, conn) -> bool:
         True = 保存成功（1着馬確認済み） / False = 未確定 or 取得失敗
     """
     from src.scraper.netkeiba import fetch_race_results, fetch_race_payouts
-    from src.database.init_db import insert_race, insert_race_payouts
+    from src.database.init_db import insert_race_payouts
 
     race_date = f"{race_id[0:4]}-{race_id[4:6]}-{race_id[6:8]}"
 
     try:
         logger.info("netkeiba から着順取得: race_id=%s", race_id)
         race_info = fetch_race_results(
-            race_id, race_date=race_date, fetch_pedigree=False, delay=1.0, max_retries=3,
+            race_id,
+            race_date=race_date,
+            fetch_pedigree=False,
+            delay=1.0,
+            max_retries=3,
         )
     except Exception as exc:
         logger.warning("netkeiba 着順取得失敗 (race_id=%s): %s", race_id, exc)
@@ -203,7 +220,9 @@ def _fetch_result_from_netkeiba(race_id: str, conn) -> bool:
         return False
     ranks = [r.rank for r in race_info.results if r.rank is not None and r.rank > 0]
     if 1 not in ranks:
-        logger.info("netkeiba: 1着未確定 race_id=%s (ranks=%s)", race_id, sorted(ranks)[:5])
+        logger.info(
+            "netkeiba: 1着未確定 race_id=%s (ranks=%s)", race_id, sorted(ranks)[:5]
+        )
         return False
 
     # 着順を DB に保存（race_id は JVLink 形式のまま使用）
@@ -212,7 +231,9 @@ def _fetch_result_from_netkeiba(race_id: str, conn) -> bool:
         race_info.date = race_date
     try:
         _upsert_race_results(conn, race_id, race_info)
-        logger.info("netkeiba 着順保存: race_id=%s %d頭", race_id, len(race_info.results))
+        logger.info(
+            "netkeiba 着順保存: race_id=%s %d頭", race_id, len(race_info.results)
+        )
     except Exception as exc:
         logger.warning("netkeiba 着順DB保存失敗 (race_id=%s): %s", race_id, exc)
         return False
@@ -237,6 +258,7 @@ def _try_publish_win_report(result: object, race_id: str, conn: object) -> None:
         return
     try:
         from src.ops.win_report import publish_win_report
+
         publish_win_report(result, race_id, conn)
     except Exception as e:
         logger.warning("[WinReport] 失敗（スキップ）: %s", e)
@@ -248,9 +270,16 @@ def _venue_race_prefix(race_id: str) -> str:
     会場コードが未定義・race_id が短い場合は取得できた範囲で返す。
     """
     _JYO = {
-        "01": "札幌", "02": "函館", "03": "福島", "04": "新潟",
-        "05": "東京", "06": "中山", "07": "中京", "08": "京都",
-        "09": "阪神", "10": "小倉",
+        "01": "札幌",
+        "02": "函館",
+        "03": "福島",
+        "04": "新潟",
+        "05": "東京",
+        "06": "中山",
+        "07": "中京",
+        "08": "京都",
+        "09": "阪神",
+        "10": "小倉",
     }
     venue = _JYO.get(race_id[4:6], "") if len(race_id) >= 6 else ""
     rno = ""
@@ -274,9 +303,9 @@ def _send_hit_flash(result: object, race_name: str) -> None:
     """
     import requests as _req
 
-    pred_url   = os.environ.get("DISCORD_WEBHOOK_URL", "")
+    pred_url = os.environ.get("DISCORD_WEBHOOK_URL", "")
     # 的中速報専用 webhook を最優先（未設定なら予想チャンネルへフォールバック）
-    hit_url    = os.environ.get("DISCORD_WEBHOOK_HIT_FLASH", "").strip() or pred_url
+    hit_url = os.environ.get("DISCORD_WEBHOOK_HIT_FLASH", "").strip() or pred_url
     system_url = os.environ.get("DISCORD_SYSTEM_WEBHOOK_URL", "") or pred_url
 
     try:
@@ -291,7 +320,9 @@ def _send_hit_flash(result: object, race_name: str) -> None:
         if hit_items:
             lines: list[str] = []
             for h in hit_items:
-                combo_str = "-".join(str(c) for c in h.combination) if h.combination else "?"
+                combo_str = (
+                    "-".join(str(c) for c in h.combination) if h.combination else "?"
+                )
                 profit_sign = "+" if h.profit >= 0 else ""
                 lines.append(
                     f"**{h.bet_type}**  {combo_str}  "
@@ -301,12 +332,12 @@ def _send_hit_flash(result: object, race_name: str) -> None:
             description = "\n".join(lines)
             payout_total = int(result.total_payout)
             if payout_total >= 100_000:
-                color = 0xFF4500   # 赤橙: 万馬券
+                color = 0xFF4500  # 赤橙: 万馬券
             elif payout_total >= 10_000:
-                color = 0xFFD700   # 金: 高配当
+                color = 0xFFD700  # 金: 高配当
             else:
-                color = 0x43B581   # 緑: 通常的中
-            title  = f"🎉 的中速報！  {race_label}"
+                color = 0x43B581  # 緑: 通常的中
+            title = f"🎉 的中速報！  {race_label}"
             footer = (
                 f"投資合計 ¥{int(result.total_invested):,}  "
                 f"払戻合計 ¥{payout_total:,}  "
@@ -315,22 +346,24 @@ def _send_hit_flash(result: object, race_name: str) -> None:
             target_url = hit_url
         else:
             # 外れ → システムチャンネルへ静かに流す
-            color       = 0x555555
-            title       = f"🏁 完走  {race_label}"
+            color = 0x555555
+            title = f"🏁 完走  {race_label}"
             description = "的中なし"
-            footer      = f"投資合計 ¥{int(result.total_invested):,}"
-            target_url  = system_url
+            footer = f"投資合計 ¥{int(result.total_invested):,}"
+            target_url = system_url
 
         if not target_url:
             return
 
         payload = {
-            "embeds": [{
-                "title":       title,
-                "description": description,
-                "color":       color,
-                "footer":      {"text": footer},
-            }]
+            "embeds": [
+                {
+                    "title": title,
+                    "description": description,
+                    "color": color,
+                    "footer": {"text": footer},
+                }
+            ]
         }
         resp = _req.post(target_url, json=payload, timeout=10)
         if resp.status_code not in (200, 204):
@@ -364,7 +397,9 @@ def fetch_single_race(race_id: str, delay: float = 1.5) -> bool:
     # Stage 1: JVLink RACE TODAY 同期
     jvlink_ok = _run_jvlink_race_sync(race_date)
     if not jvlink_ok:
-        logger.warning("JVLink 同期失敗 — netkeiba にフォールバック: race_id=%s", race_id)
+        logger.warning(
+            "JVLink 同期失敗 — netkeiba にフォールバック: race_id=%s", race_id
+        )
 
     # 着順確認（JVLink が成功した場合）
     with_rank = conn.execute(
@@ -401,8 +436,11 @@ def fetch_single_race(race_id: str, delay: float = 1.5) -> bool:
         result = evaluator.evaluate_race(conn, race_id)
         logger.info(
             "評価完了: race_id=%s  的中=%d件  投資¥%.0f  払戻¥%.0f  ROI=%.1f%%",
-            race_id, result.hit_count,
-            result.total_invested, result.total_payout, result.roi,
+            race_id,
+            result.hit_count,
+            result.total_invested,
+            result.total_payout,
+            result.roi,
         )
         # 的中速報を Discord へ送信
         _send_hit_flash(result, result.race_name)
@@ -447,7 +485,7 @@ def fetch_for_date(date_str: str, force_all: bool = False, delay: float = 1.5) -
     for race_id in race_ids:
         group_key = race_id[:8]  # YYYY+venue+kai+day
         if group_key not in synced_groups:
-            jvlink_date = race_id[:8]   # 会場内部日付コード (YYYYMMDD ではなく YYYYVVKK)
+            jvlink_date = race_id[:8]  # 会場内部日付コード (YYYYMMDD ではなく YYYYVVKK)
             ok = _run_jvlink_race_sync(jvlink_date)
             if not ok:
                 logger.warning("JVLink 同期失敗 (group=%s)", group_key)
@@ -465,7 +503,9 @@ def fetch_for_date(date_str: str, force_all: bool = False, delay: float = 1.5) -
 
         # JVLink で結果なし → netkeiba フォールバック
         if with_rank == 0:
-            logger.info("JVLink 結果なし → netkeiba フォールバック: race_id=%s", race_id)
+            logger.info(
+                "JVLink 結果なし → netkeiba フォールバック: race_id=%s", race_id
+            )
             nb_ok = _fetch_result_from_netkeiba(race_id, conn)
             if not nb_ok:
                 logger.info("netkeiba: 未確定 (race_id=%s)", race_id)
@@ -482,7 +522,9 @@ def fetch_for_date(date_str: str, force_all: bool = False, delay: float = 1.5) -
             saved += 1
             logger.info(
                 "評価完了: %s  的中=%d  ROI=%.1f%%",
-                race_id, result.hit_count, result.roi,
+                race_id,
+                result.hit_count,
+                result.roi,
             )
             _send_hit_flash(result, result.race_name)
             _try_publish_win_report(result, race_id, conn)
@@ -507,20 +549,24 @@ def _run_generate_data() -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="レース結果速報取得・評価・ダッシュボード更新 (JVLink経由)")
+    parser = argparse.ArgumentParser(
+        description="レース結果速報取得・評価・ダッシュボード更新 (JVLink経由)"
+    )
     group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument("--race-id",  help="対象レース ID (例: 202603010501)")
-    group.add_argument("--date",     help="対象日 YYYYMMDD (全未取得レース)")
-    parser.add_argument("--all",     action="store_true",
-                        help="--date 指定時: 既存データも上書き取得")
-    parser.add_argument("--delay",   type=float, default=1.5,
-                        help="（後方互換: 無効）")
-    parser.add_argument("--no-dashboard", action="store_true",
-                        help="generate_data.py を実行しない")
+    group.add_argument("--race-id", help="対象レース ID (例: 202603010501)")
+    group.add_argument("--date", help="対象日 YYYYMMDD (全未取得レース)")
+    parser.add_argument(
+        "--all", action="store_true", help="--date 指定時: 既存データも上書き取得"
+    )
+    parser.add_argument("--delay", type=float, default=1.5, help="（後方互換: 無効）")
+    parser.add_argument(
+        "--no-dashboard", action="store_true", help="generate_data.py を実行しない"
+    )
     args = parser.parse_args()
 
     try:
         from src.ops.jvlink_dialog_handler import start_dialog_handler
+
         start_dialog_handler(interval=0.3)
     except Exception:
         pass

@@ -20,13 +20,12 @@ from __future__ import annotations
 import logging
 import os
 import subprocess
-import sys
 from datetime import datetime
 from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
-_ROOT   = Path(__file__).resolve().parents[2]
+_ROOT = Path(__file__).resolve().parents[2]
 _BRANCH = os.environ.get("GIT_BRANCH", "master")
 
 
@@ -57,7 +56,7 @@ def _configure_git() -> None:
     GIT_USER_NAME / GIT_USER_EMAIL 環境変数が設定されている場合に限り
     ローカルの git config を更新する。未設定時は何もしない。
     """
-    name  = os.environ.get("GIT_USER_NAME")
+    name = os.environ.get("GIT_USER_NAME")
     email = os.environ.get("GIT_USER_EMAIL")
     if name:
         _run(["git", "config", "user.name", name])
@@ -104,7 +103,13 @@ def commit_and_push(
     _configure_git()
 
     # ステージング対象（機密ファイルを除くコードのみ）
-    patterns = add_patterns or ["src/", "tests/", "scripts/", "requirements.txt", "CLAUDE.md"]
+    patterns = add_patterns or [
+        "src/",
+        "tests/",
+        "scripts/",
+        "requirements.txt",
+        "CLAUDE.md",
+    ]
     for pattern in patterns:
         rc, _, err = _run(["git", "add", pattern])
         if rc != 0:
@@ -115,8 +120,7 @@ def commit_and_push(
         return True
 
     msg = message or (
-        f"auto: weekly sync {datetime.now().strftime('%Y-%m-%d %H:%M')} "
-        f"[skip ci]"
+        f"auto: weekly sync {datetime.now().strftime('%Y-%m-%d %H:%M')} [skip ci]"
     )
     rc, out, err = _run(["git", "commit", "-m", msg])
     if rc != 0:

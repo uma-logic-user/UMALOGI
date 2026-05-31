@@ -38,7 +38,7 @@ import time
 from logging.handlers import RotatingFileHandler
 from pathlib import Path
 
-ROOT    = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent
 LOG_DIR = ROOT / "data"
 LOG_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -46,21 +46,21 @@ LOG_DIR.mkdir(parents=True, exist_ok=True)
 # 設定
 # ────────────────────────────────────────────────────────────────────────────
 
-PY32       = "py"
+PY32 = "py"
 PY32_FLAGS = ["-3.14-32"]
 
 DEFAULT_FROM_YEAR = 2021
-DEFAULT_TO_YEAR   = 2025
+DEFAULT_TO_YEAR = 2025
 
-OPT_NORMAL = 1   # JRA-VANサーバーから差分取得（TARGETキャッシュ不要）
-OPT_STORED = 4   # TARGET ローカルキャッシュから読む
+OPT_NORMAL = 1  # JRA-VANサーバーから差分取得（TARGETキャッシュ不要）
+OPT_STORED = 4  # TARGET ローカルキャッシュから読む
 
 # タイムアウト (秒)
 TIMEOUT_RACE = 10800  # RACE/年: 最大3時間
-TIMEOUT_WOOD = 3600   # WOOD/年: 最大1時間
+TIMEOUT_WOOD = 3600  # WOOD/年: 最大1時間
 
-MAX_RETRIES  = 2
-BACKOFF_BASE = 30   # 秒
+MAX_RETRIES = 2
+BACKOFF_BASE = 30  # 秒
 
 LOG_FORMAT = "%(asctime)s [%(levelname)s] %(message)s"
 
@@ -68,6 +68,7 @@ LOG_FORMAT = "%(asctime)s [%(levelname)s] %(message)s"
 # ────────────────────────────────────────────────────────────────────────────
 # ロガー
 # ────────────────────────────────────────────────────────────────────────────
+
 
 def _setup_logger() -> logging.Logger:
     log_path = LOG_DIR / "import_historical_force.log"
@@ -88,16 +89,23 @@ logger = _setup_logger()
 # DB 状態確認
 # ────────────────────────────────────────────────────────────────────────────
 
+
 def _db_counts() -> dict[str, int]:
     try:
         sys.path.insert(0, str(ROOT))
         from src.database.init_db import init_db
+
         conn = init_db()
         counts: dict[str, int] = {}
         for tbl in [
-            "races", "race_results", "race_payouts",
-            "jockeys", "trainers", "racehorses",
-            "training_times", "training_hillwork",
+            "races",
+            "race_results",
+            "race_payouts",
+            "jockeys",
+            "trainers",
+            "racehorses",
+            "training_times",
+            "training_hillwork",
         ]:
             try:
                 n = conn.execute(f"SELECT COUNT(*) FROM {tbl}").fetchone()[0]
@@ -123,6 +131,7 @@ def _print_db_status(phase: str) -> None:
 # ワーカー呼び出し
 # ────────────────────────────────────────────────────────────────────────────
 
+
 def _run_worker(
     dataspec: str,
     fromtime: str,
@@ -134,12 +143,17 @@ def _run_worker(
 ) -> bool:
     """32bit ワーカーを subprocess で呼び出す。リトライ付き。"""
     cmd = [
-        PY32, *PY32_FLAGS,
+        PY32,
+        *PY32_FLAGS,
         "scripts/_jvlink_force_worker.py",
-        "--dataspec", dataspec,
-        "--fromtime", fromtime,
-        "--option",   str(option),
-        "--batch-size", str(batch_size),
+        "--dataspec",
+        dataspec,
+        "--fromtime",
+        fromtime,
+        "--option",
+        str(option),
+        "--batch-size",
+        str(batch_size),
     ]
 
     logger.info("=" * 64)
@@ -165,12 +179,17 @@ def _run_worker(
             if result.returncode == 0:
                 logger.info(
                     "[%s] 完了 (試行 %d, 経過 %.0f 秒)",
-                    label, attempt, elapsed,
+                    label,
+                    attempt,
+                    elapsed,
                 )
                 return True
             logger.warning(
                 "[%s] returncode=%d (試行 %d, 経過 %.0f 秒)",
-                label, result.returncode, attempt, elapsed,
+                label,
+                result.returncode,
+                attempt,
+                elapsed,
             )
         except subprocess.TimeoutExpired:
             logger.error("[%s] タイムアウト (%d 秒)", label, timeout)
@@ -182,13 +201,16 @@ def _run_worker(
             logger.info("[%s]  → %d 秒後にリトライ...", label, wait)
             time.sleep(wait)
 
-    logger.error("[%s] 最大リトライ (%d 回) 超過 → スキップして次へ", label, MAX_RETRIES)
+    logger.error(
+        "[%s] 最大リトライ (%d 回) 超過 → スキップして次へ", label, MAX_RETRIES
+    )
     return False
 
 
 # ────────────────────────────────────────────────────────────────────────────
 # フェーズ別取得
 # ────────────────────────────────────────────────────────────────────────────
+
 
 def step_race(
     from_year: int,
@@ -198,17 +220,19 @@ def step_race(
     dry_run: bool,
 ) -> None:
     """年ごとに RACE データを OPT_STORED で取得する。"""
-    logger.info("━━━━ STEP: RACE 取得 (option=%d) %d〜%d年 ━━━━", option, from_year, to_year)
+    logger.info(
+        "━━━━ STEP: RACE 取得 (option=%d) %d〜%d年 ━━━━", option, from_year, to_year
+    )
     for year in range(from_year, to_year + 1):
         fromtime = f"{year}0101"
         ok = _run_worker(
-            dataspec   = "RACE",
-            fromtime   = fromtime,
-            option     = option,
-            timeout    = TIMEOUT_RACE,
-            label      = f"RACE-{year}",
-            batch_size = batch_size,
-            dry_run    = dry_run,
+            dataspec="RACE",
+            fromtime=fromtime,
+            option=option,
+            timeout=TIMEOUT_RACE,
+            label=f"RACE-{year}",
+            batch_size=batch_size,
+            dry_run=dry_run,
         )
         if ok:
             _print_db_status(f"RACE-{year} 完了後")
@@ -225,17 +249,19 @@ def step_wood(
     dry_run: bool,
 ) -> None:
     """年ごとに WOOD データを取得する。"""
-    logger.info("━━━━ STEP: WOOD 取得 (option=%d) %d〜%d年 ━━━━", option, from_year, to_year)
+    logger.info(
+        "━━━━ STEP: WOOD 取得 (option=%d) %d〜%d年 ━━━━", option, from_year, to_year
+    )
     for year in range(from_year, to_year + 1):
         fromtime = f"{year}0101"
         ok = _run_worker(
-            dataspec   = "WOOD",
-            fromtime   = fromtime,
-            option     = option,
-            timeout    = TIMEOUT_WOOD,
-            label      = f"WOOD-{year}",
-            batch_size = batch_size,
-            dry_run    = dry_run,
+            dataspec="WOOD",
+            fromtime=fromtime,
+            option=option,
+            timeout=TIMEOUT_WOOD,
+            label=f"WOOD-{year}",
+            batch_size=batch_size,
+            dry_run=dry_run,
         )
         if ok:
             _print_db_status(f"WOOD-{year} 完了後")
@@ -246,6 +272,7 @@ def step_wood(
 # ────────────────────────────────────────────────────────────────────────────
 # エントリポイント
 # ────────────────────────────────────────────────────────────────────────────
+
 
 def main() -> None:
     args = _parse_args()
@@ -266,20 +293,20 @@ def main() -> None:
 
     if run_race:
         step_race(
-            from_year  = args.from_year,
-            to_year    = args.to_year,
-            option     = args.option,
-            batch_size = args.batch_size,
-            dry_run    = args.dry_run,
+            from_year=args.from_year,
+            to_year=args.to_year,
+            option=args.option,
+            batch_size=args.batch_size,
+            dry_run=args.dry_run,
         )
 
     if run_wood:
         step_wood(
-            from_year  = args.from_year,
-            to_year    = args.to_year,
-            option     = args.option,
-            batch_size = args.batch_size,
-            dry_run    = args.dry_run,
+            from_year=args.from_year,
+            to_year=args.to_year,
+            option=args.option,
+            batch_size=args.batch_size,
+            dry_run=args.dry_run,
         )
 
     elapsed = time.time() - start_all
@@ -315,27 +342,39 @@ def _parse_args() -> argparse.Namespace:
 """,
     )
     p.add_argument(
-        "--from-year", type=int, default=DEFAULT_FROM_YEAR,
+        "--from-year",
+        type=int,
+        default=DEFAULT_FROM_YEAR,
         help=f"取得開始年 (デフォルト: {DEFAULT_FROM_YEAR})",
     )
     p.add_argument(
-        "--to-year", type=int, default=DEFAULT_TO_YEAR,
+        "--to-year",
+        type=int,
+        default=DEFAULT_TO_YEAR,
         help=f"取得終了年 (デフォルト: {DEFAULT_TO_YEAR})",
     )
     p.add_argument(
-        "--dataspec", choices=["RACE", "WOOD"], default=None,
+        "--dataspec",
+        choices=["RACE", "WOOD"],
+        default=None,
         help="取得データ種別 (デフォルト: RACE + WOOD 両方)",
     )
     p.add_argument(
-        "--option", type=int, choices=[1, 2, 4], default=OPT_NORMAL,
+        "--option",
+        type=int,
+        choices=[1, 2, 4],
+        default=OPT_NORMAL,
         help="JVOpen オプション: 1=NORMAL(サーバー直取得) 2=SETUP 4=STORED(キャッシュ) (デフォルト: 1=NORMAL)",
     )
     p.add_argument(
-        "--batch-size", type=int, default=5000,
+        "--batch-size",
+        type=int,
+        default=5000,
         help="ファイル境界間の最大コミット件数 (デフォルト: 5000)",
     )
     p.add_argument(
-        "--dry-run", action="store_true",
+        "--dry-run",
+        action="store_true",
         help="コマンドを表示するだけで実行しない",
     )
     return p.parse_args()

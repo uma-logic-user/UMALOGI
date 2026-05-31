@@ -32,7 +32,7 @@ from src.ml.bet_generator import (
 )
 from src.notification.discord_notifier import DiscordNotifier  # noqa: F401 (後方互換のため保持)
 from src.notification.router import NotificationRouter
-from src.pipeline.scraping import fetch_and_save_odds
+from src.pipeline.scraping import fetch_and_save_odds, save_entries_to_db
 from ._common import build_output_json, save_json
 
 logger = logging.getLogger(__name__)
@@ -748,8 +748,6 @@ def prerace_pipeline(
     Returns:
         UI 用 JSON データ（dict）
     """
-    from src.pipeline.scraping import save_entries_to_db
-    from src.pipeline.win5 import try_win5
 
     mode_label = "暫定" if provisional else "直前"
     logger.info("%sパイプライン開始: race_id=%s", mode_label, race_id)

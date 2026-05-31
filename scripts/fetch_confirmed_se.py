@@ -33,7 +33,6 @@ import logging
 import os
 import sqlite3
 import sys
-import time
 from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8")
@@ -43,6 +42,7 @@ if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
 from dotenv import load_dotenv
+
 load_dotenv(_ROOT / ".env", override=False)
 
 import datetime
@@ -64,10 +64,11 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 _PROGRESS_FILE = _ROOT / "logs" / "fetch_confirmed_progress.json"
-_DEFAULT_FROM  = "20240201"   # 2024-01 は既にほぼ完全取得済み
+_DEFAULT_FROM = "20240201"  # 2024-01 は既にほぼ完全取得済み
 
 
 # ── 進捗ファイル ─────────────────────────────────────────────────────────────
+
 
 def _load_progress() -> dict:
     if _PROGRESS_FILE.exists():
@@ -88,6 +89,7 @@ def _save_progress(data: dict) -> None:
 
 
 # ── DB ベースの確報状況確認 ──────────────────────────────────────────────────
+
 
 def _get_confirmed_coverage(conn: sqlite3.Connection) -> dict[str, dict]:
     """月次の確報データ（win_odds有り）の件数をDBから集計する。"""
@@ -128,7 +130,9 @@ def _get_total_coverage(coverage: dict[str, dict]) -> tuple[int, int]:
     return tr, to
 
 
-def _print_coverage(coverage: dict[str, dict], title: str = "確報データ カバレッジ（月次）") -> None:
+def _print_coverage(
+    coverage: dict[str, dict], title: str = "確報データ カバレッジ（月次）"
+) -> None:
     print(f"\n=== {title} ===")
     print(f"  {'年月':^8} | {'総行数':>6} | {'odds有':>6} | {'カバー率':>7}")
     print("  " + "-" * 40)
@@ -136,7 +140,9 @@ def _print_coverage(coverage: dict[str, dict], title: str = "確報データ カ
     for ym, d in sorted(coverage.items()):
         bar = "#" * int(d["pct"] / 10) + "." * (10 - int(d["pct"] / 10))
         mark = "*" if d["pct"] < 5 and d["total"] > 100 else " "
-        print(f"  {ym} | {d['total']:>6,} | {d['with_odds']:>6,} | {d['pct']:>6.1f}% [{bar}]{mark}")
+        print(
+            f"  {ym} | {d['total']:>6,} | {d['with_odds']:>6,} | {d['pct']:>6.1f}% [{bar}]{mark}"
+        )
         total_rows += d["total"]
         total_odds += d["with_odds"]
     overall = total_odds / total_rows * 100 if total_rows > 0 else 0.0
@@ -152,6 +158,7 @@ def _date_plus_one_day(date_str: str) -> str:
 
 
 # ── メイン取得ロジック ────────────────────────────────────────────────────────
+
 
 def run_fetch(
     sid: str,
@@ -177,7 +184,12 @@ def run_fetch(
         option, opt_name = OPT_STORED, "OPT_STORED=4"
     else:
         option, opt_name = OPT_NORMAL, "OPT_NORMAL=1"
-    logger.info("JVLink RACE 取得開始: fromtime=%s option=%s dry_run=%s", fromtime, opt_name, dry_run)
+    logger.info(
+        "JVLink RACE 取得開始: fromtime=%s option=%s dry_run=%s",
+        fromtime,
+        opt_name,
+        dry_run,
+    )
 
     conn = init_db()
     coverage_before = _get_confirmed_coverage(conn)
@@ -198,14 +210,17 @@ def run_fetch(
         option=option,
     )
 
-    se_saved   = stats.get("se", 0)
-    pay_saved  = stats.get("payout", 0)
-    open_code  = stats.get("open_code", -1)
+    se_saved = stats.get("se", 0)
+    pay_saved = stats.get("payout", 0)
+    open_code = stats.get("open_code", -1)
     total_read = stats.get("total_read", 0)
 
     logger.info(
         "取得完了: SE=%d payout=%d read=%d open_code=%d",
-        se_saved, pay_saved, total_read, open_code,
+        se_saved,
+        pay_saved,
+        total_read,
+        open_code,
     )
 
     # ── カバレッジ比較 ────────────────────────────────────────────────────────
@@ -258,6 +273,7 @@ def run_fetch(
 
 # ── CLI ───────────────────────────────────────────────────────────────────────
 
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="JVLink 確報 SE/HR レコード一括取得（レジューム機能付き）",
@@ -284,24 +300,30 @@ def main() -> None:
 """,
     )
     parser.add_argument(
-        "--from", dest="from_date", default=None,
+        "--from",
+        dest="from_date",
+        default=None,
         metavar="YYYYMMDD",
         help="取得開始日（デフォルト: DB最終確報日の翌日 or 20240201）",
     )
     parser.add_argument(
-        "--verify-only", action="store_true",
+        "--verify-only",
+        action="store_true",
         help="カバレッジ確認のみ（取得しない）",
     )
     parser.add_argument(
-        "--dry-run", action="store_true",
+        "--dry-run",
+        action="store_true",
         help="DB保存なし（動作確認のみ）",
     )
     parser.add_argument(
-        "--stored", action="store_true",
+        "--stored",
+        action="store_true",
         help="OPT_STORED=4 を使用（ローカルキャッシュから再配信 — 破損データ復元に使用）",
     )
     parser.add_argument(
-        "--setup", action="store_true",
+        "--setup",
+        action="store_true",
         help="OPT_SETUP=2 を使用（JVLink サーバから全件再ダウンロード — 最終手段・時間がかかる）",
     )
     args = parser.parse_args()
@@ -337,7 +359,9 @@ def main() -> None:
         conn.close()
         if last_date:
             from_date = _date_plus_one_day(last_date)
-            logger.info("DB最終確報日=%s -> fromtime=%s（翌日から取得）", last_date, from_date)
+            logger.info(
+                "DB最終確報日=%s -> fromtime=%s（翌日から取得）", last_date, from_date
+            )
         else:
             from_date = _DEFAULT_FROM
             logger.info("DB確報なし -> fromtime=%s から全量取得", from_date)
@@ -357,12 +381,15 @@ def main() -> None:
 
     try:
         result = run_fetch(
-            sid=sid, fromtime=fromtime, dry_run=args.dry_run,
-            use_stored=args.stored, use_setup=args.setup,
+            sid=sid,
+            fromtime=fromtime,
+            dry_run=args.dry_run,
+            use_stored=args.stored,
+            use_setup=args.setup,
         )
 
         # 成功時に進捗ファイルを更新
-        progress["last_success_ts"]       = datetime.datetime.now().isoformat()
+        progress["last_success_ts"] = datetime.datetime.now().isoformat()
         progress["last_success_fromtime"] = fromtime
         progress["last_result"] = {
             "se": result["se"],

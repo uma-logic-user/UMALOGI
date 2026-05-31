@@ -23,6 +23,7 @@ if str(_ROOT) not in sys.path:
 
 try:
     from dotenv import load_dotenv
+
     load_dotenv(_ROOT / ".env", override=False)
 except ImportError:
     pass
@@ -41,9 +42,11 @@ def _build_message() -> "NotifyMessage":  # type: ignore[name-defined]
     # DB 情報を取得してメッセージに含める
     try:
         conn = init_db()
-        races  = conn.execute("SELECT COUNT(*) FROM races").fetchone()[0]
-        models = conn.execute("SELECT COUNT(*) FROM races WHERE race_id IS NOT NULL").fetchone()[0]
-        preds  = conn.execute("SELECT COUNT(*) FROM predictions").fetchone()[0]
+        races = conn.execute("SELECT COUNT(*) FROM races").fetchone()[0]
+        models = conn.execute(
+            "SELECT COUNT(*) FROM races WHERE race_id IS NOT NULL"
+        ).fetchone()[0]
+        preds = conn.execute("SELECT COUNT(*) FROM predictions").fetchone()[0]
         conn.close()
         db_info = f"レース数: {races:,} / 予想数: {preds:,}"
     except Exception:
@@ -63,18 +66,22 @@ def _build_message() -> "NotifyMessage":  # type: ignore[name-defined]
 
 def send_discord(dry_run: bool = False) -> bool:
     from src.notification.discord_notifier import DiscordNotifier
+
     notifier = DiscordNotifier()
     msg = _build_message()
     if dry_run:
         logger.info("[DRY-RUN] Discord 送信予定: %s", msg.title)
         return True
     ok = notifier.send(msg)
-    logger.info("Discord 送信: %s", "成功" if ok else "失敗 (DISCORD_WEBHOOK_URL を確認)")
+    logger.info(
+        "Discord 送信: %s", "成功" if ok else "失敗 (DISCORD_WEBHOOK_URL を確認)"
+    )
     return ok
 
 
 def send_line(dry_run: bool = False) -> bool:
     from src.notification.line_notifier import LineNotifier
+
     notifier = LineNotifier()
     msg = _build_message()
     if dry_run:
@@ -89,6 +96,7 @@ def send_sos(message: str, dry_run: bool = False) -> bool:
     """緊急 SOS メッセージを Discord に送信する。"""
     from src.notification.discord_notifier import DiscordNotifier
     from src.notification.base import NotifyMessage
+
     notifier = DiscordNotifier()
     msg = NotifyMessage(
         title="[UMALOGI][KINKYU] BATCH ERROR",
@@ -98,7 +106,9 @@ def send_sos(message: str, dry_run: bool = False) -> bool:
         logger.info("[DRY-RUN] SOS送信予定: %s", msg.body)
         return True
     ok = notifier.send(msg)
-    logger.info("SOS通知送信: %s", "成功" if ok else "失敗 (DISCORD_WEBHOOK_URL を確認)")
+    logger.info(
+        "SOS通知送信: %s", "成功" if ok else "失敗 (DISCORD_WEBHOOK_URL を確認)"
+    )
     return ok
 
 
