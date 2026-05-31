@@ -273,12 +273,15 @@ def save_entries_to_db(conn: sqlite3.Connection, tbl: object) -> int:
 
 
 def fetch_and_save_odds(conn: sqlite3.Connection, race_id: str) -> int:
-    """realtime_odds が空のとき、RTD → netkeiba → DB既存値 の順でオッズを確保する。
+    """realtime_odds が空のとき、JRA-VAN速報 → RTD → netkeiba → DB既存値 の順でオッズを確保する。
 
-    フォールバック戦略（3段階）:
-      Stage 1: JRA-VAN ローカル RTD キャッシュ — リアルタイムオッズ
-      Stage 2: netkeiba オッズ API — RTD 失敗時のハイブリッドフォールバック
+    フォールバック戦略（4段階・JRA-VAN 一次優先）:
+      Stage 0: JRA-VAN 速報オッズ（JVRTOpen 0B30, 32bit COM）— 公式一次ソース
+      Stage 1: JRA-VAN ローカル RTD キャッシュ — TARGET frontier 由来
+      Stage 2: netkeiba オッズ API — 二次ソース（ハイブリッドフォールバック）
       Stage 3: DB 内の既存 realtime_odds を確認して件数を返す（再取得なし）
+
+    各段は失敗時に次段へフォールバックするため、いずれかが死んでも EV は算出される。
 
     Returns:
         確保済みの頭数（0 の場合は暫定モードで続行）
@@ -291,6 +294,22 @@ def fetch_and_save_odds(conn: sqlite3.Connection, race_id: str) -> int:
             "SELECT horse_number, horse_name FROM entries WHERE race_id=?", (race_id,)
         ).fetchall()
     }
+
+    # Stage 0: JRA-VAN 速報オッズ（JVRTOpen 0B30）— 公式一次ソース最優先
+    # 32bit COM ワーカーを subprocess で起動して取得。全頭オッズ完備のときのみ採用。
+    date8 = _race_date8(conn, race_id)
+    if date8:
+        jvrt_odds = _fetch_odds_jvrt(race_id, date8)
+        if jvrt_odds and all(o.win_odds for o in jvrt_odds):
+            n = insert_realtime_odds(conn, race_id, jvrt_odds, name_map)
+            logger.info(
+                "オッズ取得 [JRA-VAN 速報 JVRTOpen]: %d 頭保存 (race_id=%s)", n, race_id
+            )
+            return n
+        if jvrt_odds:
+            logger.warning(
+                "JRA-VAN 速報: NaN あり → 後続フォールバックへ (race_id=%s)", race_id
+            )
 
     # Stage 1: JRA-VAN ローカル RTD キャッシュ
     # ゼロ許容: 1頭でも NaN があれば即 netkeiba にフォールバック
@@ -364,6 +383,106 @@ def _fetch_odds_netkeiba(race_id: str) -> list | None:
     except Exception as exc:
         logger.warning("netkeiba オッズ取得失敗 (race_id=%s): %s", race_id, exc)
         return None
+
+
+def _race_date8(conn: sqlite3.Connection, race_id: str) -> str:
+    """races.date（YYYY-MM-DD）から速報キー用の YYYYMMDD を返す。取得不可なら空文字。
+
+    races テーブル不在等の例外時は空文字を返し、呼び出し側の Stage0 を安全にスキップさせる。
+    """
+    try:
+        row = conn.execute(
+            "SELECT date FROM races WHERE race_id = ?", (race_id,)
+        ).fetchone()
+    except sqlite3.Error:
+        return ""
+    if not row or not row[0]:
+        return ""
+    d = str(row[0]).replace("-", "")
+    return d if len(d) == 8 and d.isdigit() else ""
+
+
+def _fetch_odds_jvrt(race_id: str, date8: str) -> list | None:
+    """JRA-VAN 速報オッズ（JVRTOpen 0B30）を 32bit COM ワーカー経由で取得する。
+
+    JV-Link は 32bit COM のため、64bit 本番から py -3.14-32 の subprocess で呼ぶ。
+    ワーカーは最終行に JSON を出力する。完全 fail-safe（失敗時は None を返し後続段へ）。
+
+    Args:
+        race_id: 12桁 race_id。
+        date8:   開催日 "YYYYMMDD"。
+
+    Returns:
+        HorseOdds のリスト。取得失敗・無効時は None。
+    """
+    if os.environ.get("JVLINK_DISABLED", "").strip() == "1":
+        return None
+
+    import json
+    import subprocess
+
+    from src.scraper.entry_table import HorseOdds
+
+    try:
+        proc = subprocess.run(
+            [
+                "py",
+                "-3.14-32",
+                str(_ROOT / "scripts" / "_jvrt_odds_worker.py"),
+                "--race-id",
+                race_id,
+                "--date",
+                date8,
+            ],
+            cwd=str(_ROOT),
+            timeout=60,
+            capture_output=True,
+            encoding="utf-8",
+            errors="replace",
+        )
+    except subprocess.TimeoutExpired:
+        logger.warning("JRA-VAN 速報ワーカー タイムアウト (60s): race_id=%s", race_id)
+        return None
+    except Exception as exc:
+        logger.warning("JRA-VAN 速報ワーカー 起動失敗 (race_id=%s): %s", race_id, exc)
+        return None
+
+    if proc.returncode != 0:
+        logger.warning(
+            "JRA-VAN 速報ワーカー rc=%d (race_id=%s) stderr=%s",
+            proc.returncode,
+            race_id,
+            (proc.stderr or "")[:200],
+        )
+        return None
+
+    # 最終 JSON 行を抽出（ワーカーは診断ログを stderr に出すが念のため後方から探索）
+    payload: dict | None = None
+    for line in reversed((proc.stdout or "").splitlines()):
+        line = line.strip()
+        if line.startswith("{") and line.endswith("}"):
+            try:
+                payload = json.loads(line)
+                break
+            except json.JSONDecodeError:
+                continue
+    if not payload:
+        logger.warning("JRA-VAN 速報ワーカー JSON 解析失敗 (race_id=%s)", race_id)
+        return None
+
+    odds = payload.get("odds") or []
+    result = [
+        HorseOdds(
+            horse_number=int(o["horse_number"]),
+            win_odds=o.get("win_odds"),
+            place_odds_min=None,
+            place_odds_max=None,
+            popularity=o.get("popularity"),
+        )
+        for o in odds
+        if o.get("horse_number")
+    ]
+    return result or None
 
 
 def _fetch_odds_rtd(race_id: str) -> list | None:
