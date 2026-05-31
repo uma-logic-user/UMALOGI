@@ -221,6 +221,50 @@ def format_report_text(r: HealthReport) -> str:
     )
 
 
+def _safe_ab_variants(conn: sqlite3.Connection) -> dict | None:
+    """W-057 シャドーA/B 集計（例外時 None・レポート本体を止めない）。"""
+    try:
+        from src.ml.pnl_accounting import compute_ab_variants
+
+        return compute_ab_variants(conn)
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("[ヘルスレポート] A/B 集計失敗（続行）: %s", exc)
+        return None
+
+
+def format_ab_field(ab: dict) -> dict:
+    """Pure_EV_Edge vs 従来単複 の A/B 比較を Discord Embed フィールドにする（W-057）。"""
+    pe, lg = ab["pure_ev"], ab["legacy"]
+    if not ab.get("both_active"):
+        val = (
+            f"Pure_EV_Edge: n={pe['n']} 純益¥{pe['profit']:,.0f} ROI{pe['roi']}%\n"
+            f"従来単複: n={lg['n']} 純益¥{lg['profit']:,.0f} ROI{lg['roi']}%\n"
+            f"（{ab['winner']}）"
+        )
+    else:
+        sign = "+" if ab["diff_profit"] >= 0 else ""
+        val = (
+            f"💎Pure_EV_Edge: ROI**{pe['roi']}%** 純益¥{pe['profit']:,.0f} (n={pe['n']}/的中{pe['hit_rate']}%)\n"
+            f"📊従来単複: ROI**{lg['roi']}%** 純益¥{lg['profit']:,.0f} (n={lg['n']}/的中{lg['hit_rate']}%)\n"
+            f"差分: 純益{sign}¥{ab['diff_profit']:,.0f} / ROI{sign}{ab['diff_roi']}pt → **勝者: {ab['winner']}**"
+        )
+    return {
+        "name": "🅰️🅱️ Pure_EV_Edge シャドーA/B (W-057)",
+        "value": val,
+        "inline": False,
+    }
+
+
+def format_ab_text(ab: dict) -> str:
+    """A/B のプレーンテキスト版（ログ/テスト用）。"""
+    pe, lg = ab["pure_ev"], ab["legacy"]
+    return (
+        f"PureEV ROI{pe['roi']}%/¥{pe['profit']:,.0f}(n{pe['n']}) vs "
+        f"従来単複 ROI{lg['roi']}%/¥{lg['profit']:,.0f}(n{lg['n']}) "
+        f"→ {ab['winner']} (差¥{ab['diff_profit']:,.0f})"
+    )
+
+
 def send_health_report(
     date_str: str | None = None, *, dry_run: bool = False
 ) -> HealthReport:
@@ -238,11 +282,15 @@ def send_health_report(
     conn = init_db()
     try:
         report = collect_health(conn, date_str)
+        ab = _safe_ab_variants(conn)  # W-057 シャドーA/B（best-effort）
     finally:
         conn.close()
 
     logger.info("[ヘルスレポート]\n%s", format_report_text(report))
+    if ab:
+        logger.info("[ヘルスレポート][A/B] %s", format_ab_text(ab))
     if dry_run:
+        report.ab = ab  # type: ignore[attr-defined]
         return report
 
     color = {"ok": 0x2ECC71, "warn": 0xF1C40F, "crit": 0xE74C3C}[report.severity]
@@ -258,7 +306,7 @@ def send_health_report(
                 else "本日は非開催日です（レースなし）。"
             ),
             color=color,
-            fields=format_report_fields(report),
+            fields=format_report_fields(report) + ([format_ab_field(ab)] if ab else []),
         )
     except Exception as exc:  # noqa: BLE001 — 送信失敗でレポート集計は成功扱い
         logger.warning("[ヘルスレポート] Discord 送信失敗: %s", exc)

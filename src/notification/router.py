@@ -8,6 +8,7 @@ src/notification/router.py — Discord 通知マルチ Webhook ルーター
   ab_test     : DISCORD_WEBHOOK_AB_TEST      (V1/V2 成績比較レポート)
   note_draft  : DISCORD_WEBHOOK_NOTE_DRAFT   (note下書き出力用)
 """
+
 from __future__ import annotations
 
 import logging
@@ -36,9 +37,9 @@ _CHUNK_MAX: int = 1800
 
 CHANNEL_ENV: dict[str, str] = {
     "prediction": "DISCORD_WEBHOOK_URL",
-    "system":     "DISCORD_WEBHOOK_SYSTEM",
-    "ev_alert":   "DISCORD_WEBHOOK_EV_ALERT",
-    "ab_test":    "DISCORD_WEBHOOK_AB_TEST",
+    "system": "DISCORD_WEBHOOK_SYSTEM",
+    "ev_alert": "DISCORD_WEBHOOK_EV_ALERT",
+    "ab_test": "DISCORD_WEBHOOK_AB_TEST",
     "note_draft": "DISCORD_WEBHOOK_NOTE_DRAFT",
 }
 
@@ -49,6 +50,7 @@ _LEGACY_MAP: dict[str, str] = {
 
 
 # ── ヘルパー関数 ──────────────────────────────────────────────────────────────
+
 
 def _chunk_text(text: str, max_len: int = _CHUNK_MAX) -> list[str]:
     """テキストを max_len 文字以下のチャンクに分割して返す。
@@ -74,13 +76,13 @@ def _chunk_text(text: str, max_len: int = _CHUNK_MAX) -> list[str]:
         pos = remaining.rfind("\n\n", 0, max_len)
         if pos > 0:
             chunks.append(remaining[:pos])
-            remaining = remaining[pos + 2:]
+            remaining = remaining[pos + 2 :]
             continue
         # 2. 単一改行で分割
         pos = remaining.rfind("\n", 0, max_len)
         if pos > 0:
             chunks.append(remaining[:pos])
-            remaining = remaining[pos + 1:]
+            remaining = remaining[pos + 1 :]
             continue
         # 3. ハードカット
         chunks.append(remaining[:max_len])
@@ -148,8 +150,12 @@ def _format_buying_guide(predictions: dict) -> str | None:
 
     # 単勝・複勝（honmei から）
     honmei_bets = predictions.get("honmei", [])
-    win_bet = next((b for b in honmei_bets if getattr(b, "bet_type", "") == "win"), None)
-    place_bet = next((b for b in honmei_bets if getattr(b, "bet_type", "") == "place"), None)
+    win_bet = next(
+        (b for b in honmei_bets if getattr(b, "bet_type", "") == "win"), None
+    )
+    place_bet = next(
+        (b for b in honmei_bets if getattr(b, "bet_type", "") == "place"), None
+    )
 
     if win_bet or place_bet:
         lines.append("■ 単複で手堅く行くなら")
@@ -165,7 +171,9 @@ def _format_buying_guide(predictions: dict) -> str | None:
 
     # 馬連（manji から quinella）
     manji_bets = predictions.get("manji", [])
-    quinella_bet = next((b for b in manji_bets if getattr(b, "bet_type", "") == "quinella"), None)
+    quinella_bet = next(
+        (b for b in manji_bets if getattr(b, "bet_type", "") == "quinella"), None
+    )
     if quinella_bet:
         nums_raw = getattr(quinella_bet, "numbers", [])
         names_raw = getattr(quinella_bet, "names", [])
@@ -175,7 +183,9 @@ def _format_buying_guide(predictions: dict) -> str | None:
             aite_nums = [str(combo[1]) for combo in nums_raw]
             n_ten = len(aite_nums)
             lines.append("■ 馬連で中穴・好配当を狙うなら")
-            lines.append(f"・馬連 軸流し：{jiku}番 {jiku_name} → 相手：{'、'.join(aite_nums)}番（計{n_ten}点）")
+            lines.append(
+                f"・馬連 軸流し：{jiku}番 {jiku_name} → 相手：{'、'.join(aite_nums)}番（計{n_ten}点）"
+            )
             lines.append("")
 
     # 三連複（alpha または manji から trio）
@@ -190,9 +200,9 @@ def _format_buying_guide(predictions: dict) -> str | None:
         if nums_raw and isinstance(nums_raw[0], (list, tuple)):
             jiku = nums_raw[0][0]
             jiku_name = names_raw[0] if names_raw else ""
-            aite_nums = list(dict.fromkeys(
-                str(n) for combo in nums_raw for n in combo if n != jiku
-            ))
+            aite_nums = list(
+                dict.fromkeys(str(n) for combo in nums_raw for n in combo if n != jiku)
+            )
             n_ten = len(nums_raw)
             lines.append("■ 三連複で高配当（万馬券）を狙うなら")
             lines.append(
@@ -207,6 +217,7 @@ def _format_buying_guide(predictions: dict) -> str | None:
 
 
 # ── NotificationRouter ────────────────────────────────────────────────────────
+
 
 class NotificationRouter:
     """マルチ Webhook ルーティング層。
@@ -230,9 +241,9 @@ class NotificationRouter:
     # チャンネル識別子 → ログラベル
     _CHANNEL_LABELS: dict[str, str] = {
         "prediction": "予想",
-        "system":     "システム",
-        "ev_alert":   "EV激熱",
-        "ab_test":    "A/Bテスト",
+        "system": "システム",
+        "ev_alert": "EV激熱",
+        "ab_test": "A/Bテスト",
         "note_draft": "note下書き",
     }
 
@@ -293,7 +304,9 @@ class NotificationRouter:
         pred = self._get("prediction")
         if pred:
             pred.notify_prerace_result(
-                race_id, honmei_bets, manji_bets,
+                race_id,
+                honmei_bets,
+                manji_bets,
                 oracle_bets=oracle_bets,
                 hit_focus_bets=hit_focus_bets,
                 alpha_bets=alpha_bets,
@@ -316,9 +329,7 @@ class NotificationRouter:
             if rb is not None:
                 all_bets.extend(getattr(rb, "bets", []))
 
-        max_ev = max(
-            (getattr(b, "expected_value", 0.0) for b in all_bets), default=0.0
-        )
+        max_ev = max((getattr(b, "expected_value", 0.0) for b in all_bets), default=0.0)
         if max_ev < EV_ALERT_THRESHOLD:
             return
 
@@ -335,7 +346,8 @@ class NotificationRouter:
         )
         logger.info(
             "[EV激熱アラート] %s  max_ev=%.2f  → ev_alert チャンネル送信",
-            race_id, max_ev,
+            race_id,
+            max_ev,
         )
 
     def send_text(self, text: str) -> None:
@@ -385,6 +397,40 @@ class NotificationRouter:
         )
         ev_notifier.send_text(text)
 
+    def notify_pure_ev_edge(self, race_id: str, pure_ev_bets: object) -> None:
+        """Pure_EV_Edge（黒字化専用・単複限定）の買い目を prediction チャンネルへ送信する。
+
+        ev_alert チャンネルが独立設定で最大EVが閾値超なら ev_alert へも追加送信する。
+
+        Args:
+            race_id: 対象レース ID。
+            pure_ev_bets: PureEVRaceBets 互換（.bets に PureEVBet のリスト）。
+        """
+        bets = list(getattr(pure_ev_bets, "bets", None) or [])
+        if not bets:
+            return
+        notifier = self._get("prediction")
+        if notifier is None:
+            return
+        lines = [f"💎 **Pure_EV_Edge（黒字化専用・単複）** `{race_id}`"]
+        for b in bets:
+            lines.append(
+                f"・{getattr(b, 'bet_type', '?')} "
+                f"{getattr(b, 'horse_number', '?')}番 {getattr(b, 'horse_name', '')}  "
+                f"EV={getattr(b, 'expected_value', 0.0):.2f} "
+                f"P={getattr(b, 'prob', 0.0):.0%} "
+                f"(1/10Kelly ¥{int(getattr(b, 'stake', 0)):,})"
+            )
+        notifier.send_text("\n".join(lines))
+
+        max_ev = max((getattr(b, "expected_value", 0.0) for b in bets), default=0.0)
+        ev_notifier = self._channels.get("ev_alert")
+        if ev_notifier is not None and max_ev >= EV_ALERT_THRESHOLD:
+            ev_notifier.send_text(
+                f"@everyone 💎 **Pure_EV_Edge 激熱** `{race_id}` 最大EV={max_ev:.2f}\n"
+                + "\n".join(lines[1:])
+            )
+
     def notify_prerace_15min(
         self,
         race_id: str,
@@ -408,9 +454,7 @@ class NotificationRouter:
             )
             return
         notifier.send_text(message)
-        logger.info(
-            "[発走前アラート] %s 送信完了 (max_ev=%.2f)", race_id, max_ev
-        )
+        logger.info("[発走前アラート] %s 送信完了 (max_ev=%.2f)", race_id, max_ev)
 
     def notify_hit_summary(
         self,
@@ -432,8 +476,11 @@ class NotificationRouter:
         n = self._get("prediction")
         if n:
             n.notify_hit_summary(
-                date_str, hit_count, total_count,
-                cumulative_pnl, monthly_progress_pct,
+                date_str,
+                hit_count,
+                total_count,
+                cumulative_pnl,
+                monthly_progress_pct,
             )
 
     def notify_skip(self, race_id: str, reason: str) -> None:
@@ -568,15 +615,12 @@ class NotificationRouter:
         for i, chunk in enumerate(chunks, 1):
             footer = "\n_（以上）_" if i == n_total else ""
             message = (
-                f"【note下書き ({i}/{n_total})】\n"
-                f"```markdown\n{chunk}{footer}\n```"
+                f"【note下書き ({i}/{n_total})】\n```markdown\n{chunk}{footer}\n```"
             )
             notifier.send_text(message)
 
         post = x_post if x_post is not None else _generate_x_post(title, body)
-        notifier.send_text(
-            f"📢 **X（Twitter）告知ポスト案**\n```\n{post}\n```"
-        )
+        notifier.send_text(f"📢 **X（Twitter）告知ポスト案**\n```\n{post}\n```")
 
         logger.info(
             "[Discord:note下書き] 送信完了: %dチャンク + X告知ポスト1件",

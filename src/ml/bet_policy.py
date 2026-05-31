@@ -17,8 +17,8 @@ from __future__ import annotations
 import re
 
 # ── ポリシー定義 ──────────────────────────────────────────────────────────────
-# 実弾モデル（実際に投票する）
-LIVE_MODELS: frozenset[str] = frozenset({"本命", "卍", "Alpha-Payout"})
+# 実弾モデル（実際に投票する）。Pure_EV_Edge は黒字化専用の単複バリアント。
+LIVE_MODELS: frozenset[str] = frozenset({"本命", "卍", "Alpha-Payout", "Pure_EV_Edge"})
 
 # 実弾券種（単勝・複勝のみ）
 LIVE_BET_TYPES: frozenset[str] = frozenset({"単勝", "複勝"})

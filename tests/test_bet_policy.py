@@ -43,3 +43,11 @@ def test_ornamental_models_never_live() -> None:
 
 def test_unknown_model_not_live() -> None:
     assert is_live_bet("謎モデル(直前)", "単勝") is False
+
+
+def test_pure_ev_edge_is_live_tanpuku() -> None:
+    # Pure_EV_Edge（黒字化専用枠）は実弾モデル・単複のみ
+    assert is_live_bet("Pure_EV_Edge(直前)", "単勝") is True
+    assert is_live_bet("Pure_EV_Edge(直前)", "複勝") is True
+    assert is_live_bet("Pure_EV_Edge(直前)", "三連単") is False
+    assert base_model("Pure_EV_Edge(直前)") == "Pure_EV_Edge"

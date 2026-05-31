@@ -645,7 +645,7 @@ def _run_pure_ev_edge(
             select_pure_ev_bets,
         )
 
-        cfg = PureEVConfig(bankroll=get_current_bankroll(conn))
+        cfg = PureEVConfig(initial_bankroll=get_current_bankroll(conn))
 
         # サーキットブレーカー: 当日/当週の確定損失が上限超なら新規購入を停止
         if rdate:
@@ -680,7 +680,11 @@ def _run_pure_ev_edge(
 
         bets = select_pure_ev_bets(race_id, horses, cfg)
         if not bets.bets:
-            logger.info("[Pure_EV_Edge] 買い目なし race_id=%s（EV<%.2f）", race_id, cfg.ev_threshold)
+            logger.info(
+                "[Pure_EV_Edge] 買い目なし race_id=%s（EV<%.2f）",
+                race_id,
+                cfg.ev_threshold,
+            )
             return None
 
         # DB 保存（単勝・複勝を別レコードで・combination_json は単頭リスト）
@@ -693,12 +697,15 @@ def _run_pure_ev_edge(
                     "horse_number": b.horse_number,
                     "horse_name": b.horse_name,
                     "predicted_rank": rank + 1,
-                    "model_score": b.win_prob,
+                    "model_score": b.prob,
                     "ev_score": b.expected_value,
                 }
                 for rank, b in enumerate(sub)
             ]
             combo_json = _json.dumps([[b.horse_number] for b in sub])
+            # 会計一貫性(Phase2): DB の recommended_bet は実購入額=¥100×点数で統一。
+            # 1/10 Kelly 推奨額は notes に併記（実弾サイズの参考値）。
+            kelly_sum = int(sum(b.stake for b in sub))
             try:
                 insert_prediction(
                     conn,
@@ -706,10 +713,13 @@ def _run_pure_ev_edge(
                     model_type=f"{PURE_EV_MODEL_NAME}{suffix}",
                     bet_type=bt,
                     horses=horses_payload,
-                    confidence=max(b.win_prob for b in sub),
+                    confidence=max(b.prob for b in sub),
                     expected_value=max(b.expected_value for b in sub),
-                    recommended_bet=float(sum(b.stake for b in sub)),
-                    notes=f"黒字化専用枠 {len(sub)}点 EV>={cfg.ev_threshold} 1/10Kelly",
+                    recommended_bet=float(100 * len(sub)),
+                    notes=(
+                        f"黒字化専用枠 {len(sub)}点 EV>={cfg.ev_threshold} "
+                        f"1/10Kelly推奨¥{kelly_sum:,}"
+                    ),
                     combination_json=combo_json,
                 )
             except Exception as exc:  # noqa: BLE001
@@ -999,10 +1009,19 @@ def _prerace_pipeline_inner(
     # サーキットブレーカー付き。失敗しても本処理は止めない。
     pure_ev_bets = None
     if not provisional:
-        _rdate = f"{race_id[:4]}-{race_id[4:6]}-{race_id[6:8]}" if len(race_id) >= 8 else None
+        _rdate = (
+            f"{race_id[:4]}-{race_id[4:6]}-{race_id[6:8]}"
+            if len(race_id) >= 8
+            else None
+        )
         pure_ev_bets = _run_pure_ev_edge(
-            conn, race_id, df, ev_scores, place_scores,
-            "(直前)", rdate=_rdate,
+            conn,
+            race_id,
+            df,
+            ev_scores,
+            place_scores,
+            "(直前)",
+            rdate=_rdate,
         )
 
     # Step 4c: オッズ歪み補正・危険馬フィルタ（直前のみ・ステップ2-2）
@@ -1097,7 +1116,11 @@ def _prerace_pipeline_inner(
     if pure_ev_bets is not None and getattr(pure_ev_bets, "bets", None):
         payload["pure_ev_edge"] = pure_ev_bets.to_dict()
     else:
-        payload["pure_ev_edge"] = {"race_id": race_id, "model_type": "Pure_EV_Edge", "bets": []}
+        payload["pure_ev_edge"] = {
+            "race_id": race_id,
+            "model_type": "Pure_EV_Edge",
+            "bets": [],
+        }
     if is_v2:
         from src.pipeline._common import JSON_OUT_DIR
         import json as _json_mod

@@ -102,3 +102,91 @@ def compute_live_roi(
     result["by_model"] = {k: _summarize(v) for k, v in by_model.items()}
     result["by_bet_type"] = {k: _summarize(v) for k, v in by_bet.items()}
     return result
+
+
+# 従来単複バリアント（Pure_EV_Edge フィルタ「非適用」側）の実弾モデル
+_LEGACY_TANPUKU_MODELS = ("本命", "卍", "Alpha-Payout")
+_PURE_EV_MODEL = "Pure_EV_Edge"
+
+
+def compute_ab_variants(
+    conn: sqlite3.Connection, *, since: str | None = None
+) -> dict[str, Any]:
+    """W-057 シャドーA/B: Pure_EV_Edge フィルタ「適用」vs「非適用(従来単複)」の確定P&L比較。
+
+    両バリアントとも実弾券種(単勝/複勝)・コスト=payout−profit・is_superseded除外で集計し、
+    どちらが利益を出しているか（純益差・ROI差・勝者）を返す。
+
+    - 適用(pure_ev)   : model_type 基底 = "Pure_EV_Edge"
+    - 非適用(legacy)  : model_type 基底 ∈ 本命/卍/Alpha-Payout（従来の単複ロジック）
+
+    Returns:
+        {pure_ev:{...}, legacy:{...}, diff_profit, diff_roi, winner, both_active}
+    """
+    from src.ml.bet_policy import base_model as _base
+
+    where = "WHERE pr.payout IS NOT NULL AND COALESCE(p.is_superseded, 0) = 0"
+    params: list[Any] = []
+    if since:
+        where += " AND p.created_at >= ?"
+        params.append(since)
+    rows = conn.execute(
+        f"""
+        SELECT p.model_type, p.bet_type,
+               COALESCE(pr.payout, 0), COALESCE(pr.profit, 0), COALESCE(pr.is_hit, 0)
+          FROM predictions p
+          JOIN prediction_results pr ON pr.prediction_id = p.id
+          {where}
+        """,
+        params,
+    ).fetchall()
+
+    pure = [0, 0.0, 0.0, 0.0, 0.0]  # n, cost, payout, profit, hits
+    legacy = [0, 0.0, 0.0, 0.0, 0.0]
+    for model_type, bet_type, payout, profit, is_hit in rows:
+        if bet_type not in ("単勝", "複勝"):
+            continue
+        b = _base(model_type)
+        if b == _PURE_EV_MODEL:
+            tgt = pure
+        elif b in _LEGACY_TANPUKU_MODELS:
+            tgt = legacy
+        else:
+            continue
+        tgt[0] += 1
+        tgt[1] += payout - profit
+        tgt[2] += payout
+        tgt[3] += profit
+        tgt[4] += is_hit
+
+    def _s(e: list[float]) -> dict[str, float]:
+        n, cost, pay, prof, hits = e
+        return {
+            "n": int(n),
+            "cost": round(cost, 1),
+            "payout": round(pay, 1),
+            "profit": round(prof, 1),
+            "roi": round(100.0 * pay / cost, 1) if cost > 0 else 0.0,
+            "hit_rate": round(100.0 * hits / n, 1) if n > 0 else 0.0,
+        }
+
+    pe, lg = _s(pure), _s(legacy)
+    diff_profit = round(pe["profit"] - lg["profit"], 1)
+    diff_roi = round(pe["roi"] - lg["roi"], 1)
+    both = pure[0] > 0 and legacy[0] > 0
+    if not both:
+        winner = "判定不能(片側データなし)"
+    elif pe["roi"] > lg["roi"]:
+        winner = "Pure_EV_Edge"
+    elif lg["roi"] > pe["roi"]:
+        winner = "従来単複"
+    else:
+        winner = "互角"
+    return {
+        "pure_ev": pe,
+        "legacy": lg,
+        "diff_profit": diff_profit,
+        "diff_roi": diff_roi,
+        "winner": winner,
+        "both_active": both,
+    }
