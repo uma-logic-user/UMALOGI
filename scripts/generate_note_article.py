@@ -1166,6 +1166,27 @@ def generate_article(
         "",
     ]
 
+    # ── 買い目セクション直下: EV 連動の AI 推奨購入額（読者の資金配分導線）──
+    from src.ops.sns_publisher import (
+        NoteBet,
+        calculate_recommended_note_bets,
+        format_recommended_bets_block,
+    )
+
+    note_bets = [
+        NoteBet(
+            bet_type="複勝",
+            horse_desc=f"{hn}番 {horse_info_map.get(hn, {}).get('horse_name', f'{hn}番')}",
+            ev=ev,
+        )
+        for hn in all_horse_nums
+    ]
+    rec_block = format_recommended_bets_block(
+        calculate_recommended_note_bets(note_bets)
+    )
+    if rec_block:
+        lines += [rec_block]
+
     # 根拠文
     lines += [
         "---",

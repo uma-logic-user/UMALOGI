@@ -9,6 +9,7 @@
 
 | 日付 | 内容 |
 |------|------|
+| 2026-06-01 | 【SNS集客→外部マネタイズ直結エンジン】隔離した観賞用モデル(Oracle/HitFocus)を集客資産として外部収益へ繋ぐ `src/ops/sns_publisher.py` を新設。X コピペ整形(`format_x_post`)・的中速報トリガー(`detect_and_flash`→Discord 集客ch Webhook)・週次 note 用 Markdown(`run_weekly_report`→`outputs/sns/weekly_report_YYYYMMDD.md`)の3経路を実装。実弾(本命/卍/Alpha)は集客統計から除外し会計と分離。詳細レイアウトは docs/4_ui_design.md 同日エントリ参照 |
 | 2026-05-21 | 初版作成。Week1-4 商用化ロードマップ全完了・本番環境ロック確定を受け、実装実績を一本化 |
 
 ---

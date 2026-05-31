@@ -97,7 +97,7 @@ def compute_live_roi(
             "hit_rate": round(100.0 * hits / n, 1) if n > 0 else 0.0,
         }
 
-    result = _summarize(total)
+    result: dict[str, Any] = dict(_summarize(total))
     result["by_model"] = {k: _summarize(v) for k, v in by_model.items()}
     result["by_bet_type"] = {k: _summarize(v) for k, v in by_bet.items()}
     return result

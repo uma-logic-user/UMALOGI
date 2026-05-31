@@ -264,6 +264,20 @@ def _try_publish_win_report(result: object, race_id: str, conn: object) -> None:
         logger.warning("[WinReport] 失敗（スキップ）: %s", e)
 
 
+def _try_sns_flash(conn: object, race_id: str, race_name: str) -> None:
+    """集客モデル(Oracle/HitFocus)の的中(高ROI/万馬券)を SNS 集客チャンネルへ自動速報する。
+
+    レース確定→評価の直後に発火する「的中速報トリガー」。失敗しても例外を漏らさない。
+    """
+    try:
+        from src.ops.sns_publisher import detect_and_flash
+
+        venue = _venue_race_prefix(race_id).split(" ")[0] if race_id else ""
+        detect_and_flash(conn, race_id, race_label=race_name, venue=venue)
+    except Exception as e:
+        logger.warning("[SNS的中速報] スキップ: %s", e)
+
+
 def _venue_race_prefix(race_id: str) -> str:
     """race_id から「会場 NR」形式の表示文字列を生成する（例: "東京 11R"）。
 
@@ -445,6 +459,7 @@ def fetch_single_race(race_id: str, delay: float = 1.5) -> bool:
         # 的中速報を Discord へ送信
         _send_hit_flash(result, result.race_name)
         _try_publish_win_report(result, race_id, conn)
+        _try_sns_flash(conn, race_id, result.race_name)
     except Exception as ee:
         logger.warning("評価失敗 race_id=%s: %s", race_id, ee)
 

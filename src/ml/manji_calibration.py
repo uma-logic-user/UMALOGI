@@ -23,6 +23,7 @@ import logging
 import pickle
 import sqlite3
 from pathlib import Path
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -35,10 +36,11 @@ _FALLBACK_WIN_CAP = 0.6
 _COMBO_CAP = 0.99
 
 # 学習済み較正器のメモリキャッシュ（None=未ロード, False=ファイルなし）
-_win_cal_cache: object | None = None
+# 型: IsotonicRegression インスタンス（サードパーティ・stub なし）のため Any 扱い。
+_win_cal_cache: Any = None
 
 
-def _load_win_cal() -> object | None:
+def _load_win_cal() -> Any:
     """学習済み単勝較正器（IsotonicRegression）をロードする。失敗時は None。"""
     global _win_cal_cache
     if _win_cal_cache is not None:
