@@ -18,6 +18,7 @@ src/ops/sns_publisher.py — SNS 集客・マーケティング自動化エン�
 
 from __future__ import annotations
 
+import json
 import logging
 import os
 import sqlite3
@@ -329,24 +330,39 @@ def export_weekly_report(
     d = out_dir or _SNS_DIR
     d.mkdir(parents=True, exist_ok=True)
 
+    # 主役は「最高配当」と「的中率」。赤字寄りの回収率は強調せず参考表示に留める。
+    headline = ""
+    if stats:
+        top = max(stats, key=lambda s: s.best_payout)
+        desc = (
+            f"（{top.model_name}・{top.best_payout_desc}）"
+            if top.best_payout_desc
+            else f"（{top.model_name}）"
+        )
+        headline = f"## 🏆 今週の最高配当：**¥{top.best_payout:,}** {desc}"
+
     lines = [
         f"# 🏇 UMALOGI 集客モデル 週次成績（{period_label}）",
         "",
-        "AI が高配当を狙う「観賞用」予想モデルの今週の成績です。",
+        "AI が高配当を狙う「観賞用」予想モデルの成績です。注目は **的中** と **最高配当**！",
         "",
-        "| モデル | 件数 | 的中率 | 回収率 | 最高配当 |",
-        "|---|---:|---:|---:|---|",
+    ]
+    if headline:
+        lines += [headline, ""]
+    lines += [
+        "| モデル | 件数 | 🎯的中率 | 🏆最高配当 | 回収率(参考) |",
+        "|---|---:|---:|---|---:|",
     ]
     if not stats:
         lines.append("| （対象データなし） | - | - | - | - |")
     else:
         for s in stats:
-            best = f"¥{s.best_payout:,}"
+            best = f"**¥{s.best_payout:,}**"
             if s.best_payout_desc:
-                best += f"<br/>{s.best_payout_desc}"
+                best += f" {s.best_payout_desc}"
             lines.append(
-                f"| {s.model_name} | {s.n_bets} | {s.hit_rate:.1f}% | "
-                f"**{s.roi:.1f}%** | {best} |"
+                f"| {s.model_name} | {s.n_bets} | **{s.hit_rate:.1f}%** | "
+                f"{best} | {s.roi:.1f}% |"
             )
     lines += [
         "",
@@ -364,6 +380,56 @@ def export_weekly_report(
 # ─────────────────────────────────────────────────────────────────────
 # DB 連携グルー（本番運用）
 # ─────────────────────────────────────────────────────────────────────
+def _format_combo(combo_json: str | None, bet_type: str = "") -> str:
+    """combination_json を SNS 映えする可読な買い目表記へ変換する。
+
+    例:
+      "[3]"                          → "3"
+      "[3,5]"                        → "3-5"
+      "[[6,8],[6,16],[6,2]]"         → "軸6→相手2,8,16（3点）"  （全組共通の軸あり）
+      "[[6,8],[8,16],[6,16]]"        → "6-8 / 8-16 / 6-16（3点）"（軸なし=ボックス）
+    パース不能時は記号類を除いた文字列にフォールバックする（最低限の可読化）。
+    """
+    if not combo_json:
+        return ""
+    try:
+        data = json.loads(combo_json)
+    except (ValueError, TypeError):
+        return str(combo_json).strip("[]").replace('"', "")
+
+    # フラット数値リスト（単勝/複勝など）: [3] / [3,5]
+    if isinstance(data, list) and data and not isinstance(data[0], (list, tuple)):
+        try:
+            return "-".join(str(int(n)) for n in data)
+        except (ValueError, TypeError):
+            return ",".join(str(n) for n in data)
+
+    # 組み合わせリスト（馬連/三連複など）: [[..],[..]]
+    if isinstance(data, list) and data and isinstance(data[0], (list, tuple)):
+        try:
+            combos = [[int(n) for n in c] for c in data]
+        except (ValueError, TypeError):
+            combos = [[*c] for c in data]
+        n = len(combos)
+        common = set(combos[0])
+        for c in combos[1:]:
+            common &= set(c)
+        if common and n > 1:  # 全組に共通する軸あり → 軸→相手表記
+            axes = sorted(common)
+            others = sorted({x for c in combos for x in c} - common)
+            axis_s = ",".join(map(str, axes))
+            if others:
+                return f"軸{axis_s}→相手{','.join(map(str, others))}（{n}点）"
+            return f"{axis_s}（{n}点）"
+        parts = ["-".join(map(str, c)) for c in combos[:8]]  # 軸なし=ボックス
+        body = " / ".join(parts)
+        if n > 8:
+            return f"{body} 他（計{n}点）"
+        return f"{body}（{n}点）" if n > 1 else body
+
+    return str(data)
+
+
 def detect_and_flash(
     conn: sqlite3.Connection,
     race_id: str,
@@ -396,7 +462,7 @@ def detect_and_flash(
             venue=venue,
             model_name=base_model(model_type),
             bet_type=bet_type,
-            horse_desc=(combo_json or "").strip("[]"),
+            horse_desc=_format_combo(combo_json, bet_type),
             stake=stake,
             payout=int(round(payout)),
         )

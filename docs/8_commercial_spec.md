@@ -9,6 +9,7 @@
 
 | 日付 | 内容 |
 |------|------|
+| 2026-06-01 | 【Note購入後の資金配分導線=おすすめ掛け金】読者が「予算内で各買い目にいくら賭けるか」で迷い販売導線(リピート購入)が詰まる課題を解消。`src/ops/sns_publisher.py` に EV 連動のおすすめ掛け金エンジンを追加: `recommended_unit_stake()`(EV<1.20→100円/1u安心投資, 1.20–1.40→300円/3u中勝負, 1.40+→500円/5u激熱勝負！)・`NoteBet`/`RecommendedBet`/`RecommendedBetPlan`・`calculate_recommended_note_bets()`・`format_recommended_bets_block()`。`scripts/generate_note_article.py` の買い目セクション直下へ「💰 AI推奨購入額（1点100円ベース換算）」ブロック(各点の掛け金＋想定総投資額＋倍率調整の免責)を自動挿入。テスト: tests/test_sns_publisher.py 拡張＋tests/test_note_article_recommended_bets.py 新設(全979件PASS)。影響ファイル: src/ops/sns_publisher.py, scripts/generate_note_article.py |
 | 2026-06-01 | 【SNS集客→外部マネタイズ直結エンジン】隔離した観賞用モデル(Oracle/HitFocus)を集客資産として外部収益へ繋ぐ `src/ops/sns_publisher.py` を新設。X コピペ整形(`format_x_post`)・的中速報トリガー(`detect_and_flash`→Discord 集客ch Webhook)・週次 note 用 Markdown(`run_weekly_report`→`outputs/sns/weekly_report_YYYYMMDD.md`)の3経路を実装。実弾(本命/卍/Alpha)は集客統計から除外し会計と分離。詳細レイアウトは docs/4_ui_design.md 同日エントリ参照 |
 | 2026-05-21 | 初版作成。Week1-4 商用化ロードマップ全完了・本番環境ロック確定を受け、実装実績を一本化 |
 
