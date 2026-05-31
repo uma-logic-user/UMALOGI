@@ -52,7 +52,9 @@ def friday_batch(target_date: str | None = None) -> list[str]:
             ).fetchall()
         ]
         conn.close()
-        logger.info("friday_batch: DB 既存 %d レースを返却 (JVLink スキップ)", len(race_ids))
+        logger.info(
+            "friday_batch: DB 既存 %d レースを返却 (JVLink スキップ)", len(race_ids)
+        )
         return race_ids
 
     from src.scraper.jravan_client import JVDataLoader, DATASPEC_RACE
@@ -127,6 +129,34 @@ def ensure_race_record(conn: sqlite3.Connection, race_id: str, date_str: str) ->
             )
 
 
+def _safe_distance(value: object) -> int:
+    """distance 値を安全に int へ変換する（例外を出さない）。
+
+    netkeiba の DOM 変更・JVLink 欠損・テスト用 Mock などで distance が
+    文字列 ("1600m")・None・想定外の型になっても例外を送出せず、
+    抽出できる数字があればそれを、無ければ 0 を返す。
+
+    Args:
+        value: distance 候補値（int / float / str / None / その他）。
+
+    Returns:
+        正規化済みの距離 (m)。変換不能なら 0。
+    """
+    if isinstance(value, bool):  # bool は int サブクラスなので先に除外
+        return 0
+    if isinstance(value, (int, float)):
+        return int(value)
+    if isinstance(value, str):
+        digits = "".join(ch for ch in value if ch.isdigit())
+        return int(digits) if digits else 0
+    return 0
+
+
+def _safe_text(value: object) -> str:
+    """テキストフィールドを安全に str へ変換する（非 str は空文字に）。"""
+    return value if isinstance(value, str) else ""
+
+
 def update_race_details_from_entry(conn: sqlite3.Connection, tbl: object) -> bool:
     """EntryTable に含まれる distance/surface/race_name で races テーブルを更新する。
 
@@ -141,12 +171,12 @@ def update_race_details_from_entry(conn: sqlite3.Connection, tbl: object) -> boo
     Returns:
         races テーブルを更新した場合は True、スキップした場合は False。
     """
-    dist    = getattr(tbl, "distance", 0)
-    surf    = getattr(tbl, "surface", "")
-    rname   = getattr(tbl, "race_name", "")
-    tdir    = getattr(tbl, "track_direction", "")
-    weather = getattr(tbl, "weather", "")
-    cond    = getattr(tbl, "condition", "")
+    dist = _safe_distance(getattr(tbl, "distance", 0))
+    surf = _safe_text(getattr(tbl, "surface", ""))
+    rname = _safe_text(getattr(tbl, "race_name", ""))
+    tdir = _safe_text(getattr(tbl, "track_direction", ""))
+    weather = _safe_text(getattr(tbl, "weather", ""))
+    cond = _safe_text(getattr(tbl, "condition", ""))
 
     if dist <= 0 or not surf:
         return False
@@ -164,17 +194,24 @@ def update_race_details_from_entry(conn: sqlite3.Connection, tbl: object) -> boo
             WHERE race_id = ?
             """,
             (
-                dist, surf,
-                tdir, tdir,
-                weather, weather,
-                cond, cond,
-                rname, rname,
+                dist,
+                surf,
+                tdir,
+                tdir,
+                weather,
+                weather,
+                cond,
+                cond,
+                rname,
+                rname,
                 tbl.race_id,  # type: ignore[attr-defined]
             ),
         )
     logger.info(
         "races 更新 race_id=%s dist=%dm surface=%s",
-        tbl.race_id, dist, surf,  # type: ignore[attr-defined]
+        tbl.race_id,
+        dist,
+        surf,  # type: ignore[attr-defined]
     )
     return True
 
@@ -263,14 +300,20 @@ def fetch_and_save_odds(conn: sqlite3.Connection, race_id: str) -> int:
         nan_ratio = 1.0 - len(valid) / max(len(odds_list), 1)
         if nan_ratio == 0.0:  # 全頭オッズ完備の場合のみ RTD を採用
             n = insert_realtime_odds(conn, race_id, odds_list, name_map)
-            logger.info("オッズ取得 [RTD キャッシュ]: %d 頭保存 (race_id=%s)", n, race_id)
+            logger.info(
+                "オッズ取得 [RTD キャッシュ]: %d 頭保存 (race_id=%s)", n, race_id
+            )
             return n
         logger.warning(
             "RTD: NaN あり (%.0f%%) — netkeiba に即フォールバック (race_id=%s)",
-            nan_ratio * 100, race_id,
+            nan_ratio * 100,
+            race_id,
         )
     elif odds_list is not None:
-        logger.warning("RTD: オッズ取得なし or 全 NaN (race_id=%s) — netkeiba にフォールバック", race_id)
+        logger.warning(
+            "RTD: オッズ取得なし or 全 NaN (race_id=%s) — netkeiba にフォールバック",
+            race_id,
+        )
 
     # Stage 2: netkeiba オッズ API（ハイブリッドフォールバック）
     nb_odds = _fetch_odds_netkeiba(race_id)
