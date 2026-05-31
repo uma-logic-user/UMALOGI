@@ -438,6 +438,14 @@ DDL_STATEMENTS: list[str] = [
     "CREATE INDEX IF NOT EXISTS idx_rr_trainer_raceid   ON race_results(trainer, race_id DESC)",
     "CREATE INDEX IF NOT EXISTS idx_rr_race_rank        ON race_results(race_id, rank)",
     "CREATE INDEX IF NOT EXISTS idx_rp_race_bet         ON race_payouts(race_id, bet_type)",
+    # ── 確定P&L集計 / W-057 シャドーA/B / 実弾ROI（pnl_accounting・evaluator）最適化 ──
+    # predictions の WHERE(is_superseded, created_at) + GROUP(model_type, bet_type) を1本でカバー。
+    "CREATE INDEX IF NOT EXISTS idx_pred_ab ON predictions(is_superseded, created_at, model_type, bet_type)",
+    # prediction_results を JOIN キー込みのカバリングインデックス化（payout/profit/is_hit を
+    # テーブル本体に触れず読み出し、数千〜数万行の集計を高速化）。
+    "CREATE INDEX IF NOT EXISTS idx_pred_r_cover ON prediction_results(prediction_id, payout, profit, is_hit)",
+    # 速報オッズの「レース×馬番ごと最新スナップショット」(_latest_odds_map / Pure_EV) 取得用。
+    "CREATE INDEX IF NOT EXISTS idx_odds_race_horse_rec ON realtime_odds(race_id, horse_number, recorded_at DESC)",
     "CREATE INDEX IF NOT EXISTS idx_racehorses_father   ON racehorses(father_id)",
     "CREATE INDEX IF NOT EXISTS idx_racehorses_name     ON racehorses(horse_name)",
     "CREATE INDEX IF NOT EXISTS idx_jockeys_name        ON jockeys(jockey_name)",
