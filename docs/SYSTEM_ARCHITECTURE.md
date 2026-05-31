@@ -1,10 +1,16 @@
 # UMALOGI システムアーキテクチャ仕様書
 
 > 本書は最新ソースコード（Pure_EV_Edge 完全配線 / W-057 シャドーA/B / W-058 日次ヘルスレポート /
-> 卍 Isotonic 較正 / 単複限定ロック / 会計二重性分離 が統合された状態）を解析して
-> 自動生成・同期したものである。データフロー・検証ループを Mermaid 図で示す。
+> 卍 Isotonic 較正 / 単複限定ロック / 会計二重性分離 / コア層の型安全化基盤 が統合された状態）を
+> 解析して自動生成・同期したものである。データフロー・検証ループを Mermaid 図で示す。
 >
-> 最終同期: 2026-06-01 / 対象ブランチ: feature/claude-design-migration
+> 最終同期: 2026-06-01 / 対象ブランチ: grandslam/typesafety（隔離worktree・master へ FF 予定）
+
+## 更新履歴
+
+| 日付 | 変更内容 |
+|------|----------|
+| 2026-06-01 | グランドスラム総点検: コア層(prediction/bet_generator/umanity_uploader/alpha_payout/place)の mypy エラーを 142→71 に半減（型契約の正名化＋_run_alpha_payout の return None 実バグ修正）。P&L 集計の COVERING INDEX 選択を ANALYZE で実現（§8 追記）。型契約回帰テスト23件追加（§9）。影響: src/pipeline/prediction.py, src/ml/bet_generator.py, src/ops/umanity_uploader.py, src/ml/alpha_*_model.py, src/database/init_db.py |
 
 ---
 
@@ -195,10 +201,22 @@ ROI 計算に一切使わない。これにより Kelly 実額と評価基準が
 | `idx_pred_r_cover` | prediction_results(prediction_id, payout, profit, is_hit) | JOIN+集計をカバリングインデックス化 |
 | `idx_odds_race_horse_rec` | realtime_odds(race_id, horse_number, recorded_at DESC) | 最新オッズ/馬体重スナップショット取得 |
 
+> **ANALYZE による統計駆動の index 選択（2026-06-01）**: 上記 `idx_pred_r_cover` は
+> 揃っていたが、統計(sqlite_stat1)が無いと SUM(profit) 集計がプランナの推測で
+> profit 非内包の `idx_pr_pred_hit` を選び、テーブル行アクセスが残っていた。
+> マイグレーション#15 の index 作成後に `ANALYZE`（非破壊・冪等）を実行することで、
+> プランナが COVERING INDEX を選択しテーブルアクセスがゼロ化する（EXPLAIN QUERY PLAN で
+> 実証済み）。get_period_pnl / W-057 A/B / 会計の集計ホットパスに直接効く。
+
 ---
 
 ## 9. 品質・テスト
 
 - 静的解析: `ruff check` クリーン（`ruff.toml` production-sane ルール）。
-- テスト: `pytest`（900+ ケース。異常系・境界値・サーキットブレーカー・DBロック・ネット断を含む）。
+- 型安全: `mypy`（`mypy.ini`・`check_untyped_defs`）。コア層（prediction / bet_generator /
+  umanity_uploader / alpha_payout / alpha_place）は型エラーゼロ。`from __future__ import
+  annotations` ＋ `TYPE_CHECKING` ブロックで循環 import を避けつつ型注釈を付与。
+  RaceBets.model_type は実態（卍/本命/HitFocus/Alpha-Payout/卍V2/本命V2）を Literal で固定。
+- テスト: `pytest`（1000+ ケース。異常系・境界値・サーキットブレーカー・DBロック・ネット断・
+  型契約回帰（`tests/test_typesafety_contracts.py` 23件）を含む）。
 - 較正検証: 時系列 out-of-sample で ECE=0.0177（予測P≒実勝率）。
