@@ -48,6 +48,7 @@ if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
 from dotenv import load_dotenv
+
 load_dotenv(_ROOT / ".env", override=False)
 
 
@@ -55,7 +56,8 @@ def _send_discord(text: str, *, color: int | None = None) -> None:
     """システムチャンネルにメッセージを送信する。NotificationRouter 経由。"""
     try:
         from src.notification.router import NotificationRouter
-        safe_text = text.replace('\x00', '').strip()
+
+        safe_text = text.replace("\x00", "").strip()
         NotificationRouter().send_system_text(safe_text)
     except Exception:
         pass
@@ -65,7 +67,8 @@ def _send_discord_race(text: str) -> None:
     """予想チャンネルにメッセージを送信する（買い目・結果・週次レポート用）。"""
     try:
         from src.notification.router import NotificationRouter
-        safe_text = text.replace('\x00', '').strip()
+
+        safe_text = text.replace("\x00", "").strip()
         NotificationRouter().send_text(safe_text)
     except Exception:
         pass
@@ -82,6 +85,7 @@ def _is_umalogi_process(pid: int) -> bool:
     これにより「PID が偶然再利用された別プロセス」を誤検知しない。
     """
     import psutil
+
     try:
         proc = psutil.Process(pid)
         if not proc.is_running():
@@ -94,9 +98,7 @@ def _is_umalogi_process(pid: int) -> bool:
             return False
         cmdline_str = " ".join(cmdline).lower()
         # Python プロセスで UMALOGI 関連スクリプトを実行しているか確認
-        is_python = any(
-            p in cmdline_str for p in ("python", "py.exe", "python3")
-        )
+        is_python = any(p in cmdline_str for p in ("python", "py.exe", "python3"))
         is_umalogi = any(
             s in cmdline_str for s in ("today_auto_runner", "scheduler", "umalogi")
         )
@@ -143,7 +145,13 @@ logging.basicConfig(
     datefmt="%H:%M:%S",
     handlers=[
         logging.StreamHandler(
-            open(sys.stdout.fileno(), mode="w", encoding="utf-8", errors="replace", closefd=False)
+            open(
+                sys.stdout.fileno(),
+                mode="w",
+                encoding="utf-8",
+                errors="replace",
+                closefd=False,
+            )
         ),
         RotatingFileHandler(
             _ROOT / "data" / "auto_runner.log",
@@ -156,16 +164,16 @@ logging.basicConfig(
 logger = logging.getLogger("auto_runner")
 
 # 発走推定: R1 = 10:00 JST、以降 30 分間隔
-_R1_HOUR      = 10
-_R1_MINUTE    = 0
+_R1_HOUR = 10
+_R1_MINUTE = 0
 _INTERVAL_MIN = 30
 
 # 夜間バッチの時刻
-_EVENING_FETCH_HOUR   = 20
+_EVENING_FETCH_HOUR = 20
 _EVENING_FETCH_MINUTE = 0
 
 # 翌朝ループ開始時刻
-_MORNING_START_HOUR   = 8
+_MORNING_START_HOUR = 8
 _MORNING_START_MINUTE = 30
 
 # 再起動待機時間（秒）
@@ -173,7 +181,7 @@ _RESTART_WAIT_SEC = 30
 
 # postrace 再試行設定（審議・写真判定: 最大40分対応）
 # 300秒→120秒に短縮: スレッドを早く解放してポストレースキューを消化しやすくする
-_POSTRACE_MAX_RETRY      = 20   # 20回 × 120秒 = 最大40分（変わらず）
+_POSTRACE_MAX_RETRY = 20  # 20回 × 120秒 = 最大40分（変わらず）
 _POSTRACE_RETRY_WAIT_SEC = 120  # 120秒（旧300→短縮）
 
 # 重複起動防止 PID ファイル
@@ -186,6 +194,7 @@ _MON, _TUE, _WED, _THU, _FRI, _SAT, _SUN = range(7)
 # ─────────────────────────────────────────────────────────────────────────────
 # ユーティリティ
 # ─────────────────────────────────────────────────────────────────────────────
+
 
 def _weekday(date_str: str) -> int:
     """date_str (YYYYMMDD) の曜日を返す（0=月, 4=金, 5=土, 6=日）。"""
@@ -228,13 +237,16 @@ def _wait_until(target: datetime.datetime, dry_run: bool = False) -> None:
         if remaining <= 0:
             return
         sleep_secs = min(30.0, remaining)
-        logger.info("待機中: あと %.0f 秒 (目標 %s)", remaining, target.strftime("%H:%M:%S"))
+        logger.info(
+            "待機中: あと %.0f 秒 (目標 %s)", remaining, target.strftime("%H:%M:%S")
+        )
         time.sleep(sleep_secs)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
 # DB アクセス
 # ─────────────────────────────────────────────────────────────────────────────
+
 
 def _fetch_today_races(target_date: str) -> list[tuple[str, str, int]]:
     """DB から当日の (race_id, date, race_number) を返す。"""
@@ -261,6 +273,7 @@ def _fetch_today_races(target_date: str) -> list[tuple[str, str, int]]:
 # サブプロセス実行
 # ─────────────────────────────────────────────────────────────────────────────
 
+
 def _run_prerace(race_id: str, dry_run: bool, model_version: str = "v1") -> int:
     """prerace パイプラインを実行して returncode を返す。
 
@@ -270,18 +283,33 @@ def _run_prerace(race_id: str, dry_run: bool, model_version: str = "v1") -> int:
         model_version: "v1" (既存) or "v2" (W-004+動的EV+Kelly)
     """
     cmd = [
-        sys.executable, "-m", "src.main_pipeline", "prerace", race_id,
-        "--model-version", model_version,
+        sys.executable,
+        "-m",
+        "src.main_pipeline",
+        "prerace",
+        race_id,
+        "--model-version",
+        model_version,
     ]
     if dry_run:
         logger.info("[DRY-RUN] 実行コマンド: %s", " ".join(cmd))
         return 0
     try:
         result = subprocess.run(
-            cmd, cwd=str(_ROOT), timeout=300, stderr=subprocess.PIPE, text=True, encoding="utf-8"
+            cmd,
+            cwd=str(_ROOT),
+            timeout=300,
+            stderr=subprocess.PIPE,
+            text=True,
+            encoding="utf-8",
         )
         if result.returncode != 0 and result.stderr:
-            logger.error("prerace[%s] stderr [%s]: %s", model_version, race_id, result.stderr[-2000:])
+            logger.error(
+                "prerace[%s] stderr [%s]: %s",
+                model_version,
+                race_id,
+                result.stderr[-2000:],
+            )
         return result.returncode
     except subprocess.TimeoutExpired:
         logger.error("prerace[%s] タイムアウト (300s): %s", model_version, race_id)
@@ -303,8 +331,13 @@ def _run_fetch_result(race_id: str, dry_run: bool) -> int:
     失敗時は _POSTRACE_MAX_RETRY 回まで _POSTRACE_RETRY_WAIT_SEC 秒待機して再試行する。
     全試行失敗時は Discord にアラートを送信する。
     """
-    cmd = [sys.executable, str(_ROOT / "scripts" / "fetch_race_result.py"),
-           "--race-id", race_id, "--no-dashboard"]
+    cmd = [
+        sys.executable,
+        str(_ROOT / "scripts" / "fetch_race_result.py"),
+        "--race-id",
+        race_id,
+        "--no-dashboard",
+    ]
     if dry_run:
         logger.info("[DRY-RUN] 実行コマンド: %s", " ".join(cmd))
         return 0
@@ -312,15 +345,22 @@ def _run_fetch_result(race_id: str, dry_run: bool) -> int:
     for attempt in range(1, _POSTRACE_MAX_RETRY + 1):
         try:
             result = subprocess.run(
-                cmd, cwd=str(_ROOT), timeout=300,
-                stderr=subprocess.PIPE, text=True, encoding="utf-8",
+                cmd,
+                cwd=str(_ROOT),
+                timeout=300,
+                stderr=subprocess.PIPE,
+                text=True,
+                encoding="utf-8",
             )
             if result.returncode == 0:
                 return 0
             # 途中失敗はログのみ（Discordに通知しない）
             logger.warning(
                 "[NG] 結果取得 rc=%d (試行 %d/%d): %s — %d 秒後に再試行",
-                result.returncode, attempt, _POSTRACE_MAX_RETRY, race_id,
+                result.returncode,
+                attempt,
+                _POSTRACE_MAX_RETRY,
+                race_id,
                 _POSTRACE_RETRY_WAIT_SEC,
             )
             if result.stderr:
@@ -328,7 +368,10 @@ def _run_fetch_result(race_id: str, dry_run: bool) -> int:
         except subprocess.TimeoutExpired:
             logger.warning(
                 "結果速報取得 タイムアウト (300s) 試行 %d/%d: %s — %d 秒後に再試行",
-                attempt, _POSTRACE_MAX_RETRY, race_id, _POSTRACE_RETRY_WAIT_SEC,
+                attempt,
+                _POSTRACE_MAX_RETRY,
+                race_id,
+                _POSTRACE_RETRY_WAIT_SEC,
             )
 
         if attempt < _POSTRACE_MAX_RETRY:
@@ -363,12 +406,14 @@ def _is_notable_race(race_id: str) -> bool:
         race_name = (row[0] or "") if row else ""
 
         # G1〜G3・国内重賞の主要パターン + EV閾値で重要度を判定
-        is_graded = bool(re.search(
-            r"[ＧGⅠⅡⅢ]|重賞|ステークス|カップ|記念|天皇賞|有馬|菊花賞|桜花賞|"
-            r"ダービー|オークス|皐月賞|宝塚|スプリンターズ|マイルＣＳ|ジャパンＣ|"
-            r"秋華賞|エリザベス|ヴィクトリア|高松宮|フェブラリー|チャンピオンズ",
-            race_name,
-        ))
+        is_graded = bool(
+            re.search(
+                r"[ＧGⅠⅡⅢ]|重賞|ステークス|カップ|記念|天皇賞|有馬|菊花賞|桜花賞|"
+                r"ダービー|オークス|皐月賞|宝塚|スプリンターズ|マイルＣＳ|ジャパンＣ|"
+                r"秋華賞|エリザベス|ヴィクトリア|高松宮|フェブラリー|チャンピオンズ",
+                race_name,
+            )
+        )
 
         max_ev_row = conn.execute(
             "SELECT MAX(expected_value) FROM predictions WHERE race_id = ?", (race_id,)
@@ -391,14 +436,17 @@ def _run_note_article(race_id: str, dry_run: bool) -> None:
         cmd = [
             sys.executable,
             str(_ROOT / "scripts" / "generate_note_article.py"),
-            "--race-id", race_id,
+            "--race-id",
+            race_id,
         ]
         logger.info("[NOTE] 記事生成開始: %s", race_id)
         result = subprocess.run(cmd, cwd=str(_ROOT), timeout=120)
         if result.returncode == 0:
             logger.info("[NOTE] 記事生成完了: %s", race_id)
         else:
-            logger.warning("[NOTE] 記事生成失敗 (rc=%d): %s", result.returncode, race_id)
+            logger.warning(
+                "[NOTE] 記事生成失敗 (rc=%d): %s", result.returncode, race_id
+            )
     except subprocess.TimeoutExpired:
         logger.warning("[NOTE] 記事生成タイムアウト (120s): %s", race_id)
     except Exception as e:
@@ -408,6 +456,7 @@ def _run_note_article(race_id: str, dry_run: bool) -> None:
 def _has_hit(race_id: str) -> bool:
     """postrace 完了後にそのレースで的中があったかを確認する。"""
     from src.database.init_db import init_db
+
     try:
         conn = init_db()
         row = conn.execute(
@@ -434,15 +483,19 @@ def _run_result_card(race_id: str, dry_run: bool) -> None:
         cmd = [
             sys.executable,
             str(_ROOT / "scripts" / "generate_result_card.py"),
-            "--race-id", race_id,
-            "--min-payout", "0",
+            "--race-id",
+            race_id,
+            "--min-payout",
+            "0",
         ]
         logger.info("[CARD] 的中カード生成開始: %s", race_id)
         result = subprocess.run(cmd, cwd=str(_ROOT), timeout=60)
         if result.returncode == 0:
             logger.info("[CARD] 的中カード生成完了: %s", race_id)
         else:
-            logger.warning("[CARD] 的中カード生成失敗 (rc=%d): %s", result.returncode, race_id)
+            logger.warning(
+                "[CARD] 的中カード生成失敗 (rc=%d): %s", result.returncode, race_id
+            )
     except subprocess.TimeoutExpired:
         logger.warning("[CARD] 的中カード生成タイムアウト (60s): %s", race_id)
     except Exception as e:
@@ -452,21 +505,27 @@ def _run_result_card(race_id: str, dry_run: bool) -> None:
 def _run_sns_post(race_id: str, dry_run: bool, pattern: str = "ab") -> None:
     """SNS 投稿テキスト（パターンA/B）を生成・保存する。"""
     if dry_run:
-        logger.info("[DRY-RUN] SNS ポスト生成スキップ: %s (pattern=%s)", race_id, pattern)
+        logger.info(
+            "[DRY-RUN] SNS ポスト生成スキップ: %s (pattern=%s)", race_id, pattern
+        )
         return
     try:
         cmd = [
             sys.executable,
             str(_ROOT / "scripts" / "generate_sns_post.py"),
-            "--race-id", race_id,
-            "--pattern", pattern,
+            "--race-id",
+            race_id,
+            "--pattern",
+            pattern,
         ]
         logger.info("[SNS] ポスト生成開始: %s (pattern=%s)", race_id, pattern)
         result = subprocess.run(cmd, cwd=str(_ROOT), timeout=30)
         if result.returncode == 0:
             logger.info("[SNS] ポスト生成完了: %s", race_id)
         else:
-            logger.warning("[SNS] ポスト生成失敗 (rc=%d): %s", result.returncode, race_id)
+            logger.warning(
+                "[SNS] ポスト生成失敗 (rc=%d): %s", result.returncode, race_id
+            )
     except subprocess.TimeoutExpired:
         logger.warning("[SNS] ポスト生成タイムアウト: %s", race_id)
     except Exception as e:
@@ -494,17 +553,27 @@ def _run_jvlink_sync(dry_run: bool) -> None:
         logger.info("JVLink %s 同期開始...", dataspec)
         try:
             result = subprocess.run(
-                ["py", "-3.14-32",
-                 str(_ROOT / "scripts" / "_jvlink_force_worker.py"),
-                 "--dataspec", dataspec, "--option", "3"],
+                [
+                    "py",
+                    "-3.14-32",
+                    str(_ROOT / "scripts" / "_jvlink_force_worker.py"),
+                    "--dataspec",
+                    dataspec,
+                    "--option",
+                    "3",
+                ],
                 cwd=str(_ROOT),
                 timeout=1800,  # 30分上限（JVLinkハング対策）
             )
             if result.returncode != 0:
                 logger.warning("JVLink %s 同期: rc=%d", dataspec, result.returncode)
         except subprocess.TimeoutExpired:
-            logger.error("JVLink %s 同期タイムアウト (1800s) — スキップして続行", dataspec)
-            _send_discord(f"⚠️ [UMALOGI] JVLink {dataspec} 同期が30分でタイムアウト。次ステップに続行します。")
+            logger.error(
+                "JVLink %s 同期タイムアウト (1800s) — スキップして続行", dataspec
+            )
+            _send_discord(
+                f"⚠️ [UMALOGI] JVLink {dataspec} 同期が30分でタイムアウト。次ステップに続行します。"
+            )
         except Exception as exc:
             logger.error("JVLink %s 同期エラー: %s — 続行", dataspec, exc)
         logger.info("JVLink %s 同期完了", dataspec)
@@ -518,17 +587,27 @@ def _run_provisional(date_str: str, dry_run: bool) -> None:
     logger.info("暫定予想生成: %s", date_str)
     try:
         result = subprocess.run(
-            [sys.executable, "-m", "src.main_pipeline", "provisional",
-             "--date", date_str],
+            [
+                sys.executable,
+                "-m",
+                "src.main_pipeline",
+                "provisional",
+                "--date",
+                date_str,
+            ],
             cwd=str(_ROOT),
             timeout=3600,  # 1時間上限（全レース暫定予想ハング対策）
         )
         if result.returncode != 0:
             logger.warning("暫定予想生成 rc=%d (date=%s)", result.returncode, date_str)
-            _send_discord(f"⚠️ [UMALOGI] 暫定予想生成失敗 (date={date_str} rc={result.returncode})")
+            _send_discord(
+                f"⚠️ [UMALOGI] 暫定予想生成失敗 (date={date_str} rc={result.returncode})"
+            )
     except subprocess.TimeoutExpired:
         logger.error("暫定予想生成タイムアウト (3600s) date=%s — 続行", date_str)
-        _send_discord(f"🚨 [UMALOGI] 暫定予想生成が1時間でタイムアウト (date={date_str})。確認してください。")
+        _send_discord(
+            f"🚨 [UMALOGI] 暫定予想生成が1時間でタイムアウト (date={date_str})。確認してください。"
+        )
     except Exception as exc:
         logger.error("暫定予想生成エラー date=%s: %s", date_str, exc)
 
@@ -555,6 +634,7 @@ def _run_generate_web_data(dry_run: bool) -> None:
 # バッチ処理
 # ─────────────────────────────────────────────────────────────────────────────
 
+
 def _run_friday_batch(saturday_date: str, dry_run: bool) -> None:
     """
     金曜夜間バッチ:
@@ -563,7 +643,9 @@ def _run_friday_batch(saturday_date: str, dry_run: bool) -> None:
       3. 日曜の暫定予想生成
       4. Discord 通知
     """
-    sunday_dt   = datetime.datetime.strptime(saturday_date, "%Y%m%d") + datetime.timedelta(days=1)
+    sunday_dt = datetime.datetime.strptime(
+        saturday_date, "%Y%m%d"
+    ) + datetime.timedelta(days=1)
     sunday_date = sunday_dt.strftime("%Y%m%d")
 
     logger.info("=" * 60)
@@ -577,16 +659,20 @@ def _run_friday_batch(saturday_date: str, dry_run: bool) -> None:
     # 注目レース（重賞・高EV）の note 記事を暫定予想ベースで先行生成
     for date_str in (saturday_date, sunday_date):
         from src.database.init_db import init_db as _idb
+
         try:
             formatted = f"{date_str[:4]}-{date_str[4:6]}-{date_str[6:8]}"
             _conn = _idb()
             rows = _conn.execute(
-                "SELECT race_id FROM races WHERE date = ? ORDER BY race_id", (formatted,)
+                "SELECT race_id FROM races WHERE date = ? ORDER BY race_id",
+                (formatted,),
             ).fetchall()
             _conn.close()
             for (rid,) in rows:
                 if _is_notable_race(rid):
-                    logger.info("[NOTE] 暫定予想完了後 → 注目レース note 記事生成: %s", rid)
+                    logger.info(
+                        "[NOTE] 暫定予想完了後 → 注目レース note 記事生成: %s", rid
+                    )
                     _run_note_article(rid, dry_run)
         except Exception as e:
             logger.warning("[NOTE] 金曜バッチ note 記事生成エラー: %s", e)
@@ -628,10 +714,10 @@ def _send_weekly_report(sunday_date: str, dry_run: bool) -> None:
 
     from src.database.init_db import init_db
 
-    sunday_dt    = datetime.datetime.strptime(sunday_date, "%Y%m%d")
-    saturday_dt  = sunday_dt - datetime.timedelta(days=1)
+    sunday_dt = datetime.datetime.strptime(sunday_date, "%Y%m%d")
+    saturday_dt = sunday_dt - datetime.timedelta(days=1)
     saturday_str = saturday_dt.strftime("%Y-%m-%d")
-    sunday_str   = sunday_dt.strftime("%Y-%m-%d")
+    sunday_str = sunday_dt.strftime("%Y-%m-%d")
 
     try:
         conn = init_db()
@@ -652,13 +738,13 @@ def _send_weekly_report(sunday_date: str, dry_run: bool) -> None:
         conn.close()
 
         total, hits, payout, profit = row if row else (0, 0, 0, 0)
-        hits   = hits   or 0
+        hits = hits or 0
         payout = payout or 0
         profit = profit or 0
 
         hit_rate = f"{hits / total * 100:.1f}%" if total > 0 else "N/A"
-        p_emoji  = "🟢" if profit >= 0 else "🔴"
-        sign     = "+" if profit >= 0 else ""
+        p_emoji = "🟢" if profit >= 0 else "🔴"
+        sign = "+" if profit >= 0 else ""
 
         _send_discord_race(
             f"📊 **[UMALOGI] 週次サマリー ({saturday_str} 〜 {sunday_str})**\n"
@@ -669,7 +755,9 @@ def _send_weekly_report(sunday_date: str, dry_run: bool) -> None:
         )
         logger.info(
             "週次レポート送信完了: 予想%d件 / 的中%d件 / 損益%+d円",
-            total, hits, int(profit),
+            total,
+            hits,
+            int(profit),
         )
     except Exception as e:
         logger.error("週次レポート生成に失敗しました: %s", e)
@@ -679,15 +767,20 @@ def _send_weekly_report(sunday_date: str, dry_run: bool) -> None:
 # 1日分の監視ループ
 # ─────────────────────────────────────────────────────────────────────────────
 
+
 def _run_one_day(
     target_date: str,
     fire_ahead: datetime.timedelta,
     result_after: datetime.timedelta,
     dry_run: bool,
+    recheck_ahead: datetime.timedelta | None = None,
 ) -> tuple[int, int, int, int]:
     """
     指定日の全レース監視ループを実行する。
     戻り値: (prerace_success, prerace_fail, postrace_success, postrace_fail)
+
+    recheck_ahead を指定すると、各レース発走の recheck_ahead 前に
+    異常検知（出走取消・騎手変更）→ 必要時のみ自動再推論を実行する（ステップ2-3）。
     """
     races = _fetch_today_races(target_date)
     if not races:
@@ -701,7 +794,8 @@ def _run_one_day(
     logger.info("UMALOGI 直前予想 + 結果速報 自律監視ループ 起動")
     logger.info(
         "対象日: %s  対象レース: %d 件  発走%d分前/発走%d分後",
-        target_date, len(races),
+        target_date,
+        len(races),
         int(fire_ahead.total_seconds() // 60),
         int(result_after.total_seconds() // 60),
     )
@@ -711,11 +805,15 @@ def _run_one_day(
     schedule: list[tuple[datetime.datetime, str, int, str]] = []
     for race_id, race_date, race_number in races:
         start = _estimate_start(race_date or date_str, race_number)
-        schedule.append((start - fire_ahead,  race_id, race_number, "prerace"))
+        schedule.append((start - fire_ahead, race_id, race_number, "prerace"))
+        # ステップ2-3: 発走 recheck_ahead 前に異常検知→再推論（prerace より後に発火）
+        if recheck_ahead is not None and recheck_ahead < fire_ahead:
+            schedule.append((start - recheck_ahead, race_id, race_number, "recheck"))
         schedule.append((start + result_after, race_id, race_number, "postrace"))
         logger.info(
             "  R%02d  %s  発走推定 %s  prerace→%s  postrace→%s",
-            race_number, race_id,
+            race_number,
+            race_id,
             start.strftime("%H:%M"),
             (start - fire_ahead).strftime("%H:%M"),
             (start + result_after).strftime("%H:%M"),
@@ -740,9 +838,16 @@ def _run_one_day(
             if now >= start + datetime.timedelta(minutes=30):
                 logger.warning(
                     "R%02d %s [prerace] 発走推定時刻 %s を 30 分超過 -> スキップ",
-                    race_number, race_id, start.strftime("%H:%M"),
+                    race_number,
+                    race_id,
+                    start.strftime("%H:%M"),
                 )
                 skipped.add((race_id, "prerace"))
+        elif job_type == "recheck" and recheck_ahead is not None:
+            # 異常検知の再推論は発走後に走らせない（発走 +5 分超過でスキップ）
+            start = fire_at + recheck_ahead
+            if now >= start + datetime.timedelta(minutes=5):
+                skipped.add((race_id, "recheck"))
 
     pending_jobs = [s for s in schedule if (s[1], s[3]) not in skipped]
     total = len(pending_jobs)
@@ -762,15 +867,19 @@ def _run_one_day(
     # submitted_keys : 重複起動防止（全ジョブの起動済みキーセット）
     # active_futures : 実行中 Future のみ保持。完了次第 result_cache に移して解放
     # result_cache   : 完了後の戻り値 (int) を保持（結果集計用）
-    submitted_keys: set[tuple[str, str]]         = set()
+    submitted_keys: set[tuple[str, str]] = set()
     active_futures: dict[tuple[str, str], Future] = {}
-    result_cache:   dict[tuple[str, str], int]    = {}
+    result_cache: dict[tuple[str, str], int] = {}
 
-    def _prerace_worker(race_id: str, race_number: int, fire_at: datetime.datetime) -> int:
+    def _prerace_worker(
+        race_id: str, race_number: int, fire_at: datetime.datetime
+    ) -> int:
         start = fire_at + fire_ahead
         logger.info(
             "[START] R%02d %s  [prerace] 直前予想開始 (推定発走 %s)",
-            race_number, race_id, start.strftime("%H:%M"),
+            race_number,
+            race_id,
+            start.strftime("%H:%M"),
         )
         rc = _run_prerace(race_id, dry_run)
         if rc == 0:
@@ -778,20 +887,88 @@ def _run_one_day(
             # V2 A/Bテスト: V1 成功後に V2 も並列実行（独立した predictions として保存）
             rc_v2 = _run_prerace_v2(race_id, dry_run)
             if rc_v2 == 0:
-                logger.info("[OK] R%02d %s  [prerace V2] 完了 (A/Bテスト)", race_number, race_id)
+                logger.info(
+                    "[OK] R%02d %s  [prerace V2] 完了 (A/Bテスト)", race_number, race_id
+                )
             else:
                 logger.warning(
-                    "[WARN] R%02d %s  [prerace V2] 失敗 (rc=%d) — V1 予想は正常", race_number, race_id, rc_v2
+                    "[WARN] R%02d %s  [prerace V2] 失敗 (rc=%d) — V1 予想は正常",
+                    race_number,
+                    race_id,
+                    rc_v2,
                 )
             if _is_notable_race(race_id):
                 logger.info("[NOTE] 注目レース検知 → note 記事生成: %s", race_id)
                 _run_note_article(race_id, dry_run)
                 _run_sns_post(race_id, dry_run, pattern="a")
         else:
-            logger.error("[NG] R%02d %s  [prerace V1] 失敗 (rc=%d)", race_number, race_id, rc)
+            logger.error(
+                "[NG] R%02d %s  [prerace V1] 失敗 (rc=%d)", race_number, race_id, rc
+            )
             _send_discord(
                 f"🚨 **[UMALOGI]** R{race_number:02d} `{race_id}` 直前予想 V1 失敗 (rc={rc})\n"
                 f"手動実行: `py -m src.main_pipeline prerace {race_id}`"
+            )
+        return rc
+
+    def _recheck_worker(race_id: str, race_number: int) -> int:
+        """発走直前の異常検知（取消・騎手変更）→ 変化があれば自動再推論（ステップ2-3）。"""
+        from src.database.init_db import init_db
+        from src.pipeline.anomaly import check_race_anomalies
+        from src.pipeline.scraping import fetch_and_save_odds
+
+        check_jockey = os.getenv("ANOMALY_JOCKEY_CHECK", "1").strip() != "0"
+        logger.info(
+            "[START] R%02d %s  [recheck] 直前異常検知開始", race_number, race_id
+        )
+        if dry_run:
+            logger.info("[DRY-RUN] recheck スキップ: %s", race_id)
+            return 0
+        try:
+            conn = init_db()
+            try:
+                # 最新の JRA-VAN 速報を取得してから検知（取消は最新feed欠落で判定）
+                try:
+                    fetch_and_save_odds(conn, race_id)
+                except Exception as e:
+                    logger.warning("[recheck] 速報オッズ更新失敗（続行）: %s", e)
+                anomalies = check_race_anomalies(
+                    conn, race_id, check_jockey=check_jockey
+                )
+            finally:
+                conn.close()
+        except Exception as exc:
+            logger.warning("[recheck] 異常検知失敗（続行）: %s — %s", race_id, exc)
+            return 0
+
+        if not anomalies.has_changes:
+            logger.info("[OK] R%02d %s  [recheck] 異常なし", race_number, race_id)
+            return 0
+
+        parts: list[str] = []
+        if anomalies.scratched:
+            parts.append(f"取消/除外: {sorted(anomalies.scratched)}")
+        if anomalies.jockey_changes:
+            jc = "・".join(
+                f"{hn}番 {old}→{new}"
+                for hn, (old, new) in sorted(anomalies.jockey_changes.items())
+            )
+            parts.append(f"騎手変更: {jc}")
+        summary = " / ".join(parts)
+        logger.warning(
+            "[recheck] R%02d %s 異常検知 → 再推論: %s", race_number, race_id, summary
+        )
+        _send_discord_race(
+            f"🔁 **[UMALOGI] R{race_number:02d} 直前異常検知 → 自動再推論**\n"
+            f"`{race_id}`  {summary}"
+        )
+        rc = _run_prerace(race_id, dry_run)
+        if rc == 0:
+            logger.info("[OK] R%02d %s  [recheck] 再推論完了", race_number, race_id)
+            _run_prerace_v2(race_id, dry_run)
+        else:
+            logger.error(
+                "[NG] R%02d %s  [recheck] 再推論失敗 (rc=%d)", race_number, race_id, rc
             )
         return rc
 
@@ -807,7 +984,9 @@ def _run_one_day(
         else:
             logger.warning(
                 "[NG] R%02d %s  [postrace] 失敗 (rc=%d) → 未確定の可能性あり",
-                race_number, race_id, rc,
+                race_number,
+                race_id,
+                rc,
             )
         return rc
 
@@ -815,8 +994,12 @@ def _run_one_day(
         # prerace と postrace を完全分離したスレッドプール
         # postrace の長期リトライ（最大40分）が prerace 発火を絶対にブロックしない。
         with (
-            ThreadPoolExecutor(max_workers=12, thread_name_prefix="umalogi-pre")  as pre_ex,
-            ThreadPoolExecutor(max_workers=40, thread_name_prefix="umalogi-post") as post_ex,
+            ThreadPoolExecutor(
+                max_workers=12, thread_name_prefix="umalogi-pre"
+            ) as pre_ex,
+            ThreadPoolExecutor(
+                max_workers=40, thread_name_prefix="umalogi-post"
+            ) as post_ex,
         ):
             while True:
                 now = datetime.datetime.now()
@@ -831,6 +1014,10 @@ def _run_one_day(
                     if job_type == "prerace":
                         active_futures[key] = pre_ex.submit(
                             _prerace_worker, race_id, race_number, fire_at
+                        )
+                    elif job_type == "recheck":
+                        active_futures[key] = pre_ex.submit(
+                            _recheck_worker, race_id, race_number
                         )
                     else:  # postrace
                         active_futures[key] = post_ex.submit(
@@ -851,28 +1038,38 @@ def _run_one_day(
 
                 # 全ジョブ起動 & 完了確認
                 all_submitted = len(submitted_keys) == total
-                all_done      = all_submitted and len(active_futures) == 0
+                all_done = all_submitted and len(active_futures) == 0
                 if all_done:
                     break
 
                 # 次発火まで待機（最大 10 秒）
-                unfired = [s[0] for s in pending_jobs if (s[1], s[3]) not in submitted_keys]
+                unfired = [
+                    s[0] for s in pending_jobs if (s[1], s[3]) not in submitted_keys
+                ]
                 if unfired:
-                    next_fire  = min(unfired)
-                    sleep_secs = min(10.0, max(1.0, (next_fire - datetime.datetime.now()).total_seconds()))
+                    next_fire = min(unfired)
+                    sleep_secs = min(
+                        10.0,
+                        max(1.0, (next_fire - datetime.datetime.now()).total_seconds()),
+                    )
                 else:
                     sleep_secs = 10.0
                 time.sleep(sleep_secs)
 
         # 結果集計（result_cache から取得）
-        for (race_id, job_type) in submitted_keys:
+        for race_id, job_type in submitted_keys:
             rc = result_cache.get((race_id, job_type), -1)
             if job_type == "prerace":
-                if rc == 0: prerace_success  += 1
-                else:       prerace_fail     += 1
-            else:
-                if rc == 0: postrace_success += 1
-                else:       postrace_fail    += 1
+                if rc == 0:
+                    prerace_success += 1
+                else:
+                    prerace_fail += 1
+            elif job_type == "postrace":
+                if rc == 0:
+                    postrace_success += 1
+                else:
+                    postrace_fail += 1
+            # recheck は統計に含めない（再推論はログ・Discord通知で可視化）
 
     except KeyboardInterrupt:
         logger.info("\n[中断] Ctrl+C を受け取りました。監視ループを終了します。")
@@ -888,42 +1085,73 @@ def _run_one_day(
 # エントリポイント
 # ─────────────────────────────────────────────────────────────────────────────
 
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="本日の全レース直前予想 + 結果速報 完全自律監視ループ（週次オートパイロット版）"
     )
-    parser.add_argument("--date", default=None,
-                        help="対象日 YYYYMMDD（省略時=当日）")
-    parser.add_argument("--fire-ahead-min", type=int, default=20,
-                        help="発走何分前に prerace を実行するか（デフォルト 20）")
-    parser.add_argument("--result-after-min", type=int, default=15,
-                        help="発走何分後に結果速報を取得するか（デフォルト 15）")
-    parser.add_argument("--dry-run", action="store_true",
-                        help="コマンドを実行せずにスケジュールのみ表示")
-    parser.add_argument("--continuous", action="store_true",
-                        help=(
-                            "週次オートパイロット: 金→土→日→次週金のサイクルを自動継続。"
-                            "人間介入ゼロで永続動作する。"
-                        ))
+    parser.add_argument("--date", default=None, help="対象日 YYYYMMDD（省略時=当日）")
+    parser.add_argument(
+        "--fire-ahead-min",
+        type=int,
+        default=20,
+        help="発走何分前に prerace を実行するか（デフォルト 20）",
+    )
+    parser.add_argument(
+        "--result-after-min",
+        type=int,
+        default=15,
+        help="発走何分後に結果速報を取得するか（デフォルト 15）",
+    )
+    parser.add_argument(
+        "--recheck-ahead-min",
+        type=int,
+        default=8,
+        help=(
+            "発走何分前に直前異常検知（取消・騎手変更）→再推論を実行するか"
+            "（デフォルト 8。0 で無効化。ステップ2-3）"
+        ),
+    )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="コマンドを実行せずにスケジュールのみ表示",
+    )
+    parser.add_argument(
+        "--continuous",
+        action="store_true",
+        help=(
+            "週次オートパイロット: 金→土→日→次週金のサイクルを自動継続。"
+            "人間介入ゼロで永続動作する。"
+        ),
+    )
     args = parser.parse_args()
 
     try:
         from src.ops.jvlink_dialog_handler import start_dialog_handler
+
         start_dialog_handler(interval=0.3)
     except Exception:
         pass
 
-    fire_ahead   = datetime.timedelta(minutes=args.fire_ahead_min)
+    fire_ahead = datetime.timedelta(minutes=args.fire_ahead_min)
     result_after = datetime.timedelta(minutes=args.result_after_min)
-    dry_run      = args.dry_run
-    continuous   = args.continuous
+    recheck_ahead = (
+        datetime.timedelta(minutes=args.recheck_ahead_min)
+        if args.recheck_ahead_min and args.recheck_ahead_min > 0
+        else None
+    )
+    dry_run = args.dry_run
+    continuous = args.continuous
 
     target_date = args.date or datetime.date.today().strftime("%Y%m%d")
 
     # ── 重複起動防止 ──────────────────────────────────────────────────
     if not _check_single_instance():
-        print(f"[ABORT] 別インスタンスが既に動作中です (PID={_LOCK_FILE.read_text(encoding='utf-8').strip()})。終了します。",
-              flush=True)
+        print(
+            f"[ABORT] 別インスタンスが既に動作中です (PID={_LOCK_FILE.read_text(encoding='utf-8').strip()})。終了します。",
+            flush=True,
+        )
         sys.exit(0)
 
     # PID ファイルを書き込んだ直後に必ずクリーンアップを登録する。
@@ -942,7 +1170,9 @@ def main() -> None:
         """SIGTERM を受信したら PID ファイルを削除して終了する。"""
         logger.info("SIGTERM 受信 → PID ファイルを削除して終了します")
         _cleanup_pid()
-        _send_discord("🛑 **[UMALOGI] SIGTERM 受信** PID ファイルをクリーンアップして終了しました")
+        _send_discord(
+            "🛑 **[UMALOGI] SIGTERM 受信** PID ファイルをクリーンアップして終了しました"
+        )
         sys.exit(0)
 
     # Windows は SIGTERM をサポートしているが SIGKILL は存在しないため SIGTERM のみ登録
@@ -962,21 +1192,25 @@ def main() -> None:
 
     while True:
         try:
-            wd         = _weekday(target_date)
-            is_friday  = (wd == _FRI)
-            is_saturday = (wd == _SAT)
-            is_sunday  = (wd == _SUN)
-            is_racing  = wd in (_SAT, _SUN)
+            wd = _weekday(target_date)
+            is_friday = wd == _FRI
+            is_saturday = wd == _SAT
+            is_sunday = wd == _SUN
+            is_racing = wd in (_SAT, _SUN)
 
             # ── 当日の監視ループ実行 ──────────────────────────────────────
             if is_friday:
                 # 金曜はJRAレースなし → 夜間バッチを待機するだけ
-                logger.info("金曜日 (%s) - レースなし。夜間バッチ時刻を待機します", target_date)
+                logger.info(
+                    "金曜日 (%s) - レースなし。夜間バッチ時刻を待機します", target_date
+                )
                 ps = pf = rs = rf = 0
 
             elif is_racing:
                 # 土曜・日曜: 通常監視ループ
-                ps, pf, rs, rf = _run_one_day(target_date, fire_ahead, result_after, dry_run)
+                ps, pf, rs, rf = _run_one_day(
+                    target_date, fire_ahead, result_after, dry_run, recheck_ahead
+                )
 
                 status = "✅" if (pf + rf) == 0 else "⚠️"
                 _send_discord(
@@ -999,7 +1233,7 @@ def main() -> None:
                 break
 
             # ── 継続モード: 曜日別ルーティング ───────────────────────────
-            now      = datetime.datetime.now()
+            now = datetime.datetime.now()
             today_dt = datetime.datetime.strptime(target_date, "%Y%m%d")
 
             if is_sunday:
@@ -1019,13 +1253,16 @@ def main() -> None:
                 _wait_until(next_friday_ev, dry_run)
 
                 # 金曜夜間バッチ: 翌週土日の暫定予想生成
-                saturday_dt   = next_friday_ev + datetime.timedelta(days=1)
+                saturday_dt = next_friday_ev + datetime.timedelta(days=1)
                 saturday_date = saturday_dt.strftime("%Y%m%d")
                 _run_friday_batch(saturday_date, dry_run)
 
                 # 土曜朝まで待機
                 morning_start = saturday_dt.replace(
-                    hour=_MORNING_START_HOUR, minute=_MORNING_START_MINUTE, second=0, microsecond=0
+                    hour=_MORNING_START_HOUR,
+                    minute=_MORNING_START_MINUTE,
+                    second=0,
+                    microsecond=0,
                 )
                 _wait_until(morning_start, dry_run)
                 target_date = saturday_date
@@ -1033,18 +1270,26 @@ def main() -> None:
             elif is_saturday:
                 # ── 土曜完了後: 20:00 夜間バッチ → 日曜朝まで待機 ─────────
                 evening_trigger = today_dt.replace(
-                    hour=_EVENING_FETCH_HOUR, minute=_EVENING_FETCH_MINUTE, second=0, microsecond=0
+                    hour=_EVENING_FETCH_HOUR,
+                    minute=_EVENING_FETCH_MINUTE,
+                    second=0,
+                    microsecond=0,
                 )
                 if now < evening_trigger:
-                    logger.info("夜間バッチ待機: %s まで", evening_trigger.strftime("%H:%M"))
+                    logger.info(
+                        "夜間バッチ待機: %s まで", evening_trigger.strftime("%H:%M")
+                    )
                     _wait_until(evening_trigger, dry_run)
 
-                next_date_dt  = today_dt + datetime.timedelta(days=1)
+                next_date_dt = today_dt + datetime.timedelta(days=1)
                 next_date_str = next_date_dt.strftime("%Y%m%d")
                 _run_evening_fetch(next_date_str, dry_run)
 
                 morning_start = next_date_dt.replace(
-                    hour=_MORNING_START_HOUR, minute=_MORNING_START_MINUTE, second=0, microsecond=0
+                    hour=_MORNING_START_HOUR,
+                    minute=_MORNING_START_MINUTE,
+                    second=0,
+                    microsecond=0,
                 )
                 _wait_until(morning_start, dry_run)
                 target_date = next_date_str
@@ -1052,18 +1297,26 @@ def main() -> None:
             elif is_friday:
                 # ── 金曜: 20:00 に金曜夜間バッチ → 土曜朝まで待機 ───────
                 evening_trigger = today_dt.replace(
-                    hour=_EVENING_FETCH_HOUR, minute=_EVENING_FETCH_MINUTE, second=0, microsecond=0
+                    hour=_EVENING_FETCH_HOUR,
+                    minute=_EVENING_FETCH_MINUTE,
+                    second=0,
+                    microsecond=0,
                 )
                 if now < evening_trigger:
-                    logger.info("金曜夜間バッチ待機: %s まで", evening_trigger.strftime("%H:%M"))
+                    logger.info(
+                        "金曜夜間バッチ待機: %s まで", evening_trigger.strftime("%H:%M")
+                    )
                     _wait_until(evening_trigger, dry_run)
 
-                saturday_dt   = today_dt + datetime.timedelta(days=1)
+                saturday_dt = today_dt + datetime.timedelta(days=1)
                 saturday_date = saturday_dt.strftime("%Y%m%d")
                 _run_friday_batch(saturday_date, dry_run)
 
                 morning_start = saturday_dt.replace(
-                    hour=_MORNING_START_HOUR, minute=_MORNING_START_MINUTE, second=0, microsecond=0
+                    hour=_MORNING_START_HOUR,
+                    minute=_MORNING_START_MINUTE,
+                    second=0,
+                    microsecond=0,
                 )
                 _wait_until(morning_start, dry_run)
                 target_date = saturday_date
@@ -1081,12 +1334,15 @@ def main() -> None:
                 )
                 _wait_until(next_friday_ev, dry_run)
 
-                saturday_dt   = next_friday_ev + datetime.timedelta(days=1)
+                saturday_dt = next_friday_ev + datetime.timedelta(days=1)
                 saturday_date = saturday_dt.strftime("%Y%m%d")
                 _run_friday_batch(saturday_date, dry_run)
 
                 morning_start = saturday_dt.replace(
-                    hour=_MORNING_START_HOUR, minute=_MORNING_START_MINUTE, second=0, microsecond=0
+                    hour=_MORNING_START_HOUR,
+                    minute=_MORNING_START_MINUTE,
+                    second=0,
+                    microsecond=0,
                 )
                 _wait_until(morning_start, dry_run)
                 target_date = saturday_date
@@ -1098,11 +1354,15 @@ def main() -> None:
 
         except Exception as exc:
             import traceback
+
             _consecutive_errors += 1
             tb_str = traceback.format_exc()
             logger.error(
                 "[ERROR] 予期しない例外 (%d/%d 回): %s\n%s",
-                _consecutive_errors, _MAX_CONSECUTIVE_ERRORS, exc, tb_str,
+                _consecutive_errors,
+                _MAX_CONSECUTIVE_ERRORS,
+                exc,
+                tb_str,
             )
 
             if _consecutive_errors >= _MAX_CONSECUTIVE_ERRORS:

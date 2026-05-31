@@ -10,6 +10,9 @@
 
 | 日付 | 更新内容 |
 |------|---------|
+| 2026-05-31 | 【W-052 🟢完了 / 優先度高】スケジューラ暴走（post_race→retrain 一括評価の全年度SIMULATE暴走）根本修正（オーナー承認・条項2バイパス）。①`batch_evaluate_date` を既定 `retrain=False` 化し毎レースのインライン全年度再シミュレーションを根絶（当日評価+通知のみ）②`weekly_retrain` に土日ガード（`_is_weekend`/`allow_weekend`）追加＝条項2準拠③`job_weekly_retrain` を別スレッド化（`_weekly_retrain_lock` で二重起動防止）し schedule.run_pending をブロックしない。検証: 新規 `tests/test_w052_scheduler_guard.py` 6件＋全824件PASS。影響: scripts/scheduler.py, src/ops/retrain_trigger.py |
+| 2026-05-31 | 【ステップ1完了 / JRA-VAN直結 馬体重・天候】速報馬体重(0B11)パーサ `rtd_reader.parse_wh_realtime`＋32bitワーカー `_jvrt_odds_worker`（オッズ0B30/馬体重0B11/天候0B12を1セッション取得）＋`scraping._apply_jvrt_weight_weather`（entries.horse_weight/horse_weight_diff・races.weather/condition を COALESCE/CASE で空NULL非破壊上書き）。**ライブ検証**: 本日 東京2回12日8R で馬体重14頭実取得→entries反映を確認（1番474(-6)…5番478(-14)）。所見: 0B12天候は当該レースで code=-1（RACE dataspec/netkeibaで補完）。影響: src/scraper/rtd_reader.py, scripts/_jvrt_odds_worker.py, src/pipeline/scraping.py, tests/test_jvrt_odds.py |
+| 2026-05-31 | 【ステップ2完了 / 推論精度強化（オーナー承認・条項2バイパス）】(2-1)特徴量直前オーバーライド: 直前モードは `fetch_and_save_odds` を常時実行し最新の馬体重/天候/オッズを推論直前に強制反映（`prediction.py:Step1c` の `cached_odds==0` ガードを直前は解除）。(2-2)大口/オッズ歪み検知: 新規 `src/ml/odds_drift.py`（realtime_odds の朝→直前変動率を**レース中央値からの相対乖離**で評価し系統シフトを吸収。plunge=大口流入/abandoned=危険馬）→ `prediction.py:Step4c` で危険馬を軸に含む買い目EVを×0.5減衰しEV<1.0を除外。**ライブ検証**: 8Rで誤検知12頭→意味のある2頭（11番=2.3→1.3倍 大口流入 / 10番=54→156倍 見限り）に改善。W-006 を実質前進。(2-3)異常時再推論: 新規 `src/pipeline/anomaly.py`（取消=最新feed欠落 / 騎手変更=rate-limited netkeiba比較→entries更新）＋ `today_auto_runner` に発走8分前 `recheck` ジョブ追加→異常時のみ自動再推論。検証: 新規 `tests/test_odds_drift.py` 6件・`tests/test_anomaly.py` 5件＋全824件PASS。影響: src/ml/odds_drift.py(新規), src/pipeline/anomaly.py(新規), src/pipeline/prediction.py, scripts/today_auto_runner.py。関連: [[W-006]] |
 | 2026-05-31 | 【W-052 🟢完了 / 優先度高】スケジューラ暴走（post_race の全年度再シミュレーション）を根本修正（オーナー承認・条項2バイパス）。真因: `post_race_pipeline`→`incremental_update`→`_build_partial_df` が `_build_train_df`（全年度特徴量再生成）を呼び、当日頭数分(24R)繰り返して約13時間スケジューラをブロック。修正(3点・要件対応): ①レース後評価を **retrain=False** 化し増分学習を停止（評価+Hit Flash通知のみ）・再訓練は月曜 `weekly_retrain` に集約（＝当日経路から全年度再シミュレーションを排除）②`weekly_retrain` に**土日ガード**（条項2）③`job_weekly_retrain` を**バックグラウンドスレッド化**（SIMULATEがメインループをブロックしない・`_weekly_retrain_lock`）。検証: `tests/test_w052_scheduler_guard.py` 6件＋全815件PASS。残: `_build_partial_df` 自体の全件ビルド非効率は将来 incremental を再有効化する場合に最適化要（現状は無効化で回避）。dispatcher dry-runガード([[W-052]]記載のNOTIFY抑制)は今回未対応（retrain停止で誤通知経路は縮小）。影響: scripts/scheduler.py, src/ops/retrain_trigger.py |
 | 2026-05-31 | 【W-054 🟢完了（拡張）/ 優先度高】JRA-VAN 速報の**馬体重(0B11/WH)・天候馬場**もリアルタイム化。馬体重WHレイアウトをライブ実証（馬データ開始35・stride45・例482kg-2/492kg+12）。天候馬場は0B42がオッズを返すため不可と判明し0B12のRAレコードを既存 `parse_record` で再利用。速報ワーカーを1セッションでオッズ+馬体重+天候取得に拡張し、Stage0 `_apply_jvrt_weight_weather()` で entries.horse_weight/races.weather を値があるときのみ反映（fail-safe）。馬体重ライブ取得確認済、天候馬場はレース前は未設定（空は非上書き）。テスト10件＋全815件PASS。影響: scripts/_jvrt_odds_worker.py, src/scraper/rtd_reader.py(parse_wh_realtime), src/pipeline/scraping.py |
 | 2026-05-31 | 【W-054 🟢完了 / 優先度高】JRA-VAN リアルタイムオッズの COM 一次経路が未実装で恒常的に netkeiba フォールバック（オーナー緊急指示・条項2バイパスで即修復）。**真因調査（ライブ実証）**: `JVInit`=0（認証/契約は正常）だが `src/` 全体に `JVRTOpen` が0件＝速報APIが未実装。リアルタイムオッズは TARGET frontier の `.rtd` キャッシュ依存で、TARGET未起動時(本件)はキャッシュが5/3で停止→毎回 netkeiba に落ちていた（前回コミット deb5bb1e は netkeiba フォールバックを足しただけで jravan_client.py 未修正）。**ライブ検証**: 本日5/31の実 race_id から16桁速報キーを構築し `JVRTOpen("0B30", key)`=code 0、O1速報単勝オッズを実取得（東京2回12日1R: 5番=1.9倍1番人気 等16頭・文字化けなし）。先の-1/-114はキー書式ミスが原因と判明。**修復**: ①`JVLinkClient.rt_open()`(JVRTOpen)追加 ②速報O1パーサ `rtd_reader.parse_o1_realtime()`＋`build_rt_race_key()`（速報版は[37:39]頭数・配列start=43をライブ実証）③32bit ワーカー `scripts/_jvrt_odds_worker.py`（race_id→JSON）④`scraping.fetch_and_save_odds` に **Stage 0: JRA-VAN速報** を追加（完全additive・失敗時は従来 RTD→netkeiba→DB へ自動フォールバック）。検証: 新規 `tests/test_jvrt_odds.py` 7件＋スクレイピング関連50件PASS、64bit→32bitブリッジE2Eで別レースも16頭ライブ取得確認。残: 馬体重(0B11/0B12)・天候馬場(0B42)の速報統合は本コミット未対応（オッズを最優先）。関連: [[W-053]]。影響: src/scraper/jravan_client.py, src/scraper/rtd_reader.py, src/pipeline/scraping.py, scripts/_jvrt_odds_worker.py(新規), scripts/probe_jvlink_realtime.py(新規・診断), tests/test_jvrt_odds.py(新規) |
@@ -165,10 +168,10 @@
 | 項目 | 内容 |
 |------|------|
 | **優先度** | 🟡 中 |
-| **ステータス** | 🟡 対応中（特徴量定義済み、実データ蓄積待ち）|
-| **実装概要** | `odds_vs_morning`: 直前オッズ / 朝一オッズ（短縮=大口流入シグナル）<br>`odds_velocity`: 直近1時間のオッズ下落速度 |
-| **データ依存** | `realtime_odds` の時系列蓄積（現在は当日1点のみ）|
-| **残作業** | 朝一オッズ取得スケジュール追加（8:30 と 14:30 の2点保存）|
+| **ステータス** | 🟡 対応中（買い目フィルタは実装・2026-05-31／モデル特徴量化は未）|
+| **実装概要** | `odds_vs_morning`: 直前オッズ / 朝一オッズ（短縮=大口流入シグナル）<br>`odds_velocity`: 直近1時間のオッズ下落速度<br>**2026-05-31 追加**: `src/ml/odds_drift.py` が realtime_odds の朝→直前変動率を**レース中央値相対**で評価し plunge(大口流入)/abandoned(危険馬) を検知。買い目段で危険馬軸のEV減衰・除外に活用（ステップ2-2）|
+| **データ依存** | `realtime_odds` の時系列蓄積（直前 `fetch_and_save_odds` 常時実行で朝暫定+直前の2点以上を確保）|
+| **残作業** | ①朝一オッズの安定2点保存（8:30/14:30）②`odds_drift` をモデル FEATURE_COLS へ特徴量化（現状は買い目フィルタのみ）|
 | **担当フェーズ** | Phase 2-C |
 
 #### W-007: 斤量インパクト因子

@@ -659,11 +659,14 @@ def _prerace_pipeline_inner(
         except Exception as exc:
             logger.error("netkeiba 出馬表フォールバック失敗 (%s): %s", race_id, exc)
 
-    # Step 1c: オッズ取得（RTD→netkeiba 3段階フォールバック）
-    # 暫定モードでも試みる（netkeiba に既に公開されていれば Alpha-Payout EV が改善する）
-    # fetch_and_save_odds は取得失敗時も 0 を返して安全に続行するため、
-    # 暫定バッチの早朝実行でオッズ未公開でも問題なし。
-    if cached_odds == 0:
+    # Step 1c: オッズ取得（JRA-VAN速報→RTD→netkeiba フォールバック）
+    # ステップ2-1（特徴量の直前オーバーライド）:
+    #   直前モードは毎回 fetch_and_save_odds を実行し、JRA-VAN 速報(JVRTOpen)の
+    #   最新オッズ・馬体重・天候馬場を推論直前に強制反映する。
+    #   _apply_jvrt_weight_weather が entries.horse_weight / races.weather を
+    #   COALESCE 上書きし、最新スナップショット追記で _latest_odds_map も更新される。
+    #   暫定モードは早朝でオッズ未公開のことが多いため従来どおり未取得時のみ試みる。
+    if (not provisional) or cached_odds == 0:
         fetch_and_save_odds(conn, race_id)
 
     # Step 2: 特徴量生成
@@ -809,6 +812,54 @@ def _prerace_pipeline_inner(
     alpha_bets = None
     if not provisional:
         alpha_bets = _run_alpha_payout(conn, race_id, df, current_bankroll)
+
+    # Step 4c: オッズ歪み補正・危険馬フィルタ（直前のみ・ステップ2-2）
+    #   realtime_odds の 朝→直前 変動率で「急騰=市場見限り(危険馬)」「急落=大口流入」を
+    #   検知し、危険馬を軸に含む買い目の EV を減衰、EV<1.0 を除外する（買い目保存前）。
+    if not provisional:
+        try:
+            from src.ml.odds_drift import (
+                apply_drift_filter,
+                compute_drift_map,
+                danger_horses,
+                plunge_horses,
+            )
+
+            drift_map = compute_drift_map(conn, race_id)
+            if drift_map:
+                plunges = plunge_horses(drift_map)
+                dangers = danger_horses(drift_map)
+                if plunges:
+                    logger.warning(
+                        "大口流入(オッズ急落)検知 race_id=%s 馬番=%s",
+                        race_id,
+                        sorted(plunges),
+                    )
+                if dangers:
+                    logger.warning(
+                        "危険馬(オッズ急騰)検知 race_id=%s 馬番=%s",
+                        race_id,
+                        sorted(dangers),
+                    )
+                    for _rb in (
+                        honmei_bets,
+                        manji_bets,
+                        oracle_bets,
+                        hit_focus_bets,
+                        alpha_bets,
+                    ):
+                        if _rb is None:
+                            continue
+                        _rb.bets, _drp, _pen = apply_drift_filter(_rb.bets, drift_map)
+                        if _drp or _pen:
+                            logger.info(
+                                "[危険馬フィルタ] %s: 減衰%d件 除外%d件",
+                                getattr(_rb, "model_type", "?"),
+                                _pen,
+                                _drp,
+                            )
+        except Exception as _de:  # noqa: BLE001 — フィルタ失敗は予測本体を止めない
+            logger.warning("オッズ歪みフィルタ失敗（続行）: %s", _de)
 
     # Step 5: DB 保存（V2 は suffix に "V2" を付与して V1 と識別）
     if is_v2:
