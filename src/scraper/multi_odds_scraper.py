@@ -65,11 +65,11 @@ _MOCK_DATA: dict[int, dict[str, list[str]]] = {
 
 
 def _safe_float(val: str | None) -> float | None:
-    """文字列を float に変換する。変換不能なら None を返す。"""
+    """文字列を float に変換する。カンマ区切り ("1,481.9") にも対応。"""
     if val is None or val in ("", "---"):
         return None
     try:
-        return float(val)
+        return float(val.replace(",", ""))
     except (ValueError, TypeError):
         return None
 
@@ -87,16 +87,23 @@ def _safe_int(val: str | None) -> int | None:
 def _format_combination(raw_key: str, fmt: str) -> str:
     """netkeiba のキー文字列をフォーマット済み買い目文字列に変換する。
 
+    実 API は区切りなしの連結形式 ("0102", "010203") を返す。
+    モックデータは "-" 区切り ("01-02") を使用する。どちらにも対応する。
+
     Args:
-        raw_key: "01-02" / "01-02-03" 等のゼロ埋め文字列。
+        raw_key: "0102" / "010203" / "01-02" 等のゼロ埋め文字列。
         fmt:     "unordered" または "ordered"。
 
     Returns:
         "1-2" / "1-2-3" / "1→2" / "1→2→3" 等（先頭ゼロを除去）。
     """
     sep_char = "→" if fmt == "ordered" else "-"
-    # ゼロ埋め番号を分割（区切り文字は "-" のみ。APIは常にハイフン区切り）
-    parts = [str(int(p)) for p in raw_key.replace("→", "-").split("-") if p]
+    if "-" in raw_key or "→" in raw_key:
+        # モックや旧形式: "-" / "→" で分割
+        parts = [str(int(p)) for p in raw_key.replace("→", "-").split("-") if p]
+    else:
+        # 実 API 形式: ゼロ埋め 2 桁の連結 ("0102" → [1, 2])
+        parts = [str(int(raw_key[i : i + 2])) for i in range(0, len(raw_key), 2)]
     return sep_char.join(parts)
 
 
@@ -168,10 +175,15 @@ def _parse_odds_dict(
             odds_max  = _safe_float(vals[1]) if len(vals) > 1 else None
             pop       = _safe_int(vals[2])   if len(vals) > 2 else None
         else:
-            # その他: [odds, popularity]
+            # 実 API: [odds, 0.0, popularity]  モック: [odds, popularity]
             odds_val  = _safe_float(vals[0]) if len(vals) > 0 else None
             odds_max  = None
-            pop       = _safe_int(vals[1])   if len(vals) > 1 else None
+            if len(vals) > 2:
+                pop = _safe_int(vals[2])   # 実 API 形式
+            elif len(vals) > 1:
+                pop = _safe_int(vals[1])   # 2 要素のモック形式
+            else:
+                pop = None
 
         results.append(MultiOddsEntry(
             race_id=race_id,

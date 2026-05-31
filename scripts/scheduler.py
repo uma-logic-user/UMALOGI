@@ -662,12 +662,12 @@ def job_friday_sync() -> None:
 
     # ── Step 1: JVLink RACE 同期（32bit 必須）───────────────────
     # _run_jvlink: 10秒でJVLINK_READY未到着 → GUIダイアログブロック検出 → -2返却
+    # rc=-2: GUIブロック, rc=1: JVRead -503 (SID制約) 等の JVLink内部エラー
+    # どちらの場合も netkeiba フォールバックでエントリーを補完する
     rc = _run_jvlink(_PY32 + ["-m", "src.ops.data_sync", "friday"], "JVLink-RACE")
-    if rc == -2:
+    if rc != 0:
         _netkeiba_fallback_entries(target_yyyymmdd, "JVLink-RACE")
-        errors.append("JVLink RACE 同期 GUI_BLOCKED → Netkeibaフォールバック実施")
-    elif rc != 0:
-        errors.append(f"JVLink RACE 同期失敗(rc={rc})")
+        errors.append(f"JVLink RACE 同期失敗(rc={rc}) → Netkeibaフォールバック実施")
 
     # ── Step 2: JVLink WOOD 同期（32bit 必須）───────────────────
     rc = _run_jvlink(_PY32 + ["-m", "src.ops.data_sync", "wood"], "JVLink-WOOD")
@@ -735,6 +735,7 @@ def job_morning_wood() -> None:
 
 
 _auto_runner_lock = threading.Lock()
+_post_race_lock = threading.Lock()
 
 
 def job_today_auto_runner() -> None:
@@ -940,12 +941,16 @@ def job_intraday_sync(target_date: str | None = None) -> None:
         logger.warning("[中間結果同期] 払戻補完失敗（続行）: %s", _infer_exc)
 
 
-def job_post_race(target_date: str | None = None) -> None:
+def _job_post_race_body(target_date: str) -> None:
     """
-    土日夕方: レース確定後の払戻同期(32bit) + 評価 + 通知 + 増分学習 + バックアップ
+    job_post_race の本体処理（バックグラウンドスレッドから呼び出される）。
+
+    Step 1: JVLink 払戻同期（32bit）
+    Step 1.5: 払戻データから着順自動補完
+    Step 2: 評価 + 通知 + 増分学習（64bit）
+    Step 3: DB バックアップ
+    Step 4: ダッシュボード JSON 再生成
     """
-    if target_date is None:
-        target_date = date.today().strftime("%Y/%m/%d")
     logger.info("=== [レース後処理] %s 開始 ===", target_date)
 
     # Step 1: JVLink RACE 払戻同期（32bit）
@@ -1026,6 +1031,44 @@ def job_post_race(target_date: str | None = None) -> None:
 
     _mark_job_done("job_post_race")
     logger.info("=== [レース後処理] %s 終了 ===", target_date)
+
+
+def job_post_race(target_date: str | None = None) -> None:
+    """
+    土日夕方: レース確定後の払戻同期(32bit) + 評価 + 通知 + 増分学習 + バックアップ
+
+    【設計】JVLink払戻同期 + batch_evaluate_date（増分学習含む）は数時間かかる場合があり、
+    スケジューラーのメインループ（schedule.run_pending）をブロックすると
+    同日 20:00 の job_friday_sync（翌日分の暫定予想）が実行されない問題が発生する。
+    このため本関数はバックグラウンドスレッドで実体処理を起動してすぐにリターンする。
+
+    重複起動ガード: 既に post_race スレッドが動作中の場合はスキップ。
+    """
+    if not _post_race_lock.acquire(blocking=False):
+        logger.warning("[レース後処理] 既に実行中のため二重起動をスキップします")
+        return
+
+    resolved_date = target_date if target_date is not None else date.today().strftime("%Y/%m/%d")
+
+    def _body() -> None:
+        try:
+            _job_post_race_body(resolved_date)
+        except Exception as exc:
+            logger.error("[レース後処理] スレッド内例外: %s", exc, exc_info=True)
+        finally:
+            _post_race_lock.release()
+
+    thread = threading.Thread(
+        target=_body,
+        name=f"post_race_{resolved_date.replace('/', '')}",
+        daemon=True,
+    )
+    thread.start()
+    logger.info(
+        "[レース後処理] バックグラウンドスレッドを起動しました (date=%s, thread=%s)",
+        resolved_date,
+        thread.name,
+    )
 
 
 def job_monday_masters() -> None:

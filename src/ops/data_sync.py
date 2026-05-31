@@ -139,7 +139,14 @@ def sync_friday(target_date: str | None = None) -> int:
     loader = JVDataLoader(sid=sid)
 
     # ── Stage 1: OPT_NORMAL (差分ダウンロード) ──────────────────────
-    stats = loader.load(dataspec=DATASPEC_RACE, fromtime=from_dt, option=OPT_NORMAL)
+    # RuntimeError (-503 等) は OPT_NORMAL ポインタ消費済みの既知パターン → Stage 2 へ
+    try:
+        stats = loader.load(dataspec=DATASPEC_RACE, fromtime=from_dt, option=OPT_NORMAL)
+    except RuntimeError as e:
+        logger.warning(
+            "Stage1 OPT_NORMAL で RuntimeError (%s) → Stage2 OPT_STORED にフォールバック", e
+        )
+        stats = {}
     if _count_races_for_date(target_date) > 0:
         logger.info("Stage1 OPT_NORMAL で対象日 %s のレース取得成功", target_iso)
     else:
@@ -151,7 +158,13 @@ def sync_friday(target_date: str | None = None) -> int:
             stats.get("total_read", 0),
             stats.get("open_code", 0),
         )
-        stats = loader.load(dataspec=DATASPEC_RACE, fromtime=from_dt, option=OPT_STORED)
+        try:
+            stats = loader.load(dataspec=DATASPEC_RACE, fromtime=from_dt, option=OPT_STORED)
+        except RuntimeError as e:
+            logger.warning(
+                "Stage2 OPT_STORED で RuntimeError (%s) → Stage3 OPT_SETUP にフォールバック", e
+            )
+            stats = {}
 
         if _count_races_for_date(target_date) > 0:
             logger.info("Stage2 OPT_STORED で対象日 %s のレース取得成功", target_iso)
@@ -383,7 +396,16 @@ def sync_wood() -> int:
     if len(from_dt) == 8:
         from_dt += "000000"
     loader = JVDataLoader(sid=sid)
-    stats = loader.load(dataspec=DATASPEC_WOOD, fromtime=from_dt)
+    try:
+        stats = loader.load(dataspec=DATASPEC_WOOD, fromtime=from_dt)
+    except RuntimeError as e:
+        logger.warning("WOOD JVLink 失敗 (%s) → OPT_STORED にフォールバック", e)
+        try:
+            from src.scraper.jravan_client import OPT_STORED
+            stats = loader.load(dataspec=DATASPEC_WOOD, fromtime=from_dt, option=OPT_STORED)
+        except Exception as e2:
+            logger.error("WOOD OPT_STORED も失敗: %s — 調教タイム取得をスキップ", e2)
+            return 0
     logger.info("WOOD 同期完了: %s", stats)
     return stats.get("saved", 0)
 

@@ -6,8 +6,8 @@
   --color-bg-surface:      #FDFCFB;
   --color-bg-muted:        #F0EDE6;
   --color-text-primary:    #2D2C28;
-  --color-text-muted:      #6B6960;
-  --color-text-subtle:     #9E9B93;
+  --color-text-muted:      #4D4B45;
+  --color-text-subtle:     #6B6960;
   --color-accent:          #C8A882;
   --color-accent-light:    #FEF3E2;
   --color-border:          #E5E3DB;
@@ -28,7 +28,8 @@
   --neon-red:     #C44040;
   --neon-gold:    #B8860B;
   --text-primary: #2D2C28;
-  --text-muted:   #6B6960;
+  --text-muted:   #4D4B45;
+  --text-subtle:  #6B6960;
   --border:       #E5E3DB;
   --bg-muted:     #F0EDE6;
 }
@@ -282,9 +283,10 @@ body {
 }
 .tree-race-btn:hover { color: var(--text-primary); background: rgba(200,168,130,0.06); }
 .tree-race-btn.active {
-  color: var(--neon-cyan);
-  background: rgba(200,168,130,0.10);
-  border-left: 2px solid var(--neon-cyan);
+  color: var(--neon-blue);
+  font-weight: 600;
+  background: rgba(139,115,85,0.12);
+  border-left: 2px solid var(--neon-blue);
   padding-left: 38px;
 }
 

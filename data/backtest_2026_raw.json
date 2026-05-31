@@ -1,0 +1,29 @@
+{
+  "date_range": {
+    "from": "2026-01-01",
+    "to": "2026-12-31"
+  },
+  "data_quality": {
+    "2025": {
+      "races": 3456,
+      "rank1": 0,
+      "rank2": 0,
+      "payouts": 41180,
+      "triexacta": 3455,
+      "win5_payouts": 0,
+      "usable": false
+    },
+    "2026": {
+      "races": 1200,
+      "rank1": 1991,
+      "rank2": 1090,
+      "payouts": 41012,
+      "triexacta": 2226,
+      "win5_payouts": 0,
+      "usable": true
+    }
+  },
+  "oracle_trio": [],
+  "oracle_trifecta": [],
+  "win5": []
+}

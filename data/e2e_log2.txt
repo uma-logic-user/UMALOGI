@@ -1,0 +1,65 @@
+08:53:23 INFO e2e_test: =======================================================
+08:53:23 INFO e2e_test: Step 1: DB 接続 + データ確認
+08:53:23 INFO e2e_test: =======================================================
+08:53:23 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+08:53:24 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+08:53:24 INFO e2e_test: レース: 202604010201  日付=2026-05-03  会場=新潟  1R  2000m 芝
+08:53:24 INFO e2e_test: 出馬表: 16 頭 / 結果: 16 頭
+08:53:24 INFO e2e_test: =======================================================
+08:53:24 INFO e2e_test: Step 2: 特徴量生成 (FeatureBuilder)
+08:53:24 INFO e2e_test: =======================================================
+08:53:27 INFO src.ml.features: 特徴量生成 race_id=202604010201: 16 頭 × 51 特徴量
+08:53:27 INFO e2e_test: 特徴量生成: 16 頭 × 51 列  0.22秒
+08:53:37 INFO e2e_test: ✅ FEATURE_COLS 全列存在 (39列)
+08:53:37 INFO e2e_test: =======================================================
+08:53:37 INFO e2e_test: Step 3: モデルロード + 推論
+08:53:37 INFO e2e_test: =======================================================
+08:53:38 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+08:53:38 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\place_model.pkl
+08:53:38 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+08:53:38 INFO e2e_test: モデルロード: 0.53秒
+08:53:41 INFO e2e_test: 推論完了: 2.93秒
+08:53:41 INFO e2e_test: --- 本命スコア TOP5 ---
+08:53:41 INFO e2e_test:   サウンドファミリエ     honmei=0.1716  ev=1.0127
+08:53:41 INFO e2e_test:   フィールライクユー     honmei=0.1716  ev=1.4289
+08:53:41 INFO e2e_test:   ピアス           honmei=0.1716  ev=0.8427
+08:53:41 INFO e2e_test:   ワイドバヴァール      honmei=0.1716  ev=0.9796
+08:53:41 INFO e2e_test:   チョコスコーン       honmei=0.1716  ev=0.2476
+08:53:41 INFO e2e_test: =======================================================
+08:53:41 INFO e2e_test: Step 4: 買い目生成 (BetGenerator)
+08:53:41 INFO e2e_test: =======================================================
+08:53:41 INFO src.ml.bet_generator: 現在のバンクロール: ¥624,000（初期資金 ¥100,000 + 累積P&L ¥+524,062）
+08:53:41 INFO e2e_test: 現在バンクロール: ¥624,000
+08:53:41 INFO src.ml.bet_generator: 本命買い目生成: race_id=202604010201 6 件 (上位3頭)
+08:53:41 INFO src.ml.bet_generator: 卍買い目生成: race_id=202604010201 8 件 (確率上位3頭選択)
+08:53:41 INFO e2e_test: 本命買い目: 6件
+08:53:41 INFO e2e_test: 卍買い目:   8件
+08:53:41 INFO e2e_test:   [本命] 単勝 4  EV=0.17  推奨=¥100
+08:53:41 INFO e2e_test:   [本命] 複勝 4  EV=0.51  推奨=¥300
+08:53:41 INFO e2e_test:   [本命] 馬連 3-4  EV=0.30  推奨=¥500
+08:53:41 INFO e2e_test:   [本命] ワイド 3-4  EV=0.13  推奨=¥500
+08:53:41 INFO e2e_test:   [本命] 馬単 4-3  EV=0.27  推奨=¥300
+08:53:41 INFO e2e_test:   [本命] 三連単 4-3-8  EV=0.87  推奨=¥1,000
+08:53:41 INFO e2e_test:   [卍] 単勝 2  EV=3.24  推奨=¥100
+08:53:41 INFO e2e_test:   [卍] 複勝 2  EV=2.36  推奨=¥300
+08:53:41 INFO e2e_test: =======================================================
+08:53:41 INFO e2e_test: Step 5: note記事 Markdown 生成 / UIバインディング確認
+08:53:41 INFO e2e_test: =======================================================
+08:53:41 INFO e2e_test: note 記事生成: outputs/e2e_note_20260503.md (955 文字)
+08:53:41 INFO e2e_test: --- UI バインディングチェック ---
+08:53:41 INFO e2e_test:   エリート複勝セクション: ✅ OK
+08:53:41 INFO e2e_test:   推奨投資額バインド: ✅ OK
+08:53:41 INFO e2e_test:   破産確率RoR警告: ✅ OK
+08:53:41 INFO e2e_test:   EV値バインド: ✅ OK
+08:53:41 INFO e2e_test:   バンクロール表示: ✅ OK
+08:53:41 INFO e2e_test:   P(win)スコア表示: ✅ OK
+08:53:42 INFO e2e_test: =======================================================
+08:53:42 INFO e2e_test: E2E テスト最終サマリー
+08:53:42 INFO e2e_test: =======================================================
+08:53:42 INFO e2e_test:   step1: ✅ PASS
+08:53:42 INFO e2e_test:   step2: ✅ PASS
+08:53:42 INFO e2e_test:   step3: ✅ PASS
+08:53:42 INFO e2e_test:   step4: ✅ PASS
+08:53:42 INFO e2e_test:   step5: ✅ PASS
+08:53:42 INFO e2e_test: 総合判定: ✅ ALL PASS
+08:53:42 INFO e2e_test: 結果JSON保存: data/e2e_test_result.json

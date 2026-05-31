@@ -1,0 +1,109 @@
+2026-05-16 09:48:25,674 INFO [scheduler] スケジュール登録完了: 27 ジョブ
+2026-05-16 09:48:25,675 INFO [scheduler]   Job(interval=1, unit=weeks, do=job_friday_sync, args=(), kwargs={})
+2026-05-16 09:48:25,676 INFO [scheduler]   Job(interval=1, unit=weeks, do=job_weekend_batch_pre, args=(), kwargs={})
+2026-05-16 09:48:25,676 INFO [scheduler]   Job(interval=1, unit=weeks, do=job_weekend_batch_pre, args=(), kwargs={})
+2026-05-16 09:48:25,676 INFO [scheduler]   Job(interval=1, unit=weeks, do=job_morning_wood, args=(), kwargs={})
+2026-05-16 09:48:25,676 INFO [scheduler]   Job(interval=1, unit=weeks, do=job_morning_wood, args=(), kwargs={})
+2026-05-16 09:48:25,676 INFO [scheduler]   Job(interval=1, unit=weeks, do=job_today_auto_runner, args=(), kwargs={})
+2026-05-16 09:48:25,676 INFO [scheduler]   Job(interval=1, unit=weeks, do=job_today_auto_runner, args=(), kwargs={})
+2026-05-16 09:48:25,676 INFO [scheduler]   Job(interval=1, unit=weeks, do=job_win5_prediction, args=(), kwargs={})
+2026-05-16 09:48:25,676 INFO [scheduler]   Job(interval=1, unit=weeks, do=job_win5_prediction, args=(), kwargs={})
+2026-05-16 09:48:25,676 INFO [scheduler]   Job(interval=1, unit=weeks, do=job_umanity_upload, args=(), kwargs={})
+2026-05-16 09:48:25,677 INFO [scheduler]   Job(interval=1, unit=weeks, do=job_umanity_upload, args=(), kwargs={})
+2026-05-16 09:48:25,677 INFO [scheduler]   Job(interval=1, unit=weeks, do=job_intraday_sync, args=(), kwargs={})
+2026-05-16 09:48:25,677 INFO [scheduler]   Job(interval=1, unit=weeks, do=job_intraday_sync, args=(), kwargs={})
+2026-05-16 09:48:25,677 INFO [scheduler]   Job(interval=1, unit=weeks, do=job_intraday_sync, args=(), kwargs={})
+2026-05-16 09:48:25,677 INFO [scheduler]   Job(interval=1, unit=weeks, do=job_intraday_sync, args=(), kwargs={})
+2026-05-16 09:48:25,677 INFO [scheduler]   Job(interval=1, unit=weeks, do=job_win5_result_fetch, args=(), kwargs={})
+2026-05-16 09:48:25,677 INFO [scheduler]   Job(interval=1, unit=weeks, do=job_win5_result_fetch, args=(), kwargs={})
+2026-05-16 09:48:25,677 INFO [scheduler]   Job(interval=1, unit=weeks, do=job_post_race, args=(), kwargs={})
+2026-05-16 09:48:25,677 INFO [scheduler]   Job(interval=1, unit=weeks, do=job_post_race, args=(), kwargs={})
+2026-05-16 09:48:25,677 INFO [scheduler]   Job(interval=1, unit=weeks, do=job_weekend_batch_post, args=(), kwargs={})
+2026-05-16 09:48:25,677 INFO [scheduler]   Job(interval=1, unit=weeks, do=job_weekend_batch_post, args=(), kwargs={})
+2026-05-16 09:48:25,677 INFO [scheduler]   Job(interval=1, unit=weeks, do=job_weekly_backup, args=(), kwargs={})
+2026-05-16 09:48:25,677 INFO [scheduler]   Job(interval=1, unit=weeks, do=job_monday_masters, args=(), kwargs={})
+2026-05-16 09:48:25,677 INFO [scheduler]   Job(interval=1, unit=weeks, do=job_weekly_retrain, args=(), kwargs={})
+2026-05-16 09:48:25,678 INFO [scheduler]   Job(interval=1, unit=weeks, do=job_git_push, args=(), kwargs={})
+2026-05-16 09:48:25,678 INFO [scheduler]   Job(interval=1, unit=hours, do=job_heartbeat, args=(), kwargs={})
+2026-05-16 09:48:25,678 INFO [scheduler]   Job(interval=1, unit=days, do=job_daily_backup, args=(), kwargs={})
+2026-05-16 09:48:25,678 WARNING [scheduler] [リカバリー] job_morning_wood は 07:30 に実行すべきでしたが取りこぼしを検出 → 今すぐ実行
+2026-05-16 09:48:27,181 INFO [scheduler] Discord 送信完了: HTTP 204
+2026-05-16 09:48:27,183 INFO [scheduler] === [朝調教同期] 開始 ===
+2026-05-16 09:48:27,183 INFO [scheduler] [JVLink-WOOD朝] 開始: py -3.14-32 -m src.ops.data_sync wood
+2026-05-16 09:48:27,871 INFO [scheduler] [JVLink-WOOD朝] 2026-05-16 09:48:27,867 INFO �}�C�O���[�V����: v_race_mart �r���[���č쐬���܂���
+2026-05-16 09:48:28,267 INFO [scheduler] [JVLink-WOOD朝] 2026-05-16 09:48:28,267 INFO �}�C�O���[�V����: v_analytics �r���[���č쐬���܂���
+2026-05-16 09:48:28,268 INFO [scheduler] [JVLink-WOOD朝] 2026-05-16 09:48:28,268 INFO DB ����������: C:\dev\horse-racing-ai\data\umalogi.db
+2026-05-16 09:48:28,268 INFO [scheduler] [JVLink-WOOD朝] 2026-05-16 09:48:28,268 INFO DB �X�L�[�}�g������ (training_times / training_hillwork / breeding_horses / foals / racehorses / jockeys / trainers)
+2026-05-16 09:48:29,684 INFO [scheduler] [JVLink-WOOD朝] 2026-05-16 09:48:29,683 INFO �Â� 32bit Python �Z�b�V���� 3 �����I�����܂���
+2026-05-16 09:48:30,750 INFO [scheduler] [JVLink-WOOD朝] 2026-05-16 09:48:30,750 INFO JVInit ���� sid=SA177632 (attempt=1)
+2026-05-16 09:48:31,167 INFO [scheduler] [JVLink-WOOD朝] 2026-05-16 09:48:31,167 INFO JVOpen: dataspec=WOOD fromtime=20260509000000 option=1 �� code=0 dl=13
+2026-05-16 09:48:31,173 INFO [scheduler] [JVLink-WOOD朝] 2026-05-16 09:48:31,173 INFO JVClose ����
+2026-05-16 09:48:31,178 INFO [scheduler] [JVLink-WOOD朝] Traceback (most recent call last):
+2026-05-16 09:48:31,204 INFO [scheduler] [JVLink-WOOD朝]   File "<frozen runpy>", line 198, in _run_module_as_main
+2026-05-16 09:48:31,204 INFO [scheduler] [JVLink-WOOD朝]   File "<frozen runpy>", line 88, in _run_code
+2026-05-16 09:48:31,204 INFO [scheduler] [JVLink-WOOD朝]   File "C:\dev\horse-racing-ai\src\ops\data_sync.py", line 581, in <module>
+2026-05-16 09:48:31,204 INFO [scheduler] [JVLink-WOOD朝]     main()
+2026-05-16 09:48:31,204 INFO [scheduler] [JVLink-WOOD朝]     ~~~~^^
+2026-05-16 09:48:31,204 INFO [scheduler] [JVLink-WOOD朝]   File "C:\dev\horse-racing-ai\src\ops\data_sync.py", line 568, in main
+2026-05-16 09:48:31,204 INFO [scheduler] [JVLink-WOOD朝]     sync_wood()
+2026-05-16 09:48:31,204 INFO [scheduler] [JVLink-WOOD朝]     ~~~~~~~~~^^
+2026-05-16 09:48:31,204 INFO [scheduler] [JVLink-WOOD朝]   File "C:\dev\horse-racing-ai\src\ops\data_sync.py", line 355, in sync_wood
+2026-05-16 09:48:31,204 INFO [scheduler] [JVLink-WOOD朝]     stats = loader.load(dataspec=DATASPEC_WOOD, fromtime=from_dt)
+2026-05-16 09:48:31,204 INFO [scheduler] [JVLink-WOOD朝]   File "C:\dev\horse-racing-ai\src\scraper\jravan_client.py", line 2188, in load
+2026-05-16 09:48:31,204 INFO [scheduler] [JVLink-WOOD朝]     raise RuntimeError(f"JVRead �G���[: code={code}")
+2026-05-16 09:48:31,204 INFO [scheduler] [JVLink-WOOD朝] RuntimeError: JVRead �G���[: code=-503
+2026-05-16 09:48:31,266 WARNING [scheduler] [JVLink-WOOD朝] 終了: rc=1
+2026-05-16 09:48:31,266 WARNING [scheduler] [JVLink-WOOD朝] 失敗(rc=1) — 60秒後に再試行 (1/3)
+2026-05-16 09:49:31,266 INFO [scheduler] [JVLink-WOOD朝] 開始: py -3.14-32 -m src.ops.data_sync wood
+2026-05-16 09:49:31,516 INFO [scheduler] [JVLink-WOOD朝] 2026-05-16 09:49:31,515 INFO �}�C�O���[�V����: v_race_mart �r���[���č쐬���܂���
+2026-05-16 09:49:31,877 INFO [scheduler] [JVLink-WOOD朝] 2026-05-16 09:49:31,877 INFO �}�C�O���[�V����: v_analytics �r���[���č쐬���܂���
+2026-05-16 09:49:31,878 INFO [scheduler] [JVLink-WOOD朝] 2026-05-16 09:49:31,878 INFO DB ����������: C:\dev\horse-racing-ai\data\umalogi.db
+2026-05-16 09:49:31,878 INFO [scheduler] [JVLink-WOOD朝] 2026-05-16 09:49:31,878 INFO DB �X�L�[�}�g������ (training_times / training_hillwork / breeding_horses / foals / racehorses / jockeys / trainers)
+2026-05-16 09:49:32,162 INFO [scheduler] [JVLink-WOOD朝] 2026-05-16 09:49:32,162 INFO JVInit ���� sid=SA177632 (attempt=1)
+2026-05-16 09:49:32,336 INFO [scheduler] [JVLink-WOOD朝] 2026-05-16 09:49:32,336 INFO JVOpen: dataspec=WOOD fromtime=20260509000000 option=1 �� code=0 dl=13
+2026-05-16 09:49:32,341 INFO [scheduler] [JVLink-WOOD朝] 2026-05-16 09:49:32,341 INFO JVClose ����
+2026-05-16 09:49:32,344 INFO [scheduler] [JVLink-WOOD朝] Traceback (most recent call last):
+2026-05-16 09:49:32,346 INFO [scheduler] [JVLink-WOOD朝]   File "<frozen runpy>", line 198, in _run_module_as_main
+2026-05-16 09:49:32,346 INFO [scheduler] [JVLink-WOOD朝]   File "<frozen runpy>", line 88, in _run_code
+2026-05-16 09:49:32,347 INFO [scheduler] [JVLink-WOOD朝]   File "C:\dev\horse-racing-ai\src\ops\data_sync.py", line 581, in <module>
+2026-05-16 09:49:32,347 INFO [scheduler] [JVLink-WOOD朝]     main()
+2026-05-16 09:49:32,347 INFO [scheduler] [JVLink-WOOD朝]     ~~~~^^
+2026-05-16 09:49:32,347 INFO [scheduler] [JVLink-WOOD朝]   File "C:\dev\horse-racing-ai\src\ops\data_sync.py", line 568, in main
+2026-05-16 09:49:32,347 INFO [scheduler] [JVLink-WOOD朝]     sync_wood()
+2026-05-16 09:49:32,347 INFO [scheduler] [JVLink-WOOD朝]     ~~~~~~~~~^^
+2026-05-16 09:49:32,347 INFO [scheduler] [JVLink-WOOD朝]   File "C:\dev\horse-racing-ai\src\ops\data_sync.py", line 355, in sync_wood
+2026-05-16 09:49:32,347 INFO [scheduler] [JVLink-WOOD朝]     stats = loader.load(dataspec=DATASPEC_WOOD, fromtime=from_dt)
+2026-05-16 09:49:32,347 INFO [scheduler] [JVLink-WOOD朝]   File "C:\dev\horse-racing-ai\src\scraper\jravan_client.py", line 2188, in load
+2026-05-16 09:49:32,347 INFO [scheduler] [JVLink-WOOD朝]     raise RuntimeError(f"JVRead �G���[: code={code}")
+2026-05-16 09:49:32,347 INFO [scheduler] [JVLink-WOOD朝] RuntimeError: JVRead �G���[: code=-503
+2026-05-16 09:49:32,387 WARNING [scheduler] [JVLink-WOOD朝] 終了: rc=1
+2026-05-16 09:49:32,387 WARNING [scheduler] [JVLink-WOOD朝] 失敗(rc=1) — 180秒後に再試行 (2/3)
+2026-05-16 09:52:32,387 INFO [scheduler] [JVLink-WOOD朝] 開始: py -3.14-32 -m src.ops.data_sync wood
+2026-05-16 09:52:33,520 INFO [scheduler] [JVLink-WOOD朝] 2026-05-16 09:52:33,518 INFO �}�C�O���[�V����: v_race_mart �r���[���č쐬���܂���
+2026-05-16 09:52:34,339 INFO [scheduler] [JVLink-WOOD朝] 2026-05-16 09:52:34,339 INFO �}�C�O���[�V����: v_analytics �r���[���č쐬���܂���
+2026-05-16 09:52:34,339 INFO [scheduler] [JVLink-WOOD朝] 2026-05-16 09:52:34,339 INFO DB ����������: C:\dev\horse-racing-ai\data\umalogi.db
+2026-05-16 09:52:34,339 INFO [scheduler] [JVLink-WOOD朝] 2026-05-16 09:52:34,339 INFO DB �X�L�[�}�g������ (training_times / training_hillwork / breeding_horses / foals / racehorses / jockeys / trainers)
+2026-05-16 09:52:35,308 INFO [scheduler] [JVLink-WOOD朝] 2026-05-16 09:52:35,308 INFO JVInit ���� sid=SA177632 (attempt=1)
+2026-05-16 09:52:35,783 INFO [scheduler] [JVLink-WOOD朝] 2026-05-16 09:52:35,783 INFO JVOpen: dataspec=WOOD fromtime=20260509000000 option=1 �� code=0 dl=13
+2026-05-16 09:52:35,791 INFO [scheduler] [JVLink-WOOD朝] 2026-05-16 09:52:35,791 INFO JVClose ����
+2026-05-16 09:52:35,796 INFO [scheduler] [JVLink-WOOD朝] Traceback (most recent call last):
+2026-05-16 09:52:35,803 INFO [scheduler] [JVLink-WOOD朝]   File "<frozen runpy>", line 198, in _run_module_as_main
+2026-05-16 09:52:35,803 INFO [scheduler] [JVLink-WOOD朝]   File "<frozen runpy>", line 88, in _run_code
+2026-05-16 09:52:35,803 INFO [scheduler] [JVLink-WOOD朝]   File "C:\dev\horse-racing-ai\src\ops\data_sync.py", line 581, in <module>
+2026-05-16 09:52:35,803 INFO [scheduler] [JVLink-WOOD朝]     main()
+2026-05-16 09:52:35,804 INFO [scheduler] [JVLink-WOOD朝]     ~~~~^^
+2026-05-16 09:52:35,804 INFO [scheduler] [JVLink-WOOD朝]   File "C:\dev\horse-racing-ai\src\ops\data_sync.py", line 568, in main
+2026-05-16 09:52:35,804 INFO [scheduler] [JVLink-WOOD朝]     sync_wood()
+2026-05-16 09:52:35,804 INFO [scheduler] [JVLink-WOOD朝]     ~~~~~~~~~^^
+2026-05-16 09:52:35,804 INFO [scheduler] [JVLink-WOOD朝]   File "C:\dev\horse-racing-ai\src\ops\data_sync.py", line 355, in sync_wood
+2026-05-16 09:52:35,804 INFO [scheduler] [JVLink-WOOD朝]     stats = loader.load(dataspec=DATASPEC_WOOD, fromtime=from_dt)
+2026-05-16 09:52:35,804 INFO [scheduler] [JVLink-WOOD朝]   File "C:\dev\horse-racing-ai\src\scraper\jravan_client.py", line 2188, in load
+2026-05-16 09:52:35,804 INFO [scheduler] [JVLink-WOOD朝]     raise RuntimeError(f"JVRead �G���[: code={code}")
+2026-05-16 09:52:35,804 INFO [scheduler] [JVLink-WOOD朝] RuntimeError: JVRead �G���[: code=-503
+2026-05-16 09:52:35,870 WARNING [scheduler] [JVLink-WOOD朝] 終了: rc=1
+2026-05-16 09:52:35,870 WARNING [scheduler] [JVLink-WOOD朝] 失敗(rc=1) — 540秒後に再試行 (3/3)
+2026-05-16 10:01:35,881 INFO [scheduler] [JVLink-WOOD朝] 開始: py -3.14-32 -m src.ops.data_sync wood
+2026-05-16 10:01:36,525 INFO [scheduler] [JVLink-WOOD朝] 2026-05-16 10:01:36,523 INFO �}�C�O���[�V����: v_race_mart �r���[���č쐬���܂���
+2026-05-16 10:01:36,905 INFO [scheduler] [JVLink-WOOD朝] 2026-05-16 10:01:36,905 INFO �}�C�O���[�V����: v_analytics �r���[���č쐬���܂���
+2026-05-16 10:01:36,906 INFO [scheduler] [JVLink-WOOD朝] 2026-05-16 10:01:36,905 INFO DB ����������: C:\dev\horse-racing-ai\data\umalogi.db
+2026-05-16 10:01:36,906 INFO [scheduler] [JVLink-WOOD朝] 2026-05-16 10:01:36,906 INFO DB �X�L�[�}�g������ (training_times / training_hillwork / breeding_horses / foals / racehorses / jockeys / trainers)

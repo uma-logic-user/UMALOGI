@@ -170,6 +170,7 @@ def init_db(db_path: Path | None = None) -> sqlite3.Connection:
     _migrate_add_ev_indexes(conn)                # 15. EV 複合インデックス追加
     _migrate_create_paddock_jockey_trainer(conn) # 16. paddock_notes / jockey_stats / trainer_stats
     _migrate_create_multi_odds(conn)             # 17. multi_odds テーブル
+    _migrate_add_shap_json(conn)                 # 18. prediction_horses.shap_json 列追加
 
     logger.info("DB 初期化完了: %s", path)
     return conn
@@ -918,6 +919,19 @@ def _migrate_create_multi_odds(conn: sqlite3.Connection) -> None:
     logger.info("マイグレーション #17: multi_odds 完了")
 
 
+def _migrate_add_shap_json(conn: sqlite3.Connection) -> None:
+    """マイグレーション #18: prediction_horses に shap_json 列を追加する。
+
+    Args:
+        conn: アクティブな DB コネクション。
+    """
+    cols = [row[1] for row in conn.execute("PRAGMA table_info(prediction_horses)").fetchall()]
+    if "shap_json" not in cols:
+        with conn:
+            conn.execute("ALTER TABLE prediction_horses ADD COLUMN shap_json TEXT")
+        logger.info("マイグレーション #18: prediction_horses.shap_json 列を追加しました")
+
+
 @dataclass
 class MultiOddsEntry:
     """マルチ券種オッズの 1 レコードを表す値オブジェクト。
@@ -1127,8 +1141,8 @@ def insert_prediction(
                 """
                 INSERT INTO prediction_horses
                     (prediction_id, horse_id, horse_name,
-                     predicted_rank, model_score, ev_score)
-                VALUES (?, ?, ?, ?, ?, ?)
+                     predicted_rank, model_score, ev_score, shap_json)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
                 """,
                 (
                     prediction_id,
@@ -1137,6 +1151,7 @@ def insert_prediction(
                     h.get("predicted_rank"),
                     h.get("model_score"),
                     h.get("ev_score"),
+                    h.get("shap_json"),
                 ),
             )
 

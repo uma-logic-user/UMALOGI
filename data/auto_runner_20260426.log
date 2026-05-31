@@ -1,0 +1,1855 @@
+08:50:25 INFO: ãƒã‚¤ã‚°ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³: v_race_mart ãƒ“ãƒ¥ãƒ¼ã‚’å†ä½œæˆã—ã¾ã—ãŸ
+08:50:25 INFO: DB åˆæœŸåŒ–å®Œäº†: C:\dev\horse-racing-ai\data\umalogi.db
+08:50:25 INFO: ============================================================
+08:50:25 INFO: UMALOGI ç›´å‰äºˆæƒ³ + çµæœé€Ÿå ± è‡ªå¾‹ç›£è¦–ãƒ«ãƒ¼ãƒ— èµ·å‹•
+08:50:25 INFO: å¯¾è±¡æ—¥: 20260426  å¯¾è±¡ãƒ¬ãƒ¼ã‚¹: 36 ä»¶  ç™ºèµ°20åˆ†å‰/ç™ºèµ°15åˆ†å¾Œ
+08:50:25 INFO: ============================================================
+08:50:25 INFO:   R01  202603010601  ç™ºèµ°æ¨å®š 10:00  preraceâ†’09:40  postraceâ†’10:15
+08:50:25 INFO:   R02  202603010602  ç™ºèµ°æ¨å®š 10:30  preraceâ†’10:10  postraceâ†’10:45
+08:50:25 INFO:   R03  202603010603  ç™ºèµ°æ¨å®š 11:00  preraceâ†’10:40  postraceâ†’11:15
+08:50:25 INFO:   R04  202603010604  ç™ºèµ°æ¨å®š 11:30  preraceâ†’11:10  postraceâ†’11:45
+08:50:25 INFO:   R05  202603010605  ç™ºèµ°æ¨å®š 12:00  preraceâ†’11:40  postraceâ†’12:15
+08:50:25 INFO:   R06  202603010606  ç™ºèµ°æ¨å®š 12:30  preraceâ†’12:10  postraceâ†’12:45
+08:50:25 INFO:   R07  202603010607  ç™ºèµ°æ¨å®š 13:00  preraceâ†’12:40  postraceâ†’13:15
+08:50:25 INFO:   R08  202603010608  ç™ºèµ°æ¨å®š 13:30  preraceâ†’13:10  postraceâ†’13:45
+08:50:25 INFO:   R09  202603010609  ç™ºèµ°æ¨å®š 14:00  preraceâ†’13:40  postraceâ†’14:15
+08:50:25 INFO:   R10  202603010610  ç™ºèµ°æ¨å®š 14:30  preraceâ†’14:10  postraceâ†’14:45
+08:50:25 INFO:   R11  202603010611  ç™ºèµ°æ¨å®š 15:00  preraceâ†’14:40  postraceâ†’15:15
+08:50:25 INFO:   R12  202603010612  ç™ºèµ°æ¨å®š 15:30  preraceâ†’15:10  postraceâ†’15:45
+08:50:25 INFO:   R01  202605020201  ç™ºèµ°æ¨å®š 10:00  preraceâ†’09:40  postraceâ†’10:15
+08:50:25 INFO:   R02  202605020202  ç™ºèµ°æ¨å®š 10:30  preraceâ†’10:10  postraceâ†’10:45
+08:50:25 INFO:   R03  202605020203  ç™ºèµ°æ¨å®š 11:00  preraceâ†’10:40  postraceâ†’11:15
+08:50:25 INFO:   R04  202605020204  ç™ºèµ°æ¨å®š 11:30  preraceâ†’11:10  postraceâ†’11:45
+08:50:25 INFO:   R05  202605020205  ç™ºèµ°æ¨å®š 12:00  preraceâ†’11:40  postraceâ†’12:15
+08:50:25 INFO:   R06  202605020206  ç™ºèµ°æ¨å®š 12:30  preraceâ†’12:10  postraceâ†’12:45
+08:50:25 INFO:   R07  202605020207  ç™ºèµ°æ¨å®š 13:00  preraceâ†’12:40  postraceâ†’13:15
+08:50:25 INFO:   R08  202605020208  ç™ºèµ°æ¨å®š 13:30  preraceâ†’13:10  postraceâ†’13:45
+08:50:25 INFO:   R09  202605020209  ç™ºèµ°æ¨å®š 14:00  preraceâ†’13:40  postraceâ†’14:15
+08:50:25 INFO:   R10  202605020210  ç™ºèµ°æ¨å®š 14:30  preraceâ†’14:10  postraceâ†’14:45
+08:50:25 INFO:   R11  202605020211  ç™ºèµ°æ¨å®š 15:00  preraceâ†’14:40  postraceâ†’15:15
+08:50:25 INFO:   R12  202605020212  ç™ºèµ°æ¨å®š 15:30  preraceâ†’15:10  postraceâ†’15:45
+08:50:25 INFO:   R01  202608030201  ç™ºèµ°æ¨å®š 10:00  preraceâ†’09:40  postraceâ†’10:15
+08:50:25 INFO:   R02  202608030202  ç™ºèµ°æ¨å®š 10:30  preraceâ†’10:10  postraceâ†’10:45
+08:50:25 INFO:   R03  202608030203  ç™ºèµ°æ¨å®š 11:00  preraceâ†’10:40  postraceâ†’11:15
+08:50:25 INFO:   R04  202608030204  ç™ºèµ°æ¨å®š 11:30  preraceâ†’11:10  postraceâ†’11:45
+08:50:25 INFO:   R05  202608030205  ç™ºèµ°æ¨å®š 12:00  preraceâ†’11:40  postraceâ†’12:15
+08:50:25 INFO:   R06  202608030206  ç™ºèµ°æ¨å®š 12:30  preraceâ†’12:10  postraceâ†’12:45
+08:50:25 INFO:   R07  202608030207  ç™ºèµ°æ¨å®š 13:00  preraceâ†’12:40  postraceâ†’13:15
+08:50:25 INFO:   R08  202608030208  ç™ºèµ°æ¨å®š 13:30  preraceâ†’13:10  postraceâ†’13:45
+08:50:25 INFO:   R09  202608030209  ç™ºèµ°æ¨å®š 14:00  preraceâ†’13:40  postraceâ†’14:15
+08:50:25 INFO:   R10  202608030210  ç™ºèµ°æ¨å®š 14:30  preraceâ†’14:10  postraceâ†’14:45
+08:50:25 INFO:   R11  202608030211  ç™ºèµ°æ¨å®š 15:00  preraceâ†’14:40  postraceâ†’15:15
+08:50:25 INFO:   R12  202608030212  ç™ºèµ°æ¨å®š 15:30  preraceâ†’15:10  postraceâ†’15:45
+08:50:25 INFO: ------------------------------------------------------------
+08:50:25 INFO: ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«æ¸ˆã¿ã‚¸ãƒ§ãƒ–: 72 ä»¶ (ã‚¹ã‚­ãƒƒãƒ—: 0 ä»¶)
+08:50:25 INFO: ç›£è¦–ãƒ«ãƒ¼ãƒ—é–‹å§‹ - Ctrl+C ã§ä¸­æ–­
+08:50:25 INFO: ------------------------------------------------------------
+09:40:00 INFO: [START] R01 202603010601  [prerace] ç›´å‰äºˆæƒ³é–‹å§‹ (æ¨å®šç™ºèµ° 10:00)
+09:40:05 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“ŠJn: race_id=202603010601
+09:40:05 INFO src.database.init_db: ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“: v_race_mart ƒrƒ…[‚ğÄì¬‚µ‚Ü‚µ‚½
+09:40:05 INFO src.database.init_db: DB ‰Šú‰»Š®—¹: C:\dev\horse-racing-ai\data\umalogi.db
+09:40:05 INFO __main__: ’÷‚ßØ‚è‚Ü‚Åc‚è 4 •ª (race_id=202603010601)
+09:40:05 INFO __main__: DB ƒLƒƒƒbƒVƒ…: ƒIƒbƒY=0Œ ƒGƒ“ƒgƒŠ=16“ª (race_id=202603010601)
+09:40:10 INFO src.scraper.entry_table: ƒIƒbƒYæ“¾ race_id=202603010601: 16 “ª
+09:40:10 INFO src.database.init_db: ƒIƒbƒY•Û‘¶: race_id=202603010601, 16 “ª
+09:40:10 INFO __main__: ƒIƒbƒYæ“¾ [netkeiba API]: 16 “ª•Û‘¶ (race_id=202603010601)
+09:40:10 INFO src.ml.features: “Á’¥—Ê¶¬ race_id=202603010601: 16 “ª ~ 51 “Á’¥—Ê
+09:40:10 WARNING __main__: \u26a0\ufe0f ”n‘ÌdŒ‡‘¹ 16/16“ª (100%) \u2014 NaN ‚Ì‚Ü‚Ü„˜_‚ğ‹­s‚µ‚Ü‚· (race_id ‚É‘Î‰)
+09:40:10 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:40:10 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+09:40:13 INFO src.ml.bet_generator: –{–½”ƒ‚¢–Ú¶¬: race_id=202603010601 4 Œ (ãˆÊ3“ª)
+09:40:13 INFO src.ml.bet_generator: ™Â”ƒ‚¢–Ú¶¬: race_id=202603010601 13 Œ (EV>=1.1 ”n=8 “ª)
+09:40:13 INFO src.ml.bet_generator: Oracle”ƒ‚¢–Ú¶¬: race_id=202603010601 O˜A•¡3“_ O˜A’P3“_
+09:40:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10309 race_id=202603010601 model=–{–½(’¼‘O) bet=•¡Ÿ
+09:40:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10310 race_id=202603010601 model=–{–½(’¼‘O) bet=”n˜A
+09:40:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10311 race_id=202603010601 model=–{–½(’¼‘O) bet=ƒƒCƒh
+09:40:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10312 race_id=202603010601 model=–{–½(’¼‘O) bet=O˜A’P
+09:40:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10313 race_id=202603010601 model=™Â(’¼‘O) bet=’PŸ
+09:40:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10314 race_id=202603010601 model=™Â(’¼‘O) bet=’PŸ
+09:40:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10315 race_id=202603010601 model=™Â(’¼‘O) bet=’PŸ
+09:40:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10316 race_id=202603010601 model=™Â(’¼‘O) bet=’PŸ
+09:40:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10317 race_id=202603010601 model=™Â(’¼‘O) bet=’PŸ
+09:40:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10318 race_id=202603010601 model=™Â(’¼‘O) bet=’PŸ
+09:40:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10319 race_id=202603010601 model=™Â(’¼‘O) bet=’PŸ
+09:40:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10320 race_id=202603010601 model=™Â(’¼‘O) bet=•¡Ÿ
+09:40:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10321 race_id=202603010601 model=™Â(’¼‘O) bet=”n˜A
+09:40:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10322 race_id=202603010601 model=™Â(’¼‘O) bet=ƒƒCƒh
+09:40:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10326 race_id=202603010601 model=™Â(’¼‘O) bet=O˜A•¡
+09:40:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10327 race_id=202603010601 model=™Â(’¼‘O) bet=O˜A•¡
+09:40:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10328 race_id=202603010601 model=™Â(’¼‘O) bet=O˜A•¡
+09:40:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10329 race_id=202603010601 model=Oracle(’¼‘O) bet=O˜A•¡
+09:40:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10330 race_id=202603010601 model=Oracle(’¼‘O) bet=O˜A’P
+09:40:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10331 race_id=202603010601 model=–{–½(’¼‘O) bet=”n•ªÍ
+09:40:14 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:40:14 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+09:40:14 WARNING __main__: WIN5 —\‘ª¸”si‘±sj: no such column: win_odds
+09:40:14 INFO __main__: JSON o—Í: C:\dev\horse-racing-ai\data\predictions\202603010601.json
+09:40:15 INFO __main__: Discord ’¼‘O—\‘z’Ê’m ‘—MŠ®—¹: 202603010601 HTTP 204
+09:40:15 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“Š®—¹: race_id=202603010601 –{–½4Œ ™Â13Œ
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1476, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1461, in main
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\ufffd' in position 347: illegal multibyte sequence
+09:40:16 ERROR: [NG] R01 202603010601  [prerace] å¤±æ•— (rc=1)
+09:40:16 INFO: [START] R01 202605020201  [prerace] ç›´å‰äºˆæƒ³é–‹å§‹ (æ¨å®šç™ºèµ° 10:00)
+09:40:20 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“ŠJn: race_id=202605020201
+09:40:20 INFO src.database.init_db: ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“: v_race_mart ƒrƒ…[‚ğÄì¬‚µ‚Ü‚µ‚½
+09:40:20 INFO src.database.init_db: DB ‰Šú‰»Š®—¹: C:\dev\horse-racing-ai\data\umalogi.db
+09:40:20 INFO __main__: ’÷‚ßØ‚è‚Ü‚Åc‚è 4 •ª (race_id=202605020201)
+09:40:20 INFO __main__: DB ƒLƒƒƒbƒVƒ…: ƒIƒbƒY=0Œ ƒGƒ“ƒgƒŠ=16“ª (race_id=202605020201)
+09:40:25 INFO src.scraper.entry_table: ƒIƒbƒYæ“¾ race_id=202605020201: 16 “ª
+09:40:25 INFO src.database.init_db: ƒIƒbƒY•Û‘¶: race_id=202605020201, 16 “ª
+09:40:25 INFO __main__: ƒIƒbƒYæ“¾ [netkeiba API]: 16 “ª•Û‘¶ (race_id=202605020201)
+09:40:25 INFO src.ml.features: “Á’¥—Ê¶¬ race_id=202605020201: 16 “ª ~ 51 “Á’¥—Ê
+09:40:25 WARNING __main__: \u26a0\ufe0f ”n‘ÌdŒ‡‘¹ 16/16“ª (100%) \u2014 NaN ‚Ì‚Ü‚Ü„˜_‚ğ‹­s‚µ‚Ü‚· (race_id ‚É‘Î‰)
+09:40:25 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:40:25 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+09:40:27 INFO src.ml.bet_generator: –{–½”ƒ‚¢–Ú¶¬: race_id=202605020201 4 Œ (ãˆÊ3“ª)
+09:40:27 INFO src.ml.bet_generator: ™Â”ƒ‚¢–Ú¶¬: race_id=202605020201 14 Œ (EV>=1.1 ”n=8 “ª)
+09:40:27 INFO src.ml.bet_generator: Oracle”ƒ‚¢–Ú¶¬: race_id=202605020201 O˜A•¡3“_ O˜A’P3“_
+09:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10353 race_id=202605020201 model=–{–½(’¼‘O) bet=•¡Ÿ
+09:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10354 race_id=202605020201 model=–{–½(’¼‘O) bet=”n˜A
+09:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10355 race_id=202605020201 model=–{–½(’¼‘O) bet=ƒƒCƒh
+09:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10356 race_id=202605020201 model=–{–½(’¼‘O) bet=O˜A’P
+09:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10357 race_id=202605020201 model=™Â(’¼‘O) bet=’PŸ
+09:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10358 race_id=202605020201 model=™Â(’¼‘O) bet=’PŸ
+09:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10359 race_id=202605020201 model=™Â(’¼‘O) bet=’PŸ
+09:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10360 race_id=202605020201 model=™Â(’¼‘O) bet=’PŸ
+09:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10361 race_id=202605020201 model=™Â(’¼‘O) bet=’PŸ
+09:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10362 race_id=202605020201 model=™Â(’¼‘O) bet=’PŸ
+09:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10363 race_id=202605020201 model=™Â(’¼‘O) bet=’PŸ
+09:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10364 race_id=202605020201 model=™Â(’¼‘O) bet=’PŸ
+09:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10365 race_id=202605020201 model=™Â(’¼‘O) bet=•¡Ÿ
+09:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10366 race_id=202605020201 model=™Â(’¼‘O) bet=”n˜A
+09:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10367 race_id=202605020201 model=™Â(’¼‘O) bet=ƒƒCƒh
+09:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10368 race_id=202605020201 model=™Â(’¼‘O) bet=O˜A•¡
+09:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10369 race_id=202605020201 model=™Â(’¼‘O) bet=O˜A•¡
+09:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10370 race_id=202605020201 model=™Â(’¼‘O) bet=O˜A•¡
+09:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10371 race_id=202605020201 model=Oracle(’¼‘O) bet=O˜A•¡
+09:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10372 race_id=202605020201 model=Oracle(’¼‘O) bet=O˜A’P
+09:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10373 race_id=202605020201 model=–{–½(’¼‘O) bet=”n•ªÍ
+09:40:27 INFO __main__: JSON o—Í: C:\dev\horse-racing-ai\data\predictions\202605020201.json
+09:40:28 INFO __main__: Discord ’¼‘O—\‘z’Ê’m ‘—MŠ®—¹: 202605020201 HTTP 204
+09:40:28 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“Š®—¹: race_id=202605020201 –{–½4Œ ™Â14Œ
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1476, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1461, in main
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\ufffd' in position 266: illegal multibyte sequence
+09:40:29 ERROR: [NG] R01 202605020201  [prerace] å¤±æ•— (rc=1)
+09:40:29 INFO: [START] R01 202608030201  [prerace] ç›´å‰äºˆæƒ³é–‹å§‹ (æ¨å®šç™ºèµ° 10:00)
+09:40:33 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“ŠJn: race_id=202608030201
+09:40:33 INFO src.database.init_db: ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“: v_race_mart ƒrƒ…[‚ğÄì¬‚µ‚Ü‚µ‚½
+09:40:33 INFO src.database.init_db: DB ‰Šú‰»Š®—¹: C:\dev\horse-racing-ai\data\umalogi.db
+09:40:33 INFO __main__: ’÷‚ßØ‚è‚Ü‚Åc‚è 4 •ª (race_id=202608030201)
+09:40:33 INFO __main__: DB ƒLƒƒƒbƒVƒ…: ƒIƒbƒY=0Œ ƒGƒ“ƒgƒŠ=16“ª (race_id=202608030201)
+09:40:38 INFO src.scraper.entry_table: ƒIƒbƒYæ“¾ race_id=202608030201: 16 “ª
+09:40:38 INFO src.database.init_db: ƒIƒbƒY•Û‘¶: race_id=202608030201, 16 “ª
+09:40:38 INFO __main__: ƒIƒbƒYæ“¾ [netkeiba API]: 16 “ª•Û‘¶ (race_id=202608030201)
+09:40:38 INFO src.ml.features: “Á’¥—Ê¶¬ race_id=202608030201: 16 “ª ~ 51 “Á’¥—Ê
+09:40:38 WARNING __main__: \u26a0\ufe0f ”n‘ÌdŒ‡‘¹ 16/16“ª (100%) \u2014 NaN ‚Ì‚Ü‚Ü„˜_‚ğ‹­s‚µ‚Ü‚· (race_id ‚É‘Î‰)
+09:40:39 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:40:39 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+09:40:40 INFO src.ml.bet_generator: –{–½”ƒ‚¢–Ú¶¬: race_id=202608030201 4 Œ (ãˆÊ3“ª)
+09:40:41 INFO src.ml.bet_generator: ™Â”ƒ‚¢–Ú¶¬: race_id=202608030201 14 Œ (EV>=1.1 ”n=8 “ª)
+09:40:41 INFO src.ml.bet_generator: Oracle”ƒ‚¢–Ú¶¬: race_id=202608030201 O˜A•¡3“_ O˜A’P3“_
+09:40:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10438 race_id=202608030201 model=–{–½(’¼‘O) bet=•¡Ÿ
+09:40:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10439 race_id=202608030201 model=–{–½(’¼‘O) bet=”n˜A
+09:40:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10440 race_id=202608030201 model=–{–½(’¼‘O) bet=ƒƒCƒh
+09:40:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10441 race_id=202608030201 model=–{–½(’¼‘O) bet=O˜A’P
+09:40:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10442 race_id=202608030201 model=™Â(’¼‘O) bet=’PŸ
+09:40:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10443 race_id=202608030201 model=™Â(’¼‘O) bet=’PŸ
+09:40:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10444 race_id=202608030201 model=™Â(’¼‘O) bet=’PŸ
+09:40:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10445 race_id=202608030201 model=™Â(’¼‘O) bet=’PŸ
+09:40:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10446 race_id=202608030201 model=™Â(’¼‘O) bet=’PŸ
+09:40:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10447 race_id=202608030201 model=™Â(’¼‘O) bet=’PŸ
+09:40:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10448 race_id=202608030201 model=™Â(’¼‘O) bet=’PŸ
+09:40:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10449 race_id=202608030201 model=™Â(’¼‘O) bet=’PŸ
+09:40:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10450 race_id=202608030201 model=™Â(’¼‘O) bet=•¡Ÿ
+09:40:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10451 race_id=202608030201 model=™Â(’¼‘O) bet=”n˜A
+09:40:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10452 race_id=202608030201 model=™Â(’¼‘O) bet=ƒƒCƒh
+09:40:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10453 race_id=202608030201 model=™Â(’¼‘O) bet=O˜A•¡
+09:40:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10454 race_id=202608030201 model=™Â(’¼‘O) bet=O˜A•¡
+09:40:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10455 race_id=202608030201 model=™Â(’¼‘O) bet=O˜A•¡
+09:40:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10456 race_id=202608030201 model=Oracle(’¼‘O) bet=O˜A•¡
+09:40:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10457 race_id=202608030201 model=Oracle(’¼‘O) bet=O˜A’P
+09:40:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10466 race_id=202608030201 model=–{–½(’¼‘O) bet=”n•ªÍ
+09:40:41 INFO __main__: JSON o—Í: C:\dev\horse-racing-ai\data\predictions\202608030201.json
+09:40:42 INFO __main__: Discord ’¼‘O—\‘z’Ê’m ‘—MŠ®—¹: 202608030201 HTTP 204
+09:40:42 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“Š®—¹: race_id=202608030201 –{–½4Œ ™Â14Œ
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1476, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1461, in main
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\ufffd' in position 267: illegal multibyte sequence
+09:40:43 ERROR: [NG] R01 202608030201  [prerace] å¤±æ•— (rc=1)
+10:10:00 INFO: [START] R02 202603010602  [prerace] ç›´å‰äºˆæƒ³é–‹å§‹ (æ¨å®šç™ºèµ° 10:30)
+10:10:04 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“ŠJn: race_id=202603010602
+10:10:05 INFO src.database.init_db: ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“: v_race_mart ƒrƒ…[‚ğÄì¬‚µ‚Ü‚µ‚½
+10:10:05 INFO src.database.init_db: DB ‰Šú‰»Š®—¹: C:\dev\horse-racing-ai\data\umalogi.db
+10:10:05 INFO __main__: ’÷‚ßØ‚è‚Ü‚Åc‚è 4 •ª (race_id=202603010602)
+10:10:05 INFO __main__: DB ƒLƒƒƒbƒVƒ…: ƒIƒbƒY=0Œ ƒGƒ“ƒgƒŠ=16“ª (race_id=202603010602)
+10:10:10 INFO src.scraper.entry_table: ƒIƒbƒYæ“¾ race_id=202603010602: 16 “ª
+10:10:10 INFO src.database.init_db: ƒIƒbƒY•Û‘¶: race_id=202603010602, 16 “ª
+10:10:10 INFO __main__: ƒIƒbƒYæ“¾ [netkeiba API]: 16 “ª•Û‘¶ (race_id=202603010602)
+10:10:10 INFO src.ml.features: “Á’¥—Ê¶¬ race_id=202603010602: 16 “ª ~ 51 “Á’¥—Ê
+10:10:10 WARNING __main__: \u26a0\ufe0f ”n‘ÌdŒ‡‘¹ 16/16“ª (100%) \u2014 NaN ‚Ì‚Ü‚Ü„˜_‚ğ‹­s‚µ‚Ü‚· (race_id ‚É‘Î‰)
+10:10:10 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+10:10:10 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+10:10:12 INFO src.ml.bet_generator: –{–½”ƒ‚¢–Ú¶¬: race_id=202603010602 4 Œ (ãˆÊ3“ª)
+10:10:12 INFO src.ml.bet_generator: ™Â”ƒ‚¢–Ú¶¬: race_id=202603010602 13 Œ (EV>=1.1 ”n=7 “ª)
+10:10:13 INFO src.ml.bet_generator: Oracle”ƒ‚¢–Ú¶¬: race_id=202603010602 O˜A•¡3“_ O˜A’P3“_
+10:10:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10479 race_id=202603010602 model=–{–½(’¼‘O) bet=•¡Ÿ
+10:10:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10480 race_id=202603010602 model=–{–½(’¼‘O) bet=”n˜A
+10:10:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10481 race_id=202603010602 model=–{–½(’¼‘O) bet=ƒƒCƒh
+10:10:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10482 race_id=202603010602 model=–{–½(’¼‘O) bet=O˜A’P
+10:10:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10483 race_id=202603010602 model=™Â(’¼‘O) bet=’PŸ
+10:10:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10484 race_id=202603010602 model=™Â(’¼‘O) bet=’PŸ
+10:10:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10485 race_id=202603010602 model=™Â(’¼‘O) bet=’PŸ
+10:10:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10486 race_id=202603010602 model=™Â(’¼‘O) bet=’PŸ
+10:10:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10487 race_id=202603010602 model=™Â(’¼‘O) bet=’PŸ
+10:10:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10488 race_id=202603010602 model=™Â(’¼‘O) bet=’PŸ
+10:10:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10489 race_id=202603010602 model=™Â(’¼‘O) bet=’PŸ
+10:10:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10490 race_id=202603010602 model=™Â(’¼‘O) bet=•¡Ÿ
+10:10:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10491 race_id=202603010602 model=™Â(’¼‘O) bet=”n˜A
+10:10:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10492 race_id=202603010602 model=™Â(’¼‘O) bet=ƒƒCƒh
+10:10:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10493 race_id=202603010602 model=™Â(’¼‘O) bet=O˜A•¡
+10:10:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10494 race_id=202603010602 model=™Â(’¼‘O) bet=O˜A•¡
+10:10:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10495 race_id=202603010602 model=™Â(’¼‘O) bet=O˜A•¡
+10:10:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10496 race_id=202603010602 model=Oracle(’¼‘O) bet=O˜A•¡
+10:10:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10497 race_id=202603010602 model=Oracle(’¼‘O) bet=O˜A’P
+10:10:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10498 race_id=202603010602 model=–{–½(’¼‘O) bet=”n•ªÍ
+10:10:13 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+10:10:13 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+10:10:13 WARNING __main__: WIN5 —\‘ª¸”si‘±sj: no such column: win_odds
+10:10:13 INFO __main__: JSON o—Í: C:\dev\horse-racing-ai\data\predictions\202603010602.json
+10:10:14 INFO __main__: Discord ’¼‘O—\‘z’Ê’m ‘—MŠ®—¹: 202603010602 HTTP 204
+10:10:14 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“Š®—¹: race_id=202603010602 –{–½4Œ ™Â13Œ
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1476, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1461, in main
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\ufffd' in position 266: illegal multibyte sequence
+10:10:15 ERROR: [NG] R02 202603010602  [prerace] å¤±æ•— (rc=1)
+10:10:15 INFO: [START] R02 202605020202  [prerace] ç›´å‰äºˆæƒ³é–‹å§‹ (æ¨å®šç™ºèµ° 10:30)
+10:10:19 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“ŠJn: race_id=202605020202
+10:10:19 INFO src.database.init_db: ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“: v_race_mart ƒrƒ…[‚ğÄì¬‚µ‚Ü‚µ‚½
+10:10:19 INFO src.database.init_db: DB ‰Šú‰»Š®—¹: C:\dev\horse-racing-ai\data\umalogi.db
+10:10:19 INFO __main__: ’÷‚ßØ‚è‚Ü‚Åc‚è 4 •ª (race_id=202605020202)
+10:10:19 INFO __main__: DB ƒLƒƒƒbƒVƒ…: ƒIƒbƒY=0Œ ƒGƒ“ƒgƒŠ=14“ª (race_id=202605020202)
+10:10:24 INFO src.scraper.entry_table: ƒIƒbƒYæ“¾ race_id=202605020202: 14 “ª
+10:10:24 INFO src.database.init_db: ƒIƒbƒY•Û‘¶: race_id=202605020202, 14 “ª
+10:10:24 INFO __main__: ƒIƒbƒYæ“¾ [netkeiba API]: 14 “ª•Û‘¶ (race_id=202605020202)
+10:10:24 INFO src.ml.features: “Á’¥—Ê¶¬ race_id=202605020202: 14 “ª ~ 51 “Á’¥—Ê
+10:10:24 WARNING __main__: \u26a0\ufe0f ”n‘ÌdŒ‡‘¹ 14/14“ª (100%) \u2014 NaN ‚Ì‚Ü‚Ü„˜_‚ğ‹­s‚µ‚Ü‚· (race_id ‚É‘Î‰)
+10:10:24 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+10:10:24 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+10:10:26 INFO src.ml.bet_generator: –{–½”ƒ‚¢–Ú¶¬: race_id=202605020202 4 Œ (ãˆÊ3“ª)
+10:10:26 INFO src.ml.bet_generator: ™Â”ƒ‚¢–Ú¶¬: race_id=202605020202 14 Œ (EV>=1.1 ”n=8 “ª)
+10:10:26 INFO src.ml.bet_generator: Oracle”ƒ‚¢–Ú¶¬: race_id=202605020202 O˜A•¡3“_ O˜A’P3“_
+10:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10581 race_id=202605020202 model=–{–½(’¼‘O) bet=•¡Ÿ
+10:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10582 race_id=202605020202 model=–{–½(’¼‘O) bet=”n˜A
+10:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10583 race_id=202605020202 model=–{–½(’¼‘O) bet=ƒƒCƒh
+10:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10584 race_id=202605020202 model=–{–½(’¼‘O) bet=O˜A’P
+10:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10585 race_id=202605020202 model=™Â(’¼‘O) bet=’PŸ
+10:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10586 race_id=202605020202 model=™Â(’¼‘O) bet=’PŸ
+10:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10587 race_id=202605020202 model=™Â(’¼‘O) bet=’PŸ
+10:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10588 race_id=202605020202 model=™Â(’¼‘O) bet=’PŸ
+10:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10589 race_id=202605020202 model=™Â(’¼‘O) bet=’PŸ
+10:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10590 race_id=202605020202 model=™Â(’¼‘O) bet=’PŸ
+10:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10591 race_id=202605020202 model=™Â(’¼‘O) bet=’PŸ
+10:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10592 race_id=202605020202 model=™Â(’¼‘O) bet=’PŸ
+10:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10593 race_id=202605020202 model=™Â(’¼‘O) bet=•¡Ÿ
+10:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10594 race_id=202605020202 model=™Â(’¼‘O) bet=”n˜A
+10:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10595 race_id=202605020202 model=™Â(’¼‘O) bet=ƒƒCƒh
+10:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10596 race_id=202605020202 model=™Â(’¼‘O) bet=O˜A•¡
+10:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10597 race_id=202605020202 model=™Â(’¼‘O) bet=O˜A•¡
+10:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10598 race_id=202605020202 model=™Â(’¼‘O) bet=O˜A•¡
+10:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10599 race_id=202605020202 model=Oracle(’¼‘O) bet=O˜A•¡
+10:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10600 race_id=202605020202 model=Oracle(’¼‘O) bet=O˜A’P
+10:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10601 race_id=202605020202 model=–{–½(’¼‘O) bet=”n•ªÍ
+10:10:26 INFO __main__: JSON o—Í: C:\dev\horse-racing-ai\data\predictions\202605020202.json
+10:10:27 INFO __main__: Discord ’¼‘O—\‘z’Ê’m ‘—MŠ®—¹: 202605020202 HTTP 204
+10:10:27 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“Š®—¹: race_id=202605020202 –{–½4Œ ™Â14Œ
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1476, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1461, in main
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\ufffd' in position 266: illegal multibyte sequence
+10:10:28 ERROR: [NG] R02 202605020202  [prerace] å¤±æ•— (rc=1)
+10:10:28 INFO: [START] R02 202608030202  [prerace] ç›´å‰äºˆæƒ³é–‹å§‹ (æ¨å®šç™ºèµ° 10:30)
+10:10:32 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“ŠJn: race_id=202608030202
+10:10:32 INFO src.database.init_db: ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“: v_race_mart ƒrƒ…[‚ğÄì¬‚µ‚Ü‚µ‚½
+10:10:32 INFO src.database.init_db: DB ‰Šú‰»Š®—¹: C:\dev\horse-racing-ai\data\umalogi.db
+10:10:32 INFO __main__: ’÷‚ßØ‚è‚Ü‚Åc‚è 4 •ª (race_id=202608030202)
+10:10:32 INFO __main__: DB ƒLƒƒƒbƒVƒ…: ƒIƒbƒY=0Œ ƒGƒ“ƒgƒŠ=15“ª (race_id=202608030202)
+10:10:36 INFO src.scraper.entry_table: ƒIƒbƒYæ“¾ race_id=202608030202: 15 “ª
+10:10:36 INFO src.database.init_db: ƒIƒbƒY•Û‘¶: race_id=202608030202, 15 “ª
+10:10:36 INFO __main__: ƒIƒbƒYæ“¾ [netkeiba API]: 15 “ª•Û‘¶ (race_id=202608030202)
+10:10:36 INFO src.ml.features: “Á’¥—Ê¶¬ race_id=202608030202: 15 “ª ~ 51 “Á’¥—Ê
+10:10:36 WARNING __main__: \u26a0\ufe0f ”n‘ÌdŒ‡‘¹ 15/15“ª (100%) \u2014 NaN ‚Ì‚Ü‚Ü„˜_‚ğ‹­s‚µ‚Ü‚· (race_id ‚É‘Î‰)
+10:10:36 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+10:10:36 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+10:10:39 INFO src.ml.bet_generator: –{–½”ƒ‚¢–Ú¶¬: race_id=202608030202 4 Œ (ãˆÊ3“ª)
+10:10:39 INFO src.ml.bet_generator: ™Â”ƒ‚¢–Ú¶¬: race_id=202608030202 14 Œ (EV>=1.1 ”n=8 “ª)
+10:10:39 INFO src.ml.bet_generator: Oracle”ƒ‚¢–Ú¶¬: race_id=202608030202 O˜A•¡3“_ O˜A’P3“_
+10:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10623 race_id=202608030202 model=–{–½(’¼‘O) bet=•¡Ÿ
+10:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10624 race_id=202608030202 model=–{–½(’¼‘O) bet=”n˜A
+10:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10625 race_id=202608030202 model=–{–½(’¼‘O) bet=ƒƒCƒh
+10:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10626 race_id=202608030202 model=–{–½(’¼‘O) bet=O˜A’P
+10:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10627 race_id=202608030202 model=™Â(’¼‘O) bet=’PŸ
+10:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10628 race_id=202608030202 model=™Â(’¼‘O) bet=’PŸ
+10:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10629 race_id=202608030202 model=™Â(’¼‘O) bet=’PŸ
+10:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10630 race_id=202608030202 model=™Â(’¼‘O) bet=’PŸ
+10:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10631 race_id=202608030202 model=™Â(’¼‘O) bet=’PŸ
+10:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10632 race_id=202608030202 model=™Â(’¼‘O) bet=’PŸ
+10:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10633 race_id=202608030202 model=™Â(’¼‘O) bet=’PŸ
+10:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10634 race_id=202608030202 model=™Â(’¼‘O) bet=’PŸ
+10:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10635 race_id=202608030202 model=™Â(’¼‘O) bet=•¡Ÿ
+10:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10636 race_id=202608030202 model=™Â(’¼‘O) bet=”n˜A
+10:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10637 race_id=202608030202 model=™Â(’¼‘O) bet=ƒƒCƒh
+10:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10638 race_id=202608030202 model=™Â(’¼‘O) bet=O˜A•¡
+10:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10639 race_id=202608030202 model=™Â(’¼‘O) bet=O˜A•¡
+10:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10640 race_id=202608030202 model=™Â(’¼‘O) bet=O˜A•¡
+10:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10641 race_id=202608030202 model=Oracle(’¼‘O) bet=O˜A•¡
+10:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10642 race_id=202608030202 model=Oracle(’¼‘O) bet=O˜A’P
+10:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10643 race_id=202608030202 model=–{–½(’¼‘O) bet=”n•ªÍ
+10:10:39 INFO __main__: JSON o—Í: C:\dev\horse-racing-ai\data\predictions\202608030202.json
+10:10:40 INFO __main__: Discord ’¼‘O—\‘z’Ê’m ‘—MŠ®—¹: 202608030202 HTTP 204
+10:10:40 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“Š®—¹: race_id=202608030202 –{–½4Œ ™Â14Œ
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1476, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1461, in main
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\ufffd' in position 263: illegal multibyte sequence
+10:10:41 ERROR: [NG] R02 202608030202  [prerace] å¤±æ•— (rc=1)
+10:15:00 INFO: [START] R01 202603010601  [postrace] çµæœå–å¾—é–‹å§‹
+10:15:00 INFO: ãƒã‚¤ã‚°ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³: v_race_mart ãƒ“ãƒ¥ãƒ¼ã‚’å†ä½œæˆã—ã¾ã—ãŸ
+10:15:00 INFO: DB åˆæœŸåŒ–å®Œäº†: C:\dev\horse-racing-ai\data\umalogi.db
+10:15:00 INFO: ãƒ¬ãƒ¼ã‚¹çµæœå–å¾—é–‹å§‹: race_id=202603010601
+10:15:03 INFO: å–å¾—å®Œäº†: race_id=202603010601, å‡ºèµ°é ­æ•°=16
+10:15:03 INFO: race_results ä¿å­˜: race_id=202603010601 (16/16é ­)
+10:15:07 INFO: æ‰•æˆ»å–å¾— (æ–°å½¢å¼): race_id=202603010601, 12 ä»¶
+10:15:07 INFO: æ‰•æˆ»ä¿å­˜: race_id=202603010601, 12 ä»¶
+10:15:07 INFO: race_payouts ä¿å­˜: race_id=202603010601 (12ä»¶)
+10:15:07 INFO: [è©•ä¾¡] race=202603010601 20000                                                       : äºˆæƒ³24ä»¶ çš„ä¸­0ä»¶ æŠ•è³‡Â¥7200 æ‰•æˆ»Â¥0 ROI=0.0%
+10:15:07 INFO: è©•ä¾¡å®Œäº†: race_id=202603010601  çš„ä¸­=0ä»¶  æŠ•è³‡Â¥7200  æ‰•æˆ»Â¥0  ROI=0.0%
+races.json:       18408 ƒŒ[ƒX
+races/{id}.json: 18408 ƒtƒ@ƒCƒ‹ ¨ C:\dev\horse-racing-ai\web\src\data\races
+predictions.json:  2818 Œ
+summary.json:         4 ƒ‚ƒfƒ‹~”NƒŒƒR[ƒh  (‘ƒŒ[ƒX 18,408)
+financial.json:      18 “ú~ƒ‚ƒfƒ‹ƒŒƒR[ƒh
+
+ƒGƒNƒXƒ|[ƒgæ: C:\dev\horse-racing-ai\web\src\data
+10:16:05 INFO: ãƒ€ãƒƒã‚·ãƒ¥ãƒœãƒ¼ãƒ‰æ›´æ–°å®Œäº†
+10:16:05 INFO: [OK] R01 202603010601  [postrace] å®Œäº†
+10:16:05 INFO: [START] R01 202605020201  [postrace] çµæœå–å¾—é–‹å§‹
+10:16:06 INFO: ãƒã‚¤ã‚°ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³: v_race_mart ãƒ“ãƒ¥ãƒ¼ã‚’å†ä½œæˆã—ã¾ã—ãŸ
+10:16:06 INFO: DB åˆæœŸåŒ–å®Œäº†: C:\dev\horse-racing-ai\data\umalogi.db
+10:16:06 INFO: ãƒ¬ãƒ¼ã‚¹çµæœå–å¾—é–‹å§‹: race_id=202605020201
+10:16:10 INFO: å–å¾—å®Œäº†: race_id=202605020201, å‡ºèµ°é ­æ•°=16
+10:16:10 INFO: race_results ä¿å­˜: race_id=202605020201 (16/16é ­)
+10:16:15 INFO: æ‰•æˆ»å–å¾— (æ–°å½¢å¼): race_id=202605020201, 12 ä»¶
+10:16:15 INFO: æ‰•æˆ»ä¿å­˜: race_id=202605020201, 12 ä»¶
+10:16:15 INFO: race_payouts ä¿å­˜: race_id=202605020201 (12ä»¶)
+10:16:15 INFO: [è©•ä¾¡] race=202605020201 20000                                                       : äºˆæƒ³24ä»¶ çš„ä¸­0ä»¶ æŠ•è³‡Â¥7200 æ‰•æˆ»Â¥0 ROI=0.0%
+10:16:15 INFO: è©•ä¾¡å®Œäº†: race_id=202605020201  çš„ä¸­=0ä»¶  æŠ•è³‡Â¥7200  æ‰•æˆ»Â¥0  ROI=0.0%
+races.json:       18408 ƒŒ[ƒX
+races/{id}.json: 18408 ƒtƒ@ƒCƒ‹ ¨ C:\dev\horse-racing-ai\web\src\data\races
+predictions.json:  2818 Œ
+summary.json:         4 ƒ‚ƒfƒ‹~”NƒŒƒR[ƒh  (‘ƒŒ[ƒX 18,408)
+financial.json:      18 “ú~ƒ‚ƒfƒ‹ƒŒƒR[ƒh
+
+ƒGƒNƒXƒ|[ƒgæ: C:\dev\horse-racing-ai\web\src\data
+10:17:05 INFO: ãƒ€ãƒƒã‚·ãƒ¥ãƒœãƒ¼ãƒ‰æ›´æ–°å®Œäº†
+10:17:05 INFO: [OK] R01 202605020201  [postrace] å®Œäº†
+10:17:05 INFO: [START] R01 202608030201  [postrace] çµæœå–å¾—é–‹å§‹
+10:17:07 INFO: ãƒã‚¤ã‚°ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³: v_race_mart ãƒ“ãƒ¥ãƒ¼ã‚’å†ä½œæˆã—ã¾ã—ãŸ
+10:17:07 INFO: DB åˆæœŸåŒ–å®Œäº†: C:\dev\horse-racing-ai\data\umalogi.db
+10:17:07 INFO: ãƒ¬ãƒ¼ã‚¹çµæœå–å¾—é–‹å§‹: race_id=202608030201
+10:17:10 INFO: å–å¾—å®Œäº†: race_id=202608030201, å‡ºèµ°é ­æ•°=16
+10:17:10 INFO: race_results ä¿å­˜: race_id=202608030201 (16/16é ­)
+10:17:14 INFO: æ‰•æˆ»å–å¾— (æ–°å½¢å¼): race_id=202608030201, 12 ä»¶
+10:17:14 INFO: æ‰•æˆ»ä¿å­˜: race_id=202608030201, 12 ä»¶
+10:17:14 INFO: race_payouts ä¿å­˜: race_id=202608030201 (12ä»¶)
+10:17:14 INFO: [è©•ä¾¡] race=202608030201 20000                                                       : äºˆæƒ³24ä»¶ çš„ä¸­0ä»¶ æŠ•è³‡Â¥7200 æ‰•æˆ»Â¥0 ROI=0.0%
+10:17:14 INFO: è©•ä¾¡å®Œäº†: race_id=202608030201  çš„ä¸­=0ä»¶  æŠ•è³‡Â¥7200  æ‰•æˆ»Â¥0  ROI=0.0%
+races.json:       18408 ƒŒ[ƒX
+races/{id}.json: 18408 ƒtƒ@ƒCƒ‹ ¨ C:\dev\horse-racing-ai\web\src\data\races
+predictions.json:  2818 Œ
+summary.json:         4 ƒ‚ƒfƒ‹~”NƒŒƒR[ƒh  (‘ƒŒ[ƒX 18,408)
+financial.json:      18 “ú~ƒ‚ƒfƒ‹ƒŒƒR[ƒh
+
+ƒGƒNƒXƒ|[ƒgæ: C:\dev\horse-racing-ai\web\src\data
+10:17:57 INFO: ãƒ€ãƒƒã‚·ãƒ¥ãƒœãƒ¼ãƒ‰æ›´æ–°å®Œäº†
+10:17:57 INFO: [OK] R01 202608030201  [postrace] å®Œäº†
+10:40:00 INFO: [START] R03 202603010603  [prerace] ç›´å‰äºˆæƒ³é–‹å§‹ (æ¨å®šç™ºèµ° 11:00)
+10:40:05 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“ŠJn: race_id=202603010603
+10:40:05 INFO src.database.init_db: ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“: v_race_mart ƒrƒ…[‚ğÄì¬‚µ‚Ü‚µ‚½
+10:40:05 INFO src.database.init_db: DB ‰Šú‰»Š®—¹: C:\dev\horse-racing-ai\data\umalogi.db
+10:40:05 INFO __main__: ’÷‚ßØ‚è‚Ü‚Åc‚è 4 •ª (race_id=202603010603)
+10:40:05 INFO __main__: DB ƒLƒƒƒbƒVƒ…: ƒIƒbƒY=0Œ ƒGƒ“ƒgƒŠ=15“ª (race_id=202603010603)
+10:40:11 INFO src.scraper.entry_table: ƒIƒbƒYæ“¾ race_id=202603010603: 15 “ª
+10:40:11 INFO src.database.init_db: ƒIƒbƒY•Û‘¶: race_id=202603010603, 15 “ª
+10:40:11 INFO __main__: ƒIƒbƒYæ“¾ [netkeiba API]: 15 “ª•Û‘¶ (race_id=202603010603)
+10:40:11 INFO src.ml.features: “Á’¥—Ê¶¬ race_id=202603010603: 15 “ª ~ 51 “Á’¥—Ê
+10:40:11 WARNING __main__: \u26a0\ufe0f ”n‘ÌdŒ‡‘¹ 15/15“ª (100%) \u2014 NaN ‚Ì‚Ü‚Ü„˜_‚ğ‹­s‚µ‚Ü‚· (race_id ‚É‘Î‰)
+10:40:11 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+10:40:11 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+10:40:14 INFO src.ml.bet_generator: –{–½”ƒ‚¢–Ú¶¬: race_id=202603010603 4 Œ (ãˆÊ3“ª)
+10:40:14 INFO src.ml.bet_generator: ™Â”ƒ‚¢–Ú¶¬: race_id=202603010603 13 Œ (EV>=1.1 ”n=8 “ª)
+10:40:14 INFO src.ml.bet_generator: Oracle”ƒ‚¢–Ú¶¬: race_id=202603010603 O˜A•¡3“_ O˜A’P3“_
+10:40:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10665 race_id=202603010603 model=–{–½(’¼‘O) bet=•¡Ÿ
+10:40:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10666 race_id=202603010603 model=–{–½(’¼‘O) bet=”n˜A
+10:40:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10667 race_id=202603010603 model=–{–½(’¼‘O) bet=ƒƒCƒh
+10:40:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10668 race_id=202603010603 model=–{–½(’¼‘O) bet=O˜A’P
+10:40:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10669 race_id=202603010603 model=™Â(’¼‘O) bet=’PŸ
+10:40:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10670 race_id=202603010603 model=™Â(’¼‘O) bet=’PŸ
+10:40:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10671 race_id=202603010603 model=™Â(’¼‘O) bet=’PŸ
+10:40:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10672 race_id=202603010603 model=™Â(’¼‘O) bet=’PŸ
+10:40:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10673 race_id=202603010603 model=™Â(’¼‘O) bet=’PŸ
+10:40:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10674 race_id=202603010603 model=™Â(’¼‘O) bet=’PŸ
+10:40:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10675 race_id=202603010603 model=™Â(’¼‘O) bet=’PŸ
+10:40:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10676 race_id=202603010603 model=™Â(’¼‘O) bet=•¡Ÿ
+10:40:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10677 race_id=202603010603 model=™Â(’¼‘O) bet=”n˜A
+10:40:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10678 race_id=202603010603 model=™Â(’¼‘O) bet=ƒƒCƒh
+10:40:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10679 race_id=202603010603 model=™Â(’¼‘O) bet=O˜A•¡
+10:40:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10680 race_id=202603010603 model=™Â(’¼‘O) bet=O˜A•¡
+10:40:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10681 race_id=202603010603 model=™Â(’¼‘O) bet=O˜A•¡
+10:40:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10682 race_id=202603010603 model=Oracle(’¼‘O) bet=O˜A•¡
+10:40:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10683 race_id=202603010603 model=Oracle(’¼‘O) bet=O˜A’P
+10:40:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10684 race_id=202603010603 model=–{–½(’¼‘O) bet=”n•ªÍ
+10:40:14 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+10:40:14 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+10:40:14 WARNING __main__: WIN5 —\‘ª¸”si‘±sj: no such column: win_odds
+10:40:14 INFO __main__: JSON o—Í: C:\dev\horse-racing-ai\data\predictions\202603010603.json
+10:40:15 INFO __main__: Discord ’¼‘O—\‘z’Ê’m ‘—MŠ®—¹: 202603010603 HTTP 204
+10:40:15 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“Š®—¹: race_id=202603010603 –{–½4Œ ™Â13Œ
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1476, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1461, in main
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\ufffd' in position 266: illegal multibyte sequence
+10:40:16 ERROR: [NG] R03 202603010603  [prerace] å¤±æ•— (rc=1)
+10:40:16 INFO: [START] R03 202605020203  [prerace] ç›´å‰äºˆæƒ³é–‹å§‹ (æ¨å®šç™ºèµ° 11:00)
+10:40:19 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“ŠJn: race_id=202605020203
+10:40:20 INFO src.database.init_db: ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“: v_race_mart ƒrƒ…[‚ğÄì¬‚µ‚Ü‚µ‚½
+10:40:20 INFO src.database.init_db: DB ‰Šú‰»Š®—¹: C:\dev\horse-racing-ai\data\umalogi.db
+10:40:20 INFO __main__: ’÷‚ßØ‚è‚Ü‚Åc‚è 4 •ª (race_id=202605020203)
+10:40:20 INFO __main__: DB ƒLƒƒƒbƒVƒ…: ƒIƒbƒY=0Œ ƒGƒ“ƒgƒŠ=16“ª (race_id=202605020203)
+10:40:24 INFO src.scraper.entry_table: ƒIƒbƒYæ“¾ race_id=202605020203: 16 “ª
+10:40:24 INFO src.database.init_db: ƒIƒbƒY•Û‘¶: race_id=202605020203, 16 “ª
+10:40:24 INFO __main__: ƒIƒbƒYæ“¾ [netkeiba API]: 16 “ª•Û‘¶ (race_id=202605020203)
+10:40:24 INFO src.ml.features: “Á’¥—Ê¶¬ race_id=202605020203: 16 “ª ~ 51 “Á’¥—Ê
+10:40:24 WARNING __main__: \u26a0\ufe0f ”n‘ÌdŒ‡‘¹ 16/16“ª (100%) \u2014 NaN ‚Ì‚Ü‚Ü„˜_‚ğ‹­s‚µ‚Ü‚· (race_id ‚É‘Î‰)
+10:40:24 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+10:40:24 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+10:40:26 INFO src.ml.bet_generator: –{–½”ƒ‚¢–Ú¶¬: race_id=202605020203 4 Œ (ãˆÊ3“ª)
+10:40:26 INFO src.ml.bet_generator: ™Â”ƒ‚¢–Ú¶¬: race_id=202605020203 14 Œ (EV>=1.1 ”n=8 “ª)
+10:40:27 INFO src.ml.bet_generator: Oracle”ƒ‚¢–Ú¶¬: race_id=202605020203 O˜A•¡3“_ O˜A’P3“_
+10:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10725 race_id=202605020203 model=–{–½(’¼‘O) bet=•¡Ÿ
+10:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10726 race_id=202605020203 model=–{–½(’¼‘O) bet=”n˜A
+10:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10727 race_id=202605020203 model=–{–½(’¼‘O) bet=ƒƒCƒh
+10:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10728 race_id=202605020203 model=–{–½(’¼‘O) bet=O˜A’P
+10:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10729 race_id=202605020203 model=™Â(’¼‘O) bet=’PŸ
+10:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10730 race_id=202605020203 model=™Â(’¼‘O) bet=’PŸ
+10:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10731 race_id=202605020203 model=™Â(’¼‘O) bet=’PŸ
+10:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10732 race_id=202605020203 model=™Â(’¼‘O) bet=’PŸ
+10:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10733 race_id=202605020203 model=™Â(’¼‘O) bet=’PŸ
+10:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10734 race_id=202605020203 model=™Â(’¼‘O) bet=’PŸ
+10:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10735 race_id=202605020203 model=™Â(’¼‘O) bet=’PŸ
+10:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10736 race_id=202605020203 model=™Â(’¼‘O) bet=’PŸ
+10:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10737 race_id=202605020203 model=™Â(’¼‘O) bet=•¡Ÿ
+10:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10738 race_id=202605020203 model=™Â(’¼‘O) bet=”n˜A
+10:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10739 race_id=202605020203 model=™Â(’¼‘O) bet=ƒƒCƒh
+10:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10740 race_id=202605020203 model=™Â(’¼‘O) bet=O˜A•¡
+10:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10741 race_id=202605020203 model=™Â(’¼‘O) bet=O˜A•¡
+10:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10742 race_id=202605020203 model=™Â(’¼‘O) bet=O˜A•¡
+10:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10743 race_id=202605020203 model=Oracle(’¼‘O) bet=O˜A•¡
+10:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10744 race_id=202605020203 model=Oracle(’¼‘O) bet=O˜A’P
+10:40:27 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10745 race_id=202605020203 model=–{–½(’¼‘O) bet=”n•ªÍ
+10:40:27 INFO __main__: JSON o—Í: C:\dev\horse-racing-ai\data\predictions\202605020203.json
+10:40:28 INFO __main__: Discord ’¼‘O—\‘z’Ê’m ‘—MŠ®—¹: 202605020203 HTTP 204
+10:40:28 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“Š®—¹: race_id=202605020203 –{–½4Œ ™Â14Œ
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1476, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1461, in main
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\ufffd' in position 263: illegal multibyte sequence
+10:40:28 ERROR: [NG] R03 202605020203  [prerace] å¤±æ•— (rc=1)
+10:40:28 INFO: [START] R03 202608030203  [prerace] ç›´å‰äºˆæƒ³é–‹å§‹ (æ¨å®šç™ºèµ° 11:00)
+10:40:32 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“ŠJn: race_id=202608030203
+10:40:32 INFO src.database.init_db: ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“: v_race_mart ƒrƒ…[‚ğÄì¬‚µ‚Ü‚µ‚½
+10:40:32 INFO src.database.init_db: DB ‰Šú‰»Š®—¹: C:\dev\horse-racing-ai\data\umalogi.db
+10:40:32 INFO __main__: ’÷‚ßØ‚è‚Ü‚Åc‚è 4 •ª (race_id=202608030203)
+10:40:32 INFO __main__: DB ƒLƒƒƒbƒVƒ…: ƒIƒbƒY=0Œ ƒGƒ“ƒgƒŠ=18“ª (race_id=202608030203)
+10:40:37 INFO src.scraper.entry_table: ƒIƒbƒYæ“¾ race_id=202608030203: 18 “ª
+10:40:37 INFO src.database.init_db: ƒIƒbƒY•Û‘¶: race_id=202608030203, 18 “ª
+10:40:37 INFO __main__: ƒIƒbƒYæ“¾ [netkeiba API]: 18 “ª•Û‘¶ (race_id=202608030203)
+10:40:37 INFO src.ml.features: “Á’¥—Ê¶¬ race_id=202608030203: 18 “ª ~ 51 “Á’¥—Ê
+10:40:37 WARNING __main__: \u26a0\ufe0f ”n‘ÌdŒ‡‘¹ 18/18“ª (100%) \u2014 NaN ‚Ì‚Ü‚Ü„˜_‚ğ‹­s‚µ‚Ü‚· (race_id ‚É‘Î‰)
+10:40:37 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+10:40:37 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+10:40:39 INFO src.ml.bet_generator: –{–½”ƒ‚¢–Ú¶¬: race_id=202608030203 4 Œ (ãˆÊ3“ª)
+10:40:39 INFO src.ml.bet_generator: ™Â”ƒ‚¢–Ú¶¬: race_id=202608030203 13 Œ (EV>=1.1 ”n=7 “ª)
+10:40:39 INFO src.ml.bet_generator: Oracle”ƒ‚¢–Ú¶¬: race_id=202608030203 O˜A•¡3“_ O˜A’P3“_
+10:40:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10788 race_id=202608030203 model=–{–½(’¼‘O) bet=•¡Ÿ
+10:40:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10789 race_id=202608030203 model=–{–½(’¼‘O) bet=”n˜A
+10:40:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10790 race_id=202608030203 model=–{–½(’¼‘O) bet=ƒƒCƒh
+10:40:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10791 race_id=202608030203 model=–{–½(’¼‘O) bet=O˜A’P
+10:40:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10792 race_id=202608030203 model=™Â(’¼‘O) bet=’PŸ
+10:40:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10793 race_id=202608030203 model=™Â(’¼‘O) bet=’PŸ
+10:40:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10794 race_id=202608030203 model=™Â(’¼‘O) bet=’PŸ
+10:40:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10795 race_id=202608030203 model=™Â(’¼‘O) bet=’PŸ
+10:40:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10796 race_id=202608030203 model=™Â(’¼‘O) bet=’PŸ
+10:40:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10797 race_id=202608030203 model=™Â(’¼‘O) bet=’PŸ
+10:40:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10798 race_id=202608030203 model=™Â(’¼‘O) bet=’PŸ
+10:40:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10799 race_id=202608030203 model=™Â(’¼‘O) bet=•¡Ÿ
+10:40:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10800 race_id=202608030203 model=™Â(’¼‘O) bet=”n˜A
+10:40:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10801 race_id=202608030203 model=™Â(’¼‘O) bet=ƒƒCƒh
+10:40:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10802 race_id=202608030203 model=™Â(’¼‘O) bet=O˜A•¡
+10:40:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10803 race_id=202608030203 model=™Â(’¼‘O) bet=O˜A•¡
+10:40:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10804 race_id=202608030203 model=™Â(’¼‘O) bet=O˜A•¡
+10:40:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10805 race_id=202608030203 model=Oracle(’¼‘O) bet=O˜A•¡
+10:40:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10806 race_id=202608030203 model=Oracle(’¼‘O) bet=O˜A’P
+10:40:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10807 race_id=202608030203 model=–{–½(’¼‘O) bet=”n•ªÍ
+10:40:39 INFO __main__: JSON o—Í: C:\dev\horse-racing-ai\data\predictions\202608030203.json
+10:40:40 INFO __main__: Discord ’¼‘O—\‘z’Ê’m ‘—MŠ®—¹: 202608030203 HTTP 204
+10:40:40 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“Š®—¹: race_id=202608030203 –{–½4Œ ™Â13Œ
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1476, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1461, in main
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\ufffd' in position 352: illegal multibyte sequence
+10:40:41 ERROR: [NG] R03 202608030203  [prerace] å¤±æ•— (rc=1)
+10:45:00 INFO: [START] R02 202603010602  [postrace] çµæœå–å¾—é–‹å§‹
+10:45:00 INFO: ãƒã‚¤ã‚°ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³: v_race_mart ãƒ“ãƒ¥ãƒ¼ã‚’å†ä½œæˆã—ã¾ã—ãŸ
+10:45:00 INFO: DB åˆæœŸåŒ–å®Œäº†: C:\dev\horse-racing-ai\data\umalogi.db
+10:45:00 INFO: ãƒ¬ãƒ¼ã‚¹çµæœå–å¾—é–‹å§‹: race_id=202603010602
+10:45:03 INFO: å–å¾—å®Œäº†: race_id=202603010602, å‡ºèµ°é ­æ•°=16
+10:45:03 INFO: race_results ä¿å­˜: race_id=202603010602 (16/16é ­)
+10:45:06 INFO: æ‰•æˆ»å–å¾— (æ–°å½¢å¼): race_id=202603010602, 15 ä»¶
+10:45:06 INFO: æ‰•æˆ»ä¿å­˜: race_id=202603010602, 15 ä»¶
+10:45:06 INFO: race_payouts ä¿å­˜: race_id=202603010602 (15ä»¶)
+10:45:07 INFO: [è©•ä¾¡] race=202603010602 20000                                                       : äºˆæƒ³24ä»¶ çš„ä¸­0ä»¶ æŠ•è³‡Â¥7200 æ‰•æˆ»Â¥0 ROI=0.0%
+10:45:07 INFO: è©•ä¾¡å®Œäº†: race_id=202603010602  çš„ä¸­=0ä»¶  æŠ•è³‡Â¥7200  æ‰•æˆ»Â¥0  ROI=0.0%
+races.json:       18408 ƒŒ[ƒX
+races/{id}.json: 18408 ƒtƒ@ƒCƒ‹ ¨ C:\dev\horse-racing-ai\web\src\data\races
+predictions.json:  2854 Œ
+summary.json:         4 ƒ‚ƒfƒ‹~”NƒŒƒR[ƒh  (‘ƒŒ[ƒX 18,408)
+financial.json:      18 “ú~ƒ‚ƒfƒ‹ƒŒƒR[ƒh
+
+ƒGƒNƒXƒ|[ƒgæ: C:\dev\horse-racing-ai\web\src\data
+10:46:13 INFO: ãƒ€ãƒƒã‚·ãƒ¥ãƒœãƒ¼ãƒ‰æ›´æ–°å®Œäº†
+10:46:13 INFO: [OK] R02 202603010602  [postrace] å®Œäº†
+10:46:13 INFO: [START] R02 202605020202  [postrace] çµæœå–å¾—é–‹å§‹
+10:46:14 INFO: ãƒã‚¤ã‚°ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³: v_race_mart ãƒ“ãƒ¥ãƒ¼ã‚’å†ä½œæˆã—ã¾ã—ãŸ
+10:46:14 INFO: DB åˆæœŸåŒ–å®Œäº†: C:\dev\horse-racing-ai\data\umalogi.db
+10:46:14 INFO: ãƒ¬ãƒ¼ã‚¹çµæœå–å¾—é–‹å§‹: race_id=202605020202
+10:46:17 INFO: å–å¾—å®Œäº†: race_id=202605020202, å‡ºèµ°é ­æ•°=14
+10:46:17 INFO: race_results ä¿å­˜: race_id=202605020202 (14/14é ­)
+10:46:21 INFO: æ‰•æˆ»å–å¾— (æ–°å½¢å¼): race_id=202605020202, 12 ä»¶
+10:46:21 INFO: æ‰•æˆ»ä¿å­˜: race_id=202605020202, 12 ä»¶
+10:46:21 INFO: race_payouts ä¿å­˜: race_id=202605020202 (12ä»¶)
+10:46:21 INFO: [è©•ä¾¡] race=202605020202 20000                                                       : äºˆæƒ³24ä»¶ çš„ä¸­0ä»¶ æŠ•è³‡Â¥7200 æ‰•æˆ»Â¥0 ROI=0.0%
+10:46:21 INFO: è©•ä¾¡å®Œäº†: race_id=202605020202  çš„ä¸­=0ä»¶  æŠ•è³‡Â¥7200  æ‰•æˆ»Â¥0  ROI=0.0%
+races.json:       18408 ƒŒ[ƒX
+races/{id}.json: 18408 ƒtƒ@ƒCƒ‹ ¨ C:\dev\horse-racing-ai\web\src\data\races
+predictions.json:  2854 Œ
+summary.json:         4 ƒ‚ƒfƒ‹~”NƒŒƒR[ƒh  (‘ƒŒ[ƒX 18,408)
+financial.json:      18 “ú~ƒ‚ƒfƒ‹ƒŒƒR[ƒh
+
+ƒGƒNƒXƒ|[ƒgæ: C:\dev\horse-racing-ai\web\src\data
+10:47:12 INFO: ãƒ€ãƒƒã‚·ãƒ¥ãƒœãƒ¼ãƒ‰æ›´æ–°å®Œäº†
+10:47:13 INFO: [OK] R02 202605020202  [postrace] å®Œäº†
+10:47:13 INFO: [START] R02 202608030202  [postrace] çµæœå–å¾—é–‹å§‹
+10:47:14 INFO: ãƒã‚¤ã‚°ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³: v_race_mart ãƒ“ãƒ¥ãƒ¼ã‚’å†ä½œæˆã—ã¾ã—ãŸ
+10:47:14 INFO: DB åˆæœŸåŒ–å®Œäº†: C:\dev\horse-racing-ai\data\umalogi.db
+10:47:14 INFO: ãƒ¬ãƒ¼ã‚¹çµæœå–å¾—é–‹å§‹: race_id=202608030202
+10:47:17 INFO: å–å¾—å®Œäº†: race_id=202608030202, å‡ºèµ°é ­æ•°=15
+10:47:18 INFO: race_results ä¿å­˜: race_id=202608030202 (15/15é ­)
+10:47:23 INFO: æ‰•æˆ»å–å¾— (æ–°å½¢å¼): race_id=202608030202, 12 ä»¶
+10:47:23 INFO: æ‰•æˆ»ä¿å­˜: race_id=202608030202, 12 ä»¶
+10:47:23 INFO: race_payouts ä¿å­˜: race_id=202608030202 (12ä»¶)
+10:47:23 INFO: [è©•ä¾¡] race=202608030202 20000                                                       : äºˆæƒ³24ä»¶ çš„ä¸­0ä»¶ æŠ•è³‡Â¥7300 æ‰•æˆ»Â¥0 ROI=0.0%
+10:47:23 INFO: è©•ä¾¡å®Œäº†: race_id=202608030202  çš„ä¸­=0ä»¶  æŠ•è³‡Â¥7300  æ‰•æˆ»Â¥0  ROI=0.0%
+races.json:       18408 ƒŒ[ƒX
+races/{id}.json: 18408 ƒtƒ@ƒCƒ‹ ¨ C:\dev\horse-racing-ai\web\src\data\races
+predictions.json:  2854 Œ
+summary.json:         4 ƒ‚ƒfƒ‹~”NƒŒƒR[ƒh  (‘ƒŒ[ƒX 18,408)
+financial.json:      18 “ú~ƒ‚ƒfƒ‹ƒŒƒR[ƒh
+
+ƒGƒNƒXƒ|[ƒgæ: C:\dev\horse-racing-ai\web\src\data
+10:48:06 INFO: ãƒ€ãƒƒã‚·ãƒ¥ãƒœãƒ¼ãƒ‰æ›´æ–°å®Œäº†
+10:48:06 INFO: [OK] R02 202608030202  [postrace] å®Œäº†
+11:10:00 INFO: [START] R04 202603010604  [prerace] ç›´å‰äºˆæƒ³é–‹å§‹ (æ¨å®šç™ºèµ° 11:30)
+11:10:14 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“ŠJn: race_id=202603010604
+11:10:14 INFO src.database.init_db: ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“: v_race_mart ƒrƒ…[‚ğÄì¬‚µ‚Ü‚µ‚½
+11:10:14 INFO src.database.init_db: DB ‰Šú‰»Š®—¹: C:\dev\horse-racing-ai\data\umalogi.db
+11:10:14 INFO __main__: ’÷‚ßØ‚è‚Ü‚Åc‚è 4 •ª (race_id=202603010604)
+11:10:14 INFO __main__: DB ƒLƒƒƒbƒVƒ…: ƒIƒbƒY=0Œ ƒGƒ“ƒgƒŠ=16“ª (race_id=202603010604)
+11:10:19 INFO src.scraper.entry_table: ƒIƒbƒYæ“¾ race_id=202603010604: 16 “ª
+11:10:19 INFO src.database.init_db: ƒIƒbƒY•Û‘¶: race_id=202603010604, 16 “ª
+11:10:19 INFO __main__: ƒIƒbƒYæ“¾ [netkeiba API]: 16 “ª•Û‘¶ (race_id=202603010604)
+11:10:19 INFO src.ml.features: “Á’¥—Ê¶¬ race_id=202603010604: 16 “ª ~ 51 “Á’¥—Ê
+11:10:19 WARNING __main__: \u26a0\ufe0f ”n‘ÌdŒ‡‘¹ 16/16“ª (100%) \u2014 NaN ‚Ì‚Ü‚Ü„˜_‚ğ‹­s‚µ‚Ü‚· (race_id ‚É‘Î‰)
+11:10:19 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+11:10:20 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+11:10:23 INFO src.ml.bet_generator: –{–½”ƒ‚¢–Ú¶¬: race_id=202603010604 4 Œ (ãˆÊ3“ª)
+11:10:23 INFO src.ml.bet_generator: ™Â”ƒ‚¢–Ú¶¬: race_id=202603010604 14 Œ (EV>=1.1 ”n=8 “ª)
+11:10:23 INFO src.ml.bet_generator: Oracle”ƒ‚¢–Ú¶¬: race_id=202603010604 O˜A•¡3“_ O˜A’P3“_
+11:10:23 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10890 race_id=202603010604 model=–{–½(’¼‘O) bet=•¡Ÿ
+11:10:23 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10891 race_id=202603010604 model=–{–½(’¼‘O) bet=”n˜A
+11:10:23 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10892 race_id=202603010604 model=–{–½(’¼‘O) bet=ƒƒCƒh
+11:10:23 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10893 race_id=202603010604 model=–{–½(’¼‘O) bet=O˜A’P
+11:10:23 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10894 race_id=202603010604 model=™Â(’¼‘O) bet=’PŸ
+11:10:23 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10895 race_id=202603010604 model=™Â(’¼‘O) bet=’PŸ
+11:10:23 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10896 race_id=202603010604 model=™Â(’¼‘O) bet=’PŸ
+11:10:23 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10897 race_id=202603010604 model=™Â(’¼‘O) bet=’PŸ
+11:10:23 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10898 race_id=202603010604 model=™Â(’¼‘O) bet=’PŸ
+11:10:23 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10899 race_id=202603010604 model=™Â(’¼‘O) bet=’PŸ
+11:10:23 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10900 race_id=202603010604 model=™Â(’¼‘O) bet=’PŸ
+11:10:23 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10901 race_id=202603010604 model=™Â(’¼‘O) bet=’PŸ
+11:10:23 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10902 race_id=202603010604 model=™Â(’¼‘O) bet=•¡Ÿ
+11:10:23 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10903 race_id=202603010604 model=™Â(’¼‘O) bet=”n˜A
+11:10:23 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10904 race_id=202603010604 model=™Â(’¼‘O) bet=ƒƒCƒh
+11:10:23 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10905 race_id=202603010604 model=™Â(’¼‘O) bet=O˜A•¡
+11:10:23 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10906 race_id=202603010604 model=™Â(’¼‘O) bet=O˜A•¡
+11:10:23 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10907 race_id=202603010604 model=™Â(’¼‘O) bet=O˜A•¡
+11:10:23 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10908 race_id=202603010604 model=Oracle(’¼‘O) bet=O˜A•¡
+11:10:23 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10909 race_id=202603010604 model=Oracle(’¼‘O) bet=O˜A’P
+11:10:23 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10910 race_id=202603010604 model=–{–½(’¼‘O) bet=”n•ªÍ
+11:10:23 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+11:10:23 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+11:10:23 WARNING __main__: WIN5 —\‘ª¸”si‘±sj: no such column: win_odds
+11:10:23 INFO __main__: JSON o—Í: C:\dev\horse-racing-ai\data\predictions\202603010604.json
+11:10:25 INFO __main__: Discord ’¼‘O—\‘z’Ê’m ‘—MŠ®—¹: 202603010604 HTTP 204
+11:10:25 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“Š®—¹: race_id=202603010604 –{–½4Œ ™Â14Œ
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1476, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1461, in main
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\ufffd' in position 260: illegal multibyte sequence
+11:10:26 ERROR: [NG] R04 202603010604  [prerace] å¤±æ•— (rc=1)
+11:10:26 INFO: [START] R04 202605020204  [prerace] ç›´å‰äºˆæƒ³é–‹å§‹ (æ¨å®šç™ºèµ° 11:30)
+11:10:31 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“ŠJn: race_id=202605020204
+11:10:31 INFO src.database.init_db: ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“: v_race_mart ƒrƒ…[‚ğÄì¬‚µ‚Ü‚µ‚½
+11:10:31 INFO src.database.init_db: DB ‰Šú‰»Š®—¹: C:\dev\horse-racing-ai\data\umalogi.db
+11:10:31 INFO __main__: ’÷‚ßØ‚è‚Ü‚Åc‚è 4 •ª (race_id=202605020204)
+11:10:31 INFO __main__: DB ƒLƒƒƒbƒVƒ…: ƒIƒbƒY=0Œ ƒGƒ“ƒgƒŠ=10“ª (race_id=202605020204)
+11:10:36 INFO src.scraper.entry_table: ƒIƒbƒYæ“¾ race_id=202605020204: 10 “ª
+11:10:36 INFO src.database.init_db: ƒIƒbƒY•Û‘¶: race_id=202605020204, 10 “ª
+11:10:36 INFO __main__: ƒIƒbƒYæ“¾ [netkeiba API]: 10 “ª•Û‘¶ (race_id=202605020204)
+11:10:36 INFO src.ml.features: “Á’¥—Ê¶¬ race_id=202605020204: 10 “ª ~ 51 “Á’¥—Ê
+11:10:36 WARNING __main__: \u26a0\ufe0f ”n‘ÌdŒ‡‘¹ 10/10“ª (100%) \u2014 NaN ‚Ì‚Ü‚Ü„˜_‚ğ‹­s‚µ‚Ü‚· (race_id ‚É‘Î‰)
+11:10:36 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+11:10:36 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+11:10:38 INFO src.ml.bet_generator: –{–½”ƒ‚¢–Ú¶¬: race_id=202605020204 5 Œ (ãˆÊ3“ª)
+11:10:38 INFO src.ml.bet_generator: ™Â”ƒ‚¢–Ú¶¬: race_id=202605020204 14 Œ (EV>=1.1 ”n=10 “ª)
+11:10:38 INFO src.ml.bet_generator: Oracle”ƒ‚¢–Ú¶¬: race_id=202605020204 O˜A•¡3“_ O˜A’P3“_
+11:10:38 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10933 race_id=202605020204 model=–{–½(’¼‘O) bet=•¡Ÿ
+11:10:38 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10934 race_id=202605020204 model=–{–½(’¼‘O) bet=”n˜A
+11:10:38 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10935 race_id=202605020204 model=–{–½(’¼‘O) bet=ƒƒCƒh
+11:10:38 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10936 race_id=202605020204 model=–{–½(’¼‘O) bet=O˜A•¡
+11:10:38 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10937 race_id=202605020204 model=–{–½(’¼‘O) bet=O˜A’P
+11:10:38 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10938 race_id=202605020204 model=™Â(’¼‘O) bet=’PŸ
+11:10:38 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10939 race_id=202605020204 model=™Â(’¼‘O) bet=’PŸ
+11:10:38 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10940 race_id=202605020204 model=™Â(’¼‘O) bet=’PŸ
+11:10:38 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10941 race_id=202605020204 model=™Â(’¼‘O) bet=’PŸ
+11:10:38 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10942 race_id=202605020204 model=™Â(’¼‘O) bet=’PŸ
+11:10:38 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10943 race_id=202605020204 model=™Â(’¼‘O) bet=’PŸ
+11:10:38 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10944 race_id=202605020204 model=™Â(’¼‘O) bet=’PŸ
+11:10:38 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10945 race_id=202605020204 model=™Â(’¼‘O) bet=’PŸ
+11:10:38 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10946 race_id=202605020204 model=™Â(’¼‘O) bet=•¡Ÿ
+11:10:38 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10947 race_id=202605020204 model=™Â(’¼‘O) bet=”n˜A
+11:10:38 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10948 race_id=202605020204 model=™Â(’¼‘O) bet=ƒƒCƒh
+11:10:38 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10949 race_id=202605020204 model=™Â(’¼‘O) bet=O˜A•¡
+11:10:38 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10950 race_id=202605020204 model=™Â(’¼‘O) bet=O˜A•¡
+11:10:38 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10951 race_id=202605020204 model=™Â(’¼‘O) bet=O˜A•¡
+11:10:38 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10952 race_id=202605020204 model=Oracle(’¼‘O) bet=O˜A•¡
+11:10:38 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10953 race_id=202605020204 model=Oracle(’¼‘O) bet=O˜A’P
+11:10:38 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=10954 race_id=202605020204 model=–{–½(’¼‘O) bet=”n•ªÍ
+11:10:38 INFO __main__: JSON o—Í: C:\dev\horse-racing-ai\data\predictions\202605020204.json
+11:10:40 INFO __main__: Discord ’¼‘O—\‘z’Ê’m ‘—MŠ®—¹: 202605020204 HTTP 204
+11:10:40 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“Š®—¹: race_id=202605020204 –{–½5Œ ™Â14Œ
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1476, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1461, in main
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\ufffd' in position 275: illegal multibyte sequence
+11:10:40 ERROR: [NG] R04 202605020204  [prerace] å¤±æ•— (rc=1)
+11:10:40 INFO: [START] R04 202608030204  [prerace] ç›´å‰äºˆæƒ³é–‹å§‹ (æ¨å®šç™ºèµ° 11:30)
+11:10:45 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“ŠJn: race_id=202608030204
+11:10:45 INFO src.database.init_db: ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“: v_race_mart ƒrƒ…[‚ğÄì¬‚µ‚Ü‚µ‚½
+11:10:45 INFO src.database.init_db: DB ‰Šú‰»Š®—¹: C:\dev\horse-racing-ai\data\umalogi.db
+11:10:45 INFO __main__: ’÷‚ßØ‚è‚Ü‚Åc‚è 4 •ª (race_id=202608030204)
+11:10:45 INFO __main__: DB ƒLƒƒƒbƒVƒ…: ƒIƒbƒY=0Œ ƒGƒ“ƒgƒŠ=14“ª (race_id=202608030204)
+11:10:49 INFO src.scraper.entry_table: ƒIƒbƒYæ“¾ race_id=202608030204: 14 “ª
+11:10:49 INFO src.database.init_db: ƒIƒbƒY•Û‘¶: race_id=202608030204, 14 “ª
+11:10:49 INFO __main__: ƒIƒbƒYæ“¾ [netkeiba API]: 14 “ª•Û‘¶ (race_id=202608030204)
+11:10:49 INFO src.ml.features: “Á’¥—Ê¶¬ race_id=202608030204: 14 “ª ~ 51 “Á’¥—Ê
+11:10:49 WARNING __main__: \u26a0\ufe0f ”n‘ÌdŒ‡‘¹ 14/14“ª (100%) \u2014 NaN ‚Ì‚Ü‚Ü„˜_‚ğ‹­s‚µ‚Ü‚· (race_id ‚É‘Î‰)
+11:10:49 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+11:10:49 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+11:10:52 INFO src.ml.bet_generator: –{–½”ƒ‚¢–Ú¶¬: race_id=202608030204 4 Œ (ãˆÊ3“ª)
+11:10:52 INFO src.ml.bet_generator: ™Â”ƒ‚¢–Ú¶¬: race_id=202608030204 14 Œ (EV>=1.1 ”n=8 “ª)
+11:10:52 INFO src.ml.bet_generator: Oracle”ƒ‚¢–Ú¶¬: race_id=202608030204 O˜A•¡3“_ O˜A’P3“_
+11:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11019 race_id=202608030204 model=–{–½(’¼‘O) bet=•¡Ÿ
+11:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11020 race_id=202608030204 model=–{–½(’¼‘O) bet=”n˜A
+11:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11021 race_id=202608030204 model=–{–½(’¼‘O) bet=ƒƒCƒh
+11:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11022 race_id=202608030204 model=–{–½(’¼‘O) bet=O˜A’P
+11:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11023 race_id=202608030204 model=™Â(’¼‘O) bet=’PŸ
+11:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11024 race_id=202608030204 model=™Â(’¼‘O) bet=’PŸ
+11:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11025 race_id=202608030204 model=™Â(’¼‘O) bet=’PŸ
+11:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11026 race_id=202608030204 model=™Â(’¼‘O) bet=’PŸ
+11:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11027 race_id=202608030204 model=™Â(’¼‘O) bet=’PŸ
+11:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11028 race_id=202608030204 model=™Â(’¼‘O) bet=’PŸ
+11:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11029 race_id=202608030204 model=™Â(’¼‘O) bet=’PŸ
+11:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11030 race_id=202608030204 model=™Â(’¼‘O) bet=’PŸ
+11:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11031 race_id=202608030204 model=™Â(’¼‘O) bet=•¡Ÿ
+11:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11032 race_id=202608030204 model=™Â(’¼‘O) bet=”n˜A
+11:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11033 race_id=202608030204 model=™Â(’¼‘O) bet=ƒƒCƒh
+11:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11034 race_id=202608030204 model=™Â(’¼‘O) bet=O˜A•¡
+11:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11035 race_id=202608030204 model=™Â(’¼‘O) bet=O˜A•¡
+11:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11036 race_id=202608030204 model=™Â(’¼‘O) bet=O˜A•¡
+11:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11037 race_id=202608030204 model=Oracle(’¼‘O) bet=O˜A•¡
+11:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11038 race_id=202608030204 model=Oracle(’¼‘O) bet=O˜A’P
+11:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11039 race_id=202608030204 model=–{–½(’¼‘O) bet=”n•ªÍ
+11:10:52 INFO __main__: JSON o—Í: C:\dev\horse-racing-ai\data\predictions\202608030204.json
+11:10:53 INFO __main__: Discord ’¼‘O—\‘z’Ê’m ‘—MŠ®—¹: 202608030204 HTTP 204
+11:10:53 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“Š®—¹: race_id=202608030204 –{–½4Œ ™Â14Œ
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1476, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1461, in main
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\ufffd' in position 264: illegal multibyte sequence
+11:10:54 ERROR: [NG] R04 202608030204  [prerace] å¤±æ•— (rc=1)
+11:15:00 INFO: [START] R03 202603010603  [postrace] çµæœå–å¾—é–‹å§‹
+11:15:00 INFO: ãƒã‚¤ã‚°ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³: v_race_mart ãƒ“ãƒ¥ãƒ¼ã‚’å†ä½œæˆã—ã¾ã—ãŸ
+11:15:00 INFO: DB åˆæœŸåŒ–å®Œäº†: C:\dev\horse-racing-ai\data\umalogi.db
+11:15:00 INFO: ãƒ¬ãƒ¼ã‚¹çµæœå–å¾—é–‹å§‹: race_id=202603010603
+11:15:03 INFO: å–å¾—å®Œäº†: race_id=202603010603, å‡ºèµ°é ­æ•°=15
+11:15:03 INFO: race_results ä¿å­˜: race_id=202603010603 (15/15é ­)
+11:15:07 INFO: æ‰•æˆ»å–å¾— (æ–°å½¢å¼): race_id=202603010603, 12 ä»¶
+11:15:07 INFO: æ‰•æˆ»ä¿å­˜: race_id=202603010603, 12 ä»¶
+11:15:07 INFO: race_payouts ä¿å­˜: race_id=202603010603 (12ä»¶)
+11:15:07 INFO: [è©•ä¾¡] race=202603010603 20000                                                       : äºˆæƒ³24ä»¶ çš„ä¸­0ä»¶ æŠ•è³‡Â¥7200 æ‰•æˆ»Â¥0 ROI=0.0%
+11:15:07 INFO: è©•ä¾¡å®Œäº†: race_id=202603010603  çš„ä¸­=0ä»¶  æŠ•è³‡Â¥7200  æ‰•æˆ»Â¥0  ROI=0.0%
+races.json:       18408 ƒŒ[ƒX
+races/{id}.json: 18408 ƒtƒ@ƒCƒ‹ ¨ C:\dev\horse-racing-ai\web\src\data\races
+predictions.json:  2891 Œ
+summary.json:         4 ƒ‚ƒfƒ‹~”NƒŒƒR[ƒh  (‘ƒŒ[ƒX 18,408)
+financial.json:      18 “ú~ƒ‚ƒfƒ‹ƒŒƒR[ƒh
+
+ƒGƒNƒXƒ|[ƒgæ: C:\dev\horse-racing-ai\web\src\data
+11:16:09 INFO: ãƒ€ãƒƒã‚·ãƒ¥ãƒœãƒ¼ãƒ‰æ›´æ–°å®Œäº†
+11:16:09 INFO: [OK] R03 202603010603  [postrace] å®Œäº†
+11:16:09 INFO: [START] R03 202605020203  [postrace] çµæœå–å¾—é–‹å§‹
+11:16:11 INFO: ãƒã‚¤ã‚°ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³: v_race_mart ãƒ“ãƒ¥ãƒ¼ã‚’å†ä½œæˆã—ã¾ã—ãŸ
+11:16:11 INFO: DB åˆæœŸåŒ–å®Œäº†: C:\dev\horse-racing-ai\data\umalogi.db
+11:16:11 INFO: ãƒ¬ãƒ¼ã‚¹çµæœå–å¾—é–‹å§‹: race_id=202605020203
+11:16:14 INFO: å–å¾—å®Œäº†: race_id=202605020203, å‡ºèµ°é ­æ•°=16
+11:16:14 INFO: race_results ä¿å­˜: race_id=202605020203 (16/16é ­)
+11:16:19 INFO: æ‰•æˆ»å–å¾— (æ–°å½¢å¼): race_id=202605020203, 12 ä»¶
+11:16:19 INFO: æ‰•æˆ»ä¿å­˜: race_id=202605020203, 12 ä»¶
+11:16:19 INFO: race_payouts ä¿å­˜: race_id=202605020203 (12ä»¶)
+11:16:19 INFO: [è©•ä¾¡] race=202605020203 20000                                                       : äºˆæƒ³24ä»¶ çš„ä¸­0ä»¶ æŠ•è³‡Â¥7500 æ‰•æˆ»Â¥0 ROI=0.0%
+11:16:19 INFO: è©•ä¾¡å®Œäº†: race_id=202605020203  çš„ä¸­=0ä»¶  æŠ•è³‡Â¥7500  æ‰•æˆ»Â¥0  ROI=0.0%
+races.json:       18408 ƒŒ[ƒX
+races/{id}.json: 18408 ƒtƒ@ƒCƒ‹ ¨ C:\dev\horse-racing-ai\web\src\data\races
+predictions.json:  2891 Œ
+summary.json:         4 ƒ‚ƒfƒ‹~”NƒŒƒR[ƒh  (‘ƒŒ[ƒX 18,408)
+financial.json:      18 “ú~ƒ‚ƒfƒ‹ƒŒƒR[ƒh
+
+ƒGƒNƒXƒ|[ƒgæ: C:\dev\horse-racing-ai\web\src\data
+11:17:10 INFO: ãƒ€ãƒƒã‚·ãƒ¥ãƒœãƒ¼ãƒ‰æ›´æ–°å®Œäº†
+11:17:10 INFO: [OK] R03 202605020203  [postrace] å®Œäº†
+11:17:10 INFO: [START] R03 202608030203  [postrace] çµæœå–å¾—é–‹å§‹
+11:17:12 INFO: ãƒã‚¤ã‚°ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³: v_race_mart ãƒ“ãƒ¥ãƒ¼ã‚’å†ä½œæˆã—ã¾ã—ãŸ
+11:17:12 INFO: DB åˆæœŸåŒ–å®Œäº†: C:\dev\horse-racing-ai\data\umalogi.db
+11:17:12 INFO: ãƒ¬ãƒ¼ã‚¹çµæœå–å¾—é–‹å§‹: race_id=202608030203
+11:17:15 INFO: å–å¾—å®Œäº†: race_id=202608030203, å‡ºèµ°é ­æ•°=18
+11:17:15 INFO: race_results ä¿å­˜: race_id=202608030203 (18/18é ­)
+11:17:19 INFO: æ‰•æˆ»å–å¾— (æ–°å½¢å¼): race_id=202608030203, 12 ä»¶
+11:17:19 INFO: æ‰•æˆ»ä¿å­˜: race_id=202608030203, 12 ä»¶
+11:17:19 INFO: race_payouts ä¿å­˜: race_id=202608030203 (12ä»¶)
+11:17:19 INFO: [è©•ä¾¡] race=202608030203 20000                                                       : äºˆæƒ³24ä»¶ çš„ä¸­0ä»¶ æŠ•è³‡Â¥7000 æ‰•æˆ»Â¥0 ROI=0.0%
+11:17:19 INFO: è©•ä¾¡å®Œäº†: race_id=202608030203  çš„ä¸­=0ä»¶  æŠ•è³‡Â¥7000  æ‰•æˆ»Â¥0  ROI=0.0%
+races.json:       18408 ƒŒ[ƒX
+races/{id}.json: 18408 ƒtƒ@ƒCƒ‹ ¨ C:\dev\horse-racing-ai\web\src\data\races
+predictions.json:  2891 Œ
+summary.json:         4 ƒ‚ƒfƒ‹~”NƒŒƒR[ƒh  (‘ƒŒ[ƒX 18,408)
+financial.json:      18 “ú~ƒ‚ƒfƒ‹ƒŒƒR[ƒh
+
+ƒGƒNƒXƒ|[ƒgæ: C:\dev\horse-racing-ai\web\src\data
+11:18:07 INFO: ãƒ€ãƒƒã‚·ãƒ¥ãƒœãƒ¼ãƒ‰æ›´æ–°å®Œäº†
+11:18:07 INFO: [OK] R03 202608030203  [postrace] å®Œäº†
+11:40:01 INFO: [START] R05 202603010605  [prerace] ç›´å‰äºˆæƒ³é–‹å§‹ (æ¨å®šç™ºèµ° 12:00)
+11:40:07 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“ŠJn: race_id=202603010605
+11:40:07 INFO src.database.init_db: ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“: v_race_mart ƒrƒ…[‚ğÄì¬‚µ‚Ü‚µ‚½
+11:40:07 INFO src.database.init_db: DB ‰Šú‰»Š®—¹: C:\dev\horse-racing-ai\data\umalogi.db
+11:40:07 INFO __main__: ’÷‚ßØ‚è‚Ü‚Åc‚è 4 •ª (race_id=202603010605)
+11:40:07 INFO __main__: DB ƒLƒƒƒbƒVƒ…: ƒIƒbƒY=0Œ ƒGƒ“ƒgƒŠ=15“ª (race_id=202603010605)
+11:40:13 INFO src.scraper.entry_table: ƒIƒbƒYæ“¾ race_id=202603010605: 15 “ª
+11:40:13 INFO src.database.init_db: ƒIƒbƒY•Û‘¶: race_id=202603010605, 15 “ª
+11:40:13 INFO __main__: ƒIƒbƒYæ“¾ [netkeiba API]: 15 “ª•Û‘¶ (race_id=202603010605)
+11:40:13 INFO src.ml.features: “Á’¥—Ê¶¬ race_id=202603010605: 15 “ª ~ 51 “Á’¥—Ê
+11:40:13 WARNING __main__: \u26a0\ufe0f ”n‘ÌdŒ‡‘¹ 15/15“ª (100%) \u2014 NaN ‚Ì‚Ü‚Ü„˜_‚ğ‹­s‚µ‚Ü‚· (race_id ‚É‘Î‰)
+11:40:13 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+11:40:13 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+11:40:16 INFO src.ml.bet_generator: –{–½”ƒ‚¢–Ú¶¬: race_id=202603010605 4 Œ (ãˆÊ3“ª)
+11:40:16 INFO src.ml.bet_generator: ™Â”ƒ‚¢–Ú¶¬: race_id=202603010605 14 Œ (EV>=1.1 ”n=8 “ª)
+11:40:16 INFO src.ml.bet_generator: Oracle”ƒ‚¢–Ú¶¬: race_id=202603010605 O˜A•¡3“_ O˜A’P3“_
+11:40:16 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11067 race_id=202603010605 model=–{–½(’¼‘O) bet=•¡Ÿ
+11:40:16 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11068 race_id=202603010605 model=–{–½(’¼‘O) bet=”n˜A
+11:40:16 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11069 race_id=202603010605 model=–{–½(’¼‘O) bet=ƒƒCƒh
+11:40:16 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11070 race_id=202603010605 model=–{–½(’¼‘O) bet=O˜A’P
+11:40:16 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11071 race_id=202603010605 model=™Â(’¼‘O) bet=’PŸ
+11:40:16 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11072 race_id=202603010605 model=™Â(’¼‘O) bet=’PŸ
+11:40:16 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11073 race_id=202603010605 model=™Â(’¼‘O) bet=’PŸ
+11:40:16 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11074 race_id=202603010605 model=™Â(’¼‘O) bet=’PŸ
+11:40:16 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11075 race_id=202603010605 model=™Â(’¼‘O) bet=’PŸ
+11:40:16 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11076 race_id=202603010605 model=™Â(’¼‘O) bet=’PŸ
+11:40:16 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11077 race_id=202603010605 model=™Â(’¼‘O) bet=’PŸ
+11:40:16 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11078 race_id=202603010605 model=™Â(’¼‘O) bet=’PŸ
+11:40:16 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11079 race_id=202603010605 model=™Â(’¼‘O) bet=•¡Ÿ
+11:40:16 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11080 race_id=202603010605 model=™Â(’¼‘O) bet=”n˜A
+11:40:16 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11081 race_id=202603010605 model=™Â(’¼‘O) bet=ƒƒCƒh
+11:40:17 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11082 race_id=202603010605 model=™Â(’¼‘O) bet=O˜A•¡
+11:40:17 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11083 race_id=202603010605 model=™Â(’¼‘O) bet=O˜A•¡
+11:40:17 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11084 race_id=202603010605 model=™Â(’¼‘O) bet=O˜A•¡
+11:40:17 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11085 race_id=202603010605 model=Oracle(’¼‘O) bet=O˜A•¡
+11:40:17 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11086 race_id=202603010605 model=Oracle(’¼‘O) bet=O˜A’P
+11:40:17 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11087 race_id=202603010605 model=–{–½(’¼‘O) bet=”n•ªÍ
+11:40:17 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+11:40:17 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+11:40:17 WARNING __main__: WIN5 —\‘ª¸”si‘±sj: no such column: win_odds
+11:40:17 INFO __main__: JSON o—Í: C:\dev\horse-racing-ai\data\predictions\202603010605.json
+11:40:18 INFO __main__: Discord ’¼‘O—\‘z’Ê’m ‘—MŠ®—¹: 202603010605 HTTP 204
+11:40:18 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“Š®—¹: race_id=202603010605 –{–½4Œ ™Â14Œ
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1476, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1461, in main
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\ufffd' in position 277: illegal multibyte sequence
+11:40:19 ERROR: [NG] R05 202603010605  [prerace] å¤±æ•— (rc=1)
+11:40:19 INFO: [START] R05 202605020205  [prerace] ç›´å‰äºˆæƒ³é–‹å§‹ (æ¨å®šç™ºèµ° 12:00)
+11:40:24 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“ŠJn: race_id=202605020205
+11:40:25 INFO src.database.init_db: ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“: v_race_mart ƒrƒ…[‚ğÄì¬‚µ‚Ü‚µ‚½
+11:40:25 INFO src.database.init_db: DB ‰Šú‰»Š®—¹: C:\dev\horse-racing-ai\data\umalogi.db
+11:40:25 INFO __main__: ’÷‚ßØ‚è‚Ü‚Åc‚è 4 •ª (race_id=202605020205)
+11:40:25 INFO __main__: DB ƒLƒƒƒbƒVƒ…: ƒIƒbƒY=0Œ ƒGƒ“ƒgƒŠ=18“ª (race_id=202605020205)
+11:40:29 INFO src.scraper.entry_table: ƒIƒbƒYæ“¾ race_id=202605020205: 18 “ª
+11:40:29 INFO src.database.init_db: ƒIƒbƒY•Û‘¶: race_id=202605020205, 18 “ª
+11:40:29 INFO __main__: ƒIƒbƒYæ“¾ [netkeiba API]: 18 “ª•Û‘¶ (race_id=202605020205)
+11:40:30 INFO src.ml.features: “Á’¥—Ê¶¬ race_id=202605020205: 18 “ª ~ 51 “Á’¥—Ê
+11:40:30 WARNING __main__: \u26a0\ufe0f ”n‘ÌdŒ‡‘¹ 18/18“ª (100%) \u2014 NaN ‚Ì‚Ü‚Ü„˜_‚ğ‹­s‚µ‚Ü‚· (race_id ‚É‘Î‰)
+11:40:30 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+11:40:30 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+11:40:31 INFO src.ml.bet_generator: –{–½”ƒ‚¢–Ú¶¬: race_id=202605020205 4 Œ (ãˆÊ3“ª)
+11:40:31 INFO src.ml.bet_generator: ™Â”ƒ‚¢–Ú¶¬: race_id=202605020205 14 Œ (EV>=1.1 ”n=9 “ª)
+11:40:32 INFO src.ml.bet_generator: Oracle”ƒ‚¢–Ú¶¬: race_id=202605020205 O˜A•¡3“_ O˜A’P3“_
+11:40:32 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11103 race_id=202605020205 model=–{–½(’¼‘O) bet=•¡Ÿ
+11:40:32 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11104 race_id=202605020205 model=–{–½(’¼‘O) bet=”n˜A
+11:40:32 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11105 race_id=202605020205 model=–{–½(’¼‘O) bet=ƒƒCƒh
+11:40:32 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11106 race_id=202605020205 model=–{–½(’¼‘O) bet=O˜A’P
+11:40:32 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11107 race_id=202605020205 model=™Â(’¼‘O) bet=’PŸ
+11:40:32 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11108 race_id=202605020205 model=™Â(’¼‘O) bet=’PŸ
+11:40:32 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11109 race_id=202605020205 model=™Â(’¼‘O) bet=’PŸ
+11:40:32 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11110 race_id=202605020205 model=™Â(’¼‘O) bet=’PŸ
+11:40:32 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11111 race_id=202605020205 model=™Â(’¼‘O) bet=’PŸ
+11:40:32 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11112 race_id=202605020205 model=™Â(’¼‘O) bet=’PŸ
+11:40:32 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11113 race_id=202605020205 model=™Â(’¼‘O) bet=’PŸ
+11:40:32 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11114 race_id=202605020205 model=™Â(’¼‘O) bet=’PŸ
+11:40:32 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11115 race_id=202605020205 model=™Â(’¼‘O) bet=•¡Ÿ
+11:40:32 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11116 race_id=202605020205 model=™Â(’¼‘O) bet=”n˜A
+11:40:32 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11117 race_id=202605020205 model=™Â(’¼‘O) bet=ƒƒCƒh
+11:40:32 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11118 race_id=202605020205 model=™Â(’¼‘O) bet=O˜A•¡
+11:40:32 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11119 race_id=202605020205 model=™Â(’¼‘O) bet=O˜A•¡
+11:40:32 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11120 race_id=202605020205 model=™Â(’¼‘O) bet=O˜A•¡
+11:40:32 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11121 race_id=202605020205 model=Oracle(’¼‘O) bet=O˜A•¡
+11:40:32 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11122 race_id=202605020205 model=Oracle(’¼‘O) bet=O˜A’P
+11:40:32 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11123 race_id=202605020205 model=–{–½(’¼‘O) bet=”n•ªÍ
+11:40:32 INFO __main__: JSON o—Í: C:\dev\horse-racing-ai\data\predictions\202605020205.json
+11:40:33 INFO __main__: Discord ’¼‘O—\‘z’Ê’m ‘—MŠ®—¹: 202605020205 HTTP 204
+11:40:33 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“Š®—¹: race_id=202605020205 –{–½4Œ ™Â14Œ
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1476, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1461, in main
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\ufffd' in position 290: illegal multibyte sequence
+11:40:34 ERROR: [NG] R05 202605020205  [prerace] å¤±æ•— (rc=1)
+11:40:34 INFO: [START] R05 202608030205  [prerace] ç›´å‰äºˆæƒ³é–‹å§‹ (æ¨å®šç™ºèµ° 12:00)
+11:40:38 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“ŠJn: race_id=202608030205
+11:40:39 INFO src.database.init_db: ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“: v_race_mart ƒrƒ…[‚ğÄì¬‚µ‚Ü‚µ‚½
+11:40:39 INFO src.database.init_db: DB ‰Šú‰»Š®—¹: C:\dev\horse-racing-ai\data\umalogi.db
+11:40:39 INFO __main__: ’÷‚ßØ‚è‚Ü‚Åc‚è 4 •ª (race_id=202608030205)
+11:40:39 INFO __main__: DB ƒLƒƒƒbƒVƒ…: ƒIƒbƒY=0Œ ƒGƒ“ƒgƒŠ=12“ª (race_id=202608030205)
+11:40:43 INFO src.scraper.entry_table: ƒIƒbƒYæ“¾ race_id=202608030205: 12 “ª
+11:40:43 INFO src.database.init_db: ƒIƒbƒY•Û‘¶: race_id=202608030205, 12 “ª
+11:40:43 INFO __main__: ƒIƒbƒYæ“¾ [netkeiba API]: 12 “ª•Û‘¶ (race_id=202608030205)
+11:40:43 INFO src.ml.features: “Á’¥—Ê¶¬ race_id=202608030205: 12 “ª ~ 51 “Á’¥—Ê
+11:40:43 WARNING __main__: \u26a0\ufe0f ”n‘ÌdŒ‡‘¹ 12/12“ª (100%) \u2014 NaN ‚Ì‚Ü‚Ü„˜_‚ğ‹­s‚µ‚Ü‚· (race_id ‚É‘Î‰)
+11:40:43 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+11:40:43 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+11:40:45 INFO src.ml.bet_generator: –{–½”ƒ‚¢–Ú¶¬: race_id=202608030205 5 Œ (ãˆÊ3“ª)
+11:40:45 INFO src.ml.bet_generator: ™Â”ƒ‚¢–Ú¶¬: race_id=202608030205 14 Œ (EV>=1.1 ”n=8 “ª)
+11:40:45 INFO src.ml.bet_generator: Oracle”ƒ‚¢–Ú¶¬: race_id=202608030205 O˜A•¡3“_ O˜A’P3“_
+11:40:45 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11166 race_id=202608030205 model=–{–½(’¼‘O) bet=•¡Ÿ
+11:40:45 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11167 race_id=202608030205 model=–{–½(’¼‘O) bet=”n˜A
+11:40:45 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11168 race_id=202608030205 model=–{–½(’¼‘O) bet=ƒƒCƒh
+11:40:45 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11169 race_id=202608030205 model=–{–½(’¼‘O) bet=O˜A•¡
+11:40:45 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11170 race_id=202608030205 model=–{–½(’¼‘O) bet=O˜A’P
+11:40:45 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11171 race_id=202608030205 model=™Â(’¼‘O) bet=’PŸ
+11:40:45 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11172 race_id=202608030205 model=™Â(’¼‘O) bet=’PŸ
+11:40:45 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11173 race_id=202608030205 model=™Â(’¼‘O) bet=’PŸ
+11:40:45 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11174 race_id=202608030205 model=™Â(’¼‘O) bet=’PŸ
+11:40:45 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11175 race_id=202608030205 model=™Â(’¼‘O) bet=’PŸ
+11:40:45 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11176 race_id=202608030205 model=™Â(’¼‘O) bet=’PŸ
+11:40:45 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11177 race_id=202608030205 model=™Â(’¼‘O) bet=’PŸ
+11:40:45 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11178 race_id=202608030205 model=™Â(’¼‘O) bet=’PŸ
+11:40:45 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11179 race_id=202608030205 model=™Â(’¼‘O) bet=•¡Ÿ
+11:40:45 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11180 race_id=202608030205 model=™Â(’¼‘O) bet=”n˜A
+11:40:45 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11181 race_id=202608030205 model=™Â(’¼‘O) bet=ƒƒCƒh
+11:40:45 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11182 race_id=202608030205 model=™Â(’¼‘O) bet=O˜A•¡
+11:40:45 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11183 race_id=202608030205 model=™Â(’¼‘O) bet=O˜A•¡
+11:40:45 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11184 race_id=202608030205 model=™Â(’¼‘O) bet=O˜A•¡
+11:40:45 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11185 race_id=202608030205 model=Oracle(’¼‘O) bet=O˜A•¡
+11:40:45 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11186 race_id=202608030205 model=Oracle(’¼‘O) bet=O˜A’P
+11:40:45 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11187 race_id=202608030205 model=–{–½(’¼‘O) bet=”n•ªÍ
+11:40:45 INFO __main__: JSON o—Í: C:\dev\horse-racing-ai\data\predictions\202608030205.json
+11:40:46 INFO __main__: Discord ’¼‘O—\‘z’Ê’m ‘—MŠ®—¹: 202608030205 HTTP 204
+11:40:46 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“Š®—¹: race_id=202608030205 –{–½5Œ ™Â14Œ
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1476, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1461, in main
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\ufffd' in position 292: illegal multibyte sequence
+11:40:47 ERROR: [NG] R05 202608030205  [prerace] å¤±æ•— (rc=1)
+11:45:00 INFO: [START] R04 202603010604  [postrace] çµæœå–å¾—é–‹å§‹
+11:45:00 INFO: ãƒã‚¤ã‚°ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³: v_race_mart ãƒ“ãƒ¥ãƒ¼ã‚’å†ä½œæˆã—ã¾ã—ãŸ
+11:45:00 INFO: DB åˆæœŸåŒ–å®Œäº†: C:\dev\horse-racing-ai\data\umalogi.db
+11:45:00 INFO: ãƒ¬ãƒ¼ã‚¹çµæœå–å¾—é–‹å§‹: race_id=202603010604
+11:45:03 INFO: å–å¾—å®Œäº†: race_id=202603010604, å‡ºèµ°é ­æ•°=16
+11:45:03 INFO: race_results ä¿å­˜: race_id=202603010604 (16/16é ­)
+11:45:07 INFO: æ‰•æˆ»å–å¾— (æ–°å½¢å¼): race_id=202603010604, 12 ä»¶
+11:45:07 INFO: æ‰•æˆ»ä¿å­˜: race_id=202603010604, 12 ä»¶
+11:45:07 INFO: race_payouts ä¿å­˜: race_id=202603010604 (12ä»¶)
+11:45:07 INFO: [è©•ä¾¡] race=202603010604 20000                                                       : äºˆæƒ³24ä»¶ çš„ä¸­0ä»¶ æŠ•è³‡Â¥7200 æ‰•æˆ»Â¥0 ROI=0.0%
+11:45:07 INFO: è©•ä¾¡å®Œäº†: race_id=202603010604  çš„ä¸­=0ä»¶  æŠ•è³‡Â¥7200  æ‰•æˆ»Â¥0  ROI=0.0%
+races.json:       18408 ƒŒ[ƒX
+races/{id}.json: 18408 ƒtƒ@ƒCƒ‹ ¨ C:\dev\horse-racing-ai\web\src\data\races
+predictions.json:  2928 Œ
+summary.json:         4 ƒ‚ƒfƒ‹~”NƒŒƒR[ƒh  (‘ƒŒ[ƒX 18,408)
+financial.json:      18 “ú~ƒ‚ƒfƒ‹ƒŒƒR[ƒh
+
+ƒGƒNƒXƒ|[ƒgæ: C:\dev\horse-racing-ai\web\src\data
+11:46:09 INFO: ãƒ€ãƒƒã‚·ãƒ¥ãƒœãƒ¼ãƒ‰æ›´æ–°å®Œäº†
+11:46:10 INFO: [OK] R04 202603010604  [postrace] å®Œäº†
+11:46:10 INFO: [START] R04 202605020204  [postrace] çµæœå–å¾—é–‹å§‹
+11:46:11 INFO: ãƒã‚¤ã‚°ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³: v_race_mart ãƒ“ãƒ¥ãƒ¼ã‚’å†ä½œæˆã—ã¾ã—ãŸ
+11:46:11 INFO: DB åˆæœŸåŒ–å®Œäº†: C:\dev\horse-racing-ai\data\umalogi.db
+11:46:11 INFO: ãƒ¬ãƒ¼ã‚¹çµæœå–å¾—é–‹å§‹: race_id=202605020204
+11:46:14 INFO: å–å¾—å®Œäº†: race_id=202605020204, å‡ºèµ°é ­æ•°=5
+11:46:14 INFO: race_results ä¿å­˜: race_id=202605020204 (5/5é ­)
+11:46:19 INFO: æ‰•æˆ»å–å¾— (æ–°å½¢å¼): race_id=202605020204, 12 ä»¶
+11:46:19 INFO: æ‰•æˆ»ä¿å­˜: race_id=202605020204, 12 ä»¶
+11:46:19 INFO: race_payouts ä¿å­˜: race_id=202605020204 (12ä»¶)
+11:46:19 INFO: [è©•ä¾¡] race=202605020204 20000                                                       : äºˆæƒ³26ä»¶ çš„ä¸­0ä»¶ æŠ•è³‡Â¥8700 æ‰•æˆ»Â¥0 ROI=0.0%
+11:46:19 INFO: è©•ä¾¡å®Œäº†: race_id=202605020204  çš„ä¸­=0ä»¶  æŠ•è³‡Â¥8700  æ‰•æˆ»Â¥0  ROI=0.0%
+races.json:       18408 ƒŒ[ƒX
+races/{id}.json: 18408 ƒtƒ@ƒCƒ‹ ¨ C:\dev\horse-racing-ai\web\src\data\races
+predictions.json:  2928 Œ
+summary.json:         4 ƒ‚ƒfƒ‹~”NƒŒƒR[ƒh  (‘ƒŒ[ƒX 18,408)
+financial.json:      18 “ú~ƒ‚ƒfƒ‹ƒŒƒR[ƒh
+
+ƒGƒNƒXƒ|[ƒgæ: C:\dev\horse-racing-ai\web\src\data
+11:47:11 INFO: ãƒ€ãƒƒã‚·ãƒ¥ãƒœãƒ¼ãƒ‰æ›´æ–°å®Œäº†
+11:47:11 INFO: [OK] R04 202605020204  [postrace] å®Œäº†
+11:47:11 INFO: [START] R04 202608030204  [postrace] çµæœå–å¾—é–‹å§‹
+11:47:12 INFO: ãƒã‚¤ã‚°ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³: v_race_mart ãƒ“ãƒ¥ãƒ¼ã‚’å†ä½œæˆã—ã¾ã—ãŸ
+11:47:12 INFO: DB åˆæœŸåŒ–å®Œäº†: C:\dev\horse-racing-ai\data\umalogi.db
+11:47:12 INFO: ãƒ¬ãƒ¼ã‚¹çµæœå–å¾—é–‹å§‹: race_id=202608030204
+11:47:15 INFO: å–å¾—å®Œäº†: race_id=202608030204, å‡ºèµ°é ­æ•°=14
+11:47:15 INFO: race_results ä¿å­˜: race_id=202608030204 (14/14é ­)
+11:47:20 INFO: æ‰•æˆ»å–å¾— (æ–°å½¢å¼): race_id=202608030204, 12 ä»¶
+11:47:20 INFO: æ‰•æˆ»ä¿å­˜: race_id=202608030204, 12 ä»¶
+11:47:20 INFO: race_payouts ä¿å­˜: race_id=202608030204 (12ä»¶)
+11:47:20 INFO: [è©•ä¾¡] race=202608030204 20000                                                       : äºˆæƒ³24ä»¶ çš„ä¸­0ä»¶ æŠ•è³‡Â¥7300 æ‰•æˆ»Â¥0 ROI=0.0%
+11:47:20 INFO: è©•ä¾¡å®Œäº†: race_id=202608030204  çš„ä¸­=0ä»¶  æŠ•è³‡Â¥7300  æ‰•æˆ»Â¥0  ROI=0.0%
+races.json:       18408 ƒŒ[ƒX
+races/{id}.json: 18408 ƒtƒ@ƒCƒ‹ ¨ C:\dev\horse-racing-ai\web\src\data\races
+predictions.json:  2928 Œ
+summary.json:         4 ƒ‚ƒfƒ‹~”NƒŒƒR[ƒh  (‘ƒŒ[ƒX 18,408)
+financial.json:      18 “ú~ƒ‚ƒfƒ‹ƒŒƒR[ƒh
+
+ƒGƒNƒXƒ|[ƒgæ: C:\dev\horse-racing-ai\web\src\data
+11:48:14 INFO: ãƒ€ãƒƒã‚·ãƒ¥ãƒœãƒ¼ãƒ‰æ›´æ–°å®Œäº†
+11:48:14 INFO: [OK] R04 202608030204  [postrace] å®Œäº†
+12:10:01 INFO: [START] R06 202603010606  [prerace] ç›´å‰äºˆæƒ³é–‹å§‹ (æ¨å®šç™ºèµ° 12:30)
+12:10:05 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“ŠJn: race_id=202603010606
+12:10:06 INFO src.database.init_db: ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“: v_race_mart ƒrƒ…[‚ğÄì¬‚µ‚Ü‚µ‚½
+12:10:06 INFO src.database.init_db: DB ‰Šú‰»Š®—¹: C:\dev\horse-racing-ai\data\umalogi.db
+12:10:06 INFO __main__: ’÷‚ßØ‚è‚Ü‚Åc‚è 4 •ª (race_id=202603010606)
+12:10:06 INFO __main__: DB ƒLƒƒƒbƒVƒ…: ƒIƒbƒY=0Œ ƒGƒ“ƒgƒŠ=13“ª (race_id=202603010606)
+12:10:11 INFO src.scraper.entry_table: ƒIƒbƒYæ“¾ race_id=202603010606: 13 “ª
+12:10:11 INFO src.database.init_db: ƒIƒbƒY•Û‘¶: race_id=202603010606, 13 “ª
+12:10:11 INFO __main__: ƒIƒbƒYæ“¾ [netkeiba API]: 13 “ª•Û‘¶ (race_id=202603010606)
+12:10:11 INFO src.ml.features: “Á’¥—Ê¶¬ race_id=202603010606: 13 “ª ~ 51 “Á’¥—Ê
+12:10:11 WARNING __main__: \u26a0\ufe0f ”n‘ÌdŒ‡‘¹ 13/13“ª (100%) \u2014 NaN ‚Ì‚Ü‚Ü„˜_‚ğ‹­s‚µ‚Ü‚· (race_id ‚É‘Î‰)
+12:10:11 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+12:10:11 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+12:10:14 INFO src.ml.bet_generator: –{–½”ƒ‚¢–Ú¶¬: race_id=202603010606 5 Œ (ãˆÊ3“ª)
+12:10:14 INFO src.ml.bet_generator: ™Â”ƒ‚¢–Ú¶¬: race_id=202603010606 13 Œ (EV>=1.1 ”n=7 “ª)
+12:10:14 INFO src.ml.bet_generator: Oracle”ƒ‚¢–Ú¶¬: race_id=202603010606 O˜A•¡3“_ O˜A’P3“_
+12:10:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11267 race_id=202603010606 model=–{–½(’¼‘O) bet=•¡Ÿ
+12:10:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11268 race_id=202603010606 model=–{–½(’¼‘O) bet=”n˜A
+12:10:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11269 race_id=202603010606 model=–{–½(’¼‘O) bet=ƒƒCƒh
+12:10:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11270 race_id=202603010606 model=–{–½(’¼‘O) bet=O˜A•¡
+12:10:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11271 race_id=202603010606 model=–{–½(’¼‘O) bet=O˜A’P
+12:10:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11272 race_id=202603010606 model=™Â(’¼‘O) bet=’PŸ
+12:10:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11273 race_id=202603010606 model=™Â(’¼‘O) bet=’PŸ
+12:10:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11274 race_id=202603010606 model=™Â(’¼‘O) bet=’PŸ
+12:10:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11275 race_id=202603010606 model=™Â(’¼‘O) bet=’PŸ
+12:10:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11276 race_id=202603010606 model=™Â(’¼‘O) bet=’PŸ
+12:10:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11277 race_id=202603010606 model=™Â(’¼‘O) bet=’PŸ
+12:10:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11278 race_id=202603010606 model=™Â(’¼‘O) bet=’PŸ
+12:10:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11279 race_id=202603010606 model=™Â(’¼‘O) bet=•¡Ÿ
+12:10:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11280 race_id=202603010606 model=™Â(’¼‘O) bet=”n˜A
+12:10:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11281 race_id=202603010606 model=™Â(’¼‘O) bet=ƒƒCƒh
+12:10:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11282 race_id=202603010606 model=™Â(’¼‘O) bet=O˜A•¡
+12:10:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11283 race_id=202603010606 model=™Â(’¼‘O) bet=O˜A•¡
+12:10:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11284 race_id=202603010606 model=™Â(’¼‘O) bet=O˜A•¡
+12:10:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11285 race_id=202603010606 model=Oracle(’¼‘O) bet=O˜A•¡
+12:10:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11286 race_id=202603010606 model=Oracle(’¼‘O) bet=O˜A’P
+12:10:14 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11288 race_id=202603010606 model=–{–½(’¼‘O) bet=”n•ªÍ
+12:10:14 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+12:10:14 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+12:10:14 WARNING __main__: WIN5 —\‘ª¸”si‘±sj: no such column: win_odds
+12:10:14 INFO __main__: JSON o—Í: C:\dev\horse-racing-ai\data\predictions\202603010606.json
+12:10:15 INFO __main__: Discord ’¼‘O—\‘z’Ê’m ‘—MŠ®—¹: 202603010606 HTTP 204
+12:10:15 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“Š®—¹: race_id=202603010606 –{–½5Œ ™Â13Œ
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1476, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1461, in main
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\ufffd' in position 280: illegal multibyte sequence
+12:10:16 ERROR: [NG] R06 202603010606  [prerace] å¤±æ•— (rc=1)
+12:10:16 INFO: [START] R06 202605020206  [prerace] ç›´å‰äºˆæƒ³é–‹å§‹ (æ¨å®šç™ºèµ° 12:30)
+12:10:20 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“ŠJn: race_id=202605020206
+12:10:20 INFO src.database.init_db: ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“: v_race_mart ƒrƒ…[‚ğÄì¬‚µ‚Ü‚µ‚½
+12:10:20 INFO src.database.init_db: DB ‰Šú‰»Š®—¹: C:\dev\horse-racing-ai\data\umalogi.db
+12:10:20 INFO __main__: ’÷‚ßØ‚è‚Ü‚Åc‚è 4 •ª (race_id=202605020206)
+12:10:20 INFO __main__: DB ƒLƒƒƒbƒVƒ…: ƒIƒbƒY=0Œ ƒGƒ“ƒgƒŠ=8“ª (race_id=202605020206)
+12:10:24 INFO src.scraper.entry_table: ƒIƒbƒYæ“¾ race_id=202605020206: 8 “ª
+12:10:24 INFO src.database.init_db: ƒIƒbƒY•Û‘¶: race_id=202605020206, 8 “ª
+12:10:24 INFO __main__: ƒIƒbƒYæ“¾ [netkeiba API]: 8 “ª•Û‘¶ (race_id=202605020206)
+12:10:24 INFO src.ml.features: “Á’¥—Ê¶¬ race_id=202605020206: 8 “ª ~ 51 “Á’¥—Ê
+12:10:24 WARNING __main__: \u26a0\ufe0f ”n‘ÌdŒ‡‘¹ 8/8“ª (100%) \u2014 NaN ‚Ì‚Ü‚Ü„˜_‚ğ‹­s‚µ‚Ü‚· (race_id ‚É‘Î‰)
+12:10:24 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+12:10:25 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+12:10:26 INFO src.ml.bet_generator: –{–½”ƒ‚¢–Ú¶¬: race_id=202605020206 5 Œ (ãˆÊ3“ª)
+12:10:26 INFO src.ml.bet_generator: ™Â”ƒ‚¢–Ú¶¬: race_id=202605020206 10 Œ (EV>=1.1 ”n=4 “ª)
+12:10:26 INFO src.ml.bet_generator: Oracle”ƒ‚¢–Ú¶¬: race_id=202605020206 O˜A•¡3“_ O˜A’P3“_
+12:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11295 race_id=202605020206 model=–{–½(’¼‘O) bet=•¡Ÿ
+12:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11296 race_id=202605020206 model=–{–½(’¼‘O) bet=”n˜A
+12:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11297 race_id=202605020206 model=–{–½(’¼‘O) bet=ƒƒCƒh
+12:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11298 race_id=202605020206 model=–{–½(’¼‘O) bet=O˜A•¡
+12:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11299 race_id=202605020206 model=–{–½(’¼‘O) bet=O˜A’P
+12:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11300 race_id=202605020206 model=™Â(’¼‘O) bet=’PŸ
+12:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11301 race_id=202605020206 model=™Â(’¼‘O) bet=’PŸ
+12:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11302 race_id=202605020206 model=™Â(’¼‘O) bet=’PŸ
+12:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11303 race_id=202605020206 model=™Â(’¼‘O) bet=’PŸ
+12:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11304 race_id=202605020206 model=™Â(’¼‘O) bet=•¡Ÿ
+12:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11305 race_id=202605020206 model=™Â(’¼‘O) bet=”n˜A
+12:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11306 race_id=202605020206 model=™Â(’¼‘O) bet=ƒƒCƒh
+12:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11307 race_id=202605020206 model=™Â(’¼‘O) bet=O˜A•¡
+12:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11308 race_id=202605020206 model=™Â(’¼‘O) bet=O˜A•¡
+12:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11309 race_id=202605020206 model=™Â(’¼‘O) bet=O˜A•¡
+12:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11310 race_id=202605020206 model=Oracle(’¼‘O) bet=O˜A•¡
+12:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11311 race_id=202605020206 model=Oracle(’¼‘O) bet=O˜A’P
+12:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11312 race_id=202605020206 model=–{–½(’¼‘O) bet=”n•ªÍ
+12:10:26 INFO __main__: JSON o—Í: C:\dev\horse-racing-ai\data\predictions\202605020206.json
+12:10:27 INFO __main__: Discord ’¼‘O—\‘z’Ê’m ‘—MŠ®—¹: 202605020206 HTTP 204
+12:10:27 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“Š®—¹: race_id=202605020206 –{–½5Œ ™Â10Œ
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1476, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1461, in main
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\ufffd' in position 276: illegal multibyte sequence
+12:10:28 ERROR: [NG] R06 202605020206  [prerace] å¤±æ•— (rc=1)
+12:10:28 INFO: [START] R06 202608030206  [prerace] ç›´å‰äºˆæƒ³é–‹å§‹ (æ¨å®šç™ºèµ° 12:30)
+12:10:34 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“ŠJn: race_id=202608030206
+12:10:34 INFO src.database.init_db: ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“: v_race_mart ƒrƒ…[‚ğÄì¬‚µ‚Ü‚µ‚½
+12:10:34 INFO src.database.init_db: DB ‰Šú‰»Š®—¹: C:\dev\horse-racing-ai\data\umalogi.db
+12:10:34 INFO __main__: ’÷‚ßØ‚è‚Ü‚Åc‚è 4 •ª (race_id=202608030206)
+12:10:34 INFO __main__: DB ƒLƒƒƒbƒVƒ…: ƒIƒbƒY=0Œ ƒGƒ“ƒgƒŠ=11“ª (race_id=202608030206)
+12:10:39 INFO src.scraper.entry_table: ƒIƒbƒYæ“¾ race_id=202608030206: 11 “ª
+12:10:39 INFO src.database.init_db: ƒIƒbƒY•Û‘¶: race_id=202608030206, 11 “ª
+12:10:39 INFO __main__: ƒIƒbƒYæ“¾ [netkeiba API]: 11 “ª•Û‘¶ (race_id=202608030206)
+12:10:39 INFO src.ml.features: “Á’¥—Ê¶¬ race_id=202608030206: 11 “ª ~ 51 “Á’¥—Ê
+12:10:39 WARNING __main__: \u26a0\ufe0f ”n‘ÌdŒ‡‘¹ 11/11“ª (100%) \u2014 NaN ‚Ì‚Ü‚Ü„˜_‚ğ‹­s‚µ‚Ü‚· (race_id ‚É‘Î‰)
+12:10:39 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+12:10:39 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+12:10:41 INFO src.ml.bet_generator: –{–½”ƒ‚¢–Ú¶¬: race_id=202608030206 5 Œ (ãˆÊ3“ª)
+12:10:41 INFO src.ml.bet_generator: ™Â”ƒ‚¢–Ú¶¬: race_id=202608030206 13 Œ (EV>=1.1 ”n=8 “ª)
+12:10:41 INFO src.ml.bet_generator: Oracle”ƒ‚¢–Ú¶¬: race_id=202608030206 O˜A•¡3“_ O˜A’P3“_
+12:10:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11349 race_id=202608030206 model=–{–½(’¼‘O) bet=•¡Ÿ
+12:10:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11350 race_id=202608030206 model=–{–½(’¼‘O) bet=”n˜A
+12:10:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11351 race_id=202608030206 model=–{–½(’¼‘O) bet=ƒƒCƒh
+12:10:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11352 race_id=202608030206 model=–{–½(’¼‘O) bet=O˜A•¡
+12:10:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11353 race_id=202608030206 model=–{–½(’¼‘O) bet=O˜A’P
+12:10:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11354 race_id=202608030206 model=™Â(’¼‘O) bet=’PŸ
+12:10:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11355 race_id=202608030206 model=™Â(’¼‘O) bet=’PŸ
+12:10:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11356 race_id=202608030206 model=™Â(’¼‘O) bet=’PŸ
+12:10:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11357 race_id=202608030206 model=™Â(’¼‘O) bet=’PŸ
+12:10:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11358 race_id=202608030206 model=™Â(’¼‘O) bet=’PŸ
+12:10:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11359 race_id=202608030206 model=™Â(’¼‘O) bet=’PŸ
+12:10:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11360 race_id=202608030206 model=™Â(’¼‘O) bet=’PŸ
+12:10:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11361 race_id=202608030206 model=™Â(’¼‘O) bet=•¡Ÿ
+12:10:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11362 race_id=202608030206 model=™Â(’¼‘O) bet=”n˜A
+12:10:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11363 race_id=202608030206 model=™Â(’¼‘O) bet=ƒƒCƒh
+12:10:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11364 race_id=202608030206 model=™Â(’¼‘O) bet=O˜A•¡
+12:10:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11365 race_id=202608030206 model=™Â(’¼‘O) bet=O˜A•¡
+12:10:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11366 race_id=202608030206 model=™Â(’¼‘O) bet=O˜A•¡
+12:10:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11367 race_id=202608030206 model=Oracle(’¼‘O) bet=O˜A•¡
+12:10:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11368 race_id=202608030206 model=Oracle(’¼‘O) bet=O˜A’P
+12:10:41 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11369 race_id=202608030206 model=–{–½(’¼‘O) bet=”n•ªÍ
+12:10:41 INFO __main__: JSON o—Í: C:\dev\horse-racing-ai\data\predictions\202608030206.json
+12:10:42 INFO __main__: Discord ’¼‘O—\‘z’Ê’m ‘—MŠ®—¹: 202608030206 HTTP 204
+12:10:42 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“Š®—¹: race_id=202608030206 –{–½5Œ ™Â13Œ
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1476, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1461, in main
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\ufffd' in position 280: illegal multibyte sequence
+12:10:42 ERROR: [NG] R06 202608030206  [prerace] å¤±æ•— (rc=1)
+12:15:00 INFO: [START] R05 202603010605  [postrace] çµæœå–å¾—é–‹å§‹
+12:15:00 INFO: ãƒã‚¤ã‚°ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³: v_race_mart ãƒ“ãƒ¥ãƒ¼ã‚’å†ä½œæˆã—ã¾ã—ãŸ
+12:15:00 INFO: DB åˆæœŸåŒ–å®Œäº†: C:\dev\horse-racing-ai\data\umalogi.db
+12:15:00 INFO: ãƒ¬ãƒ¼ã‚¹çµæœå–å¾—é–‹å§‹: race_id=202603010605
+12:15:03 INFO: å–å¾—å®Œäº†: race_id=202603010605, å‡ºèµ°é ­æ•°=5
+12:15:03 INFO: race_results ä¿å­˜: race_id=202603010605 (5/5é ­)
+12:15:07 INFO: æ‰•æˆ»å–å¾— (æ–°å½¢å¼): race_id=202603010605, 12 ä»¶
+12:15:07 INFO: æ‰•æˆ»ä¿å­˜: race_id=202603010605, 12 ä»¶
+12:15:07 INFO: race_payouts ä¿å­˜: race_id=202603010605 (12ä»¶)
+12:15:07 INFO: [è©•ä¾¡] race=202603010605 20000                                                       : äºˆæƒ³24ä»¶ çš„ä¸­0ä»¶ æŠ•è³‡Â¥7400 æ‰•æˆ»Â¥0 ROI=0.0%
+12:15:07 INFO: è©•ä¾¡å®Œäº†: race_id=202603010605  çš„ä¸­=0ä»¶  æŠ•è³‡Â¥7400  æ‰•æˆ»Â¥0  ROI=0.0%
+races.json:       18408 ƒŒ[ƒX
+races/{id}.json: 18408 ƒtƒ@ƒCƒ‹ ¨ C:\dev\horse-racing-ai\web\src\data\races
+predictions.json:  2967 Œ
+summary.json:         4 ƒ‚ƒfƒ‹~”NƒŒƒR[ƒh  (‘ƒŒ[ƒX 18,408)
+financial.json:      18 “ú~ƒ‚ƒfƒ‹ƒŒƒR[ƒh
+
+ƒGƒNƒXƒ|[ƒgæ: C:\dev\horse-racing-ai\web\src\data
+12:16:08 INFO: ãƒ€ãƒƒã‚·ãƒ¥ãƒœãƒ¼ãƒ‰æ›´æ–°å®Œäº†
+12:16:08 INFO: [OK] R05 202603010605  [postrace] å®Œäº†
+12:16:08 INFO: [START] R05 202605020205  [postrace] çµæœå–å¾—é–‹å§‹
+12:16:09 INFO: ãƒã‚¤ã‚°ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³: v_race_mart ãƒ“ãƒ¥ãƒ¼ã‚’å†ä½œæˆã—ã¾ã—ãŸ
+12:16:09 INFO: DB åˆæœŸåŒ–å®Œäº†: C:\dev\horse-racing-ai\data\umalogi.db
+12:16:09 INFO: ãƒ¬ãƒ¼ã‚¹çµæœå–å¾—é–‹å§‹: race_id=202605020205
+12:16:13 INFO: å–å¾—å®Œäº†: race_id=202605020205, å‡ºèµ°é ­æ•°=0
+12:16:13 INFO: çµæœãªã— (æœªç™ºèµ°ã‹å–æ¶ˆ): race_id=202605020205
+12:16:13 WARNING: [NG] R05 202605020205  [postrace] å¤±æ•— (rc=1) â†’ æœªç¢ºå®šã®å¯èƒ½æ€§ã‚ã‚Š
+12:16:13 INFO: [START] R05 202608030205  [postrace] çµæœå–å¾—é–‹å§‹
+12:16:14 INFO: ãƒã‚¤ã‚°ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³: v_race_mart ãƒ“ãƒ¥ãƒ¼ã‚’å†ä½œæˆã—ã¾ã—ãŸ
+12:16:14 INFO: DB åˆæœŸåŒ–å®Œäº†: C:\dev\horse-racing-ai\data\umalogi.db
+12:16:14 INFO: ãƒ¬ãƒ¼ã‚¹çµæœå–å¾—é–‹å§‹: race_id=202608030205
+12:16:18 INFO: å–å¾—å®Œäº†: race_id=202608030205, å‡ºèµ°é ­æ•°=0
+12:16:18 INFO: çµæœãªã— (æœªç™ºèµ°ã‹å–æ¶ˆ): race_id=202608030205
+12:16:18 WARNING: [NG] R05 202608030205  [postrace] å¤±æ•— (rc=1) â†’ æœªç¢ºå®šã®å¯èƒ½æ€§ã‚ã‚Š
+12:40:00 INFO: [START] R07 202603010607  [prerace] ç›´å‰äºˆæƒ³é–‹å§‹ (æ¨å®šç™ºèµ° 13:00)
+12:40:06 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“ŠJn: race_id=202603010607
+12:40:06 INFO src.database.init_db: ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“: v_race_mart ƒrƒ…[‚ğÄì¬‚µ‚Ü‚µ‚½
+12:40:06 INFO src.database.init_db: DB ‰Šú‰»Š®—¹: C:\dev\horse-racing-ai\data\umalogi.db
+12:40:06 INFO __main__: ’÷‚ßØ‚è‚Ü‚Åc‚è 4 •ª (race_id=202603010607)
+12:40:06 INFO __main__: DB ƒLƒƒƒbƒVƒ…: ƒIƒbƒY=0Œ ƒGƒ“ƒgƒŠ=15“ª (race_id=202603010607)
+12:40:12 INFO src.scraper.entry_table: ƒIƒbƒYæ“¾ race_id=202603010607: 15 “ª
+12:40:12 INFO src.database.init_db: ƒIƒbƒY•Û‘¶: race_id=202603010607, 15 “ª
+12:40:12 INFO __main__: ƒIƒbƒYæ“¾ [netkeiba API]: 15 “ª•Û‘¶ (race_id=202603010607)
+12:40:12 INFO src.ml.features: “Á’¥—Ê¶¬ race_id=202603010607: 15 “ª ~ 51 “Á’¥—Ê
+12:40:12 WARNING __main__: \u26a0\ufe0f ”n‘ÌdŒ‡‘¹ 15/15“ª (100%) \u2014 NaN ‚Ì‚Ü‚Ü„˜_‚ğ‹­s‚µ‚Ü‚· (race_id ‚É‘Î‰)
+12:40:12 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+12:40:12 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+12:40:15 INFO src.ml.bet_generator: –{–½”ƒ‚¢–Ú¶¬: race_id=202603010607 4 Œ (ãˆÊ3“ª)
+12:40:15 INFO src.ml.bet_generator: race_id=202603010607: EV>1.0 ‚Ì”n‚È‚µ \u2014 ™Â”ƒ‚¢–Ú‚È‚µ
+12:40:15 INFO src.ml.bet_generator: Oracle”ƒ‚¢–Ú¶¬: race_id=202603010607 O˜A•¡3“_ O˜A’P3“_
+12:40:15 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11425 race_id=202603010607 model=–{–½(’¼‘O) bet=•¡Ÿ
+12:40:15 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11426 race_id=202603010607 model=–{–½(’¼‘O) bet=”n˜A
+12:40:15 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11427 race_id=202603010607 model=–{–½(’¼‘O) bet=ƒƒCƒh
+12:40:15 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11428 race_id=202603010607 model=–{–½(’¼‘O) bet=O˜A’P
+12:40:15 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11429 race_id=202603010607 model=Oracle(’¼‘O) bet=O˜A•¡
+12:40:15 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11430 race_id=202603010607 model=Oracle(’¼‘O) bet=O˜A’P
+12:40:15 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11431 race_id=202603010607 model=–{–½(’¼‘O) bet=”n•ªÍ
+12:40:15 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+12:40:15 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+12:40:15 WARNING __main__: WIN5 —\‘ª¸”si‘±sj: no such column: win_odds
+12:40:15 INFO __main__: JSON o—Í: C:\dev\horse-racing-ai\data\predictions\202603010607.json
+12:40:16 INFO __main__: Discord ’¼‘O—\‘z’Ê’m ‘—MŠ®—¹: 202603010607 HTTP 204
+12:40:16 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“Š®—¹: race_id=202603010607 –{–½4Œ ™Â0Œ
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1476, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1461, in main
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\ufffd' in position 278: illegal multibyte sequence
+12:40:17 ERROR: [NG] R07 202603010607  [prerace] å¤±æ•— (rc=1)
+12:40:17 INFO: [START] R07 202605020207  [prerace] ç›´å‰äºˆæƒ³é–‹å§‹ (æ¨å®šç™ºèµ° 13:00)
+12:40:22 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“ŠJn: race_id=202605020207
+12:40:22 INFO src.database.init_db: ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“: v_race_mart ƒrƒ…[‚ğÄì¬‚µ‚Ü‚µ‚½
+12:40:22 INFO src.database.init_db: DB ‰Šú‰»Š®—¹: C:\dev\horse-racing-ai\data\umalogi.db
+12:40:22 INFO __main__: ’÷‚ßØ‚è‚Ü‚Åc‚è 4 •ª (race_id=202605020207)
+12:40:22 INFO __main__: DB ƒLƒƒƒbƒVƒ…: ƒIƒbƒY=0Œ ƒGƒ“ƒgƒŠ=16“ª (race_id=202605020207)
+12:40:27 INFO src.scraper.entry_table: ƒIƒbƒYæ“¾ race_id=202605020207: 16 “ª
+12:40:27 INFO src.database.init_db: ƒIƒbƒY•Û‘¶: race_id=202605020207, 16 “ª
+12:40:27 INFO __main__: ƒIƒbƒYæ“¾ [netkeiba API]: 16 “ª•Û‘¶ (race_id=202605020207)
+12:40:27 INFO src.ml.features: “Á’¥—Ê¶¬ race_id=202605020207: 16 “ª ~ 51 “Á’¥—Ê
+12:40:27 WARNING __main__: \u26a0\ufe0f ”n‘ÌdŒ‡‘¹ 16/16“ª (100%) \u2014 NaN ‚Ì‚Ü‚Ü„˜_‚ğ‹­s‚µ‚Ü‚· (race_id ‚É‘Î‰)
+12:40:27 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+12:40:27 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+12:40:29 INFO src.ml.bet_generator: –{–½”ƒ‚¢–Ú¶¬: race_id=202605020207 4 Œ (ãˆÊ3“ª)
+12:40:29 INFO src.ml.bet_generator: ™Â”ƒ‚¢–Ú¶¬: race_id=202605020207 6 Œ (EV>=1.1 ”n=3 “ª)
+12:40:29 INFO src.ml.bet_generator: Oracle”ƒ‚¢–Ú¶¬: race_id=202605020207 O˜A•¡3“_ O˜A’P3“_
+12:40:29 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11459 race_id=202605020207 model=–{–½(’¼‘O) bet=•¡Ÿ
+12:40:29 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11460 race_id=202605020207 model=–{–½(’¼‘O) bet=”n˜A
+12:40:29 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11461 race_id=202605020207 model=–{–½(’¼‘O) bet=ƒƒCƒh
+12:40:29 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11462 race_id=202605020207 model=–{–½(’¼‘O) bet=O˜A’P
+12:40:29 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11463 race_id=202605020207 model=™Â(’¼‘O) bet=’PŸ
+12:40:29 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11464 race_id=202605020207 model=™Â(’¼‘O) bet=’PŸ
+12:40:29 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11465 race_id=202605020207 model=™Â(’¼‘O) bet=•¡Ÿ
+12:40:29 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11466 race_id=202605020207 model=™Â(’¼‘O) bet=”n˜A
+12:40:29 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11467 race_id=202605020207 model=™Â(’¼‘O) bet=ƒƒCƒh
+12:40:29 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11468 race_id=202605020207 model=™Â(’¼‘O) bet=O˜A•¡
+12:40:29 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11469 race_id=202605020207 model=Oracle(’¼‘O) bet=O˜A•¡
+12:40:29 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11470 race_id=202605020207 model=Oracle(’¼‘O) bet=O˜A’P
+12:40:29 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11471 race_id=202605020207 model=–{–½(’¼‘O) bet=”n•ªÍ
+12:40:29 INFO __main__: JSON o—Í: C:\dev\horse-racing-ai\data\predictions\202605020207.json
+12:40:31 INFO __main__: Discord ’¼‘O—\‘z’Ê’m ‘—MŠ®—¹: 202605020207 HTTP 204
+12:40:31 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“Š®—¹: race_id=202605020207 –{–½4Œ ™Â6Œ
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1476, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1461, in main
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\ufffd' in position 350: illegal multibyte sequence
+12:40:31 ERROR: [NG] R07 202605020207  [prerace] å¤±æ•— (rc=1)
+12:40:31 INFO: [START] R07 202608030207  [prerace] ç›´å‰äºˆæƒ³é–‹å§‹ (æ¨å®šç™ºèµ° 13:00)
+12:40:36 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“ŠJn: race_id=202608030207
+12:40:36 INFO src.database.init_db: ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“: v_race_mart ƒrƒ…[‚ğÄì¬‚µ‚Ü‚µ‚½
+12:40:36 INFO src.database.init_db: DB ‰Šú‰»Š®—¹: C:\dev\horse-racing-ai\data\umalogi.db
+12:40:36 INFO __main__: ’÷‚ßØ‚è‚Ü‚Åc‚è 4 •ª (race_id=202608030207)
+12:40:36 INFO __main__: DB ƒLƒƒƒbƒVƒ…: ƒIƒbƒY=0Œ ƒGƒ“ƒgƒŠ=14“ª (race_id=202608030207)
+12:40:41 INFO src.scraper.entry_table: ƒIƒbƒYæ“¾ race_id=202608030207: 14 “ª
+12:40:41 INFO src.database.init_db: ƒIƒbƒY•Û‘¶: race_id=202608030207, 14 “ª
+12:40:41 INFO __main__: ƒIƒbƒYæ“¾ [netkeiba API]: 14 “ª•Û‘¶ (race_id=202608030207)
+12:40:41 INFO src.ml.features: “Á’¥—Ê¶¬ race_id=202608030207: 14 “ª ~ 51 “Á’¥—Ê
+12:40:41 WARNING __main__: \u26a0\ufe0f ”n‘ÌdŒ‡‘¹ 14/14“ª (100%) \u2014 NaN ‚Ì‚Ü‚Ü„˜_‚ğ‹­s‚µ‚Ü‚· (race_id ‚É‘Î‰)
+12:40:41 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+12:40:41 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+12:40:43 INFO src.ml.bet_generator: –{–½”ƒ‚¢–Ú¶¬: race_id=202608030207 4 Œ (ãˆÊ3“ª)
+12:40:43 INFO src.ml.bet_generator: ™Â”ƒ‚¢–Ú¶¬: race_id=202608030207 4 Œ (EV>=1.1 ”n=2 “ª)
+12:40:43 INFO src.ml.bet_generator: Oracle”ƒ‚¢–Ú¶¬: race_id=202608030207 O˜A•¡3“_ O˜A’P3“_
+12:40:43 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11483 race_id=202608030207 model=–{–½(’¼‘O) bet=•¡Ÿ
+12:40:43 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11484 race_id=202608030207 model=–{–½(’¼‘O) bet=”n˜A
+12:40:43 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11485 race_id=202608030207 model=–{–½(’¼‘O) bet=ƒƒCƒh
+12:40:43 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11486 race_id=202608030207 model=–{–½(’¼‘O) bet=O˜A’P
+12:40:43 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11487 race_id=202608030207 model=™Â(’¼‘O) bet=•¡Ÿ
+12:40:43 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11488 race_id=202608030207 model=™Â(’¼‘O) bet=”n˜A
+12:40:43 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11489 race_id=202608030207 model=™Â(’¼‘O) bet=ƒƒCƒh
+12:40:43 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11490 race_id=202608030207 model=™Â(’¼‘O) bet=O˜A•¡
+12:40:43 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11491 race_id=202608030207 model=Oracle(’¼‘O) bet=O˜A•¡
+12:40:43 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11492 race_id=202608030207 model=Oracle(’¼‘O) bet=O˜A’P
+12:40:43 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11493 race_id=202608030207 model=–{–½(’¼‘O) bet=”n•ªÍ
+12:40:43 INFO __main__: JSON o—Í: C:\dev\horse-racing-ai\data\predictions\202608030207.json
+12:40:44 INFO __main__: Discord ’¼‘O—\‘z’Ê’m ‘—MŠ®—¹: 202608030207 HTTP 204
+12:40:44 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“Š®—¹: race_id=202608030207 –{–½4Œ ™Â4Œ
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1476, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1461, in main
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\ufffd' in position 773: illegal multibyte sequence
+12:40:45 ERROR: [NG] R07 202608030207  [prerace] å¤±æ•— (rc=1)
+12:45:00 INFO: [START] R06 202603010606  [postrace] çµæœå–å¾—é–‹å§‹
+12:45:00 INFO: ãƒã‚¤ã‚°ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³: v_race_mart ãƒ“ãƒ¥ãƒ¼ã‚’å†ä½œæˆã—ã¾ã—ãŸ
+12:45:00 INFO: DB åˆæœŸåŒ–å®Œäº†: C:\dev\horse-racing-ai\data\umalogi.db
+12:45:00 INFO: ãƒ¬ãƒ¼ã‚¹çµæœå–å¾—é–‹å§‹: race_id=202603010606
+12:45:03 INFO: å–å¾—å®Œäº†: race_id=202603010606, å‡ºèµ°é ­æ•°=5
+12:45:03 INFO: race_results ä¿å­˜: race_id=202603010606 (5/5é ­)
+12:45:07 INFO: æ‰•æˆ»å–å¾— (æ–°å½¢å¼): race_id=202603010606, 12 ä»¶
+12:45:07 INFO: æ‰•æˆ»ä¿å­˜: race_id=202603010606, 12 ä»¶
+12:45:07 INFO: race_payouts ä¿å­˜: race_id=202603010606 (12ä»¶)
+12:45:07 INFO: [è©•ä¾¡] race=202603010606 20000                                                       : äºˆæƒ³26ä»¶ çš„ä¸­0ä»¶ æŠ•è³‡Â¥8200 æ‰•æˆ»Â¥0 ROI=0.0%
+12:45:07 INFO: è©•ä¾¡å®Œäº†: race_id=202603010606  çš„ä¸­=0ä»¶  æŠ•è³‡Â¥8200  æ‰•æˆ»Â¥0  ROI=0.0%
+races.json:       18408 ƒŒ[ƒX
+races/{id}.json: 18408 ƒtƒ@ƒCƒ‹ ¨ C:\dev\horse-racing-ai\web\src\data\races
+predictions.json:  2997 Œ
+summary.json:         4 ƒ‚ƒfƒ‹~”NƒŒƒR[ƒh  (‘ƒŒ[ƒX 18,408)
+financial.json:      18 “ú~ƒ‚ƒfƒ‹ƒŒƒR[ƒh
+
+ƒGƒNƒXƒ|[ƒgæ: C:\dev\horse-racing-ai\web\src\data
+12:46:06 INFO: ãƒ€ãƒƒã‚·ãƒ¥ãƒœãƒ¼ãƒ‰æ›´æ–°å®Œäº†
+12:46:06 INFO: [OK] R06 202603010606  [postrace] å®Œäº†
+12:46:06 INFO: [START] R06 202605020206  [postrace] çµæœå–å¾—é–‹å§‹
+12:46:07 INFO: ãƒã‚¤ã‚°ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³: v_race_mart ãƒ“ãƒ¥ãƒ¼ã‚’å†ä½œæˆã—ã¾ã—ãŸ
+12:46:07 INFO: DB åˆæœŸåŒ–å®Œäº†: C:\dev\horse-racing-ai\data\umalogi.db
+12:46:07 INFO: ãƒ¬ãƒ¼ã‚¹çµæœå–å¾—é–‹å§‹: race_id=202605020206
+12:46:11 INFO: å–å¾—å®Œäº†: race_id=202605020206, å‡ºèµ°é ­æ•°=0
+12:46:11 INFO: çµæœãªã— (æœªç™ºèµ°ã‹å–æ¶ˆ): race_id=202605020206
+12:46:11 WARNING: [NG] R06 202605020206  [postrace] å¤±æ•— (rc=1) â†’ æœªç¢ºå®šã®å¯èƒ½æ€§ã‚ã‚Š
+12:46:11 INFO: [START] R06 202608030206  [postrace] çµæœå–å¾—é–‹å§‹
+12:46:12 INFO: ãƒã‚¤ã‚°ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³: v_race_mart ãƒ“ãƒ¥ãƒ¼ã‚’å†ä½œæˆã—ã¾ã—ãŸ
+12:46:12 INFO: DB åˆæœŸåŒ–å®Œäº†: C:\dev\horse-racing-ai\data\umalogi.db
+12:46:12 INFO: ãƒ¬ãƒ¼ã‚¹çµæœå–å¾—é–‹å§‹: race_id=202608030206
+12:46:15 INFO: å–å¾—å®Œäº†: race_id=202608030206, å‡ºèµ°é ­æ•°=0
+12:46:15 INFO: çµæœãªã— (æœªç™ºèµ°ã‹å–æ¶ˆ): race_id=202608030206
+12:46:15 WARNING: [NG] R06 202608030206  [postrace] å¤±æ•— (rc=1) â†’ æœªç¢ºå®šã®å¯èƒ½æ€§ã‚ã‚Š
+13:10:00 INFO: [START] R08 202603010608  [prerace] ç›´å‰äºˆæƒ³é–‹å§‹ (æ¨å®šç™ºèµ° 13:30)
+13:10:04 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“ŠJn: race_id=202603010608
+13:10:05 INFO src.database.init_db: ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“: v_race_mart ƒrƒ…[‚ğÄì¬‚µ‚Ü‚µ‚½
+13:10:05 INFO src.database.init_db: DB ‰Šú‰»Š®—¹: C:\dev\horse-racing-ai\data\umalogi.db
+13:10:05 INFO __main__: ’÷‚ßØ‚è‚Ü‚Åc‚è 4 •ª (race_id=202603010608)
+13:10:05 INFO __main__: DB ƒLƒƒƒbƒVƒ…: ƒIƒbƒY=0Œ ƒGƒ“ƒgƒŠ=15“ª (race_id=202603010608)
+13:10:10 INFO src.scraper.entry_table: ƒIƒbƒYæ“¾ race_id=202603010608: 15 “ª
+13:10:10 INFO src.database.init_db: ƒIƒbƒY•Û‘¶: race_id=202603010608, 15 “ª
+13:10:10 INFO __main__: ƒIƒbƒYæ“¾ [netkeiba API]: 15 “ª•Û‘¶ (race_id=202603010608)
+13:10:10 INFO src.ml.features: “Á’¥—Ê¶¬ race_id=202603010608: 15 “ª ~ 51 “Á’¥—Ê
+13:10:10 WARNING __main__: \u26a0\ufe0f ”n‘ÌdŒ‡‘¹ 15/15“ª (100%) \u2014 NaN ‚Ì‚Ü‚Ü„˜_‚ğ‹­s‚µ‚Ü‚· (race_id ‚É‘Î‰)
+13:10:10 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+13:10:10 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+13:10:13 INFO src.ml.bet_generator: –{–½”ƒ‚¢–Ú¶¬: race_id=202603010608 4 Œ (ãˆÊ3“ª)
+13:10:13 INFO src.ml.bet_generator: race_id=202603010608: EV>1.0 ‚Ì”n‚È‚µ \u2014 ™Â”ƒ‚¢–Ú‚È‚µ
+13:10:13 INFO src.ml.bet_generator: Oracle”ƒ‚¢–Ú¶¬: race_id=202603010608 O˜A•¡3“_ O˜A’P3“_
+13:10:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11513 race_id=202603010608 model=–{–½(’¼‘O) bet=•¡Ÿ
+13:10:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11514 race_id=202603010608 model=–{–½(’¼‘O) bet=”n˜A
+13:10:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11515 race_id=202603010608 model=–{–½(’¼‘O) bet=ƒƒCƒh
+13:10:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11516 race_id=202603010608 model=–{–½(’¼‘O) bet=O˜A’P
+13:10:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11517 race_id=202603010608 model=Oracle(’¼‘O) bet=O˜A•¡
+13:10:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11518 race_id=202603010608 model=Oracle(’¼‘O) bet=O˜A’P
+13:10:13 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11519 race_id=202603010608 model=–{–½(’¼‘O) bet=”n•ªÍ
+13:10:13 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+13:10:13 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+13:10:13 WARNING __main__: WIN5 —\‘ª¸”si‘±sj: no such column: win_odds
+13:10:13 INFO __main__: JSON o—Í: C:\dev\horse-racing-ai\data\predictions\202603010608.json
+13:10:14 INFO __main__: Discord ’¼‘O—\‘z’Ê’m ‘—MŠ®—¹: 202603010608 HTTP 204
+13:10:14 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“Š®—¹: race_id=202603010608 –{–½4Œ ™Â0Œ
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1476, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1461, in main
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\ufffd' in position 292: illegal multibyte sequence
+13:10:15 ERROR: [NG] R08 202603010608  [prerace] å¤±æ•— (rc=1)
+13:10:15 INFO: [START] R08 202605020208  [prerace] ç›´å‰äºˆæƒ³é–‹å§‹ (æ¨å®šç™ºèµ° 13:30)
+13:10:19 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“ŠJn: race_id=202605020208
+13:10:19 INFO src.database.init_db: ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“: v_race_mart ƒrƒ…[‚ğÄì¬‚µ‚Ü‚µ‚½
+13:10:19 INFO src.database.init_db: DB ‰Šú‰»Š®—¹: C:\dev\horse-racing-ai\data\umalogi.db
+13:10:19 INFO __main__: ’÷‚ßØ‚è‚Ü‚Åc‚è 4 •ª (race_id=202605020208)
+13:10:19 INFO __main__: DB ƒLƒƒƒbƒVƒ…: ƒIƒbƒY=0Œ ƒGƒ“ƒgƒŠ=11“ª (race_id=202605020208)
+13:10:24 INFO src.scraper.entry_table: ƒIƒbƒYæ“¾ race_id=202605020208: 11 “ª
+13:10:24 INFO src.database.init_db: ƒIƒbƒY•Û‘¶: race_id=202605020208, 11 “ª
+13:10:24 INFO __main__: ƒIƒbƒYæ“¾ [netkeiba API]: 11 “ª•Û‘¶ (race_id=202605020208)
+13:10:24 INFO src.ml.features: “Á’¥—Ê¶¬ race_id=202605020208: 11 “ª ~ 51 “Á’¥—Ê
+13:10:24 WARNING __main__: \u26a0\ufe0f ”n‘ÌdŒ‡‘¹ 11/11“ª (100%) \u2014 NaN ‚Ì‚Ü‚Ü„˜_‚ğ‹­s‚µ‚Ü‚· (race_id ‚É‘Î‰)
+13:10:24 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+13:10:24 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+13:10:26 INFO src.ml.bet_generator: –{–½”ƒ‚¢–Ú¶¬: race_id=202605020208 5 Œ (ãˆÊ3“ª)
+13:10:26 INFO src.ml.bet_generator: ™Â”ƒ‚¢–Ú¶¬: race_id=202605020208 5 Œ (EV>=1.1 ”n=2 “ª)
+13:10:26 INFO src.ml.bet_generator: Oracle”ƒ‚¢–Ú¶¬: race_id=202605020208 O˜A•¡3“_ O˜A’P3“_
+13:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11526 race_id=202605020208 model=–{–½(’¼‘O) bet=•¡Ÿ
+13:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11527 race_id=202605020208 model=–{–½(’¼‘O) bet=”n˜A
+13:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11528 race_id=202605020208 model=–{–½(’¼‘O) bet=ƒƒCƒh
+13:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11529 race_id=202605020208 model=–{–½(’¼‘O) bet=O˜A•¡
+13:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11530 race_id=202605020208 model=–{–½(’¼‘O) bet=O˜A’P
+13:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11531 race_id=202605020208 model=™Â(’¼‘O) bet=’PŸ
+13:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11532 race_id=202605020208 model=™Â(’¼‘O) bet=’PŸ
+13:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11533 race_id=202605020208 model=™Â(’¼‘O) bet=•¡Ÿ
+13:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11534 race_id=202605020208 model=™Â(’¼‘O) bet=”n˜A
+13:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11535 race_id=202605020208 model=™Â(’¼‘O) bet=ƒƒCƒh
+13:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11536 race_id=202605020208 model=Oracle(’¼‘O) bet=O˜A•¡
+13:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11537 race_id=202605020208 model=Oracle(’¼‘O) bet=O˜A’P
+13:10:26 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11538 race_id=202605020208 model=–{–½(’¼‘O) bet=”n•ªÍ
+13:10:26 INFO __main__: JSON o—Í: C:\dev\horse-racing-ai\data\predictions\202605020208.json
+13:10:27 INFO __main__: Discord ’¼‘O—\‘z’Ê’m ‘—MŠ®—¹: 202605020208 HTTP 204
+13:10:27 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“Š®—¹: race_id=202605020208 –{–½5Œ ™Â5Œ
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1476, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1461, in main
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\ufffd' in position 278: illegal multibyte sequence
+13:10:28 ERROR: [NG] R08 202605020208  [prerace] å¤±æ•— (rc=1)
+13:10:28 INFO: [START] R08 202608030208  [prerace] ç›´å‰äºˆæƒ³é–‹å§‹ (æ¨å®šç™ºèµ° 13:30)
+13:10:32 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“ŠJn: race_id=202608030208
+13:10:32 INFO src.database.init_db: ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“: v_race_mart ƒrƒ…[‚ğÄì¬‚µ‚Ü‚µ‚½
+13:10:32 INFO src.database.init_db: DB ‰Šú‰»Š®—¹: C:\dev\horse-racing-ai\data\umalogi.db
+13:10:32 INFO __main__: ’÷‚ßØ‚è‚Ü‚Åc‚è 4 •ª (race_id=202608030208)
+13:10:32 INFO __main__: DB ƒLƒƒƒbƒVƒ…: ƒIƒbƒY=0Œ ƒGƒ“ƒgƒŠ=15“ª (race_id=202608030208)
+13:10:37 INFO src.scraper.entry_table: ƒIƒbƒYæ“¾ race_id=202608030208: 15 “ª
+13:10:37 INFO src.database.init_db: ƒIƒbƒY•Û‘¶: race_id=202608030208, 15 “ª
+13:10:37 INFO __main__: ƒIƒbƒYæ“¾ [netkeiba API]: 15 “ª•Û‘¶ (race_id=202608030208)
+13:10:37 INFO src.ml.features: “Á’¥—Ê¶¬ race_id=202608030208: 15 “ª ~ 51 “Á’¥—Ê
+13:10:37 WARNING __main__: \u26a0\ufe0f ”n‘ÌdŒ‡‘¹ 15/15“ª (100%) \u2014 NaN ‚Ì‚Ü‚Ü„˜_‚ğ‹­s‚µ‚Ü‚· (race_id ‚É‘Î‰)
+13:10:37 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+13:10:37 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+13:10:39 INFO src.ml.bet_generator: –{–½”ƒ‚¢–Ú¶¬: race_id=202608030208 4 Œ (ãˆÊ3“ª)
+13:10:39 INFO src.ml.bet_generator: ™Â”ƒ‚¢–Ú¶¬: race_id=202608030208 4 Œ (EV>=1.1 ”n=2 “ª)
+13:10:39 INFO src.ml.bet_generator: Oracle”ƒ‚¢–Ú¶¬: race_id=202608030208 O˜A•¡3“_ O˜A’P3“_
+13:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11576 race_id=202608030208 model=–{–½(’¼‘O) bet=•¡Ÿ
+13:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11577 race_id=202608030208 model=–{–½(’¼‘O) bet=”n˜A
+13:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11578 race_id=202608030208 model=–{–½(’¼‘O) bet=ƒƒCƒh
+13:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11579 race_id=202608030208 model=–{–½(’¼‘O) bet=O˜A’P
+13:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11580 race_id=202608030208 model=™Â(’¼‘O) bet=’PŸ
+13:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11581 race_id=202608030208 model=™Â(’¼‘O) bet=•¡Ÿ
+13:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11582 race_id=202608030208 model=™Â(’¼‘O) bet=”n˜A
+13:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11583 race_id=202608030208 model=™Â(’¼‘O) bet=ƒƒCƒh
+13:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11584 race_id=202608030208 model=Oracle(’¼‘O) bet=O˜A•¡
+13:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11585 race_id=202608030208 model=Oracle(’¼‘O) bet=O˜A’P
+13:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11586 race_id=202608030208 model=–{–½(’¼‘O) bet=”n•ªÍ
+13:10:39 INFO __main__: JSON o—Í: C:\dev\horse-racing-ai\data\predictions\202608030208.json
+13:10:40 INFO __main__: Discord ’¼‘O—\‘z’Ê’m ‘—MŠ®—¹: 202608030208 HTTP 204
+13:10:40 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“Š®—¹: race_id=202608030208 –{–½4Œ ™Â4Œ
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1476, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1461, in main
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\ufffd' in position 278: illegal multibyte sequence
+13:10:40 ERROR: [NG] R08 202608030208  [prerace] å¤±æ•— (rc=1)
+13:15:00 INFO: [START] R07 202603010607  [postrace] çµæœå–å¾—é–‹å§‹
+13:15:00 INFO: ãƒã‚¤ã‚°ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³: v_race_mart ãƒ“ãƒ¥ãƒ¼ã‚’å†ä½œæˆã—ã¾ã—ãŸ
+13:15:00 INFO: DB åˆæœŸåŒ–å®Œäº†: C:\dev\horse-racing-ai\data\umalogi.db
+13:15:00 INFO: ãƒ¬ãƒ¼ã‚¹çµæœå–å¾—é–‹å§‹: race_id=202603010607
+13:15:03 INFO: å–å¾—å®Œäº†: race_id=202603010607, å‡ºèµ°é ­æ•°=5
+13:15:03 INFO: race_results ä¿å­˜: race_id=202603010607 (5/5é ­)
+13:15:07 INFO: æ‰•æˆ»å–å¾— (æ–°å½¢å¼): race_id=202603010607, 12 ä»¶
+13:15:07 INFO: æ‰•æˆ»ä¿å­˜: race_id=202603010607, 12 ä»¶
+13:15:07 INFO: race_payouts ä¿å­˜: race_id=202603010607 (12ä»¶)
+13:15:07 INFO: [è©•ä¾¡] race=202603010607 20000: äºˆæƒ³14ä»¶ çš„ä¸­0ä»¶ æŠ•è³‡Â¥4000 æ‰•æˆ»Â¥0 ROI=0.0%
+13:15:07 INFO: è©•ä¾¡å®Œäº†: race_id=202603010607  çš„ä¸­=0ä»¶  æŠ•è³‡Â¥4000  æ‰•æˆ»Â¥0  ROI=0.0%
+races.json:       18408 ƒŒ[ƒX
+races/{id}.json: 18408 ƒtƒ@ƒCƒ‹ ¨ C:\dev\horse-racing-ai\web\src\data\races
+predictions.json:  3027 Œ
+summary.json:         4 ƒ‚ƒfƒ‹~”NƒŒƒR[ƒh  (‘ƒŒ[ƒX 18,408)
+financial.json:      18 “ú~ƒ‚ƒfƒ‹ƒŒƒR[ƒh
+
+ƒGƒNƒXƒ|[ƒgæ: C:\dev\horse-racing-ai\web\src\data
+13:16:07 INFO: ãƒ€ãƒƒã‚·ãƒ¥ãƒœãƒ¼ãƒ‰æ›´æ–°å®Œäº†
+13:16:07 INFO: [OK] R07 202603010607  [postrace] å®Œäº†
+13:16:07 INFO: [START] R07 202605020207  [postrace] çµæœå–å¾—é–‹å§‹
+13:16:09 INFO: ãƒã‚¤ã‚°ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³: v_race_mart ãƒ“ãƒ¥ãƒ¼ã‚’å†ä½œæˆã—ã¾ã—ãŸ
+13:16:09 INFO: DB åˆæœŸåŒ–å®Œäº†: C:\dev\horse-racing-ai\data\umalogi.db
+13:16:09 INFO: ãƒ¬ãƒ¼ã‚¹çµæœå–å¾—é–‹å§‹: race_id=202605020207
+13:16:11 INFO: å–å¾—å®Œäº†: race_id=202605020207, å‡ºèµ°é ­æ•°=0
+13:16:11 INFO: çµæœãªã— (æœªç™ºèµ°ã‹å–æ¶ˆ): race_id=202605020207
+13:16:12 WARNING: [NG] R07 202605020207  [postrace] å¤±æ•— (rc=1) â†’ æœªç¢ºå®šã®å¯èƒ½æ€§ã‚ã‚Š
+13:16:12 INFO: [START] R07 202608030207  [postrace] çµæœå–å¾—é–‹å§‹
+13:16:13 INFO: ãƒã‚¤ã‚°ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³: v_race_mart ãƒ“ãƒ¥ãƒ¼ã‚’å†ä½œæˆã—ã¾ã—ãŸ
+13:16:13 INFO: DB åˆæœŸåŒ–å®Œäº†: C:\dev\horse-racing-ai\data\umalogi.db
+13:16:13 INFO: ãƒ¬ãƒ¼ã‚¹çµæœå–å¾—é–‹å§‹: race_id=202608030207
+13:16:16 INFO: å–å¾—å®Œäº†: race_id=202608030207, å‡ºèµ°é ­æ•°=0
+13:16:16 INFO: çµæœãªã— (æœªç™ºèµ°ã‹å–æ¶ˆ): race_id=202608030207
+13:16:16 WARNING: [NG] R07 202608030207  [postrace] å¤±æ•— (rc=1) â†’ æœªç¢ºå®šã®å¯èƒ½æ€§ã‚ã‚Š
+13:40:01 INFO: [START] R09 202603010609  [prerace] ç›´å‰äºˆæƒ³é–‹å§‹ (æ¨å®šç™ºèµ° 14:00)
+13:40:12 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“ŠJn: race_id=202603010609
+13:40:13 INFO src.database.init_db: ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“: v_race_mart ƒrƒ…[‚ğÄì¬‚µ‚Ü‚µ‚½
+13:40:13 INFO src.database.init_db: DB ‰Šú‰»Š®—¹: C:\dev\horse-racing-ai\data\umalogi.db
+13:40:13 INFO __main__: ’÷‚ßØ‚è‚Ü‚Åc‚è 4 •ª (race_id=202603010609)
+13:40:13 INFO __main__: DB ƒLƒƒƒbƒVƒ…: ƒIƒbƒY=0Œ ƒGƒ“ƒgƒŠ=13“ª (race_id=202603010609)
+13:40:18 INFO src.scraper.entry_table: ƒIƒbƒYæ“¾ race_id=202603010609: 13 “ª
+13:40:18 INFO src.database.init_db: ƒIƒbƒY•Û‘¶: race_id=202603010609, 13 “ª
+13:40:18 INFO __main__: ƒIƒbƒYæ“¾ [netkeiba API]: 13 “ª•Û‘¶ (race_id=202603010609)
+13:40:18 INFO src.ml.features: “Á’¥—Ê¶¬ race_id=202603010609: 13 “ª ~ 51 “Á’¥—Ê
+13:40:18 WARNING __main__: \u26a0\ufe0f ”n‘ÌdŒ‡‘¹ 13/13“ª (100%) \u2014 NaN ‚Ì‚Ü‚Ü„˜_‚ğ‹­s‚µ‚Ü‚· (race_id ‚É‘Î‰)
+13:40:18 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+13:40:18 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+13:40:22 INFO src.ml.bet_generator: –{–½”ƒ‚¢–Ú¶¬: race_id=202603010609 5 Œ (ãˆÊ3“ª)
+13:40:22 INFO src.ml.bet_generator: race_id=202603010609: EV>1.0 ‚Ì”n‚È‚µ \u2014 ™Â”ƒ‚¢–Ú‚È‚µ
+13:40:23 INFO src.ml.bet_generator: Oracle”ƒ‚¢–Ú¶¬: race_id=202603010609 O˜A•¡3“_ O˜A’P3“_
+13:40:23 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11598 race_id=202603010609 model=–{–½(’¼‘O) bet=•¡Ÿ
+13:40:23 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11599 race_id=202603010609 model=–{–½(’¼‘O) bet=”n˜A
+13:40:23 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11600 race_id=202603010609 model=–{–½(’¼‘O) bet=ƒƒCƒh
+13:40:23 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11601 race_id=202603010609 model=–{–½(’¼‘O) bet=O˜A•¡
+13:40:23 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11602 race_id=202603010609 model=–{–½(’¼‘O) bet=O˜A’P
+13:40:23 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11603 race_id=202603010609 model=Oracle(’¼‘O) bet=O˜A•¡
+13:40:23 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11604 race_id=202603010609 model=Oracle(’¼‘O) bet=O˜A’P
+13:40:23 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11605 race_id=202603010609 model=–{–½(’¼‘O) bet=”n•ªÍ
+13:40:23 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+13:40:23 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+13:40:23 WARNING __main__: WIN5 —\‘ª¸”si‘±sj: no such column: win_odds
+13:40:23 INFO __main__: JSON o—Í: C:\dev\horse-racing-ai\data\predictions\202603010609.json
+13:40:24 INFO __main__: Discord ’¼‘O—\‘z’Ê’m ‘—MŠ®—¹: 202603010609 HTTP 204
+13:40:24 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“Š®—¹: race_id=202603010609 –{–½5Œ ™Â0Œ
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1476, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1461, in main
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\ufffd' in position 715: illegal multibyte sequence
+13:40:24 ERROR: [NG] R09 202603010609  [prerace] å¤±æ•— (rc=1)
+13:40:24 INFO: [START] R09 202605020209  [prerace] ç›´å‰äºˆæƒ³é–‹å§‹ (æ¨å®šç™ºèµ° 14:00)
+13:40:29 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“ŠJn: race_id=202605020209
+13:40:29 INFO src.database.init_db: ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“: v_race_mart ƒrƒ…[‚ğÄì¬‚µ‚Ü‚µ‚½
+13:40:29 INFO src.database.init_db: DB ‰Šú‰»Š®—¹: C:\dev\horse-racing-ai\data\umalogi.db
+13:40:29 INFO __main__: ’÷‚ßØ‚è‚Ü‚Åc‚è 4 •ª (race_id=202605020209)
+13:40:29 INFO __main__: DB ƒLƒƒƒbƒVƒ…: ƒIƒbƒY=0Œ ƒGƒ“ƒgƒŠ=16“ª (race_id=202605020209)
+13:40:33 INFO src.scraper.entry_table: ƒIƒbƒYæ“¾ race_id=202605020209: 16 “ª
+13:40:33 INFO src.database.init_db: ƒIƒbƒY•Û‘¶: race_id=202605020209, 16 “ª
+13:40:33 INFO __main__: ƒIƒbƒYæ“¾ [netkeiba API]: 16 “ª•Û‘¶ (race_id=202605020209)
+13:40:34 INFO src.ml.features: “Á’¥—Ê¶¬ race_id=202605020209: 16 “ª ~ 51 “Á’¥—Ê
+13:40:34 WARNING __main__: \u26a0\ufe0f ”n‘ÌdŒ‡‘¹ 16/16“ª (100%) \u2014 NaN ‚Ì‚Ü‚Ü„˜_‚ğ‹­s‚µ‚Ü‚· (race_id ‚É‘Î‰)
+13:40:34 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+13:40:34 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+13:40:36 INFO src.ml.bet_generator: –{–½”ƒ‚¢–Ú¶¬: race_id=202605020209 4 Œ (ãˆÊ3“ª)
+13:40:36 INFO src.ml.bet_generator: race_id=202605020209: EV>1.0 ‚Ì”n‚È‚µ \u2014 ™Â”ƒ‚¢–Ú‚È‚µ
+13:40:36 INFO src.ml.bet_generator: Oracle”ƒ‚¢–Ú¶¬: race_id=202605020209 O˜A•¡3“_ O˜A’P3“_
+13:40:36 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11629 race_id=202605020209 model=–{–½(’¼‘O) bet=•¡Ÿ
+13:40:36 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11630 race_id=202605020209 model=–{–½(’¼‘O) bet=”n˜A
+13:40:36 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11631 race_id=202605020209 model=–{–½(’¼‘O) bet=ƒƒCƒh
+13:40:36 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11632 race_id=202605020209 model=–{–½(’¼‘O) bet=O˜A’P
+13:40:36 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11633 race_id=202605020209 model=Oracle(’¼‘O) bet=O˜A•¡
+13:40:36 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11634 race_id=202605020209 model=Oracle(’¼‘O) bet=O˜A’P
+13:40:36 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11635 race_id=202605020209 model=–{–½(’¼‘O) bet=”n•ªÍ
+13:40:36 INFO __main__: JSON o—Í: C:\dev\horse-racing-ai\data\predictions\202605020209.json
+13:40:37 INFO __main__: Discord ’¼‘O—\‘z’Ê’m ‘—MŠ®—¹: 202605020209 HTTP 204
+13:40:37 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“Š®—¹: race_id=202605020209 –{–½4Œ ™Â0Œ
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1476, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1461, in main
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\ufffd' in position 276: illegal multibyte sequence
+13:40:37 ERROR: [NG] R09 202605020209  [prerace] å¤±æ•— (rc=1)
+13:40:37 INFO: [START] R09 202608030209  [prerace] ç›´å‰äºˆæƒ³é–‹å§‹ (æ¨å®šç™ºèµ° 14:00)
+13:40:42 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“ŠJn: race_id=202608030209
+13:40:42 INFO src.database.init_db: ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“: v_race_mart ƒrƒ…[‚ğÄì¬‚µ‚Ü‚µ‚½
+13:40:42 INFO src.database.init_db: DB ‰Šú‰»Š®—¹: C:\dev\horse-racing-ai\data\umalogi.db
+13:40:42 INFO __main__: ’÷‚ßØ‚è‚Ü‚Åc‚è 4 •ª (race_id=202608030209)
+13:40:42 INFO __main__: DB ƒLƒƒƒbƒVƒ…: ƒIƒbƒY=0Œ ƒGƒ“ƒgƒŠ=11“ª (race_id=202608030209)
+13:40:47 INFO src.scraper.entry_table: ƒIƒbƒYæ“¾ race_id=202608030209: 11 “ª
+13:40:47 INFO src.database.init_db: ƒIƒbƒY•Û‘¶: race_id=202608030209, 11 “ª
+13:40:47 INFO __main__: ƒIƒbƒYæ“¾ [netkeiba API]: 11 “ª•Û‘¶ (race_id=202608030209)
+13:40:47 INFO src.ml.features: “Á’¥—Ê¶¬ race_id=202608030209: 11 “ª ~ 51 “Á’¥—Ê
+13:40:47 WARNING __main__: \u26a0\ufe0f ”n‘ÌdŒ‡‘¹ 11/11“ª (100%) \u2014 NaN ‚Ì‚Ü‚Ü„˜_‚ğ‹­s‚µ‚Ü‚· (race_id ‚É‘Î‰)
+13:40:47 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+13:40:47 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+13:40:49 INFO src.ml.bet_generator: –{–½”ƒ‚¢–Ú¶¬: race_id=202608030209 5 Œ (ãˆÊ3“ª)
+13:40:49 INFO src.ml.bet_generator: ™Â”ƒ‚¢–Ú¶¬: race_id=202608030209 4 Œ (EV>=1.1 ”n=2 “ª)
+13:40:49 INFO src.ml.bet_generator: Oracle”ƒ‚¢–Ú¶¬: race_id=202608030209 O˜A•¡3“_ O˜A’P3“_
+13:40:49 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11655 race_id=202608030209 model=–{–½(’¼‘O) bet=•¡Ÿ
+13:40:49 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11656 race_id=202608030209 model=–{–½(’¼‘O) bet=”n˜A
+13:40:49 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11657 race_id=202608030209 model=–{–½(’¼‘O) bet=ƒƒCƒh
+13:40:49 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11658 race_id=202608030209 model=–{–½(’¼‘O) bet=O˜A•¡
+13:40:49 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11659 race_id=202608030209 model=–{–½(’¼‘O) bet=O˜A’P
+13:40:49 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11660 race_id=202608030209 model=™Â(’¼‘O) bet=•¡Ÿ
+13:40:49 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11661 race_id=202608030209 model=™Â(’¼‘O) bet=”n˜A
+13:40:49 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11662 race_id=202608030209 model=™Â(’¼‘O) bet=ƒƒCƒh
+13:40:49 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11663 race_id=202608030209 model=™Â(’¼‘O) bet=O˜A•¡
+13:40:49 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11664 race_id=202608030209 model=Oracle(’¼‘O) bet=O˜A•¡
+13:40:49 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11665 race_id=202608030209 model=Oracle(’¼‘O) bet=O˜A’P
+13:40:49 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11666 race_id=202608030209 model=–{–½(’¼‘O) bet=”n•ªÍ
+13:40:49 INFO __main__: JSON o—Í: C:\dev\horse-racing-ai\data\predictions\202608030209.json
+13:40:50 INFO __main__: Discord ’¼‘O—\‘z’Ê’m ‘—MŠ®—¹: 202608030209 HTTP 204
+13:40:50 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“Š®—¹: race_id=202608030209 –{–½5Œ ™Â4Œ
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1476, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1461, in main
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\ufffd' in position 280: illegal multibyte sequence
+13:40:51 ERROR: [NG] R09 202608030209  [prerace] å¤±æ•— (rc=1)
+13:45:00 INFO: [START] R08 202603010608  [postrace] çµæœå–å¾—é–‹å§‹
+13:45:00 INFO: ãƒã‚¤ã‚°ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³: v_race_mart ãƒ“ãƒ¥ãƒ¼ã‚’å†ä½œæˆã—ã¾ã—ãŸ
+13:45:00 INFO: DB åˆæœŸåŒ–å®Œäº†: C:\dev\horse-racing-ai\data\umalogi.db
+13:45:00 INFO: ãƒ¬ãƒ¼ã‚¹çµæœå–å¾—é–‹å§‹: race_id=202603010608
+13:45:03 INFO: å–å¾—å®Œäº†: race_id=202603010608, å‡ºèµ°é ­æ•°=5
+13:45:03 INFO: race_results ä¿å­˜: race_id=202603010608 (5/5é ­)
+13:45:07 INFO: æ‰•æˆ»å–å¾— (æ–°å½¢å¼): race_id=202603010608, 12 ä»¶
+13:45:07 INFO: æ‰•æˆ»ä¿å­˜: race_id=202603010608, 12 ä»¶
+13:45:07 INFO: race_payouts ä¿å­˜: race_id=202603010608 (12ä»¶)
+13:45:07 INFO: [è©•ä¾¡] race=202603010608 20000: äºˆæƒ³14ä»¶ çš„ä¸­0ä»¶ æŠ•è³‡Â¥4000 æ‰•æˆ»Â¥0 ROI=0.0%
+13:45:07 INFO: è©•ä¾¡å®Œäº†: race_id=202603010608  çš„ä¸­=0ä»¶  æŠ•è³‡Â¥4000  æ‰•æˆ»Â¥0  ROI=0.0%
+races.json:       18408 ƒŒ[ƒX
+races/{id}.json: 18408 ƒtƒ@ƒCƒ‹ ¨ C:\dev\horse-racing-ai\web\src\data\races
+predictions.json:  3054 Œ
+summary.json:         4 ƒ‚ƒfƒ‹~”NƒŒƒR[ƒh  (‘ƒŒ[ƒX 18,408)
+financial.json:      18 “ú~ƒ‚ƒfƒ‹ƒŒƒR[ƒh
+
+ƒGƒNƒXƒ|[ƒgæ: C:\dev\horse-racing-ai\web\src\data
+13:46:12 INFO: ãƒ€ãƒƒã‚·ãƒ¥ãƒœãƒ¼ãƒ‰æ›´æ–°å®Œäº†
+13:46:12 INFO: [OK] R08 202603010608  [postrace] å®Œäº†
+13:46:12 INFO: [START] R08 202605020208  [postrace] çµæœå–å¾—é–‹å§‹
+13:46:13 INFO: ãƒã‚¤ã‚°ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³: v_race_mart ãƒ“ãƒ¥ãƒ¼ã‚’å†ä½œæˆã—ã¾ã—ãŸ
+13:46:13 INFO: DB åˆæœŸåŒ–å®Œäº†: C:\dev\horse-racing-ai\data\umalogi.db
+13:46:13 INFO: ãƒ¬ãƒ¼ã‚¹çµæœå–å¾—é–‹å§‹: race_id=202605020208
+13:46:16 INFO: å–å¾—å®Œäº†: race_id=202605020208, å‡ºèµ°é ­æ•°=0
+13:46:16 INFO: çµæœãªã— (æœªç™ºèµ°ã‹å–æ¶ˆ): race_id=202605020208
+13:46:16 WARNING: [NG] R08 202605020208  [postrace] å¤±æ•— (rc=1) â†’ æœªç¢ºå®šã®å¯èƒ½æ€§ã‚ã‚Š
+13:46:16 INFO: [START] R08 202608030208  [postrace] çµæœå–å¾—é–‹å§‹
+13:46:18 INFO: ãƒã‚¤ã‚°ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³: v_race_mart ãƒ“ãƒ¥ãƒ¼ã‚’å†ä½œæˆã—ã¾ã—ãŸ
+13:46:18 INFO: DB åˆæœŸåŒ–å®Œäº†: C:\dev\horse-racing-ai\data\umalogi.db
+13:46:18 INFO: ãƒ¬ãƒ¼ã‚¹çµæœå–å¾—é–‹å§‹: race_id=202608030208
+13:46:21 INFO: å–å¾—å®Œäº†: race_id=202608030208, å‡ºèµ°é ­æ•°=0
+13:46:21 INFO: çµæœãªã— (æœªç™ºèµ°ã‹å–æ¶ˆ): race_id=202608030208
+13:46:21 WARNING: [NG] R08 202608030208  [postrace] å¤±æ•— (rc=1) â†’ æœªç¢ºå®šã®å¯èƒ½æ€§ã‚ã‚Š
+14:10:00 INFO: [START] R10 202603010610  [prerace] ç›´å‰äºˆæƒ³é–‹å§‹ (æ¨å®šç™ºèµ° 14:30)
+14:10:08 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“ŠJn: race_id=202603010610
+14:10:08 INFO src.database.init_db: ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“: v_race_mart ƒrƒ…[‚ğÄì¬‚µ‚Ü‚µ‚½
+14:10:08 INFO src.database.init_db: DB ‰Šú‰»Š®—¹: C:\dev\horse-racing-ai\data\umalogi.db
+14:10:08 INFO __main__: ’÷‚ßØ‚è‚Ü‚Åc‚è 4 •ª (race_id=202603010610)
+14:10:08 INFO __main__: DB ƒLƒƒƒbƒVƒ…: ƒIƒbƒY=0Œ ƒGƒ“ƒgƒŠ=15“ª (race_id=202603010610)
+14:10:14 INFO src.scraper.entry_table: ƒIƒbƒYæ“¾ race_id=202603010610: 15 “ª
+14:10:14 INFO src.database.init_db: ƒIƒbƒY•Û‘¶: race_id=202603010610, 15 “ª
+14:10:14 INFO __main__: ƒIƒbƒYæ“¾ [netkeiba API]: 15 “ª•Û‘¶ (race_id=202603010610)
+14:10:15 INFO src.ml.features: “Á’¥—Ê¶¬ race_id=202603010610: 15 “ª ~ 51 “Á’¥—Ê
+14:10:15 WARNING __main__: \u26a0\ufe0f ”n‘ÌdŒ‡‘¹ 15/15“ª (100%) \u2014 NaN ‚Ì‚Ü‚Ü„˜_‚ğ‹­s‚µ‚Ü‚· (race_id ‚É‘Î‰)
+14:10:15 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+14:10:15 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+14:10:20 INFO src.ml.bet_generator: –{–½”ƒ‚¢–Ú¶¬: race_id=202603010610 4 Œ (ãˆÊ3“ª)
+14:10:20 INFO src.ml.bet_generator: ™Â”ƒ‚¢–Ú¶¬: race_id=202603010610 4 Œ (EV>=1.1 ”n=2 “ª)
+14:10:20 INFO src.ml.bet_generator: Oracle”ƒ‚¢–Ú¶¬: race_id=202603010610 O˜A•¡3“_ O˜A’P3“_
+14:10:20 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11690 race_id=202603010610 model=–{–½(’¼‘O) bet=•¡Ÿ
+14:10:20 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11691 race_id=202603010610 model=–{–½(’¼‘O) bet=”n˜A
+14:10:20 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11692 race_id=202603010610 model=–{–½(’¼‘O) bet=ƒƒCƒh
+14:10:20 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11693 race_id=202603010610 model=–{–½(’¼‘O) bet=O˜A’P
+14:10:20 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11694 race_id=202603010610 model=™Â(’¼‘O) bet=’PŸ
+14:10:20 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11695 race_id=202603010610 model=™Â(’¼‘O) bet=•¡Ÿ
+14:10:20 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11696 race_id=202603010610 model=™Â(’¼‘O) bet=”n˜A
+14:10:20 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11697 race_id=202603010610 model=™Â(’¼‘O) bet=ƒƒCƒh
+14:10:20 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11698 race_id=202603010610 model=Oracle(’¼‘O) bet=O˜A•¡
+14:10:20 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11699 race_id=202603010610 model=Oracle(’¼‘O) bet=O˜A’P
+14:10:21 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11700 race_id=202603010610 model=–{–½(’¼‘O) bet=”n•ªÍ
+14:10:21 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+14:10:21 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+14:10:21 WARNING __main__: WIN5 —\‘ª¸”si‘±sj: no such column: win_odds
+14:10:21 INFO __main__: JSON o—Í: C:\dev\horse-racing-ai\data\predictions\202603010610.json
+14:10:23 INFO __main__: Discord ’¼‘O—\‘z’Ê’m ‘—MŠ®—¹: 202603010610 HTTP 204
+14:10:23 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“Š®—¹: race_id=202603010610 –{–½4Œ ™Â4Œ
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1476, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1461, in main
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\ufffd' in position 277: illegal multibyte sequence
+14:10:24 ERROR: [NG] R10 202603010610  [prerace] å¤±æ•— (rc=1)
+14:10:24 INFO: [START] R10 202605020210  [prerace] ç›´å‰äºˆæƒ³é–‹å§‹ (æ¨å®šç™ºèµ° 14:30)
+14:10:31 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“ŠJn: race_id=202605020210
+14:10:31 INFO src.database.init_db: ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“: v_race_mart ƒrƒ…[‚ğÄì¬‚µ‚Ü‚µ‚½
+14:10:31 INFO src.database.init_db: DB ‰Šú‰»Š®—¹: C:\dev\horse-racing-ai\data\umalogi.db
+14:10:31 INFO __main__: ’÷‚ßØ‚è‚Ü‚Åc‚è 4 •ª (race_id=202605020210)
+14:10:31 INFO __main__: DB ƒLƒƒƒbƒVƒ…: ƒIƒbƒY=0Œ ƒGƒ“ƒgƒŠ=16“ª (race_id=202605020210)
+14:10:36 INFO src.scraper.entry_table: ƒIƒbƒYæ“¾ race_id=202605020210: 16 “ª
+14:10:36 INFO src.database.init_db: ƒIƒbƒY•Û‘¶: race_id=202605020210, 16 “ª
+14:10:36 INFO __main__: ƒIƒbƒYæ“¾ [netkeiba API]: 16 “ª•Û‘¶ (race_id=202605020210)
+14:10:37 INFO src.ml.features: “Á’¥—Ê¶¬ race_id=202605020210: 16 “ª ~ 51 “Á’¥—Ê
+14:10:37 WARNING __main__: \u26a0\ufe0f ”n‘ÌdŒ‡‘¹ 16/16“ª (100%) \u2014 NaN ‚Ì‚Ü‚Ü„˜_‚ğ‹­s‚µ‚Ü‚· (race_id ‚É‘Î‰)
+14:10:37 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+14:10:37 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+14:10:39 INFO src.ml.bet_generator: –{–½”ƒ‚¢–Ú¶¬: race_id=202605020210 4 Œ (ãˆÊ3“ª)
+14:10:39 INFO src.ml.bet_generator: ™Â”ƒ‚¢–Ú¶¬: race_id=202605020210 9 Œ (EV>=1.1 ”n=4 “ª)
+14:10:39 INFO src.ml.bet_generator: Oracle”ƒ‚¢–Ú¶¬: race_id=202605020210 O˜A•¡3“_ O˜A’P3“_
+14:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11701 race_id=202605020210 model=–{–½(’¼‘O) bet=•¡Ÿ
+14:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11702 race_id=202605020210 model=–{–½(’¼‘O) bet=”n˜A
+14:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11703 race_id=202605020210 model=–{–½(’¼‘O) bet=ƒƒCƒh
+14:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11704 race_id=202605020210 model=–{–½(’¼‘O) bet=O˜A’P
+14:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11705 race_id=202605020210 model=™Â(’¼‘O) bet=’PŸ
+14:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11706 race_id=202605020210 model=™Â(’¼‘O) bet=’PŸ
+14:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11707 race_id=202605020210 model=™Â(’¼‘O) bet=’PŸ
+14:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11708 race_id=202605020210 model=™Â(’¼‘O) bet=•¡Ÿ
+14:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11709 race_id=202605020210 model=™Â(’¼‘O) bet=”n˜A
+14:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11710 race_id=202605020210 model=™Â(’¼‘O) bet=ƒƒCƒh
+14:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11711 race_id=202605020210 model=™Â(’¼‘O) bet=O˜A•¡
+14:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11712 race_id=202605020210 model=™Â(’¼‘O) bet=O˜A•¡
+14:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11713 race_id=202605020210 model=™Â(’¼‘O) bet=O˜A•¡
+14:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11714 race_id=202605020210 model=Oracle(’¼‘O) bet=O˜A•¡
+14:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11715 race_id=202605020210 model=Oracle(’¼‘O) bet=O˜A’P
+14:10:39 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11716 race_id=202605020210 model=–{–½(’¼‘O) bet=”n•ªÍ
+14:10:39 INFO __main__: JSON o—Í: C:\dev\horse-racing-ai\data\predictions\202605020210.json
+14:10:40 INFO __main__: Discord ’¼‘O—\‘z’Ê’m ‘—MŠ®—¹: 202605020210 HTTP 204
+14:10:40 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“Š®—¹: race_id=202605020210 –{–½4Œ ™Â9Œ
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1476, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1461, in main
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\ufffd' in position 277: illegal multibyte sequence
+14:10:41 ERROR: [NG] R10 202605020210  [prerace] å¤±æ•— (rc=1)
+14:10:41 INFO: [START] R10 202608030210  [prerace] ç›´å‰äºˆæƒ³é–‹å§‹ (æ¨å®šç™ºèµ° 14:30)
+14:10:45 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“ŠJn: race_id=202608030210
+14:10:45 INFO src.database.init_db: ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“: v_race_mart ƒrƒ…[‚ğÄì¬‚µ‚Ü‚µ‚½
+14:10:45 INFO src.database.init_db: DB ‰Šú‰»Š®—¹: C:\dev\horse-racing-ai\data\umalogi.db
+14:10:45 INFO __main__: ’÷‚ßØ‚è‚Ü‚Åc‚è 4 •ª (race_id=202608030210)
+14:10:45 INFO __main__: DB ƒLƒƒƒbƒVƒ…: ƒIƒbƒY=0Œ ƒGƒ“ƒgƒŠ=18“ª (race_id=202608030210)
+14:10:50 INFO src.scraper.entry_table: ƒIƒbƒYæ“¾ race_id=202608030210: 18 “ª
+14:10:50 INFO src.database.init_db: ƒIƒbƒY•Û‘¶: race_id=202608030210, 18 “ª
+14:10:50 INFO __main__: ƒIƒbƒYæ“¾ [netkeiba API]: 18 “ª•Û‘¶ (race_id=202608030210)
+14:10:50 INFO src.ml.features: “Á’¥—Ê¶¬ race_id=202608030210: 18 “ª ~ 51 “Á’¥—Ê
+14:10:50 WARNING __main__: \u26a0\ufe0f ”n‘ÌdŒ‡‘¹ 18/18“ª (100%) \u2014 NaN ‚Ì‚Ü‚Ü„˜_‚ğ‹­s‚µ‚Ü‚· (race_id ‚É‘Î‰)
+14:10:50 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+14:10:50 INFO src.ml.models: ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+14:10:52 INFO src.ml.bet_generator: –{–½”ƒ‚¢–Ú¶¬: race_id=202608030210 4 Œ (ãˆÊ3“ª)
+14:10:52 INFO src.ml.bet_generator: ™Â”ƒ‚¢–Ú¶¬: race_id=202608030210 7 Œ (EV>=1.1 ”n=5 “ª)
+14:10:52 INFO src.ml.bet_generator: Oracle”ƒ‚¢–Ú¶¬: race_id=202608030210 O˜A•¡3“_ O˜A’P3“_
+14:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11733 race_id=202608030210 model=–{–½(’¼‘O) bet=•¡Ÿ
+14:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11734 race_id=202608030210 model=–{–½(’¼‘O) bet=”n˜A
+14:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11735 race_id=202608030210 model=–{–½(’¼‘O) bet=ƒƒCƒh
+14:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11736 race_id=202608030210 model=–{–½(’¼‘O) bet=O˜A’P
+14:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11737 race_id=202608030210 model=™Â(’¼‘O) bet=’PŸ
+14:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11738 race_id=202608030210 model=™Â(’¼‘O) bet=•¡Ÿ
+14:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11739 race_id=202608030210 model=™Â(’¼‘O) bet=”n˜A
+14:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11740 race_id=202608030210 model=™Â(’¼‘O) bet=ƒƒCƒh
+14:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11741 race_id=202608030210 model=™Â(’¼‘O) bet=O˜A•¡
+14:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11742 race_id=202608030210 model=™Â(’¼‘O) bet=O˜A•¡
+14:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11743 race_id=202608030210 model=™Â(’¼‘O) bet=O˜A•¡
+14:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11744 race_id=202608030210 model=Oracle(’¼‘O) bet=O˜A•¡
+14:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11745 race_id=202608030210 model=Oracle(’¼‘O) bet=O˜A’P
+14:10:52 INFO src.database.init_db: —\‘z•Û‘¶: prediction_id=11746 race_id=202608030210 model=–{–½(’¼‘O) bet=”n•ªÍ
+14:10:52 INFO __main__: JSON o—Í: C:\dev\horse-racing-ai\data\predictions\202608030210.json
+14:10:53 INFO __main__: Discord ’¼‘O—\‘z’Ê’m ‘—MŠ®—¹: 202608030210 HTTP 204
+14:10:53 INFO __main__: ’¼‘OƒpƒCƒvƒ‰ƒCƒ“Š®—¹: race_id=202608030210 –{–½4Œ ™Â7Œ
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1476, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\main_pipeline.py", line 1461, in main
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'cp932' codec can't encode character '\ufffd' in position 278: illegal multibyte sequence
+14:10:54 ERROR: [NG] R10 202608030210  [prerace] å¤±æ•— (rc=1)

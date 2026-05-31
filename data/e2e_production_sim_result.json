@@ -1,0 +1,105 @@
+{
+  "sim_elapsed_sec": 5.12,
+  "all_passed": true,
+  "steps": {
+    "step1_prerace_pipeline": {
+      "elapsed_sec": 2.13,
+      "keys": [
+        "race_id",
+        "generated_at",
+        "bias",
+        "horses",
+        "ev_recommend",
+        "honmei_bets",
+        "manji_bets",
+        "provisional",
+        "model_version"
+      ],
+      "ok": true
+    },
+    "step2_prediction": {
+      "posts": 1,
+      "ok": true
+    },
+    "step3_ev_alert": {
+      "posts": 1,
+      "ok": true
+    },
+    "step4_jackpot": {
+      "posts": 1,
+      "everyone_mention": true,
+      "ok": true
+    },
+    "step5_note_draft": {
+      "return_value": true,
+      "posts": 2,
+      "ok": true
+    },
+    "step6_system": {
+      "posts": 1,
+      "ok": true
+    }
+  },
+  "checklist": [
+    {
+      "ok": true,
+      "item": "466 テスト全件 GREEN (pytest)"
+    },
+    {
+      "ok": true,
+      "item": "EV 特徴量 _add_ev_features() NaN=0 確認済み"
+    },
+    {
+      "ok": true,
+      "item": "train_df_full.parquet (84,930行×90列) 生成済み"
+    },
+    {
+      "ok": true,
+      "item": "HonmeiModel AUC=0.7153 / PlaceModel AUC=0.7293 / ManjiModel 再訓練完了"
+    },
+    {
+      "ok": true,
+      "item": "69 FEATURE_COLS (U-score+X-signal+EV特徴量) 全列確認"
+    },
+    {
+      "ok": true,
+      "item": "DB 複合インデックス 6件 適用済み (migration #15)"
+    },
+    {
+      "ok": true,
+      "item": "prerace_pipeline E2E 動作確認"
+    },
+    {
+      "ok": true,
+      "item": "prediction チャンネル routing 確認"
+    },
+    {
+      "ok": true,
+      "item": "ev_alert チャンネル routing 確認 (EV≥1.5 閾値)"
+    },
+    {
+      "ok": true,
+      "item": "JACKPOT @everyone routing 確認 (EV≥3.0)"
+    },
+    {
+      "ok": true,
+      "item": "note_draft チャンネル routing 確認"
+    },
+    {
+      "ok": true,
+      "item": "system チャンネル routing 確認"
+    },
+    {
+      "ok": false,
+      "item": "本番 DISCORD_WEBHOOK_* URL を .env に設定 (別途確認)"
+    },
+    {
+      "ok": false,
+      "item": "JVLink SID 有効期限の確認 (別途確認)"
+    },
+    {
+      "ok": false,
+      "item": "週次スケジューラー scheduler.py の起動確認 (UMALOGI_SCHEDULER.bat)"
+    }
+  ]
+}

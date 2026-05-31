@@ -1,0 +1,17 @@
+[worker] start dataspec=RACE fromtime=20260504 option=4
+[worker] JVOpen code=0
+  [FILE-1] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [FILE-2] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+[worker] 読み込み中: 1000 レコード (pending=456 file=2)
+  [FILE-3] RA=0 SE=495 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=36 SE=495 payout=0 TC=0 HC=0 skip=0
+  [FILE-4] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=36 SE=495 payout=0 TC=0 HC=0 skip=0
+  [FILE-5] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=72 SE=495 payout=0 TC=0 HC=0 skip=0
+[worker] 読み込み中: 2000 レコード (pending=379 file=5)
+  [FILE-6] RA=0 SE=503 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=72 SE=998 payout=0 TC=0 HC=0 skip=0
+[worker] EOF: read=2124 files=6 RA=72 SE=998 payout=0 TC=0 HC=0 skip=0

@@ -1,0 +1,622 @@
+[worker] start dataspec=RACE fromtime=20250101 option=1
+[worker] JVOpen code=0
+  [FILE-1] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+[worker] 読み込み中: 1000 レコード (pending=454 file=1)
+  [FILE-2] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [FILE-7] RA=0 SE=0 payout=253 TC=0 HC=0 skip=0
+  [累計] RA=0 SE=0 payout=253 TC=0 HC=0 skip=0
+  [FILE-8] RA=0 SE=0 payout=245 TC=0 HC=0 skip=0
+  [累計] RA=0 SE=0 payout=498 TC=0 HC=0 skip=0
+  [FILE-21] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=36 SE=0 payout=498 TC=0 HC=0 skip=0
+  [FILE-22] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=72 SE=0 payout=498 TC=0 HC=0 skip=0
+[worker] 読み込み中: 2000 レコード (pending=210 file=22)
+  [FILE-23] RA=0 SE=518 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=72 SE=518 payout=498 TC=0 HC=0 skip=0
+  [FILE-24] RA=0 SE=499 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=72 SE=1017 payout=498 TC=0 HC=0 skip=0
+  [FILE-25] RA=0 SE=0 payout=0 TC=0 HC=0 skip=1
+  [累計] RA=72 SE=1017 payout=498 TC=0 HC=0 skip=1
+[worker] 読み込み中: 3000 レコード (pending=189 file=25)
+  [FILE-26] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=72 SE=1017 payout=498 TC=0 HC=0 skip=1
+  [FILE-27] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=72 SE=1017 payout=498 TC=0 HC=0 skip=1
+[worker] 読み込み中: 4000 レコード (pending=8 file=31)
+  [FILE-32] RA=0 SE=0 payout=243 TC=0 HC=0 skip=0
+  [累計] RA=72 SE=1017 payout=741 TC=0 HC=0 skip=1
+  [FILE-33] RA=0 SE=0 payout=244 TC=0 HC=0 skip=0
+  [累計] RA=72 SE=1017 payout=985 TC=0 HC=0 skip=1
+  [FILE-46] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=108 SE=1017 payout=985 TC=0 HC=0 skip=1
+  [FILE-47] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=144 SE=1017 payout=985 TC=0 HC=0 skip=1
+[worker] 読み込み中: 5000 レコード (pending=432 file=47)
+  [FILE-48] RA=0 SE=473 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=144 SE=1490 payout=985 TC=0 HC=0 skip=1
+  [FILE-49] RA=0 SE=495 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=144 SE=1985 payout=985 TC=0 HC=0 skip=1
+  [FILE-50] RA=0 SE=0 payout=0 TC=0 HC=0 skip=1
+  [累計] RA=144 SE=1985 payout=985 TC=0 HC=0 skip=2
+[worker] 読み込み中: 6000 レコード (pending=463 file=50)
+  [FILE-51] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=144 SE=1985 payout=985 TC=0 HC=0 skip=2
+  [FILE-52] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=144 SE=1985 payout=985 TC=0 HC=0 skip=2
+  [FILE-57] RA=0 SE=0 payout=247 TC=0 HC=0 skip=0
+  [累計] RA=144 SE=1985 payout=1232 TC=0 HC=0 skip=2
+  [FILE-58] RA=0 SE=0 payout=257 TC=0 HC=0 skip=0
+  [累計] RA=144 SE=1985 payout=1489 TC=0 HC=0 skip=2
+[worker] 読み込み中: 7000 レコード (pending=0 file=63)
+  [FILE-71] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=180 SE=1985 payout=1489 TC=0 HC=0 skip=2
+  [FILE-72] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=216 SE=1985 payout=1489 TC=0 HC=0 skip=2
+  [FILE-73] RA=0 SE=478 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=216 SE=2463 payout=1489 TC=0 HC=0 skip=2
+[worker] 読み込み中: 8000 レコード (pending=222 file=73)
+  [FILE-74] RA=0 SE=508 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=216 SE=2971 payout=1489 TC=0 HC=0 skip=2
+  [FILE-75] RA=0 SE=0 payout=0 TC=0 HC=0 skip=1
+  [累計] RA=216 SE=2971 payout=1489 TC=0 HC=0 skip=3
+  [FILE-76] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=216 SE=2971 payout=1489 TC=0 HC=0 skip=3
+[worker] 読み込み中: 9000 レコード (pending=202 file=76)
+  [FILE-77] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=216 SE=2971 payout=1489 TC=0 HC=0 skip=3
+  [FILE-82] RA=0 SE=0 payout=251 TC=0 HC=0 skip=0
+  [累計] RA=216 SE=2971 payout=1740 TC=0 HC=0 skip=3
+  [FILE-83] RA=0 SE=0 payout=245 TC=0 HC=0 skip=0
+  [累計] RA=216 SE=2971 payout=1985 TC=0 HC=0 skip=3
+[worker] 読み込み中: 10000 レコード (pending=22 file=95)
+  [FILE-96] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=252 SE=2971 payout=1985 TC=0 HC=0 skip=3
+  [FILE-97] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=288 SE=2971 payout=1985 TC=0 HC=0 skip=3
+  [FILE-98] RA=0 SE=483 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=288 SE=3454 payout=1985 TC=0 HC=0 skip=3
+[worker] 読み込み中: 11000 レコード (pending=467 file=98)
+  [FILE-99] RA=0 SE=493 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=288 SE=3947 payout=1985 TC=0 HC=0 skip=3
+  [FILE-100] RA=0 SE=0 payout=0 TC=0 HC=0 skip=1
+  [累計] RA=288 SE=3947 payout=1985 TC=0 HC=0 skip=4
+  [FILE-101] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=288 SE=3947 payout=1985 TC=0 HC=0 skip=4
+[worker] 読み込み中: 12000 レコード (pending=396 file=101)
+  [FILE-102] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=288 SE=3947 payout=1985 TC=0 HC=0 skip=4
+  [FILE-107] RA=0 SE=0 payout=253 TC=0 HC=0 skip=0
+  [累計] RA=288 SE=3947 payout=2238 TC=0 HC=0 skip=4
+  [FILE-108] RA=0 SE=0 payout=243 TC=0 HC=0 skip=0
+  [累計] RA=288 SE=3947 payout=2481 TC=0 HC=0 skip=4
+  [FILE-121] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=324 SE=3947 payout=2481 TC=0 HC=0 skip=4
+  [FILE-122] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=360 SE=3947 payout=2481 TC=0 HC=0 skip=4
+[worker] 読み込み中: 13000 レコード (pending=112 file=122)
+  [FILE-123] RA=0 SE=529 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=360 SE=4476 payout=2481 TC=0 HC=0 skip=4
+  [FILE-124] RA=0 SE=527 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=360 SE=5003 payout=2481 TC=0 HC=0 skip=4
+  [FILE-125] RA=0 SE=0 payout=0 TC=0 HC=0 skip=1
+  [累計] RA=360 SE=5003 payout=2481 TC=0 HC=0 skip=5
+[worker] 読み込み中: 14000 レコード (pending=55 file=125)
+  [FILE-126] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=360 SE=5003 payout=2481 TC=0 HC=0 skip=5
+  [FILE-127] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=360 SE=5003 payout=2481 TC=0 HC=0 skip=5
+  [FILE-132] RA=0 SE=0 payout=167 TC=0 HC=0 skip=0
+  [累計] RA=360 SE=5003 payout=2648 TC=0 HC=0 skip=5
+  [FILE-133] RA=0 SE=0 payout=170 TC=0 HC=0 skip=0
+  [累計] RA=360 SE=5003 payout=2818 TC=0 HC=0 skip=5
+[worker] 読み込み中: 15000 レコード (pending=0 file=138)
+  [FILE-146] RA=24 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=384 SE=5003 payout=2818 TC=0 HC=0 skip=5
+  [FILE-147] RA=24 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=408 SE=5003 payout=2818 TC=0 HC=0 skip=5
+  [FILE-148] RA=0 SE=357 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=408 SE=5360 payout=2818 TC=0 HC=0 skip=5
+  [FILE-149] RA=0 SE=362 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=408 SE=5722 payout=2818 TC=0 HC=0 skip=5
+  [FILE-150] RA=0 SE=0 payout=0 TC=0 HC=0 skip=1
+  [累計] RA=408 SE=5722 payout=2818 TC=0 HC=0 skip=6
+[worker] 読み込み中: 16000 レコード (pending=74 file=150)
+  [FILE-151] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=408 SE=5722 payout=2818 TC=0 HC=0 skip=6
+  [FILE-152] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=408 SE=5722 payout=2818 TC=0 HC=0 skip=6
+  [FILE-157] RA=0 SE=0 payout=165 TC=0 HC=0 skip=0
+  [累計] RA=408 SE=5722 payout=2983 TC=0 HC=0 skip=6
+  [FILE-158] RA=0 SE=0 payout=167 TC=0 HC=0 skip=0
+  [累計] RA=408 SE=5722 payout=3150 TC=0 HC=0 skip=6
+[worker] 読み込み中: 17000 レコード (pending=0 file=164)
+  [FILE-171] RA=24 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=432 SE=5722 payout=3150 TC=0 HC=0 skip=6
+  [FILE-172] RA=24 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=456 SE=5722 payout=3150 TC=0 HC=0 skip=6
+  [FILE-173] RA=0 SE=331 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=456 SE=6053 payout=3150 TC=0 HC=0 skip=6
+  [FILE-174] RA=0 SE=360 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=456 SE=6413 payout=3150 TC=0 HC=0 skip=6
+  [FILE-175] RA=0 SE=0 payout=0 TC=0 HC=0 skip=1
+  [累計] RA=456 SE=6413 payout=3150 TC=0 HC=0 skip=7
+[worker] 読み込み中: 18000 レコード (pending=128 file=175)
+  [FILE-176] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=456 SE=6413 payout=3150 TC=0 HC=0 skip=7
+  [FILE-177] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=456 SE=6413 payout=3150 TC=0 HC=0 skip=7
+[worker] 読み込み中: 19000 レコード (pending=0 file=177)
+  [FILE-182] RA=0 SE=0 payout=251 TC=0 HC=0 skip=0
+  [累計] RA=456 SE=6413 payout=3401 TC=0 HC=0 skip=7
+  [FILE-183] RA=0 SE=0 payout=241 TC=0 HC=0 skip=0
+  [累計] RA=456 SE=6413 payout=3642 TC=0 HC=0 skip=7
+  [FILE-196] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=492 SE=6413 payout=3642 TC=0 HC=0 skip=7
+  [FILE-197] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=528 SE=6413 payout=3642 TC=0 HC=0 skip=7
+[worker] 読み込み中: 20000 レコード (pending=314 file=197)
+  [FILE-198] RA=0 SE=512 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=528 SE=6925 payout=3642 TC=0 HC=0 skip=7
+  [FILE-199] RA=0 SE=504 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=528 SE=7429 payout=3642 TC=0 HC=0 skip=7
+  [FILE-200] RA=0 SE=0 payout=0 TC=0 HC=0 skip=1
+  [累計] RA=528 SE=7429 payout=3642 TC=0 HC=0 skip=8
+[worker] 読み込み中: 21000 レコード (pending=295 file=200)
+  [FILE-201] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=528 SE=7429 payout=3642 TC=0 HC=0 skip=8
+  [FILE-202] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=528 SE=7429 payout=3642 TC=0 HC=0 skip=8
+  [FILE-207] RA=0 SE=0 payout=241 TC=0 HC=0 skip=0
+  [累計] RA=528 SE=7429 payout=3883 TC=0 HC=0 skip=8
+[worker] 読み込み中: 22000 レコード (pending=36 file=207)
+  [FILE-208] RA=0 SE=0 payout=246 TC=0 HC=0 skip=0
+  [累計] RA=528 SE=7429 payout=4129 TC=0 HC=0 skip=8
+  [FILE-221] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=564 SE=7429 payout=4129 TC=0 HC=0 skip=8
+  [FILE-222] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=600 SE=7429 payout=4129 TC=0 HC=0 skip=8
+  [FILE-223] RA=0 SE=489 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=600 SE=7918 payout=4129 TC=0 HC=0 skip=8
+[worker] 読み込み中: 23000 レコード (pending=7 file=223)
+  [FILE-224] RA=0 SE=509 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=600 SE=8427 payout=4129 TC=0 HC=0 skip=8
+  [FILE-225] RA=0 SE=0 payout=0 TC=0 HC=0 skip=1
+  [累計] RA=600 SE=8427 payout=4129 TC=0 HC=0 skip=9
+[worker] 読み込み中: 24000 レコード (pending=494 file=225)
+  [FILE-226] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=600 SE=8427 payout=4129 TC=0 HC=0 skip=9
+  [FILE-227] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=600 SE=8427 payout=4129 TC=0 HC=0 skip=9
+  [FILE-232] RA=0 SE=0 payout=243 TC=0 HC=0 skip=0
+  [累計] RA=600 SE=8427 payout=4372 TC=0 HC=0 skip=9
+  [FILE-233] RA=0 SE=0 payout=245 TC=0 HC=0 skip=0
+  [累計] RA=600 SE=8427 payout=4617 TC=0 HC=0 skip=9
+[worker] 読み込み中: 25000 レコード (pending=0 file=240)
+  [FILE-246] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=636 SE=8427 payout=4617 TC=0 HC=0 skip=9
+  [FILE-247] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=672 SE=8427 payout=4617 TC=0 HC=0 skip=9
+  [FILE-248] RA=0 SE=469 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=672 SE=8896 payout=4617 TC=0 HC=0 skip=9
+[worker] 読み込み中: 26000 レコード (pending=280 file=248)
+  [FILE-249] RA=0 SE=476 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=672 SE=9372 payout=4617 TC=0 HC=0 skip=9
+  [FILE-250] RA=0 SE=0 payout=0 TC=0 HC=0 skip=1
+  [累計] RA=672 SE=9372 payout=4617 TC=0 HC=0 skip=10
+  [FILE-251] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=672 SE=9372 payout=4617 TC=0 HC=0 skip=10
+[worker] 読み込み中: 27000 レコード (pending=315 file=251)
+  [FILE-252] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=672 SE=9372 payout=4617 TC=0 HC=0 skip=10
+  [FILE-257] RA=0 SE=0 payout=245 TC=0 HC=0 skip=0
+  [累計] RA=672 SE=9372 payout=4862 TC=0 HC=0 skip=10
+  [FILE-258] RA=0 SE=0 payout=238 TC=0 HC=0 skip=0
+  [累計] RA=672 SE=9372 payout=5100 TC=0 HC=0 skip=10
+  [FILE-271] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=708 SE=9372 payout=5100 TC=0 HC=0 skip=10
+  [FILE-272] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=744 SE=9372 payout=5100 TC=0 HC=0 skip=10
+[worker] 読み込み中: 28000 レコード (pending=104 file=272)
+  [FILE-273] RA=0 SE=425 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=744 SE=9797 payout=5100 TC=0 HC=0 skip=10
+  [FILE-274] RA=0 SE=460 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=744 SE=10257 payout=5100 TC=0 HC=0 skip=10
+  [FILE-275] RA=0 SE=0 payout=0 TC=0 HC=0 skip=1
+  [累計] RA=744 SE=10257 payout=5100 TC=0 HC=0 skip=11
+[worker] 読み込み中: 29000 レコード (pending=217 file=275)
+  [FILE-276] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=744 SE=10257 payout=5100 TC=0 HC=0 skip=11
+  [FILE-277] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=744 SE=10257 payout=5100 TC=0 HC=0 skip=11
+  [FILE-282] RA=0 SE=0 payout=245 TC=0 HC=0 skip=0
+  [累計] RA=744 SE=10257 payout=5345 TC=0 HC=0 skip=11
+[worker] 読み込み中: 30000 レコード (pending=24 file=282)
+  [FILE-283] RA=0 SE=0 payout=244 TC=0 HC=0 skip=0
+  [累計] RA=744 SE=10257 payout=5589 TC=0 HC=0 skip=11
+  [FILE-296] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=780 SE=10257 payout=5589 TC=0 HC=0 skip=11
+  [FILE-297] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=816 SE=10257 payout=5589 TC=0 HC=0 skip=11
+  [FILE-298] RA=0 SE=469 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=816 SE=10726 payout=5589 TC=0 HC=0 skip=11
+[worker] 読み込み中: 31000 レコード (pending=15 file=298)
+  [FILE-299] RA=0 SE=480 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=816 SE=11206 payout=5589 TC=0 HC=0 skip=11
+  [FILE-300] RA=0 SE=0 payout=0 TC=0 HC=0 skip=1
+  [累計] RA=816 SE=11206 payout=5589 TC=0 HC=0 skip=12
+  [FILE-301] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=816 SE=11206 payout=5589 TC=0 HC=0 skip=12
+[worker] 読み込み中: 32000 レコード (pending=12 file=301)
+  [FILE-302] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=816 SE=11206 payout=5589 TC=0 HC=0 skip=12
+  [FILE-307] RA=0 SE=0 payout=244 TC=0 HC=0 skip=0
+  [累計] RA=816 SE=11206 payout=5833 TC=0 HC=0 skip=12
+  [FILE-308] RA=0 SE=0 payout=235 TC=0 HC=0 skip=0
+  [累計] RA=816 SE=11206 payout=6068 TC=0 HC=0 skip=12
+[worker] 読み込み中: 33000 レコード (pending=0 file=316)
+  [FILE-321] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=852 SE=11206 payout=6068 TC=0 HC=0 skip=12
+  [FILE-322] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=888 SE=11206 payout=6068 TC=0 HC=0 skip=12
+  [FILE-323] RA=0 SE=490 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=888 SE=11696 payout=6068 TC=0 HC=0 skip=12
+[worker] 読み込み中: 34000 レコード (pending=316 file=323)
+  [FILE-324] RA=0 SE=463 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=888 SE=12159 payout=6068 TC=0 HC=0 skip=12
+  [FILE-325] RA=0 SE=0 payout=0 TC=0 HC=0 skip=1
+  [累計] RA=888 SE=12159 payout=6068 TC=0 HC=0 skip=13
+  [FILE-326] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=888 SE=12159 payout=6068 TC=0 HC=0 skip=13
+[worker] 読み込み中: 35000 レコード (pending=384 file=326)
+  [FILE-327] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=888 SE=12159 payout=6068 TC=0 HC=0 skip=13
+  [FILE-332] RA=0 SE=0 payout=242 TC=0 HC=0 skip=0
+  [累計] RA=888 SE=12159 payout=6310 TC=0 HC=0 skip=13
+  [FILE-333] RA=0 SE=0 payout=235 TC=0 HC=0 skip=0
+  [累計] RA=888 SE=12159 payout=6545 TC=0 HC=0 skip=13
+  [FILE-346] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=924 SE=12159 payout=6545 TC=0 HC=0 skip=13
+  [FILE-347] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=960 SE=12159 payout=6545 TC=0 HC=0 skip=13
+[worker] 読み込み中: 36000 レコード (pending=223 file=347)
+  [FILE-348] RA=0 SE=452 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=960 SE=12611 payout=6545 TC=0 HC=0 skip=13
+  [FILE-349] RA=0 SE=421 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=960 SE=13032 payout=6545 TC=0 HC=0 skip=13
+  [FILE-350] RA=0 SE=0 payout=0 TC=0 HC=0 skip=1
+  [累計] RA=960 SE=13032 payout=6545 TC=0 HC=0 skip=14
+[worker] 読み込み中: 37000 レコード (pending=346 file=350)
+  [FILE-351] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=960 SE=13032 payout=6545 TC=0 HC=0 skip=14
+  [FILE-352] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=960 SE=13032 payout=6545 TC=0 HC=0 skip=14
+  [FILE-357] RA=0 SE=0 payout=255 TC=0 HC=0 skip=0
+  [累計] RA=960 SE=13032 payout=6800 TC=0 HC=0 skip=14
+  [FILE-358] RA=0 SE=0 payout=232 TC=0 HC=0 skip=0
+  [累計] RA=960 SE=13032 payout=7032 TC=0 HC=0 skip=14
+[worker] 読み込み中: 38000 レコード (pending=0 file=362)
+  [FILE-371] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=996 SE=13032 payout=7032 TC=0 HC=0 skip=14
+  [FILE-372] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1032 SE=13032 payout=7032 TC=0 HC=0 skip=14
+  [FILE-373] RA=0 SE=454 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1032 SE=13486 payout=7032 TC=0 HC=0 skip=14
+[worker] 読み込み中: 39000 レコード (pending=204 file=373)
+  [FILE-374] RA=0 SE=454 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1032 SE=13940 payout=7032 TC=0 HC=0 skip=14
+  [FILE-375] RA=0 SE=0 payout=0 TC=0 HC=0 skip=1
+  [累計] RA=1032 SE=13940 payout=7032 TC=0 HC=0 skip=15
+  [FILE-376] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1032 SE=13940 payout=7032 TC=0 HC=0 skip=15
+[worker] 読み込み中: 40000 レコード (pending=210 file=376)
+  [FILE-377] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1032 SE=13940 payout=7032 TC=0 HC=0 skip=15
+  [FILE-382] RA=0 SE=0 payout=254 TC=0 HC=0 skip=0
+  [累計] RA=1032 SE=13940 payout=7286 TC=0 HC=0 skip=15
+  [FILE-383] RA=0 SE=0 payout=242 TC=0 HC=0 skip=0
+  [累計] RA=1032 SE=13940 payout=7528 TC=0 HC=0 skip=15
+[worker] 読み込み中: 41000 レコード (pending=0 file=394)
+  [FILE-396] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1068 SE=13940 payout=7528 TC=0 HC=0 skip=15
+  [FILE-397] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1104 SE=13940 payout=7528 TC=0 HC=0 skip=15
+  [FILE-398] RA=0 SE=478 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1104 SE=14418 payout=7528 TC=0 HC=0 skip=15
+[worker] 読み込み中: 42000 レコード (pending=442 file=398)
+  [FILE-399] RA=0 SE=508 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1104 SE=14926 payout=7528 TC=0 HC=0 skip=15
+  [FILE-400] RA=0 SE=0 payout=0 TC=0 HC=0 skip=1
+  [累計] RA=1104 SE=14926 payout=7528 TC=0 HC=0 skip=16
+  [FILE-401] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1104 SE=14926 payout=7528 TC=0 HC=0 skip=16
+[worker] 読み込み中: 43000 レコード (pending=417 file=401)
+  [FILE-402] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1104 SE=14926 payout=7528 TC=0 HC=0 skip=16
+  [FILE-407] RA=0 SE=0 payout=240 TC=0 HC=0 skip=0
+  [累計] RA=1104 SE=14926 payout=7768 TC=0 HC=0 skip=16
+  [FILE-408] RA=0 SE=0 payout=239 TC=0 HC=0 skip=0
+  [累計] RA=1104 SE=14926 payout=8007 TC=0 HC=0 skip=16
+  [FILE-421] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1140 SE=14926 payout=8007 TC=0 HC=0 skip=16
+  [FILE-422] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1176 SE=14926 payout=8007 TC=0 HC=0 skip=16
+[worker] 読み込み中: 44000 レコード (pending=186 file=422)
+  [FILE-423] RA=0 SE=469 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1176 SE=15395 payout=8007 TC=0 HC=0 skip=16
+  [FILE-424] RA=0 SE=467 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1176 SE=15862 payout=8007 TC=0 HC=0 skip=16
+  [FILE-425] RA=0 SE=0 payout=0 TC=0 HC=0 skip=1
+  [累計] RA=1176 SE=15862 payout=8007 TC=0 HC=0 skip=17
+[worker] 読み込み中: 45000 レコード (pending=247 file=425)
+  [FILE-426] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1176 SE=15862 payout=8007 TC=0 HC=0 skip=17
+  [FILE-427] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1176 SE=15862 payout=8007 TC=0 HC=0 skip=17
+  [FILE-432] RA=0 SE=0 payout=243 TC=0 HC=0 skip=0
+  [累計] RA=1176 SE=15862 payout=8250 TC=0 HC=0 skip=17
+  [FILE-433] RA=0 SE=0 payout=232 TC=0 HC=0 skip=0
+  [累計] RA=1176 SE=15862 payout=8482 TC=0 HC=0 skip=17
+[worker] 読み込み中: 46000 レコード (pending=0 file=434)
+  [FILE-446] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1212 SE=15862 payout=8482 TC=0 HC=0 skip=17
+  [FILE-447] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1248 SE=15862 payout=8482 TC=0 HC=0 skip=17
+  [FILE-448] RA=0 SE=437 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1248 SE=16299 payout=8482 TC=0 HC=0 skip=17
+[worker] 読み込み中: 47000 レコード (pending=120 file=448)
+  [FILE-449] RA=0 SE=474 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1248 SE=16773 payout=8482 TC=0 HC=0 skip=17
+  [FILE-450] RA=0 SE=0 payout=0 TC=0 HC=0 skip=1
+  [累計] RA=1248 SE=16773 payout=8482 TC=0 HC=0 skip=18
+  [FILE-451] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1248 SE=16773 payout=8482 TC=0 HC=0 skip=18
+[worker] 読み込み中: 48000 レコード (pending=116 file=451)
+  [FILE-452] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1248 SE=16773 payout=8482 TC=0 HC=0 skip=18
+  [FILE-457] RA=0 SE=0 payout=246 TC=0 HC=0 skip=0
+  [累計] RA=1248 SE=16773 payout=8728 TC=0 HC=0 skip=18
+  [FILE-458] RA=0 SE=0 payout=242 TC=0 HC=0 skip=0
+  [累計] RA=1248 SE=16773 payout=8970 TC=0 HC=0 skip=18
+[worker] 読み込み中: 49000 レコード (pending=0 file=468)
+  [FILE-471] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1284 SE=16773 payout=8970 TC=0 HC=0 skip=18
+  [FILE-472] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1320 SE=16773 payout=8970 TC=0 HC=0 skip=18
+  [FILE-473] RA=0 SE=488 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1320 SE=17261 payout=8970 TC=0 HC=0 skip=18
+[worker] 読み込み中: 50000 レコード (pending=388 file=473)
+  [FILE-474] RA=0 SE=487 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1320 SE=17748 payout=8970 TC=0 HC=0 skip=18
+  [FILE-475] RA=0 SE=0 payout=0 TC=0 HC=0 skip=1
+  [累計] RA=1320 SE=17748 payout=8970 TC=0 HC=0 skip=19
+  [FILE-476] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1320 SE=17748 payout=8970 TC=0 HC=0 skip=19
+[worker] 読み込み中: 51000 レコード (pending=414 file=476)
+  [FILE-477] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1320 SE=17748 payout=8970 TC=0 HC=0 skip=19
+  [FILE-482] RA=0 SE=0 payout=241 TC=0 HC=0 skip=0
+  [累計] RA=1320 SE=17748 payout=9211 TC=0 HC=0 skip=19
+  [FILE-483] RA=0 SE=0 payout=248 TC=0 HC=0 skip=0
+  [累計] RA=1320 SE=17748 payout=9459 TC=0 HC=0 skip=19
+  [FILE-496] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1356 SE=17748 payout=9459 TC=0 HC=0 skip=19
+  [FILE-497] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1392 SE=17748 payout=9459 TC=0 HC=0 skip=19
+[worker] 読み込み中: 52000 レコード (pending=203 file=497)
+  [FILE-498] RA=0 SE=456 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1392 SE=18204 payout=9459 TC=0 HC=0 skip=19
+  [FILE-499] RA=0 SE=462 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1392 SE=18666 payout=9459 TC=0 HC=0 skip=19
+  [FILE-500] RA=0 SE=0 payout=0 TC=0 HC=0 skip=1
+  [累計] RA=1392 SE=18666 payout=9459 TC=0 HC=0 skip=20
+[worker] 読み込み中: 53000 レコード (pending=278 file=500)
+  [FILE-501] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1392 SE=18666 payout=9459 TC=0 HC=0 skip=20
+  [FILE-502] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1392 SE=18666 payout=9459 TC=0 HC=0 skip=20
+  [FILE-503] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1392 SE=18666 payout=9459 TC=0 HC=0 skip=20
+  [FILE-510] RA=0 SE=0 payout=162 TC=0 HC=0 skip=0
+  [累計] RA=1392 SE=18666 payout=9621 TC=0 HC=0 skip=20
+  [FILE-511] RA=0 SE=0 payout=160 TC=0 HC=0 skip=0
+  [累計] RA=1392 SE=18666 payout=9781 TC=0 HC=0 skip=20
+  [FILE-512] RA=0 SE=0 payout=162 TC=0 HC=0 skip=0
+  [累計] RA=1392 SE=18666 payout=9943 TC=0 HC=0 skip=20
+[worker] 読み込み中: 54000 レコード (pending=0 file=516)
+  [FILE-531] RA=24 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1416 SE=18666 payout=9943 TC=0 HC=0 skip=20
+  [FILE-532] RA=24 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1440 SE=18666 payout=9943 TC=0 HC=0 skip=20
+  [FILE-533] RA=24 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1464 SE=18666 payout=9943 TC=0 HC=0 skip=20
+  [FILE-534] RA=0 SE=297 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1464 SE=18963 payout=9943 TC=0 HC=0 skip=20
+[worker] 読み込み中: 55000 レコード (pending=310 file=534)
+  [FILE-535] RA=0 SE=320 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1464 SE=19283 payout=9943 TC=0 HC=0 skip=20
+  [FILE-536] RA=0 SE=296 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1464 SE=19579 payout=9943 TC=0 HC=0 skip=20
+  [FILE-537] RA=0 SE=0 payout=0 TC=0 HC=0 skip=2
+  [累計] RA=1464 SE=19579 payout=9943 TC=0 HC=0 skip=22
+  [FILE-538] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1464 SE=19579 payout=9943 TC=0 HC=0 skip=22
+  [FILE-539] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1464 SE=19579 payout=9943 TC=0 HC=0 skip=22
+[worker] 読み込み中: 56000 レコード (pending=0 file=540)
+  [FILE-544] RA=0 SE=0 payout=159 TC=0 HC=0 skip=0
+  [累計] RA=1464 SE=19579 payout=10102 TC=0 HC=0 skip=22
+  [FILE-545] RA=0 SE=0 payout=162 TC=0 HC=0 skip=0
+  [累計] RA=1464 SE=19579 payout=10264 TC=0 HC=0 skip=22
+  [FILE-558] RA=24 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1488 SE=19579 payout=10264 TC=0 HC=0 skip=22
+  [FILE-559] RA=24 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1512 SE=19579 payout=10264 TC=0 HC=0 skip=22
+  [FILE-560] RA=0 SE=308 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1512 SE=19887 payout=10264 TC=0 HC=0 skip=22
+[worker] 読み込み中: 57000 レコード (pending=258 file=560)
+  [FILE-561] RA=0 SE=302 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1512 SE=20189 payout=10264 TC=0 HC=0 skip=22
+  [FILE-562] RA=0 SE=0 payout=0 TC=0 HC=0 skip=1
+  [累計] RA=1512 SE=20189 payout=10264 TC=0 HC=0 skip=23
+  [FILE-563] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1512 SE=20189 payout=10264 TC=0 HC=0 skip=23
+  [FILE-564] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1512 SE=20189 payout=10264 TC=0 HC=0 skip=23
+  [FILE-569] RA=0 SE=0 payout=161 TC=0 HC=0 skip=0
+  [累計] RA=1512 SE=20189 payout=10425 TC=0 HC=0 skip=23
+  [FILE-570] RA=0 SE=0 payout=162 TC=0 HC=0 skip=0
+  [累計] RA=1512 SE=20189 payout=10587 TC=0 HC=0 skip=23
+[worker] 読み込み中: 58000 レコード (pending=0 file=571)
+  [FILE-583] RA=24 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1536 SE=20189 payout=10587 TC=0 HC=0 skip=23
+  [FILE-584] RA=24 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1560 SE=20189 payout=10587 TC=0 HC=0 skip=23
+  [FILE-585] RA=0 SE=342 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1560 SE=20531 payout=10587 TC=0 HC=0 skip=23
+  [FILE-586] RA=0 SE=346 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1560 SE=20877 payout=10587 TC=0 HC=0 skip=23
+  [FILE-587] RA=0 SE=0 payout=0 TC=0 HC=0 skip=1
+  [累計] RA=1560 SE=20877 payout=10587 TC=0 HC=0 skip=24
+[worker] 読み込み中: 59000 レコード (pending=10 file=587)
+  [FILE-588] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1560 SE=20877 payout=10587 TC=0 HC=0 skip=24
+  [FILE-589] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1560 SE=20877 payout=10587 TC=0 HC=0 skip=24
+  [FILE-594] RA=0 SE=0 payout=169 TC=0 HC=0 skip=0
+  [累計] RA=1560 SE=20877 payout=10756 TC=0 HC=0 skip=24
+  [FILE-595] RA=0 SE=0 payout=160 TC=0 HC=0 skip=0
+  [累計] RA=1560 SE=20877 payout=10916 TC=0 HC=0 skip=24
+[worker] 読み込み中: 60000 レコード (pending=0 file=600)
+  [FILE-608] RA=24 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1584 SE=20877 payout=10916 TC=0 HC=0 skip=24
+  [FILE-609] RA=24 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1608 SE=20877 payout=10916 TC=0 HC=0 skip=24
+  [FILE-610] RA=0 SE=339 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1608 SE=21216 payout=10916 TC=0 HC=0 skip=24
+  [FILE-611] RA=0 SE=347 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1608 SE=21563 payout=10916 TC=0 HC=0 skip=24
+  [FILE-612] RA=0 SE=0 payout=0 TC=0 HC=0 skip=2
+  [累計] RA=1608 SE=21563 payout=10916 TC=0 HC=0 skip=26
+[worker] 読み込み中: 61000 レコード (pending=98 file=612)
+  [FILE-613] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1608 SE=21563 payout=10916 TC=0 HC=0 skip=26
+  [FILE-614] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1608 SE=21563 payout=10916 TC=0 HC=0 skip=26
+  [FILE-615] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1608 SE=21563 payout=10916 TC=0 HC=0 skip=26
+[worker] 読み込み中: 62000 レコード (pending=0 file=618)
+  [FILE-622] RA=0 SE=0 payout=162 TC=0 HC=0 skip=0
+  [累計] RA=1608 SE=21563 payout=11078 TC=0 HC=0 skip=26
+  [FILE-623] RA=0 SE=0 payout=161 TC=0 HC=0 skip=0
+  [累計] RA=1608 SE=21563 payout=11239 TC=0 HC=0 skip=26
+  [FILE-624] RA=0 SE=0 payout=157 TC=0 HC=0 skip=0
+  [累計] RA=1608 SE=21563 payout=11396 TC=0 HC=0 skip=26
+  [FILE-643] RA=24 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1632 SE=21563 payout=11396 TC=0 HC=0 skip=26
+  [FILE-644] RA=24 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1656 SE=21563 payout=11396 TC=0 HC=0 skip=26
+  [FILE-645] RA=24 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1680 SE=21563 payout=11396 TC=0 HC=0 skip=26
+  [FILE-646] RA=0 SE=303 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1680 SE=21866 payout=11396 TC=0 HC=0 skip=26
+[worker] 読み込み中: 63000 レコード (pending=59 file=646)
+  [FILE-647] RA=0 SE=320 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1680 SE=22186 payout=11396 TC=0 HC=0 skip=26
+  [FILE-648] RA=0 SE=324 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1680 SE=22510 payout=11396 TC=0 HC=0 skip=26
+  [FILE-649] RA=0 SE=0 payout=0 TC=0 HC=0 skip=3
+  [累計] RA=1680 SE=22510 payout=11396 TC=0 HC=0 skip=29
+[worker] 読み込み中: 64000 レコード (pending=410 file=649)
+  [FILE-650] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1680 SE=22510 payout=11396 TC=0 HC=0 skip=29
+  [FILE-651] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1680 SE=22510 payout=11396 TC=0 HC=0 skip=29
+  [FILE-656] RA=0 SE=0 payout=241 TC=0 HC=0 skip=0
+  [累計] RA=1680 SE=22510 payout=11637 TC=0 HC=0 skip=29
+  [FILE-657] RA=0 SE=0 payout=258 TC=0 HC=0 skip=0
+  [累計] RA=1680 SE=22510 payout=11895 TC=0 HC=0 skip=29
+[worker] 読み込み中: 65000 レコード (pending=0 file=661)
+  [FILE-670] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1716 SE=22510 payout=11895 TC=0 HC=0 skip=29
+  [FILE-671] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1752 SE=22510 payout=11895 TC=0 HC=0 skip=29
+  [FILE-672] RA=0 SE=476 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1752 SE=22986 payout=11895 TC=0 HC=0 skip=29
+[worker] 読み込み中: 66000 レコード (pending=200 file=672)
+  [FILE-673] RA=0 SE=490 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1752 SE=23476 payout=11895 TC=0 HC=0 skip=29
+  [FILE-674] RA=0 SE=0 payout=0 TC=0 HC=0 skip=2
+  [累計] RA=1752 SE=23476 payout=11895 TC=0 HC=0 skip=31
+  [FILE-675] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1752 SE=23476 payout=11895 TC=0 HC=0 skip=31
+  [FILE-676] RA=1 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1753 SE=23476 payout=11895 TC=0 HC=0 skip=31
+[worker] 読み込み中: 67000 レコード (pending=195 file=676)
+  [FILE-677] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1753 SE=23476 payout=11895 TC=0 HC=0 skip=31
+  [FILE-682] RA=0 SE=0 payout=236 TC=0 HC=0 skip=0
+  [累計] RA=1753 SE=23476 payout=12131 TC=0 HC=0 skip=31
+  [FILE-683] RA=0 SE=0 payout=243 TC=0 HC=0 skip=0
+  [累計] RA=1753 SE=23476 payout=12374 TC=0 HC=0 skip=31
+  [FILE-696] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1789 SE=23476 payout=12374 TC=0 HC=0 skip=31
+[worker] 読み込み中: 68000 レコード (pending=4 file=696)
+  [FILE-697] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1825 SE=23476 payout=12374 TC=0 HC=0 skip=31
+  [FILE-698] RA=0 SE=480 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1825 SE=23956 payout=12374 TC=0 HC=0 skip=31
+  [FILE-699] RA=0 SE=484 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1825 SE=24440 payout=12374 TC=0 HC=0 skip=31
+  [FILE-700] RA=0 SE=0 payout=0 TC=0 HC=0 skip=2
+  [累計] RA=1825 SE=24440 payout=12374 TC=0 HC=0 skip=33
+[worker] 読み込み中: 69000 レコード (pending=2 file=700)
+  [FILE-701] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1825 SE=24440 payout=12374 TC=0 HC=0 skip=33
+  [FILE-702] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1825 SE=24440 payout=12374 TC=0 HC=0 skip=33
+  [FILE-707] RA=0 SE=0 payout=168 TC=0 HC=0 skip=0
+  [累計] RA=1825 SE=24440 payout=12542 TC=0 HC=0 skip=33
+  [FILE-708] RA=0 SE=0 payout=160 TC=0 HC=0 skip=0
+  [累計] RA=1825 SE=24440 payout=12702 TC=0 HC=0 skip=33
+[worker] 読み込み中: 70000 レコード (pending=0 file=715)
+  [FILE-721] RA=24 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1849 SE=24440 payout=12702 TC=0 HC=0 skip=33
+  [FILE-722] RA=24 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1873 SE=24440 payout=12702 TC=0 HC=0 skip=33
+  [FILE-723] RA=0 SE=317 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1873 SE=24757 payout=12702 TC=0 HC=0 skip=33
+  [FILE-724] RA=0 SE=313 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1873 SE=25070 payout=12702 TC=0 HC=0 skip=33
+  [FILE-725] RA=0 SE=0 payout=0 TC=0 HC=0 skip=2
+  [累計] RA=1873 SE=25070 payout=12702 TC=0 HC=0 skip=35
+[worker] 読み込み中: 71000 レコード (pending=220 file=725)
+  [FILE-726] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1873 SE=25070 payout=12702 TC=0 HC=0 skip=35
+  [FILE-727] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1873 SE=25070 payout=12702 TC=0 HC=0 skip=35
+[worker] 読み込み中: 72000 レコード (pending=0 file=730)
+  [FILE-732] RA=0 SE=0 payout=250 TC=0 HC=0 skip=0
+  [累計] RA=1873 SE=25070 payout=12952 TC=0 HC=0 skip=35
+  [FILE-733] RA=0 SE=0 payout=251 TC=0 HC=0 skip=0
+  [累計] RA=1873 SE=25070 payout=13203 TC=0 HC=0 skip=35
+  [FILE-746] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1909 SE=25070 payout=13203 TC=0 HC=0 skip=35
+  [FILE-747] RA=36 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1945 SE=25070 payout=13203 TC=0 HC=0 skip=35
+[worker] 読み込み中: 73000 レコード (pending=391 file=747)
+  [FILE-748] RA=0 SE=504 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1945 SE=25574 payout=13203 TC=0 HC=0 skip=35
+  [FILE-749] RA=0 SE=504 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1945 SE=26078 payout=13203 TC=0 HC=0 skip=35
+  [FILE-750] RA=0 SE=0 payout=0 TC=0 HC=0 skip=2
+  [累計] RA=1945 SE=26078 payout=13203 TC=0 HC=0 skip=37
+[worker] 読み込み中: 74000 レコード (pending=379 file=750)
+  [FILE-751] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1945 SE=26078 payout=13203 TC=0 HC=0 skip=37
+  [FILE-752] RA=0 SE=0 payout=0 TC=0 HC=0 skip=0
+  [累計] RA=1945 SE=26078 payout=13203 TC=0 HC=0 skip=37
+  [FILE-757] RA=0 SE=0 payout=239 TC=0 HC=0 skip=0
+  [累計] RA=1945 SE=26078 payout=13442 TC

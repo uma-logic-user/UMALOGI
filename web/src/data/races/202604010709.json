@@ -432,8 +432,8 @@
     {
       "bet_type": "単勝",
       "combination": "16",
-      "payout": 420,
-      "popularity": 1
+      "payout": 16000,
+      "popularity": null
     },
     {
       "bet_type": "複勝",
@@ -466,6 +466,12 @@
       "popularity": 5
     },
     {
+      "bet_type": "馬連",
+      "combination": "1",
+      "payout": 1080,
+      "popularity": null
+    },
+    {
       "bet_type": "ワイド",
       "combination": "8-16",
       "payout": 400,
@@ -484,16 +490,46 @@
       "popularity": 23
     },
     {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 90030,
+      "popularity": 30
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "4",
+      "payout": 80000,
+      "popularity": null
+    },
+    {
       "bet_type": "馬単",
       "combination": "16→8",
       "payout": 2560,
       "popularity": 6
     },
     {
+      "bet_type": "馬単",
+      "combination": "8",
+      "payout": 16000,
+      "popularity": null
+    },
+    {
       "bet_type": "三連複",
       "combination": "3-8-16",
       "payout": 8700,
       "popularity": 29
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "16",
+      "payout": 2103,
+      "popularity": 80
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "4",
+      "payout": 20316,
+      "popularity": null
     },
     {
       "bet_type": "三連単",

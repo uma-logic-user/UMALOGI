@@ -61,10 +61,18 @@ export default function TabView({ races, predictions, hitsData, summary }: Props
     ? Math.max(...hits.map(p => p.roi ?? 0))
     : null
 
+  const filteredPredictionsForBadge = predictions.filter(p =>
+    !p.is_provisional &&
+    p.combination_json != null &&
+    p.combination_json !== '[]' &&
+    p.combination_json !== '' &&
+    p.horses.some(h => h.horse_number != null && h.horse_number > 0)
+  )
+
   const TABS: { id: Tab; label: string; badge?: number }[] = [
     { id: 'dashboard',   label: 'ダッシュボード' },
     { id: 'results',     label: 'レース結果',    badge: races.length },
-    { id: 'predictions', label: 'AI予想',        badge: predictions.length },
+    { id: 'predictions', label: 'AI予想',        badge: filteredPredictionsForBadge.length },
     { id: 'hit_results', label: '的中結果',      badge: hitsData.length },
   ]
 
@@ -211,7 +219,8 @@ export default function TabView({ races, predictions, hitsData, summary }: Props
                 !p.is_provisional &&
                 p.combination_json != null &&
                 p.combination_json !== '[]' &&
-                p.combination_json !== ''
+                p.combination_json !== '' &&
+                p.horses.some(h => h.horse_number != null && h.horse_number > 0)
               )}
               payouts={allPayouts}
               limit={500}

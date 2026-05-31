@@ -1,0 +1,195 @@
+{
+  "calibration": {
+    "model_type": "本命(直前)",
+    "n_samples": 1726,
+    "bin_width": 0.05,
+    "table": [
+      {
+        "bin_lo": 0.0,
+        "bin_hi": 0.05,
+        "bin_center": 0.025,
+        "predicted": 0.0172,
+        "actual": 0.053,
+        "count": 736,
+        "gap": 0.0358
+      },
+      {
+        "bin_lo": 0.05,
+        "bin_hi": 0.1,
+        "bin_center": 0.075,
+        "predicted": 0.0718,
+        "actual": 0.1491,
+        "count": 597,
+        "gap": 0.0772
+      },
+      {
+        "bin_lo": 0.1,
+        "bin_hi": 0.15,
+        "bin_center": 0.125,
+        "predicted": 0.1215,
+        "actual": 0.2321,
+        "count": 280,
+        "gap": 0.1107
+      },
+      {
+        "bin_lo": 0.15,
+        "bin_hi": 0.2,
+        "bin_center": 0.175,
+        "predicted": 0.1694,
+        "actual": 0.2299,
+        "count": 87,
+        "gap": 0.0605
+      },
+      {
+        "bin_lo": 0.2,
+        "bin_hi": 0.25,
+        "bin_center": 0.225,
+        "predicted": 0.2086,
+        "actual": 0.2381,
+        "count": 21,
+        "gap": 0.0295
+      },
+      {
+        "bin_lo": 0.25,
+        "bin_hi": 0.3,
+        "bin_center": 0.275,
+        "predicted": 0.2601,
+        "actual": 0.4,
+        "count": 5,
+        "gap": 0.1399
+      }
+    ],
+    "correction": [
+      {
+        "bin_center": 0.025,
+        "predicted": 0.0172,
+        "actual": 0.053,
+        "correction_factor": 3.081,
+        "count": 736
+      },
+      {
+        "bin_center": 0.075,
+        "predicted": 0.0718,
+        "actual": 0.1491,
+        "correction_factor": 2.077,
+        "count": 597
+      },
+      {
+        "bin_center": 0.125,
+        "predicted": 0.1215,
+        "actual": 0.2321,
+        "correction_factor": 1.91,
+        "count": 280
+      },
+      {
+        "bin_center": 0.175,
+        "predicted": 0.1694,
+        "actual": 0.2299,
+        "correction_factor": 1.357,
+        "count": 87
+      },
+      {
+        "bin_center": 0.225,
+        "predicted": 0.2086,
+        "actual": 0.2381,
+        "correction_factor": 1.141,
+        "count": 21
+      }
+    ]
+  },
+  "kelly_monte_carlo": {
+    "initial_balance": 100000.0,
+    "bankrupt_threshold": 0.1,
+    "n_trials": 10000,
+    "n_bets": 10341,
+    "total_invested": 4369250.0,
+    "total_actual_payout": 5233900.0,
+    "true_roi_pct": 119.79,
+    "results": {
+      "1/8 Kelly": {
+        "n_bets": 10341,
+        "scale": 0.5,
+        "n_trials": 10000,
+        "bankruptcy_rate": 54.29,
+        "bankruptcy_count": 5429,
+        "avg_first_bankrupt_step": 1872.7,
+        "final_balance": {
+          "mean": 248563.0,
+          "median": 9982.0,
+          "p5": 8938.0,
+          "p25": 9789.0,
+          "p75": 532325.0,
+          "p95": 532325.0
+        },
+        "max_drawdown_pct": {
+          "mean": 59.27,
+          "median": 90.07,
+          "p95": 95.43
+        }
+      },
+      "1/4 Kelly": {
+        "n_bets": 10341,
+        "scale": 1.0,
+        "n_trials": 10000,
+        "bankruptcy_rate": 75.97,
+        "bankruptcy_count": 7597,
+        "avg_first_bankrupt_step": 995.0,
+        "final_balance": {
+          "mean": 238879.0,
+          "median": 9823.0,
+          "p5": 7436.0,
+          "p25": 9372.0,
+          "p75": 9994.0,
+          "p95": 964650.0
+        },
+        "max_drawdown_pct": {
+          "mean": 75.88,
+          "median": 90.93,
+          "p95": 97.3
+        }
+      },
+      "1/2 Kelly": {
+        "n_bets": 10341,
+        "scale": 2.0,
+        "n_trials": 10000,
+        "bankruptcy_rate": 87.2,
+        "bankruptcy_count": 8720,
+        "avg_first_bankrupt_step": 511.8,
+        "final_balance": {
+          "mean": 241643.0,
+          "median": 9465.0,
+          "p5": 4439.0,
+          "p25": 8524.0,
+          "p75": 9874.0,
+          "p95": 1829299.0
+        },
+        "max_drawdown_pct": {
+          "mean": 84.49,
+          "median": 91.96,
+          "p95": 98.33
+        }
+      },
+      "Full Kelly": {
+        "n_bets": 10341,
+        "scale": 4.0,
+        "n_trials": 10000,
+        "bankruptcy_rate": 93.32,
+        "bankruptcy_count": 9332,
+        "avg_first_bankrupt_step": 271.4,
+        "final_balance": {
+          "mean": 244700.0,
+          "median": 8776.0,
+          "p5": 0.0,
+          "p25": 6900.0,
+          "p75": 9653.0,
+          "p95": 3558598.0
+        },
+        "max_drawdown_pct": {
+          "mean": 89.59,
+          "median": 93.13,
+          "p95": 100.0
+        }
+      }
+    }
+  }
+}

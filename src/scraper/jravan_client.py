@@ -947,11 +947,11 @@ class JVLinkClient:
             (return_code, record_bytes)
 
             return_code:
-              JVREAD_DATA=1        データあり
-              JVREAD_FILECHANGE=2  ファイル切り替わり（データあり）
-              JVREAD_EOF=0         読み込み完了
-              JVREAD_NEEDS_CLOSE=-1 JVClose が必要
-              その他負値           エラー
+              JVREAD_DATA=N>0      データあり（Nバイト読み込み）
+              JVREAD_EOF=0         全ファイル読み取り完了
+              JVREAD_FILECHANGE=-1 ファイル切り替わり（JVRead を再呼び出し）
+              JVREAD_DOWNLOADING=-3 ダウンロード中（1秒待機して再呼び出し）
+              その他負値           JVLink エラー（セッション再起動が必要）
         """
         # 正しい引数順序: JVRead(BSTR *buff, long *size, BSTR *fname)
         # ※ 第2引数は size (long)、第3引数は fname (BSTR)
@@ -2470,96 +2470,96 @@ class JVDataLoader:
 
         last_error: Exception | None = None
 
-        for attempt in range(self._MAX_RETRIES):
-            batch: list[dict] = []
-            stats: dict[str, int] = dict(_EMPTY_STATS)
-            read_count = 0
-            open_code  = -1
+        try:
+            for attempt in range(self._MAX_RETRIES):
+                batch: list[dict] = []
+                stats: dict[str, int] = dict(_EMPTY_STATS)
+                read_count = 0
+                open_code  = -1
 
-            try:
-                with JVLinkClient(self._sid) as client:
-                    open_code = client.open(dataspec, fromtime, option)
-                    if open_code < 0:
-                        conn.close()
-                        logger.info(
-                            "JVOpen %s fromtime=%s option=%d → code=%d のためスキップ",
-                            dataspec, fromtime, option, open_code,
-                        )
-                        return {
-                            **_EMPTY_STATS,
-                            "total_read": 0,
-                            "open_code": open_code,
-                        }
-
-                    download_wait_sec = 0
-
-                    while True:
-                        code, data = client.read_record()
-
-                        if code == JVREAD_EOF:
-                            break
-
-                        if code == JVREAD_FILECHANGE:
-                            download_wait_sec = 0
-                            continue
-
-                        if code == JVREAD_DOWNLOADING:
-                            download_wait_sec += 1
-                            if download_wait_sec >= self._MAX_DOWNLOAD_WAIT_SEC:
-                                raise TimeoutError(
-                                    f"JVLink ダウンロード待機 {download_wait_sec}s 超過 "
-                                    f"(dataspec={dataspec})"
-                                )
-                            logger.debug(
-                                "ダウンロード待機中 (code=-3) … %ds/%ds",
-                                download_wait_sec, self._MAX_DOWNLOAD_WAIT_SEC,
+                try:
+                    with JVLinkClient(self._sid) as client:
+                        open_code = client.open(dataspec, fromtime, option)
+                        if open_code < 0:
+                            logger.info(
+                                "JVOpen %s fromtime=%s option=%d → code=%d のためスキップ",
+                                dataspec, fromtime, option, open_code,
                             )
-                            time.sleep(1)
-                            continue
+                            return {
+                                **_EMPTY_STATS,
+                                "total_read": 0,
+                                "open_code": open_code,
+                            }
 
                         download_wait_sec = 0
 
-                        if code < 0:
-                            raise RuntimeError(f"JVRead エラー: code={code}")
+                        while True:
+                            code, data = client.read_record()
 
-                        if data:
-                            rec = parse_record(data, debug=self._debug)
-                            if rec:
-                                batch.append(rec)
-                        read_count += 1
+                            if code == JVREAD_EOF:
+                                break
 
-                        if len(batch) >= _BATCH_SIZE:
+                            if code == JVREAD_FILECHANGE:
+                                download_wait_sec = 0
+                                continue
+
+                            if code == JVREAD_DOWNLOADING:
+                                download_wait_sec += 1
+                                if download_wait_sec >= self._MAX_DOWNLOAD_WAIT_SEC:
+                                    raise TimeoutError(
+                                        f"JVLink ダウンロード待機 {download_wait_sec}s 超過 "
+                                        f"(dataspec={dataspec})"
+                                    )
+                                logger.debug(
+                                    "ダウンロード待機中 (code=-3) … %ds/%ds",
+                                    download_wait_sec, self._MAX_DOWNLOAD_WAIT_SEC,
+                                )
+                                time.sleep(1)
+                                continue
+
+                            download_wait_sec = 0
+
+                            if code < 0:
+                                raise RuntimeError(f"JVRead エラー: code={code}")
+
+                            if data:
+                                rec = parse_record(data, debug=self._debug)
+                                if rec:
+                                    batch.append(rec)
+                            read_count += 1
+
+                            if len(batch) >= _BATCH_SIZE:
+                                partial = save_records_to_db(batch, conn)
+                                for k in stats:
+                                    stats[k] += partial.get(k, 0)
+                                batch = []
+                                logger.info(
+                                    "バッチ保存完了: 累計 %d レコード読み込み済み", read_count
+                                )
+
+                        if batch:
                             partial = save_records_to_db(batch, conn)
                             for k in stats:
                                 stats[k] += partial.get(k, 0)
-                            batch = []
-                            logger.info(
-                                "バッチ保存完了: 累計 %d レコード読み込み済み", read_count
-                            )
 
-                    if batch:
-                        partial = save_records_to_db(batch, conn)
-                        for k in stats:
-                            stats[k] += partial.get(k, 0)
+                    # with 正常終了 → リトライ不要
+                    break
 
-                # with 正常終了 → リトライ不要
-                break
+                except (TimeoutError, RuntimeError) as e:
+                    last_error = e
+                    logger.warning(
+                        "JVLink エラー (attempt %d/%d): %s",
+                        attempt + 1, self._MAX_RETRIES, e,
+                    )
+                    if attempt < self._MAX_RETRIES - 1:
+                        logger.info("JVLink セッションを再起動して再試行します … 10秒待機")
+                        time.sleep(10)
+                    else:
+                        logger.error("JVLink リトライ上限到達。処理を中断します: %s", e)
+                        raise
 
-            except TimeoutError as e:
-                last_error = e
-                logger.warning(
-                    "JVLink タイムアウト (attempt %d/%d): %s",
-                    attempt + 1, self._MAX_RETRIES, e,
-                )
-                if attempt < self._MAX_RETRIES - 1:
-                    logger.info("JVLink セッションを再起動して再試行します … 10秒待機")
-                    time.sleep(10)
-                else:
-                    logger.error("JVLink リトライ上限到達。処理を中断します: %s", e)
-                    conn.close()
-                    raise
-
-        conn.close()
+        finally:
+            conn.close()
 
         stats["total_read"] = read_count
         stats["open_code"]  = open_code

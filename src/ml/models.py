@@ -722,6 +722,10 @@ class HonmeiModel(_BaseModel):
 
         X = _safe_feature_matrix(df)
         proba = self._model.predict_proba(X)[:, 1]
+        nan_cnt = int(np.isnan(proba).sum())
+        if nan_cnt:
+            logger.warning("predict_proba NaN %d行検出 → 0.0で補完", nan_cnt)
+            proba = np.nan_to_num(proba, nan=0.0)
         return pd.Series(proba, index=df.index, name="honmei_score")
 
     def ev_predict(self, df: pd.DataFrame) -> pd.Series:
@@ -849,6 +853,10 @@ class PlaceModel(_BaseModel):
 
         X = _safe_feature_matrix(df)
         proba = self._model.predict_proba(X)[:, 1]
+        nan_cnt = int(np.isnan(proba).sum())
+        if nan_cnt:
+            logger.warning("PlaceModel predict_proba NaN %d行検出 → 0.0で補完", nan_cnt)
+            proba = np.nan_to_num(proba, nan=0.0)
         return pd.Series(proba, index=df.index, name="place_score")
 
 
@@ -925,6 +933,10 @@ class ManjiModel(_BaseModel):
         _MAX_EV_PRED = 50_000.0  # 単勝500倍 × 100円 = 50,000円が理論上限
         X = _safe_feature_matrix(df)
         pred = self._model.predict(X)
+        nan_cnt = int(np.isnan(pred).sum())
+        if nan_cnt:
+            logger.warning("ManjiModel predict NaN %d行検出 → 0.0で補完", nan_cnt)
+            pred = np.nan_to_num(pred, nan=0.0)
         return pd.Series(pred.clip(min=0, max=_MAX_EV_PRED), index=df.index, name="manji_score")
 
     def ev_score(self, df: pd.DataFrame) -> pd.Series:

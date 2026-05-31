@@ -1,0 +1,917 @@
+11:02:26 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+11:02:26 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+11:02:26 INFO __main__: 払戻未取得レース: 910 件 (year=2026)
+払戻取得:   0%|          | 0/910 [00:00<?, ?race/s]11:02:29 INFO src.database.init_db: 払戻保存: race_id=202606010101, 12 件
+払戻取得:   0%|          | 1/910 [00:03<47:58,  3.17s/race, empty=0, err=0, saved=1]11:02:32 INFO src.database.init_db: 払戻保存: race_id=202606010102, 12 件
+払戻取得:   0%|          | 2/910 [00:06<46:10,  3.05s/race, empty=0, err=0, saved=2]11:02:35 INFO src.database.init_db: 払戻保存: race_id=202606010103, 12 件
+払戻取得:   0%|          | 3/910 [00:09<45:40,  3.02s/race, empty=0, err=0, saved=3]11:02:38 INFO src.database.init_db: 払戻保存: race_id=202606010104, 12 件
+払戻取得:   0%|          | 4/910 [00:12<44:46,  2.96s/race, empty=0, err=0, saved=4]11:02:40 INFO src.database.init_db: 払戻保存: race_id=202606010105, 12 件
+払戻取得:   1%|          | 5/910 [00:14<43:53,  2.91s/race, empty=0, err=0, saved=5]11:02:43 INFO src.database.init_db: 払戻保存: race_id=202606010106, 12 件
+払戻取得:   1%|          | 6/910 [00:17<43:58,  2.92s/race, empty=0, err=0, saved=6]11:02:46 INFO src.database.init_db: 払戻保存: race_id=202606010107, 12 件
+払戻取得:   1%|          | 7/910 [00:20<44:22,  2.95s/race, empty=0, err=0, saved=7]11:02:49 INFO src.database.init_db: 払戻保存: race_id=202606010108, 12 件
+払戻取得:   1%|          | 8/910 [00:23<44:25,  2.96s/race, empty=0, err=0, saved=8]11:02:52 INFO src.database.init_db: 払戻保存: race_id=202606010109, 12 件
+払戻取得:   1%|          | 9/910 [00:26<43:42,  2.91s/race, empty=0, err=0, saved=9]11:02:55 INFO src.database.init_db: 払戻保存: race_id=202606010110, 11 件
+払戻取得:   1%|1         | 10/910 [00:29<43:17,  2.89s/race, empty=0, err=0, saved=10]11:02:58 INFO src.database.init_db: 払戻保存: race_id=202606010111, 12 件
+払戻取得:   1%|1         | 11/910 [00:32<43:22,  2.89s/race, empty=0, err=0, saved=11]11:03:01 INFO src.database.init_db: 払戻保存: race_id=202606010112, 12 件
+払戻取得:   1%|1         | 12/910 [00:35<44:09,  2.95s/race, empty=0, err=0, saved=12]11:03:04 INFO src.database.init_db: 払戻保存: race_id=202608010101, 12 件
+払戻取得:   1%|1         | 13/910 [00:38<44:13,  2.96s/race, empty=0, err=0, saved=13]11:03:07 INFO src.database.init_db: 払戻保存: race_id=202608010102, 12 件
+払戻取得:   2%|1         | 14/910 [00:41<43:27,  2.91s/race, empty=0, err=0, saved=14]11:03:10 INFO src.database.init_db: 払戻保存: race_id=202608010103, 12 件
+払戻取得:   2%|1         | 15/910 [00:44<43:37,  2.92s/race, empty=0, err=0, saved=15]11:03:13 INFO src.database.init_db: 払戻保存: race_id=202608010104, 12 件
+払戻取得:   2%|1         | 16/910 [00:47<43:44,  2.94s/race, empty=0, err=0, saved=16]11:03:16 INFO src.database.init_db: 払戻保存: race_id=202608010105, 12 件
+払戻取得:   2%|1         | 17/910 [00:49<43:11,  2.90s/race, empty=0, err=0, saved=17]11:03:18 INFO src.database.init_db: 払戻保存: race_id=202608010106, 10 件
+払戻取得:   2%|1         | 18/910 [00:52<43:00,  2.89s/race, empty=0, err=0, saved=18]11:03:21 INFO src.database.init_db: 払戻保存: race_id=202608010107, 12 件
+払戻取得:   2%|2         | 19/910 [00:55<42:33,  2.87s/race, empty=0, err=0, saved=19]11:03:24 INFO src.database.init_db: 払戻保存: race_id=202608010108, 12 件
+払戻取得:   2%|2         | 20/910 [00:58<42:25,  2.86s/race, empty=0, err=0, saved=20]11:03:27 INFO src.database.init_db: 払戻保存: race_id=202608010109, 12 件
+払戻取得:   2%|2         | 21/910 [01:01<42:36,  2.88s/race, empty=0, err=0, saved=21]11:03:30 INFO src.database.init_db: 払戻保存: race_id=202608010110, 12 件
+払戻取得:   2%|2         | 22/910 [01:04<42:16,  2.86s/race, empty=0, err=0, saved=22]11:03:33 INFO src.database.init_db: 払戻保存: race_id=202608010111, 12 件
+払戻取得:   3%|2         | 23/910 [01:06<42:14,  2.86s/race, empty=0, err=0, saved=23]11:03:36 INFO src.database.init_db: 払戻保存: race_id=202608010112, 12 件
+払戻取得:   3%|2         | 24/910 [01:09<42:06,  2.85s/race, empty=0, err=0, saved=24]11:03:38 INFO src.database.init_db: 払戻保存: race_id=202606010201, 12 件
+払戻取得:   3%|2         | 25/910 [01:12<41:57,  2.84s/race, empty=0, err=0, saved=25]11:03:41 INFO src.database.init_db: 払戻保存: race_id=202606010202, 12 件
+払戻取得:   3%|2         | 26/910 [01:15<42:33,  2.89s/race, empty=0, err=0, saved=26]11:03:44 INFO src.database.init_db: 払戻保存: race_id=202606010203, 12 件
+払戻取得:   3%|2         | 27/910 [01:18<42:43,  2.90s/race, empty=0, err=0, saved=27]11:03:47 INFO src.database.init_db: 払戻保存: race_id=202606010204, 12 件
+払戻取得:   3%|3         | 28/910 [01:21<42:20,  2.88s/race, empty=0, err=0, saved=28]11:03:50 INFO src.database.init_db: 払戻保存: race_id=202606010205, 12 件
+払戻取得:   3%|3         | 29/910 [01:24<42:04,  2.87s/race, empty=0, err=0, saved=29]11:03:53 INFO src.database.init_db: 払戻保存: race_id=202606010206, 12 件
+払戻取得:   3%|3         | 30/910 [01:27<41:38,  2.84s/race, empty=0, err=0, saved=30]11:03:56 INFO src.database.init_db: 払戻保存: race_id=202606010207, 12 件
+払戻取得:   3%|3         | 31/910 [01:29<42:01,  2.87s/race, empty=0, err=0, saved=31]11:03:58 INFO src.database.init_db: 払戻保存: race_id=202606010208, 12 件
+払戻取得:   4%|3         | 32/910 [01:32<41:39,  2.85s/race, empty=0, err=0, saved=32]11:04:01 INFO src.database.init_db: 払戻保存: race_id=202606010209, 12 件
+払戻取得:   4%|3         | 33/910 [01:35<41:50,  2.86s/race, empty=0, err=0, saved=33]11:04:04 INFO src.database.init_db: 払戻保存: race_id=202606010210, 12 件
+払戻取得:   4%|3         | 34/910 [01:38<41:34,  2.85s/race, empty=0, err=0, saved=34]11:04:07 INFO src.database.init_db: 払戻保存: race_id=202606010211, 12 件
+払戻取得:   4%|3         | 35/910 [01:41<41:53,  2.87s/race, empty=0, err=0, saved=35]11:04:10 INFO src.database.init_db: 払戻保存: race_id=202606010212, 12 件
+払戻取得:   4%|3         | 36/910 [01:44<42:26,  2.91s/race, empty=0, err=0, saved=36]11:04:13 INFO src.database.init_db: 払戻保存: race_id=202608010201, 12 件
+払戻取得:   4%|4         | 37/910 [01:47<41:48,  2.87s/race, empty=0, err=0, saved=37]11:04:16 INFO src.database.init_db: 払戻保存: race_id=202608010202, 12 件
+払戻取得:   4%|4         | 38/910 [01:50<41:36,  2.86s/race, empty=0, err=0, saved=38]11:04:19 INFO src.database.init_db: 払戻保存: race_id=202608010203, 12 件
+払戻取得:   4%|4         | 39/910 [01:52<41:45,  2.88s/race, empty=0, err=0, saved=39]11:04:21 INFO src.database.init_db: 払戻保存: race_id=202608010204, 12 件
+払戻取得:   4%|4         | 40/910 [01:55<41:22,  2.85s/race, empty=0, err=0, saved=40]11:04:24 INFO src.database.init_db: 払戻保存: race_id=202608010205, 12 件
+払戻取得:   5%|4         | 41/910 [01:58<41:19,  2.85s/race, empty=0, err=0, saved=41]11:04:27 INFO src.database.init_db: 払戻保存: race_id=202608010206, 12 件
+払戻取得:   5%|4         | 42/910 [02:01<41:26,  2.87s/race, empty=0, err=0, saved=42]11:04:30 INFO src.database.init_db: 払戻保存: race_id=202608010207, 12 件
+払戻取得:   5%|4         | 43/910 [02:04<41:17,  2.86s/race, empty=0, err=0, saved=43]11:04:33 INFO src.database.init_db: 払戻保存: race_id=202608010208, 12 件
+払戻取得:   5%|4         | 44/910 [02:07<41:17,  2.86s/race, empty=0, err=0, saved=44]11:04:36 INFO src.database.init_db: 払戻保存: race_id=202608010209, 12 件
+払戻取得:   5%|4         | 45/910 [02:10<41:36,  2.89s/race, empty=0, err=0, saved=45]11:04:39 INFO src.database.init_db: 払戻保存: race_id=202608010210, 12 件
+払戻取得:   5%|5         | 46/910 [02:13<41:40,  2.89s/race, empty=0, err=0, saved=46]11:04:42 INFO src.database.init_db: 払戻保存: race_id=202608010211, 12 件
+払戻取得:   5%|5         | 47/910 [02:16<42:07,  2.93s/race, empty=0, err=0, saved=47]11:04:45 INFO src.database.init_db: 払戻保存: race_id=202608010212, 12 件
+払戻取得:   5%|5         | 48/910 [02:19<42:14,  2.94s/race, empty=0, err=0, saved=48]11:04:48 INFO src.database.init_db: 払戻保存: race_id=202606010301, 12 件
+払戻取得:   5%|5         | 49/910 [02:22<42:25,  2.96s/race, empty=0, err=0, saved=49]11:04:51 INFO src.database.init_db: 払戻保存: race_id=202606010302, 12 件
+払戻取得:   5%|5         | 50/910 [02:25<42:45,  2.98s/race, empty=0, err=0, saved=50]11:04:54 INFO src.database.init_db: 払戻保存: race_id=202606010303, 12 件
+払戻取得:   6%|5         | 51/910 [02:27<42:19,  2.96s/race, empty=0, err=0, saved=51]11:04:57 INFO src.database.init_db: 払戻保存: race_id=202606010304, 12 件
+払戻取得:   6%|5         | 52/910 [02:30<42:04,  2.94s/race, empty=0, err=0, saved=52]11:04:59 INFO src.database.init_db: 払戻保存: race_id=202606010305, 12 件
+払戻取得:   6%|5         | 53/910 [02:33<41:58,  2.94s/race, empty=0, err=0, saved=53]11:05:02 INFO src.database.init_db: 払戻保存: race_id=202606010306, 12 件
+払戻取得:   6%|5         | 54/910 [02:36<42:08,  2.95s/race, empty=0, err=0, saved=54]11:05:06 INFO src.database.init_db: 払戻保存: race_id=202606010307, 12 件
+払戻取得:   6%|6         | 55/910 [02:39<42:56,  3.01s/race, empty=0, err=0, saved=55]11:05:09 INFO src.database.init_db: 払戻保存: race_id=202606010308, 12 件
+払戻取得:   6%|6         | 56/910 [02:42<42:51,  3.01s/race, empty=0, err=0, saved=56]11:05:12 INFO src.database.init_db: 払戻保存: race_id=202606010309, 12 件
+払戻取得:   6%|6         | 57/910 [02:45<42:56,  3.02s/race, empty=0, err=0, saved=57]11:05:15 INFO src.database.init_db: 払戻保存: race_id=202606010310, 12 件
+払戻取得:   6%|6         | 58/910 [02:48<42:13,  2.97s/race, empty=0, err=0, saved=58]11:05:17 INFO src.database.init_db: 払戻保存: race_id=202606010311, 12 件
+払戻取得:   6%|6         | 59/910 [02:51<42:02,  2.96s/race, empty=0, err=0, saved=59]11:05:21 INFO src.database.init_db: 払戻保存: race_id=202606010312, 12 件
+払戻取得:   7%|6         | 60/910 [02:54<42:19,  2.99s/race, empty=0, err=0, saved=60]11:05:23 INFO src.database.init_db: 払戻保存: race_id=202608010301, 12 件
+払戻取得:   7%|6         | 61/910 [02:57<41:57,  2.97s/race, empty=0, err=0, saved=61]11:05:26 INFO src.database.init_db: 払戻保存: race_id=202608010302, 12 件
+払戻取得:   7%|6         | 62/910 [03:00<41:22,  2.93s/race, empty=0, err=0, saved=62]11:05:29 INFO src.database.init_db: 払戻保存: race_id=202608010303, 12 件
+払戻取得:   7%|6         | 63/910 [03:03<41:09,  2.92s/race, empty=0, err=0, saved=63]11:05:32 INFO src.database.init_db: 払戻保存: race_id=202608010304, 12 件
+払戻取得:   7%|7         | 64/910 [03:06<40:47,  2.89s/race, empty=0, err=0, saved=64]11:05:35 INFO src.database.init_db: 払戻保存: race_id=202608010305, 12 件
+払戻取得:   7%|7         | 65/910 [03:09<40:30,  2.88s/race, empty=0, err=0, saved=65]11:05:38 INFO src.database.init_db: 払戻保存: race_id=202608010306, 12 件
+払戻取得:   7%|7         | 66/910 [03:11<40:12,  2.86s/race, empty=0, err=0, saved=66]11:05:41 INFO src.database.init_db: 払戻保存: race_id=202608010307, 12 件
+払戻取得:   7%|7         | 67/910 [03:15<41:01,  2.92s/race, empty=0, err=0, saved=67]11:05:44 INFO src.database.init_db: 払戻保存: race_id=202608010308, 12 件
+払戻取得:   7%|7         | 68/910 [03:17<40:33,  2.89s/race, empty=0, err=0, saved=68]11:05:46 INFO src.database.init_db: 払戻保存: race_id=202608010309, 11 件
+払戻取得:   8%|7         | 69/910 [03:20<40:07,  2.86s/race, empty=0, err=0, saved=69]11:05:49 INFO src.database.init_db: 払戻保存: race_id=202608010310, 12 件
+払戻取得:   8%|7         | 70/910 [03:23<39:41,  2.84s/race, empty=0, err=0, saved=70]11:05:52 INFO src.database.init_db: 払戻保存: race_id=202608010311, 12 件
+払戻取得:   8%|7         | 71/910 [03:26<39:52,  2.85s/race, empty=0, err=0, saved=71]11:05:55 INFO src.database.init_db: 払戻保存: race_id=202608010312, 12 件
+払戻取得:   8%|7         | 72/910 [03:29<39:48,  2.85s/race, empty=0, err=0, saved=72]11:05:58 INFO src.database.init_db: 払戻保存: race_id=202606010401, 12 件
+払戻取得:   8%|8         | 73/910 [03:32<40:32,  2.91s/race, empty=0, err=0, saved=73]11:06:01 INFO src.database.init_db: 払戻保存: race_id=202606010402, 12 件
+払戻取得:   8%|8         | 74/910 [03:35<40:44,  2.92s/race, empty=0, err=0, saved=74]11:06:04 INFO src.database.init_db: 払戻保存: race_id=202606010403, 12 件
+払戻取得:   8%|8         | 75/910 [03:38<40:44,  2.93s/race, empty=0, err=0, saved=75]11:06:07 INFO src.database.init_db: 払戻保存: race_id=202606010404, 12 件
+払戻取得:   8%|8         | 76/910 [03:40<40:27,  2.91s/race, empty=0, err=0, saved=76]11:06:09 INFO src.database.init_db: 払戻保存: race_id=202606010405, 12 件
+払戻取得:   8%|8         | 77/910 [03:43<39:57,  2.88s/race, empty=0, err=0, saved=77]11:06:12 INFO src.database.init_db: 払戻保存: race_id=202606010406, 12 件
+払戻取得:   9%|8         | 78/910 [03:46<40:08,  2.89s/race, empty=0, err=0, saved=78]11:06:15 INFO src.database.init_db: 払戻保存: race_id=202606010407, 12 件
+払戻取得:   9%|8         | 79/910 [03:49<39:54,  2.88s/race, empty=0, err=0, saved=79]11:06:18 INFO src.database.init_db: 払戻保存: race_id=202606010408, 12 件
+払戻取得:   9%|8         | 80/910 [03:52<39:38,  2.87s/race, empty=0, err=0, saved=80]11:06:21 INFO src.database.init_db: 払戻保存: race_id=202606010409, 12 件
+払戻取得:   9%|8         | 81/910 [03:55<39:15,  2.84s/race, empty=0, err=0, saved=81]11:06:24 INFO src.database.init_db: 払戻保存: race_id=202606010410, 12 件
+払戻取得:   9%|9         | 82/910 [03:58<39:25,  2.86s/race, empty=0, err=0, saved=82]11:06:27 INFO src.database.init_db: 払戻保存: race_id=202606010411, 12 件
+払戻取得:   9%|9         | 83/910 [04:01<39:59,  2.90s/race, empty=0, err=0, saved=83]11:06:30 INFO src.database.init_db: 払戻保存: race_id=202606010412, 12 件
+払戻取得:   9%|9         | 84/910 [04:03<39:55,  2.90s/race, empty=0, err=0, saved=84]11:06:32 INFO src.database.init_db: 払戻保存: race_id=202608010401, 12 件
+払戻取得:   9%|9         | 85/910 [04:06<39:39,  2.88s/race, empty=0, err=0, saved=85]11:06:35 INFO src.database.init_db: 払戻保存: race_id=202608010402, 12 件
+払戻取得:   9%|9         | 86/910 [04:09<39:33,  2.88s/race, empty=0, err=0, saved=86]11:06:38 INFO src.database.init_db: 払戻保存: race_id=202608010403, 12 件
+払戻取得:  10%|9         | 87/910 [04:12<39:03,  2.85s/race, empty=0, err=0, saved=87]11:06:41 INFO src.database.init_db: 払戻保存: race_id=202608010404, 12 件
+払戻取得:  10%|9         | 88/910 [04:15<38:59,  2.85s/race, empty=0, err=0, saved=88]11:06:44 INFO src.database.init_db: 払戻保存: race_id=202608010405, 12 件
+払戻取得:  10%|9         | 89/910 [04:18<39:25,  2.88s/race, empty=0, err=0, saved=89]11:06:47 INFO src.database.init_db: 払戻保存: race_id=202608010406, 12 件
+払戻取得:  10%|9         | 90/910 [04:21<39:33,  2.89s/race, empty=0, err=0, saved=90]11:06:50 INFO src.database.init_db: 払戻保存: race_id=202608010407, 12 件
+払戻取得:  10%|#         | 91/910 [04:24<39:16,  2.88s/race, empty=0, err=0, saved=91]11:06:53 INFO src.database.init_db: 払戻保存: race_id=202608010408, 12 件
+払戻取得:  10%|#         | 92/910 [04:26<39:05,  2.87s/race, empty=0, err=0, saved=92]11:06:55 INFO src.database.init_db: 払戻保存: race_id=202608010409, 12 件
+払戻取得:  10%|#         | 93/910 [04:29<38:41,  2.84s/race, empty=0, err=0, saved=93]11:06:58 INFO src.database.init_db: 払戻保存: race_id=202608010410, 12 件
+払戻取得:  10%|#         | 94/910 [04:32<39:01,  2.87s/race, empty=0, err=0, saved=94]11:07:01 INFO src.database.init_db: 払戻保存: race_id=202608010411, 12 件
+払戻取得:  10%|#         | 95/910 [04:35<39:39,  2.92s/race, empty=0, err=0, saved=95]11:07:04 INFO src.database.init_db: 払戻保存: race_id=202608010412, 12 件
+払戻取得:  11%|#         | 96/910 [04:38<40:34,  2.99s/race, empty=0, err=0, saved=96]11:07:07 INFO src.database.init_db: 払戻保存: race_id=202606010501, 12 件
+払戻取得:  11%|#         | 97/910 [04:41<40:17,  2.97s/race, empty=0, err=0, saved=97]11:07:10 INFO src.database.init_db: 払戻保存: race_id=202606010502, 12 件
+払戻取得:  11%|#         | 98/910 [04:44<39:56,  2.95s/race, empty=0, err=0, saved=98]11:07:13 INFO src.database.init_db: 払戻保存: race_id=202606010503, 12 件
+払戻取得:  11%|#         | 99/910 [04:47<40:06,  2.97s/race, empty=0, err=0, saved=99]11:07:16 INFO src.database.init_db: 払戻保存: race_id=202606010504, 12 件
+払戻取得:  11%|#         | 100/910 [04:50<39:28,  2.92s/race, empty=0, err=0, saved=100]11:07:19 INFO src.database.init_db: 払戻保存: race_id=202606010505, 12 件
+払戻取得:  11%|#1        | 101/910 [04:53<39:31,  2.93s/race, empty=0, err=0, saved=101]11:07:22 INFO src.database.init_db: 払戻保存: race_id=202606010506, 12 件
+払戻取得:  11%|#1        | 102/910 [04:56<39:29,  2.93s/race, empty=0, err=0, saved=102]11:07:25 INFO src.database.init_db: 払戻保存: race_id=202606010507, 12 件
+払戻取得:  11%|#1        | 103/910 [04:59<39:36,  2.95s/race, empty=0, err=0, saved=103]11:07:28 INFO src.database.init_db: 払戻保存: race_id=202606010508, 12 件
+払戻取得:  11%|#1        | 104/910 [05:02<39:07,  2.91s/race, empty=0, err=0, saved=104]11:07:31 INFO src.database.init_db: 払戻保存: race_id=202606010509, 12 件
+払戻取得:  12%|#1        | 105/910 [05:05<39:04,  2.91s/race, empty=0, err=0, saved=105]11:07:34 INFO src.database.init_db: 払戻保存: race_id=202606010510, 12 件
+払戻取得:  12%|#1        | 106/910 [05:07<38:41,  2.89s/race, empty=0, err=0, saved=106]11:07:36 INFO src.database.init_db: 払戻保存: race_id=202606010511, 12 件
+払戻取得:  12%|#1        | 107/910 [05:10<38:32,  2.88s/race, empty=0, err=0, saved=107]11:07:39 INFO src.database.init_db: 払戻保存: race_id=202606010512, 12 件
+払戻取得:  12%|#1        | 108/910 [05:13<38:24,  2.87s/race, empty=0, err=0, saved=108]11:07:42 INFO src.database.init_db: 払戻保存: race_id=202608010501, 12 件
+払戻取得:  12%|#1        | 109/910 [05:16<37:56,  2.84s/race, empty=0, err=0, saved=109]11:07:45 INFO src.database.init_db: 払戻保存: race_id=202608010502, 12 件
+払戻取得:  12%|#2        | 110/910 [05:19<38:03,  2.85s/race, empty=0, err=0, saved=110]11:07:48 INFO src.database.init_db: 払戻保存: race_id=202608010503, 12 件
+払戻取得:  12%|#2        | 111/910 [05:22<37:42,  2.83s/race, empty=0, err=0, saved=111]11:07:51 INFO src.database.init_db: 払戻保存: race_id=202608010504, 12 件
+払戻取得:  12%|#2        | 112/910 [05:24<37:39,  2.83s/race, empty=0, err=0, saved=112]11:07:53 INFO src.database.init_db: 払戻保存: race_id=202608010505, 12 件
+払戻取得:  12%|#2        | 113/910 [05:27<37:29,  2.82s/race, empty=0, err=0, saved=113]11:07:56 INFO src.database.init_db: 払戻保存: race_id=202608010506, 12 件
+払戻取得:  13%|#2        | 114/910 [05:30<37:15,  2.81s/race, empty=0, err=0, saved=114]11:07:59 INFO src.database.init_db: 払戻保存: race_id=202608010507, 12 件
+払戻取得:  13%|#2        | 115/910 [05:33<37:18,  2.82s/race, empty=0, err=0, saved=115]11:08:02 INFO src.database.init_db: 払戻保存: race_id=202608010508, 12 件
+払戻取得:  13%|#2        | 116/910 [05:36<37:53,  2.86s/race, empty=0, err=0, saved=116]11:08:05 INFO src.database.init_db: 払戻保存: race_id=202608010509, 12 件
+払戻取得:  13%|#2        | 117/910 [05:39<38:23,  2.90s/race, empty=0, err=0, saved=117]11:08:08 INFO src.database.init_db: 払戻保存: race_id=202608010510, 12 件
+払戻取得:  13%|#2        | 118/910 [05:41<37:48,  2.86s/race, empty=0, err=0, saved=118]11:08:11 INFO src.database.init_db: 払戻保存: race_id=202608010511, 12 件
+払戻取得:  13%|#3        | 119/910 [05:44<37:58,  2.88s/race, empty=0, err=0, saved=119]11:08:14 INFO src.database.init_db: 払戻保存: race_id=202608010512, 12 件
+払戻取得:  13%|#3        | 120/910 [05:47<38:10,  2.90s/race, empty=0, err=0, saved=120]11:08:17 INFO src.database.init_db: 払戻保存: race_id=202606010601, 12 件
+払戻取得:  13%|#3        | 121/910 [05:50<38:38,  2.94s/race, empty=0, err=0, saved=121]11:08:20 INFO src.database.init_db: 払戻保存: race_id=202606010602, 12 件
+払戻取得:  13%|#3        | 122/910 [05:53<38:38,  2.94s/race, empty=0, err=0, saved=122]11:08:22 INFO src.database.init_db: 払戻保存: race_id=202606010603, 12 件
+払戻取得:  14%|#3        | 123/910 [05:56<38:32,  2.94s/race, empty=0, err=0, saved=123]11:08:25 INFO src.database.init_db: 払戻保存: race_id=202606010604, 12 件
+払戻取得:  14%|#3        | 124/910 [05:59<38:02,  2.90s/race, empty=0, err=0, saved=124]11:08:28 INFO src.database.init_db: 払戻保存: race_id=202606010605, 12 件
+払戻取得:  14%|#3        | 125/910 [06:02<38:01,  2.91s/race, empty=0, err=0, saved=125]11:08:31 INFO src.database.init_db: 払戻保存: race_id=202606010606, 12 件
+払戻取得:  14%|#3        | 126/910 [06:05<38:00,  2.91s/race, empty=0, err=0, saved=126]11:08:34 INFO src.database.init_db: 払戻保存: race_id=202606010607, 12 件
+払戻取得:  14%|#3        | 127/910 [06:08<37:38,  2.88s/race, empty=0, err=0, saved=127]11:08:37 INFO src.database.init_db: 払戻保存: race_id=202606010608, 12 件
+払戻取得:  14%|#4        | 128/910 [06:11<37:52,  2.91s/race, empty=0, err=0, saved=128]11:08:40 INFO src.database.init_db: 払戻保存: race_id=202606010609, 11 件
+払戻取得:  14%|#4        | 129/910 [06:14<37:24,  2.87s/race, empty=0, err=0, saved=129]11:08:42 INFO src.database.init_db: 払戻保存: race_id=202606010610, 12 件
+払戻取得:  14%|#4        | 130/910 [06:16<36:59,  2.85s/race, empty=0, err=0, saved=130]11:08:45 INFO src.database.init_db: 払戻保存: race_id=202606010611, 12 件
+払戻取得:  14%|#4        | 131/910 [06:19<37:18,  2.87s/race, empty=0, err=0, saved=131]11:08:48 INFO src.database.init_db: 払戻保存: race_id=202606010612, 12 件
+払戻取得:  15%|#4        | 132/910 [06:22<37:12,  2.87s/race, empty=0, err=0, saved=132]11:08:51 INFO src.database.init_db: 払戻保存: race_id=202608010601, 12 件
+払戻取得:  15%|#4        | 133/910 [06:25<37:08,  2.87s/race, empty=0, err=0, saved=133]11:08:54 INFO src.database.init_db: 払戻保存: race_id=202608010602, 12 件
+払戻取得:  15%|#4        | 134/910 [06:28<36:46,  2.84s/race, empty=0, err=0, saved=134]11:08:57 INFO src.database.init_db: 払戻保存: race_id=202608010603, 12 件
+払戻取得:  15%|#4        | 135/910 [06:31<36:33,  2.83s/race, empty=0, err=0, saved=135]11:09:00 INFO src.database.init_db: 払戻保存: race_id=202608010604, 12 件
+払戻取得:  15%|#4        | 136/910 [06:33<36:52,  2.86s/race, empty=0, err=0, saved=136]11:09:03 INFO src.database.init_db: 払戻保存: race_id=202608010605, 12 件
+払戻取得:  15%|#5        | 137/910 [06:36<37:01,  2.87s/race, empty=0, err=0, saved=137]11:09:05 INFO src.database.init_db: 払戻保存: race_id=202608010606, 11 件
+払戻取得:  15%|#5        | 138/910 [06:39<36:59,  2.88s/race, empty=0, err=0, saved=138]11:09:08 INFO src.database.init_db: 払戻保存: race_id=202608010607, 12 件
+払戻取得:  15%|#5        | 139/910 [06:42<37:08,  2.89s/race, empty=0, err=0, saved=139]11:09:11 INFO src.database.init_db: 払戻保存: race_id=202608010608, 11 件
+払戻取得:  15%|#5        | 140/910 [06:45<36:40,  2.86s/race, empty=0, err=0, saved=140]11:09:14 INFO src.database.init_db: 払戻保存: race_id=202608010609, 12 件
+払戻取得:  15%|#5        | 141/910 [06:48<36:24,  2.84s/race, empty=0, err=0, saved=141]11:09:17 INFO src.database.init_db: 払戻保存: race_id=202608010610, 12 件
+払戻取得:  16%|#5        | 142/910 [06:51<36:38,  2.86s/race, empty=0, err=0, saved=142]11:09:20 INFO src.database.init_db: 払戻保存: race_id=202608010611, 12 件
+払戻取得:  16%|#5        | 143/910 [06:54<36:30,  2.86s/race, empty=0, err=0, saved=143]11:09:23 INFO src.database.init_db: 払戻保存: race_id=202608010612, 12 件
+払戻取得:  16%|#5        | 144/910 [06:56<36:31,  2.86s/race, empty=0, err=0, saved=144]11:09:25 INFO src.database.init_db: 払戻保存: race_id=202606010701, 12 件
+払戻取得:  16%|#5        | 145/910 [06:59<36:35,  2.87s/race, empty=0, err=0, saved=145]11:09:28 INFO src.database.init_db: 払戻保存: race_id=202606010702, 12 件
+払戻取得:  16%|#6        | 146/910 [07:02<36:59,  2.90s/race, empty=0, err=0, saved=146]11:09:31 INFO src.database.init_db: 払戻保存: race_id=202606010703, 12 件
+払戻取得:  16%|#6        | 147/910 [07:05<37:11,  2.92s/race, empty=0, err=0, saved=147]11:09:34 INFO src.database.init_db: 払戻保存: race_id=202606010704, 12 件
+払戻取得:  16%|#6        | 148/910 [07:08<36:42,  2.89s/race, empty=0, err=0, saved=148]11:09:37 INFO src.database.init_db: 払戻保存: race_id=202606010705, 12 件
+払戻取得:  16%|#6        | 149/910 [07:11<36:34,  2.88s/race, empty=0, err=0, saved=149]11:09:40 INFO src.database.init_db: 払戻保存: race_id=202606010706, 12 件
+払戻取得:  16%|#6        | 150/910 [07:14<36:20,  2.87s/race, empty=0, err=0, saved=150]11:09:43 INFO src.database.init_db: 払戻保存: race_id=202606010707, 12 件
+払戻取得:  17%|#6        | 151/910 [07:17<36:07,  2.86s/race, empty=0, err=0, saved=151]11:09:46 INFO src.database.init_db: 払戻保存: race_id=202606010708, 12 件
+払戻取得:  17%|#6        | 152/910 [07:19<36:14,  2.87s/race, empty=0, err=0, saved=152]11:09:49 INFO src.database.init_db: 払戻保存: race_id=202606010709, 12 件
+払戻取得:  17%|#6        | 153/910 [07:22<36:22,  2.88s/race, empty=0, err=0, saved=153]11:09:51 INFO src.database.init_db: 払戻保存: race_id=202606010710, 15 件
+払戻取得:  17%|#6        | 154/910 [07:25<36:06,  2.87s/race, empty=0, err=0, saved=154]11:09:54 INFO src.database.init_db: 払戻保存: race_id=202606010711, 12 件
+払戻取得:  17%|#7        | 155/910 [07:28<36:14,  2.88s/race, empty=0, err=0, saved=155]11:09:57 INFO src.database.init_db: 払戻保存: race_id=202606010712, 12 件
+払戻取得:  17%|#7        | 156/910 [07:31<36:06,  2.87s/race, empty=0, err=0, saved=156]11:10:00 INFO src.database.init_db: 払戻保存: race_id=202608010701, 12 件
+払戻取得:  17%|#7        | 157/910 [07:34<36:14,  2.89s/race, empty=0, err=0, saved=157]11:10:03 INFO src.database.init_db: 払戻保存: race_id=202608010702, 12 件
+払戻取得:  17%|#7        | 158/910 [07:37<36:18,  2.90s/race, empty=0, err=0, saved=158]11:10:06 INFO src.database.init_db: 払戻保存: race_id=202608010703, 12 件
+払戻取得:  17%|#7        | 159/910 [07:40<36:04,  2.88s/race, empty=0, err=0, saved=159]11:10:09 INFO src.database.init_db: 払戻保存: race_id=202608010704, 12 件
+払戻取得:  18%|#7        | 160/910 [07:42<35:45,  2.86s/race, empty=0, err=0, saved=160]11:10:12 INFO src.database.init_db: 払戻保存: race_id=202608010705, 12 件
+払戻取得:  18%|#7        | 161/910 [07:45<35:55,  2.88s/race, empty=0, err=0, saved=161]11:10:14 INFO src.database.init_db: 払戻保存: race_id=202608010706, 12 件
+払戻取得:  18%|#7        | 162/910 [07:48<35:47,  2.87s/race, empty=0, err=0, saved=162]11:10:17 INFO src.database.init_db: 払戻保存: race_id=202608010707, 12 件
+払戻取得:  18%|#7        | 163/910 [07:51<35:30,  2.85s/race, empty=0, err=0, saved=163]11:10:20 INFO src.database.init_db: 払戻保存: race_id=202608010708, 12 件
+払戻取得:  18%|#8        | 164/910 [07:54<35:26,  2.85s/race, empty=0, err=0, saved=164]11:10:23 INFO src.database.init_db: 払戻保存: race_id=202608010709, 12 件
+払戻取得:  18%|#8        | 165/910 [07:57<35:42,  2.88s/race, empty=0, err=0, saved=165]11:10:26 INFO src.database.init_db: 払戻保存: race_id=202608010710, 12 件
+払戻取得:  18%|#8        | 166/910 [08:00<35:43,  2.88s/race, empty=0, err=0, saved=166]11:10:29 INFO src.database.init_db: 払戻保存: race_id=202608010711, 12 件
+払戻取得:  18%|#8        | 167/910 [08:03<35:44,  2.89s/race, empty=0, err=0, saved=167]11:10:32 INFO src.database.init_db: 払戻保存: race_id=202608010712, 12 件
+払戻取得:  18%|#8        | 168/910 [08:05<35:14,  2.85s/race, empty=0, err=0, saved=168]11:10:35 INFO src.database.init_db: 払戻保存: race_id=202606010801, 12 件
+払戻取得:  19%|#8        | 169/910 [08:08<35:46,  2.90s/race, empty=0, err=0, saved=169]11:10:37 INFO src.database.init_db: 払戻保存: race_id=202606010802, 12 件
+払戻取得:  19%|#8        | 170/910 [08:11<35:28,  2.88s/race, empty=0, err=0, saved=170]11:10:40 INFO src.database.init_db: 払戻保存: race_id=202606010803, 12 件
+払戻取得:  19%|#8        | 171/910 [08:14<35:55,  2.92s/race, empty=0, err=0, saved=171]11:10:43 INFO src.database.init_db: 払戻保存: race_id=202606010804, 12 件
+払戻取得:  19%|#8        | 172/910 [08:17<36:24,  2.96s/race, empty=0, err=0, saved=172]11:10:47 INFO src.database.init_db: 払戻保存: race_id=202606010805, 12 件
+払戻取得:  19%|#9        | 173/910 [08:20<36:49,  3.00s/race, empty=0, err=0, saved=173]11:10:50 INFO src.database.init_db: 払戻保存: race_id=202606010806, 12 件
+払戻取得:  19%|#9        | 174/910 [08:23<36:52,  3.01s/race, empty=0, err=0, saved=174]11:10:52 INFO src.database.init_db: 払戻保存: race_id=202606010807, 12 件
+払戻取得:  19%|#9        | 175/910 [08:26<36:19,  2.96s/race, empty=0, err=0, saved=175]11:10:55 INFO src.database.init_db: 払戻保存: race_id=202606010808, 12 件
+払戻取得:  19%|#9        | 176/910 [08:29<35:53,  2.93s/race, empty=0, err=0, saved=176]11:10:58 INFO src.database.init_db: 払戻保存: race_id=202606010809, 12 件
+払戻取得:  19%|#9        | 177/910 [08:32<35:41,  2.92s/race, empty=0, err=0, saved=177]11:11:01 INFO src.database.init_db: 払戻保存: race_id=202606010810, 12 件
+払戻取得:  20%|#9        | 178/910 [08:35<35:39,  2.92s/race, empty=0, err=0, saved=178]11:11:04 INFO src.database.init_db: 払戻保存: race_id=202606010811, 12 件
+払戻取得:  20%|#9        | 179/910 [08:38<36:07,  2.96s/race, empty=0, err=0, saved=179]11:11:07 INFO src.database.init_db: 払戻保存: race_id=202606010812, 12 件
+払戻取得:  20%|#9        | 180/910 [08:41<36:12,  2.98s/race, empty=0, err=0, saved=180]11:11:10 INFO src.database.init_db: 払戻保存: race_id=202608010801, 12 件
+払戻取得:  20%|#9        | 181/910 [08:44<36:13,  2.98s/race, empty=0, err=0, saved=181]11:11:13 INFO src.database.init_db: 払戻保存: race_id=202608010802, 12 件
+払戻取得:  20%|##        | 182/910 [08:47<35:52,  2.96s/race, empty=0, err=0, saved=182]11:11:17 INFO src.database.init_db: 払戻保存: race_id=202608010803, 12 件
+払戻取得:  20%|##        | 183/910 [08:50<37:30,  3.10s/race, empty=0, err=0, saved=183]11:11:19 INFO src.database.init_db: 払戻保存: race_id=202608010804, 12 件
+払戻取得:  20%|##        | 184/910 [08:53<36:40,  3.03s/race, empty=0, err=0, saved=184]11:11:22 INFO src.database.init_db: 払戻保存: race_id=202608010805, 12 件
+払戻取得:  20%|##        | 185/910 [08:56<36:37,  3.03s/race, empty=0, err=0, saved=185]11:11:25 INFO src.database.init_db: 払戻保存: race_id=202608010806, 12 件
+払戻取得:  20%|##        | 186/910 [08:59<36:20,  3.01s/race, empty=0, err=0, saved=186]11:11:28 INFO src.database.init_db: 払戻保存: race_id=202608010807, 12 件
+払戻取得:  21%|##        | 187/910 [09:02<35:40,  2.96s/race, empty=0, err=0, saved=187]11:11:31 INFO src.database.init_db: 払戻保存: race_id=202608010808, 12 件
+払戻取得:  21%|##        | 188/910 [09:05<35:37,  2.96s/race, empty=0, err=0, saved=188]11:11:34 INFO src.database.init_db: 払戻保存: race_id=202608010809, 12 件
+払戻取得:  21%|##        | 189/910 [09:08<35:51,  2.98s/race, empty=0, err=0, saved=189]11:11:37 INFO src.database.init_db: 払戻保存: race_id=202608010810, 12 件
+払戻取得:  21%|##        | 190/910 [09:11<35:23,  2.95s/race, empty=0, err=0, saved=190]11:11:40 INFO src.database.init_db: 払戻保存: race_id=202608010811, 12 件
+払戻取得:  21%|##        | 191/910 [09:14<35:14,  2.94s/race, empty=0, err=0, saved=191]11:11:43 INFO src.database.init_db: 払戻保存: race_id=202608010812, 12 件
+払戻取得:  21%|##1       | 192/910 [09:17<34:33,  2.89s/race, empty=0, err=0, saved=192]11:11:46 INFO src.database.init_db: 払戻保存: race_id=202610010101, 12 件
+払戻取得:  21%|##1       | 193/910 [09:19<34:24,  2.88s/race, empty=0, err=0, saved=193]11:11:48 INFO src.database.init_db: 払戻保存: race_id=202610010102, 12 件
+払戻取得:  21%|##1       | 194/910 [09:22<34:12,  2.87s/race, empty=0, err=0, saved=194]11:11:51 INFO src.database.init_db: 払戻保存: race_id=202610010103, 12 件
+払戻取得:  21%|##1       | 195/910 [09:25<34:03,  2.86s/race, empty=0, err=0, saved=195]11:11:54 INFO src.database.init_db: 払戻保存: race_id=202610010104, 12 件
+払戻取得:  22%|##1       | 196/910 [09:28<33:56,  2.85s/race, empty=0, err=0, saved=196]11:11:57 INFO src.database.init_db: 払戻保存: race_id=202610010105, 12 件
+払戻取得:  22%|##1       | 197/910 [09:31<34:13,  2.88s/race, empty=0, err=0, saved=197]11:12:00 INFO src.database.init_db: 払戻保存: race_id=202610010106, 12 件
+払戻取得:  22%|##1       | 198/910 [09:34<33:53,  2.86s/race, empty=0, err=0, saved=198]11:12:03 INFO src.database.init_db: 払戻保存: race_id=202610010107, 12 件
+払戻取得:  22%|##1       | 199/910 [09:37<33:41,  2.84s/race, empty=0, err=0, saved=199]11:12:06 INFO src.database.init_db: 払戻保存: race_id=202610010108, 10 件
+払戻取得:  22%|##1       | 200/910 [09:39<33:42,  2.85s/race, empty=0, err=0, saved=200]11:12:09 INFO src.database.init_db: 払戻保存: race_id=202610010109, 12 件
+払戻取得:  22%|##2       | 201/910 [09:42<34:30,  2.92s/race, empty=0, err=0, saved=201]11:12:12 INFO src.database.init_db: 払戻保存: race_id=202610010110, 12 件
+払戻取得:  22%|##2       | 202/910 [09:46<34:48,  2.95s/race, empty=0, err=0, saved=202]11:12:15 INFO src.database.init_db: 払戻保存: race_id=202610010111, 12 件
+払戻取得:  22%|##2       | 203/910 [09:49<36:19,  3.08s/race, empty=0, err=0, saved=203]11:12:18 INFO src.database.init_db: 払戻保存: race_id=202610010112, 12 件
+払戻取得:  22%|##2       | 204/910 [09:52<35:41,  3.03s/race, empty=0, err=0, saved=204]11:12:21 INFO src.database.init_db: 払戻保存: race_id=202606010901, 12 件
+払戻取得:  23%|##2       | 205/910 [09:55<36:03,  3.07s/race, empty=0, err=0, saved=205]11:12:24 INFO src.database.init_db: 払戻保存: race_id=202606010902, 12 件
+払戻取得:  23%|##2       | 206/910 [09:58<35:08,  3.00s/race, empty=0, err=0, saved=206]11:12:27 INFO src.database.init_db: 払戻保存: race_id=202606010903, 12 件
+払戻取得:  23%|##2       | 207/910 [10:01<34:35,  2.95s/race, empty=0, err=0, saved=207]11:12:30 INFO src.database.init_db: 払戻保存: race_id=202606010904, 12 件
+払戻取得:  23%|##2       | 208/910 [10:04<34:31,  2.95s/race, empty=0, err=0, saved=208]11:12:33 INFO src.database.init_db: 払戻保存: race_id=202606010905, 12 件
+払戻取得:  23%|##2       | 209/910 [10:07<34:34,  2.96s/race, empty=0, err=0, saved=209]11:12:36 INFO src.database.init_db: 払戻保存: race_id=202606010906, 12 件
+払戻取得:  23%|##3       | 210/910 [10:09<34:02,  2.92s/race, empty=0, err=0, saved=210]11:12:39 INFO src.database.init_db: 払戻保存: race_id=202606010907, 12 件
+払戻取得:  23%|##3       | 211/910 [10:12<34:15,  2.94s/race, empty=0, err=0, saved=211]11:12:42 INFO src.database.init_db: 払戻保存: race_id=202606010908, 12 件
+払戻取得:  23%|##3       | 212/910 [10:15<34:32,  2.97s/race, empty=0, err=0, saved=212]11:12:44 INFO src.database.init_db: 払戻保存: race_id=202606010909, 12 件
+払戻取得:  23%|##3       | 213/910 [10:18<34:02,  2.93s/race, empty=0, err=0, saved=213]11:12:47 INFO src.database.init_db: 払戻保存: race_id=202606010910, 12 件
+払戻取得:  24%|##3       | 214/910 [10:21<33:40,  2.90s/race, empty=0, err=0, saved=214]11:12:50 INFO src.database.init_db: 払戻保存: race_id=202606010911, 12 件
+払戻取得:  24%|##3       | 215/910 [10:24<33:56,  2.93s/race, empty=0, err=0, saved=215]11:12:53 INFO src.database.init_db: 払戻保存: race_id=202606010912, 12 件
+払戻取得:  24%|##3       | 216/910 [10:27<33:39,  2.91s/race, empty=0, err=0, saved=216]11:12:56 INFO src.database.init_db: 払戻保存: race_id=202608010901, 12 件
+払戻取得:  24%|##3       | 217/910 [10:30<33:10,  2.87s/race, empty=0, err=0, saved=217]11:12:59 INFO src.database.init_db: 払戻保存: race_id=202608010902, 12 件
+払戻取得:  24%|##3       | 218/910 [10:33<33:02,  2.86s/race, empty=0, err=0, saved=218]11:13:02 INFO src.database.init_db: 払戻保存: race_id=202608010903, 12 件
+払戻取得:  24%|##4       | 219/910 [10:36<33:10,  2.88s/race, empty=0, err=0, saved=219]11:13:05 INFO src.database.init_db: 払戻保存: race_id=202608010904, 12 件
+払戻取得:  24%|##4       | 220/910 [10:38<33:14,  2.89s/race, empty=0, err=0, saved=220]11:13:07 INFO src.database.init_db: 払戻保存: race_id=202608010905, 12 件
+払戻取得:  24%|##4       | 221/910 [10:41<32:56,  2.87s/race, empty=0, err=0, saved=221]11:13:10 INFO src.database.init_db: 払戻保存: race_id=202608010906, 12 件
+払戻取得:  24%|##4       | 222/910 [10:44<33:31,  2.92s/race, empty=0, err=0, saved=222]11:13:13 INFO src.database.init_db: 払戻保存: race_id=202608010907, 12 件
+払戻取得:  25%|##4       | 223/910 [10:47<33:00,  2.88s/race, empty=0, err=0, saved=223]11:13:16 INFO src.database.init_db: 払戻保存: race_id=202608010908, 12 件
+払戻取得:  25%|##4       | 224/910 [10:50<32:34,  2.85s/race, empty=0, err=0, saved=224]11:13:19 INFO src.database.init_db: 払戻保存: race_id=202608010909, 12 件
+払戻取得:  25%|##4       | 225/910 [10:53<32:16,  2.83s/race, empty=0, err=0, saved=225]11:13:22 INFO src.database.init_db: 払戻保存: race_id=202608010910, 12 件
+払戻取得:  25%|##4       | 226/910 [10:55<32:06,  2.82s/race, empty=0, err=0, saved=226]11:13:25 INFO src.database.init_db: 払戻保存: race_id=202608010911, 12 件
+払戻取得:  25%|##4       | 227/910 [10:58<32:41,  2.87s/race, empty=0, err=0, saved=227]11:13:27 INFO src.database.init_db: 払戻保存: race_id=202608010912, 12 件
+払戻取得:  25%|##5       | 228/910 [11:01<32:14,  2.84s/race, empty=0, err=0, saved=228]11:13:30 INFO src.database.init_db: 払戻保存: race_id=202610010201, 12 件
+払戻取得:  25%|##5       | 229/910 [11:04<32:09,  2.83s/race, empty=0, err=0, saved=229]11:13:33 INFO src.database.init_db: 払戻保存: race_id=202610010202, 12 件
+払戻取得:  25%|##5       | 230/910 [11:07<32:18,  2.85s/race, empty=0, err=0, saved=230]11:13:36 INFO src.database.init_db: 払戻保存: race_id=202610010203, 12 件
+払戻取得:  25%|##5       | 231/910 [11:10<32:17,  2.85s/race, empty=0, err=0, saved=231]11:13:39 INFO src.database.init_db: 払戻保存: race_id=202610010204, 12 件
+払戻取得:  25%|##5       | 232/910 [11:13<32:02,  2.83s/race, empty=0, err=0, saved=232]11:13:42 INFO src.database.init_db: 払戻保存: race_id=202610010205, 12 件
+払戻取得:  26%|##5       | 233/910 [11:15<32:11,  2.85s/race, empty=0, err=0, saved=233]11:13:44 INFO src.database.init_db: 払戻保存: race_id=202610010206, 12 件
+払戻取得:  26%|##5       | 234/910 [11:18<32:00,  2.84s/race, empty=0, err=0, saved=234]11:13:47 INFO src.database.init_db: 払戻保存: race_id=202610010207, 12 件
+払戻取得:  26%|##5       | 235/910 [11:21<31:57,  2.84s/race, empty=0, err=0, saved=235]11:13:50 INFO src.database.init_db: 払戻保存: race_id=202610010208, 12 件
+払戻取得:  26%|##5       | 236/910 [11:24<31:57,  2.84s/race, empty=0, err=0, saved=236]11:13:53 INFO src.database.init_db: 払戻保存: race_id=202610010209, 12 件
+払戻取得:  26%|##6       | 237/910 [11:27<31:53,  2.84s/race, empty=0, err=0, saved=237]11:13:56 INFO src.database.init_db: 払戻保存: race_id=202610010210, 12 件
+払戻取得:  26%|##6       | 238/910 [11:30<31:59,  2.86s/race, empty=0, err=0, saved=238]11:13:59 INFO src.database.init_db: 払戻保存: race_id=202610010211, 12 件
+払戻取得:  26%|##6       | 239/910 [11:33<31:55,  2.85s/race, empty=0, err=0, saved=239]11:14:02 INFO src.database.init_db: 払戻保存: race_id=202610010212, 12 件
+払戻取得:  26%|##6       | 240/910 [11:35<32:03,  2.87s/race, empty=0, err=0, saved=240]11:14:05 INFO src.database.init_db: 払戻保存: race_id=202605010101, 12 件
+払戻取得:  26%|##6       | 241/910 [11:38<32:36,  2.92s/race, empty=0, err=0, saved=241]11:14:08 INFO src.database.init_db: 払戻保存: race_id=202605010102, 12 件
+払戻取得:  27%|##6       | 242/910 [11:41<32:39,  2.93s/race, empty=0, err=0, saved=242]11:14:11 INFO src.database.init_db: 払戻保存: race_id=202605010103, 12 件
+払戻取得:  27%|##6       | 243/910 [11:44<32:38,  2.94s/race, empty=0, err=0, saved=243]11:14:13 INFO src.database.init_db: 払戻保存: race_id=202605010104, 12 件
+払戻取得:  27%|##6       | 244/910 [11:47<32:11,  2.90s/race, empty=0, err=0, saved=244]11:14:16 INFO src.database.init_db: 払戻保存: race_id=202605010105, 12 件
+払戻取得:  27%|##6       | 245/910 [11:50<31:59,  2.89s/race, empty=0, err=0, saved=245]11:14:19 INFO src.database.init_db: 払戻保存: race_id=202605010106, 12 件
+払戻取得:  27%|##7       | 246/910 [11:53<31:30,  2.85s/race, empty=0, err=0, saved=246]11:14:22 INFO src.database.init_db: 払戻保存: race_id=202605010107, 12 件
+払戻取得:  27%|##7       | 247/910 [11:56<31:41,  2.87s/race, empty=0, err=0, saved=247]11:14:25 INFO src.database.init_db: 払戻保存: race_id=202605010108, 12 件
+払戻取得:  27%|##7       | 248/910 [11:59<31:32,  2.86s/race, empty=0, err=0, saved=248]11:14:28 INFO src.database.init_db: 払戻保存: race_id=202605010109, 12 件
+払戻取得:  27%|##7       | 249/910 [12:02<31:46,  2.88s/race, empty=0, err=0, saved=249]11:14:30 INFO src.database.init_db: 払戻保存: race_id=202605010110, 12 件
+払戻取得:  27%|##7       | 250/910 [12:04<31:18,  2.85s/race, empty=0, err=0, saved=250]11:14:33 INFO src.database.init_db: 払戻保存: race_id=202605010111, 12 件
+払戻取得:  28%|##7       | 251/910 [12:07<30:54,  2.81s/race, empty=0, err=0, saved=251]11:14:36 INFO src.database.init_db: 払戻保存: race_id=202605010112, 12 件
+払戻取得:  28%|##7       | 252/910 [12:10<31:04,  2.83s/race, empty=0, err=0, saved=252]11:14:39 INFO src.database.init_db: 払戻保存: race_id=202608020101, 12 件
+払戻取得:  28%|##7       | 253/910 [12:13<31:28,  2.87s/race, empty=0, err=0, saved=253]11:14:42 INFO src.database.init_db: 払戻保存: race_id=202608020102, 12 件
+払戻取得:  28%|##7       | 254/910 [12:16<31:19,  2.87s/race, empty=0, err=0, saved=254]11:14:45 INFO src.database.init_db: 払戻保存: race_id=202608020103, 12 件
+払戻取得:  28%|##8       | 255/910 [12:19<31:11,  2.86s/race, empty=0, err=0, saved=255]11:14:48 INFO src.database.init_db: 払戻保存: race_id=202608020104, 12 件
+払戻取得:  28%|##8       | 256/910 [12:21<31:00,  2.84s/race, empty=0, err=0, saved=256]11:14:50 INFO src.database.init_db: 払戻保存: race_id=202608020105, 12 件
+払戻取得:  28%|##8       | 257/910 [12:24<30:46,  2.83s/race, empty=0, err=0, saved=257]11:14:53 INFO src.database.init_db: 払戻保存: race_id=202608020106, 12 件
+払戻取得:  28%|##8       | 258/910 [12:27<30:52,  2.84s/race, empty=0, err=0, saved=258]11:14:56 INFO src.database.init_db: 払戻保存: race_id=202608020107, 12 件
+払戻取得:  28%|##8       | 259/910 [12:30<30:37,  2.82s/race, empty=0, err=0, saved=259]11:14:59 INFO src.database.init_db: 払戻保存: race_id=202608020108, 12 件
+払戻取得:  29%|##8       | 260/910 [12:33<30:24,  2.81s/race, empty=0, err=0, saved=260]11:15:02 INFO src.database.init_db: 払戻保存: race_id=202608020109, 12 件
+払戻取得:  29%|##8       | 261/910 [12:35<30:13,  2.80s/race, empty=0, err=0, saved=261]11:15:04 INFO src.database.init_db: 払戻保存: race_id=202608020110, 11 件
+払戻取得:  29%|##8       | 262/910 [12:38<30:48,  2.85s/race, empty=0, err=0, saved=262]11:15:07 INFO src.database.init_db: 払戻保存: race_id=202608020111, 12 件
+払戻取得:  29%|##8       | 263/910 [12:41<31:12,  2.89s/race, empty=0, err=0, saved=263]11:15:10 INFO src.database.init_db: 払戻保存: race_id=202608020112, 12 件
+払戻取得:  29%|##9       | 264/910 [12:44<31:08,  2.89s/race, empty=0, err=0, saved=264]11:15:13 INFO src.database.init_db: 払戻保存: race_id=202610010301, 12 件
+払戻取得:  29%|##9       | 265/910 [12:47<30:47,  2.86s/race, empty=0, err=0, saved=265]11:15:16 INFO src.database.init_db: 払戻保存: race_id=202610010302, 12 件
+払戻取得:  29%|##9       | 266/910 [12:50<30:47,  2.87s/race, empty=0, err=0, saved=266]11:15:19 INFO src.database.init_db: 払戻保存: race_id=202610010303, 12 件
+払戻取得:  29%|##9       | 267/910 [12:53<30:39,  2.86s/race, empty=0, err=0, saved=267]11:15:22 INFO src.database.init_db: 払戻保存: race_id=202610010304, 12 件
+払戻取得:  29%|##9       | 268/910 [12:56<30:45,  2.87s/race, empty=0, err=0, saved=268]11:15:25 INFO src.database.init_db: 払戻保存: race_id=202610010305, 12 件
+払戻取得:  30%|##9       | 269/910 [12:58<30:42,  2.87s/race, empty=0, err=0, saved=269]11:15:28 INFO src.database.init_db: 払戻保存: race_id=202610010306, 12 件
+払戻取得:  30%|##9       | 270/910 [13:01<30:33,  2.87s/race, empty=0, err=0, saved=270]11:15:30 INFO src.database.init_db: 払戻保存: race_id=202610010307, 12 件
+払戻取得:  30%|##9       | 271/910 [13:04<30:28,  2.86s/race, empty=0, err=0, saved=271]11:15:33 INFO src.database.init_db: 払戻保存: race_id=202610010308, 12 件
+払戻取得:  30%|##9       | 272/910 [13:07<30:18,  2.85s/race, empty=0, err=0, saved=272]11:15:36 INFO src.database.init_db: 払戻保存: race_id=202610010309, 12 件
+払戻取得:  30%|###       | 273/910 [13:10<30:46,  2.90s/race, empty=0, err=0, saved=273]11:15:39 INFO src.database.init_db: 払戻保存: race_id=202610010310, 12 件
+払戻取得:  30%|###       | 274/910 [13:13<31:20,  2.96s/race, empty=0, err=0, saved=274]11:15:42 INFO src.database.init_db: 払戻保存: race_id=202610010311, 12 件
+払戻取得:  30%|###       | 275/910 [13:16<31:08,  2.94s/race, empty=0, err=0, saved=275]11:15:45 INFO src.database.init_db: 払戻保存: race_id=202610010312, 12 件
+払戻取得:  30%|###       | 276/910 [13:19<31:04,  2.94s/race, empty=0, err=0, saved=276]11:15:48 INFO src.database.init_db: 払戻保存: race_id=202605010201, 12 件
+払戻取得:  30%|###       | 277/910 [13:22<30:30,  2.89s/race, empty=0, err=0, saved=277]11:15:51 INFO src.database.init_db: 払戻保存: race_id=202605010202, 12 件
+払戻取得:  31%|###       | 278/910 [13:25<30:06,  2.86s/race, empty=0, err=0, saved=278]11:15:54 INFO src.database.init_db: 払戻保存: race_id=202605010203, 12 件
+払戻取得:  31%|###       | 279/910 [13:27<30:05,  2.86s/race, empty=0, err=0, saved=279]11:15:56 INFO src.database.init_db: 払戻保存: race_id=202605010204, 12 件
+払戻取得:  31%|###       | 280/910 [13:30<30:07,  2.87s/race, empty=0, err=0, saved=280]11:15:59 INFO src.database.init_db: 払戻保存: race_id=202605010205, 12 件
+払戻取得:  31%|###       | 281/910 [13:33<30:01,  2.86s/race, empty=0, err=0, saved=281]11:16:02 INFO src.database.init_db: 払戻保存: race_id=202605010206, 12 件
+払戻取得:  31%|###       | 282/910 [13:36<30:29,  2.91s/race, empty=0, err=0, saved=282]11:16:05 INFO src.database.init_db: 払戻保存: race_id=202605010207, 12 件
+払戻取得:  31%|###1      | 283/910 [13:39<30:39,  2.93s/race, empty=0, err=0, saved=283]11:16:08 INFO src.database.init_db: 払戻保存: race_id=202605010208, 12 件
+払戻取得:  31%|###1      | 284/910 [13:42<30:32,  2.93s/race, empty=0, err=0, saved=284]11:16:11 INFO src.database.init_db: 払戻保存: race_id=202605010209, 12 件
+払戻取得:  31%|###1      | 285/910 [13:45<30:27,  2.92s/race, empty=0, err=0, saved=285]11:16:14 INFO src.database.init_db: 払戻保存: race_id=202605010210, 12 件
+払戻取得:  31%|###1      | 286/910 [13:48<30:25,  2.93s/race, empty=0, err=0, saved=286]11:16:17 INFO src.database.init_db: 払戻保存: race_id=202605010211, 12 件
+払戻取得:  32%|###1      | 287/910 [13:51<30:25,  2.93s/race, empty=0, err=0, saved=287]11:16:20 INFO src.database.init_db: 払戻保存: race_id=202605010212, 12 件
+払戻取得:  32%|###1      | 288/910 [13:54<30:24,  2.93s/race, empty=0, err=0, saved=288]11:16:23 INFO src.database.init_db: 払戻保存: race_id=202608020201, 12 件
+払戻取得:  32%|###1      | 289/910 [13:57<31:10,  3.01s/race, empty=0, err=0, saved=289]11:16:26 INFO src.database.init_db: 払戻保存: race_id=202608020202, 12 件
+払戻取得:  32%|###1      | 290/910 [14:00<30:56,  2.99s/race, empty=0, err=0, saved=290]11:16:29 INFO src.database.init_db: 払戻保存: race_id=202608020203, 12 件
+払戻取得:  32%|###1      | 291/910 [14:03<30:46,  2.98s/race, empty=0, err=0, saved=291]11:16:32 INFO src.database.init_db: 払戻保存: race_id=202608020204, 12 件
+払戻取得:  32%|###2      | 292/910 [14:06<30:56,  3.00s/race, empty=0, err=0, saved=292]11:16:35 INFO src.database.init_db: 払戻保存: race_id=202608020205, 12 件
+払戻取得:  32%|###2      | 293/910 [14:09<30:45,  2.99s/race, empty=0, err=0, saved=293]11:16:38 INFO src.database.init_db: 払戻保存: race_id=202608020206, 12 件
+払戻取得:  32%|###2      | 294/910 [14:12<30:42,  2.99s/race, empty=0, err=0, saved=294]11:16:41 INFO src.database.init_db: 払戻保存: race_id=202608020207, 12 件
+払戻取得:  32%|###2      | 295/910 [14:15<31:02,  3.03s/race, empty=0, err=0, saved=295]11:16:44 INFO src.database.init_db: 払戻保存: race_id=202608020208, 12 件
+払戻取得:  33%|###2      | 296/910 [14:18<30:47,  3.01s/race, empty=0, err=0, saved=296]11:16:47 INFO src.database.init_db: 払戻保存: race_id=202608020209, 12 件
+払戻取得:  33%|###2      | 297/910 [14:21<30:23,  2.97s/race, empty=0, err=0, saved=297]11:16:50 INFO src.database.init_db: 払戻保存: race_id=202608020210, 11 件
+払戻取得:  33%|###2      | 298/910 [14:24<30:08,  2.96s/race, empty=0, err=0, saved=298]11:16:53 INFO src.database.init_db: 払戻保存: race_id=202608020211, 12 件
+払戻取得:  33%|###2      | 299/910 [14:27<29:48,  2.93s/race, empty=0, err=0, saved=299]11:16:56 INFO src.database.init_db: 払戻保存: race_id=202608020212, 10 件
+払戻取得:  33%|###2      | 300/910 [14:30<29:50,  2.94s/race, empty=0, err=0, saved=300]11:16:59 INFO src.database.init_db: 払戻保存: race_id=202610010401, 12 件
+払戻取得:  33%|###3      | 301/910 [14:33<29:51,  2.94s/race, empty=0, err=0, saved=301]11:17:02 INFO src.database.init_db: 払戻保存: race_id=202610010402, 12 件
+払戻取得:  33%|###3      | 302/910 [14:36<29:52,  2.95s/race, empty=0, err=0, saved=302]11:17:05 INFO src.database.init_db: 払戻保存: race_id=202610010403, 12 件
+払戻取得:  33%|###3      | 303/910 [14:39<30:00,  2.97s/race, empty=0, err=0, saved=303]11:17:07 INFO src.database.init_db: 払戻保存: race_id=202610010404, 12 件
+払戻取得:  33%|###3      | 304/910 [14:41<29:26,  2.91s/race, empty=0, err=0, saved=304]11:17:10 INFO src.database.init_db: 払戻保存: race_id=202610010405, 12 件
+払戻取得:  34%|###3      | 305/910 [14:44<29:14,  2.90s/race, empty=0, err=0, saved=305]11:17:13 INFO src.database.init_db: 払戻保存: race_id=202610010406, 12 件
+払戻取得:  34%|###3      | 306/910 [14:47<28:57,  2.88s/race, empty=0, err=0, saved=306]11:17:16 INFO src.database.init_db: 払戻保存: race_id=202610010407, 12 件
+払戻取得:  34%|###3      | 307/910 [14:50<28:43,  2.86s/race, empty=0, err=0, saved=307]11:17:19 INFO src.database.init_db: 払戻保存: race_id=202610010408, 12 件
+払戻取得:  34%|###3      | 308/910 [14:53<28:31,  2.84s/race, empty=0, err=0, saved=308]11:17:22 INFO src.database.init_db: 払戻保存: race_id=202610010409, 12 件
+払戻取得:  34%|###3      | 309/910 [14:55<28:28,  2.84s/race, empty=0, err=0, saved=309]11:17:25 INFO src.database.init_db: 払戻保存: race_id=202610010410, 12 件
+払戻取得:  34%|###4      | 310/910 [14:58<28:39,  2.87s/race, empty=0, err=0, saved=310]11:17:27 INFO src.database.init_db: 払戻保存: race_id=202610010411, 12 件
+払戻取得:  34%|###4      | 311/910 [15:01<28:30,  2.86s/race, empty=0, err=0, saved=311]11:17:30 INFO src.database.init_db: 払戻保存: race_id=202610010412, 12 件
+払戻取得:  34%|###4      | 312/910 [15:04<28:41,  2.88s/race, empty=0, err=0, saved=312]11:17:33 INFO src.database.init_db: 払戻保存: race_id=202605010301, 12 件
+払戻取得:  34%|###4      | 313/910 [15:07<28:26,  2.86s/race, empty=0, err=0, saved=313]11:17:36 INFO src.database.init_db: 払戻保存: race_id=202605010302, 12 件
+払戻取得:  35%|###4      | 314/910 [15:10<28:19,  2.85s/race, empty=0, err=0, saved=314]11:17:39 INFO src.database.init_db: 払戻保存: race_id=202605010303, 12 件
+払戻取得:  35%|###4      | 315/910 [15:13<28:29,  2.87s/race, empty=0, err=0, saved=315]11:17:42 INFO src.database.init_db: 払戻保存: race_id=202605010304, 12 件
+払戻取得:  35%|###4      | 316/910 [15:15<28:09,  2.84s/race, empty=0, err=0, saved=316]11:17:44 INFO src.database.init_db: 払戻保存: race_id=202605010305, 12 件
+払戻取得:  35%|###4      | 317/910 [15:18<27:55,  2.83s/race, empty=0, err=0, saved=317]11:17:47 INFO src.database.init_db: 払戻保存: race_id=202605010306, 12 件
+払戻取得:  35%|###4      | 318/910 [15:21<28:12,  2.86s/race, empty=0, err=0, saved=318]11:17:50 INFO src.database.init_db: 払戻保存: race_id=202605010307, 12 件
+払戻取得:  35%|###5      | 319/910 [15:24<28:18,  2.87s/race, empty=0, err=0, saved=319]払戻取得:  35%|###5      | 320/910 [15:27<27:48,  2.83s/race, empty=1, err=0, saved=319]払戻取得:  35%|###5      | 321/910 [15:30<27:37,  2.81s/race, empty=2, err=0, saved=319]払戻取得:  35%|###5      | 322/910 [15:32<27:41,  2.83s/race, empty=3, err=0, saved=319]払戻取得:  35%|###5      | 323/910 [15:35<27:27,  2.81s/race, empty=4, err=0, saved=319]払戻取得:  36%|###5      | 324/910 [15:38<27:07,  2.78s/race, empty=5, err=0, saved=319]11:18:07 INFO src.database.init_db: 払戻保存: race_id=202608020301, 12 件
+払戻取得:  36%|###5      | 325/910 [15:41<27:35,  2.83s/race, empty=5, err=0, saved=320]11:18:10 INFO src.database.init_db: 払戻保存: race_id=202608020302, 12 件
+払戻取得:  36%|###5      | 326/910 [15:44<27:23,  2.81s/race, empty=5, err=0, saved=321]11:18:13 INFO src.database.init_db: 払戻保存: race_id=202608020303, 12 件
+払戻取得:  36%|###5      | 327/910 [15:47<27:40,  2.85s/race, empty=5, err=0, saved=322]11:18:16 INFO src.database.init_db: 払戻保存: race_id=202608020304, 12 件
+払戻取得:  36%|###6      | 328/910 [15:50<28:00,  2.89s/race, empty=5, err=0, saved=323]11:18:19 INFO src.database.init_db: 払戻保存: race_id=202608020305, 12 件
+払戻取得:  36%|###6      | 329/910 [15:53<28:16,  2.92s/race, empty=5, err=0, saved=324]11:18:22 INFO src.database.init_db: 払戻保存: race_id=202608020306, 12 件
+払戻取得:  36%|###6      | 330/910 [15:55<27:46,  2.87s/race, empty=5, err=0, saved=325]11:18:24 INFO src.database.init_db: 払戻保存: race_id=202608020307, 12 件
+払戻取得:  36%|###6      | 331/910 [15:58<27:38,  2.86s/race, empty=5, err=0, saved=326]11:18:27 INFO src.database.init_db: 払戻保存: race_id=202608020308, 11 件
+払戻取得:  36%|###6      | 332/910 [16:01<27:13,  2.83s/race, empty=5, err=0, saved=327]11:18:30 INFO src.database.init_db: 払戻保存: race_id=202608020309, 12 件
+払戻取得:  37%|###6      | 333/910 [16:04<27:10,  2.83s/race, empty=5, err=0, saved=328]11:18:33 INFO src.database.init_db: 払戻保存: race_id=202608020310, 12 件
+払戻取得:  37%|###6      | 334/910 [16:07<27:29,  2.86s/race, empty=5, err=0, saved=329]11:18:36 INFO src.database.init_db: 払戻保存: race_id=202608020311, 12 件
+払戻取得:  37%|###6      | 335/910 [16:10<27:20,  2.85s/race, empty=5, err=0, saved=330]11:18:39 INFO src.database.init_db: 払戻保存: race_id=202608020312, 12 件
+払戻取得:  37%|###6      | 336/910 [16:12<27:21,  2.86s/race, empty=5, err=0, saved=331]11:18:42 INFO src.database.init_db: 払戻保存: race_id=202610010501, 12 件
+払戻取得:  37%|###7      | 337/910 [16:15<27:36,  2.89s/race, empty=5, err=0, saved=332]11:18:44 INFO src.database.init_db: 払戻保存: race_id=202610010502, 12 件
+払戻取得:  37%|###7      | 338/910 [16:18<27:25,  2.88s/race, empty=5, err=0, saved=333]11:18:47 INFO src.database.init_db: 払戻保存: race_id=202610010503, 12 件
+払戻取得:  37%|###7      | 339/910 [16:21<27:14,  2.86s/race, empty=5, err=0, saved=334]11:18:50 INFO src.database.init_db: 払戻保存: race_id=202610010504, 12 件
+払戻取得:  37%|###7      | 340/910 [16:24<26:58,  2.84s/race, empty=5, err=0, saved=335]11:18:53 INFO src.database.init_db: 払戻保存: race_id=202610010505, 12 件
+払戻取得:  37%|###7      | 341/910 [16:27<26:49,  2.83s/race, empty=5, err=0, saved=336]11:18:56 INFO src.database.init_db: 払戻保存: race_id=202610010506, 12 件
+払戻取得:  38%|###7      | 342/910 [16:29<26:45,  2.83s/race, empty=5, err=0, saved=337]11:18:59 INFO src.database.init_db: 払戻保存: race_id=202610010507, 12 件
+払戻取得:  38%|###7      | 343/910 [16:32<27:04,  2.86s/race, empty=5, err=0, saved=338]11:19:02 INFO src.database.init_db: 払戻保存: race_id=202610010508, 12 件
+払戻取得:  38%|###7      | 344/910 [16:35<27:12,  2.88s/race, empty=5, err=0, saved=339]11:19:04 INFO src.database.init_db: 払戻保存: race_id=202610010509, 12 件
+払戻取得:  38%|###7      | 345/910 [16:38<26:55,  2.86s/race, empty=5, err=0, saved=340]11:19:07 INFO src.database.init_db: 払戻保存: race_id=202610010510, 12 件
+払戻取得:  38%|###8      | 346/910 [16:41<27:12,  2.90s/race, empty=5, err=0, saved=341]11:19:10 INFO src.database.init_db: 払戻保存: race_id=202610010511, 12 件
+払戻取得:  38%|###8      | 347/910 [16:44<27:02,  2.88s/race, empty=5, err=0, saved=342]11:19:13 INFO src.database.init_db: 払戻保存: race_id=202610010512, 12 件
+払戻取得:  38%|###8      | 348/910 [16:47<26:44,  2.86s/race, empty=5, err=0, saved=343]11:19:16 INFO src.database.init_db: 払戻保存: race_id=202605010401, 12 件
+払戻取得:  38%|###8      | 349/910 [16:50<26:23,  2.82s/race, empty=5, err=0, saved=344]11:19:19 INFO src.database.init_db: 払戻保存: race_id=202605010402, 12 件
+払戻取得:  38%|###8      | 350/910 [16:52<26:35,  2.85s/race, empty=5, err=0, saved=345]11:19:22 INFO src.database.init_db: 払戻保存: race_id=202605010403, 12 件
+払戻取得:  39%|###8      | 351/910 [16:55<26:43,  2.87s/race, empty=5, err=0, saved=346]11:19:24 INFO src.database.init_db: 払戻保存: race_id=202605010404, 12 件
+払戻取得:  39%|###8      | 352/910 [16:58<26:34,  2.86s/race, empty=5, err=0, saved=347]11:19:27 INFO src.database.init_db: 払戻保存: race_id=202605010405, 12 件
+払戻取得:  39%|###8      | 353/910 [17:01<26:22,  2.84s/race, empty=5, err=0, saved=348]11:19:30 INFO src.database.init_db: 払戻保存: race_id=202605010406, 12 件
+払戻取得:  39%|###8      | 354/910 [17:04<26:25,  2.85s/race, empty=5, err=0, saved=349]11:19:33 INFO src.database.init_db: 払戻保存: race_id=202605010407, 12 件
+払戻取得:  39%|###9      | 355/910 [17:07<26:33,  2.87s/race, empty=5, err=0, saved=350]11:19:36 INFO src.database.init_db: 払戻保存: race_id=202605010408, 12 件
+払戻取得:  39%|###9      | 356/910 [17:10<26:13,  2.84s/race, empty=5, err=0, saved=351]11:19:39 INFO src.database.init_db: 払戻保存: race_id=202605010409, 10 件
+払戻取得:  39%|###9      | 357/910 [17:12<26:11,  2.84s/race, empty=5, err=0, saved=352]11:19:41 INFO src.database.init_db: 払戻保存: race_id=202605010410, 12 件
+払戻取得:  39%|###9      | 358/910 [17:15<26:00,  2.83s/race, empty=5, err=0, saved=353]11:19:44 INFO src.database.init_db: 払戻保存: race_id=202605010411, 12 件
+払戻取得:  39%|###9      | 359/910 [17:18<26:00,  2.83s/race, empty=5, err=0, saved=354]11:19:47 INFO src.database.init_db: 払戻保存: race_id=202605010412, 12 件
+払戻取得:  40%|###9      | 360/910 [17:21<26:01,  2.84s/race, empty=5, err=0, saved=355]11:19:50 INFO src.database.init_db: 払戻保存: race_id=202610010601, 12 件
+払戻取得:  40%|###9      | 361/910 [17:24<25:48,  2.82s/race, empty=5, err=0, saved=356]11:19:53 INFO src.database.init_db: 払戻保存: race_id=202610010602, 12 件
+払戻取得:  40%|###9      | 362/910 [17:26<25:41,  2.81s/race, empty=5, err=0, saved=357]11:19:55 INFO src.database.init_db: 払戻保存: race_id=202610010603, 12 件
+払戻取得:  40%|###9      | 363/910 [17:29<25:29,  2.80s/race, empty=5, err=0, saved=358]払戻取得:  40%|####      | 364/910 [17:32<25:03,  2.75s/race, empty=6, err=0, saved=358]11:20:01 INFO src.database.init_db: 払戻保存: race_id=202610010605, 12 件
+払戻取得:  40%|####      | 365/910 [17:35<25:25,  2.80s/race, empty=6, err=0, saved=359]11:20:04 INFO src.database.init_db: 払戻保存: race_id=202610010606, 12 件
+払戻取得:  40%|####      | 366/910 [17:38<25:22,  2.80s/race, empty=6, err=0, saved=360]11:20:07 INFO src.database.init_db: 払戻保存: race_id=202610010607, 12 件
+払戻取得:  40%|####      | 367/910 [17:41<25:54,  2.86s/race, empty=6, err=0, saved=361]11:20:10 INFO src.database.init_db: 払戻保存: race_id=202610010608, 12 件
+払戻取得:  40%|####      | 368/910 [17:43<25:51,  2.86s/race, empty=6, err=0, saved=362]11:20:12 INFO src.database.init_db: 払戻保存: race_id=202610010609, 12 件
+払戻取得:  41%|####      | 369/910 [17:46<25:40,  2.85s/race, empty=6, err=0, saved=363]11:20:15 INFO src.database.init_db: 払戻保存: race_id=202610010610, 12 件
+払戻取得:  41%|####      | 370/910 [17:49<25:34,  2.84s/race, empty=6, err=0, saved=364]11:20:18 INFO src.database.init_db: 払戻保存: race_id=202610010611, 12 件
+払戻取得:  41%|####      | 371/910 [17:52<25:35,  2.85s/race, empty=6, err=0, saved=365]11:20:21 INFO src.database.init_db: 払戻保存: race_id=202610010612, 12 件
+払戻取得:  41%|####      | 372/910 [17:55<25:34,  2.85s/race, empty=6, err=0, saved=366]11:20:24 INFO src.database.init_db: 払戻保存: race_id=202608020401, 12 件
+払戻取得:  41%|####      | 373/910 [17:58<25:24,  2.84s/race, empty=6, err=0, saved=367]11:20:27 INFO src.database.init_db: 払戻保存: race_id=202608020402, 12 件
+払戻取得:  41%|####1     | 374/910 [18:00<25:20,  2.84s/race, empty=6, err=0, saved=368]11:20:29 INFO src.database.init_db: 払戻保存: race_id=202608020403, 12 件
+払戻取得:  41%|####1     | 375/910 [18:03<25:11,  2.83s/race, empty=6, err=0, saved=369]11:20:32 INFO src.database.init_db: 払戻保存: race_id=202608020404, 12 件
+払戻取得:  41%|####1     | 376/910 [18:06<25:14,  2.84s/race, empty=6, err=0, saved=370]11:20:35 INFO src.database.init_db: 払戻保存: race_id=202608020405, 12 件
+払戻取得:  41%|####1     | 377/910 [18:09<25:08,  2.83s/race, empty=6, err=0, saved=371]11:20:38 INFO src.database.init_db: 払戻保存: race_id=202608020406, 12 件
+払戻取得:  42%|####1     | 378/910 [18:12<25:32,  2.88s/race, empty=6, err=0, saved=372]11:20:41 INFO src.database.init_db: 払戻保存: race_id=202608020407, 11 件
+払戻取得:  42%|####1     | 379/910 [18:15<25:48,  2.92s/race, empty=6, err=0, saved=373]11:20:44 INFO src.database.init_db: 払戻保存: race_id=202608020408, 12 件
+払戻取得:  42%|####1     | 380/910 [18:18<25:58,  2.94s/race, empty=6, err=0, saved=374]11:20:47 INFO src.database.init_db: 払戻保存: race_id=202608020409, 12 件
+払戻取得:  42%|####1     | 381/910 [18:21<25:39,  2.91s/race, empty=6, err=0, saved=375]11:20:50 INFO src.database.init_db: 払戻保存: race_id=202608020410, 12 件
+払戻取得:  42%|####1     | 382/910 [18:24<25:15,  2.87s/race, empty=6, err=0, saved=376]11:20:52 INFO src.database.init_db: 払戻保存: race_id=202608020411, 12 件
+払戻取得:  42%|####2     | 383/910 [18:26<25:00,  2.85s/race, empty=6, err=0, saved=377]11:20:55 INFO src.database.init_db: 払戻保存: race_id=202608020412, 12 件
+払戻取得:  42%|####2     | 384/910 [18:29<24:58,  2.85s/race, empty=6, err=0, saved=378]11:20:58 INFO src.database.init_db: 払戻保存: race_id=202605010501, 12 件
+払戻取得:  42%|####2     | 385/910 [18:32<25:10,  2.88s/race, empty=6, err=0, saved=379]11:21:01 INFO src.database.init_db: 払戻保存: race_id=202605010502, 12 件
+払戻取得:  42%|####2     | 386/910 [18:35<25:20,  2.90s/race, empty=6, err=0, saved=380]11:21:04 INFO src.database.init_db: 払戻保存: race_id=202605010503, 12 件
+払戻取得:  43%|####2     | 387/910 [18:38<24:57,  2.86s/race, empty=6, err=0, saved=381]11:21:07 INFO src.database.init_db: 払戻保存: race_id=202605010504, 12 件
+払戻取得:  43%|####2     | 388/910 [18:41<24:39,  2.83s/race, empty=6, err=0, saved=382]11:21:10 INFO src.database.init_db: 払戻保存: race_id=202605010505, 12 件
+払戻取得:  43%|####2     | 389/910 [18:44<24:53,  2.87s/race, empty=6, err=0, saved=383]11:21:13 INFO src.database.init_db: 払戻保存: race_id=202605010506, 12 件
+払戻取得:  43%|####2     | 390/910 [18:46<24:57,  2.88s/race, empty=6, err=0, saved=384]11:21:15 INFO src.database.init_db: 払戻保存: race_id=202605010507, 12 件
+払戻取得:  43%|####2     | 391/910 [18:49<24:48,  2.87s/race, empty=6, err=0, saved=385]11:21:18 INFO src.database.init_db: 払戻保存: race_id=202605010508, 12 件
+払戻取得:  43%|####3     | 392/910 [18:52<24:49,  2.88s/race, empty=6, err=0, saved=386]11:21:21 INFO src.database.init_db: 払戻保存: race_id=202605010509, 11 件
+払戻取得:  43%|####3     | 393/910 [18:55<24:51,  2.89s/race, empty=6, err=0, saved=387]11:21:24 INFO src.database.init_db: 払戻保存: race_id=202605010510, 12 件
+払戻取得:  43%|####3     | 394/910 [18:58<25:05,  2.92s/race, empty=6, err=0, saved=388]11:21:27 INFO src.database.init_db: 払戻保存: race_id=202605010511, 12 件
+払戻取得:  43%|####3     | 395/910 [19:01<25:07,  2.93s/race, empty=6, err=0, saved=389]11:21:30 INFO src.database.init_db: 払戻保存: race_id=202605010512, 12 件
+払戻取得:  44%|####3     | 396/910 [19:04<24:58,  2.92s/race, empty=6, err=0, saved=390]11:21:33 INFO src.database.init_db: 払戻保存: race_id=202608020501, 12 件
+払戻取得:  44%|####3     | 397/910 [19:07<24:41,  2.89s/race, empty=6, err=0, saved=391]11:21:36 INFO src.database.init_db: 払戻保存: race_id=202608020502, 12 件
+払戻取得:  44%|####3     | 398/910 [19:10<24:33,  2.88s/race, empty=6, err=0, saved=392]11:21:39 INFO src.database.init_db: 払戻保存: race_id=202608020503, 12 件
+払戻取得:  44%|####3     | 399/910 [19:12<24:29,  2.88s/race, empty=6, err=0, saved=393]11:21:41 INFO src.database.init_db: 払戻保存: race_id=202608020504, 12 件
+払戻取得:  44%|####3     | 400/910 [19:15<24:15,  2.85s/race, empty=6, err=0, saved=394]11:21:44 INFO src.database.init_db: 払戻保存: race_id=202608020505, 12 件
+払戻取得:  44%|####4     | 401/910 [19:18<24:18,  2.87s/race, empty=6, err=0, saved=395]11:21:47 INFO src.database.init_db: 払戻保存: race_id=202608020506, 12 件
+払戻取得:  44%|####4     | 402/910 [19:21<24:02,  2.84s/race, empty=6, err=0, saved=396]11:21:50 INFO src.database.init_db: 払戻保存: race_id=202608020507, 12 件
+払戻取得:  44%|####4     | 403/910 [19:24<23:45,  2.81s/race, empty=6, err=0, saved=397]11:21:53 INFO src.database.init_db: 払戻保存: race_id=202608020508, 12 件
+払戻取得:  44%|####4     | 404/910 [19:27<23:50,  2.83s/race, empty=6, err=0, saved=398]11:21:56 INFO src.database.init_db: 払戻保存: race_id=202608020509, 12 件
+払戻取得:  45%|####4     | 405/910 [19:29<23:47,  2.83s/race, empty=6, err=0, saved=399]11:21:59 INFO src.database.init_db: 払戻保存: race_id=202608020510, 12 件
+払戻取得:  45%|####4     | 406/910 [19:32<24:07,  2.87s/race, empty=6, err=0, saved=400]11:22:01 INFO src.database.init_db: 払戻保存: race_id=202608020511, 12 件
+払戻取得:  45%|####4     | 407/910 [19:35<23:54,  2.85s/race, empty=6, err=0, saved=401]11:22:04 INFO src.database.init_db: 払戻保存: race_id=202608020512, 12 件
+払戻取得:  45%|####4     | 408/910 [19:38<24:17,  2.90s/race, empty=6, err=0, saved=402]11:22:07 INFO src.database.init_db: 払戻保存: race_id=202610010701, 12 件
+払戻取得:  45%|####4     | 409/910 [19:41<23:55,  2.87s/race, empty=6, err=0, saved=403]11:22:10 INFO src.database.init_db: 払戻保存: race_id=202610010702, 12 件
+払戻取得:  45%|####5     | 410/910 [19:44<24:04,  2.89s/race, empty=6, err=0, saved=404]11:22:13 INFO src.database.init_db: 払戻保存: race_id=202610010703, 12 件
+払戻取得:  45%|####5     | 411/910 [19:47<23:51,  2.87s/race, empty=6, err=0, saved=405]11:22:16 INFO src.database.init_db: 払戻保存: race_id=202610010704, 12 件
+払戻取得:  45%|####5     | 412/910 [19:50<23:39,  2.85s/race, empty=6, err=0, saved=406]11:22:19 INFO src.database.init_db: 払戻保存: race_id=202610010705, 12 件
+払戻取得:  45%|####5     | 413/910 [19:53<23:58,  2.90s/race, empty=6, err=0, saved=407]11:22:22 INFO src.database.init_db: 払戻保存: race_id=202610010706, 12 件
+払戻取得:  45%|####5     | 414/910 [19:55<23:55,  2.89s/race, empty=6, err=0, saved=408]11:22:24 INFO src.database.init_db: 払戻保存: race_id=202610010707, 12 件
+払戻取得:  46%|####5     | 415/910 [19:58<23:49,  2.89s/race, empty=6, err=0, saved=409]11:22:27 INFO src.database.init_db: 払戻保存: race_id=202610010708, 12 件
+払戻取得:  46%|####5     | 416/910 [20:01<23:31,  2.86s/race, empty=6, err=0, saved=410]11:22:30 INFO src.database.init_db: 払戻保存: race_id=202610010709, 12 件
+払戻取得:  46%|####5     | 417/910 [20:04<23:31,  2.86s/race, empty=6, err=0, saved=411]11:22:33 INFO src.database.init_db: 払戻保存: race_id=202610010710, 12 件
+払戻取得:  46%|####5     | 418/910 [20:07<23:13,  2.83s/race, empty=6, err=0, saved=412]11:22:36 INFO src.database.init_db: 払戻保存: race_id=202610010711, 12 件
+払戻取得:  46%|####6     | 419/910 [20:10<23:05,  2.82s/race, empty=6, err=0, saved=413]11:22:39 INFO src.database.init_db: 払戻保存: race_id=202610010712, 12 件
+払戻取得:  46%|####6     | 420/910 [20:13<23:27,  2.87s/race, empty=6, err=0, saved=414]11:22:42 INFO src.database.init_db: 払戻保存: race_id=202605010601, 12 件
+払戻取得:  46%|####6     | 421/910 [20:15<23:30,  2.88s/race, empty=6, err=0, saved=415]11:22:45 INFO src.database.init_db: 払戻保存: race_id=202605010602, 12 件
+払戻取得:  46%|####6     | 422/910 [20:18<23:32,  2.89s/race, empty=6, err=0, saved=416]11:22:47 INFO src.database.init_db: 払戻保存: race_id=202605010603, 12 件
+払戻取得:  46%|####6     | 423/910 [20:21<23:21,  2.88s/race, empty=6, err=0, saved=417]11:22:50 INFO src.database.init_db: 払戻保存: race_id=202605010604, 12 件
+払戻取得:  47%|####6     | 424/910 [20:24<23:46,  2.94s/race, empty=6, err=0, saved=418]11:22:53 INFO src.database.init_db: 払戻保存: race_id=202605010605, 12 件
+払戻取得:  47%|####6     | 425/910 [20:27<23:23,  2.89s/race, empty=6, err=0, saved=419]11:22:56 INFO src.database.init_db: 払戻保存: race_id=202605010606, 12 件
+払戻取得:  47%|####6     | 426/910 [20:30<23:18,  2.89s/race, empty=6, err=0, saved=420]11:22:59 INFO src.database.init_db: 払戻保存: race_id=202605010607, 12 件
+払戻取得:  47%|####6     | 427/910 [20:33<23:16,  2.89s/race, empty=6, err=0, saved=421]11:23:02 INFO src.database.init_db: 払戻保存: race_id=202605010608, 12 件
+払戻取得:  47%|####7     | 428/910 [20:36<22:59,  2.86s/race, empty=6, err=0, saved=422]11:23:05 INFO src.database.init_db: 払戻保存: race_id=202605010609, 12 件
+払戻取得:  47%|####7     | 429/910 [20:39<23:18,  2.91s/race, empty=6, err=0, saved=423]11:23:08 INFO src.database.init_db: 払戻保存: race_id=202605010610, 12 件
+払戻取得:  47%|####7     | 430/910 [20:42<23:23,  2.92s/race, empty=6, err=0, saved=424]11:23:11 INFO src.database.init_db: 払戻保存: race_id=202605010611, 12 件
+払戻取得:  47%|####7     | 431/910 [20:45<23:19,  2.92s/race, empty=6, err=0, saved=425]11:23:14 INFO src.database.init_db: 払戻保存: race_id=202605010612, 12 件
+払戻取得:  47%|####7     | 432/910 [20:47<23:03,  2.89s/race, empty=6, err=0, saved=426]11:23:16 INFO src.database.init_db: 払戻保存: race_id=202608020601, 12 件
+払戻取得:  48%|####7     | 433/910 [20:50<22:57,  2.89s/race, empty=6, err=0, saved=427]11:23:19 INFO src.database.init_db: 払戻保存: race_id=202608020602, 12 件
+払戻取得:  48%|####7     | 434/910 [20:53<22:56,  2.89s/race, empty=6, err=0, saved=428]11:23:22 INFO src.database.init_db: 払戻保存: race_id=202608020603, 12 件
+払戻取得:  48%|####7     | 435/910 [20:56<22:55,  2.89s/race, empty=6, err=0, saved=429]11:23:25 INFO src.database.init_db: 払戻保存: race_id=202608020604, 12 件
+払戻取得:  48%|####7     | 436/910 [20:59<22:39,  2.87s/race, empty=6, err=0, saved=430]11:23:28 INFO src.database.init_db: 払戻保存: race_id=202608020605, 12 件
+払戻取得:  48%|####8     | 437/910 [21:02<23:25,  2.97s/race, empty=6, err=0, saved=431]11:23:31 INFO src.database.init_db: 払戻保存: race_id=202608020606, 12 件
+払戻取得:  48%|####8     | 438/910 [21:05<23:19,  2.97s/race, empty=6, err=0, saved=432]11:23:34 INFO src.database.init_db: 払戻保存: race_id=202608020607, 12 件
+払戻取得:  48%|####8     | 439/910 [21:08<23:14,  2.96s/race, empty=6, err=0, saved=433]11:23:37 INFO src.database.init_db: 払戻保存: race_id=202608020608, 12 件
+払戻取得:  48%|####8     | 440/910 [21:11<23:33,  3.01s/race, empty=6, err=0, saved=434]11:23:40 INFO src.database.init_db: 払戻保存: race_id=202608020609, 12 件
+払戻取得:  48%|####8     | 441/910 [21:14<23:15,  2.97s/race, empty=6, err=0, saved=435]11:23:43 INFO src.database.init_db: 払戻保存: race_id=202608020610, 12 件
+払戻取得:  49%|####8     | 442/910 [21:17<22:52,  2.93s/race, empty=6, err=0, saved=436]11:23:46 INFO src.database.init_db: 払戻保存: race_id=202608020611, 12 件
+払戻取得:  49%|####8     | 443/910 [21:20<22:42,  2.92s/race, empty=6, err=0, saved=437]11:23:49 INFO src.database.init_db: 払戻保存: race_id=202608020612, 12 件
+払戻取得:  49%|####8     | 444/910 [21:23<22:29,  2.90s/race, empty=6, err=0, saved=438]11:23:52 INFO src.database.init_db: 払戻保存: race_id=202610010801, 12 件
+払戻取得:  49%|####8     | 445/910 [21:25<22:20,  2.88s/race, empty=6, err=0, saved=439]11:23:54 INFO src.database.init_db: 払戻保存: race_id=202610010802, 12 件
+払戻取得:  49%|####9     | 446/910 [21:28<22:23,  2.90s/race, empty=6, err=0, saved=440]11:23:57 INFO src.database.init_db: 払戻保存: race_id=202610010803, 12 件
+払戻取得:  49%|####9     | 447/910 [21:31<22:17,  2.89s/race, empty=6, err=0, saved=441]11:24:00 INFO src.database.init_db: 払戻保存: race_id=202610010804, 12 件
+払戻取得:  49%|####9     | 448/910 [21:34<22:11,  2.88s/race, empty=6, err=0, saved=442]11:24:03 INFO src.database.init_db: 払戻保存: race_id=202610010805, 12 件
+払戻取得:  49%|####9     | 449/910 [21:37<22:09,  2.88s/race, empty=6, err=0, saved=443]11:24:06 INFO src.database.init_db: 払戻保存: race_id=202610010806, 12 件
+払戻取得:  49%|####9     | 450/910 [21:40<22:16,  2.90s/race, empty=6, err=0, saved=444]11:24:09 INFO src.database.init_db: 払戻保存: race_id=202610010807, 12 件
+払戻取得:  50%|####9     | 451/910 [21:43<22:12,  2.90s/race, empty=6, err=0, saved=445]11:24:12 INFO src.database.init_db: 払戻保存: race_id=202610010808, 12 件
+払戻取得:  50%|####9     | 452/910 [21:46<22:09,  2.90s/race, empty=6, err=0, saved=446]11:24:15 INFO src.database.init_db: 払戻保存: race_id=202610010809, 10 件
+払戻取得:  50%|####9     | 453/910 [21:48<21:47,  2.86s/race, empty=6, err=0, saved=447]11:24:17 INFO src.database.init_db: 払戻保存: race_id=202610010810, 12 件
+払戻取得:  50%|####9     | 454/910 [21:51<21:42,  2.86s/race, empty=6, err=0, saved=448]11:24:20 INFO src.database.init_db: 払戻保存: race_id=202610010811, 12 件
+払戻取得:  50%|#####     | 455/910 [21:54<21:26,  2.83s/race, empty=6, err=0, saved=449]11:24:23 INFO src.database.init_db: 払戻保存: race_id=202610010812, 12 件
+払戻取得:  50%|#####     | 456/910 [21:57<21:24,  2.83s/race, empty=6, err=0, saved=450]11:24:26 INFO src.database.init_db: 払戻保存: race_id=202605010701, 12 件
+払戻取得:  50%|#####     | 457/910 [22:00<21:43,  2.88s/race, empty=6, err=0, saved=451]11:24:29 INFO src.database.init_db: 払戻保存: race_id=202605010702, 12 件
+払戻取得:  50%|#####     | 458/910 [22:03<21:43,  2.88s/race, empty=6, err=0, saved=452]11:24:32 INFO src.database.init_db: 払戻保存: race_id=202605010703, 12 件
+払戻取得:  50%|#####     | 459/910 [22:06<21:41,  2.89s/race, empty=6, err=0, saved=453]11:24:35 INFO src.database.init_db: 払戻保存: race_id=202605010704, 12 件
+払戻取得:  51%|#####     | 460/910 [22:09<22:29,  3.00s/race, empty=6, err=0, saved=454]11:24:38 INFO src.database.init_db: 払戻保存: race_id=202605010705, 12 件
+払戻取得:  51%|#####     | 461/910 [22:12<22:24,  2.99s/race, empty=6, err=0, saved=455]11:24:41 INFO src.database.init_db: 払戻保存: race_id=202605010706, 12 件
+払戻取得:  51%|#####     | 462/910 [22:15<22:17,  2.98s/race, empty=6, err=0, saved=456]11:24:44 INFO src.database.init_db: 払戻保存: race_id=202605010707, 12 件
+払戻取得:  51%|#####     | 463/910 [22:18<21:58,  2.95s/race, empty=6, err=0, saved=457]11:24:47 INFO src.database.init_db: 払戻保存: race_id=202605010708, 12 件
+払戻取得:  51%|#####     | 464/910 [22:21<21:48,  2.93s/race, empty=6, err=0, saved=458]11:24:50 INFO src.database.init_db: 払戻保存: race_id=202605010709, 10 件
+払戻取得:  51%|#####1    | 465/910 [22:24<21:55,  2.96s/race, empty=6, err=0, saved=459]11:24:53 INFO src.database.init_db: 払戻保存: race_id=202605010710, 12 件
+払戻取得:  51%|#####1    | 466/910 [22:27<21:55,  2.96s/race, empty=6, err=0, saved=460]11:24:56 INFO src.database.init_db: 払戻保存: race_id=202605010711, 12 件
+払戻取得:  51%|#####1    | 467/910 [22:30<22:06,  2.99s/race, empty=6, err=0, saved=461]11:24:59 INFO src.database.init_db: 払戻保存: race_id=202605010712, 12 件
+払戻取得:  51%|#####1    | 468/910 [22:33<21:50,  2.96s/race, empty=6, err=0, saved=462]11:25:02 INFO src.database.init_db: 払戻保存: race_id=202609010101, 12 件
+払戻取得:  52%|#####1    | 469/910 [22:36<22:29,  3.06s/race, empty=6, err=0, saved=463]11:25:05 INFO src.database.init_db: 払戻保存: race_id=202609010102, 12 件
+払戻取得:  52%|#####1    | 470/910 [22:39<22:11,  3.03s/race, empty=6, err=0, saved=464]11:25:08 INFO src.database.init_db: 払戻保存: race_id=202609010103, 12 件
+払戻取得:  52%|#####1    | 471/910 [22:42<22:07,  3.02s/race, empty=6, err=0, saved=465]11:25:11 INFO src.database.init_db: 払戻保存: race_id=202609010104, 12 件
+払戻取得:  52%|#####1    | 472/910 [22:45<21:49,  2.99s/race, empty=6, err=0, saved=466]11:25:14 INFO src.database.init_db: 払戻保存: race_id=202609010105, 12 件
+払戻取得:  52%|#####1    | 473/910 [22:48<21:41,  2.98s/race, empty=6, err=0, saved=467]11:25:17 INFO src.database.init_db: 払戻保存: race_id=202609010106, 12 件
+払戻取得:  52%|#####2    | 474/910 [22:51<21:22,  2.94s/race, empty=6, err=0, saved=468]11:25:20 INFO src.database.init_db: 払戻保存: race_id=202609010107, 12 件
+払戻取得:  52%|#####2    | 475/910 [22:54<21:39,  2.99s/race, empty=6, err=0, saved=469]11:25:23 INFO src.database.init_db: 払戻保存: race_id=202609010108, 10 件
+払戻取得:  52%|#####2    | 476/910 [22:57<21:44,  3.01s/race, empty=6, err=0, saved=470]11:25:26 INFO src.database.init_db: 払戻保存: race_id=202609010109, 12 件
+払戻取得:  52%|#####2    | 477/910 [23:00<21:23,  2.96s/race, empty=6, err=0, saved=471]11:25:29 INFO src.database.init_db: 払戻保存: race_id=202609010110, 12 件
+払戻取得:  53%|#####2    | 478/910 [23:03<21:17,  2.96s/race, empty=6, err=0, saved=472]11:25:32 INFO src.database.init_db: 払戻保存: race_id=202609010111, 12 件
+払戻取得:  53%|#####2    | 479/910 [23:05<20:58,  2.92s/race, empty=6, err=0, saved=473]11:25:34 INFO src.database.init_db: 払戻保存: race_id=202609010112, 12 件
+払戻取得:  53%|#####2    | 480/910 [23:08<20:53,  2.92s/race, empty=6, err=0, saved=474]11:25:37 INFO src.database.init_db: 払戻保存: race_id=202610010901, 12 件
+払戻取得:  53%|#####2    | 481/910 [23:11<20:58,  2.93s/race, empty=6, err=0, saved=475]11:25:40 INFO src.database.init_db: 払戻保存: race_id=202610010902, 12 件
+払戻取得:  53%|#####2    | 482/910 [23:14<21:11,  2.97s/race, empty=6, err=0, saved=476]11:25:43 INFO src.database.init_db: 払戻保存: race_id=202610010903, 12 件
+払戻取得:  53%|#####3    | 483/910 [23:17<21:01,  2.95s/race, empty=6, err=0, saved=477]11:25:46 INFO src.database.init_db: 払戻保存: race_id=202610010904, 12 件
+払戻取得:  53%|#####3    | 484/910 [23:20<20:46,  2.93s/race, empty=6, err=0, saved=478]11:25:49 INFO src.database.init_db: 払戻保存: race_id=202610010905, 12 件
+払戻取得:  53%|#####3    | 485/910 [23:23<20:29,  2.89s/race, empty=6, err=0, saved=479]11:25:52 INFO src.database.init_db: 払戻保存: race_id=202610010906, 12 件
+払戻取得:  53%|#####3    | 486/910 [23:26<20:14,  2.86s/race, empty=6, err=0, saved=480]11:25:55 INFO src.database.init_db: 払戻保存: race_id=202610010907, 12 件
+払戻取得:  54%|#####3    | 487/910 [23:28<20:05,  2.85s/race, empty=6, err=0, saved=481]11:25:57 INFO src.database.init_db: 払戻保存: race_id=202610010908, 12 件
+払戻取得:  54%|#####3    | 488/910 [23:31<19:58,  2.84s/race, empty=6, err=0, saved=482]11:26:00 INFO src.database.init_db: 払戻保存: race_id=202610010909, 12 件
+払戻取得:  54%|#####3    | 489/910 [23:34<20:17,  2.89s/race, empty=6, err=0, saved=483]11:26:03 INFO src.database.init_db: 払戻保存: race_id=202610010910, 12 件
+払戻取得:  54%|#####3    | 490/910 [23:37<20:25,  2.92s/race, empty=6, err=0, saved=484]11:26:06 INFO src.database.init_db: 払戻保存: race_id=202610010911, 12 件
+払戻取得:  54%|#####3    | 491/910 [23:40<20:30,  2.94s/race, empty=6, err=0, saved=485]11:26:09 INFO src.database.init_db: 払戻保存: race_id=202610010912, 12 件
+払戻取得:  54%|#####4    | 492/910 [23:43<20:31,  2.95s/race, empty=6, err=0, saved=486]11:26:12 INFO src.database.init_db: 払戻保存: race_id=202605010801, 12 件
+払戻取得:  54%|#####4    | 493/910 [23:46<20:23,  2.93s/race, empty=6, err=0, saved=487]11:26:15 INFO src.database.init_db: 払戻保存: race_id=202605010802, 12 件
+払戻取得:  54%|#####4    | 494/910 [23:49<20:29,  2.96s/race, empty=6, err=0, saved=488]11:26:18 INFO src.database.init_db: 払戻保存: race_id=202605010803, 12 件
+払戻取得:  54%|#####4    | 495/910 [23:52<20:20,  2.94s/race, empty=6, err=0, saved=489]11:26:21 INFO src.database.init_db: 払戻保存: race_id=202605010804, 12 件
+払戻取得:  55%|#####4    | 496/910 [23:55<20:09,  2.92s/race, empty=6, err=0, saved=490]11:26:24 INFO src.database.init_db: 払戻保存: race_id=202605010805, 12 件
+払戻取得:  55%|#####4    | 497/910 [23:58<20:08,  2.93s/race, empty=6, err=0, saved=491]11:26:27 INFO src.database.init_db: 払戻保存: race_id=202605010806, 12 件
+払戻取得:  55%|#####4    | 498/910 [24:01<20:17,  2.96s/race, empty=6, err=0, saved=492]11:26:30 INFO src.database.init_db: 払戻保存: race_id=202605010807, 12 件
+払戻取得:  55%|#####4    | 499/910 [24:04<20:13,  2.95s/race, empty=6, err=0, saved=493]11:26:33 INFO src.database.init_db: 払戻保存: race_id=202605010808, 12 件
+払戻取得:  55%|#####4    | 500/910 [24:07<20:06,  2.94s/race, empty=6, err=0, saved=494]11:26:36 INFO src.database.init_db: 払戻保存: race_id=202605010809, 12 件
+払戻取得:  55%|#####5    | 501/910 [24:10<20:01,  2.94s/race, empty=6, err=0, saved=495]11:26:39 INFO src.database.init_db: 払戻保存: race_id=202605010810, 12 件
+払戻取得:  55%|#####5    | 502/910 [24:13<19:59,  2.94s/race, empty=6, err=0, saved=496]11:26:42 INFO src.database.init_db: 払戻保存: race_id=202605010812, 12 件
+払戻取得:  55%|#####5    | 503/910 [24:16<19:55,  2.94s/race, empty=6, err=0, saved=497]11:26:45 INFO src.database.init_db: 払戻保存: race_id=202609010201, 12 件
+払戻取得:  55%|#####5    | 504/910 [24:18<19:51,  2.94s/race, empty=6, err=0, saved=498]11:26:48 INFO src.database.init_db: 払戻保存: race_id=202609010202, 12 件
+払戻取得:  55%|#####5    | 505/910 [24:21<19:48,  2.93s/race, empty=6, err=0, saved=499]11:26:51 INFO src.database.init_db: 払戻保存: race_id=202609010203, 12 件
+払戻取得:  56%|#####5    | 506/910 [24:24<19:50,  2.95s/race, empty=6, err=0, saved=500]11:26:53 INFO src.database.init_db: 払戻保存: race_id=202609010204, 12 件
+払戻取得:  56%|#####5    | 507/910 [24:27<19:32,  2.91s/race, empty=6, err=0, saved=501]11:26:56 INFO src.database.init_db: 払戻保存: race_id=202609010205, 12 件
+払戻取得:  56%|#####5    | 508/910 [24:30<19:38,  2.93s/race, empty=6, err=0, saved=502]11:26:59 INFO src.database.init_db: 払戻保存: race_id=202609010206, 12 件
+払戻取得:  56%|#####5    | 509/910 [24:33<19:25,  2.91s/race, empty=6, err=0, saved=503]11:27:02 INFO src.database.init_db: 払戻保存: race_id=202609010207, 12 件
+払戻取得:  56%|#####6    | 510/910 [24:36<19:19,  2.90s/race, empty=6, err=0, saved=504]11:27:05 INFO src.database.init_db: 払戻保存: race_id=202609010208, 12 件
+払戻取得:  56%|#####6    | 511/910 [24:39<19:29,  2.93s/race, empty=6, err=0, saved=505]11:27:08 INFO src.database.init_db: 払戻保存: race_id=202609010209, 12 件
+払戻取得:  56%|#####6    | 512/910 [24:42<19:24,  2.93s/race, empty=6, err=0, saved=506]11:27:11 INFO src.database.init_db: 払戻保存: race_id=202609010210, 11 件
+払戻取得:  56%|#####6    | 513/910 [24:45<19:24,  2.93s/race, empty=6, err=0, saved=507]11:27:14 INFO src.database.init_db: 払戻保存: race_id=202609010211, 12 件
+払戻取得:  56%|#####6    | 514/910 [24:48<19:23,  2.94s/race, empty=6, err=0, saved=508]11:27:17 INFO src.database.init_db: 払戻保存: race_id=202609010212, 12 件
+払戻取得:  57%|#####6    | 515/910 [24:51<19:36,  2.98s/race, empty=6, err=0, saved=509]11:27:20 INFO src.database.init_db: 払戻保存: race_id=202610011001, 12 件
+払戻取得:  57%|#####6    | 516/910 [24:54<19:26,  2.96s/race, empty=6, err=0, saved=510]11:27:23 INFO src.database.init_db: 払戻保存: race_id=202610011002, 12 件
+払戻取得:  57%|#####6    | 517/910 [24:57<19:27,  2.97s/race, empty=6, err=0, saved=511]11:27:26 INFO src.database.init_db: 払戻保存: race_id=202610011003, 12 件
+払戻取得:  57%|#####6    | 518/910 [25:00<19:30,  2.99s/race, empty=6, err=0, saved=512]11:27:29 INFO src.database.init_db: 払戻保存: race_id=202610011004, 12 件
+払戻取得:  57%|#####7    | 519/910 [25:03<19:18,  2.96s/race, empty=6, err=0, saved=513]11:27:32 INFO src.database.init_db: 払戻保存: race_id=202610011005, 12 件
+払戻取得:  57%|#####7    | 520/910 [25:06<19:32,  3.01s/race, empty=6, err=0, saved=514]11:27:35 INFO src.database.init_db: 払戻保存: race_id=202610011006, 12 件
+払戻取得:  57%|#####7    | 521/910 [25:09<19:11,  2.96s/race, empty=6, err=0, saved=515]11:27:38 INFO src.database.init_db: 払戻保存: race_id=202610011007, 12 件
+払戻取得:  57%|#####7    | 522/910 [25:12<19:16,  2.98s/race, empty=6, err=0, saved=516]11:27:41 INFO src.database.init_db: 払戻保存: race_id=202610011008, 12 件
+払戻取得:  57%|#####7    | 523/910 [25:15<19:19,  3.00s/race, empty=6, err=0, saved=517]11:27:44 INFO src.database.init_db: 払戻保存: race_id=202610011009, 12 件
+払戻取得:  58%|#####7    | 524/910 [25:18<19:10,  2.98s/race, empty=6, err=0, saved=518]11:27:47 INFO src.database.init_db: 払戻保存: race_id=202610011010, 12 件
+払戻取得:  58%|#####7    | 525/910 [25:21<19:17,  3.01s/race, empty=6, err=0, saved=519]11:27:50 INFO src.database.init_db: 払戻保存: race_id=202610011011, 12 件
+払戻取得:  58%|#####7    | 526/910 [25:24<19:11,  3.00s/race, empty=6, err=0, saved=520]11:27:53 INFO src.database.init_db: 払戻保存: race_id=202610011012, 12 件
+払戻取得:  58%|#####7    | 527/910 [25:26<18:47,  2.94s/race, empty=6, err=0, saved=521]11:27:56 INFO src.database.init_db: 払戻保存: race_id=202606020101, 12 件
+払戻取得:  58%|#####8    | 528/910 [25:29<18:43,  2.94s/race, empty=6, err=0, saved=522]11:27:59 INFO src.database.init_db: 払戻保存: race_id=202606020102, 12 件
+払戻取得:  58%|#####8    | 529/910 [25:32<18:41,  2.94s/race, empty=6, err=0, saved=523]11:28:02 INFO src.database.init_db: 払戻保存: race_id=202606020103, 12 件
+払戻取得:  58%|#####8    | 530/910 [25:35<18:49,  2.97s/race, empty=6, err=0, saved=524]11:28:05 INFO src.database.init_db: 払戻保存: race_id=202606020104, 12 件
+払戻取得:  58%|#####8    | 531/910 [25:38<18:52,  2.99s/race, empty=6, err=0, saved=525]11:28:08 INFO src.database.init_db: 払戻保存: race_id=202606020105, 12 件
+払戻取得:  58%|#####8    | 532/910 [25:42<19:00,  3.02s/race, empty=6, err=0, saved=526]11:28:11 INFO src.database.init_db: 払戻保存: race_id=202606020106, 12 件
+払戻取得:  59%|#####8    | 533/910 [25:45<19:09,  3.05s/race, empty=6, err=0, saved=527]11:28:14 INFO src.database.init_db: 払戻保存: race_id=202606020107, 12 件
+払戻取得:  59%|#####8    | 534/910 [25:48<18:54,  3.02s/race, empty=6, err=0, saved=528]11:28:17 INFO src.database.init_db: 払戻保存: race_id=202606020108, 12 件
+払戻取得:  59%|#####8    | 535/910 [25:50<18:34,  2.97s/race, empty=6, err=0, saved=529]11:28:20 INFO src.database.init_db: 払戻保存: race_id=202606020109, 11 件
+払戻取得:  59%|#####8    | 536/910 [25:53<18:31,  2.97s/race, empty=6, err=0, saved=530]11:28:22 INFO src.database.init_db: 払戻保存: race_id=202606020110, 12 件
+払戻取得:  59%|#####9    | 537/910 [25:56<18:07,  2.92s/race, empty=6, err=0, saved=531]11:28:25 INFO src.database.init_db: 払戻保存: race_id=202606020111, 12 件
+払戻取得:  59%|#####9    | 538/910 [25:59<17:52,  2.88s/race, empty=6, err=0, saved=532]11:28:28 INFO src.database.init_db: 払戻保存: race_id=202606020112, 12 件
+払戻取得:  59%|#####9    | 539/910 [26:02<17:47,  2.88s/race, empty=6, err=0, saved=533]11:28:31 INFO src.database.init_db: 払戻保存: race_id=202609010301, 12 件
+払戻取得:  59%|#####9    | 540/910 [26:05<17:40,  2.87s/race, empty=6, err=0, saved=534]11:28:34 INFO src.database.init_db: 払戻保存: race_id=202609010302, 12 件
+払戻取得:  59%|#####9    | 541/910 [26:07<17:26,  2.84s/race, empty=6, err=0, saved=535]11:28:37 INFO src.database.init_db: 払戻保存: race_id=202609010303, 12 件
+払戻取得:  60%|#####9    | 542/910 [26:10<17:30,  2.85s/race, empty=6, err=0, saved=536]11:28:39 INFO src.database.init_db: 払戻保存: race_id=202609010304, 12 件
+払戻取得:  60%|#####9    | 543/910 [26:13<17:24,  2.85s/race, empty=6, err=0, saved=537]11:28:42 INFO src.database.init_db: 払戻保存: race_id=202609010305, 12 件
+払戻取得:  60%|#####9    | 544/910 [26:16<17:45,  2.91s/race, empty=6, err=0, saved=538]11:28:45 INFO src.database.init_db: 払戻保存: race_id=202609010306, 12 件
+払戻取得:  60%|#####9    | 545/910 [26:19<17:25,  2.86s/race, empty=6, err=0, saved=539]11:28:48 INFO src.database.init_db: 払戻保存: race_id=202609010307, 12 件
+払戻取得:  60%|######    | 546/910 [26:22<17:28,  2.88s/race, empty=6, err=0, saved=540]11:28:51 INFO src.database.init_db: 払戻保存: race_id=202609010308, 12 件
+払戻取得:  60%|######    | 547/910 [26:25<17:25,  2.88s/race, empty=6, err=0, saved=541]11:28:54 INFO src.database.init_db: 払戻保存: race_id=202609010309, 12 件
+払戻取得:  60%|######    | 548/910 [26:28<17:14,  2.86s/race, empty=6, err=0, saved=542]11:28:57 INFO src.database.init_db: 払戻保存: race_id=202609010310, 12 件
+払戻取得:  60%|######    | 549/910 [26:31<17:23,  2.89s/race, empty=6, err=0, saved=543]11:29:00 INFO src.database.init_db: 払戻保存: race_id=202609010311, 12 件
+払戻取得:  60%|######    | 550/910 [26:34<17:25,  2.90s/race, empty=6, err=0, saved=544]11:29:03 INFO src.database.init_db: 払戻保存: race_id=202609010312, 12 件
+払戻取得:  61%|######    | 551/910 [26:36<17:23,  2.91s/race, empty=6, err=0, saved=545]11:29:06 INFO src.database.init_db: 払戻保存: race_id=202610011101, 12 件
+払戻取得:  61%|######    | 552/910 [26:39<17:32,  2.94s/race, empty=6, err=0, saved=546]11:29:09 INFO src.database.init_db: 払戻保存: race_id=202610011102, 12 件
+払戻取得:  61%|######    | 553/910 [26:42<17:33,  2.95s/race, empty=6, err=0, saved=547]11:29:12 INFO src.database.init_db: 払戻保存: race_id=202610011103, 12 件
+払戻取得:  61%|######    | 554/910 [26:45<17:29,  2.95s/race, empty=6, err=0, saved=548]11:29:15 INFO src.database.init_db: 払戻保存: race_id=202610011104, 12 件
+払戻取得:  61%|######    | 555/910 [26:48<17:31,  2.96s/race, empty=6, err=0, saved=549]11:29:18 INFO src.database.init_db: 払戻保存: race_id=202610011105, 12 件
+払戻取得:  61%|######1   | 556/910 [26:51<17:41,  3.00s/race, empty=6, err=0, saved=550]11:29:21 INFO src.database.init_db: 払戻保存: race_id=202610011106, 12 件
+払戻取得:  61%|######1   | 557/910 [26:54<17:28,  2.97s/race, empty=6, err=0, saved=551]11:29:24 INFO src.database.init_db: 払戻保存: race_id=202610011107, 12 件
+払戻取得:  61%|######1   | 558/910 [26:57<17:23,  2.96s/race, empty=6, err=0, saved=552]11:29:27 INFO src.database.init_db: 払戻保存: race_id=202610011108, 12 件
+払戻取得:  61%|######1   | 559/910 [27:00<17:38,  3.02s/race, empty=6, err=0, saved=553]11:29:29 INFO src.database.init_db: 払戻保存: race_id=202610011109, 12 件
+払戻取得:  62%|######1   | 560/910 [27:03<17:16,  2.96s/race, empty=6, err=0, saved=554]11:29:32 INFO src.database.init_db: 払戻保存: race_id=202610011110, 12 件
+払戻取得:  62%|######1   | 561/910 [27:06<17:08,  2.95s/race, empty=6, err=0, saved=555]11:29:35 INFO src.database.init_db: 払戻保存: race_id=202610011111, 12 件
+払戻取得:  62%|######1   | 562/910 [27:09<16:59,  2.93s/race, empty=6, err=0, saved=556]11:29:38 INFO src.database.init_db: 払戻保存: race_id=202610011112, 12 件
+払戻取得:  62%|######1   | 563/910 [27:12<17:00,  2.94s/race, empty=6, err=0, saved=557]11:29:41 INFO src.database.init_db: 払戻保存: race_id=202606020201, 12 件
+払戻取得:  62%|######1   | 564/910 [27:15<16:57,  2.94s/race, empty=6, err=0, saved=558]11:29:44 INFO src.database.init_db: 払戻保存: race_id=202606020202, 12 件
+払戻取得:  62%|######2   | 565/910 [27:18<16:51,  2.93s/race, empty=6, err=0, saved=559]11:29:47 INFO src.database.init_db: 払戻保存: race_id=202606020203, 12 件
+払戻取得:  62%|######2   | 566/910 [27:21<16:41,  2.91s/race, empty=6, err=0, saved=560]11:29:50 INFO src.database.init_db: 払戻保存: race_id=202606020204, 11 件
+払戻取得:  62%|######2   | 567/910 [27:24<16:42,  2.92s/race, empty=6, err=0, saved=561]11:29:53 INFO src.database.init_db: 払戻保存: race_id=202606020205, 12 件
+払戻取得:  62%|######2   | 568/910 [27:27<16:41,  2.93s/race, empty=6, err=0, saved=562]11:29:56 INFO src.database.init_db: 払戻保存: race_id=202606020206, 12 件
+払戻取得:  63%|######2   | 569/910 [27:30<16:39,  2.93s/race, empty=6, err=0, saved=563]11:29:59 INFO src.database.init_db: 払戻保存: race_id=202606020207, 12 件
+払戻取得:  63%|######2   | 570/910 [27:32<16:27,  2.90s/race, empty=6, err=0, saved=564]11:30:02 INFO src.database.init_db: 払戻保存: race_id=202606020208, 12 件
+払戻取得:  63%|######2   | 571/910 [27:35<16:23,  2.90s/race, empty=6, err=0, saved=565]11:30:04 INFO src.database.init_db: 払戻保存: race_id=202606020209, 12 件
+払戻取得:  63%|######2   | 572/910 [27:38<16:27,  2.92s/race, empty=6, err=0, saved=566]11:30:07 INFO src.database.init_db: 払戻保存: race_id=202606020210, 12 件
+払戻取得:  63%|######2   | 573/910 [27:41<16:19,  2.91s/race, empty=6, err=0, saved=567]11:30:10 INFO src.database.init_db: 払戻保存: race_id=202606020211, 12 件
+払戻取得:  63%|######3   | 574/910 [27:44<16:22,  2.92s/race, empty=6, err=0, saved=568]11:30:13 INFO src.database.init_db: 払戻保存: race_id=202606020212, 12 件
+払戻取得:  63%|######3   | 575/910 [27:47<16:18,  2.92s/race, empty=6, err=0, saved=569]11:30:16 INFO src.database.init_db: 払戻保存: race_id=202609010401, 12 件
+払戻取得:  63%|######3   | 576/910 [27:50<16:01,  2.88s/race, empty=6, err=0, saved=570]11:30:19 INFO src.database.init_db: 払戻保存: race_id=202609010402, 12 件
+払戻取得:  63%|######3   | 577/910 [27:53<16:13,  2.92s/race, empty=6, err=0, saved=571]11:30:22 INFO src.database.init_db: 払戻保存: race_id=202609010403, 12 件
+払戻取得:  64%|######3   | 578/910 [27:56<16:10,  2.92s/race, empty=6, err=0, saved=572]11:30:25 INFO src.database.init_db: 払戻保存: race_id=202609010404, 11 件
+払戻取得:  64%|######3   | 579/910 [27:59<16:02,  2.91s/race, empty=6, err=0, saved=573]11:30:28 INFO src.database.init_db: 払戻保存: race_id=202609010405, 12 件
+払戻取得:  64%|######3   | 580/910 [28:02<16:08,  2.94s/race, empty=6, err=0, saved=574]11:30:31 INFO src.database.init_db: 払戻保存: race_id=202609010406, 11 件
+払戻取得:  64%|######3   | 581/910 [28:05<15:59,  2.92s/race, empty=6, err=0, saved=575]11:30:34 INFO src.database.init_db: 払戻保存: race_id=202609010407, 12 件
+払戻取得:  64%|######3   | 582/910 [28:07<15:54,  2.91s/race, empty=6, err=0, saved=576]11:30:36 INFO src.database.init_db: 払戻保存: race_id=202609010408, 12 件
+払戻取得:  64%|######4   | 583/910 [28:10<15:46,  2.90s/race, empty=6, err=0, saved=577]11:30:39 INFO src.database.init_db: 払戻保存: race_id=202609010409, 12 件
+払戻取得:  64%|######4   | 584/910 [28:13<15:42,  2.89s/race, empty=6, err=0, saved=578]11:30:42 INFO src.database.init_db: 払戻保存: race_id=202609010410, 12 件
+払戻取得:  64%|######4   | 585/910 [28:16<15:49,  2.92s/race, empty=6, err=0, saved=579]11:30:45 INFO src.database.init_db: 払戻保存: race_id=202609010411, 12 件
+払戻取得:  64%|######4   | 586/910 [28:19<15:43,  2.91s/race, empty=6, err=0, saved=580]11:30:48 INFO src.database.init_db: 払戻保存: race_id=202609010412, 12 件
+払戻取得:  65%|######4   | 587/910 [28:22<15:45,  2.93s/race, empty=6, err=0, saved=581]11:30:51 INFO src.database.init_db: 払戻保存: race_id=202610011201, 12 件
+払戻取得:  65%|######4   | 588/910 [28:25<15:34,  2.90s/race, empty=6, err=0, saved=582]11:30:54 INFO src.database.init_db: 払戻保存: race_id=202610011202, 12 件
+払戻取得:  65%|######4   | 589/910 [28:28<15:32,  2.91s/race, empty=6, err=0, saved=583]11:30:57 INFO src.database.init_db: 払戻保存: race_id=202610011203, 12 件
+払戻取得:  65%|######4   | 590/910 [28:31<15:23,  2.89s/race, empty=6, err=0, saved=584]11:31:00 INFO src.database.init_db: 払戻保存: race_id=202610011204, 12 件
+払戻取得:  65%|######4   | 591/910 [28:33<15:17,  2.88s/race, empty=6, err=0, saved=585]11:31:03 INFO src.database.init_db: 払戻保存: race_id=202610011205, 12 件
+払戻取得:  65%|######5   | 592/910 [28:36<15:25,  2.91s/race, empty=6, err=0, saved=586]11:31:06 INFO src.database.init_db: 払戻保存: race_id=202610011206, 12 件
+払戻取得:  65%|######5   | 593/910 [28:40<15:48,  2.99s/race, empty=6, err=0, saved=587]11:31:09 INFO src.database.init_db: 払戻保存: race_id=202610011207, 12 件
+払戻取得:  65%|######5   | 594/910 [28:43<15:42,  2.98s/race, empty=6, err=0, saved=588]11:31:12 INFO src.database.init_db: 払戻保存: race_id=202610011208, 12 件
+払戻取得:  65%|######5   | 595/910 [28:46<15:37,  2.97s/race, empty=6, err=0, saved=589]11:31:15 INFO src.database.init_db: 払戻保存: race_id=202610011209, 12 件
+払戻取得:  65%|######5   | 596/910 [28:48<15:26,  2.95s/race, empty=6, err=0, saved=590]11:31:18 INFO src.database.init_db: 払戻保存: race_id=202610011210, 12 件
+払戻取得:  66%|######5   | 597/910 [28:51<15:24,  2.95s/race, empty=6, err=0, saved=591]11:31:21 INFO src.database.init_db: 払戻保存: race_id=202610011211, 12 件
+払戻取得:  66%|######5   | 598/910 [28:54<15:19,  2.95s/race, empty=6, err=0, saved=592]11:31:23 INFO src.database.init_db: 払戻保存: race_id=202610011212, 12 件
+払戻取得:  66%|######5   | 599/910 [28:57<15:15,  2.94s/race, empty=6, err=0, saved=593]11:31:27 INFO src.database.init_db: 払戻保存: race_id=202606020301, 12 件
+払戻取得:  66%|######5   | 600/910 [29:00<15:22,  2.98s/race, empty=6, err=0, saved=594]11:31:29 INFO src.database.init_db: 払戻保存: race_id=202606020302, 12 件
+払戻取得:  66%|######6   | 601/910 [29:03<15:15,  2.96s/race, empty=6, err=0, saved=595]11:31:32 INFO src.database.init_db: 払戻保存: race_id=202606020303, 12 件
+払戻取得:  66%|######6   | 602/910 [29:06<15:09,  2.95s/race, empty=6, err=0, saved=596]11:31:35 INFO src.database.init_db: 払戻保存: race_id=202606020304, 12 件
+払戻取得:  66%|######6   | 603/910 [29:09<15:09,  2.96s/race, empty=6, err=0, saved=597]11:31:38 INFO src.database.init_db: 払戻保存: race_id=202606020305, 12 件
+払戻取得:  66%|######6   | 604/910 [29:12<15:17,  3.00s/race, empty=6, err=0, saved=598]11:31:41 INFO src.database.init_db: 払戻保存: race_id=202606020306, 12 件
+払戻取得:  66%|######6   | 605/910 [29:15<15:05,  2.97s/race, empty=6, err=0, saved=599]11:31:44 INFO src.database.init_db: 払戻保存: race_id=202606020307, 12 件
+払戻取得:  67%|######6   | 606/910 [29:18<14:54,  2.94s/race, empty=6, err=0, saved=600]11:31:47 INFO src.database.init_db: 払戻保存: race_id=202606020308, 12 件
+払戻取得:  67%|######6   | 607/910 [29:21<15:00,  2.97s/race, empty=6, err=0, saved=601]11:31:50 INFO src.database.init_db: 払戻保存: race_id=202606020309, 12 件
+払戻取得:  67%|######6   | 608/910 [29:24<14:59,  2.98s/race, empty=6, err=0, saved=602]11:31:53 INFO src.database.init_db: 払戻保存: race_id=202606020310, 12 件
+払戻取得:  67%|######6   | 609/910 [29:27<14:44,  2.94s/race, empty=6, err=0, saved=603]11:31:56 INFO src.database.init_db: 払戻保存: race_id=202606020311, 12 件
+払戻取得:  67%|######7   | 610/910 [29:30<14:45,  2.95s/race, empty=6, err=0, saved=604]11:31:59 INFO src.database.init_db: 払戻保存: race_id=202606020312, 12 件
+払戻取得:  67%|######7   | 611/910 [29:33<14:37,  2.93s/race, empty=6, err=0, saved=605]11:32:02 INFO src.database.init_db: 払戻保存: race_id=202609010501, 12 件
+払戻取得:  67%|######7   | 612/910 [29:36<14:43,  2.96s/race, empty=6, err=0, saved=606]11:32:05 INFO src.database.init_db: 払戻保存: race_id=202609010502, 12 件
+払戻取得:  67%|######7   | 613/910 [29:39<14:58,  3.02s/race, empty=6, err=0, saved=607]11:32:08 INFO src.database.init_db: 払戻保存: race_id=202609010503, 12 件
+払戻取得:  67%|######7   | 614/910 [29:42<14:54,  3.02s/race, empty=6, err=0, saved=608]11:32:11 INFO src.database.init_db: 払戻保存: race_id=202609010504, 12 件
+払戻取得:  68%|######7   | 615/910 [29:45<14:34,  2.97s/race, empty=6, err=0, saved=609]11:32:14 INFO src.database.init_db: 払戻保存: race_id=202609010505, 12 件
+払戻取得:  68%|######7   | 616/910 [29:48<14:43,  3.01s/race, empty=6, err=0, saved=610]11:32:17 INFO src.database.init_db: 払戻保存: race_id=202609010506, 12 件
+払戻取得:  68%|######7   | 617/910 [29:51<14:20,  2.94s/race, empty=6, err=0, saved=611]11:32:20 INFO src.database.init_db: 払戻保存: race_id=202609010507, 11 件
+払戻取得:  68%|######7   | 618/910 [29:54<14:09,  2.91s/race, empty=6, err=0, saved=612]11:32:23 INFO src.database.init_db: 払戻保存: race_id=202609010508, 12 件
+払戻取得:  68%|######8   | 619/910 [29:56<13:55,  2.87s/race, empty=6, err=0, saved=613]11:32:25 INFO src.database.init_db: 払戻保存: race_id=202609010509, 12 件
+払戻取得:  68%|######8   | 620/910 [29:59<13:55,  2.88s/race, empty=6, err=0, saved=614]11:32:28 INFO src.database.init_db: 払戻保存: race_id=202609010510, 12 件
+払戻取得:  68%|######8   | 621/910 [30:02<13:55,  2.89s/race, empty=6, err=0, saved=615]11:32:31 INFO src.database.init_db: 払戻保存: race_id=202609010511, 12 件
+払戻取得:  68%|######8   | 622/910 [30:05<14:11,  2.96s/race, empty=6, err=0, saved=616]11:32:34 INFO src.database.init_db: 払戻保存: race_id=202609010512, 12 件
+払戻取得:  68%|######8   | 623/910 [30:08<14:05,  2.95s/race, empty=6, err=0, saved=617]11:32:37 INFO src.database.init_db: 払戻保存: race_id=202606020401, 12 件
+払戻取得:  69%|######8   | 624/910 [30:11<14:10,  2.97s/race, empty=6, err=0, saved=618]11:32:40 INFO src.database.init_db: 払戻保存: race_id=202606020402, 12 件
+払戻取得:  69%|######8   | 625/910 [30:14<13:53,  2.92s/race, empty=6, err=0, saved=619]11:32:43 INFO src.database.init_db: 払戻保存: race_id=202606020403, 12 件
+払戻取得:  69%|######8   | 626/910 [30:17<13:46,  2.91s/race, empty=6, err=0, saved=620]11:32:46 INFO src.database.init_db: 払戻保存: race_id=202606020404, 12 件
+払戻取得:  69%|######8   | 627/910 [30:20<13:49,  2.93s/race, empty=6, err=0, saved=621]11:32:49 INFO src.database.init_db: 払戻保存: race_id=202606020405, 12 件
+払戻取得:  69%|######9   | 628/910 [30:23<13:49,  2.94s/race, empty=6, err=0, saved=622]11:32:52 INFO src.database.init_db: 払戻保存: race_id=202606020406, 12 件
+払戻取得:  69%|######9   | 629/910 [30:26<13:45,  2.94s/race, empty=6, err=0, saved=623]11:32:55 INFO src.database.init_db: 払戻保存: race_id=202606020407, 12 件
+払戻取得:  69%|######9   | 630/910 [30:29<13:35,  2.91s/race, empty=6, err=0, saved=624]11:32:58 INFO src.database.init_db: 払戻保存: race_id=202606020408, 12 件
+払戻取得:  69%|######9   | 631/910 [30:32<13:33,  2.92s/race, empty=6, err=0, saved=625]11:33:01 INFO src.database.init_db: 払戻保存: race_id=202606020409, 12 件
+払戻取得:  69%|######9   | 632/910 [30:35<13:34,  2.93s/race, empty=6, err=0, saved=626]11:33:04 INFO src.database.init_db: 払戻保存: race_id=202606020410, 12 件
+払戻取得:  70%|######9   | 633/910 [30:38<13:40,  2.96s/race, empty=6, err=0, saved=627]11:33:07 INFO src.database.init_db: 払戻保存: race_id=202606020411, 12 件
+払戻取得:  70%|######9   | 634/910 [30:41<13:48,  3.00s/race, empty=6, err=0, saved=628]11:33:10 INFO src.database.init_db: 払戻保存: race_id=202606020412, 12 件
+払戻取得:  70%|######9   | 635/910 [30:44<14:17,  3.12s/race, empty=6, err=0, saved=629]11:33:13 INFO src.database.init_db: 払戻保存: race_id=202609010601, 12 件
+払戻取得:  70%|######9   | 636/910 [30:47<14:17,  3.13s/race, empty=6, err=0, saved=630]11:33:16 INFO src.database.init_db: 払戻保存: race_id=202609010602, 12 件
+払戻取得:  70%|#######   | 637/910 [30:50<13:59,  3.08s/race, empty=6, err=0, saved=631]11:33:19 INFO src.database.init_db: 払戻保存: race_id=202609010603, 12 件
+払戻取得:  70%|#######   | 638/910 [30:53<13:40,  3.02s/race, empty=6, err=0, saved=632]11:33:22 INFO src.database.init_db: 払戻保存: race_id=202609010604, 12 件
+払戻取得:  70%|#######   | 639/910 [30:56<13:39,  3.02s/race, empty=6, err=0, saved=633]11:33:25 INFO src.database.init_db: 払戻保存: race_id=202609010605, 12 件
+払戻取得:  70%|#######   | 640/910 [30:59<13:33,  3.01s/race, empty=6, err=0, saved=634]11:33:28 INFO src.database.init_db: 払戻保存: race_id=202609010606, 12 件
+払戻取得:  70%|#######   | 641/910 [31:02<13:42,  3.06s/race, empty=6, err=0, saved=635]11:33:31 INFO src.database.init_db: 払戻保存: race_id=202609010607, 12 件
+払戻取得:  71%|#######   | 642/910 [31:05<13:28,  3.02s/race, empty=6, err=0, saved=636]11:33:34 INFO src.database.init_db: 払戻保存: race_id=202609010608, 12 件
+払戻取得:  71%|#######   | 643/910 [31:08<13:26,  3.02s/race, empty=6, err=0, saved=637]11:33:37 INFO src.database.init_db: 払戻保存: race_id=202609010609, 10 件
+払戻取得:  71%|#######   | 644/910 [31:11<13:06,  2.96s/race, empty=6, err=0, saved=638]11:33:40 INFO src.database.init_db: 払戻保存: race_id=202609010610, 12 件
+払戻取得:  71%|#######   | 645/910 [31:14<12:58,  2.94s/race, empty=6, err=0, saved=639]11:33:43 INFO src.database.init_db: 払戻保存: race_id=202609010611, 12 件
+払戻取得:  71%|#######   | 646/910 [31:17<13:03,  2.97s/race, empty=6, err=0, saved=640]11:33:46 INFO src.database.init_db: 払戻保存: race_id=202609010612, 12 件
+払戻取得:  71%|#######1  | 647/910 [31:20<13:14,  3.02s/race, empty=6, err=0, saved=641]11:33:49 INFO src.database.init_db: 払戻保存: race_id=202606020501, 12 件
+払戻取得:  71%|#######1  | 648/910 [31:23<13:09,  3.01s/race, empty=6, err=0, saved=642]11:33:52 INFO src.database.init_db: 払戻保存: race_id=202606020502, 12 件
+払戻取得:  71%|#######1  | 649/910 [31:26<12:59,  2.99s/race, empty=6, err=0, saved=643]11:33:55 INFO src.database.init_db: 払戻保存: race_id=202606020503, 12 件
+払戻取得:  71%|#######1  | 650/910 [31:29<12:47,  2.95s/race, empty=6, err=0, saved=644]11:33:58 INFO src.database.init_db: 払戻保存: race_id=202606020504, 12 件
+払戻取得:  72%|#######1  | 651/910 [31:32<12:40,  2.94s/race, empty=6, err=0, saved=645]11:34:01 INFO src.database.init_db: 払戻保存: race_id=202606020505, 12 件
+払戻取得:  72%|#######1  | 652/910 [31:35<12:35,  2.93s/race, empty=6, err=0, saved=646]11:34:04 INFO src.database.init_db: 払戻保存: race_id=202606020506, 12 件
+払戻取得:  72%|#######1  | 653/910 [31:37<12:24,  2.90s/race, empty=6, err=0, saved=647]11:34:07 INFO src.database.init_db: 払戻保存: race_id=202606020507, 12 件
+払戻取得:  72%|#######1  | 654/910 [31:40<12:20,  2.89s/race, empty=6, err=0, saved=648]11:34:09 INFO src.database.init_db: 払戻保存: race_id=202606020508, 12 件
+払戻取得:  72%|#######1  | 655/910 [31:43<12:14,  2.88s/race, empty=6, err=0, saved=649]11:34:12 INFO src.database.init_db: 払戻保存: race_id=202606020509, 12 件
+払戻取得:  72%|#######2  | 656/910 [31:46<12:08,  2.87s/race, empty=6, err=0, saved=650]11:34:15 INFO src.database.init_db: 払戻保存: race_id=202606020510, 12 件
+払戻取得:  72%|#######2  | 657/910 [31:49<12:03,  2.86s/race, empty=6, err=0, saved=651]11:34:18 INFO src.database.init_db: 払戻保存: race_id=202606020511, 12 件
+払戻取得:  72%|#######2  | 658/910 [31:52<11:56,  2.84s/race, empty=6, err=0, saved=652]11:34:21 INFO src.database.init_db: 払戻保存: race_id=202606020512, 12 件
+払戻取得:  72%|#######2  | 659/910 [31:55<12:03,  2.88s/race, empty=6, err=0, saved=653]11:34:24 INFO src.database.init_db: 払戻保存: race_id=202607010101, 12 件
+払戻取得:  73%|#######2  | 660/910 [31:57<11:55,  2.86s/race, empty=6, err=0, saved=654]11:34:27 INFO src.database.init_db: 払戻保存: race_id=202607010102, 12 件
+払戻取得:  73%|#######2  | 661/910 [32:00<11:54,  2.87s/race, empty=6, err=0, saved=655]11:34:30 INFO src.database.init_db: 払戻保存: race_id=202607010103, 12 件
+払戻取得:  73%|#######2  | 662/910 [32:03<11:58,  2.90s/race, empty=6, err=0, saved=656]11:34:33 INFO src.database.init_db: 払戻保存: race_id=202607010104, 12 件
+払戻取得:  73%|#######2  | 663/910 [32:06<12:02,  2.93s/race, empty=6, err=0, saved=657]11:34:35 INFO src.database.init_db: 払戻保存: race_id=202607010105, 12 件
+払戻取得:  73%|#######2  | 664/910 [32:09<11:55,  2.91s/race, empty=6, err=0, saved=658]11:34:38 INFO src.database.init_db: 払戻保存: race_id=202607010106, 12 件
+払戻取得:  73%|#######3  | 665/910 [32:12<11:48,  2.89s/race, empty=6, err=0, saved=659]11:34:41 INFO src.database.init_db: 払戻保存: race_id=202607010107, 12 件
+払戻取得:  73%|#######3  | 666/910 [32:15<11:42,  2.88s/race, empty=6, err=0, saved=660]11:34:44 INFO src.database.init_db: 払戻保存: race_id=202607010108, 12 件
+払戻取得:  73%|#######3  | 667/910 [32:18<11:41,  2.89s/race, empty=6, err=0, saved=661]11:34:47 INFO src.database.init_db: 払戻保存: race_id=202607010109, 12 件
+払戻取得:  73%|#######3  | 668/910 [32:21<11:39,  2.89s/race, empty=6, err=0, saved=662]11:34:50 INFO src.database.init_db: 払戻保存: race_id=202607010110, 12 件
+払戻取得:  74%|#######3  | 669/910 [32:24<11:35,  2.89s/race, empty=6, err=0, saved=663]11:34:53 INFO src.database.init_db: 払戻保存: race_id=202607010111, 12 件
+払戻取得:  74%|#######3  | 670/910 [32:27<11:35,  2.90s/race, empty=6, err=0, saved=664]11:34:56 INFO src.database.init_db: 払戻保存: race_id=202607010112, 12 件
+払戻取得:  74%|#######3  | 671/910 [32:29<11:36,  2.91s/race, empty=6, err=0, saved=665]11:34:58 INFO src.database.init_db: 払戻保存: race_id=202609010701, 12 件
+払戻取得:  74%|#######3  | 672/910 [32:32<11:25,  2.88s/race, empty=6, err=0, saved=666]11:35:01 INFO src.database.init_db: 払戻保存: race_id=202609010702, 12 件
+払戻取得:  74%|#######3  | 673/910 [32:35<11:21,  2.88s/race, empty=6, err=0, saved=667]11:35:04 INFO src.database.init_db: 払戻保存: race_id=202609010703, 12 件
+払戻取得:  74%|#######4  | 674/910 [32:38<11:25,  2.90s/race, empty=6, err=0, saved=668]11:35:07 INFO src.database.init_db: 払戻保存: race_id=202609010704, 12 件
+払戻取得:  74%|#######4  | 675/910 [32:41<11:16,  2.88s/race, empty=6, err=0, saved=669]11:35:10 INFO src.database.init_db: 払戻保存: race_id=202609010705, 12 件
+払戻取得:  74%|#######4  | 676/910 [32:44<11:22,  2.92s/race, empty=6, err=0, saved=670]11:35:13 INFO src.database.init_db: 払戻保存: race_id=202609010706, 12 件
+払戻取得:  74%|#######4  | 677/910 [32:47<11:12,  2.89s/race, empty=6, err=0, saved=671]11:35:16 INFO src.database.init_db: 払戻保存: race_id=202609010707, 12 件
+払戻取得:  75%|#######4  | 678/910 [32:50<11:16,  2.92s/race, empty=6, err=0, saved=672]11:35:19 INFO src.database.init_db: 払戻保存: race_id=202609010708, 12 件
+払戻取得:  75%|#######4  | 679/910 [32:53<11:41,  3.04s/race, empty=6, err=0, saved=673]11:35:22 INFO src.database.init_db: 払戻保存: race_id=202609010709, 12 件
+払戻取得:  75%|#######4  | 680/910 [32:56<11:43,  3.06s/race, empty=6, err=0, saved=674]11:35:25 INFO src.database.init_db: 払戻保存: race_id=202609010710, 12 件
+払戻取得:  75%|#######4  | 681/910 [32:59<11:29,  3.01s/race, empty=6, err=0, saved=675]11:35:28 INFO src.database.init_db: 払戻保存: race_id=202609010711, 12 件
+払戻取得:  75%|#######4  | 682/910 [33:02<11:20,  2.98s/race, empty=6, err=0, saved=676]11:35:31 INFO src.database.init_db: 払戻保存: race_id=202609010712, 11 件
+払戻取得:  75%|#######5  | 683/910 [33:05<11:09,  2.95s/race, empty=6, err=0, saved=677]11:35:34 INFO src.database.init_db: 払戻保存: race_id=202606020601, 12 件
+払戻取得:  75%|#######5  | 684/910 [33:08<11:08,  2.96s/race, empty=6, err=0, saved=678]11:35:37 INFO src.database.init_db: 払戻保存: race_id=202606020602, 12 件
+払戻取得:  75%|#######5  | 685/910 [33:11<11:01,  2.94s/race, empty=6, err=0, saved=679]11:35:40 INFO src.database.init_db: 払戻保存: race_id=202606020603, 12 件
+払戻取得:  75%|#######5  | 686/910 [33:14<10:55,  2.93s/race, empty=6, err=0, saved=680]11:35:43 INFO src.database.init_db: 払戻保存: race_id=202606020604, 12 件
+払戻取得:  75%|#######5  | 687/910 [33:17<10:51,  2.92s/race, empty=6, err=0, saved=681]11:35:46 INFO src.database.init_db: 払戻保存: race_id=202606020605, 12 件
+払戻取得:  76%|#######5  | 688/910 [33:19<10:47,  2.92s/race, empty=6, err=0, saved=682]11:35:49 INFO src.database.init_db: 払戻保存: race_id=202606020606, 12 件
+払戻取得:  76%|#######5  | 689/910 [33:22<10:48,  2.93s/race, empty=6, err=0, saved=683]11:35:52 INFO src.database.init_db: 払戻保存: race_id=202606020607, 12 件
+払戻取得:  76%|#######5  | 690/910 [33:25<10:49,  2.95s/race, empty=6, err=0, saved=684]11:35:54 INFO src.database.init_db: 払戻保存: race_id=202606020608, 12 件
+払戻取得:  76%|#######5  | 691/910 [33:28<10:40,  2.92s/race, empty=6, err=0, saved=685]11:35:57 INFO src.database.init_db: 払戻保存: race_id=202606020609, 12 件
+払戻取得:  76%|#######6  | 692/910 [33:31<10:37,  2.92s/race, empty=6, err=0, saved=686]11:36:00 INFO src.database.init_db: 払戻保存: race_id=202606020610, 12 件
+払戻取得:  76%|#######6  | 693/910 [33:34<10:43,  2.96s/race, empty=6, err=0, saved=687]11:36:04 INFO src.database.init_db: 払戻保存: race_id=202606020611, 12 件
+払戻取得:  76%|#######6  | 694/910 [33:38<11:03,  3.07s/race, empty=6, err=0, saved=688]11:36:07 INFO src.database.init_db: 払戻保存: race_id=202606020612, 12 件
+払戻取得:  76%|#######6  | 695/910 [33:41<10:58,  3.06s/race, empty=6, err=0, saved=689]11:36:10 INFO src.database.init_db: 払戻保存: race_id=202607010201, 12 件
+払戻取得:  76%|#######6  | 696/910 [33:44<10:52,  3.05s/race, empty=6, err=0, saved=690]11:36:13 INFO src.database.init_db: 払戻保存: race_id=202607010202, 12 件
+払戻取得:  77%|#######6  | 697/910 [33:47<10:48,  3.05s/race, empty=6, err=0, saved=691]11:36:16 INFO src.database.init_db: 払戻保存: race_id=202607010203, 12 件
+払戻取得:  77%|#######6  | 698/910 [33:50<10:49,  3.06s/race, empty=6, err=0, saved=692]11:36:19 INFO src.database.init_db: 払戻保存: race_id=202607010204, 12 件
+払戻取得:  77%|#######6  | 699/910 [33:53<10:39,  3.03s/race, empty=6, err=0, saved=693]11:36:22 INFO src.database.init_db: 払戻保存: race_id=202607010205, 12 件
+払戻取得:  77%|#######6  | 700/910 [33:56<10:34,  3.02s/race, empty=6, err=0, saved=694]11:36:25 INFO src.database.init_db: 払戻保存: race_id=202607010206, 12 件
+払戻取得:  77%|#######7  | 701/910 [33:59<10:26,  3.00s/race, empty=6, err=0, saved=695]11:36:28 INFO src.database.init_db: 払戻保存: race_id=202607010207, 12 件
+払戻取得:  77%|#######7  | 702/910 [34:02<10:24,  3.00s/race, empty=6, err=0, saved=696]11:36:31 INFO src.database.init_db: 払戻保存: race_id=202607010208, 12 件
+払戻取得:  77%|#######7  | 703/910 [34:05<10:11,  2.95s/race, empty=6, err=0, saved=697]11:36:34 INFO src.database.init_db: 払戻保存: race_id=202607010209, 12 件
+払戻取得:  77%|#######7  | 704/910 [34:07<10:05,  2.94s/race, empty=6, err=0, saved=698]11:36:37 INFO src.database.init_db: 払戻保存: race_id=202607010210, 12 件
+払戻取得:  77%|#######7  | 705/910 [34:10<10:07,  2.96s/race, empty=6, err=0, saved=699]11:36:39 INFO src.database.init_db: 払戻保存: race_id=202607010211, 12 件
+払戻取得:  78%|#######7  | 706/910 [34:13<09:54,  2.91s/race, empty=6, err=0, saved=700]11:36:42 INFO src.database.init_db: 払戻保存: race_id=202607010212, 12 件
+払戻取得:  78%|#######7  | 707/910 [34:16<09:48,  2.90s/race, empty=6, err=0, saved=701]11:36:45 INFO src.database.init_db: 払戻保存: race_id=202609010801, 12 件
+払戻取得:  78%|#######7  | 708/910 [34:19<09:39,  2.87s/race, empty=6, err=0, saved=702]11:36:48 INFO src.database.init_db: 払戻保存: race_id=202609010802, 12 件
+払戻取得:  78%|#######7  | 709/910 [34:22<09:33,  2.86s/race, empty=6, err=0, saved=703]11:36:51 INFO src.database.init_db: 払戻保存: race_id=202609010803, 12 件
+払戻取得:  78%|#######8  | 710/910 [34:25<09:30,  2.85s/race, empty=6, err=0, saved=704]11:36:54 INFO src.database.init_db: 払戻保存: race_id=202609010804, 12 件
+払戻取得:  78%|#######8  | 711/910 [34:27<09:26,  2.85s/race, empty=6, err=0, saved=705]11:36:57 INFO src.database.init_db: 払戻保存: race_id=202609010805, 12 件
+払戻取得:  78%|#######8  | 712/910 [34:30<09:35,  2.91s/race, empty=6, err=0, saved=706]11:37:00 INFO src.database.init_db: 払戻保存: race_id=202609010806, 12 件
+払戻取得:  78%|#######8  | 713/910 [34:34<09:40,  2.95s/race, empty=6, err=0, saved=707]11:37:03 INFO src.database.init_db: 払戻保存: race_id=202609010807, 12 件
+払戻取得:  78%|#######8  | 714/910 [34:36<09:33,  2.93s/race, empty=6, err=0, saved=708]11:37:06 INFO src.database.init_db: 払戻保存: race_id=202609010808, 12 件
+払戻取得:  79%|#######8  | 715/910 [34:39<09:31,  2.93s/race, empty=6, err=0, saved=709]11:37:08 INFO src.database.init_db: 払戻保存: race_id=202609010809, 10 件
+払戻取得:  79%|#######8  | 716/910 [34:42<09:22,  2.90s/race, empty=6, err=0, saved=710]11:37:11 INFO src.database.init_db: 払戻保存: race_id=202609010810, 12 件
+払戻取得:  79%|#######8  | 717/910 [34:45<09:22,  2.92s/race, empty=6, err=0, saved=711]11:37:14 INFO src.database.init_db: 払戻保存: race_id=202609010811, 12 件
+払戻取得:  79%|#######8  | 718/910 [34:48<09:29,  2.96s/race, empty=6, err=0, saved=712]11:37:17 INFO src.database.init_db: 払戻保存: race_id=202609010812, 12 件
+払戻取得:  79%|#######9  | 719/910 [34:51<09:23,  2.95s/race, empty=6, err=0, saved=713]11:37:20 INFO src.database.init_db: 払戻保存: race_id=202606020701, 12 件
+払戻取得:  79%|#######9  | 720/910 [34:54<09:19,  2.94s/race, empty=6, err=0, saved=714]11:37:23 INFO src.database.init_db: 払戻保存: race_id=202606020702, 12 件
+払戻取得:  79%|#######9  | 721/910 [34:57<09:12,  2.92s/race, empty=6, err=0, saved=715]11:37:26 INFO src.database.init_db: 払戻保存: race_id=202606020703, 12 件
+払戻取得:  79%|#######9  | 722/910 [35:00<09:11,  2.93s/race, empty=6, err=0, saved=716]11:37:29 INFO src.database.init_db: 払戻保存: race_id=202606020704, 12 件
+払戻取得:  79%|#######9  | 723/910 [35:03<09:09,  2.94s/race, empty=6, err=0, saved=717]11:37:32 INFO src.database.init_db: 払戻保存: race_id=202606020705, 12 件
+払戻取得:  80%|#######9  | 724/910 [35:06<09:02,  2.92s/race, empty=6, err=0, saved=718]11:37:35 INFO src.database.init_db: 払戻保存: race_id=202606020706, 12 件
+払戻取得:  80%|#######9  | 725/910 [35:09<09:05,  2.95s/race, empty=6, err=0, saved=719]11:37:38 INFO src.database.init_db: 払戻保存: race_id=202606020707, 12 件
+払戻取得:  80%|#######9  | 726/910 [35:12<09:10,  2.99s/race, empty=6, err=0, saved=720]11:37:41 INFO src.database.init_db: 払戻保存: race_id=202606020708, 12 件
+払戻取得:  80%|#######9  | 727/910 [35:15<09:06,  2.98s/race, empty=6, err=0, saved=721]11:37:44 INFO src.database.init_db: 払戻保存: race_id=202606020709, 12 件
+払戻取得:  80%|########  | 728/910 [35:18<08:55,  2.94s/race, empty=6, err=0, saved=722]11:37:47 INFO src.database.init_db: 払戻保存: race_id=202606020710, 12 件
+払戻取得:  80%|########  | 729/910 [35:21<08:56,  2.96s/race, empty=6, err=0, saved=723]11:37:50 INFO src.database.init_db: 払戻保存: race_id=202606020711, 12 件
+払戻取得:  80%|########  | 730/910 [35:24<09:01,  3.01s/race, empty=6, err=0, saved=724]11:37:53 INFO src.database.init_db: 払戻保存: race_id=202606020712, 12 件
+払戻取得:  80%|########  | 731/910 [35:27<09:04,  3.04s/race, empty=6, err=0, saved=725]11:37:56 INFO src.database.init_db: 払戻保存: race_id=202607010301, 12 件
+払戻取得:  80%|########  | 732/910 [35:30<08:52,  2.99s/race, empty=6, err=0, saved=726]11:37:59 INFO src.database.init_db: 払戻保存: race_id=202607010302, 12 件
+払戻取得:  81%|########  | 733/910 [35:33<08:43,  2.96s/race, empty=6, err=0, saved=727]11:38:02 INFO src.database.init_db: 払戻保存: race_id=202607010303, 12 件
+払戻取得:  81%|########  | 734/910 [35:35<08:32,  2.91s/race, empty=6, err=0, saved=728]11:38:05 INFO src.database.init_db: 払戻保存: race_id=202607010304, 12 件
+払戻取得:  81%|########  | 735/910 [35:38<08:33,  2.94s/race, empty=6, err=0, saved=729]11:38:08 INFO src.database.init_db: 払戻保存: race_id=202607010305, 12 件
+払戻取得:  81%|########  | 736/910 [35:41<08:30,  2.93s/race, empty=6, err=0, saved=730]11:38:11 INFO src.database.init_db: 払戻保存: race_id=202607010306, 12 件
+払戻取得:  81%|########  | 737/910 [35:44<08:31,  2.96s/race, empty=6, err=0, saved=731]11:38:14 INFO src.database.init_db: 払戻保存: race_id=202607010307, 12 件
+払戻取得:  81%|########1 | 738/910 [35:47<08:30,  2.97s/race, empty=6, err=0, saved=732]11:38:16 INFO src.database.init_db: 払戻保存: race_id=202607010308, 12 件
+払戻取得:  81%|########1 | 739/910 [35:50<08:24,  2.95s/race, empty=6, err=0, saved=733]11:38:19 INFO src.database.init_db: 払戻保存: race_id=202607010309, 12 件
+払戻取得:  81%|########1 | 740/910 [35:53<08:16,  2.92s/race, empty=6, err=0, saved=734]11:38:22 INFO src.database.init_db: 払戻保存: race_id=202607010310, 12 件
+払戻取得:  81%|########1 | 741/910 [35:56<08:17,  2.95s/race, empty=6, err=0, saved=735]11:38:25 INFO src.database.init_db: 払戻保存: race_id=202607010311, 12 件
+払戻取得:  82%|########1 | 742/910 [35:59<08:15,  2.95s/race, empty=6, err=0, saved=736]11:38:28 INFO src.database.init_db: 払戻保存: race_id=202607010312, 12 件
+払戻取得:  82%|########1 | 743/910 [36:02<08:11,  2.94s/race, empty=6, err=0, saved=737]11:38:31 INFO src.database.init_db: 払戻保存: race_id=202609010901, 12 件
+払戻取得:  82%|########1 | 744/910 [36:05<08:01,  2.90s/race, empty=6, err=0, saved=738]11:38:34 INFO src.database.init_db: 払戻保存: race_id=202609010902, 12 件
+払戻取得:  82%|########1 | 745/910 [36:08<07:56,  2.88s/race, empty=6, err=0, saved=739]11:38:37 INFO src.database.init_db: 払戻保存: race_id=202609010903, 12 件
+払戻取得:  82%|########1 | 746/910 [36:10<07:51,  2.87s/race, empty=6, err=0, saved=740]11:38:40 INFO src.database.init_db: 払戻保存: race_id=202609010904, 12 件
+払戻取得:  82%|########2 | 747/910 [36:14<07:57,  2.93s/race, empty=6, err=0, saved=741]11:38:43 INFO src.database.init_db: 払戻保存: race_id=202609010905, 12 件
+払戻取得:  82%|########2 | 748/910 [36:17<08:03,  2.98s/race, empty=6, err=0, saved=742]11:38:46 INFO src.database.init_db: 払戻保存: race_id=202609010906, 12 件
+払戻取得:  82%|########2 | 749/910 [36:20<07:59,  2.98s/race, empty=6, err=0, saved=743]11:38:49 INFO src.database.init_db: 払戻保存: race_id=202609010907, 12 件
+払戻取得:  82%|########2 | 750/910 [36:23<07:57,  2.99s/race, empty=6, err=0, saved=744]11:38:52 INFO src.database.init_db: 払戻保存: race_id=202609010908, 12 件
+払戻取得:  83%|########2 | 751/910 [36:25<07:48,  2.95s/race, empty=6, err=0, saved=745]11:38:55 INFO src.database.init_db: 払戻保存: race_id=202609010909, 11 件
+払戻取得:  83%|########2 | 752/910 [36:29<07:57,  3.02s/race, empty=6, err=0, saved=746]11:38:58 INFO src.database.init_db: 払戻保存: race_id=202609010910, 12 件
+払戻取得:  83%|########2 | 753/910 [36:32<07:48,  2.98s/race, empty=6, err=0, saved=747]11:39:01 INFO src.database.init_db: 払戻保存: race_id=202609010911, 12 件
+払戻取得:  83%|########2 | 754/910 [36:34<07:42,  2.96s/race, empty=6, err=0, saved=748]11:39:04 INFO src.database.init_db: 払戻保存: race_id=202609010912, 12 件
+払戻取得:  83%|########2 | 755/910 [36:37<07:36,  2.94s/race, empty=6, err=0, saved=749]11:39:07 INFO src.database.init_db: 払戻保存: race_id=202606020801, 12 件
+払戻取得:  83%|########3 | 756/910 [36:40<07:38,  2.98s/race, empty=6, err=0, saved=750]11:39:10 INFO src.database.init_db: 払戻保存: race_id=202606020802, 12 件
+払戻取得:  83%|########3 | 757/910 [36:43<07:37,  2.99s/race, empty=6, err=0, saved=751]11:39:13 INFO src.database.init_db: 払戻保存: race_id=202606020803, 12 件
+払戻取得:  83%|########3 | 758/910 [36:46<07:30,  2.97s/race, empty=6, err=0, saved=752]11:39:16 INFO src.database.init_db: 払戻保存: race_id=202606020804, 12 件
+払戻取得:  83%|########3 | 759/910 [36:49<07:26,  2.96s/race, empty=6, err=0, saved=753]11:39:18 INFO src.database.init_db: 払戻保存: race_id=202606020805, 12 件
+払戻取得:  84%|########3 | 760/910 [36:52<07:20,  2.94s/race, empty=6, err=0, saved=754]11:39:21 INFO src.database.init_db: 払戻保存: race_id=202606020806, 12 件
+払戻取得:  84%|########3 | 761/910 [36:55<07:19,  2.95s/race, empty=6, err=0, saved=755]11:39:24 INFO src.database.init_db: 払戻保存: race_id=202606020807, 11 件
+払戻取得:  84%|########3 | 762/910 [36:58<07:15,  2.94s/race, empty=6, err=0, saved=756]11:39:27 INFO src.database.init_db: 払戻保存: race_id=202606020808, 12 件
+払戻取得:  84%|########3 | 763/910 [37:01<07:12,  2.95s/race, empty=6, err=0, saved=757]11:39:30 INFO src.database.init_db: 払戻保存: race_id=202606020809, 12 件
+払戻取得:  84%|########3 | 764/910 [37:04<07:08,  2.93s/race, empty=6, err=0, saved=758]11:39:33 INFO src.database.init_db: 払戻保存: race_id=202606020810, 12 件
+払戻取得:  84%|########4 | 765/910 [37:07<07:01,  2.91s/race, empty=6, err=0, saved=759]11:39:36 INFO src.database.init_db: 払戻保存: race_id=202606020811, 12 件
+払戻取得:  84%|########4 | 766/910 [37:10<07:03,  2.94s/race, empty=6, err=0, saved=760]11:39:39 INFO src.database.init_db: 払戻保存: race_id=202606020812, 12 件
+払戻取得:  84%|########4 | 767/910 [37:13<07:01,  2.95s/race, empty=6, err=0, saved=761]11:39:42 INFO src.database.init_db: 払戻保存: race_id=202607010401, 12 件
+払戻取得:  84%|########4 | 768/910 [37:16<06:57,  2.94s/race, empty=6, err=0, saved=762]11:39:45 INFO src.database.init_db: 払戻保存: race_id=202607010402, 12 件
+払戻取得:  85%|########4 | 769/910 [37:19<07:02,  3.00s/race, empty=6, err=0, saved=763]11:39:48 INFO src.database.init_db: 払戻保存: race_id=202607010403, 12 件
+払戻取得:  85%|########4 | 770/910 [37:22<06:56,  2.98s/race, empty=6, err=0, saved=764]11:39:51 INFO src.database.init_db: 払戻保存: race_id=202607010404, 12 件
+払戻取得:  85%|########4 | 771/910 [37:25<06:51,  2.96s/race, empty=6, err=0, saved=765]11:39:54 INFO src.database.init_db: 払戻保存: race_id=202607010405, 12 件
+払戻取得:  85%|########4 | 772/910 [37:28<06:48,  2.96s/race, empty=6, err=0, saved=766]11:39:57 INFO src.database.init_db: 払戻保存: race_id=202607010406, 12 件
+払戻取得:  85%|########4 | 773/910 [37:31<06:42,  2.94s/race, empty=6, err=0, saved=767]11:40:00 INFO src.database.init_db: 払戻保存: race_id=202607010407, 12 件
+払戻取得:  85%|########5 | 774/910 [37:34<06:43,  2.97s/race, empty=6, err=0, saved=768]11:40:03 INFO src.database.init_db: 払戻保存: race_id=202607010408, 12 件
+払戻取得:  85%|########5 | 775/910 [37:37<06:46,  3.01s/race, empty=6, err=0, saved=769]11:40:06 INFO src.database.init_db: 払戻保存: race_id=202607010409, 12 件
+払戻取得:  85%|########5 | 776/910 [37:40<06:40,  2.99s/race, empty=6, err=0, saved=770]11:40:09 INFO src.database.init_db: 払戻保存: race_id=202607010410, 12 件
+払戻取得:  85%|########5 | 777/910 [37:43<06:34,  2.97s/race, empty=6, err=0, saved=771]11:40:12 INFO src.database.init_db: 払戻保存: race_id=202607010411, 12 件
+払戻取得:  85%|########5 | 778/910 [37:46<06:35,  3.00s/race, empty=6, err=0, saved=772]11:40:15 INFO src.database.init_db: 払戻保存: race_id=202607010412, 12 件
+払戻取得:  86%|########5 | 779/910 [37:49<06:32,  3.00s/race, empty=6, err=0, saved=773]11:40:18 INFO src.database.init_db: 払戻保存: race_id=202609011001, 12 件
+払戻取得:  86%|########5 | 780/910 [37:52<06:29,  3.00s/race, empty=6, err=0, saved=774]11:40:21 INFO src.database.init_db: 払戻保存: race_id=202609011002, 12 件
+払戻取得:  86%|########5 | 781/910 [37:54<06:20,  2.95s/race, empty=6, err=0, saved=775]11:40:23 INFO src.database.init_db: 払戻保存: race_id=202609011003, 12 件
+払戻取得:  86%|########5 | 782/910 [37:57<06:10,  2.90s/race, empty=6, err=0, saved=776]11:40:26 INFO src.database.init_db: 払戻保存: race_id=202609011004, 12 件
+払戻取得:  86%|########6 | 783/910 [38:00<06:06,  2.89s/race, empty=6, err=0, saved=777]11:40:29 INFO src.database.init_db: 払戻保存: race_id=202609011005, 12 件
+払戻取得:  86%|########6 | 784/910 [38:03<06:04,  2.89s/race, empty=6, err=0, saved=778]11:40:32 INFO src.database.init_db: 払戻保存: race_id=202609011006, 12 件
+払戻取得:  86%|########6 | 785/910 [38:06<06:02,  2.90s/race, empty=6, err=0, saved=779]11:40:35 INFO src.database.init_db: 払戻保存: race_id=202609011007, 12 件
+払戻取得:  86%|########6 | 786/910 [38:09<05:58,  2.89s/race, empty=6, err=0, saved=780]11:40:38 INFO src.database.init_db: 払戻保存: race_id=202609011008, 12 件
+払戻取得:  86%|########6 | 787/910 [38:12<05:51,  2.85s/race, empty=6, err=0, saved=781]11:40:41 INFO src.database.init_db: 払戻保存: race_id=202609011009, 11 件
+払戻取得:  87%|########6 | 788/910 [38:14<05:45,  2.83s/race, empty=6, err=0, saved=782]11:40:43 INFO src.database.init_db: 払戻保存: race_id=202609011010, 12 件
+払戻取得:  87%|########6 | 789/910 [38:17<05:39,  2.80s/race, empty=6, err=0, saved=783]11:40:46 INFO src.database.init_db: 払戻保存: race_id=202609011011, 12 件
+払戻取得:  87%|########6 | 790/910 [38:20<05:41,  2.84s/race, empty=6, err=0, saved=784]11:40:49 INFO src.database.init_db: 払戻保存: race_id=202609011012, 12 件
+払戻取得:  87%|########6 | 791/910 [38:23<05:39,  2.86s/race, empty=6, err=0, saved=785]11:40:52 INFO src.database.init_db: 払戻保存: race_id=202606030101, 12 件
+払戻取得:  87%|########7 | 792/910 [38:26<05:38,  2.87s/race, empty=6, err=0, saved=786]11:40:55 INFO src.database.init_db: 払戻保存: race_id=202606030102, 12 件
+払戻取得:  87%|########7 | 793/910 [38:29<05:39,  2.90s/race, empty=6, err=0, saved=787]11:40:58 INFO src.database.init_db: 払戻保存: race_id=202606030103, 12 件
+払戻取得:  87%|########7 | 794/910 [38:32<05:36,  2.90s/race, empty=6, err=0, saved=788]11:41:01 INFO src.database.init_db: 払戻保存: race_id=202606030104, 12 件
+払戻取得:  87%|########7 | 795/910 [38:35<05:32,  2.89s/race, empty=6, err=0, saved=789]11:41:04 INFO src.database.init_db: 払戻保存: race_id=202606030105, 12 件
+払戻取得:  87%|########7 | 796/910 [38:37<05:26,  2.86s/race, empty=6, err=0, saved=790]11:41:06 INFO src.database.init_db: 払戻保存: race_id=202606030106, 12 件
+払戻取得:  88%|########7 | 797/910 [38:40<05:22,  2.85s/race, empty=6, err=0, saved=791]11:41:09 INFO src.database.init_db: 払戻保存: race_id=202606030107, 12 件
+払戻取得:  88%|########7 | 798/910 [38:43<05:17,  2.84s/race, empty=6, err=0, saved=792]11:41:12 INFO src.database.init_db: 払戻保存: race_id=202606030108, 12 件
+払戻取得:  88%|########7 | 799/910 [38:46<05:13,  2.83s/race, empty=6, err=0, saved=793]11:41:15 INFO src.database.init_db: 払戻保存: race_id=202606030109, 12 件
+払戻取得:  88%|########7 | 800/910 [38:49<05:08,  2.81s/race, empty=6, err=0, saved=794]11:41:18 INFO src.database.init_db: 払戻保存: race_id=202606030110, 12 件
+払戻取得:  88%|########8 | 801/910 [38:51<05:09,  2.84s/race, empty=6, err=0, saved=795]11:41:20 INFO src.database.init_db: 払戻保存: race_id=202606030111, 12 件
+払戻取得:  88%|########8 | 802/910 [38:54<05:06,  2.84s/race, empty=6, err=0, saved=796]11:41:23 INFO src.database.init_db: 払戻保存: race_id=202606030112, 12 件
+払戻取得:  88%|########8 | 803/910 [38:57<05:07,  2.87s/race, empty=6, err=0, saved=797]11:41:26 INFO src.database.init_db: 払戻保存: race_id=202607010501, 12 件
+払戻取得:  88%|########8 | 804/910 [39:00<05:01,  2.84s/race, empty=6, err=0, saved=798]11:41:29 INFO src.database.init_db: 払戻保存: race_id=202607010502, 12 件
+払戻取得:  88%|########8 | 805/910 [39:03<04:56,  2.83s/race, empty=6, err=0, saved=799]11:41:32 INFO src.database.init_db: 払戻保存: race_id=202607010503, 12 件
+払戻取得:  89%|########8 | 806/910 [39:06<04:53,  2.82s/race, empty=6, err=0, saved=800]11:41:35 INFO src.database.init_db: 払戻保存: race_id=202607010504, 12 件
+払戻取得:  89%|########8 | 807/910 [39:08<04:52,  2.84s/race, empty=6, err=0, saved=801]11:41:37 INFO src.database.init_db: 払戻保存: race_id=202607010505, 12 件
+払戻取得:  89%|########8 | 808/910 [39:11<04:48,  2.83s/race, empty=6, err=0, saved=802]11:41:40 INFO src.database.init_db: 払戻保存: race_id=202607010506, 12 件
+払戻取得:  89%|########8 | 809/910 [39:14<04:46,  2.83s/race, empty=6, err=0, saved=803]11:41:43 INFO src.database.init_db: 払戻保存: race_id=202607010507, 12 件
+払戻取得:  89%|########9 | 810/910 [39:17<04:46,  2.87s/race, empty=6, err=0, saved=804]11:41:46 INFO src.database.init_db: 払戻保存: race_id=202607010508, 12 件
+払戻取得:  89%|########9 | 811/910 [39:20<04:45,  2.89s/race, empty=6, err=0, saved=805]11:41:49 INFO src.database.init_db: 払戻保存: race_id=202607010509, 12 件
+払戻取得:  89%|########9 | 812/910 [39:23<04:39,  2.86s/race, empty=6, err=0, saved=806]11:41:52 INFO src.database.init_db: 払戻保存: race_id=202607010510, 12 件
+払戻取得:  89%|########9 | 813/910 [39:26<04:35,  2.84s/race, empty=6, err=0, saved=807]11:41:55 INFO src.database.init_db: 払戻保存: race_id=202607010511, 12 件
+払戻取得:  89%|########9 | 814/910 [39:29<04:35,  2.87s/race, empty=6, err=0, saved=808]11:41:58 INFO src.database.init_db: 払戻保存: race_id=202607010512, 12 件
+払戻取得:  90%|########9 | 815/910 [39:31<04:32,  2.87s/race, empty=6, err=0, saved=809]11:42:00 INFO src.database.init_db: 払戻保存: race_id=202609020101, 12 件
+払戻取得:  90%|########9 | 816/910 [39:34<04:29,  2.86s/race, empty=6, err=0, saved=810]11:42:03 INFO src.database.init_db: 払戻保存: race_id=202609020102, 12 件
+払戻取得:  90%|########9 | 817/910 [39:37<04:27,  2.88s/race, empty=6, err=0, saved=811]11:42:06 INFO src.database.init_db: 払戻保存: race_id=202609020103, 12 件
+払戻取得:  90%|########9 | 818/910 [39:40<04:28,  2.92s/race, empty=6, err=0, saved=812]11:42:09 INFO src.database.init_db: 払戻保存: race_id=202609020104, 12 件
+払戻取得:  90%|######### | 819/910 [39:43<04:26,  2.92s/race, empty=6, err=0, saved=813]11:42:12 INFO src.database.init_db: 払戻保存: race_id=202609020105, 12 件
+払戻取得:  90%|######### | 820/910 [39:46<04:20,  2.90s/race, empty=6, err=0, saved=814]11:42:15 INFO src.database.init_db: 払戻保存: race_id=202609020106, 12 件
+払戻取得:  90%|######### | 821/910 [39:49<04:16,  2.88s/race, empty=6, err=0, saved=815]11:42:18 INFO src.database.init_db: 払戻保存: race_id=202609020107, 12 件
+払戻取得:  90%|######### | 822/910 [39:52<04:16,  2.92s/race, empty=6, err=0, saved=816]11:42:21 INFO src.database.init_db: 払戻保存: race_id=202609020108, 12 件
+払戻取得:  90%|######### | 823/910 [39:55<04:08,  2.86s/race, empty=6, err=0, saved=817]11:42:24 INFO src.database.init_db: 払戻保存: race_id=202609020109, 10 件
+払戻取得:  91%|######### | 824/910 [39:57<04:07,  2.88s/race, empty=6, err=0, saved=818]11:42:26 INFO src.database.init_db: 払戻保存: race_id=202609020110, 12 件
+払戻取得:  91%|######### | 825/910 [40:00<04:03,  2.87s/race, empty=6, err=0, saved=819]11:42:29 INFO src.database.init_db: 払戻保存: race_id=202609020111, 10 件
+払戻取得:  91%|######### | 826/910 [40:03<04:00,  2.87s/race, empty=6, err=0, saved=820]11:42:32 INFO src.database.init_db: 払戻保存: race_id=202609020112, 12 件
+払戻取得:  91%|######### | 827/910 [40:06<04:00,  2.90s/race, empty=6, err=0, saved=821]11:42:35 INFO src.database.init_db: 払戻保存: race_id=202606030201, 12 件
+払戻取得:  91%|######### | 828/910 [40:09<03:56,  2.88s/race, empty=6, err=0, saved=822]11:42:38 INFO src.database.init_db: 払戻保存: race_id=202606030202, 12 件
+払戻取得:  91%|#########1| 829/910 [40:12<03:50,  2.85s/race, empty=6, err=0, saved=823]11:42:41 INFO src.database.init_db: 払戻保存: race_id=202606030203, 12 件
+払戻取得:  91%|#########1| 830/910 [40:15<03:47,  2.84s/race, empty=6, err=0, saved=824]11:42:44 INFO src.database.init_db: 払戻保存: race_id=202606030204, 12 件
+払戻取得:  91%|#########1| 831/910 [40:18<03:47,  2.88s/race, empty=6, err=0, saved=825]11:42:47 INFO src.database.init_db: 払戻保存: race_id=202606030205, 12 件
+払戻取得:  91%|#########1| 832/910 [40:20<03:45,  2.89s/race, empty=6, err=0, saved=826]11:42:49 INFO src.database.init_db: 払戻保存: race_id=202606030206, 12 件
+払戻取得:  92%|#########1| 833/910 [40:23<03:41,  2.88s/race, empty=6, err=0, saved=827]11:42:52 INFO src.database.init_db: 払戻保存: race_id=202606030207, 12 件
+払戻取得:  92%|#########1| 834/910 [40:26<03:39,  2.89s/race, empty=6, err=0, saved=828]11:42:55 INFO src.database.init_db: 払戻保存: race_id=202606030208, 12 件
+払戻取得:  92%|#########1| 835/910 [40:29<03:33,  2.85s/race, empty=6, err=0, saved=829]11:42:58 INFO src.database.init_db: 払戻保存: race_id=202606030209, 10 件
+払戻取得:  92%|#########1| 836/910 [40:32<03:29,  2.83s/race, empty=6, err=0, saved=830]11:43:01 INFO src.database.init_db: 払戻保存: race_id=202606030210, 12 件
+払戻取得:  92%|#########1| 837/910 [40:35<03:29,  2.87s/race, empty=6, err=0, saved=831]11:43:04 INFO src.database.init_db: 払戻保存: race_id=202606030211, 12 件
+払戻取得:  92%|#########2| 838/910 [40:38<03:26,  2.87s/race, empty=6, err=0, saved=832]11:43:07 INFO src.database.init_db: 払戻保存: race_id=202606030212, 12 件
+払戻取得:  92%|#########2| 839/910 [40:40<03:24,  2.88s/race, empty=6, err=0, saved=833]11:43:10 INFO src.database.init_db: 払戻保存: race_id=202607010601, 12 件
+払戻取得:  92%|#########2| 840/910 [40:43<03:22,  2.89s/race, empty=6, err=0, saved=834]11:43:12 INFO src.database.init_db: 払戻保存: race_id=202607010602, 12 件
+払戻取得:  92%|#########2| 841/910 [40:46<03:18,  2.87s/race, empty=6, err=0, saved=835]11:43:15 INFO src.database.init_db: 払戻保存: race_id=202607010603, 12 件
+払戻取得:  93%|#########2| 842/910 [40:49<03:15,  2.87s/race, empty=6, err=0, saved=836]11:43:18 INFO src.database.init_db: 払戻保存: race_id=202607010604, 12 件
+払戻取得:  93%|#########2| 843/910 [40:52<03:13,  2.89s/race, empty=6, err=0, saved=837]11:43:21 INFO src.database.init_db: 払戻保存: race_id=202607010605, 12 件
+払戻取得:  93%|#########2| 844/910 [40:55<03:09,  2.87s/race, empty=6, err=0, saved=838]11:43:24 INFO src.database.init_db: 払戻保存: race_id=202607010606, 12 件
+払戻取得:  93%|#########2| 845/910 [40:58<03:07,  2.88s/race, empty=6, err=0, saved=839]11:43:27 INFO src.database.init_db: 払戻保存: race_id=202607010607, 12 件
+払戻取得:  93%|#########2| 846/910 [41:01<03:03,  2.87s/race, empty=6, err=0, saved=840]11:43:30 INFO src.database.init_db: 払戻保存: race_id=202607010608, 10 件
+払戻取得:  93%|#########3| 847/910 [41:03<03:00,  2.86s/race, empty=6, err=0, saved=841]11:43:32 INFO src.database.init_db: 払戻保存: race_id=202607010609, 12 件
+払戻取得:  93%|#########3| 848/910 [41:06<02:56,  2.85s/race, empty=6, err=0, saved=842]11:43:35 INFO src.database.init_db: 払戻保存: race_id=202607010610, 12 件
+払戻取得:  93%|#########3| 849/910 [41:09<02:54,  2.86s/race, empty=6, err=0, saved=843]11:43:38 INFO src.database.init_db: 払戻保存: race_id=202607010612, 12 件
+払戻取得:  93%|#########3| 850/910 [41:12<02:52,  2.88s/race, empty=6, err=0, saved=844]11:43:41 INFO src.database.init_db: 払戻保存: race_id=202609020201, 12 件
+払戻取得:  94%|#########3| 851/910 [41:15<02:48,  2.85s/race, empty=6, err=0, saved=845]11:43:44 INFO src.database.init_db: 払戻保存: race_id=202609020202, 12 件
+払戻取得:  94%|#########3| 852/910 [41:18<02:45,  2.85s/race, empty=6, err=0, saved=846]11:43:47 INFO src.database.init_db: 払戻保存: race_id=202609020203, 12 件
+払戻取得:  94%|#########3| 853/910 [41:21<02:42,  2.85s/race, empty=6, err=0, saved=847]11:43:50 INFO src.database.init_db: 払戻保存: race_id=202609020204, 12 件
+払戻取得:  94%|#########3| 854/910 [41:23<02:39,  2.86s/race, empty=6, err=0, saved=848]11:43:52 INFO src.database.init_db: 払戻保存: race_id=202609020205, 12 件
+払戻取得:  94%|#########3| 855/910 [41:26<02:36,  2.85s/race, empty=6, err=0, saved=849]11:43:55 INFO src.database.init_db: 払戻保存: race_id=202609020206, 12 件
+払戻取得:  94%|#########4| 856/910 [41:29<02:33,  2.85s/race, empty=6, err=0, saved=850]11:43:58 INFO src.database.init_db: 払戻保存: race_id=202609020207, 12 件
+払戻取得:  94%|#########4| 857/910 [41:32<02:31,  2.86s/race, empty=6, err=0, saved=851]11:44:01 INFO src.database.init_db: 払戻保存: race_id=202609020208, 10 件
+払戻取得:  94%|#########4| 858/910 [41:35<02:30,  2.89s/race, empty=6, err=0, saved=852]11:44:04 INFO src.database.init_db: 払戻保存: race_id=202609020209, 12 件
+払戻取得:  94%|#########4| 859/910 [41:38<02:29,  2.93s/race, empty=6, err=0, saved=853]11:44:07 INFO src.database.init_db: 払戻保存: race_id=202609020210, 12 件
+払戻取得:  95%|#########4| 860/910 [41:41<02:26,  2.92s/race, empty=6, err=0, saved=854]11:44:10 INFO src.database.init_db: 払戻保存: race_id=202609020211, 12 件
+払戻取得:  95%|#########4| 861/910 [41:44<02:23,  2.93s/race, empty=6, err=0, saved=855]11:44:13 INFO src.database.init_db: 払戻保存: race_id=202609020212, 12 件
+払戻取得:  95%|#########4| 862/910 [41:47<02:20,  2.92s/race, empty=6, err=0, saved=856]11:44:16 INFO src.database.init_db: 払戻保存: race_id=202606030301, 12 件
+払戻取得:  95%|#########4| 863/910 [41:50<02:16,  2.90s/race, empty=6, err=0, saved=857]11:44:19 INFO src.database.init_db: 払戻保存: race_id=202606030302, 12 件
+払戻取得:  95%|#########4| 864/910 [41:52<02:12,  2.88s/race, empty=6, err=0, saved=858]11:44:22 INFO src.database.init_db: 払戻保存: race_id=202606030303, 12 件
+払戻取得:  95%|#########5| 865/910 [41:55<02:10,  2.89s/race, empty=6, err=0, saved=859]11:44:24 INFO src.database.init_db: 払戻保存: race_id=202606030304, 12 件
+払戻取得:  95%|#########5| 866/910 [41:58<02:06,  2.88s/race, empty=6, err=0, saved=860]11:44:27 INFO src.database.init_db: 払戻保存: race_id=202606030305, 12 件
+払戻取得:  95%|#########5| 867/910 [42:01<02:03,  2.87s/race, empty=6, err=0, saved=861]11:44:30 INFO src.database.init_db: 払戻保存: race_id=202606030306, 12 件
+払戻取得:  95%|#########5| 868/910 [42:04<02:00,  2.87s/race, empty=6, err=0, saved=862]11:44:33 INFO src.database.init_db: 払戻保存: race_id=202606030307, 12 件
+払戻取得:  95%|#########5| 869/910 [42:07<01:56,  2.85s/race, empty=6, err=0, saved=863]11:44:36 INFO src.database.init_db: 払戻保存: race_id=202606030308, 12 件
+払戻取得:  96%|#########5| 870/910 [42:10<01:53,  2.84s/race, empty=6, err=0, saved=864]11:44:39 INFO src.database.init_db: 払戻保存: race_id=202606030309, 12 件
+払戻取得:  96%|#########5| 871/910 [42:12<01:51,  2.85s/race, empty=6, err=0, saved=865]11:44:42 INFO src.database.init_db: 払戻保存: race_id=202606030310, 12 件
+払戻取得:  96%|#########5| 872/910 [42:15<01:49,  2.89s/race, empty=6, err=0, saved=866]11:44:44 INFO src.database.init_db: 払戻保存: race_id=202606030311, 12 件
+払戻取得:  96%|#########5| 873/910 [42:18<01:47,  2.89s/race, empty=6, err=0, saved=867]11:44:47 INFO src.database.init_db: 払戻保存: race_id=202606030312, 12 件
+払戻取得:  96%|#########6| 874/910 [42:21<01:43,  2.86s/race, empty=6, err=0, saved=868]11:44:50 INFO src.database.init_db: 払戻保存: race_id=202609020301, 12 件
+払戻取得:  96%|#########6| 875/910 [42:24<01:39,  2.83s/race, empty=6, err=0, saved=869]11:44:53 INFO src.database.init_db: 払戻保存: race_id=202609020302, 12 件
+払戻取得:  96%|#########6| 876/910 [42:27<01:36,  2.82s/race, empty=6, err=0, saved=870]11:44:56 INFO src.database.init_db: 払戻保存: race_id=202609020303, 12 件
+払戻取得:  96%|#########6| 877/910 [42:30<01:33,  2.85s/race, empty=6, err=0, saved=871]11:44:59 INFO src.database.init_db: 払戻保存: race_id=202609020304, 12 件
+払戻取得:  96%|#########6| 878/910 [42:32<01:31,  2.86s/race, empty=6, err=0, saved=872]11:45:02 INFO src.database.init_db: 払戻保存: race_id=202609020305, 12 件
+払戻取得:  97%|#########6| 879/910 [42:35<01:29,  2.90s/race, empty=6, err=0, saved=873]11:45:05 INFO src.database.init_db: 払戻保存: race_id=202609020306, 12 件
+払戻取得:  97%|#########6| 880/910 [42:38<01:27,  2.92s/race, empty=6, err=0, saved=874]11:45:07 INFO src.database.init_db: 払戻保存: race_id=202609020307, 12 件
+払戻取得:  97%|#########6| 881/910 [42:41<01:23,  2.88s/race, empty=6, err=0, saved=875]11:45:10 INFO src.database.init_db: 払戻保存: race_id=202609020308, 12 件
+払戻取得:  97%|#########6| 882/910 [42:44<01:20,  2.89s/race, empty=6, err=0, saved=876]11:45:13 INFO src.database.init_db: 払戻保存: race_id=202609020309, 12 件
+払戻取得:  97%|#########7| 883/910 [42:47<01:16,  2.85s/race, empty=6, err=0, saved=877]11:45:16 INFO src.database.init_db: 払戻保存: race_id=202609020310, 12 件
+払戻取得:  97%|#########7| 884/910 [42:50<01:14,  2.87s/race, empty=6, err=0, saved=878]11:45:19 INFO src.database.init_db: 払戻保存: race_id=202609020311, 12 件
+払戻取得:  97%|#########7| 885/910 [42:53<01:12,  2.89s/race, empty=6, err=0, saved=879]11:45:22 INFO src.database.init_db: 払戻保存: race_id=202609020312, 12 件
+払戻取得:  97%|#########7| 886/910 [42:56<01:09,  2.89s/race, empty=6, err=0, saved=880]11:45:25 INFO src.database.init_db: 払戻保存: race_id=202606030401, 12 件
+払戻取得:  97%|#########7| 887/910 [42:58<01:06,  2.88s/race, empty=6, err=0, saved=881]11:45:28 INFO src.database.init_db: 払戻保存: race_id=202606030402, 12 件
+払戻取得:  98%|#########7| 888/910 [43:01<01:03,  2.90s/race, empty=6, err=0, saved=882]11:45:30 INFO src.database.init_db: 払戻保存: race_id=202606030403, 12 件
+払戻取得:  98%|#########7| 889/910 [43:04<01:00,  2.88s/race, empty=6, err=0, saved=883]11:45:33 INFO src.database.init_db: 払戻保存: race_id=202606030404, 12 件
+払戻取得:  98%|#########7| 890/910 [43:07<00:57,  2.86s/race, empty=6, err=0, saved=884]11:45:36 INFO src.database.init_db: 払戻保存: race_id=202606030405, 12 件
+払戻取得:  98%|#########7| 891/910 [43:10<00:54,  2.86s/race, empty=6, err=0, saved=885]11:45:39 INFO src.database.init_db: 払戻保存: race_id=202606030406, 12 件
+払戻取得:  98%|#########8| 892/910 [43:13<00:50,  2.83s/race, empty=6, err=0, saved=886]11:45:42 INFO src.database.init_db: 払戻保存: race_id=202606030407, 12 件
+払戻取得:  98%|#########8| 893/910 [43:16<00:48,  2.84s/race, empty=6, err=0, saved=887]11:45:45 INFO src.database.init_db: 払戻保存: race_id=202606030408, 12 件
+払戻取得:  98%|#########8| 894/910 [43:18<00:45,  2.84s/race, empty=6, err=0, saved=888]11:45:47 INFO src.database.init_db: 払戻保存: race_id=202606030409, 11 件
+払戻取得:  98%|#########8| 895/910 [43:21<00:42,  2.81s/race, empty=6, err=0, saved=889]11:45:50 INFO src.database.init_db: 払戻保存: race_id=202606030410, 12 件
+払戻取得:  98%|#########8| 896/910 [43:24<00:39,  2.83s/race, empty=6, err=0, saved=890]11:45:53 INFO src.database.init_db: 払戻保存: race_id=202606030411, 12 件
+払戻取得:  99%|#########8| 897/910 [43:27<00:37,  2.85s/race, empty=6, err=0, saved=891]11:45:56 INFO src.database.init_db: 払戻保存: race_id=202606030412, 12 件
+払戻取得:  99%|#########8| 898/910 [43:30<00:33,  2.83s/race, empty=6, err=0, saved=892]11:45:59 INFO src.database.init_db: 払戻保存: race_id=202609020401, 12 件
+払戻取得:  99%|#########8| 899/910 [43:33<00:31,  2.85s/race, empty=6, err=0, saved=893]11:46:02 INFO src.database.init_db: 払戻保存: race_id=202609020402, 12 件
+払戻取得:  99%|#########8| 900/910 [43:36<00:29,  2.91s/race, empty=6, err=0, saved=894]11:46:05 INFO src.database.init_db: 払戻保存: race_id=202609020403, 12 件
+払戻取得:  99%|#########9| 901/910 [43:39<00:26,  2.91s/race, empty=6, err=0, saved=895]11:46:08 INFO src.database.init_db: 払戻保存: race_id=202609020404, 12 件
+払戻取得:  99%|#########9| 902/910 [43:41<00:23,  2.88s/race, empty=6, err=0, saved=896]11:46:10 INFO src.database.init_db: 払戻保存: race_id=202609020405, 12 件
+払戻取得:  99%|#########9| 903/910 [43:44<00:19,  2.84s/race, empty=6, err=0, saved=897]11:46:13 INFO src.database.init_db: 払戻保存: race_id=202609020406, 12 件
+払戻取得:  99%|#########9| 904/910 [43:47<00:16,  2.81s/race, empty=6, err=0, saved=898]11:46:16 INFO src.database.init_db: 払戻保存: race_id=202609020407, 12 件
+払戻取得:  99%|#########9| 905/910 [43:50<00:14,  2.83s/race, empty=6, err=0, saved=899]11:46:19 INFO src.database.init_db: 払戻保存: race_id=202609020408, 12 件
+払戻取得: 100%|#########9| 906/910 [43:53<00:11,  2.86s/race, empty=6, err=0, saved=900]11:46:22 INFO src.database.init_db: 払戻保存: race_id=202609020409, 12 件
+払戻取得: 100%|#########9| 907/910 [43:56<00:08,  2.86s/race, empty=6, err=0, saved=901]11:46:24 INFO src.database.init_db: 払戻保存: race_id=202609020410, 12 件
+払戻取得: 100%|#########9| 908/910 [43:58<00:05,  2.83s/race, empty=6, err=0, saved=902]11:46:27 INFO src.database.init_db: 払戻保存: race_id=202609020411, 12 件
+払戻取得: 100%|#########9| 909/910 [44:01<00:02,  2.89s/race, empty=6, err=0, saved=903]11:46:30 INFO src.database.init_db: 払戻保存: race_id=202609020412, 12 件
+払戻取得: 100%|##########| 910/910 [44:04<00:00,  2.85s/race, empty=6, err=0, saved=904]払戻取得: 100%|##########| 910/910 [44:04<00:00,  2.91s/race, empty=6, err=0, saved=904]
+
+================================================== 
+  払戻取得結果 (year=2026)
+==================================================
+  対象レース :   910
+  保存成功  :   904
+  払戻なし  :     6
+  エラー    :     0
+==================================================

@@ -278,6 +278,8 @@ class NotificationRouter:
         race_id: str,
         honmei_bets: object,
         manji_bets: object,
+        oracle_bets: object | None = None,
+        hit_focus_bets: object | None = None,
         alpha_bets: object | None = None,
         dashboard_url: str = "",
         predictions: dict | None = None,
@@ -292,6 +294,8 @@ class NotificationRouter:
         if pred:
             pred.notify_prerace_result(
                 race_id, honmei_bets, manji_bets,
+                oracle_bets=oracle_bets,
+                hit_focus_bets=hit_focus_bets,
                 alpha_bets=alpha_bets,
                 dashboard_url=dashboard_url,
             )
@@ -308,7 +312,7 @@ class NotificationRouter:
             return
 
         all_bets: list[object] = []
-        for rb in [alpha_bets, manji_bets, honmei_bets]:
+        for rb in [alpha_bets, manji_bets, honmei_bets, oracle_bets, hit_focus_bets]:
             if rb is not None:
                 all_bets.extend(getattr(rb, "bets", []))
 
@@ -380,6 +384,33 @@ class NotificationRouter:
             f"EV={max_ev:.2f} ≥ {EV_ALERT_THRESHOLD} 閾値超過"
         )
         ev_notifier.send_text(text)
+
+    def notify_prerace_15min(
+        self,
+        race_id: str,
+        max_ev: float,
+        message: str,
+    ) -> None:
+        """発走15分前アラートを ev_alert チャンネルへ送信する。
+
+        ev_alert チャンネルが未設定の場合は prediction チャンネルへフォールバックする
+        （直前予想通知と同じ見え方になるが、情報が届くことを優先する）。
+
+        Args:
+            race_id: 対象レースの ID。
+            max_ev: 最大期待値。
+            message: 送信するアラートメッセージ本文。
+        """
+        notifier = self._get("ev_alert")  # ev_alert → prediction フォールバック
+        if notifier is None:
+            logger.warning(
+                "[発走前アラート] Discord URL 未設定 — %s 通知スキップ", race_id
+            )
+            return
+        notifier.send_text(message)
+        logger.info(
+            "[発走前アラート] %s 送信完了 (max_ev=%.2f)", race_id, max_ev
+        )
 
     def notify_hit_summary(
         self,

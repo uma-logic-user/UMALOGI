@@ -1,0 +1,86 @@
+{
+  "meta": {
+    "generated_at": "2026-05-24",
+    "description": "2025年カンニングなしウォークフォワードシミュレーション",
+    "train_period": "2024-01-01 to 2024-05-31",
+    "test_period": "2025-01-01 to 2025-12-31",
+    "initial_bankroll": 10000
+  },
+  "alpha_payout_model": {
+    "description": "AlphaPayoutModel 複勝EV直接回帰 (黄金パラメーター)",
+    "ticket_types": [
+      "複勝",
+      "馬連",
+      "三連複"
+    ],
+    "initial_bankroll": 50000,
+    "window1_2025": {
+      "roi_pct": 129.2,
+      "net_profit": 180340,
+      "final_bankroll": 247400,
+      "max_drawdown_pct": 29.6,
+      "bankrupt": false
+    }
+  },
+  "honmei_manji_style_25patterns": {
+    "description": "本命/卍スタイル LightGBM 25パターン (Kelly複利)",
+    "note": "ワイド/馬連/三連複はKelly複利で数字が膨張。統計的優位性の確認のみに使用",
+    "profitable_patterns": [
+      {
+        "bet_type": "ワイド",
+        "ev_threshold": 1.5,
+        "roi_pct": 1690.8,
+        "hit_rate_pct": 71.6,
+        "max_dd_pct": 77.8
+      },
+      {
+        "bet_type": "ワイド",
+        "ev_threshold": 1.0,
+        "roi_pct": 1521.7,
+        "hit_rate_pct": 77.9,
+        "max_dd_pct": 77.0
+      },
+      {
+        "bet_type": "馬連",
+        "ev_threshold": 1.5,
+        "roi_pct": 1813.9,
+        "hit_rate_pct": 21.5,
+        "max_dd_pct": 90.1
+      },
+      {
+        "bet_type": "馬連",
+        "ev_threshold": 1.0,
+        "roi_pct": 1479.9,
+        "hit_rate_pct": 27.2,
+        "max_dd_pct": 90.1
+      },
+      {
+        "bet_type": "三連複",
+        "ev_threshold": 1.5,
+        "roi_pct": 15646.2,
+        "hit_rate_pct": 79.1,
+        "max_dd_pct": 63.8
+      }
+    ],
+    "loss_patterns": [
+      {
+        "bet_type": "単勝",
+        "roi_range_pct": "78-79",
+        "verdict": "RED"
+      },
+      {
+        "bet_type": "複勝",
+        "roi_range_pct": "76-79",
+        "verdict": "RED"
+      }
+    ]
+  },
+  "ui_negative_root_cause": {
+    "actual_production_roi_pct": 64.0,
+    "causes": [
+      "win_odds=999.9 sentinelが軸選定に混入していた (2026-05-24修正済み)",
+      "1コンボ¥100フラット賭けはKelly最適化に比べEVを大幅に劣化させる",
+      "realtime_oddsが2025年全期間ゼロ - オッズ推定精度が低下"
+    ]
+  }
+}

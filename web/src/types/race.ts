@@ -74,6 +74,18 @@ export interface RaceEntry extends Race {
   payouts: RacePayout[]
 }
 
+/** マルチ券種（馬連・ワイド・馬単・三連複・三連単・枠連）の 1 買い目オッズ */
+export interface MultiOddsEntry {
+  combination:  string        // "1-2" / "1-2-3" / "1→2" 等
+  odds:         number | null // 最低オッズ（ワイドは下限）
+  odds_max:     number | null // ワイドの上限オッズ。その他は null
+  popularity:   number | null
+  recorded_at:  string
+}
+
+/** bet_type → MultiOddsEntry[] のスナップショット（直近取得分） */
+export type MultiOddsSnapshot = Record<string, MultiOddsEntry[]>
+
 /** races/{race_id}.json の詳細エントリ（RaceEntry + AI予想 + 直前データ） */
 export interface RaceDetail extends RaceEntry {
   predictions:    RacePrediction[]
@@ -83,6 +95,7 @@ export interface RaceDetail extends RaceEntry {
     ev_recommend: EvRecommend[]
     generated_at: string
   }
+  multi_odds?: MultiOddsSnapshot
 }
 
 /** 後方互換用 */

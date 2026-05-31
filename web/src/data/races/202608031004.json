@@ -1,18 +1,18 @@
 {
   "race_id": "202608031004",
-  "race_name": "3歳未勝利",
+  "race_name": "",
   "date": "2026-05-24",
   "venue": "京都",
   "race_number": 4,
-  "distance": 2000,
-  "surface": "芝",
+  "distance": 0,
+  "surface": "",
   "track_direction": "",
-  "weather": "曇",
-  "condition": "良",
+  "weather": "",
+  "condition": "",
   "year": "2026",
   "results": [
     {
-      "rank": null,
+      "rank": 1,
       "gate_number": 1,
       "horse_number": 1,
       "horse_name": "スノースケープ",
@@ -21,12 +21,12 @@
       "weight_carried": 55.0,
       "jockey": "川田将雅",
       "trainer": "中内田充",
-      "finish_time": null,
+      "finish_time": "1:59.3",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 1.6,
+      "popularity": 1,
+      "horse_weight": 462,
+      "horse_weight_diff": -4,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -38,85 +38,33 @@
       "odds_velocity": null
     },
     {
-      "rank": null,
-      "gate_number": 2,
-      "horse_number": 2,
-      "horse_name": "シャリキモン",
-      "horse_id": "2023103743",
-      "sex_age": "牡4",
-      "weight_carried": 57.0,
-      "jockey": "角田大和",
-      "trainer": "吉田直弘",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0674,
-      "ev_score": 1.0518,
-      "kelly_fraction": 0.0004,
-      "manji_ev": 0.4439,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 3,
-      "horse_number": 3,
-      "horse_name": "アメジストブリエ",
-      "horse_id": "2023105040",
-      "sex_age": "牝4",
+      "rank": 2,
+      "gate_number": 8,
+      "horse_number": 10,
+      "horse_name": "ティタノマキア",
+      "horse_id": "2023107092",
+      "sex_age": "牝3",
       "weight_carried": 55.0,
-      "jockey": "高倉稜",
-      "trainer": "武英智",
-      "finish_time": null,
+      "jockey": "北村友一",
+      "trainer": "池添学",
+      "finish_time": "2:00.0",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 3.3,
+      "popularity": 2,
+      "horse_weight": 474,
+      "horse_weight_diff": 0,
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.0315,
-      "ev_score": 0.2395,
+      "honmei_score": 0.2128,
+      "ev_score": 0.6383,
       "kelly_fraction": 0.0,
-      "manji_ev": 0.0,
+      "manji_ev": 0.2905,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
     {
-      "rank": null,
-      "gate_number": 4,
-      "horse_number": 4,
-      "horse_name": "カヴァティーナ",
-      "horse_id": "2023104202",
-      "sex_age": "牝4",
-      "weight_carried": 55.0,
-      "jockey": "幸英明",
-      "trainer": "大根田裕",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.0458,
-      "ev_score": 1.126,
-      "kelly_fraction": 0.0005,
-      "manji_ev": 0.0848,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
-    },
-    {
-      "rank": null,
+      "rank": 3,
       "gate_number": 5,
       "horse_number": 5,
       "horse_name": "スフィダンテ",
@@ -125,12 +73,12 @@
       "weight_carried": 57.0,
       "jockey": "酒井学",
       "trainer": "高橋康之",
-      "finish_time": null,
+      "finish_time": "2:00.2",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 31.7,
+      "popularity": 5,
+      "horse_weight": 456,
+      "horse_weight_diff": 0,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -142,33 +90,33 @@
       "odds_velocity": null
     },
     {
-      "rank": null,
-      "gate_number": 6,
-      "horse_number": 6,
-      "horse_name": "ダノンワンダー",
-      "horse_id": "2023105829",
+      "rank": 4,
+      "gate_number": 2,
+      "horse_number": 2,
+      "horse_name": "シャリキモン",
+      "horse_id": "2023103743",
       "sex_age": "牡4",
       "weight_carried": 57.0,
-      "jockey": "鮫島克駿",
-      "trainer": "友道康夫",
-      "finish_time": null,
+      "jockey": "角田大和",
+      "trainer": "吉田直弘",
+      "finish_time": "2:00.3",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 13.9,
+      "popularity": 4,
+      "horse_weight": 432,
+      "horse_weight_diff": 0,
       "sire": null,
       "dam": null,
       "dam_sire": null,
-      "honmei_score": 0.0315,
-      "ev_score": 0.3435,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.3658,
+      "honmei_score": 0.0674,
+      "ev_score": 1.0518,
+      "kelly_fraction": 0.0004,
+      "manji_ev": 0.4439,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
     },
     {
-      "rank": null,
+      "rank": 5,
       "gate_number": 7,
       "horse_number": 7,
       "horse_name": "マコトエウロペ",
@@ -177,12 +125,12 @@
       "weight_carried": 55.0,
       "jockey": "太宰啓介",
       "trainer": "昆貢",
-      "finish_time": null,
+      "finish_time": "2:00.7",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 37.2,
+      "popularity": 6,
+      "horse_weight": 422,
+      "horse_weight_diff": 10,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -194,7 +142,85 @@
       "odds_velocity": null
     },
     {
-      "rank": null,
+      "rank": 6,
+      "gate_number": 6,
+      "horse_number": 6,
+      "horse_name": "ダノンワンダー",
+      "horse_id": "2023105829",
+      "sex_age": "牡4",
+      "weight_carried": 57.0,
+      "jockey": "鮫島克駿",
+      "trainer": "友道康夫",
+      "finish_time": "2:01.2",
+      "margin": "@",
+      "win_odds": 5.8,
+      "popularity": 3,
+      "horse_weight": 484,
+      "horse_weight_diff": -8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0315,
+      "ev_score": 0.3435,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.3658,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 7,
+      "gate_number": 3,
+      "horse_number": 3,
+      "horse_name": "アメジストブリエ",
+      "horse_id": "2023105040",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "高倉稜",
+      "trainer": "武英智",
+      "finish_time": "2:01.3",
+      "margin": "@",
+      "win_odds": 66.4,
+      "popularity": 8,
+      "horse_weight": 428,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0315,
+      "ev_score": 0.2395,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 8,
+      "gate_number": 4,
+      "horse_number": 4,
+      "horse_name": "カヴァティーナ",
+      "horse_id": "2023104202",
+      "sex_age": "牝4",
+      "weight_carried": 55.0,
+      "jockey": "幸英明",
+      "trainer": "大根田裕",
+      "finish_time": "2:01.6",
+      "margin": "@",
+      "win_odds": 62.1,
+      "popularity": 7,
+      "horse_weight": 424,
+      "horse_weight_diff": -8,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0458,
+      "ev_score": 1.126,
+      "kelly_fraction": 0.0005,
+      "manji_ev": 0.0848,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 9,
       "gate_number": 7,
       "horse_number": 8,
       "horse_name": "ナムラシンジロー",
@@ -203,12 +229,12 @@
       "weight_carried": 57.0,
       "jockey": "藤懸貴志",
       "trainer": "羽月友彦",
-      "finish_time": null,
+      "finish_time": "2:01.9",
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 105.1,
+      "popularity": 9,
+      "horse_weight": 440,
+      "horse_weight_diff": -14,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -231,10 +257,10 @@
       "trainer": "杉山佳明",
       "finish_time": null,
       "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
+      "win_odds": 267.7,
+      "popularity": 10,
+      "horse_weight": 462,
+      "horse_weight_diff": -4,
       "sire": null,
       "dam": null,
       "dam_sire": null,
@@ -244,35 +270,118 @@
       "manji_ev": 3.0181,
       "odds_vs_morning": 1.0,
       "odds_velocity": null
-    },
-    {
-      "rank": null,
-      "gate_number": 8,
-      "horse_number": 10,
-      "horse_name": "ティタノマキア",
-      "horse_id": "2023107092",
-      "sex_age": "牝3",
-      "weight_carried": 55.0,
-      "jockey": "北村友一",
-      "trainer": "池添学",
-      "finish_time": null,
-      "margin": "@",
-      "win_odds": null,
-      "popularity": null,
-      "horse_weight": null,
-      "horse_weight_diff": null,
-      "sire": null,
-      "dam": null,
-      "dam_sire": null,
-      "honmei_score": 0.2128,
-      "ev_score": 0.6383,
-      "kelly_fraction": 0.0,
-      "manji_ev": 0.2905,
-      "odds_vs_morning": 1.0,
-      "odds_velocity": null
     }
   ],
-  "payouts": [],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "1",
+      "payout": 160,
+      "popularity": 1
+    },
+    {
+      "bet_type": "単勝",
+      "combination": "10",
+      "payout": 10000,
+      "popularity": null
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "10",
+      "payout": 110,
+      "popularity": 1
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "1",
+      "payout": 110,
+      "popularity": 2
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "5",
+      "payout": 230,
+      "popularity": 5
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "1-8",
+      "payout": 190,
+      "popularity": 1
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "1-10",
+      "payout": 1100,
+      "popularity": null
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1-10",
+      "payout": 150,
+      "popularity": 1
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1-5",
+      "payout": 500,
+      "popularity": 6
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "5-10",
+      "payout": 830,
+      "popularity": 9
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "1",
+      "payout": 80000,
+      "popularity": null
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "1→10",
+      "payout": 380,
+      "popularity": 1
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "1",
+      "payout": 10000,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1-5-10",
+      "payout": 1450,
+      "popularity": 4
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "5",
+      "payout": 605,
+      "popularity": 100
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "1",
+      "payout": 10105,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "8",
+      "payout": 30009,
+      "popularity": null
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "1→10→5",
+      "payout": 3110,
+      "popularity": 10
+    }
+  ],
   "predictions": [
     {
       "prediction_id": 40265,
@@ -284,10 +393,10 @@
       "combination_json": "[[1], [10]]",
       "notes": "2頭 relative nan=0% max=0.995",
       "created_at": "2026-05-24 05:17:50",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 1,
+      "payout": 220.0,
+      "profit": 20.0,
+      "roi": 110.00000000000001,
       "horses": [
         {
           "horse_name": "スノースケープ",
@@ -331,10 +440,10 @@
       "combination_json": "[[1, 3, 10], [1, 6, 10], [1, 2, 10], [1, 3, 6], [1, 2, 3], [1, 2, 6]]",
       "notes": "Alpha EV=2.88 軸1番 相手4頭 6点",
       "created_at": "2026-05-24 05:17:50",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "スノースケープ",
@@ -378,10 +487,10 @@
       "combination_json": "[[1, 10, 3], [1, 3, 10], [1, 10, 6], [1, 10, 2], [1, 6, 10], [1, 2, 10]]",
       "notes": "Alpha EV=1.94 軸1番→フォーメーション 6点",
       "created_at": "2026-05-24 05:17:50",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -600.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "スノースケープ",
@@ -425,10 +534,10 @@
       "combination_json": "[[5, 10], [1, 10], [2, 10], [8, 10], [4, 10]]",
       "notes": "★QF推奨 軸10番×相手5頭ワイド Harville最大=0.134",
       "created_at": "2026-05-24 05:17:50",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 1,
+      "payout": 980.0,
+      "profit": 480.0,
+      "roi": 196.0,
       "horses": [
         {
           "horse_name": "スフィダンテ",
@@ -528,10 +637,10 @@
       "combination_json": "[[5, 10], [1, 10], [2, 10], [8, 10], [4, 10]]",
       "notes": "★QF推奨 軸10番×相手5頭フォーメーション Harville最大=0.134",
       "created_at": "2026-05-24 05:17:50",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 1,
+      "payout": 230.0,
+      "profit": -270.0,
+      "roi": 46.0,
       "horses": [
         {
           "horse_name": "スフィダンテ",
@@ -631,10 +740,10 @@
       "combination_json": "[[10], [5], [1]]",
       "notes": "上位3頭を複勝",
       "created_at": "2026-05-24 05:17:50",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 1,
+      "payout": 450.0,
+      "profit": 150.0,
+      "roi": 150.0,
       "horses": [
         {
           "horse_name": "ティタノマキア",
@@ -685,10 +794,10 @@
       "combination_json": "[[10]]",
       "notes": "確率1位 P(win)=0.21 odds=3.0 EV=0.64",
       "created_at": "2026-05-24 05:17:50",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ティタノマキア",
@@ -725,10 +834,10 @@
       "combination_json": "[[10, 5], [10, 1], [10, 2]]",
       "notes": "軸10番→相手3頭フォーメーション Harville最大=0.074",
       "created_at": "2026-05-24 05:17:50",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ティタノマキア",
@@ -800,10 +909,10 @@
       "combination_json": "[[1, 5, 10], [2, 5, 10]]",
       "notes": "合成EV最大=3.31 2点 馬番=[(1, 5, 10), (2, 5, 10)]",
       "created_at": "2026-05-24 05:17:50",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 1,
+      "payout": 1450.0,
+      "profit": 1250.0,
+      "roi": 725.0,
       "horses": [
         {
           "horse_name": "スノースケープ",
@@ -875,10 +984,10 @@
       "combination_json": "[[10, 5, 1], [10, 1, 5], [5, 10, 1], [5, 1, 10], [1, 10, 5], [1, 5, 10], [10, 5, 2], [10, 2, 5], [5, 10, 2], [5, 2, 10], [2, 10, 5], [2, 5, 10], [10, 5, 8], [10, 8, 5], [5, 10, 8], [5, 8, 10], [8, 10, 5], [8, 5, 10], [10, 1, 2], [10, 2, 1], [1, 10, 2], [1, 2, 10], [2, 10, 1], [2, 1, 10], [10, 1, 8], [10, 8, 1], [1, 10, 8], [1, 8, 10], [8, 10, 1], [8, 1, 10], [10, 2, 8], [10, 8, 2], [2, 10, 8], [2, 8, 10], [8, 10, 2], [8, 2, 10]]",
       "notes": "1頭軸マルチ 軸=10番 相手=[5, 1, 2, 8] 36点 Harville最大=0.0778",
       "created_at": "2026-05-24 05:17:50",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 1,
+      "payout": 3110.0,
+      "profit": -490.0,
+      "roi": 86.38888888888889,
       "horses": [
         {
           "horse_name": "ティタノマキア",
@@ -1013,10 +1122,10 @@
       "combination_json": "[[9]]",
       "notes": "確率1位(卍) EV=3.02 odds=93.8",
       "created_at": "2026-05-24 05:17:50",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ヘブンクローバー",
@@ -1053,10 +1162,10 @@
       "combination_json": "[[9], [7], [8]]",
       "notes": "確率上位3頭を複勝",
       "created_at": "2026-05-24 05:17:50",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ヘブンクローバー",
@@ -1107,10 +1216,10 @@
       "combination_json": "[[7, 9], [8, 9], [2, 9], [6, 9], [1, 9]]",
       "notes": "軸9番×相手5頭フォーメーション Harville最大=0.194",
       "created_at": "2026-05-24 05:17:50",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "マコトエウロペ",
@@ -1210,10 +1319,10 @@
       "combination_json": "[[7, 9], [8, 9], [2, 9], [6, 9], [1, 9]]",
       "notes": "軸9番×相手5頭ワイド Harville最大=0.194",
       "created_at": "2026-05-24 05:17:50",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "マコトエウロペ",
@@ -1313,10 +1422,10 @@
       "combination_json": "[[9, 7], [9, 8], [9, 2]]",
       "notes": "軸9番→相手3頭フォーメーション Harville最大=0.125",
       "created_at": "2026-05-24 05:17:50",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ヘブンクローバー",
@@ -1388,10 +1497,10 @@
       "combination_json": "[[6, 7, 9]]",
       "notes": "合成EV=5.00 Harville=0.0709 馬番=(6, 7, 9)",
       "created_at": "2026-05-24 05:17:50",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ダノンワンダー",
@@ -1442,10 +1551,10 @@
       "combination_json": "[]",
       "notes": "全馬モデルスコア（馬分析タブ用）",
       "created_at": "2026-05-24 05:17:50",
-      "is_hit": null,
-      "payout": null,
-      "profit": null,
-      "roi": null,
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
       "horses": [
         {
           "horse_name": "ティタノマキア",
@@ -1534,6 +1643,341 @@
         "10": "ティタノマキア"
       },
       "is_provisional": false
+    },
+    {
+      "prediction_id": 40632,
+      "model_type": "本命(暫定)",
+      "bet_type": "複勝",
+      "confidence": 0.13167589409520178,
+      "expected_value": 0.3950276822856053,
+      "recommended_bet": 300.0,
+      "combination_json": "[[10], [5], [1]]",
+      "notes": "上位3頭を複勝",
+      "created_at": "2026-05-24 10:14:09",
+      "is_hit": 1,
+      "payout": 450.0,
+      "profit": 150.0,
+      "roi": 150.0,
+      "horses": [
+        {
+          "horse_name": "ティタノマキア",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.13167589409520178,
+          "ev_score": 0.3950276822856053
+        },
+        {
+          "horse_name": "スフィダンテ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.13167589409520178,
+          "ev_score": 0.3950276822856053
+        },
+        {
+          "horse_name": "スノースケープ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.13167589409520178,
+          "ev_score": 0.3950276822856053
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "1": "スノースケープ",
+        "2": "シャリキモン",
+        "3": "アメジストブリエ",
+        "4": "カヴァティーナ",
+        "5": "スフィダンテ",
+        "6": "ダノンワンダー",
+        "7": "マコトエウロペ",
+        "8": "ナムラシンジロー",
+        "9": "ヘブンクローバー",
+        "10": "ティタノマキア"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 40633,
+      "model_type": "本命(暫定)",
+      "bet_type": "単勝",
+      "confidence": 0.2127659574468085,
+      "expected_value": 0.6382978723404256,
+      "recommended_bet": 100.0,
+      "combination_json": "[[10]]",
+      "notes": "確率1位 P(win)=0.21 odds=3.0 EV=0.64",
+      "created_at": "2026-05-24 10:14:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ティタノマキア",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.2127659574468085,
+          "ev_score": 0.6382978723404256
+        }
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "1": "スノースケープ",
+        "2": "シャリキモン",
+        "3": "アメジストブリエ",
+        "4": "カヴァティーナ",
+        "5": "スフィダンテ",
+        "6": "ダノンワンダー",
+        "7": "マコトエウロペ",
+        "8": "ナムラシンジロー",
+        "9": "ヘブンクローバー",
+        "10": "ティタノマキア"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 40634,
+      "model_type": "本命(暫定)",
+      "bet_type": "三連単",
+      "confidence": 1.0,
+      "expected_value": 6.0,
+      "recommended_bet": 1000.0,
+      "combination_json": "[[10, 5, 1], [10, 1, 5], [5, 10, 1], [5, 1, 10], [1, 10, 5], [1, 5, 10], [10, 5, 2], [10, 2, 5], [5, 10, 2], [5, 2, 10], [2, 10, 5], [2, 5, 10], [10, 5, 8], [10, 8, 5], [5, 10, 8], [5, 8, 10], [8, 10, 5], [8, 5, 10], [10, 1, 2], [10, 2, 1], [1, 10, 2], [1, 2, 10], [2, 10, 1], [2, 1, 10], [10, 1, 8], [10, 8, 1], [1, 10, 8], [1, 8, 10], [8, 10, 1], [8, 1, 10], [10, 2, 8], [10, 8, 2], [2, 10, 8], [2, 8, 10], [8, 10, 2], [8, 2, 10]]",
+      "notes": "1頭軸マルチ 軸=10番 相手=[5, 1, 2, 8] 36点 Harville最大=0.0778",
+      "created_at": "2026-05-24 10:14:09",
+      "is_hit": 1,
+      "payout": 3110.0,
+      "profit": -490.0,
+      "roi": 86.38888888888889,
+      "horses": [
+        {
+          "horse_name": "ティタノマキア",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07784020342166512,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ティタノマキア",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07784020342166512,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ティタノマキア",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07784020342166512,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ティタノマキア",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07784020342166512,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "ティタノマキア",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.07784020342166512,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "スフィダンテ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07784020342166512,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "スフィダンテ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07784020342166512,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "スフィダンテ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07784020342166512,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "スフィダンテ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07784020342166512,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "スフィダンテ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.07784020342166512,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "スノースケープ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.07784020342166512,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "スノースケープ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.07784020342166512,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "スノースケープ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.07784020342166512,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "スノースケープ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.07784020342166512,
+          "ev_score": 6.0
+        },
+        {
+          "horse_name": "スノースケープ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.07784020342166512,
+          "ev_score": 6.0
+        }
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 36,
+      "invested": 3600,
+      "horse_num_to_name": {
+        "1": "スノースケープ",
+        "2": "シャリキモン",
+        "3": "アメジストブリエ",
+        "4": "カヴァティーナ",
+        "5": "スフィダンテ",
+        "6": "ダノンワンダー",
+        "7": "マコトエウロペ",
+        "8": "ナムラシンジロー",
+        "9": "ヘブンクローバー",
+        "10": "ティタノマキア"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 40635,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-05-24 10:14:09",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ティタノマキア",
+          "horse_id": "2023107092",
+          "predicted_rank": 1,
+          "model_score": 0.2127659574468085,
+          "ev_score": 0.6382978723404256
+        },
+        {
+          "horse_name": "スフィダンテ",
+          "horse_id": "2023104370",
+          "predicted_rank": 2,
+          "model_score": 0.10361445783132531,
+          "ev_score": 1.6992771084337348
+        },
+        {
+          "horse_name": "スノースケープ",
+          "horse_id": "2023107516",
+          "predicted_rank": 3,
+          "model_score": 0.0786472670074715,
+          "ev_score": 0.16515926071569018
+        },
+        {
+          "horse_name": "シャリキモン",
+          "horse_id": "2023103743",
+          "predicted_rank": 4,
+          "model_score": 0.06742572495997154,
+          "ev_score": 1.051841309375556
+        },
+        {
+          "horse_name": "ナムラシンジロー",
+          "horse_id": "2023100672",
+          "predicted_rank": 5,
+          "model_score": 0.059447983014861996,
+          "ev_score": 4.244585987261146
+        },
+        {
+          "horse_name": "カヴァティーナ",
+          "horse_id": "2023104202",
+          "predicted_rank": 6,
+          "model_score": 0.045773003269500234,
+          "ev_score": 1.1260158804297058
+        },
+        {
+          "horse_name": "アメジストブリエ",
+          "horse_id": "2023105040",
+          "predicted_rank": 7,
+          "model_score": 0.03151515151515152,
+          "ev_score": 0.23951515151515151
+        },
+        {
+          "horse_name": "ダノンワンダー",
+          "horse_id": "2023105829",
+          "predicted_rank": 8,
+          "model_score": 0.03151515151515152,
+          "ev_score": 0.34351515151515155
+        },
+        {
+          "horse_name": "マコトエウロペ",
+          "horse_id": "2023105054",
+          "predicted_rank": 9,
+          "model_score": 0.02751091703056769,
+          "ev_score": 0.5419650655021835
+        },
+        {
+          "horse_name": "ヘブンクローバー",
+          "horse_id": "2023104759",
+          "predicted_rank": 10,
+          "model_score": 0.00632688927943761,
+          "ev_score": 0.5934622144112478
+        }
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "invested": 0,
+      "horse_num_to_name": {
+        "1": "スノースケープ",
+        "2": "シャリキモン",
+        "3": "アメジストブリエ",
+        "4": "カヴァティーナ",
+        "5": "スフィダンテ",
+        "6": "ダノンワンダー",
+        "7": "マコトエウロペ",
+        "8": "ナムラシンジロー",
+        "9": "ヘブンクローバー",
+        "10": "ティタノマキア"
+      },
+      "is_provisional": true
     }
   ],
   "training_evals": {},
@@ -1543,36 +1987,7 @@
       "today_front_bias": null,
       "today_race_count": null
     },
-    "ev_recommend": [
-      {
-        "horse_number": 8,
-        "horse_name": "ナムラシンジロー",
-        "win_odds": 71.4,
-        "ev_score": 4.2446,
-        "kelly_fraction": 0.0046
-      },
-      {
-        "horse_number": 5,
-        "horse_name": "スフィダンテ",
-        "win_odds": 16.4,
-        "ev_score": 1.6993,
-        "kelly_fraction": 0.0045
-      },
-      {
-        "horse_number": 4,
-        "horse_name": "カヴァティーナ",
-        "win_odds": 24.6,
-        "ev_score": 1.126,
-        "kelly_fraction": 0.0005
-      },
-      {
-        "horse_number": 2,
-        "horse_name": "シャリキモン",
-        "win_odds": 15.6,
-        "ev_score": 1.0518,
-        "kelly_fraction": 0.0004
-      }
-    ],
-    "generated_at": "2026-05-24T05:17:50.752187"
+    "ev_recommend": [],
+    "generated_at": "2026-05-24T10:14:09.972099"
   }
 }

@@ -215,6 +215,8 @@ export default function HitHistory({ predictions }: Props) {
             { key: '卍V2',  label: '⚡卍V2',     cyan: true  },
             { key: '本命',  label: '🎯本命 (全)', cyan: false },
             { key: '本命V2',label: '🎯本命V2',   cyan: false },
+            { key: 'Oracle',   label: '🔮Oracle',   cyan: false },
+            { key: 'HitFocus', label: '🔶HitFocus', cyan: false },
             { key: 'Alpha', label: 'Alpha',      cyan: false },
           ].map(({ key, label, cyan }) => (
             <button

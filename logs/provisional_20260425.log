@@ -1,0 +1,1098 @@
+09:31:39 INFO __main__: 暫定予想バッチ開始: 対象日=20260425 (2026-04-25)
+09:31:39 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:39 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:39 INFO __main__: 既存の暫定予想を削除: 374 件（再生成前クリーン）
+09:31:39 INFO __main__: 暫定パイプライン開始: race_id=202603010501
+09:31:39 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:39 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:39 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=15頭 (race_id=202603010501)
+09:31:39 INFO src.ml.features: 特徴量生成 race_id=202603010501: 15 頭 × 51 特徴量
+09:31:39 INFO __main__: 暫定モード: 馬体重欠損=15/15 単勝オッズ欠損=15/15 \u2014 NaN のまま推論
+09:31:39 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:39 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:46 INFO src.ml.bet_generator: 本命買い目生成: race_id=202603010501 6 件 (上位3頭)
+09:31:46 INFO src.ml.bet_generator: 卍買い目生成: race_id=202603010501 15 件 (EV>=1.1 馬=8 頭)
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4923 race_id=202603010501 model=本命(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4924 race_id=202603010501 model=本命(暫定) bet=複勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4925 race_id=202603010501 model=本命(暫定) bet=馬連
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4926 race_id=202603010501 model=本命(暫定) bet=ワイド
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4927 race_id=202603010501 model=本命(暫定) bet=馬単
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4928 race_id=202603010501 model=本命(暫定) bet=三連単
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4929 race_id=202603010501 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4930 race_id=202603010501 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4931 race_id=202603010501 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4932 race_id=202603010501 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4933 race_id=202603010501 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4934 race_id=202603010501 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4935 race_id=202603010501 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4936 race_id=202603010501 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4937 race_id=202603010501 model=卍(暫定) bet=複勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4938 race_id=202603010501 model=卍(暫定) bet=馬連
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4939 race_id=202603010501 model=卍(暫定) bet=ワイド
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4940 race_id=202603010501 model=卍(暫定) bet=馬単
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4941 race_id=202603010501 model=卍(暫定) bet=三連複
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4942 race_id=202603010501 model=卍(暫定) bet=三連複
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4943 race_id=202603010501 model=卍(暫定) bet=三連複
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4944 race_id=202603010501 model=本命(暫定) bet=馬分析
+09:31:46 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202603010501.json
+09:31:46 INFO __main__: 暫定パイプライン完了: race_id=202603010501 本命6件 卍15件
+09:31:46 INFO __main__: 暫定パイプライン開始: race_id=202603010502
+09:31:46 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:46 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:46 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=16頭 (race_id=202603010502)
+09:31:46 INFO src.ml.features: 特徴量生成 race_id=202603010502: 16 頭 × 51 特徴量
+09:31:46 INFO __main__: 暫定モード: 馬体重欠損=16/16 単勝オッズ欠損=16/16 \u2014 NaN のまま推論
+09:31:46 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:46 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:46 INFO src.ml.bet_generator: 本命買い目生成: race_id=202603010502 6 件 (上位3頭)
+09:31:46 INFO src.ml.bet_generator: 卍買い目生成: race_id=202603010502 15 件 (EV>=1.1 馬=8 頭)
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4945 race_id=202603010502 model=本命(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4946 race_id=202603010502 model=本命(暫定) bet=複勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4947 race_id=202603010502 model=本命(暫定) bet=馬連
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4948 race_id=202603010502 model=本命(暫定) bet=ワイド
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4949 race_id=202603010502 model=本命(暫定) bet=馬単
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4950 race_id=202603010502 model=本命(暫定) bet=三連単
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4951 race_id=202603010502 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4952 race_id=202603010502 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4953 race_id=202603010502 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4954 race_id=202603010502 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4955 race_id=202603010502 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4956 race_id=202603010502 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4957 race_id=202603010502 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4958 race_id=202603010502 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4959 race_id=202603010502 model=卍(暫定) bet=複勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4960 race_id=202603010502 model=卍(暫定) bet=馬連
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4961 race_id=202603010502 model=卍(暫定) bet=ワイド
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4962 race_id=202603010502 model=卍(暫定) bet=馬単
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4963 race_id=202603010502 model=卍(暫定) bet=三連複
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4964 race_id=202603010502 model=卍(暫定) bet=三連複
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4965 race_id=202603010502 model=卍(暫定) bet=三連複
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4966 race_id=202603010502 model=本命(暫定) bet=馬分析
+09:31:46 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202603010502.json
+09:31:46 INFO __main__: 暫定パイプライン完了: race_id=202603010502 本命6件 卍15件
+09:31:46 INFO __main__: 暫定パイプライン開始: race_id=202603010503
+09:31:46 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:46 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:46 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=16頭 (race_id=202603010503)
+09:31:46 INFO src.ml.features: 特徴量生成 race_id=202603010503: 16 頭 × 51 特徴量
+09:31:46 INFO __main__: 暫定モード: 馬体重欠損=16/16 単勝オッズ欠損=16/16 \u2014 NaN のまま推論
+09:31:46 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:46 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:46 INFO src.ml.bet_generator: 本命買い目生成: race_id=202603010503 6 件 (上位3頭)
+09:31:46 INFO src.ml.bet_generator: 卍買い目生成: race_id=202603010503 15 件 (EV>=1.1 馬=8 頭)
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4967 race_id=202603010503 model=本命(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4968 race_id=202603010503 model=本命(暫定) bet=複勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4969 race_id=202603010503 model=本命(暫定) bet=馬連
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4970 race_id=202603010503 model=本命(暫定) bet=ワイド
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4971 race_id=202603010503 model=本命(暫定) bet=馬単
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4972 race_id=202603010503 model=本命(暫定) bet=三連単
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4973 race_id=202603010503 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4974 race_id=202603010503 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4975 race_id=202603010503 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4976 race_id=202603010503 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4977 race_id=202603010503 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4978 race_id=202603010503 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4979 race_id=202603010503 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4980 race_id=202603010503 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4981 race_id=202603010503 model=卍(暫定) bet=複勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4982 race_id=202603010503 model=卍(暫定) bet=馬連
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4983 race_id=202603010503 model=卍(暫定) bet=ワイド
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4984 race_id=202603010503 model=卍(暫定) bet=馬単
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4985 race_id=202603010503 model=卍(暫定) bet=三連複
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4986 race_id=202603010503 model=卍(暫定) bet=三連複
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4987 race_id=202603010503 model=卍(暫定) bet=三連複
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4988 race_id=202603010503 model=本命(暫定) bet=馬分析
+09:31:46 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202603010503.json
+09:31:46 INFO __main__: 暫定パイプライン完了: race_id=202603010503 本命6件 卍15件
+09:31:46 INFO __main__: 暫定パイプライン開始: race_id=202603010504
+09:31:46 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:46 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:46 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=16頭 (race_id=202603010504)
+09:31:46 INFO src.ml.features: 特徴量生成 race_id=202603010504: 16 頭 × 51 特徴量
+09:31:46 INFO __main__: 暫定モード: 馬体重欠損=16/16 単勝オッズ欠損=16/16 \u2014 NaN のまま推論
+09:31:46 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:46 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:46 INFO src.ml.bet_generator: 本命買い目生成: race_id=202603010504 6 件 (上位3頭)
+09:31:46 INFO src.ml.bet_generator: 卍買い目生成: race_id=202603010504 15 件 (EV>=1.1 馬=8 頭)
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4989 race_id=202603010504 model=本命(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4990 race_id=202603010504 model=本命(暫定) bet=複勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4991 race_id=202603010504 model=本命(暫定) bet=馬連
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4992 race_id=202603010504 model=本命(暫定) bet=ワイド
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4993 race_id=202603010504 model=本命(暫定) bet=馬単
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4994 race_id=202603010504 model=本命(暫定) bet=三連単
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4995 race_id=202603010504 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4996 race_id=202603010504 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4997 race_id=202603010504 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4998 race_id=202603010504 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=4999 race_id=202603010504 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5000 race_id=202603010504 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5001 race_id=202603010504 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5002 race_id=202603010504 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5003 race_id=202603010504 model=卍(暫定) bet=複勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5004 race_id=202603010504 model=卍(暫定) bet=馬連
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5005 race_id=202603010504 model=卍(暫定) bet=ワイド
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5006 race_id=202603010504 model=卍(暫定) bet=馬単
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5007 race_id=202603010504 model=卍(暫定) bet=三連複
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5008 race_id=202603010504 model=卍(暫定) bet=三連複
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5009 race_id=202603010504 model=卍(暫定) bet=三連複
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5010 race_id=202603010504 model=本命(暫定) bet=馬分析
+09:31:46 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202603010504.json
+09:31:46 INFO __main__: 暫定パイプライン完了: race_id=202603010504 本命6件 卍15件
+09:31:46 INFO __main__: 暫定パイプライン開始: race_id=202603010505
+09:31:46 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:46 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:46 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=16頭 (race_id=202603010505)
+09:31:46 INFO src.ml.features: 特徴量生成 race_id=202603010505: 16 頭 × 51 特徴量
+09:31:46 INFO __main__: 暫定モード: 馬体重欠損=16/16 単勝オッズ欠損=16/16 \u2014 NaN のまま推論
+09:31:46 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:46 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:46 INFO src.ml.bet_generator: 本命買い目生成: race_id=202603010505 8 件 (上位3頭)
+09:31:46 INFO src.ml.bet_generator: 卍買い目生成: race_id=202603010505 15 件 (EV>=1.1 馬=8 頭)
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5011 race_id=202603010505 model=本命(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5012 race_id=202603010505 model=本命(暫定) bet=複勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5013 race_id=202603010505 model=本命(暫定) bet=馬連
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5014 race_id=202603010505 model=本命(暫定) bet=ワイド
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5015 race_id=202603010505 model=本命(暫定) bet=馬単
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5016 race_id=202603010505 model=本命(暫定) bet=三連複
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5017 race_id=202603010505 model=本命(暫定) bet=三連複
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5018 race_id=202603010505 model=本命(暫定) bet=三連単
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5019 race_id=202603010505 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5020 race_id=202603010505 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5021 race_id=202603010505 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5022 race_id=202603010505 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5023 race_id=202603010505 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5024 race_id=202603010505 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5025 race_id=202603010505 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5026 race_id=202603010505 model=卍(暫定) bet=単勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5027 race_id=202603010505 model=卍(暫定) bet=複勝
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5028 race_id=202603010505 model=卍(暫定) bet=馬連
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5029 race_id=202603010505 model=卍(暫定) bet=ワイド
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5030 race_id=202603010505 model=卍(暫定) bet=馬単
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5031 race_id=202603010505 model=卍(暫定) bet=三連複
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5032 race_id=202603010505 model=卍(暫定) bet=三連複
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5033 race_id=202603010505 model=卍(暫定) bet=三連複
+09:31:46 INFO src.database.init_db: 予想保存: prediction_id=5034 race_id=202603010505 model=本命(暫定) bet=馬分析
+09:31:46 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202603010505.json
+09:31:46 INFO __main__: 暫定パイプライン完了: race_id=202603010505 本命8件 卍15件
+09:31:46 INFO __main__: 暫定パイプライン開始: race_id=202603010506
+09:31:47 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:47 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:47 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=15頭 (race_id=202603010506)
+09:31:47 INFO src.ml.features: 特徴量生成 race_id=202603010506: 15 頭 × 51 特徴量
+09:31:47 INFO __main__: 暫定モード: 馬体重欠損=15/15 単勝オッズ欠損=15/15 \u2014 NaN のまま推論
+09:31:47 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:47 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:47 INFO src.ml.bet_generator: 本命買い目生成: race_id=202603010506 8 件 (上位3頭)
+09:31:47 INFO src.ml.bet_generator: 卍買い目生成: race_id=202603010506 15 件 (EV>=1.1 馬=8 頭)
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5035 race_id=202603010506 model=本命(暫定) bet=単勝
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5036 race_id=202603010506 model=本命(暫定) bet=複勝
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5037 race_id=202603010506 model=本命(暫定) bet=馬連
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5038 race_id=202603010506 model=本命(暫定) bet=ワイド
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5039 race_id=202603010506 model=本命(暫定) bet=馬単
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5040 race_id=202603010506 model=本命(暫定) bet=三連複
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5041 race_id=202603010506 model=本命(暫定) bet=三連複
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5042 race_id=202603010506 model=本命(暫定) bet=三連単
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5043 race_id=202603010506 model=卍(暫定) bet=単勝
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5044 race_id=202603010506 model=卍(暫定) bet=単勝
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5045 race_id=202603010506 model=卍(暫定) bet=単勝
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5046 race_id=202603010506 model=卍(暫定) bet=単勝
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5047 race_id=202603010506 model=卍(暫定) bet=単勝
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5048 race_id=202603010506 model=卍(暫定) bet=単勝
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5049 race_id=202603010506 model=卍(暫定) bet=単勝
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5050 race_id=202603010506 model=卍(暫定) bet=単勝
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5051 race_id=202603010506 model=卍(暫定) bet=複勝
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5052 race_id=202603010506 model=卍(暫定) bet=馬連
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5053 race_id=202603010506 model=卍(暫定) bet=ワイド
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5054 race_id=202603010506 model=卍(暫定) bet=馬単
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5055 race_id=202603010506 model=卍(暫定) bet=三連複
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5056 race_id=202603010506 model=卍(暫定) bet=三連複
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5057 race_id=202603010506 model=卍(暫定) bet=三連複
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5058 race_id=202603010506 model=本命(暫定) bet=馬分析
+09:31:47 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202603010506.json
+09:31:47 INFO __main__: 暫定パイプライン完了: race_id=202603010506 本命8件 卍15件
+09:31:47 INFO __main__: 暫定パイプライン開始: race_id=202603010507
+09:31:47 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:47 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:47 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=12頭 (race_id=202603010507)
+09:31:47 INFO src.ml.features: 特徴量生成 race_id=202603010507: 12 頭 × 51 特徴量
+09:31:47 INFO __main__: 暫定モード: 馬体重欠損=12/12 単勝オッズ欠損=12/12 \u2014 NaN のまま推論
+09:31:47 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:47 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:47 INFO src.ml.bet_generator: 本命買い目生成: race_id=202603010507 8 件 (上位3頭)
+09:31:47 INFO src.ml.bet_generator: race_id=202603010507: EV>1.0 の馬なし \u2014 卍買い目なし
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5059 race_id=202603010507 model=本命(暫定) bet=単勝
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5060 race_id=202603010507 model=本命(暫定) bet=複勝
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5061 race_id=202603010507 model=本命(暫定) bet=馬連
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5062 race_id=202603010507 model=本命(暫定) bet=ワイド
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5063 race_id=202603010507 model=本命(暫定) bet=馬単
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5064 race_id=202603010507 model=本命(暫定) bet=三連複
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5065 race_id=202603010507 model=本命(暫定) bet=三連複
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5066 race_id=202603010507 model=本命(暫定) bet=三連単
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5067 race_id=202603010507 model=本命(暫定) bet=馬分析
+09:31:47 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202603010507.json
+09:31:47 INFO __main__: 暫定パイプライン完了: race_id=202603010507 本命8件 卍0件
+09:31:47 INFO __main__: 暫定パイプライン開始: race_id=202603010508
+09:31:47 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:47 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:47 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=15頭 (race_id=202603010508)
+09:31:47 INFO src.ml.features: 特徴量生成 race_id=202603010508: 15 頭 × 51 特徴量
+09:31:47 INFO __main__: 暫定モード: 馬体重欠損=15/15 単勝オッズ欠損=15/15 \u2014 NaN のまま推論
+09:31:47 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:47 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:47 INFO src.ml.bet_generator: 本命買い目生成: race_id=202603010508 6 件 (上位3頭)
+09:31:47 INFO src.ml.bet_generator: race_id=202603010508: EV>1.0 の馬なし \u2014 卍買い目なし
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5068 race_id=202603010508 model=本命(暫定) bet=単勝
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5069 race_id=202603010508 model=本命(暫定) bet=複勝
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5070 race_id=202603010508 model=本命(暫定) bet=馬連
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5071 race_id=202603010508 model=本命(暫定) bet=ワイド
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5072 race_id=202603010508 model=本命(暫定) bet=馬単
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5073 race_id=202603010508 model=本命(暫定) bet=三連単
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5074 race_id=202603010508 model=本命(暫定) bet=馬分析
+09:31:47 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202603010508.json
+09:31:47 INFO __main__: 暫定パイプライン完了: race_id=202603010508 本命6件 卍0件
+09:31:47 INFO __main__: 暫定パイプライン開始: race_id=202603010509
+09:31:47 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:47 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:47 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=16頭 (race_id=202603010509)
+09:31:47 INFO src.ml.features: 特徴量生成 race_id=202603010509: 16 頭 × 51 特徴量
+09:31:47 INFO __main__: 暫定モード: 馬体重欠損=16/16 単勝オッズ欠損=16/16 \u2014 NaN のまま推論
+09:31:47 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:47 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:47 INFO src.ml.bet_generator: 本命買い目生成: race_id=202603010509 6 件 (上位3頭)
+09:31:47 INFO src.ml.bet_generator: race_id=202603010509: EV>1.0 の馬なし \u2014 卍買い目なし
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5075 race_id=202603010509 model=本命(暫定) bet=単勝
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5076 race_id=202603010509 model=本命(暫定) bet=複勝
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5077 race_id=202603010509 model=本命(暫定) bet=馬連
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5078 race_id=202603010509 model=本命(暫定) bet=ワイド
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5079 race_id=202603010509 model=本命(暫定) bet=馬単
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5080 race_id=202603010509 model=本命(暫定) bet=三連単
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5081 race_id=202603010509 model=本命(暫定) bet=馬分析
+09:31:47 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202603010509.json
+09:31:47 INFO __main__: 暫定パイプライン完了: race_id=202603010509 本命6件 卍0件
+09:31:47 INFO __main__: 暫定パイプライン開始: race_id=202603010510
+09:31:47 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:47 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:47 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=16頭 (race_id=202603010510)
+09:31:47 INFO src.ml.features: 特徴量生成 race_id=202603010510: 16 頭 × 51 特徴量
+09:31:47 INFO __main__: 暫定モード: 馬体重欠損=16/16 単勝オッズ欠損=16/16 \u2014 NaN のまま推論
+09:31:47 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:47 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:47 INFO src.ml.bet_generator: 本命買い目生成: race_id=202603010510 6 件 (上位3頭)
+09:31:47 INFO src.ml.bet_generator: race_id=202603010510: EV>1.0 の馬なし \u2014 卍買い目なし
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5082 race_id=202603010510 model=本命(暫定) bet=単勝
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5083 race_id=202603010510 model=本命(暫定) bet=複勝
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5084 race_id=202603010510 model=本命(暫定) bet=馬連
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5085 race_id=202603010510 model=本命(暫定) bet=ワイド
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5086 race_id=202603010510 model=本命(暫定) bet=馬単
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5087 race_id=202603010510 model=本命(暫定) bet=三連単
+09:31:47 INFO src.database.init_db: 予想保存: prediction_id=5088 race_id=202603010510 model=本命(暫定) bet=馬分析
+09:31:47 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202603010510.json
+09:31:47 INFO __main__: 暫定パイプライン完了: race_id=202603010510 本命6件 卍0件
+09:31:47 INFO __main__: 暫定パイプライン開始: race_id=202603010511
+09:31:47 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:47 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:47 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=12頭 (race_id=202603010511)
+09:31:47 INFO src.ml.features: 特徴量生成 race_id=202603010511: 12 頭 × 51 特徴量
+09:31:47 INFO __main__: 暫定モード: 馬体重欠損=12/12 単勝オッズ欠損=12/12 \u2014 NaN のまま推論
+09:31:48 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:48 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:48 INFO src.ml.bet_generator: 本命買い目生成: race_id=202603010511 8 件 (上位3頭)
+09:31:48 INFO src.ml.bet_generator: race_id=202603010511: EV>1.0 の馬なし \u2014 卍買い目なし
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5089 race_id=202603010511 model=本命(暫定) bet=単勝
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5090 race_id=202603010511 model=本命(暫定) bet=複勝
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5091 race_id=202603010511 model=本命(暫定) bet=馬連
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5092 race_id=202603010511 model=本命(暫定) bet=ワイド
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5093 race_id=202603010511 model=本命(暫定) bet=馬単
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5094 race_id=202603010511 model=本命(暫定) bet=三連複
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5095 race_id=202603010511 model=本命(暫定) bet=三連複
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5096 race_id=202603010511 model=本命(暫定) bet=三連単
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5097 race_id=202603010511 model=本命(暫定) bet=馬分析
+09:31:48 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202603010511.json
+09:31:48 INFO __main__: 暫定パイプライン完了: race_id=202603010511 本命8件 卍0件
+09:31:48 INFO __main__: 暫定パイプライン開始: race_id=202603010512
+09:31:48 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:48 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:48 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=16頭 (race_id=202603010512)
+09:31:48 INFO src.ml.features: 特徴量生成 race_id=202603010512: 16 頭 × 51 特徴量
+09:31:48 INFO __main__: 暫定モード: 馬体重欠損=16/16 単勝オッズ欠損=16/16 \u2014 NaN のまま推論
+09:31:48 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:48 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:48 INFO src.ml.bet_generator: 本命買い目生成: race_id=202603010512 6 件 (上位3頭)
+09:31:48 INFO src.ml.bet_generator: race_id=202603010512: EV>1.0 の馬なし \u2014 卍買い目なし
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5098 race_id=202603010512 model=本命(暫定) bet=単勝
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5099 race_id=202603010512 model=本命(暫定) bet=複勝
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5100 race_id=202603010512 model=本命(暫定) bet=馬連
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5101 race_id=202603010512 model=本命(暫定) bet=ワイド
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5102 race_id=202603010512 model=本命(暫定) bet=馬単
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5103 race_id=202603010512 model=本命(暫定) bet=三連単
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5104 race_id=202603010512 model=本命(暫定) bet=馬分析
+09:31:48 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202603010512.json
+09:31:48 INFO __main__: 暫定パイプライン完了: race_id=202603010512 本命6件 卍0件
+09:31:48 INFO __main__: 暫定パイプライン開始: race_id=202605020101
+09:31:48 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:48 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:48 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=14頭 (race_id=202605020101)
+09:31:48 INFO src.ml.features: 特徴量生成 race_id=202605020101: 14 頭 × 51 特徴量
+09:31:48 INFO __main__: 暫定モード: 馬体重欠損=14/14 単勝オッズ欠損=14/14 \u2014 NaN のまま推論
+09:31:48 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:48 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:48 INFO src.ml.bet_generator: 本命買い目生成: race_id=202605020101 6 件 (上位3頭)
+09:31:48 INFO src.ml.bet_generator: 卍買い目生成: race_id=202605020101 15 件 (EV>=1.1 馬=8 頭)
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5105 race_id=202605020101 model=本命(暫定) bet=単勝
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5106 race_id=202605020101 model=本命(暫定) bet=複勝
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5107 race_id=202605020101 model=本命(暫定) bet=馬連
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5108 race_id=202605020101 model=本命(暫定) bet=ワイド
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5109 race_id=202605020101 model=本命(暫定) bet=馬単
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5110 race_id=202605020101 model=本命(暫定) bet=三連単
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5111 race_id=202605020101 model=卍(暫定) bet=単勝
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5112 race_id=202605020101 model=卍(暫定) bet=単勝
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5113 race_id=202605020101 model=卍(暫定) bet=単勝
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5114 race_id=202605020101 model=卍(暫定) bet=単勝
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5115 race_id=202605020101 model=卍(暫定) bet=単勝
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5116 race_id=202605020101 model=卍(暫定) bet=単勝
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5117 race_id=202605020101 model=卍(暫定) bet=単勝
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5118 race_id=202605020101 model=卍(暫定) bet=単勝
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5119 race_id=202605020101 model=卍(暫定) bet=複勝
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5120 race_id=202605020101 model=卍(暫定) bet=馬連
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5121 race_id=202605020101 model=卍(暫定) bet=ワイド
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5122 race_id=202605020101 model=卍(暫定) bet=馬単
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5123 race_id=202605020101 model=卍(暫定) bet=三連複
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5124 race_id=202605020101 model=卍(暫定) bet=三連複
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5125 race_id=202605020101 model=卍(暫定) bet=三連複
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5126 race_id=202605020101 model=本命(暫定) bet=馬分析
+09:31:48 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202605020101.json
+09:31:48 INFO __main__: 暫定パイプライン完了: race_id=202605020101 本命6件 卍15件
+09:31:48 INFO __main__: 暫定パイプライン開始: race_id=202605020102
+09:31:48 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:48 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:48 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=16頭 (race_id=202605020102)
+09:31:48 INFO src.ml.features: 特徴量生成 race_id=202605020102: 16 頭 × 51 特徴量
+09:31:48 INFO __main__: 暫定モード: 馬体重欠損=16/16 単勝オッズ欠損=16/16 \u2014 NaN のまま推論
+09:31:48 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:48 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:48 INFO src.ml.bet_generator: 本命買い目生成: race_id=202605020102 6 件 (上位3頭)
+09:31:48 INFO src.ml.bet_generator: 卍買い目生成: race_id=202605020102 15 件 (EV>=1.1 馬=8 頭)
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5127 race_id=202605020102 model=本命(暫定) bet=単勝
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5128 race_id=202605020102 model=本命(暫定) bet=複勝
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5129 race_id=202605020102 model=本命(暫定) bet=馬連
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5130 race_id=202605020102 model=本命(暫定) bet=ワイド
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5131 race_id=202605020102 model=本命(暫定) bet=馬単
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5132 race_id=202605020102 model=本命(暫定) bet=三連単
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5133 race_id=202605020102 model=卍(暫定) bet=単勝
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5134 race_id=202605020102 model=卍(暫定) bet=単勝
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5135 race_id=202605020102 model=卍(暫定) bet=単勝
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5136 race_id=202605020102 model=卍(暫定) bet=単勝
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5137 race_id=202605020102 model=卍(暫定) bet=単勝
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5138 race_id=202605020102 model=卍(暫定) bet=単勝
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5139 race_id=202605020102 model=卍(暫定) bet=単勝
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5140 race_id=202605020102 model=卍(暫定) bet=単勝
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5141 race_id=202605020102 model=卍(暫定) bet=複勝
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5142 race_id=202605020102 model=卍(暫定) bet=馬連
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5143 race_id=202605020102 model=卍(暫定) bet=ワイド
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5144 race_id=202605020102 model=卍(暫定) bet=馬単
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5145 race_id=202605020102 model=卍(暫定) bet=三連複
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5146 race_id=202605020102 model=卍(暫定) bet=三連複
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5147 race_id=202605020102 model=卍(暫定) bet=三連複
+09:31:48 INFO src.database.init_db: 予想保存: prediction_id=5148 race_id=202605020102 model=本命(暫定) bet=馬分析
+09:31:48 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202605020102.json
+09:31:48 INFO __main__: 暫定パイプライン完了: race_id=202605020102 本命6件 卍15件
+09:31:48 INFO __main__: 暫定パイプライン開始: race_id=202605020103
+09:31:48 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:48 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:48 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=13頭 (race_id=202605020103)
+09:31:48 INFO src.ml.features: 特徴量生成 race_id=202605020103: 13 頭 × 51 特徴量
+09:31:48 INFO __main__: 暫定モード: 馬体重欠損=13/13 単勝オッズ欠損=13/13 \u2014 NaN のまま推論
+09:31:48 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:48 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:49 INFO src.ml.bet_generator: 本命買い目生成: race_id=202605020103 8 件 (上位3頭)
+09:31:49 INFO src.ml.bet_generator: 卍買い目生成: race_id=202605020103 15 件 (EV>=1.1 馬=8 頭)
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5149 race_id=202605020103 model=本命(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5150 race_id=202605020103 model=本命(暫定) bet=複勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5151 race_id=202605020103 model=本命(暫定) bet=馬連
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5152 race_id=202605020103 model=本命(暫定) bet=ワイド
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5153 race_id=202605020103 model=本命(暫定) bet=馬単
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5154 race_id=202605020103 model=本命(暫定) bet=三連複
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5155 race_id=202605020103 model=本命(暫定) bet=三連複
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5156 race_id=202605020103 model=本命(暫定) bet=三連単
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5157 race_id=202605020103 model=卍(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5158 race_id=202605020103 model=卍(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5159 race_id=202605020103 model=卍(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5160 race_id=202605020103 model=卍(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5161 race_id=202605020103 model=卍(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5162 race_id=202605020103 model=卍(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5163 race_id=202605020103 model=卍(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5164 race_id=202605020103 model=卍(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5165 race_id=202605020103 model=卍(暫定) bet=複勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5166 race_id=202605020103 model=卍(暫定) bet=馬連
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5167 race_id=202605020103 model=卍(暫定) bet=ワイド
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5168 race_id=202605020103 model=卍(暫定) bet=馬単
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5169 race_id=202605020103 model=卍(暫定) bet=三連複
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5170 race_id=202605020103 model=卍(暫定) bet=三連複
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5171 race_id=202605020103 model=卍(暫定) bet=三連複
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5172 race_id=202605020103 model=本命(暫定) bet=馬分析
+09:31:49 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202605020103.json
+09:31:49 INFO __main__: 暫定パイプライン完了: race_id=202605020103 本命8件 卍15件
+09:31:49 INFO __main__: 暫定パイプライン開始: race_id=202605020104
+09:31:49 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:49 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:49 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=15頭 (race_id=202605020104)
+09:31:49 INFO src.ml.features: 特徴量生成 race_id=202605020104: 15 頭 × 51 特徴量
+09:31:49 INFO __main__: 暫定モード: 馬体重欠損=15/15 単勝オッズ欠損=15/15 \u2014 NaN のまま推論
+09:31:49 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:49 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:49 INFO src.ml.bet_generator: 本命買い目生成: race_id=202605020104 6 件 (上位3頭)
+09:31:49 INFO src.ml.bet_generator: 卍買い目生成: race_id=202605020104 15 件 (EV>=1.1 馬=8 頭)
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5173 race_id=202605020104 model=本命(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5174 race_id=202605020104 model=本命(暫定) bet=複勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5175 race_id=202605020104 model=本命(暫定) bet=馬連
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5176 race_id=202605020104 model=本命(暫定) bet=ワイド
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5177 race_id=202605020104 model=本命(暫定) bet=馬単
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5178 race_id=202605020104 model=本命(暫定) bet=三連単
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5179 race_id=202605020104 model=卍(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5180 race_id=202605020104 model=卍(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5181 race_id=202605020104 model=卍(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5182 race_id=202605020104 model=卍(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5183 race_id=202605020104 model=卍(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5184 race_id=202605020104 model=卍(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5185 race_id=202605020104 model=卍(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5186 race_id=202605020104 model=卍(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5187 race_id=202605020104 model=卍(暫定) bet=複勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5188 race_id=202605020104 model=卍(暫定) bet=馬連
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5189 race_id=202605020104 model=卍(暫定) bet=ワイド
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5190 race_id=202605020104 model=卍(暫定) bet=馬単
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5191 race_id=202605020104 model=卍(暫定) bet=三連複
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5192 race_id=202605020104 model=卍(暫定) bet=三連複
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5193 race_id=202605020104 model=卍(暫定) bet=三連複
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5194 race_id=202605020104 model=本命(暫定) bet=馬分析
+09:31:49 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202605020104.json
+09:31:49 INFO __main__: 暫定パイプライン完了: race_id=202605020104 本命6件 卍15件
+09:31:49 INFO __main__: 暫定パイプライン開始: race_id=202605020105
+09:31:49 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:49 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:49 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=18頭 (race_id=202605020105)
+09:31:49 INFO src.ml.features: 特徴量生成 race_id=202605020105: 18 頭 × 51 特徴量
+09:31:49 INFO __main__: 暫定モード: 馬体重欠損=18/18 単勝オッズ欠損=18/18 \u2014 NaN のまま推論
+09:31:49 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:49 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:49 INFO src.ml.bet_generator: 本命買い目生成: race_id=202605020105 6 件 (上位3頭)
+09:31:49 INFO src.ml.bet_generator: 卍買い目生成: race_id=202605020105 17 件 (EV>=1.1 馬=10 頭)
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5195 race_id=202605020105 model=本命(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5196 race_id=202605020105 model=本命(暫定) bet=複勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5197 race_id=202605020105 model=本命(暫定) bet=馬連
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5198 race_id=202605020105 model=本命(暫定) bet=ワイド
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5199 race_id=202605020105 model=本命(暫定) bet=馬単
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5200 race_id=202605020105 model=本命(暫定) bet=三連単
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5201 race_id=202605020105 model=卍(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5202 race_id=202605020105 model=卍(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5203 race_id=202605020105 model=卍(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5204 race_id=202605020105 model=卍(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5205 race_id=202605020105 model=卍(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5206 race_id=202605020105 model=卍(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5207 race_id=202605020105 model=卍(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5208 race_id=202605020105 model=卍(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5209 race_id=202605020105 model=卍(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5210 race_id=202605020105 model=卍(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5211 race_id=202605020105 model=卍(暫定) bet=複勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5212 race_id=202605020105 model=卍(暫定) bet=馬連
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5213 race_id=202605020105 model=卍(暫定) bet=ワイド
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5214 race_id=202605020105 model=卍(暫定) bet=馬単
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5215 race_id=202605020105 model=卍(暫定) bet=三連複
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5216 race_id=202605020105 model=卍(暫定) bet=三連複
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5217 race_id=202605020105 model=卍(暫定) bet=三連複
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5218 race_id=202605020105 model=本命(暫定) bet=馬分析
+09:31:49 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202605020105.json
+09:31:49 INFO __main__: 暫定パイプライン完了: race_id=202605020105 本命6件 卍17件
+09:31:49 INFO __main__: 暫定パイプライン開始: race_id=202605020106
+09:31:49 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:49 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:49 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=16頭 (race_id=202605020106)
+09:31:49 INFO src.ml.features: 特徴量生成 race_id=202605020106: 16 頭 × 51 特徴量
+09:31:49 INFO __main__: 暫定モード: 馬体重欠損=16/16 単勝オッズ欠損=16/16 \u2014 NaN のまま推論
+09:31:49 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:49 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:49 INFO src.ml.bet_generator: 本命買い目生成: race_id=202605020106 6 件 (上位3頭)
+09:31:49 INFO src.ml.bet_generator: 卍買い目生成: race_id=202605020106 15 件 (EV>=1.1 馬=8 頭)
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5219 race_id=202605020106 model=本命(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5220 race_id=202605020106 model=本命(暫定) bet=複勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5221 race_id=202605020106 model=本命(暫定) bet=馬連
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5222 race_id=202605020106 model=本命(暫定) bet=ワイド
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5223 race_id=202605020106 model=本命(暫定) bet=馬単
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5224 race_id=202605020106 model=本命(暫定) bet=三連単
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5225 race_id=202605020106 model=卍(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5226 race_id=202605020106 model=卍(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5227 race_id=202605020106 model=卍(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5228 race_id=202605020106 model=卍(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5229 race_id=202605020106 model=卍(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5230 race_id=202605020106 model=卍(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5231 race_id=202605020106 model=卍(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5232 race_id=202605020106 model=卍(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5233 race_id=202605020106 model=卍(暫定) bet=複勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5234 race_id=202605020106 model=卍(暫定) bet=馬連
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5235 race_id=202605020106 model=卍(暫定) bet=ワイド
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5236 race_id=202605020106 model=卍(暫定) bet=馬単
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5237 race_id=202605020106 model=卍(暫定) bet=三連複
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5238 race_id=202605020106 model=卍(暫定) bet=三連複
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5239 race_id=202605020106 model=卍(暫定) bet=三連複
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5240 race_id=202605020106 model=本命(暫定) bet=馬分析
+09:31:49 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202605020106.json
+09:31:49 INFO __main__: 暫定パイプライン完了: race_id=202605020106 本命6件 卍15件
+09:31:49 INFO __main__: 暫定パイプライン開始: race_id=202605020107
+09:31:49 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:49 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:49 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=16頭 (race_id=202605020107)
+09:31:49 INFO src.ml.features: 特徴量生成 race_id=202605020107: 16 頭 × 51 特徴量
+09:31:49 INFO __main__: 暫定モード: 馬体重欠損=16/16 単勝オッズ欠損=16/16 \u2014 NaN のまま推論
+09:31:49 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:49 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:49 INFO src.ml.bet_generator: 本命買い目生成: race_id=202605020107 6 件 (上位3頭)
+09:31:49 INFO src.ml.bet_generator: race_id=202605020107: EV>1.0 の馬なし \u2014 卍買い目なし
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5241 race_id=202605020107 model=本命(暫定) bet=単勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5242 race_id=202605020107 model=本命(暫定) bet=複勝
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5243 race_id=202605020107 model=本命(暫定) bet=馬連
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5244 race_id=202605020107 model=本命(暫定) bet=ワイド
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5245 race_id=202605020107 model=本命(暫定) bet=馬単
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5246 race_id=202605020107 model=本命(暫定) bet=三連単
+09:31:49 INFO src.database.init_db: 予想保存: prediction_id=5247 race_id=202605020107 model=本命(暫定) bet=馬分析
+09:31:49 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202605020107.json
+09:31:49 INFO __main__: 暫定パイプライン完了: race_id=202605020107 本命6件 卍0件
+09:31:49 INFO __main__: 暫定パイプライン開始: race_id=202605020108
+09:31:50 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:50 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:50 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=8頭 (race_id=202605020108)
+09:31:50 INFO src.ml.features: 特徴量生成 race_id=202605020108: 8 頭 × 51 特徴量
+09:31:50 INFO __main__: 暫定モード: 馬体重欠損=8/8 単勝オッズ欠損=8/8 \u2014 NaN のまま推論
+09:31:50 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:50 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:50 INFO src.ml.bet_generator: 本命買い目生成: race_id=202605020108 8 件 (上位3頭)
+09:31:50 INFO src.ml.bet_generator: race_id=202605020108: EV>1.0 の馬なし \u2014 卍買い目なし
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5248 race_id=202605020108 model=本命(暫定) bet=単勝
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5249 race_id=202605020108 model=本命(暫定) bet=複勝
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5250 race_id=202605020108 model=本命(暫定) bet=馬連
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5251 race_id=202605020108 model=本命(暫定) bet=ワイド
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5252 race_id=202605020108 model=本命(暫定) bet=馬単
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5253 race_id=202605020108 model=本命(暫定) bet=三連複
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5254 race_id=202605020108 model=本命(暫定) bet=三連複
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5255 race_id=202605020108 model=本命(暫定) bet=三連単
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5256 race_id=202605020108 model=本命(暫定) bet=馬分析
+09:31:50 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202605020108.json
+09:31:50 INFO __main__: 暫定パイプライン完了: race_id=202605020108 本命8件 卍0件
+09:31:50 INFO __main__: 暫定パイプライン開始: race_id=202605020109
+09:31:50 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:50 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:50 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=9頭 (race_id=202605020109)
+09:31:50 INFO src.ml.features: 特徴量生成 race_id=202605020109: 9 頭 × 51 特徴量
+09:31:50 INFO __main__: 暫定モード: 馬体重欠損=9/9 単勝オッズ欠損=9/9 \u2014 NaN のまま推論
+09:31:50 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:50 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:50 INFO src.ml.bet_generator: 本命買い目生成: race_id=202605020109 8 件 (上位3頭)
+09:31:50 INFO src.ml.bet_generator: race_id=202605020109: EV>1.0 の馬なし \u2014 卍買い目なし
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5257 race_id=202605020109 model=本命(暫定) bet=単勝
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5258 race_id=202605020109 model=本命(暫定) bet=複勝
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5259 race_id=202605020109 model=本命(暫定) bet=馬連
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5260 race_id=202605020109 model=本命(暫定) bet=ワイド
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5261 race_id=202605020109 model=本命(暫定) bet=馬単
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5262 race_id=202605020109 model=本命(暫定) bet=三連複
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5263 race_id=202605020109 model=本命(暫定) bet=三連複
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5264 race_id=202605020109 model=本命(暫定) bet=三連単
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5265 race_id=202605020109 model=本命(暫定) bet=馬分析
+09:31:50 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202605020109.json
+09:31:50 INFO __main__: 暫定パイプライン完了: race_id=202605020109 本命8件 卍0件
+09:31:50 INFO __main__: 暫定パイプライン開始: race_id=202605020110
+09:31:50 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:50 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:50 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=15頭 (race_id=202605020110)
+09:31:50 INFO src.ml.features: 特徴量生成 race_id=202605020110: 15 頭 × 51 特徴量
+09:31:50 INFO __main__: 暫定モード: 馬体重欠損=15/15 単勝オッズ欠損=15/15 \u2014 NaN のまま推論
+09:31:50 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:50 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:50 INFO src.ml.bet_generator: 本命買い目生成: race_id=202605020110 6 件 (上位3頭)
+09:31:50 INFO src.ml.bet_generator: race_id=202605020110: EV>1.0 の馬なし \u2014 卍買い目なし
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5266 race_id=202605020110 model=本命(暫定) bet=単勝
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5267 race_id=202605020110 model=本命(暫定) bet=複勝
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5268 race_id=202605020110 model=本命(暫定) bet=馬連
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5269 race_id=202605020110 model=本命(暫定) bet=ワイド
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5270 race_id=202605020110 model=本命(暫定) bet=馬単
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5271 race_id=202605020110 model=本命(暫定) bet=三連単
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5272 race_id=202605020110 model=本命(暫定) bet=馬分析
+09:31:50 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202605020110.json
+09:31:50 INFO __main__: 暫定パイプライン完了: race_id=202605020110 本命6件 卍0件
+09:31:50 INFO __main__: 暫定パイプライン開始: race_id=202605020111
+09:31:50 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:50 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:50 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=18頭 (race_id=202605020111)
+09:31:50 INFO src.ml.features: 特徴量生成 race_id=202605020111: 18 頭 × 51 特徴量
+09:31:50 INFO __main__: 暫定モード: 馬体重欠損=18/18 単勝オッズ欠損=18/18 \u2014 NaN のまま推論
+09:31:50 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:50 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:50 INFO src.ml.bet_generator: 本命買い目生成: race_id=202605020111 6 件 (上位3頭)
+09:31:50 INFO src.ml.bet_generator: race_id=202605020111: EV>1.0 の馬なし \u2014 卍買い目なし
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5273 race_id=202605020111 model=本命(暫定) bet=単勝
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5274 race_id=202605020111 model=本命(暫定) bet=複勝
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5275 race_id=202605020111 model=本命(暫定) bet=馬連
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5276 race_id=202605020111 model=本命(暫定) bet=ワイド
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5277 race_id=202605020111 model=本命(暫定) bet=馬単
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5278 race_id=202605020111 model=本命(暫定) bet=三連単
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5279 race_id=202605020111 model=本命(暫定) bet=馬分析
+09:31:50 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202605020111.json
+09:31:50 INFO __main__: 暫定パイプライン完了: race_id=202605020111 本命6件 卍0件
+09:31:50 INFO __main__: 暫定パイプライン開始: race_id=202605020112
+09:31:50 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:50 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:50 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=13頭 (race_id=202605020112)
+09:31:50 INFO src.ml.features: 特徴量生成 race_id=202605020112: 13 頭 × 51 特徴量
+09:31:50 INFO __main__: 暫定モード: 馬体重欠損=13/13 単勝オッズ欠損=13/13 \u2014 NaN のまま推論
+09:31:50 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:50 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:50 INFO src.ml.bet_generator: 本命買い目生成: race_id=202605020112 8 件 (上位3頭)
+09:31:50 INFO src.ml.bet_generator: race_id=202605020112: EV>1.0 の馬なし \u2014 卍買い目なし
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5280 race_id=202605020112 model=本命(暫定) bet=単勝
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5281 race_id=202605020112 model=本命(暫定) bet=複勝
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5282 race_id=202605020112 model=本命(暫定) bet=馬連
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5283 race_id=202605020112 model=本命(暫定) bet=ワイド
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5284 race_id=202605020112 model=本命(暫定) bet=馬単
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5285 race_id=202605020112 model=本命(暫定) bet=三連複
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5286 race_id=202605020112 model=本命(暫定) bet=三連複
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5287 race_id=202605020112 model=本命(暫定) bet=三連単
+09:31:50 INFO src.database.init_db: 予想保存: prediction_id=5288 race_id=202605020112 model=本命(暫定) bet=馬分析
+09:31:50 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202605020112.json
+09:31:50 INFO __main__: 暫定パイプライン完了: race_id=202605020112 本命8件 卍0件
+09:31:50 INFO __main__: 暫定パイプライン開始: race_id=202608030101
+09:31:50 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:50 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:50 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=16頭 (race_id=202608030101)
+09:31:50 INFO src.ml.features: 特徴量生成 race_id=202608030101: 16 頭 × 51 特徴量
+09:31:50 INFO __main__: 暫定モード: 馬体重欠損=16/16 単勝オッズ欠損=16/16 \u2014 NaN のまま推論
+09:31:50 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:50 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:51 INFO src.ml.bet_generator: 本命買い目生成: race_id=202608030101 6 件 (上位3頭)
+09:31:51 INFO src.ml.bet_generator: 卍買い目生成: race_id=202608030101 15 件 (EV>=1.1 馬=8 頭)
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5289 race_id=202608030101 model=本命(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5290 race_id=202608030101 model=本命(暫定) bet=複勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5291 race_id=202608030101 model=本命(暫定) bet=馬連
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5292 race_id=202608030101 model=本命(暫定) bet=ワイド
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5293 race_id=202608030101 model=本命(暫定) bet=馬単
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5294 race_id=202608030101 model=本命(暫定) bet=三連単
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5295 race_id=202608030101 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5296 race_id=202608030101 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5297 race_id=202608030101 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5298 race_id=202608030101 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5299 race_id=202608030101 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5300 race_id=202608030101 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5301 race_id=202608030101 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5302 race_id=202608030101 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5303 race_id=202608030101 model=卍(暫定) bet=複勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5304 race_id=202608030101 model=卍(暫定) bet=馬連
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5305 race_id=202608030101 model=卍(暫定) bet=ワイド
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5306 race_id=202608030101 model=卍(暫定) bet=馬単
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5307 race_id=202608030101 model=卍(暫定) bet=三連複
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5308 race_id=202608030101 model=卍(暫定) bet=三連複
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5309 race_id=202608030101 model=卍(暫定) bet=三連複
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5310 race_id=202608030101 model=本命(暫定) bet=馬分析
+09:31:51 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202608030101.json
+09:31:51 INFO __main__: 暫定パイプライン完了: race_id=202608030101 本命6件 卍15件
+09:31:51 INFO __main__: 暫定パイプライン開始: race_id=202608030102
+09:31:51 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:51 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:51 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=16頭 (race_id=202608030102)
+09:31:51 INFO src.ml.features: 特徴量生成 race_id=202608030102: 16 頭 × 51 特徴量
+09:31:51 INFO __main__: 暫定モード: 馬体重欠損=16/16 単勝オッズ欠損=16/16 \u2014 NaN のまま推論
+09:31:51 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:51 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:51 INFO src.ml.bet_generator: 本命買い目生成: race_id=202608030102 6 件 (上位3頭)
+09:31:51 INFO src.ml.bet_generator: 卍買い目生成: race_id=202608030102 15 件 (EV>=1.1 馬=8 頭)
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5311 race_id=202608030102 model=本命(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5312 race_id=202608030102 model=本命(暫定) bet=複勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5313 race_id=202608030102 model=本命(暫定) bet=馬連
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5314 race_id=202608030102 model=本命(暫定) bet=ワイド
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5315 race_id=202608030102 model=本命(暫定) bet=馬単
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5316 race_id=202608030102 model=本命(暫定) bet=三連単
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5317 race_id=202608030102 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5318 race_id=202608030102 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5319 race_id=202608030102 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5320 race_id=202608030102 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5321 race_id=202608030102 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5322 race_id=202608030102 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5323 race_id=202608030102 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5324 race_id=202608030102 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5325 race_id=202608030102 model=卍(暫定) bet=複勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5326 race_id=202608030102 model=卍(暫定) bet=馬連
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5327 race_id=202608030102 model=卍(暫定) bet=ワイド
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5328 race_id=202608030102 model=卍(暫定) bet=馬単
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5329 race_id=202608030102 model=卍(暫定) bet=三連複
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5330 race_id=202608030102 model=卍(暫定) bet=三連複
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5331 race_id=202608030102 model=卍(暫定) bet=三連複
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5332 race_id=202608030102 model=本命(暫定) bet=馬分析
+09:31:51 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202608030102.json
+09:31:51 INFO __main__: 暫定パイプライン完了: race_id=202608030102 本命6件 卍15件
+09:31:51 INFO __main__: 暫定パイプライン開始: race_id=202608030103
+09:31:51 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:51 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:51 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=15頭 (race_id=202608030103)
+09:31:51 INFO src.ml.features: 特徴量生成 race_id=202608030103: 15 頭 × 51 特徴量
+09:31:51 INFO __main__: 暫定モード: 馬体重欠損=15/15 単勝オッズ欠損=15/15 \u2014 NaN のまま推論
+09:31:51 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:51 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:51 INFO src.ml.bet_generator: 本命買い目生成: race_id=202608030103 6 件 (上位3頭)
+09:31:51 INFO src.ml.bet_generator: 卍買い目生成: race_id=202608030103 15 件 (EV>=1.1 馬=8 頭)
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5333 race_id=202608030103 model=本命(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5334 race_id=202608030103 model=本命(暫定) bet=複勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5335 race_id=202608030103 model=本命(暫定) bet=馬連
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5336 race_id=202608030103 model=本命(暫定) bet=ワイド
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5337 race_id=202608030103 model=本命(暫定) bet=馬単
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5338 race_id=202608030103 model=本命(暫定) bet=三連単
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5339 race_id=202608030103 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5340 race_id=202608030103 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5341 race_id=202608030103 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5342 race_id=202608030103 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5343 race_id=202608030103 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5344 race_id=202608030103 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5345 race_id=202608030103 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5346 race_id=202608030103 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5347 race_id=202608030103 model=卍(暫定) bet=複勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5348 race_id=202608030103 model=卍(暫定) bet=馬連
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5349 race_id=202608030103 model=卍(暫定) bet=ワイド
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5350 race_id=202608030103 model=卍(暫定) bet=馬単
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5351 race_id=202608030103 model=卍(暫定) bet=三連複
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5352 race_id=202608030103 model=卍(暫定) bet=三連複
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5353 race_id=202608030103 model=卍(暫定) bet=三連複
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5354 race_id=202608030103 model=本命(暫定) bet=馬分析
+09:31:51 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202608030103.json
+09:31:51 INFO __main__: 暫定パイプライン完了: race_id=202608030103 本命6件 卍15件
+09:31:51 INFO __main__: 暫定パイプライン開始: race_id=202608030104
+09:31:51 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:51 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:51 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=11頭 (race_id=202608030104)
+09:31:51 INFO src.ml.features: 特徴量生成 race_id=202608030104: 11 頭 × 51 特徴量
+09:31:51 INFO __main__: 暫定モード: 馬体重欠損=11/11 単勝オッズ欠損=11/11 \u2014 NaN のまま推論
+09:31:51 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:51 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:51 INFO src.ml.bet_generator: 本命買い目生成: race_id=202608030104 8 件 (上位3頭)
+09:31:51 INFO src.ml.bet_generator: 卍買い目生成: race_id=202608030104 14 件 (EV>=1.1 馬=7 頭)
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5355 race_id=202608030104 model=本命(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5356 race_id=202608030104 model=本命(暫定) bet=複勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5357 race_id=202608030104 model=本命(暫定) bet=馬連
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5358 race_id=202608030104 model=本命(暫定) bet=ワイド
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5359 race_id=202608030104 model=本命(暫定) bet=馬単
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5360 race_id=202608030104 model=本命(暫定) bet=三連複
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5361 race_id=202608030104 model=本命(暫定) bet=三連複
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5362 race_id=202608030104 model=本命(暫定) bet=三連単
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5363 race_id=202608030104 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5364 race_id=202608030104 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5365 race_id=202608030104 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5366 race_id=202608030104 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5367 race_id=202608030104 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5368 race_id=202608030104 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5369 race_id=202608030104 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5370 race_id=202608030104 model=卍(暫定) bet=複勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5371 race_id=202608030104 model=卍(暫定) bet=馬連
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5372 race_id=202608030104 model=卍(暫定) bet=ワイド
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5373 race_id=202608030104 model=卍(暫定) bet=馬単
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5374 race_id=202608030104 model=卍(暫定) bet=三連複
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5375 race_id=202608030104 model=卍(暫定) bet=三連複
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5376 race_id=202608030104 model=卍(暫定) bet=三連複
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5377 race_id=202608030104 model=本命(暫定) bet=馬分析
+09:31:51 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202608030104.json
+09:31:51 INFO __main__: 暫定パイプライン完了: race_id=202608030104 本命8件 卍14件
+09:31:51 INFO __main__: 暫定パイプライン開始: race_id=202608030105
+09:31:51 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:51 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:51 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=12頭 (race_id=202608030105)
+09:31:51 INFO src.ml.features: 特徴量生成 race_id=202608030105: 12 頭 × 51 特徴量
+09:31:51 INFO __main__: 暫定モード: 馬体重欠損=12/12 単勝オッズ欠損=12/12 \u2014 NaN のまま推論
+09:31:51 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:51 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:51 INFO src.ml.bet_generator: 本命買い目生成: race_id=202608030105 8 件 (上位3頭)
+09:31:51 INFO src.ml.bet_generator: 卍買い目生成: race_id=202608030105 15 件 (EV>=1.1 馬=8 頭)
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5378 race_id=202608030105 model=本命(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5379 race_id=202608030105 model=本命(暫定) bet=複勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5380 race_id=202608030105 model=本命(暫定) bet=馬連
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5381 race_id=202608030105 model=本命(暫定) bet=ワイド
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5382 race_id=202608030105 model=本命(暫定) bet=馬単
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5383 race_id=202608030105 model=本命(暫定) bet=三連複
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5384 race_id=202608030105 model=本命(暫定) bet=三連複
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5385 race_id=202608030105 model=本命(暫定) bet=三連単
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5386 race_id=202608030105 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5387 race_id=202608030105 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5388 race_id=202608030105 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5389 race_id=202608030105 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5390 race_id=202608030105 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5391 race_id=202608030105 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5392 race_id=202608030105 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5393 race_id=202608030105 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5394 race_id=202608030105 model=卍(暫定) bet=複勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5395 race_id=202608030105 model=卍(暫定) bet=馬連
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5396 race_id=202608030105 model=卍(暫定) bet=ワイド
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5397 race_id=202608030105 model=卍(暫定) bet=馬単
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5398 race_id=202608030105 model=卍(暫定) bet=三連複
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5399 race_id=202608030105 model=卍(暫定) bet=三連複
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5400 race_id=202608030105 model=卍(暫定) bet=三連複
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5401 race_id=202608030105 model=本命(暫定) bet=馬分析
+09:31:51 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202608030105.json
+09:31:51 INFO __main__: 暫定パイプライン完了: race_id=202608030105 本命8件 卍15件
+09:31:51 INFO __main__: 暫定パイプライン開始: race_id=202608030106
+09:31:51 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:51 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:51 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=17頭 (race_id=202608030106)
+09:31:51 INFO src.ml.features: 特徴量生成 race_id=202608030106: 17 頭 × 51 特徴量
+09:31:51 INFO __main__: 暫定モード: 馬体重欠損=17/17 単勝オッズ欠損=17/17 \u2014 NaN のまま推論
+09:31:51 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:51 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:51 INFO src.ml.bet_generator: 本命買い目生成: race_id=202608030106 6 件 (上位3頭)
+09:31:51 INFO src.ml.bet_generator: 卍買い目生成: race_id=202608030106 16 件 (EV>=1.1 馬=9 頭)
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5402 race_id=202608030106 model=本命(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5403 race_id=202608030106 model=本命(暫定) bet=複勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5404 race_id=202608030106 model=本命(暫定) bet=馬連
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5405 race_id=202608030106 model=本命(暫定) bet=ワイド
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5406 race_id=202608030106 model=本命(暫定) bet=馬単
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5407 race_id=202608030106 model=本命(暫定) bet=三連単
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5408 race_id=202608030106 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5409 race_id=202608030106 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5410 race_id=202608030106 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5411 race_id=202608030106 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5412 race_id=202608030106 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5413 race_id=202608030106 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5414 race_id=202608030106 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5415 race_id=202608030106 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5416 race_id=202608030106 model=卍(暫定) bet=単勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5417 race_id=202608030106 model=卍(暫定) bet=複勝
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5418 race_id=202608030106 model=卍(暫定) bet=馬連
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5419 race_id=202608030106 model=卍(暫定) bet=ワイド
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5420 race_id=202608030106 model=卍(暫定) bet=馬単
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5421 race_id=202608030106 model=卍(暫定) bet=三連複
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5422 race_id=202608030106 model=卍(暫定) bet=三連複
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5423 race_id=202608030106 model=卍(暫定) bet=三連複
+09:31:51 INFO src.database.init_db: 予想保存: prediction_id=5424 race_id=202608030106 model=本命(暫定) bet=馬分析
+09:31:51 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202608030106.json
+09:31:51 INFO __main__: 暫定パイプライン完了: race_id=202608030106 本命6件 卍16件
+09:31:51 INFO __main__: 暫定パイプライン開始: race_id=202608030107
+09:31:52 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:52 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:52 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=14頭 (race_id=202608030107)
+09:31:52 INFO src.ml.features: 特徴量生成 race_id=202608030107: 14 頭 × 51 特徴量
+09:31:52 INFO __main__: 暫定モード: 馬体重欠損=14/14 単勝オッズ欠損=14/14 \u2014 NaN のまま推論
+09:31:52 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:52 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:52 INFO src.ml.bet_generator: 本命買い目生成: race_id=202608030107 6 件 (上位3頭)
+09:31:52 INFO src.ml.bet_generator: race_id=202608030107: EV>1.0 の馬なし \u2014 卍買い目なし
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5425 race_id=202608030107 model=本命(暫定) bet=単勝
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5426 race_id=202608030107 model=本命(暫定) bet=複勝
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5427 race_id=202608030107 model=本命(暫定) bet=馬連
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5428 race_id=202608030107 model=本命(暫定) bet=ワイド
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5429 race_id=202608030107 model=本命(暫定) bet=馬単
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5430 race_id=202608030107 model=本命(暫定) bet=三連単
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5431 race_id=202608030107 model=本命(暫定) bet=馬分析
+09:31:52 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202608030107.json
+09:31:52 INFO __main__: 暫定パイプライン完了: race_id=202608030107 本命6件 卍0件
+09:31:52 INFO __main__: 暫定パイプライン開始: race_id=202608030108
+09:31:52 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:52 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:52 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=6頭 (race_id=202608030108)
+09:31:52 INFO src.ml.features: 特徴量生成 race_id=202608030108: 6 頭 × 51 特徴量
+09:31:52 INFO __main__: 暫定モード: 馬体重欠損=6/6 単勝オッズ欠損=6/6 \u2014 NaN のまま推論
+09:31:52 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:52 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:52 INFO src.ml.bet_generator: 本命買い目生成: race_id=202608030108 8 件 (上位3頭)
+09:31:52 INFO src.ml.bet_generator: race_id=202608030108: EV>1.0 の馬なし \u2014 卍買い目なし
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5432 race_id=202608030108 model=本命(暫定) bet=単勝
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5433 race_id=202608030108 model=本命(暫定) bet=複勝
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5434 race_id=202608030108 model=本命(暫定) bet=馬連
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5435 race_id=202608030108 model=本命(暫定) bet=ワイド
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5436 race_id=202608030108 model=本命(暫定) bet=馬単
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5437 race_id=202608030108 model=本命(暫定) bet=三連複
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5438 race_id=202608030108 model=本命(暫定) bet=三連複
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5439 race_id=202608030108 model=本命(暫定) bet=三連単
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5440 race_id=202608030108 model=本命(暫定) bet=馬分析
+09:31:52 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202608030108.json
+09:31:52 INFO __main__: 暫定パイプライン完了: race_id=202608030108 本命8件 卍0件
+09:31:52 INFO __main__: 暫定パイプライン開始: race_id=202608030109
+09:31:52 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:52 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:52 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=16頭 (race_id=202608030109)
+09:31:52 INFO src.ml.features: 特徴量生成 race_id=202608030109: 16 頭 × 51 特徴量
+09:31:52 INFO __main__: 暫定モード: 馬体重欠損=16/16 単勝オッズ欠損=16/16 \u2014 NaN のまま推論
+09:31:52 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:52 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:52 INFO src.ml.bet_generator: 本命買い目生成: race_id=202608030109 6 件 (上位3頭)
+09:31:52 INFO src.ml.bet_generator: race_id=202608030109: EV>1.0 の馬なし \u2014 卍買い目なし
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5441 race_id=202608030109 model=本命(暫定) bet=単勝
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5442 race_id=202608030109 model=本命(暫定) bet=複勝
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5443 race_id=202608030109 model=本命(暫定) bet=馬連
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5444 race_id=202608030109 model=本命(暫定) bet=ワイド
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5445 race_id=202608030109 model=本命(暫定) bet=馬単
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5446 race_id=202608030109 model=本命(暫定) bet=三連単
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5447 race_id=202608030109 model=本命(暫定) bet=馬分析
+09:31:52 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202608030109.json
+09:31:52 INFO __main__: 暫定パイプライン完了: race_id=202608030109 本命6件 卍0件
+09:31:52 INFO __main__: 暫定パイプライン開始: race_id=202608030110
+09:31:52 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:52 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:52 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=11頭 (race_id=202608030110)
+09:31:52 INFO src.ml.features: 特徴量生成 race_id=202608030110: 11 頭 × 51 特徴量
+09:31:52 INFO __main__: 暫定モード: 馬体重欠損=11/11 単勝オッズ欠損=11/11 \u2014 NaN のまま推論
+09:31:52 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:52 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:52 INFO src.ml.bet_generator: 本命買い目生成: race_id=202608030110 8 件 (上位3頭)
+09:31:52 INFO src.ml.bet_generator: race_id=202608030110: EV>1.0 の馬なし \u2014 卍買い目なし
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5448 race_id=202608030110 model=本命(暫定) bet=単勝
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5449 race_id=202608030110 model=本命(暫定) bet=複勝
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5450 race_id=202608030110 model=本命(暫定) bet=馬連
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5451 race_id=202608030110 model=本命(暫定) bet=ワイド
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5452 race_id=202608030110 model=本命(暫定) bet=馬単
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5453 race_id=202608030110 model=本命(暫定) bet=三連複
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5454 race_id=202608030110 model=本命(暫定) bet=三連複
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5455 race_id=202608030110 model=本命(暫定) bet=三連単
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5456 race_id=202608030110 model=本命(暫定) bet=馬分析
+09:31:52 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202608030110.json
+09:31:52 INFO __main__: 暫定パイプライン完了: race_id=202608030110 本命8件 卍0件
+09:31:52 INFO __main__: 暫定パイプライン開始: race_id=202608030111
+09:31:52 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:52 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:52 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=12頭 (race_id=202608030111)
+09:31:52 INFO src.ml.features: 特徴量生成 race_id=202608030111: 12 頭 × 51 特徴量
+09:31:52 INFO __main__: 暫定モード: 馬体重欠損=12/12 単勝オッズ欠損=12/12 \u2014 NaN のまま推論
+09:31:52 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:52 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:52 INFO src.ml.bet_generator: 本命買い目生成: race_id=202608030111 8 件 (上位3頭)
+09:31:52 INFO src.ml.bet_generator: race_id=202608030111: EV>1.0 の馬なし \u2014 卍買い目なし
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5457 race_id=202608030111 model=本命(暫定) bet=単勝
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5458 race_id=202608030111 model=本命(暫定) bet=複勝
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5459 race_id=202608030111 model=本命(暫定) bet=馬連
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5460 race_id=202608030111 model=本命(暫定) bet=ワイド
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5461 race_id=202608030111 model=本命(暫定) bet=馬単
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5462 race_id=202608030111 model=本命(暫定) bet=三連複
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5463 race_id=202608030111 model=本命(暫定) bet=三連複
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5464 race_id=202608030111 model=本命(暫定) bet=三連単
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5465 race_id=202608030111 model=本命(暫定) bet=馬分析
+09:31:52 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202608030111.json
+09:31:52 INFO __main__: 暫定パイプライン完了: race_id=202608030111 本命8件 卍0件
+09:31:52 INFO __main__: 暫定パイプライン開始: race_id=202608030112
+09:31:52 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+09:31:52 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+09:31:52 INFO __main__: DB キャッシュ: オッズ=0件 エントリ=11頭 (race_id=202608030112)
+09:31:52 INFO src.ml.features: 特徴量生成 race_id=202608030112: 11 頭 × 51 特徴量
+09:31:52 INFO __main__: 暫定モード: 馬体重欠損=11/11 単勝オッズ欠損=11/11 \u2014 NaN のまま推論
+09:31:52 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+09:31:52 INFO src.ml.models: モデル読み込み: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+C:\dev\horse-racing-ai\src\ml\models.py:525: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  odds  = df["win_odds"].fillna(0.0).astype(float)
+09:31:52 INFO src.ml.bet_generator: 本命買い目生成: race_id=202608030112 8 件 (上位3頭)
+09:31:52 INFO src.ml.bet_generator: race_id=202608030112: EV>1.0 の馬なし \u2014 卍買い目なし
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5466 race_id=202608030112 model=本命(暫定) bet=単勝
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5467 race_id=202608030112 model=本命(暫定) bet=複勝
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5468 race_id=202608030112 model=本命(暫定) bet=馬連
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5469 race_id=202608030112 model=本命(暫定) bet=ワイド
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5470 race_id=202608030112 model=本命(暫定) bet=馬単
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5471 race_id=202608030112 model=本命(暫定) bet=三連複
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5472 race_id=202608030112 model=本命(暫定) bet=三連複
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5473 race_id=202608030112 model=本命(暫定) bet=三連単
+09:31:52 INFO src.database.init_db: 予想保存: prediction_id=5474 race_id=202608030112 model=本命(暫定) bet=馬分析
+09:31:52 INFO __main__: JSON 出力: C:\dev\horse-racing-ai\data\predictions\202608030112.json
+09:31:52 INFO __main__: 暫定パイプライン完了: race_id=202608030112 本命8件 卍0件
+09:31:52 INFO __main__: 暫定予想バッチ完了: 36 / 36 レース
+暫定予想完了: 36 レース
+  202603010501
+  202603010502
+  202603010503
+  202603010504
+  202603010505
+  202603010506
+  202603010507
+  202603010508
+  202603010509
+  202603010510
+  202603010511
+  202603010512
+  202605020101
+  202605020102
+  202605020103
+  202605020104
+  202605020105
+  202605020106
+  202605020107
+  202605020108
+  202605020109
+  202605020110
+  202605020111
+  202605020112
+  202608030101
+  202608030102
+  202608030103
+  202608030104
+  202608030105
+  202608030106
+  202608030107
+  202608030108
+  202608030109
+  202608030110
+  202608030111
+  202608030112

@@ -1,0 +1,1661 @@
+{
+  "race_id": "202605021109",
+  "race_name": "富嶽賞",
+  "date": "2026-05-30",
+  "venue": "東京",
+  "race_number": 9,
+  "distance": 0,
+  "surface": "",
+  "track_direction": "",
+  "weather": "",
+  "condition": "",
+  "year": "2026",
+  "results": [
+    {
+      "rank": 1,
+      "gate_number": 3,
+      "horse_number": 6,
+      "horse_name": "サンドブラスト",
+      "horse_id": "2021106941",
+      "sex_age": "牡1",
+      "weight_carried": 58.0,
+      "jockey": "菊沢一樹",
+      "trainer": "鈴木慎太",
+      "finish_time": "1:24.5",
+      "margin": "@",
+      "win_odds": 30.6,
+      "popularity": 8,
+      "horse_weight": 502,
+      "horse_weight_diff": -10,
+      "sire": "モーニン",
+      "dam": "マリンブラスト",
+      "dam_sire": "アグネスデジタル",
+      "honmei_score": 0.0155,
+      "ev_score": 0.4296,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 2,
+      "gate_number": 5,
+      "horse_number": 10,
+      "horse_name": "フィドルファドル",
+      "horse_id": "2022104674",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "戸崎圭太",
+      "trainer": "矢作芳人",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": 6.6,
+      "popularity": 4,
+      "horse_weight": 474,
+      "horse_weight_diff": -4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0925,
+      "ev_score": 0.6752,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.8176,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 3,
+      "gate_number": 6,
+      "horse_number": 11,
+      "horse_name": "アクアマリーナ",
+      "horse_id": "2022102026",
+      "sex_age": "牝3",
+      "weight_carried": 56.0,
+      "jockey": "松山弘平",
+      "trainer": "伊坂重信",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": 11.8,
+      "popularity": 7,
+      "horse_weight": 478,
+      "horse_weight_diff": 4,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.083,
+      "ev_score": 0.9379,
+      "kelly_fraction": 0.0,
+      "manji_ev": 3.7169,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 4,
+      "gate_number": 2,
+      "horse_number": 3,
+      "horse_name": "ドントゥザムーン",
+      "horse_id": "2022101863",
+      "sex_age": "牡5",
+      "weight_carried": 58.0,
+      "jockey": "菅原明良",
+      "trainer": "高木登",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": 4.1,
+      "popularity": 1,
+      "horse_weight": 468,
+      "horse_weight_diff": -2,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0704,
+      "ev_score": 0.4715,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.2079,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": 5,
+      "gate_number": 7,
+      "horse_number": 14,
+      "horse_name": "マクミランテソーロ",
+      "horse_id": "2021102276",
+      "sex_age": "牡7",
+      "weight_carried": 58.0,
+      "jockey": "木幡巧也",
+      "trainer": "田中剛",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": 7.9,
+      "popularity": 6,
+      "horse_weight": 480,
+      "horse_weight_diff": 0,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1569,
+      "ev_score": 1.1295,
+      "kelly_fraction": 0.0021,
+      "manji_ev": 0.6731,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 1,
+      "horse_number": 1,
+      "horse_name": "サトノアルペジオ",
+      "horse_id": "2020103477",
+      "sex_age": "騸3",
+      "weight_carried": 58.0,
+      "jockey": "ゴンサル",
+      "trainer": "大和田成",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0239,
+      "ev_score": 1.0177,
+      "kelly_fraction": 0.0,
+      "manji_ev": 5.8303,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 1,
+      "horse_number": 2,
+      "horse_name": "ウインアルドーレ",
+      "horse_id": "2021106192",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "松岡正海",
+      "trainer": "奥平雅士",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ビーチパトロールBeach Patrol(米)",
+      "dam": "アルデュール",
+      "dam_sire": "フレンチデピュティFrench Deputy(米)",
+      "honmei_score": 0.0239,
+      "ev_score": 0.9078,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.6518,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 2,
+      "horse_number": 4,
+      "horse_name": "ベルブリエ",
+      "horse_id": "2021106639",
+      "sex_age": "牝5",
+      "weight_carried": 56.0,
+      "jockey": "岩田康誠",
+      "trainer": "尾関知人",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "キズナ",
+      "dam": "ナギット",
+      "dam_sire": "Smart Strike(加)",
+      "honmei_score": 0.0102,
+      "ev_score": 0.3034,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 3,
+      "horse_number": 5,
+      "horse_name": "ノルドヴェスト",
+      "horse_id": "2020102711",
+      "sex_age": "騸3",
+      "weight_carried": 58.0,
+      "jockey": "ディー",
+      "trainer": "大竹正博",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ロードカナロア",
+      "dam": "マエストラーレ",
+      "dam_sire": "ネオユニヴァース",
+      "honmei_score": 0.0366,
+      "ev_score": 0.9709,
+      "kelly_fraction": 0.0,
+      "manji_ev": 5.9071,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 4,
+      "horse_number": 7,
+      "horse_name": "ジェミート",
+      "horse_id": "2022100327",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "横山和生",
+      "trainer": "四位洋文",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.1136,
+      "ev_score": 0.7495,
+      "kelly_fraction": 0.0,
+      "manji_ev": 1.4146,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 4,
+      "horse_number": 8,
+      "horse_name": "キョウエイスレーヴ",
+      "horse_id": "2022103472",
+      "sex_age": "牡3",
+      "weight_carried": 58.0,
+      "jockey": "長浜鴻緒",
+      "trainer": "萱野浩二",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0366,
+      "ev_score": 1.2824,
+      "kelly_fraction": 0.0008,
+      "manji_ev": 0.3952,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 5,
+      "horse_number": 9,
+      "horse_name": "キミハスコール",
+      "horse_id": "2021104313",
+      "sex_age": "牡5",
+      "weight_carried": 58.0,
+      "jockey": "ルメール",
+      "trainer": "加藤征弘",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "コパノリッキー",
+      "dam": "テツナゴオ",
+      "dam_sire": "ハーツクライ",
+      "honmei_score": 0.2163,
+      "ev_score": 1.8605,
+      "kelly_fraction": 0.0113,
+      "manji_ev": 0.8603,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 6,
+      "horse_number": 12,
+      "horse_name": "ビーコング",
+      "horse_id": "2021103595",
+      "sex_age": "牡4",
+      "weight_carried": 58.0,
+      "jockey": "横山武史",
+      "trainer": "小手川準",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "タリスマニックTalismanic(英)",
+      "dam": "タマモペンライト",
+      "dam_sire": "ブラックタイド",
+      "honmei_score": 0.0294,
+      "ev_score": 1.1327,
+      "kelly_fraction": 0.0004,
+      "manji_ev": 0.0,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 7,
+      "horse_number": 13,
+      "horse_name": "アグラード",
+      "horse_id": "2021105429",
+      "sex_age": "騸3",
+      "weight_carried": 58.0,
+      "jockey": "杉原誠人",
+      "trainer": "高柳瑞樹",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.0038,
+      "ev_score": 0.1906,
+      "kelly_fraction": 0.0,
+      "manji_ev": 2.9102,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 15,
+      "horse_name": "タイセイピューマ",
+      "horse_id": "2021106119",
+      "sex_age": "牡5",
+      "weight_carried": 58.0,
+      "jockey": "石田拓郎",
+      "trainer": "新開幸一",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": "ディスクリートキャットDiscreet Cat(米)",
+      "dam": "タイセイクインス",
+      "dam_sire": "ワイルドラッシュWild Rush(米)",
+      "honmei_score": 0.0038,
+      "ev_score": 0.2135,
+      "kelly_fraction": 0.0,
+      "manji_ev": 4.3708,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    },
+    {
+      "rank": null,
+      "gate_number": 8,
+      "horse_number": 16,
+      "horse_name": "ダイシンリンク",
+      "horse_id": "2022106699",
+      "sex_age": "牡1",
+      "weight_carried": 58.0,
+      "jockey": "北村宏司",
+      "trainer": "森秀行",
+      "finish_time": null,
+      "margin": "@",
+      "win_odds": null,
+      "popularity": null,
+      "horse_weight": null,
+      "horse_weight_diff": null,
+      "sire": null,
+      "dam": null,
+      "dam_sire": null,
+      "honmei_score": 0.2163,
+      "ev_score": 0.9519,
+      "kelly_fraction": 0.0,
+      "manji_ev": 0.0,
+      "odds_vs_morning": 1.0,
+      "odds_velocity": null
+    }
+  ],
+  "payouts": [
+    {
+      "bet_type": "単勝",
+      "combination": "6",
+      "payout": 3060,
+      "popularity": 8
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "10",
+      "payout": 230,
+      "popularity": 3
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "11",
+      "payout": 500,
+      "popularity": 7
+    },
+    {
+      "bet_type": "複勝",
+      "combination": "6",
+      "payout": 800,
+      "popularity": 9
+    },
+    {
+      "bet_type": "枠連",
+      "combination": "3-5",
+      "payout": 2490,
+      "popularity": 12
+    },
+    {
+      "bet_type": "馬連",
+      "combination": "6-10",
+      "payout": 11080,
+      "popularity": 31
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "10-11",
+      "payout": 1450,
+      "popularity": 17
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "6-10",
+      "payout": 3340,
+      "popularity": 34
+    },
+    {
+      "bet_type": "ワイド",
+      "combination": "6-11",
+      "payout": 5660,
+      "popularity": 52
+    },
+    {
+      "bet_type": "馬単",
+      "combination": "6→10",
+      "payout": 27440,
+      "popularity": 81
+    },
+    {
+      "bet_type": "三連複",
+      "combination": "6-10-11",
+      "payout": 35020,
+      "popularity": 108
+    },
+    {
+      "bet_type": "三連単",
+      "combination": "6→10→11",
+      "payout": 372770,
+      "popularity": 924
+    }
+  ],
+  "predictions": [
+    {
+      "prediction_id": 40869,
+      "model_type": "本命(暫定)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-05-29 20:01:57",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ダイシンリンク",
+          "horse_id": "2022106699",
+          "predicted_rank": 1,
+          "model_score": 0.21634168987929434,
+          "ev_score": 0.43268337975858867
+        },
+        {
+          "horse_name": "キミハスコール",
+          "horse_id": "2021104313",
+          "predicted_rank": 2,
+          "model_score": 0.21634168987929434,
+          "ev_score": 4.9974930362117
+        },
+        {
+          "horse_name": "ジェミート",
+          "horse_id": "2022100327",
+          "predicted_rank": 3,
+          "model_score": 0.1223021582733813,
+          "ev_score": 0.941726618705036
+        },
+        {
+          "horse_name": "フィドルファドル",
+          "horse_id": "2022104674",
+          "predicted_rank": 4,
+          "model_score": 0.0918785890073831,
+          "ev_score": 1.2036095159967186
+        },
+        {
+          "horse_name": "マクミランテソーロ",
+          "horse_id": "2021102276",
+          "predicted_rank": 5,
+          "model_score": 0.0918785890073831,
+          "ev_score": 2.361279737489746
+        },
+        {
+          "horse_name": "ドントゥザムーン",
+          "horse_id": "2022101863",
+          "predicted_rank": 6,
+          "model_score": 0.06386732533521525,
+          "ev_score": 0.6769936485532816
+        },
+        {
+          "horse_name": "サトノアルペジオ",
+          "horse_id": "2020103477",
+          "predicted_rank": 7,
+          "model_score": 0.06386732533521525,
+          "ev_score": 1.5264290755116443
+        },
+        {
+          "horse_name": "ノルドヴェスト",
+          "horse_id": "2020102711",
+          "predicted_rank": 8,
+          "model_score": 0.04721135029354207,
+          "ev_score": 0.9583904109589041
+        },
+        {
+          "horse_name": "アクアマリーナ",
+          "horse_id": "2022102026",
+          "predicted_rank": 9,
+          "model_score": 0.0366389838788471,
+          "ev_score": 0.38837322911577926
+        },
+        {
+          "horse_name": "ウインアルドーレ",
+          "horse_id": "2021106192",
+          "predicted_rank": 10,
+          "model_score": 0.0294201656669523,
+          "ev_score": 0.5472150814053128
+        },
+        {
+          "horse_name": "ビーコング",
+          "horse_id": "2021103595",
+          "predicted_rank": 11,
+          "model_score": 0.0294201656669523,
+          "ev_score": 1.5151385318480435
+        },
+        {
+          "horse_name": "サンドブラスト",
+          "horse_id": "2021106941",
+          "predicted_rank": 12,
+          "model_score": 0.0294201656669523,
+          "ev_score": 0.5795772636389603
+        },
+        {
+          "horse_name": "ベルブリエ",
+          "horse_id": "2021106639",
+          "predicted_rank": 13,
+          "model_score": 0.01017984390906006,
+          "ev_score": 0.8530709195792331
+        },
+        {
+          "horse_name": "タイセイピューマ",
+          "horse_id": "2021106119",
+          "predicted_rank": 14,
+          "model_score": 0.01017984390906006,
+          "ev_score": 0.3786901934170343
+        },
+        {
+          "horse_name": "アグラード",
+          "horse_id": "2021105429",
+          "predicted_rank": 15,
+          "model_score": 0.003923766816143498,
+          "ev_score": 0.17500000000000002
+        },
+        {
+          "horse_name": "キョウエイスレーヴ",
+          "horse_id": "2022103472",
+          "predicted_rank": 16,
+          "model_score": 0.003923766816143498,
+          "ev_score": 0.29192825112107623
+        }
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "invested": 0,
+      "horse_num_to_name": {
+        "1": "サトノアルペジオ",
+        "2": "ウインアルドーレ",
+        "3": "ドントゥザムーン",
+        "4": "ベルブリエ",
+        "5": "ノルドヴェスト",
+        "6": "サンドブラスト",
+        "7": "ジェミート",
+        "8": "キョウエイスレーヴ",
+        "9": "キミハスコール",
+        "10": "フィドルファドル",
+        "11": "アクアマリーナ",
+        "12": "ビーコング",
+        "13": "アグラード",
+        "14": "マクミランテソーロ",
+        "15": "タイセイピューマ",
+        "16": "ダイシンリンク"
+      },
+      "is_provisional": true
+    },
+    {
+      "prediction_id": 41186,
+      "model_type": "本命(直前)",
+      "bet_type": "単勝",
+      "confidence": 0.24684586815227483,
+      "expected_value": 1.0861218198700093,
+      "recommended_bet": 600.0,
+      "combination_json": "[[16]]",
+      "notes": "確率1位 P(win)=0.216→0.247(cal) odds=4.4 EV=1.09",
+      "created_at": "2026-05-30 13:40:19",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ダイシンリンク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.21634168987929434,
+          "ev_score": 1.0861218198700093
+        }
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "1": "サトノアルペジオ",
+        "2": "ウインアルドーレ",
+        "3": "ドントゥザムーン",
+        "4": "ベルブリエ",
+        "5": "ノルドヴェスト",
+        "6": "サンドブラスト",
+        "7": "ジェミート",
+        "8": "キョウエイスレーヴ",
+        "9": "キミハスコール",
+        "10": "フィドルファドル",
+        "11": "アクアマリーナ",
+        "12": "ビーコング",
+        "13": "アグラード",
+        "14": "マクミランテソーロ",
+        "15": "タイセイピューマ",
+        "16": "ダイシンリンク"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 41187,
+      "model_type": "本命(直前)",
+      "bet_type": "三連単",
+      "confidence": 0.44218260767703055,
+      "expected_value": 2.937990952304443,
+      "recommended_bet": 1000.0,
+      "combination_json": "[[16, 9, 7], [16, 7, 9], [9, 16, 7], [9, 7, 16], [7, 16, 9], [7, 9, 16], [16, 9, 14], [16, 14, 9], [9, 16, 14], [9, 14, 16], [14, 16, 9], [14, 9, 16], [16, 9, 10], [16, 10, 9], [9, 16, 10], [9, 10, 16], [10, 16, 9], [10, 9, 16], [16, 7, 14], [16, 14, 7], [7, 16, 14], [7, 14, 16], [14, 16, 7], [14, 7, 16], [16, 7, 10], [16, 10, 7], [7, 16, 10], [7, 10, 16], [10, 16, 7], [10, 7, 16], [16, 14, 10], [16, 10, 14], [14, 16, 10], [14, 10, 16], [10, 16, 14], [10, 14, 16]]",
+      "notes": "1頭軸マルチ 軸=16番 相手=[9, 7, 14, 10] 36点 Harville最大=0.0147",
+      "created_at": "2026-05-30 13:40:19",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -3600.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ダイシンリンク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.014739420255901019,
+          "ev_score": 2.937990952304443
+        },
+        {
+          "horse_name": "ダイシンリンク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.014739420255901019,
+          "ev_score": 2.937990952304443
+        },
+        {
+          "horse_name": "ダイシンリンク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.014739420255901019,
+          "ev_score": 2.937990952304443
+        },
+        {
+          "horse_name": "ダイシンリンク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.014739420255901019,
+          "ev_score": 2.937990952304443
+        },
+        {
+          "horse_name": "ダイシンリンク",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.014739420255901019,
+          "ev_score": 2.937990952304443
+        },
+        {
+          "horse_name": "キミハスコール",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.014739420255901019,
+          "ev_score": 2.937990952304443
+        },
+        {
+          "horse_name": "キミハスコール",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.014739420255901019,
+          "ev_score": 2.937990952304443
+        },
+        {
+          "horse_name": "キミハスコール",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.014739420255901019,
+          "ev_score": 2.937990952304443
+        },
+        {
+          "horse_name": "キミハスコール",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.014739420255901019,
+          "ev_score": 2.937990952304443
+        },
+        {
+          "horse_name": "キミハスコール",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.014739420255901019,
+          "ev_score": 2.937990952304443
+        },
+        {
+          "horse_name": "ジェミート",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.014739420255901019,
+          "ev_score": 2.937990952304443
+        },
+        {
+          "horse_name": "ジェミート",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.014739420255901019,
+          "ev_score": 2.937990952304443
+        },
+        {
+          "horse_name": "ジェミート",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.014739420255901019,
+          "ev_score": 2.937990952304443
+        },
+        {
+          "horse_name": "ジェミート",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.014739420255901019,
+          "ev_score": 2.937990952304443
+        },
+        {
+          "horse_name": "ジェミート",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.014739420255901019,
+          "ev_score": 2.937990952304443
+        }
+      ],
+      "bet_form": "1頭軸マルチ",
+      "n_tickets": 36,
+      "invested": 3600,
+      "horse_num_to_name": {
+        "1": "サトノアルペジオ",
+        "2": "ウインアルドーレ",
+        "3": "ドントゥザムーン",
+        "4": "ベルブリエ",
+        "5": "ノルドヴェスト",
+        "6": "サンドブラスト",
+        "7": "ジェミート",
+        "8": "キョウエイスレーヴ",
+        "9": "キミハスコール",
+        "10": "フィドルファドル",
+        "11": "アクアマリーナ",
+        "12": "ビーコング",
+        "13": "アグラード",
+        "14": "マクミランテソーロ",
+        "15": "タイセイピューマ",
+        "16": "ダイシンリンク"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 41188,
+      "model_type": "卍(直前)",
+      "bet_type": "単勝",
+      "confidence": 0.22291017681036,
+      "expected_value": 5.90711968547454,
+      "recommended_bet": 600.0,
+      "combination_json": "[[5]]",
+      "notes": "確率1位(卍) EV=5.91 odds=26.5",
+      "created_at": "2026-05-30 13:40:19",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ノルドヴェスト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 5.90711968547454,
+          "ev_score": 5.90711968547454
+        }
+      ],
+      "bet_form": "単勝",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "1": "サトノアルペジオ",
+        "2": "ウインアルドーレ",
+        "3": "ドントゥザムーン",
+        "4": "ベルブリエ",
+        "5": "ノルドヴェスト",
+        "6": "サンドブラスト",
+        "7": "ジェミート",
+        "8": "キョウエイスレーヴ",
+        "9": "キミハスコール",
+        "10": "フィドルファドル",
+        "11": "アクアマリーナ",
+        "12": "ビーコング",
+        "13": "アグラード",
+        "14": "マクミランテソーロ",
+        "15": "タイセイピューマ",
+        "16": "ダイシンリンク"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 41189,
+      "model_type": "卍(直前)",
+      "bet_type": "複勝",
+      "confidence": 0.6,
+      "expected_value": 5.369378716176944,
+      "recommended_bet": 600.0,
+      "combination_json": "[[5], [1], [15]]",
+      "notes": "確率上位3頭を複勝",
+      "created_at": "2026-05-30 13:40:19",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ノルドヴェスト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 5.369378716176944,
+          "ev_score": 5.369378716176944
+        },
+        {
+          "horse_name": "サトノアルペジオ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 5.369378716176944,
+          "ev_score": 5.369378716176944
+        },
+        {
+          "horse_name": "タイセイピューマ",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 5.369378716176944,
+          "ev_score": 5.369378716176944
+        }
+      ],
+      "bet_form": "複勝",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "1": "サトノアルペジオ",
+        "2": "ウインアルドーレ",
+        "3": "ドントゥザムーン",
+        "4": "ベルブリエ",
+        "5": "ノルドヴェスト",
+        "6": "サンドブラスト",
+        "7": "ジェミート",
+        "8": "キョウエイスレーヴ",
+        "9": "キミハスコール",
+        "10": "フィドルファドル",
+        "11": "アクアマリーナ",
+        "12": "ビーコング",
+        "13": "アグラード",
+        "14": "マクミランテソーロ",
+        "15": "タイセイピューマ",
+        "16": "ダイシンリンク"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 41190,
+      "model_type": "卍(直前)",
+      "bet_type": "馬連",
+      "confidence": 0.4845374322305863,
+      "expected_value": 4.0,
+      "recommended_bet": 600.0,
+      "combination_json": "[[1, 5], [5, 15], [5, 11], [5, 13], [2, 5]]",
+      "notes": "軸5番×相手5頭フォーメーション Harville最大=0.097",
+      "created_at": "2026-05-30 13:40:19",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "サトノアルペジオ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.09690748644611727,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "サトノアルペジオ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.09690748644611727,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "サトノアルペジオ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.09690748644611727,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "サトノアルペジオ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.09690748644611727,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "サトノアルペジオ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.09690748644611727,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ノルドヴェスト",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.09690748644611727,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ノルドヴェスト",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.09690748644611727,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ノルドヴェスト",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.09690748644611727,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ノルドヴェスト",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.09690748644611727,
+          "ev_score": 4.0
+        },
+        {
+          "horse_name": "ノルドヴェスト",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.09690748644611727,
+          "ev_score": 4.0
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "サトノアルペジオ",
+        "2": "ウインアルドーレ",
+        "3": "ドントゥザムーン",
+        "4": "ベルブリエ",
+        "5": "ノルドヴェスト",
+        "6": "サンドブラスト",
+        "7": "ジェミート",
+        "8": "キョウエイスレーヴ",
+        "9": "キミハスコール",
+        "10": "フィドルファドル",
+        "11": "アクアマリーナ",
+        "12": "ビーコング",
+        "13": "アグラード",
+        "14": "マクミランテソーロ",
+        "15": "タイセイピューマ",
+        "16": "ダイシンリンク"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 41191,
+      "model_type": "卍(直前)",
+      "bet_type": "ワイド",
+      "confidence": 0.5814449186767037,
+      "expected_value": 3.0,
+      "recommended_bet": 600.0,
+      "combination_json": "[[1, 5], [5, 15], [5, 11], [5, 13], [2, 5]]",
+      "notes": "軸5番×相手5頭ワイド Harville最大=0.097",
+      "created_at": "2026-05-30 13:40:19",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -500.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "サトノアルペジオ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.09690748644611727,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "サトノアルペジオ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.09690748644611727,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "サトノアルペジオ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.09690748644611727,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "サトノアルペジオ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.09690748644611727,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "サトノアルペジオ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.09690748644611727,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ノルドヴェスト",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.09690748644611727,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ノルドヴェスト",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.09690748644611727,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ノルドヴェスト",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.09690748644611727,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ノルドヴェスト",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.09690748644611727,
+          "ev_score": 3.0
+        },
+        {
+          "horse_name": "ノルドヴェスト",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.09690748644611727,
+          "ev_score": 3.0
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 5,
+      "invested": 500,
+      "horse_num_to_name": {
+        "1": "サトノアルペジオ",
+        "2": "ウインアルドーレ",
+        "3": "ドントゥザムーン",
+        "4": "ベルブリエ",
+        "5": "ノルドヴェスト",
+        "6": "サンドブラスト",
+        "7": "ジェミート",
+        "8": "キョウエイスレーヴ",
+        "9": "キミハスコール",
+        "10": "フィドルファドル",
+        "11": "アクアマリーナ",
+        "12": "ビーコング",
+        "13": "アグラード",
+        "14": "マクミランテソーロ",
+        "15": "タイセイピューマ",
+        "16": "ダイシンリンク"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 41192,
+      "model_type": "卍(直前)",
+      "bet_type": "馬単",
+      "confidence": 0.3882536271676787,
+      "expected_value": 5.0,
+      "recommended_bet": 600.0,
+      "combination_json": "[[5, 1], [5, 15], [5, 11]]",
+      "notes": "軸5番→相手3頭フォーメーション Harville最大=0.049",
+      "created_at": "2026-05-30 13:40:19",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -300.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ノルドヴェスト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.04853170339595984,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ノルドヴェスト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.04853170339595984,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ノルドヴェスト",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.04853170339595984,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "サトノアルペジオ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.04853170339595984,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "サトノアルペジオ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.04853170339595984,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "サトノアルペジオ",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.04853170339595984,
+          "ev_score": 5.0
+        }
+      ],
+      "bet_form": "軸ながし",
+      "n_tickets": 3,
+      "invested": 300,
+      "horse_num_to_name": {
+        "1": "サトノアルペジオ",
+        "2": "ウインアルドーレ",
+        "3": "ドントゥザムーン",
+        "4": "ベルブリエ",
+        "5": "ノルドヴェスト",
+        "6": "サンドブラスト",
+        "7": "ジェミート",
+        "8": "キョウエイスレーヴ",
+        "9": "キミハスコール",
+        "10": "フィドルファドル",
+        "11": "アクアマリーナ",
+        "12": "ビーコング",
+        "13": "アグラード",
+        "14": "マクミランテソーロ",
+        "15": "タイセイピューマ",
+        "16": "ダイシンリンク"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 41195,
+      "model_type": "卍(直前)",
+      "bet_type": "三連複",
+      "confidence": 0.6158726866219008,
+      "expected_value": 5.0,
+      "recommended_bet": 600.0,
+      "combination_json": "[[1, 5, 13]]",
+      "notes": "合成EV=5.00 Harville=0.0411 馬番=(1, 5, 13)",
+      "created_at": "2026-05-30 13:40:19",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "サトノアルペジオ",
+          "horse_id": null,
+          "predicted_rank": 1,
+          "model_score": 0.041058179108126716,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "ノルドヴェスト",
+          "horse_id": null,
+          "predicted_rank": 2,
+          "model_score": 0.041058179108126716,
+          "ev_score": 5.0
+        },
+        {
+          "horse_name": "アグラード",
+          "horse_id": null,
+          "predicted_rank": 3,
+          "model_score": 0.041058179108126716,
+          "ev_score": 5.0
+        }
+      ],
+      "bet_form": "3頭ボックス",
+      "n_tickets": 1,
+      "invested": 100,
+      "horse_num_to_name": {
+        "1": "サトノアルペジオ",
+        "2": "ウインアルドーレ",
+        "3": "ドントゥザムーン",
+        "4": "ベルブリエ",
+        "5": "ノルドヴェスト",
+        "6": "サンドブラスト",
+        "7": "ジェミート",
+        "8": "キョウエイスレーヴ",
+        "9": "キミハスコール",
+        "10": "フィドルファドル",
+        "11": "アクアマリーナ",
+        "12": "ビーコング",
+        "13": "アグラード",
+        "14": "マクミランテソーロ",
+        "15": "タイセイピューマ",
+        "16": "ダイシンリンク"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 41196,
+      "model_type": "本命(直前)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-05-30 13:40:19",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ダイシンリンク",
+          "horse_id": "2022106699",
+          "predicted_rank": 1,
+          "model_score": 0.21634168987929434,
+          "ev_score": 0.9519034354688951
+        },
+        {
+          "horse_name": "キミハスコール",
+          "horse_id": "2021104313",
+          "predicted_rank": 2,
+          "model_score": 0.21634168987929434,
+          "ev_score": 1.8605385329619313
+        },
+        {
+          "horse_name": "マクミランテソーロ",
+          "horse_id": "2021102276",
+          "predicted_rank": 3,
+          "model_score": 0.15687679083094555,
+          "ev_score": 1.129512893982808
+        },
+        {
+          "horse_name": "ジェミート",
+          "horse_id": "2022100327",
+          "predicted_rank": 4,
+          "model_score": 0.11356045424181696,
+          "ev_score": 0.7494989979959918
+        },
+        {
+          "horse_name": "フィドルファドル",
+          "horse_id": "2022104674",
+          "predicted_rank": 5,
+          "model_score": 0.09248956884561892,
+          "ev_score": 0.6751738525730181
+        },
+        {
+          "horse_name": "アクアマリーナ",
+          "horse_id": "2022102026",
+          "predicted_rank": 6,
+          "model_score": 0.08300044385264092,
+          "ev_score": 0.9379050155348425
+        },
+        {
+          "horse_name": "ドントゥザムーン",
+          "horse_id": "2022101863",
+          "predicted_rank": 7,
+          "model_score": 0.07037203047960555,
+          "ev_score": 0.4714926042133572
+        },
+        {
+          "horse_name": "ノルドヴェスト",
+          "horse_id": "2020102711",
+          "predicted_rank": 8,
+          "model_score": 0.0366389838788471,
+          "ev_score": 0.9709330727894482
+        },
+        {
+          "horse_name": "キョウエイスレーヴ",
+          "horse_id": "2022103472",
+          "predicted_rank": 9,
+          "model_score": 0.0366389838788471,
+          "ev_score": 1.2823644357596484
+        },
+        {
+          "horse_name": "ビーコング",
+          "horse_id": "2021103595",
+          "predicted_rank": 10,
+          "model_score": 0.0294201656669523,
+          "ev_score": 1.1326763781776636
+        },
+        {
+          "horse_name": "サトノアルペジオ",
+          "horse_id": "2020103477",
+          "predicted_rank": 11,
+          "model_score": 0.023888520238885203,
+          "ev_score": 1.0176509621765097
+        },
+        {
+          "horse_name": "ウインアルドーレ",
+          "horse_id": "2021106192",
+          "predicted_rank": 12,
+          "model_score": 0.023888520238885203,
+          "ev_score": 0.9077637690776377
+        },
+        {
+          "horse_name": "サンドブラスト",
+          "horse_id": "2021106941",
+          "predicted_rank": 13,
+          "model_score": 0.015454545454545455,
+          "ev_score": 0.42963636363636365
+        },
+        {
+          "horse_name": "ベルブリエ",
+          "horse_id": "2021106639",
+          "predicted_rank": 14,
+          "model_score": 0.01017984390906006,
+          "ev_score": 0.3033593484899898
+        },
+        {
+          "horse_name": "タイセイピューマ",
+          "horse_id": "2021106119",
+          "predicted_rank": 15,
+          "model_score": 0.0037593984962406013,
+          "ev_score": 0.21353383458646613
+        },
+        {
+          "horse_name": "アグラード",
+          "horse_id": "2021105429",
+          "predicted_rank": 16,
+          "model_score": 0.0037593984962406013,
+          "ev_score": 0.1906015037593985
+        }
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "invested": 0,
+      "horse_num_to_name": {
+        "1": "サトノアルペジオ",
+        "2": "ウインアルドーレ",
+        "3": "ドントゥザムーン",
+        "4": "ベルブリエ",
+        "5": "ノルドヴェスト",
+        "6": "サンドブラスト",
+        "7": "ジェミート",
+        "8": "キョウエイスレーヴ",
+        "9": "キミハスコール",
+        "10": "フィドルファドル",
+        "11": "アクアマリーナ",
+        "12": "ビーコング",
+        "13": "アグラード",
+        "14": "マクミランテソーロ",
+        "15": "タイセイピューマ",
+        "16": "ダイシンリンク"
+      },
+      "is_provisional": false
+    },
+    {
+      "prediction_id": 41197,
+      "model_type": "本命V2(直前)",
+      "bet_type": "馬分析",
+      "confidence": null,
+      "expected_value": null,
+      "recommended_bet": null,
+      "combination_json": "[]",
+      "notes": "全馬モデルスコア（馬分析タブ用）",
+      "created_at": "2026-05-30 13:40:38",
+      "is_hit": 0,
+      "payout": 0.0,
+      "profit": -100.0,
+      "roi": 0.0,
+      "horses": [
+        {
+          "horse_name": "ダイシンリンク",
+          "horse_id": "2022106699",
+          "predicted_rank": 1,
+          "model_score": 0.21634168987929434,
+          "ev_score": 0.9519034354688951
+        },
+        {
+          "horse_name": "キミハスコール",
+          "horse_id": "2021104313",
+          "predicted_rank": 2,
+          "model_score": 0.21634168987929434,
+          "ev_score": 1.8605385329619313
+        },
+        {
+          "horse_name": "マクミランテソーロ",
+          "horse_id": "2021102276",
+          "predicted_rank": 3,
+          "model_score": 0.15687679083094555,
+          "ev_score": 1.129512893982808
+        },
+        {
+          "horse_name": "ジェミート",
+          "horse_id": "2022100327",
+          "predicted_rank": 4,
+          "model_score": 0.11356045424181696,
+          "ev_score": 0.7494989979959918
+        },
+        {
+          "horse_name": "フィドルファドル",
+          "horse_id": "2022104674",
+          "predicted_rank": 5,
+          "model_score": 0.09248956884561892,
+          "ev_score": 0.6751738525730181
+        },
+        {
+          "horse_name": "アクアマリーナ",
+          "horse_id": "2022102026",
+          "predicted_rank": 6,
+          "model_score": 0.08300044385264092,
+          "ev_score": 0.9379050155348425
+        },
+        {
+          "horse_name": "ドントゥザムーン",
+          "horse_id": "2022101863",
+          "predicted_rank": 7,
+          "model_score": 0.07037203047960555,
+          "ev_score": 0.4714926042133572
+        },
+        {
+          "horse_name": "ノルドヴェスト",
+          "horse_id": "2020102711",
+          "predicted_rank": 8,
+          "model_score": 0.0366389838788471,
+          "ev_score": 0.9709330727894482
+        },
+        {
+          "horse_name": "キョウエイスレーヴ",
+          "horse_id": "2022103472",
+          "predicted_rank": 9,
+          "model_score": 0.0366389838788471,
+          "ev_score": 1.2823644357596484
+        },
+        {
+          "horse_name": "ビーコング",
+          "horse_id": "2021103595",
+          "predicted_rank": 10,
+          "model_score": 0.0294201656669523,
+          "ev_score": 1.1326763781776636
+        },
+        {
+          "horse_name": "サトノアルペジオ",
+          "horse_id": "2020103477",
+          "predicted_rank": 11,
+          "model_score": 0.023888520238885203,
+          "ev_score": 1.0176509621765097
+        },
+        {
+          "horse_name": "ウインアルドーレ",
+          "horse_id": "2021106192",
+          "predicted_rank": 12,
+          "model_score": 0.023888520238885203,
+          "ev_score": 0.9077637690776377
+        },
+        {
+          "horse_name": "サンドブラスト",
+          "horse_id": "2021106941",
+          "predicted_rank": 13,
+          "model_score": 0.015454545454545455,
+          "ev_score": 0.42963636363636365
+        },
+        {
+          "horse_name": "ベルブリエ",
+          "horse_id": "2021106639",
+          "predicted_rank": 14,
+          "model_score": 0.01017984390906006,
+          "ev_score": 0.3033593484899898
+        },
+        {
+          "horse_name": "タイセイピューマ",
+          "horse_id": "2021106119",
+          "predicted_rank": 15,
+          "model_score": 0.0037593984962406013,
+          "ev_score": 0.21353383458646613
+        },
+        {
+          "horse_name": "アグラード",
+          "horse_id": "2021105429",
+          "predicted_rank": 16,
+          "model_score": 0.0037593984962406013,
+          "ev_score": 0.1906015037593985
+        }
+      ],
+      "bet_form": "馬分析",
+      "n_tickets": 0,
+      "invested": 0,
+      "horse_num_to_name": {
+        "1": "サトノアルペジオ",
+        "2": "ウインアルドーレ",
+        "3": "ドントゥザムーン",
+        "4": "ベルブリエ",
+        "5": "ノルドヴェスト",
+        "6": "サンドブラスト",
+        "7": "ジェミート",
+        "8": "キョウエイスレーヴ",
+        "9": "キミハスコール",
+        "10": "フィドルファドル",
+        "11": "アクアマリーナ",
+        "12": "ビーコング",
+        "13": "アグラード",
+        "14": "マクミランテソーロ",
+        "15": "タイセイピューマ",
+        "16": "ダイシンリンク"
+      },
+      "is_provisional": false
+    }
+  ],
+  "training_evals": {},
+  "prerace": {
+    "bias": {
+      "today_inner_bias": 0.04804138950480415,
+      "today_front_bias": 0.5714285714285714,
+      "today_race_count": 7
+    },
+    "ev_recommend": [
+      {
+        "horse_number": 9,
+        "horse_name": "キミハスコール",
+        "win_odds": 8.6,
+        "ev_score": 1.8605,
+        "kelly_fraction": 0.0113
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "キョウエイスレーヴ",
+        "win_odds": 35.0,
+        "ev_score": 1.2824,
+        "kelly_fraction": 0.0008
+      },
+      {
+        "horse_number": 12,
+        "horse_name": "ビーコング",
+        "win_odds": 38.5,
+        "ev_score": 1.1327,
+        "kelly_fraction": 0.0004
+      },
+      {
+        "horse_number": 14,
+        "horse_name": "マクミランテソーロ",
+        "win_odds": 7.2,
+        "ev_score": 1.1295,
+        "kelly_fraction": 0.0021
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "サトノアルペジオ",
+        "win_odds": 42.6,
+        "ev_score": 1.0177,
+        "kelly_fraction": 0.0
+      }
+    ],
+    "generated_at": "2026-05-30T13:40:19.203292"
+  }
+}

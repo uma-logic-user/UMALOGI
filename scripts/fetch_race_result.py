@@ -239,21 +239,51 @@ def _try_publish_win_report(result: object, race_id: str, conn: object) -> None:
         logger.warning("[WinReport] 失敗（スキップ）: %s", e)
 
 
+def _venue_race_prefix(race_id: str) -> str:
+    """race_id から「会場 NR」形式の表示文字列を生成する（例: "東京 11R"）。
+
+    会場コードが未定義・race_id が短い場合は取得できた範囲で返す。
+    """
+    _JYO = {
+        "01": "札幌", "02": "函館", "03": "福島", "04": "新潟",
+        "05": "東京", "06": "中山", "07": "中京", "08": "京都",
+        "09": "阪神", "10": "小倉",
+    }
+    venue = _JYO.get(race_id[4:6], "") if len(race_id) >= 6 else ""
+    rno = ""
+    if len(race_id) >= 12:
+        try:
+            rno = f"{int(race_id[10:12])}R"
+        except ValueError:
+            rno = ""
+    return f"{venue} {rno}".strip()
+
+
 def _send_hit_flash(result: object, race_name: str) -> None:
     """評価完了直後に Discord へ速報を送信する。
 
-    的中あり → 予想チャンネル (DISCORD_WEBHOOK_URL) に 🎉 的中速報
+    的中あり → 的中速報チャンネル (DISCORD_WEBHOOK_HIT_FLASH、未設定時は
+               DISCORD_WEBHOOK_URL へフォールバック) に 🎉 的中速報
     的中なし → システムチャンネル (DISCORD_SYSTEM_WEBHOOK_URL) に 🏁 完走ログ
                ※ 予想チャンネルをノイズで汚さないよう振り分け
+
+    タイトルには必ず「会場 NR」を前置きする（例: "東京 11R オーストラリアトロフィー"）。
     """
     import requests as _req
 
     pred_url   = os.environ.get("DISCORD_WEBHOOK_URL", "")
+    # 的中速報専用 webhook を最優先（未設定なら予想チャンネルへフォールバック）
+    hit_url    = os.environ.get("DISCORD_WEBHOOK_HIT_FLASH", "").strip() or pred_url
     system_url = os.environ.get("DISCORD_SYSTEM_WEBHOOK_URL", "") or pred_url
 
     try:
         hit_items = [h for h in result.hits if h.is_hit]
-        race_label = race_name or result.race_id
+        # 「会場 NR」を必ず前置きし、レース名があれば続ける
+        prefix = _venue_race_prefix(getattr(result, "race_id", "") or "")
+        if prefix and race_name and not race_name.startswith(prefix):
+            race_label = f"{prefix} {race_name}"
+        else:
+            race_label = race_name or prefix or result.race_id
 
         if hit_items:
             lines: list[str] = []
@@ -279,7 +309,7 @@ def _send_hit_flash(result: object, race_name: str) -> None:
                 f"払戻合計 ¥{payout_total:,}  "
                 f"ROI {result.roi:.1f}%"
             )
-            target_url = pred_url
+            target_url = hit_url
         else:
             # 外れ → システムチャンネルへ静かに流す
             color       = 0x555555

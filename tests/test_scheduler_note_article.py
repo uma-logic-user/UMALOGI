@@ -47,10 +47,12 @@ def _make_recommended(n: int = 3) -> list[dict]:
             "score":        float(40 - i * 2),
             "alpha_ev":     float(3 - i * 0.5),
             "manji_ev":     float(5 - i),
+            "oracle_count": 3,
             "honmei_conf":  0.8,
-            "consensus":    3,
+            "consensus":    4,
             "alpha_preds":  [],
             "manji_preds":  [],
+            "oracle_preds": [],
             "honmei_preds": [],
         })
     return result

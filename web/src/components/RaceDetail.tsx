@@ -125,19 +125,37 @@ export default function RaceDetail({ race, predictions }: Props) {
     (a, b) => (BET_ORDER[a] ?? 99) - (BET_ORDER[b] ?? 99),
   )
 
-  const tabs: { key: Tab; label: string; count?: number }[] = [
-    { key: 'race_card',   label: '出馬表' },
-    { key: 'results',     label: 'レース結果' },
-    { key: 'predictions', label: 'AI予想', count: hasPredictions ? predictions.length : undefined },
-    { key: 'payouts',     label: '的中結果', count: hitPayouts.length > 0 ? hitPayouts.length : undefined },
-    { key: 'today_buy',   label: '当日購入' },
-  ]
-
   const winOddsMap = Object.fromEntries(
     (race.results ?? [])
       .filter(r => r.horse_number != null && r.win_odds != null)
       .map(r => [r.horse_number!, r.win_odds!])
   ) as Record<number, number>
+
+  const filteredPredictions = predictions.filter(p => {
+    if (
+      p.combination_json == null ||
+      p.combination_json === '[]' ||
+      p.combination_json === ''
+    ) return false
+    // horses 配列に有効な馬番が少なくとも1頭いること
+    const hasValidHorse = p.horses.some(
+      h => h.horse_number != null && h.horse_number > 0
+    )
+    if (!hasValidHorse) return false
+    // センチネルオッズ（win_odds >= 500）の馬のみで構成されている予想を除外
+    const allSentinel = p.horses.every(
+      h => h.horse_number != null && winOddsMap[h.horse_number] != null && winOddsMap[h.horse_number] >= 500
+    )
+    return !allSentinel
+  })
+
+  const tabs: { key: Tab; label: string; count?: number }[] = [
+    { key: 'race_card',   label: '出馬表' },
+    { key: 'results',     label: 'レース結果' },
+    { key: 'predictions', label: 'AI予想', count: hasPredictions ? filteredPredictions.length : undefined },
+    { key: 'payouts',     label: '的中結果', count: hitPayouts.length > 0 ? hitPayouts.length : undefined },
+    { key: 'today_buy',   label: '当日購入' },
+  ]
 
   return (
     <div className="p-4 space-y-4 max-w-[1400px]">
@@ -245,7 +263,7 @@ export default function RaceDetail({ race, predictions }: Props) {
             </>
           )}
           {hasPredictions
-            ? <PredictionsPanel predictions={predictions} limit={200} payouts={race.payouts ?? []} />
+            ? <PredictionsPanel predictions={filteredPredictions} limit={200} payouts={race.payouts ?? []} />
             : (
               <div className="neon-card p-12 text-center">
                 <div className="text-[var(--text-muted)] text-base tracking-widest">

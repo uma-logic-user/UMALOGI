@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Horse Racing — レイアウトプレビュー</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #F0EDE6;
+    font-family: -apple-system, 'Helvetica Neue', sans-serif;
+    color: #2D2C28;
+    padding: 24px;
+    min-height: 100vh;
+  }
+  h2 { font-size: 1.1rem; font-weight: 600; margin-bottom: 6px; color: #2D2C28; }
+  .subtitle { font-size: 0.88rem; color: #6B6960; margin-bottom: 20px; }
+
+  /* ---- MOCKUP FRAME ---- */
+  .mockup-frame {
+    background: #FDFCFB;
+    border: 1.5px solid #E5E3DB;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(45,44,40,0.08);
+    max-width: 960px;
+    margin: 0 auto 28px;
+    cursor: pointer;
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+  .mockup-frame:hover { box-shadow: 0 8px 32px rgba(45,44,40,0.14); border-color: #C8A882; }
+  .mockup-frame.selected { border-color: #C8A882; box-shadow: 0 0 0 3px rgba(200,168,130,0.3); }
+
+  /* ---- HEADER ---- */
+  .app-header {
+    background: #FDFCFB;
+    border-bottom: 1px solid #E5E3DB;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .app-logo {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #2D2C28;
+    letter-spacing: -0.02em;
+  }
+  .app-logo span { color: #C8A882; }
+  .nav-links { display: flex; gap: 20px; }
+  .nav-link {
+    font-size: 0.8rem;
+    color: #6B6960;
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+  .nav-link.active { color: #2D2C28; border-bottom: 1.5px solid #C8A882; padding-bottom: 1px; }
+
+  /* ---- RACE BANNER ---- */
+  .race-banner {
+    background: linear-gradient(135deg, #2D2C28 0%, #4A4840 100%);
+    padding: 20px 28px;
+    color: #F9F8F6;
+  }
+  .race-grade {
+    display: inline-block;
+    background: #C8A882;
+    color: #2D2C28;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+  .race-name {
+    font-family: Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+  }
+  .race-meta {
+    font-size: 0.78rem;
+    color: rgba(249,248,246,0.65);
+    display: flex;
+    gap: 16px;
+  }
+
+  /* ---- MAIN LAYOUT ---- */
+  .main-layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 0;
+    min-height: 400px;
+  }
+
+  /* ---- ENTRY TABLE ---- */
+  .entry-panel {
+    padding: 20px 24px;
+    border-right: 1px solid #E5E3DB;
+  }
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #9E9B93;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+  }
+  thead th {
+    text-align: left;
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: #9E9B93;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0 8px 8px 8px;
+    border-bottom: 1px solid #E5E3DB;
+  }
+  tbody tr {
+    border-bottom: 1px solid #F0EDE6;
+    transition: background 0.12s;
+  }
+  tbody tr:hover { background: #F9F8F6; }
+  tbody td {
+    padding: 9px 8px;
+    vertical-align: middle;
+  }
+  .num { font-weight: 700; font-size: 0.85rem; }
+  .horse-name { font-weight: 600; color: #2D2C28; }
+  .jockey-name { font-size: 0.75rem; color: #6B6960; margin-top: 1px; }
+  .odds-val {
+    font-weight: 700;
+    font-size: 0.9rem;
+    font-variant-numeric: tabular-nums;
+    color: #2D2C28;
+  }
+  .favorite-badge {
+    font-size: 0.62rem;
+    background: #FEF3E2;
+    color: #C8A882;
+    border: 1px solid #E8D4B4;
+    border-radius: 3px;
+    padding: 1px 5px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+  .flag-circle {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    line-height: 22px;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: white;
+  }
+  .fc-1 { background: #C8A882; }
+  .fc-2 { background: #A0A0A0; }
+  .fc-3 { background: #CD7F32; }
+  .fc-other { background: #E5E3DB; color: #9E9B93; }
+
+  /* ---- AI PANEL ---- */
+  .ai-panel {
+    padding: 20px;
+    background: #F9F8F6;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .ai-bubble {
+    background: white;
+    border: 1px solid #E5E3DB;
+    border-radius: 14px 14px 14px 4px;
+    padding: 14px 16px;
+    box-shadow: 0 1px 4px rgba(45,44,40,0.05);
+  }
+  .ai-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #C8A882;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .ai-text {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 0.82rem;
+    line-height: 1.65;
+    color: #2D2C28;
+  }
+  .ai-picks {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+  .ai-pick {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #FDFCFB;
+    border: 1px solid #E5E3DB;
+    border-radius: 8px;
+    padding: 5px 10px;
+    font-size: 0.78rem;
+  }
+  .pick-mark { font-weight: 700; font-size: 0.9rem; }
+  .pm-honmei { color: #C8A882; }
+  .pm-uchi { color: #6B6960; }
+  .pm-ana { color: #8B7355; }
+  .pick-name { font-weight: 600; font-size: 0.77rem; color: #2D2C28; }
+
+  /* ---- CAPTION ---- */
+  .mockup-caption {
+    padding: 12px 20px;
+    background: #F9F8F6;
+    border-top: 1px solid #E5E3DB;
+    font-size: 0.8rem;
+    color: #6B6960;
+    text-align: center;
+  }
+
+  .tag { display:inline-block; background:#EDE9E0; border-radius:4px; padding:2px 8px; font-size:0.72rem; color:#6B6960; margin-right:6px; }
+</style>
+</head>
+<body>
+
+<h2>Claude Horse Racing — UIプレビュー</h2>
+<p class="subtitle">Claude風のウォームベージュ×セリフ体デザイン。クリックすると選択状態になります。</p>
+
+<div class="mockup-frame" onclick="this.classList.toggle('selected')">
+
+  <!-- APP HEADER -->
+  <div class="app-header">
+    <div class="app-logo">Uma<span>Logic</span> <span style="font-size:0.7rem;font-weight:400;color:#9E9B93;font-family:sans-serif;margin-left:6px;">by Claude</span></div>
+    <div class="nav-links">
+      <a class="nav-link active" href="#">レース詳細</a>
+      <a class="nav-link" href="#">開催一覧</a>
+      <a class="nav-link" href="#">成績</a>
+    </div>
+  </div>
+
+  <!-- RACE BANNER -->
+  <div class="race-banner">
+    <div class="race-grade">G1 / 東京競馬場</div>
+    <div class="race-name">日本ダービー（優駿牡馬）</div>
+    <div class="race-meta">
+      <span>2026年5月31日（日）</span>
+      <span>芝 2400m</span>
+      <span>3歳牡馬・牝馬</span>
+      <span>15:40発走</span>
+    </div>
+  </div>
+
+  <!-- MAIN LAYOUT -->
+  <div class="main-layout">
+
+    <!-- ENTRY TABLE -->
+    <div class="entry-panel">
+      <div class="section-label">出馬表</div>
+      <table>
+        <thead>
+          <tr>
+            <th>枠</th>
+            <th>馬名 / 騎手</th>
+            <th>単勝</th>
+            <th>AI</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="num" style="color:#E74C3C">1</span></td>
+            <td>
+              <div class="horse-name">コスモキュービック</div>
+              <div class="jockey-name">戸崎 圭太</div>
+            </td>
+            <td><span class="odds-val">18.4</span></td>
+            <td><span class="flag-circle fc-other">△</span></td>
+          </tr>
+          <tr style="background:#FFFBF4;">
+            <td><span class="num" style="color:#E74C3C">2</span></td>
+            <td>
+              <div class="horse-name">レガシーブレイズ</div>
+              <div class="jockey-name">川田 将雅</div>
+            </td>
+            <td><span class="odds-val">3.2</span> <span class="favorite-badge">1番人気</span></td>
+            <td><span class="flag-circle fc-1">◎</span></td>
+          </tr>
+          <tr>
+            <td><span class="num" style="color:#2E86AB">3</span></td>
+            <td>
+              <div class="horse-name">シルバーフリート</div>
+              <div class="jockey-name">福永 祐一</div>
+            </td>
+            <td><span class="odds-val">5.8</span></td>
+            <td><span class="flag-circle fc-2">○</span></td>
+          </tr>
+          <tr>
+            <td><span class="num" style="color:#2E86AB">4</span></td>
+            <td>
+              <div class="horse-name">マウントエクリプス</div>
+              <div class="jockey-name">横山 武史</div>
+            </td>
+            <td><span class="odds-val">7.1</span></td>
+            <td><span class="flag-circle fc-3">▲</span></td>
+          </tr>
+          <tr>
+            <td><span class="num" style="color:#27AE60">5</span></td>
+            <td>
+              <div class="horse-name">ブレイズオブグローリー</div>
+              <div class="jockey-name">ムーア R.</div>
+            </td>
+            <td><span class="odds-val">9.3</span></td>
+            <td><span class="flag-circle fc-other">—</span></td>
+          </tr>
+          <tr>
+            <td><span class="num" style="color:#27AE60">6</span></td>
+            <td>
+              <div class="horse-name">アルテミスフレア</div>
+              <div class="jockey-name">松山 弘平</div>
+            </td>
+            <td><span class="odds-val">12.0</span></td>
+            <td><span class="flag-circle fc-other">△</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- AI PANEL -->
+    <div class="ai-panel">
+      <div class="section-label">AI 見解</div>
+
+      <div class="ai-bubble">
+        <div class="ai-label">展開予想</div>
+        <p class="ai-text">ハナを主張しそうな逃げ馬が2頭おり、前半は縦長の展開になる公算が大きい。残り600mのロングスパートが勝負の鍵で、東京2400mは末脚の持続力が問われる。</p>
+      </div>
+
+      <div class="ai-bubble">
+        <div class="ai-label">推奨馬</div>
+        <p class="ai-text">前走のトライアルで最速上がりを記録した2頭がやはり優勢。中団追走から直線一気の脚質は東京コースに最適。</p>
+        <div class="ai-picks">
+          <div class="ai-pick">
+            <span class="pick-mark pm-honmei">◎</span>
+            <span class="pick-name">レガシーブレイズ</span>
+          </div>
+          <div class="ai-pick">
+            <span class="pick-mark pm-uchi">○</span>
+            <span class="pick-name">シルバーフリート</span>
+          </div>
+          <div class="ai-pick">
+            <span class="pick-mark pm-ana">▲</span>
+            <span class="pick-name">マウントエクリプス</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ai-bubble">
+        <div class="ai-label">EV スコア</div>
+        <p class="ai-text" style="font-family:sans-serif;font-size:0.78rem;">
+          <span style="font-weight:700;color:#C8A882;">2番 EV 1.42</span> — 期待値基準クリア<br>
+          <span style="color:#6B6960;">単勝 ¥3.2 × モデル確率 44.4%</span>
+        </p>
+      </div>
+    </div>
+
+  </div><!-- /main-layout -->
+
+  <div class="mockup-caption">
+    <span class="tag">Tailwind v4</span>
+    <span class="tag">Next.js 15 App Router</span>
+    <span class="tag">lucide-react</span>
+    背景 #FDFCFB · テキスト #2D2C28 · アクセント #C8A882 · ボーダー #E5E3DB
+  </div>
+
+</div>
+
+<div style="max-width:960px;margin:0 auto;">
+  <p style="font-size:0.82rem;color:#6B6960;line-height:1.6;">
+    <strong style="color:#2D2C28;">ご確認ください:</strong>
+    カラーパレット・フォント・レイアウト（ヘッダー + 出馬表 + AI分析パネル）を確認して、ターミナルでフィードバックをお知らせください。
+    「これで進めてOK」「もっと余白が欲しい」「AI枠の色を変えたい」など何でも。
+  </p>
+</div>
+
+</body>
+</html>

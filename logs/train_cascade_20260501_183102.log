@@ -1,0 +1,27 @@
+2026-05-01 18:31:18,233 INFO ƒ}ƒCƒOƒŒ[ƒVƒ‡ƒ“: v_race_mart ƒrƒ…[‚ğÄì¬‚µ‚Ü‚µ‚½
+2026-05-01 18:31:19,182 INFO DB ‰Šú‰»Š®—¹: C:\dev\horse-racing-ai\data\umalogi.db
+2026-05-01 18:31:28,000 INFO ŠwKƒf[ƒ^ƒ[ƒhŠ®—¹: 90862 s (5878 ƒŒ[ƒX)
+2026-05-01 18:31:28,201 INFO ƒ‚ƒfƒ‹“Ç‚İ‚İ: C:\dev\horse-racing-ai\data\models\honmei_model.pkl
+2026-05-01 18:31:28,201 INFO Stage-1: HonmeiModel “Ç‚İ‚İŠ®—¹
+============================================================
+  Cascade Rank Prediction â€” å­¦ç¿’é–‹å§‹
+============================================================
+Traceback (most recent call last):
+  File "C:\dev\horse-racing-ai\scripts\train_cascade.py", line 517, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\scripts\train_cascade.py", line 487, in main
+    honmei.predict(df[feat_cols].fillna(-1)),
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\dev\horse-racing-ai\src\ml\models.py", line 510, in predict
+    X = df[FEATURE_COLS].astype(float).fillna(-1)
+        ~~^^^^^^^^^^^^^^
+  File "C:\Users\sayaka\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pandas\core\frame.py", line 4119, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\sayaka\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pandas\core\indexes\base.py", line 6212, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sayaka\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pandas\core\indexes\base.py", line 6264, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['win_rate_all', 'win_rate_surface', 'win_rate_distance_band', 'recent_rank_mean', 'surface_code', 'sex_code', 'venue_encoded', 'sire_encoded', 'condition_code', 'jockey_code_encoded', 'trainer_code_encoded', 'tc_4f', 'tc_lap', 'tc_accel_flag', 'tc_4f_diff', 'hc_4f', 'hc_lap', 'hc_accel_flag', 'hc_4f_diff', 'win_rate_all_rank', 'win_rate_all_zscore', 'win_rate_surface_rank', 'win_rate_distance_band_rank', 'recent_rank_mean_rank', 'recent_rank_mean_zscore', 'tc_4f_rank', 'tc_4f_zscore', 'today_inner_bias', 'today_front_bias', 'today_race_count', 'today_gate_match', 'odds_vs_morning', 'odds_velocity'] not in index"

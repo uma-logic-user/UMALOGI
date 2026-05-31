@@ -1,0 +1,45 @@
+{
+  "step1": {
+    "race": "202604010201",
+    "entries": 16,
+    "results": 16,
+    "ok": true
+  },
+  "step2": {
+    "horse_count": 16,
+    "feature_cols": 51,
+    "missing_cols": [],
+    "elapsed_sec": 0.22,
+    "ok": true
+  },
+  "step3": {
+    "honmei_trained": true,
+    "place_trained": true,
+    "manji_trained": true,
+    "honmei_max": 0.17163724893487523,
+    "ev_max": 3.2427158912143,
+    "infer_elapsed_sec": 2.93,
+    "ok": true
+  },
+  "step4": {
+    "bankroll": 624000.0,
+    "honmei_bets": 6,
+    "manji_bets": 8,
+    "ok": true
+  },
+  "step5": {
+    "note_path": "outputs/e2e_note_20260503.md",
+    "note_chars": 955,
+    "ev_picks": 8,
+    "ui_checks": {
+      "エリート複勝セクション": true,
+      "推奨投資額バインド": true,
+      "破産確率RoR警告": true,
+      "EV値バインド": true,
+      "バンクロール表示": true,
+      "P(win)スコア表示": true
+    },
+    "all_ui_ok": true,
+    "ok": true
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-24 05:21:29",
+  "generated_at": "2026-05-31 08:42:34",
   "by_venue": [
     {
       "venue": "福島",
@@ -10,6 +10,16 @@
       "total_invested": 21600.0,
       "total_payout": 137040.0,
       "roi": 634.4
+    },
+    {
+      "venue": "京都",
+      "model_type": "本命(直前)",
+      "total_bets": 858,
+      "hits": 129,
+      "hit_rate": 15.0,
+      "total_invested": 280200.0,
+      "total_payout": 1549590.0,
+      "roi": 553.0
     },
     {
       "venue": "京都",
@@ -34,42 +44,42 @@
     {
       "venue": "京都",
       "model_type": "HitFocusV2(直前)",
-      "total_bets": 32,
+      "total_bets": 35,
       "hits": 8,
-      "hit_rate": 25.0,
-      "total_invested": 29000.0,
+      "hit_rate": 22.9,
+      "total_invested": 31700.0,
       "total_payout": 108230.0,
-      "roi": 373.2
-    },
-    {
-      "venue": "京都",
-      "model_type": "本命(直前)",
-      "total_bets": 719,
-      "hits": 94,
-      "hit_rate": 13.1,
-      "total_invested": 247200.0,
-      "total_payout": 762890.0,
-      "roi": 308.6
+      "roi": 341.4
     },
     {
       "venue": "東京",
       "model_type": "本命(直前)",
-      "total_bets": 718,
-      "hits": 123,
-      "hit_rate": 17.1,
-      "total_invested": 239700.0,
-      "total_payout": 683701.0,
-      "roi": 285.2
+      "total_bets": 845,
+      "hits": 161,
+      "hit_rate": 19.1,
+      "total_invested": 269300.0,
+      "total_payout": 726951.0,
+      "roi": 269.9
     },
     {
       "venue": "京都",
       "model_type": "本命(暫定)",
-      "total_bets": 697,
-      "hits": 80,
-      "hit_rate": 11.5,
-      "total_invested": 262800.0,
-      "total_payout": 717510.0,
-      "roi": 273.0
+      "total_bets": 797,
+      "hits": 101,
+      "hit_rate": 12.7,
+      "total_invested": 309700.0,
+      "total_payout": 802750.0,
+      "roi": 259.2
+    },
+    {
+      "venue": "新潟",
+      "model_type": "本命(暫定)",
+      "total_bets": 587,
+      "hits": 96,
+      "hit_rate": 16.4,
+      "total_invested": 170600.0,
+      "total_payout": 373290.0,
+      "roi": 218.8
     },
     {
       "venue": "新潟",
@@ -102,6 +112,16 @@
       "roi": 206.0
     },
     {
+      "venue": "京都",
+      "model_type": "Alpha-Payout(直前)",
+      "total_bets": 182,
+      "hits": 53,
+      "hit_rate": 29.1,
+      "total_invested": 34550.0,
+      "total_payout": 67100.0,
+      "roi": 194.2
+    },
+    {
       "venue": "阪神",
       "model_type": "卍(直前)",
       "total_bets": 39,
@@ -112,26 +132,6 @@
       "roi": 192.9
     },
     {
-      "venue": "京都",
-      "model_type": "Alpha-Payout(直前)",
-      "total_bets": 129,
-      "hits": 35,
-      "hit_rate": 27.1,
-      "total_invested": 21550.0,
-      "total_payout": 37970.0,
-      "roi": 176.2
-    },
-    {
-      "venue": "東京",
-      "model_type": "Alpha-Payout(直前)",
-      "total_bets": 145,
-      "hits": 44,
-      "hit_rate": 30.3,
-      "total_invested": 24250.0,
-      "total_payout": 39230.0,
-      "roi": 161.8
-    },
-    {
       "venue": "新潟",
       "model_type": "HitFocusV2(直前)",
       "total_bets": 35,
@@ -140,6 +140,36 @@
       "total_invested": 31700.0,
       "total_payout": 50160.0,
       "roi": 158.2
+    },
+    {
+      "venue": "新潟",
+      "model_type": "Alpha-Payout(直前)",
+      "total_bets": 163,
+      "hits": 54,
+      "hit_rate": 33.1,
+      "total_invested": 26250.0,
+      "total_payout": 41340.0,
+      "roi": 157.5
+    },
+    {
+      "venue": "東京",
+      "model_type": "Alpha-Payout(直前)",
+      "total_bets": 197,
+      "hits": 70,
+      "hit_rate": 35.5,
+      "total_invested": 39200.0,
+      "total_payout": 61570.0,
+      "roi": 157.1
+    },
+    {
+      "venue": "東京",
+      "model_type": "卍(直前)",
+      "total_bets": 628,
+      "hits": 100,
+      "hit_rate": 15.9,
+      "total_invested": 145600.0,
+      "total_payout": 216200.0,
+      "roi": 148.5
     },
     {
       "venue": "中山",
@@ -174,12 +204,12 @@
     {
       "venue": "京都",
       "model_type": "卍(直前)",
-      "total_bets": 500,
-      "hits": 48,
-      "hit_rate": 9.6,
-      "total_invested": 97500.0,
-      "total_payout": 132250.0,
-      "roi": 135.6
+      "total_bets": 647,
+      "hits": 64,
+      "hit_rate": 9.9,
+      "total_invested": 147600.0,
+      "total_payout": 189060.0,
+      "roi": 128.1
     },
     {
       "venue": "福島",
@@ -193,33 +223,23 @@
     },
     {
       "venue": "新潟",
-      "model_type": "Alpha-Payout(直前)",
-      "total_bets": 136,
-      "hits": 42,
-      "hit_rate": 30.9,
-      "total_invested": 21750.0,
-      "total_payout": 26060.0,
-      "roi": 119.8
-    },
-    {
-      "venue": "新潟",
-      "model_type": "本命(暫定)",
-      "total_bets": 531,
-      "hits": 73,
-      "hit_rate": 13.7,
-      "total_invested": 148600.0,
-      "total_payout": 173680.0,
-      "roi": 116.9
+      "model_type": "卍(直前)",
+      "total_bets": 507,
+      "hits": 53,
+      "hit_rate": 10.5,
+      "total_invested": 86800.0,
+      "total_payout": 104340.0,
+      "roi": 120.2
     },
     {
       "venue": "新潟",
       "model_type": "本命(直前)",
-      "total_bets": 618,
-      "hits": 86,
-      "hit_rate": 13.9,
-      "total_invested": 190800.0,
-      "total_payout": 214000.0,
-      "roi": 112.2
+      "total_bets": 714,
+      "hits": 116,
+      "hit_rate": 16.2,
+      "total_invested": 200100.0,
+      "total_payout": 237090.0,
+      "roi": 118.5
     },
     {
       "venue": "阪神",
@@ -232,24 +252,14 @@
       "roi": 98.8
     },
     {
-      "venue": "東京",
-      "model_type": "卍(直前)",
-      "total_bets": 486,
-      "hits": 71,
-      "hit_rate": 14.6,
-      "total_invested": 92600.0,
-      "total_payout": 90660.0,
-      "roi": 97.9
-    },
-    {
       "venue": "京都",
       "model_type": "HitFocus(直前)",
-      "total_bets": 200,
+      "total_bets": 203,
       "hits": 18,
-      "hit_rate": 9.0,
-      "total_invested": 180200.0,
+      "hit_rate": 8.9,
+      "total_invested": 182900.0,
       "total_payout": 166860.0,
-      "roi": 92.6
+      "roi": 91.2
     },
     {
       "venue": "新潟",
@@ -264,22 +274,12 @@
     {
       "venue": "東京",
       "model_type": "本命(暫定)",
-      "total_bets": 705,
-      "hits": 107,
-      "hit_rate": 15.2,
-      "total_invested": 262900.0,
-      "total_payout": 221701.0,
-      "roi": 84.3
-    },
-    {
-      "venue": "新潟",
-      "model_type": "卍(直前)",
-      "total_bets": 435,
-      "hits": 46,
-      "hit_rate": 10.6,
-      "total_invested": 79600.0,
-      "total_payout": 66520.0,
-      "roi": 83.6
+      "total_bets": 781,
+      "hits": 127,
+      "hit_rate": 16.3,
+      "total_invested": 300500.0,
+      "total_payout": 239161.0,
+      "roi": 79.6
     },
     {
       "venue": "新潟",
@@ -304,22 +304,12 @@
     {
       "venue": "京都",
       "model_type": "HitFocus(暫定)",
-      "total_bets": 172,
+      "total_bets": 178,
       "hits": 9,
-      "hit_rate": 5.2,
-      "total_invested": 155200.0,
+      "hit_rate": 5.1,
+      "total_invested": 160600.0,
       "total_payout": 68140.0,
-      "roi": 43.9
-    },
-    {
-      "venue": "京都",
-      "model_type": "OracleV2(直前)",
-      "total_bets": 22,
-      "hits": 1,
-      "hit_rate": 4.5,
-      "total_invested": 18700.0,
-      "total_payout": 7770.0,
-      "roi": 41.6
+      "roi": 42.4
     },
     {
       "venue": "中山",
@@ -344,12 +334,22 @@
     {
       "venue": "新潟",
       "model_type": "HitFocus(暫定)",
-      "total_bets": 173,
-      "hits": 17,
-      "hit_rate": 9.8,
-      "total_invested": 156500.0,
-      "total_payout": 61730.0,
-      "roi": 39.4
+      "total_bets": 176,
+      "hits": 18,
+      "hit_rate": 10.2,
+      "total_invested": 159200.0,
+      "total_payout": 63070.0,
+      "roi": 39.6
+    },
+    {
+      "venue": "京都",
+      "model_type": "OracleV2(直前)",
+      "total_bets": 24,
+      "hits": 1,
+      "hit_rate": 4.2,
+      "total_invested": 20400.0,
+      "total_payout": 7770.0,
+      "roi": 38.1
     },
     {
       "venue": "新潟",
@@ -424,12 +424,12 @@
     {
       "venue": "京都",
       "model_type": "Oracle(直前)",
-      "total_bets": 162,
+      "total_bets": 164,
       "hits": 3,
-      "hit_rate": 1.9,
-      "total_invested": 141500.0,
+      "hit_rate": 1.8,
+      "total_invested": 143200.0,
       "total_payout": 15690.0,
-      "roi": 11.1
+      "roi": 11.0
     },
     {
       "venue": "京都",
@@ -454,10 +454,10 @@
     {
       "venue": "新潟",
       "model_type": "WIN5",
-      "total_bets": 5,
+      "total_bets": 6,
       "hits": 0,
       "hit_rate": 0.0,
-      "total_invested": 500.0,
+      "total_invested": 600.0,
       "total_payout": 0.0,
       "roi": 0.0
     },
@@ -484,7 +484,7 @@
     {
       "venue": "京都",
       "model_type": "本命V2(直前)",
-      "total_bets": 11,
+      "total_bets": 24,
       "hits": 0,
       "hit_rate": 0.0,
       "total_invested": 0,
@@ -504,7 +504,7 @@
     {
       "venue": "東京",
       "model_type": "本命V2(直前)",
-      "total_bets": 12,
+      "total_bets": 24,
       "hits": 0,
       "hit_rate": 0.0,
       "total_invested": 0,
@@ -526,72 +526,72 @@
     {
       "distance_cat": "不明",
       "model_type": "本命(直前)",
-      "total_bets": 2564,
-      "hits": 348,
-      "hit_rate": 13.6,
-      "total_invested": 837400.0,
-      "total_payout": 1701941.0,
-      "roi": 203.2
+      "total_bets": 2926,
+      "hits": 451,
+      "hit_rate": 15.4,
+      "total_invested": 909300.0,
+      "total_payout": 2554981.0,
+      "roi": 281.0
     },
     {
       "distance_cat": "不明",
       "model_type": "HitFocusV2(直前)",
-      "total_bets": 101,
+      "total_bets": 104,
       "hits": 23,
-      "hit_rate": 22.8,
-      "total_invested": 91600.0,
+      "hit_rate": 22.1,
+      "total_invested": 94300.0,
       "total_payout": 168790.0,
-      "roi": 184.3
+      "roi": 179.0
     },
     {
       "distance_cat": "不明",
       "model_type": "Alpha-Payout(直前)",
-      "total_bets": 410,
-      "hits": 121,
-      "hit_rate": 29.5,
-      "total_invested": 67550.0,
-      "total_payout": 103260.0,
-      "roi": 152.9
+      "total_bets": 542,
+      "hits": 177,
+      "hit_rate": 32.7,
+      "total_invested": 100000.0,
+      "total_payout": 170010.0,
+      "roi": 170.0
     },
     {
       "distance_cat": "不明",
       "model_type": "本命(暫定)",
-      "total_bets": 2732,
-      "hits": 337,
-      "hit_rate": 12.3,
-      "total_invested": 926600.0,
-      "total_payout": 1372681.0,
-      "roi": 148.1
+      "total_bets": 2964,
+      "hits": 401,
+      "hit_rate": 13.5,
+      "total_invested": 1033100.0,
+      "total_payout": 1674991.0,
+      "roi": 162.1
     },
     {
       "distance_cat": "不明",
       "model_type": "卍(直前)",
-      "total_bets": 1660,
-      "hits": 209,
-      "hit_rate": 12.6,
-      "total_invested": 335500.0,
-      "total_payout": 386520.0,
-      "roi": 115.2
+      "total_bets": 2021,
+      "hits": 261,
+      "hit_rate": 12.9,
+      "total_invested": 445800.0,
+      "total_payout": 606690.0,
+      "roi": 136.1
     },
     {
       "distance_cat": "不明",
       "model_type": "OracleV2(直前)",
-      "total_bets": 70,
+      "total_bets": 72,
       "hits": 7,
-      "hit_rate": 10.0,
-      "total_invested": 59500.0,
+      "hit_rate": 9.7,
+      "total_invested": 61200.0,
       "total_payout": 59830.0,
-      "roi": 100.6
+      "roi": 97.8
     },
     {
       "distance_cat": "不明",
       "model_type": "HitFocus(直前)",
-      "total_bets": 593,
+      "total_bets": 596,
       "hits": 65,
-      "hit_rate": 11.0,
-      "total_invested": 535700.0,
+      "hit_rate": 10.9,
+      "total_invested": 538400.0,
       "total_payout": 388660.0,
-      "roi": 72.6
+      "roi": 72.2
     },
     {
       "distance_cat": "不明",
@@ -606,37 +606,37 @@
     {
       "distance_cat": "不明",
       "model_type": "HitFocus(暫定)",
-      "total_bets": 520,
-      "hits": 43,
+      "total_bets": 529,
+      "hits": 44,
       "hit_rate": 8.3,
-      "total_invested": 470200.0,
-      "total_payout": 168430.0,
-      "roi": 35.8
+      "total_invested": 478300.0,
+      "total_payout": 169770.0,
+      "roi": 35.5
     },
     {
       "distance_cat": "不明",
       "model_type": "Oracle(直前)",
-      "total_bets": 486,
+      "total_bets": 488,
       "hits": 18,
       "hit_rate": 3.7,
-      "total_invested": 419700.0,
+      "total_invested": 421400.0,
       "total_payout": 96120.0,
-      "roi": 22.9
+      "roi": 22.8
     },
     {
       "distance_cat": "不明",
       "model_type": "WIN5",
-      "total_bets": 5,
+      "total_bets": 7,
       "hits": 0,
       "hit_rate": 0.0,
-      "total_invested": 500.0,
+      "total_invested": 700.0,
       "total_payout": 0.0,
       "roi": 0.0
     },
     {
       "distance_cat": "不明",
       "model_type": "本命V2(直前)",
-      "total_bets": 35,
+      "total_bets": 60,
       "hits": 0,
       "hit_rate": 0.0,
       "total_invested": 0,
@@ -658,72 +658,72 @@
     {
       "surface": "",
       "model_type": "本命(直前)",
-      "total_bets": 2564,
-      "hits": 348,
-      "hit_rate": 13.6,
-      "total_invested": 837400.0,
-      "total_payout": 1701941.0,
-      "roi": 203.2
+      "total_bets": 2926,
+      "hits": 451,
+      "hit_rate": 15.4,
+      "total_invested": 909300.0,
+      "total_payout": 2554981.0,
+      "roi": 281.0
     },
     {
       "surface": "",
       "model_type": "HitFocusV2(直前)",
-      "total_bets": 101,
+      "total_bets": 104,
       "hits": 23,
-      "hit_rate": 22.8,
-      "total_invested": 91600.0,
+      "hit_rate": 22.1,
+      "total_invested": 94300.0,
       "total_payout": 168790.0,
-      "roi": 184.3
+      "roi": 179.0
     },
     {
       "surface": "",
       "model_type": "Alpha-Payout(直前)",
-      "total_bets": 410,
-      "hits": 121,
-      "hit_rate": 29.5,
-      "total_invested": 67550.0,
-      "total_payout": 103260.0,
-      "roi": 152.9
+      "total_bets": 542,
+      "hits": 177,
+      "hit_rate": 32.7,
+      "total_invested": 100000.0,
+      "total_payout": 170010.0,
+      "roi": 170.0
     },
     {
       "surface": "",
       "model_type": "本命(暫定)",
-      "total_bets": 2732,
-      "hits": 337,
-      "hit_rate": 12.3,
-      "total_invested": 926600.0,
-      "total_payout": 1372681.0,
-      "roi": 148.1
+      "total_bets": 2964,
+      "hits": 401,
+      "hit_rate": 13.5,
+      "total_invested": 1033100.0,
+      "total_payout": 1674991.0,
+      "roi": 162.1
     },
     {
       "surface": "",
       "model_type": "卍(直前)",
-      "total_bets": 1660,
-      "hits": 209,
-      "hit_rate": 12.6,
-      "total_invested": 335500.0,
-      "total_payout": 386520.0,
-      "roi": 115.2
+      "total_bets": 2021,
+      "hits": 261,
+      "hit_rate": 12.9,
+      "total_invested": 445800.0,
+      "total_payout": 606690.0,
+      "roi": 136.1
     },
     {
       "surface": "",
       "model_type": "OracleV2(直前)",
-      "total_bets": 70,
+      "total_bets": 72,
       "hits": 7,
-      "hit_rate": 10.0,
-      "total_invested": 59500.0,
+      "hit_rate": 9.7,
+      "total_invested": 61200.0,
       "total_payout": 59830.0,
-      "roi": 100.6
+      "roi": 97.8
     },
     {
       "surface": "",
       "model_type": "HitFocus(直前)",
-      "total_bets": 593,
+      "total_bets": 596,
       "hits": 65,
-      "hit_rate": 11.0,
-      "total_invested": 535700.0,
+      "hit_rate": 10.9,
+      "total_invested": 538400.0,
       "total_payout": 388660.0,
-      "roi": 72.6
+      "roi": 72.2
     },
     {
       "surface": "",
@@ -738,37 +738,37 @@
     {
       "surface": "",
       "model_type": "HitFocus(暫定)",
-      "total_bets": 520,
-      "hits": 43,
+      "total_bets": 529,
+      "hits": 44,
       "hit_rate": 8.3,
-      "total_invested": 470200.0,
-      "total_payout": 168430.0,
-      "roi": 35.8
+      "total_invested": 478300.0,
+      "total_payout": 169770.0,
+      "roi": 35.5
     },
     {
       "surface": "",
       "model_type": "Oracle(直前)",
-      "total_bets": 486,
+      "total_bets": 488,
       "hits": 18,
       "hit_rate": 3.7,
-      "total_invested": 419700.0,
+      "total_invested": 421400.0,
       "total_payout": 96120.0,
-      "roi": 22.9
+      "roi": 22.8
     },
     {
       "surface": "",
       "model_type": "WIN5",
-      "total_bets": 5,
+      "total_bets": 7,
       "hits": 0,
       "hit_rate": 0.0,
-      "total_invested": 500.0,
+      "total_invested": 700.0,
       "total_payout": 0.0,
       "roi": 0.0
     },
     {
       "surface": "",
       "model_type": "本命V2(直前)",
-      "total_bets": 35,
+      "total_bets": 60,
       "hits": 0,
       "hit_rate": 0.0,
       "total_invested": 0,
@@ -790,72 +790,72 @@
     {
       "track_condition": "",
       "model_type": "本命(直前)",
-      "total_bets": 2564,
-      "hits": 348,
-      "hit_rate": 13.6,
-      "total_invested": 837400.0,
-      "total_payout": 1701941.0,
-      "roi": 203.2
+      "total_bets": 2926,
+      "hits": 451,
+      "hit_rate": 15.4,
+      "total_invested": 909300.0,
+      "total_payout": 2554981.0,
+      "roi": 281.0
     },
     {
       "track_condition": "",
       "model_type": "HitFocusV2(直前)",
-      "total_bets": 101,
+      "total_bets": 104,
       "hits": 23,
-      "hit_rate": 22.8,
-      "total_invested": 91600.0,
+      "hit_rate": 22.1,
+      "total_invested": 94300.0,
       "total_payout": 168790.0,
-      "roi": 184.3
+      "roi": 179.0
     },
     {
       "track_condition": "",
       "model_type": "Alpha-Payout(直前)",
-      "total_bets": 410,
-      "hits": 121,
-      "hit_rate": 29.5,
-      "total_invested": 67550.0,
-      "total_payout": 103260.0,
-      "roi": 152.9
+      "total_bets": 542,
+      "hits": 177,
+      "hit_rate": 32.7,
+      "total_invested": 100000.0,
+      "total_payout": 170010.0,
+      "roi": 170.0
     },
     {
       "track_condition": "",
       "model_type": "本命(暫定)",
-      "total_bets": 2732,
-      "hits": 337,
-      "hit_rate": 12.3,
-      "total_invested": 926600.0,
-      "total_payout": 1372681.0,
-      "roi": 148.1
+      "total_bets": 2964,
+      "hits": 401,
+      "hit_rate": 13.5,
+      "total_invested": 1033100.0,
+      "total_payout": 1674991.0,
+      "roi": 162.1
     },
     {
       "track_condition": "",
       "model_type": "卍(直前)",
-      "total_bets": 1660,
-      "hits": 209,
-      "hit_rate": 12.6,
-      "total_invested": 335500.0,
-      "total_payout": 386520.0,
-      "roi": 115.2
+      "total_bets": 2021,
+      "hits": 261,
+      "hit_rate": 12.9,
+      "total_invested": 445800.0,
+      "total_payout": 606690.0,
+      "roi": 136.1
     },
     {
       "track_condition": "",
       "model_type": "OracleV2(直前)",
-      "total_bets": 70,
+      "total_bets": 72,
       "hits": 7,
-      "hit_rate": 10.0,
-      "total_invested": 59500.0,
+      "hit_rate": 9.7,
+      "total_invested": 61200.0,
       "total_payout": 59830.0,
-      "roi": 100.6
+      "roi": 97.8
     },
     {
       "track_condition": "",
       "model_type": "HitFocus(直前)",
-      "total_bets": 593,
+      "total_bets": 596,
       "hits": 65,
-      "hit_rate": 11.0,
-      "total_invested": 535700.0,
+      "hit_rate": 10.9,
+      "total_invested": 538400.0,
       "total_payout": 388660.0,
-      "roi": 72.6
+      "roi": 72.2
     },
     {
       "track_condition": "",
@@ -870,37 +870,37 @@
     {
       "track_condition": "",
       "model_type": "HitFocus(暫定)",
-      "total_bets": 520,
-      "hits": 43,
+      "total_bets": 529,
+      "hits": 44,
       "hit_rate": 8.3,
-      "total_invested": 470200.0,
-      "total_payout": 168430.0,
-      "roi": 35.8
+      "total_invested": 478300.0,
+      "total_payout": 169770.0,
+      "roi": 35.5
     },
     {
       "track_condition": "",
       "model_type": "Oracle(直前)",
-      "total_bets": 486,
+      "total_bets": 488,
       "hits": 18,
       "hit_rate": 3.7,
-      "total_invested": 419700.0,
+      "total_invested": 421400.0,
       "total_payout": 96120.0,
-      "roi": 22.9
+      "roi": 22.8
     },
     {
       "track_condition": "",
       "model_type": "WIN5",
-      "total_bets": 5,
+      "total_bets": 7,
       "hits": 0,
       "hit_rate": 0.0,
-      "total_invested": 500.0,
+      "total_invested": 700.0,
       "total_payout": 0.0,
       "roi": 0.0
     },
     {
       "track_condition": "",
       "model_type": "本命V2(直前)",
-      "total_bets": 35,
+      "total_bets": 60,
       "hits": 0,
       "hit_rate": 0.0,
       "total_invested": 0,
@@ -927,6 +927,19 @@
       "distance_cat": "不明",
       "surface": "",
       "track_condition": "",
+      "model_type": "本命(直前)",
+      "total_bets": 858,
+      "hits": 129,
+      "hit_rate": 15.0,
+      "total_invested": 280200.0,
+      "total_payout": 1549590.0,
+      "roi": 553.0
+    },
+    {
+      "venue": "京都",
+      "distance_cat": "不明",
+      "surface": "",
+      "track_condition": "",
       "model_type": "卍(暫定)",
       "total_bets": 222,
       "hits": 40,
@@ -954,25 +967,12 @@
       "surface": "",
       "track_condition": "",
       "model_type": "HitFocusV2(直前)",
-      "total_bets": 32,
+      "total_bets": 35,
       "hits": 8,
-      "hit_rate": 25.0,
-      "total_invested": 29000.0,
+      "hit_rate": 22.9,
+      "total_invested": 31700.0,
       "total_payout": 108230.0,
-      "roi": 373.2
-    },
-    {
-      "venue": "京都",
-      "distance_cat": "不明",
-      "surface": "",
-      "track_condition": "",
-      "model_type": "本命(直前)",
-      "total_bets": 719,
-      "hits": 94,
-      "hit_rate": 13.1,
-      "total_invested": 247200.0,
-      "total_payout": 762890.0,
-      "roi": 308.6
+      "roi": 341.4
     },
     {
       "venue": "東京",
@@ -980,12 +980,12 @@
       "surface": "",
       "track_condition": "",
       "model_type": "本命(直前)",
-      "total_bets": 718,
-      "hits": 123,
-      "hit_rate": 17.1,
-      "total_invested": 239700.0,
-      "total_payout": 683701.0,
-      "roi": 285.2
+      "total_bets": 845,
+      "hits": 161,
+      "hit_rate": 19.1,
+      "total_invested": 269300.0,
+      "total_payout": 726951.0,
+      "roi": 269.9
     },
     {
       "venue": "京都",
@@ -993,12 +993,25 @@
       "surface": "",
       "track_condition": "",
       "model_type": "本命(暫定)",
-      "total_bets": 697,
-      "hits": 80,
-      "hit_rate": 11.5,
-      "total_invested": 262800.0,
-      "total_payout": 717510.0,
-      "roi": 273.0
+      "total_bets": 797,
+      "hits": 101,
+      "hit_rate": 12.7,
+      "total_invested": 309700.0,
+      "total_payout": 802750.0,
+      "roi": 259.2
+    },
+    {
+      "venue": "新潟",
+      "distance_cat": "不明",
+      "surface": "",
+      "track_condition": "",
+      "model_type": "本命(暫定)",
+      "total_bets": 587,
+      "hits": 96,
+      "hit_rate": 16.4,
+      "total_invested": 170600.0,
+      "total_payout": 373290.0,
+      "roi": 218.8
     },
     {
       "venue": "新潟",
@@ -1040,6 +1053,19 @@
       "roi": 206.0
     },
     {
+      "venue": "京都",
+      "distance_cat": "不明",
+      "surface": "",
+      "track_condition": "",
+      "model_type": "Alpha-Payout(直前)",
+      "total_bets": 182,
+      "hits": 53,
+      "hit_rate": 29.1,
+      "total_invested": 34550.0,
+      "total_payout": 67100.0,
+      "roi": 194.2
+    },
+    {
       "venue": "阪神",
       "distance_cat": "不明",
       "surface": "",
@@ -1053,32 +1079,6 @@
       "roi": 192.9
     },
     {
-      "venue": "京都",
-      "distance_cat": "不明",
-      "surface": "",
-      "track_condition": "",
-      "model_type": "Alpha-Payout(直前)",
-      "total_bets": 129,
-      "hits": 35,
-      "hit_rate": 27.1,
-      "total_invested": 21550.0,
-      "total_payout": 37970.0,
-      "roi": 176.2
-    },
-    {
-      "venue": "東京",
-      "distance_cat": "不明",
-      "surface": "",
-      "track_condition": "",
-      "model_type": "Alpha-Payout(直前)",
-      "total_bets": 145,
-      "hits": 44,
-      "hit_rate": 30.3,
-      "total_invested": 24250.0,
-      "total_payout": 39230.0,
-      "roi": 161.8
-    },
-    {
       "venue": "新潟",
       "distance_cat": "不明",
       "surface": "",
@@ -1090,6 +1090,45 @@
       "total_invested": 31700.0,
       "total_payout": 50160.0,
       "roi": 158.2
+    },
+    {
+      "venue": "新潟",
+      "distance_cat": "不明",
+      "surface": "",
+      "track_condition": "",
+      "model_type": "Alpha-Payout(直前)",
+      "total_bets": 163,
+      "hits": 54,
+      "hit_rate": 33.1,
+      "total_invested": 26250.0,
+      "total_payout": 41340.0,
+      "roi": 157.5
+    },
+    {
+      "venue": "東京",
+      "distance_cat": "不明",
+      "surface": "",
+      "track_condition": "",
+      "model_type": "Alpha-Payout(直前)",
+      "total_bets": 197,
+      "hits": 70,
+      "hit_rate": 35.5,
+      "total_invested": 39200.0,
+      "total_payout": 61570.0,
+      "roi": 157.1
+    },
+    {
+      "venue": "東京",
+      "distance_cat": "不明",
+      "surface": "",
+      "track_condition": "",
+      "model_type": "卍(直前)",
+      "total_bets": 628,
+      "hits": 100,
+      "hit_rate": 15.9,
+      "total_invested": 145600.0,
+      "total_payout": 216200.0,
+      "roi": 148.5
     },
     {
       "venue": "中山",
@@ -1136,12 +1175,12 @@
       "surface": "",
       "track_condition": "",
       "model_type": "卍(直前)",
-      "total_bets": 500,
-      "hits": 48,
-      "hit_rate": 9.6,
-      "total_invested": 97500.0,
-      "total_payout": 132250.0,
-      "roi": 135.6
+      "total_bets": 647,
+      "hits": 64,
+      "hit_rate": 9.9,
+      "total_invested": 147600.0,
+      "total_payout": 189060.0,
+      "roi": 128.1
     },
     {
       "venue": "福島",
@@ -1161,26 +1200,13 @@
       "distance_cat": "不明",
       "surface": "",
       "track_condition": "",
-      "model_type": "Alpha-Payout(直前)",
-      "total_bets": 136,
-      "hits": 42,
-      "hit_rate": 30.9,
-      "total_invested": 21750.0,
-      "total_payout": 26060.0,
-      "roi": 119.8
-    },
-    {
-      "venue": "新潟",
-      "distance_cat": "不明",
-      "surface": "",
-      "track_condition": "",
-      "model_type": "本命(暫定)",
-      "total_bets": 531,
-      "hits": 73,
-      "hit_rate": 13.7,
-      "total_invested": 148600.0,
-      "total_payout": 173680.0,
-      "roi": 116.9
+      "model_type": "卍(直前)",
+      "total_bets": 507,
+      "hits": 53,
+      "hit_rate": 10.5,
+      "total_invested": 86800.0,
+      "total_payout": 104340.0,
+      "roi": 120.2
     },
     {
       "venue": "新潟",
@@ -1188,12 +1214,12 @@
       "surface": "",
       "track_condition": "",
       "model_type": "本命(直前)",
-      "total_bets": 618,
-      "hits": 86,
-      "hit_rate": 13.9,
-      "total_invested": 190800.0,
-      "total_payout": 214000.0,
-      "roi": 112.2
+      "total_bets": 714,
+      "hits": 116,
+      "hit_rate": 16.2,
+      "total_invested": 200100.0,
+      "total_payout": 237090.0,
+      "roi": 118.5
     },
     {
       "venue": "阪神",
@@ -1209,30 +1235,17 @@
       "roi": 98.8
     },
     {
-      "venue": "東京",
-      "distance_cat": "不明",
-      "surface": "",
-      "track_condition": "",
-      "model_type": "卍(直前)",
-      "total_bets": 486,
-      "hits": 71,
-      "hit_rate": 14.6,
-      "total_invested": 92600.0,
-      "total_payout": 90660.0,
-      "roi": 97.9
-    },
-    {
       "venue": "京都",
       "distance_cat": "不明",
       "surface": "",
       "track_condition": "",
       "model_type": "HitFocus(直前)",
-      "total_bets": 200,
+      "total_bets": 203,
       "hits": 18,
-      "hit_rate": 9.0,
-      "total_invested": 180200.0,
+      "hit_rate": 8.9,
+      "total_invested": 182900.0,
       "total_payout": 166860.0,
-      "roi": 92.6
+      "roi": 91.2
     },
     {
       "venue": "新潟",
@@ -1253,25 +1266,12 @@
       "surface": "",
       "track_condition": "",
       "model_type": "本命(暫定)",
-      "total_bets": 705,
-      "hits": 107,
-      "hit_rate": 15.2,
-      "total_invested": 262900.0,
-      "total_payout": 221701.0,
-      "roi": 84.3
-    },
-    {
-      "venue": "新潟",
-      "distance_cat": "不明",
-      "surface": "",
-      "track_condition": "",
-      "model_type": "卍(直前)",
-      "total_bets": 435,
-      "hits": 46,
-      "hit_rate": 10.6,
-      "total_invested": 79600.0,
-      "total_payout": 66520.0,
-      "roi": 83.6
+      "total_bets": 781,
+      "hits": 127,
+      "hit_rate": 16.3,
+      "total_invested": 300500.0,
+      "total_payout": 239161.0,
+      "roi": 79.6
     },
     {
       "venue": "新潟",
@@ -1305,25 +1305,12 @@
       "surface": "",
       "track_condition": "",
       "model_type": "HitFocus(暫定)",
-      "total_bets": 172,
+      "total_bets": 178,
       "hits": 9,
-      "hit_rate": 5.2,
-      "total_invested": 155200.0,
+      "hit_rate": 5.1,
+      "total_invested": 160600.0,
       "total_payout": 68140.0,
-      "roi": 43.9
-    },
-    {
-      "venue": "京都",
-      "distance_cat": "不明",
-      "surface": "",
-      "track_condition": "",
-      "model_type": "OracleV2(直前)",
-      "total_bets": 22,
-      "hits": 1,
-      "hit_rate": 4.5,
-      "total_invested": 18700.0,
-      "total_payout": 7770.0,
-      "roi": 41.6
+      "roi": 42.4
     },
     {
       "venue": "中山",
@@ -1357,12 +1344,25 @@
       "surface": "",
       "track_condition": "",
       "model_type": "HitFocus(暫定)",
-      "total_bets": 173,
-      "hits": 17,
-      "hit_rate": 9.8,
-      "total_invested": 156500.0,
-      "total_payout": 61730.0,
-      "roi": 39.4
+      "total_bets": 176,
+      "hits": 18,
+      "hit_rate": 10.2,
+      "total_invested": 159200.0,
+      "total_payout": 63070.0,
+      "roi": 39.6
+    },
+    {
+      "venue": "京都",
+      "distance_cat": "不明",
+      "surface": "",
+      "track_condition": "",
+      "model_type": "OracleV2(直前)",
+      "total_bets": 24,
+      "hits": 1,
+      "hit_rate": 4.2,
+      "total_invested": 20400.0,
+      "total_payout": 7770.0,
+      "roi": 38.1
     },
     {
       "venue": "新潟",
@@ -1461,12 +1461,12 @@
       "surface": "",
       "track_condition": "",
       "model_type": "Oracle(直前)",
-      "total_bets": 162,
+      "total_bets": 164,
       "hits": 3,
-      "hit_rate": 1.9,
-      "total_invested": 141500.0,
+      "hit_rate": 1.8,
+      "total_invested": 143200.0,
       "total_payout": 15690.0,
-      "roi": 11.1
+      "roi": 11.0
     },
     {
       "venue": "京都",
@@ -1500,10 +1500,10 @@
       "surface": "",
       "track_condition": "",
       "model_type": "WIN5",
-      "total_bets": 5,
+      "total_bets": 6,
       "hits": 0,
       "hit_rate": 0.0,
-      "total_invested": 500.0,
+      "total_invested": 600.0,
       "total_payout": 0.0,
       "roi": 0.0
     },
@@ -1539,7 +1539,7 @@
       "surface": "",
       "track_condition": "",
       "model_type": "本命V2(直前)",
-      "total_bets": 11,
+      "total_bets": 24,
       "hits": 0,
       "hit_rate": 0.0,
       "total_invested": 0,
@@ -1565,7 +1565,7 @@
       "surface": "",
       "track_condition": "",
       "model_type": "本命V2(直前)",
-      "total_bets": 12,
+      "total_bets": 24,
       "hits": 0,
       "hit_rate": 0.0,
       "total_invested": 0,

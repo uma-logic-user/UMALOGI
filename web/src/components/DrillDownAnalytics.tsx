@@ -32,10 +32,12 @@ const MUTED   = 'rgba(255,255,255,0.35)'
 const BORDER  = 'rgba(245,158,11,0.15)'
 
 const MODEL_COLOR: Record<string, string> = {
-  '卍':    '#00C8FF',
-  '本命':  '#FFD700',
-  'Alpha': '#34D399',
-  'WIN5':  '#FB923C',
+  '卍':       '#00C8FF',
+  '本命':     '#FFD700',
+  'Oracle':   '#C084FC',
+  'HitFocus': '#F59E0B',
+  'Alpha':    '#34D399',
+  'WIN5':     '#FB923C',
 }
 
 function modelColor(name: string): string {

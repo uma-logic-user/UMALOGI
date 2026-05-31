@@ -1,0 +1,140 @@
+{
+  "results": [
+    {
+      "model_name": "ALPHA(単勝)",
+      "bet_type": "単勝",
+      "window_label": "2024H2",
+      "ev_threshold": 1.5,
+      "n_bets": 143,
+      "n_hits": 2,
+      "hit_rate": 1.3986013986013985,
+      "total_invest": 14300,
+      "total_payout": 3900.0,
+      "roi": 27.27272727272727,
+      "max_drawdown": 12450.0,
+      "notes": []
+    },
+    {
+      "model_name": "ALPHA(単勝)",
+      "bet_type": "単勝",
+      "window_label": "2025H1",
+      "ev_threshold": 1.5,
+      "n_bets": 15857,
+      "n_hits": 302,
+      "hit_rate": 1.9045216623573187,
+      "total_invest": 1585700,
+      "total_payout": 1088890.0,
+      "roi": 68.66935738159803,
+      "max_drawdown": 509440.0,
+      "notes": []
+    },
+    {
+      "model_name": "ALPHA(単勝)",
+      "bet_type": "単勝",
+      "window_label": "2025H2",
+      "ev_threshold": 1.5,
+      "n_bets": 14187,
+      "n_hits": 300,
+      "hit_rate": 2.114611968703743,
+      "total_invest": 1418700,
+      "total_payout": 925530.0,
+      "roi": 65.23789384647917,
+      "max_drawdown": 507940.0,
+      "notes": []
+    },
+    {
+      "model_name": "ALPHA(複勝)",
+      "bet_type": "複勝",
+      "window_label": "2024H2",
+      "ev_threshold": 1.5,
+      "n_bets": 196,
+      "n_hits": 35,
+      "hit_rate": 17.857142857142858,
+      "total_invest": 19600,
+      "total_payout": 17850.0,
+      "roi": 91.07142857142857,
+      "max_drawdown": 4930.0,
+      "notes": []
+    },
+    {
+      "model_name": "ALPHA(複勝)",
+      "bet_type": "複勝",
+      "window_label": "2025H1",
+      "ev_threshold": 1.5,
+      "n_bets": 23320,
+      "n_hits": 4338,
+      "hit_rate": 18.602058319039454,
+      "total_invest": 2332000,
+      "total_payout": 1946741.0,
+      "roi": 83.47945969125215,
+      "max_drawdown": 444890.0,
+      "notes": []
+    },
+    {
+      "model_name": "ALPHA(複勝)",
+      "bet_type": "複勝",
+      "window_label": "2025H2",
+      "ev_threshold": 1.5,
+      "n_bets": 21965,
+      "n_hits": 4258,
+      "hit_rate": 19.385385841110857,
+      "total_invest": 2196500,
+      "total_payout": 2247152.0,
+      "roi": 102.30603232415206,
+      "max_drawdown": 96349.0,
+      "notes": []
+    },
+    {
+      "model_name": "本命",
+      "bet_type": "単勝",
+      "window_label": "2025",
+      "ev_threshold": 1.3,
+      "n_bets": 5957,
+      "n_hits": 3639,
+      "hit_rate": 61.08779587040457,
+      "total_invest": 595700,
+      "total_payout": 3528290.0,
+      "roi": 592.2931005539701,
+      "max_drawdown": 920.0,
+      "notes": []
+    },
+    {
+      "model_name": "PlaceModel",
+      "bet_type": "複勝",
+      "window_label": "2025",
+      "ev_threshold": 1.2,
+      "n_bets": 5957,
+      "n_hits": 5957,
+      "hit_rate": 100.0,
+      "total_invest": 595700,
+      "total_payout": 1874970.0,
+      "roi": 314.75071344636564,
+      "max_drawdown": 200.0,
+      "notes": []
+    },
+    {
+      "model_name": "卍",
+      "bet_type": "単勝",
+      "window_label": "2025",
+      "ev_threshold": 1.1,
+      "n_bets": 5954,
+      "n_hits": 3637,
+      "hit_rate": 61.08498488411153,
+      "total_invest": 595400,
+      "total_payout": 3527650.0,
+      "roi": 592.4840443399395,
+      "max_drawdown": 920.0,
+      "notes": []
+    }
+  ],
+  "sweep": {
+    "ALPHA(単勝)_単勝": {
+      "best_threshold": 1.1,
+      "best_roi": 69.0
+    },
+    "ALPHA(複勝)_複勝": {
+      "best_threshold": 1.3,
+      "best_roi": 92.7
+    }
+  }
+}

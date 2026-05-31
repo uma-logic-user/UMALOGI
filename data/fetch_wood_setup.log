@@ -1,0 +1,119 @@
+2026-04-10 18:32:41,674 [INFO] ============================================================
+2026-04-10 18:32:41,675 [INFO] WOOD 一括取得開始: fromtime=20210101
+2026-04-10 18:32:41,676 [INFO] コマンド: py -3.14-32 -m src.scraper.jravan_client --fromtime 20210101 --dataspec WOOD --option 2
+2026-04-10 18:32:41,677 [INFO] ============================================================
+2026-04-10 18:32:41,677 [INFO] 試行 1/5 ...
+18:32:41 INFO __main__: 取得開始: dataspec=WOOD fromtime=20210101 option=2
+18:32:41 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+18:32:41 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+18:32:41 INFO __main__: DB スキーマ拡張完了 (training_times / training_hillwork / breeding_horses / foals / racehorses / jockeys / trainers)
+18:32:42 INFO __main__: JVInit 完了 sid=UMALOGI00
+18:32:42 INFO __main__: JVClose 完了
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\scraper\jravan_client.py", line 1933, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\scraper\jravan_client.py", line 1918, in main
+    stats = loader.load(args.dataspec, args.fromtime, args.option)
+  File "C:\dev\horse-racing-ai\src\scraper\jravan_client.py", line 1746, in load
+    client.open(dataspec, fromtime, option)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\dev\horse-racing-ai\src\scraper\jravan_client.py", line 584, in open
+    raise RuntimeError(f"JVOpen エラーコード: {code}")
+RuntimeError: JVOpen エラーコード: -111
+2026-04-10 18:32:42,436 [WARNING] returncode=1
+2026-04-10 18:32:42,437 [INFO]   → 60 秒後にリトライ...
+2026-04-10 18:33:42,438 [INFO] 試行 2/5 ...
+18:33:42 INFO __main__: 取得開始: dataspec=WOOD fromtime=20210101 option=2
+18:33:42 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+18:33:42 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+18:33:42 INFO __main__: DB スキーマ拡張完了 (training_times / training_hillwork / breeding_horses / foals / racehorses / jockeys / trainers)
+18:33:42 INFO __main__: JVInit 完了 sid=UMALOGI00
+18:33:43 INFO __main__: JVClose 完了
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\scraper\jravan_client.py", line 1933, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\scraper\jravan_client.py", line 1918, in main
+    stats = loader.load(args.dataspec, args.fromtime, args.option)
+  File "C:\dev\horse-racing-ai\src\scraper\jravan_client.py", line 1746, in load
+    client.open(dataspec, fromtime, option)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\dev\horse-racing-ai\src\scraper\jravan_client.py", line 584, in open
+    raise RuntimeError(f"JVOpen エラーコード: {code}")
+RuntimeError: JVOpen エラーコード: -111
+2026-04-10 18:33:43,098 [WARNING] returncode=1
+2026-04-10 18:33:43,099 [INFO]   → 120 秒後にリトライ...
+2026-04-10 18:35:43,110 [INFO] 試行 3/5 ...
+18:35:44 INFO __main__: 取得開始: dataspec=WOOD fromtime=20210101 option=2
+18:35:44 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+18:35:44 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+18:35:44 INFO __main__: DB スキーマ拡張完了 (training_times / training_hillwork / breeding_horses / foals / racehorses / jockeys / trainers)
+18:35:44 INFO __main__: JVInit 完了 sid=UMALOGI00
+18:35:45 INFO __main__: JVClose 完了
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\scraper\jravan_client.py", line 1933, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\scraper\jravan_client.py", line 1918, in main
+    stats = loader.load(args.dataspec, args.fromtime, args.option)
+  File "C:\dev\horse-racing-ai\src\scraper\jravan_client.py", line 1746, in load
+    client.open(dataspec, fromtime, option)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\dev\horse-racing-ai\src\scraper\jravan_client.py", line 584, in open
+    raise RuntimeError(f"JVOpen エラーコード: {code}")
+RuntimeError: JVOpen エラーコード: -111
+2026-04-10 18:35:45,453 [WARNING] returncode=1
+2026-04-10 18:35:45,454 [INFO]   → 240 秒後にリトライ...
+2026-04-10 18:39:45,453 [INFO] 試行 4/5 ...
+18:39:46 INFO __main__: 取得開始: dataspec=WOOD fromtime=20210101 option=2
+18:39:46 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+18:39:46 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+18:39:46 INFO __main__: DB スキーマ拡張完了 (training_times / training_hillwork / breeding_horses / foals / racehorses / jockeys / trainers)
+18:39:46 INFO __main__: JVInit 完了 sid=UMALOGI00
+18:39:46 INFO __main__: JVClose 完了
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\scraper\jravan_client.py", line 1933, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\scraper\jravan_client.py", line 1918, in main
+    stats = loader.load(args.dataspec, args.fromtime, args.option)
+  File "C:\dev\horse-racing-ai\src\scraper\jravan_client.py", line 1746, in load
+    client.open(dataspec, fromtime, option)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\dev\horse-racing-ai\src\scraper\jravan_client.py", line 584, in open
+    raise RuntimeError(f"JVOpen エラーコード: {code}")
+RuntimeError: JVOpen エラーコード: -111
+2026-04-10 18:39:46,602 [WARNING] returncode=1
+2026-04-10 18:39:46,602 [INFO]   → 480 秒後にリトライ...
+2026-04-10 18:47:46,600 [INFO] 試行 5/5 ...
+18:47:46 INFO __main__: 取得開始: dataspec=WOOD fromtime=20210101 option=2
+18:47:46 INFO src.database.init_db: マイグレーション: v_race_mart ビューを再作成しました
+18:47:46 INFO src.database.init_db: DB 初期化完了: C:\dev\horse-racing-ai\data\umalogi.db
+18:47:46 INFO __main__: DB スキーマ拡張完了 (training_times / training_hillwork / breeding_horses / foals / racehorses / jockeys / trainers)
+18:47:47 INFO __main__: JVInit 完了 sid=UMALOGI00
+18:47:47 INFO __main__: JVClose 完了
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\dev\horse-racing-ai\src\scraper\jravan_client.py", line 1933, in <module>
+    main()
+    ~~~~^^
+  File "C:\dev\horse-racing-ai\src\scraper\jravan_client.py", line 1918, in main
+    stats = loader.load(args.dataspec, args.fromtime, args.option)
+  File "C:\dev\horse-racing-ai\src\scraper\jravan_client.py", line 1746, in load
+    client.open(dataspec, fromtime, option)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\dev\horse-racing-ai\src\scraper\jravan_client.py", line 584, in open
+    raise RuntimeError(f"JVOpen エラーコード: {code}")
+RuntimeError: JVOpen エラーコード: -111
+2026-04-10 18:47:47,275 [WARNING] returncode=1
+2026-04-10 18:47:47,275 [ERROR] 最大リトライ回数 (5) を超過。中断します。

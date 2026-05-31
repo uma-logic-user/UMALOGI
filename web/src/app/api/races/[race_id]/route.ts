@@ -102,9 +102,34 @@ export async function GET(
       }
     })
 
+    // マルチ券種オッズ（直近スナップショット）
+    const multiOddsRows = (db.prepare(`
+      SELECT bet_type, combination, odds, odds_max, popularity, recorded_at
+      FROM multi_odds
+      WHERE race_id = ?
+        AND recorded_at = (
+          SELECT MAX(recorded_at) FROM multi_odds WHERE race_id = ?
+        )
+      ORDER BY bet_type, popularity NULLS LAST
+    `).all(race_id, race_id) as Record<string, unknown>[]).map(rowToObj)
+
+    const multiOdds: Record<string, unknown[]> = {}
+    for (const row of multiOddsRows) {
+      const bt = row.bet_type as string
+      if (!multiOdds[bt]) multiOdds[bt] = []
+      multiOdds[bt].push({
+        combination: row.combination,
+        odds:        row.odds,
+        odds_max:    row.odds_max,
+        popularity:  row.popularity,
+        recorded_at: row.recorded_at,
+      })
+    }
+
     d.results     = results
     d.payouts     = payouts
     d.predictions = predictions
+    d.multi_odds  = Object.keys(multiOdds).length > 0 ? multiOdds : undefined
 
     return NextResponse.json(validateResponse(d, '[/api/races/[race_id]]'))
   } catch (err) {

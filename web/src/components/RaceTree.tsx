@@ -215,21 +215,21 @@ export default function RaceTree({ races, selectedRaceId, onSelectRace }: Props)
                               onClick={() => onSelectRace(race.race_id)}
                               title={`${race.race_number}R ${race.race_name || `第${race.race_number}R`} ${race.surface}${race.distance}m  発走 ${timeLabel} JST`}
                             >
-                              <span className="text-[var(--text-muted)] mr-1.5 font-mono text-[10px]">
+                              <span className="text-[var(--text-muted)] mr-1.5 font-mono text-[11px]">
                                 {String(race.race_number).padStart(2, ' ')}R
                               </span>
                               {surfaceIcon(race.surface)}
                               <span className="ml-1 truncate flex-1">{race.race_name || `第${race.race_number}R`}</span>
                               <span
-                                className="ml-1.5 font-mono text-[9px] shrink-0"
-                                style={{ color: isPast ? 'var(--text-muted)' : 'rgba(180,200,255,0.7)' }}
+                                className="ml-1.5 font-mono text-[12px] shrink-0"
+                                style={{ color: isPast ? 'var(--text-muted)' : 'var(--text-primary)' }}
                               >
                                 {timeLabel}
                               </span>
                               {countdown && (
                                 <span
-                                  className="ml-1 font-mono text-[9px] shrink-0"
-                                  style={{ color: secLeft < 1800 ? '#FFD700' : 'rgba(0,255,180,0.7)' }}
+                                  className="ml-1 font-mono text-[12px] font-semibold shrink-0"
+                                  style={{ color: secLeft < 1800 ? '#C44040' : '#5B8A5B' }}
                                 >
                                   {countdown}
                                 </span>
