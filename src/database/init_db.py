@@ -1264,11 +1264,12 @@ def insert_prediction(
         "HitFocus",
         "HitFocusV2",
         "Alpha-Payout",
+        "Pure_EV_Edge",
     }
     base = model_type.split("(")[0]
     if base not in _VALID_BASE_TYPES:
         raise ValueError(
-            f"model_type のベースは '卍'/'卍V2'/'本命'/'本命V2'/'WIN5'/'Oracle'/'HitFocus'/'Alpha-Payout' を指定してください: {model_type!r}"
+            f"model_type のベースは '卍'/'卍V2'/'本命'/'本命V2'/'WIN5'/'Oracle'/'HitFocus'/'Alpha-Payout'/'Pure_EV_Edge' を指定してください: {model_type!r}"
         )
 
     with conn:

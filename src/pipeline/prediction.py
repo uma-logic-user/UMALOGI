@@ -611,6 +611,122 @@ def _run_alpha_payout(
         return None
 
 
+def _run_pure_ev_edge(
+    conn: sqlite3.Connection,
+    race_id: str,
+    df: pd.DataFrame,
+    manji_ev_scores: pd.Series,
+    place_scores: pd.Series,
+    suffix: str,
+    rdate: str | None = None,
+) -> "object | None":
+    """黒字化専用バリアント Pure_EV_Edge（単複のみ）の買い目を生成・保存する。
+
+    卍 Isotonic 較正確率ベースの EV>=1.15・1/10 Kelly・サーキットブレーカー付き。
+    既存ロジック（本命/卍/Oracle/HitFocus）とは完全に分離した独立枠。
+
+    Args:
+        conn: DB コネクション。
+        race_id: 対象レース ID。
+        df: 出走馬の特徴量 DataFrame。
+        manji_ev_scores: ManjiModel.ev_score(df)。
+        place_scores: PlaceModel.predict(df)（複勝較正確率）。
+        suffix: model_type サフィックス（"(直前)" / "(暫定)"）。
+        rdate: レース開催日（YYYY-MM-DD）。サーキットブレーカー判定に使用。
+
+    Returns:
+        PureEVRaceBets（買い目あり）または None（見送り/CB発動）。
+    """
+    try:
+        from src.ml.pure_ev_edge import (
+            PURE_EV_MODEL_NAME,
+            PureEVConfig,
+            circuit_breaker_status,
+            select_pure_ev_bets,
+        )
+
+        cfg = PureEVConfig(bankroll=get_current_bankroll(conn))
+
+        # サーキットブレーカー: 当日/当週の確定損失が上限超なら新規購入を停止
+        if rdate:
+            try:
+                cb = circuit_breaker_status(conn, rdate, cfg)
+                if cb.tripped:
+                    logger.warning(
+                        "[Pure_EV_Edge] サーキットブレーカー発動 race_id=%s: %s",
+                        race_id,
+                        cb.reason,
+                    )
+                    return None
+            except Exception as _cbe:  # noqa: BLE001
+                logger.debug("[Pure_EV_Edge] CB判定スキップ: %s", _cbe)
+
+        # 馬ごとの入力 dict を構築（win_odds は df、place_odds は realtime から任意）
+        horses: list[dict] = []
+        for i, (_, hrow) in enumerate(df.iterrows()):
+            if i >= len(manji_ev_scores):
+                break
+            horses.append(
+                {
+                    "horse_number": hrow.get("horse_number"),
+                    "horse_name": hrow.get("horse_name", ""),
+                    "win_odds": hrow.get("win_odds"),
+                    "manji_ev_score": float(manji_ev_scores.iloc[i]),
+                    "place_prob": float(place_scores.iloc[i])
+                    if i < len(place_scores)
+                    else None,
+                }
+            )
+
+        bets = select_pure_ev_bets(race_id, horses, cfg)
+        if not bets.bets:
+            logger.info("[Pure_EV_Edge] 買い目なし race_id=%s（EV<%.2f）", race_id, cfg.ev_threshold)
+            return None
+
+        # DB 保存（単勝・複勝を別レコードで・combination_json は単頭リスト）
+        for bt in ("単勝", "複勝"):
+            sub = [b for b in bets.bets if b.bet_type == bt]
+            if not sub:
+                continue
+            horses_payload = [
+                {
+                    "horse_number": b.horse_number,
+                    "horse_name": b.horse_name,
+                    "predicted_rank": rank + 1,
+                    "model_score": b.win_prob,
+                    "ev_score": b.expected_value,
+                }
+                for rank, b in enumerate(sub)
+            ]
+            combo_json = _json.dumps([[b.horse_number] for b in sub])
+            try:
+                insert_prediction(
+                    conn,
+                    race_id=race_id,
+                    model_type=f"{PURE_EV_MODEL_NAME}{suffix}",
+                    bet_type=bt,
+                    horses=horses_payload,
+                    confidence=max(b.win_prob for b in sub),
+                    expected_value=max(b.expected_value for b in sub),
+                    recommended_bet=float(sum(b.stake for b in sub)),
+                    notes=f"黒字化専用枠 {len(sub)}点 EV>={cfg.ev_threshold} 1/10Kelly",
+                    combination_json=combo_json,
+                )
+            except Exception as exc:  # noqa: BLE001
+                logger.warning("[Pure_EV_Edge] 保存失敗 %s: %s", bt, exc)
+
+        logger.info(
+            "[Pure_EV_Edge] race_id=%s 単%d複%d点 保存",
+            race_id,
+            sum(1 for b in bets.bets if b.bet_type == "単勝"),
+            sum(1 for b in bets.bets if b.bet_type == "複勝"),
+        )
+        return bets
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("[Pure_EV_Edge] スキップ（例外）: %s", exc)
+        return None
+
+
 def prerace_pipeline(
     race_id: str,
     provisional: bool = False,
@@ -819,6 +935,8 @@ def _prerace_pipeline_inner(
     honmei_scores = honmei_model.predict(df)
     honmei_ev_scores = honmei_model.ev_predict(df)
     ev_scores = manji_model.ev_score(df)
+    # Pure_EV_Edge（黒字化専用枠）の複勝較正確率に使用
+    place_scores = _place_model.predict(df)
 
     # Step 3b: SHAP 寄与度計算（失敗しても予測は継続）
     honmei_shap_by_num: dict[int, str | None] = {}
@@ -875,6 +993,17 @@ def _prerace_pipeline_inner(
     alpha_bets = None
     if not provisional:
         alpha_bets = _run_alpha_payout(conn, race_id, df, current_bankroll)
+
+    # Step 4b2: Pure_EV_Edge 黒字化専用枠（単複のみ・直前のみ）
+    # 既存ロジックと完全分離。卍Isotonic較正確率ベースのEV>=1.15・1/10 Kelly・
+    # サーキットブレーカー付き。失敗しても本処理は止めない。
+    pure_ev_bets = None
+    if not provisional:
+        _rdate = f"{race_id[:4]}-{race_id[4:6]}-{race_id[6:8]}" if len(race_id) >= 8 else None
+        pure_ev_bets = _run_pure_ev_edge(
+            conn, race_id, df, ev_scores, place_scores,
+            "(直前)", rdate=_rdate,
+        )
 
     # Step 4c: オッズ歪み補正・危険馬フィルタ（直前のみ・ステップ2-2）
     #   realtime_odds の 朝→直前 変動率で「急騰=市場見限り(危険馬)」「急落=大口流入」を
@@ -964,6 +1093,11 @@ def _prerace_pipeline_inner(
     )
     payload["provisional"] = provisional
     payload["model_version"] = model_version
+    # Pure_EV_Edge（黒字化専用枠）を独立セクションとして JSON に格納（UI トグル用）
+    if pure_ev_bets is not None and getattr(pure_ev_bets, "bets", None):
+        payload["pure_ev_edge"] = pure_ev_bets.to_dict()
+    else:
+        payload["pure_ev_edge"] = {"race_id": race_id, "model_type": "Pure_EV_Edge", "bets": []}
     if is_v2:
         from src.pipeline._common import JSON_OUT_DIR
         import json as _json_mod
@@ -987,6 +1121,13 @@ def _prerace_pipeline_inner(
             hit_focus_bets=hit_focus_bets,
             alpha_bets=alpha_bets,
         )
+
+        # Step 7a2: Pure_EV_Edge（黒字化専用枠）を独立 Discord 通知（EV アラートch）
+        if pure_ev_bets is not None and getattr(pure_ev_bets, "bets", None):
+            try:
+                _discord.notify_pure_ev_edge(race_id, pure_ev_bets)
+            except Exception as _pe_exc:  # noqa: BLE001
+                logger.warning("[Pure_EV_Edge通知] スキップ（続行）: %s", _pe_exc)
 
         # Step 7b: 厳選レース判定 → X/note 下書き自動生成 + Discord 集客通知
         # （EV≥1.25 or 勝負レース。失敗しても本処理は止めない）
