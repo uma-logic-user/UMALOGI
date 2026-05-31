@@ -28,6 +28,13 @@ database.db
 data/models/
 data/backups/
 
+# DB バックアップ（各数百MB・GitHub 100MB 上限超のため追跡禁止 / W-054）
+data/umalogi_backup_*.db
+
+# 大容量バイナリ・生成データ（GitHub 推奨50MB超）
+bin/*.exe
+web/src/data/races.json
+
 # 処理済み学習データ（Parquet、毎回再生成可能）
 data/processed/
 
