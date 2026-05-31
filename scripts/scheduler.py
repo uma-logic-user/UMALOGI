@@ -96,38 +96,41 @@ _STATE_FILE: Path = _ROOT / "data" / "scheduler_state.json"
 # ジョブ名 → 取りこぼし許容時間（時間）
 # この時間を超えたら "時機を逸した" として再実行しない
 _CATCHUP_HOURS: dict[str, int] = {
-    "job_friday_sync":          16,  # Fri 20:00 → Sat 12:00 まで
-    "job_morning_wood":          4,  # 07:30 → 11:30 まで
-    "job_weekend_batch_pre":     4,  # 07:00 → 11:00 まで
-    "job_today_auto_runner":     3,  # 08:30 → 11:30 まで
-    "job_win5_prediction":       2,  # 09:00 → 11:00 まで
-    "job_note_daily_article":    3,  # 10:30 → 13:30 まで
-    "job_win5_result_fetch":     4,  # 17:15 → 21:15 まで
-    "job_post_race":             4,  # 17:30 → 21:30 まで
-    "job_ab_report":             4,  # 18:00 → 22:00 まで
-    "job_weekend_batch_post":    4,  # 18:30 → 22:30 まで
-    "job_monday_masters":       12,  # 06:00 → 18:00 まで
-    "job_weekly_retrain":       12,  # 07:00 → 19:00 まで
-    "job_segment_analysis":      4,  # 07:30 → 11:30 まで
-    "job_git_push":             12,  # 08:00 → 20:00 まで
+    "job_friday_sync": 16,  # Fri 20:00 → Sat 12:00 まで
+    "job_morning_wood": 4,  # 07:30 → 11:30 まで
+    "job_weekend_batch_pre": 4,  # 07:00 → 11:00 まで
+    "job_today_auto_runner": 3,  # 08:30 → 11:30 まで
+    "job_win5_prediction": 2,  # 09:00 → 11:00 まで
+    "job_note_daily_article": 3,  # 10:30 → 13:30 まで
+    "job_win5_result_fetch": 4,  # 17:15 → 21:15 まで
+    "job_post_race": 4,  # 17:30 → 21:30 まで
+    "job_ab_report": 4,  # 18:00 → 22:00 まで
+    "job_weekend_batch_post": 4,  # 18:30 → 22:30 まで
+    "job_monday_masters": 12,  # 06:00 → 18:00 まで
+    "job_weekly_retrain": 12,  # 07:00 → 19:00 まで
+    "job_segment_analysis": 4,  # 07:30 → 11:30 まで
+    "job_git_push": 12,  # 08:00 → 20:00 まで
 }
 
 # 各ジョブのスケジュール定義 (weekday_int: 0=月…6=日, hour, minute)
 _JOB_SCHEDULES: dict[str, list[tuple[int, int, int]]] = {
-    "job_friday_sync":          [(4, 20,  0), (5, 20,  0)],  # 金曜20:00(→土曜予想) + 土曜20:00(→日曜予想)
-    "job_morning_wood":         [(5,  7, 30), (6,  7, 30)],
-    "job_weekend_batch_pre":    [(5,  7,  0), (6,  7,  0)],
-    "job_today_auto_runner":    [(5,  8, 30), (6,  8, 30)],
-    "job_win5_prediction":      [(5,  9,  0), (6,  9,  0)],
-    "job_note_daily_article":   [(5, 10, 30), (6, 10, 30)],  # 土日 10:30
-    "job_win5_result_fetch":    [(5, 17, 15), (6, 17, 15)],
-    "job_post_race":            [(5, 17, 30), (6, 17, 30)],
-    "job_ab_report":            [(6, 18,  0)],               # 日曜18:00
-    "job_weekend_batch_post":   [(5, 18, 30), (6, 18, 30)],
-    "job_monday_masters":       [(0,  6,  0)],
-    "job_weekly_retrain":       [(0,  7,  0)],
-    "job_segment_analysis":     [(0,  7, 30)],
-    "job_git_push":             [(0,  8,  0)],
+    "job_friday_sync": [
+        (4, 20, 0),
+        (5, 20, 0),
+    ],  # 金曜20:00(→土曜予想) + 土曜20:00(→日曜予想)
+    "job_morning_wood": [(5, 7, 30), (6, 7, 30)],
+    "job_weekend_batch_pre": [(5, 7, 0), (6, 7, 0)],
+    "job_today_auto_runner": [(5, 8, 30), (6, 8, 30)],
+    "job_win5_prediction": [(5, 9, 0), (6, 9, 0)],
+    "job_note_daily_article": [(5, 10, 30), (6, 10, 30)],  # 土日 10:30
+    "job_win5_result_fetch": [(5, 17, 15), (6, 17, 15)],
+    "job_post_race": [(5, 17, 30), (6, 17, 30)],
+    "job_ab_report": [(6, 18, 0)],  # 日曜18:00
+    "job_weekend_batch_post": [(5, 18, 30), (6, 18, 30)],
+    "job_monday_masters": [(0, 6, 0)],
+    "job_weekly_retrain": [(0, 7, 0)],
+    "job_segment_analysis": [(0, 7, 30)],
+    "job_git_push": [(0, 8, 0)],
 }
 
 
@@ -350,7 +353,7 @@ def _run_jvlink(
         logger.error("[%s] 起動失敗: %s", label, exc)
         return -1
 
-    ready_event  = _threading.Event()
+    ready_event = _threading.Event()
     failed_event = _threading.Event()  # JVLINK_FAILED 受信フラグ
 
     def _reader() -> None:
@@ -499,6 +502,7 @@ def _send_discord(text: str) -> None:
     """システムチャンネルにテキストを送信する。NotificationRouter 経由。"""
     try:
         from src.notification.router import NotificationRouter
+
         NotificationRouter().send_system_text(text)
     except Exception as exc:
         logger.warning("Discord 送信失敗: %s", exc)
@@ -508,10 +512,11 @@ def _send_discord_embed(embeds: list[dict]) -> None:
     """システムチャンネルに Embed を送信する。NotificationRouter 経由。"""
     try:
         from src.notification.router import NotificationRouter
+
         router = NotificationRouter()
         for embed in embeds:
             title = embed.get("title", "通知")
-            desc  = embed.get("description", "")
+            desc = embed.get("description", "")
             router.send_system_embed(title, desc, color=embed.get("color"))
     except Exception as exc:
         logger.warning("Discord Embed 送信失敗: %s", exc)
@@ -672,17 +677,19 @@ def job_friday_sync() -> None:
     # ── Step 2: JVLink WOOD 同期（32bit 必須）───────────────────
     rc = _run_jvlink(_PY32 + ["-m", "src.ops.data_sync", "wood"], "JVLink-WOOD")
     if rc == -2:
-        logger.warning("[金曜バッチ] JVLink WOOD GUI_BLOCKED — 調教タイムは取得不可（続行）")
+        logger.warning(
+            "[金曜バッチ] JVLink WOOD GUI_BLOCKED — 調教タイムは取得不可（続行）"
+        )
         errors.append("JVLink WOOD 同期 GUI_BLOCKED（調教タイムは暫定予想でも使用可）")
     elif rc != 0:
         errors.append(f"JVLink WOOD 同期失敗(rc={rc})")
 
     # ── Step 3: JVLink マスタ差分更新（32bit 必須）──────────────
-    rc = _run_jvlink(
-        _PY32 + ["-m", "src.ops.data_sync", "masters"], "JVLink-Masters"
-    )
+    rc = _run_jvlink(_PY32 + ["-m", "src.ops.data_sync", "masters"], "JVLink-Masters")
     if rc == -2:
-        logger.warning("[金曜バッチ] JVLink Masters GUI_BLOCKED — マスタ更新スキップ（続行）")
+        logger.warning(
+            "[金曜バッチ] JVLink Masters GUI_BLOCKED — マスタ更新スキップ（続行）"
+        )
         errors.append("JVLink Masters GUI_BLOCKED（既存マスタで続行）")
     elif rc != 0:
         errors.append(f"JVLink マスタ更新失敗(rc={rc})")
@@ -726,7 +733,9 @@ def job_morning_wood() -> None:
     logger.info("=== [朝調教同期] 開始 ===")
     rc = _run_jvlink(_PY32 + ["-m", "src.ops.data_sync", "wood"], "JVLink-WOOD朝")
     if rc == -2:
-        logger.warning("[朝調教同期] JVLink GUI_BLOCKED — 調教タイムは取得不可。setup_jvlink.py を実行してください。")
+        logger.warning(
+            "[朝調教同期] JVLink GUI_BLOCKED — 調教タイムは取得不可。setup_jvlink.py を実行してください。"
+        )
     elif rc != 0:
         logger.error("[朝調教同期] 失敗: rc=%d", rc)
     else:
@@ -736,6 +745,7 @@ def job_morning_wood() -> None:
 
 _auto_runner_lock = threading.Lock()
 _post_race_lock = threading.Lock()
+_weekly_retrain_lock = threading.Lock()  # W-052: 全件再学習(SIMULATE)の二重起動防止
 
 
 def job_today_auto_runner() -> None:
@@ -757,12 +767,16 @@ def job_today_auto_runner() -> None:
 
     def _run_loop() -> None:
         import datetime as _dt
+
         _RACING_CUTOFF_HOUR = 19  # 19:00 以降は再起動しない
         attempt = 0
         try:
             while True:
                 attempt += 1
-                logger.info("=== [直前予想ループ] バックグラウンドスレッド開始 (attempt=%d) ===", attempt)
+                logger.info(
+                    "=== [直前予想ループ] バックグラウンドスレッド開始 (attempt=%d) ===",
+                    attempt,
+                )
                 rc = _run(
                     _PY64 + ["scripts/today_auto_runner.py"],
                     "直前予想ループ",
@@ -774,13 +788,21 @@ def job_today_auto_runner() -> None:
 
                 now_h = _dt.datetime.now().hour
                 if now_h >= _RACING_CUTOFF_HOUR:
-                    logger.warning("[直前予想ループ] 異常終了 rc=%d だが %d時以降のため再起動しません", rc, now_h)
+                    logger.warning(
+                        "[直前予想ループ] 異常終了 rc=%d だが %d時以降のため再起動しません",
+                        rc,
+                        now_h,
+                    )
                     _send_discord(
                         f"⚠️【直前予想ループ】異常終了 rc={rc}。レース終了後のため再起動不要。"
                     )
                     break
 
-                logger.error("[直前予想ループ] 異常終了: rc=%d — 30秒後に再起動します (attempt=%d)", rc, attempt)
+                logger.error(
+                    "[直前予想ループ] 異常終了: rc=%d — 30秒後に再起動します (attempt=%d)",
+                    rc,
+                    attempt,
+                )
                 _send_discord(
                     f"🔄【直前予想ループ】異常終了 rc={rc}。30秒後に自動再起動します (attempt={attempt})。"
                 )
@@ -850,11 +872,14 @@ def job_win5_result_fetch() -> None:
         elif result.get("winning_numbers"):
             logger.info(
                 "[WIN5結果取得] 完了: 的中馬番=%s 払戻=¥%d",
-                result["winning_numbers"], result.get("payout", 0),
+                result["winning_numbers"],
+                result.get("payout", 0),
             )
             _mark_job_done("job_win5_result_fetch")
         else:
-            logger.warning("[WIN5結果取得] 結果なし: %s", result.get("reason", "unknown"))
+            logger.warning(
+                "[WIN5結果取得] 結果なし: %s", result.get("reason", "unknown")
+            )
     except Exception as e:
         logger.error("[WIN5結果取得] 例外: %s", e, exc_info=True)
         _send_discord(f"🚨 [ERROR] WIN5結果取得タスクが失敗しました: {e}")
@@ -998,7 +1023,9 @@ def _job_post_race_body(target_date: str) -> None:
             # batch_evaluate_date は 'YYYY-MM-DD' 形式を期待するが
             # target_date は 'YYYY/MM/DD' 形式のため変換する
             iso_date = target_date.replace("/", "-")
-            results = batch_evaluate_date(conn, iso_date, notify=True)
+            # W-052: retrain=False で当日評価+通知のみ。再訓練は月曜 weekly_retrain に集約し、
+            # 毎レースの全年度再シミュレーション（スケジューラ長時間ブロック）を根絶する。
+            results = batch_evaluate_date(conn, iso_date, notify=True, retrain=False)
             hit_count = sum(
                 r["evaluation"].hit_count for r in results if "evaluation" in r
             )
@@ -1048,7 +1075,9 @@ def job_post_race(target_date: str | None = None) -> None:
         logger.warning("[レース後処理] 既に実行中のため二重起動をスキップします")
         return
 
-    resolved_date = target_date if target_date is not None else date.today().strftime("%Y/%m/%d")
+    resolved_date = (
+        target_date if target_date is not None else date.today().strftime("%Y/%m/%d")
+    )
 
     def _body() -> None:
         try:
@@ -1078,7 +1107,9 @@ def job_monday_masters() -> None:
         _PY32 + ["-m", "src.ops.data_sync", "masters"], "JVLink-Masters月曜"
     )
     if rc == -2:
-        logger.warning("[マスタ更新] JVLink GUI_BLOCKED — setup_jvlink.py を実行してください。")
+        logger.warning(
+            "[マスタ更新] JVLink GUI_BLOCKED — setup_jvlink.py を実行してください。"
+        )
     elif rc != 0:
         logger.error("[マスタ更新] 失敗: rc=%d", rc)
     else:
@@ -1086,8 +1117,8 @@ def job_monday_masters() -> None:
         logger.info("=== [マスタ更新] 完了 ===")
 
 
-def job_weekly_retrain() -> None:
-    """月曜: 全件再学習 + summary.json 再生成（64bit）"""
+def _job_weekly_retrain_body() -> None:
+    """週次全件再学習の実体（全件特徴量再生成=SIMULATE を含む長時間処理）。"""
     logger.info("=== [週次再学習] 開始 ===")
     try:
         from src.database.init_db import init_db
@@ -1095,6 +1126,7 @@ def job_weekly_retrain() -> None:
 
         conn = init_db()
         try:
+            # weekly_retrain 内に土日ガード（条項2 / W-052）あり。月曜起動が前提。
             result = weekly_retrain(conn)
             logger.info("[週次再学習] 完了: %s", result)
         finally:
@@ -1112,6 +1144,32 @@ def job_weekly_retrain() -> None:
     except Exception as gen_exc:
         logger.warning("[週次再学習] JSON 更新失敗: %s", gen_exc)
     _mark_job_done("job_weekly_retrain")
+
+
+def job_weekly_retrain() -> None:
+    """月曜: 全件再学習 + summary.json 再生成（64bit）。
+
+    W-052: 全件再学習は全履歴の特徴量再生成（SIMULATE）を伴い数時間かかりうる。
+    schedule.run_pending と同一スレッドで実行するとスケジューラ全体をブロックするため、
+    バックグラウンドスレッドで起動して即リターンする（二重起動はロックでガード）。
+    """
+    if not _weekly_retrain_lock.acquire(blocking=False):
+        logger.warning("[週次再学習] 既に実行中のため二重起動をスキップします")
+        return
+
+    def _body() -> None:
+        try:
+            _job_weekly_retrain_body()
+        except Exception as exc:
+            logger.error("[週次再学習] スレッド内例外: %s", exc, exc_info=True)
+        finally:
+            _weekly_retrain_lock.release()
+
+    thread = threading.Thread(target=_body, name="weekly_retrain", daemon=True)
+    thread.start()
+    logger.info(
+        "[週次再学習] バックグラウンドスレッドを起動しました (thread=%s)", thread.name
+    )
 
 
 def job_git_push() -> None:
@@ -1152,6 +1210,7 @@ def _find_target_jv_exe() -> Path | None:
     優先順: 環境変数 TARGET_JV_PATH → 既知パス。
     """
     from dotenv import load_dotenv as _ldotenv
+
     _ldotenv(_ROOT / ".env", override=False)
 
     env_path = os.environ.get("TARGET_JV_PATH", "").strip()
@@ -1175,6 +1234,7 @@ def _is_target_jv_running() -> bool:
     """psutil で TargetFrontierJV.exe または JVLinkAgent.exe プロセスの生存を確認する。"""
     try:
         import psutil
+
         for proc in psutil.process_iter(["name"]):
             name = (proc.info.get("name") or "").lower()
             if "targetfrontierjv" in name or "jvlinkagent" in name:
@@ -1210,13 +1270,15 @@ def _restart_target_jv(exe: Path) -> bool:
         subprocess.Popen(
             [str(exe)],
             cwd=str(exe.parent),
-            creationflags=subprocess.DETACHED_PROCESS | subprocess.CREATE_NEW_PROCESS_GROUP,
+            creationflags=subprocess.DETACHED_PROCESS
+            | subprocess.CREATE_NEW_PROCESS_GROUP,
             startupinfo=_si,
         )
         _TARGET_JV_RESTART_COUNT += 1
         logger.info(
             "[TARGETウォッチドッグ] 再起動完了 (本日 %d/%d 回目)",
-            _TARGET_JV_RESTART_COUNT, _TARGET_JV_MAX_RESTARTS_PER_DAY,
+            _TARGET_JV_RESTART_COUNT,
+            _TARGET_JV_MAX_RESTARTS_PER_DAY,
         )
         _send_discord(
             f"🔄 **[UMALOGI] TARGET frontier JV 自動再起動**\n"
@@ -1340,7 +1402,9 @@ def job_weekend_batch_post() -> None:
         if rc_note == 0:
             logger.info("[週末バッチ Post] note週次記事生成完了")
         else:
-            logger.warning("[週末バッチ Post] note週次記事生成失敗(rc=%d) — 続行", rc_note)
+            logger.warning(
+                "[週末バッチ Post] note週次記事生成失敗(rc=%d) — 続行", rc_note
+            )
 
 
 def job_ab_report() -> None:
@@ -1359,7 +1423,7 @@ def job_ab_report() -> None:
 
 def _notify_note_article_summary(
     recommended: list,
-    target_date: str,    # YYYYMMDD
+    target_date: str,  # YYYYMMDD
     discord_sent: bool,
 ) -> None:
     """
@@ -1394,14 +1458,14 @@ def _notify_note_article_summary(
                 (race_id,),
             ).fetchone()
             if row:
-                venue     = row["venue"]
-                race_no   = row["race_number"]
+                venue = row["venue"]
+                race_no = row["race_number"]
                 race_name = row["race_name"] or f"R{race_no}"
 
-        stars    = "⭐" * min(sc["consensus"], 4)
-        score    = sc["score"]
-        best_ev  = max(sc.get("alpha_ev", 0.0), sc.get("manji_ev", 0.0), 0.0)
-        ev_str   = f"  EV={best_ev:.2f}" if best_ev > 0 else ""
+        stars = "⭐" * min(sc["consensus"], 4)
+        score = sc["score"]
+        best_ev = max(sc.get("alpha_ev", 0.0), sc.get("manji_ev", 0.0), 0.0)
+        ev_str = f"  EV={best_ev:.2f}" if best_ev > 0 else ""
         race_lines.append(
             f"{i}. {stars} **{venue}{race_no}R**「{race_name}」 {score:.0f}pt{ev_str}"
         )
@@ -1409,18 +1473,20 @@ def _notify_note_article_summary(
     if conn:
         conn.close()
 
-    race_text      = "\n".join(race_lines) or "（推奨レースなし）"
-    discord_status = "✅ note_draft チャンネルへ転送済み" if discord_sent else "⚠️ Discord 転送失敗"
-    out_file       = f"`outputs/note/{target_date}_recommendations.md`"
+    race_text = "\n".join(race_lines) or "（推奨レースなし）"
+    discord_status = (
+        "✅ note_draft チャンネルへ転送済み" if discord_sent else "⚠️ Discord 転送失敗"
+    )
+    out_file = f"`outputs/note/{target_date}_recommendations.md`"
 
     embed = {
-        "title":       f"🏇 本日AI厳選記事 完成 — {display_date}",
-        "color":       0x00C8FF,
+        "title": f"🏇 本日AI厳選記事 完成 — {display_date}",
+        "color": 0x00C8FF,
         "description": f"4モデル合意スコアで **{n_races}** レースを厳選しました",
         "fields": [
-            {"name": "🎯 厳選レース一覧", "value": race_text,      "inline": False},
-            {"name": "📨 Discord 転送",   "value": discord_status, "inline": True},
-            {"name": "📁 ファイル",        "value": out_file,       "inline": True},
+            {"name": "🎯 厳選レース一覧", "value": race_text, "inline": False},
+            {"name": "📨 Discord 転送", "value": discord_status, "inline": True},
+            {"name": "📁 ファイル", "value": out_file, "inline": True},
         ],
         "footer": {
             "text": f"UMALOGI AI  |  {now_str} 生成  |  noteは下書き一覧から手動公開",
@@ -1446,13 +1512,14 @@ def job_note_daily_article() -> None:
         NOTE_PASSWORD        : note.com パスワード（Playwright ログイン用）
     """
     logger.info("=== [note記事生成] 開始 ===")
-    target_date  = date.today().strftime("%Y%m%d")
-    db_date      = f"{target_date[:4]}-{target_date[4:6]}-{target_date[6:]}"
-    title_line   = f"🏇【{db_date}】AI厳選レース予想｜4モデル全弾発射"
+    target_date = date.today().strftime("%Y%m%d")
+    db_date = f"{target_date[:4]}-{target_date[4:6]}-{target_date[6:]}"
+    title_line = f"🏇【{db_date}】AI厳選レース予想｜4モデル全弾発射"
 
     # ── Step 1: 記事生成 ────────────────────────────────────────────
     try:
         from src.ops import note_generator as _ng
+
         md = _ng.generate(date_str=target_date, top_n=5)
         logger.info("[note記事生成] 記事生成完了: %d 文字", len(md))
     except Exception as exc:
@@ -1464,6 +1531,7 @@ def job_note_daily_article() -> None:
     recommended: list = []
     try:
         from src.ops import note_generator as _ng2
+
         _conn = _ng2._db()
         try:
             recommended = _ng2.select_recommended_races(_conn, db_date)
@@ -1476,6 +1544,7 @@ def job_note_daily_article() -> None:
     discord_sent = False
     try:
         from src.notification.router import NotificationRouter
+
         router = NotificationRouter()
         router.send_note_draft(title_line, md)
         discord_sent = True
@@ -1490,8 +1559,8 @@ def job_note_daily_article() -> None:
         logger.warning("[note記事生成] Embed 通知失敗（続行）: %s", exc)
 
     # ── Step 4: note.com 下書き自動保存（オプション）───────────────
-    auto_post      = os.environ.get("NOTE_DRAFT_AUTO_POST", "").lower() in ("1", "true")
-    session_path   = _ROOT / ".note_session.json"
+    auto_post = os.environ.get("NOTE_DRAFT_AUTO_POST", "").lower() in ("1", "true")
+    session_path = _ROOT / ".note_session.json"
     note_com_label = "スキップ（NOTE_DRAFT_AUTO_POST 未設定）"
 
     if not auto_post:
@@ -1514,6 +1583,7 @@ def job_note_daily_article() -> None:
     else:
         try:
             from src.ops.note_draft_publisher import save_draft
+
             ok = save_draft(
                 title=title_line,
                 body=md,
@@ -1523,7 +1593,9 @@ def job_note_daily_article() -> None:
             if ok:
                 note_com_label = "✅ 下書き保存完了"
                 logger.info("[note記事生成] note.com 下書き保存完了")
-                _send_discord(f"📝 [note記事生成] note.com 下書き保存完了: {title_line}")
+                _send_discord(
+                    f"📝 [note記事生成] note.com 下書き保存完了: {title_line}"
+                )
             else:
                 note_com_label = "❌ 保存失敗"
                 logger.error("[note記事生成] note.com 下書き保存失敗")
@@ -1563,6 +1635,7 @@ def job_weekly_backup() -> None:
     """毎週月曜 05:00: DB+ログ+モデルを ZIP 圧縮して data/backups/ に退避（12世代保持）"""
     try:
         import importlib.util
+
         spec = importlib.util.spec_from_file_location(
             "weekly_backup", Path(__file__).parent / "weekly_backup.py"
         )
@@ -1626,6 +1699,7 @@ def job_record_odds_timeseries() -> None:
         return
     try:
         import subprocess
+
         subprocess.run(
             [_PY64[0], "scripts/record_odds_timeseries.py"],
             timeout=30,
@@ -1648,6 +1722,7 @@ def job_prerace_15min_alert() -> None:
         return
     try:
         from src.notification.prerace_alert import check_and_send_prerace_alerts
+
         count = check_and_send_prerace_alerts()
         if count > 0:
             logger.info("[発走前アラート] %d件の通知を送信しました", count)
@@ -1668,7 +1743,9 @@ def job_segment_analysis() -> None:
 
         try:
             for group in ["bet_type", "venue", "condition", "model"]:
-                rows = analyze_by_segment(db_path="data/umalogi.db", group_by=group, min_bets=30)
+                rows = analyze_by_segment(
+                    db_path="data/umalogi.db", group_by=group, min_bets=30
+                )
                 _print_segment_table(rows, group)
         finally:
             _sys.stdout = _orig
@@ -1676,7 +1753,7 @@ def job_segment_analysis() -> None:
         report = buf.getvalue()
 
         # Discord に送信（1800字ずつ分割）
-        chunks = [report[i:i+1800] for i in range(0, len(report), 1800)]
+        chunks = [report[i : i + 1800] for i in range(0, len(report), 1800)]
         for chunk in chunks:
             _send_discord(f"📊 週次セグメントROI分析\n```\n{chunk}\n```")
 
@@ -1795,8 +1872,11 @@ def run_daemon() -> None:
     # 既存の 10 秒タイムアウト → netkeiba フォールバックと共存する二重安全網。
     try:
         from src.ops.jvlink_dialog_handler import start_dialog_handler
+
         start_dialog_handler(interval=0.3)
-        logger.info("[JVLinkダイアログハンドラー] バックグラウンドスレッド起動済み (0.3秒間隔)")
+        logger.info(
+            "[JVLinkダイアログハンドラー] バックグラウンドスレッド起動済み (0.3秒間隔)"
+        )
     except Exception as _dh_exc:
         logger.warning("[JVLinkダイアログハンドラー] 起動失敗（続行）: %s", _dh_exc)
 
@@ -1825,9 +1905,7 @@ def run_daemon() -> None:
             try:
                 schedule.run_pending()
             except Exception as e:
-                logger.critical(
-                    "スケジューラー未処理例外: %s", e, exc_info=True
-                )
+                logger.critical("スケジューラー未処理例外: %s", e, exc_info=True)
                 _send_discord(
                     f"🚨 [UMALOGI] スケジューラー例外 — デーモンは継続中\n"
                     f"`{type(e).__name__}: {e}`"
@@ -1844,42 +1922,42 @@ def run_daemon() -> None:
 
 # リカバリー用フルマップ（関数名 → 関数オブジェクト）
 _JOB_MAP_FULL: dict[str, object] = {
-    "job_friday_sync":              job_friday_sync,
+    "job_friday_sync": job_friday_sync,
     "job_training_hillwork_scrape": job_training_hillwork_scrape,
-    "job_morning_wood":             job_morning_wood,
-    "job_weekend_batch_pre":    job_weekend_batch_pre,
-    "job_today_auto_runner":    job_today_auto_runner,
-    "job_win5_prediction":      job_win5_prediction,
-    "job_note_daily_article":   job_note_daily_article,
-    "job_win5_result_fetch":    job_win5_result_fetch,
-    "job_post_race":            job_post_race,
-    "job_ab_report":            job_ab_report,
-    "job_weekend_batch_post":   job_weekend_batch_post,
-    "job_monday_masters":       job_monday_masters,
-    "job_weekly_retrain":       job_weekly_retrain,
-    "job_segment_analysis":     job_segment_analysis,
-    "job_git_push":             job_git_push,
+    "job_morning_wood": job_morning_wood,
+    "job_weekend_batch_pre": job_weekend_batch_pre,
+    "job_today_auto_runner": job_today_auto_runner,
+    "job_win5_prediction": job_win5_prediction,
+    "job_note_daily_article": job_note_daily_article,
+    "job_win5_result_fetch": job_win5_result_fetch,
+    "job_post_race": job_post_race,
+    "job_ab_report": job_ab_report,
+    "job_weekend_batch_post": job_weekend_batch_post,
+    "job_monday_masters": job_monday_masters,
+    "job_weekly_retrain": job_weekly_retrain,
+    "job_segment_analysis": job_segment_analysis,
+    "job_git_push": job_git_push,
 }
 
 # CLI --run-now 用マップ（短縮名 → 関数）
 _JOB_MAP: dict[str, object] = {
-    "friday":               job_friday_sync,
-    "training_hillwork":    job_training_hillwork_scrape,
-    "wood":                 job_morning_wood,
-    "batch_pre":      job_weekend_batch_pre,
-    "batch_post":     job_weekend_batch_post,
-    "win5":           job_win5_prediction,
-    "win5_result":    job_win5_result_fetch,
-    "note_article":   job_note_daily_article,
-    "umanity":        job_umanity_upload,
-    "auto_runner":    job_today_auto_runner,
-    "intraday_sync":  job_intraday_sync,
-    "post_race":      job_post_race,
-    "ab_report":      job_ab_report,
-    "masters":        job_monday_masters,
-    "retrain":        job_weekly_retrain,
-    "git":            job_git_push,
-    "prerace_alert":  job_prerace_15min_alert,
+    "friday": job_friday_sync,
+    "training_hillwork": job_training_hillwork_scrape,
+    "wood": job_morning_wood,
+    "batch_pre": job_weekend_batch_pre,
+    "batch_post": job_weekend_batch_post,
+    "win5": job_win5_prediction,
+    "win5_result": job_win5_result_fetch,
+    "note_article": job_note_daily_article,
+    "umanity": job_umanity_upload,
+    "auto_runner": job_today_auto_runner,
+    "intraday_sync": job_intraday_sync,
+    "post_race": job_post_race,
+    "ab_report": job_ab_report,
+    "masters": job_monday_masters,
+    "retrain": job_weekly_retrain,
+    "git": job_git_push,
+    "prerace_alert": job_prerace_15min_alert,
 }
 
 

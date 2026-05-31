@@ -295,21 +295,28 @@ def fetch_and_save_odds(conn: sqlite3.Connection, race_id: str) -> int:
         ).fetchall()
     }
 
-    # Stage 0: JRA-VAN 速報オッズ（JVRTOpen 0B30）— 公式一次ソース最優先
-    # 32bit COM ワーカーを subprocess で起動して取得。全頭オッズ完備のときのみ採用。
+    # Stage 0: JRA-VAN 速報（JVRTOpen）— 公式一次ソース最優先。
+    # 32bit COM ワーカーを 1 回起動してオッズ(0B30)・馬体重(0B11)・天候馬場(0B12)を取得。
+    # 馬体重・天候馬場はオッズの成否に関わらず DB へ反映する（best-effort・上書きは値があるときのみ）。
     date8 = _race_date8(conn, race_id)
     if date8:
-        jvrt_odds = _fetch_odds_jvrt(race_id, date8)
-        if jvrt_odds and all(o.win_odds for o in jvrt_odds):
-            n = insert_realtime_odds(conn, race_id, jvrt_odds, name_map)
-            logger.info(
-                "オッズ取得 [JRA-VAN 速報 JVRTOpen]: %d 頭保存 (race_id=%s)", n, race_id
-            )
-            return n
-        if jvrt_odds:
-            logger.warning(
-                "JRA-VAN 速報: NaN あり → 後続フォールバックへ (race_id=%s)", race_id
-            )
+        payload = _run_jvrt_worker(race_id, date8)
+        if payload:
+            _apply_jvrt_weight_weather(conn, race_id, payload)
+            jvrt_odds = _payload_to_horse_odds(payload)
+            if jvrt_odds and all(o.win_odds for o in jvrt_odds):
+                n = insert_realtime_odds(conn, race_id, jvrt_odds, name_map)
+                logger.info(
+                    "オッズ取得 [JRA-VAN 速報 JVRTOpen]: %d 頭保存 (race_id=%s)",
+                    n,
+                    race_id,
+                )
+                return n
+            if jvrt_odds:
+                logger.warning(
+                    "JRA-VAN 速報: NaN あり → 後続フォールバックへ (race_id=%s)",
+                    race_id,
+                )
 
     # Stage 1: JRA-VAN ローカル RTD キャッシュ
     # ゼロ許容: 1頭でも NaN があれば即 netkeiba にフォールバック
@@ -402,26 +409,21 @@ def _race_date8(conn: sqlite3.Connection, race_id: str) -> str:
     return d if len(d) == 8 and d.isdigit() else ""
 
 
-def _fetch_odds_jvrt(race_id: str, date8: str) -> list | None:
-    """JRA-VAN 速報オッズ（JVRTOpen 0B30）を 32bit COM ワーカー経由で取得する。
+def _run_jvrt_worker(race_id: str, date8: str) -> dict | None:
+    """JRA-VAN 速報ワーカー（32bit COM）を 1 回起動し、payload dict を返す。
 
-    JV-Link は 32bit COM のため、64bit 本番から py -3.14-32 の subprocess で呼ぶ。
-    ワーカーは最終行に JSON を出力する。完全 fail-safe（失敗時は None を返し後続段へ）。
-
-    Args:
-        race_id: 12桁 race_id。
-        date8:   開催日 "YYYYMMDD"。
+    オッズ(0B30)・馬体重(0B11)・天候馬場(0B12) を 1 セッションで取得する。
+    JV-Link は 32bit COM のため py -3.14-32 の subprocess で呼ぶ。完全 fail-safe。
 
     Returns:
-        HorseOdds のリスト。取得失敗・無効時は None。
+        payload dict（keys: race_id/head_count/odds/weights/weather/condition）。
+        取得失敗・無効時は None。
     """
     if os.environ.get("JVLINK_DISABLED", "").strip() == "1":
         return None
 
     import json
     import subprocess
-
-    from src.scraper.entry_table import HorseOdds
 
     try:
         proc = subprocess.run(
@@ -435,13 +437,13 @@ def _fetch_odds_jvrt(race_id: str, date8: str) -> list | None:
                 date8,
             ],
             cwd=str(_ROOT),
-            timeout=60,
+            timeout=90,
             capture_output=True,
             encoding="utf-8",
             errors="replace",
         )
     except subprocess.TimeoutExpired:
-        logger.warning("JRA-VAN 速報ワーカー タイムアウト (60s): race_id=%s", race_id)
+        logger.warning("JRA-VAN 速報ワーカー タイムアウト (90s): race_id=%s", race_id)
         return None
     except Exception as exc:
         logger.warning("JRA-VAN 速報ワーカー 起動失敗 (race_id=%s): %s", race_id, exc)
@@ -457,20 +459,23 @@ def _fetch_odds_jvrt(race_id: str, date8: str) -> list | None:
         return None
 
     # 最終 JSON 行を抽出（ワーカーは診断ログを stderr に出すが念のため後方から探索）
-    payload: dict | None = None
     for line in reversed((proc.stdout or "").splitlines()):
         line = line.strip()
         if line.startswith("{") and line.endswith("}"):
             try:
-                payload = json.loads(line)
-                break
+                return json.loads(line)
             except json.JSONDecodeError:
                 continue
-    if not payload:
-        logger.warning("JRA-VAN 速報ワーカー JSON 解析失敗 (race_id=%s)", race_id)
-        return None
+    logger.warning("JRA-VAN 速報ワーカー JSON 解析失敗 (race_id=%s)", race_id)
+    return None
 
-    odds = payload.get("odds") or []
+
+def _payload_to_horse_odds(payload: dict | None) -> list | None:
+    """ワーカー payload の odds 部を HorseOdds リストに変換する。空なら None。"""
+    if not payload:
+        return None
+    from src.scraper.entry_table import HorseOdds
+
     result = [
         HorseOdds(
             horse_number=int(o["horse_number"]),
@@ -479,10 +484,70 @@ def _fetch_odds_jvrt(race_id: str, date8: str) -> list | None:
             place_odds_max=None,
             popularity=o.get("popularity"),
         )
-        for o in odds
+        for o in (payload.get("odds") or [])
         if o.get("horse_number")
     ]
     return result or None
+
+
+def _apply_jvrt_weight_weather(
+    conn: sqlite3.Connection, race_id: str, payload: dict
+) -> None:
+    """ワーカー payload の馬体重・天候馬場を DB へ反映する（best-effort・値があるときのみ）。
+
+    - 馬体重 → entries.horse_weight / horse_weight_diff（NULL では上書きしない）
+    - 天候馬場 → races.weather / condition（空文字では上書きしない）
+
+    例外は握りつぶし、オッズ取得や予測本体を止めない。
+    """
+    try:
+        weights: dict = payload.get("weights") or {}
+        applied = 0
+        for num_str, wd in weights.items():
+            weight = wd.get("weight") if isinstance(wd, dict) else None
+            diff = wd.get("weight_diff") if isinstance(wd, dict) else None
+            if weight is None and diff is None:
+                continue
+            try:
+                num = int(num_str)
+            except (ValueError, TypeError):
+                continue
+            conn.execute(
+                """
+                UPDATE entries
+                   SET horse_weight      = COALESCE(?, horse_weight),
+                       horse_weight_diff = COALESCE(?, horse_weight_diff)
+                 WHERE race_id = ? AND horse_number = ?
+                """,
+                (weight, diff, race_id, num),
+            )
+            applied += 1
+
+        weather = (payload.get("weather") or "").strip()
+        condition = (payload.get("condition") or "").strip()
+        if weather or condition:
+            conn.execute(
+                """
+                UPDATE races
+                   SET weather   = CASE WHEN ?<>'' THEN ? ELSE weather END,
+                       condition = CASE WHEN ?<>'' THEN ? ELSE condition END
+                 WHERE race_id = ?
+                """,
+                (weather, weather, condition, condition, race_id),
+            )
+        if applied or weather or condition:
+            conn.commit()
+            logger.info(
+                "JRA-VAN 速報 反映: 馬体重%d頭 天候=%r 馬場=%r (race_id=%s)",
+                applied,
+                weather,
+                condition,
+                race_id,
+            )
+    except Exception as exc:  # noqa: BLE001 — 反映失敗は予測を止めない
+        logger.warning(
+            "JRA-VAN 速報 馬体重/天候反映 失敗 (race_id=%s): %s", race_id, exc
+        )
 
 
 def _fetch_odds_rtd(race_id: str) -> list | None:

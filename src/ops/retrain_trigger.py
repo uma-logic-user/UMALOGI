@@ -18,10 +18,17 @@ from __future__ import annotations
 
 import logging
 import sqlite3
+from datetime import date
 from pathlib import Path
 from typing import Any
 
 logger = logging.getLogger(__name__)
+
+
+def _is_weekend(today: date | None = None) -> bool:
+    """土日なら True（CLAUDE.md 条項2: 週末は再訓練・大規模再シミュレーション禁止）。"""
+    d = today or date.today()
+    return d.weekday() >= 5  # 5=土, 6=日
 
 
 def post_race_pipeline(
@@ -30,6 +37,7 @@ def post_race_pipeline(
     *,
     notify: bool = True,
     dry_run: bool = False,
+    retrain: bool = True,
 ) -> dict[str, Any]:
     """
     レース確定後の一連処理を実行する。
@@ -37,7 +45,13 @@ def post_race_pipeline(
     Pipeline:
       1. Evaluator でレース結果を評価 (prediction_results に保存)
       2. NotificationDispatcher で SNS 通知
-      3. IncrementalTrainer で増分学習
+      3. IncrementalTrainer で増分学習（retrain=True のときのみ）
+
+    Note (W-052):
+      retrain=True の増分学習は内部で全履歴の特徴量を再生成する（_build_train_df）。
+      当日全レースを一括評価する batch_evaluate_date から毎レース呼ぶと
+      全年度再シミュレーションが頭数分繰り返されスケジューラを長時間ブロックする。
+      よって本番のレース後評価では retrain=False とし、再訓練は月曜 weekly_retrain に集約する。
 
     Args:
         conn:     DB コネクション
@@ -80,8 +94,8 @@ def post_race_pipeline(
     else:
         result["notified"] = []
 
-    # ── Step 3: 増分学習 ──────────────────────────────────────────
-    if not dry_run:
+    # ── Step 3: 増分学習（retrain=True のときのみ・W-052）──────────
+    if retrain and not dry_run:
         try:
             trainer = IncrementalTrainer()
             versions = trainer.incremental_update(conn, new_race_ids=[race_id])
@@ -99,15 +113,27 @@ def weekly_retrain(
     conn: sqlite3.Connection,
     *,
     validate: bool = True,
+    allow_weekend: bool = False,
+    today: date | None = None,
 ) -> dict[str, str]:
     """
     週次全件再学習を実行する。
 
     通常は毎週月曜の早朝（競馬がない時間帯）に scheduler.py から呼び出す。
 
+    W-052 / 条項2: 土日は全件再学習（全年度再シミュレーション）を実行しない。
+    緊急時のみ allow_weekend=True で明示的に上書きできる。
+
     Returns:
-        {"honmei": version_str, "manji": version_str}
+        {"honmei": version_str, ...}。週末ガードでスキップした場合は空 dict。
     """
+    if _is_weekend(today) and not allow_weekend:
+        logger.warning(
+            "週次再学習スキップ: 土日は再訓練禁止（条項2 / W-052）。"
+            "緊急時は allow_weekend=True を指定すること。"
+        )
+        return {}
+
     from src.ml.incremental import IncrementalTrainer
 
     trainer = IncrementalTrainer()
@@ -122,6 +148,7 @@ def batch_evaluate_date(
     *,
     notify: bool = True,
     dry_run: bool = False,
+    retrain: bool = False,
 ) -> list[dict[str, Any]]:
     """指定日の全確定レースを一括評価・通知する。
 
@@ -130,6 +157,9 @@ def batch_evaluate_date(
         date:     対象日 "YYYY-MM-DD" 形式 (ISO 8601)。
         notify:   SNS 通知を送信するか。
         dry_run:  DB 書き込み・SNS 送信をスキップするか。
+        retrain:  各レースで増分学習を行うか。**既定 False**（W-052）。
+                  True にすると頭数分の全年度再シミュレーションが走り長時間ブロックするため、
+                  再訓練は月曜 weekly_retrain に集約する。
 
     Returns:
         各レースの post_race_pipeline() 結果辞書のリスト。
@@ -141,8 +171,8 @@ def batch_evaluate_date(
             (date,),
         ).fetchall()
     ]
-    logger.info("一括評価: %s の %d レース", date, len(race_ids))
+    logger.info("一括評価: %s の %d レース (retrain=%s)", date, len(race_ids), retrain)
     return [
-        post_race_pipeline(conn, rid, notify=notify, dry_run=dry_run)
+        post_race_pipeline(conn, rid, notify=notify, dry_run=dry_run, retrain=retrain)
         for rid in race_ids
     ]

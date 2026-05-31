@@ -335,6 +335,70 @@ def parse_o1_realtime(text: str, race_id: str) -> RtdRaceInfo | None:
     return RtdRaceInfo(race_id=race_id, head_count=head_count, odds=odds_list)
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# JVRTOpen 速報 WH（馬体重）対応
+#   2026-05-31 のライブ実データ（東京2回12日1R）でレイアウト実証済み（バイト基準）:
+#     ヘッダ: [0:2]"WH" [2:3]区分 [3:11]作成日 [11:27]レースキー [27:35]発表月日時分
+#     馬体重情報配列 start=35 / stride=45:
+#       馬番[0:2] 馬名[2:38](36バイト) 馬体重[38:41] 増減符号[41:42] 増減差[42:45]
+#   例: 馬番01 体重482 符号"-" 差002 → 482kg(-2) / 馬番02 体重492 "+" 012 → 492kg(+12)
+# ─────────────────────────────────────────────────────────────────────────────
+_RT_WH_HORSE_START = 35
+_RT_WH_STRIDE = 45
+
+
+def parse_wh_realtime(data: bytes, race_id: str) -> dict[int, dict[str, int | None]]:
+    """JVRTOpen("0B11") 由来の速報 WH（馬体重）レコードを解析する。
+
+    馬名に半角文字が混在しても安全なよう、デコード済み文字列ではなく
+    生バイト列を固定幅で走査する。
+
+    Args:
+        data: WH レコードの生バイト列（JVRead 取得・NULL 除去済み）。
+        race_id: 対象 race_id（ログ用）。
+
+    Returns:
+        {馬番: {"weight": kg|None, "weight_diff": 増減kg|None}}。WH でなければ空 dict。
+    """
+    if not data or not data.startswith(b"WH") or len(data) < _RT_WH_HORSE_START:
+        return {}
+
+    result: dict[int, dict[str, int | None]] = {}
+    section = data[_RT_WH_HORSE_START:]
+    n = len(section) // _RT_WH_STRIDE
+    for i in range(n):
+        chunk = section[i * _RT_WH_STRIDE : (i + 1) * _RT_WH_STRIDE]
+        if len(chunk) < _RT_WH_STRIDE:
+            break
+        try:
+            horse_no = int(chunk[0:2])
+        except ValueError:
+            continue
+        if horse_no < 1 or horse_no > 28:
+            continue
+
+        weight_raw = chunk[38:41].decode("ascii", "replace").strip()
+        sign = chunk[41:42].decode("ascii", "replace")
+        diff_raw = chunk[42:45].decode("ascii", "replace").strip()
+
+        weight: int | None
+        try:
+            w = int(weight_raw)
+            weight = w if w > 0 else None
+        except ValueError:
+            weight = None
+
+        weight_diff: int | None
+        if sign in ("+", "-") and diff_raw.isdigit():
+            weight_diff = int(diff_raw) * (-1 if sign == "-" else 1)
+        else:
+            weight_diff = None
+
+        result[horse_no] = {"weight": weight, "weight_diff": weight_diff}
+
+    return result
+
+
 def rtd_odds_to_horse_odds(rtd_info: RtdRaceInfo) -> list["HorseOdds"]:
     """RtdRaceInfo を entry_table.HorseOdds のリストに変換する。
 

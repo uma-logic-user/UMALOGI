@@ -52,10 +52,48 @@ def test_parse_o1_realtime_rejects_non_o1() -> None:
     assert parse_o1_realtime("", "202605021201") is None
 
 
-def test_fetch_odds_jvrt_parses_worker_json() -> None:
-    from src.pipeline.scraping import _fetch_odds_jvrt
+# 2026-05-31 東京2回12日1R のライブ WH（馬体重）レイアウトを再現した合成バイト列。
+# ヘッダ35バイト + 馬体重情報(45バイト×3頭)。馬名は 36バイトのダミー全角で代替。
+_WH_HEADER = b"WH1" + b"20260531" + b"2026053105021201" + b"00000000"  # 35 bytes
+_WH_NAME = b"\x81\x40" * 18  # 全角空白 18 文字 = 36 バイト
+_WH_RAW = (
+    _WH_HEADER
+    + b"01"
+    + _WH_NAME
+    + b"482"
+    + b"-"
+    + b"002"  # 馬番1: 482kg(-2)
+    + b"02"
+    + _WH_NAME
+    + b"492"
+    + b"+"
+    + b"012"  # 馬番2: 492kg(+12)
+    + b"03"
+    + _WH_NAME
+    + b"000"
+    + b" "
+    + b"   "  # 馬番3: 未計測(None)
+)
 
-    payload = {
+
+def test_parse_wh_realtime_live_layout() -> None:
+    from src.scraper.rtd_reader import parse_wh_realtime
+
+    out = parse_wh_realtime(_WH_RAW, "202605021201")
+    assert out[1] == {"weight": 482, "weight_diff": -2}
+    assert out[2] == {"weight": 492, "weight_diff": 12}
+    assert out[3] == {"weight": None, "weight_diff": None}
+
+
+def test_parse_wh_realtime_rejects_non_wh() -> None:
+    from src.scraper.rtd_reader import parse_wh_realtime
+
+    assert parse_wh_realtime(b"O1xxxx", "202605021201") == {}
+    assert parse_wh_realtime(b"", "202605021201") == {}
+
+
+def _make_payload() -> dict:
+    return {
         "race_id": "202605021201",
         "head_count": 3,
         "odds": [
@@ -63,37 +101,119 @@ def test_fetch_odds_jvrt_parses_worker_json() -> None:
             {"horse_number": 2, "win_odds": 1.9, "popularity": 1},
             {"horse_number": 3, "win_odds": None, "popularity": None},
         ],
+        "weights": {
+            "1": {"weight": 482, "weight_diff": -2},
+            "2": {"weight": 492, "weight_diff": 12},
+        },
+        "weather": "晴",
+        "condition": "良",
     }
+
+
+def test_run_jvrt_worker_parses_json() -> None:
+    from src.pipeline.scraping import _run_jvrt_worker
 
     class _Proc:
         returncode = 0
-        stdout = "[worker] start\n" + json.dumps(payload) + "\n"
+        stdout = (
+            "[worker] start\n" + json.dumps(_make_payload(), ensure_ascii=False) + "\n"
+        )
         stderr = ""
 
     with patch("subprocess.run", return_value=_Proc()):
-        out = _fetch_odds_jvrt("202605021201", "20260531")
-    assert out is not None
-    assert len(out) == 3
-    assert out[1].win_odds == 1.9
-    assert out[1].popularity == 1
+        payload = _run_jvrt_worker("202605021201", "20260531")
+    assert payload is not None
+    assert payload["weather"] == "晴"
+    assert payload["weights"]["1"]["weight"] == 482
 
 
-def test_fetch_odds_jvrt_returns_none_on_worker_failure() -> None:
-    from src.pipeline.scraping import _fetch_odds_jvrt
+def test_run_jvrt_worker_none_on_failure_and_timeout() -> None:
+    import subprocess
 
-    class _Proc:
+    from src.pipeline.scraping import _run_jvrt_worker
+
+    class _Fail:
         returncode = 1
         stdout = ""
         stderr = "boom"
 
-    with patch("subprocess.run", return_value=_Proc()):
-        assert _fetch_odds_jvrt("202605021201", "20260531") is None
+    with patch("subprocess.run", return_value=_Fail()):
+        assert _run_jvrt_worker("202605021201", "20260531") is None
+    with patch("subprocess.run", side_effect=subprocess.TimeoutExpired("py", 90)):
+        assert _run_jvrt_worker("202605021201", "20260531") is None
 
 
-def test_fetch_odds_jvrt_returns_none_on_timeout() -> None:
-    import subprocess
+def test_payload_to_horse_odds() -> None:
+    from src.pipeline.scraping import _payload_to_horse_odds
 
-    from src.pipeline.scraping import _fetch_odds_jvrt
+    out = _payload_to_horse_odds(_make_payload())
+    assert out is not None and len(out) == 3
+    assert out[1].win_odds == 1.9
+    assert _payload_to_horse_odds(None) is None
+    assert _payload_to_horse_odds({"odds": []}) is None
 
-    with patch("subprocess.run", side_effect=subprocess.TimeoutExpired("py", 60)):
-        assert _fetch_odds_jvrt("202605021201", "20260531") is None
+
+def test_apply_jvrt_weight_weather_updates_db() -> None:
+    import sqlite3
+
+    from src.pipeline.scraping import _apply_jvrt_weight_weather
+
+    conn = sqlite3.connect(":memory:")
+    conn.executescript("""
+        CREATE TABLE entries (
+            race_id TEXT, horse_number INTEGER,
+            horse_weight INTEGER, horse_weight_diff INTEGER
+        );
+        CREATE TABLE races (race_id TEXT, weather TEXT, condition TEXT);
+    """)
+    conn.execute("INSERT INTO entries VALUES ('202605021201', 1, NULL, NULL)")
+    conn.execute("INSERT INTO entries VALUES ('202605021201', 2, 999, 9)")
+    conn.execute("INSERT INTO races VALUES ('202605021201', '', '')")
+    conn.commit()
+
+    _apply_jvrt_weight_weather(conn, "202605021201", _make_payload())
+
+    w1 = conn.execute(
+        "SELECT horse_weight, horse_weight_diff FROM entries WHERE horse_number=1"
+    ).fetchone()
+    assert w1 == (482, -2)
+    weather, cond = conn.execute(
+        "SELECT weather, condition FROM races WHERE race_id='202605021201'"
+    ).fetchone()
+    assert weather == "晴" and cond == "良"
+
+
+def test_apply_jvrt_weight_weather_no_overwrite_with_empty() -> None:
+    import sqlite3
+
+    from src.pipeline.scraping import _apply_jvrt_weight_weather
+
+    conn = sqlite3.connect(":memory:")
+    conn.executescript("""
+        CREATE TABLE entries (
+            race_id TEXT, horse_number INTEGER,
+            horse_weight INTEGER, horse_weight_diff INTEGER
+        );
+        CREATE TABLE races (race_id TEXT, weather TEXT, condition TEXT);
+    """)
+    conn.execute("INSERT INTO entries VALUES ('R', 1, 500, 4)")
+    conn.execute("INSERT INTO races VALUES ('R', '晴', '良')")
+    conn.commit()
+
+    # weight=None / 空天候 では既存値を上書きしない
+    payload = {
+        "weights": {"1": {"weight": None, "weight_diff": None}},
+        "weather": "",
+        "condition": "",
+    }
+    _apply_jvrt_weight_weather(conn, "R", payload)
+    assert (
+        conn.execute(
+            "SELECT horse_weight FROM entries WHERE horse_number=1"
+        ).fetchone()[0]
+        == 500
+    )
+    assert (
+        conn.execute("SELECT weather FROM races WHERE race_id='R'").fetchone()[0]
+        == "晴"
+    )
