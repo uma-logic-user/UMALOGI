@@ -107,6 +107,7 @@ _CATCHUP_HOURS: dict[str, int] = {
     "job_health_report": 4,  # 17:50 → 21:50 まで（W-058 日次ヘルスレポート）
     "job_ab_report": 4,  # 18:00 → 22:00 まで
     "job_weekend_batch_post": 4,  # 18:30 → 22:30 まで
+    "job_fit_manji_calibrator": 6,  # 月03:00 → 09:00 まで（W-057関連・卍較正週次再学習）
     "job_monday_masters": 12,  # 06:00 → 18:00 まで
     "job_weekly_retrain": 12,  # 07:00 → 19:00 まで
     "job_segment_analysis": 4,  # 07:30 → 11:30 まで
@@ -129,6 +130,7 @@ _JOB_SCHEDULES: dict[str, list[tuple[int, int, int]]] = {
     "job_health_report": [(5, 17, 50), (6, 17, 50)],  # 土日 17:50（W-058）
     "job_ab_report": [(6, 18, 0)],  # 日曜18:00
     "job_weekend_batch_post": [(5, 18, 30), (6, 18, 30)],
+    "job_fit_manji_calibrator": [(0, 3, 0)],  # 月曜03:00（開催なし・データ確定済み）
     "job_monday_masters": [(0, 6, 0)],
     "job_weekly_retrain": [(0, 7, 0)],
     "job_segment_analysis": [(0, 7, 30)],
@@ -1119,6 +1121,28 @@ def job_monday_masters() -> None:
         logger.info("=== [マスタ更新] 完了 ===")
 
 
+def job_fit_manji_calibrator() -> None:
+    """月曜AM3:00: 卍較正器(manji_win_calibrator)を直近確定実績で週次再学習する（W-057関連）。
+
+    競馬開催がなくデータが確定している時間帯に Isotonic を再 fit し pkl を上書き更新する。
+    較正の鮮度を保ち、EV=較正P×odds の信頼性を維持する。失敗してもスケジューラは継続。
+    """
+    logger.info("=== [卍較正 週次再学習] 開始 ===")
+    try:
+        from src.database.init_db import init_db
+        from src.ml.manji_calibration import fit_manji_win_calibrator
+
+        conn = init_db()
+        try:
+            diag = fit_manji_win_calibrator(conn)
+            logger.info("[卍較正 週次再学習] 完了: %s", diag)
+        finally:
+            conn.close()
+        _mark_job_done("job_fit_manji_calibrator")
+    except Exception as e:
+        logger.error("[卍較正 週次再学習] 失敗: %s", e, exc_info=True)
+
+
 def _job_weekly_retrain_body() -> None:
     """週次全件再学習の実体（全件特徴量再生成=SIMULATE を含む長時間処理）。"""
     logger.info("=== [週次再学習] 開始 ===")
@@ -1864,7 +1888,8 @@ def register_schedules() -> None:
     schedule.every().saturday.at("18:30").do(job_weekend_batch_post)
     schedule.every().sunday.at("18:30").do(job_weekend_batch_post)
 
-    # 月曜: DB+ログ週次ZIPバックアップ → マスタ更新 → 全件再学習 → Git プッシュ
+    # 月曜: 卍較正器 週次再学習(03:00) → DB+ログ週次ZIPバックアップ → マスタ更新 → 全件再学習 → Git プッシュ
+    schedule.every().monday.at("03:00").do(job_fit_manji_calibrator)
     schedule.every().monday.at("05:00").do(job_weekly_backup)
     schedule.every().monday.at("06:00").do(job_monday_masters)
     schedule.every().monday.at("07:00").do(job_weekly_retrain)
@@ -1970,6 +1995,7 @@ _JOB_MAP_FULL: dict[str, object] = {
     "job_post_race": job_post_race,
     "job_ab_report": job_ab_report,
     "job_weekend_batch_post": job_weekend_batch_post,
+    "job_fit_manji_calibrator": job_fit_manji_calibrator,
     "job_monday_masters": job_monday_masters,
     "job_weekly_retrain": job_weekly_retrain,
     "job_segment_analysis": job_segment_analysis,
@@ -1993,6 +2019,7 @@ _JOB_MAP: dict[str, object] = {
     "ab_report": job_ab_report,
     "masters": job_monday_masters,
     "retrain": job_weekly_retrain,
+    "fit_calibrator": job_fit_manji_calibrator,
     "git": job_git_push,
     "prerace_alert": job_prerace_15min_alert,
 }

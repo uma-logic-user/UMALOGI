@@ -108,6 +108,11 @@ def compute_live_roi(
 _LEGACY_TANPUKU_MODELS = ("本命", "卍", "Alpha-Payout")
 _PURE_EV_MODEL = "Pure_EV_Edge"
 
+# ── A/B 昇格しきい値（Pure_EV_Edge を従来単複より優位と判断する基準）──────────────
+# 最低消化レース数を満たし、かつ ROI 差が +AB_ROI_DIFF_THRESHOLD pt 以上で「昇格」。
+AB_MIN_RACES: int = 100  # Pure_EV_Edge の最低消化レース数
+AB_ROI_DIFF_THRESHOLD: float = 10.0  # ROI 差(pt) のプラス基準
+
 
 def compute_ab_variants(
     conn: sqlite3.Connection, *, since: str | None = None
@@ -132,7 +137,7 @@ def compute_ab_variants(
         params.append(since)
     rows = conn.execute(
         f"""
-        SELECT p.model_type, p.bet_type,
+        SELECT p.model_type, p.bet_type, p.race_id,
                COALESCE(pr.payout, 0), COALESCE(pr.profit, 0), COALESCE(pr.is_hit, 0)
           FROM predictions p
           JOIN prediction_results pr ON pr.prediction_id = p.id
@@ -143,14 +148,16 @@ def compute_ab_variants(
 
     pure = [0, 0.0, 0.0, 0.0, 0.0]  # n, cost, payout, profit, hits
     legacy = [0, 0.0, 0.0, 0.0, 0.0]
-    for model_type, bet_type, payout, profit, is_hit in rows:
+    pure_races: set[str] = set()  # Pure_EV_Edge の消化レース数（昇格基準用・distinct）
+    legacy_races: set[str] = set()
+    for model_type, bet_type, race_id, payout, profit, is_hit in rows:
         if bet_type not in ("単勝", "複勝"):
             continue
         b = _base(model_type)
         if b == _PURE_EV_MODEL:
-            tgt = pure
+            tgt, races = pure, pure_races
         elif b in _LEGACY_TANPUKU_MODELS:
-            tgt = legacy
+            tgt, races = legacy, legacy_races
         else:
             continue
         tgt[0] += 1
@@ -158,6 +165,7 @@ def compute_ab_variants(
         tgt[2] += payout
         tgt[3] += profit
         tgt[4] += is_hit
+        races.add(race_id)
 
     def _s(e: list[float]) -> dict[str, float]:
         n, cost, pay, prof, hits = e
@@ -182,6 +190,24 @@ def compute_ab_variants(
         winner = "従来単複"
     else:
         winner = "互角"
+
+    # ── 昇格進捗（Pure_EV_Edge を従来単複より優位と判断する基準への到達度）──
+    races_done = len(pure_races)
+    races_remaining = max(0, AB_MIN_RACES - races_done)
+    roi_gap = round(diff_roi - AB_ROI_DIFF_THRESHOLD, 1)  # +なら基準クリア
+    promoted = both and races_done >= AB_MIN_RACES and diff_roi >= AB_ROI_DIFF_THRESHOLD
+    if promoted:
+        progress_text = f"🎉 昇格基準達成！（{races_done}R・ROI差+{diff_roi}pt≥{AB_ROI_DIFF_THRESHOLD}pt）"
+    elif races_done == 0:
+        progress_text = f"未稼働（消化0R / 基準{AB_MIN_RACES}R）"
+    else:
+        roi_part = (
+            f"ROI差{'+' if diff_roi >= 0 else ''}{diff_roi}pt"
+            f"（基準+{AB_ROI_DIFF_THRESHOLD}pt / あと{'達成' if roi_gap >= 0 else f'{-roi_gap}pt'}）"
+        )
+        race_part = f"あと{races_remaining}R" if races_remaining > 0 else "レース数OK"
+        progress_text = f"消化{races_done}/{AB_MIN_RACES}R（{race_part}） / {roi_part}"
+
     return {
         "pure_ev": pe,
         "legacy": lg,
@@ -189,4 +215,11 @@ def compute_ab_variants(
         "diff_roi": diff_roi,
         "winner": winner,
         "both_active": both,
+        "pure_races": races_done,
+        "legacy_races": len(legacy_races),
+        "min_races": AB_MIN_RACES,
+        "races_remaining": races_remaining,
+        "roi_diff_threshold": AB_ROI_DIFF_THRESHOLD,
+        "promoted": promoted,
+        "progress_text": progress_text,
     }

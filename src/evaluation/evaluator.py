@@ -704,7 +704,11 @@ class Evaluator:
             n_tickets = (
                 len(parsed_combos) if parsed_combos else max(1, round(rec_bet / 100))
             )
-            invested = float(n_tickets * 100)  # 1コンボ = ¥100（JRA最小単位）
+            # 会計コストは常に flat_cost(¥100×点数)。predictions.recommended_bet(実発注額/Kelly)は
+            # ここでは使わない（実発注額と評価基準を厳密分離・bet_policy 単一真実源）。
+            from src.ml.bet_policy import flat_cost
+
+            invested = float(flat_cost(n_tickets))
 
             try:
                 _validate_investment(bet_type, n_tickets, invested)

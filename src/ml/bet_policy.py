@@ -26,6 +26,19 @@ LIVE_BET_TYPES: frozenset[str] = frozenset({"単勝", "複勝"})
 # 観賞用モデル（note/X 集客専用・実弾対象外）
 ORNAMENTAL_MODELS: frozenset[str] = frozenset({"Oracle", "HitFocus"})
 
+# ── 資金会計の単一真実源（実発注額 と 評価用コストの厳密分離）──────────────────
+# predictions.recommended_bet は「実発注額（Kelly 等の実際に賭ける額）」。
+# P&L 会計・A/B 評価のコストは **常に flat_cost()（¥100×点数）** を用いる。
+# これにより賭け額の大小に依存しない stake-independent な ROI 比較が保証され、
+# Kelly 実額と会計基準が混同されない（evaluator / pnl_accounting が本関数を共有）。
+FLAT_UNIT_YEN: int = 100  # 会計上の1点あたり単位（JRA 最小単位）
+
+
+def flat_cost(n_points: int) -> int:
+    """評価・A/B 会計用のフラットコスト（¥100 × 点数）を返す。実発注額とは別概念。"""
+    return FLAT_UNIT_YEN * max(int(n_points), 0)
+
+
 # model_type の末尾サフィックス（"(直前)" / "(暫定)"）と V2 を剥がす正規表現
 _SUFFIX_RE = re.compile(r"\((直前|暫定)\)\s*$")
 

@@ -136,14 +136,9 @@ def _check_race_deadline(conn: sqlite3.Connection, race_id: str) -> None:
         logger.warning("締め切りチェック失敗（続行）: %s", exc)
 
 
-def _flat_cost(bet: object) -> int:
-    """買い目の実購入額（¥100 × 組み合わせ点数）を返す（会計の真コスト基準）。
-
-    確定実績の profit/roi は「¥100 × 点数」で計算されており、recommended_bet(Kelly推奨額)
-    と一致しないバグがあった。DB へは実購入額を保存し ROI 会計の基準を統一する。
-    """
-    combos = getattr(bet, "combinations", None) or []
-    return 100 * max(len(combos), 1)
+# 注: predictions.recommended_bet は「実発注額（Kelly 等）」を保存する。
+# P&L 会計・A/B 評価のコストは evaluator / pnl_accounting が bet_policy.flat_cost
+# (¥100×点数) で独立計算するため、recommended_bet を会計に用いない（二重性の厳密分離）。
 
 
 def _supersede_prior_predictions(
@@ -277,7 +272,7 @@ def _save_predictions(
                     horses=horses_payload,
                     confidence=bet.confidence,
                     expected_value=bet.expected_value,
-                    recommended_bet=_flat_cost(bet),
+                    recommended_bet=bet.recommended_bet,  # 実発注額（会計は evaluator flat_cost で独立）
                     notes=bet.notes,
                     combination_json=combo_json,
                 )
@@ -314,7 +309,7 @@ def _save_predictions(
                     horses=horses_payload_o,
                     confidence=bet.confidence,
                     expected_value=bet.expected_value,
-                    recommended_bet=_flat_cost(bet),
+                    recommended_bet=bet.recommended_bet,  # 実発注額（会計は evaluator flat_cost で独立）
                     notes=bet.notes,
                     combination_json=combo_json_o,
                 )
@@ -383,7 +378,7 @@ def _save_predictions(
                     horses=hf_payload,
                     confidence=bet.confidence,
                     expected_value=bet.expected_value,
-                    recommended_bet=_flat_cost(bet),
+                    recommended_bet=bet.recommended_bet,  # 実発注額（会計は evaluator flat_cost で独立）
                     notes=bet.notes,
                     combination_json=combo_json_hf,
                 )
@@ -578,7 +573,7 @@ def _run_alpha_payout(
                     horses=horses_payload,
                     confidence=bet.confidence,
                     expected_value=bet.expected_value,
-                    recommended_bet=_flat_cost(bet),
+                    recommended_bet=bet.recommended_bet,  # 実発注額（会計は evaluator flat_cost で独立）
                     notes=bet.notes or "",
                     combination_json=_json_inner.dumps(
                         [list(c) for c in bet.combinations]
@@ -703,8 +698,8 @@ def _run_pure_ev_edge(
                 for rank, b in enumerate(sub)
             ]
             combo_json = _json.dumps([[b.horse_number] for b in sub])
-            # 会計一貫性(Phase2): DB の recommended_bet は実購入額=¥100×点数で統一。
-            # 1/10 Kelly 推奨額は notes に併記（実弾サイズの参考値）。
+            # recommended_bet=実発注額（1/10 Kelly 実額の合計）。会計コストは別途
+            # bet_policy.flat_cost(¥100×点数) で評価され混同されない（評価用点数=len(sub)）。
             kelly_sum = int(sum(b.stake for b in sub))
             try:
                 insert_prediction(
@@ -715,10 +710,10 @@ def _run_pure_ev_edge(
                     horses=horses_payload,
                     confidence=max(b.prob for b in sub),
                     expected_value=max(b.expected_value for b in sub),
-                    recommended_bet=float(100 * len(sub)),
+                    recommended_bet=float(kelly_sum),
                     notes=(
                         f"黒字化専用枠 {len(sub)}点 EV>={cfg.ev_threshold} "
-                        f"1/10Kelly推奨¥{kelly_sum:,}"
+                        f"1/10Kelly実額¥{kelly_sum:,}（会計はflat ¥{100 * len(sub):,}）"
                     ),
                     combination_json=combo_json,
                 )

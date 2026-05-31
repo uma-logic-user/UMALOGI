@@ -66,10 +66,11 @@ def test_run_pure_ev_edge_saves_with_prob_and_flat_cost(monkeypatch) -> None:
     assert set(by_type) == {"単勝", "複勝"}
     for kw in captured:
         assert kw["model_type"] == "Pure_EV_Edge(直前)"
-        # 会計真コスト: 1点 → ¥100
-        assert kw["recommended_bet"] == 100.0
-        # model_score は prob（None でない）
+        # model_score は prob（None でない・旧bug2 回帰防止）
         assert all(h["model_score"] is not None for h in kw["horses"])
+    # recommended_bet=実発注額(1/10 Kelly 実額)。会計コスト(¥100×点数)とは分離。
+    assert by_type["単勝"]["recommended_bet"] == 1200.0  # stake 合計
+    assert by_type["複勝"]["recommended_bet"] == 900.0
 
 
 def test_run_pure_ev_edge_skips_when_circuit_breaker_tripped(monkeypatch) -> None:

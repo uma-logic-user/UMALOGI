@@ -233,20 +233,28 @@ def _safe_ab_variants(conn: sqlite3.Connection) -> dict | None:
 
 
 def format_ab_field(ab: dict) -> dict:
-    """Pure_EV_Edge vs 従来単複 の A/B 比較を Discord Embed フィールドにする（W-057）。"""
+    """Pure_EV_Edge vs 従来単複 の A/B 比較＋昇格進捗を Discord Embed フィールドにする（W-057）。"""
     pe, lg = ab["pure_ev"], ab["legacy"]
+    progress = ab.get("progress_text", "")
+    races_done = ab.get("pure_races", 0)
+    min_races = ab.get("min_races", 0)
+    thr = ab.get("roi_diff_threshold", 0)
+    badge = "🎉昇格" if ab.get("promoted") else "📈進捗"
     if not ab.get("both_active"):
         val = (
-            f"Pure_EV_Edge: n={pe['n']} 純益¥{pe['profit']:,.0f} ROI{pe['roi']}%\n"
-            f"従来単複: n={lg['n']} 純益¥{lg['profit']:,.0f} ROI{lg['roi']}%\n"
-            f"（{ab['winner']}）"
+            f"💎Pure_EV_Edge: n={pe['n']}（{races_done}R） 純益¥{pe['profit']:,.0f} ROI{pe['roi']}%\n"
+            f"📊従来単複: n={lg['n']} 純益¥{lg['profit']:,.0f} ROI{lg['roi']}%\n"
+            f"勝者: {ab['winner']}\n"
+            f"{badge} 昇格基準: {progress}"
         )
     else:
         sign = "+" if ab["diff_profit"] >= 0 else ""
+        rsign = "+" if ab["diff_roi"] >= 0 else ""
         val = (
-            f"💎Pure_EV_Edge: ROI**{pe['roi']}%** 純益¥{pe['profit']:,.0f} (n={pe['n']}/的中{pe['hit_rate']}%)\n"
+            f"💎Pure_EV_Edge: ROI**{pe['roi']}%** 純益¥{pe['profit']:,.0f} ({races_done}R/的中{pe['hit_rate']}%)\n"
             f"📊従来単複: ROI**{lg['roi']}%** 純益¥{lg['profit']:,.0f} (n={lg['n']}/的中{lg['hit_rate']}%)\n"
-            f"差分: 純益{sign}¥{ab['diff_profit']:,.0f} / ROI{sign}{ab['diff_roi']}pt → **勝者: {ab['winner']}**"
+            f"差分: 純益{sign}¥{ab['diff_profit']:,.0f} / ROI{rsign}{ab['diff_roi']}pt → **勝者: {ab['winner']}**\n"
+            f"{badge} 昇格基準({min_races}R & ROI差+{thr}pt): {progress}"
         )
     return {
         "name": "🅰️🅱️ Pure_EV_Edge シャドーA/B (W-057)",
@@ -259,9 +267,9 @@ def format_ab_text(ab: dict) -> str:
     """A/B のプレーンテキスト版（ログ/テスト用）。"""
     pe, lg = ab["pure_ev"], ab["legacy"]
     return (
-        f"PureEV ROI{pe['roi']}%/¥{pe['profit']:,.0f}(n{pe['n']}) vs "
+        f"PureEV ROI{pe['roi']}%/¥{pe['profit']:,.0f}({ab.get('pure_races', 0)}R) vs "
         f"従来単複 ROI{lg['roi']}%/¥{lg['profit']:,.0f}(n{lg['n']}) "
-        f"→ {ab['winner']} (差¥{ab['diff_profit']:,.0f})"
+        f"→ {ab['winner']} (差¥{ab['diff_profit']:,.0f}) | 昇格: {ab.get('progress_text', '')}"
     )
 
 

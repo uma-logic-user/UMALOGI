@@ -2,7 +2,22 @@
 
 from __future__ import annotations
 
-from src.ml.bet_policy import base_model, is_live_bet, is_ornamental
+from src.ml.bet_policy import (
+    FLAT_UNIT_YEN,
+    base_model,
+    flat_cost,
+    is_live_bet,
+    is_ornamental,
+)
+
+
+def test_flat_cost_is_accounting_basis() -> None:
+    # 会計コスト = ¥100 × 点数（実発注額/Kelly とは別概念）
+    assert FLAT_UNIT_YEN == 100
+    assert flat_cost(1) == 100
+    assert flat_cost(3) == 300
+    assert flat_cost(0) == 0
+    assert flat_cost(-5) == 0
 
 
 def test_base_model_strips_suffix_and_v2() -> None:
