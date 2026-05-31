@@ -1,7 +1,7 @@
 """
 note 予想記事生成エンジン
 
-本日の全レースを3モデル（本命・卍・ALPHA）の合意スコアで採点し、
+本日の全レースを4モデル（本命・卍・Oracle・ALPHA）の合意スコアで採点し、
 「本日のおすすめ厳選レース」3〜5本を自動抽出。
 各レースの買い目・根拠・馬プロファイルを網羅した記事 Markdown を生成する。
 
@@ -16,6 +16,8 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+import os
+import re
 import sqlite3
 import sys
 from datetime import date as _dt_date
@@ -33,25 +35,67 @@ logger = logging.getLogger(__name__)
 # ── 定数 ─────────────────────────────────────────────────────────
 
 _DB_PATH = _ROOT / "data" / "umalogi.db"
-_OUT_DIR  = _ROOT / "outputs" / "note"
+_OUT_DIR = _ROOT / "outputs" / "note"
+# 厳選レース単体 note 用コピペ Markdown の出力先（X/SNS 集客導線）
+_GACHI_DIR = _ROOT / "dist" / "notes"
 
-_SURFACE_JP:    dict[str, str] = {"芝": "芝", "ダート": "ダ", "障害": "障", "dirt": "ダ", "turf": "芝"}
-_CONDITION_JP:  dict[str, str] = {"良": "良", "稍": "稍重", "重": "重", "不": "不良",
-                                   "firm": "良", "good": "良", "yielding": "稍重", "soft": "重"}
+# ── 厳選レース（ガチ）判定パラメータ ──────────────────────────────
+# 仕様: Alpha-Payout の実払戻 EV が _GACHI_EV_THRESHOLD 以上、または
+#       卍を除いたクリーン合意が _GACHI_CLEAN_CONSENSUS 以上の「勝負レース」を厳選とする。
+# - 卍モデルは W-048（confidence=1.0 固定キャリブレーション破綻・投資停止中）のため
+#   EV・合意の判定対象から完全に除外する（EV が異常膨張し全件誤検知の温床になるため）。
+# - 本命モデルの EV は勝率特化で 6.0 上限に張り付くため EV ゲートには使わない
+#   （誤検知防止。本命は consensus 側の honmei_conf で評価する）。
+# - 日次の最終出力は _GACHI_TOP_N 本までスコア降順で厳選する。
+_GACHI_EV_THRESHOLD = 1.25
+_GACHI_CLEAN_CONSENSUS = 3
+_GACHI_TOP_N = 5
+
+# 集客導線 URL（.env で上書き可能）
+_NOTE_MYPAGE_URL = os.environ.get("NOTE_MYPAGE_URL", "https://note.com/umalogi")
+_X_ACCOUNT_URL = os.environ.get("X_ACCOUNT_URL", "https://x.com/umalogi_ai")
+
+_SURFACE_JP: dict[str, str] = {
+    "芝": "芝",
+    "ダート": "ダ",
+    "障害": "障",
+    "dirt": "ダ",
+    "turf": "芝",
+}
+_CONDITION_JP: dict[str, str] = {
+    "良": "良",
+    "稍": "稍重",
+    "重": "重",
+    "不": "不良",
+    "firm": "良",
+    "good": "良",
+    "yielding": "稍重",
+    "soft": "重",
+}
 _MARKS = ["◎", "○", "▲", "△", "×", "注"]
 
 # 標準発走時刻（JRA）  race_number → "HH:MM"
 _START_TIMES: dict[int, str] = {
-    1: "10:00", 2: "10:30",  3: "11:00",  4: "11:30",
-    5: "12:00", 6: "12:30",  7: "13:00",  8: "13:30",
-    9: "14:00", 10: "14:30", 11: "15:00", 12: "15:30",
+    1: "10:00",
+    2: "10:30",
+    3: "11:00",
+    4: "11:30",
+    5: "12:00",
+    6: "12:30",
+    7: "13:00",
+    8: "13:30",
+    9: "14:00",
+    10: "14:30",
+    11: "15:00",
+    12: "15:30",
 }
 
 # 採点の重み
-_W_ALPHA     = 3.0
-_W_MANJI     = 2.0
-_W_HONMEI    = 0.5
-_W_CONSENSUS = 2.5   # 複数モデル同意ボーナスの単価
+_W_ALPHA = 3.0
+_W_MANJI = 2.0
+_W_ORACLE = 1.0
+_W_HONMEI = 0.5
+_W_CONSENSUS = 2.5  # 複数モデル同意ボーナスの単価
 
 # EV しきい値（卍推奨条件）
 _MANJI_EV_THRESHOLD = 1.15
@@ -61,6 +105,7 @@ _MIN_SCORE = 2.0
 
 
 # ── DB ヘルパー ──────────────────────────────────────────────────
+
 
 def _db() -> sqlite3.Connection:
     """umalogi.db への接続を返す（Row ファクトリ設定済み）。
@@ -154,7 +199,9 @@ def _fetch_preds_for_race(
     for r in rows:
         d = dict(r)
         try:
-            d["combos"] = json.loads(r["combination_json"]) if r["combination_json"] else []
+            d["combos"] = (
+                json.loads(r["combination_json"]) if r["combination_json"] else []
+            )
         except (json.JSONDecodeError, TypeError):
             d["combos"] = []
         result.append(d)
@@ -196,57 +243,71 @@ def _fetch_honmei_scores(
 
 # ── レース採点 ────────────────────────────────────────────────────
 
+
 def _score_race(conn: sqlite3.Connection, race_id: str) -> dict[str, Any]:
     """
-    3モデルの合意スコアでレースを採点する。
+    4モデルの合意スコアでレースを採点する。
 
     Returns:
         {
-            "race_id":     str,
-            "score":       float,   # 総合スコア
-            "alpha_ev":    float,   # Alpha-Payout 最大 EV (0 = シグナルなし)
-            "manji_ev":    float,   # 卍 複勝 最大 EV
-            "honmei_conf": float,   # 本命 最高 confidence
-            "consensus":   int,     # EV≥1.0 のモデル数
-            "alpha_preds": list,
-            "manji_preds": list,
-            "honmei_preds": list,
+            "race_id":        str,
+            "score":          float,   # 総合スコア
+            "alpha_ev":       float,   # Alpha-Payout 最大 EV (0 = シグナルなし)
+            "manji_ev":       float,   # 卍 複勝 最大 EV
+            "oracle_count":   int,     # Oracle 買い目数
+            "honmei_conf":    float,   # 本命 最高 confidence
+            "honmei_ev":      float,   # 本命 最高 EV
+            "consensus":      int,     # EV≥1.0 のモデル数
+            "alpha_preds":    list,
+            "manji_preds":    list,
+            "oracle_preds":   list,
+            "honmei_preds":   list,
         }
     """
-    alpha_preds  = _fetch_preds_for_race(conn, race_id, "Alpha-Payout%")
-    manji_preds  = _fetch_preds_for_race(conn, race_id, "卍%")
+    alpha_preds = _fetch_preds_for_race(conn, race_id, "Alpha-Payout%")
+    manji_preds = _fetch_preds_for_race(conn, race_id, "卍%")
+    oracle_preds = _fetch_preds_for_race(conn, race_id, "Oracle%")
     honmei_preds = _fetch_honmei_scores(conn, race_id)
 
-    alpha_ev   = max((p["expected_value"] or 0.0 for p in alpha_preds),  default=0.0)
-    manji_ev   = max(
+    alpha_ev = max((p["expected_value"] or 0.0 for p in alpha_preds), default=0.0)
+    manji_ev = max(
         (p["expected_value"] or 0.0 for p in manji_preds if p["bet_type"] == "複勝"),
         default=0.0,
     )
+    oracle_count = len(oracle_preds)
     honmei_conf = max((p["confidence"] or 0.0 for p in honmei_preds), default=0.0)
+    honmei_ev = max((p["expected_value"] or 0.0 for p in honmei_preds), default=0.0)
 
     # 合意ボーナス: EV≥1.0 のモデル数
-    consensus = sum([
-        alpha_ev   >= 1.0,
-        manji_ev   >= 1.0,
-        honmei_conf >= 0.5,
-    ])
+    consensus = sum(
+        [
+            alpha_ev >= 1.0,
+            manji_ev >= 1.0,
+            oracle_count >= 1,
+            honmei_conf >= 0.5,
+        ]
+    )
 
     score = (
-        alpha_ev   * _W_ALPHA
-        + manji_ev   * _W_MANJI
+        alpha_ev * _W_ALPHA
+        + manji_ev * _W_MANJI
+        + oracle_count * _W_ORACLE
         + honmei_conf * _W_HONMEI
-        + consensus  * _W_CONSENSUS
+        + consensus * _W_CONSENSUS
     )
 
     return {
-        "race_id":      race_id,
-        "score":        round(score, 3),
-        "alpha_ev":     round(alpha_ev,    3),
-        "manji_ev":     round(manji_ev,    3),
-        "honmei_conf":  round(honmei_conf, 3),
-        "consensus":    consensus,
-        "alpha_preds":  alpha_preds,
-        "manji_preds":  manji_preds,
+        "race_id": race_id,
+        "score": round(score, 3),
+        "alpha_ev": round(alpha_ev, 3),
+        "manji_ev": round(manji_ev, 3),
+        "oracle_count": oracle_count,
+        "honmei_conf": round(honmei_conf, 3),
+        "honmei_ev": round(honmei_ev, 3),
+        "consensus": consensus,
+        "alpha_preds": alpha_preds,
+        "manji_preds": manji_preds,
+        "oracle_preds": oracle_preds,
         "honmei_preds": honmei_preds,
     }
 
@@ -285,6 +346,7 @@ def select_recommended_races(
 
 
 # ── Markdown 生成ユーティリティ ──────────────────────────────────
+
 
 def _fmt_combo(combo: list[list[int]], bet_type: str, max_show: int = 8) -> str:
     """買い目リストをマルチ/軸流し/ボックス表記に自動変換する。
@@ -412,14 +474,19 @@ def _ev_bar(ev: float) -> str:
     Returns:
         EV の高さに応じた絵文字ラベル文字列。
     """
-    if ev >= 3.0:  return "🔥🔥🔥 超高EV"
-    if ev >= 2.0:  return "🔥🔥 高EV"
-    if ev >= 1.5:  return "🔥 EV良好"
-    if ev >= 1.0:  return "✅ EV適正"
+    if ev >= 3.0:
+        return "🔥🔥🔥 超高EV"
+    if ev >= 2.0:
+        return "🔥🔥 高EV"
+    if ev >= 1.5:
+        return "🔥 EV良好"
+    if ev >= 1.0:
+        return "✅ EV適正"
     return "⚠️ EV参考値"
 
 
 # ── レース記事生成 ────────────────────────────────────────────────
+
 
 def _build_race_section(
     conn: sqlite3.Connection,
@@ -437,22 +504,22 @@ def _build_race_section(
         Markdown 行のリスト。
     """
     race_id = sc["race_id"]
-    race    = _fetch_race(conn, race_id)
+    race = _fetch_race(conn, race_id)
     entries = _fetch_entries(conn, race_id)
 
-    venue     = race.get("venue", "")
-    race_no   = race.get("race_number", 0)
+    venue = race.get("venue", "")
+    race_no = race.get("race_number", 0)
     race_name = race.get("race_name") or f"R{race_no}"
-    distance  = race.get("distance", 0)
-    surface   = race.get("surface", "")
+    distance = race.get("distance", 0)
+    surface = race.get("surface", "")
     condition = race.get("condition", "")
-    weather   = race.get("weather", "")
+    weather = race.get("weather", "")
     direction = race.get("track_direction", "")
 
     surf_str = _surface_str(surface, distance, direction)
     cond_str = _condition_str(condition)
-    start    = _start_time(race_no)
-    stars    = _star_rating(sc["consensus"])
+    start = _start_time(race_no)
+    stars = _star_rating(sc["consensus"])
 
     lines: list[str] = []
 
@@ -495,8 +562,10 @@ def _build_race_section(
             name = ent.get("horse_name", f"{hn}番")
             mark = _mark_horse(i)
             conf = p.get("confidence") or 0.0
-            ev   = p.get("expected_value") or 0.0
-            top_horses.append(f"{mark} {name}（{hn}番） `conf={conf:.3f}` `EV={ev:.2f}`")
+            ev = p.get("expected_value") or 0.0
+            top_horses.append(
+                f"{mark} {name}（{hn}番） `conf={conf:.3f}` `EV={ev:.2f}`"
+            )
         lines.append("**🎯 本命モデル** — 勝率スコア上位馬")
         lines += [f"- {h}" for h in top_horses]
         lines.append("")
@@ -504,11 +573,13 @@ def _build_race_section(
     # 卍モデル
     manji = sc["manji_preds"]
     if manji:
-        lines.append(f"**⚡ 卍（まんじ）モデル** — 期待値特化 {_ev_bar(sc['manji_ev'])}")
+        lines.append(
+            f"**⚡ 卍（まんじ）モデル** — 期待値特化 {_ev_bar(sc['manji_ev'])}"
+        )
         shown_types: set[str] = set()
         for p in manji[:5]:
-            bt  = p["bet_type"]
-            ev  = p.get("expected_value") or 0.0
+            bt = p["bet_type"]
+            ev = p.get("expected_value") or 0.0
             cmb = _fmt_combo(p["combos"], bt)
             ev_str = f"EV={ev:.2f}" if ev else ""
             # 同じ bet_type の最高 EV だけ表示
@@ -517,13 +588,32 @@ def _build_race_section(
                 lines.append(f"- **{bt}**: {cmb}  `{ev_str}`")
         lines.append("")
 
+    # Oracle モデル
+    oracle = sc["oracle_preds"]
+    if oracle:
+        lines.append("**🔮 Oracle（オラクル）モデル** — 高配当組み合わせ")
+        shown_oracle: set[str] = set()
+        for p in oracle:
+            bt = p["bet_type"]
+            if bt in shown_oracle:
+                continue
+            shown_oracle.add(bt)
+            ev = p.get("expected_value") or 0.0
+            cmb = _fmt_combo(p["combos"], bt, max_show=6)
+            lines.append(f"- **{bt}**: {cmb}  `EV={ev:.2f}`")
+            if len(shown_oracle) >= 3:
+                break
+        lines.append("")
+
     # ALPHA モデル
     alpha = sc["alpha_preds"]
     if alpha:
-        lines.append(f"**📈 ALPHA（アルファ）モデル** — 特徴量EV特化 {_ev_bar(sc['alpha_ev'])}")
+        lines.append(
+            f"**📈 ALPHA（アルファ）モデル** — 特徴量EV特化 {_ev_bar(sc['alpha_ev'])}"
+        )
         for p in alpha[:3]:
-            bt  = p["bet_type"]
-            ev  = p.get("expected_value") or 0.0
+            bt = p["bet_type"]
+            ev = p.get("expected_value") or 0.0
             cmb = _fmt_combo(p["combos"], bt, max_show=6)
             lines.append(f"- **{bt}**: {cmb}  `EV={ev:.2f}`")
         lines.append("")
@@ -588,54 +678,63 @@ def _build_bet_summary(
         return e.get("horse_name", f"{hn}番") or f"{hn}番"
 
     # ① 単勝（卍か ALPHA の単勝シグナルがあれば）
-    manji_tansho = next(
-        (p for p in sc["manji_preds"] if p["bet_type"] == "単勝"), None
-    )
+    manji_tansho = next((p for p in sc["manji_preds"] if p["bet_type"] == "単勝"), None)
     if manji_tansho and manji_tansho.get("expected_value", 0) >= 1.0:
-        hn  = manji_tansho["combos"][0][0] if manji_tansho["combos"] else axis
-        ev  = manji_tansho.get("expected_value", 0)
-        lines.append(f"{order}. **単勝**: ◎ {_name(hn)}（{hn}番）  `EV={ev:.2f}` ← 卍モデル推奨")
+        hn = manji_tansho["combos"][0][0] if manji_tansho["combos"] else axis
+        ev = manji_tansho.get("expected_value", 0)
+        lines.append(
+            f"{order}. **単勝**: ◎ {_name(hn)}（{hn}番）  `EV={ev:.2f}` ← 卍モデル推奨"
+        )
         order += 1
 
     # ② 複勝（卍の複勝シグナル）
     manji_fuku = [p for p in sc["manji_preds"] if p["bet_type"] == "複勝"]
     if manji_fuku:
-        ev  = manji_fuku[0].get("expected_value", 0)
+        ev = manji_fuku[0].get("expected_value", 0)
         cmb = _fmt_combo(manji_fuku[0]["combos"], "複勝")
-        lines.append(f"{order}. **複勝**: {cmb}  `EV={ev:.2f}` ← 卍モデル推奨（期待値{ev*100:.0f}%）")
+        lines.append(
+            f"{order}. **複勝**: {cmb}  `EV={ev:.2f}` ← 卍モデル推奨（期待値{ev * 100:.0f}%）"
+        )
         order += 1
 
     # ③ ALPHA 複勝
     alpha_fuku = [p for p in sc["alpha_preds"] if p["bet_type"] == "複勝"]
     if alpha_fuku:
-        ev  = alpha_fuku[0].get("expected_value", 0)
+        ev = alpha_fuku[0].get("expected_value", 0)
         cmb = _fmt_combo(alpha_fuku[0]["combos"], "複勝")
-        lines.append(f"{order}. **複勝（ALPHA）**: {cmb}  `EV={ev:.2f}` ← ALPHAシグナル")
+        lines.append(
+            f"{order}. **複勝（ALPHA）**: {cmb}  `EV={ev:.2f}` ← ALPHAシグナル"
+        )
         order += 1
 
     # ④ 馬連（馬連 EV 自体が ≥ 1.0 のときのみ）
-    manji_umaren = next(
-        (p for p in sc["manji_preds"] if p["bet_type"] == "馬連"), None
-    )
+    manji_umaren = next((p for p in sc["manji_preds"] if p["bet_type"] == "馬連"), None)
     if manji_umaren:
         umaren_ev = manji_umaren.get("expected_value", 0) or 0.0
         if umaren_ev >= 1.0:
             cmb = _fmt_combo(manji_umaren["combos"], "馬連", max_show=5)
-            lines.append(f"{order}. **馬連**: {cmb}  `EV={umaren_ev:.2f}` ← 卍モデル推奨")
+            lines.append(
+                f"{order}. **馬連**: {cmb}  `EV={umaren_ev:.2f}` ← 卍モデル推奨"
+            )
             order += 1
 
-    # ⑤ 三連複（ALPHA）
-    alpha_tri = next(
-        (p for p in sc["alpha_preds"] if p["bet_type"] == "三連複"), None
+    # ⑤ 三連複（Oracle or ALPHA）
+    oracle_tri = next(
+        (p for p in sc["oracle_preds"] if p["bet_type"] == "三連複"), None
     )
-    if alpha_tri:
-        ev  = alpha_tri.get("expected_value", 0)
-        cmb = _fmt_combo(alpha_tri["combos"], "三連複", max_show=6)
-        lines.append(f"{order}. **三連複**: {cmb}  `EV={ev:.2f}` ← ALPHAモデル推奨")
+    alpha_tri = next((p for p in sc["alpha_preds"] if p["bet_type"] == "三連複"), None)
+    tri = oracle_tri or alpha_tri
+    if tri:
+        src = "Oracle" if oracle_tri else "ALPHA"
+        ev = tri.get("expected_value", 0)
+        cmb = _fmt_combo(tri["combos"], "三連複", max_show=6)
+        lines.append(f"{order}. **三連複**: {cmb}  `EV={ev:.2f}` ← {src}モデル推奨")
         order += 1
 
     if not lines:
-        lines.append("※ EV ≥ 1.0 の強いシグナルはありません。参考程度でご検討ください。")
+        lines.append(
+            "※ EV ≥ 1.0 の強いシグナルはありません。参考程度でご検討ください。"
+        )
 
     return lines
 
@@ -665,17 +764,17 @@ def _build_horse_table(
         "|------|-----|------|------|------|------|----------|------|",
     ]
     for e in entries:
-        hn    = e["horse_number"]
-        gate  = e["gate_number"]
-        mark  = _mark_horse(rank_map[hn]) if hn in rank_map else "　"
-        name  = e.get("horse_name", "―")
-        age   = e.get("sex_age", "―")
-        wc    = e.get("weight_carried", "―")
-        jock  = e.get("jockey", "―")
-        odds  = e.get("win_odds")
-        pop   = e.get("popularity")
+        hn = e["horse_number"]
+        gate = e["gate_number"]
+        mark = _mark_horse(rank_map[hn]) if hn in rank_map else "　"
+        name = e.get("horse_name", "―")
+        age = e.get("sex_age", "―")
+        wc = e.get("weight_carried", "―")
+        jock = e.get("jockey", "―")
+        odds = e.get("win_odds")
+        pop = e.get("popularity")
         odds_str = f"{odds:.1f}倍" if odds else "―"
-        pop_str  = f"{pop}番人気" if pop else "―"
+        pop_str = f"{pop}番人気" if pop else "―"
         lines.append(
             f"| {hn}（{gate}枠） | **{mark}** | {name} | {age} | {wc}kg | {jock} "
             f"| {odds_str} | {pop_str} |"
@@ -695,12 +794,13 @@ def _calc_rec_bet(ev: float) -> int:
         推奨ベット額（100円単位）。最低 100 円。
     """
     kelly = max(0, (ev - 1) / (ev if ev > 0 else 1))
-    kelly = min(kelly, 0.25)   # 最大 Kelly 25% キャップ
+    kelly = min(kelly, 0.25)  # 最大 Kelly 25% キャップ
     amount = int(10000 * kelly / 100) * 100  # 100円単位
     return max(amount, 100)
 
 
 # ── 記事ドキュメント生成 ──────────────────────────────────────────
+
 
 def _build_paywall_separator() -> list[str]:
     """1レース目（無料公開）と2レース目以降（有料）の仕切りブロックを生成する。
@@ -745,7 +845,7 @@ def _build_header(date_str: str, n_races: int) -> list[str]:
         f"> **{disp}開催分**　厳選 {n_races} レース　by UMALOGI AI予測システム",
         "",
         (
-            "本命・卍（まんじ）・ALPHAの**3つのAIモデルが合意したレース**のみを厳選しました。  \n"
+            "本命・卍（まんじ）・Oracle・ALPHAの**4つのAIモデルが合意したレース**のみを厳選しました。  \n"
             "期待値（EV）ベースの買い目と根拠を丁寧に解説しています。"
         ),
         "",
@@ -779,6 +879,7 @@ def _build_footer(date_str: str) -> list[str]:
 
 # ── メインエントリ ────────────────────────────────────────────────
 
+
 def generate(
     date_str: str,
     top_n: int = 5,
@@ -798,7 +899,9 @@ def generate(
     # date_str を YYYYMMDD に正規化
     ds = date_str.replace("-", "")
     if len(ds) != 8 or not ds.isdigit():
-        raise ValueError(f"不正な日付形式: {date_str!r}  (YYYYMMDD または YYYY-MM-DD を指定)")
+        raise ValueError(
+            f"不正な日付形式: {date_str!r}  (YYYYMMDD または YYYY-MM-DD を指定)"
+        )
 
     db_date = f"{ds[:4]}-{ds[4:6]}-{ds[6:]}"
 
@@ -815,8 +918,13 @@ def generate(
             race = _fetch_race(conn, r["race_id"])
             logger.info(
                 "  %d位: %s %dR (スコア=%.2f, 卍EV=%.2f, AlphaEV=%.2f, 合意=%d)",
-                i, race.get("venue"), race.get("race_number", 0),
-                r["score"], r["manji_ev"], r["alpha_ev"], r["consensus"],
+                i,
+                race.get("venue"),
+                race.get("race_number", 0),
+                r["score"],
+                r["manji_ev"],
+                r["alpha_ev"],
+                r["consensus"],
             )
 
         lines: list[str] = []
@@ -846,7 +954,436 @@ def generate(
     return md
 
 
+# ── 厳選レース（ガチ）判定・X/Note 下書き自動生成 ────────────────────
+
+
+def _clean_consensus(sc: dict[str, Any]) -> int:
+    """卍（W-048 破綻）を除いた合意モデル数を返す（最大3）。
+
+    Args:
+        sc: _score_race() が返すスコア辞書。
+
+    Returns:
+        ALPHA(EV≥1.0) / 本命(conf≥0.5) / Oracle(買い目≥1) のうち成立した数。
+    """
+    return int(
+        ((sc.get("alpha_ev", 0.0) or 0.0) >= 1.0)
+        + ((sc.get("honmei_conf", 0.0) or 0.0) >= 0.5)
+        + ((sc.get("oracle_count", 0) or 0) >= 1)
+    )
+
+
+def is_gachi_race(sc: dict[str, Any]) -> tuple[bool, list[str]]:
+    """スコア辞書から「厳選レース（ガチ）」かどうかを判定する。
+
+    判定条件（いずれか1つを満たせば厳選）:
+      1. Alpha-Payout モデルの実払戻 EV が _GACHI_EV_THRESHOLD 以上
+      2. 卍を除いたクリーン合意が _GACHI_CLEAN_CONSENSUS 以上（勝負レース判定）
+
+    卍モデルの EV は W-048（キャリブレーション破綻・投資停止中）のため、
+    また本命 EV は勝率特化で 6.0 上限に張り付くため、いずれも EV ゲートには使わない。
+
+    Args:
+        sc: _score_race() が返すスコア辞書。
+
+    Returns:
+        (厳選フラグ, 根拠ラベルのリスト)。厳選でない場合は (False, [])。
+    """
+    alpha_ev = sc.get("alpha_ev", 0.0) or 0.0
+    clean_c = _clean_consensus(sc)
+
+    reasons: list[str] = []
+    if alpha_ev >= _GACHI_EV_THRESHOLD:
+        reasons.append(
+            f"ALPHA実払戻EV={alpha_ev:.2f}（想定回収率{alpha_ev * 100:.0f}%）"
+        )
+    if clean_c >= _GACHI_CLEAN_CONSENSUS:
+        reasons.append(f"{clean_c}モデル合意の勝負レース")
+
+    return (bool(reasons), reasons)
+
+
+def _gachi_reason_text(sc: dict[str, Any]) -> str:
+    """厳選根拠を X 投稿向けの短文（1行）に整形する。
+
+    Args:
+        sc: _score_race() が返すスコア辞書。
+
+    Returns:
+        期待値の歪み・合意状況を要約した短文。
+    """
+    alpha_ev = sc.get("alpha_ev", 0.0) or 0.0
+    clean_c = _clean_consensus(sc)
+    parts: list[str] = []
+    if alpha_ev >= _GACHI_EV_THRESHOLD:
+        parts.append(f"想定回収率{alpha_ev * 100:.0f}%超の期待値の歪みをAIが検知")
+    if clean_c >= _GACHI_CLEAN_CONSENSUS:
+        parts.append(f"{clean_c}モデル合意の勝負レース")
+    return "／".join(parts) or "AI4モデルが総合的に注目"
+
+
+def _hashtag(text: str) -> str:
+    """ハッシュタグ用に空白・記号を除去した文字列を返す。
+
+    Args:
+        text: 元のラベル文字列。
+
+    Returns:
+        全角/半角スペース・# を除去した文字列。
+    """
+    return re.sub(r"[\s#　]+", "", text or "")
+
+
+def build_hashtags(
+    date_str: str, venue: str, race_no: int, race_name: str
+) -> list[str]:
+    """検索流入最大化のためのハッシュタグ群を動的合成する。
+
+    Args:
+        date_str:  YYYYMMDD 形式の対象日。
+        venue:     競馬場名（例: "東京"）。
+        race_no:   レース番号。
+        race_name: レース名。
+
+    Returns:
+        ハッシュタグ文字列のリスト（"#..." 形式）。
+    """
+    y, m, d = int(date_str[:4]), int(date_str[4:6]), int(date_str[6:])
+    tags = [f"#{y}年{m}月{d}日"]
+    if venue and race_no:
+        tags.append(f"#{_hashtag(venue)}{race_no}R")
+    name = _hashtag(race_name)
+    # レース名がレース番号だけ（"R11" 等）の場合はタグ化しない
+    if name and not re.fullmatch(r"R?\d+", name):
+        tags.append(f"#{name}")
+    tags += ["#競馬予想", "#UMALogic", "#期待値競馬", "#競馬AI", "#JRA"]
+    # 重複除去（順序保持）
+    seen: set[str] = set()
+    uniq: list[str] = []
+    for t in tags:
+        if t not in seen:
+            seen.add(t)
+            uniq.append(t)
+    return uniq
+
+
+def _real_race_name(race_name: str | None, race_no: int) -> str:
+    """実レース名を返す。空文字や "R6" 等のプレースホルダは "" に正規化する。
+
+    Args:
+        race_name: races.race_name の値（空/None あり得る）。
+        race_no:   レース番号。
+
+    Returns:
+        実名がある場合はその文字列、なければ空文字。
+    """
+    name = (race_name or "").strip()
+    if not name or re.fullmatch(r"R?\d+", name):
+        return ""
+    return name
+
+
+def _race_label(venue: str, race_no: int, race_name: str | None) -> str:
+    """'東京 11R「日本ダービー」' / 名前なしなら '東京 11R' を返す。
+
+    Args:
+        venue:     競馬場名。
+        race_no:   レース番号。
+        race_name: レース名（空/プレースホルダ可）。
+
+    Returns:
+        表示用レースラベル。
+    """
+    name = _real_race_name(race_name, race_no)
+    base = f"{venue} {race_no}R"
+    return f"{base}「{name}」" if name else base
+
+
+def build_x_post(
+    conn: sqlite3.Connection,
+    sc: dict[str, Any],
+    date_str: str,
+    note_url: str | None = None,
+) -> str:
+    """厳選レース1本分の X（Twitter）コピペ投稿テキストを生成する。
+
+    Args:
+        conn:     DB コネクション。
+        sc:       _score_race() が返すスコア辞書。
+        date_str: YYYYMMDD 形式の対象日。
+        note_url: 誘導先 note URL（未指定時は _NOTE_MYPAGE_URL）。
+
+    Returns:
+        そのまま X に貼り付け可能なテキスト。
+    """
+    race = _fetch_race(conn, sc["race_id"])
+    venue = race.get("venue", "")
+    race_no = race.get("race_number", 0)
+    race_name = race.get("race_name")
+    m, d = int(date_str[4:6]), int(date_str[6:])
+    url = note_url or _NOTE_MYPAGE_URL
+    reason = _gachi_reason_text(sc)
+    tags = " ".join(build_hashtags(date_str, venue, race_no, race_name or ""))
+    label = _race_label(venue, race_no, race_name)
+
+    return (
+        f"【UMA-Logic 厳選予想】{m}月{d}日 {label}\n"
+        f"{reason}。\n"
+        f"ガチで狙える厳選の買い目は、Noteにて限定公開中！\n"
+        f"👇詳細はこちら\n"
+        f"{url}\n"
+        f"\n"
+        f"{tags}"
+    )
+
+
+def build_single_race_note_md(
+    conn: sqlite3.Connection,
+    sc: dict[str, Any],
+    date_str: str,
+    note_url: str | None = None,
+) -> str:
+    """厳選レース1本分の note 用コピペ Markdown を生成する。
+
+    note エディタに丸ごと貼り付ければ完成する構成:
+      タイトル（ハッシュタグ付き）→ 導入文 → 具体的買い目・期待値解説
+      （_build_race_section を流用）→ 末尾に X アカウントリンク + 共通ハッシュタグ。
+
+    Args:
+        conn:     DB コネクション。
+        sc:       _score_race() が返すスコア辞書。
+        date_str: YYYYMMDD 形式の対象日。
+        note_url: 自記事中で言及する note URL（未指定時は _NOTE_MYPAGE_URL）。
+
+    Returns:
+        note 貼り付け用 Markdown 文字列。
+    """
+    race = _fetch_race(conn, sc["race_id"])
+    venue = race.get("venue", "")
+    race_no = race.get("race_number", 0)
+    race_name = race.get("race_name")
+    y, m, d = date_str[:4], int(date_str[4:6]), int(date_str[6:])
+    disp = f"{y}年{m}月{d}日"
+    reason = _gachi_reason_text(sc)
+    tags = " ".join(build_hashtags(date_str, venue, race_no, race_name or ""))
+    label = _race_label(venue, race_no, race_name)
+    x_url = _X_ACCOUNT_URL
+
+    lines: list[str] = [
+        f"# 🏇【UMA-Logic厳選】{disp} {label}｜AI期待値予想",
+        "",
+        tags,
+        "",
+        (
+            f"本日の **{label}** は、UMA-Logic の AI 4モデルが"
+            f"特に注目する『厳選レース』です。  \n"
+            f"**{reason}**。期待値（EV）ベースで“ちゃんと買える”買い目を解説します。"
+        ),
+        "",
+        "---",
+        "",
+    ]
+
+    # 詳細ブロック（モデルシグナル・推奨買い目・出走馬・投資メモ）を流用
+    lines += _build_race_section(conn, sc, 1)
+
+    # ── 末尾: X 導線 + 共通ハッシュタグ ──────────────────────────────
+    lines += [
+        "## 🔔 最新の厳選予想をフォローで受け取る",
+        "",
+        f"X（旧Twitter）で厳選レースを速報配信中 👉 {x_url}",
+        "",
+        "> 本記事は AI 分析に基づく参考情報です。馬券は余裕資金の範囲内で自己責任でお楽しみください。",
+        "",
+        tags,
+        "",
+    ]
+    return "\n".join(lines)
+
+
+def export_single_race_note(
+    conn: sqlite3.Connection,
+    sc: dict[str, Any],
+    date_str: str,
+    note_url: str | None = None,
+) -> Path:
+    """厳選レースの note Markdown を dist/notes/ に保存しパスを返す。
+
+    ファイル名: dist/notes/[yyyymmdd]_[競馬場]_[R]R_note.md
+
+    Args:
+        conn:     DB コネクション。
+        sc:       _score_race() が返すスコア辞書。
+        date_str: YYYYMMDD 形式の対象日。
+        note_url: note URL（未指定時は _NOTE_MYPAGE_URL）。
+
+    Returns:
+        保存先ファイルの Path。
+    """
+    race = _fetch_race(conn, sc["race_id"])
+    venue = _hashtag(race.get("venue", "") or "")
+    race_no = race.get("race_number", 0)
+    md = build_single_race_note_md(conn, sc, date_str, note_url)
+
+    _GACHI_DIR.mkdir(parents=True, exist_ok=True)
+    out_path = _GACHI_DIR / f"{date_str}_{venue}_{race_no}R_note.md"
+    out_path.write_text(md, encoding="utf-8")
+    logger.info("厳選note保存: %s", out_path)
+    return out_path
+
+
+def select_gachi_races(
+    conn: sqlite3.Connection,
+    date_str: str,
+    top_n: int = _GACHI_TOP_N,
+) -> list[dict[str, Any]]:
+    """指定日の全レースを採点し「厳選レース」上位 top_n 件をスコア降順で返す。
+
+    Args:
+        conn:     DB コネクション。
+        date_str: "YYYY-MM-DD" または "YYYYMMDD" 形式。
+        top_n:    返す最大件数（0以下で無制限）。日次のスパム防止のための厳選上限。
+
+    Returns:
+        is_gachi_race() を満たすスコア辞書のリスト（"gachi_reasons" キー付与済み）。
+    """
+    if len(date_str) == 8 and date_str.isdigit():
+        date_str = f"{date_str[:4]}-{date_str[4:6]}-{date_str[6:]}"
+
+    race_ids = _fetch_race_ids(conn, date_str)
+    gachi: list[dict[str, Any]] = []
+    for rid in race_ids:
+        sc = _score_race(conn, rid)
+        ok, reasons = is_gachi_race(sc)
+        if ok:
+            sc["gachi_reasons"] = reasons
+            gachi.append(sc)
+    gachi.sort(key=lambda x: x["score"], reverse=True)
+    return gachi[:top_n] if top_n and top_n > 0 else gachi
+
+
+def _send_gachi_discord(
+    sc: dict[str, Any],
+    x_text: str,
+    note_path: Path | None,
+) -> bool:
+    """厳選レースの X コピペテキストを Discord に通知する。
+
+    DiscordNotifier 未設定・送信失敗時も例外を投げず False を返す。
+
+    Args:
+        sc:        スコア辞書（race_id をラベル化に使用）。
+        x_text:    X 投稿用テキスト。
+        note_path: 生成済み note Markdown のパス（任意）。
+
+    Returns:
+        送信成功なら True。
+    """
+    try:
+        from src.notification.discord_notifier import DiscordNotifier
+
+        notifier = DiscordNotifier()
+        return notifier.notify_gachi_x_post(
+            sc["race_id"],
+            x_text,
+            note_path=str(note_path) if note_path else None,
+        )
+    except Exception as exc:  # noqa: BLE001 — 通知失敗は本処理を止めない
+        logger.warning("[厳選レース] Discord 通知失敗（続行）: %s", exc)
+        return False
+
+
+def run_gachi_pipeline(
+    date_str: str,
+    *,
+    dry_run: bool = False,
+    note_url: str | None = None,
+    top_n: int = _GACHI_TOP_N,
+) -> list[dict[str, Any]]:
+    """指定日の厳選レースを抽出し、X テキスト生成・note md 出力・Discord 通知を行う。
+
+    Args:
+        date_str: "YYYYMMDD" または "YYYY-MM-DD" 形式。
+        dry_run:  True の場合は Discord 送信を行わず生成のみ実施する。
+        note_url: 誘導先 note URL（未指定時は _NOTE_MYPAGE_URL）。
+        top_n:    厳選する最大件数（既定 _GACHI_TOP_N）。
+
+    Returns:
+        各厳選レースの結果サマリー辞書のリスト。
+    """
+    ds = date_str.replace("-", "")
+    if len(ds) != 8 or not ds.isdigit():
+        raise ValueError(f"不正な日付形式: {date_str!r}")
+    db_date = f"{ds[:4]}-{ds[4:6]}-{ds[6:]}"
+
+    conn = _db()
+    results: list[dict[str, Any]] = []
+    try:
+        gachi = select_gachi_races(conn, db_date, top_n=top_n)
+        logger.info("厳選レース %d 件抽出 (%s, dry_run=%s)", len(gachi), ds, dry_run)
+        for sc in gachi:
+            x_text = build_x_post(conn, sc, ds, note_url)
+            note_path = export_single_race_note(conn, sc, ds, note_url)
+            sent = False if dry_run else _send_gachi_discord(sc, x_text, note_path)
+            results.append(
+                {
+                    "race_id": sc["race_id"],
+                    "reasons": sc.get("gachi_reasons", []),
+                    "x_text": x_text,
+                    "note_path": str(note_path),
+                    "discord_sent": sent,
+                }
+            )
+    finally:
+        conn.close()
+    return results
+
+
+def notify_gachi_for_race(
+    race_id: str, *, dry_run: bool = False
+) -> dict[str, Any] | None:
+    """単一レースを採点し、厳選判定された場合のみ X/Note 下書きと Discord 通知を行う。
+
+    予測パイプライン完走時のフックから呼び出される。判定対象外・例外時は None を返す。
+
+    Args:
+        race_id: 対象レース ID（12桁）。先頭8桁が日付として使われる。
+        dry_run: True の場合は Discord 送信を行わず生成のみ実施する。
+
+    Returns:
+        厳選だった場合は結果サマリー辞書、それ以外は None。
+    """
+    conn = _db()
+    try:
+        sc = _score_race(conn, race_id)
+        ok, reasons = is_gachi_race(sc)
+        if not ok:
+            return None
+        sc["gachi_reasons"] = reasons
+
+        race = _fetch_race(conn, race_id)
+        ds = (race.get("date") or "").replace("-", "")
+        if len(ds) != 8:
+            logger.warning("[厳選レース] 日付不明のためスキップ: %s", race_id)
+            return None
+
+        x_text = build_x_post(conn, sc, ds)
+        note_path = export_single_race_note(conn, sc, ds)
+        sent = False if dry_run else _send_gachi_discord(sc, x_text, note_path)
+        logger.info("[厳選レース] 検出 %s 根拠=%s discord=%s", race_id, reasons, sent)
+        return {
+            "race_id": race_id,
+            "reasons": reasons,
+            "x_text": x_text,
+            "note_path": str(note_path),
+            "discord_sent": sent,
+        }
+    finally:
+        conn.close()
+
+
 # ── CLI ─────────────────────────────────────────────────────────
+
 
 def _cli() -> None:
     """note 記事生成ツールの CLI エントリーポイント。
@@ -861,20 +1398,53 @@ def _cli() -> None:
     )
     ap = argparse.ArgumentParser(description="note 予想記事自動生成エンジン")
     ap.add_argument(
-        "--date", default=None,
+        "--date",
+        default=None,
         help="対象日 YYYYMMDD（省略時=本日）",
     )
     ap.add_argument(
-        "--top", type=int, default=5,
+        "--top",
+        type=int,
+        default=5,
         help="最大推奨レース数（デフォルト=5）",
     )
     ap.add_argument(
-        "--stdout", action="store_true",
+        "--stdout",
+        action="store_true",
         help="標準出力にも記事を表示する",
+    )
+    ap.add_argument(
+        "--gachi",
+        action="store_true",
+        help="厳選レースの X コピペ + note md を生成（Discord 通知あり）",
+    )
+    ap.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="--gachi 時に Discord 送信せず生成内容のみ表示する",
     )
     args = ap.parse_args()
 
     date_str = args.date or _dt_date.today().strftime("%Y%m%d")
+
+    # ── 厳選レース（X / note 下書き）モード ──────────────────────────
+    if args.gachi:
+        results = run_gachi_pipeline(date_str, dry_run=args.dry_run)
+        if not results:
+            print(f"\n⚠️ {date_str}: 厳選レースなし（予測データ未生成 or 条件未達）")
+            return
+        print(f"\n✅ 厳選レース {len(results)} 件 （dry_run={args.dry_run}）\n")
+        for i, r in enumerate(results, 1):
+            print(f"━━━━━━ 厳選 {i}/{len(results)} ━━━━━━")
+            print(f"race_id : {r['race_id']}")
+            print(f"根拠     : {' / '.join(r['reasons'])}")
+            print(f"note md  : {r['note_path']}")
+            print(f"Discord  : {'送信' if r['discord_sent'] else '未送信(dry_run)'}")
+            print("--- X コピペ ---")
+            print(r["x_text"])
+            print()
+        return
+
     md = generate(date_str=date_str, top_n=args.top, stdout=args.stdout)
     out_path = _OUT_DIR / f"{date_str.replace('-', '')}_recommendations.md"
     print(f"\n✅ 生成完了 → {out_path}")

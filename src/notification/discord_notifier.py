@@ -31,18 +31,26 @@ load_dotenv(Path(__file__).resolve().parents[2] / ".env", override=False)
 logger = logging.getLogger(__name__)
 
 # ── embed カラー ────────────────────────────────────────────────────────────
-_COLOR_NORMAL   = 0x00C8FF   # シアン（通常）
-_COLOR_BIG      = 0xFFD700   # 金（高配当）
-_COLOR_JACKPOT  = 0xFF4500   # 赤橙（万馬券）
-_COLOR_SYSTEM   = 0x5865F2   # Discord Blurple（システム）
-_COLOR_WARNING  = 0xFF9800   # オレンジ（警告）
-_COLOR_ERROR    = 0xFF4444   # 赤（エラー）
-_COLOR_OK       = 0x43B581   # 緑（正常完了）
+_COLOR_NORMAL = 0x00C8FF  # シアン（通常）
+_COLOR_BIG = 0xFFD700  # 金（高配当）
+_COLOR_JACKPOT = 0xFF4500  # 赤橙（万馬券）
+_COLOR_SYSTEM = 0x5865F2  # Discord Blurple（システム）
+_COLOR_WARNING = 0xFF9800  # オレンジ（警告）
+_COLOR_ERROR = 0xFF4444  # 赤（エラー）
+_COLOR_OK = 0x43B581  # 緑（正常完了）
 
 # 競馬場コード → 名称
 _JYO: dict[str, str] = {
-    "01": "札幌", "02": "函館", "03": "福島", "04": "新潟", "05": "東京",
-    "06": "中山", "07": "中京", "08": "京都", "09": "阪神", "10": "小倉",
+    "01": "札幌",
+    "02": "函館",
+    "03": "福島",
+    "04": "新潟",
+    "05": "東京",
+    "06": "中山",
+    "07": "中京",
+    "08": "京都",
+    "09": "阪神",
+    "10": "小倉",
 }
 
 # EV >= 1.0 のとき 🔥、それ以外は空白
@@ -91,11 +99,12 @@ class DiscordNotifier(BaseNotifier):
     def __init__(
         self,
         *,
-        webhook_url:    str | None = None,
-        system_url:     str | None = None,
-        hit_flash_url:  str | None = None,
+        webhook_url: str | None = None,
+        system_url: str | None = None,
+        hit_flash_url: str | None = None,
+        note_draft_url: str | None = None,
         enabled: bool = True,
-        channel_label:  str = "予想",
+        channel_label: str = "予想",
     ) -> None:
         """初期化。
 
@@ -106,18 +115,31 @@ class DiscordNotifier(BaseNotifier):
                         未指定時は DISCORD_SYSTEM_WEBHOOK_URL 環境変数を使用。
             hit_flash_url: 的中速報チャンネルの Webhook URL。
                            未指定時は DISCORD_WEBHOOK_HIT_FLASH 環境変数を使用。
+            note_draft_url: note下書き / SNS 告知チャンネルの Webhook URL。
+                            未指定時は DISCORD_WEBHOOK_NOTE_DRAFT 環境変数を使用。
             enabled: False に設定すると全送信をスキップする。
             channel_label: ログ出力に使用するチャンネルラベル。
         """
         super().__init__(enabled=enabled)
-        self._url           = webhook_url   or os.environ.get("DISCORD_WEBHOOK_URL", "")
-        self._system_url    = system_url    or os.environ.get("DISCORD_SYSTEM_WEBHOOK_URL", "")
-        self._hit_flash_url = hit_flash_url or os.environ.get("DISCORD_WEBHOOK_HIT_FLASH", "")
-        self._label         = channel_label
+        self._url = webhook_url or os.environ.get("DISCORD_WEBHOOK_URL", "")
+        self._system_url = system_url or os.environ.get(
+            "DISCORD_SYSTEM_WEBHOOK_URL", ""
+        )
+        self._hit_flash_url = hit_flash_url or os.environ.get(
+            "DISCORD_WEBHOOK_HIT_FLASH", ""
+        )
+        self._note_draft_url = note_draft_url or os.environ.get(
+            "DISCORD_WEBHOOK_NOTE_DRAFT", ""
+        )
+        self._label = channel_label
         if enabled and not self._url:
-            logger.warning("DISCORD_WEBHOOK_URL が設定されていません（予想通知が届きません）")
+            logger.warning(
+                "DISCORD_WEBHOOK_URL が設定されていません（予想通知が届きません）"
+            )
         if enabled and not self._system_url:
-            logger.warning("DISCORD_SYSTEM_WEBHOOK_URL が設定されていません（システム通知は予想チャンネルへ fallback します）")
+            logger.warning(
+                "DISCORD_SYSTEM_WEBHOOK_URL が設定されていません（システム通知は予想チャンネルへ fallback します）"
+            )
 
     # ────────────────────────────────────────────────────────────────────────
     # 内部ヘルパー
@@ -134,7 +156,9 @@ class DiscordNotifier(BaseNotifier):
         """
         return _s(s)
 
-    def _post(self, url: str, payload: dict[str, Any], image_path: str | None = None) -> bool:
+    def _post(
+        self, url: str, payload: dict[str, Any], image_path: str | None = None
+    ) -> bool:
         """指定 URL に payload を POST する。失敗しても例外を外に出さない。
 
         Args:
@@ -164,7 +188,9 @@ class DiscordNotifier(BaseNotifier):
 
         if resp.status_code in (200, 204):
             return True
-        logger.warning("[Discord] POST 失敗 status=%d: %s", resp.status_code, resp.text[:200])
+        logger.warning(
+            "[Discord] POST 失敗 status=%d: %s", resp.status_code, resp.text[:200]
+        )
         return False
 
     def _sys_url(self) -> str:
@@ -192,14 +218,16 @@ class DiscordNotifier(BaseNotifier):
             True = 送信成功, False = 失敗。
         """
         color = (
-            _COLOR_JACKPOT if "万馬券" in message.title or "爆裂" in message.title
-            else _COLOR_BIG if "高配当" in message.title
+            _COLOR_JACKPOT
+            if "万馬券" in message.title or "爆裂" in message.title
+            else _COLOR_BIG
+            if "高配当" in message.title
             else _COLOR_NORMAL
         )
         embed: dict[str, Any] = {
-            "title":       _s(message.title),
+            "title": _s(message.title),
             "description": _s(message.body),
-            "color":       color,
+            "color": color,
         }
         if message.url:
             embed["url"] = message.url
@@ -234,6 +262,50 @@ class DiscordNotifier(BaseNotifier):
             return
         self._post(self._url, {"embeds": embeds})
 
+    def notify_gachi_x_post(
+        self,
+        race_id: str,
+        x_text: str,
+        note_path: str | None = None,
+    ) -> bool:
+        """厳選レースの X（Twitter）コピペ投稿テキストを Discord へ送信する。
+
+        送信先は note下書き/SNS 告知チャンネル（DISCORD_WEBHOOK_NOTE_DRAFT）。
+        未設定時は予想チャンネル（DISCORD_WEBHOOK_URL）へフォールバックする。
+        コードブロックで囲み、そのままコピペして X に貼り付けられる形で流す。
+
+        Args:
+            race_id: 対象レース ID（ラベル表示に使用）。
+            x_text: X 投稿用テキスト（ハッシュタグ含む）。
+            note_path: 生成済み note Markdown のローカルパス（任意）。
+
+        Returns:
+            True = 送信成功, False = 失敗または URL 未設定。
+        """
+        url = self._note_draft_url or self._url
+        if not url:
+            logger.warning("Discord URL 未設定のため厳選X投稿スキップ: %s", race_id)
+            return False
+
+        label = _format_race_label(race_id)
+        content = (
+            f"📢 **【厳選レース】X投稿用コピペ — {label}**\n"
+            f"下記をそのまま X に貼り付けられます👇\n"
+            f"```\n{_s(x_text)}\n```"
+        )
+        if note_path:
+            content += f"\n📝 note貼り付け用Markdown: `{note_path}`"
+
+        ok = self._post(url, {"content": content})
+        ch = "note下書き" if self._note_draft_url else "予想(fallback)"
+        logger.info(
+            "[Discord:%s] 厳選X投稿 %s: %s",
+            ch,
+            "送信完了" if ok else "送信失敗",
+            race_id,
+        )
+        return ok
+
     # ────────────────────────────────────────────────────────────────────────
     # システムチャンネル送信
     # ────────────────────────────────────────────────────────────────────────
@@ -255,11 +327,11 @@ class DiscordNotifier(BaseNotifier):
 
     def send_system_embed(
         self,
-        title:       str,
+        title: str,
         description: str,
-        color:       int        = _COLOR_SYSTEM,
-        fields:      list[dict] | None = None,
-        footer:      str | None = None,
+        color: int = _COLOR_SYSTEM,
+        fields: list[dict] | None = None,
+        footer: str | None = None,
     ) -> None:
         """システムチャンネルに Embed を送信する。
 
@@ -274,14 +346,18 @@ class DiscordNotifier(BaseNotifier):
         if not url:
             return
         embed: dict[str, Any] = {
-            "title":       _s(title),
+            "title": _s(title),
             "description": _s(description),
-            "color":       color,
-            "timestamp":   datetime.utcnow().isoformat(),
+            "color": color,
+            "timestamp": datetime.utcnow().isoformat(),
         }
         if fields:
             embed["fields"] = [
-                {"name": _s(f["name"]), "value": _s(f["value"]), "inline": f.get("inline", False)}
+                {
+                    "name": _s(f["name"]),
+                    "value": _s(f["value"]),
+                    "inline": f.get("inline", False),
+                }
                 for f in fields
             ]
         if footer:
@@ -327,9 +403,9 @@ class DiscordNotifier(BaseNotifier):
 
     def notify_intervention_required(
         self,
-        step:            str,
-        error:           str,
-        action:          str,
+        step: str,
+        error: str,
+        action: str,
         screenshot_path: Path | None = None,
     ) -> None:
         """手動介入要請をシステムチャンネルに送信する。
@@ -345,24 +421,32 @@ class DiscordNotifier(BaseNotifier):
             logger.warning("Discord URL 未設定のため介入要請通知スキップ: %s", step)
             return
 
-        now        = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         error_body = _s(error[:400])
         payload = {
-            "embeds": [{
-                "title":       _s(f"⚠️ UMALOGI 手動介入要請 — {step}"),
-                "description": (
-                    f"**失敗ステップ**: {_s(step)}\n\n"
-                    f"**エラー内容**\n```\n{error_body}\n```\n\n"
-                    f"**対応アクション**\n{_s(action)}\n\n"
-                    f"**発生時刻**: {now}"
-                ),
-                "color":     _COLOR_ERROR,
-                "timestamp": datetime.utcnow().isoformat(),
-            }]
+            "embeds": [
+                {
+                    "title": _s(f"⚠️ UMALOGI 手動介入要請 — {step}"),
+                    "description": (
+                        f"**失敗ステップ**: {_s(step)}\n\n"
+                        f"**エラー内容**\n```\n{error_body}\n```\n\n"
+                        f"**対応アクション**\n{_s(action)}\n\n"
+                        f"**発生時刻**: {now}"
+                    ),
+                    "color": _COLOR_ERROR,
+                    "timestamp": datetime.utcnow().isoformat(),
+                }
+            ]
         }
-        image_path = str(screenshot_path) if screenshot_path and Path(screenshot_path).exists() else None
+        image_path = (
+            str(screenshot_path)
+            if screenshot_path and Path(screenshot_path).exists()
+            else None
+        )
         ok = self._post(url, payload, image_path)
-        logger.info("[Discord:システム] 介入要請 %s: %s", "送信完了" if ok else "送信失敗", step)
+        logger.info(
+            "[Discord:システム] 介入要請 %s: %s", "送信完了" if ok else "送信失敗", step
+        )
 
     def notify_ror_warning(self, warning_text: str) -> None:
         """RoR（破産確率）警告をシステムチャンネルに送信する。
@@ -383,10 +467,10 @@ class DiscordNotifier(BaseNotifier):
 
     def notify_hit_summary(
         self,
-        date_str:             str,
-        hit_count:            int,
-        total_count:          int,
-        cumulative_pnl:       int,
+        date_str: str,
+        hit_count: int,
+        total_count: int,
+        cumulative_pnl: int,
         monthly_progress_pct: float,
     ) -> None:
         """的中サマリーを予想チャンネルに送信する。
@@ -400,7 +484,7 @@ class DiscordNotifier(BaseNotifier):
         """
         if not self._url:
             return
-        color    = _COLOR_BIG if hit_count > 0 else _COLOR_NORMAL
+        color = _COLOR_BIG if hit_count > 0 else _COLOR_NORMAL
         pnl_sign = "+" if cumulative_pnl >= 0 else ""
         hit_label = (
             f"✅ 的中 {hit_count}/{total_count}"
@@ -408,28 +492,37 @@ class DiscordNotifier(BaseNotifier):
             else f"❌ 的中なし (0/{total_count})"
         )
         payload = {
-            "embeds": [{
-                "title": f"🏇 {date_str} レース結果",
-                "description": _s(
-                    f"**{hit_label}**\n"
-                    f"累積P&L: {pnl_sign}¥{cumulative_pnl:,}\n"
-                    f"月次進捗: {monthly_progress_pct:.1f}%"
-                ),
-                "color":     color,
-                "timestamp": datetime.utcnow().isoformat(),
-            }]
+            "embeds": [
+                {
+                    "title": f"🏇 {date_str} レース結果",
+                    "description": _s(
+                        f"**{hit_label}**\n"
+                        f"累積P&L: {pnl_sign}¥{cumulative_pnl:,}\n"
+                        f"月次進捗: {monthly_progress_pct:.1f}%"
+                    ),
+                    "color": color,
+                    "timestamp": datetime.utcnow().isoformat(),
+                }
+            ]
         }
         hit_url = self._hit_flash_url or self._url
         ok = self._post(hit_url, payload)
         ch_label = "的中速報" if self._hit_flash_url else "予想(fallback)"
-        logger.info("[Discord:%s] 結果サマリー %s: %s", ch_label, "送信完了" if ok else "失敗", date_str)
+        logger.info(
+            "[Discord:%s] 結果サマリー %s: %s",
+            ch_label,
+            "送信完了" if ok else "失敗",
+            date_str,
+        )
 
     def notify_prerace_result(
         self,
-        race_id:       str,
-        honmei_bets:   object,
-        manji_bets:    object,
-        alpha_bets:    object | None = None,
+        race_id: str,
+        honmei_bets: object,
+        manji_bets: object,
+        oracle_bets: object | None = None,
+        hit_focus_bets: object | None = None,
+        alpha_bets: object | None = None,
         dashboard_url: str = "",
     ) -> None:
         """直前予想を「🟦 ALPHA / 🟩 卍 / 🟥 本命」の3セクション分離 Embed で送信する。
@@ -442,6 +535,8 @@ class DiscordNotifier(BaseNotifier):
             race_id: 対象レースの ID（12桁）。
             honmei_bets: 本命モデルの RaceBets オブジェクト。
             manji_bets: 卍モデルの RaceBets オブジェクト。
+            oracle_bets: Oracle（的中確率最大）の RaceBets オブジェクト（任意）。
+            hit_focus_bets: HitFocus（2軸マルチ）の RaceBets オブジェクト（任意）。
             alpha_bets: ALPHA モデルの RaceBets オブジェクト（任意）。
             dashboard_url: ダッシュボードの URL（フッターに付与）。
         """
@@ -453,7 +548,7 @@ class DiscordNotifier(BaseNotifier):
 
         # ── 全モデル最大EV と投資合計を集計 ────────────────────────────────
         all_bets_flat: list[object] = []
-        for rb in [alpha_bets, manji_bets, honmei_bets]:
+        for rb in [alpha_bets, manji_bets, honmei_bets, oracle_bets, hit_focus_bets]:
             if rb is not None:
                 all_bets_flat.extend(getattr(rb, "bets", []))
 
@@ -461,10 +556,14 @@ class DiscordNotifier(BaseNotifier):
             logger.info("全 EV <= 0 — Discord 通知スキップ: %s", race_id)
             return
 
-        max_ev = max((getattr(b, "expected_value", 0.0) for b in all_bets_flat), default=0.0)
-        color  = (
-            _COLOR_JACKPOT if max_ev >= 3.0
-            else _COLOR_BIG   if max_ev >= 1.5
+        max_ev = max(
+            (getattr(b, "expected_value", 0.0) for b in all_bets_flat), default=0.0
+        )
+        color = (
+            _COLOR_JACKPOT
+            if max_ev >= 3.0
+            else _COLOR_BIG
+            if max_ev >= 1.5
             else _COLOR_NORMAL
         )
         total_invest = sum(
@@ -475,10 +574,15 @@ class DiscordNotifier(BaseNotifier):
 
         # ── セクション定義: (アイコン, ラベル, カラー名, RaceBets, 最大表示件数) ──
         sections: list[tuple[str, str, object | None, int]] = [
-            ("🟦", "ALPHA 予想  (期待値特化)",  alpha_bets,    3),
-            ("🟩", "卍 予想  (回収率特化)",      manji_bets,    3),
-            ("🟥", "本命 予想  (勝率特化)",      honmei_bets,   3),
+            ("🟦", "ALPHA 予想  (期待値特化)", alpha_bets, 3),
+            ("🟩", "卍 予想  (回収率特化)", manji_bets, 3),
+            ("🟥", "本命 予想  (勝率特化)", honmei_bets, 3),
         ]
+        if oracle_bets is not None and getattr(oracle_bets, "bets", []):
+            sections.append(("🟨", "Oracle 予想  (的中確率最大)", oracle_bets, 2))
+        if hit_focus_bets is not None and getattr(hit_focus_bets, "bets", []):
+            sections.append(("🔶", "HitFocus 予想  (2軸マルチ)", hit_focus_bets, 2))
+
         fields: list[dict[str, Any]] = []
 
         for icon, section_label, rb, max_bets in sections:
@@ -493,24 +597,34 @@ class DiscordNotifier(BaseNotifier):
                 continue
 
             # セクションヘッダー（区切り線）
-            fields.append({
-                "name":   f"{icon} **__{section_label}__**",
-                "value":  "​",   # zero-width space（空フィールドにしない）
-                "inline": False,
-            })
+            fields.append(
+                {
+                    "name": f"{icon} **__{section_label}__**",
+                    "value": "​",  # zero-width space（空フィールドにしない）
+                    "inline": False,
+                }
+            )
 
             for bet in bets[:max_bets]:
-                ev        = getattr(bet, "expected_value", 0.0)
-                bet_type  = getattr(bet, "bet_type", "?")
-                rec_bet   = int(getattr(bet, "recommended_bet", 0) or 0)
-                fire      = _FIRE if ev >= 1.0 else "　"
-                combos    = getattr(bet, "combinations", []) or []
-                n_combos  = len(combos)
-                cost_str  = f"¥100×{n_combos}点=¥{n_combos * 100:,}" if n_combos > 0 else f"¥{rec_bet:,}"
+                ev = getattr(bet, "expected_value", 0.0)
+                bet_type = getattr(bet, "bet_type", "?")
+                rec_bet = int(getattr(bet, "recommended_bet", 0) or 0)
+                fire = _FIRE if ev >= 1.0 else "　"
+                combos = getattr(bet, "combinations", []) or []
+                n_combos = len(combos)
+                cost_str = (
+                    f"¥100×{n_combos}点=¥{n_combos * 100:,}"
+                    if n_combos > 0
+                    else f"¥{rec_bet:,}"
+                )
 
                 # 本命×三連単 (EV≥1.5で条件付き許可) は識別マークを付与
                 model_type = getattr(rb, "model_type", "")
-                cond_badge = " ⚡条件付" if ("本命" in model_type and bet_type == "三連単" and ev >= 1.5) else ""
+                cond_badge = (
+                    " ⚡条件付"
+                    if ("本命" in model_type and bet_type == "三連単" and ev >= 1.5)
+                    else ""
+                )
 
                 # フィールド name: "🔥 三連複  EV=2.13 | ¥100×4点=¥400"
                 field_name = f"{fire} {bet_type}{cond_badge}  EV={ev:.2f} | {cost_str}"
@@ -518,44 +632,52 @@ class DiscordNotifier(BaseNotifier):
                 # フィールド value: 馬番+馬名 カード形式
                 field_value = _format_combo_card(bet)
 
-                fields.append({
-                    "name":   _s(field_name[:256]),
-                    "value":  _s(field_value[:1024]),
-                    "inline": False,
-                })
+                fields.append(
+                    {
+                        "name": _s(field_name[:256]),
+                        "value": _s(field_value[:1024]),
+                        "inline": False,
+                    }
+                )
 
-            if len(fields) >= 23:   # Discord 上限 25、ヘッダー込みで余裕を持つ
+            if len(fields) >= 23:  # Discord 上限 25、ヘッダー込みで余裕を持つ
                 break
 
         if not fields:
             logger.info("有効フィールドなし — Discord 通知スキップ: %s", race_id)
             return
 
-        invest_str   = f"¥{int(total_invest):,}" if total_invest > 0 else "なし"
-        footer_text  = f"🤖 AIウマスギフィルター適用済み | EV≥1.0 推奨投資 {invest_str}"
+        invest_str = f"¥{int(total_invest):,}" if total_invest > 0 else "なし"
+        footer_text = f"🤖 AIウマスギフィルター適用済み | EV≥1.0 推奨投資 {invest_str}"
         if dashboard_url:
             footer_text += f" | 詳細 → {dashboard_url}"
 
         embed: dict[str, Any] = {
-            "title":       _s(f"🏇  {label}  直前予想"),
-            "description": _s(f"最高EV: **{max_ev:.2f}**  |  モデル3系統独立稼働  |  🤖 ROIフィルター適用済み"),
-            "color":       color,
-            "fields":      fields,
-            "footer":      {"text": footer_text},
-            "timestamp":   datetime.utcnow().isoformat(),
+            "title": _s(f"🏇  {label}  直前予想"),
+            "description": _s(
+                f"最高EV: **{max_ev:.2f}**  |  モデル3系統独立稼働  |  🤖 ROIフィルター適用済み"
+            ),
+            "color": color,
+            "fields": fields,
+            "footer": {"text": footer_text},
+            "timestamp": datetime.utcnow().isoformat(),
         }
 
         ok = self._post(self._url, {"embeds": [embed]})
         logger.info(
             "[Discord:予想] 直前予想 %s: %s  (sections=%d  fields=%d  max_ev=%.2f)",
             "送信完了" if ok else "送信失敗",
-            race_id, len(sections), len(fields), max_ev,
+            race_id,
+            len(sections),
+            len(fields),
+            max_ev,
         )
 
 
 # ────────────────────────────────────────────────────────────────────────────
 # 組み合わせカード形式フォーマッター（スマホ対応・馬番+馬名必須）
 # ────────────────────────────────────────────────────────────────────────────
+
 
 def _format_combo_card(bet: object) -> str:
     """買い目をスマホ対応カード形式にフォーマットする。馬番を省略せず全表示。
@@ -582,9 +704,9 @@ def _format_combo_card(bet: object) -> str:
 
     _BUDGET = 900  # Discord field.value 上限 1024 に余裕を持たせたバジェット
 
-    bt: str      = getattr(bet, "bet_type", "")
+    bt: str = getattr(bet, "bet_type", "")
     combos: list = getattr(bet, "combinations", []) or []
-    names: list  = getattr(bet, "horse_names",  []) or []
+    names: list = getattr(bet, "horse_names", []) or []
 
     if not combos:
         return "　(買い目なし)"
@@ -638,17 +760,19 @@ def _format_combo_card(bet: object) -> str:
         if always_in:
             others = [n for n in all_nums if n not in always_in]
             axis_str = ",".join(str(a) for a in always_in)
-            opp_str  = ",".join(str(o) for o in others)
-            smart    = f"【推奨: {bt}マルチ 軸{axis_str} - 相手{opp_str}】\n計{n_total}点"
+            opp_str = ",".join(str(o) for o in others)
+            smart = f"【推奨: {bt}マルチ 軸{axis_str} - 相手{opp_str}】\n計{n_total}点"
             if len(smart) <= _BUDGET:
                 return smart
         # 1着固定判定
-        firsts = sorted({int(c[0]) for c in combos if isinstance(c, (list, tuple)) and c})
+        firsts = sorted(
+            {int(c[0]) for c in combos if isinstance(c, (list, tuple)) and c}
+        )
         if len(firsts) <= 2:
             others = [n for n in all_nums if n not in firsts]
             axis_str = ",".join(str(f) for f in firsts)
-            opp_str  = ",".join(str(o) for o in others)
-            smart    = f"【推奨: {bt} 軸{axis_str}(1着) - 相手{opp_str}】\n計{n_total}点"
+            opp_str = ",".join(str(o) for o in others)
+            smart = f"【推奨: {bt} 軸{axis_str}(1着) - 相手{opp_str}】\n計{n_total}点"
             if len(smart) <= _BUDGET:
                 return smart
         # ベタ展開（上記に該当しないフォーメーション）
@@ -661,29 +785,25 @@ def _format_combo_card(bet: object) -> str:
     # ── 馬連・ワイド・三連複（軸流し or ボックス）──────────────────────────
     first = combos[0]
     if isinstance(first, (list, tuple)) and len(first) >= 2:
-        flat     = [int(n) for combo in combos for n in combo]
-        cnt      = Counter(flat)
+        flat = [int(n) for combo in combos for n in combo]
+        cnt = Counter(flat)
         axis_set = {num for num, c in cnt.items() if c == n_total}
 
         if axis_set:
             # 軸あり: 全相手馬を省略なしで表示
-            axes   = sorted(axis_set)
+            axes = sorted(axis_set)
             others = sorted({int(n) for combo in combos for n in combo} - axis_set)
-            axis_str   = ",".join(str(a) for a in axes)
+            axis_str = ",".join(str(a) for a in axes)
             axis_label = " / ".join(_label(a) for a in axes[:2])
             if others:
-                opp_nums  = ",".join(str(o) for o in others)
+                opp_nums = ",".join(str(o) for o in others)
                 opp_label = " / ".join(_label(o) for o in others)
                 smart_str = f"【推奨: {bt}流し 軸{axis_str} - 相手{opp_nums}】"
-                detail    = (
-                    f"▶ 軸: {axis_label}\n"
-                    f"  相手: {opp_label}\n"
-                    f"  計{n_total}点"
-                )
+                detail = f"▶ 軸: {axis_label}\n  相手: {opp_label}\n  計{n_total}点"
             else:
                 # 全馬が軸 = 組み合わせ1通り
                 smart_str = f"【推奨: {bt} {axis_str}番】"
-                detail    = f"▶ {axis_label}\n計{n_total}点"
+                detail = f"▶ {axis_label}\n計{n_total}点"
             result = smart_str + "\n" + detail
             if len(result) <= _BUDGET:
                 return result

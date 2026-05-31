@@ -47,5 +47,9 @@ web/tsconfig.tsbuildinfo
 htmlcov/
 .coverage
 
+# ── 生成物（厳選note下書き・note記事出力）────────────────────────
+dist/
+outputs/note/
+
 # ── その他 ────────────────────────────────────────────────────────
 py
