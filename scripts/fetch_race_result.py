@@ -6,8 +6,11 @@
 JRA-VAN (JVLink) 経由でレース結果・払戻を取得して DB に保存し、
 予想評価（prediction_results）を更新してダッシュボード JSON を再生成する。
 
-【注意】netkeiba.com へのアクセスは CLAUDE.md により永久禁止。
-全データは JVLink 経由で取得する。
+データ戦略（CLAUDE.md 規則11「JVLink 一次・netkeiba 二次の二段構え」）:
+  Stage 1: JRA-VAN (JVLink) を一次ソースとして優先取得。
+  Stage 2: JVLink 失敗 or 未確定時は netkeiba を二次フォールバックとして使用する
+           （_fetch_result_from_netkeiba）。netkeiba 側は http_client の
+           レート制限・UA ローテーション・Retry-After 尊重で 503/429/403 を緩和する。
 
 Usage:
     python scripts/fetch_race_result.py --race-id 202603010501

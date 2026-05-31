@@ -16,12 +16,13 @@ from dataclasses import dataclass, field
 
 import requests
 from bs4 import BeautifulSoup
-from tenacity import (
-    retry,
-    retry_if_exception_type,
-    stop_after_attempt,
-    wait_exponential,
-    before_sleep_log,
+
+from src.scraper.http_client import (
+    NETKEIBA_LIMITER,
+    backoff_seconds,
+    build_headers,
+    is_retryable_status,
+    retry_after_seconds,
 )
 
 logger = logging.getLogger(__name__)
@@ -78,33 +79,74 @@ class HorseOdds:
 
 # ── 内部ユーティリティ ────────────────────────────────────────────
 
-@retry(
-    stop=stop_after_attempt(3),
-    wait=wait_exponential(multiplier=2, min=2, max=30),
-    retry=retry_if_exception_type(requests.RequestException),
-    before_sleep=before_sleep_log(logger, logging.WARNING),
-    reraise=True,
-)
-def _http_get(url: str, params: dict | None, timeout: int) -> requests.Response:
-    """tenacity リトライ付き HTTP GET。
+def _http_get(
+    url: str,
+    params: dict | None,
+    timeout: int,
+    *,
+    max_retries: int = 3,
+    base_delay: float = 1.5,
+) -> requests.Response:
+    """堅牢化 HTTP GET（netkeiba 503/429/403 対策・http_client 共通ロジック）。
 
-    最大3回、指数バックオフ（2秒 → 4秒 → 8秒 → 上限30秒）でリトライする。
-    3回失敗した場合は最後の requests.RequestException を再送出する。
+    - グローバルレート制限（並列スレッドの自己 DoS 防止）
+    - User-Agent ローテーション + ブラウザ完全ヘッダ（bot 判定回避）
+    - Retry-After ヘッダの尊重（429/503）と、ステータス別の長めバックオフ
+    - 恒久エラー（404 等の 429 以外 4xx）はリトライせず即中断
 
     Args:
-        url:     取得先 URL。
-        params:  クエリパラメータ。
-        timeout: HTTP タイムアウト秒数。
+        url:         取得先 URL。
+        params:      クエリパラメータ。
+        timeout:     HTTP タイムアウト秒数。
+        max_retries: 最大試行回数。
+        base_delay:  バックオフ基準秒数。
 
     Returns:
         取得成功した requests.Response。
 
     Raises:
-        requests.RequestException: 3回リトライ後も失敗した場合。
+        requests.RequestException: max_retries 回失敗した場合（恒久エラーは即時）。
     """
-    resp = requests.get(url, params=params, headers=_HEADERS, timeout=timeout)
-    resp.raise_for_status()
-    return resp
+    last_exc: Exception | None = None
+    last_status: int | None = None
+    for attempt in range(1, max_retries + 1):
+        NETKEIBA_LIMITER.wait()
+        try:
+            resp = requests.get(
+                url, params=params, headers=build_headers(), timeout=timeout
+            )
+            resp.raise_for_status()
+            return resp
+        except requests.HTTPError as exc:
+            last_exc = exc
+            status = getattr(getattr(exc, "response", None), "status_code", None)
+            last_status = status
+            if not is_retryable_status(status):
+                logger.warning(
+                    "netkeiba 取得中断 (HTTP %s, リトライ不可): %s", status, url
+                )
+                raise
+            ra = retry_after_seconds(getattr(exc, "response", None))
+            wait = ra if ra is not None else backoff_seconds(attempt, base_delay, status)
+            logger.warning(
+                "リクエスト失敗 (試行 %d/%d, HTTP %s): %s — %.1f秒後にリトライ",
+                attempt, max_retries, status, url, wait,
+            )
+            if attempt < max_retries:
+                time.sleep(wait)
+        except (requests.Timeout, requests.ConnectionError) as exc:
+            last_exc = exc
+            wait = backoff_seconds(attempt, base_delay, None)
+            logger.warning(
+                "リクエスト失敗 (試行 %d/%d, %s): %s — %.1f秒後にリトライ",
+                attempt, max_retries, type(exc).__name__, url, wait,
+            )
+            if attempt < max_retries:
+                time.sleep(wait)
+
+    raise requests.RequestException(
+        f"{url} の取得に {max_retries} 回失敗しました (最終HTTP={last_status})"
+    ) from last_exc
 
 
 def _fetch(
@@ -113,30 +155,29 @@ def _fetch(
     *,
     delay: float = 1.5,
     timeout: int = 20,
-    max_retries: int = 3,  # tenacity の stop_after_attempt は固定3回だが引数として受け取る
+    max_retries: int = 3,
 ) -> str:
     """
-    レート制限付き HTTP GET。
+    レート制限・UA ローテーション・Retry-After 付き HTTP GET。
 
-    delay 秒のスリープ（レート制限）後に _http_get を呼び出す。
-    ネットワークエラー時は tenacity が最大3回リトライする。
-    3回失敗した場合は requests.RequestException を送出する。
+    実際の待機・リトライ・ヘッダ生成は _http_get（http_client 共通ロジック）が担う。
+    max_retries 回失敗した場合は requests.RequestException を送出する。
 
     Args:
         url:         取得先 URL
         params:      クエリパラメータ
-        delay:       呼び出し前のスリープ秒数（サーバー負荷対策）
+        delay:       バックオフ基準秒数（_http_get の base_delay に渡す）
         timeout:     HTTP タイムアウト秒数
-        max_retries: 互換性のために受け取るが tenacity のリトライ設定を使用
+        max_retries: 最大試行回数
 
     Returns:
         レスポンス本文（文字列）
 
     Raises:
-        requests.RequestException: 3回リトライ後も失敗した場合
+        requests.RequestException: max_retries 回失敗した場合
     """
-    time.sleep(delay)  # レート制限: 連続リクエストを抑制
-    resp = _http_get(url, params, timeout)
+    # レート制限・リトライは _http_get 内の NETKEIBA_LIMITER / バックオフが担う
+    resp = _http_get(url, params, timeout, max_retries=max_retries, base_delay=delay)
     resp.encoding = resp.apparent_encoding or "utf-8"
     return resp.text
 

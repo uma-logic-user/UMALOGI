@@ -14,6 +14,14 @@ from typing import Optional
 import requests
 from bs4 import BeautifulSoup
 
+from src.scraper.http_client import (
+    NETKEIBA_LIMITER,
+    backoff_seconds,
+    build_headers,
+    is_retryable_status,
+    retry_after_seconds,
+)
+
 logger = logging.getLogger(__name__)
 
 # ---------------------------------------------------------------------------
@@ -167,30 +175,57 @@ def _fetch_html(
 
     Raises:
         requests.RequestException: max_retries 回失敗した場合。
-    """
-    time.sleep(delay)
 
+    Notes:
+        503 / 429 / 403 多発（2026-05-31 本番障害）への対策として、
+        http_client の共通ロジックを利用する:
+          - グローバルレート制限（並列スレッドの自己 DoS 防止）
+          - User-Agent ローテーション + ブラウザ完全ヘッダ（bot 判定回避）
+          - Retry-After ヘッダの尊重（429/503）
+          - 恒久エラー（404 等の 429 以外 4xx）は即中断
+    """
     requester = session.get if session is not None else requests.get
 
     last_exc: Optional[Exception] = None
+    last_status: Optional[int] = None
     for attempt in range(1, max_retries + 1):
+        # グローバルレート制限: 並列スレッドが netkeiba を一斉に叩くのを抑制
+        NETKEIBA_LIMITER.wait()
         try:
-            resp = requester(url, headers=DEFAULT_HEADERS, timeout=timeout)
+            resp = requester(url, headers=build_headers(), timeout=timeout)
             resp.raise_for_status()
             resp.encoding = _detect_encoding(resp)
             return resp.text
-        except (requests.HTTPError, requests.Timeout, requests.ConnectionError) as exc:
+        except requests.HTTPError as exc:
             last_exc = exc
-            wait = delay * (2 ** (attempt - 1))
+            status = getattr(getattr(exc, "response", None), "status_code", None)
+            last_status = status
+            # 恒久エラー（404 等、429 以外の 4xx）はリトライ無意味 → 即中断
+            if not is_retryable_status(status):
+                logger.warning(
+                    "netkeiba 取得中断 (HTTP %s, リトライ不可): %s", status, url
+                )
+                raise
+            ra = retry_after_seconds(getattr(exc, "response", None))
+            wait = ra if ra is not None else backoff_seconds(attempt, delay, status)
             logger.warning(
-                "リクエスト失敗 (試行 %d/%d): %s — %.1f秒後にリトライ",
-                attempt, max_retries, url, wait,
+                "リクエスト失敗 (試行 %d/%d, HTTP %s): %s — %.1f秒後にリトライ",
+                attempt, max_retries, status, url, wait,
+            )
+            if attempt < max_retries:
+                time.sleep(wait)
+        except (requests.Timeout, requests.ConnectionError) as exc:
+            last_exc = exc
+            wait = backoff_seconds(attempt, delay, None)
+            logger.warning(
+                "リクエスト失敗 (試行 %d/%d, %s): %s — %.1f秒後にリトライ",
+                attempt, max_retries, type(exc).__name__, url, wait,
             )
             if attempt < max_retries:
                 time.sleep(wait)
 
     raise requests.RequestException(
-        f"{url} の取得に {max_retries} 回失敗しました"
+        f"{url} の取得に {max_retries} 回失敗しました (最終HTTP={last_status})"
     ) from last_exc
 
 
