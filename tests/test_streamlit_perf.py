@@ -12,14 +12,18 @@ web_streamlit/app.py パフォーマンス最適化のコードレベル検証�
 from __future__ import annotations
 
 import ast
+import sqlite3
 import sys
 import types
 import unittest.mock as mock
+from collections.abc import Iterator
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
 import pytest
+
+from src.database.schema import DDL_STATEMENTS
 
 ROOT = Path(__file__).resolve().parent.parent
 APP_PATH = ROOT / "web_streamlit" / "app.py"
@@ -156,6 +160,200 @@ class TestSourceStructure:
         bias_idx = self.src.find("render_bias_panel(selected_race_id)")
         stab_idx = self.src.find("stab_prov, stab_final")
         assert bias_idx < stab_idx, "render_bias_panel がサブタブ宣言より後ろにある"
+
+    # ── 逆統合（サマリータブ）の構造検証 ───────────────────────
+    @pytest.mark.parametrize(
+        "fn_name",
+        [
+            "fetch_recent_results",
+            "fetch_top_ev_horses",
+            "fetch_model_roi",
+            "_latest_prediction_date",
+            "render_home",
+        ],
+    )
+    def test_home_functions_defined(self, fn_name: str):
+        assert f"def {fn_name}(" in self.src
+
+    def test_main_has_summary_tab(self):
+        """トップタブに「🏠 サマリー」が追加され 4 タブ構成であること。"""
+        assert '"🏠 サマリー"' in self.src
+
+    def test_render_home_called_once(self):
+        """サマリータブ内で render_home() が 1 回だけ呼ばれること（def 定義を除く）。"""
+        assert self.src.count("with main_tabs[0]:\n        render_home()") == 1
+
+    def test_model_roi_uses_canonical_accounting(self):
+        """モデル別ROIが正準ロジック compute_live_roi を再利用していること。"""
+        assert "from src.ml.pnl_accounting import compute_live_roi" in self.src
+        assert "compute_live_roi(_get_conn()" in self.src
+
+
+# ════════════════════════════════════════════════════════════════════
+#  4. サマリータブ データ関数テスト（旧 src/web/dashboard.py から移植）
+# ════════════════════════════════════════════════════════════════════
+
+
+def _seed_conn() -> sqlite3.Connection:
+    """DDL_STATEMENTS で構築した空の一時 DB 接続を返す（row_factory=Row）。"""
+    c = sqlite3.connect(":memory:")
+    c.row_factory = sqlite3.Row
+    for ddl in DDL_STATEMENTS:
+        c.execute(ddl)
+    return c
+
+
+def _rid(venue: str, race_no: int) -> str:
+    """テスト用 race_id（12桁・SUBSTR(5,2)=会場 / SUBSTR(11,2)=R）を生成する。"""
+    return f"2026{venue}0101{race_no:02d}"
+
+
+def _add_race(c: sqlite3.Connection, race_id: str, date: str, name: str = "テストS") -> None:
+    c.execute(
+        "INSERT INTO races(race_id, race_name, date, venue, race_number, "
+        "distance, surface) VALUES(?,?,?,?,?,?,?)",
+        (race_id, name, date, "東京", int(race_id[10:12]), 1600, "芝"),
+    )
+
+
+def _add_result(c: sqlite3.Connection, race_id: str, name: str, rank: int | None,
+                num: int, odds: float | None = None, pop: int | None = None) -> None:
+    c.execute(
+        "INSERT INTO race_results(race_id, horse_name, rank, horse_number, "
+        "win_odds, popularity) VALUES(?,?,?,?,?,?)",
+        (race_id, name, rank, num, odds, pop),
+    )
+
+
+def _add_pred(c: sqlite3.Connection, race_id: str, model: str, bet: str, ev: float,
+              horse: str, *, superseded: int = 0, score: float = 1.0) -> int:
+    cur = c.execute(
+        "INSERT INTO predictions(race_id, model_type, bet_type, confidence, "
+        "expected_value, is_superseded) VALUES(?,?,?,0.5,?,?)",
+        (race_id, model, bet, ev, superseded),
+    )
+    pid = int(cur.lastrowid or 0)
+    c.execute(
+        "INSERT INTO prediction_horses(prediction_id, horse_name, predicted_rank, "
+        "model_score, ev_score) VALUES(?,?,1,?,?)",
+        (pid, horse, score, ev),
+    )
+    return pid
+
+
+def _add_pred_result(c: sqlite3.Connection, pid: int, hit: int, payout: float,
+                     profit: float) -> None:
+    c.execute(
+        "INSERT INTO prediction_results(prediction_id, is_hit, payout, profit) "
+        "VALUES(?,?,?,?)",
+        (pid, hit, payout, profit),
+    )
+
+
+class TestHomeDataFunctions:
+    """fetch_recent_results / fetch_top_ev_horses / fetch_model_roi の振る舞い検証。
+
+    app._get_conn を一時 DB に差し替え、実 SQL を検証する。
+    """
+
+    @pytest.fixture()
+    def conn(self) -> Iterator[sqlite3.Connection]:
+        c = _seed_conn()
+        yield c
+        c.close()
+
+    @pytest.fixture(autouse=True)
+    def _wire(self, app, conn, monkeypatch):
+        monkeypatch.setattr(app, "_get_conn", lambda: conn)
+        self.app = app
+        self.c = conn
+
+    # ── fetch_recent_results ──────────────────────────────────
+    def test_recent_results_newest_first(self):
+        _add_race(self.c, _rid("05", 11), "2026-05-30", "古いS")
+        _add_result(self.c, _rid("05", 11), "オールド", 1, 5, 3.2, 1)
+        _add_race(self.c, _rid("06", 11), "2026-05-31", "新しいS")
+        _add_result(self.c, _rid("06", 11), "ニュー", 1, 7, 8.4, 4)
+        self.c.commit()
+
+        df = self.app.fetch_recent_results(limit=10)
+        assert len(df) == 2
+        assert df.iloc[0]["date"] == "2026-05-31"
+        assert df.iloc[0]["winner"] == "ニュー"
+
+    def test_recent_results_excludes_no_winner(self):
+        _add_race(self.c, _rid("05", 1), "2026-05-31")
+        _add_result(self.c, _rid("05", 1), "勝ち馬", 1, 3, 2.0, 1)
+        _add_race(self.c, _rid("05", 2), "2026-05-31")
+        _add_result(self.c, _rid("05", 2), "中止馬", None, 4)
+        self.c.commit()
+
+        df = self.app.fetch_recent_results(limit=10)
+        assert set(df["winner"]) == {"勝ち馬"}
+
+    def test_recent_results_respects_limit(self):
+        for i in range(5):
+            _add_race(self.c, _rid("05", i + 1), "2026-05-31")
+            _add_result(self.c, _rid("05", i + 1), f"馬{i}", 1, i + 1, 2.0, 1)
+        self.c.commit()
+
+        assert len(self.app.fetch_recent_results(limit=3)) == 3
+
+    # ── fetch_top_ev_horses ───────────────────────────────────
+    def test_top_ev_horses_sorted_by_ev_desc(self):
+        _add_race(self.c, _rid("05", 11), "2026-05-31")
+        _add_race(self.c, _rid("06", 11), "2026-05-31")
+        _add_pred(self.c, _rid("05", 11), "本命(直前)", "単勝", 1.20, "低EV馬")
+        _add_pred(self.c, _rid("06", 11), "Pure_EV_Edge", "複勝", 1.85, "高EV馬")
+        self.c.commit()
+
+        df = self.app.fetch_top_ev_horses(target_date="2026-05-31", limit=10)
+        assert list(df["horse_name"]) == ["高EV馬", "低EV馬"]
+
+    def test_top_ev_horses_excludes_superseded(self):
+        _add_race(self.c, _rid("05", 11), "2026-05-31")
+        _add_pred(self.c, _rid("05", 11), "本命(直前)", "単勝", 2.5, "無効馬", superseded=1)
+        _add_pred(self.c, _rid("05", 11), "卍(直前)", "複勝", 1.3, "有効馬")
+        self.c.commit()
+
+        df = self.app.fetch_top_ev_horses(target_date="2026-05-31", limit=10)
+        assert list(df["horse_name"]) == ["有効馬"]
+
+    def test_top_ev_horses_defaults_to_latest_date(self):
+        _add_race(self.c, _rid("05", 11), "2026-05-30")
+        _add_race(self.c, _rid("06", 11), "2026-05-31")
+        _add_pred(self.c, _rid("05", 11), "本命(直前)", "単勝", 3.0, "昨日の馬")
+        _add_pred(self.c, _rid("06", 11), "本命(直前)", "単勝", 1.1, "今日の馬")
+        self.c.commit()
+
+        df = self.app.fetch_top_ev_horses(limit=10)
+        assert list(df["horse_name"]) == ["今日の馬"]
+
+    # ── fetch_model_roi ───────────────────────────────────────
+    def test_model_roi_per_model(self):
+        _add_race(self.c, _rid("05", 11), "2026-05-31")
+        pid = _add_pred(self.c, _rid("05", 11), "本命(直前)", "単勝", 1.5, "勝ち馬")
+        _add_pred_result(self.c, pid, 1, 250.0, 150.0)  # cost=100, ROI=250%
+        self.c.commit()
+
+        df = self.app.fetch_model_roi(live_only=True)
+        row = df[df["model_type"] == "本命(直前)"]
+        assert len(row) == 1
+        assert float(row.iloc[0]["roi"]) == 250.0
+        assert float(row.iloc[0]["hit_rate"]) == 100.0
+
+    def test_model_roi_excludes_appreciation_models(self):
+        _add_race(self.c, _rid("05", 11), "2026-05-31")
+        pid = _add_pred(self.c, _rid("05", 11), "Oracle(直前)", "単勝", 1.5, "観賞馬")
+        _add_pred_result(self.c, pid, 0, 0.0, -100.0)
+        self.c.commit()
+
+        df = self.app.fetch_model_roi(live_only=True)
+        assert df.empty or "Oracle(直前)" not in set(df["model_type"])
+
+    def test_model_roi_empty_when_no_results(self):
+        df = self.app.fetch_model_roi(live_only=True)
+        assert df.empty
 
 
 # ════════════════════════════════════════════════════════════════════

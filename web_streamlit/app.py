@@ -34,6 +34,7 @@ if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
 from src.database.init_db import get_db_path
+from src.ml.pnl_accounting import compute_live_roi
 
 # ── 定数 ────────────────────────────────────────────────────────────
 _JYO: dict[str, str] = {
@@ -568,7 +569,7 @@ def _kelly_simulate_core(
         bankroll += profit
         if bankroll > peak:
             peak = bankroll
-        dd = (peak - bankroll) / peak if peak > 0.0 else 0.0
+        dd = np.float64((peak - bankroll) / peak if peak > 0.0 else 0.0)
         if dd > max_dd:
             max_dd = dd
         br_arr[i + 1] = bankroll
@@ -1289,6 +1290,216 @@ def render_hit_performance() -> None:
 
 
 # ╔══════════════════════════════════════════════════════════════════╗
+# ║  サマリー（ホーム）— 直近結果 / 本日EV上位 / モデル別ROI          ║
+# ╚══════════════════════════════════════════════════════════════════╝
+# 旧 src/web/dashboard.py の独自機能をこの正本へ逆統合（2026-06-01）。
+# 既存の app.py 流儀（_df/_q + @st.cache_data + テストデータ除外フィルタ）に合わせる。
+
+
+@st.cache_data(ttl=300)
+def fetch_recent_results(limit: int = 20) -> pd.DataFrame:
+    """直近の確定レース（1着馬判明済み）を新しい日付順で返す。
+
+    競走中止（rank NULL/0）や未確定レースは 1 着不在のため自動的に除外される。
+    JRA 正規会場（01〜10）かつ文字化けしていない race_id のみ。
+    """
+    return _df("""
+        SELECT
+            r.race_id,
+            r.date,
+            SUBSTR(r.race_id, 5, 2)                  AS venue_code,
+            CAST(SUBSTR(r.race_id, 11, 2) AS INTEGER) AS race_number,
+            r.race_name,
+            rr.horse_name                            AS winner,
+            rr.horse_number,
+            rr.win_odds,
+            rr.popularity
+        FROM races r
+        JOIN race_results rr
+          ON rr.race_id = r.race_id AND rr.rank = 1
+        WHERE r.race_id LIKE '20__________'
+          AND SUBSTR(r.race_id, 5, 2) BETWEEN '01' AND '10'
+        ORDER BY r.date DESC, venue_code, race_number DESC
+        LIMIT ?
+    """, (limit,))
+
+
+def _latest_prediction_date() -> str | None:
+    """有効な予想（is_superseded=0・EV>0・正規会場）が存在する最新レース日を返す。"""
+    rows = _q("""
+        SELECT MAX(r.date) AS d
+        FROM predictions p
+        JOIN races r ON r.race_id = p.race_id
+        WHERE COALESCE(p.is_superseded, 0) = 0
+          AND p.expected_value > 0
+          AND SUBSTR(p.race_id, 5, 2) BETWEEN '01' AND '10'
+    """)
+    d = rows[0]["d"] if rows else None
+    return str(d) if d else None
+
+
+@st.cache_data(ttl=60)
+def fetch_top_ev_horses(target_date: str | None = None, limit: int = 20) -> pd.DataFrame:
+    """指定日（未指定なら最新予想日）の予想を期待値の高い順で返す。
+
+    1 予想（1レース×1モデル×1券種）につき最有力馬（model_score 最大・
+    同点なら predicted_rank 最小）の 1 頭を代表として 1 行返す。
+    is_superseded=1（再推論で無効化）と EV<=0 は除外する。
+    """
+    if target_date is None:
+        target_date = _latest_prediction_date()
+    if not target_date:
+        return pd.DataFrame()
+    return _df("""
+        SELECT race_id, venue_code, race_number, model_type, bet_type,
+               confidence, expected_value, horse_name, ev_score
+        FROM (
+            SELECT
+                p.race_id,
+                SUBSTR(p.race_id, 5, 2)                   AS venue_code,
+                CAST(SUBSTR(p.race_id, 11, 2) AS INTEGER) AS race_number,
+                p.model_type, p.bet_type, p.confidence, p.expected_value,
+                ph.horse_name, ph.ev_score,
+                ROW_NUMBER() OVER (
+                    PARTITION BY p.id
+                    ORDER BY ph.model_score DESC, ph.predicted_rank ASC
+                ) AS rn
+            FROM predictions p
+            JOIN races r ON r.race_id = p.race_id
+            LEFT JOIN prediction_horses ph ON ph.prediction_id = p.id
+            WHERE r.date = ?
+              AND COALESCE(p.is_superseded, 0) = 0
+              AND p.expected_value > 0
+              AND SUBSTR(p.race_id, 5, 2) BETWEEN '01' AND '10'
+        )
+        WHERE rn = 1
+        ORDER BY expected_value DESC, race_number
+        LIMIT ?
+    """, (target_date, limit))
+
+
+@st.cache_data(ttl=300)
+def fetch_model_roi(live_only: bool = True) -> pd.DataFrame:
+    """モデル別の確定 ROI を返す（正準ロジック compute_live_roi を再利用）。
+
+    `recommended_bet` 基準の旧集計（単価不統一バグあり）ではなく、
+    真コスト = payout - profit 基準で集計する pnl_accounting を使う。
+    is_superseded 除外・実弾フィルタ込み。各行: model_type / n / roi /
+    hit_rate / payout / cost / profit。
+    """
+    summary = compute_live_roi(_get_conn(), live_only=live_only)
+    by_model: dict[str, dict[str, Any]] = summary.get("by_model", {})
+    rows = [{"model_type": m, **stats} for m, stats in by_model.items()]
+    rows.sort(key=lambda r: r["n"], reverse=True)
+    return pd.DataFrame(rows) if rows else pd.DataFrame()
+
+
+def _roi_bar(roi_df: pd.DataFrame, value_col: str, title: str, *, balance_line: bool) -> go.Figure:
+    """モデル別の横棒グラフ（ROI または的中率）を構築する。"""
+    ordered = roi_df.sort_values(value_col)
+    vals = ordered[value_col].tolist()
+    labels = ordered["model_type"].tolist()
+    if balance_line:
+        colors = ["#00ff88" if v >= 100.0 else "#ff3366" for v in vals]
+    else:
+        colors = ["#00c8ff"] * len(vals)
+    fig = go.Figure(go.Bar(
+        x=vals, y=labels, orientation="h", marker_color=colors,
+        text=[f"{v:.1f}%" for v in vals], textposition="outside",
+    ))
+    if balance_line:
+        fig.add_vline(x=100.0, line_dash="dash", line_color="#ffd700",
+                      annotation_text="損益分岐 100%", annotation_position="top")
+    fig.update_layout(title=title, template="plotly_dark",
+                      height=max(320, 46 * len(labels) + 120),
+                      margin=dict(l=10, r=40, t=50, b=30),
+                      xaxis_title="%", yaxis_title="モデル")
+    return fig
+
+
+def render_home() -> None:
+    """サマリータブ: 直近結果・本日のEV上位馬・モデル別ROI を一望する。"""
+    st.markdown("## 🏠 サマリー")
+
+    col_l, col_r = st.columns(2)
+
+    # ── 直近レース結果 ──
+    with col_l:
+        st.markdown("#### 📋 直近レース結果")
+        rdf = fetch_recent_results(limit=20)
+        if rdf.empty:
+            st.info("確定済みレース結果がまだありません。")
+        else:
+            disp = pd.DataFrame({
+                "日付":    rdf["date"],
+                "会場":    rdf["venue_code"].map(lambda c: _JYO.get(c, c)),
+                "R":       rdf["race_number"],
+                "レース名": rdf["race_name"].map(_safe_race_name),
+                "1着":     rdf["winner"],
+                "単勝":    pd.to_numeric(rdf["win_odds"], errors="coerce").map(
+                    lambda x: f"{x:.1f}" if pd.notna(x) else "—"),
+                "人気":    rdf["popularity"],
+            })
+            st.dataframe(disp, use_container_width=True, hide_index=True,
+                         height=min(60 + len(disp) * 36, 640))
+
+    # ── 本日（最新予想日）のEV上位馬 ──
+    with col_r:
+        latest = _latest_prediction_date()
+        st.markdown(f"#### ⭐ EV上位馬{f'（{latest}）' if latest else ''}")
+        edf = fetch_top_ev_horses(limit=20)
+        if edf.empty:
+            st.info("有効な予想がまだありません。")
+        else:
+            disp = pd.DataFrame({
+                "会場":    edf["venue_code"].map(lambda c: _JYO.get(c, c)),
+                "R":       edf["race_number"],
+                "モデル":  edf["model_type"],
+                "券種":    edf["bet_type"],
+                "馬":      edf["horse_name"],
+                "EV":      pd.to_numeric(edf["expected_value"], errors="coerce").map(
+                    lambda x: f"🔥 {x:.2f}" if pd.notna(x) and x >= 1.0
+                    else (f"{x:.2f}" if pd.notna(x) else "—")),
+                "信頼度":  pd.to_numeric(edf["confidence"], errors="coerce").map(
+                    lambda x: f"{x*100:.0f}%" if pd.notna(x) else "—"),
+            })
+            st.dataframe(disp, use_container_width=True, hide_index=True,
+                         height=min(60 + len(disp) * 36, 640))
+
+    st.divider()
+
+    # ── モデル別 ROI（実弾・正準会計）──
+    st.markdown("### 📈 モデル別パフォーマンス（実弾・真コスト基準）")
+    roi_df = fetch_model_roi(live_only=True)
+    if roi_df.empty:
+        st.warning("集計対象の確定実績がありません。")
+        return
+
+    total_payout = float(roi_df["payout"].sum())
+    total_cost   = float(roi_df["cost"].sum())
+    total_n      = int(roi_df["n"].sum())
+    overall_roi  = (100.0 * total_payout / total_cost) if total_cost > 0 else 0.0
+    m1, m2, m3 = st.columns(3)
+    m1.metric("総ベット数", f"{total_n:,}")
+    m2.metric("総回収率",   f"{overall_roi:.1f}%")
+    m3.metric("総損益",     f"¥{total_payout - total_cost:,.0f}")
+
+    g1, g2 = st.columns(2)
+    with g1:
+        st.plotly_chart(_roi_bar(roi_df, "roi", "モデル別 回収率（ROI）", balance_line=True),
+                        use_container_width=True)
+    with g2:
+        st.plotly_chart(_roi_bar(roi_df, "hit_rate", "モデル別 的中率", balance_line=False),
+                        use_container_width=True)
+
+    tbl = roi_df.rename(columns={
+        "model_type": "モデル", "n": "ベット数", "roi": "ROI(%)",
+        "hit_rate": "的中率(%)", "payout": "払戻", "cost": "コスト", "profit": "損益",
+    })
+    st.dataframe(tbl, use_container_width=True, hide_index=True)
+
+
+# ╔══════════════════════════════════════════════════════════════════╗
 # ║  メインアプリ                                                     ║
 # ╚══════════════════════════════════════════════════════════════════╝
 
@@ -1336,12 +1547,18 @@ def main() -> None:
     st.divider()
 
     # ── トップレベルタブ（メインナビゲーション） ──────────────
-    main_tabs = st.tabs(["🏇 レース分析", "📈 Analytics", "🎯 的中実績"])
+    main_tabs = st.tabs(["🏠 サマリー", "🏇 レース分析", "📈 Analytics", "🎯 的中実績"])
+
+    # ══════════════════════════════════════════════════════════
+    #  Tab 0: サマリー（直近結果 / 本日EV上位 / モデル別ROI）
+    # ══════════════════════════════════════════════════════════
+    with main_tabs[0]:
+        render_home()
 
     # ══════════════════════════════════════════════════════════
     #  Tab 1: レース分析
     # ══════════════════════════════════════════════════════════
-    with main_tabs[0]:
+    with main_tabs[1]:
         # ── 上部ナビゲーション（日付・会場・レース） ──────────
         st.markdown('<div class="top-nav-container">', unsafe_allow_html=True)
         nav_c1, nav_c2, nav_c3 = st.columns([2, 2, 4])
@@ -1465,13 +1682,13 @@ def main() -> None:
     # ══════════════════════════════════════════════════════════
     #  Tab 2: Analytics
     # ══════════════════════════════════════════════════════════
-    with main_tabs[1]:
+    with main_tabs[2]:
         render_analytics()
 
     # ══════════════════════════════════════════════════════════
     #  Tab 3: 的中実績
     # ══════════════════════════════════════════════════════════
-    with main_tabs[2]:
+    with main_tabs[3]:
         render_hit_performance()
 
 
