@@ -234,7 +234,10 @@ src/
   notification/  # Discord / LINE / X 自動通知
   ops/           # 自動再学習トリガー・データ同期・Git 操作
 scripts/
-  scheduler.py   # 週次スケジューラー（常駐プロセス）
+  today_auto_runner.py # 【本番常駐】週次オートパイロット（--continuous）。金夜同期→土日監視→週次レポート→翌週まで自動スリープ
+  watchdog.py          # 【本番常駐】自己修復番犬。オッズ欠損監視→JVLink再起動＋再同期
+  scheduler.py         # 週次スケジューラ（schedule方式）。※現在は不使用の排他代替。autopilotと同時起動禁止
+  bat/                 # 無人運用バッチ（start_umalogi.bat / stop_umalogi.bat / start_scheduler_mode.bat / README_BAT.md）
 data/
   umalogi.db     # SQLite メインDB
   models/        # 訓練済みモデル (.pkl)
@@ -244,6 +247,41 @@ web/             # Next.js フロントエンド（ダークUI）
   skills/        # エージェントが参照するドメイン知識
   agents/        # Subagent の役割定義
 ```
+
+### ⚠️ 本番稼働アーキテクチャ（2026-06-01 実態同期・AIエージェント必読）
+
+> **このブロックは「現在の真の稼働実態」を記す唯一の正典である。**
+> **本ファイル内の他の記述・コード内コメント・過去ドキュメントと矛盾する場合は、必ず本ブロックを正とする。**
+> **環境を誤認したまま起動・停止・改修すると、二重自動運転や本番停止を招く。着手前に必ず読むこと。**
+
+#### 常駐プロセス（本番で実際に動いているもの）
+
+| プロセス | 起動コマンド | 役割 |
+|---|---|---|
+| **オートパイロット** | `py scripts/today_auto_runner.py --continuous` | 週次自律運転の中核。金曜夜のデータ同期＋暫定予想 → 土日の直前予想/結果速報の監視ループ → 日曜の週次レポート → 翌週金曜まで自動スリープを、人手ゼロで回す。 |
+| **ウォッチドッグ** | `py scripts/watchdog.py --interval 5` | 自己修復番犬。当日レースのオッズ欠損を監視し、検知時に JVLink 再起動＋データ再同期を段階的に実行。 |
+| **ダッシュボード** | `py -m streamlit run web_streamlit/app.py --server.port 8501` | 成果可視化 Streamlit UI。**正本は `web_streamlit/app.py` 唯一**（`src/web/dashboard.py` は逆統合により廃止済・存在しない）。|
+
+#### ワンクリック起動・停止（Windows）
+
+- **起動**: `scripts/bat/start_umalogi.bat` … 上記3プロセスを別ウィンドウで非同期起動（二重起動ガード付き）。
+- **停止**: `scripts/bat/stop_umalogi.bat` … Name が python 系 かつ 当該スクリプトを実行中の PID のみを安全停止（全 Python 一括 kill はしない）。
+- 詳細手順・PC起動時の自動実行登録は `scripts/bat/README_BAT.md` を参照。
+
+#### ⚠️ `scheduler.py` についての誤認防止（最重要）
+
+- `scripts/scheduler.py`（schedule ライブラリ方式）は **現在の本番では稼働していない**。
+- `scheduler.py` と `today_auto_runner.py --continuous` は **同一の週次自動運転の「排他的 2 実装」**。
+  `scheduler.py` は内部で所定時刻に `today_auto_runner` を起動する設計のため、
+  **両方を同時に常駐させてはならない**（二重予想・二重 Discord 通知・`predictions` 汚染を招く）。
+- `scheduler.py` 方式に切り替えたい場合のみ `scripts/bat/start_scheduler_mode.bat`
+  （オートパイロットとの排他ガード付き）を用いる。
+- ⇒ 本番の起動・停止・プロセス調査では、まず **`today_auto_runner.py` と `watchdog.py`** を対象とすること。
+
+#### Python 実行環境
+
+- 仮想環境（venv / Poetry）は **不使用**。システムの `py` ランチャーを使う（`py` = 64bit Python 3.14 が既定、`py -3.14-32` = JVLink COM 用 32bit）。
+- 常駐プロセスは 64bit で動作し、JVLink COM 操作（32bit 制約）のみ内部で 32bit Python（`py -3-32`）の subprocess に委譲する。バッチ側で 32bit を意識する必要はない。
 
 ### 主要テーブル
 
@@ -365,7 +403,8 @@ JVLink COM は CP932 バイト列を Pattern 1（各バイトを U+0000-U+00FF �
 
 ### 17. JVLink ダイアログ自動突破ハンドラー（2026-05-23 策定）
 
-`scheduler.py` が起動すると、`src/ops/jvlink_dialog_handler.py` が **daemon スレッド** として自動起動し、
+JVLink を操作するエントリポイント（**本番常駐の `today_auto_runner.py`**・各 JVLink 同期スクリプト・
+`scheduler.py` 等）が起動すると、`src/ops/jvlink_dialog_handler.py` が **daemon スレッド** として自動起動し、
 JVLink / 設定 / セットアップ系ダイアログを **0.3 秒以内** に自動クリックして消去する。
 
 #### アーキテクチャ（三重安全網）
@@ -393,7 +432,7 @@ JVLink / 設定 / セットアップ系ダイアログを **0.3 秒以内** に�
 | ファイル | 役割 |
 |---------|------|
 | `src/ops/jvlink_dialog_handler.py` | ハンドラー本体（`start_dialog_handler()` / `stop_dialog_handler()`） |
-| `scripts/scheduler.py:run_daemon()` | daemon スレッドとして起動（`start_dialog_handler(interval=0.3)`） |
+| `scripts/today_auto_runner.py`（本番）／`scripts/scheduler.py`／各JVLink同期スクリプト | JVLink操作前に daemon スレッドとして起動（`start_dialog_handler(interval=0.3)`） |
 | `tests/test_jvlink_dialog_handler.py` | 26 件のユニットテスト（win32 stub 使用） |
 
 #### 注意事項
