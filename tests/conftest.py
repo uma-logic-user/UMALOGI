@@ -49,6 +49,8 @@ def _ensure_schema_db() -> None:
 
     db_path.parent.mkdir(parents=True, exist_ok=True)
     # init_db() が全 DDL / マイグレーションを実行し、空でも全テーブルを生成する。
+    import sqlite3
+
     from src.database.init_db import init_db
 
     conn = init_db(db_path)
@@ -60,6 +62,14 @@ def _ensure_schema_db() -> None:
     from src.database.migrations.add_training_grade import migrate as _add_grade
 
     _add_grade(str(db_path))
+
+    # WAL を使わず DELETE ジャーナルにする。テスト中に多数のテストが同じ空 DB へ
+    # 書き込むと WAL が肥大し DB/WAL 不整合(DatabaseError)を起こすため、
+    # 隔離環境のテスト用 DB はチェックポイント不要の DELETE モードで安定させる。
+    jconn = sqlite3.connect(db_path)
+    jconn.execute("PRAGMA journal_mode=DELETE")
+    jconn.commit()
+    jconn.close()
 
 
 @pytest.fixture(scope="session", autouse=True)
