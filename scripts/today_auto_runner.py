@@ -39,6 +39,7 @@ import os
 import re
 import subprocess
 import sys
+import threading
 import time
 from concurrent.futures import Future, ThreadPoolExecutor
 from logging.handlers import RotatingFileHandler
@@ -777,6 +778,40 @@ def _send_weekly_report(sunday_date: str, dry_run: bool) -> None:
         logger.error("週次レポート生成に失敗しました: %s", e)
 
 
+def _kick_post_race_analysis(sunday_date: str, dry_run: bool) -> None:
+    """週次レポート直後に敗因分析(Phase-A)を非同期・best-effort で起動する。
+
+    既存の週次サイクルを絶対に巻き添えにしないための徹底:
+      - **daemon スレッド**で非同期実行（メインループは即スリープへ移行できる）。
+      - 内部を try/except で完全内包し、例外は握り潰してログのみ（ループを止めない）。
+      - DB は post_race_analyzer 側の **読み取り専用(mode=ro)** 接続のみを使用。
+      - 当該週末（土〜日）の EV>=1.0 不的中レースに絞って分析する。
+
+    Args:
+        sunday_date: 日曜日付 "YYYYMMDD"。
+        dry_run:     True なら起動しない。
+    """
+    if dry_run:
+        logger.info("[DRY-RUN] 敗因分析(Phase-A)起動をスキップします")
+        return
+
+    def _worker() -> None:
+        try:
+            from src.analysis.post_race_analyzer import run_post_race_analysis
+
+            sunday_dt = datetime.datetime.strptime(sunday_date, "%Y%m%d")
+            saturday_str = (sunday_dt - datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+            run_post_race_analysis(since=saturday_str)
+            logger.info("敗因分析(Phase-A) 送信完了 (since=%s)", saturday_str)
+        except Exception as e:  # 週次サイクルを止めない（best-effort）
+            logger.error("敗因分析(Phase-A)に失敗しました（無視して継続）: %s", e)
+
+    threading.Thread(
+        target=_worker, name="post_race_analysis", daemon=True
+    ).start()
+    logger.info("敗因分析(Phase-A)を非同期起動しました")
+
+
 # ─────────────────────────────────────────────────────────────────────────────
 # 1日分の監視ループ
 # ─────────────────────────────────────────────────────────────────────────────
@@ -1253,6 +1288,9 @@ def main() -> None:
                 # ── 日曜完了後: 週次レポート → 次週金曜まで長期スリープ ──
                 logger.info("日曜監視完了。週次収支レポートを生成します...")
                 _send_weekly_report(target_date, dry_run)
+                # 週次レポート直後に敗因分析(Phase-A)を非同期・best-effort で起動
+                # （失敗してもスリープ移行を妨げない）。
+                _kick_post_race_analysis(target_date, dry_run)
 
                 next_friday_ev = _next_friday_evening(now)
                 logger.info(

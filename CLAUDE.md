@@ -133,6 +133,68 @@ ALPHA / 卍 / 本命 モデルのロジック・特徴量・データ取得ル�
   コードが書かれただけでは「対応中」のまま維持すること。
 ```
 
+### 条項6: バージョン運用フロー — コミット必須3点セット（2026-06-01 策定）
+
+```
+【セマンティックバージョニングの採用】
+  本プロジェクトは Semantic Versioning 2.0.0（MAJOR.MINOR.PATCH）に準拠する。
+  現行バージョンはリポジトリルートの `VERSION` ファイル（単一行）が単一真実源。
+
+  - MAJOR: 後方互換を破る変更（DBスキーマ破壊的変更 / 実弾ポリシー根本変更 / モデル目的変数の変更）
+  - MINOR: 後方互換な機能追加（新モデル / 新特徴量 / 新通知チャネル）
+  - PATCH: バグ修正・リファクタ・ドキュメント修正（挙動互換）
+
+【コミット必須3点セット】
+  Claude Code が「コードの追加・修正・バグフィックス」を行いコミットする際は、
+  以下の3点を必ずセットで実施すること。1つでも欠けたコミットは不可とする。
+
+  1. `VERSION` の更新
+     - 変更の種別に応じて MAJOR/MINOR/PATCH を繰り上げる。
+     - 挙動に影響しない軽微な変更で据え置く場合も、その判断を 2. のログに明記する。
+
+  2. `docs/maintenance/MAINTENANCE_LOG.md` への追記
+     - 最新が上になるよう先頭へ新エントリを追加する。
+     - 必須欄: 修正者(Claude) / 修正日 / バージョン(旧→新) / 種別 / 実施内容 / 影響範囲 / 検証 / ロールバック / 関連。
+     - フォーマットは同ファイル冒頭の雛形に従う。
+
+  3. `docs/spec/` の該当バージョン仕様書の更新
+     - アーキテクチャ・データフロー・モジュール構成に影響する変更時は、
+       現行 `docs/spec/ARCHITECTURE_vX.Y.Z.md` を改訂（更新履歴へ追記）するか、
+       MAJOR/MINOR の繰り上げ時は後継バージョンのファイルを新設する。
+     - あわせて自動同期版 `docs/SYSTEM_ARCHITECTURE.md` も整合させる。
+
+【コミットメッセージ規約】
+  - 1行目に `type(scope): 要約 (vX.Y.Z)` を推奨（type: feat/fix/refactor/docs/ops/perf）。
+  - 末尾に Co-Authored-By: Claude を付与する。
+```
+
+### 条項7: 仕様書追従ポリシー（Documentation-Follows-Code）（2026-06-01 策定）
+
+```
+【絶対原則】
+  すべてのコード変更は、関連する仕様書・ドキュメントの加筆・修正と「不可分のセット」である。
+  「コードだけ変えてドキュメントは後で」は許されない。ドキュメントとコードの乖離は
+  「技術的負債」ではなく「障害」として扱う（条項3の全変更への拡張）。
+
+【追従対象マッピング】
+  コード変更の領域ごとに、同一コミット内で更新すべきドキュメントを以下に定める。
+
+  | 変更領域 | 追従必須ドキュメント |
+  |---|---|
+  | モデル/特徴量/買い目ロジック | docs/1_prediction_logic.md, docs/5_ml_roadmap.md, docs/spec/ARCHITECTURE_v*.md |
+  | スケジューラ/常駐プロセス/バッチ | docs/2_automation_schedule.md, docs/manual/OPERATIONS_MANUAL.md, docs/spec/ARCHITECTURE_v*.md |
+  | DBスキーマ/データソース | docs/3_data_schema.md, .claude/skills/db_schema.md, docs/spec/ARCHITECTURE_v*.md |
+  | Discord通知/ダッシュボードUI | docs/4_ui_design.md, docs/manual/USER_MANUAL.md |
+  | バグ修正/障害対応/手動リカバリ | docs/6_special_notes.md |
+  | 弱点/技術的負債の進捗 | docs/7_weakness_ledger.md（W-NNN） |
+  | 全変更（横断タイムライン・バージョン） | docs/maintenance/MAINTENANCE_LOG.md, VERSION（条項6） |
+
+【作業完了の定義】
+  「コード変更 + テスト通過 + 上記ドキュメント追従 + 条項6の3点セット」が
+  すべて揃って初めて1単位の作業が完了とみなされる。
+  コミット前に該当ドキュメントを開き、変更事実を反映したか自己チェックすること。
+```
+
 ---
 
 ## ⚠️ 最重要ルール：ドキュメント保守の絶対遵守
