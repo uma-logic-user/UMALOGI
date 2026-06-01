@@ -352,8 +352,8 @@ def _parse_race_header(soup: BeautifulSoup) -> tuple[str, int, str, str, str, st
             continue
         mt = re.search(r"(\d{1,2}:\d{2})\s*発走", tag.get_text(" ", strip=True))
         if mt:
-            h, m = mt.group(1).split(":")
-            post_time = f"{int(h):02d}:{int(m):02d}"
+            hh, mm = mt.group(1).split(":")
+            post_time = f"{int(hh):02d}:{int(mm):02d}"
             break
 
     return race_name, distance, surface, track_direction, weather, condition, post_time

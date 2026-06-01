@@ -156,7 +156,8 @@ def _parse_training_page(soup: BeautifulSoup, race_id: str) -> list[TrainingReco
         horse_link = block.find("a", href=re.compile(r"/horse/\w+"))
         if not horse_link:
             continue
-        m = re.search(r"/horse/(\w+)", horse_link.get("href", ""))
+        # find("a", ...) は Tag を返すが mypy は Tag|NavigableString と見るため抑制。
+        m = re.search(r"/horse/(\w+)", str(horse_link.get("href", "")))  # type: ignore[union-attr]
         if not m:
             continue
         horse_id = m.group(1)
@@ -229,7 +230,7 @@ def _parse_training_table_layout(
             # 馬名行の検出
             horse_link = tr.find("a", href=re.compile(r"/horse/\w+"))
             if horse_link:
-                m = re.search(r"/horse/(\w+)", horse_link.get("href", ""))
+                m = re.search(r"/horse/(\w+)", str(horse_link.get("href", "")))  # type: ignore[union-attr]
                 if m:
                     current_horse_id = m.group(1)
                     current_horse_name = horse_link.get_text(strip=True)

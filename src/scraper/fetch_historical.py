@@ -133,7 +133,7 @@ def fetch_race_ids_for_date(
     # race_id=XXXXXXXXXXXX を含む全リンクから抽出
     for a in soup.find_all("a", href=True):
         href = a.get("href", "")
-        rid = _extract_race_id(href)
+        rid = _extract_race_id(str(href))
         if rid and rid not in seen:
             seen.add(rid)
             race_ids.append(rid)
@@ -199,8 +199,8 @@ def fetch_race_ids_by_month(
     seen: set[str] = set()
 
     for a in soup.select("a[href*='/race/']"):
-        href = a.get("href", "")
-        rid = _extract_race_id(href)
+        href = str(a.get("href", ""))
+        rid = _extract_race_id(str(href))
         if rid and rid not in seen:
             seen.add(rid)
             race_ids.append(rid)
@@ -497,7 +497,7 @@ def _collect_race_ids_by_weekends(
                 html = _fetch(url, delay=delay)
                 soup = BeautifulSoup(html, "lxml")
                 for a in soup.select("a[href*='/race/']"):
-                    rid = _extract_race_id(a.get("href", ""))
+                    rid = _extract_race_id(str(a.get("href", "")))
                     if rid and rid not in seen:
                         seen.add(rid)
                         all_ids.append(rid)

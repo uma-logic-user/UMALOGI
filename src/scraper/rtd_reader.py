@@ -38,6 +38,10 @@ import logging
 import zlib
 from dataclasses import dataclass
 from pathlib import Path
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from src.scraper.entry_table import HorseOdds
 
 logger = logging.getLogger(__name__)
 

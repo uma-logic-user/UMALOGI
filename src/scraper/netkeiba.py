@@ -325,8 +325,8 @@ def _parse_race_info(soup: BeautifulSoup, race_id: str) -> RaceInfo:
     # div.RaceList_Item02 に "3歳未勝利 09:45発走 / ダ1700m ..." のような形式
     name_tag = soup.select_one("div.RaceList_Item02, div.RaceName, h1.RaceName")
     if name_tag:
-        race_name = name_tag.get_text(" ", strip=True).split("発走")[0].strip().split()
-        race_name = race_name[0] if race_name else race_name
+        _name_parts = name_tag.get_text(" ", strip=True).split("発走")[0].strip().split()
+        race_name = _name_parts[0] if _name_parts else ""
 
     # --- 距離・天候・馬場（RaceData01）---
     # 例: "09:45発走 / ダ1700m (右) / 天候:晴 / 馬場:良"

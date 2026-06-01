@@ -55,7 +55,7 @@ import subprocess
 import sys
 import time
 from pathlib import Path
-from typing import Optional
+from typing import Any, Optional
 
 logger = logging.getLogger(__name__)
 
@@ -786,7 +786,8 @@ class JVLinkClient:
 
     def __init__(self, sid: str) -> None:
         self._sid = sid
-        self._jvl = None  # COM オブジェクト
+        # JVLink COM オブジェクト（接続前は None・実行時は win32com ディスパッチ）。
+        self._jvl: Any = None
         self._buff = " " * self._BUFF_SIZE
         self._fname = " " * 256
 
@@ -1448,7 +1449,7 @@ def _parse_jg(raw: bytes) -> Optional[dict]:
 
     venue = _JYO_NAMES.get(jyo_code, jyo_code)
     race_no = int(race_no_str)
-    blood_id = _str(raw, _JG_BLOOD_ID).strip()
+    blood_id: str | None = _str(raw, _JG_BLOOD_ID).strip()
     if not blood_id or not blood_id.isdigit() or blood_id.lstrip("0") == "":
         blood_id = None
 
