@@ -35,6 +35,25 @@ _FALLBACK_WIN_CAP = 0.6
 # combo 生確率の上限（確率の性質を保持）
 _COMBO_CAP = 0.99
 
+# W-066 大穴 EV 暴騰の安全装置（推論時・再学習不要）。
+# Isotonic 較正器は ev_score のみで P(win) を返し odds を考慮しないため、
+# 大穴（高オッズ）にも中位馬と同じ確率を付与し EV=P×odds が暴騰する
+# （例: P=0.145 × 49.7倍 = EV 7.2）。市場相対の上限 P <= EV_SANITY_CAP/odds で
+# EV を頭打ちにする（単勝 EV がこれを超えるのは較正誤差であり実エッジではない）。
+EV_SANITY_CAP: float = 2.0
+
+
+def _apply_ev_sanity_cap(prob: float, odds: float) -> float:
+    """P(win) を市場相対上限 ``EV_SANITY_CAP/odds`` で頭打ちにする（W-066）。
+
+    これにより EV=prob*odds <= EV_SANITY_CAP が保証される。odds<=1.0 の不正値は
+    そのまま返す（呼び出し側で別途棄却される）。人気馬では閾値が大きく発火しない。
+    """
+    o = float(odds)
+    if o <= 1.0:
+        return prob
+    return min(prob, EV_SANITY_CAP / o)
+
 # 学習済み較正器のメモリキャッシュ（None=未ロード, False=ファイルなし）
 # 型: IsotonicRegression インスタンス（サードパーティ・stub なし）のため Any 扱い。
 _win_cal_cache: Any = None
@@ -72,14 +91,17 @@ def calibrate_win_prob(ev_score: float, odds: float) -> float:
     if cal is not None:
         try:
             p = float(cal.predict([float(ev_score)])[0])
-            return min(max(p, 0.0), 0.999)
+            # W-066: 大穴 EV 暴騰を防ぐ市場相対サニティキャップを適用。
+            return _apply_ev_sanity_cap(min(max(p, 0.0), 0.999), odds)
         except Exception as exc:  # noqa: BLE001
             logger.debug("卍較正器 predict 失敗（フォールバック）: %s", exc)
 
     # フォールバック: implied prob = EV / odds を上限 _FALLBACK_WIN_CAP で頭打ち
     o = max(float(odds), 1.0)
     implied = float(ev_score) / o if o > 1.0 else float(ev_score) / 10.0
-    return min(max(implied, 0.0), _FALLBACK_WIN_CAP)
+    p = min(max(implied, 0.0), _FALLBACK_WIN_CAP)
+    # W-066: フォールバック経路にも同じサニティキャップを適用（一貫性）。
+    return _apply_ev_sanity_cap(p, odds)
 
 
 def calibrate_combo_prob(raw_prob: float) -> float:

@@ -40,6 +40,9 @@ _DEFAULT_PLACE_SCALE: float = 0.33  # 複勝場 odds 推定係数（win_odds か
 # 規律（原理的・結果非依存）: 較正確率がこれ未満の大穴は除外。単勝の実エッジは有力馬に在る。
 _PROB_FLOOR: float = 0.06
 _MAX_BETS_PER_RACE: int = 2
+# W-066 大穴足切り: 単勝オッズがこれを超える馬は実弾対象外（較正が不可信頼な領域）。
+# Layer1(calibrate_win_prob の EV サニティキャップ)に加えた二重防御。
+MAX_LIVE_WIN_ODDS: float = 50.0
 
 
 @dataclass
@@ -53,6 +56,7 @@ class PureEVConfig:
     weekly_loss_limit_pct: float = 0.12  # 1週損失上限
     prob_floor: float = _PROB_FLOOR
     max_bets_per_race: int = _MAX_BETS_PER_RACE
+    max_win_odds: float = MAX_LIVE_WIN_ODDS  # W-066 大穴足切り上限
 
 
 @dataclass
@@ -194,6 +198,9 @@ def select_pure_ev_bets(
         except (KeyError, TypeError, ValueError):
             continue
         if num < 1 or odds <= 1.0:
+            continue
+        # W-066: 非現実的な大穴は較正が不可信頼で EV 暴騰の温床 → 実弾足切り。
+        if odds > cfg.max_win_odds:
             continue
         name = str(h.get("horse_name", num))
         mev = float(h.get("manji_ev_score", 0.0) or 0.0)
