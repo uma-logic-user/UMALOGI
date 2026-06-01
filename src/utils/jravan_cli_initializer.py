@@ -41,8 +41,8 @@ from pathlib import Path
 
 # ── UTF-8 強制 ─────────────────────────────────────────────────────────────
 try:
-    sys.stdout.reconfigure(encoding="utf-8", line_buffering=True)  # type: ignore[attr-defined]
-    sys.stderr.reconfigure(encoding="utf-8", line_buffering=True)  # type: ignore[attr-defined]
+    sys.stdout.reconfigure(encoding="utf-8", line_buffering=True)  # type: ignore[union-attr]
+    sys.stderr.reconfigure(encoding="utf-8", line_buffering=True)  # type: ignore[union-attr]
 except Exception:
     try:
         sys.stdout = io.TextIOWrapper(

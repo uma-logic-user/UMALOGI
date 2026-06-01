@@ -327,7 +327,7 @@ def main() -> int:
 
     # Windows CP932 端末でも絵文字を安全に出力する（規則6）
     try:
-        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")  # type: ignore[union-attr]
     except Exception:
         pass
 

@@ -110,7 +110,7 @@ def main(argv: list[str] | None = None) -> None:
     Args:
         argv: パース対象の引数リスト。``None`` の場合は ``sys.argv[1:]`` を使用。
     """
-    sys.stdout.reconfigure(encoding="utf-8")  # type: ignore[attr-defined]
+    sys.stdout.reconfigure(encoding="utf-8")  # type: ignore[union-attr]
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s %(levelname)s %(name)s: %(message)s",

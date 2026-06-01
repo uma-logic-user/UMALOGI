@@ -175,7 +175,7 @@ def _run_vacuum(conn: sqlite3.Connection) -> tuple[int, int]:
 
     after = db_path.stat().st_size if db_path.exists() else 0
 
-    conn.isolation_level = ""  # デフォルトに戻す
+    conn.isolation_level = ""  # type: ignore[assignment]  # sqlite3 既定（自動コミット制御）に戻す
     logger.info("VACUUM 完了: %.1f 秒", elapsed)
 
     return before, after

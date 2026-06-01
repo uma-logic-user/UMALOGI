@@ -157,7 +157,10 @@ class DiscordNotifier(BaseNotifier):
         return _s(s)
 
     def _post(
-        self, url: str, payload: dict[str, Any], image_path: str | None = None
+        self,
+        url: str,
+        payload: dict[str, Any],
+        image_path: str | Path | None = None,
     ) -> bool:
         """指定 URL に payload を POST する。失敗しても例外を外に出さない。
 

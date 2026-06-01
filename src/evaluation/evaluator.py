@@ -386,8 +386,8 @@ def _is_hit(
         # 予想2頭が両方とも3着以内に入っているか
         if len(predicted_names) < 2:
             return False
-        top3 = {n for n, r in ranked if r in _PLACE_RANKS}
-        return len(pset & top3) >= 2
+        top3_set = {n for n, r in ranked if r in _PLACE_RANKS}
+        return len(pset & top3_set) >= 2
 
     elif bet_type == "馬単":
         # 着順まで完全一致（1着=1番目, 2着=2番目）
@@ -402,8 +402,8 @@ def _is_hit(
         # 同着対応: 3着同着（rank=3が2頭）でも予想3頭がいずれかtop3に入れば的中
         if len(predicted_names) < 3:
             return False
-        top3 = {n for n, r in ranked if r in {1, 2, 3}}
-        return len(pset) == 3 and pset.issubset(top3)
+        top3_set = {n for n, r in ranked if r in {1, 2, 3}}
+        return len(pset) == 3 and pset.issubset(top3_set)
 
     elif bet_type == "三連単":
         if len(predicted_names) < 3:

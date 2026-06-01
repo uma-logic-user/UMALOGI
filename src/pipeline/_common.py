@@ -103,7 +103,7 @@ def build_output_json(
 
     def _int_or_none(v: object) -> int | None:
         """値を int に変換する。None・NaN・0 の場合は None を返す。"""
-        return int(v) if (v is not None and pd.notna(v) and v != 0) else None  # type: ignore[arg-type]
+        return int(v) if (v is not None and pd.notna(v) and v != 0) else None  # type: ignore[call-overload]
 
     def _float_or_none(v: object) -> float | None:
         """値を float に変換する。None・NaN の場合は None を返す。"""

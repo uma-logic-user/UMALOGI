@@ -200,7 +200,7 @@ def _ctx_opts(session: bool = False) -> dict[str, object]:
     """
     w = random.choice([1280, 1366, 1440, 1920])
     h = random.choice([768, 900, 1024, 1080])
-    opts = dict(
+    opts: dict[str, object] = dict(
         user_agent=_UA,
         viewport={"width": w, "height": h},
         locale="ja-JP",

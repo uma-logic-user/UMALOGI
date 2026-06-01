@@ -255,7 +255,9 @@ class TwitterNotifier(BaseNotifier):
         """プレーンテキストを X に投稿する（weekend_batch から直接呼ぶ用）。"""
         from .base import NotifyMessage
 
-        NotifyMessage(title="", body=text, image_path=image_path or "")
+        NotifyMessage(
+            title="", body=text, image_path=Path(image_path) if image_path else None
+        )
         # title+body で重複改行が入るため text を直接使う
         if not _TWEEPY_AVAILABLE or self._client is None:
             return False
