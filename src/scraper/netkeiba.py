@@ -53,6 +53,7 @@ _COL_TIME = 7
 _COL_MARGIN = 8
 _COL_POPULARITY = 9
 _COL_WIN_ODDS = 10
+_COL_LAST_3F = 11  # 上がり3F（後半3ハロン）秒。W-001 次期特徴量用
 _COL_TRAINER = 13
 _COL_HORSE_WEIGHT = 14
 
@@ -88,6 +89,7 @@ class HorseResult:
     win_odds: Optional[float]  # 単勝オッズ
     horse_weight: Optional[int]  # 馬体重 (kg)
     horse_weight_diff: Optional[int]  # 馬体重増減（例: +2, -4）
+    last_3f: Optional[float] = None  # 上がり3F秒（後半3ハロン）。W-001 次期特徴量用
     pedigree: PedigreeInfo = field(default_factory=PedigreeInfo)
 
 
@@ -572,6 +574,9 @@ def fetch_race_results(
                 else None,
                 horse_weight=_parse_int(hw_raw),
                 horse_weight_diff=_parse_weight_diff(hw_raw),
+                last_3f=_parse_float(cells[_COL_LAST_3F])
+                if len(cells) > _COL_LAST_3F
+                else None,
                 pedigree=ped,
             )
         )

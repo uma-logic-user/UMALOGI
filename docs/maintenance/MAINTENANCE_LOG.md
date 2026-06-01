@@ -34,6 +34,20 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-01 — W-001 加速力スコア(上がり3F)＋PCI のデータ基盤構築
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-opus-4-8) |
+| **修正日** | 2026-06-01 |
+| **バージョン** | `1.2.0` → **`1.3.0`**（MINOR・次期学習用の新規モジュール＋additive列追加。**本番推論挙動は不変**＝v1.2.0 凍結を維持） |
+| **種別** | 機能追加（次期特徴量のデータ基盤・概念実証） |
+| **実施内容** | **調査**: レース上がり3Fは DB/RTD/JVLink 未保存（JVLink `time_3f` は調教専用）。取得源は netkeiba 結果列[11]「上がり」だが従来は破棄。<br>**構築**: ①additive migration `race_results.last_3f REAL`（冪等・nullable）②`netkeiba.py` に `_COL_LAST_3F=11`／`HorseResult.last_3f`／列[11]パース追加＋`fetch_race_result._upsert_race_results` に `COALESCE` 保存（非破壊）③新規 `src/features/acceleration.py`（`parse_time_to_seconds`／`compute_pci` 西田式準拠／`acceleration_score` レース内z-score／`build_acceleration_features` 並行計算・last_3f 未取得でも安全に NaN/0 を返す）。<br>**本番非破壊**: `FEATURE_COLS`(69列) は一切不変。新特徴量は再学習で明示的に取り込むまで推論に非影響（ガードテストで担保）。 |
+| **影響範囲** | `VERSION`(1.2.0→1.3.0), `src/features/acceleration.py`(新規), `src/features/__init__.py`(新規), `src/scraper/netkeiba.py`, `scripts/fetch_race_result.py`, `src/database/init_db.py`, `tests/test_acceleration_features.py`(新規13件), `docs/7_weakness_ledger.md`(W-001 🟡), `docs/3_data_schema.md`, `docs/1_prediction_logic.md`, `docs/spec/ARCHITECTURE_v1.0.0.md` |
+| **検証** | `tests/test_acceleration_features.py` 13件（タイム解析/PCI既知値52.94・基準50・方向性/加速力score/縮退/DB並行計算 with・without last_3f/空/**FEATURE_COLS 69列不変ガード**）＋全スイート回帰。mypy 0・ruff クリーン。migration を本番DBに冪等適用（last_3f 列追加・20列・既存推論に非影響）。 |
+| **ロールバック** | 本コミットを `git revert`。`last_3f` 列は additive のため残存しても無害（NULL）。VERSION を 1.2.0 へ戻す。 |
+| **関連** | W-001（残: 実バックフィル→蓄積→再学習→FEATURE_COLS 正式統合は次期 MINOR）/ W-002 PCI（同列を共有）/ 条項6・7 |
+
 ### 2026-06-01 — FukushoElite の期待値ベース本番統合（W-020）
 
 | 項目 | 内容 |

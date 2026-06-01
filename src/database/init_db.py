@@ -474,6 +474,9 @@ def _migrate_race_results_new_columns(conn: sqlite3.Connection) -> None:
         ),
         # JRA-VAN 血統登録番号（10桁）。training_times.horse_id との JOIN キー
         ("blood_id", "ALTER TABLE race_results ADD COLUMN blood_id          TEXT"),
+        # W-001: 上がり3F（後半3ハロン）タイム秒。netkeiba 結果列[11]由来・additive。
+        # 次期学習用(加速力スコア/PCI)の並行蓄積用で、本番 FEATURE_COLS は不変。
+        ("last_3f", "ALTER TABLE race_results ADD COLUMN last_3f           REAL"),
     ]
     with conn:
         for col_name, sql in additions:

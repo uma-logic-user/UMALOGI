@@ -151,8 +151,8 @@ def _upsert_race_results(conn, race_id: str, race_info) -> int:
                      gate_number, horse_number,
                      sex_age, weight_carried, jockey, trainer,
                      finish_time, margin, popularity, win_odds,
-                     horse_weight, horse_weight_diff)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                     horse_weight, horse_weight_diff, last_3f)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 ON CONFLICT(race_id, horse_name) DO UPDATE SET
                     rank              = excluded.rank,
                     gate_number       = excluded.gate_number,
@@ -164,7 +164,8 @@ def _upsert_race_results(conn, race_id: str, race_info) -> int:
                     horse_weight      = excluded.horse_weight,
                     horse_weight_diff = excluded.horse_weight_diff,
                     jockey            = COALESCE(excluded.jockey, jockey),
-                    trainer           = COALESCE(excluded.trainer, trainer)
+                    trainer           = COALESCE(excluded.trainer, trainer),
+                    last_3f           = COALESCE(excluded.last_3f, last_3f)
                 """,
                 (
                     race_id,
@@ -183,6 +184,7 @@ def _upsert_race_results(conn, race_id: str, race_info) -> int:
                     getattr(r, "win_odds", None),
                     getattr(r, "horse_weight", None),
                     getattr(r, "horse_weight_diff", None),
+                    getattr(r, "last_3f", None),
                 ),
             )
             saved += 1
