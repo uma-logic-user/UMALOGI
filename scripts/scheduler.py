@@ -1675,6 +1675,43 @@ def job_weekly_backup() -> None:
         logger.error("週次バックアップ失敗: %s", exc)
 
 
+def job_nightly_maintenance() -> None:
+    """毎日 04:00: 事前バックアップ → VACUUM/ANALYZE で DB を最適化する深夜保守ジョブ。
+
+    VACUUM は DB ファイル全体を再構築する大規模操作のため、CLAUDE.md 条項4 に従い
+    必ず先に backup_db() でホットバックアップを取得してから最適化を実行する。
+    レース取得・予想・Hit Flash と干渉しない深夜帯（04:00）に実行する。
+    """
+    try:
+        from src.ops.backup import backup_db
+        from src.ops.db_optimize import optimize_db
+
+        # ① 事前バックアップ（条項4: DB 大規模操作前の必須バックアップ）
+        backup_path = backup_db()
+        logger.info("[深夜保守] 事前バックアップ完了: %s", backup_path)
+
+        # ② VACUUM + ANALYZE による最適化
+        result = optimize_db()
+        saved_mb = int(result["saved_bytes"]) / 1_048_576
+        logger.info(
+            "[深夜保守] DB 最適化完了: VACUUM=%s ANALYZE=%s 削減=%.1fMB %.1f秒",
+            result["vacuumed"],
+            result["analyzed"],
+            saved_mb,
+            result["elapsed_sec"],
+        )
+        if not result["ok"]:
+            _send_discord(
+                "⚠️ [深夜保守] DB 最適化中に VACUUM/ANALYZE エラーが発生しました"
+                "（バックアップは取得済み）。ログを確認してください。"
+            )
+    except Exception as exc:
+        logger.error("[深夜保守] 失敗: %s", exc)
+        _send_discord(f"🚨 [深夜保守] バックアップ/DB最適化ジョブが例外終了: {exc}")
+    finally:
+        _mark_job_done("job_nightly_maintenance")
+
+
 def job_training_hillwork_scrape() -> None:
     """木・金曜 20:00: 今週末レースの坂路調教データを netkeiba から取得する。"""
     try:
@@ -1915,6 +1952,9 @@ def register_schedules() -> None:
 
     # 毎日23:00: DB バックアップ（5世代ローテーション）
     schedule.every().day.at("23:00").do(job_daily_backup)
+
+    # 毎日04:00: 深夜保守（事前バックアップ → VACUUM/ANALYZE で DB 最適化）
+    schedule.every().day.at("04:00").do(job_nightly_maintenance)
 
     # 10分毎: 発走前レースのオッズを realtime_odds へ実取得（時系列蓄積・8:00〜17:59 のみ）
     schedule.every(10).minutes.do(job_record_odds_timeseries)
