@@ -10,6 +10,7 @@
 
 | 日付 | 変更内容 |
 |------|----------|
+| 2026-06-01 | 予防監視を追加（v1.1.0・W-064/W-065）: `health_reporter` に実弾モデル別の直前生成件数(distinct race)監視を追加し、開催日に生成0件のモデルがあれば日次ヘルスを warn 昇格＋Discord 通知（Pure_EV_Edge=0 等のサイレント障害を自動検知）。`today_auto_runner` の金曜夜/土曜夜バッチに `x_scraper` 収集を subprocess 配線（収集0件/失敗時は明示アラート・`X_SCRAPER_DISABLED=1` で無効化可）。影響: src/ops/health_reporter.py, scripts/today_auto_runner.py |
 | 2026-06-01 | グランドスラム総点検: コア層(prediction/bet_generator/umanity_uploader/alpha_payout/place)の mypy エラーを 142→71 に半減（型契約の正名化＋_run_alpha_payout の return None 実バグ修正）。P&L 集計の COVERING INDEX 選択を ANALYZE で実現（§8 追記）。型契約回帰テスト23件追加（§9）。影響: src/pipeline/prediction.py, src/ml/bet_generator.py, src/ops/umanity_uploader.py, src/ml/alpha_*_model.py, src/database/init_db.py |
 
 ---

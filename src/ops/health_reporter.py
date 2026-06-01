@@ -19,9 +19,11 @@ from __future__ import annotations
 import logging
 import re
 import sqlite3
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import date
 from pathlib import Path
+
+from src.ml.bet_policy import LIVE_MODELS, base_model
 
 logger = logging.getLogger(__name__)
 
@@ -30,6 +32,9 @@ _LOG_DIR = _ROOT / "data"
 
 # Discord 通知エラーをログから拾う際のパターン（best-effort）
 _DISCORD_ERR_RE = re.compile(r"Discord.*(失敗|エラー|error)", re.IGNORECASE)
+
+# 実弾モデルの決定的な表示順（frozenset を安定ソートして固定）。W-064。
+LIVE_MODELS_ORDER: tuple[str, ...] = tuple(sorted(LIVE_MODELS))
 
 # 健全性しきい値
 _COVERAGE_CRIT = 0.90  # 予想カバー率がこれ未満 → 重大
@@ -50,9 +55,21 @@ class HealthReport:
     n_results: int  # rank あり
     n_results_missing: int  # rank 欠損
     n_discord_errors: int  # ログベース
+    # 実弾モデル別の直前予想生成件数（distinct race）。W-064 サイレント障害検知用。
+    model_counts: dict[str, int] = field(default_factory=dict)
 
     def _rate(self, n: int) -> float:
         return (n / self.n_races) if self.n_races else 0.0
+
+    @property
+    def zero_live_models(self) -> list[str]:
+        """開催日なのに直前予想を1件も生成しなかった実弾モデル名のリスト（W-064）。
+
+        非開催日（n_races=0）は誤検知を避けるため常に空を返す。
+        """
+        if not self.n_races:
+            return []
+        return [m for m in LIVE_MODELS_ORDER if self.model_counts.get(m, 0) == 0]
 
     @property
     def coverage_rate(self) -> float:
@@ -73,7 +90,11 @@ class HealthReport:
             or self.n_discord_errors > 0
         ):
             return "crit"
-        if self.odds_ge2_rate < _ODDS_HEALTH_WARN or self.n_chokuzen < self.n_races:
+        if (
+            self.odds_ge2_rate < _ODDS_HEALTH_WARN
+            or self.n_chokuzen < self.n_races
+            or self.zero_live_models  # W-064: 実弾モデルの生成0件（サイレント障害）
+        ):
             return "warn"
         return "ok"
 
@@ -161,6 +182,26 @@ def collect_health(
         if has_result:
             n_results += 1
 
+    # W-064: 実弾モデル別の直前予想生成件数（distinct race）。
+    #   model_type のサフィックス/ V2 を base_model で剥がして集計し、
+    #   開催日なのに 0 件のモデルを zero_live_models で検知できるようにする。
+    #   V1/V2 が同一レースに併存しても二重計上しないよう、base 別の
+    #   distinct race 集合で数える。
+    model_races: dict[str, set[str]] = {m: set() for m in LIVE_MODELS_ORDER}
+    if race_ids:
+        placeholders = ",".join("?" for _ in race_ids)
+        rows = conn.execute(
+            "SELECT DISTINCT model_type, race_id FROM predictions "
+            f"WHERE race_id IN ({placeholders}) "
+            "AND COALESCE(is_superseded, 0) = 0 AND model_type LIKE '%(直前)%'",
+            race_ids,
+        ).fetchall()
+        for model_type, rid in rows:
+            base = base_model(str(model_type))
+            if base in model_races:
+                model_races[base].add(str(rid))
+    model_counts: dict[str, int] = {m: len(s) for m, s in model_races.items()}
+
     return HealthReport(
         date=d,
         n_races=n_races,
@@ -172,6 +213,7 @@ def collect_health(
         n_results=n_results,
         n_results_missing=n_races - n_results,
         n_discord_errors=_count_discord_errors(d),
+        model_counts=model_counts,
     )
 
 
@@ -206,7 +248,26 @@ def format_report_fields(r: HealthReport) -> list[dict]:
             "value": f"{r.n_discord_errors} 件（ログベース）",
             "inline": True,
         },
+        {
+            "name": "🧬 実弾モデル別 直前生成件数 (W-064)",
+            "value": _format_model_counts(r),
+            "inline": False,
+        },
     ]
+
+
+def _format_model_counts(r: HealthReport) -> str:
+    """実弾モデル別の直前予想生成件数を表示し、0件モデルを ⚠️ で強調する（W-064）。"""
+    if not r.n_races:
+        return "本日は非開催日（対象なし）"
+    parts = []
+    for m in LIVE_MODELS_ORDER:
+        c = r.model_counts.get(m, 0)
+        parts.append(f"⚠️**{m}=0**" if c == 0 else f"{m}={c}")
+    line = " ／ ".join(parts)
+    if r.zero_live_models:
+        line += f"\n🚨 生成0件のサイレント障害疑い: {', '.join(r.zero_live_models)}"
+    return line
 
 
 def format_report_text(r: HealthReport) -> str:
@@ -217,7 +278,14 @@ def format_report_text(r: HealthReport) -> str:
         f"予想: {r.n_predicted}/{r.n_races}（直前 {r.n_chokuzen}）\n"
         f"オッズ時系列: 2点+ {r.n_odds_ge2} / 1点 {r.n_odds_1} / 0点 {r.n_odds_0}\n"
         f"結果: 取得 {r.n_results} / 欠損 {r.n_results_missing}\n"
-        f"Discord通知エラー: {r.n_discord_errors}"
+        f"Discord通知エラー: {r.n_discord_errors}\n"
+        f"実弾モデル別生成: "
+        + " ".join(f"{m}={r.model_counts.get(m, 0)}" for m in LIVE_MODELS_ORDER)
+        + (
+            f"\n⚠️ 生成0件: {', '.join(r.zero_live_models)}"
+            if r.zero_live_models
+            else ""
+        )
     )
 
 
@@ -295,6 +363,13 @@ def send_health_report(
         conn.close()
 
     logger.info("[ヘルスレポート]\n%s", format_report_text(report))
+    if report.zero_live_models:
+        logger.warning(
+            "[ヘルスレポート][W-064] 開催日(%s)に直前予想を1件も生成しなかった実弾モデル: %s "
+            "（サイレント障害の疑い）",
+            report.date,
+            ", ".join(report.zero_live_models),
+        )
     if ab:
         logger.info("[ヘルスレポート][A/B] %s", format_ab_text(ab))
     if dry_run:

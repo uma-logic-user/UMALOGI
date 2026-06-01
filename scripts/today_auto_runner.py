@@ -627,6 +627,71 @@ def _run_provisional(date_str: str, dry_run: bool) -> None:
         logger.error("暫定予想生成エラー date=%s: %s", date_str, exc)
 
 
+def _run_x_scraper(date_str: str, dry_run: bool) -> None:
+    """指定日の X（凄腕予想家）シグナルを収集し x_signals へ格納する（W-065）。
+
+    フェイルセーフ方針: 収集に失敗・0件の場合は x_consensus_score を**無言で 0 埋め
+    したまま放置せず**、Discord #system へ明示アラートを送る。これにより「第4ファクター
+    が常時0のデッドフィーチャー化」というサイレント障害を運用者が即座に検知できる。
+
+    Args:
+        date_str: 対象日（YYYYMMDD・オートパイロット慣習）。
+        dry_run: True なら実行しない。
+    """
+    if os.environ.get("X_SCRAPER_DISABLED") == "1":
+        logger.info("X_SCRAPER_DISABLED=1: x_scraper をスキップします (date=%s)", date_str)
+        return
+    if dry_run:
+        logger.info("[DRY-RUN] x_scraper をスキップします (date=%s)", date_str)
+        return
+
+    iso = f"{date_str[:4]}-{date_str[4:6]}-{date_str[6:8]}"
+    logger.info("x_signals 収集: %s", iso)
+    saved = -1
+    try:
+        result = subprocess.run(
+            [sys.executable, "-m", "src.scraper.x_scraper", "--date", iso],
+            cwd=str(_ROOT),
+            timeout=1800,  # 30分上限（Playwright ハング対策）
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            encoding="utf-8",
+        )
+        out = (result.stdout or "") + (result.stderr or "")
+        m = re.search(r"saved=(\d+)", out)
+        if m:
+            saved = int(m.group(1))
+        if result.returncode != 0:
+            logger.warning(
+                "x_scraper rc=%d (date=%s) stderr=%s",
+                result.returncode,
+                iso,
+                (result.stderr or "")[-500:],
+            )
+    except subprocess.TimeoutExpired:
+        logger.error("x_scraper タイムアウト (1800s) date=%s — 続行", iso)
+    except Exception as exc:  # noqa: BLE001 — 収集失敗で本処理は止めない
+        logger.error("x_scraper エラー date=%s: %s — 続行", iso, exc)
+
+    # フェイルセーフ: 0件 / 失敗（saved<=0）なら明示通知（無言の0埋めを許さない）
+    if saved <= 0:
+        logger.warning(
+            "[W-065] x_signals 収集 0件/失敗 (date=%s)。"
+            "x_consensus_score は本日 0 埋め（デッドフィーチャー）で稼働します。",
+            iso,
+        )
+        _send_discord(
+            f"⚠️ **[UMALOGI] X シグナル収集 0件/失敗** (date=`{iso}`)\n"
+            f"`x_consensus_score` が本日 0 埋め（事実上無効）になります。"
+            f"X スクレイパー（Playwright / アカウント設定 / レート制限）を確認してください。\n"
+            f"※ 一時無効化する場合は環境変数 `X_SCRAPER_DISABLED=1`。",
+            color=0xF1C40F,
+        )
+    else:
+        logger.info("x_signals 収集完了: %s 件 (date=%s)", saved, iso)
+
+
 def _run_generate_web_data(dry_run: bool) -> None:
     """Web ダッシュボード用 JSON を再生成する。"""
     if dry_run:
@@ -668,6 +733,10 @@ def _run_friday_batch(saturday_date: str, dry_run: bool) -> None:
     logger.info("=" * 60)
 
     _run_jvlink_sync(dry_run)
+    # W-065: 暫定予想の特徴量生成前に X シグナルを収集し x_consensus_score を有効化。
+    #   失敗時は _run_x_scraper 内で明示アラート（無言の 0 埋めを許さない）。
+    _run_x_scraper(saturday_date, dry_run)
+    _run_x_scraper(sunday_date, dry_run)
     _run_provisional(saturday_date, dry_run)
     _run_provisional(sunday_date, dry_run)
 
@@ -711,6 +780,7 @@ def _run_evening_fetch(next_date: str, dry_run: bool) -> None:
     logger.info("=" * 60)
 
     _run_jvlink_sync(dry_run)
+    _run_x_scraper(next_date, dry_run)  # W-065: 前夜投稿の X シグナルを収集
     _run_provisional(next_date, dry_run)
 
     logger.info("夜間バッチ完了: 翌日=%s", next_date)

@@ -20,6 +20,7 @@
 
 | 仕様Ver | 日付 | 変更内容 |
 |---------|------|----------|
+| 1.0.0→1.1.0 | 2026-06-01 | **予防監視の追加（W-064/W-065・プロダクト v1.1.0）**。①`health_reporter`（§11/§8）に実弾モデル別(本命/卍/Alpha-Payout/Pure_EV_Edge)の直前予想生成件数(distinct race)集計を追加し、開催日に生成0件の実弾モデルがあれば日次ヘルスの severity を warn へ昇格＋Discord #system 通知＝Pure_EV_Edge=0 等の「サイレント障害」を毎開催日に自動検知。②`today_auto_runner`（§4）の金曜夜/土曜夜バッチに `x_scraper` 収集を subprocess 配線し、収集0件/失敗時は `x_consensus_score` を無言0埋めせず明示アラート（`X_SCRAPER_DISABLED=1` で無効化可）。 |
 | 1.0.0 | 2026-06-01 | 初版策定。Pure_EV_Edge 完全配線 / W-057 シャドーA/B / W-058 日次ヘルスレポート / 卍 Isotonic 較正 / 単複限定ロック / 会計二重性分離 / コア層型安全化 を統合した稼働実態を凍結。本番常駐＝autopilot（`today_auto_runner.py --continuous`）＋ watchdog 構成を正式に明記。 |
 | 1.0.0 | 2026-06-01 | **フェーズA: 自己診断・敗因分析エンジン**（`src/analysis/post_race_analyzer.py`）を初版に追加。EV≥1.0 不的中レースを read-only(mode=ro) で抽出 → Claude(`claude-opus-4-8` + adaptive thinking)で敗因を言語化 → Discord 投稿。オートパイロットの **日曜・週次レポート直後** に **非同期 daemon・best-effort** で起動（既存サイクルに非干渉）。全体図・モジュールマップ・ジョブ表に反映。 |
 
