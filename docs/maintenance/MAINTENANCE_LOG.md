@@ -34,6 +34,20 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-01 — 過去データ整合性チェック・last_3f バックフィル・再シミュ基盤（v1.4.0-dev）
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-opus-4-8) |
+| **修正日** | 2026-06-01 |
+| **バージョン** | `1.3.0` → **`1.4.0-dev`**（プレリリース・再学習準備フェーズ。**本番稼働は v1.2.0 で凍結継続**＝推論挙動・FEATURE_COLS は不変） |
+| **種別** | 開発基盤（データ整合性・バックフィル・再シミュレーション自動化） |
+| **実施内容** | **①整合性チェック** `scripts/check_jravan_integrity.py`（read-only）: `races` vs `race_results`(rank確定) を月粒度で充足スキャンし結果ゼロ月/低充足月を検出、連続欠損を JVLink Setup/Update レンジに畳んで提案（自動実行はしない）。**本番DB実測で欠損検出**: 2024-07/08 が結果ゼロ、2024後半が低充足（全期間 coverage 75.3%）。<br>**②バックフィル** `scripts/bulk_backfill_features.py`（冪等）: `last_3f` が NULL かつ rank 確定のレースを期間(既定 2023-01-01〜当日)で抽出し netkeiba 再取得→`COALESCE` 保存。各レース間 sleep(既定1.2s)＋`http_client` RateLimiter の二重で負荷配慮。fetcher/sleeper 注入で非ネットワークテスト可。<br>**③再シミュ基盤** `src/features/backtest_v2.py`＋`scripts/run_backtest_v2.py`(骨子): `build_feature_cols_v2`(FEATURE_COLS を**非破壊コピー**して加速力3列を連結)・`attach_acceleration_features`(base_df 不変・左結合・欠損は NaN/0)。学習データ生成の前処理モックでモデル fit は次フェーズ。 |
+| **影響範囲** | `VERSION`(1.3.0→1.4.0-dev), `scripts/check_jravan_integrity.py`(新規), `scripts/bulk_backfill_features.py`(新規), `scripts/run_backtest_v2.py`(新規), `src/features/backtest_v2.py`(新規), `tests/test_data_pipeline_v2.py`(新規12件), `docs/2_automation_schedule.md`, `docs/3_data_schema.md`, `docs/spec/ARCHITECTURE_v1.0.0.md` |
+| **検証** | `tests/test_data_pipeline_v2.py` 12件（整合性: 欠損月検出/未来月無視/健全・バックフィル: 期間&NULL抽出/充填済スキップ/注入fetcher&sleep/dry-run/エラー継続・v2: FEATURE_COLS非破壊+3列/冪等/結合/last_3f無し安全）＋**FEATURE_COLS 69列ガード継続GREEN**＋全スイート回帰。mypy 0・ruff クリーン。本番DBで整合性スモーク（欠損実検出）＋backfill dry-run（取得なし）。DB 書き込みは行っていない（バックフィルは未実行＝dry-run のみ）。 |
+| **ロールバック** | 全て新規スクリプト/モジュール。`git revert` で復旧可。VERSION を 1.3.0 へ。 |
+| **関連** | W-001（last_3f を消費）/ W-014 歴史データ大規模取得 / 2024後半の結果欠損（要 JVLink 再取得）/ 条項4（DB操作前提案・自動実行回避）/ 条項6・7 |
+
 ### 2026-06-01 — W-001 加速力スコア(上がり3F)＋PCI のデータ基盤構築
 
 | 項目 | 内容 |

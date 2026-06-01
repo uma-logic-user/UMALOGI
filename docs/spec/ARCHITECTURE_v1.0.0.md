@@ -20,6 +20,7 @@
 
 | 仕様Ver | 日付 | 変更内容 |
 |---------|------|----------|
+| 1.3.0→1.4.0-dev | 2026-06-01 | **再学習準備フェーズ（v1.4.0-dev・本番 v1.2.0 凍結継続）**。過去データ整合性チェック(`check_jravan_integrity`・実測で2024後半の結果欠損を検出)、`last_3f` 冪等バックフィル(`bulk_backfill_features`・レート制限)、再シミュ骨子(`run_backtest_v2`＋`src/features/backtest_v2`・FEATURE_COLS を非破壊コピーして加速力3列を連結)を新設。いずれも開発用バッチで本番オートパイロット未結線・`FEATURE_COLS`(69列)不変。 |
 | 1.2.0→1.3.0 | 2026-06-01 | **W-001 加速力スコア(上がり3F)＋PCI のデータ基盤（プロダクト v1.3.0・次期学習用）**。`race_results.last_3f`(additive)＋netkeiba列[11]抽出＋新規 `src/features/acceleration.py`（PCI西田式準拠・加速力z-score・並行計算）。**`FEATURE_COLS`(69列)は不変**で稼働中v1.2.0推論に非影響（ガードテストで担保）。再学習でFEATURE_COLSへ取り込むまで本番非結線。 |
 | 1.1.1→1.2.0 | 2026-06-01 | **FukushoElite 本番統合（W-020・プロダクト v1.2.0）**。複勝特化モデルを実弾化（§1原則2の `LIVE_MODELS` に `FukushoElite` 追加＋`SELECTIVE_LIVE_MODELS` 新設＝W-064 監視の誤検知回避）。EV最優先2段ゲート（segment+edge → 統計的複勝EV≥1.05）で買い目生成し、`prediction._run_fukusho_elite()` を直前パイプラインに結線（§2/§7）。勝率/複勝率単独ベットを禁止し ROI95.4%→100%超を狙う。 |
 | 1.1.0→1.1.1 | 2026-06-01 | **大穴 EV 暴騰の安全装置（W-066・プロダクト v1.1.1）**。卍 Isotonic 較正器が `odds` を考慮せず大穴の EV=P×odds が暴騰する歪みを推論時に是正（§6/§11）。①Layer1=`calibrate_win_prob` に市場相対キャップ `P ≤ EV_SANITY_CAP(2.0)/odds`（EV 頭打ち・卍単勝＋Pure_EV を一括保護・人気馬不変）。②Layer2=`pure_ev_edge` に実弾単勝の高オッズ足切り `MAX_LIVE_WIN_ODDS=50`。再学習不要。 |
