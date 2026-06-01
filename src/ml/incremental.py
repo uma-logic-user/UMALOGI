@@ -165,7 +165,11 @@ class IncrementalTrainer:
             return {}
 
         results: dict[str, ModelVersion] = {}
-        for cls, name in [(HonmeiModel, "honmei"), (ManjiModel, "manji")]:
+        model_specs: list[tuple[type[HonmeiModel] | type[ManjiModel], str]] = [
+            (HonmeiModel, "honmei"),
+            (ManjiModel, "manji"),
+        ]
+        for cls, name in model_specs:
             version = self._incremental_fit(cls, df_new, name)
             if version:
                 results[name] = version

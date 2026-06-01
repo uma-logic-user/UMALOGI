@@ -20,7 +20,10 @@ from __future__ import annotations
 
 import logging
 import sqlite3
-from typing import Any
+from typing import TYPE_CHECKING, Any
+
+if TYPE_CHECKING:
+    from datetime import date
 
 import numpy as np
 import pandas as pd
@@ -257,7 +260,7 @@ class UScoreEngine:
             ).fetchall()
         )
 
-        def _to_date(s: str) -> "date_type":
+        def _to_date(s: str) -> "date":
             from datetime import date as _d
 
             return _d.fromisoformat(s.replace("/", "-"))

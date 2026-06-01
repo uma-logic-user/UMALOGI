@@ -14,6 +14,7 @@ import os
 import sqlite3
 from datetime import date, timedelta
 from pathlib import Path
+from typing import Any
 
 _ROOT = Path(__file__).resolve().parents[2]
 
@@ -76,7 +77,7 @@ def friday_batch(target_date: str | None = None) -> list[str]:
 
     formatted = f"{target_date[:4]}-{target_date[4:6]}-{target_date[6:8]}"
     conn = init_db()
-    race_ids: list[str] = [
+    race_ids = [
         r[0]
         for r in conn.execute(
             "SELECT race_id FROM races WHERE date = ? ORDER BY race_id",
@@ -157,7 +158,7 @@ def _safe_text(value: object) -> str:
     return value if isinstance(value, str) else ""
 
 
-def update_race_details_from_entry(conn: sqlite3.Connection, tbl: object) -> bool:
+def update_race_details_from_entry(conn: sqlite3.Connection, tbl: Any) -> bool:
     """EntryTable に含まれる distance/surface/race_name で races テーブルを更新する。
 
     distance > 0 かつ surface が空でない場合のみ UPDATE を実行する（空値による上書きを防ぐ）。
@@ -220,7 +221,7 @@ def update_race_details_from_entry(conn: sqlite3.Connection, tbl: object) -> boo
     return True
 
 
-def save_entries_to_db(conn: sqlite3.Connection, tbl: object) -> int:
+def save_entries_to_db(conn: sqlite3.Connection, tbl: Any) -> int:
     """EntryTable を entries テーブルに保存して保存件数を返す。
 
     horse_id は JVLink と netkeiba で形式が異なるため NULL で保存し、

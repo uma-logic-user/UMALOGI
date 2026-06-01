@@ -451,6 +451,7 @@ class _BaseModel:
 
     _model: Any
     _trained: bool = False
+    _filename: str = ""  # サブクラスが上書き（honmei_model / place_model / manji_model）
 
     def save(self, path: Path | None = None) -> Path:
         """モデルを pickle で保存する。

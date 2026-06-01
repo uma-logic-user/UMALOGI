@@ -350,7 +350,7 @@ def _reconcile_by_names(
         placed_count = sum(
             1
             for n in horse_names
-            if rank_map.get(n) is not None and 1 <= rank_map[n] <= 3
+            if (_r := rank_map.get(n)) is not None and 1 <= _r <= 3
         )
         if placed_count > 0:
             is_hit = True
