@@ -34,6 +34,20 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-02 — マックスプラン最終資産化（性能検証レポート・最終仕様書・堅牢性証明）
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-opus-4-8) |
+| **修正日** | 2026-06-02 |
+| **バージョン** | `1.4.0-dev`（据え置き・コード変更なし・成果物生成のみ） |
+| **種別** | ドキュメント / 性能検証 |
+| **実施内容** | 稼働中の `bulk_backfill_features`(PID37288)・オートパイロット・watchdog とのDB競合を避け、**読取専用(mode=ro)**で全期間性能を集計。①`reports/final_performance_2026.md` 新規作成（モデル別ライブ真ROI・月別推移・複勝圏的中率・最高配当ランキング）。**システム全体ライブ真ROI=80.1%（純損▲¥1,743,008）= 既知の確定真ROI80%と一致**、唯一の黒字頭は卍(直前131.8%/暫定378.2%)。②`docs/ARCHITECTURE_FINAL.md` 新規作成（Mermaidデータフロー＋推論シーケンス＋v1.2.0/v1.4.0-dev差異ロードマップ）。③堅牢性検証＝指示テスト2件は実体不在のため代替の実在近縁テスト4ファイルを実行し **69 passed**、結果と欠損箇所を `logs/critical_failure.log` へ記録。 |
+| **影響範囲** | 新規: `reports/final_performance_2026.md` / `docs/ARCHITECTURE_FINAL.md` / `logs/critical_failure.log`。コード・DB・モデルへの変更なし。 |
+| **検証** | `pytest`（test_data_pipeline_v2 / test_pipeline_prediction / test_backtest_all_models / test_models）→ **69 passed (209s)**。DB集計は読取専用接続。 |
+| **ロールバック** | 直前コミット `abc6935d`。成果物3ファイルを削除すれば原状復帰（コード非改変）。 |
+| **関連** | CLAUDE.md 条項1/3/4/6/7。データ欠損（last_3f 2024-07/08ゼロ・x_signals未配線・WIN5払戻ゼロ）。 |
+
 ### 2026-06-02 — JVLink 2024再取得を試行 → JVRead -503（深夜データ提供休止）で保留
 
 | 項目 | 内容 |
