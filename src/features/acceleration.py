@@ -90,6 +90,37 @@ def compute_pci(
     return PCI_BASELINE * overall_per_furlong / last_per_furlong
 
 
+def compute_race_pci(
+    last_3f_secs: list[float | None],
+    finish_time_secs: list[float | None],
+    distance_m: float | None,
+) -> float | None:
+    """W-002 レースレベル PCI（RPCI＝ペースチェンジ指数のレース代表値）を返す。
+
+    出走各馬の PCI（`compute_pci`）の **中央値** を採り、そのレースが前傾（ハイペース・
+    RPCI<50）か後傾（スローペース・上がり勝負・RPCI>50）かを 1 値で表す。
+
+    ⚠️ 西田式の本来形 ``50+(前3F−後3F)`` は **前半3F** を要するが、netkeiba 由来
+    データには上がり3F（後半）しか無い。そこで本実装は上がり3F・走破タイム・距離から
+    導出する比率版 PCI の中央値で **同等のペース性質** を表現する（前3F は JVLink SE の
+    HaronTimeF3 が取得可能になった段階で `50+(前3F−後3F)` 版へ拡張余地あり）。
+
+    Returns:
+        RPCI（float・中央値）。有効 PCI が無ければ None。
+    """
+    pcis = [
+        p
+        for l3, ft in zip(last_3f_secs, finish_time_secs)
+        if (p := compute_pci(l3, ft, distance_m)) is not None
+    ]
+    if not pcis:
+        return None
+    pcis.sort()
+    n = len(pcis)
+    mid = n // 2
+    return pcis[mid] if n % 2 else (pcis[mid - 1] + pcis[mid]) / 2.0
+
+
 def acceleration_score(last_3f_secs: list[float | None]) -> list[float]:
     """レース内の相対加速力スコア（上がり3Fの z-score・速いほど正）を返す。
 
@@ -128,7 +159,7 @@ def build_acceleration_features(
         columns = [horse_number, last_3f_sec, pci, acceleration_score] の DataFrame。
         出走データが無い場合は空 DataFrame。
     """
-    cols = ["horse_number", "last_3f_sec", "pci", "acceleration_score"]
+    cols = ["horse_number", "last_3f_sec", "pci", "acceleration_score", "race_pci"]
     drow = conn.execute(
         "SELECT distance FROM races WHERE race_id = ?", (race_id,)
     ).fetchone()
@@ -153,6 +184,8 @@ def build_acceleration_features(
     finish_secs = [parse_time_to_seconds(r[1]) for r in rows]
     pcis = [compute_pci(l3, ft, distance) for l3, ft in zip(last3f_secs, finish_secs)]
     accel = acceleration_score(last3f_secs)
+    # W-002: レースレベル RPCI（全馬同値・ペース文脈）
+    race_pci = compute_race_pci(last3f_secs, finish_secs, distance)
 
     return pd.DataFrame(
         {
@@ -160,5 +193,6 @@ def build_acceleration_features(
             "last_3f_sec": last3f_secs,
             "pci": pcis,
             "acceleration_score": accel,
+            "race_pci": [race_pci] * len(horse_numbers),
         }
     )

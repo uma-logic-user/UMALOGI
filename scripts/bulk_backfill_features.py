@@ -62,13 +62,40 @@ def find_backfill_targets(
     return ids[:limit] if limit else ids
 
 
+def _upsert_race_meta(conn: sqlite3.Connection, race_id: str, info: object) -> None:
+    """races のレース属性（distance/surface）が欠損(0/空)なら netkeiba 値で補填する。
+
+    PCI(W-002) は距離を要するが `races.distance` は DB 全体で未充填のことが多い。
+    last_3f バックフィルと同じ netkeiba 取得から距離も補填し、PCI 算出を可能にする。
+    既存値が有効なら上書きしない（非破壊・additive）。
+    """
+    dist = int(getattr(info, "distance", 0) or 0)
+    surface = str(getattr(info, "surface", "") or "")
+    if dist <= 0:
+        return
+    with conn:
+        conn.execute(
+            "UPDATE races SET distance = ? "
+            "WHERE race_id = ? AND (distance IS NULL OR distance = 0)",
+            (dist, race_id),
+        )
+        if surface:
+            conn.execute(
+                "UPDATE races SET surface = ? "
+                "WHERE race_id = ? AND (surface IS NULL OR surface = '')",
+                (surface, race_id),
+            )
+
+
 def _default_fetcher(race_id: str, conn: sqlite3.Connection) -> int:
-    """netkeiba から結果を取得し last_3f を含めて upsert する（既定 fetcher）。"""
+    """netkeiba から結果を取得し last_3f＋レース属性(距離等)を upsert する（既定 fetcher）。"""
     from scripts.fetch_race_result import _upsert_race_results
     from src.scraper.netkeiba import fetch_race_results
 
     info = fetch_race_results(race_id, fetch_pedigree=False)
-    return _upsert_race_results(conn, race_id, info)
+    saved = _upsert_race_results(conn, race_id, info)
+    _upsert_race_meta(conn, race_id, info)  # PCI 用に距離を補填（非破壊）
+    return saved
 
 
 def backfill_last_3f(

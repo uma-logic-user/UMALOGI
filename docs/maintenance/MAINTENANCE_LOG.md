@@ -34,6 +34,20 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-01 — W-002同時実装＋last_3f/distance実バックフィル＋暫定重要度検証（v1.4.0-dev）
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-opus-4-8) |
+| **修正日** | 2026-06-01 |
+| **バージョン** | `1.4.0-dev`（据え置き・再学習準備フェーズ。**本番 v1.2.0 凍結維持**・FEATURE_COLS 不変） |
+| **種別** | 機能追加（W-002実装）＋データ充填（実バックフィル）＋検証 |
+| **実施内容** | ①**JVLink 2024再取得**: 本環境では JVLink COM が「クラス未登録」で**実行不可**（G-Tune PC 専用）と実測判明 → `check_jravan_integrity` で欠損（2024-07/08 結果ゼロ・全期 coverage 75.3%）を再確認し JVLink Setup/Update コマンドを提示するに留めた（捏造せず）。②**W-002 PCI/RPCI 実装**: `compute_race_pci`（各馬PCIの中央値・後傾>50）新設＋`race_pci` 列、`ACCEL_FEATURE_COLS` を4列化（FEATURE_COLS_V2=73）。③**netkeibaバルク・バックフィル実実行**: 計**100レース/約1,480馬行**の last_3f を実DBへ充填（saved100/100・errors0・冪等COALESCE・間隔~2.5s をログ実証）。④**distance 欠損補填**: `races.distance` がDB全体で~0（PCI算出不能）と判明→`_upsert_race_meta` で netkeiba距離を非破壊補填（50R で distance>0）。⑤**暫定LightGBM重要度**（複勝圏・gain%・in-sample 50R）: acceleration_score **51.4%**/pci **21.7%**/last_3f_sec **14.6%**/race_pci **12.4%**＝4特徴量とも有効。 |
+| **影響範囲** | `src/features/acceleration.py`(compute_race_pci/race_pci), `src/features/backtest_v2.py`(ACCEL 4列), `scripts/bulk_backfill_features.py`(_upsert_race_meta), `scripts/run_backtest_v2.py`(実fit+importance), `tests/test_acceleration_features.py`(+RPCI3件), `tests/test_data_pipeline_v2.py`(+meta2件), `docs/7_weakness_ledger.md`(W-001/W-002 🟡), `docs/3_data_schema.md`, `docs/2_automation_schedule.md`, `docs/spec/ARCHITECTURE_v1.0.0.md`。**実DB**: race_results.last_3f 100R充填＋races.distance 50R補填（いずれも additive・既存非破壊）。 |
+| **検証** | `test_acceleration_features.py`＋`test_data_pipeline_v2.py` 全GREEN＋**FEATURE_COLS 69列ガード継続**＋全スイート回帰。mypy 0・ruff クリーン。実バックフィル saved100/100/errors0。run_backtest_v2 実LightGBM fit で重要度出力。 |
+| **ロールバック** | コードは `git revert`。実DBの last_3f/distance は additive のため `UPDATE ... SET last_3f=NULL` 等で戻せるが、正データのため保持推奨。 |
+| **関連** | W-001/W-002（残: full backfill ~6,200R・OOS・FEATURE_COLS統合）/ W-014（JVLink歴史データ）/ 2024 distance欠損（JVLink再取得で根治）/ 条項4・6・7 |
+
 ### 2026-06-01 — 過去データ整合性チェック・last_3f バックフィル・再シミュ基盤（v1.4.0-dev）
 
 | 項目 | 内容 |

@@ -10,7 +10,11 @@ import sqlite3
 import pandas as pd
 import pytest
 
-from scripts.bulk_backfill_features import backfill_last_3f, find_backfill_targets
+from scripts.bulk_backfill_features import (
+    _upsert_race_meta,
+    backfill_last_3f,
+    find_backfill_targets,
+)
 from scripts.check_jravan_integrity import scan_integrity
 from src.features.backtest_v2 import (
     ACCEL_FEATURE_COLS,
@@ -131,6 +135,34 @@ def test_backfill_uses_injected_fetcher_and_sleeps() -> None:
     assert all(s >= 1.0 for s in slept)
 
 
+class _FakeInfo:
+    def __init__(self, distance: int, surface: str = "") -> None:
+        self.distance = distance
+        self.surface = surface
+
+
+def test_upsert_race_meta_fills_missing_distance() -> None:
+    """distance が 0/NULL のとき netkeiba 値で補填（PCI 用）・既存有効値は非破壊。"""
+    conn = sqlite3.connect(":memory:")
+    _schema(conn)
+    conn.execute("INSERT INTO races VALUES ('R1', '2025-05-01', '東京', 0)")
+    conn.execute("INSERT INTO races VALUES ('R2', '2025-05-01', '東京', 1600)")
+    conn.commit()
+    _upsert_race_meta(conn, "R1", _FakeInfo(2000))
+    _upsert_race_meta(conn, "R2", _FakeInfo(9999))  # 既存1600は上書きしない
+    assert conn.execute("SELECT distance FROM races WHERE race_id='R1'").fetchone()[0] == 2000
+    assert conn.execute("SELECT distance FROM races WHERE race_id='R2'").fetchone()[0] == 1600
+
+
+def test_upsert_race_meta_ignores_invalid_distance() -> None:
+    conn = sqlite3.connect(":memory:")
+    _schema(conn)
+    conn.execute("INSERT INTO races VALUES ('R1', '2025-05-01', '東京', 0)")
+    conn.commit()
+    _upsert_race_meta(conn, "R1", _FakeInfo(0))  # 取得値も無効 → 何もしない
+    assert conn.execute("SELECT distance FROM races WHERE race_id='R1'").fetchone()[0] == 0
+
+
 def test_backfill_dry_run_does_not_fetch() -> None:
     conn = _backfill_conn()
     called = []
@@ -166,10 +198,11 @@ def test_feature_cols_v2_appends_without_mutating_base() -> None:
     # 本番 FEATURE_COLS は不変（コピーされ変更されていない）
     assert FEATURE_COLS == base
     assert len(FEATURE_COLS) == 69
-    # v2 = 本番 + 加速力3列
+    # v2 = 本番 + 加速力特徴量（W-001 3列 + W-002 race_pci）
     assert v2[: len(FEATURE_COLS)] == list(FEATURE_COLS)
     assert v2[len(FEATURE_COLS) :] == ACCEL_FEATURE_COLS
-    assert len(v2) == 69 + 3
+    assert "race_pci" in ACCEL_FEATURE_COLS  # W-002
+    assert len(v2) == 69 + len(ACCEL_FEATURE_COLS)
 
 
 def test_feature_cols_v2_idempotent_no_dup() -> None:

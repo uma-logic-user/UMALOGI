@@ -20,6 +20,7 @@
 
 | 仕様Ver | 日付 | 変更内容 |
 |---------|------|----------|
+| 1.4.0-dev | 2026-06-01 | **W-002 PCI/RPCI 実装＋実バックフィル＋暫定重要度検証（v1.4.0-dev）**。`compute_race_pci`(RPCI=各馬PCI中央値)を追加し `ACCEL_FEATURE_COLS` を4列化(FEATURE_COLS_V2=73)。netkeibaバルクで last_3f を100R実充填＋`races.distance` 欠損(DB全体~0)を補填。暫定LightGBM(複勝圏gain%)で acceleration_score 51.4%/pci 21.7%/last_3f 14.6%/race_pci 12.4% を確認。JVLink 2024再取得は本環境COM未登録で不可(G-Tune PC専用)。**FEATURE_COLS(69)不変**。 |
 | 1.3.0→1.4.0-dev | 2026-06-01 | **再学習準備フェーズ（v1.4.0-dev・本番 v1.2.0 凍結継続）**。過去データ整合性チェック(`check_jravan_integrity`・実測で2024後半の結果欠損を検出)、`last_3f` 冪等バックフィル(`bulk_backfill_features`・レート制限)、再シミュ骨子(`run_backtest_v2`＋`src/features/backtest_v2`・FEATURE_COLS を非破壊コピーして加速力3列を連結)を新設。いずれも開発用バッチで本番オートパイロット未結線・`FEATURE_COLS`(69列)不変。 |
 | 1.2.0→1.3.0 | 2026-06-01 | **W-001 加速力スコア(上がり3F)＋PCI のデータ基盤（プロダクト v1.3.0・次期学習用）**。`race_results.last_3f`(additive)＋netkeiba列[11]抽出＋新規 `src/features/acceleration.py`（PCI西田式準拠・加速力z-score・並行計算）。**`FEATURE_COLS`(69列)は不変**で稼働中v1.2.0推論に非影響（ガードテストで担保）。再学習でFEATURE_COLSへ取り込むまで本番非結線。 |
 | 1.1.1→1.2.0 | 2026-06-01 | **FukushoElite 本番統合（W-020・プロダクト v1.2.0）**。複勝特化モデルを実弾化（§1原則2の `LIVE_MODELS` に `FukushoElite` 追加＋`SELECTIVE_LIVE_MODELS` 新設＝W-064 監視の誤検知回避）。EV最優先2段ゲート（segment+edge → 統計的複勝EV≥1.05）で買い目生成し、`prediction._run_fukusho_elite()` を直前パイプラインに結線（§2/§7）。勝率/複勝率単独ベットを禁止し ROI95.4%→100%超を狙う。 |

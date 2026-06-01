@@ -61,6 +61,39 @@ def assemble_v2_frame(
     return pd.concat(frames, ignore_index=True)
 
 
+def fit_and_report_importance(df: pd.DataFrame) -> dict[str, float] | None:
+    """新特徴量(W-001/W-002)で暫定 LightGBM を fit し Feature Importance を返す。
+
+    target = is_place（rank<=3）。新特徴量 [last_3f_sec, pci, acceleration_score,
+    race_pci] が複勝圏内予測に寄与するかを gain importance で評価する。
+    充填行が少ない/lightgbm 不在の場合は None。
+    """
+    feats = ["last_3f_sec", "pci", "acceleration_score", "race_pci"]
+    use = df.dropna(subset=["last_3f_sec", "rank"]).copy()
+    if len(use) < 30:
+        return None
+    for c in feats:
+        use[c] = pd.to_numeric(use[c], errors="coerce")
+    use = use.dropna(subset=["pci", "race_pci"])
+    if len(use) < 30 or use["rank"].nunique() < 2:
+        return None
+    y = (use["rank"] <= 3).astype(int)
+    x = use[feats].fillna(0.0)
+    try:
+        import lightgbm as lgb
+
+        model = lgb.LGBMClassifier(
+            n_estimators=120, max_depth=4, importance_type="gain", verbose=-1
+        )
+        model.fit(x, y)
+    except Exception as exc:  # noqa: BLE001
+        print(f"  (LightGBM fit スキップ: {exc})")
+        return None
+    imp = {f: float(v) for f, v in zip(feats, model.feature_importances_)}
+    total = sum(imp.values()) or 1.0
+    return {f: 100.0 * v / total for f, v in imp.items()}
+
+
 def main() -> int:
     try:
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")  # type: ignore[union-attr]
@@ -102,9 +135,22 @@ def main() -> int:
     print(f"対象レース               : {len(race_ids)}")
     print(f"組立行数                 : {len(df)}")
     if not df.empty:
-        have = [c for c in ("last_3f_sec", "pci", "acceleration_score") if c in df.columns]
+        have = [
+            c
+            for c in ("last_3f_sec", "pci", "acceleration_score", "race_pci")
+            if c in df.columns
+        ]
         print(f"加速力特徴量列           : {have}")
-        print(f"last_3f 充填率           : {df['last_3f_sec'].notna().mean() * 100:.0f}%")
+        fill = df["last_3f_sec"].notna().mean() * 100
+        print(f"last_3f 充填率           : {fill:.0f}%")
+        print("-" * 60)
+        print("暫定 LightGBM Feature Importance（target=複勝圏 rank<=3・gain%）:")
+        imp = fit_and_report_importance(df)
+        if imp:
+            for f, pct in sorted(imp.items(), key=lambda kv: -kv[1]):
+                print(f"  {f:20s}: {pct:5.1f}%")
+        else:
+            print("  （充填データ不足のため fit スキップ。バックフィル後に再実行）")
     print("※ 本番モデル(v1.2.0)には非結線。次フェーズで再学習に採用予定。")
     return 0
 

@@ -14,6 +14,7 @@ from src.features.acceleration import (
     acceleration_score,
     build_acceleration_features,
     compute_pci,
+    compute_race_pci,
     parse_time_to_seconds,
 )
 
@@ -62,6 +63,26 @@ def test_pci_invalid_inputs_return_none() -> None:
     assert compute_pci(34.0, 96.0, None) is None
     assert compute_pci(34.0, 96.0, 0) is None
     assert compute_pci(34.0, 96.0, 400) is None  # 距離 < 後半3F(600m)
+
+
+# ── W-002 レースレベル PCI（RPCI） ─────────────────────────────────────────
+def test_race_pci_is_median_of_field() -> None:
+    # 3頭・全員 distance1600/finish96/上がり[34,36,38] → 各PCI の中央値（36の馬）
+    last3f = [34.0, 36.0, 38.0]
+    finish = [96.0, 96.0, 96.0]
+    rpci = compute_race_pci(last3f, finish, 1600)
+    mid = compute_pci(36.0, 96.0, 1600)
+    assert rpci == pytest.approx(mid, abs=1e-9)
+
+
+def test_race_pci_slow_pace_above_baseline() -> None:
+    # 全馬が上がり速い（小さい）＝後傾（上がり勝負）→ RPCI > 50
+    rpci = compute_race_pci([33.0, 33.5, 34.0], [96.0, 96.0, 96.0], 1600)
+    assert rpci is not None and rpci > PCI_BASELINE
+
+
+def test_race_pci_none_when_no_valid() -> None:
+    assert compute_race_pci([None, None], [None, None], 1600) is None
 
 
 # ── 加速力スコア ────────────────────────────────────────────────────────────

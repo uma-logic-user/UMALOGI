@@ -17,7 +17,13 @@ import pandas as pd
 from src.features.acceleration import build_acceleration_features
 
 # 次期特徴量名（race_results.last_3f → acceleration.py で計算）
-ACCEL_FEATURE_COLS: list[str] = ["pci", "acceleration_score", "last_3f_sec"]
+# W-001: pci(馬別) / acceleration_score / last_3f_sec、W-002: race_pci(レース別ペース指数)
+ACCEL_FEATURE_COLS: list[str] = [
+    "pci",
+    "acceleration_score",
+    "last_3f_sec",
+    "race_pci",
+]
 
 
 def build_feature_cols_v2(base_cols: list[str]) -> list[str]:
@@ -56,7 +62,7 @@ def attach_acceleration_features(
                 merged[c] = 0.0 if c == "acceleration_score" else pd.NA
         return merged
     merged = merged.merge(
-        accel[["horse_number", "last_3f_sec", "pci", "acceleration_score"]],
+        accel[["horse_number", "last_3f_sec", "pci", "acceleration_score", "race_pci"]],
         on="horse_number",
         how="left",
     )
