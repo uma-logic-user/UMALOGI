@@ -33,6 +33,7 @@ import sqlite3
 import sys
 from collections import defaultdict
 from pathlib import Path
+from typing import Any
 
 import numpy as np
 import pandas as pd
@@ -353,7 +354,7 @@ def build_race_df(
 # モデル（LightGBM + Isotonic）—— 2024年データのみで訓練
 # ────────────────────────────────────────────────────────────────────────────
 
-LGBM_PARAMS = dict(
+LGBM_PARAMS: dict[str, Any] = dict(
     n_estimators=600,
     learning_rate=0.04,
     max_depth=6,

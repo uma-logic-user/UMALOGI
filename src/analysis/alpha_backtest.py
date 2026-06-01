@@ -30,6 +30,7 @@ import sqlite3
 import sys
 from dataclasses import dataclass, field
 from pathlib import Path
+from typing import Any
 
 import pandas as pd
 
@@ -37,7 +38,7 @@ _ROOT = Path(__file__).resolve().parents[2]
 if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
-sys.stdout.reconfigure(encoding="utf-8")
+sys.stdout.reconfigure(encoding="utf-8")  # type: ignore[union-attr]
 
 import logging
 
@@ -718,14 +719,14 @@ def _simulate(
 
 
 def _run_auto_search(
-    window_data: list[tuple[pd.DataFrame, float, dict, dict]],
+    window_data: list[tuple[pd.DataFrame, float, dict]],
     windows_meta: list[dict],
 ) -> tuple[str, dict[str, dict], list[WindowResult]]:
     """
     全 ticket_cfg を探索し、最終残高が最大の設定を返す。
 
     Args:
-        window_data : [(test_df, threshold, pmap, meta), ...]
+        window_data : [(test_df, threshold, pmap), ...]（meta は windows_meta で別途受ける）
         windows_meta: ウィンドウ定義リスト
 
     Returns:
@@ -1081,7 +1082,7 @@ def main() -> None:
     if research_db:
         print(f"  Research DB: {research_db.name}")
 
-    WINDOWS = [
+    WINDOWS: list[dict[str, Any]] = [
         {
             "label": "Window 1: 2025年全期間",
             "train_label": "2024年 (12ヵ月)",
