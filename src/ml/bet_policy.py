@@ -6,7 +6,9 @@ UMALOGI の確定実績(2026-05-31 分析)に基づく恒久ポリシー:
     控除率+点数増で構造的に負けるため実弾から完全除外する。
   - Oracle / HitFocus は赤字(直前ROI 21〜66%)のため実弾から分離し、
     note/X 集客用の「観賞用買い目」としてのみ出力する。
-  - 実弾モデルは 本命 / 卍 / Alpha-Payout の3つ。
+  - 実弾モデルは 本命 / 卍 / Alpha-Payout / Pure_EV_Edge / FukushoElite。
+    FukushoElite(W-020) は複勝特化で、segment+edge フィルタに加え
+    統計的複勝EV>=しきい値を満たすレースのみ生成する EV 最優先ゲートを持つ。
 
 このモジュールが「何を実弾としてカウントするか」の唯一の定義であり、
 買い目フィルタ・ROI会計・Discord通知ラベルは全てここを参照する。
@@ -17,8 +19,16 @@ from __future__ import annotations
 import re
 
 # ── ポリシー定義 ──────────────────────────────────────────────────────────────
-# 実弾モデル（実際に投票する）。Pure_EV_Edge は黒字化専用の単複バリアント。
-LIVE_MODELS: frozenset[str] = frozenset({"本命", "卍", "Alpha-Payout", "Pure_EV_Edge"})
+# 実弾モデル（実際に投票する）。Pure_EV_Edge は黒字化専用の単複バリアント、
+# FukushoElite(W-020) は複勝特化(EV最優先ゲート)。
+LIVE_MODELS: frozenset[str] = frozenset(
+    {"本命", "卍", "Alpha-Payout", "Pure_EV_Edge", "FukushoElite"}
+)
+
+# 選択的実弾モデル: 厳格なセグメント条件で多くの開催日に正当に0件となるため、
+# 「生成0件=サイレント障害」アラート(W-064)の対象から除外する。
+# 広域モデル(本命/卍/Alpha-Payout/Pure_EV_Edge)は毎開催日に発火が期待され監視対象。
+SELECTIVE_LIVE_MODELS: frozenset[str] = frozenset({"FukushoElite"})
 
 # 実弾券種（単勝・複勝のみ）
 LIVE_BET_TYPES: frozenset[str] = frozenset({"単勝", "複勝"})

@@ -23,7 +23,7 @@ from dataclasses import dataclass, field
 from datetime import date
 from pathlib import Path
 
-from src.ml.bet_policy import LIVE_MODELS, base_model
+from src.ml.bet_policy import LIVE_MODELS, SELECTIVE_LIVE_MODELS, base_model
 
 logger = logging.getLogger(__name__)
 
@@ -35,6 +35,11 @@ _DISCORD_ERR_RE = re.compile(r"Discord.*(失敗|エラー|error)", re.IGNORECASE
 
 # 実弾モデルの決定的な表示順（frozenset を安定ソートして固定）。W-064。
 LIVE_MODELS_ORDER: tuple[str, ...] = tuple(sorted(LIVE_MODELS))
+# 「生成0件=サイレント障害」アラート対象（広域モデルのみ）。選択的モデル
+# (FukushoElite 等)は厳格条件で正当に0件となるため誤検知防止で除外する。W-064/W-020。
+_ALERT_MODELS_ORDER: tuple[str, ...] = tuple(
+    sorted(LIVE_MODELS - SELECTIVE_LIVE_MODELS)
+)
 
 # 健全性しきい値
 _COVERAGE_CRIT = 0.90  # 予想カバー率がこれ未満 → 重大
@@ -69,7 +74,7 @@ class HealthReport:
         """
         if not self.n_races:
             return []
-        return [m for m in LIVE_MODELS_ORDER if self.model_counts.get(m, 0) == 0]
+        return [m for m in _ALERT_MODELS_ORDER if self.model_counts.get(m, 0) == 0]
 
     @property
     def coverage_rate(self) -> float:

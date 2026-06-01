@@ -20,6 +20,7 @@
 
 | 仕様Ver | 日付 | 変更内容 |
 |---------|------|----------|
+| 1.1.1→1.2.0 | 2026-06-01 | **FukushoElite 本番統合（W-020・プロダクト v1.2.0）**。複勝特化モデルを実弾化（§1原則2の `LIVE_MODELS` に `FukushoElite` 追加＋`SELECTIVE_LIVE_MODELS` 新設＝W-064 監視の誤検知回避）。EV最優先2段ゲート（segment+edge → 統計的複勝EV≥1.05）で買い目生成し、`prediction._run_fukusho_elite()` を直前パイプラインに結線（§2/§7）。勝率/複勝率単独ベットを禁止し ROI95.4%→100%超を狙う。 |
 | 1.1.0→1.1.1 | 2026-06-01 | **大穴 EV 暴騰の安全装置（W-066・プロダクト v1.1.1）**。卍 Isotonic 較正器が `odds` を考慮せず大穴の EV=P×odds が暴騰する歪みを推論時に是正（§6/§11）。①Layer1=`calibrate_win_prob` に市場相対キャップ `P ≤ EV_SANITY_CAP(2.0)/odds`（EV 頭打ち・卍単勝＋Pure_EV を一括保護・人気馬不変）。②Layer2=`pure_ev_edge` に実弾単勝の高オッズ足切り `MAX_LIVE_WIN_ODDS=50`。再学習不要。 |
 | 1.0.0→1.1.0 | 2026-06-01 | **予防監視の追加（W-064/W-065・プロダクト v1.1.0）**。①`health_reporter`（§11/§8）に実弾モデル別(本命/卍/Alpha-Payout/Pure_EV_Edge)の直前予想生成件数(distinct race)集計を追加し、開催日に生成0件の実弾モデルがあれば日次ヘルスの severity を warn へ昇格＋Discord #system 通知＝Pure_EV_Edge=0 等の「サイレント障害」を毎開催日に自動検知。②`today_auto_runner`（§4）の金曜夜/土曜夜バッチに `x_scraper` 収集を subprocess 配線し、収集0件/失敗時は `x_consensus_score` を無言0埋めせず明示アラート（`X_SCRAPER_DISABLED=1` で無効化可）。 |
 | 1.0.0 | 2026-06-01 | 初版策定。Pure_EV_Edge 完全配線 / W-057 シャドーA/B / W-058 日次ヘルスレポート / 卍 Isotonic 較正 / 単複限定ロック / 会計二重性分離 / コア層型安全化 を統合した稼働実態を凍結。本番常駐＝autopilot（`today_auto_runner.py --continuous`）＋ watchdog 構成を正式に明記。 |

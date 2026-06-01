@@ -34,6 +34,20 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-01 — FukushoElite の期待値ベース本番統合（W-020）
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-opus-4-8) |
+| **修正日** | 2026-06-01 |
+| **バージョン** | `1.1.1` → **`1.2.0`**（MINOR・新規実弾モデルの本番統合＝後方互換な機能追加） |
+| **種別** | 機能追加（収益最大化・実弾モデル拡張） |
+| **実施内容** | 複勝特化 `FukushoElite` を **EV 最優先ゲート**で実弾パイプラインに正式統合（既存は未結線・誤ラベル・edge判定のみ）。<br>**配線**: `bet_policy.LIVE_MODELS` に `FukushoElite` 追加＋`SELECTIVE_LIVE_MODELS` 新設（厳格セグメントで正当に0件となるため W-064 生成0件アラートから除外）。`init_db._VALID_BASE_TYPES`・`RaceBets.model_type` Literal に追加。<br>**EV最優先2段ゲート**: `generate_elite_fukusho_bets` を刷新し ①segment+edge(venue∈{新潟/東京/福島/京都}・≥13頭・edge≥1.1) ②**統計的複勝EV = P(place)×推定複勝オッズ ≥ `FUKUSHO_ELITE_EV_MIN=1.05`**（Pure_EV と同一の `fukusho_ev` を踏襲・勝率/複勝率単独ベット禁止）。通過馬ゼロは見送り。`model_type="卍"` 誤ラベルを `FukushoElite` に修正し `expected_value` を真の複勝EVに。<br>**結線**: `prediction._run_fukusho_elite()` を新設し直前パイプライン(`if not provisional`)に追加、`predictions(model_type="FukushoElite(直前)")` 保存＋UI payload に `fukusho_elite` セクション追加。 |
+| **影響範囲** | `VERSION`(1.1.1→1.2.0), `src/ml/bet_policy.py`, `src/ml/bet_generator.py`, `src/pipeline/prediction.py`, `src/database/init_db.py`, `src/ops/health_reporter.py`, `tests/test_fukusho_elite_integration.py`(新規6件), `docs/7_weakness_ledger.md`(W-020 🟢), `docs/1_prediction_logic.md`, `docs/spec/ARCHITECTURE_v1.0.0.md` |
+| **検証** | `tests/test_fukusho_elite_integration.py` 6件（実弾登録/EV高→生成・FukushoEliteラベル/EV低→見送り/境界/セグメント外/頭数不足）＋health_reporter 7件＋全スイート回帰。mypy 0・ruff クリーン。 |
+| **ロールバック** | 本コミットを `git revert`。VERSION を 1.1.1 へ戻す。`FUKUSHO_ELITE_EV_MIN` の調整でゲート強度を変更可。 |
+| **関連** | W-020 / W-064（SELECTIVE_LIVE_MODELS で誤検知回避）/ W-066（fukusho_ev は EV キャップと整合）/ 条項6・7 / `feedback_ev_precision_safety_first` |
+
 ### 2026-06-01 — 大穴EV暴騰（較正歪み）の安全装置（W-066）
 
 | 項目 | 内容 |

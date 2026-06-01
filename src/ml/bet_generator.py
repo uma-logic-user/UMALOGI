@@ -718,7 +718,9 @@ class RaceBets:
 
     race_id: str
     # 実際に生成される全モデル種別（本命/卍/HitFocus 系列・Alpha-Payout・V2 世代）。
-    model_type: Literal["卍", "本命", "HitFocus", "Alpha-Payout", "卍V2", "本命V2"]
+    model_type: Literal[
+        "卍", "本命", "HitFocus", "Alpha-Payout", "卍V2", "本命V2", "FukushoElite"
+    ]
     bets: list[BetRecommendation] = field(default_factory=list)
 
     def to_dict(self) -> dict:
@@ -3115,6 +3117,10 @@ def get_sandbox_strategy_note(model: str, bet_type: str) -> str:
 _FUKUSHO_ELITE_VENUES: frozenset[str] = frozenset({"新潟", "東京", "福島", "京都"})
 _FUKUSHO_ELITE_MIN_HORSES: int = 13
 _FUKUSHO_ELITE_EDGE: float = 1.1
+# W-020: EV 最優先ゲート。segment+edge を通過しても、統計的複勝 EV が
+# これ未満の馬は買わない（勝率・複勝率単独でのベットを禁止し ROI 95.4%→100%超を狙う）。
+# 安全域を確保した 1.05（控除率を吸収しつつ実エッジのある馬のみ採用）。
+FUKUSHO_ELITE_EV_MIN: float = 1.05
 
 
 @dataclass
@@ -3255,37 +3261,39 @@ def generate_elite_fukusho_bets(
     horse_names: list[str],
     ev_scores: list[float],
     implied_probs: list[float],
+    win_odds: list[float],
+    place_probs: list[float],
+    ev_min: float = FUKUSHO_ELITE_EV_MIN,
 ) -> RaceBets | None:
-    """
-    複勝エリートフィルターを適用し、条件を満たした場合のみ複勝買い目を返す。
+    """複勝エリートフィルター＋EV最優先ゲートを適用し、複勝買い目を返す（W-020）。
+
+    2段ゲート:
+      ① segment+edge フィルター（venue/頭数/edge≥1.1）= 収益セグメント抽出。
+      ② **統計的複勝 EV ゲート**: 選択馬の複勝 EV = P(place) × 推定複勝オッズ が
+         ``ev_min`` 以上の馬のみ採用（勝率・複勝率単独でのベットを禁止）。
+         複勝 EV は Pure_EV_Edge と同一の ``fukusho_ev`` で算出し設計を踏襲する。
 
     Args:
         race_id:       レースID
         venue:         競馬場名
         n_horses:      出走頭数
-        horse_numbers: 全出走馬の馬番 (ev_scores/implied_probs と同順)
+        horse_numbers: 全出走馬の馬番 (他の list と同順)
         horse_names:   全出走馬の馬名 (horse_numbers と同順)
-        ev_scores:     モデルの EV スコア
+        ev_scores:     卍 EV スコア (全馬・edge 計算用)
         implied_probs: 市場 implied_probability (per-race 正規化済み)
+        win_odds:      単勝オッズ (複勝 EV の推定に使用・horse_numbers と同順)
+        place_probs:   PlaceModel の較正済み複勝確率 (horse_numbers と同順)
+        ev_min:        複勝 EV の下限しきい値（既定 FUKUSHO_ELITE_EV_MIN=1.05）。
 
     Returns:
-        RaceBets (フィルター通過時) or None (フィルター拒否時)
-
-    Example::
-
-        result = generate_elite_fukusho_bets(
-            race_id="202506010101",
-            venue="東京",
-            n_horses=16,
-            horse_numbers=[1, 2, ..., 16],
-            horse_names=["ホース1", ...],
-            ev_scores=[0.8, 1.2, ...],
-            implied_probs=[0.10, 0.15, ...],
-        )
-        if result is not None:
-            print(result.bets)
+        RaceBets (segment+edge かつ EV ゲートを通過した馬がある場合) or None。
     """
+    # 遅延 import で循環依存を回避（pure_ev_edge → manji_calibration のみ）
+    from src.ml.pure_ev_edge import fukusho_ev
+
     name_map = dict(zip(horse_numbers, horse_names))
+    odds_map = dict(zip(horse_numbers, win_odds))
+    place_map = dict(zip(horse_numbers, place_probs))
 
     flt = FukushoEliteFilter.evaluate(
         venue=venue,
@@ -3299,30 +3307,58 @@ def generate_elite_fukusho_bets(
         logger.debug("FukushoElite: スキップ (%s)", flt.reason)
         return None
 
-    logger.info("FukushoElite: 購入 (%s)", flt.reason)
+    # ── EV 最優先ゲート: segment 通過馬のうち複勝 EV>=ev_min のみ採用 ──
+    selected: list[int] = []
+    sel_evs: list[float] = []
+    sel_edges: list[float] = []
+    for hn, eg in zip(flt.selected_horses, flt.edges):
+        o = float(odds_map.get(hn, 0.0) or 0.0)
+        pp = float(place_map.get(hn, 0.0) or 0.0)
+        if o <= 1.0:
+            continue
+        _p_place, ev_place = fukusho_ev(pp, o)
+        if ev_place >= ev_min:
+            selected.append(hn)
+            sel_evs.append(ev_place)
+            sel_edges.append(eg)
+
+    if not selected:
+        logger.info(
+            "FukushoElite: EV ゲート見送り (segment通過だが複勝EV>=%.2f の馬なし) race_id=%s",
+            ev_min,
+            race_id,
+        )
+        return None
+
+    logger.info(
+        "FukushoElite: 購入 (%s / EV通過%d頭 EV=%s)",
+        flt.reason,
+        len(selected),
+        [round(e, 2) for e in sel_evs],
+    )
     _log_elite_bet(
         race_id=race_id,
         venue=flt.venue,
         n_horses=flt.n_horses,
-        selected_horses=flt.selected_horses,
-        edges=flt.edges,
+        selected_horses=selected,
+        edges=sel_edges,
     )
 
-    combos: list[tuple[int, ...]] = [(h,) for h in flt.selected_horses]
-    rec = RaceBets(race_id=race_id, model_type="卍")
+    combos: list[tuple[int, ...]] = [(h,) for h in selected]
+    rec = RaceBets(race_id=race_id, model_type="FukushoElite")
     rec.bets.append(
         BetRecommendation(
             bet_type="複勝",
             combinations=combos,
-            horse_names=[name_map.get(h, str(h)) for h in flt.selected_horses],
-            expected_value=sum(flt.edges) / len(flt.edges),
-            model_score=max(flt.edges, default=0.0),
+            horse_names=[name_map.get(h, str(h)) for h in selected],
+            expected_value=sum(sel_evs) / len(sel_evs),  # 真の複勝 EV 平均
+            model_score=max(sel_edges, default=0.0),
             recommended_bet=float(_BASE_BET * len(combos)),
-            confidence=min(max(flt.edges, default=0.0) / 2.0, 1.0),
+            confidence=min(max(place_map.get(h, 0.0) for h in selected), 1.0),
             notes=(
                 f"[FukushoElite] venue={venue}, 頭数={n_horses}, "
-                f"edge={[round(e, 2) for e in flt.edges]} "
-                f"⚠️2025 in-sample 発見。2026年ライブ要検証。"
+                f"複勝EV>={ev_min}通過 edge={[round(e, 2) for e in sel_edges]} "
+                f"EV={[round(e, 2) for e in sel_evs]}"
             ),
         )
     )

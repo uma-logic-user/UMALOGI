@@ -20,6 +20,7 @@ import pandas as pd
 
 if TYPE_CHECKING:
     # 型注釈専用（from __future__ import annotations で実行時評価されない）。
+    from src.ml.bet_generator import RaceBets
     from src.ml.models import HonmeiModel, ManjiModel, PlaceModel
     from src.ml.pure_ev_edge import PureEVRaceBets
 
@@ -740,6 +741,126 @@ def _run_pure_ev_edge(
         return None
 
 
+def _run_fukusho_elite(
+    conn: sqlite3.Connection,
+    race_id: str,
+    df: pd.DataFrame,
+    manji_ev_scores: pd.Series,
+    place_scores: pd.Series,
+    suffix: str,
+) -> "RaceBets | None":
+    """FukushoElite 複勝（segment+edge × 複勝EV最優先ゲート）を生成・保存する（W-020）。
+
+    収益セグメント(venue/頭数/edge)を通過し、かつ統計的複勝 EV が
+    ``FUKUSHO_ELITE_EV_MIN`` 以上の馬のみを実弾複勝として保存する。
+    勝率・複勝率単独でのベットは行わない（EV 最優先）。失敗しても本処理は止めない。
+
+    Returns:
+        RaceBets（買い目あり）または None（segment/EV ゲート見送り・例外）。
+    """
+    try:
+        from src.ml.bet_generator import (
+            FUKUSHO_ELITE_EV_MIN,
+            generate_elite_fukusho_bets,
+        )
+
+        if "horse_number" not in df.columns or "win_odds" not in df.columns:
+            return None
+
+        race_row = conn.execute(
+            "SELECT venue FROM races WHERE race_id = ?", (race_id,)
+        ).fetchone()
+        venue = (race_row[0] if race_row else "") or ""
+
+        n = len(df)
+        horse_numbers: list[int] = []
+        win_odds: list[float] = []
+        ev_list: list[float] = []
+        place_list: list[float] = []
+        names: list[str] = []
+        for i in range(n):
+            hrow = df.iloc[i]
+            try:
+                hn = int(hrow.get("horse_number"))
+            except (TypeError, ValueError):
+                continue
+            o = hrow.get("win_odds")
+            o_f = float(o) if o is not None and not pd.isna(o) else 0.0
+            horse_numbers.append(hn)
+            win_odds.append(o_f)
+            ev_list.append(
+                float(manji_ev_scores.iloc[i]) if i < len(manji_ev_scores) else 0.0
+            )
+            place_list.append(
+                float(place_scores.iloc[i]) if i < len(place_scores) else 0.0
+            )
+            names.append(str(hrow.get("horse_name", hn)))
+
+        if not horse_numbers:
+            return None
+
+        # 市場 implied prob（1/odds を per-race 正規化）
+        raw_imp = [1.0 / o if o > 1.0 else 0.0 for o in win_odds]
+        s = sum(raw_imp)
+        implied = [x / s if s > 0 else 1.0 / len(raw_imp) for x in raw_imp]
+
+        rec = generate_elite_fukusho_bets(
+            race_id=race_id,
+            venue=venue,
+            n_horses=n,
+            horse_numbers=horse_numbers,
+            horse_names=names,
+            ev_scores=ev_list,
+            implied_probs=implied,
+            win_odds=win_odds,
+            place_probs=place_list,
+            ev_min=FUKUSHO_ELITE_EV_MIN,
+        )
+        if rec is None or not rec.bets:
+            return None
+
+        bet = rec.bets[0]  # 複勝1レコード（combinations=単頭リスト）
+        sel = [c[0] for c in bet.combinations]
+        place_map = dict(zip(horse_numbers, place_list))
+        horses_payload = [
+            {
+                "horse_number": hn,
+                "horse_name": dict(zip(horse_numbers, names)).get(hn, str(hn)),
+                "predicted_rank": rank + 1,
+                "model_score": float(place_map.get(hn, 0.0)),
+                "ev_score": float(bet.expected_value),
+            }
+            for rank, hn in enumerate(sel)
+        ]
+        combo_json = _json.dumps([[hn] for hn in sel])
+        try:
+            insert_prediction(
+                conn,
+                race_id=race_id,
+                model_type=f"FukushoElite{suffix}",
+                bet_type="複勝",
+                horses=horses_payload,
+                confidence=bet.confidence,
+                expected_value=bet.expected_value,
+                recommended_bet=float(bet.recommended_bet),
+                notes=bet.notes,
+                combination_json=combo_json,
+            )
+            logger.info(
+                "[FukushoElite] race_id=%s 複勝%d点 保存 (EV平均=%.2f)",
+                race_id,
+                len(sel),
+                bet.expected_value,
+            )
+        except Exception as exc:  # noqa: BLE001
+            logger.warning("[FukushoElite] 保存失敗: %s", exc)
+            return None
+        return rec
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("[FukushoElite] スキップ（例外）: %s", exc)
+        return None
+
+
 def prerace_pipeline(
     race_id: str,
     provisional: bool = False,
@@ -1029,6 +1150,14 @@ def _prerace_pipeline_inner(
             rdate=_rdate,
         )
 
+    # Step 4b3: FukushoElite 複勝特化（segment+edge × 複勝EV最優先ゲート・直前のみ）
+    #   W-020 本番統合。複勝 EV>=FUKUSHO_ELITE_EV_MIN のレースのみ生成。失敗しても止めない。
+    fukusho_elite_bets = None
+    if not provisional:
+        fukusho_elite_bets = _run_fukusho_elite(
+            conn, race_id, df, ev_scores, place_scores, "(直前)"
+        )
+
     # Step 4c: オッズ歪み補正・危険馬フィルタ（直前のみ・ステップ2-2）
     #   realtime_odds の 朝→直前 変動率で「急騰=市場見限り(危険馬)」「急落=大口流入」を
     #   検知し、危険馬を軸に含む買い目の EV を減衰、EV<1.0 を除外する（買い目保存前）。
@@ -1124,6 +1253,15 @@ def _prerace_pipeline_inner(
         payload["pure_ev_edge"] = {
             "race_id": race_id,
             "model_type": "Pure_EV_Edge",
+            "bets": [],
+        }
+    # FukushoElite（複勝特化・EV最優先ゲート）を独立セクションとして格納（W-020）
+    if fukusho_elite_bets is not None and getattr(fukusho_elite_bets, "bets", None):
+        payload["fukusho_elite"] = fukusho_elite_bets.to_dict()
+    else:
+        payload["fukusho_elite"] = {
+            "race_id": race_id,
+            "model_type": "FukushoElite",
             "bets": [],
         }
     if is_v2:
