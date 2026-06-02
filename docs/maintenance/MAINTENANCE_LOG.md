@@ -34,6 +34,20 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-02 — 週末向け 実弾モデル縮退（卍/Pure_EV_Edge/FukushoElite）＋卍Challenger検証
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-opus-4-8) |
+| **修正日** | 2026-06-02 |
+| **バージョン** | `1.4.0-dev`（据え置き・dev継続。実弾メンバー変更は本番影響だが機構不変のため dev 線内で扱い、本番昇格時に MINOR 確定） |
+| **種別** | 買い目ロジック（ポリシー）/ モデル検証 |
+| **実施内容** | (1)実弾配信縮退: `bet_policy.LIVE_MODELS` を `{卍, Pure_EV_Edge, FukushoElite}` に集約。確定ROI<100%の 本命/Alpha-Payout を新設 `NON_LIVE_RETIRED` へ退避（投票停止・予想生成継続・復帰可）。Oracle/HitFocus は従前 ORNAMENTAL のまま。(2)卍Challenger再訓練を**安全検証のみ**で実施（`scripts/retrain_manji_weekend.py` 新規）: Champion(現役pkl) vs Challenger(train_until=2024) を 2025 OOS 比較。単勝72.2%/68.5%(共<100%)、**複勝90.9%→108.8%(黒字化)**。保守ゲート未達で **HOLD**。 |
+| **影響範囲** | `src/ml/bet_policy.py`, `tests/test_bet_policy.py`, `tests/test_health_reporter.py`, `scripts/retrain_manji_weekend.py`(新規), `logs/training_log_manji_weekend.log`, `docs/1_prediction_logic.md`, `docs/7_weakness_ledger.md`(W-067)。**本番モデル `data/models/manji_model.pkl` は未改変（md5一致）**、predictions テーブル非改変。 |
+| **検証** | `pytest`（bet_policy/health_reporter/fukusho_elite_integration/bet_generator/bet_precision_filters）→ **81 passed**。卍OOS検証ログ＝`logs/training_log_manji_weekend.log`。 |
+| **ロールバック** | コード: 直前コミット `4108b2cd`。卍pkl: `data/backups/manji_model_20260602_084516.pkl`（今回未昇格のため復元不要）。 |
+| **関連** | CLAUDE.md 条項1/4/6/7。弱点 W-067（本コミットで起票）/ W-059 / W-048 / W-064。 |
+
 ### 2026-06-02 — マックスプラン最終資産化（性能検証レポート・最終仕様書・堅牢性証明）
 
 | 項目 | 内容 |

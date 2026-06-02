@@ -1,0 +1,182 @@
+"""卍モデル 週末Challenger再訓練・OOS検証スクリプト（2026-06-02）
+
+安全な Champion/Challenger 方式で卍モデルを再評価する:
+
+  1. Champion  = 現役 data/models/manji_model.pkl（本番稼働中・上書き厳禁）
+  2. Challenger = train_until=2024 で新規訓練したインメモリモデル
+  3. 2025年（out-of-sample）全レースで卍・単勝/複勝(EV>1.0)戦略の ROI を双方算出
+  4. Challenger が Champion 以上かつ OOS で黒字(ROI>=100%)のときのみ昇格(save)。
+     それ以外は HOLD（現役を温存）。
+
+CLAUDE.md 条項1/4 遵守: predictions テーブルは触らない。pkl は事前バックアップ済み。
+ManjiModel.train() は pkl を保存しないため、本スクリプトが明示 save() するまで
+本番モデルは一切変更されない。
+
+使い方::
+    py -X utf8 scripts/retrain_manji_weekend.py
+"""
+
+from __future__ import annotations
+
+import sys
+from datetime import datetime
+from pathlib import Path
+
+_ROOT = Path(__file__).resolve().parent.parent
+if str(_ROOT) not in sys.path:
+    sys.path.insert(0, str(_ROOT))
+
+sys.stdout.reconfigure(encoding="utf-8")  # type: ignore[union-attr]
+
+from src.database.init_db import init_db  # noqa: E402
+from src.ml.models import ManjiModel  # noqa: E402
+from scripts.backtest_all_models import (  # noqa: E402
+    _run_three_model_backtest as _run_backtest,
+)
+
+_LOG_PATH = _ROOT / "logs" / "training_log_manji_weekend.log"
+_TRAIN_UNTIL = 2024
+_TEST_YEAR = "2025"
+
+# 卍のみの戦略（単勝/複勝・EV>1.0 ゲート）
+_MANJI_STRATEGIES = {
+    "manji_tansho": {
+        "label": "卍・単勝(EV>1.0)",
+        "model": "manji",
+        "bet_type": "単勝",
+        "n_picks": 1,
+        "ev_filter": True,
+    },
+    "manji_fukusho": {
+        "label": "卍・複勝(EV>1.0)",
+        "model": "manji",
+        "bet_type": "複勝",
+        "n_picks": 1,
+        "ev_filter": True,
+    },
+}
+
+
+def _fmt_stats(stats) -> str:  # type: ignore[no-untyped-def]
+    return (
+        f"races={stats.races:>5} hits={stats.hits:>4} "
+        f"hit_rate={stats.hit_rate:5.1f}% "
+        f"invested=¥{round(stats.invested):>9,} payout=¥{round(stats.payout):>9,} "
+        f"profit=¥{round(stats.profit):>+10,} ROI={stats.roi:6.1f}%"
+    )
+
+
+def main() -> int:
+    lines: list[str] = []
+
+    def log(msg: str = "") -> None:
+        print(msg, flush=True)
+        lines.append(msg)
+
+    ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    log("=" * 70)
+    log(f"卍モデル 週末Challenger再訓練・OOS検証  {ts}")
+    log("=" * 70)
+    log(f"設定: train_until={_TRAIN_UNTIL}（{_TRAIN_UNTIL}年以前で学習） "
+        f"/ OOS検証={_TEST_YEAR}年")
+    log("")
+
+    conn = init_db()
+
+    # ── Champion（現役本番モデル）をロード ───────────────────────────
+    log("[1] Champion（現役 data/models/manji_model.pkl）をロード...")
+    champion = ManjiModel()
+    try:
+        champion.load()
+        champion._trained = True
+    except Exception as exc:  # noqa: BLE001
+        log(f"  [ERROR] Champion ロード失敗: {exc}")
+        _flush(lines)
+        return 1
+    log("  [OK] Champion ロード完了")
+
+    # ── Challenger を train_until=2024 で訓練 ─────────────────────────
+    log(f"[2] Challenger を {_TRAIN_UNTIL}年以前データで訓練...")
+    challenger = ManjiModel()
+    m = challenger.train(conn, train_until=_TRAIN_UNTIL)
+    log(f"  [OK] Challenger 訓練完了: "
+        f"n_races={m.get('n_races')} n_samples={m.get('n_samples')}")
+    if not m.get("n_samples"):
+        log("  [ERROR] 学習サンプル0件 → 中止")
+        _flush(lines)
+        return 1
+    log("")
+
+    # ── OOS(2025) 評価: Champion vs Challenger ───────────────────────
+    log(f"[3] {_TEST_YEAR}年 OOS でROI算出中（Champion）...")
+    champ_overall, _, _ = _run_backtest(
+        conn, _TEST_YEAR, None, None, champion, _MANJI_STRATEGIES, verbose=False
+    )
+    log(f"[4] {_TEST_YEAR}年 OOS でROI算出中（Challenger）...")
+    chal_overall, _, _ = _run_backtest(
+        conn, _TEST_YEAR, None, None, challenger, _MANJI_STRATEGIES, verbose=False
+    )
+    log("")
+
+    # ── 結果比較 ─────────────────────────────────────────────────────
+    log("─" * 70)
+    log("【OOS 2025 結果比較】")
+    for key in ("manji_tansho", "manji_fukusho"):
+        cs, hs = champ_overall[key], chal_overall[key]
+        log(f"  {_MANJI_STRATEGIES[key]['label']}")
+        log(f"    Champion   : {_fmt_stats(cs)}")
+        log(f"    Challenger : {_fmt_stats(hs)}")
+        log(f"    ΔROI       : {hs.roi - cs.roi:+.1f}pt")
+        log("")
+
+    ct, ht = champ_overall["manji_tansho"], chal_overall["manji_tansho"]
+    cf, hf = champ_overall["manji_fukusho"], chal_overall["manji_fukusho"]
+
+    # ── 昇格判定（保守的）─────────────────────────────────────────────
+    #   単勝OOS ROI が Champion 以上 かつ Challenger 単勝が黒字(>=100%) かつ
+    #   複勝OOS ROI が Champion を大きく割り込まない(-5pt以内) 場合のみ昇格。
+    tansho_ok = ht.roi >= ct.roi and ht.roi >= 100.0
+    fukusho_ok = hf.roi >= cf.roi - 5.0
+    promote = bool(tansho_ok and fukusho_ok)
+
+    log("─" * 70)
+    log("【昇格判定】")
+    log(f"  単勝: Challenger {ht.roi:.1f}% vs Champion {ct.roi:.1f}% "
+        f"→ {'OK' if tansho_ok else 'NG'}（>=Champion かつ >=100%）")
+    log(f"  複勝: Challenger {hf.roi:.1f}% vs Champion {cf.roi:.1f}% "
+        f"→ {'OK' if fukusho_ok else 'NG'}（Champion-5pt以内）")
+    log("")
+    log("  [注意] Champion(現役pkl)は学習期間に2025を含む可能性があり、OOS比較で")
+    log("         楽観側に振れる。Challengerはリーク無し(train_until=2024)のため、")
+    log("         Challenger<Champion でも『劣る』とは断定できない（参考値）。")
+    log("  [注意] 基底回帰のみ再訓練。manji_win_calibrator.pkl は再fitしていないため、")
+    log("         昇格する場合は較正の再fitとECE再検証が後続必須。")
+    log("")
+
+    if promote:
+        saved = challenger.save()  # data/models/manji_model.pkl を上書き（バックアップ済）
+        log(f"  → 判定: 【昇格】Challenger を本番 {saved} に保存しました。")
+        log("    ロールバック: data/backups/manji_model_<ts>.pkl から復元可能。")
+    else:
+        log("  → 判定: 【HOLD】Challenger は昇格基準未達。現役Championを温存します。")
+        log("    本番 data/models/manji_model.pkl は一切変更していません。")
+
+    log("")
+    log(f"RESULT: {'PROMOTED' if promote else 'HOLD'} "
+        f"tansho_champ={ct.roi:.1f}% tansho_chal={ht.roi:.1f}% "
+        f"fukusho_champ={cf.roi:.1f}% fukusho_chal={hf.roi:.1f}%")
+    log("=" * 70)
+
+    _flush(lines)
+    return 0
+
+
+def _flush(lines: list[str]) -> None:
+    _LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with open(_LOG_PATH, "w", encoding="utf-8") as f:
+        f.write("\n".join(lines) + "\n")
+    print(f"\n[ログ出力] {_LOG_PATH}", flush=True)
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -30,13 +30,22 @@ def test_base_model_strips_suffix_and_v2() -> None:
 
 
 def test_live_bet_only_tansho_fukusho_of_live_models() -> None:
-    # 実弾モデル × 単複 = True
-    assert is_live_bet("本命(直前)", "単勝") is True
-    assert is_live_bet("本命(直前)", "複勝") is True
+    # 実弾モデル × 単複 = True（2026-06-02 縮退後: 卍/Pure_EV_Edge/FukushoElite のみ）
     assert is_live_bet("卍(直前)", "単勝") is True
     assert is_live_bet("卍(暫定)", "複勝") is True
-    assert is_live_bet("Alpha-Payout(直前)", "複勝") is True
-    assert is_live_bet("本命V2(直前)", "単勝") is True
+    assert is_live_bet("Pure_EV_Edge(直前)", "単勝") is True
+    assert is_live_bet("FukushoElite(直前)", "複勝") is True
+
+
+def test_retired_models_not_live_after_20260602_shrink() -> None:
+    # 本命・Alpha-Payout は確定実績ROI<100%により実弾から退避（非実弾・非観賞用）
+    assert is_live_bet("本命(直前)", "単勝") is False
+    assert is_live_bet("本命(直前)", "複勝") is False
+    assert is_live_bet("本命V2(直前)", "単勝") is False
+    assert is_live_bet("Alpha-Payout(直前)", "複勝") is False
+    # 退避モデルは観賞用(集客専用)ではない
+    assert is_ornamental("本命(直前)") is False
+    assert is_ornamental("Alpha-Payout(直前)") is False
 
 
 def test_exotics_are_not_live() -> None:

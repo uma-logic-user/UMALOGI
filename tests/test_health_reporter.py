@@ -140,12 +140,18 @@ def _build_model_count_conn() -> sqlite3.Connection:
 
 
 def test_model_counts_populated() -> None:
-    """直前予想の実弾モデル別生成件数（distinct race）が集計される。"""
+    """直前予想の実弾モデル別生成件数（distinct race）が集計される。
+
+    2026-06-02 縮退後の監視対象は LIVE_MODELS={卍, Pure_EV_Edge, FukushoElite}。
+    退避した 本命/Alpha-Payout は実弾カウント対象外（キーに現れない）。
+    """
     r = collect_health(_build_model_count_conn(), "2026-05-31")
-    assert r.model_counts["本命"] == 2
     assert r.model_counts["卍"] == 1
-    assert r.model_counts["Alpha-Payout"] == 1
     assert r.model_counts["Pure_EV_Edge"] == 0  # サイレント障害
+    assert r.model_counts["FukushoElite"] == 0
+    # 退避モデルは監視対象外
+    assert "本命" not in r.model_counts
+    assert "Alpha-Payout" not in r.model_counts
 
 
 def test_zero_live_model_triggers_warn() -> None:

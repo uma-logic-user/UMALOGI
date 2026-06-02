@@ -1,0 +1,41 @@
+======================================================================
+卍モデル 週末Challenger再訓練・OOS検証  2026-06-02 08:51:03
+======================================================================
+設定: train_until=2024（2024年以前で学習） / OOS検証=2025年
+
+[1] Champion（現役 data/models/manji_model.pkl）をロード...
+  [OK] Champion ロード完了
+[2] Challenger を 2024年以前データで訓練...
+  [OK] Challenger 訓練完了: n_races=1424 n_samples=19800
+
+[3] 2025年 OOS でROI算出中（Champion）...
+[4] 2025年 OOS でROI算出中（Challenger）...
+
+──────────────────────────────────────────────────────────────────────
+【OOS 2025 結果比較】
+  卍・単勝(EV>1.0)
+    Champion   : races= 3450 hits= 350 hit_rate= 10.1% invested=¥  345,000 payout=¥  249,230 profit=¥   -95,770 ROI=  72.2%
+    Challenger : races= 3441 hits= 273 hit_rate=  7.9% invested=¥  344,100 payout=¥  235,760 profit=¥  -108,340 ROI=  68.5%
+    ΔROI       : -3.7pt
+
+  卍・複勝(EV>1.0)
+    Champion   : races= 3450 hits= 935 hit_rate= 27.1% invested=¥  345,000 payout=¥  313,510 profit=¥   -31,490 ROI=  90.9%
+    Challenger : races= 3441 hits= 870 hit_rate= 25.3% invested=¥  344,100 payout=¥  374,440 profit=¥   +30,340 ROI= 108.8%
+    ΔROI       : +17.9pt
+
+──────────────────────────────────────────────────────────────────────
+【昇格判定】
+  単勝: Challenger 68.5% vs Champion 72.2% → NG（>=Champion かつ >=100%）
+  複勝: Challenger 108.8% vs Champion 90.9% → OK（Champion-5pt以内）
+
+  [注意] Champion(現役pkl)は学習期間に2025を含む可能性があり、OOS比較で
+         楽観側に振れる。Challengerはリーク無し(train_until=2024)のため、
+         Challenger<Champion でも『劣る』とは断定できない（参考値）。
+  [注意] 基底回帰のみ再訓練。manji_win_calibrator.pkl は再fitしていないため、
+         昇格する場合は較正の再fitとECE再検証が後続必須。
+
+  → 判定: 【HOLD】Challenger は昇格基準未達。現役Championを温存します。
+    本番 data/models/manji_model.pkl は一切変更していません。
+
+RESULT: HOLD tansho_champ=72.2% tansho_chal=68.5% fukusho_champ=90.9% fukusho_chal=108.8%
+======================================================================
