@@ -1,0 +1,31 @@
+======================================================================
+卍 Challenger 複勝特化 正式昇格デプロイ  2026-06-02 13:57:34
+======================================================================
+train_until=2024 Challenger を本番 manji_model.pkl に昇格する。
+単勝は WATCH_ONLY(投票せず監視継続)のため副作用を許容。
+
+[1/3] Challenger を train_until=2024 で訓練中...
+      完了: n_races=1424 / n_samples=19800
+[2/3] 本番 pkl を昇格済み Challenger で更新: C:\dev\horse-racing-ai\data\models\manji_model.pkl
+      モデルキャッシュをクリア済み
+
+[3/3] 新モデルで複勝 Platt 較正器を再 fit 中...
+      n_races=400 / n_samples=5679
+
+【複勝 Platt 較正器 再 fit 結果（新モデルベース）】
+  base_rate(複勝圏率) : 0.2118
+  ECE 較正前          : 0.0964
+  ECE 較正後(Platt)   : 0.0271  <= 0.05 → 健全
+  ΔECE                : +0.0693
+
+【較正曲線（ev_score → P(複勝圏)）】
+  ev_score= 0.5 → P(複勝圏)=0.1596
+  ev_score= 1.0 → P(複勝圏)=0.1807
+  ev_score= 1.5 → P(複勝圏)=0.2040
+  ev_score= 2.0 → P(複勝圏)=0.2294
+  ev_score= 3.0 → P(複勝圏)=0.2866
+  ev_score= 5.0 → P(複勝圏)=0.4225
+
+[判定] ECE=0.0271 → 健全(PASS)
+RESULT: PROMOTED_AND_RECALIBRATED n_races=1424 ece=0.0271 healthy=YES
+======================================================================

@@ -34,6 +34,20 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-02 — Challengerモデルの正式昇格および複勝特化較正の再fit完了
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-sonnet-4-6) |
+| **修正日** | 2026-06-02 |
+| **バージョン** | `1.4.0-dev`（据え置き・dev継続。モデル内容は変更だが API 互換維持） |
+| **種別** | モデル昇格 / 較正再fit |
+| **実施内容** | (1)**`manji_model.pkl` 正式昇格**: Challenger(train_until=2024・OOS複勝108.8%)を `retrain_manji_weekend.py --promote-fukusho` で本番deply。n_races=1424/n_samples=19800。単勝は WATCH_ONLY のため副作用なし。(2)**複勝 Platt 較正器 再fit**: 新モデルベースで `fit_manji_place_calibrator()` を再実行。**ECE 旧Champion版0.0395 → 新Challenger版0.0271（更に改善・健全 PASS）**。 |
+| **影響範囲** | `data/models/manji_model.pkl`(昇格・md5: 1fcd779d), `data/models/manji_place_calibrator.pkl`(再fit), `scripts/retrain_manji_weekend.py`(--promote-fukusho追加), `logs/fukusho_calibration_final_v2.log`, `docs/1_prediction_logic.md`, `docs/7_weakness_ledger.md`(W-067→🟢完了)。**単勝 manji_win_calibrator.pkl は非改変**。predictions テーブル非改変（条項1）。 |
+| **検証** | `pytest`（bet_policy/ev_calibration_safety/bet_generator/health_reporter/fukusho_elite/bet_precision_filters）→ **93 passed**。WATCH_ONLY維持(`is_live_bet("卍","単勝")=False` / `is_watch_only=True`)確認済。ECE=0.0271(健全)。 |
+| **ロールバック** | `data/backups/manji_model_pre_fukusho_promotion_20260602_121506.pkl`(md5: a90e87f9)から `data/models/manji_model.pkl` へコピーで即時復元可。 |
+| **関連** | CLAUDE.md 条項1/4/6/7。W-067(🟢完了) / W-048 / W-059 / W-066。 |
+
 ### 2026-06-02 — 卍 複勝特化昇格＋複勝Platt較正器の分離
 
 | 項目 | 内容 |

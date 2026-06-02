@@ -259,6 +259,99 @@ def _flush_to(lines: list[str], path: Path) -> None:
     print(f"\n[ログ出力] {path}", flush=True)
 
 
+def promote_fukusho_challenger(log_v2_path: Path) -> int:
+    """Challenger(train_until=2024)を本番デプロイし、複勝較正器を再fitする。
+
+    安全手順:
+      1. 既存pklのバックアップを確認（呼び出し前に取得済みを前提）
+      2. Challenger を train_until=2024 で訓練し save() → manji_model.pkl 上書き
+      3. 新モデルで place calibrator を再fit → manji_place_calibrator.pkl 上書き
+      4. ECE を log_v2_path に出力
+
+    CLAUDE.md 条項1/4 遵守: predictions テーブルは非改変。
+    バックアップは呼び出し前に data/backups/ へ取得済みであること。
+    """
+    import pickle as _pkl
+
+    from src.ml.manji_calibration import (
+        _PLACE_CAL_PATH,
+        _place_cal_cache,
+        fit_manji_place_calibrator,
+    )
+
+    lines: list[str] = []
+
+    def log(msg: str = "") -> None:
+        print(msg, flush=True)
+        lines.append(msg)
+
+    ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    log("=" * 70)
+    log(f"卍 Challenger 複勝特化 正式昇格デプロイ  {ts}")
+    log("=" * 70)
+    log("train_until=2024 Challenger を本番 manji_model.pkl に昇格する。")
+    log("単勝は WATCH_ONLY(投票せず監視継続)のため副作用を許容。")
+    log("")
+
+    conn = init_db()
+
+    # ── Step1: Challenger 訓練 ─────────────────────────────────────
+    log("[1/3] Challenger を train_until=2024 で訓練中...")
+    challenger = ManjiModel()
+    m = challenger.train(conn, train_until=2024)
+    n_r, n_s = m.get("n_races", 0), m.get("n_samples", 0)
+    log(f"      完了: n_races={n_r} / n_samples={n_s}")
+    if not n_s:
+        log("  [ERROR] 学習サンプル0件 → 昇格中止")
+        _flush_to(lines, log_v2_path)
+        return 1
+
+    # ── Step2: 本番 pkl に save ──────────────────────────────────────
+    saved_path = challenger.save()   # data/models/manji_model.pkl を上書き
+    log(f"[2/3] 本番 pkl を昇格済み Challenger で更新: {saved_path}")
+    # manji_calibration のプロセス内キャッシュを無効化（置換後のモデルで再ロードさせる）
+    import src.ml.manji_calibration as _mc
+    _mc._place_cal_cache = None
+    import src.ml.models as _models
+    _models._MODEL_CACHE.clear()
+    log("      モデルキャッシュをクリア済み")
+    log("")
+
+    # ── Step3: 新モデルで place calibrator を再 fit ─────────────────
+    log("[3/3] 新モデルで複勝 Platt 較正器を再 fit 中...")
+    diag = fit_manji_place_calibrator(conn, max_races=400, min_samples=200)
+    log(f"      n_races={diag.get('n_races')} / n_samples={diag.get('n_samples')}")
+
+    if not diag.get("fitted"):
+        log("  [WARN] 複勝較正器: サンプル不足 → フォールバック較正を使用")
+        log("         本番 pkl の昇格は完了。較正器は旧版のまま。")
+        _flush_to(lines, log_v2_path)
+        return 0
+
+    ece = float(diag.get("ece", float("nan")))  # type: ignore[arg-type]
+    ece_uncal = float(diag.get("ece_uncal", float("nan")))  # type: ignore[arg-type]
+    log("")
+    log("【複勝 Platt 較正器 再 fit 結果（新モデルベース）】")
+    log(f"  base_rate(複勝圏率) : {diag.get('base_rate')}")
+    log(f"  ECE 較正前          : {ece_uncal:.4f}")
+    log(f"  ECE 較正後(Platt)   : {ece:.4f}  {'<= 0.05 → 健全' if ece <= 0.05 else '> 0.05 → 要注意'}")
+    log(f"  ΔECE                : {ece_uncal - ece:+.4f}")
+    log("")
+    log("【較正曲線（ev_score → P(複勝圏)）】")
+    curve = diag.get("sample_curve", {})
+    if isinstance(curve, dict):
+        for ev, p in curve.items():
+            log(f"  ev_score={ev:>4} → P(複勝圏)={p:.4f}")
+    log("")
+    healthy = ece <= 0.05
+    log(f"[判定] ECE={ece:.4f} → {'健全(PASS)' if healthy else '要注意(WARN)'}")
+    log(f"RESULT: PROMOTED_AND_RECALIBRATED "
+        f"n_races={n_r} ece={ece:.4f} healthy={'YES' if healthy else 'NO'}")
+    log("=" * 70)
+    _flush_to(lines, log_v2_path)
+    return 0 if healthy else 1
+
+
 if __name__ == "__main__":
     import argparse
 
@@ -268,8 +361,19 @@ if __name__ == "__main__":
         action="store_true",
         help="複勝特化 Platt 較正器のみを学習・ECE検証する（OOS再訓練はスキップ）",
     )
+    parser.add_argument(
+        "--promote-fukusho",
+        action="store_true",
+        help=(
+            "Challenger(train_until=2024)を本番deployし複勝較正器を再fit。"
+            "バックアップは事前に data/backups/ へ取得しておくこと。"
+        ),
+    )
     args = parser.parse_args()
 
     if args.place_cal:
         raise SystemExit(run_place_calibration())
+    if args.promote_fukusho:
+        _v2_log = _ROOT / "logs" / "fukusho_calibration_final_v2.log"
+        raise SystemExit(promote_fukusho_challenger(_v2_log))
     raise SystemExit(main())
