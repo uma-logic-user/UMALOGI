@@ -1,0 +1,76 @@
+============================================================
+UMALOGI 週末本番稼働前 統合ヘルスチェック  2026-06-02 14:20:37
+============================================================
+モード: DB非汚染 dry-run / Discord実送信なし
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[T1] JRA-VAN / データ取得 / DB 鮮度チェック
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ✅ [OK] T1-1 JVLink COM (32bit) — win32com.client ロード成功
+  ✅ [OK] T1-2 watchdog 稼働 — watchdog=稼働中 / autopilot=停止(金曜夜に起動)
+     races 最終日      : 2026-05-31
+     predictions 最終  : 2026-05-31 15:22:44
+     entries 総数      : 115,993
+     realtime_odds 件数: 1,168
+     6/6 以降エントリ  : 0 race (金曜夜の自動同期前のため0が正常)
+  ✅ [OK] T1-3 DB データ鮮度 — 最終レース日=2026-05-31
+  ℹ️ [INFO] T1-4 6/6 エントリ同期状況 — 金曜夜 autopilot 起動後に自動取得予定
+  ✅ [OK] T1-5 netkeiba フォールバック import — entry_table モジュール OK
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[T2] モデルロード・予想生成ドライラン
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ✅ [OK] T2-1 ManjiModel ロード(Challenger昇格pkl) — ロード成功 / pkl=899,616bytes / trained=True
+  ✅ [OK] T2-2 複勝 Platt 較正器ロード — P(複勝圏|ev=2.0)=0.2294(Platt)
+  ✅ [OK] T2-3 ポリシー分離確認 — 卍複勝=実弾True / 卍単勝=liveFalse,watchTrue / LIVE_MODELS=['FukushoElite', 'Pure_EV_Edge', '卍']
+  ✅ [OK] T2-4 特徴量生成 + ev_score ドライラン — race_id=202608031212 / n_horses=18 / max_ev=4.815
+     生成買い目: 実弾=1件 / WATCH_ONLY=1件
+       [実弾] 複勝 EV=3.23 conf=0.301
+       [WATCH] 単勝 EV=4.82 ← 投票しない
+  ✅ [OK] T2-5 BetGenerator ドライラン — 実弾1件(複勝のみ) / WATCH_ONLY1件(単勝)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[T3] UI / Discord 通知フォーマット検証
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ✅ [OK] T3-1 Discord webhook 設定 — 設定済み (121文字) — 本チェックでは実送信しない
+  ✅ [OK] T3-2 DiscordNotifier import
+     モデル×券種   → is_live / is_watch / is_ornamental
+     ✅ 卍(直前)                × 複勝    live=True  watch=False orn=False
+     ✅ 卍(直前)                × 単勝    live=False watch=True  orn=False
+     ✅ 本命(直前)               × 単勝    live=False watch=False orn=False
+     ✅ Oracle(直前)           × 単勝    live=False watch=False orn=True 
+  ✅ [OK] T3-3 WATCH_ONLY/実弾/観賞用 ラベル分離
+
+     ── Discord 通知フォーマット プレビュー ──
+     【卍 週末予想】2026-06-07 東京11R 安田記念
+     ┌─────────────────────────────────────┐
+     │ 🟢 [実弾] 複勝  #5 ○○○○   EV 2.31 │
+     │          P(複勝圏)=0.287 (Platt)    │
+     │ 👁️ [監視] 単勝  #5 ○○○○   EV 2.31 │  ← 投票なし・ROI追跡のみ
+     └─────────────────────────────────────┘
+     ⚠️  注: 単勝は WATCH_ONLY のため Discord 通知に含まれるが
+          実弾フラグ(is_live_bet)=False で投票処理には渡らない。
+  ℹ️ [INFO] T3-4 Discord フォーマット — プレビュー表示のみ（実送信なし）
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+【ヘルスチェック サマリー】
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ✅ OK     T1-1 JVLink COM (32bit)
+  ✅ OK     T1-2 watchdog 稼働
+  ✅ OK     T1-3 DB データ鮮度
+  ℹ️ INFO   T1-4 6/6 エントリ同期状況
+  ✅ OK     T1-5 netkeiba フォールバック import
+  ✅ OK     T2-1 ManjiModel ロード(Challenger昇格pkl)
+  ✅ OK     T2-2 複勝 Platt 較正器ロード
+  ✅ OK     T2-3 ポリシー分離確認
+  ✅ OK     T2-4 特徴量生成 + ev_score ドライラン
+  ✅ OK     T2-5 BetGenerator ドライラン
+  ✅ OK     T3-1 Discord webhook 設定
+  ✅ OK     T3-2 DiscordNotifier import
+  ✅ OK     T3-3 WATCH_ONLY/実弾/観賞用 ラベル分離
+  ℹ️ INFO   T3-4 Discord フォーマット
+
+  OK=12 / WARN=0 / NG=0 / INFO=2
+  ✅ All GREEN — 週末本番稼働 準備完了
+
+OVERALL: ALL_GREEN
