@@ -29,6 +29,11 @@ logger = logging.getLogger(__name__)
 
 _MODEL_DIR = Path(__file__).resolve().parents[2] / "data" / "models"
 _WIN_CAL_PATH = _MODEL_DIR / "manji_win_calibrator.pkl"
+# 複勝特化 Platt 較正器(2026-06-02): 卍 ev_score → P(複勝圏=3着内) を独立に較正する。
+# 単勝(Isotonic)とは別インスタンス。卍を複勝のみ実弾へ昇格するため真の複勝EV算出に用いる。
+_PLACE_CAL_PATH = _MODEL_DIR / "manji_place_calibrator.pkl"
+# 複勝フォールバック上限（学習済み較正器が無くても暴騰を防ぐ）。複勝圏は base_rate が高い。
+_FALLBACK_PLACE_CAP = 0.85
 
 # フォールバック時の confidence 上限（学習済み較正器が無くても 1.0 飽和を防ぐ）
 _FALLBACK_WIN_CAP = 0.6
@@ -53,6 +58,7 @@ def _apply_ev_sanity_cap(prob: float, odds: float) -> float:
     if o <= 1.0:
         return prob
     return min(prob, EV_SANITY_CAP / o)
+
 
 # 学習済み較正器のメモリキャッシュ（None=未ロード, False=ファイルなし）
 # 型: IsotonicRegression インスタンス（サードパーティ・stub なし）のため Any 扱い。
@@ -102,6 +108,54 @@ def calibrate_win_prob(ev_score: float, odds: float) -> float:
     p = min(max(implied, 0.0), _FALLBACK_WIN_CAP)
     # W-066: フォールバック経路にも同じサニティキャップを適用（一貫性）。
     return _apply_ev_sanity_cap(p, odds)
+
+
+# ── 複勝特化 Platt 較正器（2026-06-02）─────────────────────────────────────────
+# 単勝(Isotonic)とは独立したインスタンス。卍 ev_score → P(複勝圏=3着内) を
+# Platt Scaling(ロジスティック回帰)で較正する。
+_place_cal_cache: Any = None
+
+
+def _load_place_cal() -> Any:
+    """学習済み複勝較正器（Platt = LogisticRegression）をロードする。失敗時は None。"""
+    global _place_cal_cache
+    if _place_cal_cache is not None:
+        return _place_cal_cache if _place_cal_cache is not False else None
+    try:
+        with open(_PLACE_CAL_PATH, "rb") as f:
+            _place_cal_cache = pickle.load(f)
+        logger.info("卍複勝較正器ロード: %s", _PLACE_CAL_PATH.name)
+        return _place_cal_cache
+    except Exception:
+        _place_cal_cache = False  # type: ignore[assignment]
+        return None
+
+
+def calibrate_place_prob(ev_score: float) -> float:
+    """卍 ev_score を較正済み P(複勝圏=3着内) に変換する（複勝 confidence / EV 用）。
+
+    学習済み Platt(ロジスティック)較正器があれば適用。無ければ ev_score の
+    単調変換による保守フォールバック（_FALLBACK_PLACE_CAP で頭打ち）。
+
+    Args:
+        ev_score: ManjiModel.ev_score() の生出力（EV 比率）。
+
+    Returns:
+        較正済み複勝圏確率（0.0〜1.0、飽和しない）。
+    """
+    cal = _load_place_cal()
+    if cal is not None:
+        try:
+            # Platt は predict_proba[:,1] が P(複勝圏)。
+            p = float(cal.predict_proba([[float(ev_score)]])[0][1])
+            return min(max(p, 0.0), 0.999)
+        except Exception as exc:  # noqa: BLE001
+            logger.debug("卍複勝較正器 predict 失敗（フォールバック）: %s", exc)
+
+    # フォールバック: ev_score を 0〜_FALLBACK_PLACE_CAP に潰した単調変換。
+    ev = max(float(ev_score), 0.0)
+    implied = ev / (ev + 1.5)  # ev=1.5→0.5, ev=3→0.67 と緩やかに飽和
+    return min(max(implied, 0.0), _FALLBACK_PLACE_CAP)
 
 
 def calibrate_combo_prob(raw_prob: float) -> float:
@@ -228,4 +282,154 @@ def fit_manji_win_calibrator(
         }
     )
     logger.info("卍単勝較正器を学習・保存: %s", diag)
+    return diag
+
+
+def _compute_ece(probs: list[float], labels: list[int], n_bins: int = 10) -> float:
+    """Expected Calibration Error（小さいほど較正良好）を等幅ビンで算出する。"""
+    if not probs:
+        return float("nan")
+    total = len(probs)
+    ece = 0.0
+    for b in range(n_bins):
+        lo, hi = b / n_bins, (b + 1) / n_bins
+        # 最終ビンは右端を含める
+        idx = [
+            i
+            for i, p in enumerate(probs)
+            if (lo <= p < hi) or (b == n_bins - 1 and p == hi)
+        ]
+        if not idx:
+            continue
+        conf = sum(probs[i] for i in idx) / len(idx)
+        acc = sum(labels[i] for i in idx) / len(idx)
+        ece += (len(idx) / total) * abs(conf - acc)
+    return ece
+
+
+def fit_manji_place_calibrator(
+    conn: sqlite3.Connection,
+    *,
+    max_races: int = 400,
+    min_samples: int = 200,
+) -> dict[str, object]:
+    """確定実績から卍 ev_score → P(複勝圏=3着内) の Platt 較正器を学習・永続化する。
+
+    単勝(Isotonic)とは独立した複勝特化インスタンス。Platt Scaling=ロジスティック回帰で
+    ev_score 1次元から複勝圏確率を較正し、ECE(較正誤差)を含む診断を返す。
+
+    Args:
+        conn: DB コネクション。
+        max_races: 学習に使う直近確定レースの最大数。
+        min_samples: 学習に必要な最小サンプル数（馬-行）。
+
+    Returns:
+        診断 dict（n_races / n_samples / fitted / base_rate / ece / ece_uncal /
+        sample_curve / path）。
+    """
+    import numpy as np
+    from sklearn.linear_model import LogisticRegression
+
+    from src.ml.features import FeatureBuilder
+    from src.ml.models import load_models
+
+    _honmei, _place, manji = load_models()
+
+    race_ids = [
+        r[0]
+        for r in conn.execute(
+            """
+            SELECT r.race_id
+            FROM races r
+            WHERE EXISTS (
+                SELECT 1 FROM race_results rr
+                WHERE rr.race_id = r.race_id AND rr.rank = 1
+            )
+            ORDER BY r.date DESC, r.race_id DESC
+            LIMIT ?
+            """,
+            (max_races,),
+        ).fetchall()
+    ]
+
+    xs: list[float] = []
+    ys: list[int] = []
+    n_races = 0
+    for rid in race_ids:
+        try:
+            df = FeatureBuilder(conn).build_race_features(rid)
+            if df is None or df.empty:
+                continue
+            ev = manji.ev_score(df)
+            placed = {
+                row[0]
+                for row in conn.execute(
+                    "SELECT horse_name FROM race_results "
+                    "WHERE race_id = ? AND rank IS NOT NULL AND rank BETWEEN 1 AND 3",
+                    (rid,),
+                ).fetchall()
+            }
+            if not placed:
+                continue
+            n_races += 1
+            for i, (_, hrow) in enumerate(df.iterrows()):
+                if i >= len(ev):
+                    break
+                name = str(hrow.get("horse_name", ""))
+                xs.append(float(ev.iloc[i]))
+                ys.append(1 if name in placed else 0)
+        except Exception as exc:  # noqa: BLE001 — 1レース失敗で全体を止めない
+            logger.debug("複勝較正学習 スキップ race_id=%s: %s", rid, exc)
+            continue
+
+    diag: dict[str, object] = {
+        "n_races": n_races,
+        "n_samples": len(xs),
+        "fitted": False,
+        "path": str(_PLACE_CAL_PATH),
+    }
+    if len(xs) < min_samples or sum(ys) == 0 or sum(ys) == len(ys):
+        logger.warning(
+            "卍複勝較正器: サンプル不足/偏り（n=%d, placed=%d）→ 学習スキップ",
+            len(xs),
+            sum(ys),
+        )
+        return diag
+
+    x_arr = np.asarray(xs, dtype=float).reshape(-1, 1)
+    y_arr = np.asarray(ys, dtype=int)
+
+    # Platt Scaling = 1次元ロジスティック回帰。
+    platt = LogisticRegression(max_iter=1000)
+    platt.fit(x_arr, y_arr)
+
+    # 較正前後の ECE を比較（較正前は ev_score を 0-1 へ素朴正規化した値で代用）。
+    cal_probs = [float(p) for p in platt.predict_proba(x_arr)[:, 1]]
+    ev_min, ev_max = float(min(xs)), float(max(xs))
+    span = (ev_max - ev_min) or 1.0
+    uncal_probs = [min(max((v - ev_min) / span, 0.0), 1.0) for v in xs]
+    ece_cal = _compute_ece(cal_probs, ys)
+    ece_uncal = _compute_ece(uncal_probs, ys)
+
+    _MODEL_DIR.mkdir(parents=True, exist_ok=True)
+    with open(_PLACE_CAL_PATH, "wb") as f:
+        pickle.dump(platt, f)
+
+    global _place_cal_cache
+    _place_cal_cache = platt
+
+    sample_curve = {
+        round(v, 1): round(float(platt.predict_proba([[v]])[0][1]), 4)
+        for v in (0.5, 1.0, 1.5, 2.0, 3.0, 5.0)
+    }
+    diag.update(
+        {
+            "fitted": True,
+            "base_rate": round(sum(ys) / len(ys), 4),
+            "ece": round(ece_cal, 4),
+            "ece_uncal": round(ece_uncal, 4),
+            "sample_curve": sample_curve,
+        }
+    )
+    logger.info("卍複勝較正器(Platt)を学習・保存: %s", diag)
     return diag

@@ -35,6 +35,7 @@ from scripts.backtest_all_models import (  # noqa: E402
 )
 
 _LOG_PATH = _ROOT / "logs" / "training_log_manji_weekend.log"
+_PLACE_CAL_LOG_PATH = _ROOT / "logs" / "fukusho_calibration_final.log"
 _TRAIN_UNTIL = 2024
 _TEST_YEAR = "2025"
 
@@ -77,8 +78,10 @@ def main() -> int:
     log("=" * 70)
     log(f"卍モデル 週末Challenger再訓練・OOS検証  {ts}")
     log("=" * 70)
-    log(f"設定: train_until={_TRAIN_UNTIL}（{_TRAIN_UNTIL}年以前で学習） "
-        f"/ OOS検証={_TEST_YEAR}年")
+    log(
+        f"設定: train_until={_TRAIN_UNTIL}（{_TRAIN_UNTIL}年以前で学習） "
+        f"/ OOS検証={_TEST_YEAR}年"
+    )
     log("")
 
     conn = init_db()
@@ -99,8 +102,10 @@ def main() -> int:
     log(f"[2] Challenger を {_TRAIN_UNTIL}年以前データで訓練...")
     challenger = ManjiModel()
     m = challenger.train(conn, train_until=_TRAIN_UNTIL)
-    log(f"  [OK] Challenger 訓練完了: "
-        f"n_races={m.get('n_races')} n_samples={m.get('n_samples')}")
+    log(
+        f"  [OK] Challenger 訓練完了: "
+        f"n_races={m.get('n_races')} n_samples={m.get('n_samples')}"
+    )
     if not m.get("n_samples"):
         log("  [ERROR] 学習サンプル0件 → 中止")
         _flush(lines)
@@ -141,10 +146,14 @@ def main() -> int:
 
     log("─" * 70)
     log("【昇格判定】")
-    log(f"  単勝: Challenger {ht.roi:.1f}% vs Champion {ct.roi:.1f}% "
-        f"→ {'OK' if tansho_ok else 'NG'}（>=Champion かつ >=100%）")
-    log(f"  複勝: Challenger {hf.roi:.1f}% vs Champion {cf.roi:.1f}% "
-        f"→ {'OK' if fukusho_ok else 'NG'}（Champion-5pt以内）")
+    log(
+        f"  単勝: Challenger {ht.roi:.1f}% vs Champion {ct.roi:.1f}% "
+        f"→ {'OK' if tansho_ok else 'NG'}（>=Champion かつ >=100%）"
+    )
+    log(
+        f"  複勝: Challenger {hf.roi:.1f}% vs Champion {cf.roi:.1f}% "
+        f"→ {'OK' if fukusho_ok else 'NG'}（Champion-5pt以内）"
+    )
     log("")
     log("  [注意] Champion(現役pkl)は学習期間に2025を含む可能性があり、OOS比較で")
     log("         楽観側に振れる。Challengerはリーク無し(train_until=2024)のため、")
@@ -154,7 +163,9 @@ def main() -> int:
     log("")
 
     if promote:
-        saved = challenger.save()  # data/models/manji_model.pkl を上書き（バックアップ済）
+        saved = (
+            challenger.save()
+        )  # data/models/manji_model.pkl を上書き（バックアップ済）
         log(f"  → 判定: 【昇格】Challenger を本番 {saved} に保存しました。")
         log("    ロールバック: data/backups/manji_model_<ts>.pkl から復元可能。")
     else:
@@ -162,9 +173,11 @@ def main() -> int:
         log("    本番 data/models/manji_model.pkl は一切変更していません。")
 
     log("")
-    log(f"RESULT: {'PROMOTED' if promote else 'HOLD'} "
+    log(
+        f"RESULT: {'PROMOTED' if promote else 'HOLD'} "
         f"tansho_champ={ct.roi:.1f}% tansho_chal={ht.roi:.1f}% "
-        f"fukusho_champ={cf.roi:.1f}% fukusho_chal={hf.roi:.1f}%")
+        f"fukusho_champ={cf.roi:.1f}% fukusho_chal={hf.roi:.1f}%"
+    )
     log("=" * 70)
 
     _flush(lines)
@@ -178,5 +191,85 @@ def _flush(lines: list[str]) -> None:
     print(f"\n[ログ出力] {_LOG_PATH}", flush=True)
 
 
+def run_place_calibration() -> int:
+    """複勝特化 Platt 較正器を学習し、ECE収束を fukusho_calibration_final.log に出力する。"""
+    from src.ml.manji_calibration import fit_manji_place_calibrator
+
+    lines: list[str] = []
+
+    def log(msg: str = "") -> None:
+        print(msg, flush=True)
+        lines.append(msg)
+
+    ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    log("=" * 70)
+    log(f"卍 複勝特化 Platt 較正器 学習・ECE検証  {ts}")
+    log("=" * 70)
+    log(
+        "手法: ev_score(1次元) → P(複勝圏=3着内) を Platt Scaling(ロジスティック回帰)で較正"
+    )
+    log("単勝 Isotonic 較正器(manji_win_calibrator)とは独立インスタンス。")
+    log("")
+
+    conn = init_db()
+    diag = fit_manji_place_calibrator(conn, max_races=400, min_samples=200)
+
+    log(f"学習レース数      : {diag.get('n_races')}")
+    log(f"学習サンプル数    : {diag.get('n_samples')}")
+    log(f"複勝圏 base_rate  : {diag.get('base_rate')}")
+    log(f"較正器パス        : {diag.get('path')}")
+    log("")
+
+    if not diag.get("fitted"):
+        log("[判定] サンプル不足/偏りにより学習スキップ → フォールバック較正を使用。")
+        _flush_to(lines, _PLACE_CAL_LOG_PATH)
+        return 1
+
+    ece = float(diag.get("ece", float("nan")))  # type: ignore[arg-type]
+    ece_uncal = float(diag.get("ece_uncal", float("nan")))  # type: ignore[arg-type]
+    log("【ECE 収束状況（Expected Calibration Error・小さいほど較正良好）】")
+    log(f"  較正前(ev素朴正規化) ECE = {ece_uncal:.4f}")
+    log(f"  較正後(Platt)        ECE = {ece:.4f}")
+    improve = ece_uncal - ece
+    log(f"  改善量               ΔECE = {improve:+.4f}")
+    log("")
+    log("【較正曲線（ev_score → P(複勝圏)）】")
+    curve = diag.get("sample_curve", {})
+    if isinstance(curve, dict):
+        for ev, p in curve.items():
+            log(f"  ev_score={ev:>4} → P(複勝圏)={p:.4f}")
+    log("")
+    healthy = ece <= 0.05
+    log(
+        f"[判定] ECE={ece:.4f} {'<= 0.05 → 較正良好(健全)' if healthy else '> 0.05 → 要改善'}"
+    )
+    log(
+        f"RESULT: PLACE_CAL_FITTED ece={ece:.4f} ece_uncal={ece_uncal:.4f} "
+        f"base_rate={diag.get('base_rate')} healthy={'YES' if healthy else 'NO'}"
+    )
+    log("=" * 70)
+    _flush_to(lines, _PLACE_CAL_LOG_PATH)
+    return 0
+
+
+def _flush_to(lines: list[str], path: Path) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        f.write("\n".join(lines) + "\n")
+    print(f"\n[ログ出力] {path}", flush=True)
+
+
 if __name__ == "__main__":
+    import argparse
+
+    parser = argparse.ArgumentParser(description="卍 週末再訓練・複勝較正")
+    parser.add_argument(
+        "--place-cal",
+        action="store_true",
+        help="複勝特化 Platt 較正器のみを学習・ECE検証する（OOS再訓練はスキップ）",
+    )
+    args = parser.parse_args()
+
+    if args.place_cal:
+        raise SystemExit(run_place_calibration())
     raise SystemExit(main())

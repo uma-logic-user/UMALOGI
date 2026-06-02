@@ -4,10 +4,13 @@ from __future__ import annotations
 
 from src.ml.bet_policy import (
     FLAT_UNIT_YEN,
+    MODEL_LIVE_BET_TYPES,
+    WATCH_ONLY_MODELS,
     base_model,
     flat_cost,
     is_live_bet,
     is_ornamental,
+    is_watch_only,
 )
 
 
@@ -30,11 +33,37 @@ def test_base_model_strips_suffix_and_v2() -> None:
 
 
 def test_live_bet_only_tansho_fukusho_of_live_models() -> None:
-    # 実弾モデル × 単複 = True（2026-06-02 縮退後: 卍/Pure_EV_Edge/FukushoElite のみ）
-    assert is_live_bet("卍(直前)", "単勝") is True
+    # 実弾モデル × 許可券種 = True（2026-06-02: 卍は複勝特化・Pure/Fukushoは単複）
     assert is_live_bet("卍(暫定)", "複勝") is True
     assert is_live_bet("Pure_EV_Edge(直前)", "単勝") is True
+    assert is_live_bet("Pure_EV_Edge(直前)", "複勝") is True
     assert is_live_bet("FukushoElite(直前)", "複勝") is True
+
+
+def test_manji_place_promoted_win_watch_only() -> None:
+    """卍 複勝特化昇格: 複勝のみ実弾、単勝は WATCH_ONLY（投票しない）。"""
+    # 複勝 = 実弾投票対象へ昇格
+    assert is_live_bet("卍(直前)", "複勝") is True
+    assert is_live_bet("卍(暫定)", "複勝") is True
+    # 単勝 = 投票しない（WATCH_ONLY）が観賞用ではない
+    assert is_live_bet("卍(直前)", "単勝") is False
+    assert is_live_bet("卍(暫定)", "単勝") is False
+    assert is_watch_only("卍(直前)", "単勝") is True
+    assert is_watch_only("卍(暫定)", "単勝") is True
+    assert is_ornamental("卍(直前)") is False
+    # 複勝は WATCH_ONLY ではない（実弾）
+    assert is_watch_only("卍(直前)", "複勝") is False
+
+
+def test_gate_split_policy_tables() -> None:
+    """ポリシーテーブルの整合: 卍は複勝live・単勝watch、他モデルは単複既定。"""
+    assert MODEL_LIVE_BET_TYPES["卍"] == frozenset({"複勝"})
+    assert WATCH_ONLY_MODELS["卍"] == frozenset({"単勝"})
+    # Pure_EV_Edge/FukushoElite は override 無し（単複両方が既定で実弾）
+    assert "Pure_EV_Edge" not in MODEL_LIVE_BET_TYPES
+    assert "FukushoElite" not in WATCH_ONLY_MODELS
+    # 監視専用でも非観賞用モデルは集客フラグが立たない
+    assert is_watch_only("Pure_EV_Edge(直前)", "単勝") is False
 
 
 def test_retired_models_not_live_after_20260602_shrink() -> None:

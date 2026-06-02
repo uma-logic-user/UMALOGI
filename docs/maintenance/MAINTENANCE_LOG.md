@@ -34,6 +34,21 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-02 — 卍 複勝特化昇格＋複勝Platt較正器の分離
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-opus-4-8) |
+| **修正日** | 2026-06-02 |
+| **バージョン** | `1.4.0-dev`（据え置き・dev継続。較正器追加＋ゲート粒度化、基底モデル非再訓練のため互換） |
+| **種別** | 買い目ロジック（ポリシー）/ 較正 |
+| **実施内容** | (1)複勝専用 Platt 較正器を新設（`manji_calibration.fit_manji_place_calibrator`/`calibrate_place_prob`・`manji_place_calibrator.pkl`）。単勝Isotonicと独立。学習=400R/5,679件・**ECE 0.1784→0.0395(健全)**。(2)`bet_policy` に `MODEL_LIVE_BET_TYPES={卍:{複勝}}`・`WATCH_ONLY_MODELS={卍:{単勝}}` を追加し `is_live_bet` を券種粒度化＋`is_watch_only` 新設。卍は複勝のみ実弾・単勝はWATCH_ONLY。(3)`bet_generator` 卍複勝 confidence を Platt較正値へ。 |
+| **影響範囲** | `src/ml/bet_policy.py`, `src/ml/manji_calibration.py`, `src/ml/bet_generator.py`, `scripts/retrain_manji_weekend.py`, `data/models/manji_place_calibrator.pkl`(新規), `logs/fukusho_calibration_final.log`, `tests/test_bet_policy.py`, `tests/test_ev_calibration_safety.py`, `docs/1_prediction_logic.md`, `docs/7_weakness_ledger.md`(W-067)。**基底回帰 `manji_model.pkl` は非再訓練（HOLD据え置き）/ 単勝較正器も不変**。 |
+| **検証** | `pytest`（bet_policy/health_reporter/fukusho_elite/bet_generator/bet_precision_filters/ev_calibration_safety）→ **90 passed**。複勝較正ECE=0.0395（`logs/fukusho_calibration_final.log`）。 |
+| **誠実報告** | 昇格対象=卍複勝の現役Champion OOS2025=90.9%・ライブ複勝=暫定99.4%/直前84.0% ＝**現Championでは黒字未達(≒トントン)**。黒字化(Challenger 108.8%)は基底回帰の再デプロイが別途必要（本コミットは較正器分離＋ゲート分離のインフラ整備に限定）。 |
+| **ロールバック** | コード: 直前コミット `f3682cbd`。新規較正器を削除すれば `calibrate_place_prob` はフォールバックに退避（安全）。 |
+| **関連** | CLAUDE.md 条項1/3/4/6/7。W-067 / W-048 / W-059。 |
+
 ### 2026-06-02 — 週末向け 実弾モデル縮退（卍/Pure_EV_Edge/FukushoElite）＋卍Challenger検証
 
 | 項目 | 内容 |

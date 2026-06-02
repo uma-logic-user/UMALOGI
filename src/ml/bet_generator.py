@@ -37,6 +37,7 @@ import pandas as pd
 from src.ml.bet_policy import is_live_bet  # 実弾(単勝/複勝)単一真実源
 from src.ml.manji_calibration import (  # 卍 confidence 較正(W-048/P0-3)
     calibrate_combo_prob,
+    calibrate_place_prob,
     calibrate_win_prob,
 )
 
@@ -974,23 +975,30 @@ class ManjiStrategy:
         )
 
         # ── 複勝（上位3頭）────────────────────────────────────────
+        # 卍 複勝特化昇格(2026-06-02): confidence を複勝専用 Platt 較正器で
+        # P(複勝圏) に較正する（単勝 Isotonic とは独立インスタンス）。
         top_nums = [int(r["horse_number"]) for _, r in pos_ev.iterrows()]
+        mean_ev = float(pos_ev["ev_score"].mean())
+        place_conf = calibrate_place_prob(mean_ev)
         result.bets.append(
             BetRecommendation(
                 bet_type="複勝",
                 combinations=[(n,) for n in top_nums],
                 horse_names=[names.get(n, str(n)) for n in top_nums],
-                expected_value=float(pos_ev["ev_score"].mean()),
-                model_score=float(pos_ev["ev_score"].mean()),
+                expected_value=mean_ev,
+                model_score=mean_ev,
                 recommended_bet=calc_kelly_stake(
                     bankroll,
-                    float(pos_ev["ev_score"].mean()),
+                    mean_ev,
                     odds_top,
                     "複勝",
                     n_combos=len(top_nums),
                 ),
-                confidence=0.6,
-                notes=f"確率上位{len(top_nums)}頭を複勝",
+                confidence=place_conf,
+                notes=(
+                    f"確率上位{len(top_nums)}頭を複勝 "
+                    f"P(複勝圏)={place_conf:.2f}(Platt較正)"
+                ),
             )
         )
 

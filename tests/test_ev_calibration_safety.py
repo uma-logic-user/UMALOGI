@@ -24,6 +24,32 @@ from src.ml.pure_ev_edge import (
 _EPS = 1e-6
 
 
+# ── 複勝特化 Platt 較正器（2026-06-02 卍複勝昇格）──────────────────────────
+def test_place_calibrator_returns_probability() -> None:
+    """calibrate_place_prob は 0〜1 の確率を返し、飽和(=1.0)しない。"""
+    from src.ml.manji_calibration import calibrate_place_prob
+
+    for ev in (0.0, 0.5, 1.0, 2.0, 5.0, 30.0):
+        p = calibrate_place_prob(ev)
+        assert 0.0 <= p <= 0.999, f"ev={ev} で確率が範囲外: {p}"
+
+
+def test_place_calibrator_monotonic_nondecreasing() -> None:
+    """ev_score が大きいほど P(複勝圏) は概ね単調非減少（学習済み/フォールバック双方）。"""
+    from src.ml.manji_calibration import calibrate_place_prob
+
+    probs = [calibrate_place_prob(ev) for ev in (0.5, 1.0, 2.0, 3.0, 5.0)]
+    assert all(b >= a - _EPS for a, b in zip(probs, probs[1:])), probs
+
+
+def test_place_calibrator_is_independent_from_win() -> None:
+    """複勝較正器は単勝(Isotonic)とは独立（別パス・odds 引数を取らない）。"""
+    from src.ml.manji_calibration import _PLACE_CAL_PATH, _WIN_CAL_PATH
+
+    assert _PLACE_CAL_PATH != _WIN_CAL_PATH
+    assert _PLACE_CAL_PATH.name == "manji_place_calibrator.pkl"
+
+
 # ── Layer 1: calibrate_win_prob の EV サニティキャップ ─────────────────────
 def test_longshot_ev_is_capped() -> None:
     """大穴（高オッズ）でも EV=P×odds が EV_SANITY_CAP を超えない。"""
