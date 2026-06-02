@@ -28,6 +28,9 @@ _ROOT = Path(__file__).resolve().parents[2]
 if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
+from src.ops.money_management import BetAllocation, allocate_budget  # noqa: E402
+from src.ops.sns_publisher import NoteBet  # noqa: E402
+
 sys.stdout.reconfigure(encoding="utf-8")  # type: ignore[union-attr]
 
 logger = logging.getLogger(__name__)
@@ -38,6 +41,7 @@ _DB_PATH = _ROOT / "data" / "umalogi.db"
 _OUT_DIR = _ROOT / "outputs" / "note"
 # 厳選レース単体 note 用コピペ Markdown の出力先（X/SNS 集客導線）
 _GACHI_DIR = _ROOT / "dist" / "notes"
+_DRAFTS_DIR = _ROOT / "outputs" / "sns" / "drafts"
 
 # ── 厳選レース（ガチ）判定パラメータ ──────────────────────────────
 # 仕様: Alpha-Payout の実払戻 EV が _GACHI_EV_THRESHOLD 以上、または
@@ -1318,6 +1322,7 @@ def run_gachi_pipeline(
 
     conn = _db()
     results: list[dict[str, Any]] = []
+    daily_note_bets: list[NoteBet] = []
     try:
         gachi = select_gachi_races(conn, db_date, top_n=top_n)
         logger.info("厳選レース %d 件抽出 (%s, dry_run=%s)", len(gachi), ds, dry_run)
@@ -1334,8 +1339,18 @@ def run_gachi_pipeline(
                     "discord_sent": sent,
                 }
             )
+            daily_note_bets.extend(_extract_note_bets(sc))
     finally:
         conn.close()
+
+    # 日次下書き生成（実弾処理に影響を与えないよう例外セーフ）
+    try:
+        allocs = allocate_budget(daily_note_bets)
+        write_daily_drafts(daily_note_bets, allocs, date=ds, note_url=note_url)
+        logger.info("[daily_drafts] 生成完了 (%s, bets=%d)", ds, len(daily_note_bets))
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("[daily_drafts] 生成失敗（メイン処理に影響なし）: %s", exc)
+
     return results
 
 
@@ -1380,6 +1395,189 @@ def notify_gachi_for_race(
         }
     finally:
         conn.close()
+
+
+# ── 日次下書き生成 ────────────────────────────────────────────────────
+
+
+def generate_note_draft(
+    bets: list[NoteBet],
+    allocations: list[BetAllocation],
+    *,
+    date: str | None = None,
+    total_budget: int = 10_000,
+) -> str:
+    """Note/X 向け事前予想下書き（Markdown）を生成して文字列で返す（純関数）。
+
+    Args:
+        bets:         買い目リスト（NoteBet）。空の場合はプレースホルダを含む記事を返す。
+        allocations:  allocate_budget() の結果。bets と同順で対応する。
+        date:         対象日 YYYYMMDD / YYYY-MM-DD（省略時: 本日）。
+        total_budget: 記事中に表示する総予算基準（デフォルト ¥10,000）。
+
+    Returns:
+        そのまま note.com に貼り付け可能な Markdown 文字列。
+    """
+    ds = (date or _dt_date.today().strftime("%Y%m%d")).replace("-", "")
+    y, m, d = ds[:4], ds[4:6], ds[6:]
+
+    lines: list[str] = [
+        f"# 【UMALOGI予想】{y}年{m}月{d}日 厳選勝負レース（推奨予算1万円の資金配分付き）",
+        "",
+        "> UMALOGIのAIが**期待値（EV）**を基準に厳選した本日の勝負買い目と、",
+        f"> ¥{total_budget:,}を効率的に配分するための参考プランです。",
+        "> EV &gt; 1.0 は長期的にプラス収支が期待できる「割安なオッズの歪み」です。",
+        "",
+        "---",
+        "",
+    ]
+
+    if not allocations:
+        lines += [
+            "## ⚠️ 本日の予想データ",
+            "",
+            "本日は予想データが準備中です。開催当日の朝、予想が生成され次第このページに反映されます。",
+            "",
+        ]
+    else:
+        lines += [
+            f"## 💰 AI推奨 資金配分プラン（基準：¥{total_budget:,}）",
+            "",
+            "| 券種 | 対象 | 期待値(EV) | 推奨配分額 | 勝負レベル |",
+            "|------|------|:--------:|----------:|:---------|",
+        ]
+        for a in allocations:
+            lines.append(
+                f"| {a.bet_type} | {a.horse_desc} | {a.ev:.2f}"
+                f" | **¥{a.allocated_yen:,}** | {a.label} |"
+            )
+        lines += [
+            "",
+            "> 💡 上記は100円単位でのAI推奨比率です。ご自身のバンクロールに合わせて調整ください。",
+            "",
+            "---",
+            "",
+            "## 📊 期待値（EV）について",
+            "",
+            "UMALOGIのAIは統計的に「オッズが割安」な馬券を自動検出します。",
+            "EV（期待値）= 予測的中率 × オッズ で計算され、EV &gt; 1.0 なら長期的にプラスが期待できます。",
+            "",
+        ]
+
+    lines += [
+        "---",
+        "",
+        "*本記事はAI分析に基づく参考情報です。"
+        "馬券投票は余裕資金の範囲内で自己責任でお楽しみください。*",
+        "",
+    ]
+    return "\n".join(lines)
+
+
+def generate_x_promo_tweet(
+    bets: list[NoteBet],
+    *,
+    note_url: str | None = None,
+) -> str:
+    """X（Twitter）向け集客プロモツイートを生成する（≤140 文字保証）。
+
+    EVが高い買い目があれば煽り系フレーズを先頭に置き、末尾に note URL を含める。
+
+    Args:
+        bets:     買い目リスト（NoteBet）。空でも有効なツイートを返す。
+        note_url: 誘導先 note URL（未指定時は _NOTE_MYPAGE_URL）。
+
+    Returns:
+        140 文字以内のツイートテキスト。
+    """
+    url = note_url or _NOTE_MYPAGE_URL
+    tags = "#競馬予想 #UMALOGI #期待値競馬 #JRA"
+
+    pos_bets = [b for b in bets if b.ev > 1.0]
+    if not pos_bets:
+        body = "本日の予想準備中！AI厳選の買い目と¥1万資金配分はNoteにて👇"
+    else:
+        max_ev = max(b.ev for b in pos_bets)
+        if max_ev >= 1.4:
+            body = (
+                f"🔥本日の勝負レース！期待値{max_ev:.2f}の激熱穴馬を検知。"
+                "推奨買い目と¥1万配分はNoteで限定公開👇"
+            )
+        elif max_ev >= 1.2:
+            body = (
+                f"📈本日の勝負レース！期待値{max_ev:.2f}の好材料を検知。"
+                "推奨買い目と¥1万配分はNoteで公開👇"
+            )
+        else:
+            body = "本日の勝負レース！期待値特大の穴馬を発見。推奨買い目と資金配分はNoteにて👇"
+
+    core = f"\n{url}\n{tags}"
+    tweet = body + core
+    if len(tweet) > 140:
+        available = 140 - len(core)
+        tweet = body[: max(available, 0)] + core
+    return tweet[:140]
+
+
+def write_daily_drafts(
+    bets: list[NoteBet],
+    allocations: list[BetAllocation],
+    *,
+    date: str | None = None,
+    note_url: str | None = None,
+    out_dir: Path | None = None,
+    total_budget: int = 10_000,
+) -> tuple[Path, Path]:
+    """Note/X 日次下書きをファイルに書き出し (note_path, x_path) を返す。
+
+    Args:
+        bets:         買い目リスト。
+        allocations:  allocate_budget() の結果。
+        date:         対象日 YYYYMMDD / YYYY-MM-DD（省略時: 本日）。
+        note_url:     X ツイートに含める note URL（省略時: 環境変数 NOTE_MYPAGE_URL）。
+        out_dir:      出力先ディレクトリ（省略時: _DRAFTS_DIR）。テスト時は tmp_path を渡す。
+        total_budget: Note 記事中に表示する総予算基準。
+
+    Returns:
+        (note_pre_YYYYMMDD.md の Path, x_pre_YYYYMMDD.txt の Path)
+    """
+    ds = (date or _dt_date.today().strftime("%Y%m%d")).replace("-", "")
+    d = out_dir if out_dir is not None else _DRAFTS_DIR
+    d.mkdir(parents=True, exist_ok=True)
+
+    note_md = generate_note_draft(bets, allocations, date=ds, total_budget=total_budget)
+    x_text = generate_x_promo_tweet(bets, note_url=note_url)
+
+    note_path = d / f"note_pre_{ds}.md"
+    x_path = d / f"x_pre_{ds}.txt"
+
+    note_path.write_text(note_md, encoding="utf-8")
+    x_path.write_text(x_text, encoding="utf-8")
+
+    logger.info("[daily_drafts] note=%s x=%s", note_path, x_path)
+    return note_path, x_path
+
+
+def _extract_note_bets(sc: dict[str, Any]) -> list[NoteBet]:
+    """スコア辞書（_score_race）から日次下書き用 NoteBet リストを抽出する。
+
+    Alpha-Payout の最高 EV 買い目 1 件と、卍複勝の最高 EV 買い目 1 件（いずれも EV≥1.0）を返す。
+    """
+    result: list[NoteBet] = []
+    for p in sc.get("alpha_preds", [])[:3]:
+        ev = float(p.get("expected_value") or 0.0)
+        if ev >= 1.0:
+            desc = _fmt_combo(p.get("combos", []), p["bet_type"])
+            result.append(NoteBet(bet_type=p["bet_type"], horse_desc=desc, ev=ev))
+            break
+    for p in sc.get("manji_preds", []):
+        if p.get("bet_type") == "複勝":
+            ev = float(p.get("expected_value") or 0.0)
+            if ev >= 1.0:
+                desc = _fmt_combo(p.get("combos", []), "複勝")
+                result.append(NoteBet(bet_type="複勝", horse_desc=desc, ev=ev))
+            break
+    return result
 
 
 # ── CLI ─────────────────────────────────────────────────────────

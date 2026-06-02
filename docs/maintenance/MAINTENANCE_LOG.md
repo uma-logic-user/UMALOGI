@@ -34,6 +34,21 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-02 — サブスク集客用 予算配分ロジック・Note/X 自動生成ループの構築
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-sonnet-4-6) |
+| **修正日** | 2026-06-02 |
+| **バージョン** | `1.4.0-dev` → `1.4.1`（後方互換な機能追加 = MINOR） |
+| **種別** | feat（新機能追加） |
+| **実施内容** | **(1) `src/ops/money_management.py` 新設**: `BetAllocation` dataclass + `allocate_budget()` 純関数。EV エッジ（EV-1.0）比例で総予算（デフォルト¥10,000）を按分し100円単位に丸める。EV≤1.0 は最大3件の保険枠（100円固定）。合計＝総予算を保証。実弾処理・DB とは完全切り離し。**(2) `src/ops/note_generator.py` 拡張**: `generate_note_draft()` / `generate_x_promo_tweet()` / `write_daily_drafts()` / `_extract_note_bets()` を追加。日次下書きを `outputs/sns/drafts/note_pre_YYYYMMDD.md` / `x_pre_YYYYMMDD.txt` に出力。`run_gachi_pipeline()` の末尾に例外セーフフックとして組み込み済み。**(3) テスト新設**: `tests/test_money_management.py`（16件）+ `tests/test_daily_drafts.py`（25件）= 計41件 PASS。 |
+| **影響範囲** | `src/ops/money_management.py`（新規）, `src/ops/note_generator.py`（拡張・imports/定数/4関数/run_gachi_pipeline修正）, `tests/test_money_management.py`（新規）, `tests/test_daily_drafts.py`（新規）, `VERSION`（1.4.0-dev→1.4.1）。予測テーブル非改変（条項1）。 |
+| **検証** | `pytest tests/test_money_management.py tests/test_daily_drafts.py` → **41 passed**。全テストスイート: 1114 passed（新規失敗なし）。ruff format 適用・未使用 import 除去済み。 |
+| **ロールバック** | `git revert HEAD`（1コミット）。`outputs/sns/drafts/` ディレクトリは空でも問題なし。 |
+
+---
+
 ### 2026-06-02 — Challengerモデルの正式昇格および複勝特化較正の再fit完了
 
 | 項目 | 内容 |
