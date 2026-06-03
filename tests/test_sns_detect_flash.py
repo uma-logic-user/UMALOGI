@@ -16,7 +16,8 @@ def conn() -> sqlite3.Connection:
         """
         CREATE TABLE races (race_id TEXT PRIMARY KEY, date TEXT);
         CREATE TABLE predictions (id INTEGER PRIMARY KEY, race_id TEXT, model_type TEXT,
-            bet_type TEXT, combination_json TEXT, created_at TEXT, is_superseded INTEGER DEFAULT 0);
+            bet_type TEXT, combination_json TEXT, created_at TEXT,
+            is_superseded INTEGER DEFAULT 0, expected_value REAL DEFAULT NULL);
         CREATE TABLE prediction_results (id INTEGER PRIMARY KEY, prediction_id INTEGER,
             is_hit INTEGER, payout REAL, profit REAL);
         """

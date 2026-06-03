@@ -33,6 +33,7 @@ logger = logging.getLogger(__name__)
 
 _ROOT = Path(__file__).resolve().parents[2]
 _SNS_DIR = _ROOT / "outputs" / "sns"
+_REPORTS_DIR = _ROOT / "outputs" / "sns" / "reports"
 
 X_CHAR_LIMIT: int = 140
 X_PREMIUM_LIMIT: int = 2000
@@ -136,6 +137,34 @@ class HitFlash:
     def is_manbaiken(self) -> bool:
         """100円あたり払戻 1万円以上（= ROI 10000% 以上）なら万馬券。"""
         return self.roi >= MANBAKEN_ROI
+
+
+@dataclass(frozen=True)
+class BetResult:
+    """レース結果 1 買い目分の実績データ（SNS 報告・日次総括用）。
+
+    実弾投票とは無関係の表示専用データクラス。
+    """
+
+    race_name: str  # レース名 / 番号（"日本ダービー" や "11R"）
+    venue: str  # 競馬場名（"東京"）
+    bet_type: str  # 券種（"馬連"）
+    horse_desc: str  # 買い目（"1-3"）
+    ev: float  # 期待値（0.0 = 不明）
+    stake: int  # 投資額（円）
+    payout: int  # 払戻額（円）; 外れは 0
+    is_hit: bool  # 的中フラグ
+    date: str  # YYYYMMDD
+
+    @property
+    def roi(self) -> float:
+        """回収率(%) = 100 × 払戻 / 投資。"""
+        return (100.0 * self.payout / self.stake) if self.stake > 0 else 0.0
+
+    @property
+    def profit(self) -> int:
+        """損益 = 払戻 - 投資。"""
+        return self.payout - self.stake
 
 
 def generate_hit_flash(hit: HitFlash) -> str | None:
@@ -437,6 +466,7 @@ def detect_and_flash(
     race_label: str | None = None,
     venue: str = "",
     sender: Sender | None = None,
+    out_dir: Path | None = None,
 ) -> list[str]:
     """確定レースで集客モデルの的中を検知し、的中速報を生成・配信する。
 
@@ -445,7 +475,8 @@ def detect_and_flash(
     rows = conn.execute(
         """
         SELECT p.model_type, p.bet_type, p.combination_json,
-               COALESCE(pr.payout, 0) AS payout, COALESCE(pr.profit, 0) AS profit
+               COALESCE(pr.payout, 0) AS payout, COALESCE(pr.profit, 0) AS profit,
+               COALESCE(p.expected_value, 0.0) AS expected_value
           FROM predictions p
           JOIN prediction_results pr ON pr.prediction_id = p.id
          WHERE p.race_id = ? AND pr.is_hit = 1 AND COALESCE(p.is_superseded, 0) = 0
@@ -453,7 +484,12 @@ def detect_and_flash(
         (race_id,),
     ).fetchall()
     out: list[str] = []
-    for model_type, bet_type, combo_json, payout, profit in rows:
+    date_str = (
+        race_id[:8]
+        if len(race_id) >= 8 and race_id[:8].isdigit()
+        else _date.today().strftime("%Y%m%d")
+    )
+    for model_type, bet_type, combo_json, payout, profit, expected_value in rows:
         if not is_ornamental_model(model_type):
             continue
         stake = int(round(payout - profit)) or 100  # flat_cost(¥100×点数)
@@ -470,6 +506,34 @@ def detect_and_flash(
         if text:
             out.append(text)
             send_hit_flash(hit, sender)
+            # X 速報ファイル書き出し（例外セーフ）
+            try:
+                bet_result = BetResult(
+                    race_name=race_label or race_id,
+                    venue=venue,
+                    bet_type=bet_type,
+                    horse_desc=_format_combo(combo_json, bet_type),
+                    ev=float(expected_value),
+                    stake=stake,
+                    payout=int(round(payout)),
+                    is_hit=True,
+                    date=date_str,
+                )
+                tweet = generate_x_hit_tweet(bet_result)
+                if tweet:
+                    _d = out_dir if out_dir is not None else _REPORTS_DIR
+                    _d.mkdir(parents=True, exist_ok=True)
+                    # race_id + model の組み合わせでユニークなファイル名
+                    safe_rid = "".join(c for c in race_id if c.isalnum())[-12:]
+                    safe_bt = "".join(c for c in bet_type if "　" <= c or c.isalnum())[
+                        :4
+                    ]
+                    x_path = _d / f"x_hit_{date_str}_{safe_rid}_{safe_bt}.txt"
+                    x_path.write_text(tweet, encoding="utf-8")
+                    logger.info("[post_race] X速報ファイル: %s", x_path)
+            except Exception as exc:  # noqa: BLE001
+                logger.warning("[post_race] X速報書き出し失敗（続行）: %s", exc)
+
     if out:
         logger.info("[SNS] 集客モデル的中速報 %d件 (race_id=%s)", len(out), race_id)
     return out
@@ -544,3 +608,180 @@ def run_weekly_report(target_date: str | None = None) -> Path:
         return export_weekly_report(stats, period_label=f"{start} 〜 {end}")
     finally:
         conn.close()
+
+
+# ─────────────────────────────────────────────────────────────────────
+# 事後報告ジェネレーター（サブスク信頼構築）
+# ─────────────────────────────────────────────────────────────────────
+
+
+def generate_x_hit_tweet(
+    result: BetResult,
+    *,
+    note_url: str | None = None,
+) -> str | None:
+    """的中した場合のみ X 速報テキストを生成する（外れは None）。
+
+    140 文字以内を保証する。note_url 未指定時は環境変数 NOTE_MYPAGE_URL を使用。
+
+    Args:
+        result:   BetResult（is_hit=False なら None を返す）。
+        note_url: 誘導先 note URL。
+
+    Returns:
+        140 文字以内のツイートテキスト、または None（外れ時）。
+    """
+    if not result.is_hit:
+        return None
+
+    url = note_url or _NOTE_URL
+    ev_note = f"EV{result.ev:.2f}通り。" if result.ev > 0 else ""
+    body = (
+        f"🎯的中速報！{result.venue} {result.race_name}、"
+        f"{result.bet_type}「{result.horse_desc}」が"
+        f"¥{result.payout:,}的中！"
+        f"{ev_note}明日の予想もNoteで👇"
+    )
+    tags = "#競馬的中 #UMALOGI #AI予想 #JRA"
+    tweet = f"{body}\n{url}\n{tags}"
+    return tweet[:140]
+
+
+def generate_post_race_report(
+    results: list[BetResult],
+    *,
+    date: str | None = None,
+    note_url: str | None = None,
+) -> str:
+    """1 日の全予想結果をまとめた Note 向け総括レポート Markdown を返す（純関数）。
+
+    Args:
+        results:  当日の BetResult リスト（的中・外れ混在可）。空でも動作する。
+        date:     対象日 YYYYMMDD / YYYY-MM-DD（省略時: results[0].date → 本日）。
+        note_url: 末尾の誘導リンク（省略時: _NOTE_URL）。
+
+    Returns:
+        note.com に貼り付け可能な Markdown 文字列。
+    """
+    url = note_url or _NOTE_URL
+
+    # 日付を解決
+    ds = date or (results[0].date if results else _date.today().strftime("%Y%m%d"))
+    ds = ds.replace("-", "")
+    y, m, d = ds[:4], ds[4:6], ds[6:]
+
+    # 集計
+    n_total = len(results)
+    n_hits = sum(1 for r in results if r.is_hit)
+    total_stake = sum(r.stake for r in results)
+    total_payout = sum(r.payout for r in results)
+    hit_rate = 100.0 * n_hits / n_total if n_total else 0.0
+    roi = 100.0 * total_payout / total_stake if total_stake else 0.0
+    avg_ev = sum(r.ev for r in results) / n_total if n_total else 0.0
+    hits = [r for r in results if r.is_hit]
+
+    lines: list[str] = [
+        f"# 【結果報告】{y}年{m}月{d}日 UMALOGI AI予想 サマリー",
+        "",
+        "> 本日のAI予想結果です。長期的なEV優位性に基づく運用の記録として公開します。",
+        "",
+        "---",
+        "",
+    ]
+
+    if not results:
+        lines += [
+            "## ℹ️ 本日の結果データ",
+            "",
+            "本日は結果データがありません。レース確定後に自動更新されます。",
+            "",
+        ]
+    else:
+        lines += [
+            "## 📊 本日の成績サマリー",
+            "",
+            "| 項目 | 数値 |",
+            "|------|------|",
+            f"| 総買い目数 | {n_total}点 |",
+            f"| 的中数 | {n_hits}点 |",
+            f"| 的中率 | {hit_rate:.1f}% |",
+            f"| 総投資額 | ¥{total_stake:,} |",
+            f"| 総払戻額 | ¥{total_payout:,} |",
+            f"| 本日回収率 | **{roi:.1f}%** |",
+            "",
+            "---",
+            "",
+        ]
+        if hits:
+            lines += [
+                "## 🎯 的中買い目一覧",
+                "",
+                "| レース | 券種 | 買い目 | 期待値(EV) | 払戻 |",
+                "|--------|------|--------|:---------:|------|",
+            ]
+            for r in hits:
+                lines.append(
+                    f"| {r.venue} {r.race_name} | {r.bet_type} | {r.horse_desc}"
+                    f" | {r.ev:.2f} | ¥{r.payout:,} |"
+                )
+            lines += ["", "---", ""]
+
+        lines += [
+            "## 📈 EV優位性の振り返り",
+            "",
+            f"- 本日の平均EV: **{avg_ev:.2f}**（EV &gt; 1.0 = 長期プラス期待）",
+            f"- 的中率: {hit_rate:.1f}% / 回収率: {roi:.1f}%",
+            "> ⚠️ 短期の結果に一喜一憂せず、長期の期待値優位性を信頼してください。",
+            "",
+        ]
+
+    lines += [
+        "---",
+        "",
+        f"📊 全成績・明日の予想は note で公開中 → {url}",
+        "",
+        _HASHTAGS_X,
+        "",
+    ]
+    return "\n".join(lines)
+
+
+def write_daily_reports(
+    results: list[BetResult],
+    *,
+    date: str | None = None,
+    note_url: str | None = None,
+    out_dir: Path | None = None,
+) -> Path:
+    """Note 日次総括 + 的中 X 速報ファイルを outputs/sns/reports/ に書き出す。
+
+    Args:
+        results:  当日の BetResult リスト。空でも動作する。
+        date:     対象日 YYYYMMDD / YYYY-MM-DD（省略時: results[0].date → 本日）。
+        note_url: X ツイートに含める note URL。
+        out_dir:  出力先ディレクトリ（省略時: _REPORTS_DIR）。テスト時は tmp_path を渡す。
+
+    Returns:
+        note_report_YYYYMMDD.md の Path。
+    """
+    ds = date or (results[0].date if results else _date.today().strftime("%Y%m%d"))
+    ds = ds.replace("-", "")
+    d = out_dir if out_dir is not None else _REPORTS_DIR
+    d.mkdir(parents=True, exist_ok=True)
+
+    # Note 日次総括
+    report_md = generate_post_race_report(results, date=ds, note_url=note_url)
+    note_path = d / f"note_report_{ds}.md"
+    note_path.write_text(report_md, encoding="utf-8")
+    logger.info("[post_race] Note総括: %s", note_path)
+
+    # 的中買い目ごとに X 速報ファイルを出力
+    hits = [r for r in results if r.is_hit]
+    for i, r in enumerate(hits, 1):
+        tweet = generate_x_hit_tweet(r, note_url=note_url)
+        if tweet:
+            x_path = d / f"x_hit_{ds}_{i:02d}.txt"
+            x_path.write_text(tweet, encoding="utf-8")
+            logger.info("[post_race] X速報: %s", x_path)
+
+    return note_path

@@ -34,6 +34,21 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-03 — サブスク用レース結果報告自動生成ループの構築
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-sonnet-4-6) |
+| **修正日** | 2026-06-03 |
+| **バージョン** | `1.4.1` → `1.4.2`（後方互換な機能追加 = MINOR） |
+| **種別** | feat（新機能追加） |
+| **実施内容** | **(1) `sns_publisher.py` 拡張**: `BetResult` dataclass（roi/profit プロパティ付き）+ `generate_x_hit_tweet()`（的中のみ生成・140字保証）+ `generate_post_race_report()`（ROI/的中一覧含む日次 Note 総括）+ `write_daily_reports()`（note_report_YYYYMMDD.md + x_hit_*.txt の同時出力・out_dir テスト注入対応）を追加。`detect_and_flash()` に `out_dir` パラメータと例外セーフな X 速報ファイル書き出しフックを統合。**(2) `note_generator.py` 修正**: `generate_note_draft()` に有料ライン（🔒 ペイウォール区切り）を予算配分表の直前に挿入。**(3) `test_sns_detect_flash.py` 互換修正**: `predictions` テーブルスキーマに `expected_value` カラム追加（DEFAULT NULL / COALESCE対応）。**(4) テスト新設**: `tests/test_post_race_report.py` 28件 PASS。 |
+| **影響範囲** | `src/ops/sns_publisher.py`（BetResult/3関数/detect_and_flash拡張）, `src/ops/note_generator.py`（paywall追加）, `tests/test_post_race_report.py`（新規28件）, `tests/test_sns_detect_flash.py`（スキーマ互換修正）, `VERSION`（1.4.1→1.4.2）。predictions テーブル非改変（条項1）。 |
+| **検証** | `pytest tests/test_post_race_report.py tests/test_daily_drafts.py tests/test_money_management.py tests/test_sns_detect_flash.py` → **73 passed**。ruff format クリーン。 |
+| **ロールバック** | `git revert HEAD`。`outputs/sns/reports/` ディレクトリは空でも問題なし。 |
+
+---
+
 ### 2026-06-02 — サブスク集客用 予算配分ロジック・Note/X 自動生成ループの構築
 
 | 項目 | 内容 |
