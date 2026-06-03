@@ -34,6 +34,22 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-03 — NetkeibaNarFetcher のライブパーサ実装および結合テスト
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-opus-4-8) |
+| **修正日** | 2026-06-03 |
+| **バージョン** | `1.5.0-dev` → `1.5.0-dev.2`（NAR 機能ライン内の dev イテレーション） |
+| **種別** | feat（新機能追加 / スクレイピング実装） |
+| **実施内容** | プレースホルダ（`NotImplementedError`）だった `NetkeibaNarFetcher` のライブパーサを実装。**(1) 純関数パーサ**: `parse_shutuba_meta`（発走時刻/距離/馬場/会場/開催日）・`parse_shutuba_entries`（馬番/馬名/性齢/騎手/調教師/単勝オッズ/人気 → `NarHorseEntry`）・`parse_shutuba_odds`（馬番→単勝オッズ）を `BeautifulSoup` で実装。`nar.netkeiba.com/race/shutuba.html` の実 DOM（`.HorseList`/`.Umaban*`/`.HorseInfo`/`.Jockey`/`.Trainer`/`.Popular.Txt_R`）に適合。**(2) マナー/堅牢性**: `_get()` に `requests` `timeout=10s`・リクエスト間 `time.sleep(1.0s)`・`User-Agent`。通信失敗/DOM 欠損時は例外で停止せず WARNING ログ + 空/既定値返却。**(3) エンコーディング**: `_resolve_encoding()` で EUC-JP 確定（CLAUDE.md §16 準拠・mac 誤検知フォールバック）→ 実馬名の文字化けゼロを確認。**(4) テスト容易性**: コンストラクタ `http_get` 注入でモック HTML 検証。**(5) 結合テスト**: モック HTML パーステスト + 実通信スモーク（接続不可/構造変更時 graceful skip）を追加。**(6) ライブ E2E デモ**: `scripts/nar_live_demo.py` で本日の門別1R 実データ → `generate_nar_note_markdown()` → EV 比例予算配分（¥3,300/¥5,000/¥1,600/¥100=¥10,000）+ 🔒有料ライン付き Markdown を生成・確認。 |
+| **影響範囲** | `src/nar/data_fetcher.py`（パーサ3関数 + `_resolve_encoding` + `NetkeibaNarFetcher` ライブ実装・docstring更新）, `scripts/nar_live_demo.py`（新規 E2E デモ）, `tests/test_nar_data_fetcher.py`（スタブ除去 + ライブパーサ7件追加）, `VERSION`(→1.5.0-dev.2), `docs/5_nar_integration_spec.md`（§10.2/10.4/10.5 更新）。**既存 JRA コード・DB は非改変（条項1）**。 |
+| **検証** | NAR テスト `pytest tests/test_nar_*.py` → **21 passed**（モック注入 + 実通信スモーク）。全体 `pytest` → **1188 passed / 4 failed**。4 failed は `LIVE_MODELS={Pure_EV_Edge,卍,FukushoElite}` 変更起因の **pre-existing**（前エントリ参照・本作業の tracked 改変なし・NAR 無関係）。ライブ取得を `scripts/nar_live_demo.py` で実データ確認（門別1R・実馬名「ペンタフェリーチェ」等・文字化けなし）。`ruff format`/`ruff check` 変更ファイルのみクリーン。 |
+| **ロールバック** | `git revert HEAD`（前コミット c3fb520f に戻る）。`feature/nar-support` ブランチごと破棄も可。master 無影響。 |
+| **関連** | `docs/5_nar_integration_spec.md` §10.2/§10.5。次フェーズ: `fetch_results`（結果ページ）・`RaceDataProvider` 統合・NAR モデル。 |
+
+---
+
 ### 2026-06-03 — 地方競馬（NAR）対応の基盤設計および専用ディレクトリの新設
 
 | 項目 | 内容 |

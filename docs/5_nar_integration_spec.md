@@ -6,6 +6,7 @@
 |------|---------|
 | 2026-05-24 | 初版作成。Providerパターンによる JRA/NAR 共通コア設計を策定。|
 | 2026-06-03 | NAR データ取得基盤を専用パッケージ `src/nar/` に実装（プロトタイプ）。`NarDataFetcher` 抽象 + `DummyNarFetcher`（決定的ダミー）+ `NetkeibaNarFetcher`（URL契約確定・ライブパースは明示スタブ）。Note/X 共通化のため `src/nar/note_adapter.py` を新設し、既存 `money_management.allocate_budget` / `note_generator.generate_note_draft` を `NoteBet` 互換で再利用。`feature/nar-support` ブランチで JRA 本番から完全隔離。テスト15件 PASS。影響ファイル: src/nar/__init__.py, src/nar/data_fetcher.py, src/nar/note_adapter.py, tests/test_nar_data_fetcher.py, tests/test_nar_note_adapter.py |
+| 2026-06-03 | `NetkeibaNarFetcher` の出馬表/オッズ **ライブパーサを実装**（`requests`+`BeautifulSoup`・EUC-JP確定・timeout 10s・リクエスト間 1.0s ウェイト・DOM欠損/通信失敗時の安全スキップ）。純関数 `parse_shutuba_meta`/`parse_shutuba_entries`/`parse_shutuba_odds` を追加し、`http_get` 注入でモック HTML テスト可能化。実通信スモークテスト追加。ライブE2Eデモ `scripts/nar_live_demo.py` 新設（実データ→EV比例予算配分付き Note Markdown 生成）。NAR テスト 15→21 件 PASS、全体 1188 passed。影響ファイル: src/nar/data_fetcher.py, scripts/nar_live_demo.py, tests/test_nar_data_fetcher.py |
 
 ---
 
@@ -411,8 +412,19 @@ schedule.every().day.at("08:30").do(today_auto_runner_nar)   # NAR追加
 - **抽象**: `NarDataFetcher`（`fetch_race_meta` / `fetch_entries` / `fetch_odds` / `fetch_results`）。
   本設計書 §3.1 の `RaceDataProvider` の NAR 側具象に相当する（将来 `base_provider.py` 統合時に吸収可能）。
 - **`DummyNarFetcher`**: `race_id` から決定的にダミー NAR データを生成（ネットワーク不要・再現可能）。開発・テスト・E2E 雛形用。
-- **`NetkeibaNarFetcher`**: `nar.netkeiba.com` を一次ソースとする取得器。出馬表/オッズ/結果の **URL 契約を確定**（テスト固定）。
-  ライブ HTML パースは検証できない偽の成功を返さないため **明示的に `NotImplementedError`**（誠実なプロトタイプ境界）。
+- **`NetkeibaNarFetcher`**: `nar.netkeiba.com` を一次ソースとする取得器（**ライブ実装済み 2026-06-03**）。
+  出馬表ページ（`/race/shutuba.html`）を `requests` + `BeautifulSoup` で取得し、
+  `parse_shutuba_meta` / `parse_shutuba_entries` / `parse_shutuba_odds`（純関数・テスト可能）で
+  `NarRaceMeta` / `NarHorseEntry` / 馬番→単勝オッズ にマッピングする。
+  - **マナー/堅牢性**: HTTP `timeout=10s`、リクエスト間 `time.sleep(1.0s)`、`User-Agent` 付与。
+    通信失敗・DOM 欠損時は例外で停止せず WARNING ログを出して空/既定値を返す。
+  - **エンコーディング**: netkeiba は EUC-JP。`_resolve_encoding()` が Content-Type 優先・
+    mac/greek 誤検知時 euc-jp フォールバック（CLAUDE.md §16 準拠）で文字化けを防ぐ。
+  - **テスト容易性**: コンストラクタに `http_get` を注入してモック HTML で検証可能（ネットワーク非依存）。
+  - **オッズ取得**: 単独オッズページは JS 描画のため、確実に取れる出馬表埋め込みオッズ（直前値）を一次とする。
+  - `fetch_results`（確定結果）は別 DOM 構造のため次フェーズ（§10.5）で実装する `NotImplementedError`。
+- **ライブ E2E デモ**: `scripts/nar_live_demo.py` が本日の NAR 開催から実データを取得し、
+  `generate_nar_note_markdown()` で EV 比例予算配分付き Note Markdown を生成する（`outputs/nar/` へ出力）。
 
 ### 10.3 `note_adapter.py`（共通化）— 互換性の核
 
@@ -438,11 +450,13 @@ NarBet → to_note_bets() → NoteBet
 
 - 既存 `src/ops/` `src/ml/` `src/scraper/` は **1 ファイルも変更していない**（読み取り再利用のみ）。
 - DB・実弾投票・bet_policy へ副作用なし（表示/取得の基盤のみ）。
-- 検証: 新規 NAR テスト **15 件 PASS**、サブスク用 SNS サブセット **73 件 PASS**（既存資産の非破壊を確認）。
+- 検証: 新規 NAR テスト **21 件 PASS**（ライブパーサ +6・モック HTML 注入 + 実通信スモーク graceful skip）、
+  サブスク用 SNS サブセット **73 件 PASS**、全体 **1188 passed**（pre-existing 4 failures は `LIVE_MODELS` 変更起因で NAR 無関係）。
 
 ### 10.5 未実装・次フェーズ（Backlog）
 
-1. `NetkeibaNarFetcher` のライブ HTML パーサ実装（`nar.netkeiba.com` の出馬表/オッズ/結果テーブル）。
+1. ✅ **完了（2026-06-03）**: `NetkeibaNarFetcher` の出馬表/オッズ ライブパーサ実装。
+   残: 確定結果ページ（`/race/result.html`）の `fetch_results` パーサ実装。
 2. §3 `RaceDataProvider` / `datasource='jra'|'nar'` DB カラムとの統合（共通保存層）。
 3. NAR 用予想モデル（特徴量カバレッジ確認・`TakeoutRates` の地方率対応）。
 4. NAR 専用スケジューラ（毎日開催・ナイター対応）。
