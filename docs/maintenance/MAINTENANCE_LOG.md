@@ -34,6 +34,22 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-03 — 地方競馬（NAR）対応の基盤設計および専用ディレクトリの新設
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-opus-4-8) |
+| **修正日** | 2026-06-03 |
+| **バージョン** | `1.4.2` → `1.5.0-dev`（後方互換な機能追加 = MINOR。プロトタイプにつき `-dev` プレリリース。`feature/nar-support` ブランチ上） |
+| **種別** | feat（新機能追加 / 基盤設計） |
+| **実施内容** | UMALOGI を 365 日開催の地方競馬（NAR）へ横展開するための基盤を、**JRA 本番から完全隔離** して新設。**(1) 専用パッケージ `src/nar/` 新設**（既存 `src/ops/` `src/ml/` `src/scraper/` を 1 ファイルも変更せず）。**(2) `src/nar/data_fetcher.py`**: NAR 会場マスタ `NAR_VENUES` + `is_nar_race_id()`、DTO（`NarRaceMeta`/`NarHorseEntry`/`NarRaceResult`）、抽象 `NarDataFetcher`、決定的 `DummyNarFetcher`、`NetkeibaNarFetcher`（URL契約確定・ライブパースは誠実な `NotImplementedError` スタブ）。**(3) `src/nar/note_adapter.py`**: `NarBet` を既存 `NoteBet` 互換へ変換し、`money_management.allocate_budget`（予算配分）/ `note_generator.generate_note_draft`（🔒有料ライン付き Markdown）を **再利用**。`generate_nar_note_markdown` / `generate_nar_x_promo`(≤140字) / `write_nar_drafts` を提供。**(4) TDD**（RED→GREEN）で新規テスト15件を追加。 |
+| **影響範囲** | 新規: `src/nar/__init__.py`, `src/nar/data_fetcher.py`, `src/nar/note_adapter.py`, `tests/test_nar_data_fetcher.py`(9件), `tests/test_nar_note_adapter.py`(6件)。更新: `VERSION`(1.4.2→1.5.0-dev), `docs/5_nar_integration_spec.md`（Changelog + §10 実装ステータス）。**既存 JRA コード・DB・predictions は非改変（条項1）**。 |
+| **検証** | 新規 NAR テスト `pytest tests/test_nar_*.py` → **15 passed**。サブスク SNS サブセット（`test_post_race_report`/`test_daily_drafts`/`test_money_management`/`test_sns_detect_flash`） → **73 passed**（既存資産の非破壊を確認）。`ruff format`/`ruff check` 変更ファイルのみクリーン。⚠️ 全体スイートで pre-existing 4 failures（`test_pnl_accounting` 等の `compute_live_roi`/`is_live_bet` 系）を確認したが、これは `LIVE_MODELS={Pure_EV_Edge,卍,FukushoElite}` への変更（黒字化/W-020）と古いテスト想定の乖離が原因で、**本作業（NAR・tracked非改変）とは無関係**。 |
+| **ロールバック** | `feature/nar-support` ブランチごと破棄、または `git revert HEAD`。master(385d6d9a) は無影響。 |
+| **関連** | `docs/5_nar_integration_spec.md`（§3 Providerパターン / §10 実装ステータス）。次フェーズ: ライブパーサ実装・`RaceDataProvider` 統合・NAR モデル・専用スケジューラ。 |
+
+---
+
 ### 2026-06-03 — サブスク用レース結果報告自動生成ループの構築
 
 | 項目 | 内容 |

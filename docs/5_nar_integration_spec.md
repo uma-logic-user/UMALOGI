@@ -5,6 +5,7 @@
 | 日付 | 変更内容 |
 |------|---------|
 | 2026-05-24 | 初版作成。Providerパターンによる JRA/NAR 共通コア設計を策定。|
+| 2026-06-03 | NAR データ取得基盤を専用パッケージ `src/nar/` に実装（プロトタイプ）。`NarDataFetcher` 抽象 + `DummyNarFetcher`（決定的ダミー）+ `NetkeibaNarFetcher`（URL契約確定・ライブパースは明示スタブ）。Note/X 共通化のため `src/nar/note_adapter.py` を新設し、既存 `money_management.allocate_budget` / `note_generator.generate_note_draft` を `NoteBet` 互換で再利用。`feature/nar-support` ブランチで JRA 本番から完全隔離。テスト15件 PASS。影響ファイル: src/nar/__init__.py, src/nar/data_fetcher.py, src/nar/note_adapter.py, tests/test_nar_data_fetcher.py, tests/test_nar_note_adapter.py |
 
 ---
 
@@ -384,3 +385,64 @@ schedule.every().day.at("08:30").do(today_auto_runner_nar)   # NAR追加
 4. **JVLink との分離**: NAR は JVLink COM（32bit専用）を使わない。
    64bit Python で直接スクレイピング可能なため、32bit/64bitの分離設計が不要。
    スケジューラの複雑度が JRA より低くなる。
+
+---
+
+## 10. 実装ステータス（2026-06-03 / `feature/nar-support`）
+
+本設計書の §3 Providerパターンに基づき、**NAR データ取得層と Note/X 共通化の基盤**を
+専用パッケージ `src/nar/` に **JRA 本番から完全隔離して** 実装した（プロトタイプ）。
+
+### 10.1 実装済みモジュール
+
+| ファイル | 役割 | 状態 |
+|---|---|---|
+| `src/nar/__init__.py` | パッケージ宣言（隔離原則の明文化） | ✅ |
+| `src/nar/data_fetcher.py` | NAR データ取得基盤 | ✅ プロトタイプ |
+| `src/nar/note_adapter.py` | 既存 Note/X 生成への橋渡しアダプタ | ✅ |
+| `tests/test_nar_data_fetcher.py` | 取得基盤テスト（9件） | ✅ PASS |
+| `tests/test_nar_note_adapter.py` | アダプタ・互換性テスト（6件） | ✅ PASS |
+
+### 10.2 `data_fetcher.py` の構成
+
+- **NAR 会場マスタ** `NAR_VENUES`（門別/盛岡/水沢/浦和/船橋/大井/川崎/金沢/笠松/名古屋/園田/姫路/高知/佐賀/帯広）と
+  `is_nar_race_id()`（会場コードによる JRA/NAR 判別）。
+- **DTO**: `NarRaceMeta` / `NarHorseEntry` / `NarRaceResult`（ナイター発走時刻・ダート前提など NAR 固有差分を保持）。
+- **抽象**: `NarDataFetcher`（`fetch_race_meta` / `fetch_entries` / `fetch_odds` / `fetch_results`）。
+  本設計書 §3.1 の `RaceDataProvider` の NAR 側具象に相当する（将来 `base_provider.py` 統合時に吸収可能）。
+- **`DummyNarFetcher`**: `race_id` から決定的にダミー NAR データを生成（ネットワーク不要・再現可能）。開発・テスト・E2E 雛形用。
+- **`NetkeibaNarFetcher`**: `nar.netkeiba.com` を一次ソースとする取得器。出馬表/オッズ/結果の **URL 契約を確定**（テスト固定）。
+  ライブ HTML パースは検証できない偽の成功を返さないため **明示的に `NotImplementedError`**（誠実なプロトタイプ境界）。
+
+### 10.3 `note_adapter.py`（共通化）— 互換性の核
+
+NAR の買い目 `NarBet(bet_type, horse_desc, ev, venue)` を既存基盤の `NoteBet` 互換へ変換し、
+**中央競馬で作り込んだ資産をそのまま再利用** する。
+
+```
+NarBet → to_note_bets() → NoteBet
+                            ↓
+        既存 money_management.allocate_budget()（EV 比例の予算配分・保険枠・100円単位保証）
+                            ↓
+        既存 note_generator.generate_note_draft()（🔒 有料ライン挿入付き Markdown）
+                            ↓
+        generate_nar_note_markdown()（NAR 文脈ヘッダーを前置）/ write_nar_drafts()（note.md + x.txt）
+```
+
+- `to_note_bet()` / `to_note_bets()`: NarBet ⇄ NoteBet 変換（順序・件数保持）。
+- `generate_nar_note_markdown()`: 既存 `allocate_budget` + `generate_note_draft` を再利用し、地方競馬/会場の文脈ヘッダーを付与。
+- `generate_nar_x_promo()`: NAR 向け X 集客文（≤140字保証・`#地方競馬` タグ）。
+- `write_nar_drafts()`: 既存 `write_daily_drafts` と同一入出力契約で `nar_note_pre_*.md` / `nar_x_pre_*.txt` を出力。
+
+### 10.4 安全性・隔離の担保
+
+- 既存 `src/ops/` `src/ml/` `src/scraper/` は **1 ファイルも変更していない**（読み取り再利用のみ）。
+- DB・実弾投票・bet_policy へ副作用なし（表示/取得の基盤のみ）。
+- 検証: 新規 NAR テスト **15 件 PASS**、サブスク用 SNS サブセット **73 件 PASS**（既存資産の非破壊を確認）。
+
+### 10.5 未実装・次フェーズ（Backlog）
+
+1. `NetkeibaNarFetcher` のライブ HTML パーサ実装（`nar.netkeiba.com` の出馬表/オッズ/結果テーブル）。
+2. §3 `RaceDataProvider` / `datasource='jra'|'nar'` DB カラムとの統合（共通保存層）。
+3. NAR 用予想モデル（特徴量カバレッジ確認・`TakeoutRates` の地方率対応）。
+4. NAR 専用スケジューラ（毎日開催・ナイター対応）。
