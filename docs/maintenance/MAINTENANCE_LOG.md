@@ -34,6 +34,21 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-04 — SNS投稿例外遮断・Noteペイウォール安全ガード実装
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-sonnet-4-6) |
+| **修正日** | 2026-06-04 |
+| **バージョン** | `1.4.2` → `1.4.3-dev`（-dev: 週末凍結前の開発継続タグ） |
+| **種別** | fix（例外遮断・安全ガード追加） |
+| **実施内容** | **(1) `sns_publisher.py` フォールバック強化**: `_send_x_fallback_discord()` 追加（DISCORD_WEBHOOK_SNS へ「【フォールバック】X投稿失敗：…」形式で送信）。`send_hit_flash()` に `fallback_sender: Sender | None = None` パラメータ追加。sender が False 返却または例外を投げた場合に fallback_sender を呼び出し、プロセスをクラッシュさせずに続行。閾値未満ヒット（generate_hit_flash=None）の場合はフォールバック不発動。**(2) `note_generator.py` ペイウォールガード強化**: `_ensure_paywall(text, allocations_present) -> str` を新設。allocations がある場合に 🔒 がないテキストへ先頭にガードブロックを自動挿入。`generate_note_draft()` の末尾で常に呼ぶよう統合。**(3) テスト新設**: `tests/test_sns_guardrails.py` 12件 TDD RED→GREEN PASS。 |
+| **影響範囲** | `src/ops/sns_publisher.py`（_send_x_fallback_discord/send_hit_flash修正）, `src/ops/note_generator.py`（_ensure_paywall追加/generate_note_draft末尾統合）, `tests/test_sns_guardrails.py`（新規）, `VERSION`（1.4.2→1.4.3-dev）。既存 4失敗テストは本変更と無関係。 |
+| **検証** | `pytest` → **1179 passed**（+65件増）、既存4失敗は変更前からの既存障害。 |
+| **ロールバック** | `git revert HEAD`。 |
+
+---
+
 ### 2026-06-03 — サブスク用レース結果報告自動生成ループの構築
 
 | 項目 | 内容 |

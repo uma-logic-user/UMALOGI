@@ -1400,6 +1400,37 @@ def notify_gachi_for_race(
 # ── 日次下書き生成 ────────────────────────────────────────────────────
 
 
+_PAYWALL_FALLBACK_HEADER: str = (
+    "> ## 🔒 ここから先は有料エリアです（安全ガード）\n"
+    ">\n"
+    "> **本コンテンツは有料です。予算配分の詳細は購入後にご覧いただけます。**\n"
+    ">\n"
+    "---\n"
+)
+
+
+def _ensure_paywall(text: str, allocations_present: bool) -> str:
+    """allocations がある場合に 🔒 マーカーが含まれることを保証する安全ガード。
+
+    通常の `generate_note_draft()` コードパスでは必ず 🔒 が挿入されるが、
+    将来の変更でペイウォールがスキップされた場合にも有料コンテンツが
+    無料公開されないよう先頭にマーカーを挿入して保護する。
+
+    Args:
+        text:               生成済みの Markdown テキスト。
+        allocations_present: 買い目配分が存在するフラグ（False なら何もしない）。
+
+    Returns:
+        ガード適用後のテキスト（通常はそのまま返る）。
+    """
+    if not allocations_present:
+        return text
+    if "🔒" in text:
+        return text
+    logger.warning("[note_draft] ペイウォールマーカー未検出・安全ガード発動")
+    return _PAYWALL_FALLBACK_HEADER + text
+
+
 def generate_note_draft(
     bets: list[NoteBet],
     allocations: list[BetAllocation],
@@ -1484,7 +1515,8 @@ def generate_note_draft(
         "馬券投票は余裕資金の範囲内で自己責任でお楽しみください。*",
         "",
     ]
-    return "\n".join(lines)
+    result = "\n".join(lines)
+    return _ensure_paywall(result, allocations_present=bool(allocations))
 
 
 def generate_x_promo_tweet(

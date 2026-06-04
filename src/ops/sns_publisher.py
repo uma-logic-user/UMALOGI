@@ -200,15 +200,55 @@ def _default_sender(text: str, channel: str) -> bool:
         return False
 
 
+def _send_x_fallback_discord(text: str, _channel: str = "sns") -> bool:
+    """X速報の送信失敗時に Discord へフォールバック通知する（Sender 型互換）。
+
+    DISCORD_WEBHOOK_SNS 未設定時はログのみ出力してサイレントスキップ。
+    渡される text はすでに「【フォールバック】X投稿失敗：…」形式でラップ済み。
+    """
+    url = os.environ.get("DISCORD_WEBHOOK_SNS", "")
+    if not url:
+        logger.info("[SNS] フォールバック先 DISCORD_WEBHOOK_SNS 未設定、スキップ")
+        return False
+    try:
+        import requests
+
+        resp = requests.post(url, json={"content": text}, timeout=10)
+        return resp.status_code in (200, 204)
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("[SNS] フォールバック Discord 送信失敗: %s", exc)
+        return False
+
+
 def send_hit_flash(
-    hit: HitFlash, sender: Sender | None = None, *, channel: str = "sns"
+    hit: HitFlash,
+    sender: Sender | None = None,
+    *,
+    channel: str = "sns",
+    fallback_sender: Sender | None = None,
 ) -> bool:
-    """的中速報を生成し、生成された場合のみ sender で配信する（閾値未満は無駄打ちしない）。"""
+    """的中速報を生成し sender で配信する。失敗・例外時は fallback_sender へ通知する。
+
+    閾値未満（generate_hit_flash=None）の場合はフォールバックを呼ばず False を返す。
+    sender が失敗または例外を投げた場合、fallback_sender（省略時: DISCORD_WEBHOOK_SNS）
+    に「【フォールバック】X投稿失敗：…」としてエスケープ送信する。
+    """
     text = generate_hit_flash(hit)
     if text is None:
         return False
     snd = sender or _default_sender
-    return bool(snd(text, channel))
+    try:
+        ok = bool(snd(text, channel))
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("[SNS] X速報送信例外（フォールバック起動）: %s", exc)
+        ok = False
+    if not ok:
+        try:
+            fb = fallback_sender or _send_x_fallback_discord
+            fb(f"【フォールバック】X投稿失敗：\n{text}", channel)
+        except Exception as exc:  # noqa: BLE001
+            logger.warning("[SNS] フォールバック送信も失敗（続行）: %s", exc)
+    return ok
 
 
 # ─────────────────────────────────────────────────────────────────────
