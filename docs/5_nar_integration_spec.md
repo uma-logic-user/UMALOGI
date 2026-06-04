@@ -7,6 +7,7 @@
 | 2026-05-24 | 初版作成。Providerパターンによる JRA/NAR 共通コア設計を策定。|
 | 2026-06-03 | NAR データ取得基盤を専用パッケージ `src/nar/` に実装（プロトタイプ）。`NarDataFetcher` 抽象 + `DummyNarFetcher`（決定的ダミー）+ `NetkeibaNarFetcher`（URL契約確定・ライブパースは明示スタブ）。Note/X 共通化のため `src/nar/note_adapter.py` を新設し、既存 `money_management.allocate_budget` / `note_generator.generate_note_draft` を `NoteBet` 互換で再利用。`feature/nar-support` ブランチで JRA 本番から完全隔離。テスト15件 PASS。影響ファイル: src/nar/__init__.py, src/nar/data_fetcher.py, src/nar/note_adapter.py, tests/test_nar_data_fetcher.py, tests/test_nar_note_adapter.py |
 | 2026-06-03 | `NetkeibaNarFetcher` の出馬表/オッズ **ライブパーサを実装**（`requests`+`BeautifulSoup`・EUC-JP確定・timeout 10s・リクエスト間 1.0s ウェイト・DOM欠損/通信失敗時の安全スキップ）。純関数 `parse_shutuba_meta`/`parse_shutuba_entries`/`parse_shutuba_odds` を追加し、`http_get` 注入でモック HTML テスト可能化。実通信スモークテスト追加。ライブE2Eデモ `scripts/nar_live_demo.py` 新設（実データ→EV比例予算配分付き Note Markdown 生成）。NAR テスト 15→21 件 PASS、全体 1188 passed。影響ファイル: src/nar/data_fetcher.py, scripts/nar_live_demo.py, tests/test_nar_data_fetcher.py |
+| 2026-06-04 | `NetkeibaNarFetcher.fetch_results` の **結果ページ（result）パーサを実装**。DTO 拡張: `NarResultRow`（着順+馬番+馬名）/ `NarPayout`（券種+組合せ+払戻金）追加、`NarRaceResult` を ranking+results+payouts に拡張。純関数 `parse_result_rows`/`parse_result_payouts`/`parse_result_page` を追加。単勝/複勝/枠連/馬連/ワイド/馬単/三連複/三連単を抽出、複勝・ワイド等の複数払戻を組合せごとに分解、カンマ・"円" を除去して int 化（`html.parser` の `<br/>` 入れ子化に依存しない正規表現方式）。DOM欠損/通信失敗時は空 DTO。NAR テスト 21→29 件 PASS、全体 1196 passed。影響ファイル: src/nar/data_fetcher.py, tests/test_nar_data_fetcher.py |
 
 ---
 
@@ -408,7 +409,8 @@ schedule.every().day.at("08:30").do(today_auto_runner_nar)   # NAR追加
 
 - **NAR 会場マスタ** `NAR_VENUES`（門別/盛岡/水沢/浦和/船橋/大井/川崎/金沢/笠松/名古屋/園田/姫路/高知/佐賀/帯広）と
   `is_nar_race_id()`（会場コードによる JRA/NAR 判別）。
-- **DTO**: `NarRaceMeta` / `NarHorseEntry` / `NarRaceResult`（ナイター発走時刻・ダート前提など NAR 固有差分を保持）。
+- **DTO**: `NarRaceMeta` / `NarHorseEntry` / `NarResultRow`（着順+馬番+馬名）/ `NarPayout`（券種+組合せ+払戻金）/
+  `NarRaceResult`（ranking + results + payouts）。ナイター発走時刻・ダート前提など NAR 固有差分を保持。
 - **抽象**: `NarDataFetcher`（`fetch_race_meta` / `fetch_entries` / `fetch_odds` / `fetch_results`）。
   本設計書 §3.1 の `RaceDataProvider` の NAR 側具象に相当する（将来 `base_provider.py` 統合時に吸収可能）。
 - **`DummyNarFetcher`**: `race_id` から決定的にダミー NAR データを生成（ネットワーク不要・再現可能）。開発・テスト・E2E 雛形用。
@@ -422,7 +424,15 @@ schedule.every().day.at("08:30").do(today_auto_runner_nar)   # NAR追加
     mac/greek 誤検知時 euc-jp フォールバック（CLAUDE.md §16 準拠）で文字化けを防ぐ。
   - **テスト容易性**: コンストラクタに `http_get` を注入してモック HTML で検証可能（ネットワーク非依存）。
   - **オッズ取得**: 単独オッズページは JS 描画のため、確実に取れる出馬表埋め込みオッズ（直前値）を一次とする。
-  - `fetch_results`（確定結果）は別 DOM 構造のため次フェーズ（§10.5）で実装する `NotImplementedError`。
+  - **結果取得（ライブ実装済み 2026-06-04）**: 結果ページ（`/race/result.html`）を
+    `parse_result_rows`（着順テーブル `table.RaceTable01` → 着順/馬番/馬名・枠番ではなく馬番側を採用）と
+    `parse_result_payouts`（払戻テーブル `table.Payout_Detail_Table` → 単勝/複勝/枠連/馬連/ワイド/馬単/三連複/三連単）で解析し、
+    `parse_result_page` が `NarRaceResult` を組み立てる。
+    - **複数払戻**: 複勝（3 値）・ワイド（3 組）等は組合せごとに 1 つの `NarPayout` へ分解。
+      組合せは `<ul>` 単位（馬連系）/ `<span>` 単位（単複系）で抽出し、払戻金は位置整合で zip。
+    - **クレンジング**: 払戻金は `<数字（カンマ可）>円` を正規表現で全件抽出し、カンマ・"円" を除去して `int` 化
+      （例 "1,320円"→1320）。`html.parser` の `<br/>` 入れ子化癖に依存しない堅牢方式。
+    - 通信失敗・DOM 欠損時は空の `NarRaceResult` を返す（停止しない）。
 - **ライブ E2E デモ**: `scripts/nar_live_demo.py` が本日の NAR 開催から実データを取得し、
   `generate_nar_note_markdown()` で EV 比例予算配分付き Note Markdown を生成する（`outputs/nar/` へ出力）。
 
@@ -450,13 +460,13 @@ NarBet → to_note_bets() → NoteBet
 
 - 既存 `src/ops/` `src/ml/` `src/scraper/` は **1 ファイルも変更していない**（読み取り再利用のみ）。
 - DB・実弾投票・bet_policy へ副作用なし（表示/取得の基盤のみ）。
-- 検証: 新規 NAR テスト **21 件 PASS**（ライブパーサ +6・モック HTML 注入 + 実通信スモーク graceful skip）、
-  サブスク用 SNS サブセット **73 件 PASS**、全体 **1188 passed**（pre-existing 4 failures は `LIVE_MODELS` 変更起因で NAR 無関係）。
+- 検証: 新規 NAR テスト **29 件 PASS**（出馬表/オッズ +6・結果パーサ +8・モック HTML 注入 + 実通信スモーク graceful skip）、
+  サブスク用 SNS サブセット **73 件 PASS**、全体 **1196 passed**（pre-existing 4 failures は `LIVE_MODELS` 変更起因で NAR 無関係）。
 
 ### 10.5 未実装・次フェーズ（Backlog）
 
-1. ✅ **完了（2026-06-03）**: `NetkeibaNarFetcher` の出馬表/オッズ ライブパーサ実装。
-   残: 確定結果ページ（`/race/result.html`）の `fetch_results` パーサ実装。
+1. ✅ **完了（2026-06-03〜04）**: `NetkeibaNarFetcher` の出馬表/オッズ **および確定結果（着順+払戻）** ライブパーサ実装。
+   → NAR データ取得層（出馬表・オッズ・結果・払戻）は揃った。
 2. §3 `RaceDataProvider` / `datasource='jra'|'nar'` DB カラムとの統合（共通保存層）。
 3. NAR 用予想モデル（特徴量カバレッジ確認・`TakeoutRates` の地方率対応）。
 4. NAR 専用スケジューラ（毎日開催・ナイター対応）。

@@ -34,6 +34,22 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-04 — NetkeibaNarFetcher の結果ページ（result）パーサ実装と堅牢化
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-opus-4-8) |
+| **修正日** | 2026-06-04 |
+| **バージョン** | `1.5.0-dev.2` → `1.5.0-dev.3`（NAR 機能ライン内の dev イテレーション） |
+| **種別** | feat（新機能追加 / スクレイピング実装） |
+| **実施内容** | `NetkeibaNarFetcher.fetch_results` のレース結果ページパーサを実装し、NAR データ取得層（出馬表・オッズ・結果・払戻）を完成。**(1) DTO 拡張**: `NarResultRow`（着順+馬番+馬名）・`NarPayout`（券種+組合せ+払戻金）を新設、`NarRaceResult` を `ranking`+`results`+`payouts(list[NarPayout])` に拡張（旧 `payouts: dict` を構造化）。**(2) 純関数パーサ**: `parse_result_rows`（`table.RaceTable01` → 着順/馬番/馬名・**枠番ではなく馬番側**を採用・着順非数値行=ヘッダー/中止はスキップ）・`parse_result_payouts`（`table.Payout_Detail_Table` → 単勝/複勝/枠連/馬連/ワイド/馬単/三連複/三連単）・`parse_result_page`（→ `NarRaceResult`）を実装。**(3) 複数払戻の分解**: 複勝(3値)・ワイド(3組)等を組合せごとに 1 `NarPayout` へ分解。組合せは `<ul>`単位(馬連系)/`<span>`単位(単複系)で抽出し払戻金と位置整合 zip。**(4) クレンジング/堅牢化**: 払戻金は `<数字(カンマ可)>円` を正規表現で全件抽出→カンマ・"円"除去→`int`化（"1,320円"→1320）。`html.parser` の `<br/>` 入れ子化癖に依存しない方式。DOM欠損/通信失敗時は空 `NarRaceResult`（停止しない）・`time.sleep(1.0)` 維持。**(5) テスト**: モック HTML（単複の div/span・馬連系の ul/li・複数払戻・カンマ・枠≠馬番）で正常系/異常系/複数払戻パターンを追加。実通信結果スモーク（graceful skip）追加。 |
+| **影響範囲** | `src/nar/data_fetcher.py`（DTO 2種追加 + `NarRaceResult` 拡張 + パーサ3関数 + `_payout_amounts` + `fetch_results` ライブ実装 + `DummyNarFetcher.fetch_results` 構造更新）, `tests/test_nar_data_fetcher.py`（結果パーサ 8 件追加）, `VERSION`(→1.5.0-dev.3), `docs/5_nar_integration_spec.md`（§10.2/10.4/10.5 更新）。**既存 JRA コード・DB は非改変（条項1）**。 |
+| **検証** | NAR テスト `pytest tests/test_nar_*.py` → **29 passed**。全体 `pytest` → **1196 passed / 4 failed**（4 failed は `LIVE_MODELS={Pure_EV_Edge,卍,FukushoElite}` 変更起因の **pre-existing**・本作業の tracked 改変なし・NAR 無関係）。実ライブ検証: 門別1R(202630060301)で着順[5,3,2,4,9,8,1,7]・馬名クリーン(文字化けなし)・単勝110/複勝100,120,530/馬連140/ワイド130,1320,930/三連単3880 を正しくパース。`ruff format`/`ruff check` 変更ファイルのみクリーン。 |
+| **ロールバック** | `git revert HEAD`（前コミット fba52eea に戻る）。`feature/nar-support` ブランチごと破棄も可。master 無影響。 |
+| **関連** | `docs/5_nar_integration_spec.md` §10.2/§10.5。NAR データ取得層は完成。次フェーズ: `RaceDataProvider` 統合・`datasource` カラム・NAR モデル・専用スケジューラ。 |
+
+---
+
 ### 2026-06-03 — NetkeibaNarFetcher のライブパーサ実装および結合テスト
 
 | 項目 | 内容 |

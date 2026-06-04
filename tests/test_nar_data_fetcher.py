@@ -13,10 +13,15 @@ from src.nar.data_fetcher import (
     NAR_VENUES,
     DummyNarFetcher,
     NarHorseEntry,
+    NarPayout,
     NarRaceMeta,
     NarRaceResult,
+    NarResultRow,
     NetkeibaNarFetcher,
     is_nar_race_id,
+    parse_result_page,
+    parse_result_payouts,
+    parse_result_rows,
     parse_shutuba_entries,
     parse_shutuba_meta,
     parse_shutuba_odds,
@@ -216,3 +221,163 @@ def test_live_fetch_smoke(rid: str) -> None:
         pytest.skip("出走馬を取得できず（開催外/構造変更の可能性）スキップ")
     assert all(e.horse_number >= 1 for e in entries)
     assert all(e.horse_name for e in entries)
+
+
+# ── 結果ページ（result）パーサ ──────────────────────────────────────────────
+
+# 実際の nar.netkeiba.com /race/result.html の構造を模した最小モック HTML。
+#  - 着順テーブル: table.RaceTable01（td.Result_Num=着順 / 2 つの td.Num=[枠, 馬番] / .Horse_Info=馬名）
+#  - 払戻テーブル: table.Payout_Detail_Table（単複は div/span、馬連等は ul/li、Payout は <br> 区切り）
+# 1 着の枠(4)と馬番(8)を意図的に変え、馬番側を正しく取得できることを検証する。
+MOCK_RESULT_HTML = """
+<html><head><title>3歳条件 未勝利 結果 | 2026年6月3日 門別1R 地方競馬レース情報 - netkeiba</title></head>
+<body>
+<table class="RaceTable01">
+  <tr><th class="Result_Num">着 順</th><th class="Num">枠</th><th class="Num">馬番</th><th>馬名</th></tr>
+  <tr class="HorseList">
+    <td class="Result_Num">1</td>
+    <td class="Num Waku4">4</td>
+    <td class="Num Waku">8</td>
+    <td class="Horse_Info"><span class="Horse_Name"><a href="/horse/1/">サンプルホースA</a></span></td>
+    <td class="Horse_Info">牝3</td>
+    <td class="Jockey"><a href="/jockey/">安藤洋一</a></td>
+  </tr>
+  <tr class="HorseList">
+    <td class="Result_Num">2</td>
+    <td class="Num Waku3">3</td>
+    <td class="Num Waku">3</td>
+    <td class="Horse_Info"><span class="Horse_Name"><a href="/horse/2/">サンプルホースB</a></span></td>
+    <td class="Horse_Info">牡3</td>
+    <td class="Jockey"><a href="/jockey/">桑村真章</a></td>
+  </tr>
+  <tr class="HorseList">
+    <td class="Result_Num">3</td>
+    <td class="Num Waku2">2</td>
+    <td class="Num Waku">2</td>
+    <td class="Horse_Info"><a href="/horse/3/">サンプルホースC</a></td>
+    <td class="Horse_Info">牝3</td>
+  </tr>
+</table>
+<table class="Payout_Detail_Table">
+  <tr><th>単勝</th>
+    <td class="Result"><div><span>8</span></div></td>
+    <td class="Payout"><span>110円</span></td><td class="Ninki">1人気</td></tr>
+  <tr><th>複勝</th>
+    <td class="Result"><div><span>8</span></div><div><span>3</span></div><div><span>2</span></div></td>
+    <td class="Payout"><span>100円<br>120円<br>530円</span></td>
+    <td class="Ninki">2人気 / 1人気 / 6人気</td></tr>
+  <tr><th>馬連</th>
+    <td class="Result"><ul><li><span>3</span></li><li><span>8</span></li></ul></td>
+    <td class="Payout"><span>140円</span></td><td class="Ninki">1人気</td></tr>
+</table>
+<table class="Payout_Detail_Table">
+  <tr><th>ワイド</th>
+    <td class="Result"><ul><li><span>3</span></li><li><span>8</span></li></ul><ul><li><span>2</span></li><li><span>8</span></li></ul><ul><li><span>2</span></li><li><span>3</span></li></ul></td>
+    <td class="Payout"><span>130円<br/>1,320円<br/>930円</span></td>
+    <td class="Ninki">1人気 / 12人気 / 9人気</td></tr>
+  <tr><th>三連複</th>
+    <td class="Result"><ul><li><span>2</span></li><li><span>3</span></li><li><span>8</span></li></ul></td>
+    <td class="Payout"><span>1,410円</span></td><td class="Ninki">4人気</td></tr>
+</table>
+</body></html>
+"""
+
+
+def test_parse_result_rows_extracts_rank_number_name() -> None:
+    """着順テーブルから（着順・馬番・馬名）を抽出し、枠ではなく馬番を採る。"""
+    rows = parse_result_rows(MOCK_RESULT_HTML)
+    assert len(rows) == 3
+    assert all(isinstance(r, NarResultRow) for r in rows)
+    assert (rows[0].rank, rows[0].horse_number, rows[0].horse_name) == (
+        1,
+        8,  # 枠は 4 だが馬番 8 を採る
+        "サンプルホースA",
+    )
+    assert (rows[1].rank, rows[1].horse_number) == (2, 3)
+    assert (rows[2].rank, rows[2].horse_number) == (3, 2)
+
+
+def test_parse_result_payouts_single_value_types() -> None:
+    """単勝・馬連など単一払戻をクレンジングして抽出する。"""
+    payouts = parse_result_payouts(MOCK_RESULT_HTML)
+    tansho = [p for p in payouts if p.bet_type == "単勝"]
+    assert len(tansho) == 1
+    assert tansho[0].combination == "8"
+    assert tansho[0].amount == 110
+    umaren = [p for p in payouts if p.bet_type == "馬連"]
+    assert umaren[0].combination == "3-8"
+    assert umaren[0].amount == 140
+
+
+def test_parse_result_payouts_multiple_values() -> None:
+    """複勝（3 値）・ワイド（3 組）の複数払戻を行ごとに分解する。"""
+    payouts = parse_result_payouts(MOCK_RESULT_HTML)
+    fukusho = [p for p in payouts if p.bet_type == "複勝"]
+    assert {(p.combination, p.amount) for p in fukusho} == {
+        ("8", 100),
+        ("3", 120),
+        ("2", 530),
+    }
+    wide = [p for p in payouts if p.bet_type == "ワイド"]
+    assert {(p.combination, p.amount) for p in wide} == {
+        ("3-8", 130),
+        ("2-8", 1320),  # カンマ "1,320円" を除去して int 化
+        ("2-3", 930),
+    }
+
+
+def test_parse_result_payouts_required_bet_types_present() -> None:
+    """要件の券種（単勝・複勝・馬連・ワイド）がすべて抽出されている。"""
+    payouts = parse_result_payouts(MOCK_RESULT_HTML)
+    kinds = {p.bet_type for p in payouts}
+    for required in ("単勝", "複勝", "馬連", "ワイド"):
+        assert required in kinds
+    assert all(isinstance(p, NarPayout) and p.amount > 0 for p in payouts)
+
+
+def test_fetch_results_via_injected_http_get() -> None:
+    """http_get 注入で fetch_results が完全な NarRaceResult を返す。"""
+    fetcher = NetkeibaNarFetcher(http_get=lambda url: MOCK_RESULT_HTML)
+    result = fetcher.fetch_results("202630060301")
+    assert isinstance(result, NarRaceResult)
+    assert result.race_id == "202630060301"
+    assert result.ranking == [8, 3, 2]  # 着順順の馬番
+    assert result.results[0].horse_name == "サンプルホースA"
+    assert any(p.bet_type == "単勝" for p in result.payouts)
+
+
+def test_parse_result_robust_to_malformed_html() -> None:
+    """DOM 欠損時もクラッシュせず空の NarRaceResult を返す。"""
+    result = parse_result_page("<html><body>no tables</body></html>", "202630060301")
+    assert isinstance(result, NarRaceResult)
+    assert result.race_id == "202630060301"
+    assert result.ranking == []
+    assert result.results == []
+    assert result.payouts == []
+
+
+def test_fetch_results_returns_empty_dto_on_http_failure() -> None:
+    """通信失敗時も例外を投げず、空の NarRaceResult を返す（WARNING ログ）。"""
+
+    def _boom(url: str) -> str:
+        raise RuntimeError("network down")
+
+    fetcher = NetkeibaNarFetcher(http_get=_boom)
+    result = fetcher.fetch_results("202630060301")
+    assert result.ranking == [] and result.payouts == []
+
+
+@pytest.mark.parametrize("rid", ["202630060301"])
+def test_live_fetch_results_smoke(rid: str) -> None:
+    """結果ページの実通信スモーク（未確定/接続不可/構造変更時は graceful skip）。"""
+    fetcher = NetkeibaNarFetcher()
+    try:
+        result = fetcher.fetch_results(rid)
+    except Exception as exc:  # noqa: BLE001
+        pytest.skip(f"結果ライブ取得不可のためスキップ: {exc}")
+    if not result.results:
+        pytest.skip("結果未確定/取得不可のためスキップ")
+    assert result.ranking[0] == result.results[0].horse_number
+    assert all(r.horse_name for r in result.results)
+    if result.payouts:
+        assert all(p.amount > 0 and p.combination for p in result.payouts)

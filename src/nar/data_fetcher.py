@@ -123,12 +123,35 @@ class NarHorseEntry:
 
 
 @dataclass(frozen=True)
+class NarResultRow:
+    """確定着順 1 行（着順・馬番・馬名）。"""
+
+    rank: int
+    horse_number: int
+    horse_name: str
+
+
+@dataclass(frozen=True)
+class NarPayout:
+    """払戻 1 件（券種・組合せ・払戻金）。
+
+    複勝やワイドのように 1 券種で複数の払戻がある場合は、組合せごとに
+    1 つの NarPayout として分解して表現する（例: 複勝 8→100円, 3→120円, 2→530円）。
+    """
+
+    bet_type: str  # "単勝"/"複勝"/"馬連"/"ワイド"/"馬単"/"三連複"/"三連単" 等
+    combination: str  # "8" / "3-8" / "2-3-8"
+    amount: int  # 払戻金(円・100円あたり)
+
+
+@dataclass(frozen=True)
 class NarRaceResult:
-    """地方競馬 1 レースの確定結果。"""
+    """地方競馬 1 レースの確定結果（着順詳細 + 払戻明細）。"""
 
     race_id: str
-    ranking: list[int]  # 着順順の馬番（[0] が 1 着）
-    payouts: dict[str, int] = field(default_factory=dict)  # 券種 -> 払戻(円)
+    ranking: list[int] = field(default_factory=list)  # 着順順の馬番（[0] が 1 着）
+    results: list[NarResultRow] = field(default_factory=list)  # 着順詳細（馬番+馬名）
+    payouts: list[NarPayout] = field(default_factory=list)  # 払戻明細
 
 
 # ── 抽象インターフェース ───────────────────────────────────────────────────
@@ -273,18 +296,40 @@ class DummyNarFetcher(NarDataFetcher):
 
     def fetch_results(self, race_id: str) -> NarRaceResult:
         rng = self._rng(race_id, "results")
-        n = self._entry_count(race_id)
-        ranking = list(range(1, n + 1))
+        entries = self.fetch_entries(race_id)
+        name_of = {e.horse_number: e.horse_name for e in entries}
+        ranking = [e.horse_number for e in entries]
         rng.shuffle(ranking)
+
+        results = [
+            NarResultRow(rank=i + 1, horse_number=hn, horse_name=name_of.get(hn, ""))
+            for i, hn in enumerate(ranking)
+        ]
         win, second, third = ranking[0], ranking[1], ranking[2]
-        payouts = {
-            "単勝": rng.choice([180, 320, 540, 760, 1230]),
-            "馬連": rng.choice([850, 1640, 3200, 5800]),
-            "三連複": rng.choice([1200, 4300, 9800, 24500]),
-        }
-        # 払戻に着順情報の一貫性メモを残す（プロトタイプ用）
-        _ = (win, second, third)
-        return NarRaceResult(race_id=race_id, ranking=ranking, payouts=payouts)
+        payouts = [
+            NarPayout("単勝", str(win), rng.choice([180, 320, 540, 760, 1230])),
+            NarPayout("複勝", str(win), rng.choice([110, 150, 220, 380])),
+            NarPayout("複勝", str(second), rng.choice([120, 180, 260, 410])),
+            NarPayout("複勝", str(third), rng.choice([130, 200, 300, 480])),
+            NarPayout(
+                "馬連",
+                f"{min(win, second)}-{max(win, second)}",
+                rng.choice([850, 1640, 3200, 5800]),
+            ),
+            NarPayout(
+                "ワイド",
+                f"{min(win, second)}-{max(win, second)}",
+                rng.choice([320, 540, 980]),
+            ),
+            NarPayout(
+                "三連複",
+                "-".join(str(x) for x in sorted((win, second, third))),
+                rng.choice([1200, 4300, 9800, 24500]),
+            ),
+        ]
+        return NarRaceResult(
+            race_id=race_id, ranking=ranking, results=results, payouts=payouts
+        )
 
 
 # ── netkeiba 出馬表 HTML パーサ（純関数・テスト可能） ─────────────────────────
@@ -479,6 +524,162 @@ def parse_shutuba_odds(html: str) -> dict[int, float]:
     }
 
 
+# ── netkeiba 結果ページ HTML パーサ（純関数・テスト可能） ─────────────────────
+
+
+def _payout_amounts(cell) -> list[int]:  # type: ignore[no-untyped-def]
+    """払戻セルから払戻金（円）のリストを抽出する。
+
+    netkeiba は複数払戻を <br> で区切るが、html.parser は ``<br/>`` を入れ子化
+    する癖があり <br> 依存の分割は壊れる。そこで DOM 構造に依存せず
+    「<数字（カンマ可）>円」のパターンを順序どおり全件抽出する堅牢方式を採る。
+    """
+    if cell is None:
+        return []
+    text = cell.get_text(" ", strip=True)
+    matches = re.findall(r"(\d[\d,]*)\s*円", text)
+    if not matches:
+        # "円" 表記が無い場合のフォールバック（数値トークンを順に拾う）。
+        matches = re.findall(r"\d[\d,]*", text)
+    return [int(m.replace(",", "")) for m in matches]
+
+
+def parse_result_rows(html: str) -> list[NarResultRow]:
+    """結果ページ HTML から確定着順（着順・馬番・馬名）を抽出する。
+
+    着順テーブル（table.RaceTable01）の各行から td.Result_Num（着順）、
+    2 つある td.Num のうち馬番側（枠番ではない方＝最後の Num）、
+    .Horse_Info 内の馬名リンクを取得する。着順が数値でない行（ヘッダー・
+    中止/取消/除外）は安全にスキップする。
+
+    Args:
+        html: 結果ページの HTML。
+
+    Returns:
+        着順昇順の NarResultRow リスト。テーブルが無ければ空リスト。
+    """
+    rows: list[NarResultRow] = []
+    try:
+        soup = _soup(html)
+        table = soup.select_one("table.RaceTable01")
+        if table is None:
+            return []
+        for tr in table.select("tr"):
+            try:
+                rank_td = tr.select_one("td.Result_Num")
+                rank = _to_int(rank_td.get_text(strip=True) if rank_td else None)
+                if rank is None:
+                    continue  # ヘッダー・競走中止等
+                num_cells = tr.select("td.Num")
+                # 1 つ目=枠番、最後=馬番（小頭数で同値でも馬番側を採る）。
+                horse_number = (
+                    _to_int(num_cells[-1].get_text(strip=True)) if num_cells else None
+                )
+                if horse_number is None:
+                    continue
+                info = tr.select_one(".Horse_Info a") or tr.select_one(".Horse_Info")
+                horse_name = info.get_text(strip=True) if info else ""
+                rows.append(
+                    NarResultRow(
+                        rank=rank,
+                        horse_number=horse_number,
+                        horse_name=horse_name,
+                    )
+                )
+            except Exception as exc:  # noqa: BLE001 — 1 行の異常で全体を止めない
+                logger.warning("NAR 結果行のパース失敗（スキップ）: %s", exc)
+                continue
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("NAR 結果テーブルのパース失敗: %s", exc)
+        return []
+    rows.sort(key=lambda r: r.rank)
+    return rows
+
+
+def parse_result_payouts(html: str) -> list[NarPayout]:
+    """結果ページ HTML から払戻明細（単勝/複勝/馬連/ワイド/三連系 等）を抽出する。
+
+    払戻テーブル（table.Payout_Detail_Table）の各行を解析する。
+      - 組合せセル(.Result): <ul> があれば各 <ul> が 1 組合せ（<li> の数字を "-" で連結）。
+        無ければ <span> の数字 1 つを 1 組合せ（単勝・複勝形式）とみなす。
+      - 払戻セル(.Payout): <br> 区切りで複数値を分解し、組合せと位置整合させる。
+    複数払戻（複勝・ワイド等）は組合せごとに 1 つの NarPayout へ分解する。
+
+    Args:
+        html: 結果ページの HTML。
+
+    Returns:
+        NarPayout のリスト（払戻金が解釈できない組合せは除外）。
+    """
+    payouts: list[NarPayout] = []
+    try:
+        soup = _soup(html)
+        for tr in soup.select(".Payout_Detail_Table tr"):
+            try:
+                th = tr.find("th")
+                bet_type = th.get_text(strip=True) if th else ""
+                res = tr.select_one(".Result")
+                pay = tr.select_one(".Payout")
+                if not bet_type or res is None or pay is None:
+                    continue
+
+                # 組合せの抽出。
+                combos: list[str] = []
+                uls = res.find_all("ul")
+                if uls:
+                    for ul in uls:
+                        nums = [
+                            li.get_text(strip=True)
+                            for li in ul.find_all("li")
+                            if li.get_text(strip=True)
+                        ]
+                        if nums:
+                            combos.append("-".join(nums))
+                else:
+                    combos = [
+                        sp.get_text(strip=True)
+                        for sp in res.find_all("span")
+                        if sp.get_text(strip=True)
+                    ]
+
+                # 払戻金（複数の場合は組合せと位置整合）。
+                amounts = _payout_amounts(pay)
+
+                for combo, amount in zip(combos, amounts):
+                    payouts.append(
+                        NarPayout(bet_type=bet_type, combination=combo, amount=amount)
+                    )
+            except Exception as exc:  # noqa: BLE001 — 1 行の異常で全体を止めない
+                logger.warning("NAR 払戻行のパース失敗（スキップ）: %s", exc)
+                continue
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("NAR 払戻テーブルのパース失敗: %s", exc)
+        return []
+    return payouts
+
+
+def parse_result_page(html: str, race_id: str) -> NarRaceResult:
+    """結果ページ HTML から NarRaceResult（着順 + 払戻）を組み立てる。
+
+    DOM 欠損・パース失敗時もクラッシュせず、空の NarRaceResult を返す。
+
+    Args:
+        html:    結果ページの HTML。
+        race_id: 対象 race_id。
+
+    Returns:
+        着順・着順詳細・払戻明細を格納した NarRaceResult。
+    """
+    rows = parse_result_rows(html)
+    payouts = parse_result_payouts(html)
+    return NarRaceResult(
+        race_id=race_id,
+        ranking=[r.horse_number for r in rows],
+        results=rows,
+        payouts=payouts,
+    )
+
+
 # ── netkeiba 地方競馬 実装（ライブパーサ） ───────────────────────────────────
 
 
@@ -591,9 +792,10 @@ class NetkeibaNarFetcher(NarDataFetcher):
         return parse_shutuba_odds(html)
 
     def fetch_results(self, race_id: str) -> NarRaceResult:
-        # 結果ページ（/race/result.html）は別 DOM 構造。基盤段階では未対応を明示し、
-        # 確定結果の取り込みは次フェーズ（docs/5_nar_integration_spec.md §10.5）で実装する。
-        raise NotImplementedError(
-            "NetkeibaNarFetcher.fetch_results は次フェーズで実装予定です。"
-            "現段階の結果系検証には DummyNarFetcher を使用してください。"
-        )
+        """結果ページから確定着順・払戻明細を取得する（失敗時は空 DTO）。"""
+        try:
+            html = self._get(self.build_result_url(race_id))
+        except Exception as exc:  # noqa: BLE001
+            logger.warning("NAR 結果取得失敗 %s: %s", race_id, exc)
+            return NarRaceResult(race_id=race_id)
+        return parse_result_page(html, race_id)
