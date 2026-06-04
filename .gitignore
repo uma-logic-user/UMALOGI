@@ -35,6 +35,9 @@ data/backups/
 # DB バックアップ（各数百MB・GitHub 100MB 上限超のため追跡禁止 / W-054）
 data/umalogi_backup_*.db
 
+# 全資産バックアップ ZIP（scripts/backup_umalogi.py の出力・各数百MB・追跡禁止）
+backups/
+
 # 大容量バイナリ・生成データ（GitHub 推奨50MB超）
 bin/*.exe
 web/src/data/races.json
