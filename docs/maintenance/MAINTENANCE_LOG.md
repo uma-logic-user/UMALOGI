@@ -34,6 +34,22 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-04 — RaceDataProvider への NAR 統合および datasource 分離の配線
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-opus-4-8) |
+| **修正日** | 2026-06-04 |
+| **バージョン** | `1.5.0-dev.3` → `1.5.0-dev.4`（NAR 機能ライン内の dev イテレーション） |
+| **種別** | feat（新機能追加 / 上位層配線） |
+| **実施内容** | 実装済み `NetkeibaNarFetcher` を上位層へ配線する `src/data/race_data_provider.py`（`RaceDataProvider`）を新設。**(1) datasource 切替**: `datasource: str = "jra"`（既定）を受け、`"nar"` 指定時は `NetkeibaNarFetcher`、`"jra"` 時は既存 DB（entries/realtime_odds/race_results/race_payouts）読み取りへ透過分岐。`get_entries`/`get_results`/`get_payouts` を提供。**(2) datasource 列ガード**: 全取得結果を `datasource`（'jra'\|'nar'）列付き正規化 DataFrame（`ENTRY_COLUMNS`/`RESULT_COLUMNS`/`PAYOUT_COLUMNS`）で返し、`_finalize` で datasource を強制付与。`assert_single_datasource(df, expected=)` で JRA/NAR 混在・期待不一致を `ValueError` 検知（DB 保存・特徴量生成前ガード）。**(3) 自動判定**: `provider_for_race(race_id)` が `is_nar_race_id()`（会場コード）で datasource を自動選択。**(4) テスト容易性**: `nar_fetcher`/`db_path` 注入でネットワーク・実 DB 非依存。**注**: 指定パスは推測で実体が無く（spec §3 は設計のみ）、新規作成した。既存 JRA コード・DB は一切変更せず読み取りのみ（条項1）。 |
+| **影響範囲** | 新規: `src/data/race_data_provider.py`, `tests/test_race_data_provider.py`（13件）。更新: `VERSION`(→1.5.0-dev.4), `docs/5_nar_integration_spec.md`（§10.1/10.5/10.6）。**既存 src/ops・src/ml・src/scraper・DB は非改変**。 |
+| **検証** | プロバイダテスト `pytest tests/test_race_data_provider.py` → **13 passed**（NAR モック正常系 entries/results/payouts + 自動判定 + 混在ガード + JRA in-memory DB 読み取り + 経路分離）。全体 `pytest` → **1209 passed / 4 failed**。⚠️ 4 failed は `LIVE_MODELS={Pure_EV_Edge,卍,FukushoElite}` 変更起因の **pre-existing**（本作業の tracked 改変なし・NAR 無関係。リターンコードは 0 にならないが、新規破壊はゼロ）。`ruff format`/`ruff check` 変更ファイルのみクリーン。 |
+| **ロールバック** | `git revert HEAD`（前コミット b7269e81 に戻る）。`feature/nar-support` ブランチごと破棄も可。master 無影響。 |
+| **関連** | `docs/5_nar_integration_spec.md` §3/§10.6。Backlog 残: DB 物理スキーマへの `datasource` 永続化（共通保存層）・NAR モデル・専用スケジューラ。 |
+
+---
+
 ### 2026-06-04 — NetkeibaNarFetcher の結果ページ（result）パーサ実装と堅牢化
 
 | 項目 | 内容 |

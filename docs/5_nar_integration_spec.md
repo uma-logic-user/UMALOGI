@@ -7,6 +7,7 @@
 | 2026-05-24 | 初版作成。Providerパターンによる JRA/NAR 共通コア設計を策定。|
 | 2026-06-03 | NAR データ取得基盤を専用パッケージ `src/nar/` に実装（プロトタイプ）。`NarDataFetcher` 抽象 + `DummyNarFetcher`（決定的ダミー）+ `NetkeibaNarFetcher`（URL契約確定・ライブパースは明示スタブ）。Note/X 共通化のため `src/nar/note_adapter.py` を新設し、既存 `money_management.allocate_budget` / `note_generator.generate_note_draft` を `NoteBet` 互換で再利用。`feature/nar-support` ブランチで JRA 本番から完全隔離。テスト15件 PASS。影響ファイル: src/nar/__init__.py, src/nar/data_fetcher.py, src/nar/note_adapter.py, tests/test_nar_data_fetcher.py, tests/test_nar_note_adapter.py |
 | 2026-06-03 | `NetkeibaNarFetcher` の出馬表/オッズ **ライブパーサを実装**（`requests`+`BeautifulSoup`・EUC-JP確定・timeout 10s・リクエスト間 1.0s ウェイト・DOM欠損/通信失敗時の安全スキップ）。純関数 `parse_shutuba_meta`/`parse_shutuba_entries`/`parse_shutuba_odds` を追加し、`http_get` 注入でモック HTML テスト可能化。実通信スモークテスト追加。ライブE2Eデモ `scripts/nar_live_demo.py` 新設（実データ→EV比例予算配分付き Note Markdown 生成）。NAR テスト 15→21 件 PASS、全体 1188 passed。影響ファイル: src/nar/data_fetcher.py, scripts/nar_live_demo.py, tests/test_nar_data_fetcher.py |
+| 2026-06-04 | `src/data/race_data_provider.py` 新設。`RaceDataProvider(datasource='jra'\|'nar')` で取得経路を分岐（NAR=`NetkeibaNarFetcher` / JRA=既存 DB 読み取り）。全取得結果に `datasource` 列を強制付与、`assert_single_datasource()` で JRA/NAR 混在をガード、`provider_for_race()` で会場コード自動判定。`nar_fetcher`/`db_path` 注入でテスト可能。プロバイダテスト 13 件追加（NAR モック正常系 + JRA in-memory DB + ガード）、全体 1209 passed。影響ファイル: src/data/race_data_provider.py, tests/test_race_data_provider.py |
 | 2026-06-04 | `NetkeibaNarFetcher.fetch_results` の **結果ページ（result）パーサを実装**。DTO 拡張: `NarResultRow`（着順+馬番+馬名）/ `NarPayout`（券種+組合せ+払戻金）追加、`NarRaceResult` を ranking+results+payouts に拡張。純関数 `parse_result_rows`/`parse_result_payouts`/`parse_result_page` を追加。単勝/複勝/枠連/馬連/ワイド/馬単/三連複/三連単を抽出、複勝・ワイド等の複数払戻を組合せごとに分解、カンマ・"円" を除去して int 化（`html.parser` の `<br/>` 入れ子化に依存しない正規表現方式）。DOM欠損/通信失敗時は空 DTO。NAR テスト 21→29 件 PASS、全体 1196 passed。影響ファイル: src/nar/data_fetcher.py, tests/test_nar_data_fetcher.py |
 
 ---
@@ -400,10 +401,12 @@ schedule.every().day.at("08:30").do(today_auto_runner_nar)   # NAR追加
 | ファイル | 役割 | 状態 |
 |---|---|---|
 | `src/nar/__init__.py` | パッケージ宣言（隔離原則の明文化） | ✅ |
-| `src/nar/data_fetcher.py` | NAR データ取得基盤 | ✅ プロトタイプ |
+| `src/nar/data_fetcher.py` | NAR データ取得（出馬表/オッズ/結果/払戻ライブ） | ✅ |
 | `src/nar/note_adapter.py` | 既存 Note/X 生成への橋渡しアダプタ | ✅ |
-| `tests/test_nar_data_fetcher.py` | 取得基盤テスト（9件） | ✅ PASS |
+| `src/data/race_data_provider.py` | JRA/NAR 統合プロバイダ（datasource 切替＋混在ガード） | ✅ |
+| `tests/test_nar_data_fetcher.py` | 取得基盤テスト（23件） | ✅ PASS |
 | `tests/test_nar_note_adapter.py` | アダプタ・互換性テスト（6件） | ✅ PASS |
+| `tests/test_race_data_provider.py` | プロバイダ・datasource 分離テスト（13件） | ✅ PASS |
 
 ### 10.2 `data_fetcher.py` の構成
 
@@ -467,6 +470,29 @@ NarBet → to_note_bets() → NoteBet
 
 1. ✅ **完了（2026-06-03〜04）**: `NetkeibaNarFetcher` の出馬表/オッズ **および確定結果（着順+払戻）** ライブパーサ実装。
    → NAR データ取得層（出馬表・オッズ・結果・払戻）は揃った。
-2. §3 `RaceDataProvider` / `datasource='jra'|'nar'` DB カラムとの統合（共通保存層）。
+2. 🟡 **配線完了（2026-06-04）**: `src/data/race_data_provider.py` の `RaceDataProvider`
+   （`datasource='jra'|'nar'` 切替）を実装。NAR は `NetkeibaNarFetcher`、JRA は既存 DB
+   読み取りへ分岐し、出馬表/結果/払戻を `datasource` 列付き正規化 DataFrame で返す。
+   `assert_single_datasource()` で混在ガード、`provider_for_race()` で会場コード自動判定。
+   残: DB 物理スキーマへの `datasource` 永続化（共通保存層・`races.datasource` 等）。
 3. NAR 用予想モデル（特徴量カバレッジ確認・`TakeoutRates` の地方率対応）。
 4. NAR 専用スケジューラ（毎日開催・ナイター対応）。
+
+### 10.6 `race_data_provider.py`（JRA/NAR 統合）
+
+```
+RaceDataProvider(datasource="jra"|"nar", *, nar_fetcher=, db_path=)
+  ├─ get_entries(race_id)  → 正規化 DataFrame（ENTRY_COLUMNS・datasource 列付き）
+  ├─ get_results(race_id)  → 正規化 DataFrame（RESULT_COLUMNS）
+  └─ get_payouts(race_id)  → 正規化 DataFrame（PAYOUT_COLUMNS）
+       datasource="nar" → NetkeibaNarFetcher（注入可）
+       datasource="jra" → 既存 DB（entries/realtime_odds/race_results/race_payouts）読み取り
+
+provider_for_race(race_id)  … is_nar_race_id() で datasource を自動判定して生成
+assert_single_datasource(df, expected=)  … JRA/NAR 混在を検知して ValueError（保存/特徴量前ガード）
+```
+
+- すべての取得結果に `datasource`（'jra'|'nar'）列を **強制付与**（`_finalize` で上書き）し、
+  `assert_single_datasource` を内部適用。これにより DataFrame 段階で両データの混入を構造的に防ぐ。
+- JRA 経路は **既存 JRA コード・DB を一切変更せず** 読み取りのみ（JVLink/netkeiba が取り込んだ正本を参照）。
+- `nar_fetcher` / `db_path` を注入できるため、ネットワーク・実 DB 非依存でテスト可能。
