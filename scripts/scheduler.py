@@ -1222,6 +1222,21 @@ def job_heartbeat() -> None:
     _send_discord(f"✅ UMALOGI alive ({now})")
 
 
+def job_heartbeat_sns() -> None:
+    """3時間おき: DISCORD_WEBHOOK_SNS へ定期生存報告を送信する（死活監視・つなぎ）。
+
+    AntiCrow 等の本格リモート監視統合までの暫定。送信は src.ops.sns_publisher.send_heartbeat
+    に委譲し、内部で例外を握りつぶすため、メインの予測・SNS 集客処理を一切ブロックしない。
+    """
+    try:
+        from src.ops.sns_publisher import send_heartbeat
+
+        ok = send_heartbeat()
+        logger.info("[ハートビート(SNS)] 送信 %s", "成功" if ok else "スキップ/失敗")
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("[ハートビート(SNS)] 例外（無視して続行）: %s", exc)
+
+
 # ================================================================
 # TARGET frontier JV ウォッチドッグ
 # ================================================================
@@ -1947,8 +1962,12 @@ def register_schedules() -> None:
         )
     )
 
-    # 毎時0分: 死活監視ハートビート → Discord
+    # 毎時0分: 死活監視ハートビート → Discord（システムチャンネル）
     schedule.every().hour.at(":00").do(job_heartbeat)
+
+    # 3時間おき: 定期生存報告 → Discord 集客チャンネル(DISCORD_WEBHOOK_SNS)
+    # 完全無人運用のつなぎ（AntiCrow 統合までの暫定）。非ブロッキング送信。
+    schedule.every(3).hours.do(job_heartbeat_sns)
 
     # 毎日23:00: DB バックアップ（5世代ローテーション）
     schedule.every().day.at("23:00").do(job_daily_backup)

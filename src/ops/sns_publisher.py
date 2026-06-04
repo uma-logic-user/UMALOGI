@@ -252,6 +252,51 @@ def send_hit_flash(
 
 
 # ─────────────────────────────────────────────────────────────────────
+# 死活監視ハートビート（完全無人運用のつなぎ — AntiCrow 統合までの暫定）
+# ─────────────────────────────────────────────────────────────────────
+def format_heartbeat(now: str | None = None) -> str:
+    """Discord へ送る定期生存報告メッセージを組み立てる（純関数）。
+
+    Args:
+        now: 表示する現在時刻文字列。省略時は実行時の "%Y-%m-%d %H:%M"。
+
+    Returns:
+        "🟢 [時刻] UMALOGI 定期生存報告：..." 形式のメッセージ。
+    """
+    if now is None:
+        from datetime import datetime
+
+        now = datetime.now().strftime("%Y-%m-%d %H:%M")
+    return f"🟢 [{now}] UMALOGI 定期生存報告：システムは正常に稼働し、待機中です"
+
+
+def send_heartbeat(sender: Sender | None = None, *, now: str | None = None) -> bool:
+    """死活監視ハートビートを DISCORD_WEBHOOK_SNS へ送信する（例外を出さない）。
+
+    完全無人運用の「つなぎ」死活監視。AntiCrow 等の本格リモート監視統合までの暫定。
+    送信は依存性注入(sender)で差し替え可能。既定は DISCORD_WEBHOOK_SNS 宛ての
+    `_default_sender`（URL 未設定時はサイレントスキップで False）。
+
+    ⚠️ メインの予測・SNS 集客処理を絶対にブロックしないため、いかなる例外も
+    内部で握りつぶし、成否のみを bool で返す（呼び出し側は失敗を無視してよい）。
+
+    Args:
+        sender: 送信関数 (text, channel) -> bool。省略時 `_default_sender`。
+        now:    表示時刻（テスト用）。省略時は実行時刻。
+
+    Returns:
+        True = 送信成功 / False = 未設定・失敗・例外（いずれも非ブロッキング）。
+    """
+    text = format_heartbeat(now)
+    snd = sender or _default_sender
+    try:
+        return bool(snd(text, "sns"))
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("[SNS] ハートビート送信例外（無視して続行）: %s", exc)
+        return False
+
+
+# ─────────────────────────────────────────────────────────────────────
 # Note 用「おすすめ掛け金」（EV 連動・読者の資金配分導線）
 # ─────────────────────────────────────────────────────────────────────
 # (EV 下限, 1点あたり掛け金, ユニット数, 勝負ラベル) — 降順に評価する

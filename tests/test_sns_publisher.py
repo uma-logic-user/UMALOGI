@@ -22,11 +22,13 @@ from src.ops.sns_publisher import (
     calculate_recommended_note_bets,
     compute_ornamental_weekly_stats,
     export_weekly_report,
+    format_heartbeat,
     format_recommended_bets_block,
     format_x_post,
     generate_hit_flash,
     is_ornamental_model,
     recommended_unit_stake,
+    send_heartbeat,
     send_hit_flash,
 )
 
@@ -465,3 +467,43 @@ def test_format_recommended_bets_block_renders_expected_elements() -> None:
 def test_format_recommended_bets_block_handles_empty() -> None:
     """買い目が無い場合は空文字を返す（note へ余計な見出しを出さない）。"""
     assert format_recommended_bets_block(calculate_recommended_note_bets([])) == ""
+
+
+# ── 死活監視ハートビート ──────────────────────────────────────────────────────
+
+
+def test_format_heartbeat_contains_required_text() -> None:
+    """生存報告メッセージは 🟢・時刻・定型文を含む。"""
+    msg = format_heartbeat(now="2026-06-05 12:00")
+    assert msg.startswith("🟢 [2026-06-05 12:00]")
+    assert "UMALOGI 定期生存報告" in msg
+    assert "システムは正常に稼働し、待機中です" in msg
+
+
+def test_send_heartbeat_uses_injected_sender() -> None:
+    """sender 注入でネットワークI/Oを排除し、生存報告テキストが渡ることを検証する。"""
+    sent: list[tuple[str, str]] = []
+
+    def fake_sender(text: str, channel: str) -> bool:
+        sent.append((text, channel))
+        return True
+
+    assert send_heartbeat(sender=fake_sender, now="2026-06-05 12:00") is True
+    assert len(sent) == 1
+    text, channel = sent[0]
+    assert "定期生存報告" in text
+    assert channel == "sns"
+
+
+def test_send_heartbeat_swallows_exceptions() -> None:
+    """送信が例外を投げても握りつぶし False を返す（メイン処理を絶対にブロックしない）。"""
+
+    def boom(_text: str, _channel: str) -> bool:
+        raise RuntimeError("network down")
+
+    assert send_heartbeat(sender=boom) is False
+
+
+def test_send_heartbeat_returns_false_when_sender_fails() -> None:
+    """sender が False（Webhook 未設定相当）を返したら False を返す。"""
+    assert send_heartbeat(sender=lambda _t, _c: False) is False

@@ -34,6 +34,20 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-05 — Discord 定期生存報告（ハートビート）機能の追加
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-opus-4-8) |
+| **修正日** | 2026-06-05 |
+| **バージョン** | 1.4.3-dev → 1.4.4-dev |
+| **種別** | 運用基盤（死活監視） |
+| **実施内容** | 完全無人運用のつなぎ（AntiCrow 等の本格リモート監視統合までの暫定）として、`src/ops/sns_publisher.py` に `format_heartbeat()` / `send_heartbeat()` を追加（`DISCORD_WEBHOOK_SNS` 宛てに「🟢 [時刻] UMALOGI 定期生存報告：システムは正常に稼働し、待機中です」を送信）。`scripts/scheduler.py` に `job_heartbeat_sns()` を追加し `schedule.every(3).hours` で登録（既存の毎時 `job_heartbeat`＝システムチャンネルは温存）。送信は依存性注入(sender)で差替可能・例外を内部で握りつぶす非ブロッキング設計でメイン処理を一切ブロックしない。 |
+| **影響範囲** | `src/ops/sns_publisher.py` / `scripts/scheduler.py` / `tests/test_sns_publisher.py` / `docs/2_automation_schedule.md` / `VERSION` |
+| **検証** | `pytest` 全 **1187 PASS**（ハートビート 4 ケース含む）。実 `.env` の `DISCORD_WEBHOOK_SNS` はプレースホルダのため send は非ブロッキングで False を返す（例外を出さない）ことを E2E 確認。 |
+| **ロールバック** | 直前コミット `4229fbd1`。 |
+| **関連** | 完全無人運用・死活監視。AntiCrow 統合までの暫定機能。 |
+
 ### 2026-06-04 — bet_policy 現行仕様へのテスト追従および .gitignore クリーンアップ
 
 | 項目 | 内容 |
