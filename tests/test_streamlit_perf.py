@@ -332,12 +332,12 @@ class TestHomeDataFunctions:
     # ── fetch_model_roi ───────────────────────────────────────
     def test_model_roi_per_model(self):
         _add_race(self.c, _rid("05", 11), "2026-05-31")
-        pid = _add_pred(self.c, _rid("05", 11), "本命(直前)", "単勝", 1.5, "勝ち馬")
+        pid = _add_pred(self.c, _rid("05", 11), "Pure_EV_Edge(直前)", "単勝", 1.5, "勝ち馬")
         _add_pred_result(self.c, pid, 1, 250.0, 150.0)  # cost=100, ROI=250%
         self.c.commit()
 
         df = self.app.fetch_model_roi(live_only=True)
-        row = df[df["model_type"] == "本命(直前)"]
+        row = df[df["model_type"] == "Pure_EV_Edge(直前)"]
         assert len(row) == 1
         assert float(row.iloc[0]["roi"]) == 250.0
         assert float(row.iloc[0]["hit_rate"]) == 100.0

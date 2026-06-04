@@ -350,7 +350,7 @@ def test_live_roi_since_filter(acc_conn) -> None:
 
     acc_conn.execute(
         "INSERT INTO predictions(id,race_id,model_type,bet_type,created_at,is_superseded)"
-        " VALUES(1,'R','本命(直前)','単勝','2026-05-01 10:00',0)"
+        " VALUES(1,'R','Pure_EV_Edge(直前)','単勝','2026-05-01 10:00',0)"
     )
     acc_conn.execute("INSERT INTO prediction_results VALUES(1,1,1,500,400)")
     acc_conn.commit()

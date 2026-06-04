@@ -41,11 +41,11 @@ def _add(c, pid, model, bet, payout, profit, is_hit, *, superseded=0):
 
 def test_live_roi_excludes_exotics_and_ornamental(conn) -> None:
     # 実弾: 単勝 当たり(cost=100, payout=400) / 複勝 外れ(cost=300, payout=0)
-    _add(conn, 1, "本命(直前)", "単勝", 400, 300, 1)  # cost=100
-    _add(conn, 2, "本命(直前)", "複勝", 0, -300, 0)  # cost=300
+    _add(conn, 1, "Pure_EV_Edge(直前)", "単勝", 400, 300, 1)  # cost=100
+    _add(conn, 2, "Pure_EV_Edge(直前)", "複勝", 0, -300, 0)  # cost=300
     # 観賞用・三連系（除外されるべき大損）
     _add(conn, 3, "Oracle(直前)", "三連単", 0, -5000, 0)
-    _add(conn, 4, "本命(直前)", "三連単", 0, -2000, 0)
+    _add(conn, 4, "Pure_EV_Edge(直前)", "三連単", 0, -2000, 0)
     conn.commit()
 
     r = compute_live_roi(conn, live_only=True)
@@ -59,8 +59,8 @@ def test_live_roi_excludes_exotics_and_ornamental(conn) -> None:
 
 
 def test_live_roi_excludes_superseded(conn) -> None:
-    _add(conn, 1, "本命(直前)", "単勝", 500, 400, 1)  # 有効 cost=100
-    _add(conn, 2, "本命(直前)", "単勝", 0, -100, 0, superseded=1)  # 無効化→除外
+    _add(conn, 1, "Pure_EV_Edge(直前)", "単勝", 500, 400, 1)  # 有効 cost=100
+    _add(conn, 2, "Pure_EV_Edge(直前)", "単勝", 0, -100, 0, superseded=1)  # 無効化→除外
     conn.commit()
     r = compute_live_roi(conn, live_only=True)
     assert r["n"] == 1
@@ -68,7 +68,7 @@ def test_live_roi_excludes_superseded(conn) -> None:
 
 
 def test_live_only_false_includes_all(conn) -> None:
-    _add(conn, 1, "本命(直前)", "単勝", 400, 300, 1)
+    _add(conn, 1, "Pure_EV_Edge(直前)", "単勝", 400, 300, 1)
     _add(conn, 2, "Oracle(直前)", "三連単", 0, -5000, 0)
     conn.commit()
     r = compute_live_roi(conn, live_only=False)

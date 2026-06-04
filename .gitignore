@@ -24,6 +24,10 @@ Thumbs.db
 data/umalogi.db
 database.db
 
+# SQLite WAL/SHM（稼働中プロセスが随時書き換える揮発ファイル・追跡禁止）
+data/*.db-wal
+data/*.db-shm
+
 # 訓練済みモデル（数百MB になる場合がある）
 data/models/
 data/backups/
@@ -58,6 +62,8 @@ htmlcov/
 # ── 生成物（厳選note下書き・note記事出力）────────────────────────
 dist/
 outputs/note/
+# 地方競馬（NAR）ライブデモの生成 Markdown（再生成可能・追跡禁止）
+outputs/nar/
 
 # ── その他 ────────────────────────────────────────────────────────
 py

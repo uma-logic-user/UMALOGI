@@ -34,6 +34,22 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-04 — bet_policy 現行仕様へのテスト追従および .gitignore クリーンアップ
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-opus-4-8) |
+| **修正日** | 2026-06-04 |
+| **バージョン** | 据え置き `1.4.3-dev`（テスト・無視設定のみ＝`src/` 挙動への影響ゼロのため繰り上げなし） |
+| **種別** | バグ修正（テスト追従）/ 運用基盤（.gitignore） |
+| **実施内容** | `bet_policy.LIVE_MODELS={Pure_EV_Edge, 卍, FukushoElite}`（本命/Alpha-Payout を実弾モデルから除外）への変更にテストが追従しておらず、`compute_live_roi`/`fetch_model_roi` 系の 4 テストが実弾0件となり失敗していた技術的負債を解消。**(1)** 旧 live モデル名 `本命(直前)` を現行 live モデル `Pure_EV_Edge(直前)`（単勝・複勝とも実弾）に置換: `tests/test_pnl_accounting.py`（全6箇所）/ `tests/test_grandslam_edgecases.py::test_live_roi_since_filter`（1箇所のみ・A/B レガシー比較で `本命` を意図使用する `test_ab_*` の行は温存）/ `tests/test_streamlit_perf.py::test_model_roi_per_model`（挿入+アサーション）。**ビジネスロジック（`src/`）は一切変更せず**、テスト側 fixture/アサーションのみ現行仕様へ追従。**(2)** `.gitignore` に `data/*.db-wal` / `data/*.db-shm`（SQLite 揮発ファイル）/ `outputs/nar/`（NAR ライブデモ生成物）を追加し、追跡済みだった `data/umalogi.db-wal` / `data/umalogi.db-shm` を `git rm --cached` で追跡解除（物理ファイルは無傷＝稼働中スケジューラに影響なし）。 |
+| **影響範囲** | `tests/test_pnl_accounting.py`, `tests/test_grandslam_edgecases.py`, `tests/test_streamlit_perf.py`, `.gitignore`, 追跡解除: `data/umalogi.db-wal`/`data/umalogi.db-shm`。`src/` 非改変。 |
+| **検証** | `py -m pytest` → **1183 passed / 0 failed（exit code 0）**。修正前は同4件が失敗。`ruff check` 変更テストファイルはクリーン。 |
+| **ロールバック** | `git revert HEAD`。`git rm --cached` の取り消しは `git checkout HEAD~1 -- .gitignore && git add data/umalogi.db-wal data/umalogi.db-shm`。 |
+| **関連** | 直前 NAR 作業（feature/nar-support）報告の「pre-existing 4 failures（詰まりポイントB）」の恒久解消。 |
+
+---
+
 ### 2026-06-04 — SNS投稿例外遮断・Noteペイウォール安全ガード実装
 
 | 項目 | 内容 |
