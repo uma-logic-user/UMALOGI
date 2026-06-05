@@ -34,6 +34,20 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-05 — ログ自動ローテーション（7日保持）導入と災害復旧手順書の作成
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-opus-4-8) |
+| **修正日** | 2026-06-05 |
+| **バージョン** | 1.4.4-dev → 1.4.5-dev |
+| **種別** | 運用基盤（運用硬化・DR） |
+| **実施内容** | 長期無人運用の運用硬化。①`src/ops/logger.py`（新規）に `setup_logging()` を実装。`TimedRotatingFileHandler(when="midnight", backupCount=7)` で**日次ローテーション＋7日保持**（8日以上前は自動削除）し、ログ肥大化によるディスク枯渇を防止。UTF-8コンソール併用・冪等（多重出力防止）。②本番3デーモン `scheduler.py`/`today_auto_runner.py`/`watchdog.py` を `setup_logging` に集約（従来のサイズベース `RotatingFileHandler`・watchdogのファイル無し設定を置換）。③`docs/9_disaster_recovery.md`（新規）にPC全損時の最短復旧コマンド・DB復元手順・環境変数リストを記載。 |
+| **影響範囲** | `src/ops/logger.py`(新規) / `scripts/scheduler.py` / `scripts/today_auto_runner.py` / `scripts/watchdog.py` / `tests/test_logger.py`(新規) / `docs/9_disaster_recovery.md`(新規) / `docs/2_automation_schedule.md` / `VERSION` |
+| **検証** | `pytest` 全 **1192 PASS**（ロガー5ケース新規含む）。ローテーション設定 when=MIDNIGHT・backupCount=7 を smoke test とユニットテストで確認。3デーモンの構文・import 順序を smoke test で確認。 |
+| **ロールバック** | 直前コミット `ec7aae1f`。 |
+| **関連** | 完全無人運用・DR。[[startup_umalogi.bat]] / `scripts/backup_umalogi.py` / `src/ops/backup.py`。 |
+
 ### 2026-06-05 — Discord 定期生存報告（ハートビート）機能の追加
 
 | 項目 | 内容 |

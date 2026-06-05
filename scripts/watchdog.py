@@ -18,7 +18,6 @@ Usage:
 from __future__ import annotations
 
 import argparse
-import logging
 import os
 import signal
 import sqlite3
@@ -41,12 +40,15 @@ try:
 except ImportError:
     pass
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s %(levelname)s %(name)s: %(message)s",
+# ログは日次ローテーション + 7日保持（src/ops/logger.py）。肥大化によるディスク枯渇を防ぐ。
+from src.ops.logger import setup_logging
+
+logger = setup_logging(
+    "watchdog",
+    "watchdog.log",
+    fmt="%(asctime)s %(levelname)s %(name)s: %(message)s",
     datefmt="%H:%M:%S",
 )
-logger = logging.getLogger("watchdog")
 
 # ── 定数 ──────────────────────────────────────────────────────────────────────
 

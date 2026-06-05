@@ -34,7 +34,6 @@ from __future__ import annotations
 
 import argparse
 import datetime
-import logging
 import os
 import re
 import subprocess
@@ -42,7 +41,6 @@ import sys
 import threading
 import time
 from concurrent.futures import Future, ThreadPoolExecutor
-from logging.handlers import RotatingFileHandler
 from pathlib import Path
 
 _ROOT = Path(__file__).resolve().parent.parent
@@ -141,29 +139,15 @@ def _check_single_instance() -> bool:
     return True
 
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s %(levelname)s: %(message)s",
+# ログは日次ローテーション + 7日保持（src/ops/logger.py）。肥大化によるディスク枯渇を防ぐ。
+from src.ops.logger import setup_logging
+
+logger = setup_logging(
+    "auto_runner",
+    "auto_runner.log",
+    fmt="%(asctime)s %(levelname)s: %(message)s",
     datefmt="%H:%M:%S",
-    handlers=[
-        logging.StreamHandler(
-            open(
-                sys.stdout.fileno(),
-                mode="w",
-                encoding="utf-8",
-                errors="replace",
-                closefd=False,
-            )
-        ),
-        RotatingFileHandler(
-            _ROOT / "data" / "auto_runner.log",
-            maxBytes=50 * 1024 * 1024,
-            backupCount=5,
-            encoding="utf-8",
-        ),
-    ],
 )
-logger = logging.getLogger("auto_runner")
 
 # 発走推定: R1 = 10:00 JST、以降 30 分間隔
 _R1_HOUR = 10
@@ -639,7 +623,9 @@ def _run_x_scraper(date_str: str, dry_run: bool) -> None:
         dry_run: True なら実行しない。
     """
     if os.environ.get("X_SCRAPER_DISABLED") == "1":
-        logger.info("X_SCRAPER_DISABLED=1: x_scraper をスキップします (date=%s)", date_str)
+        logger.info(
+            "X_SCRAPER_DISABLED=1: x_scraper をスキップします (date=%s)", date_str
+        )
         return
     if dry_run:
         logger.info("[DRY-RUN] x_scraper をスキップします (date=%s)", date_str)
@@ -876,9 +862,7 @@ def _kick_post_race_analysis(sunday_date: str, dry_run: bool) -> None:
         except Exception as e:  # 週次サイクルを止めない（best-effort）
             logger.error("敗因分析(Phase-A)に失敗しました（無視して継続）: %s", e)
 
-    threading.Thread(
-        target=_worker, name="post_race_analysis", daemon=True
-    ).start()
+    threading.Thread(target=_worker, name="post_race_analysis", daemon=True).start()
     logger.info("敗因分析(Phase-A)を非同期起動しました")
 
 

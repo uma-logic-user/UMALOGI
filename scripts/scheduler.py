@@ -43,14 +43,12 @@ from __future__ import annotations
 
 import argparse
 import json
-import logging
 import os
 import subprocess
 import sys
 import threading
 import time
 from datetime import date, datetime, timedelta
-from logging.handlers import RotatingFileHandler
 from pathlib import Path
 
 _ROOT = Path(__file__).resolve().parents[1]
@@ -64,28 +62,10 @@ try:
 except ImportError:
     pass
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s %(levelname)s [%(name)s] %(message)s",
-    handlers=[
-        logging.StreamHandler(
-            open(
-                sys.stdout.fileno(),
-                mode="w",
-                encoding="utf-8",
-                errors="replace",
-                closefd=False,
-            )
-        ),
-        RotatingFileHandler(
-            _ROOT / "data" / "scheduler.log",
-            maxBytes=50 * 1024 * 1024,
-            backupCount=5,
-            encoding="utf-8",
-        ),
-    ],
-)
-logger = logging.getLogger("scheduler")
+# ログは日次ローテーション + 7日保持（src/ops/logger.py）。肥大化によるディスク枯渇を防ぐ。
+from src.ops.logger import setup_logging
+
+logger = setup_logging("scheduler", "scheduler.log")
 
 # ================================================================
 # ジョブ状態管理（取りこぼしリカバリー用）
