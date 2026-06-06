@@ -613,12 +613,14 @@ def _sjis_name(raw: bytes, sl: slice) -> str:
         正常にデコードできた文字列。文字化け検出時は空文字列。
     """
     from src.utils.text import is_garbled_name
+    from src.utils.discord_alert import send_mojibake_alert
 
     result = _sjis(raw, sl)
     if result and is_garbled_name(result):
         logger.warning(
             "[JVLink] 名前フィールド文字化け検出 → 空文字で保護: %r", result[:30]
         )
+        send_mojibake_alert("JVLink", "name_field", result)
         return ""
     return result
 

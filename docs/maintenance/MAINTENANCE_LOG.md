@@ -34,6 +34,22 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-06 — 文字化け検知時のDiscordアラート追加および本番DBの浄化完了
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-sonnet-4-6) |
+| **修正日** | 2026-06-06 |
+| **バージョン** | `1.4.6-dev` → `1.4.7-dev` |
+| **種別** | feat（監視強化）+ ops（本番DBクリーニング） |
+| **実施内容** | **(1) `src/utils/discord_alert.py` 新設**: 文字化け検出時に非同期でシステムDiscordチャンネル（`DISCORD_SYSTEM_WEBHOOK_URL` 優先、フォールバック `DISCORD_WEBHOOK_SNS`）へアラートを送信する `send_mojibake_alert()` を実装。daemon スレッドでファイアー＆フォーゲット、例外は無害スキップ。**(2) `src/scraper/jravan_client.py`**: `_sjis_name()` の文字化け検出時に `send_mojibake_alert("JVLink", "name_field", ...)` を呼び出し配線。**(3) `src/scraper/entry_table.py`**: U+FFFD ガードレール箇所に `send_mojibake_alert("netkeiba", "horse_name", ...)` を呼び出し配線。**(4) `scripts/clean_mojibake.py` 実行（本番DB浄化）**: `data/umalogi.db` の全対象テーブル（races/entries/race_results/horses/racehorses）をスキャン。**文字化け検知964件・空文字クリア543件**（残り421件は `race_results.horse_name` のUNIQUE制約でクリア不可・既存制約問題）。 |
+| **影響範囲** | `src/utils/discord_alert.py`（新規）, `src/scraper/jravan_client.py`, `src/scraper/entry_table.py`, `VERSION`, `data/umalogi.db`（データ浄化）。 |
+| **検証** | `pytest` → **1210 passed / 0 failed**。 |
+| **ロールバック** | `git revert HEAD`。浄化済みDB は `data/backups/` 未作成（空文字化のみ・論理的に可逆だが物理ロールバック不要と判断）。 |
+| **関連** | CLAUDE.md 条項10（JVLink文字化けスクリーニング）、CLAUDE.md 条項16（日本語エンコーディング絶対遵守）。 |
+
+---
+
 ### 2026-06-06 — データ取得層の文字化け根本解決および異常文字混入ガードレールの実装
 
 | 項目 | 内容 |

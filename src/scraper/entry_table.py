@@ -429,6 +429,9 @@ def _parse_entry_rows(soup: BeautifulSoup) -> list[EntryHorse]:
                 "[entry_table] 馬名に置換文字 U+FFFD 含む → 空文字で保護: %r",
                 horse_name[:20],
             )
+            from src.utils.discord_alert import send_mojibake_alert
+
+            send_mojibake_alert("netkeiba", "horse_name", horse_name)
             horse_name = ""
 
         sex_age = cells[4].get_text(strip=True)
