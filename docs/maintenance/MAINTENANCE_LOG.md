@@ -34,6 +34,21 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-06 — データ取得層の文字化け根本解決および異常文字混入ガードレールの実装
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-sonnet-4-6) |
+| **修正日** | 2026-06-06 |
+| **バージョン** | `1.4.5-dev` → `1.4.6-dev` |
+| **種別** | fix（文字化けガードレール・根本対策） |
+| **実施内容** | **(1) `src/utils/text.py`**: `is_garbled_name()` 追加（名前フィールド専用高感度検知。単発 `?X` / 半角カタカナ / U+FFFD / カーリークォートで即検出）。`_NAME_GARBLED_RE` 正規表現を Unicode エスケープで明示。**(2) `src/scraper/jravan_client.py`**: `_sjis_name()` 追加（`_sjis()` + `is_garbled_name()` ガード。文字化け検出時は空文字を返しWARNINGログ）。`_RA_RACE_NAME` / `_SE_HORSE_NM` / `_SE_JOCKEY_NM` / `_SE_TRAINER_NM` の4フィールドを `_sjis_name()` に変更し、JVLink破損データの DB混入を防止。**(3) `src/scraper/entry_table.py`**: netkeiba HTMLレスポンスのエンコーディングを `apparent_encoding` から `'utf-8'` 固定に変更。U+FFFD を含む馬名を空文字で保護するガードレールを `_parse_entry_rows()` に追加。**(4) `scripts/clean_mojibake.py`** 新設: `entries.horse_name` を含む包括的 DB 浄化スクリプト（`--dry-run` / `--race-date` 対応）。**(5) テスト新設**: `tests/test_encoding_guards.py` 18件 TDD RED→GREEN PASS。 |
+| **影響範囲** | `src/utils/text.py`, `src/scraper/jravan_client.py`, `src/scraper/entry_table.py`, `scripts/clean_mojibake.py`（新規）, `tests/test_encoding_guards.py`（新規）, `VERSION`。predictions テーブル非改変（条項1）。 |
+| **検証** | `pytest` → **1210 passed / 0 failed**（既存4件も解消済み）。TDD 18テスト全 GREEN。ruff cleans。 |
+| **ロールバック** | `git revert HEAD`。DB のガードは今後の同期からのみ有効（過去データには適用済みの `clean_mojibake.py` で対処）。 |
+
+---
+
 ### 2026-06-05 — ログ自動ローテーション（7日保持）導入と災害復旧手順書の作成
 
 | 項目 | 内容 |

@@ -24,6 +24,18 @@ _BULLET_PATTERN_RE = re.compile("[•‘’“”–—]{2,}")
 # Also covers halfwidth katakana trail bytes (U+FF61-FF9F) appearing after '?'
 _JVLINK_QUESTION_RE = re.compile(r"(?:\?[\x21-\x7e\xa6-\xdf\x80-\x9f｡-ﾟ]){2,}")
 
+# Name-field–specific patterns (horse_name / race_name / jockey):
+# Even a single '?' followed by an ASCII letter is garbling in Japanese names.
+# ─ '?A' through '?z' : CP932 2-byte lead byte → '?' + trail byte (ASCII)
+# ─ half-width katakana (U+FF61-U+FF9F): illegitimate in Japanese proper names
+# ─ curly quotes U+2018/2019/201C/201D, †, ‡ : CP932 bytes misread as punctuation
+_NAME_GARBLED_RE = re.compile(
+    r"\?[A-Za-z]"  # ?X: JVLink CP932 リードバイト脱落
+    r"|[｡-ﾟ]"  # 半角カタカナ (U+FF61-U+FF9F)
+    r"|[‘-‟†‡]"  # カーリークォート・ダガー (CP932誤読)
+    r"|�"  # Unicode 置換文字
+)
+
 # Half-width katakana (U+FF61-FF9F) mixed with curly-quotes or ASCII '?' — JVLink artifact
 # Proper Japanese text uses full-width katakana; half-width only appears in garbled CP932 strings
 _HALFWIDTH_MIXED_RE = re.compile(r"[｡-ﾟ].*[\"\"''\x3f†]|[\"\"''\x3f†].*[｡-ﾟ]")
@@ -111,6 +123,24 @@ def is_garbled(s: str) -> bool:
         return True
     suspicious = len(_GARBLED_BLOCK_RE.findall(s))
     return suspicious > 0 and suspicious / len(s) > 0.30
+
+
+def is_garbled_name(s: str | None) -> bool:
+    """馬名・競走名・騎手名フィールド専用の高感度文字化け検知。
+
+    ``is_garbled()`` より厳格で、単発の ``?A`` パターン（JVLink CP932 リードバイトが
+    ``?`` に置換されたもの）や半角カタカナだけでも文字化けと判定する。
+    日本語の正規な名前にこれらのパターンは絶対に出現しない。
+
+    Args:
+        s: 判定対象の文字列。None または空文字は ``False`` を返す。
+
+    Returns:
+        名前フィールドとして不正な文字が含まれる場合 ``True``。
+    """
+    if not s:
+        return False
+    return bool(_NAME_GARBLED_RE.search(s))
 
 
 def try_recover_encoding(s: str) -> str:

@@ -191,7 +191,9 @@ def _fetch(
     """
     # レート制限・リトライは _http_get 内の NETKEIBA_LIMITER / バックオフが担う
     resp = _http_get(url, params, timeout, max_retries=max_retries, base_delay=delay)
-    resp.encoding = resp.apparent_encoding or "utf-8"
+    # netkeiba は UTF-8 固定。apparent_encoding が誤検知（'ascii'/'mac-greek'等）する
+    # ことがあるため、UTF-8 を強制してデコード誤りを防ぐ。
+    resp.encoding = "utf-8"
     return resp.text
 
 
@@ -420,6 +422,14 @@ def _parse_entry_rows(soup: BeautifulSoup) -> list[EntryHorse]:
         else:
             horse_name = horse_info_td.get_text(strip=True)
             horse_id = None
+
+        # 文字化けガード: U+FFFD（置換文字）を含む馬名はエンコーディング誤りの証拠
+        if horse_name and "�" in horse_name:
+            logger.warning(
+                "[entry_table] 馬名に置換文字 U+FFFD 含む → 空文字で保護: %r",
+                horse_name[:20],
+            )
+            horse_name = ""
 
         sex_age = cells[4].get_text(strip=True)
         weight_carried = _safe_float(cells[5].get_text(strip=True)) or 0.0

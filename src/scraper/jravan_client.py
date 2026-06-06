@@ -598,6 +598,31 @@ def _sjis(raw: bytes, sl: slice) -> str:
     return _str(raw, sl, "cp932")
 
 
+def _sjis_name(raw: bytes, sl: slice) -> str:
+    """名前フィールド（馬名・競走名・騎手名）専用の Shift-JIS デコード。
+
+    ``_sjis()`` でデコード後に ``is_garbled_name()`` で文字化けを検査し、
+    JVLink が破損した CP932 データを返した場合は空文字で保護する。
+    これにより ``?X?eー?N?X`` 等の文字化けが DB に混入するのを防ぐ。
+
+    Args:
+        raw: 元バイト列。
+        sl:  抽出するスライス。
+
+    Returns:
+        正常にデコードできた文字列。文字化け検出時は空文字列。
+    """
+    from src.utils.text import is_garbled_name
+
+    result = _sjis(raw, sl)
+    if result and is_garbled_name(result):
+        logger.warning(
+            "[JVLink] 名前フィールド文字化け検出 → 空文字で保護: %r", result[:30]
+        )
+        return ""
+    return result
+
+
 def _safe_int_val(val: object, default: int = 0) -> int:
     """
     任意の値（COM 戻り値・文字列・整数）を安全に int に変換する。
@@ -1266,7 +1291,7 @@ def _parse_ra(raw: bytes) -> Optional[dict]:
         return None
 
     # 先頭5文字は賞金等級コード（"10000" 等）なので除去し、末尾の全角スペース・置換文字を除去
-    _rn_raw = _sjis(raw, _RA_RACE_NAME)
+    _rn_raw = _sjis_name(raw, _RA_RACE_NAME)
     race_name = re.sub(r"^\d{5}", "", _rn_raw).replace("�", "").strip("　 　").strip()
     kaisai_dt = _kaisai_date_to_db(raw)
     jyo_code = _str(raw, _RK_JYO)
@@ -1329,14 +1354,14 @@ def _parse_se(raw: bytes) -> Optional[dict]:
     uma_ban = _int(raw, _SE_UMA_BAN)
     waku_ban = _int(raw, _SE_WAKU_BAN)
     horse_id = _str(raw, _SE_HORSE_ID)
-    horse_name = _sjis(raw, _SE_HORSE_NM)
+    horse_name = _sjis_name(raw, _SE_HORSE_NM)
 
     sex_raw = _str(raw, _SE_SEX)
     age_raw = _str(raw, _SE_AGE)
     sex_age = _SEX_CODES.get(sex_raw, "") + age_raw.lstrip("0")
 
-    jockey_nm = _sjis(raw, _SE_JOCKEY_NM).strip("　 ")
-    trainer_nm = _sjis(raw, _SE_TRAINER_NM).strip("　 ")
+    jockey_nm = _sjis_name(raw, _SE_JOCKEY_NM).strip("　 ")
+    trainer_nm = _sjis_name(raw, _SE_TRAINER_NM).strip("　 ")
 
     load_raw = _str(raw, _SE_LOAD)
     load_int = _safe_int_val(load_raw)
