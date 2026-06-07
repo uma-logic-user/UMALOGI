@@ -33,12 +33,13 @@ logger = logging.getLogger(__name__)
 # ── 因子グループ重み ──────────────────────────────────────────────────
 # W-004 追加: crowd 5% を確保し、他グループを比率 0.95 でスケールダウン
 _WEIGHTS: dict[str, float] = {
-    "ability": 0.38,
-    "human": 0.285,
-    "course": 0.19,
-    "training": 0.065,
+    "ability": 0.35,      # 微減: competition グループへ再分配
+    "human": 0.265,
+    "course": 0.175,
+    "training": 0.06,
     "bloodline": 0.03,
-    "crowd": 0.05,  # F: 大衆心理乖離 [W-004]
+    "crowd": 0.05,        # F: 大衆心理乖離 [W-004]
+    "competition": 0.07,  # G: 相手関係・クラス変化 [W-010/011]
 }
 
 _GROUP_FACTORS: dict[str, list[str]] = {
@@ -60,6 +61,7 @@ _GROUP_FACTORS: dict[str, list[str]] = {
     "training": ["uf_tc_speed", "uf_hc_speed"],
     "bloodline": ["uf_sire_distance", "uf_bms_surface", "uf_father_sire"],
     "crowd": ["uf_crowd_bias"],  # F: 大衆心理乖離スコア [W-004]
+    "competition": ["uf_class_change", "uf_competition_strength"],  # G: W-010/011
 }
 
 # 全因子リスト（models.py FEATURE_COLS へ追加する際に参照）
@@ -75,7 +77,9 @@ U_SCORE_STAT_COLS: list[str] = [
     "days_since_last_race",
     "tc_speed_index",
     "hc_speed_index",
-    "crowd_bias_ratio",  # 大衆心理乖離比率（生値）[W-004]
+    "crowd_bias_ratio",     # 大衆心理乖離比率（生値）[W-004]
+    "class_change_delta",   # クラス変化スコア（生値）[W-011]
+    "competition_strength", # 相手関係強度（生値）[W-010]
     "u_score",
 ]
 
@@ -143,7 +147,8 @@ class UScoreEngine:
         df = self._calc_course(df)
         df = self._calc_training(df)
         df = self._calc_bloodline(df)
-        df = self._calc_crowd_bias(df)  # F: 大衆心理乖離 [W-004]
+        df = self._calc_crowd_bias(df)    # F: 大衆心理乖離 [W-004]
+        df = self._calc_competition(df)   # G: 相手関係・クラス変化 [W-010/011]
         df = self._calc_composite(df)
 
         df.drop(columns=["_base_date"], errors="ignore", inplace=True)
@@ -664,6 +669,121 @@ class UScoreEngine:
             if col in df.columns:
                 return df[col].notna().astype(float) * 0.5 + 0.25
         return pd.Series(0.5, index=df.index, dtype=float)
+
+    # ── G: 相手関係・クラス変化 [W-010/011] ────────────────────────────
+
+    def _calc_competition(self, df: pd.DataFrame) -> pd.DataFrame:
+        """G: 相手関係指数 (W-010) + クラス昇降格インパクト (W-011)。
+
+        W-010 相手関係: レース内の win_rate_all 平均と対象馬の win_rate_all の差。
+            強い相手に勝っている馬 → 高評価。
+            弱い相手しか経験していない馬 → 割引。
+
+        W-011 クラス変化: 前走から今走へのクラス変化をスコア化。
+            降格馬（強いクラスから来た）→ 高評価。
+            昇格初戦（弱いクラスから来た）→ 割引。
+            grade列: G1=1, G2=2, G3=3, OP=4, 3勝=5, 2勝=6, 1勝=7, 未勝利=8, 新馬=9
+        """
+        df = df.copy()
+
+        # ── W-010: 相手関係指数 ────────────────────────────────────────
+        if "win_rate_all" in df.columns and "race_id" in df.columns:
+            wr = pd.to_numeric(df["win_rate_all"], errors="coerce").fillna(0.05)
+            race_mean = df.groupby("race_id")["win_rate_all"].transform(
+                lambda x: pd.to_numeric(x, errors="coerce").mean()
+            )
+            race_mean = pd.to_numeric(race_mean, errors="coerce").fillna(wr.mean())
+            # 自馬勝率 - フィールド平均: 正=強い相手に耐えてきた実績
+            delta = wr - race_mean
+            # [-0.1, 0.1] → [0, 1] 正規化
+            df["competition_strength"] = delta
+            df["uf_competition_strength"] = _clip_norm(delta, -0.10, 0.10)
+        else:
+            df["competition_strength"] = 0.0
+            df["uf_competition_strength"] = pd.Series(0.5, index=df.index)
+
+        # ── W-011: クラス昇降格インパクト ──────────────────────────────
+        # races.grade から前走グレードを取得（race_id のレース情報から逆引き）
+        # 簡易版: entries テーブルには grade がないため race_id prefix のデジット番を使う
+        # grade は race_id[8:10] が venue_code・race_id[10:12] がレース番号
+        # 実際のグレード情報は races テーブルの grade 列から取得する。
+        if "race_id" in df.columns:
+            race_ids = df["race_id"].unique().tolist()
+            if race_ids:
+                ph = ",".join("?" * len(race_ids))
+                grade_rows = self._conn.execute(
+                    f"SELECT race_id, grade FROM races WHERE race_id IN ({ph})",
+                    race_ids,
+                ).fetchall()
+                grade_map: dict[str, str] = {r[0]: str(r[1] or "") for r in grade_rows}
+                cur_grade = grade_map.get(str(race_ids[0]), "")
+            else:
+                cur_grade = ""
+        else:
+            cur_grade = ""
+
+        def _grade_rank(g: str) -> int:
+            """グレード文字列を数値ランク（低いほど格上）に変換。"""
+            g = str(g).upper().strip()
+            for rank, pattern in enumerate(
+                ["G1", "G2", "G3", "OP", "L ", "3勝", "2勝", "1勝", "未勝利", "新馬"], 1
+            ):
+                if pattern.strip() in g:
+                    return rank
+            return 5  # 不明 → OP相当
+
+        cur_grade_rank = _grade_rank(cur_grade)
+
+        # 馬ごとの前走グレードを race_results から取得
+        if "horse_id" in df.columns and "race_id" in df.columns:
+            cur_race_id = str(df["race_id"].iloc[0]) if not df.empty else ""
+            cur_date_str = cur_race_id[:4] + "-" + cur_race_id[4:6] + "-" + cur_race_id[6:8]
+
+            horse_ids = df["horse_id"].dropna().unique().tolist()
+            prev_grades: dict[str, int] = {}
+            for hid in horse_ids:
+                row = self._conn.execute(
+                    """
+                    SELECT r.grade FROM race_results rr
+                    JOIN races r ON rr.race_id = r.race_id
+                    WHERE rr.horse_id = ? AND r.date < ? AND rr.rank > 0
+                    ORDER BY r.date DESC LIMIT 1
+                    """,
+                    (hid, cur_date_str),
+                ).fetchone()
+                if row:
+                    prev_grades[hid] = _grade_rank(row[0] or "")
+
+            class_deltas = []
+            for _, row2 in df.iterrows():
+                hid = row2.get("horse_id")
+                if hid and hid in prev_grades:
+                    # prev_grade_rank - cur_grade_rank:
+                    #   正 = 降格（前走が格上→今走で有利） → uf高
+                    #   負 = 昇格（前走が格下→今走で不利） → uf低
+                    delta_cls = prev_grades[hid] - cur_grade_rank
+                else:
+                    delta_cls = 0
+                class_deltas.append(float(delta_cls))
+
+            df["class_change_delta"] = class_deltas
+            # [-3, 3] → [0, 1]: 降格馬（+3）→ 1.0、昇格馬（-3）→ 0.0
+            df["uf_class_change"] = _clip_norm(
+                pd.Series(class_deltas, index=df.index), -3.0, 3.0
+            )
+        else:
+            df["class_change_delta"] = 0.0
+            df["uf_class_change"] = pd.Series(0.5, index=df.index)
+
+        # competition グループスコア = 2因子の平均
+        comp_score = (
+            df[["uf_competition_strength", "uf_class_change"]]
+            .apply(pd.to_numeric, errors="coerce")
+            .mean(axis=1)
+            .fillna(0.5)
+        )
+        # 合成スコアは _calc_composite で _GROUP_FACTORS["competition"] から自動計算される
+        return df
 
     # ── F: 大衆心理乖離 [W-004] ──────────────────────────────────────
 

@@ -441,25 +441,15 @@ class NotificationRouter:
             pure_ev_notifier.send_text("\n".join(lines))
             logger.info("[Pure_EV_Edge] 専用チャンネルへ送信: race_id=%s bets=%d", race_id, len(bets))
         else:
-            # フォールバック: prediction チャンネルへ金色 Embed で送信
+            # フォールバック: prediction チャンネルへ send_text で送信
             notifier = self._get("prediction")
             if notifier is None:
                 return
-            title = f"💎【ピュアEVエッジ単独予想】 `{race_id}`"
-            description = "\n".join(bet_lines)
-            notifier._post(
-                notifier._url,
-                {
-                    "embeds": [{
-                        "title": title,
-                        "description": description,
-                        "color": _COLOR_PURE_EV,
-                        "footer": {"text": f"Pure_EV_Edge 専用 | 最大EV={max_ev:.2f}"},
-                    }]
-                },
-            )
+            lines = [f"💎 **Pure_EV_Edge（黒字化専用・単複）** `{race_id}`"] + bet_lines
+            lines.append(f"最大EV={max_ev:.2f}")
+            notifier.send_text("\n".join(lines))
             logger.info(
-                "[Pure_EV_Edge] 専用Webhook未設定 → prediction へ金色Embedでフォールバック: race_id=%s",
+                "[Pure_EV_Edge] 専用Webhook未設定 → prediction へフォールバック: race_id=%s",
                 race_id,
             )
 

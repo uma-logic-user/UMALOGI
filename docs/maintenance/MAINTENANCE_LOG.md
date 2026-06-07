@@ -34,6 +34,22 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-07 — 最終決戦: テスト全通・U Score因子追加・バックフィル完遂（v1.5.2-dev）
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-sonnet-4-6) |
+| **修正日** | 2026-06-07 |
+| **バージョン** | 1.5.1-dev → 1.5.2-dev |
+| **種別** | バグ修正 / 機能追加 / データ充填 |
+| **実施内容** | ①test_notify_pure_ev_edge_sends_to_prediction FAIL修正: router.pyのフォールバックが内部メソッド`_post()`を呼んでいたのを公開API`send_text()`に変更→1233/1233 PASS達成。②W-003(不完全燃焼度): prerun.pyに`uf_incompleteness`を追加(前走不振+条件好転スコア)。③W-007(斤量インパクト): prerun.pyに`weight_carried_diff`/`uf_weight_impact`を追加。④W-010/011(相手関係/クラス変化): u_score.pyに新グループG`_calc_competition()`を追加(`uf_competition_strength`/`uf_class_change`)。⑤フルバックフィル完遂: 残24レースを充填し累計87,972件のlast_3fを確保。 |
+| **影響範囲** | src/notification/router.py / src/features/prerun.py / src/ml/u_score.py / VERSION / docs |
+| **検証** | pytest 1233/1233 PASS。バックフィル残0件確認。 |
+| **ロールバック** | git revert HEAD |
+| **関連** | W-003/007/010/011 / test_pure_ev_wiring |
+
+---
+
 ### 2026-06-07 — 技術的負債・クリティカルバグ完全一掃（W-045/050/065/068/069/071/043/044）
 
 | 項目 | 内容 |
