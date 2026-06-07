@@ -385,7 +385,8 @@ _SE_HORSE_ID = slice(30, 40)  # 血統登録番号 10桁           [確定]
 _SE_HORSE_NM = slice(40, 76)  # 馬名(漢字) 36バイト SJIS   [確定]
 _SE_SEX = slice(78, 79)  # 性別 1=牡,2=牝,3=騸        [暫定 - 牝馬レースでのみ検証]
 _SE_AGE = slice(80, 82)  # 馬齢                        [未確定 - 要調査]
-_SE_TRAINER_CD = slice(84, 90)  # 調教師コード 6桁             [実測確定]
+_SE_TRAINER_EW = slice(84, 85)  # 調教師 東西所属 1=美浦/2=栗東 [W-076確定]
+_SE_TRAINER_CD = slice(85, 90)  # 調教師コード 5桁(下5桁)      [W-076確定: CHマスタ5桁と一致]
 _SE_TRAINER_NM = slice(90, 98)  # 調教師名 8バイト SJIS (4文字)[実測確定]
 _SE_JOCKEY_CD = slice(296, 301)  # 騎手コード 5桁              [実測確定]
 _SE_JOCKEY_NM = slice(306, 314)  # 騎手名 8バイト SJIS (4文字) [実測確定]
@@ -1411,6 +1412,13 @@ def _parse_se(raw: bytes) -> Optional[dict]:
     jockey_nm = _sjis_name(raw, _SE_JOCKEY_NM).strip("　 ")
     trainer_nm = _sjis_name(raw, _SE_TRAINER_NM).strip("　 ")
 
+    # W-076: 騎手/調教師コード（マスタ結合用）。氏名は8バイト切り詰めで結合不能のため
+    # コードを直接保存する。jockey=5桁・trainer=5桁(6桁フィールドの下5桁=東西除く)。
+    jockey_cd = _str(raw, _SE_JOCKEY_CD)
+    trainer_cd = _str(raw, _SE_TRAINER_CD)
+    jockey_cd = jockey_cd if jockey_cd and jockey_cd.strip("0") else None
+    trainer_cd = trainer_cd if trainer_cd and trainer_cd.strip("0") else None
+
     load_raw = _str(raw, _SE_LOAD)
     load_int = _safe_int_val(load_raw)
     # 斤量は3桁ASCII×0.1kg: "550"→55.0kg, "520"→52.0kg (実測確定)
@@ -1437,6 +1445,8 @@ def _parse_se(raw: bytes) -> Optional[dict]:
         "weight_carried": weight_car,
         "jockey": jockey_nm,
         "trainer": trainer_nm,
+        "jockey_code": jockey_cd,
+        "trainer_code": trainer_cd,
         "finish_time": finish_t,
         "margin": margin,
         "popularity": popularity,
@@ -2149,7 +2159,9 @@ def _save_se(conn: sqlite3.Connection, r: dict) -> None:
                     popularity        = COALESCE(?, popularity),
                     win_odds          = CASE WHEN ? > 0 THEN ? ELSE win_odds END,
                     horse_weight      = COALESCE(?, horse_weight),
-                    horse_weight_diff = COALESCE(?, horse_weight_diff)
+                    horse_weight_diff = COALESCE(?, horse_weight_diff),
+                    jockey_code       = COALESCE(?, jockey_code),
+                    trainer_code      = COALESCE(?, trainer_code)
                 WHERE race_id = ? AND horse_number = ?
                 """,
                 (
@@ -2169,6 +2181,8 @@ def _save_se(conn: sqlite3.Connection, r: dict) -> None:
                     r.get("win_odds"),
                     r.get("horse_weight"),
                     r.get("horse_weight_diff"),
+                    r.get("jockey_code"),
+                    r.get("trainer_code"),
                     r["race_id"],
                     horse_number,
                 ),
@@ -2195,14 +2209,17 @@ def _save_se(conn: sqlite3.Connection, r: dict) -> None:
                 r.get("horse_weight"),
                 r.get("horse_weight_diff"),
                 blood_id,
+                r.get("jockey_code"),
+                r.get("trainer_code"),
             )
             _insert_cols = """INSERT INTO race_results
                     (race_id, horse_id, horse_name, rank,
                      gate_number, horse_number,
                      sex_age, weight_carried, jockey, trainer,
                      finish_time, margin, popularity, win_odds,
-                     horse_weight, horse_weight_diff, blood_id)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"""
+                     horse_weight, horse_weight_diff, blood_id,
+                     jockey_code, trainer_code)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"""
             if horse_number is not None:
                 conn.execute(
                     f"""
@@ -2217,7 +2234,9 @@ def _save_se(conn: sqlite3.Connection, r: dict) -> None:
                         win_odds          = CASE WHEN excluded.win_odds > 0 THEN excluded.win_odds ELSE race_results.win_odds END,
                         horse_weight      = COALESCE(excluded.horse_weight, race_results.horse_weight),
                         horse_weight_diff = COALESCE(excluded.horse_weight_diff, race_results.horse_weight_diff),
-                        blood_id          = COALESCE(excluded.blood_id, race_results.blood_id)
+                        blood_id          = COALESCE(excluded.blood_id, race_results.blood_id),
+                        jockey_code       = COALESCE(excluded.jockey_code, race_results.jockey_code),
+                        trainer_code      = COALESCE(excluded.trainer_code, race_results.trainer_code)
                     """,
                     _params,
                 )
@@ -2232,8 +2251,8 @@ def _save_se(conn: sqlite3.Connection, r: dict) -> None:
                 INSERT INTO entries
                     (race_id, horse_number, gate_number, horse_id, horse_name,
                      sex_age, weight_carried, jockey, trainer,
-                     horse_weight, horse_weight_diff)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                     horse_weight, horse_weight_diff, jockey_code, trainer_code)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 ON CONFLICT(race_id, horse_number) DO UPDATE SET
                     gate_number       = excluded.gate_number,
                     horse_id          = COALESCE(excluded.horse_id,         entries.horse_id),
@@ -2243,7 +2262,9 @@ def _save_se(conn: sqlite3.Connection, r: dict) -> None:
                     jockey            = excluded.jockey,
                     trainer           = excluded.trainer,
                     horse_weight      = COALESCE(excluded.horse_weight,      entries.horse_weight),
-                    horse_weight_diff = COALESCE(excluded.horse_weight_diff, entries.horse_weight_diff)
+                    horse_weight_diff = COALESCE(excluded.horse_weight_diff, entries.horse_weight_diff),
+                    jockey_code       = COALESCE(excluded.jockey_code,       entries.jockey_code),
+                    trainer_code      = COALESCE(excluded.trainer_code,      entries.trainer_code)
                 """,
                 (
                     r["race_id"],
@@ -2257,6 +2278,8 @@ def _save_se(conn: sqlite3.Connection, r: dict) -> None:
                     r.get("trainer", ""),
                     r.get("horse_weight"),
                     r.get("horse_weight_diff"),
+                    r.get("jockey_code"),
+                    r.get("trainer_code"),
                 ),
             )
 

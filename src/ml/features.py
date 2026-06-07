@@ -186,7 +186,9 @@ class FeatureBuilder:
                 rr.gate_number,
                 rr.horse_weight_diff,
                 COALESCE(rr.jockey,  '') AS jockey_key,
-                COALESCE(rr.trainer, '') AS trainer_key
+                COALESCE(rr.trainer, '') AS trainer_key,
+                rr.jockey_code,
+                rr.trainer_code
             FROM race_results rr
             WHERE rr.race_id = ?
             ORDER BY
@@ -227,6 +229,8 @@ class FeatureBuilder:
             horse_weight_diff,
             jockey_key,
             trainer_key,
+            jockey_code,
+            trainer_code,
         ) in enumerate(rows, start=1):
             stats = stats_bulk.get(
                 horse_id,
@@ -284,11 +288,11 @@ class FeatureBuilder:
                     "race_number": race_number,  # レース番号
                     # ── 人的要素特徴量 ───────────────────────────────
                     "jockey_code_encoded": self._encode_jockey(
-                        jockey_key
-                    ),  # 騎手名エンコード
+                        jockey_key, jockey_code
+                    ),  # 騎手コード（W-076: コード優先）
                     "trainer_code_encoded": self._encode_trainer(
-                        trainer_key
-                    ),  # 調教師名エンコード
+                        trainer_key, trainer_code
+                    ),  # 調教師コード（W-076: コード優先）
                     # ── 調教特徴量（WOOD:TC / WOOD:HC） ─────────────
                     "tc_4f": training["tc_4f"],  # ウッド直近4Fタイム（秒）
                     "tc_lap": training["tc_lap"],  # ウッド直近ラスト1Fタイム
@@ -400,7 +404,8 @@ class FeatureBuilder:
                        AND rr.horse_weight IS NOT NULL AND rr.horse_weight > 0
                      ORDER BY rr.race_id DESC LIMIT 1)
                 ) AS horse_weight_diff,
-                e.jockey, e.trainer
+                e.jockey, e.trainer,
+                e.jockey_code, e.trainer_code
             FROM entries e
             WHERE e.race_id = ?
               AND e.horse_number > 0
@@ -430,6 +435,8 @@ class FeatureBuilder:
             horse_weight_diff,
             jockey,
             trainer,
+            jockey_code,
+            trainer_code,
         ) in entries:
             stats = stats_bulk.get(
                 horse_id,
@@ -493,8 +500,12 @@ class FeatureBuilder:
                     "condition_code": _CONDITION_CODE.get(condition or "", -1),
                     "race_number": race_number or 0,
                     # 人的要素特徴量
-                    "jockey_code_encoded": self._encode_jockey(jockey_key),
-                    "trainer_code_encoded": self._encode_trainer(trainer_key),
+                    "jockey_code_encoded": self._encode_jockey(
+                        jockey_key, jockey_code
+                    ),
+                    "trainer_code_encoded": self._encode_trainer(
+                        trainer_key, trainer_code
+                    ),
                     # 調教特徴量（WOOD:TC / WOOD:HC）
                     "tc_4f": training["tc_4f"],
                     "tc_lap": training["tc_lap"],
@@ -1359,28 +1370,48 @@ class FeatureBuilder:
         except Exception:
             return {}
 
-    def _encode_jockey(self, jockey_key: str | None) -> int:
-        """jockeys マスタの固定コードで騎手名をエンコードする。
+    def _encode_jockey(
+        self, jockey_key: str | None, jockey_code: str | None = None
+    ) -> int:
+        """騎手をコードでエンコードする（W-076: コード優先・名前フォールバック）。
+
+        race_results/entries の ``jockey_code`` を最優先で使う。氏名は SE 8バイト
+        切り詰め・文字化けで分散するため、コードがあれば名前マッチを介さず安定した
+        騎手識別子になる。コード欠損行は従来の名前→コードマップにフォールバックする。
 
         Args:
-            jockey_key: 騎手名文字列。None または空文字列の場合は -1 を返す。
+            jockey_key:  騎手名文字列（フォールバック用）。
+            jockey_code: JRA-VAN 騎手コード（最優先）。
 
         Returns:
-            整数コード。マスタに存在しない騎手は 0、None/空文字列は -1。
+            整数コード。コード/名前とも不明なら 0、key も無ければ -1。
         """
+        if jockey_code:
+            try:
+                return int(jockey_code)
+            except (ValueError, TypeError):
+                pass
         if not jockey_key:
             return -1
         return self._jockey_code_map.get(jockey_key, 0)
 
-    def _encode_trainer(self, trainer_key: str | None) -> int:
-        """trainers マスタの固定コードで調教師名をエンコードする。
+    def _encode_trainer(
+        self, trainer_key: str | None, trainer_code: str | None = None
+    ) -> int:
+        """調教師をコードでエンコードする（W-076: コード優先・名前フォールバック）。
 
         Args:
-            trainer_key: 調教師名文字列。None または空文字列の場合は -1 を返す。
+            trainer_key:  調教師名文字列（フォールバック用）。
+            trainer_code: JRA-VAN 調教師コード（最優先）。
 
         Returns:
-            整数コード。マスタに存在しない調教師は 0、None/空文字列は -1。
+            整数コード。コード/名前とも不明なら 0、key も無ければ -1。
         """
+        if trainer_code:
+            try:
+                return int(trainer_code)
+            except (ValueError, TypeError):
+                pass
         if not trainer_key:
             return -1
         return self._trainer_code_map.get(trainer_key, 0)

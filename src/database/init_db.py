@@ -152,6 +152,7 @@ def init_db(db_path: Path | None = None) -> sqlite3.Connection:
     _migrate_add_combination_json(conn)  # 1. combination_json 列追加
     _migrate_races_new_columns(conn)  # 2. races 新列追加
     _migrate_race_results_new_columns(conn)  # 3. race_results 新列追加
+    _migrate_entries_code_columns(conn)  # 3b. entries 騎手/調教師コード列（W-076）
     # model_type CHECK 制約を除去（(暫定)/(直前) suffix 対応）
     _migrate_relax_model_type_check(conn)  # 4. CHECK 制約除去
     # predictions UNIQUE 制約追加（Create-Insert-Drop）
@@ -477,6 +478,10 @@ def _migrate_race_results_new_columns(conn: sqlite3.Connection) -> None:
         # W-001: 上がり3F（後半3ハロン）タイム秒。netkeiba 結果列[11]由来・additive。
         # 次期学習用(加速力スコア/PCI)の並行蓄積用で、本番 FEATURE_COLS は不変。
         ("last_3f", "ALTER TABLE race_results ADD COLUMN last_3f           REAL"),
+        # W-076: 騎手/調教師コード（JRA-VAN）。氏名はSE8バイト切り詰め・文字化けで
+        # マスタ結合できないため、SE のコードを直接保存しコードベース結合を可能にする。
+        ("jockey_code", "ALTER TABLE race_results ADD COLUMN jockey_code   TEXT"),
+        ("trainer_code", "ALTER TABLE race_results ADD COLUMN trainer_code TEXT"),
     ]
     with conn:
         for col_name, sql in additions:
@@ -485,6 +490,20 @@ def _migrate_race_results_new_columns(conn: sqlite3.Connection) -> None:
                 logger.info(
                     "マイグレーション: race_results.%s 列を追加しました", col_name
                 )
+
+
+def _migrate_entries_code_columns(conn: sqlite3.Connection) -> None:
+    """entries に jockey_code / trainer_code を追加する（W-076・推論時のコード結合用）。
+
+    Args:
+        conn: アクティブな DB コネクション。
+    """
+    cols = [row[1] for row in conn.execute("PRAGMA table_info(entries)").fetchall()]
+    with conn:
+        for col in ("jockey_code", "trainer_code"):
+            if col not in cols:
+                conn.execute(f"ALTER TABLE entries ADD COLUMN {col} TEXT")
+                logger.info("マイグレーション: entries.%s 列を追加しました", col)
 
 
 def _migrate_predictions_unique_constraint(conn: sqlite3.Connection) -> None:

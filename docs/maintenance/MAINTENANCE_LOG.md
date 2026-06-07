@@ -34,6 +34,20 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-08 — 騎手・調教師のコードベース結合へ移行（W-076・v1.6.2-dev）
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-opus-4-8) |
+| **修正日** | 2026-06-08 |
+| **バージョン** | 1.6.1-dev → 1.6.2-dev |
+| **種別** | バグ修正 + 機能追加 |
+| **実施内容** | ・W-075でマスタを直しても結合率が低い真因(race_results.jockey/trainerがSE8バイト=4文字切り詰め＋約21%文字化け＋コード列不在)に対応。<br>・`race_results`/`entries` に `jockey_code`/`trainer_code` を additive migration。<br>・`_parse_se`/`_save_se` でSEのコードを保存。実バイト検証で `_SE_TRAINER_CD` を6桁(先頭=東西区分)→下5桁 `slice(85,90)` に是正(CHマスタ5桁と一致)。`_SE_JOCKEY_CD slice(296,301)` は正と確認。<br>・`FeatureBuilder._encode_jockey/_encode_trainer` をコード優先・名前フォールバックに改修(学習・推論両パス)。<br>・`backfill_se_codes_w076.py` で既存行へコードを充填(コード列のみUPDATE・冪等)。 |
+| **影響範囲** | src/scraper/jravan_client.py(_SE_TRAINER_CD/_parse_se/_save_se/entries), src/ml/features.py(_encode_jockey/_encode_trainer/学習・推論クエリ), src/database/init_db.py(race_results/entries migration), src/database/schema.py(entries DDL), scripts/backfill_se_codes_w076.py(新規), tests/test_jockey_trainer_code_features.py(新規), tests/test_win_place_model.py(列追加対応), race_results/entriesスキーマ, docs/7_weakness_ledger.md(W-076) |
+| **検証** | 全 **1251 PASS**。実バイトでjockey_code/trainer_codeがマスタ一致を確認。backfill 45,666行→**jockeysマスタ結合98.9%/trainers99.4%**(name結合4.5%/0.1%から激変)。⚠️backfillはJVLink -503(深夜休止)で51.4%で中断・残は日中再開で完遂。 |
+| **ロールバック** | 作業前DBバックアップ data/backups/umalogi_20260607_204713.db。コードは直前コミット 2b7598aa へ revert。 |
+| **関連** | W-076(対応中・実装完遂/backfill51%), W-075, project_jvlink_503_midnight_20260602 |
+
 ### 2026-06-08 — KS/CH（騎手・調教師）マスタパーサ是正（v1.6.1-dev）
 
 | 項目 | 内容 |

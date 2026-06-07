@@ -80,6 +80,8 @@ DDL_STATEMENTS: list[str] = [
         weight_carried     REAL    NOT NULL DEFAULT 0,
         jockey             TEXT    NOT NULL DEFAULT '',
         trainer            TEXT    NOT NULL DEFAULT '',
+        jockey_code        TEXT,              -- 騎手コード（W-076・マスタ結合用）
+        trainer_code       TEXT,              -- 調教師コード（W-076・マスタ結合用）
         horse_weight       INTEGER,           -- 馬体重（kg）
         horse_weight_diff  INTEGER,           -- 前走比
         scraped_at         TEXT    NOT NULL DEFAULT (datetime('now', 'localtime')),

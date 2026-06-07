@@ -37,7 +37,9 @@ def _make_restored_db() -> sqlite3.Connection:
             trainer TEXT DEFAULT '',
             win_odds REAL,
             popularity INTEGER,
-            rank INTEGER
+            rank INTEGER,
+            jockey_code TEXT,
+            trainer_code TEXT
         );
         CREATE TABLE race_payouts (
             race_id TEXT, bet_type TEXT, combination TEXT, payout INTEGER
@@ -45,7 +47,8 @@ def _make_restored_db() -> sqlite3.Connection:
         CREATE TABLE entries (
             race_id TEXT, horse_number INTEGER, horse_id TEXT, horse_name TEXT,
             sex_age TEXT, weight_carried REAL, gate_number INTEGER,
-            horse_weight REAL, horse_weight_diff REAL, jockey TEXT, trainer TEXT
+            horse_weight REAL, horse_weight_diff REAL, jockey TEXT, trainer TEXT,
+            jockey_code TEXT, trainer_code TEXT
         );
         CREATE TABLE horses (horse_id TEXT PRIMARY KEY, sire TEXT);
         CREATE TABLE jockeys (jockey_name TEXT, jockey_code TEXT);
@@ -61,7 +64,11 @@ def _make_restored_db() -> sqlite3.Connection:
     for i in range(1, 6):
         rank_val = i if i <= 3 else None
         conn.execute(
-            "INSERT INTO race_results VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+            "INSERT INTO race_results "
+            "(race_id, horse_number, horse_id, horse_name, sex_age, weight_carried, "
+            "gate_number, horse_weight, horse_weight_diff, jockey, trainer, "
+            "win_odds, popularity, rank) "
+            "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
             (
                 "R001",
                 i,
@@ -102,7 +109,11 @@ def test_build_train_df_ev_target_capped_at_10000() -> None:
     conn = _make_restored_db()
     # 超高オッズ馬を追加 (win_odds=150, rank=NULL)
     conn.execute(
-        "INSERT INTO race_results VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+        "INSERT INTO race_results "
+        "(race_id, horse_number, horse_id, horse_name, sex_age, weight_carried, "
+        "gate_number, horse_weight, horse_weight_diff, jockey, trainer, "
+        "win_odds, popularity, rank) "
+        "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
         ("R001", 6, None, "超穴馬", "牡3", 55.0, 6, 500.0, 0.0, "", "", 150.0, 6, None),
     )
     conn.commit()
