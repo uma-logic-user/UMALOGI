@@ -42,9 +42,7 @@ def _base_frame_for_race(conn: sqlite3.Connection, race_id: str) -> pd.DataFrame
     return pd.DataFrame(rows, columns=["horse_number", "rank"])
 
 
-def assemble_v2_frame(
-    conn: sqlite3.Connection, race_ids: list[str]
-) -> pd.DataFrame:
+def assemble_v2_frame(conn: sqlite3.Connection, race_ids: list[str]) -> pd.DataFrame:
     """複数レースの加速力特徴量付きフレームを縦結合して返す（再学習用前処理モック）。"""
     from src.features.backtest_v2 import attach_acceleration_features
 
@@ -99,7 +97,9 @@ def main() -> int:
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")  # type: ignore[union-attr]
     except Exception:
         pass
-    p = argparse.ArgumentParser(description="再シミュレーション v2 骨子（学習データ生成検証）")
+    p = argparse.ArgumentParser(
+        description="再シミュレーション v2 骨子（学習データ生成検証）"
+    )
     p.add_argument("--race-id", help="単一レース ID")
     p.add_argument("--limit", type=int, default=20, help="確定レースのサンプル件数")
     args = p.parse_args()
@@ -131,7 +131,9 @@ def main() -> int:
     print("再シミュレーション v2 骨子レポート")
     print("=" * 60)
     print(f"FEATURE_COLS (本番・不変): {len(FEATURE_COLS)} 列")
-    print(f"FEATURE_COLS_V2 (評価用) : {len(cols_v2)} 列 (+{len(cols_v2) - len(FEATURE_COLS)})")
+    print(
+        f"FEATURE_COLS_V2 (評価用) : {len(cols_v2)} 列 (+{len(cols_v2) - len(FEATURE_COLS)})"
+    )
     print(f"対象レース               : {len(race_ids)}")
     print(f"組立行数                 : {len(df)}")
     if not df.empty:
@@ -144,7 +146,16 @@ def main() -> int:
         fill = df["last_3f_sec"].notna().mean() * 100
         print(f"last_3f 充填率           : {fill:.0f}%")
         print("-" * 60)
-        print("暫定 LightGBM Feature Importance（target=複勝圏 rank<=3・gain%）:")
+        print(
+            "⚠️ 注意: 下記importanceは『当該レース自身の上がり3F（ポストレース）』を"
+            "説明変数に用いた記述的分析であり、予測妥当性ではない（ターゲットリーク）。"
+        )
+        print(
+            "   予測用のリークフリー評価は scripts/backtest_v2_oos.py を参照（W-070監査）。"
+        )
+        print(
+            "暫定 LightGBM Feature Importance（記述的・target=複勝圏 rank<=3・gain%）:"
+        )
         imp = fit_and_report_importance(df)
         if imp:
             for f, pct in sorted(imp.items(), key=lambda kv: -kv[1]):

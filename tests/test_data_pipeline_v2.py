@@ -17,7 +17,6 @@ from scripts.bulk_backfill_features import (
 )
 from scripts.check_jravan_integrity import scan_integrity
 from src.features.backtest_v2 import (
-    ACCEL_FEATURE_COLS,
     attach_acceleration_features,
     build_feature_cols_v2,
 )
@@ -150,8 +149,14 @@ def test_upsert_race_meta_fills_missing_distance() -> None:
     conn.commit()
     _upsert_race_meta(conn, "R1", _FakeInfo(2000))
     _upsert_race_meta(conn, "R2", _FakeInfo(9999))  # 既存1600は上書きしない
-    assert conn.execute("SELECT distance FROM races WHERE race_id='R1'").fetchone()[0] == 2000
-    assert conn.execute("SELECT distance FROM races WHERE race_id='R2'").fetchone()[0] == 1600
+    assert (
+        conn.execute("SELECT distance FROM races WHERE race_id='R1'").fetchone()[0]
+        == 2000
+    )
+    assert (
+        conn.execute("SELECT distance FROM races WHERE race_id='R2'").fetchone()[0]
+        == 1600
+    )
 
 
 def test_upsert_race_meta_ignores_invalid_distance() -> None:
@@ -160,7 +165,9 @@ def test_upsert_race_meta_ignores_invalid_distance() -> None:
     conn.execute("INSERT INTO races VALUES ('R1', '2025-05-01', '東京', 0)")
     conn.commit()
     _upsert_race_meta(conn, "R1", _FakeInfo(0))  # 取得値も無効 → 何もしない
-    assert conn.execute("SELECT distance FROM races WHERE race_id='R1'").fetchone()[0] == 0
+    assert (
+        conn.execute("SELECT distance FROM races WHERE race_id='R1'").fetchone()[0] == 0
+    )
 
 
 def test_backfill_dry_run_does_not_fetch() -> None:
@@ -189,8 +196,9 @@ def test_backfill_continues_on_error() -> None:
     assert stats["filled"] == 1  # R25 は成功
 
 
-# ── v2 特徴量アセンブリ（FEATURE_COLS 非破壊） ──────────────────────────────
+# ── v2 特徴量アセンブリ（FEATURE_COLS 非破壊・リークフリー） ──────────────────
 def test_feature_cols_v2_appends_without_mutating_base() -> None:
+    from src.features.backtest_v2 import LEAKFREE_NEW_COLS
     from src.ml.models import FEATURE_COLS
 
     base = list(FEATURE_COLS)
@@ -198,16 +206,36 @@ def test_feature_cols_v2_appends_without_mutating_base() -> None:
     # 本番 FEATURE_COLS は不変（コピーされ変更されていない）
     assert FEATURE_COLS == base
     assert len(FEATURE_COLS) == 69
-    # v2 = 本番 + 加速力特徴量（W-001 3列 + W-002 race_pci）
+    # 既定 v2 = 本番 + リークフリー列（前走詳細 + 血統TE）のみ
     assert v2[: len(FEATURE_COLS)] == list(FEATURE_COLS)
-    assert v2[len(FEATURE_COLS) :] == ACCEL_FEATURE_COLS
-    assert "race_pci" in ACCEL_FEATURE_COLS  # W-002
-    assert len(v2) == 69 + len(ACCEL_FEATURE_COLS)
+    assert v2[len(FEATURE_COLS) :] == LEAKFREE_NEW_COLS
+    assert len(v2) == 69 + len(LEAKFREE_NEW_COLS)
+
+
+def test_feature_cols_v2_default_excludes_postrace_leak() -> None:
+    """W-070監査: 既定の予測用特徴量にポストレース（当該レース結果）列を含めない。"""
+    from src.features.backtest_v2 import POSTRACE_LEAK_COLS
+    from src.ml.models import FEATURE_COLS
+
+    v2 = build_feature_cols_v2(FEATURE_COLS)
+    for leak in POSTRACE_LEAK_COLS:
+        assert leak not in v2, f"リーク列 {leak} が予測特徴量に混入している"
+
+
+def test_feature_cols_v2_include_postrace_opt_in() -> None:
+    """include_postrace=True のときだけポストレース列を追加（分析専用）。"""
+    from src.features.backtest_v2 import POSTRACE_LEAK_COLS
+    from src.ml.models import FEATURE_COLS
+
+    v2 = build_feature_cols_v2(FEATURE_COLS, include_postrace=True)
+    assert "race_pci" in POSTRACE_LEAK_COLS  # W-002
+    for c in POSTRACE_LEAK_COLS:
+        assert c in v2
 
 
 def test_feature_cols_v2_idempotent_no_dup() -> None:
-    once = build_feature_cols_v2(["a", "pci"])
-    assert once.count("pci") == 1
+    once = build_feature_cols_v2(["a", "prev_rank"])
+    assert once.count("prev_rank") == 1
 
 
 def test_attach_acceleration_features_merges_and_preserves_base() -> None:
