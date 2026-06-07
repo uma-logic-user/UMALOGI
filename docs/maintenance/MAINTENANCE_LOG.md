@@ -34,6 +34,20 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-07 — 馬ID紐付けマスタープロトコル: UMパーサ全面是正＋整合性ガード（v1.6.0-dev）
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-opus-4-8) |
+| **修正日** | 2026-06-07 |
+| **バージョン** | 1.5.3-dev → 1.6.0-dev |
+| **種別** | バグ修正 + 機能追加 + 運用基盤 |
+| **実施内容** | ・**根本原因**: 競走馬マスタ(DIFN:UM)パーサ `_UM_*` スライスがJV-Data 11バイトヘッダー後のフィールドを全て誤配置し、`racehorses`(36,806件)が生年/毛色/性別 全列0件・血統ゴミ・horse_id が race_results と結合0件の完全破損だった（W-074）。<br>・実 UM レコード(1609B)の hex ダンプで全オフセットを実証確定し是正（horse_id[11:21]/生年月日[38:46]/馬名[46:82]/性別[200:201]/毛色[202:204]/3代血統[204:434]）。<br>・`racehorses.birth_date` 列を additive migration（composite key 用 生年月日）。生産国は欧字括弧から抽出。<br>・**馬ID紐付けマスタープロトコル**を新設: `check_integrity.py`(composite key重複=汚染検知で中止するセーフティガード)／`upsert_horses_data.py`(horse_id主キーUPSERT＋composite key名寄せマスター＋race_results NULL名寄せ解決)／`monthly_horse_cleanse.py`(月次表記揺れ正規化)。<br>・修正パーサでUM再取り込みし racehorses を正データへ再構築。 |
+| **影響範囲** | src/scraper/jravan_client.py（_UM_* / _parse_um / racehorses DDL+ALTER / _save_um / _extract_country_from_en）, src/database/check_integrity.py（新規）, src/database/upsert_horses_data.py（新規）, scripts/monthly_horse_cleanse.py（新規）, scripts/reingest_um_w074.py（新規・一時）, scripts/dump_difn_bytes.py（新規・診断）, tests/test_um_parser_offsets.py（新規）, tests/test_horse_id_protocol.py（新規）, racehorses テーブル（birth_date 列追加）, docs/3_data_schema.md, docs/7_weakness_ledger.md（W-074/W-075） |
+| **検証** | `tests/test_um_parser_offsets.py` 4 PASS（実バイトフィクスチャで マイネルウィルトス/パトリック の血統が実在と一致）, `tests/test_horse_id_protocol.py` 6 PASS, 修正前 racehorses⨝race_results=0件 → 再取り込みで namespace一致 上昇を実測。 |
+| **ロールバック** | 作業前DBバックアップ data/backups/umalogi_20260607_204713.db。コードは直前コミット e63205c2 へ revert。 |
+| **関連** | W-074（完了）, W-075（KS/CH破損・NAR SE保存失敗・起票のみ）, CLAUDE.md §11（JVLink一次データ） |
+
 ### 2026-06-07 — システム進化: データ完全網羅・モデル特性分析・日次パイプライン（v1.5.3-dev）
 
 | 項目 | 内容 |

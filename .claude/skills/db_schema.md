@@ -74,15 +74,25 @@ rows = query_mart(conn, year="2024")  # v_race_mart への型安全クエリ
 
 ### racehorses — 競走馬マスタ (DIFN:UM)
 
+> ⚠️ 2026-06-07 (W-074): `_UM_*` パーサのバイトオフセット誤配置で全列がゴミ化し
+> horse_id が race_results と結合しない破損があった。実 UM バイトで realign 済み。
+> `horse_id` は JRA-VAN 血統登録番号（10桁・先頭ゼロ無し）で race_results.horse_id と同名前空間。
+> composite key 名寄せ（馬名＋生年月日＋毛色）は `src/database/upsert_horses_data.py`、
+> 汚染検知ガードは `src/database/check_integrity.py` を参照。
+
 | 列名 | 型 | 説明 |
 |---|---|---|
-| `horse_id` | TEXT PK | blood_id |
+| `horse_id` | TEXT PK | blood_id（血統登録番号・race_results と同形式） |
+| `horse_name` | TEXT | 馬名（漢字） |
+| `sex` | TEXT | 牡 / 牝 / 騸 |
+| `birth_year` / `birth_month` | INTEGER | 生年・生月 |
+| `birth_date` | TEXT | 生年月日 "YYYY/MM/DD"（composite key 用・W-074 で追加） |
+| `coat_color` | TEXT | 毛色（鹿毛・黒鹿毛 等） |
 | `father_id` | TEXT | 父の blood_id（breeding_horses との JOIN キー） |
 | `father_name` | TEXT | 父名 |
 | `grandsire_id` | TEXT | **母父** ID（maternal grandsire） |
 | `grandsire_name` | TEXT | 母父名 |
-| `east_west` | TEXT | 美浦 / 栗東 |
-| `birth_year` | INTEGER | |
+| `east_west` | TEXT | 美浦 / 栗東（※UMでは未マッピング・W-075） |
 
 ### jockeys — 騎手マスタ (DIFN:KS)
 

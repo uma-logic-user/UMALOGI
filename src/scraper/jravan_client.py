@@ -476,26 +476,34 @@ _HN_FATHER_ID = slice(103, 113)
 _HN_MOTHER_ID = slice(113, 123)
 
 # ── UM: 競走馬マスタ ──────────────────────────────────────────
-# ※ 以下はすべて [推定]。
-_UM_HORSE_ID = slice(10, 20)  # 血統登録番号
-_UM_HORSE_NM = slice(20, 56)  # 馬名(漢字) SJIS
-_UM_HORSE_KANA = slice(56, 92)  # 馬名(カナ) SJIS
-_UM_COUNTRY = slice(92, 94)  # 生産国コード
-_UM_SEX = slice(94, 95)  # 性別コード
-_UM_BIRTH_YEAR = slice(95, 99)  # 生年 YYYY
-_UM_BIRTH_MONTH = slice(99, 101)  # 生月 MM
-_UM_COAT = slice(101, 103)  # 毛色コード
-_UM_FATHER_ID = slice(103, 113)  # 父馬 血統登録番号
-_UM_FATHER_NM = slice(113, 149)  # 父馬名 SJIS
-_UM_MOTHER_ID = slice(149, 159)  # 母馬 血統登録番号
-_UM_MOTHER_NM = slice(159, 195)  # 母馬名 SJIS
-_UM_GRANDSIRE_ID = slice(195, 205)  # 母父馬 血統登録番号
-_UM_GRANDSIRE_NM = slice(205, 241)  # 母父馬名 SJIS
-_UM_TRAINER_CD = slice(241, 246)  # 調教師コード 5桁
-_UM_TRAINER_NM = slice(246, 266)  # 調教師名 SJIS 20バイト
-_UM_OWNER_CD = slice(266, 271)  # 馬主コード 5桁
-_UM_OWNER_NM = slice(271, 311)  # 馬主名 SJIS 40バイト
-_UM_EAST_WEST = slice(311, 313)  # 東西所属コード
+# 【2026-06-07 実バイト検証で全面是正 / W-074】
+# JV-Data ヘッダーは 11 バイト（種別2＋区分1＋作成日8）。旧定義は header 後の
+# 全フィールドが誤配置（馬名を slice(20,56) 等）で racehorses 全列がゴミ化し、
+# horse_id 名前空間も race_results と不一致だった。以下は実 UM レコード
+# (1609B, 血統登録番号2016100752) の hex ダンプから確定した正規オフセット。
+_UM_HORSE_ID = slice(11, 21)  # 血統登録番号 10桁  [確定: 実データ検証済み]
+_UM_DEL_FLAG = slice(21, 22)  # 競走馬抹消区分 1
+_UM_REG_DATE = slice(22, 30)  # 登録年月日 YYYYMMDD
+_UM_DEL_DATE = slice(30, 38)  # 抹消年月日 YYYYMMDD
+_UM_BIRTH_DATE = slice(38, 46)  # 生年月日 YYYYMMDD  [確定]
+_UM_BIRTH_YEAR = slice(38, 42)  # 生年 YYYY          [確定]
+_UM_BIRTH_MONTH = slice(42, 44)  # 生月 MM            [確定]
+_UM_HORSE_NM = slice(46, 82)  # 馬名(漢字) 36バイト SJIS [確定]
+_UM_HORSE_KANA = slice(82, 118)  # 馬名(半角カナ) 36バイト  [確定]
+_UM_HORSE_EN = slice(118, 178)  # 馬名(欧字) 60バイト 末尾(XXX)に生産国 [確定]
+_UM_UMAKIGO = slice(198, 200)  # 馬記号コード 2
+_UM_SEX = slice(200, 201)  # 性別コード 1       [確定: 1=牡]
+_UM_BREED = slice(201, 202)  # 品種コード 1
+_UM_COAT = slice(202, 204)  # 毛色コード 2       [確定: 04=黒鹿毛]
+# 3代血統(14頭): 各 [繁殖登録番号10 + 繁殖馬名36] = 46B。父=1,母=2,母父=5。
+_UM_FATHER_ID = slice(204, 214)  # 父 繁殖登録番号    [確定]
+_UM_FATHER_NM = slice(214, 250)  # 父名 SJIS         [確定]
+_UM_MOTHER_ID = slice(250, 260)  # 母 繁殖登録番号    [確定]
+_UM_MOTHER_NM = slice(260, 296)  # 母名 SJIS         [確定]
+_UM_GRANDSIRE_ID = slice(388, 398)  # 母父 繁殖登録番号 [確定]
+_UM_GRANDSIRE_NM = slice(398, 434)  # 母父名 SJIS      [確定]
+# ※ 調教師/馬主/東西所属は post-pedigree 領域(byte848+)に存在するが、公式仕様
+#    での精密確定が未了のため誤マッピング回避で空とする（W-074 残課題）。
 
 # ── KS: 騎手マスタ ────────────────────────────────────────────
 # ※ 以下はすべて [推定]。
@@ -637,6 +645,41 @@ def _safe_int_val(val: object, default: int = 0) -> int:
         return int(s) if s else default
     except (ValueError, TypeError):
         return default
+
+
+# 欧字馬名末尾の生産国略称 → 日本語表記（UM 専用コード列が未確定のため代替）。
+_EN_COUNTRY_CODES = {
+    "JPN": "日本",
+    "USA": "アメリカ",
+    "FR": "フランス",
+    "GB": "イギリス",
+    "IRE": "アイルランド",
+    "GER": "ドイツ",
+    "ITY": "イタリア",
+    "CAN": "カナダ",
+    "AUS": "オーストラリア",
+    "NZ": "ニュージーランド",
+    "ARG": "アルゼンチン",
+    "BRZ": "ブラジル",
+}
+
+
+def _extract_country_from_en(en_name: str) -> str:
+    """欧字馬名末尾の "(JPN)" 等から生産国を抽出して日本語表記で返す。
+
+    Args:
+        en_name: 欧字馬名（例: "Meiner Virtus(JPN)"）。
+
+    Returns:
+        日本語の生産国名。判定不能時は空文字列。
+    """
+    import re
+
+    m = re.search(r"\(([A-Z]{2,3})\)\s*$", en_name.strip())
+    if not m:
+        return ""
+    code = m.group(1)
+    return _EN_COUNTRY_CODES.get(code, code)
 
 
 def _int(raw: bytes, sl: slice, default: int = 0) -> int:
@@ -1814,32 +1857,43 @@ def _parse_um(raw: bytes) -> Optional[dict]:
     Returns:
         racehorses テーブル用フィールドを含む dict。horse_id 未存在は None。
     """
-    if len(raw) < 20:
+    # 馬名漢字 [46:82] まで読むため最低 82 バイトを要求（旧 20 は短すぎた）。
+    if len(raw) < 82:
         return None
     horse_id = _str(raw, _UM_HORSE_ID)
-    if not horse_id:
+    # 血統登録番号は 10 桁数字。ゼロ埋め/空は無効。
+    if not horse_id or not horse_id.isdigit() or horse_id.lstrip("0") == "":
         return None
+
+    birth_raw = _str(raw, _UM_BIRTH_DATE)  # "YYYYMMDD"
+    birth_date = ""
+    if len(birth_raw) == 8 and birth_raw.isdigit() and birth_raw != "00000000":
+        birth_date = f"{birth_raw[0:4]}/{birth_raw[4:6]}/{birth_raw[6:8]}"
+
     return {
         "_record_type": "UM",
         "horse_id": horse_id,
-        "horse_name": _sjis(raw, _UM_HORSE_NM),
+        "horse_name": _sjis_name(raw, _UM_HORSE_NM),
         "horse_name_kana": _sjis(raw, _UM_HORSE_KANA),
-        "country": _COUNTRY_CODES.get(_str(raw, _UM_COUNTRY), _str(raw, _UM_COUNTRY)),
+        # 生産国は欧字馬名末尾の "(JPN)" 等から抽出（専用コード列が未確定のため）。
+        "country": _extract_country_from_en(_sjis(raw, _UM_HORSE_EN)),
         "sex": _SEX_CODES.get(_str(raw, _UM_SEX), ""),
         "birth_year": _safe_int_val(_str(raw, _UM_BIRTH_YEAR)) or None,
         "birth_month": _safe_int_val(_str(raw, _UM_BIRTH_MONTH)) or None,
+        "birth_date": birth_date,
         "coat_color": _COAT_CODES.get(_str(raw, _UM_COAT), ""),
         "father_id": _str(raw, _UM_FATHER_ID),
-        "father_name": _sjis(raw, _UM_FATHER_NM),
+        "father_name": _sjis_name(raw, _UM_FATHER_NM),
         "mother_id": _str(raw, _UM_MOTHER_ID),
-        "mother_name": _sjis(raw, _UM_MOTHER_NM),
+        "mother_name": _sjis_name(raw, _UM_MOTHER_NM),
         "grandsire_id": _str(raw, _UM_GRANDSIRE_ID),
-        "grandsire_name": _sjis(raw, _UM_GRANDSIRE_NM),
-        "trainer_code": _str(raw, _UM_TRAINER_CD),
-        "trainer_name": _sjis(raw, _UM_TRAINER_NM),
-        "owner_code": _str(raw, _UM_OWNER_CD),
-        "owner_name": _sjis(raw, _UM_OWNER_NM),
-        "east_west": _EAST_WEST_CODES.get(_str(raw, _UM_EAST_WEST), ""),
+        "grandsire_name": _sjis_name(raw, _UM_GRANDSIRE_NM),
+        # 調教師/馬主/東西所属は post-pedigree 領域の精密確定が未了（W-074 残課題）。
+        "trainer_code": "",
+        "trainer_name": "",
+        "owner_code": "",
+        "owner_name": "",
+        "east_west": "",
         "data_date": _str(raw, _H_DATA_DATE),
     }
 
@@ -2438,12 +2492,12 @@ def _save_um(conn: sqlite3.Connection, r: dict) -> None:
             """
             INSERT INTO racehorses
                 (horse_id, horse_name, horse_name_kana, country, sex,
-                 birth_year, birth_month, coat_color,
+                 birth_year, birth_month, birth_date, coat_color,
                  father_id, father_name, mother_id, mother_name,
                  grandsire_id, grandsire_name,
                  trainer_code, trainer_name,
                  owner_code, owner_name, east_west, data_date)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             ON CONFLICT(horse_id) DO UPDATE SET
                 horse_name      = excluded.horse_name,
                 horse_name_kana = excluded.horse_name_kana,
@@ -2451,6 +2505,7 @@ def _save_um(conn: sqlite3.Connection, r: dict) -> None:
                 sex             = excluded.sex,
                 birth_year      = excluded.birth_year,
                 birth_month     = excluded.birth_month,
+                birth_date      = excluded.birth_date,
                 coat_color      = excluded.coat_color,
                 father_id       = excluded.father_id,
                 father_name     = excluded.father_name,
@@ -2474,6 +2529,7 @@ def _save_um(conn: sqlite3.Connection, r: dict) -> None:
                 r.get("sex", ""),
                 r.get("birth_year"),
                 r.get("birth_month"),
+                r.get("birth_date", ""),
                 r.get("coat_color", ""),
                 r.get("father_id", ""),
                 r.get("father_name", ""),
@@ -2667,6 +2723,7 @@ _MASTER_DDL = [
         sex             TEXT    NOT NULL DEFAULT '',
         birth_year      INTEGER,
         birth_month     INTEGER,
+        birth_date      TEXT    NOT NULL DEFAULT '',
         coat_color      TEXT    NOT NULL DEFAULT '',
         father_id       TEXT    NOT NULL DEFAULT '',
         father_name     TEXT    NOT NULL DEFAULT '',
@@ -2731,6 +2788,14 @@ def extend_db_schema(conn: sqlite3.Connection) -> None:
     with conn:
         for ddl in _TRAINING_DDL + _MASTER_DDL:
             conn.execute(ddl)
+        # 既存 racehorses への birth_date 列追加（W-074 / 2026-06-07）。
+        # CREATE TABLE IF NOT EXISTS は既存テーブルに列を足さないため明示 ALTER。
+        cols = {row[1] for row in conn.execute("PRAGMA table_info(racehorses)")}
+        if "birth_date" not in cols:
+            conn.execute(
+                "ALTER TABLE racehorses ADD COLUMN birth_date TEXT NOT NULL DEFAULT ''"
+            )
+            logger.info("racehorses.birth_date 列を追加しました (W-074)")
     logger.info(
         "DB スキーマ拡張完了 "
         "(training_times / training_hillwork / "

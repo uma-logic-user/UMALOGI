@@ -2,6 +2,8 @@
 
 ## 更新履歴（Changelog）
 
+| 2026-06-07 | 【W-074 競走馬マスタ(UM)パーサ全面是正＋racehorses.birth_date 追加（v1.6.0-dev）】`racehorses` が `_UM_*` スライス誤配置で全列ゴミ化し horse_id が race_results と結合0件だった破損を、実 UM バイト(1609B)で realign 修正（horse_id[11:21]/生年月日[38:46]/馬名[46:82]/性別[200:201]/毛色[202:204]/3代血統[204:434]）。composite key 用に `racehorses.birth_date TEXT`（"YYYY/MM/DD"）を additive migration（`extend_db_schema` 内 ALTER）。修正パーサでUM再取り込みし racehorses を正データへ再構築。馬ID紐付けマスタープロトコル（`src/database/check_integrity.py`／`upsert_horses_data.py`／`scripts/monthly_horse_cleanse.py`）を新設。⚠️ KS/CH マスタ・NAR SE 保存失敗は W-075 として別途（未対応）。影響: src/scraper/jravan_client.py, src/database/check_integrity.py(新規), src/database/upsert_horses_data.py(新規), scripts/monthly_horse_cleanse.py(新規), racehorses(birth_date列) |
+
 | 日付 | 変更内容 |
 |------|---------|
 | 2026-06-01 | 【last_3f/distance 実バックフィル＋distance欠損補填（v1.4.0-dev）】`bulk_backfill_features` を実DBへ実行し計100レース/約1,480馬行の `race_results.last_3f` を充填（冪等COALESCE）。**重大発見**: `races.distance` がDB全体でほぼ0（2024-2026は全0・PCI算出不能）。`bulk_backfill_features._upsert_race_meta` を追加し netkeiba 取得時に `races.distance`(0/NULL時のみ)/`surface` を非破壊補填（50レースで distance>0 化）。distance系の根治は2024後半のJVLink再取得（G-Tune PCで実施）が必要。影響: scripts/bulk_backfill_features.py |
