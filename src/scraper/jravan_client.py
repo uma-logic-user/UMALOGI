@@ -506,27 +506,30 @@ _UM_GRANDSIRE_NM = slice(398, 434)  # 母父名 SJIS      [確定]
 #    での精密確定が未了のため誤マッピング回避で空とする（W-074 残課題）。
 
 # ── KS: 騎手マスタ ────────────────────────────────────────────
-# ※ 以下はすべて [推定]。
-_KS_CODE = slice(10, 15)  # 騎手コード 5桁
-_KS_NAME = slice(15, 35)  # 騎手名(漢字) SJIS 20バイト
-_KS_NAME_KANA = slice(35, 55)  # 騎手名(カナ) SJIS 20バイト
-_KS_EAST_WEST = slice(55, 57)  # 東西所属コード
-_KS_BIRTH_YEAR = slice(57, 61)  # 生年 YYYY
-_KS_BIRTH_MONTH = slice(61, 63)  # 生月 MM
-_KS_BIRTH_DAY = slice(63, 65)  # 生日 DD
-_KS_LIC_YEAR = slice(65, 69)  # 免許取得年 YYYY
+# 【2026-06-08 実バイト検証で是正 / W-075】UM と同様に旧定義は全フィールド誤配置で
+# jockeys.name が数値ゴミ化し race_results.jockey と結合 0 件だった。実 KS レコード
+# (4173B, コード00666=武豊) の hex ダンプで確定。レイアウト: header11 + コード5 +
+# 抹消区分1 + 免許交付8 + 免許抹消8 + 生年月日8 + 騎手名漢字34。
+# 騎手名漢字は姓名間に全角空白を含む（"武　豊"）が、race_results.jockey は SE 8バイト
+# 名（"武豊"・空白無し）のため、_parse_ks で全角空白を除去して結合キーに合わせる。
+_KS_CODE = slice(11, 16)  # 騎手コード 5桁         [確定]
+_KS_BIRTH_DATE = slice(33, 41)  # 生年月日 YYYYMMDD     [確定]
+_KS_BIRTH_YEAR = slice(33, 37)  # 生年 YYYY
+_KS_BIRTH_MONTH = slice(37, 39)  # 生月 MM
+_KS_BIRTH_DAY = slice(39, 41)  # 生日 DD
+_KS_NAME = slice(41, 75)  # 騎手名(漢字) 34バイト SJIS [確定]
+# ※ 半角カナ・東西所属・免許年は名漢字後の位置が KS/CH で不一致のため未マッピング
+#    （誤マッピング回避・W-075 残課題）。
 
 # ── CH: 調教師マスタ ──────────────────────────────────────────
-# ※ 以下はすべて [推定]。
-_CH_CODE = slice(10, 15)  # 調教師コード 5桁
-_CH_NAME = slice(15, 35)  # 調教師名(漢字) SJIS 20バイト
-_CH_NAME_KANA = slice(35, 55)  # 調教師名(カナ) SJIS 20バイト
-_CH_EAST_WEST = slice(55, 57)  # 東西所属コード
-_CH_BIRTH_YEAR = slice(57, 61)  # 生年 YYYY
-_CH_BIRTH_MONTH = slice(61, 63)  # 生月 MM
-_CH_BIRTH_DAY = slice(63, 65)  # 生日 DD
-_CH_LIC_YEAR = slice(65, 69)  # 免許取得年 YYYY
-_CH_STABLE_NM = slice(69, 109)  # 厩舎名 SJIS 40バイト
+# 【2026-06-08 実バイト検証で是正 / W-075】KS と同一レイアウト。実 CH レコード
+# (3862B, コード00399=国枝栄) で確定。調教師名漢字も全角空白を除去して結合キー化。
+_CH_CODE = slice(11, 16)  # 調教師コード 5桁       [確定]
+_CH_BIRTH_DATE = slice(33, 41)  # 生年月日 YYYYMMDD     [確定]
+_CH_BIRTH_YEAR = slice(33, 37)  # 生年 YYYY
+_CH_BIRTH_MONTH = slice(37, 39)  # 生月 MM
+_CH_BIRTH_DAY = slice(39, 41)  # 生日 DD
+_CH_NAME = slice(41, 75)  # 調教師名(漢字) 34バイト SJIS [確定]
 
 # ────────────────────────────────────────────────────────────────────────────
 # バイト解析ユーティリティ
@@ -1910,7 +1913,8 @@ def _parse_ks(raw: bytes) -> Optional[dict]:
     Returns:
         jockeys テーブル用フィールドを含む dict。jockey_code 未存在は None。
     """
-    if len(raw) < 15:
+    # 騎手名漢字 [41:75] まで読むため最低 75 バイトを要求。
+    if len(raw) < 75:
         return None
     jockey_code = _str(raw, _KS_CODE)
     if not jockey_code:
@@ -1920,14 +1924,18 @@ def _parse_ks(raw: bytes) -> Optional[dict]:
     bm = _safe_int_val(_str(raw, _KS_BIRTH_MONTH))
     bd = _safe_int_val(_str(raw, _KS_BIRTH_DAY))
     birth_date = f"{by:04d}/{bm:02d}/{bd:02d}" if by and bm and bd else ""
+    # 騎手名漢字は姓名間に全角空白を含む（"武　豊"）。race_results.jockey は
+    # SE 8バイト名（"武豊"・空白無し）のため、結合キーに合わせて全角空白を除去。
+    jockey_name = _sjis_name(raw, _KS_NAME).replace("　", "")
     return {
         "_record_type": "KS",
         "jockey_code": jockey_code,
-        "jockey_name": _sjis(raw, _KS_NAME),
-        "jockey_name_kana": _sjis(raw, _KS_NAME_KANA),
-        "east_west": _EAST_WEST_CODES.get(_str(raw, _KS_EAST_WEST), ""),
+        "jockey_name": jockey_name,
+        # 半角カナ・東西所属・免許年は位置未確定のため空（W-075 残課題）。
+        "jockey_name_kana": "",
+        "east_west": "",
         "birth_date": birth_date,
-        "license_year": _safe_int_val(_str(raw, _KS_LIC_YEAR)) or None,
+        "license_year": None,
         "data_date": _str(raw, _H_DATA_DATE),
     }
 
@@ -1944,7 +1952,8 @@ def _parse_ch(raw: bytes) -> Optional[dict]:
     Returns:
         trainers テーブル用フィールドを含む dict。trainer_code 未存在は None。
     """
-    if len(raw) < 15:
+    # 調教師名漢字 [41:75] まで読むため最低 75 バイトを要求。
+    if len(raw) < 75:
         return None
     trainer_code = _str(raw, _CH_CODE)
     if not trainer_code:
@@ -1954,15 +1963,18 @@ def _parse_ch(raw: bytes) -> Optional[dict]:
     bm = _safe_int_val(_str(raw, _CH_BIRTH_MONTH))
     bd = _safe_int_val(_str(raw, _CH_BIRTH_DAY))
     birth_date = f"{by:04d}/{bm:02d}/{bd:02d}" if by and bm and bd else ""
+    # 調教師名漢字も全角空白を除去して race_results.trainer に合わせる。
+    trainer_name = _sjis_name(raw, _CH_NAME).replace("　", "")
     return {
         "_record_type": "CH",
         "trainer_code": trainer_code,
-        "trainer_name": _sjis(raw, _CH_NAME),
-        "trainer_name_kana": _sjis(raw, _CH_NAME_KANA),
-        "east_west": _EAST_WEST_CODES.get(_str(raw, _CH_EAST_WEST), ""),
+        "trainer_name": trainer_name,
+        # 半角カナ・東西所属・免許年・厩舎名は位置未確定のため空（W-075 残課題）。
+        "trainer_name_kana": "",
+        "east_west": "",
         "birth_date": birth_date,
-        "license_year": _safe_int_val(_str(raw, _CH_LIC_YEAR)) or None,
-        "stable_name": _sjis(raw, _CH_STABLE_NM),
+        "license_year": None,
+        "stable_name": "",
         "data_date": _str(raw, _H_DATA_DATE),
     }
 

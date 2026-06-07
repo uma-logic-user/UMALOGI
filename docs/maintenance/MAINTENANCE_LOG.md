@@ -34,6 +34,20 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-08 — KS/CH（騎手・調教師）マスタパーサ是正（v1.6.1-dev）
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-opus-4-8) |
+| **修正日** | 2026-06-08 |
+| **バージョン** | 1.6.0-dev → 1.6.1-dev |
+| **種別** | バグ修正 |
+| **実施内容** | ・W-074(UM)と同種の破損が KS/CH マスタにもあった（`jockeys`487/`trainers`385 の name が数値ゴミで race_results と結合0件）。<br>・実 KS(4173B,武豊)/CH(3862B,国枝栄) の hex ダンプで確定したレイアウト(header11+コード5+抹消区分1+免許交付8+免許抹消8+生年月日8+名漢字34)に基づき `_KS_*`/`_CH_*` を是正(code[11:16]/生年月日[33:41]/名漢字[41:75])。<br>・氏名漢字は姓名間に全角空白を含む("武　豊")が race_results.jockey はSE8バイト名(空白無し)のため `_parse_ks/_parse_ch` で全角空白を除去し結合キーに整合。<br>・KS/CH 再取り込みで masters に実在名(三浦皇成/武豊/国枝栄…)を充填。<br>・半角カナ/東西所属/免許年は位置未確定のため空(W-076)。 |
+| **影響範囲** | src/scraper/jravan_client.py(_KS_*/_CH_*/_parse_ks/_parse_ch), scripts/reingest_masters_w075.py(新規), tests/test_ks_ch_parser_offsets.py(新規), tests/fixtures/ks_sample_0.bin・ch_sample_0.bin(新規), jockeys/trainers テーブル(データ再構築), docs/7_weakness_ledger.md(W-075完了/W-076起票) |
+| **検証** | `tests/test_ks_ch_parser_offsets.py` 4 PASS(武豊/国枝栄/矢野貴之が実在と一致)。masters 0%正→656騎手/592調教師に実在名充填。⚠️ race_results との結合率は低い(騎手行4.5%/調教師行0.1%)＝SE側の8バイト切り詰め・約21%文字化け・コード列不在が真因(W-076に分離)。マスタ修正は必要だが十分でない。 |
+| **ロールバック** | 作業前DBバックアップ data/backups/umalogi_20260607_204713.db。コードは直前コミット 6622b366 へ revert。 |
+| **関連** | W-075(完了・マスタ修正), W-076(SE側jockey/trainerコード列追加=高カバレッジ結合の本命・要SE再取込) |
+
 ### 2026-06-07 — 馬ID紐付けマスタープロトコル: UMパーサ全面是正＋整合性ガード（v1.6.0-dev）
 
 | 項目 | 内容 |
