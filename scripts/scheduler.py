@@ -1952,6 +1952,17 @@ def register_schedules() -> None:
     # 毎日23:00: DB バックアップ（5世代ローテーション）
     schedule.every().day.at("23:00").do(job_daily_backup)
 
+    # 火〜木 22:00: 日次データ品質更新（血統バックフィル100頭/日・クレンジング）
+    # 土日は今週末データ取得優先のため除外。月曜は job_monday_masters と分離。
+    for _day in (schedule.every().tuesday, schedule.every().wednesday, schedule.every().thursday):
+        _day.at("22:00").do(
+            lambda: _run(
+                _PY64 + ["scripts/daily_update_pipeline.py", "--pedigree-limit", "100", "--skip-jvlink"],
+                "日次データ品質更新",
+                timeout=600,
+            )
+        )
+
     # 毎日04:00: 深夜保守（事前バックアップ → VACUUM/ANALYZE で DB 最適化）
     schedule.every().day.at("04:00").do(job_nightly_maintenance)
 

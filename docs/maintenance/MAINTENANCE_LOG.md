@@ -34,6 +34,22 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-07 — システム進化: データ完全網羅・モデル特性分析・日次パイプライン（v1.5.3-dev）
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-sonnet-4-6) |
+| **修正日** | 2026-06-07 |
+| **バージョン** | 1.5.2-dev → 1.5.3-dev |
+| **種別** | 機能追加 / データ充填 / 分析基盤 |
+| **実施内容** | ①`scripts/data_cleaner.py`新設: センチネルオッズ880件・異常馬体重2件・文字化け1件・古いrealtime_odds 1,431件を自動クレンジング ②`scripts/backfill_pedigree.py`新設: 血統欠損9,669頭対象・200頭先行実行 ③`scripts/analyze_model_traits.py`新設: venue/surface/class/distance/model別ROIをJSON出力・Feature Importance抽出 ④`scripts/daily_update_pipeline.py`新設: 日次データ品質更新パイプライン(JVLink同期+血統100頭/日+クレンジング) ⑤scheduler.py に火〜木22:00 `job_daily_update` 登録 |
+| **影響範囲** | scripts/data_cleaner.py(新規) / scripts/backfill_pedigree.py(新規) / scripts/analyze_model_traits.py(新規) / scripts/daily_update_pipeline.py(新規) / scripts/scheduler.py / VERSION |
+| **検証** | pytest 1233/1233 PASS。クレンジング正常完了。血統バックフィル200頭エラー0件確認中。 |
+| **ロールバック** | git revert HEAD |
+| **関連** | W-013/W-007/W-010/W-011 |
+
+---
+
 ### 2026-06-07 — 最終決戦: テスト全通・U Score因子追加・バックフィル完遂（v1.5.2-dev）
 
 | 項目 | 内容 |
