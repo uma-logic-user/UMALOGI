@@ -169,6 +169,7 @@ _MODEL_DIR = Path(__file__).resolve().parents[2] / "data" / "models"
 def _build_train_df(
     conn: sqlite3.Connection,
     train_until: int | None = None,
+    train_from: int | None = None,
 ) -> pd.DataFrame:
     """
     FeatureBuilder を使ってリーク排除済みの学習 DataFrame を生成する。
@@ -182,7 +183,10 @@ def _build_train_df(
     Args:
         conn:        DB 接続
         train_until: 学習に使う最終年（例: 2023 → 2023年以前のみ）。
-                     None の場合は全期間を使用。
+                     None の場合は上限なし。
+        train_from:  学習に使う開始年（例: 2025 → 2025年以降のみ）。W-076 で
+                     コード結合・血統修復済の「2025年以降クリーンデータ」に絞る用途。
+                     None の場合は下限なし。
 
     **目的変数**
     - is_winner  : 1着 = 1 (本命モデル)
@@ -192,30 +196,26 @@ def _build_train_df(
     """
     from src.ml.features import FeatureBuilder
 
-    # 着順が確定しているレース ID を日付昇順で取得
-    # train_until 指定時はその年以前のみに絞る（時系列分割・アウト・オブ・サンプル評価用）
+    # 着順が確定しているレース ID を日付昇順で取得。
+    # train_until/train_from で年範囲を絞る（時系列分割・OOS評価・クリーン期間限定用）。
+    _conds = ["rr.rank IS NOT NULL"]
+    _params: list[int] = []
     if train_until is not None:
-        race_rows = conn.execute(
-            """
-            SELECT DISTINCT r.race_id
-            FROM   races r
-            JOIN   race_results rr ON rr.race_id = r.race_id
-            WHERE  rr.rank IS NOT NULL
-            AND    CAST(substr(r.date, 1, 4) AS INTEGER) <= ?
-            ORDER  BY r.date
-            """,
-            (train_until,),
-        ).fetchall()
-    else:
-        race_rows = conn.execute(
-            """
-            SELECT DISTINCT r.race_id
-            FROM   races r
-            JOIN   race_results rr ON rr.race_id = r.race_id
-            WHERE  rr.rank IS NOT NULL
-            ORDER  BY r.date
-            """
-        ).fetchall()
+        _conds.append("CAST(substr(r.date, 1, 4) AS INTEGER) <= ?")
+        _params.append(train_until)
+    if train_from is not None:
+        _conds.append("CAST(substr(r.date, 1, 4) AS INTEGER) >= ?")
+        _params.append(train_from)
+    race_rows = conn.execute(
+        f"""
+        SELECT DISTINCT r.race_id
+        FROM   races r
+        JOIN   race_results rr ON rr.race_id = r.race_id
+        WHERE  {" AND ".join(_conds)}
+        ORDER  BY r.date
+        """,
+        _params,
+    ).fetchall()
 
     if not race_rows:
         return pd.DataFrame()
@@ -451,7 +451,9 @@ class _BaseModel:
 
     _model: Any
     _trained: bool = False
-    _filename: str = ""  # サブクラスが上書き（honmei_model / place_model / manji_model）
+    _filename: str = (
+        ""  # サブクラスが上書き（honmei_model / place_model / manji_model）
+    )
 
     def save(self, path: Path | None = None) -> Path:
         """モデルを pickle で保存する。
@@ -552,6 +554,8 @@ class HonmeiModel(_BaseModel):
         self,
         conn: sqlite3.Connection,
         train_until: int | None = None,
+        train_from: int | None = None,
+        df: "pd.DataFrame | None" = None,
     ) -> dict[str, Any]:
         """
         DB の race_results から学習データを構築して訓練する。
@@ -580,7 +584,10 @@ class HonmeiModel(_BaseModel):
               "train_until":    使用した最終年（None なら全期間）,
             }
         """
-        df = _build_train_df(conn, train_until=train_until)
+        if df is None:
+            df = _build_train_df(conn, train_until=train_until, train_from=train_from)
+        else:
+            df = df.copy()  # 共有 df の相互汚染を防ぐ（各モデルが列を加工するため）
         if df.empty:
             logger.warning("学習データが0件のため訓練をスキップします")
             return {
@@ -802,6 +809,8 @@ class PlaceModel(_BaseModel):
         self,
         conn: sqlite3.Connection,
         train_until: int | None = None,
+        train_from: int | None = None,
+        df: "pd.DataFrame | None" = None,
     ) -> dict[str, Any]:
         """`is_placed`（rank ≤ 3 = 1）を目的変数として訓練する。
 
@@ -814,7 +823,10 @@ class PlaceModel(_BaseModel):
              "cv_auc_mean": CV 平均 AUC, "cv_auc_std": CV AUC 標準偏差,
              "train_until": 使用した最終年}
         """
-        df = _build_train_df(conn, train_until=train_until)
+        if df is None:
+            df = _build_train_df(conn, train_until=train_until, train_from=train_from)
+        else:
+            df = df.copy()  # 共有 df の相互汚染を防ぐ（各モデルが列を加工するため）
         if df.empty:
             logger.warning("学習データが0件のため複勝モデル訓練をスキップします")
             return {"n_races": 0, "n_samples": 0}
@@ -919,6 +931,8 @@ class ManjiModel(_BaseModel):
         self,
         conn: sqlite3.Connection,
         train_until: int | None = None,
+        train_from: int | None = None,
+        df: "pd.DataFrame | None" = None,
     ) -> dict[str, float]:
         """
         DB の race_results から学習データを構築して訓練する。
@@ -931,7 +945,10 @@ class ManjiModel(_BaseModel):
         Returns:
             {"n_races": 学習レース数, "n_samples": 学習サンプル数}
         """
-        df = _build_train_df(conn, train_until=train_until)
+        if df is None:
+            df = _build_train_df(conn, train_until=train_until, train_from=train_from)
+        else:
+            df = df.copy()  # 共有 df の相互汚染を防ぐ（各モデルが列を加工するため）
         if df.empty:
             logger.warning("学習データが0件のため訓練をスキップします")
             return {"n_races": 0, "n_samples": 0}
@@ -982,12 +999,15 @@ class ManjiModel(_BaseModel):
 def train_all(
     conn: sqlite3.Connection,
     train_until: int | None = None,
+    train_from: int | None = None,
 ) -> dict[str, dict]:
     """本命・複勝・卍モデルを訓練して data/models/ に保存する。
 
     Args:
         conn:        DB 接続。
-        train_until: 学習に使う最終年。None の場合は全期間を使用。
+        train_until: 学習に使う最終年。None の場合は上限なし。
+        train_from:  学習に使う開始年。None の場合は下限なし（W-076: 2025年以降の
+                     コード結合・血統修復済クリーンデータに絞る用途）。
 
     Returns:
         {"honmei": HonmeiModel.train() の戻り値,
@@ -998,9 +1018,19 @@ def train_all(
     place = PlaceModel()
     manji = ManjiModel()
 
-    h_result = honmei.train(conn, train_until=train_until)
-    p_result = place.train(conn, train_until=train_until)
-    m_result = manji.train(conn, train_until=train_until)
+    # 特徴量生成は重いので 1 回だけ実行し、3 モデルで共有する（W-076 最適化）。
+    # 3 モデルは目的変数が異なるだけで特徴量列は同一のため、再生成は無駄。
+    shared_df = _build_train_df(conn, train_until=train_until, train_from=train_from)
+
+    h_result = honmei.train(
+        conn, train_until=train_until, train_from=train_from, df=shared_df
+    )
+    p_result = place.train(
+        conn, train_until=train_until, train_from=train_from, df=shared_df
+    )
+    m_result = manji.train(
+        conn, train_until=train_until, train_from=train_from, df=shared_df
+    )
 
     # ── 本命モデル: Champion/Challenger 判定 ─────────────────────
     if honmei.is_trained:

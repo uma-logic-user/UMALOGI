@@ -195,6 +195,7 @@ def _select_horses(
 def _train_three_models(
     conn: sqlite3.Connection,
     train_until: int = 2024,
+    train_from: int | None = None,
 ) -> tuple[Any, Any, Any]:
     """
     本命・複勝・卍モデルを train_until 年までのデータで再訓練する。
@@ -208,7 +209,7 @@ def _train_three_models(
     Returns:
         (honmei, place, manji) の訓練済みインスタンス
     """
-    from src.ml.models import HonmeiModel, PlaceModel, ManjiModel
+    from src.ml.models import HonmeiModel, PlaceModel, ManjiModel, _build_train_df
 
     print(f"\n  [訓練] 本命・複勝・卍モデルを {train_until} 年データで再訓練中...")
 
@@ -216,8 +217,13 @@ def _train_three_models(
     place = PlaceModel()
     manji = ManjiModel()
 
+    # 特徴量生成は重いので 1 回だけ実行し 3 モデルで共有（W-076 最適化）。
+    shared_df = _build_train_df(conn, train_until=train_until, train_from=train_from)
+
     try:
-        h_metrics = honmei.train(conn, train_until=train_until)
+        h_metrics = honmei.train(
+            conn, train_until=train_until, train_from=train_from, df=shared_df
+        )
         print(
             f"  [OK] 本命  AUC={h_metrics.get('cv_auc_mean', float('nan')):.3f}"
             f"  n_races={h_metrics.get('n_races', '?')}"
@@ -227,7 +233,9 @@ def _train_three_models(
         raise
 
     try:
-        p_metrics = place.train(conn, train_until=train_until)
+        p_metrics = place.train(
+            conn, train_until=train_until, train_from=train_from, df=shared_df
+        )
         print(
             f"  [OK] 複勝  AUC={p_metrics.get('cv_auc_mean', float('nan')):.3f}"
             f"  n_races={p_metrics.get('n_races', '?')}"
@@ -237,7 +245,9 @@ def _train_three_models(
         raise
 
     try:
-        m_metrics = manji.train(conn, train_until=train_until)
+        m_metrics = manji.train(
+            conn, train_until=train_until, train_from=train_from, df=shared_df
+        )
         print(f"  [OK] 卍    n_races={m_metrics.get('n_races', '?')}")
     except Exception as exc:
         logger.error("卍モデル訓練失敗: %s", exc)
@@ -591,7 +601,23 @@ def main() -> int:
     parser.add_argument("--csv", action="store_true")
     parser.add_argument("--verbose", action="store_true")
     parser.add_argument("--cleanup", action="store_true")
+    parser.add_argument("--train-year", type=int, default=None, help="学習年(既定2024)")
+    parser.add_argument(
+        "--test-year", type=int, default=None, help="テスト年(既定2025)"
+    )
+    parser.add_argument(
+        "--single-year-train",
+        action="store_true",
+        help="train_from=train_year を設定し学習年単年のみで訓練(W-076 2025クリーン用)",
+    )
     args = parser.parse_args()
+
+    global _TRAIN_YEAR, _TEST_YEAR
+    if args.train_year is not None:
+        _TRAIN_YEAR = str(args.train_year)
+    if args.test_year is not None:
+        _TEST_YEAR = str(args.test_year)
+    _train_from = int(_TRAIN_YEAR) if args.single_year_train else None
 
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -626,7 +652,9 @@ def main() -> int:
     # ── Phase 2-4: 3モデル再訓練 + 2025年評価 ───────────────────
     wall_start = time.perf_counter()
 
-    honmei, place, manji = _train_three_models(conn, train_until=int(_TRAIN_YEAR))
+    honmei, place, manji = _train_three_models(
+        conn, train_until=int(_TRAIN_YEAR), train_from=_train_from
+    )
 
     overall, monthly, by_venue = _run_three_model_backtest(
         conn=conn,

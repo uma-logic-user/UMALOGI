@@ -38,6 +38,12 @@ def main() -> None:
         default=None,
         help="学習最終年 (例: 2025 → 2025年以前)",
     )
+    ap.add_argument(
+        "--train-from",
+        type=int,
+        default=None,
+        help="学習開始年 (例: 2025 → 2025年以降のクリーンデータのみ・W-076)",
+    )
     args = ap.parse_args()
 
     from src.database.init_db import init_db
@@ -46,10 +52,13 @@ def main() -> None:
     conn = init_db()
     print("=" * 60)
     print("  単勝・複勝・卍モデル 再学習")
-    print(f"  train_until={args.train_until or '全期間'}")
+    print(
+        f"  train_from={args.train_from or '下限なし'} "
+        f"train_until={args.train_until or '上限なし'}"
+    )
     print("=" * 60)
 
-    results = train_all(conn, train_until=args.train_until)
+    results = train_all(conn, train_until=args.train_until, train_from=args.train_from)
     conn.close()
 
     print()

@@ -34,6 +34,20 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-08 — 2025+クリーンデータで全モデル再学習＋OOS再シミュレーション（v1.7.0-dev）
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-opus-4-8) |
+| **修正日** | 2026-06-08 |
+| **バージョン** | 1.6.2-dev → 1.7.0-dev |
+| **種別** | 機能追加 + モデル再学習 |
+| **実施内容** | ・W-076 backfill を JVLink 許容上限まで完遂（コード充填 45,666/88,890=51.4%・充填行のマスタ結合 98.9%）。⚠️ 2024年は JVLink SID制約(NORMAL保持期間外/STORED -501/SETUP -503)で取得不能を3方式実証→「2025年以降クリーンデータ」を正とする方針に確定。<br>・`_build_train_df`/`train_all`/各モデル`train()` に `train_from` 下限フィルタを追加（2025年以降限定学習）。さらに特徴量生成を1回で3モデル共有する最適化（約3倍高速化）。<br>・本命/複勝/卍(EV) を 2025+ クリーンデータ(4,929レース/68,337サンプル)で再学習。**特徴量重要度 Top5 に jockey_code_encoded(3位)/trainer_code_encoded(5位)** が昇格＝W-074/075/076 のコード化が主力エッジ化。<br>・`backtest_all_models.py` に `--train-year/--test-year/--single-year-train` を追加し **2025学習→2026テストのカンニングなしOOS** を算出。<br>・`fetch_3years_history.py` 新設（import_historical 再利用の3年取得オーケストレータ・歴史データは SID 制約で実質2025+のみ）。 |
+| **影響範囲** | src/ml/models.py(train_from/df共有), src/ml/features.py(コード優先encode), src/database/init_db.py, src/database/schema.py, scripts/retrain_win_place.py, scripts/backtest_all_models.py, scripts/fetch_3years_history.py(新規), scripts/backfill_se_codes_w076.py, data/models/*.pkl(本命/複勝/卍 再学習・世代交代済), docs/7_weakness_ledger.md(W-077) |
+| **検証** | 再学習: 本命 CV AUC 0.7191 / 複勝 0.7302。**OOS(2025→2026)**: 本命単勝617.7%・卍単勝495.8%・ALPHA単勝424.2%(高分散・少数大穴依存に注意)、安定黒字=複勝Top3流し110.4%/複勝Top1 102.1%/本命三連複112.6%。全1251テスト基盤は不変。 |
+| **ロールバック** | 作業前DBバックアップ data/backups/umalogi_20260607_204713.db。旧モデルは data/models/history/。コードは直前コミット 3c0e56e3 へ revert。 |
+| **関連** | W-076(backfill完遂), W-077(2025+再学習・OOS・聖域再定義), project_alpha_model(歴史データSID制約) |
+
 ### 2026-06-08 — 騎手・調教師のコードベース結合へ移行（W-076・v1.6.2-dev）
 
 | 項目 | 内容 |

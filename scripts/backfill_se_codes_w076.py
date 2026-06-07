@@ -51,13 +51,16 @@ def _coverage(conn: sqlite3.Connection, tag: str) -> None:
 
 def main() -> None:
     fromtime = sys.argv[1] if len(sys.argv) > 1 else "20240101"
-    print(f"=== SE コード backfill 開始 fromtime={fromtime} ===")
+    # option: 1=NORMAL(差分・古いデータ非配信) / 2=SETUP(サーバー全量) / 4=STORED(ローカルキャッシュ)
+    # 歴史データ(2024等)は NORMAL では配信されないため STORED/SETUP を使う。
+    option = int(sys.argv[2]) if len(sys.argv) > 2 else 4
+    print(f"=== SE コード backfill 開始 fromtime={fromtime} option={option} ===")
     conn = sqlite3.connect(DB)
     _coverage(conn, "before")
     t0 = time.time()
     n_se = n_upd = 0
     with JVLinkClient("UMALOGI00") as client:
-        if client.open("RACE", fromtime, 1) < 0:
+        if client.open("RACE", fromtime, option) < 0:
             print("JVOpen 失敗")
             return
         batch = 0
