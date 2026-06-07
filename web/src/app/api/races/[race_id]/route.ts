@@ -30,8 +30,8 @@ export async function GET(
       d.race_name = d.race_number != null ? `第${d.race_number}レース` : 'レース'
     }
 
-    // 結果
-    const results = (db.prepare(`
+    // 結果（race_results）
+    const rrRows = (db.prepare(`
       SELECT rr.rank, rr.gate_number, rr.horse_number, rr.horse_name,
              rr.horse_id, rr.sex_age, rr.weight_carried, rr.jockey, rr.trainer,
              rr.finish_time, rr.margin, rr.win_odds, rr.popularity,
@@ -41,6 +41,43 @@ export async function GET(
       WHERE rr.race_id = ?
       ORDER BY rr.rank NULLS LAST, rr.id
     `).all(race_id) as Record<string, unknown>[]).map(rowToObj)
+
+    // entries（出馬表）: race_results に馬名がない行を entries で補完する
+    // 本日の未確定レース等で race_results が空または馬名欠損の場合に使用
+    // 文字化けパターン: ?X 系 / 半角カタカナ / U+FFFD
+    const _garbledRe = /\?[A-Za-z\[\]＝]|[｡-ﾟ]|�/
+    const _isValidHorseName = (n: string) => n.trim() !== '' && !_garbledRe.test(n)
+    const validRrCount = rrRows.filter(r => r.horse_name && _isValidHorseName(r.horse_name as string)).length
+    let results: Record<string, unknown>[]
+    if (validRrCount === 0) {
+      // entries テーブルから出馬表を構築（race_results 互換フォーマット）
+      results = (db.prepare(`
+        SELECT en.horse_number, en.gate_number, en.horse_name, en.horse_id,
+               en.sex_age, en.weight_carried, en.jockey, en.trainer,
+               en.horse_weight, en.horse_weight_diff,
+               NULL AS rank, NULL AS finish_time, NULL AS margin,
+               NULL AS win_odds, NULL AS popularity,
+               NULL AS sire, NULL AS dam, NULL AS dam_sire
+        FROM entries en
+        WHERE en.race_id = ?
+        ORDER BY en.horse_number
+      `).all(race_id) as Record<string, unknown>[]).map(rowToObj)
+    } else {
+      // race_results に馬名のない行は entries で horse_name/jockey を補完
+      const entMap: Record<number, Record<string, unknown>> = {}
+      for (const en of (db.prepare(`SELECT horse_number, horse_name, jockey, trainer, sex_age, weight_carried, horse_weight, horse_weight_diff FROM entries WHERE race_id = ?`).all(race_id) as Record<string, unknown>[])) {
+        entMap[en.horse_number as number] = en
+      }
+      results = rrRows.map(r => {
+        if (!r.horse_name || (r.horse_name as string).trim() === '') {
+          const en = entMap[r.horse_number as number]
+          if (en) {
+            return { ...r, horse_name: en.horse_name, jockey: en.jockey ?? r.jockey, trainer: en.trainer ?? r.trainer }
+          }
+        }
+        return r
+      })
+    }
 
     // 払戻
     const payouts = (db.prepare(`

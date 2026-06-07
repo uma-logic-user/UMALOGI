@@ -50,6 +50,26 @@ export async function GET(req: NextRequest) {
       ORDER BY rr.race_id, rr.rank NULLS LAST, rr.id
     `).all(...raceIds) as Record<string, unknown>[]
 
+    // entries テーブルから出馬表データを一括取得（race_results 補完用）
+    const allEntries = db.prepare(`
+      SELECT en.race_id, en.horse_number, en.gate_number, en.horse_name,
+             en.horse_id, en.sex_age, en.weight_carried, en.jockey, en.trainer,
+             en.horse_weight, en.horse_weight_diff,
+             NULL AS rank, NULL AS finish_time, NULL AS margin,
+             NULL AS win_odds, NULL AS popularity,
+             NULL AS sire, NULL AS dam, NULL AS dam_sire
+      FROM entries en
+      WHERE en.race_id IN (${ph})
+      ORDER BY en.race_id, en.horse_number
+    `).all(...raceIds) as Record<string, unknown>[]
+
+    const entriesMap = new Map<string, Record<string, unknown>[]>()
+    for (const row of allEntries) {
+      const rid = row.race_id as string
+      if (!entriesMap.has(rid)) entriesMap.set(rid, [])
+      entriesMap.get(rid)!.push(rowToObj(row))
+    }
+
     const allPayouts = db.prepare(`
       SELECT race_id, bet_type, combination, payout, popularity
       FROM race_payouts
@@ -79,7 +99,26 @@ export async function GET(req: NextRequest) {
       if (!d.race_name) {
         d.race_name = d.race_number != null ? `第${d.race_number}レース` : 'レース'
       }
-      d.results = resultsMap.get(d.race_id as string) ?? []
+      // race_results に馬名がなければ entries で代替
+      const rrList = resultsMap.get(d.race_id as string) ?? []
+      const _garbledReR = /\?[A-Za-z\[\]＝]|[｡-ﾟ]|�/
+      const _isValidR = (n: string) => n.trim() !== '' && !_garbledReR.test(n)
+      const validRr = rrList.filter(r => r.horse_name && _isValidR(r.horse_name as string))
+      if (validRr.length === 0) {
+        d.results = entriesMap.get(d.race_id as string) ?? []
+      } else {
+        const entByNum: Record<number, Record<string, unknown>> = {}
+        for (const en of (entriesMap.get(d.race_id as string) ?? [])) {
+          entByNum[en.horse_number as number] = en
+        }
+        d.results = rrList.map(r => {
+          if (!r.horse_name || (r.horse_name as string).trim() === '') {
+            const en = entByNum[r.horse_number as number]
+            if (en) return { ...r, horse_name: en.horse_name, jockey: en.jockey ?? r.jockey, trainer: en.trainer ?? r.trainer }
+          }
+          return r
+        })
+      }
       d.payouts = (payoutsMap.get(d.race_id as string) ?? []).sort((a, b) => {
         const ao = BET_ORDER[a.bet_type as string] ?? 99
         const bo = BET_ORDER[b.bet_type as string] ?? 99
