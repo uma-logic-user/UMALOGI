@@ -16,6 +16,8 @@ from datetime import date, timedelta
 from pathlib import Path
 from typing import Any
 
+from src.database.write_guard import guard_connection
+
 _ROOT = Path(__file__).resolve().parents[2]
 
 logger = logging.getLogger(__name__)
@@ -241,11 +243,15 @@ def save_entries_to_db(conn: sqlite3.Connection, tbl: Any) -> int:
     # EntryTable に race details が含まれている場合は races テーブルも更新
     update_race_details_from_entry(conn, tbl)
 
+    # W-072: 書き込み前 文字化け強制クレンジング。horse_name/jockey/trainer は
+    # netkeiba/JVLink 由来で文字化けの最頻発フィールドのため、INSERT 直前に浄化する。
+    gconn = guard_connection(conn)
+
     saved = 0
     for h in tbl.entries:  # type: ignore[attr-defined]
         try:
             with conn:
-                conn.execute(
+                gconn.execute(
                     """
                     INSERT OR REPLACE INTO entries
                         (race_id, horse_number, gate_number, horse_id,

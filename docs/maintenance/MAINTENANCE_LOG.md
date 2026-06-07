@@ -34,6 +34,20 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-07 — DB書き込み前 文字化け強制クレンジング・ガード実装（W-072 / タスク3）
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-opus-4-8) |
+| **修正日** | 2026-06-07 |
+| **バージョン** | `1.4.8-dev` → `1.5.0-dev` |
+| **種別** | 機能追加（運用基盤・データ品質） |
+| **実施内容** | 安田記念敗因分析セッションの一環。DBへの INSERT/UPDATE/REPLACE 直前に全文字列パラメータを `ensure_clean` で検証・修復する `src/database/write_guard.py` を新設（`GuardedConnection`/`guard_connection`/`clean_params`/`is_write_sql`）。回復不能な文字化けは空文字へ落とし「文字化けのままのDB書き込み」を物理的に不可能化。SELECTパラメータは非介入。文字化け最頻発の `save_entries_to_db`（horse_name/jockey/trainer）に局所統合。本番オートパイロット稼働中のためグローバル接続ラップ（pandas.read_sql影響リスク）は見送り、保存関数限定の安全統合とした。 |
+| **影響範囲** | `src/database/write_guard.py`（新規）, `src/pipeline/scraping.py`, `tests/test_write_guard.py`（新規）, `docs/7_weakness_ledger.md`（W-072）, `VERSION`。 |
+| **検証** | `pytest tests/test_write_guard.py` → **10 passed**。E2E: 制御文字混入の馬名/騎手が save_entries_to_db 経由で浄化保存されることを実証。ruff check / format クリーン。import健全性（scraping/prediction）確認。 |
+| **ロールバック** | 直前コミット（本コミットの parent）へ revert。新規ファイル削除＋scraping.py の guard_connection 2箇所を戻す。 |
+| **関連** | W-072（完了）, W-068, W-071（同セッションの敗因分析）, CLAUDE.md §10/§16（文字化け根絶）。**未完**: タスク1（特徴量強化）/タスク2（相互補完）/タスク4（再学習・backtest）は検証付き段階実施として継続。 |
+
 ### 2026-06-07 — race_results UNIQUE制約修正および文字化けゼロ達成
 
 | 項目 | 内容 |
