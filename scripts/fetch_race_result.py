@@ -138,55 +138,101 @@ def _upsert_race_results(conn, race_id: str, race_info) -> int:
     """
     netkeiba から取得した RaceInfo を race_results に UPSERT する。
 
-    既存レコード（JVLink が事前に rank=NULL で作成した行）を確定値で上書きする。
-    INSERT OR IGNORE では上書きされないため ON CONFLICT DO UPDATE を使う。
+    UNIQUE(race_id, horse_name) 制約を廃止し UNIQUE INDEX(race_id, horse_number)
+    WHERE horse_number IS NOT NULL に移行したため、SQLite の partial index は
+    ON CONFLICT 句で参照できない。UPDATE→INSERT の 2 ステップ方式で実現する。
     """
     saved = 0
     with conn:
         for r in race_info.results:
-            conn.execute(
-                """
-                INSERT INTO race_results
-                    (race_id, horse_id, horse_name, rank,
-                     gate_number, horse_number,
-                     sex_age, weight_carried, jockey, trainer,
-                     finish_time, margin, popularity, win_odds,
-                     horse_weight, horse_weight_diff, last_3f)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                ON CONFLICT(race_id, horse_name) DO UPDATE SET
-                    rank              = excluded.rank,
-                    gate_number       = excluded.gate_number,
-                    horse_number      = excluded.horse_number,
-                    finish_time       = excluded.finish_time,
-                    margin            = excluded.margin,
-                    popularity        = excluded.popularity,
-                    win_odds          = excluded.win_odds,
-                    horse_weight      = excluded.horse_weight,
-                    horse_weight_diff = excluded.horse_weight_diff,
-                    jockey            = COALESCE(excluded.jockey, jockey),
-                    trainer           = COALESCE(excluded.trainer, trainer),
-                    last_3f           = COALESCE(excluded.last_3f, last_3f)
-                """,
-                (
-                    race_id,
-                    getattr(r, "horse_id", None),
-                    r.horse_name,
-                    r.rank,
-                    getattr(r, "gate_number", None),
-                    getattr(r, "horse_number", None),
-                    getattr(r, "sex_age", ""),
-                    getattr(r, "weight_carried", 0.0),
-                    getattr(r, "jockey", ""),
-                    getattr(r, "trainer", ""),
-                    getattr(r, "finish_time", None),
-                    getattr(r, "margin", None),
-                    getattr(r, "popularity", None),
-                    getattr(r, "win_odds", None),
-                    getattr(r, "horse_weight", None),
-                    getattr(r, "horse_weight_diff", None),
-                    getattr(r, "last_3f", None),
-                ),
+            horse_num = getattr(r, "horse_number", None)
+            horse_name = r.horse_name or ""
+            params_update = (
+                horse_name if horse_name else None,
+                r.rank,
+                getattr(r, "gate_number", None),
+                getattr(r, "finish_time", None),
+                getattr(r, "margin", None),
+                getattr(r, "popularity", None),
+                getattr(r, "win_odds", None),
+                getattr(r, "horse_weight", None),
+                getattr(r, "horse_weight_diff", None),
+                getattr(r, "jockey", "") or None,
+                getattr(r, "trainer", "") or None,
+                getattr(r, "last_3f", None),
+                race_id,
+                horse_num,
             )
+            if horse_num is not None:
+                updated = conn.execute(
+                    """
+                    UPDATE race_results SET
+                        horse_name        = CASE WHEN ? IS NOT NULL AND ? != '' THEN ? ELSE horse_name END,
+                        rank              = ?,
+                        gate_number       = ?,
+                        finish_time       = ?,
+                        margin            = ?,
+                        popularity        = ?,
+                        win_odds          = ?,
+                        horse_weight      = ?,
+                        horse_weight_diff = ?,
+                        jockey            = COALESCE(?, jockey),
+                        trainer           = COALESCE(?, trainer),
+                        last_3f           = COALESCE(?, last_3f)
+                    WHERE race_id = ? AND horse_number = ?
+                    """,
+                    (
+                        horse_name, horse_name, horse_name,
+                        r.rank,
+                        getattr(r, "gate_number", None),
+                        getattr(r, "finish_time", None),
+                        getattr(r, "margin", None),
+                        getattr(r, "popularity", None),
+                        getattr(r, "win_odds", None),
+                        getattr(r, "horse_weight", None),
+                        getattr(r, "horse_weight_diff", None),
+                        getattr(r, "jockey", "") or None,
+                        getattr(r, "trainer", "") or None,
+                        getattr(r, "last_3f", None),
+                        race_id,
+                        horse_num,
+                    ),
+                ).rowcount
+            else:
+                updated = 0
+
+            if updated == 0:
+                # 既存行なし → INSERT（horse_number=NULL の場合も含む）
+                conn.execute(
+                    """
+                    INSERT OR IGNORE INTO race_results
+                        (race_id, horse_id, horse_name, rank,
+                         gate_number, horse_number,
+                         sex_age, weight_carried, jockey, trainer,
+                         finish_time, margin, popularity, win_odds,
+                         horse_weight, horse_weight_diff, last_3f)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    """,
+                    (
+                        race_id,
+                        getattr(r, "horse_id", None),
+                        horse_name,
+                        r.rank,
+                        getattr(r, "gate_number", None),
+                        horse_num,
+                        getattr(r, "sex_age", ""),
+                        getattr(r, "weight_carried", 0.0),
+                        getattr(r, "jockey", ""),
+                        getattr(r, "trainer", ""),
+                        getattr(r, "finish_time", None),
+                        getattr(r, "margin", None),
+                        getattr(r, "popularity", None),
+                        getattr(r, "win_odds", None),
+                        getattr(r, "horse_weight", None),
+                        getattr(r, "horse_weight_diff", None),
+                        getattr(r, "last_3f", None),
+                    ),
+                )
             saved += 1
     return saved
 
@@ -458,8 +504,36 @@ def fetch_single_race(race_id: str, delay: float = 1.5) -> bool:
             result.total_payout,
             result.roi,
         )
-        # 的中速報を Discord へ送信
-        _send_hit_flash(result, result.race_name)
+        # Pure_EV_Edge の的中は専用チャンネルへ個別送信（汎用 hit_flash から分離）
+        pure_ev_hits = [h for h in result.hits if "Pure_EV_Edge" in (h.bet_type or "")]
+        # BetHitDetail.combination は馬名リストだが、prediction_id から model 判定
+        pure_ev_model_hits = [
+            h for h in result.hits
+            if getattr(h, "prediction_id", None) and _is_pure_ev_prediction(conn, h.prediction_id)
+        ]
+        if pure_ev_model_hits:
+            try:
+                from src.notification.router import NotificationRouter
+                _router = NotificationRouter()
+                pure_total_invest = sum(h.invested for h in pure_ev_model_hits)
+                pure_total_payout = sum(h.payout for h in pure_ev_model_hits)
+                _router.notify_pure_ev_edge_result(
+                    race_id=race_id,
+                    race_name=result.race_name,
+                    hit_details=pure_ev_model_hits,
+                    total_invested=pure_total_invest,
+                    total_payout=pure_total_payout,
+                )
+            except Exception as pe:
+                logger.warning("[Pure_EV_Edge結果送信] 失敗: %s", pe)
+
+        # 汎用的中速報（Pure_EV_Edge を除外して二重送信防止）
+        non_pure_ev_hits = [
+            h for h in result.hits
+            if not getattr(h, "prediction_id", None) or not _is_pure_ev_prediction(conn, h.prediction_id)
+        ]
+        if non_pure_ev_hits or result.hit_count == 0:
+            _send_hit_flash(result, result.race_name)
         _try_publish_win_report(result, race_id, conn)
         _try_sns_flash(conn, race_id, result.race_name)
     except Exception as ee:
@@ -467,6 +541,17 @@ def fetch_single_race(race_id: str, delay: float = 1.5) -> bool:
 
     conn.close()
     return True
+
+
+def _is_pure_ev_prediction(conn: object, prediction_id: int) -> bool:
+    """prediction_id が Pure_EV_Edge モデルのものか判定する。"""
+    try:
+        row = conn.execute(
+            "SELECT model_type FROM predictions WHERE id=?", (prediction_id,)
+        ).fetchone()
+        return row is not None and "Pure_EV_Edge" in (row[0] or "")
+    except Exception:
+        return False
 
 
 def fetch_for_date(date_str: str, force_all: bool = False, delay: float = 1.5) -> int:

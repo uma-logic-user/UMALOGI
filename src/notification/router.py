@@ -7,6 +7,7 @@ src/notification/router.py — Discord 通知マルチ Webhook ルーター
   ev_alert    : DISCORD_WEBHOOK_EV_ALERT     (EV>=1.5 激熱レース専用)
   ab_test     : DISCORD_WEBHOOK_AB_TEST      (V1/V2 成績比較レポート)
   note_draft  : DISCORD_WEBHOOK_NOTE_DRAFT   (note下書き出力用)
+  pure_ev     : DISCORD_WEBHOOK_PURE_EV      (Pure_EV_Edge 専用 — 未設定時は prediction へ金色でフォールバック)
 """
 
 from __future__ import annotations
@@ -41,7 +42,11 @@ CHANNEL_ENV: dict[str, str] = {
     "ev_alert": "DISCORD_WEBHOOK_EV_ALERT",
     "ab_test": "DISCORD_WEBHOOK_AB_TEST",
     "note_draft": "DISCORD_WEBHOOK_NOTE_DRAFT",
+    "pure_ev": "DISCORD_WEBHOOK_PURE_EV",
 }
+
+# Pure_EV_Edge 専用チャンネルの Embed カラー（金色）
+_COLOR_PURE_EV: int = 0xFFD700
 
 # 後方互換: 旧変数名
 _LEGACY_MAP: dict[str, str] = {
@@ -245,6 +250,7 @@ class NotificationRouter:
         "ev_alert": "EV激熱",
         "ab_test": "A/Bテスト",
         "note_draft": "note下書き",
+        "pure_ev": "PureEVエッジ",
     }
 
     def _build_channels(self) -> None:
@@ -398,9 +404,15 @@ class NotificationRouter:
         ev_notifier.send_text(text)
 
     def notify_pure_ev_edge(self, race_id: str, pure_ev_bets: object) -> None:
-        """Pure_EV_Edge（黒字化専用・単複限定）の買い目を prediction チャンネルへ送信する。
+        """Pure_EV_Edge（黒字化専用・単複限定）の買い目を専用チャンネルへ送信する。
 
-        ev_alert チャンネルが独立設定で最大EVが閾値超なら ev_alert へも追加送信する。
+        ルーティング優先順位:
+          1. DISCORD_WEBHOOK_PURE_EV が設定済み → pure_ev チャンネルのみへ送信
+             （prediction チャンネルへは送らず二重送信を防止する）
+          2. 未設定の場合 → prediction チャンネルへ金色 Embed でフォールバック送信
+             タイトルに「💎【ピュアEVエッジ単独予想】」を付与して視覚的に分離
+
+        さらに最大EV >= EV_ALERT_THRESHOLD なら ev_alert チャンネルへも追加送信する。
 
         Args:
             race_id: 対象レース ID。
@@ -409,27 +421,139 @@ class NotificationRouter:
         bets = list(getattr(pure_ev_bets, "bets", None) or [])
         if not bets:
             return
-        notifier = self._get("prediction")
-        if notifier is None:
-            return
-        lines = [f"💎 **Pure_EV_Edge（黒字化専用・単複）** `{race_id}`"]
+
+        bet_lines = []
         for b in bets:
-            lines.append(
+            bet_lines.append(
                 f"・{getattr(b, 'bet_type', '?')} "
                 f"{getattr(b, 'horse_number', '?')}番 {getattr(b, 'horse_name', '')}  "
                 f"EV={getattr(b, 'expected_value', 0.0):.2f} "
                 f"P={getattr(b, 'prob', 0.0):.0%} "
                 f"(1/10Kelly ¥{int(getattr(b, 'stake', 0)):,})"
             )
-        notifier.send_text("\n".join(lines))
 
         max_ev = max((getattr(b, "expected_value", 0.0) for b in bets), default=0.0)
+        pure_ev_notifier = self._channels.get("pure_ev")
+
+        if pure_ev_notifier is not None:
+            # 専用チャンネルへ送信（prediction チャンネルへは送らない）
+            lines = [f"💎 **Pure_EV_Edge（黒字化専用・単複）** `{race_id}`"] + bet_lines
+            pure_ev_notifier.send_text("\n".join(lines))
+            logger.info("[Pure_EV_Edge] 専用チャンネルへ送信: race_id=%s bets=%d", race_id, len(bets))
+        else:
+            # フォールバック: prediction チャンネルへ金色 Embed で送信
+            notifier = self._get("prediction")
+            if notifier is None:
+                return
+            title = f"💎【ピュアEVエッジ単独予想】 `{race_id}`"
+            description = "\n".join(bet_lines)
+            notifier._post(
+                notifier._url,
+                {
+                    "embeds": [{
+                        "title": title,
+                        "description": description,
+                        "color": _COLOR_PURE_EV,
+                        "footer": {"text": f"Pure_EV_Edge 専用 | 最大EV={max_ev:.2f}"},
+                    }]
+                },
+            )
+            logger.info(
+                "[Pure_EV_Edge] 専用Webhook未設定 → prediction へ金色Embedでフォールバック: race_id=%s",
+                race_id,
+            )
+
+        # EV激熱アラートは専用チャンネル有無に関わらず追加送信
         ev_notifier = self._channels.get("ev_alert")
         if ev_notifier is not None and max_ev >= EV_ALERT_THRESHOLD:
             ev_notifier.send_text(
                 f"@everyone 💎 **Pure_EV_Edge 激熱** `{race_id}` 最大EV={max_ev:.2f}\n"
-                + "\n".join(lines[1:])
+                + "\n".join(bet_lines)
             )
+
+    def notify_pure_ev_edge_result(
+        self,
+        race_id: str,
+        race_name: str,
+        hit_details: list,
+        total_invested: float,
+        total_payout: float,
+    ) -> None:
+        """Pure_EV_Edge の確定結果を専用チャンネルへ送信する。
+
+        的中あり → pure_ev チャンネル（未設定時は hit_flash → prediction へフォールバック）
+        的中なし → pure_ev チャンネル（未設定時は system チャンネルへ静かに送信）
+
+        Args:
+            race_id: 対象レース ID。
+            race_name: レース名。
+            hit_details: 的中結果の BetHitDetail リスト（is_hit=True のものを含む）。
+            total_invested: 投資合計（円）。
+            total_payout: 払戻合計（円）。
+        """
+        import os as _os
+        import requests as _req
+
+        hit_items = [h for h in hit_details if getattr(h, "is_hit", False)]
+        roi = total_payout / total_invested * 100 if total_invested > 0 else 0.0
+
+        # 送信先 URL 決定
+        pure_ev_url = _os.environ.get("DISCORD_WEBHOOK_PURE_EV", "").strip()
+        if not pure_ev_url:
+            # フォールバック: 的中なら hit_flash、外れならシステムチャンネル
+            if hit_items:
+                pure_ev_url = (
+                    _os.environ.get("DISCORD_WEBHOOK_HIT_FLASH", "").strip()
+                    or _os.environ.get("DISCORD_WEBHOOK_URL", "").strip()
+                )
+            else:
+                pure_ev_url = (
+                    _os.environ.get("DISCORD_SYSTEM_WEBHOOK_URL", "").strip()
+                    or _os.environ.get("DISCORD_WEBHOOK_SYSTEM", "").strip()
+                    or _os.environ.get("DISCORD_WEBHOOK_URL", "").strip()
+                )
+
+        if not pure_ev_url:
+            logger.warning("[Pure_EV_Edge結果] 送信先Webhook未設定: %s", race_id)
+            return
+
+        if hit_items:
+            lines = []
+            for h in hit_items:
+                combo_str = "-".join(str(c) for c in (h.combination or []))
+                lines.append(
+                    f"**{h.bet_type}** {combo_str} "
+                    f"¥{int(h.payout):,} (投資¥{int(h.invested):,} / 利益+¥{int(h.profit):,})"
+                )
+            color = 0xFF4500 if total_payout >= 100_000 else _COLOR_PURE_EV
+            title = f"💎🎉 Pure_EV_Edge 的中！ {race_name}"
+            description = "\n".join(lines)
+        else:
+            color = 0x555555
+            title = f"💎🏁 Pure_EV_Edge 完走 {race_name}"
+            description = "的中なし"
+
+        payload = {
+            "embeds": [{
+                "title": title,
+                "description": description,
+                "color": color,
+                "footer": {
+                    "text": (
+                        f"投資 ¥{int(total_invested):,} / 払戻 ¥{int(total_payout):,} / "
+                        f"ROI {roi:.1f}%  |  Pure_EV_Edge専用"
+                    )
+                },
+            }]
+        }
+        try:
+            _req.post(pure_ev_url, json=payload, timeout=5)
+            logger.info(
+                "[Pure_EV_Edge結果] 送信完了: race_id=%s 的中=%d ROI=%.1f%%",
+                race_id, len(hit_items), roi,
+            )
+        except Exception as e:
+            logger.warning("[Pure_EV_Edge結果] 送信失敗: %s", e)
 
     def notify_prerace_15min(
         self,
