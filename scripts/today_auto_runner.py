@@ -930,6 +930,25 @@ def _run_one_day(
 
     schedule.sort(key=lambda x: (x[0], x[1], x[3]))
 
+    # ── 起動直後の文字化けスキャン & 自動修復 ──────────────────────────────
+    try:
+        from src.monitoring.mojibake_watcher import run_scan_and_fix
+        logger.info("[MojibakeWatcher] 起動時スキャン開始: date=%s", target_date)
+        _scan_result = run_scan_and_fix(
+            target_date=target_date,
+            check_api=True,
+            auto_fix=True,
+            notify=True,
+        )
+        logger.info(
+            "[MojibakeWatcher] スキャン完了: 問題=%d 修復=%d API問題=%d",
+            _scan_result.total_issues,
+            len(_scan_result.fixed_races),
+            len(_scan_result.api_issues),
+        )
+    except Exception as _we:
+        logger.warning("[MojibakeWatcher] スキャンエラー（処理継続）: %s", _we)
+
     skipped: set[tuple[str, str]] = set()
     now = datetime.datetime.now()
 

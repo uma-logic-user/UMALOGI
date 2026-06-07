@@ -95,9 +95,12 @@ export async function GET(req: NextRequest) {
       const d = rowToObj(race)
       const dateStr = d.date as string | null
       d.year = dateStr ? dateStr.slice(0, 4) : null
-      // race_name が空の場合は「第○レース」で代替
-      if (!d.race_name) {
-        d.race_name = d.race_number != null ? `第${d.race_number}レース` : 'レース'
+      // race_name が空 or 汎用フォールバック の場合は "会場○R" 形式で表示
+      const _emptyRn = !d.race_name || /^$|^第\d+レース$|^レース$/.test(d.race_name as string)
+      if (_emptyRn) {
+        d.race_name = d.venue && d.race_number != null
+          ? `${d.venue}${String(d.race_number).padStart(2, '0')}R`
+          : d.race_number != null ? `R${d.race_number}` : 'レース'
       }
       // race_results に馬名がなければ entries で代替
       const rrList = resultsMap.get(d.race_id as string) ?? []
@@ -111,8 +114,17 @@ export async function GET(req: NextRequest) {
         for (const en of (entriesMap.get(d.race_id as string) ?? [])) {
           entByNum[en.horse_number as number] = en
         }
-        d.results = rrList.map(r => {
-          if (!r.horse_name || (r.horse_name as string).trim() === '') {
+        // horse_number=null かつ文字化けの行は除外
+        const rrFiltered = rrList.filter(r => {
+          if (r.horse_number == null) {
+            const _rhn2 = (r.horse_name as string) || ''
+            return _rhn2.trim() !== '' && !_garbledReR.test(_rhn2)
+          }
+          return true
+        })
+        d.results = rrFiltered.map(r => {
+          const _rhn = (r.horse_name as string) || ''
+          if (!_rhn || _rhn.trim() === '' || _garbledReR.test(_rhn)) {
             const en = entByNum[r.horse_number as number]
             if (en) return { ...r, horse_name: en.horse_name, jockey: en.jockey ?? r.jockey, trainer: en.trainer ?? r.trainer }
           }
