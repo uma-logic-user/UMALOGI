@@ -5,7 +5,8 @@ JVLink WOOD dataspec に WH (坂路) レコードが含まれない場合、
 race.netkeiba.com の調教ページから坂路調教データを取得して
 training_hillwork テーブルに保存する。
 
-URL: https://race.netkeiba.com/race/training.html?race_id=<race_id>
+URL: https://race.netkeiba.com/race/oikiri.html?race_id=<race_id>
+（旧 training.html は 404 のため oikiri.html を使用すること — W-068）
 """
 
 from __future__ import annotations
@@ -21,7 +22,8 @@ from bs4 import BeautifulSoup
 
 logger = logging.getLogger(__name__)
 
-_NETKEIBA_TRAINING_URL = "https://race.netkeiba.com/race/training.html"
+# W-068: training.html は 404 のため oikiri.html へ修正（2026-06-07）
+_NETKEIBA_TRAINING_URL = "https://race.netkeiba.com/race/oikiri.html"
 _USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
     "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
@@ -378,3 +380,170 @@ def save_training_records(
 
     conn.commit()
     return hillwork_saved, times_saved
+
+
+# ── oikiri.html 調教評価グレード取得（W-068） ──────────────────────────────
+
+from dataclasses import dataclass as _dc
+
+
+@_dc
+class TrainingEvaluation:
+    """netkeiba oikiri.html から取得した調教評価レコード。"""
+
+    horse_id: str
+    horse_name: str
+    horse_number: int
+    eval_grade: str   # A / B / C / D / '' (評価なし)
+    eval_text: str    # 寸評キーワード (例: "一杯に追われ好時計")
+    source_date: str  # 取得日 YYYY-MM-DD
+
+
+def fetch_training_evaluations(
+    race_id: str, delay: float = 1.0
+) -> list[TrainingEvaluation]:
+    """oikiri.html から全馬の調教評価グレード(A/B/C)を取得する。
+
+    W-068: training.html(404) の代替として oikiri.html を使用。
+    調教ランクA/B/Cと寸評テキストを training_evaluations テーブルへ保存する前処理。
+
+    Args:
+        race_id: レースID (例: "202605030211")
+        delay: リクエスト前のスリープ秒数（レート制限）
+
+    Returns:
+        TrainingEvaluation のリスト（空の場合はスクレイピング失敗または構造変更）。
+    """
+    import datetime
+
+    time.sleep(delay)
+    url = _NETKEIBA_TRAINING_URL  # oikiri.html
+    params = {"race_id": race_id}
+    headers = {"User-Agent": _USER_AGENT}
+
+    try:
+        resp = requests.get(url, params=params, headers=headers, timeout=30)
+        if resp.status_code == 404:
+            logger.warning("oikiri.html 404: race_id=%s URL=%s", race_id, resp.url)
+            return []
+        resp.raise_for_status()
+    except requests.RequestException as exc:
+        logger.warning("調教評価ページ取得失敗 race_id=%s: %s", race_id, exc)
+        return []
+
+    try:
+        text = resp.content.decode("utf-8")
+    except UnicodeDecodeError:
+        text = resp.content.decode("euc-jp", errors="replace")
+
+    soup = BeautifulSoup(text, "html.parser")
+    today = datetime.date.today().isoformat()
+    results: list[TrainingEvaluation] = []
+
+    # oikiri.html のテーブル構造: <tr> に馬番・馬名・調教タイム・グレードが並ぶ
+    # class="OikirishuTable" または "MarkTable" を探す
+    rows = soup.select("table.OikirishuTable tr, table.MarkTable tr, .training_table tr")
+    if not rows:
+        # フォールバック: 全 <tr> を走査してグレード列を推定
+        rows = soup.select("tr")
+
+    for tr in rows:
+        cells = tr.find_all("td")
+        if len(cells) < 3:
+            continue
+
+        # 馬リンクを探す
+        horse_link = tr.find("a", href=re.compile(r"/horse/\w+"))
+        if not horse_link:
+            continue
+        m = re.search(r"/horse/(\w+)", str(horse_link.get("href", "")))  # type: ignore[union-attr]
+        if not m:
+            continue
+        horse_id = m.group(1)
+        horse_name = horse_link.get_text(strip=True)
+
+        # 馬番: 最初の td テキストが数値なら馬番
+        horse_number = 0
+        try:
+            horse_number = int(cells[0].get_text(strip=True))
+        except ValueError:
+            pass
+
+        # グレード: "A"/"B"/"C"/"D" を含む span/td を探す
+        eval_grade = ""
+        eval_text = ""
+        for cell in cells:
+            txt = cell.get_text(strip=True)
+            if txt in ("A", "B", "C", "D"):
+                eval_grade = txt
+            elif len(txt) > 2 and eval_grade:
+                # グレードの次の列が寸評テキスト
+                eval_text = txt
+                break
+
+        # グレードが見つからない場合もレコードとして登録（評価なし馬も追跡）
+        results.append(
+            TrainingEvaluation(
+                horse_id=horse_id,
+                horse_name=horse_name,
+                horse_number=horse_number,
+                eval_grade=eval_grade,
+                eval_text=eval_text,
+                source_date=today,
+            )
+        )
+
+    logger.info(
+        "oikiri.html取得完了: race_id=%s 馬数=%d (グレードあり=%d)",
+        race_id,
+        len(results),
+        sum(1 for r in results if r.eval_grade),
+    )
+    return results
+
+
+def save_training_evaluations(
+    conn: sqlite3.Connection,
+    race_id: str,
+    evals: list[TrainingEvaluation],
+) -> int:
+    """TrainingEvaluation リストを training_evaluations テーブルへ UPSERT する。
+
+    Args:
+        conn: DB コネクション。
+        race_id: レースID。
+        evals: fetch_training_evaluations の戻り値。
+
+    Returns:
+        保存（INSERT/UPDATE）件数。
+    """
+    saved = 0
+    for ev in evals:
+        try:
+            conn.execute(
+                """
+                INSERT INTO training_evaluations
+                    (race_id, horse_id, horse_name, horse_number,
+                     eval_text, eval_grade, source_date)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+                ON CONFLICT(race_id, horse_id) DO UPDATE SET
+                    eval_grade   = excluded.eval_grade,
+                    eval_text    = excluded.eval_text,
+                    horse_number = excluded.horse_number,
+                    source_date  = excluded.source_date
+                """,
+                (
+                    race_id,
+                    ev.horse_id,
+                    ev.horse_name,
+                    ev.horse_number,
+                    ev.eval_text,
+                    ev.eval_grade,
+                    ev.source_date,
+                ),
+            )
+            saved += 1
+        except Exception as exc:
+            logger.debug("training_evaluations 保存失敗: %s", exc)
+    conn.commit()
+    return saved

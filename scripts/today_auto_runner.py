@@ -165,6 +165,17 @@ _MORNING_START_MINUTE = 30
 # 再起動待機時間（秒）
 _RESTART_WAIT_SEC = 30
 
+# W-043: 日次損失サーキットブレーカー設定
+# 当日の確定P&L損失がこの金額を超えたら、その日の prerace 実行を停止する。
+# 環境変数 DAILY_LOSS_LIMIT_JPY（整数）で上書き可能。デフォルト ¥30,000
+_DAILY_LOSS_LIMIT_JPY: int = int(os.getenv("DAILY_LOSS_LIMIT_JPY", "30000"))
+
+# W-044: セッション全体クラッシュ上限（連続/非連続問わず）
+# _consecutive_errors は連続エラーのみカウント（成功でリセット）するが、
+# _session_total_crashes はリセットしない。長期フラッピング障害で無限ループになるのを防ぐ。
+# 環境変数 MAX_SESSION_CRASHES で上書き可能。デフォルト 50 回
+_MAX_SESSION_CRASHES: int = int(os.getenv("MAX_SESSION_CRASHES", "50"))
+
 # postrace 再試行設定（審議・写真判定: 最大40分対応）
 # 300秒→120秒に短縮: スレッドを早く解放してポストレースキューを消化しやすくする
 _POSTRACE_MAX_RETRY = 20  # 20回 × 120秒 = 最大40分（変わらず）
@@ -271,6 +282,60 @@ def _fetch_today_races(target_date: str) -> list[tuple[str, str, int, str]]:
 # ─────────────────────────────────────────────────────────────────────────────
 # サブプロセス実行
 # ─────────────────────────────────────────────────────────────────────────────
+
+
+def _check_daily_loss_circuit_breaker(date_str: str) -> bool:
+    """W-043: 当日P&L損失がCB閾値を超えているか確認する。
+
+    Args:
+        date_str: 対象日 "YYYYMMDD" 形式。
+
+    Returns:
+        True = CBトリップ（当日の実弾予想を停止すべき）。
+        False = 正常（予想続行可）。
+    """
+    if _DAILY_LOSS_LIMIT_JPY <= 0:
+        return False  # CB 無効化（0以下で無制限）
+    try:
+        import sqlite3
+
+        db_path = _ROOT / "data" / "umalogi.db"
+        date_iso = f"{date_str[:4]}-{date_str[4:6]}-{date_str[6:8]}"
+        conn = sqlite3.connect(str(db_path), timeout=10)
+        try:
+            row = conn.execute(
+                """
+                SELECT COALESCE(SUM(pr.profit), 0.0) AS net_profit
+                FROM prediction_results pr
+                JOIN predictions p ON p.id = pr.prediction_id
+                JOIN races r       ON r.race_id = p.race_id
+                WHERE r.date = ?
+                  AND COALESCE(p.is_superseded, 0) = 0
+                  AND pr.is_hit IS NOT NULL
+                """,
+                (date_iso,),
+            ).fetchone()
+            net_profit = float(row[0]) if row else 0.0
+        finally:
+            conn.close()
+
+        if net_profit <= -_DAILY_LOSS_LIMIT_JPY:
+            logger.warning(
+                "🛑 [W-043 CB] 当日損失 ¥%.0f が閾値 ¥%d を超過 → 本日の実弾予想を停止",
+                abs(net_profit),
+                _DAILY_LOSS_LIMIT_JPY,
+            )
+            _send_discord(
+                f"🛑 **[UMALOGI W-043 サーキットブレーカー発動]**\n"
+                f"当日確定損失: **▲¥{abs(net_profit):,.0f}** (閾値: ▲¥{_DAILY_LOSS_LIMIT_JPY:,})\n"
+                f"本日 `{date_str}` の残レース実弾予想を自動停止しました。\n"
+                f"手動で再開する場合は `DAILY_LOSS_LIMIT_JPY=0` を設定してください。"
+            )
+            return True
+        return False
+    except Exception as exc:
+        logger.warning("日次損失CBチェック失敗（続行）: %s", exc)
+        return False  # チェック失敗時は安全側に倒して続行
 
 
 def _run_prerace(race_id: str, dry_run: bool, model_version: str = "v1") -> int:
@@ -1003,6 +1068,10 @@ def _run_one_day(
             race_id,
             start.strftime("%H:%M"),
         )
+        # W-043: サーキットブレーカーチェック（当日損失が閾値超なら実弾停止）
+        if _check_daily_loss_circuit_breaker(target_date):
+            logger.warning("[CB] R%02d %s [prerace] CB発動 → スキップ", race_number, race_id)
+            return -2  # CB トリップコード
         rc = _run_prerace(race_id, dry_run)
         if rc == 0:
             logger.info("[OK] R%02d %s  [prerace V1] 完了", race_number, race_id)
@@ -1310,6 +1379,8 @@ def main() -> None:
 
     _consecutive_errors = 0
     _MAX_CONSECUTIVE_ERRORS = 10
+    # W-044: セッション全体クラッシュカウンタ（成功時にリセットしない）
+    _session_total_crashes = 0
 
     while True:
         try:
@@ -1480,11 +1551,14 @@ def main() -> None:
             import traceback
 
             _consecutive_errors += 1
+            _session_total_crashes += 1  # W-044: 成功時にリセットしないカウンタ
             tb_str = traceback.format_exc()
             logger.error(
-                "[ERROR] 予期しない例外 (%d/%d 回): %s\n%s",
+                "[ERROR] 予期しない例外 (連続%d/%d回 / セッション計%d/%d回): %s\n%s",
                 _consecutive_errors,
                 _MAX_CONSECUTIVE_ERRORS,
+                _session_total_crashes,
+                _MAX_SESSION_CRASHES,
                 exc,
                 tb_str,
             )
@@ -1502,6 +1576,19 @@ def main() -> None:
                     f"再起動コマンド: `py scripts/today_auto_runner.py --continuous`"
                 )
                 break  # sys.exit より break を使用（atexit/_cleanup_pid が確実に実行される）
+
+            # W-044: セッション全体クラッシュ上限チェック（フラッピング障害対策）
+            if _session_total_crashes >= _MAX_SESSION_CRASHES:
+                logger.critical(
+                    "セッション総クラッシュ数 %d 回上限到達 (W-044)。プロセスを停止します。",
+                    _MAX_SESSION_CRASHES,
+                )
+                _send_discord(
+                    f"🚨 **[UMALOGI W-044] セッション総クラッシュ{_session_total_crashes}回上限**\n"
+                    f"長期フラッピング障害の可能性。プロセスを停止しました。\n"
+                    f"手動で原因を特定し、`py scripts/today_auto_runner.py --continuous` で再起動してください。"
+                )
+                break
 
             _send_discord(
                 f"⚠️ **[UMALOGI] 例外発生 → 自動再起動 ({_consecutive_errors}/{_MAX_CONSECUTIVE_ERRORS})**\n"

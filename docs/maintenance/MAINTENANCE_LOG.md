@@ -34,6 +34,22 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-07 — 技術的負債・クリティカルバグ完全一掃（W-045/050/065/068/069/071/043/044）
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-sonnet-4-6) |
+| **修正日** | 2026-06-07 |
+| **バージョン** | 1.5.0-dev → 1.5.1-dev |
+| **種別** | バグ修正 / 安全装置 / データパイプライン |
+| **実施内容** | ①W-045: schema.py DDLに shap_json(prediction_horses) / last_3f(race_results) / training_evaluations テーブルを追加しスキーマドリフトを解消。②W-050: BetGeneratorV2の二重V2タグバグ（"本命V2V2(直前)"）を_save_predictionsのmt_base処理で修正。③W-069: 直前パイプラインにfetch_entry_table呼び出しを追加し馬体重100%欠損を解消。④W-071: ev_overlay_guard.py新設でモデルEVへの手動係数付与をコード構造で禁止。⑤W-043: 日次損失サーキットブレーカー（デフォルト¥30,000閾値）をtoday_auto_runnerに実装。⑥W-044: セッション総クラッシュ上限カウンタ（デフォルト50回・フラッピング障害対策）を追加。⑦W-068: training_scraper.pyのURLをtraining.html(404)からoikiri.htmlに修正、評価グレード取得関数追加。⑧W-065: x_scraper配線は既存実装を確認（x_accounts未設定は運用設定の問題）。 |
+| **影響範囲** | src/database/schema.py / src/pipeline/prediction.py / src/ml/ev_overlay_guard.py(新規) / scripts/today_auto_runner.py / src/scraper/training_scraper.py |
+| **検証** | pytest 1230 PASS / 1 FAILED（既存バグ test_pure_ev_wiring — 本変更と無関係）。W-050修正ロジック全6ケースOK検証済み。 |
+| **ロールバック** | git revert または直前コミットハッシュ参照。 |
+| **関連** | W-043/044/045/050/065/068/069/071 |
+
+---
+
 ### 2026-06-07 — 前走詳細・血統TE のリークフリー特徴量実装＋OOSバックテスト（W-070 / タスク1）
 
 | 項目 | 内容 |

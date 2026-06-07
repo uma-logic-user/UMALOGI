@@ -60,6 +60,7 @@ DDL_STATEMENTS: list[str] = [
         win_odds          REAL,
         horse_weight      INTEGER,
         horse_weight_diff INTEGER,                        -- 馬体重増減（例: +2, -4）
+        last_3f           REAL,                           -- 上がり3F秒数（migration additive同期）
         created_at        TEXT    NOT NULL DEFAULT (datetime('now', 'localtime'))
     )
     """,
@@ -136,6 +137,7 @@ DDL_STATEMENTS: list[str] = [
         predicted_rank INTEGER,             -- 1=本命 2=対抗 3=単穴 …
         model_score    REAL,               -- モデルのスコア（高いほど有力）
         ev_score       REAL,               -- 期待値スコア（卍モデル用）
+        shap_json      TEXT,               -- SHAP根拠JSON（migration #18 と同期）
         created_at     TEXT    NOT NULL DEFAULT (datetime('now', 'localtime'))
     )
     """,
@@ -768,4 +770,22 @@ CREATE TABLE IF NOT EXISTS multi_odds (
     """,
     "CREATE INDEX IF NOT EXISTS idx_mo_race_bet ON multi_odds(race_id, bet_type)",
     "CREATE INDEX IF NOT EXISTS idx_mo_race_id  ON multi_odds(race_id)",
+    # ── 調教評価（netkeiba oikiri.html 由来） ─────────────────────────────────────
+    # W-068/W-072: training_scraper.py が取得する調教グレード(A/B/C)・寸評テキスト
+    """
+CREATE TABLE IF NOT EXISTS training_evaluations (
+    id           INTEGER PRIMARY KEY AUTOINCREMENT,
+    race_id      TEXT    NOT NULL,
+    horse_id     TEXT    NOT NULL,
+    horse_name   TEXT    NOT NULL DEFAULT '',
+    horse_number INTEGER NOT NULL DEFAULT 0,
+    eval_text    TEXT    NOT NULL DEFAULT '',   -- 寸評テキスト
+    eval_grade   TEXT    NOT NULL DEFAULT '',   -- A / B / C / D
+    source_date  TEXT    NOT NULL DEFAULT '',   -- 取得日 YYYY-MM-DD
+    created_at   TEXT    NOT NULL DEFAULT (datetime('now', 'localtime')),
+    UNIQUE(race_id, horse_id)
+)
+    """,
+    "CREATE INDEX IF NOT EXISTS idx_te_race_id  ON training_evaluations(race_id)",
+    "CREATE INDEX IF NOT EXISTS idx_te_horse_id ON training_evaluations(horse_id)",
 ]

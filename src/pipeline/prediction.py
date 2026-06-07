@@ -236,7 +236,12 @@ def _save_predictions(
         (honmei_bets, _honmei_shap),
         (manji_bets, _manji_shap),
     ):
-        mt_tagged = f"{race_bets.model_type}{suffix}"  # type: ignore[attr-defined]
+        # W-050: suffix が "V2..." のとき model_type の末尾 "V2" を除去して二重付与を防ぐ
+        # 例: model_type="卍V2" + suffix="V2(直前)" → "卍V2(直前)"
+        mt_base: str = race_bets.model_type  # type: ignore[attr-defined]
+        if suffix.startswith("V2") and mt_base.endswith("V2"):
+            mt_base = mt_base[:-2]
+        mt_tagged = f"{mt_base}{suffix}"
         for bet in race_bets.bets:  # type: ignore[attr-defined]
             horses_payload: list[dict] = []
             for i, c in enumerate(bet.combinations[:5]):
@@ -973,6 +978,41 @@ def _prerace_pipeline_inner(
     if (not provisional) or cached_odds == 0:
         fetch_and_save_odds(conn, race_id)
 
+    # Step 1d: 直前モードの馬体重強制更新（W-069）
+    # JRAは発走約50分前に馬体重を公開する。fetch_and_save_odds 経由の JVRTOpen(0B11)で
+    # 取得できなかった場合のフォールバックとして netkeiba から再取得し entries を UPSERT する。
+    # これにより「馬体重欠損100%」警告を解消しモデルに正しい体重情報を渡す。
+    if not provisional:
+        try:
+            from src.scraper.entry_table import fetch_entry_table
+
+            weight_tbl = fetch_entry_table(race_id, delay=0.5)
+            if weight_tbl.entries:
+                weight_updated = 0
+                for e in weight_tbl.entries:
+                    if e.horse_weight is not None and e.horse_weight > 0:
+                        conn.execute(
+                            "UPDATE entries SET horse_weight = ?, horse_weight_diff = ? "
+                            "WHERE race_id = ? AND horse_number = ? AND "
+                            "(horse_weight IS NULL OR horse_weight = 0)",
+                            (
+                                e.horse_weight,
+                                e.horse_weight_diff,
+                                race_id,
+                                e.horse_number,
+                            ),
+                        )
+                        weight_updated += 1
+                conn.commit()
+                if weight_updated > 0:
+                    logger.info(
+                        "直前馬体重更新(W-069): %d頭 (race_id=%s)", weight_updated, race_id
+                    )
+                else:
+                    logger.debug("直前馬体重: 更新対象なし（JVRTOpenで取得済み）(race_id=%s)", race_id)
+        except Exception as exc:
+            logger.warning("直前馬体重更新失敗（続行）: %s", exc)
+
     # Step 2: 特徴量生成
     try:
         fb = FeatureBuilder(conn)
@@ -1073,6 +1113,14 @@ def _prerace_pipeline_inner(
     ev_scores = manji_model.ev_score(df)
     # Pure_EV_Edge（黒字化専用枠）の複勝較正確率に使用
     place_scores = _place_model.predict(df)
+
+    # W-071: 学習済みモデル EV に手動係数を掛けていないことを宣言する
+    # 手動オーバーレイが必要な場合は src/ml/ev_overlay_guard.apply_validated_overlay を使用し
+    # 特徴量化→再学習→OOS ROI実証の手順を踏むこと（CLAUDE.md 条項 W-071）
+    from src.ml.ev_overlay_guard import assert_no_manual_overlay
+
+    assert_no_manual_overlay(ev_scores, context="prerace_pipeline/ev_scores")
+    assert_no_manual_overlay(honmei_scores, context="prerace_pipeline/honmei_scores")
 
     # Step 3b: SHAP 寄与度計算（失敗しても予測は継続）
     honmei_shap_by_num: dict[int, str | None] = {}
