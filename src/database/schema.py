@@ -60,8 +60,7 @@ DDL_STATEMENTS: list[str] = [
         win_odds          REAL,
         horse_weight      INTEGER,
         horse_weight_diff INTEGER,                        -- 馬体重増減（例: +2, -4）
-        created_at        TEXT    NOT NULL DEFAULT (datetime('now', 'localtime')),
-        UNIQUE(race_id, horse_name)
+        created_at        TEXT    NOT NULL DEFAULT (datetime('now', 'localtime'))
     )
     """,
     # ================================================================
@@ -437,6 +436,8 @@ DDL_STATEMENTS: list[str] = [
     "CREATE INDEX IF NOT EXISTS idx_rr_jockey_raceid    ON race_results(jockey, race_id DESC)",
     "CREATE INDEX IF NOT EXISTS idx_rr_trainer_raceid   ON race_results(trainer, race_id DESC)",
     "CREATE INDEX IF NOT EXISTS idx_rr_race_rank        ON race_results(race_id, rank)",
+    # horse_number による部分ユニークインデックス（UNIQUE(race_id, horse_name)の後継）
+    "CREATE UNIQUE INDEX IF NOT EXISTS idx_rr_unique_horsenum ON race_results(race_id, horse_number) WHERE horse_number IS NOT NULL",
     "CREATE INDEX IF NOT EXISTS idx_rp_race_bet         ON race_payouts(race_id, bet_type)",
     # ── 確定P&L集計 / W-057 シャドーA/B / 実弾ROI（pnl_accounting・evaluator）最適化 ──
     # predictions の WHERE(is_superseded, created_at) + GROUP(model_type, bet_type) を1本でカバー。

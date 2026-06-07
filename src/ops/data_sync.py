@@ -491,43 +491,45 @@ def sync_results_from_netkeiba(target_date: str, delay: float = 1.5) -> int:
             # horse_id は netkeiba フォーマット（JRA-VAN と異なる）のため NULL で保存
             for h in race_info.results:
                 try:
-                    with conn:
-                        conn.execute(
-                            """
-                            INSERT INTO race_results
+                    _ds_params = (
+                        race_id,
+                        h.horse_name,
+                        h.rank,
+                        h.gate_number,
+                        h.horse_number,
+                        h.sex_age,
+                        h.weight_carried,
+                        h.jockey,
+                        h.trainer,
+                        h.finish_time,
+                        h.margin,
+                        h.popularity,
+                        h.win_odds,
+                        h.horse_weight,
+                        h.horse_weight_diff,
+                    )
+                    _ds_cols = """INSERT INTO race_results
                                 (race_id, horse_name, rank,
                                  gate_number, horse_number,
                                  sex_age, weight_carried, jockey, trainer,
                                  finish_time, margin, popularity, win_odds,
                                  horse_weight, horse_weight_diff)
-                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                            ON CONFLICT(race_id, horse_name) DO UPDATE SET
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"""
+                    if h.horse_number is not None:
+                        _ds_sql = f"""{_ds_cols}
+                            ON CONFLICT(race_id, horse_number) DO UPDATE SET
+                                horse_name        = CASE WHEN excluded.horse_name != '' THEN excluded.horse_name ELSE race_results.horse_name END,
                                 rank              = COALESCE(excluded.rank,      race_results.rank),
                                 finish_time       = COALESCE(excluded.finish_time, race_results.finish_time),
                                 margin            = COALESCE(excluded.margin,    race_results.margin),
                                 popularity        = COALESCE(excluded.popularity, race_results.popularity),
                                 win_odds          = COALESCE(excluded.win_odds,  race_results.win_odds),
                                 horse_weight      = COALESCE(excluded.horse_weight, race_results.horse_weight),
-                                horse_weight_diff = COALESCE(excluded.horse_weight_diff, race_results.horse_weight_diff)
-                            """,
-                            (
-                                race_id,
-                                h.horse_name,
-                                h.rank,
-                                h.gate_number,
-                                h.horse_number,
-                                h.sex_age,
-                                h.weight_carried,
-                                h.jockey,
-                                h.trainer,
-                                h.finish_time,
-                                h.margin,
-                                h.popularity,
-                                h.win_odds,
-                                h.horse_weight,
-                                h.horse_weight_diff,
-                            ),
-                        )
+                                horse_weight_diff = COALESCE(excluded.horse_weight_diff, race_results.horse_weight_diff)"""
+                    else:
+                        _ds_sql = f"{_ds_cols} ON CONFLICT DO NOTHING"
+                    with conn:
+                        conn.execute(_ds_sql, _ds_params)
                 except sqlite3.IntegrityError as e:
                     logger.debug(
                         "race_results FK スキップ %s %s: %s", race_id, h.horse_name, e

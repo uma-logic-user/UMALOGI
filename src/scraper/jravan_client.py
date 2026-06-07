@@ -2108,49 +2108,55 @@ def _save_se(conn: sqlite3.Connection, r: dict) -> None:
                 ),
             ).rowcount
 
-        # Step2: 既存行がなければ INSERT（ON CONFLICT で horse_name 重複も吸収）
+        # Step2: 既存行がなければ INSERT。horse_number が確定している場合は
+        # UNIQUE(race_id, horse_number) で upsert。NULL の場合は INSERT OR IGNORE。
         if updated == 0:
-            conn.execute(
-                """
-                INSERT INTO race_results
+            _params = (
+                r["race_id"],
+                r.get("horse_id"),
+                r["horse_name"],
+                r.get("rank"),
+                r.get("gate_number"),
+                horse_number,
+                r.get("sex_age", ""),
+                r.get("weight_carried", 0),
+                r.get("jockey", ""),
+                r.get("trainer", ""),
+                r.get("finish_time"),
+                r.get("margin"),
+                r.get("popularity"),
+                r.get("win_odds"),
+                r.get("horse_weight"),
+                r.get("horse_weight_diff"),
+                blood_id,
+            )
+            _insert_cols = """INSERT INTO race_results
                     (race_id, horse_id, horse_name, rank,
                      gate_number, horse_number,
                      sex_age, weight_carried, jockey, trainer,
                      finish_time, margin, popularity, win_odds,
                      horse_weight, horse_weight_diff, blood_id)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                ON CONFLICT(race_id, horse_name) DO UPDATE SET
-                    gate_number       = excluded.gate_number,
-                    horse_number      = excluded.horse_number,
-                    rank              = CASE WHEN excluded.rank IS NOT NULL THEN excluded.rank ELSE race_results.rank END,
-                    finish_time       = COALESCE(excluded.finish_time, race_results.finish_time),
-                    margin            = COALESCE(excluded.margin, race_results.margin),
-                    popularity        = COALESCE(excluded.popularity, race_results.popularity),
-                    win_odds          = CASE WHEN excluded.win_odds > 0 THEN excluded.win_odds ELSE race_results.win_odds END,
-                    horse_weight      = COALESCE(excluded.horse_weight, race_results.horse_weight),
-                    horse_weight_diff = COALESCE(excluded.horse_weight_diff, race_results.horse_weight_diff),
-                    blood_id          = COALESCE(excluded.blood_id, race_results.blood_id)
-                """,
-                (
-                    r["race_id"],
-                    r.get("horse_id"),
-                    r["horse_name"],
-                    r.get("rank"),
-                    r.get("gate_number"),
-                    horse_number,
-                    r.get("sex_age", ""),
-                    r.get("weight_carried", 0),
-                    r.get("jockey", ""),
-                    r.get("trainer", ""),
-                    r.get("finish_time"),
-                    r.get("margin"),
-                    r.get("popularity"),
-                    r.get("win_odds"),
-                    r.get("horse_weight"),
-                    r.get("horse_weight_diff"),
-                    blood_id,
-                ),
-            )
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"""
+            if horse_number is not None:
+                conn.execute(
+                    f"""
+                    {_insert_cols}
+                    ON CONFLICT(race_id, horse_number) DO UPDATE SET
+                        gate_number       = excluded.gate_number,
+                        horse_name        = CASE WHEN excluded.horse_name != '' THEN excluded.horse_name ELSE race_results.horse_name END,
+                        rank              = CASE WHEN excluded.rank IS NOT NULL THEN excluded.rank ELSE race_results.rank END,
+                        finish_time       = COALESCE(excluded.finish_time, race_results.finish_time),
+                        margin            = COALESCE(excluded.margin, race_results.margin),
+                        popularity        = COALESCE(excluded.popularity, race_results.popularity),
+                        win_odds          = CASE WHEN excluded.win_odds > 0 THEN excluded.win_odds ELSE race_results.win_odds END,
+                        horse_weight      = COALESCE(excluded.horse_weight, race_results.horse_weight),
+                        horse_weight_diff = COALESCE(excluded.horse_weight_diff, race_results.horse_weight_diff),
+                        blood_id          = COALESCE(excluded.blood_id, race_results.blood_id)
+                    """,
+                    _params,
+                )
+            else:
+                conn.execute(f"{_insert_cols} ON CONFLICT DO NOTHING", _params)
 
         # entries テーブル: FeatureBuilder が出馬表データとして参照する
         # JVLink SE レコードから直接書き込むことで netkeiba スクレイピングを不要にする

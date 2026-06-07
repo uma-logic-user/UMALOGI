@@ -34,6 +34,22 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-07 — race_results UNIQUE制約修正および文字化けゼロ達成
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-sonnet-4-6) |
+| **修正日** | 2026-06-07 |
+| **バージョン** | `1.4.7-dev` → `1.4.8-dev` |
+| **種別** | fix（DBスキーマ変更・データ浄化）|
+| **実施内容** | **(1) UNIQUE制約変更**: `UNIQUE(race_id, horse_name)` を廃止し、部分ユニークインデックス `UNIQUE(race_id, horse_number) WHERE horse_number IS NOT NULL` に置換。同一レース内の複数文字化け行を空文字に一括設定できない根本原因を解消。**(2) ゴミデータ削除**: Cat1（正常行と重複する文字化け行: 304件）+ Cat2_no_num（horse_number=NULL 回収不能文字化け行: 338件）+ 追加検出2件 = **644件 DELETE**。**(3) Phase3 クリア**: 残存 cat2_with_num 116件を空文字クリア。**文字化けゼロ達成**。**(4) コード修正**: `jravan_client.py` Step2 INSERT → `ON CONFLICT(race_id, horse_number)` に変更（horse_number=NULL 時は `ON CONFLICT DO NOTHING`）。`data_sync.py` 同様に変更。`schema.py` DDL 更新。`scripts/migrate_race_results_unique.py` 新設。 |
+| **影響範囲** | `src/database/schema.py`, `src/scraper/jravan_client.py`, `src/ops/data_sync.py`, `scripts/migrate_race_results_unique.py`（新規）, `data/umalogi.db`（schema migration + 644行DELETE + 116行空文字化）, `data/backups/umalogi_20260607_*.db`（バックアップ）。 |
+| **検証** | `pytest` → **1210 passed / 0 failed**。`v_race_mart` 97,924件正常取得確認。残留文字化け: **0件**。 |
+| **ロールバック** | `data/backups/umalogi_20260607_094407_pre_migrate_unique.db` にマイグレーション前バックアップ存在。 |
+| **関連** | CLAUDE.md 条項4（DB物理削除禁止・例外承認済み）、条項10・16（文字化けゼロ達成）。 |
+
+---
+
 ### 2026-06-06 — 文字化け検知時のDiscordアラート追加および本番DBの浄化完了
 
 | 項目 | 内容 |
