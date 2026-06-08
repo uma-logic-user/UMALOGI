@@ -34,6 +34,20 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-08 — Accuracy Model（勝率特化Classifier）独立実装（v1.7.1-accuracy-dev）
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-opus-4-8) |
+| **修正日** | 2026-06-08 |
+| **バージョン** | 1.7.0-dev → 1.7.1-dev |
+| **種別** | 機能追加 |
+| **実施内容** | ・タスク2.1: 的中率特化の勝率予測 Classifier を新規独立モジュール `src/ml/accuracy_model.py` として実装。並行セッション(39082907)と競合しないよう `src/ml/models.py` は **import のみ・非改変** で再利用。<br>・`logic_map.md §0` のリークフリー大原則厳守（特徴量は FeatureBuilder 由来 FEATURE_COLS のみ・rank/finish_time/margin 排除・is_winner はラベル・time-split）。LightGBM LGBMClassifier(is_unbalance) で is_winner を学習。<br>・OOS評価 `scripts/evaluate_accuracy_model.py`（2025学習→2026テスト・Top-1 Accuracy/LogLoss/AUC）。<br>・連続実行 `scripts/run_final_pipeline.sh`（backfill→再学習・仮置き）。 |
+| **影響範囲** | src/ml/accuracy_model.py(新規), scripts/evaluate_accuracy_model.py(新規), scripts/run_final_pipeline.sh(新規), tests/test_accuracy_model.py(新規)。既存モジュールは無改変。 |
+| **検証** | `tests/test_accuracy_model.py` **7 PASS**（合成dfで学習・予測・保存/読込・リークフリー前提・最少レースガードを検証）。ruff クリーン。OOS実測は run_final_pipeline 完了後に evaluate_accuracy_model で別途算出。 |
+| **ロールバック** | コードは直前コミット aacebe9d へ revert。push 保留（並行セッション配慮）。 |
+| **関連** | タスク2.1, logic_map.md(リークフリー), W-077。 |
+
 ### 2026-06-08 — 2025+クリーンデータで全モデル再学習＋OOS再シミュレーション（v1.7.0-dev）
 
 | 項目 | 内容 |
