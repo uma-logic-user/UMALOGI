@@ -44,7 +44,7 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 | **種別** | 機能追加 |
 | **実施内容** | ・タスク2.1: 的中率特化の勝率予測 Classifier を新規独立モジュール `src/ml/accuracy_model.py` として実装。並行セッション(39082907)と競合しないよう `src/ml/models.py` は **import のみ・非改変** で再利用。<br>・`logic_map.md §0` のリークフリー大原則厳守（特徴量は FeatureBuilder 由来 FEATURE_COLS のみ・rank/finish_time/margin 排除・is_winner はラベル・time-split）。LightGBM LGBMClassifier(is_unbalance) で is_winner を学習。<br>・OOS評価 `scripts/evaluate_accuracy_model.py`（2025学習→2026テスト・Top-1 Accuracy/LogLoss/AUC）。<br>・連続実行 `scripts/run_final_pipeline.sh`（backfill→再学習・仮置き）。 |
 | **影響範囲** | src/ml/accuracy_model.py(新規), scripts/evaluate_accuracy_model.py(新規), scripts/run_final_pipeline.sh(新規), tests/test_accuracy_model.py(新規)。既存モジュールは無改変。 |
-| **検証** | `tests/test_accuracy_model.py` **7 PASS**（合成dfで学習・予測・保存/読込・リークフリー前提・最少レースガードを検証）。ruff クリーン。OOS実測は run_final_pipeline 完了後に evaluate_accuracy_model で別途算出。 |
+| **検証** | `tests/test_accuracy_model.py` **7 PASS**（合成dfで学習・予測・保存/読込・リークフリー前提・最少レースガードを検証）。ruff クリーン。**OOS実測(2025学習3,454R→2026テスト1,475R)**: OOS AUC **0.7493** / OOS LogLoss **0.4544** / **Top-1的中率 21.4%**(303/1,413R・ベースレート1着率6.9%の約3.1倍)。train AUC 0.9003との差は通常範囲のLightGBM汎化ギャップ。⚠️ backfillは2025前半がJVLink保持期間外(NORMAL差分)で 45,666/88,890=51.4% に再キャップ(2025前半100%は到達不能を再確認)。 |
 | **ロールバック** | コードは直前コミット aacebe9d へ revert。push 保留（並行セッション配慮）。 |
 | **関連** | タスク2.1, logic_map.md(リークフリー), W-077。 |
 
