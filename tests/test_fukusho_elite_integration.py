@@ -13,7 +13,7 @@ from src.ml.bet_generator import (
 )
 from src.ml.bet_policy import LIVE_MODELS, is_live_bet
 
-# 16頭・東京（収益セグメント）・上位3頭に高 ev_score / 低 implied → edge 通過
+# 16頭・京都（収益セグメント・2026 OOS聖域）・上位3頭に高 ev_score / 低 implied → edge 通過
 _N = 16
 _HORSES = list(range(1, _N + 1))
 _NAMES = [f"H{i}" for i in _HORSES]
@@ -30,7 +30,7 @@ def _gen(place_top: float):
     place_probs = [place_top, place_top, place_top] + [0.1] * (_N - 3)
     return generate_elite_fukusho_bets(
         race_id="202605010101",
-        venue="東京",
+        venue="京都",
         n_horses=_N,
         horse_numbers=_HORSES,
         horse_names=_NAMES,
@@ -96,7 +96,7 @@ def test_few_horses_skipped() -> None:
     """多頭数条件（>=13頭）未満は見送る。"""
     rec = generate_elite_fukusho_bets(
         race_id="R",
-        venue="東京",
+        venue="京都",
         n_horses=10,
         horse_numbers=_HORSES[:10],
         horse_names=_NAMES[:10],

@@ -3112,17 +3112,34 @@ def get_sandbox_strategy_note(model: str, bet_type: str) -> str:
 #    → 2026年ライブデータでの再検証が必須。
 #
 #  【適用条件】
-#    ① venue ∈ {新潟, 東京, 福島, 京都}  (2025 in-sample ROI: 138.4/125.0/105.5/100.9%)
+#    ① venue ∈ 聖域（下記 _FUKUSHO_ELITE_VENUES）
 #    ② n_horses >= 13 (多頭数)
 #    ③ 選択馬の edge = model_prob / market_implied_prob >= 1.1
+#
+#  【聖域の2026 OOS 再定義（W-077 / 2026-06-08）】
+#    旧聖域 {新潟, 東京, 福島, 京都} は 2025 in-sample 由来で過学習が判明。
+#    2025学習→2026テストのカンニングなしOOS（複勝Top1/Top3流しROI）で再検証した結果:
+#      京都  : 148.8% / 137.0%  → ★維持（2025・2026 両年で堅牢）
+#      阪神  : 120.7% / 136.6%  → ★新規追加（2026 OOSで強い）
+#      中山  :  76.5% / 118.9%  → △ Top3のみ・Top1弱 → 除外（watch）
+#      小倉  :  70.1% / 103.8%  → △ marginal → 除外
+#      新潟  :  70.6% /  62.3%  → ✗ 2025の138%から崩壊（過学習の典型）→ 除外
+#      東京  :  98.3% /  80.4%  → ✗ 除外
+#      福島  :  79.3% /  82.4%  → ✗ 除外
+#      中京  :  81.0% /  73.1%  → ✗ 除外（苦手会場）
+#    ⇒ 聖域を {京都, 阪神}（両指標ROI>120%）に厳格化。中山/小倉は次年で再評価。
 #
 #  【推奨使用方法】
 #    FukushoEliteFilter.should_bet() で事前フィルタリング後、
 #    generate_elite_fukusho_bets() で買い目を生成する。
 # ─────────────────────────────────────────────────────────────────────────────
 
-# 収益セグメント (scripts/segment_analysis.py / 2025 in-sample 発見)
-_FUKUSHO_ELITE_VENUES: frozenset[str] = frozenset({"新潟", "東京", "福島", "京都"})
+# 収益セグメント（聖域）。2026 OOS で再検証し {京都, 阪神} に厳格化（W-077）。
+_FUKUSHO_ELITE_VENUES: frozenset[str] = frozenset({"京都", "阪神"})
+# 苦手会場（2026 OOS で複勝ROIが明確に赤字。聖域から除外＝事実上の _WEAK_SEGMENTS）。
+_FUKUSHO_WEAK_VENUES: frozenset[str] = frozenset(
+    {"新潟", "東京", "福島", "中京", "小倉"}
+)
 _FUKUSHO_ELITE_MIN_HORSES: int = 13
 _FUKUSHO_ELITE_EDGE: float = 1.1
 # W-020: EV 最優先ゲート。segment+edge を通過しても、統計的複勝 EV が
