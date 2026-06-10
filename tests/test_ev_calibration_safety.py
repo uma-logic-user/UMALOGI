@@ -1,11 +1,15 @@
-"""W-066 大穴 EV 暴騰（較正歪み）の安全装置テスト。
+"""W-066 大穴 EV 暴騰（較正歪み）の安全装置テスト（blend_with_market 移行版）。
 
-卍 Isotonic 較正器は ev_score のみで P(win) を返し odds を考慮しないため、
-大穴（高オッズ）馬にも中位馬と同じ確率を付与し EV = P×odds が暴騰する
-（例: P=0.145 × 49.7倍 = EV 7.2）。本テストは推論時の 2 層安全装置を担保する:
+旧 EV_SANITY_CAP=2.0 は「EV を 2.0 に揃えてゲートを素通りさせる」逆効果があった。
+新ロジックは blend_with_market により大穴ほど市場確率(0.80/odds)へ収縮させ、
+EV 暴騰を構造的に根絶する。本テストは移行後の 2 層安全装置を担保する:
 
-  Layer 1: calibrate_win_prob の市場相対キャップ（P <= EV_SANITY_CAP/odds）
+  Layer 1: calibrate_win_prob の blend_with_market（P <= P_market * MAX_RELATIVE_EDGE）
   Layer 2: pure_ev_edge の実弾単勝 高オッズ足切り（odds > MAX_LIVE_WIN_ODDS で棄却）
+
+EV の新しい上限:
+  blend 後の理論最大 EV = (1 − MARKET_TAKE_RATE) × MAX_RELATIVE_EDGE = 0.80 × 1.50 = 1.20
+  旧 EV_SANITY_CAP=2.0 よりさらに厳しく抑制される。
 """
 
 from __future__ import annotations
@@ -13,7 +17,12 @@ from __future__ import annotations
 from unittest.mock import patch
 
 import src.ml.pure_ev_edge as PE
-from src.ml.manji_calibration import EV_SANITY_CAP, calibrate_win_prob
+from src.ml.manji_calibration import calibrate_win_prob
+from src.ml.market_blend_calibration import (
+    MARKET_TAKE_RATE,
+    MAX_RELATIVE_EDGE,
+    blend_with_market,
+)
 from src.ml.pure_ev_edge import (
     MAX_LIVE_WIN_ODDS,
     PureEVConfig,
@@ -22,6 +31,8 @@ from src.ml.pure_ev_edge import (
 )
 
 _EPS = 1e-6
+# 新ロジックでの理論上限 EV（旧 EV_SANITY_CAP=2.0 より厳しい 1.20）
+_BLEND_EV_MAX: float = (1.0 - MARKET_TAKE_RATE) * MAX_RELATIVE_EDGE  # = 1.20
 
 
 # ── 複勝特化 Platt 較正器（2026-06-02 卍複勝昇格）──────────────────────────
@@ -50,38 +61,38 @@ def test_place_calibrator_is_independent_from_win() -> None:
     assert _PLACE_CAL_PATH.name == "manji_place_calibrator.pkl"
 
 
-# ── Layer 1: calibrate_win_prob の EV サニティキャップ ─────────────────────
+# ── Layer 1: calibrate_win_prob の blend_with_market キャップ ─────────────────
 def test_longshot_ev_is_capped() -> None:
-    """大穴（高オッズ）でも EV=P×odds が EV_SANITY_CAP を超えない。"""
+    """大穴（高オッズ）でも EV=P×odds が _BLEND_EV_MAX(=1.20) を超えない（旧 2.0 から強化）。"""
     for odds in (20.0, 49.7, 100.0, 500.0):
         p = calibrate_win_prob(3.0, odds)
-        assert p * odds <= EV_SANITY_CAP + _EPS, f"odds={odds} で EV 暴騰"
+        assert p * odds <= _BLEND_EV_MAX + _EPS, f"odds={odds} で EV 暴騰: {p * odds:.3f}"
 
 
 def test_extreme_ev_score_still_capped() -> None:
-    """ev_score が極端でも大穴の EV は頭打ちになる。"""
+    """ev_score が極端でも大穴の EV は blend 後の理論上限(_BLEND_EV_MAX)を超えない。"""
     p = calibrate_win_prob(30.0, 50.0)
-    assert p * 50.0 <= EV_SANITY_CAP + _EPS
+    assert p * 50.0 <= _BLEND_EV_MAX + _EPS
 
 
 def test_favorite_probability_not_clobbered() -> None:
-    """人気馬（低オッズ）はキャップが発火しない（EV<=cap なら確率を温存）。
+    """人気馬（低オッズ）は blend ウェイト w=1.0 のためモデル確率が保持される。
 
-    cap は P <= EV_SANITY_CAP/odds。odds が小さいと閾値が大きく、通常の
-    較正確率には届かない＝人気馬の確率は不変であることを保証する。
+    10倍以下では w=1.0（モデル完全信頼）。P_cap = P_market × MAX_RELATIVE_EDGE が
+    十分に大きいため、通常の較正確率は切り下げられない。
     """
     odds = 2.0
-    cap_threshold = EV_SANITY_CAP / odds  # = 1.0 → 事実上どんな P でも温存
     p = calibrate_win_prob(2.0, odds)
-    # キャップで人為的に切り下げられていない（=市場上限未満）
-    assert p <= cap_threshold + _EPS
+    # blend 後も確率が 0〜1 の範囲内
     assert 0.0 <= p < 1.0
+    # EV が blend 理論上限を超えない
+    assert p * odds <= _BLEND_EV_MAX + _EPS
 
 
 def test_tansho_ev_bounded_for_longshot() -> None:
-    """tansho_ev 経由でも大穴 EV は EV_SANITY_CAP 以下。"""
+    """tansho_ev 経由でも大穴 EV は blend 理論上限(_BLEND_EV_MAX=1.20)以下。"""
     _p, ev = tansho_ev(manji_ev_score=5.0, win_odds=80.0)
-    assert ev <= EV_SANITY_CAP + _EPS
+    assert ev <= _BLEND_EV_MAX + _EPS
 
 
 # ── Layer 2: pure_ev_edge の高オッズ足切り ─────────────────────────────────
@@ -118,7 +129,7 @@ def test_odds_at_ceiling_allowed() -> None:
 
 
 def test_pure_ev_longshot_ev_never_exceeds_cap() -> None:
-    """実較正を用いた選定でも、採用された買い目の EV は EV_SANITY_CAP 以下。"""
+    """実較正を用いた選定でも、採用された買い目の EV は blend 理論上限(_BLEND_EV_MAX)以下。"""
     horses = [
         {
             "horse_number": i,
@@ -132,4 +143,4 @@ def test_pure_ev_longshot_ev_never_exceeds_cap() -> None:
     bets = select_pure_ev_bets("R", horses, PureEVConfig(max_bets_per_race=10))
     for b in bets.bets:
         if b.bet_type == "単勝":
-            assert b.expected_value <= EV_SANITY_CAP + _EPS
+            assert b.expected_value <= _BLEND_EV_MAX + _EPS

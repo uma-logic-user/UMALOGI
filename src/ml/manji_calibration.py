@@ -25,6 +25,8 @@ import sqlite3
 from pathlib import Path
 from typing import Any
 
+from src.ml.market_blend_calibration import blend_with_market
+
 logger = logging.getLogger(__name__)
 
 _MODEL_DIR = Path(__file__).resolve().parents[2] / "data" / "models"
@@ -40,24 +42,9 @@ _FALLBACK_WIN_CAP = 0.6
 # combo 生確率の上限（確率の性質を保持）
 _COMBO_CAP = 0.99
 
-# W-066 大穴 EV 暴騰の安全装置（推論時・再学習不要）。
-# Isotonic 較正器は ev_score のみで P(win) を返し odds を考慮しないため、
-# 大穴（高オッズ）にも中位馬と同じ確率を付与し EV=P×odds が暴騰する
-# （例: P=0.145 × 49.7倍 = EV 7.2）。市場相対の上限 P <= EV_SANITY_CAP/odds で
-# EV を頭打ちにする（単勝 EV がこれを超えるのは較正誤差であり実エッジではない）。
-EV_SANITY_CAP: float = 2.0
-
-
-def _apply_ev_sanity_cap(prob: float, odds: float) -> float:
-    """P(win) を市場相対上限 ``EV_SANITY_CAP/odds`` で頭打ちにする（W-066）。
-
-    これにより EV=prob*odds <= EV_SANITY_CAP が保証される。odds<=1.0 の不正値は
-    そのまま返す（呼び出し側で別途棄却される）。人気馬では閾値が大きく発火しない。
-    """
-    o = float(odds)
-    if o <= 1.0:
-        return prob
-    return min(prob, EV_SANITY_CAP / o)
+# W-066 後継: EV_SANITY_CAP(=2.0) を廃止し market_blend_calibration.blend_with_market に移行。
+# 旧 EV_SANITY_CAP は「EV を 2.0 に揃えてゲートを素通り」させる逆効果があった。
+# 新ロジックは大穴ほど市場確率(0.80/odds)へ収縮させ、EV が 2.0 で飽和しない。
 
 
 # 学習済み較正器のメモリキャッシュ（None=未ロード, False=ファイルなし）
@@ -96,9 +83,11 @@ def calibrate_win_prob(ev_score: float, odds: float) -> float:
     cal = _load_win_cal()
     if cal is not None:
         try:
-            p = float(cal.predict([float(ev_score)])[0])
-            # W-066: 大穴 EV 暴騰を防ぐ市場相対サニティキャップを適用。
-            return _apply_ev_sanity_cap(min(max(p, 0.0), 0.999), odds)
+            p_iso = float(cal.predict([float(ev_score)])[0])
+            p_clipped = min(max(p_iso, 0.0), 0.999)
+            # 旧: _apply_ev_sanity_cap(P, odds) → EV を 2.0 に揃えるだけで大穴が素通り
+            # 新: blend_with_market(P, odds) → 大穴ほど市場確率へ収縮（EV 暴騰を根絶）
+            return blend_with_market(p_clipped, odds)
         except Exception as exc:  # noqa: BLE001
             logger.debug("卍較正器 predict 失敗（フォールバック）: %s", exc)
 
@@ -106,8 +95,8 @@ def calibrate_win_prob(ev_score: float, odds: float) -> float:
     o = max(float(odds), 1.0)
     implied = float(ev_score) / o if o > 1.0 else float(ev_score) / 10.0
     p = min(max(implied, 0.0), _FALLBACK_WIN_CAP)
-    # W-066: フォールバック経路にも同じサニティキャップを適用（一貫性）。
-    return _apply_ev_sanity_cap(p, odds)
+    # フォールバック経路にも blend_with_market を適用（一貫性）。
+    return blend_with_market(p, odds)
 
 
 # ── 複勝特化 Platt 較正器（2026-06-02）─────────────────────────────────────────

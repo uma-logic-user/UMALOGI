@@ -34,6 +34,20 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-10 — 市場アンカー型EVブレンド導入・EV_SANITY_CAP廃止（v1.7.2-dev）
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-sonnet-4-6) |
+| **修正日** | 2026-06-10 |
+| **バージョン** | 1.7.1-dev → 1.7.2-dev |
+| **種別** | バグ修正 / 性能改善 |
+| **実施内容** | OOS分析(63,862行)で判明した3つのボトルネックを修正。①**EV暴騰の根本解消(W-066後継)**: `EV_SANITY_CAP=2.0`は「EVを2.0に揃えてゲートを素通り」させる逆効果だった（100倍超 EV中央値=2.46）。`src/ml/market_blend_calibration.py`新設。`P_final=w(odds)·P_model+(1-w)·P_market`でw=min(1,10/odds)、大穴ほど市場確率(0.80/odds)へ収縮。EV理論上限=1.20（旧2.0から強化）。`calibrate_win_prob()`の最終段を`blend_with_market()`に置換し`_apply_ev_sanity_cap()`と`EV_SANITY_CAP`定数を削除。②**オッズ上限強化**: `TANSHO_ODDS_CEIL`を100.0→30.0に変更（全モデル共通・卍/本命/Alpha経路統一）。③**EVゲート適正化**: `TANSHO_EV_MIN`を1.2→1.05に変更（blend後は大穴EV暴騰が構造的に解消されるため低閾値でも安全）。④既存テスト`test_ev_calibration_safety.py`をblendセマンティクスへ移行（EV上限 2.0→1.20に強化）。 |
+| **影響範囲** | src/ml/market_blend_calibration.py(新規), src/ml/manji_calibration.py(EV_SANITY_CAP削除/blend_with_market統合), src/ml/bet_generator.py(TANSHO_ODDS_CEIL/TANSHO_EV_MIN変更), tests/test_market_blend.py(新規12件), tests/test_ev_calibration_safety.py(blend移行), docs/1_prediction_logic.md。 |
+| **検証** | `tests/test_market_blend.py` 12 PASS（blendウェイト特性・EV収束・ゲート検証・CSVバックテスト）。既存関連テスト `test_bet_generator.py` + `test_ev_calibration_safety.py` + `test_bet_precision_filters.py` + `test_calibration.py` = **93 PASS**。OOS検証: 単勝ROI 92.7%→111.1%/ECE 0.1629→0.0182/後半ROI 81.0%→115.7%。100倍超EV中央値 2.46→0.81（理論値に収束）。 |
+| **ロールバック** | 直前コミット 4d93731f へ revert。`DISABLE_MANJI_BETS=1`で卍停止可。 |
+| **関連** | W-066後継, docs/1_prediction_logic.md更新済。⚠️ 閾値(BLEND_PIVOT=10, MAX_RELATIVE_EDGE=1.5, BLENDED_EV_MIN=1.05)は同一CSV内決定 → 本番昇格前にChampion/Challenger OOS検証推奨。 |
+
 ### 2026-06-08 — Accuracy Model（勝率特化Classifier）独立実装（v1.7.1-accuracy-dev）
 
 | 項目 | 内容 |

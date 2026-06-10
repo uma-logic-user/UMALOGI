@@ -101,11 +101,13 @@ def _is_allowed_bet_type(model_type: str, bet_type: str) -> bool:
 #   過剰人気（EVが1.0を超えにくく負け時の損失が大）と大穴（モデル精度のノイズ域）を除外。
 #   狙うボリュームゾーンは単勝 5.0〜30.0 倍だが、ハード足切りは下記2値で行う。
 TANSHO_ODDS_FLOOR: float = 1.5  # これ以下の単勝は除外（過剰人気・低期待値）
-TANSHO_ODDS_CEIL: float = 100.0  # これ以上の単勝は除外（大穴ノイズ）
+TANSHO_ODDS_CEIL: float = 30.0  # これ以上の単勝は除外（大穴ノイズ・blend後もEV≥1.05未達）
 # #4 ワイド専用EVゲート: AIワイド的中率 × ワイド(下限)オッズ >= 1.2 の組のみ採用。
 WIDE_EV_MIN: float = 1.2
-# W-049 #1 単勝EVゲート: 期待値 1.2 未満の単勝は除外（モデル誤差を吸収する閾値）。
-TANSHO_EV_MIN: float = 1.2
+# W-049 #1 単勝EVゲート: blend_with_market 後の EV 閾値 1.05（旧:1.2）。
+# 市場ブレンドにより大穴のEV暴騰が構造的に解消されたため、
+# より低い閾値でも期待値プラスの買い目だけが通過できる。
+TANSHO_EV_MIN: float = 1.05
 # W-049 #2 ワイド多点制限: 1レースあたりワイドはEV高い順に最大この点数へ絞る。
 WIDE_MAX_POINTS: int = 3
 
