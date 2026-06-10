@@ -1,0 +1,70 @@
+# ============================================================
+# UMALOGI 完全自動運用 設定ファイル（automation_daily.yaml）
+#
+# 本ファイルは「人間が一切介入しない日次/週次の自動運用フロー」の
+# 宣言的な単一真実源（SSoT）である。実行主体は以下の3層:
+#
+#   層1: ローカル常駐プロセス（本番の主経路・JVLink COM が必須のため）
+#        - scripts/bat/start_umalogi.bat で起動（PC ブート時自動起動を推奨）
+#   層2: Windows タスクスケジューラ（補助バッチ・日次マーケティング等）
+#        - scripts/bat/register_daily_tasks.ps1 で登録
+#   層3: GitHub Actions self-hosted runner（CI とフォールバック実行）
+#        - .github/workflows/ci.yml / umalogi_auto.yml
+#
+# ⚠️ scheduler.py と today_auto_runner --continuous は排他。
+#    本設定はオートパイロット方式（本番実態）を正とする。
+# ============================================================
+
+resident_processes:
+  autopilot:
+    command: "py scripts/today_auto_runner.py --continuous"
+    role: "週次自律運転の中核（金夜同期→土日監視→週次レポート→自動スリープ)"
+    restart_policy: "watchdog が監視（停止検知時は start_umalogi.bat で再起動）"
+  watchdog:
+    command: "py scripts/watchdog.py --interval 5"
+    role: "オッズ欠損監視→JVLink再起動＋再同期"
+  dashboard:
+    command: "py -m streamlit run web_streamlit/app.py --server.port 8501"
+    role: "成果可視化ダッシュボード"
+
+# ── 日次フロー（オートパイロット内部 + タスクスケジューラ補助）──────────
+daily_flow:
+  - step: data_sync
+    when: "金曜 20:00 JST（オートパイロット内蔵）"
+    what: "JVLink 出馬表・オッズ・マスタ同期（netkeiba フォールバック付き）"
+  - step: provisional_prediction
+    when: "金曜夜（同期直後）"
+    what: "土日全レースの暫定予想生成 → Discord 通知"
+  - step: prerace_prediction
+    when: "土日 発走前（オートパイロット監視ループ）"
+    what: "直前オッズで EV 再計算 → 買い目確定 → Discord/UI 配信"
+  - step: result_evaluation
+    when: "土日 レース確定後"
+    what: "払戻同期 → 的中判定（reconcile）→ Hit Flash 通知"
+  - step: marketing_assets
+    when: "毎日 21:00 JST（タスクスケジューラ: UMALOGI_DailyMarketing）"
+    what: "py -m src.marketing.sns_generator — 無料予想ポスト/的中実績/動画台本を生成"
+    output: "outputs/marketing/YYYYMMDD/"
+  - step: weekly_report
+    when: "日曜 夜（オートパイロット内蔵）"
+    what: "週次 P&L レポート → Discord"
+
+# ── マーケティング自動生成の設定 ─────────────────────────────────────────
+marketing:
+  free_pick_limit: 3          # 無料公開レース数（残りは有料側に温存=盾運用）
+  output_dir: "outputs/marketing"
+  schedule_time: "21:00"      # タスクスケジューラ起動時刻（JST）
+  # 生成物の投稿は当面 人間が X/note にコピペ（API 自動投稿は規約確認後に解禁）
+  auto_post: false
+
+# ── バンクロール管理（src/ml/bankroll_manager.py）────────────────────────
+# ⚠️ 本番ベットフローへの結線は OOS 検証ゲート通過後（W-078 参照）。
+bankroll:
+  initial_bankroll: 100000
+  kelly_fraction: 0.10        # 1/10 Kelly
+  max_bet_pct: 0.02           # 1点上限（バンクロール比）
+  max_daily_exposure_pct: 0.10  # 1日合計エクスポージャー上限
+  drawdown_throttle:          # ピーク比下落 → Kelly 減速
+    - { drawdown: 0.10, multiplier: 0.5 }
+    - { drawdown: 0.20, multiplier: 0.25 }
+    - { drawdown: 0.30, multiplier: 0.0 }   # 全停止＝人間レビュー強制

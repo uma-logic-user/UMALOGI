@@ -34,6 +34,34 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-11 — ビジネスシステム化4領域（バンクロール管理/自動運用SSoT/SNS集客/サブスク導線）実装（v1.8.0-dev）
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-fable-5) |
+| **修正日** | 2026-06-11 |
+| **バージョン** | 1.7.2-dev → 1.8.0-dev（MINOR: 後方互換な機能追加・既存本番挙動は不変） |
+| **種別** | 機能追加 / 運用基盤 / ドキュメント |
+| **実施内容** | ①**領域1（金融工学）**: EVパイプライン精査で数学的穴10件を特定し docs/business_architecture_fable.md §1.2 に台帳化。うち4件（同時ベット合成Kelly/静的バンクロール/破産確率未定量化/ドローダウン無減速）を `src/ml/bankroll_manager.py` 新設で解消（allocate_stakes 比例縮約・effective_bankroll 動的資金・estimate_ruin_probability MC・drawdown_throttle）。**本番ベットフロー未結線**（OOS比較ゲート後・W-078）。②**領域2（DevOps）**: 3層自動運用の宣言的SSoT `config/automation_daily.yaml` ＋ タスクスケジューラ登録 `scripts/bat/register_daily_tasks.ps1`（BootStart=無人復電対応/DailyMarketing=毎日21:00）。③**領域3（SNS）**: `src/marketing/sns_generator.py` 新設。無料予想（盾・文字化け/空馬名除外§16遵守）・前日実績（**is_live_bet で実弾のみ集計**＝誠実な数字・負け日も公開）・CapCut台本を outputs/marketing/ へ日次生成。④**領域4（サブスク）**: KILLER_PHRASES 6型（期待値・長期投資の論理）を全生成文へ日付決定的ローテーションで自動挿入。 |
+| **影響範囲** | src/ml/bankroll_manager.py(新規), src/marketing/__init__.py・sns_generator.py(新規), config/automation_daily.yaml(新規), scripts/bat/register_daily_tasks.ps1(新規), docs/business_architecture_fable.md(新規), tests/test_bankroll_manager.py・test_sns_generator.py(新規42件), docs/1_prediction_logic.md, docs/2_automation_schedule.md, docs/8_commercial_spec.md, docs/7_weakness_ledger.md(W-078), docs/SYSTEM_ARCHITECTURE.md, VERSION。**既存の predictions/モデル/常駐プロセス/ベットフローは非改変**。 |
+| **検証** | 新規テスト42件PASS＋全体スイート **1276 passed**（test_accuracy_model_v2.py は並行セッション残骸=worktree専用モジュール参照のため除外）。mypy 0（新規2モジュール）・ruff クリーン。実DBスモーク: `py -m src.marketing.sns_generator --date 20260607` で実弾限定ROI109%・実馬名3レース・台本を正しく生成（観賞用混入で39%と誤表示するバグを is_live_bet フィルタで修正済）。 |
+| **ロールバック** | 直前コミット a6fead9c へ revert。新規ファイル削除のみで既存挙動へ完全復帰（結線なしのため）。 |
+| **関連** | W-078(新規起票), W-066/W-071(教訓踏襲), docs/business_architecture_fable.md, [[feedback_ev_precision_safety_first]]。⚠️ tests/test_accuracy_model_v2.py(未追跡)は accuracy-model worktree の取り込み残骸で import 不能 — 並行セッション所有物のため本セッションでは非削除・要オーナー判断。 |
+
+### 2026-06-11 — 外部AI分析用 完全版仕様・コード集約エクスポーター新設
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-fable-5) |
+| **修正日** | 2026-06-11 |
+| **バージョン** | 据え置き 1.7.2-dev（本番挙動に影響しない読み取り専用ユーティリティのため） |
+| **種別** | 運用基盤 |
+| **実施内容** | 外部 LLM に UMA-Logic のアーキテクチャ・EV算出ロジック・仕様を分析させるための単一エクスポートファイル生成スクリプト `scripts/export_full_spec_for_ai.py` を新設。docs/全md(73)・src/ml/全py(26)・src/database/全py(7)・OOS/EV検証スクリプト(9)・accuracy-model worktree未マージ実装(3)・ルートドキュメント(CLAUDE.md/logic_map.md/VERSION) の計121ファイルを `<file path="...">` XMLタグ区切りで結合し `export/umalogic_full_spec_for_ai_analysis.txt`（2.44MB）へ出力。 |
+| **影響範囲** | scripts/export_full_spec_for_ai.py(新規), export/umalogic_full_spec_for_ai_analysis.txt(生成物)。既存コード・DB・本番パイプラインは無改変。 |
+| **検証** | 実行成功（121ファイル結合・2.44MB）。`<file>` 開始/終了タグ数一致(121/121)・目次/メタデータブロック・主要ファイル（features.py/u_score.py/schema.py/accuracy_model_v2.py/evaluate_hybrid_ensemble.py/1_prediction_logic.md）の収録を確認。 |
+| **ロールバック** | scripts/export_full_spec_for_ai.py と export/ を削除するのみ（他に影響なし）。 |
+| **関連** | ⚠️ ユーザー指定の `data_provenance_map.md` はリポジトリ内に存在せず未収録。`accuracy_model_v2.py`/`evaluate_hybrid_ensemble.py` は .claude/worktrees/accuracy-model のみに存在するため worktree 出所を明記して収録。 |
+
 ### 2026-06-10 — 市場アンカー型EVブレンド導入・EV_SANITY_CAP廃止（v1.7.2-dev）
 
 | 項目 | 内容 |
