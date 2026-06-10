@@ -34,6 +34,20 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-11 — 完全体アップグレード: 全券種EVエンジン/残タスクスイープ/見送り判定モデル（v1.9.0-dev）
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-fable-5) |
+| **修正日** | 2026-06-11 |
+| **バージョン** | 1.8.0-dev → 1.9.0-dev（MINOR: 新モデル群追加・既存本番挙動は不変） |
+| **種別** | 機能追加 / 技術的負債解消 |
+| **実施内容** | ①**全券種EV最適化** `src/ml/all_ticket_optimizer.py` 新規: 割引Harville(Benter流・λ2=0.81/λ3=0.65)で1-3着同時分布→馬連/馬単/ワイド/三連複/三連単のEV算出→EV≥1.30の市場歪みのみ抽出→軸-相手フォーメーション生成。Plackett-Luce MC検証器(Gumbel-Max)同梱で解析式の正しさをテスト担保。**実弾は単複ロック不変**（分析・サブスク用）。②**残タスクスイープ**: AccuracyModelV2をworktreeからmaster移植(orphanテスト6件解消)・ハイブリッドアンサンブル(EV×Accuracy)検証スクリプト移植＋honmei入力69列整列の実バグ修正＋実DB OOS実行・TODO/legacy_bridge調査(いずれも実体なし=対応不要を確認)。③**【Fable提案】見送り判定** `src/ml/no_bet_filter.py` 新規: レース単位chaos_score(エントロピー/弱い本命/オーバーラウンド異常/JS乖離/構造)≥0.42で見送る二値ゲート。確率・EV改変は構造的に不可(W-071遵守)。W-079起票で段階導入(シャドー→実弾昇格)。 |
+| **影響範囲** | src/ml/all_ticket_optimizer.py(新規), src/ml/no_bet_filter.py(新規), src/ml/accuracy_model_v2.py(移植), scripts/evaluate_hybrid_ensemble.py(移植+修正), tests/test_all_ticket_optimizer.py(19件), tests/test_no_bet_filter.py(14件), docs/fable_ultimate_upgrade.md(新規), docs/1_prediction_logic.md, docs/5_ml_roadmap.md, docs/7_weakness_ledger.md(W-079+スイープ記録), docs/SYSTEM_ARCHITECTURE.md, VERSION。**bet_policy実弾ロック・FEATURE_COLS(69)・predictions・常駐プロセスは非接触**。 |
+| **検証** | 新規テスト39件PASS（+orphan解消6件）・mypy 0（新規3モジュール）・ruffクリーン・全体スイート結果はコミットメッセージ参照。ハイブリッドアンサンブルOOSは実DBで実行（結果: docs/fable_ultimate_upgrade.md §タスク2）。 |
+| **ロールバック** | 直前コミット 03408d7b へ revert。全モジュール未結線のためファイル削除のみで完全復帰。 |
+| **関連** | W-079(新規), W-071/W-078(教訓・関連), docs/fable_ultimate_upgrade.md |
+
 ### 2026-06-11 — ビジネスシステム化4領域（バンクロール管理/自動運用SSoT/SNS集客/サブスク導線）実装（v1.8.0-dev）
 
 | 項目 | 内容 |
