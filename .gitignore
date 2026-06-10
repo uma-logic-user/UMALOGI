@@ -67,6 +67,10 @@ dist/
 outputs/note/
 # 地方競馬（NAR）ライブデモの生成 Markdown（再生成可能・追跡禁止）
 outputs/nar/
+# SNS集客アセット日次生成物（sns_generator・再生成可能）
+outputs/marketing/
+# 外部AI分析用エクスポート（export_full_spec_for_ai.py で再生成可能・2.4MB級）
+export/
 
 # ── その他 ────────────────────────────────────────────────────────
 py
