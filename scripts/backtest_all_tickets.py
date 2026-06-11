@@ -11,8 +11,15 @@
   - 清算は race_payouts の**実払戻**のみ（推定オッズで利益を計上しない）
   - 1点 100 円フラット・テスト期間は cutoff 以降の純 OOS
 
+アンサンブル検証（過去モデル昇華・legacy_ensemble）:
+    --manji-weight W : 卍(EV回帰)の暗黙勝率を w=W で honmei に融合してから較正する。
+    --frame train    : cutoff前の train フレームで実行（重みのグリッド探索専用）。
+                       OOS(test) で重みを選ぶことはリークのため、探索は必ず train で行う。
+
 Usage:
     py scripts/backtest_all_tickets.py [--ev-min 1.30] [--max-bets 6]
+    py scripts/backtest_all_tickets.py --frame train --manji-weight 0.3   # 重み探索
+    py scripts/backtest_all_tickets.py --manji-weight 0.3                 # OOS 検証
 """
 
 from __future__ import annotations
@@ -31,6 +38,7 @@ if str(_ROOT) not in sys.path:
 _DB_PATH = _ROOT / "data" / "umalogi.db"
 _CACHE = _ROOT / "data" / "ablation_cache.pkl"
 _HONMEI_PKL = _ROOT / "data" / "models" / "honmei_model.pkl"
+_MANJI_PKL = _ROOT / "data" / "models" / "manji_model.pkl"
 
 
 def _combo_key(bet_type: str, combo: tuple[int, ...]) -> str:
@@ -51,12 +59,32 @@ def main() -> int:
     ap.add_argument("--max-bets", type=int, default=6)
     ap.add_argument("--top-k", type=int, default=8)
     ap.add_argument("--show-hits", action="store_true", help="的中の内訳を表示")
+    ap.add_argument(
+        "--manji-weight",
+        type=float,
+        default=0.0,
+        help="卍EV回帰の暗黙勝率の混合比 w（0=従来と恒等）",
+    )
+    ap.add_argument(
+        "--ensemble-bet-types",
+        type=str,
+        default="",
+        help="卍アンサンブルを適用する券種（カンマ区切り・空=全券種に適用）。"
+        "例: 三連複 → 三連複のみ w 適用、他券種は w=0（従来と恒等）",
+    )
+    ap.add_argument(
+        "--frame",
+        choices=("train", "test"),
+        default="test",
+        help="train=cutoff前（重み探索用）/ test=純OOS（最終検証）",
+    )
     args = ap.parse_args()
 
     import numpy as np
 
     from src.ml.all_ticket_optimizer import OptimizerConfig, scan_all_tickets
     from src.ml.ev_features import MarketProbabilityCalc
+    from src.ml.legacy_ensemble import ensemble_win_probs, predict_manji_ev
     from src.ml.market_blend_calibration import blend_with_market
     from src.ml.models import FEATURE_COLS
 
@@ -66,9 +94,15 @@ def main() -> int:
         )
         return 1
     with open(_CACHE, "rb") as f:
-        _, test_df = pickle.load(f)
+        train_df, test_df = pickle.load(f)
+    if args.frame == "train":
+        test_df = train_df
     with open(_HONMEI_PKL, "rb") as f:
         honmei = pickle.load(f)
+    manji = None
+    if args.manji_weight > 0.0:
+        with open(_MANJI_PKL, "rb") as f:
+            manji = pickle.load(f)
 
     conn = sqlite3.connect(str(_DB_PATH))
     calc = MarketProbabilityCalc()
@@ -106,19 +140,35 @@ def main() -> int:
         odds = np.array([float(o) for o in g["win_odds"]])
         if len(numbers) < 6:
             continue
-        # honmei 本番モデルの勝率（69列整列）→ 市場ブレンド較正
+        # honmei 本番モデルの勝率（69列整列）→（卍アンサンブル）→ 市場ブレンド較正
         x = g.reindex(columns=FEATURE_COLS).fillna(0.0)
         if getattr(honmei, "_Booster", None) is None:
             continue
-        raw = honmei._Booster.predict(x.values)
-        model_p = np.array(
-            [blend_with_market(float(p), float(o)) for p, o in zip(raw, odds)]
-        )
+        raw = np.asarray(honmei._Booster.predict(x.values), dtype=float)
         market_p = calc.compute_shin_probabilities(odds)
 
-        cands = scan_all_tickets(
-            numbers, model_p, market_win_probs=market_p, config=cfg
-        )
+        ens_types = {t.strip() for t in args.ensemble_bet_types.split(",") if t.strip()}
+
+        def _scan(probs: "np.ndarray") -> list:
+            model_p = np.array(
+                [blend_with_market(float(p), float(o)) for p, o in zip(probs, odds)]
+            )
+            return scan_all_tickets(
+                numbers, model_p, market_win_probs=market_p, config=cfg
+            )
+
+        if manji is None:
+            cands = _scan(raw)
+        else:
+            manji_ev = predict_manji_ev(manji, g)
+            raw_ens = ensemble_win_probs(raw, manji_ev, odds, weight=args.manji_weight)
+            if not ens_types:
+                cands = _scan(raw_ens)
+            else:
+                # 券種別適用: 指定券種はアンサンブル確率、他は従来確率（恒等）
+                cands = [c for c in _scan(raw) if c.bet_type not in ens_types] + [
+                    c for c in _scan(raw_ens) if c.bet_type in ens_types
+                ]
         if not cands:
             continue
         n_races_with_bets += 1
@@ -159,9 +209,15 @@ def main() -> int:
         f" 全券種EVオプティマイザ OOS バックテスト"
         f"（EV≥{args.ev_min} / max{args.max_bets}点 / 実払戻清算）"
     )
+    period = (
+        "2025-10〜2026-06 (純OOS)"
+        if args.frame == "test"
+        else "cutoff前 (train・重み探索用)"
+    )
+    ens = f" / 卍w={args.manji_weight}" if args.manji_weight > 0 else ""
     print(
         f" 対象: {n_races}レース（うちベット発生 {n_races_with_bets}）"
-        f" / 期間: 2025-10〜2026-06"
+        f" / 期間: {period}{ens}"
     )
     print("=" * 78)
     print(

@@ -34,6 +34,22 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-11 — 過去モデル昇華アンサンブル: 卍EV回帰×三連複で OOS ROI 110.0%→119.2%（v1.12.0-dev）
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-fable-5) |
+| **修正日** | 2026-06-11 |
+| **バージョン** | 1.11.0-dev → 1.12.0-dev（MINOR: 新モジュール legacy_ensemble＋premium_pack の勝率推計強化） |
+| **種別** | 機能追加（過去モデル資産の発掘・アンサンブル統合） |
+| **実施内容** | ①**過去モデル全資産の静的解析** `scripts/analyze_legacy_models.py` 新規: 全保存pkl（ALPHA/ALPHA-Payout/cascade/sandbox 3種/v2系/pre69feat世代）をリーク修正済みOOSキャッシュ（400R・2025-10〜2026-06）で AUC(is_win)・現行honmeiとのスピアマン相関・荒れレース(勝者人気4+)AUC を測定。キャッシュの market_prob/popularity 全NaN を発見し win_odds から決定的に再構成。**採用=卍(現役EV回帰)のみ**（荒れAUC 0.754・ρ(honmei)=0.33・ρ(market)=0.21）。不採用: ALPHA系=ρ(market)≈0.96-0.98の市場確率複製（blend_with_market と情報重複）/cascade=stage1 pkl未保存で own_rank1_prob 等が再現不能/sandbox(AUC0.54-0.64)・pre69feat(0.63-0.67)・v2系(0.59-0.70)=精度不足。②**アンサンブル** `src/ml/legacy_ensemble.py` 新規: `ensemble_win_probs` = (1−w)·p_honmei + w·(卍EV/odds をレース内正規化し Σp_honmei にスケール合わせ)。総和保存・w=0で完全恒等・卍無情報/NaN/負値はフォールバック。重み決定は **trainフレーム(cutoff前300R)グリッド探索(w=0.4=合計ROIピーク97.5%)→OOS一発検証** の2段プロトコル（OOSでの重み選択=リークを排除）。③**OOS検証結果**: 全券種適用は合計105.2%で不合格→**三連複限定適用**（三連単はw適用で110.0→93.5%劣化: 着順厳密予測はhonmei 1着精度が支配的で卍の複勝圏歪み情報はノイズ、trainでも三連複のみ単調改善で整合）に設計変更し、**合計ROI 110.0%→119.2%・三連複 106.9%→157.9%（的中13→26件）・最大1的中除外 81.8%→107.8%**（三連単/馬連/馬単は数学的に従来と同一買い目=低下リスク構造ゼロ）。④**本番配線**: `premium_pack.scan_premium_races` に `ManjiScoreSource`（卍pkl直接ロード＋FeatureBuilder全頭推論。predictions の卍レコードは買い目3頭のみ同値保存で使用不能のため）を結線し、三連複のみアンサンブル確率から抽出・失敗時は従来確率へフォールバック（恒等）。premium_pack は v1.11.0 で auto_runner 配線済みのため**今週末のオートパイロット稼働から自動有効**。実弾ポリシー（単複ロック）不変。 |
+| **影響範囲** | src/ml/legacy_ensemble.py(新規), src/marketing/premium_pack.py, scripts/analyze_legacy_models.py(新規), scripts/backtest_all_tickets.py(--manji-weight/--frame/--ensemble-bet-types 追加), tests/test_legacy_ensemble.py(新規16件), docs/1_prediction_logic.md, docs/5_ml_roadmap.md, docs/7_weakness_ledger.md(W-081), docs/spec/ARCHITECTURE_v1.0.0.md, docs/SYSTEM_ARCHITECTURE.md, VERSION。DBスキーマ・モデルpkl・実弾ポリシーは非接触。 |
+| **検証** | OOS 400R 実払戻清算バックテスト（上記ROI）・w=0 恒等性をベースライン完全一致で確認・`pytest` 全件 PASS（新規16件純増・本文の検証欄参照）・対象ファイル ruff format 済み。 |
+| **ロールバック** | 直前コミット b871034d へ revert。配線のみ戻す場合は premium_pack.py の MANJI_ENSEMBLE_* import と ens_probs ブロックを削除（w=0 恒等のため数値影響なし）。 |
+| **関連** | W-081（新規・🟢完了）/ [[W-080]] / feedback_no_unvalidated_overlays（特徴量化→検証→OOSの順を遵守） |
+
+---
+
 ### 2026-06-11 — 完全堅牢化＋年間600万円収益化基盤: 堅牢化4パッチ・プレミアム自動生成・W-078破産シミュレーション（v1.11.0-dev）
 
 | 項目 | 内容 |

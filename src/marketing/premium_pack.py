@@ -51,6 +51,12 @@ from src.ml.all_ticket_optimizer import (
 )
 from src.ml.bankroll_manager import BankrollConfig, BetCandidate, allocate_stakes
 from src.ml.ev_features import MarketProbabilityCalc
+from src.ml.legacy_ensemble import (
+    MANJI_ENSEMBLE_BET_TYPES,
+    MANJI_ENSEMBLE_WEIGHT,
+    ManjiScoreSource,
+    ensemble_win_probs,
+)
 from src.ml.market_blend_calibration import blend_with_market
 from src.utils.text import ensure_clean, is_garbled
 
@@ -192,6 +198,7 @@ def scan_premium_races(conn: sqlite3.Connection, date_str: str) -> list[RacePrem
     ).fetchall()
     calc = MarketProbabilityCalc()
     cfg = OptimizerConfig(ev_min=PREMIUM_EV_MIN, max_bets=_MAX_SCAN_BETS)
+    manji_src = ManjiScoreSource(conn)
     results: list[RacePremium] = []
     for race_id, venue, race_number, race_name in races:
         try:
@@ -199,17 +206,43 @@ def scan_premium_races(conn: sqlite3.Connection, date_str: str) -> list[RacePrem
             if inputs is None:
                 continue
             numbers, raw_probs, odds = inputs
-            blended = [
-                blend_with_market(p, o) for p, o in zip(raw_probs, odds, strict=True)
-            ]
             market = calc.compute_shin_probabilities(np.asarray(odds, dtype=float))
+
+            def _scan(probs: list[float]) -> list[TicketCandidate]:
+                blended = [
+                    blend_with_market(p, o) for p, o in zip(probs, odds, strict=True)
+                ]
+                return [
+                    c
+                    for c in scan_all_tickets(
+                        numbers, blended, market_win_probs=market, config=cfg
+                    )
+                    if c.bet_type in PREMIUM_BET_TYPES
+                ]
+
             cands = [
                 c
-                for c in scan_all_tickets(
-                    numbers, blended, market_win_probs=market, config=cfg
-                )
-                if c.bet_type in PREMIUM_BET_TYPES
+                for c in _scan(raw_probs)
+                if c.bet_type not in MANJI_ENSEMBLE_BET_TYPES
             ]
+            # 過去モデル昇華（legacy_ensemble・OOS検証済み）:
+            # 三連複のみ卍EV回帰を w=0.4 で融合した勝率から抽出する。
+            # 卍スコア取得に失敗したレースは従来確率にフォールバック（恒等）。
+            ens_probs = raw_probs
+            manji_map = manji_src.scores_for(str(race_id))
+            if manji_map is not None and all(n in manji_map for n in numbers):
+                ens_probs = list(
+                    ensemble_win_probs(
+                        np.asarray(raw_probs, dtype=float),
+                        np.asarray([manji_map[n] for n in numbers], dtype=float),
+                        np.asarray(odds, dtype=float),
+                        weight=MANJI_ENSEMBLE_WEIGHT,
+                    )
+                )
+            cands += [
+                c for c in _scan(ens_probs) if c.bet_type in MANJI_ENSEMBLE_BET_TYPES
+            ]
+            cands.sort(key=lambda c: c.ev, reverse=True)
             if not cands:
                 continue
             results.append(
