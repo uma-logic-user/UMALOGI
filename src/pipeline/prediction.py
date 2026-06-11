@@ -1006,10 +1006,15 @@ def _prerace_pipeline_inner(
                 conn.commit()
                 if weight_updated > 0:
                     logger.info(
-                        "直前馬体重更新(W-069): %d頭 (race_id=%s)", weight_updated, race_id
+                        "直前馬体重更新(W-069): %d頭 (race_id=%s)",
+                        weight_updated,
+                        race_id,
                     )
                 else:
-                    logger.debug("直前馬体重: 更新対象なし（JVRTOpenで取得済み）(race_id=%s)", race_id)
+                    logger.debug(
+                        "直前馬体重: 更新対象なし（JVRTOpenで取得済み）(race_id=%s)",
+                        race_id,
+                    )
         except Exception as exc:
             logger.warning("直前馬体重更新失敗（続行）: %s", exc)
 
@@ -1334,6 +1339,7 @@ def _prerace_pipeline_inner(
             oracle_bets=oracle_bets,
             hit_focus_bets=hit_focus_bets,
             alpha_bets=alpha_bets,
+            race_name=str(_race_meta[0] or "") if _race_meta else "",
         )
 
         # Step 7a2: Pure_EV_Edge（黒字化専用枠）を独立 Discord 通知（EV アラートch）

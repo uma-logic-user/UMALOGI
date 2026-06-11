@@ -55,6 +55,7 @@ def setup_logging(
     backup_days: int = DEFAULT_BACKUP_DAYS,
     to_console: bool = True,
     log_dir: Path | None = None,
+    use_rich: bool = False,
 ) -> logging.Logger:
     """ルートロガーに日次ローテーションのファイル + コンソール出力を設定する。
 
@@ -70,6 +71,9 @@ def setup_logging(
         backup_days:  保持世代数（=保持日数。既定7。これより古い分は自動削除）。
         to_console:   True ならコンソールにも出力する。
         log_dir:      出力ディレクトリ（省略時 <project_root>/data）。
+        use_rich:     True なら rich.RichHandler でコンソールをカラー装飾する
+                      （rich 未導入時は従来の plain ハンドラーへ自動フォールバック。
+                      ファイル出力のフォーマットは一切変わらない）。
 
     Returns:
         設定済みの名前付きロガー。
@@ -91,8 +95,17 @@ def setup_logging(
 
     handlers: list[logging.Handler] = [file_handler]
     if to_console:
-        console = _utf8_console_handler()
-        console.setFormatter(formatter)
+        console: logging.Handler | None = None
+        if use_rich:
+            try:
+                from src.ui.console import create_rich_log_handler
+
+                console = create_rich_log_handler(level=level)
+            except Exception:  # noqa: BLE001 - 装飾失敗で本番を殺さない
+                console = None
+        if console is None:
+            console = _utf8_console_handler()
+            console.setFormatter(formatter)
         handlers.append(console)
 
     root = logging.getLogger()

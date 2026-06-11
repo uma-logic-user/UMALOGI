@@ -152,3 +152,70 @@ def test_notify_prerace_result_sends_embed() -> None:
     body = mock_post.call_args[1]["json"]
     assert "embeds" in body
     assert len(body["embeds"]) == 1
+
+
+# ── notify_prerace_result プレミアム Embed（格付け色・投資比率バー）────────
+
+
+def test_notify_prerace_result_grade_color_and_stake_bar() -> None:
+    from src.notification.embed_builder import COLOR_G1
+
+    n = _make_notifier()
+    honmei = _make_mock_bets("本命", ev=1.5)
+    manji = _make_mock_bets("卍", ev=2.0)
+    with patch(
+        "src.notification.discord_notifier.requests.post", return_value=_mock_response()
+    ) as mock_post:
+        n.notify_prerace_result(
+            "202505050701",
+            honmei,
+            manji,
+            race_name="安田記念（GⅠ）",
+            bankroll=100_000,
+        )
+    embed = mock_post.call_args[1]["json"]["embeds"][0]
+    assert embed["color"] == COLOR_G1
+    assert "G1" in embed["title"]
+    field_names = [f["name"] for f in embed["fields"]]
+    assert any("推奨投資比率" in fn for fn in field_names)
+    joined = " ".join(str(f["value"]) for f in embed["fields"])
+    assert "█" in joined or "░" in joined
+
+
+def test_notify_prerace_result_confidence_gradient_without_grade() -> None:
+    from src.notification.embed_builder import confidence_color
+
+    n = _make_notifier()
+    honmei = _make_mock_bets("本命", ev=1.2)
+    manji = _make_mock_bets("卍", ev=1.2)
+    with patch(
+        "src.notification.discord_notifier.requests.post", return_value=_mock_response()
+    ) as mock_post:
+        n.notify_prerace_result(
+            "202505050701", honmei, manji, race_name="3歳上1勝クラス", confidence=0.4
+        )
+    embed = mock_post.call_args[1]["json"]["embeds"][0]
+    assert embed["color"] == confidence_color(0.4)
+
+
+def test_notify_prerace_result_top_signal_grid() -> None:
+    n = _make_notifier()
+    honmei = _make_mock_bets("本命", ev=1.8)
+    honmei.bets[0].bet_type = "三連複"
+    honmei.bets[0].combinations = [[5, 3, 9], [5, 3, 12], [5, 9, 12]]
+    honmei.bets[0].horse_names = ["アーバンシック", "", ""]
+    honmei.bets[0].odds = 48.3
+    manji = _make_mock_bets("卍", ev=0.5)
+    with patch(
+        "src.notification.discord_notifier.requests.post", return_value=_mock_response()
+    ) as mock_post:
+        n.notify_prerace_result("202505050701", honmei, manji)
+    embed = mock_post.call_args[1]["json"]["embeds"][0]
+    field_names = [f["name"] for f in embed["fields"]]
+    assert any("軸馬" in fn for fn in field_names)
+    assert any("相手馬" in fn for fn in field_names)
+    grid = [f for f in embed["fields"] if f.get("inline")]
+    assert len(grid) >= 3
+    joined = " ".join(str(f["value"]) for f in grid)
+    assert "1.80" in joined  # EV
+    assert "48.3" in joined  # 想定オッズ

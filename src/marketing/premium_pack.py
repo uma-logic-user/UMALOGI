@@ -105,6 +105,7 @@ class PremiumPack:
     date: str
     races: list[RacePremium] = field(default_factory=list)
     premium_text: str = ""
+    premium_html: str = ""
     teaser_text: str = ""
     files: list[Path] = field(default_factory=list)
 
@@ -258,7 +259,43 @@ def scan_premium_races(conn: sqlite3.Connection, date_str: str) -> list[RacePrem
         except Exception as exc:  # 1 レースの失敗で日次生成全体を殺さない
             logger.warning("premium スキャン失敗 race_id=%s: %s", race_id, exc)
     results.sort(key=lambda r: r.max_ev, reverse=True)
+    _emit_cui_signals(results)
     return results
+
+
+def _emit_cui_signals(results: list[RacePremium]) -> None:
+    """高EV検知を CUI コックピット（src/ui/console.py）へ出力する（best-effort）。"""
+    if not results:
+        return
+    try:
+        from src.ui.console import get_console
+
+        con = get_console()
+        top = results[0]
+        best = top.candidates[0]
+        con.ev_signal(
+            f"{top.venue}{top.race_number}R",
+            best.bet_type,
+            "-".join(str(n) for n in best.combo),
+            ev=best.ev,
+            odds=best.odds,
+        )
+        con.candidates_table(
+            f"本日の高EVシグナル（{len(results)}レース）",
+            [
+                {
+                    "label": "-".join(str(n) for n in c.combo),
+                    "bet_type": c.bet_type,
+                    "prob": c.prob,
+                    "odds": c.odds,
+                    "ev": c.ev,
+                }
+                for r in results
+                for c in r.candidates[:3]
+            ],
+        )
+    except Exception:  # noqa: BLE001 - 装飾失敗で本番を殺さない
+        pass
 
 
 # ── テキスト生成 ─────────────────────────────────────────────────────────
@@ -315,15 +352,20 @@ def generate_premium_text(races: list[RacePremium], date_str: str) -> str:
         return "\n".join(lines)
 
     total_cands = sum(len(r.candidates) for r in races)
+    max_ev_all = max((r.max_ev for r in races), default=0.0)
     lines += [
-        f"## 本日のサマリ: {len(races)} レース / {total_cands} 点",
+        f"## 📊 本日のサマリ: {len(races)} レース / {total_cands} 点 / 最大EV {max_ev_all:.2f}",
+        "",
+        "---",
         "",
     ]
-    for r in races:
+    for i, r in enumerate(races, start=1):
+        medal = {1: "🥇", 2: "🥈", 3: "🥉"}.get(i, "◆")
         label = f"{r.venue}{r.race_number}R" + (
             f"（{r.race_name}）" if r.race_name else ""
         )
-        lines += [f"### {label} — 最大EV {r.max_ev:.2f}", ""]
+        fire = " 🔥" if r.max_ev >= 1.5 else ""
+        lines += [f"### {medal} {label} — 最大EV {r.max_ev:.2f}{fire}", ""]
         stakes = _stake_map(r.candidates, r.race_id)
         for f in r.formations:
             axis = "・".join(str(n) for n in f.axis) or "なし"
@@ -350,6 +392,206 @@ def generate_premium_text(races: list[RacePremium], date_str: str) -> str:
         f"💡 {pick_killer_phrase(date_str, offset=3)}",
     ]
     return "\n".join(lines)
+
+
+# ── HTML レポート（Tailwind ラグジュアリー版）────────────────────────────
+_HTML_HEAD = """<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>UMA-Logic PRIVATE — 三連系プレミアムレポート</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Cormorant+Garamond:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A227; --gold-bright: #E8C766; --ink: #0B0A08; --paper: #14120E;
+  }
+  body {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    background:
+      radial-gradient(1100px 500px at 85% -10%, rgba(201,162,39,.14), transparent 60%),
+      radial-gradient(800px 420px at -10% 30%, rgba(201,162,39,.06), transparent 55%),
+      var(--ink);
+  }
+  .serif { font-family: 'Shippori Mincho', serif; }
+  .num { font-family: 'Cormorant Garamond', 'Shippori Mincho', serif; }
+  .gold-text {
+    background: linear-gradient(120deg, #8C6D1F 0%, #E8C766 38%, #FFF3C4 50%, #E8C766 62%, #8C6D1F 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hairline { background: linear-gradient(90deg, transparent, var(--gold), transparent); height: 1px; }
+  .card {
+    background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.012));
+    border: 1px solid rgba(201,162,39,.22);
+    box-shadow: 0 24px 60px -32px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.05);
+  }
+  .grain::after {
+    content: ""; position: fixed; inset: 0; pointer-events: none; opacity: .05; z-index: 50;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+  }
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  .rise { animation: rise .7s cubic-bezier(.22,.61,.36,1) both; }
+</style>
+</head>
+<body class="grain text-stone-200 antialiased">
+"""
+
+
+def _esc(s: str) -> str:
+    """HTML エスケープ（DB 由来文字列のインジェクション防止）。"""
+    import html as _html
+
+    return _html.escape(str(s), quote=True)
+
+
+def _html_race_card(r: RacePremium, rank: int) -> str:
+    """1 レース分のラグジュアリーカード HTML を生成する。"""
+    label = f"{_esc(r.venue)}{r.race_number}R"
+    name = _esc(r.race_name) if r.race_name else ""
+    stakes = _stake_map(r.candidates, r.race_id)
+    blocks: list[str] = []
+    for f in r.formations:
+        axis = "・".join(str(n) for n in f.axis) or "なし"
+        partners = "・".join(str(n) for n in f.partners) or "—"
+        rows: list[str] = []
+        for c in f.candidates:
+            key = f"{c.bet_type}:{('-'.join(str(n) for n in c.combo))}"
+            stake = stakes.get(key, 0)
+            stake_disp = f"&yen;{stake:,}" if stake > 0 else "見送り可"
+            ev_cls = "text-amber-300" if c.ev >= 1.5 else "text-stone-100"
+            rows.append(
+                f'<tr class="border-t border-stone-800/80">'
+                f'<td class="py-2.5 pr-4 num text-lg tracking-wide text-stone-100">{_esc(c.label)}</td>'
+                f'<td class="py-2.5 pr-4 text-right num text-stone-300">{c.prob * 100:.2f}%</td>'
+                f'<td class="py-2.5 pr-4 text-right num text-stone-300">{c.odds:,.1f}</td>'
+                f'<td class="py-2.5 pr-4 text-right num text-xl font-semibold {ev_cls}">{c.ev:.2f}</td>'
+                f'<td class="py-2.5 text-right num text-stone-200">{stake_disp}</td>'
+                f"</tr>"
+            )
+        blocks.append(
+            f"""
+      <div class="mt-6">
+        <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+          <span class="serif text-lg text-amber-200/90">{_esc(f.bet_type)} フォーメーション</span>
+          <span class="text-sm text-stone-400">軸 <span class="num text-stone-100 text-base">{_esc(axis)}</span>
+            ／ 相手 <span class="num text-stone-100 text-base">{_esc(partners)}</span>
+            ／ {f.n_points}点</span>
+        </div>
+        <table class="mt-3 w-full text-sm">
+          <thead><tr class="text-[11px] tracking-[0.18em] text-stone-500 uppercase">
+            <th class="pb-2 text-left font-medium">買い目</th>
+            <th class="pb-2 text-right font-medium">モデル確率</th>
+            <th class="pb-2 text-right font-medium">推定オッズ</th>
+            <th class="pb-2 text-right font-medium">EV</th>
+            <th class="pb-2 text-right font-medium">参考ベット額</th>
+          </tr></thead>
+          <tbody>{"".join(rows)}</tbody>
+        </table>
+      </div>"""
+        )
+    return f"""
+    <section class="card rounded-2xl px-7 py-6 md:px-9 md:py-8 rise" style="animation-delay:{0.12 * rank:.2f}s">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <div class="flex items-baseline gap-3">
+            <span class="num text-3xl md:text-4xl gold-text font-semibold">{label}</span>
+            {f'<span class="serif text-lg text-stone-300">{name}</span>' if name else ""}
+          </div>
+        </div>
+        <div class="text-right shrink-0">
+          <div class="text-[10px] tracking-[0.3em] text-stone-500">MAX EV</div>
+          <div class="num text-3xl font-semibold text-amber-300">{r.max_ev:.2f}</div>
+        </div>
+      </div>
+      <div class="hairline mt-5 opacity-60"></div>
+      {"".join(blocks)}
+    </section>"""
+
+
+def generate_premium_html(races: list[RacePremium], date_str: str) -> str:
+    """購読者向けプレミアムレポートの Tailwind ラグジュアリー HTML を生成する。
+
+    Markdown 版（generate_premium_text）と同一データ・同一の誠実性注意を
+    「プライベートバンクの調査レポート」級のダークラグジュアリーで装飾する。
+    自己完結ドキュメント（Tailwind CDN + Google Fonts）。
+
+    Args:
+        races: scan_premium_races の抽出結果（EV 降順）。
+        date_str: 対象日（YYYY-MM-DD）。
+
+    Returns:
+        完全な HTML ドキュメント文字列。
+    """
+    date_jp = _date_jp(date_str)
+    total_cands = sum(len(r.candidates) for r in races)
+    max_ev = max((r.max_ev for r in races), default=0.0)
+
+    if races:
+        body_main = "\n".join(
+            _html_race_card(r, i) for i, r in enumerate(races, start=1)
+        )
+        stats = f"""
+    <div class="grid grid-cols-3 gap-px bg-stone-800/60 rounded-xl overflow-hidden card rise" style="animation-delay:.1s">
+      <div class="bg-stone-950/70 px-5 py-4 text-center">
+        <div class="text-[10px] tracking-[0.3em] text-stone-500">RACES</div>
+        <div class="num text-3xl gold-text font-semibold">{len(races)}</div>
+      </div>
+      <div class="bg-stone-950/70 px-5 py-4 text-center">
+        <div class="text-[10px] tracking-[0.3em] text-stone-500">SIGNALS</div>
+        <div class="num text-3xl gold-text font-semibold">{total_cands}</div>
+      </div>
+      <div class="bg-stone-950/70 px-5 py-4 text-center">
+        <div class="text-[10px] tracking-[0.3em] text-stone-500">MAX EV</div>
+        <div class="num text-3xl text-amber-300 font-semibold">{max_ev:.2f}</div>
+      </div>
+    </div>"""
+    else:
+        body_main = """
+    <section class="card rounded-2xl px-8 py-12 text-center rise">
+      <div class="serif text-2xl text-stone-200">本日は基準を満たす買い目がありません</div>
+      <p class="mt-4 text-stone-400 leading-relaxed">基準を満たさない日は無理に買い目を作りません。<br>
+      それが長期回収率を守る<span class="text-amber-200">規律</span>です。</p>
+    </section>"""
+        stats = ""
+
+    return f"""{_HTML_HEAD}
+  <main class="mx-auto max-w-3xl px-5 py-12 md:py-16 space-y-8">
+
+    <header class="text-center rise">
+      <div class="text-[11px] tracking-[0.5em] text-amber-200/80">UMA-LOGIC&nbsp;PRIVATE</div>
+      <h1 class="serif mt-4 text-4xl md:text-5xl font-bold gold-text leading-tight">三連系プレミアムレポート</h1>
+      <div class="mt-3 num text-lg text-stone-400">{_esc(date_jp)}　<span class="text-stone-600">|</span>　EV {PREMIUM_EV_MIN:.2f} 超のみ掲載</div>
+      <div class="mt-6 flex items-center gap-3">
+        <div class="hairline flex-1"></div><div class="text-amber-300/80 text-xs">◆</div><div class="hairline flex-1"></div>
+      </div>
+      <p class="mt-3 text-xs tracking-[0.25em] text-stone-500">購読者限定 ・ 無断転載および再配布を禁じます</p>
+    </header>
+
+    {stats}
+
+    <aside class="card rounded-2xl px-7 py-6 border-l-2 !border-l-amber-400/70 rise" style="animation-delay:.05s">
+      <div class="serif text-amber-200/90">誠実性に関する注意 — 必読</div>
+      <ul class="mt-3 space-y-2 text-sm text-stone-400 leading-relaxed list-disc list-inside">
+        <li>三連系の組み合わせオッズは JRA 実オッズ未取得のため<span class="text-stone-200">市場確率からの推定値</span>です。実購入時は直前オッズで EV が変動します。</li>
+        <li>参考ベット額はバンクロール 10 万円・1/10 ケリー・1点上限 2%・日次上限 10% の機械算出です。</li>
+        <li>リークを自ら監査・棄却した OOS 検証に生き残った戦略のみを配信しています。1 日の結果ではなく長期の期待値でご活用ください。</li>
+      </ul>
+    </aside>
+
+{body_main}
+
+    <footer class="pt-4 text-center rise">
+      <div class="hairline opacity-50"></div>
+      <p class="mt-6 serif text-stone-400">{_esc(pick_killer_phrase(date_str, offset=3))}</p>
+      <p class="mt-4 text-[10px] tracking-[0.35em] text-stone-600">UMA-LOGIC — HONEST&nbsp;AI&nbsp;RACING&nbsp;INTELLIGENCE</p>
+    </footer>
+
+  </main>
+</body>
+</html>"""
 
 
 def generate_teaser_text(
@@ -426,12 +668,14 @@ def generate_premium_pack(
     pack = PremiumPack(date=target_date)
     pack.races = scan_premium_races(conn, target_date)
     pack.premium_text = generate_premium_text(pack.races, target_date)
+    pack.premium_html = generate_premium_html(pack.races, target_date)
     pack.teaser_text = generate_teaser_text(pack.races, target_date, conn, prev_date)
 
     dest = out_dir or (_OUT_DIR / target_date.replace("-", ""))
     dest.mkdir(parents=True, exist_ok=True)
     for name, content in (
         ("premium_sanren.md", pack.premium_text),
+        ("premium_sanren.html", pack.premium_html),
         ("sns_teaser.md", pack.teaser_text),
     ):
         path = dest / name

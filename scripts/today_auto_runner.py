@@ -147,6 +147,7 @@ logger = setup_logging(
     "auto_runner.log",
     fmt="%(asctime)s %(levelname)s: %(message)s",
     datefmt="%H:%M:%S",
+    use_rich=True,  # コンソールのみ rich 装飾（ファイル出力フォーマットは不変）
 )
 
 # 発走推定: R1 = 10:00 JST、以降 30 分間隔
@@ -994,6 +995,17 @@ def _run_one_day(
         )
         return 0, 0, 0, 0
 
+    try:
+        from src.ui.console import get_console
+
+        get_console().banner(
+            "UMA-LOGIC AUTOPILOT",
+            f"対象日 {target_date} ｜ {len(races)} レース監視 ｜ "
+            f"発走{int(fire_ahead.total_seconds() // 60)}分前予想 / "
+            f"{int(result_after.total_seconds() // 60)}分後速報",
+        )
+    except Exception:  # noqa: BLE001 - 装飾失敗で本番を殺さない
+        pass
     logger.info("=" * 60)
     logger.info("UMALOGI 直前予想 + 結果速報 自律監視ループ 起動")
     logger.info(
@@ -1034,6 +1046,7 @@ def _run_one_day(
     # ── 起動直後の文字化けスキャン & 自動修復 ──────────────────────────────
     try:
         from src.monitoring.mojibake_watcher import run_scan_and_fix
+
         logger.info("[MojibakeWatcher] 起動時スキャン開始: date=%s", target_date)
         _scan_result = run_scan_and_fix(
             target_date=target_date,
@@ -1116,7 +1129,9 @@ def _run_one_day(
         )
         # W-043: サーキットブレーカーチェック（当日損失が閾値超なら実弾停止）
         if _check_daily_loss_circuit_breaker(target_date):
-            logger.warning("[CB] R%02d %s [prerace] CB発動 → スキップ", race_number, race_id)
+            logger.warning(
+                "[CB] R%02d %s [prerace] CB発動 → スキップ", race_number, race_id
+            )
             return -2  # CB トリップコード
         rc = _run_prerace(race_id, dry_run)
         if rc == 0:

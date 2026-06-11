@@ -300,11 +300,17 @@ class NotificationRouter:
         alpha_bets: object | None = None,
         dashboard_url: str = "",
         predictions: dict | None = None,
+        race_name: str = "",
+        confidence: float | None = None,
+        bankroll: float | None = None,
     ) -> None:
         """直前予想を prediction チャンネルへ送信する。
 
         max_ev >= EV_ALERT_THRESHOLD かつ ev_alert チャンネルが独立設定されている場合は
         ev_alert チャンネルへも @everyone 付きで追加送信する。
+
+        race_name / confidence / bankroll は embed_builder のプレミアム装飾
+        （格付けカラー・自信度グラデーション・投資比率バー）に使用される。
         """
         # ── 1. prediction チャンネルへ通常送信 ──────────────────────────────
         pred = self._get("prediction")
@@ -317,6 +323,9 @@ class NotificationRouter:
                 hit_focus_bets=hit_focus_bets,
                 alpha_bets=alpha_bets,
                 dashboard_url=dashboard_url,
+                race_name=race_name,
+                confidence=confidence,
+                bankroll=bankroll,
             )
 
         # ── 2. 買い方ガイドを別メッセージとして送信 ──────────────────────────
@@ -439,7 +448,11 @@ class NotificationRouter:
             # 専用チャンネルへ送信（prediction チャンネルへは送らない）
             lines = [f"💎 **Pure_EV_Edge（黒字化専用・単複）** `{race_id}`"] + bet_lines
             pure_ev_notifier.send_text("\n".join(lines))
-            logger.info("[Pure_EV_Edge] 専用チャンネルへ送信: race_id=%s bets=%d", race_id, len(bets))
+            logger.info(
+                "[Pure_EV_Edge] 専用チャンネルへ送信: race_id=%s bets=%d",
+                race_id,
+                len(bets),
+            )
         else:
             # フォールバック: prediction チャンネルへ send_text で送信
             notifier = self._get("prediction")
@@ -524,23 +537,27 @@ class NotificationRouter:
             description = "的中なし"
 
         payload = {
-            "embeds": [{
-                "title": title,
-                "description": description,
-                "color": color,
-                "footer": {
-                    "text": (
-                        f"投資 ¥{int(total_invested):,} / 払戻 ¥{int(total_payout):,} / "
-                        f"ROI {roi:.1f}%  |  Pure_EV_Edge専用"
-                    )
-                },
-            }]
+            "embeds": [
+                {
+                    "title": title,
+                    "description": description,
+                    "color": color,
+                    "footer": {
+                        "text": (
+                            f"投資 ¥{int(total_invested):,} / 払戻 ¥{int(total_payout):,} / "
+                            f"ROI {roi:.1f}%  |  Pure_EV_Edge専用"
+                        )
+                    },
+                }
+            ]
         }
         try:
             _req.post(pure_ev_url, json=payload, timeout=5)
             logger.info(
                 "[Pure_EV_Edge結果] 送信完了: race_id=%s 的中=%d ROI=%.1f%%",
-                race_id, len(hit_items), roi,
+                race_id,
+                len(hit_items),
+                roi,
             )
         except Exception as e:
             logger.warning("[Pure_EV_Edge結果] 送信失敗: %s", e)

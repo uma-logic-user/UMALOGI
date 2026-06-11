@@ -12,6 +12,7 @@ from src.marketing.premium_pack import (
     PREMIUM_EV_MIN,
     RacePremium,
     _fetch_race_inputs,
+    generate_premium_html,
     generate_premium_pack,
     generate_premium_text,
     generate_teaser_text,
@@ -185,13 +186,46 @@ class TestGenerateTeaserText:
         assert "候補なし" in text
 
 
+# ── HTML レポート（Tailwind ラグジュアリー版）────────────────────────────
+class TestGeneratePremiumHtml:
+    def _race(self) -> RacePremium:
+        cands = _dummy_candidates()
+        return RacePremium(
+            race_id="r1",
+            venue="東京",
+            race_number=11,
+            race_name="安田記念",
+            candidates=cands,
+            formations=build_formation(cands),
+        )
+
+    def test_html_is_selfcontained_tailwind_document(self) -> None:
+        html = generate_premium_html([self._race()], "2026-06-14")
+        assert html.lstrip().startswith("<!DOCTYPE html>")
+        assert "tailwind" in html.lower()
+        assert 'lang="ja"' in html
+
+    def test_html_contains_race_facts_and_integrity_note(self) -> None:
+        html = generate_premium_html([self._race()], "2026-06-14")
+        assert "東京11R" in html
+        assert "安田記念" in html
+        assert "2.00" in html  # 最大 EV
+        assert "三連複" in html
+        assert "推定" in html  # 推定オッズの誠実性注意
+        assert "購読者限定" in html
+
+    def test_html_empty_day_keeps_discipline_message(self) -> None:
+        html = generate_premium_html([], "2026-06-14")
+        assert "規律" in html
+
+
 # ── E2E ──────────────────────────────────────────────────────────────────
 class TestGeneratePremiumPack:
     def test_writes_files(self, conn: sqlite3.Connection, tmp_path: Path) -> None:
         pack = generate_premium_pack(conn, "2026-06-14", "2026-06-13", out_dir=tmp_path)
-        assert len(pack.files) == 2
+        assert len(pack.files) == 3
         names = {f.name for f in pack.files}
-        assert names == {"premium_sanren.md", "sns_teaser.md"}
+        assert names == {"premium_sanren.md", "sns_teaser.md", "premium_sanren.html"}
         for f in pack.files:
             content = f.read_text(encoding="utf-8")
             assert content.strip()

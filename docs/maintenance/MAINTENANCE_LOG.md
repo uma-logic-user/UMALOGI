@@ -34,6 +34,20 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-11 — UI/UX 超絶強化: CUI Rich化・Discord プレミアムEmbed・HTML ラグジュアリーレポート（v1.13.0-dev）
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-fable-5) |
+| **修正日** | 2026-06-11 |
+| **バージョン** | 1.12.0-dev → 1.13.0-dev（MINOR: 後方互換な UI/通知機能追加） |
+| **種別** | 機能追加（UI/UX・通知・配信レポート） |
+| **実施内容** | ①**CUI Rich化**: `src/ui/console.py` 新設（UmaConsole=起動バナーPanel/シアン→マゼンタ→金のグラデーションプログレスバー(GradientBarColumn)/「🔥 EV超え買い目発見！」金色シグナルPanel/高EV候補テーブル）。rich未導入・cp932端末・非TTYでは plain 縮退し本番常駐を絶対に殺さない設計（全出力 try/except 縮退）。`setup_logging(use_rich=True)` で RichHandler コンソール装飾を追加（既定False・ファイルログ書式不変）。today_auto_runner（バナー+rich logging）と premium_pack スキャン（高EVシグナル自動出力）に配線。②**Discord プレミアムEmbed**: `src/notification/embed_builder.py` 新設（infer_grade 格付け推定/grade_color=JRA配色 G1青・G2赤・G3緑/confidence_color グラデーション/dynamic_color 優先順位=万馬券EV≥3.0>格付け>自信度/stake_bar `████░░░░░░ 40%`/build_axis_partner_fields 3カラムグリッド）。`notify_prerace_result` に race_name/confidence/bankroll を後方互換の任意引数で追加し、タイトル〔G1〕バッジ・ベストシグナルグリッド・推奨投資比率バー（分母=UMALOGI_BANKROLL 既定10万円）を表示。prediction.py→router→notifier に race_name を貫通。③**HTML ラグジュアリーレポート**: `premium_pack.generate_premium_html` 新設 — premium_sanren.md と同一データ・同一誠実性注意を Tailwind CDN＋Shippori Mincho/Cormorant Garamond の漆黒×シャンパンゴールド「プライベートバンク調査レポート」デザインで premium_sanren.html に並列出力（自己完結・noindex・全文字列HTMLエスケープ）。md側もメダル🥇/サマリ/🔥で装飾強化。requirements.txt に rich>=13.7.0 追加 |
+| **影響範囲** | src/ui/__init__.py(新規), src/ui/console.py(新規), src/notification/embed_builder.py(新規), src/notification/discord_notifier.py, src/notification/router.py, src/pipeline/prediction.py, src/marketing/premium_pack.py, src/ops/logger.py, scripts/today_auto_runner.py, requirements.txt, tests/test_ui_console.py(新規18), tests/test_embed_builder.py(新規22), tests/test_discord_notifier.py(+3), tests/test_premium_pack.py(+3/E2E更新), docs/ui_ux_upgrade_report.md(新規), docs/4_ui_design.md, docs/spec/ARCHITECTURE_v1.0.0.md, docs/SYSTEM_ARCHITECTURE.md, docs/manual/USER_MANUAL.md |
+| **検証** | TDD（全新機能 RED→GREEN 確認）。`pytest` **1442 PASS / 0 FAIL**。mypy 変更6モジュール 0 エラー。ruff format/check クリーン（変更ファイル限定）。cp932 コンソールでの UnicodeEncodeError 再現→修正→スモーク確認済。HTML 実生成スモーク（8.4KB・自己完結）確認済 |
+| **ロールバック** | 直前コミット 1863def94261f1791db4f7cd1fe6c0140782aed6 |
+| **関連** | W-082（confidence/動的bankroll 未配線・watchdog plain のまま）。docs/ui_ux_upgrade_report.md にモックアップ集 |
+
 ### 2026-06-11 — 過去モデル昇華アンサンブル: 卍EV回帰×三連複で OOS ROI 110.0%→119.2%（v1.12.0-dev）
 
 | 項目 | 内容 |

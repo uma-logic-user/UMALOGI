@@ -24,6 +24,13 @@ import requests
 from dotenv import load_dotenv
 
 from .base import BaseNotifier, NotifyMessage
+from .embed_builder import (
+    COLOR_DEFAULT,
+    build_axis_partner_fields,
+    dynamic_color,
+    infer_grade,
+    stake_bar,
+)
 from src.utils.text import sanitize_str
 
 load_dotenv(Path(__file__).resolve().parents[2] / ".env", override=False)
@@ -527,12 +534,22 @@ class DiscordNotifier(BaseNotifier):
         hit_focus_bets: object | None = None,
         alpha_bets: object | None = None,
         dashboard_url: str = "",
+        race_name: str = "",
+        confidence: float | None = None,
+        bankroll: float | None = None,
     ) -> None:
         """直前予想を「🟦 ALPHA / 🟩 卍 / 🟥 本命」の3セクション分離 Embed で送信する。
 
         各モデルは完全独立セクションとして表示。馬番+馬名を必ず明示。
         スマホでも一行ずつ読めるカード形式。文字数超過時は自動折りたたみ。
         全モデルで EV <= 0 の場合は送信をスキップする。
+
+        プレミアム装飾（embed_builder 連携）:
+          - Embed カラーは「万馬券級 EV > 格付け(G1=青/G2=赤/G3=緑) > 自信度
+            グラデーション」の優先順で動的決定。
+          - 最高 EV の買い目を「軸馬｜相手馬｜EV/想定オッズ」の 3 カラム
+            グリッドでトップに表示。
+          - EV>=1.0 の推奨投資合計を ████░░░░░░ 40% のインジケーターで表現。
 
         Args:
             race_id: 対象レースの ID（12桁）。
@@ -542,6 +559,10 @@ class DiscordNotifier(BaseNotifier):
             hit_focus_bets: HitFocus（2軸マルチ）の RaceBets オブジェクト（任意）。
             alpha_bets: ALPHA モデルの RaceBets オブジェクト（任意）。
             dashboard_url: ダッシュボードの URL（フッターに付与）。
+            race_name: レース名（格付けカラー推定に使用・任意）。
+            confidence: モデル自信度 0.0〜1.0（カラーグラデーションに使用・任意）。
+            bankroll: 投資比率バーの分母となるバンクロール（円）。
+                      未指定時は UMALOGI_BANKROLL 環境変数 → 100,000 円。
         """
         if not self._url:
             logger.warning("DISCORD_WEBHOOK_URL 未設定のため通知スキップ: %s", race_id)
@@ -562,13 +583,17 @@ class DiscordNotifier(BaseNotifier):
         max_ev = max(
             (getattr(b, "expected_value", 0.0) for b in all_bets_flat), default=0.0
         )
-        color = (
-            _COLOR_JACKPOT
-            if max_ev >= 3.0
-            else _COLOR_BIG
-            if max_ev >= 1.5
-            else _COLOR_NORMAL
-        )
+        # カラー優先順: 万馬券級EV > 格付け > 自信度。どれも無ければ従来の EV 閾値。
+        grade = infer_grade(race_name)
+        color = dynamic_color(grade=grade, confidence=confidence, max_ev=max_ev)
+        if color == COLOR_DEFAULT and confidence is None:
+            color = (
+                _COLOR_JACKPOT
+                if max_ev >= 3.0
+                else _COLOR_BIG
+                if max_ev >= 1.5
+                else _COLOR_NORMAL
+            )
         total_invest = sum(
             getattr(b, "recommended_bet", 0) or 0
             for b in all_bets_flat
@@ -587,6 +612,35 @@ class DiscordNotifier(BaseNotifier):
             sections.append(("🔶", "HitFocus 予想  (2軸マルチ)", hit_focus_bets, 2))
 
         fields: list[dict[str, Any]] = []
+
+        # ── ベストシグナル: 最高 EV の買い目を軸/相手/EV の 3 カラムグリッドで先頭表示 ──
+        best_bet = max(
+            (b for b in all_bets_flat if getattr(b, "expected_value", 0.0) >= 1.0),
+            key=lambda b: getattr(b, "expected_value", 0.0),
+            default=None,
+        )
+        if best_bet is not None:
+            axis, partners = _extract_axis_partners(best_bet)
+            if axis or partners:
+                odds_val = getattr(best_bet, "odds", None)
+                odds_f = float(odds_val) if isinstance(odds_val, (int, float)) else None
+                fields.append(
+                    {
+                        "name": _s(
+                            f"⚡ ベストシグナル — {getattr(best_bet, 'bet_type', '?')}"
+                        ),
+                        "value": "​",
+                        "inline": False,
+                    }
+                )
+                fields.extend(
+                    build_axis_partner_fields(
+                        axis,
+                        partners,
+                        float(getattr(best_bet, "expected_value", 0.0)),
+                        odds_f,
+                    )
+                )
 
         for icon, section_label, rb, max_bets in sections:
             if rb is None:
@@ -643,23 +697,43 @@ class DiscordNotifier(BaseNotifier):
                     }
                 )
 
-            if len(fields) >= 23:  # Discord 上限 25、ヘッダー込みで余裕を持つ
+            if len(fields) >= 20:  # Discord 上限 25、グリッド+投資バー込みで余裕を持つ
                 break
 
         if not fields:
             logger.info("有効フィールドなし — Discord 通知スキップ: %s", race_id)
             return
 
+        # ── 推奨投資比率インジケーター（bankroll_manager 連携）──────────────
+        bank = (
+            float(bankroll)
+            if bankroll and bankroll > 0
+            else float(os.environ.get("UMALOGI_BANKROLL", "") or 100_000)
+        )
+        fields.append(
+            {
+                "name": "💰 推奨投資比率（バンクロール比）",
+                "value": (
+                    f"`{stake_bar(total_invest / bank)}`\n"
+                    f"投資 ¥{int(total_invest):,} ／ 資金 ¥{int(bank):,}"
+                ),
+                "inline": False,
+            }
+        )
+
         invest_str = f"¥{int(total_invest):,}" if total_invest > 0 else "なし"
         footer_text = f"🤖 AIウマスギフィルター適用済み | EV≥1.0 推奨投資 {invest_str}"
         if dashboard_url:
             footer_text += f" | 詳細 → {dashboard_url}"
 
+        grade_badge = f" 〔{grade}〕" if grade else ""
+        title_race_name = f"\n{race_name}" if race_name else ""
         embed: dict[str, Any] = {
-            "title": _s(f"🏇  {label}  直前予想"),
+            "title": _s(f"🏇  {label}{grade_badge}  直前予想"),
             "description": _s(
+                f"{title_race_name.strip()}\n"
                 f"最高EV: **{max_ev:.2f}**  |  モデル3系統独立稼働  |  🤖 ROIフィルター適用済み"
-            ),
+            ).strip(),
             "color": color,
             "fields": fields,
             "footer": {"text": footer_text},
@@ -680,6 +754,49 @@ class DiscordNotifier(BaseNotifier):
 # ────────────────────────────────────────────────────────────────────────────
 # 組み合わせカード形式フォーマッター（スマホ対応・馬番+馬名必須）
 # ────────────────────────────────────────────────────────────────────────────
+
+
+def _extract_axis_partners(
+    bet: object,
+) -> tuple[list[tuple[int, str]], list[tuple[int, str]]]:
+    """買い目から (軸馬リスト, 相手馬リスト) を抽出する。
+
+    全組み合わせに含まれる馬番を「軸」、それ以外を「相手」と判定する
+    （_format_combo_card と同一のロジック）。馬名は先頭組み合わせの脚順と
+    horse_names の対応から逆引きする。
+
+    Args:
+        bet: RaceBet オブジェクト（combinations / horse_names 属性を持つ）。
+
+    Returns:
+        ([(馬番, 馬名), ...], [(馬番, 馬名), ...]) のタプル。買い目なしは空リスト。
+    """
+    combos = getattr(bet, "combinations", []) or []
+    names = getattr(bet, "horse_names", []) or []
+    if not combos:
+        return [], []
+
+    try:
+        combo_lists = [
+            [int(n) for n in (c if isinstance(c, (list, tuple)) else [c])]
+            for c in combos
+        ]
+    except (TypeError, ValueError):
+        return [], []
+    if not combo_lists or not combo_lists[0]:
+        return [], []
+    name_by_num: dict[int, str] = {}
+    for i, leg in enumerate(combo_lists[0]):
+        if i < len(names) and names[i]:
+            name_by_num[leg] = str(names[i])
+
+    all_nums = sorted({n for c in combo_lists for n in c})
+    axis_nums = [n for n in all_nums if all(n in c for c in combo_lists)]
+    partner_nums = [n for n in all_nums if n not in axis_nums]
+    return (
+        [(n, name_by_num.get(n, "")) for n in axis_nums],
+        [(n, name_by_num.get(n, "")) for n in partner_nums],
+    )
 
 
 def _format_combo_card(bet: object) -> str:
