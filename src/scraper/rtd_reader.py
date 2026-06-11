@@ -84,7 +84,12 @@ def _race_id_from_filename(stem: str) -> str:
         year = stem[4:8]
         jyo = stem[12:14]
         race = stem[14:16]
-        return f"{year}{jyo}0000{race}"
+        rid = f"{year}{jyo}0000{race}"
+        return rid if rid.isdigit() else ""
+    if len(stem) != 20 or not stem[4:].isdigit():
+        # 想定外のファイル名からゴミ race_id を生成して DB を汚染しない
+        logger.warning("RTD 想定外ファイル名: %r", stem)
+        return ""
     # 旧フォーマット (20文字)
     date8 = stem[4:12]
     venue = stem[12:14]
@@ -179,8 +184,15 @@ def read_rtd_for_race(race_id: str) -> RtdRaceInfo | None:
         logger.debug("RTD ファイル未存在 (race_id=%s)", race_id)
         return None
 
-    # 最も新しいファイルを使用
-    rtd_path = max(candidates, key=lambda p: p.stat().st_mtime)
+    # 最も新しいファイルを使用。レース発走後はファイルが削除されるため、
+    # glob と stat の間に消えるレースコンディション（TOCTOU）を許容する。
+    def _safe_mtime(p: Path) -> float:
+        try:
+            return p.stat().st_mtime
+        except OSError:
+            return 0.0
+
+    rtd_path = max(candidates, key=_safe_mtime)
 
     try:
         raw = rtd_path.read_bytes()
@@ -232,6 +244,8 @@ def read_all_rtd_for_date(target_date: str) -> dict[str, RtdRaceInfo]:
     result: dict[str, RtdRaceInfo] = {}
     for f in files:
         race_id = _race_id_from_filename(f.stem)
+        if not race_id:
+            continue
         try:
             raw = f.read_bytes()
             dec = zlib.decompress(raw)

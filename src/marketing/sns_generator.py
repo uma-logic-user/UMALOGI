@@ -341,6 +341,23 @@ def _format_date_jp(date_str: str) -> str:
     return f"{int(s[4:6])}月{int(s[6:8])}日"
 
 
+def normalize_date8(value: str | None) -> dt_date | None:
+    """任意形式の日付文字列を date に正規化する（失敗時 None・例外を出さない）。
+
+    "20260614" / "2026-06-14" / "2026/06/14" を受理。非実在日（20260632 等）や
+    桁不足は None。自動運用バッチが引数不正でトレースバック死しないための門番。
+    """
+    if not value:
+        return None
+    digits = "".join(ch for ch in value if ch.isdigit())
+    if len(digits) != 8:
+        return None
+    try:
+        return dt_date(int(digits[:4]), int(digits[4:6]), int(digits[6:8]))
+    except ValueError:
+        return None
+
+
 # ── 日次パック生成（エントリポイント）────────────────────────────────────
 def generate_daily_pack(
     conn: sqlite3.Connection,
@@ -391,14 +408,19 @@ def main() -> int:
     parser.add_argument("--db", default=str(_DB_PATH), help="DB パス")
     args = parser.parse_args()
 
-    raw = args.date or dt_date.today().strftime("%Y%m%d")
-    target = f"{raw[:4]}-{raw[4:6]}-{raw[6:8]}"
+    target_d = normalize_date8(args.date) if args.date else dt_date.today()
+    if target_d is None:
+        print(f"⚠️ 不正な --date: {args.date!r}（YYYYMMDD 形式で指定してください）")
+        return 2
+    target = target_d.isoformat()
     if args.prev_date:
-        p = args.prev_date
-        prev = f"{p[:4]}-{p[4:6]}-{p[6:8]}"
+        prev_d = normalize_date8(args.prev_date)
+        if prev_d is None:
+            print(f"⚠️ 不正な --prev-date: {args.prev_date!r}")
+            return 2
     else:
-        ord_prev = dt_date(int(raw[:4]), int(raw[4:6]), int(raw[6:8])).toordinal() - 1
-        prev = dt_date.fromordinal(ord_prev).isoformat()
+        prev_d = dt_date.fromordinal(target_d.toordinal() - 1)
+    prev = prev_d.isoformat()
 
     conn = sqlite3.connect(args.db)
     try:

@@ -1050,6 +1050,16 @@ def _run_one_day(
     except Exception as _we:
         logger.warning("[MojibakeWatcher] スキャンエラー（処理継続）: %s", _we)
 
+    # ── マーケティング資産の自動生成（SNS集客＋サブスク向けプレミアム）────────
+    # 失敗しても監視ループ本体（予想・結果取得）を絶対に妨げない best-effort。
+    try:
+        from src.marketing.premium_pack import generate_marketing_assets
+
+        _mk_files = generate_marketing_assets(target_date)
+        logger.info("[Marketing] 自動生成完了: %d ファイル", len(_mk_files))
+    except Exception as _me:
+        logger.warning("[Marketing] 生成エラー（処理継続）: %s", _me)
+
     skipped: set[tuple[str, str]] = set()
     now = datetime.datetime.now()
 

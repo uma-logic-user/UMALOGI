@@ -34,6 +34,20 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-11 — 完全堅牢化＋年間600万円収益化基盤: 堅牢化4パッチ・プレミアム自動生成・W-078破産シミュレーション（v1.11.0-dev）
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-fable-5) |
+| **修正日** | 2026-06-11 |
+| **バージョン** | 1.10.0-dev → 1.11.0-dev（MINOR: 新モジュール premium_pack＋オートパイロット新ステップ配線＋bankroll新機能） |
+| **種別** | 機能追加 / バグ修正（堅牢化） / 運用基盤 |
+| **実施内容** | ①**自動運用クラッシュ・エッジケース堅牢化4パッチ**: rtd_reader の glob→stat TOCTOU（発走直後のRTD削除でFileNotFoundError）/ 想定外ファイル名からのゴミrace_id生成 / entry_table.fetch_realtime_odds のAPI形状変化(list/null/非list値)による AttributeError・KeyError 死（二次フォールバック共倒れ構造）/ sns_generator の不正--date引数によるバッチ死（normalize_date8新設）。jravan_client.py は静的解析の結果、_to_bytes/_str/_safe_int_val 等の多層防御が既に完備で追加パッチ不要と判定。②**サブスク向けプレミアム自動生成** `src/marketing/premium_pack.py` 新規: 本命model_score→blend_with_market較正→Shin市場確率→scan_all_tickets(EV≥1.30)→三連単/三連複フォーメーション＋参考ベット額のMarkdown（premium_sanren.md）と、Leak Story文脈のSNSチラ見せ（sns_teaser.md・買い目組番は非公開）を生成。`today_auto_runner._run_one_day` へ best-effort 配線し週末朝に sns_generator の3ファイルと合わせ計5ファイルを完全自動生成。実DBスモーク（2026-06-07）: 22レース/245点抽出・チラ見せ「前回実績26点中11点的中/回収率164%」生成確認。③**W-078 ポートフォリオ破産シミュレーション**: simulate_portfolio_ruin（同一race_id排反カテゴリカル・レース間独立・対数複利MC）＋recommend_portfolio_stakes（P(破産)≤1%の最大Kelly分数探索）。実証: 三連系5点で1/10 Kelly=P(破産)0.0%・分数0.20=0.83%<1%・フルKelly=40.5%。実弾は未結線（bet_policy単複ロック不変）。④事業計画書 docs/annual_6m_business_plan.md 新設。 |
+| **影響範囲** | src/scraper/rtd_reader.py, src/scraper/entry_table.py（6/7未コミットのエンコーディング検知強化＝CLAUDE.md§16準拠を併せて収録）, src/marketing/sns_generator.py, src/marketing/premium_pack.py(新規), src/ml/bankroll_manager.py, scripts/today_auto_runner.py, tests/test_robustness_patches.py(新規11件), tests/test_premium_pack.py(新規11件), tests/test_bankroll_manager.py(25→32件), docs/1,2,4,6,7・SYSTEM_ARCHITECTURE・spec/ARCHITECTURE_v1.0.0・annual_6m_business_plan.md(新規), VERSION。DBスキーマ・モデルpkl・実弾ポリシーは非接触。 |
+| **検証** | `pytest` 全 1380 PASS（+29件純増）・対象ファイル ruff check/format クリーン・mypy 対象5ファイル 0 エラー・実DBスモーク（premium_pack 20260607 で5ファイル生成）・破産シムのKelly分数単調性を数値確認。 |
+| **ロールバック** | 直前コミット 32553df5 へ revert。auto_runner 配線のみ戻す場合は _run_one_day の [Marketing] try ブロックを削除。 |
+| **関連** | W-078（シミュレーション完成・結線はOOSゲート待ち）/ CLAUDE.md §10§16（文字化けスクリーニング）/ feedback_ev_precision_safety_first / 仕様書 1.11.0-dev |
+
 ### 2026-06-11 — ROI100%超え戦略: 全券種OOSバックテスト・W-080時系列配線・スマートマネー検証（v1.10.0-dev）
 
 | 項目 | 内容 |

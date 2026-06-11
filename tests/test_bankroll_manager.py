@@ -178,3 +178,96 @@ class TestRuinProbability:
 
     def test_recommend_zero_for_negative_edge(self) -> None:
         assert recommend_kelly_fraction(0.1, 2.0) == 0.0
+
+
+# ── ポートフォリオ破産シミュレーション（W-078 三連系対応）──────────────────
+from src.ml.bankroll_manager import (  # noqa: E402
+    PortfolioSimResult,
+    recommend_portfolio_stakes,
+    simulate_portfolio_ruin,
+)
+
+
+def _sanren_portfolio() -> list[BetCandidate]:
+    """三連系を模した低的中率×高配当の同時多点ポートフォリオ。"""
+    return [
+        BetCandidate("r1", "三連単", 6, prob=0.009, odds=300.0),  # EV 2.7
+        BetCandidate("r1", "三連単", 10, prob=0.008, odds=250.0),  # EV 2.0
+        BetCandidate("r1", "三連複", 6, prob=0.04, odds=60.0),  # EV 2.4
+        BetCandidate("r2", "三連複", 1, prob=0.05, odds=40.0),  # EV 2.0
+        BetCandidate("r2", "三連単", 1, prob=0.007, odds=400.0),  # EV 2.8
+    ]
+
+
+class TestSimulatePortfolioRuin:
+    def test_empty_candidates_no_ruin(self) -> None:
+        result = simulate_portfolio_ruin([])
+        assert result.ruin_probability == 0.0
+        assert result.total_fraction == 0.0
+
+    def test_negative_edge_portfolio_no_stake(self) -> None:
+        cands = [BetCandidate("r1", "三連単", 1, prob=0.001, odds=100.0)]  # EV 0.1
+        result = simulate_portfolio_ruin(cands)
+        assert result.total_fraction == 0.0
+        assert result.ruin_probability == 0.0
+
+    def test_tenth_kelly_is_safe_for_sanren(self) -> None:
+        """1/10 Kelly + 上限キャップ構成では三連系でも破産確率 1% 未満。"""
+        result = simulate_portfolio_ruin(
+            _sanren_portfolio(), kelly_fraction=0.10, n_rounds=300, n_paths=2000
+        )
+        assert result.total_fraction > 0.0
+        assert result.ruin_probability < 0.01
+
+    def test_full_kelly_riskier_than_fractional(self) -> None:
+        """Kelly 分数の増加で破産確率が単調増加する（リスクの定量化）。"""
+        low = simulate_portfolio_ruin(
+            _sanren_portfolio(),
+            kelly_fraction=0.10,
+            config=BankrollConfig(max_bet_pct=1.0, max_daily_exposure_pct=1.0),
+            n_rounds=200,
+            n_paths=1500,
+        )
+        high = simulate_portfolio_ruin(
+            _sanren_portfolio(),
+            kelly_fraction=1.0,
+            config=BankrollConfig(max_bet_pct=1.0, max_daily_exposure_pct=1.0),
+            n_rounds=200,
+            n_paths=1500,
+        )
+        assert high.total_fraction > low.total_fraction
+        assert high.ruin_probability >= low.ruin_probability
+
+    def test_mutually_exclusive_same_race(self) -> None:
+        """同一レース内 Σp>1 でも正規化され確率として破綻しない。"""
+        cands = [
+            BetCandidate("r1", "三連複", i, prob=0.4, odds=5.0) for i in range(1, 5)
+        ]
+        result = simulate_portfolio_ruin(cands, n_rounds=50, n_paths=500)
+        assert isinstance(result, PortfolioSimResult)
+        assert 0.0 <= result.ruin_probability <= 1.0
+
+
+class TestRecommendPortfolioStakes:
+    def test_returns_positive_stakes_within_target(self) -> None:
+        alloc, sim = recommend_portfolio_stakes(
+            _sanren_portfolio(),
+            bankroll=100_000,
+            target_ruin=0.01,
+            n_rounds=200,
+            n_paths=1000,
+        )
+        assert sim.ruin_probability <= 0.01
+        assert sim.kelly_fraction > 0.0
+        assert alloc.total_stake > 0
+        # 1日合計エクスポージャー上限（10%）を厳守
+        assert alloc.total_stake <= 100_000 * 0.10 + 100  # 丸め余裕
+
+    def test_unwinnable_portfolio_returns_zero(self) -> None:
+        """負エッジしかない場合は全見送り（ステーク 0）。"""
+        cands = [BetCandidate("r1", "三連単", 1, prob=0.001, odds=50.0)]
+        alloc, sim = recommend_portfolio_stakes(
+            cands, bankroll=100_000, n_rounds=50, n_paths=300
+        )
+        assert alloc.total_stake == 0
+        assert sim.total_fraction == 0.0

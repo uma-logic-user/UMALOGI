@@ -191,9 +191,17 @@ def _fetch(
     """
     # レート制限・リトライは _http_get 内の NETKEIBA_LIMITER / バックオフが担う
     resp = _http_get(url, params, timeout, max_retries=max_retries, base_delay=delay)
-    # netkeiba は UTF-8 固定。apparent_encoding が誤検知（'ascii'/'mac-greek'等）する
-    # ことがあるため、UTF-8 を強制してデコード誤りを防ぐ。
-    resp.encoding = "utf-8"
+    # エンコーディング決定: Content-Type charset優先 → apparent_encoding (EUC-JP/Shift_JIS等)
+    # apparent_encoding が mac_greek/iso-8859-7 等の誤検知は euc-jp にフォールバック
+    ct_charset = resp.encoding  # requests がContent-Typeから設定する値（空の場合あり）
+    ae = (resp.apparent_encoding or "").lower()
+    _MAC_WRONG = ("mac", "greek", "iso-8859-7", "cp1253", "cyrillic", "ascii", "windows-1252")
+    if ct_charset and ct_charset.lower() not in ("iso-8859-1", "latin-1", "windows-1252"):
+        pass  # Content-Type charset をそのまま使用
+    elif ae and not any(w in ae for w in _MAC_WRONG):
+        resp.encoding = ae  # EUC-JP / UTF-8 / Shift_JIS 等
+    else:
+        resp.encoding = "euc-jp"  # 誤検知フォールバック
     return resp.text
 
 
@@ -617,12 +625,19 @@ def fetch_realtime_odds(
         except json.JSONDecodeError:
             logger.warning("オッズ JSON パース失敗 type=%d", odds_type)
             return {}
+        # メンテナンス中等に list / null が返ることがあるため形状を検証する
+        if not isinstance(data, dict):
+            logger.warning("オッズ JSON 想定外形状 type=%d: %s", odds_type, type(data))
+            return {}
         # 新形式: {"status":..., "data": {"odds": {"1": {...}, "2": {...}}}}
         # 旧形式: {"1": {"01": [...]}} — 単勝/複勝ともに外部キーは常に "1"
-        nested = data.get("data", {}).get("odds", {})
-        if nested:
-            return nested.get(str(odds_type), {})
-        return data.get("1", {}) or {}
+        inner = data.get("data")
+        nested = inner.get("odds", {}) if isinstance(inner, dict) else {}
+        if isinstance(nested, dict) and nested:
+            block = nested.get(str(odds_type), {})
+        else:
+            block = data.get("1", {}) or {}
+        return block if isinstance(block, dict) else {}
 
     win_data = _get(1)
     time.sleep(delay)
@@ -632,7 +647,7 @@ def fetch_realtime_odds(
 
     for num_str, vals in win_data.items():
         num = _safe_int(num_str)
-        if num is None:
+        if num is None or not isinstance(vals, (list, tuple)):
             continue
         win_odds = _safe_float(vals[0]) if vals else None
         popularity = _safe_int(vals[2]) if len(vals) > 2 else None
@@ -646,7 +661,7 @@ def fetch_realtime_odds(
 
     for num_str, vals in place_data.items():
         num = _safe_int(num_str)
-        if num is None:
+        if num is None or not isinstance(vals, (list, tuple)):
             continue
         place_min = _safe_float(vals[0]) if vals else None
         place_max = _safe_float(vals[1]) if len(vals) > 1 else None
