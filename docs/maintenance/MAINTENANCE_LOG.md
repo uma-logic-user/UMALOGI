@@ -34,6 +34,20 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-12 — UI/UX基盤(e62df054) 本番ドライラン検証 ＋ オートパイロット復旧・常駐化（運用・コード変更なし）
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-fable-5) |
+| **修正日** | 2026-06-12 |
+| **バージョン** | 据え置き 1.13.0-dev（コード変更なし・docs追記と運用作業のみのため） |
+| **種別** | 運用基盤 / ドキュメント |
+| **実施内容** | ①e62df054 最終ドライラン: UmaConsole を cp932非TTY/cp932ファイル出力/richインポート失敗模擬/force_plain の4経路で実プロセス駆動し UnicodeEncodeError ゼロ・plain縮退正常を確認。②Discord プレミアムEmbed: ペイロード捕捉検証8項目PASS（G1青0x2E5FCC/〔G1〕バッジ/ベストシグナル3カラムグリッド/`████░░░░░░ 40%`投資バー@UMALOGI_BANKROLL=10万/race_name貫通）→予想chへ【ドライラン】明記で実送信し「送信完了」をログ確認。③premium_sanren.html: 読取専用DB＋一時dirで6/7実データ22レース分を生成、構造9項目PASS＋Playwright/Chromiumレンダリングで漆黒×ゴールドのスタイル崩れなしを確認。④UI系4テストファイル68件PASS。⑤オートパイロット外部停止（06:11・原因=外部kill推定）を検知し PowerShell Start-Process で復旧・常駐化（新コード有効化・ゾンビPID自動削除発動）。⑥W-082影響範囲の静的解析（配線先=src/pipeline/prediction.py:1335 の notify 呼び出しに同関数スコープの current_bankroll と較正済確率代表値を渡すのみ・router/notifier層は配線済）。 |
+| **影響範囲** | docs/6_special_notes.md, docs/7_weakness_ledger.md（W-083新規）, docs/maintenance/MAINTENANCE_LOG.md（コード・スキーマ変更なし） |
+| **検証** | UI系 pytest 68 PASS（tests/test_ui_console.py ほか3ファイル）・Discord実送信ログ「[Discord:予想] 直前予想 送信完了」・auto_runner 新PID 34540 起動ログ（金曜20:00夜間バッチ待機遷移）確認 |
+| **ロールバック** | 不要（コード変更なし）。常駐停止は scripts/bat/stop_umalogi.bat |
+| **関連** | W-082（静的解析完了・配線先特定）/ W-083（新規・TARGET frontier IDOK連打）/ e62df054 (v1.13.0-dev) |
+
 ### 2026-06-11 — UI/UX 超絶強化: CUI Rich化・Discord プレミアムEmbed・HTML ラグジュアリーレポート（v1.13.0-dev）
 
 | 項目 | 内容 |
