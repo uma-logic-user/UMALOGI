@@ -8,6 +8,7 @@
 
 | 日付 | 変更内容 |
 |------|---------|
+| 2026-06-11 | 【追記】§タスク2のHOLD判定はリーク監査で**棄却**に確定（AUC0.944/ROI1173%はwin_rate系リークの幻影・真値はROI76.0%でEV単体に劣後）。№見送り判定も実弾遡及検証で仮説棄却→W-079⚪保留。正典は docs/leak_audit_and_integration_report.md。影響: src/ml/features.py(リーク修正) |
 | 2026-06-11 | 初版。影響ファイル: src/ml/all_ticket_optimizer.py, src/ml/no_bet_filter.py, src/ml/accuracy_model_v2.py, scripts/evaluate_hybrid_ensemble.py |
 
 ---

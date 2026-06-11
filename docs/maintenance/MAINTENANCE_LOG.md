@@ -34,6 +34,20 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-11 — リーク監査・修正・真OOS再計測・No-Bet検証・全機能統合E2E（v1.9.1-dev）
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-fable-5) |
+| **修正日** | 2026-06-11 |
+| **バージョン** | 1.9.0-dev → 1.9.1-dev（PATCH: バグ修正＋検証スクリプト群・本番推論は挙動同一） |
+| **種別** | バグ修正 / 検証 / 運用基盤 |
+| **実施内容** | ①**リーク特定(Ablation)**: `scripts/ablation_leak_audit.py` 新規（単一特徴量AUCスキャン＋グループ別ablation・キャッシュ方式）。`win_rate_distance_band_zscore` 単独AUC **0.957** でリーク確定。真因＝`build_race_features` が `_get_horse_stats_bulk` へ `exclude_race_id`/`race_date` を未指定（simulate版と非対称）→歴史レースで当該・未来着順が勝率に混入。②**修正**: src/ml/features.py に両引数付与（本番推論は挙動同一・本番モデルはsimulate経路学習のため無傷）。tests/test_features.py の旧テストはリークを“正常”と固定していたためリーク回帰テストへ書き換え。③**真値再計測**: AccV2 AUC 0.951→0.664 / 二階層アンサンブル ROI 1173%→**76.0%**（EV単体92.5%に劣後・**昇格棄却**確定）。④**No-Bet検証**: `scripts/validate_no_bet_filter.py` 新規。実弾549ベット/438レース遡及で「カオス見送り」仮説**棄却**（閾値0.42=+0.1pt中立・0.15〜0.30=-8pt逆効果＝混戦の歪みが利益源）→W-079を⚪保留へ降格・シャドー昇格中止。⑤**E2E統合**: `scripts/e2e_final_prediction.py` 新規（AccV2＋市場ブレンド×見送り判定×全券種EV→SNS無料/サブスク詳細の2出力）。未較正確率によるEV10-14の幻影をv1.7.2実証済み `blend_with_market` 適用で1.78-2.16の現実域へ是正し、実レース(阪神12R)で全ステップPASS。 |
+| **影響範囲** | src/ml/features.py(リーク遮断), tests/test_features.py(リーク回帰テスト化), scripts/ablation_leak_audit.py(新規), scripts/validate_no_bet_filter.py(新規), scripts/e2e_final_prediction.py(新規), docs/leak_audit_and_integration_report.md(新規), docs/6_special_notes.md, docs/7_weakness_ledger.md, docs/fable_ultimate_upgrade.md(数値確定), VERSION。predictions・本番モデルpkl・実弾ポリシーは非接触。 |
+| **検証** | features関連テスト28件PASS（書き換え含む）＋全体スイート PASS（件数はコミット参照）。E2E実行ログ・Ablation前後の数値はレポートに記録。 |
+| **ロールバック** | 直前コミット 0b832de0 へ revert（ただしリーク修正の巻き戻しは非推奨＝バックテスト偽性能が再発する）。 |
+| **関連** | W-070/W-071(リーク系譜), W-079(保留降格), docs/leak_audit_and_integration_report.md |
+
 ### 2026-06-11 — 完全体アップグレード: 全券種EVエンジン/残タスクスイープ/見送り判定モデル（v1.9.0-dev）
 
 | 項目 | 内容 |

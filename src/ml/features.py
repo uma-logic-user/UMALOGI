@@ -418,8 +418,18 @@ class FeatureBuilder:
         odds_map = self._latest_odds_map(race_id)
 
         # バルク取得: 1レースあたり N×6クエリ → 7クエリに圧縮
+        # exclude_race_id / race_date を必ず渡す: 本番（未来レース）では結果が
+        # 未存在のため挙動同一だが、バックテストで歴史レースに使われた場合に
+        # 当該レース・未来レースの着順が win_rate 系へ混入するリークを遮断する
+        # （2026-06-11 監査: 混入時 win_rate_*_zscore 単独で AUC 0.957 の偽性能）。
         horse_ids = [r[1] for r in entries]  # index 1 = horse_id
-        stats_bulk = self._get_horse_stats_bulk(horse_ids, surface or "", distance or 0)
+        stats_bulk = self._get_horse_stats_bulk(
+            horse_ids,
+            surface or "",
+            distance or 0,
+            exclude_race_id=race_id,
+            race_date=race_date,
+        )
         training_bulk = self._get_training_stats_bulk(horse_ids, race_date or "")
         sire_bulk = self._get_sire_bulk(horse_ids)
 
@@ -500,9 +510,7 @@ class FeatureBuilder:
                     "condition_code": _CONDITION_CODE.get(condition or "", -1),
                     "race_number": race_number or 0,
                     # 人的要素特徴量
-                    "jockey_code_encoded": self._encode_jockey(
-                        jockey_key, jockey_code
-                    ),
+                    "jockey_code_encoded": self._encode_jockey(jockey_key, jockey_code),
                     "trainer_code_encoded": self._encode_trainer(
                         trainer_key, trainer_code
                     ),

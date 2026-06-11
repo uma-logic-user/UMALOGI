@@ -324,12 +324,55 @@ class TestFeatureBuilder:
         assert sex_codes["レガレイラ"] == 1  # 牝
 
     def test_win_rate_allが計算される(self, seeded_db: sqlite3.Connection) -> None:
-        """過去成績がある馬は win_rate_all が 0〜1 の範囲。"""
+        """win_rate_all は過去レースのみから算出される（当該レース結果は混入しない）。
+
+        2026-06-11 リーク監査: 旧テストは「当該レース自身の1着」が勝率に混入する
+        リーク（混入時 win_rate_*_zscore 単独 AUC 0.957）を“計算される”と
+        誤って固定していた。過去1走（2着）を投入し、当該レースで1着でも
+        win_rate_all=0.0 になること＝リーク遮断を検証する。
+        """
+        past = RaceInfo(
+            race_id="202503050811",
+            race_name="過去レース",
+            date="2025-06-01",
+            venue="中山",
+            race_number=5,
+            distance=2500,
+            surface="芝",
+            track_direction="右",
+            weather="晴",
+            condition="良",
+            results=[
+                HorseResult(
+                    rank=2,
+                    horse_name="ミュージアムマイル",
+                    horse_id="2022105081",
+                    gate_number=1,
+                    horse_number=1,
+                    sex_age="牡3",
+                    weight_carried=56.0,
+                    jockey="Ｃ．デム",
+                    trainer="国枝栄",
+                    finish_time="2:31.9",
+                    margin="0.2",
+                    popularity=2,
+                    win_odds=4.0,
+                    horse_weight=500,
+                    horse_weight_diff=0,
+                    pedigree=PedigreeInfo(
+                        sire="リオンディーズ",
+                        dam="ミュージアムヒル",
+                        dam_sire="ハーツクライ",
+                    ),
+                ),
+            ],
+        )
+        insert_race(seeded_db, past)
         fb = FeatureBuilder(seeded_db)
         df = fb.build_race_features("202506050811")
         row = df[df["horse_name"] == "ミュージアムマイル"].iloc[0]
-        assert row["win_rate_all"] is not None
-        assert 0.0 <= row["win_rate_all"] <= 1.0
+        # 過去成績は1走2着のみ → 0.0。当該レースの1着が混入すると >0 になる。
+        assert row["win_rate_all"] == 0.0
 
     def test_存在しないrace_idでValueError(self, seeded_db: sqlite3.Connection) -> None:
         fb = FeatureBuilder(seeded_db)
