@@ -40,7 +40,7 @@ _ROOT = Path(__file__).resolve().parents[1]
 if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
-from src.utils.text import is_garbled, try_recover_encoding  # noqa: E402
+from src.utils.text import is_garbled, is_garbled_name, try_recover_encoding  # noqa: E402
 from src.database.init_db import get_db_path  # noqa: E402
 
 
@@ -104,10 +104,19 @@ def _clean_column(
     updates: list[tuple[str | None, object]] = []
 
     for row_pk, val in rows:
-        if not isinstance(val, str) or not is_garbled(val):
+        # 対象カラムはすべて固有名詞（馬名・人名・レース名）のため、
+        # 汎用 is_garbled に加えて名前専用の高感度 is_garbled_name も併用する
+        if not isinstance(val, str) or not (is_garbled(val) or is_garbled_name(val)):
             continue
         report.garbled += 1
         recovered = try_recover_encoding(val)
+        # 回復品質ゲート: 元の値のままの素通し（try_recover_encoding は
+        # is_garbled=False の入力をそのまま返す）や、回復結果がなお
+        # 名前として不正なものは「回復失敗」としてクリアに回す
+        if recovered == val or (
+            recovered and (is_garbled(recovered) or is_garbled_name(recovered))
+        ):
+            recovered = ""
         if recovered:
             updates.append((recovered, row_pk))
             report.recovered += 1

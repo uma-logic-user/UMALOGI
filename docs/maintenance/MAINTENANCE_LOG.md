@@ -34,6 +34,20 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-12 — Web UI(ポート3000)プレミアムレポート統合 ＋ 文字化け絶対防御ロック ＋ ダイアログハンドラー誤検知修正
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-fable-5) |
+| **修正日** | 2026-06-12 |
+| **バージョン** | 1.13.0-dev → 1.14.0-dev |
+| **種別** | 機能追加 ＋ バグ修正 |
+| **実施内容** | ① `premium_pack.py` に Web UI 用 `premium_signals.json` 出力を追加（4ファイル目）。② Next.js に `/api/premium-report`（漆黒×ゴールド HTML を charset=utf-8 で配信）と `/api/premium-signals`（文字化けゲート付き JSON）を新設し、サイドバー「💎 プレミアムレポート」ビュー（`PremiumReportPanel.tsx`・60秒自動更新・EV≥1.42 🔥強調）を AppShell に配線。③ `is_garbled()` に `?＋非ASCII文字の2回以上繰り返し`（`?ー?ー`/`?“?_`）検知パターンを追加。④ `cleanup_encoding.py` を `is_garbled_name` 併用＋回復品質ゲート（素通し/再化け回復の拒否）に強化し、DB全テーブルの文字化け618件を修復（614件クリア＋entries 3件を racehorses マスタから正名復元＋race_results 1件クリア）→ 残留0件達成。⑤ `jvlink_dialog_handler.py` の除外クラスにターミナル系（conhost/Windows Terminal/VS Code）と Delphi `TApplication`（TARGET frontier JV 本体への無限 IDOK 連打の真因）を追加。 |
+| **影響範囲** | src/marketing/premium_pack.py, src/utils/text.py, scripts/cleanup_encoding.py, src/ops/jvlink_dialog_handler.py, web/src/app/api/premium-report/route.ts（新規）, web/src/app/api/premium-signals/route.ts（新規）, web/src/components/PremiumReportPanel.tsx（新規）, web/src/components/AppShell.tsx, tests/test_premium_pack.py, docs/4_ui_design.md, docs/6_special_notes.md, docs/7_weakness_ledger.md |
+| **検証** | pytest（premium/text/encoding/dialog_handler 関連 83 PASS）・ruff check 0・mypy 0・Next.js 本番ビルド成功・ポート3000 で `/api/premium-signals`（22レース235シグナル・日本語無傷）と `/api/premium-report`（charset=utf-8）の実応答確認・DB 文字化け残留 0 件再スキャン確認・再起動後の auto_runner ログで誤検知連打の停止と「金曜夜間バッチ 20:00 待機」を確認。 |
+| **ロールバック** | 直前コミット f571e720 / DB バックアップ data/backups/umalogi_20260612_064339.db |
+| **関連** | CLAUDE.md 16条（文字化け絶対防御）・17条（ダイアログハンドラー）・W-083（完了に更新） |
+
 ### 2026-06-12 — UI/UX基盤(e62df054) 本番ドライラン検証 ＋ オートパイロット復旧・常駐化（運用・コード変更なし）
 
 | 項目 | 内容 |

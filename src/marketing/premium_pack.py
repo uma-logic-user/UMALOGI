@@ -27,6 +27,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import json
 import logging
 import sqlite3
 import sys
@@ -650,6 +651,62 @@ def _date_jp(date_str: str) -> str:
     return f"{int(s[4:6])}月{int(s[6:8])}日"
 
 
+# ── Web UI（ポート3000）連携用 JSON ──────────────────────────────────────
+def generate_signals_json(races: list[RacePremium], date_str: str) -> str:
+    """Next.js ダッシュボード（/api/premium-signals）向けの構造化 JSON を生成する。
+
+    HTML/Markdown 版と同一の抽出結果を機械可読形式で出力し、
+    Web UI の高EVシグナルパネルがリアルタイムに読めるようにする。
+
+    Args:
+        races: scan_premium_races の抽出結果（EV 降順）。
+        date_str: 対象日（YYYY-MM-DD）。
+
+    Returns:
+        JSON 文字列（UTF-8 / ensure_ascii=False）。
+    """
+    from datetime import datetime as _dt
+
+    payload: dict[str, object] = {
+        "date": date_str,
+        "generated_at": _dt.now().isoformat(timespec="seconds"),
+        "ev_min": PREMIUM_EV_MIN,
+        "bet_types": list(PREMIUM_BET_TYPES),
+        "n_races": len(races),
+        "n_signals": sum(len(r.candidates) for r in races),
+        "max_ev": round(max((r.max_ev for r in races), default=0.0), 4),
+        "races": [],
+    }
+    race_items: list[dict[str, object]] = []
+    for r in races:
+        stakes = _stake_map(r.candidates, r.race_id)
+        race_items.append(
+            {
+                "race_id": r.race_id,
+                "venue": ensure_clean(r.venue),
+                "race_number": r.race_number,
+                "race_name": ensure_clean(r.race_name),
+                "max_ev": round(r.max_ev, 4),
+                "candidates": [
+                    {
+                        "bet_type": c.bet_type,
+                        "combo": list(c.combo),
+                        "label": c.label,
+                        "prob": round(c.prob, 6),
+                        "odds": round(c.odds, 2),
+                        "ev": round(c.ev, 4),
+                        "stake": stakes.get(
+                            f"{c.bet_type}:{('-'.join(str(n) for n in c.combo))}", 0
+                        ),
+                    }
+                    for c in r.candidates
+                ],
+            }
+        )
+    payload["races"] = race_items
+    return json.dumps(payload, ensure_ascii=False, indent=2)
+
+
 # ── オーケストレーション ─────────────────────────────────────────────────
 def generate_premium_pack(
     conn: sqlite3.Connection,
@@ -677,6 +734,7 @@ def generate_premium_pack(
         ("premium_sanren.md", pack.premium_text),
         ("premium_sanren.html", pack.premium_html),
         ("sns_teaser.md", pack.teaser_text),
+        ("premium_signals.json", generate_signals_json(pack.races, target_date)),
     ):
         path = dest / name
         path.write_text(content + "\n", encoding="utf-8")

@@ -12,8 +12,9 @@ import Win5Panel           from './Win5Panel'
 import GachiHits           from './GachiHits'
 import ConditionAnalysis   from './ConditionAnalysis'
 import DrillDownAnalytics  from './DrillDownAnalytics'
+import PremiumReportPanel  from './PremiumReportPanel'
 
-type View = 'race' | 'hits' | 'dashboard' | 'financial' | 'win5' | 'gachi' | 'condition' | 'analytics'
+type View = 'race' | 'hits' | 'dashboard' | 'financial' | 'win5' | 'gachi' | 'condition' | 'analytics' | 'premium'
 
 interface Summary {
   total_races_in_db: number
@@ -232,6 +233,15 @@ export default function AppShell() {
             )}
           </button>
           <button
+            className={`sidebar-special-btn ${view === 'premium' ? 'active' : ''}`}
+            onClick={() => setView('premium')}
+          >
+            <span style={{ color: '#E8C766', fontSize: '0.9rem' }}>💎</span>
+            <span style={{ color: view === 'premium' ? '#E8C766' : 'var(--text-primary)' }}>
+              プレミアムレポート
+            </span>
+          </button>
+          <button
             className={`sidebar-special-btn ${view === 'condition' ? 'active' : ''}`}
             onClick={() => setView('condition')}
           >
@@ -316,6 +326,11 @@ export default function AppShell() {
         {view === 'analytics' && (
           <div className="min-w-0 w-full">
             <DrillDownAnalytics />
+          </div>
+        )}
+        {view === 'premium' && (
+          <div className="p-3 sm:p-4 min-w-0 w-full">
+            <PremiumReportPanel />
           </div>
         )}
       </main>

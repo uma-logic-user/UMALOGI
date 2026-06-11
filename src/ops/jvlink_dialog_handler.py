@@ -66,6 +66,15 @@ _EXCLUDED_WIN_CLASSES: frozenset[str] = frozenset(
         "applicationframewindow",  # Windows 10/11 UWP ホスト
         "windows.ui.core.corewindow",  # UWP コアウィンドウ
         "msoswp",  # Microsoft Office WebPane (IE内蔵)
+        # ── ターミナル系（タイトルに作業内容が出るため "セットアップ" 等に誤一致する）──
+        "consolewindowclass",  # conhost 古典コンソール（cmd / PowerShell）
+        "cascadia_hosting_window_class",  # Windows Terminal
+        "vscodemainwindow",  # VS Code（統合ターミナルのタイトル反映対策）
+        # ── Delphi アプリ本体（TARGET frontier JV）────────────────────────────
+        # TApplication は Delphi 製アプリのタスクバー用不可視ウィンドウで
+        # ダイアログではない（IDOK を送っても消えず無限連打になる）。
+        # TARGET の実ダイアログは #32770 / TForm 系なので影響しない。
+        "tapplication",
     }
 )
 

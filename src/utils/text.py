@@ -24,6 +24,11 @@ _BULLET_PATTERN_RE = re.compile("[•‘’“”–—]{2,}")
 # Also covers halfwidth katakana trail bytes (U+FF61-FF9F) appearing after '?'
 _JVLINK_QUESTION_RE = re.compile(r"(?:\?[\x21-\x7e\xa6-\xdf\x80-\x9f｡-ﾟ]){2,}")
 
+# '?' followed by a non-ASCII char, repeated 2+ times (e.g., "?ー?ー", "?“?_")
+# — CP932 lead byte lost while the trail byte decoded as a legitimate full-width
+# character. Legitimate Japanese text never repeats "?<fullwidth>" pairs.
+_Q_FULLWIDTH_RE = re.compile(r"(?:\?[^\x00-\x7f]){2,}")
+
 # Name-field–specific patterns (horse_name / race_name / jockey):
 # Even a single '?' followed by an ASCII letter is garbling in Japanese names.
 # ─ '?A' through '?z' : CP932 2-byte lead byte → '?' + trail byte (ASCII)
@@ -100,6 +105,7 @@ def is_garbled(s: str) -> bool:
     - ギリシャ文字 2 文字以上の連続（mac_greek → euc-jp 誤読アーティファクト）
     - 箇条書き記号・カーリークォート等の特殊句読点 2 文字以上の連続（mac_roman アーティファクト）
     - ``?X?X?X`` パターン（JVLink CP932 リードバイトが ``?`` に置換されたバグ）
+    - ``?ー?ー`` / ``?“?_`` パターン（``?`` + 非ASCII文字の 2 回以上繰り返し）
     - 不正な encoding 回復処理によってのみ出現する稀な CJK 文字
     - U+0300-U+04FF / U+2000-U+21FF 範囲の文字が 30% 超
 
@@ -116,6 +122,8 @@ def is_garbled(s: str) -> bool:
     if _BULLET_PATTERN_RE.search(s):
         return True
     if _JVLINK_QUESTION_RE.search(s):
+        return True
+    if _Q_FULLWIDTH_RE.search(s):
         return True
     if _GARBLED_KANJI_RE.search(s):
         return True

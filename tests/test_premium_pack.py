@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import sqlite3
 from pathlib import Path
 
@@ -223,9 +224,23 @@ class TestGeneratePremiumHtml:
 class TestGeneratePremiumPack:
     def test_writes_files(self, conn: sqlite3.Connection, tmp_path: Path) -> None:
         pack = generate_premium_pack(conn, "2026-06-14", "2026-06-13", out_dir=tmp_path)
-        assert len(pack.files) == 3
+        assert len(pack.files) == 4
         names = {f.name for f in pack.files}
-        assert names == {"premium_sanren.md", "sns_teaser.md", "premium_sanren.html"}
+        assert names == {
+            "premium_sanren.md",
+            "sns_teaser.md",
+            "premium_sanren.html",
+            "premium_signals.json",
+        }
         for f in pack.files:
             content = f.read_text(encoding="utf-8")
             assert content.strip()
+        # Web UI（/api/premium-signals）が読む JSON の構造を検証
+        signals = json.loads(
+            (tmp_path / "premium_signals.json").read_text(encoding="utf-8")
+        )
+        assert signals["date"] == "2026-06-14"
+        assert signals["n_races"] == len(signals["races"])
+        if signals["races"]:
+            cand = signals["races"][0]["candidates"][0]
+            assert {"bet_type", "combo", "prob", "odds", "ev", "stake"} <= set(cand)
