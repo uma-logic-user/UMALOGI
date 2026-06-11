@@ -34,6 +34,20 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-11 — ROI100%超え戦略: 全券種OOSバックテスト・W-080時系列配線・スマートマネー検証（v1.10.0-dev）
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-fable-5) |
+| **修正日** | 2026-06-11 |
+| **バージョン** | 1.9.1-dev → 1.10.0-dev（MINOR: 本番オートパイロットへの新ステップ配線＋検証基盤追加） |
+| **種別** | 機能追加 / 検証 / 運用基盤 |
+| **実施内容** | ①**全券種OOSバックテスト** `scripts/backtest_all_tickets.py` 新規（honmei Booster＋blend_with_market×Shin市場確率→scan_all_tickets・**清算はrace_payouts実払戻のみ**の誠実設計・券種別ROI/最大DD/的中内訳）。test 400レース・EV≥1.30で**合計ROI 110.0%（2,389点・三連単110.0%/三連複106.9%）**・EV≥1.50でも109.3%とロバスト。誠実併記: 最大1的中(¥67,590=払戻25.7%)除外でROI 81.8%・最大DD¥60,300＝実弾解禁は資金管理シム＋全期間標本が前提。結論=主戦場は三連単×三連複ハイブリッド・当面はサブスクコンテンツで収益化。②**W-080**: オッズ時系列レコーダーが不使用のscheduler.pyにのみ配線され本番未稼働（odds_timeseries 0行）と発覚→ `today_auto_runner._run_one_day` 監視ループへ `_run_odds_timeseries_recorder()` を約10分間隔で配線（subprocess 5分timeout・失敗非伝播・ODDS_TIMESERIES_DISABLED=1で無効化）。③**スマートマネー代替検証** `scripts/validate_smart_money.py` 新規: Shin(1993) z値/shin_upliftを400レース5,588馬行で検証→**uplift上位10%は559点的中0=ROI 0%で棄却**（時系列の代替にならず・W-080蓄積が唯一の道）。④リーク監査実話のマーケ記事 `outputs/marketing/leak_story.md` 生成。戦略総括: docs/roi_breakthrough_strategy.md。 |
+| **影響範囲** | scripts/today_auto_runner.py(W-080配線), scripts/backtest_all_tickets.py(新規), scripts/validate_smart_money.py(新規), docs/roi_breakthrough_strategy.md(新規), docs/2_automation_schedule.md, docs/7_weakness_ledger.md(W-080), outputs/marketing/leak_story.md(生成物), VERSION。bet_policy実弾ロック・predictions・モデルpklは非接触。 |
+| **検証** | 全体スイート PASS（オートパイロット関連6件含む・件数はコミット参照）・ruffクリーン・構文AST検証。バックテストはEV閾値2水準＋標本150→400拡大で再現性確認（150標本の三連複55%が400で106.9%に収束＝小標本歪みも実証）。 |
+| **ロールバック** | 直前コミット 7f63fb17 へ revert。W-080配線のみ today_auto_runner の該当2箇所を削除でも可。 |
+| **関連** | W-078(資金管理シムが実弾解禁の前提), W-080(新規), docs/roi_breakthrough_strategy.md, docs/leak_audit_and_integration_report.md |
+
 ### 2026-06-11 — リーク監査・修正・真OOS再計測・No-Bet検証・全機能統合E2E（v1.9.1-dev）
 
 | 項目 | 内容 |

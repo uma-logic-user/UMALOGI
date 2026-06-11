@@ -676,6 +676,42 @@ def _run_provisional(date_str: str, dry_run: bool) -> None:
         logger.error("暫定予想生成エラー date=%s: %s", date_str, exc)
 
 
+def _run_odds_timeseries_recorder(dry_run: bool) -> None:
+    """発走前レースのオッズ時系列スナップショットを追記する（W-080）。
+
+    scripts/record_odds_timeseries.py を subprocess で起動する。従来は不使用の
+    scheduler.py（10分間隔ジョブ）にのみ配線されており、本番オートパイロットでは
+    一度も走っていなかった＝realtime_odds が単一時点のままで「朝→直前のオッズ
+    変動率（スマートマネー検知）」特徴量の歴史データが永遠に蓄積されない構造だった。
+    監視ループから約10分間隔で呼ばれる（発走前ウィンドウのレースのみ実取得）。
+    """
+    if os.environ.get("ODDS_TIMESERIES_DISABLED") == "1":
+        return
+    if dry_run:
+        logger.info("[DRY-RUN] オッズ時系列レコーダーをスキップします")
+        return
+    try:
+        result = subprocess.run(
+            [sys.executable, str(_ROOT / "scripts" / "record_odds_timeseries.py")],
+            cwd=str(_ROOT),
+            timeout=300,  # 5分上限（ハングしても次周期で再試行）
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            encoding="utf-8",
+        )
+        if result.returncode != 0:
+            logger.warning(
+                "[W-080] オッズ時系列レコーダー rc=%d stderr=%s",
+                result.returncode,
+                (result.stderr or "")[-300:],
+            )
+    except subprocess.TimeoutExpired:
+        logger.error("[W-080] オッズ時系列レコーダー タイムアウト (300s) — 続行")
+    except Exception as exc:  # noqa: BLE001 — 収集失敗で監視ループは止めない
+        logger.error("[W-080] オッズ時系列レコーダー エラー: %s — 続行", exc)
+
+
 def _run_x_scraper(date_str: str, dry_run: bool) -> None:
     """指定日の X（凄腕予想家）シグナルを収集し x_signals へ格納する（W-065）。
 
@@ -1191,8 +1227,15 @@ def _run_one_day(
                 max_workers=40, thread_name_prefix="umalogi-post"
             ) as post_ex,
         ):
+            # W-080: オッズ時系列スナップショットを約10分間隔で蓄積
+            # （スマートマネー＝朝→直前オッズ変動率 特徴量の歴史データを育てる）
+            next_odds_capture = datetime.datetime.now()
             while True:
                 now = datetime.datetime.now()
+
+                if now >= next_odds_capture:
+                    post_ex.submit(_run_odds_timeseries_recorder, dry_run)
+                    next_odds_capture = now + datetime.timedelta(minutes=10)
 
                 for fire_at, race_id, race_number, job_type in pending_jobs:
                     key = (race_id, job_type)
