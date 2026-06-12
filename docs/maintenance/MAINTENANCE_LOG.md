@@ -34,6 +34,20 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-12 — PC再起動後Web UI(3000)停止の復旧＋ログオン時自動復旧スタックへのWeb UI組込み＋ランチャーbat完全ASCII化（W-085）
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-fable-5) |
+| **修正日** | 2026-06-12 |
+| **バージョン** | 1.14.0-dev → 1.14.1-dev |
+| **種別** | バグ修正 ＋ 運用基盤 |
+| **実施内容** | ① 正本ランチャー `scripts/bat/start_umalogi.bat` に「4) Next.js Web UI」を追加（ポート3000 LISTEN 判定の `:countport` ガード・`.next` 不在時 `npm run build`・`UMALOGI_WEBUI` ウィンドウ）。`startup_umalogi.bat` のフォールバック直接起動にも追加。② 真因根治: UTF-8 日本語入り bat が新規コンソール（初期CP932）で cmd.exe に誤パースされ（全角文字のUTF-8末尾バイトがCP932先行バイトとして直後の `%`・引用符・改行を食う）、ログオン自動復旧が「scheduler.py 稼働中」と誤判定→`pause` で無言停止していた恒常障害を、ランチャー4バッチ（start/stop/startup/ルートシム）の **100% ASCII 化**で根治。ルールを README_BAT.md / CLAUDE.md に明文化。③ ルート `start_umalogi.bat`（スタートアップ `UMALOGI 起動.lnk` の参照先・旧実装は排他禁止の scheduler.py を直接起動）を正本への委譲シムに書換え、二重自動運転経路を遮断。④ `stop_umalogi.bat` にポート3000 LISTEN の node 限定停止を追加（全 node 一括 kill はしない）。 |
+| **影響範囲** | scripts/bat/start_umalogi.bat, scripts/bat/stop_umalogi.bat, scripts/bat/README_BAT.md, startup_umalogi.bat, start_umalogi.bat, CLAUDE.md（本番稼働アーキテクチャ正典ブロック）, docs/2_automation_schedule.md, docs/6_special_notes.md, docs/7_weakness_ledger.md（W-085）, docs/spec/ARCHITECTURE_v1.0.0.md, docs/SYSTEM_ARCHITECTURE.md, VERSION |
+| **検証** | ASCII 化した正本ランチャーを新規コンソール（`Start-Process cmd /c`＝ログオン時と同条件）で E2E 実行: 稼働中の autopilot/watchdog を正しくスキップし Streamlit と Next.js のみ起動 → **http://localhost:3000 = HTTP 200 / http://localhost:8501 = HTTP 200** を確認。4バッチの非ASCIIバイト数 0 を機械検証。 |
+| **ロールバック** | 直前コミット 5ed48214。bat は git restore で復元可（プロセスは稼働継続）。 |
+| **関連** | W-085（本件・完了）/ W-084（auto_runner スーパーバイザー self-heal が本日も実動）/ docs/spec/ARCHITECTURE_v1.0.0.md 更新履歴 1.14.1-dev |
+
 ### 2026-06-12 — Web UI(ポート3000)プレミアムレポート統合 ＋ 文字化け絶対防御ロック ＋ ダイアログハンドラー誤検知修正
 
 | 項目 | 内容 |

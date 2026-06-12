@@ -323,12 +323,16 @@ web/             # Next.js フロントエンド（ダークUI）
 | **オートパイロット** | `py scripts/today_auto_runner.py --continuous` | 週次自律運転の中核。金曜夜のデータ同期＋暫定予想 → 土日の直前予想/結果速報の監視ループ → 日曜の週次レポート → 翌週金曜まで自動スリープを、人手ゼロで回す。 |
 | **ウォッチドッグ** | `py scripts/watchdog.py --interval 5` | 自己修復番犬。当日レースのオッズ欠損を監視し、検知時に JVLink 再起動＋データ再同期を段階的に実行。 |
 | **ダッシュボード** | `py -m streamlit run web_streamlit/app.py --server.port 8501` | 成果可視化 Streamlit UI。**正本は `web_streamlit/app.py` 唯一**（`src/web/dashboard.py` は逆統合により廃止済・存在しない）。|
+| **Next.js Web UI** | `web/` で `npm start`（= `next start -H 0.0.0.0 -p 3000`） | 的中実績・プレミアムレポート閲覧 UI（http://localhost:3000 ／ モバイル http://100.108.246.20:3000）。2026-06-12 (W-085) からログオン時自動復旧スタックに含まれる。 |
 
 #### ワンクリック起動・停止（Windows）
 
-- **起動**: `scripts/bat/start_umalogi.bat` … 上記3プロセスを別ウィンドウで非同期起動（二重起動ガード付き）。
-- **停止**: `scripts/bat/stop_umalogi.bat` … Name が python 系 かつ 当該スクリプトを実行中の PID のみを安全停止（全 Python 一括 kill はしない）。
+- **起動**: `scripts/bat/start_umalogi.bat` … 上記4プロセスを別ウィンドウで非同期起動（二重起動ガード付き・Web UI はポート3000 LISTEN 判定）。
+- **停止**: `scripts/bat/stop_umalogi.bat` … Name が python 系 かつ 当該スクリプトを実行中の PID、およびポート3000 を LISTEN する node のみを安全停止（全 Python / node 一括 kill はしない）。
 - 詳細手順・PC起動時の自動実行登録は `scripts/bat/README_BAT.md` を参照。
+- ⚠️ **W-085 バッチ記述ルール**: 本番ランチャー系 `.bat` は **100% ASCII** で記述すること（日本語は REM にも書かない）。
+  UTF-8 日本語入り bat は新規コンソール（初期 CP932）で cmd.exe に誤パースされ、変数展開・行構造が崩壊して
+  自動復旧が無言で停止する（bat 内 `chcp 65001` では防げない。実証: 2026-06-12 障害）。
 
 #### ⚠️ `scheduler.py` についての誤認防止（最重要）
 

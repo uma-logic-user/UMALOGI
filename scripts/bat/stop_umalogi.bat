@@ -1,51 +1,58 @@
 @echo off
-chcp 65001 > nul
 setlocal
-title UMALOGI - 停止
+title UMALOGI Stop
 
 REM ============================================================
-REM  UMALOGI 関連プロセスのみを安全に停止する。
+REM  Safely stop UMALOGI processes only.
 REM
-REM  対象（コマンドラインにスクリプト名を含むものだけ）:
-REM    - scripts/today_auto_runner.py   (オートパイロット)
-REM    - scripts/scheduler.py           (scheduler方式)
-REM    - scripts/watchdog.py            (自己修復番犬)
-REM    - web_streamlit/app.py           (Streamlitダッシュボード)
+REM  Targets (matched by script name in the command line):
+REM    - scripts/today_auto_runner.py   (autopilot)
+REM    - scripts/scheduler.py           (scheduler mode)
+REM    - scripts/watchdog.py            (self-healing watchdog)
+REM    - web_streamlit/app.py           (Streamlit dashboard)
+REM    - the node process LISTENing on port 3000 (Next.js Web UI)
 REM
-REM  安全設計（無関係な Python を巻き込まないため）:
-REM    1) 上記スクリプト名を CommandLine に含むプロセスのみを
-REM       PID 指定で Stop-Process する。
-REM    2) 補助として UMALOGI_ で始まるタイトルのウィンドウを
-REM       プロセスツリーごと(/T) taskkill する。
-REM  → "taskkill /im python.exe" のような全 Python 一括killは行わない。
+REM  Safety design (never hit unrelated python/node):
+REM    1) Stop-Process by PID, only for processes whose command line
+REM       contains one of the script names above.
+REM    2) Additionally taskkill window trees titled UMALOGI_*.
+REM  -> Never do a blanket "taskkill /im python.exe" or node.exe.
+REM
+REM  W-085: This file MUST stay 100% ASCII (cmd.exe CP932 parsing trap).
 REM ============================================================
 
 echo.
 echo  ============================================================
-echo    UMALOGI 関連プロセスを安全に停止します
+echo    Stopping UMALOGI processes safely
 echo  ============================================================
 echo.
 
-echo  [1/2] UMALOGI スクリプト実行中の python プロセスを検索・停止中...
-REM  安全のため Name を python 系に限定し、bash/cmd/エディタ等が同名文字列を
-REM  含んでいても巻き込まない。パターンはバックスラッシュ非使用。
+echo  [1/3] Stopping UMALOGI python processes (matched by command line)...
 powershell -NoProfile -Command ^
   "$pat='today_auto_runner.py|scheduler.py|watchdog.py|web_streamlit';" ^
   "$procs = Get-CimInstance Win32_Process | Where-Object { $_.Name -match 'python|^py' -and $_.CommandLine -and ($_.CommandLine -match $pat) };" ^
-  "if (-not $procs) { Write-Host '      対象プロセスは見つかりませんでした。' }" ^
-  "else { foreach ($p in $procs) { Write-Host ('      停止 PID=' + $p.ProcessId + '  ' + $p.Name); Stop-Process -Id $p.ProcessId -Force -ErrorAction SilentlyContinue } }"
+  "if (-not $procs) { Write-Host '      no matching process found.' }" ^
+  "else { foreach ($p in $procs) { Write-Host ('      stop PID=' + $p.ProcessId + '  ' + $p.Name); Stop-Process -Id $p.ProcessId -Force -ErrorAction SilentlyContinue } }"
 
 echo.
-echo  [2/2] UMALOGI ウィンドウ(cmd ラッパー)をツリーごと停止中...
+echo  [2/3] Stopping Next.js Web UI (only the node listening on port 3000)...
+powershell -NoProfile -Command ^
+  "Get-NetTCPConnection -LocalPort 3000 -State Listen -ErrorAction SilentlyContinue | ForEach-Object {" ^
+  "  $p = Get-Process -Id $_.OwningProcess -ErrorAction SilentlyContinue;" ^
+  "  if ($p -and $p.ProcessName -eq 'node') { Write-Host ('      stop PID=' + $p.Id + '  node (Next.js)'); Stop-Process -Id $p.Id -Force -ErrorAction SilentlyContinue } }"
+
+echo.
+echo  [3/3] Killing UMALOGI cmd wrapper windows (process tree)...
 taskkill /FI "WINDOWTITLE eq UMALOGI_AUTORUNNER*" /T /F >nul 2>&1
 taskkill /FI "WINDOWTITLE eq UMALOGI_SCHEDULER*"  /T /F >nul 2>&1
 taskkill /FI "WINDOWTITLE eq UMALOGI_WATCHDOG*"   /T /F >nul 2>&1
 taskkill /FI "WINDOWTITLE eq UMALOGI_DASHBOARD*"  /T /F >nul 2>&1
+taskkill /FI "WINDOWTITLE eq UMALOGI_WEBUI*"      /T /F >nul 2>&1
 
 echo.
 echo  ============================================================
-echo    停止処理が完了しました。
-echo    残存確認:  tasklist ^| findstr /i "python streamlit"
+echo    Stop sequence finished.
+echo    Verify:  tasklist ^| findstr /i "python streamlit node"
 echo  ============================================================
 echo.
 timeout /t 8 /nobreak

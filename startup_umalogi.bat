@@ -1,62 +1,67 @@
 @echo off
-chcp 65001 > nul
-title UMALOGI - PC起動時 自動復旧ランチャー
+title UMALOGI Auto-Recovery Launcher
 
 REM ============================================================
 REM  startup_umalogi.bat
-REM    PC 起動 / ログオン時の「自動復旧」エントリポイント。
-REM    Windows Update 等による強制再起動の後、本番稼働スタックを
-REM    人手ゼロで復帰させるためのバッチ。
+REM    Auto-recovery entry point for PC boot / logon. Brings the
+REM    production stack back with zero human action after forced
+REM    reboots (e.g. Windows Update).
 REM
-REM    タスクスケジューラ or スタートアップフォルダへ登録して使う。
-REM    （登録手順は scripts\bat\README_BAT.md の §5/§6 を参照）
+REM    Register in Task Scheduler or the Startup folder.
+REM    (See scripts\bat\README_BAT.md sections 5/6.)
 REM
-REM  本番稼働スタック（実体は scripts\bat\start_umalogi.bat に集約）:
-REM    1) Streamlit ダッシュボード   web_streamlit/app.py
-REM    2) 週次自律オートパイロット   today_auto_runner.py --continuous
-REM    3) 自己修復ウォッチドッグ     watchdog.py --interval 5
+REM  Production stack (implemented in scripts\bat\start_umalogi.bat):
+REM    1) Streamlit dashboard      web_streamlit/app.py   (port 8501)
+REM    2) Weekly autopilot         today_auto_runner.py --continuous
+REM    3) Self-healing watchdog    watchdog.py --interval 5
+REM    4) Next.js Web UI           web/ npm start         (port 3000)
+REM
+REM  W-085: This file MUST stay 100% ASCII. Japanese text saved as
+REM  UTF-8 breaks cmd.exe parsing in a fresh console (CP932 default).
 REM ============================================================
 
-REM ── プロジェクトルートをこのバッチの位置から解決 ──
+REM -- Resolve project root from this bat's location --
 set "ROOT=%~dp0"
 cd /d "%ROOT%"
 
 echo.
 echo  ============================================================
-echo    UMALOGI 自動復旧起動  (%DATE% %TIME%)
+echo    UMALOGI auto-recovery  (%DATE% %TIME%)
 echo    ROOT: %ROOT%
 echo  ============================================================
 
-REM ── 起動直後の安定化待機（DBロック / JVLink初期化 / ネットワーク確立の猶予） ──
-echo  [待機] システム安定化のため 45 秒待機します...
+REM -- Stabilization grace period (DB locks / JVLink init / network) --
+echo  [wait] Waiting 45 seconds for system stabilization...
 timeout /t 45 /nobreak > nul
 
-REM ── Python 実行環境 ─────────────────────────────────────────
-REM  本プロジェクトは仮想環境(venv/Poetry)を「不使用」で、システムの py ランチャー
-REM  (py = 64bit Python 3.14) を使う。将来 venv を導入した場合のみ自動で activate する。
+REM -- Python environment: no venv/Poetry by design; system py launcher --
+REM    (py = 64bit Python 3.14). Auto-activate only if a venv appears.
 if exist "%ROOT%.venv\Scripts\activate.bat" (
-    echo  [env] .venv を検出。仮想環境をアクティベートします。
+    echo  [env] .venv detected. Activating virtualenv.
     call "%ROOT%.venv\Scripts\activate.bat"
 ) else (
-    echo  [env] venv 不使用。システムの py ランチャーを使用します。
+    echo  [env] No venv. Using system py launcher.
 )
 
-REM ── 本番稼働スタックの起動（正本バッチへ委譲・ロジック二重化を避ける） ──
-REM  start_umalogi.bat 側に「二重起動ガード」「scheduler.py との排他ガード」が
-REM  実装済みのため、再起動後に既存プロセスが生き残っていても安全に再開できる。
+REM -- Launch production stack via the canonical launcher --
+REM    start_umalogi.bat owns the double-start guard and the
+REM    scheduler.py exclusivity guard, so re-running after a reboot
+REM    is safe even when some processes survived.
 if exist "%ROOT%scripts\bat\start_umalogi.bat" (
-    echo  [起動] 本番稼働スタックを起動します（オートパイロット方式）...
+    echo  [run] Launching production stack via scripts\bat\start_umalogi.bat ...
     call "%ROOT%scripts\bat\start_umalogi.bat"
 ) else (
-    echo  [警告] scripts\bat\start_umalogi.bat が見つかりません。フォールバックで直接起動します。
+    echo  [warn] scripts\bat\start_umalogi.bat not found. Falling back to direct launch.
     start "UMALOGI_DASHBOARD"  /D "%ROOT%" cmd /k "py -m streamlit run web_streamlit\app.py --server.port 8501 --browser.gatherUsageStats false"
     timeout /t 3 /nobreak > nul
     start "UMALOGI_AUTORUNNER" /D "%ROOT%" cmd /k "py scripts\today_auto_runner.py --continuous"
     timeout /t 3 /nobreak > nul
     start "UMALOGI_WATCHDOG"   /D "%ROOT%" cmd /k "py scripts\watchdog.py --interval 5"
+    timeout /t 3 /nobreak > nul
+    start "UMALOGI_WEBUI"      /D "%ROOT%web" cmd /k "npm start"
 )
 
 echo.
-echo  [完了] UMALOGI 自動復旧シーケンスを実行しました。
-echo         稼働確認: http://localhost:8501 ／ tasklist ^| findstr /i python
+echo  [done] UMALOGI auto-recovery sequence finished.
+echo         Check: http://localhost:8501 / http://localhost:3000
 echo.

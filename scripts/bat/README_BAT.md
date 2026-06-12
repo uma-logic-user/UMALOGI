@@ -16,6 +16,7 @@ Windows 環境で UMALOGI の本番稼働プロセスを **ワンクリックで
 | 1 | **ダッシュボード** | 成果可視化 Streamlit UI（http://localhost:8501） | `py -m streamlit run web_streamlit/app.py` |
 | 2 | **オートパイロット** | 週次自律運転（金曜夜→土日監視→週次レポート→翌週まで自動スリープ） | `py scripts/today_auto_runner.py --continuous` |
 | 3 | **ウォッチドッグ** | オッズ欠損の自己修復番犬（5分間隔・JVLink異常時に再起動＋再同期） | `py scripts/watchdog.py --interval 5` |
+| 4 | **Next.js Web UI** | 的中実績・プレミアムレポート閲覧 UI（http://localhost:3000 ／ モバイル http://100.108.246.20:3000） | `web/` で `npm start` |
 
 > ℹ️ **JVLink について**: オートパイロット／スケジューラは 64bit Python で常駐し、
 > JVLink COM 操作（32bit 制約）は内部で `py -3-32` の subprocess に自動委譲します。
@@ -45,10 +46,17 @@ UMALOGI の週次自動運転には **排他的な2実装** があります。**
 
 | ファイル | 用途 |
 |---------|------|
-| `start_umalogi.bat` | **本番ワンクリック起動**（ダッシュボード＋オートパイロット＋ウォッチドッグ） |
+| `start_umalogi.bat` | **本番ワンクリック起動**（ダッシュボード＋オートパイロット＋ウォッチドッグ＋Next.js Web UI） |
 | `start_scheduler_mode.bat` | 代替起動（scheduler.py 方式・オートパイロットと排他） |
-| `stop_umalogi.bat` | **UMALOGI 関連プロセスのみを安全停止**（無関係な Python は巻き込まない） |
+| `stop_umalogi.bat` | **UMALOGI 関連プロセスのみを安全停止**（無関係な Python / node は巻き込まない） |
 | `README_BAT.md` | 本マニュアル |
+
+> ⚠️ **W-085 バッチ記述ルール（絶対遵守）**: 本番ランチャー系 `.bat` は **100% ASCII** で記述すること。
+> UTF-8 保存の日本語を含む bat は、新規コンソール（初期コードページ CP932）で cmd.exe に誤パースされる
+> （全角文字の末尾バイトが CP932 先行バイトと解釈され、直後の `%`・引用符・**改行**まで食われて
+> 変数展開・行構造が崩壊する。bat 内の `chcp 65001` では防げない）。2026-06-12 に
+> この誤パースが原因で「ログオン時自動復旧が Streamlit / Web UI を起動できない」障害が発生した。
+> 日本語の説明は本 README などの `.md` に書くこと。
 
 ---
 
@@ -57,13 +65,14 @@ UMALOGI の週次自動運転には **排他的な2実装** があります。**
 ### 起動
 `scripts\bat\start_umalogi.bat` を **ダブルクリック**（または右クリック→管理者として実行）。
 
-- 3つのプロセスがそれぞれ独立したウィンドウ（`UMALOGI_DASHBOARD` / `UMALOGI_AUTORUNNER` /
-  `UMALOGI_WATCHDOG`）で起動します。
+- 4つのプロセスがそれぞれ独立したウィンドウ（`UMALOGI_DASHBOARD` / `UMALOGI_AUTORUNNER` /
+  `UMALOGI_WATCHDOG` / `UMALOGI_WEBUI`）で起動します。
 - ランチャーウィンドウは閉じても構いません（各プロセスは継続稼働）。
 - 既に稼働中のプロセスは自動スキップされます（二重起動防止）。
 
 起動確認:
 - ブラウザで **http://localhost:8501** を開く（ダッシュボード）。
+- ブラウザで **http://localhost:3000** を開く（Next.js Web UI・的中実績/プレミアムレポート）。
 - コマンドプロンプトで稼働確認:
   ```cmd
   tasklist | findstr /i "python streamlit"
