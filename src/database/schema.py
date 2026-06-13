@@ -28,6 +28,7 @@ DDL_STATEMENTS: list[str] = [
         condition       TEXT    NOT NULL DEFAULT '',
         post_time       TEXT    NOT NULL DEFAULT '',  -- 実発走時刻 HH:MM（空=推定にフォールバック）
         grade           TEXT    NOT NULL DEFAULT '',  -- グレード/クラス: G1/G2/G3/OP/L/3勝/2勝/1勝/未勝利/新馬（W-088・U scoreクラス変化）
+        status          TEXT    NOT NULL DEFAULT 'valid',  -- valid / error（破損・幽霊行の論理隔離。W-089・条項4論理削除）
         created_at      TEXT    NOT NULL DEFAULT (datetime('now', 'localtime'))
     )
     """,

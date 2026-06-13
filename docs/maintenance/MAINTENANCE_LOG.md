@@ -34,6 +34,22 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-13 — 条件戦 grade 前進補完（W-088）＋破損行12,326件の論理隔離（W-089）
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-opus-4-8) |
+| **修正日** | 2026-06-13（土・社長承認で条項2週末凍結を解除。ただし「前進修正のみ・週末安全」方針で外部スクレイピングは平日へ延期） |
+| **バージョン** | 1.14.4-dev → 1.14.5-dev |
+| **種別** | バグ修正＋運用基盤（スキーマ追加・データ衛生化・平日バッチ準備） |
+| **実施内容** | **【調査で前提崩れ2件】** W-088残課題（条件戦18,745件のgrade空）の精査で、①`_parse_ra`は確定フィールドのみ保存し**生RAバイト列は未保存**＝「保存済みRAをバイトオフセットで再パース」は対象不在で不可能、②既存RAオフセットは大半が`[推定]`で公式JV-Data仕様と不一致（距離が本コードbyte242・仕様697）を確認。18,745件の実内訳＝破損幽霊行12,362＋文字化け特別/L競走1,671＋真の無名条件戦4,712で、**ML価値ある対象は約6,383件のみ**（結果あり・grade空・status=valid）。**【タスク1: 前進修正】** `jravan_client.py`: `_extract_grade`を全角`ＧⅠ/Ｇ１・N勝クラス・（L）`等へ拡充。`_grade_from_ra(raw)`新設＝競走条件名称(JyokenName)域`slice(27,512)`をcp932範囲デコードしキーワード照合でクラス導出（**確定オフセット不要・窓ズレ時は空文字で誤充填しない安全側設計**）。`_parse_ra`の grade を `_extract_grade(race_name) or _grade_from_ra(raw)` へフォールバック配線→今後の同期で条件戦gradeが自動充填。**【タスク2: 破損行隔離】** `schema.py`に`status TEXT NOT NULL DEFAULT 'valid'`追加＋`init_db.py`マイグレーション#22`_migrate_add_status`（冪等）。`scripts/cleanse_phantom_races.py`新設で**条項4準拠の論理隔離**（物理削除せず`status='error'`）。厳格条件（grade空 AND distance=0 AND date<今日 AND 結果0件 AND 予想0件）で12,326件を隔離。**【タスク3: 平日バッチ】** `scripts/fetch_missing_grades.py`新設（dry-run既定・`--run`/`--sleep`レートリミット・netkeiba二次ソース・predictions不変・冪等）。月曜深夜に6,383件を充填予定。 |
+| **影響範囲** | src/scraper/jravan_client.py, src/database/schema.py, src/database/init_db.py, scripts/cleanse_phantom_races.py（新規）, scripts/fetch_missing_grades.py（新規）, tests/test_w088_backfill.py（新規）, docs/3_data_schema.md, docs/6_special_notes.md, docs/7_weakness_ledger.md（W-088/W-089/W-090）。テーブル: races（status列追加・12,326行 status='error'）。 |
+| **検証** | `pytest tests/test_w088_backfill.py tests/test_grade_u_score.py tests/test_jravan_pipeline.py tests/test_features.py tests/test_schema.py` 64 PASS。ruff format/check（変更ファイルのみ）クリーン。ライブDB隔離後の不変条件: error行の予想紐付き=0/結果あり=0/distance>0=0、当日36レース全valid維持。fetch_missing_grades dry-run=6,383件。 |
+| **ロールバック** | 直前コミット e195028c。作業前バックアップ data/backups/umalogi_20260613_140507_pre_w088b.db。status隔離の取消は `UPDATE races SET status='valid' WHERE status='error'`。 |
+| **関連** | W-088（条件戦grade補完・平日スクレイピング待ち）, W-089（破損行隔離・完了）, W-090（W-011 delta符号疑義・週末凍結で保留）。 |
+
+---
+
 ### 2026-06-13 — races.grade 列追加で U score 全スキップを根治（W-088）
 
 | 項目 | 内容 |

@@ -1344,32 +1344,78 @@ def _extract_grade(race_name: str) -> str:
         return ""
     name = race_name.strip()
 
-    # ── 重賞グレード（競走名末尾の (GI)/(GII)/(GIII)/(JGI)... 表記）─────
+    # ── 重賞グレード（(GI)/(GII)/(GIII)/(JGI)... ＋ 全角 ＧⅠ／Ｇ１ 表記）──
     # III → II → I の順で照合し、GI が GII/GIII に誤マッチするのを防ぐ。
-    if "GIII" in name or "JGIII" in name:
+    if "GIII" in name or "JGIII" in name or "ＧⅢ" in name or "Ｇ３" in name:
         return "G3"
-    if "GII" in name or "JGII" in name:
+    if "GII" in name or "JGII" in name or "ＧⅡ" in name or "Ｇ２" in name:
         return "G2"
-    if "GI" in name or "JGI" in name:
+    if "GI" in name or "JGI" in name or "ＧⅠ" in name or "Ｇ１" in name:
         return "G1"
-    if "(L)" in name or "リステッド" in name:
+    if "(L)" in name or "（L）" in name or "リステッド" in name:
         return "L"
 
-    # ── 条件クラス（競走名に含まれる条件表記）─────────────────────────
+    # ── 条件クラス（競走名・競走条件名称に含まれる条件表記）──────────
+    # JVLink JyokenName / netkeiba いずれも全角・半角が混在し得るため両系を許容。
     if "新馬" in name:
         return "新馬"
     if "未勝利" in name:
         return "未勝利"
-    if "3勝クラス" in name or "1600万" in name:
+    if (
+        "3勝クラス" in name
+        or "３勝クラス" in name
+        or "1600万" in name
+        or "１６００万" in name
+    ):
         return "3勝"
-    if "2勝クラス" in name or "1000万" in name:
+    if (
+        "2勝クラス" in name
+        or "２勝クラス" in name
+        or "1000万" in name
+        or "１０００万" in name
+    ):
         return "2勝"
-    if "1勝クラス" in name or "500万" in name:
+    if (
+        "1勝クラス" in name
+        or "１勝クラス" in name
+        or "500万" in name
+        or "５００万" in name
+    ):
         return "1勝"
-    if "オープン" in name:
+    if "オープン" in name or "ｵｰﾌﾟﾝ" in name:
         return "OP"
 
     return ""
+
+
+# 競走条件名称(JyokenName)スキャン窓。本コードベース固有の JVLink フレーミングは
+# 公式 JV-Data 仕様とオフセットが一致しない（例: 距離が byte242・仕様では697）ため
+# 確定オフセットを当てられない。よってレース情報記述域を範囲デコードし、クラス
+# キーワード一致時のみ正準トークンを返す。窓ズレ時はキーワード不一致で空文字を
+# 返すため grade を誤充填しない（安全側設計）。要・実RAサンプルでのオフセット検証。
+_RA_JYOKEN_SCAN = slice(27, 512)  # [範囲スキャン] 競走名本題～競走条件名称域
+
+
+def _grade_from_ra(raw: bytes) -> str:
+    """RA 生バイトのレース情報域を SJIS スキャンしてクラスを導出する（W-088）。
+
+    条件戦（未勝利/新馬/N勝クラス等）は競走名本題が空のため
+    ``_extract_grade(race_name)`` では grade を充填できない。本関数は競走条件名称
+    （JyokenName）を含むレース情報記述域 ``_RA_JYOKEN_SCAN`` を cp932 で範囲デコード
+    し、``_extract_grade`` のキーワード照合でクラスを抽出する。確定バイトオフセット
+    に依存しないため窓ズレが起きても誤充填しない（不一致時は空文字を返す）。
+
+    Args:
+        raw: RA レコードの生バイト列。
+
+    Returns:
+        正準グレードトークン。判定不可・文字化け時は空文字。
+    """
+    try:
+        text = raw[_RA_JYOKEN_SCAN].decode("cp932", errors="ignore")
+    except Exception:  # noqa: BLE001 — デコード失敗は安全に空文字へ縮退
+        return ""
+    return _extract_grade(text)
 
 
 def _parse_ra(raw: bytes) -> Optional[dict]:
@@ -1429,7 +1475,8 @@ def _parse_ra(raw: bytes) -> Optional[dict]:
         "track_direction": direction,
         "weather": weather,
         "condition": condition,
-        "grade": _extract_grade(race_name),
+        # 競走名から導出 → 失敗時は競走条件名称(JyokenName)スキャンで条件戦を補完（W-088）
+        "grade": _extract_grade(race_name) or _grade_from_ra(raw),
     }
 
 

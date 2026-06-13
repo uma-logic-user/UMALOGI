@@ -179,6 +179,7 @@ def init_db(db_path: Path | None = None) -> sqlite3.Connection:
         conn
     )  # 20. predictions.is_superseded 列追加（再推論で論理無効化）
     _migrate_add_grade(conn)  # 21. races.grade 列追加（W-088・U scoreクラス変化）
+    _migrate_add_status(conn)  # 22. races.status 列追加（W-089・破損行の論理隔離）
 
     logger.info("DB 初期化完了: %s", path)
     return conn
@@ -1085,6 +1086,29 @@ def _migrate_add_grade(conn: sqlite3.Connection) -> None:
         with conn:
             conn.execute("ALTER TABLE races ADD COLUMN grade TEXT NOT NULL DEFAULT ''")
         logger.info("マイグレーション #21: races.grade 列を追加しました")
+
+
+def _migrate_add_status(conn: sqlite3.Connection) -> None:
+    """マイグレーション #22: races に status 列（論理隔離フラグ）を追加する（W-089）。
+
+    2021-2024 の失敗インポート残骸（race_name 空・distance=0・結果0件・予想0件）が
+    多数残存し、特徴量生成・分析クエリのノイズ源となる。条項4（DB 物理削除禁止・
+    論理削除優先）に従い、物理削除せず status='error' で隔離するための列を追加する。
+
+    値の語彙: 'valid'（正常レース・既定）/ 'error'（破損・幽霊行）。
+    既定値 'valid' のため既存の正常レースは自動的に valid 扱いとなる。
+    隔離対象の確定マーキングは scripts/cleanse_phantom_races.py が冪等に行う。
+
+    Args:
+        conn: アクティブな DB コネクション。
+    """
+    cols = [row[1] for row in conn.execute("PRAGMA table_info(races)").fetchall()]
+    if "status" not in cols:
+        with conn:
+            conn.execute(
+                "ALTER TABLE races ADD COLUMN status TEXT NOT NULL DEFAULT 'valid'"
+            )
+        logger.info("マイグレーション #22: races.status 列を追加しました")
 
 
 def _migrate_add_is_superseded(conn: sqlite3.Connection) -> None:
