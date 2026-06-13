@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import json as _json
 import logging
+import os
 import sqlite3
 from datetime import date, datetime, timedelta
 from typing import TYPE_CHECKING
@@ -656,17 +657,28 @@ def _run_pure_ev_edge(
 
         cfg = PureEVConfig(initial_bankroll=get_current_bankroll(conn))
 
-        # サーキットブレーカー: 当日/当週の確定損失が上限超なら新規購入を停止
+        # サーキットブレーカー: 当日/当週の確定損失が上限超のとき。
+        # W-087 Soft Stop（既定）= シグナル生成と DB 保存は継続し、警告ログのみ
+        #   （データ蓄積・監視を止めない／実弾発注は人間判断）。
+        # Hard Stop（CIRCUIT_BREAKER_SOFT_STOP=0）= 旧来どおり新規生成を停止（return None）。
+        soft_stop = os.getenv("CIRCUIT_BREAKER_SOFT_STOP", "1").strip() != "0"
         if rdate:
             try:
                 cb = circuit_breaker_status(conn, rdate, cfg)
                 if cb.tripped:
-                    logger.warning(
-                        "[Pure_EV_Edge] サーキットブレーカー発動 race_id=%s: %s",
-                        race_id,
-                        cb.reason,
-                    )
-                    return None
+                    if soft_stop:
+                        logger.warning(
+                            "[Pure_EV_Edge] CB発動中だがシグナル生成を継続 race_id=%s: %s（Soft Stop）",
+                            race_id,
+                            cb.reason,
+                        )
+                    else:
+                        logger.warning(
+                            "[Pure_EV_Edge] サーキットブレーカー発動 race_id=%s: %s（Hard Stop）",
+                            race_id,
+                            cb.reason,
+                        )
+                        return None
             except Exception as _cbe:  # noqa: BLE001
                 logger.debug("[Pure_EV_Edge] CB判定スキップ: %s", _cbe)
 

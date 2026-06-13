@@ -73,7 +73,11 @@ def test_run_pure_ev_edge_saves_with_prob_and_flat_cost(monkeypatch) -> None:
     assert by_type["複勝"]["recommended_bet"] == 900.0
 
 
-def test_run_pure_ev_edge_skips_when_circuit_breaker_tripped(monkeypatch) -> None:
+def test_run_pure_ev_edge_hard_stop_skips_when_circuit_breaker_tripped(
+    monkeypatch,
+) -> None:
+    """W-087: Hard Stop（CIRCUIT_BREAKER_SOFT_STOP=0）では CB 発動で見送り（None）。"""
+    monkeypatch.setenv("CIRCUIT_BREAKER_SOFT_STOP", "0")
     monkeypatch.setattr(P, "get_current_bankroll", lambda conn: 100_000)
     monkeypatch.setattr(
         PE,
@@ -89,7 +93,44 @@ def test_run_pure_ev_edge_skips_when_circuit_breaker_tripped(monkeypatch) -> Non
         suffix="(直前)",
         rdate="2026-05-31",
     )
-    assert out is None  # CB 発動で見送り
+    assert out is None  # Hard Stop: CB 発動で見送り
+
+
+def test_run_pure_ev_edge_soft_stop_continues_when_circuit_breaker_tripped(
+    monkeypatch,
+) -> None:
+    """W-087: Soft Stop（既定）では CB 発動でも CB を理由に None にはしない。
+
+    CB 判定を素通りして買い目選定へ進むことを、`select_pure_ev_bets` が
+    呼ばれることで検証する（買い目0なら別経路で None だが、ここでは
+    1件返すスタブを差し込み「CB で止まっていない」ことを確認する）。
+    """
+    monkeypatch.setenv("CIRCUIT_BREAKER_SOFT_STOP", "1")
+    monkeypatch.setattr(P, "get_current_bankroll", lambda conn: 100_000)
+    monkeypatch.setattr(
+        PE,
+        "circuit_breaker_status",
+        lambda *a, **k: CircuitBreakerStatus(True, "日次損失上限 到達"),
+    )
+    called: dict[str, bool] = {"selected": False}
+
+    def _fake_select(race_id, horses, cfg):  # noqa: ANN001
+        called["selected"] = True
+        return PureEVRaceBets(race_id, [])  # 買い目0（保存はされないが CB は通過）
+
+    monkeypatch.setattr(PE, "select_pure_ev_bets", _fake_select)
+    out = P._run_pure_ev_edge(
+        conn=None,
+        race_id="R",
+        df=pd.DataFrame([{"horse_number": 1, "win_odds": 5.0}]),
+        manji_ev_scores=pd.Series([2.0]),
+        place_scores=pd.Series([0.8]),
+        suffix="(直前)",
+        rdate="2026-05-31",
+    )
+    # Soft Stop: CB で早期 return せず買い目選定まで到達している
+    assert called["selected"] is True
+    assert out is None  # 買い目0のため最終的に None だが、CB が理由ではない
 
 
 def test_notify_pure_ev_edge_sends_to_prediction(monkeypatch) -> None:

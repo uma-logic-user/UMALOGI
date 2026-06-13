@@ -10,6 +10,7 @@
 
 | 日付 | 変更内容 |
 |------|----------|
+| 2026-06-13 | サーキットブレーカーの Soft Stop 化（W-087・v1.14.3-dev）: W-043日次損失CB/Pure_EV CB を発動時スキップ→アラートのみ・予想生成継続へ（env CIRCUIT_BREAKER_SOFT_STOP 既定soft）。CB発動で直前予想9R激減を解消（→29R）。詳細: docs/spec/ARCHITECTURE_v1.0.0.md 更新履歴 1.14.3-dev |
 | 2026-06-13 | 金曜夜間バッチJVLink同期の構造バグ3件根治（W-086・v1.14.2-dev）: --fromtime欠落rc=2即死／SE保存ON CONFLICT部分インデックス不一致／W-080レコーダーsys.path欠落。詳細: docs/spec/ARCHITECTURE_v1.0.0.md 更新履歴 1.14.2-dev |
 | 2026-06-12 | ログオン時自動復旧スタックへ Next.js Web UI(3000) を追加＋ランチャーbat完全ASCII化（W-085・v1.14.1-dev）: `scripts/bat/start_umalogi.bat` を 4 プロセス構成（Streamlit/autopilot/watchdog/Next.js）へ拡張し、UTF-8 日本語入り bat の CP932 誤パースによる自動復旧無言停止を ASCII 化で根治。ルート `start_umalogi.bat` は scheduler.py 起動を廃し正本へ委譲。詳細: docs/spec/ARCHITECTURE_v1.0.0.md 更新履歴 1.14.1-dev |
 | 2026-06-12 | Web UI（ポート3000）プレミアムレポート統合＋文字化け絶対防御ロック（v1.14.0-dev）: ①Next.js に `/api/premium-report`（charset=utf-8 HTML 配信）/`/api/premium-signals`（TS 文字化けゲート付き JSON）＋「💎 プレミアムレポート」ビュー新設。`premium_pack` が `premium_signals.json` を4ファイル目として出力しファイルベースで連携（DB スキーマ不変）。②`is_garbled()` に `?＋非ASCII` 繰り返し検知追加・`cleanup_encoding.py` を is_garbled_name 併用＋回復品質ゲートに強化し DB 全テーブル化け残留 618→0 件。③`jvlink_dialog_handler` 除外クラスにターミナル系＋Delphi TApplication 追加（W-083 完了）。詳細: docs/spec/ARCHITECTURE_v1.0.0.md 更新履歴 1.14.0-dev |

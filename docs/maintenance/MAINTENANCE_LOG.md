@@ -34,6 +34,20 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-13 — サーキットブレーカーの Soft Stop 化＋予想シグナル激減の原因究明（W-087）
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-opus-4-8) |
+| **修正日** | 2026-06-13（土・社長指令: CB発動でも予想生成を止めない／シグナル数改善） |
+| **バージョン** | 1.14.2-dev → 1.14.3-dev |
+| **種別** | 機能変更（挙動）＋ 障害調査 |
+| **実施内容** | ① W-043 日次損失CB（`today_auto_runner`）を Hard Stop → **Soft Stop** 化。env `CIRCUIT_BREAKER_SOFT_STOP`（既定`1`=soft）を新設し、soft時はCB発動でも `_run_prerace` を実行して予想生成・DB保存・監視を継続。アラートは日次1回に重複排除。`=0` で旧Hard Stop。② Pure_EV CB（`prediction.py:_run_pure_ev_edge`）も同フラグで soft時はシグナル生成を継続（旧 `return None`）。③ **シグナル激減の真因を特定**: 本日11:10のCB発動で午後27レースの直前予想が丸ごとスキップされていた（フィルタ閾値ではなくCBハードスキップが主因）。単複限定ロック・EV閾値は安全/エッジ品質ゲートのため緩和せず維持。④ 未確定26レースの直前予想をバックフィル＋premium_pack再生成＋auto_runner再起動（Soft Stopコード本番反映）。 |
+| **影響範囲** | scripts/today_auto_runner.py, src/pipeline/prediction.py, tests/test_pure_ev_wiring.py, docs/1_prediction_logic.md, docs/2_automation_schedule.md, docs/7_weakness_ledger.md（W-087/W-088）, docs/spec/ARCHITECTURE_v1.0.0.md, docs/SYSTEM_ARCHITECTURE.md, VERSION |
+| **検証** | BEFORE→AFTER: 直前予想 9R→**29R**、Pure_EV 0→**8件**、prediction_horses 916→**1,536件**、premium signals 300/29R→**321/30R**。Web UI `/api/premium-signals`=200・`/api/premium-report`=200。auto_runner再起動ログに `[CB-SOFT] CB発動中だが予想生成を継続`＋CBアラート1回dedup を確認。pytest: test_pure_ev_wiring 5 + test_pure_ev_edge 16 + test_bet_generator 36 = 57 PASS。 |
+| **ロールバック** | 直前コミット 507b75e1。CBを完全停止に戻すには env `CIRCUIT_BREAKER_SOFT_STOP=0`。 |
+| **関連** | W-087（本件・完了）/ W-088（races.grade列欠落でU scoreスキップ・別途平日対応）/ W-043（CB原典） |
+
 ### 2026-06-13 — 【緊急対応】土曜朝・出馬表未取得/予想未生成の復旧 ＋ 金曜夜間バッチ構造バグ3件の根治（W-086）
 
 | 項目 | 内容 |

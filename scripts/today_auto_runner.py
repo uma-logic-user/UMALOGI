@@ -171,6 +171,16 @@ _RESTART_WAIT_SEC = 30
 # 環境変数 DAILY_LOSS_LIMIT_JPY（整数）で上書き可能。デフォルト ¥30,000
 _DAILY_LOSS_LIMIT_JPY: int = int(os.getenv("DAILY_LOSS_LIMIT_JPY", "30000"))
 
+# W-087: サーキットブレーカーの Soft Stop 化（2026-06-13 社長指令）
+# True（既定）= CB 発動時も「予想の生成と DB 保存は継続」しアラート通知のみ行う。
+#   データ蓄積・監視を止めないための Soft Stop。実弾発注は人間判断に委ねる。
+# False = 旧来の Hard Stop（CB 発動時に prerace をスキップ＝予想を生成しない）。
+# 環境変数 CIRCUIT_BREAKER_SOFT_STOP="0" で Hard Stop に戻せる。
+_CB_SOFT_STOP: bool = os.getenv("CIRCUIT_BREAKER_SOFT_STOP", "1").strip() != "0"
+
+# CB アラートの日次重複排除（発動後レース毎に Discord 連投するのを防ぐ）
+_cb_alerted_dates: set[str] = set()
+
 # W-044: セッション全体クラッシュ上限（連続/非連続問わず）
 # _consecutive_errors は連続エラーのみカウント（成功でリセット）するが、
 # _session_total_crashes はリセットしない。長期フラッピング障害で無限ループになるのを防ぐ。
@@ -288,12 +298,16 @@ def _fetch_today_races(target_date: str) -> list[tuple[str, str, int, str]]:
 def _check_daily_loss_circuit_breaker(date_str: str) -> bool:
     """W-043: 当日P&L損失がCB閾値を超えているか確認する。
 
+    W-087 Soft Stop: トリップ判定（戻り値）と通知を分離。本関数は判定のみ責務を持ち、
+    発動時のアラートは日次1回に重複排除して送る。実際に予想生成を止めるか
+    （Hard Stop）/ 継続するか（Soft Stop）は呼び出し側が `_CB_SOFT_STOP` で決める。
+
     Args:
         date_str: 対象日 "YYYYMMDD" 形式。
 
     Returns:
-        True = CBトリップ（当日の実弾予想を停止すべき）。
-        False = 正常（予想続行可）。
+        True = CBトリップ（当日損失が閾値超過）。
+        False = 正常。
     """
     if _DAILY_LOSS_LIMIT_JPY <= 0:
         return False  # CB 無効化（0以下で無制限）
@@ -321,17 +335,31 @@ def _check_daily_loss_circuit_breaker(date_str: str) -> bool:
             conn.close()
 
         if net_profit <= -_DAILY_LOSS_LIMIT_JPY:
+            mode = "Soft Stop（予想生成は継続）" if _CB_SOFT_STOP else "Hard Stop（予想停止）"
             logger.warning(
-                "🛑 [W-043 CB] 当日損失 ¥%.0f が閾値 ¥%d を超過 → 本日の実弾予想を停止",
+                "🛑 [W-043 CB] 当日損失 ¥%.0f が閾値 ¥%d を超過 → %s",
                 abs(net_profit),
                 _DAILY_LOSS_LIMIT_JPY,
+                mode,
             )
-            _send_discord(
-                f"🛑 **[UMALOGI W-043 サーキットブレーカー発動]**\n"
-                f"当日確定損失: **▲¥{abs(net_profit):,.0f}** (閾値: ▲¥{_DAILY_LOSS_LIMIT_JPY:,})\n"
-                f"本日 `{date_str}` の残レース実弾予想を自動停止しました。\n"
-                f"手動で再開する場合は `DAILY_LOSS_LIMIT_JPY=0` を設定してください。"
-            )
+            # W-087: 発動アラートは日次1回のみ（レース毎の Discord 連投を防止）
+            if date_str not in _cb_alerted_dates:
+                _cb_alerted_dates.add(date_str)
+                if _CB_SOFT_STOP:
+                    _send_discord(
+                        f"🟡 **[UMALOGI W-043 CB 発動 / Soft Stop]**\n"
+                        f"当日確定損失: **▲¥{abs(net_profit):,.0f}** (閾値: ▲¥{_DAILY_LOSS_LIMIT_JPY:,})\n"
+                        f"本日 `{date_str}` は**予想の生成・DB保存・監視を継続**します（データ蓄積優先）。\n"
+                        f"⚠️ 実弾発注は損失拡大リスクを考慮し、ご自身の判断でお願いします。\n"
+                        f"完全停止に戻す場合は `CIRCUIT_BREAKER_SOFT_STOP=0` を設定してください。"
+                    )
+                else:
+                    _send_discord(
+                        f"🛑 **[UMALOGI W-043 サーキットブレーカー発動 / Hard Stop]**\n"
+                        f"当日確定損失: **▲¥{abs(net_profit):,.0f}** (閾値: ▲¥{_DAILY_LOSS_LIMIT_JPY:,})\n"
+                        f"本日 `{date_str}` の残レース予想生成を自動停止しました。\n"
+                        f"再開する場合は `DAILY_LOSS_LIMIT_JPY=0` または `CIRCUIT_BREAKER_SOFT_STOP=1` を設定してください。"
+                    )
             return True
         return False
     except Exception as exc:
@@ -1137,12 +1165,24 @@ def _run_one_day(
             race_id,
             start.strftime("%H:%M"),
         )
-        # W-043: サーキットブレーカーチェック（当日損失が閾値超なら実弾停止）
+        # W-043 / W-087: サーキットブレーカーチェック。
+        #   Soft Stop（既定）= 予想の生成と DB 保存は継続し、アラートのみ（データ蓄積・監視を止めない）。
+        #   Hard Stop = 旧来どおり prerace をスキップ（予想を生成しない）。
         if _check_daily_loss_circuit_breaker(target_date):
-            logger.warning(
-                "[CB] R%02d %s [prerace] CB発動 → スキップ", race_number, race_id
-            )
-            return -2  # CB トリップコード
+            if _CB_SOFT_STOP:
+                logger.warning(
+                    "[CB-SOFT] R%02d %s [prerace] CB発動中だが予想生成を継続（Soft Stop）",
+                    race_number,
+                    race_id,
+                )
+                # フォールスルーして _run_prerace を実行する
+            else:
+                logger.warning(
+                    "[CB] R%02d %s [prerace] CB発動 → スキップ（Hard Stop）",
+                    race_number,
+                    race_id,
+                )
+                return -2  # CB トリップコード（Hard Stop 時のみ）
         rc = _run_prerace(race_id, dry_run)
         if rc == 0:
             logger.info("[OK] R%02d %s  [prerace V1] 完了", race_number, race_id)
