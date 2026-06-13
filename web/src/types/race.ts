@@ -146,6 +146,8 @@ export interface Prediction {
   actual_winners?: ActualWinner[]
   /** model_type に "(暫定)" が含まれる場合 true — オッズ未取得の金曜夜暫定予想 */
   is_provisional?: boolean
+  /** 予想トラック: 'sns'=📱SNSマーケ多券種 / 'gachi'=💰個人実弾EV単複（API classifyTrack 付与） */
+  track?: 'sns' | 'gachi'
 }
 
 export interface ActualWinner {

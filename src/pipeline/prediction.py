@@ -41,6 +41,10 @@ from src.ml.bet_generator import (
 from src.notification.discord_notifier import DiscordNotifier  # noqa: F401 (後方互換のため保持)
 from src.notification.router import NotificationRouter
 from src.pipeline.scraping import fetch_and_save_odds, save_entries_to_db
+
+# SNS マーケティング専用シャドー（5月末ポリシー全券種）配線。monkeypatch 可能なよう
+# モジュールレベルで束縛する（best-effort ヘルパー _maybe_save_shadow から参照）。
+from src.analysis.shadow_recompute import generate_shadow_bets, save_shadow_bets
 from ._common import build_output_json, save_json
 
 logger = logging.getLogger(__name__)
@@ -878,6 +882,43 @@ def _run_fukusho_elite(
         return None
 
 
+def _maybe_save_shadow(
+    conn: "sqlite3.Connection",
+    race_id: str,
+    df: pd.DataFrame,
+    honmei_scores: pd.Series,
+    ev_scores: pd.Series,
+) -> int:
+    """SNS マーケティング専用シャドー（5月末ポリシー全券種）を best-effort で追記保存する。
+
+    既に計算済みの ``df`` / ``honmei_scores`` / ``ev_scores`` を再利用するため、特徴量の
+    二重生成も外部スクレイピングも行わない（タスク3: 直前バッチの負荷・タイムアウト対策）。
+    別 model_type ``{base}_v0525(再計算)`` で INSERT するため、既存 live 予想を一切
+    変更しない（CLAUDE.md 条項1）。env ``SHADOW_SNS_ENABLE=0`` で完全無効化できる。
+
+    例外は warning ログのみで握り潰し、絶対に再送出しない（実弾予想・通知を止めない）。
+
+    Returns:
+        保存したシャドー prediction の件数（無効化・失敗時は 0）。
+    """
+    if os.getenv("SHADOW_SNS_ENABLE", "1").strip() == "0":
+        logger.info("[ShadowSNS] SHADOW_SNS_ENABLE=0 のためスキップ: %s", race_id)
+        return 0
+    try:
+        model_bets = generate_shadow_bets(race_id, df, honmei_scores, ev_scores)
+        saved = save_shadow_bets(conn, race_id, model_bets)
+        n = sum(len(pids) for pids in saved.values())
+        logger.info(
+            "[ShadowSNS] 5月末ポリシー多券種を追記: race_id=%s %d 件 (📱SNS専用)",
+            race_id,
+            n,
+        )
+        return n
+    except Exception as exc:  # noqa: BLE001 — best-effort: 実弾予想を絶対に止めない
+        logger.warning("[ShadowSNS] スキップ（例外・処理継続）: %s — %s", race_id, exc)
+        return 0
+
+
 def prerace_pipeline(
     race_id: str,
     provisional: bool = False,
@@ -1291,6 +1332,12 @@ def _prerace_pipeline_inner(
         honmei_shap=honmei_shap_by_num,
         manji_shap=manji_shap_by_num,
     )
+
+    # Step 5b: SNS マーケティング専用シャドー（5月末ポリシー全券種）を best-effort で追記。
+    #   実弾 EV パス（上記 _save_predictions）とは別 model_type ``_v0525(再計算)`` に隔離され、
+    #   既存 live 予想を一切変更しない（条項1）。計算済みスコアを再利用するため負荷は最小。
+    #   失敗してもライブ予想・通知を絶対に止めない（_maybe_save_shadow が例外を握り潰す）。
+    _maybe_save_shadow(conn, race_id, df, honmei_scores, ev_scores)
 
     # Step 5c: WIN5（直前のみ）
     if not provisional:

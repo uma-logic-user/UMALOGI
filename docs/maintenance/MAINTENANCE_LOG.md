@@ -34,6 +34,20 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-14 — SNS用／個人ガチ用モデルの完全分離・ライブ配線＋判別UI（社長特例 / `v1.15.1-dev`）
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-opus-4-8) |
+| **修正日** | 2026-06-14（日・ライブ運用中／社長特例指令で条項2週末凍結を上書き） |
+| **バージョン** | 1.15.0-dev → 1.15.1-dev |
+| **種別** | 機能追加（モデル役割分離・ライブパイプライン配線・UI） |
+| **実施内容** | ・W-091 の `_v0525` 多券種を **SNS・マーケティング専用（Hit-Focused）**、現行単複ロック高EVを **個人実弾投資用（EV-Focused）** と位置づけ完全分離。<br>・`src/pipeline/prediction.py` に best-effort ヘルパー `_maybe_save_shadow()` を新設し、`_prerace_pipeline_inner` のライブ保存直後に配線。計算済み `df/honmei_scores/ev_scores` を再利用してシャドー多券種を `{base}_v0525(再計算)` で追記（条項1: 既存 live 予想を構造上 UPDATE しない）。<br>・**オートパイロット再起動不要**: `_run_prerace` は毎回 `py -m src.main_pipeline prerace` を新規 spawn するため src 変更が即時反映。<br>・env `SHADOW_SNS_ENABLE=0` で緊急停止可。例外は握り潰し実弾予想を絶対に止めない。<br>・UI: `classifyTrack()`（ハイブリッド・ルール）を `dbHelpers.ts` に追加し `/api/predictions` 各行へ `track` 付与。`PredictionsPanel` にトラックタブ（全部/💰ガチ/📱SNS）＋各行バッジを実装。<br>・タスク3: シャドーは DB 内データのみ・外部スクレイピング追加ゼロでタイムアウト無影響。 |
+| **影響範囲** | `src/pipeline/prediction.py`（`_maybe_save_shadow` 新設・配線）, `web/src/lib/dbHelpers.ts`（`classifyTrack`）, `web/src/app/api/predictions/route.ts`（`track` 付与）, `web/src/types/race.ts`（`track`）, `web/src/components/PredictionsPanel.tsx`（タブ＋バッジ）, `tests/test_prerace_shadow_hook.py`, `web/__tests__/classifyTrack.test.ts` |
+| **検証** | `pytest tests/test_prerace_shadow_hook.py tests/test_shadow_recompute.py` 9 PASS / `web` jest 32 PASS / `tsc --noEmit` 0 / `ruff format`+`ruff check`（変更ファイル）クリーン。 |
+| **ロールバック** | 直前コミット `61c4eef3`。または env `SHADOW_SNS_ENABLE=0` でシャドー生成のみ即時停止（UIは表示加算のみで実弾無影響）。 |
+| **関連** | W-091（5月末ポリシーシャドー）, W-092（ライブ配線＋判別UI）, docs/superpowers/specs/2026-06-14-sns-gachi-track-separation-design.md |
+
 ### 2026-06-13 — 5月末ポリシー並列シャドー再計算エンジン（社長特例・全券種復活 / `_v0525`）
 
 | 項目 | 内容 |

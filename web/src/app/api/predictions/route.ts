@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getDb } from '@/lib/db'
 import { validateResponse } from '@/lib/validateResponse'
-import { sanitize, rowToObj, sortedCombinations, chunkArray, identifyBetForm } from '@/lib/dbHelpers'
+import { sanitize, rowToObj, sortedCombinations, chunkArray, identifyBetForm, classifyTrack } from '@/lib/dbHelpers'
 
 export const dynamic = 'force-dynamic'
 
@@ -154,6 +154,8 @@ export async function GET(req: NextRequest) {
         horses:            horsesByPred.get(pd.prediction_id as number) ?? [],
         horse_num_to_name: horseNumToNameByRace.get(pd.race_id as string) ?? {},
         is_provisional:    modelType.includes('(暫定)'),
+        // 📱SNS（多券種マーケ） / 💰ガチ（実弾EV単複）トラック分類（サーバー側単一真実源）
+        track:             classifyTrack(modelType, betType),
       }
     })
 

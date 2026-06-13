@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import type { Prediction, RacePayout } from '../types/race'
+import { classifyTrack, type PredictionTrack } from '@/lib/dbHelpers'
 
 interface Props {
   predictions: Prediction[]
@@ -95,6 +96,36 @@ function findHitCombo(
     }
   }
   return null
+}
+
+/** 予想のトラック種別を解決する（API の track を優先、無ければクライアント側で再計算） */
+function trackOf(pred: Prediction): PredictionTrack {
+  return pred.track ?? classifyTrack(pred.model_type ?? '', pred.bet_type ?? '')
+}
+
+/** 📱SNS / 💰ガチ バッジ（締切直前に一瞬で判別するための視覚タグ） */
+function TrackBadge({ track }: { track: PredictionTrack }) {
+  const isSns = track === 'sns'
+  return (
+    <span
+      title={isSns ? 'SNS・マーケティング用（多券種シグナル）' : '個人実弾投資用（EV単複）'}
+      style={{
+        display: 'inline-block',
+        background: isSns ? 'rgba(56,189,248,0.16)' : 'rgba(91,138,91,0.16)',
+        color: isSns ? '#38bdf8' : 'var(--neon-green)',
+        border: `1px solid ${isSns ? 'rgba(56,189,248,0.5)' : 'rgba(91,138,91,0.5)'}`,
+        borderRadius: 3,
+        padding: '0 5px',
+        fontSize: '0.6rem',
+        fontWeight: 800,
+        letterSpacing: '0.04em',
+        lineHeight: '1.7',
+        whiteSpace: 'nowrap',
+      }}
+    >
+      {isSns ? '📱 SNS' : '💰 ガチ'}
+    </span>
+  )
 }
 
 /** モデルタイプから CSS クラスサフィックスを解決する */
@@ -279,6 +310,7 @@ function MobilePredCard({
         <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
           {/* 券種バッジ */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
+            <TrackBadge track={trackOf(pred)} />
             <span style={{
               background: 'rgba(255,255,255,0.06)',
               border: '1px solid rgba(255,255,255,0.12)',
@@ -541,11 +573,20 @@ export default function PredictionsPanel({
   limit = 50,
   payouts = [],
 }: Props) {
+  const [track, setTrack] = useState<'all' | 'gachi' | 'sns'>('all')
+
   let filtered = predictions
   if (raceId)    filtered = filtered.filter(p => p.race_id === raceId)
   if (modelType) filtered = filtered.filter(p => p.model_type === modelType)
 
-  const sorted = [...filtered].sort((a, b) => {
+  // トラック別件数（タブバッジ用・track フィルタ適用前で集計）
+  const gachiCount = filtered.filter(p => trackOf(p) === 'gachi').length
+  const snsCount   = filtered.filter(p => trackOf(p) === 'sns').length
+
+  // 締切直前に「個人ガチ用」と「SNS用」を混同しないためのトラックフィルタ
+  const trackFiltered = track === 'all' ? filtered : filtered.filter(p => trackOf(p) === track)
+
+  const sorted = [...trackFiltered].sort((a, b) => {
     const aH = a.is_hit === 1 ? 1 : 0
     const bH = b.is_hit === 1 ? 1 : 0
     if (aH !== bH) return bH - aH
@@ -555,16 +596,60 @@ export default function PredictionsPanel({
 
   const items = sorted.slice(0, limit)
 
+  const TRACK_TABS: { key: 'all' | 'gachi' | 'sns'; label: string; count: number }[] = [
+    { key: 'all',   label: '全部',      count: filtered.length },
+    { key: 'gachi', label: '💰 ガチ',   count: gachiCount },
+    { key: 'sns',   label: '📱 SNS',    count: snsCount },
+  ]
+
+  const TrackTabs = (
+    <div style={{ display: 'flex', gap: 6, marginBottom: 8, flexWrap: 'wrap' }}>
+      {TRACK_TABS.map(t => {
+        const active = track === t.key
+        const accent = t.key === 'sns' ? '#38bdf8' : t.key === 'gachi' ? 'var(--neon-green)' : 'var(--neon-gold)'
+        return (
+          <button
+            key={t.key}
+            onClick={() => setTrack(t.key)}
+            style={{
+              display: 'inline-flex', alignItems: 'center', gap: 6,
+              padding: '4px 12px', borderRadius: 6, cursor: 'pointer',
+              fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.03em',
+              background: active ? 'rgba(255,255,255,0.06)' : 'transparent',
+              color: active ? accent : 'var(--text-muted)',
+              border: `1px solid ${active ? accent : 'var(--border)'}`,
+              transition: 'all 0.15s',
+            }}
+          >
+            <span>{t.label}</span>
+            <span style={{
+              fontSize: '0.65rem', opacity: 0.8, fontFamily: 'monospace',
+              background: 'rgba(255,255,255,0.06)', borderRadius: 3, padding: '0 4px',
+            }}>{t.count}</span>
+          </button>
+        )
+      })}
+    </div>
+  )
+
   if (items.length === 0) {
     return (
-      <div className="neon-card p-6 text-center text-[var(--text-muted)] text-base">
-        予想データなし
-      </div>
+      <>
+        {TrackTabs}
+        <div className="neon-card p-6 text-center text-[var(--text-muted)] text-base">
+          {track === 'all' ? '予想データなし'
+            : track === 'gachi' ? '💰 個人ガチ用（実弾EV単複）の予想はまだありません'
+            : '📱 SNS用（多券種シグナル）の予想はまだありません'}
+        </div>
+      </>
     )
   }
 
   return (
     <>
+      {/* ── トラック切替タブ（💰個人ガチ / 📱SNS）──────────────────── */}
+      {TrackTabs}
+
       {/* ── AIウマスギフィルターバナー ────────────────────────────── */}
       <div style={{
         display: 'flex', alignItems: 'center', gap: 8,
@@ -612,6 +697,7 @@ export default function PredictionsPanel({
                         <span className="font-semibold">{pred.race_name}</span>
                       </td>
                       <td>
+                        <div style={{ marginBottom: 3 }}><TrackBadge track={trackOf(pred)} /></div>
                         <span className={`font-bold ${pred.model_type?.includes('卍') ? 'neon-text' : 'neon-text-gold'}`}>
                           {pred.model_type}
                         </span>

@@ -8,6 +8,24 @@ export const BET_ORDER: Record<string, number> = {
   'ワイド': 5, '馬単': 6, '三連複': 7, '三連単': 8,
 }
 
+/** 予想トラック種別。'gachi'=個人実弾EV（単複ロック）／'sns'=SNSマーケ多券種（Hit-Focused） */
+export type PredictionTrack = 'sns' | 'gachi'
+
+/**
+ * モデル×券種から予想トラックを判定する（ハイブリッド・ルール／サーバー側単一真実源）。
+ *
+ *   - model_type に "_v0525" を含む            → 'sns'  （5月末ポリシー シャドー多券種）
+ *   - bet_type が 単勝 / 複勝                   → 'gachi'（実弾EVの単複ロック）
+ *   - それ以外（馬連/馬単/ワイド/三連複/三連単） → 'sns'  （派手な多券種シグナル）
+ *
+ * 注: 実弾で実際に賭ける単複ロックの中身は不変。本関数は表示分類のみに用いる。
+ */
+export function classifyTrack(modelType: string, betType: string): PredictionTrack {
+  if ((modelType ?? '').includes('_v0525')) return 'sns'
+  if (betType === '単勝' || betType === '複勝') return 'gachi'
+  return 'sns'
+}
+
 /**
  * 制御文字を除去してトリムする。文字列以外はそのまま返す。
  */
