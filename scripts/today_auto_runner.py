@@ -614,6 +614,10 @@ def _run_jvlink_sync(dry_run: bool) -> None:
             "netkeiba フォールバックで続行します。"
         )
         return
+    # W-086: _jvlink_force_worker.py の --fromtime は argparse required のため、
+    # 渡さないと argparse が rc=2 で即終了し同期が一度も走らない（2026-06-13 障害）。
+    # OPT_TODAY(3) でも形式上必須なので当日日付を渡す。
+    fromtime = datetime.date.today().strftime("%Y%m%d")
     for dataspec in ("RACE", "WOOD"):
         logger.info("JVLink %s 同期開始...", dataspec)
         try:
@@ -624,6 +628,8 @@ def _run_jvlink_sync(dry_run: bool) -> None:
                     str(_ROOT / "scripts" / "_jvlink_force_worker.py"),
                     "--dataspec",
                     dataspec,
+                    "--fromtime",
+                    fromtime,
                     "--option",
                     "3",
                 ],
@@ -632,6 +638,10 @@ def _run_jvlink_sync(dry_run: bool) -> None:
             )
             if result.returncode != 0:
                 logger.warning("JVLink %s 同期: rc=%d", dataspec, result.returncode)
+                _send_discord(
+                    f"⚠️ [UMALOGI] JVLink {dataspec} 同期失敗 (rc={result.returncode})。"
+                    "netkeiba フォールバックで続行します。"
+                )
         except subprocess.TimeoutExpired:
             logger.error(
                 "JVLink %s 同期タイムアウト (1800s) — スキップして続行", dataspec

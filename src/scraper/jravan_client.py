@@ -2221,10 +2221,14 @@ def _save_se(conn: sqlite3.Connection, r: dict) -> None:
                      jockey_code, trainer_code)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"""
             if horse_number is not None:
+                # W-086: UNIQUE は部分インデックス idx_rr_unique_horsenum
+                # (WHERE horse_number IS NOT NULL) のため、conflict target にも
+                # 同一の WHERE 句が必須（無いと SQLite が
+                # "ON CONFLICT clause does not match..." で保存全滅する）。
                 conn.execute(
                     f"""
                     {_insert_cols}
-                    ON CONFLICT(race_id, horse_number) DO UPDATE SET
+                    ON CONFLICT(race_id, horse_number) WHERE horse_number IS NOT NULL DO UPDATE SET
                         gate_number       = excluded.gate_number,
                         horse_name        = CASE WHEN excluded.horse_name != '' THEN excluded.horse_name ELSE race_results.horse_name END,
                         rank              = CASE WHEN excluded.rank IS NOT NULL THEN excluded.rank ELSE race_results.rank END,

@@ -34,6 +34,20 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-13 — 【緊急対応】土曜朝・出馬表未取得/予想未生成の復旧 ＋ 金曜夜間バッチ構造バグ3件の根治（W-086）
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-fable-5) |
+| **修正日** | 2026-06-13（土・条項2例外: 当日のレース取得が完全停止したクリティカル障害の最小ホットフィックス） |
+| **バージョン** | 1.14.1-dev → 1.14.2-dev |
+| **種別** | バグ修正（緊急） |
+| **実施内容** | ① `today_auto_runner._run_jvlink_sync`: ワーカー `_jvlink_force_worker.py` の必須引数 `--fromtime` 欠落で同期が0秒rc=2即死していたのを修正（当日日付を付与）＋rc≠0時のDiscordアラート新設。② `jravan_client._save_se`: race_results 新規INSERTの `ON CONFLICT(race_id, horse_number)` に `WHERE horse_number IS NOT NULL` を追加（部分UNIQUEインデックスと不一致でSE保存が全滅していた・c36ab38f当初からの構造バグ）。③ `record_odds_timeseries.py`: sys.path ボイラープレート欠落で `import src` が常時失敗（W-080レコーダーが6/11配線以降一度も実走できず）を修正。④ 手動リカバリ: sync_friday(32bit)→netkeiba出馬表補完→暫定予想→premium_pack→auto_runner再起動（詳細コマンドは docs/6_special_notes.md）。 |
+| **影響範囲** | scripts/today_auto_runner.py, src/scraper/jravan_client.py, scripts/record_odds_timeseries.py, docs/2_automation_schedule.md, docs/3_data_schema.md, docs/6_special_notes.md, docs/7_weakness_ledger.md（W-086）, docs/spec/ARCHITECTURE_v1.0.0.md, docs/SYSTEM_ARCHITECTURE.md, VERSION |
+| **検証** | 復旧E2E: races 土日各36R入庫・entries 498頭/36R（土）・暫定予想30R/120件（対象レース100%＝障害1R/新馬5Rは設計上見送り）・premium_pack 6ファイル生成・Web UI `/api/premium-signals`=200（29R/300シグナル・文字化け0）・オッズ時系列544スナップショット蓄積開始・auto_runner 09:13土曜監視ループ突入。発走前に復旧完了。 |
+| **ロールバック** | 直前コミット 31db074f。 |
+| **関連** | W-086（本件・完了）/ W-084（残骸タスク無効化により単独実走経路が初露呈）/ W-080（レコーダー初実稼働） |
+
 ### 2026-06-12 — PC再起動後Web UI(3000)停止の復旧＋ログオン時自動復旧スタックへのWeb UI組込み＋ランチャーbat完全ASCII化（W-085）
 
 | 項目 | 内容 |
