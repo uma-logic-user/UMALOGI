@@ -1340,6 +1340,15 @@ def insert_prediction(
         "Alpha-Payout",
         "Pure_EV_Edge",
         "FukushoElite",
+        # 5月末ポリシー並列シャドー枠（src/analysis/shadow_recompute.py）。
+        # live トラックと完全分離した収益トラック用の別名 model_id。
+        "卍_v0525",
+        "本命_v0525",
+        "Oracle_v0525",
+        "HitFocus_v0525",
+        "Pure_EV_Edge_v0525",
+        "FukushoElite_v0525",
+        "Alpha-Payout_v0525",
     }
     base = model_type.split("(")[0]
     if base not in _VALID_BASE_TYPES:

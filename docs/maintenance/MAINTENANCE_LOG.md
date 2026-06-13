@@ -34,6 +34,20 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-13 — 5月末ポリシー並列シャドー再計算エンジン（社長特例・全券種復活 / `_v0525`）
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-opus-4-8) |
+| **修正日** | 2026-06-13（土・週末凍結を社長特例承認で上書き） |
+| **バージョン** | 1.14.5-dev → 1.15.0-dev（MINOR: 新機能=並列シャドーモデル枠） |
+| **種別** | 機能追加（分析・収益トラック分離） |
+| **実施内容** | ・2026-06-02 単複ロック導入前（5月末稼働期）の「全7券種出力」ポリシーを、現行モデルスコア・現行データハイジーン（races.grade・破損行 status='error' 隔離）に適用して別名 model_id `{base}_v0525(再計算)` として**並列復活**。<br>・「5月末ロジック」の実体を git 走査で特定＝EV アルゴリズム（Harville+OddsEstimator+本命/卍）は不変、差分は**ポリシー層**（単複ロックの有無）と確定（出典: 550ded89/5e854489/02dc564b、単複ロック=800aa23f）。<br>・消えていた馬連・馬単・ワイド・三連複・三連単を、生 `ManjiStrategy`/`HonmeiStrategy`（単複ロック非経由）＋`VirtualOracleStrategy`/`HitFocusStrategy` で完全復元し、5券種すべてを個別 `predictions` 行として保存。<br>・**live パイプライン（_prerace_pipeline_inner）は一切変更せず**、読み取り専用スコアリング→隔離 model_id への追記 INSERT のみ（条項1 を構造的に担保）。<br>・本日36レースを外部通信なしで再計算→シャドー624行を追記保存。仮想 ROI サマリを出力。 |
+| **影響範囲** | 新規: `src/analysis/shadow_recompute.py` / `scripts/recompute_today_shadow.py` / `tests/test_shadow_recompute.py`。改修: `src/database/init_db.py`（`_VALID_BASE_TYPES` に `*_v0525` ベース7種を追加）。docs: `docs/1_prediction_logic.md` / `docs/7_weakness_ledger.md`（W-091）。 |
+| **検証** | `pytest tests/test_shadow_recompute.py tests/test_bet_policy.py` 15 PASS。`ruff format`/`ruff check` クリーン。DB 隔離確認: シャドー624行は `_v0525` 別キーで保存・live 348行（卍(直前)複勝13含む）は不変。**仮想 ROI 実測（本日28/36確定）= 総合7.4%（投資324,300→払戻23,940・収支-300,360）。多券種は軒並み ROI 0%、単複系も100%割れ。** |
+| **ロールバック** | バックアップ: `data/backups/umalogi_20260613_234129_pre_shadow_v0525.db`。シャドー行のみ削除する場合 `DELETE FROM predictions WHERE model_type LIKE '%_v0525%'`（live は別キーのため無影響）。 |
+| **関連** | W-091（5月末ポリシー復活の実証＝多券種は構造的赤字）。社長特例指示（週末凍結上書き・全Execute・過去ロジック復活を二度確認）。 |
+
 ### 2026-06-13 — 条件戦 grade 前進補完（W-088）＋破損行12,326件の論理隔離（W-089）
 
 | 項目 | 内容 |
