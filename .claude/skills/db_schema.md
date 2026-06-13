@@ -36,6 +36,8 @@ rows = query_mart(conn, year="2024")  # v_race_mart への型安全クエリ
 | `track_direction` | TEXT | 右 / 左 / 直線 / 右外 / 左外 |
 | `weather` | TEXT | 晴 / 曇 / 雨 / 小雨 / 雪 |
 | `condition` | TEXT | 良 / 稍重 / 重 / 不良 |
+| `post_time` | TEXT | 実発走時刻 HH:MM（空=推定） |
+| `grade` | TEXT | グレード/クラス: `G1/G2/G3/OP/L/3勝/2勝/1勝/未勝利/新馬`（W-088・U scoreクラス変化用。空=不明） |
 
 ### race_results — 出走・着順結果
 

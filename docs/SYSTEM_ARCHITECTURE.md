@@ -10,6 +10,7 @@
 
 | 日付 | 変更内容 |
 |------|----------|
+| 2026-06-13 | races.grade 列追加で U score 全スキップを根治（W-088・v1.14.4-dev・社長特例で条項2解除）: migration #21 で `races.grade TEXT` を additive 追加。`u_score._calc_competition` の `SELECT race_id, grade FROM races` が列欠落で例外→U score 18因子+u_score が全予想でスキップしていた障害を解消。`jravan_client._extract_grade` が競走名から G1/G2/G3/OP/L/3勝/2勝/1勝/未勝利/新馬 を導出充填（既存18,864レース→119件 backfill）。列追加はDBレベルのため稼働中auto_runnerも次予想から即復活。詳細: docs/spec/ARCHITECTURE_v1.0.0.md 更新履歴 1.14.4-dev |
 | 2026-06-13 | サーキットブレーカーの Soft Stop 化（W-087・v1.14.3-dev）: W-043日次損失CB/Pure_EV CB を発動時スキップ→アラートのみ・予想生成継続へ（env CIRCUIT_BREAKER_SOFT_STOP 既定soft）。CB発動で直前予想9R激減を解消（→29R）。詳細: docs/spec/ARCHITECTURE_v1.0.0.md 更新履歴 1.14.3-dev |
 | 2026-06-13 | 金曜夜間バッチJVLink同期の構造バグ3件根治（W-086・v1.14.2-dev）: --fromtime欠落rc=2即死／SE保存ON CONFLICT部分インデックス不一致／W-080レコーダーsys.path欠落。詳細: docs/spec/ARCHITECTURE_v1.0.0.md 更新履歴 1.14.2-dev |
 | 2026-06-12 | ログオン時自動復旧スタックへ Next.js Web UI(3000) を追加＋ランチャーbat完全ASCII化（W-085・v1.14.1-dev）: `scripts/bat/start_umalogi.bat` を 4 プロセス構成（Streamlit/autopilot/watchdog/Next.js）へ拡張し、UTF-8 日本語入り bat の CP932 誤パースによる自動復旧無言停止を ASCII 化で根治。ルート `start_umalogi.bat` は scheduler.py 起動を廃し正本へ委譲。詳細: docs/spec/ARCHITECTURE_v1.0.0.md 更新履歴 1.14.1-dev |

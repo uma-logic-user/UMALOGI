@@ -8,6 +8,7 @@
 
 | 日付 | 変更内容 |
 |------|---------|
+| 2026-06-13 | 【races.grade 列追加（W-088・v1.14.4-dev・社長特例で条項2解除）】migration #21 `_migrate_add_grade` で `races.grade TEXT NOT NULL DEFAULT ''` を additive 追加。`src/ml/u_score.py:_calc_competition` の `SELECT race_id, grade FROM races` が列欠落で例外→U score 18因子が全予想でスキップしていた障害を根治。grade は `jravan_client._extract_grade(race_name)` が確定済み競走名から `G1/G2/G3/OP/L/3勝/2勝/1勝/未勝利/新馬` の正準トークンへ決定的導出し `_save_ra` で保存。backfill: `scripts/backfill_grade.py`（既存18,864レース→119件充填）。残課題: 競走名が空の条件戦（18,745件）はgrade空（RA競走条件コードからの充填は別途・要バイトオフセット検証）。影響: src/database/schema.py, src/database/init_db.py, src/scraper/jravan_client.py, scripts/backfill_grade.py |
 | 2026-06-13 | 【SE保存upsertのON CONFLICT句修正（W-086・v1.14.2-dev）】`_save_se` の race_results 新規INSERTのconflict targetを `ON CONFLICT(race_id, horse_number) WHERE horse_number IS NOT NULL` に修正。部分UNIQUEインデックス `idx_rr_unique_horsenum` とWHERE句が一致しないとSQLiteが保存を全拒否する（2026-06-07 c36ab38f当初からの構造バグでJVLink経由の新規出走馬保存が全滅していた）。影響: src/scraper/jravan_client.py |
 | 2026-06-01 | 【last_3f/distance 実バックフィル＋distance欠損補填（v1.4.0-dev）】`bulk_backfill_features` を実DBへ実行し計100レース/約1,480馬行の `race_results.last_3f` を充填（冪等COALESCE）。**重大発見**: `races.distance` がDB全体でほぼ0（2024-2026は全0・PCI算出不能）。`bulk_backfill_features._upsert_race_meta` を追加し netkeiba 取得時に `races.distance`(0/NULL時のみ)/`surface` を非破壊補填（50レースで distance>0 化）。distance系の根治は2024後半のJVLink再取得（G-Tune PCで実施）が必要。影響: scripts/bulk_backfill_features.py |
 | 2026-06-01 | 【データ整合性・バックフィル基盤（v1.4.0-dev）】`scripts/check_jravan_integrity.py` が `races`(スケジュール) と `race_results`(rank確定) の月粒度充足をスキャンし欠損を検出（**実測: 2024-07/08 結果ゼロ・全期間 coverage 75.3%**）。`scripts/bulk_backfill_features.py` が `race_results.last_3f IS NULL AND rank IS NOT NULL` の確定レースを期間抽出し netkeiba 再取得→`COALESCE(excluded.last_3f, last_3f)` で冪等保存（既存値非破壊）。DBスキーマ変更なし（last_3f 列は v1.3.0 で追加済）。影響: scripts/check_jravan_integrity.py(新規), scripts/bulk_backfill_features.py(新規) |
@@ -111,6 +112,8 @@ sanitize_str(s)  # 制御文字 [\x00-\x08...] を除去
 | weather | TEXT | 天候 |
 | condition | TEXT | 馬場状態 |
 | track_direction | TEXT | コース方向 |
+| post_time | TEXT | 実発走時刻 HH:MM（空=推定にフォールバック） |
+| grade | TEXT | グレード/クラス: G1/G2/G3/OP/L/3勝/2勝/1勝/未勝利/新馬（W-088・U scoreクラス変化用。空=不明） |
 
 #### `race_results` — 出走・着順結果
 

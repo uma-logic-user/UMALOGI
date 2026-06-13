@@ -386,7 +386,9 @@ _SE_HORSE_NM = slice(40, 76)  # 馬名(漢字) 36バイト SJIS   [確定]
 _SE_SEX = slice(78, 79)  # 性別 1=牡,2=牝,3=騸        [暫定 - 牝馬レースでのみ検証]
 _SE_AGE = slice(80, 82)  # 馬齢                        [未確定 - 要調査]
 _SE_TRAINER_EW = slice(84, 85)  # 調教師 東西所属 1=美浦/2=栗東 [W-076確定]
-_SE_TRAINER_CD = slice(85, 90)  # 調教師コード 5桁(下5桁)      [W-076確定: CHマスタ5桁と一致]
+_SE_TRAINER_CD = slice(
+    85, 90
+)  # 調教師コード 5桁(下5桁)      [W-076確定: CHマスタ5桁と一致]
 _SE_TRAINER_NM = slice(90, 98)  # 調教師名 8バイト SJIS (4文字)[実測確定]
 _SE_JOCKEY_CD = slice(296, 301)  # 騎手コード 5桁              [実測確定]
 _SE_JOCKEY_NM = slice(306, 314)  # 騎手名 8バイト SJIS (4文字) [実測確定]
@@ -1323,6 +1325,53 @@ def parse_record(raw: bytes, debug: bool = False) -> Optional[dict]:
 # ── RA: レース詳細 ──────────────────────────────────────────────
 
 
+def _extract_grade(race_name: str) -> str:
+    """レース名からグレード/クラスを正準トークンに導出する（W-088）。
+
+    `races.grade` 列を充填し、`u_score._grade_rank` が解釈できる語彙へ正規化する。
+    JVLink RA レコードのグレードコード（バイトオフセット未確定）に依存せず、
+    確定済みの競走名（`_RA_RACE_NAME` [確定]）から決定的に判定する。
+
+    語彙: G1 / G2 / G3 / OP / L / 3勝 / 2勝 / 1勝 / 未勝利 / 新馬 / ''（不明）
+
+    Args:
+        race_name: パース済みの競走名（例 "第65回大阪杯(GI)" / "3歳未勝利"）。
+
+    Returns:
+        正準グレードトークン。判定できない場合は空文字。
+    """
+    if not race_name:
+        return ""
+    name = race_name.strip()
+
+    # ── 重賞グレード（競走名末尾の (GI)/(GII)/(GIII)/(JGI)... 表記）─────
+    # III → II → I の順で照合し、GI が GII/GIII に誤マッチするのを防ぐ。
+    if "GIII" in name or "JGIII" in name:
+        return "G3"
+    if "GII" in name or "JGII" in name:
+        return "G2"
+    if "GI" in name or "JGI" in name:
+        return "G1"
+    if "(L)" in name or "リステッド" in name:
+        return "L"
+
+    # ── 条件クラス（競走名に含まれる条件表記）─────────────────────────
+    if "新馬" in name:
+        return "新馬"
+    if "未勝利" in name:
+        return "未勝利"
+    if "3勝クラス" in name or "1600万" in name:
+        return "3勝"
+    if "2勝クラス" in name or "1000万" in name:
+        return "2勝"
+    if "1勝クラス" in name or "500万" in name:
+        return "1勝"
+    if "オープン" in name:
+        return "OP"
+
+    return ""
+
+
 def _parse_ra(raw: bytes) -> Optional[dict]:
     """RA レース詳細レコードをパースして races テーブル用 dict を返す。
 
@@ -1380,6 +1429,7 @@ def _parse_ra(raw: bytes) -> Optional[dict]:
         "track_direction": direction,
         "weather": weather,
         "condition": condition,
+        "grade": _extract_grade(race_name),
     }
 
 
@@ -2090,8 +2140,8 @@ def _save_ra(conn: sqlite3.Connection, r: dict) -> None:
             """
             INSERT OR REPLACE INTO races
                 (race_id, race_name, date, venue, race_number,
-                 distance, surface, track_direction, weather, condition)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                 distance, surface, track_direction, weather, condition, grade)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
             (
                 r["race_id"],
@@ -2104,6 +2154,7 @@ def _save_ra(conn: sqlite3.Connection, r: dict) -> None:
                 r["track_direction"],
                 r["weather"],
                 r["condition"],
+                r.get("grade", ""),
             ),
         )
 

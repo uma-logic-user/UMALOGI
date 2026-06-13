@@ -178,6 +178,7 @@ def init_db(db_path: Path | None = None) -> sqlite3.Connection:
     _migrate_add_is_superseded(
         conn
     )  # 20. predictions.is_superseded 列追加（再推論で論理無効化）
+    _migrate_add_grade(conn)  # 21. races.grade 列追加（W-088・U scoreクラス変化）
 
     logger.info("DB 初期化完了: %s", path)
     return conn
@@ -1063,6 +1064,27 @@ def _migrate_add_post_time(conn: sqlite3.Connection) -> None:
                 "ALTER TABLE races ADD COLUMN post_time TEXT NOT NULL DEFAULT ''"
             )
         logger.info("マイグレーション #19: races.post_time 列を追加しました")
+
+
+def _migrate_add_grade(conn: sqlite3.Connection) -> None:
+    """マイグレーション #21: races に grade 列（グレード/クラス）を追加する（W-088）。
+
+    `src/ml/u_score.py` の相手関係・クラス変化因子 (W-010/011) が
+    `SELECT race_id, grade FROM races` を発行するが、列が存在しないと
+    `no such column: grade` で例外となり U score 計算が全予想でスキップされていた。
+    本列を追加して例外を解消し、JVLink RA レコード由来のグレード/クラスを保持する。
+
+    値の語彙（`u_score._grade_rank` が解釈する正準トークン）:
+        G1 / G2 / G3 / OP / L / 3勝 / 2勝 / 1勝 / 未勝利 / 新馬 / ''（不明）
+
+    Args:
+        conn: アクティブな DB コネクション。
+    """
+    cols = [row[1] for row in conn.execute("PRAGMA table_info(races)").fetchall()]
+    if "grade" not in cols:
+        with conn:
+            conn.execute("ALTER TABLE races ADD COLUMN grade TEXT NOT NULL DEFAULT ''")
+        logger.info("マイグレーション #21: races.grade 列を追加しました")
 
 
 def _migrate_add_is_superseded(conn: sqlite3.Connection) -> None:

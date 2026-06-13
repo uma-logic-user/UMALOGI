@@ -34,6 +34,20 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-13 — races.grade 列追加で U score 全スキップを根治（W-088）
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-opus-4-8) |
+| **修正日** | 2026-06-13（土・社長特例承認で条項2週末凍結を解除し即時改修） |
+| **バージョン** | 1.14.3-dev → 1.14.4-dev |
+| **種別** | バグ修正（スキーマ追加＋特徴量復旧） |
+| **実施内容** | ① **根本原因**: `src/ml/u_score.py:_calc_competition` が `SELECT race_id, grade FROM races` を発行するが `grade` 列が無く `no such column: grade` で例外→`features.py:_add_u_score` の try/except が握り潰し **U score 18因子+u_score が全予想で丸ごとスキップ**（auto_runner.log に毎予想 WARNING）。② `schema.py` races DDL に `grade TEXT NOT NULL DEFAULT ''` 追加。③ `init_db.py` にマイグレーション #21 `_migrate_add_grade`（冪等 ALTER TABLE）新設。④ `jravan_client.py` に `_extract_grade(race_name)` 新設（確定済み競走名から `(GI)/(GII)/(GIII)/(JGI)/(L)/新馬/未勝利/N勝クラス/オープン` を正準トークンへ決定的導出。GradeCDバイトオフセットは未確定のため不使用）→ `_parse_ra`/`_save_ra` へ配線。⑤ `scripts/backfill_grade.py` で既存18,864レースをバックフィル（119件充填: G1=72/未勝利=23/1勝=13/新馬=7/OP=4）。**列追加はDBレベル変更のため稼働中 auto_runner も次予想から即 U score 復活**（再起動不要・WARNINGは13:17を最後に消失）。 |
+| **影響範囲** | src/database/schema.py, src/database/init_db.py, src/scraper/jravan_client.py, scripts/backfill_grade.py, tests/test_grade_u_score.py, docs/3_data_schema.md, docs/1_prediction_logic.md, .claude/skills/db_schema.md, docs/7_weakness_ledger.md（W-088）, VERSION |
+| **検証** | 新規 tests/test_grade_u_score.py 9件 + test_jravan_pipeline + test_features + test_schema 全PASS。ライブDBで旧クラッシュクエリ `SELECT race_id, grade FROM races` の成功を確認。ruff format/check（変更5ファイル）All checks passed。 |
+| **ロールバック** | 直前コミット 2eee19e7。DBバックアップ: data/backups/umalogi_20260613_133403.db（スキーマ変更前・200MB）。 |
+| **関連** | W-088（本件・完了）/ W-087（U scoreスキップを発見した調査） |
+
 ### 2026-06-13 — サーキットブレーカーの Soft Stop 化＋予想シグナル激減の原因究明（W-087）
 
 | 項目 | 内容 |
