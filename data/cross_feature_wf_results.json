@@ -1,0 +1,197 @@
+{
+  "generated_at": "2026-06-15T08:03:37.382575",
+  "policy": {
+    "min_win_rate": 0.6666666666666666,
+    "min_mean_delta_roi": 2.0,
+    "max_mean_auc_drop": 0.002,
+    "ev_threshold": 1.0
+  },
+  "results": [
+    {
+      "feature": "x_trouble_inner",
+      "n_cutoffs": 6,
+      "win_rate": 0.667,
+      "mean_delta_roi": -0.838,
+      "median_delta_roi": 5.17,
+      "mean_delta_auc": -0.00177,
+      "passed": false,
+      "reason": "FAIL(mean_roi): 勝率 67% ・ 平均ΔROI -0.8pp ・ 平均ΔAUC -0.0018",
+      "per_cutoff": [
+        {
+          "cutoff": "2025-10-01",
+          "test_races": 575,
+          "roi_base": 121.58,
+          "roi_full": 96.68,
+          "d_roi": -24.89,
+          "d_auc": -0.0009
+        },
+        {
+          "cutoff": "2025-11-01",
+          "test_races": 575,
+          "roi_base": 79.73,
+          "roi_full": 87.62,
+          "d_roi": 7.9,
+          "d_auc": -0.00238
+        },
+        {
+          "cutoff": "2025-12-01",
+          "test_races": 540,
+          "roi_base": 72.79,
+          "roi_full": 85.86,
+          "d_roi": 13.08,
+          "d_auc": 0.00021
+        },
+        {
+          "cutoff": "2026-01-01",
+          "test_races": 558,
+          "roi_base": 93.19,
+          "roi_full": 77.15,
+          "d_roi": -16.04,
+          "d_auc": -0.00234
+        },
+        {
+          "cutoff": "2026-02-01",
+          "test_races": 582,
+          "roi_base": 79.77,
+          "roi_full": 92.25,
+          "d_roi": 12.48,
+          "d_auc": -0.00411
+        },
+        {
+          "cutoff": "2026-03-01",
+          "test_races": 564,
+          "roi_base": 86.76,
+          "roi_full": 89.2,
+          "d_roi": 2.44,
+          "d_auc": -0.00108
+        }
+      ],
+      "description": "前走不利 × 今回内枠(gate<=4)",
+      "validated_at": "2026-06-15T08:03:37"
+    },
+    {
+      "feature": "x_trouble_samecourse",
+      "n_cutoffs": 6,
+      "win_rate": 0.333,
+      "mean_delta_roi": -0.643,
+      "median_delta_roi": -2.53,
+      "mean_delta_auc": -0.00407,
+      "passed": false,
+      "reason": "FAIL(win_rate,mean_roi,auc): 勝率 33% ・ 平均ΔROI -0.6pp ・ 平均ΔAUC -0.0041",
+      "per_cutoff": [
+        {
+          "cutoff": "2025-10-01",
+          "test_races": 575,
+          "roi_base": 121.58,
+          "roi_full": 120.84,
+          "d_roi": -0.74,
+          "d_auc": -0.00443
+        },
+        {
+          "cutoff": "2025-11-01",
+          "test_races": 575,
+          "roi_base": 79.73,
+          "roi_full": 75.41,
+          "d_roi": -4.32,
+          "d_auc": -0.00601
+        },
+        {
+          "cutoff": "2025-12-01",
+          "test_races": 540,
+          "roi_base": 72.79,
+          "roi_full": 61.58,
+          "d_roi": -11.2,
+          "d_auc": -0.00082
+        },
+        {
+          "cutoff": "2026-01-01",
+          "test_races": 558,
+          "roi_base": 93.19,
+          "roi_full": 86.94,
+          "d_roi": -6.24,
+          "d_auc": -0.00487
+        },
+        {
+          "cutoff": "2026-02-01",
+          "test_races": 582,
+          "roi_base": 79.77,
+          "roi_full": 92.76,
+          "d_roi": 12.99,
+          "d_auc": -0.00519
+        },
+        {
+          "cutoff": "2026-03-01",
+          "test_races": 564,
+          "roi_base": 86.76,
+          "roi_full": 92.4,
+          "d_roi": 5.65,
+          "d_auc": -0.00311
+        }
+      ],
+      "description": "前走不利 × 同コース複勝実績",
+      "validated_at": "2026-06-15T08:03:37"
+    },
+    {
+      "feature": "x_trouble_value",
+      "n_cutoffs": 6,
+      "win_rate": 0.333,
+      "mean_delta_roi": 0.477,
+      "median_delta_roi": -4.22,
+      "mean_delta_auc": -0.00265,
+      "passed": false,
+      "reason": "FAIL(win_rate,mean_roi,auc): 勝率 33% ・ 平均ΔROI +0.5pp ・ 平均ΔAUC -0.0026",
+      "per_cutoff": [
+        {
+          "cutoff": "2025-10-01",
+          "test_races": 575,
+          "roi_base": 121.58,
+          "roi_full": 127.97,
+          "d_roi": 6.4,
+          "d_auc": -0.00373
+        },
+        {
+          "cutoff": "2025-11-01",
+          "test_races": 575,
+          "roi_base": 79.73,
+          "roi_full": 77.17,
+          "d_roi": -2.56,
+          "d_auc": -0.00299
+        },
+        {
+          "cutoff": "2025-12-01",
+          "test_races": 540,
+          "roi_base": 72.79,
+          "roi_full": 66.76,
+          "d_roi": -6.02,
+          "d_auc": -0.00215
+        },
+        {
+          "cutoff": "2026-01-01",
+          "test_races": 558,
+          "roi_base": 93.19,
+          "roi_full": 70.04,
+          "d_roi": -23.14,
+          "d_auc": -0.00131
+        },
+        {
+          "cutoff": "2026-02-01",
+          "test_races": 582,
+          "roi_base": 79.77,
+          "roi_full": 113.83,
+          "d_roi": 34.06,
+          "d_auc": -0.00201
+        },
+        {
+          "cutoff": "2026-03-01",
+          "test_races": 564,
+          "roi_base": 86.76,
+          "roi_full": 80.88,
+          "d_roi": -5.88,
+          "d_auc": -0.00369
+        }
+      ],
+      "description": "前走不利 × 人気妙味 log1p(win_odds)",
+      "validated_at": "2026-06-15T08:03:37"
+    }
+  ]
+}
