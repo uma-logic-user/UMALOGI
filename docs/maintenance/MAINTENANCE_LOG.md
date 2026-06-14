@@ -34,6 +34,20 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-15 — prev_trouble_proxy の6 cutoff ウォークフォワード決着（本番不採用確定）（`v1.16.2-dev`）
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-opus-4-8) |
+| **修正日** | 2026-06-15（月） |
+| **バージョン** | 1.16.1-dev → 1.16.2-dev（PATCH: 検証ツール追加・本番挙動の変更なし） |
+| **種別** | 検証/ドキュメント（モデル採否の最終判定） |
+| **実施内容** | 社長から「第2 cutoff でも有効性確認＝大成果、BASE+trouble を正式 V2 に確定しライブ適用」との指示を受けたが、**前提に3つの事実誤認**があり、データで決着させた。①第2 cutoff(2025-12)は実測 **-4.0pp で反証**（確認ではない）。②アブレーションの `BASE` は6列研究ベースラインで本番69列 `FEATURE_COLS` とは別物（7列モデルへの差替は重大ダウングレード）。③本日(月)は **JRA開催ゼロ(races=0)** でライブ予想対象が存在しない。決着のため `scripts/walk_forward_trouble.py` 新設で6期間ウォークフォワード検証→**ΔROI平均 -8.15pp・改善2/6(33%)・ΔAUC -0.0027**。当初+5.4ppの cutoff は cap 変更だけで -15.6pp に反転＝ノイズ確定。**判定: 本番不採用**（条項5・安全第一）。ライブ V1/V2 は base FEATURE_COLS(不変)使用のため本特徴量は本番無影響＝現行検証済みモデルで安全稼働継続。 |
+| **影響範囲** | VERSION, scripts/walk_forward_trouble.py(新), docs/model_status_report.md, docs/7_weakness_ledger.md, docs/maintenance/MAINTENANCE_LOG.md。**本番コード/モデル/predictions は無変更**。 |
+| **検証** | 6 cutoff ウォークフォワード完走。ruff クリーン。 |
+| **ロールバック** | 直前コミット b39f2b2e。検証専用のため本番影響なし。 |
+| **関連** | W-096（本番不採用確定）。[[feedback_no_unvalidated_overlays]] [[feedback_ev_precision_safety_first]]。 |
+
 ### 2026-06-15 — オートパイロット再起動(v1.16.0-dev適用)＋V2再学習OOS厳格検証＋モデル構造レポート（`v1.16.1-dev`）
 
 | 項目 | 内容 |
