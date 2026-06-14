@@ -6,6 +6,10 @@ scripts/walk_forward_trouble.py — prev_trouble_proxy のウォークフォワ�
 
 各 cutoff: train=[train_lo, cutoff) / test=[cutoff, cutoff+test_months)。
 出力: cutoff 別 ROI/AUC と、全 cutoff の平均・勝率（改善した cutoff の割合）。
+
+⚠️ 本スクリプトは prev_trouble_proxy 専用の歴史的検証（W-096 の決着に使用）。
+   汎用の「新特徴量ゲートキーパー」は src/ml/feature_gate.py に一般化済み。
+   任意の新特徴量の検証は `py scripts/validate_feature.py --candidate <col>` を使うこと（条項8）。
 """
 
 from __future__ import annotations

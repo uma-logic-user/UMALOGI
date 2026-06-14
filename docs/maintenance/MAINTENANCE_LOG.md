@@ -34,6 +34,20 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-15 — 新特徴量WF検証ゲートの標準化＋前走不利クロス特徴量の研究（`v1.16.3-dev`）
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-opus-4-8) |
+| **修正日** | 2026-06-15（月） |
+| **バージョン** | 1.16.2-dev → 1.16.3-dev（MINOR: ゲート機構＋研究基盤の追加） |
+| **種別** | 機能追加（検証基盤）＋ 研究（特徴量設計） |
+| **実施内容** | **Task1（ゲートキーパー定着）**: `walk_forward_trouble.py` のロジックを `src/ml/feature_gate.py` に汎用化（`walk_forward_gate`/`summarize_gate`/`GatePolicy`/`GateResult`）。既定 PASS 条件=ΔROI改善 cutoff>=2/3 ∧ 平均ΔROI>=+2.0pp ∧ 平均ΔAUC悪化<=0.002。CLI `scripts/validate_feature.py`（結果は `data/feature_gate_results.json` 台帳へ追記）。**CLAUDE.md 条項8 新設**＝新特徴量はゲートPASSなしに本番統合禁止。 **Task2（クロス特徴量設計）**: `docs/research/cross_feature_ideas.md` に前走不利×既存69列の10案＋上位3（①×内枠 ②×同コース複勝実績 ③×人気妙味）を理由/弱点/改善付きで提示。 **Task3（平日研究ジョブ）**: `scripts/research_cross_features.py` で上位3クロスを実装し6 cutoffウォークフォワードをバックグラウンド実行（結果 `data/cross_feature_wf_results.json`）。 |
+| **影響範囲** | VERSION, CLAUDE.md(条項8), src/ml/feature_gate.py(新), scripts/validate_feature.py(新), scripts/research_cross_features.py(新), scripts/walk_forward_trouble.py(docstring), docs/research/cross_feature_ideas.md(新), tests/test_feature_gate_w097.py(新), docs/7_weakness_ledger.md。**本番モデル/predictions は無変更**。 |
+| **検証** | tests/test_feature_gate_w097.py 8 PASS（実測 -8.15pp が確実に FAIL すること等）。ruff クリーン。研究ジョブはバックグラウンド稼働（金曜までに結果）。 |
+| **ロールバック** | 直前コミット 1bc6b07e。検証/研究基盤のため本番影響なし。 |
+| **関連** | W-097。条項8。[[feedback_no_unvalidated_overlays]]。 |
+
 ### 2026-06-15 — prev_trouble_proxy の6 cutoff ウォークフォワード決着（本番不採用確定）（`v1.16.2-dev`）
 
 | 項目 | 内容 |

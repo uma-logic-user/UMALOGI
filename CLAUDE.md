@@ -195,6 +195,33 @@ ALPHA / 卍 / 本命 モデルのロジック・特徴量・データ取得ル�
   コミット前に該当ドキュメントを開き、変更事実を反映したか自己チェックすること。
 ```
 
+### 条項8: 新特徴量の本番統合ゲート（Walk-Forward 必須）（2026-06-15 策定）
+
+```
+【絶対原則】
+  予測モデルへ新特徴量を「本番統合」する（ライブで使う FEATURE_COLS に加える、または
+  ライブ推論に寄与させる）には、必ず「複数 cutoff ウォークフォワード検証」を PASS すること。
+  単一・少数 cutoff の OOS は標本ノイズで容易に符号反転するため、根拠として認めない。
+
+【背景（W-096・2026-06-15）】
+  prev_trouble_proxy は或る cutoff で +5.4pp と出たが、標本サイズを変えるだけで -15.6pp に
+  反転した。6 cutoff ウォークフォワードの平均は -8.15pp（改善 2/6）で、ノイズと確定。
+  「一度の好結果」を成果と誤認して本番投入すると資産を毀損する。
+
+【ゲート（単一真実源）】
+  src/ml/feature_gate.py:walk_forward_gate() / summarize_gate()
+    既定 PASS 条件: ΔROI 改善 cutoff 割合 >= 2/3 かつ 平均 ΔROI >= +2.0pp
+                    かつ 平均 ΔAUC の悪化 <= 0.002。
+  実行 CLI: py scripts/validate_feature.py --candidate <列名>
+    結果は data/feature_gate_results.json（検証台帳）へ追記される。
+
+【手順（新特徴量を出した時）】
+  1. 特徴量を計算するコードを書く（リークフリーを担保）。
+  2. `validate_feature.py` でゲート検証 → FAIL なら本番統合しない（研究資産として保持）。
+  3. PASS した場合のみ FEATURE_COLS への追加・再学習・OOS 本検証へ進む。
+  研究段階の特徴量は PRERUN/LEAKFREE 等の研究系列に留め、base FEATURE_COLS は汚さない。
+```
+
 ---
 
 ## ⚠️ 最重要ルール：ドキュメント保守の絶対遵守
