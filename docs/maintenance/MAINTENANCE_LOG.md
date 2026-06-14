@@ -34,6 +34,20 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-15 — オートパイロット再起動(v1.16.0-dev適用)＋V2再学習OOS厳格検証＋モデル構造レポート（`v1.16.1-dev`）
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-opus-4-8) |
+| **修正日** | 2026-06-15（月・平日＝週末凍結解除） |
+| **バージョン** | 1.16.0-dev → 1.16.1-dev（PATCH: 検証ツール追加・本番挙動の変更なし） |
+| **種別** | 運用基盤（再起動）＋ 検証/ドキュメント（OOS・レポート） |
+| **実施内容** | **Task1（再起動）**: 旧 auto_runner(PID 22424)を `Stop-Process` で終了→スーパーバイザー(`UMALOGI_SCHEDULER.bat` PID 21228)が30秒で新コード v1.16.0-dev を再起動(新PID 26188)。**heartbeat 稼働確認**(`...wait->20:00`＝W-093新コード作動の証拠)・ゾンビPID自動クリア・月曜=レース無しで金曜20:00スリープ(正常)・supervisor_stderr に新エラー無し(残存 UnicodeDecodeError は kill した旧プロセスの残骸)。 **Task2（W-096 V2再学習＋OOS）**: `prev_trouble_proxy` 等の本番採否を OOS で厳格検証。`scripts/model_status_report.py` 新設でアブレーション(BASE / +本特徴量単体 / +全新特徴量)を時系列分割実行。**結果**: 単一cutoff(2026-03)では単体+5.4pp と有望に見えたが、別cutoff(2025-12)で-4.0pp と符号反転＝**再現性なし(ノイズ)**。全新特徴量は両cutoff一貫悪化(-1.7/-22.5pp)。⇒**本番不採用**(条項5・安全第一)。ライブV1/V2は base FEATURE_COLS(不変)使用のため本特徴量は本番推論に無影響＝**現行検証済みモデルで安全稼働継続**。 **Task3（レポート）**: `docs/model_status_report.md` 生成＝①gachi 3連系アンサンブル構成/選定ロジック/点数キャップ ②V2特徴量重要度Top20(prev_trouble_proxy=16位/2.3%) ③OOS旧新比較(複数cutoff)。 |
+| **影響範囲** | VERSION, scripts/model_status_report.py(新), docs/model_status_report.md(新), docs/7_weakness_ledger.md, docs/maintenance/MAINTENANCE_LOG.md。**本番コード/モデル/predictions は無変更**(再起動のみ)。 |
+| **検証** | OOS 2 cutoff アブレーション完了。autopilot 再起動後の heartbeat 更新・pid整合・クリーン起動ログを確認。 |
+| **ロールバック** | 直前コミット 6c6d8200。再起動は冪等(supervisor 管理)。 |
+| **関連** | W-096（⚪保留＝本番不採用）。[[feedback_no_unvalidated_overlays]] [[feedback_ev_precision_safety_first]]。 |
+
 ### 2026-06-14 — 週末自動停止の根治＋自己修復／暫定買い目実用化／3連系本気モデル／前走不利特徴量（社長特例 / `v1.16.0-dev`）
 
 | 項目 | 内容 |
