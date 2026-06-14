@@ -34,6 +34,20 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-14 — 週末自動停止の根治＋自己修復／暫定買い目実用化／3連系本気モデル／前走不利特徴量（社長特例 / `v1.16.0-dev`）
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-opus-4-8) |
+| **修正日** | 2026-06-14（日・社長特例で条項2週末凍結を上書き） |
+| **バージョン** | 1.15.1-dev → 1.16.0-dev（MINOR: 新機能追加） |
+| **種別** | バグ修正（運用基盤）＋ 機能追加（予測ロジック・特徴量） |
+| **実施内容** | **Task1（W-093）**: 週末サイレント停止の真因＝`today_auto_runner.py` のオッズレコーダー/x_scraper の捕捉 subprocess が **errors 未指定**で、子(JVLink 32bit)の CP932 バイト(0x83)で `_readerthread` が `UnicodeDecodeError` 死亡→パイプ詰まり→300秒タイムアウト空転（終了しないハングのため supervisor の終了時再起動が発火しない）。①該当2箇所に `errors="replace"`。②`src/ops/safe_subprocess.py` 新設（事故クラスの構造封じ）。③`src/ops/heartbeat.py` 新設＋待機/監視/サイクル各ループで鼓動。④`watchdog.py` に `check_autopilot_heartbeat()`＝PID生存かつ鼓動 stale(>600s)を「ハング」と判定し強制終了→supervisor 自動再起動。⑤watchdog の reconfigure を import 安全化。 **Task2（W-094）**: `src/ml/provisional_picks.py` 新設＝オッズ非依存で ◎〇▲△＋具体買い目（単勝/複勝/ワイド/馬連）。`build_output_json` に各馬 `mark`＋`provisional_picks` 同梱。暫定で本命空時は能力ベース買い目を predictions 保存。`RaceDetail.tsx` に「印」列追加。 **Task3（W-095）**: `src/ml/gachi_trifecta.py` 新設＝アンサンブル（軸=本命勝率×複勝率担保／紐=卍EV高の穴）で馬連・馬単・三連複・三連単を Harville＋OddsEstimator で構築。payload `gachi_trifecta` 同梱＋predictions 記録（実弾単複ロック外）。 **Task4（W-096）**: 前走不利プロキシ `prev_trouble_proxy`（速い上がりで凡退＝不利の巻き返し・リークフリー）を `prerun.py` に実装し `PRERUN_FEATURE_COLS→LEAKFREE_NEW_COLS`（V2/accuracy 入力）へ合流。調教/レース間隔は既存確認。通過順位は実データ欠如(W-073)のため未対応。 |
+| **影響範囲** | scripts/today_auto_runner.py, scripts/watchdog.py, src/ops/heartbeat.py(新), src/ops/safe_subprocess.py(新), src/ml/provisional_picks.py(新), src/ml/gachi_trifecta.py(新), src/features/prerun.py, src/pipeline/_common.py, src/pipeline/prediction.py, web/src/components/RaceDetail.tsx, tests/test_self_heal_w093.py, tests/test_provisional_picks_w094.py, tests/test_gachi_trifecta_w095.py, tests/test_prev_trouble_proxy_w096.py |
+| **検証** | `pytest` **1498 PASS / 0 fail**（新規26件含む）。ruff format/check クリーン。モックデータで暫定（印◎〇▲△＋単複ワイド馬連）と本気3連系（軸/紐＋4券種）の具体買い目生成を実証。 |
+| **ロールバック** | 直前コミット 05881d5e（v1.15.1-dev）。新規モジュールは fillna-safe / 既存挙動非破壊。 |
+| **関連** | W-093 / W-094 / W-095 / W-096。**gated**: prev_trouble_proxy の V2 活性化は再学習＋OOS検証が必要（条項5・[[feedback_no_unvalidated_overlays]]）。Task1 は稼働中オートパイロット再起動で反映。 |
+
 ### 2026-06-14 — SNS用／個人ガチ用モデルの完全分離・ライブ配線＋判別UI（社長特例 / `v1.15.1-dev`）
 
 | 項目 | 内容 |

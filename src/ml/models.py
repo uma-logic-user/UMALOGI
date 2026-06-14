@@ -130,6 +130,10 @@ FEATURE_COLS: list[str] = [
     "crowd_bias_ratio",  # 大衆心理乖離比率（生値）[W-004]
     # ── X シグナル特徴量（Phase C）────────────────────────────────
     "x_consensus_score",  # 凄腕予想家コンセンサス係数 [−1,1]（Phase B 出力）
+    # 注: 前走不利プロキシ prev_trouble_proxy（W-096/Task4）は V1 入力次元には
+    #     含めない。prerun 由来のリークフリー列として PRERUN_FEATURE_COLS →
+    #     LEAKFREE_NEW_COLS → V2/accuracy モデルの入力に合流する（features.py の
+    #     V1 build_race_features_for_simulate は prerun を結合しないため）。
 ]
 
 # 訓練に最低限必要なレース数

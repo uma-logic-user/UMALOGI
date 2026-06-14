@@ -652,8 +652,22 @@ function RaceCardTable({ results }: { results: RaceResult[] }) {
 }
 
 // ── AI直前分析テーブル ────────────────────────────────────
+// Task2(W-094): 能力評価ベース印（◎〇▲△）。オッズが無くても本命スコア順に付く。
+const ABILITY_MARKS = ['◎', '○', '▲', '△']
+function computeAbilityMarks(results: RaceResult[]): Record<number, string> {
+  const scored = results
+    .filter(r => r.horse_number != null && r.honmei_score != null)
+    .sort((a, b) => (b.honmei_score ?? 0) - (a.honmei_score ?? 0))
+  const marks: Record<number, string> = {}
+  scored.slice(0, ABILITY_MARKS.length).forEach((r, i) => {
+    marks[r.horse_number as number] = ABILITY_MARKS[i]
+  })
+  return marks
+}
+
 function PreraceTable({ results }: { results: RaceResult[] }) {
   const sorted = [...results].sort((a, b) => (a.horse_number ?? 99) - (b.horse_number ?? 99))
+  const abilityMarks = computeAbilityMarks(results)
 
   return (
     <div className="neon-card overflow-hidden">
@@ -668,6 +682,7 @@ function PreraceTable({ results }: { results: RaceResult[] }) {
         <table className="w-full race-table">
           <thead>
             <tr>
+              <th className="text-center">印</th>
               <th className="text-center">馬番</th>
               <th className="text-left">馬名</th>
               <th className="text-right">単勝</th>
@@ -693,6 +708,11 @@ function PreraceTable({ results }: { results: RaceResult[] }) {
                   className={isHot ? 'row-hot' : ''}
                   style={isHot ? { borderLeft: '2px solid var(--neon-red)' } : {}}
                 >
+                  <td className="text-center">
+                    {r.horse_number != null && abilityMarks[r.horse_number]
+                      ? <span className="neon-text-gold font-bold" style={{ fontSize: '1.05rem' }}>{abilityMarks[r.horse_number]}</span>
+                      : <span className="text-[var(--text-muted)]">·</span>}
+                  </td>
                   <td className="text-center">
                     {r.gate_number != null ? <GateBadge gate={r.gate_number} /> : null}
                     <span className="ml-1 font-mono text-[var(--text-muted)]">{r.horse_number}</span>

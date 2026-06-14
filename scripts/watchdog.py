@@ -27,8 +27,12 @@ import time
 from datetime import datetime, date
 from pathlib import Path
 
-sys.stdout.reconfigure(encoding="utf-8", line_buffering=True)
-sys.stderr.reconfigure(encoding="utf-8", line_buffering=True)
+# pytest のキャプチャ下など reconfigure 非対応の stdout でも import を止めない。
+try:
+    sys.stdout.reconfigure(encoding="utf-8", line_buffering=True)  # type: ignore[union-attr]
+    sys.stderr.reconfigure(encoding="utf-8", line_buffering=True)  # type: ignore[union-attr]
+except (AttributeError, ValueError):
+    pass
 
 _ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(_ROOT))
@@ -71,6 +75,16 @@ _SYNC_TIMEOUT = 300  # data_sync タイムアウト（秒）
 
 # 1 レースあたりの NaN 検知しきい値（割合）
 _NAN_RATIO_THRESHOLD = 0.5  # 50% 以上が NaN なら修復トリガー
+
+# ── W-093: オートパイロット・ハング検知（自己修復）──────────────────────────
+_AUTO_RUNNER_PID_FILE = _ROOT / "data" / "auto_runner.pid"
+# 鼓動がこの秒数より古い＝生きているのに進捗していない（ハング）とみなす。
+# オートパイロットは待機ループで ≤30s、監視ループで ≤10s ごとに鼓動するため、
+# 600s 無鼓動は明確な異常（2026-06-14 のような 6 時間空転を最大 10 分で検知・復旧）。
+_HEARTBEAT_STALE_SEC = 600
+# 連続強制再起動を防ぐクールダウン（再起動後この秒数は再判定しない）。
+_RESTART_COOLDOWN_SEC = 300
+_last_autopilot_kill_ts = 0.0
 
 _shutdown_flag = False
 
@@ -518,6 +532,115 @@ def _check_and_repair(
     )
 
 
+def _read_auto_runner_pid() -> int | None:
+    """data/auto_runner.pid を読む。欠損・破損時は None。"""
+    try:
+        if not _AUTO_RUNNER_PID_FILE.exists():
+            return None
+        raw = _AUTO_RUNNER_PID_FILE.read_text(encoding="utf-8").strip()
+        return int(raw) if raw.isdigit() else None
+    except Exception:
+        return None
+
+
+def _is_pid_alive(pid: int) -> bool:
+    """PID が生存中の python プロセスか判定する（psutil 優先・無ければ os ベース）。"""
+    try:
+        import psutil
+
+        if not psutil.pid_exists(pid):
+            return False
+        proc = psutil.Process(pid)
+        return proc.is_running() and proc.status() != psutil.STATUS_ZOMBIE
+    except ImportError:
+        # psutil 無し: シグナル0で存在確認（Windows では os.kill が使えないため例外時 True 扱い）
+        try:
+            os.kill(pid, 0)
+            return True
+        except OSError:
+            return False
+    except Exception:
+        return False
+
+
+def check_autopilot_heartbeat() -> bool:
+    """オートパイロットがハング（生存・無鼓動）していたら強制終了し、再起動を促す。
+
+    スーパーバイザー `UMALOGI_SCHEDULER.bat` はプロセス**終了時**に再起動するため、
+    ハングしたプロセスを kill することで自己修復ループが発火する（W-093）。
+
+    Returns:
+        ハングを検知して kill した場合 True、正常または対象なしなら False。
+    """
+    global _last_autopilot_kill_ts
+    from src.ops.heartbeat import heartbeat_age_seconds
+
+    pid = _read_auto_runner_pid()
+    if pid is None:
+        return False  # PID 不在＝supervisor 側の再起動に委ねる
+    if not _is_pid_alive(pid):
+        return False  # 既に死亡＝supervisor が再起動する（goto loop）
+
+    age = heartbeat_age_seconds("auto_runner")
+    if age is None:
+        # プロセスは生きているが一度も鼓動していない＝起動直後の可能性。誤検知回避。
+        logger.debug("オートパイロット鼓動なし（起動直後の可能性）pid=%d", pid)
+        return False
+    if age <= _HEARTBEAT_STALE_SEC:
+        return False  # 正常に鼓動している
+
+    # クールダウン中は再判定しない（再起動直後の連続 kill を防ぐ）。
+    now = time.time()
+    if now - _last_autopilot_kill_ts < _RESTART_COOLDOWN_SEC:
+        logger.warning(
+            "オートパイロット鼓動 stale (%.0fs) だがクールダウン中 — 待機", age
+        )
+        return False
+
+    logger.critical(
+        "🚑 オートパイロット ハング検知: pid=%d 鼓動 %.0fs 経過 (>%.0fs)。"
+        "強制終了して supervisor による再起動を促します。",
+        pid,
+        age,
+        _HEARTBEAT_STALE_SEC,
+    )
+    _discord(
+        f"🚑 **UMALOGI watchdog: オートパイロット ハング検知**\n"
+        f"PID `{pid}` の鼓動が `{age:.0f}` 秒停止（生存だが無進捗）。\n"
+        f"強制終了 → スーパーバイザーが自動再起動します（W-093 自己修復）。"
+    )
+    _kill_pid(pid)
+    _last_autopilot_kill_ts = now
+    return True
+
+
+def _kill_pid(pid: int) -> None:
+    """PID を段階的に終了する（terminate → 5s → kill）。"""
+    try:
+        import psutil
+
+        proc = psutil.Process(pid)
+        proc.terminate()
+        try:
+            proc.wait(timeout=5)
+        except psutil.TimeoutExpired:
+            proc.kill()
+        logger.info("オートパイロット pid=%d を終了しました", pid)
+    except Exception as exc:
+        # psutil 失敗時は taskkill にフォールバック
+        logger.warning("psutil 終了失敗 (%s) — taskkill にフォールバック", exc)
+        try:
+            subprocess.run(
+                ["taskkill", "/F", "/PID", str(pid)],
+                capture_output=True,
+                encoding="utf-8",
+                errors="replace",
+                timeout=10,
+            )
+        except Exception as exc2:
+            logger.error("taskkill も失敗: %s", exc2)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="UMALOGI オッズ欠損監視・自動修復デーモン"
@@ -562,6 +685,12 @@ def main() -> None:
     try:
         while not _shutdown_flag:
             logger.info("── チェック開始 ──")
+            # W-093: まずオートパイロットの生存・進捗（鼓動）を最優先で確認する。
+            # ハング（生存だが無鼓動）なら強制終了して supervisor 再起動を促す。
+            try:
+                check_autopilot_heartbeat()
+            except Exception as exc:
+                logger.error("オートパイロット鼓動チェック例外: %s", exc, exc_info=True)
             try:
                 _check_and_repair(target_date, py32_cmd or "py", repair_counts)
             except Exception as exc:

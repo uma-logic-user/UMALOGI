@@ -1224,6 +1224,20 @@ def _prerace_pipeline_inner(
         len(hit_focus_bets.bets),
     )
 
+    # Task2(W-094): 暫定モードでオッズ未確定により本命買い目が空になった場合、
+    # 能力評価ベース（本命モデルの勝率スコアのみ）で具体的な暫定買い目を生成する。
+    # ◎単勝＋◎〇▲複勝を本命(暫定)として保存し、UI に必ず具体的な印・買い目を出す。
+    # 実弾の EV ゲート/オッズ帯フィルタは通さない（オッズ未確定のため）。
+    if provisional and not honmei_bets.bets:
+        from src.ml.provisional_picks import build_provisional_racebets
+
+        honmei_bets = build_provisional_racebets(race_id, df, honmei_scores)
+        logger.info(
+            "[暫定買い目] 能力評価ベースで本命買い目を補完: %s  %d件",
+            race_id,
+            len(honmei_bets.bets),
+        )
+
     # P1-4: 直前の再推論では、このランの保存（Alpha含む）の前に
     #   同バリアントの旧「直前」予想を論理無効化し評価・ROI の二重計上を防ぐ。
     if not provisional:
@@ -1376,6 +1390,64 @@ def _prerace_pipeline_inner(
             "model_type": "FukushoElite",
             "bets": [],
         }
+
+    # Task3(W-095): 3連系「本気」アンサンブル（軸=本命×複勝の担保馬 / 紐=高EV穴）。
+    # 馬連・馬単・三連複・三連単を独立セクションで格納（UI トグル・プレミアム枠）。
+    # 実弾単複ロックとは独立。オッズ未確定（暫定）でも確率ベースで生成される。
+    try:
+        from src.ml.gachi_trifecta import build_gachi_trifecta
+
+        gachi = build_gachi_trifecta(
+            race_id, df, honmei_scores, place_scores, ev_scores
+        )
+        payload["gachi_trifecta"] = gachi.to_dict()
+        logger.info(
+            "[本気3連系] %s 軸=%s 紐=%s 買い目=%d種",
+            race_id,
+            gachi.axis,
+            gachi.partners,
+            len(gachi.bets),
+        )
+        # predictions テーブルへ保存（HitFocus と同様の記録専用枠・実弾単複ロック外）。
+        gachi_suffix = "本気3連系(暫定)" if provisional else "本気3連系(直前)"
+        for _gb in gachi.bets:
+            _g_payload = [
+                {
+                    "horse_number": hn,
+                    "horse_name": _gb.horse_names[j]
+                    if j < len(_gb.horse_names)
+                    else str(hn),
+                    "predicted_rank": j + 1,
+                    "model_score": _gb.model_score,
+                    "ev_score": _gb.expected_value,
+                }
+                for j, hn in enumerate(_gb.combinations[0] if _gb.combinations else [])
+            ]
+            try:
+                insert_prediction(
+                    conn,
+                    race_id=race_id,
+                    model_type=gachi_suffix,
+                    bet_type=_gb.bet_type,
+                    horses=_g_payload,
+                    confidence=_gb.confidence,
+                    expected_value=_gb.expected_value,
+                    recommended_bet=0.0,  # 記録専用（実弾会計に乗せない）
+                    notes=_gb.notes,
+                    combination_json=_json.dumps([list(c) for c in _gb.combinations]),
+                )
+            except Exception as _gse:  # noqa: BLE001
+                logger.warning("[本気3連系] 保存失敗 %s: %s", _gb.bet_type, _gse)
+    except Exception as _ge:  # noqa: BLE001 — 3連系失敗で本処理は止めない
+        logger.warning("[本気3連系] 生成失敗（続行）: %s", _ge)
+        payload["gachi_trifecta"] = {
+            "race_id": race_id,
+            "model_type": "本気3連系",
+            "axis": [],
+            "partners": [],
+            "bets": [],
+        }
+
     if is_v2:
         from src.pipeline._common import JSON_OUT_DIR
         import json as _json_mod

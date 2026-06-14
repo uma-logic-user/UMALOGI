@@ -35,6 +35,8 @@ PRERUN_FEATURE_COLS: list[str] = [
     # W-007: 斤量インパクト
     "weight_carried_diff",  # 前走比斤量増減（kg。正=増量）
     "uf_weight_impact",  # 斤量インパクトスコア [0, 1]（増量→低、減量→高）
+    # W-096 (Task4): 前走不利プロキシ
+    "prev_trouble_proxy",  # 前走「不利」推定スコア [0,1]（速い上がりで着順凡退＝展開/不利の巻き返し期待）
 ]
 
 
@@ -109,9 +111,11 @@ def build_prerun_features(conn: sqlite3.Connection, race_id: str) -> pd.DataFram
         # リークフリー: 現レース日より厳密に過去の出走のみ（自レコード除外）。
         # W-007: weight_carried・distance・grade を追加取得（列が存在しない環境では NULL になる）
         # COALESCE 方式ではなく pragma で確認してから SELECT を切り替える防衛コードを採用。
-        _rr_cols = {r[1] for r in conn.execute("PRAGMA table_info(race_results)").fetchall()}
-        _r_cols  = {r[1] for r in conn.execute("PRAGMA table_info(races)").fetchall()}
-        _wc_sel  = "rr.weight_carried" if "weight_carried" in _rr_cols else "NULL"
+        _rr_cols = {
+            r[1] for r in conn.execute("PRAGMA table_info(race_results)").fetchall()
+        }
+        _r_cols = {r[1] for r in conn.execute("PRAGMA table_info(races)").fetchall()}
+        _wc_sel = "rr.weight_carried" if "weight_carried" in _rr_cols else "NULL"
         _dist_sel = "r.distance" if "distance" in _r_cols else "NULL"
         _grade_sel = "r.grade" if "grade" in _r_cols else "NULL"
 
@@ -130,7 +134,9 @@ def build_prerun_features(conn: sqlite3.Connection, race_id: str) -> pd.DataFram
         # 現レース情報（斤量・entries テーブルから; 列が存在しない場合は None）
         cur_weight: float | None = None
         try:
-            _e_cols = {r[1] for r in conn.execute("PRAGMA table_info(entries)").fetchall()}
+            _e_cols = {
+                r[1] for r in conn.execute("PRAGMA table_info(entries)").fetchall()
+            }
             if "weight_carried" in _e_cols:
                 cur_weight_row = conn.execute(
                     "SELECT weight_carried FROM entries WHERE race_id = ? AND horse_number = ?",
@@ -155,6 +161,8 @@ def build_prerun_features(conn: sqlite3.Connection, race_id: str) -> pd.DataFram
             # W-007
             "weight_carried_diff": math.nan,
             "uf_weight_impact": math.nan,
+            # W-096 (Task4)
+            "prev_trouble_proxy": math.nan,
         }
 
         if past:
@@ -165,6 +173,36 @@ def build_prerun_features(conn: sqlite3.Connection, race_id: str) -> pd.DataFram
             feat["prev_last_3f_sec"] = l3 if l3 is not None else math.nan
             mg = _parse_margin(p0[4])
             feat["prev_margin_sec"] = mg if mg is not None else math.nan
+
+            # ── W-096 (Task4): 前走不利プロキシ ───────────────────────────
+            # 「速い上がりで差してきたのに着順が凡退」＝直線で不利/出遅れ/前が壁
+            #   等の展開不利を受けた可能性が高い → 次走巻き返しを加点する。
+            #   通過順位データが無い（W-073）ため、上がり3F×着順×着差で代理推定する。
+            #   リークフリー（前走の確定結果のみ参照）。
+            trouble = 0.0
+            l3v = feat["prev_last_3f_sec"]
+            if (
+                isinstance(l3v, float)
+                and not math.isnan(l3v)
+                and not math.isnan(prev_rank_val)
+                and prev_rank_val > 3
+            ):
+                # 上がり強度: 35.5秒=0.0 / 32.5秒=1.0（速い差し脚ほど高）
+                closing_strength = min(max((35.5 - l3v) / 3.0, 0.0), 1.0)
+                # 着順ペナルティ: 4着=0.1 … 13着=1.0
+                rank_penalty = min((prev_rank_val - 3) / 10.0, 1.0)
+                trouble = closing_strength * rank_penalty
+            # 僅差負け（着差<=0.5秒）かつ4着以下 → 展開/不利で取りこぼし
+            if (
+                mg is not None
+                and not math.isnan(mg)
+                and 0.0 < mg <= 0.5
+                and not math.isnan(prev_rank_val)
+                and prev_rank_val >= 4
+            ):
+                trouble = max(trouble, 0.4)
+            feat["prev_trouble_proxy"] = round(min(trouble, 1.0), 4)
+
             try:
                 from datetime import datetime
 
@@ -211,7 +249,11 @@ def build_prerun_features(conn: sqlite3.Connection, race_id: str) -> pd.DataFram
                         base_score += 0.15
                 # 超過充電ボーナス（休養28日以上で気力回復）
                 dsince = feat.get("days_since_prev")
-                if isinstance(dsince, float) and not math.isnan(dsince) and dsince >= 28:
+                if (
+                    isinstance(dsince, float)
+                    and not math.isnan(dsince)
+                    and dsince >= 28
+                ):
                     base_score += 0.15
                 incompleteness = min(base_score, 1.0)
             feat["uf_incompleteness"] = incompleteness

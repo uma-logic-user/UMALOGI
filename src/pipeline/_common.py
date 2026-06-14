@@ -113,6 +113,11 @@ def build_output_json(
     horses: list[dict] = []
     ev_recommend: list[dict] = []
 
+    # Task2(W-094): オッズ非依存の能力評価ベース印（◎〇▲△）。暫定でも必ず付く。
+    from src.ml.provisional_picks import assign_ability_marks
+
+    ability_marks = assign_ability_marks(df_reset, honmei_scores)
+
     for i, row in df_reset.iterrows():
         num = int(row["horse_number"])
         p_win = float(honmei_scores.iloc[i]) if i < len(honmei_scores) else 0.0
@@ -124,6 +129,9 @@ def build_output_json(
             "horse_number": num,
             "horse_name": str(row.get("horse_name", "")),
             "horse_id": str(row.get("horse_id", "") or ""),
+            "mark": ability_marks.get(
+                num, ""
+            ),  # Task2: 能力評価ベース印（暫定でも有効）
             "sex_age": str(row.get("sex_age", "") or ""),
             "weight_carried": float(row.get("weight_carried") or 0),
             "horse_weight": _int_or_none(row.get("horse_weight")),
@@ -159,7 +167,7 @@ def build_output_json(
         "today_race_count": _int_or_none(first.get("today_race_count")),
     }
 
-    return {
+    payload = {
         "race_id": race_id,
         "generated_at": datetime.now().isoformat(),
         "bias": bias,
@@ -168,6 +176,18 @@ def build_output_json(
         "honmei_bets": honmei_bets.to_dict(),  # type: ignore[attr-defined]
         "manji_bets": manji_bets.to_dict(),  # type: ignore[attr-defined]
     }
+
+    # Task2(W-094): 暫定モードでは EV 推奨が空になるため、能力評価ベースの
+    # 具体的な印＋買い目（単勝/複勝/ワイド/馬連）を provisional_picks として常に同梱し、
+    # UI（ポート3000）が「印も買い目も無い」状態にならないようにする。
+    if provisional:
+        from src.ml.provisional_picks import build_provisional_display
+
+        payload["provisional_picks"] = build_provisional_display(
+            df_reset, honmei_scores
+        )
+
+    return payload
 
 
 def save_json(race_id: str, payload: dict) -> Path:

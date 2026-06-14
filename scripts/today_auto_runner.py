@@ -142,6 +142,9 @@ def _check_single_instance() -> bool:
 # ログは日次ローテーション + 7日保持（src/ops/logger.py）。肥大化によるディスク枯渇を防ぐ。
 from src.ops.logger import setup_logging
 
+# W-093: 生存ハートビート（watchdog がハング検知して強制再起動するための鼓動）。
+from src.ops.heartbeat import write_heartbeat, clear_heartbeat
+
 logger = setup_logging(
     "auto_runner",
     "auto_runner.log",
@@ -260,6 +263,8 @@ def _wait_until(target: datetime.datetime, dry_run: bool = False) -> None:
         logger.info(
             "待機中: あと %.0f 秒 (目標 %s)", remaining, target.strftime("%H:%M:%S")
         )
+        # W-093: スリープ中も鼓動を刻む（生きているが進捗なし、ではなく正常待機だと示す）。
+        write_heartbeat("auto_runner", note=f"wait->{target.strftime('%H:%M')}")
         time.sleep(sleep_secs)
 
 
@@ -335,7 +340,11 @@ def _check_daily_loss_circuit_breaker(date_str: str) -> bool:
             conn.close()
 
         if net_profit <= -_DAILY_LOSS_LIMIT_JPY:
-            mode = "Soft Stop（予想生成は継続）" if _CB_SOFT_STOP else "Hard Stop（予想停止）"
+            mode = (
+                "Soft Stop（予想生成は継続）"
+                if _CB_SOFT_STOP
+                else "Hard Stop（予想停止）"
+            )
             logger.warning(
                 "🛑 [W-043 CB] 当日損失 ¥%.0f が閾値 ¥%d を超過 → %s",
                 abs(net_profit),
@@ -738,6 +747,10 @@ def _run_odds_timeseries_recorder(dry_run: bool) -> None:
             stderr=subprocess.PIPE,
             text=True,
             encoding="utf-8",
+            # W-093: errors未指定だと子(JVLink 32bit由来)のCP932バイト(0x83)で
+            # _readerthread が UnicodeDecodeError 死亡→パイプ詰まり→毎周期300sタイムアウト
+            # の空転（2026-06-14 サイレント停止）になる。replace で構造的に封じる。
+            errors="replace",
         )
         if result.returncode != 0:
             logger.warning(
@@ -783,6 +796,7 @@ def _run_x_scraper(date_str: str, dry_run: bool) -> None:
             stderr=subprocess.PIPE,
             text=True,
             encoding="utf-8",
+            errors="replace",  # W-093: CP932混入でのリーダースレッド死亡を防ぐ
         )
         out = (result.stdout or "") + (result.stderr or "")
         m = re.search(r"saved=(\d+)", out)
@@ -1307,6 +1321,13 @@ def _run_one_day(
             next_odds_capture = datetime.datetime.now()
             while True:
                 now = datetime.datetime.now()
+                # W-093: 監視ループ各周回で鼓動。空転（オッズレコーダー等の詰まり）に
+                # 陥っても、ここが回り続ける限り鼓動が更新される。鼓動が止まったら
+                # watchdog がハング扱いで強制再起動する。
+                write_heartbeat(
+                    "auto_runner",
+                    note=f"monitor submitted={len(submitted_keys)}/{total}",
+                )
 
                 if now >= next_odds_capture:
                     post_ex.submit(_run_odds_timeseries_recorder, dry_run)
@@ -1469,8 +1490,11 @@ def main() -> None:
     import signal
 
     def _cleanup_pid() -> None:
-        """PID ファイルを確実に削除する（べき等）。"""
+        """PID ファイル・ハートビートを確実に削除する（べき等）。"""
         _LOCK_FILE.unlink(missing_ok=True)
+        # W-093: 鼓動も消す。プロセス不在＋鼓動なし＝watchdog は再起動を試みない
+        # （意図的停止 / supervisor 側の再起動に委ねる）。
+        clear_heartbeat("auto_runner")
 
     atexit.register(_cleanup_pid)
 
@@ -1502,6 +1526,8 @@ def main() -> None:
 
     while True:
         try:
+            # W-093: サイクル開始でも鼓動（曜日判定・各フェーズ間でも生存を更新）。
+            write_heartbeat("auto_runner", note=f"cycle-start {target_date}")
             wd = _weekday(target_date)
             is_friday = wd == _FRI
             is_saturday = wd == _SAT
