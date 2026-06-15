@@ -34,6 +34,20 @@ Claude Code（および人間の保守担当）は、コードを変更してコ
 
 ## 保守記録（最新が上）
 
+### 2026-06-15 — 内枠複勝バイアスz（today/yesterday）と x_trouble_inner 三項クロスの実装・ゲート検証（`v1.16.4-dev`）
+
+| 項目 | 内容 |
+|------|------|
+| **修正者** | Claude (claude-opus-4-8) |
+| **修正日** | 2026-06-15（月） |
+| **バージョン** | 1.16.3-dev → 1.16.4-dev（MINOR: 研究特徴量＋検証基盤拡張） |
+| **種別** | 研究（特徴量設計・検証）＋ 基盤（アセンブラ・CLI拡張） |
+| **実施内容** | 社長指示で `x_trouble_inner` の三項クロス化を実装。**`src/features/inner_bias.py`**＝内枠(1-3枠)複勝率の z スコアを**リークフリー**算出（`today_inner_bias`=当日の race_number 小の既走確定結果のみ／`yesterday_inner_bias`=直近前開催日全体／基準μ,σは全cutoffより前の固定参照）。`tests/test_inner_bias_w098.py` 4件で「後続レース結果を変えても today_bias 不変＝リーク無し」を固定（テストが基準経由の同日リークを実際に検出→reference_hi で根治）。**`src/features/research_assemblers.py`** にレジストリ＋`assemble_with_inner_bias`（三項クロス `prev_trouble_proxy × inner_draw(枠1-3) × inner_bias` を付与）。**`validate_feature.py`** に `--builder`（アセンブラ選択）／`--each`（候補を個別検証）を追加。**6 cutoff ゲート検証結果**: today版=勝率33%/平均-5.9pp FAIL、yest版=勝率50%/**平均+3.3pp**/ΔAUC-0.0012 だが勝率2/3未達で FAIL。前日版>当日版（完了日のバイアスが安定信号）。両版とも本番不採用（条項8）だが yest が最有望。 |
+| **影響範囲** | VERSION, src/features/inner_bias.py(新), src/features/research_assemblers.py(新), scripts/validate_feature.py, tests/test_inner_bias_w098.py(新), docs/research/cross_feature_ideas.md, docs/7_weakness_ledger.md, docs/5_ml_roadmap.md。**本番モデル/FEATURE_COLS/predictions は無変更**（研究・検証のみ）。 |
+| **検証** | tests/test_inner_bias_w098.py 4 ＋ test_feature_gate_w097.py 8 PASS。ruff クリーン。6 cutoff WF ゲート完走（台帳 data/feature_gate_results.json）。 |
+| **ロールバック** | 直前コミット d8e37717。研究/検証のため本番影響なし。 |
+| **関連** | W-098（inner_bias三項クロス・両版FAIL・yest最有望）。条項8。[[feedback_no_unvalidated_overlays]]。 |
+
 ### 2026-06-15 — 新特徴量WF検証ゲートの標準化＋前走不利クロス特徴量の研究（`v1.16.3-dev`）
 
 | 項目 | 内容 |

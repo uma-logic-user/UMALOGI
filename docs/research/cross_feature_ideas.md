@@ -82,3 +82,32 @@
 - 結論: 現時点で本番統合する新特徴量は無い。`x_trouble_inner` を三項クロス化して再検証する。
 
 > 生データ: `data/cross_feature_wf_results.json`。
+
+## 三項クロス化 `x_trouble_inner × inner_bias`（2026-06-15・W-098）
+
+`x_trouble_inner`（勝率4/6で最有望）の下振れを抑えるため、改善案どおり
+**内枠複勝バイアスの z スコア**（実際に内枠が効いているか）を掛けた三項クロスを実装・検証。
+
+- 定義（社長指定）: `inner_bias` = 内枠(1-3枠)の複勝率が過去平均比で何σ高いか（z）。
+  - `today_inner_bias` = 当日の**既走レース**（発走前確定）のみから算出（`src/features/inner_bias.py`）。
+  - `yesterday_inner_bias` = 直近の前開催日（完了）の全レースから算出。
+  - リークフリー: today は race_number 小の同日結果のみ・基準(μ,σ)は全cutoffより前の固定参照。
+    `tests/test_inner_bias_w098.py` で「後続レース結果を変えても today_bias 不変」を固定。
+- 三項クロス: `prev_trouble_proxy × inner_draw(枠1-3) × inner_bias`。
+- 検証: `py scripts/validate_feature.py --builder inner_bias --candidate x_trouble_inner_today,x_trouble_inner_yest --each`
+
+| 三項クロス | 改善 cutoff | 平均 ΔROI | 平均 ΔAUC | 判定 |
+|------------|:---:|:---:|:---:|:---:|
+| `x_trouble_inner_today`（×当日バイアス） | 2/6 (33%) | -5.9pp | -0.0010 | ❌ FAIL |
+| `x_trouble_inner_yest`（×前日バイアス） | 3/6 (50%) | **+3.3pp** | -0.0012 | ❌ FAIL（勝率のみ） |
+
+- **前日版 > 当日版**（+3.3pp vs -5.9pp）。当日版が劣るのは「当日の既走レースは標本が少なく、
+  早朝の早期バイアスが午後まで持続しない」ため。**完了した前日全体のバイアスの方が安定信号**。
+- **`x_trouble_inner_yest` はこれまでで最も惜しい候補**: 平均ΔROI **+3.3pp**（>+2.0 閾値クリア）・
+  ΔAUC ほぼ中立（-0.0012・許容内）だが、**勝率 50%（3/6）が 2/3 ゲートに僅かに届かず FAIL**。
+- 結論: 両版とも本番不採用（条項8）。だが `yest` は方向性が正しく、次の改善余地:
+  ①EVゲート（単勝5–30倍）併用で大穴ノイズ域の下振れ cutoff を除外、
+  ②会場×内外の細分（新潟外回り等のバイアス逆転を分離）、
+  ③前日だけでなく「直近N開催の加重平均バイアス」で標本を増やし勝率の一貫性を上げる。
+
+> 生データ: `data/feature_gate_results.json`（検証台帳）。

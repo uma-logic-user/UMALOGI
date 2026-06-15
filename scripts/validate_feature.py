@@ -27,8 +27,9 @@ _ROOT = Path(__file__).resolve().parent.parent
 if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
-from scripts.backtest_v2_oos import BASE_COLS, _assemble, _race_ids  # noqa: E402
+from scripts.backtest_v2_oos import BASE_COLS, _race_ids  # noqa: E402
 from src.features.pedigree_te import SireEncoder  # noqa: E402
+from src.features.research_assemblers import RESEARCH_ASSEMBLERS  # noqa: E402
 from src.ml.feature_gate import GatePolicy, walk_forward_gate  # noqa: E402
 
 _MANIFEST = _ROOT / "data" / "feature_gate_results.json"
@@ -61,7 +62,9 @@ def run_gate(
     train_cap: int = 1500,
     test_cap: int = 600,
     policy: GatePolicy | None = None,
+    builder: str = "default",
 ) -> dict:
+    assemble_fn = RESEARCH_ASSEMBLERS[builder]
     conn = sqlite3.connect(str(_ROOT / "data" / "umalogi.db"))
     try:
         res = walk_forward_gate(
@@ -70,7 +73,7 @@ def run_gate(
             base_cols=BASE_COLS,
             candidate_cols=candidate_cols,
             race_ids_fn=_race_ids,
-            assemble_fn=_assemble,
+            assemble_fn=assemble_fn,
             encoder_fn=_encoder_fn,
             cutoffs=cutoffs,
             train_cap=train_cap,
@@ -82,6 +85,7 @@ def run_gate(
     out = res.to_dict()
     out["validated_at"] = datetime.now().isoformat(timespec="seconds")
     out["candidate_cols"] = candidate_cols
+    out["builder"] = builder
     return out
 
 
@@ -92,23 +96,52 @@ def main() -> int:
     ap.add_argument("--cutoffs", default=_DEFAULT_CUTOFFS)
     ap.add_argument("--train-cap", type=int, default=1500)
     ap.add_argument("--test-cap", type=int, default=600)
+    ap.add_argument(
+        "--builder",
+        default="default",
+        choices=sorted(RESEARCH_ASSEMBLERS.keys()),
+        help="特徴量アセンブラ（研究特徴量を付与する版を選択）",
+    )
+    ap.add_argument(
+        "--each",
+        action="store_true",
+        help="候補列を1つずつ独立した特徴量として個別検証する",
+    )
     args = ap.parse_args()
 
     cols = [c.strip() for c in args.candidate.split(",") if c.strip()]
-    name = args.name or "+".join(cols)
     cutoffs = [c.strip() for c in args.cutoffs.split(",") if c.strip()]
+    # --each: 各列を別個の特徴量として検証 / 既定: 全列を1候補として
+    groups = [[c] for c in cols] if args.each else [cols]
 
-    print(f"=== 特徴量ゲート検証: {name}  ({len(cutoffs)} cutoff) ===")
-    out = run_gate(cols, name, cutoffs, train_cap=args.train_cap, test_cap=args.test_cap)
-    _record(out)
+    all_passed = True
+    for grp in groups:
+        name = args.name if (args.name and not args.each) else "+".join(grp)
+        print(
+            f"\n=== 特徴量ゲート検証: {name}  (builder={args.builder} / {len(cutoffs)} cutoff) ==="
+        )
+        out = run_gate(
+            grp,
+            name,
+            cutoffs,
+            train_cap=args.train_cap,
+            test_cap=args.test_cap,
+            builder=args.builder,
+        )
+        _record(out)
+        verdict = (
+            "✅ PASS（本番統合の検討可）"
+            if out["passed"]
+            else "❌ FAIL（本番統合 不可）"
+        )
+        print("=" * 60)
+        print(f"{name}: {verdict}")
+        print(f"  {out['reason']}")
+        print("=" * 60)
+        all_passed = all_passed and out["passed"]
 
-    print("\n" + "=" * 60)
-    verdict = "✅ PASS（本番統合の検討可）" if out["passed"] else "❌ FAIL（本番統合 不可）"
-    print(f"{name}: {verdict}")
-    print(f"  {out['reason']}")
-    print(f"  台帳: {_MANIFEST}")
-    print("=" * 60)
-    return 0 if out["passed"] else 1
+    print(f"\n台帳: {_MANIFEST}")
+    return 0 if all_passed else 1
 
 
 if __name__ == "__main__":
